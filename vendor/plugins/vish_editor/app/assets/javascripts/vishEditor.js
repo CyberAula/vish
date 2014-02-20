@@ -24,18 +24,20 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.walkImagesViSH1_1":'Ahora te encuentras en la pesta\u00f1a de ViSH, haz click en "Siguiente" para continuar.', "i.walkImagesViSH2_1":"Buscar im\u00e1genes en el repositorio del ViSH", "i.walkImagesViSH2_2":"Esta pantalla te permite buscar im\u00e1genes en el repositorio del ViSH (http://vishub.org).", "i.walkSearch1":"Escribe el nombre que quieras buscar dentro de la caja de texto, por ejemplo", "i.nature":"nature", "i.walkImagesSearch2":"y pulsa la tecla 'intro' para comenzar la b\u00fasqueda. Cuando termine la b\u00fasqueda, las im\u00e1genes encontradas ser\u00e1n mostradas en esta pantalla. Para a\u00f1adir cualquiera de ellas a la diapositiva, simplemente haz click sobre la que desees.", 
 "i.walkImagesFlickr1_1":'Ahora te encuentras en la pesta\u00f1a de Flickr, haz click en "Siguiente" para continuar.', "i.walkImagesFlickr2_1":"Buscar im\u00e1genes en Flickr", "i.walkImagesFlickr2_2":"Esta pantalla te permite buscar im\u00e1genes en Flickr.", "i.walkImagesLRE1_1":'Ahora te encuentras en la pesta\u00f1a del repositorio del LRE, haz click en "Siguiente" para continuar.', "i.walkImagesLRE2_1":"Buscar im\u00e1genes en el repositorio del LRE", "i.walkImagesLRE2_2":"Esta pantalla te permite buscar im\u00e1genes en el repositorio del LRE.", 
 "i.walkObjectsMain_1":"A\u00f1adiendo objetos", "i.walkObjectsMain_2":"Esta pantalla te permite a\u00f1adir diferentes tipos de objetos a las diapositivas. Puedes seleccionar el objeto a insertar de diferentes fuentes.", "i.walkObjectsMain_Web":"a\u00f1adir una web pegando su enlace (url)", "i.walkObjectsMain_WebSnapshot":'un "web snapshot" es un fragmento de una p\u00e1gina web. Este fragmento aparecer\u00e1 sin barras de desplazamiento (barras de scroll) y te permitir\u00e1 insertar un \u00e1rea o zona espec\u00edfica de una p\u00e1gina web en lugar de la p\u00e1gina completa', 
-"i.walkObjectsMain_Embed":"a\u00f1ade un objeto embedido. Puedes escribir o pegar tanto el c\u00f3digo HTML del objeto como su enlace o url", "i.walkObjectsMain_Upload":"sube un fichero propio en formato PDF o SWF (flash) de tu ordenador", "i.walkObjectsMain_ViSH":"busca objetos en el repositorio del ViSH", "i.walkObjectsMain_LRE":"busca objetos en el repositorio del LRE", "i.walkVideosMain_1":"A\u00f1adiendo videos", "i.walkVideosMain_2":"Esta pantalla te permite a\u00f1adir videos a las diapositivas. Puedes seleccionar el video a a\u00f1adir de diferentes fuentes:", 
-"i.walkVideosMain_Url":"a\u00f1ade un video pegando su enlace (url). Solo est\u00e1n admitidos videos HTML5 y de YouTube", "i.walkVideosMain_ViSH":"busca videos HTML5 en el repositorio del ViSH", "i.walkVideosMain_YouTube":"busca videos en YouTube", "i.walkVideosMain_Upload":"Haz click aqu\u00ed para aprender como subir v\u00eddeos", "i.walkVideosUpload_1":"Subiendo v\u00eddeos", "i.walkVideosUpload_2":"Puedes subir un video propio de tu ordenador. Para hacer esto, vete a", "i.walkVideosUpload_3":"y sube tu archivo de video al repositorio del ViSH. Varios formatos de video (mp4, flv, mpg, avi, ...) est\u00e1n soportados. Cuando termines de subir el video al ViSH tu video ser\u00e1 convertido a un formato compatible con HTML5. Este proceso puede llevar varios minutos. Una vez que el proceso haya finalizado, tienes dos formas de a\u00f1adir un v\u00eddeo", 
-"i.walkVideosUpload_4":"Buscar tu video en el repositorio del ViSH en la pesta\u00f1a 'ViSH'. En este caso tendr\u00e1s que esperar varias horas hasta que el motor de b\u00fasqueda del ViSH haya indexado el nuevo v\u00eddeo. Esta es la manera recomendada de insertar los videos, porque de este modo los v\u00eddeos estar\u00e1n disponibles en varios formatos y funcionar\u00e1n en casi todos los dispositivos.", "i.walkVideosUpload_5":"Otra forma es acceder a la p\u00e1gina del v\u00eddeo en ViSH, por ejemplo http://vishub.org/videos/325, y a\u00f1adir la extensi\u00f3n deseada (webm, mp4) a la url, por ejemplo, http://vishub.org/videos/325.webm. En esta p\u00e1gina ser\u00e1s capaz de ver el v\u00eddeo en tu navegador web. Finalmente, solamente tienes que ir a la pesta\u00f1a 'enlace' y pegar esta url para insertar el v\u00eddeo de forma inmediata.", 
+"i.walkObjectsMain_Embed":"a\u00f1ade un objeto embedido. Puedes escribir o pegar tanto el c\u00f3digo HTML del objeto como su enlace o url", "i.walkObjectsMain_Upload":"sube un fichero propio en formato PDF o SWF (flash) de tu ordenador", "i.walkObjectsMain_ViSH":"busca objetos en el repositorio del ViSH", "i.walkObjectsMain_LRE":"busca objetos en el repositorio del LRE", "i.walkVideosMain_1":"A\u00f1adiendo videos", "i.walkVideosMain_2":"La pantalla de recursos multimedia te permite a\u00f1adir videos a las diapositivas. Puedes seleccionar el v\u00eddeo a a\u00f1adir de diferentes fuentes:", 
+"i.walkVideosMain_Url":"a\u00f1ade un v\u00eddeo pegando su enlace (url). Solo est\u00e1n admitidos videos HTML5 y de YouTube", "i.walkVideosMain_ViSH":"busca videos HTML5 en el repositorio del ViSH", "i.walkVideosMain_YouTube":"busca videos en YouTube", "i.walkVideosMain_Upload":"Haz click aqu\u00ed para aprender como subir v\u00eddeos", "i.walkVideosMain_Videos":"Haz click aqu\u00ed para aprender m\u00e1s sobre videos en ViSH Editor", "i.walkVideosUpload_1":"Subiendo v\u00eddeos", "i.walkVideosUpload_2":"Puedes subir un v\u00eddeo propio desde tu ordenador. Para hacer esto, vete a", 
+"i.walkVideosUpload_3":"y sube tu archivo de v\u00eddeo al repositorio del ViSH. Varios formatos de v\u00eddeo (mp4, flv, mpg, avi, ...) est\u00e1n soportados. Cuando termines de subir el v\u00eddeo al ViSH este ser\u00e1 convertido a todos los formatos de video compatibles con HTML5 (mp4, webm y ogg). Tenga en cuenta que este proceso puede tardar varios minutos o incluso horas, dependiendo del tama\u00f1o del v\u00eddeo. Esta es una buena forma de insertar los videos porque de este modo estar\u00e1n disponibles en varios formatos y funcionar\u00e1n en todos los navegadores web que soporten HTML5. Una vez que el proceso haya finalizado, tienes dos formas de a\u00f1adir un v\u00eddeo", 
+"i.walkVideosUpload_4":"Buscar tu v\u00eddeo en el repositorio del ViSH desde el ViSH Editor a trav\u00e9s de la pesta\u00f1a 'ViSH'. En este caso tendr\u00e1s que esperar varias horas (como m\u00e1ximo) hasta que el motor de b\u00fasqueda del ViSH haya indexado el nuevo v\u00eddeo.", "i.walkVideosUpload_5":"Otra forma es acceder a la p\u00e1gina del v\u00eddeo en ViSH (por ejemplo http://vishub.org/videos/3366), y seleccionar la tab 'insertar'. Despu\u00e9s hay que copiar el c\u00f3digo de inserci\u00f3n proporcionado y pegarlo en la caja de texto de la tab 'url' en el ViSH Editor. De esta forma, el video ser\u00e1 insertado de forma inmediata.", 
+"i.walkVideosUpload_6":"Dado que ViSH Editor permite insertar videos de YouTube, tambi\u00e9n puedes subir tus videos a YouTube", "i.walkVideosUpload_7":"Una vez que hayas subido un video satisfactoriamente a YouTube, puedes insertarlo mediante su url, el c\u00f3digo de inserci\u00f3n proporcionado por YouTube o b\u00fascandolo desde el ViSH Editor mediante la tab 'YouTube'. YouTube tambi\u00e9n proporciona los videos en formatos de v\u00eddeo HTML5, por lo que funcionar\u00e1n en practicamente todos los dispositivos incluyendo tel\u00e9fonos m\u00f3viles.", 
 "i.walkQuiz_1":"A\u00f1adiendo cuestionarios (Quizzes)", "i.walkQuiz_2":"Puedes a\u00f1adir diferentes tipos de cuestionarios o quizzes a tu presentaci\u00f3n. Los cuestionarios actualmente disponibles se muestran a continuaci\u00f3n", "i.walkQuiz_MC1":"Respuesta m\u00faltiple", "i.walkQuiz_MC2":"Los cuestionarios de respuesta m\u00faltiple son una forma de evaluaci\u00f3n en la que se les solicita a los encuestados que seleccionen la mejor respuesta posible  (o respuestas) de una lista de posibles opciones.", 
 "i.walkQuiz_TF1":"Verdadero / Falso", "i.walkQuiz_TF2":"Un cuestionario de verdadero/falso es una forma de evaluaci\u00f3n en la que se solicita a los encuestados que seleccionen, para cada afirmaci\u00f3n o sentencia, si esta es verdadera o falsa.", "i.walkQuiz_3":"Ademas de los contenidos, tambi\u00e9n puedes definir las respuestas correctas del cuestionario o quiz, permitiendo de esta manera la autoevaluaci\u00f3n y el seguimiento autom\u00e1tico del progreso de los estudiantes en plataformas de aprendizaje como Moodle.", 
 "i.walkLive_1":"A\u00f1adiendo contenidos en directo", "i.walkLive_2":"ViSH (Virtual Science Hub) ofrece recursos especiales como webcams en vivo, microscopios o laboratorios virtuales provistos por determinadas ciberinfraestructuras.", "i.walkLive_3":"En esta pantalla podr\u00e1s buscar recursos de este tipo en el repositorio del ViSH.", "i.walkLive_4":"Si quieres descubrir m\u00e1s recursos de ciberinfraestructuras o atender a eventos de ciencia en directo puedes visitar", "i.walkAddSlide_1":"A\u00f1adiendo Diapositivas", 
 "i.walkAddSlide_2":"Aqu\u00ed puedes a\u00f1adir a tu presentaci\u00f3n una nueva diapositiva vac\u00eda con una plantilla espec\u00edfica. Para esto, simplemente selecciona la plantilla que quieras de las disponibles en el panel 'Plantillas'. Ten en cuenta que la plantilla define la posici\u00f3n y tama\u00f1o de las zonas en las cuales podr\u00e1s a\u00f1adir contenidos en la nueva diapositiva.", "i.walkAddSlide_3":"Adem\u00e1s de diapositivas normales, tambi\u00e9n puedes a\u00f1adir a tu presentaci\u00f3n elementos m\u00e1s interactivos llamados 'Smartcards'. Para insertar cualquiera de estos elementos, simplemente haz click en el que desees dentro del panel de 'Smartcards'. Una vez que hayas insertado una Smartcard podr\u00e1s personalizarla con el contenido que quieras.", 
 "i.walkAddSlide_4":"Haz click aqu\u00ed para ver m\u00e1s informaci\u00f3n sobre los tipos disponibles de Smartcards y para aprender c\u00f3mo crearlas.", "i.walkSmartcards_1":"Las Smartcards son elementos interactivos que pueden ser insertados en la presentaci\u00f3n como si fueran diapositivas normales.", "i.walkSmartcards_2":"Los siguientes tipos de Smartcards est\u00e1n disponibles", "i.flashcardDef":"Las Flashcards son recursos presentados como una imagen de fondo con 'zonas calientes' se\u00f1aladas por flechas sobre las que el usuario puede hacer click para ver contenidos adicionales que han sido previamente etiquetados.", 
-"i.vtDef":"Los Tours Virtuales son similares a las Flashcards, pero en lugar de ser presentados como im\u00e1genes de fondo est\u00e1ticas, se presentan como mapas interactivos donde las 'zonas calientes' son lugares se\u00f1alados por pines en el mapa. De esta forma, cuando los usuarios hacen click sobre un pin en el mapa (sobre una localizaci\u00f3n marcada) ven contenidos adicionales.", "i.flashcardLearHow":"Haz click aqu\u00ed para aprender como crear una Flashcard.", "i.vtLearHow":"Haz click aqu\u00ed para aprender como crear un Tour Virtual.", 
-"i.walkPdf2ex_1":"Insertar una presentaci\u00f3n PDF", "i.walkPdf2ex_2":"Selecciona una presentaci\u00f3n en formato PDF y sube el archivo. \u00danicamente se admiten archivos en formato PDF. Si quieres insertar una presentaci\u00f3n en otro formato como PowerPoint (.ppt) debes de convertir el archivo a PDF primero.", "i.walkPdf2ex_3":"Una vez que la subida del fichero PDF haya finalizado, aparecer\u00e1 una nueva ventana para que elijas las diapositivas que quieres insertar de la presentaci\u00f3n que has subido.", 
-"i.walkPdf2ex_4":"Esta funcionalidad convertir\u00e1 la presentaci\u00f3n PDF en una presentaci\u00f3n de ViSH Editor, esto quiere decir que cada una de las diapositivas seleccionadas de la presentaci\u00f3n PDF ser\u00e1 insertada en la presentaci\u00f3n actual como una diapositiva nueva.", "i.walkPdf2ex_5":"Si lo que quiere es insertar un documento PDF entero en la misma diapositiva para que pueda ser leido como un libro, debe de subir el archivo PDF desde el panel 'Objectos'.", "i.walkInsertingViSHPres_1":"A\u00f1adiendo Diapositivas de Excursiones Virtuales", 
-"i.walkInsertingViSHPres_2":"Aqu\u00ed puedes buscar Excursiones Virtuales en la plataforma ViSH para a\u00f1adirlas (o a\u00f1adir determinadas diapositivas de ellas) a tu presentaci\u00f3n.", "i.walkInsertingViSHPres_3":"Haz click en cualquiera de las Excursiones Virtuales para seleccionarla. Despu\u00e9s, se mostrar\u00e1 un nuevo bot\u00f3n 'Vista Previa'. Cuando pulses este bot\u00f3n, aparecer\u00e1 una nueva ventana para que elijas las diapositivas que quieres insertar en tu presentaci\u00f3n.", 
+"i.vtDef":"Los Tours Virtuales son similares a las Flashcards, pero en lugar de ser presentados como im\u00e1genes de fondo est\u00e1ticas, se presentan como mapas interactivos donde las 'zonas calientes' son lugares se\u00f1alados por pines en el mapa. De esta forma, cuando los usuarios hacen click sobre un pin en el mapa (sobre una localizaci\u00f3n marcada) ven contenidos adicionales.", "i.EVideoDef":"Los Videos Enriquecidos son v\u00eddeos aumentados con otros recursos (cuestionarios/quizzes, diapositivas, im\u00e1genes, etc) que pueden ser seleccionados y personalizados por el autor, y que pueden ser mostrados autom\u00e1ticamente cuando el v\u00eddeo llega a un instante espec\u00edfico de tiempo o bien de forma explicita cuando el usuario selecciona uno de ellos en un men\u00fa lateral.", 
+"i.flashcardLearnHow":"Haz click aqu\u00ed para aprender como crear una Flashcard.", "i.vtLearnHow":"Haz click aqu\u00ed para aprender como crear un Tour Virtual.", "i.eVideoLearnHow":"Haz click aqu\u00ed para aprender como crear un V\u00eddeo Enriquecido.", "i.walkPdf2ex_1":"Insertar una presentaci\u00f3n PDF", "i.walkPdf2ex_2":"Selecciona una presentaci\u00f3n en formato PDF y sube el archivo. \u00danicamente se admiten archivos en formato PDF. Si quieres insertar una presentaci\u00f3n en otro formato como PowerPoint (.ppt) debes de convertir el archivo a PDF primero.", 
+"i.walkPdf2ex_3":"Una vez que la subida del fichero PDF haya finalizado, aparecer\u00e1 una nueva ventana para que elijas las diapositivas que quieres insertar de la presentaci\u00f3n que has subido.", "i.walkPdf2ex_4":"Esta funcionalidad convertir\u00e1 la presentaci\u00f3n PDF en una presentaci\u00f3n de ViSH Editor, esto quiere decir que cada una de las diapositivas seleccionadas de la presentaci\u00f3n PDF ser\u00e1 insertada en la presentaci\u00f3n actual como una diapositiva nueva.", "i.walkPdf2ex_5":"Si lo que quiere es insertar un documento PDF entero en la misma diapositiva para que pueda ser leido como un libro, debe de subir el archivo PDF desde el panel 'Objectos'.", 
+"i.walkInsertingViSHPres_1":"A\u00f1adiendo Diapositivas de Excursiones Virtuales", "i.walkInsertingViSHPres_2":"Aqu\u00ed puedes buscar Excursiones Virtuales en la plataforma ViSH para a\u00f1adirlas (o a\u00f1adir determinadas diapositivas de ellas) a tu presentaci\u00f3n.", "i.walkInsertingViSHPres_3":"Haz click en cualquiera de las Excursiones Virtuales para seleccionarla. Despu\u00e9s, se mostrar\u00e1 un nuevo bot\u00f3n 'Vista Previa'. Cuando pulses este bot\u00f3n, aparecer\u00e1 una nueva ventana para que elijas las diapositivas que quieres insertar en tu presentaci\u00f3n.", 
 "i.walkPresSearch2":"y pulsa la tecla 'intro' para comenzar la b\u00fasqueda. Cuando termine la b\u00fasqueda, las Excursiones Virtuales encontradas ser\u00e1n mostradas en esta pantalla.", "i.walkInsertingViSHSmart_1":"A\u00f1adiendo Smartcards", "i.walkInsertingViSHSmart_2":"Aqu\u00ed puedes buscar Smartcards en la plataforma ViSH para a\u00f1adirlas a tu presentaci\u00f3n.", "i.walkInsertingViSHSmart_3":"Haz click en cualquiera de las Smartcards para seleccionarla. Despu\u00e9s, se mostrar\u00e1 un nuevo bot\u00f3n 'Vista Previa'. Cuando pulses este bot\u00f3n, aparecer\u00e1 una nueva ventana para que puedas ver la Smartcard antes de insertarla en tu presentaci\u00f3n.", 
 "i.walkSmartSearch2":"y pulsa la tecla 'intro' para comenzar la b\u00fasqueda. Cuando termine la b\u00fasqueda, las Smartcards encontradas ser\u00e1n mostradas en esta pantalla.", "i.walkLearnMoreSmartcards":"Pulsa aqu\u00ed para aprender m\u00e1s sobre las Smartcards.", "i.walkInsertJSONfile_1":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.walkInsertJSONfile_2":"Selecciona el archivo en formato JSON (.json) en el cual est\u00e1 guardada la presentaci\u00f3n que quieres insertar. A continuaci\u00f3n, pulsa sobre el bot\u00f3n 'Vista Previa'. Aparecer\u00e1 una nueva pantalla para que elijas las diapositivas a importar.", 
 "i.walkInsertJSONfile_3":"Puedes salvar tu presentaci\u00f3n en formato JSON haciendo click en 'Men\u00fa -> Exportar -> a JSON'. Se descargar\u00e1 a tu dispositivo un fichero JSON conteniendo tu presentaci\u00f3n. De esta forma puedes compartir tu presentaci\u00f3n mediante un archivo (por ejemplo envi\u00e1ndolo por email) y almacenarla donde quieras.", "i.walkThemes_1":"Temas de ViSH Editor", "i.walkThemes_4":"Recuerda que puedes cambiar el tema de la presentaci\u00f3n en cualquier momento accediendo a esta pantalla o seleccionando la opci\u00f3n 'Ajustes' en el menu.", 
@@ -47,6 +49,13 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.VirtualTourIcon":"Icono de Tour Virtual", "i.walkVirtualTour_2a":"Cuando estas creando un Tour Virtual, se muestra un mapa interactivo con una caja de b\u00fasqueda en su parte superior. Puedes usar esta caja de texto para buscar lugares y localizaciones. Escribe la localizaci\u00f3n que quieras buscar, por ejemplo", "i.walkVirtualTour_2b":"Se mostrar\u00e1 una lista de resultados en la parte inferior de la caja de b\u00fasqueda. Puedes elegir cualquier de ellos o  pulsar la tecla 'intro' para seleccionar autom\u00e1ticamente el primero. El mapa mostrar\u00e1 la localizaci\u00f3n seleccionada.", 
 "i.walkVirtualTour_3":"Cuando est\u00e1s creando un Tour Virtual, se muestra un nuevo panel en la parte inferior de la pantalla. Nos referiremos a este panel como el 'panel de Tour Virtual'.", "i.walkVirtualTour_4":"Para a\u00f1adir una nueva diapositiva al Tour Virtual pulsa sobre el bot\u00f3n 'A\u00f1adir' situado en el 'panel de Tour Virtual' y contin\u00faa con el procedimiento habitual para a\u00f1adir una diapositiva. Despu\u00e9s de a\u00f1adirla, la miniatura de la nueva diapositiva aparecer\u00e1 en el panel y se mostrar\u00e1 la diapositiva en la pantalla.", 
 "i.walkVirtualTour_5":"Cuando la diapositiva est\u00e1 seleccionada, se muestra en la pantalla y puedes editarla y borrarla de la misma forma que las diapositivas normales. Para seleccionar una diapositiva simplemente pulsa sobre ella en el 'panel de Tour Virtual'. Si quieres seleccionar el Tour Virtual nuevamente para editarlo, debes hacer click en el icono de Tour Virtual situado a la izquierda del 'panel de Tour Virtual'.", "i.walkVirtualTour_6":"Las diapositivas tienen flechas arrastrables en su parte superior. Puedes arrastrar cualquiera de ellas dentro del mapa para crear una nueva localizaci\u00f3n. Cuando arrastres una flecha dentro del mapa, un nuevo 'pin' aparecer\u00e1 en la localizaci\u00f3n seleccionada. De esta forma, cuando los usuarios hagan click sobre un 'pin' en el mapa ver\u00e1n la diapositiva asociada. Los 'pins' tambi\u00e9n son arrastrables, de modo que puedes moverlos a lo largo del mapa. Para eliminar un 'pin' en el mapa, simplemente haz click sobre \u00e9l.", 
+"i.CreatingEnrichedVideos":"Creando Videos Enriquecidos", "i.EVideoDef2":"Los Videos Enriquecidos han sido dise\u00f1ados para ser usados en MOOCs (Cursos Online Masivos y Abiertos), con el objetivo de integrar preguntas y cuestionarios en videos de clases asi como contenidos adicionales. Sin embargo, su flexibilidad les permite ser usados en muchos otros entornos educativos.", "i.walkEVideo_1":"Para empezar a crear un V\u00eddeo Enriquecido debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de V\u00eddeo Enriquecido en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 un V\u00eddeo Enriquecido vacio en la pantalla.", 
+"i.EVideoIcon":"Icono de V\u00eddeo Enriquecido", "i.walkEVideo_2":"En primer lugar, debes selecconar la fuente del v\u00eddeo para el V\u00eddeo Enriquecido pulsando sobre el siguiente bot\u00f3n", "i.walkEVideo_3":"Puedes cambiar la fuente de v\u00eddeo seleccionada en cualquier momento haciendo click en el bot\u00f3n 'Video' de la barra de herramientas.", "i.walkEVideo_4":"Puedes usar videos de YouTube y HTML5 (formatos mp4, webm y ogg). Adem\u00e1s, puedes subir tu propio v\u00eddeo al repositorio del ViSH para que sea convertido en formatos compatibles con HTML5 asegurando una compatibilidad completa en todos los dispositivos", 
+"i.walkEVideo_5":"Cuando est\u00e1s creando un V\u00eddeo Enriquecido se muestran, principalmente, dos elementos en la pantalla: el reproductor de v\u00eddeo situado en el lado izquierdo, y la 'Tabla de Contenidos' situada en el lado derecho. El reproductor de v\u00eddeo permite reproducir el v\u00eddeo de la misma forma que un reproductor multimedia cl\u00e1sico. La 'Tabla de Contenidos' permite a\u00f1adir 'Enlaces a Marcas de Tiempo'. Un enlace a una marca de tiempo permite a los espectadores saltar a un punto espec\u00edfico del v\u00eddeo. Los enlaces a marcas de tiempo se representan por l\u00edneas dibujadas sobre la barra de progreso del v\u00eddeo, y sus t\u00edtulos se muestran en la tabla de contenidos. Para editar o borrar una marca de tiempo puedes usar los iconos situados a su lado en la tabla de contenidos.", 
+"i.walkEVideo_6":"Tambi\u00e9n puedes crear enlaces a marcas de tiempo m\u00e1s avanzados, que se encuentren enlazados no solamente con un punto espec\u00edfico del tiempo, sino tambi\u00e9n con una diapositiva que contenga contenidos adicionales. En este caso, la diapositiva se mostrar\u00e1 de forma autom\u00e1tica cuando el v\u00eddeo alcance la marca de tiempo o cuando el usuario pulse sobre el t\u00edtulo correspondiente en la tabla de contenidos. Este tipo de enlaces se representan por bolas (en lugar de simples lineas), las cuales se muestran en la barra de progreso del v\u00eddeo.  Los siguientes pasos explican como crear este tipo de enlaces.", 
+"i.walkEVideo_7":"Cuando est\u00e1s creando un V\u00eddeo Enriquecido, se muestra un nuevo panel en la parte inferior de la pantalla. Nos referiremos a este panel como el 'panel de V\u00eddeo Enriquecido'.", "i.walkEVideo_8":"Para a\u00f1adir una nueva diapositiva al V\u00eddeo Enriquecido pulsa sobre el bot\u00f3n 'A\u00f1adir' situado en el 'panel de V\u00eddeo Enriquecido' y contin\u00faa con el procedimiento habitual para a\u00f1adir una diapositiva. Despu\u00e9s de a\u00f1adirla, la miniatura de la nueva diapositiva aparecer\u00e1 en el panel y se mostrar\u00e1 la diapositiva en la pantalla.", 
+"i.walkEVideo_9":"Cuando la diapositiva est\u00e1 seleccionada, se muestra en la pantalla y puedes editarla y borrarla de la misma forma que las diapositivas normales. Para seleccionar una diapositiva simplemente pulsa sobre ella en el 'panel de V\u00eddeo Enriquecido'. Si quieres seleccionar el V\u00eddeo Enriquecido nuevamente para editarlo, debes hacer click en el icono de V\u00eddeo Enriquecido situado a la izquierda del 'panel de V\u00eddeo Enriquecido'.", "i.walkEVideo_10":"Las diapositivas tienen flechas arrastrables en su parte superior. Puedes arrastrar cualquiera de ellas a cualquier zona del V\u00eddeo Enriquecido para crear un nuevo enlace a una marca de tiempo asociado con su diapositiva. Este enlace ser\u00e1 a\u00f1adido automaticamente al v\u00eddeo y a la 'Tabla de Contenidos'. El enlace se representa en el v\u00eddeo como una bola con la letra de su diapositiva asociada dentro. Puedes deslizar la bola a lo largo de la barra de progreso del v\u00eddeo para ajustar la marca de tiempo. Tambi\u00e9n puedes editar la marca de tiempo y el t\u00edtulo del enlace mediante los iconos situados a su lado en la tabla de contenidos. Si una diapositiva del V\u00eddeo Enriquecido es eliminada, su enlace a marca de tiempo asociado (y por tanto la bola) tambi\u00e9n ser\u00e1 eliminado.", 
+"i.walkEVideo_11":"Puedes a\u00f1adir varias diapositivas  en el mismo instante de tiempo. Esto resulta de gran utilidad para incluir grandes cuestionarios divididos en varias diapositivas o para combinar diferentes tipos de recursos. Para ello, simplemente ponga la misma marca de tiempo a todos los enlaces que se encuentren asociados con las diapositivas que quiera mostrar juntas. Despu\u00e9s, se mostrar\u00e1n un par de flechas en la tabla de contenidos al lado de estos enlaces. Puedes usar estas flechas para especificar el orden en el cual los contenidos ser\u00e1n mostrados cuando el v\u00eddeo alcance esa marca de tiempo.", 
 "i.walkSelectSlides_1":"A\u00f1adiendo diapositivas externas a tu presentaci\u00f3n", "i.walkSelectSlides_2":"Aqu\u00ed puedes previsualizar la presentaci\u00f3n que has decidido importar. Puedes insertar todas las diapositivas de la presentaci\u00f3n o seleccionar solo aquellas que quieras insertar.", "i.walkSelectSlides_3":"Teniendo en cuenta que por defecto se seleccionan todas las diapositivas, si quieres insertar la presentaci\u00f3m completa solamente tienes que hacer click sobre el bot\u00f3n 'A\u00f1adir Diapositivas' situado en la zona inferior derecha de la pantalla.", 
 "i.walkSelectSlides_4":"Si quieres seleccionar de forma espec\u00edfica las diapositivas a importar, las siguientes instrucciones te servir\u00e1n de ayuda", "i.walkSelectSlides_5a":"Utiliza las flechas", "i.walkSelectSlides_5b":"situadas en la zona inferior para recorrer las diapositivas de la presentaci\u00f3n.", "i.walkSelectSlides_6a":"Las diapositivas seleccionadas tienen un borde verde", "i.walkSelectSlides_6b":"mientras que las diapositivas no seleccionadas tienen un borde rojo.", "i.walkSelectSlides_7":"Para seleccionar o deseleccionar la diapositiva actual que est\u00e1s viendo, pulsa sobre el bot\u00f3n 'Seleccionar/Deseleccionar Diapositiva' situado en el centro de la zona inferior.", 
 "i.walkSelectSlides_8":"Adem\u00e1s, puedes hacer uso de los siguientes botones para seleccionar o deseleccionar de golpe todas las diapositivas.", "i.walkSelectSlides_9":"Finalmente, para insertar todas las diapositivas que has seleccionado debes de hacer click en el bot\u00f3n 'A\u00f1adir Diapositivas' situado en la zona inferior derecha de la pantalla. La cantidad de diapositivas a insertar se indica a la izquierda de este bot\u00f3n.", "i.walkQuizzes_1":"Cuestionarios en Vivo", "i.walkQuizzes_2":"Los Cuestionarios en Vivo permiten lanzar cuestionarios y sondeos en tiempo real para obtener respuestas de forma inmediata.", 
@@ -56,40 +65,40 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.walkQuizzes_9":"Si quieres 'cerrar' el cuestionario en vivo debes hacer click en el bot\u00f3n 'Detener' situado en la parte inferior derecha. Despu\u00e9s de cerrar un cuestionario, no se admitir\u00e1n ni guardar\u00e1n m\u00e1s respuestas. Tambi\u00e9n puedes cerrar un cuestionario en cualquier momento desde la plataforma ViSH. Cuando cierras un cuestionario en vivo, puedes, opcionalmente, especificar un nombre para facilitar su b\u00fasqueda posterior en el ViSH.", "i.walkQuizzes_10":"Si sales de la pantalla de cuestionarios en vivo, puedes regresar en cualquier momento haciendo click sobre el bot\u00f3n 'Opciones' situado en la parte inferior del cuestionario. Tenga en cuenta que si un cuestionario ha sido lanzado, el bot\u00f3n 'Lanzar' es reemplazado por un bot\u00f3n 'Opciones'. Cuando se cierre el cuestionario, el bot\u00f3n 'Lanzar' volver\u00e1 a aparecer. Finalmente, tenga en cuenta que no puede lanzar m\u00e1s de un cuestionario en vivo a la vez.", 
 "i.vtTitle_GStarted":"Introducci\u00f3n a ViSH Editor", "i.About2":"C\u00f3digo disponible en", "i.About3":"visita nuestro canal de YouTube", "i.About4":"Desarrollado por", "i.VESurvey1":"Ay\u00fadanos a mejorar ViSH Editor", "i.VESurvey2":"Por favor, rellena", "i.VESurvey3":"esta encuesta", "i.VESurvey4":"\u00a1Gracias por tu colaboraci\u00f3n", "i.VESurveyURL":"https://docs.google.com/forms/d/1b_Ml2iua0oDNKkJqc7eT1W2CDlRhIZR__w2AlicfwjA/viewform", "i.walkCompetitions1_1":"Estamos organizando una competici\u00f3n", 
 "i.walkCompetitions1_2":"Para participar s\u00f3lo tienes que a\u00f1adir el tag ViSHCompetition2013 a tu excursi\u00f3n y uno o m\u00e1s de los siguientes tags:", "i.walkCompetitions1_3":"Maths, Physics, Chemistry, Biology, EnvironmentalStudies, Geography, Engineering, Humanities, NaturalScience o ComputerScience.", "i.walkCompetitions1_4":"Para m\u00e1s informaci\u00f3n ve a", "i.walkCompetitions1_5":"la p\u00e1gina de informaci\u00f3n", "i.walkCompetitions1_6":"o a la", "i.walkCompetitions1_7":"secci\u00f3n de preguntas frecuentes", 
-"i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", "i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.AddItem":"A\u00f1adir entrada", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", "i.AddSlides":"A\u00f1adir Diapositivas", 
-"i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", "i.AddTags":"A\u00f1adir etiquetas", "i.addvideourl":"a\u00f1adir URL de video (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Animations":"Animaciones", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", "i.Opacity":"Opacidad", "i.Elements":"Elementos", "i.Rotate":"Rotar", "i.Diagonal1":"Diagonal #1", "i.Diagonal2":"Diagonal #2", "i.Inside":"Dentro", "i.Zoom":"Ampliar", 
-"i.Flip1":"Vuelta #1", "i.Flip2":"Vuelta #2", "i.3D":"3D", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.by":"por", "i.cancel":"cancelar", "i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", 
-"i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", "i.close":"cerrar", "i.Close":"Cerrar", "i.CloseWSaving":"cerrar sin guardar", "i.Competitions":"Competici\u00f3n", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", "i.delete":"borrar", "i.Description":"Descripci\u00f3n", "i.difficult":"dif\u00edcil", "i.Difficulty":"Dificultad", 
-"i.Documentation":"Documentaci\u00f3n", "i.done":"hecho", "i.Done":"Hecho", "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", "i.Electronics":"Electr\u00f3nica", "i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", "i.EnrichedVideo":"V\u00eddeo Enriquecido", 
-"i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", "i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", "i.errorYoutubeConnection":"Error conectando con YouTube", "i.Ethics":"\u00c9tica", "i.Evaluate":"Evaluar", "i.evaluateTitle":"\u00bfQuieres contribuir evaluando esta excursi\u00f3n?", "i.ExcursionDetails":"Informaci\u00f3n de la Excursi\u00f3n", 
-"i.Excursions":"Excursiones", "i.Exit":"Salir", "i.exitConfirmation":"Vas a abandonar ViSH Editor. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.exitConfirmation2":"\u00bfSeguro que quieres abandonar esta p\u00e1gina?", "i.exitConfirmationMenu":"La Excursi\u00f3n Virtual se ha modificado. Si la cierra sin guardar perder\u00e1 todos los cambios. \u00bfQu\u00e9 desea hacer?", "i.ExitWSaving":"salir sin guardar", "i.Export":"Exportar", "i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un fichero JSON.", 
-"i.exportPresToSCORMerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un paquete SCORM.", "i.exviews":"visitas", "i.Filllater":"Rellenar despu\u00e9s", "i.Finish":"Terminar", "i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", "i.ForeignLanguages":"Idiomas", "i.Game":"Juego", "i.GeneralCulture":"Cultura General", "i.Geography":"Geograf\u00eda", "i.Geology":"Geolog\u00eda", "i.GotoSettings":"Ir a Ajustes", "i.HealthEducation":"Educaci\u00f3n para la Salud", 
-"i.Help":"Ayuda", "i.HigherEducation":"Educaci\u00f3n Superior", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Hours":"Horas", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Import":"Importar", "i.Insert":"Insertar", "i.invalidvalue":"valor inv\u00e1lido", "i.ItemAndBall":"Esta entrada est\u00e1 enlazada con la diapositiva #{letter} del V\u00eddeo Enriquecido.", "i.Language":"Idioma", "i.Languageindependent":"Independiente del idioma", "i.Law":"Derecho", "i.License":"Licencia", 
-"i.limitReached":"limite alcanzado", "i.link":"enlace", "i.Literature":"Literatura", "i.LiveQuiz":"Cuestionario en Vivo", "i.LiveResources":"Contenidos en directo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", "i.math":"matem\u00e1ticas", "i.Mathematics":"Matem\u00e1ticas", "i.medium":"medio", "i.Minutes":"Minutos", "i.Music":"M\u00fasica", "i.nanoscience":"nanociencia", "i.NaturalSciences":"Ciencias Naturales", 
-"i.next":"siguiente", "i.Next":"Siguiente", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"\u00bfQuieres participar en la competici\u00f3n? Puedes ganar un gran premio. Lee la guia de c\u00f3mo hacerlo <a href='http://vishub.org/competitions' target='_blank'>aqu\u00ed</a>", "i.NoCompetitions2":"A\u00f1ade una o m\u00e1s de las siguientes tags para participar:", "i.NoCompetitions3":"Se a\u00f1adir\u00e1n a las tags de la excursi\u00f3n. Las puedes revisar o cambiar en la p\u00e1gina de ajustes", "i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON", 
-"i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.NoThanks":"No gracias", "i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", "i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un video HTML5 o de YouTube", "i.pasteWeb":"pega la URL de una p\u00e1gina web", 
-"i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido.", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido.", "i.pdfErrorNotificationSize":"Ha ocurrido un error. El fichero PDF debe tener un tama\u00f1o inferior a 8 Mb.", "i.pdfErrorNotificationPages":"Ha ocurrido un error. El fichero PDF tiene demasiadas p\u00e1ginas.", "i.PDFSlideshow":"Presentaci\u00f3n PDF", "i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", 
-"i.pEducation":"Educaci\u00f3n Primaria", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Educaci\u00f3n Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", 
+"i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", "i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", "i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", 
+"i.AddTags":"A\u00f1adir etiquetas", "i.AddTimestampLink":"A\u00f1adir marca de tiempo", "i.addvideourl":"a\u00f1adir URL de v\u00eddeo (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Animations":"Animaciones", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", "i.Opacity":"Opacidad", "i.Elements":"Elementos", "i.Rotate":"Rotar", "i.Diagonal1":"Diagonal #1", "i.Diagonal2":"Diagonal #2", "i.Inside":"Dentro", "i.Zoom":"Ampliar", "i.Flip1":"Vuelta #1", 
+"i.Flip2":"Vuelta #2", "i.3D":"3D", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.by":"por", "i.cancel":"cancelar", "i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", 
+"i.close":"cerrar", "i.Close":"Cerrar", "i.CloseWSaving":"cerrar sin guardar", "i.Competitions":"Competici\u00f3n", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", "i.delete":"borrar", "i.Description":"Descripci\u00f3n", "i.difficult":"dif\u00edcil", "i.Difficulty":"Dificultad", "i.Documentation":"Documentaci\u00f3n", 
+"i.done":"hecho", "i.Done":"Hecho", "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", "i.Electronics":"Electr\u00f3nica", "i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", "i.EnrichedVideo":"V\u00eddeo Enriquecido", "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", 
+"i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", "i.errorYoutubeConnection":"Error conectando con YouTube", "i.Ethics":"\u00c9tica", "i.Evaluate":"Evaluar", "i.evaluateTitle":"\u00bfQuieres contribuir evaluando esta excursi\u00f3n?", "i.eVideoChangeNotification":"Si cambias la fuente del v\u00eddeo perder\u00e1s todas las marcas de tiempo que hayas a\u00f1adido. En cualquier caso, conservar\u00e1s las diapositivas que hayas creado. \u00bfEst\u00e1s seguro de que quieres continuar?", 
+"i.ExcursionDetails":"Informaci\u00f3n de la Excursi\u00f3n", "i.Excursions":"Excursiones", "i.Exit":"Salir", "i.exitConfirmation":"Vas a abandonar ViSH Editor. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.exitConfirmation2":"\u00bfSeguro que quieres abandonar esta p\u00e1gina?", "i.exitConfirmationMenu":"La Excursi\u00f3n Virtual se ha modificado. Si la cierra sin guardar perder\u00e1 todos los cambios. \u00bfQu\u00e9 desea hacer?", "i.ExitWSaving":"salir sin guardar", "i.Export":"Exportar", 
+"i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un fichero JSON.", "i.exportPresToSCORMerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un paquete SCORM.", "i.exviews":"visitas", "i.Filllater":"Rellenar despu\u00e9s", "i.Finish":"Terminar", "i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", "i.ForeignLanguages":"Idiomas", "i.Game":"Juego", "i.GeneralCulture":"Cultura General", "i.Geography":"Geograf\u00eda", 
+"i.Geology":"Geolog\u00eda", "i.GotoSettings":"Ir a Ajustes", "i.HealthEducation":"Educaci\u00f3n para la Salud", "i.Help":"Ayuda", "i.HigherEducation":"Educaci\u00f3n Superior", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Hours":"Horas", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Import":"Importar", "i.Insert":"Insertar", "i.invalidvalue":"valor inv\u00e1lido", "i.ItemAndBall":"Esta entrada est\u00e1 enlazada con la diapositiva #{letter} del V\u00eddeo Enriquecido.", 
+"i.Language":"Idioma", "i.Languageindependent":"Independiente del idioma", "i.Law":"Derecho", "i.License":"Licencia", "i.limitReached":"limite alcanzado", "i.link":"enlace", "i.Literature":"Literatura", "i.LiveQuiz":"Cuestionario en Vivo", "i.LiveResources":"Contenidos en directo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", "i.math":"matem\u00e1ticas", "i.Mathematics":"Matem\u00e1ticas", "i.medium":"medio", 
+"i.Minutes":"Minutos", "i.Music":"M\u00fasica", "i.nanoscience":"nanociencia", "i.NaturalSciences":"Ciencias Naturales", "i.next":"siguiente", "i.Next":"Siguiente", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"\u00bfQuieres participar en la competici\u00f3n? Puedes ganar un gran premio. Lee la guia de c\u00f3mo hacerlo <a href='http://vishub.org/competitions' target='_blank'>aqu\u00ed</a>", "i.NoCompetitions2":"A\u00f1ade una o m\u00e1s de las siguientes tags para participar:", "i.NoCompetitions3":"Se a\u00f1adir\u00e1n a las tags de la excursi\u00f3n. Las puedes revisar o cambiar en la p\u00e1gina de ajustes", 
+"i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON", "i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.NoThanks":"No gracias", "i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", "i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un v\u00eddeo HTML5 o de YouTube", 
+"i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido.", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido.", "i.pdfErrorNotificationSize":"Ha ocurrido un error. El fichero PDF debe tener un tama\u00f1o inferior a 8 Mb.", "i.pdfErrorNotificationPages":"Ha ocurrido un error. El fichero PDF tiene demasiadas p\u00e1ginas.", "i.PDFSlideshow":"Presentaci\u00f3n PDF", 
+"i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.pEducation":"Educaci\u00f3n Primaria", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Educaci\u00f3n Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", 
 "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.publishing":"Publicando", "i.Publishing":"Publicando", "i.Publish_confirmation":"Vas a guardar y publicar esta Excursi\u00f3n Virtual en la plataforma ViSH. Despu\u00e9s de esto, la excursi\u00f3n ser\u00e1 p\u00fablica y cualquiera podr\u00e1 acceder a ella. \u00bfQu\u00e9 deseas hacer?", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", 
 "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizCreateSessionError":"Lo sentimos, ha ocurrido un error al crear un nuevo cuestionario en vivo", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", "i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", 
 "i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", "i.readJSONfileError":"Error al leer el fichero JSON", "i.recommendationsTitle":"Excursiones recomendadas:", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", 
 "i.save":"guardar", "i.Save":"Guardar", "i.SaveAndExit":"guardar y salir", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.sEducation":"Educaci\u00f3n Secundaria", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", "i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", 
-"i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Title":"T\u00edtulo *", "i.toJSON":"a JSON", "i.toSCORM":"a SCORM", "i.PTraining":"Formaci\u00f3n Laboral", 
-"i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", 
-"i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.YouTubePlayAlert":"Haz click sobre el video para empezar la reproducci\u00f3n", "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", 
-"i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.tooltip.Help":"Ayuda", "i.last":"\u00faltimo"}, "default":{"i.add":"add", "i.Add":"Add", "i.AddItem":"Add Item", "i.AddTags":"Add tags", "i.areyousureNotification":"are you sure?", 
-"i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.close":"close", "i.Close":"Close", "i.CloseWSaving":"close without saving", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", 
-"i.Exit":"Exit", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", "i.exitConfirmation2":"Are you sure you want to leave this page?", "i.exitConfirmationMenu":"The Virtual Excursion has been modified. If you close without saving you will lose all changes. What would you like to do?", "i.ExitWSaving":"exit without saving", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", 
-"i.exportPresToSCORMerrorNotification":"An error has ocurred. Is not possible to export the presentation to a SCORM package.", "i.exviews":"views", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.ItemAndBall":"This item is linked to the #{letter} slide of the Enriched Video.", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", "i.medium":"medium", "i.no":"no", "i.No":"No", 
-"i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", "i.NoCompetitions2":"Add one or more of the following tags to participate:", "i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", "i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", 
-"i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube video URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", "i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", 
-"i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", "i.QuizButtonAnswer":"Answer", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", 
-"i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", "i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", 
-"i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Title":"Title *", 
-"i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", 
-"i.Yes":"Yes", "i.YouTubePlayAlert":"Click on the video to start playing", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Time":"Tiempo", "i.Title":"T\u00edtulo", "i.TitleM":"T\u00edtulo *", "i.toJSON":"a JSON", 
+"i.toSCORM":"a SCORM", "i.PTraining":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", 
+"i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.Untitled":"Sin T\u00edtulo", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.YouTubePlayAlert":"Haz click sobre el v\u00eddeo para empezar la reproducci\u00f3n", 
+"i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.tooltip.Help":"Ayuda", "i.last":"\u00faltimo"}, "default":{"i.add":"add", "i.Add":"Add", "i.AddTags":"Add tags", 
+"i.AddTimestampLink":"Add timestamp link", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.close":"close", "i.Close":"Close", "i.CloseWSaving":"close without saving", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", 
+"i.errorYoutubeConnection":"Error connecting to YouTube", "i.eVideoChangeNotification":"If you change the v\u00eddeo source you will lose all the timestamp links you have added. In any case, you will keep the slides you have created. Are you sure you want to continue?", "i.Exit":"Exit", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", "i.exitConfirmation2":"Are you sure you want to leave this page?", "i.exitConfirmationMenu":"The Virtual Excursion has been modified. If you close without saving you will lose all changes. What would you like to do?", 
+"i.ExitWSaving":"exit without saving", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.exportPresToSCORMerrorNotification":"An error has ocurred. Is not possible to export the presentation to a SCORM package.", "i.exviews":"views", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.ItemAndBall":"This item is linked to the #{letter} slide of the Enriched Video.", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", 
+"i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", "i.NoCompetitions2":"Add one or more of the following tags to participate:", "i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", "i.NoJSONFileError":"You have to select a file to import in JSON format", 
+"i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube v\u00eddeo URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", 
+"i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", 
+"i.QuizButtonAnswer":"Answer", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", "i.QuizRetry":"Retry", 
+"i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", 
+"i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Time":"Time", "i.TitleM":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", 
+"i.Unspecified":"Unspecified", "i.Untitled":"Untitled", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.YouTubePlayAlert":"Click on the video to start playing", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
-VISH.VERSION = "0.8.5";
+VISH.VERSION = "0.8.6";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -10549,7 +10558,7 @@ VISH.Renderer = function(V, $, undefined) {
   };
   var _renderHTML5Video = function(videoJSON, template) {
     var rendered = "<div id='" + videoJSON["id"] + "' class='" + template + "_" + videoJSON["areaid"] + "'>";
-    var video = V.Video.HTML5.renderVideoFromJSON(videoJSON, {videoClass:template + "_video"});
+    var video = V.Video.HTML5.renderVideoFromJSON(videoJSON, {id:V.Utils.getId(videoJSON["id"] + "_video"), videoClass:template + "_video"});
     rendered = rendered + video + "</div>";
     return rendered
   };
@@ -11856,9 +11865,32 @@ VISH.Utils = function(V, undefined) {
     s = Math.round(s);
     return(h < 1 && sN < 5 ? "" : h + ":") + (sN > 3 && m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s)
   };
+  var delayedFunctionTimestamps = {};
+  var delayedFunctionTimers = {};
+  var delayFunction = function(functionId, callbackFunction, PERIOD) {
+    var dN = Date.now();
+    if(typeof delayedFunctionTimestamps[functionId] != "undefined") {
+      var diff = dN - delayedFunctionTimestamps[functionId];
+      if(diff < PERIOD) {
+        if(typeof delayedFunctionTimers[functionId] == "undefined") {
+          delayedFunctionTimers[functionId] = setTimeout(function() {
+            delayedFunctionTimers[functionId] = undefined;
+            callbackFunction()
+          }, PERIOD - diff)
+        }
+        return true
+      }
+    }
+    if(typeof delayedFunctionTimers[functionId] != "undefined") {
+      clearTimeout(delayedFunctionTimers[functionId]);
+      delayedFunctionTimers[functionId] = undefined
+    }
+    delayedFunctionTimestamps[functionId] = dN;
+    return false
+  };
   return{init:init, getOptions:getOptions, dimentionsToDraw:dimentionsToDraw, fitChildInParent:fitChildInParent, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, 
   getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, getBackgroundPosition:getBackgroundPosition, sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, removeParamFromUrl:removeParamFromUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion, updateHash:updateHash, cleanHash:cleanHash, removeHashFromUrlString:removeHashFromUrlString, getHashParams:getHashParams, getSlideNumberFromHash:getSlideNumberFromHash, 
-  checkAnimationsFinish:checkAnimationsFinish, fomatTimeForMPlayer:fomatTimeForMPlayer}
+  checkAnimationsFinish:checkAnimationsFinish, fomatTimeForMPlayer:fomatTimeForMPlayer, delayFunction:delayFunction}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initOptions;
@@ -14143,6 +14175,12 @@ VISH.Editor.Slideset = function(V, $, undefined) {
       slidesetCreator.beforeRemoveSubslide(slideset, subslide)
     }
   };
+  var afterCreateSubslide = function(slideset, subslide) {
+    var slidesetCreator = getCreatorModule($(slideset).attr("type"));
+    if(typeof slidesetCreator.afterCreateSubslide == "function") {
+      slidesetCreator.afterCreateSubslide(slideset, subslide)
+    }
+  };
   var openSubslideWithNumber = function(subslideNumber) {
     var slideset = V.Slides.getCurrentSlide();
     var subslides = $(slideset).find("article");
@@ -14192,7 +14230,7 @@ VISH.Editor.Slideset = function(V, $, undefined) {
     var slideset = V.Slides.getCurrentSlide();
     openSlideset(slideset)
   };
-  return{init:init, getCreatorModule:getCreatorModule, getDummy:getDummy, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, openSlideset:openSlideset, closeSlideset:closeSlideset, beforeCreateSlidesetThumbnails:beforeCreateSlidesetThumbnails, beforeRemoveSlideset:beforeRemoveSlideset, beforeRemoveSubslide:beforeRemoveSubslide, getCurrentSubslide:getCurrentSubslide, openSubslideWithNumber:openSubslideWithNumber, openSubslide:openSubslide, closeSubslideWithNumber:closeSubslideWithNumber, 
+  return{init:init, getCreatorModule:getCreatorModule, getDummy:getDummy, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, openSlideset:openSlideset, closeSlideset:closeSlideset, beforeCreateSlidesetThumbnails:beforeCreateSlidesetThumbnails, beforeRemoveSlideset:beforeRemoveSlideset, beforeRemoveSubslide:beforeRemoveSubslide, afterCreateSubslide:afterCreateSubslide, getCurrentSubslide:getCurrentSubslide, openSubslideWithNumber:openSubslideWithNumber, openSubslide:openSubslide, closeSubslideWithNumber:closeSubslideWithNumber, 
   closeSubslide:closeSubslide, onClickOpenSlideset:onClickOpenSlideset, getSubslidesQuantity:getSubslidesQuantity}
 }(VISH, jQuery);
 VISH.Editor.VirtualTour = function(V, $, undefined) {
@@ -14544,7 +14582,7 @@ VISH.Editor.VirtualTour = function(V, $, undefined) {
         $(event.target).css("top", newTop + "px");
         $(event.target).css("left", newLeft + "px");
         var slide_id = $(event.target).attr("slide_id");
-        var marker = _addMarkerToPosition(position, slide_id);
+        _addMarkerToPosition(position, slide_id);
         $(event.target).hide()
       }else {
         $(event.target).animate({top:0, left:0}, "slow", function() {
@@ -14882,18 +14920,20 @@ VISH.Samples = function(V, undefined) {
   {"id":"article14_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article14_article3_zone4", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"article14_article3_zone5", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
   {"id":"article14_article4", "type":"standard", "template":"t2", "elements":[{"id":"article14_article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]}]};
-  var evideo_sample = {"VEVersion":"0.7", "type":"presentation", "title":"Enriched Video Example", "description":"First Enriched Video Example", "avatar":"http://vishub.org/pictures/311.jpg", "tags":["Science", "Quiz", "Video"], "age_range":"12 - 30", "subject":["Astronomy"], "language":"independent", "educational_objectives":"MOOCs", "adquired_competencies":"More engaged videos", "author":"ViSH Editor Team", "slides":[{"id":"article1", "type":"enrichedvideo", "video":{"type":"HTML5", "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/1342.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/325.mp4"}]', 
-  "poster":"http://vishub.org/videos/1342.png?style=170x127%23", "duration":24.066}, "pois":[{"id":"article1_poi1", "etime":"15.3", "slide_id":"article1_article1", "name":"Curiosity YouTube video at 15.3"}, {"id":"article1_poi2", "etime":"61.5", "slide_id":"article1_article2", "name":"Curiosity Wikipedia at 61.5"}, {"id":"article1_poi3", "etime":"120", "slide_id":"article1_article3", "name":"3 at 120"}, {"id":"article1_poi4", "etime":"174", "slide_id":"article1_article4", "name":"4 at the end of the Video"}], 
-  "slides":[{"id":"article1_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/P4boyXQuUIw?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article1_article2", "type":"standard", "template":"t7", "elements":[{"id":"article4_article3_zone1", "type":"image", 
-  "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, {"id":"article4_article3_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
-  {"id":"article4_article3_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, {"id":"article4_article3_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, 
-  {"id":"article1_article3", "type":"standard", "template":"t10", "elements":[{"id":"article4_article4_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article1_article4", "type":"standard", "template":"t10", "elements":[{"id":"article4_article4_zone1", "type":"object", 
-  "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article2", "type":"enrichedvideo", "video":{"type":"Youtube", "source":"http://www.youtube.com/embed/8t29CZcGAbs", "duration":174}, "pois":[{"id":"article2_poi1", "etime":"15.3", "slide_id":"article2_article1", "name":"Curiosity YouTube video at 15.3"}, 
-  {"id":"article2_poi2", "etime":"61.5", "slide_id":"article2_article2", "name":"Alpha Particle X-Ray  at 61.5"}, {"id":"article2_poi3", "etime":"62", "slide_id":"article2_article3", "name":"Curiosity Wikipedia at 62"}, {"id":"article2_poi4", "etime":"174", "slide_id":"article2_article4", "name":"4 at the end of the Video"}], "slides":[{"id":"article2_article1", "type":"standard", "template":"t2", "elements":[{"id":"article2_article1_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/P4boyXQuUIw?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', 
-  "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article2_article2", "type":"standard", "template":"t7", "elements":[{"id":"article2_article2_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, {"id":"article2_article2_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
-  {"id":"article2_article2_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, {"id":"article2_article2_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, 
-  {"id":"article2_article3", "type":"standard", "template":"t10", "elements":[{"id":"article2_article3_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article2_article4", "type":"standard", "template":"t10", "elements":[{"id":"article2_article4_zone1", "type":"object", 
-  "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}]};
+  var evideo_sample = {"VEVersion":"0.7", "type":"presentation", "title":"Enriched Video Example", "description":"First Enriched Video Example", "avatar":"http://vishub.org/pictures/311.jpg", "tags":["Science", "Quiz", "Video"], "age_range":"12 - 30", "subject":["Astronomy"], "language":"independent", "educational_objectives":"MOOCs", "adquired_competencies":"More engaged videos", "author":"ViSH Editor Team", "slides":[{"id":"article1", "type":"enrichedvideo", "video":{"type":"HTML5", "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/3447.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/3447.mp4"}]', 
+  "poster":"http://vishub.org/videos/3447.png?style=170x127%23", "duration":"24.066"}, "pois":[{"id":"article1_poi1", "etime":"15.3", "slide_id":"article1_article1", "name":"Curiosity YouTube video at 15.3"}, {"id":"article1_poi2", "etime":"61.5", "slide_id":"article1_article2", "name":"Curiosity Wikipedia at 61.5"}, {"id":"article1_poi3", "etime":"120", "slide_id":"article1_article3", "name":"3 at 120"}, {"id":"article1_poi4", "etime":"174", "slide_id":"article1_article4", "name":"4 at the end of the Video"}], 
+  "slides":[{"id":"article1_article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_article1_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.wikipedia.com?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article1_article2", "type":"standard", "template":"t7", "elements":[{"id":"article1_article2_zone1", "type":"image", "areaid":"header", 
+  "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, {"id":"article1_article2_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"article1_article2_zone3", 
+  "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, {"id":"article1_article2_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, 
+  {"id":"article1_article3", "type":"standard", "template":"t10", "elements":[{"id":"article1_article3_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article1_article4", "type":"standard", "template":"t10", "elements":[{"id":"article1_article4_zone1", "type":"object", 
+  "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article2", "type":"enrichedvideo", "video":{"type":"Youtube", "source":"http://www.youtube.com/embed/8t29CZcGAbs", "duration":"174"}, "pois":[{"id":"article2_poi1", "etime":"15.3", "slide_id":"article2_article1", "name":"Curiosity YouTube video at 15.3"}, 
+  {"id":"article2_poi2", "etime":"62", "slide_id":"article2_article2", "name":"Alpha Particle X-Ray  at 61.5"}, {"id":"article2_poi3", "etime":"62", "slide_id":"article2_article3", "name":"Curiosity Wikipedia at 62"}, {"id":"article2_poi5", "etime":"120", "name":"No ball at 120"}, {"id":"article2_poi4", "etime":"174", "slide_id":"article2_article4", "name":"4 at the end of the Video"}], "slides":[{"id":"article2_article1", "type":"standard", "template":"t2", "elements":[{"id":"article2_article1_zone1", 
+  "type":"object", "areaid":"left", "body":'<iframe src="http://www.wikipedia.com?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article2_article2", "type":"standard", "template":"t7", "elements":[{"id":"article2_article2_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, 
+  {"id":"article2_article2_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"article2_article2_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, 
+  {"id":"article2_article2_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, {"id":"article2_article3", "type":"standard", "template":"t10", "elements":[{"id":"article2_article3_zone1", "type":"object", "areaid":"center", 
+  "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article2_article4", "type":"standard", "template":"t10", "elements":[{"id":"article2_article4_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', 
+  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article3", "type":"standard", "template":"t2", "elements":[{"id":"article3_zone1", "areaid":"left"}]}, {"id":"article4", "type":"standard", "template":"t2", "elements":[{"id":"article4_zone1", "areaid":"left"}]}, {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "areaid":"left"}]}, {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "areaid":"left"}]}, 
+  {"id":"article7", "type":"standard", "template":"t2", "elements":[{"id":"article7_zone1", "areaid":"left"}]}]};
   var mooc2_sample = {"VEVersion":"0.8.5", "type":"presentation", "title":"Modulo 1: Introducci\u00f3n a Internet, el Web, la nube, HTML5 y CSS", "description":"Modulo 1 del MOOC Desarrollo de Aplicaciones Web en HTML5 y para m\u00f3viles Firefox OS. Accesible a trav\u00e9s de https://www.miriadax.net/web/firefox-os .", "avatar":"http://www.adwe.es/wp-content/uploads/2013/07/FirefoxOS.2.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "tags":["MOOC", "HTML5", "CSS", "Web"], "theme":"theme1", 
   "animation":"animation1", "language":"independent", "age_range":"14 - 30", "subject":["Software Engineering", "Technology", "Telecommunications"], "educational_objectives":"El alumno obtendr\u00e1 una introducci\u00f3n a Internet, el Web, la nube, HTML5 y CSS.", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article4", "type":"standard", "template":"t8", "elements":[{"id":"article4_zone1", "areaid":"header"}, {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://www.derwentsidehomes.co.uk/UserFiles/Image/3D%20Characters/Question.jpg", 
   "style":"position: relative; width:71.30801687763713%; height:100%; top:0%; left:10.126582278481013%;"}, {"id":"article4_zone3", "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00bfPara qu\u00e9 se utiliza el CSS?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:36px;"><span autocolor="true" style="color:#000">&iquest;Para qu&eacute; se utiliza el&nbsp;<strong>CSS</strong>?&shy;</span></span></p>\n'}, "choices":[{"id":"1", 
@@ -14917,7 +14957,7 @@ VISH.Samples = function(V, undefined) {
   "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}]};
   var mooc_sample = {"VEVersion":"0.8.5", "type":"presentation", "title":"Modulo 1: Introducci\u00f3n a Internet, el Web, la nube, HTML5 y CSS", "description":"Modulo 1 del MOOC Desarrollo de Aplicaciones Web en HTML5 y para m\u00f3viles Firefox OS. Accesible a trav\u00e9s de https://www.miriadax.net/web/firefox-os .", "avatar":"http://www.adwe.es/wp-content/uploads/2013/07/FirefoxOS.2.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "tags":["MOOC", "HTML5", "CSS", "Web"], "theme":"theme1", 
   "animation":"animation1", "language":"independent", "age_range":"14 - 30", "subject":["Software Engineering", "Technology", "Telecommunications"], "educational_objectives":"El alumno obtendr\u00e1 una introducci\u00f3n a Internet, el Web, la nube, HTML5 y CSS.", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article1", "type":"enrichedvideo", "video":{"type":"HTML5", "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/3366.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/3366.mp4"}]', 
-  "poster":"http://vishub.org/videos/3366.png?style=170x127%23", "duration":799.16}, "pois":[{"id":"article1_poi1", "etime":"120", "slide_id":"article1_article1", "name":"Tecnologias de la Web"}, {"id":"article1_poi2", "etime":"630", "slide_id":"article1_article2", "name":"Operaciones principales de HTTP"}, {"id":"article1_poi3", "etime":"791", "slide_id":"article1_article3", "name":"Test de autoevaluacion"}], "slides":[{"id":"article1_article1", "type":"standard", "template":"t8", "elements":[{"id":"article1_article1zone1", 
+  "poster":"http://vishub.org/videos/3366.png?style=170x127%23", "duration":"799.16"}, "pois":[{"id":"article1_poi1", "etime":"120", "slide_id":"article1_article1", "name":"Tecnologias de la Web"}, {"id":"article1_poi2", "etime":"630", "slide_id":"article1_article2", "name":"Operaciones principales de HTTP"}, {"id":"article1_poi3", "etime":"791", "slide_id":"article1_article3", "name":"Test de autoevaluacion"}], "slides":[{"id":"article1_article1", "type":"standard", "template":"t8", "elements":[{"id":"article1_article1zone1", 
   "areaid":"header"}, {"id":"article1_article1zone2", "type":"image", "areaid":"left", "body":"http://www.derwentsidehomes.co.uk/UserFiles/Image/3D%20Characters/Question.jpg", "style":"position: relative; width:71.30801687763713%; height:100%; top:0%; left:10.126582278481013%;"}, {"id":"article1_article1zone3", "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00bfPara qu\u00e9 se utiliza el CSS?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:36px;"><span autocolor="true" style="color:#000">&iquest;Para qu&eacute; se utiliza el&nbsp;<strong>CSS</strong>?&shy;</span></span></p>\n'}, 
   "choices":[{"id":"1", "value":"\u200b\u00adEs el lenguaje de programaci\u00f3n de aplicaciones de cliente.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Es el lenguaje de programaci&oacute;n de aplicaciones de cliente.</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u200b\u00adDefine la estructura de la informaci\u00f3n de una p\u00e1gina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
   "answer":false}, {"id":"3", "value":"\u200b\u00adDefine el estilo de visualizaci\u00f3n de una p\u00e1gina Web en el navegador.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define el estilo de visualizaci&oacute;n de una p&aacute;gina Web en el navegador.</span></span></p>\n', "answer":true}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Enriched Video Example", "description":"First Enriched Video Example", 
@@ -14980,34 +15020,8 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var test = {"VEVersion":"0.8.4", "type":"presentation", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "contributors":[{"name":"Fred Griffin", "vishMetadata":{"id":5}}], "tags":["Do\u00f1ana", "Lynx", "Biology"], "theme":"theme1", "animation":"animation1", "language":"en", 
-  "age_range":"4 - 20", "difficulty":"easy", "TLT":"PT6H30M15S", "subject":["Art", "Astronomy", "Biology"], "educational_objectives":"Know about the Iberian Lynx", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/312.jpeg", "style":"position: relative; width:117.00819672131148%; height:109.5959595959596%; top:-4.734848484848484%; left:-2.3213370901639343%;"}, 
-  {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font4" style="text-align: right; font-weight: normal; ">\n\t&nbsp;</div>\n<div class="initTextDiv vish-parent-font4" style="text-align: right;">\n\t&nbsp;</div>\n<div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right;">\n\t<span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><i>by <b><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;">Vish</span> Editor</b> Team<b>&nbsp;</b></i></span></div>\n'}, 
-  {"id":"article1_zone3", "areaid":"subheader"}]}, {"id":"article2", "type":"standard", "template":"t8", "elements":[{"id":"article2_zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6 vish-parent-fontundefined" style="font-weight: normal; ">\n\t<span class="vish-font6 vish-fontHelvetica" style="color:#db9600;font-weight: bold;  ;">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;"> Lynx &nbsp; &nbsp; &nbsp;</span><span class="vish-fontundefined vish-fontHelvetica" style="color:#5ea099;undefined;">Description and habitat</span></div>\n'}, 
-  {"id":"article2_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/73.jpeg", "style":"position: relative; width:130.37974683544303%; height:106.81818181818181%; top:0%; left:-25.2043776371308%;"}, {"id":"article2_zone3", "type":"text", "areaid":"center", "body":'<p>\n\tIn most respects, the Iberian Lynx resembles other species of lynx, with a short tail,tufted ears and a ruff of fur beneath the chin. ...</p>\n<div class="vish-parent-font7" style="font-weight: normal; ">\n\t&nbsp;</div>\n'}, 
-  {"id":"article2_zone4", "type":"image", "areaid":"right", "body":"http://vishub.org/pictures/313.png", "style":"position: relative; width:119.40928270042194%; height:88.66396761133603%; top:2.9542004048582995%; left:-2.6041666666666665%;"}]}, {"id":"article12", "type":"standard", "template":"t3", "elements":[{"id":"article12_zone1", "type":"text", "areaid":"header", "body":"<p>\n\tExperimento virtual</p>\n"}, {"id":"article12_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" id="resizableunicID8" class="t3_object" wmode="opaque">', 
-  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article8", "type":"flashcard", "background":"url(http://vishub.org/pictures/317.png)", "pois":[{"id":"article8_poi1", "x":"36.9", "y":"67.3", "slide_id":"article8_article1"}, {"id":"article8_poi2", "x":"55.4", "y":"68.16", "slide_id":"article8_article2"}, {"id":"article8_poi3", "x":"45.875", "y":"5.5", "slide_id":"article8_article3"}], "slides":[{"id":"article8_article1", "type":"standard", "template":"t2", "elements":[{"id":"article8_article1_zone1", 
-  "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/318.jpeg", "style":"position: relative; width:110.30640668523677%; height:97.0909090909091%; top:2.0823863636363638%; left:-1.1446727019498608%;"}]}, {"id":"article8_article2", "type":"standard", "template":"t2", "elements":[{"id":"article8_article2_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/327.jpeg", "style":"position: relative; width:103.2033426183844%; height:90.54545454545455%; top:3.028409090909091%; left:-0.5723363509749304%;"}]}, 
-  {"id":"article8_article3", "type":"standard", "template":"t2", "elements":[{"id":"article8_article3_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/319.jpeg", "style":"position: relative; width:119.08077994428969%; height:129.63636363636363%; top:-2.6505681818181817%; left:-3.579822423398329%;"}]}]}, {"id":"article9", "type":"standard", "template":"t3", "elements":[{"id":"article9_zone1", "type":"text", "areaid":"header", "body":'<p>\n\t<span class="vish-font6 vish-fontHelvetica" style="color: rgb(219, 150, 0); font-weight: normal; ">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">&nbsp;</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">Lynx</span></p>\n<div class="vish-parent-font4">\n\t&nbsp;</div>\n'}, 
-  {"id":"article9_zone2", "type":"video", "areaid":"left", "poster":"https://raw.github.com/ging/vish_editor/master/public/vishEditor/images/vicons/example_poster_image.jpg", "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/325.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/325.mp4"}]'}]}, {"id":"article3", "type":"standard", "template":"t3", "elements":[{"id":"article3_zone1", "type":"text", 
-  "areaid":"header", "body":'<p>\n\t<span class="vish-font6 vish-fontHelvetica" style="color: rgb(219, 150, 0); font-weight: normal; ">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">&nbsp;</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">Lynx</span></p>\n<div class="vish-parent-font4">\n\t&nbsp;</div>\n'}, {"id":"article3_zone2", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/8t29CZcGAbs?wmode=opaque" frameborder="0" id="resizableunicID15" class="t3_object" wmode="opaque"></iframe>', 
-  "style":"position: relative; width:85.79387186629526%; height:100%; top:0%; left:6.445856545961003%;"}]}, {"id":"article4", "type":"standard", "template":"t6", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6" style="font-weight: normal; ">\n\t<span class="vish-font6 vish-fontHelvetica" style="color:#db9600;font-weight: bold;  ;">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">&nbsp;Lynx</span></div>\n'}, 
-  {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/314.jpeg", "style":"position: relative; width:373.54260089686096%; height:217.9591836734694%; top:-34.92984693877551%; left:-42.04736547085202%;"}, {"id":"article4_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/314.jpeg", "style":"position: relative; width:373.09417040358744%; height:217.75510204081633%; top:-46.64540816326531%; left:-198.69674887892376%;"}, {"id":"article4_zone4", 
-  "type":"text", "areaid":"right", "body":'<div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: center; font-weight: normal; ">\n\t<span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">During the mating season the female leaves her territory...</span></div>\n'}]}, {"id":"article5", "type":"standard", "template":"t10", "elements":[{"id":"article5_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Do%C3%B1ana_National_Park?wmode=transparent" id="resizableunicID20" class="t10_object" wmode="opaque"></iframe>', 
-  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article7", "type":"flashcard", "background":"url(http://vishub.org/pictures/320.jpeg)", "pois":[{"id":"article7_poi1", "x":"15.63", "y":"8.5", "slide_id":"article7_article1"}, {"id":"article7_poi2", "x":"77.75", "y":"11.5", "slide_id":"article7_article2"}, {"id":"article7_poi3", "x":"17.125", "y":"58.83", "slide_id":"article7_article3"}], "slides":[{"id":"article7_article1", "type":"standard", "template":"t10", "elements":[{"id":"article7_article1_zone1", 
-  "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/321.jpeg", "style":"position: relative; width:49.62406015037594%; height:66.22073578595318%; top:15.719063545150501%; left:24.183505639097746%;"}]}, {"id":"article7_article2", "type":"standard", "template":"t10", "elements":[{"id":"article7_article2_zone1", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/322.jpeg", "style":"position: relative; width:60.526315789473685%; height:67.3913043478261%; top:15.719063545150501%; left:20.173480576441104%;"}]}, 
-  {"id":"article7_article3", "type":"standard", "template":"t10", "elements":[{"id":"article7_article3_zone1", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/323.jpeg", "style":"position: relative; width:115.91478696741855%; height:116.05351170568562%; top:-2.842809364548495%; left:-0.749921679197995%;"}]}]}, {"id":"article6", "type":"standard", "template":"t12", "elements":[{"id":"article6_zone1", "areaid":"left1"}, {"id":"article6_zone2", "areaid":"right1"}, {"id":"article6_zone3", 
-  "areaid":"left2"}, {"id":"article6_zone4", "type":"image", "areaid":"right2", "body":"http://vishub.org/pictures/312.jpeg", "style":"position: relative; width:114.4927536231884%; height:114.01515151515152%; top:0%; left:0%;"}]}, {"id":"article13", "type":"standard", "template":"t2", "elements":[{"id":"article13_zone1", "type":"snapshot", "areaid":"left", "body":'<iframe src="http://en.wikipedia.org" id="resizableunicID25" class="snapshot_content" scrolling="no" wmode="opaque"></iframe>', "style":"position: relative; width:61.420612813370475%; height:61.09090909090909%; top:40.15056818181818%; left:-15.757747214484679%;", 
-  "scrollTop":"417", "scrollLeft":"129"}]}, {"id":"article14", "type":"VirtualTour", "map_service":"Google Maps", "center":{"lat":"49.48391393681142", "lng":"-22.076367187500004"}, "zoom":"5", "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"lat":"40.24", "lng":"-3.6000000000000227", "slide_id":"article14_article1"}, {"lat":"41.2", "lng":"2.1000000000000227", "slide_id":"article14_article2"}, {"lat":"37.26", "lng":"-5.970000000000027", "slide_id":"article14_article3"}, {"lat":"43.26", 
-  "lng":"-5.970000000000027", "slide_id":"article14_article4"}], "slides":[{"id":"article14_article1", "type":"standard", "template":"t1", "elements":[{"id":"article14_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.74590163934427%; height:80.05050505050505%; top:0%; left:0%;"}, {"id":"article14_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; ">\n\t<span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span></span></div>\n'}, 
-  {"id":"article14_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; ">\n\t<span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span></span></div>\n'}]}, {"id":"article14_article2", "type":"standard", "template":"t3", "elements":[{"id":"article14_article2_zone1", 
-  "type":"text", "areaid":"header", "body":"<p>\n\tExperimento virtual1</p>\n"}, {"id":"article14_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" id="resizableunicID30" class="t3_object" wmode="opaque">', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article14_article3", "type":"standard", "template":"t6", "elements":[{"id":"article14_article3_zone1", 
-  "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; ">\n\t<span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span></span></div>\n'}, 
-  {"id":"article14_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:381.1659192825112%; height:218.77551020408163%; top:-36.192602040816325%; left:-58.085762331838566%;", "hyperlink":"http://www.google.es"}, {"id":"article14_article3_zone4", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:356.9506726457399%; height:205.30612244897958%; top:-45.36352040816327%; left:-192.75504484304932%;"}, 
-  {"id":"article14_article3_zone5", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; ">\n\t<span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>\n'}]}, 
-  {"id":"article14_article4", "type":"standard", "template":"t2", "elements":[{"id":"article14_article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID35" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:99.63636363636364%; top:2.2244318181818183%; left:2.3524547353760448%;"}]}]}, {"id":"article10", "type":"standard", "template":"t2", "elements":[{"id":"article10_zone1", 
-  "type":"video", "areaid":"left", "poster":"http://vishub.org/videos/325.png?style=170x127%23", "style":"position: relative; width:100%; height:100%; top:0%; left:0.6963788300835655%;", "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/325.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/325.mp4"},{ "type": "video/flv", "src": "http://vishub.org/videos/325.flv"}]'}]}, {"id":"article11", "type":"standard", "template":"t2", "elements":[{"id":"article11_zone1", "type":"video", 
-  "areaid":"left", "poster":"http://4.bp.blogspot.com/-CfZKEdXcXtg/TijG57sIFWI/AAAAAAAAARQ/O8FP1OQ0a0w/s1600/delfines-saltando.jpg", "style":"position: relative; width:100%; height:100%; top:-0.36363636363636365%; left:1.532033426183844%;", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{ "type": "video/mp4", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}]};
+  var test = {"VEVersion":"0.8.5", "type":"presentation", "title":"Enriched Video Example", "description":"First Enriched Video Example", "avatar":"http://vishub.org/pictures/311.jpg", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "tags":["Science", "Quiz", "Video"], "theme":"theme1", "animation":"animation1", "language":"independent", "age_range":"12 - 30", "subject":["Astronomy"], "educational_objectives":"MOOCs", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article7", "type":"standard", 
+  "template":"t2", "elements":[{"id":"article7_zone1", "type":"video", "areaid":"left", "poster":"/vishEditor/images/vicons/example_poster_image.jpg", "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "sources":'[{ "type": "video/mp4", "src": "http://vishub.org/videos/3366.mp4"}]'}]}]};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, evideo_sample:evideo_sample, mooc_sample:mooc_sample, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -15048,7 +15062,7 @@ VISH.Samples.API = function(V, undefined) {
   var imageListLittle = {"pictures":[{"id":54, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.dan-dare.org/dan%20simpsons/TheSimpsonsEveryoneEver800.jpg"}, {"id":55, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://3.bp.blogspot.com/--H0o8mc28bA/TxrsnMAFMDI/AAAAAAAAARs/eOCVIXKlm9I/s1600/sala-cine.jpg"}, {"id":56, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}]};
   var imageListDummy = {"pictures":[]};
   var video = {"id":"1534", "title":"Midnight Sun", "description":"Awesome HTML5 video example", "author":"John Doe", "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"};
-  var videoList = {"videos":[{"id":"1534", "title":"HTML5 Demo", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML. HTML5 especifica dos variantes de sintaxis para HTML: un clasico HTML (text/html), la variante conocida como HTML5 y una variante XHTML conocida como sintaxis XHTML5 que debera ser servida como XML (XHTML) (application/xhtml+xml).1 2 Esta es la primera vez que HTML y XHTML se han desarrollado en paralelo.", 
+  var videoListOld = {"videos":[{"id":"1534", "title":"HTML5 Demo", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML. HTML5 especifica dos variantes de sintaxis para HTML: un clasico HTML (text/html), la variante conocida como HTML5 y una variante XHTML conocida como sintaxis XHTML5 que debera ser servida como XML (XHTML) (application/xhtml+xml).1 2 Esta es la primera vez que HTML y XHTML se han desarrollado en paralelo.", 
   "author":"Awesome Videos", "poster":"http://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Sasso_lungo_da_passo_pordoi.jpg/250px-Sasso_lungo_da_passo_pordoi.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1535", "title":"Paisaje bonito", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", 
   "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1536", "title":"Otro paisaje bonito", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://1.bp.blogspot.com/-DFj9INluj80/TfiNl7q3DbI/AAAAAAAAAws/hVJu13VbKEY/s1600/paisaje.jpg", 
   "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1537", "title":"Verde", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://www.forodefotos.com/attachments/naturaleza/12983d1281113830-fotos-de-paisaje-fotos-de-paisaje.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + 
@@ -15059,6 +15073,8 @@ VISH.Samples.API = function(V, undefined) {
   '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1543", "title":"Gato", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://www.10puntos.com/wp-content/uploads/2010/09/gato-lindo.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + 
   "]"}, {"id":"1544", "title":"Otro gato", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://neko.koiora.net/files/2011/06/Gato17.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1545", "title":"Gato ninja", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", 
   "poster":"http://www.sarda.es/fotos/gato_volador/gato_volador.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}]};
+  var videoList = {"videos":[{"id":1342, "title":"Windmill Formato Nuevo", "description":"", "author":"Luis Vaquerizo", "poster":"http://vishub.org/videos/1342.png?style=170x127%23", "sources":[{"type":"video/webm", "src":"http://vishub.org/videos/1342.webm"}, {"type":"video/mp4", "src":"http://vishub.org/videos/1342.mp4"}, {"type":"video/x-flv", "src":"http://vishub.org/videos/1342.flv"}]}, {"id":1342, "title":"Windmill Formato Antiguo", "description":"", "author":"Luis Vaquerizo", "poster":"http://vishub.org/videos/1342.png?style=170x127%23", 
+  "sources":"[" + '{ "type": "video/webm", "src": "http://vishub.org/videos/1342.webm"},' + '{ "type": "video/mp4",  "src": "http://vishub.org/videos/1342.mp4" }' + "]"}]};
   var videoListLittle = {"videos":[{"id":"1534", "title":"HTML5 Demo", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML. HTML5 especifica dos variantes de sintaxis para HTML: un clasico HTML (text/html), la variante conocida como HTML5 y una variante XHTML conocida como sintaxis XHTML5 que debera ser servida como XML (XHTML) (application/xhtml+xml).1 2 Esta es la primera vez que HTML y XHTML se han desarrollado en paralelo.", 
   "author":"Awesome Videos", "poster":"http://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Sasso_lungo_da_passo_pordoi.jpg/250px-Sasso_lungo_da_passo_pordoi.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1535", "title":"Paisaje bonito", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", 
   "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1536", "title":"Otro paisaje bonito", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://1.bp.blogspot.com/-DFj9INluj80/TfiNl7q3DbI/AAAAAAAAAws/hVJu13VbKEY/s1600/paisaje.jpg", 
@@ -15164,9 +15180,11 @@ VISH.Slides = function(V, $, undefined) {
     if(className) {
       $(el).addClass(className)
     }
-    for(var i in SLIDE_CLASSES) {
-      if(className != SLIDE_CLASSES[i]) {
-        $(el).removeClass(SLIDE_CLASSES[i])
+    var sCL = SLIDE_CLASSES.length;
+    for(var i = 0;i < sCL;i++) {
+      var sCLClass = SLIDE_CLASSES[i];
+      if(className != sCLClass) {
+        $(el).removeClass(sCLClass)
       }
     }
   };
@@ -16259,6 +16277,9 @@ VISH.Editor.Tools = function(V, $, undefined) {
   var loadToolsForSlide = function(slide) {
     _cleanPresentationToolbar();
     var type = $(slide).attr("type");
+    $(".toolbar_presentation_wrapper_slideTools:not(.toolbar_" + type + ")").hide();
+    $(".toolbar_presentation_wrapper_slideTools.toolbar_" + type).show();
+    $(".toolbar_presentation_wrapper_slideTools.toolbar_" + type).children().css("visibility", "visible");
     switch(type) {
       case V.Constant.STANDARD:
         $("#toolbar_background").parent().addClass("toolbar_presentation_wrapper_disabled");
@@ -16266,7 +16287,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
       case V.Constant.FLASHCARD:
         break;
       case V.Constant.VTOUR:
-        $("#toolbar_background").parent().addClass("toolbar_presentation_wrapper_disabled");
+        $("#toolbar_background_wrapper").children().css("visibility", "hidden");
         break;
       default:
         return
@@ -16567,6 +16588,9 @@ VISH.Editor.Tools = function(V, $, undefined) {
   var changeBackground = function() {
     $("#hidden_button_to_change_slide_background").trigger("click")
   };
+  var changeVideo = function() {
+    V.Editor.EVideo.onChangeVideo()
+  };
   var zoomMore = function() {
     _changeZoom("+")
   };
@@ -16713,7 +16737,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
     $.fancybox.close()
   };
   return{init:init, loadToolsForSlide:loadToolsForSlide, loadToolsForZone:loadToolsForZone, loadToolbarForObject:loadToolbarForObject, cleanZoneTools:cleanZoneTools, cleanToolbar:cleanToolbar, enableToolbar:enableToolbar, disableToolbar:disableToolbar, addLink:addLink, addUrl:addUrl, removeUrl:removeUrl, resizeMore:resizeMore, resizeLess:resizeLess, zoomMore:zoomMore, zoomLess:zoomLess, save:save, publish:publish, unpublish:unpublish, preview:preview, selectTheme:selectTheme, selectAnimation:selectAnimation, 
-  changeBackground:changeBackground, addTooltipsToSlide:addTooltipsToSlide, addTooltipToZone:addTooltipToZone, showZoneToolTip:showZoneToolTip, hideZoneToolTip:hideZoneToolTip, setAllTooltipMargins:setAllTooltipMargins, changePublishButtonStatus:changePublishButtonStatus, changeSaveButtonStatus:changeSaveButtonStatus}
+  changeBackground:changeBackground, changeVideo:changeVideo, addTooltipsToSlide:addTooltipsToSlide, addTooltipToZone:addTooltipToZone, showZoneToolTip:showZoneToolTip, hideZoneToolTip:hideZoneToolTip, setAllTooltipMargins:setAllTooltipMargins, changePublishButtonStatus:changePublishButtonStatus, changeSaveButtonStatus:changeSaveButtonStatus}
 }(VISH, jQuery);
 VISH.Addons = function(V, undefined) {
   var init = function(addons) {
@@ -16783,16 +16807,15 @@ VISH.Video = function(V, $, undefined) {
     return getTypeVideo(document.getElementById(videoId))
   };
   var getTypeVideo = function(video) {
-    var tagName = $(video)[0].tagName;
-    if(!video) {
+    if(typeof $(video)[0] == "undefined") {
       return V.Constant.UNKNOWN
+    }
+    var tagName = $(video)[0].tagName;
+    if(tagName === "VIDEO") {
+      return V.Constant.Video.HTML5
     }else {
-      if(tagName === "VIDEO") {
-        return V.Constant.Video.HTML5
-      }else {
-        if(tagName === "OBJECT" || tagName === "IFRAME") {
-          return V.Constant.Video.Youtube
-        }
+      if(tagName === "OBJECT" || tagName === "IFRAME") {
+        return V.Constant.Video.Youtube
       }
     }
     return V.Constant.UNKNOWN
@@ -17367,6 +17390,9 @@ VISH.EVideo = function(V, $, undefined) {
   var _blockTimeUpdate = false;
   var _displayVol = true;
   var _lastVideoEndedCall;
+  var MIN_TIME_BETWEEN_TOGGLE_INDEX = 1600;
+  var VOL_INITIAL = 100;
+  var _lastVolumeValue = VOL_INITIAL;
   var initialized = false;
   var RANGE = 0.3;
   var BOTTOM_RANGE = RANGE / 2;
@@ -17391,10 +17417,11 @@ VISH.EVideo = function(V, $, undefined) {
         }
       })
     }
-    $(document).on("click", ".evideoToggleIndex.maximized, .evideoIndexSide.maximized", _minimizeIndex);
-    $(document).on("click", ".evideoToggleIndex.minimized, .evideoIndexSide.minimized", _maximizeIndex);
+    $(document).on("click", ".evideoToggleIndex.maximized:not(.disabled), .evideoIndexSide.maximized:not(.disabled)", _minimizeIndex);
+    $(document).on("click", ".evideoToggleIndex.minimized:not(.disabled), .evideoIndexSide.minimized:not(.disabled)", _maximizeIndex);
     $(document).on("click", ".evideoChapters li", _onClickChapter);
     $(document).on("click", "div.ballWrapper div.ballImg", _onClickBall);
+    $(document).on("click", "div.ballWrapper div.ballLine", _onClickBallLine);
     V.EventsNotifier.registerCallback(V.Constant.Event.onSubslideClosed, function(params) {
       var subslideId = params.slideId;
       var slideset = $($("#" + subslideId).parent());
@@ -17423,7 +17450,7 @@ VISH.EVideo = function(V, $, undefined) {
     }, create:function(event, ui) {
     }});
     var volSlider = $(controls).find(".evideoVolSlider");
-    $(volSlider).slider({orientation:"vertical", range:"min", min:0, max:100, value:100, slide:function(event, ui) {
+    $(volSlider).slider({orientation:"vertical", range:"min", min:0, max:100, value:VOL_INITIAL, slide:function(event, ui) {
       var video = getVideoFromVideoBox($(".evideoBox").has(event.target));
       _onVolumeChange(video, ui.value)
     }});
@@ -17449,7 +17476,7 @@ VISH.EVideo = function(V, $, undefined) {
         eVideoJSON.balls.push(value)
       });
       eVideoJSON.balls = eVideoJSON.balls.filter(function(ball) {
-        return typeof ball.etime != "undefined" && !isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) > 0
+        return typeof ball.etime != "undefined" && !isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0
       }).map(function(ball) {
         ball.etime = parseFloat(ball.etime);
         ball.eVideoId = eVideoJSON.id;
@@ -17495,7 +17522,7 @@ VISH.EVideo = function(V, $, undefined) {
   };
   var renderIndexBoxDummy = function() {
     var indexBox = $("<div class='evideoIndexBox'></div>");
-    var indexSide = $("<div class='evideoIndexSide maximized'><div class='evideoToggleIndex maximized'></div></div>");
+    var indexSide = $("<div class='evideoIndexSide maximized disabled'><div class='evideoToggleIndex maximized disabled'></div></div>");
     var indexBody = $("<div class='evideoIndexBody'><ul class='evideoChapters'></ul></div>");
     $(indexBox).append(indexBody);
     $(indexBox).append(indexSide);
@@ -17508,6 +17535,10 @@ VISH.EVideo = function(V, $, undefined) {
     }
     var videoBody = $("#" + eVideoId).find(".evideoBody");
     $(videoBody).attr("videoType", eVideoJSON.video.type);
+    var loadingContainer = $("<div class='loadingEVideoContainer'></div>");
+    $(videoBody).append(loadingContainer);
+    $(videoBody).addClass("loadingEVideoContainerWrapper");
+    V.Utils.Loader.startLoadingInContainer(loadingContainer);
     switch(eVideoJSON.video.type) {
       case V.Constant.MEDIA.HTML5_VIDEO:
         var video = $(V.Video.HTML5.renderVideoFromJSON(eVideoJSON.video, {controls:false, poster:false}));
@@ -17541,6 +17572,9 @@ VISH.EVideo = function(V, $, undefined) {
     var videoHeader = $(videoBox).find(".evideoHeader");
     var videoFooter = $(videoBox).find(".evideoFooter");
     var videoType = $(video).attr("videotype");
+    var loadingContainer = $(videoBody).find(".loadingEVideoContainer");
+    $(loadingContainer).remove();
+    $(videoBody).removeClass("loadingEVideoContainerWrapper");
     var durationDOM = $(videoHeader).find(".evideoDuration");
     var videoDuration = V.Video.getDuration(video);
     if(videoDuration === 0) {
@@ -17572,6 +17606,7 @@ VISH.EVideo = function(V, $, undefined) {
     _updateNextBall(video, 0);
     renderIndex(eVideoDOM, eVideos[eVideoId]);
     _renderBalls(eVideoDOM, eVideos[eVideoId]);
+    _linkChaptersAndBalls(eVideoDOM, eVideos[eVideoId]);
     if(videoType == V.Constant.Video.Youtube) {
       onTimeUpdate(video, 0)
     }
@@ -17624,7 +17659,27 @@ VISH.EVideo = function(V, $, undefined) {
       }
       $(item).html("<span class='eVideoIndexEntryNumber'>" + (index + 1) + ". " + "</span><span class='eVideoIndexEntryBody'>" + ball.name + "</span>");
       $(eVideoChapters).append(item)
-    })
+    });
+    var indexSide = $(indexBody).find(".evideoIndexSide");
+    var toggleIndexButton = $(indexSide).find(".evideoToggleIndex");
+    $(indexSide).removeClass("disabled");
+    $(toggleIndexButton).removeClass("disabled");
+    if(!V.Editing) {
+      $(eVideoChapters).find("li").hover(function(event) {
+        var representedBallId = $(event.target).attr("representedBallId");
+        var target = typeof representedBallId == "string" ? event.target : $(event.target).parent();
+        representedBallId = $(target).attr("representedBallId");
+        var ballWrapper = $(eVideoDOM).find(".ballWrapper[ballid='" + representedBallId + "']");
+        $(".ballWrapper").removeClass("selected");
+        $(ballWrapper).addClass("selected")
+      }, function(event) {
+        var representedBallId = $(event.target).attr("representedBallId");
+        var target = typeof representedBallId == "string" ? event.target : $(event.target).parent();
+        representedBallId = $(target).attr("representedBallId");
+        var ballWrapper = $(eVideoDOM).find(".ballWrapper[ballid='" + representedBallId + "']");
+        $(ballWrapper).removeClass("selected")
+      })
+    }
   };
   var onTimeUpdate = function(video, currentTime) {
     _updateCurrentTime(video, currentTime);
@@ -17653,18 +17708,42 @@ VISH.EVideo = function(V, $, undefined) {
         return
       }
     }
-    _lastVideoEndedCall = Date.now();
+    _lastVideoEndedCall = dN;
     _updateCurrentTime(video, V.Video.getDuration(video));
     _beforeSeek(video, 0)
   };
   var _onVolumeChange = function(video, volume) {
+    if(volume >= 50 && _lastVolumeValue < 50) {
+      _updateVolumeImg(video, volume)
+    }else {
+      if(volume < 50 && volume > 0 && (_lastVolumeValue > 50 || _lastVolumeValue == 0)) {
+        _updateVolumeImg(video, volume)
+      }else {
+        _updateVolumeImg(video, volume)
+      }
+    }
+    _lastVolumeValue = volume;
     V.Video.setVolume(video, volume)
+  };
+  var _updateVolumeImg = function(video, volume) {
+    var videoBox = getVideoBoxFromVideo(video);
+    var volButton = $(videoBox).find(".evideoControlButton.evideoVolButton");
+    if(volume >= 50) {
+      $(volButton).attr("src", V.ImagesPath + "customPlayer/eVideoSound.png")
+    }else {
+      if(volume < 50 && volume > 0) {
+        $(volButton).attr("src", V.ImagesPath + "customPlayer/eVideoSoundLow.png")
+      }else {
+        $(volButton).attr("src", V.ImagesPath + "customPlayer/eVideoSoundMute.png")
+      }
+    }
   };
   var onEnterSlideset = function(eVideoDOM) {
     var eVideoId = $(eVideoDOM).attr("id");
     var videoBox = $(eVideoDOM).find(".evideoBox");
     var videoDOM = getVideoFromVideoBox(videoBox);
     var eVideoJSON = eVideos[eVideoId];
+    $(eVideoDOM).removeClass("temp_shown");
     switch(eVideoJSON.estatusBeforeLeave) {
       case V.Constant.EVideo.Status.Playing:
         V.Video.play(videoDOM);
@@ -17687,8 +17766,10 @@ VISH.EVideo = function(V, $, undefined) {
   };
   var onLeaveSlideset = function(eVideoDOM) {
     var eVideoId = $(eVideoDOM).attr("id");
-    var videoDOM = getVideoFromVideoBox($(eVideoDOM).find(".evideoBox"));
+    var videoBox = $(eVideoDOM).find(".evideoBox");
+    var videoDOM = getVideoFromVideoBox(videoBox);
     var eVideoJSON = eVideos[eVideoId];
+    $(eVideoDOM).addClass("temp_shown");
     eVideoJSON.estatusBeforeLeave = V.Video.getStatus(videoDOM);
     switch(eVideoJSON.estatusBeforeLeave) {
       case V.Constant.EVideo.Status.Playing:
@@ -17732,7 +17813,8 @@ VISH.EVideo = function(V, $, undefined) {
     var video = getVideoFromVideoBox(videoBox);
     var options;
     var ballId = $(chapter).attr("ballid");
-    if(typeof ballId == "string") {
+    var ball = getBallOfEVideo(_getJSONFromVideo(video), ballId);
+    if(typeof ball.slide_id != "undefined") {
       options = {"nextBallId":ballId}
     }
     _onChapterSelected(video, chapterTime, options)
@@ -17741,6 +17823,13 @@ VISH.EVideo = function(V, $, undefined) {
     var ballDOM = event.target;
     var ballTime = parseFloat($(ballDOM).attr("ballTime"));
     var videoBox = $(".evideoBox").has(ballDOM);
+    var video = getVideoFromVideoBox(videoBox);
+    _onChapterSelected(video, ballTime)
+  };
+  var _onClickBallLine = function(event) {
+    var ballLine = event.target;
+    var ballTime = parseFloat($(ballLine).attr("ballTime"));
+    var videoBox = $(".evideoBox").has(ballLine);
     var video = getVideoFromVideoBox(videoBox);
     _onChapterSelected(video, ballTime)
   };
@@ -17788,6 +17877,11 @@ VISH.EVideo = function(V, $, undefined) {
   };
   var _minimizeIndex = function(event) {
     event.stopPropagation();
+    if(V.Utils.delayFunction("toggleIndexCall", function() {
+      _minimizeIndex(event)
+    }, MIN_TIME_BETWEEN_TOGGLE_INDEX)) {
+      return
+    }
     var eVideoIndexBox = $(".evideoIndexBox").has(event.target);
     var indexBody = $(eVideoIndexBox).find(".evideoIndexBody");
     $(eVideoIndexBox).find(".evideoChapters li").hide();
@@ -17806,8 +17900,13 @@ VISH.EVideo = function(V, $, undefined) {
     _updateIndexButtonUI(eVideoIndexBox, false);
     _redimensionateVideoAfterIndex(eVideoBox)
   };
-  var _maximizeIndex = function() {
+  var _maximizeIndex = function(event) {
     event.stopPropagation();
+    if(V.Utils.delayFunction("toggleIndexCall", function() {
+      _maximizeIndex(event)
+    }, MIN_TIME_BETWEEN_TOGGLE_INDEX)) {
+      return
+    }
     var eVideoIndexBox = $(".evideoIndexBox").has(event.target);
     var indexBody = $(eVideoIndexBox).find(".evideoIndexBody");
     var animationId = V.Utils.getId("animation");
@@ -17887,20 +17986,81 @@ VISH.EVideo = function(V, $, undefined) {
       _drawBall(ball, progressBarWrapper, duration)
     });
     var videoFooter = $(videoBox).find(".evideoFooter");
-    $(videoBox).find(".ballWrapper").height($(videoFooter).height())
+    $(videoBox).find(".ballWrapper").height($(videoFooter).height());
+    $(progressBarWrapper).find(".ballWrapper").hover(function(event) {
+      var target = $(event.target).hasClass("ballWrapper") ? event.target : $(event.target).parent();
+      var ballId = $(target).attr("ballId");
+      var chapter = $(eVideoDOM).find("ul.evideoChapters li[representedballid='" + ballId + "']");
+      $(".ul.evideoChapters li").removeClass("hover");
+      $(chapter).addClass("hover")
+    }, function(event) {
+      var target = $(event.target).hasClass("ballWrapper") ? event.target : $(event.target).parent();
+      var ballId = $(target).attr("ballId");
+      var chapter = $(eVideoDOM).find("ul.evideoChapters li[representedballid='" + ballId + "']");
+      $(chapter).removeClass("hover")
+    })
   };
   var _lastLeft;
+  var _lastDrawedBallWrapper;
   var _drawBall = function(ball, progressBarWrapper, duration) {
     var left = ball.etime * 100 / duration;
-    if(typeof _lastLeft != "undefined") {
-      if(left - _lastLeft < RANGE_BETWEEN_BALLS) {
-        return
+    if(typeof ball.slide_id != "undefined") {
+      if(typeof _lastLeft != "undefined") {
+        if(left - _lastLeft < RANGE_BETWEEN_BALLS) {
+          if(typeof _lastDrawedBallWrapper != "undefined") {
+            $(_lastDrawedBallWrapper).attr("ballGroup", "true");
+            var rBalls;
+            try {
+              rBalls = JSON.parse($(_lastDrawedBallWrapper).attr("rBalls"))
+            }catch(e) {
+            }
+            if(typeof rBalls == "undefined") {
+              rBalls = []
+            }
+            rBalls.push(ball.id);
+            $(_lastDrawedBallWrapper).attr("rBalls", JSON.stringify(rBalls))
+          }
+          return
+        }
       }
+      _lastLeft = left
     }
-    _lastLeft = left;
-    var ballWrapper = $("<div class='ballWrapper'><div class='ballLine'></div><div class='ballImg' ballTime='" + ball.etime + "'></div></div>");
+    var ballWrapper = $("<div class='ballWrapper' ballid='" + ball.id + "' ballTime='" + ball.etime + "'><div class='ballLine' ballTime='" + ball.etime + "'></div></div>");
+    if(typeof ball.slide_id != "undefined") {
+      $(ballWrapper).attr("slide_id", ball.slide_id);
+      $(ballWrapper).append("<div class='ballImg' ballTime='" + ball.etime + "'></div>")
+    }
     $(ballWrapper).css("left", left + "%");
-    $(progressBarWrapper).append(ballWrapper)
+    $(progressBarWrapper).append(ballWrapper);
+    _lastDrawedBallWrapper = ballWrapper
+  };
+  var _linkChaptersAndBalls = function(eVideoDOM, eVideoJSON) {
+    var indexBody = $(eVideoDOM).find(".evideoIndexBox");
+    var eVideoChapters = $(indexBody).find(".evideoChapters li");
+    $(eVideoChapters).each(function(index, li) {
+      var ballId = $(li).attr("ballId");
+      var ballWrapper = $(eVideoDOM).find(".ballWrapper[ballid='" + ballId + "']");
+      if(ballWrapper.length == 0) {
+        var groupBallsWrapper = $(eVideoDOM).find(".ballWrapper[ballgroup='true']");
+        $(groupBallsWrapper).each(function(value, gBall) {
+          var rBalls;
+          try {
+            rBalls = JSON.parse($(gBall).attr("rBalls"))
+          }catch(e) {
+          }
+          if(typeof rBalls == "object") {
+            if(rBalls.indexOf(ballId) != -1) {
+              ballWrapper = gBall;
+              return false
+            }
+          }
+        })
+      }
+      var representedBallId = $(ballWrapper).attr("ballid");
+      if(typeof representedBallId == "string") {
+        $(li).attr("representedBallId", representedBallId)
+      }
+    })
   };
   var _updateNextBall = function(videoDOM, cTime) {
     if(typeof cTime != "number") {
@@ -17914,12 +18074,12 @@ VISH.EVideo = function(V, $, undefined) {
     var lookForNextBallId = options && options.nextBallId;
     $(eVideos[eVideoId].balls).each(function(index, ball) {
       if(lookForNextBallId) {
-        if(ball.id === options.nextBallId) {
+        if(ball.id === options.nextBallId && typeof ball.slide_id != "undefined") {
           nextBall = ball;
           return false
         }
       }else {
-        if(ball.etime >= cTime && eVideos[eVideoId].prevBalls.indexOf(ball) == -1) {
+        if(typeof ball.slide_id != "undefined" && ball.etime >= cTime && eVideos[eVideoId].prevBalls.indexOf(ball) == -1) {
           nextBall = ball;
           return false
         }
@@ -17944,7 +18104,7 @@ VISH.EVideo = function(V, $, undefined) {
       var videoBox = getVideoBoxFromVideo(videoDOM);
       var subslideDOM = $("#" + ball.slide_id);
       if($(subslideDOM).hasClass("show_in_smartcard")) {
-        $(videoBox).addClass("temp_hidden")
+        $(videoBox).addClass("temp_hidden_soft")
       }
     }, 1500);
     V.Slides.openSubslide(ball.slide_id)
@@ -17952,7 +18112,7 @@ VISH.EVideo = function(V, $, undefined) {
   var _onCloseBall = function(eVideoId) {
     var eVideoJSON = eVideos[eVideoId];
     var videoBox = $("#" + eVideoId).find(".evideoBox");
-    $(videoBox).removeClass("temp_hidden");
+    $(videoBox).removeClass("temp_hidden_soft");
     var videoDOM = getVideoFromVideoBox(videoBox);
     var cTime = V.Video.getCurrentTime(videoDOM);
     var prevBall = jQuery.extend({}, eVideoJSON.displayedBall);
@@ -17994,7 +18154,18 @@ VISH.EVideo = function(V, $, undefined) {
   var _getJSONFromVideo = function(video) {
     return eVideos[$(video).attr("evideoid")]
   };
-  return{init:init, draw:draw, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, renderVideoBoxDummy:renderVideoBoxDummy, renderIndexBoxDummy:renderIndexBoxDummy, fitVideoInVideoBox:fitVideoInVideoBox, renderIndex:renderIndex, loadEventsForControls:loadEventsForControls, onClickToggleVideo:onClickToggleVideo, onStatusChange:onStatusChange, onTimeUpdate:onTimeUpdate, getVideoFromVideoBox:getVideoFromVideoBox, getVideoBoxFromVideo:getVideoBoxFromVideo, afterSetupSize:afterSetupSize}
+  var getBallOfEVideo = function(eVideoJSON, ballId) {
+    var bL = eVideoJSON.balls.length;
+    for(var i = 0;i < bL;i++) {
+      var ball = eVideoJSON.balls[i];
+      if(ball.id == ballId) {
+        return ball
+      }
+    }
+    return undefined
+  };
+  return{init:init, draw:draw, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, renderVideoBoxDummy:renderVideoBoxDummy, renderIndexBoxDummy:renderIndexBoxDummy, fitVideoInVideoBox:fitVideoInVideoBox, renderIndex:renderIndex, loadEventsForControls:loadEventsForControls, onClickToggleVideo:onClickToggleVideo, onStatusChange:onStatusChange, onTimeUpdate:onTimeUpdate, getVideoFromVideoBox:getVideoFromVideoBox, getVideoBoxFromVideo:getVideoBoxFromVideo, getBallOfEVideo:getBallOfEVideo, 
+  afterSetupSize:afterSetupSize}
 }(VISH, jQuery);
 VISH.Editor.API = function(V, $, undefined) {
   var init = function() {
@@ -18784,7 +18955,10 @@ VISH.Editor.EVideo = function(V, $, undefined) {
   var initialized = false;
   var eVideos;
   var balls;
+  var hiddenLinkToAddVideos;
   var hiddenLinkToAddChapters;
+  var _cChapter;
+  var TIME_DELTA = 1E-4;
   var init = function() {
     if(!initialized) {
       eVideos = {};
@@ -18794,7 +18968,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     }
   };
   var _loadEvents = function() {
-    var hiddenLinkToAddVideos = $('<a href="#video_fancybox" style="display:none"></a>');
+    hiddenLinkToAddVideos = $('<a id="hidden_button_to_change_video" href="#video_fancybox" style="display:none"></a>');
     $(hiddenLinkToAddVideos).fancybox({"autoDimensions":false, "width":800, "height":600, "scrolling":"no", "padding":0, "onStart":function(data) {
       V.Editor.Video.setAddContentMode(V.Constant.EVIDEO);
       V.Editor.Utils.loadTab("tab_video_youtube")
@@ -18802,9 +18976,9 @@ VISH.Editor.EVideo = function(V, $, undefined) {
       V.Editor.Video.setAddContentMode(V.Constant.NONE)
     }});
     $(document).on("click", "div.change_evideo_button", function() {
-      V.Editor.setCurrentContainer($(V.Slides.getCurrentSlide()).find(".evideoBody"));
-      $(hiddenLinkToAddVideos).trigger("click")
+      onChangeVideo()
     });
+    $(document.body).append(hiddenLinkToAddVideos);
     hiddenLinkToAddChapters = $('<a href="#chapters_fancybox" style="display:none"></a>');
     $(hiddenLinkToAddChapters).fancybox({"autoDimensions":false, "height":330, "width":400, "scrolling":"no", "showCloseButton":false, "padding":0, "onStart":function(data) {
       var currentVideo = _getCurrentVideo();
@@ -18813,7 +18987,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
         $("#eVideoChaptersBall_wrapper").hide();
         var videoDuration = V.Video.getDuration(currentVideo);
         var formatedDuration = V.Utils.fomatTimeForMPlayer(videoDuration);
-        var significativeNumbers = formatedDuration.split(":").join("").length;
+        var significativeNumbers = parseInt($(V.Slides.getCurrentSlide()).attr("sN"));
         if(videoDuration) {
           $("#eVideochapters_duration_value").val(formatedDuration);
           $("#eVideochapters_duration_value").attr("duration", videoDuration);
@@ -18833,20 +19007,16 @@ VISH.Editor.EVideo = function(V, $, undefined) {
         }
         var chapter = _getCurrentChapter();
         if(typeof chapter != "undefined") {
-          var titleName = $(chapter).find(".eVideoIndexEntryBody").html();
+          var titleName = chapter.name;
           if(typeof titleName == "string") {
             $("#eVideoChaptersTextArea").val(titleName)
           }
-          var ball = balls[$(chapter).attr("ballid")];
+          var ball = balls[chapter.ballId];
           if(typeof ball != "undefined" && typeof ball.letter == "string") {
             $("#eVideoChaptersBall_wrapper").find("span").html(VISH.I18n.getTrans("i.ItemAndBall", {letter:"<span class='letterInChapterDialog'>" + ball.letter + "</span>"}));
             $("#eVideoChaptersBall_wrapper").show()
           }
-          try {
-            var cTime = Math.round(parseFloat($(chapter).attr("etime")))
-          }catch(e) {
-            var cTime = 0
-          }
+          var cTime = chapter.etime;
           if(isNaN(cTime)) {
             cTime = 0
           }
@@ -18859,7 +19029,8 @@ VISH.Editor.EVideo = function(V, $, undefined) {
       }
     }, "onComplete":function(data) {
     }, "onClosed":function(data) {
-      $("ul.evideoChapters li").removeClass("selected")
+      $("ul.evideoChapters li").removeClass("selected");
+      _cChapter = undefined
     }});
     $(document).on("click", "button.evideoAddChapterButton:not(.addSlideButtonDisabled)", function() {
       $("ul.evideoChapters li").removeClass("selected");
@@ -18868,63 +19039,42 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     $(document).on("click", ".evideoPlayButtonWrapper", V.EVideo.onClickToggleVideo);
     $(document).on("click", "div.eVideoChapterActions i.icon-edit", _onEditChapter);
     $(document).on("click", "div.eVideoChapterActions i.icon-trash", _onRemoveChapter);
-    $(document).on("change", "#eVideochapters_hours", _onChapterTimeChange);
-    $(document).on("change", "#eVideochapters_minutes", _onChapterTimeChange);
-    $(document).on("change", "#eVideochapters_seconds", _onChapterTimeChange);
-    $(document).on("click", '#eVideoChaptersButtons_wrapper a[buttonaction="Ok"]', _onAddChapter);
-    $(document).on("click", '#eVideoChaptersButtons_wrapper a[buttonaction="Cancel"]', function() {
-      $.fancybox.close()
-    })
+    $(document).on("click", "div.eVideoChapterActions i.icon-arrow-down", _onDownChapter);
+    $(document).on("click", "div.eVideoChapterActions i.icon-arrow-up", _onUpChapter);
+    $(document).on("click", "div.eVideoChapterInfo", _onClickChapterInfo);
+    $(document).on("keyup", "#eVideochapters_hours, #eVideochapters_minutes, #eVideochapters_seconds", _onChapterTimeChange);
+    $(document).on("change", "#eVideochapters_hours, #eVideochapters_minutes, #eVideochapters_seconds", _onChapterTimeChange);
+    $(document).on("click", '#eVideoChaptersButtons_wrapper a[buttonaction="Add"]', _onAddChapter);
+    $(document).on("click", '#eVideoChaptersButtons_wrapper a[buttonaction="Cancel"]', _onCancelAddChapter)
   };
-  var _disableTimeInput = function(input) {
-    $(input).val(0);
-    $(input).attr("readonly", "readonly");
-    $(input).parent().find(".tlt_input_title").addClass("tlt_input_title_disabled")
-  };
-  var _enableTimeInput = function(input) {
-    $(input).val(0);
-    $(input).removeAttr("readonly");
-    $(input).parent().find(".tlt_input_title").removeClass("tlt_input_title_disabled")
-  };
-  var _onEditChapter = function(event) {
-    var chapter = $("ul.evideoChapters li").has(event.target);
-    $("ul.evideoChapters li").removeClass("selected");
-    $(chapter).addClass("selected");
-    $(hiddenLinkToAddChapters).trigger("click")
-  };
-  var _onRemoveChapter = function(event) {
-    var chapter = $("ul.evideoChapters li").has(event.target);
-    console.log("On remove chapter");
-    console.log(chapter)
-  };
-  var _getCurrentChapter = function() {
-    return $(V.Slides.getCurrentSlide()).find(".evideoChapters li.selected")
-  };
-  var _onChapterTimeChange = function() {
-    var cTime = _getEditableChapterTime();
-    if(typeof cTime == "number") {
-      cTime = Math.max(0, Math.min(cTime, parseFloat($("#eVideochapters_duration_value").attr("duration"))));
-      var sN = $("#eVideochapters_duration_value").attr("sN");
-      $("#eVideochapters_current_value").val(V.Utils.fomatTimeForMPlayer(cTime, sN))
+  var onChangeVideo = function() {
+    var eVideoDOM = V.Slides.getCurrentSlide();
+    if(!_isVideoCreated(eVideoDOM)) {
+      _onChangeVideo(eVideoDOM)
     }else {
-      $("#eVideochapters_current_value").val("")
+      var options = {};
+      options.width = 600;
+      options.height = 135;
+      options.notificationIconSrc = getThumbnailURL();
+      options.notificationIconClass = "notificationIconDelete";
+      options.text = V.I18n.getTrans("i.eVideoChangeNotification");
+      var button1 = {};
+      button1.text = V.I18n.getTrans("i.no");
+      button1.callback = function() {
+        $.fancybox.close()
+      };
+      var button2 = {};
+      button2.text = V.I18n.getTrans("i.yes");
+      button2.callback = function() {
+        _onChangeVideo(eVideoDOM)
+      };
+      options.buttons = [button1, button2];
+      V.Utils.showDialog(options)
     }
   };
-  var _getEditableChapterTime = function() {
-    var hours = $("#eVideochapters_hours").val();
-    var minutes = $("#eVideochapters_minutes").val();
-    var seconds = $("#eVideochapters_seconds").val();
-    if(jQuery.isNumeric(hours) && jQuery.isNumeric(minutes) && jQuery.isNumeric(seconds)) {
-      hours = parseInt(hours);
-      minutes = parseInt(minutes);
-      seconds = parseInt(seconds);
-      return(hours * 60 + minutes) * 60 + seconds
-    }
-    return undefined
-  };
-  var _onAddChapter = function() {
-    console.log("Add Chapter");
-    $.fancybox.close()
+  var _onChangeVideo = function(eVideoDOM) {
+    V.Editor.setCurrentContainer($(eVideoDOM).find(".evideoBody"));
+    $(hiddenLinkToAddVideos).trigger("click")
   };
   var getDummy = function(slidesetId, options) {
     var videoBox = V.EVideo.renderVideoBoxDummy();
@@ -18935,11 +19085,11 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     $(indexBox).find(".evideoIndexSide").html("");
     var eVideoIndexBody = $(indexBox).find(".evideoIndexBody");
     var eVideoIndexBodyActions = $("<div class='evideoIndexBodyActions'></div>");
-    $(eVideoIndexBodyActions).html('<button type="button" class="btn btn-small slidesScrollbarButton evideoAddChapterButton addSlideButtonDisabled"><i class="icon-plus"></i><span>' + V.I18n.getTrans("i.AddItem") + "</span></button>");
+    $(eVideoIndexBodyActions).html('<button type="button" class="btn btn-small slidesScrollbarButton evideoAddChapterButton addSlideButtonDisabled"><i class="icon-plus"></i><span>' + V.I18n.getTrans("i.AddTimestampLink") + "</span></button>");
     $(eVideoIndexBody).prepend(eVideoIndexBodyActions);
-    return"<article id='" + slidesetId + "' type='" + V.Constant.EVIDEO + "' slidenumber='" + options.slideNumber + "'><div class='delete_slide'></div><img class='help_in_slide help_in_evideo' src='" + V.ImagesPath + "vicons/helptutorial_circle_blank.png'/>" + V.Utils.getOuterHTML(videoBox) + V.Utils.getOuterHTML(indexBox) + "</article>"
+    return"<article class='temp_shown' id='" + slidesetId + "' type='" + V.Constant.EVIDEO + "' slidenumber='" + options.slideNumber + "'><div class='delete_slide'></div><img class='help_in_slide help_in_evideo' src='" + V.ImagesPath + "vicons/helptutorial_circle_blank.png'/>" + V.Utils.getOuterHTML(videoBox) + V.Utils.getOuterHTML(indexBox) + "</article>"
   };
-  var _drawEVideo = function(eVideoJSON, eVideoDOM) {
+  var _drawEVideo = function(eVideoJSON, eVideoDOM, videoToRender) {
     if(!eVideoJSON) {
       eVideoJSON = {};
       eVideoJSON.pois = []
@@ -18947,35 +19097,40 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     var eVideoId = $(eVideoDOM).attr("id");
     if(typeof eVideos[eVideoId] == "undefined") {
       eVideos[eVideoId] = eVideoJSON;
-      eVideoJSON.balls = [];
-      $(eVideoJSON.pois).each(function(index, poi) {
-        eVideoJSON.balls.push(poi)
+      eVideos[eVideoId].id = eVideoId;
+      eVideos[eVideoId].balls = [];
+      $(eVideos[eVideoId].pois).each(function(index, poi) {
+        eVideos[eVideoId].balls.push(poi)
       });
-      eVideoJSON.balls = eVideoJSON.balls.filter(function(ball) {
-        return typeof ball.etime != "undefined" && !isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) > 0
+      eVideos[eVideoId].balls = eVideos[eVideoId].balls.filter(function(ball) {
+        return typeof ball.etime != "undefined" && !isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0
       }).map(function(ball) {
-        ball.letter = _getLetterForBall(eVideoJSON, ball);
+        ball.letter = _getLetterForBall(eVideos[eVideoId], ball);
         ball.etime = parseFloat(ball.etime);
         ball.eVideoId = eVideoId;
         return ball
       }).sort(function(A, B) {
         return A.etime > B.etime
-      }).map(function(ball) {
-        balls[ball.id] = ball;
-        return ball
       })
     }
+    _updateBallsArray(eVideoId);
     if(eVideos[eVideoId].drawed === true) {
       return
     }
     eVideos[eVideoId].drawed = true;
-    var eVideoObject = _getEVideoObjectFromJSON(eVideoJSON);
+    if(typeof videoToRender != "undefined") {
+      $(eVideoDOM).find(".evideoBody").html("")
+    }
+    var eVideoObject = typeof videoToRender != "undefined" ? videoToRender : _getEVideoObjectFromJSON(eVideos[eVideoId]);
     if(typeof eVideoObject != "undefined") {
       _renderVideo(eVideoObject, eVideoDOM)
     }
   };
   var _getLetterForBall = function(eVideoJSON, ball) {
     var letter = undefined;
+    if(typeof ball.slide_id == "undefined") {
+      return letter
+    }
     var slideId = ball.slide_id;
     $(eVideoJSON.slides).each(function(index, slide) {
       if(slide.id === slideId) {
@@ -19004,25 +19159,30 @@ VISH.Editor.EVideo = function(V, $, undefined) {
         return undefined
     }
   };
-  var _getCurrentEVideoJSON = function() {
-    return eVideos[$(V.Slides.getCurrentSlide()).attr("id")]
-  };
-  var _getCurrentVideo = function() {
-    return V.EVideo.getVideoFromVideoBox($(V.Slides.getCurrentSlide()).find(".evideoBox"))
-  };
   var onVideoSelected = function(contentToAdd, eVideoDOM) {
     if(!eVideoDOM) {
       eVideoDOM = V.Slides.getCurrentSlide()
     }
     if($(eVideoDOM).attr("type") === V.Constant.EVIDEO) {
-      _renderVideo(contentToAdd, eVideoDOM)
+      if(_isVideoCreated(eVideoDOM)) {
+        var eVideoId = $(eVideoDOM).attr("id");
+        _removeAllBalls(eVideoDOM);
+        delete eVideos[eVideoId];
+        _drawEVideo(undefined, eVideoDOM, contentToAdd)
+      }else {
+        _renderVideo(contentToAdd, eVideoDOM)
+      }
     }
     $.fancybox.close()
   };
   var _renderVideo = function(videoObj, eVideoDOM) {
-    $(eVideoDOM).addClass("temp_shown");
     $(eVideoDOM).find("div.change_evideo_button").remove();
     $(eVideoDOM).find("div.evideoBody").css("margin-top", "0px");
+    var videoBody = $(eVideoDOM).find(".evideoBody");
+    var loadingContainer = $("<div class='loadingEVideoContainer'></div>");
+    $(videoBody).append(loadingContainer);
+    $(videoBody).addClass("loadingEVideoContainerWrapper");
+    V.Utils.Loader.startLoadingInContainer(loadingContainer);
     var videoBody = $(eVideoDOM).find(".evideoBody");
     var eVideoId = $(eVideoDOM).attr("id");
     var objectInfo = V.Object.getObjectInfo(videoObj);
@@ -19063,15 +19223,24 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     var videoHeader = $(videoBox).find(".evideoHeader");
     var videoFooter = $(videoBox).find(".evideoFooter");
     var videoType = $(video).attr("videotype");
+    var loadingContainer = $(videoBody).find(".loadingEVideoContainer");
+    $(loadingContainer).remove();
+    $(videoBody).removeClass("loadingEVideoContainerWrapper");
+    $(eVideoDOM).addClass("temp_shown_b");
     var durationDOM = $(videoHeader).find(".evideoDuration");
     var videoDuration = V.Video.getDuration(video);
     var formatedDuration = V.Utils.fomatTimeForMPlayer(videoDuration);
     $(durationDOM).html(formatedDuration);
     var significativeNumbers = formatedDuration.split(":").join("").length;
     $(video).attr("sN", significativeNumbers);
+    $(eVideoDOM).attr("sN", significativeNumbers);
     V.EVideo.fitVideoInVideoBox(videoBox);
     $(videoHeader).show();
     $(videoFooter).show();
+    eVideos[eVideoId].balls = eVideos[eVideoId].balls.filter(function(ball) {
+      return ball.etime <= videoDuration
+    });
+    _updateBallsArray(eVideoId);
     $(eVideoDOM).find(".evideoAddChapterButton").removeClass("addSlideButtonDisabled");
     V.EVideo.loadEventsForControls(videoBox);
     V.Video.onTimeUpdate(video, V.EVideo.onTimeUpdate);
@@ -19081,7 +19250,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     if(videoType == V.Constant.Video.Youtube) {
       V.EVideo.onTimeUpdate(video, 0)
     }
-    $(eVideoDOM).removeClass("temp_shown")
+    $(eVideoDOM).removeClass("temp_shown_b")
   };
   var _renderIndex = function(eVideoDOM, eVideoJSON) {
     var indexBody = $(eVideoDOM).find(".evideoIndexBox");
@@ -19097,22 +19266,57 @@ VISH.Editor.EVideo = function(V, $, undefined) {
       var removeButton = $('<p class="icon-trash-container" title="remove"><i class="icon-button icon-trash"></i></p>');
       $(actionDiv).prepend(removeButton);
       $(actionDiv).prepend(editButton);
+      var prevChapter = chapterList[value - 1];
+      var nextChapter = chapterList[value + 1];
+      var arrowUp = typeof prevChapter != "undefined" && Math.round($(prevChapter).attr("etime")) == Math.round($(li).attr("etime"));
+      var arrowDown = typeof nextChapter != "undefined" && Math.round($(nextChapter).attr("etime")) == Math.round($(li).attr("etime"));
+      var arrows = arrowUp || arrowDown;
+      if(arrows) {
+        var arrows = $('<p class="icon-arrows-container"></p>');
+        if(arrowUp) {
+          $(arrows).append('<i title="move up" class="icon-button icon-arrow-up"></i>')
+        }
+        if(arrowDown) {
+          $(arrows).append('<i title="move down" class="icon-button icon-arrow-down"></i>')
+        }
+        $(actionDiv).append(arrows)
+      }
       $(li).html("");
       $(li).append(infoDiv);
-      $(li).append(actionDiv)
-    });
-    $(chapterList).each(function(value, li) {
+      $(li).append(actionDiv);
       var ballId = $(li).attr("ballid");
+      $(li).attr("id", ballId);
       var ballLetter = balls[ballId].letter;
-      $(li).find(".eVideoIndexEntryNumber").html(value + 1 + " (" + ballLetter + "). ")
+      $(li).find(".eVideoIndexEntryNumber").html(value + 1 + " [" + V.Utils.fomatTimeForMPlayer(balls[ballId].etime, parseInt($(eVideoDOM).attr("sN"))) + "]" + (typeof ballLetter == "string" ? " (" + ballLetter + ") " : "") + ". ");
+      if(arrows) {
+        $(li).find("div.eVideoChapterInfo").css("min-height", "60px")
+      }
     })
+  };
+  var _updateBalls = function(eVideoDOM) {
+    var eVideoId = $(eVideoDOM).attr("id");
+    _reOrderBalls(eVideoDOM, eVideos[eVideoId]);
+    _renderBalls(eVideoDOM, eVideos[eVideoId])
+  };
+  var _reOrderBalls = function(eVideoDOM, eVideoJSON) {
+    eVideos[eVideoJSON.id].balls.sort(function(A, B) {
+      return A.etime > B.etime
+    }).map(function(ball) {
+      ball.letter = _getLetterForBall(eVideos[eVideoJSON.id], ball);
+      return ball
+    });
+    _renderIndex(eVideoDOM, eVideos[eVideoJSON.id])
   };
   var _renderBalls = function(eVideoDOM, eVideoJSON) {
     var videoBox = $(eVideoDOM).find(".evideoBox");
     var videoDOM = V.EVideo.getVideoFromVideoBox(videoBox);
     var duration = V.Video.getDuration(videoDOM);
     $(eVideoJSON.balls).each(function(index, ball) {
-      _drawBall(eVideoDOM, eVideoJSON, ball, duration)
+      if(ball.drawed != true) {
+        _drawBall(eVideoDOM, eVideoJSON, ball, duration)
+      }else {
+        _updateBall(eVideoDOM, eVideoJSON, ball, duration)
+      }
     });
     var videoFooter = $(videoBox).find(".evideoFooter");
     $(videoBox).find(".ballSlider .ui-slider-handle").height($(videoFooter).height())
@@ -19124,17 +19328,22 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     var left = ball.etime * 100 / duration;
     var videoBox = $(eVideoDOM).find(".evideoBox");
     var eVideoControls = $(videoBox).find("div.evideoControls");
-    var ballSliderWrapper = $("<div class='ballSliderWrapper'><div class='ballSlider'></div></div>");
+    var ballSliderWrapper = $("<div ballid='" + ball.id + "' class='ballSliderWrapper'><div class='ballSlider'></div></div>");
     $(eVideoControls).find(".evideoProgressBarSliderWrapper").append(ballSliderWrapper);
     var ballSlider = $(ballSliderWrapper).find(".ballSlider");
     $(ballSlider).slider({orientation:"horizontal", range:"min", min:0, max:100, value:left, step:0.1, slide:function(event, ui) {
       var ballTimeSpan = $(event.target).find("span.ballTimeSpan");
       var newTime = parseFloat($(ballTimeSpan).attr("videoduration")) * ui.value / 100;
       $(ballTimeSpan).html(V.Utils.fomatTimeForMPlayer(newTime))
+    }, change:function(event, ui) {
+      var ballTimeSpan = $(event.target).find("span.ballTimeSpan");
+      var newTime = parseFloat($(ballTimeSpan).attr("videoduration")) * ui.value / 100;
+      $(ballTimeSpan).html(V.Utils.fomatTimeForMPlayer(newTime))
     }, start:function(event, ui) {
       var ballId = $(event.target).find("span.ballTimeSpan").attr("ballid");
       var selectedChapter = $(eVideoDOM).find("ul.evideoChapters").find("li[ballid='" + ballId + "']");
-      $(selectedChapter).addClass("active")
+      $(selectedChapter).addClass("active");
+      _bringBallToFront(balls[ballId])
     }, stop:function(event, ui) {
       var ballTimeSpan = $(event.target).find("span.ballTimeSpan");
       var newTime = parseFloat($(ballTimeSpan).attr("videoduration")) * ui.value / 100;
@@ -19145,55 +19354,341 @@ VISH.Editor.EVideo = function(V, $, undefined) {
       $(selectedChapter).removeClass("active");
       _reOrderBalls(eVideoDOM, eVideos[ball.eVideoId])
     }, create:function(event, ui) {
-      var ballWrapper = $("<div class='ballWrapper'><div class='ballLine'></div><div class='ballImg' ballTime='" + ball.etime + "'><span class='ballLetterSpan'>" + ball.letter + "</span></div><span class='ballTimeSpan' eVideoId='" + ball.eVideoId + "' ballid='" + ball.id + "' balltime='" + ball.etime + "' videoDuration='" + duration + "'>" + V.Utils.fomatTimeForMPlayer(ball.etime) + "</span></div>");
+      var ballWrapper = $("<div class='ballWrapper' layer='1' ballid='" + ball.id + "'><div class='ballLine'></div></div>");
+      if(typeof ball.slide_id != "undefined") {
+        var ballImg = $("<div class='ballImg' ballTime='" + ball.etime + "'><span class='ballLetterSpan'>" + ball.letter + "</span></div>");
+        $(ballWrapper).append(ballImg);
+        $(ballWrapper).attr("slide_id", ball.slide_id)
+      }
+      var ballTimeSpan = $("<span class='ballTimeSpan' eVideoId='" + ball.eVideoId + "' ballid='" + ball.id + "' balltime='" + ball.etime + "' videoDuration='" + duration + "'>" + V.Utils.fomatTimeForMPlayer(ball.etime) + "</span>");
+      $(ballWrapper).append(ballTimeSpan);
       var handler = $(ballSlider).find(".ui-slider-handle");
       $(handler).append(ballWrapper)
-    }})
+    }});
+    ball.drawed = true;
+    balls[ball.id].drawed = true
   };
-  var _reOrderBalls = function(eVideoDOM, eVideoJSON) {
-    eVideos[eVideoJSON.id].balls.sort(function(A, B) {
-      return A.etime > B.etime
+  var _updateBall = function(eVideoDOM, eVideoJSON, ball, duration) {
+    var left = Math.min(100, ball.etime * 100 / duration);
+    var ballSliderWrapper = $(eVideoDOM).find(".ballSliderWrapper[ballid='" + ball.id + "']");
+    var ballSlider = $(ballSliderWrapper).find(".ballSlider");
+    var sliderValue = $(ballSlider).slider("value");
+    if(Math.abs(left - sliderValue) > 0.05) {
+      $(ballSlider).slider("value", left)
+    }
+    if(typeof ball.slide_id != "undefined") {
+      var ballLetterSpan = $(ballSliderWrapper).find("span.ballLetterSpan");
+      $(ballLetterSpan).html(ball.letter)
+    }
+  };
+  var _onAddChapter = function() {
+    var chaptersFancy = $("#chapters_fancybox");
+    var title = $(chaptersFancy).find("#eVideoChaptersTextArea").val();
+    var time = _getEditableChapterTime();
+    if(typeof title != "string" || title.trim() == "") {
+      title = V.I18n.getTrans("i.Untitled")
+    }
+    var video = _getCurrentVideo();
+    var duration = V.Video.getDuration(video);
+    time = Math.max(0, Math.min(duration, time));
+    var eVideoDOM = V.Slides.getCurrentSlide();
+    var eVideoId = $(eVideoDOM).attr("id");
+    var chapter = _getCurrentChapter();
+    var _isEditingExistingChapter = typeof _getCurrentDOMChapter() != "undefined" && typeof chapter != "undefined";
+    if(_isEditingExistingChapter) {
+      var ballId = chapter.ballId;
+      balls[ballId].name = title;
+      if(Math.round(time) != Math.round(balls[ballId].etime)) {
+        balls[ballId].etime = time
+      }
+      _updateBalls(eVideoDOM)
+    }else {
+      var ball = {};
+      ball.id = V.Utils.getId(eVideoId + "_poi");
+      ball.eVideoId = eVideoId;
+      ball.name = title;
+      ball.etime = time;
+      if(typeof chapter != "undefined" && typeof chapter.slideId != "undefined") {
+        ball.slide_id = chapter.slideId
+      }
+      _addBall(ball)
+    }
+    _cChapter = undefined;
+    $.fancybox.close();
+    return false
+  };
+  var _onCancelAddChapter = function(event) {
+    var chapter = _getCurrentChapter();
+    if(typeof chapter != "undefined" && typeof chapter.slideId != "undefined") {
+      _drawPois(V.Slides.getCurrentSlide())
+    }
+    _cChapter = undefined;
+    $.fancybox.close();
+    return false
+  };
+  var _onEditChapter = function(event) {
+    var chapter = $("ul.evideoChapters li").has(event.target);
+    $("ul.evideoChapters li").removeClass("selected");
+    $(chapter).addClass("selected");
+    _updateCChapterFromDOM();
+    $(hiddenLinkToAddChapters).trigger("click")
+  };
+  var _onRemoveChapter = function(event) {
+    var chapter = $("ul.evideoChapters li").has(event.target);
+    var options = {};
+    options.width = 375;
+    options.height = 135;
+    options.notificationIconSrc = V.ImagesPath + "customPlayer/eVideoMarker.png";
+    options.notificationIconClass = "notificationIconDeleteTimestampLink";
+    options.text = V.I18n.getTrans("i.areyousureNotification");
+    var button1 = {};
+    button1.text = V.I18n.getTrans("i.no");
+    button1.callback = function() {
+      $.fancybox.close()
+    };
+    var button2 = {};
+    button2.text = V.I18n.getTrans("i.delete");
+    button2.callback = function() {
+      _removeChapter(chapter);
+      $.fancybox.close()
+    };
+    options.buttons = [button1, button2];
+    V.Utils.showDialog(options)
+  };
+  var _removeChapter = function(chapter) {
+    var ball = balls[$(chapter).attr("id")];
+    if(typeof ball == "object") {
+      _removeBall(ball)
+    }
+  };
+  var _onDownChapter = function(event) {
+    var chapter = $("ul.evideoChapters li").has(event.target);
+    _exchangeChapters(chapter, $(chapter).next())
+  };
+  var _onUpChapter = function(event) {
+    var chapter = $("ul.evideoChapters li").has(event.target);
+    _exchangeChapters(chapter, $(chapter).prev())
+  };
+  var _exchangeChapters = function(chapterA, chapterB) {
+    var ballA = balls[$(chapterA).attr("id")];
+    var ballB = balls[$(chapterB).attr("id")];
+    var timeBallA = ballA.etime;
+    var timeBallB = ballB.etime;
+    if(Math.round(timeBallA) != Math.round(timeBallB)) {
+      return
+    }
+    var eVideoId = ballA.eVideoId;
+    var eVideoDOM = $("#" + eVideoId);
+    var timeOrigin;
+    var lastChangedTime;
+    var chapterAisBefore = $(chapterA).attr("id") === $(chapterB).prev().attr("id");
+    if(chapterAisBefore) {
+      timeOrigin = timeBallA;
+      timeBallA = timeBallB + TIME_DELTA;
+      lastChangedTime = timeBallA
+    }else {
+      timeOrigin = timeBallB;
+      timeBallB = timeBallA + TIME_DELTA;
+      lastChangedTime = timeBallB
+    }
+    eVideos[eVideoId].balls.map(function(ball) {
+      if(ball.id === ballA.id) {
+        ball.etime = timeBallA;
+        return true
+      }
+      if(ball.id === ballB.id) {
+        ball.etime = timeBallB;
+        return true
+      }
+      if(ball.etime > timeOrigin && ball.etime < lastChangedTime) {
+        ball.etime = lastChangedTime + TIME_DELTA;
+        lastChangedTime = ball.etime
+      }
     });
-    _renderIndex(eVideoDOM, eVideos[eVideoJSON.id])
+    _updateBallsArray(eVideoId);
+    _updateBalls(eVideoDOM)
+  };
+  var _onClickChapterInfo = function(event) {
+    var chapter = $("ul.evideoChapters li").has(event.target);
+    var ballId = $(chapter).attr("ballid");
+    _bringBallToFront(balls[ballId])
+  };
+  var _bringBallToFront = function(ball) {
+    if(typeof ball == "undefined") {
+      return
+    }
+    var eVideoDOM = $("#" + ball.eVideoId);
+    var ballSliderWrapper = $(eVideoDOM).find("div.ballSliderWrapper[ballid='" + ball.id + "']");
+    if(ballSliderWrapper.length > 0) {
+      $(eVideoDOM).find("div.ballSliderWrapper").attr("layer", 2);
+      $(ballSliderWrapper).attr("layer", 1);
+      _updateBallLayers(eVideoDOM)
+    }
+  };
+  var _updateBallLayers = function(eVideoDOM) {
+    $(eVideoDOM).find("div.ballSliderWrapper").each(function(value, ballSliderWrapper) {
+      $(ballSliderWrapper).css("z-index", 11 - parseInt($(ballSliderWrapper).attr("layer")))
+    })
+  };
+  _addBallToCurrentTime = function(slideId) {
+    var eVideoDOM = V.Slides.getCurrentSlide();
+    var eVideoId = $(eVideoDOM).attr("id");
+    if(_isVideoCreated(eVideoDOM)) {
+      var cVideo = _getCurrentVideo();
+      var cTime = Math.max(0, Math.min(Math.round(V.Video.getCurrentTime(cVideo)), V.Video.getDuration(cVideo)))
+    }
+    _cChapter = {};
+    _cChapter.name = "";
+    _cChapter.etime = typeof cTime == "number" ? cTime : 0;
+    _cChapter.slideId = slideId;
+    $("ul.evideoChapters li").removeClass("selected");
+    $(hiddenLinkToAddChapters).trigger("click")
+  };
+  var _addBall = function(ball) {
+    var eVideoDOM = $("#" + ball.eVideoId);
+    eVideos[ball.eVideoId].balls.push(ball);
+    balls[ball.id] = ball;
+    _updateBalls(eVideoDOM)
+  };
+  var _removeBall = function(ball) {
+    var eVideoId = ball.eVideoId;
+    var eVideoDOM = $("#" + eVideoId);
+    var ballWrapper = $(eVideoDOM).find(".ballWrapper[ballid='" + ball.id + "']");
+    if(ballWrapper.length === 1) {
+      $(ballWrapper).remove()
+    }
+    var chapter = $("#" + ball.id);
+    $(chapter).remove();
+    $(eVideos[eVideoId].balls).each(function(index, eball) {
+      if(ball.id === eball.id) {
+        eVideos[eVideoId].balls.splice(index, 1);
+        return false
+      }
+    });
+    delete balls[ball.id];
+    _updateBalls(eVideoDOM);
+    if(typeof ball.slide_id != "undefined") {
+      _drawPois(eVideoDOM)
+    }
+  };
+  var _removeAllBalls = function(eVideoDOM) {
+    var eVideoId = $(eVideoDOM).attr("id");
+    var ballWrappers = $(eVideoDOM).find(".ballWrapper[ballid]");
+    $(ballWrappers).each(function(index, ballWrapper) {
+      var chapter = $("#" + $(ballWrapper).attr("ballid"));
+      $(chapter).remove()
+    });
+    $(ballWrappers).remove();
+    $(eVideos[eVideoId].balls).each(function(index, eball) {
+      delete balls[eball.id]
+    });
+    eVideos[eVideoId].balls = [];
+    _drawPois(eVideoDOM)
+  };
+  var _getCurrentChapter = function(updateFromDOM) {
+    return _cChapter
+  };
+  var _getCurrentDOMChapter = function() {
+    return $(V.Slides.getCurrentSlide()).find(".evideoChapters li.selected")[0]
+  };
+  var _updateCChapterFromDOM = function() {
+    var cDOMChapter = _getCurrentDOMChapter();
+    if(typeof cDOMChapter != "undefined") {
+      _cChapter = {};
+      _cChapter.name = $(cDOMChapter).find(".eVideoIndexEntryBody").html();
+      _cChapter.ballId = $(cDOMChapter).attr("ballid");
+      try {
+        _cChapter.etime = Math.round(parseFloat($(cDOMChapter).attr("etime")))
+      }catch(e) {
+      }
+    }
+  };
+  var _disableTimeInput = function(input) {
+    $(input).val(0);
+    $(input).attr("readonly", "readonly");
+    $(input).parent().find(".tlt_input_title").addClass("tlt_input_title_disabled")
+  };
+  var _enableTimeInput = function(input) {
+    $(input).val(0);
+    $(input).removeAttr("readonly");
+    $(input).parent().find(".tlt_input_title").removeClass("tlt_input_title_disabled")
+  };
+  var _onChapterTimeChange = function(event) {
+    if(event && event.keyCode === 13) {
+      $(event.target).blur();
+      return
+    }
+    var cTime = _getEditableChapterTime();
+    if(typeof cTime == "number") {
+      cTime = Math.max(0, Math.min(cTime, parseFloat($("#eVideochapters_duration_value").attr("duration"))));
+      var sN = $("#eVideochapters_duration_value").attr("sN");
+      $("#eVideochapters_current_value").val(V.Utils.fomatTimeForMPlayer(cTime, sN))
+    }else {
+      $("#eVideochapters_current_value").val("")
+    }
+  };
+  var _getEditableChapterTime = function() {
+    var hours = $("#eVideochapters_hours").val();
+    var minutes = $("#eVideochapters_minutes").val();
+    var seconds = $("#eVideochapters_seconds").val();
+    if(jQuery.isNumeric(hours) && jQuery.isNumeric(minutes) && jQuery.isNumeric(seconds)) {
+      hours = parseInt(hours);
+      minutes = parseInt(minutes);
+      seconds = parseInt(seconds);
+      return(hours * 60 + minutes) * 60 + seconds
+    }
+    return undefined
   };
   var draw = function(slidesetJSON, scaffoldDOM) {
     _drawEVideo(slidesetJSON, scaffoldDOM)
   };
-  var onEnterSlideset = function(eVideo) {
+  var onEnterSlideset = function(eVideoDOM) {
+    $(eVideoDOM).removeClass("temp_shown")
   };
-  var onLeaveSlideset = function(eVideo) {
+  var onLeaveSlideset = function(eVideoDOM) {
+    $(eVideoDOM).addClass("temp_shown")
   };
-  var loadSlideset = function(eVideo) {
+  var loadSlideset = function(eVideoDOM) {
+    $(eVideoDOM).find(".evideoBox").removeClass("temp_shown");
     $("#subslides_list").find("div.draggable_sc_div[ddend='scrollbar']").show()
   };
-  var unloadSlideset = function(eVideo) {
+  var unloadSlideset = function(eVideoDOM) {
+    $(eVideoDOM).find(".evideoBox").addClass("temp_shown")
   };
-  var beforeCreateSlidesetThumbnails = function(eVideo) {
-    _drawPois(eVideo)
+  var beforeCreateSlidesetThumbnails = function(eVideoDOM) {
+    _drawPois(eVideoDOM)
   };
-  var beforeRemoveSlideset = function(eVideo) {
-    var eVideoId = $(eVideo).attr("id");
+  var beforeRemoveSlideset = function(eVideoDOM) {
+    var eVideoId = $(eVideoDOM).attr("id");
     if(typeof eVideos[eVideoId] !== "undefined") {
-      delete eVideos[eVideoId]
+      delete eVideos[eVideoId];
+      _updateBallsArray(eVideoId)
     }
   };
-  var beforeRemoveSubslide = function(eVideo, subslide) {
+  var beforeRemoveSubslide = function(eVideoDOM, subslide) {
     var subslideId = $(subslide).attr("id");
-    var slideNumber = $(subslide).attr("slideNumber");
-    var markers = _getCurrentTour().markers;
-    Object.keys(markers).forEach(function(key) {
-      var marker = markers[key];
-      if(marker.slide_id === subslideId) {
-        _removeMarker(marker)
-      }else {
-        var markerArrow = $(".draggable_sc_div[slide_id='" + marker.slide_id + "']");
-        var markerSlideNumber = $(markerArrow).attr("slideNumber");
-        if(markerSlideNumber > slideNumber) {
-          $(markerArrow).attr("slideNumber", markerSlideNumber - 1);
-          marker.setIcon(_getPinImageForSlideNumber(markerSlideNumber - 1))
-        }
+    var eVideoJSON = _getCurrentEVideoJSON();
+    $(eVideoJSON.slides).each(function(index, slide) {
+      if(slide.id == subslideId) {
+        eVideos[eVideoJSON.id].slides.splice(index, 1);
+        return false
       }
-    })
+    });
+    $(eVideoJSON.balls).each(function(index, ball) {
+      if(ball.slide_id === subslideId) {
+        _removeBall(ball);
+        return false
+      }
+    });
+    _updateBalls($(subslide).parent())
+  };
+  var afterCreateSubslide = function(eVideoDOM, subslide) {
+    var subslideId = $(subslide).attr("id");
+    var eVideoJSON = _getCurrentEVideoJSON();
+    if(typeof eVideos[eVideoJSON.id].slides == "undefined") {
+      eVideos[eVideoJSON.id].slides = []
+    }
+    eVideos[eVideoJSON.id].slides.push({id:subslideId})
   };
   var _existPoiForSlideId = function(eVideoJSON, slideId) {
     if(typeof eVideoJSON == "undefined" || typeof slideId == "udnefined") {
@@ -19209,6 +19704,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     return _existPoiForSlideId
   };
   var _drawPois = function(eVideoDOM) {
+    var slidesetDOM = eVideoDOM;
     var eVideoJSON = _getCurrentEVideoJSON();
     if(!eVideoJSON) {
       return
@@ -19227,12 +19723,9 @@ VISH.Editor.EVideo = function(V, $, undefined) {
         }
       }
     });
-    return;
     $("div.draggable_sc_div").draggable({start:function(event, ui) {
       var position = $(event.target).css("position");
-      if(position === "fixed") {
-        $(event.target).attr("ddstart", "background")
-      }else {
+      if(position === "absolute") {
         var current_offset = $(event.target).offset();
         $(event.target).css("position", "fixed");
         $(event.target).css("margin-top", current_offset.top + "px");
@@ -19240,34 +19733,123 @@ VISH.Editor.EVideo = function(V, $, undefined) {
         $(event.target).attr("ddstart", "scrollbar")
       }
     }, stop:function(event, ui) {
-    }})
+      var current_offset = $(event.target).offset();
+      var slideset_offset = $(slidesetDOM).offset();
+      var yOk = current_offset.top > slideset_offset.top - 10 && current_offset.top < slideset_offset.top + $(slidesetDOM).outerHeight() - 38;
+      var xOk = current_offset.left > slideset_offset.left - 5 && current_offset.left < slideset_offset.left + $(slidesetDOM).outerWidth() - 44;
+      var insideSlideset = yOk && xOk;
+      insideSlideset = insideSlideset && V.Editor.Slideset.getCurrentSubslide() == null;
+      var isVideoCreated = _isVideoCreated(V.Slides.getCurrentSlide());
+      if(insideSlideset && isVideoCreated) {
+        $(event.target).attr("ddend", "background");
+        if($(event.target).attr("ddstart") === "scrollbar") {
+          var newTop = $(event.target).cssNumber("margin-top") + $(event.target).cssNumber("top");
+          var newLeft = $(event.target).cssNumber("margin-left") + $(event.target).cssNumber("left");
+          $(event.target).css("margin-top", "0px");
+          $(event.target).css("margin-left", "0px");
+          $(event.target).css("top", newTop + "px");
+          $(event.target).css("left", newLeft + "px");
+          var slide_id = $(event.target).attr("slide_id");
+          _addBallToCurrentTime(slide_id);
+          $(event.target).hide()
+        }
+      }else {
+        $(event.target).animate({top:0, left:0}, "slow", function() {
+          $(event.target).css("position", "absolute");
+          $(event.target).css("margin-top", "-20px");
+          $(event.target).css("margin-left", "12px");
+          $(event.target).attr("ddend", "scrollbar")
+        })
+      }
+    }});
+    return
   };
   var getThumbnailURL = function(eVideo) {
     return V.ImagesPath + "templatesthumbs/tEVideo.png"
   };
   var getSlideHeader = function(eVideoDOM) {
     var eVideoId = $(eVideoDOM).attr("id");
-    var eVideo = eVideos[eVideoId];
+    var eVideoJSON = eVideos[eVideoId];
+    var videoDOM = _getVideoFromEVideo(eVideoDOM);
+    var duration = V.Video.getDuration(videoDOM);
     var slide = {};
     slide.id = eVideoId;
     slide.type = V.Constant.EVIDEO;
+    slide.video = {};
+    slide.video.type = V.Video.getTypeVideo(videoDOM);
+    switch(slide.video.type) {
+      case V.Constant.Video.HTML5:
+        var sources = V.Video.HTML5.getSources(videoDOM);
+        var sourcesString = "";
+        $(sources).each(function(index, source) {
+          if(index !== 0) {
+            sourcesString = sourcesString + ","
+          }
+          sourcesString = sourcesString + '{ "src": "' + source.src + '" , "type": "' + source.mimeType + '"}'
+        });
+        sourcesString = "[" + sourcesString + "]";
+        slide.video.sources = sourcesString;
+        slide.video.duration = duration;
+        break;
+      case V.Constant.Video.Youtube:
+        slide.video.source = V.Video.Youtube.getEmbedSource(videoDOM);
+        slide.video.duration = duration;
+        break;
+      default:
+        break
+    }
     slide.width = "100%";
     slide.height = "100%";
     var pois = [];
-    for(var key in eVideo.markers) {
-      var marker = eVideo.markers[key];
+    $(eVideoJSON.balls).each(function(index, ball) {
       var poi = {};
+      poi.id = ball.id;
+      poi.etime = _getValidatedBallTime(ball.etime, duration);
+      if(typeof ball.slide_id != "undefined") {
+        poi.slide_id = ball.slide_id
+      }
+      poi.name = ball.name;
       pois.push(poi)
-    }
+    });
     slide.pois = pois;
     slide.slides = [];
     return slide
+  };
+  var _getValidatedBallTime = function(etime, duration) {
+    return Math.max(Math.min(etime, duration), 0)
   };
   var preCopyActions = function(eVideoJSON, eVideoDOM) {
   };
   var postCopyActions = function(eVideoJSON, eVideoDOM) {
   };
-  return{init:init, getDummy:getDummy, draw:draw, onVideoSelected:onVideoSelected, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, loadSlideset:loadSlideset, unloadSlideset:unloadSlideset, beforeCreateSlidesetThumbnails:beforeCreateSlidesetThumbnails, beforeRemoveSlideset:beforeRemoveSlideset, beforeRemoveSubslide:beforeRemoveSubslide, getSlideHeader:getSlideHeader, getThumbnailURL:getThumbnailURL, preCopyActions:preCopyActions, postCopyActions:postCopyActions}
+  var _getCurrentEVideoJSON = function() {
+    return eVideos[$(V.Slides.getCurrentSlide()).attr("id")]
+  };
+  var _getCurrentVideo = function() {
+    return _getVideoFromEVideo(V.Slides.getCurrentSlide())
+  };
+  var _getVideoFromEVideo = function(eVideoDOM) {
+    return V.EVideo.getVideoFromVideoBox($(eVideoDOM).find(".evideoBox"))
+  };
+  var _isVideoCreated = function(eVideoDOM) {
+    var videoBox = $(eVideoDOM).find(".evideoBox");
+    var video = V.EVideo.getVideoFromVideoBox(videoBox);
+    return typeof $(video).attr("videotype") != "undefined"
+  };
+  var _updateBallsArray = function(eVideoId) {
+    $(balls).each(function(index, ball) {
+      if(ball.eVideoId === eVideoId) {
+        balls.splice(index, 1)
+      }
+    });
+    if(typeof eVideos[eVideoId] != "undefined") {
+      eVideos[eVideoId].balls.map(function(ball) {
+        balls[ball.id] = ball
+      })
+    }
+  };
+  return{init:init, onChangeVideo:onChangeVideo, getDummy:getDummy, draw:draw, onVideoSelected:onVideoSelected, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, loadSlideset:loadSlideset, unloadSlideset:unloadSlideset, beforeCreateSlidesetThumbnails:beforeCreateSlidesetThumbnails, beforeRemoveSlideset:beforeRemoveSlideset, beforeRemoveSubslide:beforeRemoveSubslide, afterCreateSubslide:afterCreateSubslide, getSlideHeader:getSlideHeader, getThumbnailURL:getThumbnailURL, preCopyActions:preCopyActions, 
+  postCopyActions:postCopyActions}
 }(VISH, jQuery);
 VISH.Editor.Events = function(V, $, undefined) {
   var bindedEventListeners = false;
@@ -19302,9 +19884,8 @@ VISH.Editor.Events = function(V, $, undefined) {
         event.preventDefault();
         $.fancybox.close()
       });
-      $(document).on("change", "#tlt_hours", V.Editor.Settings.onTLTchange);
-      $(document).on("change", "#tlt_minutes", V.Editor.Settings.onTLTchange);
-      $(document).on("change", "#tlt_seconds", V.Editor.Settings.onTLTchange);
+      $(document).on("change", "#tlt_hours, #tlt_minutes, #tlt_seconds", V.Editor.Settings.onTLTchange);
+      $(document).on("keyup", "#tlt_hours, #tlt_minutes, #tlt_seconds", V.Editor.Settings.onTLTchange);
       $(document).on("click", "#save_presentation_details", V.Editor.Settings.onSavePresentationDetailsButtonClicked);
       $(document).on("click", "div.templatethumb", V.Editor.onSlideThumbClicked);
       $(document).on("click", "div.stthumb", V.Editor.onSlideThumbClicked);
@@ -22113,7 +22694,10 @@ VISH.Editor.Settings = function(V, $, undefined) {
     }else {
       $(inputPreview).val("")
     }
-    _checkIfEnableContinueButton()
+    _checkIfEnableContinueButton();
+    if(event.keyCode === 13) {
+      $(inputData).blur()
+    }
   };
   var onKeyUpOnPreviewTitle = function(event) {
     var inputData = $("#presentation_details_input_title");
@@ -22124,9 +22708,16 @@ VISH.Editor.Settings = function(V, $, undefined) {
     }else {
       $(inputData).val("")
     }
-    _checkIfEnableContinueButton()
+    _checkIfEnableContinueButton();
+    if(event.keyCode === 13) {
+      $(inputPreview).blur()
+    }
   };
-  var onTLTchange = function() {
+  var onTLTchange = function(event) {
+    if(event && event.keyCode === 13) {
+      $(event.target).blur();
+      return
+    }
     var TLT = _getTLT();
     if(TLT === null) {
       $("#tlt_current_value").val(V.I18n.getTrans("i.invalidvalue"))
@@ -22630,7 +23221,8 @@ VISH.Editor.Slides = function(V, $, undefined) {
     V.Editor.Slideset.openSubslide(subslide);
     V.Editor.Thumbnails.drawSlidesetThumbnails($(slideset).find("article"), function() {
       V.Editor.Thumbnails.selectSubslideThumbnail($(subslide).attr("slidenumber"))
-    })
+    });
+    V.Editor.Slideset.afterCreateSubslide(slideset, subslide)
   };
   var appendSubslide = function(slideset, subslide) {
     $(slideset).append(subslide)
@@ -23664,6 +24256,197 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
   };
   return{init:init, beforeLoadTab:beforeLoadTab, onLoadTab:onLoadTab, addSelectedVideo:addSelectedVideo}
 }(VISH, jQuery);
+VISH.Editor.Video.Soundcloud = function(V, $, undefined) {
+  var containerDivId = "tab_video_soundcloud_content";
+  var carrouselDivId = "tab_video_soundcloud_content_carrousel";
+  var previewDivId = "tab_video_soundcloud_content_preview";
+  var myInput;
+  var timestampLastSearch;
+  var currentAudios = new Array;
+  var selectedAudio = null;
+  var MAX_VIDEOS = 20;
+  var init = function() {
+    myInput = $("#" + containerDivId).find("input[type='search']");
+    $(myInput).vewatermark(V.I18n.getTrans("i.SearchContent"));
+    $(myInput).keydown(function(event) {
+      if(event.keyCode == 13) {
+        _requestData($(myInput).val());
+        $(myInput).blur()
+      }
+    })
+  };
+  var beforeLoadTab = function() {
+    _cleanSearch()
+  };
+  var onLoadTab = function() {
+  };
+  var _requestData = function(text) {
+    _prepareRequest();
+    _searchInSoundcloud(text)
+  };
+  var _prepareRequest = function() {
+    _cleanCarrousel();
+    _cleanVideoPreview();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId));
+    $(myInput).attr("disabled", "true");
+    timestampLastSearch = Date.now()
+  };
+  var _cleanSearch = function() {
+    timestampLastSearch = undefined;
+    $(myInput).val("");
+    $(myInput).removeAttr("disabled");
+    _cleanVideoPreview();
+    _cleanCarrousel()
+  };
+  var _cleanCarrousel = function() {
+    $("#" + carrouselDivId).hide();
+    V.Editor.Carrousel.cleanCarrousel(carrouselDivId)
+  };
+  var _searchInSoundcloud = function(text) {
+    $.getJSON("http://api.soundcloud.com/tracks?callback=?", {consumer_key:"bb5aebd03b5d55670ba8fa5b5c3a3da5", q:text, format:"json"}, function(data) {
+      _onDataReceived(data)
+    }).error(function() {
+      _onAPIError()
+    })
+  };
+  var _onDataReceived = function(data) {
+    if(!_isValidResult()) {
+      return
+    }
+    if(!data || data.length == 0) {
+      _onSearchFinished();
+      _drawData(true);
+      return
+    }
+    currentAudios = new Array;
+    var carrouselImages = [];
+    var carrouselImagesTitles = [];
+    $.each(data, function(i, item) {
+      var audio = item.uri;
+      var title = item.title;
+      var author = item.user.username;
+      var subtitle = item.description;
+      var audioId = item.id;
+      currentAudios[audioId] = new Object;
+      currentAudios[audioId].id = audioId;
+      currentAudios[audioId].title = title;
+      currentAudios[audioId].author = author;
+      currentAudios[audioId].subtitle = subtitle;
+      if(item.artwork_url != null) {
+        image_url = item.artwork_url
+      }else {
+        image_url = "http://www.wpclipart.com/computer/disks/cd_grey.png"
+      }
+      var myImg = $("<img audioId='" + audioId + "' src='" + image_url + "' title='" + title + "'/>");
+      carrouselImages.push(myImg);
+      carrouselImagesTitles.push(title)
+    });
+    var options = {};
+    options.titleArray = carrouselImagesTitles;
+    options.callback = _onImagesLoaded;
+    V.Utils.Loader.loadImagesOnContainer(carrouselImages, carrouselDivId, options)
+  };
+  var _onImagesLoaded = function() {
+    _onSearchFinished();
+    _drawData()
+  };
+  var _onSearchFinished = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
+    $(myInput).removeAttr("disabled")
+  };
+  var _drawData = function(noResults) {
+    $("#" + carrouselDivId).show();
+    if(!_isValidResult()) {
+      _cleanCarrousel();
+      return
+    }
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    if(noResults === true) {
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+    }else {
+      if(noResults === false) {
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorYoutubeConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      }else {
+        var options = new Array;
+        options.rows = 1;
+        options.callback = _onClickCarrouselElement;
+        options.rowItems = 5;
+        options.scrollItems = 5;
+        options.styleClass = "title";
+        options.afterCreateCarruselFunction = function() {
+          setTimeout(function() {
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+          }, 100)
+        };
+        V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
+      }
+    }
+  };
+  var addSelectedAudio = function() {
+    if(selectedAudio != null) {
+      V.Editor.Object.drawObject(_generateWrapper(selectedAudio.id));
+      $.fancybox.close()
+    }
+  };
+  var _onAPIError = function() {
+    if(_isValidResult()) {
+      _onSearchFinished();
+      _drawData(false)
+    }
+  };
+  var _onClickCarrouselElement = function(event) {
+    var audioId = $(event.target).attr("audioId");
+    var renderedPreviewVideo = _generatePreviewWrapper(audioId);
+    _renderVideoPreview(renderedPreviewVideo, currentAudios[audioId]);
+    selectedAudio = currentAudios[audioId]
+  };
+  var _isValidResult = function() {
+    if(typeof timestampLastSearch == "undefined") {
+      return false
+    }
+    var isVisible = $("#" + carrouselDivId).is(":visible");
+    if(!isVisible) {
+      return false
+    }
+    return true
+  };
+  var _renderVideoPreview = function(renderedIframe, video) {
+    var videoArea = $("#" + previewDivId).find("#tab_video_soundcloud_content_preview_video");
+    var metadataArea = $("#" + previewDivId).find("#tab_video_soundcloud_content_preview_metadata");
+    var button = $("#" + previewDivId).find(".okButton");
+    $(videoArea).html("");
+    $(metadataArea).html("");
+    if(renderedIframe && video) {
+      $(videoArea).append(renderedIframe);
+      var table = V.Editor.Utils.generateTable({title:video.title, author:video.author, description:video.subtitle});
+      $(metadataArea).html(table);
+      $(button).show()
+    }
+  };
+  var _cleanVideoPreview = function() {
+    var videoArea = $("#" + previewDivId).find("#tab_video_soundcloud_content_preview_video");
+    var metadataArea = $("#" + previewDivId).find("#tab_video_soundcloud_content_preview_metadata");
+    var button = $("#" + previewDivId).find(".okButton");
+    $(videoArea).html("");
+    $(metadataArea).html("");
+    $(button).hide()
+  };
+  var _generateWrapper = function(audioId) {
+    console.log("_generateWrapper");
+    var audio_embedded = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/" + audioId;
+    var wrapper = "<iframe src='" + audio_embedded + "?wmode=opaque' frameborder='0'></iframe>";
+    return wrapper
+  };
+  var _generatePreviewWrapper = function(audioId) {
+    var audio_embedded = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/" + audioId;
+    console.log("audio_embedded: " + audio_embedded);
+    var wrapper = '<iframe class="objectPreview" type="text/html" src="' + audio_embedded + '?wmode=opaque" frameborder="0"></iframe>';
+    return wrapper
+  };
+  return{init:init, beforeLoadTab:beforeLoadTab, onLoadTab:onLoadTab, addSelectedAudio:addSelectedAudio}
+}(VISH, jQuery);
 VISH.Editor.Video.Vimeo = function(V, $, undefined) {
   var containerDivId = "tab_video_vimeo_content";
   var carrouselDivId = "tab_video_vimeo_content_carrousel";
@@ -24187,7 +24970,7 @@ VISH.FullScreen = function(V, $, undefined) {
   var enableFullScreen = function() {
     if(_canUseNativeFs()) {
       $(document).on("click", "#page-fullscreen", _toggleFullScreen);
-      $(document).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
+      $(document).on("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", function(event) {
         setTimeout(function() {
           _pageIsFullScreen = !_pageIsFullScreen;
           _updateFsButtons();
@@ -24253,10 +25036,10 @@ VISH.FullScreen = function(V, $, undefined) {
     }
   };
   var _getFsElement = function(myDoc) {
-    return myDoc.fullscreenElement || myDoc.mozFullScreenElement || myDoc.webkitFullscreenElement
+    return myDoc.fullscreenElement || myDoc.mozFullScreenElement || myDoc.webkitFullscreenElement || myDoc.msFullscreenElement
   };
   var _getFsEnabled = function(myDoc) {
-    return myDoc.fullscreenEnabled || myDoc.mozFullScreenEnabled || myDoc.webkitFullscreenEnabled
+    return myDoc.fullscreenEnabled || myDoc.mozFullScreenEnabled || myDoc.webkitFullscreenEnabled || myDoc.msFullscreenEnabled
   };
   var _launchFullscreenForElement = function(myDoc, element) {
     if(element.requestFullscreen) {
@@ -24295,6 +25078,10 @@ VISH.FullScreen = function(V, $, undefined) {
           }else {
             if(myDoc.webkitCancelFullScreen) {
               myDoc.webkitCancelFullScreen()
+            }else {
+              if(myDoc.msExitFullscreen) {
+                myDoc.msExitFullscreen()
+              }
             }
           }
         }
@@ -24303,7 +25090,7 @@ VISH.FullScreen = function(V, $, undefined) {
   };
   var isFullScreenSupported = function() {
     var elem = document.createElement("div");
-    if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen)) {
+    if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen || elem.msRequestFullscreen)) {
       return true
     }else {
       return false
@@ -27253,6 +28040,9 @@ VISH.Video.HTML5 = function(V, $, undefined) {
     renderOptions.poster = videoJSON["poster"];
     renderOptions.loop = videoJSON["loop"];
     if(options) {
+      if(options.id) {
+        renderOptions.videoId = options.id
+      }
       if(options.videoClass) {
         renderOptions.extraClasses = options.videoClass
       }
@@ -27320,15 +28110,28 @@ VISH.Video.HTML5 = function(V, $, undefined) {
     return[]
   };
   var getSourcesFromJSON = function(videoJSON) {
-    try {
-      var sources = JSON.parse(videoJSON.sources);
-      $.each(sources, function(index, source) {
-        source.mimeType = source.type
-      });
-      return sources
-    }catch(e) {
+    if(typeof videoJSON != "object") {
       return[]
     }
+    if(typeof videoJSON.sources == "string") {
+      try {
+        var sources = JSON.parse(videoJSON.sources)
+      }catch(e) {
+        return[]
+      }
+    }else {
+      if(typeof videoJSON.sources == "object") {
+        var sources = videoJSON.sources
+      }
+    }
+    if(typeof sources != "undefined") {
+      $.each(sources, function(index, source) {
+        if(typeof source.type != "undefined") {
+          source.mimeType = source.type
+        }
+      })
+    }
+    return sources
   };
   var getVideoMimeType = function(url) {
     var source = V.Object.getObjectInfo(url).source;
@@ -27586,7 +28389,10 @@ VISH.Video.Youtube = function(V, $, undefined) {
     }
     return id
   };
-  return{init:init, renderVideoFromJSON:renderVideoFromJSON, renderVideoFromSource:renderVideoFromSource, loadYoutubeObject:loadYoutubeObject, onPlayerReady:onPlayerReady, onPlayerStateChange:onPlayerStateChange, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, getYoutubeIdFromURL:getYoutubeIdFromURL, getYouTubePlayer:getYouTubePlayer}
+  var getEmbedSource = function(youTubeVideoDOM) {
+    return"https://www.youtube.com/embed/" + V.Video.Youtube.getYoutubeIdFromURL(V.Object.getObjectInfo(youTubeVideoDOM).source)
+  };
+  return{init:init, renderVideoFromJSON:renderVideoFromJSON, renderVideoFromSource:renderVideoFromSource, loadYoutubeObject:loadYoutubeObject, onPlayerReady:onPlayerReady, onPlayerStateChange:onPlayerStateChange, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, getYoutubeIdFromURL:getYoutubeIdFromURL, getYouTubePlayer:getYouTubePlayer, getEmbedSource:getEmbedSource}
 }(VISH, jQuery);
 VISH.Viewer = function(V, $, undefined) {
   var initOptions;

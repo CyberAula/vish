@@ -105,7 +105,7 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Save">Save</p>
 				</div>
-				<div id="toolbar_preview_help" class="toolbar_presentation_wrapper">
+				<div id="toolbar_preview_wrapper" class="toolbar_presentation_wrapper">
 					<a id="toolbar_preview" class="tool_action" action="preview" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-eye-open"></i>
@@ -113,7 +113,7 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Preview">Preview</p>
 				</div>
-				<div id="toolbar_publish_help" class="toolbar_presentation_wrapper">
+				<div id="toolbar_publish_wrapper" class="toolbar_presentation_wrapper">
 					<a id="toolbar_publish" class="tool_action" action="publish" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-rotate-270 icon-download-alt"></i>
@@ -121,7 +121,7 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Publish">Publish</p>
 				</div>
-				<div id="toolbar_themes_help" class="toolbar_presentation_wrapper ">
+				<div id="toolbar_themes_wrapper" class="toolbar_presentation_wrapper ">
 					<a id="toolbar_theme" class="tool_action" action="selectTheme" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-adjust"></i>
@@ -129,7 +129,7 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Style">Style</p>
 				</div>
-				<div id="toolbar_animation_help" class="toolbar_presentation_wrapper lasticonborder">
+				<div id="toolbar_animation_wrapper" class="toolbar_presentation_wrapper lasticonborder">
 					<a id="toolbar_animation" class="tool_action" action="selectAnimation" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-magic"></i>
@@ -137,13 +137,19 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Animations">Animation</p>
 				</div>
-				<div id="toolbar_background_help" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools bgtoolpos">
+				<div id="toolbar_background_wrapper" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools bgtoolpos toolbar_standard toolbar_flashcard toolbar_VirtualTour" style='display:none'>
 					<a id="toolbar_background" class="tool_action" action="changeBackground" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-picture"></i>
 						</button>
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Background"> Background</p>
+				</div>
+				<div id="toolbar_evideo_wrapper" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools bgtoolpos toolbar_enrichedvideo" style='display:none'>
+					<a id="toolbar_evideo" class="tool_action" action="changeVideo" href="#">
+						<img class="big_toolbar_icon toolbar_web" src="/assets/toolbar/change_evideo.png"/>
+					</a>
+					<p class="toolbar_presentation_title" i18n-key="i.Video"> Video</p>
 				</div>
 			</div>
 			<div id="toolbar_element">
@@ -263,7 +269,7 @@
 						<p i18n-key="i.ExcursionDetails" class="presentation_details_column_title"> Excursion Details </p>
 
 						<div id="presentation_details_title">
-							<span class="presentation_details_text" title='Title is a mandatory field' i18n-key="i.Title">Title *</span>
+							<span class="presentation_details_text" title='Title is a mandatory field' i18n-key="i.TitleM">Title *</span>
 							<input id="presentation_details_input_title" class="presentation_details_input" type="text" placeholder="Excursion title" i18n-key="i.presTitle" maxLength="120"></input>
 						</div>
 
@@ -287,9 +293,9 @@
 				</div>
 
 				<div id="presentation_details_fields_row2">
-					<button title="Help" i18n-key-tooltip="i.tooltip.Help" id='pedagogical_clasification_button' submit='disable' class='button' i18n-key="i.PedagogicalAspects">Pedagogical Aspects</button>
-					<button id='fill_details_later_button' submit='disable' class='button' i18n-key="i.Filllater">Fill later</button>
-					<button id='save_presentation_details' disabled="true" submit='disable' class='button buttonDisabledOnSettings' title="Write a title and choose an avatar to continue" i18n-key="i.Continue">Continue</button>
+					<button id='pedagogical_clasification_button' type='button' class='button' i18n-key="i.PedagogicalAspects">Pedagogical Aspects</button>
+					<button id='fill_details_later_button' type='button' class='button' i18n-key="i.Filllater">Fill later</button>
+					<button id='save_presentation_details' disabled="true" type='button' class='button buttonDisabledOnSettings' title="Write a title and choose an avatar to continue" i18n-key="i.Continue">Continue</button>
 				</div>
 			</div>
 
@@ -434,7 +440,7 @@
 				</div>
 
 				<div id="pedagogical_options_fields_row3">
-					<button id='done_in_pedagogical' submit='disable' class='button' i18n-key="i.Done">Done</button>
+					<button id='done_in_pedagogical' type='button' class='button' i18n-key="i.Done">Done</button>
 				</div>
 
 			</div>
@@ -532,12 +538,12 @@
 								</div>
 								<p i18n-key="i.VirtualTour">Virtual Tour</p>
 							</div>
-<!-- 							<div class='stthumb_wrapper'>
+							<div class='stthumb_wrapper'>
 								<div class='stthumb evthumb' type='enrichedvideo'>
 									<img src='/assets/templatesthumbs/tEVideo.png'/>
 								</div>
 								<p i18n-key="i.EnrichedVideo">Enriched Video</p>
-							</div> -->
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1147,14 +1153,14 @@
 				<div id="eVideoChaptersName_wrapper">
 					<span i18n-key="i.Title">Title</span>
 				</div>
-				<textarea id='eVideoChaptersTextArea' maxlength="200"></textarea>
+				<textarea id='eVideoChaptersTextArea' maxlength="200" placeholder="add a title" i18n-key="i.addatitle"></textarea>
 			</div>
 			<div id="eVideoChaptersBall_wrapper" style='display:none'>
 				<span></span>
 			</div>
 			<div id="eVideoChaptersTime_wrapper" class="margin_for_new_field_settings">
 				<div class="range_text"><span i18n-key="i.Time">Time</span>:</div>
-				<input type="text" id="eVideochapters_current_value" class="slider_range_input" readonly/>/<input type="text" id="eVideochapters_duration_value" class="slider_range_input" readonly/>
+				<input type="text" id="eVideochapters_current_value" class="slider_range_input" readonly/><span class='evideoTimeSlash'>/</span><input type="text" id="eVideochapters_duration_value" class="slider_range_input" readonly/>
 				<div class="tlt_inputs_wrapper">
 					<div class="tlt_input_wrapper">
 						<p class="tlt_input_title" i18n-key="i.Hours">Hours</p>
@@ -1171,8 +1177,8 @@
 				</div>
 			</div>
 			<div id="eVideoChaptersButtons_wrapper">
-				<a href="#" buttonaction="Ok" class="button notification_button">Ok</a>
-				<a href="#" buttonaction="Cancel" class="button notification_button">Cancel</a>
+				<a href="#" buttonaction="Add" i18n-key="i.Ok" class="button notification_button">Ok</a>
+				<a href="#" buttonaction="Cancel" i18n-key="i.Cancel" class="button notification_button">Cancel</a>
 			</div>
 		</div>
 	</div>
@@ -1241,25 +1247,25 @@
 			<p i18n-key="i.walkWelcome6_1">This button allow you to save your excursion as a draft.</p>
 		</li> -->
 
-		<li data-id="toolbar_publish_help" data-options="tipLocation:top" data-text="Next" i18n-key="i.Next" class="tut_width350 tut_with_arrow">
+		<li data-id="toolbar_publish_wrapper" data-options="tipLocation:top" data-text="Next" i18n-key="i.Next" class="tut_width350 tut_with_arrow">
 			<h2 i18n-key="i.Publish">Publish</h2>
 			<p i18n-key="i.walkWelcome7_1">This button allows you to publish your presentation in the ViSH platform. If your presentation is not complete, you can also save it as a draft to keep it private and finish it later.</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 
-		<li data-id="toolbar_preview_help" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top" class="tut_width350 tut_with_arrow">
+		<li data-id="toolbar_preview_wrapper" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top" class="tut_width350 tut_with_arrow">
 			<h2 i18n-key="i.Preview">Preview</h2>
 			<p i18n-key="i.walkWelcome8_1">This button allows you to preview your presentation. You will be able to see the presentation in the same way that users will see it after its publication.</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 
-		<li data-id="toolbar_themes_help" class="tut_with_arrow tut_width350" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
+		<li data-id="toolbar_themes_wrapper" class="tut_with_arrow tut_width350" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
 			<h2 i18n-key="i.Style">Style</h2>
 			<p i18n-key="i.walkWelcome9_1">This button allows you to choose a visual theme for your presentation.</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 
-		<li data-id="toolbar_background_help" class="tut_with_arrow tut_width350" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
+		<li data-id="toolbar_background_wrapper" class="tut_with_arrow tut_width350" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
 			<h2 i18n-key="i.Background">Background</h2>
 			<p i18n-key="i.walkWelcome10_1">Define a custom background for the current slide.</p>
 			<p class="tut_space">&nbsp;</p>
@@ -1495,11 +1501,15 @@
 			<table class="tut_table_imagewithsubtitle">
 				<tr>
 					<td><img src="/assets/templatesthumbs/flashcard_template.png"/><p i18n-key="i.Flashcard">Flashcard</p></td>
-					<td><p><span i18n-key="i.flashcardDef">Flashcards are resources presented as an image background with 'hot zones' identified by arrows on which the user can click to see additional contents that had been previously tagged.</span> <span i18n-key="i.flashcardLearHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('fc_help', 'top');">Click here to learn how to create a Flashcard.</span></p></td>
+					<td><p><span i18n-key="i.flashcardDef">Flashcards are resources presented as an image background with 'hot zones' identified by arrows on which the user can click to see additional contents that had been previously tagged.</span> <span i18n-key="i.flashcardLearnHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('fc_help', 'top');">Click here to learn how to create a Flashcard.</span></p></td>
 				</tr>
 				<tr>
 					<td><img src="/assets/templatesthumbs/tVTour.png"/><p i18n-key="i.VirtualTour">Virtual Tour</p></td>
-					<td><p><span i18n-key="i.vtDef">Virtual Tours are similar to Flashcards, but instead of being presented as static background images, they are presented as interactive maps where the 'hot zones' are places identified by map pins. This way, when users click on a map pin (a tagged location), they will see additional contents.</span> <span i18n-key="i.vtLearHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('vt_help', 'top');">Click here to learn how to create a Virtual Tour.</span></p></td>
+					<td><p><span i18n-key="i.vtDef">Virtual Tours are similar to Flashcards, but instead of being presented as static background images, they are presented as interactive maps where the 'hot zones' are places identified by map pins. This way, when users click on a map pin (a tagged location), they will see additional contents.</span> <span i18n-key="i.vtLearnHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('vt_help', 'top');">Click here to learn how to create a Virtual Tour.</span></p></td>
+				</tr>
+				<tr>
+					<td><img src="/assets/templatesthumbs/tEVideo.png"/><p i18n-key="i.EnrichedVideo">Enriched Video</p></td>
+					<td><p><span i18n-key="i.EVideoDef">Enriched Videos are videos augmented with other resources (e.g. quizzes, slides, images, etc.), which can be selected and customized by the author, and that can be displayed automatically when the video reaches a specific point of time or explicitly when the user select one of them on a side menu.</span> <span i18n-key="i.eVideoLearnHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('evideo_help', 'top');">Click here to learn how to create a Enriched Video.</span></p></td>
 				</tr>
 			</table>
 			<p class="tut_space">&nbsp;</p>
@@ -1675,22 +1685,62 @@
 	<ol id="evideo_help" class="joyRideTipContent">
 		<li data-id="toolbar_wrapper" data-text="Finish" i18n-key="i.Finish" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
 			<h2 i18n-key="i.CreatingEnrichedVideos">Creating Enriched Videos</h2>
-			<p i18n-key="i.eVideoDef" class="tut_withoutbottomspace">Enriched Videos are interactive Learning Objects designed for MOOCs.</p>
+			<p i18n-key="i.EVideoDef" class="tut_withoutbottomspace">Enriched Videos are videos augmented with other resources (e.g. quizzes, slides, images, etc.), which can be selected and customized by the author, and that can be displayed automatically when the video reaches a specific point of time or explicitly when the user select one of them on a side menu.</p>
+			<p i18n-key="i.EVideoDef2" class="tut_withoutbottomspace">Enriched Videos are designed with MOOCs (Massive Open Online Courses) in mind, with the aim of integrating questions and quizzes in video lectures as well as additional contents. However, their flexibility allows them to be used in many other educational environments.</p>
+
+			<p class="tut_space">&nbsp;</p>
 
 			<table class="tut_table_imagewithsubtitle_row2">
 				<tr>
 					<td>
-						<p i18n-key="i.walkeVideo_1">To start creating an Enriched Video click on the 'Add slide' button at the left and then click on the Enriched Video icon in the 'Smartcards' panel. After that, an empty Enriched Video will be shown in the screen.</p>
+						<p i18n-key="i.walkEVideo_1">To start creating an Enriched Video click on the 'Add slide' button at the left and then click on the Enriched Video icon in the 'Smartcards' panel. After that, an empty Enriched Video will be shown in the screen.</p>
 					</td>
 					<td>
-						<img src="/assets/templatesthumbs/tEVideo.png"/><p i18n-key="i.eVideoIcon">Enriched Video Icon</p>
+						<img src="/assets/templatesthumbs/tEVideo.png"/><p i18n-key="i.EVideoIcon">Enriched Video Icon</p>
 					</td>
 				</tr>
 			</table>
 
 			<p class="tut_space">&nbsp;</p>
-			
+
+			<p class="tut_withmediumbottomspace"><span i18n-key="i.walkEVideo_2">First off, you should select the video source of the Enriched Video by clicking on the following button</span>:</p>
+			<img class="tut_image" src="/assets/icons/evideo_add_button.png"/>
+
+			<p class="tut_withmediumbottomspace" i18n-key="i.walkEVideo_3">You can change the selected video source at any time by clicking on the 'Video' button of the toolbar.</p>
+			<img class="big_toolbar_icon toolbar_web" src="/assets/toolbar/change_evideo.png">
+
+			<p class="tut_withmediumbottomspace"><span i18n-key="i.walkEVideo_4">You can use YouTube and HTML5 videos (mp4, webm and ogg formats). Also, you can upload your own video to ViSH to be converted to HTML5 compliant formats ensuring its full compatibility</span>. <span i18n-key="i.walkVideosMain_Videos" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('video_fancy_tabs_main_help', 'top');">Click here to learn more about videos in ViSH Editor</span>.</p>
+
+			<p i18n-key="i.walkEVideo_5">When you are creating an Enriched Video, two main elements are displayed on the screen: the video player placed at the left side, and the 'Table of Contents' placed at the right side. The video player allows to play the video the same way classic media players do. The 'Table of Contents' allows to add 'Timestamp Links'. A timestamp link allows viewers to jump to a specific point in the video. The timestamp links are represented by lines displayed in the video progress bar and their titles are displayed in the table of contents. To edit or remove a timestamp link you can use the icons placed at its side in the table of contents.</p>
+
+			<p i18n-key="i.walkEVideo_6">You can also create more advanced timestamp links, linking not only to a specific point in time, but also to a slide that contains additional resources. In this case, the slide will be displayed automatically when the video reaches the timestamp or when the user click on the corresponding title in the table of contents. This type of links are represented by balls (instead of simple lines) displayed in the video progress bar. The following steps explain how to create these links.</p>
+
+			<p i18n-key="i.walkEVideo_7">When you are creating an Enriched Video, a new panel is displayed at the bottom of the screen. We will refer to this panel as the 'Enriched Video panel'.</p>
+			<img src="/assets/tutorial/tut_ev1.png"/>
+			<p class="tut_space">&nbsp;</p>
+
+			<p i18n-key="i.walkEVideo_8">To add a new slide to the Enriched Video click on the 'Add slide' button placed in the 'Enriched Video panel' and continue with the usual process. After add it, the thumbnail of the new slide will appear in the panel and the slide will be displayed in the screen.</p>
+			<img src="/assets/tutorial/tut_ev2.png"/>
+			<p class="tut_space">&nbsp;</p>
+
+			<p i18n-key="i.walkEVideo_9">When a slide is selected, is displayed in the screen and you can edit and remove it the same way as you do with common slides. To select a slide just click on it in the 'Enriched Video panel'. If you want to select the Enriched Video again to edit it, you have to click on the Enriched Video icon placed at the left of the 'Enriched Video panel'. </p>
+
+			<table class="tut_table_imagewithsubtitle_row2">
+				<tr>
+					<td>
+						<p i18n-key="i.walkEVideo_10">The slides have draggable arrows on their top. You can drag any of them to any area of the Enriched Video to create a new timestamp link associated with its slide. This link will be automatically added to the video and the 'Table of Contents'. The link is represented in the video as a ball with the letter of its associated slide inside. You can slide this ball along the video progress bar to adjust the timestamp. You can also edit the timestamp and the title of the link through the icons placed at its side in the table of contents. If a slide of the Enriched Video is deleted, the associated timestamp link (and the ball) will be also deleted.</p>
+					</td>
+					<td>
+						<img src="/assets/tutorial/tut_pois_evideo.png"/>
+					</td>
+				</tr>
+			</table>
+
+			<p i18n-key="i.walkEVideo_11">You can also add several slides to the same point of time. This is very useful to include large quizzes split in several slides or to combine different type of resources. To do that, just set the same timestamp to all links that are associated with the slides you want to display together. After that, a couple of arrows will be displayed in the table of contents at the side of these links. You can use these arrows to specify the order in which the contents will be displayed when the video reaches that timestamp.</p>
+			<p class="tut_space">&nbsp;</p>
+
 			<p><span i18n-key="i.walkRememberPreview">Remember that you can preview the object you are creating at any time by clicking on the 'Preview' button placed in the toolbar</span> <button type="button" class="btn btn-primary btn-small"><i class="icon-button icon-eye-open"></i></button> .</p>
+			<p class="tut_space">&nbsp;</p>
 
 			<p class="tut_space">&nbsp;</p>
 		</li>
@@ -1954,7 +2004,7 @@
 
 		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
 			<h2 i18n-key="i.walkVideosMain_1">Adding videos</h2>
-			<p i18n-key="i.walkVideosMain_2">This screen allows you to add videos to the slides. You can select a video to be added from different sources:</p>
+			<p i18n-key="i.walkVideosMain_2">The multimedia resources screen allows you to add videos to the slides. You can select a video to be added from different sources:</p>
 			<table>
 				<tr>
 					<td><p i18n-key="i.Url">Url</p></td>
@@ -1988,14 +2038,18 @@
 			<h2 i18n-key="i.walkVideosUpload_1">Uploading videos</h2>
 
 			<p>
-				<span i18n-key="i.walkVideosUpload_2">You can upload your own video from your computer. To do that, go to</span> <a class="tut_tutlink" href="http://vishub.org" target="_blank">http://vishub.org</a> <span i18n-key="i.walkVideosUpload_3">and upload your video file to the ViSH repository. Several video formats (mp4, flv, mpg, avi, ...) are allowed. When you finish uploading the video onto ViSH your video will be converted to an HTML5 compatible format. Note that this process could take several minutes. Once the process finish, you have two ways of adding the video</span>:
+				<span i18n-key="i.walkVideosUpload_2">You can upload your own video from your computer. To do that, go to</span> <a class="tut_tutlink" href="http://vishub.org" target="_blank">http://vishub.org</a> <span i18n-key="i.walkVideosUpload_3">and upload your video file to the ViSH repository. Several video formats (mp4, flv, mpg, avi, ...) are allowed. When you finish uploading the video onto ViSH, it will be converted to all HTML5 compatible video formats (mp4, webm and ogg). Note that this process could take several minutes or even hours depending on the video size. This is a good way to insert the videos because thereby they will be available in several formats and will work in all HTML5 compliant web browsers. Once the process finish, you have two ways of adding the video</span>:
 				<ul>
-					<li><span i18n-key="i.walkVideosUpload_4">Search your video on the ViSH repository in the ViSH tab. In this case you will have to wait several hours for the ViSH search engine to index the new video. This is the recommended way to insert the videos, because thereby the videos will be available in several formats and will work in nearly all devices. </span></li>
+					<li><span i18n-key="i.walkVideosUpload_4">Search your video on the ViSH repository from the ViSH Editor through the 'ViSH' tab. In this case you will have to wait several hours (maximum) for the ViSH search engine to index the new video.</span></li>
 					<li class="tut_li_decnone">&nbsp;</li>
-					<li><span i18n-key="i.walkVideosUpload_5">Another way is to go to the page of the video in ViSH, for example, http://vishub.org/videos/325, and add the extension you want (webm, mp4) to the url, for example, http://vishub.org/videos/325.webm. In this page you will be able to see the video in your web browser. Finally, you just have to go to the 'url' tab and paste this url to insert the video immediately.</span></li>
+					<li><span i18n-key="i.walkVideosUpload_5">Another way is to go to the page of the video in ViSH (for example, http://vishub.org/videos/3366) and click on the 'embed' tab. After that, you should paste the provided embed code into the input text field of the 'url' tab in the ViSH Editor. This way, the video will be inserted immediately.</span></li>
 				</ul>
 			</p>
-
+			<p class="tut_space">&nbsp;</p>
+			<p>
+				<span i18n-key="i.walkVideosUpload_6">Since ViSH Editor allows to embed YouTube videos, you can also upload your videos to YouTube</span>: <a class="tut_tutlink" href="http://www.youtube.com/upload" target="_blank">http://www.youtube.com/upload</a>. <span i18n-key="i.walkVideosUpload_7">Once the video has been successfully uploaded to YouTube, you can insert it by its url, the embed code provided by YouTube, or by searching it from the ViSH Editor through the 'YouTube' tab. YouTube also provide the videos in HTML5 compliant video formats, so they will work in nearly all devices including mobile phones.</span>
+			</p>
+			<p class="tut_space">&nbsp;</p>
 			<p class="tut_space">&nbsp;</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
