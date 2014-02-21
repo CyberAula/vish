@@ -278,7 +278,7 @@ VISH.Constant.INTRO = 13;
               }
             }
           }
-          !n && !p && f.error("No conversion from " + m.replace(" ", " to ")), n !== !0 && (c = n ? n(c) : p(o(c)))
+          !n && (!p && f.error("No conversion from " + m.replace(" ", " to "))), n !== !0 && (c = n ? n(c) : p(o(c)))
         }
       }
     }
@@ -345,7 +345,7 @@ VISH.Constant.INTRO = 13;
     for(;i < j && (k || !l);i++) {
       l = h[i](c, d, e), typeof l == "string" && (!k || g[l] ? l = b : (c.dataTypes.unshift(l), l = bZ(a, c, d, e, l, g)))
     }
-    (k || !l) && !g["*"] && (l = bZ(a, c, d, e, "*", g));
+    (k || !l) && (!g["*"] && (l = bZ(a, c, d, e, "*", g)));
     return l
   }
   function bY(a) {
@@ -391,7 +391,7 @@ VISH.Constant.INTRO = 13;
   }
   function bn(a) {
     var b = (a.nodeName || "").toLowerCase();
-    b === "input" ? bm(a) : b !== "script" && typeof a.getElementsByTagName != "undefined" && f.grep(a.getElementsByTagName("input"), bm)
+    b === "input" ? bm(a) : b !== "script" && (typeof a.getElementsByTagName != "undefined" && f.grep(a.getElementsByTagName("input"), bm))
   }
   function bm(a) {
     if(a.type === "checkbox" || a.type === "radio") {
@@ -403,7 +403,7 @@ VISH.Constant.INTRO = 13;
   }
   function bk(a, b) {
     var c;
-    b.nodeType === 1 && (b.clearAttributes && b.clearAttributes(), b.mergeAttributes && b.mergeAttributes(a), c = b.nodeName.toLowerCase(), c === "object" ? b.outerHTML = a.outerHTML : c !== "input" || a.type !== "checkbox" && a.type !== "radio" ? c === "option" ? b.selected = a.defaultSelected : c === "input" || c === "textarea" ? b.defaultValue = a.defaultValue : c === "script" && b.text !== a.text && (b.text = a.text) : (a.checked && (b.defaultChecked = b.checked = a.checked), b.value !== a.value && 
+    b.nodeType === 1 && (b.clearAttributes && b.clearAttributes(), b.mergeAttributes && b.mergeAttributes(a), c = b.nodeName.toLowerCase(), c === "object" ? b.outerHTML = a.outerHTML : c !== "input" || a.type !== "checkbox" && a.type !== "radio" ? c === "option" ? b.selected = a.defaultSelected : c === "input" || c === "textarea" ? b.defaultValue = a.defaultValue : c === "script" && (b.text !== a.text && (b.text = a.text)) : (a.checked && (b.defaultChecked = b.checked = a.checked), b.value !== a.value && 
     (b.value = a.value)), b.removeAttribute(f.expando), b.removeAttribute("_submit_attached"), b.removeAttribute("_change_attached"))
   }
   function bj(a, b) {
@@ -459,7 +459,7 @@ VISH.Constant.INTRO = 13;
     })
   }
   function S(a) {
-    return!a || !a.parentNode || a.parentNode.nodeType === 11
+    return!a || (!a.parentNode || a.parentNode.nodeType === 11)
   }
   function K() {
     return!0
@@ -469,9 +469,9 @@ VISH.Constant.INTRO = 13;
   }
   function n(a, b, c) {
     var d = b + "defer", e = b + "queue", g = b + "mark", h = f._data(a, d);
-    h && (c === "queue" || !f._data(a, e)) && (c === "mark" || !f._data(a, g)) && setTimeout(function() {
-      !f._data(a, e) && !f._data(a, g) && (f.removeData(a, d, !0), h.fire())
-    }, 0)
+    h && ((c === "queue" || !f._data(a, e)) && ((c === "mark" || !f._data(a, g)) && setTimeout(function() {
+      !f._data(a, e) && (!f._data(a, g) && (f.removeData(a, d, !0), h.fire()))
+    }, 0)))
   }
   function m(a) {
     for(var b in a) {
@@ -534,12 +534,12 @@ VISH.Constant.INTRO = 13;
         this.context = this[0] = a, this.length = 1;
         return this
       }
-      if(a === "body" && !d && c.body) {
+      if(a === "body" && (!d && c.body)) {
         this.context = c, this[0] = c.body, this.selector = a, this.length = 1;
         return this
       }
       if(typeof a == "string") {
-        a.charAt(0) !== "<" || a.charAt(a.length - 1) !== ">" || a.length < 3 ? g = i.exec(a) : g = [null, a, null];
+        a.charAt(0) !== "<" || (a.charAt(a.length - 1) !== ">" || a.length < 3) ? g = i.exec(a) : g = [null, a, null];
         if(g && (g[1] || !d)) {
           if(g[1]) {
             d = d instanceof e ? d[0] : d, k = d ? d.ownerDocument || d : c, j = m.exec(a), j ? e.isPlainObject(d) ? (a = [c.createElement(j[1])], e.fn.attr.call(a, d, !0)) : a = [k.createElement(j[1])] : (j = e.buildFragment([g[1]], [k]), a = (j.cacheable ? e.clone(j.fragment) : j.fragment).childNodes);
@@ -594,7 +594,7 @@ VISH.Constant.INTRO = 13;
       return this.prevObject || this.constructor(null)
     }, push:E, sort:[].sort, splice:[].splice}, e.fn.init.prototype = e.fn, e.extend = e.fn.extend = function() {
       var a, c, d, f, g, h, i = arguments[0] || {}, j = 1, k = arguments.length, l = !1;
-      typeof i == "boolean" && (l = i, i = arguments[1] || {}, j = 2), typeof i != "object" && !e.isFunction(i) && (i = {}), k === j && (i = this, --j);
+      typeof i == "boolean" && (l = i, i = arguments[1] || {}, j = 2), typeof i != "object" && (!e.isFunction(i) && (i = {})), k === j && (i = this, --j);
       for(;j < k;j++) {
         if((a = arguments[j]) != null) {
           for(c in a) {
@@ -602,13 +602,13 @@ VISH.Constant.INTRO = 13;
             if(i === f) {
               continue
             }
-            l && f && (e.isPlainObject(f) || (g = e.isArray(f))) ? (g ? (g = !1, h = d && e.isArray(d) ? d : []) : h = d && e.isPlainObject(d) ? d : {}, i[c] = e.extend(l, h, f)) : f !== b && (i[c] = f)
+            l && (f && (e.isPlainObject(f) || (g = e.isArray(f)))) ? (g ? (g = !1, h = d && e.isArray(d) ? d : []) : h = d && e.isPlainObject(d) ? d : {}, i[c] = e.extend(l, h, f)) : f !== b && (i[c] = f)
           }
         }
       }
       return i
     }, e.extend({noConflict:function(b) {
-      a.$ === e && (a.$ = g), b && a.jQuery === e && (a.jQuery = f);
+      a.$ === e && (a.$ = g), b && (a.jQuery === e && (a.jQuery = f));
       return e
     }, isReady:!1, readyWait:1, holdReady:function(a) {
       a ? e.readyWait++ : e.ready(!0)
@@ -639,7 +639,7 @@ VISH.Constant.INTRO = 13;
               b = a.frameElement == null
             }catch(d) {
             }
-            c.documentElement.doScroll && b && J()
+            c.documentElement.doScroll && (b && J())
           }
         }
       }
@@ -654,11 +654,11 @@ VISH.Constant.INTRO = 13;
     }, type:function(a) {
       return a == null ? String(a) : I[C.call(a)] || "object"
     }, isPlainObject:function(a) {
-      if(!a || e.type(a) !== "object" || a.nodeType || e.isWindow(a)) {
+      if(!a || (e.type(a) !== "object" || (a.nodeType || e.isWindow(a)))) {
         return!1
       }
       try {
-        if(a.constructor && !D.call(a, "constructor") && !D.call(a.constructor.prototype, "isPrototypeOf")) {
+        if(a.constructor && (!D.call(a, "constructor") && !D.call(a.constructor.prototype, "isPrototypeOf"))) {
           return!1
         }
       }catch(c) {
@@ -697,13 +697,13 @@ VISH.Constant.INTRO = 13;
       }catch(g) {
         d = b
       }
-      (!d || !d.documentElement || d.getElementsByTagName("parsererror").length) && e.error("Invalid XML: " + c);
+      (!d || (!d.documentElement || d.getElementsByTagName("parsererror").length)) && e.error("Invalid XML: " + c);
       return d
     }, noop:function() {
     }, globalEval:function(b) {
-      b && j.test(b) && (a.execScript || function(b) {
+      b && (j.test(b) && (a.execScript || function(b) {
         a.eval.call(a, b)
-      })(b)
+      })(b))
     }, camelCase:function(a) {
       return a.replace(w, "ms-").replace(v, x)
     }, nodeName:function(a, b) {
@@ -748,7 +748,7 @@ VISH.Constant.INTRO = 13;
       var c = b || [];
       if(a != null) {
         var d = e.type(a);
-        a.length == null || d === "string" || d === "function" || d === "regexp" || e.isWindow(a) ? E.call(c, a) : e.merge(c, a)
+        a.length == null || (d === "string" || (d === "function" || (d === "regexp" || e.isWindow(a)))) ? E.call(c, a) : e.merge(c, a)
       }
       return c
     }, inArray:function(a, b, c) {
@@ -786,7 +786,7 @@ VISH.Constant.INTRO = 13;
       }
       return d
     }, map:function(a, c, d) {
-      var f, g, h = [], i = 0, j = a.length, k = a instanceof e || j !== b && typeof j == "number" && (j > 0 && a[0] && a[j - 1] || j === 0 || e.isArray(a));
+      var f, g, h = [], i = 0, j = a.length, k = a instanceof e || j !== b && (typeof j == "number" && (j > 0 && (a[0] && a[j - 1]) || (j === 0 || e.isArray(a))));
       if(k) {
         for(;i < j;i++) {
           f = c(a[i], i, d), f != null && (h[h.length] = f)
@@ -808,7 +808,7 @@ VISH.Constant.INTRO = 13;
       var f = F.call(arguments, 2), g = function() {
         return a.apply(c, f.concat(F.call(arguments)))
       };
-      g.guid = a.guid = a.guid || g.guid || e.guid++;
+      g.guid = a.guid = a.guid || (g.guid || e.guid++);
       return g
     }, access:function(a, c, d, f, g, h, i) {
       var j, k = d == null, l = 0, m = a.length;
@@ -835,14 +835,14 @@ VISH.Constant.INTRO = 13;
       return(new Date).getTime()
     }, uaMatch:function(a) {
       a = a.toLowerCase();
-      var b = r.exec(a) || s.exec(a) || t.exec(a) || a.indexOf("compatible") < 0 && u.exec(a) || [];
+      var b = r.exec(a) || (s.exec(a) || (t.exec(a) || (a.indexOf("compatible") < 0 && u.exec(a) || [])));
       return{browser:b[1] || "", version:b[2] || "0"}
     }, sub:function() {
       function a(b, c) {
         return new a.fn.init(b, c)
       }
       e.extend(!0, a, this), a.superclass = this, a.fn = a.prototype = this(), a.fn.constructor = a, a.sub = this.sub, a.fn.init = function(d, f) {
-        f && f instanceof e && !(f instanceof a) && (f = a(f));
+        f && (f instanceof e && (!(f instanceof a) && (f = a(f))));
         return e.fn.init.call(this, d, f, b)
       }, a.fn.init.prototype = a.fn;
       var b = a(c);
@@ -861,7 +861,7 @@ VISH.Constant.INTRO = 13;
     var c = [], d = [], e, i, j, k, l, m, n = function(b) {
       var d, e, g, h, i;
       for(d = 0, e = b.length;d < e;d++) {
-        g = b[d], h = f.type(g), h === "array" ? n(g) : h === "function" && (!a.unique || !p.has(g)) && c.push(g)
+        g = b[d], h = f.type(g), h === "array" ? n(g) : h === "function" && ((!a.unique || !p.has(g)) && c.push(g))
       }
     }, o = function(b, f) {
       f = f || [], e = !a.memory || [b, f], i = !0, j = !0, m = k || 0, k = 0, l = c.length;
@@ -871,11 +871,11 @@ VISH.Constant.INTRO = 13;
           break
         }
       }
-      j = !1, c && (a.once ? e === !0 ? p.disable() : c = [] : d && d.length && (e = d.shift(), p.fireWith(e[0], e[1])))
+      j = !1, c && (a.once ? e === !0 ? p.disable() : c = [] : d && (d.length && (e = d.shift(), p.fireWith(e[0], e[1]))))
     }, p = {add:function() {
       if(c) {
         var a = c.length;
-        n(arguments), j ? l = c.length : e && e !== !0 && (k = a, o(e[0], e[1]))
+        n(arguments), j ? l = c.length : e && (e !== !0 && (k = a, o(e[0], e[1])))
       }
       return this
     }, remove:function() {
@@ -884,7 +884,7 @@ VISH.Constant.INTRO = 13;
         for(;d < e;d++) {
           for(var f = 0;f < c.length;f++) {
             if(b[d] === c[f]) {
-              j && f <= l && (l--, f <= m && m--), c.splice(f--, 1);
+              j && (f <= l && (l--, f <= m && m--)), c.splice(f--, 1);
               if(a.unique) {
                 break
               }
@@ -976,10 +976,10 @@ VISH.Constant.INTRO = 13;
         b[a] = arguments.length > 1 ? i.call(arguments, 0) : c, --g || j.resolveWith(j, b)
       }
     }
-    var b = i.call(arguments, 0), c = 0, d = b.length, e = Array(d), g = d, h = d, j = d <= 1 && a && f.isFunction(a.promise) ? a : f.Deferred(), k = j.promise();
+    var b = i.call(arguments, 0), c = 0, d = b.length, e = Array(d), g = d, h = d, j = d <= 1 && (a && f.isFunction(a.promise)) ? a : f.Deferred(), k = j.promise();
     if(d > 1) {
       for(;c < d;c++) {
-        b[c] && b[c].promise && f.isFunction(b[c].promise) ? b[c].promise().then(l(c), j.reject, m(c)) : --g
+        b[c] && (b[c].promise && f.isFunction(b[c].promise)) ? b[c].promise().then(l(c), j.reject, m(c)) : --g
       }
       g || j.resolveWith(j, b)
     }else {
@@ -989,7 +989,7 @@ VISH.Constant.INTRO = 13;
   }}), f.support = function() {
     var b, d, e, g, h, i, j, k, l, m, n, o, p = c.createElement("div"), q = c.documentElement;
     p.setAttribute("className", "t"), p.innerHTML = "   <link/><table></table><a href='/a' style='top:1px;float:left;opacity:.55;'>a</a><input type='checkbox'/>", d = p.getElementsByTagName("*"), e = p.getElementsByTagName("a")[0];
-    if(!d || !d.length || !e) {
+    if(!d || (!d.length || !e)) {
       return{}
     }
     g = c.createElement("select"), h = g.appendChild(c.createElement("option")), i = p.getElementsByTagName("input")[0], b = {leadingWhitespace:p.firstChild.nodeType === 3, tbody:!p.getElementsByTagName("tbody").length, htmlSerialize:!!p.getElementsByTagName("link").length, style:/top/.test(e.getAttribute("style")), hrefNormalized:e.getAttribute("href") === "/a", opacity:/^0.55/.test(e.style.opacity), cssFloat:!!e.style.cssFloat, checkOn:i.value === "on", optSelected:h.selected, getSetAttribute:p.className !== 
@@ -999,9 +999,9 @@ VISH.Constant.INTRO = 13;
     }catch(r) {
       b.deleteExpando = !1
     }
-    !p.addEventListener && p.attachEvent && p.fireEvent && (p.attachEvent("onclick", function() {
+    !p.addEventListener && (p.attachEvent && (p.fireEvent && (p.attachEvent("onclick", function() {
       b.noCloneEvent = !1
-    }), p.cloneNode(!0).fireEvent("onclick")), i = c.createElement("input"), i.value = "t", i.setAttribute("type", "radio"), b.radioValue = i.value === "t", i.setAttribute("checked", "checked"), i.setAttribute("name", "t"), p.appendChild(i), j = c.createDocumentFragment(), j.appendChild(p.lastChild), b.checkClone = j.cloneNode(!0).cloneNode(!0).lastChild.checked, b.appendChecked = i.checked, j.removeChild(i), j.appendChild(p);
+    }), p.cloneNode(!0).fireEvent("onclick")))), i = c.createElement("input"), i.value = "t", i.setAttribute("type", "radio"), b.radioValue = i.value === "t", i.setAttribute("checked", "checked"), i.setAttribute("name", "t"), p.appendChild(i), j = c.createDocumentFragment(), j.appendChild(p.lastChild), b.checkClone = j.cloneNode(!0).cloneNode(!0).lastChild.checked, b.appendChecked = i.checked, j.removeChild(i), j.appendChild(p);
     if(p.attachEvent) {
       for(n in{submit:1, change:1, focusin:1}) {
         m = "on" + n, o = m in p, o || (p.setAttribute(m, "return;"), o = typeof p[m] == "function"), b[n + "Bubbles"] = o
@@ -1024,7 +1024,7 @@ VISH.Constant.INTRO = 13;
   }, data:function(a, c, d, e) {
     if(!!f.acceptData(a)) {
       var g, h, i, j = f.expando, k = typeof c == "string", l = a.nodeType, m = l ? f.cache : a, n = l ? a[j] : a[j] && j, o = c === "events";
-      if((!n || !m[n] || !o && !e && !m[n].data) && k && d === b) {
+      if((!n || (!m[n] || !o && (!e && !m[n].data))) && (k && d === b)) {
         return
       }
       n || (l ? a[j] = n = ++f.uuid : n = j), m[n] || (m[n] = {}, l || (m[n].toJSON = f.noop));
@@ -1097,7 +1097,7 @@ VISH.Constant.INTRO = 13;
     d = a.split(".", 2), d[1] = d[1] ? "." + d[1] : "", e = d[1] + "!";
     return f.access(this, function(c) {
       if(c === b) {
-        m = this.triggerHandler("getData" + e, [d[0]]), m === b && j && (m = f.data(j, a), m = l(j, a, m));
+        m = this.triggerHandler("getData" + e, [d[0]]), m === b && (j && (m = f.data(j, a), m = l(j, a, m)));
         return m === b && d[1] ? this.data(d[0]) : m
       }
       d[1] = c, this.each(function() {
@@ -1138,7 +1138,7 @@ VISH.Constant.INTRO = 13;
     }
     return c === b ? this : this.each(function() {
       var b = f.queue(this, a, c);
-      a === "fx" && b[0] !== "inprogress" && f.dequeue(this, a)
+      a === "fx" && (b[0] !== "inprogress" && f.dequeue(this, a))
     })
   }, dequeue:function(a) {
     return this.each(function() {
@@ -1272,7 +1272,7 @@ VISH.Constant.INTRO = 13;
           e ? h = a.call(this, d, g.val()) : h = a, h == null ? h = "" : typeof h == "number" ? h += "" : f.isArray(h) && (h = f.map(h, function(a) {
             return a == null ? "" : a + ""
           })), c = f.valHooks[this.type] || f.valHooks[this.nodeName.toLowerCase()];
-          if(!c || !("set" in c) || c.set(this, h, "value") === b) {
+          if(!c || (!("set" in c) || c.set(this, h, "value") === b)) {
             this.value = h
           }
         }
@@ -1280,7 +1280,7 @@ VISH.Constant.INTRO = 13;
     }
     if(g) {
       c = f.valHooks[g.type] || f.valHooks[g.nodeName.toLowerCase()];
-      if(c && "get" in c && (d = c.get(g, "value")) !== b) {
+      if(c && ("get" in c && (d = c.get(g, "value")) !== b)) {
         return d
       }
       d = g.value;
@@ -1297,7 +1297,7 @@ VISH.Constant.INTRO = 13;
     c = j ? g : 0, d = j ? g + 1 : i.length;
     for(;c < d;c++) {
       e = i[c];
-      if(e.selected && (f.support.optDisabled ? !e.disabled : e.getAttribute("disabled") === null) && (!e.parentNode.disabled || !f.nodeName(e.parentNode, "optgroup"))) {
+      if(e.selected && ((f.support.optDisabled ? !e.disabled : e.getAttribute("disabled") === null) && (!e.parentNode.disabled || !f.nodeName(e.parentNode, "optgroup")))) {
         b = f(e).val();
         if(j) {
           return b
@@ -1305,7 +1305,7 @@ VISH.Constant.INTRO = 13;
         h.push(b)
       }
     }
-    if(j && !h.length && i.length) {
+    if(j && (!h.length && i.length)) {
       return f(i[g]).val()
     }
     return h
@@ -1317,7 +1317,7 @@ VISH.Constant.INTRO = 13;
     return c
   }}}, attrFn:{val:!0, css:!0, html:!0, text:!0, data:!0, width:!0, height:!0, offset:!0}, attr:function(a, c, d, e) {
     var g, h, i, j = a.nodeType;
-    if(!!a && j !== 3 && j !== 8 && j !== 2) {
+    if(!!a && (j !== 3 && (j !== 8 && j !== 2))) {
       if(e && c in f.attrFn) {
         return f(a)[c](d)
       }
@@ -1330,13 +1330,13 @@ VISH.Constant.INTRO = 13;
           f.removeAttr(a, c);
           return
         }
-        if(h && "set" in h && i && (g = h.set(a, d, c)) !== b) {
+        if(h && ("set" in h && (i && (g = h.set(a, d, c)) !== b))) {
           return g
         }
         a.setAttribute(c, "" + d);
         return d
       }
-      if(h && "get" in h && i && (g = h.get(a, c)) !== null) {
+      if(h && ("get" in h && (i && (g = h.get(a, c)) !== null))) {
         return g
       }
       g = a.getAttribute(c);
@@ -1347,14 +1347,14 @@ VISH.Constant.INTRO = 13;
     if(b && a.nodeType === 1) {
       d = b.toLowerCase().split(p), g = d.length;
       for(;i < g;i++) {
-        e = d[i], e && (c = f.propFix[e] || e, h = u.test(e), h || f.attr(a, e, ""), a.removeAttribute(v ? e : c), h && c in a && (a[c] = !1))
+        e = d[i], e && (c = f.propFix[e] || e, h = u.test(e), h || f.attr(a, e, ""), a.removeAttribute(v ? e : c), h && (c in a && (a[c] = !1)))
       }
     }
   }, attrHooks:{type:{set:function(a, b) {
     if(r.test(a.nodeName) && a.parentNode) {
       f.error("type property can't be changed")
     }else {
-      if(!f.support.radioValue && b === "radio" && f.nodeName(a, "input")) {
+      if(!f.support.radioValue && (b === "radio" && f.nodeName(a, "input"))) {
         var c = a.value;
         a.setAttribute("type", b), c && (a.value = c);
         return b
@@ -1372,16 +1372,16 @@ VISH.Constant.INTRO = 13;
     a.value = b
   }}}, propFix:{tabindex:"tabIndex", readonly:"readOnly", "for":"htmlFor", "class":"className", maxlength:"maxLength", cellspacing:"cellSpacing", cellpadding:"cellPadding", rowspan:"rowSpan", colspan:"colSpan", usemap:"useMap", frameborder:"frameBorder", contenteditable:"contentEditable"}, prop:function(a, c, d) {
     var e, g, h, i = a.nodeType;
-    if(!!a && i !== 3 && i !== 8 && i !== 2) {
+    if(!!a && (i !== 3 && (i !== 8 && i !== 2))) {
       h = i !== 1 || !f.isXMLDoc(a), h && (c = f.propFix[c] || c, g = f.propHooks[c]);
-      return d !== b ? g && "set" in g && (e = g.set(a, d, c)) !== b ? e : a[c] = d : g && "get" in g && (e = g.get(a, c)) !== null ? e : a[c]
+      return d !== b ? g && ("set" in g && (e = g.set(a, d, c)) !== b) ? e : a[c] = d : g && ("get" in g && (e = g.get(a, c)) !== null) ? e : a[c]
     }
   }, propHooks:{tabIndex:{get:function(a) {
     var c = a.getAttributeNode("tabindex");
     return c && c.specified ? parseInt(c.value, 10) : s.test(a.nodeName) || t.test(a.nodeName) && a.href ? 0 : b
   }}}}), f.attrHooks.tabindex = f.propHooks.tabIndex, x = {get:function(a, c) {
     var d, e = f.prop(a, c);
-    return e === !0 || typeof e != "boolean" && (d = a.getAttributeNode(c)) && d.nodeValue !== !1 ? c.toLowerCase() : b
+    return e === !0 || typeof e != "boolean" && ((d = a.getAttributeNode(c)) && d.nodeValue !== !1) ? c.toLowerCase() : b
   }, set:function(a, b, c) {
     var d;
     b === !1 ? f.removeAttr(a, c) : (d = f.propFix[c] || c, d in a && (a[d] = !0), a.setAttribute(c, c.toLowerCase()));
@@ -1433,13 +1433,13 @@ VISH.Constant.INTRO = 13;
     return b
   }, H = function(a, b) {
     var c = a.attributes || {};
-    return(!b[1] || a.nodeName.toLowerCase() === b[1]) && (!b[2] || (c.id || {}).value === b[2]) && (!b[3] || b[3].test((c["class"] || {}).value))
+    return(!b[1] || a.nodeName.toLowerCase() === b[1]) && ((!b[2] || (c.id || {}).value === b[2]) && (!b[3] || b[3].test((c["class"] || {}).value)))
   }, I = function(a) {
     return f.event.special.hover ? a : a.replace(B, "mouseenter$1 mouseleave$1")
   };
   f.event = {add:function(a, c, d, e, g) {
     var h, i, j, k, l, m, n, o, p, q, r, s;
-    if(!(a.nodeType === 3 || a.nodeType === 8 || !c || !d || !(h = f._data(a)))) {
+    if(!(a.nodeType === 3 || (a.nodeType === 8 || (!c || (!d || !(h = f._data(a))))))) {
       d.handler && (p = d, d = p.handler, g = p.selector), d.guid || (d.guid = f.guid++), j = h.events, j || (h.events = j = {}), i = h.handle, i || (h.handle = i = function(a) {
         return typeof f != "undefined" && (!a || f.event.triggered !== a.type) ? f.event.dispatch.apply(i.elem, arguments) : b
       }, i.elem = a), c = f.trim(I(c)).split(" ");
@@ -1469,9 +1469,9 @@ VISH.Constant.INTRO = 13;
         }
         p = f.event.special[j] || {}, j = (d ? p.delegateType : p.bindType) || j, r = o[j] || [], m = r.length, l = l ? new RegExp("(^|\\.)" + l.split(".").sort().join("\\.(?:.*\\.)?") + "(\\.|$)") : null;
         for(n = 0;n < r.length;n++) {
-          s = r[n], (e || k === s.origType) && (!c || c.guid === s.guid) && (!l || l.test(s.namespace)) && (!d || d === s.selector || d === "**" && s.selector) && (r.splice(n--, 1), s.selector && r.delegateCount--, p.remove && p.remove.call(a, s))
+          s = r[n], (e || k === s.origType) && ((!c || c.guid === s.guid) && ((!l || l.test(s.namespace)) && ((!d || (d === s.selector || d === "**" && s.selector)) && (r.splice(n--, 1), s.selector && r.delegateCount--, p.remove && p.remove.call(a, s)))))
         }
-        r.length === 0 && m !== r.length && ((!p.teardown || p.teardown.call(a, l) === !1) && f.removeEvent(a, j, g.handle), delete o[j])
+        r.length === 0 && (m !== r.length && ((!p.teardown || p.teardown.call(a, l) === !1) && f.removeEvent(a, j, g.handle), delete o[j]))
       }
       f.isEmptyObject(o) && (q = g.handle, q && (q.elem = null), f.removeData(a, ["events", "handle"], !0))
     }
@@ -1489,7 +1489,7 @@ VISH.Constant.INTRO = 13;
       if(!e) {
         j = f.cache;
         for(l in j) {
-          j[l].events && j[l].events[h] && f.event.trigger(c, d, j[l].handle.elem, !0)
+          j[l].events && (j[l].events[h] && f.event.trigger(c, d, j[l].handle.elem, !0))
         }
         return
       }
@@ -1498,17 +1498,17 @@ VISH.Constant.INTRO = 13;
         return
       }
       r = [[e, p.bindType || h]];
-      if(!g && !p.noBubble && !f.isWindow(e)) {
+      if(!g && (!p.noBubble && !f.isWindow(e))) {
         s = p.delegateType || h, m = E.test(s + h) ? e : e.parentNode, n = null;
         for(;m;m = m.parentNode) {
           r.push([m, s]), n = m
         }
-        n && n === e.ownerDocument && r.push([n.defaultView || n.parentWindow || a, s])
+        n && (n === e.ownerDocument && r.push([n.defaultView || (n.parentWindow || a), s]))
       }
       for(l = 0;l < r.length && !c.isPropagationStopped();l++) {
-        m = r[l][0], c.type = r[l][1], q = (f._data(m, "events") || {})[c.type] && f._data(m, "handle"), q && q.apply(m, d), q = o && m[o], q && f.acceptData(m) && q.apply(m, d) === !1 && c.preventDefault()
+        m = r[l][0], c.type = r[l][1], q = (f._data(m, "events") || {})[c.type] && f._data(m, "handle"), q && q.apply(m, d), q = o && m[o], q && (f.acceptData(m) && (q.apply(m, d) === !1 && c.preventDefault()))
       }
-      c.type = h, !g && !c.isDefaultPrevented() && (!p._default || p._default.apply(e.ownerDocument, d) === !1) && (h !== "click" || !f.nodeName(e, "a")) && f.acceptData(e) && o && e[h] && (h !== "focus" && h !== "blur" || c.target.offsetWidth !== 0) && !f.isWindow(e) && (n = e[o], n && (e[o] = null), f.event.triggered = h, e[h](), f.event.triggered = b, n && (e[o] = n));
+      c.type = h, !g && (!c.isDefaultPrevented() && ((!p._default || p._default.apply(e.ownerDocument, d) === !1) && ((h !== "click" || !f.nodeName(e, "a")) && (f.acceptData(e) && (o && (e[h] && ((h !== "focus" && h !== "blur" || c.target.offsetWidth !== 0) && (!f.isWindow(e) && (n = e[o], n && (e[o] = null), f.event.triggered = h, e[h](), f.event.triggered = b, n && (e[o] = n))))))))));
       return c.result
     }
   }, dispatch:function(c) {
@@ -1533,7 +1533,7 @@ VISH.Constant.INTRO = 13;
         q = j[k], c.currentTarget = q.elem;
         for(l = 0;l < q.matches.length && !c.isImmediatePropagationStopped();l++) {
           s = q.matches[l];
-          if(h || !c.namespace && !s.namespace || c.namespace_re && c.namespace_re.test(s.namespace)) {
+          if(h || (!c.namespace && !s.namespace || c.namespace_re && c.namespace_re.test(s.namespace))) {
             c.data = s.data, c.handleObj = s, o = ((f.event.special[s.origType] || {}).handle || s.handler).apply(q.elem, g), o !== b && (c.result = o, o === !1 && (c.preventDefault(), c.stopPropagation()))
           }
         }
@@ -1546,7 +1546,8 @@ VISH.Constant.INTRO = 13;
     return a
   }}, mouseHooks:{props:"button buttons clientX clientY fromElement offsetX offsetY pageX pageY screenX screenY toElement".split(" "), filter:function(a, d) {
     var e, f, g, h = d.button, i = d.fromElement;
-    a.pageX == null && d.clientX != null && (e = a.target.ownerDocument || c, f = e.documentElement, g = e.body, a.pageX = d.clientX + (f && f.scrollLeft || g && g.scrollLeft || 0) - (f && f.clientLeft || g && g.clientLeft || 0), a.pageY = d.clientY + (f && f.scrollTop || g && g.scrollTop || 0) - (f && f.clientTop || g && g.clientTop || 0)), !a.relatedTarget && i && (a.relatedTarget = i === a.target ? d.toElement : i), !a.which && h !== b && (a.which = h & 1 ? 1 : h & 2 ? 3 : h & 4 ? 2 : 0);
+    a.pageX == null && (d.clientX != null && (e = a.target.ownerDocument || c, f = e.documentElement, g = e.body, a.pageX = d.clientX + (f && f.scrollLeft || (g && g.scrollLeft || 0)) - (f && f.clientLeft || (g && g.clientLeft || 0)), a.pageY = d.clientY + (f && f.scrollTop || (g && g.scrollTop || 0)) - (f && f.clientTop || (g && g.clientTop || 0)))), !a.relatedTarget && (i && (a.relatedTarget = i === a.target ? d.toElement : i)), !a.which && (h !== b && (a.which = h & 1 ? 1 : h & 2 ? 3 : h & 4 ? 
+    2 : 0));
     return a
   }}, fix:function(a) {
     if(a[f.expando]) {
@@ -1574,7 +1575,7 @@ VISH.Constant.INTRO = 13;
     if(!(this instanceof f.Event)) {
       return new f.Event(a, b)
     }
-    a && a.type ? (this.originalEvent = a, this.type = a.type, this.isDefaultPrevented = a.defaultPrevented || a.returnValue === !1 || a.getPreventDefault && a.getPreventDefault() ? K : J) : this.type = a, b && f.extend(this, b), this.timeStamp = a && a.timeStamp || f.now(), this[f.expando] = !0
+    a && a.type ? (this.originalEvent = a, this.type = a.type, this.isDefaultPrevented = a.defaultPrevented || (a.returnValue === !1 || a.getPreventDefault && a.getPreventDefault()) ? K : J) : this.type = a, b && f.extend(this, b), this.timeStamp = a && a.timeStamp || f.now(), this[f.expando] = !0
   }, f.Event.prototype = {preventDefault:function() {
     this.isDefaultPrevented = K;
     var a = this.originalEvent;
@@ -1599,12 +1600,12 @@ VISH.Constant.INTRO = 13;
     }
     f.event.add(this, "click._submit keypress._submit", function(a) {
       var c = a.target, d = f.nodeName(c, "input") || f.nodeName(c, "button") ? c.form : b;
-      d && !d._submit_attached && (f.event.add(d, "submit._submit", function(a) {
+      d && (!d._submit_attached && (f.event.add(d, "submit._submit", function(a) {
         a._submit_bubble = !0
-      }), d._submit_attached = !0)
+      }), d._submit_attached = !0))
     })
   }, postDispatch:function(a) {
-    a._submit_bubble && (delete a._submit_bubble, this.parentNode && !a.isTrigger && f.event.simulate("submit", this.parentNode, a, !0))
+    a._submit_bubble && (delete a._submit_bubble, this.parentNode && (!a.isTrigger && f.event.simulate("submit", this.parentNode, a, !0)))
   }, teardown:function() {
     if(f.nodeName(this, "form")) {
       return!1
@@ -1616,20 +1617,20 @@ VISH.Constant.INTRO = 13;
         f.event.add(this, "propertychange._change", function(a) {
           a.originalEvent.propertyName === "checked" && (this._just_changed = !0)
         }), f.event.add(this, "click._change", function(a) {
-          this._just_changed && !a.isTrigger && (this._just_changed = !1, f.event.simulate("change", this, a, !0))
+          this._just_changed && (!a.isTrigger && (this._just_changed = !1, f.event.simulate("change", this, a, !0)))
         })
       }
       return!1
     }
     f.event.add(this, "beforeactivate._change", function(a) {
       var b = a.target;
-      z.test(b.nodeName) && !b._change_attached && (f.event.add(b, "change._change", function(a) {
-        this.parentNode && !a.isSimulated && !a.isTrigger && f.event.simulate("change", this.parentNode, a, !0)
-      }), b._change_attached = !0)
+      z.test(b.nodeName) && (!b._change_attached && (f.event.add(b, "change._change", function(a) {
+        this.parentNode && (!a.isSimulated && (!a.isTrigger && f.event.simulate("change", this.parentNode, a, !0)))
+      }), b._change_attached = !0))
     })
   }, handle:function(a) {
     var b = a.target;
-    if(this !== b || a.isSimulated || a.isTrigger || b.type !== "radio" && b.type !== "checkbox") {
+    if(this !== b || (a.isSimulated || (a.isTrigger || b.type !== "radio" && b.type !== "checkbox"))) {
       return a.handleObj.handler.apply(this, arguments)
     }
   }, teardown:function() {
@@ -1671,7 +1672,7 @@ VISH.Constant.INTRO = 13;
   }, one:function(a, b, c, d) {
     return this.on(a, b, c, d, 1)
   }, off:function(a, c, d) {
-    if(a && a.preventDefault && a.handleObj) {
+    if(a && (a.preventDefault && a.handleObj)) {
       var e = a.handleObj;
       f(a.delegateTarget).off(e.namespace ? e.origType + "." + e.namespace : e.origType, e.selector, e.handler);
       return this
@@ -1772,7 +1773,7 @@ VISH.Constant.INTRO = 13;
               k = e[j.sizset];
               break
             }
-            j.nodeType === 1 && !g && (j[d] = c, j.sizset = h);
+            j.nodeType === 1 && (!g && (j[d] = c, j.sizset = h));
             if(j.nodeName.toLowerCase() === b) {
               k = j;
               break
@@ -1818,9 +1819,9 @@ VISH.Constant.INTRO = 13;
           }
         }
       }else {
-        !f && w.length > 1 && d.nodeType === 9 && !v && o.match.ID.test(w[0]) && !o.match.ID.test(w[w.length - 1]) && (n = m.find(w.shift(), d, v), d = n.expr ? m.filter(n.expr, n.set)[0] : n.set[0]);
+        !f && (w.length > 1 && (d.nodeType === 9 && (!v && (o.match.ID.test(w[0]) && (!o.match.ID.test(w[w.length - 1]) && (n = m.find(w.shift(), d, v), d = n.expr ? m.filter(n.expr, n.set)[0] : n.set[0]))))));
         if(d) {
-          n = f ? {expr:w.pop(), set:s(f)} : m.find(w.pop(), w.length === 1 && (w[0] === "~" || w[0] === "+") && d.parentNode ? d.parentNode : d, v), j = n.expr ? m.filter(n.expr, n.set) : n.set, w.length > 0 ? k = s(j) : u = !1;
+          n = f ? {expr:w.pop(), set:s(f)} : m.find(w.pop(), w.length === 1 && ((w[0] === "~" || w[0] === "+") && d.parentNode) ? d.parentNode : d, v), j = n.expr ? m.filter(n.expr, n.set) : n.set, w.length > 0 ? k = s(j) : u = !1;
           while(w.length) {
             q = w.pop(), r = q, o.relative[q] ? r = w.pop() : q = "", r == null && (r = d), o.relative[q](k, r, v)
           }
@@ -1835,11 +1836,11 @@ VISH.Constant.INTRO = 13;
         }else {
           if(d && d.nodeType === 1) {
             for(t = 0;k[t] != null;t++) {
-              k[t] && (k[t] === !0 || k[t].nodeType === 1 && m.contains(d, k[t])) && e.push(j[t])
+              k[t] && ((k[t] === !0 || k[t].nodeType === 1 && m.contains(d, k[t])) && e.push(j[t]))
             }
           }else {
             for(t = 0;k[t] != null;t++) {
-              k[t] && k[t].nodeType === 1 && e.push(j[t])
+              k[t] && (k[t].nodeType === 1 && e.push(j[t]))
             }
           }
         }
@@ -1884,7 +1885,7 @@ VISH.Constant.INTRO = 13;
       d || (d = typeof b.getElementsByTagName != "undefined" ? b.getElementsByTagName("*") : []);
       return{set:d, expr:a}
     }, m.filter = function(a, c, d, e) {
-      var f, g, h, i, j, k, l, n, p, q = a, r = [], s = c, t = c && c[0] && m.isXML(c[0]);
+      var f, g, h, i, j, k, l, n, p, q = a, r = [], s = c, t = c && (c[0] && m.isXML(c[0]));
       while(a && c.length) {
         for(h in o.filter) {
           if((f = o.leftMatch[h].exec(a)) != null && f[2]) {
@@ -1933,7 +1934,7 @@ VISH.Constant.INTRO = 13;
     var n = m.getText = function(a) {
       var b, c, d = a.nodeType, e = "";
       if(d) {
-        if(d === 1 || d === 9 || d === 11) {
+        if(d === 1 || (d === 9 || d === 11)) {
           if(typeof a.textContent == "string") {
             return a.textContent
           }
@@ -1989,10 +1990,10 @@ VISH.Constant.INTRO = 13;
       }
     }, "":function(a, b, c) {
       var d, f = e++, g = x;
-      typeof b == "string" && !l.test(b) && (b = b.toLowerCase(), d = b, g = w), g("parentNode", b, f, a, d, c)
+      typeof b == "string" && (!l.test(b) && (b = b.toLowerCase(), d = b, g = w)), g("parentNode", b, f, a, d, c)
     }, "~":function(a, b, c) {
       var d, f = e++, g = x;
-      typeof b == "string" && !l.test(b) && (b = b.toLowerCase(), d = b, g = w), g("previousSibling", b, f, a, d, c)
+      typeof b == "string" && (!l.test(b) && (b = b.toLowerCase(), d = b, g = w)), g("previousSibling", b, f, a, d, c)
     }}, find:{ID:function(a, b, c) {
       if(typeof b.getElementById != "undefined" && !c) {
         var d = b.getElementById(a[1]);
@@ -2026,7 +2027,7 @@ VISH.Constant.INTRO = 13;
     }, CHILD:function(a) {
       if(a[1] === "nth") {
         a[2] || m.error(a[0]), a[2] = a[2].replace(/^\+|\s*/g, "");
-        var b = /(-?)(\d*)(?:n([+\-]?\d*))?/.exec(a[2] === "even" && "2n" || a[2] === "odd" && "2n+1" || !/\D/.test(a[2]) && "0n+" + a[2] || a[2]);
+        var b = /(-?)(\d*)(?:n([+\-]?\d*))?/.exec(a[2] === "even" && "2n" || (a[2] === "odd" && "2n+1" || (!/\D/.test(a[2]) && "0n+" + a[2] || a[2])));
         a[2] = b[1] + (b[2] || 1) - 0, a[3] = b[3] - 0
       }else {
         a[2] && m.error(a[0])
@@ -2035,7 +2036,7 @@ VISH.Constant.INTRO = 13;
       return a
     }, ATTR:function(a, b, c, d, e, f) {
       var g = a[1] = a[1].replace(j, "");
-      !f && o.attrMap[g] && (a[1] = o.attrMap[g]), a[4] = (a[4] || a[5] || "").replace(j, ""), a[2] === "~=" && (a[4] = " " + a[4] + " ");
+      !f && (o.attrMap[g] && (a[1] = o.attrMap[g])), a[4] = (a[4] || (a[5] || "")).replace(j, ""), a[2] === "~=" && (a[4] = " " + a[4] + " ");
       return a
     }, PSEUDO:function(b, c, d, e, f) {
       if(b[1] === "not") {
@@ -2074,7 +2075,7 @@ VISH.Constant.INTRO = 13;
       return/h\d/i.test(a.nodeName)
     }, text:function(a) {
       var b = a.getAttribute("type"), c = a.type;
-      return a.nodeName.toLowerCase() === "input" && "text" === c && (b === c || b === null)
+      return a.nodeName.toLowerCase() === "input" && ("text" === c && (b === c || b === null))
     }, radio:function(a) {
       return a.nodeName.toLowerCase() === "input" && "radio" === a.type
     }, checkbox:function(a) {
@@ -2120,7 +2121,7 @@ VISH.Constant.INTRO = 13;
         return f(a, c, b, d)
       }
       if(e === "contains") {
-        return(a.textContent || a.innerText || n([a]) || "").indexOf(b[3]) >= 0
+        return(a.textContent || (a.innerText || (n([a]) || ""))).indexOf(b[3]) >= 0
       }
       if(e === "not") {
         var g = b[3];
@@ -2283,7 +2284,7 @@ VISH.Constant.INTRO = 13;
         }
       }, o.filter.ID = function(a, b) {
         var c = typeof a.getAttributeNode != "undefined" && a.getAttributeNode("id");
-        return a.nodeType === 1 && c && c.nodeValue === b
+        return a.nodeType === 1 && (c && c.nodeValue === b)
       }), e.removeChild(a), e = a = null
     }(), function() {
       var a = c.createElement("div");
@@ -2297,9 +2298,9 @@ VISH.Constant.INTRO = 13;
           c = d
         }
         return c
-      }), a.innerHTML = "<a href='#'></a>", a.firstChild && typeof a.firstChild.getAttribute != "undefined" && a.firstChild.getAttribute("href") !== "#" && (o.attrHandle.href = function(a) {
+      }), a.innerHTML = "<a href='#'></a>", a.firstChild && (typeof a.firstChild.getAttribute != "undefined" && (a.firstChild.getAttribute("href") !== "#" && (o.attrHandle.href = function(a) {
         return a.getAttribute("href", 2)
-      }), a = null
+      }))), a = null
     }(), c.querySelectorAll && function() {
       var a = m, b = c.createElement("div"), d = "__sizzle__";
       b.innerHTML = "<p class='TEST'></p>";
@@ -2312,7 +2313,7 @@ VISH.Constant.INTRO = 13;
               if(h[1]) {
                 return s(e.getElementsByTagName(b), f)
               }
-              if(h[2] && o.find.CLASS && e.getElementsByClassName) {
+              if(h[2] && (o.find.CLASS && e.getElementsByClassName)) {
                 return s(e.getElementsByClassName(h[2]), f)
               }
             }
@@ -2336,7 +2337,7 @@ VISH.Constant.INTRO = 13;
             }else {
               if(e.nodeType === 1 && e.nodeName.toLowerCase() !== "object") {
                 var k = e, l = e.getAttribute("id"), n = l || d, p = e.parentNode, q = /^\s*[+~]/.test(b);
-                l ? n = n.replace(/'/g, "\\$&") : e.setAttribute("id", n), q && p && (e = e.parentNode);
+                l ? n = n.replace(/'/g, "\\$&") : e.setAttribute("id", n), q && (p && (e = e.parentNode));
                 try {
                   if(!q || p) {
                     return s(e.querySelectorAll("[id='" + n + "'] " + b), f)
@@ -2356,7 +2357,7 @@ VISH.Constant.INTRO = 13;
         b = null
       }
     }(), function() {
-      var a = c.documentElement, b = a.matchesSelector || a.mozMatchesSelector || a.webkitMatchesSelector || a.msMatchesSelector;
+      var a = c.documentElement, b = a.matchesSelector || (a.mozMatchesSelector || (a.webkitMatchesSelector || a.msMatchesSelector));
       if(b) {
         var d = !b.call(c.createElement("div"), "div"), e = !1;
         try {
@@ -2370,7 +2371,7 @@ VISH.Constant.INTRO = 13;
             try {
               if(e || !o.match.PSEUDO.test(c) && !/!=/.test(c)) {
                 var f = b.call(a, c);
-                if(f || !d || a.document && a.document.nodeType !== 11) {
+                if(f || (!d || a.document && a.document.nodeType !== 11)) {
                   return f
                 }
               }
@@ -2463,7 +2464,7 @@ VISH.Constant.INTRO = 13;
     var c = [], d, e, g = this[0];
     if(f.isArray(a)) {
       var h = 1;
-      while(g && g.ownerDocument && g !== b) {
+      while(g && (g.ownerDocument && g !== b)) {
         for(d = 0;d < a.length;d++) {
           f(g).is(a[d]) && c.push({selector:a[d], elem:g, level:h})
         }
@@ -2480,7 +2481,7 @@ VISH.Constant.INTRO = 13;
           break
         }
         g = g.parentNode;
-        if(!g || !g.ownerDocument || g === b || g.nodeType === 11) {
+        if(!g || (!g.ownerDocument || (g === b || g.nodeType === 11))) {
           break
         }
       }
@@ -2528,7 +2529,7 @@ VISH.Constant.INTRO = 13;
   }}, function(a, b) {
     f.fn[a] = function(c, d) {
       var e = f.map(this, b, c);
-      L.test(a) || (d = c), d && typeof d == "string" && (e = f.filter(d, e)), e = this.length > 1 && !R[a] ? f.unique(e) : e, (this.length > 1 || N.test(d)) && M.test(a) && (e = e.reverse());
+      L.test(a) || (d = c), d && (typeof d == "string" && (e = f.filter(d, e))), e = this.length > 1 && !R[a] ? f.unique(e) : e, (this.length > 1 || N.test(d)) && (M.test(a) && (e = e.reverse()));
       return this.pushStack(e, a, P.call(arguments).join(","))
     }
   }), f.extend({filter:function(a, b, c) {
@@ -2536,7 +2537,7 @@ VISH.Constant.INTRO = 13;
     return b.length === 1 ? f.find.matchesSelector(b[0], a) ? [b[0]] : [] : f.find.matches(a, b)
   }, dir:function(a, c, d) {
     var e = [], g = a[c];
-    while(g && g.nodeType !== 9 && (d === b || g.nodeType !== 1 || !f(g).is(d))) {
+    while(g && (g.nodeType !== 9 && (d === b || (g.nodeType !== 1 || !f(g).is(d))))) {
       g.nodeType === 1 && e.push(g), g = g[c]
     }
     return e
@@ -2552,7 +2553,7 @@ VISH.Constant.INTRO = 13;
   }, sibling:function(a, b) {
     var c = [];
     for(;a;a = a.nextSibling) {
-      a.nodeType === 1 && a !== b && c.push(a)
+      a.nodeType === 1 && (a !== b && c.push(a))
     }
     return c
   }});
@@ -2631,7 +2632,7 @@ VISH.Constant.INTRO = 13;
   }, remove:function(a, b) {
     for(var c = 0, d;(d = this[c]) != null;c++) {
       if(!a || f.filter(a, [d]).length) {
-        !b && d.nodeType === 1 && (f.cleanData(d.getElementsByTagName("*")), f.cleanData([d])), d.parentNode && d.parentNode.removeChild(d)
+        !b && (d.nodeType === 1 && (f.cleanData(d.getElementsByTagName("*")), f.cleanData([d]))), d.parentNode && d.parentNode.removeChild(d)
       }
     }
     return this
@@ -2654,7 +2655,7 @@ VISH.Constant.INTRO = 13;
       if(a === b) {
         return c.nodeType === 1 ? c.innerHTML.replace(W, "") : null
       }
-      if(typeof a == "string" && !ba.test(a) && (f.support.leadingWhitespace || !X.test(a)) && !bg[(Z.exec(a) || ["", ""])[1].toLowerCase()]) {
+      if(typeof a == "string" && (!ba.test(a) && ((f.support.leadingWhitespace || !X.test(a)) && !bg[(Z.exec(a) || ["", ""])[1].toLowerCase()]))) {
         a = a.replace(Y, "<$1></$2>");
         try {
           for(;d < e;d++) {
@@ -2685,7 +2686,7 @@ VISH.Constant.INTRO = 13;
     return this.remove(a, !0)
   }, domManip:function(a, c, d) {
     var e, g, h, i, j = a[0], k = [];
-    if(!f.support.checkClone && arguments.length === 3 && typeof j == "string" && bd.test(j)) {
+    if(!f.support.checkClone && (arguments.length === 3 && (typeof j == "string" && bd.test(j)))) {
       return this.each(function() {
         f(this).domManip(a, c, d, !0)
       })
@@ -2697,7 +2698,7 @@ VISH.Constant.INTRO = 13;
       })
     }
     if(this[0]) {
-      i = j && j.parentNode, f.support.parentNode && i && i.nodeType === 11 && i.childNodes.length === this.length ? e = {fragment:i} : e = f.buildFragment(a, this, k), h = e.fragment, h.childNodes.length === 1 ? g = h = h.firstChild : g = h.firstChild;
+      i = j && j.parentNode, f.support.parentNode && (i && (i.nodeType === 11 && i.childNodes.length === this.length)) ? e = {fragment:i} : e = f.buildFragment(a, this, k), h = e.fragment, h.childNodes.length === 1 ? g = h = h.firstChild : g = h.firstChild;
       if(g) {
         c = c && f.nodeName(g, "tr");
         for(var l = 0, m = this.length, n = m - 1;l < m;l++) {
@@ -2705,18 +2706,18 @@ VISH.Constant.INTRO = 13;
         }
       }
       k.length && f.each(k, function(a, b) {
-        b.src ? f.ajax({type:"GET", global:!1, url:b.src, async:!1, dataType:"script"}) : f.globalEval((b.text || b.textContent || b.innerHTML || "").replace(bf, "/*$0*/")), b.parentNode && b.parentNode.removeChild(b)
+        b.src ? f.ajax({type:"GET", global:!1, url:b.src, async:!1, dataType:"script"}) : f.globalEval((b.text || (b.textContent || (b.innerHTML || ""))).replace(bf, "/*$0*/")), b.parentNode && b.parentNode.removeChild(b)
       })
     }
     return this
   }}), f.buildFragment = function(a, b, d) {
     var e, g, h, i, j = a[0];
-    b && b[0] && (i = b[0].ownerDocument || b[0]), i.createDocumentFragment || (i = c), a.length === 1 && typeof j == "string" && j.length < 512 && i === c && j.charAt(0) === "<" && !bb.test(j) && (f.support.checkClone || !bd.test(j)) && (f.support.html5Clone || !bc.test(j)) && (g = !0, h = f.fragments[j], h && h !== 1 && (e = h)), e || (e = i.createDocumentFragment(), f.clean(a, i, e, d)), g && (f.fragments[j] = h ? e : 1);
+    b && (b[0] && (i = b[0].ownerDocument || b[0])), i.createDocumentFragment || (i = c), a.length === 1 && (typeof j == "string" && (j.length < 512 && (i === c && (j.charAt(0) === "<" && (!bb.test(j) && ((f.support.checkClone || !bd.test(j)) && ((f.support.html5Clone || !bc.test(j)) && (g = !0, h = f.fragments[j], h && (h !== 1 && (e = h)))))))))), e || (e = i.createDocumentFragment(), f.clean(a, i, e, d)), g && (f.fragments[j] = h ? e : 1);
     return{fragment:e, cacheable:g}
   }, f.fragments = {}, f.each({appendTo:"append", prependTo:"prepend", insertBefore:"before", insertAfter:"after", replaceAll:"replaceWith"}, function(a, b) {
     f.fn[a] = function(c) {
       var d = [], e = f(c), g = this.length === 1 && this[0].parentNode;
-      if(g && g.nodeType === 11 && g.childNodes.length === 1 && e.length === 1) {
+      if(g && (g.nodeType === 11 && (g.childNodes.length === 1 && e.length === 1))) {
         e[b](this[0]);
         return this
       }
@@ -2727,8 +2728,8 @@ VISH.Constant.INTRO = 13;
       return this.pushStack(d, a, e.selector)
     }
   }), f.extend({clone:function(a, b, c) {
-    var d, e, g, h = f.support.html5Clone || f.isXMLDoc(a) || !bc.test("<" + a.nodeName + ">") ? a.cloneNode(!0) : bo(a);
-    if((!f.support.noCloneEvent || !f.support.noCloneChecked) && (a.nodeType === 1 || a.nodeType === 11) && !f.isXMLDoc(a)) {
+    var d, e, g, h = f.support.html5Clone || (f.isXMLDoc(a) || !bc.test("<" + a.nodeName + ">")) ? a.cloneNode(!0) : bo(a);
+    if((!f.support.noCloneEvent || !f.support.noCloneChecked) && ((a.nodeType === 1 || a.nodeType === 11) && !f.isXMLDoc(a))) {
       bk(a, h), d = bl(a), e = bl(h);
       for(g = 0;d[g];++g) {
         e[g] && bk(d[g], e[g])
@@ -2747,7 +2748,7 @@ VISH.Constant.INTRO = 13;
     return h
   }, clean:function(a, b, d, e) {
     var g, h, i, j = [];
-    b = b || c, typeof b.createElement == "undefined" && (b = b.ownerDocument || b[0] && b[0].ownerDocument || c);
+    b = b || c, typeof b.createElement == "undefined" && (b = b.ownerDocument || (b[0] && b[0].ownerDocument || c));
     for(var k = 0, l;(l = a[k]) != null;k++) {
       typeof l == "number" && (l += "");
       if(!l) {
@@ -2766,10 +2767,10 @@ VISH.Constant.INTRO = 13;
           if(!f.support.tbody) {
             var s = $.test(l), t = m === "table" && !s ? p.firstChild && p.firstChild.childNodes : n[1] === "<table>" && !s ? p.childNodes : [];
             for(i = t.length - 1;i >= 0;--i) {
-              f.nodeName(t[i], "tbody") && !t[i].childNodes.length && t[i].parentNode.removeChild(t[i])
+              f.nodeName(t[i], "tbody") && (!t[i].childNodes.length && t[i].parentNode.removeChild(t[i]))
             }
           }
-          !f.support.leadingWhitespace && X.test(l) && p.insertBefore(b.createTextNode(X.exec(l)[0]), p.firstChild), l = p.childNodes, p && (p.parentNode.removeChild(p), q.length > 0 && (r = q[q.length - 1], r && r.parentNode && r.parentNode.removeChild(r)))
+          !f.support.leadingWhitespace && (X.test(l) && p.insertBefore(b.createTextNode(X.exec(l)[0]), p.firstChild)), l = p.childNodes, p && (p.parentNode.removeChild(p), q.length > 0 && (r = q[q.length - 1], r && (r.parentNode && r.parentNode.removeChild(r))))
         }
       }
       var u;
@@ -2790,7 +2791,7 @@ VISH.Constant.INTRO = 13;
       };
       for(k = 0;j[k];k++) {
         h = j[k];
-        if(e && f.nodeName(h, "script") && (!h.type || be.test(h.type))) {
+        if(e && (f.nodeName(h, "script") && (!h.type || be.test(h.type)))) {
           e.push(h.parentNode ? h.parentNode.removeChild(h) : h)
         }else {
           if(h.nodeType === 1) {
@@ -2833,21 +2834,21 @@ VISH.Constant.INTRO = 13;
     }
     return a.style.opacity
   }}}, cssNumber:{fillOpacity:!0, fontWeight:!0, lineHeight:!0, opacity:!0, orphans:!0, widows:!0, zIndex:!0, zoom:!0}, cssProps:{"float":f.support.cssFloat ? "cssFloat" : "styleFloat"}, style:function(a, c, d, e) {
-    if(!!a && a.nodeType !== 3 && a.nodeType !== 8 && !!a.style) {
+    if(!!a && (a.nodeType !== 3 && (a.nodeType !== 8 && !!a.style))) {
       var g, h, i = f.camelCase(c), j = a.style, k = f.cssHooks[i];
       c = f.cssProps[i] || i;
       if(d === b) {
-        if(k && "get" in k && (g = k.get(a, !1, e)) !== b) {
+        if(k && ("get" in k && (g = k.get(a, !1, e)) !== b)) {
           return g
         }
         return j[c]
       }
-      h = typeof d, h === "string" && (g = bu.exec(d)) && (d = +(g[1] + 1) * +g[2] + parseFloat(f.css(a, c)), h = "number");
+      h = typeof d, h === "string" && ((g = bu.exec(d)) && (d = +(g[1] + 1) * +g[2] + parseFloat(f.css(a, c)), h = "number"));
       if(d == null || h === "number" && isNaN(d)) {
         return
       }
-      h === "number" && !f.cssNumber[i] && (d += "px");
-      if(!k || !("set" in k) || (d = k.set(a, d)) !== b) {
+      h === "number" && (!f.cssNumber[i] && (d += "px"));
+      if(!k || (!("set" in k) || (d = k.set(a, d)) !== b)) {
         try {
           j[c] = d
         }catch(l) {
@@ -2857,7 +2858,7 @@ VISH.Constant.INTRO = 13;
   }, css:function(a, c, d) {
     var e, g;
     c = f.camelCase(c), g = f.cssHooks[c], c = f.cssProps[c] || c, c === "cssFloat" && (c = "float");
-    if(g && "get" in g && (e = g.get(a, !0, d)) !== b) {
+    if(g && ("get" in g && (e = g.get(a, !0, d)) !== b)) {
       return e
     }
     if(by) {
@@ -2873,13 +2874,13 @@ VISH.Constant.INTRO = 13;
       a.style[f] = d[f]
     }
     return e
-  }}), f.curCSS = f.css, c.defaultView && c.defaultView.getComputedStyle && (bz = function(a, b) {
+  }}), f.curCSS = f.css, c.defaultView && (c.defaultView.getComputedStyle && (bz = function(a, b) {
     var c, d, e, g, h = a.style;
-    b = b.replace(br, "-$1").toLowerCase(), (d = a.ownerDocument.defaultView) && (e = d.getComputedStyle(a, null)) && (c = e.getPropertyValue(b), c === "" && !f.contains(a.ownerDocument.documentElement, a) && (c = f.style(a, b))), !f.support.pixelMargin && e && bv.test(b) && bt.test(c) && (g = h.width, h.width = c, c = e.width, h.width = g);
+    b = b.replace(br, "-$1").toLowerCase(), (d = a.ownerDocument.defaultView) && ((e = d.getComputedStyle(a, null)) && (c = e.getPropertyValue(b), c === "" && (!f.contains(a.ownerDocument.documentElement, a) && (c = f.style(a, b))))), !f.support.pixelMargin && (e && (bv.test(b) && (bt.test(c) && (g = h.width, h.width = c, c = e.width, h.width = g))));
     return c
-  }), c.documentElement.currentStyle && (bA = function(a, b) {
+  })), c.documentElement.currentStyle && (bA = function(a, b) {
     var c, d, e, f = a.currentStyle && a.currentStyle[b], g = a.style;
-    f == null && g && (e = g[b]) && (f = e), bt.test(f) && (c = g.left, d = a.runtimeStyle && a.runtimeStyle.left, d && (a.runtimeStyle.left = a.currentStyle.left), g.left = b === "fontSize" ? "1em" : f, f = g.pixelLeft + "px", g.left = c, d && (a.runtimeStyle.left = d));
+    f == null && (g && ((e = g[b]) && (f = e))), bt.test(f) && (c = g.left, d = a.runtimeStyle && a.runtimeStyle.left, d && (a.runtimeStyle.left = a.currentStyle.left), g.left = b === "fontSize" ? "1em" : f, f = g.pixelLeft + "px", g.left = c, d && (a.runtimeStyle.left = d));
     return f === "" ? "auto" : f
   }), by = bz || bA, f.each(["height", "width"], function(a, b) {
     f.cssHooks[b] = {get:function(a, c, d) {
@@ -2894,7 +2895,7 @@ VISH.Constant.INTRO = 13;
   }), f.support.opacity || (f.cssHooks.opacity = {get:function(a, b) {
     return bq.test((b && a.currentStyle ? a.currentStyle.filter : a.style.filter) || "") ? parseFloat(RegExp.$1) / 100 + "" : b ? "1" : ""
   }, set:function(a, b) {
-    var c = a.style, d = a.currentStyle, e = f.isNumeric(b) ? "alpha(opacity=" + b * 100 + ")" : "", g = d && d.filter || c.filter || "";
+    var c = a.style, d = a.currentStyle, e = f.isNumeric(b) ? "alpha(opacity=" + b * 100 + ")" : "", g = d && d.filter || (c.filter || "");
     c.zoom = 1;
     if(b >= 1 && f.trim(g.replace(bp, "")) === "") {
       c.removeAttribute("filter");
@@ -2909,16 +2910,16 @@ VISH.Constant.INTRO = 13;
         return b ? by(a, "margin-right") : a.style.marginRight
       })
     }})
-  }), f.expr && f.expr.filters && (f.expr.filters.hidden = function(a) {
+  }), f.expr && (f.expr.filters && (f.expr.filters.hidden = function(a) {
     var b = a.offsetWidth, c = a.offsetHeight;
     return b === 0 && c === 0 || !f.support.reliableHiddenOffsets && (a.style && a.style.display || f.css(a, "display")) === "none"
   }, f.expr.filters.visible = function(a) {
     return!f.expr.filters.hidden(a)
-  }), f.each({margin:"", padding:"", border:"Width"}, function(a, b) {
+  })), f.each({margin:"", padding:"", border:"Width"}, function(a, b) {
     f.cssHooks[a + b] = {expand:function(c) {
       var d, e = typeof c == "string" ? c.split(" ") : [c], f = {};
       for(d = 0;d < 4;d++) {
-        f[a + bx[d] + b] = e[d] || e[d - 2] || e[0]
+        f[a + bx[d] + b] = e[d] || (e[d - 2] || e[0])
       }
       return f
     }}
@@ -2957,7 +2958,7 @@ VISH.Constant.INTRO = 13;
     return this.map(function() {
       return this.elements ? f.makeArray(this.elements) : this
     }).filter(function() {
-      return this.name && !this.disabled && (this.checked || bN.test(this.nodeName) || bH.test(this.type))
+      return this.name && (!this.disabled && (this.checked || (bN.test(this.nodeName) || bH.test(this.type))))
     }).map(function(a, b) {
       var c = f(this).val();
       return c == null ? null : f.isArray(c) ? f.map(c, function(a, c) {
@@ -3053,11 +3054,11 @@ VISH.Constant.INTRO = 13;
         }
       }
       return this
-    }, d.url = ((a || d.url) + "").replace(bF, "").replace(bK, bV[1] + "//"), d.dataTypes = f.trim(d.dataType || "*").toLowerCase().split(bO), d.crossDomain == null && (r = bQ.exec(d.url.toLowerCase()), d.crossDomain = !(!r || r[1] == bV[1] && r[2] == bV[2] && (r[3] || (r[1] === "http:" ? 80 : 443)) == (bV[3] || (bV[1] === "http:" ? 80 : 443)))), d.data && d.processData && typeof d.data != "string" && (d.data = f.param(d.data, d.traditional)), bZ(bS, d, c, v);
+    }, d.url = ((a || d.url) + "").replace(bF, "").replace(bK, bV[1] + "//"), d.dataTypes = f.trim(d.dataType || "*").toLowerCase().split(bO), d.crossDomain == null && (r = bQ.exec(d.url.toLowerCase()), d.crossDomain = !(!r || r[1] == bV[1] && (r[2] == bV[2] && (r[3] || (r[1] === "http:" ? 80 : 443)) == (bV[3] || (bV[1] === "http:" ? 80 : 443))))), d.data && (d.processData && (typeof d.data != "string" && (d.data = f.param(d.data, d.traditional)))), bZ(bS, d, c, v);
     if(s === 2) {
       return!1
     }
-    t = d.global, d.type = d.type.toUpperCase(), d.hasContent = !bJ.test(d.type), t && f.active++ === 0 && f.event.trigger("ajaxStart");
+    t = d.global, d.type = d.type.toUpperCase(), d.hasContent = !bJ.test(d.type), t && (f.active++ === 0 && f.event.trigger("ajaxStart"));
     if(!d.hasContent) {
       d.data && (d.url += (bL.test(d.url) ? "&" : "?") + d.data, delete d.data), k = d.url;
       if(d.cache === !1) {
@@ -3065,7 +3066,7 @@ VISH.Constant.INTRO = 13;
         d.url = y + (y === d.url ? (bL.test(d.url) ? "&" : "?") + "_=" + x : "")
       }
     }
-    (d.data && d.hasContent && d.contentType !== !1 || c.contentType) && v.setRequestHeader("Content-Type", d.contentType), d.ifModified && (k = k || d.url, f.lastModified[k] && v.setRequestHeader("If-Modified-Since", f.lastModified[k]), f.etag[k] && v.setRequestHeader("If-None-Match", f.etag[k])), v.setRequestHeader("Accept", d.dataTypes[0] && d.accepts[d.dataTypes[0]] ? d.accepts[d.dataTypes[0]] + (d.dataTypes[0] !== "*" ? ", " + bW + "; q=0.01" : "") : d.accepts["*"]);
+    (d.data && (d.hasContent && d.contentType !== !1) || c.contentType) && v.setRequestHeader("Content-Type", d.contentType), d.ifModified && (k = k || d.url, f.lastModified[k] && v.setRequestHeader("If-Modified-Since", f.lastModified[k]), f.etag[k] && v.setRequestHeader("If-None-Match", f.etag[k])), v.setRequestHeader("Accept", d.dataTypes[0] && d.accepts[d.dataTypes[0]] ? d.accepts[d.dataTypes[0]] + (d.dataTypes[0] !== "*" ? ", " + bW + "; q=0.01" : "") : d.accepts["*"]);
     for(u in d.headers) {
       v.setRequestHeader(u, d.headers[u])
     }
@@ -3080,9 +3081,9 @@ VISH.Constant.INTRO = 13;
     if(!p) {
       w(-1, "No Transport")
     }else {
-      v.readyState = 1, t && g.trigger("ajaxSend", [v, d]), d.async && d.timeout > 0 && (q = setTimeout(function() {
+      v.readyState = 1, t && g.trigger("ajaxSend", [v, d]), d.async && (d.timeout > 0 && (q = setTimeout(function() {
         v.abort("timeout")
-      }, d.timeout));
+      }, d.timeout)));
       try {
         s = 1, p.send(l, w)
       }catch(z) {
@@ -3120,7 +3121,7 @@ VISH.Constant.INTRO = 13;
       b.jsonp !== !1 && (j = j.replace(cd, l), b.url === j && (e && (k = k.replace(cd, l)), b.data === k && (j += (/\?/.test(j) ? "&" : "?") + b.jsonp + "=" + h))), b.url = j, b.data = k, a[h] = function(a) {
         g = [a]
       }, d.always(function() {
-        a[h] = i, g && f.isFunction(i) && a[h](g[0])
+        a[h] = i, g && (f.isFunction(i) && a[h](g[0]))
       }), b.converters["script json"] = function() {
         g || f.error(h + " was not called");
         return g[0]
@@ -3134,11 +3135,11 @@ VISH.Constant.INTRO = 13;
     a.cache === b && (a.cache = !1), a.crossDomain && (a.type = "GET", a.global = !1)
   }), f.ajaxTransport("script", function(a) {
     if(a.crossDomain) {
-      var d, e = c.head || c.getElementsByTagName("head")[0] || c.documentElement;
+      var d, e = c.head || (c.getElementsByTagName("head")[0] || c.documentElement);
       return{send:function(f, g) {
         d = c.createElement("script"), d.async = "async", a.scriptCharset && (d.charset = a.scriptCharset), d.src = a.url, d.onload = d.onreadystatechange = function(a, c) {
-          if(c || !d.readyState || /loaded|complete/.test(d.readyState)) {
-            d.onload = d.onreadystatechange = null, e && d.parentNode && e.removeChild(d), d = b, c || g(200, "success")
+          if(c || (!d.readyState || /loaded|complete/.test(d.readyState))) {
+            d.onload = d.onreadystatechange = null, e && (d.parentNode && e.removeChild(d)), d = b, c || g(200, "success")
           }
         }, e.insertBefore(d, e.firstChild)
       }, abort:function() {
@@ -3166,7 +3167,7 @@ VISH.Constant.INTRO = 13;
             h[j] = c.xhrFields[j]
           }
         }
-        c.mimeType && h.overrideMimeType && h.overrideMimeType(c.mimeType), !c.crossDomain && !e["X-Requested-With"] && (e["X-Requested-With"] = "XMLHttpRequest");
+        c.mimeType && (h.overrideMimeType && h.overrideMimeType(c.mimeType)), !c.crossDomain && (!e["X-Requested-With"] && (e["X-Requested-With"] = "XMLHttpRequest"));
         try {
           for(j in e) {
             h.setRequestHeader(j, e[j])
@@ -3181,7 +3182,7 @@ VISH.Constant.INTRO = 13;
               if(e) {
                 h.readyState !== 4 && h.abort()
               }else {
-                j = h.status, l = h.getAllResponseHeaders(), m = {}, n = h.responseXML, n && n.documentElement && (m.xml = n);
+                j = h.status, l = h.getAllResponseHeaders(), m = {}, n = h.responseXML, n && (n.documentElement && (m.xml = n));
                 try {
                   m.text = h.responseText
                 }catch(a) {
@@ -3191,7 +3192,7 @@ VISH.Constant.INTRO = 13;
                 }catch(o) {
                   k = ""
                 }
-                !j && c.isLocal && !c.crossDomain ? j = m.text ? 200 : 404 : j === 1223 && (j = 204)
+                !j && (c.isLocal && !c.crossDomain) ? j = m.text ? 200 : 404 : j === 1223 && (j = 204)
               }
             }
           }catch(p) {
@@ -3211,7 +3212,7 @@ VISH.Constant.INTRO = 13;
       return this.animate(ct("show", 3), a, b, c)
     }
     for(var g = 0, h = this.length;g < h;g++) {
-      d = this[g], d.style && (e = d.style.display, !f._data(d, "olddisplay") && e === "none" && (e = d.style.display = ""), (e === "" && f.css(d, "display") === "none" || !f.contains(d.ownerDocument.documentElement, d)) && f._data(d, "olddisplay", cu(d.nodeName)))
+      d = this[g], d.style && (e = d.style.display, !f._data(d, "olddisplay") && (e === "none" && (e = d.style.display = "")), (e === "" && f.css(d, "display") === "none" || !f.contains(d.ownerDocument.documentElement, d)) && f._data(d, "olddisplay", cu(d.nodeName)))
     }
     for(g = 0;g < h;g++) {
       d = this[g];
@@ -3229,7 +3230,7 @@ VISH.Constant.INTRO = 13;
     }
     var d, e, g = 0, h = this.length;
     for(;g < h;g++) {
-      d = this[g], d.style && (e = f.css(d, "display"), e !== "none" && !f._data(d, "olddisplay") && f._data(d, "olddisplay", e))
+      d = this[g], d.style && (e = f.css(d, "display"), e !== "none" && (!f._data(d, "olddisplay") && f._data(d, "olddisplay", e)))
     }
     for(g = 0;g < h;g++) {
       this[g].style && (this[g].style.display = "none")
@@ -3259,11 +3260,11 @@ VISH.Constant.INTRO = 13;
         }
       }
       for(g in a) {
-        h = a[g], f.isArray(h) ? (b.animatedProperties[g] = h[1], h = a[g] = h[0]) : b.animatedProperties[g] = b.specialEasing && b.specialEasing[g] || b.easing || "swing";
+        h = a[g], f.isArray(h) ? (b.animatedProperties[g] = h[1], h = a[g] = h[0]) : b.animatedProperties[g] = b.specialEasing && b.specialEasing[g] || (b.easing || "swing");
         if(h === "hide" && d || h === "show" && !d) {
           return b.complete.call(this)
         }
-        c && (g === "height" || g === "width") && (b.overflow = [this.style.overflow, this.style.overflowX, this.style.overflowY], f.css(this, "display") === "inline" && f.css(this, "float") === "none" && (!f.support.inlineBlockNeedsLayout || cu(this.nodeName) === "inline" ? this.style.display = "inline-block" : this.style.zoom = 1))
+        c && ((g === "height" || g === "width") && (b.overflow = [this.style.overflow, this.style.overflowX, this.style.overflowY], f.css(this, "display") === "inline" && (f.css(this, "float") === "none" && (!f.support.inlineBlockNeedsLayout || cu(this.nodeName) === "inline" ? this.style.display = "inline-block" : this.style.zoom = 1))))
       }
       b.overflow != null && (this.style.overflow = "hidden");
       for(i in a) {
@@ -3279,7 +3280,7 @@ VISH.Constant.INTRO = 13;
     a = f.extend({}, a);
     return e.queue === !1 ? this.each(g) : this.queue(e.queue, g)
   }, stop:function(a, c, d) {
-    typeof a != "string" && (d = c, c = a, a = b), c && a !== !1 && this.queue(a || "fx", []);
+    typeof a != "string" && (d = c, c = a, a = b), c && (a !== !1 && this.queue(a || "fx", []));
     return this.each(function() {
       function h(a, b, c) {
         var e = b[c];
@@ -3289,13 +3290,13 @@ VISH.Constant.INTRO = 13;
       d || f._unmark(!0, this);
       if(a == null) {
         for(b in g) {
-          g[b] && g[b].stop && b.indexOf(".run") === b.length - 4 && h(this, g, b)
+          g[b] && (g[b].stop && (b.indexOf(".run") === b.length - 4 && h(this, g, b)))
         }
       }else {
-        g[b = a + ".run"] && g[b].stop && h(this, g, b)
+        g[b = a + ".run"] && (g[b].stop && h(this, g, b))
       }
       for(b = e.length;b--;) {
-        e[b].elem === this && (a == null || e[b].queue === a) && (d ? e[b](!0) : e[b].saveState(), c = !0, e.splice(b, 1))
+        e[b].elem === this && ((a == null || e[b].queue === a) && (d ? e[b](!0) : e[b].saveState(), c = !0, e.splice(b, 1)))
       }
       (!d || !c) && f.dequeue(this, a)
     })
@@ -3304,7 +3305,7 @@ VISH.Constant.INTRO = 13;
       return this.animate(b, a, c, d)
     }
   }), f.extend({speed:function(a, b, c) {
-    var d = a && typeof a == "object" ? f.extend({}, a) : {complete:c || !c && b || f.isFunction(a) && a, duration:a, easing:c && b || b && !f.isFunction(b) && b};
+    var d = a && typeof a == "object" ? f.extend({}, a) : {complete:c || (!c && b || f.isFunction(a) && a), duration:a, easing:c && b || b && (!f.isFunction(b) && b)};
     d.duration = f.fx.off ? 0 : typeof d.duration == "number" ? d.duration : d.duration in f.fx.speeds ? f.fx.speeds[d.duration] : f.fx.speeds._default;
     if(d.queue == null || d.queue === !0) {
       d.queue = "fx"
@@ -3332,9 +3333,9 @@ VISH.Constant.INTRO = 13;
       return e.step(a)
     }
     var e = this, g = f.fx;
-    this.startTime = cq || cr(), this.end = c, this.now = this.start = a, this.pos = this.state = 0, this.unit = d || this.unit || (f.cssNumber[this.prop] ? "" : "px"), h.queue = this.options.queue, h.elem = this.elem, h.saveState = function() {
+    this.startTime = cq || cr(), this.end = c, this.now = this.start = a, this.pos = this.state = 0, this.unit = d || (this.unit || (f.cssNumber[this.prop] ? "" : "px")), h.queue = this.options.queue, h.elem = this.elem, h.saveState = function() {
       f._data(e.elem, "fxshow" + e.prop) === b && (e.options.hide ? f._data(e.elem, "fxshow" + e.prop, e.start) : e.options.show && f._data(e.elem, "fxshow" + e.prop, e.end))
-    }, h() && f.timers.push(h) && !co && (co = setInterval(g.tick, g.interval))
+    }, h() && (f.timers.push(h) && (!co && (co = setInterval(g.tick, g.interval))))
   }, show:function() {
     var a = f._data(this.elem, "fxshow" + this.prop);
     this.options.orig[this.prop] = a || f.style(this.elem, this.prop), this.options.show = !0, a !== b ? this.custom(this.cur(), a) : this.custom(this.prop === "width" || this.prop === "height" ? 1 : 0, this.cur()), f(this.elem).show()
@@ -3348,9 +3349,9 @@ VISH.Constant.INTRO = 13;
         i.animatedProperties[b] !== !0 && (g = !1)
       }
       if(g) {
-        i.overflow != null && !f.support.shrinkWrapBlocks && f.each(["", "X", "Y"], function(a, b) {
+        i.overflow != null && (!f.support.shrinkWrapBlocks && f.each(["", "X", "Y"], function(a, b) {
           h.style["overflow" + b] = i.overflow[a]
-        }), i.hide && f(h).hide();
+        })), i.hide && f(h).hide();
         if(i.hide || i.show) {
           for(b in i.animatedProperties) {
             f.style(h, b, i.orig[b]), f.removeData(h, "fxshow" + b, !0), f.removeData(h, "toggle" + b, !0)
@@ -3365,7 +3366,7 @@ VISH.Constant.INTRO = 13;
   }}, f.extend(f.fx, {tick:function() {
     var a, b = f.timers, c = 0;
     for(;c < b.length;c++) {
-      a = b[c], !a() && b[c] === a && b.splice(c--, 1)
+      a = b[c], !a() && (b[c] === a && b.splice(c--, 1))
     }
     b.length || f.fx.stop()
   }, interval:13, stop:function() {
@@ -3378,11 +3379,11 @@ VISH.Constant.INTRO = 13;
     b.indexOf("margin") && (f.fx.step[b] = function(a) {
       f.style(a.elem, b, Math.max(0, a.now) + a.unit)
     })
-  }), f.expr && f.expr.filters && (f.expr.filters.animated = function(a) {
+  }), f.expr && (f.expr.filters && (f.expr.filters.animated = function(a) {
     return f.grep(f.timers, function(b) {
       return a === b.elem
     }).length
-  });
+  }));
   var cv, cw = /^t(?:able|d|h)$/i, cx = /^(?:body|html)$/i;
   "getBoundingClientRect" in c.documentElement ? cv = function(a, b, c, d) {
     try {
@@ -3392,21 +3393,21 @@ VISH.Constant.INTRO = 13;
     if(!d || !f.contains(c, a)) {
       return d ? {top:d.top, left:d.left} : {top:0, left:0}
     }
-    var g = b.body, h = cy(b), i = c.clientTop || g.clientTop || 0, j = c.clientLeft || g.clientLeft || 0, k = h.pageYOffset || f.support.boxModel && c.scrollTop || g.scrollTop, l = h.pageXOffset || f.support.boxModel && c.scrollLeft || g.scrollLeft, m = d.top + k - i, n = d.left + l - j;
+    var g = b.body, h = cy(b), i = c.clientTop || (g.clientTop || 0), j = c.clientLeft || (g.clientLeft || 0), k = h.pageYOffset || (f.support.boxModel && c.scrollTop || g.scrollTop), l = h.pageXOffset || (f.support.boxModel && c.scrollLeft || g.scrollLeft), m = d.top + k - i, n = d.left + l - j;
     return{top:m, left:n}
   } : cv = function(a, b, c) {
     var d, e = a.offsetParent, g = a, h = b.body, i = b.defaultView, j = i ? i.getComputedStyle(a, null) : a.currentStyle, k = a.offsetTop, l = a.offsetLeft;
-    while((a = a.parentNode) && a !== h && a !== c) {
+    while((a = a.parentNode) && (a !== h && a !== c)) {
       if(f.support.fixedPosition && j.position === "fixed") {
         break
       }
-      d = i ? i.getComputedStyle(a, null) : a.currentStyle, k -= a.scrollTop, l -= a.scrollLeft, a === e && (k += a.offsetTop, l += a.offsetLeft, f.support.doesNotAddBorder && (!f.support.doesAddBorderForTableAndCells || !cw.test(a.nodeName)) && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 0), g = e, e = a.offsetParent), f.support.subtractsBorderForOverflowNotVisible && d.overflow !== "visible" && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 
-      0), j = d
+      d = i ? i.getComputedStyle(a, null) : a.currentStyle, k -= a.scrollTop, l -= a.scrollLeft, a === e && (k += a.offsetTop, l += a.offsetLeft, f.support.doesNotAddBorder && ((!f.support.doesAddBorderForTableAndCells || !cw.test(a.nodeName)) && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 0)), g = e, e = a.offsetParent), f.support.subtractsBorderForOverflowNotVisible && (d.overflow !== "visible" && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 
+      0)), j = d
     }
     if(j.position === "relative" || j.position === "static") {
       k += h.offsetTop, l += h.offsetLeft
     }
-    f.support.fixedPosition && j.position === "fixed" && (k += Math.max(c.scrollTop, h.scrollTop), l += Math.max(c.scrollLeft, h.scrollLeft));
+    f.support.fixedPosition && (j.position === "fixed" && (k += Math.max(c.scrollTop, h.scrollTop), l += Math.max(c.scrollLeft, h.scrollLeft)));
     return{top:k, left:l}
   }, f.fn.offset = function(a) {
     if(arguments.length) {
@@ -3441,7 +3442,7 @@ VISH.Constant.INTRO = 13;
   }, offsetParent:function() {
     return this.map(function() {
       var a = this.offsetParent || c.body;
-      while(a && !cx.test(a.nodeName) && f.css(a, "position") === "static") {
+      while(a && (!cx.test(a.nodeName) && f.css(a, "position") === "static")) {
         a = a.offsetParent
       }
       return a
@@ -3470,7 +3471,7 @@ VISH.Constant.INTRO = 13;
         var i, j, k, l;
         if(f.isWindow(a)) {
           i = a.document, j = i.documentElement[d];
-          return f.support.boxModel && j || i.body && i.body[d] || j
+          return f.support.boxModel && j || (i.body && i.body[d] || j)
         }
         if(a.nodeType === 9) {
           i = a.documentElement;
@@ -3486,14 +3487,14 @@ VISH.Constant.INTRO = 13;
         f(a).css(c, h)
       }, c, a, arguments.length, null)
     }
-  }), a.jQuery = a.$ = f, typeof define == "function" && define.amd && define.amd.jQuery && define("jquery", [], function() {
+  }), a.jQuery = a.$ = f, typeof define == "function" && (define.amd && (define.amd.jQuery && define("jquery", [], function() {
     return f
-  })
+  })))
 })(window);
 (function(e, t) {
   function i(t, n) {
     var r, i, o, u = t.nodeName.toLowerCase();
-    return"area" === u ? (r = t.parentNode, i = r.name, !t.href || !i || r.nodeName.toLowerCase() !== "map" ? !1 : (o = e("img[usemap=#" + i + "]")[0], !!o && s(o))) : (/input|select|textarea|button|object/.test(u) ? !t.disabled : "a" === u ? t.href || n : n) && s(t)
+    return"area" === u ? (r = t.parentNode, i = r.name, !t.href || (!i || r.nodeName.toLowerCase() !== "map") ? !1 : (o = e("img[usemap=#" + i + "]")[0], !!o && s(o))) : (/input|select|textarea|button|object/.test(u) ? !t.disabled : "a" === u ? t.href || n : n) && s(t)
   }
   function s(t) {
     return e.expr.filters.visible(t) && !e(t).parents().andSelf().filter(function() {
@@ -3527,7 +3528,7 @@ VISH.Constant.INTRO = 13;
       var r = e(this[0]), i, s;
       while(r.length && r[0] !== document) {
         i = r.css("position");
-        if(i === "absolute" || i === "relative" || i === "fixed") {
+        if(i === "absolute" || (i === "relative" || i === "fixed")) {
           s = parseInt(r.css("zIndex"), 10);
           if(!isNaN(s) && s !== 0) {
             return s
@@ -3595,7 +3596,7 @@ VISH.Constant.INTRO = 13;
     }
   }, call:function(e, t, n) {
     var r, i = e.plugins[t];
-    if(!i || !e.element[0].parentNode || e.element[0].parentNode.nodeType === 11) {
+    if(!i || (!e.element[0].parentNode || e.element[0].parentNode.nodeType === 11)) {
       return
     }
     for(r = 0;r < i.length;r++) {
@@ -3652,7 +3653,7 @@ VISH.Constant.INTRO = 13;
     var i = r.call(arguments, 1), s = 0, o = i.length, u, a;
     for(;s < o;s++) {
       for(u in i[s]) {
-        a = i[s][u], i[s].hasOwnProperty(u) && a !== t && (e.isPlainObject(a) ? n[u] = e.isPlainObject(n[u]) ? e.widget.extend({}, n[u], a) : e.widget.extend({}, a) : n[u] = a)
+        a = i[s][u], i[s].hasOwnProperty(u) && (a !== t && (e.isPlainObject(a) ? n[u] = e.isPlainObject(n[u]) ? e.widget.extend({}, n[u], a) : e.widget.extend({}, a) : n[u] = a))
       }
     }
     return n
@@ -3679,7 +3680,7 @@ VISH.Constant.INTRO = 13;
     }
   }, e.Widget = function() {
   }, e.Widget._childConstructors = [], e.Widget.prototype = {widgetName:"widget", widgetEventPrefix:"", defaultElement:"<div>", options:{disabled:!1, create:null}, _createWidget:function(t, r) {
-    r = e(r || this.defaultElement || this)[0], this.element = e(r), this.uuid = n++, this.eventNamespace = "." + this.widgetName + this.uuid, this.options = e.widget.extend({}, this.options, this._getCreateOptions(), t), this.bindings = e(), this.hoverable = e(), this.focusable = e(), r !== this && (e.data(r, this.widgetName, this), e.data(r, this.widgetFullName, this), this._on(!0, this.element, {remove:function(e) {
+    r = e(r || (this.defaultElement || this))[0], this.element = e(r), this.uuid = n++, this.eventNamespace = "." + this.widgetName + this.uuid, this.options = e.widget.extend({}, this.options, this._getCreateOptions(), t), this.bindings = e(), this.hoverable = e(), this.focusable = e(), r !== this && (e.data(r, this.widgetName, this), e.data(r, this.widgetFullName, this), this._on(!0, this.element, {remove:function(e) {
       e.target === r && this.destroy()
     }}), this.document = e(r.style ? r.ownerDocument : r.document || r), this.window = e(this.document[0].defaultView || this.document[0].parentWindow)), this._create(), this._trigger("create", null, this._getCreateEventData()), this._init()
   }, _getCreateOptions:e.noop, _getCreateEventData:e.noop, _create:e.noop, _init:e.noop, destroy:function() {
@@ -3732,7 +3733,7 @@ VISH.Constant.INTRO = 13;
         }
         return(typeof o == "string" ? s[o] : o).apply(s, arguments)
       }
-      typeof o != "string" && (u.guid = o.guid = o.guid || u.guid || e.guid++);
+      typeof o != "string" && (u.guid = o.guid = o.guid || (u.guid || e.guid++));
       var a = r.match(/^(\w+)\s*(.*)$/), f = a[1] + s.eventNamespace, l = a[2];
       l ? i.delegate(l, f, u) : n.bind(f, u)
     })
@@ -3769,7 +3770,7 @@ VISH.Constant.INTRO = 13;
     e.Widget.prototype["_" + t] = function(r, i, s) {
       typeof i == "string" && (i = {effect:i});
       var o, u = i ? i === !0 || typeof i == "number" ? n : i.effect || n : t;
-      i = i || {}, typeof i == "number" && (i = {duration:i}), o = !e.isEmptyObject(i), i.complete = s, i.delay && r.delay(i.delay), o && e.effects && (e.effects.effect[u] || e.uiBackCompat !== !1 && e.effects[u]) ? r[t](i) : u !== t && r[u] ? r[u](i.duration, i.easing, s) : r.queue(function(n) {
+      i = i || {}, typeof i == "number" && (i = {duration:i}), o = !e.isEmptyObject(i), i.complete = s, i.delay && r.delay(i.delay), o && (e.effects && (e.effects.effect[u] || e.uiBackCompat !== !1 && e.effects[u])) ? r[t](i) : u !== t && r[u] ? r[u](i.duration, i.easing, s) : r.queue(function(n) {
         e(this)[t](), s && s.call(r[0]), n()
       })
     }
@@ -3798,7 +3799,7 @@ VISH.Constant.INTRO = 13;
     }
     this._mouseStarted && this._mouseUp(t), this._mouseDownEvent = t;
     var r = this, i = t.which === 1, s = typeof this.options.cancel == "string" && t.target.nodeName ? e(t.target).closest(this.options.cancel).length : !1;
-    if(!i || s || !this._mouseCapture(t)) {
+    if(!i || (s || !this._mouseCapture(t))) {
       return!0
     }
     this.mouseDelayMet = !this.options.delay, this.mouseDelayMet || (this._mouseDelayTimer = setTimeout(function() {
@@ -3816,7 +3817,7 @@ VISH.Constant.INTRO = 13;
       return r._mouseUp(e)
     }, e(document).bind("mousemove." + this.widgetName, this._mouseMoveDelegate).bind("mouseup." + this.widgetName, this._mouseUpDelegate), t.preventDefault(), n = !0, !0
   }, _mouseMove:function(t) {
-    return!e.ui.ie || document.documentMode >= 9 || !!t.button ? this._mouseStarted ? (this._mouseDrag(t), t.preventDefault()) : (this._mouseDistanceMet(t) && this._mouseDelayMet(t) && (this._mouseStarted = this._mouseStart(this._mouseDownEvent, t) !== !1, this._mouseStarted ? this._mouseDrag(t) : this._mouseUp(t)), !this._mouseStarted) : this._mouseUp(t)
+    return!e.ui.ie || (document.documentMode >= 9 || !!t.button) ? this._mouseStarted ? (this._mouseDrag(t), t.preventDefault()) : (this._mouseDistanceMet(t) && (this._mouseDelayMet(t) && (this._mouseStarted = this._mouseStart(this._mouseDownEvent, t) !== !1, this._mouseStarted ? this._mouseDrag(t) : this._mouseUp(t))), !this._mouseStarted) : this._mouseUp(t)
   }, _mouseUp:function(t) {
     return e(document).unbind("mousemove." + this.widgetName, this._mouseMoveDelegate).unbind("mouseup." + this.widgetName, this._mouseUpDelegate), this._mouseStarted && (this._mouseStarted = !1, t.target === this._mouseDownEvent.target && e.data(t.target, this.widgetName + ".preventClickEvent", !0), this._mouseStop(t)), !1
   }, _mouseDistanceMet:function(e) {
@@ -3866,7 +3867,7 @@ VISH.Constant.INTRO = 13;
         e.ui.position[E[r]] && e.ui.position[E[r]][i](C, {targetWidth:l, targetHeight:d, elemWidth:f, elemHeight:c, collisionPosition:o, collisionWidth:T, collisionHeight:N, offset:[n[0] + k[0], n[1] + k[1]], my:t.my, at:t.at, within:y, elem:a})
       }), e.fn.bgiframe && a.bgiframe(), t.using && (u = function(e) {
         var n = v.left - C.left, s = n + l - f, o = v.top - C.top, u = o + d - c, h = {target:{element:g, left:v.left, top:v.top, width:l, height:d}, element:{element:a, left:C.left, top:C.top, width:f, height:c}, horizontal:s < 0 ? "left" : n > 0 ? "right" : "center", vertical:u < 0 ? "top" : o > 0 ? "bottom" : "middle"};
-        l < f && i(n + s) < l && (h.horizontal = "center"), d < c && i(o + u) < d && (h.vertical = "middle"), r(i(n), i(s)) > r(i(o), i(u)) ? h.important = "horizontal" : h.important = "vertical", t.using.call(this, e, h)
+        l < f && (i(n + s) < l && (h.horizontal = "center")), d < c && (i(o + u) < d && (h.vertical = "middle")), r(i(n), i(s)) > r(i(o), i(u)) ? h.important = "horizontal" : h.important = "vertical", t.using.call(this, e, h)
       }), a.offset(e.extend(C, {using:u}))
     })
   }, e.ui.position = {fit:{left:function(e, t) {
@@ -3892,7 +3893,7 @@ VISH.Constant.INTRO = 13;
     }
   }, top:function(e, t) {
     var n = t.within, r = n.offset.top + n.scrollTop, s = n.height, o = n.isWindow ? n.scrollTop : n.offset.top, u = e.top - t.collisionPosition.marginTop, a = u - o, f = u + t.collisionHeight - s - o, l = t.my[1] === "top", c = l ? -t.elemHeight : t.my[1] === "bottom" ? t.elemHeight : 0, h = t.at[1] === "top" ? t.targetHeight : t.at[1] === "bottom" ? -t.targetHeight : 0, p = -2 * t.offset[1], d, v;
-    a < 0 ? (v = e.top + c + h + p + t.collisionHeight - s - r, e.top + c + h + p > a && (v < 0 || v < i(a)) && (e.top += c + h + p)) : f > 0 && (d = e.top - t.collisionPosition.marginTop + c + h + p - o, e.top + c + h + p > f && (d > 0 || i(d) < f) && (e.top += c + h + p))
+    a < 0 ? (v = e.top + c + h + p + t.collisionHeight - s - r, e.top + c + h + p > a && ((v < 0 || v < i(a)) && (e.top += c + h + p))) : f > 0 && (d = e.top - t.collisionPosition.marginTop + c + h + p - o, e.top + c + h + p > f && ((d > 0 || i(d) < f) && (e.top += c + h + p)))
   }}, flipfit:{left:function() {
     e.ui.position.flip.left.apply(this, arguments), e.ui.position.fit.left.apply(this, arguments)
   }, top:function() {
@@ -3917,18 +3918,18 @@ VISH.Constant.INTRO = 13;
 })(jQuery);
 (function(e, t) {
   e.widget("ui.draggable", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"drag", options:{addClasses:!0, appendTo:"parent", axis:!1, connectToSortable:!1, containment:!1, cursor:"auto", cursorAt:!1, grid:!1, handle:!1, helper:"original", iframeFix:!1, opacity:!1, refreshPositions:!1, revert:!1, revertDuration:500, scope:"default", scroll:!0, scrollSensitivity:20, scrollSpeed:20, snap:!1, snapMode:"both", snapTolerance:20, stack:!1, zIndex:!1}, _create:function() {
-    this.options.helper == "original" && !/^(?:r|a|f)/.test(this.element.css("position")) && (this.element[0].style.position = "relative"), this.options.addClasses && this.element.addClass("ui-draggable"), this.options.disabled && this.element.addClass("ui-draggable-disabled"), this._mouseInit()
+    this.options.helper == "original" && (!/^(?:r|a|f)/.test(this.element.css("position")) && (this.element[0].style.position = "relative")), this.options.addClasses && this.element.addClass("ui-draggable"), this.options.disabled && this.element.addClass("ui-draggable-disabled"), this._mouseInit()
   }, _destroy:function() {
     this.element.removeClass("ui-draggable ui-draggable-dragging ui-draggable-disabled"), this._mouseDestroy()
   }, _mouseCapture:function(t) {
     var n = this.options;
-    return this.helper || n.disabled || e(t.target).is(".ui-resizable-handle") ? !1 : (this.handle = this._getHandle(t), this.handle ? (e(n.iframeFix === !0 ? "iframe" : n.iframeFix).each(function() {
+    return this.helper || (n.disabled || e(t.target).is(".ui-resizable-handle")) ? !1 : (this.handle = this._getHandle(t), this.handle ? (e(n.iframeFix === !0 ? "iframe" : n.iframeFix).each(function() {
       e('<div class="ui-draggable-iframeFix" style="background: #fff;"></div>').css({width:this.offsetWidth + "px", height:this.offsetHeight + "px", position:"absolute", opacity:"0.001", zIndex:1E3}).css(e(this).offset()).appendTo("body")
     }), !0) : !1)
   }, _mouseStart:function(t) {
     var n = this.options;
     return this.helper = this._createHelper(t), this.helper.addClass("ui-draggable-dragging"), this._cacheHelperProportions(), e.ui.ddmanager && (e.ui.ddmanager.current = this), this._cacheMargins(), this.cssPosition = this.helper.css("position"), this.scrollParent = this.helper.scrollParent(), this.offset = this.positionAbs = this.element.offset(), this.offset = {top:this.offset.top - this.margins.top, left:this.offset.left - this.margins.left}, e.extend(this.offset, {click:{left:t.pageX - this.offset.left, 
-    top:t.pageY - this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), this.originalPosition = this.position = this._generatePosition(t), this.originalPageX = t.pageX, this.originalPageY = t.pageY, n.cursorAt && this._adjustOffsetFromHelper(n.cursorAt), n.containment && this._setContainment(), this._trigger("start", t) === !1 ? (this._clear(), !1) : (this._cacheHelperProportions(), e.ui.ddmanager && !n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t), this._mouseDrag(t, 
+    top:t.pageY - this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), this.originalPosition = this.position = this._generatePosition(t), this.originalPageX = t.pageX, this.originalPageY = t.pageY, n.cursorAt && this._adjustOffsetFromHelper(n.cursorAt), n.containment && this._setContainment(), this._trigger("start", t) === !1 ? (this._clear(), !1) : (this._cacheHelperProportions(), e.ui.ddmanager && (!n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)), this._mouseDrag(t, 
     !0), e.ui.ddmanager && e.ui.ddmanager.dragStart(this, t), !0)
   }, _mouseDrag:function(t, n) {
     this.position = this._generatePosition(t), this.positionAbs = this._convertPositionTo("absolute");
@@ -3948,7 +3949,7 @@ VISH.Constant.INTRO = 13;
     return e.ui.ddmanager && e.ui.ddmanager.drag(this, t), !1
   }, _mouseStop:function(t) {
     var n = !1;
-    e.ui.ddmanager && !this.options.dropBehaviour && (n = e.ui.ddmanager.drop(this, t)), this.dropped && (n = this.dropped, this.dropped = !1);
+    e.ui.ddmanager && (!this.options.dropBehaviour && (n = e.ui.ddmanager.drop(this, t))), this.dropped && (n = this.dropped, this.dropped = !1);
     var r = this.element[0], i = !1;
     while(r && (r = r.parentNode)) {
       r == document && (i = !0)
@@ -3956,7 +3957,7 @@ VISH.Constant.INTRO = 13;
     if(!i && this.options.helper === "original") {
       return!1
     }
-    if(this.options.revert == "invalid" && !n || this.options.revert == "valid" && n || this.options.revert === !0 || e.isFunction(this.options.revert) && this.options.revert.call(this.element, n)) {
+    if(this.options.revert == "invalid" && !n || (this.options.revert == "valid" && n || (this.options.revert === !0 || e.isFunction(this.options.revert) && this.options.revert.call(this.element, n)))) {
       var s = this;
       e(this.helper).animate(this.originalPosition, parseInt(this.options.revertDuration, 10), function() {
         s._trigger("stop", t) !== !1 && s._clear()
@@ -3978,14 +3979,14 @@ VISH.Constant.INTRO = 13;
     }), n
   }, _createHelper:function(t) {
     var n = this.options, r = e.isFunction(n.helper) ? e(n.helper.apply(this.element[0], [t])) : n.helper == "clone" ? this.element.clone().removeAttr("id") : this.element;
-    return r.parents("body").length || r.appendTo(n.appendTo == "parent" ? this.element[0].parentNode : n.appendTo), r[0] != this.element[0] && !/(fixed|absolute)/.test(r.css("position")) && r.css("position", "absolute"), r
+    return r.parents("body").length || r.appendTo(n.appendTo == "parent" ? this.element[0].parentNode : n.appendTo), r[0] != this.element[0] && (!/(fixed|absolute)/.test(r.css("position")) && r.css("position", "absolute")), r
   }, _adjustOffsetFromHelper:function(t) {
     typeof t == "string" && (t = t.split(" ")), e.isArray(t) && (t = {left:+t[0], top:+t[1] || 0}), "left" in t && (this.offset.click.left = t.left + this.margins.left), "right" in t && (this.offset.click.left = this.helperProportions.width - t.right + this.margins.left), "top" in t && (this.offset.click.top = t.top + this.margins.top), "bottom" in t && (this.offset.click.top = this.helperProportions.height - t.bottom + this.margins.top)
   }, _getParentOffset:function() {
     this.offsetParent = this.helper.offsetParent();
     var t = this.offsetParent.offset();
-    this.cssPosition == "absolute" && this.scrollParent[0] != document && e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop());
-    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie) {
+    this.cssPosition == "absolute" && (this.scrollParent[0] != document && (e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop())));
+    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && (this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie)) {
       t = {top:0, left:0}
     }
     return{top:t.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0), left:t.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)}
@@ -4043,7 +4044,7 @@ VISH.Constant.INTRO = 13;
     }
     return{top:o - this.offset.click.top - this.offset.relative.top - this.offset.parent.top + (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : i ? 0 : r.scrollTop()), left:s - this.offset.click.left - this.offset.relative.left - this.offset.parent.left + (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : i ? 0 : r.scrollLeft())}
   }, _clear:function() {
-    this.helper.removeClass("ui-draggable-dragging"), this.helper[0] != this.element[0] && !this.cancelHelperRemoval && this.helper.remove(), this.helper = null, this.cancelHelperRemoval = !1
+    this.helper.removeClass("ui-draggable-dragging"), this.helper[0] != this.element[0] && (!this.cancelHelperRemoval && this.helper.remove()), this.helper = null, this.cancelHelperRemoval = !1
   }, _trigger:function(t, n, r) {
     return r = r || this._uiHash(), e.ui.plugin.call(this, t, [n, r]), t == "drag" && (this.positionAbs = this._convertPositionTo("absolute")), e.Widget.prototype._trigger.call(this, t, n, r)
   }, plugins:{}, _uiHash:function(e) {
@@ -4052,7 +4053,7 @@ VISH.Constant.INTRO = 13;
     var r = e(this).data("draggable"), i = r.options, s = e.extend({}, n, {item:r.element});
     r.sortables = [], e(i.connectToSortable).each(function() {
       var n = e.data(this, "sortable");
-      n && !n.options.disabled && (r.sortables.push({instance:n, shouldRevert:n.options.revert}), n.refreshPositions(), n._trigger("activate", t, s))
+      n && (!n.options.disabled && (r.sortables.push({instance:n, shouldRevert:n.options.revert}), n.refreshPositions(), n._trigger("activate", t, s)))
     })
   }, stop:function(t, n) {
     var r = e(this).data("draggable"), i = e.extend({}, n, {item:r.element});
@@ -4067,7 +4068,7 @@ VISH.Constant.INTRO = 13;
     e.each(r.sortables, function(s) {
       var o = !1, u = this;
       this.instance.positionAbs = r.positionAbs, this.instance.helperProportions = r.helperProportions, this.instance.offset.click = r.offset.click, this.instance._intersectsWith(this.instance.containerCache) && (o = !0, e.each(r.sortables, function() {
-        return this.instance.positionAbs = r.positionAbs, this.instance.helperProportions = r.helperProportions, this.instance.offset.click = r.offset.click, this != u && this.instance._intersectsWith(this.instance.containerCache) && e.ui.contains(u.instance.element[0], this.instance.element[0]) && (o = !1), o
+        return this.instance.positionAbs = r.positionAbs, this.instance.helperProportions = r.helperProportions, this.instance.offset.click = r.offset.click, this != u && (this.instance._intersectsWith(this.instance.containerCache) && (e.ui.contains(u.instance.element[0], this.instance.element[0]) && (o = !1))), o
       })), o ? (this.instance.isOver || (this.instance.isOver = 1, this.instance.currentItem = e(i).clone().removeAttr("id").appendTo(this.instance.element).data("sortable-item", !0), this.instance.options._helper = this.instance.options.helper, this.instance.options.helper = function() {
         return n.helper[0]
       }, t.target = this.instance.currentItem[0], this.instance._mouseCapture(t, !0), this.instance._mouseStart(t, !0, !0), this.instance.offset.click.top = r.offset.click.top, this.instance.offset.click.left = r.offset.click.left, this.instance.offset.parent.left -= r.offset.parent.left - this.instance.offset.parent.left, this.instance.offset.parent.top -= r.offset.parent.top - this.instance.offset.parent.top, r._trigger("toSortable", t), r.dropped = this.instance.element, r.currentItem = r.element, 
@@ -4088,7 +4089,7 @@ VISH.Constant.INTRO = 13;
     r._opacity && e(n.helper).css("opacity", r._opacity)
   }}), e.ui.plugin.add("draggable", "scroll", {start:function(t, n) {
     var r = e(this).data("draggable");
-    r.scrollParent[0] != document && r.scrollParent[0].tagName != "HTML" && (r.overflowOffset = r.scrollParent.offset())
+    r.scrollParent[0] != document && (r.scrollParent[0].tagName != "HTML" && (r.overflowOffset = r.scrollParent.offset()))
   }, drag:function(t, n) {
     var r = e(this).data("draggable"), i = r.options, s = !1;
     if(r.scrollParent[0] != document && r.scrollParent[0].tagName != "HTML") {
@@ -4106,7 +4107,7 @@ VISH.Constant.INTRO = 13;
         t.pageX - e(document).scrollLeft() < i.scrollSensitivity ? s = e(document).scrollLeft(e(document).scrollLeft() - i.scrollSpeed) : e(window).width() - (t.pageX - e(document).scrollLeft()) < i.scrollSensitivity && (s = e(document).scrollLeft(e(document).scrollLeft() + i.scrollSpeed))
       }
     }
-    s !== !1 && e.ui.ddmanager && !i.dropBehaviour && e.ui.ddmanager.prepareOffsets(r, t)
+    s !== !1 && (e.ui.ddmanager && (!i.dropBehaviour && e.ui.ddmanager.prepareOffsets(r, t)))
   }}), e.ui.plugin.add("draggable", "snap", {start:function(t, n) {
     var r = e(this).data("draggable"), i = r.options;
     r.snapElements = [], e(i.snap.constructor != String ? i.snap.items || ":data(draggable)" : i.snap).each(function() {
@@ -4117,20 +4118,20 @@ VISH.Constant.INTRO = 13;
     var r = e(this).data("draggable"), i = r.options, s = i.snapTolerance, o = n.offset.left, u = o + r.helperProportions.width, a = n.offset.top, f = a + r.helperProportions.height;
     for(var l = r.snapElements.length - 1;l >= 0;l--) {
       var c = r.snapElements[l].left, h = c + r.snapElements[l].width, p = r.snapElements[l].top, d = p + r.snapElements[l].height;
-      if(!(c - s < o && o < h + s && p - s < a && a < d + s || c - s < o && o < h + s && p - s < f && f < d + s || c - s < u && u < h + s && p - s < a && a < d + s || c - s < u && u < h + s && p - s < f && f < d + s)) {
-        r.snapElements[l].snapping && r.options.snap.release && r.options.snap.release.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item})), r.snapElements[l].snapping = !1;
+      if(!(c - s < o && (o < h + s && (p - s < a && a < d + s)) || (c - s < o && (o < h + s && (p - s < f && f < d + s)) || (c - s < u && (u < h + s && (p - s < a && a < d + s)) || c - s < u && (u < h + s && (p - s < f && f < d + s)))))) {
+        r.snapElements[l].snapping && (r.options.snap.release && r.options.snap.release.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item}))), r.snapElements[l].snapping = !1;
         continue
       }
       if(i.snapMode != "inner") {
         var v = Math.abs(p - f) <= s, m = Math.abs(d - a) <= s, g = Math.abs(c - u) <= s, y = Math.abs(h - o) <= s;
         v && (n.position.top = r._convertPositionTo("relative", {top:p - r.helperProportions.height, left:0}).top - r.margins.top), m && (n.position.top = r._convertPositionTo("relative", {top:d, left:0}).top - r.margins.top), g && (n.position.left = r._convertPositionTo("relative", {top:0, left:c - r.helperProportions.width}).left - r.margins.left), y && (n.position.left = r._convertPositionTo("relative", {top:0, left:h}).left - r.margins.left)
       }
-      var b = v || m || g || y;
+      var b = v || (m || (g || y));
       if(i.snapMode != "outer") {
         var v = Math.abs(p - a) <= s, m = Math.abs(d - f) <= s, g = Math.abs(c - o) <= s, y = Math.abs(h - u) <= s;
         v && (n.position.top = r._convertPositionTo("relative", {top:p, left:0}).top - r.margins.top), m && (n.position.top = r._convertPositionTo("relative", {top:d - r.helperProportions.height, left:0}).top - r.margins.top), g && (n.position.left = r._convertPositionTo("relative", {top:0, left:c}).left - r.margins.left), y && (n.position.left = r._convertPositionTo("relative", {top:0, left:h - r.helperProportions.width}).left - r.margins.left)
       }
-      !r.snapElements[l].snapping && (v || m || g || y || b) && r.options.snap.snap && r.options.snap.snap.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item})), r.snapElements[l].snapping = v || m || g || y || b
+      !r.snapElements[l].snapping && ((v || (m || (g || (y || b)))) && (r.options.snap.snap && r.options.snap.snap.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item})))), r.snapElements[l].snapping = v || (m || (g || (y || b)))
     }
   }}), e.ui.plugin.add("draggable", "stack", {start:function(t, n) {
     var r = e(this).data("draggable").options, i = e.makeArray(e(r.stack)).sort(function(t, n) {
@@ -4193,7 +4194,7 @@ VISH.Constant.INTRO = 13;
     var i = !1;
     return this.element.find(":data(droppable)").not(".ui-draggable-dragging").each(function() {
       var t = e.data(this, "droppable");
-      if(t.options.greedy && !t.options.disabled && t.options.scope == r.options.scope && t.accept.call(t.element[0], r.currentItem || r.element) && e.ui.intersect(r, e.extend(t, {offset:t.element.offset()}), t.options.tolerance)) {
+      if(t.options.greedy && (!t.options.disabled && (t.options.scope == r.options.scope && (t.accept.call(t.element[0], r.currentItem || r.element) && e.ui.intersect(r, e.extend(t, {offset:t.element.offset()}), t.options.tolerance))))) {
         return i = !0, !1
       }
     }), i ? !1 : this.accept.call(this.element[0], r.currentItem || r.element) ? (this.options.activeClass && this.element.removeClass(this.options.activeClass), this.options.hoverClass && this.element.removeClass(this.options.hoverClass), this._trigger("drop", t, this.ui(r)), this.element) : !1
@@ -4206,14 +4207,14 @@ VISH.Constant.INTRO = 13;
     var i = (t.positionAbs || t.position.absolute).left, s = i + t.helperProportions.width, o = (t.positionAbs || t.position.absolute).top, u = o + t.helperProportions.height, a = n.offset.left, f = a + n.proportions.width, l = n.offset.top, c = l + n.proportions.height;
     switch(r) {
       case "fit":
-        return a <= i && s <= f && l <= o && u <= c;
+        return a <= i && (s <= f && (l <= o && u <= c));
       case "intersect":
-        return a < i + t.helperProportions.width / 2 && s - t.helperProportions.width / 2 < f && l < o + t.helperProportions.height / 2 && u - t.helperProportions.height / 2 < c;
+        return a < i + t.helperProportions.width / 2 && (s - t.helperProportions.width / 2 < f && (l < o + t.helperProportions.height / 2 && u - t.helperProportions.height / 2 < c));
       case "pointer":
         var h = (t.positionAbs || t.position.absolute).left + (t.clickOffset || t.offset.click).left, p = (t.positionAbs || t.position.absolute).top + (t.clickOffset || t.offset.click).top, d = e.ui.isOver(p, h, l, a, n.proportions.height, n.proportions.width);
         return d;
       case "touch":
-        return(o >= l && o <= c || u >= l && u <= c || o < l && u > c) && (i >= a && i <= f || s >= a && s <= f || i < a && s > f);
+        return(o >= l && o <= c || (u >= l && u <= c || o < l && u > c)) && (i >= a && i <= f || (s >= a && s <= f || i < a && s > f));
       default:
         return!1
     }
@@ -4241,7 +4242,7 @@ VISH.Constant.INTRO = 13;
       if(!this.options) {
         return
       }
-      !this.options.disabled && this.visible && e.ui.intersect(t, this, this.options.tolerance) && (r = this._drop.call(this, n) || r), !this.options.disabled && this.visible && this.accept.call(this.element[0], t.currentItem || t.element) && (this.isout = 1, this.isover = 0, this._deactivate.call(this, n))
+      !this.options.disabled && (this.visible && (e.ui.intersect(t, this, this.options.tolerance) && (r = this._drop.call(this, n) || r))), !this.options.disabled && (this.visible && (this.accept.call(this.element[0], t.currentItem || t.element) && (this.isout = 1, this.isover = 0, this._deactivate.call(this, n))))
     }), r
   }, dragStart:function(t, n) {
     t.element.parentsUntil("body").bind("scroll.droppable", function() {
@@ -4249,7 +4250,7 @@ VISH.Constant.INTRO = 13;
     })
   }, drag:function(t, n) {
     t.options.refreshPositions && e.ui.ddmanager.prepareOffsets(t, n), e.each(e.ui.ddmanager.droppables[t.options.scope] || [], function() {
-      if(this.options.disabled || this.greedyChild || !this.visible) {
+      if(this.options.disabled || (this.greedyChild || !this.visible)) {
         return
       }
       var r = e.ui.intersect(t, this, this.options.tolerance), i = !r && this.isover == 1 ? "isout" : r && this.isover == 0 ? "isover" : null;
@@ -4263,7 +4264,7 @@ VISH.Constant.INTRO = 13;
         });
         u.length && (s = e.data(u[0], "droppable"), s.greedyChild = i == "isover" ? 1 : 0)
       }
-      s && i == "isover" && (s.isover = 0, s.isout = 1, s._out.call(s, n)), this[i] = 1, this[i == "isout" ? "isover" : "isout"] = 0, this[i == "isover" ? "_over" : "_out"].call(this, n), s && i == "isout" && (s.isout = 0, s.isover = 1, s._over.call(s, n))
+      s && (i == "isover" && (s.isover = 0, s.isout = 1, s._out.call(s, n))), this[i] = 1, this[i == "isout" ? "isover" : "isout"] = 0, this[i == "isover" ? "_over" : "_out"].call(this, n), s && (i == "isout" && (s.isout = 0, s.isover = 1, s._over.call(s, n)))
     })
   }, dragStop:function(t, n) {
     t.element.parentsUntil("body").unbind("scroll.droppable"), t.options.refreshPositions || e.ui.ddmanager.prepareOffsets(t, n)
@@ -4272,7 +4273,7 @@ VISH.Constant.INTRO = 13;
 (function(e, t) {
   e.widget("ui.sortable", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"sort", ready:!1, options:{appendTo:"parent", axis:!1, connectWith:!1, containment:!1, cursor:"auto", cursorAt:!1, dropOnEmpty:!0, forcePlaceholderSize:!1, forceHelperSize:!1, grid:!1, handle:!1, helper:"original", items:"> *", opacity:!1, placeholder:!1, revert:!1, scroll:!0, scrollSensitivity:20, scrollSpeed:20, scope:"default", tolerance:"intersect", zIndex:1E3}, _create:function() {
     var e = this.options;
-    this.containerCache = {}, this.element.addClass("ui-sortable"), this.refresh(), this.floating = this.items.length ? e.axis === "x" || /left|right/.test(this.items[0].item.css("float")) || /inline|table-cell/.test(this.items[0].item.css("display")) : !1, this.offset = this.element.offset(), this._mouseInit(), this.ready = !0
+    this.containerCache = {}, this.element.addClass("ui-sortable"), this.refresh(), this.floating = this.items.length ? e.axis === "x" || (/left|right/.test(this.items[0].item.css("float")) || /inline|table-cell/.test(this.items[0].item.css("display"))) : !1, this.offset = this.element.offset(), this._mouseInit(), this.ready = !0
   }, _destroy:function() {
     this.element.removeClass("ui-sortable ui-sortable-disabled"), this._mouseDestroy();
     for(var e = this.items.length - 1;e >= 0;e--) {
@@ -4313,21 +4314,21 @@ VISH.Constant.INTRO = 13;
     var i = this.options;
     this.currentContainer = this, this.refreshPositions(), this.helper = this._createHelper(t), this._cacheHelperProportions(), this._cacheMargins(), this.scrollParent = this.helper.scrollParent(), this.offset = this.currentItem.offset(), this.offset = {top:this.offset.top - this.margins.top, left:this.offset.left - this.margins.left}, e.extend(this.offset, {click:{left:t.pageX - this.offset.left, top:t.pageY - this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), 
     this.helper.css("position", "absolute"), this.cssPosition = this.helper.css("position"), this.originalPosition = this._generatePosition(t), this.originalPageX = t.pageX, this.originalPageY = t.pageY, i.cursorAt && this._adjustOffsetFromHelper(i.cursorAt), this.domPosition = {prev:this.currentItem.prev()[0], parent:this.currentItem.parent()[0]}, this.helper[0] != this.currentItem[0] && this.currentItem.hide(), this._createPlaceholder(), i.containment && this._setContainment(), i.cursor && (e("body").css("cursor") && 
-    (this._storedCursor = e("body").css("cursor")), e("body").css("cursor", i.cursor)), i.opacity && (this.helper.css("opacity") && (this._storedOpacity = this.helper.css("opacity")), this.helper.css("opacity", i.opacity)), i.zIndex && (this.helper.css("zIndex") && (this._storedZIndex = this.helper.css("zIndex")), this.helper.css("zIndex", i.zIndex)), this.scrollParent[0] != document && this.scrollParent[0].tagName != "HTML" && (this.overflowOffset = this.scrollParent.offset()), this._trigger("start", 
+    (this._storedCursor = e("body").css("cursor")), e("body").css("cursor", i.cursor)), i.opacity && (this.helper.css("opacity") && (this._storedOpacity = this.helper.css("opacity")), this.helper.css("opacity", i.opacity)), i.zIndex && (this.helper.css("zIndex") && (this._storedZIndex = this.helper.css("zIndex")), this.helper.css("zIndex", i.zIndex)), this.scrollParent[0] != document && (this.scrollParent[0].tagName != "HTML" && (this.overflowOffset = this.scrollParent.offset())), this._trigger("start", 
     t, this._uiHash()), this._preserveHelperProportions || this._cacheHelperProportions();
     if(!r) {
       for(var s = this.containers.length - 1;s >= 0;s--) {
         this.containers[s]._trigger("activate", t, this._uiHash(this))
       }
     }
-    return e.ui.ddmanager && (e.ui.ddmanager.current = this), e.ui.ddmanager && !i.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t), this.dragging = !0, this.helper.addClass("ui-sortable-helper"), this._mouseDrag(t), !0
+    return e.ui.ddmanager && (e.ui.ddmanager.current = this), e.ui.ddmanager && (!i.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)), this.dragging = !0, this.helper.addClass("ui-sortable-helper"), this._mouseDrag(t), !0
   }, _mouseDrag:function(t) {
     this.position = this._generatePosition(t), this.positionAbs = this._convertPositionTo("absolute"), this.lastPositionAbs || (this.lastPositionAbs = this.positionAbs);
     if(this.options.scroll) {
       var n = this.options, r = !1;
       this.scrollParent[0] != document && this.scrollParent[0].tagName != "HTML" ? (this.overflowOffset.top + this.scrollParent[0].offsetHeight - t.pageY < n.scrollSensitivity ? this.scrollParent[0].scrollTop = r = this.scrollParent[0].scrollTop + n.scrollSpeed : t.pageY - this.overflowOffset.top < n.scrollSensitivity && (this.scrollParent[0].scrollTop = r = this.scrollParent[0].scrollTop - n.scrollSpeed), this.overflowOffset.left + this.scrollParent[0].offsetWidth - t.pageX < n.scrollSensitivity ? 
       this.scrollParent[0].scrollLeft = r = this.scrollParent[0].scrollLeft + n.scrollSpeed : t.pageX - this.overflowOffset.left < n.scrollSensitivity && (this.scrollParent[0].scrollLeft = r = this.scrollParent[0].scrollLeft - n.scrollSpeed)) : (t.pageY - e(document).scrollTop() < n.scrollSensitivity ? r = e(document).scrollTop(e(document).scrollTop() - n.scrollSpeed) : e(window).height() - (t.pageY - e(document).scrollTop()) < n.scrollSensitivity && (r = e(document).scrollTop(e(document).scrollTop() + 
-      n.scrollSpeed)), t.pageX - e(document).scrollLeft() < n.scrollSensitivity ? r = e(document).scrollLeft(e(document).scrollLeft() - n.scrollSpeed) : e(window).width() - (t.pageX - e(document).scrollLeft()) < n.scrollSensitivity && (r = e(document).scrollLeft(e(document).scrollLeft() + n.scrollSpeed))), r !== !1 && e.ui.ddmanager && !n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)
+      n.scrollSpeed)), t.pageX - e(document).scrollLeft() < n.scrollSensitivity ? r = e(document).scrollLeft(e(document).scrollLeft() - n.scrollSpeed) : e(window).width() - (t.pageX - e(document).scrollLeft()) < n.scrollSensitivity && (r = e(document).scrollLeft(e(document).scrollLeft() + n.scrollSpeed))), r !== !1 && (e.ui.ddmanager && (!n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)))
     }
     this.positionAbs = this._convertPositionTo("absolute");
     if(!this.options.axis || this.options.axis != "y") {
@@ -4344,7 +4345,7 @@ VISH.Constant.INTRO = 13;
       if(s.instance !== this.currentContainer) {
         continue
       }
-      if(o != this.currentItem[0] && this.placeholder[u == 1 ? "next" : "prev"]()[0] != o && !e.contains(this.placeholder[0], o) && (this.options.type == "semi-dynamic" ? !e.contains(this.element[0], o) : !0)) {
+      if(o != this.currentItem[0] && (this.placeholder[u == 1 ? "next" : "prev"]()[0] != o && (!e.contains(this.placeholder[0], o) && (this.options.type == "semi-dynamic" ? !e.contains(this.element[0], o) : !0)))) {
         this.direction = u == 1 ? "down" : "up";
         if(this.options.tolerance != "pointer" && !this._intersectsWithSides(s)) {
           break
@@ -4358,7 +4359,7 @@ VISH.Constant.INTRO = 13;
     if(!t) {
       return
     }
-    e.ui.ddmanager && !this.options.dropBehaviour && e.ui.ddmanager.drop(this, t);
+    e.ui.ddmanager && (!this.options.dropBehaviour && e.ui.ddmanager.drop(this, t));
     if(this.options.revert) {
       var r = this, i = this.placeholder.offset();
       this.reverting = !0, e(this.helper).animate({left:i.left - this.offset.parent.left - this.margins.left + (this.offsetParent[0] == document.body ? 0 : this.offsetParent[0].scrollLeft), top:i.top - this.offset.parent.top - this.margins.top + (this.offsetParent[0] == document.body ? 0 : this.offsetParent[0].scrollTop)}, parseInt(this.options.revert, 10) || 500, function() {
@@ -4375,21 +4376,21 @@ VISH.Constant.INTRO = 13;
         this.containers[t]._trigger("deactivate", null, this._uiHash(this)), this.containers[t].containerCache.over && (this.containers[t]._trigger("out", null, this._uiHash(this)), this.containers[t].containerCache.over = 0)
       }
     }
-    return this.placeholder && (this.placeholder[0].parentNode && this.placeholder[0].parentNode.removeChild(this.placeholder[0]), this.options.helper != "original" && this.helper && this.helper[0].parentNode && this.helper.remove(), e.extend(this, {helper:null, dragging:!1, reverting:!1, _noFinalSort:null}), this.domPosition.prev ? e(this.domPosition.prev).after(this.currentItem) : e(this.domPosition.parent).prepend(this.currentItem)), this
+    return this.placeholder && (this.placeholder[0].parentNode && this.placeholder[0].parentNode.removeChild(this.placeholder[0]), this.options.helper != "original" && (this.helper && (this.helper[0].parentNode && this.helper.remove())), e.extend(this, {helper:null, dragging:!1, reverting:!1, _noFinalSort:null}), this.domPosition.prev ? e(this.domPosition.prev).after(this.currentItem) : e(this.domPosition.parent).prepend(this.currentItem)), this
   }, serialize:function(t) {
     var n = this._getItemsAsjQuery(t && t.connected), r = [];
     return t = t || {}, e(n).each(function() {
       var n = (e(t.item || this).attr(t.attribute || "id") || "").match(t.expression || /(.+)[-=_](.+)/);
       n && r.push((t.key || n[1] + "[]") + "=" + (t.key && t.expression ? n[1] : n[2]))
-    }), !r.length && t.key && r.push(t.key + "="), r.join("&")
+    }), !r.length && (t.key && r.push(t.key + "=")), r.join("&")
   }, toArray:function(t) {
     var n = this._getItemsAsjQuery(t && t.connected), r = [];
     return t = t || {}, n.each(function() {
       r.push(e(t.item || this).attr(t.attribute || "id") || "")
     }), r
   }, _intersectsWith:function(e) {
-    var t = this.positionAbs.left, n = t + this.helperProportions.width, r = this.positionAbs.top, i = r + this.helperProportions.height, s = e.left, o = s + e.width, u = e.top, a = u + e.height, f = this.offset.click.top, l = this.offset.click.left, c = r + f > u && r + f < a && t + l > s && t + l < o;
-    return this.options.tolerance == "pointer" || this.options.forcePointerForContainers || this.options.tolerance != "pointer" && this.helperProportions[this.floating ? "width" : "height"] > e[this.floating ? "width" : "height"] ? c : s < t + this.helperProportions.width / 2 && n - this.helperProportions.width / 2 < o && u < r + this.helperProportions.height / 2 && i - this.helperProportions.height / 2 < a
+    var t = this.positionAbs.left, n = t + this.helperProportions.width, r = this.positionAbs.top, i = r + this.helperProportions.height, s = e.left, o = s + e.width, u = e.top, a = u + e.height, f = this.offset.click.top, l = this.offset.click.left, c = r + f > u && (r + f < a && (t + l > s && t + l < o));
+    return this.options.tolerance == "pointer" || (this.options.forcePointerForContainers || this.options.tolerance != "pointer" && this.helperProportions[this.floating ? "width" : "height"] > e[this.floating ? "width" : "height"]) ? c : s < t + this.helperProportions.width / 2 && (n - this.helperProportions.width / 2 < o && (u < r + this.helperProportions.height / 2 && i - this.helperProportions.height / 2 < a))
   }, _intersectsWithPointer:function(t) {
     var n = this.options.axis === "x" || e.ui.isOverAxis(this.positionAbs.top + this.offset.click.top, t.top, t.height), r = this.options.axis === "y" || e.ui.isOverAxis(this.positionAbs.left + this.offset.click.left, t.left, t.width), i = n && r, s = this._getDragVerticalDirection(), o = this._getDragHorizontalDirection();
     return i ? this.floating ? o && o == "right" || s == "down" ? 2 : 1 : s && (s == "down" ? 2 : 1) : !1
@@ -4414,7 +4415,7 @@ VISH.Constant.INTRO = 13;
         var o = e(i[s]);
         for(var u = o.length - 1;u >= 0;u--) {
           var a = e.data(o[u], this.widgetName);
-          a && a != this && !a.options.disabled && r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element) : e(a.options.items, a.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), a])
+          a && (a != this && (!a.options.disabled && r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element) : e(a.options.items, a.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), a])))
         }
       }
     }
@@ -4443,7 +4444,7 @@ VISH.Constant.INTRO = 13;
         var o = e(i[s]);
         for(var u = o.length - 1;u >= 0;u--) {
           var a = e.data(o[u], this.widgetName);
-          a && a != this && !a.options.disabled && (r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element[0], t, {item:this.currentItem}) : e(a.options.items, a.element), a]), this.containers.push(a))
+          a && (a != this && (!a.options.disabled && (r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element[0], t, {item:this.currentItem}) : e(a.options.items, a.element), a]), this.containers.push(a))))
         }
       }
     }
@@ -4455,10 +4456,10 @@ VISH.Constant.INTRO = 13;
       }
     }
   }, refreshPositions:function(t) {
-    this.offsetParent && this.helper && (this.offset.parent = this._getParentOffset());
+    this.offsetParent && (this.helper && (this.offset.parent = this._getParentOffset()));
     for(var n = this.items.length - 1;n >= 0;n--) {
       var r = this.items[n];
-      if(r.instance != this.currentContainer && this.currentContainer && r.item[0] != this.currentItem[0]) {
+      if(r.instance != this.currentContainer && (this.currentContainer && r.item[0] != this.currentItem[0])) {
         continue
       }
       var i = this.options.toleranceElement ? e(this.options.toleranceElement, r.item) : r.item;
@@ -4537,8 +4538,8 @@ VISH.Constant.INTRO = 13;
   }, _getParentOffset:function() {
     this.offsetParent = this.helper.offsetParent();
     var t = this.offsetParent.offset();
-    this.cssPosition == "absolute" && this.scrollParent[0] != document && e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop());
-    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie) {
+    this.cssPosition == "absolute" && (this.scrollParent[0] != document && (e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop())));
+    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && (this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie)) {
       t = {top:0, left:0}
     }
     return{top:t.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0), left:t.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)}
@@ -4569,7 +4570,7 @@ VISH.Constant.INTRO = 13;
     return{top:n.top + this.offset.relative.top * r + this.offset.parent.top * r - (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : o ? 0 : s.scrollTop()) * r, left:n.left + this.offset.relative.left * r + this.offset.parent.left * r - (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : o ? 0 : s.scrollLeft()) * r}
   }, _generatePosition:function(t) {
     var n = this.options, r = this.cssPosition != "absolute" || this.scrollParent[0] != document && !!e.contains(this.scrollParent[0], this.offsetParent[0]) ? this.scrollParent : this.offsetParent, i = /(html|body)/i.test(r[0].tagName);
-    this.cssPosition == "relative" && (this.scrollParent[0] == document || this.scrollParent[0] == this.offsetParent[0]) && (this.offset.relative = this._getRelativeOffset());
+    this.cssPosition == "relative" && ((this.scrollParent[0] == document || this.scrollParent[0] == this.offsetParent[0]) && (this.offset.relative = this._getRelativeOffset()));
     var s = t.pageX, o = t.pageY;
     if(this.originalPosition) {
       this.containment && (t.pageX - this.offset.click.left < this.containment[0] && (s = this.containment[0] + this.offset.click.left), t.pageY - this.offset.click.top < this.containment[1] && (o = this.containment[1] + this.offset.click.top), t.pageX - this.offset.click.left > this.containment[2] && (s = this.containment[2] + this.offset.click.left), t.pageY - this.offset.click.top > this.containment[3] && (o = this.containment[3] + this.offset.click.top));
@@ -4590,7 +4591,7 @@ VISH.Constant.INTRO = 13;
   }, _clear:function(t, n) {
     this.reverting = !1;
     var r = [];
-    !this._noFinalSort && this.currentItem.parent().length && this.placeholder.before(this.currentItem), this._noFinalSort = null;
+    !this._noFinalSort && (this.currentItem.parent().length && this.placeholder.before(this.currentItem)), this._noFinalSort = null;
     if(this.helper[0] == this.currentItem[0]) {
       for(var i in this._storedCSS) {
         if(this._storedCSS[i] == "auto" || this._storedCSS[i] == "static") {
@@ -4601,11 +4602,11 @@ VISH.Constant.INTRO = 13;
     }else {
       this.currentItem.show()
     }
-    this.fromOutside && !n && r.push(function(e) {
+    this.fromOutside && (!n && r.push(function(e) {
       this._trigger("receive", e, this._uiHash(this.fromOutside))
-    }), (this.fromOutside || this.domPosition.prev != this.currentItem.prev().not(".ui-sortable-helper")[0] || this.domPosition.parent != this.currentItem.parent()[0]) && !n && r.push(function(e) {
+    })), (this.fromOutside || (this.domPosition.prev != this.currentItem.prev().not(".ui-sortable-helper")[0] || this.domPosition.parent != this.currentItem.parent()[0])) && (!n && r.push(function(e) {
       this._trigger("update", e, this._uiHash())
-    }), this !== this.currentContainer && (n || (r.push(function(e) {
+    })), this !== this.currentContainer && (n || (r.push(function(e) {
       this._trigger("remove", e, this._uiHash())
     }), r.push(function(e) {
       return function(t) {
@@ -4735,7 +4736,7 @@ VISH.Constant.INTRO = 13;
       e(t.target).closest(".ui-menu-item").length || this._delay(function() {
         var t = this;
         this.document.one("mousedown", function(r) {
-          r.target !== t.element[0] && r.target !== n && !e.contains(n, r.target) && t.close()
+          r.target !== t.element[0] && (r.target !== n && (!e.contains(n, r.target) && t.close()))
         })
       })
     }, menufocus:function(t, n) {
@@ -4749,7 +4750,7 @@ VISH.Constant.INTRO = 13;
         }
       }
       var r = n.item.data("ui-autocomplete-item") || n.item.data("item.autocomplete");
-      !1 !== this._trigger("focus", t, {item:r}) ? t.originalEvent && /^key/.test(t.originalEvent.type) && this._value(r.value) : this.liveRegion.text(r.value)
+      !1 !== this._trigger("focus", t, {item:r}) ? t.originalEvent && (/^key/.test(t.originalEvent.type) && this._value(r.value)) : this.liveRegion.text(r.value)
     }, menuselect:function(e, t) {
       var n = t.item.data("ui-autocomplete-item") || t.item.data("item.autocomplete"), r = this.previous;
       this.element[0] !== this.document[0].activeElement && (this.element.focus(), this.previous = r, this._delay(function() {
@@ -4761,7 +4762,7 @@ VISH.Constant.INTRO = 13;
   }, _destroy:function() {
     clearTimeout(this.searching), this.element.removeClass("ui-autocomplete-input").removeAttr("autocomplete"), this.menu.element.remove(), this.liveRegion.remove()
   }, _setOption:function(e, t) {
-    this._super(e, t), e === "source" && this._initSource(), e === "appendTo" && this.menu.element.appendTo(this.document.find(t || "body")[0]), e === "disabled" && t && this.xhr && this.xhr.abort()
+    this._super(e, t), e === "source" && this._initSource(), e === "appendTo" && this.menu.element.appendTo(this.document.find(t || "body")[0]), e === "disabled" && (t && (this.xhr && this.xhr.abort()))
   }, _isMultiLine:function() {
     return this.element.is("textarea") ? !0 : this.element.is("input") ? !1 : this.element.prop("isContentEditable")
   }, _initSource:function() {
@@ -4796,7 +4797,7 @@ VISH.Constant.INTRO = 13;
       t === n && e.__response(r), e.pending--, e.pending || e.element.removeClass("ui-autocomplete-loading")
     }
   }, __response:function(e) {
-    e && (e = this._normalize(e)), this._trigger("response", null, {content:e}), !this.options.disabled && e && e.length && !this.cancelSearch ? (this._suggest(e), this._trigger("open")) : this._close()
+    e && (e = this._normalize(e)), this._trigger("response", null, {content:e}), !this.options.disabled && (e && (e.length && !this.cancelSearch)) ? (this._suggest(e), this._trigger("open")) : this._close()
   }, close:function(e) {
     this.cancelSearch = !0, this._close(e)
   }, _close:function(e) {
@@ -4804,7 +4805,7 @@ VISH.Constant.INTRO = 13;
   }, _change:function(e) {
     this.previous !== this._value() && this._trigger("change", e, {item:this.selectedItem})
   }, _normalize:function(t) {
-    return t.length && t[0].label && t[0].value ? t : e.map(t, function(t) {
+    return t.length && (t[0].label && t[0].value) ? t : e.map(t, function(t) {
       return typeof t == "string" ? {label:t, value:t} : e.extend({label:t.label || t.value, value:t.value || t.label}, t)
     })
   }, _suggest:function(t) {
@@ -4845,7 +4846,7 @@ VISH.Constant.INTRO = 13;
   }, filter:function(t, n) {
     var r = new RegExp(e.ui.autocomplete.escapeRegex(n), "i");
     return e.grep(t, function(e) {
-      return r.test(e.label || e.value || e)
+      return r.test(e.label || (e.value || e))
     })
   }}), e.widget("ui.autocomplete", e.ui.autocomplete, {options:{messages:{noResults:"No search results.", results:function(e) {
     return e + (e > 1 ? " results are" : " result is") + " available, use up and down arrow keys to navigate."
@@ -4869,7 +4870,7 @@ VISH.Constant.INTRO = 13;
       e.preventDefault()
     }, "click .ui-menu-item:has(a)":function(t) {
       var r = e(t.target).closest(".ui-menu-item");
-      !n && r.not(".ui-state-disabled").length && (n = !0, this.select(t), r.has(".ui-menu").length ? this.expand(t) : this.element.is(":focus") || (this.element.trigger("focus", [!0]), this.active && this.active.parents(".ui-menu").length === 1 && clearTimeout(this.timer)))
+      !n && (r.not(".ui-state-disabled").length && (n = !0, this.select(t), r.has(".ui-menu").length ? this.expand(t) : this.element.is(":focus") || (this.element.trigger("focus", [!0]), this.active && (this.active.parents(".ui-menu").length === 1 && clearTimeout(this.timer)))))
     }, "mouseenter .ui-menu-item":function(t) {
       var n = e(t.currentTarget);
       n.siblings().children(".ui-state-active").removeClass("ui-state-active"), this.focus(t, n)
@@ -4916,7 +4917,7 @@ VISH.Constant.INTRO = 13;
         this.collapse(t);
         break;
       case e.ui.keyCode.RIGHT:
-        this.active && !this.active.is(".ui-state-disabled") && this.expand(t);
+        this.active && (!this.active.is(".ui-state-disabled") && this.expand(t));
         break;
       case e.ui.keyCode.ENTER:
       ;
@@ -4946,14 +4947,14 @@ VISH.Constant.INTRO = 13;
     }), t = r.add(this.element), t.children(":not(.ui-menu-item):has(a)").addClass("ui-menu-item").attr("role", "presentation").children("a").uniqueId().addClass("ui-corner-all").attr({tabIndex:-1, role:this._itemRole()}), t.children(":not(.ui-menu-item)").each(function() {
       var t = e(this);
       /[^\-\u2014\u2013\s]/.test(t.text()) || t.addClass("ui-widget-content ui-menu-divider")
-    }), t.children(".ui-state-disabled").attr("aria-disabled", "true"), this.active && !e.contains(this.element[0], this.active[0]) && this.blur()
+    }), t.children(".ui-state-disabled").attr("aria-disabled", "true"), this.active && (!e.contains(this.element[0], this.active[0]) && this.blur())
   }, _itemRole:function() {
     return{menu:"menuitem", listbox:"option"}[this.options.role]
   }, focus:function(e, t) {
     var n, r;
     this.blur(e, e && e.type === "focus"), this._scrollIntoView(t), this.active = t.first(), r = this.active.children("a").addClass("ui-state-focus"), this.options.role && this.element.attr("aria-activedescendant", r.attr("id")), this.active.parent().closest(".ui-menu-item").children("a:first").addClass("ui-state-active"), e && e.type === "keydown" ? this._close() : this.timer = this._delay(function() {
       this._close()
-    }, this.delay), n = t.children(".ui-menu"), n.length && /^mouse/.test(e.type) && this._startOpening(n), this.activeMenu = t.parent(), this._trigger("focus", e, {item:t})
+    }, this.delay), n = t.children(".ui-menu"), n.length && (/^mouse/.test(e.type) && this._startOpening(n)), this.activeMenu = t.parent(), this._trigger("focus", e, {item:t})
   }, _scrollIntoView:function(t) {
     var n, r, i, s, o, u;
     this._hasScroll() && (n = parseFloat(e.css(this.activeMenu[0], "borderTopWidth")) || 0, r = parseFloat(e.css(this.activeMenu[0], "paddingTop")) || 0, i = t.offset().top - this.activeMenu.offset().top - n - r, s = this.activeMenu.scrollTop(), o = this.activeMenu.height(), u = t.height(), i < 0 ? this.activeMenu.scrollTop(s + i) : i + u > o && this.activeMenu.scrollTop(s + i - o + u))
@@ -4983,12 +4984,12 @@ VISH.Constant.INTRO = 13;
     e || (e = this.active ? this.active.parent() : this.element), e.find(".ui-menu").hide().attr("aria-hidden", "true").attr("aria-expanded", "false").end().find("a.ui-state-active").removeClass("ui-state-active")
   }, collapse:function(e) {
     var t = this.active && this.active.parent().closest(".ui-menu-item", this.element);
-    t && t.length && (this._close(), this.focus(e, t))
+    t && (t.length && (this._close(), this.focus(e, t)))
   }, expand:function(e) {
     var t = this.active && this.active.children(".ui-menu ").children(".ui-menu-item").first();
-    t && t.length && (this._open(t.parent()), this._delay(function() {
+    t && (t.length && (this._open(t.parent()), this._delay(function() {
       this.focus(e, t)
-    }))
+    })))
   }, next:function(e) {
     this._move("next", "first", e)
   }, previous:function(e) {
@@ -5000,7 +5001,7 @@ VISH.Constant.INTRO = 13;
   }, _move:function(e, t, n) {
     var r;
     this.active && (e === "first" || e === "last" ? r = this.active[e === "first" ? "prevAll" : "nextAll"](".ui-menu-item").eq(-1) : r = this.active[e + "All"](".ui-menu-item").eq(0));
-    if(!r || !r.length || !this.active) {
+    if(!r || (!r.length || !this.active)) {
       r = this.activeMenu.children(".ui-menu-item")[t]()
     }
     this.focus(n, r)
@@ -5040,8 +5041,8 @@ VISH.Constant.INTRO = 13;
   var n = 5;
   e.widget("ui.slider", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"slide", options:{animate:!1, distance:0, max:100, min:0, orientation:"horizontal", range:!1, step:1, value:0, values:null}, _create:function() {
     var t, r, i = this.options, s = this.element.find(".ui-slider-handle").addClass("ui-state-default ui-corner-all"), o = "<a class='ui-slider-handle ui-state-default ui-corner-all' href='#'></a>", u = [];
-    this._keySliding = !1, this._mouseSliding = !1, this._animateOff = !0, this._handleIndex = null, this._detectOrientation(), this._mouseInit(), this.element.addClass("ui-slider ui-slider-" + this.orientation + " ui-widget" + " ui-widget-content" + " ui-corner-all" + (i.disabled ? " ui-slider-disabled ui-disabled" : "")), this.range = e([]), i.range && (i.range === !0 && (i.values || (i.values = [this._valueMin(), this._valueMin()]), i.values.length && i.values.length !== 2 && (i.values = [i.values[0], 
-    i.values[0]])), this.range = e("<div></div>").appendTo(this.element).addClass("ui-slider-range ui-widget-header" + (i.range === "min" || i.range === "max" ? " ui-slider-range-" + i.range : ""))), r = i.values && i.values.length || 1;
+    this._keySliding = !1, this._mouseSliding = !1, this._animateOff = !0, this._handleIndex = null, this._detectOrientation(), this._mouseInit(), this.element.addClass("ui-slider ui-slider-" + this.orientation + " ui-widget" + " ui-widget-content" + " ui-corner-all" + (i.disabled ? " ui-slider-disabled ui-disabled" : "")), this.range = e([]), i.range && (i.range === !0 && (i.values || (i.values = [this._valueMin(), this._valueMin()]), i.values.length && (i.values.length !== 2 && (i.values = [i.values[0], 
+    i.values[0]]))), this.range = e("<div></div>").appendTo(this.element).addClass("ui-slider-range ui-widget-header" + (i.range === "min" || i.range === "max" ? " ui-slider-range-" + i.range : ""))), r = i.values && i.values.length || 1;
     for(t = s.length;t < r;t++) {
       u.push(o)
     }
@@ -5125,8 +5126,8 @@ VISH.Constant.INTRO = 13;
     return c.disabled ? !1 : (this.elementSize = {width:this.element.outerWidth(), height:this.element.outerHeight()}, this.elementOffset = this.element.offset(), n = {x:t.pageX, y:t.pageY}, r = this._normValueFromMouse(n), i = this._valueMax() - this._valueMin() + 1, this.handles.each(function(t) {
       var n = Math.abs(r - l.values(t));
       i > n && (i = n, s = e(this), o = t)
-    }), c.range === !0 && this.values(1) === c.min && (o += 1, s = e(this.handles[o])), u = this._start(t, o), u === !1 ? !1 : (this._mouseSliding = !0, this._handleIndex = o, s.addClass("ui-state-active").focus(), a = s.offset(), f = !e(t.target).parents().andSelf().is(".ui-slider-handle"), this._clickOffset = f ? {left:0, top:0} : {left:t.pageX - a.left - s.width() / 2, top:t.pageY - a.top - s.height() / 2 - (parseInt(s.css("borderTopWidth"), 10) || 0) - (parseInt(s.css("borderBottomWidth"), 10) || 
-    0) + (parseInt(s.css("marginTop"), 10) || 0)}, this.handles.hasClass("ui-state-hover") || this._slide(t, o, r), this._animateOff = !0, !0))
+    }), c.range === !0 && (this.values(1) === c.min && (o += 1, s = e(this.handles[o]))), u = this._start(t, o), u === !1 ? !1 : (this._mouseSliding = !0, this._handleIndex = o, s.addClass("ui-state-active").focus(), a = s.offset(), f = !e(t.target).parents().andSelf().is(".ui-slider-handle"), this._clickOffset = f ? {left:0, top:0} : {left:t.pageX - a.left - s.width() / 2, top:t.pageY - a.top - s.height() / 2 - (parseInt(s.css("borderTopWidth"), 10) || 0) - (parseInt(s.css("borderBottomWidth"), 
+    10) || 0) + (parseInt(s.css("marginTop"), 10) || 0)}, this.handles.hasClass("ui-state-hover") || this._slide(t, o, r), this._animateOff = !0, !0))
   }, _mouseStart:function() {
     return!0
   }, _mouseDrag:function(e) {
@@ -5141,17 +5142,18 @@ VISH.Constant.INTRO = 13;
     return this.orientation === "horizontal" ? (t = this.elementSize.width, n = e.x - this.elementOffset.left - (this._clickOffset ? this._clickOffset.left : 0)) : (t = this.elementSize.height, n = e.y - this.elementOffset.top - (this._clickOffset ? this._clickOffset.top : 0)), r = n / t, r > 1 && (r = 1), r < 0 && (r = 0), this.orientation === "vertical" && (r = 1 - r), i = this._valueMax() - this._valueMin(), s = this._valueMin() + r * i, this._trimAlignValue(s)
   }, _start:function(e, t) {
     var n = {handle:this.handles[t], value:this.value()};
-    return this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("start", e, n)
+    return this.options.values && (this.options.values.length && (n.value = this.values(t), n.values = this.values())), this._trigger("start", e, n)
   }, _slide:function(e, t, n) {
     var r, i, s;
-    this.options.values && this.options.values.length ? (r = this.values(t ? 0 : 1), this.options.values.length === 2 && this.options.range === !0 && (t === 0 && n > r || t === 1 && n < r) && (n = r), n !== this.values(t) && (i = this.values(), i[t] = n, s = this._trigger("slide", e, {handle:this.handles[t], value:n, values:i}), r = this.values(t ? 0 : 1), s !== !1 && this.values(t, n, !0))) : n !== this.value() && (s = this._trigger("slide", e, {handle:this.handles[t], value:n}), s !== !1 && this.value(n))
+    this.options.values && this.options.values.length ? (r = this.values(t ? 0 : 1), this.options.values.length === 2 && (this.options.range === !0 && ((t === 0 && n > r || t === 1 && n < r) && (n = r))), n !== this.values(t) && (i = this.values(), i[t] = n, s = this._trigger("slide", e, {handle:this.handles[t], value:n, values:i}), r = this.values(t ? 0 : 1), s !== !1 && this.values(t, n, !0))) : n !== this.value() && (s = this._trigger("slide", e, {handle:this.handles[t], value:n}), s !== !1 && 
+    this.value(n))
   }, _stop:function(e, t) {
     var n = {handle:this.handles[t], value:this.value()};
-    this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("stop", e, n)
+    this.options.values && (this.options.values.length && (n.value = this.values(t), n.values = this.values())), this._trigger("stop", e, n)
   }, _change:function(e, t) {
     if(!this._keySliding && !this._mouseSliding) {
       var n = {handle:this.handles[t], value:this.value()};
-      this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("change", e, n)
+      this.options.values && (this.options.values.length && (n.value = this.values(t), n.values = this.values())), this._trigger("change", e, n)
     }
   }, value:function(e) {
     if(arguments.length) {
@@ -5232,8 +5234,8 @@ VISH.Constant.INTRO = 13;
     this.options.values && this.options.values.length ? this.handles.each(function(r) {
       n = (a.values(r) - a._valueMin()) / (a._valueMax() - a._valueMin()) * 100, l[a.orientation === "horizontal" ? "left" : "bottom"] = n + "%", e(this).stop(1, 1)[f ? "animate" : "css"](l, u.animate), a.options.range === !0 && (a.orientation === "horizontal" ? (r === 0 && a.range.stop(1, 1)[f ? "animate" : "css"]({left:n + "%"}, u.animate), r === 1 && a.range[f ? "animate" : "css"]({width:n - t + "%"}, {queue:!1, duration:u.animate})) : (r === 0 && a.range.stop(1, 1)[f ? "animate" : "css"]({bottom:n + 
       "%"}, u.animate), r === 1 && a.range[f ? "animate" : "css"]({height:n - t + "%"}, {queue:!1, duration:u.animate}))), t = n
-    }) : (r = this.value(), i = this._valueMin(), s = this._valueMax(), n = s !== i ? (r - i) / (s - i) * 100 : 0, l[this.orientation === "horizontal" ? "left" : "bottom"] = n + "%", this.handle.stop(1, 1)[f ? "animate" : "css"](l, u.animate), o === "min" && this.orientation === "horizontal" && this.range.stop(1, 1)[f ? "animate" : "css"]({width:n + "%"}, u.animate), o === "max" && this.orientation === "horizontal" && this.range[f ? "animate" : "css"]({width:100 - n + "%"}, {queue:!1, duration:u.animate}), 
-    o === "min" && this.orientation === "vertical" && this.range.stop(1, 1)[f ? "animate" : "css"]({height:n + "%"}, u.animate), o === "max" && this.orientation === "vertical" && this.range[f ? "animate" : "css"]({height:100 - n + "%"}, {queue:!1, duration:u.animate}))
+    }) : (r = this.value(), i = this._valueMin(), s = this._valueMax(), n = s !== i ? (r - i) / (s - i) * 100 : 0, l[this.orientation === "horizontal" ? "left" : "bottom"] = n + "%", this.handle.stop(1, 1)[f ? "animate" : "css"](l, u.animate), o === "min" && (this.orientation === "horizontal" && this.range.stop(1, 1)[f ? "animate" : "css"]({width:n + "%"}, u.animate)), o === "max" && (this.orientation === "horizontal" && this.range[f ? "animate" : "css"]({width:100 - n + "%"}, {queue:!1, duration:u.animate})), 
+    o === "min" && (this.orientation === "vertical" && this.range.stop(1, 1)[f ? "animate" : "css"]({height:n + "%"}, u.animate)), o === "max" && (this.orientation === "vertical" && this.range[f ? "animate" : "css"]({height:100 - n + "%"}, {queue:!1, duration:u.animate})))
   }})
 })(jQuery);
 (function(d) {
@@ -5377,7 +5379,7 @@ window.Chart = function(context, options) {
     }else {
       var s = p / (2 * Math.PI) * Math.asin(1 / a)
     }
-    return-(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p))
+    return-(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p))
   }, easeOutElastic:function(t) {
     var s = 1.70158;
     var p = 0;
@@ -5397,7 +5399,7 @@ window.Chart = function(context, options) {
     }else {
       var s = p / (2 * Math.PI) * Math.asin(1 / a)
     }
-    return a * Math.pow(2, -10 * t) * Math.sin((t * 1 - s) * 2 * Math.PI / p) + 1
+    return a * Math.pow(2, -10 * t) * Math.sin((t * 1 - s) * (2 * Math.PI) / p) + 1
   }, easeInOutElastic:function(t) {
     var s = 1.70158;
     var p = 0;
@@ -5409,7 +5411,7 @@ window.Chart = function(context, options) {
       return 1
     }
     if(!p) {
-      p = 1 * 0.3 * 1.5
+      p = 1 * (0.3 * 1.5)
     }
     if(a < Math.abs(1)) {
       a = 1;
@@ -5418,9 +5420,9 @@ window.Chart = function(context, options) {
       var s = p / (2 * Math.PI) * Math.asin(1 / a)
     }
     if(t < 1) {
-      return-0.5 * a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p)
+      return-0.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p))
     }
-    return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p) * 0.5 + 1
+    return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p) * 0.5 + 1
   }, easeInBack:function(t) {
     var s = 1.70158;
     return 1 * (t /= 1) * t * ((s + 1) * t - s)
@@ -5430,14 +5432,14 @@ window.Chart = function(context, options) {
   }, easeInOutBack:function(t) {
     var s = 1.70158;
     if((t /= 1 / 2) < 1) {
-      return 1 / 2 * t * t * (((s *= 1.525) + 1) * t - s)
+      return 1 / 2 * (t * t * (((s *= 1.525) + 1) * t - s))
     }
     return 1 / 2 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2)
   }, easeInBounce:function(t) {
     return 1 - animationOptions.easeOutBounce(1 - t)
   }, easeOutBounce:function(t) {
     if((t /= 1) < 1 / 2.75) {
-      return 1 * 7.5625 * t * t
+      return 1 * (7.5625 * t * t)
     }else {
       if(t < 2 / 2.75) {
         return 1 * (7.5625 * (t -= 1.5 / 2.75) * t + 0.75)
@@ -5471,7 +5473,7 @@ window.Chart = function(context, options) {
       if(this.areaObj.type) {
         switch(this.areaObj.type) {
           case "rect":
-            return x >= this.areaObj.x && x <= this.areaObj.x + this.areaObj.width && y >= this.areaObj.y && y <= this.areaObj.y + this.areaObj.height;
+            return x >= this.areaObj.x && x <= this.areaObj.x + this.areaObj.width && (y >= this.areaObj.y && y <= this.areaObj.y + this.areaObj.height);
             break;
           case "circle":
             return Math.pow(x - this.areaObj.x, 2) + Math.pow(y - this.areaObj.y, 2) < Math.pow(this.areaObj.r, 2);
@@ -5479,7 +5481,7 @@ window.Chart = function(context, options) {
           case "shape":
             var poly = this.areaObj.points;
             for(var c = false, i = -1, l = poly.length, j = l - 1;++i < l;j = i) {
-              (poly[i].y <= y && y < poly[j].y || poly[j].y <= y && y < poly[i].y) && x < (poly[j].x - poly[i].x) * (y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x && (c = !c)
+              (poly[i].y <= y && y < poly[j].y || poly[j].y <= y && y < poly[i].y) && (x < (poly[j].x - poly[i].x) * (y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x && (c = !c))
             }
             return c;
             break
@@ -5758,7 +5760,7 @@ window.Chart = function(context, options) {
       for(var i = 0;i < data.datasets.length;i++) {
         var offset = calculateOffset(data.datasets[i].data[0], calculatedScale, scaleHop);
         ctx.beginPath();
-        ctx.moveTo(0, animationDecimal * -1 * offset);
+        ctx.moveTo(0, animationDecimal * (-1 * offset));
         if(animationDecimal >= 1 && config.showTooltips) {
           var curX = width / 2 + offset * Math.cos(0 - Math.PI / 2), curY = height / 2 + offset * Math.sin(0 - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[0].trim() != "" ? data.labels[0] + ": " + data.datasets[i].data[0] : data.datasets[i].data[0];
           registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[0], value:data.datasets[i].data[0]}, "Radar")
@@ -5766,7 +5768,7 @@ window.Chart = function(context, options) {
         for(var j = 1;j < data.datasets[i].data.length;j++) {
           offset = calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop);
           ctx.rotate(rotationDegree);
-          ctx.lineTo(0, animationDecimal * -1 * offset);
+          ctx.lineTo(0, animationDecimal * (-1 * offset));
           if(animationDecimal >= 1 && config.showTooltips) {
             var curX = width / 2 + offset * Math.cos(j * rotationDegree - Math.PI / 2), curY = height / 2 + offset * Math.sin(j * rotationDegree - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[j].trim() != "" ? data.labels[j] + ": " + data.datasets[i].data[j] : data.datasets[i].data[j];
             registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Radar")
@@ -5785,7 +5787,7 @@ window.Chart = function(context, options) {
           for(var k = 0;k < data.datasets[i].data.length;k++) {
             ctx.rotate(rotationDegree);
             ctx.beginPath();
-            ctx.arc(0, animationDecimal * -1 * calculateOffset(data.datasets[i].data[k], calculatedScale, scaleHop), config.pointDotRadius, 2 * Math.PI, false);
+            ctx.arc(0, animationDecimal * (-1 * calculateOffset(data.datasets[i].data[k], calculatedScale, scaleHop)), config.pointDotRadius, 2 * Math.PI, false);
             ctx.fill();
             ctx.stroke()
           }
@@ -5911,7 +5913,7 @@ window.Chart = function(context, options) {
         }
       }
       for(var i = 0;i < data.length;i++) {
-        var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
+        var segmentAngle = rotateAnimation * (data[i].value / segmentTotal * (Math.PI * 2));
         segmentAngle = Math.min(Math.PI * 1.99999, segmentAngle);
         ctx.beginPath();
         ctx.arc(width / 2, height / 2, scaleAnimation * pieRadius, cumulativeAngle, cumulativeAngle + segmentAngle);
@@ -6001,7 +6003,7 @@ window.Chart = function(context, options) {
         }
       }
       for(var i = 0;i < data.length;i++) {
-        var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
+        var segmentAngle = rotateAnimation * (data[i].value / segmentTotal * (Math.PI * 2));
         ctx.beginPath();
         ctx.arc(width / 2, height / 2, scaleAnimation * doughnutRadius, cumulativeAngle, cumulativeAngle + segmentAngle, false);
         ctx.arc(width / 2, height / 2, scaleAnimation * cutoutRadius, cumulativeAngle + segmentAngle, cumulativeAngle, true);
@@ -6395,9 +6397,9 @@ window.Chart = function(context, options) {
     }
   }
   var requestAnimFrame = function() {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+    return window.requestAnimationFrame || (window.webkitRequestAnimationFrame || (window.mozRequestAnimationFrame || (window.oRequestAnimationFrame || (window.msRequestAnimationFrame || function(callback) {
       window.setTimeout(callback, 1E3 / 60)
-    }
+    }))))
   }();
   function calculateScale(drawingHeight, maxSteps, minSteps, maxValue, minValue, labelTemplateString) {
     var graphMin, graphMax, graphRange, stepValue, numberOfSteps, valueRange, rangeOrderOfMagnitude, decimalNum;
@@ -6545,8 +6547,8 @@ jQuery.cookie = function(key, value, options) {
   return(result = (new RegExp("(?:^|; )" + encodeURIComponent(key) + "=([^;]*)")).exec(document.cookie)) ? decode(result[1]) : null
 };
 (function($) {
-  var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right, selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [], ajaxLoader = null, imgPreloader = new Image, imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, loadingTimer, loadingFrame = 1, titleHeight = 0, titleStr = "", start_pos, final_pos, busy = false, fx = $.extend($("<div/>")[0], {prop:0}), isIE6 = $.browser.msie && $.browser.version < 
-  7 && !window.XMLHttpRequest, _abort = function() {
+  var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right, selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [], ajaxLoader = null, imgPreloader = new Image, imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, loadingTimer, loadingFrame = 1, titleHeight = 0, titleStr = "", start_pos, final_pos, busy = false, fx = $.extend($("<div/>")[0], {prop:0}), isIE6 = $.browser.msie && ($.browser.version < 
+  7 && !window.XMLHttpRequest), _abort = function() {
     loading.hide();
     imgPreloader.onerror = imgPreloader.onload = null;
     if(ajaxLoader) {
@@ -6577,14 +6579,14 @@ jQuery.cookie = function(key, value, options) {
         selectedOpts = $.extend(selectedOpts, ret)
       }
     }
-    title = selectedOpts.title || (obj.nodeName ? $(obj).attr("title") : obj.title) || "";
+    title = selectedOpts.title || ((obj.nodeName ? $(obj).attr("title") : obj.title) || "");
     if(obj.nodeName && !selectedOpts.orig) {
       selectedOpts.orig = $(obj).children("img:first").length ? $(obj).children("img:first") : $(obj)
     }
-    if(title === "" && selectedOpts.orig && selectedOpts.titleFromAlt) {
+    if(title === "" && (selectedOpts.orig && selectedOpts.titleFromAlt)) {
       title = selectedOpts.orig.attr("alt")
     }
-    href = selectedOpts.href || (obj.nodeName ? $(obj).attr("href") : obj.href) || null;
+    href = selectedOpts.href || ((obj.nodeName ? $(obj).attr("href") : obj.href) || null);
     if(/^(?:javascript)/i.test(href) || href == "#") {
       href = null
     }
@@ -6630,7 +6632,7 @@ jQuery.cookie = function(key, value, options) {
     selectedOpts.href = href;
     selectedOpts.title = title;
     if(selectedOpts.autoDimensions) {
-      if(selectedOpts.type == "html" || selectedOpts.type == "inline" || selectedOpts.type == "ajax") {
+      if(selectedOpts.type == "html" || (selectedOpts.type == "inline" || selectedOpts.type == "ajax")) {
         selectedOpts.width = "auto";
         selectedOpts.height = "auto"
       }else {
@@ -6867,7 +6869,7 @@ jQuery.cookie = function(key, value, options) {
           e.preventDefault();
           $.fancybox.close()
         }else {
-          if((e.keyCode == 37 || e.keyCode == 39) && currentOpts.enableKeyboardNav && e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA" && e.target.tagName !== "SELECT") {
+          if((e.keyCode == 37 || e.keyCode == 39) && (currentOpts.enableKeyboardNav && (e.target.tagName !== "INPUT" && (e.target.tagName !== "TEXTAREA" && e.target.tagName !== "SELECT")))) {
             e.preventDefault();
             $.fancybox[e.keyCode == 37 ? "prev" : "next"]()
           }
@@ -7016,7 +7018,7 @@ jQuery.cookie = function(key, value, options) {
       selectedArray = [];
       selectedIndex = 0;
       var rel = $(this).attr("rel") || "";
-      if(!rel || rel == "" || rel === "nofollow") {
+      if(!rel || (rel == "" || rel === "nofollow")) {
         selectedArray.push(this)
       }else {
         selectedArray = $("a[rel=" + rel + "], area[rel=" + rel + "]");
@@ -7232,7 +7234,7 @@ jQuery.cookie = function(key, value, options) {
     method = this.attr("method");
     action = this.attr("action");
     url = typeof action === "string" ? $.trim(action) : "";
-    url = url || window.location.href || "";
+    url = url || (window.location.href || "");
     if(url) {
       url = (url.match(/^([^#]+)/) || [])[1]
     }
@@ -7567,9 +7569,9 @@ jQuery.cookie = function(key, value, options) {
           if(timedOut) {
             throw"timeout";
           }
-          var isXml = s.dataType == "xml" || doc.XMLDocument || $.isXMLDoc(doc);
+          var isXml = s.dataType == "xml" || (doc.XMLDocument || $.isXMLDoc(doc));
           log("isXml=" + isXml);
-          if(!isXml && window.opera && (doc.body === null || !doc.body.innerHTML)) {
+          if(!isXml && (window.opera && (doc.body === null || !doc.body.innerHTML))) {
             if(--domCheckCount) {
               log("requeing onLoad callback, DOM not available");
               setTimeout(cb, 250);
@@ -7612,7 +7614,7 @@ jQuery.cookie = function(key, value, options) {
               }
             }
           }else {
-            if(dt == "xml" && !xhr.responseXML && xhr.responseText) {
+            if(dt == "xml" && (!xhr.responseXML && xhr.responseText)) {
               xhr.responseXML = toXml(xhr.responseText)
             }
           }
@@ -7682,7 +7684,7 @@ jQuery.cookie = function(key, value, options) {
         }else {
           doc = (new DOMParser).parseFromString(s, "text/xml")
         }
-        return doc && doc.documentElement && doc.documentElement.nodeName != "parsererror" ? doc : null
+        return doc && (doc.documentElement && doc.documentElement.nodeName != "parsererror") ? doc : null
       };
       var parseJSON = $.parseJSON || function(s) {
         return window["eval"]("(" + s + ")")
@@ -7789,7 +7791,7 @@ jQuery.cookie = function(key, value, options) {
       if(!n) {
         continue
       }
-      if(semantic && form.clk && el.type == "image") {
+      if(semantic && (form.clk && el.type == "image")) {
         if(!el.disabled && form.clk == el) {
           a.push({name:n, value:$(el).val(), type:el.type});
           a.push({name:n + ".x", value:form.clk_x}, {name:n + ".y", value:form.clk_y})
@@ -7805,7 +7807,7 @@ jQuery.cookie = function(key, value, options) {
           a.push({name:n, value:v[j]})
         }
       }else {
-        if(feature.fileapi && el.type == "file" && !el.disabled) {
+        if(feature.fileapi && (el.type == "file" && !el.disabled)) {
           if(elements) {
             elements.push(el)
           }
@@ -7830,7 +7832,7 @@ jQuery.cookie = function(key, value, options) {
     if(!semantic && form.clk) {
       var $input = $(form.clk), input = $input[0];
       n = input.name;
-      if(n && !input.disabled && input.type == "image") {
+      if(n && (!input.disabled && input.type == "image")) {
         a.push({name:n, value:$input.val()});
         a.push({name:n + ".x", value:form.clk_x}, {name:n + ".y", value:form.clk_y})
       }
@@ -7864,7 +7866,7 @@ jQuery.cookie = function(key, value, options) {
     for(var val = [], i = 0, max = this.length;i < max;i++) {
       var el = this[i];
       var v = $.fieldValue(el, successful);
-      if(v === null || typeof v == "undefined" || v.constructor == Array && !v.length) {
+      if(v === null || (typeof v == "undefined" || v.constructor == Array && !v.length)) {
         continue
       }
       if(v.constructor == Array) {
@@ -7880,7 +7882,7 @@ jQuery.cookie = function(key, value, options) {
     if(successful === undefined) {
       successful = true
     }
-    if(successful && (!n || el.disabled || t == "reset" || t == "button" || (t == "checkbox" || t == "radio") && !el.checked || (t == "submit" || t == "image") && el.form && el.form.clk != el || tag == "select" && el.selectedIndex == -1)) {
+    if(successful && (!n || (el.disabled || (t == "reset" || (t == "button" || ((t == "checkbox" || t == "radio") && !el.checked || ((t == "submit" || t == "image") && (el.form && el.form.clk != el) || tag == "select" && el.selectedIndex == -1))))))) {
       return null
     }
     if(tag == "select") {
@@ -7896,7 +7898,7 @@ jQuery.cookie = function(key, value, options) {
         if(op.selected) {
           var v = op.value;
           if(!v) {
-            v = op.attributes && op.attributes["value"] && !op.attributes["value"].specified ? op.text : op.value
+            v = op.attributes && (op.attributes["value"] && !op.attributes["value"].specified) ? op.text : op.value
           }
           if(one) {
             return v
@@ -7962,7 +7964,7 @@ jQuery.cookie = function(key, value, options) {
       }else {
         if(this.tagName.toLowerCase() == "option") {
           var $sel = $(this).parent("select");
-          if(select && $sel[0] && $sel[0].type == "select-one") {
+          if(select && ($sel[0] && $sel[0].type == "select-one")) {
             $sel.find("option").selected(false)
           }
           this.selected = select
@@ -7999,7 +8001,7 @@ jQuery.cookie = function(key, value, options) {
         return'<div class="joyride-tip-guide ' + tipClass + '" id="joyRidePopup' + index + '"><span class="joyride-nub"></span><div class="joyride-content-wrapper">' + $(self).html() + buttonText + '<a href="#close" class="joyride-close-tip"></a>' + timerIndicatorInstance + "</div></div>"
       };
       var tipLayout = function(tipClass, index, buttonText, self) {
-        if(index == 0 && settings.startTimerOnClick && settings.timer > 0 || settings.timer == 0) {
+        if(index == 0 && (settings.startTimerOnClick && settings.timer > 0) || settings.timer == 0) {
           timerIndicatorInstance = ""
         }else {
           timerIndicatorInstance = timerIndicatorTemplate
@@ -8182,7 +8184,7 @@ jQuery.cookie = function(key, value, options) {
           settings.postStepCallback(prevCount)
         }
       };
-      if(!settings.inline || !settings.cookieMonster || !$.cookie(settings.cookieName)) {
+      if(!settings.inline || (!settings.cookieMonster || !$.cookie(settings.cookieName))) {
         $(window).resize(function() {
           var parentElementID = $(tipContent[prevCount]).data("id"), currentTipPosition = $("#" + parentElementID).offset(), currentParentHeight = $("#" + parentElementID).outerHeight(), currentTipHeight = $("#joyRidePopup" + prevCount).outerHeight(), nubHeight = Math.ceil($(".joyride-nub").outerHeight() / 2);
           if(Modernizr.mq("only screen and (max-width: 769px)")) {
@@ -8270,7 +8272,7 @@ jQuery.cookie = function(key, value, options) {
 (function(a) {
   function d(b) {
     var c = b || window.event, d = [].slice.call(arguments, 1), e = 0, f = !0, g = 0, h = 0;
-    return b = a.event.fix(c), b.type = "mousewheel", c.wheelDelta && (e = c.wheelDelta / 120), c.detail && (e = -c.detail / 3), h = e, c.axis !== undefined && c.axis === c.HORIZONTAL_AXIS && (h = 0, g = -1 * e), c.wheelDeltaY !== undefined && (h = c.wheelDeltaY / 120), c.wheelDeltaX !== undefined && (g = -1 * c.wheelDeltaX / 120), d.unshift(b, e, g, h), (a.event.dispatch || a.event.handle).apply(this, d)
+    return b = a.event.fix(c), b.type = "mousewheel", c.wheelDelta && (e = c.wheelDelta / 120), c.detail && (e = -c.detail / 3), h = e, c.axis !== undefined && (c.axis === c.HORIZONTAL_AXIS && (h = 0, g = -1 * e)), c.wheelDeltaY !== undefined && (h = c.wheelDeltaY / 120), c.wheelDeltaX !== undefined && (g = -1 * c.wheelDeltaX / 120), d.unshift(b, e, g, h), (a.event.dispatch || a.event.handle).apply(this, d)
   }
   var b = ["DOMMouseScroll", "mousewheel"];
   if(a.event.fixHooks) {
@@ -8498,7 +8500,7 @@ jQuery.cookie = function(key, value, options) {
           k.data({on_drag:true});
           j.addClass("mCSB_dragger_onDrag");
           var G = c(this), J = G.offset(), F = H.originalEvent.pageX - J.left, I = H.originalEvent.pageY - J.top;
-          if(F < G.width() && F > 0 && I < G.height() && I > 0) {
+          if(F < G.width() && (F > 0 && (I < G.height() && I > 0))) {
             n = I;
             o = F
           }
@@ -8528,7 +8530,7 @@ jQuery.cookie = function(key, value, options) {
             F = H.pageX - K.left;
             J = H.pageY - K.top
           }
-          if(F < G.width() && F > 0 && J < G.height() && J > 0) {
+          if(F < G.width() && (F > 0 && (J < G.height() && J > 0))) {
             n = J;
             o = F
           }
@@ -9152,7 +9154,7 @@ jQuery.cookie = function(key, value, options) {
   c.support.touch = !!("ontouchstart" in window);
   c.support.msPointer = window.navigator.msPointerEnabled;
   var a = "https:" == document.location.protocol ? "https:" : "http:";
-  c.event.special.mousewheel || document.write('<script src="' + a + '//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.0.6/jquery.mousewheel.min.js"><\/script>');
+  c.event.special.mousewheel || document.write('<script src="' + a + '//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.0.6/jquery.mousewheel.min.js">\x3c/script>');
   c.fn.mCustomScrollbar = function(e) {
     if(b[e]) {
       return b[e].apply(this, Array.prototype.slice.call(arguments, 1))
@@ -9211,7 +9213,7 @@ jQuery.cookie = function(key, value, options) {
       this.dataList.push(new u(a));
       this.dataCache = null
     }, isDark:function(a, c) {
-      if(0 > a || this.moduleCount <= a || 0 > c || this.moduleCount <= c) {
+      if(0 > a || (this.moduleCount <= a || (0 > c || this.moduleCount <= c))) {
         throw Error(a + "," + c);
       }
       return this.modules[a][c]
@@ -9255,7 +9257,7 @@ jQuery.cookie = function(key, value, options) {
       for(var d = -1;7 >= d;d++) {
         if(!(-1 >= a + d || this.moduleCount <= a + d)) {
           for(var b = -1;7 >= b;b++) {
-            -1 >= c + b || this.moduleCount <= c + b || (this.modules[a + d][c + b] = 0 <= d && 6 >= d && (0 == b || 6 == b) || 0 <= b && 6 >= b && (0 == d || 6 == d) || 2 <= d && 4 >= d && 2 <= b && 4 >= b ? !0 : !1)
+            -1 >= c + b || (this.moduleCount <= c + b || (this.modules[a + d][c + b] = 0 <= d && (6 >= d && (0 == b || 6 == b)) || (0 <= b && (6 >= b && (0 == d || 6 == d)) || 2 <= d && (4 >= d && (2 <= b && 4 >= b))) ? !0 : !1))
           }
         }
       }
@@ -9292,7 +9294,7 @@ jQuery.cookie = function(key, value, options) {
           if(null == this.modules[b][e]) {
             for(var f = -2;2 >= f;f++) {
               for(var i = -2;2 >= i;i++) {
-                this.modules[b + f][e + i] = -2 == f || 2 == f || -2 == i || 2 == i || 0 == f && 0 == i ? !0 : !1
+                this.modules[b + f][e + i] = -2 == f || (2 == f || (-2 == i || (2 == i || 0 == f && 0 == i))) ? !0 : !1
               }
             }
           }
@@ -9493,7 +9495,7 @@ jQuery.cookie = function(key, value, options) {
           for(var f = 0, i = a.isDark(b, e), g = -1;1 >= g;g++) {
             if(!(0 > b + g || c <= b + g)) {
               for(var h = -1;1 >= h;h++) {
-                0 > e + h || c <= e + h || 0 == g && 0 == h || i == a.isDark(b + g, e + h) && f++
+                0 > e + h || (c <= e + h || (0 == g && 0 == h || i == a.isDark(b + g, e + h) && f++))
               }
             }
           }
@@ -9509,12 +9511,12 @@ jQuery.cookie = function(key, value, options) {
       }
       for(b = 0;b < c;b++) {
         for(e = 0;e < c - 6;e++) {
-          a.isDark(b, e) && !a.isDark(b, e + 1) && a.isDark(b, e + 2) && a.isDark(b, e + 3) && a.isDark(b, e + 4) && !a.isDark(b, e + 5) && a.isDark(b, e + 6) && (d += 40)
+          a.isDark(b, e) && (!a.isDark(b, e + 1) && (a.isDark(b, e + 2) && (a.isDark(b, e + 3) && (a.isDark(b, e + 4) && (!a.isDark(b, e + 5) && (a.isDark(b, e + 6) && (d += 40)))))))
         }
       }
       for(e = 0;e < c;e++) {
         for(b = 0;b < c - 6;b++) {
-          a.isDark(b, e) && !a.isDark(b + 1, e) && a.isDark(b + 2, e) && a.isDark(b + 3, e) && a.isDark(b + 4, e) && !a.isDark(b + 5, e) && a.isDark(b + 6, e) && (d += 40)
+          a.isDark(b, e) && (!a.isDark(b + 1, e) && (a.isDark(b + 2, e) && (a.isDark(b + 3, e) && (a.isDark(b + 4, e) && (!a.isDark(b + 5, e) && (a.isDark(b + 6, e) && (d += 40)))))))
         }
       }
       for(e = f = 0;e < c;e++) {
@@ -9710,16 +9712,16 @@ jQuery.cookie = function(key, value, options) {
     })
   }, _hide:function(n, i) {
     var a = n[0], w = (a.value || r).replace(l, r), h = n.data(f) || r, p = n.data(b) || 0, y = n.data(o), s, u;
-    h.length && w == h && (a.value = r, n.data(e) && (n.attr(v) || r) === "text" && (s = n.data(e) || [], u = n.parent() || [], s.length && u.length && (u[0].removeChild(n[0]), u[0].appendChild(s[0]), n = s)), p && (n.attr(c, p), n.removeData(b)), i && (n.attr("autocomplete", "off"), t.setTimeout(function() {
+    h.length && (w == h && (a.value = r, n.data(e) && ((n.attr(v) || r) === "text" && (s = n.data(e) || [], u = n.parent() || [], s.length && (u.length && (u[0].removeChild(n[0]), u[0].appendChild(s[0]), n = s)))), p && (n.attr(c, p), n.removeData(b)), i && (n.attr("autocomplete", "off"), t.setTimeout(function() {
       n.select()
-    }, 1))), y && n.removeClass(y)
+    }, 1)))), y && n.removeClass(y)
   }, show:function(t) {
     n(t).filter(it).each(function() {
       n.watermark._show(n(this))
     })
   }, _show:function(t) {
     var p = t[0], g = (p.value || r).replace(l, r), i = t.data(f) || r, k = t.attr(v) || r, d = t.data(o), h, s, a;
-    g.length != 0 && g != i || t.data(w) ? n.watermark._hide(t) : (y = u, t.data(e) && k === nt && (h = t.data(e) || [], s = t.parent() || [], h.length && s.length && (s[0].removeChild(t[0]), s[0].appendChild(h[0]), t = h, t.attr(c, i.length), p = t[0])), (k === "text" || k === "search") && (a = t.attr(c) || 0, a > 0 && i.length > a && (t.data(b, a), t.attr(c, i.length))), d && t.addClass(d), p.value = i)
+    g.length != 0 && g != i || t.data(w) ? n.watermark._hide(t) : (y = u, t.data(e) && (k === nt && (h = t.data(e) || [], s = t.parent() || [], h.length && (s.length && (s[0].removeChild(t[0]), s[0].appendChild(h[0]), t = h, t.attr(c, i.length), p = t[0])))), (k === "text" || k === "search") && (a = t.attr(c) || 0, a > 0 && (i.length > a && (t.data(b, a), t.attr(c, i.length)))), d && t.addClass(d), p.value = i)
   }, hideAll:function() {
     y && (n.watermark.hide(p), y = h)
   }, showAll:function() {
@@ -9740,7 +9742,7 @@ jQuery.cookie = function(key, value, options) {
         if(h.data(s)) {
           (b || k) && (n.watermark._hide(h), b && h.data(f, i), k && h.data(o, y.className))
         }else {
-          if(ut && y.useNative.call(ft, h) && (h.attr("tagName") || r) !== g) {
+          if(ut && (y.useNative.call(ft, h) && (h.attr("tagName") || r) !== g)) {
             b && h.attr(rt, i);
             return
           }
@@ -9879,7 +9881,7 @@ window.Modernizr = function(a, b, c) {
       while(g--) {
         j[i[g].id] = i[g]
       }
-      e.touch = "ontouchstart" in a || a.DocumentTouch && b instanceof DocumentTouch || (j.touch && j.touch.offsetTop) === 9
+      e.touch = "ontouchstart" in a || (a.DocumentTouch && b instanceof DocumentTouch || (j.touch && j.touch.offsetTop) === 9)
     }, g, d)
   }([, ["@media (", m.join("touch-enabled),("), h, ")", "{#touch{top:9px;position:absolute}}"].join("")], [, "touch"]);
   n.touch = function() {
@@ -9912,7 +9914,7 @@ window.Modernizr = function(a, b, c) {
   function f() {
   }
   function g(a) {
-    return!a || a == "loaded" || a == "complete" || a == "uninitialized"
+    return!a || (a == "loaded" || (a == "complete" || a == "uninitialized"))
   }
   function h() {
     var a = p.shift();
@@ -9922,7 +9924,7 @@ window.Modernizr = function(a, b, c) {
   }
   function i(a, c, d, e, f, i, j) {
     function k(b) {
-      if(!o && g(l.readyState) && (u.r = o = 1, !q && h(), l.onload = l.onreadystatechange = null, b)) {
+      if(!o && (g(l.readyState) && (u.r = o = 1, !q && h(), l.onload = l.onreadystatechange = null, b))) {
         a != "img" && m(function() {
           t.removeChild(l)
         }, 50);
@@ -9961,7 +9963,7 @@ window.Modernizr = function(a, b, c) {
     }
     function g(a, e, f, g, i) {
       var j = b(a), l = j.autoCallback;
-      j.url.split(".").pop().split("?").shift(), j.bypass || (e && (e = d(e) ? e : e[a] || e[g] || e[a.split("/").pop().split("?")[0]] || h), j.instead ? j.instead(a, e, f, g, i) : (y[j.url] ? j.noexec = !0 : y[j.url] = 1, f.load(j.url, j.forceCSS || !j.forceJS && "css" == j.url.split(".").pop().split("?").shift() ? "c" : c, j.noexec, j.attrs, j.timeout), (d(e) || d(l)) && f.load(function() {
+      j.url.split(".").pop().split("?").shift(), j.bypass || (e && (e = d(e) ? e : e[a] || (e[g] || (e[a.split("/").pop().split("?")[0]] || h))), j.instead ? j.instead(a, e, f, g, i) : (y[j.url] ? j.noexec = !0 : y[j.url] = 1, f.load(j.url, j.forceCSS || !j.forceJS && "css" == j.url.split(".").pop().split("?").shift() ? "c" : c, j.noexec, j.attrs, j.timeout), (d(e) || d(l)) && f.load(function() {
         k(), e && e(j.origUrl, i, g), l && l(j.origUrl, i, g), y[j.url] = 2
       })))
     }
@@ -9982,7 +9984,7 @@ window.Modernizr = function(a, b, c) {
                 }
                 return b
               }(), a) {
-                a.hasOwnProperty(n) && (!c && !--m && (d(j) ? j = function() {
+                a.hasOwnProperty(n) && (!c && (!--m && (d(j) ? j = function() {
                   var a = [].slice.call(arguments);
                   k.apply(this, a), l()
                 } : j[n] = function(a) {
@@ -9990,7 +9992,7 @@ window.Modernizr = function(a, b, c) {
                     var b = [].slice.call(arguments);
                     a && a.apply(this, b), l()
                   }
-                }(k[n])), g(a[n], j, b, n, h))
+                }(k[n]))), g(a[n], j, b, n, h))
               }
             }
           }
@@ -10017,16 +10019,16 @@ window.Modernizr = function(a, b, c) {
     z[a] = b
   }, B.addFilter = function(a) {
     x.push(a)
-  }, B.errorTimeout = 1E4, b.readyState == null && b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function() {
+  }, B.errorTimeout = 1E4, b.readyState == null && (b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function() {
     b.removeEventListener("DOMContentLoaded", A, 0), b.readyState = "complete"
-  }, 0)), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function(a, c, d, e, i, j) {
+  }, 0))), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function(a, c, d, e, i, j) {
     var k = b.createElement("script"), l, o, e = e || B.errorTimeout;
     k.src = a;
     for(o in d) {
       k.setAttribute(o, d[o])
     }
     c = j ? h : c || f, k.onreadystatechange = k.onload = function() {
-      !l && g(k.readyState) && (l = 1, c(), k.onload = k.onreadystatechange = null)
+      !l && (g(k.readyState) && (l = 1, c(), k.onload = k.onreadystatechange = null))
     }, m(function() {
       l || (l = 1, c(1))
     }, e), i ? k.onload() : n.parentNode.insertBefore(k, n)
@@ -10041,7 +10043,7 @@ window.Modernizr = function(a, b, c) {
 }(this, document), Modernizr.load = function() {
   yepnope.apply(window, [].slice.call(arguments, 0))
 }, Modernizr.addTest("ie8compat", function() {
-  return!window.addEventListener && document.documentMode && document.documentMode === 7
+  return!window.addEventListener && (document.documentMode && document.documentMode === 7)
 });
 window.Modernizr = function(a, b, c) {
   function v(a) {
@@ -10146,7 +10148,7 @@ window.Modernizr = function(a, b, c) {
         self._popTag(tag)
       }else {
         self.input.focus();
-        if(self.options.emptySearch && $(e.target).hasClass("tagit-input") && self.input.val() == "" && self.input.autocomplete != undefined) {
+        if(self.options.emptySearch && ($(e.target).hasClass("tagit-input") && (self.input.val() == "" && self.input.autocomplete != undefined))) {
           self.input.autocomplete("search")
         }
       }
@@ -10180,7 +10182,7 @@ window.Modernizr = function(a, b, c) {
       if(e.which == self._keys.backspace) {
         return self._backspace(lastLi)
       }
-      if(self._isInitKey(e.which) && !(self._isTabKey(e.which) && this.value == "" && !self.input.data("autoCompleteTag"))) {
+      if(self._isInitKey(e.which) && !(self._isTabKey(e.which) && (this.value == "" && !self.input.data("autoCompleteTag")))) {
         e.preventDefault();
         self.input.data("autoCompleteTag", false);
         if(self.options.allowNewTags && $(this).val().length >= self.options.minLength) {
@@ -11110,7 +11112,7 @@ VISH.Utils = function(V, undefined) {
     }
   };
   var fixPresentation = function(presentation) {
-    if(typeof presentation == "undefined" || presentation === null || typeof presentation.slides == "undefined") {
+    if(typeof presentation == "undefined" || (presentation === null || typeof presentation.slides == "undefined")) {
       return null
     }
     if(typeof presentation.VEVersion == "undefined") {
@@ -11366,7 +11368,7 @@ VISH.Utils = function(V, undefined) {
     return url
   };
   var addParamToUrl = function(url, paramName, paramValue) {
-    if(typeof url !== "string" || typeof paramName !== "string" || typeof paramValue !== "string") {
+    if(typeof url !== "string" || (typeof paramName !== "string" || typeof paramValue !== "string")) {
       return url
     }
     url = removeParamFromUrl(url, paramName);
@@ -11433,7 +11435,7 @@ VISH.Utils = function(V, undefined) {
   };
   var getSrcFromCSS = function(css) {
     try {
-      if(typeof css == "string" && css.indexOf("url") === 0 && css.length > 3) {
+      if(typeof css == "string" && (css.indexOf("url") === 0 && css.length > 3)) {
         var quote = css[4];
         if(quote == '"' || quote == "'") {
           return css.substring(5, css.length - 2)
@@ -11904,7 +11906,7 @@ VISH.Editor = function(V, $, undefined) {
       initOptions = {}
     }
     if(V.Debugging.isDevelopping()) {
-      if(options.configuration.mode == V.Constant.NOSERVER && V.Debugging.getActionInit() == "loadSamples" && !presentation) {
+      if(options.configuration.mode == V.Constant.NOSERVER && (V.Debugging.getActionInit() == "loadSamples" && !presentation)) {
         presentation = V.Debugging.getPresentationSamples()
       }
     }
@@ -12425,7 +12427,7 @@ VISH.Editor = function(V, $, undefined) {
         $.ajax({type:send_type, url:V.UploadPresentationPath, data:params, success:function(data) {
           if(order != "unpublish") {
             lastStoredPresentationStringify = jsonPresentation;
-            if(createNewPresentation && typeof data != "undefined" && data.uploadPath) {
+            if(createNewPresentation && (typeof data != "undefined" && data.uploadPath)) {
               V.UploadPresentationPath = data.uploadPath;
               if(V.Status.getDevice().features.historypushState) {
                 if(data.editPath) {
@@ -12607,7 +12609,7 @@ VISH.Editor.Utils = function(V, $, undefined) {
     }
     var filterStyle = "";
     $.each(style.split(";"), function(index, property) {
-      if(property.indexOf("-ms-transform") === -1 && property.indexOf("-moz-transform") === -1 && property.indexOf("-o-transform") === -1 && property.indexOf("-webkit-transform") === -1 && property.indexOf("-moz-transform-origin") === -1 && property.indexOf("-webkit-transform-origin") === -1 && property.indexOf("-o-transform-origin") === -1 && property.indexOf("-ms-transform-origin") === -1) {
+      if(property.indexOf("-ms-transform") === -1 && (property.indexOf("-moz-transform") === -1 && (property.indexOf("-o-transform") === -1 && (property.indexOf("-webkit-transform") === -1 && (property.indexOf("-moz-transform-origin") === -1 && (property.indexOf("-webkit-transform-origin") === -1 && (property.indexOf("-o-transform-origin") === -1 && property.indexOf("-ms-transform-origin") === -1))))))) {
         filterStyle = filterStyle + property + "; "
       }
     });
@@ -13049,7 +13051,7 @@ VISH.Editor.Text = function(V, $, undefined) {
           initialTextColor = "color:#ccc"
         }
       }
-      if(isTemplateArea || typeof initial_text != "string" || initial_text === "") {
+      if(isTemplateArea || (typeof initial_text != "string" || initial_text === "")) {
         initial_text = "&shy"
       }
       initial_text = "<p style='text-align:" + defaultAlignment + ";'><span autoColor='true' style='" + initialTextColor + "'><span style='font-size:" + defaultFontSize + "px;'>" + initial_text + "</span></span></p>";
@@ -13105,7 +13107,7 @@ VISH.Editor.Text = function(V, $, undefined) {
     }
   };
   var getCKEditorFromZone = function(zone) {
-    if(!zone || typeof CKEDITOR === "undefined" || typeof CKEDITOR.instances === "undefined") {
+    if(!zone || (typeof CKEDITOR === "undefined" || typeof CKEDITOR.instances === "undefined")) {
       return null
     }
     var CKEditorInstance = null;
@@ -13138,7 +13140,7 @@ VISH.Editor.Text = function(V, $, undefined) {
     return $(iframe).contents()[0]
   };
   var getCKEditorFromTextArea = function(textArea) {
-    if(!textArea || typeof CKEDITOR === "undefined" || typeof CKEDITOR.instances === "undefined") {
+    if(!textArea || (typeof CKEDITOR === "undefined" || typeof CKEDITOR.instances === "undefined")) {
       return null
     }
     if(!$(textArea).hasClass(".cke_skin_vEditor")) {
@@ -13962,7 +13964,7 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || !data.excursions || data.excursions.length == 0) {
+    if(!data || (!data.excursions || data.excursions.length == 0)) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -14657,7 +14659,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
       if(slidesetJSON.pois) {
         var validPois = [];
         $(slidesetJSON.pois).each(function(index, poi) {
-          if(poi.x && poi.y && poi.x <= 100 && poi.y <= 100) {
+          if(poi.x && (poi.y && (poi.x <= 100 && poi.y <= 100))) {
             validPois.push(poi)
           }
         });
@@ -14879,28 +14881,6 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/314.jpeg", "style":"position: relative; width:373.6111111111111%; height:217.9%; top:-34.97%; left:-42.13%;"}, {"id":"article4_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/314.jpeg", "style":"position: relative; width:373.1%; height:217.7%; top:-46.9%; left:-199.1%;"}, {"id":"article4_zone4", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: center; font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">During the mating season the female leaves her territory...</span><span class="vish-fontundefined vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, 
   {"id":"article5", "type":"standard", "template":"t10", "elements":[{"id":"article5_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Do%C3%B1ana_National_Park?wmode=transparent" id="resizableunicID15" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article6", "type":"standard", "template":"t12", "elements":[{"id":"article6_zone1", "areaid":"left1"}, {"id":"article6_zone2", 
   "areaid":"right1"}, {"id":"article6_zone3", "areaid":"left2"}, {"id":"article6_zone4", "type":"image", "areaid":"right2", "body":"http://vishub.org/pictures/312.jpg", "style":"position: relative; width:114.6%; height:113.8%; top:0%; left:0%;"}]}]};
-  var samplesv01 = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning", "description":"Samples of VE v01. The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by ViSH Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"ViSH Editor Team", "theme":"theme1", "age_range":"4 - 14", "subject":["Art", 
-  "Astronomy"], "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", "slides":[{"id":"article1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article2", "template":"t3", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
-  {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
-  {"id":"article_5", "type":"standard", "template":"t2", "elements":[{"id":"zone11", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]};
-  var fc_sample = {"id":"3", "VEVersion":"0.2", "type":"flashcard", "title":"Curiosity Flashcard", "description":'A Flashcard about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "avatar":"http://vishub.org/pictures/311.jpg", "tags":["Science", "Space", "Mars"], "age_range":"12 - 30", "subject":["Astronomy"], "language":"independent", "educational_objectives":'Know about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "adquired_competencies":"Pupils will be smarter", 
-  "author":"ViSH Editor Team", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://vishub.org/pictures/311.jpg)", "pois":[{"id":"article4_poi1", "x":"88.88", "y":"50.83", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"45.5", "y":"2.5", "slide_id":"article4_article3"}, {"id":"article4_poi3", "x":"13.5", "y":"63.17", "slide_id":"article4_article4"}], "slides":[{"id":"article4_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", 
-  "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/P4boyXQuUIw?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article4_article3", "type":"standard", "template":"t7", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, 
-  {"id":"article4_article3_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"article4_article3_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, 
-  {"id":"article4_article3_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, {"id":"article4_article4", "type":"standard", "template":"t10", "elements":[{"id":"article4_article4_zone1", "type":"object", "areaid":"center", 
-  "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}]};
-  var samples_vtour = {"id":"1987", "title":"Toledo Virtual Tour", "description":"Virtual Tour example with ViSH Editor", "author":"Aldo", "avatar":"http://vishub.org/assets/logos/original/excursion-05.png", "tags":["Samples", "Test", "Development", "Virtual Tour"], "age_range":"4 - 14", "subject":"Media Education", "educational_objectives":"Amazing educational Virtual Tour", "adquired_competencies":"Pupils will be smarter", "type":"VirtualTour", "theme":"theme1", "language":"en", "VEVersion":"0.4", 
-  "slides":[{"id":"article5", "type":"VirtualTour", "map_service":"Google Maps", "center":{"lat":"41.23", "lng":"-366.3"}, "zoom":5, "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"id":"article5_poi1", "lat":"40.24", "lng":"-3.6", "slide_id":"article5_article1"}, {"id":"article5_poi2", "lat":"41.2", "lng":"2.1", "slide_id":"article5_article2"}, {"id":"article5_poi3", "lat":"37.26", "lng":"-5.97", "slide_id":"article5_article3"}, {"id":"article5_poi4", "lat":"43.26", "lng":"-5.97", 
-  "slide_id":"article5_article4"}], "tours":[{"id":"article5_tour1", "path":["article5_poi1", "article5_poi2", "article5_poi3"]}], "slides":[{"id":"article5_article1", "template":"t1", "elements":[{"id":"article5_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article5_article1_zone2", "type":"text", 
-  "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, {"id":"article5_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, 
-  {"id":"article5_article2", "template":"t3", "elements":[{"id":"article5_article2_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article5_article2_zone2", "type":"object", "areaid":"left", "body":'<embed id="resizableunicID12" class="t10_object" src="http://localhost/vishEditor/examples/contents/swf/virtualexperiment.swf" wmode="opaque">', "style":"position: relative; width:64.53634085213032%; height:64.71571906354515%; top:15.719063545150501%; left:15.288220551378446%;"}]}, 
-  {"id":"article5_article3", "template":"t6", "elements":[{"id":"article5_article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"article5_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article5_article3_zone4", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"article5_article3_zone5", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
-  {"id":"article5_article4", "type":"standard", "template":"t2", "elements":[{"id":"article5_article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]}]};
   var full_samples = {"id":"4", "VEVersion":"0.2", "type":"presentation", "theme":"theme1", "animation":"animation1", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "title":"The Iberian Lynx", "author":"ViSH Editor Team", "contributors":[{"name":"Fred Griffin", "vishMetadata":{"id":5}}], "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "tags":["Do\u00f1ana", "Lynx", "Biology"], "language":"en", "context":"university", 
   "age_range":"4 - 20", "difficulty":"easy", "subject":["Art", "Astronomy", "Biology"], "TLT":"PT6H30M15S", "educational_objectives":"Know about the Iberian Lynx", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/312.jpeg", "style":"position: relative; width:117.0886075949367%; height:109.47368421052632%; top:-4.7368421052631575%; left:-2.320675105485232%;"}, {"id":"article1_zone2", 
   "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><b><i><br></i></b></span></div><div class="initTextDiv vish-parent-font4" style="text-align: right;"><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><b><i><br></i></b></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><i>by <b><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;">Vish</span> Editor</b> Team<b>&nbsp;</b></i></span></div>'}, 
@@ -14926,7 +14906,34 @@ VISH.Samples = function(V, undefined) {
   "areaid":"header", "body":"Experimento virtual1"}, {"id":"article14_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article14_article3", "template":"t6", "elements":[{"id":"article14_article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"article14_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article14_article3_zone4", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"article14_article3_zone5", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
-  {"id":"article14_article4", "type":"standard", "template":"t2", "elements":[{"id":"article14_article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]}]};
+  {"id":"article14_article4", "type":"standard", "template":"t2", "elements":[{"id":"article14_article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]}, {"id":"article15", "type":"enrichedvideo", "video":{"type":"HTML5_VIDEO", 
+  "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/3447.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/3447.mp4"}]', "poster":"http://vishub.org/videos/3447.png?style=170x127%23", "duration":"24.066"}, "pois":[{"id":"article15_poi1", "etime":"15.3", "slide_id":"article15_article1", "name":"Curiosity YouTube video at 15.3"}, {"id":"article15_poi2", "etime":"61.5", "slide_id":"article15_article2", "name":"Curiosity Wikipedia at 61.5"}, {"id":"article15_poi3", "etime":"120", 
+  "slide_id":"article15_article3", "name":"3 at 120"}, {"id":"article15_poi4", "etime":"174", "slide_id":"article15_article4", "name":"4 at the end of the Video"}], "slides":[{"id":"article15_article1", "type":"standard", "template":"t2", "elements":[{"id":"article15_article1_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.wikipedia.com?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, 
+  {"id":"article15_article2", "type":"standard", "template":"t7", "elements":[{"id":"article15_article2_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, {"id":"article15_article2_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  {"id":"article15_article2_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, {"id":"article15_article2_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, 
+  {"id":"article15_article3", "type":"standard", "template":"t10", "elements":[{"id":"article15_article3_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article15_article4", "type":"standard", "template":"t10", "elements":[{"id":"article15_article4_zone1", "type":"object", 
+  "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article16", "type":"enrichedvideo", "video":{"type":"Youtube", "source":"http://www.youtube.com/embed/8t29CZcGAbs", "duration":"174"}, "pois":[{"id":"article16_poi1", "etime":"15.3", "slide_id":"article16_article1", "name":"Curiosity YouTube video at 15.3"}, 
+  {"id":"article16_poi2", "etime":"62", "slide_id":"article16_article2", "name":"Alpha Particle X-Ray  at 61.5"}, {"id":"article16_poi3", "etime":"62", "slide_id":"article16_article3", "name":"Curiosity Wikipedia at 62"}, {"id":"article16_poi5", "etime":"120", "name":"No ball at 120"}, {"id":"article16_poi4", "etime":"174", "slide_id":"article16_article4", "name":"4 at the end of the Video"}], "slides":[{"id":"article16_article1", "type":"standard", "template":"t2", "elements":[{"id":"article16_article1_zone1", 
+  "type":"object", "areaid":"left", "body":'<iframe src="http://www.wikipedia.com?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article16_article2", "type":"standard", "template":"t7", "elements":[{"id":"article16_article2_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, 
+  {"id":"article16_article2_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"article16_article2_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, 
+  {"id":"article16_article2_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, {"id":"article16_article3", "type":"standard", "template":"t10", "elements":[{"id":"article16_article3_zone1", "type":"object", "areaid":"center", 
+  "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article16_article4", "type":"standard", "template":"t10", "elements":[{"id":"article16_article4_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', 
+  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}]};
+  var fc_sample = {"id":"3", "VEVersion":"0.2", "type":"flashcard", "title":"Curiosity Flashcard", "description":'A Flashcard about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "avatar":"http://vishub.org/pictures/311.jpg", "tags":["Science", "Space", "Mars"], "age_range":"12 - 30", "subject":["Astronomy"], "language":"independent", "educational_objectives":'Know about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "adquired_competencies":"Pupils will be smarter", 
+  "author":"ViSH Editor Team", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://vishub.org/pictures/311.jpg)", "pois":[{"id":"article4_poi1", "x":"88.88", "y":"50.83", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"45.5", "y":"2.5", "slide_id":"article4_article3"}, {"id":"article4_poi3", "x":"13.5", "y":"63.17", "slide_id":"article4_article4"}], "slides":[{"id":"article4_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", 
+  "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/P4boyXQuUIw?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article4_article3", "type":"standard", "template":"t7", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, 
+  {"id":"article4_article3_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"article4_article3_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, 
+  {"id":"article4_article3_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, {"id":"article4_article4", "type":"standard", "template":"t10", "elements":[{"id":"article4_article4_zone1", "type":"object", "areaid":"center", 
+  "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}]};
+  var vt_sample = {"id":"1987", "title":"Toledo Virtual Tour", "description":"Virtual Tour example with ViSH Editor", "author":"Aldo", "avatar":"http://vishub.org/assets/logos/original/excursion-05.png", "tags":["Samples", "Test", "Development", "Virtual Tour"], "age_range":"4 - 14", "subject":"Media Education", "educational_objectives":"Amazing educational Virtual Tour", "adquired_competencies":"Pupils will be smarter", "type":"VirtualTour", "theme":"theme1", "language":"en", "VEVersion":"0.4", 
+  "slides":[{"id":"article5", "type":"VirtualTour", "map_service":"Google Maps", "center":{"lat":"41.23", "lng":"-366.3"}, "zoom":5, "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"id":"article5_poi1", "lat":"40.24", "lng":"-3.6", "slide_id":"article5_article1"}, {"id":"article5_poi2", "lat":"41.2", "lng":"2.1", "slide_id":"article5_article2"}, {"id":"article5_poi3", "lat":"37.26", "lng":"-5.97", "slide_id":"article5_article3"}, {"id":"article5_poi4", "lat":"43.26", "lng":"-5.97", 
+  "slide_id":"article5_article4"}], "tours":[{"id":"article5_tour1", "path":["article5_poi1", "article5_poi2", "article5_poi3"]}], "slides":[{"id":"article5_article1", "template":"t1", "elements":[{"id":"article5_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article5_article1_zone2", "type":"text", 
+  "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, {"id":"article5_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, 
+  {"id":"article5_article2", "template":"t3", "elements":[{"id":"article5_article2_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article5_article2_zone2", "type":"object", "areaid":"left", "body":'<embed id="resizableunicID12" class="t10_object" src="http://localhost/vishEditor/examples/contents/swf/virtualexperiment.swf" wmode="opaque">', "style":"position: relative; width:64.53634085213032%; height:64.71571906354515%; top:15.719063545150501%; left:15.288220551378446%;"}]}, 
+  {"id":"article5_article3", "template":"t6", "elements":[{"id":"article5_article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"article5_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article5_article3_zone4", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"article5_article3_zone5", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
+  {"id":"article5_article4", "type":"standard", "template":"t2", "elements":[{"id":"article5_article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]}]};
   var evideo_sample = {"VEVersion":"0.7", "type":"presentation", "title":"Enriched Video Example", "description":"First Enriched Video Example", "avatar":"http://vishub.org/pictures/311.jpg", "tags":["Science", "Quiz", "Video"], "age_range":"12 - 30", "subject":["Astronomy"], "language":"independent", "educational_objectives":"MOOCs", "adquired_competencies":"More engaged videos", "author":"ViSH Editor Team", "slides":[{"id":"article1", "type":"enrichedvideo", "video":{"type":"HTML5_VIDEO", "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/3447.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/3447.mp4"}]', 
   "poster":"http://vishub.org/videos/3447.png?style=170x127%23", "duration":"24.066"}, "pois":[{"id":"article1_poi1", "etime":"15.3", "slide_id":"article1_article1", "name":"Curiosity YouTube video at 15.3"}, {"id":"article1_poi2", "etime":"61.5", "slide_id":"article1_article2", "name":"Curiosity Wikipedia at 61.5"}, {"id":"article1_poi3", "etime":"120", "slide_id":"article1_article3", "name":"3 at 120"}, {"id":"article1_poi4", "etime":"174", "slide_id":"article1_article4", "name":"4 at the end of the Video"}], 
   "slides":[{"id":"article1_article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_article1_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.wikipedia.com?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article1_article2", "type":"standard", "template":"t7", "elements":[{"id":"article1_article2_zone1", "type":"image", "areaid":"header", 
@@ -14941,50 +14948,6 @@ VISH.Samples = function(V, undefined) {
   "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article2_article4", "type":"standard", "template":"t10", "elements":[{"id":"article2_article4_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', 
   "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article3", "type":"standard", "template":"t2", "elements":[{"id":"article3_zone1", "areaid":"left"}]}, {"id":"article4", "type":"standard", "template":"t2", "elements":[{"id":"article4_zone1", "areaid":"left"}]}, {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "areaid":"left"}]}, {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "areaid":"left"}]}, 
   {"id":"article7", "type":"standard", "template":"t2", "elements":[{"id":"article7_zone1", "areaid":"left"}]}]};
-  var mooc2_sample = {"VEVersion":"0.8.5", "type":"presentation", "title":"Modulo 1: Introducci\u00f3n a Internet, el Web, la nube, HTML5 y CSS", "description":"Modulo 1 del MOOC Desarrollo de Aplicaciones Web en HTML5 y para m\u00f3viles Firefox OS. Accesible a trav\u00e9s de https://www.miriadax.net/web/firefox-os .", "avatar":"http://www.adwe.es/wp-content/uploads/2013/07/FirefoxOS.2.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "tags":["MOOC", "HTML5", "CSS", "Web"], "theme":"theme1", 
-  "animation":"animation1", "language":"independent", "age_range":"14 - 30", "subject":["Software Engineering", "Technology", "Telecommunications"], "educational_objectives":"El alumno obtendr\u00e1 una introducci\u00f3n a Internet, el Web, la nube, HTML5 y CSS.", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article4", "type":"standard", "template":"t8", "elements":[{"id":"article4_zone1", "areaid":"header"}, {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://www.derwentsidehomes.co.uk/UserFiles/Image/3D%20Characters/Question.jpg", 
-  "style":"position: relative; width:71.30801687763713%; height:100%; top:0%; left:10.126582278481013%;"}, {"id":"article4_zone3", "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00bfPara qu\u00e9 se utiliza el CSS?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:36px;"><span autocolor="true" style="color:#000">&iquest;Para qu&eacute; se utiliza el&nbsp;<strong>CSS</strong>?&shy;</span></span></p>\n'}, "choices":[{"id":"1", 
-  "value":"\u200b\u00adEs el lenguaje de programaci\u00f3n de aplicaciones de cliente.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Es el lenguaje de programaci&oacute;n de aplicaciones de cliente.</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u200b\u00adDefine la estructura de la informaci\u00f3n de una p\u00e1gina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
-  "answer":false}, {"id":"3", "value":"\u200b\u00adDefine el estilo de visualizaci\u00f3n de una p\u00e1gina Web en el navegador.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define el estilo de visualizaci&oacute;n de una p&aacute;gina Web en el navegador.</span></span></p>\n', "answer":true}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Enriched Video Example", "description":"First Enriched Video Example", 
-  "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "slides":[{"id":"article4", "type":"quiz_simple", "template":"t8", "elements":[{"id":"article4_zone1", "areaid":"header"}, {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://www.derwentsidehomes.co.uk/UserFiles/Image/3D%20Characters/Question.jpg", "style":"position: relative; width:71.30801687763713%; height:100%; top:0%; left:10.126582278481013%;"}, {"id":"article4_zone3", "type":"quiz", "areaid":"center", 
-  "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00bfPara qu\u00e9 se utiliza el CSS?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:36px;"><span autocolor="true" style="color:#000">&iquest;Para qu&eacute; se utiliza el&nbsp;<strong>CSS</strong>?&shy;</span></span></p>\n'}, "choices":[{"id":"1", "value":"\u200b\u00adEs el lenguaje de programaci\u00f3n de aplicaciones de cliente.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Es el lenguaje de programaci&oacute;n de aplicaciones de cliente.</span></span></p>\n', 
-  "answer":false}, {"id":"2", "value":"\u200b\u00adDefine la estructura de la informaci\u00f3n de una p\u00e1gina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', "answer":false}, {"id":"3", "value":"\u200b\u00adDefine el estilo de visualizaci\u00f3n de una p\u00e1gina Web en el navegador.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define el estilo de visualizaci&oacute;n de una p&aacute;gina Web en el navegador.</span></span></p>\n', 
-  "answer":true}], "extras":{"multipleAnswer":false}}, {"id":"article4_zone4", "areaid":"right"}], "containsQuiz":true}]}}, {"id":"article4_zone4", "areaid":"right"}], "containsQuiz":true}, {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"quiz", "areaid":"center", "quiztype":"truefalse", "selfA":true, "question":{"value":"Indica cuales de las siguientes afirmaciones son verdaderas o falsas.\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Indica cuales de las siguientes afirmaciones son </span></span><span style="color:#008000;"><span autocolor="true"><span style="font-size:38px;">verdaderas</span></span></span><span autocolor="true"><span style="font-size:38px;"> o <span style="color:#b22222;">falsas</span>.&shy;</span></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"\u00adGET es un comando para traer p\u00e1ginas Web a un cliente para su visualizaci\u00f3n.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>GET</strong> es un comando para traer p&aacute;ginas Web a un cliente para su visualizaci&oacute;n.</span></span></p>\n', "answer":true}, {"id":"2", "value":"\u00adPOST es un comando para editar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;"><strong>&shy;POST</strong> es un comando para editar recursos en un servidor.</span></span></p>\n', 
-  "answer":false}, {"id":"3", "value":"\u00adPUT es un comando para crear recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>PUT</strong> es un comando para crear recursos en un servidor.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adDELETE es un comando para borrar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>DELETE</strong> es un comando para borrar recursos en un servidor.</span></span></p>\n', 
-  "answer":true}], "quiz_simple_json":{"title":"Enriched Video Example", "description":"First Enriched Video Example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "slides":[{"id":"article5", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article5_zone1", "type":"quiz", "areaid":"center", "quiztype":"truefalse", "selfA":true, "question":{"value":"Indica cuales de las siguientes afirmaciones son verdaderas o falsas.\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Indica cuales de las siguientes afirmaciones son </span></span><span style="color:#008000;"><span autocolor="true"><span style="font-size:38px;">verdaderas</span></span></span><span autocolor="true"><span style="font-size:38px;"> o <span style="color:#b22222;">falsas</span>.&shy;</span></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"\u00adGET es un comando para traer p\u00e1ginas Web a un cliente para su visualizaci\u00f3n.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>GET</strong> es un comando para traer p&aacute;ginas Web a un cliente para su visualizaci&oacute;n.</span></span></p>\n', "answer":true}, {"id":"2", "value":"\u00adPOST es un comando para editar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;"><strong>&shy;POST</strong> es un comando para editar recursos en un servidor.</span></span></p>\n', 
-  "answer":false}, {"id":"3", "value":"\u00adPUT es un comando para crear recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>PUT</strong> es un comando para crear recursos en un servidor.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adDELETE es un comando para borrar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>DELETE</strong> es un comando para borrar recursos en un servidor.</span></span></p>\n', 
-  "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"Test de autoevaluaci\u00f3n.Indica cuales de las siguientes afirmaciones son verdaderas o falsas.", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:28px;"><font color="#000000">Test de autoevaluaci&oacute;n.</font></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:28px;"><font color="#000000">Indica cuales de las siguientes afirmaciones son </font><span style="color:#008000;">verdaderas</span><font color="#000000"> o </font><span style="color:#b22222;">falsas</span><font color="#000000">.</font></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"HTTP permite procesar remotamente recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5"><strong>HTTP</strong> permite procesar remotamente recursos en un servidor.</font></p>\n', "answer":true}, {"id":"2", "value":"\u00adUna URL identifica sin ambiguedad un recurso en Internet.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Una </span></span><strong><span style="color:#000000;"><span autocolor="true"><span style="font-size:24px;">URL</span></span></span></strong><span autocolor="true" style="color:#000"><span style="font-size:24px;"> identifica sin ambiguedad un recurso en Internet.</span></span></p>\n', 
-  "answer":true}, {"id":"3", "value":"\u00adJavaScript es igual al lenguaje de programaci\u00f3n Java.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>JavaScript</strong> es igual al lenguaje de programaci&oacute;n Java.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adHTML define la estructura de la informaci\u00f3n de una p\u00e1gina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>HTML</strong> define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
-  "answer":true}], "quiz_simple_json":{"title":"Enriched Video Example", "description":"First Enriched Video Example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "slides":[{"id":"article6", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article6_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"Test de autoevaluaci\u00f3n.Indica cuales de las siguientes afirmaciones son verdaderas o falsas.", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:28px;"><font color="#000000">Test de autoevaluaci&oacute;n.</font></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:28px;"><font color="#000000">Indica cuales de las siguientes afirmaciones son </font><span style="color:#008000;">verdaderas</span><font color="#000000"> o </font><span style="color:#b22222;">falsas</span><font color="#000000">.</font></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"HTTP permite procesar remotamente recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5"><strong>HTTP</strong> permite procesar remotamente recursos en un servidor.</font></p>\n', "answer":true}, {"id":"2", "value":"\u00adUna URL identifica sin ambiguedad un recurso en Internet.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Una </span></span><strong><span style="color:#000000;"><span autocolor="true"><span style="font-size:24px;">URL</span></span></span></strong><span autocolor="true" style="color:#000"><span style="font-size:24px;"> identifica sin ambiguedad un recurso en Internet.</span></span></p>\n', 
-  "answer":true}, {"id":"3", "value":"\u00adJavaScript es igual al lenguaje de programaci\u00f3n Java.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>JavaScript</strong> es igual al lenguaje de programaci&oacute;n Java.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adHTML define la estructura de la informaci\u00f3n de una p\u00e1gina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>HTML</strong> define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
-  "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}]};
-  var mooc_sample = {"VEVersion":"0.8.5", "type":"presentation", "title":"Modulo 1: Introducci\u00f3n a Internet, el Web, la nube, HTML5 y CSS", "description":"Modulo 1 del MOOC Desarrollo de Aplicaciones Web en HTML5 y para m\u00f3viles Firefox OS. Accesible a trav\u00e9s de https://www.miriadax.net/web/firefox-os .", "avatar":"http://www.adwe.es/wp-content/uploads/2013/07/FirefoxOS.2.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "tags":["MOOC", "HTML5", "CSS", "Web"], "theme":"theme1", 
-  "animation":"animation1", "language":"independent", "age_range":"14 - 30", "subject":["Software Engineering", "Technology", "Telecommunications"], "educational_objectives":"El alumno obtendr\u00e1 una introducci\u00f3n a Internet, el Web, la nube, HTML5 y CSS.", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article1", "type":"enrichedvideo", "video":{"type":"HTML5", "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/3366.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/3366.mp4"}]', 
-  "poster":"http://vishub.org/videos/3366.png?style=170x127%23", "duration":"799.16"}, "pois":[{"id":"article1_poi1", "etime":"120", "slide_id":"article1_article1", "name":"Tecnologias de la Web"}, {"id":"article1_poi2", "etime":"630", "slide_id":"article1_article2", "name":"Operaciones principales de HTTP"}, {"id":"article1_poi3", "etime":"791", "slide_id":"article1_article3", "name":"Test de autoevaluacion"}], "slides":[{"id":"article1_article1", "type":"standard", "template":"t8", "elements":[{"id":"article1_article1zone1", 
-  "areaid":"header"}, {"id":"article1_article1zone2", "type":"image", "areaid":"left", "body":"http://www.derwentsidehomes.co.uk/UserFiles/Image/3D%20Characters/Question.jpg", "style":"position: relative; width:71.30801687763713%; height:100%; top:0%; left:10.126582278481013%;"}, {"id":"article1_article1zone3", "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00bfPara qu\u00e9 se utiliza el CSS?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:36px;"><span autocolor="true" style="color:#000">&iquest;Para qu&eacute; se utiliza el&nbsp;<strong>CSS</strong>?&shy;</span></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"\u200b\u00adEs el lenguaje de programaci\u00f3n de aplicaciones de cliente.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Es el lenguaje de programaci&oacute;n de aplicaciones de cliente.</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u200b\u00adDefine la estructura de la informaci\u00f3n de una p\u00e1gina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
-  "answer":false}, {"id":"3", "value":"\u200b\u00adDefine el estilo de visualizaci\u00f3n de una p\u00e1gina Web en el navegador.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define el estilo de visualizaci&oacute;n de una p&aacute;gina Web en el navegador.</span></span></p>\n', "answer":true}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Enriched Video Example", "description":"First Enriched Video Example", 
-  "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "slides":[{"id":"article4", "type":"quiz_simple", "template":"t8", "elements":[{"id":"article1_article1zone1", "areaid":"header"}, {"id":"article1_article1zone2", "type":"image", "areaid":"left", "body":"http://www.derwentsidehomes.co.uk/UserFiles/Image/3D%20Characters/Question.jpg", "style":"position: relative; width:71.30801687763713%; height:100%; top:0%; left:10.126582278481013%;"}, {"id":"article1_article1zone3", 
-  "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00bfPara qu\u00e9 se utiliza el CSS?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:36px;"><span autocolor="true" style="color:#000">&iquest;Para qu&eacute; se utiliza el&nbsp;<strong>CSS</strong>?&shy;</span></span></p>\n'}, "choices":[{"id":"1", "value":"\u200b\u00adEs el lenguaje de programaci\u00f3n de aplicaciones de cliente.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Es el lenguaje de programaci&oacute;n de aplicaciones de cliente.</span></span></p>\n', 
-  "answer":false}, {"id":"2", "value":"\u200b\u00adDefine la estructura de la informaci\u00f3n de una p\u00e1gina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', "answer":false}, {"id":"3", "value":"\u200b\u00adDefine el estilo de visualizaci\u00f3n de una p\u00e1gina Web en el navegador.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define el estilo de visualizaci&oacute;n de una p&aacute;gina Web en el navegador.</span></span></p>\n', 
-  "answer":true}], "extras":{"multipleAnswer":false}}, {"id":"article1_article1zone4", "areaid":"right"}], "containsQuiz":true}]}}, {"id":"article1_article1zone4", "areaid":"right"}], "containsQuiz":true}, {"id":"article1_article2", "type":"standard", "template":"t2", "elements":[{"id":"article1_article2zone1", "type":"quiz", "areaid":"center", "quiztype":"truefalse", "selfA":true, "question":{"value":"Indica cuales de las siguientes afirmaciones son verdaderas o falsas.\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Indica cuales de las siguientes afirmaciones son </span></span><span style="color:#008000;"><span autocolor="true"><span style="font-size:38px;">verdaderas</span></span></span><span autocolor="true"><span style="font-size:38px;"> o <span style="color:#b22222;">falsas</span>.&shy;</span></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"\u00adGET es un comando para traer p\u00e1ginas Web a un cliente para su visualizaci\u00f3n.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>GET</strong> es un comando para traer p&aacute;ginas Web a un cliente para su visualizaci&oacute;n.</span></span></p>\n', "answer":true}, {"id":"2", "value":"\u00adPOST es un comando para editar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;"><strong>&shy;POST</strong> es un comando para editar recursos en un servidor.</span></span></p>\n', 
-  "answer":false}, {"id":"3", "value":"\u00adPUT es un comando para crear recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>PUT</strong> es un comando para crear recursos en un servidor.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adDELETE es un comando para borrar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>DELETE</strong> es un comando para borrar recursos en un servidor.</span></span></p>\n', 
-  "answer":true}], "quiz_simple_json":{"title":"Enriched Video Example", "description":"First Enriched Video Example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "slides":[{"id":"article5", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article1_article2zone1", "type":"quiz", "areaid":"center", "quiztype":"truefalse", "selfA":true, "question":{"value":"Indica cuales de las siguientes afirmaciones son verdaderas o falsas.\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Indica cuales de las siguientes afirmaciones son </span></span><span style="color:#008000;"><span autocolor="true"><span style="font-size:38px;">verdaderas</span></span></span><span autocolor="true"><span style="font-size:38px;"> o <span style="color:#b22222;">falsas</span>.&shy;</span></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"\u00adGET es un comando para traer p\u00e1ginas Web a un cliente para su visualizaci\u00f3n.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>GET</strong> es un comando para traer p&aacute;ginas Web a un cliente para su visualizaci&oacute;n.</span></span></p>\n', "answer":true}, {"id":"2", "value":"\u00adPOST es un comando para editar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;"><strong>&shy;POST</strong> es un comando para editar recursos en un servidor.</span></span></p>\n', 
-  "answer":false}, {"id":"3", "value":"\u00adPUT es un comando para crear recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>PUT</strong> es un comando para crear recursos en un servidor.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adDELETE es un comando para borrar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>DELETE</strong> es un comando para borrar recursos en un servidor.</span></span></p>\n', 
-  "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article1_article3", "type":"standard", "template":"t2", "elements":[{"id":"article1_article3zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"Test de autoevaluaci\u00f3n.Indica cuales de las siguientes afirmaciones son verdaderas o falsas.", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:28px;"><font color="#000000">Test de autoevaluaci&oacute;n.</font></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:28px;"><font color="#000000">Indica cuales de las siguientes afirmaciones son </font><span style="color:#008000;">verdaderas</span><font color="#000000"> o </font><span style="color:#b22222;">falsas</span><font color="#000000">.</font></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"HTTP permite procesar remotamente recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5"><strong>HTTP</strong> permite procesar remotamente recursos en un servidor.</font></p>\n', "answer":true}, {"id":"2", "value":"\u00adUna URL identifica sin ambiguedad un recurso en Internet.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Una </span></span><strong><span style="color:#000000;"><span autocolor="true"><span style="font-size:24px;">URL</span></span></span></strong><span autocolor="true" style="color:#000"><span style="font-size:24px;"> identifica sin ambiguedad un recurso en Internet.</span></span></p>\n', 
-  "answer":true}, {"id":"3", "value":"\u00adJavaScript es igual al lenguaje de programaci\u00f3n Java.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>JavaScript</strong> es igual al lenguaje de programaci&oacute;n Java.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adHTML define la estructura de la informaci\u00f3n de una p\u00e1gina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>HTML</strong> define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
-  "answer":true}], "quiz_simple_json":{"title":"Enriched Video Example", "description":"First Enriched Video Example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "slides":[{"id":"article6", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article1_article3zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"Test de autoevaluaci\u00f3n.Indica cuales de las siguientes afirmaciones son verdaderas o falsas.", 
-  "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:28px;"><font color="#000000">Test de autoevaluaci&oacute;n.</font></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:28px;"><font color="#000000">Indica cuales de las siguientes afirmaciones son </font><span style="color:#008000;">verdaderas</span><font color="#000000"> o </font><span style="color:#b22222;">falsas</span><font color="#000000">.</font></span></p>\n'}, "choices":[{"id":"1", "value":"HTTP permite procesar remotamente recursos en un servidor.", 
-  "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5"><strong>HTTP</strong> permite procesar remotamente recursos en un servidor.</font></p>\n', "answer":true}, {"id":"2", "value":"\u00adUna URL identifica sin ambiguedad un recurso en Internet.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Una </span></span><strong><span style="color:#000000;"><span autocolor="true"><span style="font-size:24px;">URL</span></span></span></strong><span autocolor="true" style="color:#000"><span style="font-size:24px;"> identifica sin ambiguedad un recurso en Internet.</span></span></p>\n', 
-  "answer":true}, {"id":"3", "value":"\u00adJavaScript es igual al lenguaje de programaci\u00f3n Java.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>JavaScript</strong> es igual al lenguaje de programaci&oacute;n Java.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adHTML define la estructura de la informaci\u00f3n de una p\u00e1gina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>HTML</strong> define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
-  "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}]}]};
   var quiz_samples = {"VEVersion":"0.7", "vishMetadata":{"url":"http://vishub.org", "draft":"true", "id":"500"}, "type":"presentation", "title":"Quiz samples", "description":"Quiz example", "avatar":"http://vishub.org/assets/logos/original/excursion-15.png", "author":"agordillo", "theme":"theme1", "animation":"animation1", "language":"independent", "age_range":"4 - 20", "tags":["Quizzes", "Lynx", "Biology", "Maths"], "subject":["Education", "Environmental Education", "Geology", "Physics"], "slides":[{"id":"article2", 
   "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', 
   "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', 
@@ -15008,30 +14971,23 @@ VISH.Samples = function(V, undefined) {
   "choices":[{"id":"1", "value":"\u200bBarcelona\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Barcelona&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u200b\u00adMadrid", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Madrid</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u200b\u00adLugo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Lugo</span></span></p>\n', 
   "answer":false}], "extras":{"multipleAnswer":false}}, {"id":"article4_zone4", "type":"image", "areaid":"right", "body":"http://farm6.staticflickr.com/5520/11018661665_67b642b119.jpg", "style":"position: relative; width:109.70464135021098%; height:140.8906882591093%; top:-17.408906882591094%; left:-9.282700421940929%;"}], "containsQuiz":true}]}}, {"id":"article4_zone4", "type":"image", "areaid":"right", "body":"http://farm6.staticflickr.com/5520/11018661665_67b642b119.jpg", "style":"position: relative; width:109.70464135021098%; height:140.8906882591093%; top:-17.408906882591094%; left:-9.282700421940929%;"}], 
   "containsQuiz":true}]};
-  var magnetic_gifs = {"id":"405", "type":"presentation", "title":"Magnetic Resonance Imaging of Foods (Mobile)", "description":"Images of magnetic resonance: Food series.\nhttp://insideinsides.blogspot.com.es/", "avatar":"http://vishub.org/assets/logos/original/excursion-35.png", "tags":["Art", "Mobile", "LifeSciences", "Life-Sciences", "EarthScience", "e-learning"], "author":"N\u00e9stor Toribio Ruiz", "slides":[{"id":"article_405_0", "type":"standard", "template":"t1", "elements":[{"id":"zone1", 
-  "type":"image", "areaid":"left", "body":"http://3.bp.blogspot.com/-QLfceEKHmis/TijNAXnjwLI/AAAAAAAACSA/LWzvgAAy4YI/s840/insideinsides.jpg", "style":"position: relative; width:97.61388286334056%; height:60.85790884718499%; top:23.288651126319536%; left:1.0773698057890455%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" class="vish-parent-font7 vish-parent-font2 vish-parent-font4" align="center"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font2 vish-fontHelvetica" style="color:#201815;undefined;"><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;">Magnetic Resonance</span></span></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div style="font-weight: 400;" class="vish-parent-font5 vish-parent-font2" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><i>Imaging of Foods</i></span></span></div>'}]}, {"id":"article_405_1", "type":"standard", "template":"t5", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Broccoli</span></span></div>'}, 
-  {"id":"zone5", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/150.gif", "style":"position: relative; width:123.07692307692308%; height:70.78651685393258%; top:12.142323697550912%; left:-17.887178861177883%;"}, {"id":"zone6", "type":"image", "areaid":"right", "body":"http://www.tarot-josnell.com/imagenes/brocoli.jpg", "style":"position: relative; width:107.6923076923077%; height:75.50561797752809%; top:9.438202247191011%; left:-3.6923076923076925%;"}]}, {"id":"article_405_2", 
-  "type":"standard", "template":"t5", "elements":[{"id":"zone7", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" class="vish-parent-font2" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Corn</span></span><br></div>'}, {"id":"zone8", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/146.gif", "style":"position: relative; width:70.76923076923077%; height:101.79775280898876%; top:0%; left:15.097430889423077%;"}, 
-  {"id":"zone9", "type":"image", "areaid":"right", "body":"http://www.scientificamerican.com/media/inline/that-burger-youre-eating-is-mostly-corn_1.jpg", "style":"position: relative; width:169.23076923076923%; height:123.59550561797752%; top:-13.730335021286868%; left:-36.68716195913461%;"}]}, {"id":"article_405_3", "type":"standard", "template":"t5", "elements":[{"id":"zone10", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Garlic</span></span></div>'}, 
-  {"id":"zone11", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/149.gif", "style":"position: relative; width:132.30769230769232%; height:97.52808988764045%; top:6.29962706833743%; left:-16.041053185096153%;"}, {"id":"zone12", "type":"image", "areaid":"right", "body":"http://www.planetmattersandmore.com/wp-content/uploads/2012/04/garlic_bulb.jpg", "style":"position: relative; width:153.84615384615384%; height:84.9438202247191%; top:7.872660776202598%; left:-28.369290865384617%;"}]}, 
-  {"id":"article_405_4", "type":"standard", "template":"t5", "elements":[{"id":"zone13", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Tomato</span></span></div>'}, {"id":"zone14", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/148.gif", "style":"position: relative; width:107.6923076923077%; height:78.65168539325843%; top:8.546818079573384%; left:-7.405127892127404%;"}, 
-  {"id":"zone15", "type":"image", "areaid":"right", "body":"http://www.lacocinadeinma.com/wp-content/uploads/Tomate.jpg", "style":"position: relative; width:123.07692307692308%; height:89.88764044943821%; top:4.943820224719101%; left:-9.866671048677885%;"}]}, {"id":"article_405_5", "type":"standard", "template":"t5", "elements":[{"id":"zone16", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Pineapple</span></span></div>'}, 
-  {"id":"zone17", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/156.gif?1347543540", "style":"position: relative; width:200%; height:81.57303370786516%; top:12.36329496576545%; left:-48.05127892127404%;"}, {"id":"zone18", "type":"image", "areaid":"right", "body":"http://www.floridahillnursery.com/images/gold%20pineapple%20.jpg", "style":"position: relative; width:123.07692307692308%; height:165.8426966292135%; top:-69.93258358387465%; left:-10.784621018629808%;"}]}, {"id":"article_405_6", 
-  "type":"standard", "template":"t5", "elements":[{"id":"zone19", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Apple</span></span></div>'}, {"id":"zone20", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/151.gif", "style":"position: relative; width:163.07692307692307%; height:119.10112359550561%; top:-8.771533751755618%; left:-32.65127798227164%;"}, 
-  {"id":"zone21", "type":"image", "areaid":"right", "body":"http://appleadayproject.files.wordpress.com/2011/03/apple-full2.jpg", "style":"position: relative; width:138.46153846153845%; height:101.79775280898876%; top:-8.996252852879213%; left:-14.4769287109375%;"}]}, {"id":"article_405_7", "type":"standard", "template":"t2", "elements":[{"id":"zone22", "type":"text", "areaid":"left", "body":'<div style="font-weight: 400;" class="vish-parent-font7 vish-parent-font2 vish-parent-fontundefined" align="center"><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-fontundefined vish-fontHelvetica" style="color:#717175;undefined;"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;">http://insideinsides.blogspot.com.es/</span></span></span></div>'}]}]};
-  var new_wysiwyg = {"VEVersion":"0.3", "id":"4", "type":"presentation", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "tags":["Do\u00c3\u00b1ana", "Lynx", "Biology"], "theme":"theme1", "age_range":"4 - 20", "subject":["Biology"], "language":"en", "educational_objectives":"Know about Iberian Lynx", "adquired_competencies":"Pupils will be smarter", 
+  var text_samples = {"VEVersion":"0.3", "id":"4", "type":"presentation", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "tags":["Do\u00c3\u00b1ana", "Lynx", "Biology"], "theme":"theme1", "age_range":"4 - 20", "subject":["Biology"], "language":"en", "educational_objectives":"Know about Iberian Lynx", "adquired_competencies":"Pupils will be smarter", 
   "author":"", "slides":[{"id":"article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_zone1", "type":"text", "areaid":"left", "body":'<p>\n\taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>\n<p>\n\tbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>\n<p>\n\t<span style="font-size:10px;">10cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc</span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;">16ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</span></span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;"><span style="font-size:26px;">26eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</span></span></span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;"><span style="font-size:26px;"><span style="font-size:48px;">48ffffffffffffffffffffffffffffffffffffffffffffffff</span></span></span></span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;"><span style="font-size:26px;"><span style="font-size:48px;"><span style="font-size:72px;">72ggggggggggggggg</span></span></span></span></span></p>\n<p>\n\t&nbsp;</p>\n'}]}, 
   {"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align: center;">\n\t<span style="color:#ff0000;"><span style="font-size:48px;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">Hello World</span></span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span style="color: rgb(255, 0, 0); font-family: \'trebuchet ms\', helvetica, sans-serif; font-size: 48px;">Hello World</span></p>\n'}]}, 
   {"id":"article3", "type":"standard", "template":"t2", "elements":[{"id":"article3_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;<span style="font-size:20px;">1</span></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">2</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">3</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">4</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">5</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">6</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">7</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">8</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">9</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">10</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">11</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">12</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">13</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">14</span></p>\n'}]}, 
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var audio_samples = {"VEVersion":"0.8.6", "type":"presentation", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "contributors":[{"name":"Fred Griffin", "vishMetadata":{"id":5}}], "tags":["Do\u00f1ana", "Lynx", "Biology"], "theme":"theme1", "animation":"animation1", "language":"en", 
-  "age_range":"4 - 20", "difficulty":"easy", "TLT":"PT6H30M15S", "subject":["Art", "Astronomy", "Biology"], "educational_objectives":"Know about the Iberian Lynx", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article10", "type":"standard", "template":"t10", "elements":[{"id":"article10_zone1", "type":"audio", "areaid":"center", "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "sources":'[{ "type": "audio/ogg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.ogg"},{ "type": "audio/mpeg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.mp3"}]'}]}]};
+  var VE01_samples = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning", "description":"Samples of VE v01. The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by ViSH Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"ViSH Editor Team", "theme":"theme1", "age_range":"4 - 14", "subject":["Art", 
+  "Astronomy"], "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", "slides":[{"id":"article1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article2", "template":"t3", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
+  {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
+  {"id":"article_5", "type":"standard", "template":"t2", "elements":[{"id":"zone11", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]};
   var test = {"VEVersion":"0.8.6", "type":"presentation", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "contributors":[{"name":"Fred Griffin", "vishMetadata":{"id":5}}], "tags":["Do\u00f1ana", "Lynx", "Biology"], "theme":"theme1", "animation":"animation1", "language":"en", 
   "age_range":"4 - 20", "difficulty":"easy", "TLT":"PT6H30M15S", "subject":["Art", "Astronomy", "Biology"], "educational_objectives":"Know about the Iberian Lynx", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article10", "type":"standard", "template":"t10", "elements":[{"id":"article10_zone1", "type":"audio", "areaid":"center", "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "sources":'[{ "type": "audio/ogg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.ogg"},{ "type": "audio/mpeg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.mp3"}]'}]}]};
-  return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, evideo_sample:evideo_sample, mooc_sample:mooc_sample, audio_samples:audio_samples, test:test}
+  return{basic_samples:basic_samples, full_samples:full_samples, fc_sample:fc_sample, vt_sample:vt_sample, evideo_sample:evideo_sample, quiz_samples:quiz_samples, text_samples:text_samples, VE01_samples:VE01_samples, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
   var recommendationList = [{"id":"1", "url":"http://vishub.org/excursions/144", "title":"Nanogame", "author":"Enrique Barra", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-05.png", "views":"56", "favourites":"3", "number_of_slides":"8"}, {"id":"2", "url":"http://vishub.org/excursions/83", "title":"Flascard Curiosity", "author":"Evita Tassiopolu", "description":" bla bla bla 2", "image":"http://www.topsecretwriters.com/wp-content/uploads/2012/08/curiosityrover.jpg", 
@@ -15290,7 +15246,7 @@ VISH.Slides = function(V, $, undefined) {
     if(slideEl && slideEl.tagName === "ARTICLE") {
       return $(slideEl).attr("type")
     }else {
-      if(typeof slideEl == "object" && slideEl.length === 1 && slideEl[0].tagName === "ARTICLE") {
+      if(typeof slideEl == "object" && (slideEl.length === 1 && slideEl[0].tagName === "ARTICLE")) {
         return $(slideEl).attr("type")
       }else {
         if(typeof slideEl == "object" && typeof slideEl.type == "string") {
@@ -15348,7 +15304,7 @@ VISH.Slides = function(V, $, undefined) {
     moveSlides(-1)
   };
   var moveSlides = function(n) {
-    if(n > 0 && !V.Editing && isCurrentLastSlide()) {
+    if(n > 0 && (!V.Editing && isCurrentLastSlide())) {
       V.Recommendations.showFancybox();
       return
     }
@@ -15357,11 +15313,11 @@ VISH.Slides = function(V, $, undefined) {
     goToSlide(no)
   };
   var goToSlide = function(no, triggeredByUser) {
-    if(no === getCurrentSlideNumber() || no > slideEls.length || no <= 0) {
+    if(no === getCurrentSlideNumber() || (no > slideEls.length || no <= 0)) {
       return
     }
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
+    if(triggeredByUser && (V.Status.isPreventDefaultMode() && V.Messenger)) {
       var params = {};
       params.slideNumber = no;
       V.Messenger.notifyEventByMessage(V.Constant.Event.onGoToSlide, params);
@@ -15400,7 +15356,7 @@ VISH.Slides = function(V, $, undefined) {
   };
   var openSubslide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
+    if(triggeredByUser && (V.Status.isPreventDefaultMode() && V.Messenger)) {
       var params = new Object;
       params.slideId = slide_id;
       V.Messenger.notifyEventByMessage(V.Constant.Event.onSubslideOpen, params);
@@ -15416,7 +15372,7 @@ VISH.Slides = function(V, $, undefined) {
   };
   var closeSubslide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
+    if(triggeredByUser && (V.Status.isPreventDefaultMode() && V.Messenger)) {
       var params = new Object;
       params.slideId = slide_id;
       V.Messenger.notifyEventByMessage(V.Constant.Event.onSubslideClosed, params);
@@ -15635,7 +15591,7 @@ VISH.Flashcard = function(V, $, undefined) {
     }
   };
   var _addArrow = function(fcId, poi) {
-    if(!poi || !poi.x || !poi.y || poi.x > 100 || poi.y > 100) {
+    if(!poi || (!poi.x || (!poi.y || (poi.x > 100 || poi.y > 100)))) {
       return
     }
     var flashcard_div = $("#" + fcId);
@@ -15661,7 +15617,7 @@ VISH.Flashcard = function(V, $, undefined) {
     _stopAnimation($(slideset).attr("id"))
   };
   var _startAnimation = function(slideId) {
-    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer == "undefined") {
+    if(typeof flashcards !== "undefined" && (typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer == "undefined")) {
       flashcards[slideId].timer = setInterval(function() {
         _animateArrows(slideId)
       }, 1E3 / FPS)
@@ -15688,7 +15644,7 @@ VISH.Flashcard = function(V, $, undefined) {
     })
   };
   var _stopAnimation = function(slideId) {
-    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer !== "undefined") {
+    if(typeof flashcards !== "undefined" && (typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer !== "undefined")) {
       clearTimeout(flashcards[slideId].timer);
       flashcards[slideId].timer = undefined
     }
@@ -16003,7 +15959,7 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var renderButtons = function(selfA) {
     var quizButtons = $("<div class='quizButtons'></div>");
-    if(quizMode === V.Constant.QZ_MODE.SELFA && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
+    if(quizMode === V.Constant.QZ_MODE.SELFA && ((V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && (V.User.isLogged() && !V.Utils.getOptions().preview))) {
       var startButton = $("<input type='button' class='buttonQuiz quizStartButton' value='" + V.I18n.getTrans("i.QuizLaunch") + "'/>");
       $(quizButtons).append(startButton)
     }
@@ -16752,7 +16708,7 @@ VISH.Addons = function(V, undefined) {
   var init = function(addons) {
     if(typeof addons === "object") {
       for(var i = 0;i < addons.length;i++) {
-        var targeted = V.Editing && addons[i].target === V.Constant.Edit || !V.Editing && addons[i].target === V.Constant.Viewer || addons[i].target === V.Constant.AnyMode;
+        var targeted = V.Editing && addons[i].target === V.Constant.Edit || (!V.Editing && addons[i].target === V.Constant.Viewer || addons[i].target === V.Constant.AnyMode);
         if(targeted) {
           if(typeof V.Addons[addons[i].id] !== "undefined" && typeof V.Addons[addons[i].id].init === "function") {
             V.Addons[addons[i].id].init(addons[i].config)
@@ -17588,7 +17544,7 @@ VISH.EVideo = function(V, $, undefined) {
         eVideoJSON.balls.push(value)
       });
       eVideoJSON.balls = eVideoJSON.balls.filter(function(ball) {
-        return typeof ball.etime != "undefined" && !isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0
+        return typeof ball.etime != "undefined" && (!isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0)
       }).map(function(ball) {
         ball.etime = parseFloat(ball.etime);
         ball.eVideoId = eVideoJSON.id;
@@ -17696,6 +17652,7 @@ VISH.EVideo = function(V, $, undefined) {
     $(durationDOM).html(formatedDuration);
     var significativeNumbers = formatedDuration.split(":").join("").length;
     $(video).attr("sN", significativeNumbers);
+    $(eVideoDOM).addClass("temp_shown");
     $(video).removeClass("temp_hidden");
     fitVideoInVideoBox(videoBox);
     $(videoHeader).show();
@@ -17722,6 +17679,7 @@ VISH.EVideo = function(V, $, undefined) {
     if(videoType == V.Constant.MEDIA.YOUTUBE_VIDEO) {
       onTimeUpdate(video, 0)
     }
+    $(eVideoDOM).removeClass("temp_shown")
   };
   var fitVideoInVideoBox = function(videoBox) {
     var video = getVideoFromVideoBox(videoBox);
@@ -17828,7 +17786,7 @@ VISH.EVideo = function(V, $, undefined) {
     if(volume >= 50 && _lastVolumeValue < 50) {
       _updateVolumeImg(video, volume)
     }else {
-      if(volume < 50 && volume > 0 && (_lastVolumeValue > 50 || _lastVolumeValue == 0)) {
+      if(volume < 50 && (volume > 0 && (_lastVolumeValue > 50 || _lastVolumeValue == 0))) {
         _updateVolumeImg(video, volume)
       }else {
         _updateVolumeImg(video, volume)
@@ -18069,6 +18027,10 @@ VISH.EVideo = function(V, $, undefined) {
     })
   };
   var resizeEVideoAfterSetupSize = function(eVideoDOM, increase, increaseW) {
+    var isEVideoVisible = $(eVideoDOM).css("display") != "none";
+    if(!isEVideoVisible) {
+      $(eVideoDOM).addClass("temp_shown_b")
+    }
     var videoBox = $(eVideoDOM).find(".evideoBox");
     fitVideoInVideoBox(videoBox);
     var videoIndexBox = $(eVideoDOM).find(".evideoIndexBox");
@@ -18082,7 +18044,10 @@ VISH.EVideo = function(V, $, undefined) {
     var indexSideWidth = $(indexSide).width() - ($(indexBody).width() + $(indexBody).cssNumber("padding-right"));
     $(button).css("left", Math.max(0, (indexSideWidth - $(button).width()) / 2.5) + "px");
     var videoFooter = $(videoBox).find(".evideoFooter");
-    $(videoBox).find(".ballWrapper").height($(videoFooter).height())
+    $(videoBox).find(".ballWrapper").height($(videoFooter).height());
+    if(!isEVideoVisible) {
+      $(eVideoDOM).removeClass("temp_shown_b")
+    }
   };
   var _renderBalls = function(eVideoDOM, eVideoJSON) {
     var videoBox = $(eVideoDOM).find(".evideoBox");
@@ -18191,7 +18156,7 @@ VISH.EVideo = function(V, $, undefined) {
           return false
         }
       }else {
-        if(typeof ball.slide_id != "undefined" && ball.etime >= cTime && eVideos[eVideoId].prevBalls.indexOf(ball) == -1) {
+        if(typeof ball.slide_id != "undefined" && (ball.etime >= cTime && eVideos[eVideoId].prevBalls.indexOf(ball) == -1)) {
           nextBall = ball;
           return false
         }
@@ -19478,7 +19443,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
         eVideos[eVideoId].balls.push(poi)
       });
       eVideos[eVideoId].balls = eVideos[eVideoId].balls.filter(function(ball) {
-        return typeof ball.etime != "undefined" && !isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0
+        return typeof ball.etime != "undefined" && (!isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0)
       }).map(function(ball) {
         ball.letter = _getLetterForBall(eVideos[eVideoId], ball);
         ball.etime = parseFloat(ball.etime);
@@ -20006,7 +19971,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     var hours = $("#eVideochapters_hours").val();
     var minutes = $("#eVideochapters_minutes").val();
     var seconds = $("#eVideochapters_seconds").val();
-    if(jQuery.isNumeric(hours) && jQuery.isNumeric(minutes) && jQuery.isNumeric(seconds)) {
+    if(jQuery.isNumeric(hours) && (jQuery.isNumeric(minutes) && jQuery.isNumeric(seconds))) {
       hours = parseInt(hours);
       minutes = parseInt(minutes);
       seconds = parseInt(seconds);
@@ -20636,7 +20601,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || !data.items || data.items.length == 0) {
+    if(!data || (!data.items || data.items.length == 0)) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -20753,7 +20718,7 @@ VISH.Editor.Image.LRE = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || !data.pictures || data.pictures.length == 0) {
+    if(!data || (!data.pictures || data.pictures.length == 0)) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -20877,7 +20842,7 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || !data.pictures || data.pictures.length == 0) {
+    if(!data || (!data.pictures || data.pictures.length == 0)) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -21178,7 +21143,7 @@ VISH.Editor.LRE = function(V, $, undefined) {
           if(type === "image" && exp.manifestations[j].player == "webBrowser") {
             return exp.manifestations[j].urls[0]
           }else {
-            if(type === "object" && (exp.manifestations[j].player == "webBrowser" || exp.manifestations[j].player == "landingPage" || exp.manifestations[j].player == "printable")) {
+            if(type === "object" && (exp.manifestations[j].player == "webBrowser" || (exp.manifestations[j].player == "landingPage" || exp.manifestations[j].player == "printable"))) {
               return exp.manifestations[j].urls[0]
             }
           }
@@ -21242,7 +21207,7 @@ VISH.Editor.MenuTablet = function(V, $, undefined) {
       }
     });
     $("a.menu_option").click(function(event) {
-      if(!$(this).hasClass("menu_action") && $(this).parent()[0].tagName === "LI" && $(this).parent().find("ul").length == 1) {
+      if(!$(this).hasClass("menu_action") && ($(this).parent()[0].tagName === "LI" && $(this).parent().find("ul").length == 1)) {
         event.preventDefault();
         event.stopPropagation();
         var subMenu = $(this).parent().find("ul")[0];
@@ -21344,7 +21309,7 @@ VISH.Editor.Object.LRE = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || !data.length || data.length == 0) {
+    if(!data || (!data.length || data.length == 0)) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -22227,7 +22192,7 @@ VISH.Editor.Preview = function(V, $, undefined) {
   };
   var _prepare = function(options) {
     var slideNumberToPreview;
-    if(!options || !options["slideNumberToPreview"] || typeof options["slideNumberToPreview"] != "number") {
+    if(!options || (!options["slideNumberToPreview"] || typeof options["slideNumberToPreview"] != "number")) {
       slideNumberToPreview = V.Slides.getCurrentSlideNumber()
     }else {
       slideNumberToPreview = options["slideNumberToPreview"]
@@ -22242,12 +22207,12 @@ VISH.Editor.Preview = function(V, $, undefined) {
         }
       }
     }
-    if(!options || !options["presentationJSON"] || typeof options["presentationJSON"] != "object") {
+    if(!options || (!options["presentationJSON"] || typeof options["presentationJSON"] != "object")) {
       presentationPreview = V.Editor.savePresentation()
     }else {
       presentationPreview = options["presentationJSON"]
     }
-    if(options && options["insertMode"] && typeof options["insertMode"] == "boolean") {
+    if(options && (options["insertMode"] && typeof options["insertMode"] == "boolean")) {
       presentationPreview.insertMode = options["insertMode"]
     }
   };
@@ -22673,12 +22638,12 @@ VISH.Editor.Renderer = function(V, $, undefined) {
             var options = [];
             options["poster"] = slide.elements[el].poster;
             options["autoplay"] = slide.elements[el].autoplay;
-            V.Editor.Video.HTML5.drawVideo(V.Video.HTML5.getSourcesFromJSON(slide.elements[el]), options, area)
+            V.Editor.Video.HTML5.drawVideo(V.Video.HTML5.getSourcesFromJSON(slide.elements[el]), options, area, slide.elements[el].style)
           }else {
             if(slide.elements[el].type === V.Constant.AUDIO) {
               var options = [];
               options["autoplay"] = slide.elements[el].autoplay;
-              V.Editor.Audio.HTML5.drawAudio(V.Audio.HTML5.getSourcesFromJSON(slide.elements[el]), options, area)
+              V.Editor.Audio.HTML5.drawAudio(V.Audio.HTML5.getSourcesFromJSON(slide.elements[el]), options, area, slide.elements[el].style)
             }else {
               if(slide.elements[el].type === V.Constant.OBJECT) {
                 V.Editor.Object.drawObject(slide.elements[el].body, {area:area, style:slide.elements[el].style, zoomInStyle:slide.elements[el].zoomInStyle})
@@ -23174,11 +23139,11 @@ VISH.Editor.Settings = function(V, $, undefined) {
     var hours = $("#tlt_hours").val();
     var minutes = $("#tlt_minutes").val();
     var seconds = $("#tlt_seconds").val();
-    if(jQuery.isNumeric(hours) && jQuery.isNumeric(minutes) && jQuery.isNumeric(seconds)) {
+    if(jQuery.isNumeric(hours) && (jQuery.isNumeric(minutes) && jQuery.isNumeric(seconds))) {
       hours = parseInt(hours);
       minutes = parseInt(minutes);
       seconds = parseInt(seconds);
-      if(hours >= 0 && hours < 100 && minutes >= 0 && minutes < 60 && seconds >= 0 && seconds < 60) {
+      if(hours >= 0 && (hours < 100 && (minutes >= 0 && (minutes < 60 && (seconds >= 0 && seconds < 60))))) {
         if(hours * 24 * 60 + minutes * 60 + seconds > 0) {
           if(hours != 0) {
             TLT = TLT + hours + "H"
@@ -23191,7 +23156,7 @@ VISH.Editor.Settings = function(V, $, undefined) {
           }
           return TLT
         }else {
-          if(hours === 0 && minutes === 0 && seconds === 0) {
+          if(hours === 0 && (minutes === 0 && seconds === 0)) {
             return undefined
           }
         }
@@ -23324,7 +23289,7 @@ VISH.Editor.Slides = function(V, $, undefined) {
         return
       }
     }
-    if(slide_to_move.tagName != "ARTICLE" || reference_slide.tagName != "ARTICLE" || slide_to_move == reference_slide) {
+    if(slide_to_move.tagName != "ARTICLE" || (reference_slide.tagName != "ARTICLE" || slide_to_move == reference_slide)) {
       return
     }
     var movement = null;
@@ -23777,7 +23742,7 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
     }else {
       if(slideType == V.Constant.STANDARD) {
         var zone = $(slide).children("div.vezone");
-        if($(zone).length === 1 && !V.Editor.isZoneEmpty(zone) && $(zone).attr("type") == "image") {
+        if($(zone).length === 1 && (!V.Editor.isZoneEmpty(zone) && $(zone).attr("type") == "image")) {
           var img = $(zone).find("img");
           if($(img).length === 1 && typeof $(img).attr("src") == "string") {
             thumbnailURL = $(img).attr("src")
@@ -24462,7 +24427,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || !data.videos || data.videos.length == 0) {
+    if(!data || (!data.videos || data.videos.length == 0)) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -24646,7 +24611,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || !data.feed || data.feed.length == 0 || !data.feed.entry) {
+    if(!data || (!data.feed || (data.feed.length == 0 || !data.feed.entry))) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -25163,10 +25128,10 @@ VISH.FullScreen = function(V, $, undefined) {
     }
   };
   var _getFsElement = function(myDoc) {
-    return myDoc.fullscreenElement || myDoc.mozFullScreenElement || myDoc.webkitFullscreenElement || myDoc.msFullscreenElement
+    return myDoc.fullscreenElement || (myDoc.mozFullScreenElement || (myDoc.webkitFullscreenElement || myDoc.msFullscreenElement))
   };
   var _getFsEnabled = function(myDoc) {
-    return myDoc.fullscreenEnabled || myDoc.mozFullScreenEnabled || myDoc.webkitFullscreenEnabled || myDoc.msFullscreenEnabled
+    return myDoc.fullscreenEnabled || (myDoc.mozFullScreenEnabled || (myDoc.webkitFullscreenEnabled || myDoc.msFullscreenEnabled))
   };
   var _launchFullscreenForElement = function(myDoc, element) {
     if(element.requestFullscreen) {
@@ -25217,7 +25182,7 @@ VISH.FullScreen = function(V, $, undefined) {
   };
   var isFullScreenSupported = function() {
     var elem = document.createElement("div");
-    if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen || elem.msRequestFullscreen)) {
+    if(elem && (elem.requestFullScreen || (elem.mozRequestFullScreen || (elem.webkitRequestFullScreen || elem.msRequestFullscreen)))) {
       return true
     }else {
       return false
@@ -25713,7 +25678,7 @@ VISH.Messenger.Helper = function(V, undefined) {
       if(!VEMessageObject.VEevent) {
         return false
       }
-      if(V.Status.getIsInIframe() && V.Status.getIframe() != null && params && params.allowSelfMessages === false) {
+      if(V.Status.getIsInIframe() && (V.Status.getIframe() != null && (params && params.allowSelfMessages === false))) {
         if(VEMessageObject.origin === V.Status.getIframe().id) {
           return false
         }
@@ -25850,7 +25815,7 @@ VISH.Object = function(V, $, undefined) {
     }
   };
   var _getTypeFromSource = function(source) {
-    if(typeof source == "object" && typeof source.length == "number" && source.length > 0) {
+    if(typeof source == "object" && (typeof source.length == "number" && source.length > 0)) {
       source = source[0]
     }
     var http_urls_pattern = /(http(s)?:\/\/)([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
@@ -26471,7 +26436,7 @@ VISH.QuizCharts = function(V, $, undefined) {
       }
     }
     var myNewChart = (new Chart(ctx)).Pie(data, chartOptions);
-    if(options && options.animation != true && typeof options.callback == "function") {
+    if(options && (options.animation != true && typeof options.callback == "function")) {
       options.callback()
     }
   };
@@ -26519,7 +26484,7 @@ VISH.QuizCharts = function(V, $, undefined) {
       }
     }
     var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
-    if(options && options.animation != true && typeof options.callback == "function") {
+    if(options && (options.animation != true && typeof options.callback == "function")) {
       options.callback()
     }
   };
@@ -26574,7 +26539,7 @@ VISH.QuizCharts = function(V, $, undefined) {
       }
     }
     var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
-    if(options && options.animation != true && typeof options.callback == "function") {
+    if(options && (options.animation != true && typeof options.callback == "function")) {
       options.callback()
     }
   };
@@ -26642,7 +26607,7 @@ VISH.Recommendations = function(V, $, undefined) {
     }
     _searchTerms = getCurrentSearchTerms();
     var options = V.Utils.getOptions();
-    if(options && typeof options["recommendationsAPI"] != "undefined" && typeof options["recommendationsAPI"]["rootURL"] == "string") {
+    if(options && (typeof options["recommendationsAPI"] != "undefined" && typeof options["recommendationsAPI"]["rootURL"] == "string")) {
       _recommendationAPIUrl = options["recommendationsAPI"]["rootURL"];
       _enabled = true
     }
@@ -26666,7 +26631,7 @@ VISH.Recommendations = function(V, $, undefined) {
     return true
   };
   var canShowEvaluateButton = function() {
-    var _showEvaluateButton = V.Status.getIsInVishSite() || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER && !V.Status.getIsScorm() && !V.Status.getIsEmbed();
+    var _showEvaluateButton = V.Status.getIsInVishSite() || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER && (!V.Status.getIsScorm() && !V.Status.getIsEmbed());
     _showEvaluateButton = _showEvaluateButton && V.Status.getDevice().desktop;
     _showEvaluateButton = _showEvaluateButton && V.Status.getIsInIframe();
     return _showEvaluateButton
@@ -26684,7 +26649,7 @@ VISH.Recommendations = function(V, $, undefined) {
     }
   };
   var _requestRecommendations = function() {
-    if(_enabled && typeof _recommendationAPIUrl != "undefined" && !_generated && _requesting != true) {
+    if(_enabled && (typeof _recommendationAPIUrl != "undefined" && (!_generated && _requesting != true))) {
       _requesting = true;
       if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
         var params = {};
@@ -27239,7 +27204,7 @@ VISH.Status.Device.Browser = function(V, $, undefined) {
     var rv = -1;
     if(navigator.appName === V.Constant.UA_NETSCAPE) {
       var ua = navigator.userAgent;
-      if(ua.indexOf("Safari") !== -1 && ua.indexOf("Chrome") === -1 && ua.indexOf("crmo") == -1) {
+      if(ua.indexOf("Safari") !== -1 && (ua.indexOf("Chrome") === -1 && ua.indexOf("crmo") == -1)) {
         var rv = -2;
         var re = new RegExp(".* Version/([0-9.]+)");
         if(re.exec(ua) != null) {
@@ -27259,13 +27224,13 @@ VISH.Status.Device.Features = function(V, $, undefined) {
     features.fullscreen = V.FullScreen.isFullScreenSupported();
     features.touchScreen = !!("ontouchstart" in window);
     features.localStorage = V.Storage.checkLocalStorageSupport();
-    features.history = typeof history === "object" && typeof history.back === "function" && typeof history.go === "function";
+    features.history = typeof history === "object" && (typeof history.back === "function" && typeof history.go === "function");
     if(features.history && typeof history.pushState == "function") {
       features.historypushState = true
     }else {
       features.historypushState = false
     }
-    if(window.File && window.FileReader && window.FileList && window.Blob) {
+    if(window.File && (window.FileReader && (window.FileList && window.Blob))) {
       features.reader = true
     }else {
       features.reader = false
@@ -27633,7 +27598,7 @@ VISH.User = function(V, $, undefined) {
     return!(JSON.stringify(_user) == "{}")
   };
   var isLogged = function() {
-    if(_user && typeof _user.token == "string" && _user.id) {
+    if(_user && (typeof _user.token == "string" && _user.id)) {
       return true
     }else {
       return false
@@ -28543,11 +28508,11 @@ VISH.Viewer = function(V, $, undefined) {
     }else {
       initOptions = {}
     }
-    if(options && options["configuration"] && V.Configuration) {
+    if(options && (options["configuration"] && V.Configuration)) {
       V.Configuration.init(options["configuration"])
     }
     if(V.Debugging.isDevelopping()) {
-      if(options["configuration"]["mode"] === V.Constant.NOSERVER && !presentation && V.Debugging.getPresentationSamples() !== null) {
+      if(options["configuration"]["mode"] === V.Constant.NOSERVER && (!presentation && V.Debugging.getPresentationSamples() !== null)) {
         presentation = V.Debugging.getPresentationSamples()
       }
     }
