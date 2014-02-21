@@ -1039,7 +1039,8 @@
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_from_url'); return false;" id="tab_video_from_url" class="fancy_tab" i18n-key="i.url">url</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo'); return false;" id="tab_video_repo" class="fancy_tab">vish</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_youtube'); return false;" id="tab_video_youtube" class="fancy_tab"><img src='/assets/logos/youtube.png'/></a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo'); return false;" id="tab_video_vimeo" class="fancy_tab"><img src='/assets/logos/vimeo.png'/></a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_audio_soundcloud'); return false;" id="tab_audio_soundcloud" class="fancy_tab"><img src='/assets/logos/soundcloud.png'/></a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo'); return false;" id="tab_video_vimeo" class="fancy_tab disabled"><img src='/assets/logos/vimeo.png'/></a></li>
 				</ul>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_video_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_video_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
@@ -1095,6 +1096,24 @@
 					</div>
 				</div>
 			</div>
+
+			<div id='tab_audio_soundcloud_content' class="fancy_tab_content">
+				<div class="box1 box1fancy2">
+					<img src="/assets/logos/soundcloudlogo.png" class="imagelogotab">
+					<div class="search_container" id="soundcloud_search_container">
+						<input id="search_soundcloud_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" id="youtube_text_to_search"> </input>
+					</div>
+					<div id="tab_audio_soundcloud_content_carrousel"></div>
+					<div id="tab_audio_soundcloud_content_preview" class="content_preview">
+						<div id="tab_audio_soundcloud_content_preview_audio" class="content_preview_data"></div>
+						<div id="tab_audio_soundcloud_content_preview_metadata" class="content_preview_metadata"></div>
+						<div id="tab_audio_soundcloud_content_preview_foot" class="content_preview_foot">
+							<button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Audio.Soundcloud.addSelectedAudio()">Add</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
 
 			<div id='tab_video_vimeo_content' class="fancy_tab_content">
 				<div class="box1 box1fancy2">

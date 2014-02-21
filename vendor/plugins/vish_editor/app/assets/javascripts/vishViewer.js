@@ -95,7 +95,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", 
 "i.QuizButtonAnswer":"Answer", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", "i.QuizRetry":"Retry", 
 "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", 
-"i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Time":"Time", "i.TitleM":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", 
+"i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Time":"Time", "i.Title":"Title", "i.TitleM":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", 
 "i.Unspecified":"Unspecified", "i.Untitled":"Untitled", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.YouTubePlayAlert":"Click on the video to start playing", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 (function(a, b) {
   function cy(a) {
@@ -4745,6 +4745,7 @@ VISH.Constant.EVIDEO = "enrichedvideo";
 VISH.Constant.GAME = "game";
 VISH.Constant.TEXT = "text";
 VISH.Constant.IMAGE = "image";
+VISH.Constant.AUDIO = "audio";
 VISH.Constant.VIDEO = "video";
 VISH.Constant.OBJECT = "object";
 VISH.Constant.SNAPSHOT = "snapshot";
@@ -4752,11 +4753,12 @@ VISH.Constant.APPLET = "applet";
 VISH.Constant.QUIZ = "quiz";
 VISH.Constant.MEDIA = {};
 VISH.Constant.MEDIA.IMAGE = "image";
-VISH.Constant.MEDIA.AUDIO = "audio";
 VISH.Constant.MEDIA.FLASH = "swf";
 VISH.Constant.MEDIA.PDF = "pdf";
 VISH.Constant.MEDIA.YOUTUBE_VIDEO = "Youtube";
-VISH.Constant.MEDIA.HTML5_VIDEO = "HTML5";
+VISH.Constant.MEDIA.HTML5_VIDEO = "HTML5_VIDEO";
+VISH.Constant.MEDIA.HTML5_AUDIO = "HTML5_AUDIO";
+VISH.Constant.MEDIA.SOUNDCLOUD_AUDIO = "Soundcloud";
 VISH.Constant.MEDIA.WEB = "web";
 VISH.Constant.MEDIA.JSON = "json";
 VISH.Constant.MEDIA.DOC = "doc";
@@ -4766,6 +4768,7 @@ VISH.Constant.WRAPPER.EMBED = "EMBED";
 VISH.Constant.WRAPPER.OBJECT = "OBJECT";
 VISH.Constant.WRAPPER.IFRAME = "IFRAME";
 VISH.Constant.WRAPPER.VIDEO = "VIDEO";
+VISH.Constant.WRAPPER.AUDIO = "AUDIO";
 VISH.Constant.QZ_TYPE = {};
 VISH.Constant.QZ_TYPE.OPEN = "open";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
@@ -4775,9 +4778,6 @@ VISH.Constant.QZ_MODE.SELFA = "selfA";
 VISH.Constant.QZ_MODE.RT = "realTime";
 VISH.Constant.TextDefault = 12;
 VISH.Constant.TextBase = 12;
-VISH.Constant.Video = {};
-VISH.Constant.Video.HTML5 = "HTML5";
-VISH.Constant.Video.Youtube = "Youtube";
 VISH.Constant.Clipboard = {};
 VISH.Constant.Clipboard.Slide = "slide";
 VISH.Constant.Clipboard.LocalStorageStack = "VishEditorClipboardStack";
@@ -9124,6 +9124,9 @@ VISH.Object = function(V, $, undefined) {
       case "VIDEO":
         type = V.Constant.MEDIA.HTML5_VIDEO;
         break;
+      case "AUDIO":
+        type = V.Constant.MEDIA.HTML5_AUDIO;
+        break;
       default:
         type = _getTypeFromSource(source)
     }
@@ -9147,6 +9150,8 @@ VISH.Object = function(V, $, undefined) {
         return $(object).attr("src");
       case V.Constant.WRAPPER.VIDEO:
         return V.Video.HTML5.getSources(object);
+      case V.Constant.WRAPPER.AUDIO:
+        return V.Audio.HTML5.getSources(object);
       default:
         V.Debugging.log("Unrecognized object wrapper: " + wrapper);
         return null;
@@ -9162,7 +9167,7 @@ VISH.Object = function(V, $, undefined) {
     var youtube_video_pattern = /(http(s)?:\/\/)?(((youtu.be\/)([aA-zZ0-9-]+))|((www.youtube.com\/((watch\?v=)|(embed\/)|(v\/)))([aA-z0-9-Z&=.])+))/g;
     var html5VideoFormats = ["mp4", "webm", "ogg"];
     var imageFormats = ["jpg", "jpeg", "png", "gif", "bmp", "svg"];
-    var audioFormats = ["mp3", "wav"];
+    var audioFormats = ["mp3", "wav", "ogg"];
     if(typeof source != "string") {
       return null
     }
@@ -9174,9 +9179,6 @@ VISH.Object = function(V, $, undefined) {
     if(imageFormats.indexOf(extension) != "-1") {
       return V.Constant.MEDIA.IMAGE
     }
-    if(audioFormats.indexOf(extension) != "-1") {
-      return V.Constant.MEDIA.AUDIO
-    }
     if(extension == "swf") {
       return V.Constant.MEDIA.FLASH
     }
@@ -9185,6 +9187,9 @@ VISH.Object = function(V, $, undefined) {
     }
     if(html5VideoFormats.indexOf(extension) != "-1") {
       return V.Constant.MEDIA.HTML5_VIDEO
+    }
+    if(audioFormats.indexOf(extension) != "-1") {
+      return V.Constant.MEDIA.HTML5_AUDIO
     }
     if(extension == "json") {
       return V.Constant.MEDIA.JSON
@@ -9256,8 +9261,8 @@ VISH.Renderer = function(V, $, undefined) {
             if(slide.elements[el].type === V.Constant.VIDEO) {
               content += _renderHTML5Video(slide.elements[el], slide.template)
             }else {
-              if(slide.elements[el].type === V.Constant.MEDIA.AUDIO) {
-                content += renderAudio(slide.elements[el], slide.template)
+              if(slide.elements[el].type === V.Constant.AUDIO) {
+                content += _renderHTML5Audio(slide.elements[el], slide.template)
               }else {
                 if(slide.elements[el].type === V.Constant.OBJECT) {
                   content += _renderObject(slide.elements[el], slide.template);
@@ -9321,27 +9326,14 @@ VISH.Renderer = function(V, $, undefined) {
   };
   var _renderHTML5Video = function(videoJSON, template) {
     var rendered = "<div id='" + videoJSON["id"] + "' class='" + template + "_" + videoJSON["areaid"] + "'>";
-    var video = V.Video.HTML5.renderVideoFromJSON(videoJSON, {id:V.Utils.getId(videoJSON["id"] + "_video"), videoClass:template + "_video"});
+    var video = V.Video.HTML5.renderVideoFromJSON(videoJSON, {id:V.Utils.getId(videoJSON["id"] + "_video"), extraClasses:template + "_video"});
     rendered = rendered + video + "</div>";
     return rendered
   };
-  var renderAudio = function(element, template) {
-    var rendered = "<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'>";
-    var style = element["style"] ? "style='" + element["style"] + "'" : "";
-    var controls = element["controls"] ? "controls='" + element["controls"] + "' " : "controls='controls' ";
-    var sources = element["sources"];
-    if(typeof sources == "string") {
-      sources = JSON.parse(sources)
-    }
-    rendered = rendered + "<audio class='" + template + "_audio' preload='metadata' " + style + controls + ">";
-    $.each(sources, function(index, source) {
-      var type = source.type ? "type='" + source.type + "' " : "";
-      rendered = rendered + "<source src='" + source.src + "' " + type + ">"
-    });
-    if(sources.length > 0) {
-      rendered = rendered + "<p>Your browser does not support HTML5 video.</p>"
-    }
-    rendered = rendered + "</audio>";
+  var _renderHTML5Audio = function(audioJSON, template) {
+    var rendered = "<div id='" + audioJSON["id"] + "' class='" + template + "_" + audioJSON["areaid"] + "'>";
+    var audio = V.Audio.HTML5.renderAudioFromJSON(audioJSON, {id:V.Utils.getId(audioJSON["id"] + "_audio"), extraClasses:template + "_audio"});
+    rendered = rendered + audio + "</div>";
     return rendered
   };
   var _renderObject = function(element, template) {
@@ -9543,8 +9535,8 @@ VISH.Slideset = function(V, $, undefined) {
       if(typeof obj == "object") {
         return $(obj).attr("type")
       }else {
-        if(typeof obj.type == "string") {
-          return obj
+        if(typeof obj != "undefined" && typeof obj.type == "string") {
+          return obj.type
         }
       }
     }
@@ -9910,10 +9902,10 @@ VISH.Video = function(V, $, undefined) {
   };
   var playVideo = function(videoId, currentTime, triggeredByUser) {
     switch(getTypeVideoWithId(videoId)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         V.Video.HTML5.playVideo(videoId, currentTime, triggeredByUser);
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         V.Video.Youtube.playVideo(videoId, currentTime, triggeredByUser);
         break;
       default:
@@ -9922,10 +9914,10 @@ VISH.Video = function(V, $, undefined) {
   };
   var pauseVideo = function(videoId, currentTime, triggeredByUser) {
     switch(getTypeVideoWithId(videoId)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         V.Video.HTML5.pauseVideo(videoId, currentTime, triggeredByUser);
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         V.Video.Youtube.pauseVideo(videoId, currentTime, triggeredByUser);
         break;
       default:
@@ -9934,10 +9926,10 @@ VISH.Video = function(V, $, undefined) {
   };
   var seekVideo = function(videoId, seekTime, triggeredByUser) {
     switch(getTypeVideoWithId(videoId)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         V.Video.HTML5.seekVideo(videoId, seekTime, triggeredByUser);
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         V.Video.Youtube.seekVideo(videoId, seekTime, triggeredByUser);
         break;
       default:
@@ -9953,20 +9945,20 @@ VISH.Video = function(V, $, undefined) {
     }
     var tagName = $(video)[0].tagName;
     if(tagName === "VIDEO") {
-      return V.Constant.Video.HTML5
+      return V.Constant.MEDIA.HTML5_VIDEO
     }else {
       if(tagName === "OBJECT" || tagName === "IFRAME") {
-        return V.Constant.Video.Youtube
+        return V.Constant.MEDIA.YOUTUBE_VIDEO
       }
     }
     return V.Constant.UNKNOWN
   };
   var play = function(video) {
     switch(getTypeVideo(video)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         $(video)[0].play();
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         var videoId = $(video).attr("id");
         var ytplayer = V.Video.Youtube.getYouTubePlayer(videoId);
         if(!V.Status.getDevice().desktop) {
@@ -9993,10 +9985,10 @@ VISH.Video = function(V, $, undefined) {
   };
   var pause = function(video) {
     switch(getTypeVideo(video)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         $(video)[0].pause();
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         var videoId = $(video).attr("id");
         var ytplayer = V.Video.Youtube.getYouTubePlayer(videoId);
         ytplayer.pauseVideo();
@@ -10007,10 +9999,10 @@ VISH.Video = function(V, $, undefined) {
   };
   var seekTo = function(video, seekTime) {
     switch(getTypeVideo(video)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         $(video)[0].currentTime = seekTime;
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         var videoId = $(video).attr("id");
         var ytplayer = V.Video.Youtube.getYouTubePlayer(videoId);
         var ytStatus = ytplayer.getPlayerState();
@@ -10029,10 +10021,10 @@ VISH.Video = function(V, $, undefined) {
   };
   var setVolume = function(video, volume) {
     switch(getTypeVideo(video)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         $(video)[0].volume = volume / 100;
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         V.Video.Youtube.getYouTubePlayer($(video).attr("id")).setVolume(volume);
         break;
       default:
@@ -10044,7 +10036,7 @@ VISH.Video = function(V, $, undefined) {
       return
     }
     switch(getTypeVideo(video)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         $(video).on("loadeddata", function(event) {
           var video = event.target;
           if(video.readyState == 4 || video.readyState == 3) {
@@ -10056,7 +10048,7 @@ VISH.Video = function(V, $, undefined) {
           }
         });
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         break;
       default:
         break
@@ -10068,13 +10060,13 @@ VISH.Video = function(V, $, undefined) {
       return
     }
     switch(getTypeVideo(video)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         $(video).on("timeupdate", function() {
           var cTime = video.currentTime;
           timeUpdateCallback(video, cTime)
         });
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         var videoId = $(video).attr("id");
         var ytplayer = V.Video.Youtube.getYouTubePlayer(videoId);
         if(typeof youtubePlayerTimeUpdate[videoId] == "undefined") {
@@ -10100,7 +10092,7 @@ VISH.Video = function(V, $, undefined) {
       return
     }
     switch(getTypeVideo(video)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         video.addEventListener("play", function() {
           statusCallback(video, V.Constant.EVideo.Status.Playing)
         }, false);
@@ -10116,7 +10108,7 @@ VISH.Video = function(V, $, undefined) {
           }
         });
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         var videoId = $(video).attr("id");
         var ytplayer = V.Video.Youtube.getYouTubePlayer(videoId);
         ytplayer.addEventListener("onStateChange", function(event) {
@@ -10157,14 +10149,14 @@ VISH.Video = function(V, $, undefined) {
   var getStatus = function(video) {
     var vStatus;
     switch(getTypeVideo(video)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         if(video.paused == false) {
           vStatus = V.Constant.EVideo.Status.Playing
         }else {
           vStatus = V.Constant.EVideo.Status.Paused
         }
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         var ytplayer = V.Video.Youtube.getYouTubePlayer($(video).attr("id"));
         var ytStatus = ytplayer.getPlayerState();
         vStatus = _getVEStatusFromYouTubeStatus(ytStatus);
@@ -10196,10 +10188,10 @@ VISH.Video = function(V, $, undefined) {
   };
   var getDuration = function(video) {
     switch(getTypeVideo(video)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         return $(video)[0].duration;
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         return V.Video.Youtube.getYouTubePlayer($(video).attr("id")).getDuration();
         break;
       default:
@@ -10208,10 +10200,10 @@ VISH.Video = function(V, $, undefined) {
   };
   var getCurrentTime = function(video) {
     switch(getTypeVideo(video)) {
-      case V.Constant.Video.HTML5:
+      case V.Constant.MEDIA.HTML5_VIDEO:
         return video.currentTime;
         break;
-      case V.Constant.Video.Youtube:
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
         return V.Video.Youtube.getYouTubePlayer($(video).attr("id")).getCurrentTime();
         break;
       default:
@@ -10481,7 +10473,7 @@ VISH.Video.HTML5 = function(V, $, undefined) {
   };
   var renderVideoFromJSON = function(videoJSON, options) {
     var renderOptions = {};
-    renderOptions.videoId = videoJSON["id"] ? videoJSON["id"] : V.Utils.getId();
+    renderOptions.elId = videoJSON["id"] ? videoJSON["id"] : V.Utils.getId();
     renderOptions.style = videoJSON["style"];
     renderOptions.controls = videoJSON["controls"];
     renderOptions.autoplay = videoJSON["autoplay"];
@@ -10489,10 +10481,10 @@ VISH.Video.HTML5 = function(V, $, undefined) {
     renderOptions.loop = videoJSON["loop"];
     if(options) {
       if(options.id) {
-        renderOptions.videoId = options.id
+        renderOptions.elId = options.id
       }
-      if(options.videoClass) {
-        renderOptions.extraClasses = options.videoClass
+      if(options.extraClasses) {
+        renderOptions.extraClasses = options.extraClasses
       }
       if(options.controls === false) {
         renderOptions.controls = options.controls
@@ -10504,19 +10496,19 @@ VISH.Video.HTML5 = function(V, $, undefined) {
     return renderVideoFromSources(getSourcesFromJSON(videoJSON), renderOptions)
   };
   var renderVideoFromSources = function(sources, options) {
-    var videoId = "";
-    var videoClasses = "";
+    var elId = "";
+    var extraClasses = "";
     var controls = "controls='controls' ";
     var autoplay = "";
     var poster = "";
     var loop = "";
     var style = "";
     if(options) {
-      if(options["videoId"]) {
-        videoId = "id='" + options["videoId"] + "'"
+      if(options["elId"]) {
+        elId = "id='" + options["elId"] + "'"
       }
       if(options["extraClasses"]) {
-        videoClasses = videoClasses + options["extraClasses"]
+        extraClasses = extraClasses + options["extraClasses"]
       }
       if(options.controls === false) {
         controls = ""
@@ -10534,7 +10526,7 @@ VISH.Video.HTML5 = function(V, $, undefined) {
         style = "style='" + options["style"] + "' "
       }
     }
-    var video = "<video " + videoId + " class='" + videoClasses + "' preload='metadata' " + controls + autoplay + poster + loop + style + ">";
+    var video = "<video " + elId + " class='" + extraClasses + "' preload='metadata' " + controls + autoplay + poster + loop + style + ">";
     $.each(sources, function(index, source) {
       if(typeof source.src == "string") {
         var mimeType = source.mimeType ? "type='" + source.mimeType + "' " : "";
@@ -10641,8 +10633,12 @@ VISH.Video.Youtube = function(V, $, undefined) {
       if(options.extraClasses) {
         videoClasses = videoClasses + " " + options.extraClasses
       }
-      if(options.style) {
-        objectStyle = "objectStyle='" + options.style + "' "
+      if(options.objectStyle) {
+        objectStyle = "objectStyle='" + options.objectStyle + "' "
+      }else {
+        if(options.style) {
+          objectStyle = "objectStyle='" + options.style + "' "
+        }
       }
       if(options.zoomInStyle) {
         zoomInStyle = "zoomInStyle='" + options.zoomInStyle + "' "
@@ -10676,7 +10672,8 @@ VISH.Video.Youtube = function(V, $, undefined) {
       return
     }
     var iframeId = $(container).attr("ytContainerId");
-    $(container).html("<div id='" + iframeId + "' videotype='" + V.Constant.MEDIA.YOUTUBE_VIDEO + "' style='" + $(container).attr("objectStyle") + "'></div>");
+    var ytStyle = typeof $(container).attr("objectStyle") != "undefined" ? "style='" + $(container).attr("objectStyle") + "' " : "";
+    $(container).html("<div id='" + iframeId + "' videotype='" + V.Constant.MEDIA.YOUTUBE_VIDEO + "' " + ytStyle + "'></div>");
     var enableCustomPlayer = _enableCustomPlayer;
     var controls = enableCustomPlayer ? 0 : 1;
     var _onReadyCallback = onPlayerReady;
@@ -10842,6 +10839,109 @@ VISH.Video.Youtube = function(V, $, undefined) {
   };
   return{init:init, renderVideoFromJSON:renderVideoFromJSON, renderVideoFromSource:renderVideoFromSource, loadYoutubeObject:loadYoutubeObject, onPlayerReady:onPlayerReady, onPlayerStateChange:onPlayerStateChange, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, getYoutubeIdFromURL:getYoutubeIdFromURL, getYouTubePlayer:getYouTubePlayer, getEmbedSource:getEmbedSource}
 }(VISH, jQuery);
+VISH.Audio = function(V, $, undefined) {
+  var init = function() {
+    V.Audio.HTML5.init()
+  };
+  return{init:init}
+}(VISH, jQuery);
+VISH.Audio.HTML5 = function(V, $, undefined) {
+  var init = function() {
+  };
+  var renderAudioFromJSON = function(audioJSON, options) {
+    var renderOptions = {};
+    renderOptions.elId = audioJSON["id"] ? audioJSON["id"] : V.Utils.getId();
+    renderOptions.style = audioJSON["style"];
+    renderOptions.controls = audioJSON["controls"];
+    renderOptions.autoplay = audioJSON["autoplay"];
+    renderOptions.loop = audioJSON["loop"];
+    if(options) {
+      if(options.id) {
+        renderOptions.elId = options.id
+      }
+      if(options.extraClasses) {
+        renderOptions.extraClasses = options.extraClasses
+      }
+      if(options.controls === false) {
+        renderOptions.controls = options.controls
+      }
+    }
+    return renderAudioFromSources(getSourcesFromJSON(audioJSON), renderOptions)
+  };
+  var renderAudioFromSources = function(sources, options) {
+    var elId = "";
+    var extraClasses = "";
+    var controls = "controls='controls' ";
+    var autoplay = "";
+    var loop = "";
+    var style = "";
+    if(options) {
+      if(options["elId"]) {
+        elId = "id='" + options["elId"] + "'"
+      }
+      if(options["extraClasses"]) {
+        extraClasses = extraClasses + options["extraClasses"]
+      }
+      if(options.controls === false) {
+        controls = ""
+      }
+      if(typeof options.autoplay != "undefined") {
+        autoplay = "autoplayonslideenter='" + options.autoplay + "' "
+      }
+      if(options["loop"] === true) {
+        loop = "loop='loop' "
+      }
+      if(options["style"]) {
+        style = "style='" + options["style"] + "' "
+      }
+    }
+    var audio = "<audio " + elId + " class='" + extraClasses + "' preload='metadata' " + controls + autoplay + loop + style + ">";
+    $.each(sources, function(index, source) {
+      if(typeof source.src == "string") {
+        var mimeType = source.mimeType ? "type='" + source.mimeType + "' " : "";
+        audio = audio + "<source src='" + source.src + "' " + mimeType + ">"
+      }
+    });
+    if(sources.length > 0) {
+      audio = audio + "<p>Your browser does not support HTML5 audio.</p>"
+    }
+    audio = audio + "</audio>";
+    return audio
+  };
+  var getSources = function(audioDOM) {
+    try {
+      return $(audioDOM).find("source").map(function() {
+        return{"src":this.src, "mimeType":getAudioMimeType(this.src)}
+      })
+    }catch(e) {
+      return[]
+    }
+    return[]
+  };
+  var getSourcesFromJSON = function(audioJSON) {
+    return V.Video.HTML5.getSourcesFromJSON(audioJSON)
+  };
+  var getAudioMimeType = function(url) {
+    var source = V.Object.getObjectInfo(url).source;
+    var extension = source.split(".").pop();
+    var mimeType;
+    switch(extension) {
+      case "ogg":
+        mimeType = "ogg";
+        break;
+      case "mp3":
+        mimeType = "mpeg";
+        break;
+      case "wav":
+        mimeType = "wav";
+      default:
+        mimeType = extension;
+        break
+    }
+    return"audio/" + mimeType
+  };
+  return{init:init, renderAudioFromJSON:renderAudioFromJSON, renderAudioFromSources:renderAudioFromSources, getSources:getSources, getSourcesFromJSON:getSourcesFromJSON, getAudioMimeType:getAudioMimeType}
+}(VISH, jQuery);
 VISH.ObjectPlayer = function(V, $, undefined) {
   var loadObject = function(slide) {
     $.each(slide.children(".objectelement"), function(index, value) {
@@ -10986,6 +11086,7 @@ VISH.Viewer = function(V, $, undefined) {
     V.Recommendations.init(options);
     V.Events.init();
     V.Video.init();
+    V.Audio.init();
     V.FullScreen.init();
     V.Themes.loadTheme(presentation.theme, function() {
       _initAferThemeLoaded(options, presentation)
@@ -13496,7 +13597,7 @@ VISH.EVideo = function(V, $, undefined) {
     eVideos[eVideoId].balls = eVideos[eVideoId].balls.filter(function(ball) {
       return ball.etime <= videoDuration
     });
-    if(videoType == V.Constant.Video.Youtube) {
+    if(videoType == V.Constant.MEDIA.YOUTUBE_VIDEO) {
       var youtubeDuration = videoDuration - 1;
       eVideos[eVideoId].balls = eVideos[eVideoId].balls.map(function(ball) {
         if(ball.etime > youtubeDuration) {
@@ -13510,7 +13611,7 @@ VISH.EVideo = function(V, $, undefined) {
     renderIndex(eVideoDOM, eVideos[eVideoId]);
     _renderBalls(eVideoDOM, eVideos[eVideoId]);
     _linkChaptersAndBalls(eVideoDOM, eVideos[eVideoId]);
-    if(videoType == V.Constant.Video.Youtube) {
+    if(videoType == V.Constant.MEDIA.YOUTUBE_VIDEO) {
       onTimeUpdate(video, 0)
     }
   };
@@ -13655,7 +13756,7 @@ VISH.EVideo = function(V, $, undefined) {
       ;
       case V.Constant.EVideo.Status.Ended:
         var videoBody = $(videoBox).find(".evideoBody");
-        if($(videoBody).attr("videotype") == V.Constant.Video.HTML5) {
+        if($(videoBody).attr("videotype") == V.Constant.MEDIA.HTML5_VIDEO) {
           var posSlider = $(videoBox).find(".evideoProgressBarSlider");
           $(posSlider).css("opacity", 0.9);
           setTimeout(function() {
