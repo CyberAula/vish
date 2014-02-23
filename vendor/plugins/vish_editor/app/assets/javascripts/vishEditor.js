@@ -12265,11 +12265,13 @@ VISH.Editor = function(V, $, undefined) {
         slide = _saveStandardSlide(slideDOM, presentation, false)
       }else {
         var slidesetModule = V.Editor.Slideset.getCreatorModule(slideDOM);
+        V.Utils.addTempShown(slideDOM);
         slide = slidesetModule.getSlideHeader(slideDOM);
         $(slideDOM).find("article").each(function(index, subslideDOM) {
           var subslide = _saveStandardSlide(subslideDOM, presentation, true);
           slide.slides.push(subslide)
-        })
+        });
+        V.Utils.removeTempShown(slideDOM)
       }
       presentation.slides.push(slide)
     });
@@ -12301,9 +12303,6 @@ VISH.Editor = function(V, $, undefined) {
     slide.type = $(slideDOM).attr("type");
     slide.template = $(slideDOM).attr("template");
     slide.elements = [];
-    if(isSubslide) {
-      V.Utils.addTempShown($(slideDOM).parent())
-    }
     V.Utils.addTempShown(slideDOM);
     $(slideDOM).find("div").each(function(i, div) {
       var element = {};
@@ -12423,9 +12422,6 @@ VISH.Editor = function(V, $, undefined) {
           slide.elements[k].quiz_simple_json = quizPresentation
         }
       }
-    }
-    if(isSubslide) {
-      V.Utils.removeTempShown($(slideDOM).parent())
     }
     V.Utils.removeTempShown(slideDOM);
     return slide
@@ -15034,7 +15030,7 @@ VISH.Samples = function(V, undefined) {
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
   {"id":"article_5", "type":"standard", "template":"t2", "elements":[{"id":"zone11", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]};
-  var test = {"VEVersion":"0.8.5", "type":"presentation", "title":"Modulo 1: Introduccion a Internet, el Web, la nube, HTML5 y CSS", "description":"Modulo 1 del MOOC Desarrollo de Aplicaciones Web en HTML5 y para moviles Firefox OS. Accesible a traves de https://www.miriadax.net/web/firefox-os .", "avatar":"http://www.adwe.es/wp-content/uploads/2013/07/FirefoxOS.2.png", "author":{"name":"Aldo", "vishMetadata":{"id":20}}, "tags":["MOOC", "HTML5", "CSS", "Web"], "theme":"theme1", "animation":"animation1", 
+  var mooc = {"VEVersion":"0.8.5", "type":"presentation", "title":"Modulo 1: Introduccion a Internet, el Web, la nube, HTML5 y CSS", "description":"Modulo 1 del MOOC Desarrollo de Aplicaciones Web en HTML5 y para moviles Firefox OS. Accesible a traves de https://www.miriadax.net/web/firefox-os .", "avatar":"http://www.adwe.es/wp-content/uploads/2013/07/FirefoxOS.2.png", "author":{"name":"Aldo", "vishMetadata":{"id":20}}, "tags":["MOOC", "HTML5", "CSS", "Web"], "theme":"theme1", "animation":"animation1", 
   "language":"independent", "age_range":"14 - 30", "subject":["Software Engineering", "Technology", "Telecommunications"], "educational_objectives":"El alumno obtendra una introduccion a Internet, el Web, la nube, HTML5 y CSS.", "vishMetadata":{"draft":"false", "id":"785"}, "slides":[{"id":"article1", "type":"enrichedvideo", "video":{"type":"HTML5_VIDEO", "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/3366.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/3366.mp4"}]', 
   "poster":"http://vishub.org/videos/3366.png?style=170x127%23", "duration":799.16}, "pois":[{"id":"article1_poi1", "etime":"120", "slide_id":"article1_article1", "name":"Tecnologias de la Web"}, {"id":"article1_poi2", "etime":"630", "slide_id":"article1_article2", "name":"Operaciones principales de HTTP"}, {"id":"article1_poi3", "etime":"791", "slide_id":"article1_article3", "name":"Test de autoevaluacion"}], "slides":[{"id":"article1_article1", "type":"standard", "template":"t8", "elements":[{"id":"article1_article1_zone1", 
   "areaid":"header"}, {"id":"article1_article1_zone2", "type":"image", "areaid":"left", "body":"http://www.derwentsidehomes.co.uk/UserFiles/Image/3D%20Characters/Question.jpg", "style":"position: relative; width:71.30801687763713%; height:100%; top:0%; left:10.126582278481013%;"}, {"id":"article1_article1_zone3", "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00c2\u00bfPara qu\u00c3\u00a9 se utiliza el CSS?\u00c2\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:36px;"><span autocolor="true" style="color:#000">&iquest;Para qu&eacute; se utiliza el&nbsp;<strong>CSS</strong>?&shy;</span></span></p>\n'}, 
@@ -15057,6 +15053,18 @@ VISH.Samples = function(V, undefined) {
   "choices":[{"id":"1", "value":"HTTP permite procesar remotamente recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5"><strong>HTTP</strong> permite procesar remotamente recursos en un servidor.</font></p>\n', "answer":true}, {"id":"2", "value":"\u00c2\u00adUna URL identifica sin ambiguedad un recurso en Internet.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Una </span></span><strong><span style="color:#000000;"><span autocolor="true"><span style="font-size:24px;">URL</span></span></span></strong><span autocolor="true" style="color:#000"><span style="font-size:24px;"> identifica sin ambiguedad un recurso en Internet.</span></span></p>\n', 
   "answer":true}, {"id":"3", "value":"\u00c2\u00adJavaScript es igual al lenguaje de programacion Java.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>JavaScript</strong> es igual al lenguaje de programaci&oacute;n Java.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00c2\u00adHTML define la estructura de la informacion de una pagina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>HTML</strong> define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
   "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}]}]};
+  var test = {"VEVersion":"0.8.6", "type":"presentation", "title":"Enriched Video Example", "description":"First Enriched Video Example", "avatar":"http://vishub.org/pictures/311.jpg", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "tags":["Science", "Quiz", "Video"], "theme":"theme1", "animation":"animation1", "language":"independent", "age_range":"12 - 30", "subject":["Astronomy"], "educational_objectives":"MOOCs", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article1", "type":"enrichedvideo", 
+  "video":{"type":"HTML5_VIDEO", "sources":'[{ "src": "http://vishub.org/videos/3447.webm" , "type": "video/webm"},{ "src": "http://vishub.org/videos/3447.mp4" , "type": "video/mp4"}]', "duration":24.043}, "width":"100%", "height":"100%", "pois":[{"id":"article1_poi1", "etime":15.3, "slide_id":"article1_article1", "name":"Curiosity YouTube video at 15.3"}], "slides":[{"id":"article1_article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_article1_zone1", "type":"object", "areaid":"left", 
+  "body":'<iframe src="http://www.wikipedia.com?wmode=opaque" frameborder="0" id="resizableunicID1" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.72727272727273%; top:0%; left:0%;"}]}, {"id":"article1_article2", "type":"standard", "template":"t7", "elements":[{"id":"article1_article2_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.94986072423399%; height:190.9090909090909%; top:-69.17613636363636%; left:-0.0979282729805014%;"}, 
+  {"id":"article1_article2_zone2", "type":"text", "areaid":"left", "body":'<p>\n\tThe image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA&#39;s Curiosity rover, with the Martian landscape in the background.</p>\n<div class="vish-parent-font5" style="font-weight: normal; ">\n\t&nbsp;</div>\n'}, {"id":"article1_article2_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.20353982300884%; height:110.69651741293532%; top:-5.192786069651741%; left:-10.906388274336283%;"}, 
+  {"id":"article1_article2_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; ">\n\t<span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span></div>\n'}]}, {"id":"article1_article3", "type":"standard", "template":"t10", "elements":[{"id":"article1_article3_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', 
+  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article1_article4", "type":"standard", "template":"t10", "elements":[{"id":"article1_article4_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID7" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article2", "type":"enrichedvideo", "video":{"type":"Youtube", 
+  "source":"https://www.youtube.com/embed/8t29CZcGAbs", "duration":174}, "width":"100%", "height":"100%", "pois":[{"id":"article2_poi1", "etime":15.3, "slide_id":"article2_article1", "name":"Curiosity YouTube video at 15.3"}, {"id":"article2_poi2", "etime":62, "slide_id":"article2_article2", "name":"Alpha Particle X-Ray  at 61.5"}, {"id":"article2_poi3", "etime":62, "slide_id":"article2_article3", "name":"Curiosity Wikipedia at 62"}, {"id":"article2_poi5", "etime":120, "name":"No ball at 120"}, {"id":"article2_poi4", 
+  "etime":174, "slide_id":"article2_article4", "name":"4 at the end of the Video"}], "slides":[{"id":"article2_article1", "type":"standard", "template":"t2", "elements":[{"id":"article2_article1_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.wikipedia.com?wmode=opaque" frameborder="0" id="resizableunicID8" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.72727272727273%; top:0%; left:0%;"}]}, {"id":"article2_article2", "type":"standard", 
+  "template":"t7", "elements":[{"id":"article2_article2_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.94986072423399%; height:190.9090909090909%; top:-69.17613636363636%; left:-0.0979282729805014%;"}, {"id":"article2_article2_zone2", "type":"text", "areaid":"left", "body":'<p>\n\tThe image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA&#39;s Curiosity rover, with the Martian landscape in the background.</p>\n<div class="vish-parent-font5" style="font-weight: normal; ">\n\t&nbsp;</div>\n'}, 
+  {"id":"article2_article2_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.20353982300884%; height:110.69651741293532%; top:-5.192786069651741%; left:-10.906388274336283%;"}, {"id":"article2_article2_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; ">\n\t<span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span></div>\n'}]}, 
+  {"id":"article2_article3", "type":"standard", "template":"t10", "elements":[{"id":"article2_article3_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID13" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article2_article4", "type":"standard", "template":"t10", "elements":[{"id":"article2_article4_zone1", "type":"object", 
+  "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID14" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}]};
   return{basic_samples:basic_samples, full_samples:full_samples, fc_sample:fc_sample, vt_sample:vt_sample, evideo_sample:evideo_sample, quiz_samples:quiz_samples, text_samples:text_samples, VE01_samples:VE01_samples, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -17663,7 +17671,7 @@ VISH.EVideo = function(V, $, undefined) {
   };
   var _renderVideo = function(eVideoId) {
     var eVideoJSON = eVideos[eVideoId];
-    if(typeof eVideoJSON != "object" || typeof eVideoJSON.video != "object") {
+    if(typeof eVideoJSON != "object" || (typeof eVideoJSON.video != "object" || !haveSources(eVideoJSON))) {
       return
     }
     var videoBody = $("#" + eVideoId).find(".evideoBody");
@@ -18304,8 +18312,21 @@ VISH.EVideo = function(V, $, undefined) {
     }
     return undefined
   };
+  var haveSources = function(eVideoJSON) {
+    if(typeof eVideoJSON == "undefined" || typeof eVideoJSON.video == "undefined") {
+      return false
+    }
+    switch(eVideoJSON.video.type) {
+      case V.Constant.MEDIA.HTML5_VIDEO:
+        return typeof eVideoJSON.video.sources != "undefined";
+      case V.Constant.MEDIA.YOUTUBE_VIDEO:
+        return typeof eVideoJSON.video.source != "undefined";
+      default:
+        return false
+    }
+  };
   return{init:init, draw:draw, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, renderVideoBoxDummy:renderVideoBoxDummy, renderIndexBoxDummy:renderIndexBoxDummy, fitVideoInVideoBox:fitVideoInVideoBox, renderIndex:renderIndex, loadEventsForControls:loadEventsForControls, onClickToggleVideo:onClickToggleVideo, onStatusChange:onStatusChange, onTimeUpdate:onTimeUpdate, getVideoFromVideoBox:getVideoFromVideoBox, getVideoBoxFromVideo:getVideoBoxFromVideo, getBallOfEVideo:getBallOfEVideo, 
-  afterSetupSize:afterSetupSize}
+  haveSources:haveSources, afterSetupSize:afterSetupSize}
 }(VISH, jQuery);
 VISH.Editor.API = function(V, $, undefined) {
   var init = function() {
@@ -19571,7 +19592,9 @@ VISH.Editor.EVideo = function(V, $, undefined) {
       if(_isVideoCreated(eVideoDOM)) {
         var eVideoId = $(eVideoDOM).attr("id");
         _removeAllBalls(eVideoDOM);
-        delete eVideos[eVideoId];
+        eVideos[eVideoId].drawed = false;
+        eVideos[eVideoId].pois = [];
+        eVideos[eVideoId].video = undefined;
         _drawEVideo(undefined, eVideoDOM, contentToAdd)
       }else {
         _renderVideo(contentToAdd, eVideoDOM)
@@ -19607,12 +19630,16 @@ VISH.Editor.EVideo = function(V, $, undefined) {
         var videoWrapper = $(V.Video.Youtube.renderVideoFromSource(source));
         $(videoBody).attr("source", $(videoWrapper).attr("source"));
         $(videoBody).attr("ytcontainerid", $(videoWrapper).attr("ytcontainerid"));
+        V.Utils.addTempShown(eVideoDOM);
         V.Video.Youtube.loadYoutubeObject($(videoBody), {controls:false, onReadyCallback:function(event) {
+          V.Utils.removeTempShown(eVideoDOM);
           var iframe = event.target.getIframe();
           var video = $("#" + iframe.id);
           $(video).attr("videoType", V.Constant.MEDIA.YOUTUBE_VIDEO);
           $(video).attr("eVideoId", eVideoId);
           _onVideoReady(video)
+        }, onPlayerError:function() {
+          V.Utils.removeTempShown(eVideoDOM)
         }});
         break;
       default:
@@ -28378,8 +28405,28 @@ VISH.Video.Youtube = function(V, $, undefined) {
     return video
   };
   var loadYoutubeObject = function(container, options) {
+    var enableCustomPlayer = _enableCustomPlayer;
+    var controls = enableCustomPlayer ? 0 : 1;
+    var _onReadyCallback = onPlayerReady;
+    var _onPlayerError = onPlayerError;
+    if(options) {
+      if(typeof options.enableCustomPlayer == "boolean") {
+        enableCustomPlayer = options.enableCustomPlayer;
+        controls = enableCustomPlayer ? 0 : 1
+      }
+      if(typeof options.controls == "boolean") {
+        controls = options.controls === true ? 1 : 0
+      }
+      if(typeof options.onReadyCallback == "function") {
+        _onReadyCallback = options.onReadyCallback
+      }
+      if(typeof options.onPlayerError == "function") {
+        _onPlayerError = options.onPlayerError
+      }
+    }
     if(V.Status.isOnline() === false) {
       $(container).html("<img src='" + V.ImagesPath + "adverts/advert_new_grey_video.png'/>");
+      _onPlayerError();
       return
     }
     if(!_isYouTubeIframeAPIReady()) {
@@ -28393,33 +28440,20 @@ VISH.Video.Youtube = function(V, $, undefined) {
         var nonAvailableImg = $(container).find("img");
         $(nonAvailableImg).load(function(response) {
           $(nonAvailableImg).css("margin-top", ($(container).height() - $(nonAvailableImg).height()) / 2 + "px")
-        })
+        });
+        _onPlayerError()
       }
       return
     }
     var youtubeVideoId = getYoutubeIdFromURL($(container).attr("source"));
     if(youtubeVideoId === null) {
+      _onPlayerError();
       return
     }
     var iframeId = $(container).attr("ytContainerId");
     var ytStyle = typeof $(container).attr("objectStyle") != "undefined" ? "style='" + $(container).attr("objectStyle") + "' " : "";
     $(container).html("<div id='" + iframeId + "' videotype='" + V.Constant.MEDIA.YOUTUBE_VIDEO + "' " + ytStyle + "'></div>");
-    var enableCustomPlayer = _enableCustomPlayer;
-    var controls = enableCustomPlayer ? 0 : 1;
-    var _onReadyCallback = onPlayerReady;
-    if(options) {
-      if(typeof options.enableCustomPlayer == "boolean") {
-        enableCustomPlayer = options.enableCustomPlayer;
-        controls = enableCustomPlayer ? 0 : 1
-      }
-      if(typeof options.controls == "boolean") {
-        controls = options.controls === true ? 1 : 0
-      }
-      if(typeof options.onReadyCallback == "function") {
-        _onReadyCallback = options.onReadyCallback
-      }
-    }
-    youtubePlayers[iframeId] = new YT.Player(iframeId, {height:"100%", width:"100%", videoId:youtubeVideoId, playerVars:{"autoplay":0, "controls":controls, "enablejsapi":1, "showinfo":0, wmode:"transparent", "rel":0}, events:{"onReady":_onReadyCallback, "onError":onPlayerError}});
+    youtubePlayers[iframeId] = new YT.Player(iframeId, {height:"100%", width:"100%", videoId:youtubeVideoId, playerVars:{"autoplay":0, "controls":controls, "enablejsapi":1, "showinfo":0, wmode:"transparent", "rel":0}, events:{"onReady":_onReadyCallback, "onError":_onPlayerError}});
     $("#" + iframeId).attr("wmode", "transparent");
     if(_enableCustomPlayer) {
       V.Video.CustomPlayer.addCustomPlayerControls(iframeId, false)
