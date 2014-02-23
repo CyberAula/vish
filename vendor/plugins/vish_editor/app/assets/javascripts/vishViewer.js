@@ -11905,13 +11905,13 @@ VISH.Utils = function(V, undefined) {
       }
       $(buttons_wrapper).before(middlerow)
     }
-    $(notificationParent).addClass("temp_shown");
+    V.Utils.addTempShown(notificationParent);
     var adjustedHeight = $(text_wrapper).outerHeight(true) + $(buttons_wrapper).outerHeight(true);
     if(options.middlerow) {
       var middlerow = $(rootTemplate).find(".notification_middlerow");
       adjustedHeight = adjustedHeight + $(middlerow).outerHeight(true)
     }
-    $(notificationParent).removeClass("temp_shown");
+    V.Utils.removeTempShown(notificationParent);
     var cloneTemplate = $(rootTemplate).clone();
     $(cloneTemplate).attr("id", "notification_template_cloned");
     $(notificationParent).append(cloneTemplate);
@@ -12090,9 +12090,43 @@ VISH.Utils = function(V, undefined) {
     delayedFunctionTimestamps[functionId] = dN;
     return false
   };
+  var tempShownCounts = {};
+  var addTempShown = function(els) {
+    $(els).each(function(index, el) {
+      var elId = $(el).attr("id");
+      if(typeof elId == "undefined") {
+        elId = V.Utils.getId("TmpShownId");
+        $(el).attr("id", elId)
+      }
+      var tmpShownCount = typeof tempShownCounts[elId] != "undefined" ? tempShownCounts[elId] : 0;
+      tempShownCounts[elId] = tmpShownCount + 1;
+      if(tmpShownCount == 0) {
+        $(el).addClass("temp_shown")
+      }
+    })
+  };
+  var removeTempShown = function(els) {
+    $(els).each(function(index, el) {
+      var elId = $(el).attr("id");
+      if(typeof elId == "undefined") {
+        elId = V.Utils.getId("TmpShownId");
+        $(el).attr("id", elId)
+      }
+      var tmpShownCount = typeof tempShownCounts[elId] != "undefined" ? tempShownCounts[elId] : 0;
+      var newTmpShownCount = Math.max(0, tmpShownCount - 1);
+      tempShownCounts[elId] = newTmpShownCount;
+      if(newTmpShownCount == 0) {
+        setTimeout(function() {
+          if(tempShownCounts[elId] === 0) {
+            $(el).removeClass("temp_shown")
+          }
+        }, 1)
+      }
+    })
+  };
   return{init:init, getOptions:getOptions, dimentionsToDraw:dimentionsToDraw, fitChildInParent:fitChildInParent, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, 
   getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, getBackgroundPosition:getBackgroundPosition, sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, removeParamFromUrl:removeParamFromUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion, updateHash:updateHash, cleanHash:cleanHash, removeHashFromUrlString:removeHashFromUrlString, getHashParams:getHashParams, getSlideNumberFromHash:getSlideNumberFromHash, 
-  checkAnimationsFinish:checkAnimationsFinish, fomatTimeForMPlayer:fomatTimeForMPlayer, delayFunction:delayFunction}
+  checkAnimationsFinish:checkAnimationsFinish, fomatTimeForMPlayer:fomatTimeForMPlayer, delayFunction:delayFunction, addTempShown:addTempShown, removeTempShown:removeTempShown}
 }(VISH);
 VISH.Utils.Loader = function(V, undefined) {
   var _loadGoogleLibraryCallback = undefined;
@@ -13331,7 +13365,7 @@ VISH.VirtualTour = function(V, $, undefined) {
     var canvas = $("<div id='" + canvasId + "' class='map_canvas' style='height:" + "100%" + "; width:" + "100%" + "'></div>");
     var vtDOM = $("#" + vtJSON.id);
     $(vtDOM).append(canvas);
-    $(vtDOM).addClass("temp_shown");
+    V.Utils.addTempShown(vtDOM);
     var center = new google.maps.LatLng(vtJSON.center.lat, vtJSON.center.lng);
     var myOptions = {zoom:parseInt(vtJSON.zoom), center:center, mapTypeId:vtJSON.mapType};
     var map = new google.maps.Map(document.getElementById(canvasId), myOptions);
@@ -13340,7 +13374,7 @@ VISH.VirtualTour = function(V, $, undefined) {
       _addMarkerToCoordinates(canvasId, map, poi.lat, poi.lng, poi.slide_id)
     });
     google.maps.event.addListenerOnce(map, "tilesloaded", function() {
-      $(vtDOM).removeClass("temp_shown");
+      V.Utils.removeTempShown(vtDOM);
       google.maps.event.addListenerOnce(map, "tilesloaded", function() {
       })
     });
@@ -13590,7 +13624,7 @@ VISH.EVideo = function(V, $, undefined) {
     $(durationDOM).html(formatedDuration);
     var significativeNumbers = formatedDuration.split(":").join("").length;
     $(video).attr("sN", significativeNumbers);
-    $(eVideoDOM).addClass("temp_shown");
+    V.Utils.addTempShown(eVideoDOM);
     $(video).removeClass("temp_hidden");
     fitVideoInVideoBox(videoBox);
     $(videoHeader).show();
@@ -13617,7 +13651,7 @@ VISH.EVideo = function(V, $, undefined) {
     if(videoType == V.Constant.MEDIA.YOUTUBE_VIDEO) {
       onTimeUpdate(video, 0)
     }
-    $(eVideoDOM).removeClass("temp_shown")
+    V.Utils.removeTempShown(eVideoDOM)
   };
   var fitVideoInVideoBox = function(videoBox) {
     var video = getVideoFromVideoBox(videoBox);
@@ -13641,11 +13675,9 @@ VISH.EVideo = function(V, $, undefined) {
     var videoFooter = $(videoBox).find(".evideoFooter");
     var videoHeight = $(video).height();
     var videoWidth = $(video).width();
-    $(videoHeader).addClass("temp_shown");
-    $(videoFooter).addClass("temp_shown");
+    V.Utils.addTempShown([videoHeader, videoFooter]);
     var totalVideoBoxHeight = $(videoHeader).height() + videoHeight + $(videoFooter).height();
-    $(videoHeader).removeClass("temp_shown");
-    $(videoFooter).removeClass("temp_shown");
+    V.Utils.removeTempShown([videoHeader, videoFooter]);
     $(videoHeader).css("margin-top", "0px");
     var freeHeight = $(videoBox).height() - totalVideoBoxHeight;
     $(videoHeader).css("margin-top", freeHeight / 2 + "px");
@@ -13751,7 +13783,7 @@ VISH.EVideo = function(V, $, undefined) {
     var videoBox = $(eVideoDOM).find(".evideoBox");
     var videoDOM = getVideoFromVideoBox(videoBox);
     var eVideoJSON = eVideos[eVideoId];
-    $(eVideoDOM).removeClass("temp_shown");
+    V.Utils.removeTempShown(eVideoDOM);
     switch(eVideoJSON.estatusBeforeLeave) {
       case V.Constant.EVideo.Status.Playing:
         V.Video.play(videoDOM);
@@ -13777,7 +13809,7 @@ VISH.EVideo = function(V, $, undefined) {
     var videoBox = $(eVideoDOM).find(".evideoBox");
     var videoDOM = getVideoFromVideoBox(videoBox);
     var eVideoJSON = eVideos[eVideoId];
-    $(eVideoDOM).addClass("temp_shown");
+    V.Utils.addTempShown(eVideoDOM);
     eVideoJSON.estatusBeforeLeave = V.Video.getStatus(videoDOM);
     switch(eVideoJSON.estatusBeforeLeave) {
       case V.Constant.EVideo.Status.Playing:
@@ -13967,7 +13999,7 @@ VISH.EVideo = function(V, $, undefined) {
   var resizeEVideoAfterSetupSize = function(eVideoDOM, increase, increaseW) {
     var isEVideoVisible = $(eVideoDOM).css("display") != "none";
     if(!isEVideoVisible) {
-      $(eVideoDOM).addClass("temp_shown_b")
+      V.Utils.addTempShown(eVideoDOM)
     }
     var videoBox = $(eVideoDOM).find(".evideoBox");
     fitVideoInVideoBox(videoBox);
@@ -13984,7 +14016,7 @@ VISH.EVideo = function(V, $, undefined) {
     var videoFooter = $(videoBox).find(".evideoFooter");
     $(videoBox).find(".ballWrapper").height($(videoFooter).height());
     if(!isEVideoVisible) {
-      $(eVideoDOM).removeClass("temp_shown_b")
+      V.Utils.removeTempShown(eVideoDOM)
     }
   };
   var _renderBalls = function(eVideoDOM, eVideoJSON) {
@@ -15432,11 +15464,10 @@ VISH.Quiz = function(V, $, undefined) {
     }
     var container = $(".quizQr");
     $(container).html("");
-    $("#tab_quiz_session_content").addClass("temp_shown");
-    $(container).addClass("temp_shown");
+    var tabQuizSessionContent = $("#tab_quiz_session_content");
+    V.Utils.addTempShown([tabQuizSessionContent, container]);
     var height = $(container).height();
-    $(container).removeClass("temp_shown");
-    $("#tab_quiz_session_content").removeClass("temp_shown");
+    V.Utils.removeTempShown([tabQuizSessionContent, container]);
     var width = height;
     var qrOptions = {render:"canvas", width:width, height:height, color:"#000", bgColor:"#fff", text:url.toString()};
     $(container).qrcode(qrOptions);

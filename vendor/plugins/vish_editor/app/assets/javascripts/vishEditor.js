@@ -11692,13 +11692,13 @@ VISH.Utils = function(V, undefined) {
       }
       $(buttons_wrapper).before(middlerow)
     }
-    $(notificationParent).addClass("temp_shown");
+    V.Utils.addTempShown(notificationParent);
     var adjustedHeight = $(text_wrapper).outerHeight(true) + $(buttons_wrapper).outerHeight(true);
     if(options.middlerow) {
       var middlerow = $(rootTemplate).find(".notification_middlerow");
       adjustedHeight = adjustedHeight + $(middlerow).outerHeight(true)
     }
-    $(notificationParent).removeClass("temp_shown");
+    V.Utils.removeTempShown(notificationParent);
     var cloneTemplate = $(rootTemplate).clone();
     $(cloneTemplate).attr("id", "notification_template_cloned");
     $(notificationParent).append(cloneTemplate);
@@ -11877,9 +11877,43 @@ VISH.Utils = function(V, undefined) {
     delayedFunctionTimestamps[functionId] = dN;
     return false
   };
+  var tempShownCounts = {};
+  var addTempShown = function(els) {
+    $(els).each(function(index, el) {
+      var elId = $(el).attr("id");
+      if(typeof elId == "undefined") {
+        elId = V.Utils.getId("TmpShownId");
+        $(el).attr("id", elId)
+      }
+      var tmpShownCount = typeof tempShownCounts[elId] != "undefined" ? tempShownCounts[elId] : 0;
+      tempShownCounts[elId] = tmpShownCount + 1;
+      if(tmpShownCount == 0) {
+        $(el).addClass("temp_shown")
+      }
+    })
+  };
+  var removeTempShown = function(els) {
+    $(els).each(function(index, el) {
+      var elId = $(el).attr("id");
+      if(typeof elId == "undefined") {
+        elId = V.Utils.getId("TmpShownId");
+        $(el).attr("id", elId)
+      }
+      var tmpShownCount = typeof tempShownCounts[elId] != "undefined" ? tempShownCounts[elId] : 0;
+      var newTmpShownCount = Math.max(0, tmpShownCount - 1);
+      tempShownCounts[elId] = newTmpShownCount;
+      if(newTmpShownCount == 0) {
+        setTimeout(function() {
+          if(tempShownCounts[elId] === 0) {
+            $(el).removeClass("temp_shown")
+          }
+        }, 1)
+      }
+    })
+  };
   return{init:init, getOptions:getOptions, dimentionsToDraw:dimentionsToDraw, fitChildInParent:fitChildInParent, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, 
   getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, getBackgroundPosition:getBackgroundPosition, sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, removeParamFromUrl:removeParamFromUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion, updateHash:updateHash, cleanHash:cleanHash, removeHashFromUrlString:removeHashFromUrlString, getHashParams:getHashParams, getSlideNumberFromHash:getSlideNumberFromHash, 
-  checkAnimationsFinish:checkAnimationsFinish, fomatTimeForMPlayer:fomatTimeForMPlayer, delayFunction:delayFunction}
+  checkAnimationsFinish:checkAnimationsFinish, fomatTimeForMPlayer:fomatTimeForMPlayer, delayFunction:delayFunction, addTempShown:addTempShown, removeTempShown:removeTempShown}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initOptions;
@@ -12268,9 +12302,9 @@ VISH.Editor = function(V, $, undefined) {
     slide.template = $(slideDOM).attr("template");
     slide.elements = [];
     if(isSubslide) {
-      $(slideDOM).parent().addClass("temp_shown")
+      V.Utils.addTempShown($(slideDOM).parent())
     }
-    $(slideDOM).addClass("temp_shown");
+    V.Utils.addTempShown(slideDOM);
     $(slideDOM).find("div").each(function(i, div) {
       var element = {};
       if($(div).attr("areaid") !== undefined) {
@@ -12391,9 +12425,9 @@ VISH.Editor = function(V, $, undefined) {
       }
     }
     if(isSubslide) {
-      $(slideDOM).parent().removeClass("temp_shown")
+      V.Utils.removeTempShown($(slideDOM).parent())
     }
-    $(slideDOM).removeClass("temp_shown");
+    V.Utils.removeTempShown(slideDOM);
     return slide
   };
   var sendPresentation = function(presentation, order, successCallback, failCallback) {
@@ -12931,20 +12965,11 @@ VISH.Editor.Utils = function(V, $, undefined) {
     $("div.fancy_tabs a.fancy_tab:not(.disabled)").show();
     $("a.venondefaulttab").hide()
   };
-  var addTmpShown = function(els) {
-    $(els).each(function(index, el) {
-      $(el).addClass("temp_shown")
-    })
-  };
-  var removeTmpShown = function(els) {
-    $(els).each(function(index, el) {
-      $(el).removeClass("temp_shown")
-    })
-  };
-  return{setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, refreshDraggables:refreshDraggables, replaceIdsForSlide:replaceIdsForSlide, replaceIdsForSlideJSON:replaceIdsForSlideJSON, generateTable:generateTable, convertToTagsArray:convertToTagsArray, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath, loadTab:loadTab, hideNonDefaultTabs:hideNonDefaultTabs, addTmpShown:addTmpShown, removeTmpShown:removeTmpShown}
+  return{setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, refreshDraggables:refreshDraggables, replaceIdsForSlide:replaceIdsForSlide, replaceIdsForSlideJSON:replaceIdsForSlideJSON, generateTable:generateTable, convertToTagsArray:convertToTagsArray, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath, loadTab:loadTab, hideNonDefaultTabs:hideNonDefaultTabs}
 }(VISH, jQuery);
 VISH.Editor.Text = function(V, $, undefined) {
   var initialized = false;
+  var _initializedCKEditorInstances = {};
   var init = function() {
     if(!initialized) {
       $(document).on("click", ".textthumb", launchTextEditor);
@@ -12990,6 +13015,15 @@ VISH.Editor.Text = function(V, $, undefined) {
     if(isTemplateArea) {
       current_area.attr("type", "text")
     }
+    var slide = $("article").has(current_area);
+    var subslide = $("article > article").has(current_area);
+    if(typeof $(current_area).attr("id") == "undefined") {
+      $(current_area).attr("id", V.Utils.getId("TmpShownId"))
+    }
+    V.Utils.addTempShown(current_area);
+    var currentAreaHeight = $(current_area).height();
+    var currentAreaWidth = $(current_area).width();
+    V.Utils.removeTempShown(current_area);
     var wysiwygContainerId = V.Utils.getId();
     var wysiwygContainer = $("<div id='" + wysiwygContainerId + "' class='wysiwygTextArea'></div>");
     $(wysiwygContainer).attr("style", "width: 100%; height: 100%");
@@ -13007,13 +13041,10 @@ VISH.Editor.Text = function(V, $, undefined) {
       config.autoGrow_maxHeight = 800
     }
     config.width = "100%";
-    config.height = $(current_area).height();
+    config.height = currentAreaHeight;
     config.fontSize_defaultLabel = "12";
     var ckeditorBasePath = CKEDITOR.basePath.substr(0, CKEDITOR.basePath.indexOf("editor/"));
     config.skin = "vEditor," + ckeditorBasePath + "editor/skins/vEditor/";
-    var ckeditor = CKEDITOR.appendTo(wysiwygContainerId, config);
-    var myWidth = $(current_area).width();
-    var myHeight = $(current_area).height();
     var newInstance = !(typeof initial_text === "string") || options && options.forceNew;
     if(newInstance) {
       var defaultFontSize = 12;
@@ -13057,27 +13088,51 @@ VISH.Editor.Text = function(V, $, undefined) {
       initial_text = "<p style='text-align:" + defaultAlignment + ";'><span autoColor='true' style='" + initialTextColor + "'><span style='font-size:" + defaultFontSize + "px;'>" + initial_text + "</span></span></p>";
       initial_text_blank = "<p style='text-align:" + defaultAlignment + ";'><span autoColor='true' style='" + blankTextColor + "'><span style='font-size:" + defaultFontSize + "px;'>" + "&shy" + "</span></span></p>"
     }
+    var ckeditor = CKEDITOR.appendTo(wysiwygContainerId, config);
+    var myWidth = currentAreaWidth;
+    var myHeight = currentAreaHeight;
+    if(!newInstance) {
+      V.Utils.addTempShown([slide, subslide, current_area]);
+      setTimeout(function() {
+        if(_initializedCKEditorInstances[ckeditor.name] !== true) {
+          _initializedCKEditorInstances[ckeditor.name] = false;
+          V.Utils.removeTempShown([slide, subslide, current_area])
+        }else {
+          _initializedCKEditorInstances[ckeditor.name] = undefined
+        }
+      }, 6E3)
+    }
     ckeditor.on("instanceReady", function() {
       if(initial_text) {
         ckeditor.setData(initial_text, function() {
           if(isQuiz) {
-            var slide = $("article").has(current_area);
-            $(slide).addClass("temp_shown");
-            var iframeContent = _getCKEditorIframeContentFromInstance(ckeditor);
-            var newMyHeight = $(iframeContent).find("html").height();
-            $(slide).removeClass("temp_shown");
-            if(newMyHeight > myHeight) {
-              ckeditor.resize(myWidth, newMyHeight)
+            if(!newInstance) {
+              setTimeout(function() {
+                V.Utils.addTempShown([slide, subslide, current_area]);
+                var iframeContent = _getCKEditorIframeContentFromInstance(ckeditor);
+                var newMyHeight = $(iframeContent).find("html").height();
+                if(newMyHeight > myHeight) {
+                  ckeditor.resize(myWidth, newMyHeight)
+                }
+                V.Utils.removeTempShown([slide, subslide, current_area])
+              }, 1E3)
             }
           }else {
-            ckeditor.resize(myWidth, myHeight)
           }
-          _fixCKEDITORBug(ckeditor)
-        });
-        if(newInstance) {
-          if(isTemplateArea || options && options.focus) {
-            ckeditor.focus()
+          _fixCKEDITORBug(ckeditor);
+          if(newInstance) {
+            if(isTemplateArea || options && options.focus) {
+              ckeditor.focus()
+            }
           }
+        })
+      }
+      if(!newInstance) {
+        if(typeof _initializedCKEditorInstances[ckeditor.name] == "undefined") {
+          _initializedCKEditorInstances[ckeditor.name] = true;
+          V.Utils.removeTempShown([slide, subslide, current_area])
+        }else {
+          _initializedCKEditorInstances[ckeditor.name] = undefined
         }
       }
     });
@@ -13412,13 +13467,9 @@ VISH.Editor.Image = function(V, $, undefined) {
     if(!style) {
       var theImg = $("#" + idToDragAndResize);
       $(theImg).load(function() {
-        $(current_area).parent().addClass("temp_shown");
-        $(current_area).addClass("temp_shown");
-        $(theImg).addClass("temp_shown");
+        V.Utils.addTempShown([$(current_area).parent(), $(current_area), $(theImg)]);
         var dimentionsToDraw = V.Utils.dimentionsToDraw($(current_area).width(), $(current_area).height(), $(theImg).width(), $(theImg).height());
-        $(current_area).parent().removeClass("temp_shown");
-        $(current_area).removeClass("temp_shown");
-        $(theImg).removeClass("temp_shown");
+        V.Utils.removeTempShown([$(current_area).parent(), $(current_area), $(theImg)]);
         $(theImg).width(dimentionsToDraw.width);
         if(dimentionsToDraw.height > 0) {
           $(theImg).height(dimentionsToDraw.height)
@@ -14000,14 +14051,14 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    V.Utils.addTempShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
         $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+        V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -14018,7 +14069,7 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
         options.styleClass = "presentation_repository";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+            V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -14300,7 +14351,7 @@ VISH.Editor.VirtualTour = function(V, $, undefined) {
       return
     }
     vts[vtId].drawed = true;
-    $(vtDOM).addClass("temp_shown");
+    V.Utils.addTempShown(vtDOM);
     var latlng = new google.maps.LatLng(vtJSON.center.lat, vtJSON.center.lng);
     var myOptions = {zoom:parseInt(vtJSON.zoom), center:latlng, streetViewControl:false, mapTypeId:vtJSON.mapType};
     var canvas = $(vtDOM).find("div.vt_canvas");
@@ -14324,7 +14375,7 @@ VISH.Editor.VirtualTour = function(V, $, undefined) {
         _addMarkerToCoordinates(poi.lat, poi.lng, poi.slide_id, index + 1, vts[vtId]);
         $(".draggable_sc_div[slide_id='" + poi.slide_id + "']").hide()
       });
-      $(vtDOM).removeClass("temp_shown")
+      V.Utils.removeTempShown(vtDOM)
     })
   };
   function Label(opt_options) {
@@ -14780,8 +14831,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     if(!hasCurrentClass) {
       $(fc).addClass("current")
     }
-    $(fc).addClass("temp_shown");
-    $(poisDOM).addClass("temp_shown");
+    V.Utils.addTempShown([fc, poisDOM]);
     var fc_offset = $(fc).offset();
     $(poisDOM).each(function(index, poi) {
       pois[index] = {};
@@ -14792,8 +14842,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     if(!hasCurrentClass) {
       $(fc).removeClass("current")
     }
-    $(poisDOM).removeClass("temp_shown");
-    $(fc).removeClass("temp_shown");
+    V.Utils.removeTempShown([fc, poisDOM]);
     return pois
   };
   var _savePoisToDom = function(fc) {
@@ -14918,7 +14967,7 @@ VISH.Samples = function(V, undefined) {
   {"id":"article16_article2_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"article16_article2_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, 
   {"id":"article16_article2_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, {"id":"article16_article3", "type":"standard", "template":"t10", "elements":[{"id":"article16_article3_zone1", "type":"object", "areaid":"center", 
   "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article16_article4", "type":"standard", "template":"t10", "elements":[{"id":"article16_article4_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', 
-  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}]};
+  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article17", "type":"standard", "template":"t10", "elements":[{"id":"article17_zone1", "type":"audio", "areaid":"center", "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "sources":'[{ "type": "audio/ogg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.ogg"},{ "type": "audio/mpeg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.mp3"}]'}]}]};
   var fc_sample = {"id":"3", "VEVersion":"0.2", "type":"flashcard", "title":"Curiosity Flashcard", "description":'A Flashcard about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "avatar":"http://vishub.org/pictures/311.jpg", "tags":["Science", "Space", "Mars"], "age_range":"12 - 30", "subject":["Astronomy"], "language":"independent", "educational_objectives":'Know about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "adquired_competencies":"Pupils will be smarter", 
   "author":"ViSH Editor Team", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://vishub.org/pictures/311.jpg)", "pois":[{"id":"article4_poi1", "x":"88.88", "y":"50.83", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"45.5", "y":"2.5", "slide_id":"article4_article3"}, {"id":"article4_poi3", "x":"13.5", "y":"63.17", "slide_id":"article4_article4"}], "slides":[{"id":"article4_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", 
   "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/P4boyXQuUIw?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article4_article3", "type":"standard", "template":"t7", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, 
@@ -14985,8 +15034,29 @@ VISH.Samples = function(V, undefined) {
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
   {"id":"article_5", "type":"standard", "template":"t2", "elements":[{"id":"zone11", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]};
-  var test = {"VEVersion":"0.8.6", "type":"presentation", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "contributors":[{"name":"Fred Griffin", "vishMetadata":{"id":5}}], "tags":["Do\u00f1ana", "Lynx", "Biology"], "theme":"theme1", "animation":"animation1", "language":"en", 
-  "age_range":"4 - 20", "difficulty":"easy", "TLT":"PT6H30M15S", "subject":["Art", "Astronomy", "Biology"], "educational_objectives":"Know about the Iberian Lynx", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article10", "type":"standard", "template":"t10", "elements":[{"id":"article10_zone1", "type":"audio", "areaid":"center", "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "sources":'[{ "type": "audio/ogg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.ogg"},{ "type": "audio/mpeg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.mp3"}]'}]}]};
+  var test = {"VEVersion":"0.8.5", "type":"presentation", "title":"Modulo 1: Introduccion a Internet, el Web, la nube, HTML5 y CSS", "description":"Modulo 1 del MOOC Desarrollo de Aplicaciones Web en HTML5 y para moviles Firefox OS. Accesible a traves de https://www.miriadax.net/web/firefox-os .", "avatar":"http://www.adwe.es/wp-content/uploads/2013/07/FirefoxOS.2.png", "author":{"name":"Aldo", "vishMetadata":{"id":20}}, "tags":["MOOC", "HTML5", "CSS", "Web"], "theme":"theme1", "animation":"animation1", 
+  "language":"independent", "age_range":"14 - 30", "subject":["Software Engineering", "Technology", "Telecommunications"], "educational_objectives":"El alumno obtendra una introduccion a Internet, el Web, la nube, HTML5 y CSS.", "vishMetadata":{"draft":"false", "id":"785"}, "slides":[{"id":"article1", "type":"enrichedvideo", "video":{"type":"HTML5_VIDEO", "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/3366.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/3366.mp4"}]', 
+  "poster":"http://vishub.org/videos/3366.png?style=170x127%23", "duration":799.16}, "pois":[{"id":"article1_poi1", "etime":"120", "slide_id":"article1_article1", "name":"Tecnologias de la Web"}, {"id":"article1_poi2", "etime":"630", "slide_id":"article1_article2", "name":"Operaciones principales de HTTP"}, {"id":"article1_poi3", "etime":"791", "slide_id":"article1_article3", "name":"Test de autoevaluacion"}], "slides":[{"id":"article1_article1", "type":"standard", "template":"t8", "elements":[{"id":"article1_article1_zone1", 
+  "areaid":"header"}, {"id":"article1_article1_zone2", "type":"image", "areaid":"left", "body":"http://www.derwentsidehomes.co.uk/UserFiles/Image/3D%20Characters/Question.jpg", "style":"position: relative; width:71.30801687763713%; height:100%; top:0%; left:10.126582278481013%;"}, {"id":"article1_article1_zone3", "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00c2\u00bfPara qu\u00c3\u00a9 se utiliza el CSS?\u00c2\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:36px;"><span autocolor="true" style="color:#000">&iquest;Para qu&eacute; se utiliza el&nbsp;<strong>CSS</strong>?&shy;</span></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"\u00e2\u20ac\u2039\u00c2\u00adEs el lenguaje de programacion de aplicaciones de cliente.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Es el lenguaje de programaci&oacute;n de aplicaciones de cliente.</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00e2\u20ac\u2039\u00c2\u00adDefine la estructura de la informacion de una pagina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
+  "answer":false}, {"id":"3", "value":"\u00e2\u20ac\u2039\u00c2\u00adDefine el estilo de visualizacion de una pagina Web en el navegador.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define el estilo de visualizaci&oacute;n de una p&aacute;gina Web en el navegador.</span></span></p>\n', "answer":true}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Enriched Video Example", "description":"First Enriched Video Example", 
+  "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "slides":[{"id":"article4", "type":"quiz_simple", "template":"t8", "elements":[{"id":"article1_article1_zone1", "areaid":"header"}, {"id":"article1_article1_zone2", "type":"image", "areaid":"left", "body":"http://www.derwentsidehomes.co.uk/UserFiles/Image/3D%20Characters/Question.jpg", "style":"position: relative; width:71.30801687763713%; height:100%; top:0%; left:10.126582278481013%;"}, {"id":"article1_article1_zone3", 
+  "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00c2\u00bfPara qu\u00c3\u00a9 se utiliza el CSS?\u00c2\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:36px;"><span autocolor="true" style="color:#000">&iquest;Para qu&eacute; se utiliza el&nbsp;<strong>CSS</strong>?&shy;</span></span></p>\n'}, "choices":[{"id":"1", "value":"\u00e2\u20ac\u2039\u00c2\u00adEs el lenguaje de programacion de aplicaciones de cliente.", 
+  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Es el lenguaje de programaci&oacute;n de aplicaciones de cliente.</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00e2\u20ac\u2039\u00c2\u00adDefine la estructura de la informacion de una pagina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
+  "answer":false}, {"id":"3", "value":"\u00e2\u20ac\u2039\u00c2\u00adDefine el estilo de visualizacion de una pagina Web en el navegador.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Define el estilo de visualizaci&oacute;n de una p&aacute;gina Web en el navegador.</span></span></p>\n', "answer":true}], "extras":{"multipleAnswer":false}}, {"id":"article1_article1zone4", "areaid":"right"}], "containsQuiz":true}]}}, {"id":"article1_article1zone4", 
+  "areaid":"right"}], "containsQuiz":true}, {"id":"article1_article2", "type":"standard", "template":"t2", "elements":[{"id":"article1_article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"Indica cuales de las siguientes afirmaciones son verdaderas o falsas.\u00c2\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Indica cuales de las siguientes afirmaciones son </span></span><span style="color:#008000;"><span autocolor="true"><span style="font-size:38px;">verdaderas</span></span></span><span autocolor="true"><span style="font-size:38px;"> o <span style="color:#b22222;">falsas</span>.&shy;</span></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"\u00c2\u00adGET es un comando para traer paginas Web a un cliente para su visualizacion.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>GET</strong> es un comando para traer p&aacute;ginas Web a un cliente para su visualizaci&oacute;n.</span></span></p>\n', "answer":true}, {"id":"2", "value":"\u00c2\u00adPOST es un comando para editar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;"><strong>&shy;POST</strong> es un comando para editar recursos en un servidor.</span></span></p>\n', 
+  "answer":false}, {"id":"3", "value":"\u00c2\u00adPUT es un comando para crear recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>PUT</strong> es un comando para crear recursos en un servidor.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00c2\u00adDELETE es un comando para borrar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>DELETE</strong> es un comando para borrar recursos en un servidor.</span></span></p>\n', 
+  "answer":true}], "quiz_simple_json":{"title":"Enriched Video Example", "description":"First Enriched Video Example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "slides":[{"id":"article5", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article1_article2_zone1", "type":"quiz", "areaid":"center", "quiztype":"truefalse", "selfA":true, "question":{"value":"Indica cuales de las siguientes afirmaciones son verdaderas o falsas.\u00c2\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Indica cuales de las siguientes afirmaciones son </span></span><span style="color:#008000;"><span autocolor="true"><span style="font-size:38px;">verdaderas</span></span></span><span autocolor="true"><span style="font-size:38px;"> o <span style="color:#b22222;">falsas</span>.&shy;</span></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"\u00c2\u00adGET es un comando para traer paginas Web a un cliente para su visualizacion.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>GET</strong> es un comando para traer p&aacute;ginas Web a un cliente para su visualizaci&oacute;n.</span></span></p>\n', "answer":true}, {"id":"2", "value":"\u00c2\u00adPOST es un comando para editar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;"><strong>&shy;POST</strong> es un comando para editar recursos en un servidor.</span></span></p>\n', 
+  "answer":false}, {"id":"3", "value":"\u00c2\u00adPUT es un comando para crear recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>PUT</strong> es un comando para crear recursos en un servidor.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00c2\u00adDELETE es un comando para borrar recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>DELETE</strong> es un comando para borrar recursos en un servidor.</span></span></p>\n', 
+  "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article1_article3", "type":"standard", "template":"t2", "elements":[{"id":"article1_article3_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"Test de autoevaluacion.Indica cuales de las siguientes afirmaciones son verdaderas o falsas.", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:28px;"><font color="#000000">Test de autoevaluaci&oacute;n.</font></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:28px;"><font color="#000000">Indica cuales de las siguientes afirmaciones son </font><span style="color:#008000;">verdaderas</span><font color="#000000"> o </font><span style="color:#b22222;">falsas</span><font color="#000000">.</font></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"HTTP permite procesar remotamente recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5"><strong>HTTP</strong> permite procesar remotamente recursos en un servidor.</font></p>\n', "answer":true}, {"id":"2", "value":"\u00c2\u00adUna URL identifica sin ambiguedad un recurso en Internet.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Una </span></span><strong><span style="color:#000000;"><span autocolor="true"><span style="font-size:24px;">URL</span></span></span></strong><span autocolor="true" style="color:#000"><span style="font-size:24px;"> identifica sin ambiguedad un recurso en Internet.</span></span></p>\n', 
+  "answer":true}, {"id":"3", "value":"\u00c2\u00adJavaScript es igual al lenguaje de programacion Java.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>JavaScript</strong> es igual al lenguaje de programaci&oacute;n Java.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00c2\u00adHTML define la estructura de la informacion de una pagina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>HTML</strong> define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
+  "answer":true}], "quiz_simple_json":{"title":"Enriched Video Example", "description":"First Enriched Video Example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "slides":[{"id":"article6", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article1_article3_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"Test de autoevaluacion.Indica cuales de las siguientes afirmaciones son verdaderas o falsas.", "wysiwygValue":'<p style="text-align: center;">\n\t<span style="font-size:28px;"><font color="#000000">Test de autoevaluaci&oacute;n.</font></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:28px;"><font color="#000000">Indica cuales de las siguientes afirmaciones son </font><span style="color:#008000;">verdaderas</span><font color="#000000"> o </font><span style="color:#b22222;">falsas</span><font color="#000000">.</font></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"HTTP permite procesar remotamente recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5"><strong>HTTP</strong> permite procesar remotamente recursos en un servidor.</font></p>\n', "answer":true}, {"id":"2", "value":"\u00c2\u00adUna URL identifica sin ambiguedad un recurso en Internet.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Una </span></span><strong><span style="color:#000000;"><span autocolor="true"><span style="font-size:24px;">URL</span></span></span></strong><span autocolor="true" style="color:#000"><span style="font-size:24px;"> identifica sin ambiguedad un recurso en Internet.</span></span></p>\n', 
+  "answer":true}, {"id":"3", "value":"\u00c2\u00adJavaScript es igual al lenguaje de programacion Java.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>JavaScript</strong> es igual al lenguaje de programaci&oacute;n Java.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00c2\u00adHTML define la estructura de la informacion de una pagina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>HTML</strong> define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
+  "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}]}]};
   return{basic_samples:basic_samples, full_samples:full_samples, fc_sample:fc_sample, vt_sample:vt_sample, evideo_sample:evideo_sample, quiz_samples:quiz_samples, text_samples:text_samples, VE01_samples:VE01_samples, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -16064,11 +16134,10 @@ VISH.Quiz = function(V, $, undefined) {
     }
     var container = $(".quizQr");
     $(container).html("");
-    $("#tab_quiz_session_content").addClass("temp_shown");
-    $(container).addClass("temp_shown");
+    var tabQuizSessionContent = $("#tab_quiz_session_content");
+    V.Utils.addTempShown([tabQuizSessionContent, container]);
     var height = $(container).height();
-    $(container).removeClass("temp_shown");
-    $("#tab_quiz_session_content").removeClass("temp_shown");
+    V.Utils.removeTempShown([tabQuizSessionContent, container]);
     var width = height;
     var qrOptions = {render:"canvas", width:width, height:height, color:"#000", bgColor:"#fff", text:url.toString()};
     $(container).qrcode(qrOptions);
@@ -16467,15 +16536,11 @@ VISH.Editor.Tools = function(V, $, undefined) {
   var _setTooltipMargins = function(tooltip) {
     var zone = $("div").has(tooltip);
     var slide = $("article").has(zone);
-    $(slide).addClass("temp_shown");
-    $(zone).addClass("temp_shown");
-    $(tooltip).addClass("temp_shown");
+    V.Utils.addTempShown([slide, zone, tooltip]);
     var zoneHeight = $(zone).height();
     var spanHeight = $(tooltip).height();
     var marginTop = (zoneHeight - spanHeight) / 2;
-    $(slide).removeClass("temp_shown");
-    $(zone).removeClass("temp_shown");
-    $(tooltip).removeClass("temp_shown");
+    V.Utils.removeTempShown([slide, zone, tooltip]);
     $(tooltip).css("margin-top", marginTop + "px")
   };
   var setAllTooltipMargins = function(callback) {
@@ -17652,7 +17717,7 @@ VISH.EVideo = function(V, $, undefined) {
     $(durationDOM).html(formatedDuration);
     var significativeNumbers = formatedDuration.split(":").join("").length;
     $(video).attr("sN", significativeNumbers);
-    $(eVideoDOM).addClass("temp_shown");
+    V.Utils.addTempShown(eVideoDOM);
     $(video).removeClass("temp_hidden");
     fitVideoInVideoBox(videoBox);
     $(videoHeader).show();
@@ -17679,7 +17744,7 @@ VISH.EVideo = function(V, $, undefined) {
     if(videoType == V.Constant.MEDIA.YOUTUBE_VIDEO) {
       onTimeUpdate(video, 0)
     }
-    $(eVideoDOM).removeClass("temp_shown")
+    V.Utils.removeTempShown(eVideoDOM)
   };
   var fitVideoInVideoBox = function(videoBox) {
     var video = getVideoFromVideoBox(videoBox);
@@ -17703,11 +17768,9 @@ VISH.EVideo = function(V, $, undefined) {
     var videoFooter = $(videoBox).find(".evideoFooter");
     var videoHeight = $(video).height();
     var videoWidth = $(video).width();
-    $(videoHeader).addClass("temp_shown");
-    $(videoFooter).addClass("temp_shown");
+    V.Utils.addTempShown([videoHeader, videoFooter]);
     var totalVideoBoxHeight = $(videoHeader).height() + videoHeight + $(videoFooter).height();
-    $(videoHeader).removeClass("temp_shown");
-    $(videoFooter).removeClass("temp_shown");
+    V.Utils.removeTempShown([videoHeader, videoFooter]);
     $(videoHeader).css("margin-top", "0px");
     var freeHeight = $(videoBox).height() - totalVideoBoxHeight;
     $(videoHeader).css("margin-top", freeHeight / 2 + "px");
@@ -17813,7 +17876,7 @@ VISH.EVideo = function(V, $, undefined) {
     var videoBox = $(eVideoDOM).find(".evideoBox");
     var videoDOM = getVideoFromVideoBox(videoBox);
     var eVideoJSON = eVideos[eVideoId];
-    $(eVideoDOM).removeClass("temp_shown");
+    V.Utils.removeTempShown(eVideoDOM);
     switch(eVideoJSON.estatusBeforeLeave) {
       case V.Constant.EVideo.Status.Playing:
         V.Video.play(videoDOM);
@@ -17839,7 +17902,7 @@ VISH.EVideo = function(V, $, undefined) {
     var videoBox = $(eVideoDOM).find(".evideoBox");
     var videoDOM = getVideoFromVideoBox(videoBox);
     var eVideoJSON = eVideos[eVideoId];
-    $(eVideoDOM).addClass("temp_shown");
+    V.Utils.addTempShown(eVideoDOM);
     eVideoJSON.estatusBeforeLeave = V.Video.getStatus(videoDOM);
     switch(eVideoJSON.estatusBeforeLeave) {
       case V.Constant.EVideo.Status.Playing:
@@ -18029,7 +18092,7 @@ VISH.EVideo = function(V, $, undefined) {
   var resizeEVideoAfterSetupSize = function(eVideoDOM, increase, increaseW) {
     var isEVideoVisible = $(eVideoDOM).css("display") != "none";
     if(!isEVideoVisible) {
-      $(eVideoDOM).addClass("temp_shown_b")
+      V.Utils.addTempShown(eVideoDOM)
     }
     var videoBox = $(eVideoDOM).find(".evideoBox");
     fitVideoInVideoBox(videoBox);
@@ -18046,7 +18109,7 @@ VISH.EVideo = function(V, $, undefined) {
     var videoFooter = $(videoBox).find(".evideoFooter");
     $(videoBox).find(".ballWrapper").height($(videoFooter).height());
     if(!isEVideoVisible) {
-      $(eVideoDOM).removeClass("temp_shown_b")
+      V.Utils.removeTempShown(eVideoDOM)
     }
   };
   var _renderBalls = function(eVideoDOM, eVideoJSON) {
@@ -18801,14 +18864,14 @@ VISH.Editor.Audio.Soundcloud = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    V.Utils.addTempShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
         $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorYoutubeConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+        V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -18818,7 +18881,7 @@ VISH.Editor.Audio.Soundcloud = function(V, $, undefined) {
         options.styleClass = "title";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+            V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -19418,6 +19481,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
   };
   var getDummy = function(slidesetId, options) {
     var videoBox = V.EVideo.renderVideoBoxDummy();
+    $(videoBox).attr("id", V.Utils.getId(slidesetId + "_videoBox"));
     var eVideoBody = $(videoBox).find(".evideoBody");
     $(eVideoBody).css("margin-top", "7.5%");
     $(eVideoBody).html('<div class="change_evideo_button"></div>');
@@ -19427,7 +19491,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     var eVideoIndexBodyActions = $("<div class='evideoIndexBodyActions'></div>");
     $(eVideoIndexBodyActions).html('<button type="button" class="btn btn-small slidesScrollbarButton evideoAddChapterButton addSlideButtonDisabled"><i class="icon-plus"></i><span>' + V.I18n.getTrans("i.AddTimestampLink") + "</span></button>");
     $(eVideoIndexBody).prepend(eVideoIndexBodyActions);
-    return"<article class='temp_shown' id='" + slidesetId + "' type='" + V.Constant.EVIDEO + "' slidenumber='" + options.slideNumber + "'><div class='delete_slide'></div><img class='help_in_slide help_in_evideo' src='" + V.ImagesPath + "vicons/helptutorial_circle_blank.png'/>" + V.Utils.getOuterHTML(videoBox) + V.Utils.getOuterHTML(indexBox) + "</article>"
+    return"<article id='" + slidesetId + "' type='" + V.Constant.EVIDEO + "' slidenumber='" + options.slideNumber + "'><div class='delete_slide'></div><img class='help_in_slide help_in_evideo' src='" + V.ImagesPath + "vicons/helptutorial_circle_blank.png'/>" + V.Utils.getOuterHTML(videoBox) + V.Utils.getOuterHTML(indexBox) + "</article>"
   };
   var _drawEVideo = function(eVideoJSON, eVideoDOM, videoToRender) {
     if(!eVideoJSON) {
@@ -19566,7 +19630,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     var loadingContainer = $(videoBody).find(".loadingEVideoContainer");
     $(loadingContainer).remove();
     $(videoBody).removeClass("loadingEVideoContainerWrapper");
-    $(eVideoDOM).addClass("temp_shown_b");
+    V.Utils.addTempShown(eVideoDOM);
     var durationDOM = $(videoHeader).find(".evideoDuration");
     var videoDuration = V.Video.getDuration(video);
     var formatedDuration = V.Utils.fomatTimeForMPlayer(videoDuration);
@@ -19590,7 +19654,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     if(videoType == V.Constant.MEDIA.YOUTUBE_VIDEO) {
       V.EVideo.onTimeUpdate(video, 0)
     }
-    $(eVideoDOM).removeClass("temp_shown_b")
+    V.Utils.removeTempShown(eVideoDOM)
   };
   var _renderIndex = function(eVideoDOM, eVideoJSON) {
     var indexBody = $(eVideoDOM).find(".evideoIndexBox");
@@ -19983,17 +20047,26 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     _drawEVideo(slidesetJSON, scaffoldDOM)
   };
   var onEnterSlideset = function(eVideoDOM) {
-    $(eVideoDOM).removeClass("temp_shown")
+    V.Utils.removeTempShown(eVideoDOM)
   };
   var onLeaveSlideset = function(eVideoDOM) {
-    $(eVideoDOM).addClass("temp_shown")
+    V.Utils.addTempShown(eVideoDOM)
   };
   var loadSlideset = function(eVideoDOM) {
-    $(eVideoDOM).find(".evideoBox").removeClass("temp_shown");
+    var eVideoBox = $(eVideoDOM).find(".evideoBox");
+    if($(eVideoBox).attr("loaded") == "false") {
+      var eVideoBox = $(eVideoDOM).find(".evideoBox");
+      V.Utils.removeTempShown(eVideoBox)
+    }
+    $(eVideoBox).attr("loaded", "true");
     $("#subslides_list").find("div.draggable_sc_div[ddend='scrollbar']").show()
   };
   var unloadSlideset = function(eVideoDOM) {
-    $(eVideoDOM).find(".evideoBox").addClass("temp_shown")
+    var eVideoBox = $(eVideoDOM).find(".evideoBox");
+    if($(eVideoBox).attr("loaded") != "false") {
+      $(eVideoBox).attr("loaded", "false");
+      V.Utils.addTempShown($(eVideoDOM).find(".evideoBox"))
+    }
   };
   var beforeCreateSlidesetThumbnails = function(eVideoDOM) {
     _drawPois(eVideoDOM)
@@ -20629,14 +20702,14 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    V.Utils.addTempShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
         $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorFlickrConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+        V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options["rows"] = 2;
@@ -20645,7 +20718,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
         options["scrollItems"] = 4;
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+            V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -20753,14 +20826,14 @@ VISH.Editor.Image.LRE = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    V.Utils.addTempShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
         $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorLREConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+        V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 2;
@@ -20769,7 +20842,7 @@ VISH.Editor.Image.LRE = function(V, $, undefined) {
         options.scrollItems = 4;
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+            V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -20870,14 +20943,14 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    V.Utils.addTempShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
         $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+        V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 2;
@@ -20886,7 +20959,7 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
         options.scrollItems = 4;
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+            V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -20975,14 +21048,14 @@ VISH.Editor.Image.Thumbnails = function(V, $, undefined) {
   };
   var _drawData = function(noResults) {
     $("#" + carrouselDivId).show();
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    V.Utils.addTempShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
         $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+        V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 3;
@@ -20992,7 +21065,7 @@ VISH.Editor.Image.Thumbnails = function(V, $, undefined) {
         options.styleClass = "thumbnails";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+            V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -21342,14 +21415,14 @@ VISH.Editor.Object.LRE = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    V.Utils.addTempShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
         $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorLREConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+        V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -21359,7 +21432,7 @@ VISH.Editor.Object.LRE = function(V, $, undefined) {
         options.styleClass = "title";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+            V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -21519,14 +21592,14 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    V.Utils.addTempShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
         $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+        V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -21536,7 +21609,7 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
         options.styleClass = "title";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+            V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -21696,14 +21769,14 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    V.Utils.addTempShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
         $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+        V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -21713,7 +21786,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
         options.styleClass = "title";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+            V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -22620,7 +22693,7 @@ VISH.Editor.Renderer = function(V, $, undefined) {
     }else {
       V.Editor.Slides.appendSubslide(renderOptions.slidesetDOM, scaffold);
       var scaffoldDOM = $("#" + $(scaffold).attr("id"));
-      $(scaffoldDOM).addClass("temp_shown")
+      V.Utils.addTempShown(scaffoldDOM)
     }
     for(el in slide.elements) {
       var areaId = slide.elements[el].id;
@@ -22668,7 +22741,7 @@ VISH.Editor.Renderer = function(V, $, undefined) {
       V.Editor.Tools.addTooltipToZone(area, hideTooltip)
     }
     if(renderOptions.subslide) {
-      $(scaffoldDOM).removeClass("temp_shown")
+      V.Utils.removeTempShown(scaffoldDOM)
     }
   };
   var _renderSlideset = function(slidesetJSON, slideNumber) {
@@ -23322,11 +23395,11 @@ VISH.Editor.Slides = function(V, $, undefined) {
         return
       }
     }
-    $(article_to_move).addClass("temp_shown");
+    V.Utils.addTempShown(article_to_move);
     V.Editor.Utils.refreshDraggables(article_to_move);
     _cleanTextAreas(article_to_move);
     _loadTextAreasOfSlide(article_to_move, textAreas);
-    $(article_to_move).removeClass("temp_shown");
+    V.Utils.removeTempShown(article_to_move);
     V.Slides.setSlides(document.querySelectorAll("section.slides > article"));
     $("#slides_list").find("div.wrapper_barbutton:has(img[slidenumber])").each(function(index, div) {
       var slideNumber = index + 1;
@@ -24459,14 +24532,14 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    V.Utils.addTempShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
         $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+        V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.callback = _onClickCarrouselElement;
@@ -24474,7 +24547,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
         options.scrollItems = 5;
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+            V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -24652,14 +24725,14 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
+    V.Utils.addTempShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+      V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
         $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorYoutubeConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+        V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -24668,7 +24741,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
         options.scrollItems = 5;
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
+            V.Utils.removeTempShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -29007,7 +29080,7 @@ VISH.VirtualTour = function(V, $, undefined) {
     var canvas = $("<div id='" + canvasId + "' class='map_canvas' style='height:" + "100%" + "; width:" + "100%" + "'></div>");
     var vtDOM = $("#" + vtJSON.id);
     $(vtDOM).append(canvas);
-    $(vtDOM).addClass("temp_shown");
+    V.Utils.addTempShown(vtDOM);
     var center = new google.maps.LatLng(vtJSON.center.lat, vtJSON.center.lng);
     var myOptions = {zoom:parseInt(vtJSON.zoom), center:center, mapTypeId:vtJSON.mapType};
     var map = new google.maps.Map(document.getElementById(canvasId), myOptions);
@@ -29016,7 +29089,7 @@ VISH.VirtualTour = function(V, $, undefined) {
       _addMarkerToCoordinates(canvasId, map, poi.lat, poi.lng, poi.slide_id)
     });
     google.maps.event.addListenerOnce(map, "tilesloaded", function() {
-      $(vtDOM).removeClass("temp_shown");
+      V.Utils.removeTempShown(vtDOM);
       google.maps.event.addListenerOnce(map, "tilesloaded", function() {
       })
     });
