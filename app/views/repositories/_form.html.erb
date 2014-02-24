@@ -225,7 +225,7 @@ $(document).ready(function(){
   $(uploadButton).click(function(event) {
     var resource_type = $(".accordion-body.collapse.in").attr('id');
 
-    $(this).button('loading');
+   
     
     if(resource_type == "document" && $("#AddResource input[name='"+resource_type+"[file]']").val() == "") {
       alert("<%= t('document.body.title3')%>");
@@ -250,6 +250,8 @@ $(document).ready(function(){
       var value2 = $('.age-slider').data('slider').getValue()[1];
       $('input[name="'+resource_type+'[age_min]"]').val(value1);
       $('input[name="'+resource_type+'[age_max]"]').val(value2);
+
+      $(this).button('loading');
       //SUBMIT
       $("input[value=<%= t('button.save') %>][type='submit'][name='commit'][class='"+resource_type+" hide']").click();
     }
