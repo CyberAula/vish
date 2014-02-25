@@ -63,7 +63,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 		};
 
 		return trans;
-	}
+	};
 
 
 	/* Draw Methods */
@@ -89,7 +89,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 			return null; 
 			break;
 		}
-	}
+	};
 
 	var _drawMcChoiceQuizChart = function(canvas,quizParams,answersList,options){
 		var pieFragments = [];
@@ -151,7 +151,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 		if((options)&&(options.animation!=true)&&(typeof options.callback == "function")){
 			options.callback();
 		}
-	}
+	};
 
 	var _drawMcChoiceMAnswerQuizChart = function(canvas,quizParams,answersList,options){
 		var labels = [];
@@ -228,7 +228,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 		if((options)&&(options.animation!=true)&&(typeof options.callback == "function")){
 			options.callback();
 		}
-	}
+	};
 
 
 	var _drawTFQuizChart = function(canvas,quizParams,answersList,options){
@@ -318,7 +318,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 		if((options)&&(options.animation!=true)&&(typeof options.callback == "function")){
 			options.callback();
 		}
-	}
+	};
 
 	/**
 	* Helpers
@@ -330,7 +330,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 			answers.push(JSON.parse(results[i].answer));
 		}
 		return answers;
-	}
+	};
 
 	var _getQuizParams = function(quiz){
 		var params = {};
@@ -354,7 +354,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 			}
 		} catch (e){}
 		return params;
-	}
+	};
 
 	var _purgeString = function(str){
 		if(typeof str != "string"){
@@ -362,7 +362,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 		}
 		str = str.replace(/â€‹/g, '');
 		return str.replace(/Â/g, '');
-	}
+	};
 
 	return {
 		init                : init,

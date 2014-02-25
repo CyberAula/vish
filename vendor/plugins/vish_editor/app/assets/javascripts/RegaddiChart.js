@@ -255,7 +255,8 @@ window.Chart = function(context, options){
 						case 'shape':
 							this.ctx.beginPath();
 							this.ctx.moveTo(this.areaObj.points[0].x, this.areaObj.points[0].y);
-							for(var p in this.areaObj.points) {
+							var aOpL = this.areaObj.points.length;
+							for(var p=0; p<aOpL; p++){
 								this.ctx.lineTo(this.areaObj.points[p].x, this.areaObj.points[p].y);
 							}
 							this.ctx.stroke();
@@ -325,11 +326,14 @@ window.Chart = function(context, options){
 		if(chart.tooltips.length > 0) {
 			chart.savedState = chart.savedState == null ? context.getImageData(0,0,context.canvas.width,context.canvas.height) : chart.savedState;
 			var rendered = 0;
-			for(var i in chart.tooltips) {
+
+			var cTL = chart.tooltips.length;
+			for(var i=0; i<cTL; i++){
 				var position = getPosition(context.canvas),
-					mx = (e.clientX)-position.x,
-					my = (e.clientY)-position.y;
-				if(chart.tooltips[i].inRange(mx,my)) {
+				mx = (e.clientX)-position.x,
+				my = (e.clientY)-position.y;
+
+				if(chart.tooltips[i].inRange(mx,my)){
 					chart.tooltips[i].render(mx,my);
 					rendered++;
 				}
