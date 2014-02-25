@@ -48,8 +48,10 @@ class SearchController < ApplicationController
     the_query = nil
     order = 'popularity DESC'
 
+    binding.pry
+
     if(params[:q])
-      the_query_or = Riddle.escape(params[:q].strip!).gsub(" ", " | ")
+      the_query_or = Riddle.escape(params[:q].strip).gsub(" ", " | ")
       the_query = "\"^" + params[:q] + "$\" | \"" + params[:q] + "\" | (" + the_query_or + ")"
       order = nil #so it searches exact first
     end
@@ -64,3 +66,5 @@ class SearchController < ApplicationController
 
   end
 end
+
+          
