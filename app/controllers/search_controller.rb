@@ -25,7 +25,7 @@ class SearchController < ApplicationController
           end
         end
       }
-      
+
       format.json {
         json_obj = (
           params[:type].present? ?
@@ -48,7 +48,7 @@ class SearchController < ApplicationController
     the_query = nil
     order = 'popularity DESC'
 
-    if(params[:q])
+    if(params[:q] && params[:q]!="")
       the_query_or = Riddle.escape(params[:q].strip).gsub(" ", " | ")
       the_query = "\"^" + params[:q] + "$\" | \"" + params[:q] + "\" | (" + the_query_or + ")"
       order = nil #so it searches exact first
