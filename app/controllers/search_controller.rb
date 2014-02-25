@@ -29,8 +29,8 @@ class SearchController < ApplicationController
       format.json {
         json_obj = (
           params[:type].present? ?
-          { params[:type].pluralize => @search_result } :
-          @search_result
+          { params[:type].pluralize => @search_result.compact } :
+          @search_result.compact
         )
 
         render :json => json_obj.to_json(helper: self)
@@ -49,7 +49,7 @@ class SearchController < ApplicationController
     order = 'popularity DESC'
 
     if(params[:q])
-      the_query_or = Riddle.escape(params[:q]).gsub(" ", " | ")
+      the_query_or = Riddle.escape(params[:q].strip).gsub(" ", " | ")
       the_query = "\"^" + params[:q] + "$\" | \"" + params[:q] + "\" | (" + the_query_or + ")"
       order = nil #so it searches exact first
     end
@@ -64,3 +64,5 @@ class SearchController < ApplicationController
 
   end
 end
+
+          
