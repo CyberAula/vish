@@ -29,8 +29,8 @@ class SearchController < ApplicationController
       format.json {
         json_obj = (
           params[:type].present? ?
-          { params[:type].pluralize => @search_result } :
-          @search_result
+          { params[:type].pluralize => @search_result.compact } :
+          @search_result.compact
         )
 
         render :json => json_obj.to_json(helper: self)
@@ -47,8 +47,6 @@ class SearchController < ApplicationController
     limit = ( mode == :quick ? 7 : RESULTS_SEARCH_PER_PAGE )
     the_query = nil
     order = 'popularity DESC'
-
-    binding.pry
 
     if(params[:q])
       the_query_or = Riddle.escape(params[:q].strip).gsub(" ", " | ")
