@@ -467,3 +467,292 @@ hu:
   mailboxer:
     new_message_for: "New message for"
     delete_confirm: "Do you want to move '%{csubject}' to trash?"
+﻿
+
+
+  activerecord:
+    attributes:
+      user:
+        email: "Email"
+  activity2:
+    one: "aktivitás"
+    other: "aktivitás"
+  all: "mind"
+  browse:
+    title: "böngészés"
+    popular: "népszerű tartalom"
+  by: "készítette"
+  category:
+    confirm_delete: "Kategória törlése?"
+  categories:
+    actions:
+      add: Kategória készítése
+      apply: Alkalmaz
+      verb: Kategórizálás
+    description_input: "A kategória leírása"
+    errors:
+      duplicated: "Már van egy ilyen nevű kategóriád, kérlek adj neki egy másik nevet."
+    info: "Add hozzá egy már létező kategóriához"
+    input: "Adj meg egy leírást"
+    item_inside: "elemet tartalmaz"
+    leyend:
+      title: Cím
+      description: Leírás
+      items: Elemek ebben a kategóriában
+    main_title: "Készíts új kategóriákat és rendszerezd a virtuális sétáidat."
+    other: "kategóriák"
+    title_input: "A kategória neve"
+    save: "Mentés"
+    selected: "kategóriák"
+    success: "Sikeresen elmentettük a kategóriákat"
+  contact:
+    footer: "kapcsolat"
+  pending:
+    other: "Követők"
+  copy_to_clip: "Másolás vágólapra"
+  devise:
+    tags: "címkék"
+  document:
+    body:
+      title1: "Válaszd ki a feltölteni kívánt tartalom típusát"
+      title2: "Információk a tartalomról"
+      title3: "Válaszd ki a feltölteni kívánt fájlt"
+    close: "Bezárás"
+    details:
+      info: "Információ"
+    download_explanation: "Töltsd le a tartalmat a készülékedre"
+    helpquiz:
+      info1_html: "1. Prueba de ayuda 1 para el quiz<br>"
+    language:
+      option1: "(Nyelv független)"
+    leyend:
+      description: "Leírás"
+      language: "Nyelv"
+      tags: "Címkék"
+      title: "Cím"
+      recommended_age: "Ajánlott korosztály"
+    main_title: "Tölts fel képeket, videókat és más tartalmakat"
+    options:
+      documents: "Dokumentumok/Videók/Hanganyagok"
+      embed: "Beágyazott (HTML kód)"
+      links: "Linkek (URL-ek)"
+      browse: "Böngészés"
+    tags:
+      title: "Témák"
+      areasOfInterestMessage: "Add meg az érdeklődési körödet"
+      addMessage: "Adj hozzá címkéket"
+      limitMessage: "elérted a limitet"
+    title_alert: "Adj egy címet a tartalomnak"
+    upload: "Feltöltés"
+  embed:
+    title3: "Másold ide a beágyazni kívánt tartalmat"
+  evaluation:
+    contribute:
+      zero: "Senki nem értékelte még ezt a virtuális sétát, szeretnél az első lenni?"
+      one: "Egy ember értékelte ezt a virtuális sétát, szeretnél te is részt venni benne?"
+      other: "%{count} ember értékelte ezt a virtuális sétát, szeretnél te is részt venni benne?"
+    phrase5: "Szeretnéd a jövőben újra ezt a virtuális sétát tanításra használni?"
+    question0: "quest 0"
+    question1: "quest 1"
+    question2: "quest 2"
+    question3: "quest 3"
+    question4: "quest 4"
+    question5: "quest 5"
+    label0: "Tartalom"
+    label1: "Kinézet"
+    label2: "Motiváció"
+    label3: "Elköteleződés"
+    label4: "Interdiszciplinális"
+    label5: "Újrahasználhatóság"
+    qlabel0: "label 0"
+    qlabel1: "label 1"
+    qlabel2: "label 2"
+    qlabel3: "label 3"
+    qlabel4: "Interdiszciplinális"
+    qlabel5: "label 5"
+    learning: "Tanulási tapasztalat"
+    alert: "Kérlek töltsd ki az összes értékelő kérdést. Köszönöm."
+    strong_disagree_b: "Egyáltalán nem értek egyet"
+    disagree_b: "Nem értek egyet"
+    neutral_b: "Semleges"
+    agree_b: "Egyetértek"
+    strong_agree_b: "Nagyon egyetértek"
+    strong_agree_a: "Nagyon jó"
+    agree_a: "Jó"
+    neutral_a: "Átlagos"
+    disagree_a: "Gyenge"
+    strong_disagree_a: "Nagyon gyenge"
+    success: "Sikeresen mentettük a válaszai, köszönjük az együttműködést."
+  event:
+    actions:
+      add: Esemény hozzáadása
+    description_input: "Az esemény leírása"
+    leyend:
+      date: Dátum
+      date_and_time: "Dátum, idő és hossz"
+      description: Leírás
+      end_time: Befejezési idő
+      start_time: Elkezdési idő
+      title: Cím
+      type: Típus
+    main_title: "Új esemény készítése"
+    title_input: "Az esemény neve"
+    type:
+      streaming: Élő közvetítés
+      videoconference: Videó konferencia
+  excursion:
+    actions:
+      add: "Virtuális séta hozzáadása"
+      embed: "beágyaz"
+      favorite: "kedvenc"
+      my_room: "az én szobám"
+      show_fewer: "Mutass kevesebbet"
+      show_more: "Mutass többet"
+      scorm: "scorm"
+    all: "mind"
+    description: "leírás"
+    download_scorm: "A SCORM csomag is a collection of files which are packaged according to an agreed standard for learning objects. SCORM packages are zip files that can be integrated in any LMS (Learning Management System) that supports the standard (Moodle, Blackboard, …) and that can be used for presenting multimedia content and as assessment tools. Thus, you can integrate your Virtual Excursion in Moodle and other LMSs by downloading it as SCORM."
+    draft: "Piszkozat"
+    invite:
+      email:
+        link: "e-mail"
+    is_draft: "[PISZKOZAT]"
+    modal:
+      title: "Gratulálok"
+      survey: "Kérlek tölts ki egy rövid kérdőívet, hogy ezzel segíts nekünk, hogy javíthassunk a szolgáltatáson. Körülbelül 3 percet vesz igénybe a kitöltés. <a href='https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform' target='_blank'>Kérdőív kitöltése</a>"
+      thank: "Köszönjük, hogy kitöltötted a kérdőívet"
+    new: "Új virtuális séta készítése"
+  faq:
+    title: "Gyakran Ismételt Kérdések"
+    question1: "Mi az a ViSH?"
+    answer1: "The Virtual Science Hub is a meeting point for scientists and teachers and is based around the idea of “Virtual Excursions”, the online analog to an on-site visit, during which the students discover science in Europe’s top scientific centers. Several media such as flashcards, video-conference and virtual experiments help them feel the science rather than just study it. ViSH will be using Social Stream as a social networking library and it is entering its development phase. You can find the code at the GING github page."
+    question2: "Mi az a Global Excursion?"
+    answer2: "It is a FP7 European Project, funded by the European Commission under the 7th Framework Programme. It is coordinated by ZSI and the consortium is formed by UPM, AGORA SYSTEMS, EUN, SZTAKI, UCAM and UNIZAR. Check this <a href='http://www.globalexcursion-project.eu' target='_blank'>http://www.globalexcursion-project.eu</a>"
+    question3: "Mi az az eScience?"
+    answer3: "eScience stands for “enhanced” science, in the sense of transdisciplinarity, global teams addressing large scale challenges, thanks to the use of new ICT tools and facilities. Include topics like high performance computing, large storage of data, complex networks of sensors, broadband communications, open repositories, new instrumentation, visualization tools…"
+    editor_question1: "Mi az a ViSH Szerkesztő?"
+    editor_answer1: "Vish Editor i is a HTML5 application to create web presentations in a simple and friendly way. It is integrated in ViSH and you can use it to create your eExcursions. If you are registered you can try it in: <a target='_blank' href='http://vishub.org/excursions/new'>http://vishub.org/excursions/new</a>"
+    editor_question2: "Mi az a Virtuális Séta?"
+    editor_answer2: "It is a  kind of presentation created with multimedia didactical material which allows a better understanding of a scientific infrastructure, equipment of facility. eExcursions are didactical units used for science teaching, either shown in class or to be explored by students on their own. Check this video (English only) <a target='_blank' href='http://www.youtube.com/watch?v=tZ8qirSTIIs'>http://www.youtube.com/watch?v=tZ8qirSTIIs</a>"
+    editor_question3: "Mennyire bonyolult egy Virtuális Séta elkészítése?"
+    editor_answer3: "It is very easy and straightforward. You will find it very familiar and intuitive! Prepare the content to be included, organize it in a didactical and understandable manner, and then drag and drop or select the shape of the slides. See a tutorial in <a target='_blank' href='http://www.youtube.com/watch?v=fBSNZxs8m0I&list=PLve_ezrFIJJxujiqCZid6KcgxPh4ksSp2&index=2'>Youtube ViSH channel</a>"
+    events_question1: "Mi az az eVisit?"
+    events_answer1: "It is a virtual visit or videoconference to any e-Infrastructure or scientific center, performed among scientists, researchers, teachers and pupils. They are done inside ViSH using a videoconference tool called <a href='http://mashme.tv' target='_blank'>MashMe.tv</a>"
+    events_question2: "Hogy tudok egy e-Látogatást szervezni?"
+    events_answer2: "Az e-Látogatás készítése a ViSH portálon nagyon egyszerű. Bármelyik oldalon elérhető a fejlécben a “+” gomb, melyre kattintva a lenyíló menüben az “Esemény készítésé”-t kell választani. Amint az esemény elkészült, meg lehet hívni a résztvevőket."
+    events_question3: "Az események használhatom a diákjaimmal vagy más emberekkel együtt?"
+    events_answer3: "Természetesen. A ViSH portálon készíthetsz eseményeket és bárkit meghívhatsz."
+    resources_question1: "Mi az a tartalom?"
+    resources_answer1: "Bármilyen digitális anyag ami a ViSH-re feltölthető és a Virtuális Sétákban használható.Például weboldalak, élő webkamerák, beágyazott kódok, linkek, flash objektumok, képek, videók, hanganyagok, pdf fájlok, stb"
+    resources_question2: "Hogy tudok tartalmat feltölteni?"
+    resources_answer2: "Bármelyik oldalon elérhető a fejlécben a “+” gomb, melyre kattintva a lenyíló menüben a “Tartalom hozzáadásá”-t kell választani és a megjelenő felületen feltölteni a fájlt, vagy kiválasztani a beágyazott kódot vagy linket."
+    resources_question3: "Hogy tudok egy tartalmat felhasználni a Virtuális Sétámban?"
+    resources_answer3: "A ViSH szerkesztőben a Virtuális Séta készítésekor lehet hozzáadni a tartalmakat a megjelenő oldal fülekről. A ViSH nevű fülön található egy keresőmező, amivel a ViSH tárhelyén lévő anyagokban lehet keresni."  
+  header:
+    tooltip:
+      add_button: "Készíts Virtuális Sétát, tartalmat, stb."
+  help_page: "ViSH Segítség"
+  help_manual: "Felhasználói kézikönyv letöltése"
+  hide: "Elrejtés"
+  lang:
+    others: "Több"
+  link:
+    title3: "Add meg a linket amit fel szeretnél tölteni"
+  lre:
+    data_error: "Sajnos hibába futottunk, az adatbázis a következő hibaüzenetet jelezte: %{code}"
+    json_error: "Sajnos hiba volt a keresés eredményében, kérlek próbálkozz újra egy másik kifejezéssel"
+    search_error: "Sajnos a hibába futottunk, a keresés a következő hibaüzenetet jelezte: %{code}"
+  mailboxer:
+    new_message_for: "Új üzenet"
+    delete_confirm: "Biztosan szeretnéd törölni: '%{csubject}'?"
+  notice:
+    fill_profile: "Nem töltötted ki az adatlapodon az <b>érdeklődési kör</b> és a <b>munkaterület</b> mezőket a személyes információk részben. Ha kitöltöd, akkor sokkal személyre szabottabb tartalmakat tudunk ajánlani neked. Kérlek menj vissza az <a href='%{url}'>adatlapodra</a> és töltsd ki a hiányzó mezőket."
+  officedoc:
+    download: "letöltés"
+  organization:
+    other: "intézmények"
+  profile:
+    occupation:
+      options:
+        select: "Válassz..."
+        scientist: "Tudományos"
+        teacher: "Oktatás"
+        other: "Egyéb"
+  project: "Global Excursion"
+  quiz:
+    actions:
+      close: "Bezár"
+      delete: "Töröl"
+      edit: "Szerkesztés"
+    answer_url: "Válaszolj erre a kvízre ezen a címen"
+    answers: "válaszok"
+    closed: "Lezárt"
+    closedL: "Lezárt"
+    closeAlert: "Sajnálom, ez a kvíz le van zárva."
+    confirm_close: "Lezárjam a kvízt? Lezárás után már nem lehet többet válaszolni a kérdésekre."
+    confirm_delete: "Töröljem a kvízt? Ha törlöd, akkor az összes választ elveszted."
+    createdAt: "Elkészítve:"
+    closedAtS: "Lezárva:"
+    error: "Sajnáljuk, hiba lépett fel a kvíz feldolgozása közben"
+    falseC: "H"
+    launchIn: "elindítva a Virtuális Sétában: "
+    legend:
+      name: "Kvíz név"
+    live: "Élő kvízek"
+    noAnswers: "Nincsenek válaszok erre a kvízre"
+    noClosedQuizzes: "Nincs egyetlen lezárt kvízed se"
+    noOpenQuizzes: "Nincs egyetlen nyitott kvízed se"
+    opened: "Nyitott"
+    openedL: "Nyitott (még lehet rájuk válaszolni)"
+    openPeriod: "Futási periódus"
+    placeholder:
+      name: "Adj meg egy új nevet"
+    total: "Összesen"
+    trueC: "I"
+    untitled: "Névtelen"
+  resource:
+    actions:
+      add: "Tartalom hozzáadása"
+    one: "tartalom"
+    other: "tartalom"
+  save: "Mentés"
+  search:
+    end: "Nincs több találat. Próbálkozz egy új kifejezéssel"
+    loading: "Több találat betöltése"
+  sharing:
+    email: "Megosztás email-ben"
+  simple_captcha:
+    placeholder: "Add meg a képen látható értékeket"
+    label: "Add meg a kódot:"
+    message:
+      default: A titkos kód nem egyezik meg a képen láthatóval
+      user: A titkos kép és a kód nem egyezett meg
+    error: "Hiba volt a lenti ellenőrző kóddal, kérlek add meg újra a kódot."
+    subtitle: "Add meg a kódot:"
+    title: "Ellenörző kód"
+  site:
+    current:
+      description: "Találkozópont a kutatók és a tanárok között a  Virtuális Séták segítségével"
+      keywords: "VisHub,virtuális,tananyag"
+      title: "Virtual Science Hub"
+    name: "Virtual Science Hub"
+  spam:
+    error_content: "Hiba van a Virtuális Sétában"
+    placeholder: "Mi a probléma?"
+    report_excursion: "Virtuális Séta bejelentése"
+    spam_content: "Spam vagy nem megfelelő tartalom"
+    success: "Megkaptuk a bejelentésed és hamarosan kivizsgáljuk. Köszönjük"
+  top10: "Top 10"
+  vish:
+    carousel_title: "ViSH: Virtual Science Hub"
+    carousel_title2: "ViSHEditor: Készíts és ossz meg Virtuális Sétákat"
+    carousel_title3: "ViSHEvents: Megbeszélések a MashMe-n"
+    description: "ViSH is a collaborative social network for creating and sharing educational knowledge resources in HTML5. ViSH connects your resources directly with the classroom, either physical or virtual."
+    description2: "Virtual excursions are visual knowledge resources designed for proyection in the virtual or phisical classroom integrating multimedia content brought in real time from the local repository or from the internet using HTML5 and JSON."
+    description3: "ViSH allows you to organize and announce meetings in MashMe virtual rooms to show virtual excursions in real time to remote participants."
+    starterguide: "Kezdők kézikönyve"
+    register_with: "Regisztrálj a "
+  views:
+    pagination:
+      truncate: "..."
+
