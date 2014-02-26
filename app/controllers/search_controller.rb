@@ -50,7 +50,7 @@ class SearchController < ApplicationController
 
     if(params[:q] && params[:q]!="")
       the_query_or = Riddle.escape(params[:q].strip).gsub(" ", " | ")
-      the_query = "\"^" + params[:q] + "$\" | \"" + params[:q] + "\" | (" + the_query_or + ")"
+      the_query = "(^" + params[:q].strip + "$) | (" + params[:q].strip + ") | (" + the_query_or + ")"
       order = nil #so it searches exact first
     end
 
