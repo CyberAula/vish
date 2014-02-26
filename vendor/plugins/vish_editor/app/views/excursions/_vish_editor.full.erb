@@ -129,7 +129,7 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Style">Style</p>
 				</div>
-				<div id="toolbar_animation_wrapper" class="toolbar_presentation_wrapper lasticonborder">
+				<div id="toolbar_animation_wrapper" class="toolbar_presentation_wrapper withoutRightBorder">
 					<a id="toolbar_animation" class="tool_action" action="selectAnimation" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-magic"></i>
@@ -137,7 +137,7 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Animations">Animation</p>
 				</div>
-				<div id="toolbar_background_wrapper" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools bgtoolpos toolbar_standard toolbar_flashcard toolbar_VirtualTour" style='display:none'>
+				<div id="toolbar_background_wrapper" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools withLeftBorder withoutRightBorder toolbar_standard toolbar_flashcard toolbar_VirtualTour" style='display:none'>
 					<a id="toolbar_background" class="tool_action" action="changeBackground" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-picture"></i>
@@ -145,26 +145,28 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Background"> Background</p>
 				</div>
-				<div id="toolbar_evideo_wrapper" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools bgtoolpos toolbar_enrichedvideo" style='display:none'>
+				<div id="toolbar_evideo_wrapper" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools withLeftBorder withoutRightBorder toolbar_enrichedvideo" style='display:none'>
 					<a id="toolbar_evideo" class="tool_action" action="changeVideo" href="#">
 						<img class="big_toolbar_icon toolbar_web" src="/assets/toolbar/change_evideo.png"/>
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Video"> Video</p>
 				</div>
 			</div>
-			<div id="toolbar_element">
-				<img class="toolbar_icon toolbar_image" style="display:none" action="addLink" 
-				src="/assets/toolbar/addLink.png"/>
-				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot" style="display:none" action="resizeLess" 
-				src="/assets/toolbar/resizeLess.png"/>
-				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot"  style="display:none" action="resizeMore" 
-				src="/assets/toolbar/resizeMore.png"/>
-				<img class="toolbar_icon toolbar_web" style="display:none" action="zoomLess" 
-				src="/assets/toolbar/zoomLess.png"/>
-				<img class="toolbar_icon toolbar_web"  style="display:none" action="zoomMore" 
-				src="/assets/toolbar/zoomMore.png"/>
-				<div id="toolbar_text">
+			<div id="toolbar_element" class="withLeftBorder">
+				<div id="settings_quiz_wrapper" class="toolbar_presentation_wrapper" style="display:none">
+					<a id="settings_quiz" class="tool_action" action="quizSettings" href="#">
+						<button type="button" class="btn btn-primary btn-small btn-toolbarElementWrapper">
+							<img src="/assets/toolbar/quiz_settings.png"/>
+						</button>
+					</a>
+					<p class="toolbar_presentation_title" i18n-key="i.QuizSettings">Quiz Settings</p>
 				</div>
+				<img class="toolbar_icon toolbar_image" style="display:none" action="addLink" src="/assets/toolbar/addLink.png"/>
+				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot" style="display:none" action="resizeLess" src="/assets/toolbar/resizeLess.png"/>
+				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot"  style="display:none" action="resizeMore" src="/assets/toolbar/resizeMore.png"/>
+				<img class="toolbar_icon toolbar_web" style="display:none" action="zoomLess" src="/assets/toolbar/zoomLess.png"/>
+				<img class="toolbar_icon toolbar_web"  style="display:none" action="zoomMore" src="/assets/toolbar/zoomMore.png"/>
+				<div id="toolbar_text" class='toolbar_text toolbar_quiz' style="display:none"></div>
 			</div>
 		</div>
 		
@@ -1199,6 +1201,14 @@
 				<a href="#" buttonaction="Add" i18n-key="i.Ok" class="button notification_button">Ok</a>
 				<a href="#" buttonaction="Cancel" i18n-key="i.Cancel" class="button notification_button">Cancel</a>
 			</div>
+		</div>
+	</div>
+
+	<!-- Quiz Settings -->
+	<div style='display:none'>
+		<div id="quizSettings_fancybox">
+			<p>Quiz Settings</p>
+			<p class="test"></p>
 		</div>
 	</div>
 

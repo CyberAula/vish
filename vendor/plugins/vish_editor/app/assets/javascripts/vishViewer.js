@@ -81,10 +81,10 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.pEducation":"Educaci\u00f3n Primaria", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Educaci\u00f3n Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", 
 "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.publishing":"Publicando", "i.Publishing":"Publicando", "i.Publish_confirmation":"Vas a guardar y publicar esta Excursi\u00f3n Virtual en la plataforma ViSH. Despu\u00e9s de esto, la excursi\u00f3n ser\u00e1 p\u00fablica y cualquiera podr\u00e1 acceder a ella. \u00bfQu\u00e9 deseas hacer?", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", 
 "i.QuizButtonContinue":"Continuar", "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizCreateSessionError":"Lo sentimos, ha ocurrido un error al crear un nuevo cuestionario en vivo", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", "i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", 
-"i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", "i.readJSONfileError":"Error al leer el fichero JSON", "i.recommendationsTitle":"Excursiones recomendadas:", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", 
-"i.save":"guardar", "i.Save":"Guardar", "i.SaveAndExit":"guardar y salir", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.sEducation":"Educaci\u00f3n Secundaria", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", "i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", 
-"i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Time":"Tiempo", "i.Title":"T\u00edtulo", "i.TitleM":"T\u00edtulo *", "i.toJSON":"a JSON", 
-"i.toSCORM":"a SCORM", "i.PTraining":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", 
+"i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizSettings":"Ajustes de Quiz", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", "i.readJSONfileError":"Error al leer el fichero JSON", "i.recommendationsTitle":"Excursiones recomendadas:", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", 
+"i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.save":"guardar", "i.Save":"Guardar", "i.SaveAndExit":"guardar y salir", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.sEducation":"Educaci\u00f3n Secundaria", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", 
+"i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", 
+"i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Time":"Tiempo", "i.Title":"T\u00edtulo", "i.TitleM":"T\u00edtulo *", "i.toJSON":"a JSON", "i.toSCORM":"a SCORM", "i.PTraining":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", 
 "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.Untitled":"Sin T\u00edtulo", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.YouTubePlayAlert":"Haz click sobre el v\u00eddeo para empezar la reproducci\u00f3n", 
 "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.tooltip.Help":"Ayuda", "i.last":"\u00faltimo"}, "default":{"i.add":"add", "i.Add":"Add", "i.AddTags":"Add tags", 
 "i.AddTimestampLink":"Add timestamp link", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.close":"close", "i.Close":"Close", "i.CloseWSaving":"close without saving", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", 
@@ -94,9 +94,9 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube v\u00eddeo URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", 
 "i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", 
 "i.QuizButtonAnswer":"Answer", "i.QuizButtonContinue":"Continue", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", 
-"i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", 
-"i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Time":"Time", "i.Title":"Title", "i.TitleM":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", "i.UnselectSlide":"Unselect Slide", 
-"i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.Untitled":"Untitled", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.YouTubePlayAlert":"Click on the video to start playing", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, 
+"i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizSettings":"Quiz Settings", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", 
+"i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Time":"Time", "i.Title":"Title", "i.TitleM":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", 
+"i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.Untitled":"Untitled", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.YouTubePlayAlert":"Click on the video to start playing", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, 
 "default":{"i.save":"Standalone"}}};
 (function(a, b) {
   function cy(a) {
@@ -9329,7 +9329,7 @@ VISH.Renderer = function(V, $, undefined) {
   };
   var _renderHTML5Video = function(videoJSON, template) {
     var rendered = "<div id='" + videoJSON["id"] + "' class='" + template + "_" + videoJSON["areaid"] + "'>";
-    var video = V.Video.HTML5.renderVideoFromJSON(videoJSON, {id:V.Utils.getId(videoJSON["id"] + "_video"), extraClasses:template + "_video"});
+    var video = V.Video.HTML5.renderVideoFromJSON(videoJSON, {id:V.Utils.getId(videoJSON["id"] + "_video"), extraClasses:[template + "_video"]});
     rendered = rendered + video + "</div>";
     return rendered
   };
@@ -10475,61 +10475,69 @@ VISH.Video.HTML5 = function(V, $, undefined) {
     })
   };
   var renderVideoFromJSON = function(videoJSON, options) {
-    var renderOptions = {};
-    renderOptions.elId = videoJSON["id"] ? videoJSON["id"] : V.Utils.getId();
-    renderOptions.style = videoJSON["style"];
-    renderOptions.controls = videoJSON["controls"];
-    renderOptions.autoplay = videoJSON["autoplay"];
-    renderOptions.poster = videoJSON["poster"];
-    renderOptions.loop = videoJSON["loop"];
-    if(options) {
-      if(options.id) {
-        renderOptions.elId = options.id
-      }
-      if(options.extraClasses) {
-        renderOptions.extraClasses = options.extraClasses
-      }
-      if(options.controls === false) {
-        renderOptions.controls = options.controls
-      }
-      if(typeof options.poster != "undefined") {
-        renderOptions.poster = options.poster
-      }
+    var renderOptions = options || {};
+    if(typeof renderOptions.id == "undefined") {
+      renderOptions.id = videoJSON["id"] ? videoJSON["id"] : V.Utils.getId()
     }
+    if(typeof renderOptions.controls == "undefined") {
+      renderOptions.controls = videoJSON["controls"]
+    }
+    if(typeof renderOptions.poster == "undefined") {
+      renderOptions.poster = videoJSON["poster"]
+    }
+    renderOptions.style = videoJSON["style"];
+    renderOptions.autoplay = videoJSON["autoplay"];
+    renderOptions.loop = videoJSON["loop"];
     return renderVideoFromSources(getSourcesFromJSON(videoJSON), renderOptions)
   };
   var renderVideoFromSources = function(sources, options) {
-    var elId = "";
-    var extraClasses = "";
-    var controls = "controls='controls' ";
-    var autoplay = "";
-    var poster = "";
-    var loop = "";
-    var style = "";
-    if(options) {
-      if(options["elId"]) {
-        elId = "id='" + options["elId"] + "'"
-      }
-      if(options["extraClasses"]) {
-        extraClasses = extraClasses + options["extraClasses"]
-      }
-      if(options.controls === false) {
-        controls = ""
-      }
-      if(typeof options.autoplay != "undefined") {
-        autoplay = "autoplayonslideenter='" + options.autoplay + "' "
-      }
-      if(typeof options["poster"] == "string") {
-        poster = "poster='" + options["poster"] + "' "
-      }
-      if(options["loop"] === true) {
-        loop = "loop='loop' "
-      }
-      if(options["style"]) {
-        style = "style='" + options["style"] + "' "
+    var video = $("<video></video>");
+    if(options && options.extraAttrs) {
+      for(var key in options.extraAttrs) {
+        $(video).attr(key, options.extraAttrs[key])
       }
     }
-    var video = "<video " + elId + " class='" + extraClasses + "' preload='metadata' " + controls + autoplay + poster + loop + style + ">";
+    if(options) {
+      if(options["id"]) {
+        $(video).attr("id", options["id"])
+      }
+      if(typeof options.onVideoReady == "string") {
+        try {
+          var onVideoReadySplit = options.onVideoReady.split(".");
+          var onVideoReadyFunction = window[onVideoReadySplit[0]];
+          for(var k = 1;k < onVideoReadySplit.length;k++) {
+            onVideoReadyFunction = onVideoReadyFunction[onVideoReadySplit[k]]
+          }
+          if(typeof onVideoReadyFunction == "function") {
+            $(video).attr("onloadeddata", options.onVideoReady + "(this)")
+          }
+        }catch(e) {
+        }
+      }
+      if(options["extraClasses"]) {
+        var extraClassesLength = options["extraClasses"].length;
+        for(var i = 0;i < extraClassesLength;i++) {
+          $(video).addClass(options["extraClasses"][i])
+        }
+      }
+      if(options.controls !== false) {
+        $(video).attr("controls", "controls")
+      }
+      if(typeof options.autoplay != "undefined") {
+        $(video).attr("autoplayonslideenter", options.autoplay)
+      }
+      if(typeof options["poster"] == "string") {
+        $(video).attr("poster", options["poster"])
+      }
+      if(options["loop"] === true) {
+        $(video).attr("loop", "loop")
+      }
+      if(options["style"]) {
+        $(video).attr("style", options["style"])
+      }
+    }
+    video = V.Utils.getOuterHTML(video);
+    video = video.split("</video>")[0];
     $.each(sources, function(index, source) {
       if(typeof source.src == "string") {
         var mimeType = source.mimeType ? "type='" + source.mimeType + "' " : "";
@@ -13589,12 +13597,9 @@ VISH.EVideo = function(V, $, undefined) {
     V.Utils.Loader.startLoadingInContainer(loadingContainer);
     switch(eVideoJSON.video.type) {
       case V.Constant.MEDIA.HTML5_VIDEO:
-        var video = $(V.Video.HTML5.renderVideoFromJSON(eVideoJSON.video, {controls:false, poster:false}));
-        $(video).addClass("temp_hidden");
-        $(video).attr("videoType", eVideoJSON.video.type);
-        $(video).attr("eVideoId", eVideoJSON.id);
+        var extraAttrs = {"videoType":eVideoJSON.video.type, "eVideoId":eVideoJSON.id};
+        var video = $(V.Video.HTML5.renderVideoFromJSON(eVideoJSON.video, {onVideoReady:"VISH.EVideo.onHTML5VideoReady", controls:false, poster:false, extraClasses:["temp_hidden"], extraAttrs:extraAttrs}));
         $(videoBody).append(video);
-        V.Video.onVideoReady(video, _onVideoReady);
         break;
       case V.Constant.MEDIA.YOUTUBE_VIDEO:
         var videoWrapper = $(V.Video.Youtube.renderVideoFromJSON(eVideoJSON.video));
@@ -13612,6 +13617,11 @@ VISH.EVideo = function(V, $, undefined) {
         return
     }
   };
+  var onHTML5VideoReady = function(video) {
+    if(typeof video != "undefined" && (video.readyState == 4 || video.readyState == 3)) {
+      _onVideoReady(video)
+    }
+  };
   var _onVideoReady = function(video) {
     var videoBody = $(video).parent();
     var videoBox = $(videoBody).parent();
@@ -13620,6 +13630,19 @@ VISH.EVideo = function(V, $, undefined) {
     var videoHeader = $(videoBox).find(".evideoHeader");
     var videoFooter = $(videoBox).find(".evideoFooter");
     var videoType = $(video).attr("videotype");
+    if($(eVideoDOM).length === 0) {
+      var t_eVideoId = $(video).attr("evideoid");
+      var t_eVideoDOM = $("#" + t_eVideoId);
+      var t_videoBox = $(t_eVideoDOM).find(".evideoBox");
+      var t_video = V.EVideo.getVideoFromVideoBox(t_videoBox);
+      if($(t_video).attr("loaded") != "true") {
+        setTimeout(function() {
+          _onVideoReady(video)
+        }, 500)
+      }
+      return
+    }
+    $(video).attr("loaded", "true");
     var loadingContainer = $(videoBody).find(".loadingEVideoContainer");
     $(loadingContainer).remove();
     $(videoBody).removeClass("loadingEVideoContainerWrapper");
@@ -14233,7 +14256,7 @@ VISH.EVideo = function(V, $, undefined) {
     }
   };
   return{init:init, draw:draw, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, renderVideoBoxDummy:renderVideoBoxDummy, renderIndexBoxDummy:renderIndexBoxDummy, fitVideoInVideoBox:fitVideoInVideoBox, renderIndex:renderIndex, loadEventsForControls:loadEventsForControls, onClickToggleVideo:onClickToggleVideo, onStatusChange:onStatusChange, onTimeUpdate:onTimeUpdate, getVideoFromVideoBox:getVideoFromVideoBox, getVideoBoxFromVideo:getVideoBoxFromVideo, getBallOfEVideo:getBallOfEVideo, 
-  haveSources:haveSources, afterSetupSize:afterSetupSize}
+  haveSources:haveSources, onHTML5VideoReady:onHTML5VideoReady, afterSetupSize:afterSetupSize}
 }(VISH, jQuery);
 VISH.Themes = function(V, $, undefined) {
   var loadTheme = function(theme, callback) {
