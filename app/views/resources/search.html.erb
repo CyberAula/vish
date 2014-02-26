@@ -1,0 +1,12 @@
+<% params[:no_layout] = true %>
+<% params[:print_format] ||= 'home' %>
+<% for r in @found_resources %>
+  <% if r.is_a? Embed %>
+    <%= render :partial => "embeds/#{params[:print_format]}", :locals => { :embed => r} %>
+  <% elsif r.is_a? Link %>
+    <%= render :partial => "links/#{params[:print_format]}", :locals => { :link => r} %>
+  <% else %>
+    <%= render :partial => "common_documents/#{params[:print_format]}", :locals => { :document => r} %>
+  <% end %>
+<% end %>
+

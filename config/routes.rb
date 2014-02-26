@@ -49,7 +49,8 @@ Vish::Application.routes.draw do
   match '/categories/add_items' => 'categories#add_items', :via => :post
   match '/categories/favorites' => 'categories#show_favorites'
 
-
+  match 'resources/search' => 'resources#search'
+  
   match 'lre/search' => 'lre#search_lre'
 
   #redirect /home.json to the original path
