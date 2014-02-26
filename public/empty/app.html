@@ -12,25 +12,25 @@ $("#h1 p").html("Para ver los cambios pulse play");
 }
 
 $( window ).resize(function() {
-	 w=window.innerWidth;
-	 if (w<600){
-    	$("#h1 h1").html("Editor interactivo");
+   w=window.innerWidth;
+   if (w<600){
+      $("#h1 h1").html("Editor interactivo");
       $("#h1 p").html("Para ver los cambios pulse play");
-    	$('.caja_visor').css({
-    	'display': 'none'
+      $('.caja_visor').css({
+      'display': 'none'
     });
     var mimenu = document.getElementById('menu');
     mimenu.style.display = "none";
   }else{
-    $("#h1 h1").html("Editor interactivo de los ejemplos JavaScript del módulo 1 de @HTML5MOOC");
+    $("#h1 h1").html("Editor interactivo de los ejemplos JavaScript del módulo 3 de @HTML5MOOC");
     $("#h1 p").html("Los ejemplos se pueden cambiar y ejecutar (visualizar) con los cambios introducidos pulsando el botón play, que está justo encima.");
     $('.caja_visor').css({
-    	'display': 'block'
-    });	
+      'display': 'block'
+    }); 
     var mimenu = document.getElementById('menu');
     mimenu.style.display = "block";
-	}
-	
+  }
+  
 });
 
 
@@ -58,8 +58,8 @@ $( window ).resize(function() {
       $.get($(this).attr("title"), "text", mostrar);
       $("nav a").removeClass("active");
       $(this).addClass("active");
-	  if (w<600) {
-	    var mimenu = document.getElementById('menu');
+    if (w<600) {
+      var mimenu = document.getElementById('menu');
       mimenu.style.display = "none";}
   });
 
@@ -69,33 +69,33 @@ $( window ).resize(function() {
 
   $(".caja #actualizar").on("click", function(){
     ejecutar(editor.val());
-	var micontenedor = document.getElementById('cvisor');
-	if (micontenedor.style.display == "block" && w<600) {
+  var micontenedor = document.getElementById('cvisor');
+  if (micontenedor.style.display == "block" && w<600) {
    micontenedor.style.display = "none";
   } else{
-	  micontenedor.style.display = "block"
-	  }
+    micontenedor.style.display = "block"
+    }
   });
   
   $(".caja_visor #actualizar").on("click", function(){
-	var micontenedor = document.getElementById('cvisor');
-	if (micontenedor.style.display == "block") {
+  var micontenedor = document.getElementById('cvisor');
+  if (micontenedor.style.display == "block") {
    micontenedor.style.display = "none";
   } else{
-	  micontenedor.style.display = "block"
-	  }
+    micontenedor.style.display = "block"
+    }
   });
 
 $(".selector").on("click", function(){
-	var mimenu = document.getElementById('menu');
-	if (mimenu.style.display == "block") {
+  var mimenu = document.getElementById('menu');
+  if (mimenu.style.display == "block") {
    mimenu.style.display = "none";
   } else{
-	  mimenu.style.display = "block"
-	  }
+    mimenu.style.display = "block"
+    }
   });
-	
-  $.get("T1_1_date_CSS.htm", "text", function(ejemplo){
+  
+  $.get("empty_video.html", "text", function(ejemplo){
     mostrar(ejemplo);
   });  
 });
@@ -103,14 +103,16 @@ $(".selector").on("click", function(){
 </head> 
 <body><div id="page-wrap">
   <header class="main" id="h1">
-    <h1>Editor interactivo de los ejemplos JavaScript del módulo 1 de @HTML5MOOC</h1>
+    <h1>Editor interactivo de elementos multimedia en HTML5 (vídeo, audio, iframe)</h1>
     <p>Los ejemplos se pueden cambiar y ejecutar (visualizar) con los cambios introducidos pulsando el botón play, que está justo encima.</p>
   </header>
 
   <nav class="main" id="nav1">
   <div class="selector"><img src="selector.png" width="58" height="35"></div>
 <ul id="menu">
-      <li><a href="javascript:void(0);" title="T1_1_date_CSS.htm" class="active">css</a></li>
+      <li><a href="javascript:void(0);" title="empty_video.html" class="active">video</a></li>
+      <li><a href="javascript:void(0);" title="empty_audio.html">audio</a></li>
+      <li><a href="javascript:void(0);" title="empty_iframe.html">iframe</a></li>
     </ul>
 
 
