@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 45d7d5aad9b58149dd267bb895646ea47e908187
+  revision: c4f4e88e0269cd6c9db069f8a009c416ae22c6a0
   branch: master
   specs:
     social_stream-base (2.2.2)
