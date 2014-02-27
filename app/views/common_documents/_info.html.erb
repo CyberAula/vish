@@ -44,7 +44,7 @@
     
     <% unless document.tag_list.blank? %>
       <dt><%= t 'document.info.tags' %></dt>
-     <dd><%= tag_list document %></dd>
+     <dd class="tags_resource"><%= tag_list document %></dd>
     <%end%>
 
     <dt><%= t('document.info.date.created_at') %></dt>
