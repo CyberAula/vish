@@ -200,7 +200,9 @@ class ExcursionsController < ApplicationController
         results = Hash.new
         results["excursions"] = []
         @found_excursions.each do |excursion|
-          results["excursions"].push(JSON(excursion.json))
+          unless excursion.nil?
+            results["excursions"].push(JSON(excursion.json))
+          end
         end
         render :json => results
       }
