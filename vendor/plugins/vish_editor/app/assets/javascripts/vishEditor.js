@@ -10569,7 +10569,7 @@ VISH.Renderer = function(V, $, undefined) {
   };
   var _renderHTML5Audio = function(audioJSON, template) {
     var rendered = "<div id='" + audioJSON["id"] + "' class='" + template + "_" + audioJSON["areaid"] + "'>";
-    var audio = V.Audio.HTML5.renderAudioFromJSON(audioJSON, {id:V.Utils.getId(audioJSON["id"] + "_audio"), extraClasses:template + "_audio"});
+    var audio = V.Audio.HTML5.renderAudioFromJSON(audioJSON, {id:V.Utils.getId(audioJSON["id"] + "_audio"), extraClasses:[template + "_audio"], timestamp:true});
     rendered = rendered + audio + "</div>";
     return rendered
   };
@@ -12364,8 +12364,9 @@ VISH.Editor = function(V, $, undefined) {
                   if(index !== 0) {
                     sources = sources + ","
                   }
-                  var type = typeof $(source).attr("type") != "undefined" ? ' "type": "' + $(source).attr("type") + '", ' : "";
-                  sources = sources + "{" + type + '"src": "' + $(source).attr("src") + '"}'
+                  var sourceSrc = V.Utils.removeParamFromUrl($(source).attr("src"), "timestamp");
+                  var sourceMimeType = typeof $(source).attr("type") != "undefined" ? ', "type": "' + $(source).attr("type") + '"' : "";
+                  sources = sources + '{"src":"' + sourceSrc + '"' + sourceMimeType + "}"
                 });
                 sources = "[" + sources + "]";
                 element.sources = sources
@@ -13677,6 +13678,11 @@ VISH.Editor.Object = function(V, $, undefined) {
     if(objectInfo.wrapper === V.Constant.WRAPPER.VIDEO || objectInfo.wrapper === null && objectInfo.type === V.Constant.MEDIA.HTML5_VIDEO) {
       var sources = typeof objectInfo.source == "object" ? objectInfo.source : [{src:objectInfo.source}];
       V.Video.HTML5.addSourcesToVideoTag(sources, tag, {timestamp:true})
+    }else {
+      if(objectInfo.wrapper === V.Constant.WRAPPER.AUDIO || objectInfo.wrapper === null && objectInfo.type === V.Constant.MEDIA.HTML5_AUDIO) {
+        var sources = typeof objectInfo.source == "object" ? objectInfo.source : [{src:objectInfo.source}];
+        V.Audio.HTML5.addSourcesToAudioTag(sources, tag, {timestamp:true})
+      }
     }
   };
   var resizeObject = function(id, newWidth) {
@@ -13753,7 +13759,7 @@ VISH.Editor.Object = function(V, $, undefined) {
             return V.Editor.Video.HTML5.renderVideoWithURL(object, {loadSources:false, poster:V.Editor.Video.HTML5.getDefaultPoster(), extraClasses:["objectPreview"]});
             break;
           case V.Constant.MEDIA.HTML5_AUDIO:
-            return V.Editor.Audio.HTML5.renderAudioWithURL(object, {extraClasses:"objectPreview"});
+            return V.Editor.Audio.HTML5.renderAudioWithURL(object, {loadSources:false, extraClasses:["objectPreview"]});
             break;
           case V.Constant.MEDIA.WEB:
             return V.Editor.Object.Web.generatePreviewWrapperForWeb(object);
@@ -13776,7 +13782,7 @@ VISH.Editor.Object = function(V, $, undefined) {
         return V.Editor.Video.HTML5.renderVideoFromWrapper(object, {loadSources:false, poster:V.Editor.Video.HTML5.getDefaultPoster(), extraClasses:["objectPreview"]});
         break;
       case V.Constant.WRAPPER.AUDIO:
-        return V.Editor.Audio.HTML5.renderAudioFromWrapper(object, {extraClasses:"objectPreview"});
+        return V.Editor.Audio.HTML5.renderAudioFromWrapper(object, {loadSources:false, extraClasses:["objectPreview"]});
         break;
       default:
         V.Debugging.log("Unrecognized object wrapper: " + objectInfo.wrapper);
@@ -15143,9 +15149,11 @@ VISH.Samples.API = function(V, undefined) {
   {"id":"1546", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1547", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1548", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}];
   var liveListLittle = [{"id":"1534", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1535", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1548", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}];
   var liveListDummy = [];
-  var objectList = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
-  "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, {"id":"1538", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "object":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}, {"id":"1539", "title":"Image", "description":"Image Embed", "author":"Globedia", "object":'<embed width="100%" src="http://globedia.com/imagenes/noticias/2011/2/10/encuentran-octava-maravilla-mundo-destruida-125-anos_2_585286.jpg"></embed>'}, 
-  {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}];
+  var objectList = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"123131534", "title":"Horse Audio", "description":"Fichero MP3", "author":"W3C", "object":"examples/contents/audio/horse.mp3"}, {"id":"123131535", "title":"Horse Audio Tag", "description":"Fichero MP3", "author":"W3C", "object":'<audio controls><source src="http://vishub.org/audios/3665.mp3" type="audio/mpeg"><source src="http://vishub.org/audios/3665.wav" type="audio/wav"><source src="http://vishub.org/audios/3665.webm" type="audio/webm">Your browser does not support the audio tag.</audio>'}, 
+  {"id":"123131536", "title":"HTML5 Video", "description":"Fichero Webm", "author":"Unknown", "object":"http://vishub.org/videos/325.webm"}, {"id":"123131537", "title":"HTML5 Video Tag", "description":"Video Tag", "author":"Unknown", "object":'<video preload="metadata" poster="http://vishub.org/videos/325.png?style=170x127%23"><source src="http://vishub.org/videos/325.webm" type="video/webm"><source src="http://vishub.org/videos/325.mp4" type="video/mp4"><source src="http://vishub.org/videos/325.flv" type="video/x-flv"><p>Your browser does not support HTML5 video.</p></video>'}, 
+  {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, 
+  {"id":"1538", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "object":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}, {"id":"1539", "title":"Image", "description":"Image Embed", "author":"Globedia", "object":'<embed width="100%" src="http://globedia.com/imagenes/noticias/2011/2/10/encuentran-octava-maravilla-mundo-destruida-125-anos_2_585286.jpg"></embed>'}, {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", 
+  "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}];
   var objectListLittle = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
   "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}];
   var objectListDummy = [];
@@ -17389,66 +17397,113 @@ VISH.Audio.HTML5 = function(V, $, undefined) {
   var init = function() {
   };
   var renderAudioFromJSON = function(audioJSON, options) {
-    var renderOptions = {};
-    renderOptions.elId = audioJSON["id"] ? audioJSON["id"] : V.Utils.getId();
+    var renderOptions = options || {};
+    if(typeof renderOptions.id == "undefined") {
+      renderOptions.id = typeof audioJSON != "undefined" && audioJSON["id"] ? audioJSON["id"] : V.Utils.getId()
+    }
+    if(typeof renderOptions.controls == "undefined") {
+      renderOptions.controls = audioJSON["controls"]
+    }
     renderOptions.style = audioJSON["style"];
-    renderOptions.controls = audioJSON["controls"];
     renderOptions.autoplay = audioJSON["autoplay"];
     renderOptions.loop = audioJSON["loop"];
-    if(options) {
-      if(options.id) {
-        renderOptions.elId = options.id
-      }
-      if(options.extraClasses) {
-        renderOptions.extraClasses = options.extraClasses
-      }
-      if(options.controls === false) {
-        renderOptions.controls = options.controls
-      }
-    }
     return renderAudioFromSources(getSourcesFromJSON(audioJSON), renderOptions)
   };
   var renderAudioFromSources = function(sources, options) {
-    var elId = "";
-    var extraClasses = "";
-    var controls = "controls='controls' ";
-    var autoplay = "";
-    var loop = "";
-    var style = "";
-    if(options) {
-      if(options["elId"]) {
-        elId = "id='" + options["elId"] + "'"
-      }
-      if(options["extraClasses"]) {
-        extraClasses = extraClasses + options["extraClasses"]
-      }
-      if(options.controls === false) {
-        controls = ""
-      }
-      if(typeof options.autoplay != "undefined") {
-        autoplay = "autoplayonslideenter='" + options.autoplay + "' "
-      }
-      if(options["loop"] === true) {
-        loop = "loop='loop' "
-      }
-      if(options["style"]) {
-        style = "style='" + options["style"] + "' "
+    var audio = $("<audio></audio>");
+    $(audio).attr("preload", "metadata");
+    if(options && options.extraAttrs) {
+      for(var key in options.extraAttrs) {
+        $(audio).attr(key, options.extraAttrs[key])
       }
     }
-    var audio = "<audio " + elId + " class='" + extraClasses + "' preload='metadata' " + controls + autoplay + loop + style + ">";
-    $.each(sources, function(index, source) {
-      if(typeof source.src == "string") {
-        var mimeType = source.mimeType ? "type='" + source.mimeType + "' " : "";
-        audio = audio + "<source src='" + source.src + "' " + mimeType + ">"
+    if(options) {
+      if(options["id"]) {
+        $(audio).attr("id", options["id"])
       }
-    });
-    if(sources.length > 0) {
-      audio = audio + "<p>Your browser does not support HTML5 audio.</p>"
+      if(typeof options.onAudioReady == "string") {
+        try {
+          var onAudioReadySplit = options.onAudioReady.split(".");
+          var onAudioReadyFunction = window[onAudioReadySplit[0]];
+          for(var k = 1;k < onAudioReadySplit.length;k++) {
+            onAudioReadyFunction = onAudioReadyFunction[onAudioReadySplit[k]]
+          }
+          if(typeof onAudioReadyFunction == "function") {
+            $(audio).attr("onloadeddata", options.onAudioReady + "(this)")
+          }
+        }catch(e) {
+        }
+      }
+      if(options["extraClasses"]) {
+        var extraClassesLength = options["extraClasses"].length;
+        for(var i = 0;i < extraClassesLength;i++) {
+          $(audio).addClass(options["extraClasses"][i])
+        }
+      }
+      if(options.controls !== false) {
+        $(audio).attr("controls", "controls")
+      }
+      if(typeof options.autoplay != "undefined") {
+        $(audio).attr("autoplayonslideenter", options.autoplay)
+      }
+      if(options["loop"] === true) {
+        $(audio).attr("loop", "loop")
+      }
+      if(options["style"]) {
+        $(audio).attr("style", options["style"])
+      }
+    }
+    if(typeof $(audio).attr("onloadeddata") == "undefined") {
+      $(audio).attr("onloadeddata", "VISH.Audio.HTML5.onAudioReady(this)")
+    }
+    audio = V.Utils.getOuterHTML(audio);
+    audio = audio.split("</audio>")[0];
+    if(!options || options.loadSources !== false) {
+      $.each(sources, function(index, source) {
+        if(typeof source.src == "string") {
+          var sourceSrc = source.src;
+          if(typeof options != "undefined" && options.timestamp === true) {
+            sourceSrc = V.Utils.addParamToUrl(sourceSrc, "timestamp", "" + (new Date).getTime())
+          }
+          var mimeType = source.mimeType ? "type='" + source.mimeType + "' " : "";
+          audio = audio + "<source src='" + sourceSrc + "' " + mimeType + ">"
+        }
+      });
+      if(sources.length > 0) {
+        audio = audio + "<p>Your browser does not support HTML5 audio.</p>"
+      }
     }
     audio = audio + "</audio>";
     return audio
   };
+  var addSourcesToAudioTag = function(sources, audioTag, options) {
+    var options = options || {};
+    $.each(sources, function(index, source) {
+      if(typeof source.src == "string") {
+        var sourceSrc = source.src;
+        if(options.timestamp === true) {
+          sourceSrc = V.Utils.addParamToUrl(sourceSrc, "timestamp", "" + (new Date).getTime())
+        }
+        var mimeType = source.mimeType ? "type='" + source.mimeType + "' " : "";
+        $(audioTag).append("<source src='" + sourceSrc + "' " + mimeType + ">")
+      }
+    });
+    if(sources.length > 0) {
+      $(audioTag).append("<p>Your browser does not support HTML5 audio.</p>")
+    }
+  };
+  var onAudioReady = function(audio) {
+    if(typeof audio != "undefined" && (audio.readyState == 4 || audio.readyState == 3)) {
+      $(audio).attr("loaded", "true")
+    }
+  };
   var getSources = function(audioDOM) {
+    if(typeof audioDOM == "string") {
+      var sources = V.Video.HTML5.getSources(audioDOM);
+      return sources.map(function(source) {
+        return{"src":source.src, "mimeType":getAudioMimeType(source.src)}
+      })
+    }
     try {
       return $(audioDOM).find("source").map(function() {
         return{"src":this.src, "mimeType":getAudioMimeType(this.src)}
@@ -17463,7 +17518,7 @@ VISH.Audio.HTML5 = function(V, $, undefined) {
   };
   var getAudioMimeType = function(url) {
     var source = V.Object.getObjectInfo(url).source;
-    var extension = source.split(".").pop();
+    var extension = source.split(".").pop().split("?")[0];
     var mimeType;
     switch(extension) {
       case "ogg":
@@ -17474,13 +17529,14 @@ VISH.Audio.HTML5 = function(V, $, undefined) {
         break;
       case "wav":
         mimeType = "wav";
+        break;
       default:
         mimeType = extension;
         break
     }
     return"audio/" + mimeType
   };
-  return{init:init, renderAudioFromJSON:renderAudioFromJSON, renderAudioFromSources:renderAudioFromSources, getSources:getSources, getSourcesFromJSON:getSourcesFromJSON, getAudioMimeType:getAudioMimeType}
+  return{init:init, renderAudioFromJSON:renderAudioFromJSON, renderAudioFromSources:renderAudioFromSources, addSourcesToAudioTag:addSourcesToAudioTag, onAudioReady:onAudioReady, getSources:getSources, getSourcesFromJSON:getSourcesFromJSON, getAudioMimeType:getAudioMimeType}
 }(VISH, jQuery);
 VISH.Configuration = function(V, $, undefined) {
   var configuration;
@@ -18805,11 +18861,14 @@ VISH.Editor.Audio.HTML5 = function(V, $, undefined) {
     var sources = V.Audio.HTML5.getSources(audioTag);
     if(sources.length > 0) {
       var options = {};
+      options.timestamp = true;
       drawAudio(sources, options)
     }
   };
   var drawAudioWithUrl = function(url) {
-    drawAudio([{src:url}])
+    var options = {};
+    options.timestamp = true;
+    drawAudio([{src:url}], options)
   };
   var drawAudio = function(sources, options, area, style) {
     var current_area;
@@ -18818,6 +18877,7 @@ VISH.Editor.Audio.HTML5 = function(V, $, undefined) {
     }else {
       current_area = V.Editor.getCurrentArea()
     }
+    current_area.attr("type", "audio");
     var autoplay = false;
     if(options) {
       if(options["autoplay"]) {
@@ -18827,7 +18887,6 @@ VISH.Editor.Audio.HTML5 = function(V, $, undefined) {
     var template = V.Editor.getTemplate(area);
     var nextAudioId = V.Utils.getId();
     var idToDragAndResize = "draggable" + nextAudioId;
-    current_area.attr("type", "audio");
     var audioTag = document.createElement("audio");
     audioTag.setAttribute("id", idToDragAndResize);
     audioTag.setAttribute("draggable", true);
@@ -18839,21 +18898,9 @@ VISH.Editor.Audio.HTML5 = function(V, $, undefined) {
     if(style) {
       audioTag.setAttribute("style", style)
     }
-    $(sources).each(function(index, source) {
-      var audioSource = document.createElement("source");
-      audioSource.setAttribute("src", source.src);
-      if(source.mimeType) {
-        audioSource.setAttribute("type", source.mimeType)
-      }else {
-        audioSource.setAttribute("type", V.Audio.HTML5.getAudioMimeType(source.src))
-      }
-      $(audioTag).append(audioSource)
-    });
-    var fallbackText = document.createElement("p");
-    $(fallbackText).html("Your browser does not support HTML5 audio.");
-    $(audioTag).append(fallbackText);
     $(current_area).html("");
     $(current_area).append(audioTag);
+    V.Audio.HTML5.addSourcesToAudioTag(sources, audioTag, {timestamp:true});
     V.Editor.addDeleteButton($(current_area));
     $("#" + idToDragAndResize).draggable({cursor:"move"});
     V.Editor.Tools.loadToolsForZone(current_area)
@@ -21862,11 +21909,8 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
       var objectInfo = V.Object.getObjectInfo(objectItem.object);
       var imageSource = null;
       switch(objectInfo.type) {
-        case V.Constant.MEDIA.FLASH:
-          imageSource = V.ImagesPath + "carrousel/swf.png";
-          break;
-        case V.Constant.MEDIA.YOUTUBE_VIDEO:
-          imageSource = V.ImagesPath + "carrousel/video.png";
+        case V.Constant.MEDIA.IMAGE:
+          imageSource = V.ImagesPath + "carrousel/image.png";
           break;
         case V.Constant.MEDIA.WEB:
           if(objectInfo.wrapper == "IFRAME") {
@@ -21874,6 +21918,17 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
           }else {
             imageSource = V.ImagesPath + "carrousel/object.png"
           }
+          break;
+        case V.Constant.MEDIA.HTML5_VIDEO:
+        ;
+        case V.Constant.MEDIA.YOUTUBE_VIDEO:
+          imageSource = V.ImagesPath + "carrousel/video.png";
+          break;
+        case V.Constant.MEDIA.HTML5_AUDIO:
+          imageSource = V.ImagesPath + "carrousel/audio.png";
+          break;
+        case V.Constant.MEDIA.FLASH:
+          imageSource = V.ImagesPath + "carrousel/swf.png";
           break;
         default:
           imageSource = V.ImagesPath + "carrousel/object.png"
@@ -21956,7 +22011,20 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
     $(objectArea).html("");
     $(metadataArea).html("");
     if(renderedObject && object) {
+      renderedObject = $(renderedObject);
       $(objectArea).append(renderedObject);
+      var objectTagName = $(renderedObject)[0].tagName;
+      if(objectTagName === "AUDIO" || objectTagName === "VIDEO") {
+        var objectInfo = V.Object.getObjectInfo(object.object);
+        var sources = typeof objectInfo.source == "object" ? objectInfo.source : [{src:objectInfo.source}];
+        if(objectTagName == "VIDEO") {
+          V.Video.HTML5.addSourcesToVideoTag(sources, renderedObject, {timestamp:true})
+        }else {
+          if(objectTagName == "AUDIO") {
+            V.Audio.HTML5.addSourcesToAudioTag(sources, renderedObject, {timestamp:true})
+          }
+        }
+      }
       var table = V.Editor.Utils.generateTable({title:object.title, author:object.author, description:object.description});
       $(metadataArea).html(table);
       $("#" + previewDivId).find(".okButton").show()
