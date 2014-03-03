@@ -39,12 +39,25 @@ class ResourcesController < ApplicationController
          end
       }
       format.json {
-        if params[:object].present?
-          render :partial => 'objects/object_search_result'
-        else
-          render :json => @found_resources.to_json(helper: self)
+        json = []
+        @found_resources.each_with_index do |res,i| 
+          rec = Hash.new
+          rec["id"] = res.id.to_s
+          rec["title"] = res.title
+          rec["description"] = res.description
+          rec["author"] = res.author.name
+          if res.is_a? Embed
+            rec["object"] = res.fulltext
+          elsif res.is_a? Link
+            rec["object"] = res.url
+          else
+            rec["object"] = 'http://' + request.env['HTTP_HOST'] + res.file.to_s.downcase
+          end
+          json.push(rec)
         end
-      }
+
+        render :json => json        
+      }  
     end
   end
 
