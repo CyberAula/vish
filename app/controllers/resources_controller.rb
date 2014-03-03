@@ -24,9 +24,9 @@ class ResourcesController < ApplicationController
     @found_resources = if params[:scope].present? and params[:scope] == "like"
       subject_resources search_subject, { :scope => :like, :limit => params[:per_page].to_i } # This WON'T search... it's a scam
     elsif params[:live].present?
-      ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed] } )
+      ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, Link] } )
     elsif params[:object].present?
-      ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, Officedoc] } )
+      ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, Officedoc, Link] } )
     else
       ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Officedoc, Swf, Embed, Link, Video, Audio] } )
     end
