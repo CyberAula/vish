@@ -1,4 +1,4 @@
-<%if document.class==Video || document.class==Audio || document.class==Picture%>
+<%if document.class==Video || document.class==Audio || document.class==Picture || document.class==Swf || document.class==Embed%>
   <%=javascript_include_tag "jquery.zclip.min" %>
   <script type="text/javascript">
     $(document).ready(function(){
@@ -12,22 +12,6 @@
                 path:'/assets/ZeroClipboard.swf',
                 copy:function(){
                   return $('#textarea_for_iframe').val();
-                },
-                afterCopy: function(){}
-              });
-
-              $('button#btn_copy_embed2').zclip({
-                path:'/assets/ZeroClipboard.swf',
-                copy:function(){
-                  return $('#textarea_for_iframe2').val();
-                },
-                afterCopy: function(){}
-              });
-
-              $('button#btn_copy_embed3').zclip({
-                path:'/assets/ZeroClipboard.swf',
-                copy:function(){
-                  return $('#textarea_for_iframe3').val();
                 },
                 afterCopy: function(){}
               });
@@ -86,7 +70,7 @@
       <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
     </li>
     <% end %>
-    <%if document.class==Video || document.class==Audio || document.class==Picture%>
+    <%if document.class==Video || document.class==Audio || document.class==Picture || document.class==Swf || document.class==Embed%>
       <li class="<%= document_details_tab_class document, :embed %>">
           <%= link_to (raw("<i class='icon-code'></i> <span class='hidden-tablet hidden-phone'>")) + t('excursion.actions.embed')+ raw("</span>"), '#document-embed', 'data-toggle' => 'tab' %>
       </li>
@@ -145,14 +129,14 @@
     <div class="tab-pane <%= document_details_tab_class document, :embed %>" id="document-embed">
       <p><%=t("document.embed_explanation")%></p>      
       <div class="contentembed">
-          <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe2" type="text">&lt;audio controls&gt;
+          <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe" type="text">&lt;audio controls&gt;
            &lt;source src="<%= audio_url(document, :format => :mp3) %>" type="audio/mpeg"&gt;
            &lt;source src="<%= audio_url(document, :format => :wav) %>" type="audio/wav"&gt;
            &lt;source src="<%= audio_url(document, :format => :webm) %>" type="audio/webm"&gt;
            Your browser does not support the audio tag.
            &lt;/audio&gt;</textarea>
 
-          <button class="btn" id="btn_copy_embed2" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+          <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
 
             <i class="icon-copy large"></i>
           </button>
@@ -162,9 +146,31 @@
     <div class="tab-pane <%= document_details_tab_class document, :embed %>" id="document-embed">
       <p><%=t("document.embed_explanation")%></p>      
       <div class="contentembed">
-          <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe3" type="text"><%=Site.current.config[:documents_hostname] + document.file.to_s[1..-1]%></textarea>
+          <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe" type="text"><%=Site.current.config[:documents_hostname] + document.file.to_s[1..-1]%></textarea>
 
-          <button class="btn" id="btn_copy_embed3" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+          <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+            <i class="icon-copy large"></i>
+          </button>
+        </div>
+    </div>
+  <%elsif document.class==Swf%>
+    <div class="tab-pane <%= document_details_tab_class document, :embed %>" id="document-embed">
+      <p><%=t("document.embed_explanation")%></p>      
+      <div class="contentembed">
+      <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe" type="text">&lt;iframe src="<%= Site.current.config[:documents_hostname] + document.file.to_s[1..-1] %>" width="auto" height="auto"&gt;&lt;/iframe&gt;</textarea>
+
+      <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+            <i class="icon-copy large"></i>
+          </button>
+        </div>
+    </div>
+  <%elsif document.class==Embed%>
+    <div class="tab-pane <%= document_details_tab_class document, :embed %>" id="document-embed">
+      <p><%=t("document.embed_explanation")%></p>      
+      <div class="contentembed">
+      <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe4" type="text"><%= document.fulltext %></textarea>
+
+      <button class="btn" id="btn_copy_embed4" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
             <i class="icon-copy large"></i>
           </button>
         </div>
