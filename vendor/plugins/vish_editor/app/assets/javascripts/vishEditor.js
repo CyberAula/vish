@@ -16134,27 +16134,8 @@ VISH.Quiz = function(V, $, undefined) {
     _afterCloseQuizSession()
   };
   var _getQuizSimpleJSONForQuiz = function(quizDOM) {
-    var slideDOM = $("article").has(quizDOM);
-    return _getQuizSimpleJSONForSlide(slideDOM)
-  };
-  var _getQuizSimpleJSONForSlide = function(slideDOM) {
-    var slideId = $(slideDOM).attr("id");
-    var presentation = V.Viewer.getCurrentPresentation();
-    if(slideId && presentation) {
-      var slides = presentation.slides;
-      var sL = slides.length;
-      for(var i = 0;i < sL;i++) {
-        if(slides[i].id == slideId) {
-          var elements = slides[i].elements;
-          var eL = elements.length;
-          for(var j = 0;j < eL;j++) {
-            if(elements[j].type == V.Constant.QUIZ) {
-              return elements[j].quiz_simple_json
-            }
-          }
-        }
-      }
-    }
+    var quizId = $(quizDOM).attr("id");
+    return quizzes[quizId].quiz_simple_json
   };
   var _enableLaunchButton = function(quiz) {
     var startButton = $(quiz).find("input.quizStartButton");
