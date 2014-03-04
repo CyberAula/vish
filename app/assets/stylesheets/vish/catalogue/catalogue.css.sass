@@ -3,6 +3,7 @@
   display: block
   float: left
   height: auto
+  width: 100%
   .back_catalogue
     display: inline-block
     float: left
@@ -19,7 +20,6 @@
     clear: both
     width: 100%
 
-
 .show_more_catalogue
   display: inline-block
   float: right
@@ -35,28 +35,29 @@
   border: 1px solid #ccc
   margin-right: 10px
 
-
 .show_more_catalogue:hover
   background-color: #fff
 
-.test_catalogue
-  position: relative
+#showMore
   display: block
-  float: left
-  clear: both
-  width: 100%
-  height: auto
+
+  color: $white
+  cursor: pointer
+  font-size: 11px
+  line-height: 24px
+  text-align: center
+  border: none
+  background: $secondColor
+  width: 80px
+  margin: 0 auto
+  a
+    color: $white
 
 #catalogue
   width: 100%
-  left: 0
-  right: 0
-  position: absolute
-  height: auto
+  float: left
   background: $secondColor
-  top: -20px
-  z-index: 1
-
+  margin-top: -20px
 
   ul.Tags_list_as
     width: 100%
@@ -76,18 +77,7 @@
       background: darken($secondColor, 10%) 
       margin: 0
       position: absolute
-      i
-        font-size: 50px
-        width: 100%
-        text-align: center
-        margin-top: 50px
-        width: 50px
-        display: block
-        float: none
-        margin-left: auto
-        margin-right: auto
-        color: lighten($secondColor, 5%)
-        display: none
+
       h3
         text-align: center
         width: auto
@@ -96,16 +86,21 @@
         font-family: #017CC8
         color: lighten($secondColor, 5%) 
         margin-top: 14px
-        height: 58px
         font-size: 20px
-
-    .catalogue_list
+      i
+        margin: 0
+    #effect
       display: block
       float: left
       margin-left: 10%
       padding: 10px 0
+      width: 90%
 
+    .newClass 
       li
+        display: none
+      li:nth-of-type(-n+10) 
+        display: block
         margin-top: 5px
         width: 19%
         display: block
@@ -113,6 +108,18 @@
         padding-left: 1%
         word-wrap: ellipsis
 
+
+    .anotherNewClass 
+      li
+        display: none
+      li:nth-of-type(-n+50) 
+        display: block
+        margin-top: 5px
+        width: 19%
+        display: block
+        float: left
+        padding-left: 1%
+        word-wrap: ellipsis
 
 
 
@@ -128,7 +135,7 @@
           position: absolute
           top: 30%
 
-      .catalogue_list 
+      #effect
         li
           width: 24%
 @media (min-width: 650px) and (max-width: 899px)
@@ -141,7 +148,7 @@
           -webkit-transform: rotate(-90deg) /* Safari and Chrome */
           position: absolute
           top: 20%
-      .catalogue_list 
+      #effect
         li
           width: 32%
 
@@ -158,7 +165,7 @@
           -webkit-transform: rotate(-90deg) /* Safari and Chrome */
           position: absolute
           top: 10%
-      .catalogue_list 
+      #effect
         width: 85%
         margin-left: 15%
         li
@@ -178,7 +185,7 @@
           position: absolute
           top: 5%
 
-      .catalogue_list 
+      #effect
         width: 80%
         margin-left: 20%
         li
