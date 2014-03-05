@@ -10,7 +10,7 @@ class CatalogueController < ApplicationController
 		end
 
 		respond_to do |format|
-      		format.all { render :layout => 'search' }
+      		format.all { render :layout => 'catalogue' }
     	end
 	end
 
@@ -20,7 +20,7 @@ class CatalogueController < ApplicationController
 		@excursions = search(@category, LIMIT_IN_SHOW)		
 
 		respond_to do |format|
-      		format.all { render :layout => 'search' }
+      		format.all { render :layout => 'catalogue' }
     	end
 	end
 

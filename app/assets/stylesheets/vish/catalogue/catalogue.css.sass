@@ -39,8 +39,8 @@
   background-color: #fff
 
 #showMore
-  display: block
-
+  display: inline-block
+  float: left
   color: $white
   cursor: pointer
   font-size: 11px
@@ -48,7 +48,7 @@
   text-align: center
   border: none
   background: $secondColor
-  width: 80px
+  width: 10%
   margin: 0 auto
   a
     color: $white
@@ -57,7 +57,8 @@
   width: 100%
   float: left
   background: $secondColor
-  margin-top: -20px
+  margin-top: 50px
+  display: block
 
   ul.Tags_list_as
     width: 100%
@@ -138,7 +139,14 @@
       #effect
         li
           width: 24%
+
+@media (min-width: 0px) and (max-width: 979px)
+  #catalogue
+    margin-top: 0px
+
+
 @media (min-width: 650px) and (max-width: 899px)
+
   #catalogue 
     ul.Tags_list_as 
       .info_catalogue
@@ -154,6 +162,8 @@
 
 
 @media (min-width: 450px) and (max-width: 649px)
+  #showMore
+    width: 15%
   #catalogue 
     ul.Tags_list_as 
 
@@ -173,6 +183,8 @@
 
 
 @media (min-width: 0px) and (max-width: 449px)
+  #showMore
+    width: 20%
   #catalogue 
     ul.Tags_list_as 
 
@@ -183,7 +195,7 @@
           -ms-transform: rotate(-90deg) /* IE 9 */
           -webkit-transform: rotate(-90deg) /* Safari and Chrome */
           position: absolute
-          top: 5%
+          top: 10%
 
       #effect
         width: 80%
