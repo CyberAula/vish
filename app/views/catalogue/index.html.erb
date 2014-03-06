@@ -8,6 +8,13 @@
 				<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion, :container_id => "container_#{name}" } %>
 			<%end%>
 		</ul>
-		<button class="show_more_catalogue"><%=t('excursion.actions.show_more')%></button>
+		<button class="show_more_catalogue" name="<%=name%>"><%=t('view_all')%></button>
 	<%end%>
 </div>
+
+<script type="text/javascript">
+	$(".show_more_catalogue").click(function(event) {
+		var name = $(this).attr("name");
+		window.location = "/catalogue/" + name;
+	});
+</script>
