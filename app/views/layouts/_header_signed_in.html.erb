@@ -51,20 +51,22 @@
             </li>
           -->
           <!--user-->
-            <li class ="toggler user-settings">
+            <li class="photo_user ">
               <%= link_to current_subject do %>
               
-              <a  href="<%=user_path(current_subject)%>" class="without-data-toggle logo-small ">
-                <%= image_tag current_subject.logo.url(:small) %>
-                <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %><i class="icon-angle-down"></i></span>
-              </a>
+              <%= image_tag current_subject.logo.url(:small) %>
 
-              <ul class="dropdown-menu dropdown-ie-fix">
-                <!-- dropdown menu links -->
+            </li>
+            <li class ="toggler user-settings dropdown">
+              <div  href="<%=user_path(current_subject)%>" class="without-data-toggle logo-small ">
+                <%= truncate_name(current_subject.name, length: 15) %><i class="icon-angle-down"></i>
+              </div>
+
+              <ul class="dropdown-menu">
                  <li class="settings-menu">
                    <%= link_to home_path do %>
-                   <i class="icon-home"></i>
-                   <%= t('navigation.home') %>
+                     <i class="icon-home"></i>
+                     <%= t('navigation.home') %>
                    <% end %>
                  </li>
                 <li class="settings-menu">
@@ -101,6 +103,31 @@
               </ul>
               <% end %>
             </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <!-- carga de modales -->
             <%= render partial: 'events/form' %>

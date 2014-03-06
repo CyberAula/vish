@@ -1,0 +1,56 @@
+<li class ="toggler user-settings dropdown">
+  <a  href="<%=user_path(current_subject)%>" class="without-data-toggle logo-small "></a>
+    <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %><i class="icon-angle-down"></i></span>
+  </a>
+  
+
+  <ul class="dropdown-menu dropdown-ie-fix">
+    <!-- dropdown menu links -->
+     <li class="settings-menu">
+       <%= link_to home_path do %>
+       <i class="icon-home"></i>
+       <%= t('navigation.home') %>
+       <% end %>
+     </li>
+    <li class="settings-menu">
+      <%= link_to current_subject do %>
+        <i class="icon-user"></i>
+        <%= t('profile.one') %>
+      <% end %>
+    </li>
+    <!--<li class="settings-menu">
+      <%= link_to activities_path do %>
+      <i class="icon-globe"></i>
+      <%= t('activity.other') %>
+      <% end %>
+    </li>-->
+    <li class="settings-menu">
+      <%= link_to settings_path do %>
+      <i class="icon-cog"></i>
+      <%= t('dropdown.settings') %>
+      <% end %>
+    </li>
+    <li class="settings-menu">
+      <%= link_to quiz_sessions_path do %>
+      <i class="icon-puzzle-piece"></i>
+      <%= t('quiz.live') %>
+      <% end %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <%= link_to destroy_user_session_path, :method => :delete do %>
+      <i class="icon-signout"></i>
+      <%= t('sign_out') %>
+      <% end %>
+    </li>
+  </ul>
+  <% end %>
+</li>
+
+
+
+
+    </ul>
+  </li>
+
+
