@@ -77,7 +77,7 @@
 		  </ul>
 
 		</section>
-<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
+<button href="#" id="showMore_tags" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
 
 
 
@@ -96,16 +96,16 @@
 
 <script>
 $(function() {
-  $("#showMore").click(function(){
+  $("#showMore_tags").click(function(){
     $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
     $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
-    if($("#showMore").attr("status")=== "showMore"){
-      $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
-      $("#showMore").attr("status", "showFewer");
+    if($("#showMore_tags").attr("status")=== "showMore"){
+      $("#showMore_tags").html('<a><%=t("excursion.actions.show_fewer")%></a>');
+      $("#showMore_tags").attr("status", "showFewer");
     }
     else{
-      $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
-      $("#showMore").attr("status", "showMore");
+      $("#showMore_tags").html('<a><%=t("excursion.actions.show_more")%></a>');
+      $("#showMore_tags").attr("status", "showMore");
     }
     return false;
   });
