@@ -18,7 +18,7 @@ namespace :loep do
     puts "#####################################"
 
     excursions = Excursion.all.select{ |ex| ex.draft==false }
-    # excursions = [Excursion.find(136)]
+    # excursions = [Excursion.find(690)]
     # excursions = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}
     
     excursionChunks = excursions.each_slice(25).to_a
@@ -157,7 +157,7 @@ def bringLO(lo)
   params["lo"]["hasQuizzes"] = elemTypes.include?("quiz") ? "1" : "0"
   params["lo"]["hasWebs"] = (elemTypes.include?("web") or elemTypes.include?("snapshot")) ? "1" : "0"
   params["lo"]["hasFlashObjects"] = elemTypes.include?("flash") ? "1" : "0"
-  params["lo"]["hasApplets"] = "0"
+  params["lo"]["hasApplets"] = elemTypes.include?("applet") ? "1" : "0"
   params["lo"]["hasDocuments"] = elemTypes.include?("document") ? "1" : "0"
   params["lo"]["hasFlashcards"] = elemTypes.include?("flashcard") ? "1" : "0"
   params["lo"]["hasVirtualTours"] = elemTypes.include?("VirtualTour") ? "1" : "0"
@@ -211,7 +211,7 @@ def getElType(el)
   if el.nil?
     return nil
   end
-  
+
   elType = el["type"]
 
   if elType != "object"
