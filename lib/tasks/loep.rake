@@ -17,10 +17,10 @@ namespace :loep do
     puts "#####################################"
     puts "#####################################"
 
-    # excursions = Excursion.all.select{ |ex| ex.draft==false }
+    excursions = Excursion.all.select{ |ex| ex.draft==false }
+    # excursions = [Excursion.find(136)]
     # excursions = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}
-    excursions = [Excursion.find(462)]
-
+    
     excursionChunks = excursions.each_slice(25).to_a
     recursiveBringChunk(excursionChunks,excursionChunks.length,0){
       finish
@@ -111,7 +111,7 @@ def bringLO(lo)
   # params["authentication"] = 'Basic ' + Base64.encode64("name" + ':' + "password")
   # params["authenticity_token"] = '';
   params["app_name"] = "ViSH"
-  params["auth_token"] = "pbB7sfTz885Y_C9ZvNyBT2WQGM1s6xDvE_0JGpUrhQUvJHBLBfzIry-oxx6OJcxDoWcvaxYlS2pLRQRV"
+  params["auth_token"] = "2UGvHgJn6GwYcGOGMbzATVnb8Gs8NGflZOtD9P2Tqte-4SLgzmRnvZVdaPHgxNR8qyWUxFVQ2IRXbfxD"
 
   #LO
   params["lo"] = Hash.new
@@ -153,7 +153,7 @@ def bringLO(lo)
   params["lo"]["hasText"] = elemTypes.include?("text") ? "1" : "0"
   params["lo"]["hasImages"] = elemTypes.include?("image") ? "1" : "0"
   params["lo"]["hasVideos"] = elemTypes.include?("video") ? "1" : "0"
-  params["lo"]["hasAudios"] = "0"
+  params["lo"]["hasAudios"] = elemTypes.include?("audio") ? "1" : "0"
   params["lo"]["hasQuizzes"] = elemTypes.include?("quiz") ? "1" : "0"
   params["lo"]["hasWebs"] = (elemTypes.include?("web") or elemTypes.include?("snapshot")) ? "1" : "0"
   params["lo"]["hasFlashObjects"] = elemTypes.include?("flash") ? "1" : "0"
@@ -211,7 +211,9 @@ def getElType(el)
   if el.nil?
     return nil
   end
+  
   elType = el["type"]
+
   if elType != "object"
     return elType
   else
