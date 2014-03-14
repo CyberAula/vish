@@ -24,8 +24,8 @@
       width: 96% !important
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .avatar
-        width: 50px
-        height: 30px
+        width: 15%
+        max-width: 50px
         display: block
         float: left
         img
@@ -33,7 +33,8 @@
       .media-heading
         display: block
         text-align: left
-        @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        width: 83%
+        margin-left: 2%
         margin-bottom: 0px
         float: left
         clear: right
@@ -51,6 +52,7 @@
           display: block
           float: right
           margin-top: 5px
+          width: 10px
           a
             color: $gray
       .media-body
