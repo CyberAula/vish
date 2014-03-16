@@ -77,6 +77,11 @@ Vish::Application.routes.draw do
   # Add this at the end so other URLs take prio
   match '/s/:id' => "shortener/shortened_urls#show"
 
+  #LOEP
+  namespace :loep do
+    resources :los
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
