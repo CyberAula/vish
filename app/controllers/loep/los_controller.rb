@@ -5,18 +5,30 @@ class Loep::LosController < Loep::BaseController
   def show
     respond_to do |format|
         format.any { 
-          render json: "Show Method: Success"
+          render json: "Ok"
         }
     end
   end
 
   # PUT /loep/los/:id
-  def update
+  def update  
     #New information about this LO is available on LOEP (e.g. a new evaluation and/or metric)
-    # @lo = Lo.find(params[:id])
+    @excursion = Excursion.find(params[:id])
+
+    eEvData = JSON(params["lo"])
+
+    # Interesting information
+    # eEvData["Completed Evaluations with LORI v1.5"]
+    # eEvData["Metric Score: LORI Arithmetic Mean"]
+    # eEvData["Metric Score: LORI Weighted Arithmetic Mean"]
+
+    # eEvData["LORI v1.5 item1"]
+    # ...
+    # eEvData["LORI v1.5 item9"]
+
     respond_to do |format|
         format.any { 
-          render json: "Update Method: Success"
+          render json: "Ok"
         }
     end
   end
