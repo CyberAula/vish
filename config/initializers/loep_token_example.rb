@@ -1,2 +1,2 @@
 # LOEP token here
-Vish::Application.config.loep_token = 'loepTokenValue'
+# Vish::Application.config.loep_token = 'loepTokenValue'
