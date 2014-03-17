@@ -11,8 +11,28 @@ DocumentsController.class_eval do
       format.all {
         if resource.new_record?
           render action: :new
-        else          
-          redirect_to resource
+        else
+          redirect = 
+            ( request.referer.present? ?
+              ( request.referer =~ /new$/ ?
+                resource :
+                request.referer ) :
+              home_path )
+
+          redirect_to redirect
+        end
+      }
+    end
+  end
+
+  def update
+    update! do |success, failure|
+      failure.html { render :action => :show }
+      success.html {
+        if params[:controller] == "pictures"
+          redirect_to request.referer
+        else
+          render :action => :show 
         end
       }
     end
