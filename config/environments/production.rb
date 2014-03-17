@@ -61,4 +61,11 @@ Vish::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  #default host for routes
+  if ENV['VISH_TEST']
+    Rails.application.routes.default_url_options[:host] = 'vishub-test.dit.upm.es'
+  else
+    Rails.application.routes.default_url_options[:host] = 'vishub.org'
+  end  
 end
