@@ -44,15 +44,15 @@ class Excursion < ActiveRecord::Base
     Rails.application.routes.url_helpers.excursion_url(:id => self.id)
   end
 
-  def oai_dv_title
+  def oai_dc_title
     title
   end
 
-  def oai_dv_description
+  def oai_dc_description
     description
   end
 
-  def oai_dv_creator
+  def oai_dc_creator
     author.name
   end
 
