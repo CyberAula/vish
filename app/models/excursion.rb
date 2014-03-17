@@ -37,6 +37,27 @@ class Excursion < ActiveRecord::Base
     has activity_object.visit_count, :as => :visit_count
   end
 
+  ####################
+  ## OAI-PMH Management
+  ####################
+  def oai_dc_identifier
+    Rails.application.routes.url_helpers.excursion_url(:id => self.id)
+  end
+
+  def oai_dc_title
+    title
+  end
+
+  def oai_dc_description
+    description
+  end
+
+  def oai_dc_creator
+    author.name
+  end
+
+
+
 
   ####################
   ## JSON Management

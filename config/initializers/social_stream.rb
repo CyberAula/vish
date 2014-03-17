@@ -1,4 +1,5 @@
 SocialStream.setup do |config|
+  puts "SOCIAL CONFIG"
   # List the models that are social entities. These will have ties between them.
   # Remember you must add an "actor_id" foreign key column to your migration!
   #

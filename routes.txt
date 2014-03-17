@@ -1,7 +1,5 @@
-AUTOLOAD DE AVATARS FOR RAILS ACTIVE RECORD
-LOADED
-MODULE AvatarsForRails ActiveRecord LOADED
-METHOD FOUND
+SOCIAL CONFIG
+CONFIG OAI
                 new_user_session GET      /users/sign_in(.:format)                                             devise/sessions#new
                     user_session POST     /users/sign_in(.:format)                                             devise/sessions#create
             destroy_user_session DELETE   /users/sign_out(.:format)                                            devise/sessions#destroy
@@ -62,6 +60,7 @@ METHOD FOUND
                                  GET      /excursions/tmpJson(.:format)                                        excursions#downloadTmpJSON
             categories_add_items POST     /categories/add_items(.:format)                                      categories#add_items
             categories_favorites          /categories/favorites(.:format)                                      categories#show_favorites
+                resources_search          /resources/search(.:format)                                          resources#search
                       lre_search          /lre/search(.:format)                                                lre#search_lre
                                           /home.json(.:format)                                                 home#index {:format=>:json}
                             home          /home(.:format)                                                      excursions#index
@@ -103,6 +102,14 @@ METHOD FOUND
                        catalogue          /catalogue(.:format)                                                 catalogue#index
                                           /catalogue/:category(.:format)                                       catalogue#show
                                           /s/:id(.:format)                                                     shortener/shortened_urls#show
+                  oai_repository          /oai_repository                                                      OaiRepository::Engine
+                        loep_los GET      /loep/los(.:format)                                                  loep/los#index
+                                 POST     /loep/los(.:format)                                                  loep/los#create
+                     new_loep_lo GET      /loep/los/new(.:format)                                              loep/los#new
+                    edit_loep_lo GET      /loep/los/:id/edit(.:format)                                         loep/los#edit
+                         loep_lo GET      /loep/los/:id(.:format)                                              loep/los#show
+                                 PUT      /loep/los/:id(.:format)                                              loep/los#update
+                                 DELETE   /loep/los/:id(.:format)                                              loep/los#destroy
              shortener_translate GET      /s/:unique_key(.:format)                                             shortener/shortened_urls#translate
                            rooms GET      /rooms(.:format)                                                     rooms#index
                                  POST     /rooms(.:format)                                                     rooms#create
@@ -111,7 +118,7 @@ METHOD FOUND
                             room GET      /rooms/:id(.:format)                                                 rooms#show
                                  PUT      /rooms/:id(.:format)                                                 rooms#update
                                  DELETE   /rooms/:id(.:format)                                                 rooms#destroy
-                                          /.well-known/host-meta(.:format)                                     #<Proc:0xda00070@/home/ebarra/.rvm/gems/ruby-1.9.3-p392@vish/gems/actionpack-3.2.14/lib/action_controller/metal.rb:245>
+                                          /.well-known/host-meta(.:format)                                     #<Proc:0x0000000918bba0@/var/lib/gems/1.9.1/gems/actionpack-3.2.14/lib/action_controller/metal.rb:245>
                        webfinger          /webfinger(.:format)                                                 webfinger#index
                             pshb          /pshb(.:format)                                                      pshb#index
                           salmon          /salmon/:slug(.:format)                                              salmon#index
@@ -1020,3 +1027,7 @@ search_remote_subject_repository GET      /remote_subjects/:remote_subject_id/re
                                  GET      /avatar(.:format)                                                    avatars#show
                                  PUT      /avatar(.:format)                                                    avatars#update
                                  DELETE   /avatar(.:format)                                                    avatars#destroy
+
+Routes for OaiRepository::Engine:
+services_show GET /services/show(.:format) oai_repository/services#show
+         root     /                        oai_repository/services#show
