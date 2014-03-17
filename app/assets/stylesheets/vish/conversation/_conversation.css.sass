@@ -1,193 +1,235 @@
+
+/*conversations inbox*/
+
 @import "jquery.cleditor"
+#conversations
+  width: 100%
+  #messages-toolbar
+    .tabbable
+      @include header-tabbable-new
+  .conversations
+    .unread
+      font-weight: bold
+      background-color: $white !important
+      &:hover
+        background-color: $secondColor !important
+    .conversation
+      @include white-box
+      float: left
+      display: block
+      margin-top: 5px
+      padding: 3px
+      background-color: #F5F5F5
+      &:hover
+        background-color: $secondColor
+        text-decoration: none
+        .subject
+          a
+            color: $white !important
+        a,div
+          color: $white !important
+        .date
+          color: $white !important
+      .content_left
+        float: left
+        display: block
+        width: 20%
+        .avatar
+          max-width: 25px
+          max-height: 25px
+          width: 20%
+          display: block
+          float: left
+          img
+            @include border-radius($baseBorderRadius)
+        header
+          display: block
+          float: left
+          padding-top: 5px
+          margin-left: 5%
+          width: 75%
+          overflow: hidden
+          height: 22px
+          white-space: nowrap
+          text-overflow: ellipsis
+          a 
+            color: $gray
+      .content_right
+        float: left
+        display: block
+        width: 80%
+        padding-top: 5px
 
+        .subject
+          width: 30%
+          float: left
+          display: block
+          overflow: hidden
+          height: 22px
+          white-space: nowrap
+          text-overflow: ellipsis
 
-#messages-toolbar
-  .tabbable
-    @include header-tabbable
-    
-    i
+          a 
+            color: $secondColor
+            &:hover
+              text-decoration: none
+        .briefing
+          width: 50%
+          float: left
+          display: block
+          margin-left: 10px
+          font-size: 11px
+          overflow: hidden
+          height: 22px
+          white-space: nowrap
+          text-overflow: ellipsis
+        .date
+          width: 10%
+          float: right
+          display: block
+          font-size: 10px
+          color: $grayLight
+        .action
+          width: 5%
+          float: right
+          display: block
+          a
+            float: right
+            margin-right: 5px
+            &:hover
+              font-size: 18px
+              text-decoration: none
+
+/*new message*/
+#new_message
+  width: 100%
+  #messages-toolbar
+    .tabbable
+      @include header-tabbable-new
+  #conversation
+    form.new_message
+      label
+        width: 100%
+        margin-top: 10px
+      input, select
+
+        width: 95%
+        padding: 5px 2.5%
+        @include border-radius($baseBorderRadius)
+        border: 1px solid #CCCCCC
+        height: 20px
+      .select2-container
+        width: 100%
+      .cleditorMain 
+        @include border-radius($baseBorderRadius)
+        border: 1px solid #CCCCCC
+      input.btn[type="submit"]
+        width: auto
+        height: auto
+        margin-top: 20px
+        float: right
+.select2-result-label
+  img
+    @include border-radius($baseBorderRadius)
+    margin-right: 10px
+    width: 30px !important
+
+/*conversation*/
+#conversation
+  width: 100%
+  #messages-toolbar
+    .tabbable
+      @include header-tabbable-new
+  .conversation_full
+    h3
+      width: 90%
       display: block
       float: left
-      padding-right: 5px
-      padding-top: 3px
-    a
+      margin: 0
+    .action
+      width: 10%
+      display: block
+      float: left
+      clear: right
+      a
+        font-size: 16px
+        
+        color: $firstColor
+        @include white-box
+        float: right
+        display: block
+        margin-top: 5px
+        padding: 3px
+
+
+    .participants
+      @include white-box
+      display: block
+      float: left 
+      padding: 3px
+      h4
+        clear: left
+        float: left
+        margin-right: 20px
+        margin-left: 20px
+        color: $gray
+      img
+        @include border-radius($baseBorderRadius)
+        margin-right: 10px
+        width: 40px 
+    hr
       display: block
       float: left
       width: 100%
-      margin-right: 15px
-      border-bottom: none
 
-  .nav-tabs
-    .active
-      a
-        cursor: pointer !important
-        border-bottom: none
+    .messages
+      display: block
+      float: left
+      width: 100%
+      .message
+        @include white-box
+        display: block
+        float: left 
+        padding: 3px
+        width: 100%
+        margin-top: 5px
+        .media
+          img
+            width: 40px
+            @include border-radius($baseBorderRadius)
+          .media-heading
+            display: block
+            float: left
+            width: 20%
+            .name
+              a
+                font-size: 18px
+            .date
 
-#conversations
-  .conversations
-    margin-top: 20px
-    .conversation
-      height: 50px !important
-      margin-bottom: 15px !important
-      @include border-radius($baseBorderRadius)
-      @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
-      @include selection-1
-      padding: 5px
-      .content_left
-        header
-          h5 
-            a
-              @include ellipsis
-          .date
-            font-size: 11px
-            color: #888
-
-      .content_right
-        color: $gray
-        width: 60% !important
-        .subject
-          font-weight: normal
-          font-size: 14px
-          a
-            @include ellipsis
-            font-size: 15px
-            font-weight: bold
-            &:hover
-              text-decoration: none
-        .action
-          font-size: 18px
-          opacity: 0
-          padding-top: 15px
-  
-
-                  
-        .briefing
-          @include ellipsis
-          color: $gray
-        .date
-          color: $gray
-          font-size: 11px
-
-      &:hover
-        .action
-          opacity: 1
-    
+              display: block
+              float: left 
+              font-size: 10px
+              color: $grayLight
+              clear: both
+          .media-body
+            display: block
+            float: left
+            width: 70%
 
 
-.conversations
-  .unread
-    opacity: 1 !important
-  .conversation
-    @include opacity (50)
+      .cont_conversation
+        display: block
+        float: left 
+        width: 100%
+        margin: 20px auto
 
-
-.conversation_full
-  h3
-    @include ellipsis
-  .action
-    h4
-      font-family: $firstFontFamily
-  .participants
-    @include border-radius($baseBorderRadius)
-    background-color: #f1f1f1
-    border: 1px solid #f1f1f1
-    img
-      @include border-radius ($baseBorderRadius)
-  .soften
-    border-color: $white
-
-  .cont_conversation
-    .answer
-      font-size: 16px
-      color: $gray
-    .cleditorMain
-      @include cleditorMain-box
-      height: 150px !important
-    .actions
-      @mixin full-btn-primary
-      .btn
-        background-image: none
-        float: right
-
-
-
-  .message
-    border-bottom: 1px solid #f1f1f1
-    background-color: $white
-    @include border-radius($baseBorderRadius)
-    .media
-      .pull-left
-        img
-          @include border-radius ($baseBorderRadius)
-      .date
-        color: #999
-        font-size: 13px
-
-  #conversation
-    form.new_message
-      margin-top: 30px
-      input
-        &[type="submit"]
-          float: right 
-          margin-top: 10px
-
-        &[type="text"]
-          //width: 100%  
-
-  #subject
-    //width: 96.8% !important
-
-#conversations,
-#conversation,
-#new_message
-  #toolbar
-    @include border-radius($baseBorderRadius)
-    nav.toolbar_menu
-      //background-color: $white
-      @include border-radius($baseBorderRadius)
-      ul
-        li
-          .active
-            background-position: -9px -10px
-          
-          a
-            &:hover
-              background-color: transparent
-
-#conversation
-  @include percent-btn-primary
-  .conversation_full
-    margin-bottom: 40px
-  .messages
-    .cleditorMain
-      iframe
-        max-height: 122px !important
-
-
-#content
-  .notification
-    color: $gray
-
-//messages profile
-
-#new_message_profile
-  .select2-container
-    ul
-      margin: 0 0 9px 1px
-      li
-        list-style: none
-        input
-          text-decoration: none !important
-          width: 100%
-
-  .cleditorMain
-    width: 100%
-    float: left
-    height: 110px !important
-    @include border-radius($baseBorderRadius)
-    iframe
-      height: 50px  !important
-  .btn 
-    margin-right: 28px !important
-    width: 28% !important
-
+        .cleditorMain 
+          @include border-radius($baseBorderRadius)
+          border: 1px solid #CCCCCC
+          width: 100% !important
+        .actions
+          input[type="submit"]
+            width: auto
+            height: auto
+            margin-top: 20px
+            float: right

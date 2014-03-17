@@ -30,11 +30,11 @@ class SessionLocalesController < ActionController::Base
         current_subject.update_attribute(:language, params[:new_locale])
       end
 
-      flash[:success] = t('lang.changed', :lang => t(:language_name, :locale => params[:new_locale]), locale: new_locale)
+      flash.now[:success] = t('lang.changed', :lang => t(:language_name, :locale => params[:new_locale]), locale: new_locale)
 
     else
     
-      flash[:error] = t('lang.error', :lang => params[:new_locale])
+      flash.now[:error] = t('lang.error', :lang => params[:new_locale])
     
     end
   

@@ -17,10 +17,10 @@ namespace :loep do
     puts "#####################################"
     puts "#####################################"
 
-    # excursions = Excursion.all
-    excursions = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}
-    #excursions = [Excursion.find(462)]
-
+    excursions = Excursion.all.select{ |ex| ex.draft==false }
+    # excursions = [Excursion.find(690)]
+    # excursions = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}
+    
     excursionChunks = excursions.each_slice(25).to_a
     recursiveBringChunk(excursionChunks,excursionChunks.length,0){
       finish
@@ -110,12 +110,8 @@ def bringLO(lo)
   # Authentication
   # params["authentication"] = 'Basic ' + Base64.encode64("name" + ':' + "password")
   # params["authenticity_token"] = '';
-  params["name"] = "ViSH"
-  params["auth_token"] = "NvMcQ-4iqEz6FyNfeMNYTw"
-
-  #Testing
-  #e = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}.first
-
+  params["app_name"] = "ViSH"
+  params["auth_token"] = "2UGvHgJn6GwYcGOGMbzATVnb8Gs8NGflZOtD9P2Tqte-4SLgzmRnvZVdaPHgxNR8qyWUxFVQ2IRXbfxD"
 
   #LO
   params["lo"] = Hash.new
@@ -138,12 +134,15 @@ def bringLO(lo)
 
   #Need to be transformed to params["lo"]["language_id"]
   # params["lo"]["lanCode"] =  "en"
-  loep_langs = ["en", "es", "de", "nl", "hu", "fr"]
+  loep_langs = ["en", "es", "de", "fr", "it", "nl", "hu"]
   if !loJSON["language"].nil? and loJSON["language"]!="independent" and loJSON["language"]!="ot" and loep_langs.include? loJSON["language"]
     params["lo"]["lanCode"] =  loJSON["language"]
+  elsif loJSON["language"]=="independent"
+    #LO independent of Language
+    params["lo"]["lanCode"] =  "lanin"
   else
-    #English by default
-    params["lo"]["lanCode"] =  "en"
+    #Other by default
+    params["lo"]["lanCode"] =  "lanot"
   end
 
   params["lo"]["lotype"] = "VE slideshow"
@@ -154,19 +153,29 @@ def bringLO(lo)
   params["lo"]["hasText"] = elemTypes.include?("text") ? "1" : "0"
   params["lo"]["hasImages"] = elemTypes.include?("image") ? "1" : "0"
   params["lo"]["hasVideos"] = elemTypes.include?("video") ? "1" : "0"
-  params["lo"]["hasAudios"] = "0"
+  params["lo"]["hasAudios"] = elemTypes.include?("audio") ? "1" : "0"
   params["lo"]["hasQuizzes"] = elemTypes.include?("quiz") ? "1" : "0"
   params["lo"]["hasWebs"] = (elemTypes.include?("web") or elemTypes.include?("snapshot")) ? "1" : "0"
   params["lo"]["hasFlashObjects"] = elemTypes.include?("flash") ? "1" : "0"
-  params["lo"]["hasApplets"] = "0"
+  params["lo"]["hasApplets"] = elemTypes.include?("applet") ? "1" : "0"
   params["lo"]["hasDocuments"] = elemTypes.include?("document") ? "1" : "0"
   params["lo"]["hasFlashcards"] = elemTypes.include?("flashcard") ? "1" : "0"
   params["lo"]["hasVirtualTours"] = elemTypes.include?("VirtualTour") ? "1" : "0"
-  params["lo"]["hasEnrichedVideos"] = "0"
+  params["lo"]["hasEnrichedVideos"] = elemTypes.include?("enrichedvideo") ? "1" : "0"
 
-  productionURL = 'http://loep.global.dit.upm.es/api/v1/addLo/'
-  developmentURL = 'http://localhost:3000/api/v1/addLo/'
-  invokeApiMethod(productionURL,params){ |response,code|
+  productionURL = 'http://loep.global.dit.upm.es/api/v1/los'
+  developmentURL = 'http://localhost:8080/api/v1/los'
+
+  isProduction = (!ENV['RAILS_ENV'].nil?) and (ENV['RAILS_ENV']=="production")
+  isDevelopment = !isProduction
+
+  if isProduction
+    targetURL = productionURL
+  else
+    targetURL = developmentURL
+  end
+
+  invokeApiMethod(targetURL,params){ |response,code|
     if(code >= 400 and code <=500)
       puts "Error. " + "Response code: " + code.to_s
     else
@@ -202,7 +211,9 @@ def getElType(el)
   if el.nil?
     return nil
   end
+
   elType = el["type"]
+
   if elType != "object"
     return elType
   else

@@ -1,6 +1,6 @@
 
 
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+  <a class="without-data-toggle dropdown-toggle" data-toggle="dropdown" href="#">
   <li class="dropdown">
       <%=t('browse.title')%>
       <b class="caret"></b>
@@ -31,6 +31,12 @@
         <a tabindex="-1" href="<%=search_path(:type => "resource", :browse=>"true")%>">
           <i class="icon-file"></i>
           <%=t('resource.other')%>
+        </a>
+      </li>
+      <li>
+        <a tabindex="-1" href="/catalogue">
+          <i class="icon-tags"></i>
+          <%=t('catalogue.title')%>
         </a>
       </li>
       <li class="divider"></li>

@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: eddc68898424a21fe2b687ce425f10acf74fc83c
+  revision: 2d50afc92725fb0360da3eede6249fd2f018941e
   branch: master
   specs:
     social_stream-base (2.2.2)
@@ -266,7 +266,7 @@ GEM
     omniauth-socialstream (0.1.3)
       omniauth-oauth2 (~> 1.1.1)
     orm_adapter (0.5.0)
-    paperclip (3.5.3)
+    paperclip (3.5.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)

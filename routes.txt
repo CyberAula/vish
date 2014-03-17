@@ -1,17 +1,1033 @@
-[0G
-[1mFrom:[0m /home/ebarra/trabajo/social_stream/base/app/models/actor.rb @ line 27 :
+SOCIAL CONFIG
+CONFIG OAI
+                new_user_session GET      /users/sign_in(.:format)                                             devise/sessions#new
+                    user_session POST     /users/sign_in(.:format)                                             devise/sessions#create
+            destroy_user_session DELETE   /users/sign_out(.:format)                                            devise/sessions#destroy
+         user_omniauth_authorize GET|POST /users/auth/:provider(.:format)                                      omniauth_callbacks#passthru {:provider=>/(?!)/}
+          user_omniauth_callback GET|POST /users/auth/:action/callback(.:format)                               omniauth_callbacks#(?-mix:(?!))
+                   user_password POST     /users/password(.:format)                                            devise/passwords#create
+               new_user_password GET      /users/password/new(.:format)                                        devise/passwords#new
+              edit_user_password GET      /users/password/edit(.:format)                                       devise/passwords#edit
+                                 PUT      /users/password(.:format)                                            devise/passwords#update
+        cancel_user_registration GET      /users/cancel(.:format)                                              registrations#cancel
+               user_registration POST     /users(.:format)                                                     registrations#create
+           new_user_registration GET      /users/sign_up(.:format)                                             registrations#new
+          edit_user_registration GET      /users/edit(.:format)                                                registrations#edit
+                                 PUT      /users(.:format)                                                     registrations#update
+                                 DELETE   /users(.:format)                                                     registrations#destroy
+                  session_locale POST     /session_locale(.:format)                                            session_locales#create
+              new_session_locale GET      /session_locale/new(.:format)                                        session_locales#new
+             edit_session_locale GET      /session_locale/edit(.:format)                                       session_locales#edit
+                                 GET      /session_locale(.:format)                                            session_locales#show
+                                 PUT      /session_locale(.:format)                                            session_locales#update
+                                 DELETE   /session_locale(.:format)                                            session_locales#destroy
+                     spam_report POST     /spam_report(.:format)                                               spam_reports#create
+                 new_spam_report GET      /spam_report/new(.:format)                                           spam_reports#new
+                edit_spam_report GET      /spam_report/edit(.:format)                                          spam_reports#edit
+                                 GET      /spam_report(.:format)                                               spam_reports#show
+                                 PUT      /spam_report(.:format)                                               spam_reports#update
+                                 DELETE   /spam_report(.:format)                                               spam_reports#destroy
+            results_quiz_session GET      /quiz_sessions/:id/results(.:format)                                 quiz_sessions#results
+                   quiz_sessions GET      /quiz_sessions(.:format)                                             quiz_sessions#index
+                                 POST     /quiz_sessions(.:format)                                             quiz_sessions#create
+                new_quiz_session GET      /quiz_sessions/new(.:format)                                         quiz_sessions#new
+               edit_quiz_session GET      /quiz_sessions/:id/edit(.:format)                                    quiz_sessions#edit
+                    quiz_session GET      /quiz_sessions/:id(.:format)                                         quiz_sessions#show
+                                 PUT      /quiz_sessions/:id(.:format)                                         quiz_sessions#update
+                                 DELETE   /quiz_sessions/:id(.:format)                                         quiz_sessions#destroy
+                                          /quiz_sessions/:id/close(.:format)                                   quiz_sessions#close
+                                          /quiz_sessions/:id/delete(.:format)                                  quiz_sessions#delete
+                                          /quiz_sessions/:id/answer(.:format)                                  quiz_sessions#updateAnswers
+                                          /qs/:id(.:format)                                                    quiz_sessions#show
+                            help          /help(.:format)                                                      help#index
+                             faq          /faq(.:format)                                                       faq#index
+                    legal_notice          /legal_notice(.:format)                                              legal_notice#index
+                                          /users/:user_id/resources(.:format)                                  users#resources
+               excursions_search          /excursions/search(.:format)                                         excursions#search
+          excursions_recommended          /excursions/recommended(.:format)                                    excursions#recommended
+           excursions_last_slide          /excursions/last_slide(.:format)                                     excursions#last_slide
+                 apis_iframe_api          /apis/iframe_api(.:format)                                           excursions#iframe_api
+           apis_excursion_search          /apis/excursion_search(.:format)                                     excursions#cross_search
+           excursions_thumbnails          /excursions/thumbnails(.:format)                                     excursions#excursion_thumbnails
+            excursion_thumbnails          /excursion_thumbnails(.:format)                                      excursions#excursion_thumbnails
+              excursions_preview          /excursions/preview(.:format)                                        excursions#preview
+                                          /excursions/:id/clone(.:format)                                      excursions#clone
+                                          /excursions/:id/evaluate(.:format)                                   excursions#evaluate
+                                          /excursions/:id/learning_evaluate(.:format)                          excursions#learning_evaluate
+                                          /excursions/:id.mashme(.:format)                                     excursions#show {:format=>"gateway", :gateway=>"mashme"}
+                                          /excursions/:id.embed(.:format)                                      excursions#show {:format=>"full"}
+              excursions_tmpJson POST     /excursions/tmpJson(.:format)                                        excursions#uploadTmpJSON
+                                 GET      /excursions/tmpJson(.:format)                                        excursions#downloadTmpJSON
+            categories_add_items POST     /categories/add_items(.:format)                                      categories#add_items
+            categories_favorites          /categories/favorites(.:format)                                      categories#show_favorites
+                resources_search          /resources/search(.:format)                                          resources#search
+                      lre_search          /lre/search(.:format)                                                lre#search_lre
+                                          /home.json(.:format)                                                 home#index {:format=>:json}
+                            home          /home(.:format)                                                      excursions#index
+                         pdfexes GET      /pdfexes(.:format)                                                   pdfexes#index
+                                 POST     /pdfexes(.:format)                                                   pdfexes#create
+                       new_pdfex GET      /pdfexes/new(.:format)                                               pdfexes#new
+                      edit_pdfex GET      /pdfexes/:id/edit(.:format)                                          pdfexes#edit
+                           pdfex GET      /pdfexes/:id(.:format)                                               pdfexes#show
+                                 PUT      /pdfexes/:id(.:format)                                               pdfexes#update
+                                 DELETE   /pdfexes/:id(.:format)                                               pdfexes#destroy
+                     user_manual          /user_manual(.:format)                                               help#download_user_manual
+                    competitions GET      /competitions(.:format)                                              competitions#index
+                                 POST     /competitions(.:format)                                              competitions#create
+                 new_competition GET      /competitions/new(.:format)                                          competitions#new
+                edit_competition GET      /competitions/:id/edit(.:format)                                     competitions#edit
+                     competition GET      /competitions/:id(.:format)                                          competitions#show
+                                 PUT      /competitions/:id(.:format)                                          competitions#update
+                                 DELETE   /competitions/:id(.:format)                                          competitions#destroy
+                         contest POST     /contest(.:format)                                                   contests#create
+                     new_contest GET      /contest/new(.:format)                                               contests#new
+                    edit_contest GET      /contest/edit(.:format)                                              contests#edit
+                                 GET      /contest(.:format)                                                   contests#show
+                                 PUT      /contest(.:format)                                                   contests#update
+                                 DELETE   /contest(.:format)                                                   contests#destroy
+               contest_all_index GET      /contest_all(.:format)                                               contest_all#index
+                                 POST     /contest_all(.:format)                                               contest_all#create
+                 new_contest_all GET      /contest_all/new(.:format)                                           contest_all#new
+                edit_contest_all GET      /contest_all/:id/edit(.:format)                                      contest_all#edit
+                     contest_all GET      /contest_all/:id(.:format)                                           contest_all#show
+                                 PUT      /contest_all/:id(.:format)                                           contest_all#update
+                                 DELETE   /contest_all/:id(.:format)                                           contest_all#destroy
+                     about_index GET      /about(.:format)                                                     about#index
+                                 POST     /about(.:format)                                                     about#create
+                       new_about GET      /about/new(.:format)                                                 about#new
+                      edit_about GET      /about/:id/edit(.:format)                                            about#edit
+                           about GET      /about/:id(.:format)                                                 about#show
+                                 PUT      /about/:id(.:format)                                                 about#update
+                                 DELETE   /about/:id(.:format)                                                 about#destroy
+                       catalogue          /catalogue(.:format)                                                 catalogue#index
+                                          /catalogue/:category(.:format)                                       catalogue#show
+                                          /s/:id(.:format)                                                     shortener/shortened_urls#show
+                  oai_repository          /oai_repository                                                      OaiRepository::Engine
+                        loep_los GET      /loep/los(.:format)                                                  loep/los#index
+                                 POST     /loep/los(.:format)                                                  loep/los#create
+                     new_loep_lo GET      /loep/los/new(.:format)                                              loep/los#new
+                    edit_loep_lo GET      /loep/los/:id/edit(.:format)                                         loep/los#edit
+                         loep_lo GET      /loep/los/:id(.:format)                                              loep/los#show
+                                 PUT      /loep/los/:id(.:format)                                              loep/los#update
+                                 DELETE   /loep/los/:id(.:format)                                              loep/los#destroy
+             shortener_translate GET      /s/:unique_key(.:format)                                             shortener/shortened_urls#translate
+                           rooms GET      /rooms(.:format)                                                     rooms#index
+                                 POST     /rooms(.:format)                                                     rooms#create
+                        new_room GET      /rooms/new(.:format)                                                 rooms#new
+                       edit_room GET      /rooms/:id/edit(.:format)                                            rooms#edit
+                            room GET      /rooms/:id(.:format)                                                 rooms#show
+                                 PUT      /rooms/:id(.:format)                                                 rooms#update
+                                 DELETE   /rooms/:id(.:format)                                                 rooms#destroy
+                                          /.well-known/host-meta(.:format)                                     #<Proc:0x0000000918bba0@/var/lib/gems/1.9.1/gems/actionpack-3.2.14/lib/action_controller/metal.rb:245>
+                       webfinger          /webfinger(.:format)                                                 webfinger#index
+                            pshb          /pshb(.:format)                                                      pshb#index
+                          salmon          /salmon/:slug(.:format)                                              salmon#index
+                   linkser_parse          /linkser_parse(.:format)                                             linkser#index
+                        pictures GET      /pictures(.:format)                                                  pictures#index
+                                 POST     /pictures(.:format)                                                  pictures#create
+                     new_picture GET      /pictures/new(.:format)                                              pictures#new
+                    edit_picture GET      /pictures/:id/edit(.:format)                                         pictures#edit
+                         picture GET      /pictures/:id(.:format)                                              pictures#show
+                                 PUT      /pictures/:id(.:format)                                              pictures#update
+                                 DELETE   /pictures/:id(.:format)                                              pictures#destroy
+                          audios GET      /audios(.:format)                                                    audios#index
+                                 POST     /audios(.:format)                                                    audios#create
+                       new_audio GET      /audios/new(.:format)                                                audios#new
+                      edit_audio GET      /audios/:id/edit(.:format)                                           audios#edit
+                           audio GET      /audios/:id(.:format)                                                audios#show
+                                 PUT      /audios/:id(.:format)                                                audios#update
+                                 DELETE   /audios/:id(.:format)                                                audios#destroy
+                          videos GET      /videos(.:format)                                                    videos#index
+                                 POST     /videos(.:format)                                                    videos#create
+                       new_video GET      /videos/new(.:format)                                                videos#new
+                      edit_video GET      /videos/:id/edit(.:format)                                           videos#edit
+                           video GET      /videos/:id(.:format)                                                videos#show
+                                 PUT      /videos/:id(.:format)                                                videos#update
+                                 DELETE   /videos/:id(.:format)                                                videos#destroy
+                        original          /documents/original/:id(.:format)                                    documents#original
+                search_documents GET      /documents/search(.:format)                                          documents#search
+               download_document GET      /documents/:id/download(.:format)                                    documents#download
+                       documents GET      /documents(.:format)                                                 documents#index
+                                 POST     /documents(.:format)                                                 documents#create
+                    new_document GET      /documents/new(.:format)                                             documents#new
+                   edit_document GET      /documents/:id/edit(.:format)                                        documents#edit
+                        document GET      /documents/:id(.:format)                                             documents#show
+                                 PUT      /documents/:id(.:format)                                             documents#update
+                                 DELETE   /documents/:id(.:format)                                             documents#destroy
+                   user_pictures GET      /users/:user_id/pictures(.:format)                                   pictures#index
+                                 POST     /users/:user_id/pictures(.:format)                                   pictures#create
+                new_user_picture GET      /users/:user_id/pictures/new(.:format)                               pictures#new
+               edit_user_picture GET      /users/:user_id/pictures/:id/edit(.:format)                          pictures#edit
+                    user_picture GET      /users/:user_id/pictures/:id(.:format)                               pictures#show
+                                 PUT      /users/:user_id/pictures/:id(.:format)                               pictures#update
+                                 DELETE   /users/:user_id/pictures/:id(.:format)                               pictures#destroy
+                     user_audios GET      /users/:user_id/audios(.:format)                                     audios#index
+                                 POST     /users/:user_id/audios(.:format)                                     audios#create
+                  new_user_audio GET      /users/:user_id/audios/new(.:format)                                 audios#new
+                 edit_user_audio GET      /users/:user_id/audios/:id/edit(.:format)                            audios#edit
+                      user_audio GET      /users/:user_id/audios/:id(.:format)                                 audios#show
+                                 PUT      /users/:user_id/audios/:id(.:format)                                 audios#update
+                                 DELETE   /users/:user_id/audios/:id(.:format)                                 audios#destroy
+                     user_videos GET      /users/:user_id/videos(.:format)                                     videos#index
+                                 POST     /users/:user_id/videos(.:format)                                     videos#create
+                  new_user_video GET      /users/:user_id/videos/new(.:format)                                 videos#new
+                 edit_user_video GET      /users/:user_id/videos/:id/edit(.:format)                            videos#edit
+                      user_video GET      /users/:user_id/videos/:id(.:format)                                 videos#show
+                                 PUT      /users/:user_id/videos/:id(.:format)                                 videos#update
+                                 DELETE   /users/:user_id/videos/:id(.:format)                                 videos#destroy
+           search_user_documents GET      /users/:user_id/documents/search(.:format)                           documents#search
+          download_user_document GET      /users/:user_id/documents/:id/download(.:format)                     documents#download
+                  user_documents GET      /users/:user_id/documents(.:format)                                  documents#index
+                                 POST     /users/:user_id/documents(.:format)                                  documents#create
+               new_user_document GET      /users/:user_id/documents/new(.:format)                              documents#new
+              edit_user_document GET      /users/:user_id/documents/:id/edit(.:format)                         documents#edit
+                   user_document GET      /users/:user_id/documents/:id(.:format)                              documents#show
+                                 PUT      /users/:user_id/documents/:id(.:format)                              documents#update
+                                 DELETE   /users/:user_id/documents/:id(.:format)                              documents#destroy
+                           users GET      /users(.:format)                                                     users#index
+                                 POST     /users(.:format)                                                     users#create
+                        new_user GET      /users/new(.:format)                                                 users#new
+                       edit_user GET      /users/:id/edit(.:format)                                            users#edit
+                            user GET      /users/:id(.:format)                                                 users#show
+                                 PUT      /users/:id(.:format)                                                 users#update
+                                 DELETE   /users/:id(.:format)                                                 users#destroy
+                  group_pictures GET      /groups/:group_id/pictures(.:format)                                 pictures#index
+                                 POST     /groups/:group_id/pictures(.:format)                                 pictures#create
+               new_group_picture GET      /groups/:group_id/pictures/new(.:format)                             pictures#new
+              edit_group_picture GET      /groups/:group_id/pictures/:id/edit(.:format)                        pictures#edit
+                   group_picture GET      /groups/:group_id/pictures/:id(.:format)                             pictures#show
+                                 PUT      /groups/:group_id/pictures/:id(.:format)                             pictures#update
+                                 DELETE   /groups/:group_id/pictures/:id(.:format)                             pictures#destroy
+                    group_audios GET      /groups/:group_id/audios(.:format)                                   audios#index
+                                 POST     /groups/:group_id/audios(.:format)                                   audios#create
+                 new_group_audio GET      /groups/:group_id/audios/new(.:format)                               audios#new
+                edit_group_audio GET      /groups/:group_id/audios/:id/edit(.:format)                          audios#edit
+                     group_audio GET      /groups/:group_id/audios/:id(.:format)                               audios#show
+                                 PUT      /groups/:group_id/audios/:id(.:format)                               audios#update
+                                 DELETE   /groups/:group_id/audios/:id(.:format)                               audios#destroy
+                    group_videos GET      /groups/:group_id/videos(.:format)                                   videos#index
+                                 POST     /groups/:group_id/videos(.:format)                                   videos#create
+                 new_group_video GET      /groups/:group_id/videos/new(.:format)                               videos#new
+                edit_group_video GET      /groups/:group_id/videos/:id/edit(.:format)                          videos#edit
+                     group_video GET      /groups/:group_id/videos/:id(.:format)                               videos#show
+                                 PUT      /groups/:group_id/videos/:id(.:format)                               videos#update
+                                 DELETE   /groups/:group_id/videos/:id(.:format)                               videos#destroy
+          search_group_documents GET      /groups/:group_id/documents/search(.:format)                         documents#search
+         download_group_document GET      /groups/:group_id/documents/:id/download(.:format)                   documents#download
+                 group_documents GET      /groups/:group_id/documents(.:format)                                documents#index
+                                 POST     /groups/:group_id/documents(.:format)                                documents#create
+              new_group_document GET      /groups/:group_id/documents/new(.:format)                            documents#new
+             edit_group_document GET      /groups/:group_id/documents/:id/edit(.:format)                       documents#edit
+                  group_document GET      /groups/:group_id/documents/:id(.:format)                            documents#show
+                                 PUT      /groups/:group_id/documents/:id(.:format)                            documents#update
+                                 DELETE   /groups/:group_id/documents/:id(.:format)                            documents#destroy
+                          groups GET      /groups(.:format)                                                    groups#index
+                                 POST     /groups(.:format)                                                    groups#create
+                       new_group GET      /groups/new(.:format)                                                groups#new
+                      edit_group GET      /groups/:id/edit(.:format)                                           groups#edit
+                           group GET      /groups/:id(.:format)                                                groups#show
+                                 PUT      /groups/:id(.:format)                                                groups#update
+                                 DELETE   /groups/:id(.:format)                                                groups#destroy
+           site_current_pictures GET      /site/currents/:current_id/pictures(.:format)                        site/pictures#index
+                                 POST     /site/currents/:current_id/pictures(.:format)                        site/pictures#create
+        new_site_current_picture GET      /site/currents/:current_id/pictures/new(.:format)                    site/pictures#new
+       edit_site_current_picture GET      /site/currents/:current_id/pictures/:id/edit(.:format)               site/pictures#edit
+            site_current_picture GET      /site/currents/:current_id/pictures/:id(.:format)                    site/pictures#show
+                                 PUT      /site/currents/:current_id/pictures/:id(.:format)                    site/pictures#update
+                                 DELETE   /site/currents/:current_id/pictures/:id(.:format)                    site/pictures#destroy
+             site_current_audios GET      /site/currents/:current_id/audios(.:format)                          site/audios#index
+                                 POST     /site/currents/:current_id/audios(.:format)                          site/audios#create
+          new_site_current_audio GET      /site/currents/:current_id/audios/new(.:format)                      site/audios#new
+         edit_site_current_audio GET      /site/currents/:current_id/audios/:id/edit(.:format)                 site/audios#edit
+              site_current_audio GET      /site/currents/:current_id/audios/:id(.:format)                      site/audios#show
+                                 PUT      /site/currents/:current_id/audios/:id(.:format)                      site/audios#update
+                                 DELETE   /site/currents/:current_id/audios/:id(.:format)                      site/audios#destroy
+             site_current_videos GET      /site/currents/:current_id/videos(.:format)                          site/videos#index
+                                 POST     /site/currents/:current_id/videos(.:format)                          site/videos#create
+          new_site_current_video GET      /site/currents/:current_id/videos/new(.:format)                      site/videos#new
+         edit_site_current_video GET      /site/currents/:current_id/videos/:id/edit(.:format)                 site/videos#edit
+              site_current_video GET      /site/currents/:current_id/videos/:id(.:format)                      site/videos#show
+                                 PUT      /site/currents/:current_id/videos/:id(.:format)                      site/videos#update
+                                 DELETE   /site/currents/:current_id/videos/:id(.:format)                      site/videos#destroy
+   search_site_current_documents GET      /site/currents/:current_id/documents/search(.:format)                site/documents#search
+  download_site_current_document GET      /site/currents/:current_id/documents/:id/download(.:format)          site/documents#download
+          site_current_documents GET      /site/currents/:current_id/documents(.:format)                       site/documents#index
+                                 POST     /site/currents/:current_id/documents(.:format)                       site/documents#create
+       new_site_current_document GET      /site/currents/:current_id/documents/new(.:format)                   site/documents#new
+      edit_site_current_document GET      /site/currents/:current_id/documents/:id/edit(.:format)              site/documents#edit
+           site_current_document GET      /site/currents/:current_id/documents/:id(.:format)                   site/documents#show
+                                 PUT      /site/currents/:current_id/documents/:id(.:format)                   site/documents#update
+                                 DELETE   /site/currents/:current_id/documents/:id(.:format)                   site/documents#destroy
+                   site_currents GET      /site/currents(.:format)                                             site/currents#index
+                                 POST     /site/currents(.:format)                                             site/currents#create
+                new_site_current GET      /site/currents/new(.:format)                                         site/currents#new
+               edit_site_current GET      /site/currents/:id/edit(.:format)                                    site/currents#edit
+                    site_current GET      /site/currents/:id(.:format)                                         site/currents#show
+                                 PUT      /site/currents/:id(.:format)                                         site/currents#update
+                                 DELETE   /site/currents/:id(.:format)                                         site/currents#destroy
+         remote_subject_pictures GET      /remote_subjects/:remote_subject_id/pictures(.:format)               pictures#index
+                                 POST     /remote_subjects/:remote_subject_id/pictures(.:format)               pictures#create
+      new_remote_subject_picture GET      /remote_subjects/:remote_subject_id/pictures/new(.:format)           pictures#new
+     edit_remote_subject_picture GET      /remote_subjects/:remote_subject_id/pictures/:id/edit(.:format)      pictures#edit
+          remote_subject_picture GET      /remote_subjects/:remote_subject_id/pictures/:id(.:format)           pictures#show
+                                 PUT      /remote_subjects/:remote_subject_id/pictures/:id(.:format)           pictures#update
+                                 DELETE   /remote_subjects/:remote_subject_id/pictures/:id(.:format)           pictures#destroy
+           remote_subject_audios GET      /remote_subjects/:remote_subject_id/audios(.:format)                 audios#index
+                                 POST     /remote_subjects/:remote_subject_id/audios(.:format)                 audios#create
+        new_remote_subject_audio GET      /remote_subjects/:remote_subject_id/audios/new(.:format)             audios#new
+       edit_remote_subject_audio GET      /remote_subjects/:remote_subject_id/audios/:id/edit(.:format)        audios#edit
+            remote_subject_audio GET      /remote_subjects/:remote_subject_id/audios/:id(.:format)             audios#show
+                                 PUT      /remote_subjects/:remote_subject_id/audios/:id(.:format)             audios#update
+                                 DELETE   /remote_subjects/:remote_subject_id/audios/:id(.:format)             audios#destroy
+           remote_subject_videos GET      /remote_subjects/:remote_subject_id/videos(.:format)                 videos#index
+                                 POST     /remote_subjects/:remote_subject_id/videos(.:format)                 videos#create
+        new_remote_subject_video GET      /remote_subjects/:remote_subject_id/videos/new(.:format)             videos#new
+       edit_remote_subject_video GET      /remote_subjects/:remote_subject_id/videos/:id/edit(.:format)        videos#edit
+            remote_subject_video GET      /remote_subjects/:remote_subject_id/videos/:id(.:format)             videos#show
+                                 PUT      /remote_subjects/:remote_subject_id/videos/:id(.:format)             videos#update
+                                 DELETE   /remote_subjects/:remote_subject_id/videos/:id(.:format)             videos#destroy
+ search_remote_subject_documents GET      /remote_subjects/:remote_subject_id/documents/search(.:format)       documents#search
+download_remote_subject_document GET      /remote_subjects/:remote_subject_id/documents/:id/download(.:format) documents#download
+        remote_subject_documents GET      /remote_subjects/:remote_subject_id/documents(.:format)              documents#index
+                                 POST     /remote_subjects/:remote_subject_id/documents(.:format)              documents#create
+     new_remote_subject_document GET      /remote_subjects/:remote_subject_id/documents/new(.:format)          documents#new
+    edit_remote_subject_document GET      /remote_subjects/:remote_subject_id/documents/:id/edit(.:format)     documents#edit
+         remote_subject_document GET      /remote_subjects/:remote_subject_id/documents/:id(.:format)          documents#show
+                                 PUT      /remote_subjects/:remote_subject_id/documents/:id(.:format)          documents#update
+                                 DELETE   /remote_subjects/:remote_subject_id/documents/:id(.:format)          documents#destroy
+                 remote_subjects GET      /remote_subjects(.:format)                                           remote_subjects#index
+                                 POST     /remote_subjects(.:format)                                           remote_subjects#create
+              new_remote_subject GET      /remote_subjects/new(.:format)                                       remote_subjects#new
+             edit_remote_subject GET      /remote_subjects/:id/edit(.:format)                                  remote_subjects#edit
+                  remote_subject GET      /remote_subjects/:id(.:format)                                       remote_subjects#show
+                                 PUT      /remote_subjects/:id(.:format)                                       remote_subjects#update
+                                 DELETE   /remote_subjects/:id(.:format)                                       remote_subjects#destroy
+                            root          /                                                                    frontpage#index
+                            home          /home(.:format)                                                      home#index
+                       user_root          /home(.:format)                                                      home#index
+                         explore          /explore(/:section)(.:format)                                        explore#index
+                          search          /search(.:format)                                                    search#index
+                   user_contacts GET      /users/:user_id/contacts(.:format)                                   contacts#index
+                                 POST     /users/:user_id/contacts(.:format)                                   contacts#create
+                new_user_contact GET      /users/:user_id/contacts/new(.:format)                               contacts#new
+               edit_user_contact GET      /users/:user_id/contacts/:id/edit(.:format)                          contacts#edit
+                    user_contact GET      /users/:user_id/contacts/:id(.:format)                               contacts#show
+                                 PUT      /users/:user_id/contacts/:id(.:format)                               contacts#update
+                                 DELETE   /users/:user_id/contacts/:id(.:format)                               contacts#destroy
+                       user_like POST     /users/:user_id/like(.:format)                                       likes#create
+                   new_user_like GET      /users/:user_id/like/new(.:format)                                   likes#new
+                  edit_user_like GET      /users/:user_id/like/edit(.:format)                                  likes#edit
+                                 GET      /users/:user_id/like(.:format)                                       likes#show
+                                 PUT      /users/:user_id/like(.:format)                                       likes#update
+                                 DELETE   /users/:user_id/like(.:format)                                       likes#destroy
+                    user_profile POST     /users/:user_id/profile(.:format)                                    profiles#create
+                new_user_profile GET      /users/:user_id/profile/new(.:format)                                profiles#new
+               edit_user_profile GET      /users/:user_id/profile/edit(.:format)                               profiles#edit
+                                 GET      /users/:user_id/profile(.:format)                                    profiles#show
+                                 PUT      /users/:user_id/profile(.:format)                                    profiles#update
+                                 DELETE   /users/:user_id/profile(.:format)                                    profiles#destroy
+                 user_activities GET      /users/:user_id/activities(.:format)                                 activities#index
+                                 POST     /users/:user_id/activities(.:format)                                 activities#create
+               new_user_activity GET      /users/:user_id/activities/new(.:format)                             activities#new
+              edit_user_activity GET      /users/:user_id/activities/:id/edit(.:format)                        activities#edit
+                   user_activity GET      /users/:user_id/activities/:id(.:format)                             activities#show
+                                 PUT      /users/:user_id/activities/:id(.:format)                             activities#update
+                                 DELETE   /users/:user_id/activities/:id(.:format)                             activities#destroy
+               search_user_posts GET      /users/:user_id/posts/search(.:format)                               posts#search
+                      user_posts GET      /users/:user_id/posts(.:format)                                      posts#index
+                                 POST     /users/:user_id/posts(.:format)                                      posts#create
+                   new_user_post GET      /users/:user_id/posts/new(.:format)                                  posts#new
+                  edit_user_post GET      /users/:user_id/posts/:id/edit(.:format)                             posts#edit
+                       user_post GET      /users/:user_id/posts/:id(.:format)                                  posts#show
+                                 PUT      /users/:user_id/posts/:id(.:format)                                  posts#update
+                                 DELETE   /users/:user_id/posts/:id(.:format)                                  posts#destroy
+            search_user_comments GET      /users/:user_id/comments/search(.:format)                            comments#search
+                   user_comments GET      /users/:user_id/comments(.:format)                                   comments#index
+                                 POST     /users/:user_id/comments(.:format)                                   comments#create
+                new_user_comment GET      /users/:user_id/comments/new(.:format)                               comments#new
+               edit_user_comment GET      /users/:user_id/comments/:id/edit(.:format)                          comments#edit
+                    user_comment GET      /users/:user_id/comments/:id(.:format)                               comments#show
+                                 PUT      /users/:user_id/comments/:id(.:format)                               comments#update
+                                 DELETE   /users/:user_id/comments/:id(.:format)                               comments#destroy
+                                 GET      /users/:user_id/documents/search(.:format)                           documents#search
+                                 GET      /users/:user_id/documents(.:format)                                  documents#index
+                                 POST     /users/:user_id/documents(.:format)                                  documents#create
+                                 GET      /users/:user_id/documents/new(.:format)                              documents#new
+                                 GET      /users/:user_id/documents/:id/edit(.:format)                         documents#edit
+                                 GET      /users/:user_id/documents/:id(.:format)                              documents#show
+                                 PUT      /users/:user_id/documents/:id(.:format)                              documents#update
+                                 DELETE   /users/:user_id/documents/:id(.:format)                              documents#destroy
+               search_user_links GET      /users/:user_id/links/search(.:format)                               links#search
+                      user_links GET      /users/:user_id/links(.:format)                                      links#index
+                                 POST     /users/:user_id/links(.:format)                                      links#create
+                   new_user_link GET      /users/:user_id/links/new(.:format)                                  links#new
+                  edit_user_link GET      /users/:user_id/links/:id/edit(.:format)                             links#edit
+                       user_link GET      /users/:user_id/links/:id(.:format)                                  links#show
+                                 PUT      /users/:user_id/links/:id(.:format)                                  links#update
+                                 DELETE   /users/:user_id/links/:id(.:format)                                  links#destroy
+          search_user_excursions GET      /users/:user_id/excursions/search(.:format)                          excursions#search
+                 user_excursions GET      /users/:user_id/excursions(.:format)                                 excursions#index
+                                 POST     /users/:user_id/excursions(.:format)                                 excursions#create
+              new_user_excursion GET      /users/:user_id/excursions/new(.:format)                             excursions#new
+             edit_user_excursion GET      /users/:user_id/excursions/:id/edit(.:format)                        excursions#edit
+                  user_excursion GET      /users/:user_id/excursions/:id(.:format)                             excursions#show
+                                 PUT      /users/:user_id/excursions/:id(.:format)                             excursions#update
+                                 DELETE   /users/:user_id/excursions/:id(.:format)                             excursions#destroy
+              search_user_slides GET      /users/:user_id/slides/search(.:format)                              slides#search
+                     user_slides GET      /users/:user_id/slides(.:format)                                     slides#index
+                                 POST     /users/:user_id/slides(.:format)                                     slides#create
+                  new_user_slide GET      /users/:user_id/slides/new(.:format)                                 slides#new
+                 edit_user_slide GET      /users/:user_id/slides/:id/edit(.:format)                            slides#edit
+                      user_slide GET      /users/:user_id/slides/:id(.:format)                                 slides#show
+                                 PUT      /users/:user_id/slides/:id(.:format)                                 slides#update
+                                 DELETE   /users/:user_id/slides/:id(.:format)                                 slides#destroy
+              search_user_embeds GET      /users/:user_id/embeds/search(.:format)                              embeds#search
+                     user_embeds GET      /users/:user_id/embeds(.:format)                                     embeds#index
+                                 POST     /users/:user_id/embeds(.:format)                                     embeds#create
+                  new_user_embed GET      /users/:user_id/embeds/new(.:format)                                 embeds#new
+                 edit_user_embed GET      /users/:user_id/embeds/:id/edit(.:format)                            embeds#edit
+                      user_embed GET      /users/:user_id/embeds/:id(.:format)                                 embeds#show
+                                 PUT      /users/:user_id/embeds/:id(.:format)                                 embeds#update
+                                 DELETE   /users/:user_id/embeds/:id(.:format)                                 embeds#destroy
+                search_user_swfs GET      /users/:user_id/swfs/search(.:format)                                swfs#search
+                       user_swfs GET      /users/:user_id/swfs(.:format)                                       swfs#index
+                                 POST     /users/:user_id/swfs(.:format)                                       swfs#create
+                    new_user_swf GET      /users/:user_id/swfs/new(.:format)                                   swfs#new
+                   edit_user_swf GET      /users/:user_id/swfs/:id/edit(.:format)                              swfs#edit
+                        user_swf GET      /users/:user_id/swfs/:id(.:format)                                   swfs#show
+                                 PUT      /users/:user_id/swfs/:id(.:format)                                   swfs#update
+                                 DELETE   /users/:user_id/swfs/:id(.:format)                                   swfs#destroy
+          search_user_officedocs GET      /users/:user_id/officedocs/search(.:format)                          officedocs#search
+                 user_officedocs GET      /users/:user_id/officedocs(.:format)                                 officedocs#index
+                                 POST     /users/:user_id/officedocs(.:format)                                 officedocs#create
+              new_user_officedoc GET      /users/:user_id/officedocs/new(.:format)                             officedocs#new
+             edit_user_officedoc GET      /users/:user_id/officedocs/:id/edit(.:format)                        officedocs#edit
+                  user_officedoc GET      /users/:user_id/officedocs/:id(.:format)                             officedocs#show
+                                 PUT      /users/:user_id/officedocs/:id(.:format)                             officedocs#update
+                                 DELETE   /users/:user_id/officedocs/:id(.:format)                             officedocs#destroy
+              search_user_events GET      /users/:user_id/events/search(.:format)                              events#search
+                     user_events GET      /users/:user_id/events(.:format)                                     events#index
+                                 POST     /users/:user_id/events(.:format)                                     events#create
+                  new_user_event GET      /users/:user_id/events/new(.:format)                                 events#new
+                 edit_user_event GET      /users/:user_id/events/:id/edit(.:format)                            events#edit
+                      user_event GET      /users/:user_id/events/:id(.:format)                                 events#show
+                                 PUT      /users/:user_id/events/:id(.:format)                                 events#update
+                                 DELETE   /users/:user_id/events/:id(.:format)                                 events#destroy
+          search_user_categories GET      /users/:user_id/categories/search(.:format)                          categories#search
+                 user_categories GET      /users/:user_id/categories(.:format)                                 categories#index
+                                 POST     /users/:user_id/categories(.:format)                                 categories#create
+               new_user_category GET      /users/:user_id/categories/new(.:format)                             categories#new
+              edit_user_category GET      /users/:user_id/categories/:id/edit(.:format)                        categories#edit
+                   user_category GET      /users/:user_id/categories/:id(.:format)                             categories#show
+                                 PUT      /users/:user_id/categories/:id(.:format)                             categories#update
+                                 DELETE   /users/:user_id/categories/:id(.:format)                             categories#destroy
+          search_user_repository GET      /users/:user_id/repository/search(.:format)                          repositories#search
+                 user_repository POST     /users/:user_id/repository(.:format)                                 repositories#create
+             new_user_repository GET      /users/:user_id/repository/new(.:format)                             repositories#new
+            edit_user_repository GET      /users/:user_id/repository/edit(.:format)                            repositories#edit
+                                 GET      /users/:user_id/repository(.:format)                                 repositories#show
+                                 PUT      /users/:user_id/repository(.:format)                                 repositories#update
+                                 DELETE   /users/:user_id/repository(.:format)                                 repositories#destroy
+                                 GET      /users(.:format)                                                     users#index
+                                 POST     /users(.:format)                                                     users#create
+                                 GET      /users/new(.:format)                                                 users#new
+                                 GET      /users/:id/edit(.:format)                                            users#edit
+                                 GET      /users/:id(.:format)                                                 users#show
+                                 PUT      /users/:id(.:format)                                                 users#update
+                                 DELETE   /users/:id(.:format)                                                 users#destroy
+                  group_contacts GET      /groups/:group_id/contacts(.:format)                                 contacts#index
+                                 POST     /groups/:group_id/contacts(.:format)                                 contacts#create
+               new_group_contact GET      /groups/:group_id/contacts/new(.:format)                             contacts#new
+              edit_group_contact GET      /groups/:group_id/contacts/:id/edit(.:format)                        contacts#edit
+                   group_contact GET      /groups/:group_id/contacts/:id(.:format)                             contacts#show
+                                 PUT      /groups/:group_id/contacts/:id(.:format)                             contacts#update
+                                 DELETE   /groups/:group_id/contacts/:id(.:format)                             contacts#destroy
+                      group_like POST     /groups/:group_id/like(.:format)                                     likes#create
+                  new_group_like GET      /groups/:group_id/like/new(.:format)                                 likes#new
+                 edit_group_like GET      /groups/:group_id/like/edit(.:format)                                likes#edit
+                                 GET      /groups/:group_id/like(.:format)                                     likes#show
+                                 PUT      /groups/:group_id/like(.:format)                                     likes#update
+                                 DELETE   /groups/:group_id/like(.:format)                                     likes#destroy
+                   group_profile POST     /groups/:group_id/profile(.:format)                                  profiles#create
+               new_group_profile GET      /groups/:group_id/profile/new(.:format)                              profiles#new
+              edit_group_profile GET      /groups/:group_id/profile/edit(.:format)                             profiles#edit
+                                 GET      /groups/:group_id/profile(.:format)                                  profiles#show
+                                 PUT      /groups/:group_id/profile(.:format)                                  profiles#update
+                                 DELETE   /groups/:group_id/profile(.:format)                                  profiles#destroy
+                group_activities GET      /groups/:group_id/activities(.:format)                               activities#index
+                                 POST     /groups/:group_id/activities(.:format)                               activities#create
+              new_group_activity GET      /groups/:group_id/activities/new(.:format)                           activities#new
+             edit_group_activity GET      /groups/:group_id/activities/:id/edit(.:format)                      activities#edit
+                  group_activity GET      /groups/:group_id/activities/:id(.:format)                           activities#show
+                                 PUT      /groups/:group_id/activities/:id(.:format)                           activities#update
+                                 DELETE   /groups/:group_id/activities/:id(.:format)                           activities#destroy
+              search_group_posts GET      /groups/:group_id/posts/search(.:format)                             posts#search
+                     group_posts GET      /groups/:group_id/posts(.:format)                                    posts#index
+                                 POST     /groups/:group_id/posts(.:format)                                    posts#create
+                  new_group_post GET      /groups/:group_id/posts/new(.:format)                                posts#new
+                 edit_group_post GET      /groups/:group_id/posts/:id/edit(.:format)                           posts#edit
+                      group_post GET      /groups/:group_id/posts/:id(.:format)                                posts#show
+                                 PUT      /groups/:group_id/posts/:id(.:format)                                posts#update
+                                 DELETE   /groups/:group_id/posts/:id(.:format)                                posts#destroy
+           search_group_comments GET      /groups/:group_id/comments/search(.:format)                          comments#search
+                  group_comments GET      /groups/:group_id/comments(.:format)                                 comments#index
+                                 POST     /groups/:group_id/comments(.:format)                                 comments#create
+               new_group_comment GET      /groups/:group_id/comments/new(.:format)                             comments#new
+              edit_group_comment GET      /groups/:group_id/comments/:id/edit(.:format)                        comments#edit
+                   group_comment GET      /groups/:group_id/comments/:id(.:format)                             comments#show
+                                 PUT      /groups/:group_id/comments/:id(.:format)                             comments#update
+                                 DELETE   /groups/:group_id/comments/:id(.:format)                             comments#destroy
+                                 GET      /groups/:group_id/documents/search(.:format)                         documents#search
+                                 GET      /groups/:group_id/documents(.:format)                                documents#index
+                                 POST     /groups/:group_id/documents(.:format)                                documents#create
+                                 GET      /groups/:group_id/documents/new(.:format)                            documents#new
+                                 GET      /groups/:group_id/documents/:id/edit(.:format)                       documents#edit
+                                 GET      /groups/:group_id/documents/:id(.:format)                            documents#show
+                                 PUT      /groups/:group_id/documents/:id(.:format)                            documents#update
+                                 DELETE   /groups/:group_id/documents/:id(.:format)                            documents#destroy
+              search_group_links GET      /groups/:group_id/links/search(.:format)                             links#search
+                     group_links GET      /groups/:group_id/links(.:format)                                    links#index
+                                 POST     /groups/:group_id/links(.:format)                                    links#create
+                  new_group_link GET      /groups/:group_id/links/new(.:format)                                links#new
+                 edit_group_link GET      /groups/:group_id/links/:id/edit(.:format)                           links#edit
+                      group_link GET      /groups/:group_id/links/:id(.:format)                                links#show
+                                 PUT      /groups/:group_id/links/:id(.:format)                                links#update
+                                 DELETE   /groups/:group_id/links/:id(.:format)                                links#destroy
+         search_group_excursions GET      /groups/:group_id/excursions/search(.:format)                        excursions#search
+                group_excursions GET      /groups/:group_id/excursions(.:format)                               excursions#index
+                                 POST     /groups/:group_id/excursions(.:format)                               excursions#create
+             new_group_excursion GET      /groups/:group_id/excursions/new(.:format)                           excursions#new
+            edit_group_excursion GET      /groups/:group_id/excursions/:id/edit(.:format)                      excursions#edit
+                 group_excursion GET      /groups/:group_id/excursions/:id(.:format)                           excursions#show
+                                 PUT      /groups/:group_id/excursions/:id(.:format)                           excursions#update
+                                 DELETE   /groups/:group_id/excursions/:id(.:format)                           excursions#destroy
+             search_group_slides GET      /groups/:group_id/slides/search(.:format)                            slides#search
+                    group_slides GET      /groups/:group_id/slides(.:format)                                   slides#index
+                                 POST     /groups/:group_id/slides(.:format)                                   slides#create
+                 new_group_slide GET      /groups/:group_id/slides/new(.:format)                               slides#new
+                edit_group_slide GET      /groups/:group_id/slides/:id/edit(.:format)                          slides#edit
+                     group_slide GET      /groups/:group_id/slides/:id(.:format)                               slides#show
+                                 PUT      /groups/:group_id/slides/:id(.:format)                               slides#update
+                                 DELETE   /groups/:group_id/slides/:id(.:format)                               slides#destroy
+             search_group_embeds GET      /groups/:group_id/embeds/search(.:format)                            embeds#search
+                    group_embeds GET      /groups/:group_id/embeds(.:format)                                   embeds#index
+                                 POST     /groups/:group_id/embeds(.:format)                                   embeds#create
+                 new_group_embed GET      /groups/:group_id/embeds/new(.:format)                               embeds#new
+                edit_group_embed GET      /groups/:group_id/embeds/:id/edit(.:format)                          embeds#edit
+                     group_embed GET      /groups/:group_id/embeds/:id(.:format)                               embeds#show
+                                 PUT      /groups/:group_id/embeds/:id(.:format)                               embeds#update
+                                 DELETE   /groups/:group_id/embeds/:id(.:format)                               embeds#destroy
+               search_group_swfs GET      /groups/:group_id/swfs/search(.:format)                              swfs#search
+                      group_swfs GET      /groups/:group_id/swfs(.:format)                                     swfs#index
+                                 POST     /groups/:group_id/swfs(.:format)                                     swfs#create
+                   new_group_swf GET      /groups/:group_id/swfs/new(.:format)                                 swfs#new
+                  edit_group_swf GET      /groups/:group_id/swfs/:id/edit(.:format)                            swfs#edit
+                       group_swf GET      /groups/:group_id/swfs/:id(.:format)                                 swfs#show
+                                 PUT      /groups/:group_id/swfs/:id(.:format)                                 swfs#update
+                                 DELETE   /groups/:group_id/swfs/:id(.:format)                                 swfs#destroy
+         search_group_officedocs GET      /groups/:group_id/officedocs/search(.:format)                        officedocs#search
+                group_officedocs GET      /groups/:group_id/officedocs(.:format)                               officedocs#index
+                                 POST     /groups/:group_id/officedocs(.:format)                               officedocs#create
+             new_group_officedoc GET      /groups/:group_id/officedocs/new(.:format)                           officedocs#new
+            edit_group_officedoc GET      /groups/:group_id/officedocs/:id/edit(.:format)                      officedocs#edit
+                 group_officedoc GET      /groups/:group_id/officedocs/:id(.:format)                           officedocs#show
+                                 PUT      /groups/:group_id/officedocs/:id(.:format)                           officedocs#update
+                                 DELETE   /groups/:group_id/officedocs/:id(.:format)                           officedocs#destroy
+             search_group_events GET      /groups/:group_id/events/search(.:format)                            events#search
+                    group_events GET      /groups/:group_id/events(.:format)                                   events#index
+                                 POST     /groups/:group_id/events(.:format)                                   events#create
+                 new_group_event GET      /groups/:group_id/events/new(.:format)                               events#new
+                edit_group_event GET      /groups/:group_id/events/:id/edit(.:format)                          events#edit
+                     group_event GET      /groups/:group_id/events/:id(.:format)                               events#show
+                                 PUT      /groups/:group_id/events/:id(.:format)                               events#update
+                                 DELETE   /groups/:group_id/events/:id(.:format)                               events#destroy
+         search_group_categories GET      /groups/:group_id/categories/search(.:format)                        categories#search
+                group_categories GET      /groups/:group_id/categories(.:format)                               categories#index
+                                 POST     /groups/:group_id/categories(.:format)                               categories#create
+              new_group_category GET      /groups/:group_id/categories/new(.:format)                           categories#new
+             edit_group_category GET      /groups/:group_id/categories/:id/edit(.:format)                      categories#edit
+                  group_category GET      /groups/:group_id/categories/:id(.:format)                           categories#show
+                                 PUT      /groups/:group_id/categories/:id(.:format)                           categories#update
+                                 DELETE   /groups/:group_id/categories/:id(.:format)                           categories#destroy
+         search_group_repository GET      /groups/:group_id/repository/search(.:format)                        repositories#search
+                group_repository POST     /groups/:group_id/repository(.:format)                               repositories#create
+            new_group_repository GET      /groups/:group_id/repository/new(.:format)                           repositories#new
+           edit_group_repository GET      /groups/:group_id/repository/edit(.:format)                          repositories#edit
+                                 GET      /groups/:group_id/repository(.:format)                               repositories#show
+                                 PUT      /groups/:group_id/repository(.:format)                               repositories#update
+                                 DELETE   /groups/:group_id/repository(.:format)                               repositories#destroy
+                                 GET      /groups(.:format)                                                    groups#index
+                                 POST     /groups(.:format)                                                    groups#create
+                                 GET      /groups/new(.:format)                                                groups#new
+                                 GET      /groups/:id/edit(.:format)                                           groups#edit
+                                 GET      /groups/:id(.:format)                                                groups#show
+                                 PUT      /groups/:id(.:format)                                                groups#update
+                                 DELETE   /groups/:id(.:format)                                                groups#destroy
+           site_current_contacts GET      /site/currents/:current_id/contacts(.:format)                        site/contacts#index
+                                 POST     /site/currents/:current_id/contacts(.:format)                        site/contacts#create
+        new_site_current_contact GET      /site/currents/:current_id/contacts/new(.:format)                    site/contacts#new
+       edit_site_current_contact GET      /site/currents/:current_id/contacts/:id/edit(.:format)               site/contacts#edit
+            site_current_contact GET      /site/currents/:current_id/contacts/:id(.:format)                    site/contacts#show
+                                 PUT      /site/currents/:current_id/contacts/:id(.:format)                    site/contacts#update
+                                 DELETE   /site/currents/:current_id/contacts/:id(.:format)                    site/contacts#destroy
+               site_current_like POST     /site/currents/:current_id/like(.:format)                            site/likes#create
+           new_site_current_like GET      /site/currents/:current_id/like/new(.:format)                        site/likes#new
+          edit_site_current_like GET      /site/currents/:current_id/like/edit(.:format)                       site/likes#edit
+                                 GET      /site/currents/:current_id/like(.:format)                            site/likes#show
+                                 PUT      /site/currents/:current_id/like(.:format)                            site/likes#update
+                                 DELETE   /site/currents/:current_id/like(.:format)                            site/likes#destroy
+            site_current_profile POST     /site/currents/:current_id/profile(.:format)                         site/profiles#create
+        new_site_current_profile GET      /site/currents/:current_id/profile/new(.:format)                     site/profiles#new
+       edit_site_current_profile GET      /site/currents/:current_id/profile/edit(.:format)                    site/profiles#edit
+                                 GET      /site/currents/:current_id/profile(.:format)                         site/profiles#show
+                                 PUT      /site/currents/:current_id/profile(.:format)                         site/profiles#update
+                                 DELETE   /site/currents/:current_id/profile(.:format)                         site/profiles#destroy
+         site_current_activities GET      /site/currents/:current_id/activities(.:format)                      site/activities#index
+                                 POST     /site/currents/:current_id/activities(.:format)                      site/activities#create
+       new_site_current_activity GET      /site/currents/:current_id/activities/new(.:format)                  site/activities#new
+      edit_site_current_activity GET      /site/currents/:current_id/activities/:id/edit(.:format)             site/activities#edit
+           site_current_activity GET      /site/currents/:current_id/activities/:id(.:format)                  site/activities#show
+                                 PUT      /site/currents/:current_id/activities/:id(.:format)                  site/activities#update
+                                 DELETE   /site/currents/:current_id/activities/:id(.:format)                  site/activities#destroy
+       search_site_current_posts GET      /site/currents/:current_id/posts/search(.:format)                    site/posts#search
+              site_current_posts GET      /site/currents/:current_id/posts(.:format)                           site/posts#index
+                                 POST     /site/currents/:current_id/posts(.:format)                           site/posts#create
+           new_site_current_post GET      /site/currents/:current_id/posts/new(.:format)                       site/posts#new
+          edit_site_current_post GET      /site/currents/:current_id/posts/:id/edit(.:format)                  site/posts#edit
+               site_current_post GET      /site/currents/:current_id/posts/:id(.:format)                       site/posts#show
+                                 PUT      /site/currents/:current_id/posts/:id(.:format)                       site/posts#update
+                                 DELETE   /site/currents/:current_id/posts/:id(.:format)                       site/posts#destroy
+    search_site_current_comments GET      /site/currents/:current_id/comments/search(.:format)                 site/comments#search
+           site_current_comments GET      /site/currents/:current_id/comments(.:format)                        site/comments#index
+                                 POST     /site/currents/:current_id/comments(.:format)                        site/comments#create
+        new_site_current_comment GET      /site/currents/:current_id/comments/new(.:format)                    site/comments#new
+       edit_site_current_comment GET      /site/currents/:current_id/comments/:id/edit(.:format)               site/comments#edit
+            site_current_comment GET      /site/currents/:current_id/comments/:id(.:format)                    site/comments#show
+                                 PUT      /site/currents/:current_id/comments/:id(.:format)                    site/comments#update
+                                 DELETE   /site/currents/:current_id/comments/:id(.:format)                    site/comments#destroy
+                                 GET      /site/currents/:current_id/documents/search(.:format)                site/documents#search
+                                 GET      /site/currents/:current_id/documents(.:format)                       site/documents#index
+                                 POST     /site/currents/:current_id/documents(.:format)                       site/documents#create
+                                 GET      /site/currents/:current_id/documents/new(.:format)                   site/documents#new
+                                 GET      /site/currents/:current_id/documents/:id/edit(.:format)              site/documents#edit
+                                 GET      /site/currents/:current_id/documents/:id(.:format)                   site/documents#show
+                                 PUT      /site/currents/:current_id/documents/:id(.:format)                   site/documents#update
+                                 DELETE   /site/currents/:current_id/documents/:id(.:format)                   site/documents#destroy
+       search_site_current_links GET      /site/currents/:current_id/links/search(.:format)                    site/links#search
+              site_current_links GET      /site/currents/:current_id/links(.:format)                           site/links#index
+                                 POST     /site/currents/:current_id/links(.:format)                           site/links#create
+           new_site_current_link GET      /site/currents/:current_id/links/new(.:format)                       site/links#new
+          edit_site_current_link GET      /site/currents/:current_id/links/:id/edit(.:format)                  site/links#edit
+               site_current_link GET      /site/currents/:current_id/links/:id(.:format)                       site/links#show
+                                 PUT      /site/currents/:current_id/links/:id(.:format)                       site/links#update
+                                 DELETE   /site/currents/:current_id/links/:id(.:format)                       site/links#destroy
+  search_site_current_excursions GET      /site/currents/:current_id/excursions/search(.:format)               site/excursions#search
+         site_current_excursions GET      /site/currents/:current_id/excursions(.:format)                      site/excursions#index
+                                 POST     /site/currents/:current_id/excursions(.:format)                      site/excursions#create
+      new_site_current_excursion GET      /site/currents/:current_id/excursions/new(.:format)                  site/excursions#new
+     edit_site_current_excursion GET      /site/currents/:current_id/excursions/:id/edit(.:format)             site/excursions#edit
+          site_current_excursion GET      /site/currents/:current_id/excursions/:id(.:format)                  site/excursions#show
+                                 PUT      /site/currents/:current_id/excursions/:id(.:format)                  site/excursions#update
+                                 DELETE   /site/currents/:current_id/excursions/:id(.:format)                  site/excursions#destroy
+      search_site_current_slides GET      /site/currents/:current_id/slides/search(.:format)                   site/slides#search
+             site_current_slides GET      /site/currents/:current_id/slides(.:format)                          site/slides#index
+                                 POST     /site/currents/:current_id/slides(.:format)                          site/slides#create
+          new_site_current_slide GET      /site/currents/:current_id/slides/new(.:format)                      site/slides#new
+         edit_site_current_slide GET      /site/currents/:current_id/slides/:id/edit(.:format)                 site/slides#edit
+              site_current_slide GET      /site/currents/:current_id/slides/:id(.:format)                      site/slides#show
+                                 PUT      /site/currents/:current_id/slides/:id(.:format)                      site/slides#update
+                                 DELETE   /site/currents/:current_id/slides/:id(.:format)                      site/slides#destroy
+      search_site_current_embeds GET      /site/currents/:current_id/embeds/search(.:format)                   site/embeds#search
+             site_current_embeds GET      /site/currents/:current_id/embeds(.:format)                          site/embeds#index
+                                 POST     /site/currents/:current_id/embeds(.:format)                          site/embeds#create
+          new_site_current_embed GET      /site/currents/:current_id/embeds/new(.:format)                      site/embeds#new
+         edit_site_current_embed GET      /site/currents/:current_id/embeds/:id/edit(.:format)                 site/embeds#edit
+              site_current_embed GET      /site/currents/:current_id/embeds/:id(.:format)                      site/embeds#show
+                                 PUT      /site/currents/:current_id/embeds/:id(.:format)                      site/embeds#update
+                                 DELETE   /site/currents/:current_id/embeds/:id(.:format)                      site/embeds#destroy
+        search_site_current_swfs GET      /site/currents/:current_id/swfs/search(.:format)                     site/swfs#search
+               site_current_swfs GET      /site/currents/:current_id/swfs(.:format)                            site/swfs#index
+                                 POST     /site/currents/:current_id/swfs(.:format)                            site/swfs#create
+            new_site_current_swf GET      /site/currents/:current_id/swfs/new(.:format)                        site/swfs#new
+           edit_site_current_swf GET      /site/currents/:current_id/swfs/:id/edit(.:format)                   site/swfs#edit
+                site_current_swf GET      /site/currents/:current_id/swfs/:id(.:format)                        site/swfs#show
+                                 PUT      /site/currents/:current_id/swfs/:id(.:format)                        site/swfs#update
+                                 DELETE   /site/currents/:current_id/swfs/:id(.:format)                        site/swfs#destroy
+  search_site_current_officedocs GET      /site/currents/:current_id/officedocs/search(.:format)               site/officedocs#search
+         site_current_officedocs GET      /site/currents/:current_id/officedocs(.:format)                      site/officedocs#index
+                                 POST     /site/currents/:current_id/officedocs(.:format)                      site/officedocs#create
+      new_site_current_officedoc GET      /site/currents/:current_id/officedocs/new(.:format)                  site/officedocs#new
+     edit_site_current_officedoc GET      /site/currents/:current_id/officedocs/:id/edit(.:format)             site/officedocs#edit
+          site_current_officedoc GET      /site/currents/:current_id/officedocs/:id(.:format)                  site/officedocs#show
+                                 PUT      /site/currents/:current_id/officedocs/:id(.:format)                  site/officedocs#update
+                                 DELETE   /site/currents/:current_id/officedocs/:id(.:format)                  site/officedocs#destroy
+      search_site_current_events GET      /site/currents/:current_id/events/search(.:format)                   site/events#search
+             site_current_events GET      /site/currents/:current_id/events(.:format)                          site/events#index
+                                 POST     /site/currents/:current_id/events(.:format)                          site/events#create
+          new_site_current_event GET      /site/currents/:current_id/events/new(.:format)                      site/events#new
+         edit_site_current_event GET      /site/currents/:current_id/events/:id/edit(.:format)                 site/events#edit
+              site_current_event GET      /site/currents/:current_id/events/:id(.:format)                      site/events#show
+                                 PUT      /site/currents/:current_id/events/:id(.:format)                      site/events#update
+                                 DELETE   /site/currents/:current_id/events/:id(.:format)                      site/events#destroy
+  search_site_current_categories GET      /site/currents/:current_id/categories/search(.:format)               site/categories#search
+         site_current_categories GET      /site/currents/:current_id/categories(.:format)                      site/categories#index
+                                 POST     /site/currents/:current_id/categories(.:format)                      site/categories#create
+       new_site_current_category GET      /site/currents/:current_id/categories/new(.:format)                  site/categories#new
+      edit_site_current_category GET      /site/currents/:current_id/categories/:id/edit(.:format)             site/categories#edit
+           site_current_category GET      /site/currents/:current_id/categories/:id(.:format)                  site/categories#show
+                                 PUT      /site/currents/:current_id/categories/:id(.:format)                  site/categories#update
+                                 DELETE   /site/currents/:current_id/categories/:id(.:format)                  site/categories#destroy
+  search_site_current_repository GET      /site/currents/:current_id/repository/search(.:format)               site/repositories#search
+         site_current_repository POST     /site/currents/:current_id/repository(.:format)                      site/repositories#create
+     new_site_current_repository GET      /site/currents/:current_id/repository/new(.:format)                  site/repositories#new
+    edit_site_current_repository GET      /site/currents/:current_id/repository/edit(.:format)                 site/repositories#edit
+                                 GET      /site/currents/:current_id/repository(.:format)                      site/repositories#show
+                                 PUT      /site/currents/:current_id/repository(.:format)                      site/repositories#update
+                                 DELETE   /site/currents/:current_id/repository(.:format)                      site/repositories#destroy
+                                 GET      /site/currents(.:format)                                             site/currents#index
+                                 POST     /site/currents(.:format)                                             site/currents#create
+                                 GET      /site/currents/new(.:format)                                         site/currents#new
+                                 GET      /site/currents/:id/edit(.:format)                                    site/currents#edit
+                                 GET      /site/currents/:id(.:format)                                         site/currents#show
+                                 PUT      /site/currents/:id(.:format)                                         site/currents#update
+                                 DELETE   /site/currents/:id(.:format)                                         site/currents#destroy
+         remote_subject_contacts GET      /remote_subjects/:remote_subject_id/contacts(.:format)               contacts#index
+                                 POST     /remote_subjects/:remote_subject_id/contacts(.:format)               contacts#create
+      new_remote_subject_contact GET      /remote_subjects/:remote_subject_id/contacts/new(.:format)           contacts#new
+     edit_remote_subject_contact GET      /remote_subjects/:remote_subject_id/contacts/:id/edit(.:format)      contacts#edit
+          remote_subject_contact GET      /remote_subjects/:remote_subject_id/contacts/:id(.:format)           contacts#show
+                                 PUT      /remote_subjects/:remote_subject_id/contacts/:id(.:format)           contacts#update
+                                 DELETE   /remote_subjects/:remote_subject_id/contacts/:id(.:format)           contacts#destroy
+             remote_subject_like POST     /remote_subjects/:remote_subject_id/like(.:format)                   likes#create
+         new_remote_subject_like GET      /remote_subjects/:remote_subject_id/like/new(.:format)               likes#new
+        edit_remote_subject_like GET      /remote_subjects/:remote_subject_id/like/edit(.:format)              likes#edit
+                                 GET      /remote_subjects/:remote_subject_id/like(.:format)                   likes#show
+                                 PUT      /remote_subjects/:remote_subject_id/like(.:format)                   likes#update
+                                 DELETE   /remote_subjects/:remote_subject_id/like(.:format)                   likes#destroy
+          remote_subject_profile POST     /remote_subjects/:remote_subject_id/profile(.:format)                profiles#create
+      new_remote_subject_profile GET      /remote_subjects/:remote_subject_id/profile/new(.:format)            profiles#new
+     edit_remote_subject_profile GET      /remote_subjects/:remote_subject_id/profile/edit(.:format)           profiles#edit
+                                 GET      /remote_subjects/:remote_subject_id/profile(.:format)                profiles#show
+                                 PUT      /remote_subjects/:remote_subject_id/profile(.:format)                profiles#update
+                                 DELETE   /remote_subjects/:remote_subject_id/profile(.:format)                profiles#destroy
+       remote_subject_activities GET      /remote_subjects/:remote_subject_id/activities(.:format)             activities#index
+                                 POST     /remote_subjects/:remote_subject_id/activities(.:format)             activities#create
+     new_remote_subject_activity GET      /remote_subjects/:remote_subject_id/activities/new(.:format)         activities#new
+    edit_remote_subject_activity GET      /remote_subjects/:remote_subject_id/activities/:id/edit(.:format)    activities#edit
+         remote_subject_activity GET      /remote_subjects/:remote_subject_id/activities/:id(.:format)         activities#show
+                                 PUT      /remote_subjects/:remote_subject_id/activities/:id(.:format)         activities#update
+                                 DELETE   /remote_subjects/:remote_subject_id/activities/:id(.:format)         activities#destroy
+     search_remote_subject_posts GET      /remote_subjects/:remote_subject_id/posts/search(.:format)           posts#search
+            remote_subject_posts GET      /remote_subjects/:remote_subject_id/posts(.:format)                  posts#index
+                                 POST     /remote_subjects/:remote_subject_id/posts(.:format)                  posts#create
+         new_remote_subject_post GET      /remote_subjects/:remote_subject_id/posts/new(.:format)              posts#new
+        edit_remote_subject_post GET      /remote_subjects/:remote_subject_id/posts/:id/edit(.:format)         posts#edit
+             remote_subject_post GET      /remote_subjects/:remote_subject_id/posts/:id(.:format)              posts#show
+                                 PUT      /remote_subjects/:remote_subject_id/posts/:id(.:format)              posts#update
+                                 DELETE   /remote_subjects/:remote_subject_id/posts/:id(.:format)              posts#destroy
+  search_remote_subject_comments GET      /remote_subjects/:remote_subject_id/comments/search(.:format)        comments#search
+         remote_subject_comments GET      /remote_subjects/:remote_subject_id/comments(.:format)               comments#index
+                                 POST     /remote_subjects/:remote_subject_id/comments(.:format)               comments#create
+      new_remote_subject_comment GET      /remote_subjects/:remote_subject_id/comments/new(.:format)           comments#new
+     edit_remote_subject_comment GET      /remote_subjects/:remote_subject_id/comments/:id/edit(.:format)      comments#edit
+          remote_subject_comment GET      /remote_subjects/:remote_subject_id/comments/:id(.:format)           comments#show
+                                 PUT      /remote_subjects/:remote_subject_id/comments/:id(.:format)           comments#update
+                                 DELETE   /remote_subjects/:remote_subject_id/comments/:id(.:format)           comments#destroy
+                                 GET      /remote_subjects/:remote_subject_id/documents/search(.:format)       documents#search
+                                 GET      /remote_subjects/:remote_subject_id/documents(.:format)              documents#index
+                                 POST     /remote_subjects/:remote_subject_id/documents(.:format)              documents#create
+                                 GET      /remote_subjects/:remote_subject_id/documents/new(.:format)          documents#new
+                                 GET      /remote_subjects/:remote_subject_id/documents/:id/edit(.:format)     documents#edit
+                                 GET      /remote_subjects/:remote_subject_id/documents/:id(.:format)          documents#show
+                                 PUT      /remote_subjects/:remote_subject_id/documents/:id(.:format)          documents#update
+                                 DELETE   /remote_subjects/:remote_subject_id/documents/:id(.:format)          documents#destroy
+     search_remote_subject_links GET      /remote_subjects/:remote_subject_id/links/search(.:format)           links#search
+            remote_subject_links GET      /remote_subjects/:remote_subject_id/links(.:format)                  links#index
+                                 POST     /remote_subjects/:remote_subject_id/links(.:format)                  links#create
+         new_remote_subject_link GET      /remote_subjects/:remote_subject_id/links/new(.:format)              links#new
+        edit_remote_subject_link GET      /remote_subjects/:remote_subject_id/links/:id/edit(.:format)         links#edit
+             remote_subject_link GET      /remote_subjects/:remote_subject_id/links/:id(.:format)              links#show
+                                 PUT      /remote_subjects/:remote_subject_id/links/:id(.:format)              links#update
+                                 DELETE   /remote_subjects/:remote_subject_id/links/:id(.:format)              links#destroy
+search_remote_subject_excursions GET      /remote_subjects/:remote_subject_id/excursions/search(.:format)      excursions#search
+       remote_subject_excursions GET      /remote_subjects/:remote_subject_id/excursions(.:format)             excursions#index
+                                 POST     /remote_subjects/:remote_subject_id/excursions(.:format)             excursions#create
+    new_remote_subject_excursion GET      /remote_subjects/:remote_subject_id/excursions/new(.:format)         excursions#new
+   edit_remote_subject_excursion GET      /remote_subjects/:remote_subject_id/excursions/:id/edit(.:format)    excursions#edit
+        remote_subject_excursion GET      /remote_subjects/:remote_subject_id/excursions/:id(.:format)         excursions#show
+                                 PUT      /remote_subjects/:remote_subject_id/excursions/:id(.:format)         excursions#update
+                                 DELETE   /remote_subjects/:remote_subject_id/excursions/:id(.:format)         excursions#destroy
+    search_remote_subject_slides GET      /remote_subjects/:remote_subject_id/slides/search(.:format)          slides#search
+           remote_subject_slides GET      /remote_subjects/:remote_subject_id/slides(.:format)                 slides#index
+                                 POST     /remote_subjects/:remote_subject_id/slides(.:format)                 slides#create
+        new_remote_subject_slide GET      /remote_subjects/:remote_subject_id/slides/new(.:format)             slides#new
+       edit_remote_subject_slide GET      /remote_subjects/:remote_subject_id/slides/:id/edit(.:format)        slides#edit
+            remote_subject_slide GET      /remote_subjects/:remote_subject_id/slides/:id(.:format)             slides#show
+                                 PUT      /remote_subjects/:remote_subject_id/slides/:id(.:format)             slides#update
+                                 DELETE   /remote_subjects/:remote_subject_id/slides/:id(.:format)             slides#destroy
+    search_remote_subject_embeds GET      /remote_subjects/:remote_subject_id/embeds/search(.:format)          embeds#search
+           remote_subject_embeds GET      /remote_subjects/:remote_subject_id/embeds(.:format)                 embeds#index
+                                 POST     /remote_subjects/:remote_subject_id/embeds(.:format)                 embeds#create
+        new_remote_subject_embed GET      /remote_subjects/:remote_subject_id/embeds/new(.:format)             embeds#new
+       edit_remote_subject_embed GET      /remote_subjects/:remote_subject_id/embeds/:id/edit(.:format)        embeds#edit
+            remote_subject_embed GET      /remote_subjects/:remote_subject_id/embeds/:id(.:format)             embeds#show
+                                 PUT      /remote_subjects/:remote_subject_id/embeds/:id(.:format)             embeds#update
+                                 DELETE   /remote_subjects/:remote_subject_id/embeds/:id(.:format)             embeds#destroy
+      search_remote_subject_swfs GET      /remote_subjects/:remote_subject_id/swfs/search(.:format)            swfs#search
+             remote_subject_swfs GET      /remote_subjects/:remote_subject_id/swfs(.:format)                   swfs#index
+                                 POST     /remote_subjects/:remote_subject_id/swfs(.:format)                   swfs#create
+          new_remote_subject_swf GET      /remote_subjects/:remote_subject_id/swfs/new(.:format)               swfs#new
+         edit_remote_subject_swf GET      /remote_subjects/:remote_subject_id/swfs/:id/edit(.:format)          swfs#edit
+              remote_subject_swf GET      /remote_subjects/:remote_subject_id/swfs/:id(.:format)               swfs#show
+                                 PUT      /remote_subjects/:remote_subject_id/swfs/:id(.:format)               swfs#update
+                                 DELETE   /remote_subjects/:remote_subject_id/swfs/:id(.:format)               swfs#destroy
+search_remote_subject_officedocs GET      /remote_subjects/:remote_subject_id/officedocs/search(.:format)      officedocs#search
+       remote_subject_officedocs GET      /remote_subjects/:remote_subject_id/officedocs(.:format)             officedocs#index
+                                 POST     /remote_subjects/:remote_subject_id/officedocs(.:format)             officedocs#create
+    new_remote_subject_officedoc GET      /remote_subjects/:remote_subject_id/officedocs/new(.:format)         officedocs#new
+   edit_remote_subject_officedoc GET      /remote_subjects/:remote_subject_id/officedocs/:id/edit(.:format)    officedocs#edit
+        remote_subject_officedoc GET      /remote_subjects/:remote_subject_id/officedocs/:id(.:format)         officedocs#show
+                                 PUT      /remote_subjects/:remote_subject_id/officedocs/:id(.:format)         officedocs#update
+                                 DELETE   /remote_subjects/:remote_subject_id/officedocs/:id(.:format)         officedocs#destroy
+    search_remote_subject_events GET      /remote_subjects/:remote_subject_id/events/search(.:format)          events#search
+           remote_subject_events GET      /remote_subjects/:remote_subject_id/events(.:format)                 events#index
+                                 POST     /remote_subjects/:remote_subject_id/events(.:format)                 events#create
+        new_remote_subject_event GET      /remote_subjects/:remote_subject_id/events/new(.:format)             events#new
+       edit_remote_subject_event GET      /remote_subjects/:remote_subject_id/events/:id/edit(.:format)        events#edit
+            remote_subject_event GET      /remote_subjects/:remote_subject_id/events/:id(.:format)             events#show
+                                 PUT      /remote_subjects/:remote_subject_id/events/:id(.:format)             events#update
+                                 DELETE   /remote_subjects/:remote_subject_id/events/:id(.:format)             events#destroy
+search_remote_subject_categories GET      /remote_subjects/:remote_subject_id/categories/search(.:format)      categories#search
+       remote_subject_categories GET      /remote_subjects/:remote_subject_id/categories(.:format)             categories#index
+                                 POST     /remote_subjects/:remote_subject_id/categories(.:format)             categories#create
+     new_remote_subject_category GET      /remote_subjects/:remote_subject_id/categories/new(.:format)         categories#new
+    edit_remote_subject_category GET      /remote_subjects/:remote_subject_id/categories/:id/edit(.:format)    categories#edit
+         remote_subject_category GET      /remote_subjects/:remote_subject_id/categories/:id(.:format)         categories#show
+                                 PUT      /remote_subjects/:remote_subject_id/categories/:id(.:format)         categories#update
+                                 DELETE   /remote_subjects/:remote_subject_id/categories/:id(.:format)         categories#destroy
+search_remote_subject_repository GET      /remote_subjects/:remote_subject_id/repository/search(.:format)      repositories#search
+       remote_subject_repository POST     /remote_subjects/:remote_subject_id/repository(.:format)             repositories#create
+   new_remote_subject_repository GET      /remote_subjects/:remote_subject_id/repository/new(.:format)         repositories#new
+  edit_remote_subject_repository GET      /remote_subjects/:remote_subject_id/repository/edit(.:format)        repositories#edit
+                                 GET      /remote_subjects/:remote_subject_id/repository(.:format)             repositories#show
+                                 PUT      /remote_subjects/:remote_subject_id/repository(.:format)             repositories#update
+                                 DELETE   /remote_subjects/:remote_subject_id/repository(.:format)             repositories#destroy
+                                 GET      /remote_subjects(.:format)                                           remote_subjects#index
+                                 POST     /remote_subjects(.:format)                                           remote_subjects#create
+                                 GET      /remote_subjects/new(.:format)                                       remote_subjects#new
+                                 GET      /remote_subjects/:id/edit(.:format)                                  remote_subjects#edit
+                                 GET      /remote_subjects/:id(.:format)                                       remote_subjects#show
+                                 PUT      /remote_subjects/:id(.:format)                                       remote_subjects#update
+                                 DELETE   /remote_subjects/:id(.:format)                                       remote_subjects#destroy
+                          actors GET      /actors(.:format)                                                    actors#index
+                                          /user(.:format)                                                      users#current {:format=>:json}
+                         profile          /profile(.:format)                                                   profiles#show
+                    search_posts GET      /posts/search(.:format)                                              posts#search
+                           posts GET      /posts(.:format)                                                     posts#index
+                                 POST     /posts(.:format)                                                     posts#create
+                        new_post GET      /posts/new(.:format)                                                 posts#new
+                       edit_post GET      /posts/:id/edit(.:format)                                            posts#edit
+                            post GET      /posts/:id(.:format)                                                 posts#show
+                                 PUT      /posts/:id(.:format)                                                 posts#update
+                                 DELETE   /posts/:id(.:format)                                                 posts#destroy
+                 search_comments GET      /comments/search(.:format)                                           comments#search
+                        comments GET      /comments(.:format)                                                  comments#index
+                                 POST     /comments(.:format)                                                  comments#create
+                     new_comment GET      /comments/new(.:format)                                              comments#new
+                    edit_comment GET      /comments/:id/edit(.:format)                                         comments#edit
+                         comment GET      /comments/:id(.:format)                                              comments#show
+                                 PUT      /comments/:id(.:format)                                              comments#update
+                                 DELETE   /comments/:id(.:format)                                              comments#destroy
+                                 GET      /documents/search(.:format)                                          documents#search
+                                 GET      /documents(.:format)                                                 documents#index
+                                 POST     /documents(.:format)                                                 documents#create
+                                 GET      /documents/new(.:format)                                             documents#new
+                                 GET      /documents/:id/edit(.:format)                                        documents#edit
+                                 GET      /documents/:id(.:format)                                             documents#show
+                                 PUT      /documents/:id(.:format)                                             documents#update
+                                 DELETE   /documents/:id(.:format)                                             documents#destroy
+                    search_links GET      /links/search(.:format)                                              links#search
+                           links GET      /links(.:format)                                                     links#index
+                                 POST     /links(.:format)                                                     links#create
+                        new_link GET      /links/new(.:format)                                                 links#new
+                       edit_link GET      /links/:id/edit(.:format)                                            links#edit
+                            link GET      /links/:id(.:format)                                                 links#show
+                                 PUT      /links/:id(.:format)                                                 links#update
+                                 DELETE   /links/:id(.:format)                                                 links#destroy
+               search_excursions GET      /excursions/search(.:format)                                         excursions#search
+                      excursions GET      /excursions(.:format)                                                excursions#index
+                                 POST     /excursions(.:format)                                                excursions#create
+                   new_excursion GET      /excursions/new(.:format)                                            excursions#new
+                  edit_excursion GET      /excursions/:id/edit(.:format)                                       excursions#edit
+                       excursion GET      /excursions/:id(.:format)                                            excursions#show
+                                 PUT      /excursions/:id(.:format)                                            excursions#update
+                                 DELETE   /excursions/:id(.:format)                                            excursions#destroy
+                   search_slides GET      /slides/search(.:format)                                             slides#search
+                          slides GET      /slides(.:format)                                                    slides#index
+                                 POST     /slides(.:format)                                                    slides#create
+                       new_slide GET      /slides/new(.:format)                                                slides#new
+                      edit_slide GET      /slides/:id/edit(.:format)                                           slides#edit
+                           slide GET      /slides/:id(.:format)                                                slides#show
+                                 PUT      /slides/:id(.:format)                                                slides#update
+                                 DELETE   /slides/:id(.:format)                                                slides#destroy
+                   search_embeds GET      /embeds/search(.:format)                                             embeds#search
+                          embeds GET      /embeds(.:format)                                                    embeds#index
+                                 POST     /embeds(.:format)                                                    embeds#create
+                       new_embed GET      /embeds/new(.:format)                                                embeds#new
+                      edit_embed GET      /embeds/:id/edit(.:format)                                           embeds#edit
+                           embed GET      /embeds/:id(.:format)                                                embeds#show
+                                 PUT      /embeds/:id(.:format)                                                embeds#update
+                                 DELETE   /embeds/:id(.:format)                                                embeds#destroy
+                     search_swfs GET      /swfs/search(.:format)                                               swfs#search
+                            swfs GET      /swfs(.:format)                                                      swfs#index
+                                 POST     /swfs(.:format)                                                      swfs#create
+                         new_swf GET      /swfs/new(.:format)                                                  swfs#new
+                        edit_swf GET      /swfs/:id/edit(.:format)                                             swfs#edit
+                             swf GET      /swfs/:id(.:format)                                                  swfs#show
+                                 PUT      /swfs/:id(.:format)                                                  swfs#update
+                                 DELETE   /swfs/:id(.:format)                                                  swfs#destroy
+               search_officedocs GET      /officedocs/search(.:format)                                         officedocs#search
+                      officedocs GET      /officedocs(.:format)                                                officedocs#index
+                                 POST     /officedocs(.:format)                                                officedocs#create
+                   new_officedoc GET      /officedocs/new(.:format)                                            officedocs#new
+                  edit_officedoc GET      /officedocs/:id/edit(.:format)                                       officedocs#edit
+                       officedoc GET      /officedocs/:id(.:format)                                            officedocs#show
+                                 PUT      /officedocs/:id(.:format)                                            officedocs#update
+                                 DELETE   /officedocs/:id(.:format)                                            officedocs#destroy
+                   search_events GET      /events/search(.:format)                                             events#search
+                          events GET      /events(.:format)                                                    events#index
+                                 POST     /events(.:format)                                                    events#create
+                       new_event GET      /events/new(.:format)                                                events#new
+                      edit_event GET      /events/:id/edit(.:format)                                           events#edit
+                           event GET      /events/:id(.:format)                                                events#show
+                                 PUT      /events/:id(.:format)                                                events#update
+                                 DELETE   /events/:id(.:format)                                                events#destroy
+               search_categories GET      /categories/search(.:format)                                         categories#search
+                      categories GET      /categories(.:format)                                                categories#index
+                                 POST     /categories(.:format)                                                categories#create
+                    new_category GET      /categories/new(.:format)                                            categories#new
+                   edit_category GET      /categories/:id/edit(.:format)                                       categories#edit
+                        category GET      /categories/:id(.:format)                                            categories#show
+                                 PUT      /categories/:id(.:format)                                            categories#update
+                                 DELETE   /categories/:id(.:format)                                            categories#destroy
+                                 GET      /comments(.:format)                                                  comments#index
+                                 POST     /comments(.:format)                                                  comments#create
+                                 GET      /comments/new(.:format)                                              comments#new
+                                 GET      /comments/:id/edit(.:format)                                         comments#edit
+                                 GET      /comments/:id(.:format)                                              comments#show
+                                 PUT      /comments/:id(.:format)                                              comments#update
+                                 DELETE   /comments/:id(.:format)                                              comments#destroy
+               search_repository GET      /repository/search(.:format)                                         repositories#search
+                      repository POST     /repository(.:format)                                                repositories#create
+                  new_repository GET      /repository/new(.:format)                                            repositories#new
+                 edit_repository GET      /repository/edit(.:format)                                           repositories#edit
+                                 GET      /repository(.:format)                                                repositories#show
+                                 PUT      /repository(.:format)                                                repositories#update
+                                 DELETE   /repository(.:format)                                                repositories#destroy
+             suggestion_contacts GET      /contacts/suggestion(.:format)                                       contacts#suggestion
+                pending_contacts GET      /contacts/pending(.:format)                                          contacts#pending
+                        contacts GET      /contacts(.:format)                                                  contacts#index
+                                 POST     /contacts(.:format)                                                  contacts#create
+                     new_contact GET      /contacts/new(.:format)                                              contacts#new
+                    edit_contact GET      /contacts/:id/edit(.:format)                                         contacts#edit
+                         contact GET      /contacts/:id(.:format)                                              contacts#show
+                                 PUT      /contacts/:id(.:format)                                              contacts#update
+                                 DELETE   /contacts/:id(.:format)                                              contacts#destroy
+                relation_customs GET      /relation/customs(.:format)                                          relation/customs#index
+                                 POST     /relation/customs(.:format)                                          relation/customs#create
+             new_relation_custom GET      /relation/customs/new(.:format)                                      relation/customs#new
+            edit_relation_custom GET      /relation/customs/:id/edit(.:format)                                 relation/customs#edit
+                 relation_custom GET      /relation/customs/:id(.:format)                                      relation/customs#show
+                                 PUT      /relation/customs/:id(.:format)                                      relation/customs#update
+                                 DELETE   /relation/customs/:id(.:format)                                      relation/customs#destroy
+                     permissions GET      /permissions(.:format)                                               permissions#index
+                                 POST     /permissions(.:format)                                               permissions#create
+                  new_permission GET      /permissions/new(.:format)                                           permissions#new
+                 edit_permission GET      /permissions/:id/edit(.:format)                                      permissions#edit
+                      permission GET      /permissions/:id(.:format)                                           permissions#show
+                                 PUT      /permissions/:id(.:format)                                           permissions#update
+                                 DELETE   /permissions/:id(.:format)                                           permissions#destroy
+                activity_actions GET      /activity_actions(.:format)                                          activity_actions#index
+                                 POST     /activity_actions(.:format)                                          activity_actions#create
+             new_activity_action GET      /activity_actions/new(.:format)                                      activity_actions#new
+            edit_activity_action GET      /activity_actions/:id/edit(.:format)                                 activity_actions#edit
+                 activity_action GET      /activity_actions/:id(.:format)                                      activity_actions#show
+                                 PUT      /activity_actions/:id(.:format)                                      activity_actions#update
+                                 DELETE   /activity_actions/:id(.:format)                                      activity_actions#destroy
+                  representation POST     /representation(.:format)                                            representations#create
+              new_representation GET      /representation/new(.:format)                                        representations#new
+             edit_representation GET      /representation/edit(.:format)                                       representations#edit
+                                 GET      /representation(.:format)                                            representations#show
+                                 PUT      /representation(.:format)                                            representations#update
+                                 DELETE   /representation(.:format)                                            representations#destroy
+             update_all_settings PUT      /settings/update_all(.:format)                                       settings#update_all
+                        settings GET      /settings(.:format)                                                  settings#index
+                                 POST     /settings(.:format)                                                  settings#create
+                     new_setting GET      /settings/new(.:format)                                              settings#new
+                    edit_setting GET      /settings/:id/edit(.:format)                                         settings#edit
+                         setting GET      /settings/:id(.:format)                                              settings#show
+                                 PUT      /settings/:id(.:format)                                              settings#update
+                                 DELETE   /settings/:id(.:format)                                              settings#destroy
+                        messages GET      /messages(.:format)                                                  messages#index
+                                 POST     /messages(.:format)                                                  messages#create
+                     new_message GET      /messages/new(.:format)                                              messages#new
+                    edit_message GET      /messages/:id/edit(.:format)                                         messages#edit
+                         message GET      /messages/:id(.:format)                                              messages#show
+                                 PUT      /messages/:id(.:format)                                              messages#update
+                                 DELETE   /messages/:id(.:format)                                              messages#destroy
+                   conversations GET      /conversations(.:format)                                             conversations#index
+                                 POST     /conversations(.:format)                                             conversations#create
+                new_conversation GET      /conversations/new(.:format)                                         conversations#new
+               edit_conversation GET      /conversations/:id/edit(.:format)                                    conversations#edit
+                    conversation GET      /conversations/:id(.:format)                                         conversations#show
+                                 PUT      /conversations/:id(.:format)                                         conversations#update
+                                 DELETE   /conversations/:id(.:format)                                         conversations#destroy
+                     invitations GET      /invitations(.:format)                                               invitations#index
+                                 POST     /invitations(.:format)                                               invitations#create
+                  new_invitation GET      /invitations/new(.:format)                                           invitations#new
+                 edit_invitation GET      /invitations/:id/edit(.:format)                                      invitations#edit
+                      invitation GET      /invitations/:id(.:format)                                           invitations#show
+                                 PUT      /invitations/:id(.:format)                                           invitations#update
+                                 DELETE   /invitations/:id(.:format)                                           invitations#destroy
+        update_all_notifications PUT      /notifications/update_all(.:format)                                  notifications#update_all
+                   notifications GET      /notifications(.:format)                                             notifications#index
+                                 POST     /notifications(.:format)                                             notifications#create
+                new_notification GET      /notifications/new(.:format)                                         notifications#new
+               edit_notification GET      /notifications/:id/edit(.:format)                                    notifications#edit
+                    notification GET      /notifications/:id(.:format)                                         notifications#show
+                                 PUT      /notifications/:id(.:format)                                         notifications#update
+                                 DELETE   /notifications/:id(.:format)                                         notifications#destroy
+                   activity_like POST     /activities/:activity_id/like(.:format)                              likes#create
+               new_activity_like GET      /activities/:activity_id/like/new(.:format)                          likes#new
+              edit_activity_like GET      /activities/:activity_id/like/edit(.:format)                         likes#edit
+                                 GET      /activities/:activity_id/like(.:format)                              likes#show
+                                 PUT      /activities/:activity_id/like(.:format)                              likes#update
+                                 DELETE   /activities/:activity_id/like(.:format)                              likes#destroy
+                      activities GET      /activities(.:format)                                                activities#index
+                                 POST     /activities(.:format)                                                activities#create
+                    new_activity GET      /activities/new(.:format)                                            activities#new
+                   edit_activity GET      /activities/:id/edit(.:format)                                       activities#edit
+                        activity GET      /activities/:id(.:format)                                            activities#show
+                                 PUT      /activities/:id(.:format)                                            activities#update
+                                 DELETE   /activities/:id(.:format)                                            activities#destroy
+                 home_activities GET      /home/activities(.:format)                                           activities#index {:section=>"home"}
+                        audience GET      /audience/index(.:format)                                            audience#index
+                            ties          /ties(.:format)                                                      ties#index
+                            tags          /tags(.:format)                                                      tags#index
+                  administrators          /administrators(.:format)                                            administrators#index
+                      api_keygen          /api/keygen(.:format)                                                api#create_key
+                        api_user          /api/user/:id(.:format)                                              api#users
+                          api_me          /api/me(.:format)                                                    api#users
+                     api_my_home          /api/me/home(.:format)                                               api#activity_atom_feed {:format=>"atom"}
+                    api_contacts          /api/me/contacts(.:format)                                           contacts#index {:format=>"json"}
+                   resque_server          /resque                                                              Resque::Server
+                          avatar POST     /avatar(.:format)                                                    avatars#create
+                      new_avatar GET      /avatar/new(.:format)                                                avatars#new
+                     edit_avatar GET      /avatar/edit(.:format)                                               avatars#edit
+                                 GET      /avatar(.:format)                                                    avatars#show
+                                 PUT      /avatar(.:format)                                                    avatars#update
+                                 DELETE   /avatar(.:format)                                                    avatars#destroy
 
-    [1;34m22[0m:   [1;30m# Actor is a supertype of all subjects defined in SocialStream.subjects[0m
-    [1;34m23[0m:   supertype_of [33m:subject[0m
-    [1;34m24[0m: 
-    [1;34m25[0m:   include [1;34;4mSocialStream[0m::[1;34;4mModels[0m::[1;34;4mObject[0m
-    [1;34m26[0m:   
- => [1;34m27[0m:   binding.pry
-    [1;34m28[0m: 
-    [1;34m29[0m:   acts_as_avatarable [33m:default_url[0m => [31m[1;31m"[0m[31m/assets/:attachment/:style/:subtype_class.png[1;31m"[0m[31m[0m
-    [1;34m30[0m:   acts_as_messageable
-    [1;34m31[0m: 
-    [1;34m32[0m:   acts_as_url [33m:name[0m, [33m:url_attribute[0m => [33m:slug[0m
-
-=> [1;34m1[0m[0m
-=> [1;34m1[0m[0m
+Routes for OaiRepository::Engine:
+services_show GET /services/show(.:format) oai_repository/services#show
+         root     /                        oai_repository/services#show

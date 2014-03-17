@@ -1,10 +1,10 @@
 <script type="text/javascript">
     $(document).ready(function() {  
-        $(".Tags_list_as input[type='checkbox']").change(function(){
-            $(".Tags_list_as input[type='checkbox']:checked");
+        $(".Tags_list_as2 input[type='checkbox']").change(function(){
+            $(".Tags_list_as2 input[type='checkbox']:checked");
 
             var tags = "";
-            $.each($(".Tags_list_as input[type='checkbox']:checked"), function(k,v){ 
+            $.each($(".Tags_list_as2 input[type='checkbox']:checked"), function(k,v){ 
                 tags += $(v).attr("name") + " "; 
             });
             tags = $.trim(tags).replace(" ", "+"); //remove last whitespace
@@ -14,7 +14,7 @@
     });
 
 </script>
-  <section class="Tags_list_as scroll-pane">
+  <section class="Tags_list_as2 scroll-pane">
     <h4>Tags :</h4>
     <li href="#"><input id="chk1" type="checkbox" name="Art"/><label for="chk1"><span></span>Art</label></li>
     <li href="#"><input id="chk2" type="checkbox" name="Astronomy"/><label for="chk2"><span></span>Astronomy</label></li>

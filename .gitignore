@@ -18,6 +18,7 @@ config/deploy.rb
 config/initializers/exception_notification.rb
 config/initializers/social_stream-ostatus.rb
 config/development.sphinx.conf
+config/initializers/loep_token.rb
 
 # Ignore all logfiles and tempfiles.
 /log

@@ -12,7 +12,7 @@
         <%= link_to(image_tag('logo/brand.png', :alt => t('site.name')), '/', :class => "logo"); %>
       </div>
       <!--BROWSE-->
-      <div class="browse">
+      <div class="toggler browse">
         <%= render partial: 'layouts/browse_header'%>
       </div>
 
@@ -51,26 +51,28 @@
             </li>
           -->
           <!--user-->
-            <li class ="user-settings">
+            <li class="photo_user ">
               <%= link_to current_subject do %>
               
-              <a data-toggle="dropdown" href="#" class="logo-small ">
-                <%= image_tag current_subject.logo.url(:small) %>
-                <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %><i class="icon-angle-down"></i></span>
-              </a>
+              <%= image_tag current_subject.logo.url(:small) %>
 
-              <ul class="dropdown-menu dropdown-ie-fix">
-                <!-- dropdown menu links -->
+            </li>
+            <li class ="toggler user-settings dropdown">
+              <div  href="<%=user_path(current_subject)%>" class="without-data-toggle logo-small ">
+                <%= truncate_name(current_subject.name, length: 15) %><i class="icon-angle-down"></i>
+              </div>
+
+              <ul class="dropdown-menu">
                  <li class="settings-menu">
                    <%= link_to home_path do %>
-                   <i class="icon-home"></i>
-                   <%= t('navigation.home') %>
+                     <i class="icon-home"></i>
+                     <%= t('navigation.home') %>
                    <% end %>
                  </li>
                 <li class="settings-menu">
                   <%= link_to current_subject do %>
-                  <i class="icon-user"></i>
-                  <%= t('profile.one') %>
+                    <i class="icon-user"></i>
+                    <%= t('profile.one') %>
                   <% end %>
                 </li>
                 <!--<li class="settings-menu">
@@ -102,6 +104,31 @@
               <% end %>
             </li>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <!-- carga de modales -->
             <%= render partial: 'events/form' %>
             <%= render partial: 'repositories/form' %>
@@ -130,7 +157,7 @@
     var theTimer = 0;
     var theElement = null;
       var theLastPosition = {x:0,y:0};
-    $('[data-toggle]')
+    $('.toggler .without-data-toggle')
       .closest('li')
       .on('mouseenter', function (inEvent) {
       if (theElement) theElement.removeClass('open');
@@ -163,6 +190,6 @@
         theElement.removeClass('open');
       }, delay);
     });
-  })(jQuery, window, 700); // 200 is the delay in milliseconds
+  })(jQuery, window, 0); // 200 is the delay in milliseconds
   </script>
 

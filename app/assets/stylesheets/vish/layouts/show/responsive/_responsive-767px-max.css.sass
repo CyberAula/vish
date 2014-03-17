@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 
-@media (max-width: 767px)
+@media (min-width: 481px) and (max-width: 767px)
   
   #link,
   #swf,
@@ -34,15 +34,16 @@
         dt
           clear: both
           float: left
-          margin-bottom: 7px
+          margin-bottom: 3px !important
           margin-left: 0px
           margin-top: 0
+
         dd
           clear: both
           float: left
-          margin-bottom: 7px
-          margin-left: 0px
-          margin-top: 0
+          margin-bottom: 7px !important
+          margin-left: 0px !important
+          margin-top: 0px !important
     .recomended
       @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: none

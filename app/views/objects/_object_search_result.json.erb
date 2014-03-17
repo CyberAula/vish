@@ -1,0 +1,2 @@
+[<% @found_resources.each_with_index do |res,i| %>{"id": "<%=res.id.to_s%>", "title": "<%=res.title%>", "description": "<%=res.description%>", "author": "<%=res.author.name%>", "object": "<%= if res.is_a? Embed; then res.fulltext; else 'http://' + request.env['HTTP_HOST'] + res.file.to_s.downcase; end%>"}<% unless i==(@found_resources.size - 1) %>,<%end%><%end%>]
+

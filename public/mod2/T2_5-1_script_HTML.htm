@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Script</title>
+<meta charset="UTF-8" >
+</head>
+<body>
+
+<h2>Script: genera HTML al vuelo</h2>
+
+<script type="text/javascript">
+  document.write("<b>Fecha:</b> " + (new Date()) + "<p>");
+
+  var pelicula = { titulo: 'Avatar', director: 'James Cameron' };
+
+  document.write("<b>pelicula.titulo    =></b> " + pelicula.titulo);
+  document.write("<br><b>pelicula['titulo'] =></b> " + pelicula['titulo']);
+</script>
+</body>
+</html>

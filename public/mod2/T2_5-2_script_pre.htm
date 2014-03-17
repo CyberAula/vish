@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head><title>Script</title>
+<meta charset="UTF-8" >
+</head><body>
+
+   <!-- &amp;, &lt; y &gt; generan los caracteres 
+        &, < y >, que no están permitidos en HTML -->
+
+<h2>Script: texto formateado con &lt;pre&gt;</h2>
+
+   <!-- Blancos y nuevas líneas del string 
+        son visibles dentro de un bloque <pre> -->
+<pre>
+<script type="text/javascript">
+  document.writeln("Fecha: " + (new Date()));
+
+  var pelicula = { titulo: 'Avatar', director: 'James Cameron' };
+
+  document.writeln();
+  document.writeln("pelicula.titulo      => " + pelicula.titulo);
+  document.writeln("pelicula['titulo']   => " + pelicula['titulo']);
+</script>
+</pre></body></html>

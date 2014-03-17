@@ -2,6 +2,22 @@
 
 	<section id="slides_panel" class="slides slides_editor layout-regular template-default">
 
+		<!-- Force browser to preload some Editor icons -->
+		<img src="/assets/zonethumbs/text_hover.png" style="display:none"/>
+		<img src="/assets/zonethumbs/image_hover.png" style="display:none"/>
+		<img src="/assets/zonethumbs/object_hover.png" style="display:none"/>
+		<img src="/assets/zonethumbs/video_hover.png" style="display:none"/>
+		<img src="/assets/zonethumbs/quiz_hover.png" style="display:none"/>
+		<img src="/assets/zonethumbs/quiz_hover.png" style="display:none"/>
+		<img src="/assets/icons/ve_delete_hover.png" style="display:none"/>
+		<img src="/assets/vicons/helptutorial_circle_hover.png" style="display:none"/>
+		<img src="/assets/vicons/helptutorial_circle_hover_tp.png" style="display:none"/>
+		<img src="/assets/vicons/ve_close_hover.png" style="display:none"/>
+		<img src="/assets/icons/flashcard_add_img_button_hover.png" style="display:none"/>
+		<img src="/assets/icons/evideo_add_button_hover.png" style="display:none"/>
+		<img src="/assets/icons/opcion.png" style="display:none"/>
+		<img src="/assets/carrousel/carrousel_sprite.png" style="display:none"/>
+
 		<!-- Toolbar -->
 		<div id="toolbar_wrapper">
 			<div id="toolbar_menu">
@@ -97,7 +113,7 @@
 			</div>
 
 			<div id="toolbar_presentation">
-				<div class="toolbar_presentation_wrapper">
+				<div class="toolbar_presentation_wrapper withRightBorder">
 					<a id="toolbar_save" class="tool_action" action="save" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-save"></i>
@@ -105,7 +121,7 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Save">Save</p>
 				</div>
-				<div id="toolbar_preview_help" class="toolbar_presentation_wrapper">
+				<div id="toolbar_preview_wrapper" class="toolbar_presentation_wrapper withRightBorder">
 					<a id="toolbar_preview" class="tool_action" action="preview" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-eye-open"></i>
@@ -113,7 +129,7 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Preview">Preview</p>
 				</div>
-				<div id="toolbar_publish_help" class="toolbar_presentation_wrapper">
+				<div id="toolbar_publish_wrapper" class="toolbar_presentation_wrapper withRightBorder">
 					<a id="toolbar_publish" class="tool_action" action="publish" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-rotate-270 icon-download-alt"></i>
@@ -121,7 +137,7 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Publish">Publish</p>
 				</div>
-				<div id="toolbar_themes_help" class="toolbar_presentation_wrapper ">
+				<div id="toolbar_themes_wrapper" class="toolbar_presentation_wrapper withRightBorder">
 					<a id="toolbar_theme" class="tool_action" action="selectTheme" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-adjust"></i>
@@ -129,7 +145,7 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Style">Style</p>
 				</div>
-				<div id="toolbar_animation_help" class="toolbar_presentation_wrapper lasticonborder">
+				<div id="toolbar_animation_wrapper" class="toolbar_presentation_wrapper">
 					<a id="toolbar_animation" class="tool_action" action="selectAnimation" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-magic"></i>
@@ -137,7 +153,7 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Animations">Animation</p>
 				</div>
-				<div id="toolbar_background_help" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools bgtoolpos">
+				<div id="toolbar_background_wrapper" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools withLeftBorder toolbar_standard toolbar_flashcard toolbar_VirtualTour" style='display:none'>
 					<a id="toolbar_background" class="tool_action" action="changeBackground" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-picture"></i>
@@ -145,20 +161,28 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Background"> Background</p>
 				</div>
-			</div>
-			<div id="toolbar_element">
-				<img class="toolbar_icon toolbar_image" style="display:none" action="addLink" 
-				src="/assets/toolbar/addLink.png"/>
-				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot" style="display:none" action="resizeLess" 
-				src="/assets/toolbar/resizeLess.png"/>
-				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot"  style="display:none" action="resizeMore" 
-				src="/assets/toolbar/resizeMore.png"/>
-				<img class="toolbar_icon toolbar_web" style="display:none" action="zoomLess" 
-				src="/assets/toolbar/zoomLess.png"/>
-				<img class="toolbar_icon toolbar_web"  style="display:none" action="zoomMore" 
-				src="/assets/toolbar/zoomMore.png"/>
-				<div id="toolbar_text">
+				<div id="toolbar_evideo_wrapper" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools withLeftBorder toolbar_enrichedvideo" style='display:none'>
+					<a id="toolbar_evideo" class="tool_action" action="changeVideo" href="#">
+						<img class="big_toolbar_icon toolbar_web" src="/assets/toolbar/change_evideo.png"/>
+					</a>
+					<p class="toolbar_presentation_title" i18n-key="i.Video"> Video</p>
 				</div>
+			</div>
+			<div id="toolbar_element" class="withLeftBorder">
+				<div id="settings_quiz_wrapper" class="toolbar_presentation_wrapper withRightBorder" style="display:none">
+					<a id="settings_quiz" class="tool_action" action="quizSettings" href="#">
+						<button type="button" class="btn btn-primary btn-small btn-toolbarElementWrapper">
+							<img src="/assets/toolbar/quiz_settings.png"/>
+						</button>
+					</a>
+					<p class="toolbar_presentation_title" i18n-key="i.QuizSettings">Quiz Settings</p>
+				</div>
+				<img class="toolbar_icon toolbar_image" style="display:none" action="addLink" src="/assets/toolbar/addLink.png"/>
+				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot" style="display:none" action="resizeLess" src="/assets/toolbar/resizeLess.png"/>
+				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot"  style="display:none" action="resizeMore" src="/assets/toolbar/resizeMore.png"/>
+				<img class="toolbar_icon toolbar_web" style="display:none" action="zoomLess" src="/assets/toolbar/zoomLess.png"/>
+				<img class="toolbar_icon toolbar_web"  style="display:none" action="zoomMore" src="/assets/toolbar/zoomMore.png"/>
+				<div id="toolbar_text" class='toolbar_text toolbar_quiz' style="display:none"></div>
 			</div>
 		</div>
 		
@@ -233,7 +257,7 @@
 		<form id='presentationdetails'>
 
 			<div id="presentation_details_fields">
-				<img class='help_in_settings' id='help_in_settings' src="/assets/vicons/helptutorial_circle_blank.png"/>
+				<img  title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_settings' id='help_in_settings' src="/assets/vicons/helptutorial_circle_blank.png"/>
 				<div id="presentation_details_fields_row1">
 
 					<div id="presentation_details_fields_row1_column1">
@@ -263,7 +287,7 @@
 						<p i18n-key="i.ExcursionDetails" class="presentation_details_column_title"> Excursion Details </p>
 
 						<div id="presentation_details_title">
-							<span class="presentation_details_text" title='Title is a mandatory field' i18n-key="i.Title">Title *</span>
+							<span class="presentation_details_text" title='Title is a mandatory field' i18n-key="i.TitleM">Title *</span>
 							<input id="presentation_details_input_title" class="presentation_details_input" type="text" placeholder="Excursion title" i18n-key="i.presTitle" maxLength="120"></input>
 						</div>
 
@@ -287,9 +311,9 @@
 				</div>
 
 				<div id="presentation_details_fields_row2">
-					<button id='pedagogical_clasification_button' submit='disable' class='button' i18n-key="i.PedagogicalAspects">Pedagogical Aspects</button>
-					<button id='fill_details_later_button' submit='disable' class='button' i18n-key="i.Filllater">Fill later</button>
-					<button id='save_presentation_details' disabled="true" submit='disable' class='button buttonDisabledOnSettings' title="Write a title and choose an avatar to continue" i18n-key="i.Continue">Continue</button>
+					<button id='pedagogical_clasification_button' type='button' class='button' i18n-key="i.PedagogicalAspects">Pedagogical Aspects</button>
+					<button id='fill_details_later_button' type='button' class='button' i18n-key="i.Filllater">Fill later</button>
+					<button id='save_presentation_details' disabled="true" type='button' class='button buttonDisabledOnSettings' title="Write a title and choose an avatar to continue" i18n-key="i.Continue">Continue</button>
 				</div>
 			</div>
 
@@ -343,7 +367,7 @@
 						<div id="age_range_wrapper">
 							<div class="range_text"><span i18n-key="i.Age_range">Age range</span>:</div>
 							<div class="slider_wrapper">
-								<input type="text" id="age_range" class="slider_range_input"/>
+								<input type="text" id="age_range" class="slider_range_input" readonly/>
 								<div id="slider-age" class="slider_bar"></div>
 							</div>
 						</div>
@@ -351,14 +375,14 @@
 						<div id="difficulty_wrapper" class="margin_for_new_field_settings">
 							<div class="range_text"><span i18n-key="i.Difficulty">Difficulty</span>:</div>
 							<div class="slider_wrapper">
-								<input type="text" id="difficulty_range" class="slider_range_input"/>
+								<input type="text" id="difficulty_range" class="slider_range_input" readonly/>
 								<div id="slider-difficulty" class="slider_bar"></div>
 							</div>
 						</div>
 
 						<div id="tlt_wrapper" class="margin_for_new_field_settings">
 							<div class="range_text"><span i18n-key="i.Typicallearningtime">Typical learning time</span>:</div>
-							<input type="text" id="tlt_current_value" class="slider_range_input"/>
+							<input type="text" id="tlt_current_value" class="slider_range_input" readonly/>
 							<div class="tlt_inputs_wrapper">
 								<div class="tlt_input_wrapper">
 									<p class="tlt_input_title" i18n-key="i.Hours">Hours</p>
@@ -434,7 +458,7 @@
 				</div>
 
 				<div id="pedagogical_options_fields_row3">
-					<button id='done_in_pedagogical' submit='disable' class='button' i18n-key="i.Done">Done</button>
+					<button id='done_in_pedagogical' type='button' class='button' i18n-key="i.Done">Done</button>
 				</div>
 
 			</div>
@@ -465,7 +489,7 @@
 			</div> 
 
 			<div id='tab_slides_content' class="fancy_tab_content" style='display:none' > 
-				<img class='help_in_fancybox' id='tab_slides_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_slides_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="tab_slides_content">
 					<div class="tab_slides_templates">
 						<p class="select_text" i18n-key="i.Templates">Templates</p>
@@ -532,13 +556,19 @@
 								</div>
 								<p i18n-key="i.VirtualTour">Virtual Tour</p>
 							</div>
+							<div class='stthumb_wrapper'>
+								<div class='stthumb evthumb' type='enrichedvideo'>
+									<img src='/assets/templatesthumbs/tEVideo.png'/>
+								</div>
+								<p i18n-key="i.EnrichedVideo">Enriched Video</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<div id='tab_pdfex_content' class="fancy_tab_content" style='display:none'>
-				<img class='help_in_fancybox' id='tab_pdfex_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_pdfex_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="box1 box1fancy3">
 					<p class="textfancy" i18n-key="i.AddslideshowPDF">Add slideshow from PDF file</p></br>
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
@@ -559,7 +589,7 @@
 			</div>
 
 			<div id='tab_presentations_repo_content' class="fancy_tab_content" style='display:none'> 
-				<img class='help_in_fancybox' id='tab_presentations_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_presentations_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="excursions_repo_content">
 					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>  
 					<div class="search_container">
@@ -577,7 +607,7 @@
 			</div>
 
 			<div id='tab_json_file_content' class="fancy_tab_content" style='display:none'>
-				<img class='help_in_fancybox' id='tab_json_file_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_json_file_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="box1 box1fancy3">
 					<p class="textfancy" i18n-key="i.AddFromJSONfile">Add ViSH Editor Presentation from JSON file</p></br>
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
@@ -600,7 +630,7 @@
 						<a href="#" id="tab_quizzes" class="fancy_tab">Quiz</a>
 					</li>
 				</ul>
-				<img id='tab_quizzes_help' class='help_in_fancybox' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" id='tab_quizzes_help' class='help_in_fancybox' src='/assets/vicons/helptutorial_circle_blank.png'/>
 			</div> 
 
 			<div id='tab_quizzes_content' class="fancy_tab_content">
@@ -624,13 +654,13 @@
 			<a class="addpicture all" href="#picture_fancybox">
 				<div class='thumbicon picthumb' i18n-key="i.Image" title="Image"></div>
 			</a>
-			<a class="addobject medium large" href="#object_fancybox">
+			<a class="addobject all" href="#object_fancybox">
 				<div class='thumbicon objectthumb' i18n-key="i.Object" title="Object"></div>
 			</a>
-			<a class="addvideo medium large" href="#video_fancybox">
+			<a class="addvideo all" href="#video_fancybox">
 				<div class='thumbicon videothumb' i18n-key="i.Video" title="Video"></div>
 			</a>
-			<a class="addQuiz large" href="#quiz_fancybox" id="add_quiz_thumb">
+			<a class="addQuiz uniq large" href="#quiz_fancybox" id="add_quiz_thumb">
 				<div class='thumbicon quizthumb' i18n-key="i.Quiz" title="Quiz"></div>
 			</a>
 <!-- 			<a class="addLive medium large" href="#live_fancybox">
@@ -643,9 +673,13 @@
 	<div style='display:none'>
 		<div id='tools_addUrl'>	  		
 			<div class="box1 box1fancy1">
+				<div class="box1_section1">
 				<p class="textfancy">Url</p></br>
+				</div>
+				<div class="box1_section2">
 				<img class="image_add_link" src="/assets/icons/url_img.png"/>
 				<input class="input_text_fancy formsizefancy1 marginsfancy1 tools_input_addUrl" type="text" size="25" value="">
+				</div>
 				<div class="addUrlButtons">
 					<button type="button" class="addUrlButton" i18n-key="i.Add" 
 					onclick="VISH.Editor.Tools.addUrl(); return false;">Add</button>
@@ -700,19 +734,19 @@
 		<div id="picture_fancybox" class="outer_box">
 			<div class="fancy_tabs" id="images_fancy_tabs_id">	   
 				<ul>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_thumbnails'); return false;" id="tab_pic_thumbnails" class="fancy_tab tabbable" style="display:none" i18n-key="i.thumbnails">thumbnails</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_thumbnails'); return false;" id="tab_pic_thumbnails" class="fancy_tab tabbable venondefaulttab" style="display:none" i18n-key="i.thumbnails">thumbnails</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_from_url'); return false;" id="tab_pic_from_url" class="fancy_tab tabbable" i18n-key="i.url">url</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload'); return false;" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo'); return false;" id="tab_pic_repo" class="fancy_tab">vish</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_flikr'); return false;" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_lre'); return false;" id="tab_pic_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
 				</ul>
-				<img class='help_in_fancybox' id='tab_pic_thumbnails' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_pic_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_pic_upload_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_pic_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_pic_flikr_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_pic_lre_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_pic_thumbnails' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_pic_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_pic_upload_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_pic_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_pic_flikr_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_pic_lre_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 			</div>
 
 			<div id='tab_pic_thumbnails_content' class="fancy_tab_content">
@@ -721,10 +755,16 @@
 
 			<div id='tab_pic_from_url_content' class="fancy_tab_content">
 				<div class="box1 box1fancy1">
-					<p i18n-key="i.addpicurl" class="textfancy">add image url</p></br>
-					<img class="image_add_url" src="/assets/icons/url_img.png"/>
-					<input id="picture_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="text" size="25" value="">
+					<div class="box1_section1">
+						<p i18n-key="i.addpicurl" class="textfancy">add image url</p>
+					</div>
+					<div class="box1_section2">
+						<img class="image_add_url" src="/assets/icons/url_img.png"/>
+						<input id="picture_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="text" size="25" value="">
+					</div>
+					<div class="box1_section3">
 					<button id="picture_url_previewButton" type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					</div>
 				</div>
 				<div class="box2">
 					<div id="picture_preview" class="previewimgbox">
@@ -897,21 +937,27 @@
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo'); return false;" id="tab_object_repo" class="fancy_tab">vish</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_lre'); return false;" id="tab_object_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
 				</ul>
-				<img class='help_in_fancybox' id='tab_object_from_web_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_object_snapshot_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_object_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_object_upload_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_object_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_object_lre_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_object_from_web_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_object_snapshot_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_object_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_object_upload_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_object_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_object_lre_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 
 			</div>
 
 			<div id='tab_object_from_url_content' class="fancy_tab_content">
 				<div class="box1 box1fancy1">
-					<p class="textfancy" i18n-key="i.addembeddedobject">add embedded object</p></br>
-					<img class="image_add_url" src="/assets/icons/url_img.png"/>
-					<input id="object_embed_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
-					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					<div class="box1_section1">
+						<p class="textfancy" i18n-key="i.addembeddedobject">add embedded object</p>
+					</div>
+					<div class="box1_section2">
+						<img class="image_add_url" src="/assets/icons/url_img.png"/>
+						<input id="object_embed_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+					</div>
+					<div class="box1_section3">
+						<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					</div>
 				</div>
 				<div class="box2">
 					<div id="picture_preview" class="previewimgbox">
@@ -922,10 +968,16 @@
 
 			<div id='tab_object_from_web_content' class="fancy_tab_content">
 				<div class="box1 box1fancy1">
-					<p class="textfancy" i18n-key="i.embedwebsite">embed website</p></br>
-					<img class="image_add_url" src="/assets/icons/url_img.png"/>
-					<input id="object_embedWeb_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
-					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					<div class="box1_section1">
+						<p class="textfancy" i18n-key="i.embedwebsite">embed website</p>
+						</div>
+					<div class="box1_section2">
+						<img class="image_add_url" src="/assets/icons/url_img.png"/>
+						<input id="object_embedWeb_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+					</div>
+					<div class="box1_section3">
+						<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					</div>
 				</div>
 				<div class="box2">
 					<div id="picture_preview" class="previewimgbox">
@@ -984,10 +1036,16 @@
 
 			<div id='tab_object_snapshot_content' class="fancy_tab_content">
 				<div class="box1 box1fancy1">
-					<p class="textfancy" i18n-key="i.embedWebSnapshot">embed Web Snapshot</p></br>
-					<img class="image_add_url" src="/assets/icons/url_img.png"/>
-					<input id="object_snapshot_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
-					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					<div class="box1_section1">
+						<p class="textfancy" i18n-key="i.embedWebSnapshot">embed Web Snapshot</p>
+					</div>
+					<div class="box1_section2">
+						<img class="image_add_url" src="/assets/icons/url_img.png"/>
+						<input id="object_snapshot_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+					</div>
+					<div class="box1_section3">
+						<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					</div>
 				</div>
 				<div class="box2">
 					<div class="previewimgbox">
@@ -1027,24 +1085,31 @@
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_from_url'); return false;" id="tab_video_from_url" class="fancy_tab" i18n-key="i.url">url</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo'); return false;" id="tab_video_repo" class="fancy_tab">vish</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_youtube'); return false;" id="tab_video_youtube" class="fancy_tab"><img src='/assets/logos/youtube.png'/></a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo'); return false;" id="tab_video_vimeo" class="fancy_tab"><img src='/assets/logos/vimeo.png'/></a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_audio_soundcloud'); return false;" id="tab_audio_soundcloud" class="fancy_tab"><img src='/assets/logos/soundcloud.png'/></a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo'); return false;" id="tab_video_vimeo" class="fancy_tab disabled"><img src='/assets/logos/vimeo.png'/></a></li>
 				</ul>
-				<img class='help_in_fancybox' id='tab_video_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_video_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_video_youtube_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox' id='tab_video_vimeo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_video_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_video_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_video_youtube_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_video_vimeo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 			</div>
 
 			<div id='tab_video_from_url_content' class="fancy_tab_content">
 				<div id="box1" class="box1 box1fancy1">
-					<p class="textfancy"><span i18n-key="i.addvideourl">add video url (YouTube, HTML5)</span>.</p></br>
-					<img id="image_add_url" class="image_add_url" src="/assets/icons/url_img.png"/>
-					<input class="input_text_fancy formsizefancy1 marginsfancy1">
-					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					<div class="box1_section1">
+						<p class="textfancy"><span i18n-key="i.addvideourl">add video url (YouTube, HTML5)</span>.</p>
+					</div>
+					<div class="box1_section2">
+						<img id="image_add_url" class="image_add_url" src="/assets/icons/url_img.png"/>
+						<input class="input_text_fancy formsizefancy1 marginsfancy1">
+					</div>
+					<div class="box1_section3">
+						<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					</div>
 				</div>
 				<div id="box2" class="box2">
 					<div id="previewimgbox" class="previewimgbox">
-						<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Video.drawPreviewElement()">Add Content</button>
+						<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Video.addContent()">Add Content</button>
 					</div>
 				</div>
 			</div>
@@ -1084,6 +1149,24 @@
 				</div>
 			</div>
 
+			<div id='tab_audio_soundcloud_content' class="fancy_tab_content">
+				<div class="box1 box1fancy2">
+					<img src="/assets/logos/soundcloudlogo.png" class="imagelogotab">
+					<div class="search_container" id="soundcloud_search_container">
+						<input id="search_soundcloud_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" id="youtube_text_to_search"> </input>
+					</div>
+					<div id="tab_audio_soundcloud_content_carrousel"></div>
+					<div id="tab_audio_soundcloud_content_preview" class="content_preview">
+						<div id="tab_audio_soundcloud_content_preview_audio" class="content_preview_data"></div>
+						<div id="tab_audio_soundcloud_content_preview_metadata" class="content_preview_metadata"></div>
+						<div id="tab_audio_soundcloud_content_preview_foot" class="content_preview_foot">
+							<button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Audio.Soundcloud.addSelectedAudio()">Add</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 			<div id='tab_video_vimeo_content' class="fancy_tab_content">
 				<div class="box1 box1fancy2">
 					<img src="/assets/logos/vimeologo.png" class="imagelogotab">
@@ -1112,7 +1195,7 @@
 				<ul>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_live_resource'); return false;" i18n-key="i.LiveResources" id="tab_live_resource" class="fancy_tab">Live Resources</a></li>
 				</ul>
-				<img class='help_in_fancybox' id='tab_live_resource_help' src='/assets/vicons/helptutorial_circle_blank.png'/> 
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_live_resource_help' src='/assets/vicons/helptutorial_circle_blank.png'/> 
 			</div>
 
 			<div id='tab_live_resource_content' class="fancy_tab_content"> 
@@ -1131,6 +1214,51 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<!-- Chapters for EVideos -->
+	<div style='display:none'>
+		<div id="chapters_fancybox">
+			<div>
+				<div id="eVideoChaptersName_wrapper">
+					<span i18n-key="i.Title">Title</span>
+				</div>
+				<textarea id='eVideoChaptersTextArea' maxlength="200" placeholder="add a title" i18n-key="i.addatitle"></textarea>
+			</div>
+			<div id="eVideoChaptersBall_wrapper" style='display:none'>
+				<span></span>
+			</div>
+			<div id="eVideoChaptersTime_wrapper" class="margin_for_new_field_settings">
+				<div class="range_text"><span i18n-key="i.Time">Time</span>:</div>
+				<input type="text" id="eVideochapters_current_value" class="slider_range_input" readonly/><span class='evideoTimeSlash'>/</span><input type="text" id="eVideochapters_duration_value" class="slider_range_input" readonly/>
+				<div class="tlt_inputs_wrapper">
+					<div class="tlt_input_wrapper">
+						<p class="tlt_input_title" i18n-key="i.Hours">Hours</p>
+						<input type="number" value="0" min="0" max="23" id="eVideochapters_hours" class="tlt_input"/>
+					</div>
+					<div class="tlt_input_wrapper">
+						<p class="tlt_input_title" i18n-key="i.Minutes">Minutes</p>
+						<input type="number" value="0" min="0" max="59" id="eVideochapters_minutes" class="tlt_input"/>
+					</div>
+					<div class="tlt_input_wrapper">
+						<p class="tlt_input_title" i18n-key="i.Seconds">Seconds</p>
+						<input type="number" value="0" min="0" max="59" step="1" id="eVideochapters_seconds" class="tlt_input"/>
+					</div>
+				</div>
+			</div>
+			<div id="eVideoChaptersButtons_wrapper">
+				<a href="#" buttonaction="Add" i18n-key="i.Ok" class="button notification_button">Ok</a>
+				<a href="#" buttonaction="Cancel" i18n-key="i.Cancel" class="button notification_button">Cancel</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Quiz Settings -->
+	<div style='display:none'>
+		<div id="quizSettings_fancybox">
+			<p>Quiz Settings</p>
+			<p class="test"></p>
 		</div>
 	</div>
 
@@ -1198,25 +1326,25 @@
 			<p i18n-key="i.walkWelcome6_1">This button allow you to save your excursion as a draft.</p>
 		</li> -->
 
-		<li data-id="toolbar_publish_help" data-options="tipLocation:top" data-text="Next" i18n-key="i.Next" class="tut_width350 tut_with_arrow">
+		<li data-id="toolbar_publish_wrapper" data-options="tipLocation:top" data-text="Next" i18n-key="i.Next" class="tut_width350 tut_with_arrow">
 			<h2 i18n-key="i.Publish">Publish</h2>
 			<p i18n-key="i.walkWelcome7_1">This button allows you to publish your presentation in the ViSH platform. If your presentation is not complete, you can also save it as a draft to keep it private and finish it later.</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 
-		<li data-id="toolbar_preview_help" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top" class="tut_width350 tut_with_arrow">
+		<li data-id="toolbar_preview_wrapper" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top" class="tut_width350 tut_with_arrow">
 			<h2 i18n-key="i.Preview">Preview</h2>
 			<p i18n-key="i.walkWelcome8_1">This button allows you to preview your presentation. You will be able to see the presentation in the same way that users will see it after its publication.</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 
-		<li data-id="toolbar_themes_help" class="tut_with_arrow tut_width350" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
+		<li data-id="toolbar_themes_wrapper" class="tut_with_arrow tut_width350" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
 			<h2 i18n-key="i.Style">Style</h2>
 			<p i18n-key="i.walkWelcome9_1">This button allows you to choose a visual theme for your presentation.</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 
-		<li data-id="toolbar_background_help" class="tut_with_arrow tut_width350" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
+		<li data-id="toolbar_background_wrapper" class="tut_with_arrow tut_width350" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
 			<h2 i18n-key="i.Background">Background</h2>
 			<p i18n-key="i.walkWelcome10_1">Define a custom background for the current slide.</p>
 			<p class="tut_space">&nbsp;</p>
@@ -1452,11 +1580,15 @@
 			<table class="tut_table_imagewithsubtitle">
 				<tr>
 					<td><img src="/assets/templatesthumbs/flashcard_template.png"/><p i18n-key="i.Flashcard">Flashcard</p></td>
-					<td><p><span i18n-key="i.flashcardDef">Flashcards are resources presented as an image background with 'hot zones' identified by arrows on which the user can click to see additional contents that had been previously tagged.</span> <span i18n-key="i.flashcardLearHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('fc_help', 'top');">Click here to learn how to create a Flashcard.</span></p></td>
+					<td><p><span i18n-key="i.flashcardDef">Flashcards are resources presented as an image background with 'hot zones' identified by arrows on which the user can click to see additional contents that had been previously tagged.</span> <span i18n-key="i.flashcardLearnHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('fc_help', 'top');">Click here to learn how to create a Flashcard.</span></p></td>
 				</tr>
 				<tr>
 					<td><img src="/assets/templatesthumbs/tVTour.png"/><p i18n-key="i.VirtualTour">Virtual Tour</p></td>
-					<td><p><span i18n-key="i.vtDef">Virtual Tours are similar to Flashcards, but instead of being presented as static background images, they are presented as interactive maps where the 'hot zones' are places identified by map pins. This way, when users click on a map pin (a tagged location), they will see additional contents.</span> <span i18n-key="i.vtLearHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('vt_help', 'top');">Click here to learn how to create a Virtual Tour.</span></p></td>
+					<td><p><span i18n-key="i.vtDef">Virtual Tours are similar to Flashcards, but instead of being presented as static background images, they are presented as interactive maps where the 'hot zones' are places identified by map pins. This way, when users click on a map pin (a tagged location), they will see additional contents.</span> <span i18n-key="i.vtLearnHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('vt_help', 'top');">Click here to learn how to create a Virtual Tour.</span></p></td>
+				</tr>
+				<tr>
+					<td><img src="/assets/templatesthumbs/tEVideo.png"/><p i18n-key="i.EnrichedVideo">Enriched Video</p></td>
+					<td><p><span i18n-key="i.EVideoDef">Enriched Videos are videos augmented with other resources (e.g. quizzes, slides, images, etc.), which can be selected and customized by the author, and that can be displayed automatically when the video reaches a specific point of time or explicitly when the user select one of them on a side menu.</span> <span i18n-key="i.eVideoLearnHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('evideo_help', 'top');">Click here to learn how to create a Enriched Video.</span></p></td>
 				</tr>
 			</table>
 			<p class="tut_space">&nbsp;</p>
@@ -1626,7 +1758,71 @@
 
 			<p class="tut_space">&nbsp;</p>
 		</li>
+	</ol>
 
+	<!-- Help in Enriched Videos -->
+	<ol id="evideo_help" class="joyRideTipContent">
+		<li data-id="toolbar_wrapper" data-text="Finish" i18n-key="i.Finish" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.CreatingEnrichedVideos">Creating Enriched Videos</h2>
+			<p i18n-key="i.EVideoDef" class="tut_withoutbottomspace">Enriched Videos are videos augmented with other resources (e.g. quizzes, slides, images, etc.), which can be selected and customized by the author, and that can be displayed automatically when the video reaches a specific point of time or explicitly when the user select one of them on a side menu.</p>
+			<p i18n-key="i.EVideoDef2" class="tut_withoutbottomspace">Enriched Videos are designed with MOOCs (Massive Open Online Courses) in mind, with the aim of integrating questions and quizzes in video lectures as well as additional contents. However, their flexibility allows them to be used in many other educational environments.</p>
+
+			<p class="tut_space">&nbsp;</p>
+
+			<table class="tut_table_imagewithsubtitle_row2">
+				<tr>
+					<td>
+						<p i18n-key="i.walkEVideo_1">To start creating an Enriched Video click on the 'Add slide' button at the left and then click on the Enriched Video icon in the 'Smartcards' panel. After that, an empty Enriched Video will be shown in the screen.</p>
+					</td>
+					<td>
+						<img src="/assets/templatesthumbs/tEVideo.png"/><p i18n-key="i.EVideoIcon">Enriched Video Icon</p>
+					</td>
+				</tr>
+			</table>
+
+			<p class="tut_space">&nbsp;</p>
+
+			<p class="tut_withmediumbottomspace"><span i18n-key="i.walkEVideo_2">First off, you should select the video source of the Enriched Video by clicking on the following button</span>:</p>
+			<img class="tut_image" src="/assets/icons/evideo_add_button.png"/>
+
+			<p class="tut_withmediumbottomspace" i18n-key="i.walkEVideo_3">You can change the selected video source at any time by clicking on the 'Video' button of the toolbar.</p>
+			<img class="big_toolbar_icon toolbar_web" src="/assets/toolbar/change_evideo.png">
+
+			<p class="tut_withmediumbottomspace"><span i18n-key="i.walkEVideo_4">You can use YouTube and HTML5 videos (mp4, webm and ogg formats). Also, you can upload your own video to ViSH to be converted to HTML5 compliant formats ensuring its full compatibility</span>. <span i18n-key="i.walkVideosMain_Videos" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('video_fancy_tabs_main_help', 'top');">Click here to learn more about videos in ViSH Editor</span>.</p>
+
+			<p i18n-key="i.walkEVideo_5">When you are creating an Enriched Video, two main elements are displayed on the screen: the video player placed at the left side, and the 'Table of Contents' placed at the right side. The video player allows to play the video the same way classic media players do. The 'Table of Contents' allows to add 'Timestamp Links'. A timestamp link allows viewers to jump to a specific point in the video. The timestamp links are represented by lines displayed in the video progress bar and their titles are displayed in the table of contents. To edit or remove a timestamp link you can use the icons placed at its side in the table of contents.</p>
+
+			<p i18n-key="i.walkEVideo_6">You can also create more advanced timestamp links, linking not only to a specific point in time, but also to a slide that contains additional resources. In this case, the slide will be displayed automatically when the video reaches the timestamp or when the user click on the corresponding title in the table of contents. This type of links are represented by balls (instead of simple lines) displayed in the video progress bar. The following steps explain how to create these links.</p>
+
+			<p i18n-key="i.walkEVideo_7">When you are creating an Enriched Video, a new panel is displayed at the bottom of the screen. We will refer to this panel as the 'Enriched Video panel'.</p>
+			<img src="/assets/tutorial/tut_ev1.png"/>
+			<p class="tut_space">&nbsp;</p>
+
+			<p i18n-key="i.walkEVideo_8">To add a new slide to the Enriched Video click on the 'Add slide' button placed in the 'Enriched Video panel' and continue with the usual process. After add it, the thumbnail of the new slide will appear in the panel and the slide will be displayed in the screen.</p>
+			<img src="/assets/tutorial/tut_ev2.png"/>
+			<p class="tut_space">&nbsp;</p>
+
+			<p i18n-key="i.walkEVideo_9">When a slide is selected, is displayed in the screen and you can edit and remove it the same way as you do with common slides. To select a slide just click on it in the 'Enriched Video panel'. If you want to select the Enriched Video again to edit it, you have to click on the Enriched Video icon placed at the left of the 'Enriched Video panel'. </p>
+
+			<table class="tut_table_imagewithsubtitle_row2">
+				<tr>
+					<td>
+						<p i18n-key="i.walkEVideo_10">The slides have draggable arrows on their top. You can drag any of them to any area of the Enriched Video to create a new timestamp link associated with its slide. This link will be automatically added to the video and the 'Table of Contents'. The link is represented in the video as a ball with the letter of its associated slide inside. You can slide this ball along the video progress bar to adjust the timestamp. You can also edit the timestamp and the title of the link through the icons placed at its side in the table of contents. If a slide of the Enriched Video is deleted, the associated timestamp link (and the ball) will be also deleted.</p>
+					</td>
+					<td>
+						<img src="/assets/tutorial/tut_pois_evideo.png"/>
+					</td>
+				</tr>
+			</table>
+
+			<p i18n-key="i.walkEVideo_11">You can also add several slides to the same point of time. This is very useful to include large quizzes split in several slides or to combine different type of resources. To do that, just set the same timestamp to all links that are associated with the slides you want to display together. After that, a couple of arrows will be displayed in the table of contents at the side of these links. You can use these arrows to specify the order in which the contents will be displayed when the video reaches that timestamp.</p>
+			<p class="tut_space">&nbsp;</p>
+
+			<p><span i18n-key="i.walkRememberPreview">Remember that you can preview the object you are creating at any time by clicking on the 'Preview' button placed in the toolbar</span> <button type="button" class="btn btn-primary btn-small"><i class="icon-button icon-eye-open"></i></button> .</p>
+			<p class="tut_space">&nbsp;</p>
+
+			<p class="tut_space">&nbsp;</p>
+		</li>
 	</ol>
 
 	<!-- Help inserting images [URL, Upload, ViSH, Flickr, LRE] -->
@@ -1887,7 +2083,7 @@
 
 		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
 			<h2 i18n-key="i.walkVideosMain_1">Adding videos</h2>
-			<p i18n-key="i.walkVideosMain_2">This screen allows you to add videos to the slides. You can select a video to be added from different sources:</p>
+			<p i18n-key="i.walkVideosMain_2">The multimedia resources screen allows you to add videos to the slides. You can select a video to be added from different sources:</p>
 			<table>
 				<tr>
 					<td><p i18n-key="i.Url">Url</p></td>
@@ -1921,14 +2117,18 @@
 			<h2 i18n-key="i.walkVideosUpload_1">Uploading videos</h2>
 
 			<p>
-				<span i18n-key="i.walkVideosUpload_2">You can upload your own video from your computer. To do that, go to</span> <a class="tut_tutlink" href="http://vishub.org" target="_blank">http://vishub.org</a> <span i18n-key="i.walkVideosUpload_3">and upload your video file to the ViSH repository. Several video formats (mp4, flv, mpg, avi, ...) are allowed. When you finish uploading the video onto ViSH your video will be converted to an HTML5 compatible format. Note that this process could take several minutes. Once the process finish, you have two ways of adding the video</span>:
+				<span i18n-key="i.walkVideosUpload_2">You can upload your own video from your computer. To do that, go to</span> <a class="tut_tutlink" href="http://vishub.org" target="_blank">http://vishub.org</a> <span i18n-key="i.walkVideosUpload_3">and upload your video file to the ViSH repository. Several video formats (mp4, flv, mpg, avi, ...) are allowed. When you finish uploading the video onto ViSH, it will be converted to all HTML5 compatible video formats (mp4, webm and ogg). Note that this process could take several minutes or even hours depending on the video size. This is a good way to insert the videos because thereby they will be available in several formats and will work in all HTML5 compliant web browsers. Once the process finish, you have two ways of adding the video</span>:
 				<ul>
-					<li><span i18n-key="i.walkVideosUpload_4">Search your video on the ViSH repository in the ViSH tab. In this case you will have to wait several hours for the ViSH search engine to index the new video. This is the recommended way to insert the videos, because thereby the videos will be available in several formats and will work in nearly all devices. </span></li>
+					<li><span i18n-key="i.walkVideosUpload_4">Search your video on the ViSH repository from the ViSH Editor through the 'ViSH' tab. In this case you will have to wait several hours (maximum) for the ViSH search engine to index the new video.</span></li>
 					<li class="tut_li_decnone">&nbsp;</li>
-					<li><span i18n-key="i.walkVideosUpload_5">Another way is to go to the page of the video in ViSH, for example, http://vishub.org/videos/325, and add the extension you want (webm, mp4) to the url, for example, http://vishub.org/videos/325.webm. In this page you will be able to see the video in your web browser. Finally, you just have to go to the 'url' tab and paste this url to insert the video immediately.</span></li>
+					<li><span i18n-key="i.walkVideosUpload_5">Another way is to go to the page of the video in ViSH (for example, http://vishub.org/videos/3366) and click on the 'embed' tab. After that, you should paste the provided embed code into the input text field of the 'url' tab in the ViSH Editor. This way, the video will be inserted immediately.</span></li>
 				</ul>
 			</p>
-
+			<p class="tut_space">&nbsp;</p>
+			<p>
+				<span i18n-key="i.walkVideosUpload_6">Since ViSH Editor allows to embed YouTube videos, you can also upload your videos to YouTube</span>: <a class="tut_tutlink" href="http://www.youtube.com/upload" target="_blank">http://www.youtube.com/upload</a>. <span i18n-key="i.walkVideosUpload_7">Once the video has been successfully uploaded to YouTube, you can insert it by its url, the embed code provided by YouTube, or by searching it from the ViSH Editor through the 'YouTube' tab. YouTube also provide the videos in HTML5 compliant video formats, so they will work in nearly all devices including mobile phones.</span>
+			</p>
+			<p class="tut_space">&nbsp;</p>
 			<p class="tut_space">&nbsp;</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>

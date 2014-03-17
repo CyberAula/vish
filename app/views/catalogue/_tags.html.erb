@@ -5,7 +5,7 @@
     	<%else%>
     		var category_shown = null;
     	<%end%>
-		
+
 		if(category_shown){
 			$(".Tags_list_as input[type='checkbox'][name='"+category_shown+"']").attr('checked','checked');
 		}        
@@ -15,18 +15,31 @@
             window.location = "/catalogue/" + name;
         });
     });
-
 </script>
 
-<div class="toggler-as">
-	<div id="effect-as" class="anotherNewClass-as ui-corner-all">
-		<section id="catalogue">
-		<ul class="info_as">
-			<i class="icon-search "></i>
-		  <h2><%=t('catalogue.title')%></h2>
 
-		</ul>
-		<section class="Tags_list_as scroll-pane">
+	<section id="catalogue">
+
+		<ul class="Tags_list_as ">
+		<div class="info_catalogue">
+			
+		  <h3><%=t('catalogue.title')%></h3>
+		  	  
+		  <div class="info_catalogue_bottom"></div>
+		</div>
+
+		<div id="effect" class="newClass ui-corner-all">
+			<li href="#"><input id="chk1" type="checkbox" name="Maths"/><label for="chk1"><span></span><%=t('competitions.Maths')%></label></li>
+			<li href="#"><input id="chk2" type="checkbox" name="Physics"/><label for="chk2"><span></span><%=t('competitions.Physics')%></label></li>
+			<li href="#"><input id="chk3" type="checkbox" name="Chemistry"/><label for="chk3"><span></span><%=t('competitions.Chemistry')%></label></li>
+			<li href="#"><input id="chk4" type="checkbox" name="Biology"/><label for="chk4"><span></span><%=t('competitions.Biology')%></label></li>
+			<li href="#"><input id="chk5" type="checkbox" name="EnvironmentalStudies"/><label for="chk5"><span></span><%=t('competitions.EnvironmentalStudies')%></label></li>
+			<li href="#"><input id="chk6" type="checkbox" name="Geography"/><label for="chk6"><span></span><%=t('competitions.Geography')%></label></li>
+			<li href="#"><input id="chk7" type="checkbox" name="Engineering"/><label for="chk7"><span></span><%=t('competitions.Engineering')%></label></li>
+			<li href="#"><input id="chk8" type="checkbox" name="Humanities"/><label for="chk8"><span></span><%=t('competitions.Humanities')%></label></li>
+			<li href="#"><input id="chk9" type="checkbox" name="NaturalScience"/><label for="chk9"><span></span><%=t('competitions.NaturalScience')%></label></li>
+			<li href="#"><input id="chk10" type="checkbox" name="ComputerScience"/><label for="chk10"><span></span><%=t('competitions.ComputerScience')%></label></li>
+
 		    <li href="#"><input id="chk1" type="checkbox" name="Art"/><label for="chk1"><span></span>Art</label></li>
 		    <li href="#"><input id="chk2" type="checkbox" name="Astronomy"/><label for="chk2"><span></span>Astronomy</label></li>
 		    <li href="#"><input id="chk3" type="checkbox" name="Biology"/><label for="chk3"><span></span>Biology</label></li>
@@ -60,9 +73,41 @@
 		    <li href="#"><input id="chk31" type="checkbox" name="Social sciences"/><label for="chk31"><span></span>Social sciences</label></li>
 		    <li href="#"><input id="chk32" type="checkbox" name="Technology"/><label for="chk32"><span></span>Technology</label></li>
 		    <li href="#"><input id="chk33" type="checkbox" name="Telecommunications"/><label for="chk33"><span></span>Telecommunications</label></li>
-
-		  </section>
+		    </div>
+		  </ul>
 
 		</section>
-	</div>
-</div>
+<button href="#" id="showMore_tags" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
+
+
+
+<!--scroll   
+<script>
+  $(function()
+  {
+    $('.scroll-pane').jScrollPane();
+  });
+</script>--> 
+
+
+
+
+
+
+<script>
+$(function() {
+  $("#showMore_tags").click(function(){
+    $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
+    $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
+    if($("#showMore_tags").attr("status")=== "showMore"){
+      $("#showMore_tags").html('<a><%=t("excursion.actions.show_fewer")%></a>');
+      $("#showMore_tags").attr("status", "showFewer");
+    }
+    else{
+      $("#showMore_tags").html('<a><%=t("excursion.actions.show_more")%></a>');
+      $("#showMore_tags").attr("status", "showMore");
+    }
+    return false;
+  });
+});
+</script>

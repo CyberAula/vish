@@ -57,12 +57,12 @@ class ExcursionsController < ApplicationController
   def clone
     original = Excursion.find_by_id(params[:id])
     if original.blank?
-      flash[:error] = t('excursion.clone.not_found')
+      flash.now[:error] = t('excursion.clone.not_found')
       redirect_to excursions_path if original.blank? # Bad parameter
     else
       # Do clone
       excursion = original.clone_for current_subject.actor
-      flash[:success] = t('excursion.clone.ok')
+      flash.now[:success] = t('excursion.clone.ok')
       redirect_to excursion_path(excursion)
     end
   end
@@ -200,7 +200,9 @@ class ExcursionsController < ApplicationController
         results = Hash.new
         results["excursions"] = []
         @found_excursions.each do |excursion|
-          results["excursions"].push(JSON(excursion.json))
+          unless excursion.nil?
+            results["excursions"].push(JSON(excursion.json))
+          end
         end
         render :json => results
       }

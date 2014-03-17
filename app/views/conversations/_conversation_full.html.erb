@@ -11,10 +11,11 @@
     <% end %>
 </div>
 
+
+<div class="participants">
 <h4>
   <%= t("message.participants") %>:
 </h4>
-<div class="participants">
   <% conversation.recipients.each do |recp| %>
     <%= link_to image_tag(recp.logo.url(:small), :title=>recp.name, :alt => recp.name), recp.subject %>
   <% end %>
@@ -47,7 +48,7 @@
     <%= text_area_tag :body, nil,:rows =>6, :cols=> 53, :class => "required form_tag" %>
   </div>
   <div class="actions">
-    <%= submit_tag t('mailboxer.reply'), :name => :reply_all,:class => "btn" %>
+    <%= submit_tag t('mailboxer.reply'), :name => :reply_all,:class => "" %>
   </div>
   <% end %>
   <%end %>

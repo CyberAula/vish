@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8">
+<script type="text/javascript" src="zepto.min.js" ></script>
+<script type="text/javascript" src="touch.js" ></script>
+<script type="text/javascript"> 
+  $(function(){
+    var i = $('#i1');
+
+    i.on('swipeRight', function(){ i.attr('src', 'scare.png'); });
+
+    i.on('swipeLeft', function() { i.attr('src', 'wait.png'); });
+  });
+</script>
+</head>
+<body>
+  <h4>Evento Touch</h4>
+
+  <img src="wait.png" width="300" heigth="300" id="i1"/>
+</body>
+</html>

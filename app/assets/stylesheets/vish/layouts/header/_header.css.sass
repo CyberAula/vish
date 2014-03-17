@@ -111,40 +111,65 @@ header.navbar,
               border-color: $firstColor
               i
                 color: $firstColor
+        .photo_user
+          padding: 0px
+          height: 39px
+          width: 39px
+          outline: none  
+          float: left
+          margin-left: 5px
+          margin-top: 5px
+          img
+            @include border-radius( 3px)
+            height: 39px
+            width: 39px
+            float: left
+            border: 1px solid #EEEEEE
+            &:hover
+              border: 1px solid $firstColor
+          a
+            padding: 0
 
         .user-settings
           float: right
-          width: 170px
-          .dropdown-menu
-            position: relative
-            &:before
-              border: none
-            &:after
-              border: none
-          a.logo-small
-            padding: 0px
+          width: 120px
+          @include border-radius( 3px)
+          height: 39px
+          float: left
+          border: 1px solid #EEEEEE
+          margin-left: 5px
+          margin-top: 5px
+          position: relative
+          &:hover
+            border: 1px solid $firstColor
+
+          .name
             margin-left: 5px
-            margin-top: -15px
-            outline: none  
+            text-overflow: ellipsis
             float: left
-            img
-              @include border-radius($baseBorderRadius)
-              height: 39px
-              width: 39px
-              float: left
-            .name
-              margin-left: 5px
-              text-overflow: ellipsis
-              float: left
-              overflow: hidden
-              height: 30px
-              width: 120px
-              margin-top: 10px
-              &:hover
-                font-family: $thirdFontFamily
-            i
-              float: right
-              margin-top: 3px
+            overflow: hidden
+            height: 30px
+            width: 120px
+            margin-top: 10px
+            color: $gray
+            &:hover
+              color: $black
+              text-decoration: none 
+              font-family: $thirdFontFamily
+
+          .icon-angle-down
+            float: right
+            margin-right: 15px
+            margin-top: 3px
+          .dropdown
+            list-style: none
+            margin-left: 20px
+            outline: none
+            top: 50px
+
+          .dropdown-menu
+            top: 95%
+
 
         .navegation
           float: left

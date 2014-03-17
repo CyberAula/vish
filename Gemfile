@@ -82,9 +82,9 @@ group :development do
   # use with:
   # $ export VISH_DEBUG=true
 
-  if ENV['VISH_DEV'] || ENV['VISH_DEBUG']	  	
-    gem 'unicorn', '=4.6.2'
-  end
+  #if ENV['VISH_DEV'] || ENV['VISH_DEBUG']	  	
+  #  gem 'unicorn', '=4.6.2'
+  #end
 
 end
 

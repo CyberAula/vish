@@ -50,7 +50,8 @@ Vish::Application.routes.draw do
   match '/categories/add_items' => 'categories#add_items', :via => :post
   match '/categories/favorites' => 'categories#show_favorites'
 
-
+  match 'resources/search' => 'resources#search'
+  
   match 'lre/search' => 'lre#search_lre'
 
   #redirect /home.json to the original path
@@ -77,9 +78,14 @@ Vish::Application.routes.draw do
   # Add this at the end so other URLs take prio
   match '/s/:id' => "shortener/shortened_urls#show"
 
-  
   # for OAI-MPH
   mount OaiRepository::Engine => "/oai_repository"
+
+  #LOEP
+  namespace :loep do
+    resources :los
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
