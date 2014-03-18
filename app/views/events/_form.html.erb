@@ -118,6 +118,8 @@
 
       </script>
 
+      <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
+    <% end %>
   </div><!-- CIERRA BODY-->
 
   <!-- FOOTER -->
@@ -137,13 +139,8 @@
       </div>
     </div>
 
-
-
-
-
-      <input type="button" class="btn-primary" value="<%= t('categories.save')%>"/>
-      <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
-    <% end %>
+    <input type="button" class="btn-primary" value="<%= t('categories.save')%>"/>
+      
   </div>
 </div>
 
