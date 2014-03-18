@@ -17,6 +17,8 @@
       <!--DESCRIPCION-->
       <label><%= t('categories.leyend.description')%></label>
       <%= f.text_field :description, :placeholder => t('categories.description_input') %>
+      <%= f.submit t('categories.save'), :class => "hidden", :id => "saveCategory" %>
+    <% end %>
     </div>
 
      <div class="modal-footer">      
@@ -32,8 +34,7 @@
       <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
       <!--<b id="foo" rel="popover">Ayuda </b>-->
       <input type="button" class="btn-primary" value="<%= t('categories.save')%>"/>
-      <%= f.submit t('categories.save'), :class => "hidden", :id => "saveCategory" %>
-    <% end %>
+      
   </div>
 </div>
 
