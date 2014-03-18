@@ -9,7 +9,7 @@
 
   <div class="modal-body">
     <%#= form_for Event.new(:owner_id => Actor.normalize_id(current_user)) do |f| %>
-    <%= form_for @event || Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
+    <%= form_for Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
       <%= f.hidden_field :owner_id  %>
       <%= f.hidden_field :start_at %>
       <%= f.hidden_field :end_at %>

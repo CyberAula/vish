@@ -99,15 +99,15 @@
           $("#event .new_event").after("<div class='errors'><%= t('event.title_input')%></div>");
         } else {
           // $("#event input[name='event[start_at]']").val($("#event input[name='event_day']").val() + " " + $("#event input[name='event_start_time']").val());
-          $("#event input[name='event[start_at]']").val(new Date(Date.parse($("#event input[name='event_day']").val() + " " + $("#event input[name='event_start_time']").val())));
+          $("#event input[name='event[start_at]']").val(new Date(Date.parse($("#event input[name='event_day']").val().replace(/-/g,"/") + " " + $("#event input[name='event_start_time']").val())));
           if ($("#event input[name='event_end_time']").val() < $("#event input[name='event_start_time']").val()) {
             var d = new Date($("#event input[name='event_day']").val());
             d.setDate(d.getDate()+1);
             // $("#event input[name='event[end_at]']").val(d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate() + " " + $("#event input[name='event_end_time']").val());
-            $("#event input[name='event[end_at]']").val(new Date(Date.parse(d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate() + " " + $("#event input[name='event_end_time']").val())).toUTCString());
+            $("#event input[name='event[end_at]']").val(new Date(Date.parse(d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate() + " " + $("#event input[name='event_end_time']").val())).toUTCString());
           } else {
           //$("#event input[name='event[end_at]']").val($("#event input[name='event_day']").val() + " " + $("#event input[name='event_end_time']").val());
-          $("#event input[name='event[end_at]']").val(new Date(Date.parse($("#event input[name='event_day']").val() + " " + $("#event input[name='event_end_time']").val())).toUTCString());
+          $("#event input[name='event[end_at]']").val(new Date(Date.parse($("#event input[name='event_day']").val().replace(/-/g,"/") + " " + $("#event input[name='event_end_time']").val())).toUTCString());
           }
           $(saveEventButton).click();
         }
