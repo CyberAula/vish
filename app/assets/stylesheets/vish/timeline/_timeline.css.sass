@@ -134,6 +134,9 @@
         color: $white
         &:hover
           text-decoration: none
+
+
+
 .comments
   @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
   display: block
@@ -243,8 +246,69 @@
 
 
 
+.description-activity
+  background-color: $gray
+  .activity-box
+    .activity
+      .tabbable
+        .tab-content
+          .comments
+            margin: 0 auto 
+            padding-top: 0px 
+            .new-comments-box
+              .new_comment
+                width: 90%
+                .avatar
+                  width: auto
+                  display: inline
+                  width: 5%
+                  img
+                    @include border-radius($baseBorderRadius)
 
-
+                form#new_comment
+                  width: 93%
+                  margin-left: 2%
+                  display: inline
+                  textarea
+                  input[type="submit"]
+            .comments
+              .activity  
+                margin-bottom: 5px
+              .child
+              .media
+                padding: 1%
+                margin-top: 0
+                .pull-left
+                  margin-right: 2%
+                .avatar
+                  width: 5%
+                  @include border-radius($baseBorderRadius)
+                  .media-object
+                    a
+                      img
+                .media-heading
+                  margin: 0
+                  width: 93% !important
+                  height: 20px
+                  overflow: hidden
+                  h6
+                  .x
+                    margin-right: 5px
+                .media-body
+                  margin: 0
+                  clear: none
+                  margin-top: 5px
+                  .objects
+                    .comment
+                      margin-left: 2%
+                      font-size: 12px
+                      p
+                  .actions
+                    .post_time_ago
+                      color: $grayLight
+                      margin-top: 5px
+                    .to_like
+                      display: none
 
 
 
