@@ -44,9 +44,17 @@
     
     <% unless document.tag_list.blank? %>
       <dt><%= t 'document.info.tags' %></dt>
-     <dd class="tags_resource"><%= tag_list document %></dd>
+      <dd>
+        <ul class="tagit-suggestions">
+          <% document.tag_list.each do |tag| %>
+          <li class="tagit-choice">
+            <%= link_to tag, search_path(:q => tag) %>
+          </li>
+          <% end %>
+        </ul>
+      </dd>
     <%end%>
-
+    
     <dt><%= t('document.info.date.created_at') %></dt>
     <dd><%= I18n.localize document.created_at, :format => :long %></dd>
     

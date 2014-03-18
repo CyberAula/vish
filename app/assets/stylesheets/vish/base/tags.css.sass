@@ -206,3 +206,23 @@ ul.single-line-tags
 .tags_resource
   span:after
     content: ", " 
+.box_description
+  ul.tagit-suggestions
+    li.tagit-choice
+      @include border-radius($baseBorderRadius)
+      cursor: pointer
+      display: block
+      float: left
+      margin-right: 5px !important
+      margin-bottom: 10px
+      position: relative
+      background-color: lighten($secondColor, 10%)
+      //border-left: 5px solid darken($secondColor, 10%)
+      color: $white
+      padding: 3px 10px 3px 10px
+      &:hover  
+        background-color: lighten($secondColor, 20%)
+      a
+        color: $white
+        &:hover
+          text-decoration: none

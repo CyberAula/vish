@@ -251,7 +251,7 @@
   .activity-box
     .activity
       .tabbable
-        .tab-content
+        .tab-content,.tab-pane
           .comments
             margin: 0 auto 
             padding-top: 0px 
@@ -269,6 +269,7 @@
                   width: 93%
                   margin-left: 2%
                   display: inline
+                  margin-bottom: 10px
                   textarea
                   input[type="submit"]
             .comments
@@ -282,10 +283,11 @@
                   margin-right: 2%
                 .avatar
                   width: 5%
-                  @include border-radius($baseBorderRadius)
+                  
                   .media-object
                     a
                       img
+                        @include border-radius($baseBorderRadius)
                 .media-heading
                   margin: 0
                   width: 93% !important
