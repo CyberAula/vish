@@ -44,8 +44,12 @@
           padding-left: 10px
           display: block
           float: left
+          word-wrap: break-word
+          width: 80%
+          line-height: 20px
           a
             color: $gray
+            word-wrap: break-word
             &:hover
               text-decoration: none
         .x
@@ -107,8 +111,14 @@
           .to_like
             float: left
             visibility: hidden
+
             a
               color: lighten($firstColor, 20%)
+        .likes
+          display: none
+          a
+            text-overflow: ellipsis
+            width: 120px
     .more
       margin-top: 2% !important
       margin-bottom: 2% !important
@@ -147,29 +157,34 @@
     .avatar
       display: block
       float: left
-      margin: 0px
-      width: 35px !important
-      height: 20px !important
+      width: 15%
+      max-width: none
     .media-heading
+      width: 75% !important
       display: block
       float: left
-      text-align: left !important
-      margin-top: 1%
-      width: 90% !important
-      margin-left: 10px
-      clear: right !important
+      clear: none
+      margin: 0
+      margin-left: 3%
       h6
         margin: 0
         line-height: 0
         font-size: 14px
+        text-overflow: ellipsis
+        width: 75%
+        float: left
+        line-height: 17px
         a
           color: $grayDarker
+          word-wrap: break-word
     .media-body
       clear: both
       display: block
       margin: 14px 0px 0px 0px
       overflow: visible
-      width: 100%
+      width: 80% !important
+      margin-left: 10%
+      margin-right: 10%%
       float: left
       .objects
         .comment
@@ -191,30 +206,29 @@
           a
             color: lighten($firstColor, 20%)
 .new_comment
-  @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  width: 80%
+  margin: 0 auto
   display: block
-  margin: 4% auto 10px
   clear: both
   .avatar
-    position: absolute
     display: block
+    float: left
+    width: 15%
   form#new_comment
-    @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    width: 82%
     display: block
-    margin: 15px auto 
-    margin-top: -2.9%
-    margin-bottom: 30px
+    float: left
+    clear: none
+    margin: 0
+    margin-left: 3%
+
     textarea
-      height: 41px
-      width: 106%
-      padding: 4px 2%
-      margin-bottom: 0px
+      width: 100%
+      margin-top: 0
     input
       &[type="submit"]
-        display: block
-        margin: 0px auto
-        margin-right: -10.2%
-        width: 130px
+        float: right
+        margin-top: -10px
         @include btn-primary
         @include border-top-radius(0px)
         @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
