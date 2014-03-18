@@ -59,7 +59,8 @@
         theme: "vish",
       },
       success: function(data) {
-        launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&delay=9000&app=meeting_mode");
+        my_data = JSON.parse(data);
+        launchIframe("http://www.mashme.tv/M/" + my_data.permalink + "?name=" + name + "&delay=9000&app=meeting_mode");
       }
     });
   });

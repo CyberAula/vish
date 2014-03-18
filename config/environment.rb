@@ -11,8 +11,6 @@ Vish::Application.initialize!
 
 #finally the OAI initialization code
 OaiRepository.setup do |config|
-  puts "CONFIG OAI"
-
   config.repository_name = 'VIRTUAL SCIENCE HUB'
 
   # The URL from which this OAI Repository is served.

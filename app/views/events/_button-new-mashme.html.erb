@@ -1,3 +1,4 @@
+<%binding.pry%>
 <!-- Place this tag where you want the button. -->
 <div class="mashme-button" data-username="<%=current_user.name%>" data-customurl="<%=request.url%>" data-roomtitle="<%= @event.title.split(' ').map {|w| w.capitalize }.join('')%>" data-roomtheme="original" data-roomapp="meeting_mode" data-buttontext="<%=t('mashme.launch')%>" data-maximized="true" data-webrtc="false"></div>
 
