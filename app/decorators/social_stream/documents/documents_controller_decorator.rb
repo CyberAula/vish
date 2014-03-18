@@ -11,15 +11,10 @@ DocumentsController.class_eval do
       format.all {
         if resource.new_record?
           render action: :new
+        elsif params["document"]["add_holder_event_id"]
+          redirect_to request.referer #we are adding poster to an event, redirect to the event
         else
-          redirect = 
-            ( request.referer.present? ?
-              ( request.referer =~ /new$/ ?
-                resource :
-                request.referer ) :
-              home_path )
-
-          redirect_to redirect
+          redirect_to resource
         end
       }
     end
