@@ -1,12 +1,22 @@
 
 
-  <a class="without-data-toggle dropdown-toggle" data-toggle="dropdown" href="#">
-  <li class="dropdown">
-      <%=t('browse.title')%>
-      <b class="caret"></b>
-    </a>
 
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+
+<li class ="toggler  dropdown browse_btn">
+
+
+              <div class="without-data-toggle">
+                <div class="browse_name">
+                  <%=t('browse.title')%>
+                  <i class="icon-angle-down"></i>
+                </div>
+              </div>
+
+
+
+    
+
+    <ul class="dropdown-menu">
       <li>
         <a tabindex="-1" href="<%=search_path(:browse=>"true")%>">
           <i class="icon-dashboard"></i> 

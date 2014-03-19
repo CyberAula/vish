@@ -49,9 +49,21 @@ header.navbar,
       .browse
         margin-left: 2%
         float: left
-        margin-top: 15px
         border-left: 1px solid rgb(214, 214, 214)
-        outline: none
+
+        .browse_btn
+          border: 1px solid #EEEEEE
+          border-radius: 3px
+          float: left
+          height: 39px
+          margin-left: 5px
+          margin-top: 5px
+          position: relative
+          &:hover
+            border: 1px solid $firstColor
+          .browse_name
+            padding: 11px
+
         .dropdown
           list-style: none
           margin-left: 20px

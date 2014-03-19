@@ -3,11 +3,13 @@ footer.container-fluid
   z-index: 100 //maximum zindex
   opacity: 0.95
   &:hover
+
     //opacity: 1
   nav.footercontent
+
     ul
       li
-        font-family: $thirdFontFamily
+        font-family: $thirdFontFamily !important
         color: #555
         outline: none
         a
@@ -15,6 +17,9 @@ footer.container-fluid
           &:hover
             color: #000
             font-family: $thirdFontFamily
+        label, input, button, select, textarea, span
+          font-family: $thirdFontFamily !important
+          color: #555
         img
           &:hover
             border-bottom: 1px solid #666
@@ -43,6 +48,7 @@ footer.container-fluid
         button
           background-color: transparent
           border: none
+
         .open 
           background-color: none
 
