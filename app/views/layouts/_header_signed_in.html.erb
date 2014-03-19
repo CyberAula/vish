@@ -57,11 +57,11 @@
               <% end %>
             </li>
             <li class ="toggler user-settings dropdown">
-              <%= link_to current_subject do %>      
-              <div  class="without-data-toggle logo-small ">
-                <%= truncate_name(current_subject.name, length: 10) %><i class="icon-angle-down"></i>
+    
+              <div class="without-data-toggle">
+                <div class="name_user"><%= truncate_name(current_subject.name, length: 10) %></div><i class="icon-angle-down"></i>
               </div>
-              <%end%>
+
 
               <ul class="dropdown-menu">
                  <li class="settings-menu">
