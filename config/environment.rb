@@ -77,6 +77,10 @@ OaiRepository.setup do |config|
   # config.additional_formats = [
   #   OAI::Provider::Metadata::RIFCS
   # ]
-  config.additional_formats = []
+
+  require 'oai_repository/lom_format'
+  config.additional_formats = [
+    OAI::Provider::Metadata::LOM
+  ]
 
 end

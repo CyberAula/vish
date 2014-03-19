@@ -56,8 +56,25 @@ class Excursion < ActiveRecord::Base
     author.name
   end
 
+  ####################
+  ## LOM Management
+  ####################
 
+  def to_oai_lom    
+    identifier = Rails.application.routes.url_helpers.excursion_url(:id => self.id)
 
+    lomxml = ::Builder::XmlMarkup.new(:indent => 2)
+    lomxml.tag!("lom", {'xmlns' => "http://www.imsglobal.org/xsd/imsmd_v1p2",
+                                'xmlns:lom' => "http://ltsc.ieee.org/xsd/LOM" ,
+                                'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+                                'xsi:schemaLocation' => 
+                                  %{http://www.imsglobal.org/xsd/imsmd_v1p2
+                                     http://www.imsglobal.org/xsd/imsmd_v1p2p4.xsd}            
+                                }) do
+      lomxml = Excursion.addLOMtoXML(lomxml, JSON(self.json), self, identifier)
+
+    end
+  end
 
   ####################
   ## JSON Management
@@ -158,220 +175,8 @@ class Excursion < ActiveRecord::Base
       myxml.metadata() do
         myxml.schema("ADL SCORM")
         myxml.schemaversion("CAM 1.3")
-
         myxml.lom do
-          myxml.general do
-            myxml.identifier("VISH_VIRTUAL_EXCURSION_"+ identifier)
-            myxml.title do
-              if ejson["title"]
-                myxml.langstring(ejson["title"])
-              else
-                myxml.langstring("Untitled")
-              end
-            end
-            if ejson["language"]
-              myxml.language(ejson["language"])
-            end
-            myxml.description do
-              if ejson["description"]
-                myxml.langstring(ejson["description"])
-              elsif ejson["title"]
-                myxml.langstring(ejson["title"] + ". A Virtual Excursion provided by http://vishub.org.")
-              else
-                myxml.langstring("Virtual Excursion provided by http://vishub.org.")
-              end
-            end
-            if ejson["tags"] && ejson["tags"].kind_of?(Array)
-              ejson["tags"].each do |tag|
-                myxml.keyword do
-                  myxml.langstring(tag.to_s)
-                end
-              end
-            end
-            #Add subjects as additional keywords
-            if ejson["subject"]
-              if ejson["subject"].kind_of?(Array)
-                ejson["subject"].each do |subject|
-                  myxml.keyword do
-                    myxml.langstring(subject)
-                  end 
-                end
-              elsif ejson["subject"].kind_of?(String)
-                myxml.keyword do
-                    myxml.langstring(ejson["subject"])
-                end
-              end
-            end
-
-            myxml.structure do
-              myxml.source do
-                myxml.langstring("LOMv1.0")
-              end
-              myxml.value do
-                myxml.langstring("hierarchical")
-              end
-            end
-            myxml.aggregationlevel do
-              myxml.source do
-                myxml.langstring("LOMv1.0")
-              end
-              myxml.value do
-                myxml.langstring("4")
-              end
-            end
-          end
-
-          myxml.lifecycle do
-            myxml.version do
-              myxml.langstring("1.0")
-            end
-            myxml.status do
-              myxml.source do
-                myxml.langstring("LOMv1.0")
-              end
-              myxml.value do
-                myxml.langstring("final")
-              end
-            end
-
-            if (ejson["author"] and ejson["author"]["name"]) or (!excursion.nil? and !excursion.author.nil? and !excursion.author.name.nil?)
-              myxml.contribute do
-                myxml.role do
-                  myxml.source do
-                    myxml.langstring("LOMv1.0")
-                  end
-                  myxml.value do
-                    myxml.langstring("author")
-                  end
-                end
-                myxml.centity do
-                  if ejson["author"] and ejson["author"]["name"]
-                    myxml.vcard("begin:vcard\n n:"+ejson["author"]["name"]+"\n fn:\n end:vcard")
-                  else
-                    myxml.vcard("begin:vcard\n n:"+excursion.author.name+"\n fn:\n end:vcard")
-                  end
-                end
-                myxml.date do
-                  if excursion and !excursion.updated_at.nil?
-                    myxml.datetime(excursion.updated_at.strftime("%d/%m/%y"))
-                  else
-                    myxml.datetime(Time.now.strftime("%d/%m/%y"))
-                  end
-                end
-              end
-            end
-          end
-
-          myxml.technical do
-            myxml.format("text/html")
-            if excursion and excursion.draft == false
-              myxml.location("http://vishub.org/excursions/"+excursion.id.to_s)
-            elsif ejson["vishMetadata"] and ejson["vishMetadata"]["id"] and (ejson["vishMetadata"]["draft"] == false or ejson["vishMetadata"]["draft"] == "false")
-              myxml.location("http://vishub.org/excursions/"+ejson["vishMetadata"]["id"].to_s)
-            end
-            myxml.requirement do
-              myxml.type do
-                myxml.source do
-                  myxml.langstring("LOMv1.0")
-                end
-                myxml.value do
-                  myxml.langstring("browser")
-                end
-              end
-              myxml.name do
-                myxml.source do
-                  myxml.langstring("LOMv1.0")
-                end
-                myxml.value do
-                  myxml.langstring("any")
-                end
-              end
-            end
-            myxml.otherplatformrequirements do
-              myxml.langstring("HTML5-compliant web browser")
-            end
-          end
-
-          myxml.educational do
-            myxml.interactivitytype do
-              myxml.source do
-                myxml.langstring("LOMv1.0")
-              end
-              myxml.value do
-                myxml.langstring("mixed")
-              end
-            end
-            myxml.learningresourcetype do
-              myxml.source do
-                myxml.langstring("LOMv1.0")
-              end
-              myxml.value do
-                myxml.langstring("slide")
-              end
-            end
-            myxml.interactivitylevel do
-              myxml.source do
-                myxml.langstring("LOMv1.0")
-              end
-              myxml.value do
-                myxml.langstring("very high")
-              end
-            end
-            myxml.intendedenduserrole do
-              myxml.source do
-                myxml.langstring("LOMv1.0")
-              end
-              myxml.value do
-                myxml.langstring("learner")
-              end
-            end
-            if ejson["context"]
-              myxml.context do
-                myxml.source do
-                  myxml.langstring("LOMv1.0")
-                end
-                myxml.value do
-                  myxml.langstring(readableContext(ejson["context"]))
-                end
-              end
-            end
-            if ejson["age_range"]
-              myxml.typicalagerange do
-                myxml.langstring(ejson["age_range"])
-              end
-            end
-            if ejson["difficulty"]
-              myxml.difficulty do
-                myxml.source do
-                  myxml.langstring("LOMv1.0")
-                end
-                myxml.value do
-                  myxml.langstring(ejson["difficulty"])
-                end
-              end
-            end
-            if ejson["TLT"] or ejson["slides"]
-              myxml.typicalLearningTime do
-                if ejson["TLT"]
-                  myxml.duration(ejson["TLT"])
-                else
-                  #Inferred
-                  # 1 min per slide
-                  # inferredTPL = (excursion.slide_count * 1).to_s
-                  inferredTPL = (ejson["slides"].length * 1).to_s
-                  myxml.duration("PT"+inferredTPL+"M0S")
-                end
-              end
-            end
-            if ejson["educational_objectives"]
-              myxml.description do
-                  myxml.langstring(ejson["educational_objectives"])
-              end
-            end
-            if ejson["language"]
-              myxml.language(ejson["language"])
-            end
-          end
+          myxml = addLOMtoXML(myxml, ejson, excursion, "VISH_VIRTUAL_EXCURSION_"+identifier)
         end
       end
 
@@ -413,6 +218,225 @@ class Excursion < ActiveRecord::Base
 
     return myxml
   end
+
+
+  def self.addLOMtoXML(myxml, ejson, excursion, identifier)    
+      myxml.general do
+        myxml.identifier(identifier)
+        myxml.title do
+          if ejson["title"]
+            myxml.langstring(ejson["title"])
+          else
+            myxml.langstring("Untitled")
+          end
+        end
+        if ejson["language"]
+          myxml.language(ejson["language"])
+        end
+        myxml.description do
+          if ejson["description"]
+            myxml.langstring(ejson["description"])
+          elsif ejson["title"]
+            myxml.langstring(ejson["title"] + ". A Virtual Excursion provided by http://vishub.org.")
+          else
+            myxml.langstring("Virtual Excursion provided by http://vishub.org.")
+          end
+        end
+        if ejson["tags"] && ejson["tags"].kind_of?(Array)
+          ejson["tags"].each do |tag|
+            myxml.keyword do
+              myxml.langstring(tag.to_s)
+            end
+          end
+        end
+        #Add subjects as additional keywords
+        if ejson["subject"]
+          if ejson["subject"].kind_of?(Array)
+            ejson["subject"].each do |subject|
+              myxml.keyword do
+                myxml.langstring(subject)
+              end 
+            end
+          elsif ejson["subject"].kind_of?(String)
+            myxml.keyword do
+                myxml.langstring(ejson["subject"])
+            end
+          end
+        end
+
+        myxml.structure do
+          myxml.source do
+            myxml.langstring("LOMv1.0")
+          end
+          myxml.value do
+            myxml.langstring("hierarchical")
+          end
+        end
+        myxml.aggregationlevel do
+          myxml.source do
+            myxml.langstring("LOMv1.0")
+          end
+          myxml.value do
+            myxml.langstring("4")
+          end
+        end
+      end
+
+      myxml.lifecycle do
+        myxml.version do
+          myxml.langstring("1.0")
+        end
+        myxml.status do
+          myxml.source do
+            myxml.langstring("LOMv1.0")
+          end
+          myxml.value do
+            myxml.langstring("final")
+          end
+        end
+
+        if (ejson["author"] and ejson["author"]["name"]) or (!excursion.nil? and !excursion.author.nil? and !excursion.author.name.nil?)
+          myxml.contribute do
+            myxml.role do
+              myxml.source do
+                myxml.langstring("LOMv1.0")
+              end
+              myxml.value do
+                myxml.langstring("author")
+              end
+            end
+            myxml.centity do
+              if ejson["author"] and ejson["author"]["name"]
+                myxml.vcard("begin:vcard\n n:"+ejson["author"]["name"]+"\n fn:\n end:vcard")
+              else
+                myxml.vcard("begin:vcard\n n:"+excursion.author.name+"\n fn:\n end:vcard")
+              end
+            end
+            myxml.date do
+              if excursion and !excursion.updated_at.nil?
+                myxml.datetime(excursion.updated_at.strftime("%d/%m/%y"))
+              else
+                myxml.datetime(Time.now.strftime("%d/%m/%y"))
+              end
+            end
+          end
+        end
+      end
+
+      myxml.technical do
+        myxml.format("text/html")
+        if excursion and excursion.draft == false
+          myxml.location("http://vishub.org/excursions/"+excursion.id.to_s)
+        elsif ejson["vishMetadata"] and ejson["vishMetadata"]["id"] and (ejson["vishMetadata"]["draft"] == false or ejson["vishMetadata"]["draft"] == "false")
+          myxml.location("http://vishub.org/excursions/"+ejson["vishMetadata"]["id"].to_s)
+        end
+        myxml.requirement do
+          myxml.type do
+            myxml.source do
+              myxml.langstring("LOMv1.0")
+            end
+            myxml.value do
+              myxml.langstring("browser")
+            end
+          end
+          myxml.name do
+            myxml.source do
+              myxml.langstring("LOMv1.0")
+            end
+            myxml.value do
+              myxml.langstring("any")
+            end
+          end
+        end
+        myxml.otherplatformrequirements do
+          myxml.langstring("HTML5-compliant web browser")
+        end
+      end
+
+      myxml.educational do
+        myxml.interactivitytype do
+          myxml.source do
+            myxml.langstring("LOMv1.0")
+          end
+          myxml.value do
+            myxml.langstring("mixed")
+          end
+        end
+        myxml.learningresourcetype do
+          myxml.source do
+            myxml.langstring("LOMv1.0")
+          end
+          myxml.value do
+            myxml.langstring("slide")
+          end
+        end
+        myxml.interactivitylevel do
+          myxml.source do
+            myxml.langstring("LOMv1.0")
+          end
+          myxml.value do
+            myxml.langstring("very high")
+          end
+        end
+        myxml.intendedenduserrole do
+          myxml.source do
+            myxml.langstring("LOMv1.0")
+          end
+          myxml.value do
+            myxml.langstring("learner")
+          end
+        end
+        if ejson["context"]
+          myxml.context do
+            myxml.source do
+              myxml.langstring("LOMv1.0")
+            end
+            myxml.value do
+              myxml.langstring(readableContext(ejson["context"]))
+            end
+          end
+        end
+        if ejson["age_range"]
+          myxml.typicalagerange do
+            myxml.langstring(ejson["age_range"])
+          end
+        end
+        if ejson["difficulty"]
+          myxml.difficulty do
+            myxml.source do
+              myxml.langstring("LOMv1.0")
+            end
+            myxml.value do
+              myxml.langstring(ejson["difficulty"])
+            end
+          end
+        end
+        if ejson["TLT"] or ejson["slides"]
+          myxml.typicallearningtime do
+            if ejson["TLT"]
+              myxml.datetime(ejson["TLT"])
+            else
+              #Inferred
+              # 1 min per slide
+              # inferredTPL = (excursion.slide_count * 1).to_s
+              inferredTPL = (ejson["slides"].length * 1).to_s
+              myxml.datetime("PT"+inferredTPL+"M0S")
+            end
+          end
+        end
+        if ejson["educational_objectives"]
+          myxml.description do
+              myxml.langstring(ejson["educational_objectives"])
+          end
+        end
+        if ejson["language"]
+          myxml.language(ejson["language"])
+        end
+      end    
+
+    myxml
+  end
+
 
   def self.readableContext(context)
     case context
