@@ -61,6 +61,14 @@ GIT
   specs:
     delegates_attributes_to (0.0.1)
 
+GIT
+  remote: git@github.com:ebarra/oai_repository.git
+  revision: 26e791e05f76295b144568fef8033446c2ad01e9
+  specs:
+    oai_repository (0.9.5)
+      oai
+      rails (~> 3.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -238,9 +246,6 @@ GEM
     nokogiri (1.5.11)
     oai (0.0.13)
       builder (>= 2.0.0)
-    oai_repository (0.9.0)
-      oai
-      rails (~> 3.1)
     oauth (0.4.7)
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
@@ -437,7 +442,7 @@ DEPENDENCIES
   json (= 1.7.4)
   mysql2
   net-ssh (= 2.4.0)
-  oai_repository (~> 0.9.0)
+  oai_repository!
   pdf-reader
   pg
   pry-debugger
