@@ -241,7 +241,7 @@ es:
       info6_html: "6. Asigne un rango de <b>edad</b>. Esta información será usada por el sistema de recomendación.<br>"
       info7_html: "7. Si desea subir el embed de un video en vivo, haga click en la opción <b>Live</b>.<br>"
       info8_html: "8. Finalmente, haga click en el botón <b> guardar </b>para actualizar su recurso."
-      home1_html: "Esta zona muestra las excursiones creadas por los usuarios a los que <a href=\"%{{profile}}\">sigues.</a>"
+      home1_html: "Esta zona muestra las excursiones creadas por los usuarios a los que <a href=\"%{profile}\">sigues.</a>"
       cat: "Crear una nueva categoría"
       cat1_html: "1. Escriba un <b>título</b> y una <b>descripción</b>.<br>"
       cat2_html: "2. Después, haga click en el botón <b> guardar </b>para crear su nueva categoría.<br>"
@@ -287,7 +287,7 @@ es:
     uploading: "Subiendo..."
   email:
     regards: "Un cordial saludo,<br/>"
-    welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{{profile}}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
+    welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{profile}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
   embed:
     confirm_delete: "¿Borrar recurso?"
     content: "Contenido en directo"
