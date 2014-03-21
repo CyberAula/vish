@@ -1,6 +1,6 @@
 var success_so_dont_reset = false;  //used to reset the drop down when clicking outside, except when it has been sent
 var categories_selection_array = <%= get_initial_categories(item).to_json %>;
-
+var multiselect_closed = true;
 
 $("#category_id").multiselect({
       header: false,
@@ -10,10 +10,13 @@ $("#category_id").multiselect({
       menuWidth: 200,
       noneSelectedText: '<i class="icon-th-large"></i><b class="caret"></b>',
       selectedText: '<i class="icon-th-large"></i><b class="caret"></b>',
+      open: function(event,ui){
+        multiselect_closed = false;
+      },
       click: function(event, ui){
           success_so_dont_reset = false;
           $("#apply_category").show();
-          $("#add_category").hide();
+          $("#add_category").hide();          
         },
       close: function(){
         if(success_so_dont_reset==false){
@@ -28,6 +31,7 @@ $("#category_id").multiselect({
           $("#apply_category").hide();
           $("#add_category").show();
         }
+        multiselect_closed = true;
       },
       beforeopen: function(event, ui){
         if($(".ui-multiselect-menu.categorize_select").children(".separator_line").length==0){
@@ -80,3 +84,32 @@ $("#category_id").multiselect({
         $("#category_id").multiselect("refresh");
         $("#category_id").multiselect("open");
       });
+
+      $("#category_id").siblings(".ui-multiselect").on("mouseenter", function(){
+        $("#category_id").multiselect("open");
+      });
+
+      $("#category_id").siblings(".ui-multiselect").on("mouseleave", function(){
+        console.log("sale");
+        if(!multiselect_closed){
+          checkAndCloseMultiselect();
+        }               
+      });
+
+      $(".ui-multiselect-menu").on("mouseleave", function(){
+        console.log("sale del desplegable");
+        if(!multiselect_closed){
+          checkAndCloseMultiselect();
+        }     
+      });
+
+      function checkAndCloseMultiselect(){        
+        if(!$("#category_id").siblings(".ui-multiselect").is(':hover') && !$(".ui-multiselect-menu").is(':hover')) {
+            console.log("no hover, cerramos");
+            multiselect_closed = true;
+            $("#category_id").multiselect("close");
+        }
+        else{
+          console.log("esta hover a algo")
+        }
+      }
