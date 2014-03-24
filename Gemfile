@@ -99,4 +99,4 @@ gem 'pdf-reader'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attributes_to.git'
 
-gem "oai_repository", "~> 0.9.0"
+gem "oai_repository", :git => 'git@github.com:ebarra/oai_repository.git'

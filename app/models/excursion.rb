@@ -69,7 +69,7 @@ class Excursion < ActiveRecord::Base
                                 'xsi:schemaLocation' => 
                                   %{http://ltsc.ieee.org/xsd/LOM lomODS.xsd}            
                                 }) do
-      lomxml = Excursion.addLOMtoXML(lomxml, JSON(self.json), self, identifier)
+      lomxml = Excursion.addLOMtoXML(lomxml, JSON(self.json), self, identifier, "ODS")
 
     end
   end
@@ -174,7 +174,7 @@ class Excursion < ActiveRecord::Base
         myxml.schema("ADL SCORM")
         myxml.schemaversion("CAM 1.3")
         myxml.lom do
-          myxml = addLOMtoXML(myxml, ejson, excursion, "VISH_VIRTUAL_EXCURSION_"+identifier)
+          myxml = addLOMtoXML(myxml, ejson, excursion, "VISH_VIRTUAL_EXCURSION_"+identifier, "SCORM")
         end
       end
 
@@ -217,8 +217,17 @@ class Excursion < ActiveRecord::Base
     return myxml
   end
 
+  #prepare_for is a param to indicate who is the target. It can be "SCORM" or "ODS" in this version
+  def self.addLOMtoXML(myxml, ejson, excursion, identifier, prepare_for)    
+      language = ""
+      if ejson["language"]
+        if ejson["language"]=="independent"
+          language = "none"
+        else
+          language = ejson["language"]
+        end          
+      end
 
-  def self.addLOMtoXML(myxml, ejson, excursion, identifier)    
       myxml.general do
         myxml.identifier do
           myxml.catalog("VISH")
@@ -226,31 +235,27 @@ class Excursion < ActiveRecord::Base
         end
         myxml.title do
           if ejson["title"]
-            myxml.string(ejson["title"])
+            myxml.string(ejson["title"], :language=> language)
           else
-            myxml.string("Untitled")
+            myxml.string("Untitled", :language=> language)
           end
         end
-        if ejson["language"]
-          if ejson["language"]=="independent"
-            myxml.language("none")
-          else
-            myxml.language(ejson["language"])
-          end          
-        end
+
+        myxml.language(language)
+        
         myxml.description do
           if ejson["description"]
-            myxml.string(ejson["description"])
+            myxml.string(ejson["description"], :language=> language)
           elsif ejson["title"]
-            myxml.string(ejson["title"] + ". A Virtual Excursion provided by http://vishub.org.")
+            myxml.string(ejson["title"] + ". A Virtual Excursion provided by http://vishub.org.", :language=> language)
           else
-            myxml.string("Virtual Excursion provided by http://vishub.org.")
+            myxml.string("Virtual Excursion provided by http://vishub.org.", :language=> language)
           end
         end
         if ejson["tags"] && ejson["tags"].kind_of?(Array)
           ejson["tags"].each do |tag|
             myxml.keyword do
-              myxml.string(tag.to_s)
+              myxml.string(tag.to_s, :language=> language)
             end
           end
         end
@@ -259,12 +264,12 @@ class Excursion < ActiveRecord::Base
           if ejson["subject"].kind_of?(Array)
             ejson["subject"].each do |subject|
               myxml.keyword do
-                myxml.string(subject)
+                myxml.string(subject, :language=> language)
               end 
             end
           elsif ejson["subject"].kind_of?(String)
             myxml.keyword do
-                myxml.string(ejson["subject"])
+                myxml.string(ejson["subject"], :language=> language)
             end
           end
         end
@@ -275,13 +280,13 @@ class Excursion < ActiveRecord::Base
         end
         myxml.aggregationLevel do
           myxml.source("LOMv1.0")
-          myxml.value("4")
+          myxml.value("3")
         end
       end
 
       myxml.lifeCycle do
         myxml.version do
-          myxml.string("1.0")
+          myxml.string("1.0", :language=> "en")
         end
         myxml.status do
           myxml.source("LOMv1.0")
@@ -319,6 +324,8 @@ class Excursion < ActiveRecord::Base
           myxml.location("http://vishub.org/excursions/"+excursion.id.to_s)
         elsif ejson["vishMetadata"] and ejson["vishMetadata"]["id"] and (ejson["vishMetadata"]["draft"] == false or ejson["vishMetadata"]["draft"] == "false")
           myxml.location("http://vishub.org/excursions/"+ejson["vishMetadata"]["id"].to_s)
+        else
+          myxml.location("http://vishub.org/")
         end
         myxml.requirement do
           myxml.orComposite do
@@ -333,7 +340,7 @@ class Excursion < ActiveRecord::Base
           end
         end
         myxml.otherPlatformRequirements do
-          myxml.string("HTML5-compliant web browser")
+          myxml.string("HTML5-compliant web browser", :language=> "en")
         end
       end
 
@@ -344,7 +351,7 @@ class Excursion < ActiveRecord::Base
         end
         myxml.learningResourceType do
           myxml.source("LOMv1.0")
-          myxml.value("slide")
+          myxml.value("presentation")
         end
         myxml.interactivityLevel do
           myxml.source("LOMv1.0")
@@ -357,12 +364,12 @@ class Excursion < ActiveRecord::Base
         if ejson["context"]
           myxml.context do
             myxml.source("LOMv1.0")
-            myxml.value(readableContext(ejson["context"]))
+            myxml.value(readableContext(ejson["context"], prepare_for))
           end
         end
         if ejson["age_range"]
           myxml.typicalAgeRange do
-            myxml.string(ejson["age_range"])
+            myxml.string(ejson["age_range"], :language=> "en")
           end
         end
         if ejson["difficulty"]
@@ -374,7 +381,7 @@ class Excursion < ActiveRecord::Base
         if ejson["TLT"] or ejson["slides"]
           myxml.typicalLearningTime do
             if ejson["TLT"]
-              myxml.dateTime(ejson["TLT"])
+              myxml.duration(ejson["TLT"])
             else
               #Inferred
               # 1 min per slide
@@ -386,15 +393,11 @@ class Excursion < ActiveRecord::Base
         end
         if ejson["educational_objectives"]
           myxml.description do
-              myxml.string(ejson["educational_objectives"])
+              myxml.string(ejson["educational_objectives"], :language=> language)
           end
         end
         if ejson["language"]
-          if ejson["language"]=="independent"
-            myxml.language("none")
-          else
-            myxml.language(ejson["language"])
-          end          
+          myxml.language(language)                 
         end
       end    
 
@@ -402,26 +405,41 @@ class Excursion < ActiveRecord::Base
   end
 
 
-  def self.readableContext(context)
-    case context
-    when "unspecified"
-      return "Unspecified"
-    when "preschool"
-      return "Preschool Education"
-    when "pEducation"
-      return "Primary Education"
-    when "sEducation"
-      return "Secondary Education"
-    when "higher education"
-      return "Higher Education"
-    when "training"
-      return "Professional Training"
-    when "other"
-      return "Other"
+  #if prepare_for is "ODS": according to ODS, this has to be one of ["primary education", "secondary education", "informal context"]
+  def self.readableContext(context, prepare_for)
+    if prepare_for == "ODS"
+      case context
+      when "preschool", "pEducation", "primary education", "school"
+        return "primary education"
+      when "unspecified", "sEducation", "higher education", "university"
+        return "secondary education"
+      when "training", "other"
+        return "informal context"
+      else
+        return "secondary education"
+      end
     else
-      return context
+      case context
+      when "unspecified"
+        return "Unspecified"
+      when "preschool"
+        return "Preschool Education"
+      when "pEducation"
+        return "Primary Education"
+      when "sEducation"
+        return "Secondary Education"
+      when "higher education"
+        return "Higher Education"
+      when "training"
+        return "Professional Training"
+      when "other"
+        return "Other"
+      else
+        return context
+      end
     end
   end
+
 
   def to_scorm(controller)
     if self.scorm_needs_generate
