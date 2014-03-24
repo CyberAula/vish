@@ -567,6 +567,7 @@ es:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
     search_name: "actualización de estado"
   profile:
+    profile: "Perfil"
     occupation:
       label: "Ocupación"
       options:
