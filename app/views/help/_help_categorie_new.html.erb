@@ -1,17 +1,18 @@
 <li class="helpheader">   
-<i class="icon-question-sign helphome" data-placement='left' aria-hidden="true" data-original-title="<%=t('activity2.other')%>" href='#' value="" ></i>
-<div class="contenthome" style="display: none">
+<i class="icon-question-sign helpCategories" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.cat')%>" href='#' value="" ></i>
+<div class="contenthelpCategories" style="display: none">
   <div>
-    add help activity
+          <%= t('document.help.cat1_html')%>  <br/>
+          <%= t('document.help.cat2_html')%>
   </div>
 </div>
 </li>
 <script>
 $(document).ready(function(){
-  $('.helphome').popover({ 
+  $('.helpCategories').popover({ 
     html : true,
     content: function() {
-      return $('.contenthome').html();
+      return $('.contenthelpCategories').html();
     }
   });
 });
@@ -19,7 +20,7 @@ $(document).ready(function(){
 
 <script>
 $('body').on('click', function (e) {
-    $('.helphome').each(function () {
+    $('.helpCategories').each(function () {
         //the 'is' for buttons that trigger popups
         //the 'has' for icons within a button that triggers a popup
         if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
@@ -28,3 +29,5 @@ $('body').on('click', function (e) {
     });
 });
 </script>
+
+

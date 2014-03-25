@@ -46,17 +46,20 @@
     rel: "tooltip",
     class: "btn" %>
     <% end %>
-  
+
+
   <%if user_signed_in?%>
     <%= content_for :javascript do %> 
       <%= render partial: 'shared/multiselect', :locals => {:item => document} %>
     <% end %>
-
+    <%= link_like(document.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
     <%=categories_select(:category_id, document)%>
     <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
     <%= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>
   <%end%>
+
 </div>
+
 
 <div class="tabbable">
   <ul class="nav nav-tabs">
@@ -90,7 +93,8 @@
           <%#=t('excursion.actions.scorm')%>
         </span-->
       </a>
-    </li>  
+    </li>
+    <%= render partial: 'help/help_show_excursion' %>  
   </ul>
 </div>
 
