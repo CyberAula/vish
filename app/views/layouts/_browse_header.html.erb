@@ -1,62 +1,52 @@
-
-
-
-
 <li class ="toggler  dropdown browse_btn">
+  <div class="without-data-toggle">
+    <div class="browse_name">
+      <%=t('browse.title')%>
+      <i class="icon-angle-down"></i>
+    </div>
+  </div>
+  <ul class="dropdown-menu">
+    <li>
+      <a tabindex="-1" href="<%=search_path(:browse=>"true")%>">
+        <i class="icon-dashboard"></i> 
+        <%=t('browse.popular')%>
+      </a>
+    </li>
 
+    <li class="divider"></li>
+    <li>
+      <a tabindex="-1" href="<%=search_path(:type => "excursion", :browse=>"true")%>">
+        <i class="icon-book"></i> 
+        <%=t('excursion.other')%>
+      </a>
+    </li>
+    <li>
+      <a tabindex="-1" href="<%=search_path(:type => "user", :browse=>"true")%>">
+        <i class="icon-group"></i>
+        <%=t('user.other')%>
+      </a>
+    </li>
+    <li>
+      <a tabindex="-1" href="<%=search_path(:type => "resource", :browse=>"true")%>">
+        <i class="icon-file"></i>
+        <%=t('resource.other')%>
+      </a>
+    </li>
+          <li class="divider"></li>
+    <li>
 
-              <div class="without-data-toggle">
-                <div class="browse_name">
-                  <%=t('browse.title')%>
-                  <i class="icon-angle-down"></i>
-                </div>
-              </div>
-
-
-
-    
-
-    <ul class="dropdown-menu">
-      <li>
-        <a tabindex="-1" href="<%=search_path(:browse=>"true")%>">
-          <i class="icon-dashboard"></i> 
-          <%=t('browse.popular')%>
-        </a>
-      </li>
-
-      <li class="divider"></li>
-      <li>
-        <a tabindex="-1" href="<%=search_path(:type => "excursion", :browse=>"true")%>">
-          <i class="icon-book"></i> 
-          <%=t('excursion.other')%>
-        </a>
-      </li>
-      <li>
-        <a tabindex="-1" href="<%=search_path(:type => "user", :browse=>"true")%>">
-          <i class="icon-group"></i>
-          <%=t('user.other')%>
-        </a>
-      </li>
-      <li>
-        <a tabindex="-1" href="<%=search_path(:type => "resource", :browse=>"true")%>">
-          <i class="icon-file"></i>
-          <%=t('resource.other')%>
-        </a>
-      </li>
-      <li>
-      <li class="divider"></li>
-        <a tabindex="-1" href="/catalogue">
-          <i class="icon-tags"></i>
-          <%=t('catalogue.title')%>
-        </a>
-      </li>
-      <li class="divider"></li>
-      <li>
-        <a tabindex="-1" href="/contest">
-          <i class="icon-trophy"></i>
-          <%=t('contest.#ViSHCompetition2013')%>
-        </a>
-      </li>
-    </ul>
-  </li>
+      <a tabindex="-1" href="/catalogue">
+        <i class="icon-tags"></i>
+        <%=t('catalogue.title')%>
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a tabindex="-1" href="/contest">
+        <i class="icon-trophy"></i>
+        <%=t('contest.#ViSHCompetition2013')%>
+      </a>
+    </li>
+  </ul>
+</li>
 
