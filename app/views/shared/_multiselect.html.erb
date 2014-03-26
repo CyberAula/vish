@@ -94,7 +94,7 @@ $("#category_id").multiselect({
 
       $("#category_id").siblings(".ui-multiselect").on("mouseleave", function(){
         is_hover_button = false;
-        console.log("sale");
+        //console.log("sale");
         if(!multiselect_closed){
           setTimeout(function(){
             checkAndCloseMultiselect();
@@ -104,12 +104,12 @@ $("#category_id").multiselect({
 
       $(".ui-multiselect-menu").on("mouseenter", function(){
         is_hover_dropdown = true;
-        console.log("entra en el desplegable");
+        //console.log("entra en el desplegable");
       });
 
       $(".ui-multiselect-menu").on("mouseleave", function(){
         is_hover_dropdown = false;
-        console.log("sale del desplegable");
+        //console.log("sale del desplegable");
         if(!multiselect_closed){
           setTimeout(function(){
             checkAndCloseMultiselect();
@@ -119,11 +119,8 @@ $("#category_id").multiselect({
 
       function checkAndCloseMultiselect(){        
         if(!is_hover_button && !is_hover_dropdown) {
-            console.log("no hover, cerramos");
+            //console.log("no hover, cerramos");
             multiselect_closed = true;
             $("#category_id").multiselect("close");
-        }
-        else{
-          console.log("esta hover a algo");
         }
       }
