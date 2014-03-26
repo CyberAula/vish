@@ -597,7 +597,8 @@ $.widget("ech.multiselect", {
 		// select the first option
 		// triggering both mouseover and mouseover because 1.4.2+ has a bug where triggering mouseover
 		// will actually trigger mouseenter.  the mouseenter trigger is there for when it's eventually fixed
-		this.labels.eq(0).trigger('mouseover').trigger('mouseenter').find('input').trigger('focus');
+		//XXX KIKE, comment next line because we use mouseenter to detect if hover and hide the menu automatically
+		//this.labels.eq(0).trigger('mouseover').trigger('mouseenter').find('input').trigger('focus');
 
 		button.addClass('ui-state-active');
 		this._isOpen = true;
