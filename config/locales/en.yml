@@ -257,8 +257,8 @@ en:
       profile2_html : "This section shows your profile, you can see the content you've created, users you follow and who follow you, you can also edit your data when you need it and change your profile image."
       excursions1_html : "Excursions"
       excursions2_html : "This section shows the excursion in which you have entered, navigate through the excursion slides by clicking on the arrow buttons, by clicking the left or right side of the slides or using the arrow keys on the keyboard. On the right zone, recommended excursions will be shown, under the excursion you have the information of it, as well as easy ways to share it, download it (in scorm format), mark it as spam, clone it to  your profile, make it as favorite, or put it into one of your categories. You can also comment the excursión from the bottom."
-      favourites1_html : "Favourites"
-      favourites2_html : "This section displays your favorite resources on items that really have made favorites."
+      favourite1_html : "Favourites"
+      favourite2_html : "This section displays your favorite resources on items that really have made favorites."
     helpquiz:
       info1_html: "1. Help test 1 for the quiz<br>"  
     how: "How to share a resource"

@@ -261,8 +261,8 @@ es:
       profile2_html : "Esta sección muestra tu perfil, en el puedes ver el contenido que has creado, los usuarios que sigues y los que te siguen, tambien puedes editar tus datos cuando lo necesites así como cambiar la imagen de tu perfil."
       excursions1_html : "Excursiones"
       excursions2_html : "En esta sección se muestra la excursión en la que ha entrado, puedes navegar por las diapositivas de excursión haciendo clic en los botones de flecha, haciendo clic en la parte izquierda o derecha de las diapositivas o usando las teclas de dirección del teclado. En la zona de la derecha, tendrás excursiones recomendadas, bajo la excursión se muestra la información de la misma, así como las maneras sencillas de compartirla , descargarla (en formato SCORM), marcarla como spam, clonarla a su perfil, hacerla favorita, o etiquetarlo dentro de una de sus categorías. También puede comentar la excursión desde la parte inferior."
-      favourites1_html : "Favoritos"
-      favourites2_html : "Esta sección muestra tus recursos favoritos, en el veras los elementos que has hecho favoritos."
+      favourite1_html : "Favoritos"
+      favourite2_html : "Esta sección muestra tus recursos favoritos, en el veras los elementos que has hecho favoritos."
     helpquiz:
       info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>" 
     how: "Cómo compartir un recurso"
