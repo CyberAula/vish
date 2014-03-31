@@ -69,6 +69,14 @@ GIT
       oai
       rails (~> 3.1)
 
+GIT
+  remote: git@github.com:ebarra/scorm.git
+  revision: fef3256e74c5076c6c6099acac26a544cfbd8f08
+  branch: master
+  specs:
+    scorm (1.0.4)
+      rubyzip (~> 0.9.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -454,6 +462,7 @@ DEPENDENCIES
   rspec-rails (= 2.9.0)
   rubyzip (= 0.9.9)
   sass-rails (~> 3.2.4)
+  scorm!
   selenium-webdriver (= 2.30.0)
   shortener
   simple_captcha!
