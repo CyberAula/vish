@@ -1388,9 +1388,10 @@ a:hover.cke_colorauto,a:hover.cke_colormore,a:focus.cke_colorauto,a:focus.cke_co
 	background-position:0 -592px;
 }
 
-.cke_skin_vEditor .cke_button_specialchar .cke_icon
-{
-	background-position:0 -656px;
+.cke_skin_vEditor .cke_button_specialchar .cke_icon{
+	/*background-position: 0 -1150px;*/
+	background-image: url(symbol.png);
+	background-position:0 0px;
 }
 
 .cke_skin_vEditor .cke_button_pagebreak .cke_icon
