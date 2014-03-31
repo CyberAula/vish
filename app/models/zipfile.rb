@@ -15,20 +15,25 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
-class Scorm < ActiveRecord::Base
-  include SocialStream::Models::Object
-
+class Zipfile < Document
+  has_attached_file :file, 
+                    :url => '/:class/:id.:extension',
+                    :path => ':rails_root/documents/:class/:id_partition/:filename.:extension'
+  
   define_index do
     activity_object_index
+    indexes file_file_name, :as => :file_name
+  end 
+              
+  # Thumbnail file
+  def thumb(size, helper)
+      "#{ size.to_s }/audio.png"
   end
 
-  def as_json(options = nil)
-    {
-     :id => id,
-     :title => title,
-     :description => description,
-     :author => author.name
-    }
+  def as_json(options)
+    super.merge!({
+      :src => options[:helper].polymorphic_url(self, format: format)
+    })
   end
   
 end

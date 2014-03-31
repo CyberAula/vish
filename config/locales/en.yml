@@ -747,3 +747,5 @@ en:
       truncate: "..."
   view_all: "view all"
   yesterday: "Yesterday"
+  zipfile:
+    confirm_delete: "Delete Zip file?"

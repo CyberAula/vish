@@ -1,6 +1,6 @@
 class AddScormsTable < ActiveRecord::Migration
   def up
-    create_table "scorms", :force => true do |t|
+    create_table "scormfiles", :force => true do |t|
       t.integer  "activity_object_id"
       t.datetime "created_at"
       t.datetime "updated_at"
@@ -12,6 +12,6 @@ class AddScormsTable < ActiveRecord::Migration
   end
 
   def down
-    drop_table "scorms"
+    drop_table "scormfiles"
   end
 end

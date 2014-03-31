@@ -77,4 +77,5 @@ SocialStream::Documents.setup do |config|
   config.subtype_classes_mime_types[:video] = [ :flv, :webm, :mp4, :mpeg, :mov, :wmv, :m4v, :ogv, :gpp, :gpp2 ]
   config.subtype_classes_mime_types[:audio] = [ :aac, :gppa, :gpa, :wav, :ogg, :webma, :mp3 ]
   config.subtype_classes_mime_types[:swf] = [:swf]
+  config.subtype_classes_mime_types[:zipfile] = [:zipfile]
 end

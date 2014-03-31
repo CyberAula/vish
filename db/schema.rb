@@ -430,7 +430,7 @@ ActiveRecord::Schema.define(:version => 20140331134734) do
 
   add_index "rooms", ["actor_id"], :name => "index_rooms_on_actor_id"
 
-  create_table "scorms", :force => true do |t|
+  create_table "scormfiles", :force => true do |t|
     t.integer  "activity_object_id"
     t.datetime "created_at"
     t.datetime "updated_at"

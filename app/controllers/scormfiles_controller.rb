@@ -1,4 +1,4 @@
-class ScormsController < ApplicationController
+class ScormfilesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :hack_auth, :only => :create
   include SocialStream::Controllers::Objects
@@ -33,9 +33,9 @@ class ScormsController < ApplicationController
   end
 
   def hack_auth
-    params["scorm"] ||= {}
-    params["scorm"]["relation_ids"] = [Relation::Public.instance.id]
-    params["scorm"]["owner_id"] = current_subject.actor_id
+    params["scormfile"] ||= {}
+    params["scormfile"]["relation_ids"] = [Relation::Public.instance.id]
+    params["scormfile"]["owner_id"] = current_subject.actor_id
   end
 
 end
