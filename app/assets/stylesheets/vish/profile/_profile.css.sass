@@ -237,93 +237,94 @@
       font-size: 12px
 
 //FORMULARIO
-.update
-  background-color: $white
-  margin-left: 0px
-  padding: 12px 0px 32px 0px !important
-  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  float: left
-  label
-    font-size: 12px
-    font-family: $secondFontFamily
-    color: $firstColor
-    display: block
-    float: left
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    clear: left
-  span
-    font-size: 10px
-    float: left
-  input,
-  textarea
-    display: block
-    float: left
-    width: 96%
-    padding: 4px 2%
-  select
-    padding-right: 10px
-    display: block
+.information
+  .update
+    background-color: $white
+    margin-left: 0px
+    padding: 12px 0px 32px 0px !important
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     float: left
-
-  .avatar-edit
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    float: left
-    display: block
-    margin-bottom: 10px
-    .avatar-update
-      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      .avatar-current
-        width: 30px
-        display: block
-        float: left
-        margin-right: 10px
-        img
-          @include border-radius($baseBorderRadius)
-      form.edit_actor
-        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        margin: 0
-        input
-          margin-top: 0
-          width: 200px
-          padding: 0
-    #avatar-progress
+    label
+      font-size: 12px
+      font-family: $secondFontFamily
+      color: $firstColor
       display: block
       float: left
-      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      margin-top: 7px
-      margin-left: 5px
-      .progress
-        margin-bottom: 0
-
-  form.edit_user
-    display: block
-    float: left
-    clear: both
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    .birthday
-      select
-        width: 19%
-        display: block
-        float: left
-        margin-right: 10px
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      clear: left
     span
       font-size: 10px
-      margin-left: 28%
+      float: left
+    input,
+    textarea
+      display: block
+      float: left
+      width: 96%
+      padding: 4px 2%
+    select
+      padding-right: 10px
+      display: block
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       float: left
 
-    .actions
+    .avatar-edit
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: left
+      display: block
+      margin-bottom: 10px
+      .avatar-update
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .avatar-current
+          width: 30px
+          display: block
+          float: left
+          margin-right: 10px
+          img
+            @include border-radius($baseBorderRadius)
+        form.edit_actor
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          margin: 0
+          input
+            margin-top: 0
+            width: 200px
+            padding: 0
+      #avatar-progress
+        display: block
+        float: left
+        @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        margin-top: 7px
+        margin-left: 5px
+        .progress
+          margin-bottom: 0
+
+    form.edit_user
       display: block
       float: left
       clear: both
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      input
-        width: auto
-        float: right
-      a
-        float: right
-        margin-right: 10px
-        background-color: $gray
+      .birthday
+        select
+          width: 19%
+          display: block
+          float: left
+          margin-right: 10px
+      span
+        font-size: 10px
+        margin-left: 28%
+        float: left
+
+      .actions
+        display: block
+        float: left
+        clear: both
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        input
+          width: auto
+          float: right
+        a
+          float: right
+          margin-right: 10px
+          background-color: $gray
 .name-required  
   label 
     display: inline 
