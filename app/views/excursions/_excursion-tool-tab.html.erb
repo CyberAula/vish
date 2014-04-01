@@ -137,12 +137,12 @@
 
   <!-- Edit -->
   <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
-    <button class="with_tooltip btn" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
+    <button class="with_tooltip btn hidden-phone" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
   <%end%>
 
   <!-- Clone -->
   <% if user_signed_in? && !editingToolbar %>
-    <button class="with_tooltip clone btn popover-link" title="<%=t('excursion.actions.clone')%>" ><i class="icon-copy"></i></button>
+    <button class="with_tooltip clone btn popover-link hidden-phone" title="<%=t('excursion.actions.clone')%>" ><i class="icon-copy"></i></button>
     
     <div class="contentclone" style="display: none">
       <p class=""><i class="icon-copy"></i>  <%=t('excursion.clone.confirm')%></p>
@@ -227,7 +227,7 @@
           </span-->
         </a>
       </li>
-      <%#= render partial: 'help/help_show_excursion' %>     
+      <%= render partial: 'help/help_show_excursion' %>     
     </ul>
   </div>
 
