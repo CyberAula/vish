@@ -70,6 +70,9 @@ es:
     other: "términos de uso"
   contact:
     footer: "contacto"
+    follow: "Seguir"
+    unfollow: "Dejar de seguir"
+    following: "Siguiendo"
   pending:
     other: "Te siguen"
   competitions:
