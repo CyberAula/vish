@@ -4,55 +4,99 @@
     <div class="icon-box">
       <%=category_thumbnail(@category)%>
     </div>  
-    <!--<h1><#%= t('categories.leyend.title') %>: <%= @category.title %></h1>
-    <h2><#%= t('categories.leyend.description') %>: <%= @category.description %></h2>
-    <h2><#%= t('categories.leyend.items') %>:</h2>-->
-    
-    <% if can?(:update, @category) %>
+<!--ayuda-->
+    <%= render partial: 'help/help_categories' %>
+<!--titulo-->
+    <h2><%= @category.title %></h2>
+<!--borrar-->
+    <% if user_signed_in? and can?(:destroy, @category) %>
+    <%= link_to(raw("<i class='icon-trash'></i>") , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action" )%>
+    <% end %>
+<!--descripcion-->
+    <h4><%= @category.description %></h3>
+<!--editar-->
+      <% if can?(:update, @category) %>
       <div class="edit_icon">
         <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link") %> 
       </div>
 
       <div class="update" style="display:none">
         <%= form_for(@category, :url => [@category]) do |f| %>
-          <%= f.hidden_field :owner_id %>
-          <!--TITULO-->
-          <label><%= t('categories.leyend.title')%></label>
-          <%= f.text_field :title %>
-          
-          <!--DESCRIPCION-->
-          <label><%= t('categories.leyend.description')%></label>
-          <%= f.text_field :description %>
+        <%= f.hidden_field :owner_id %>
+<!--TITULO-->
+        <label><%= t('categories.leyend.title')%></label>
+        <%= f.text_field :title %>
 
-          <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-primary"%>
-          <%= f.submit t('categories.save'), :id => "saveCategory" %>
+<!--DESCRIPCION-->
+        <label><%= t('categories.leyend.description')%></label>
+        <%= f.text_field :description %>
+
+        <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-primary"%>
+        <%= f.submit t('categories.save'), :id => "saveCategory" %>
         <% end %>
 
       </div>
-    <% end %>
-
-    <%= render partial: 'help/help_categories' %>
-    <h2><%= @category.title %></h2>
-    <%= link_to(raw("<i class='icon-trash'></i>") , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action" )%>
-
-    <h4><%= @category.description %></h3>
-
-  </div>
-  
-  <div id="excursions">
-    <ul class="">
-    <%# excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>
-    
-      <% @category.property_objects.each do |item| %>
-      <% resources = [Picture, Document, Embed, Link, Video] %>
-      <% if resources.include?(item.object.class) %>
-        <%= render :partial => 'repositories/resource', :locals => { :resource => item.object } %>
-      <% else %>
-        <%= render :partial => "#{item.object.class.to_s.tableize}/#{item.object.class.to_s.underscore}", :locals => { item.object.class.to_s.underscore.to_sym => item.object } %>
       <% end %>
-    <% end %>
-    </ul>
-  </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="excursions">
+      <ul class="">
+        <%# excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>
+
+        <% @category.property_objects.each do |item| %>
+        <% resources = [Picture, Document, Embed, Link, Video] %>
+        <% if resources.include?(item.object.class) %>
+        <%= render :partial => 'repositories/resource', :locals => { :resource => item.object } %>
+        <% else %>
+        <%= render :partial => "#{item.object.class.to_s.tableize}/#{item.object.class.to_s.underscore}", :locals => { item.object.class.to_s.underscore.to_sym => item.object } %>
+        <% end %>
+        <% end %>
+      </ul>
+    </div>
 <!--   <div id="loader_pagination">
     <div id="pageless-loader" style="text-align:center;width:100%;">
       <div class="msg" style="font-size:2em">
@@ -66,16 +110,18 @@
 </section>
 
 <%= content_for :javascript do %>
-  $(document).ready(function() {
-    $(".resource").fitText(0.4);
+$(document).ready(function() {
+$(".resource").fitText(0.4);
 
-    $(".edit_icon").on("click", function(){
-      $(".update").show();
-    });
+$(".edit_icon").on("click", function(){
+$(".update").show();
+});
 
-    $("#hide_category_form").on("click", function(){
-      $(".update").hide();
-    });
+$("#hide_category_form").on("click", function(){
+$(".update").hide();
+});
 
-  });
+});
 <% end %>
+
+
