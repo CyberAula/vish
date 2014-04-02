@@ -335,6 +335,9 @@ class ExcursionsController < ApplicationController
   end
 
   def uploadTmpJSON
+
+    binding.pry
+
     respond_to do |format|  
       format.json {
         results = Hash.new
@@ -364,6 +367,17 @@ class ExcursionsController < ApplicationController
           t.write json
           t.close
           results["url"] = "#{Site.current.config[:documents_hostname]}/excursions/tmpJson.json?fileId=#{count.to_s}"
+        
+
+          elsif responseFormat == "qti"
+          #Generate QTI package
+
+          filePath = "#{Rails.root}/public/tmp/qti/"
+          fileName = "qti-tmp-#{count}"
+          Excursion.createQTI(filePath,fileName,JSON(json),nil,self)
+          results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/qti/#{fileName}.zip"
+
+
         elsif responseFormat == "scorm"
           #Generate SCORM package
           filePath = "#{Rails.root}/public/tmp/scorm/"

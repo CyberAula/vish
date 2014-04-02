@@ -87,6 +87,17 @@ class Excursion < ActiveRecord::Base
   ## SCORM Management
   ####################
 
+
+
+
+
+def self.createQTI(fileName,json,excursion,controller)
+
+
+end
+
+
+
   def self.createSCORM(filePath,fileName,json,excursion,controller)
     require 'zip/zip'
     require 'zip/zipfilesystem'
