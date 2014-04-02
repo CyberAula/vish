@@ -575,6 +575,7 @@ en:
     input: "Share your thoughts, links, videos and more, here!"
     search_name: "status update"
   profile:
+    edit: "Edit profile"
     profile: "profile"
     occupation: 
       label: "Occupational field"

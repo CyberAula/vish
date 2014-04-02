@@ -91,6 +91,7 @@
           .anotherNewClass
             height: auto
             overflow: auto
+            padding-bottom: 50px
 
 
 
@@ -114,127 +115,35 @@
               @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
               float: left
               display: inline-block
+          .toolbar-profile
+            position: absolute
+            left: 16%
+            bottom: 5px
+            width: 83%
+            border-top: 1px solid $grayLight
+            padding-top: 5px
+
+            .btn-group
+              .contact_Toolbar
+
+                form.edit_contact
+                  margin: 0
+                  input[type="submit"]
+                    background-color: transparent
+                    margin: 0
+                    border: none
+                    box-shadow: none
+                    padding: 0
+                    height: 18px
+                    width: 100%
+                    color: $gray
+              .btn
+                a
+                  color: $gray 
 
 
 
 
-
-//toolbar-profile
-.toolbar-profile
-  @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  float: left
-  display: inline
-  height: 20px
-  margin-top: 10px
-  margin-bottom: 10px
-
-
-  // CONTACT
-  .contact
-    display: block
-    float: left
-    margin-right: 10px
-    .add
-      @include follow-profile
-      display: block
-      clear: both
-      text-align: center
-      div
-        .following-button
-          display: block
-          margin-left: 0
-          display: block
-          background-color: #007CC8
-          height: 20px
-          width: 87px
-          @include border-radius(5px)
-          color: #FFF
-          font-family: $firstFontFamily
-
-      .unfollow-button 
-        form
-          margin: 0px
-          input
-            display: block
-            margin-left: 0
-            height: 20px
-            border: 0px none
-            width: 87px
-            display: block
-            background-color: #555
-            @include border-radius(5px)
-            color: #FFF
-            margin-top: 0px
-            padding: 0px
-            font-family: $firstFontFamily
-
-  // EDIT
-  .edit_icon
-    height: 20px
-    border: 0px none 
-    width: 80px
-    display: block
-    @include border-radius($baseBorderRadius)
-    color: $black
-    background-color: $firstColor
-    margin-top: 0px
-    padding: 0px 15px
-    color: $white
-    font-family: $firstFontFamily
-    display: block
-    float: left
-    margin-right: 10px
-    a,
-    span
-      color: $white
-      font-size: 12px
-
-      &:hover
-        text-decoration: none
-    span
-      padding-left: 5px
-  // message
-  button#mesage-profile
-    height: 20px
-    border: 0px none 
-    width: auto
-    margin-right: 10px
-    @include border-radius($baseBorderRadius)
-    color: $black
-    border-color: #CCCCCC #CCCCCC #B3B3B3
-    border-image: none
-    border-style: solid
-    border-width: 1px
-    margin-top: 0px
-    padding: 0px 15px
-    font-family: $firstFontFamily
-    display: block
-    float: left
-    a
-      color: $black
-      font-size: 12px
-
-
-
-  #showMore
-    height: 20px
-    border: 0px none 
-    width: auto
-    @include border-radius($baseBorderRadius)
-    color: $black
-    border-color: #CCCCCC #CCCCCC #B3B3B3
-    border-image: none
-    border-style: solid
-    border-width: 1px
-    margin-top: 0px
-    padding: 0px 15px
-    font-family: $firstFontFamily
-    display: block
-    float: left
-    margin-right: 10px
-    a
-      color: $black
-      font-size: 12px
 
 //FORMULARIO
 .information

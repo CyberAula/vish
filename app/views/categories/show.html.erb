@@ -5,72 +5,54 @@
       <%=category_thumbnail(@category)%>
     </div>  
     <div class="information">
-
       <!--ayuda-->
       <%= render partial: 'help/help_categories' %>
       <!--titulo-->
       <h2><%= @category.title %></h2>
-
       <!--descripcion-->
       <div class="description"><%= @category.description %></div>
     </div>
-
-<div class="btn-group">
-
+    <div class="btn-group">
       <!--editar-->
       <% if can?(:update, @category) %>
-
-        <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %> 
-        <% end %>
+      <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %> 
+      <% end %>
       <!--borrar-->
-        <% if user_signed_in? and can?(:destroy, @category) %>
+      <% if user_signed_in? and can?(:destroy, @category) %>
       <%= link_to(raw("<i class='icon-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
       <% end %>
-
-
-
-
-</div>
-
-      <div class="update" style="display:none">
-        <%= form_for(@category, :url => [@category]) do |f| %>
-        <%= f.hidden_field :owner_id %>
-        <!--TITULO-->
-        <label><%= t('categories.leyend.title')%></label>
-        <%= f.text_field :title %>
-
-        <!--DESCRIPCION-->
-        <label><%= t('categories.leyend.description')%></label>
-        <%= f.text_field :description %>
-<div class="actions">
-
-
+    </div>
+    <div class="update" style="display:none">
+      <%= form_for(@category, :url => [@category]) do |f| %>
+      <%= f.hidden_field :owner_id %>
+      <!--TITULO-->
+      <label><%= t('categories.leyend.title')%></label>
+      <%= f.text_field :title %>
+      <!--DESCRIPCION-->
+      <label><%= t('categories.leyend.description')%></label>
+      <%= f.text_field :description %>
+      <div class="actions">
         <%= f.submit t('categories.save'), :id => "saveCategory" %>
-                <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-primary"%>
+        <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-primary"%>
         <% end %>
       </div>
-</div>
-      
     </div>
-  </section>
-
-
-
-
-  <div id="excursions">
-    <ul class="">
-      <%# excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>
-
-      <% @category.property_objects.each do |item| %>
-      <% resources = [Picture, Document, Embed, Link, Video] %>
-      <% if resources.include?(item.object.class) %>
-      <%= render :partial => 'repositories/resource', :locals => { :resource => item.object } %>
-      <% else %>
-      <%= render :partial => "#{item.object.class.to_s.tableize}/#{item.object.class.to_s.underscore}", :locals => { item.object.class.to_s.underscore.to_sym => item.object } %>
-      <% end %>
-      <% end %>
-    </ul>
   </div>
+</section>
+
+<div id="excursions">
+  <ul class="">
+    <%# excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>
+    <% @category.property_objects.each do |item| %>
+    <% resources = [Picture, Document, Embed, Link, Video] %>
+    <% if resources.include?(item.object.class) %>
+    <%= render :partial => 'repositories/resource', :locals => { :resource => item.object } %>
+    <% else %>
+    <%= render :partial => "#{item.object.class.to_s.tableize}/#{item.object.class.to_s.underscore}", :locals => { item.object.class.to_s.underscore.to_sym => item.object } %>
+    <% end %>
+    <% end %>
+  </ul>
+</div>
 <!--   <div id="loader_pagination">
     <div id="pageless-loader" style="text-align:center;width:100%;">
       <div class="msg" style="font-size:2em">
