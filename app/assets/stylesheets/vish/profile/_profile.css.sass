@@ -34,16 +34,7 @@
         float: left
         cursor: default
         .briefing
-          h3
-            line-height: 15px
-            color: $firstColor
-            font-size: 20px
-            font-family: $firstFontFamily
-            //border-right: 1px solid $grayLighter
-            padding-right: 15px
-            vertical-align: top
-            display: block
-            float: left
+
           span
             color: $gray
             @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -65,7 +56,7 @@
             display: inline-block
             color: $grayLight
             font-size: 14px
-
+            word-wrap: break-word
 
           .tags-profile
             @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -76,6 +67,16 @@
             @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
             float: left
             display: inline-block
+            h3
+              line-height: 15px
+              color: $firstColor
+              font-size: 20px
+              font-family: $firstFontFamily
+              //border-right: 1px solid $grayLighter
+              padding-right: 15px
+              vertical-align: top
+              display: block
+              float: left
 
 
           #effect
@@ -85,6 +86,16 @@
             display: inline-block
             float: left
             overflow: hidden
+            h3
+              line-height: 15px
+              color: $firstColor
+              font-size: 20px
+              font-family: $firstFontFamily
+              //border-right: 1px solid $grayLighter
+              padding-right: 15px
+              vertical-align: top
+              display: block
+              float: left
           .newClass
             height: 0px
             overflow: hidden
@@ -124,19 +135,50 @@
             padding-top: 5px
 
             .btn-group
+              i
+                margin-right: 5px
               .contact_Toolbar
-
+                width: 100px
+                padding: 0
                 form.edit_contact
                   margin: 0
                   input[type="submit"]
-                    background-color: transparent
+
                     margin: 0
                     border: none
                     box-shadow: none
                     padding: 0
-                    height: 18px
+                    height: 28px
                     width: 100%
-                    color: $gray
+                    color: $white
+                    -webkit-border-top-right-radius: 0px
+                    -webkit-border-bottom-right-radius: 0px
+                    -moz-border-radius-topright: 0px
+                    -moz-border-radius-bottomright: 0px
+                    border-top-right-radius: 0px
+                    border-bottom-right-radius: 0px
+
+                  input[value="Unfollow"]
+                    background-color: $gray
+
+
+
+                .following-button
+                  background-color: $secondColor
+                  margin: 0
+                  border: none
+                  box-shadow: none
+                  padding-top: 4px
+                  height: 24px
+                  width: 100%
+                  color: $white
+                  -webkit-border-top-left-radius: 5px
+                  -webkit-border-bottom-left-radius: 5px
+                  -moz-border-radius-topleft: 5px
+                  -moz-border-radius-bottomleft: 5px
+                  border-top-left-radius: 5px
+                  border-bottom-left-radius: 5px
+
               .btn
                 a
                   color: $gray 
