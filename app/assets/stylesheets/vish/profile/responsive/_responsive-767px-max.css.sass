@@ -142,6 +142,44 @@
     display: block
     height: auto
     margin: 10px auto
+    .btn-group
+      width: 70%
+      display: block
+      margin: 0 auto
+      .btn
+        width: 100% !important
+        clear: both
+        margin: 2px auto
+        float: left
+        @include border-radius($baseBorderRadius) 
+        input
+          @include border-radius($baseBorderRadius) 
+        input[type="submit"]
+
+          margin: 0
+          border: none
+          box-shadow: none
+          padding: 0 !important
+          height: 28px
+          width: 100%
+          color: $white
+          -webkit-border-top-right-radius: 5px !important
+          -webkit-border-bottom-right-radius: 5px !important
+          -moz-border-radius-topright: 5px !important
+          -moz-border-radius-bottomright: 5px !important
+          border-top-right-radius: 5px !important
+          border-bottom-right-radius: 5px !important
+        .following-button
+
+          -webkit-border-top-right-radius: 5px !important
+          -webkit-border-bottom-right-radius: 5px !important
+          -moz-border-radius-topright: 5px !important
+          -moz-border-radius-bottomright: 5px !important
+          border-top-right-radius: 5px !important
+          border-bottom-right-radius: 5px !important
+
+
+
 
   .update
     background-color: $white
