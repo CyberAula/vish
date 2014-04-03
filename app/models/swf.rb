@@ -10,7 +10,7 @@ class Swf < Document
               
   # Thumbnail file
   def thumb(size, helper)
-      "#{ size.to_s }/audio.png"
+      "#{ size.to_s }/swf.png"
   end
 
   def as_json(options)

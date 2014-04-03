@@ -20,7 +20,24 @@ class Scormfile < ActiveRecord::Base
 
   define_index do
     activity_object_index
-  end 
+  end
+
+  def self.createScormfileFromZip(zipfile)
+    begin
+      #Check if its a valid SCORM package
+      Scorm::Package.open(zipfile.file) do |pkg|
+      end
+      resource = Scormfile.new
+      return resource
+    rescue Exception => e
+      return "Invalid SCORM package (" + e.message + ")"
+    end
+  end
+
+  # Thumbnail file
+  def thumb(size, helper)
+      "#{ size.to_s }/scorm.png"
+  end
 
   def as_json(options = nil)
     {

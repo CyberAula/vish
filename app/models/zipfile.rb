@@ -24,16 +24,43 @@ class Zipfile < Document
     activity_object_index
     indexes file_file_name, :as => :file_name
   end 
-              
+            
   # Thumbnail file
   def thumb(size, helper)
-      "#{ size.to_s }/audio.png"
+      "#{ size.to_s }/zip.png"
   end
 
   def as_json(options)
     super.merge!({
       :src => options[:helper].polymorphic_url(self, format: format)
     })
+  end
+
+  def fileType
+    if self.file.class != Paperclip::Attachment or self.file.path.blank?
+      return Zipfile
+    end
+
+    isScorm = false
+    Zip::ZipFile.open(self.file.path) do |zip|
+      isScorm = zip.entries.map{|e| e.name}.include? "imsmanifest.xml"
+    end
+    
+    if isScorm
+      return Scormfile
+    end
+
+    return Zipfile
+  end
+
+  def getResourceAfterSave
+    case self.fileType.name
+    when Scormfile.name
+      resource = Scormfile.createScormfileFromZip(self)
+    else
+      resource = self
+    end
+    return resource
   end
   
 end
