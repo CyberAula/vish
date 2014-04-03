@@ -8,6 +8,8 @@
           <%= link_to "<i class='icon-link'></i>".html_safe, resource %>
         <%elsif resource.class==Embed%>
           <%= link_to "<i class='icon-code'></i>".html_safe, resource %>
+        <%elsif resource.class==Scormfile%>
+          <%= link_to "<i class='icon-code'></i>".html_safe, resource %>
         <%else%>
           <%= link_to icon(resource), resource, :title => resource.file_file_name %>
         <%end%>
