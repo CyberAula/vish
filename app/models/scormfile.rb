@@ -16,6 +16,8 @@
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
 class Scormfile < ActiveRecord::Base
+  before_destroy :remove_files #This callback need to be before has_attached_file, to be executed before paperclip callbacks
+
   include SocialStream::Models::Object
 
   attr_accessor :file_file_name
@@ -31,15 +33,6 @@ class Scormfile < ActiveRecord::Base
   def self.createScormfileFromZip(zipfile)
     begin
       resource = Scormfile.new
-    
-      #If its not a valid SCORM package, this method will raise an exception
-      #dry_run: If +true+ nothing will be written to the file system. Default: +false+.
-      Scorm::Package.open(zipfile.file, :cleanup => true, :dry_run => true) do |pkg|
-        if pkg.manifest.resources.first.href.nil?
-          raise "No resource has been found"
-        end
-      end
-
       resource.owner_id = zipfile.owner_id
       resource.author_id = zipfile.author_id
       resource.user_author = zipfile.user_author
@@ -50,13 +43,13 @@ class Scormfile < ActiveRecord::Base
       resource.activity_object.age_max = zipfile.activity_object.age_max
       resource.activity_object.language = zipfile.activity_object.language
       resource.activity_object.tag_list = zipfile.activity_object.tag_list
+      #Copy attachment
       resource.file = zipfile.file
-      resource.save!
 
       #Unpack the SCORM package and fill the lourl, lopath, zipurl and zippath fields
       pkgPath = nil
       loHref = nil
-      Scorm::Package.open(resource.file, :cleanup => true) do |pkg|
+      Scorm::Package.open(zipfile.file, :cleanup => true) do |pkg|
         loHref = pkg.manifest.resources.first.href
         pkgPath = pkg.path
         # pkgId = pkg.manifest.identifier
@@ -65,6 +58,9 @@ class Scormfile < ActiveRecord::Base
       if pkgPath.nil? or loHref.nil?
         raise "No resource has been found"
       end
+
+      #Save the resource to get its id
+      resource.save!
 
       scormPackagesDirectoryPath = Rails.root.join('public', 'scorm', 'packages').to_s
       loDirectoryPath = scormPackagesDirectoryPath + "/" + resource.id.to_s
@@ -108,14 +104,23 @@ class Scormfile < ActiveRecord::Base
     mime_type.to_sym
   end
 
-
   def as_json(options = nil)
     {
      :id => id,
      :title => title,
      :description => description,
-     :author => author.name
+     :author => author.name,
+     :url => Site.current.config[:documents_hostname] + lourl[1..-1]
     }
+  end
+
+
+  private
+
+  def remove_files
+    #Remove SCORM files from the public folder
+    require "fileutils"
+    FileUtils.rm_rf(self.lopath)
   end
   
 end

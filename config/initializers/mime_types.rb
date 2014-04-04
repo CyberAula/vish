@@ -9,6 +9,7 @@ Mime::Type.register "application/x-font-woff", :woff
 Mime::Type.register "application/x-shockwave-flash", :swf
 Mime::Type.register "application/zip", :zipfile
 
+Mime::Type.register_alias "application/zip", :scorm
 Mime::Type.register_alias "text/html", :full
 Mime::Type.register_alias "text/html", :mobile
 Mime::Type.register_alias "text/html", :partial

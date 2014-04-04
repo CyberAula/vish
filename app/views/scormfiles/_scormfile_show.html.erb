@@ -1,5 +1,8 @@
 <%= div_for scormfile, :class => 'content_size' do %>
   <div class="scormpackage_show">
-    <p>Show SCORM package</p>
+    <p>Show SCORM package: <%=scormfile.title%></p>
+    <iframe sandbox="allow-scripts" width=<%=scormfile.width%> height="<%=scormfile.height%>" src="<%=scormfile.lourl=%>"></iframe>
+    <p><a href="<%=scormfile.zipurl%>">Download</a></p>
+    <p><a href="<%=scormfile.lourl%>" target="_blank">View full</a></p>
   </div>
 <% end %>

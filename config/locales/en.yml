@@ -647,6 +647,8 @@ en:
     top: "forMe"
     upload: "upload"
   save: "Save"
+  scormfile:
+    confirm_delete: "Delete SCORM package?"
   search:
     title: "search"
     110slides: "1-10 slides"
