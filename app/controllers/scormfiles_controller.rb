@@ -29,7 +29,7 @@ class ScormfilesController < ApplicationController
   private
 
   def allowed_params
-    [:zippath, :lopath, :width, :height, :language, :age_min, :age_max]
+    [:zipurl, :lourl, :width, :height, :language, :age_min, :age_max, :file]
   end
 
   def hack_auth

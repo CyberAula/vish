@@ -23,8 +23,8 @@ class Zipfile < Document
   define_index do
     activity_object_index
     indexes file_file_name, :as => :file_name
-  end 
-            
+  end
+    
   # Thumbnail file
   def thumb(size, helper)
       "#{ size.to_s }/zip.png"

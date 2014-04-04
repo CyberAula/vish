@@ -434,6 +434,8 @@ ActiveRecord::Schema.define(:version => 20140331134734) do
     t.integer  "activity_object_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "zipurl"
+    t.text     "lourl"
     t.text     "zippath"
     t.text     "lopath"
     t.integer  "width",              :default => 470

@@ -18,17 +18,27 @@
 class Scormfile < ActiveRecord::Base
   include SocialStream::Models::Object
 
+  attr_accessor :file_file_name
+
+  has_attached_file :file, 
+                    :url => '/:class/:id.:extension',
+                    :path => ':rails_root/documents/:class/:id_partition/:filename.:extension'
+
   define_index do
     activity_object_index
   end
 
   def self.createScormfileFromZip(zipfile)
     begin
-      #Check if its a valid SCORM package
-      Scorm::Package.open(zipfile.file) do |pkg|
-      end
-      
       resource = Scormfile.new
+    
+      #If its not a valid SCORM package, this method will raise an exception
+      #dry_run: If +true+ nothing will be written to the file system. Default: +false+.
+      Scorm::Package.open(zipfile.file, :cleanup => true, :dry_run => true) do |pkg|
+        loHref = pkg.manifest.resources.first.href
+        resource.lourl = loHref
+      end
+
       resource.owner_id = zipfile.owner_id
       resource.author_id = zipfile.author_id
       resource.user_author = zipfile.user_author
@@ -39,9 +49,28 @@ class Scormfile < ActiveRecord::Base
       resource.activity_object.age_max = zipfile.activity_object.age_max
       resource.activity_object.language = zipfile.activity_object.language
       resource.activity_object.tag_list = zipfile.activity_object.tag_list
+      resource.file = zipfile.file
       resource.save!
 
-      #TODO, create attachment!
+      #Unpack the SCORM package and fill the lourl, lopath, zipurl and zippath fields
+      pkgPath = nil
+      loHref = nil
+      Scorm::Package.open(resource.file, :cleanup => true) do |pkg|
+        loHref = pkg.manifest.resources.first.href
+        pkgPath = pkg.path
+        # pkgId = pkg.manifest.identifier
+      end
+
+      resource.zipurl = resource.file.url
+      resource.zippath = resource.file.path
+      resource.lopath = Rails.root.join('public', 'scorm', 'packages').to_s + "/" + resource.id.to_s + "/"
+      resource.lourl = resource.lopath + loHref
+
+      require "fileutils"
+      FileUtils.mkdir_p(resource.lopath)
+      FileUtils.move pkgPath, resource.lopath
+
+      resource.save!
 
       return resource
     rescue Exception => e
