@@ -35,8 +35,9 @@ class Scormfile < ActiveRecord::Base
       #If its not a valid SCORM package, this method will raise an exception
       #dry_run: If +true+ nothing will be written to the file system. Default: +false+.
       Scorm::Package.open(zipfile.file, :cleanup => true, :dry_run => true) do |pkg|
-        loHref = pkg.manifest.resources.first.href
-        resource.lourl = loHref
+        if pkg.manifest.resources.first.href.nil?
+          raise "No resource has been found"
+        end
       end
 
       resource.owner_id = zipfile.owner_id
@@ -61,14 +62,21 @@ class Scormfile < ActiveRecord::Base
         # pkgId = pkg.manifest.identifier
       end
 
+      if pkgPath.nil? or loHref.nil?
+        raise "No resource has been found"
+      end
+
+      scormPackagesDirectoryPath = Rails.root.join('public', 'scorm', 'packages').to_s
+      loDirectoryPath = scormPackagesDirectoryPath + "/" + resource.id.to_s
+
       resource.zipurl = resource.file.url
       resource.zippath = resource.file.path
-      resource.lopath = Rails.root.join('public', 'scorm', 'packages').to_s + "/" + resource.id.to_s + "/"
-      resource.lourl = resource.lopath + loHref
+      resource.lopath = loDirectoryPath
+      resource.lourl = "/scorm/packages/" + resource.id.to_s + "/" + loHref
 
       require "fileutils"
-      FileUtils.mkdir_p(resource.lopath)
-      FileUtils.move pkgPath, resource.lopath
+      FileUtils.mkdir_p(scormPackagesDirectoryPath)
+      FileUtils.move pkgPath, loDirectoryPath
 
       resource.save!
 
@@ -82,7 +90,6 @@ class Scormfile < ActiveRecord::Base
   def thumb(size, helper)
       "#{ size.to_s }/scorm.png"
   end
-
 
   #Overriding mimetype and format methods from SSDocuments
 
