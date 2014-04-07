@@ -1,8 +1,13 @@
+<script src="/scorm_api/Local_API_1484_11.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var API_1484_11 = new Local_API_1484_11();
+</script>
+
 <%= div_for scormfile, :class => 'content_size' do %>
   <div class="scormpackage_show">
     <p>Show SCORM package: <%=scormfile.title%></p>
-    <iframe sandbox="allow-scripts" width=<%=scormfile.width%> height="<%=scormfile.height%>" src="<%=scormfile.lourl=%>"></iframe>
+    <iframe width=<%=scormfile.width%> height="<%=scormfile.height%>" src="<%=scormfile.lourl=%>"></iframe>
     <p><a href="<%=scormfile.zipurl%>">Download</a></p>
-    <p><a href="<%=scormfile.lourl%>" target="_blank">View full</a></p>
+    <p><a href="<%=scormfile_path(scormfile, :format => :full)%>" target="_blank">View full</a></p>
   </div>
 <% end %>

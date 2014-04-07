@@ -8,8 +8,8 @@ class AddScormsTable < ActiveRecord::Migration
       t.text     "lourl"
       t.text     "zippath"
       t.text     "lopath"
-      t.integer  "width",  :default => 470
-      t.integer  "height", :default => 353
+      t.integer  "width",  :default => 800
+      t.integer  "height", :default => 600
     end
   end
 

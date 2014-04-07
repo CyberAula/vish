@@ -12,6 +12,9 @@ class ScormfilesController < ApplicationController
       format.json {
         render :json => resource.as_json
       }
+      format.full{
+        @scormfile = resource
+      }
       format.all {
         super
       }

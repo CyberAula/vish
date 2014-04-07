@@ -438,8 +438,8 @@ ActiveRecord::Schema.define(:version => 20140331134734) do
     t.text     "lourl"
     t.text     "zippath"
     t.text     "lopath"
-    t.integer  "width",              :default => 470
-    t.integer  "height",             :default => 353
+    t.integer  "width",              :default => 800
+    t.integer  "height",             :default => 600
   end
 
   create_table "shortened_urls", :force => true do |t|
