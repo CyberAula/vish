@@ -47,6 +47,7 @@ class Scormfile < ActiveRecord::Base
       resource.file = zipfile.file
 
       #Unpack the SCORM package and fill the lourl, lopath, zipurl and zippath fields
+      #If the Package is not correct, SCORM::Package.open will raise an exception
       pkgPath = nil
       loHref = nil
       Scorm::Package.open(zipfile.file, :cleanup => true) do |pkg|
@@ -75,6 +76,9 @@ class Scormfile < ActiveRecord::Base
       FileUtils.move pkgPath, loDirectoryPath
 
       resource.save!
+
+      #Remove previous ZIP file
+      zipfile.destroy
 
       return resource
     rescue Exception => e
