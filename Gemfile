@@ -50,7 +50,7 @@ end
 
 # Deploy with Capistrano
 group :development do
-  gem 'capistrano'
+  gem 'capistrano', '=2.15.5'
   #gem 'rvm-capistrano'
 end
 

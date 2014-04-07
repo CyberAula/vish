@@ -70,6 +70,9 @@ es:
     other: "términos de uso"
   contact:
     footer: "contacto"
+    follow: "Seguir"
+    unfollow: "Dejar de seguir"
+    following: "Siguiendo"
   pending:
     other: "Te siguen"
   competitions:
@@ -577,6 +580,7 @@ es:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
     search_name: "actualización de estado"
   profile:
+    edit: "Editar perfil"
     profile: "Perfil"
     occupation:
       label: "Ocupación"

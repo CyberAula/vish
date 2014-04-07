@@ -10,19 +10,7 @@
     background-color: $white
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.20))
     z-index: 99
-    li.search-mobile
-      .search-nav
-        form.navbar-search 
-          width: 100%
-          display: block
-          margin-bottom: 0px
-          clear: both
-          padding: 4px 0
-          input
-            width: 100% 
-            display: block
-            padding: 4px 0
-            margin-top: 0px
+
     li
       width: 90%
       margin: 0 5%
@@ -34,6 +22,7 @@
         padding: 9px 0
         img
           width: 30px
+          @include border-radius($baseBorderRadius)
 
       ul.dropdown-menu
         height: auto
