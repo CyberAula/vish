@@ -32,22 +32,6 @@ DocumentsController.class_eval do
     end
   end
 
-  # def create
-  #   super do |format|
-  #     format.json { render :json => resource.to_json(helper: self), status: :created }
-  #     format.js
-  #     format.all {
-  #       if resource.new_record?
-  #         render action: :new
-  #       elsif params["document"]["add_holder_event_id"]
-  #         redirect_to request.referer #we are adding poster to an event, redirect to the event
-  #       else
-  #         redirect_to resource
-  #       end
-  #     }
-  #   end
-  # end
-
   def update
     update! do |success, failure|
       failure.html { render :action => :show }
