@@ -102,3 +102,5 @@ gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attri
 gem "oai_repository", :git => 'git@github.com:ebarra/oai_repository.git'
 
 gem "scorm", :git => 'git@github.com:ebarra/scorm.git', :branch => "master"
+
+gem "paperclip", '=3.5.1'
