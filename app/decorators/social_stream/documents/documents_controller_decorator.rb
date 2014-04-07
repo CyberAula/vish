@@ -56,6 +56,5 @@ DocumentsController.class_eval do
       format.js
     end
   end
-  
 
 end
