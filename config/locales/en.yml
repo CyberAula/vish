@@ -653,6 +653,7 @@ en:
   save: "Save"
   scormfile:
     confirm_delete: "Delete SCORM package?"
+    view_full: "View full"
   search:
     title: "search"
     110slides: "1-10 slides"

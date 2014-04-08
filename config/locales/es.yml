@@ -655,6 +655,9 @@ es:
     top: "paraMí"
     upload: "subir"
   save: "Salvar"
+  scormfile:
+    confirm_delete: "¿Eliminar paquete SCORM?"
+    view_full: "Pantalla completa"
   search:
     title: "buscar"
     110slides: "1-10 diapositivas"
