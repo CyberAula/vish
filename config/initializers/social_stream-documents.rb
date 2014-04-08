@@ -70,7 +70,10 @@ SocialStream::Documents.setup do |config|
     types: [
       :text, :image, :audio, :video
     ],
-    subtypes: []
+    subtypes: [
+      #:pdf, :odt, :odp, :doc, :ppt, :xls, :docx, :pptx, :xslx, :rar,
+        :pdf, :zip, :scorm, :swf        
+    ]
   }
 
   config.subtype_classes_mime_types[:officedoc]= [:odt, :odp, :ods, :doc, :ppt, :xls, :rtf, :pdf]

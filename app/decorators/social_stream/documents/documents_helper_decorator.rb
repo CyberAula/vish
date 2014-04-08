@@ -19,6 +19,7 @@ DocumentsHelper.module_eval do
       when :image then "picture"
       when :audio then "music"
       when :video then "film"
+      else icon_mime_type document
     end
     if icon_name == "picture"
       "<div class='img-box' id='document-#{document.id}'></div><i class=\"icon-#{ icon_name }\"></i>".html_safe
