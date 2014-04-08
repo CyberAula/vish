@@ -6,8 +6,7 @@
     <%= form_for(current_subject, :url => [current_subject]) do |f| %>
 
       <%= f.label t('actor.name'), :class => "name-required"  %><!--span>*</span-->
-      <%= f.text_field :name, :class => "required" %>
-
+      <%= f.text_field :name, :class => "required", :maxlength => 50 %>
 
       <%= f.label t('profile.occupation.label'), :class => "text" %>
       <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]], current_subject.occupation)) %>
@@ -29,7 +28,7 @@
           <%= f.text_field :country, :class => "input_settings" %>
        
           <%= f.label :description, t("profile.#{ current_subject.class.to_s.downcase }.about") %>
-          <%= f.text_area :description, :maxlength => 200, :rows => 2 %>
+          <%= f.text_area :description, :maxlength => 500, :rows => 2 %>
 
           <!--TAGS-->
           <!-- Tags preloaded -->

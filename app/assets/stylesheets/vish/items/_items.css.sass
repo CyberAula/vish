@@ -189,19 +189,23 @@
             overflow: hidden
             width: 100%
           .author
-            @mixin author
+            @include author
             width: 100%
             height: 20px
             overflow: hidden
             word-wrap: break-word
             text-overflow: ellipsis
+
             span
-              width: 15%
+              width: 20px
               display: inline
               float: left
             a
-
-              width: 80%
+              word-wrap: break-word
+              text-overflow: ellipsis
+              overflow-y: hidden
+              height: 20px
+              width: 85%
               display: inline
               float: left
 
@@ -479,19 +483,23 @@
             a
               color: $grayDark
           .author
-            .by  
-            padding-left: 5px
-          @include author
-          .author
+            @include author
             width: 100%
             height: 20px
             overflow: hidden
             word-wrap: break-word
             text-overflow: ellipsis
+
+            span
+              width: 20px
+              display: inline
+              float: left
+              margin-left: 5px
             a
-              &:hover
-                color: #007cc8
-                font-family: $thirdFontFamily
+
+              width: 80%
+              display: inline
+              float: left
         .info-bottom
           margin-left: 5px
           padding: 0px  
@@ -579,3 +587,4 @@
         .info-bottom
           hr
             display: none
+
