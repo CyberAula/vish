@@ -26,9 +26,9 @@ class ResourcesController < ApplicationController
     elsif params[:live].present?
       ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, Link] } )
     elsif params[:object].present?
-      ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, Officedoc, Link] } )
+      ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, Officedoc, Link, Scormfile] } )
     else
-      ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Officedoc, Swf, Embed, Link, Video, Audio] } )
+      ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, Officedoc, Link, Video, Audio, Scormfile] } )
     end
     respond_to do |format|
       format.html {
@@ -50,6 +50,9 @@ class ResourcesController < ApplicationController
             rec["object"] = res.fulltext
           elsif res.is_a? Link
             rec["object"] = res.url
+          elsif res.is_a? Scormfile
+            rec["object"] = res.lourl
+            rec["type"] = "SCORM_Package"
           else
             rec["object"] = 'http://' + request.env['HTTP_HOST'] + res.file.to_s.downcase
           end
