@@ -125,7 +125,7 @@ class Scormfile < ActiveRecord::Base
      :title => title,
      :description => description,
      :author => author.name,
-     :url => Site.current.config[:documents_hostname] + lourl[1..-1]
+     :src => lourl
     }
   end
 

@@ -13,7 +13,11 @@ DocumentsController.class_eval do
           flash.now[:alert] = newResource
           render action: :new
         else
-          redirect_to newResource
+          if params["format"] == "json"
+            render :json => newResource.as_json, status: :created
+          else
+            redirect_to newResource
+          end
         end
         return
       end
