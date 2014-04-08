@@ -7,7 +7,7 @@ DocumentsController.class_eval do
   def create
     super do |format|
       if resource.is_a? Zipfile
-        newResource = resource.getResourceAfterSave
+        newResource = resource.getResourceAfterSave(self)
         if newResource.is_a? String
           #Raise error
           flash.now[:alert] = newResource

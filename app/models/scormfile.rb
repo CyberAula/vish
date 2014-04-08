@@ -30,7 +30,7 @@ class Scormfile < ActiveRecord::Base
     activity_object_index
   end
 
-  def self.createScormfileFromZip(zipfile)
+  def self.createScormfileFromZip(controller,zipfile)
     begin
       resource = Scormfile.new
       resource.owner_id = zipfile.owner_id
@@ -69,15 +69,22 @@ class Scormfile < ActiveRecord::Base
         scormPackagesDirectoryPath = Site.current.config[:code_path]
       end
       loDirectoryPath = scormPackagesDirectoryPath + "/" + resource.id.to_s
+      loURLRoot = (Site.current.config[:code_hostname].nil? ? Site.current.config[:documents_hostname] : Site.current.config[:code_hostname]) + "scorm/packages/" + resource.id.to_s
 
-      resource.zipurl = Site.current.config[:documents_hostname] + resource.file.url[1..-1]
-      resource.zippath = resource.file.path
-      resource.lopath = loDirectoryPath
-      resource.lourl = (Site.current.config[:code_hostname].nil? ? Site.current.config[:documents_hostname] : Site.current.config[:code_hostname]) + "scorm/packages/" + resource.id.to_s + "/" + loHref
 
       require "fileutils"
       FileUtils.mkdir_p(scormPackagesDirectoryPath)
       FileUtils.move pkgPath, loDirectoryPath
+
+      #Generate wrapper HTML (vishubcode_scorm_wrapper.html)
+      scormWrapperFile = controller.render_to_string "show.scorm_wrapper.erb", :locals => {:loResourceUrl=>loURLRoot + "/" + loHref}, :layout => false
+      scormWrapperFilePath = loDirectoryPath + "/vishubcode_scorm_wrapper.html"
+      File.open(scormWrapperFilePath, "w"){|f| f << scormWrapperFile }
+
+      resource.zipurl = Site.current.config[:documents_hostname] + resource.file.url[1..-1]
+      resource.zippath = resource.file.path
+      resource.lopath = loDirectoryPath
+      resource.lourl = loURLRoot + "/vishubcode_scorm_wrapper.html"
 
       resource.save!
 
