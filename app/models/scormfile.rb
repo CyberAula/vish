@@ -63,13 +63,17 @@ class Scormfile < ActiveRecord::Base
       #Save the resource to get its id
       resource.save!
 
-      scormPackagesDirectoryPath = Rails.root.join('public', 'scorm', 'packages').to_s
+      if Site.current.config[:code_hostname].nil? or Site.current.config[:code_path].nil?
+        scormPackagesDirectoryPath = Rails.root.join('public', 'scorm', 'packages').to_s
+      else
+        scormPackagesDirectoryPath = Site.current.config[:code_path]
+      end
       loDirectoryPath = scormPackagesDirectoryPath + "/" + resource.id.to_s
 
-      resource.zipurl = resource.file.url
+      resource.zipurl = Site.current.config[:documents_hostname] + resource.file.url[1..-1]
       resource.zippath = resource.file.path
       resource.lopath = loDirectoryPath
-      resource.lourl = "/scorm/packages/" + resource.id.to_s + "/" + loHref
+      resource.lourl = (Site.current.config[:code_hostname].nil? ? Site.current.config[:documents_hostname] : Site.current.config[:code_hostname]) + "scorm/packages/" + resource.id.to_s + "/" + loHref
 
       require "fileutils"
       FileUtils.mkdir_p(scormPackagesDirectoryPath)
