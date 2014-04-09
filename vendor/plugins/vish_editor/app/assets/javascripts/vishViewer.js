@@ -4836,6 +4836,8 @@ VISH.Constant.MEDIA.WEB = "web";
 VISH.Constant.MEDIA.JSON = "json";
 VISH.Constant.MEDIA.DOC = "doc";
 VISH.Constant.MEDIA.PPT = "ppt";
+VISH.Constant.MEDIA.SCORM_PACKAGE = "scormpackage";
+VISH.Constant.MEDIA.IMS_QTI_QUIZ = "IMS_QTI_QUIZ";
 VISH.Constant.WRAPPER = {};
 VISH.Constant.WRAPPER.EMBED = "EMBED";
 VISH.Constant.WRAPPER.OBJECT = "OBJECT";
@@ -9213,8 +9215,11 @@ VISH.Object = function(V, $, undefined) {
         type = V.Constant.MEDIA.HTML5_AUDIO;
         break;
       case "IFRAME":
-        type = _getTypeFromSource(source);
-        break;
+        if($(object).attr("objecttype") == V.Constant.MEDIA.SCORM_PACKAGE) {
+          type = V.Constant.MEDIA.SCORM_PACKAGE;
+          break
+        }
+      ;
       default:
         type = _getTypeFromSource(source)
     }

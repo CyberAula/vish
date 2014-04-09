@@ -125,7 +125,8 @@ class Scormfile < ActiveRecord::Base
      :title => title,
      :description => description,
      :author => author.name,
-     :src => lourl
+     :src => lourl,
+     :type => "scormpackage"
     }
   end
 

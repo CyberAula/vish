@@ -225,6 +225,8 @@ VISH.Constant.MEDIA.WEB = "web";
 VISH.Constant.MEDIA.JSON = "json";
 VISH.Constant.MEDIA.DOC = "doc";
 VISH.Constant.MEDIA.PPT = "ppt";
+VISH.Constant.MEDIA.SCORM_PACKAGE = "scormpackage";
+VISH.Constant.MEDIA.IMS_QTI_QUIZ = "IMS_QTI_QUIZ";
 VISH.Constant.WRAPPER = {};
 VISH.Constant.WRAPPER.EMBED = "EMBED";
 VISH.Constant.WRAPPER.OBJECT = "OBJECT";
@@ -12456,6 +12458,7 @@ VISH.Editor = function(V, $, undefined) {
                   if(zoom != 1) {
                     element.zoomInStyle = V.Utils.getZoomInStyle(zoom)
                   }
+                  element.subtype = V.Object.getObjectInfo(myObject).type
                 }else {
                   if(element.type === V.Constant.QUIZ) {
                     var quizJSON = VISH.Editor.Quiz.save(div);
@@ -12482,6 +12485,7 @@ VISH.Editor = function(V, $, undefined) {
                         element.scrollTop = $(snapshotWrapper).scrollTop();
                         element.scrollLeft = $(snapshotWrapper).scrollLeft()
                       }
+                      element.subtype = V.Constant.MEDIA.WEB
                     }else {
                       if(typeof element.type == "undefined") {
                       }
@@ -13604,6 +13608,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     V.Editor.Object.Web.init();
     V.Editor.Object.GoogleDOC.init();
     V.Editor.Object.Snapshot.init();
+    V.Editor.Object.Scorm.init();
     var urlInput = $("#" + urlDivId).find("input");
     $("#" + urlDivId + " .previewButton").click(function(event) {
       if(V.Police.validateObject($("#" + urlInputId).val())[0]) {
@@ -13713,8 +13718,12 @@ VISH.Editor.Object = function(V, $, undefined) {
       var jsonResponse = JSON.parse(response);
       if(jsonResponse.src) {
         if(V.Police.validateObject(jsonResponse.src)[0]) {
-          drawPreview(uploadDivId, jsonResponse.src);
-          contentToAdd = jsonResponse.src
+          var objectToDraw = jsonResponse.src;
+          if(jsonResponse.type === V.Constant.MEDIA.SCORM_PACKAGE) {
+            objectToDraw = V.Editor.Object.Scorm.generateWrapperForScorm(jsonResponse.src)
+          }
+          drawPreview(uploadDivId, objectToDraw);
+          contentToAdd = objectToDraw
         }
       }
     }catch(e) {
@@ -13810,11 +13819,15 @@ VISH.Editor.Object = function(V, $, undefined) {
     $(object).height($(wrapper).height() / zoom);
     $(object).width($(wrapper).width() / zoom)
   };
-  var renderObjectPreview = function(object) {
+  var renderObjectPreview = function(object, options) {
     var objectInfo = V.Object.getObjectInfo(object);
+    var objectType = objectInfo.type;
+    if(options && typeof options.forceType == "string") {
+      objectType = options.forceType
+    }
     switch(objectInfo.wrapper) {
       case null:
-        switch(objectInfo.type) {
+        switch(objectType) {
           case V.Constant.MEDIA.IMAGE:
             return"<img class='imagePreview' src='" + object + "'></img>";
             break;
@@ -13841,6 +13854,9 @@ VISH.Editor.Object = function(V, $, undefined) {
           case V.Constant.MEDIA.WEB:
             return V.Editor.Object.Web.generatePreviewWrapperForWeb(object);
             break;
+          case V.Constant.MEDIA.SCORM_PACKAGE:
+            return V.Editor.Object.Scorm.generatePreviewWrapperForScorm(object);
+            break;
           default:
             V.Debugging.log("Unrecognized object source type");
             break
@@ -13853,7 +13869,11 @@ VISH.Editor.Object = function(V, $, undefined) {
         return _genericWrapperPreview(object);
         break;
       case V.Constant.WRAPPER.IFRAME:
-        return _genericWrapperPreview(object);
+        if(objectType == V.Constant.MEDIA.SCORM_PACKAGE) {
+          return V.Editor.Object.Scorm.generatePreviewWrapperForScorm(objectInfo.source)
+        }else {
+          return _genericWrapperPreview(object)
+        }
         break;
       case V.Constant.WRAPPER.VIDEO:
         return V.Editor.Video.HTML5.renderVideoFromWrapper(object, {loadSources:false, poster:V.Editor.Video.HTML5.getDefaultPoster(), extraClasses:["objectPreview"]});
@@ -13928,6 +13948,9 @@ VISH.Editor.Object = function(V, $, undefined) {
           case V.Constant.MEDIA.WEB:
             V.Editor.Object.drawObject(V.Editor.Object.Web.generateWrapperForWeb(object));
             break;
+          case V.Constant.MEDIA.SCORM_PACKAGE:
+            V.Editor.Object.drawObject(V.Editor.Object.Scorm.generateWrapperForScorm(object));
+            break;
           default:
             V.Debugging.log("Unrecognized object source type: " + objectInfo.type);
             break
@@ -13985,6 +14008,9 @@ VISH.Editor.Object = function(V, $, undefined) {
     if(zoomInStyle) {
       $(wrapperTag).attr("style", zoomInStyle);
       V.ObjectPlayer.adjustDimensionsAfterZoom($(wrapperTag))
+    }
+    if($(wrapperTag).attr("objecttype") == V.Constant.MEDIA.SCORM_PACKAGE) {
+      V.Editor.Object.Scorm.afterDrawSCORM(wrapperTag)
     }
   };
   return{init:init, onLoadTab:onLoadTab, drawObject:drawObject, renderObjectPreview:renderObjectPreview, resizeObject:resizeObject, autofixWrapperedObjectAfterZoom:autofixWrapperedObjectAfterZoom, drawPreview:drawPreview, resetPreview:resetPreview, drawPreviewElement:drawPreviewElement, drawPreviewObject:drawPreviewObject}
@@ -15235,7 +15261,7 @@ VISH.Samples.API = function(V, undefined) {
   "object":'<video preload="metadata" poster="http://vishub.org/videos/325.png?style=170x127%23"><source src="http://vishub.org/videos/325.webm" type="video/webm"><source src="http://vishub.org/videos/325.mp4" type="video/mp4"><source src="http://vishub.org/videos/325.flv" type="video/x-flv"><p>Your browser does not support HTML5 video.</p></video>'}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, 
   {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, {"id":"1538", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "object":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}, 
   {"id":"1539", "title":"Image", "description":"Image Embed", "author":"Globedia", "object":'<embed width="100%" src="http://globedia.com/imagenes/noticias/2011/2/10/encuentran-octava-maravilla-mundo-destruida-125-anos_2_585286.jpg"></embed>'}, {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, 
-  {"id":"5432115", "title":"Medieval Armor", "description":"Description of the SCORM Package", "author":"Aldo", "object":"http://localhost:3000/scormfiles/15.full", "type":"SCORM_Package"}];
+  {"id":"5432115", "title":"Medieval Armor", "description":"Description of the SCORM Package", "author":"Aldo", "object":"http://localhost:3000/scorm/packages/41/vishubcode_scorm_wrapper.html", "type":"scormpackage"}];
   var objectListLittle = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
   "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}];
   var objectListDummy = [];
@@ -23752,10 +23778,10 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
         case V.Constant.MEDIA.FLASH:
           imageSource = V.ImagesPath + "carrousel/swf.png";
           break;
-        case "SCORM_Package":
+        case V.Constant.MEDIA.SCORM_PACKAGE:
           imageSource = V.ImagesPath + "carrousel/scorm.png";
           break;
-        case "IMTS_QTI_QUIZ":
+        case V.Constant.MEDIA.IMS_QTI_QUIZ:
           imageSource = V.ImagesPath + "carrousel/quizxml.png";
           break;
         default:
@@ -23818,7 +23844,11 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
   var _onClickCarrouselElement = function(event) {
     var objectId = $(event.target).attr("objectid");
     if(typeof objectId != "undefined") {
-      var renderedObject = V.Editor.Object.renderObjectPreview(currentObject[objectId].object);
+      var options = {};
+      if(typeof currentObject[objectId].type != "undefined") {
+        options.forceType = currentObject[objectId].type
+      }
+      var renderedObject = V.Editor.Object.renderObjectPreview(currentObject[objectId].object, options);
       _renderObjectPreview(renderedObject, currentObject[objectId]);
       selectedObject = currentObject[objectId]
     }
@@ -23867,11 +23897,30 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
   };
   var addSelectedObject = function() {
     if(selectedObject != null) {
-      V.Editor.Object.drawObject(selectedObject.object);
+      var options = {};
+      if(typeof selectedObject.type != "undefined") {
+        options.forceType = selectedObject.type
+      }
+      V.Editor.Object.drawObject(selectedObject.object, options);
       $.fancybox.close()
     }
   };
   return{init:init, beforeLoadTab:beforeLoadTab, onLoadTab:onLoadTab, addSelectedObject:addSelectedObject}
+}(VISH, jQuery);
+VISH.Editor.Object.Scorm = function(V, $, undefined) {
+  var init = function() {
+  };
+  var generatePreviewWrapperForScorm = function(url) {
+    url = V.Utils.addParamToUrl(url, "wmode", "opaque");
+    return"<iframe class='objectPreview' objecttype='" + V.Constant.MEDIA.SCORM_PACKAGE + "' src='" + url + "' wmode='opaque'></iframe>"
+  };
+  var generateWrapperForScorm = function(url) {
+    url = V.Utils.addParamToUrl(url, "wmode", "opaque");
+    return"<iframe objecttype='" + V.Constant.MEDIA.SCORM_PACKAGE + "' src='" + url + "' wmode='opaque'></iframe>"
+  };
+  var afterDrawSCORM = function(iframe) {
+  };
+  return{init:init, generatePreviewWrapperForScorm:generatePreviewWrapperForScorm, generateWrapperForScorm:generateWrapperForScorm, afterDrawSCORM:afterDrawSCORM}
 }(VISH, jQuery);
 VISH.Editor.Object.Snapshot = function(V, $, undefined) {
   var contentToAdd = null;
@@ -27893,8 +27942,11 @@ VISH.Object = function(V, $, undefined) {
         type = V.Constant.MEDIA.HTML5_AUDIO;
         break;
       case "IFRAME":
-        type = _getTypeFromSource(source);
-        break;
+        if($(object).attr("objecttype") == V.Constant.MEDIA.SCORM_PACKAGE) {
+          type = V.Constant.MEDIA.SCORM_PACKAGE;
+          break
+        }
+      ;
       default:
         type = _getTypeFromSource(source)
     }
