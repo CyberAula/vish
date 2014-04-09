@@ -70,11 +70,15 @@ SocialStream::Documents.setup do |config|
     types: [
       :text, :image, :audio, :video
     ],
-    subtypes: []
+    subtypes: [
+      #:pdf, :odt, :odp, :doc, :ppt, :xls, :docx, :pptx, :xslx, :rar,
+        :pdf, :zip, :scorm, :swf        
+    ]
   }
 
   config.subtype_classes_mime_types[:officedoc]= [:odt, :odp, :ods, :doc, :ppt, :xls, :rtf, :pdf]
   config.subtype_classes_mime_types[:video] = [ :flv, :webm, :mp4, :mpeg, :mov, :wmv, :m4v, :ogv, :gpp, :gpp2 ]
   config.subtype_classes_mime_types[:audio] = [ :aac, :gppa, :gpa, :wav, :ogg, :webma, :mp3 ]
   config.subtype_classes_mime_types[:swf] = [:swf]
+  config.subtype_classes_mime_types[:zipfile] = [:zipfile]
 end

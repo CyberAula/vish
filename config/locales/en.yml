@@ -70,6 +70,9 @@ en:
     other: "terms of use"
   contact:
     footer: "contact"
+    follow: "Follow"
+    unfollow: "Unfollow"
+    following: "Following"
   pending:
     other: "Following you"
   competitions:
@@ -249,6 +252,16 @@ en:
       event5_html : "5. Finally, click on <b> save </b> button to publish your event."
       exse_html : "This area allows the user to access the content of the platform in a particular way (<a href='http://vishub.org/search'>Search</a>) or unspecified (<a href='http://vishub.org/search?browse=true'>Browse</a>)"
       exse2_html : "Explore / Search"
+      activity1_html : "Activity"
+      activity2_html : "This is the section of activities, here you can post and see the latest posts from the people you follow and your own."
+      categories1_html : "Categories"
+      categories2_html : "This is the view of the category you've created, under all the features you've added to it are displayed. At any time you can edit or delete the category."
+      profile1_html : "Profile"
+      profile2_html : "This section shows your profile, you can see the content you've created, users you follow and who follow you, you can also edit your data when you need it and change your profile image."
+      excursions1_html : "Excursions"
+      excursions2_html : "This section shows the excursion in which you have entered, navigate through the excursion slides by clicking on the arrow buttons, by clicking the left or right side of the slides or using the arrow keys on the keyboard. On the right zone, recommended excursions will be shown, under the excursion you have the information of it, as well as easy ways to share it, download it (in scorm format), mark it as spam, clone it to  your profile, make it as favorite, or put it into one of your categories. You can also comment the excursión from the bottom."
+      favourite1_html : "Favourites"
+      favourite2_html : "This section displays your favorite resources on items that really have made favorites."
     helpquiz:
       info1_html: "1. Help test 1 for the quiz<br>"  
     how: "How to share a resource"
@@ -568,6 +581,8 @@ en:
     input: "Share your thoughts, links, videos and more, here!"
     search_name: "status update"
   profile:
+    edit: "Edit profile"
+    profile: "profile"
     occupation: 
       label: "Occupational field"
       options:
@@ -642,6 +657,9 @@ en:
     top: "forMe"
     upload: "upload"
   save: "Save"
+  scormfile:
+    confirm_delete: "Delete SCORM package?"
+    view_full: "View full"
   search:
     title: "search"
     110slides: "1-10 slides"
@@ -742,3 +760,5 @@ en:
       truncate: "..."
   view_all: "view all"
   yesterday: "Yesterday"
+  zipfile:
+    confirm_delete: "Delete Zip file?"

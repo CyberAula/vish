@@ -5,7 +5,8 @@
 <div id="AddResource" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AddResourceLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3 id="AddResourceLabel"><%= t('document.main_title')%></h3>
+    <%= render partial: 'help/help_resource_new' %>
+    <h4 id="AddResourceLabel"><%= t('document.main_title')%></h4>
   </div>
 
   <div class="modal-body">
@@ -150,20 +151,7 @@
 
   <!-- FOOTER -->
   <div class="modal-footer">
-    <input type="button" class='helpResources btn' data-placement='top' aria-hidden="true" data-original-title="<%= t('document.help.title')%>" href='#' value="?"/>
 
-    <div class="contentHelpResources" style="display: none">
-      <div>
-        <%= t('document.help.info1_html')%>  <br/>
-        <%= t('document.help.info2_html')%>  <br/>
-        <%= t('document.help.info3_html')%>  <br/>
-        <%= t('document.help.info4_html')%>  <br/>
-        <%= t('document.help.info5_html')%>  <br/>
-        <%= t('document.help.info6_html')%>  <br/>
-        <%= t('document.help.info7_html')%>  <br/>
-        <%= t('document.help.info8_html')%>
-      </div>
-    </div>
 
     <input type="button" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
   </div>

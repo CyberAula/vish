@@ -1,3 +1,5 @@
+@import "jquery.cleditor"
+
 .user
   margin-bottom: 20px
   header
@@ -34,16 +36,7 @@
         float: left
         cursor: default
         .briefing
-          h3
-            line-height: 15px
-            color: $firstColor
-            font-size: 20px
-            font-family: $firstFontFamily
-            //border-right: 1px solid $grayLighter
-            padding-right: 15px
-            vertical-align: top
-            display: block
-            float: left
+
           span
             color: $gray
             @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -65,7 +58,7 @@
             display: inline-block
             color: $grayLight
             font-size: 14px
-
+            word-wrap: break-word
 
           .tags-profile
             @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -76,6 +69,16 @@
             @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
             float: left
             display: inline-block
+            h3
+              line-height: 15px
+              color: $firstColor
+              font-size: 20px
+              font-family: $firstFontFamily
+              //border-right: 1px solid $grayLighter
+              padding-right: 15px
+              vertical-align: top
+              display: block
+              float: left
 
 
           #effect
@@ -85,12 +88,23 @@
             display: inline-block
             float: left
             overflow: hidden
+            h3
+              line-height: 15px
+              color: $firstColor
+              font-size: 20px
+              font-family: $firstFontFamily
+              //border-right: 1px solid $grayLighter
+              padding-right: 15px
+              vertical-align: top
+              display: block
+              float: left
           .newClass
             height: 0px
             overflow: hidden
           .anotherNewClass
             height: auto
             overflow: auto
+
 
 
 
@@ -114,216 +128,161 @@
               @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
               float: left
               display: inline-block
-
-
-
-
-
-//toolbar-profile
-.toolbar-profile
-  @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  float: left
-  display: inline
-  height: 20px
-  margin-top: 10px
-  margin-bottom: 10px
-
-
-  // CONTACT
-  .contact
-    display: block
-    float: left
-    margin-right: 10px
-    .add
-      @include follow-profile
-      display: block
-      clear: both
-      text-align: center
-      div
-        .following-button
-          display: block
-          margin-left: 0
-          display: block
-          background-color: #007CC8
-          height: 20px
-          width: 87px
-          @include border-radius(5px)
-          color: #FFF
-          font-family: $firstFontFamily
-
-      .unfollow-button 
-        form
-          margin: 0px
-          input
+          .toolbar-profile
+            position: relative
+            bottom: 5px
+            width: 100%
+            border-top: 1px solid $grayLight
+            padding-top: 5px
             display: block
-            margin-left: 0
-            height: 20px
-            border: 0px none
-            width: 87px
-            display: block
-            background-color: #555
-            @include border-radius(5px)
-            color: #FFF
-            margin-top: 0px
-            padding: 0px
-            font-family: $firstFontFamily
+            float: left
+            margin-top: 10px
 
-  // EDIT
-  .edit_icon
-    height: 20px
-    border: 0px none 
-    width: 80px
-    display: block
-    @include border-radius($baseBorderRadius)
-    color: $black
-    background-color: $firstColor
-    margin-top: 0px
-    padding: 0px 15px
-    color: $white
-    font-family: $firstFontFamily
-    display: block
-    float: left
-    margin-right: 10px
-    a,
-    span
-      color: $white
-      font-size: 12px
+            .btn-group
+              i
+                margin-right: 5px
+              .contact_Toolbar
+                width: 100px
+                padding: 0
 
-      &:hover
-        text-decoration: none
-    span
-      padding-left: 5px
-  // message
-  button#mesage-profile
-    height: 20px
-    border: 0px none 
-    width: auto
-    margin-right: 10px
-    @include border-radius($baseBorderRadius)
-    color: $black
-    border-color: #CCCCCC #CCCCCC #B3B3B3
-    border-image: none
-    border-style: solid
-    border-width: 1px
-    margin-top: 0px
-    padding: 0px 15px
-    font-family: $firstFontFamily
-    display: block
-    float: left
-    a
-      color: $black
-      font-size: 12px
+                .following-button
+                  background-color: $secondColor
+                  margin: 0
+                  border: none
+                  box-shadow: none
+                  padding-top: 4px
+                  height: 24px
+                  width: 100%
+                  color: $white
+                  -webkit-border-top-left-radius: 5px
+                  -webkit-border-bottom-left-radius: 5px
+                  -moz-border-radius-topleft: 5px
+                  -moz-border-radius-bottomleft: 5px
+                  border-top-left-radius: 5px
+                  border-bottom-left-radius: 5px
 
+                form
+                  margin: 0 !important
+                  input[type="submit"]
+                    margin: 0
+                    border: none
+                    box-shadow: none
+                    padding: 0 !important
+                    height: 28px
+                    width: 100%
+                    color: $white
+                    -webkit-border-top-right-radius: 0px
+                    -webkit-border-bottom-right-radius: 0px
+                    -moz-border-radius-topright: 0px
+                    -moz-border-radius-bottomright: 0px
+                    border-top-right-radius: 0px
+                    border-bottom-right-radius: 0px
 
+                  input[value="Unfollow"]
+                    background-color: $gray
+              #showMore
+                width: auto
+              .btn
+                a
+                  color: $gray 
 
-  #showMore
-    height: 20px
-    border: 0px none 
-    width: auto
-    @include border-radius($baseBorderRadius)
-    color: $black
-    border-color: #CCCCCC #CCCCCC #B3B3B3
-    border-image: none
-    border-style: solid
-    border-width: 1px
-    margin-top: 0px
-    padding: 0px 15px
-    font-family: $firstFontFamily
+//new conversation profile
+#new_messages_profile
+  .cleditorMain
     display: block
     float: left
-    margin-right: 10px
-    a
-      color: $black
-      font-size: 12px
+  .cleditorToolbar
+    height: 28px !important
 
 //FORMULARIO
-.update
-  background-color: $white
-  margin-left: 0px
-  padding: 12px 0px 32px 0px !important
-  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  float: left
-  label
-    font-size: 12px
-    font-family: $secondFontFamily
-    color: $firstColor
-    display: block
-    float: left
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    clear: left
-  span
-    font-size: 10px
-    float: left
-  input,
-  textarea
-    display: block
-    float: left
-    width: 96%
-    padding: 4px 2%
-  select
-    padding-right: 10px
-    display: block
+.information
+  .update
+    background-color: $white
+    margin-left: 0px
+    padding: 12px 0px 32px 0px !important
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     float: left
-
-  .avatar-edit
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    float: left
-    display: block
-    margin-bottom: 10px
-    .avatar-update
-      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      .avatar-current
-        width: 30px
-        display: block
-        float: left
-        margin-right: 10px
-        img
-          @include border-radius($baseBorderRadius)
-      form.edit_actor
-        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        margin: 0
-        input
-          margin-top: 0
-          width: 200px
-          padding: 0
-    #avatar-progress
+    label
+      font-size: 12px
+      font-family: $secondFontFamily
+      color: $firstColor
       display: block
       float: left
-      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      margin-top: 7px
-      margin-left: 5px
-      .progress
-        margin-bottom: 0
-
-  form.edit_user
-    display: block
-    float: left
-    clear: both
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    .birthday
-      select
-        width: 19%
-        display: block
-        float: left
-        margin-right: 10px
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      clear: left
     span
       font-size: 10px
-      margin-left: 28%
+      float: left
+    input,
+    textarea
+      display: block
+      float: left
+      width: 96%
+      padding: 4px 2%
+    select
+      padding-right: 10px
+      display: block
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       float: left
 
-    .actions
+    .avatar-edit
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: left
+      display: block
+      margin-bottom: 10px
+      .avatar-update
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .avatar-current
+          width: 30px
+          display: block
+          float: left
+          margin-right: 10px
+          img
+            @include border-radius($baseBorderRadius)
+        form.edit_actor
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          margin: 0
+          input
+            margin-top: 0
+            width: 200px
+            padding: 0
+      #avatar-progress
+        display: block
+        float: left
+        @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        margin-top: 7px
+        margin-left: 5px
+        .progress
+          margin-bottom: 0
+
+    form.edit_user
       display: block
       float: left
       clear: both
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      input
-        width: auto
-        float: right
-      a
-        float: right
-        margin-right: 10px
-        background-color: $gray
+      .birthday
+        select
+          width: 19%
+          display: block
+          float: left
+          margin-right: 10px
+      span
+        font-size: 10px
+        margin-left: 28%
+        float: left
+
+      .actions
+        display: block
+        float: left
+        clear: both
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        input
+          width: auto
+          float: right
+        a
+          float: right
+          margin-right: 10px
+          background-color: $gray
 .name-required  
   label 
     display: inline 

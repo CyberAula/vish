@@ -1,4 +1,8 @@
 <div id ="time-line">
+
+
+<%= render partial: 'help/help_activity' %>
+
   <%= render :partial => "activities/index",
              :locals => { section: :home,
                           owner: current_subject } %>

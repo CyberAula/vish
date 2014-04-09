@@ -126,7 +126,7 @@
     li.helpheader
       float: right
       right: 0%  
-      margin-top: 5px
+      margin-top: 15px
       display: block
 
   @media (max-width: 500px)
@@ -138,10 +138,21 @@
   @media (max-width: 410px)
     ul.nav,
     ul.nav-tabs
+      li.active
+        a
+          padding: 6px 5px 2px
       li 
+        a
+          padding: 6px 5px 2px
         h1
-          display: none
-
+          display: block
+          font-size: 15px
+          margin-right: 10px
+          margin-top: 5px
+          &:first-letter
+            text-transform: uppercase
+          i
+            font-size: 15px
 
 @mixin header-tabbable-show
 

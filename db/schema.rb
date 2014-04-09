@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140113110128) do
+ActiveRecord::Schema.define(:version => 20140331134734) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -433,6 +433,18 @@ ActiveRecord::Schema.define(:version => 20140113110128) do
   end
 
   add_index "rooms", ["actor_id"], :name => "index_rooms_on_actor_id"
+
+  create_table "scormfiles", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "zipurl"
+    t.text     "lourl"
+    t.text     "zippath"
+    t.text     "lopath"
+    t.integer  "width",              :default => 800
+    t.integer  "height",             :default => 600
+  end
 
   create_table "shortened_urls", :force => true do |t|
     t.integer  "owner_id"

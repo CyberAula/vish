@@ -1,0 +1,38 @@
+<li class="helpheader">   
+<i class="icon-question-sign helpResources" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.title')%>" href='#' value="" ></i>
+<div class="contentHelpResources" style="display: none">
+  <div>
+        <%= t('document.help.info1_html')%>  <br/>
+        <%= t('document.help.info2_html')%>  <br/>
+        <%= t('document.help.info3_html')%>  <br/>
+        <%= t('document.help.info4_html')%>  <br/>
+        <%= t('document.help.info5_html')%>  <br/>
+        <%= t('document.help.info6_html')%>  <br/>
+        <%= t('document.help.info7_html')%>  <br/>
+        <%= t('document.help.info8_html')%>
+  </div>
+</div>
+</li>
+<script>
+$(document).ready(function(){
+  $('.helpResources').popover({ 
+    html : true,
+    content: function() {
+      return $('.contentHelpResources').html();
+    }
+  });
+});
+</script>
+
+<script>
+$('body').on('click', function (e) {
+    $('.helpResources').each(function () {
+        //the 'is' for buttons that trigger popups
+        //the 'has' for icons within a button that triggers a popup
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+});
+</script>
+

@@ -188,23 +188,31 @@
             line-height: 15px
             overflow: hidden
             width: 100%
-          @include author
           .author
+            @include author
             width: 100%
             height: 20px
             overflow: hidden
+            word-wrap: break-word
             text-overflow: ellipsis
-            span 
-              float: left
-              margin-right: 5px
 
+            span
+              width: 20px
+              display: inline
+              float: left
             a
               word-wrap: break-word
-              width: 75%
+              text-overflow: ellipsis
+              overflow-y: hidden
+              height: 20px
+              width: 85%
+              display: inline
               float: left
-              &:hover
-                color: #007cc8
-                font-family: $thirdFontFamily
+
+
+
+
+
         // VIEWS AND COUNT
         .info-bottom
           @mixin footer_box_info       
@@ -475,19 +483,23 @@
             a
               color: $grayDark
           .author
-            .by  
-            padding-left: 5px
-          @include author
-          .author
+            @include author
             width: 100%
             height: 20px
             overflow: hidden
             word-wrap: break-word
             text-overflow: ellipsis
+
+            span
+              width: 20px
+              display: inline
+              float: left
+              margin-left: 5px
             a
-              &:hover
-                color: #007cc8
-                font-family: $thirdFontFamily
+
+              width: 80%
+              display: inline
+              float: left
         .info-bottom
           margin-left: 5px
           padding: 0px  
@@ -575,3 +587,4 @@
         .info-bottom
           hr
             display: none
+

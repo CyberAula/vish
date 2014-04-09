@@ -28,35 +28,30 @@
   font-weight: 400;
   src: local('Open Sans'), local('OpenSans'), url('http://vishub.org/fonts/OpenSans-Regular-webfont.ttf') format('ttf');
 }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
   src: local('Open Sans Bold'), local('OpenSans-Bold'), url('http://vishub.org/fonts/OpenSans-Bold-webfont.ttf') format('ttf');
 }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 800;
   src: local('Open Sans Extrabold Italic'), local('OpenSans-ExtraboldItalic'), url('http://vishub.org/fonts/OpenSans-ExtraBoldItalic-webfont.ttf') format('woff');
 }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 700;
   src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), url('http://vishub.org/fonts/OpenSans-BoldItalic-webfont.ttf') format('ttf');
 }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 800;
   src: local('Open Sans Extrabold Italic'), local('OpenSans-ExtraboldItalic'), url('http://vishub.org/fonts/OpenSans-BoldItalic-webfont.ttf') format('ttf');
 }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;

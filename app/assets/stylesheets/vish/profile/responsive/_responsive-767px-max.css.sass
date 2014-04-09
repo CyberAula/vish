@@ -75,6 +75,8 @@
                 color: $gray
                 text-align: center
                 font-family: $secondFontFamily
+            .helpheader
+              display: none
             .description
               @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
               float: none
@@ -140,127 +142,45 @@
     display: block
     height: auto
     margin: 10px auto
-
-
-
-    // CONTACT
-    .contact
+    .btn-group
+      width: 70%
       display: block
-      float: none
-      margin: 5px auto
-      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      .add
-        @include follow-profile
-        display: block
+      margin: 0 auto
+      .btn
+        width: 100% !important
         clear: both
-        text-align: center
-        div
-          .following-button
-            display: block
-            float: none
-            margin: 5px auto
-            background-color: #007CC8
-            height: 20px
-            width: 87px
-            @include border-radius(5px)
-            color: #FFF
-            font-family: "OpenSansLight"
+        margin: 2px auto
+        float: left
+        @include border-radius($baseBorderRadius) 
+        input
+          @include border-radius($baseBorderRadius) 
+        input[type="submit"]
 
-        .unfollow-button 
-          form
-            margin: 0px
-            input
-              display: block
-              float: none
-              margin: 5px auto
-              height: 20px
-              border: 0px none
-              width: 87px
-
-              background-color: #555
-              @include border-radius(5px)
-              color: #FFF
-
-              padding: 0px
-              font-family: "OpenSansLight"
-
-    // EDIT
-    .edit_icon
-      height: 20px
-      border: 0px none 
-      width: 80px
-      display: block
-      float: none
-      margin: 5px auto
-      @include border-radius($baseBorderRadius)
-      color: $black
-      background-color: $firstColor
-
-      padding: 0px 15px
-      color: $white
-      font-family: $firstFontFamily
-      display: block
-      float: none
-
-      a,
-      span
-        color: $white
-        font-size: 12px
-
-        &:hover
-          text-decoration: none
-      span
-        padding-left: 5px
-
-    // message
-    button#mesage-profile
-
-      display: block
-      float: none
-      margin: 5px auto
-
-      height: 20px
-      border: 0px none 
-      width: 150px
-
-      @include border-radius($baseBorderRadius)
-      color: $black
-      border-color: #CCCCCC #CCCCCC #B3B3B3
-      border-image: none
-      border-style: solid
-      border-width: 1px
-
-      padding: 0px 15px
-      font-family: $firstFontFamily
-
-      a
-        color: $black
-        font-size: 12px
+          margin: 0
+          border: none
+          box-shadow: none
+          padding: 0 !important
+          height: 28px
+          width: 100%
+          color: $white
+          -webkit-border-top-right-radius: 5px !important
+          -webkit-border-bottom-right-radius: 5px !important
+          -moz-border-radius-topright: 5px !important
+          -moz-border-radius-bottomright: 5px !important
+          border-top-right-radius: 5px !important
+          border-bottom-right-radius: 5px !important
+        .following-button
+          -webkit-border-top-right-radius: 5px !important
+          -webkit-border-bottom-right-radius: 5px !important
+          -moz-border-radius-topright: 5px !important
+          -moz-border-radius-bottomright: 5px !important
+          border-top-right-radius: 5px !important
+          border-bottom-right-radius: 5px !important
+      .edit_icon
+        padding: 4px 0
 
 
 
-    #showMore
-      display: block
-      float: none !important
-      margin: 5px auto 5px auto !important
-      height: 20px
-      border: 0px none 
-      width: 140px
-      @include border-radius($baseBorderRadius)
-      color: $black
-      border-color: #CCCCCC #CCCCCC #B3B3B3
-      border-image: none
-      border-style: solid
-      border-width: 1px
-      margin-top: 0px
-      padding: 0px 15px
-      font-family: $firstFontFamily
-      display: block
-      float: left
-      margin-right: 10px
-      a
-        color: $black
-        font-size: 12px
 
   .update
     background-color: $white

@@ -40,6 +40,8 @@ public/assets
 
 # scorm zip files
 public/scorm/excursions/*
+public/scorm/packages/*
+
 
 #tmp files
 public/tmp/json/*

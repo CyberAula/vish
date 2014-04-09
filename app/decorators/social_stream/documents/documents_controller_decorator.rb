@@ -6,6 +6,22 @@ DocumentsController.class_eval do
   
   def create
     super do |format|
+      if resource.is_a? Zipfile
+        newResource = resource.getResourceAfterSave(self)
+        if newResource.is_a? String
+          #Raise error
+          flash.now[:alert] = newResource
+          render action: :new
+        else
+          if params["format"] == "json"
+            render :json => newResource.as_json, status: :created
+          else
+            redirect_to newResource
+          end
+        end
+        return
+      end
+      
       format.json { render :json => resource.to_json(helper: self), status: :created }
       format.js
       format.all {
@@ -42,6 +58,5 @@ DocumentsController.class_eval do
       format.js
     end
   end
-  
 
 end

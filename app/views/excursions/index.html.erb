@@ -2,22 +2,12 @@
   <div class="tabbable" >
     <ul class="nav nav-tabs">
       <li><h1><i class="icon-home"></i><%= t("home")%></h1></li>
-
-      <li class="helpheader">   
-        <input type="button" class='helphome' data-placement='left' aria-hidden="true" data-original-title="<%= t('home')%>" href='#' value="?"/>
-        <div class="contenthome" style="display: none">
-          <div>
-            <%= t('document.help.home1_html', :profile=> user_path(current_user))%>
-          </div>
-
-        </div>
-      </li>
-
+      <%= render partial: 'help/help_home' %>
     </ul>
   </div>
 </div>
 <%= render partial: 'layouts/order_by_dropdown' %>
-<section class="clearfix" id="excursions">
+<section id="excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>
     <%if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
@@ -65,25 +55,4 @@
 </section>
 -->
 
-<script>
-$(document).ready(function(){
-  $('.helphome').popover({ 
-    html : true,
-    content: function() {
-      return $('.contenthome').html();
-    }
-  });
-});
-</script>
 
-<script>
-$('body').on('click', function (e) {
-    $('.helphome').each(function () {
-        //the 'is' for buttons that trigger popups
-        //the 'has' for icons within a button that triggers a popup
-        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-            $(this).popover('hide');
-        }
-    });
-});
-</script>

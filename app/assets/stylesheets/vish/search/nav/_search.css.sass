@@ -1,32 +1,39 @@
-.box-search-sign-out
-  display: block
-  float: right
-
-  margin-right: 20px
-.box-search
-  display: block
-  position: relative
-  float: left
-  margin-top: 5px
-  margin-left: 10px
+header
+  .navbar-search
+    position: inherit
   .search-nav
-    .navbar-search 
-      float: none
-      margin-bottom: 0
-      margin-top: 0
-      position: relative
-      .search-query
-        @include border-radius (5px)
+    input.search-query 
+      @include border-radius (5px)
+      height: 25px
+      margin-top: 3px
+    button
+      display: inline-block
+      background: $white
+      border: none
 
+
+      i
+        color: #C8C8C8
+        display: block
+        float: left
+        font-size: 20px
+        padding: 9px
+        text-decoration: none
+    button:hover
+      i
+        color: $firstColor
+        text-decoration: none
+        border-color: $firstColor
+    form
+      display: inline-block
+      float: left
     .mat
       z-index: 10
       position: absolute
-      margin-left: 8px
-      margin-top: 35px
+      margin-top: 48px
       width: 250px
       @include border-bottom-radius (5px)
       .query_too_short
-
         @include border-left-radius (5px)
         color: $white
         background-color: $gray
@@ -39,7 +46,6 @@
         font-size: 12px
         width: 165px
         padding-right: 10px
-
       .no_results
         display: block
         @include border-left-radius (5px)
@@ -152,123 +158,3 @@
               background: #C7C7C7
               a
                 color: $white
-
-        
-input#search
-  margin-top: 5px
-  padding-left: 5px
-  border: 1px solid #EEEEEE
-.sb-search
-  min-width: 250px
-  min-height: 40px
-  float: left
-  overflow: hidden
-  -webkit-transition: width 1s
-  -moz-transition: width 1s
-  transition: width 1s
-  -webkit-backface-visibility: hidden
-
-section#search
-  overflow: hidden
-  .search
-    .tabbable
-      li.disabled
-        a
-          @include opacity (20)
-          &:hover
-            border-color: $grayLight
-.sb-search-input 
-  position: absolute
-  top: 0
-  right: 0
-  border: none
-  outline: none
-  background: $white
-  width: 90%
-  height: 60px
-  margin: 0
-  z-index: 10
-  padding: 20px 65px 20px 20px
-  font-family: inherit
-  font-size: 20px
-  color: #2c3e50
-  margin-top: -5px
-  @include border-radius (5px)
-
-
-.sb-icon-search,
-.sb-search-submit  
-
-  display: block
-  position: absolute
-  right: 0
-  top: 0
-  padding: 0
-  margin: 0
-  line-height: 36px
-  text-align: center
-  cursor: pointer
-
-.sb-search-submit 
-  background: #fff /* IE needs this */
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)" /* IE 8 */
-  filter: alpha(opacity=0) /* IE 5-7 */
-  opacity: 0
-  color: transparent
-  border: none
-  outline: none
-  z-index: -1
-
-//button
-.sb-icon-search 
-  color: #C8C8C8
-  background: $white
-  z-index: 90
-  font-size: 20px
-  speak: none
-  font-style: normal
-  font-weight: normal
-  font-variant: normal
-  text-transform: none
-  -webkit-font-smoothing: antialiased
-
-
-  i
-    color: #c8c8c8
-    font-size: 20px
-    text-decoration: none
-    padding: 9px
-    margin: 0px 7px 0px 0px
-    display: block
-    float: left
-  i:hover
-    color: $firstColor
-    text-decoration: none
-    border-color: $firstColor
-  
-
-
-// Open state
-
-.sb-search.sb-search-open, .no-js .sb-search
-  width: 250px
-  padding-left: 20px
-
-
-.sb-search.sb-search-open .sb-icon-search, .no-js .sb-search .sb-icon-search
-
-  color: #fff
-  z-index: 11
-
-.sb-search.sb-search-open .sb-search-submit, .no-js .sb-search .sb-search-submit
-  z-index: 0
-
-.sb-search-open
-  .mat
-    display: block
-
-
-  //placeholder
-.sb-search-input
-  &::-webkit-input-placeholder, &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder
-    color: #555

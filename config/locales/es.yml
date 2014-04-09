@@ -70,6 +70,9 @@ es:
     other: "términos de uso"
   contact:
     footer: "contacto"
+    follow: "Seguir"
+    unfollow: "Dejar de seguir"
+    following: "Siguiendo"
   pending:
     other: "Te siguen"
   competitions:
@@ -241,7 +244,7 @@ es:
       info6_html: "6. Asigne un rango de <b>edad</b>. Esta información será usada por el sistema de recomendación.<br>"
       info7_html: "7. Si desea subir el embed de un video en vivo, haga click en la opción <b>Live</b>.<br>"
       info8_html: "8. Finalmente, haga click en el botón <b> guardar </b>para actualizar su recurso."
-      home1_html: "Esta zona muestra las excursiones creadas por los usuarios a los que <a href=\"%{{profile}}\">sigues.</a>"
+      home1_html: "Esta zona muestra las excursiones creadas por los usuarios a los que <a href=\"%{profile}\">sigues.</a>"
       cat: "Crear una nueva categoría"
       cat1_html: "1. Escriba un <b>título</b> y una <b>descripción</b>.<br>"
       cat2_html: "2. Después, haga click en el botón <b> guardar </b>para crear su nueva categoría.<br>"
@@ -253,6 +256,16 @@ es:
       event5_html : "5. Finalmente, haga click en el botón <b> guardar </b>para publicar el evento."
       exse_html : "Esta zona permite acceder a todo el contenido de la plataforma de una manera concreta (<a href='http://vishub.org/search'>Busqueda</a>) o general (<a href='http://vishub.org/search?browse=true'>Explorar</a>)."
       exse2_html : "Explorar / Buscar"
+      activity1_html : "Actividades"
+      activity2_html : "Esta es la sección de actividades, aquí podrás publicar y ver las últimas publicaciones de la gente a la que sigues y las tuyas propias."
+      categories1_html : "Categorias"
+      categories2_html : "Esta es la vista de la categoría que has creado, debajo se mostrarán todos los elementos que has añadido a ella. En cualquier momento puedes editar o borrar la categoría."
+      profile1_html : "Perfil"
+      profile2_html : "Esta sección muestra tu perfil, en el puedes ver el contenido que has creado, los usuarios que sigues y los que te siguen, tambien puedes editar tus datos cuando lo necesites así como cambiar la imagen de tu perfil."
+      excursions1_html : "Excursiones"
+      excursions2_html : "En esta sección se muestra la excursión en la que ha entrado, puedes navegar por las diapositivas de excursión haciendo clic en los botones de flecha, haciendo clic en la parte izquierda o derecha de las diapositivas o usando las teclas de dirección del teclado. En la zona de la derecha, tendrás excursiones recomendadas, bajo la excursión se muestra la información de la misma, así como las maneras sencillas de compartirla , descargarla (en formato SCORM), marcarla como spam, clonarla a su perfil, hacerla favorita, o etiquetarlo dentro de una de sus categorías. También puede comentar la excursión desde la parte inferior."
+      favourite1_html : "Favoritos"
+      favourite2_html : "Esta sección muestra tus recursos favoritos, en el veras los elementos que has hecho favoritos."
     helpquiz:
       info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>" 
     how: "Cómo compartir un recurso"
@@ -287,7 +300,7 @@ es:
     uploading: "Subiendo..."
   email:
     regards: "Un cordial saludo,<br/>"
-    welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{{profile}}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
+    welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{profile}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
   embed:
     confirm_delete: "¿Borrar recurso?"
     content: "Contenido en directo"
@@ -573,6 +586,8 @@ es:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
     search_name: "actualización de estado"
   profile:
+    edit: "Editar perfil"
+    profile: "Perfil"
     occupation:
       label: "Ocupación"
       options:
@@ -646,6 +661,9 @@ es:
     top: "paraMí"
     upload: "subir"
   save: "Salvar"
+  scormfile:
+    confirm_delete: "¿Eliminar paquete SCORM?"
+    view_full: "Pantalla completa"
   search:
     title: "buscar"
     110slides: "1-10 diapositivas"

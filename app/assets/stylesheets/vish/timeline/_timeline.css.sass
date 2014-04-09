@@ -1,4 +1,13 @@
 #time-line
+  .activities
+    header
+      text-align: left !important
+      h2
+        width: 80%
+        text-align: left !important
+
+
+#time-line
   .timeline
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     display: block
@@ -20,12 +29,11 @@
       display: block
       float: left
       background: rgba(255, 255, 255, 0.5)
-      padding: 1.5%
-      width: 96% !important
+      padding: 1%
+      width: 98% !important
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .avatar
-        width: 15%
-        max-width: 50px
+        width: 5%
         display: block
         float: left
         img
@@ -33,22 +41,22 @@
       .media-heading
         display: block
         text-align: left
-        width: 83%
-        margin-left: 2%
+        width: 93%
         margin-bottom: 0px
         float: left
         clear: right
         h3
           margin: 0px
           font-size: 18px
-          padding-left: 10px
+          padding-left: 2%
           display: block
           float: left
           word-wrap: break-word
-          width: 80%
+          width: 88%
           line-height: 20px
+          height: 20px
           a
-            color: $gray
+            color: $grayDark
             word-wrap: break-word
             &:hover
               text-decoration: none
@@ -56,14 +64,17 @@
           display: block
           float: right
           margin-top: 5px
-          width: 10px
+          width: 10%
+          text-align: right
           a
             color: $gray
+            &:hover
+              color: $firstColor
+              text-decoration: none
       .media-body
-        clear: both
         display: block
         overflow: visible
-        width: 100%
+        width: 93%
         float: left
         hr
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -73,7 +84,8 @@
         .objects
           margin-bottom: 5px
           .post
-            padding-left: 8%
+            padding-left: 2%
+            width: 98%
         .recomended
           .recomended-items
             ul

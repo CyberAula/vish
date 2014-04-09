@@ -101,6 +101,8 @@ $(document).ready(function(){
       <%= render partial: 'shared/multiselect', :locals => {:item => @event} %>
     <% end %>
 
+    <%= link_like(@event.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
+
     <%=categories_select(:category_id, @event)%>
     <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
     <%= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>

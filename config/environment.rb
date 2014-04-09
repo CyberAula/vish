@@ -17,7 +17,7 @@ OaiRepository.setup do |config|
   # If you're deploying to different hostnames (e.g. development, QA and
   # production environments, each with different hostnames), you could
   # dynamically set this.
-  config.repository_url = 'http://localhost:3000/oai_repository'
+  config.repository_url = 'http://vishub.org/oai_repository'
 
   # By default the (unique) identifier of each record will be composed as
   # #{record_prefix}/#{record.id}
@@ -26,7 +26,7 @@ OaiRepository.setup do |config|
   #
   # Most probably you'll create an oai_dc_identifier attribute or method in
   # the AR models you intend to serve. That value will supplant the default.
-  config.record_prefix = 'http://localhost:3000/'
+  config.record_prefix = 'http://vishub.org/'
 
   # This is your repository administrator's email address.
   # This will appear in the information returned from an "Identify" call to
@@ -34,7 +34,7 @@ OaiRepository.setup do |config|
   config.admin_email = 'virtual.science.hub@gmail.com'
 
   # The number of records shown at a time (when doing a ListRecords)
-  config.limit = 100
+  config.limit = 1000
 
   # The values for "models" should be the class name of the ActiveRecord model 
   # class that is being identified with the given set. It doesn't actually have
@@ -77,6 +77,10 @@ OaiRepository.setup do |config|
   # config.additional_formats = [
   #   OAI::Provider::Metadata::RIFCS
   # ]
-  config.additional_formats = []
+
+  require 'oai_repository/lom_format'
+  config.additional_formats = [
+    OAI::Provider::Metadata::LOM
+  ]
 
 end

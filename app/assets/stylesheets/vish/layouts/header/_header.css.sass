@@ -50,6 +50,7 @@ header.navbar,
         margin-left: 2%
         float: left
         border-left: 1px solid rgb(214, 214, 214)
+        cursor: pointer
 
         .browse_btn
           border: 1px solid #EEEEEE
@@ -64,6 +65,7 @@ header.navbar,
           .browse_name
             padding: 11px
 
+
         .dropdown
           list-style: none
           margin-left: 20px
@@ -74,12 +76,20 @@ header.navbar,
             outline: none
           .dropdown-menu
             padding: 1px
+
             border-radius: $baseBorderRadius
             a 
               color: $gray   
               padding-bottom: 5px           
               &:hover
                 color: $white
+            a:first-letter
+              text-transform: uppercase
+            i
+              display: inline-block
+              margin-right: 5px
+              text-align: center
+              width: 14px
           .caret
             margin-left: 10px
             margin-right: 10px
@@ -97,6 +107,8 @@ header.navbar,
         .add_nav
           float: left
           margin-right: 5px
+          .dropdown-menu
+            margin-top: -2px
           .btn-primary
 
           .btn
@@ -152,6 +164,8 @@ header.navbar,
           margin-left: 5px
           margin-top: 5px
           position: relative
+          cursor: pointer
+
           &:hover
             border: 1px solid $firstColor
 

@@ -1,4 +1,5 @@
 @mixin follow
+  font-size: 11px
   text-align: center
   color: $firstColor
   font-family: $secondFontFamily
@@ -6,7 +7,7 @@
   form
     margin: 0 auto
     input
-
+      font-size: 11px
       height: 20px
       border: 0px none 
       width: 87px
@@ -18,10 +19,9 @@
       margin: 0 auto
       padding: 0px
       font-family: $firstFontFamily
-
   .following-button
+    font-size: 11px
     @include center-block()
-
     display: block
     background-color: $secondColor
     height: 20px
@@ -30,12 +30,12 @@
     color: $white
     font-family: $firstFontFamily
     margin: 0 auto
-
   .unfollow-button
+    font-size: 11px
     form
       margin: 0 auto
       input
-
+        font-size: 11px
         @include center-block()
         height: 20px
         border: 0px none 
@@ -44,7 +44,6 @@
         background-color: $gray
         @include border-radius($baseBorderRadius)
         color: $white
-
         padding: 0px
         font-family: $firstFontFamily
         margin: 0 auto

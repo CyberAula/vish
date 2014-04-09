@@ -50,7 +50,7 @@ end
 
 # Deploy with Capistrano
 group :development do
-  gem 'capistrano'
+  gem 'capistrano', '=2.15.5'
   #gem 'rvm-capistrano'
 end
 
@@ -99,4 +99,8 @@ gem 'pdf-reader'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attributes_to.git'
 
-gem "oai_repository", "~> 0.9.0"
+gem "oai_repository", :git => 'git@github.com:ebarra/oai_repository.git'
+
+gem "scorm", :git => 'git@github.com:ebarra/scorm.git', :branch => "master"
+
+gem "paperclip", '=3.5.1'
