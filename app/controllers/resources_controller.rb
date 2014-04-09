@@ -53,7 +53,7 @@ class ResourcesController < ApplicationController
               rec["object"] = res.url
             elsif res.is_a? Scormfile
               rec["object"] = res.lourl
-              rec["type"] = "SCORM_Package"
+              rec["type"] = "scormpackage"
             else
               rec["object"] = 'http://' + request.env['HTTP_HOST'] + res.file.to_s.downcase
             end
