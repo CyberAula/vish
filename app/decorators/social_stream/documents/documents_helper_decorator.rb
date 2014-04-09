@@ -19,10 +19,10 @@ DocumentsHelper.module_eval do
       when :image then "picture"
       when :audio then "music"
       when :video then "film"
-      when :pdf then "pdf"
-      when :zip then "zip"
-      when :scorm then "scorm"
-      when :swf then "swf"
+      when :pdf then "pdf-new"
+      when :zip then "zip-new"
+      when :scorm then "scorm-new"
+      when :swf then "swf-new"
 
       else icon_mime_type document
     end
