@@ -85,7 +85,7 @@
           <% if profile_subject_is_current? %>
             <%= render partial: 'excursions/excursion-add' %>
           <% end %>
-          <%= render partial: 'excursions/excursions', :locals => { :scope => :me, :page => 0 } %>
+          <%= render partial: 'excursions/excursions', :locals => { :scope => :me, :page => 0, :sort_by=> params[:sort_by]||"updated_at"} %>
         </ul>
         </div>
       </div>

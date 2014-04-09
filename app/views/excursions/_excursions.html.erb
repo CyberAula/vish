@@ -1,4 +1,6 @@
-  <% excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>
+
+  <% excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||"updated_at"}) %>
+  
   <% excursions.each do |excursion| %>
     <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
   <% end %> 

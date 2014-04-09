@@ -61,22 +61,6 @@ GIT
   specs:
     delegates_attributes_to (0.0.1)
 
-GIT
-  remote: git@github.com:ebarra/oai_repository.git
-  revision: 26e791e05f76295b144568fef8033446c2ad01e9
-  specs:
-    oai_repository (0.9.5)
-      oai
-      rails (~> 3.1)
-
-GIT
-  remote: git@github.com:ebarra/scorm.git
-  revision: fef3256e74c5076c6c6099acac26a544cfbd8f08
-  branch: master
-  specs:
-    scorm (1.0.4)
-      rubyzip (~> 0.9.4)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -127,12 +111,10 @@ GEM
       sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.10)
-    capistrano (2.15.5)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
+    capistrano (3.0.1)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 0.0.23)
     capybara (2.2.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -144,11 +126,11 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    childprocess (0.5.2)
+    childprocess (0.5.1)
       ffi (~> 1.0, >= 1.0.11)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.4)
+    cocaine (0.5.3)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (3.2.2)
@@ -171,7 +153,7 @@ GEM
     deface (0.9.1)
       nokogiri (~> 1.5.0)
       rails (~> 3.1)
-    delayed_paperclip (2.7.1)
+    delayed_paperclip (2.7.0)
       paperclip (>= 3.3)
     devise (2.2.8)
       bcrypt-ruby (~> 3.0)
@@ -203,7 +185,6 @@ GEM
       activesupport (>= 3.2, < 5)
     hashery (2.1.1)
     hashie (2.0.5)
-    highline (1.6.20)
     hike (1.2.3)
     i18n (0.6.9)
     i18n-js (2.1.2)
@@ -248,15 +229,14 @@ GEM
     mysql2 (0.3.15)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
-    net-sftp (2.0.5)
-      net-ssh (>= 2.0.9)
     net-ssh (2.4.0)
       jruby-pageant (>= 1.0.2)
-    net-ssh-gateway (1.1.0)
-      net-ssh (>= 1.99.1)
     nokogiri (1.5.11)
     oai (0.0.13)
       builder (>= 2.0.0)
+    oai_repository (0.9.0)
+      oai
+      rails (~> 3.1)
     oauth (0.4.7)
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
@@ -282,10 +262,10 @@ GEM
     omniauth-socialstream (0.1.3)
       omniauth-oauth2 (~> 1.1.1)
     orm_adapter (0.5.0)
-    paperclip (3.5.1)
+    paperclip (3.5.4)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (~> 0.5.0)
+      cocaine (~> 0.5.3)
       mime-types
     paperclip-ffmpeg (1.0.1)
       paperclip (>= 2.5.2)
@@ -340,7 +320,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     raindrops (0.13.0)
-    rake (10.2.2)
+    rake (10.1.1)
     rdoc (3.12.2)
       json (~> 1.4)
     recurrence (1.2.0)
@@ -402,18 +382,25 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.9)
+    sshkit (1.1.0)
+      net-scp
+      net-ssh
+      term-ansicolor
     stringex (1.5.1)
     strong_parameters (0.2.3)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
       activesupport (~> 3.0)
       railties (~> 3.0)
+    term-ansicolor (1.3.0)
+      tins (~> 1.0)
     thinking-sphinx (2.0.14)
       activerecord (>= 3.0.3)
       builder (>= 2.1.2)
       riddle (>= 1.5.3)
     thor (0.19.1)
     tilt (1.4.1)
+    tins (1.0.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -440,7 +427,7 @@ PLATFORMS
 DEPENDENCIES
   avatars_for_rails (~> 1.1.0)
   bootstrap-sass
-  capistrano (= 2.15.5)
+  capistrano
   capybara
   coffee-rails
   composite_primary_keys
@@ -453,8 +440,7 @@ DEPENDENCIES
   json (= 1.7.4)
   mysql2
   net-ssh (= 2.4.0)
-  oai_repository!
-  paperclip (= 3.5.1)
+  oai_repository (~> 0.9.0)
   pdf-reader
   pg
   pry-debugger
@@ -463,7 +449,6 @@ DEPENDENCIES
   rspec-rails (= 2.9.0)
   rubyzip (= 0.9.9)
   sass-rails (~> 3.2.4)
-  scorm!
   selenium-webdriver (= 2.30.0)
   shortener
   simple_captcha!
