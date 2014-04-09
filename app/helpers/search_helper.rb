@@ -1,4 +1,5 @@
 module SearchHelper  
+  
   def too_short_query?
     return true if params[:q].blank?
     bare_query = strip_tags(params[:q]) || ""
@@ -29,7 +30,7 @@ module SearchHelper
   end
 
   def vish_search_options mode, key=nil, per_page=12, page=1
-    options = {:with => { :relation_ids => Relation.ids_shared_with(current_subject) }, :classes => SocialStream::Search.models(mode, key), :per_page => per_page, :page => page }
+    options = {:with => { :relation_ids => Relation.ids_shared_with(current_subject) }, :classes => SocialStream::Search.models(mode, key), :per_page => per_page, :page => page}
 
     options.deep_merge!({ :with => { :created_at => time_constraint(params[:time]) } }) if params[:time].present?
     if key.present?
@@ -65,6 +66,8 @@ module SearchHelper
                                current_subject,
                                :key => key) > 0
   end
+
+
 
   private
 

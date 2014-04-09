@@ -1,0 +1,31 @@
+<div class="dropdown" id="order_by_selector">
+  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenuOrdBy" data-toggle="dropdown"><%=t('order_by.title')%>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+    <li>
+        <a href="<%=home_path(:sort_by=>"updated_at")%>" sort-by-key='updated_at'> <%=t('order_by.updated_at')%> </a>
+    </li>
+    <li>
+        <a href="<%=home_path(:sort_by=>"created_at")%>" sort-by-key='created_at'> <%=t('order_by.created_at')%> </a>
+    </li>
+    <li>
+        <a href="<%=home_path(:sort_by=>"visits")%>" sort-by-key='visits'> <%=t('order_by.visits')%> </a>
+    </li>
+    <li>
+        <a href="<%=home_path(:sort_by=>"favorites")%>" sort-by-key='favorites'> <%=t('order_by.favorites')%> </a>
+    </li>
+  </ul>
+
+</div>
+
+
+<%= content_for :javascript do %>
+
+  var param = "<%=params[:sort_by]%>";
+
+  if(param && param!=""){
+    var value = $("#order_by_selector .dropdown-menu [sort-by-key="+param+"]").html();
+    $("#dropdownMenuOrdBy").html(value + '<span class="caret"></span>'); 
+  }
+<%end%>

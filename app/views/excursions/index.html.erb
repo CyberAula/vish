@@ -2,18 +2,21 @@
   <div class="tabbable" >
     <ul class="nav nav-tabs">
       <li><h1><i class="icon-home"></i><%= t("home")%></h1></li>
+
       <li class="helpheader">   
         <input type="button" class='helphome' data-placement='left' aria-hidden="true" data-original-title="<%= t('home')%>" href='#' value="?"/>
         <div class="contenthome" style="display: none">
           <div>
             <%= t('document.help.home1_html', :profile=> user_path(current_user))%>
           </div>
+
         </div>
       </li>
 
     </ul>
   </div>
 </div>
+<%= render partial: 'layouts/order_by_dropdown' %>
 <section class="clearfix" id="excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>
@@ -22,7 +25,7 @@
       else
         scope = :net
       end%>
-    <%= render partial: 'excursions/excursions', :locals => { :scope => scope, :page => params[:page] || 1 } %>
+    <%= render partial: 'excursions/excursions', :locals => { :scope => scope, :page => params[:page] || 1, :sort_by=> params[:sort_by]||"updated_at"} %>
   </ul>
   <div id="loader_pagination">
     <div id="pageless-loader" style="text-align:center;width:100%;">

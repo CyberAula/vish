@@ -556,6 +556,12 @@ es:
   options:
     add: "añadir"
     new: "nuevo"
+  order_by:
+    created_at: "Creación"
+    favorites: "Favoritos"
+    updated_at: "Modificación"
+    title: "Ordenar por"
+    visits: "Visitas"
   organization:
     one: "organización"
     other: "organizaciones"

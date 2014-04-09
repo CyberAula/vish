@@ -73,7 +73,7 @@ class ExcursionsController < ApplicationController
         if !params[:page]
           render "index"
         else
-          render :partial => "excursions/excursions", :locals => {:scope => :net, :limit => 0, :page=> params[:page]}, :layout => false
+          render :partial => "excursions/excursions", :locals => {:scope => :net, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
         end
       }
     end
