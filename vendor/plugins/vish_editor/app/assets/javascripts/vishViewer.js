@@ -9438,6 +9438,9 @@ VISH.Renderer = function(V, $, undefined) {
       case V.Constant.MEDIA.YOUTUBE_VIDEO:
         return V.Video.Youtube.renderVideoFromJSON(element, {extraClasses:"objectelement youtubeelement " + template + "_" + element["areaid"]});
         break;
+      case V.Constant.MEDIA.SCORM_PACKAGE:
+        return V.SCORM.renderSCORMFromJSON(element, {extraClasses:"" + template + "_" + element["areaid"]});
+        break;
       default:
         var style = element["style"] ? element["style"] : "";
         var body = element["body"];
@@ -18796,6 +18799,21 @@ function SCOBot(options) {
   };
   var _init_RTE_API = function() {
   };
-  return{init:init}
+  var renderSCORMFromJSON = function(scormJSON, options) {
+    var style = scormJSON["style"] ? scormJSON["style"] : "";
+    var body = scormJSON["body"];
+    var scormBody = $(body);
+    $(scormBody).attr("objecttype", V.Constant.MEDIA.SCORM_PACKAGE);
+    scormBody = V.Utils.getOuterHTML(scormBody);
+    var zoomInStyle = scormJSON["zoomInStyle"] ? scormJSON["zoomInStyle"] : "";
+    var classes = "objectelement";
+    if(options) {
+      if(options.extraClasses) {
+        classes = classes + " " + options.extraClasses
+      }
+    }
+    return"<div id='" + scormJSON["id"] + "' class='" + classes + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper='" + scormBody + "'>" + "" + "</div>"
+  };
+  return{init:init, renderSCORMFromJSON:renderSCORMFromJSON}
 }(VISH, jQuery);
 
