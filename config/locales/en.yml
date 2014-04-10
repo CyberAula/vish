@@ -565,6 +565,7 @@ en:
     add: "add"
     new: "new"
   order_by:
+    popularity: "Popularity"
     created_at: "Creation"
     favorites: "Favorites"
     updated_at: "Modification"

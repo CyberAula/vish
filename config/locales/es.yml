@@ -570,6 +570,7 @@ es:
     add: "añadir"
     new: "nuevo"
   order_by:
+    popularity: "Popular"
     created_at: "Creación"
     favorites: "Favoritos"
     updated_at: "Modificación"
