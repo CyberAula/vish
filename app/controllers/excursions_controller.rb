@@ -16,6 +16,8 @@
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
 class ExcursionsController < ApplicationController
+
+  require 'fileutils'
   # Quick hack for bypassing social stream's auth
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
@@ -336,7 +338,6 @@ class ExcursionsController < ApplicationController
 
   def uploadTmpJSON
 
-    binding.pry
 
     respond_to do |format|  
       format.json {
@@ -354,6 +355,9 @@ class ExcursionsController < ApplicationController
           if params["responseFormat"] == "scorm"
             responseFormat = "scorm"
           end
+          if params["responseFormat"] == "qti"
+            responseFormat = "qti"
+          end
         end
 
         count = Site.current.config["tmpJSONcount"].nil? ? 1 : Site.current.config["tmpJSONcount"]
@@ -369,13 +373,14 @@ class ExcursionsController < ApplicationController
           results["url"] = "#{Site.current.config[:documents_hostname]}/excursions/tmpJson.json?fileId=#{count.to_s}"
         
 
-          elsif responseFormat == "qti"
-          #Generate QTI package
+           elsif responseFormat == "qti"
+           #Generate QTI package
 
-          filePath = "#{Rails.root}/public/tmp/qti/"
-          fileName = "qti-tmp-#{count}"
-          Excursion.createQTI(filePath,fileName,JSON(json),nil,self)
-          results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/qti/#{fileName}.zip"
+           filePath = "#{Rails.root}/public/tmp/qti/"
+           FileUtils.mkdir_p filePath
+           fileName = "qti-tmp-#{count}"
+           Excursion.createQTI(filePath,fileName, JSON(json))
+            results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/qti/#{fileName}.zip"
 
 
         elsif responseFormat == "scorm"

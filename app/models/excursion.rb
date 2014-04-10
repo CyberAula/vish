@@ -91,11 +91,90 @@ class Excursion < ActiveRecord::Base
 
 
 
-def self.createQTI(fileName,json,excursion,controller)
+  
+  def self.createQTI(filePath, fileName,ejson)
+
+    
+    require 'zip/zip'
+    require 'zip/zipfilesystem'
+
+    t = File.open("#{filePath}#{fileName}.zip", 'w')
+
+     Zip::ZipOutputStream.open(t.path) do |zos|
+      xml_manifest = Excursion.generate_QTI(ejson)
+      zos.put_next_entry("qtilala.xml")
+      zos.print xml_manifest.target!()
+
+    end
+t.close
+
+  end
 
 
+  def self.generate_QTI(ejson)
+
+      myxml = ::Builder::XmlMarkup.new(:indent => 2)
+      myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+      myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false") do
+ 
+        #escribir aquí
+      #if ejson["quiztype"]
+      identifiers= [] 
+      counter = 0
+      ejson["choices"].each do |i|
+        identif = "A" + counter.to_s()
+        identifiers.push(identif)
+        counter = counter + 1
+      end
+
+
+      if ejson["extras"]["multipleAnswer"] == false 
+       myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "simple", "baseType" => "identifier") do
+          myxml.correctResponse() do
+            for i in 0..((ejson["choices"].size)-1)
+              if ejson["choices"][i]["answer"] == true 
+                myxml.value(identifiers[i])
+              end
+            end  
+          myxml.mapping("lowerBound" => "0", "upperBound"=>"1", "defaultValue"=>"0") do
+
+            for i in 0..((ejson["choices"].size)-1)
+              if ejson["choices"][i]["answer"] == true
+                mappedV = 1
+              else
+                mappedV = 0
+                #mappedV = -1/(ejson["choices"].size)
+              end
+                myxml.mapEntry("mapKey"=> identifiers[i], "mappedValue"=> mappedV)
+
+            end
+        #end del mapping
+          end
+#fin de responseDeclaration
+        end 
+        end
+        end
+      myxml.outcomeDeclaration("identifier"=>"SCORE", "cardinality"=>"single", "baseType"=>"float") do
+      end
+      myxml.itemBody() do
+      myxml.choiceInteraction("responseIdentifier"=>"RESPONSE", "shuffle"=>"true") do
+      myxml.prompt(ejson["question"]["value"])
+
+
+for i in 0..((ejson["choices"].size)-1)
+    myxml.simpleChoice( ejson["choices"][i]["value"],"identifier"=> identifiers[i])
 end
+ 
+      end
+      end
+            myxml.responseProcessing("template"=>"http://www.imsglobal.org/question/qti_v2p0/rptemplates/match_correct
+")
+      end
 
+    return myxml;
+
+
+  end
 
 
   def self.createSCORM(filePath,fileName,json,excursion,controller)
