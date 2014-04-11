@@ -297,6 +297,11 @@
           <div class="radio">
             <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content')%>
             <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
+            <div>
+          <%= t('simple_captcha.title') %>
+          </div>
+          <div><%=t('simple_captcha.subtitle')%></div>
+          <%= show_simple_captcha %>
           </div>
           <button class="report btn btn-primary"> <%=t('send.send')%></button>
         <% end %>

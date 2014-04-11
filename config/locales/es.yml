@@ -728,11 +728,13 @@ es:
   spam:
     error_content: "Reportar un error en la excursión"
     error_content_resource: "Reportar un error en el recurso"
+    failure: "El captcha es inválido"
     placeholder: "¿Cúal es el problema?"
     report_excursion: "Reportar excursión"
     report_resource: "Reportar recurso"
     spam_content: "Contenido inapropiado o spam"
     success: "Hemos recibido tu reporte. Lo miraremos en la mayor brevedad posible. Muchas gracias"
+
   swf:
     confirm_delete: "¿Borrar SWF?"
   today: "Hoy"
