@@ -32,7 +32,7 @@
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
           </li>
 
-          <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("excursion") %>">
+          <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("resource") %>">
             <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), "#resource",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
           </li>
