@@ -93,6 +93,8 @@ Vish::Application.routes.draw do
 
   match 'legal_notice' => 'legal_notice#index'
 
+  match 'overview_notice' => 'overview#index'
+
   match 'mashme_invite' => 'mashme_invites#invite'
 
   match 'help' => 'help#index'
