@@ -58,7 +58,7 @@ module HomeHelper
     options[:scope] ||= :net
     options[:offset] ||= 0
     options[:page] ||= 0 #page 0 means without pagination
-    options[:sort_by] ||="updated_at"
+    options[:sort_by] ||="popularity"
 
     following_ids = subject.following_actor_ids
     following_ids |= [ subject.actor_id ]
@@ -99,6 +99,8 @@ module HomeHelper
         query = query.order('activity_objects.visit_count DESC')
       when "favorites"
         query = query.order('activity_objects.like_count DESC') 
+      when "popularity"
+        query = query.order('activity_objects.popularity DESC') 
     end
     
 

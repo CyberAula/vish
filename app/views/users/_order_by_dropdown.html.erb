@@ -7,6 +7,9 @@
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
     <li>
+        <a href="<%=user_path(:sort_by=>"updated_at")%>" sort-by-key='updated_at'> <%=t('order_by.popularity')%> </a>
+    </li>
+    <li>
         <a href="<%=user_path(:sort_by=>"updated_at")%>" sort-by-key='updated_at'> <%=t('order_by.updated_at')%> </a>
     </li>
     <li>
