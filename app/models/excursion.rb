@@ -118,7 +118,7 @@ t.close
       myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false") do
  
         #escribir aquí
-      #if ejson["quiztype"]
+      #if ejson["quiztype"] 
       identifiers= [] 
       counter = 0
       ejson["choices"].each do |i|
@@ -128,21 +128,32 @@ t.close
       end
 
 
-      if ejson["extras"]["multipleAnswer"] == false 
-       myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "simple", "baseType" => "identifier") do
+      if ejson["extras"]["multipleAnswer"] == false || ejson["quiztype"] == "truefalse"
+        card = "simple"
+      else
+        card = "multiple"
+      end 
+      if true
+
+      #if ejson["extras"]["multipleAnswer"] == false 
+       myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => card, "baseType" => "identifier") do
+      
+       vcont = 0
+
           myxml.correctResponse() do
             for i in 0..((ejson["choices"].size)-1)
               if ejson["choices"][i]["answer"] == true 
                 myxml.value(identifiers[i])
+                vcont = vcont + 1
               end
             end  
           myxml.mapping("lowerBound" => "0", "upperBound"=>"1", "defaultValue"=>"0") do
 
             for i in 0..((ejson["choices"].size)-1)
               if ejson["choices"][i]["answer"] == true
-                mappedV = 1
+                mappedV = 1/vcont.to_f
               else
-                mappedV = 0
+                mappedV = 0.to_f
                 #mappedV = -1/(ejson["choices"].size)
               end
                 myxml.mapEntry("mapKey"=> identifiers[i], "mappedValue"=> mappedV)
@@ -170,6 +181,7 @@ end
             myxml.responseProcessing("template"=>"http://www.imsglobal.org/question/qti_v2p0/rptemplates/match_correct
 ")
       end
+
 
     return myxml;
 
