@@ -50,9 +50,9 @@
       outline: 0px
       span
         color: $secondColor
-        font-family: $secondFontFamily  
+        font-family: $secondFontFamily 
     
-      
+    
   li.active
     a
       font-family: $secondFontFamily !important
@@ -60,7 +60,14 @@
       color: $black
       span
         color: $secondColor
+  li.disabled
+    a
+      color: $grayLight
+      span
+        color: $grayLight
+
         
+
 @mixin tab_title_show
   li
     a
