@@ -47,6 +47,8 @@ public/scorm/packages/*
 public/tmp/json/*
 public/tmp/scorm/*
 
+#tmp simplecaptcha
+public/tmp/simple_captcha/*
 
 # pdf files
 public/pdf/excursions/*
