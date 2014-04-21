@@ -14,7 +14,7 @@ class SpamReportsController < ApplicationController
         SpamReportMailer.send_report(current_subject, params[:option], issue, params[:activity_object_id]).deliver
         redirect_to request.referer
      else
-        flash[:failure] = t('spam.failure')
+        flash.now[:failure] = t('spam.failure')
         redirect_to request.referer
     end
 
