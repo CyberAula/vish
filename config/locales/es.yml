@@ -266,7 +266,7 @@ es:
       excursions2_html : "En esta sección se muestra la excursión en la que ha entrado, puedes navegar por las diapositivas de excursión haciendo clic en los botones de flecha, haciendo clic en la parte izquierda o derecha de las diapositivas o usando las teclas de dirección del teclado. En la zona de la derecha, tendrás excursiones recomendadas, bajo la excursión se muestra la información de la misma, así como las maneras sencillas de compartirla , descargarla (en formato SCORM), marcarla como spam, clonarla a su perfil, hacerla favorita, o etiquetarlo dentro de una de sus categorías. También puede comentar la excursión desde la parte inferior."
       favourite1_html : "Favoritos"
       favourite2_html : "Esta sección muestra tus recursos favoritos, en el veras los elementos que has hecho favoritos."
-      overview_html: "<a href='http://www.vishub.org/overview'><i class='icon-info-sign btn-mini'></i>ViSH Overview</a>"
+      overview_html: "<a href='/overview'><i class='icon-info-sign btn-mini'></i>ViSH Overview</a>"
     helpquiz:
       info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>" 
     how: "Cómo compartir un recurso"
