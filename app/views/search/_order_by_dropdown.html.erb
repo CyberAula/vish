@@ -6,19 +6,19 @@
 
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
    <li>
-        <a href="<%=search_path(:q=>params[:q],:sort_by=>"popularity")%>" sort-by-key='updated_at'> <%=t('order_by.popularity')%> </a>
+        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"popularity")%>" sort-by-key='popularity'> <%=t('order_by.popularity')%> </a>
     </li>
     <li>
-        <a href="<%=search_path(:q=>params[:q],:sort_by=>"updated_at")%>" sort-by-key='updated_at'> <%=t('order_by.updated_at')%> </a>
+        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"updated_at")%>" sort-by-key='updated_at'> <%=t('order_by.updated_at')%> </a>
     </li>
     <li>
-        <a href="<%=search_path(:q=>params[:q],:sort_by=>"created_at")%>" sort-by-key='created_at'> <%=t('order_by.created_at')%> </a>
+        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type], :sort_by=>"created_at")%>" sort-by-key='created_at'> <%=t('order_by.created_at')%> </a>
     </li>
     <li>
-        <a href="<%=search_path(:q=>params[:q],:sort_by=>"visits")%>" sort-by-key='visits'> <%=t('order_by.visits')%> </a>
+        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"visits")%>" sort-by-key='visits'> <%=t('order_by.visits')%> </a>
     </li>
     <li>
-        <a href="<%=search_path(:q=>params[:q],:sort_by=>"favorites")%>" sort-by-key='favorites'> <%=t('order_by.favorites')%> </a>
+        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"favorites")%>" sort-by-key='favorites'> <%=t('order_by.favorites')%> </a>
     </li>
   </ul>
 
