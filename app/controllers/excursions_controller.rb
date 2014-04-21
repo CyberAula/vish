@@ -24,6 +24,7 @@ class ExcursionsController < ApplicationController
   # Enable CORS for last_slide method (http://www.tsheffler.com/blog/?p=428), and iframe_api and cross_search
   before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api, :cross_search]
   after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api, :cross_search]
+  skip_after_filter :discard_flash, :only => [:clone]
 
   skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :cross_search]
   include SocialStream::Controllers::Objects
@@ -57,12 +58,12 @@ class ExcursionsController < ApplicationController
   def clone
     original = Excursion.find_by_id(params[:id])
     if original.blank?
-      flash.now[:error] = t('excursion.clone.not_found')
+      flash[:error] = t('excursion.clone.not_found')
       redirect_to excursions_path if original.blank? # Bad parameter
     else
       # Do clone
       excursion = original.clone_for current_subject.actor
-      flash.now[:success] = t('excursion.clone.ok')
+      flash[:success] = t('excursion.clone.ok')
       redirect_to excursion_path(excursion)
     end
   end
