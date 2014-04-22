@@ -228,7 +228,7 @@ end
       myxml.outcomeDeclaration("identifier"=>"SCORE", "cardinality"=>"single", "baseType"=>"float") do
       end
       myxml.itemBody() do
-      myxml.choiceInteraction("responseIdentifier"=>"RESPONSE", "shuffle"=>"true",  "maxChoices" =>"0", "minChoices"=>"0") do
+      myxml.choiceInteraction("responseIdentifier"=>"RESPONSE", "shuffle"=>"false",  "maxChoices" =>"0", "minChoices"=>"0") do
       myxml.prompt(ejson["question"]["value"])
 
 
