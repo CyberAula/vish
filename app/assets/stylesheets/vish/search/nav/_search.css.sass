@@ -33,36 +33,35 @@ header
       margin-top: 48px
       width: 250px
       @include border-bottom-radius (5px)
+
       .query_too_short
-        @include border-left-radius (5px)
+        @include border-bottom-radius (5px)
         color: $white
+        width: 92%
         background-color: $gray
-        margin-top: -28px
-        position: absolute
-        margin-left: -181px
-        text-align: right
+        text-align: center
         padding: 3px
-        text-align: right
-        font-size: 12px
-        width: 165px
-        padding-right: 10px
+        margin-top: 2px
+        -webkit-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
+        -moz-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
+        box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
       .no_results
         display: block
-        @include border-left-radius (5px)
+        @include border-bottom-radius (5px)
         color: $white
         background-color: $firstColor
-        margin-top: -28px
-        position: absolute
-        margin-left: -181px
-        text-align: right
+        width: 92%
+        text-align: center
         padding: 3px
-        text-align: right
-        font-size: 12px
-        width: 165px
-        padding-right: 10px
+        margin-top: 2px
+        -webkit-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
+        -moz-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
+        box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
+
       .results
         background: rgba(255, 255, 255, 0.98)
         width: 95%
+
         ul
           margin: 0
           @include box-shadow (0 1px 3px rgba(20, 20, 20, 0.4))
