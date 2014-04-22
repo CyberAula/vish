@@ -5,7 +5,9 @@
 <% #shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) ) %>
 <% shortURL = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) %>
 <%= content_for :og_url do %><%= shortURL %><% end %>
-<%= content_for :og_image do %><%=  "http://" + request.env['HTTP_HOST'] + @excursion.thumbnail_url || "/assets/logos/original/excursion-vish.png" %><% end %>
+<%= content_for :og_image do %>
+  <%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %>
+<% end %>
 
 <%=javascript_include_tag "RegaddiChart" %>
 <%=javascript_include_tag "jquery.rating" %>
