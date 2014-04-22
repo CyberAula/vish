@@ -246,3 +246,42 @@
     margin-top: 2px
     width: auto
 
+
+
+@mixin dropdown-icon
+  list-style: none
+  outline: none
+  a
+    padding-left: 10px
+    padding-bottom: 2px
+    outline: none
+  .dropdown-menu
+    padding: 1px
+    background-color: rgba(85,85,85,0.97)
+    border-radius: $baseBorderRadius
+    a 
+      color: #F0F0F0   
+      padding: 3px !important           
+      &:hover
+        color: $white
+      span
+        color: #F0F0F0 
+    a:first-letter
+      text-transform: uppercase
+    i
+      display: inline-block
+      margin-right: 5px
+      text-align: center
+      width: 14px
+      color: $white
+    a:hover
+      background: rgba(233,0,85,0.97)
+    .divider
+      border-bottom: none
+  .dropdown-menu:after, .dropdown-menu:before
+    border-bottom: none
+    border-left: none
+    border-right: none
+  .caret
+    margin-left: 10px
+    margin-right: 10px

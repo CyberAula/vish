@@ -3,23 +3,41 @@
 <div class="dropdown" id="order_by_selector">
 <span class="order_by"><%=t('order_by.title')%></span>
   <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenuOrdBy" data-toggle="dropdown"><%=t('order_by.popularity')%>
-    <span class="caret"></span>
+    <i class="icon-angle-down"></i>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+
+
+
     <li>
-        <a href="<%=user_path(:sort_by=>"updated_at")%>" sort-by-key='updated_at'> <%=t('order_by.popularity')%> </a>
+        <a href="<%=user_path(:sort_by=>"popularity")%>" sort-by-key='favorites'> 
+          <i class="icon-dashboard"></i>
+          <span><%=t('order_by.popularity')%> </span>
+        </a>
     </li>
     <li>
-        <a href="<%=user_path(:sort_by=>"updated_at")%>" sort-by-key='updated_at'> <%=t('order_by.updated_at')%> </a>
+      <a href="<%=user_path(:sort_by=>"updated_at")%>" sort-by-key='updated_at'>
+        <i class="icon-pencil"></i>
+        <span><%=t('order_by.updated_at')%> </span>
+      </a>
     </li>
     <li>
-        <a href="<%=user_path(:sort_by=>"created_at")%>" sort-by-key='created_at'> <%=t('order_by.created_at')%> </a>
+      <a href="<%=user_path(:sort_by=>"created_at")%>" sort-by-key='created_at'>
+        <i class="icon-bolt"></i>
+        <span><%=t('order_by.created_at')%> </span>
+      </a>
     </li>
     <li>
-        <a href="<%=user_path(:sort_by=>"visits")%>" sort-by-key='visits'> <%=t('order_by.visits')%> </a>
+        <a href="<%=user_path(:sort_by=>"visits")%>" sort-by-key='visits'>
+          <i class="icon-eye-open"></i> 
+          <span><%=t('order_by.visits')%> </span>
+        </a>
     </li>
     <li>
-        <a href="<%=user_path(:sort_by=>"favorites")%>" sort-by-key='favorites'> <%=t('order_by.favorites')%> </a>
+        <a href="<%=user_path(:sort_by=>"favorites")%>" sort-by-key='favorites'>
+          <i class="icon-star"></i> 
+          <span><%=t('order_by.favorites')%> </span>
+        </a>
     </li>
   </ul>
 
@@ -32,6 +50,6 @@
 
   if(param && param!=""){
     var value = $("#order_by_selector .dropdown-menu [sort-by-key="+param+"]").html();
-    $("#dropdownMenuOrdBy").html(value + '<span class="caret"></span>'); 
+    $("#dropdownMenuOrdBy").html(value + '<i class="icon-angle-down"></i>'); 
   }
 <%end%>
