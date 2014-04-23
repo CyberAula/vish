@@ -1,65 +1,50 @@
 footer.container-fluid
+  display: block
+  float: left
+  padding: 0
+  width: 100%
+  //@include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  height: 38px  
   background-color: #D5D5D5
   z-index: 100 //maximum zindex
   opacity: 0.95
-  &:hover
-
-    //opacity: 1
   nav.footercontent
-
-    ul
+    @include page_footer
+    
+    ul.ul-content
+      margin-top: 5px
+      margin-right: 0px
+      margin-left: 0px
+      margin-bottom: 0px
+      padding: 0
+      text-align: center
       li
-        font-family: $thirdFontFamily !important
-        color: #555
+        display: inline
+        padding-left: 2%
+        padding-right: 2%
+        color: $gray
         outline: none
-        a
-          color: #555
-          &:hover
-            color: #000
-            font-family: $thirdFontFamily
-        label, input, button, select, textarea, span
-          font-family: $thirdFontFamily !important
-          color: #555
-        img
-          &:hover
-            border-bottom: 1px solid #666
-      li.btn-group
-        .dropdown-menu
-          width: 250px
-          li
-            width: 248px
-            margin: 2px 2px
-            display: block
-            padding-left: 0px
-            a
-              float: left
-              display: inline-block
-              font-family: $thirdFontFamily
-              width: 236px
-              outline: none
-              &:hover
-                color: #000
-                font-family: $thirdFontFamily
-            i
-              float: left
-              display: inline-block
-              margin-top: -3px
-
-        button
+        a.style_link_footer
+          color: $gray
+        .btn
           background-color: transparent
-          border: none
-
-        .open 
-          background-color: none
-
-        button.btn
-          background-color: transparent !important
           background-image: none
+          border: 0px solid 
           box-shadow: none
-          outline: none
-          &:hover
-            color: #000
-            font-family: $thirdFontFamily
+          color: $gray
+          a
+            color: $gray
+      li.social-img     
+        img
+          width: 30px
+          
+footer.fixed-bottom
+  position: fixed
+  left: 0
+  bottom: 0
+  width: 100%
+  padding: 0
+
 #main 
   overflow:auto
   padding-bottom: 150px  /* must be same height as the footer */

@@ -259,23 +259,25 @@
     padding: 1px
     background-color: rgba(85,85,85,0.97)
     border-radius: $baseBorderRadius
-    a 
-      color: #F0F0F0   
-      padding: 3px !important           
-      &:hover
+    li
+      padding: 0px !important  
+      a 
+        color: #F0F0F0   
+        padding: 3px !important           
+        &:hover
+          color: $white
+        span
+          color: #F0F0F0 
+      a:first-letter
+        text-transform: uppercase
+      i
+        display: inline-block
+        margin-right: 5px
+        text-align: center
+        width: 14px
         color: $white
-      span
-        color: #F0F0F0 
-    a:first-letter
-      text-transform: uppercase
-    i
-      display: inline-block
-      margin-right: 5px
-      text-align: center
-      width: 14px
-      color: $white
-    a:hover
-      background: rgba(233,0,85,0.97)
+      a:hover
+        background: rgba(233,0,85,0.97)
     .divider
       border-bottom: none
   .dropdown-menu:after, .dropdown-menu:before
