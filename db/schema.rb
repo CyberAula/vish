@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140331134734) do
+ActiveRecord::Schema.define(:version => 20140424132545) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20140331134734) do
     t.boolean  "notified_after_draft",               :default => false
     t.integer  "comment_count",                      :default => 0
     t.integer  "popularity",                         :default => 0
+    t.integer  "mve",                                :default => 0
   end
 
   create_table "activity_verbs", :force => true do |t|
