@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140331134734) do
+ActiveRecord::Schema.define(:version => 20140425135810) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -260,6 +260,7 @@ ActiveRecord::Schema.define(:version => 20140331134734) do
     t.string   "excursion_type",     :default => "presentation"
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
+    t.integer  "mve",                :default => 0
   end
 
   create_table "groups", :force => true do |t|
