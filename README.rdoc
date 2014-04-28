@@ -1,5 +1,5 @@
 = ViSH
-Virtual Science Hub, a network for exploring science.
+Virtual Science Hub, a network for exploring science now.
 This branch intends to clean ViSH views to use upstream bootstrap
 
 {<img src="https://secure.travis-ci.org/ging/vish.png" />}[http://travis-ci.org/ging/vish]
