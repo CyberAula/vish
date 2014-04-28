@@ -23,18 +23,21 @@
           <span><%=t('order_by.created_at')%> </span>
       </a>
     </li>
-    <li>
-        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"visits")%>" sort-by-key='visits'>          
-          <i class="icon-eye-open"></i> 
-          <span><%=t('order_by.visits')%> </span>
-        </a>
-    </li>
-    <li>
-        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"favorites")%>" sort-by-key='favorites'>          
-          <i class="icon-star"></i> 
-          <span><%=t('order_by.favorites')%> </span>
-        </a>
-    </li>
+    <%if params[:type]!="user"%>
+      <li>
+          <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"visits")%>" sort-by-key='visits'>          
+            <i class="icon-eye-open"></i> 
+            <span><%=t('order_by.visits')%> </span>
+          </a>
+      </li>
+      <li>
+          <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"favorites")%>" sort-by-key='favorites'>          
+            <i class="icon-star"></i> 
+            <span><%=t('order_by.favorites')%> </span>
+          </a>
+      </li>
+    <%end%>
+
   </ul>
 
 </div>
