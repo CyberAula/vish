@@ -362,7 +362,10 @@ class ExcursionsController < ApplicationController
 
         count = Site.current.config["tmpJSONcount"].nil? ? 1 : Site.current.config["tmpJSONcount"]
         Site.current.config["tmpJSONcount"] = count +1
-        Site.current.save!
+
+        count2 = Site.current.config["tmpJSONcount2"].nil? ? 1 : Site.current.config["tmpJSONcount2"]
+        Site.current.config["tmpJSONcount2"] = count2 +1
+        Site.current.save!  
 
         if responseFormat == "json"
           #Generate JSON file
@@ -378,8 +381,8 @@ class ExcursionsController < ApplicationController
 
            filePath = "#{Rails.root}/public/tmp/qti/"
            FileUtils.mkdir_p filePath
-           fileName = "qti-tmp-#{count}"
-           Excursion.createQTI(filePath,fileName, JSON(json))
+           fileName = "qti-tmp-#{count2}"
+           Excursion.createQTI(filePath,fileName, JSON(json),nil)
             results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/qti/#{fileName}.zip"
 
 
