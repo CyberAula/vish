@@ -17,12 +17,42 @@
       display: block
       position: relative
       margin-bottom: 0
+      background-image: url("frontpage/carrusel/pizarra.jpeg")
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .carousel-inner
-        background-image: url("frontpage/carrusel/pizarra.jpeg")
+        width: 90%
+        margin: 0 auto
+        display: block
         height: 367px
         background-repeat: no-repeat
-
-        .img_carousel
-
         .description
+          @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          color: $white
+          margin-top: 5%
+          text-align: center
+          display: block
+          float: left
+          h1
+            color: $white
+            font-family: $firstFontFamily
+            border-bottom: 1px solid $white
+            @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            margin: 0 auto
+            display: block
+            strong
+              display: block
+              clear: both
+              font-size: 60px
+              line-height: 45px
+          h5
+            text-align: justify
+            color: $white
+            font-family: $firstFontFamily
+        .visual_excursion
+          @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          float: left
+
+        .infographics
+          @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
