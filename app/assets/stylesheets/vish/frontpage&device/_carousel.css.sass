@@ -20,13 +20,13 @@
       background-image: url("frontpage/carrusel/pizarra.jpeg")
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .carousel-inner
-        width: 90%
+        width: 80%
         margin: 0 auto
         display: block
         height: 367px
         background-repeat: no-repeat
-        .description
-          @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .description-excursion
+          width: 40%
           display: block
           color: $white
           margin-top: 5%
@@ -37,9 +37,9 @@
             color: $white
             font-family: $firstFontFamily
             border-bottom: 1px solid $white
-            @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            margin: 0 auto
+            width: 80%
             display: block
+            padding-bottom: 10px
             strong
               display: block
               clear: both
@@ -49,10 +49,123 @@
             text-align: justify
             color: $white
             font-family: $firstFontFamily
-        .visual_excursion
-          @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            width: 80%
+
+        .visual_excursion-excursion
+          width: 20%
           display: block
           float: left
+          .box-item
+            width: 80%
+            display: block
+            float: none
+            margin: 15% auto 0
+            cursor: pointer
+            .img-box
+              float: none
+              height: 100%
+              margin: 2px auto
+              width: 94%
+            .info
+              height: 75px
 
-        .infographics
-          @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .infographics-excursion
+          width: 40%
+          display: block
+          float: right
+          position: relative
+          img
+            width: 95%
+            margin: 3%
+          .text-1-excursion
+            left: 21%
+            text-align: left
+            top: 13%
+          .text-2-excursion
+            left: 17%
+            text-align: center
+            top: 52%
+          .text-3-excursion
+            left: 29%
+            text-align: right
+            top: 83%
+          .text-1-excursion,
+          .text-2-excursion,
+          .text-3-excursion
+            position: absolute
+            color: $white
+            font-family: $firstFontFamily
+            font-size: 16px
+            line-height: 20px
+      .description-editor
+        width: 30%
+        display: block
+        color: $white
+        margin-top: 3%
+        text-align: left
+        display: block
+        float: left
+        h2
+          color: $white
+          font-family: $firstFontFamily
+          display: block
+          font-size: 25.5px
+          margin-bottom: 0px
+          strong
+            display: block
+            clear: both
+            text-align: left
+            font-size: 41px
+        h5
+          text-align: justify
+          color: $white
+          font-family: $firstFontFamily
+          width: 51%
+          float: left
+          display: block
+          margin-left: 30%
+          margin-top: 5px
+
+
+      .infographics-editor
+        width: 70%
+        display: block
+        float: left
+        position: relative
+        img
+          width: 90%
+          margin: 3%
+          float: right
+        .text-1-editor,
+        .text-2-editor,
+        .text-3-editor,
+        .text-4-editor,
+        .text-5-editor,
+        .text-6-editor
+          position: absolute
+          color: $white
+          font-family: $firstFontFamily
+          font-size: 16px
+          line-height: 20px
+          text-align: center
+        .text-1-editor
+          top: 11%
+          left: 21%
+        .text-2-editor
+          top: 20%
+          left: 20%
+        .text-3-editor
+          top: 20%
+          left: 20%
+        .text-4-editor
+          top: 20%
+          left: 20%
+        .text-5-editor
+          top: 20%
+          left: 20%
+        .text-6-editor
+          top: 20%
+          left: 20%
+
+
