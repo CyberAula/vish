@@ -66,7 +66,7 @@ class Scormfile < ActiveRecord::Base
       if Site.current.config[:code_hostname].nil? or Site.current.config[:code_path].nil?
         scormPackagesDirectoryPath = Rails.root.join('public', 'scorm', 'packages').to_s
       else
-        scormPackagesDirectoryPath = Site.current.config[:code_path]
+        scormPackagesDirectoryPath = Site.current.config[:code_path] + "/scorm/packages"
       end
       loDirectoryPath = scormPackagesDirectoryPath + "/" + resource.id.to_s
       loURLRoot = (Site.current.config[:code_hostname].nil? ? Site.current.config[:documents_hostname] : Site.current.config[:code_hostname]) + "scorm/packages/" + resource.id.to_s

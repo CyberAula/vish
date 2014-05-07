@@ -42,12 +42,18 @@ class Zipfile < Document
     end
 
     isScorm = false
+    isWebapp = false
     Zip::ZipFile.open(self.file.path) do |zip|
       isScorm = zip.entries.map{|e| e.name}.include? "imsmanifest.xml"
+      unless isScorm
+        isWebapp = zip.entries.map{|e| e.name}.include? "index.html"
+      end
     end
     
     if isScorm
       return Scormfile
+    elsif isWebapp
+      return Webapp
     end
 
     return Zipfile
@@ -57,6 +63,8 @@ class Zipfile < Document
     case self.fileType.name
     when Scormfile.name
       resource = Scormfile.createScormfileFromZip(controller,self)
+    when Webapp.name
+      resource = Webapp.createWebappFromZip(controller,self)
     else
       resource = self
     end

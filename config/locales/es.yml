@@ -768,5 +768,8 @@ es:
       previous: "«"
       truncate: "..."            
   view_all: "ver todos"
+  webapp:
+    confirm_delete: "¿Borrar aplicación web?"
+    view_full: "Pantalla completa"
   yesterday: "Ayer"
 

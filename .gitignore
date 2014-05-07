@@ -42,6 +42,8 @@ public/assets
 public/scorm/excursions/*
 public/scorm/packages/*
 
+#web apps
+public/webappscode/*
 
 #tmp files
 public/tmp/json/*

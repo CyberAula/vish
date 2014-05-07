@@ -34,7 +34,7 @@ module HomeHelper
   end
 
   def subject_resources(subject, options = {})
-    subject_content subject, [Document, Embed, Link, Scormfile], options
+    subject_content subject, [Document, Embed, Link, Scormfile, Webapp], options
   end
 
   def current_subject_categories(options = {})

@@ -762,6 +762,9 @@ en:
       previous: "«"            
       truncate: "..."
   view_all: "view all"
+  webapp:
+    confirm_delete: "Delete Web application?"
+    view_full: "View full"
   yesterday: "Yesterday"
   zipfile:
     confirm_delete: "Delete Zip file?"
