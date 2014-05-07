@@ -4838,6 +4838,7 @@ VISH.Constant.MEDIA.JSON = "json";
 VISH.Constant.MEDIA.DOC = "doc";
 VISH.Constant.MEDIA.PPT = "ppt";
 VISH.Constant.MEDIA.SCORM_PACKAGE = "scormpackage";
+VISH.Constant.MEDIA.WEB_APP = "webapp";
 VISH.Constant.MEDIA.IMS_QTI_QUIZ = "IMS_QTI_QUIZ";
 VISH.Constant.WRAPPER = {};
 VISH.Constant.WRAPPER.EMBED = "EMBED";
@@ -9182,6 +9183,7 @@ VISH.I18n = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Object = function(V, $, undefined) {
   var init = function() {
+    V.Object.Webapp.init()
   };
   function objectInfo(wrapper, source, sourceType) {
     this.wrapper = wrapper;
@@ -9216,9 +9218,17 @@ VISH.Object = function(V, $, undefined) {
         type = V.Constant.MEDIA.HTML5_AUDIO;
         break;
       case "IFRAME":
-        if($(object).attr("objecttype") == V.Constant.MEDIA.SCORM_PACKAGE) {
-          type = V.Constant.MEDIA.SCORM_PACKAGE;
-          break
+        var objectTypeAttr = $(object).attr("objecttype");
+        if(typeof objectTypeAttr == "string") {
+          if(objectTypeAttr == V.Constant.MEDIA.SCORM_PACKAGE) {
+            type = V.Constant.MEDIA.SCORM_PACKAGE;
+            break
+          }else {
+            if(objectTypeAttr == V.Constant.MEDIA.WEB_APP) {
+              type = V.Constant.MEDIA.WEB_APP;
+              break
+            }
+          }
         }
       ;
       default:
@@ -9306,6 +9316,26 @@ VISH.Object = function(V, $, undefined) {
     return source.split(".").pop().split("&")[0].toLowerCase()
   };
   return{init:init, getExtensionFromSrc:getExtensionFromSrc, getObjectInfo:getObjectInfo}
+}(VISH, jQuery);
+VISH.Object.Webapp = function(V, $, undefined) {
+  var init = function() {
+  };
+  var renderWebappFromJSON = function(webappJSON, options) {
+    var style = webappJSON["style"] ? webappJSON["style"] : "";
+    var body = webappJSON["body"];
+    var webappBody = $(body);
+    $(webappBody).attr("objecttype", V.Constant.MEDIA.WEB_APP);
+    webappBody = V.Utils.getOuterHTML(webappBody);
+    var zoomInStyle = webappJSON["zoomInStyle"] ? webappJSON["zoomInStyle"] : "";
+    var classes = "objectelement";
+    if(options) {
+      if(options.extraClasses) {
+        classes = classes + " " + options.extraClasses
+      }
+    }
+    return"<div id='" + webappJSON["id"] + "' class='" + classes + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper='" + webappBody + "'>" + "" + "</div>"
+  };
+  return{init:init, renderWebappFromJSON:renderWebappFromJSON}
 }(VISH, jQuery);
 VISH.Renderer = function(V, $, undefined) {
   var init = function() {
@@ -9444,6 +9474,9 @@ VISH.Renderer = function(V, $, undefined) {
         break;
       case V.Constant.MEDIA.SCORM_PACKAGE:
         return V.SCORM.renderSCORMFromJSON(element, {extraClasses:"" + template + "_" + element["areaid"]});
+        break;
+      case V.Constant.MEDIA.WEB_APP:
+        return V.Object.Webapp.renderWebappFromJSON(element, {extraClasses:"" + template + "_" + element["areaid"]});
         break;
       default:
         var style = element["style"] ? element["style"] : "";
