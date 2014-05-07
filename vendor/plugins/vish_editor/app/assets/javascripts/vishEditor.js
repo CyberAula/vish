@@ -227,6 +227,7 @@ VISH.Constant.MEDIA.JSON = "json";
 VISH.Constant.MEDIA.DOC = "doc";
 VISH.Constant.MEDIA.PPT = "ppt";
 VISH.Constant.MEDIA.SCORM_PACKAGE = "scormpackage";
+VISH.Constant.MEDIA.WEB_APP = "webapp";
 VISH.Constant.MEDIA.IMS_QTI_QUIZ = "IMS_QTI_QUIZ";
 VISH.Constant.WRAPPER = {};
 VISH.Constant.WRAPPER.EMBED = "EMBED";
@@ -10656,6 +10657,9 @@ VISH.Renderer = function(V, $, undefined) {
       case V.Constant.MEDIA.SCORM_PACKAGE:
         return V.SCORM.renderSCORMFromJSON(element, {extraClasses:"" + template + "_" + element["areaid"]});
         break;
+      case V.Constant.MEDIA.WEB_APP:
+        return V.Object.Webapp.renderWebappFromJSON(element, {extraClasses:"" + template + "_" + element["areaid"]});
+        break;
       default:
         var style = element["style"] ? element["style"] : "";
         var body = element["body"];
@@ -12007,6 +12011,142 @@ VISH.Utils = function(V, undefined) {
   getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, getBackgroundPosition:getBackgroundPosition, sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, removeParamFromUrl:removeParamFromUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion, updateHash:updateHash, cleanHash:cleanHash, removeHashFromUrlString:removeHashFromUrlString, getHashParams:getHashParams, getSlideNumberFromHash:getSlideNumberFromHash, 
   checkAnimationsFinish:checkAnimationsFinish, fomatTimeForMPlayer:fomatTimeForMPlayer, delayFunction:delayFunction, addTempShown:addTempShown, removeTempShown:removeTempShown}
 }(VISH);
+VISH.Object = function(V, $, undefined) {
+  var init = function() {
+    V.Object.Webapp.init()
+  };
+  function objectInfo(wrapper, source, sourceType) {
+    this.wrapper = wrapper;
+    this.source = source;
+    this.type = sourceType
+  }
+  var getObjectInfo = function(object) {
+    var wrapper = null;
+    if(typeof object == "string") {
+      var videoPattern = new RegExp("^<video", "g");
+      if(videoPattern.exec(object) != null) {
+        wrapper = "VIDEO"
+      }
+      var audioPattern = new RegExp("^<audio", "g");
+      if(audioPattern.exec(object) != null) {
+        wrapper = "AUDIO"
+      }
+    }
+    if(wrapper === null || typeof wrapper == "undefined") {
+      var element = $(object)[0];
+      if(typeof element != "undefined") {
+        wrapper = element.tagName
+      }
+    }
+    var source = _getSourceFromObject(object, wrapper);
+    var type;
+    switch(wrapper) {
+      case "VIDEO":
+        type = V.Constant.MEDIA.HTML5_VIDEO;
+        break;
+      case "AUDIO":
+        type = V.Constant.MEDIA.HTML5_AUDIO;
+        break;
+      case "IFRAME":
+        var objectTypeAttr = $(object).attr("objecttype");
+        if(typeof objectTypeAttr == "string") {
+          if(objectTypeAttr == V.Constant.MEDIA.SCORM_PACKAGE) {
+            type = V.Constant.MEDIA.SCORM_PACKAGE;
+            break
+          }else {
+            if(objectTypeAttr == V.Constant.MEDIA.WEB_APP) {
+              type = V.Constant.MEDIA.WEB_APP;
+              break
+            }
+          }
+        }
+      ;
+      default:
+        type = _getTypeFromSource(source)
+    }
+    return new objectInfo(wrapper, source, type)
+  };
+  var _getSourceFromObject = function(object, wrapper) {
+    switch(wrapper) {
+      case null:
+        return object;
+      case V.Constant.WRAPPER.EMBED:
+        return $(object).attr("src");
+      case V.Constant.WRAPPER.OBJECT:
+        if(typeof $(object).attr("src") != "undefined") {
+          return $(object).attr("src")
+        }
+        if(typeof $(object).attr("data") != "undefined") {
+          return $(object).attr("data")
+        }
+        return"source not founded";
+      case V.Constant.WRAPPER.IFRAME:
+        return $(object).attr("src");
+      case V.Constant.WRAPPER.VIDEO:
+        return V.Video.HTML5.getSources(object);
+      case V.Constant.WRAPPER.AUDIO:
+        return V.Audio.HTML5.getSources(object);
+      default:
+        V.Debugging.log("Unrecognized object wrapper: " + wrapper);
+        return null;
+        break
+    }
+  };
+  var _getTypeFromSource = function(source) {
+    if(typeof source == "object" && typeof source.length == "number" && source.length > 0) {
+      source = source[0]
+    }
+    var http_urls_pattern = /(http(s)?:\/\/)([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
+    var www_urls_pattern = /(www[.])([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
+    var youtube_video_pattern = /(http(s)?:\/\/)?(((youtu.be\/)([aA-zZ0-9-]+))|((www.youtube.com\/((watch\?v=)|(embed\/)|(v\/)))([aA-z0-9-Z&=.])+))/g;
+    var html5VideoFormats = ["mp4", "webm", "ogg"];
+    var imageFormats = ["jpg", "jpeg", "png", "gif", "bmp", "svg"];
+    var audioFormats = ["mp3", "wav", "ogg"];
+    if(typeof source != "string") {
+      return null
+    }
+    if(source.match(youtube_video_pattern) != null) {
+      return V.Constant.MEDIA.YOUTUBE_VIDEO
+    }
+    source = source.split("?")[0];
+    var extension = getExtensionFromSrc(source);
+    if(imageFormats.indexOf(extension) != "-1") {
+      return V.Constant.MEDIA.IMAGE
+    }
+    if(extension == "swf") {
+      return V.Constant.MEDIA.FLASH
+    }
+    if(extension == "pdf") {
+      return V.Constant.MEDIA.PDF
+    }
+    if(html5VideoFormats.indexOf(extension) != "-1") {
+      return V.Constant.MEDIA.HTML5_VIDEO
+    }
+    if(audioFormats.indexOf(extension) != "-1") {
+      return V.Constant.MEDIA.HTML5_AUDIO
+    }
+    if(extension == "json") {
+      return V.Constant.MEDIA.JSON
+    }
+    if(extension == "doc") {
+      return V.Constant.MEDIA.DOC
+    }
+    if(extension == "ppt" || extension == "pptx") {
+      return V.Constant.MEDIA.PPT
+    }
+    if(extension == "odp") {
+      return V.Constant.MEDIA.PPT
+    }
+    if(source.match(http_urls_pattern) != null || source.match(www_urls_pattern) != null) {
+      return V.Constant.MEDIA.WEB
+    }
+    return extension
+  };
+  var getExtensionFromSrc = function(source) {
+    return source.split(".").pop().split("&")[0].toLowerCase()
+  };
+  return{init:init, getExtensionFromSrc:getExtensionFromSrc, getObjectInfo:getObjectInfo}
+}(VISH, jQuery);
 VISH.Editor = function(V, $, undefined) {
   var initOptions;
   var initialPresentation = false;
@@ -13633,6 +13773,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     V.Editor.Object.GoogleDOC.init();
     V.Editor.Object.Snapshot.init();
     V.Editor.Object.Scorm.init();
+    V.Editor.Object.Webapp.init();
     var urlInput = $("#" + urlDivId).find("input");
     $("#" + urlDivId + " .previewButton").click(function(event) {
       if(V.Police.validateObject($("#" + urlInputId).val())[0]) {
@@ -13745,6 +13886,10 @@ VISH.Editor.Object = function(V, $, undefined) {
           var objectToDraw = jsonResponse.src;
           if(jsonResponse.type === V.Constant.MEDIA.SCORM_PACKAGE) {
             objectToDraw = V.Editor.Object.Scorm.generateWrapperForScorm(jsonResponse.src)
+          }else {
+            if(jsonResponse.type === V.Constant.MEDIA.WEB_APP) {
+              objectToDraw = V.Editor.Object.Webapp.generateWrapper(jsonResponse.src)
+            }
           }
           drawPreview(uploadDivId, objectToDraw);
           contentToAdd = objectToDraw
@@ -13881,6 +14026,9 @@ VISH.Editor.Object = function(V, $, undefined) {
           case V.Constant.MEDIA.SCORM_PACKAGE:
             return V.Editor.Object.Scorm.generatePreviewWrapperForScorm(object);
             break;
+          case V.Constant.MEDIA.WEB_APP:
+            return V.Editor.Object.Webapp.generatePreviewWrapper(object);
+            break;
           default:
             V.Debugging.log("Unrecognized object source type");
             break
@@ -13896,7 +14044,11 @@ VISH.Editor.Object = function(V, $, undefined) {
         if(objectType == V.Constant.MEDIA.SCORM_PACKAGE) {
           return V.Editor.Object.Scorm.generatePreviewWrapperForScorm(objectInfo.source)
         }else {
-          return _genericWrapperPreview(object)
+          if(objectType == V.Constant.MEDIA.WEB_APP) {
+            return V.Editor.Object.Webapp.generatePreviewWrapper(objectInfo.source)
+          }else {
+            return _genericWrapperPreview(object)
+          }
         }
         break;
       case V.Constant.WRAPPER.VIDEO:
@@ -13975,6 +14127,9 @@ VISH.Editor.Object = function(V, $, undefined) {
           case V.Constant.MEDIA.SCORM_PACKAGE:
             V.Editor.Object.drawObject(V.Editor.Object.Scorm.generateWrapperForScorm(object));
             break;
+          case V.Constant.MEDIA.WEB_APP:
+            V.Editor.Object.drawObject(V.Editor.Object.Webapp.generateWrapper(object));
+            break;
           default:
             V.Debugging.log("Unrecognized object source type: " + objectInfo.type);
             break
@@ -14033,8 +14188,13 @@ VISH.Editor.Object = function(V, $, undefined) {
       $(wrapperTag).attr("style", zoomInStyle);
       V.ObjectPlayer.adjustDimensionsAfterZoom($(wrapperTag))
     }
-    if($(wrapperTag).attr("objecttype") == V.Constant.MEDIA.SCORM_PACKAGE) {
+    var objectTypeAttr = $(wrapperTag).attr("objecttype");
+    if(objectTypeAttr == V.Constant.MEDIA.SCORM_PACKAGE) {
       V.Editor.Object.Scorm.afterDrawSCORM(wrapperTag)
+    }else {
+      if(objectTypeAttr == V.Constant.MEDIA.WEB_APP) {
+        V.Editor.Object.Webapp.afterDraw(wrapperTag)
+      }
     }
   };
   return{init:init, onLoadTab:onLoadTab, drawObject:drawObject, renderObjectPreview:renderObjectPreview, resizeObject:resizeObject, autofixWrapperedObjectAfterZoom:autofixWrapperedObjectAfterZoom, drawPreview:drawPreview, resetPreview:resetPreview, drawPreviewElement:drawPreviewElement, drawPreviewObject:drawPreviewObject}
@@ -15164,7 +15324,9 @@ VISH.Samples = function(V, undefined) {
   {"id":"article16_article2_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"article16_article2_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, 
   {"id":"article16_article2_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, {"id":"article16_article3", "type":"standard", "template":"t10", "elements":[{"id":"article16_article3_zone1", "type":"object", "areaid":"center", 
   "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article16_article4", "type":"standard", "template":"t10", "elements":[{"id":"article16_article4_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', 
-  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article17", "type":"standard", "template":"t10", "elements":[{"id":"article17_zone1", "type":"audio", "areaid":"center", "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "sources":'[{ "type": "audio/ogg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.ogg"},{ "type": "audio/mpeg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.mp3"}]'}]}]};
+  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article17", "type":"standard", "template":"t10", "elements":[{"id":"article17_zone1", "type":"audio", "areaid":"center", "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "sources":'[{ "type": "audio/ogg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.ogg"},{ "type": "audio/mpeg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.mp3"}]'}]}, 
+  {"id":"article18", "type":"standard", "template":"t2", "elements":[{"id":"article18_zone1", "type":"object", "areaid":"left", "body":'<iframe objecttype="scormpackage" src="examples/contents/scormappcode/41/vishubcode_scorm_wrapper.html?wmode=opaque" wmode="opaque" id="resizableunicID55" class="t2_object"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "subtype":"scormpackage"}]}, {"id":"article19", "type":"standard", "template":"t2", "elements":[{"id":"article19_zone1", 
+  "type":"object", "areaid":"left", "body":'<iframe src="examples/contents/webappcode/11/index.html" width="800" height="600" objecttype="webapp" id="resizableunicID53" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "subtype":"webapp"}]}]};
   var fc_sample = {"id":"3", "VEVersion":"0.2", "type":"flashcard", "title":"Curiosity Flashcard", "description":'A Flashcard about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "avatar":"http://vishub.org/pictures/311.jpg", "tags":["Science", "Space", "Mars"], "age_range":"12 - 30", "subject":["Astronomy"], "language":"independent", "educational_objectives":'Know about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "adquired_competencies":"Pupils will be smarter", 
   "author":"ViSH Editor Team", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://vishub.org/pictures/311.jpg)", "pois":[{"id":"article4_poi1", "x":"88.88", "y":"50.83", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"45.5", "y":"2.5", "slide_id":"article4_article3"}, {"id":"article4_poi3", "x":"13.5", "y":"63.17", "slide_id":"article4_article4"}], "slides":[{"id":"article4_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", 
   "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/P4boyXQuUIw?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article4_article3", "type":"standard", "template":"t7", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, 
@@ -15258,10 +15420,9 @@ VISH.Samples = function(V, undefined) {
   "choices":[{"id":"1", "value":"HTTP permite procesar remotamente recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5"><strong>HTTP</strong> permite procesar remotamente recursos en un servidor.</font></p>\n', "answer":true}, {"id":"2", "value":"\u00c2\u00adUna URL identifica sin ambiguedad un recurso en Internet.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Una </span></span><strong><span style="color:#000000;"><span autocolor="true"><span style="font-size:24px;">URL</span></span></span></strong><span autocolor="true" style="color:#000"><span style="font-size:24px;"> identifica sin ambiguedad un recurso en Internet.</span></span></p>\n', 
   "answer":true}, {"id":"3", "value":"\u00c2\u00adJavaScript es igual al lenguaje de programacion Java.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>JavaScript</strong> es igual al lenguaje de programaci&oacute;n Java.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00c2\u00adHTML define la estructura de la informacion de una pagina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>HTML</strong> define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
   "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}]}]};
-  var SCORM_sample = {"VEVersion":"0.8.7", "type":"presentation", "title":"SCORM Package Test", "description":"", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "theme":"theme1", "animation":"animation1", "language":"en", "age_range":"4 - 20", "difficulty":"easy", "TLT":"PT6H30M15S", "subject":["Art", "Astronomy", "Biology"], "educational_objectives":"Know about the Iberian Lynx", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article10", 
-  "type":"standard", "template":"t2", "elements":[{"id":"article10_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://localhost:3000/scorm/packages/41/vishubcode_scorm_wrapper.html" width="800" height="600" objecttype="scormpackage" id="resizableunicID53" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]};
-  var SCORMexample = {"author":"Aldo", "description":"Uploaded by Aldo via ViSH Editor", "id":48, "src":"http://localhost:3000/scorm/packages/48/vishubcode_scorm_wrapper.html", "title":"AncientWeapons.zip", "type":"scormpackage"};
-  return{basic_samples:basic_samples, full_samples:full_samples, fc_sample:fc_sample, vt_sample:vt_sample, evideo_sample:evideo_sample, quiz_samples:quiz_samples, text_samples:text_samples, VE01_samples:VE01_samples, mooc_samples:mooc_samples, SCORM_sample:SCORM_sample, SCORMexample:SCORMexample}
+  var SCORMexample = {"author":"Aldo", "description":"Uploaded by Aldo via ViSH Editor", "id":48, "src":"examples/contents/scormappcode/41/vishubcode_scorm_wrapper.html", "title":"AncientWeapons.zip", "type":"scormpackage"};
+  var Webappexample = {"author":"Aldo", "description":"Uploaded by Aldo via ViSH Editor", "id":52, "src":"examples/contents/webappcode/11/index.html", "title":"HelloWorld.zip", "type":"webapp"};
+  return{basic_samples:basic_samples, full_samples:full_samples, fc_sample:fc_sample, vt_sample:vt_sample, evideo_sample:evideo_sample, quiz_samples:quiz_samples, text_samples:text_samples, VE01_samples:VE01_samples, mooc_samples:mooc_samples, SCORMexample:SCORMexample, Webappexample:Webappexample}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
   var recommendationList = [{"id":"1", "url":"http://vishub.org/excursions/144", "title":"Nanogame", "author":"Enrique Barra", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-05.png", "views":"56", "favourites":"3", "number_of_slides":"8"}, {"id":"2", "url":"http://vishub.org/excursions/83", "title":"Flascard Curiosity", "author":"Evita Tassiopolu", "description":" bla bla bla 2", "image":"http://www.topsecretwriters.com/wp-content/uploads/2012/08/curiosityrover.jpg", 
@@ -15331,7 +15492,7 @@ VISH.Samples.API = function(V, undefined) {
   "object":'<video preload="metadata" poster="http://vishub.org/videos/325.png?style=170x127%23"><source src="http://vishub.org/videos/325.webm" type="video/webm"><source src="http://vishub.org/videos/325.mp4" type="video/mp4"><source src="http://vishub.org/videos/325.flv" type="video/x-flv"><p>Your browser does not support HTML5 video.</p></video>'}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, 
   {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, {"id":"1538", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "object":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}, 
   {"id":"1539", "title":"Image", "description":"Image Embed", "author":"Globedia", "object":'<embed width="100%" src="http://globedia.com/imagenes/noticias/2011/2/10/encuentran-octava-maravilla-mundo-destruida-125-anos_2_585286.jpg"></embed>'}, {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, 
-  {"id":"5432115", "title":"Medieval Armor", "description":"Description of the SCORM Package", "author":"Aldo", "object":"http://localhost:3000/scorm/packages/41/vishubcode_scorm_wrapper.html", "type":"scormpackage"}];
+  {"id":"5432115", "title":"Medieval Armor", "description":"Description of the SCORM Package", "author":"Aldo", "object":"http://localhost:3000/scorm/packages/41/vishubcode_scorm_wrapper.html", "type":"scormpackage"}, {"id":"9512332115", "title":"My First Web App", "description":"", "author":"Aldo", "object":"http://localhost:3000/webappscode/9/index.html", "type":"webapp"}];
   var objectListLittle = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
   "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}];
   var objectListDummy = [];
@@ -23979,6 +24140,9 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
         case V.Constant.MEDIA.SCORM_PACKAGE:
           imageSource = V.ImagesPath + "carrousel/scorm.png";
           break;
+        case V.Constant.MEDIA.WEB_APP:
+          imageSource = V.ImagesPath + "carrousel/webapp.png";
+          break;
         case V.Constant.MEDIA.IMS_QTI_QUIZ:
           imageSource = V.ImagesPath + "carrousel/quizxml.png";
           break;
@@ -24286,6 +24450,21 @@ VISH.Editor.Object.Web = function(V, $, undefined) {
     return"<iframe class='objectPreview' src='" + url + "' wmode='opaque'></iframe>"
   };
   return{init:init, onLoadTab:onLoadTab, drawPreviewElement:drawPreviewElement, generatePreviewWrapperForWeb:generatePreviewWrapperForWeb, generateWrapperForWeb:generateWrapperForWeb}
+}(VISH, jQuery);
+VISH.Editor.Object.Webapp = function(V, $, undefined) {
+  var init = function() {
+  };
+  var generatePreviewWrapper = function(url) {
+    url = V.Utils.addParamToUrl(url, "wmode", "opaque");
+    return"<iframe class='objectPreview' objecttype='" + V.Constant.MEDIA.WEB_APP + "' src='" + url + "' wmode='opaque'></iframe>"
+  };
+  var generateWrapper = function(url) {
+    url = V.Utils.addParamToUrl(url, "wmode", "opaque");
+    return"<iframe objecttype='" + V.Constant.MEDIA.WEB_APP + "' src='" + url + "' wmode='opaque'></iframe>"
+  };
+  var afterDraw = function(iframe) {
+  };
+  return{init:init, generatePreviewWrapper:generatePreviewWrapper, generateWrapper:generateWrapper, afterDraw:afterDraw}
 }(VISH, jQuery);
 VISH.Editor.PDFex = function(V, $, undefined) {
   var uploadDivId = "tab_pdfex_content";
@@ -28084,132 +28263,25 @@ VISH.Messenger.Helper = function(V, undefined) {
   };
   return{createMessage:createMessage, processVEMessage:processVEMessage, validateVEMessage:validateVEMessage}
 }(VISH, jQuery);
-VISH.Object = function(V, $, undefined) {
+VISH.Object.Webapp = function(V, $, undefined) {
   var init = function() {
   };
-  function objectInfo(wrapper, source, sourceType) {
-    this.wrapper = wrapper;
-    this.source = source;
-    this.type = sourceType
-  }
-  var getObjectInfo = function(object) {
-    var wrapper = null;
-    if(typeof object == "string") {
-      var videoPattern = new RegExp("^<video", "g");
-      if(videoPattern.exec(object) != null) {
-        wrapper = "VIDEO"
-      }
-      var audioPattern = new RegExp("^<audio", "g");
-      if(audioPattern.exec(object) != null) {
-        wrapper = "AUDIO"
+  var renderWebappFromJSON = function(webappJSON, options) {
+    var style = webappJSON["style"] ? webappJSON["style"] : "";
+    var body = webappJSON["body"];
+    var webappBody = $(body);
+    $(webappBody).attr("objecttype", V.Constant.MEDIA.WEB_APP);
+    webappBody = V.Utils.getOuterHTML(webappBody);
+    var zoomInStyle = webappJSON["zoomInStyle"] ? webappJSON["zoomInStyle"] : "";
+    var classes = "objectelement";
+    if(options) {
+      if(options.extraClasses) {
+        classes = classes + " " + options.extraClasses
       }
     }
-    if(wrapper === null || typeof wrapper == "undefined") {
-      var element = $(object)[0];
-      if(typeof element != "undefined") {
-        wrapper = element.tagName
-      }
-    }
-    var source = _getSourceFromObject(object, wrapper);
-    var type;
-    switch(wrapper) {
-      case "VIDEO":
-        type = V.Constant.MEDIA.HTML5_VIDEO;
-        break;
-      case "AUDIO":
-        type = V.Constant.MEDIA.HTML5_AUDIO;
-        break;
-      case "IFRAME":
-        if($(object).attr("objecttype") == V.Constant.MEDIA.SCORM_PACKAGE) {
-          type = V.Constant.MEDIA.SCORM_PACKAGE;
-          break
-        }
-      ;
-      default:
-        type = _getTypeFromSource(source)
-    }
-    return new objectInfo(wrapper, source, type)
+    return"<div id='" + webappJSON["id"] + "' class='" + classes + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper='" + webappBody + "'>" + "" + "</div>"
   };
-  var _getSourceFromObject = function(object, wrapper) {
-    switch(wrapper) {
-      case null:
-        return object;
-      case V.Constant.WRAPPER.EMBED:
-        return $(object).attr("src");
-      case V.Constant.WRAPPER.OBJECT:
-        if(typeof $(object).attr("src") != "undefined") {
-          return $(object).attr("src")
-        }
-        if(typeof $(object).attr("data") != "undefined") {
-          return $(object).attr("data")
-        }
-        return"source not founded";
-      case V.Constant.WRAPPER.IFRAME:
-        return $(object).attr("src");
-      case V.Constant.WRAPPER.VIDEO:
-        return V.Video.HTML5.getSources(object);
-      case V.Constant.WRAPPER.AUDIO:
-        return V.Audio.HTML5.getSources(object);
-      default:
-        V.Debugging.log("Unrecognized object wrapper: " + wrapper);
-        return null;
-        break
-    }
-  };
-  var _getTypeFromSource = function(source) {
-    if(typeof source == "object" && typeof source.length == "number" && source.length > 0) {
-      source = source[0]
-    }
-    var http_urls_pattern = /(http(s)?:\/\/)([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
-    var www_urls_pattern = /(www[.])([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
-    var youtube_video_pattern = /(http(s)?:\/\/)?(((youtu.be\/)([aA-zZ0-9-]+))|((www.youtube.com\/((watch\?v=)|(embed\/)|(v\/)))([aA-z0-9-Z&=.])+))/g;
-    var html5VideoFormats = ["mp4", "webm", "ogg"];
-    var imageFormats = ["jpg", "jpeg", "png", "gif", "bmp", "svg"];
-    var audioFormats = ["mp3", "wav", "ogg"];
-    if(typeof source != "string") {
-      return null
-    }
-    if(source.match(youtube_video_pattern) != null) {
-      return V.Constant.MEDIA.YOUTUBE_VIDEO
-    }
-    source = source.split("?")[0];
-    var extension = getExtensionFromSrc(source);
-    if(imageFormats.indexOf(extension) != "-1") {
-      return V.Constant.MEDIA.IMAGE
-    }
-    if(extension == "swf") {
-      return V.Constant.MEDIA.FLASH
-    }
-    if(extension == "pdf") {
-      return V.Constant.MEDIA.PDF
-    }
-    if(html5VideoFormats.indexOf(extension) != "-1") {
-      return V.Constant.MEDIA.HTML5_VIDEO
-    }
-    if(audioFormats.indexOf(extension) != "-1") {
-      return V.Constant.MEDIA.HTML5_AUDIO
-    }
-    if(extension == "json") {
-      return V.Constant.MEDIA.JSON
-    }
-    if(extension == "doc") {
-      return V.Constant.MEDIA.DOC
-    }
-    if(extension == "ppt" || extension == "pptx") {
-      return V.Constant.MEDIA.PPT
-    }
-    if(extension == "odp") {
-      return V.Constant.MEDIA.PPT
-    }
-    if(source.match(http_urls_pattern) != null || source.match(www_urls_pattern) != null) {
-      return V.Constant.MEDIA.WEB
-    }
-    return extension
-  };
-  var getExtensionFromSrc = function(source) {
-    return source.split(".").pop().split("&")[0].toLowerCase()
-  };
-  return{init:init, getExtensionFromSrc:getExtensionFromSrc, getObjectInfo:getObjectInfo}
+  return{init:init, renderWebappFromJSON:renderWebappFromJSON}
 }(VISH, jQuery);
 VISH.ObjectPlayer = function(V, $, undefined) {
   var loadObject = function(slide) {
