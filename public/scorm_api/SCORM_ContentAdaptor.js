@@ -1,25 +1,20 @@
 $(document).ready(function(){
-	checkDocument(600,document);
-	checkDocument(1000,document);
+	checkElement(document);
 });
-
-var checkDocument = function(timeout,document){
-	setTimeout(function(){
-		try {
-			checkElement(document);
-		} catch(e){}
-	},timeout);
-};
 
 var checkElement = function(el){
 	var iframes = $(el).find("iframe");
 	$(iframes).each(function(index,iframe){
-		checkElement($(iframe).contents());
+		iframe.onload=function(){
+			checkElement($(iframe).contents());
+		};
 	});
 
 	var frames = $(el).find("frame");
 	$(frames).each(function(index,frame){
-		checkElement(frame.contentDocument);
+		frame.onload=function(){
+			checkElement(frame.contentDocument);
+		}
 	});
 
 	_checkElement(el);
