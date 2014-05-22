@@ -3,14 +3,10 @@ namespace :mve do
 
 	task :mve => :environment do
 		puts "Recalculating M(ost)V(aluable)E(xcursions) in all tables"
-		#TODO:Poner el update_timestamps a false para no actualizar los update_at definidos por defecto en rails
-		#TODO:Crear tablas is_mve en excursiones y mve y is_mve en actors?users
-		#TODO:Hacer el cálculo de todos los mves en todas las tablas para todas las excursiones
-		#TODO:Poner todos los campos a false en is_mve
-		#TODO:A raíz de aquí calcular los campos users a raíz de las excursiones
-		#TODO:Después rellenar los is_mve
-		#TODO:Hacer el update_timestamps a true
-		#TODO:REMBER USE CONSOLE C FOR DEBUGGING FIRST
+		#
+		#
+		#
+		#
 		puts "Calculating Excursions MVE"
 		#Cálculo Mve in Excursion
 		biggest_mve = 0
