@@ -84,17 +84,10 @@ class Excursion < ActiveRecord::Base
 
 
   ####################
-  ## SCORM Management
+  ## QTI Management
   ####################
 
-
-
-
-
-  
   def self.createQTI(filePath, fileName,ejson, excursion)
-
-    
     require 'zip/zip'
     require 'zip/zipfilesystem'
 
@@ -120,7 +113,7 @@ class Excursion < ActiveRecord::Base
         zos.print xml_truemanifest
       end
       t.close
-end
+  end
 
   def self.generate_QTITF(ejson,indice)
 
@@ -172,10 +165,6 @@ end
   return myxml;
 
 end
-
-
-
-
 
   def self.generate_QTIMC(ejson)
 
@@ -251,7 +240,11 @@ end
   end
 
 
-def self.createSCORM(filePath,fileName,json,excursion,controller)
+  ####################
+  ## SCORM Management
+  ####################
+
+  def self.createSCORM(filePath,fileName,json,excursion,controller)
     require 'zip/zip'
     require 'zip/zipfilesystem'
 

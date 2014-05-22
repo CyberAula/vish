@@ -363,10 +363,7 @@ class ExcursionsController < ApplicationController
 
         count = Site.current.config["tmpJSONcount"].nil? ? 1 : Site.current.config["tmpJSONcount"]
         Site.current.config["tmpJSONcount"] = count +1
-
-        count2 = Site.current.config["tmpJSONcount2"].nil? ? 1 : Site.current.config["tmpJSONcount2"]
-        Site.current.config["tmpJSONcount2"] = count2 +1
-        Site.current.save!  
+        Site.current.save!
 
         if responseFormat == "json"
           #Generate JSON file
@@ -375,26 +372,21 @@ class ExcursionsController < ApplicationController
           t.write json
           t.close
           results["url"] = "#{Site.current.config[:documents_hostname]}/excursions/tmpJson.json?fileId=#{count.to_s}"
-        
-
-           elsif responseFormat == "qti"
-           #Generate QTI package
-
-           filePath = "#{Rails.root}/public/tmp/qti/"
-           FileUtils.mkdir_p filePath
-           fileName = "qti-tmp-#{count2}"
-           Excursion.createQTI(filePath,fileName, JSON(json),nil)
-            results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/qti/#{fileName}.zip"
-
-
         elsif responseFormat == "scorm"
           #Generate SCORM package
           filePath = "#{Rails.root}/public/tmp/scorm/"
           fileName = "scorm-tmp-#{count}"
           Excursion.createSCORM(filePath,fileName,JSON(json),nil,self)
           results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/scorm/#{fileName}.zip"
+        elsif responseFormat == "QTI"
+           #Generate QTI package
+           filePath = "#{Rails.root}/public/tmp/qti/"
+           FileUtils.mkdir_p filePath
+           fileName = "qti-tmp-#{count}"
+           Excursion.createQTI(filePath,fileName,JSON(json),nil)
+           results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/qti/#{fileName}.zip"
         end
-        
+
         render :json => results
       }
     end
