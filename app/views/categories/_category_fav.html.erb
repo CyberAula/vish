@@ -1,35 +1,43 @@
-<li class="box-item favouritebox excursion-item">
 
+
+
+<li class="box-item resource-item favouritebox">
+<!--IMG resource-->
   <div class="container-img">
       <div class="dummy"></div>
-      <div class="element">
+      <div class="element resource-center">
 
-        <div class="img-box">
-        <!--IMG categories-->
           <%= link_to "/categories/favorites" do %>
-            <div class="category">
-              <div class="container-img">
                 <i class="icon-star "></i>
-              </div>      
-            </div>
           <% end %>
-        </div>
 
       </div>
   </div>
-    
-<!--INFO excursuion-->
+
+
+<!--INFO resource-->
   <div class="info">
 <!--Title -->
     <div class="name">
       <%= link_to t('categories.favorites.title'), "/categories/favorites" %>
     </div>
 <!--Autor -->
-    <div class="author"> 
+    <span class="author"> 
       <span class="by"><%=t('by')%></span>
-      <%= link_to current_subject.name, current_subject.subject %>
+<%= link_to current_subject.name, current_subject.subject %>
+
+    </span>
+<!--____________________ -->
+    <div class="info-bottom">
+      <hr class="soften">
+      <!--like -->
+      <div class="like">    
+
+      </div>
+      <!--views -->
+      <div class="views">
+
+      </div>
     </div>
-    <!--____________________ -->    
+  </div>
 </li>
-
-

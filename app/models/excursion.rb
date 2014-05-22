@@ -494,11 +494,9 @@ end
 
   #prepare_for is a param to indicate who is the target. It can be "SCORM" or "ODS" in this version
   def self.addLOMtoXML(myxml, ejson, excursion, identifier, prepare_for)    
-      language = ""
+      language = nil
       if ejson["language"]
-        if ejson["language"]=="independent"
-          language = "none"
-        else
+        if ejson["language"]!="independent"          
           language = ejson["language"]
         end          
       end
@@ -953,6 +951,10 @@ end
 
       a.save!
     end
+  end
+
+  def is_mostvaluable?
+    id==Excursion.select("id").where(mve: Excursion.maximum("mve")).first
   end
 
   private

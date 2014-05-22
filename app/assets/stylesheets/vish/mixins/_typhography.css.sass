@@ -7,7 +7,7 @@
 
 @mixin box_title
   font-family: $thirdFontFamily
-  font-size: 1.3em
+  font-size: 15px
   word-wrap: break-word
   text-decoration: none
   cursor: pointer
@@ -19,21 +19,19 @@
 
 
 @mixin author
+  color: $black
+  text-decoration: none
+  cursor: pointer
   font-family: $firstFontFamily
-  font-size: 0.75em
-  .author
-    color: $black
-    text-decoration: none
-    cursor: pointer
-
-
-    a
-
-      &:hover
-        text-decoration: none
-    
-  .author:before
+  font-size: 12px
+  &:before
     color: $grayLight
+  a
+    font-size: 12px
+    &:hover
+      text-decoration: none
+  
+  
 
 @mixin footer_box_info
   font-family: $secondFontFamily !important
@@ -52,9 +50,9 @@
       outline: 0px
       span
         color: $secondColor
-        font-family: $secondFontFamily  
+        font-family: $secondFontFamily 
     
-      
+    
   li.active
     a
       font-family: $secondFontFamily !important
@@ -62,7 +60,14 @@
       color: $black
       span
         color: $secondColor
+  li.disabled
+    a
+      color: $grayLight
+      span
+        color: $grayLight
+
         
+
 @mixin tab_title_show
   li
     a

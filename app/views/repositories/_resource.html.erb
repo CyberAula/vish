@@ -1,3 +1,8 @@
+<% if resource.nil? %>
+<% return %>
+<% end %>
+
+
 <li class="box-item resource-item">
 <!--IMG resource-->
   <div class="container-img">
@@ -8,28 +13,31 @@
           <%= link_to "<i class='icon-link'></i>".html_safe, resource %>
         <%elsif resource.class==Embed%>
           <%= link_to "<i class='icon-code'></i>".html_safe, resource %>
+        <%elsif resource.class==Scormfile%>
+          <%= link_to "<i class='icon-scorm-new '></i>".html_safe, resource %>
+        <%elsif resource.class==Webapp%>
+          <%= link_to "<i class='icon-webapp-new '></i>".html_safe, resource %>
         <%else%>
           <%= link_to icon(resource), resource, :title => resource.file_file_name %>
         <%end%>
 
+        <%if resource.respond_to?(:type) && resource.type =="Picture"%>
+          <script>
+            $("#document-<%=resource.id%>").addClass("img-box");
+            $("#document-<%=resource.id%>").backstretch("<%= thumb_file_for(resource, '500') %>");  
+          </script>
+        <%end%>
       </div>
   </div>
 
-  <%if resource.respond_to?(:type) && resource.type =="Picture"%>
-    <script>
-      $("#document-<%=resource.id%>").addClass("img-box");
-      $("#document-<%=resource.id%>").backstretch("<%= thumb_file_for(resource, '500') %>");  
-    </script>
-  <%end%>
+
 <!--INFO resource-->
   <div class="info">
 <!--Title -->
     <div class="name">
-        <%if resource.class==Link%>
-          <%= link_to resource.title, completeURL(resource.url) %>
-        <%else%>
+
           <%= link_to resource.title, resource %>
-        <%end%>
+
     </div>
 <!--Autor -->
     <span class="author"> 

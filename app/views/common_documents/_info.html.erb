@@ -60,9 +60,14 @@
     
     <dt><%= t('document.info.date.updated_at') %></dt>
     <dd><%= I18n.localize document.updated_at, :format => :long %></dd>
+
     <%if resource.class==Embed%>
     
     <%elsif resource.class==Link%>
+
+    <%elsif resource.class==Scormfile%>
+
+    <%elsif resource.class==Webapp%>
 
     <%else%>
       <% unless document.file_file_size.blank? %>

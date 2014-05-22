@@ -1,4 +1,20 @@
 GIT
+  remote: git://github.com/ebarra/oai_repository.git
+  revision: 26e791e05f76295b144568fef8033446c2ad01e9
+  specs:
+    oai_repository (0.9.5)
+      oai
+      rails (~> 3.1)
+
+GIT
+  remote: git://github.com/ebarra/scorm.git
+  revision: fef3256e74c5076c6c6099acac26a544cfbd8f08
+  branch: master
+  specs:
+    scorm (1.0.4)
+      rubyzip (~> 0.9.4)
+
+GIT
   remote: git://github.com/galetahub/simple-captcha.git
   revision: 2602bf19a63df25929960b5a7721a9d265281ec1
   specs:
@@ -6,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: b1b7bb83f1acfc64df53ab74373fd0bb0f806808
+  revision: 9c2c0da17bbd3197f21f0a507eba369f2281ae93
   branch: master
   specs:
     social_stream-base (2.2.2)
@@ -60,14 +76,6 @@ GIT
   revision: 69704cb6268c521e0e48ccb8d8b78930d1e7da67
   specs:
     delegates_attributes_to (0.0.1)
-
-GIT
-  remote: git@github.com:ebarra/oai_repository.git
-  revision: 26e791e05f76295b144568fef8033446c2ad01e9
-  specs:
-    oai_repository (0.9.5)
-      oai
-      rails (~> 3.1)
 
 GEM
   remote: http://rubygems.org/
@@ -136,7 +144,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    childprocess (0.5.2)
+    childprocess (0.5.1)
       ffi (~> 1.0, >= 1.0.11)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -163,7 +171,7 @@ GEM
     deface (0.9.1)
       nokogiri (~> 1.5.0)
       rails (~> 3.1)
-    delayed_paperclip (2.7.1)
+    delayed_paperclip (2.7.0)
       paperclip (>= 3.3)
     devise (2.2.8)
       bcrypt-ruby (~> 3.0)
@@ -195,7 +203,7 @@ GEM
       activesupport (>= 3.2, < 5)
     hashery (2.1.1)
     hashie (2.0.5)
-    highline (1.6.20)
+    highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.9)
     i18n-js (2.1.2)
@@ -274,10 +282,10 @@ GEM
     omniauth-socialstream (0.1.3)
       omniauth-oauth2 (~> 1.1.1)
     orm_adapter (0.5.0)
-    paperclip (3.5.4)
+    paperclip (3.5.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (~> 0.5.3)
+      cocaine (~> 0.5.0)
       mime-types
     paperclip-ffmpeg (1.0.1)
       paperclip (>= 2.5.2)
@@ -332,7 +340,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     raindrops (0.13.0)
-    rake (10.2.2)
+    rake (10.1.1)
     rdoc (3.12.2)
       json (~> 1.4)
     recurrence (1.2.0)
@@ -446,6 +454,7 @@ DEPENDENCIES
   mysql2
   net-ssh (= 2.4.0)
   oai_repository!
+  paperclip (= 3.5.1)
   pdf-reader
   pg
   pry-debugger
@@ -454,6 +463,7 @@ DEPENDENCIES
   rspec-rails (= 2.9.0)
   rubyzip (= 0.9.9)
   sass-rails (~> 3.2.4)
+  scorm!
   selenium-webdriver (= 2.30.0)
   shortener
   simple_captcha!

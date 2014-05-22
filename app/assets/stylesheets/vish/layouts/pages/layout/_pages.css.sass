@@ -107,7 +107,34 @@ li.repositories-item
     &:hover
       background-color: $firstColor
       .creation_date
-        color: $white  
+        color: $white
+#overview
+  .whiteframe
+    padding-top: 3%
+    padding-right: 5%
+    padding-left: 5%
+    padding-bottom: 10%
+    background-color: $white
+    border-radius: $baseBorderRadius
+    float: left
+    width: 90%
+    min-height: 500px
+    @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+    min-height: 350px
+    legend
+      margin-bottom: 0px
+    .overviewindex
+      @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: left
+      position: fixed
+      ul
+        li
+          list-style: normal
+    .overviewmiddle
+      @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .overviewcontent
+      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: right
 
 
  

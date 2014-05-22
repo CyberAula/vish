@@ -10,13 +10,13 @@
      <li class="settings-menu">
        <%= link_to home_path do %>
        <i class="icon-home"></i>
-       <%= t('navigation.home') %>
+       <span><%= t('navigation.home') %></span>
        <% end %>
      </li>
     <li class="settings-menu">
       <%= link_to current_subject do %>
         <i class="icon-user"></i>
-        <%= t('profile.one') %>
+        <span><%= t('profile.one') %></span>
       <% end %>
     </li>
     <!--<li class="settings-menu">
@@ -28,20 +28,20 @@
     <li class="settings-menu">
       <%= link_to settings_path do %>
       <i class="icon-cog"></i>
-      <%= t('dropdown.settings') %>
+      <span><%= t('dropdown.settings') %></span>
       <% end %>
     </li>
     <li class="settings-menu">
       <%= link_to quiz_sessions_path do %>
       <i class="icon-puzzle-piece"></i>
-      <%= t('quiz.live') %>
+      <span><%= t('quiz.live') %></span>
       <% end %>
     </li>
     <li class="divider"></li>
     <li>
       <%= link_to destroy_user_session_path, :method => :delete do %>
       <i class="icon-signout"></i>
-      <%= t('sign_out') %>
+      <span><%= t('sign_out') %></span>
       <% end %>
     </li>
   </ul>

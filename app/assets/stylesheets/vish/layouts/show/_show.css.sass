@@ -1,3 +1,5 @@
+#zipfile,
+#scormfile,
 #link,
 #swf,
 #show_items,
@@ -7,7 +9,8 @@
 #audio,
 #event,
 #video,
-#officedoc
+#officedoc,
+#webapp
   .box-show
     //visor
     .container-visor
@@ -18,6 +21,7 @@
       background-color: $grayLighter
       .elemento-visor
         padding-top: 79%
+        width: 100%
       //excursions
       .caja-visor
         position: absolute
@@ -25,6 +29,15 @@
         bottom: 0
         left: 0
         right: 0
+        width: 100%
+        iframe 
+          position: absolute
+          top: 0
+          left: 0
+          width: 100%
+          height: 100%
+
+
         .badge-excursion-active
           position: absolute
           height: 110px
@@ -57,6 +70,11 @@
             width: 96% !important
             padding: 2%
             height: 100% !important
+        i.icon-zip-new
+          display: block
+          width: 57px
+          height: 62px
+          margin: 10px auto 
         iframe.link_show
           width: 100%
           height: 500px
@@ -65,6 +83,7 @@
           font-size: 16px
           margin-top: 10px
           margin-bottom: 10px
+          cursor: pointer
           i
             display: inline
             margin-right: 10px
@@ -235,14 +254,18 @@
             width: 90%
             input,
             textarea
-              width: 100%
+              width: 96%
+              padding-left: 2%
+              padding-right: 2%
 
             textarea
               height: 50px
 
             .select2-container-multi 
               .select2-choices 
-                padding: 4px 6px
+                width: 96%
+                padding-left: 2%
+                padding-right: 2%
             .btn-primary
               float: right
               width: auto
@@ -454,11 +477,12 @@
   width: 87% !important
   margin-right: 1%
   textarea[readonly]
-    cursor: text
+  cursor: text
 
-#textarea_for_iframe2
+textarea.shortUrl
   width: 87% !important
-  margin-right: 1%
-  textarea[readonly]
-    cursor: text
 
+p.documentembedexplanation
+  margin-left: 21px
+  margin-top: 5px
+  margin-bottom: 10px

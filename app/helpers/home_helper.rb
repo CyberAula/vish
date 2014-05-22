@@ -34,7 +34,7 @@ module HomeHelper
   end
 
   def subject_resources(subject, options = {})
-    subject_content subject, [Document, Embed, Link], options
+    subject_content subject, [Document, Embed, Link, Scormfile, Webapp], options
   end
 
   def current_subject_categories(options = {})
@@ -58,6 +58,7 @@ module HomeHelper
     options[:scope] ||= :net
     options[:offset] ||= 0
     options[:page] ||= 0 #page 0 means without pagination
+    options[:sort_by] ||="popularity"
 
     following_ids = subject.following_actor_ids
     following_ids |= [ subject.actor_id ]
@@ -87,7 +88,24 @@ module HomeHelper
 
     query = query.where("draft is false") if (klass == Excursion) && (options[:scope] == :net || options[:scope] == :more || (options[:scope] == :me && defined?(current_subject) && subject != current_subject))
 
-    query = query.order('activity_objects.updated_at DESC')
+    
+
+    case options[:sort_by]
+      when "updated_at"
+        query = query.order('activity_objects.updated_at DESC')
+      when  "created_at"
+        query = query.order('activity_objects.created_at DESC')
+      when "visits"  
+        query = query.order('activity_objects.visit_count DESC')
+      when "favorites"
+        query = query.order('activity_objects.like_count DESC') 
+      when "popularity"
+        query = query.order('activity_objects.popularity DESC') 
+    end
+    
+
+
+
     query = query.limit(options[:limit]) if options[:limit] > 0
     query = query.offset(options[:offset]) if options[:offset] > 0
 

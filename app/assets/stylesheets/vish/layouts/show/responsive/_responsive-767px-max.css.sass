@@ -4,7 +4,8 @@
 
 
 @media (min-width: 481px) and (max-width: 767px)
-  
+  #zipfile,
+  #scormfile,
   #link,
   #swf,
   #show_items,
@@ -14,7 +15,8 @@
   #audio,
   #event,
   #video,
-  #officedoc
+  #officedoc,
+  #webapp
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .box-show
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -64,6 +66,8 @@
 // ---------------------
 
 @media (max-width: 480px)
+  #zipfile,
+  #scormfile,
   #link,
   #swf,
   #show_items,
@@ -73,7 +77,8 @@
   #audio,
   #event,
   #video,
-  #officedoc
+  #officedoc,
+  #webapp
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .box-show
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)

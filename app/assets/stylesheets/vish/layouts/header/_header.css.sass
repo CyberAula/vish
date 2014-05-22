@@ -65,31 +65,6 @@ header.navbar,
           .browse_name
             padding: 11px
 
-        .dropdown
-          list-style: none
-          margin-left: 20px
-          outline: none
-          a
-            padding-left: 10px
-            padding-bottom: 15px
-            outline: none
-          .dropdown-menu
-            padding: 1px
-            border-radius: $baseBorderRadius
-            a 
-              color: $gray   
-              padding-bottom: 5px           
-              &:hover
-                color: $white
-          .caret
-            margin-left: 10px
-            margin-right: 10px
-        a 
-          color: $gray
-          &:hover
-            color: $black
-            text-decoration: none 
-            font-family: $thirdFontFamily
       .search-ui
         float: right  
         
@@ -98,6 +73,8 @@ header.navbar,
         .add_nav
           float: left
           margin-right: 5px
+          .dropdown-menu
+            margin-top: -2px
           .btn-primary
 
           .btn
@@ -240,16 +217,17 @@ header.navbar,
             display: inline-block
             width: 40%
           .checkbox
-            color: $gray
+            color: $white
             @include check-box
             float: left
             display: inline-block
             margin-top: 10px
           a 
             padding-top: 10px
-            padding-left: 25px
+            padding-left: 0px
             float: left
             display: block
+            color: lighten($secondColor, 60%) 
             &:hover
               text-decoration: none
       a 

@@ -1,0 +1,13 @@
+<div class="quick_search">
+  <div class="photo">
+    <%= link_to icon(zipfile), zipfile, :title => zipfile.file_file_name %>
+  </div>
+  <div class="data">
+    <div class="name">
+      <%= link_to zipfile.title, zipfile %>
+    </div>
+    <div class="author"> 
+      <%= link_to truncate_name(zipfile.author.name, length: 25), zipfile.author.subject %>
+    </div>
+  </div>
+</div>

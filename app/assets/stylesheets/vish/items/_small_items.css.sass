@@ -175,19 +175,27 @@
             a
               color: $grayDark
           .author
-            .by  
-            padding-left: 5px
-          @include author
-          .author
+            @include author
             width: 100%
             height: 20px
             overflow: hidden
             word-wrap: break-word
             text-overflow: ellipsis
+            margin-left: 5px
+
+            span
+              width: 20px
+              display: inline
+              float: left
+              margin-left: 5px
             a
-              &:hover
-                color: #007cc8
-                font-family: $thirdFontFamily
+              margin-left: 5px
+              width: 80%
+              display: inline
+              float: left
+
+
+
         .info-bottom
           margin-left: 5px
           padding: 0px  

@@ -40,6 +40,10 @@ public/assets
 
 # scorm zip files
 public/scorm/excursions/*
+public/scorm/packages/*
+
+#web apps
+public/webappscode/*
 
 #tmp files
 public/tmp/json/*
@@ -47,6 +51,8 @@ public/tmp/scorm/*
 public/tmp/qti/*
 public/tmp/qti2/*
 
+#tmp simplecaptcha
+public/tmp/simple_captcha/*
 
 # pdf files
 public/pdf/excursions/*

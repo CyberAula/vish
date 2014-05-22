@@ -8,7 +8,6 @@ header
       margin-top: 3px
     button
       display: inline-block
-
       background: $white
       border: none
 
@@ -31,58 +30,59 @@ header
     .mat
       z-index: 10
       position: absolute
-      margin-top: -9px
+      margin-top: 48px
       width: 250px
       @include border-bottom-radius (5px)
+
       .query_too_short
-        @include border-left-radius (5px)
+        @include border-bottom-radius (5px)
         color: $white
+        width: 92%
         background-color: $gray
-        margin-top: -28px
-        position: absolute
-        margin-left: -181px
-        text-align: right
+        text-align: center
         padding: 3px
-        text-align: right
-        font-size: 12px
-        width: 165px
-        padding-right: 10px
+        margin-top: 2px
+        -webkit-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
+        -moz-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
+        box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
       .no_results
         display: block
-        @include border-left-radius (5px)
+        @include border-bottom-radius (5px)
         color: $white
         background-color: $firstColor
-        margin-top: -28px
-        position: absolute
-        margin-left: -181px
-        text-align: right
+        width: 92%
+        text-align: center
         padding: 3px
-        text-align: right
-        font-size: 12px
-        width: 165px
-        padding-right: 10px
+        margin-top: 2px
+        -webkit-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
+        -moz-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
+        box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
+
       .results
-        background: rgba(255, 255, 255, 0.98)
+        background-color: rgba(85,85,85,0.97)
         width: 95%
+
         ul
           margin: 0
           @include box-shadow (0 1px 3px rgba(20, 20, 20, 0.4))
           @include border-bottom-radius ($inputBorderRadius)
+
           li
             list-style: none
             height: 57px
             padding-left: 7px
             padding-right: 7px
-            border-bottom: 1px solid #F0F0F0
+            border-bottom: 1px solid #515151
+
             &:first-child
               margin-top: 2px
             &:last-child
               border: none
             &:hover
-              background: #E9E9E9
+              background: rgba(233,0,85,0.97)
               .author
                 a
-                  color: #888 !important
+                  color: $white !important
             .picture,
             .document,
             .contact,
@@ -104,7 +104,7 @@ header
                 padding: 0
                 text-align: center
                 img
-                  border: 1px solid $white
+                  border: 0px solid $white
                 a
                   
                   font-size: 45px
@@ -126,33 +126,38 @@ header
                 float: left
                 text-align: left
                 padding-left: 10px
-                color: $gray
+                color: $white
                 .name,
                 h5
                   @include ellipsis
+                  font-weight: bold
                   a
                     text-decoration: none
-                    color: $gray
+                    color: $white
                     font-family: $secondFontFamily
+                    font-weight: bold
                 h5
                   margin: 0
+                .name
+                  font-family: $secondFontFamily
+                  font-weight: bold
                 .counters
                   display: none
                 .info,
                 .author
                   @include text-overflow
                   a
-                    color: $grayLight
+                    color: $grayLighter
 
           .more
             display: block
             clear: both
             text-align: center
-            height: 20px
+            height: auto
             padding-bottom: 3px
             padding-top: 2px
             a
-              color: $gray
+              color: $white
               font-family: $secondFontFamily
               text-decoration: none
             &:hover

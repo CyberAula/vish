@@ -28,7 +28,8 @@
             <h2><%= @user.name %></h2>
           </div>
 
-
+<!--__help-->         
+      <%= render :partial => 'help/help_profile' %>
 
 <!--__description-->
           <div class="description">
@@ -107,7 +108,8 @@
         <%= render :partial => 'users/form_update_profile' %>
       </section>
     </div>
-    
+
+
   </header>
 
 <%= render partial: 'users/profile-info' %>

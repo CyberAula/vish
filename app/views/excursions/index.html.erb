@@ -6,6 +6,7 @@
     </ul>
   </div>
 </div>
+<%= render partial: 'layouts/order_by_dropdown' %>
 <section id="excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>
@@ -14,7 +15,7 @@
       else
         scope = :net
       end%>
-    <%= render partial: 'excursions/excursions', :locals => { :scope => scope, :page => params[:page] || 1 } %>
+    <%= render partial: 'excursions/excursions', :locals => { :scope => scope, :page => params[:page] || 1, :sort_by=> params[:sort_by]||"popularity"} %>
   </ul>
   <div id="loader_pagination">
     <div id="pageless-loader" style="text-align:center;width:100%;">
