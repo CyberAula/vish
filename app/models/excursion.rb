@@ -678,6 +678,10 @@ class Excursion < ActiveRecord::Base
     end
   end
 
+  def is_mostvaluable?
+    id==Excursion.select("id").where(mve: Excursion.maximum("mve")).first
+  end
+
   private
 
   def parse_for_meta
