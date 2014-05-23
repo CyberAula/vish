@@ -38,16 +38,17 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.flashcardLearnHow":"Haz click aqu\u00ed para aprender como crear una Flashcard.", "i.vtLearnHow":"Haz click aqu\u00ed para aprender como crear un Tour Virtual.", "i.eVideoLearnHow":"Haz click aqu\u00ed para aprender como crear un V\u00eddeo Enriquecido.", "i.walkPdf2ex_1":"Insertar una presentaci\u00f3n PDF", "i.walkPdf2ex_2":"Selecciona una presentaci\u00f3n en formato PDF y sube el archivo. \u00danicamente se admiten archivos en formato PDF. Si quieres insertar una presentaci\u00f3n en otro formato como PowerPoint (.ppt) debes de convertir el archivo a PDF primero.", 
 "i.walkPdf2ex_3":"Una vez que la subida del fichero PDF haya finalizado, aparecer\u00e1 una nueva ventana para que elijas las diapositivas que quieres insertar de la presentaci\u00f3n que has subido.", "i.walkPdf2ex_4":"Esta funcionalidad convertir\u00e1 la presentaci\u00f3n PDF en una presentaci\u00f3n de ViSH Editor, esto quiere decir que cada una de las diapositivas seleccionadas de la presentaci\u00f3n PDF ser\u00e1 insertada en la presentaci\u00f3n actual como una diapositiva nueva.", "i.walkPdf2ex_5":"Si lo que quiere es insertar un documento PDF entero en la misma diapositiva para que pueda ser leido como un libro, debe de subir el archivo PDF desde el panel 'Objectos'.", 
 "i.walkInsertingViSHPres_1":"A\u00f1adiendo Diapositivas de Excursiones Virtuales", "i.walkInsertingViSHPres_2":"Aqu\u00ed puedes buscar Excursiones Virtuales en la plataforma ViSH para a\u00f1adirlas (o a\u00f1adir determinadas diapositivas de ellas) a tu presentaci\u00f3n.", "i.walkInsertingViSHPres_3":"Haz click en cualquiera de las Excursiones Virtuales para seleccionarla. Despu\u00e9s, se mostrar\u00e1 un nuevo bot\u00f3n 'Vista Previa'. Cuando pulses este bot\u00f3n, aparecer\u00e1 una nueva ventana para que elijas las diapositivas que quieres insertar en tu presentaci\u00f3n.", 
-"i.walkPresSearch2":"y pulsa la tecla 'intro' para comenzar la b\u00fasqueda. Cuando termine la b\u00fasqueda, las Excursiones Virtuales encontradas ser\u00e1n mostradas en esta pantalla.", "i.walkInsertingViSHSmart_1":"A\u00f1adiendo Smartcards", "i.walkInsertingViSHSmart_2":"Aqu\u00ed puedes buscar Smartcards en la plataforma ViSH para a\u00f1adirlas a tu presentaci\u00f3n.", "i.walkInsertingViSHSmart_3":"Haz click en cualquiera de las Smartcards para seleccionarla. Despu\u00e9s, se mostrar\u00e1 un nuevo bot\u00f3n 'Vista Previa'. Cuando pulses este bot\u00f3n, aparecer\u00e1 una nueva ventana para que puedas ver la Smartcard antes de insertarla en tu presentaci\u00f3n.", 
-"i.walkSmartSearch2":"y pulsa la tecla 'intro' para comenzar la b\u00fasqueda. Cuando termine la b\u00fasqueda, las Smartcards encontradas ser\u00e1n mostradas en esta pantalla.", "i.walkLearnMoreSmartcards":"Pulsa aqu\u00ed para aprender m\u00e1s sobre las Smartcards.", "i.walkInsertJSONfile_1":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.walkInsertJSONfile_2":"Selecciona el archivo en formato JSON (.json) en el cual est\u00e1 guardada la presentaci\u00f3n que quieres insertar. A continuaci\u00f3n, pulsa sobre el bot\u00f3n 'Vista Previa'. Aparecer\u00e1 una nueva pantalla para que elijas las diapositivas a importar.", 
-"i.walkInsertJSONfile_3":"Puedes salvar tu presentaci\u00f3n en formato JSON haciendo click en 'Men\u00fa -> Exportar -> a JSON'. Se descargar\u00e1 a tu dispositivo un fichero JSON conteniendo tu presentaci\u00f3n. De esta forma puedes compartir tu presentaci\u00f3n mediante un archivo (por ejemplo envi\u00e1ndolo por email) y almacenarla donde quieras.", "i.walkThemes_1":"Temas de ViSH Editor", "i.walkThemes_4":"Recuerda que puedes cambiar el tema de la presentaci\u00f3n en cualquier momento accediendo a esta pantalla o seleccionando la opci\u00f3n 'Ajustes' en el menu.", 
-"i.walkAnimations_1":"Animaciones de Vish Editor", "i.walkAnimations_2":"Una animaci\u00f3n define las transiciones visuales entre las slides de la presentaci\u00f3n.Vish Editor ofrece diferentes animaciones entre las cuales puedes escojer.", "i.walkAnimations_3":"Para escojer una animaci\u00f3n, solamente debes pasar con el cursor por encima de los iconos para previsualizar la animaci\u00f3n que te gustar\u00eda a\u00f1adir dentro de esta galer\u00eda.", "i.walkAnimations_4":"Recuerda que puedes cambiar la animaci\u00f3n entre las slides en cualquier momento accediendo a esta pantalla desde el icono superior.", 
-"i.CreatingFlashcards":"Creando Flashcards", "i.walkFlashcard_1":"Para empezar a crear una Flashcard debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de Flashcard en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 una Flashcard vacia en la pantalla.", "i.FlashcardIcon":"Icono de Flashcard", "i.walkFlashcard_2":"Para seleccionar la imagen de fondo de la Flashcard debes pulsar sobre el siguiente bot\u00f3n", 
-"i.walkFlashcard_3":"Puedes cambiar el fondo seleccionado en cualquier momento haciendo click en el bot\u00f3n 'Fondo' de la barra de herramientas.", "i.walkContinueWalkthrough":"Haz click en 'Siguiente' para continuar con este tutorial.", "i.walkFlashcard_4":"Cuando est\u00e1s creando una Flashcard, se muestra un nuevo panel en la parte inferior de la pantalla. Nos referiremos a este panel como el 'panel de Flashcard'.", "i.walkFlashcard_5":"Para a\u00f1adir una nueva diapositiva a la Flashcard pulsa sobre el bot\u00f3n 'A\u00f1adir' situado en el 'panel de Flashcard' y contin\u00faa con el procedimiento habitual para a\u00f1adir una diapositiva. Despu\u00e9s de a\u00f1adirla, la miniatura de la nueva diapositiva aparecer\u00e1 en el panel y se mostrar\u00e1 la diapositiva en la pantalla.", 
-"i.walkFlashcard_6":"Cuando la diapositiva est\u00e1 seleccionada, se muestra en la pantalla y puedes editarla y borrarla de la misma forma que las diapositivas normales. Para seleccionar una diapositiva simplemente pulsa sobre ella en el 'panel de Flashcard'. Si quieres seleccionar la Flashcard nuevamente para editarla, debes hacer click en el icono de Flashcard situado a la izquierda del 'panel de Flashcard'.", "i.walkFlashcard_7":"Las diapositivas tienen flechas arrastrables en su parte superior. Puedes arrastrar cualquiera de ellas a la imagen de fondo de la Flashcard para crear una nueva 'zona caliente'. De este modo, cuando los usuarios hagan click sobre una flecha ver\u00e1n la diapositiva asociada. ", 
-"i.walkRememberPreview":"Recuerda que puedes previsualizar el objeto que est\u00e1s creando en cualquier momento haciendo click sobre el bot\u00f3n 'Vista Previa' situado en la barra de herramientas", "i.CreatingVirtualTours":"Creando Tours Virtuales", "i.walkVirtualTour_1":"Para empezar a crear un Tour Virtual debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de Tour Virtual en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 un Tour Virtual vacio en la pantalla.", 
-"i.VirtualTourIcon":"Icono de Tour Virtual", "i.walkVirtualTour_2a":"Cuando estas creando un Tour Virtual, se muestra un mapa interactivo con una caja de b\u00fasqueda en su parte superior. Puedes usar esta caja de texto para buscar lugares y localizaciones. Escribe la localizaci\u00f3n que quieras buscar, por ejemplo", "i.walkVirtualTour_2b":"Se mostrar\u00e1 una lista de resultados en la parte inferior de la caja de b\u00fasqueda. Puedes elegir cualquier de ellos o  pulsar la tecla 'intro' para seleccionar autom\u00e1ticamente el primero. El mapa mostrar\u00e1 la localizaci\u00f3n seleccionada.", 
-"i.walkVirtualTour_3":"Cuando est\u00e1s creando un Tour Virtual, se muestra un nuevo panel en la parte inferior de la pantalla. Nos referiremos a este panel como el 'panel de Tour Virtual'.", "i.walkVirtualTour_4":"Para a\u00f1adir una nueva diapositiva al Tour Virtual pulsa sobre el bot\u00f3n 'A\u00f1adir' situado en el 'panel de Tour Virtual' y contin\u00faa con el procedimiento habitual para a\u00f1adir una diapositiva. Despu\u00e9s de a\u00f1adirla, la miniatura de la nueva diapositiva aparecer\u00e1 en el panel y se mostrar\u00e1 la diapositiva en la pantalla.", 
+"i.walkPresSearch2":"y pulsa la tecla 'intro' para comenzar la b\u00fasqueda. Cuando termine la b\u00fasqueda, las Excursiones Virtuales encontradas ser\u00e1n mostradas en esta pantalla.", "i.walkLearnMoreSmartcards":"Pulsa aqu\u00ed para aprender m\u00e1s sobre las Smartcards.", "i.walkEPackage_1":"Insertar un paquete de e-Learning", "i.walkEPackage_2":"Selecciona un paquete de e-Learning en formato ZIP y sube el archivo. Solo est\u00e1n admitidos archivos en formato ZIP. Puedes subir paquetes SCORM o aplicaciones web HTML5 personalizadas. Para subir una aplicaci\u00f3n web personalizada, el archivo HTML principal debe ser renombrado como 'index.html' y debe ser incluido en el archivo ZIP junto con todos los archivos necesarios.", 
+"i.walkEPackage_3":"Una vez que la subida del archivo ZIP se haya completado, una nueva ventana aparecer\u00e1 para que previsualices y confirmes el contenido que se va a insertar.", "i.walkInsertEfile_1":"Importar recursos de ficheros externos", "i.walkInsertEfile_2":"Esta pantalla te permite importar diferentes tipos de recursos mediante ficheros externos.", "i.walkInsertEfile_3":"Las siguientes opciones se encuentran disponibles:", "i.walkInsertJSONfile_1":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", 
+"i.walkInsertJSONfile_2":"Selecciona el archivo en formato JSON (.json) en el cual est\u00e1 guardada la presentaci\u00f3n que quieres insertar. A continuaci\u00f3n, pulsa sobre el bot\u00f3n 'Vista Previa'. Aparecer\u00e1 una nueva pantalla para que elijas las diapositivas a importar.", "i.walkInsertJSONfile_3":"Puedes salvar tu presentaci\u00f3n en formato JSON haciendo click en 'Men\u00fa -> Exportar -> a JSON'. Se descargar\u00e1 a tu dispositivo un fichero JSON conteniendo tu presentaci\u00f3n. De esta forma puedes compartir tu presentaci\u00f3n mediante un archivo (por ejemplo envi\u00e1ndolo por email) y almacenarla donde quieras.", 
+"i.walkInsertIMSQTI_1":"A\u00f1adir un Cuestionario (Quiz) mediante un archivo XML compatible con IMS QTI 2.1", "i.walkInsertIMSQTI_2":"Selecciona el archivo en formato XML (.xml) en el cual est\u00e1 guardado el cuestionario/quiz que quieres insertar acorde al est\u00e1ndar IMS QTI 2.1. A continuaci\u00f3n, pulsa sobre el bot\u00f3n 'Vista Previa'. Aparecer\u00e1 una nueva pantalla en la que podr\u00e1s previsualizar el cuestionario antes de a\u00f1adirlo.", "i.walkThemes_1":"Temas de ViSH Editor", 
+"i.walkThemes_4":"Recuerda que puedes cambiar el tema de la presentaci\u00f3n en cualquier momento accediendo a esta pantalla o seleccionando la opci\u00f3n 'Ajustes' en el menu.", "i.walkAnimations_1":"Animaciones de Vish Editor", "i.walkAnimations_2":"Una animaci\u00f3n define las transiciones visuales entre las slides de la presentaci\u00f3n.Vish Editor ofrece diferentes animaciones entre las cuales puedes escojer.", "i.walkAnimations_3":"Para escojer una animaci\u00f3n, solamente debes pasar con el cursor por encima de los iconos para previsualizar la animaci\u00f3n que te gustar\u00eda a\u00f1adir dentro de esta galer\u00eda.", 
+"i.walkAnimations_4":"Recuerda que puedes cambiar la animaci\u00f3n entre las slides en cualquier momento accediendo a esta pantalla desde el icono superior.", "i.CreatingFlashcards":"Creando Flashcards", "i.walkFlashcard_1":"Para empezar a crear una Flashcard debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de Flashcard en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 una Flashcard vacia en la pantalla.", 
+"i.FlashcardIcon":"Icono de Flashcard", "i.walkFlashcard_2":"Para seleccionar la imagen de fondo de la Flashcard debes pulsar sobre el siguiente bot\u00f3n", "i.walkFlashcard_3":"Puedes cambiar el fondo seleccionado en cualquier momento haciendo click en el bot\u00f3n 'Fondo' de la barra de herramientas.", "i.walkContinueWalkthrough":"Haz click en 'Siguiente' para continuar con este tutorial.", "i.walkFlashcard_4":"Cuando est\u00e1s creando una Flashcard, se muestra un nuevo panel en la parte inferior de la pantalla. Nos referiremos a este panel como el 'panel de Flashcard'.", 
+"i.walkFlashcard_5":"Para a\u00f1adir una nueva diapositiva a la Flashcard pulsa sobre el bot\u00f3n 'A\u00f1adir' situado en el 'panel de Flashcard' y contin\u00faa con el procedimiento habitual para a\u00f1adir una diapositiva. Despu\u00e9s de a\u00f1adirla, la miniatura de la nueva diapositiva aparecer\u00e1 en el panel y se mostrar\u00e1 la diapositiva en la pantalla.", "i.walkFlashcard_6":"Cuando la diapositiva est\u00e1 seleccionada, se muestra en la pantalla y puedes editarla y borrarla de la misma forma que las diapositivas normales. Para seleccionar una diapositiva simplemente pulsa sobre ella en el 'panel de Flashcard'. Si quieres seleccionar la Flashcard nuevamente para editarla, debes hacer click en el icono de Flashcard situado a la izquierda del 'panel de Flashcard'.", 
+"i.walkFlashcard_7":"Las diapositivas tienen flechas arrastrables en su parte superior. Puedes arrastrar cualquiera de ellas a la imagen de fondo de la Flashcard para crear una nueva 'zona caliente'. De este modo, cuando los usuarios hagan click sobre una flecha ver\u00e1n la diapositiva asociada. ", "i.walkRememberPreview":"Recuerda que puedes previsualizar el objeto que est\u00e1s creando en cualquier momento haciendo click sobre el bot\u00f3n 'Vista Previa' situado en la barra de herramientas", 
+"i.CreatingVirtualTours":"Creando Tours Virtuales", "i.walkVirtualTour_1":"Para empezar a crear un Tour Virtual debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de Tour Virtual en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 un Tour Virtual vacio en la pantalla.", "i.VirtualTourIcon":"Icono de Tour Virtual", "i.walkVirtualTour_2a":"Cuando estas creando un Tour Virtual, se muestra un mapa interactivo con una caja de b\u00fasqueda en su parte superior. Puedes usar esta caja de texto para buscar lugares y localizaciones. Escribe la localizaci\u00f3n que quieras buscar, por ejemplo", 
+"i.walkVirtualTour_2b":"Se mostrar\u00e1 una lista de resultados en la parte inferior de la caja de b\u00fasqueda. Puedes elegir cualquier de ellos o  pulsar la tecla 'intro' para seleccionar autom\u00e1ticamente el primero. El mapa mostrar\u00e1 la localizaci\u00f3n seleccionada.", "i.walkVirtualTour_3":"Cuando est\u00e1s creando un Tour Virtual, se muestra un nuevo panel en la parte inferior de la pantalla. Nos referiremos a este panel como el 'panel de Tour Virtual'.", "i.walkVirtualTour_4":"Para a\u00f1adir una nueva diapositiva al Tour Virtual pulsa sobre el bot\u00f3n 'A\u00f1adir' situado en el 'panel de Tour Virtual' y contin\u00faa con el procedimiento habitual para a\u00f1adir una diapositiva. Despu\u00e9s de a\u00f1adirla, la miniatura de la nueva diapositiva aparecer\u00e1 en el panel y se mostrar\u00e1 la diapositiva en la pantalla.", 
 "i.walkVirtualTour_5":"Cuando la diapositiva est\u00e1 seleccionada, se muestra en la pantalla y puedes editarla y borrarla de la misma forma que las diapositivas normales. Para seleccionar una diapositiva simplemente pulsa sobre ella en el 'panel de Tour Virtual'. Si quieres seleccionar el Tour Virtual nuevamente para editarlo, debes hacer click en el icono de Tour Virtual situado a la izquierda del 'panel de Tour Virtual'.", "i.walkVirtualTour_6":"Las diapositivas tienen flechas arrastrables en su parte superior. Puedes arrastrar cualquiera de ellas dentro del mapa para crear una nueva localizaci\u00f3n. Cuando arrastres una flecha dentro del mapa, un nuevo 'pin' aparecer\u00e1 en la localizaci\u00f3n seleccionada. De esta forma, cuando los usuarios hagan click sobre un 'pin' en el mapa ver\u00e1n la diapositiva asociada. Los 'pins' tambi\u00e9n son arrastrables, de modo que puedes moverlos a lo largo del mapa. Para eliminar un 'pin' en el mapa, simplemente haz click sobre \u00e9l.", 
 "i.CreatingEnrichedVideos":"Creando Videos Enriquecidos", "i.EVideoDef2":"Los Videos Enriquecidos han sido dise\u00f1ados para ser usados en MOOCs (Cursos Online Masivos y Abiertos), con el objetivo de integrar preguntas y cuestionarios en videos de clases asi como contenidos adicionales. Sin embargo, su flexibilidad les permite ser usados en muchos otros entornos educativos.", "i.walkEVideo_1":"Para empezar a crear un V\u00eddeo Enriquecido debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de V\u00eddeo Enriquecido en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 un V\u00eddeo Enriquecido vacio en la pantalla.", 
 "i.EVideoIcon":"Icono de V\u00eddeo Enriquecido", "i.walkEVideo_2":"En primer lugar, debes selecconar la fuente del v\u00eddeo para el V\u00eddeo Enriquecido pulsando sobre el siguiente bot\u00f3n", "i.walkEVideo_3":"Puedes cambiar la fuente de v\u00eddeo seleccionada en cualquier momento haciendo click en el bot\u00f3n 'Video' de la barra de herramientas.", "i.walkEVideo_4":"Puedes usar videos de YouTube y HTML5 (formatos mp4, webm y ogg). Adem\u00e1s, puedes subir tu propio v\u00eddeo al repositorio del ViSH para que sea convertido en formatos compatibles con HTML5 asegurando una compatibilidad completa en todos los dispositivos", 
@@ -63,87 +64,88 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.walkQuizzes_4":"Despu\u00e9s de que lances un cuestionario en vivo usando el bot\u00f3n 'Lanzar' situado en la parte inferior del cuestionario, una nueva pantalla aparecer\u00e1 ('pantalla de cuestionario en vivo') mostrando diversos elementos", "i.walkQuizzes_5a":"Un hiperenlace al cuestionario en vivo, por ejemplo", "i.walkQuizzes_5b":"Este hiperenlace es utilizado para responder al cuestionario. Cualquier persona que acceda a esta direcci\u00f3n de internet podr\u00e1 responder al cuestionario en vivo. Por lo tanto puedes compartir tu cuestionario en vivo mediante este hiperenlace, por ejemplo envi\u00e1ndolo por correo electr\u00f3nico o peg\u00e1ndolo en un foro.", 
 "i.walkQuizzes_6":"Algunos logos de redes sociales populares (Twitter, Facebook, Google+, ...). Puedes compartir el hiperenalce del cuestionario en vivo en cualquiera de estas redes sociales pulsando sobre el logo correspondiente.", "i.walkQuizzes_7":"Un c\u00f3digo QR para dispositivos m\u00f3viles. Cualquier dispositivo puede obtener autom\u00e1ticamente el hiperenlace del cuestionario en vivo escaneando este c\u00f3digo QR.", "i.walkQuizzes_8":"Una pesta\u00f1a 'Resultados' situada en la parte superior, que permite ver en tiempo real los resultados del cuestionario. Dependiendo del tipo de cuestionario, la representaci\u00f3n de los resultados ser\u00e1 diferente (gr\u00e1fico circular, de barras, etc.).", 
 "i.walkQuizzes_9":"Si quieres 'cerrar' el cuestionario en vivo debes hacer click en el bot\u00f3n 'Detener' situado en la parte inferior derecha. Despu\u00e9s de cerrar un cuestionario, no se admitir\u00e1n ni guardar\u00e1n m\u00e1s respuestas. Tambi\u00e9n puedes cerrar un cuestionario en cualquier momento desde la plataforma ViSH. Cuando cierras un cuestionario en vivo, puedes, opcionalmente, especificar un nombre para facilitar su b\u00fasqueda posterior en el ViSH.", "i.walkQuizzes_10":"Si sales de la pantalla de cuestionarios en vivo, puedes regresar en cualquier momento haciendo click sobre el bot\u00f3n 'Opciones' situado en la parte inferior del cuestionario. Tenga en cuenta que si un cuestionario ha sido lanzado, el bot\u00f3n 'Lanzar' es reemplazado por un bot\u00f3n 'Opciones'. Cuando se cierre el cuestionario, el bot\u00f3n 'Lanzar' volver\u00e1 a aparecer. Finalmente, tenga en cuenta que no puede lanzar m\u00e1s de un cuestionario en vivo a la vez.", 
-"i.vtTitle_GStarted":"Introducci\u00f3n a ViSH Editor", "i.About2":"C\u00f3digo disponible en", "i.About3":"visita nuestro canal de YouTube", "i.About4":"Desarrollado por", "i.VESurvey1":"Ay\u00fadanos a mejorar ViSH Editor", "i.VESurvey2":"Por favor, rellena", "i.VESurvey3":"esta encuesta", "i.VESurvey4":"\u00a1Gracias por tu colaboraci\u00f3n", "i.VESurveyURL":"https://docs.google.com/forms/d/1b_Ml2iua0oDNKkJqc7eT1W2CDlRhIZR__w2AlicfwjA/viewform", "i.walkCompetitions1_1":"Estamos organizando una competici\u00f3n", 
-"i.walkCompetitions1_2":"Para participar s\u00f3lo tienes que a\u00f1adir el tag ViSHCompetition2013 a tu excursi\u00f3n y uno o m\u00e1s de los siguientes tags:", "i.walkCompetitions1_3":"Maths, Physics, Chemistry, Biology, EnvironmentalStudies, Geography, Engineering, Humanities, NaturalScience o ComputerScience.", "i.walkCompetitions1_4":"Para m\u00e1s informaci\u00f3n ve a", "i.walkCompetitions1_5":"la p\u00e1gina de informaci\u00f3n", "i.walkCompetitions1_6":"o a la", "i.walkCompetitions1_7":"secci\u00f3n de preguntas frecuentes", 
-"i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", "i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", "i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", 
-"i.AddTags":"A\u00f1adir etiquetas", "i.AddTimestampLink":"A\u00f1adir marca de tiempo", "i.addvideourl":"a\u00f1adir URL de v\u00eddeo (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Animations":"Animaciones", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", "i.Opacity":"Opacidad", "i.Elements":"Elementos", "i.Rotate":"Rotar", "i.Diagonal1":"Diagonal #1", "i.Diagonal2":"Diagonal #2", "i.Inside":"Dentro", "i.Zoom":"Ampliar", "i.Flip1":"Vuelta #1", 
-"i.Flip2":"Vuelta #2", "i.3D":"3D", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.by":"por", "i.cancel":"cancelar", "i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", 
-"i.close":"cerrar", "i.Close":"Cerrar", "i.CloseWSaving":"cerrar sin guardar", "i.Competitions":"Competici\u00f3n", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", "i.delete":"borrar", "i.Description":"Descripci\u00f3n", "i.difficult":"dif\u00edcil", "i.Difficulty":"Dificultad", "i.Documentation":"Documentaci\u00f3n", 
-"i.done":"hecho", "i.Done":"Hecho", "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", "i.Electronics":"Electr\u00f3nica", "i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", "i.EnrichedVideo":"V\u00eddeo Enriquecido", "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", 
-"i.ePackageError1":"Ocurri\u00f3 un error al subir el paquete de e&#8209;Learning.", "i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", "i.errorYoutubeConnection":"Error conectando con YouTube", "i.Ethics":"\u00c9tica", "i.Evaluate":"Evaluar", "i.evaluateTitle":"\u00bfQuieres contribuir evaluando esta excursi\u00f3n?", "i.eVideoChangeNotification":"Si cambias la fuente del v\u00eddeo perder\u00e1s todas las marcas de tiempo que hayas a\u00f1adido. En cualquier caso, conservar\u00e1s las diapositivas que hayas creado. \u00bfEst\u00e1s seguro de que quieres continuar?", 
-"i.ExcursionDetails":"Informaci\u00f3n de la Excursi\u00f3n", "i.Excursions":"Excursiones", "i.Exit":"Salir", "i.exitConfirmation":"Vas a abandonar ViSH Editor. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.exitConfirmation2":"\u00bfSeguro que quieres abandonar esta p\u00e1gina?", "i.exitConfirmationMenu":"La Excursi\u00f3n Virtual se ha modificado. Si la cierra sin guardar perder\u00e1 todos los cambios. \u00bfQu\u00e9 desea hacer?", "i.ExitWSaving":"salir sin guardar", "i.Export":"Exportar", 
-"i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un fichero JSON.", "i.exportPresToSCORMerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un paquete SCORM.", "i.exviews":"visitas", "i.Filllater":"Rellenar despu\u00e9s", "i.Finish":"Terminar", "i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", "i.ForeignLanguages":"Idiomas", "i.Game":"Juego", "i.GeneralCulture":"Cultura General", "i.Geography":"Geograf\u00eda", 
-"i.Geology":"Geolog\u00eda", "i.GotoSettings":"Ir a Ajustes", "i.HealthEducation":"Educaci\u00f3n para la Salud", "i.Help":"Ayuda", "i.HigherEducation":"Educaci\u00f3n Superior", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Hours":"Horas", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Import":"Importar", "i.Insert":"Insertar", "i.invalidvalue":"valor inv\u00e1lido", "i.ItemAndBall":"Esta entrada est\u00e1 enlazada con la diapositiva #{letter} del V\u00eddeo Enriquecido.", 
-"i.Language":"Idioma", "i.Languageindependent":"Independiente del idioma", "i.Law":"Derecho", "i.License":"Licencia", "i.limitReached":"limite alcanzado", "i.link":"enlace", "i.Literature":"Literatura", "i.LiveQuiz":"Cuestionario en Vivo", "i.LiveResources":"Contenidos en directo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", "i.math":"matem\u00e1ticas", "i.Mathematics":"Matem\u00e1ticas", "i.medium":"medio", 
-"i.Minutes":"Minutos", "i.Music":"M\u00fasica", "i.nanoscience":"nanociencia", "i.NaturalSciences":"Ciencias Naturales", "i.next":"siguiente", "i.Next":"Siguiente", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"\u00bfQuieres participar en la competici\u00f3n? Puedes ganar un gran premio. Lee la guia de c\u00f3mo hacerlo <a href='http://vishub.org/competitions' target='_blank'>aqu\u00ed</a>", "i.NoCompetitions2":"A\u00f1ade una o m\u00e1s de las siguientes tags para participar:", "i.NoCompetitions3":"Se a\u00f1adir\u00e1n a las tags de la excursi\u00f3n. Las puedes revisar o cambiar en la p\u00e1gina de ajustes", 
-"i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON", "i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.NoThanks":"No gracias", "i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", "i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un v\u00eddeo HTML5 o de YouTube", 
-"i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido.", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido.", "i.pdfErrorNotificationSize":"Ha ocurrido un error. El fichero PDF debe tener un tama\u00f1o inferior a 8 Mb.", "i.pdfErrorNotificationPages":"Ha ocurrido un error. El fichero PDF tiene demasiadas p\u00e1ginas.", "i.PDFSlideshow":"Presentaci\u00f3n PDF", 
-"i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.pEducation":"Educaci\u00f3n Primaria", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Educaci\u00f3n Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", 
-"i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.publishing":"Publicando", "i.Publishing":"Publicando", "i.Publish_confirmation":"Vas a guardar y publicar esta Excursi\u00f3n Virtual en la plataforma ViSH. Despu\u00e9s de esto, la excursi\u00f3n ser\u00e1 p\u00fablica y cualquiera podr\u00e1 acceder a ella. \u00bfQu\u00e9 deseas hacer?", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", 
-"i.QuizButtonContinue":"Continuar", "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizCreateSessionError":"Lo sentimos, ha ocurrido un error al crear un nuevo cuestionario en vivo", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", "i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", 
-"i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizSettings":"Ajustes de Quiz", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", "i.readJSONfileError":"Error al leer el fichero JSON", "i.recommendationsTitle":"Excursiones recomendadas:", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", 
-"i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.save":"guardar", "i.Save":"Guardar", "i.SaveAndExit":"guardar y salir", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.sEducation":"Educaci\u00f3n Secundaria", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", 
-"i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", 
-"i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Time":"Tiempo", "i.Title":"T\u00edtulo", "i.TitleM":"T\u00edtulo *", "i.toJSON":"a JSON", "i.toSCORM":"a SCORM", "i.PTraining":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", 
-"i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.Untitled":"Sin T\u00edtulo", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.YouTubePlayAlert":"Haz click sobre el v\u00eddeo para empezar la reproducci\u00f3n", 
-"i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.tooltip.Help":"Ayuda", "i.last":"\u00faltimo"}, "default":{"i.AddSlideMin":"Add Slide", "i.add":"add", 
-"i.Add":"Add", "i.AddTags":"Add tags", "i.AddTimestampLink":"Add timestamp link", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.close":"close", "i.Close":"Close", "i.CloseWSaving":"close without saving", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.ePackageError1":"An error ocurred when uploading the e&#8209;Learning package.", "i.errorFlickrConnection":"Error connecting to Flickr", 
-"i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.eVideoChangeNotification":"If you change the v\u00eddeo source you will lose all the timestamp links you have added. In any case, you will keep the slides you have created. Are you sure you want to continue?", "i.Exit":"Exit", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", 
-"i.exitConfirmation2":"Are you sure you want to leave this page?", "i.exitConfirmationMenu":"The Virtual Excursion has been modified. If you close without saving you will lose all changes. What would you like to do?", "i.ExitWSaving":"exit without saving", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.exportPresToSCORMerrorNotification":"An error has ocurred. Is not possible to export the presentation to a SCORM package.", 
-"i.exviews":"views", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.ItemAndBall":"This item is linked to the #{letter} slide of the Enriched Video.", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", "i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", 
-"i.NoCompetitions2":"Add one or more of the following tags to participate:", "i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", "i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", 
-"i.pasteVideoURL":"paste HTML5 or YouTube v\u00eddeo URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", "i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", 
-"i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", "i.QuizButtonAnswer":"Answer", "i.QuizButtonContinue":"Continue", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", 
-"i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", "i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizSettings":"Quiz Settings", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", 
-"i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Time":"Time", "i.Title":"Title", "i.TitleM":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", 
-"i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.Untitled":"Untitled", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.YouTubePlayAlert":"Click on the video to start playing", 
-"i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}, "fr":{"i.Saved":"Enregistr\u00e9", "i.Saving":"Enregistrement", "i.Unpublish_confirmation":"Vous allez d\u00e9publier ce Excursion virtuelle de la plate-forme Vish. Apr\u00e8s cela, l'excursion sera priv\u00e9 et ne vous sera en mesure d'y acc\u00e9der. Que souhaitez-vous faire?", 
-"i.Animations":"Animation", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", "i.Opacity":"Opacit\u00e9", "i.Elements":"\u00c9l\u00e9ments", "i.Rotate":"tourner", "i.Diagonal1":"Diagonale #1", "i.Diagonal2":"Diagonale #2", "i.Inside":"Int\u00e9rieur", "i.Zoom":"Ampliar", "i.Flip1":"Tour #1", "i.Flip2":"Tour #2", "i.3D":"3D", "i.accept":"accepter", "i.AddSlideMin":"Ajouter", "i.add":"ajouter", "i.Add":"Ajouter", "i.Addanavatar":"Ajouter un avatar*", "i.addatitle":"ajouter un titre", "i.AddContent":"Ajouter un contenu", 
-"i.addembeddedobject":"ajouter un objet incorpor\u00e9", "i.AddFromJSONfile":"Ajouter une pr\u00e9sentation ViSH editor \u00e0 partir d'un fichier JSON", "i.addpicurl":"ajouter l'URL d'une image", "i.AddSlide":"Ajouter une diapositive", "i.AddSlides":"Ajouter des diapositives", "i.AddslideshowPDF":"Ajouter un diaporama \u00e0 partir d'un fichier PDF", "i.AddTags":"Ajouter des mots-cl\u00e9s", "i.addvideourl":"ajouter l'URL d'une vid\u00e9o (YouTube, HTML5)", "i.Age range":"Tranche d'\u00e2ge", "i.areyousureNotification":"\u00cates-vous s\u00fbr(e)\u00a0?", 
-"i.Art":"Art", "i.Astronomy":"Astronomie", "i.Author":"Auteur", "i.Background":"Arri\u00e8re-plan", "i.biology":"biologie", "i.Biology":"Biologie", "i.browserrequirements":"Votre navigateur ne r\u00e9pond pas aux exigences minimales pour lancer ViSH editor, veuillez mettre \u00e0 jour votre navigateur.", "i.by":"par", "i.cancel":"annuler", "i.Cancel":"Annuler", "i.Chemistry":"Chimie", "i.Citizenship":"Citoyennet\u00e9", "i.ClassicalLanguages":"Langues classiques", "i.close":"fermer", "i.Close":"Fermer", 
-"i.content":"contenu", "i.Content":"Contenu", "i.Context":"Contexte", "i.continue":"continuer", "i.Continue":"Continuer", "i.CrossCurricularEducation":"\u00c9ducation interdisciplinaire", "i.ComputerScience":"Informatique", "i.delete":"supprimer", "i.Description":"Description", "i.difficult":"difficile", "i.Difficulty":"Difficult\u00e9", "i.done":"termin\u00e9", "i.Done":"Termin\u00e9", "i.draft":"brouillon", "i.easy":"facile", "i.Economics":"\u00c9conomie", "i.edit":"\u00e9diter", "i.Education":"\u00c9ducation", 
-"i.EducationalObjectives":"Objectifs \u00e9ducatifs", "i.EducationalObjectivesPlaceholder":"Veuillez d\u00e9crire les objectifs \u00e9ducatifs que vous entendez remplir avec cette excursion...", "i.Electronics":"\u00c9lectronique", "i.embedwebsite":"int\u00e9grer une page web", "i.embedWebSnapshot":"int\u00e9grer la capture instantan\u00e9e d'une page web", "i.EnvironmentalEducation":"\u00c9ducation \u00e0 l'environnement", "i.errorFlickrConnection":"Erreur de connexion \u00e0 Flickr", "i.errorLREConnection":"Erreur de connexion \u00e0 la biblioth\u00e8que LRE", 
-"i.errorViSHConnection":"Erreur de connexion au serveur ViSH", "i.errorYoutubeConnection":"Erreur de connexion \u00e0 YouTube", "i.Ethics":"\u00c9thique", "i.ExcursionDetails":"D\u00e9tails de l'excursion", "i.Excursions":"Excursions", "i.exitConfirmation":"Vous \u00eates sur le point de quitter ViSH editor. Vous perdrez toutes les modifications que vous n'avez pas enregistr\u00e9es.", "i.exitConfirmation2":"Souhaitez-vous vraiment quitter cette page\u00a0?", "i.Export":"Exporter", "i.exportPresToJSONerrorNotification":"Une erreur s'est produite. Il est impossible d'exporter la pr\u00e9sentation vers un fichier JSON.", 
-"i.Filllater":"Remplir plus tard", "i.Finish":"Terminer", "i.ForeignLanguages":"Langues \u00e9trang\u00e8res", "i.Game":"Jeu", "i.GeneralCulture":"Culture g\u00e9n\u00e9rale", "i.Geography":"G\u00e9ographie", "i.Geology":"G\u00e9ologie", "i.GotoSettings":"Acc\u00e9der aux param\u00e8tres", "i.HealthEducation":"\u00c9ducation \u00e0 la sant\u00e9", "i.Help":"Aide", "i.HigherEducation":"Enseignement sup\u00e9rieur", "i.History":"Histoire", "i.HomeEconomics":"\u00c9conomie domestique", "i.Hours":"Heures", 
-"i.Image":"Image", "i.Images":"Images", "i.Import":"Importer", "i.Insert":"Ins\u00e9rer", "i.invalidvalue":"valeur invalide", "i.Language":"Langue", "i.Languageindependent":"Ind\u00e9pendante de la langue", "i.Law":"Droit", "i.limitReached":"limite atteinte", "i.link":"lien", "i.Literature":"Litt\u00e9rature", "i.LiveQuiz":"Quiz en direct", "i.LiveResources":"Ressources en direct", "i.MandatoryFieldsNotification":"Vous devez saisir un titre et choisir un avatar avant de publier l'excursion.", "i.math":"math\u00e9matiques", 
-"i.Mathematics":"Math\u00e9matiques", "i.medium":"moyennement difficile", "i.Minutes":"Minutes", "i.Music":"Musique", "i.nanoscience":"nanosciences", "i.NaturalSciences":"Sciences naturelles", "i.next":"suivant", "i.Next":"Suivant", "i.no":"non", "i.No":"Non", "i.NoJSONFileError":"Vous devez s\u00e9lectionner un fichier \u00e0 importer au format JSON.", "i.Noresultsfound":"Aucun r\u00e9sultat trouv\u00e9", "i.NoSlidesOnSaveNotification":"Avant d'enregistrer votre excursion, vous devez cr\u00e9er au moins une diapositive.", 
-"i.Object":"Objet", "i.Objects":"Objets", "i.or":"ou", "i.Other":"Autre", "i.Others":"Autres", "i.pasteEmbedObject":"coller l'URL du fichier SWF ou PDF", "i.pasteImageURL":"coller l'URL de l'image", "i.pasteVideoURL":"coller l'URL de la vid\u00e9o HTML5 ou YouTube", "i.pasteWeb":"coller l'URL de la page web", "i.pdfErrorNotification":"Une erreur s'est produite. Assurez-vous que le fichier PDF est valide.", "i.PDFNotValid":"Une erreur s'est produite. Assurez-vous que le fichier PDF s\u00e9lectionn\u00e9 est valide.", 
-"i.PDFSlideshow":"Diaporama PDF", "i.PedagogicalAspects":"Aspects p\u00e9dagogiques", "i.Philosophy":"Philosophie", "i.PhysicalEducation":"\u00c9ducation physique", "i.Physics":"Physique", "i.pNotValid":"Il est impossible d'ouvrir cette ressource, car elle est corrompue ou incompatible avec la version actuelle de ViSH editor.", "i.Politics":"Politique", "i.Preschool":"Enseignement pr\u00e9scolaire", "i.Presentation":"Pr\u00e9sentation", "i.presDescriptionPlaceHolder":"Veuillez d\u00e9crire bri\u00e8vement sur quel sujet porte votre excursion...", 
-"i.presTitle":"Titre de l'excursion", "i.Preview":"Aper\u00e7u", "i.Psychology":"Psychologie", "i.publish":"publier", "i.Publish":"Publier", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"R\u00e9pondre", "i.QuizButtonLaunch":"Lancer", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"R\u00e9essayer", "i.QuizEmptyAnswerAlert":"Veuillez r\u00e9pondre au quiz avant de l'envoyer.", "i.QuizLaunch":"Lancer", "i.QuizMultipleLaunchAlert":"Veuillez arr\u00eater tous les quiz en direct avant d'en lancer un nouveau.", 
-"i.QuizNotSubmittedAlert":"D\u00e9sol\u00e9, votre r\u00e9ponse n'a pas pu \u00eatre envoy\u00e9e.", "i.QuizResults":"R\u00e9sultats", "i.QuizSaveConfirmation":"Souhaitez-vous enregistrer les r\u00e9sultats du quiz\u00a0?", "i.QuizSessionName":"Nom du quiz en direct", "i.QuizStop":"Arr\u00eater", "i.QuizSubmittedAlert":"Votre r\u00e9ponse a \u00e9t\u00e9 envoy\u00e9e", "i.Quizzes":"Quiz", "i.readJSONfileError":"Erreur de lecture du fichier JSON", "i.Religion":"Religion", "i.Remove":"Supprimer", "i.resourceNonCompatibleNotification":"Il est impossible d'ouvrir cette ressource, car elle est corrompue ou incompatible avec la version actuelle de ViSH editor.", 
-"i.save":"enregistrer", "i.Save":"Enregistrer", "i.Saving":"Enregistrement", "i.School":"\u00c9cole", "i.SearchContent":"Rechercher du contenu", "i.Searchplaces":"Rechercher des endroits", "i.Seconds":"Secondes", "i.SelectAll":"Tout s\u00e9lectionner", "i.selectObjectUpload":"S\u00e9lectionner un fichier \u00e0 t\u00e9l\u00e9charger", "i.selectObjectUpload2":"Formats pris en charge\u00a0: SWF (flash), PDF", "i.selectPicture":"S\u00e9lectionner une photo \u00e0 t\u00e9l\u00e9charger", "i.SelectSlide":"S\u00e9lectionner une diapositive", 
-"i.SelectTheme":"S\u00e9lectionner un th\u00e8me", "i.Settings":"Param\u00e8tres", "i.Slides":"Diapositives", "i.SocialSciences":"Sciences sociales", "i.SoftwareEngineering":"G\u00e9nie logiciel", "i.Style":"Mod\u00e8le", "i.Subject":"Mati\u00e8re", "i.Tags":"Mots-cl\u00e9s", "i.Technology":"Technologies", "i.Templates":"Mod\u00e8les", "i.text":"texte", "i.Text":"Texte", "i.Telecommunications":"T\u00e9l\u00e9communications", "i.Title":"Titre*", "i.toJSON":"au format JSON", "i.Training":"Formation", 
-"i.Typicallearningtime":"Temps d'apprentissage moyen", "i.unpublish":"d\u00e9publier", "i.Unpublish":"D\u00e9publier", "i.unpublishing":"annulation", "i.Unpublishing":"Annulation", "i.University":"Universit\u00e9", "i.UnselectAll":"D\u00e9s\u00e9lectionner tout", "i.UnselectSlide":"D\u00e9s\u00e9lectionner la diapositive", "i.unspecified":"non sp\u00e9cifi\u00e9", "i.Unspecified":"Non sp\u00e9cifi\u00e9", "i.upload":"t\u00e9l\u00e9charger", "i.Upload":"T\u00e9l\u00e9charger", "i.verydifficult":"tr\u00e8s difficile", 
-"i.veryeasy":"tr\u00e8s facile", "i.video":"vid\u00e9o", "i.videos":"vid\u00e9os", "i.VirtualTour":"Tour virtuel", "i.yes":"oui", "i.Yes":"Oui", "i.ZoneTooltip":"Cliquez pour ajouter un contenu", "i.tooltip.QSInput":"Saisir le nom du quiz en direct"}, "nl":{"i.Saved":"Opgeslagen", "i.Saving":"Besparing", "i.Unpublish_confirmation":"U gaat naar deze Virtuele Excursie depubliceren van de Vish Platform. Hierna zal de excursie prive en alleen u zult in staat zijn om toegang te krijgen zijn. Wat wilt u doen?", 
-"i.Animations":"Animatie", "i.Horizontal":"Horizontaal", "i.Vertical":"Verticaal", "i.Opacity":"Ondoorzichtigheid", "i.Elements":"Communie", "i.Rotate":"Draaien", "i.Diagonal1":"Diagonaal #1", "i.Diagonal2":"Diagonaal #2", "i.Inside":"Binnen", "i.Zoom":"Ampliar", "i.Flip1":"Beurt #1", "i.Flip2":"Beurt #2", "i.3D":"3D", "i.accept":"accepteren", "i.AddSlideMin":"Toevoegen", "i.add":"toevoegen", "i.Add":"Toevoegen", "i.Addanavatar":"Een avatar toevoegen *", "i.addatitle":"een titel toevoegen", "i.AddContent":"Inhoud toevoegen", 
-"i.addembeddedobject":"embedded object toevoegen", "i.AddFromJSONfile":"ViSH Editor-Presentatie toevoegen vanuit JSON-bestand", "i.addpicurl":"afbeeldings-url toevoegen", "i.AddSlide":"Dia toevoegen", "i.AddSlides":"Dia\u2019s toevoegen", "i.AddslideshowPDF":"Diavoorstelling toevoegen vanuit PDF-bestand", "i.AddTags":"Tags toevoegen", "i.addvideourl":"Video-url toevoegen (YouTube, HTML5)", "i.Age range":"Leeftijdscategorie", "i.areyousureNotification":"Weet u het zeker?", "i.Art":"Kunst", "i.Astronomy":"Astronomie", 
-"i.Author":"Auteur", "i.Background":"Achtergrond", "i.biology":"Biologie", "i.Biology":"Biologie", "i.browserrequirements":"Uw browser voldoet niet aan de minimumeisen om de ViSH Editor op te starten, update uw browser.", "i.by":"door", "i.cancel":"annuleren", "i.Cancel":"Annuleren", "i.Chemistry":"Scheikunde", "i.Citizenship":"Burgerschap", "i.ClassicalLanguages":"Klassieke Talen", "i.close":"sluiten", "i.Close":"Sluiten", "i.content":"inhoud", "i.Content":"Inhoud", "i.Context":"Context", "i.continue":"doorgaan", 
-"i.Continue":"Doorgaan", "i.CrossCurricularEducation":"Vakoverschrijdend Onderwijs", "i.ComputerScience":"Informatica", "i.delete":"verwijderen", "i.Description":"Beschrijving", "i.difficult":"moeilijk", "i.Difficulty":"Moeilijkheid", "i.done":"klaar", "i.Done":"Klaar", "i.draft":"ontwerp", "i.easy":"gemakkelijk", "i.Economics":"Economie", "i.edit":"bewerken", "i.Education":"Onderwijs", "i.EducationalObjectives":"Onderwijskundige Doelstellingen", "i.EducationalObjectivesPlaceholder":"Beschrijf de onderwijskundige doelstellingen die u beoogt te verwezenlijken met deze excursie...", 
-"i.Electronics":"Elektronica", "i.embedwebsite":"web embedden", "i.embedWebSnapshot":"Websnapshot embedden", "i.EnvironmentalEducation":"Milieueducatie", "i.errorFlickrConnection":"Fout met betrekking tot Flickr", "i.errorLREConnection":"Fout met betrekking tot LRE-opslagbank", "i.errorViSHConnection":"Fout met betrekking tot ViSH server", "i.errorYoutubeConnection":"Fout met betrekking tot YouTube", "i.Ethics":"Ethiek", "i.ExcursionDetails":"Bijzonderheden Excursie", "i.Excursions":"Excursies", 
-"i.exitConfirmation":"U staat op het punt ViSH Editor te verlaten. U raakt alle veranderingen kwijt die u niet hebt opgeslagen.", "i.exitConfirmation2":"Weet u zeker dat u deze pagina wilt verlaten?", "i.Export":"Exporteren", "i.exportPresToJSONerrorNotification":"Er is een fout opgetreden. Het is niet mogelijk de presentatie te exporteren naar een JSON-bestand.", "i.Filllater":"Later invullen", "i.Finish":"Voltooien", "i.ForeignLanguages":"Vreemde Talen", "i.Game":"Spel", "i.GeneralCulture":"Algemene Cultuur", 
-"i.Geography":"Aardrijkskunde", "i.Geology":"Geologie", "i.GotoSettings":"Ga naar Instellingen", "i.HealthEducation":"Gezondheidsonderwijs", "i.Help":"Hulp", "i.HigherEducation":"Hoger Onderwijs", "i.History":"Geschiedenis", "i.HomeEconomics":"Huishoudkunde", "i.Hours":"Uren", "i.Image":"Afbeelding", "i.Images":"Afbeeldingen", "i.Import":"Importeren", "i.Insert":"Invoegen", "i.invalidvalue":"ongeldige waarde", "i.Language":"Taal", "i.Languageindependent":"Taalonafhankelijk", "i.Law":"Wet", "i.limitReached":"limiet bereikt", 
-"i.link":"link", "i.Literature":"Literatuur", "i.LiveQuiz":"Live Quiz", "i.LiveResources":"Live Hulpbronnen", "i.MandatoryFieldsNotification":"U moet een titel invoeren voor de excursie en een avatar selecteren voordat u de excursie publiceert", "i.math":"wiskunde", "i.Mathematics":"Wiskunde", "i.medium":"medium", "i.Minutes":"Minuten", "i.Music":"Muziek", "i.nanoscience":"nanowetenschap", "i.NaturalSciences":"NatuurWetenschappen", "i.next":"volgende", "i.Next":"Volgende", "i.no":"nee", "i.No":"Nee", 
-"i.NoJSONFileError":"U moet een bestand selecteren om in JSON-formaat te importeren", "i.Noresultsfound":"Geen resultaten gevonden", "i.NoSlidesOnSaveNotification":"Voordat u opslaat, moet u ten minste \u00e9\u00e9n dia cre\u00ebren.", "i.Object":"Object", "i.Objects":"Objecten", "i.or":"of", "i.Other":"Overige", "i.Others":"Overige", "i.pasteEmbedObject":"SWF of PDF bestand URL plakken", "i.pasteImageURL":"afbeeldings-URL plakken", "i.pasteVideoURL":"HTML5 of YouTube video-URL plakken", "i.pasteWeb":"website-URL plakken", 
-"i.pdfErrorNotification":"Er is een fout opgetreden. Zorg ervoor dat het PDF-bestand geldig is.", "i.PDFNotValid":"Er is een fout opgetreden. Zorg ervoor dat het geselecteerde PDF-bestand correct is.", "i.PDFSlideshow":"PDF-diaserie", "i.PedagogicalAspects":"Pedagogische Aspecten", "i.Philosophy":"Filosofie", "i.PhysicalEducation":"Lichamelijke Oefening", "i.Physics":"Natuurkunde", "i.pNotValid":"Deze hulpbron kan niet worden geopend omdat zij corrupt is of niet compatibel is met de huidige versie van Vish Editor.", 
-"i.Politics":"Politiek", "i.Preschool":"Voorschools", "i.Presentation":"Presentatie", "i.presDescriptionPlaceHolder":"Beschrijf in een paar woorden waar uw excursie over gaat...", "i.presTitle":"Titel Excursie", "i.Preview":"Vooruitblik", "i.Psychology":"Psychologie", "i.publish":"publiceren", "i.Publish":"Publiceren", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Antwoorden", "i.QuizButtonLaunch":"Starten", "i.QuizButtonOptions":"Opties", "i.QuizButtonRetry":"Opnieuw proberen", "i.QuizEmptyAnswerAlert":"De quiz beantwoorden voordat u deze verzendt", 
-"i.QuizLaunch":"Starten", "i.QuizMultipleLaunchAlert":"Alle live quizzen be\u00ebindigen voordat u een andere start", "i.QuizNotSubmittedAlert":"Sorry, uw antwoord kon niet verzonden worden", "i.QuizResults":"Resultaten", "i.QuizSaveConfirmation":"Wilt u de resultaten van de quiz opslaan?", "i.QuizSessionName":"Naam Live Quiz", "i.QuizStop":"Stoppen", "i.QuizSubmittedAlert":"Uw antwoord is verzonden", "i.Quizzes":"Quizzen", "i.readJSONfileError":"Er is een fout opgetreden bij het lezen van het JSON-bestand", 
-"i.Religion":"Godsdienst", "i.Remove":"Verwijderen", "i.resourceNonCompatibleNotification":"Deze hulpbron is corrupt of is niet compatibel met de huidige versie van ViSH Editor en kan niet worden geopend.", "i.save":"opslaan", "i.Save":"Opslaan", "i.Saving":"Bestand", "i.School":"School", "i.SearchContent":"Inhoud zoeken", "i.Searchplaces":"Plaatsen zoeken", "i.Seconds":"Seconden", "i.SelectAll":"Alles selecteren", "i.selectObjectUpload":"Een bestand selecteren om te uploaden", "i.selectObjectUpload2":"Ondersteunde formaten: SWF (flash), PDF", 
-"i.selectPicture":"Afbeelding selecteren om te uploaden", "i.SelectSlide":"Dia selecteren", "i.SelectTheme":"Thema selecteren", "i.Settings":"Instellingen", "i.Slides":"Dia\u2019s", "i.SocialSciences":"Sociale Wetenschappen", "i.SoftwareEngineering":"Software Engineering", "i.Style":"Stijl", "i.Subject":"Vak", "i.Tags":"Tags", "i.Technology":"Technologie", "i.Templates":"Sjablonen", "i.text":"tekst", "i.Text":"Tekst", "i.Telecommunications":"Telecommunicatie", "i.Title":"Titel *", "i.toJSON":"naar JSON", 
-"i.Training":"Opleiding", "i.Typicallearningtime":"Typische leertijd", "i.unpublish":"depubliceren", "i.Unpublish":"Depubliceren", "i.unpublishing":"verwijderen", "i.Unpublishing":"Verwijderen", "i.University":"Universiteit", "i.UnselectAll":"Alles deselecteren", "i.UnselectSlide":"Dia deselecteren", "i.unspecified":"ongespecificeerd", "i.Unspecified":"Ongespecificeerd", "i.upload":"uploaden", "i.Upload":"Uploaden", "i.verydifficult":"zeer moeilijk", "i.veryeasy":"zeer gemakkelijk", "i.video":"video", 
-"i.videos":"video\u2019s", "i.VirtualTour":"Virtuele Rondleiding", "i.yes":"ja", "i.Yes":"Ja", "i.ZoneTooltip":"Klik hier om inhoud toe te voegen", "i.tooltip.QSInput":"Voor een naam in voor de live quiz"}, "hu":{"i.Saved":"Mentett", "i.Saving":"Ment\u00e9se", "i.Unpublish_confirmation":"Fogsz publik\u00e1lni ezt a virtu\u00e1lis kir\u00e1ndul\u00e1s a Vish Platform. Ezt k\u00f6vet\u0151en a kir\u00e1ndul\u00e1s lesz mag\u00e1n, \u00e9s csak akkor lesz k\u00e9pes hozz\u00e1f\u00e9rni. Mit szeretn\u00e9l csin\u00e1lni?", 
-"i.Animations":"\u00c9l\u00e9nks\u00e9g", "i.Horizontal":"V\u00edzszintes", "i.Vertical":"F\u00fcgg\u0151leges", "i.Opacity":"Hom\u00e1lyoss\u00e1g", "i.Elements":"Alapismeretek", "i.Rotate":"Forgat", "i.Diagonal1":"\u00c1tl\u00f3s #1", "i.Diagonal2":"\u00c1tl\u00f3s #2", "i.Inside":"Bels\u0151", "i.Zoom":"Zoomol\u00e1s", "i.Flip1":"Megfricsk\u00e1z #1", "i.Flip2":"Megfricsk\u00e1z #2", "i.3D":"3D", "i.About2":"A k\u00f3d el\u00e9rhet\u0151 itt: ", "i.About3":"l\u00e1togasd meg a YouTube csatorn\u00e1nkat", 
-"i.About4":"K\u00e9sz\u00edtette", "i.accept":"elfogad", "i.AddSlideMin":"Hozz\u00e1ad\u00e1s", "i.add":"hozz\u00e1ad\u00e1s", "i.Add":"Hozz\u00e1ad\u00e1s", "i.Addanavatar":"Adj meg egy k\u00e9pet *", "i.addatitle":"adj meg egy c\u00edmet", "i.AddContent":"Adj hozz\u00e1 tartalmat", "i.addembeddedobject":"adj hozz\u00e1 be\u00e1gyazott k\u00f3dot", "i.AddFromJSONfile":"ViSH Szerkeszt\u0151 prezent\u00e1ci\u00f3 hozz\u00e1ad\u00e1sa JSON f\u00e1jlb\u00f3l", "i.addpicurl":"k\u00e9p URL hozz\u00e1ad\u00e1sa", 
-"i.AddSlide":"Dia hozz\u00e1ad\u00e1sa", "i.AddSlides":"Di\u00e1k hozz\u00e1ad\u00e1sa", "i.AddslideshowPDF":"Diasor hozz\u00e1ad\u00e1sa PDF-b\u0151l", "i.AddTags":"C\u00edmke hozz\u00e1ad\u00e1sa", "i.addvideourl":"video URL hozz\u00e1ad\u00e1sa (YouTube, HTML5)", "i.Age range":"Koroszt\u00e1ly", "i.areyousureNotification":"biztos vagy benne?", "i.Art":"M\u0171v\u00e9szetek", "i.Astronomy":"Csillag\u00e1szat", "i.Author":"Szerz\u0151", "i.Background":"H\u00e1tt\u00e9r", "i.biology":"biol\u00f3gia", 
-"i.Biology":"Biol\u00f3gia", "i.browserrequirements":"A b\u00f6ng\u00e9sz\u0151d sajnos nem felel meg azoknak a k\u00f6vetelm\u00e9nyeknek ami a ViSH szerkeszt\u0151 megnyit\u00e1s\u00e1hoz sz\u00fcks\u00e9gesek. K\u00e9rlek, friss\u00edtsd a b\u00f6ng\u00e9sz\u0151det.", "i.by":"k\u00e9sz\u00edtette", "i.cancel":"m\u00e9gsem", "i.Cancel":"M\u00e9gsem", "i.Chemistry":"K\u00e9mia", "i.Citizenship":"\u00c1llampolg\u00e1rs\u00e1g", "i.ClassicalLanguages":"Klasszikus nyelvek", "i.close":"bez\u00e1r", 
-"i.Close":"Bez\u00e1r", "i.content":"tartalom", "i.Content":"Tartalom", "i.Context":"\u00d6sszef\u00fcgg\u00e9s", "i.continue":"tov\u00e1bb", "i.Continue":"Tov\u00e1bb", "i.CrossCurricularEducation":"Cross Curricular Education", "i.ComputerScience":"Informatika", "i.delete":"t\u00f6r\u00f6l", "i.Description":"Le\u00edr\u00e1s", "i.difficult":"neh\u00e9z", "i.Difficulty":"Neh\u00e9zs\u00e9g", "i.Documentation":"Dokument\u00e1ci\u00f3", "i.done":"k\u00e9sz", "i.Done":"K\u00e9sz", "i.draft":"piszkozat", 
-"i.easy":"k\u00f6nny\u0171", "i.Economics":"K\u00f6zgazdas\u00e1gtan", "i.edit":"szerkeszt\u00e9s", "i.Education":"Oktat\u00e1s", "i.EducationalObjectives":"Oktat\u00e1si c\u00e9lok", "i.EducationalObjectivesPlaceholder":"K\u00e9rlek r\u00e9szletezd az oktat\u00e1si c\u00e9lokat amiket ezzel a virtu\u00e1lis s\u00e9t\u00e1val szeretn\u00e9l el\u00e9rni...", "i.Electronics":"Elektronika", "i.embedwebsite":"be\u00e1gyazott weboldal", "i.embedWebSnapshot":"be\u00e1gyazott weboldal k\u00e9p", "i.EnvironmentalEducation":"K\u00f6rnyezeti tanulm\u00e1nyok", 
-"i.errorFlickrConnection":"Hiba a Flickr-hez val\u00f3 csatlakoz\u00e1skor", "i.errorLREConnection":"Hiba az LRE t\u00e1rh\u00e1zhoz val\u00f3 csatlakoz\u00e1skor", "i.errorViSHConnection":"Hiba a ViSH szerverhez val\u00f3 csatlakoz\u00e1skor", "i.errorYoutubeConnection":"Hiba a YouTube-hoz val\u00f3 csatlakoz\u00e1skor", "i.Ethics":"Etika", "i.ExcursionDetails":"Virtu\u00e1lis S\u00e9ta r\u00e9szletek", "i.Excursions":"Virtu\u00e1lis S\u00e9ta", "i.exitConfirmation":"A ViSH szerkeszt\u0151 elhagy\u00e1s\u00e1ra k\u00e9sz\u00fclsz. Minden nem mentett v\u00e1ltoztat\u00e1s el fog veszni.", 
-"i.exitConfirmation2":"Biztosan el akarod hagyni ezt az oldalt?", "i.Export":"Export\u00e1l\u00e1s", "i.exportPresToJSONerrorNotification":"Hiba l\u00e9pett fel. Nem lehet JSON f\u00e1jlba export\u00e1lni.", "i.Filllater":"K\u00e9s\u0151bb t\u00f6lt\u00f6m ki", "i.Finish":"Befejez\u00e9s", "i.ForeignLanguages":"Idegen nyelvek", "i.Game":"J\u00e1t\u00e9k", "i.GeneralCulture":"\u00c1ltal\u00e1nos kult\u00fara", "i.Geography":"F\u00f6ldrajz", "i.Geology":"Geol\u00f3gia", "i.GotoSettings":"Menj a be\u00e1ll\u00edt\u00e1sokhoz", 
-"i.HealthEducation":"Eg\u00e9szs\u00e9g\u00fcgyi oktat\u00e1s", "i.Help":"Seg\u00edts\u00e9g", "i.HigherEducation":"Fels\u0151oktat\u00e1s", "i.History":"T\u00f6rt\u00e9nelem", "i.HomeEconomics":"H\u00e1ztart\u00e1stan", "i.Hours":"\u00d3r\u00e1k", "i.Image":"K\u00e9p", "i.Images":"K\u00e9pek", "i.Import":"Import\u00e1l\u00e1s", "i.Insert":"Beilleszt\u00e9s", "i.invalidvalue":"\u00e9rv\u00e9nytelen \u00e9rt\u00e9k", "i.Language":"Nyelv", "i.Languageindependent":"Nyelv f\u00fcggetlen", "i.Law":"T\u00f6rv\u00e9ny", 
-"i.License":"Enged\u00e9ly", "i.limitReached":"limit el\u00e9rve", "i.link":"link", "i.Literature":"Irodalom", "i.LiveQuiz":"\u00c9l\u0151 Kv\u00edz", "i.LiveResources":"\u00c9l\u0151 Tartalom", "i.MandatoryFieldsNotification":"K\u00e9rlek adj meg egy c\u00edmet \u00e9s egy k\u00e9pet miel\u0151tt publik\u00e1lod a Virtu\u00e1lis S\u00e9t\u00e1t.", "i.math":"matek", "i.Mathematics":"Matematika", "i.medium":"k\u00f6zepes", "i.Minutes":"Percek", "i.Music":"Zene", "i.nanoscience":"nano tudom\u00e1ny", 
-"i.NaturalSciences":"Term\u00e9szettudom\u00e1nyok", "i.next":"k\u00f6vetkez\u0151", "i.Next":"K\u00f6vetkez\u0151", "i.no":"nem", "i.No":"Nem", "i.NoJSONFileError":"Ki kell v\u00e1lasztanod egy f\u00e1jl a JSON import\u00e1l\u00e1shoz.", "i.Noresultsfound":"Nincs tal\u00e1lat", "i.NoSlidesOnSaveNotification":"Ment\u00e9s el\u0151tt legal\u00e1bb egy di\u00e1t k\u00e9sz\u00edtened kell.", "i.Object":"T\u00e1rgy", "i.Objects":"T\u00e1rgyak", "i.or":"vagy", "i.Other":"T\u00f6bbi", "i.Others":"T\u00f6bbi", 
-"i.pasteEmbedObject":"illeszd be az SWF vagy a PDF f\u00e1jl URL-j\u00e9t", "i.pasteImageURL":"illeszd be a k\u00e9p URL-j\u00e9t", "i.pasteVideoURL":"illeszd be a HTML5 vagy YouTube vide\u00f3 URL-j\u00e9t", "i.pasteWeb":"illeszd be a weboldal URL-j\u00e9t", "i.pdfErrorNotification":"Hiba l\u00e9pett fel, k\u00e9rlek ellen\u0151rizd le, hogy a PDF f\u00e1jl rendben van-e.", "i.PDFNotValid":" Hiba l\u00e9pett fel, k\u00e9rlek ellen\u0151rizd le, hogy a PDF f\u00e1jl rendben van-e.", "i.PDFSlideshow":"PDF diasor", 
-"i.PedagogicalAspects":"Pedag\u00f3gia Szempontok", "i.Philosophy":"Filoz\u00f3fia", "i.PhysicalEducation":"Testnevel\u00e9s", "i.Physics":"Fizika", "i.pNotValid":"Ez a tartalom nem nyithat\u00f3 meg, mert vagy hib\u00e1s, vagy nem kompatibilis a ViSH szerkeszt\u0151 ezen verzi\u00f3j\u00e1val.", "i.Politics":"Politol\u00f3gia", "i.Preschool":"\u00c1ltal\u00e1nos iskola", "i.Presentation":"Prezent\u00e1ci\u00f3", "i.presDescriptionPlaceHolder":"K\u00e9rlek n\u00e9h\u00e1ny sz\u00f3ban ismertesd mir\u0151l sz\u00f3l a Virtu\u00e1lis S\u00e9t\u00e1d...", 
+"i.vtTitle_GStarted":"Introducci\u00f3n a ViSH Editor", "i.About2":"C\u00f3digo disponible en", "i.About3":"visita nuestro canal de YouTube", "i.About4":"Desarrollado por", "i.VESurvey1":"Ay\u00fadanos a mejorar ViSH Editor", "i.VESurvey2":"Por favor, rellena", "i.VESurvey3":"esta encuesta", "i.VESurvey4":"\u00a1Gracias por tu colaboraci\u00f3n", "i.VESurveyURL":"https://docs.google.com/forms/d/1b_Ml2iua0oDNKkJqc7eT1W2CDlRhIZR__w2AlicfwjA/viewform", "i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", 
+"i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddePackage":"A\u00f1adir un paquete de e-Learning mediante un archivo ZIP. Formatos soportados: SCORM y aplicaciones web HTML5 personalizadas.", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", 
+"i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", "i.AddTags":"A\u00f1adir etiquetas", "i.AddTimestampLink":"A\u00f1adir marca de tiempo", "i.addvideourl":"a\u00f1adir URL de v\u00eddeo (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Animations":"Animaciones", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", "i.Opacity":"Opacidad", "i.Elements":"Elementos", "i.Rotate":"Rotar", 
+"i.Diagonal1":"Diagonal #1", "i.Diagonal2":"Diagonal #2", "i.Inside":"Dentro", "i.Zoom":"Ampliar", "i.Flip1":"Vuelta #1", "i.Flip2":"Vuelta #2", "i.3D":"3D", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.by":"por", "i.cancel":"cancelar", 
+"i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", "i.close":"cerrar", "i.Close":"Cerrar", "i.CloseWSaving":"cerrar sin guardar", "i.Competitions":"Competici\u00f3n", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", 
+"i.delete":"borrar", "i.Description":"Descripci\u00f3n", "i.difficult":"dif\u00edcil", "i.Difficulty":"Dificultad", "i.Documentation":"Documentaci\u00f3n", "i.done":"hecho", "i.Done":"Hecho", "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", "i.Electronics":"Electr\u00f3nica", 
+"i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", "i.EnrichedVideo":"V\u00eddeo Enriquecido", "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", "i.ePackage":"Paquete e-Learning", "i.ePackageError1":"Ocurri\u00f3 un error al subir el paquete de e&#8209;Learning.", "i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", "i.errorYoutubeConnection":"Error conectando con YouTube", 
+"i.Ethics":"\u00c9tica", "i.Evaluate":"Evaluar", "i.evaluateTitle":"\u00bfQuieres contribuir evaluando esta excursi\u00f3n?", "i.eVideoChangeNotification":"Si cambias la fuente del v\u00eddeo perder\u00e1s todas las marcas de tiempo que hayas a\u00f1adido. En cualquier caso, conservar\u00e1s las diapositivas que hayas creado. \u00bfEst\u00e1s seguro de que quieres continuar?", "i.ExcursionDetails":"Informaci\u00f3n de la Excursi\u00f3n", "i.Excursion":"Excursi\u00f3n", "i.Excursions":"Excursiones", 
+"i.Exit":"Salir", "i.exitConfirmation":"Vas a abandonar ViSH Editor. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.exitConfirmation2":"\u00bfSeguro que quieres abandonar esta p\u00e1gina?", "i.exitConfirmationMenu":"La Excursi\u00f3n Virtual se ha modificado. Si la cierra sin guardar perder\u00e1 todos los cambios. \u00bfQu\u00e9 desea hacer?", "i.ExitWSaving":"salir sin guardar", "i.Export":"Exportar", "i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un fichero JSON.", 
+"i.exportPresToSCORMerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un paquete SCORM.", "i.exportQuizToQTIerrorNotification":"Ha ocurrido un error. No ha sido posible exportar el cuestionario al formato IMS QTI 2.1.", "i.exportQuizToMoodleXMLerrorNotification":"Ha ocurrido un error. No ha sido posible exportar el cuestionario al formato Moodle XML.", "i.exviews":"visitas", "i.File":"Archivo", "i.Filllater":"Rellenar despu\u00e9s", "i.Finish":"Terminar", 
+"i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", "i.ForeignLanguages":"Idiomas", "i.Game":"Juego", "i.GeneralCulture":"Cultura General", "i.Geography":"Geograf\u00eda", "i.Geology":"Geolog\u00eda", "i.GotoSettings":"Ir a Ajustes", "i.HealthEducation":"Educaci\u00f3n para la Salud", "i.Help":"Ayuda", "i.HigherEducation":"Educaci\u00f3n Superior", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Hours":"Horas", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", 
+"i.Import":"Importar", "i.ImportFromEFile":"Importar recursos mediante archivos externos:", "i.ImportFromEFileVEJSON":"Presentaciones y Diapositivas de ViSH Editor de archivos JSON", "i.ImportFromEFileIMSQTI":"Cuestionarios (Quizzes) de archivos XML compatibles con IMS QTI 2.1", "i.Insert":"Insertar", "i.invalidvalue":"valor inv\u00e1lido", "i.ItemAndBall":"Esta entrada est\u00e1 enlazada con la diapositiva #{letter} del V\u00eddeo Enriquecido.", "i.Language":"Idioma", "i.Languageindependent":"Independiente del idioma", 
+"i.Law":"Derecho", "i.License":"Licencia", "i.limitReached":"limite alcanzado", "i.link":"enlace", "i.Literature":"Literatura", "i.LiveQuiz":"Cuestionario en Vivo", "i.LiveResources":"Contenidos en directo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", "i.math":"matem\u00e1ticas", "i.Mathematics":"Matem\u00e1ticas", "i.medium":"medio", "i.Minutes":"Minutos", "i.Music":"M\u00fasica", "i.nanoscience":"nanociencia", 
+"i.NaturalSciences":"Ciencias Naturales", "i.next":"siguiente", "i.Next":"Siguiente", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"\u00bfQuieres participar en la competici\u00f3n? Puedes ganar un gran premio. Lee la guia de c\u00f3mo hacerlo <a href='http://vishub.org/competitions' target='_blank'>aqu\u00ed</a>", "i.NoCompetitions2":"A\u00f1ade una o m\u00e1s de las siguientes tags para participar:", "i.NoCompetitions3":"Se a\u00f1adir\u00e1n a las tags de la excursi\u00f3n. Las puedes revisar o cambiar en la p\u00e1gina de ajustes", 
+"i.NoFileError":"No has seleccionado ning\u00fan archivo para importar.", "i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON.", "i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.NoThanks":"No gracias", "i.NoSupportedFileError":"El archivo no puede ser importado. El formato no est\u00e1 soportado.", "i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", 
+"i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.Package":"Paquete", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un v\u00eddeo HTML5 o de YouTube", "i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido.", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido.", 
+"i.pdfErrorNotificationSize":"Ha ocurrido un error. El fichero PDF debe tener un tama\u00f1o inferior a 8 Mb.", "i.pdfErrorNotificationPages":"Ha ocurrido un error. El fichero PDF tiene demasiadas p\u00e1ginas.", "i.PDFSlideshow":"Presentaci\u00f3n PDF", "i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.pEducation":"Educaci\u00f3n Primaria", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", 
+"i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Educaci\u00f3n Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.publishing":"Publicando", "i.Publishing":"Publicando", "i.Publish_confirmation":"Vas a guardar y publicar esta Excursi\u00f3n Virtual en la plataforma ViSH. Despu\u00e9s de esto, la excursi\u00f3n ser\u00e1 p\u00fablica y cualquiera podr\u00e1 acceder a ella. \u00bfQu\u00e9 deseas hacer?", 
+"i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", "i.QuizButtonContinue":"Continuar", "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizCreateSessionError":"Lo sentimos, ha ocurrido un error al crear un nuevo cuestionario en vivo", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", 
+"i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", "i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizSettings":"Ajustes de Quiz", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", "i.readJSONfileError":"Error al leer el fichero JSON", "i.recommendationsTitle":"Excursiones recomendadas:", 
+"i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.save":"guardar", "i.Save":"Guardar", "i.SaveAndExit":"guardar y salir", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.sEducation":"Educaci\u00f3n Secundaria", "i.SelectAll":"Seleccionar Todas", 
+"i.selectObjectUpload":"Selecciona un archivo para subir", "i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slide":"Diapositiva", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", 
+"i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Time":"Tiempo", "i.Title":"T\u00edtulo", "i.TitleM":"T\u00edtulo *", "i.toJSON":"a JSON", "i.toSCORM":"a SCORM", "i.PTraining":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", 
+"i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.Untitled":"Sin T\u00edtulo", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", 
+"i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.YouTubePlayAlert":"Haz click sobre el v\u00eddeo para empezar la reproducci\u00f3n", "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", 
+"i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.tooltip.Help":"Ayuda", "i.last":"\u00faltimo"}, "default":{"i.AddSlideMin":"Add Slide", "i.add":"add", "i.Add":"Add", "i.AddTags":"Add tags", "i.AddTimestampLink":"Add timestamp link", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.close":"close", "i.Close":"Close", 
+"i.CloseWSaving":"close without saving", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.ePackageError1":"An error ocurred when uploading the e&#8209;Learning package.", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.eVideoChangeNotification":"If you change the v\u00eddeo source you will lose all the timestamp links you have added. In any case, you will keep the slides you have created. Are you sure you want to continue?", 
+"i.Exit":"Exit", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", "i.exitConfirmation2":"Are you sure you want to leave this page?", "i.exitConfirmationMenu":"The Virtual Excursion has been modified. If you close without saving you will lose all changes. What would you like to do?", "i.ExitWSaving":"exit without saving", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", 
+"i.exportPresToSCORMerrorNotification":"An error has ocurred. Is not possible to export the presentation to a SCORM package.", "i.exportQuizToQTIerrorNotification":"An error has ocurred. Is not possible to export the quiz to the IMS QTI 2.1 format.", "i.exportQuizToMoodleXMLerrorNotification":"An error has ocurred. Is not possible to export the quiz to the Moodle XML format.", "i.exviews":"views", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.ItemAndBall":"This item is linked to the #{letter} slide of the Enriched Video.", 
+"i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", "i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", "i.NoCompetitions2":"Add one or more of the following tags to participate:", "i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", 
+"i.NoFileError":"You have not selected any file to import.", "i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.NoSupportedFileError":"The file cannot be imported. The format is not supported.", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube v\u00eddeo URL", 
+"i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", "i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", 
+"i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", "i.QuizButtonAnswer":"Answer", "i.QuizButtonContinue":"Continue", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", 
+"i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", "i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizSettings":"Quiz Settings", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", 
+"i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Time":"Time", "i.Title":"Title", "i.TitleM":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", 
+"i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.Untitled":"Untitled", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.YouTubePlayAlert":"Click on the video to start playing", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}, "fr":{"i.Saved":"Enregistr\u00e9", 
+"i.Saving":"Enregistrement", "i.Unpublish_confirmation":"Vous allez d\u00e9publier ce Excursion virtuelle de la plate-forme Vish. Apr\u00e8s cela, l'excursion sera priv\u00e9 et ne vous sera en mesure d'y acc\u00e9der. Que souhaitez-vous faire?", "i.Animations":"Animation", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", "i.Opacity":"Opacit\u00e9", "i.Elements":"\u00c9l\u00e9ments", "i.Rotate":"tourner", "i.Diagonal1":"Diagonale #1", "i.Diagonal2":"Diagonale #2", "i.Inside":"Int\u00e9rieur", 
+"i.Zoom":"Ampliar", "i.Flip1":"Tour #1", "i.Flip2":"Tour #2", "i.3D":"3D", "i.accept":"accepter", "i.AddSlideMin":"Ajouter", "i.add":"ajouter", "i.Add":"Ajouter", "i.Addanavatar":"Ajouter un avatar*", "i.addatitle":"ajouter un titre", "i.AddContent":"Ajouter un contenu", "i.addembeddedobject":"ajouter un objet incorpor\u00e9", "i.AddFromJSONfile":"Ajouter une pr\u00e9sentation ViSH editor \u00e0 partir d'un fichier JSON", "i.addpicurl":"ajouter l'URL d'une image", "i.AddSlide":"Ajouter une diapositive", 
+"i.AddSlides":"Ajouter des diapositives", "i.AddslideshowPDF":"Ajouter un diaporama \u00e0 partir d'un fichier PDF", "i.AddTags":"Ajouter des mots-cl\u00e9s", "i.addvideourl":"ajouter l'URL d'une vid\u00e9o (YouTube, HTML5)", "i.Age range":"Tranche d'\u00e2ge", "i.areyousureNotification":"\u00cates-vous s\u00fbr(e)\u00a0?", "i.Art":"Art", "i.Astronomy":"Astronomie", "i.Author":"Auteur", "i.Background":"Arri\u00e8re-plan", "i.biology":"biologie", "i.Biology":"Biologie", "i.browserrequirements":"Votre navigateur ne r\u00e9pond pas aux exigences minimales pour lancer ViSH editor, veuillez mettre \u00e0 jour votre navigateur.", 
+"i.by":"par", "i.cancel":"annuler", "i.Cancel":"Annuler", "i.Chemistry":"Chimie", "i.Citizenship":"Citoyennet\u00e9", "i.ClassicalLanguages":"Langues classiques", "i.close":"fermer", "i.Close":"Fermer", "i.content":"contenu", "i.Content":"Contenu", "i.Context":"Contexte", "i.continue":"continuer", "i.Continue":"Continuer", "i.CrossCurricularEducation":"\u00c9ducation interdisciplinaire", "i.ComputerScience":"Informatique", "i.delete":"supprimer", "i.Description":"Description", "i.difficult":"difficile", 
+"i.Difficulty":"Difficult\u00e9", "i.done":"termin\u00e9", "i.Done":"Termin\u00e9", "i.draft":"brouillon", "i.easy":"facile", "i.Economics":"\u00c9conomie", "i.edit":"\u00e9diter", "i.Education":"\u00c9ducation", "i.EducationalObjectives":"Objectifs \u00e9ducatifs", "i.EducationalObjectivesPlaceholder":"Veuillez d\u00e9crire les objectifs \u00e9ducatifs que vous entendez remplir avec cette excursion...", "i.Electronics":"\u00c9lectronique", "i.embedwebsite":"int\u00e9grer une page web", "i.embedWebSnapshot":"int\u00e9grer la capture instantan\u00e9e d'une page web", 
+"i.EnvironmentalEducation":"\u00c9ducation \u00e0 l'environnement", "i.errorFlickrConnection":"Erreur de connexion \u00e0 Flickr", "i.errorLREConnection":"Erreur de connexion \u00e0 la biblioth\u00e8que LRE", "i.errorViSHConnection":"Erreur de connexion au serveur ViSH", "i.errorYoutubeConnection":"Erreur de connexion \u00e0 YouTube", "i.Ethics":"\u00c9thique", "i.ExcursionDetails":"D\u00e9tails de l'excursion", "i.Excursions":"Excursions", "i.exitConfirmation":"Vous \u00eates sur le point de quitter ViSH editor. Vous perdrez toutes les modifications que vous n'avez pas enregistr\u00e9es.", 
+"i.exitConfirmation2":"Souhaitez-vous vraiment quitter cette page\u00a0?", "i.Export":"Exporter", "i.exportPresToJSONerrorNotification":"Une erreur s'est produite. Il est impossible d'exporter la pr\u00e9sentation vers un fichier JSON.", "i.Filllater":"Remplir plus tard", "i.Finish":"Terminer", "i.ForeignLanguages":"Langues \u00e9trang\u00e8res", "i.Game":"Jeu", "i.GeneralCulture":"Culture g\u00e9n\u00e9rale", "i.Geography":"G\u00e9ographie", "i.Geology":"G\u00e9ologie", "i.GotoSettings":"Acc\u00e9der aux param\u00e8tres", 
+"i.HealthEducation":"\u00c9ducation \u00e0 la sant\u00e9", "i.Help":"Aide", "i.HigherEducation":"Enseignement sup\u00e9rieur", "i.History":"Histoire", "i.HomeEconomics":"\u00c9conomie domestique", "i.Hours":"Heures", "i.Image":"Image", "i.Images":"Images", "i.Import":"Importer", "i.Insert":"Ins\u00e9rer", "i.invalidvalue":"valeur invalide", "i.Language":"Langue", "i.Languageindependent":"Ind\u00e9pendante de la langue", "i.Law":"Droit", "i.limitReached":"limite atteinte", "i.link":"lien", "i.Literature":"Litt\u00e9rature", 
+"i.LiveQuiz":"Quiz en direct", "i.LiveResources":"Ressources en direct", "i.MandatoryFieldsNotification":"Vous devez saisir un titre et choisir un avatar avant de publier l'excursion.", "i.math":"math\u00e9matiques", "i.Mathematics":"Math\u00e9matiques", "i.medium":"moyennement difficile", "i.Minutes":"Minutes", "i.Music":"Musique", "i.nanoscience":"nanosciences", "i.NaturalSciences":"Sciences naturelles", "i.next":"suivant", "i.Next":"Suivant", "i.no":"non", "i.No":"Non", "i.NoJSONFileError":"Vous devez s\u00e9lectionner un fichier \u00e0 importer au format JSON.", 
+"i.Noresultsfound":"Aucun r\u00e9sultat trouv\u00e9", "i.NoSlidesOnSaveNotification":"Avant d'enregistrer votre excursion, vous devez cr\u00e9er au moins une diapositive.", "i.Object":"Objet", "i.Objects":"Objets", "i.or":"ou", "i.Other":"Autre", "i.Others":"Autres", "i.pasteEmbedObject":"coller l'URL du fichier SWF ou PDF", "i.pasteImageURL":"coller l'URL de l'image", "i.pasteVideoURL":"coller l'URL de la vid\u00e9o HTML5 ou YouTube", "i.pasteWeb":"coller l'URL de la page web", "i.pdfErrorNotification":"Une erreur s'est produite. Assurez-vous que le fichier PDF est valide.", 
+"i.PDFNotValid":"Une erreur s'est produite. Assurez-vous que le fichier PDF s\u00e9lectionn\u00e9 est valide.", "i.PDFSlideshow":"Diaporama PDF", "i.PedagogicalAspects":"Aspects p\u00e9dagogiques", "i.Philosophy":"Philosophie", "i.PhysicalEducation":"\u00c9ducation physique", "i.Physics":"Physique", "i.pNotValid":"Il est impossible d'ouvrir cette ressource, car elle est corrompue ou incompatible avec la version actuelle de ViSH editor.", "i.Politics":"Politique", "i.Preschool":"Enseignement pr\u00e9scolaire", 
+"i.Presentation":"Pr\u00e9sentation", "i.presDescriptionPlaceHolder":"Veuillez d\u00e9crire bri\u00e8vement sur quel sujet porte votre excursion...", "i.presTitle":"Titre de l'excursion", "i.Preview":"Aper\u00e7u", "i.Psychology":"Psychologie", "i.publish":"publier", "i.Publish":"Publier", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"R\u00e9pondre", "i.QuizButtonLaunch":"Lancer", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"R\u00e9essayer", "i.QuizEmptyAnswerAlert":"Veuillez r\u00e9pondre au quiz avant de l'envoyer.", 
+"i.QuizLaunch":"Lancer", "i.QuizMultipleLaunchAlert":"Veuillez arr\u00eater tous les quiz en direct avant d'en lancer un nouveau.", "i.QuizNotSubmittedAlert":"D\u00e9sol\u00e9, votre r\u00e9ponse n'a pas pu \u00eatre envoy\u00e9e.", "i.QuizResults":"R\u00e9sultats", "i.QuizSaveConfirmation":"Souhaitez-vous enregistrer les r\u00e9sultats du quiz\u00a0?", "i.QuizSessionName":"Nom du quiz en direct", "i.QuizStop":"Arr\u00eater", "i.QuizSubmittedAlert":"Votre r\u00e9ponse a \u00e9t\u00e9 envoy\u00e9e", 
+"i.Quizzes":"Quiz", "i.readJSONfileError":"Erreur de lecture du fichier JSON", "i.Religion":"Religion", "i.Remove":"Supprimer", "i.resourceNonCompatibleNotification":"Il est impossible d'ouvrir cette ressource, car elle est corrompue ou incompatible avec la version actuelle de ViSH editor.", "i.save":"enregistrer", "i.Save":"Enregistrer", "i.Saving":"Enregistrement", "i.School":"\u00c9cole", "i.SearchContent":"Rechercher du contenu", "i.Searchplaces":"Rechercher des endroits", "i.Seconds":"Secondes", 
+"i.SelectAll":"Tout s\u00e9lectionner", "i.selectObjectUpload":"S\u00e9lectionner un fichier \u00e0 t\u00e9l\u00e9charger", "i.selectObjectUpload2":"Formats pris en charge\u00a0: SWF (flash), PDF", "i.selectPicture":"S\u00e9lectionner une photo \u00e0 t\u00e9l\u00e9charger", "i.SelectSlide":"S\u00e9lectionner une diapositive", "i.SelectTheme":"S\u00e9lectionner un th\u00e8me", "i.Settings":"Param\u00e8tres", "i.Slides":"Diapositives", "i.SocialSciences":"Sciences sociales", "i.SoftwareEngineering":"G\u00e9nie logiciel", 
+"i.Style":"Mod\u00e8le", "i.Subject":"Mati\u00e8re", "i.Tags":"Mots-cl\u00e9s", "i.Technology":"Technologies", "i.Templates":"Mod\u00e8les", "i.text":"texte", "i.Text":"Texte", "i.Telecommunications":"T\u00e9l\u00e9communications", "i.Title":"Titre*", "i.toJSON":"au format JSON", "i.Training":"Formation", "i.Typicallearningtime":"Temps d'apprentissage moyen", "i.unpublish":"d\u00e9publier", "i.Unpublish":"D\u00e9publier", "i.unpublishing":"annulation", "i.Unpublishing":"Annulation", "i.University":"Universit\u00e9", 
+"i.UnselectAll":"D\u00e9s\u00e9lectionner tout", "i.UnselectSlide":"D\u00e9s\u00e9lectionner la diapositive", "i.unspecified":"non sp\u00e9cifi\u00e9", "i.Unspecified":"Non sp\u00e9cifi\u00e9", "i.upload":"t\u00e9l\u00e9charger", "i.Upload":"T\u00e9l\u00e9charger", "i.verydifficult":"tr\u00e8s difficile", "i.veryeasy":"tr\u00e8s facile", "i.video":"vid\u00e9o", "i.videos":"vid\u00e9os", "i.VirtualTour":"Tour virtuel", "i.yes":"oui", "i.Yes":"Oui", "i.ZoneTooltip":"Cliquez pour ajouter un contenu", 
+"i.tooltip.QSInput":"Saisir le nom du quiz en direct"}, "nl":{"i.Saved":"Opgeslagen", "i.Saving":"Besparing", "i.Unpublish_confirmation":"U gaat naar deze Virtuele Excursie depubliceren van de Vish Platform. Hierna zal de excursie prive en alleen u zult in staat zijn om toegang te krijgen zijn. Wat wilt u doen?", "i.Animations":"Animatie", "i.Horizontal":"Horizontaal", "i.Vertical":"Verticaal", "i.Opacity":"Ondoorzichtigheid", "i.Elements":"Communie", "i.Rotate":"Draaien", "i.Diagonal1":"Diagonaal #1", 
+"i.Diagonal2":"Diagonaal #2", "i.Inside":"Binnen", "i.Zoom":"Ampliar", "i.Flip1":"Beurt #1", "i.Flip2":"Beurt #2", "i.3D":"3D", "i.accept":"accepteren", "i.AddSlideMin":"Toevoegen", "i.add":"toevoegen", "i.Add":"Toevoegen", "i.Addanavatar":"Een avatar toevoegen *", "i.addatitle":"een titel toevoegen", "i.AddContent":"Inhoud toevoegen", "i.addembeddedobject":"embedded object toevoegen", "i.AddFromJSONfile":"ViSH Editor-Presentatie toevoegen vanuit JSON-bestand", "i.addpicurl":"afbeeldings-url toevoegen", 
+"i.AddSlide":"Dia toevoegen", "i.AddSlides":"Dia\u2019s toevoegen", "i.AddslideshowPDF":"Diavoorstelling toevoegen vanuit PDF-bestand", "i.AddTags":"Tags toevoegen", "i.addvideourl":"Video-url toevoegen (YouTube, HTML5)", "i.Age range":"Leeftijdscategorie", "i.areyousureNotification":"Weet u het zeker?", "i.Art":"Kunst", "i.Astronomy":"Astronomie", "i.Author":"Auteur", "i.Background":"Achtergrond", "i.biology":"Biologie", "i.Biology":"Biologie", "i.browserrequirements":"Uw browser voldoet niet aan de minimumeisen om de ViSH Editor op te starten, update uw browser.", 
+"i.by":"door", "i.cancel":"annuleren", "i.Cancel":"Annuleren", "i.Chemistry":"Scheikunde", "i.Citizenship":"Burgerschap", "i.ClassicalLanguages":"Klassieke Talen", "i.close":"sluiten", "i.Close":"Sluiten", "i.content":"inhoud", "i.Content":"Inhoud", "i.Context":"Context", "i.continue":"doorgaan", "i.Continue":"Doorgaan", "i.CrossCurricularEducation":"Vakoverschrijdend Onderwijs", "i.ComputerScience":"Informatica", "i.delete":"verwijderen", "i.Description":"Beschrijving", "i.difficult":"moeilijk", 
+"i.Difficulty":"Moeilijkheid", "i.done":"klaar", "i.Done":"Klaar", "i.draft":"ontwerp", "i.easy":"gemakkelijk", "i.Economics":"Economie", "i.edit":"bewerken", "i.Education":"Onderwijs", "i.EducationalObjectives":"Onderwijskundige Doelstellingen", "i.EducationalObjectivesPlaceholder":"Beschrijf de onderwijskundige doelstellingen die u beoogt te verwezenlijken met deze excursie...", "i.Electronics":"Elektronica", "i.embedwebsite":"web embedden", "i.embedWebSnapshot":"Websnapshot embedden", "i.EnvironmentalEducation":"Milieueducatie", 
+"i.errorFlickrConnection":"Fout met betrekking tot Flickr", "i.errorLREConnection":"Fout met betrekking tot LRE-opslagbank", "i.errorViSHConnection":"Fout met betrekking tot ViSH server", "i.errorYoutubeConnection":"Fout met betrekking tot YouTube", "i.Ethics":"Ethiek", "i.ExcursionDetails":"Bijzonderheden Excursie", "i.Excursions":"Excursies", "i.exitConfirmation":"U staat op het punt ViSH Editor te verlaten. U raakt alle veranderingen kwijt die u niet hebt opgeslagen.", "i.exitConfirmation2":"Weet u zeker dat u deze pagina wilt verlaten?", 
+"i.Export":"Exporteren", "i.exportPresToJSONerrorNotification":"Er is een fout opgetreden. Het is niet mogelijk de presentatie te exporteren naar een JSON-bestand.", "i.Filllater":"Later invullen", "i.Finish":"Voltooien", "i.ForeignLanguages":"Vreemde Talen", "i.Game":"Spel", "i.GeneralCulture":"Algemene Cultuur", "i.Geography":"Aardrijkskunde", "i.Geology":"Geologie", "i.GotoSettings":"Ga naar Instellingen", "i.HealthEducation":"Gezondheidsonderwijs", "i.Help":"Hulp", "i.HigherEducation":"Hoger Onderwijs", 
+"i.History":"Geschiedenis", "i.HomeEconomics":"Huishoudkunde", "i.Hours":"Uren", "i.Image":"Afbeelding", "i.Images":"Afbeeldingen", "i.Import":"Importeren", "i.Insert":"Invoegen", "i.invalidvalue":"ongeldige waarde", "i.Language":"Taal", "i.Languageindependent":"Taalonafhankelijk", "i.Law":"Wet", "i.limitReached":"limiet bereikt", "i.link":"link", "i.Literature":"Literatuur", "i.LiveQuiz":"Live Quiz", "i.LiveResources":"Live Hulpbronnen", "i.MandatoryFieldsNotification":"U moet een titel invoeren voor de excursie en een avatar selecteren voordat u de excursie publiceert", 
+"i.math":"wiskunde", "i.Mathematics":"Wiskunde", "i.medium":"medium", "i.Minutes":"Minuten", "i.Music":"Muziek", "i.nanoscience":"nanowetenschap", "i.NaturalSciences":"NatuurWetenschappen", "i.next":"volgende", "i.Next":"Volgende", "i.no":"nee", "i.No":"Nee", "i.NoJSONFileError":"U moet een bestand selecteren om in JSON-formaat te importeren", "i.Noresultsfound":"Geen resultaten gevonden", "i.NoSlidesOnSaveNotification":"Voordat u opslaat, moet u ten minste \u00e9\u00e9n dia cre\u00ebren.", "i.Object":"Object", 
+"i.Objects":"Objecten", "i.or":"of", "i.Other":"Overige", "i.Others":"Overige", "i.pasteEmbedObject":"SWF of PDF bestand URL plakken", "i.pasteImageURL":"afbeeldings-URL plakken", "i.pasteVideoURL":"HTML5 of YouTube video-URL plakken", "i.pasteWeb":"website-URL plakken", "i.pdfErrorNotification":"Er is een fout opgetreden. Zorg ervoor dat het PDF-bestand geldig is.", "i.PDFNotValid":"Er is een fout opgetreden. Zorg ervoor dat het geselecteerde PDF-bestand correct is.", "i.PDFSlideshow":"PDF-diaserie", 
+"i.PedagogicalAspects":"Pedagogische Aspecten", "i.Philosophy":"Filosofie", "i.PhysicalEducation":"Lichamelijke Oefening", "i.Physics":"Natuurkunde", "i.pNotValid":"Deze hulpbron kan niet worden geopend omdat zij corrupt is of niet compatibel is met de huidige versie van Vish Editor.", "i.Politics":"Politiek", "i.Preschool":"Voorschools", "i.Presentation":"Presentatie", "i.presDescriptionPlaceHolder":"Beschrijf in een paar woorden waar uw excursie over gaat...", "i.presTitle":"Titel Excursie", "i.Preview":"Vooruitblik", 
+"i.Psychology":"Psychologie", "i.publish":"publiceren", "i.Publish":"Publiceren", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Antwoorden", "i.QuizButtonLaunch":"Starten", "i.QuizButtonOptions":"Opties", "i.QuizButtonRetry":"Opnieuw proberen", "i.QuizEmptyAnswerAlert":"De quiz beantwoorden voordat u deze verzendt", "i.QuizLaunch":"Starten", "i.QuizMultipleLaunchAlert":"Alle live quizzen be\u00ebindigen voordat u een andere start", "i.QuizNotSubmittedAlert":"Sorry, uw antwoord kon niet verzonden worden", 
+"i.QuizResults":"Resultaten", "i.QuizSaveConfirmation":"Wilt u de resultaten van de quiz opslaan?", "i.QuizSessionName":"Naam Live Quiz", "i.QuizStop":"Stoppen", "i.QuizSubmittedAlert":"Uw antwoord is verzonden", "i.Quizzes":"Quizzen", "i.readJSONfileError":"Er is een fout opgetreden bij het lezen van het JSON-bestand", "i.Religion":"Godsdienst", "i.Remove":"Verwijderen", "i.resourceNonCompatibleNotification":"Deze hulpbron is corrupt of is niet compatibel met de huidige versie van ViSH Editor en kan niet worden geopend.", 
+"i.save":"opslaan", "i.Save":"Opslaan", "i.Saving":"Bestand", "i.School":"School", "i.SearchContent":"Inhoud zoeken", "i.Searchplaces":"Plaatsen zoeken", "i.Seconds":"Seconden", "i.SelectAll":"Alles selecteren", "i.selectObjectUpload":"Een bestand selecteren om te uploaden", "i.selectObjectUpload2":"Ondersteunde formaten: SWF (flash), PDF", "i.selectPicture":"Afbeelding selecteren om te uploaden", "i.SelectSlide":"Dia selecteren", "i.SelectTheme":"Thema selecteren", "i.Settings":"Instellingen", "i.Slides":"Dia\u2019s", 
+"i.SocialSciences":"Sociale Wetenschappen", "i.SoftwareEngineering":"Software Engineering", "i.Style":"Stijl", "i.Subject":"Vak", "i.Tags":"Tags", "i.Technology":"Technologie", "i.Templates":"Sjablonen", "i.text":"tekst", "i.Text":"Tekst", "i.Telecommunications":"Telecommunicatie", "i.Title":"Titel *", "i.toJSON":"naar JSON", "i.Training":"Opleiding", "i.Typicallearningtime":"Typische leertijd", "i.unpublish":"depubliceren", "i.Unpublish":"Depubliceren", "i.unpublishing":"verwijderen", "i.Unpublishing":"Verwijderen", 
+"i.University":"Universiteit", "i.UnselectAll":"Alles deselecteren", "i.UnselectSlide":"Dia deselecteren", "i.unspecified":"ongespecificeerd", "i.Unspecified":"Ongespecificeerd", "i.upload":"uploaden", "i.Upload":"Uploaden", "i.verydifficult":"zeer moeilijk", "i.veryeasy":"zeer gemakkelijk", "i.video":"video", "i.videos":"video\u2019s", "i.VirtualTour":"Virtuele Rondleiding", "i.yes":"ja", "i.Yes":"Ja", "i.ZoneTooltip":"Klik hier om inhoud toe te voegen", "i.tooltip.QSInput":"Voor een naam in voor de live quiz"}, 
+"hu":{"i.Saved":"Mentett", "i.Saving":"Ment\u00e9se", "i.Unpublish_confirmation":"Fogsz publik\u00e1lni ezt a virtu\u00e1lis kir\u00e1ndul\u00e1s a Vish Platform. Ezt k\u00f6vet\u0151en a kir\u00e1ndul\u00e1s lesz mag\u00e1n, \u00e9s csak akkor lesz k\u00e9pes hozz\u00e1f\u00e9rni. Mit szeretn\u00e9l csin\u00e1lni?", "i.Animations":"\u00c9l\u00e9nks\u00e9g", "i.Horizontal":"V\u00edzszintes", "i.Vertical":"F\u00fcgg\u0151leges", "i.Opacity":"Hom\u00e1lyoss\u00e1g", "i.Elements":"Alapismeretek", "i.Rotate":"Forgat", 
+"i.Diagonal1":"\u00c1tl\u00f3s #1", "i.Diagonal2":"\u00c1tl\u00f3s #2", "i.Inside":"Bels\u0151", "i.Zoom":"Zoomol\u00e1s", "i.Flip1":"Megfricsk\u00e1z #1", "i.Flip2":"Megfricsk\u00e1z #2", "i.3D":"3D", "i.About2":"A k\u00f3d el\u00e9rhet\u0151 itt: ", "i.About3":"l\u00e1togasd meg a YouTube csatorn\u00e1nkat", "i.About4":"K\u00e9sz\u00edtette", "i.accept":"elfogad", "i.AddSlideMin":"Hozz\u00e1ad\u00e1s", "i.add":"hozz\u00e1ad\u00e1s", "i.Add":"Hozz\u00e1ad\u00e1s", "i.Addanavatar":"Adj meg egy k\u00e9pet *", 
+"i.addatitle":"adj meg egy c\u00edmet", "i.AddContent":"Adj hozz\u00e1 tartalmat", "i.addembeddedobject":"adj hozz\u00e1 be\u00e1gyazott k\u00f3dot", "i.AddFromJSONfile":"ViSH Szerkeszt\u0151 prezent\u00e1ci\u00f3 hozz\u00e1ad\u00e1sa JSON f\u00e1jlb\u00f3l", "i.addpicurl":"k\u00e9p URL hozz\u00e1ad\u00e1sa", "i.AddSlide":"Dia hozz\u00e1ad\u00e1sa", "i.AddSlides":"Di\u00e1k hozz\u00e1ad\u00e1sa", "i.AddslideshowPDF":"Diasor hozz\u00e1ad\u00e1sa PDF-b\u0151l", "i.AddTags":"C\u00edmke hozz\u00e1ad\u00e1sa", 
+"i.addvideourl":"video URL hozz\u00e1ad\u00e1sa (YouTube, HTML5)", "i.Age range":"Koroszt\u00e1ly", "i.areyousureNotification":"biztos vagy benne?", "i.Art":"M\u0171v\u00e9szetek", "i.Astronomy":"Csillag\u00e1szat", "i.Author":"Szerz\u0151", "i.Background":"H\u00e1tt\u00e9r", "i.biology":"biol\u00f3gia", "i.Biology":"Biol\u00f3gia", "i.browserrequirements":"A b\u00f6ng\u00e9sz\u0151d sajnos nem felel meg azoknak a k\u00f6vetelm\u00e9nyeknek ami a ViSH szerkeszt\u0151 megnyit\u00e1s\u00e1hoz sz\u00fcks\u00e9gesek. K\u00e9rlek, friss\u00edtsd a b\u00f6ng\u00e9sz\u0151det.", 
+"i.by":"k\u00e9sz\u00edtette", "i.cancel":"m\u00e9gsem", "i.Cancel":"M\u00e9gsem", "i.Chemistry":"K\u00e9mia", "i.Citizenship":"\u00c1llampolg\u00e1rs\u00e1g", "i.ClassicalLanguages":"Klasszikus nyelvek", "i.close":"bez\u00e1r", "i.Close":"Bez\u00e1r", "i.content":"tartalom", "i.Content":"Tartalom", "i.Context":"\u00d6sszef\u00fcgg\u00e9s", "i.continue":"tov\u00e1bb", "i.Continue":"Tov\u00e1bb", "i.CrossCurricularEducation":"Cross Curricular Education", "i.ComputerScience":"Informatika", "i.delete":"t\u00f6r\u00f6l", 
+"i.Description":"Le\u00edr\u00e1s", "i.difficult":"neh\u00e9z", "i.Difficulty":"Neh\u00e9zs\u00e9g", "i.Documentation":"Dokument\u00e1ci\u00f3", "i.done":"k\u00e9sz", "i.Done":"K\u00e9sz", "i.draft":"piszkozat", "i.easy":"k\u00f6nny\u0171", "i.Economics":"K\u00f6zgazdas\u00e1gtan", "i.edit":"szerkeszt\u00e9s", "i.Education":"Oktat\u00e1s", "i.EducationalObjectives":"Oktat\u00e1si c\u00e9lok", "i.EducationalObjectivesPlaceholder":"K\u00e9rlek r\u00e9szletezd az oktat\u00e1si c\u00e9lokat amiket ezzel a virtu\u00e1lis s\u00e9t\u00e1val szeretn\u00e9l el\u00e9rni...", 
+"i.Electronics":"Elektronika", "i.embedwebsite":"be\u00e1gyazott weboldal", "i.embedWebSnapshot":"be\u00e1gyazott weboldal k\u00e9p", "i.EnvironmentalEducation":"K\u00f6rnyezeti tanulm\u00e1nyok", "i.errorFlickrConnection":"Hiba a Flickr-hez val\u00f3 csatlakoz\u00e1skor", "i.errorLREConnection":"Hiba az LRE t\u00e1rh\u00e1zhoz val\u00f3 csatlakoz\u00e1skor", "i.errorViSHConnection":"Hiba a ViSH szerverhez val\u00f3 csatlakoz\u00e1skor", "i.errorYoutubeConnection":"Hiba a YouTube-hoz val\u00f3 csatlakoz\u00e1skor", 
+"i.Ethics":"Etika", "i.ExcursionDetails":"Virtu\u00e1lis S\u00e9ta r\u00e9szletek", "i.Excursions":"Virtu\u00e1lis S\u00e9ta", "i.exitConfirmation":"A ViSH szerkeszt\u0151 elhagy\u00e1s\u00e1ra k\u00e9sz\u00fclsz. Minden nem mentett v\u00e1ltoztat\u00e1s el fog veszni.", "i.exitConfirmation2":"Biztosan el akarod hagyni ezt az oldalt?", "i.Export":"Export\u00e1l\u00e1s", "i.exportPresToJSONerrorNotification":"Hiba l\u00e9pett fel. Nem lehet JSON f\u00e1jlba export\u00e1lni.", "i.Filllater":"K\u00e9s\u0151bb t\u00f6lt\u00f6m ki", 
+"i.Finish":"Befejez\u00e9s", "i.ForeignLanguages":"Idegen nyelvek", "i.Game":"J\u00e1t\u00e9k", "i.GeneralCulture":"\u00c1ltal\u00e1nos kult\u00fara", "i.Geography":"F\u00f6ldrajz", "i.Geology":"Geol\u00f3gia", "i.GotoSettings":"Menj a be\u00e1ll\u00edt\u00e1sokhoz", "i.HealthEducation":"Eg\u00e9szs\u00e9g\u00fcgyi oktat\u00e1s", "i.Help":"Seg\u00edts\u00e9g", "i.HigherEducation":"Fels\u0151oktat\u00e1s", "i.History":"T\u00f6rt\u00e9nelem", "i.HomeEconomics":"H\u00e1ztart\u00e1stan", "i.Hours":"\u00d3r\u00e1k", 
+"i.Image":"K\u00e9p", "i.Images":"K\u00e9pek", "i.Import":"Import\u00e1l\u00e1s", "i.Insert":"Beilleszt\u00e9s", "i.invalidvalue":"\u00e9rv\u00e9nytelen \u00e9rt\u00e9k", "i.Language":"Nyelv", "i.Languageindependent":"Nyelv f\u00fcggetlen", "i.Law":"T\u00f6rv\u00e9ny", "i.License":"Enged\u00e9ly", "i.limitReached":"limit el\u00e9rve", "i.link":"link", "i.Literature":"Irodalom", "i.LiveQuiz":"\u00c9l\u0151 Kv\u00edz", "i.LiveResources":"\u00c9l\u0151 Tartalom", "i.MandatoryFieldsNotification":"K\u00e9rlek adj meg egy c\u00edmet \u00e9s egy k\u00e9pet miel\u0151tt publik\u00e1lod a Virtu\u00e1lis S\u00e9t\u00e1t.", 
+"i.math":"matek", "i.Mathematics":"Matematika", "i.medium":"k\u00f6zepes", "i.Minutes":"Percek", "i.Music":"Zene", "i.nanoscience":"nano tudom\u00e1ny", "i.NaturalSciences":"Term\u00e9szettudom\u00e1nyok", "i.next":"k\u00f6vetkez\u0151", "i.Next":"K\u00f6vetkez\u0151", "i.no":"nem", "i.No":"Nem", "i.NoJSONFileError":"Ki kell v\u00e1lasztanod egy f\u00e1jl a JSON import\u00e1l\u00e1shoz.", "i.Noresultsfound":"Nincs tal\u00e1lat", "i.NoSlidesOnSaveNotification":"Ment\u00e9s el\u0151tt legal\u00e1bb egy di\u00e1t k\u00e9sz\u00edtened kell.", 
+"i.Object":"T\u00e1rgy", "i.Objects":"T\u00e1rgyak", "i.or":"vagy", "i.Other":"T\u00f6bbi", "i.Others":"T\u00f6bbi", "i.pasteEmbedObject":"illeszd be az SWF vagy a PDF f\u00e1jl URL-j\u00e9t", "i.pasteImageURL":"illeszd be a k\u00e9p URL-j\u00e9t", "i.pasteVideoURL":"illeszd be a HTML5 vagy YouTube vide\u00f3 URL-j\u00e9t", "i.pasteWeb":"illeszd be a weboldal URL-j\u00e9t", "i.pdfErrorNotification":"Hiba l\u00e9pett fel, k\u00e9rlek ellen\u0151rizd le, hogy a PDF f\u00e1jl rendben van-e.", "i.PDFNotValid":" Hiba l\u00e9pett fel, k\u00e9rlek ellen\u0151rizd le, hogy a PDF f\u00e1jl rendben van-e.", 
+"i.PDFSlideshow":"PDF diasor", "i.PedagogicalAspects":"Pedag\u00f3gia Szempontok", "i.Philosophy":"Filoz\u00f3fia", "i.PhysicalEducation":"Testnevel\u00e9s", "i.Physics":"Fizika", "i.pNotValid":"Ez a tartalom nem nyithat\u00f3 meg, mert vagy hib\u00e1s, vagy nem kompatibilis a ViSH szerkeszt\u0151 ezen verzi\u00f3j\u00e1val.", "i.Politics":"Politol\u00f3gia", "i.Preschool":"\u00c1ltal\u00e1nos iskola", "i.Presentation":"Prezent\u00e1ci\u00f3", "i.presDescriptionPlaceHolder":"K\u00e9rlek n\u00e9h\u00e1ny sz\u00f3ban ismertesd mir\u0151l sz\u00f3l a Virtu\u00e1lis S\u00e9t\u00e1d...", 
 "i.presTitle":"Virtu\u00e1lis S\u00e9ta c\u00edme", "i.Preview":"El\u0151n\u00e9zet", "i.Psychology":"Pszichol\u00f3gia", "i.publish":"publik\u00e1l\u00e1s", "i.Publish":"Publik\u00e1l\u00e1s", "i.Quiz":"Kv\u00edz", "i.QuizButtonAnswer":"V\u00e1lasz", "i.QuizButtonLaunch":"Ind\u00edt\u00e1s", "i.QuizButtonOptions":"Be\u00e1ll\u00edt\u00e1sok", "i.QuizButtonRetry":"\u00dajra", "i.QuizEmptyAnswerAlert":"K\u00fcld\u00e9s el\u0151tt k\u00e9rlek v\u00e1laszolj a kv\u00edzre", "i.QuizLaunch":"Ind\u00edt\u00e1s", 
 "i.QuizMultipleLaunchAlert":"K\u00e9rlek fejezz be minden fut\u00f3 kv\u00edzt miel\u0151tt egy \u00fajat ind\u00edtasz", "i.QuizNotSubmittedAlert":"Sajn\u00e1lom, a v\u00e1laszod nem tudtuk elk\u00fcldeni", "i.QuizResults":"Eredm\u00e9nyek", "i.QuizSaveConfirmation":"Szeretn\u00e9d elmenteni a kv\u00edz eredm\u00e9nyeit?", "i.QuizSessionName":"\u00c9l\u0151 kv\u00edz neve", "i.QuizStop":"Le\u00e1ll\u00edt\u00e1s", "i.QuizSubmittedAlert":"A v\u00e1laszaid el lettek mentve", "i.Quizzes":"Kv\u00edzek", 
 "i.readJSONfileError":"JSON f\u00e1jl olvas\u00e1si hiba", "i.Religion":"Vall\u00e1s", "i.Remove":"Elt\u00e1vol\u00edt\u00e1s", "i.resourceNonCompatibleNotification":" Ez a tartalom nem nyithat\u00f3 meg, mert vagy hib\u00e1s, vagy nem kompatibilis a ViSH szerkeszt\u0151 ezen verzi\u00f3j\u00e1val.", "i.save":"ment\u00e9s", "i.Save":"Ment\u00e9s", "i.Saving":"Megtakar\u00edt\u00e1s", "i.School":"Iskola", "i.SearchContent":"Tartalom keres\u00e9s", "i.Searchplaces":"Helyek keres\u00e9se", "i.Seconds":"M\u00e1sodpercek", 
@@ -163,12 +165,12 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.Noresultsfound":"Keine Ergebnisse", "i.NoSlidesOnSaveNotification":"Bevor du speichern kannst, musst du zumindest eine Folie erstellen.", "i.Object":"Objekt", "i.Objects":"Objekte", "i.or":"oder", "i.Other":"Andere", "i.Others":"Andere", "i.pasteEmbedObject":"Eine URL f\u00fcr SWF oder PDF Datei einf\u00fcgen", "i.pasteImageURL":"Eine Bild URL einf\u00fcgen", "i.pasteVideoURL":"Eine HTML5 oder YouTube Video URL einf\u00fcgen", "i.pasteWeb":"Eine Webseiten URL einf\u00fcgen", "i.pdfErrorNotification":"Ein Fehler ist aufgetreten. Stelle sicher, dass die PDF Datei g\u00fcltig ist.", 
 "i.PDFNotValid":" Ein Fehler ist aufgetreten. Stelle sicher, dass die PDF Datei korrekt ist.", "i.PDFSlideshow":"PDF Pr\u00e4sentation", "i.PedagogicalAspects":"P\u00e4dagogische Aspekte", "i.Philosophy":"Philosophie", "i.PhysicalEducation":"Sport", "i.Physics":"Physik", "i.pNotValid":"Diese Ressource kann nicht ge\u00f6ffnet werden. Sie ist entweder besch\u00e4digt oder nicht mit der Version des ViSH Editors kompatibel.", "i.Politics":"Politik", "i.Preschool":"Vorschule", "i.Presentation":"Pr\u00e4sentation", 
 "i.presDescriptionPlaceHolder":"Bitte gib kurz an, um was es bei dieser Exkursion geht...", "i.presTitle":"Titel der Exkursion", "i.Preview":"Vorschau", "i.Psychology":"Psychologie", "i.publish":"Ver\u00f6ffentlichen", "i.Publish":"Ver\u00f6ffentlichen", "i.Quiz":"Quizz", "i.QuizButtonAnswer":"Antwort", "i.QuizButtonLaunch":"Starten", "i.QuizButtonOptions":"Optionen", "i.QuizButtonRetry":"Neuer Versuch", "i.QuizEmptyAnswerAlert":"Bitte beantworte die Fragen, bevor du das Quizz abschickst", "i.QuizLaunch":"Starten", 
-"i.QuizMultipleLaunchAlert":"Bitte stoppe alle laufenden Quizze bevor du ein weiteres Quizz startest", "i.QuizNotSubmittedAlert":"Sorry, deine Antwort konnte nicht geschickt werden", "i.QuizResults":"Ergebnisse", "i.QuizSaveConfirmation":"Willst du die Ergebnisse vom Quizz speichern?", "i.QuizSessionName":"Name des live Quizz", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Deine Antwort wurde zugestellt", "i.Quizzes":"Quizze", "i.readJSONfileError":"Fehler beim Lesen der JSON Datei", "i.Religion":"Religion", 
-"i.Remove":"L\u00f6schen", "i.resourceNonCompatibleNotification":"Diese Ressource ist besch\u00e4digt oder nicht mit der aktuellen ViSH Editor Version kompatibel und kann nicht ge\u00f6ffnet werden.", "i.save":"Speichern", "i.Save":"Speichern", "i.Saving":"Speichern", "i.School":"Schule", "i.SearchContent":"Inhalt suchen", "i.Searchplaces":"Orte suchen", "i.Seconds":"Sekunden", "i.SelectAll":"Alle ausw\u00e4hlen", "i.selectObjectUpload":"Eine Datei zum Hochladen aussuchen", "i.selectObjectUpload2":"Unterst\u00fctze Formate: SWF (Flash), PDF", 
-"i.selectPicture":"Ein Bild zum Hochladen aussuchen", "i.SelectSlide":"Folie ausw\u00e4hlen", "i.SelectTheme":"Thema ausw\u00e4hlen", "i.Settings":"Einstellungen", "i.Slides":"Folien", "i.SocialSciences":"Sozialwissenschaften", "i.SoftwareEngineering":"Software Engineering", "i.Style":"Stil", "i.Subject":"Fach", "i.Tags":"Schlagw\u00f6rter", "i.Technology":"Technologie", "i.Templates":"Vorlagen", "i.text":"Text", "i.Text":"Text", "i.Telecommunications":"Telekommunikation", "i.Title":"Titel *", "i.toJSON":"an JSON", 
-"i.Training":"Training", "i.Typicallearningtime":"\u00fcbliche Dauer f\u00fcr die Lerneinheit", "i.unpublish":"unver\u00f6ffentlicht", "i.Unpublish":"Unver\u00f6ffentlicht", "i.University":"Universit\u00e4t", "i.UnselectAll":"Gesamte Auswahl r\u00fcckg\u00e4ngig machen", "i.UnselectSlide":"Auswahl der Folie r\u00fcckg\u00e4ngig machen", "i.unspecified":"Nicht spezifiziert", "i.Unspecified":"Nicht spezifiziert", "i.unpublishing":"aufheben", "i.Unpublishing":"Aufheben", "i.upload":"Hochladen", "i.Upload":"Hochladen", 
-"i.Version":"Version", "i.verydifficult":"Sehr schwierig", "i.veryeasy":"Sehr einfach", "i.VESurvey1":"Hilf uns, den ViSH Editor zu verbessern", "i.VESurvey2":"Bitte ausf\u00fcllen", "i.VESurvey3":"diese Umfrage", "i.VESurvey4":"Danke f\u00fcr deinen Beitrag", "i.video":"Video", "i.videos":"Videos", "i.VirtualTour":"Virtuelle Tour", "i.yes":"Ja", "i.Yes":"Ja", "i.ZoneTooltip":"Hier klicken um Inhalte hinzuzuf\u00fcgen", "i.tooltip.QSInput":"Einen Namen f\u00fcr das live Quizz eingeben"}}, "standalone":{"es":{"i.save":"Standalone"}, 
-"default":{"i.save":"Standalone"}}};
+"i.QuizMultipleLaunchAlert":"Bitte stoppe alle laufenden Quizze bevor du ein weiteres Quizz startest", "i.QuizNotSubmittedAlert":"Sorry, deine Antwort konnte nicht geschickt werden", "i.QuizResults":"Ergebnisse", "i.QuizSaveConfirmation":"Willst du die Ergebnisse vom Quizz speichern?", "i.QuizSessionName":"Name des live Quizz", "i.QuizSettings":"Quiz", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Deine Antwort wurde zugestellt", "i.Quizzes":"Quizze", "i.readJSONfileError":"Fehler beim Lesen der JSON Datei", 
+"i.Religion":"Religion", "i.Remove":"L\u00f6schen", "i.resourceNonCompatibleNotification":"Diese Ressource ist besch\u00e4digt oder nicht mit der aktuellen ViSH Editor Version kompatibel und kann nicht ge\u00f6ffnet werden.", "i.save":"Speichern", "i.Save":"Speichern", "i.Saving":"Speichern", "i.School":"Schule", "i.SearchContent":"Inhalt suchen", "i.Searchplaces":"Orte suchen", "i.Seconds":"Sekunden", "i.SelectAll":"Alle ausw\u00e4hlen", "i.selectObjectUpload":"Eine Datei zum Hochladen aussuchen", 
+"i.selectObjectUpload2":"Unterst\u00fctze Formate: SWF (Flash), PDF", "i.selectPicture":"Ein Bild zum Hochladen aussuchen", "i.SelectSlide":"Folie ausw\u00e4hlen", "i.SelectTheme":"Thema ausw\u00e4hlen", "i.Settings":"Einstellungen", "i.Slides":"Folien", "i.SocialSciences":"Sozialwissenschaften", "i.SoftwareEngineering":"Software Engineering", "i.Style":"Stil", "i.Subject":"Fach", "i.Tags":"Schlagw\u00f6rter", "i.Technology":"Technologie", "i.Templates":"Vorlagen", "i.text":"Text", "i.Text":"Text", 
+"i.Telecommunications":"Telekommunikation", "i.Title":"Titel *", "i.toJSON":"an JSON", "i.Training":"Training", "i.Typicallearningtime":"\u00fcbliche Dauer f\u00fcr die Lerneinheit", "i.unpublish":"unver\u00f6ffentlicht", "i.Unpublish":"Unver\u00f6ffentlicht", "i.University":"Universit\u00e4t", "i.UnselectAll":"Gesamte Auswahl r\u00fcckg\u00e4ngig machen", "i.UnselectSlide":"Auswahl der Folie r\u00fcckg\u00e4ngig machen", "i.unspecified":"Nicht spezifiziert", "i.Unspecified":"Nicht spezifiziert", 
+"i.unpublishing":"aufheben", "i.Unpublishing":"Aufheben", "i.upload":"Hochladen", "i.Upload":"Hochladen", "i.Version":"Version", "i.verydifficult":"Sehr schwierig", "i.veryeasy":"Sehr einfach", "i.VESurvey1":"Hilf uns, den ViSH Editor zu verbessern", "i.VESurvey2":"Bitte ausf\u00fcllen", "i.VESurvey3":"diese Umfrage", "i.VESurvey4":"Danke f\u00fcr deinen Beitrag", "i.video":"Video", "i.videos":"Videos", "i.VirtualTour":"Virtuelle Tour", "i.yes":"Ja", "i.Yes":"Ja", "i.ZoneTooltip":"Hier klicken um Inhalte hinzuzuf\u00fcgen", 
+"i.tooltip.QSInput":"Einen Namen f\u00fcr das live Quizz eingeben"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 (function(a, b) {
   function cy(a) {
     return f.isWindow(a) ? a : a.nodeType === 9 ? a.defaultView || a.parentWindow : !1
@@ -242,7 +244,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
               }
             }
           }
-          !n && (!p && f.error("No conversion from " + m.replace(" ", " to "))), n !== !0 && (c = n ? n(c) : p(o(c)))
+          !n && !p && f.error("No conversion from " + m.replace(" ", " to ")), n !== !0 && (c = n ? n(c) : p(o(c)))
         }
       }
     }
@@ -309,7 +311,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     for(;i < j && (k || !l);i++) {
       l = h[i](c, d, e), typeof l == "string" && (!k || g[l] ? l = b : (c.dataTypes.unshift(l), l = bZ(a, c, d, e, l, g)))
     }
-    (k || !l) && (!g["*"] && (l = bZ(a, c, d, e, "*", g)));
+    (k || !l) && !g["*"] && (l = bZ(a, c, d, e, "*", g));
     return l
   }
   function bY(a) {
@@ -355,7 +357,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }
   function bn(a) {
     var b = (a.nodeName || "").toLowerCase();
-    b === "input" ? bm(a) : b !== "script" && (typeof a.getElementsByTagName != "undefined" && f.grep(a.getElementsByTagName("input"), bm))
+    b === "input" ? bm(a) : b !== "script" && typeof a.getElementsByTagName != "undefined" && f.grep(a.getElementsByTagName("input"), bm)
   }
   function bm(a) {
     if(a.type === "checkbox" || a.type === "radio") {
@@ -367,7 +369,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }
   function bk(a, b) {
     var c;
-    b.nodeType === 1 && (b.clearAttributes && b.clearAttributes(), b.mergeAttributes && b.mergeAttributes(a), c = b.nodeName.toLowerCase(), c === "object" ? b.outerHTML = a.outerHTML : c !== "input" || a.type !== "checkbox" && a.type !== "radio" ? c === "option" ? b.selected = a.defaultSelected : c === "input" || c === "textarea" ? b.defaultValue = a.defaultValue : c === "script" && (b.text !== a.text && (b.text = a.text)) : (a.checked && (b.defaultChecked = b.checked = a.checked), b.value !== a.value && 
+    b.nodeType === 1 && (b.clearAttributes && b.clearAttributes(), b.mergeAttributes && b.mergeAttributes(a), c = b.nodeName.toLowerCase(), c === "object" ? b.outerHTML = a.outerHTML : c !== "input" || a.type !== "checkbox" && a.type !== "radio" ? c === "option" ? b.selected = a.defaultSelected : c === "input" || c === "textarea" ? b.defaultValue = a.defaultValue : c === "script" && b.text !== a.text && (b.text = a.text) : (a.checked && (b.defaultChecked = b.checked = a.checked), b.value !== a.value && 
     (b.value = a.value)), b.removeAttribute(f.expando), b.removeAttribute("_submit_attached"), b.removeAttribute("_change_attached"))
   }
   function bj(a, b) {
@@ -423,7 +425,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     })
   }
   function S(a) {
-    return!a || (!a.parentNode || a.parentNode.nodeType === 11)
+    return!a || !a.parentNode || a.parentNode.nodeType === 11
   }
   function K() {
     return!0
@@ -433,9 +435,9 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }
   function n(a, b, c) {
     var d = b + "defer", e = b + "queue", g = b + "mark", h = f._data(a, d);
-    h && ((c === "queue" || !f._data(a, e)) && ((c === "mark" || !f._data(a, g)) && setTimeout(function() {
-      !f._data(a, e) && (!f._data(a, g) && (f.removeData(a, d, !0), h.fire()))
-    }, 0)))
+    h && (c === "queue" || !f._data(a, e)) && (c === "mark" || !f._data(a, g)) && setTimeout(function() {
+      !f._data(a, e) && !f._data(a, g) && (f.removeData(a, d, !0), h.fire())
+    }, 0)
   }
   function m(a) {
     for(var b in a) {
@@ -498,12 +500,12 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         this.context = this[0] = a, this.length = 1;
         return this
       }
-      if(a === "body" && (!d && c.body)) {
+      if(a === "body" && !d && c.body) {
         this.context = c, this[0] = c.body, this.selector = a, this.length = 1;
         return this
       }
       if(typeof a == "string") {
-        a.charAt(0) !== "<" || (a.charAt(a.length - 1) !== ">" || a.length < 3) ? g = i.exec(a) : g = [null, a, null];
+        a.charAt(0) !== "<" || a.charAt(a.length - 1) !== ">" || a.length < 3 ? g = i.exec(a) : g = [null, a, null];
         if(g && (g[1] || !d)) {
           if(g[1]) {
             d = d instanceof e ? d[0] : d, k = d ? d.ownerDocument || d : c, j = m.exec(a), j ? e.isPlainObject(d) ? (a = [c.createElement(j[1])], e.fn.attr.call(a, d, !0)) : a = [k.createElement(j[1])] : (j = e.buildFragment([g[1]], [k]), a = (j.cacheable ? e.clone(j.fragment) : j.fragment).childNodes);
@@ -558,7 +560,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       return this.prevObject || this.constructor(null)
     }, push:E, sort:[].sort, splice:[].splice}, e.fn.init.prototype = e.fn, e.extend = e.fn.extend = function() {
       var a, c, d, f, g, h, i = arguments[0] || {}, j = 1, k = arguments.length, l = !1;
-      typeof i == "boolean" && (l = i, i = arguments[1] || {}, j = 2), typeof i != "object" && (!e.isFunction(i) && (i = {})), k === j && (i = this, --j);
+      typeof i == "boolean" && (l = i, i = arguments[1] || {}, j = 2), typeof i != "object" && !e.isFunction(i) && (i = {}), k === j && (i = this, --j);
       for(;j < k;j++) {
         if((a = arguments[j]) != null) {
           for(c in a) {
@@ -566,13 +568,13 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
             if(i === f) {
               continue
             }
-            l && (f && (e.isPlainObject(f) || (g = e.isArray(f)))) ? (g ? (g = !1, h = d && e.isArray(d) ? d : []) : h = d && e.isPlainObject(d) ? d : {}, i[c] = e.extend(l, h, f)) : f !== b && (i[c] = f)
+            l && f && (e.isPlainObject(f) || (g = e.isArray(f))) ? (g ? (g = !1, h = d && e.isArray(d) ? d : []) : h = d && e.isPlainObject(d) ? d : {}, i[c] = e.extend(l, h, f)) : f !== b && (i[c] = f)
           }
         }
       }
       return i
     }, e.extend({noConflict:function(b) {
-      a.$ === e && (a.$ = g), b && (a.jQuery === e && (a.jQuery = f));
+      a.$ === e && (a.$ = g), b && a.jQuery === e && (a.jQuery = f);
       return e
     }, isReady:!1, readyWait:1, holdReady:function(a) {
       a ? e.readyWait++ : e.ready(!0)
@@ -603,7 +605,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
               b = a.frameElement == null
             }catch(d) {
             }
-            c.documentElement.doScroll && (b && J())
+            c.documentElement.doScroll && b && J()
           }
         }
       }
@@ -618,11 +620,11 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     }, type:function(a) {
       return a == null ? String(a) : I[C.call(a)] || "object"
     }, isPlainObject:function(a) {
-      if(!a || (e.type(a) !== "object" || (a.nodeType || e.isWindow(a)))) {
+      if(!a || e.type(a) !== "object" || a.nodeType || e.isWindow(a)) {
         return!1
       }
       try {
-        if(a.constructor && (!D.call(a, "constructor") && !D.call(a.constructor.prototype, "isPrototypeOf"))) {
+        if(a.constructor && !D.call(a, "constructor") && !D.call(a.constructor.prototype, "isPrototypeOf")) {
           return!1
         }
       }catch(c) {
@@ -661,13 +663,13 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       }catch(g) {
         d = b
       }
-      (!d || (!d.documentElement || d.getElementsByTagName("parsererror").length)) && e.error("Invalid XML: " + c);
+      (!d || !d.documentElement || d.getElementsByTagName("parsererror").length) && e.error("Invalid XML: " + c);
       return d
     }, noop:function() {
     }, globalEval:function(b) {
-      b && (j.test(b) && (a.execScript || function(b) {
+      b && j.test(b) && (a.execScript || function(b) {
         a.eval.call(a, b)
-      })(b))
+      })(b)
     }, camelCase:function(a) {
       return a.replace(w, "ms-").replace(v, x)
     }, nodeName:function(a, b) {
@@ -712,7 +714,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       var c = b || [];
       if(a != null) {
         var d = e.type(a);
-        a.length == null || (d === "string" || (d === "function" || (d === "regexp" || e.isWindow(a)))) ? E.call(c, a) : e.merge(c, a)
+        a.length == null || d === "string" || d === "function" || d === "regexp" || e.isWindow(a) ? E.call(c, a) : e.merge(c, a)
       }
       return c
     }, inArray:function(a, b, c) {
@@ -750,7 +752,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       }
       return d
     }, map:function(a, c, d) {
-      var f, g, h = [], i = 0, j = a.length, k = a instanceof e || j !== b && (typeof j == "number" && (j > 0 && (a[0] && a[j - 1]) || (j === 0 || e.isArray(a))));
+      var f, g, h = [], i = 0, j = a.length, k = a instanceof e || j !== b && typeof j == "number" && (j > 0 && a[0] && a[j - 1] || j === 0 || e.isArray(a));
       if(k) {
         for(;i < j;i++) {
           f = c(a[i], i, d), f != null && (h[h.length] = f)
@@ -772,7 +774,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       var f = F.call(arguments, 2), g = function() {
         return a.apply(c, f.concat(F.call(arguments)))
       };
-      g.guid = a.guid = a.guid || (g.guid || e.guid++);
+      g.guid = a.guid = a.guid || g.guid || e.guid++;
       return g
     }, access:function(a, c, d, f, g, h, i) {
       var j, k = d == null, l = 0, m = a.length;
@@ -799,14 +801,14 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       return(new Date).getTime()
     }, uaMatch:function(a) {
       a = a.toLowerCase();
-      var b = r.exec(a) || (s.exec(a) || (t.exec(a) || (a.indexOf("compatible") < 0 && u.exec(a) || [])));
+      var b = r.exec(a) || s.exec(a) || t.exec(a) || a.indexOf("compatible") < 0 && u.exec(a) || [];
       return{browser:b[1] || "", version:b[2] || "0"}
     }, sub:function() {
       function a(b, c) {
         return new a.fn.init(b, c)
       }
       e.extend(!0, a, this), a.superclass = this, a.fn = a.prototype = this(), a.fn.constructor = a, a.sub = this.sub, a.fn.init = function(d, f) {
-        f && (f instanceof e && (!(f instanceof a) && (f = a(f))));
+        f && f instanceof e && !(f instanceof a) && (f = a(f));
         return e.fn.init.call(this, d, f, b)
       }, a.fn.init.prototype = a.fn;
       var b = a(c);
@@ -825,7 +827,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     var c = [], d = [], e, i, j, k, l, m, n = function(b) {
       var d, e, g, h, i;
       for(d = 0, e = b.length;d < e;d++) {
-        g = b[d], h = f.type(g), h === "array" ? n(g) : h === "function" && ((!a.unique || !p.has(g)) && c.push(g))
+        g = b[d], h = f.type(g), h === "array" ? n(g) : h === "function" && (!a.unique || !p.has(g)) && c.push(g)
       }
     }, o = function(b, f) {
       f = f || [], e = !a.memory || [b, f], i = !0, j = !0, m = k || 0, k = 0, l = c.length;
@@ -835,11 +837,11 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
           break
         }
       }
-      j = !1, c && (a.once ? e === !0 ? p.disable() : c = [] : d && (d.length && (e = d.shift(), p.fireWith(e[0], e[1]))))
+      j = !1, c && (a.once ? e === !0 ? p.disable() : c = [] : d && d.length && (e = d.shift(), p.fireWith(e[0], e[1])))
     }, p = {add:function() {
       if(c) {
         var a = c.length;
-        n(arguments), j ? l = c.length : e && (e !== !0 && (k = a, o(e[0], e[1])))
+        n(arguments), j ? l = c.length : e && e !== !0 && (k = a, o(e[0], e[1]))
       }
       return this
     }, remove:function() {
@@ -848,7 +850,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         for(;d < e;d++) {
           for(var f = 0;f < c.length;f++) {
             if(b[d] === c[f]) {
-              j && (f <= l && (l--, f <= m && m--)), c.splice(f--, 1);
+              j && f <= l && (l--, f <= m && m--), c.splice(f--, 1);
               if(a.unique) {
                 break
               }
@@ -940,10 +942,10 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         b[a] = arguments.length > 1 ? i.call(arguments, 0) : c, --g || j.resolveWith(j, b)
       }
     }
-    var b = i.call(arguments, 0), c = 0, d = b.length, e = Array(d), g = d, h = d, j = d <= 1 && (a && f.isFunction(a.promise)) ? a : f.Deferred(), k = j.promise();
+    var b = i.call(arguments, 0), c = 0, d = b.length, e = Array(d), g = d, h = d, j = d <= 1 && a && f.isFunction(a.promise) ? a : f.Deferred(), k = j.promise();
     if(d > 1) {
       for(;c < d;c++) {
-        b[c] && (b[c].promise && f.isFunction(b[c].promise)) ? b[c].promise().then(l(c), j.reject, m(c)) : --g
+        b[c] && b[c].promise && f.isFunction(b[c].promise) ? b[c].promise().then(l(c), j.reject, m(c)) : --g
       }
       g || j.resolveWith(j, b)
     }else {
@@ -953,7 +955,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }}), f.support = function() {
     var b, d, e, g, h, i, j, k, l, m, n, o, p = c.createElement("div"), q = c.documentElement;
     p.setAttribute("className", "t"), p.innerHTML = "   <link/><table></table><a href='/a' style='top:1px;float:left;opacity:.55;'>a</a><input type='checkbox'/>", d = p.getElementsByTagName("*"), e = p.getElementsByTagName("a")[0];
-    if(!d || (!d.length || !e)) {
+    if(!d || !d.length || !e) {
       return{}
     }
     g = c.createElement("select"), h = g.appendChild(c.createElement("option")), i = p.getElementsByTagName("input")[0], b = {leadingWhitespace:p.firstChild.nodeType === 3, tbody:!p.getElementsByTagName("tbody").length, htmlSerialize:!!p.getElementsByTagName("link").length, style:/top/.test(e.getAttribute("style")), hrefNormalized:e.getAttribute("href") === "/a", opacity:/^0.55/.test(e.style.opacity), cssFloat:!!e.style.cssFloat, checkOn:i.value === "on", optSelected:h.selected, getSetAttribute:p.className !== 
@@ -963,9 +965,9 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     }catch(r) {
       b.deleteExpando = !1
     }
-    !p.addEventListener && (p.attachEvent && (p.fireEvent && (p.attachEvent("onclick", function() {
+    !p.addEventListener && p.attachEvent && p.fireEvent && (p.attachEvent("onclick", function() {
       b.noCloneEvent = !1
-    }), p.cloneNode(!0).fireEvent("onclick")))), i = c.createElement("input"), i.value = "t", i.setAttribute("type", "radio"), b.radioValue = i.value === "t", i.setAttribute("checked", "checked"), i.setAttribute("name", "t"), p.appendChild(i), j = c.createDocumentFragment(), j.appendChild(p.lastChild), b.checkClone = j.cloneNode(!0).cloneNode(!0).lastChild.checked, b.appendChecked = i.checked, j.removeChild(i), j.appendChild(p);
+    }), p.cloneNode(!0).fireEvent("onclick")), i = c.createElement("input"), i.value = "t", i.setAttribute("type", "radio"), b.radioValue = i.value === "t", i.setAttribute("checked", "checked"), i.setAttribute("name", "t"), p.appendChild(i), j = c.createDocumentFragment(), j.appendChild(p.lastChild), b.checkClone = j.cloneNode(!0).cloneNode(!0).lastChild.checked, b.appendChecked = i.checked, j.removeChild(i), j.appendChild(p);
     if(p.attachEvent) {
       for(n in{submit:1, change:1, focusin:1}) {
         m = "on" + n, o = m in p, o || (p.setAttribute(m, "return;"), o = typeof p[m] == "function"), b[n + "Bubbles"] = o
@@ -988,7 +990,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }, data:function(a, c, d, e) {
     if(!!f.acceptData(a)) {
       var g, h, i, j = f.expando, k = typeof c == "string", l = a.nodeType, m = l ? f.cache : a, n = l ? a[j] : a[j] && j, o = c === "events";
-      if((!n || (!m[n] || !o && (!e && !m[n].data))) && (k && d === b)) {
+      if((!n || !m[n] || !o && !e && !m[n].data) && k && d === b) {
         return
       }
       n || (l ? a[j] = n = ++f.uuid : n = j), m[n] || (m[n] = {}, l || (m[n].toJSON = f.noop));
@@ -1061,7 +1063,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     d = a.split(".", 2), d[1] = d[1] ? "." + d[1] : "", e = d[1] + "!";
     return f.access(this, function(c) {
       if(c === b) {
-        m = this.triggerHandler("getData" + e, [d[0]]), m === b && (j && (m = f.data(j, a), m = l(j, a, m)));
+        m = this.triggerHandler("getData" + e, [d[0]]), m === b && j && (m = f.data(j, a), m = l(j, a, m));
         return m === b && d[1] ? this.data(d[0]) : m
       }
       d[1] = c, this.each(function() {
@@ -1102,7 +1104,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     }
     return c === b ? this : this.each(function() {
       var b = f.queue(this, a, c);
-      a === "fx" && (b[0] !== "inprogress" && f.dequeue(this, a))
+      a === "fx" && b[0] !== "inprogress" && f.dequeue(this, a)
     })
   }, dequeue:function(a) {
     return this.each(function() {
@@ -1236,7 +1238,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
           e ? h = a.call(this, d, g.val()) : h = a, h == null ? h = "" : typeof h == "number" ? h += "" : f.isArray(h) && (h = f.map(h, function(a) {
             return a == null ? "" : a + ""
           })), c = f.valHooks[this.type] || f.valHooks[this.nodeName.toLowerCase()];
-          if(!c || (!("set" in c) || c.set(this, h, "value") === b)) {
+          if(!c || !("set" in c) || c.set(this, h, "value") === b) {
             this.value = h
           }
         }
@@ -1244,7 +1246,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     }
     if(g) {
       c = f.valHooks[g.type] || f.valHooks[g.nodeName.toLowerCase()];
-      if(c && ("get" in c && (d = c.get(g, "value")) !== b)) {
+      if(c && "get" in c && (d = c.get(g, "value")) !== b) {
         return d
       }
       d = g.value;
@@ -1261,7 +1263,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     c = j ? g : 0, d = j ? g + 1 : i.length;
     for(;c < d;c++) {
       e = i[c];
-      if(e.selected && ((f.support.optDisabled ? !e.disabled : e.getAttribute("disabled") === null) && (!e.parentNode.disabled || !f.nodeName(e.parentNode, "optgroup")))) {
+      if(e.selected && (f.support.optDisabled ? !e.disabled : e.getAttribute("disabled") === null) && (!e.parentNode.disabled || !f.nodeName(e.parentNode, "optgroup"))) {
         b = f(e).val();
         if(j) {
           return b
@@ -1269,7 +1271,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         h.push(b)
       }
     }
-    if(j && (!h.length && i.length)) {
+    if(j && !h.length && i.length) {
       return f(i[g]).val()
     }
     return h
@@ -1281,7 +1283,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     return c
   }}}, attrFn:{val:!0, css:!0, html:!0, text:!0, data:!0, width:!0, height:!0, offset:!0}, attr:function(a, c, d, e) {
     var g, h, i, j = a.nodeType;
-    if(!!a && (j !== 3 && (j !== 8 && j !== 2))) {
+    if(!!a && j !== 3 && j !== 8 && j !== 2) {
       if(e && c in f.attrFn) {
         return f(a)[c](d)
       }
@@ -1294,13 +1296,13 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
           f.removeAttr(a, c);
           return
         }
-        if(h && ("set" in h && (i && (g = h.set(a, d, c)) !== b))) {
+        if(h && "set" in h && i && (g = h.set(a, d, c)) !== b) {
           return g
         }
         a.setAttribute(c, "" + d);
         return d
       }
-      if(h && ("get" in h && (i && (g = h.get(a, c)) !== null))) {
+      if(h && "get" in h && i && (g = h.get(a, c)) !== null) {
         return g
       }
       g = a.getAttribute(c);
@@ -1311,14 +1313,14 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     if(b && a.nodeType === 1) {
       d = b.toLowerCase().split(p), g = d.length;
       for(;i < g;i++) {
-        e = d[i], e && (c = f.propFix[e] || e, h = u.test(e), h || f.attr(a, e, ""), a.removeAttribute(v ? e : c), h && (c in a && (a[c] = !1)))
+        e = d[i], e && (c = f.propFix[e] || e, h = u.test(e), h || f.attr(a, e, ""), a.removeAttribute(v ? e : c), h && c in a && (a[c] = !1))
       }
     }
   }, attrHooks:{type:{set:function(a, b) {
     if(r.test(a.nodeName) && a.parentNode) {
       f.error("type property can't be changed")
     }else {
-      if(!f.support.radioValue && (b === "radio" && f.nodeName(a, "input"))) {
+      if(!f.support.radioValue && b === "radio" && f.nodeName(a, "input")) {
         var c = a.value;
         a.setAttribute("type", b), c && (a.value = c);
         return b
@@ -1336,16 +1338,16 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     a.value = b
   }}}, propFix:{tabindex:"tabIndex", readonly:"readOnly", "for":"htmlFor", "class":"className", maxlength:"maxLength", cellspacing:"cellSpacing", cellpadding:"cellPadding", rowspan:"rowSpan", colspan:"colSpan", usemap:"useMap", frameborder:"frameBorder", contenteditable:"contentEditable"}, prop:function(a, c, d) {
     var e, g, h, i = a.nodeType;
-    if(!!a && (i !== 3 && (i !== 8 && i !== 2))) {
+    if(!!a && i !== 3 && i !== 8 && i !== 2) {
       h = i !== 1 || !f.isXMLDoc(a), h && (c = f.propFix[c] || c, g = f.propHooks[c]);
-      return d !== b ? g && ("set" in g && (e = g.set(a, d, c)) !== b) ? e : a[c] = d : g && ("get" in g && (e = g.get(a, c)) !== null) ? e : a[c]
+      return d !== b ? g && "set" in g && (e = g.set(a, d, c)) !== b ? e : a[c] = d : g && "get" in g && (e = g.get(a, c)) !== null ? e : a[c]
     }
   }, propHooks:{tabIndex:{get:function(a) {
     var c = a.getAttributeNode("tabindex");
     return c && c.specified ? parseInt(c.value, 10) : s.test(a.nodeName) || t.test(a.nodeName) && a.href ? 0 : b
   }}}}), f.attrHooks.tabindex = f.propHooks.tabIndex, x = {get:function(a, c) {
     var d, e = f.prop(a, c);
-    return e === !0 || typeof e != "boolean" && ((d = a.getAttributeNode(c)) && d.nodeValue !== !1) ? c.toLowerCase() : b
+    return e === !0 || typeof e != "boolean" && (d = a.getAttributeNode(c)) && d.nodeValue !== !1 ? c.toLowerCase() : b
   }, set:function(a, b, c) {
     var d;
     b === !1 ? f.removeAttr(a, c) : (d = f.propFix[c] || c, d in a && (a[d] = !0), a.setAttribute(c, c.toLowerCase()));
@@ -1397,13 +1399,13 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     return b
   }, H = function(a, b) {
     var c = a.attributes || {};
-    return(!b[1] || a.nodeName.toLowerCase() === b[1]) && ((!b[2] || (c.id || {}).value === b[2]) && (!b[3] || b[3].test((c["class"] || {}).value)))
+    return(!b[1] || a.nodeName.toLowerCase() === b[1]) && (!b[2] || (c.id || {}).value === b[2]) && (!b[3] || b[3].test((c["class"] || {}).value))
   }, I = function(a) {
     return f.event.special.hover ? a : a.replace(B, "mouseenter$1 mouseleave$1")
   };
   f.event = {add:function(a, c, d, e, g) {
     var h, i, j, k, l, m, n, o, p, q, r, s;
-    if(!(a.nodeType === 3 || (a.nodeType === 8 || (!c || (!d || !(h = f._data(a))))))) {
+    if(!(a.nodeType === 3 || a.nodeType === 8 || !c || !d || !(h = f._data(a)))) {
       d.handler && (p = d, d = p.handler, g = p.selector), d.guid || (d.guid = f.guid++), j = h.events, j || (h.events = j = {}), i = h.handle, i || (h.handle = i = function(a) {
         return typeof f != "undefined" && (!a || f.event.triggered !== a.type) ? f.event.dispatch.apply(i.elem, arguments) : b
       }, i.elem = a), c = f.trim(I(c)).split(" ");
@@ -1433,9 +1435,9 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         }
         p = f.event.special[j] || {}, j = (d ? p.delegateType : p.bindType) || j, r = o[j] || [], m = r.length, l = l ? new RegExp("(^|\\.)" + l.split(".").sort().join("\\.(?:.*\\.)?") + "(\\.|$)") : null;
         for(n = 0;n < r.length;n++) {
-          s = r[n], (e || k === s.origType) && ((!c || c.guid === s.guid) && ((!l || l.test(s.namespace)) && ((!d || (d === s.selector || d === "**" && s.selector)) && (r.splice(n--, 1), s.selector && r.delegateCount--, p.remove && p.remove.call(a, s)))))
+          s = r[n], (e || k === s.origType) && (!c || c.guid === s.guid) && (!l || l.test(s.namespace)) && (!d || d === s.selector || d === "**" && s.selector) && (r.splice(n--, 1), s.selector && r.delegateCount--, p.remove && p.remove.call(a, s))
         }
-        r.length === 0 && (m !== r.length && ((!p.teardown || p.teardown.call(a, l) === !1) && f.removeEvent(a, j, g.handle), delete o[j]))
+        r.length === 0 && m !== r.length && ((!p.teardown || p.teardown.call(a, l) === !1) && f.removeEvent(a, j, g.handle), delete o[j])
       }
       f.isEmptyObject(o) && (q = g.handle, q && (q.elem = null), f.removeData(a, ["events", "handle"], !0))
     }
@@ -1453,7 +1455,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       if(!e) {
         j = f.cache;
         for(l in j) {
-          j[l].events && (j[l].events[h] && f.event.trigger(c, d, j[l].handle.elem, !0))
+          j[l].events && j[l].events[h] && f.event.trigger(c, d, j[l].handle.elem, !0)
         }
         return
       }
@@ -1462,17 +1464,17 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         return
       }
       r = [[e, p.bindType || h]];
-      if(!g && (!p.noBubble && !f.isWindow(e))) {
+      if(!g && !p.noBubble && !f.isWindow(e)) {
         s = p.delegateType || h, m = E.test(s + h) ? e : e.parentNode, n = null;
         for(;m;m = m.parentNode) {
           r.push([m, s]), n = m
         }
-        n && (n === e.ownerDocument && r.push([n.defaultView || (n.parentWindow || a), s]))
+        n && n === e.ownerDocument && r.push([n.defaultView || n.parentWindow || a, s])
       }
       for(l = 0;l < r.length && !c.isPropagationStopped();l++) {
-        m = r[l][0], c.type = r[l][1], q = (f._data(m, "events") || {})[c.type] && f._data(m, "handle"), q && q.apply(m, d), q = o && m[o], q && (f.acceptData(m) && (q.apply(m, d) === !1 && c.preventDefault()))
+        m = r[l][0], c.type = r[l][1], q = (f._data(m, "events") || {})[c.type] && f._data(m, "handle"), q && q.apply(m, d), q = o && m[o], q && f.acceptData(m) && q.apply(m, d) === !1 && c.preventDefault()
       }
-      c.type = h, !g && (!c.isDefaultPrevented() && ((!p._default || p._default.apply(e.ownerDocument, d) === !1) && ((h !== "click" || !f.nodeName(e, "a")) && (f.acceptData(e) && (o && (e[h] && ((h !== "focus" && h !== "blur" || c.target.offsetWidth !== 0) && (!f.isWindow(e) && (n = e[o], n && (e[o] = null), f.event.triggered = h, e[h](), f.event.triggered = b, n && (e[o] = n))))))))));
+      c.type = h, !g && !c.isDefaultPrevented() && (!p._default || p._default.apply(e.ownerDocument, d) === !1) && (h !== "click" || !f.nodeName(e, "a")) && f.acceptData(e) && o && e[h] && (h !== "focus" && h !== "blur" || c.target.offsetWidth !== 0) && !f.isWindow(e) && (n = e[o], n && (e[o] = null), f.event.triggered = h, e[h](), f.event.triggered = b, n && (e[o] = n));
       return c.result
     }
   }, dispatch:function(c) {
@@ -1497,7 +1499,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         q = j[k], c.currentTarget = q.elem;
         for(l = 0;l < q.matches.length && !c.isImmediatePropagationStopped();l++) {
           s = q.matches[l];
-          if(h || (!c.namespace && !s.namespace || c.namespace_re && c.namespace_re.test(s.namespace))) {
+          if(h || !c.namespace && !s.namespace || c.namespace_re && c.namespace_re.test(s.namespace)) {
             c.data = s.data, c.handleObj = s, o = ((f.event.special[s.origType] || {}).handle || s.handler).apply(q.elem, g), o !== b && (c.result = o, o === !1 && (c.preventDefault(), c.stopPropagation()))
           }
         }
@@ -1510,8 +1512,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     return a
   }}, mouseHooks:{props:"button buttons clientX clientY fromElement offsetX offsetY pageX pageY screenX screenY toElement".split(" "), filter:function(a, d) {
     var e, f, g, h = d.button, i = d.fromElement;
-    a.pageX == null && (d.clientX != null && (e = a.target.ownerDocument || c, f = e.documentElement, g = e.body, a.pageX = d.clientX + (f && f.scrollLeft || (g && g.scrollLeft || 0)) - (f && f.clientLeft || (g && g.clientLeft || 0)), a.pageY = d.clientY + (f && f.scrollTop || (g && g.scrollTop || 0)) - (f && f.clientTop || (g && g.clientTop || 0)))), !a.relatedTarget && (i && (a.relatedTarget = i === a.target ? d.toElement : i)), !a.which && (h !== b && (a.which = h & 1 ? 1 : h & 2 ? 3 : h & 4 ? 
-    2 : 0));
+    a.pageX == null && d.clientX != null && (e = a.target.ownerDocument || c, f = e.documentElement, g = e.body, a.pageX = d.clientX + (f && f.scrollLeft || g && g.scrollLeft || 0) - (f && f.clientLeft || g && g.clientLeft || 0), a.pageY = d.clientY + (f && f.scrollTop || g && g.scrollTop || 0) - (f && f.clientTop || g && g.clientTop || 0)), !a.relatedTarget && i && (a.relatedTarget = i === a.target ? d.toElement : i), !a.which && h !== b && (a.which = h & 1 ? 1 : h & 2 ? 3 : h & 4 ? 2 : 0);
     return a
   }}, fix:function(a) {
     if(a[f.expando]) {
@@ -1539,7 +1540,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     if(!(this instanceof f.Event)) {
       return new f.Event(a, b)
     }
-    a && a.type ? (this.originalEvent = a, this.type = a.type, this.isDefaultPrevented = a.defaultPrevented || (a.returnValue === !1 || a.getPreventDefault && a.getPreventDefault()) ? K : J) : this.type = a, b && f.extend(this, b), this.timeStamp = a && a.timeStamp || f.now(), this[f.expando] = !0
+    a && a.type ? (this.originalEvent = a, this.type = a.type, this.isDefaultPrevented = a.defaultPrevented || a.returnValue === !1 || a.getPreventDefault && a.getPreventDefault() ? K : J) : this.type = a, b && f.extend(this, b), this.timeStamp = a && a.timeStamp || f.now(), this[f.expando] = !0
   }, f.Event.prototype = {preventDefault:function() {
     this.isDefaultPrevented = K;
     var a = this.originalEvent;
@@ -1564,12 +1565,12 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     }
     f.event.add(this, "click._submit keypress._submit", function(a) {
       var c = a.target, d = f.nodeName(c, "input") || f.nodeName(c, "button") ? c.form : b;
-      d && (!d._submit_attached && (f.event.add(d, "submit._submit", function(a) {
+      d && !d._submit_attached && (f.event.add(d, "submit._submit", function(a) {
         a._submit_bubble = !0
-      }), d._submit_attached = !0))
+      }), d._submit_attached = !0)
     })
   }, postDispatch:function(a) {
-    a._submit_bubble && (delete a._submit_bubble, this.parentNode && (!a.isTrigger && f.event.simulate("submit", this.parentNode, a, !0)))
+    a._submit_bubble && (delete a._submit_bubble, this.parentNode && !a.isTrigger && f.event.simulate("submit", this.parentNode, a, !0))
   }, teardown:function() {
     if(f.nodeName(this, "form")) {
       return!1
@@ -1581,20 +1582,20 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         f.event.add(this, "propertychange._change", function(a) {
           a.originalEvent.propertyName === "checked" && (this._just_changed = !0)
         }), f.event.add(this, "click._change", function(a) {
-          this._just_changed && (!a.isTrigger && (this._just_changed = !1, f.event.simulate("change", this, a, !0)))
+          this._just_changed && !a.isTrigger && (this._just_changed = !1, f.event.simulate("change", this, a, !0))
         })
       }
       return!1
     }
     f.event.add(this, "beforeactivate._change", function(a) {
       var b = a.target;
-      z.test(b.nodeName) && (!b._change_attached && (f.event.add(b, "change._change", function(a) {
-        this.parentNode && (!a.isSimulated && (!a.isTrigger && f.event.simulate("change", this.parentNode, a, !0)))
-      }), b._change_attached = !0))
+      z.test(b.nodeName) && !b._change_attached && (f.event.add(b, "change._change", function(a) {
+        this.parentNode && !a.isSimulated && !a.isTrigger && f.event.simulate("change", this.parentNode, a, !0)
+      }), b._change_attached = !0)
     })
   }, handle:function(a) {
     var b = a.target;
-    if(this !== b || (a.isSimulated || (a.isTrigger || b.type !== "radio" && b.type !== "checkbox"))) {
+    if(this !== b || a.isSimulated || a.isTrigger || b.type !== "radio" && b.type !== "checkbox") {
       return a.handleObj.handler.apply(this, arguments)
     }
   }, teardown:function() {
@@ -1636,7 +1637,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }, one:function(a, b, c, d) {
     return this.on(a, b, c, d, 1)
   }, off:function(a, c, d) {
-    if(a && (a.preventDefault && a.handleObj)) {
+    if(a && a.preventDefault && a.handleObj) {
       var e = a.handleObj;
       f(a.delegateTarget).off(e.namespace ? e.origType + "." + e.namespace : e.origType, e.selector, e.handler);
       return this
@@ -1737,7 +1738,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
               k = e[j.sizset];
               break
             }
-            j.nodeType === 1 && (!g && (j[d] = c, j.sizset = h));
+            j.nodeType === 1 && !g && (j[d] = c, j.sizset = h);
             if(j.nodeName.toLowerCase() === b) {
               k = j;
               break
@@ -1783,9 +1784,9 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
           }
         }
       }else {
-        !f && (w.length > 1 && (d.nodeType === 9 && (!v && (o.match.ID.test(w[0]) && (!o.match.ID.test(w[w.length - 1]) && (n = m.find(w.shift(), d, v), d = n.expr ? m.filter(n.expr, n.set)[0] : n.set[0]))))));
+        !f && w.length > 1 && d.nodeType === 9 && !v && o.match.ID.test(w[0]) && !o.match.ID.test(w[w.length - 1]) && (n = m.find(w.shift(), d, v), d = n.expr ? m.filter(n.expr, n.set)[0] : n.set[0]);
         if(d) {
-          n = f ? {expr:w.pop(), set:s(f)} : m.find(w.pop(), w.length === 1 && ((w[0] === "~" || w[0] === "+") && d.parentNode) ? d.parentNode : d, v), j = n.expr ? m.filter(n.expr, n.set) : n.set, w.length > 0 ? k = s(j) : u = !1;
+          n = f ? {expr:w.pop(), set:s(f)} : m.find(w.pop(), w.length === 1 && (w[0] === "~" || w[0] === "+") && d.parentNode ? d.parentNode : d, v), j = n.expr ? m.filter(n.expr, n.set) : n.set, w.length > 0 ? k = s(j) : u = !1;
           while(w.length) {
             q = w.pop(), r = q, o.relative[q] ? r = w.pop() : q = "", r == null && (r = d), o.relative[q](k, r, v)
           }
@@ -1800,11 +1801,11 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         }else {
           if(d && d.nodeType === 1) {
             for(t = 0;k[t] != null;t++) {
-              k[t] && ((k[t] === !0 || k[t].nodeType === 1 && m.contains(d, k[t])) && e.push(j[t]))
+              k[t] && (k[t] === !0 || k[t].nodeType === 1 && m.contains(d, k[t])) && e.push(j[t])
             }
           }else {
             for(t = 0;k[t] != null;t++) {
-              k[t] && (k[t].nodeType === 1 && e.push(j[t]))
+              k[t] && k[t].nodeType === 1 && e.push(j[t])
             }
           }
         }
@@ -1849,7 +1850,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       d || (d = typeof b.getElementsByTagName != "undefined" ? b.getElementsByTagName("*") : []);
       return{set:d, expr:a}
     }, m.filter = function(a, c, d, e) {
-      var f, g, h, i, j, k, l, n, p, q = a, r = [], s = c, t = c && (c[0] && m.isXML(c[0]));
+      var f, g, h, i, j, k, l, n, p, q = a, r = [], s = c, t = c && c[0] && m.isXML(c[0]);
       while(a && c.length) {
         for(h in o.filter) {
           if((f = o.leftMatch[h].exec(a)) != null && f[2]) {
@@ -1898,7 +1899,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     var n = m.getText = function(a) {
       var b, c, d = a.nodeType, e = "";
       if(d) {
-        if(d === 1 || (d === 9 || d === 11)) {
+        if(d === 1 || d === 9 || d === 11) {
           if(typeof a.textContent == "string") {
             return a.textContent
           }
@@ -1954,10 +1955,10 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       }
     }, "":function(a, b, c) {
       var d, f = e++, g = x;
-      typeof b == "string" && (!l.test(b) && (b = b.toLowerCase(), d = b, g = w)), g("parentNode", b, f, a, d, c)
+      typeof b == "string" && !l.test(b) && (b = b.toLowerCase(), d = b, g = w), g("parentNode", b, f, a, d, c)
     }, "~":function(a, b, c) {
       var d, f = e++, g = x;
-      typeof b == "string" && (!l.test(b) && (b = b.toLowerCase(), d = b, g = w)), g("previousSibling", b, f, a, d, c)
+      typeof b == "string" && !l.test(b) && (b = b.toLowerCase(), d = b, g = w), g("previousSibling", b, f, a, d, c)
     }}, find:{ID:function(a, b, c) {
       if(typeof b.getElementById != "undefined" && !c) {
         var d = b.getElementById(a[1]);
@@ -1991,7 +1992,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     }, CHILD:function(a) {
       if(a[1] === "nth") {
         a[2] || m.error(a[0]), a[2] = a[2].replace(/^\+|\s*/g, "");
-        var b = /(-?)(\d*)(?:n([+\-]?\d*))?/.exec(a[2] === "even" && "2n" || (a[2] === "odd" && "2n+1" || (!/\D/.test(a[2]) && "0n+" + a[2] || a[2])));
+        var b = /(-?)(\d*)(?:n([+\-]?\d*))?/.exec(a[2] === "even" && "2n" || a[2] === "odd" && "2n+1" || !/\D/.test(a[2]) && "0n+" + a[2] || a[2]);
         a[2] = b[1] + (b[2] || 1) - 0, a[3] = b[3] - 0
       }else {
         a[2] && m.error(a[0])
@@ -2000,7 +2001,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       return a
     }, ATTR:function(a, b, c, d, e, f) {
       var g = a[1] = a[1].replace(j, "");
-      !f && (o.attrMap[g] && (a[1] = o.attrMap[g])), a[4] = (a[4] || (a[5] || "")).replace(j, ""), a[2] === "~=" && (a[4] = " " + a[4] + " ");
+      !f && o.attrMap[g] && (a[1] = o.attrMap[g]), a[4] = (a[4] || a[5] || "").replace(j, ""), a[2] === "~=" && (a[4] = " " + a[4] + " ");
       return a
     }, PSEUDO:function(b, c, d, e, f) {
       if(b[1] === "not") {
@@ -2039,7 +2040,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       return/h\d/i.test(a.nodeName)
     }, text:function(a) {
       var b = a.getAttribute("type"), c = a.type;
-      return a.nodeName.toLowerCase() === "input" && ("text" === c && (b === c || b === null))
+      return a.nodeName.toLowerCase() === "input" && "text" === c && (b === c || b === null)
     }, radio:function(a) {
       return a.nodeName.toLowerCase() === "input" && "radio" === a.type
     }, checkbox:function(a) {
@@ -2085,7 +2086,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         return f(a, c, b, d)
       }
       if(e === "contains") {
-        return(a.textContent || (a.innerText || (n([a]) || ""))).indexOf(b[3]) >= 0
+        return(a.textContent || a.innerText || n([a]) || "").indexOf(b[3]) >= 0
       }
       if(e === "not") {
         var g = b[3];
@@ -2248,7 +2249,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         }
       }, o.filter.ID = function(a, b) {
         var c = typeof a.getAttributeNode != "undefined" && a.getAttributeNode("id");
-        return a.nodeType === 1 && (c && c.nodeValue === b)
+        return a.nodeType === 1 && c && c.nodeValue === b
       }), e.removeChild(a), e = a = null
     }(), function() {
       var a = c.createElement("div");
@@ -2262,9 +2263,9 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
           c = d
         }
         return c
-      }), a.innerHTML = "<a href='#'></a>", a.firstChild && (typeof a.firstChild.getAttribute != "undefined" && (a.firstChild.getAttribute("href") !== "#" && (o.attrHandle.href = function(a) {
+      }), a.innerHTML = "<a href='#'></a>", a.firstChild && typeof a.firstChild.getAttribute != "undefined" && a.firstChild.getAttribute("href") !== "#" && (o.attrHandle.href = function(a) {
         return a.getAttribute("href", 2)
-      }))), a = null
+      }), a = null
     }(), c.querySelectorAll && function() {
       var a = m, b = c.createElement("div"), d = "__sizzle__";
       b.innerHTML = "<p class='TEST'></p>";
@@ -2277,7 +2278,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
               if(h[1]) {
                 return s(e.getElementsByTagName(b), f)
               }
-              if(h[2] && (o.find.CLASS && e.getElementsByClassName)) {
+              if(h[2] && o.find.CLASS && e.getElementsByClassName) {
                 return s(e.getElementsByClassName(h[2]), f)
               }
             }
@@ -2301,7 +2302,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
             }else {
               if(e.nodeType === 1 && e.nodeName.toLowerCase() !== "object") {
                 var k = e, l = e.getAttribute("id"), n = l || d, p = e.parentNode, q = /^\s*[+~]/.test(b);
-                l ? n = n.replace(/'/g, "\\$&") : e.setAttribute("id", n), q && (p && (e = e.parentNode));
+                l ? n = n.replace(/'/g, "\\$&") : e.setAttribute("id", n), q && p && (e = e.parentNode);
                 try {
                   if(!q || p) {
                     return s(e.querySelectorAll("[id='" + n + "'] " + b), f)
@@ -2321,7 +2322,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         b = null
       }
     }(), function() {
-      var a = c.documentElement, b = a.matchesSelector || (a.mozMatchesSelector || (a.webkitMatchesSelector || a.msMatchesSelector));
+      var a = c.documentElement, b = a.matchesSelector || a.mozMatchesSelector || a.webkitMatchesSelector || a.msMatchesSelector;
       if(b) {
         var d = !b.call(c.createElement("div"), "div"), e = !1;
         try {
@@ -2335,7 +2336,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
             try {
               if(e || !o.match.PSEUDO.test(c) && !/!=/.test(c)) {
                 var f = b.call(a, c);
-                if(f || (!d || a.document && a.document.nodeType !== 11)) {
+                if(f || !d || a.document && a.document.nodeType !== 11) {
                   return f
                 }
               }
@@ -2428,7 +2429,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     var c = [], d, e, g = this[0];
     if(f.isArray(a)) {
       var h = 1;
-      while(g && (g.ownerDocument && g !== b)) {
+      while(g && g.ownerDocument && g !== b) {
         for(d = 0;d < a.length;d++) {
           f(g).is(a[d]) && c.push({selector:a[d], elem:g, level:h})
         }
@@ -2445,7 +2446,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
           break
         }
         g = g.parentNode;
-        if(!g || (!g.ownerDocument || (g === b || g.nodeType === 11))) {
+        if(!g || !g.ownerDocument || g === b || g.nodeType === 11) {
           break
         }
       }
@@ -2493,7 +2494,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }}, function(a, b) {
     f.fn[a] = function(c, d) {
       var e = f.map(this, b, c);
-      L.test(a) || (d = c), d && (typeof d == "string" && (e = f.filter(d, e))), e = this.length > 1 && !R[a] ? f.unique(e) : e, (this.length > 1 || N.test(d)) && (M.test(a) && (e = e.reverse()));
+      L.test(a) || (d = c), d && typeof d == "string" && (e = f.filter(d, e)), e = this.length > 1 && !R[a] ? f.unique(e) : e, (this.length > 1 || N.test(d)) && M.test(a) && (e = e.reverse());
       return this.pushStack(e, a, P.call(arguments).join(","))
     }
   }), f.extend({filter:function(a, b, c) {
@@ -2501,7 +2502,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     return b.length === 1 ? f.find.matchesSelector(b[0], a) ? [b[0]] : [] : f.find.matches(a, b)
   }, dir:function(a, c, d) {
     var e = [], g = a[c];
-    while(g && (g.nodeType !== 9 && (d === b || (g.nodeType !== 1 || !f(g).is(d))))) {
+    while(g && g.nodeType !== 9 && (d === b || g.nodeType !== 1 || !f(g).is(d))) {
       g.nodeType === 1 && e.push(g), g = g[c]
     }
     return e
@@ -2517,7 +2518,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }, sibling:function(a, b) {
     var c = [];
     for(;a;a = a.nextSibling) {
-      a.nodeType === 1 && (a !== b && c.push(a))
+      a.nodeType === 1 && a !== b && c.push(a)
     }
     return c
   }});
@@ -2596,7 +2597,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }, remove:function(a, b) {
     for(var c = 0, d;(d = this[c]) != null;c++) {
       if(!a || f.filter(a, [d]).length) {
-        !b && (d.nodeType === 1 && (f.cleanData(d.getElementsByTagName("*")), f.cleanData([d]))), d.parentNode && d.parentNode.removeChild(d)
+        !b && d.nodeType === 1 && (f.cleanData(d.getElementsByTagName("*")), f.cleanData([d])), d.parentNode && d.parentNode.removeChild(d)
       }
     }
     return this
@@ -2619,7 +2620,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       if(a === b) {
         return c.nodeType === 1 ? c.innerHTML.replace(W, "") : null
       }
-      if(typeof a == "string" && (!ba.test(a) && ((f.support.leadingWhitespace || !X.test(a)) && !bg[(Z.exec(a) || ["", ""])[1].toLowerCase()]))) {
+      if(typeof a == "string" && !ba.test(a) && (f.support.leadingWhitespace || !X.test(a)) && !bg[(Z.exec(a) || ["", ""])[1].toLowerCase()]) {
         a = a.replace(Y, "<$1></$2>");
         try {
           for(;d < e;d++) {
@@ -2650,7 +2651,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     return this.remove(a, !0)
   }, domManip:function(a, c, d) {
     var e, g, h, i, j = a[0], k = [];
-    if(!f.support.checkClone && (arguments.length === 3 && (typeof j == "string" && bd.test(j)))) {
+    if(!f.support.checkClone && arguments.length === 3 && typeof j == "string" && bd.test(j)) {
       return this.each(function() {
         f(this).domManip(a, c, d, !0)
       })
@@ -2662,7 +2663,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       })
     }
     if(this[0]) {
-      i = j && j.parentNode, f.support.parentNode && (i && (i.nodeType === 11 && i.childNodes.length === this.length)) ? e = {fragment:i} : e = f.buildFragment(a, this, k), h = e.fragment, h.childNodes.length === 1 ? g = h = h.firstChild : g = h.firstChild;
+      i = j && j.parentNode, f.support.parentNode && i && i.nodeType === 11 && i.childNodes.length === this.length ? e = {fragment:i} : e = f.buildFragment(a, this, k), h = e.fragment, h.childNodes.length === 1 ? g = h = h.firstChild : g = h.firstChild;
       if(g) {
         c = c && f.nodeName(g, "tr");
         for(var l = 0, m = this.length, n = m - 1;l < m;l++) {
@@ -2670,18 +2671,18 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         }
       }
       k.length && f.each(k, function(a, b) {
-        b.src ? f.ajax({type:"GET", global:!1, url:b.src, async:!1, dataType:"script"}) : f.globalEval((b.text || (b.textContent || (b.innerHTML || ""))).replace(bf, "/*$0*/")), b.parentNode && b.parentNode.removeChild(b)
+        b.src ? f.ajax({type:"GET", global:!1, url:b.src, async:!1, dataType:"script"}) : f.globalEval((b.text || b.textContent || b.innerHTML || "").replace(bf, "/*$0*/")), b.parentNode && b.parentNode.removeChild(b)
       })
     }
     return this
   }}), f.buildFragment = function(a, b, d) {
     var e, g, h, i, j = a[0];
-    b && (b[0] && (i = b[0].ownerDocument || b[0])), i.createDocumentFragment || (i = c), a.length === 1 && (typeof j == "string" && (j.length < 512 && (i === c && (j.charAt(0) === "<" && (!bb.test(j) && ((f.support.checkClone || !bd.test(j)) && ((f.support.html5Clone || !bc.test(j)) && (g = !0, h = f.fragments[j], h && (h !== 1 && (e = h)))))))))), e || (e = i.createDocumentFragment(), f.clean(a, i, e, d)), g && (f.fragments[j] = h ? e : 1);
+    b && b[0] && (i = b[0].ownerDocument || b[0]), i.createDocumentFragment || (i = c), a.length === 1 && typeof j == "string" && j.length < 512 && i === c && j.charAt(0) === "<" && !bb.test(j) && (f.support.checkClone || !bd.test(j)) && (f.support.html5Clone || !bc.test(j)) && (g = !0, h = f.fragments[j], h && h !== 1 && (e = h)), e || (e = i.createDocumentFragment(), f.clean(a, i, e, d)), g && (f.fragments[j] = h ? e : 1);
     return{fragment:e, cacheable:g}
   }, f.fragments = {}, f.each({appendTo:"append", prependTo:"prepend", insertBefore:"before", insertAfter:"after", replaceAll:"replaceWith"}, function(a, b) {
     f.fn[a] = function(c) {
       var d = [], e = f(c), g = this.length === 1 && this[0].parentNode;
-      if(g && (g.nodeType === 11 && (g.childNodes.length === 1 && e.length === 1))) {
+      if(g && g.nodeType === 11 && g.childNodes.length === 1 && e.length === 1) {
         e[b](this[0]);
         return this
       }
@@ -2692,8 +2693,8 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       return this.pushStack(d, a, e.selector)
     }
   }), f.extend({clone:function(a, b, c) {
-    var d, e, g, h = f.support.html5Clone || (f.isXMLDoc(a) || !bc.test("<" + a.nodeName + ">")) ? a.cloneNode(!0) : bo(a);
-    if((!f.support.noCloneEvent || !f.support.noCloneChecked) && ((a.nodeType === 1 || a.nodeType === 11) && !f.isXMLDoc(a))) {
+    var d, e, g, h = f.support.html5Clone || f.isXMLDoc(a) || !bc.test("<" + a.nodeName + ">") ? a.cloneNode(!0) : bo(a);
+    if((!f.support.noCloneEvent || !f.support.noCloneChecked) && (a.nodeType === 1 || a.nodeType === 11) && !f.isXMLDoc(a)) {
       bk(a, h), d = bl(a), e = bl(h);
       for(g = 0;d[g];++g) {
         e[g] && bk(d[g], e[g])
@@ -2712,7 +2713,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     return h
   }, clean:function(a, b, d, e) {
     var g, h, i, j = [];
-    b = b || c, typeof b.createElement == "undefined" && (b = b.ownerDocument || (b[0] && b[0].ownerDocument || c));
+    b = b || c, typeof b.createElement == "undefined" && (b = b.ownerDocument || b[0] && b[0].ownerDocument || c);
     for(var k = 0, l;(l = a[k]) != null;k++) {
       typeof l == "number" && (l += "");
       if(!l) {
@@ -2731,10 +2732,10 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
           if(!f.support.tbody) {
             var s = $.test(l), t = m === "table" && !s ? p.firstChild && p.firstChild.childNodes : n[1] === "<table>" && !s ? p.childNodes : [];
             for(i = t.length - 1;i >= 0;--i) {
-              f.nodeName(t[i], "tbody") && (!t[i].childNodes.length && t[i].parentNode.removeChild(t[i]))
+              f.nodeName(t[i], "tbody") && !t[i].childNodes.length && t[i].parentNode.removeChild(t[i])
             }
           }
-          !f.support.leadingWhitespace && (X.test(l) && p.insertBefore(b.createTextNode(X.exec(l)[0]), p.firstChild)), l = p.childNodes, p && (p.parentNode.removeChild(p), q.length > 0 && (r = q[q.length - 1], r && (r.parentNode && r.parentNode.removeChild(r))))
+          !f.support.leadingWhitespace && X.test(l) && p.insertBefore(b.createTextNode(X.exec(l)[0]), p.firstChild), l = p.childNodes, p && (p.parentNode.removeChild(p), q.length > 0 && (r = q[q.length - 1], r && r.parentNode && r.parentNode.removeChild(r)))
         }
       }
       var u;
@@ -2755,7 +2756,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       };
       for(k = 0;j[k];k++) {
         h = j[k];
-        if(e && (f.nodeName(h, "script") && (!h.type || be.test(h.type)))) {
+        if(e && f.nodeName(h, "script") && (!h.type || be.test(h.type))) {
           e.push(h.parentNode ? h.parentNode.removeChild(h) : h)
         }else {
           if(h.nodeType === 1) {
@@ -2798,21 +2799,21 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     }
     return a.style.opacity
   }}}, cssNumber:{fillOpacity:!0, fontWeight:!0, lineHeight:!0, opacity:!0, orphans:!0, widows:!0, zIndex:!0, zoom:!0}, cssProps:{"float":f.support.cssFloat ? "cssFloat" : "styleFloat"}, style:function(a, c, d, e) {
-    if(!!a && (a.nodeType !== 3 && (a.nodeType !== 8 && !!a.style))) {
+    if(!!a && a.nodeType !== 3 && a.nodeType !== 8 && !!a.style) {
       var g, h, i = f.camelCase(c), j = a.style, k = f.cssHooks[i];
       c = f.cssProps[i] || i;
       if(d === b) {
-        if(k && ("get" in k && (g = k.get(a, !1, e)) !== b)) {
+        if(k && "get" in k && (g = k.get(a, !1, e)) !== b) {
           return g
         }
         return j[c]
       }
-      h = typeof d, h === "string" && ((g = bu.exec(d)) && (d = +(g[1] + 1) * +g[2] + parseFloat(f.css(a, c)), h = "number"));
+      h = typeof d, h === "string" && (g = bu.exec(d)) && (d = +(g[1] + 1) * +g[2] + parseFloat(f.css(a, c)), h = "number");
       if(d == null || h === "number" && isNaN(d)) {
         return
       }
-      h === "number" && (!f.cssNumber[i] && (d += "px"));
-      if(!k || (!("set" in k) || (d = k.set(a, d)) !== b)) {
+      h === "number" && !f.cssNumber[i] && (d += "px");
+      if(!k || !("set" in k) || (d = k.set(a, d)) !== b) {
         try {
           j[c] = d
         }catch(l) {
@@ -2822,7 +2823,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }, css:function(a, c, d) {
     var e, g;
     c = f.camelCase(c), g = f.cssHooks[c], c = f.cssProps[c] || c, c === "cssFloat" && (c = "float");
-    if(g && ("get" in g && (e = g.get(a, !0, d)) !== b)) {
+    if(g && "get" in g && (e = g.get(a, !0, d)) !== b) {
       return e
     }
     if(by) {
@@ -2838,13 +2839,13 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       a.style[f] = d[f]
     }
     return e
-  }}), f.curCSS = f.css, c.defaultView && (c.defaultView.getComputedStyle && (bz = function(a, b) {
+  }}), f.curCSS = f.css, c.defaultView && c.defaultView.getComputedStyle && (bz = function(a, b) {
     var c, d, e, g, h = a.style;
-    b = b.replace(br, "-$1").toLowerCase(), (d = a.ownerDocument.defaultView) && ((e = d.getComputedStyle(a, null)) && (c = e.getPropertyValue(b), c === "" && (!f.contains(a.ownerDocument.documentElement, a) && (c = f.style(a, b))))), !f.support.pixelMargin && (e && (bv.test(b) && (bt.test(c) && (g = h.width, h.width = c, c = e.width, h.width = g))));
+    b = b.replace(br, "-$1").toLowerCase(), (d = a.ownerDocument.defaultView) && (e = d.getComputedStyle(a, null)) && (c = e.getPropertyValue(b), c === "" && !f.contains(a.ownerDocument.documentElement, a) && (c = f.style(a, b))), !f.support.pixelMargin && e && bv.test(b) && bt.test(c) && (g = h.width, h.width = c, c = e.width, h.width = g);
     return c
-  })), c.documentElement.currentStyle && (bA = function(a, b) {
+  }), c.documentElement.currentStyle && (bA = function(a, b) {
     var c, d, e, f = a.currentStyle && a.currentStyle[b], g = a.style;
-    f == null && (g && ((e = g[b]) && (f = e))), bt.test(f) && (c = g.left, d = a.runtimeStyle && a.runtimeStyle.left, d && (a.runtimeStyle.left = a.currentStyle.left), g.left = b === "fontSize" ? "1em" : f, f = g.pixelLeft + "px", g.left = c, d && (a.runtimeStyle.left = d));
+    f == null && g && (e = g[b]) && (f = e), bt.test(f) && (c = g.left, d = a.runtimeStyle && a.runtimeStyle.left, d && (a.runtimeStyle.left = a.currentStyle.left), g.left = b === "fontSize" ? "1em" : f, f = g.pixelLeft + "px", g.left = c, d && (a.runtimeStyle.left = d));
     return f === "" ? "auto" : f
   }), by = bz || bA, f.each(["height", "width"], function(a, b) {
     f.cssHooks[b] = {get:function(a, c, d) {
@@ -2859,7 +2860,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }), f.support.opacity || (f.cssHooks.opacity = {get:function(a, b) {
     return bq.test((b && a.currentStyle ? a.currentStyle.filter : a.style.filter) || "") ? parseFloat(RegExp.$1) / 100 + "" : b ? "1" : ""
   }, set:function(a, b) {
-    var c = a.style, d = a.currentStyle, e = f.isNumeric(b) ? "alpha(opacity=" + b * 100 + ")" : "", g = d && d.filter || (c.filter || "");
+    var c = a.style, d = a.currentStyle, e = f.isNumeric(b) ? "alpha(opacity=" + b * 100 + ")" : "", g = d && d.filter || c.filter || "";
     c.zoom = 1;
     if(b >= 1 && f.trim(g.replace(bp, "")) === "") {
       c.removeAttribute("filter");
@@ -2874,16 +2875,16 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         return b ? by(a, "margin-right") : a.style.marginRight
       })
     }})
-  }), f.expr && (f.expr.filters && (f.expr.filters.hidden = function(a) {
+  }), f.expr && f.expr.filters && (f.expr.filters.hidden = function(a) {
     var b = a.offsetWidth, c = a.offsetHeight;
     return b === 0 && c === 0 || !f.support.reliableHiddenOffsets && (a.style && a.style.display || f.css(a, "display")) === "none"
   }, f.expr.filters.visible = function(a) {
     return!f.expr.filters.hidden(a)
-  })), f.each({margin:"", padding:"", border:"Width"}, function(a, b) {
+  }), f.each({margin:"", padding:"", border:"Width"}, function(a, b) {
     f.cssHooks[a + b] = {expand:function(c) {
       var d, e = typeof c == "string" ? c.split(" ") : [c], f = {};
       for(d = 0;d < 4;d++) {
-        f[a + bx[d] + b] = e[d] || (e[d - 2] || e[0])
+        f[a + bx[d] + b] = e[d] || e[d - 2] || e[0]
       }
       return f
     }}
@@ -2922,7 +2923,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     return this.map(function() {
       return this.elements ? f.makeArray(this.elements) : this
     }).filter(function() {
-      return this.name && (!this.disabled && (this.checked || (bN.test(this.nodeName) || bH.test(this.type))))
+      return this.name && !this.disabled && (this.checked || bN.test(this.nodeName) || bH.test(this.type))
     }).map(function(a, b) {
       var c = f(this).val();
       return c == null ? null : f.isArray(c) ? f.map(c, function(a, c) {
@@ -3018,11 +3019,11 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         }
       }
       return this
-    }, d.url = ((a || d.url) + "").replace(bF, "").replace(bK, bV[1] + "//"), d.dataTypes = f.trim(d.dataType || "*").toLowerCase().split(bO), d.crossDomain == null && (r = bQ.exec(d.url.toLowerCase()), d.crossDomain = !(!r || r[1] == bV[1] && (r[2] == bV[2] && (r[3] || (r[1] === "http:" ? 80 : 443)) == (bV[3] || (bV[1] === "http:" ? 80 : 443))))), d.data && (d.processData && (typeof d.data != "string" && (d.data = f.param(d.data, d.traditional)))), bZ(bS, d, c, v);
+    }, d.url = ((a || d.url) + "").replace(bF, "").replace(bK, bV[1] + "//"), d.dataTypes = f.trim(d.dataType || "*").toLowerCase().split(bO), d.crossDomain == null && (r = bQ.exec(d.url.toLowerCase()), d.crossDomain = !(!r || r[1] == bV[1] && r[2] == bV[2] && (r[3] || (r[1] === "http:" ? 80 : 443)) == (bV[3] || (bV[1] === "http:" ? 80 : 443)))), d.data && d.processData && typeof d.data != "string" && (d.data = f.param(d.data, d.traditional)), bZ(bS, d, c, v);
     if(s === 2) {
       return!1
     }
-    t = d.global, d.type = d.type.toUpperCase(), d.hasContent = !bJ.test(d.type), t && (f.active++ === 0 && f.event.trigger("ajaxStart"));
+    t = d.global, d.type = d.type.toUpperCase(), d.hasContent = !bJ.test(d.type), t && f.active++ === 0 && f.event.trigger("ajaxStart");
     if(!d.hasContent) {
       d.data && (d.url += (bL.test(d.url) ? "&" : "?") + d.data, delete d.data), k = d.url;
       if(d.cache === !1) {
@@ -3030,7 +3031,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         d.url = y + (y === d.url ? (bL.test(d.url) ? "&" : "?") + "_=" + x : "")
       }
     }
-    (d.data && (d.hasContent && d.contentType !== !1) || c.contentType) && v.setRequestHeader("Content-Type", d.contentType), d.ifModified && (k = k || d.url, f.lastModified[k] && v.setRequestHeader("If-Modified-Since", f.lastModified[k]), f.etag[k] && v.setRequestHeader("If-None-Match", f.etag[k])), v.setRequestHeader("Accept", d.dataTypes[0] && d.accepts[d.dataTypes[0]] ? d.accepts[d.dataTypes[0]] + (d.dataTypes[0] !== "*" ? ", " + bW + "; q=0.01" : "") : d.accepts["*"]);
+    (d.data && d.hasContent && d.contentType !== !1 || c.contentType) && v.setRequestHeader("Content-Type", d.contentType), d.ifModified && (k = k || d.url, f.lastModified[k] && v.setRequestHeader("If-Modified-Since", f.lastModified[k]), f.etag[k] && v.setRequestHeader("If-None-Match", f.etag[k])), v.setRequestHeader("Accept", d.dataTypes[0] && d.accepts[d.dataTypes[0]] ? d.accepts[d.dataTypes[0]] + (d.dataTypes[0] !== "*" ? ", " + bW + "; q=0.01" : "") : d.accepts["*"]);
     for(u in d.headers) {
       v.setRequestHeader(u, d.headers[u])
     }
@@ -3045,9 +3046,9 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     if(!p) {
       w(-1, "No Transport")
     }else {
-      v.readyState = 1, t && g.trigger("ajaxSend", [v, d]), d.async && (d.timeout > 0 && (q = setTimeout(function() {
+      v.readyState = 1, t && g.trigger("ajaxSend", [v, d]), d.async && d.timeout > 0 && (q = setTimeout(function() {
         v.abort("timeout")
-      }, d.timeout)));
+      }, d.timeout));
       try {
         s = 1, p.send(l, w)
       }catch(z) {
@@ -3085,7 +3086,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       b.jsonp !== !1 && (j = j.replace(cd, l), b.url === j && (e && (k = k.replace(cd, l)), b.data === k && (j += (/\?/.test(j) ? "&" : "?") + b.jsonp + "=" + h))), b.url = j, b.data = k, a[h] = function(a) {
         g = [a]
       }, d.always(function() {
-        a[h] = i, g && (f.isFunction(i) && a[h](g[0]))
+        a[h] = i, g && f.isFunction(i) && a[h](g[0])
       }), b.converters["script json"] = function() {
         g || f.error(h + " was not called");
         return g[0]
@@ -3099,11 +3100,11 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     a.cache === b && (a.cache = !1), a.crossDomain && (a.type = "GET", a.global = !1)
   }), f.ajaxTransport("script", function(a) {
     if(a.crossDomain) {
-      var d, e = c.head || (c.getElementsByTagName("head")[0] || c.documentElement);
+      var d, e = c.head || c.getElementsByTagName("head")[0] || c.documentElement;
       return{send:function(f, g) {
         d = c.createElement("script"), d.async = "async", a.scriptCharset && (d.charset = a.scriptCharset), d.src = a.url, d.onload = d.onreadystatechange = function(a, c) {
-          if(c || (!d.readyState || /loaded|complete/.test(d.readyState))) {
-            d.onload = d.onreadystatechange = null, e && (d.parentNode && e.removeChild(d)), d = b, c || g(200, "success")
+          if(c || !d.readyState || /loaded|complete/.test(d.readyState)) {
+            d.onload = d.onreadystatechange = null, e && d.parentNode && e.removeChild(d), d = b, c || g(200, "success")
           }
         }, e.insertBefore(d, e.firstChild)
       }, abort:function() {
@@ -3131,7 +3132,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
             h[j] = c.xhrFields[j]
           }
         }
-        c.mimeType && (h.overrideMimeType && h.overrideMimeType(c.mimeType)), !c.crossDomain && (!e["X-Requested-With"] && (e["X-Requested-With"] = "XMLHttpRequest"));
+        c.mimeType && h.overrideMimeType && h.overrideMimeType(c.mimeType), !c.crossDomain && !e["X-Requested-With"] && (e["X-Requested-With"] = "XMLHttpRequest");
         try {
           for(j in e) {
             h.setRequestHeader(j, e[j])
@@ -3146,7 +3147,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
               if(e) {
                 h.readyState !== 4 && h.abort()
               }else {
-                j = h.status, l = h.getAllResponseHeaders(), m = {}, n = h.responseXML, n && (n.documentElement && (m.xml = n));
+                j = h.status, l = h.getAllResponseHeaders(), m = {}, n = h.responseXML, n && n.documentElement && (m.xml = n);
                 try {
                   m.text = h.responseText
                 }catch(a) {
@@ -3156,7 +3157,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
                 }catch(o) {
                   k = ""
                 }
-                !j && (c.isLocal && !c.crossDomain) ? j = m.text ? 200 : 404 : j === 1223 && (j = 204)
+                !j && c.isLocal && !c.crossDomain ? j = m.text ? 200 : 404 : j === 1223 && (j = 204)
               }
             }
           }catch(p) {
@@ -3176,7 +3177,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       return this.animate(ct("show", 3), a, b, c)
     }
     for(var g = 0, h = this.length;g < h;g++) {
-      d = this[g], d.style && (e = d.style.display, !f._data(d, "olddisplay") && (e === "none" && (e = d.style.display = "")), (e === "" && f.css(d, "display") === "none" || !f.contains(d.ownerDocument.documentElement, d)) && f._data(d, "olddisplay", cu(d.nodeName)))
+      d = this[g], d.style && (e = d.style.display, !f._data(d, "olddisplay") && e === "none" && (e = d.style.display = ""), (e === "" && f.css(d, "display") === "none" || !f.contains(d.ownerDocument.documentElement, d)) && f._data(d, "olddisplay", cu(d.nodeName)))
     }
     for(g = 0;g < h;g++) {
       d = this[g];
@@ -3194,7 +3195,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     }
     var d, e, g = 0, h = this.length;
     for(;g < h;g++) {
-      d = this[g], d.style && (e = f.css(d, "display"), e !== "none" && (!f._data(d, "olddisplay") && f._data(d, "olddisplay", e)))
+      d = this[g], d.style && (e = f.css(d, "display"), e !== "none" && !f._data(d, "olddisplay") && f._data(d, "olddisplay", e))
     }
     for(g = 0;g < h;g++) {
       this[g].style && (this[g].style.display = "none")
@@ -3224,11 +3225,11 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         }
       }
       for(g in a) {
-        h = a[g], f.isArray(h) ? (b.animatedProperties[g] = h[1], h = a[g] = h[0]) : b.animatedProperties[g] = b.specialEasing && b.specialEasing[g] || (b.easing || "swing");
+        h = a[g], f.isArray(h) ? (b.animatedProperties[g] = h[1], h = a[g] = h[0]) : b.animatedProperties[g] = b.specialEasing && b.specialEasing[g] || b.easing || "swing";
         if(h === "hide" && d || h === "show" && !d) {
           return b.complete.call(this)
         }
-        c && ((g === "height" || g === "width") && (b.overflow = [this.style.overflow, this.style.overflowX, this.style.overflowY], f.css(this, "display") === "inline" && (f.css(this, "float") === "none" && (!f.support.inlineBlockNeedsLayout || cu(this.nodeName) === "inline" ? this.style.display = "inline-block" : this.style.zoom = 1))))
+        c && (g === "height" || g === "width") && (b.overflow = [this.style.overflow, this.style.overflowX, this.style.overflowY], f.css(this, "display") === "inline" && f.css(this, "float") === "none" && (!f.support.inlineBlockNeedsLayout || cu(this.nodeName) === "inline" ? this.style.display = "inline-block" : this.style.zoom = 1))
       }
       b.overflow != null && (this.style.overflow = "hidden");
       for(i in a) {
@@ -3244,7 +3245,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     a = f.extend({}, a);
     return e.queue === !1 ? this.each(g) : this.queue(e.queue, g)
   }, stop:function(a, c, d) {
-    typeof a != "string" && (d = c, c = a, a = b), c && (a !== !1 && this.queue(a || "fx", []));
+    typeof a != "string" && (d = c, c = a, a = b), c && a !== !1 && this.queue(a || "fx", []);
     return this.each(function() {
       function h(a, b, c) {
         var e = b[c];
@@ -3254,13 +3255,13 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       d || f._unmark(!0, this);
       if(a == null) {
         for(b in g) {
-          g[b] && (g[b].stop && (b.indexOf(".run") === b.length - 4 && h(this, g, b)))
+          g[b] && g[b].stop && b.indexOf(".run") === b.length - 4 && h(this, g, b)
         }
       }else {
-        g[b = a + ".run"] && (g[b].stop && h(this, g, b))
+        g[b = a + ".run"] && g[b].stop && h(this, g, b)
       }
       for(b = e.length;b--;) {
-        e[b].elem === this && ((a == null || e[b].queue === a) && (d ? e[b](!0) : e[b].saveState(), c = !0, e.splice(b, 1)))
+        e[b].elem === this && (a == null || e[b].queue === a) && (d ? e[b](!0) : e[b].saveState(), c = !0, e.splice(b, 1))
       }
       (!d || !c) && f.dequeue(this, a)
     })
@@ -3269,7 +3270,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       return this.animate(b, a, c, d)
     }
   }), f.extend({speed:function(a, b, c) {
-    var d = a && typeof a == "object" ? f.extend({}, a) : {complete:c || (!c && b || f.isFunction(a) && a), duration:a, easing:c && b || b && (!f.isFunction(b) && b)};
+    var d = a && typeof a == "object" ? f.extend({}, a) : {complete:c || !c && b || f.isFunction(a) && a, duration:a, easing:c && b || b && !f.isFunction(b) && b};
     d.duration = f.fx.off ? 0 : typeof d.duration == "number" ? d.duration : d.duration in f.fx.speeds ? f.fx.speeds[d.duration] : f.fx.speeds._default;
     if(d.queue == null || d.queue === !0) {
       d.queue = "fx"
@@ -3297,9 +3298,9 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
       return e.step(a)
     }
     var e = this, g = f.fx;
-    this.startTime = cq || cr(), this.end = c, this.now = this.start = a, this.pos = this.state = 0, this.unit = d || (this.unit || (f.cssNumber[this.prop] ? "" : "px")), h.queue = this.options.queue, h.elem = this.elem, h.saveState = function() {
+    this.startTime = cq || cr(), this.end = c, this.now = this.start = a, this.pos = this.state = 0, this.unit = d || this.unit || (f.cssNumber[this.prop] ? "" : "px"), h.queue = this.options.queue, h.elem = this.elem, h.saveState = function() {
       f._data(e.elem, "fxshow" + e.prop) === b && (e.options.hide ? f._data(e.elem, "fxshow" + e.prop, e.start) : e.options.show && f._data(e.elem, "fxshow" + e.prop, e.end))
-    }, h() && (f.timers.push(h) && (!co && (co = setInterval(g.tick, g.interval))))
+    }, h() && f.timers.push(h) && !co && (co = setInterval(g.tick, g.interval))
   }, show:function() {
     var a = f._data(this.elem, "fxshow" + this.prop);
     this.options.orig[this.prop] = a || f.style(this.elem, this.prop), this.options.show = !0, a !== b ? this.custom(this.cur(), a) : this.custom(this.prop === "width" || this.prop === "height" ? 1 : 0, this.cur()), f(this.elem).show()
@@ -3313,9 +3314,9 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         i.animatedProperties[b] !== !0 && (g = !1)
       }
       if(g) {
-        i.overflow != null && (!f.support.shrinkWrapBlocks && f.each(["", "X", "Y"], function(a, b) {
+        i.overflow != null && !f.support.shrinkWrapBlocks && f.each(["", "X", "Y"], function(a, b) {
           h.style["overflow" + b] = i.overflow[a]
-        })), i.hide && f(h).hide();
+        }), i.hide && f(h).hide();
         if(i.hide || i.show) {
           for(b in i.animatedProperties) {
             f.style(h, b, i.orig[b]), f.removeData(h, "fxshow" + b, !0), f.removeData(h, "toggle" + b, !0)
@@ -3330,7 +3331,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }}, f.extend(f.fx, {tick:function() {
     var a, b = f.timers, c = 0;
     for(;c < b.length;c++) {
-      a = b[c], !a() && (b[c] === a && b.splice(c--, 1))
+      a = b[c], !a() && b[c] === a && b.splice(c--, 1)
     }
     b.length || f.fx.stop()
   }, interval:13, stop:function() {
@@ -3343,11 +3344,11 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     b.indexOf("margin") && (f.fx.step[b] = function(a) {
       f.style(a.elem, b, Math.max(0, a.now) + a.unit)
     })
-  }), f.expr && (f.expr.filters && (f.expr.filters.animated = function(a) {
+  }), f.expr && f.expr.filters && (f.expr.filters.animated = function(a) {
     return f.grep(f.timers, function(b) {
       return a === b.elem
     }).length
-  }));
+  });
   var cv, cw = /^t(?:able|d|h)$/i, cx = /^(?:body|html)$/i;
   "getBoundingClientRect" in c.documentElement ? cv = function(a, b, c, d) {
     try {
@@ -3357,21 +3358,21 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     if(!d || !f.contains(c, a)) {
       return d ? {top:d.top, left:d.left} : {top:0, left:0}
     }
-    var g = b.body, h = cy(b), i = c.clientTop || (g.clientTop || 0), j = c.clientLeft || (g.clientLeft || 0), k = h.pageYOffset || (f.support.boxModel && c.scrollTop || g.scrollTop), l = h.pageXOffset || (f.support.boxModel && c.scrollLeft || g.scrollLeft), m = d.top + k - i, n = d.left + l - j;
+    var g = b.body, h = cy(b), i = c.clientTop || g.clientTop || 0, j = c.clientLeft || g.clientLeft || 0, k = h.pageYOffset || f.support.boxModel && c.scrollTop || g.scrollTop, l = h.pageXOffset || f.support.boxModel && c.scrollLeft || g.scrollLeft, m = d.top + k - i, n = d.left + l - j;
     return{top:m, left:n}
   } : cv = function(a, b, c) {
     var d, e = a.offsetParent, g = a, h = b.body, i = b.defaultView, j = i ? i.getComputedStyle(a, null) : a.currentStyle, k = a.offsetTop, l = a.offsetLeft;
-    while((a = a.parentNode) && (a !== h && a !== c)) {
+    while((a = a.parentNode) && a !== h && a !== c) {
       if(f.support.fixedPosition && j.position === "fixed") {
         break
       }
-      d = i ? i.getComputedStyle(a, null) : a.currentStyle, k -= a.scrollTop, l -= a.scrollLeft, a === e && (k += a.offsetTop, l += a.offsetLeft, f.support.doesNotAddBorder && ((!f.support.doesAddBorderForTableAndCells || !cw.test(a.nodeName)) && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 0)), g = e, e = a.offsetParent), f.support.subtractsBorderForOverflowNotVisible && (d.overflow !== "visible" && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 
-      0)), j = d
+      d = i ? i.getComputedStyle(a, null) : a.currentStyle, k -= a.scrollTop, l -= a.scrollLeft, a === e && (k += a.offsetTop, l += a.offsetLeft, f.support.doesNotAddBorder && (!f.support.doesAddBorderForTableAndCells || !cw.test(a.nodeName)) && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 0), g = e, e = a.offsetParent), f.support.subtractsBorderForOverflowNotVisible && d.overflow !== "visible" && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 
+      0), j = d
     }
     if(j.position === "relative" || j.position === "static") {
       k += h.offsetTop, l += h.offsetLeft
     }
-    f.support.fixedPosition && (j.position === "fixed" && (k += Math.max(c.scrollTop, h.scrollTop), l += Math.max(c.scrollLeft, h.scrollLeft)));
+    f.support.fixedPosition && j.position === "fixed" && (k += Math.max(c.scrollTop, h.scrollTop), l += Math.max(c.scrollLeft, h.scrollLeft));
     return{top:k, left:l}
   }, f.fn.offset = function(a) {
     if(arguments.length) {
@@ -3406,7 +3407,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
   }, offsetParent:function() {
     return this.map(function() {
       var a = this.offsetParent || c.body;
-      while(a && (!cx.test(a.nodeName) && f.css(a, "position") === "static")) {
+      while(a && !cx.test(a.nodeName) && f.css(a, "position") === "static") {
         a = a.offsetParent
       }
       return a
@@ -3435,7 +3436,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         var i, j, k, l;
         if(f.isWindow(a)) {
           i = a.document, j = i.documentElement[d];
-          return f.support.boxModel && j || (i.body && i.body[d] || j)
+          return f.support.boxModel && j || i.body && i.body[d] || j
         }
         if(a.nodeType === 9) {
           i = a.documentElement;
@@ -3451,9 +3452,9 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         f(a).css(c, h)
       }, c, a, arguments.length, null)
     }
-  }), a.jQuery = a.$ = f, typeof define == "function" && (define.amd && (define.amd.jQuery && define("jquery", [], function() {
+  }), a.jQuery = a.$ = f, typeof define == "function" && define.amd && define.amd.jQuery && define("jquery", [], function() {
     return f
-  })))
+  })
 })(window);
 (function(n, t, i) {
   var g = "TEXTAREA", d = "function", nt = "password", c = "maxLength", v = "type", r = "", u = !0, rt = "placeholder", h = !1, tt = "watermark", s = tt, o = "watermarkClass", w = "watermarkFocus", a = "watermarkSubmit", b = "watermarkMaxLength", e = "watermarkPassword", f = "watermarkText", l = /\r/g, ft = /^(button|checkbox|hidden|image|radio|range|reset|submit)$/i, it = "input:data(" + s + "),textarea:data(" + s + ")", p = ":watermarkable", k = ["Page_ClientValidate"], y = h, ut = rt in document.createElement("input");
@@ -3463,16 +3464,16 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
     })
   }, _hide:function(n, i) {
     var a = n[0], w = (a.value || r).replace(l, r), h = n.data(f) || r, p = n.data(b) || 0, y = n.data(o), s, u;
-    h.length && (w == h && (a.value = r, n.data(e) && ((n.attr(v) || r) === "text" && (s = n.data(e) || [], u = n.parent() || [], s.length && (u.length && (u[0].removeChild(n[0]), u[0].appendChild(s[0]), n = s)))), p && (n.attr(c, p), n.removeData(b)), i && (n.attr("autocomplete", "off"), t.setTimeout(function() {
+    h.length && w == h && (a.value = r, n.data(e) && (n.attr(v) || r) === "text" && (s = n.data(e) || [], u = n.parent() || [], s.length && u.length && (u[0].removeChild(n[0]), u[0].appendChild(s[0]), n = s)), p && (n.attr(c, p), n.removeData(b)), i && (n.attr("autocomplete", "off"), t.setTimeout(function() {
       n.select()
-    }, 1)))), y && n.removeClass(y)
+    }, 1))), y && n.removeClass(y)
   }, show:function(t) {
     n(t).filter(it).each(function() {
       n.watermark._show(n(this))
     })
   }, _show:function(t) {
     var p = t[0], g = (p.value || r).replace(l, r), i = t.data(f) || r, k = t.attr(v) || r, d = t.data(o), h, s, a;
-    g.length != 0 && g != i || t.data(w) ? n.watermark._hide(t) : (y = u, t.data(e) && (k === nt && (h = t.data(e) || [], s = t.parent() || [], h.length && (s.length && (s[0].removeChild(t[0]), s[0].appendChild(h[0]), t = h, t.attr(c, i.length), p = t[0])))), (k === "text" || k === "search") && (a = t.attr(c) || 0, a > 0 && (i.length > a && (t.data(b, a), t.attr(c, i.length)))), d && t.addClass(d), p.value = i)
+    g.length != 0 && g != i || t.data(w) ? n.watermark._hide(t) : (y = u, t.data(e) && k === nt && (h = t.data(e) || [], s = t.parent() || [], h.length && s.length && (s[0].removeChild(t[0]), s[0].appendChild(h[0]), t = h, t.attr(c, i.length), p = t[0])), (k === "text" || k === "search") && (a = t.attr(c) || 0, a > 0 && i.length > a && (t.data(b, a), t.attr(c, i.length))), d && t.addClass(d), p.value = i)
   }, hideAll:function() {
     y && (n.watermark.hide(p), y = h)
   }, showAll:function() {
@@ -3493,7 +3494,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
         if(h.data(s)) {
           (b || k) && (n.watermark._hide(h), b && h.data(f, i), k && h.data(o, y.className))
         }else {
-          if(ut && (y.useNative.call(ft, h) && (h.attr("tagName") || r) !== g)) {
+          if(ut && y.useNative.call(ft, h) && (h.attr("tagName") || r) !== g) {
             b && h.attr(rt, i);
             return
           }
@@ -3656,7 +3657,7 @@ window.Chart = function(context, options) {
     }else {
       var s = p / (2 * Math.PI) * Math.asin(1 / a)
     }
-    return-(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p))
+    return-(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p))
   }, easeOutElastic:function(t) {
     var s = 1.70158;
     var p = 0;
@@ -3676,7 +3677,7 @@ window.Chart = function(context, options) {
     }else {
       var s = p / (2 * Math.PI) * Math.asin(1 / a)
     }
-    return a * Math.pow(2, -10 * t) * Math.sin((t * 1 - s) * (2 * Math.PI) / p) + 1
+    return a * Math.pow(2, -10 * t) * Math.sin((t * 1 - s) * 2 * Math.PI / p) + 1
   }, easeInOutElastic:function(t) {
     var s = 1.70158;
     var p = 0;
@@ -3688,7 +3689,7 @@ window.Chart = function(context, options) {
       return 1
     }
     if(!p) {
-      p = 1 * (0.3 * 1.5)
+      p = 1 * 0.3 * 1.5
     }
     if(a < Math.abs(1)) {
       a = 1;
@@ -3697,9 +3698,9 @@ window.Chart = function(context, options) {
       var s = p / (2 * Math.PI) * Math.asin(1 / a)
     }
     if(t < 1) {
-      return-0.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p))
+      return-0.5 * a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p)
     }
-    return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p) * 0.5 + 1
+    return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p) * 0.5 + 1
   }, easeInBack:function(t) {
     var s = 1.70158;
     return 1 * (t /= 1) * t * ((s + 1) * t - s)
@@ -3709,14 +3710,14 @@ window.Chart = function(context, options) {
   }, easeInOutBack:function(t) {
     var s = 1.70158;
     if((t /= 1 / 2) < 1) {
-      return 1 / 2 * (t * t * (((s *= 1.525) + 1) * t - s))
+      return 1 / 2 * t * t * (((s *= 1.525) + 1) * t - s)
     }
     return 1 / 2 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2)
   }, easeInBounce:function(t) {
     return 1 - animationOptions.easeOutBounce(1 - t)
   }, easeOutBounce:function(t) {
     if((t /= 1) < 1 / 2.75) {
-      return 1 * (7.5625 * t * t)
+      return 1 * 7.5625 * t * t
     }else {
       if(t < 2 / 2.75) {
         return 1 * (7.5625 * (t -= 1.5 / 2.75) * t + 0.75)
@@ -3750,7 +3751,7 @@ window.Chart = function(context, options) {
       if(this.areaObj.type) {
         switch(this.areaObj.type) {
           case "rect":
-            return x >= this.areaObj.x && x <= this.areaObj.x + this.areaObj.width && (y >= this.areaObj.y && y <= this.areaObj.y + this.areaObj.height);
+            return x >= this.areaObj.x && x <= this.areaObj.x + this.areaObj.width && y >= this.areaObj.y && y <= this.areaObj.y + this.areaObj.height;
             break;
           case "circle":
             return Math.pow(x - this.areaObj.x, 2) + Math.pow(y - this.areaObj.y, 2) < Math.pow(this.areaObj.r, 2);
@@ -3758,7 +3759,7 @@ window.Chart = function(context, options) {
           case "shape":
             var poly = this.areaObj.points;
             for(var c = false, i = -1, l = poly.length, j = l - 1;++i < l;j = i) {
-              (poly[i].y <= y && y < poly[j].y || poly[j].y <= y && y < poly[i].y) && (x < (poly[j].x - poly[i].x) * (y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x && (c = !c))
+              (poly[i].y <= y && y < poly[j].y || poly[j].y <= y && y < poly[i].y) && x < (poly[j].x - poly[i].x) * (y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x && (c = !c)
             }
             return c;
             break
@@ -4039,7 +4040,7 @@ window.Chart = function(context, options) {
       for(var i = 0;i < data.datasets.length;i++) {
         var offset = calculateOffset(data.datasets[i].data[0], calculatedScale, scaleHop);
         ctx.beginPath();
-        ctx.moveTo(0, animationDecimal * (-1 * offset));
+        ctx.moveTo(0, animationDecimal * -1 * offset);
         if(animationDecimal >= 1 && config.showTooltips) {
           var curX = width / 2 + offset * Math.cos(0 - Math.PI / 2), curY = height / 2 + offset * Math.sin(0 - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[0].trim() != "" ? data.labels[0] + ": " + data.datasets[i].data[0] : data.datasets[i].data[0];
           registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[0], value:data.datasets[i].data[0]}, "Radar")
@@ -4047,7 +4048,7 @@ window.Chart = function(context, options) {
         for(var j = 1;j < data.datasets[i].data.length;j++) {
           offset = calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop);
           ctx.rotate(rotationDegree);
-          ctx.lineTo(0, animationDecimal * (-1 * offset));
+          ctx.lineTo(0, animationDecimal * -1 * offset);
           if(animationDecimal >= 1 && config.showTooltips) {
             var curX = width / 2 + offset * Math.cos(j * rotationDegree - Math.PI / 2), curY = height / 2 + offset * Math.sin(j * rotationDegree - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[j].trim() != "" ? data.labels[j] + ": " + data.datasets[i].data[j] : data.datasets[i].data[j];
             registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Radar")
@@ -4066,7 +4067,7 @@ window.Chart = function(context, options) {
           for(var k = 0;k < data.datasets[i].data.length;k++) {
             ctx.rotate(rotationDegree);
             ctx.beginPath();
-            ctx.arc(0, animationDecimal * (-1 * calculateOffset(data.datasets[i].data[k], calculatedScale, scaleHop)), config.pointDotRadius, 2 * Math.PI, false);
+            ctx.arc(0, animationDecimal * -1 * calculateOffset(data.datasets[i].data[k], calculatedScale, scaleHop), config.pointDotRadius, 2 * Math.PI, false);
             ctx.fill();
             ctx.stroke()
           }
@@ -4192,7 +4193,7 @@ window.Chart = function(context, options) {
         }
       }
       for(var i = 0;i < data.length;i++) {
-        var segmentAngle = rotateAnimation * (data[i].value / segmentTotal * (Math.PI * 2));
+        var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
         segmentAngle = Math.min(Math.PI * 1.99999, segmentAngle);
         ctx.beginPath();
         ctx.arc(width / 2, height / 2, scaleAnimation * pieRadius, cumulativeAngle, cumulativeAngle + segmentAngle);
@@ -4282,7 +4283,7 @@ window.Chart = function(context, options) {
         }
       }
       for(var i = 0;i < data.length;i++) {
-        var segmentAngle = rotateAnimation * (data[i].value / segmentTotal * (Math.PI * 2));
+        var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
         ctx.beginPath();
         ctx.arc(width / 2, height / 2, scaleAnimation * doughnutRadius, cumulativeAngle, cumulativeAngle + segmentAngle, false);
         ctx.arc(width / 2, height / 2, scaleAnimation * cutoutRadius, cumulativeAngle + segmentAngle, cumulativeAngle, true);
@@ -4676,9 +4677,9 @@ window.Chart = function(context, options) {
     }
   }
   var requestAnimFrame = function() {
-    return window.requestAnimationFrame || (window.webkitRequestAnimationFrame || (window.mozRequestAnimationFrame || (window.oRequestAnimationFrame || (window.msRequestAnimationFrame || function(callback) {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
       window.setTimeout(callback, 1E3 / 60)
-    }))))
+    }
   }();
   function calculateScale(drawingHeight, maxSteps, minSteps, maxValue, minValue, labelTemplateString) {
     var graphMin, graphMax, graphRange, stepValue, numberOfSteps, valueRange, rangeOrderOfMagnitude, decimalNum;
@@ -5049,7 +5050,7 @@ VISH.QuizCharts = function(V, $, undefined) {
       }
     }
     var myNewChart = (new Chart(ctx)).Pie(data, chartOptions);
-    if(options && (options.animation != true && typeof options.callback == "function")) {
+    if(options && options.animation != true && typeof options.callback == "function") {
       options.callback()
     }
   };
@@ -5097,7 +5098,7 @@ VISH.QuizCharts = function(V, $, undefined) {
       }
     }
     var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
-    if(options && (options.animation != true && typeof options.callback == "function")) {
+    if(options && options.animation != true && typeof options.callback == "function") {
       options.callback()
     }
   };
@@ -5152,7 +5153,7 @@ VISH.QuizCharts = function(V, $, undefined) {
       }
     }
     var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
-    if(options && (options.animation != true && typeof options.callback == "function")) {
+    if(options && options.animation != true && typeof options.callback == "function") {
       options.callback()
     }
   };
@@ -5490,7 +5491,7 @@ VISH.IframeAPI = function(V, undefined) {
 (function(e, t) {
   function i(t, n) {
     var r, i, o, u = t.nodeName.toLowerCase();
-    return"area" === u ? (r = t.parentNode, i = r.name, !t.href || (!i || r.nodeName.toLowerCase() !== "map") ? !1 : (o = e("img[usemap=#" + i + "]")[0], !!o && s(o))) : (/input|select|textarea|button|object/.test(u) ? !t.disabled : "a" === u ? t.href || n : n) && s(t)
+    return"area" === u ? (r = t.parentNode, i = r.name, !t.href || !i || r.nodeName.toLowerCase() !== "map" ? !1 : (o = e("img[usemap=#" + i + "]")[0], !!o && s(o))) : (/input|select|textarea|button|object/.test(u) ? !t.disabled : "a" === u ? t.href || n : n) && s(t)
   }
   function s(t) {
     return e.expr.filters.visible(t) && !e(t).parents().andSelf().filter(function() {
@@ -5524,7 +5525,7 @@ VISH.IframeAPI = function(V, undefined) {
       var r = e(this[0]), i, s;
       while(r.length && r[0] !== document) {
         i = r.css("position");
-        if(i === "absolute" || (i === "relative" || i === "fixed")) {
+        if(i === "absolute" || i === "relative" || i === "fixed") {
           s = parseInt(r.css("zIndex"), 10);
           if(!isNaN(s) && s !== 0) {
             return s
@@ -5592,7 +5593,7 @@ VISH.IframeAPI = function(V, undefined) {
     }
   }, call:function(e, t, n) {
     var r, i = e.plugins[t];
-    if(!i || (!e.element[0].parentNode || e.element[0].parentNode.nodeType === 11)) {
+    if(!i || !e.element[0].parentNode || e.element[0].parentNode.nodeType === 11) {
       return
     }
     for(r = 0;r < i.length;r++) {
@@ -5649,7 +5650,7 @@ VISH.IframeAPI = function(V, undefined) {
     var i = r.call(arguments, 1), s = 0, o = i.length, u, a;
     for(;s < o;s++) {
       for(u in i[s]) {
-        a = i[s][u], i[s].hasOwnProperty(u) && (a !== t && (e.isPlainObject(a) ? n[u] = e.isPlainObject(n[u]) ? e.widget.extend({}, n[u], a) : e.widget.extend({}, a) : n[u] = a))
+        a = i[s][u], i[s].hasOwnProperty(u) && a !== t && (e.isPlainObject(a) ? n[u] = e.isPlainObject(n[u]) ? e.widget.extend({}, n[u], a) : e.widget.extend({}, a) : n[u] = a)
       }
     }
     return n
@@ -5676,7 +5677,7 @@ VISH.IframeAPI = function(V, undefined) {
     }
   }, e.Widget = function() {
   }, e.Widget._childConstructors = [], e.Widget.prototype = {widgetName:"widget", widgetEventPrefix:"", defaultElement:"<div>", options:{disabled:!1, create:null}, _createWidget:function(t, r) {
-    r = e(r || (this.defaultElement || this))[0], this.element = e(r), this.uuid = n++, this.eventNamespace = "." + this.widgetName + this.uuid, this.options = e.widget.extend({}, this.options, this._getCreateOptions(), t), this.bindings = e(), this.hoverable = e(), this.focusable = e(), r !== this && (e.data(r, this.widgetName, this), e.data(r, this.widgetFullName, this), this._on(!0, this.element, {remove:function(e) {
+    r = e(r || this.defaultElement || this)[0], this.element = e(r), this.uuid = n++, this.eventNamespace = "." + this.widgetName + this.uuid, this.options = e.widget.extend({}, this.options, this._getCreateOptions(), t), this.bindings = e(), this.hoverable = e(), this.focusable = e(), r !== this && (e.data(r, this.widgetName, this), e.data(r, this.widgetFullName, this), this._on(!0, this.element, {remove:function(e) {
       e.target === r && this.destroy()
     }}), this.document = e(r.style ? r.ownerDocument : r.document || r), this.window = e(this.document[0].defaultView || this.document[0].parentWindow)), this._create(), this._trigger("create", null, this._getCreateEventData()), this._init()
   }, _getCreateOptions:e.noop, _getCreateEventData:e.noop, _create:e.noop, _init:e.noop, destroy:function() {
@@ -5729,7 +5730,7 @@ VISH.IframeAPI = function(V, undefined) {
         }
         return(typeof o == "string" ? s[o] : o).apply(s, arguments)
       }
-      typeof o != "string" && (u.guid = o.guid = o.guid || (u.guid || e.guid++));
+      typeof o != "string" && (u.guid = o.guid = o.guid || u.guid || e.guid++);
       var a = r.match(/^(\w+)\s*(.*)$/), f = a[1] + s.eventNamespace, l = a[2];
       l ? i.delegate(l, f, u) : n.bind(f, u)
     })
@@ -5766,7 +5767,7 @@ VISH.IframeAPI = function(V, undefined) {
     e.Widget.prototype["_" + t] = function(r, i, s) {
       typeof i == "string" && (i = {effect:i});
       var o, u = i ? i === !0 || typeof i == "number" ? n : i.effect || n : t;
-      i = i || {}, typeof i == "number" && (i = {duration:i}), o = !e.isEmptyObject(i), i.complete = s, i.delay && r.delay(i.delay), o && (e.effects && (e.effects.effect[u] || e.uiBackCompat !== !1 && e.effects[u])) ? r[t](i) : u !== t && r[u] ? r[u](i.duration, i.easing, s) : r.queue(function(n) {
+      i = i || {}, typeof i == "number" && (i = {duration:i}), o = !e.isEmptyObject(i), i.complete = s, i.delay && r.delay(i.delay), o && e.effects && (e.effects.effect[u] || e.uiBackCompat !== !1 && e.effects[u]) ? r[t](i) : u !== t && r[u] ? r[u](i.duration, i.easing, s) : r.queue(function(n) {
         e(this)[t](), s && s.call(r[0]), n()
       })
     }
@@ -5795,7 +5796,7 @@ VISH.IframeAPI = function(V, undefined) {
     }
     this._mouseStarted && this._mouseUp(t), this._mouseDownEvent = t;
     var r = this, i = t.which === 1, s = typeof this.options.cancel == "string" && t.target.nodeName ? e(t.target).closest(this.options.cancel).length : !1;
-    if(!i || (s || !this._mouseCapture(t))) {
+    if(!i || s || !this._mouseCapture(t)) {
       return!0
     }
     this.mouseDelayMet = !this.options.delay, this.mouseDelayMet || (this._mouseDelayTimer = setTimeout(function() {
@@ -5813,7 +5814,7 @@ VISH.IframeAPI = function(V, undefined) {
       return r._mouseUp(e)
     }, e(document).bind("mousemove." + this.widgetName, this._mouseMoveDelegate).bind("mouseup." + this.widgetName, this._mouseUpDelegate), t.preventDefault(), n = !0, !0
   }, _mouseMove:function(t) {
-    return!e.ui.ie || (document.documentMode >= 9 || !!t.button) ? this._mouseStarted ? (this._mouseDrag(t), t.preventDefault()) : (this._mouseDistanceMet(t) && (this._mouseDelayMet(t) && (this._mouseStarted = this._mouseStart(this._mouseDownEvent, t) !== !1, this._mouseStarted ? this._mouseDrag(t) : this._mouseUp(t))), !this._mouseStarted) : this._mouseUp(t)
+    return!e.ui.ie || document.documentMode >= 9 || !!t.button ? this._mouseStarted ? (this._mouseDrag(t), t.preventDefault()) : (this._mouseDistanceMet(t) && this._mouseDelayMet(t) && (this._mouseStarted = this._mouseStart(this._mouseDownEvent, t) !== !1, this._mouseStarted ? this._mouseDrag(t) : this._mouseUp(t)), !this._mouseStarted) : this._mouseUp(t)
   }, _mouseUp:function(t) {
     return e(document).unbind("mousemove." + this.widgetName, this._mouseMoveDelegate).unbind("mouseup." + this.widgetName, this._mouseUpDelegate), this._mouseStarted && (this._mouseStarted = !1, t.target === this._mouseDownEvent.target && e.data(t.target, this.widgetName + ".preventClickEvent", !0), this._mouseStop(t)), !1
   }, _mouseDistanceMet:function(e) {
@@ -5863,7 +5864,7 @@ VISH.IframeAPI = function(V, undefined) {
         e.ui.position[E[r]] && e.ui.position[E[r]][i](C, {targetWidth:l, targetHeight:d, elemWidth:f, elemHeight:c, collisionPosition:o, collisionWidth:T, collisionHeight:N, offset:[n[0] + k[0], n[1] + k[1]], my:t.my, at:t.at, within:y, elem:a})
       }), e.fn.bgiframe && a.bgiframe(), t.using && (u = function(e) {
         var n = v.left - C.left, s = n + l - f, o = v.top - C.top, u = o + d - c, h = {target:{element:g, left:v.left, top:v.top, width:l, height:d}, element:{element:a, left:C.left, top:C.top, width:f, height:c}, horizontal:s < 0 ? "left" : n > 0 ? "right" : "center", vertical:u < 0 ? "top" : o > 0 ? "bottom" : "middle"};
-        l < f && (i(n + s) < l && (h.horizontal = "center")), d < c && (i(o + u) < d && (h.vertical = "middle")), r(i(n), i(s)) > r(i(o), i(u)) ? h.important = "horizontal" : h.important = "vertical", t.using.call(this, e, h)
+        l < f && i(n + s) < l && (h.horizontal = "center"), d < c && i(o + u) < d && (h.vertical = "middle"), r(i(n), i(s)) > r(i(o), i(u)) ? h.important = "horizontal" : h.important = "vertical", t.using.call(this, e, h)
       }), a.offset(e.extend(C, {using:u}))
     })
   }, e.ui.position = {fit:{left:function(e, t) {
@@ -5889,7 +5890,7 @@ VISH.IframeAPI = function(V, undefined) {
     }
   }, top:function(e, t) {
     var n = t.within, r = n.offset.top + n.scrollTop, s = n.height, o = n.isWindow ? n.scrollTop : n.offset.top, u = e.top - t.collisionPosition.marginTop, a = u - o, f = u + t.collisionHeight - s - o, l = t.my[1] === "top", c = l ? -t.elemHeight : t.my[1] === "bottom" ? t.elemHeight : 0, h = t.at[1] === "top" ? t.targetHeight : t.at[1] === "bottom" ? -t.targetHeight : 0, p = -2 * t.offset[1], d, v;
-    a < 0 ? (v = e.top + c + h + p + t.collisionHeight - s - r, e.top + c + h + p > a && ((v < 0 || v < i(a)) && (e.top += c + h + p))) : f > 0 && (d = e.top - t.collisionPosition.marginTop + c + h + p - o, e.top + c + h + p > f && ((d > 0 || i(d) < f) && (e.top += c + h + p)))
+    a < 0 ? (v = e.top + c + h + p + t.collisionHeight - s - r, e.top + c + h + p > a && (v < 0 || v < i(a)) && (e.top += c + h + p)) : f > 0 && (d = e.top - t.collisionPosition.marginTop + c + h + p - o, e.top + c + h + p > f && (d > 0 || i(d) < f) && (e.top += c + h + p))
   }}, flipfit:{left:function() {
     e.ui.position.flip.left.apply(this, arguments), e.ui.position.fit.left.apply(this, arguments)
   }, top:function() {
@@ -5914,18 +5915,18 @@ VISH.IframeAPI = function(V, undefined) {
 })(jQuery);
 (function(e, t) {
   e.widget("ui.draggable", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"drag", options:{addClasses:!0, appendTo:"parent", axis:!1, connectToSortable:!1, containment:!1, cursor:"auto", cursorAt:!1, grid:!1, handle:!1, helper:"original", iframeFix:!1, opacity:!1, refreshPositions:!1, revert:!1, revertDuration:500, scope:"default", scroll:!0, scrollSensitivity:20, scrollSpeed:20, snap:!1, snapMode:"both", snapTolerance:20, stack:!1, zIndex:!1}, _create:function() {
-    this.options.helper == "original" && (!/^(?:r|a|f)/.test(this.element.css("position")) && (this.element[0].style.position = "relative")), this.options.addClasses && this.element.addClass("ui-draggable"), this.options.disabled && this.element.addClass("ui-draggable-disabled"), this._mouseInit()
+    this.options.helper == "original" && !/^(?:r|a|f)/.test(this.element.css("position")) && (this.element[0].style.position = "relative"), this.options.addClasses && this.element.addClass("ui-draggable"), this.options.disabled && this.element.addClass("ui-draggable-disabled"), this._mouseInit()
   }, _destroy:function() {
     this.element.removeClass("ui-draggable ui-draggable-dragging ui-draggable-disabled"), this._mouseDestroy()
   }, _mouseCapture:function(t) {
     var n = this.options;
-    return this.helper || (n.disabled || e(t.target).is(".ui-resizable-handle")) ? !1 : (this.handle = this._getHandle(t), this.handle ? (e(n.iframeFix === !0 ? "iframe" : n.iframeFix).each(function() {
+    return this.helper || n.disabled || e(t.target).is(".ui-resizable-handle") ? !1 : (this.handle = this._getHandle(t), this.handle ? (e(n.iframeFix === !0 ? "iframe" : n.iframeFix).each(function() {
       e('<div class="ui-draggable-iframeFix" style="background: #fff;"></div>').css({width:this.offsetWidth + "px", height:this.offsetHeight + "px", position:"absolute", opacity:"0.001", zIndex:1E3}).css(e(this).offset()).appendTo("body")
     }), !0) : !1)
   }, _mouseStart:function(t) {
     var n = this.options;
     return this.helper = this._createHelper(t), this.helper.addClass("ui-draggable-dragging"), this._cacheHelperProportions(), e.ui.ddmanager && (e.ui.ddmanager.current = this), this._cacheMargins(), this.cssPosition = this.helper.css("position"), this.scrollParent = this.helper.scrollParent(), this.offset = this.positionAbs = this.element.offset(), this.offset = {top:this.offset.top - this.margins.top, left:this.offset.left - this.margins.left}, e.extend(this.offset, {click:{left:t.pageX - this.offset.left, 
-    top:t.pageY - this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), this.originalPosition = this.position = this._generatePosition(t), this.originalPageX = t.pageX, this.originalPageY = t.pageY, n.cursorAt && this._adjustOffsetFromHelper(n.cursorAt), n.containment && this._setContainment(), this._trigger("start", t) === !1 ? (this._clear(), !1) : (this._cacheHelperProportions(), e.ui.ddmanager && (!n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)), this._mouseDrag(t, 
+    top:t.pageY - this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), this.originalPosition = this.position = this._generatePosition(t), this.originalPageX = t.pageX, this.originalPageY = t.pageY, n.cursorAt && this._adjustOffsetFromHelper(n.cursorAt), n.containment && this._setContainment(), this._trigger("start", t) === !1 ? (this._clear(), !1) : (this._cacheHelperProportions(), e.ui.ddmanager && !n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t), this._mouseDrag(t, 
     !0), e.ui.ddmanager && e.ui.ddmanager.dragStart(this, t), !0)
   }, _mouseDrag:function(t, n) {
     this.position = this._generatePosition(t), this.positionAbs = this._convertPositionTo("absolute");
@@ -5945,7 +5946,7 @@ VISH.IframeAPI = function(V, undefined) {
     return e.ui.ddmanager && e.ui.ddmanager.drag(this, t), !1
   }, _mouseStop:function(t) {
     var n = !1;
-    e.ui.ddmanager && (!this.options.dropBehaviour && (n = e.ui.ddmanager.drop(this, t))), this.dropped && (n = this.dropped, this.dropped = !1);
+    e.ui.ddmanager && !this.options.dropBehaviour && (n = e.ui.ddmanager.drop(this, t)), this.dropped && (n = this.dropped, this.dropped = !1);
     var r = this.element[0], i = !1;
     while(r && (r = r.parentNode)) {
       r == document && (i = !0)
@@ -5953,7 +5954,7 @@ VISH.IframeAPI = function(V, undefined) {
     if(!i && this.options.helper === "original") {
       return!1
     }
-    if(this.options.revert == "invalid" && !n || (this.options.revert == "valid" && n || (this.options.revert === !0 || e.isFunction(this.options.revert) && this.options.revert.call(this.element, n)))) {
+    if(this.options.revert == "invalid" && !n || this.options.revert == "valid" && n || this.options.revert === !0 || e.isFunction(this.options.revert) && this.options.revert.call(this.element, n)) {
       var s = this;
       e(this.helper).animate(this.originalPosition, parseInt(this.options.revertDuration, 10), function() {
         s._trigger("stop", t) !== !1 && s._clear()
@@ -5975,14 +5976,14 @@ VISH.IframeAPI = function(V, undefined) {
     }), n
   }, _createHelper:function(t) {
     var n = this.options, r = e.isFunction(n.helper) ? e(n.helper.apply(this.element[0], [t])) : n.helper == "clone" ? this.element.clone().removeAttr("id") : this.element;
-    return r.parents("body").length || r.appendTo(n.appendTo == "parent" ? this.element[0].parentNode : n.appendTo), r[0] != this.element[0] && (!/(fixed|absolute)/.test(r.css("position")) && r.css("position", "absolute")), r
+    return r.parents("body").length || r.appendTo(n.appendTo == "parent" ? this.element[0].parentNode : n.appendTo), r[0] != this.element[0] && !/(fixed|absolute)/.test(r.css("position")) && r.css("position", "absolute"), r
   }, _adjustOffsetFromHelper:function(t) {
     typeof t == "string" && (t = t.split(" ")), e.isArray(t) && (t = {left:+t[0], top:+t[1] || 0}), "left" in t && (this.offset.click.left = t.left + this.margins.left), "right" in t && (this.offset.click.left = this.helperProportions.width - t.right + this.margins.left), "top" in t && (this.offset.click.top = t.top + this.margins.top), "bottom" in t && (this.offset.click.top = this.helperProportions.height - t.bottom + this.margins.top)
   }, _getParentOffset:function() {
     this.offsetParent = this.helper.offsetParent();
     var t = this.offsetParent.offset();
-    this.cssPosition == "absolute" && (this.scrollParent[0] != document && (e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop())));
-    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && (this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie)) {
+    this.cssPosition == "absolute" && this.scrollParent[0] != document && e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop());
+    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie) {
       t = {top:0, left:0}
     }
     return{top:t.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0), left:t.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)}
@@ -6040,7 +6041,7 @@ VISH.IframeAPI = function(V, undefined) {
     }
     return{top:o - this.offset.click.top - this.offset.relative.top - this.offset.parent.top + (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : i ? 0 : r.scrollTop()), left:s - this.offset.click.left - this.offset.relative.left - this.offset.parent.left + (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : i ? 0 : r.scrollLeft())}
   }, _clear:function() {
-    this.helper.removeClass("ui-draggable-dragging"), this.helper[0] != this.element[0] && (!this.cancelHelperRemoval && this.helper.remove()), this.helper = null, this.cancelHelperRemoval = !1
+    this.helper.removeClass("ui-draggable-dragging"), this.helper[0] != this.element[0] && !this.cancelHelperRemoval && this.helper.remove(), this.helper = null, this.cancelHelperRemoval = !1
   }, _trigger:function(t, n, r) {
     return r = r || this._uiHash(), e.ui.plugin.call(this, t, [n, r]), t == "drag" && (this.positionAbs = this._convertPositionTo("absolute")), e.Widget.prototype._trigger.call(this, t, n, r)
   }, plugins:{}, _uiHash:function(e) {
@@ -6049,7 +6050,7 @@ VISH.IframeAPI = function(V, undefined) {
     var r = e(this).data("draggable"), i = r.options, s = e.extend({}, n, {item:r.element});
     r.sortables = [], e(i.connectToSortable).each(function() {
       var n = e.data(this, "sortable");
-      n && (!n.options.disabled && (r.sortables.push({instance:n, shouldRevert:n.options.revert}), n.refreshPositions(), n._trigger("activate", t, s)))
+      n && !n.options.disabled && (r.sortables.push({instance:n, shouldRevert:n.options.revert}), n.refreshPositions(), n._trigger("activate", t, s))
     })
   }, stop:function(t, n) {
     var r = e(this).data("draggable"), i = e.extend({}, n, {item:r.element});
@@ -6064,7 +6065,7 @@ VISH.IframeAPI = function(V, undefined) {
     e.each(r.sortables, function(s) {
       var o = !1, u = this;
       this.instance.positionAbs = r.positionAbs, this.instance.helperProportions = r.helperProportions, this.instance.offset.click = r.offset.click, this.instance._intersectsWith(this.instance.containerCache) && (o = !0, e.each(r.sortables, function() {
-        return this.instance.positionAbs = r.positionAbs, this.instance.helperProportions = r.helperProportions, this.instance.offset.click = r.offset.click, this != u && (this.instance._intersectsWith(this.instance.containerCache) && (e.ui.contains(u.instance.element[0], this.instance.element[0]) && (o = !1))), o
+        return this.instance.positionAbs = r.positionAbs, this.instance.helperProportions = r.helperProportions, this.instance.offset.click = r.offset.click, this != u && this.instance._intersectsWith(this.instance.containerCache) && e.ui.contains(u.instance.element[0], this.instance.element[0]) && (o = !1), o
       })), o ? (this.instance.isOver || (this.instance.isOver = 1, this.instance.currentItem = e(i).clone().removeAttr("id").appendTo(this.instance.element).data("sortable-item", !0), this.instance.options._helper = this.instance.options.helper, this.instance.options.helper = function() {
         return n.helper[0]
       }, t.target = this.instance.currentItem[0], this.instance._mouseCapture(t, !0), this.instance._mouseStart(t, !0, !0), this.instance.offset.click.top = r.offset.click.top, this.instance.offset.click.left = r.offset.click.left, this.instance.offset.parent.left -= r.offset.parent.left - this.instance.offset.parent.left, this.instance.offset.parent.top -= r.offset.parent.top - this.instance.offset.parent.top, r._trigger("toSortable", t), r.dropped = this.instance.element, r.currentItem = r.element, 
@@ -6085,7 +6086,7 @@ VISH.IframeAPI = function(V, undefined) {
     r._opacity && e(n.helper).css("opacity", r._opacity)
   }}), e.ui.plugin.add("draggable", "scroll", {start:function(t, n) {
     var r = e(this).data("draggable");
-    r.scrollParent[0] != document && (r.scrollParent[0].tagName != "HTML" && (r.overflowOffset = r.scrollParent.offset()))
+    r.scrollParent[0] != document && r.scrollParent[0].tagName != "HTML" && (r.overflowOffset = r.scrollParent.offset())
   }, drag:function(t, n) {
     var r = e(this).data("draggable"), i = r.options, s = !1;
     if(r.scrollParent[0] != document && r.scrollParent[0].tagName != "HTML") {
@@ -6103,7 +6104,7 @@ VISH.IframeAPI = function(V, undefined) {
         t.pageX - e(document).scrollLeft() < i.scrollSensitivity ? s = e(document).scrollLeft(e(document).scrollLeft() - i.scrollSpeed) : e(window).width() - (t.pageX - e(document).scrollLeft()) < i.scrollSensitivity && (s = e(document).scrollLeft(e(document).scrollLeft() + i.scrollSpeed))
       }
     }
-    s !== !1 && (e.ui.ddmanager && (!i.dropBehaviour && e.ui.ddmanager.prepareOffsets(r, t)))
+    s !== !1 && e.ui.ddmanager && !i.dropBehaviour && e.ui.ddmanager.prepareOffsets(r, t)
   }}), e.ui.plugin.add("draggable", "snap", {start:function(t, n) {
     var r = e(this).data("draggable"), i = r.options;
     r.snapElements = [], e(i.snap.constructor != String ? i.snap.items || ":data(draggable)" : i.snap).each(function() {
@@ -6114,20 +6115,20 @@ VISH.IframeAPI = function(V, undefined) {
     var r = e(this).data("draggable"), i = r.options, s = i.snapTolerance, o = n.offset.left, u = o + r.helperProportions.width, a = n.offset.top, f = a + r.helperProportions.height;
     for(var l = r.snapElements.length - 1;l >= 0;l--) {
       var c = r.snapElements[l].left, h = c + r.snapElements[l].width, p = r.snapElements[l].top, d = p + r.snapElements[l].height;
-      if(!(c - s < o && (o < h + s && (p - s < a && a < d + s)) || (c - s < o && (o < h + s && (p - s < f && f < d + s)) || (c - s < u && (u < h + s && (p - s < a && a < d + s)) || c - s < u && (u < h + s && (p - s < f && f < d + s)))))) {
-        r.snapElements[l].snapping && (r.options.snap.release && r.options.snap.release.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item}))), r.snapElements[l].snapping = !1;
+      if(!(c - s < o && o < h + s && p - s < a && a < d + s || c - s < o && o < h + s && p - s < f && f < d + s || c - s < u && u < h + s && p - s < a && a < d + s || c - s < u && u < h + s && p - s < f && f < d + s)) {
+        r.snapElements[l].snapping && r.options.snap.release && r.options.snap.release.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item})), r.snapElements[l].snapping = !1;
         continue
       }
       if(i.snapMode != "inner") {
         var v = Math.abs(p - f) <= s, m = Math.abs(d - a) <= s, g = Math.abs(c - u) <= s, y = Math.abs(h - o) <= s;
         v && (n.position.top = r._convertPositionTo("relative", {top:p - r.helperProportions.height, left:0}).top - r.margins.top), m && (n.position.top = r._convertPositionTo("relative", {top:d, left:0}).top - r.margins.top), g && (n.position.left = r._convertPositionTo("relative", {top:0, left:c - r.helperProportions.width}).left - r.margins.left), y && (n.position.left = r._convertPositionTo("relative", {top:0, left:h}).left - r.margins.left)
       }
-      var b = v || (m || (g || y));
+      var b = v || m || g || y;
       if(i.snapMode != "outer") {
         var v = Math.abs(p - a) <= s, m = Math.abs(d - f) <= s, g = Math.abs(c - o) <= s, y = Math.abs(h - u) <= s;
         v && (n.position.top = r._convertPositionTo("relative", {top:p, left:0}).top - r.margins.top), m && (n.position.top = r._convertPositionTo("relative", {top:d - r.helperProportions.height, left:0}).top - r.margins.top), g && (n.position.left = r._convertPositionTo("relative", {top:0, left:c}).left - r.margins.left), y && (n.position.left = r._convertPositionTo("relative", {top:0, left:h - r.helperProportions.width}).left - r.margins.left)
       }
-      !r.snapElements[l].snapping && ((v || (m || (g || (y || b)))) && (r.options.snap.snap && r.options.snap.snap.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item})))), r.snapElements[l].snapping = v || (m || (g || (y || b)))
+      !r.snapElements[l].snapping && (v || m || g || y || b) && r.options.snap.snap && r.options.snap.snap.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item})), r.snapElements[l].snapping = v || m || g || y || b
     }
   }}), e.ui.plugin.add("draggable", "stack", {start:function(t, n) {
     var r = e(this).data("draggable").options, i = e.makeArray(e(r.stack)).sort(function(t, n) {
@@ -6190,7 +6191,7 @@ VISH.IframeAPI = function(V, undefined) {
     var i = !1;
     return this.element.find(":data(droppable)").not(".ui-draggable-dragging").each(function() {
       var t = e.data(this, "droppable");
-      if(t.options.greedy && (!t.options.disabled && (t.options.scope == r.options.scope && (t.accept.call(t.element[0], r.currentItem || r.element) && e.ui.intersect(r, e.extend(t, {offset:t.element.offset()}), t.options.tolerance))))) {
+      if(t.options.greedy && !t.options.disabled && t.options.scope == r.options.scope && t.accept.call(t.element[0], r.currentItem || r.element) && e.ui.intersect(r, e.extend(t, {offset:t.element.offset()}), t.options.tolerance)) {
         return i = !0, !1
       }
     }), i ? !1 : this.accept.call(this.element[0], r.currentItem || r.element) ? (this.options.activeClass && this.element.removeClass(this.options.activeClass), this.options.hoverClass && this.element.removeClass(this.options.hoverClass), this._trigger("drop", t, this.ui(r)), this.element) : !1
@@ -6203,14 +6204,14 @@ VISH.IframeAPI = function(V, undefined) {
     var i = (t.positionAbs || t.position.absolute).left, s = i + t.helperProportions.width, o = (t.positionAbs || t.position.absolute).top, u = o + t.helperProportions.height, a = n.offset.left, f = a + n.proportions.width, l = n.offset.top, c = l + n.proportions.height;
     switch(r) {
       case "fit":
-        return a <= i && (s <= f && (l <= o && u <= c));
+        return a <= i && s <= f && l <= o && u <= c;
       case "intersect":
-        return a < i + t.helperProportions.width / 2 && (s - t.helperProportions.width / 2 < f && (l < o + t.helperProportions.height / 2 && u - t.helperProportions.height / 2 < c));
+        return a < i + t.helperProportions.width / 2 && s - t.helperProportions.width / 2 < f && l < o + t.helperProportions.height / 2 && u - t.helperProportions.height / 2 < c;
       case "pointer":
         var h = (t.positionAbs || t.position.absolute).left + (t.clickOffset || t.offset.click).left, p = (t.positionAbs || t.position.absolute).top + (t.clickOffset || t.offset.click).top, d = e.ui.isOver(p, h, l, a, n.proportions.height, n.proportions.width);
         return d;
       case "touch":
-        return(o >= l && o <= c || (u >= l && u <= c || o < l && u > c)) && (i >= a && i <= f || (s >= a && s <= f || i < a && s > f));
+        return(o >= l && o <= c || u >= l && u <= c || o < l && u > c) && (i >= a && i <= f || s >= a && s <= f || i < a && s > f);
       default:
         return!1
     }
@@ -6238,7 +6239,7 @@ VISH.IframeAPI = function(V, undefined) {
       if(!this.options) {
         return
       }
-      !this.options.disabled && (this.visible && (e.ui.intersect(t, this, this.options.tolerance) && (r = this._drop.call(this, n) || r))), !this.options.disabled && (this.visible && (this.accept.call(this.element[0], t.currentItem || t.element) && (this.isout = 1, this.isover = 0, this._deactivate.call(this, n))))
+      !this.options.disabled && this.visible && e.ui.intersect(t, this, this.options.tolerance) && (r = this._drop.call(this, n) || r), !this.options.disabled && this.visible && this.accept.call(this.element[0], t.currentItem || t.element) && (this.isout = 1, this.isover = 0, this._deactivate.call(this, n))
     }), r
   }, dragStart:function(t, n) {
     t.element.parentsUntil("body").bind("scroll.droppable", function() {
@@ -6246,7 +6247,7 @@ VISH.IframeAPI = function(V, undefined) {
     })
   }, drag:function(t, n) {
     t.options.refreshPositions && e.ui.ddmanager.prepareOffsets(t, n), e.each(e.ui.ddmanager.droppables[t.options.scope] || [], function() {
-      if(this.options.disabled || (this.greedyChild || !this.visible)) {
+      if(this.options.disabled || this.greedyChild || !this.visible) {
         return
       }
       var r = e.ui.intersect(t, this, this.options.tolerance), i = !r && this.isover == 1 ? "isout" : r && this.isover == 0 ? "isover" : null;
@@ -6260,7 +6261,7 @@ VISH.IframeAPI = function(V, undefined) {
         });
         u.length && (s = e.data(u[0], "droppable"), s.greedyChild = i == "isover" ? 1 : 0)
       }
-      s && (i == "isover" && (s.isover = 0, s.isout = 1, s._out.call(s, n))), this[i] = 1, this[i == "isout" ? "isover" : "isout"] = 0, this[i == "isover" ? "_over" : "_out"].call(this, n), s && (i == "isout" && (s.isout = 0, s.isover = 1, s._over.call(s, n)))
+      s && i == "isover" && (s.isover = 0, s.isout = 1, s._out.call(s, n)), this[i] = 1, this[i == "isout" ? "isover" : "isout"] = 0, this[i == "isover" ? "_over" : "_out"].call(this, n), s && i == "isout" && (s.isout = 0, s.isover = 1, s._over.call(s, n))
     })
   }, dragStop:function(t, n) {
     t.element.parentsUntil("body").unbind("scroll.droppable"), t.options.refreshPositions || e.ui.ddmanager.prepareOffsets(t, n)
@@ -6269,7 +6270,7 @@ VISH.IframeAPI = function(V, undefined) {
 (function(e, t) {
   e.widget("ui.sortable", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"sort", ready:!1, options:{appendTo:"parent", axis:!1, connectWith:!1, containment:!1, cursor:"auto", cursorAt:!1, dropOnEmpty:!0, forcePlaceholderSize:!1, forceHelperSize:!1, grid:!1, handle:!1, helper:"original", items:"> *", opacity:!1, placeholder:!1, revert:!1, scroll:!0, scrollSensitivity:20, scrollSpeed:20, scope:"default", tolerance:"intersect", zIndex:1E3}, _create:function() {
     var e = this.options;
-    this.containerCache = {}, this.element.addClass("ui-sortable"), this.refresh(), this.floating = this.items.length ? e.axis === "x" || (/left|right/.test(this.items[0].item.css("float")) || /inline|table-cell/.test(this.items[0].item.css("display"))) : !1, this.offset = this.element.offset(), this._mouseInit(), this.ready = !0
+    this.containerCache = {}, this.element.addClass("ui-sortable"), this.refresh(), this.floating = this.items.length ? e.axis === "x" || /left|right/.test(this.items[0].item.css("float")) || /inline|table-cell/.test(this.items[0].item.css("display")) : !1, this.offset = this.element.offset(), this._mouseInit(), this.ready = !0
   }, _destroy:function() {
     this.element.removeClass("ui-sortable ui-sortable-disabled"), this._mouseDestroy();
     for(var e = this.items.length - 1;e >= 0;e--) {
@@ -6310,21 +6311,21 @@ VISH.IframeAPI = function(V, undefined) {
     var i = this.options;
     this.currentContainer = this, this.refreshPositions(), this.helper = this._createHelper(t), this._cacheHelperProportions(), this._cacheMargins(), this.scrollParent = this.helper.scrollParent(), this.offset = this.currentItem.offset(), this.offset = {top:this.offset.top - this.margins.top, left:this.offset.left - this.margins.left}, e.extend(this.offset, {click:{left:t.pageX - this.offset.left, top:t.pageY - this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), 
     this.helper.css("position", "absolute"), this.cssPosition = this.helper.css("position"), this.originalPosition = this._generatePosition(t), this.originalPageX = t.pageX, this.originalPageY = t.pageY, i.cursorAt && this._adjustOffsetFromHelper(i.cursorAt), this.domPosition = {prev:this.currentItem.prev()[0], parent:this.currentItem.parent()[0]}, this.helper[0] != this.currentItem[0] && this.currentItem.hide(), this._createPlaceholder(), i.containment && this._setContainment(), i.cursor && (e("body").css("cursor") && 
-    (this._storedCursor = e("body").css("cursor")), e("body").css("cursor", i.cursor)), i.opacity && (this.helper.css("opacity") && (this._storedOpacity = this.helper.css("opacity")), this.helper.css("opacity", i.opacity)), i.zIndex && (this.helper.css("zIndex") && (this._storedZIndex = this.helper.css("zIndex")), this.helper.css("zIndex", i.zIndex)), this.scrollParent[0] != document && (this.scrollParent[0].tagName != "HTML" && (this.overflowOffset = this.scrollParent.offset())), this._trigger("start", 
+    (this._storedCursor = e("body").css("cursor")), e("body").css("cursor", i.cursor)), i.opacity && (this.helper.css("opacity") && (this._storedOpacity = this.helper.css("opacity")), this.helper.css("opacity", i.opacity)), i.zIndex && (this.helper.css("zIndex") && (this._storedZIndex = this.helper.css("zIndex")), this.helper.css("zIndex", i.zIndex)), this.scrollParent[0] != document && this.scrollParent[0].tagName != "HTML" && (this.overflowOffset = this.scrollParent.offset()), this._trigger("start", 
     t, this._uiHash()), this._preserveHelperProportions || this._cacheHelperProportions();
     if(!r) {
       for(var s = this.containers.length - 1;s >= 0;s--) {
         this.containers[s]._trigger("activate", t, this._uiHash(this))
       }
     }
-    return e.ui.ddmanager && (e.ui.ddmanager.current = this), e.ui.ddmanager && (!i.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)), this.dragging = !0, this.helper.addClass("ui-sortable-helper"), this._mouseDrag(t), !0
+    return e.ui.ddmanager && (e.ui.ddmanager.current = this), e.ui.ddmanager && !i.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t), this.dragging = !0, this.helper.addClass("ui-sortable-helper"), this._mouseDrag(t), !0
   }, _mouseDrag:function(t) {
     this.position = this._generatePosition(t), this.positionAbs = this._convertPositionTo("absolute"), this.lastPositionAbs || (this.lastPositionAbs = this.positionAbs);
     if(this.options.scroll) {
       var n = this.options, r = !1;
       this.scrollParent[0] != document && this.scrollParent[0].tagName != "HTML" ? (this.overflowOffset.top + this.scrollParent[0].offsetHeight - t.pageY < n.scrollSensitivity ? this.scrollParent[0].scrollTop = r = this.scrollParent[0].scrollTop + n.scrollSpeed : t.pageY - this.overflowOffset.top < n.scrollSensitivity && (this.scrollParent[0].scrollTop = r = this.scrollParent[0].scrollTop - n.scrollSpeed), this.overflowOffset.left + this.scrollParent[0].offsetWidth - t.pageX < n.scrollSensitivity ? 
       this.scrollParent[0].scrollLeft = r = this.scrollParent[0].scrollLeft + n.scrollSpeed : t.pageX - this.overflowOffset.left < n.scrollSensitivity && (this.scrollParent[0].scrollLeft = r = this.scrollParent[0].scrollLeft - n.scrollSpeed)) : (t.pageY - e(document).scrollTop() < n.scrollSensitivity ? r = e(document).scrollTop(e(document).scrollTop() - n.scrollSpeed) : e(window).height() - (t.pageY - e(document).scrollTop()) < n.scrollSensitivity && (r = e(document).scrollTop(e(document).scrollTop() + 
-      n.scrollSpeed)), t.pageX - e(document).scrollLeft() < n.scrollSensitivity ? r = e(document).scrollLeft(e(document).scrollLeft() - n.scrollSpeed) : e(window).width() - (t.pageX - e(document).scrollLeft()) < n.scrollSensitivity && (r = e(document).scrollLeft(e(document).scrollLeft() + n.scrollSpeed))), r !== !1 && (e.ui.ddmanager && (!n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)))
+      n.scrollSpeed)), t.pageX - e(document).scrollLeft() < n.scrollSensitivity ? r = e(document).scrollLeft(e(document).scrollLeft() - n.scrollSpeed) : e(window).width() - (t.pageX - e(document).scrollLeft()) < n.scrollSensitivity && (r = e(document).scrollLeft(e(document).scrollLeft() + n.scrollSpeed))), r !== !1 && e.ui.ddmanager && !n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)
     }
     this.positionAbs = this._convertPositionTo("absolute");
     if(!this.options.axis || this.options.axis != "y") {
@@ -6341,7 +6342,7 @@ VISH.IframeAPI = function(V, undefined) {
       if(s.instance !== this.currentContainer) {
         continue
       }
-      if(o != this.currentItem[0] && (this.placeholder[u == 1 ? "next" : "prev"]()[0] != o && (!e.contains(this.placeholder[0], o) && (this.options.type == "semi-dynamic" ? !e.contains(this.element[0], o) : !0)))) {
+      if(o != this.currentItem[0] && this.placeholder[u == 1 ? "next" : "prev"]()[0] != o && !e.contains(this.placeholder[0], o) && (this.options.type == "semi-dynamic" ? !e.contains(this.element[0], o) : !0)) {
         this.direction = u == 1 ? "down" : "up";
         if(this.options.tolerance != "pointer" && !this._intersectsWithSides(s)) {
           break
@@ -6355,7 +6356,7 @@ VISH.IframeAPI = function(V, undefined) {
     if(!t) {
       return
     }
-    e.ui.ddmanager && (!this.options.dropBehaviour && e.ui.ddmanager.drop(this, t));
+    e.ui.ddmanager && !this.options.dropBehaviour && e.ui.ddmanager.drop(this, t);
     if(this.options.revert) {
       var r = this, i = this.placeholder.offset();
       this.reverting = !0, e(this.helper).animate({left:i.left - this.offset.parent.left - this.margins.left + (this.offsetParent[0] == document.body ? 0 : this.offsetParent[0].scrollLeft), top:i.top - this.offset.parent.top - this.margins.top + (this.offsetParent[0] == document.body ? 0 : this.offsetParent[0].scrollTop)}, parseInt(this.options.revert, 10) || 500, function() {
@@ -6372,21 +6373,21 @@ VISH.IframeAPI = function(V, undefined) {
         this.containers[t]._trigger("deactivate", null, this._uiHash(this)), this.containers[t].containerCache.over && (this.containers[t]._trigger("out", null, this._uiHash(this)), this.containers[t].containerCache.over = 0)
       }
     }
-    return this.placeholder && (this.placeholder[0].parentNode && this.placeholder[0].parentNode.removeChild(this.placeholder[0]), this.options.helper != "original" && (this.helper && (this.helper[0].parentNode && this.helper.remove())), e.extend(this, {helper:null, dragging:!1, reverting:!1, _noFinalSort:null}), this.domPosition.prev ? e(this.domPosition.prev).after(this.currentItem) : e(this.domPosition.parent).prepend(this.currentItem)), this
+    return this.placeholder && (this.placeholder[0].parentNode && this.placeholder[0].parentNode.removeChild(this.placeholder[0]), this.options.helper != "original" && this.helper && this.helper[0].parentNode && this.helper.remove(), e.extend(this, {helper:null, dragging:!1, reverting:!1, _noFinalSort:null}), this.domPosition.prev ? e(this.domPosition.prev).after(this.currentItem) : e(this.domPosition.parent).prepend(this.currentItem)), this
   }, serialize:function(t) {
     var n = this._getItemsAsjQuery(t && t.connected), r = [];
     return t = t || {}, e(n).each(function() {
       var n = (e(t.item || this).attr(t.attribute || "id") || "").match(t.expression || /(.+)[-=_](.+)/);
       n && r.push((t.key || n[1] + "[]") + "=" + (t.key && t.expression ? n[1] : n[2]))
-    }), !r.length && (t.key && r.push(t.key + "=")), r.join("&")
+    }), !r.length && t.key && r.push(t.key + "="), r.join("&")
   }, toArray:function(t) {
     var n = this._getItemsAsjQuery(t && t.connected), r = [];
     return t = t || {}, n.each(function() {
       r.push(e(t.item || this).attr(t.attribute || "id") || "")
     }), r
   }, _intersectsWith:function(e) {
-    var t = this.positionAbs.left, n = t + this.helperProportions.width, r = this.positionAbs.top, i = r + this.helperProportions.height, s = e.left, o = s + e.width, u = e.top, a = u + e.height, f = this.offset.click.top, l = this.offset.click.left, c = r + f > u && (r + f < a && (t + l > s && t + l < o));
-    return this.options.tolerance == "pointer" || (this.options.forcePointerForContainers || this.options.tolerance != "pointer" && this.helperProportions[this.floating ? "width" : "height"] > e[this.floating ? "width" : "height"]) ? c : s < t + this.helperProportions.width / 2 && (n - this.helperProportions.width / 2 < o && (u < r + this.helperProportions.height / 2 && i - this.helperProportions.height / 2 < a))
+    var t = this.positionAbs.left, n = t + this.helperProportions.width, r = this.positionAbs.top, i = r + this.helperProportions.height, s = e.left, o = s + e.width, u = e.top, a = u + e.height, f = this.offset.click.top, l = this.offset.click.left, c = r + f > u && r + f < a && t + l > s && t + l < o;
+    return this.options.tolerance == "pointer" || this.options.forcePointerForContainers || this.options.tolerance != "pointer" && this.helperProportions[this.floating ? "width" : "height"] > e[this.floating ? "width" : "height"] ? c : s < t + this.helperProportions.width / 2 && n - this.helperProportions.width / 2 < o && u < r + this.helperProportions.height / 2 && i - this.helperProportions.height / 2 < a
   }, _intersectsWithPointer:function(t) {
     var n = this.options.axis === "x" || e.ui.isOverAxis(this.positionAbs.top + this.offset.click.top, t.top, t.height), r = this.options.axis === "y" || e.ui.isOverAxis(this.positionAbs.left + this.offset.click.left, t.left, t.width), i = n && r, s = this._getDragVerticalDirection(), o = this._getDragHorizontalDirection();
     return i ? this.floating ? o && o == "right" || s == "down" ? 2 : 1 : s && (s == "down" ? 2 : 1) : !1
@@ -6411,7 +6412,7 @@ VISH.IframeAPI = function(V, undefined) {
         var o = e(i[s]);
         for(var u = o.length - 1;u >= 0;u--) {
           var a = e.data(o[u], this.widgetName);
-          a && (a != this && (!a.options.disabled && r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element) : e(a.options.items, a.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), a])))
+          a && a != this && !a.options.disabled && r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element) : e(a.options.items, a.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), a])
         }
       }
     }
@@ -6440,7 +6441,7 @@ VISH.IframeAPI = function(V, undefined) {
         var o = e(i[s]);
         for(var u = o.length - 1;u >= 0;u--) {
           var a = e.data(o[u], this.widgetName);
-          a && (a != this && (!a.options.disabled && (r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element[0], t, {item:this.currentItem}) : e(a.options.items, a.element), a]), this.containers.push(a))))
+          a && a != this && !a.options.disabled && (r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element[0], t, {item:this.currentItem}) : e(a.options.items, a.element), a]), this.containers.push(a))
         }
       }
     }
@@ -6452,10 +6453,10 @@ VISH.IframeAPI = function(V, undefined) {
       }
     }
   }, refreshPositions:function(t) {
-    this.offsetParent && (this.helper && (this.offset.parent = this._getParentOffset()));
+    this.offsetParent && this.helper && (this.offset.parent = this._getParentOffset());
     for(var n = this.items.length - 1;n >= 0;n--) {
       var r = this.items[n];
-      if(r.instance != this.currentContainer && (this.currentContainer && r.item[0] != this.currentItem[0])) {
+      if(r.instance != this.currentContainer && this.currentContainer && r.item[0] != this.currentItem[0]) {
         continue
       }
       var i = this.options.toleranceElement ? e(this.options.toleranceElement, r.item) : r.item;
@@ -6534,8 +6535,8 @@ VISH.IframeAPI = function(V, undefined) {
   }, _getParentOffset:function() {
     this.offsetParent = this.helper.offsetParent();
     var t = this.offsetParent.offset();
-    this.cssPosition == "absolute" && (this.scrollParent[0] != document && (e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop())));
-    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && (this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie)) {
+    this.cssPosition == "absolute" && this.scrollParent[0] != document && e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop());
+    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie) {
       t = {top:0, left:0}
     }
     return{top:t.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0), left:t.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)}
@@ -6566,7 +6567,7 @@ VISH.IframeAPI = function(V, undefined) {
     return{top:n.top + this.offset.relative.top * r + this.offset.parent.top * r - (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : o ? 0 : s.scrollTop()) * r, left:n.left + this.offset.relative.left * r + this.offset.parent.left * r - (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : o ? 0 : s.scrollLeft()) * r}
   }, _generatePosition:function(t) {
     var n = this.options, r = this.cssPosition != "absolute" || this.scrollParent[0] != document && !!e.contains(this.scrollParent[0], this.offsetParent[0]) ? this.scrollParent : this.offsetParent, i = /(html|body)/i.test(r[0].tagName);
-    this.cssPosition == "relative" && ((this.scrollParent[0] == document || this.scrollParent[0] == this.offsetParent[0]) && (this.offset.relative = this._getRelativeOffset()));
+    this.cssPosition == "relative" && (this.scrollParent[0] == document || this.scrollParent[0] == this.offsetParent[0]) && (this.offset.relative = this._getRelativeOffset());
     var s = t.pageX, o = t.pageY;
     if(this.originalPosition) {
       this.containment && (t.pageX - this.offset.click.left < this.containment[0] && (s = this.containment[0] + this.offset.click.left), t.pageY - this.offset.click.top < this.containment[1] && (o = this.containment[1] + this.offset.click.top), t.pageX - this.offset.click.left > this.containment[2] && (s = this.containment[2] + this.offset.click.left), t.pageY - this.offset.click.top > this.containment[3] && (o = this.containment[3] + this.offset.click.top));
@@ -6587,7 +6588,7 @@ VISH.IframeAPI = function(V, undefined) {
   }, _clear:function(t, n) {
     this.reverting = !1;
     var r = [];
-    !this._noFinalSort && (this.currentItem.parent().length && this.placeholder.before(this.currentItem)), this._noFinalSort = null;
+    !this._noFinalSort && this.currentItem.parent().length && this.placeholder.before(this.currentItem), this._noFinalSort = null;
     if(this.helper[0] == this.currentItem[0]) {
       for(var i in this._storedCSS) {
         if(this._storedCSS[i] == "auto" || this._storedCSS[i] == "static") {
@@ -6598,11 +6599,11 @@ VISH.IframeAPI = function(V, undefined) {
     }else {
       this.currentItem.show()
     }
-    this.fromOutside && (!n && r.push(function(e) {
+    this.fromOutside && !n && r.push(function(e) {
       this._trigger("receive", e, this._uiHash(this.fromOutside))
-    })), (this.fromOutside || (this.domPosition.prev != this.currentItem.prev().not(".ui-sortable-helper")[0] || this.domPosition.parent != this.currentItem.parent()[0])) && (!n && r.push(function(e) {
+    }), (this.fromOutside || this.domPosition.prev != this.currentItem.prev().not(".ui-sortable-helper")[0] || this.domPosition.parent != this.currentItem.parent()[0]) && !n && r.push(function(e) {
       this._trigger("update", e, this._uiHash())
-    })), this !== this.currentContainer && (n || (r.push(function(e) {
+    }), this !== this.currentContainer && (n || (r.push(function(e) {
       this._trigger("remove", e, this._uiHash())
     }), r.push(function(e) {
       return function(t) {
@@ -6732,7 +6733,7 @@ VISH.IframeAPI = function(V, undefined) {
       e(t.target).closest(".ui-menu-item").length || this._delay(function() {
         var t = this;
         this.document.one("mousedown", function(r) {
-          r.target !== t.element[0] && (r.target !== n && (!e.contains(n, r.target) && t.close()))
+          r.target !== t.element[0] && r.target !== n && !e.contains(n, r.target) && t.close()
         })
       })
     }, menufocus:function(t, n) {
@@ -6746,7 +6747,7 @@ VISH.IframeAPI = function(V, undefined) {
         }
       }
       var r = n.item.data("ui-autocomplete-item") || n.item.data("item.autocomplete");
-      !1 !== this._trigger("focus", t, {item:r}) ? t.originalEvent && (/^key/.test(t.originalEvent.type) && this._value(r.value)) : this.liveRegion.text(r.value)
+      !1 !== this._trigger("focus", t, {item:r}) ? t.originalEvent && /^key/.test(t.originalEvent.type) && this._value(r.value) : this.liveRegion.text(r.value)
     }, menuselect:function(e, t) {
       var n = t.item.data("ui-autocomplete-item") || t.item.data("item.autocomplete"), r = this.previous;
       this.element[0] !== this.document[0].activeElement && (this.element.focus(), this.previous = r, this._delay(function() {
@@ -6758,7 +6759,7 @@ VISH.IframeAPI = function(V, undefined) {
   }, _destroy:function() {
     clearTimeout(this.searching), this.element.removeClass("ui-autocomplete-input").removeAttr("autocomplete"), this.menu.element.remove(), this.liveRegion.remove()
   }, _setOption:function(e, t) {
-    this._super(e, t), e === "source" && this._initSource(), e === "appendTo" && this.menu.element.appendTo(this.document.find(t || "body")[0]), e === "disabled" && (t && (this.xhr && this.xhr.abort()))
+    this._super(e, t), e === "source" && this._initSource(), e === "appendTo" && this.menu.element.appendTo(this.document.find(t || "body")[0]), e === "disabled" && t && this.xhr && this.xhr.abort()
   }, _isMultiLine:function() {
     return this.element.is("textarea") ? !0 : this.element.is("input") ? !1 : this.element.prop("isContentEditable")
   }, _initSource:function() {
@@ -6793,7 +6794,7 @@ VISH.IframeAPI = function(V, undefined) {
       t === n && e.__response(r), e.pending--, e.pending || e.element.removeClass("ui-autocomplete-loading")
     }
   }, __response:function(e) {
-    e && (e = this._normalize(e)), this._trigger("response", null, {content:e}), !this.options.disabled && (e && (e.length && !this.cancelSearch)) ? (this._suggest(e), this._trigger("open")) : this._close()
+    e && (e = this._normalize(e)), this._trigger("response", null, {content:e}), !this.options.disabled && e && e.length && !this.cancelSearch ? (this._suggest(e), this._trigger("open")) : this._close()
   }, close:function(e) {
     this.cancelSearch = !0, this._close(e)
   }, _close:function(e) {
@@ -6801,7 +6802,7 @@ VISH.IframeAPI = function(V, undefined) {
   }, _change:function(e) {
     this.previous !== this._value() && this._trigger("change", e, {item:this.selectedItem})
   }, _normalize:function(t) {
-    return t.length && (t[0].label && t[0].value) ? t : e.map(t, function(t) {
+    return t.length && t[0].label && t[0].value ? t : e.map(t, function(t) {
       return typeof t == "string" ? {label:t, value:t} : e.extend({label:t.label || t.value, value:t.value || t.label}, t)
     })
   }, _suggest:function(t) {
@@ -6842,7 +6843,7 @@ VISH.IframeAPI = function(V, undefined) {
   }, filter:function(t, n) {
     var r = new RegExp(e.ui.autocomplete.escapeRegex(n), "i");
     return e.grep(t, function(e) {
-      return r.test(e.label || (e.value || e))
+      return r.test(e.label || e.value || e)
     })
   }}), e.widget("ui.autocomplete", e.ui.autocomplete, {options:{messages:{noResults:"No search results.", results:function(e) {
     return e + (e > 1 ? " results are" : " result is") + " available, use up and down arrow keys to navigate."
@@ -6866,7 +6867,7 @@ VISH.IframeAPI = function(V, undefined) {
       e.preventDefault()
     }, "click .ui-menu-item:has(a)":function(t) {
       var r = e(t.target).closest(".ui-menu-item");
-      !n && (r.not(".ui-state-disabled").length && (n = !0, this.select(t), r.has(".ui-menu").length ? this.expand(t) : this.element.is(":focus") || (this.element.trigger("focus", [!0]), this.active && (this.active.parents(".ui-menu").length === 1 && clearTimeout(this.timer)))))
+      !n && r.not(".ui-state-disabled").length && (n = !0, this.select(t), r.has(".ui-menu").length ? this.expand(t) : this.element.is(":focus") || (this.element.trigger("focus", [!0]), this.active && this.active.parents(".ui-menu").length === 1 && clearTimeout(this.timer)))
     }, "mouseenter .ui-menu-item":function(t) {
       var n = e(t.currentTarget);
       n.siblings().children(".ui-state-active").removeClass("ui-state-active"), this.focus(t, n)
@@ -6913,7 +6914,7 @@ VISH.IframeAPI = function(V, undefined) {
         this.collapse(t);
         break;
       case e.ui.keyCode.RIGHT:
-        this.active && (!this.active.is(".ui-state-disabled") && this.expand(t));
+        this.active && !this.active.is(".ui-state-disabled") && this.expand(t);
         break;
       case e.ui.keyCode.ENTER:
       ;
@@ -6943,14 +6944,14 @@ VISH.IframeAPI = function(V, undefined) {
     }), t = r.add(this.element), t.children(":not(.ui-menu-item):has(a)").addClass("ui-menu-item").attr("role", "presentation").children("a").uniqueId().addClass("ui-corner-all").attr({tabIndex:-1, role:this._itemRole()}), t.children(":not(.ui-menu-item)").each(function() {
       var t = e(this);
       /[^\-\u2014\u2013\s]/.test(t.text()) || t.addClass("ui-widget-content ui-menu-divider")
-    }), t.children(".ui-state-disabled").attr("aria-disabled", "true"), this.active && (!e.contains(this.element[0], this.active[0]) && this.blur())
+    }), t.children(".ui-state-disabled").attr("aria-disabled", "true"), this.active && !e.contains(this.element[0], this.active[0]) && this.blur()
   }, _itemRole:function() {
     return{menu:"menuitem", listbox:"option"}[this.options.role]
   }, focus:function(e, t) {
     var n, r;
     this.blur(e, e && e.type === "focus"), this._scrollIntoView(t), this.active = t.first(), r = this.active.children("a").addClass("ui-state-focus"), this.options.role && this.element.attr("aria-activedescendant", r.attr("id")), this.active.parent().closest(".ui-menu-item").children("a:first").addClass("ui-state-active"), e && e.type === "keydown" ? this._close() : this.timer = this._delay(function() {
       this._close()
-    }, this.delay), n = t.children(".ui-menu"), n.length && (/^mouse/.test(e.type) && this._startOpening(n)), this.activeMenu = t.parent(), this._trigger("focus", e, {item:t})
+    }, this.delay), n = t.children(".ui-menu"), n.length && /^mouse/.test(e.type) && this._startOpening(n), this.activeMenu = t.parent(), this._trigger("focus", e, {item:t})
   }, _scrollIntoView:function(t) {
     var n, r, i, s, o, u;
     this._hasScroll() && (n = parseFloat(e.css(this.activeMenu[0], "borderTopWidth")) || 0, r = parseFloat(e.css(this.activeMenu[0], "paddingTop")) || 0, i = t.offset().top - this.activeMenu.offset().top - n - r, s = this.activeMenu.scrollTop(), o = this.activeMenu.height(), u = t.height(), i < 0 ? this.activeMenu.scrollTop(s + i) : i + u > o && this.activeMenu.scrollTop(s + i - o + u))
@@ -6980,12 +6981,12 @@ VISH.IframeAPI = function(V, undefined) {
     e || (e = this.active ? this.active.parent() : this.element), e.find(".ui-menu").hide().attr("aria-hidden", "true").attr("aria-expanded", "false").end().find("a.ui-state-active").removeClass("ui-state-active")
   }, collapse:function(e) {
     var t = this.active && this.active.parent().closest(".ui-menu-item", this.element);
-    t && (t.length && (this._close(), this.focus(e, t)))
+    t && t.length && (this._close(), this.focus(e, t))
   }, expand:function(e) {
     var t = this.active && this.active.children(".ui-menu ").children(".ui-menu-item").first();
-    t && (t.length && (this._open(t.parent()), this._delay(function() {
+    t && t.length && (this._open(t.parent()), this._delay(function() {
       this.focus(e, t)
-    })))
+    }))
   }, next:function(e) {
     this._move("next", "first", e)
   }, previous:function(e) {
@@ -6997,7 +6998,7 @@ VISH.IframeAPI = function(V, undefined) {
   }, _move:function(e, t, n) {
     var r;
     this.active && (e === "first" || e === "last" ? r = this.active[e === "first" ? "prevAll" : "nextAll"](".ui-menu-item").eq(-1) : r = this.active[e + "All"](".ui-menu-item").eq(0));
-    if(!r || (!r.length || !this.active)) {
+    if(!r || !r.length || !this.active) {
       r = this.activeMenu.children(".ui-menu-item")[t]()
     }
     this.focus(n, r)
@@ -7037,8 +7038,8 @@ VISH.IframeAPI = function(V, undefined) {
   var n = 5;
   e.widget("ui.slider", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"slide", options:{animate:!1, distance:0, max:100, min:0, orientation:"horizontal", range:!1, step:1, value:0, values:null}, _create:function() {
     var t, r, i = this.options, s = this.element.find(".ui-slider-handle").addClass("ui-state-default ui-corner-all"), o = "<a class='ui-slider-handle ui-state-default ui-corner-all' href='#'></a>", u = [];
-    this._keySliding = !1, this._mouseSliding = !1, this._animateOff = !0, this._handleIndex = null, this._detectOrientation(), this._mouseInit(), this.element.addClass("ui-slider ui-slider-" + this.orientation + " ui-widget" + " ui-widget-content" + " ui-corner-all" + (i.disabled ? " ui-slider-disabled ui-disabled" : "")), this.range = e([]), i.range && (i.range === !0 && (i.values || (i.values = [this._valueMin(), this._valueMin()]), i.values.length && (i.values.length !== 2 && (i.values = [i.values[0], 
-    i.values[0]]))), this.range = e("<div></div>").appendTo(this.element).addClass("ui-slider-range ui-widget-header" + (i.range === "min" || i.range === "max" ? " ui-slider-range-" + i.range : ""))), r = i.values && i.values.length || 1;
+    this._keySliding = !1, this._mouseSliding = !1, this._animateOff = !0, this._handleIndex = null, this._detectOrientation(), this._mouseInit(), this.element.addClass("ui-slider ui-slider-" + this.orientation + " ui-widget" + " ui-widget-content" + " ui-corner-all" + (i.disabled ? " ui-slider-disabled ui-disabled" : "")), this.range = e([]), i.range && (i.range === !0 && (i.values || (i.values = [this._valueMin(), this._valueMin()]), i.values.length && i.values.length !== 2 && (i.values = [i.values[0], 
+    i.values[0]])), this.range = e("<div></div>").appendTo(this.element).addClass("ui-slider-range ui-widget-header" + (i.range === "min" || i.range === "max" ? " ui-slider-range-" + i.range : ""))), r = i.values && i.values.length || 1;
     for(t = s.length;t < r;t++) {
       u.push(o)
     }
@@ -7122,8 +7123,8 @@ VISH.IframeAPI = function(V, undefined) {
     return c.disabled ? !1 : (this.elementSize = {width:this.element.outerWidth(), height:this.element.outerHeight()}, this.elementOffset = this.element.offset(), n = {x:t.pageX, y:t.pageY}, r = this._normValueFromMouse(n), i = this._valueMax() - this._valueMin() + 1, this.handles.each(function(t) {
       var n = Math.abs(r - l.values(t));
       i > n && (i = n, s = e(this), o = t)
-    }), c.range === !0 && (this.values(1) === c.min && (o += 1, s = e(this.handles[o]))), u = this._start(t, o), u === !1 ? !1 : (this._mouseSliding = !0, this._handleIndex = o, s.addClass("ui-state-active").focus(), a = s.offset(), f = !e(t.target).parents().andSelf().is(".ui-slider-handle"), this._clickOffset = f ? {left:0, top:0} : {left:t.pageX - a.left - s.width() / 2, top:t.pageY - a.top - s.height() / 2 - (parseInt(s.css("borderTopWidth"), 10) || 0) - (parseInt(s.css("borderBottomWidth"), 
-    10) || 0) + (parseInt(s.css("marginTop"), 10) || 0)}, this.handles.hasClass("ui-state-hover") || this._slide(t, o, r), this._animateOff = !0, !0))
+    }), c.range === !0 && this.values(1) === c.min && (o += 1, s = e(this.handles[o])), u = this._start(t, o), u === !1 ? !1 : (this._mouseSliding = !0, this._handleIndex = o, s.addClass("ui-state-active").focus(), a = s.offset(), f = !e(t.target).parents().andSelf().is(".ui-slider-handle"), this._clickOffset = f ? {left:0, top:0} : {left:t.pageX - a.left - s.width() / 2, top:t.pageY - a.top - s.height() / 2 - (parseInt(s.css("borderTopWidth"), 10) || 0) - (parseInt(s.css("borderBottomWidth"), 10) || 
+    0) + (parseInt(s.css("marginTop"), 10) || 0)}, this.handles.hasClass("ui-state-hover") || this._slide(t, o, r), this._animateOff = !0, !0))
   }, _mouseStart:function() {
     return!0
   }, _mouseDrag:function(e) {
@@ -7138,18 +7139,17 @@ VISH.IframeAPI = function(V, undefined) {
     return this.orientation === "horizontal" ? (t = this.elementSize.width, n = e.x - this.elementOffset.left - (this._clickOffset ? this._clickOffset.left : 0)) : (t = this.elementSize.height, n = e.y - this.elementOffset.top - (this._clickOffset ? this._clickOffset.top : 0)), r = n / t, r > 1 && (r = 1), r < 0 && (r = 0), this.orientation === "vertical" && (r = 1 - r), i = this._valueMax() - this._valueMin(), s = this._valueMin() + r * i, this._trimAlignValue(s)
   }, _start:function(e, t) {
     var n = {handle:this.handles[t], value:this.value()};
-    return this.options.values && (this.options.values.length && (n.value = this.values(t), n.values = this.values())), this._trigger("start", e, n)
+    return this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("start", e, n)
   }, _slide:function(e, t, n) {
     var r, i, s;
-    this.options.values && this.options.values.length ? (r = this.values(t ? 0 : 1), this.options.values.length === 2 && (this.options.range === !0 && ((t === 0 && n > r || t === 1 && n < r) && (n = r))), n !== this.values(t) && (i = this.values(), i[t] = n, s = this._trigger("slide", e, {handle:this.handles[t], value:n, values:i}), r = this.values(t ? 0 : 1), s !== !1 && this.values(t, n, !0))) : n !== this.value() && (s = this._trigger("slide", e, {handle:this.handles[t], value:n}), s !== !1 && 
-    this.value(n))
+    this.options.values && this.options.values.length ? (r = this.values(t ? 0 : 1), this.options.values.length === 2 && this.options.range === !0 && (t === 0 && n > r || t === 1 && n < r) && (n = r), n !== this.values(t) && (i = this.values(), i[t] = n, s = this._trigger("slide", e, {handle:this.handles[t], value:n, values:i}), r = this.values(t ? 0 : 1), s !== !1 && this.values(t, n, !0))) : n !== this.value() && (s = this._trigger("slide", e, {handle:this.handles[t], value:n}), s !== !1 && this.value(n))
   }, _stop:function(e, t) {
     var n = {handle:this.handles[t], value:this.value()};
-    this.options.values && (this.options.values.length && (n.value = this.values(t), n.values = this.values())), this._trigger("stop", e, n)
+    this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("stop", e, n)
   }, _change:function(e, t) {
     if(!this._keySliding && !this._mouseSliding) {
       var n = {handle:this.handles[t], value:this.value()};
-      this.options.values && (this.options.values.length && (n.value = this.values(t), n.values = this.values())), this._trigger("change", e, n)
+      this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("change", e, n)
     }
   }, value:function(e) {
     if(arguments.length) {
@@ -7230,13 +7230,13 @@ VISH.IframeAPI = function(V, undefined) {
     this.options.values && this.options.values.length ? this.handles.each(function(r) {
       n = (a.values(r) - a._valueMin()) / (a._valueMax() - a._valueMin()) * 100, l[a.orientation === "horizontal" ? "left" : "bottom"] = n + "%", e(this).stop(1, 1)[f ? "animate" : "css"](l, u.animate), a.options.range === !0 && (a.orientation === "horizontal" ? (r === 0 && a.range.stop(1, 1)[f ? "animate" : "css"]({left:n + "%"}, u.animate), r === 1 && a.range[f ? "animate" : "css"]({width:n - t + "%"}, {queue:!1, duration:u.animate})) : (r === 0 && a.range.stop(1, 1)[f ? "animate" : "css"]({bottom:n + 
       "%"}, u.animate), r === 1 && a.range[f ? "animate" : "css"]({height:n - t + "%"}, {queue:!1, duration:u.animate}))), t = n
-    }) : (r = this.value(), i = this._valueMin(), s = this._valueMax(), n = s !== i ? (r - i) / (s - i) * 100 : 0, l[this.orientation === "horizontal" ? "left" : "bottom"] = n + "%", this.handle.stop(1, 1)[f ? "animate" : "css"](l, u.animate), o === "min" && (this.orientation === "horizontal" && this.range.stop(1, 1)[f ? "animate" : "css"]({width:n + "%"}, u.animate)), o === "max" && (this.orientation === "horizontal" && this.range[f ? "animate" : "css"]({width:100 - n + "%"}, {queue:!1, duration:u.animate})), 
-    o === "min" && (this.orientation === "vertical" && this.range.stop(1, 1)[f ? "animate" : "css"]({height:n + "%"}, u.animate)), o === "max" && (this.orientation === "vertical" && this.range[f ? "animate" : "css"]({height:100 - n + "%"}, {queue:!1, duration:u.animate})))
+    }) : (r = this.value(), i = this._valueMin(), s = this._valueMax(), n = s !== i ? (r - i) / (s - i) * 100 : 0, l[this.orientation === "horizontal" ? "left" : "bottom"] = n + "%", this.handle.stop(1, 1)[f ? "animate" : "css"](l, u.animate), o === "min" && this.orientation === "horizontal" && this.range.stop(1, 1)[f ? "animate" : "css"]({width:n + "%"}, u.animate), o === "max" && this.orientation === "horizontal" && this.range[f ? "animate" : "css"]({width:100 - n + "%"}, {queue:!1, duration:u.animate}), 
+    o === "min" && this.orientation === "vertical" && this.range.stop(1, 1)[f ? "animate" : "css"]({height:n + "%"}, u.animate), o === "max" && this.orientation === "vertical" && this.range[f ? "animate" : "css"]({height:100 - n + "%"}, {queue:!1, duration:u.animate}))
   }})
 })(jQuery);
 (function($) {
-  var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right, selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [], ajaxLoader = null, imgPreloader = new Image, imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, loadingTimer, loadingFrame = 1, titleHeight = 0, titleStr = "", start_pos, final_pos, busy = false, fx = $.extend($("<div/>")[0], {prop:0}), isIE6 = $.browser.msie && ($.browser.version < 
-  7 && !window.XMLHttpRequest), _abort = function() {
+  var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right, selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [], ajaxLoader = null, imgPreloader = new Image, imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, loadingTimer, loadingFrame = 1, titleHeight = 0, titleStr = "", start_pos, final_pos, busy = false, fx = $.extend($("<div/>")[0], {prop:0}), isIE6 = $.browser.msie && $.browser.version < 
+  7 && !window.XMLHttpRequest, _abort = function() {
     loading.hide();
     imgPreloader.onerror = imgPreloader.onload = null;
     if(ajaxLoader) {
@@ -7267,14 +7267,14 @@ VISH.IframeAPI = function(V, undefined) {
         selectedOpts = $.extend(selectedOpts, ret)
       }
     }
-    title = selectedOpts.title || ((obj.nodeName ? $(obj).attr("title") : obj.title) || "");
+    title = selectedOpts.title || (obj.nodeName ? $(obj).attr("title") : obj.title) || "";
     if(obj.nodeName && !selectedOpts.orig) {
       selectedOpts.orig = $(obj).children("img:first").length ? $(obj).children("img:first") : $(obj)
     }
-    if(title === "" && (selectedOpts.orig && selectedOpts.titleFromAlt)) {
+    if(title === "" && selectedOpts.orig && selectedOpts.titleFromAlt) {
       title = selectedOpts.orig.attr("alt")
     }
-    href = selectedOpts.href || ((obj.nodeName ? $(obj).attr("href") : obj.href) || null);
+    href = selectedOpts.href || (obj.nodeName ? $(obj).attr("href") : obj.href) || null;
     if(/^(?:javascript)/i.test(href) || href == "#") {
       href = null
     }
@@ -7320,7 +7320,7 @@ VISH.IframeAPI = function(V, undefined) {
     selectedOpts.href = href;
     selectedOpts.title = title;
     if(selectedOpts.autoDimensions) {
-      if(selectedOpts.type == "html" || (selectedOpts.type == "inline" || selectedOpts.type == "ajax")) {
+      if(selectedOpts.type == "html" || selectedOpts.type == "inline" || selectedOpts.type == "ajax") {
         selectedOpts.width = "auto";
         selectedOpts.height = "auto"
       }else {
@@ -7557,7 +7557,7 @@ VISH.IframeAPI = function(V, undefined) {
           e.preventDefault();
           $.fancybox.close()
         }else {
-          if((e.keyCode == 37 || e.keyCode == 39) && (currentOpts.enableKeyboardNav && (e.target.tagName !== "INPUT" && (e.target.tagName !== "TEXTAREA" && e.target.tagName !== "SELECT")))) {
+          if((e.keyCode == 37 || e.keyCode == 39) && currentOpts.enableKeyboardNav && e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA" && e.target.tagName !== "SELECT") {
             e.preventDefault();
             $.fancybox[e.keyCode == 37 ? "prev" : "next"]()
           }
@@ -7706,7 +7706,7 @@ VISH.IframeAPI = function(V, undefined) {
       selectedArray = [];
       selectedIndex = 0;
       var rel = $(this).attr("rel") || "";
-      if(!rel || (rel == "" || rel === "nofollow")) {
+      if(!rel || rel == "" || rel === "nofollow") {
         selectedArray.push(this)
       }else {
         selectedArray = $("a[rel=" + rel + "], area[rel=" + rel + "]");
@@ -7952,7 +7952,7 @@ VISH.IframeAPI = function(V, undefined) {
       this.dataList.push(new u(a));
       this.dataCache = null
     }, isDark:function(a, c) {
-      if(0 > a || (this.moduleCount <= a || (0 > c || this.moduleCount <= c))) {
+      if(0 > a || this.moduleCount <= a || 0 > c || this.moduleCount <= c) {
         throw Error(a + "," + c);
       }
       return this.modules[a][c]
@@ -7996,7 +7996,7 @@ VISH.IframeAPI = function(V, undefined) {
       for(var d = -1;7 >= d;d++) {
         if(!(-1 >= a + d || this.moduleCount <= a + d)) {
           for(var b = -1;7 >= b;b++) {
-            -1 >= c + b || (this.moduleCount <= c + b || (this.modules[a + d][c + b] = 0 <= d && (6 >= d && (0 == b || 6 == b)) || (0 <= b && (6 >= b && (0 == d || 6 == d)) || 2 <= d && (4 >= d && (2 <= b && 4 >= b))) ? !0 : !1))
+            -1 >= c + b || this.moduleCount <= c + b || (this.modules[a + d][c + b] = 0 <= d && 6 >= d && (0 == b || 6 == b) || 0 <= b && 6 >= b && (0 == d || 6 == d) || 2 <= d && 4 >= d && 2 <= b && 4 >= b ? !0 : !1)
           }
         }
       }
@@ -8033,7 +8033,7 @@ VISH.IframeAPI = function(V, undefined) {
           if(null == this.modules[b][e]) {
             for(var f = -2;2 >= f;f++) {
               for(var i = -2;2 >= i;i++) {
-                this.modules[b + f][e + i] = -2 == f || (2 == f || (-2 == i || (2 == i || 0 == f && 0 == i))) ? !0 : !1
+                this.modules[b + f][e + i] = -2 == f || 2 == f || -2 == i || 2 == i || 0 == f && 0 == i ? !0 : !1
               }
             }
           }
@@ -8234,7 +8234,7 @@ VISH.IframeAPI = function(V, undefined) {
           for(var f = 0, i = a.isDark(b, e), g = -1;1 >= g;g++) {
             if(!(0 > b + g || c <= b + g)) {
               for(var h = -1;1 >= h;h++) {
-                0 > e + h || (c <= e + h || (0 == g && 0 == h || i == a.isDark(b + g, e + h) && f++))
+                0 > e + h || c <= e + h || 0 == g && 0 == h || i == a.isDark(b + g, e + h) && f++
               }
             }
           }
@@ -8250,12 +8250,12 @@ VISH.IframeAPI = function(V, undefined) {
       }
       for(b = 0;b < c;b++) {
         for(e = 0;e < c - 6;e++) {
-          a.isDark(b, e) && (!a.isDark(b, e + 1) && (a.isDark(b, e + 2) && (a.isDark(b, e + 3) && (a.isDark(b, e + 4) && (!a.isDark(b, e + 5) && (a.isDark(b, e + 6) && (d += 40)))))))
+          a.isDark(b, e) && !a.isDark(b, e + 1) && a.isDark(b, e + 2) && a.isDark(b, e + 3) && a.isDark(b, e + 4) && !a.isDark(b, e + 5) && a.isDark(b, e + 6) && (d += 40)
         }
       }
       for(e = 0;e < c;e++) {
         for(b = 0;b < c - 6;b++) {
-          a.isDark(b, e) && (!a.isDark(b + 1, e) && (a.isDark(b + 2, e) && (a.isDark(b + 3, e) && (a.isDark(b + 4, e) && (!a.isDark(b + 5, e) && (a.isDark(b + 6, e) && (d += 40)))))))
+          a.isDark(b, e) && !a.isDark(b + 1, e) && a.isDark(b + 2, e) && a.isDark(b + 3, e) && a.isDark(b + 4, e) && !a.isDark(b + 5, e) && a.isDark(b + 6, e) && (d += 40)
         }
       }
       for(e = f = 0;e < c;e++) {
@@ -8407,7 +8407,7 @@ VISH.IframeAPI = function(V, undefined) {
         return'<div class="joyride-tip-guide ' + tipClass + '" id="joyRidePopup' + index + '"><span class="joyride-nub"></span><div class="joyride-content-wrapper">' + $(self).html() + buttonText + '<a href="#close" class="joyride-close-tip"></a>' + timerIndicatorInstance + "</div></div>"
       };
       var tipLayout = function(tipClass, index, buttonText, self) {
-        if(index == 0 && (settings.startTimerOnClick && settings.timer > 0) || settings.timer == 0) {
+        if(index == 0 && settings.startTimerOnClick && settings.timer > 0 || settings.timer == 0) {
           timerIndicatorInstance = ""
         }else {
           timerIndicatorInstance = timerIndicatorTemplate
@@ -8590,7 +8590,7 @@ VISH.IframeAPI = function(V, undefined) {
           settings.postStepCallback(prevCount)
         }
       };
-      if(!settings.inline || (!settings.cookieMonster || !$.cookie(settings.cookieName))) {
+      if(!settings.inline || !settings.cookieMonster || !$.cookie(settings.cookieName)) {
         $(window).resize(function() {
           var parentElementID = $(tipContent[prevCount]).data("id"), currentTipPosition = $("#" + parentElementID).offset(), currentParentHeight = $("#" + parentElementID).outerHeight(), currentTipHeight = $("#joyRidePopup" + prevCount).outerHeight(), nubHeight = Math.ceil($(".joyride-nub").outerHeight() / 2);
           if(Modernizr.mq("only screen and (max-width: 769px)")) {
@@ -8828,7 +8828,7 @@ window.Modernizr = function(a, b, c) {
       while(g--) {
         j[i[g].id] = i[g]
       }
-      e.touch = "ontouchstart" in a || (a.DocumentTouch && b instanceof DocumentTouch || (j.touch && j.touch.offsetTop) === 9)
+      e.touch = "ontouchstart" in a || a.DocumentTouch && b instanceof DocumentTouch || (j.touch && j.touch.offsetTop) === 9
     }, g, d)
   }([, ["@media (", m.join("touch-enabled),("), h, ")", "{#touch{top:9px;position:absolute}}"].join("")], [, "touch"]);
   n.touch = function() {
@@ -8861,7 +8861,7 @@ window.Modernizr = function(a, b, c) {
   function f() {
   }
   function g(a) {
-    return!a || (a == "loaded" || (a == "complete" || a == "uninitialized"))
+    return!a || a == "loaded" || a == "complete" || a == "uninitialized"
   }
   function h() {
     var a = p.shift();
@@ -8871,7 +8871,7 @@ window.Modernizr = function(a, b, c) {
   }
   function i(a, c, d, e, f, i, j) {
     function k(b) {
-      if(!o && (g(l.readyState) && (u.r = o = 1, !q && h(), l.onload = l.onreadystatechange = null, b))) {
+      if(!o && g(l.readyState) && (u.r = o = 1, !q && h(), l.onload = l.onreadystatechange = null, b)) {
         a != "img" && m(function() {
           t.removeChild(l)
         }, 50);
@@ -8910,7 +8910,7 @@ window.Modernizr = function(a, b, c) {
     }
     function g(a, e, f, g, i) {
       var j = b(a), l = j.autoCallback;
-      j.url.split(".").pop().split("?").shift(), j.bypass || (e && (e = d(e) ? e : e[a] || (e[g] || (e[a.split("/").pop().split("?")[0]] || h))), j.instead ? j.instead(a, e, f, g, i) : (y[j.url] ? j.noexec = !0 : y[j.url] = 1, f.load(j.url, j.forceCSS || !j.forceJS && "css" == j.url.split(".").pop().split("?").shift() ? "c" : c, j.noexec, j.attrs, j.timeout), (d(e) || d(l)) && f.load(function() {
+      j.url.split(".").pop().split("?").shift(), j.bypass || (e && (e = d(e) ? e : e[a] || e[g] || e[a.split("/").pop().split("?")[0]] || h), j.instead ? j.instead(a, e, f, g, i) : (y[j.url] ? j.noexec = !0 : y[j.url] = 1, f.load(j.url, j.forceCSS || !j.forceJS && "css" == j.url.split(".").pop().split("?").shift() ? "c" : c, j.noexec, j.attrs, j.timeout), (d(e) || d(l)) && f.load(function() {
         k(), e && e(j.origUrl, i, g), l && l(j.origUrl, i, g), y[j.url] = 2
       })))
     }
@@ -8931,7 +8931,7 @@ window.Modernizr = function(a, b, c) {
                 }
                 return b
               }(), a) {
-                a.hasOwnProperty(n) && (!c && (!--m && (d(j) ? j = function() {
+                a.hasOwnProperty(n) && (!c && !--m && (d(j) ? j = function() {
                   var a = [].slice.call(arguments);
                   k.apply(this, a), l()
                 } : j[n] = function(a) {
@@ -8939,7 +8939,7 @@ window.Modernizr = function(a, b, c) {
                     var b = [].slice.call(arguments);
                     a && a.apply(this, b), l()
                   }
-                }(k[n]))), g(a[n], j, b, n, h))
+                }(k[n])), g(a[n], j, b, n, h))
               }
             }
           }
@@ -8966,16 +8966,16 @@ window.Modernizr = function(a, b, c) {
     z[a] = b
   }, B.addFilter = function(a) {
     x.push(a)
-  }, B.errorTimeout = 1E4, b.readyState == null && (b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function() {
+  }, B.errorTimeout = 1E4, b.readyState == null && b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function() {
     b.removeEventListener("DOMContentLoaded", A, 0), b.readyState = "complete"
-  }, 0))), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function(a, c, d, e, i, j) {
+  }, 0)), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function(a, c, d, e, i, j) {
     var k = b.createElement("script"), l, o, e = e || B.errorTimeout;
     k.src = a;
     for(o in d) {
       k.setAttribute(o, d[o])
     }
     c = j ? h : c || f, k.onreadystatechange = k.onload = function() {
-      !l && (g(k.readyState) && (l = 1, c(), k.onload = k.onreadystatechange = null))
+      !l && g(k.readyState) && (l = 1, c(), k.onload = k.onreadystatechange = null)
     }, m(function() {
       l || (l = 1, c(1))
     }, e), i ? k.onload() : n.parentNode.insertBefore(k, n)
@@ -8990,7 +8990,7 @@ window.Modernizr = function(a, b, c) {
 }(this, document), Modernizr.load = function() {
   yepnope.apply(window, [].slice.call(arguments, 0))
 }, Modernizr.addTest("ie8compat", function() {
-  return!window.addEventListener && (document.documentMode && document.documentMode === 7)
+  return!window.addEventListener && document.documentMode && document.documentMode === 7
 });
 VISH.User = function(V, $, undefined) {
   var _user;
@@ -9004,7 +9004,7 @@ VISH.User = function(V, $, undefined) {
     return!(JSON.stringify(_user) == "{}")
   };
   var isLogged = function() {
-    if(_user && (typeof _user.token == "string" && _user.id)) {
+    if(_user && typeof _user.token == "string" && _user.id) {
       return true
     }else {
       return false
@@ -9265,7 +9265,7 @@ VISH.Object = function(V, $, undefined) {
     }
   };
   var _getTypeFromSource = function(source) {
-    if(typeof source == "object" && (typeof source.length == "number" && source.length > 0)) {
+    if(typeof source == "object" && typeof source.length == "number" && source.length > 0) {
       source = source[0]
     }
     var http_urls_pattern = /(http(s)?:\/\/)([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
@@ -10830,7 +10830,7 @@ VISH.Video.HTML5 = function(V, $, undefined) {
     if(typeof videoDOM == "string") {
       var posterPattern = new RegExp("poster=('||\")([a-z.://0-9?=%]+)", "g");
       var found = posterPattern.exec(videoDOM);
-      if(typeof found != "undefined" && (found != null && found.length > 2)) {
+      if(typeof found != "undefined" && found != null && found.length > 2) {
         return found[2]
       }
       return undefined
@@ -11368,11 +11368,11 @@ VISH.Viewer = function(V, $, undefined) {
     }else {
       initOptions = {}
     }
-    if(options && (options["configuration"] && V.Configuration)) {
+    if(options && options["configuration"] && V.Configuration) {
       V.Configuration.init(options["configuration"])
     }
     if(V.Debugging.isDevelopping()) {
-      if(options["configuration"]["mode"] === V.Constant.NOSERVER && (!presentation && V.Debugging.getPresentationSamples() !== null)) {
+      if(options["configuration"]["mode"] === V.Constant.NOSERVER && !presentation && V.Debugging.getPresentationSamples() !== null) {
         presentation = V.Debugging.getPresentationSamples()
       }
     }
@@ -11648,7 +11648,7 @@ VISH.Utils = function(V, undefined) {
     }
   };
   var fixPresentation = function(presentation) {
-    if(typeof presentation == "undefined" || (presentation === null || typeof presentation.slides == "undefined")) {
+    if(typeof presentation == "undefined" || presentation === null || typeof presentation.slides == "undefined") {
       return null
     }
     if(typeof presentation.VEVersion == "undefined") {
@@ -11904,7 +11904,7 @@ VISH.Utils = function(V, undefined) {
     return url
   };
   var addParamToUrl = function(url, paramName, paramValue) {
-    if(typeof url !== "string" || (typeof paramName !== "string" || typeof paramValue !== "string")) {
+    if(typeof url !== "string" || typeof paramName !== "string" || typeof paramValue !== "string") {
       return url
     }
     url = removeParamFromUrl(url, paramName);
@@ -11971,7 +11971,7 @@ VISH.Utils = function(V, undefined) {
   };
   var getSrcFromCSS = function(css) {
     try {
-      if(typeof css == "string" && (css.indexOf("url") === 0 && css.length > 3)) {
+      if(typeof css == "string" && css.indexOf("url") === 0 && css.length > 3) {
         var quote = css[4];
         if(quote == '"' || quote == "'") {
           return css.substring(5, css.length - 2)
@@ -13176,7 +13176,7 @@ VISH.Status.Device.Browser = function(V, $, undefined) {
     var rv = -1;
     if(navigator.appName === V.Constant.UA_NETSCAPE) {
       var ua = navigator.userAgent;
-      if(ua.indexOf("Safari") !== -1 && (ua.indexOf("Chrome") === -1 && ua.indexOf("crmo") == -1)) {
+      if(ua.indexOf("Safari") !== -1 && ua.indexOf("Chrome") === -1 && ua.indexOf("crmo") == -1) {
         var rv = -2;
         var re = new RegExp(".* Version/([0-9.]+)");
         if(re.exec(ua) != null) {
@@ -13196,13 +13196,13 @@ VISH.Status.Device.Features = function(V, $, undefined) {
     features.fullscreen = V.FullScreen.isFullScreenSupported();
     features.touchScreen = !!("ontouchstart" in window);
     features.localStorage = V.Storage.checkLocalStorageSupport();
-    features.history = typeof history === "object" && (typeof history.back === "function" && typeof history.go === "function");
+    features.history = typeof history === "object" && typeof history.back === "function" && typeof history.go === "function";
     if(features.history && typeof history.pushState == "function") {
       features.historypushState = true
     }else {
       features.historypushState = false
     }
-    if(window.File && (window.FileReader && (window.FileList && window.Blob))) {
+    if(window.File && window.FileReader && window.FileList && window.Blob) {
       features.reader = true
     }else {
       features.reader = false
@@ -13560,7 +13560,7 @@ VISH.Flashcard = function(V, $, undefined) {
     }
   };
   var _addArrow = function(fcId, poi) {
-    if(!poi || (!poi.x || (!poi.y || (poi.x > 100 || poi.y > 100)))) {
+    if(!poi || !poi.x || !poi.y || poi.x > 100 || poi.y > 100) {
       return
     }
     var flashcard_div = $("#" + fcId);
@@ -13586,7 +13586,7 @@ VISH.Flashcard = function(V, $, undefined) {
     _stopAnimation($(slideset).attr("id"))
   };
   var _startAnimation = function(slideId) {
-    if(typeof flashcards !== "undefined" && (typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer == "undefined")) {
+    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer == "undefined") {
       flashcards[slideId].timer = setInterval(function() {
         _animateArrows(slideId)
       }, 1E3 / FPS)
@@ -13613,7 +13613,7 @@ VISH.Flashcard = function(V, $, undefined) {
     })
   };
   var _stopAnimation = function(slideId) {
-    if(typeof flashcards !== "undefined" && (typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer !== "undefined")) {
+    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer !== "undefined") {
       clearTimeout(flashcards[slideId].timer);
       flashcards[slideId].timer = undefined
     }
@@ -13863,7 +13863,7 @@ VISH.EVideo = function(V, $, undefined) {
         eVideoJSON.balls.push(value)
       });
       eVideoJSON.balls = eVideoJSON.balls.filter(function(ball) {
-        return typeof ball.etime != "undefined" && (!isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0)
+        return typeof ball.etime != "undefined" && !isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0
       }).map(function(ball) {
         ball.etime = parseFloat(ball.etime);
         ball.eVideoId = eVideoJSON.id;
@@ -13917,7 +13917,7 @@ VISH.EVideo = function(V, $, undefined) {
   };
   var _renderVideo = function(eVideoId) {
     var eVideoJSON = eVideos[eVideoId];
-    if(typeof eVideoJSON != "object" || (typeof eVideoJSON.video != "object" || !haveSources(eVideoJSON))) {
+    if(typeof eVideoJSON != "object" || typeof eVideoJSON.video != "object" || !haveSources(eVideoJSON)) {
       return
     }
     var videoBody = $("#" + eVideoId).find(".evideoBody");
@@ -14110,7 +14110,7 @@ VISH.EVideo = function(V, $, undefined) {
     if(volume >= 50 && _lastVolumeValue < 50) {
       _updateVolumeImg(video, volume)
     }else {
-      if(volume < 50 && (volume > 0 && (_lastVolumeValue > 50 || _lastVolumeValue == 0))) {
+      if(volume < 50 && volume > 0 && (_lastVolumeValue > 50 || _lastVolumeValue == 0)) {
         _updateVolumeImg(video, volume)
       }else {
         _updateVolumeImg(video, volume)
@@ -14480,7 +14480,7 @@ VISH.EVideo = function(V, $, undefined) {
           return false
         }
       }else {
-        if(typeof ball.slide_id != "undefined" && (ball.etime >= cTime && eVideos[eVideoId].prevBalls.indexOf(ball) == -1)) {
+        if(typeof ball.slide_id != "undefined" && ball.etime >= cTime && eVideos[eVideoId].prevBalls.indexOf(ball) == -1) {
           nextBall = ball;
           return false
         }
@@ -14701,7 +14701,7 @@ VISH.Messenger.Helper = function(V, undefined) {
       if(!VEMessageObject.VEevent) {
         return false
       }
-      if(V.Status.getIsInIframe() && (V.Status.getIframe() != null && (params && params.allowSelfMessages === false))) {
+      if(V.Status.getIsInIframe() && V.Status.getIframe() != null && params && params.allowSelfMessages === false) {
         if(VEMessageObject.origin === V.Status.getIframe().id) {
           return false
         }
@@ -14787,7 +14787,7 @@ VISH.Addons = function(V, undefined) {
   var init = function(addons) {
     if(typeof addons === "object") {
       for(var i = 0;i < addons.length;i++) {
-        var targeted = V.Editing && addons[i].target === V.Constant.Edit || (!V.Editing && addons[i].target === V.Constant.Viewer || addons[i].target === V.Constant.AnyMode);
+        var targeted = V.Editing && addons[i].target === V.Constant.Edit || !V.Editing && addons[i].target === V.Constant.Viewer || addons[i].target === V.Constant.AnyMode;
         if(targeted) {
           if(typeof V.Addons[addons[i].id] !== "undefined" && typeof V.Addons[addons[i].id].init === "function") {
             V.Addons[addons[i].id].init(addons[i].config)
@@ -15125,7 +15125,7 @@ VISH.Slides = function(V, $, undefined) {
     if(slideEl && slideEl.tagName === "ARTICLE") {
       return $(slideEl).attr("type")
     }else {
-      if(typeof slideEl == "object" && (slideEl.length === 1 && slideEl[0].tagName === "ARTICLE")) {
+      if(typeof slideEl == "object" && slideEl.length === 1 && slideEl[0].tagName === "ARTICLE") {
         return $(slideEl).attr("type")
       }else {
         if(typeof slideEl == "object" && typeof slideEl.type == "string") {
@@ -15199,11 +15199,11 @@ VISH.Slides = function(V, $, undefined) {
     goToSlide(no)
   };
   var goToSlide = function(no, triggeredByUser) {
-    if(no === getCurrentSlideNumber() || (no > slideEls.length || no <= 0)) {
+    if(no === getCurrentSlideNumber() || no > slideEls.length || no <= 0) {
       return
     }
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && (V.Status.isPreventDefaultMode() && V.Messenger)) {
+    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
       var params = {};
       params.slideNumber = no;
       V.Messenger.notifyEventByMessage(V.Constant.Event.onGoToSlide, params);
@@ -15251,7 +15251,7 @@ VISH.Slides = function(V, $, undefined) {
   };
   var openSubslide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && (V.Status.isPreventDefaultMode() && V.Messenger)) {
+    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
       var params = new Object;
       params.slideId = slide_id;
       V.Messenger.notifyEventByMessage(V.Constant.Event.onSubslideOpen, params);
@@ -15267,7 +15267,7 @@ VISH.Slides = function(V, $, undefined) {
   };
   var closeSubslide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && (V.Status.isPreventDefaultMode() && V.Messenger)) {
+    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
       var params = new Object;
       params.slideId = slide_id;
       V.Messenger.notifyEventByMessage(V.Constant.Event.onSubslideClosed, params);
@@ -15542,9 +15542,16 @@ VISH.Quiz = function(V, $, undefined) {
       return"<div id='" + zoneId + "' class='quizWrapper " + template + "_" + elJSON["areaid"] + " " + template + "_quiz" + "'>" + quizDOM + "</div>"
     }
   };
-  var renderButtons = function(selfA) {
+  var renderButtons = function(quizJSON) {
+    var selfA = quizJSON.selfA;
+    var ARSEnabled = false;
+    if(typeof quizJSON.settings == "object") {
+      if(quizJSON.settings.ARSEnabled === true || quizJSON.settings.ARSEnabled === "true") {
+        ARSEnabled = true
+      }
+    }
     var quizButtons = $("<div class='quizButtons'></div>");
-    if(quizMode === V.Constant.QZ_MODE.SELFA && ((V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && (V.User.isLogged() && !V.Utils.getOptions().preview))) {
+    if(quizMode === V.Constant.QZ_MODE.SELFA && ARSEnabled == true && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
       var startButton = $("<input type='button' class='buttonQuiz quizStartButton' value='" + V.I18n.getTrans("i.QuizLaunch") + "'/>");
       $(quizButtons).append(startButton)
     }
@@ -15618,7 +15625,18 @@ VISH.Quiz = function(V, $, undefined) {
           _afterAnswerAction = "continue"
         }
         var quizId = $(quizDOM).attr("id");
+        var quizJSON = quizzes[quizId];
         var nAttempts = 1;
+        if(typeof quizJSON.settings == "object") {
+          var settingsNAttempts = quizJSON.settings.nAttempts;
+          if(typeof settingsNAttempts != "undefined") {
+            if(settingsNAttempts === "unlimited") {
+              nAttempts = settingsNAttempts
+            }else {
+              nAttempts = parseInt(settingsNAttempts)
+            }
+          }
+        }
         if(typeof quizzes[quizId] != "undefined") {
           if(typeof quizzes[quizId].cnAttempts != "undefined") {
             nAttempts = quizzes[quizId].cnAttempts
@@ -16036,22 +16054,23 @@ VISH.Quiz.MC = function(V, $, undefined) {
   };
   var _loadEvents = function() {
   };
-  var render = function(slide, template) {
-    var quizId = slide.quizId;
+  var render = function(quizJSON, template) {
+    var quizId = quizJSON.quizId;
     var container = $("<div id='" + quizId + "' class='quizContainer mcContainer' type='" + V.Constant.QZ_TYPE.MCHOICE + "'></div>");
     var multipleAnswer = false;
     var inputType = "radio";
-    if(slide.extras && slide.extras.multipleAnswer === true) {
+    if(quizJSON.extras && quizJSON.extras.multipleAnswer === true) {
       multipleAnswer = true;
       inputType = "checkbox";
       $(container).attr("multipleAnswer", true)
     }
     var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
-    $(questionWrapper).html(slide.question.wysiwygValue);
+    $(questionWrapper).html(quizJSON.question.wysiwygValue);
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='mc_options'></table>");
-    for(var i = 0;i < slide.choices.length;i++) {
-      var option = slide.choices[i];
+    var quizChoicesLength = quizJSON.choices.length;
+    for(var i = 0;i < quizChoicesLength;i++) {
+      var option = quizJSON.choices[i];
       var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
       var optionBox = $("<td><input class='mc_box' type='" + inputType + "' name='mc_option' value='" + i + "'/></td>");
       var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + String.fromCharCode(96 + i + 1) + ") </span></td>");
@@ -16063,7 +16082,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
       $(optionsWrapper).append(optionWrapper)
     }
     $(container).append(optionsWrapper);
-    var quizButtons = V.Quiz.renderButtons(slide.selfA);
+    var quizButtons = V.Quiz.renderButtons(quizJSON);
     $(container).append(quizButtons);
     return V.Utils.getOuterHTML(container)
   };
@@ -16165,17 +16184,18 @@ VISH.Quiz.TF = function(V, $, undefined) {
   };
   var _loadEvents = function() {
   };
-  var render = function(slide, template) {
-    var quizId = slide.quizId;
+  var render = function(quizJSON, template) {
+    var quizId = quizJSON.quizId;
     var container = $("<div id='" + quizId + "' class='quizContainer mcContainer' type='" + V.Constant.QZ_TYPE.TF + "'></div>");
     var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
-    $(questionWrapper).html(slide.question.wysiwygValue);
+    $(questionWrapper).html(quizJSON.question.wysiwygValue);
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='tf_options'></table>");
     var newTr = $("<tr class='mc_option tf_head'><td><img src='" + V.ImagesPath + "quiz/checkbox_checked.png' class='tfCheckbox_viewer'/></td><td><img src='" + V.ImagesPath + "quiz/checkbox_wrong.png' class='tfCheckbox_viewer'/></td><td></td><td></td></tr>");
     $(optionsWrapper).prepend(newTr);
-    for(var i = 0;i < slide.choices.length;i++) {
-      var option = slide.choices[i];
+    var quizChoicesLength = quizJSON.choices.length;
+    for(var i = 0;i < quizChoicesLength;i++) {
+      var option = quizJSON.choices[i];
       var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
       var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true'  /></td>");
       var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' /></td>");
@@ -16189,7 +16209,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
       $(optionsWrapper).append(optionWrapper)
     }
     $(container).append(optionsWrapper);
-    var quizButtons = V.Quiz.renderButtons(slide.selfA);
+    var quizButtons = V.Quiz.renderButtons(quizJSON);
     $(container).append(quizButtons);
     return V.Utils.getOuterHTML(container)
   };
@@ -16678,7 +16698,7 @@ VISH.Recommendations = function(V, $, undefined) {
     _requesting = false;
     _generated = false;
     var options = V.Utils.getOptions();
-    if(options && (!options.preview && (typeof options["recommendationsAPI"] != "undefined" && typeof options["recommendationsAPI"]["rootURL"] == "string"))) {
+    if(options && !options.preview && typeof options["recommendationsAPI"] != "undefined" && typeof options["recommendationsAPI"]["rootURL"] == "string") {
       _recommendationAPIUrl = options["recommendationsAPI"]["rootURL"];
       _enabled = true
     }else {
@@ -16714,7 +16734,7 @@ VISH.Recommendations = function(V, $, undefined) {
     return true
   };
   var canShowEvaluateButton = function() {
-    var _showEvaluateButton = V.Status.getIsInVishSite() || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER && (!V.Status.getIsScorm() && !V.Status.getIsEmbed());
+    var _showEvaluateButton = V.Status.getIsInVishSite() || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER && !V.Status.getIsScorm() && !V.Status.getIsEmbed();
     _showEvaluateButton = _showEvaluateButton && V.Status.getDevice().desktop;
     _showEvaluateButton = _showEvaluateButton && V.Status.getIsInIframe();
     return _showEvaluateButton
@@ -16732,7 +16752,7 @@ VISH.Recommendations = function(V, $, undefined) {
     }
   };
   var _requestRecommendations = function() {
-    if(_enabled && (typeof _recommendationAPIUrl != "undefined" && (!_generated && _requesting != true))) {
+    if(_enabled && typeof _recommendationAPIUrl != "undefined" && !_generated && _requesting != true) {
       _requesting = true;
       if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
         var params = {};
@@ -17052,10 +17072,10 @@ VISH.FullScreen = function(V, $, undefined) {
     }
   };
   var _getFsElement = function(myDoc) {
-    return myDoc.fullscreenElement || (myDoc.mozFullScreenElement || (myDoc.webkitFullscreenElement || myDoc.msFullscreenElement))
+    return myDoc.fullscreenElement || myDoc.mozFullScreenElement || myDoc.webkitFullscreenElement || myDoc.msFullscreenElement
   };
   var _getFsEnabled = function(myDoc) {
-    return myDoc.fullscreenEnabled || (myDoc.mozFullScreenEnabled || (myDoc.webkitFullscreenEnabled || myDoc.msFullscreenEnabled))
+    return myDoc.fullscreenEnabled || myDoc.mozFullScreenEnabled || myDoc.webkitFullscreenEnabled || myDoc.msFullscreenEnabled
   };
   var _launchFullscreenForElement = function(myDoc, element) {
     if(element.requestFullscreen) {
@@ -17106,7 +17126,7 @@ VISH.FullScreen = function(V, $, undefined) {
   };
   var isFullScreenSupported = function() {
     var elem = document.createElement("div");
-    if(elem && (elem.requestFullScreen || (elem.mozRequestFullScreen || (elem.webkitRequestFullScreen || elem.msRequestFullscreen)))) {
+    if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen || elem.msRequestFullscreen)) {
       return true
     }else {
       return false
