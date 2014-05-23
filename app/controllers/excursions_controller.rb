@@ -339,7 +339,6 @@ class ExcursionsController < ApplicationController
 
   def uploadTmpJSON
 
-
     respond_to do |format|  
       format.json {
         results = Hash.new
@@ -352,11 +351,11 @@ class ExcursionsController < ApplicationController
         end
 
         responseFormat = "json" #Default
-        if params["responseFormat"]
-          if params["responseFormat"] == "scorm"
+        if params["responseFormat"].is_a? String
+          if params["responseFormat"].downcase == "scorm"
             responseFormat = "scorm"
           end
-          if params["responseFormat"] == "qti"
+          if params["responseFormat"].downcase == "qti"
             responseFormat = "qti"
           end
         end
@@ -378,12 +377,12 @@ class ExcursionsController < ApplicationController
           fileName = "scorm-tmp-#{count}"
           Excursion.createSCORM(filePath,fileName,JSON(json),nil,self)
           results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/scorm/#{fileName}.zip"
-        elsif responseFormat == "QTI"
+        elsif responseFormat == "qti"
            #Generate QTI package
            filePath = "#{Rails.root}/public/tmp/qti/"
            FileUtils.mkdir_p filePath
            fileName = "qti-tmp-#{count}"
-           Excursion.createQTI(filePath,fileName,JSON(json),nil)
+           Excursion.createQTI(filePath,fileName,JSON(json))
            results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/qti/#{fileName}.zip"
         end
 

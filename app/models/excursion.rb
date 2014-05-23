@@ -87,7 +87,7 @@ class Excursion < ActiveRecord::Base
   ## IMS QTI 2.1 Management
   ####################
 
-  def self.createQTI(filePath, fileName, qjson)
+  def self.createQTI(filePath,fileName,qjson)
     require 'zip/zip'
     require 'zip/zipfilesystem'
 
@@ -113,6 +113,7 @@ class Excursion < ActiveRecord::Base
       zos.print xml_truemanifest
 
       t.close
+    end
   end
 
   def self.generate_QTITF(qjson,index)
@@ -261,7 +262,6 @@ class Excursion < ActiveRecord::Base
 
     myxml.resources do
       Excursion.generate_qti_resources(qjson,fileName,myxml)
-      end
     end
   end
 
