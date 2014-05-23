@@ -24861,8 +24861,6 @@ VISH.Editor.Presentation.File = function(V, $, undefined) {
             var isIMSQTICompliant = V.Editor.IMSQTI.isCompliantXMLFile(e.target.result);
             if(isIMSQTICompliant) {
               var json = V.Editor.IMSQTI.getJSONFromXMLFile(e.target.result);
-              console.log("json: ");
-              console.log(json);
               V.Editor.Presentation.previewPresentation(json)
             }else {
               _showErrorDialog(V.I18n.getTrans("i.NoSupportedFileError"));
