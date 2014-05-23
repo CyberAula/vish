@@ -228,7 +228,7 @@ class Excursion < ActiveRecord::Base
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
     
-    myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_QUIZ_" + identifier, "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 http://www.imsglobal.org/xsd/imscp_v1p2.xsd http://www.imsglobal.org/xsd/imsmd_v1p2 http://www.imsglobal.org/xsd/imsmd_v1p2p2.xsd http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/imsqti_v2p1.xsd", "xmlns" => "http://www.imsglobal.org/xsd/imscp_v1p2","xmlns:imsqti" => "http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:imsmd" => "http://www.imsglobal.org/xsd/imsmd_v1p2", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance") do
+    myxml.manifest("identifier"=>"VISH_QUIZ_" + identifier, "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 http://www.imsglobal.org/xsd/imscp_v1p2.xsd http://www.imsglobal.org/xsd/imsmd_v1p2 http://www.imsglobal.org/xsd/imsmd_v1p2p2.xsd http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/imsqti_v2p1.xsd", "xmlns" => "http://www.imsglobal.org/xsd/imscp_v1p2","xmlns:imsqti" => "http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:imsmd" => "http://www.imsglobal.org/xsd/imsmd_v1p2", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance") do
       myxml.metadata do
         myxml.schema("IMS Content")
         myxml.schemaversion("1.2")
@@ -295,14 +295,14 @@ class Excursion < ActiveRecord::Base
           myxml.file("href" => fileName + "_" + i.to_s + ".xml")
         end
       end
-    else
+    elsif qjson["quiztype"] == "multiplechoice"
       myxml.resource("identifier" => resource_identifier, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do
         myxml.metadata do
           myxml.tag!("imsmd:lom") do
             myxml.tag!("imsmd:general") do
               myxml.tag!("imsmd:title") do
                 myxml.tag!("imsmd:langstring",{"xml:lang"=>"en"}) do
-                  myxml.text!("TrueFalse")
+                  myxml.text!("MultipleChoice")
                 end
               end
             end
