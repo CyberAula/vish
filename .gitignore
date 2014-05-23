@@ -49,7 +49,6 @@ public/webappscode/*
 public/tmp/json/*
 public/tmp/scorm/*
 public/tmp/qti/*
-public/tmp/qti2/*
 
 #tmp simplecaptcha
 public/tmp/simple_captcha/*
