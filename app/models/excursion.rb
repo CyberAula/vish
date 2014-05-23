@@ -84,159 +84,243 @@ class Excursion < ActiveRecord::Base
 
 
   ####################
-  ## QTI Management
+  ## IMS QTI 2.1 Management
   ####################
 
-  def self.createQTI(filePath, fileName,ejson, excursion)
+  def self.createQTI(filePath, fileName, qjson)
     require 'zip/zip'
     require 'zip/zipfilesystem'
 
     t = File.open("#{filePath}#{fileName}.zip", 'w')
 
-     Zip::ZipOutputStream.open(t.path) do |zos|
-      if ejson["quiztype"] == "truefalse"
-        for i in 0..((ejson["choices"].size)-1)
-          ims_qti_tf = Excursion.generate_QTITF(ejson,i)
+    Zip::ZipOutputStream.open(t.path) do |zos|
+      case qjson["quiztype"]
+      when "truefalse"
+        for i in 0..((qjson["choices"].size)-1)
+          qti_tf = Excursion.generate_QTITF(qjson,i)
           zos.put_next_entry(fileName +"_" + i.to_s + ".xml")
-          zos.print ims_qti_tf.target!()
-      end
-        xml_truemanifest= Excursion.generate_qti_manifest(ejson,excursion,fileName)
-        zos.put_next_entry("imsmanifest.xml")
-        zos.print xml_truemanifest
-      else
-        ims_qti_mc= Excursion.generate_QTIMC(ejson)
+          zos.print qti_tf.target!()
+        end
+      when "multiplechoice"
+        qti_mc = Excursion.generate_QTIMC(qjson)
         zos.put_next_entry(fileName + ".xml")
-        zos.print ims_qti_mc.target!()
+        zos.print qti_mc.target!()
+      else
       end
-        xml_truemanifest= Excursion.generate_qti_manifest(ejson,excursion,fileName)
-        zos.put_next_entry("imsmanifest.xml")
-        zos.print xml_truemanifest
-      end
+
+      xml_truemanifest = Excursion.generate_qti_manifest(qjson,fileName)
+      zos.put_next_entry("imsmanifest.xml")
+      zos.print xml_truemanifest
+
       t.close
   end
 
-  def self.generate_QTITF(ejson,indice)
-
-      myxml = ::Builder::XmlMarkup.new(:indent => 2)
-      myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-      myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive" => "false") do
- 
-      identifiers= [] 
-      counter = 0
-      [1,2].each do |i|
-        identif = "A" + counter.to_s()
-        identifiers.push(identif)
-        counter = counter + 1
-      end 
-
-      myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "single", "baseType" => "identifier") do     
-        vcont = 0
+  def self.generate_QTITF(qjson,index)
+    myxml = ::Builder::XmlMarkup.new(:indent => 2)
+    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+    
+    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive" => "false") do
+      
+      myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "single", "baseType" => "identifier") do
+        
         myxml.correctResponse() do
-          if ejson["choices"][indice]["answer"] == true 
+          if qjson["choices"][index]["answer"] == true 
             myxml.value("A0")
           else
             myxml.value("A1")
           end
-        end 
+        end
         
         myxml.mapping("lowerBound" => "-1", "upperBound"=>"1", "defaultValue"=>"0") do
-          if ejson["choices"][indice]["answer"] == true
+          if qjson["choices"][index]["answer"] == true
             myxml.mapEntry("mapKey"=>"A0", "mappedValue"=> 1)
             myxml.mapEntry("mapKey"=> "A1", "mappedValue"=> -1)
           else
             myxml.mapEntry("mapKey"=>"A0", "mappedValue"=> -1)
             myxml.mapEntry("mapKey"=> "A1", "mappedValue"=> 1)
           end             
-        end     
+        end
+
       end
+
       myxml.outcomeDeclaration("identifier"=>"SCORE", "cardinality"=>"single", "baseType"=>"float") do
-      
       end
 
       myxml.itemBody() do
         myxml.choiceInteraction("responseIdentifier"=>"RESPONSE", "shuffle" => "false", "maxChoices" => "1", "minChoices"=>"0") do
-        myxml.prompt(ejson["question"]["value"]  + ": " + ejson["choices"][indice]["value"])
-        myxml.simpleChoice("True","identifier"=>"A0")
-        myxml.simpleChoice("False","identifier"=>"A1") 
+          myxml.prompt(qjson["question"]["value"]  + ": " + qjson["choices"][index]["value"])
+          myxml.simpleChoice("True","identifier"=>"A0")
+          myxml.simpleChoice("False","identifier"=>"A1") 
+        end
       end
+
+      myxml.responseProcessing()
     end
-        myxml.responseProcessing()
-      end
-  return myxml;
 
-end
+    return myxml;
+  end
 
-  def self.generate_QTIMC(ejson)
+  def self.generate_QTIMC(qjson)
+    myxml = ::Builder::XmlMarkup.new(:indent => 2)
+    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+      
+    nChoices = qjson["choices"].size
 
-      myxml = ::Builder::XmlMarkup.new(:indent => 2)
-      myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-      myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive"=>"false") do
- 
+    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive"=>"false") do
+
       identifiers= [] 
-      counter = 0
-      ejson["choices"].each do |i|
-        identif = "A" + counter.to_s()
-        identifiers.push(identif)
-        counter = counter + 1
+      qjson["choices"].each_with_index do |choice,i|
+        identifiers.push("A" + i.to_s())
       end
 
-
-      if ejson["extras"]["multipleAnswer"] == false 
+      if qjson["extras"]["multipleAnswer"] == false 
         card = "single"
       else
         card = "multiple"
       end 
 
-       myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => card, "baseType" => "identifier") do
+      myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => card, "baseType" => "identifier") do
       
-       vcont = 0
-
-          myxml.correctResponse() do
-            for i in 0..((ejson["choices"].size)-1)
-              if ejson["choices"][i]["answer"] == true 
-                myxml.value(identifiers[i])
-                vcont = vcont + 1
-              end
+        vcont = 0
+        myxml.correctResponse() do
+          for i in 0..((nChoices)-1)
+            if qjson["choices"][i]["answer"] == true 
+              myxml.value(identifiers[i])
+              vcont = vcont + 1
             end
-            end  
-          myxml.mapping("lowerBound" => "0", "upperBound"=>"1", "defaultValue"=>"0") do
-
-            for i in 0..((ejson["choices"].size)-1)
-              if ejson["choices"][i]["answer"] == true
-                mappedV = 1/vcont.to_f
-              else
-                mappedV = 0.to_f
-                #mappedV = -1/(ejson["choices"].size)
-              end
-                myxml.mapEntry("mapKey"=> identifiers[i], "mappedValue"=> mappedV)
-
-            
-        #end del mapping
           end
-#fin de responseDeclaration
-        end 
+        end  
         
-        end
+        myxml.mapping("lowerBound" => "0", "upperBound"=>"1", "defaultValue"=>"0") do
+          for i in 0..((nChoices)-1)
+            if qjson["choices"][i]["answer"] == true
+              mappedV = 1/vcont.to_f
+            else
+              mappedV = 0.to_f
+              #mappedV = -1/(qjson["choices"].size)
+            end
+            myxml.mapEntry("mapKey"=> identifiers[i], "mappedValue"=> mappedV)
+          end
+        end 
+      end
+
       myxml.outcomeDeclaration("identifier"=>"SCORE", "cardinality"=>"single", "baseType"=>"float") do
       end
+    
       myxml.itemBody() do
-      myxml.choiceInteraction("responseIdentifier"=>"RESPONSE", "shuffle"=>"false",  "maxChoices" =>"0", "minChoices"=>"0") do
-      myxml.prompt(ejson["question"]["value"])
-
-
-for i in 0..((ejson["choices"].size)-1)
-    myxml.simpleChoice( ejson["choices"][i]["value"],"identifier"=> identifiers[i])
-end
- 
+        myxml.choiceInteraction("responseIdentifier"=>"RESPONSE", "shuffle"=>"false",  "maxChoices" =>"0", "minChoices"=>"0") do
+          myxml.prompt(qjson["question"]["value"])
+          for i in 0..((nChoices)-1)
+              myxml.simpleChoice(qjson["choices"][i]["value"],"identifier"=> identifiers[i])
+          end
+        end
       end
-      end
-            myxml.responseProcessing()
-      end
-
+          
+      myxml.responseProcessing()
+    end
 
     return myxml;
+  end
 
+  def self.generate_qti_manifest(qjson,fileName)
+    identifier = "TmpIMSQTI_" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
 
+    myxml = ::Builder::XmlMarkup.new(:indent => 2)
+    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+    
+    myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_QUIZ_" + identifier, "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 http://www.imsglobal.org/xsd/imscp_v1p2.xsd http://www.imsglobal.org/xsd/imsmd_v1p2 http://www.imsglobal.org/xsd/imsmd_v1p2p2.xsd http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/imsqti_v2p1.xsd", "xmlns" => "http://www.imsglobal.org/xsd/imscp_v1p2","xmlns:imsqti" => "http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:imsmd" => "http://www.imsglobal.org/xsd/imsmd_v1p2", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance") do
+      myxml.metadata do
+        myxml.schema("IMS Content")
+        myxml.schemaversion("1.2")
+        myxml.tag!("imsmd:lom") do
+          myxml.tag!("imsmd:general") do
+            myxml.tag!("imsmd:title") do
+              myxml.tag!("imsmd:langstring", {"xml:lang"=>"en"}) do
+                myxml.text!("Content package including QTI v2.1. items")
+              end
+            end
+          end
+          myxml.tag!("imsmd:technical") do
+            myxml.tag!("imsmd:format") do
+              myxml.text!("text/x-imsqti-item-xml")
+            end
+          end
+          myxml.tag!("imsmd:rights") do
+            myxml.tag!("imsmd:description") do
+              myxml.tag!("imsmd:langstring", {"xml:lang"=>"en"}) do
+                myxml.text!("Copyright (C) Virtual Science Hub 2014")
+              end
+            end
+          end
+        end
+      end
+    end 
+    
+    myxml.organizations do
+    end
+
+    myxml.resources do
+      Excursion.generate_qti_resources(qjson,fileName,myxml)
+      end
+    end
+  end
+
+  def self.generate_qti_resources(qjson,fileName,myxml)
+    resource_identifier = "resource-item-quiz-" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
+
+    if qjson["quiztype"] == "truefalse"
+      for i in 0..((qjson["choices"].size)-1)
+        myxml.resource("identifier" => resource_identifier + i.to_s, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + "_" + i.to_s + ".xml") do
+          myxml.metadata do
+            myxml.tag!("imsmd:lom") do
+              myxml.tag!("imsmd:general") do
+                myxml.tag!("imsmd:title") do
+                  myxml.tag!("imsmd:langstring",{"xml:lang"=>"en"}) do
+                    myxml.text!("TrueFalse")
+                  end
+                end
+              end
+              myxml.tag!("imsmd:technical") do
+                myxml.tag!("imsmd:format") do
+                  myxml.text!("text/x-imsqti-item-xml")
+                end
+              end
+            end
+            myxml.tag!("imsqti:qtiMetadata") do
+              myxml.tag!("imsqti:interactionType") do
+                myxml.text!("choiceInteraction")
+              end
+            end
+          end
+          myxml.file("href" => fileName + "_" + i.to_s + ".xml")
+        end
+      end
+    else
+      myxml.resource("identifier" => resource_identifier, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do
+        myxml.metadata do
+          myxml.tag!("imsmd:lom") do
+            myxml.tag!("imsmd:general") do
+              myxml.tag!("imsmd:title") do
+                myxml.tag!("imsmd:langstring",{"xml:lang"=>"en"}) do
+                  myxml.text!("TrueFalse")
+                end
+              end
+            end
+            myxml.tag!("imsmd:technical") do
+              myxml.tag!("imsmd:format") do
+              myxml.text!("text/x-imsqti-item-xml")
+              end
+            end
+          end
+          myxml.tag!("imsqti:qtiMetadata") do
+            myxml.tag!("imsqti:interactionType") do
+              myxml.text!("choiceInteraction")
+            end
+          end
+        end
+        myxml.file("href" => fileName + ".xml")
+      end
+    end
   end
 
 
@@ -304,111 +388,6 @@ end
       end
     }
   end
-
-
-  def self.generate_qti_manifest(ejson,excursion, fileName)
-  
-
-    identifier = "TmpIMSQTI_" + (Site.current.config["tmpJSONcount2"].nil? ? "1" : Site.current.config["tmpJSONcount2"].to_s)
-
-
-    myxml = ::Builder::XmlMarkup.new(:indent => 2)
-    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_QUIZ_" + identifier, "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 http://www.imsglobal.org/xsd/imscp_v1p2.xsd http://www.imsglobal.org/xsd/imsmd_v1p2 http://www.imsglobal.org/xsd/imsmd_v1p2p2.xsd http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/imsqti_v2p1.xsd", "xmlns" => "http://www.imsglobal.org/xsd/imscp_v1p2","xmlns:imsqti" => "http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:imsmd" => "http://www.imsglobal.org/xsd/imsmd_v1p2", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance") do
-      myxml.metadata do
-        myxml.schema("IMS Content")
-        myxml.schemaversion("1.2")
-        myxml.tag!("imsmd:lom") do
-          myxml.tag!("imsmd:general") do
-            myxml.tag!("imsmd:title") do
-              myxml.tag!("imsmd:langstring", {"xml:lang"=>"en"}) do
-                myxml.text!("Content package including QTI v2.1. items")
-            end
-          end
-        end
-        myxml.tag!("imsmd:technical") do
-        myxml.tag!("imsmd:format") do
-          myxml.text!("text/x-imsqti-item-xml")
-        end
-        end
-        myxml.tag!("imsmd:rights") do
-          myxml.tag!("imsmd:description") do
-            myxml.tag!("imsmd:langstring", {"xml:lang"=>"en"}) do
-              myxml.text!("Copyright (C) Virtual Science Hub 2014")
-            end
-          end
-        end
-      end
-    end 
-    myxml.organizations do
-    end
-    myxml.resources do
-      Excursion.generate_qti_resources(ejson, fileName, excursion, myxml)
-      end
-    end      
-end
-
-def self.generate_qti_resources(ejson, fileName, excursion,myxml)
-    resource_identifier = "resource-item-quiz-" + (Site.current.config["tmpJSONcount2"].nil? ? "1" : Site.current.config["tmpJSONcount2"].to_s)
-
-      if ejson["quiztype"] == "truefalse"
-        for i in 0..((ejson["choices"].size)-1)
-          myxml.resource("identifier" => resource_identifier + i.to_s, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + "_" + i.to_s + ".xml") do
-          myxml.metadata do
-            myxml.tag!("imsmd:lom") do
-              myxml.tag!("imsmd:general") do
-                myxml.tag!("imsmd:title") do
-                  myxml.tag!("imsmd:langstring",{"xml:lang"=>"en"}) do
-                    myxml.text!("TrueFalse")
-                  end
-                end
-              end
-              myxml.tag!("imsmd:technical") do
-                myxml.tag!("imsmd:format") do
-                myxml.text!("text/x-imsqti-item-xml")
-                end
-              end
-            end
-            myxml.tag!("imsqti:qtiMetadata") do
-            myxml.tag!("imsqti:interactionType") do
-              myxml.text!("choiceInteraction")
-            end
-            end
-          end
-          myxml.file("href" => fileName + "_" + i.to_s + ".xml")
-        end
-end
-else
-         myxml.resource("identifier" => resource_identifier, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do
-          myxml.metadata do
-            myxml.tag!("imsmd:lom") do
-              myxml.tag!("imsmd:general") do
-                myxml.tag!("imsmd:title") do
-                  myxml.tag!("imsmd:langstring",{"xml:lang"=>"en"}) do
-                    myxml.text!("TrueFalse")
-                  end
-                end
-              end
-              myxml.tag!("imsmd:technical") do
-                myxml.tag!("imsmd:format") do
-                myxml.text!("text/x-imsqti-item-xml")
-                end
-              end
-            end
-            myxml.tag!("imsqti:qtiMetadata") do
-            myxml.tag!("imsqti:interactionType") do
-              myxml.text!("choiceInteraction")
-            end
-            end
-          end
-          myxml.file("href" => fileName + ".xml")
-        end
-
-end
-
-
-end
-
 
   # Metadata based on LOM (Learning Object Metadata) standard
   # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
