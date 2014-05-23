@@ -926,7 +926,7 @@ class Excursion < ActiveRecord::Base
   end
 
   def is_mostvaluable?
-    id==Excursion.select("id").where(mve: Excursion.maximum("mve")).first
+    is_mve
   end
 
   private
