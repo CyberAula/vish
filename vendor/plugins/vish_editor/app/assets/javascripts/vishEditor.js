@@ -23158,16 +23158,19 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
     }else {
       schema = false
     }
-    var itemBody = $(xml).find("itemBody");
-    var simpleChoice = $(xml).find("simpleChoice");
-    var correctResponse = $(xml).find("correctResponse value");
-    if(itemBody.length == 0 || simpleChoice.length == 0 || correctResponse.length == 0 || schema == false) {
-      contains = false
+    if(checkQuizType(fileXML) == "multipleCA") {
+      var itemBody = $(xml).find("itemBody");
+      var simpleChoice = $(xml).find("simpleChoice");
+      var correctResponse = $(xml).find("correctResponse value");
+      if(itemBody.length == 0 || simpleChoice.length == 0 || correctResponse.length == 0 || schema == false) {
+        contains = false
+      }else {
+        contains = true
+      }
     }else {
-      contains = true
+      alert("no es un tipo v\u00e1lido!");
+      contains = false
     }
-    console.log("contains");
-    console.log(contains);
     return contains
   };
   var checkAnswer = function(answer, correctArray) {
@@ -23178,6 +23181,46 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
       answerBoolean = true
     }
     return answerBoolean
+  };
+  var checkQuizType = function(fileXML) {
+    var quizType;
+    var xmlDoc = $.parseXML(fileXML);
+    var xml = $(xmlDoc);
+    var multipleCA = $(xml).find("simpleChoice");
+    var fillInTheBlankText = $(xml).find("textEntryInteraction");
+    var hotSpotClick = $(xml).find("selectPointInteraction");
+    var openshortAnswer = $(xml).find("extendTextInteraction");
+    var order = $(xml).find("orderInteraction");
+    var fillInTheBlankGap = $(xml).find("gapMatchInteraction");
+    var matching = $(xml).find("matchInteraction");
+    if(fillInTheBlankText.length != 0) {
+      quizType = "fillInTheBlankText"
+    }else {
+      if(hotSpotClick.length != 0) {
+        quizType = "hotSpotClick"
+      }else {
+        if(openshortAnswer.length != 0) {
+          quizType = "openshortAnswer"
+        }else {
+          if(order.length != 0) {
+            quizType = "order"
+          }else {
+            if(fillInTheBlankGap.length != 0) {
+              quizType = "fillInTheBlankGap"
+            }else {
+              if(matching.length != 0) {
+                quizType = "matching"
+              }else {
+                if(multipleCA.length != 0) {
+                  quizType = "multipleCA"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return quizType
   };
   var getJSONFromXMLFile = function(fileXML) {
     var elements = [];
