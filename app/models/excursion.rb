@@ -255,14 +255,13 @@ class Excursion < ActiveRecord::Base
           end
         end
       end
-    end 
-    
-    myxml.organizations do
+      myxml.organizations do
     end
 
     myxml.resources do
       Excursion.generate_qti_resources(qjson,fileName,myxml)
     end
+  end
   end
 
   def self.generate_qti_resources(qjson,fileName,myxml)
