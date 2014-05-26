@@ -209,7 +209,7 @@ class Excursion < ActiveRecord::Base
       end
     
       myxml.itemBody() do
-        myxml.choiceInteraction("responseIdentifier"=>"RESPONSE", "shuffle"=>"false",  "maxChoices" =>"0", "minChoices"=>"0") do
+        myxml.choiceInteraction("responseIdentifier"=>"RESPONSE", "shuffle"=>"false",  "maxChoices" =>"1", "minChoices"=>"0") do
           myxml.prompt(qjson["question"]["value"])
           for i in 0..((nChoices)-1)
               myxml.simpleChoice(qjson["choices"][i]["value"],"identifier"=> identifiers[i])
