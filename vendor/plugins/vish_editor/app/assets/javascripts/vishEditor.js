@@ -13240,27 +13240,40 @@ VISH.Editor.Text = function(V, $, undefined) {
       CKEDITOR.on("dialogDefinition", function(ev) {
         var dialogName = ev.data.name;
         var dialogDefinition = ev.data.definition;
-        if(dialogName == "link") {
-          dialogDefinition.getContents("info").remove("linkType");
-          var protocols = dialogDefinition.getContents("info").get("protocol").items;
-          protocols.splice(3, 1);
-          protocols.splice(2, 1);
-          dialogDefinition.removeContents("advanced");
-          var targetTab = dialogDefinition.getContents("target");
-          var targetField = targetTab.get("linkTargetType");
-          targetField["default"] = "_blank";
-          targetField.items.splice(6, 1);
-          targetField.items.splice(4, 1);
-          targetField.items.splice(1, 1);
-          targetField.items.splice(0, 1)
-        }
-        if(dialogName == "table") {
-          dialogDefinition.removeContents("advanced");
-          var info = dialogDefinition.getContents("info");
-          var alignment = info.get("cmbAlign");
-          alignment.items.splice(0, 1);
-          alignment["default"] = "center";
-          info.remove("selHeaders")
+        switch(dialogName) {
+          case "link":
+            dialogDefinition.getContents("info").remove("linkType");
+            var protocols = dialogDefinition.getContents("info").get("protocol").items;
+            protocols.splice(3, 1);
+            protocols.splice(2, 1);
+            dialogDefinition.removeContents("advanced");
+            var targetTab = dialogDefinition.getContents("target");
+            var targetField = targetTab.get("linkTargetType");
+            targetField["default"] = "_blank";
+            targetField.items.splice(6, 1);
+            targetField.items.splice(4, 1);
+            targetField.items.splice(1, 1);
+            targetField.items.splice(0, 1);
+            break;
+          case "table":
+            dialogDefinition.removeContents("advanced");
+            var info = dialogDefinition.getContents("info");
+            var alignment = info.get("cmbAlign");
+            alignment.items.splice(0, 1);
+            alignment["default"] = "center";
+            info.remove("selHeaders");
+            break;
+          case "image":
+            dialogDefinition.removeContents("advanced");
+            var linkTab = dialogDefinition.getContents("Link");
+            var targetField = linkTab.get("cmbTarget");
+            targetField["default"] = "_blank";
+            targetField.items.splice(4, 1);
+            targetField.items.splice(2, 1);
+            targetField.items.splice(0, 1);
+            break;
+          case "MediaEmbedDialog":
+            break
         }
       });
       initialized = true
@@ -13294,19 +13307,22 @@ VISH.Editor.Text = function(V, $, undefined) {
     $(current_area).append(wysiwygContainer);
     var config = {};
     config.toolbar = "Full";
-    config.toolbar_Full = [{name:"first", items:["Bold", "Italic", "Underline", "-", "Subscript", "Superscript", "Font", "FontSize", "TextColor", "BGColor"]}, "/", {name:"lists", items:["NumberedList", "BulletedList", "Table"]}, {name:"alignment", items:["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"]}, {name:"link", items:["Link"]}];
+    config.toolbar_Full = [{name:"first", items:["Bold", "Italic", "Underline", "-", "Subscript", "Superscript", "Font", "FontSize", "TextColor", "BGColor"]}, "/", {name:"lists", items:["NumberedList", "BulletedList", "Table"]}, {name:"alignment", items:["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"]}, {name:"link", items:["Link"]}, {name:"Objects", items:["Image", "MediaEmbed"]}, {name:"symbols", items:["SpecialChar"]}];
     config.sharedSpaces = {top:"toolbar_text"};
     config.toolbarCanCollapse = false;
     config.resize_enabled = false;
     config.removePlugins = "elementspath";
-    config.extraPlugins = "tableresize,autogrow,specialchar";
+    config.extraPlugins = "tableresize,autogrow,specialchar,mediaembed";
     if(options && options.autogrow) {
       config.autoGrow_minHeight = 34;
       config.autoGrow_maxHeight = 800
     }
     config.specialChars = [];
-    config.specialChars = config.specialChars.concat([["&alpha;", "Alpha"]], [["&beta;", "Beta"]], [["&gamma;", "Gamma"]], [["&delta;", "Delta"]], [["&epsilon;", "Epsilon"]], [["&zeta;", "Zeta"]], [["&eta;", "Eta"]], [["&theta;", "Theta"]], [["&iota;", "Iota"]], [["&kappa;", "Kappa"]], [["&lambda;", "Lambda"]], [["&mu;", "Mu"]], [["&nu;", "Nu"]], [["&xi;", "Xi"]], [["&omicron;", "Omicron"]], [["&pi;", "Pi"]], [["&rho;", "Rho"]], [["&sigma;", "Sigma"]], [["&sigma;", "Sigma"]], [["&tau;", "Tau"]], 
-    [["&upsilon;", "Upsilon"]], [["&phi;", "Phi"]], [["&chi;", "Chi"]], [["&psi;", "Psi"]], [["&omega;", "Omega"]]);
+    config.specialChars = config.specialChars.concat([["&alpha;", "Alpha"]], [["&beta;", "Beta"]], [["&gamma;", "Gamma"]], [["&delta;", "Delta"]], [["&epsilon;", "Epsilon"]], [["&zeta;", "Zeta"]], [["&eta;", "Eta"]], [["&theta;", "Theta"]], [["&iota;", "Iota"]], [["&kappa;", "Kappa"]], [["&lambda;", "Lambda"]], [["&mu;", "Mu"]], [["&nu;", "Nu"]], [["&xi;", "Xi"]], [["&omicron;", "Omicron"]], [["&pi;", "Pi"]], [["&rho;", "Rho"]], [["&sigma;", "Sigma"]], [["&tau;", "Tau"]], [["&upsilon;", "Upsilon"]], 
+    [["&phi;", "Phi"]], [["&chi;", "Chi"]], [["&psi;", "Psi"]], [["&omega;", "Omega"]], [["&divide;", ""]], [["&radic;", ""]], [["&bull;", ""]], [["&middot;", ""]], [["&plusmn;", ""]], [["&frac14;", ""]], [["&frac12;", ""]], [["&frac34;", ""]], [["&permil;", ""]], [["&weierp;", ""]], [["&image;", ""]], [["&real;", ""]], [["&forall;", ""]], [["&part;", ""]], [["&exist;", ""]], [["&empty;", ""]], [["&nabla;", ""]], [["&isin;", ""]], [["&notin;", ""]], [["&ni;", ""]], [["&prod;", ""]], [["&sum;", ""]], 
+    [["&minus;", ""]], [["&lowast;", ""]], [["&prop;", ""]], [["&infin;", ""]], [["&ang;", ""]], [["&and;", ""]], [["&or;", ""]], [["&cap;", ""]], [["&cup;", ""]], [["&int;", ""]], [["&cong;", ""]], [["&asymp;", ""]], [["&ne;", ""]], [["&equiv;", ""]], [["&le;", ""]], [["&ge;", ""]], [["&sub;", ""]], [["&sup;", ""]], [["&nsub;", ""]], [["&sube;", ""]], [["&supe;", ""]], [["&oplus;", ""]], [["&otimes;", ""]], [["&perp;", ""]], [["&lang;", ""]], [["&rang;", ""]], [["&lceil;", ""]], [["&rceil;", ""]], 
+    [["&lfloor;", ""]], [["&rfloor;", ""]], [["&fnof;", ""]], [["&lsquo;", ""]], [["&rsquo;", ""]], [["&ldquo;", ""]], [["&rdquo;", ""]], [["&larr;", ""]], [["&uarr;", ""]], [["&darr;", ""]], [["&rarr;", ""]], [["&harr;", ""]], [["&crarr;", ""]], [["&lArr;", ""]], [["&uArr;", ""]], [["&dArr;", ""]], [["&rArr;", ""]], [["&hArr;", ""]], [["&euro;", "Euro"]], [["&cent;", "Cent"]], [["&pound;", "Pound"]], [["&yen;", ""]], [["&curren;", ""]], [["&brvbar;", ""]], [["&sect;", ""]], [["&copy;", ""]], [["&reg;", 
+    ""]], [["&ordf;", ""]], [["&ordm;", ""]], [["&deg;", ""]], [["&laquo;", ""]], [["&raquo;", ""]], [["&not;", ""]], [["&para;", ""]], [["&loz;", ""]], [["&spades;", ""]], [["&clubs;", ""]], [["&hearts;", ""]], [["&diams;", ""]], [["&dagger;", ""]]);
     config.width = "100%";
     config.height = currentAreaHeight;
     config.fontSize_defaultLabel = "12";
@@ -23134,7 +23150,7 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
       $(xml).find("assessmentItem").each(function() {
         $(this.attributes).each(function(index, attribute) {
           if(attribute.name == "xsi:schemaLocation") {
-            if(attribute.textContent.indexOf("http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd") != -1) {
+            if(attribute.textContent.indexOf("http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd") != -1 || attribute.textContent.indexOf("http://www.imsglobal.org/xsd/imsqti_v2p1.xsd") != -1) {
               schema = true
             }else {
               schema = false
@@ -23145,13 +23161,18 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
     }else {
       schema = false
     }
-    var prompt = $(xml).find("prompt");
-    var simpleChoice = $(xml).find("simpleChoice");
-    var correctResponse = $(xml).find("value");
-    if(prompt.length == 0 || simpleChoice.length == 0 || correctResponse.length == 0 || schema == false) {
-      contains = false
+    if(checkQuizType(fileXML) == "multipleCA") {
+      var itemBody = $(xml).find("itemBody");
+      var simpleChoice = $(xml).find("simpleChoice");
+      var correctResponse = $(xml).find("correctResponse value");
+      if(itemBody.length == 0 || simpleChoice.length == 0 || correctResponse.length == 0 || schema == false) {
+        contains = false
+      }else {
+        contains = true
+      }
     }else {
-      contains = true
+      alert("no es un tipo v\u00e1lido!");
+      contains = false
     }
     return contains
   };
@@ -23164,6 +23185,46 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
     }
     return answerBoolean
   };
+  var checkQuizType = function(fileXML) {
+    var quizType;
+    var xmlDoc = $.parseXML(fileXML);
+    var xml = $(xmlDoc);
+    var multipleCA = $(xml).find("simpleChoice");
+    var fillInTheBlankText = $(xml).find("textEntryInteraction");
+    var hotSpotClick = $(xml).find("selectPointInteraction");
+    var openshortAnswer = $(xml).find("extendTextInteraction");
+    var order = $(xml).find("orderInteraction");
+    var fillInTheBlankGap = $(xml).find("gapMatchInteraction");
+    var matching = $(xml).find("matchInteraction");
+    if(fillInTheBlankText.length != 0) {
+      quizType = "fillInTheBlankText"
+    }else {
+      if(hotSpotClick.length != 0) {
+        quizType = "hotSpotClick"
+      }else {
+        if(openshortAnswer.length != 0) {
+          quizType = "openshortAnswer"
+        }else {
+          if(order.length != 0) {
+            quizType = "order"
+          }else {
+            if(fillInTheBlankGap.length != 0) {
+              quizType = "fillInTheBlankGap"
+            }else {
+              if(matching.length != 0) {
+                quizType = "matching"
+              }else {
+                if(multipleCA.length != 0) {
+                  quizType = "multipleCA"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return quizType
+  };
   var getJSONFromXMLFile = function(fileXML) {
     var elements = [];
     var question;
@@ -23173,9 +23234,15 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
     var answerIds = [];
     var xmlDoc = $.parseXML(fileXML);
     var xml = $(xmlDoc);
-    $(xml).find("prompt").each(function() {
-      question = $(this).text()
-    });
+    if($(xml).find("prompt").length != 0) {
+      $(xml).find("prompt").each(function() {
+        question = $(this).text()
+      })
+    }else {
+      $(xml).find("itemBody").children().first().each(function() {
+        question = $(this).text()
+      })
+    }
     $(xml).find("simpleChoice").each(function() {
       var answer = $(this).text();
       answerArray.push(answer)
@@ -23199,7 +23266,8 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
     var choices = [];
     for(var i = 1;i <= answerArray.length;i++) {
       var iChoice;
-      iChoice = {"id":i.toString(), "value":answerArray[i - 1].toString(), "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;' + answerArray[i - 1].toString() + "&shy;</span></span></p>\n", "answer":checkAnswer(answerIds[i - 1], correctanswerArray)}
+      iChoice = {"id":i.toString(), "value":answerArray[i - 1].toString(), "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;' + answerArray[i - 1].toString() + "&shy;</span></span></p>\n", "answer":checkAnswer(answerIds[i - 1], correctanswerArray)};
+      choices.push(iChoice)
     }
     elements.push({"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":question, "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;' + question + "</span></span></p>\n"}, "choices":$.extend([{}], choices), "extras":{"multipleAnswer":nAnswers}});
     var options = {template:"t2"};

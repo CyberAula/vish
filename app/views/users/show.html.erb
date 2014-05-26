@@ -5,7 +5,7 @@
 <!--avatar-->
       <div class="avatar">
         <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
-        <%if profile_subject.id==89%>
+        <%if @user.is_mve %>
           <div class="badge-teacher-active"></div>
         <%end%>
       </div>
