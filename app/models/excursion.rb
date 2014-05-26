@@ -223,6 +223,42 @@ class Excursion < ActiveRecord::Base
     return myxml;
   end
 
+
+  def self.generate_MoodleQUIZXML(qjson)
+      myxml = ::Builder::XmlMarkup.new(:indent => 2)
+      myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+
+      myxml.quiz do
+        myxml.question("type" => "category") do
+          myxml.category do
+            myxml.text do
+               myxml.text!("Moodle QUIZ XML export")
+            end
+          end
+
+        end
+
+        myxml.question("type" => "multichoice") do
+          myxml.name do
+            myxml.text do
+            myxml.text!("La pregunta")
+          end
+          end
+
+
+        end #end de question
+
+
+
+
+      end #end de quiz 
+
+
+
+  end
+
+
+
   def self.generate_qti_manifest(qjson,fileName)
     identifier = "TmpIMSQTI_" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
 
