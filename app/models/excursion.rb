@@ -223,41 +223,28 @@ class Excursion < ActiveRecord::Base
     return myxml;
   end
 
-
   def self.generate_MoodleQUIZXML(qjson)
-      myxml = ::Builder::XmlMarkup.new(:indent => 2)
-      myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+    myxml = ::Builder::XmlMarkup.new(:indent => 2)
+    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
 
-      myxml.quiz do
-        myxml.question("type" => "category") do
-          myxml.category do
-            myxml.text do
-               myxml.text!("Moodle QUIZ XML export")
-            end
+    myxml.quiz do
+      myxml.question("type" => "category") do
+        myxml.category do
+          myxml.text do
+             myxml.text!("Moodle QUIZ XML export")
           end
-
         end
+      end
 
-        myxml.question("type" => "multichoice") do
-          myxml.name do
-            myxml.text do
+      myxml.question("type" => "multichoice") do
+        myxml.name do
+          myxml.text do
             myxml.text!("La pregunta")
           end
-          end
-
-
-        end #end de question
-
-
-
-
-      end #end de quiz 
-
-
-
+        end
+      end
+    end
   end
-
-
 
   def self.generate_qti_manifest(qjson,fileName)
     identifier = "TmpIMSQTI_" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
@@ -266,6 +253,7 @@ class Excursion < ActiveRecord::Base
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
     
     myxml.manifest("identifier"=>"VISH_QUIZ_" + identifier, "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 http://www.imsglobal.org/xsd/imscp_v1p2.xsd http://www.imsglobal.org/xsd/imsmd_v1p2 http://www.imsglobal.org/xsd/imsmd_v1p2p2.xsd http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/imsqti_v2p1.xsd", "xmlns" => "http://www.imsglobal.org/xsd/imscp_v1p2","xmlns:imsqti" => "http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:imsmd" => "http://www.imsglobal.org/xsd/imsmd_v1p2", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance") do
+      
       myxml.metadata do
         myxml.schema("IMS Content")
         myxml.schemaversion("1.2")
@@ -291,13 +279,15 @@ class Excursion < ActiveRecord::Base
           end
         end
       end
+      
       myxml.organizations do
-    end
+      end
 
-    myxml.resources do
-      Excursion.generate_qti_resources(qjson,fileName,myxml)
+      myxml.resources do
+        Excursion.generate_qti_resources(qjson,fileName,myxml)
+      end
+
     end
-  end
   end
 
   def self.generate_qti_resources(qjson,fileName,myxml)
@@ -493,12 +483,6 @@ class Excursion < ActiveRecord::Base
     return myxml
   end
 
-    ###########################
-
- 
-
-
-
   #prepare_for is a param to indicate who is the target. It can be "SCORM" or "ODS" in this version
   def self.addLOMtoXML(myxml, ejson, excursion, identifier, prepare_for)    
       language = nil
@@ -684,9 +668,8 @@ class Excursion < ActiveRecord::Base
     myxml
   end
 
-
-  #if prepare_for is "ODS": according to ODS, this has to be one of ["primary education", "secondary education", "informal context"]
   def self.readableContext(context, prepare_for)
+    #if prepare_for is "ODS": according to ODS, context has to be one of ["primary education", "secondary education", "informal context"]
     if prepare_for == "ODS"
       case context
       when "preschool", "pEducation", "primary education", "school"
@@ -720,7 +703,6 @@ class Excursion < ActiveRecord::Base
     end
   end
 
-
   def to_scorm(controller)
     if self.scorm_needs_generate
       filePath = "#{Rails.root}/public/scorm/excursions/"
@@ -747,8 +729,8 @@ class Excursion < ActiveRecord::Base
 
 
   ####################
-  ## PDF Management
-  #################### 
+  ## Excursion to PDF Management
+  ####################
 
   def to_pdf(controller)
     if self.pdf_needs_generate
