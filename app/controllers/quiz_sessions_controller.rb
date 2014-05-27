@@ -134,7 +134,7 @@ class QuizSessionsController < ApplicationController
   end
 
   # GET /quiz_sessions/X/results
-  def results 
+  def results
     @quiz_session = QuizSession.find(params[:id])
 
     if !verify_owner(@quiz_session)
@@ -157,6 +157,11 @@ class QuizSessionsController < ApplicationController
         @answers = @results.to_json
         @processedQS = @quiz_session.getProcessedQS
         render :show_results, :layout => false
+      }
+      format.xlsx {
+        @answers = @results.to_json
+        @processedQS = @quiz_session.getProcessedQS
+        render :xlsx => "results", :filename => "QuizSessionResults_" + @quiz_session.id.to_s + ".xlsx", :type => "application/vnd.openxmlformates-officedocument.spreadsheetml.sheet"
       }
     end
   end

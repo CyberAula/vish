@@ -104,3 +104,8 @@ gem "oai_repository", :git => 'git://github.com/ebarra/oai_repository.git'
 gem "scorm", :git => 'git://github.com/ebarra/scorm.git', :branch => "master"
 
 gem "paperclip", '=3.5.1'
+
+#xlsx generation
+gem 'axlsx'
+gem 'axlsx_rails'
+gem 'acts_as_xlsx'

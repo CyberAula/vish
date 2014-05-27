@@ -378,6 +378,7 @@ en:
     title_alert: "Write the title for this resource"
     upload: "Upload"
     uploading: "Uploading..."
+  downloadxlsx: "Download as XLSX"
   email:
     regards: "Kind regards,<br/>"
     welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{profile}\"> to set up your profile</a> in order to enjoy a better service.<br/>"
@@ -694,6 +695,7 @@ en:
     confirm_close: "Close live quiz? No more answers could be sent after this."
     confirm_delete: "Delete live quiz? You will lose all the stored answers."
     createdAt: "Created at"
+    closedAt: "closed at"
     closedAtS: "and closed at"
     error: "Sorry, an error has occurred processing this quiz"
     falseC: "F"

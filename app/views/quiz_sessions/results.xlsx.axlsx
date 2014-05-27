@@ -1,0 +1,120 @@
+#Config
+xlsx_package.use_autowidth = false
+
+#Init
+wb = xlsx_package.workbook
+
+#Style
+header_style = wb.styles.add_style :bg_color => "CCC",
+:b => true,
+:border => { :style => :thin, :color => "00" },
+:alignment => { :horizontal => :center, :vertical => :center, :wrap_text => false}
+
+odd_row_style = wb.styles.add_style :bg_color => "FFF",
+:border => { :style => :thin, :color => "00" },
+:alignment => { :horizontal => :center, :vertical => :center , :wrap_text => false}
+
+even_row_style = wb.styles.add_style :bg_color => "FFF",
+:border => { :style => :thin, :color => "00" },
+:alignment => { :horizontal => :center, :vertical => :center , :wrap_text => false}
+
+
+#WorkSheet content
+
+wb.add_worksheet(:name => "QuizSessionResults_" + @quiz_session.id.to_s) do |sheet|
+
+	rowContents = [];
+	rowContents[0] = ["Quiz Session Name", (@quiz_session.name or "Untitled")]
+	rowContents[1] = ["Id", @quiz_session.id.to_s]
+	rowContents[2] = ["Author", current_user.name]
+	rowContents[3] = [t('quiz.createdAt').capitalize, @quiz_session.created_at.to_s]
+	rowContents[4] = [t('quiz.closedAt').capitalize, @quiz_session.closed_at.to_s]
+	rowContents[5] = [t('quiz.launchIn').capitalize, @processedQS["presentationName"]]
+	rowContents[6] = ["Quiz Type", @processedQS["quizType"]]
+	rowContents[7] = ["", ""]
+	rowContents[8] = ["Question", @processedQS["question"]]
+
+	rowContentsIndex = rowContents.length
+
+	case @processedQS["quizType"]
+	when "multiplechoice"
+		rowContents[rowContentsIndex] = ["Choices", "Choices Value", "Responses"]
+		multipleAnswer = @processedQS["extras"] && @processedQS["extras"]["multipleAnswer"]==true
+		includePercentage = !multipleAnswer
+		if includePercentage
+			rowContents[rowContentsIndex].push("Percentage")
+		end
+		rowContentsIndex = rowContentsIndex + 1
+
+		@processedQS["choices"].each_with_index do |choice,index|
+			rowContents[rowContentsIndex] = [(index+97).chr, choice["value"],@processedQS["processedResults"][index]["n"]]
+			if includePercentage
+				rowContents[rowContentsIndex].push(@processedQS["processedResults"][index]["percentage"])
+			end
+			rowContentsIndex = rowContentsIndex + 1
+		end
+
+		if @processedQS["totalAnswers"] && !multipleAnswer
+			rowContents[rowContentsIndex] = [t('quiz.total'),"",@processedQS["totalAnswers"],""]
+			rowContentsIndex = rowContentsIndex + 1
+		end
+
+	when  "truefalse"
+
+	else
+
+	end
+
+
+	rowContents.each_with_index do |rowContent,index|
+		style = odd_row_style
+		if index==0
+			style = header_style
+		elsif index%2==0
+			style = even_row_style
+		end
+		sheet.add_row(rowContent, :style => style)
+	end
+
+	#Automatically set the column width to fit content
+	#It seems that xlsx_package.use_autowidth = true is not working very well...
+
+	#Get column contents from rowContents
+	columnContents = []
+	unless rowContents.first.nil?
+		# rowContents.first.length.times do |i|
+		4.times do |i|
+			columnContents[i] = []
+		end
+	end
+
+	rowContents.each_with_index do |rowContent,index|
+		rowContent.each_with_index do |value,cIndex|
+			if columnContents[cIndex]
+				columnContents[cIndex] << value
+			end
+		end
+	end
+
+	columnWidths = []
+	columnContents.each_with_index do |columnContent,index|
+		columnContent.each do |content|
+			unless content.nil?
+				if columnWidths[index].nil?
+					columnWidths[index] = content.to_s.length + 5
+				else
+					columnWidths[index] = [columnWidths[index],content.to_s.length + 5].max
+				end
+			end
+		end		
+	end
+
+	#Filter extreme wider columns
+	columnWidths.each_with_index do |columnWidth,index|
+		columnWidths[index] = [columnWidth,75].min
+	end
+
+	sheet.column_info.each_with_index do |cInfo,index|
+		sheet.column_info[index].width = columnWidths[index]
+	end
+end

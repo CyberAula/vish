@@ -19,6 +19,7 @@ class QuizSession < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User'
   has_many :quiz_answers, :dependent => :destroy
   
+  acts_as_xlsx
 
   def quizJSON(options=nil)
   	self.quiz
