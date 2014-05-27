@@ -701,6 +701,7 @@ es:
     closedAtS: "y cerrado el"
     error: "Lo sentimos, ha ocurrido un error procesando este cuestionario"
     falseC: "F"
+    falseL: "Falso"
     launchIn: "lanzado en la Excursión Virtual: "
     legend:
       name: "Nombre del cuestionario en vivo"
@@ -716,6 +717,7 @@ es:
       name: "Escribe un nuevo nombre"
     total: "Total"
     trueC: "V"
+    trueL: "Verdadero"
     untitled: "Sin título"
   recommended: "recomendados"
   recsys:

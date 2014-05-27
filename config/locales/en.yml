@@ -699,6 +699,7 @@ en:
     closedAtS: "and closed at"
     error: "Sorry, an error has occurred processing this quiz"
     falseC: "F"
+    falseL: "False"
     launchIn: "launched in the Virtual Excursion: "
     legend:
       name: "Live Quiz Name"
@@ -714,6 +715,7 @@ en:
       name: "Write a new name"
     total: "Total"
     trueC: "T"
+    trueL: "True"
     untitled: "Untitled"
   recommended: "recommended"
   recsys:

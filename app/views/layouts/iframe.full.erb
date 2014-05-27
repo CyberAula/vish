@@ -5,7 +5,13 @@
   <html>
 <% end %>
     <head>
-      <title>ViSH Excursion</title>
+      <title>
+      <%if @quiz_session%>
+        ViSH Quiz
+      <% else %>
+        ViSH Excursion
+      <% end %>
+      </title>
       <%= favicon_link_tag "icons/favicon.ico" %>
       <meta charset="UTF-8">
       <meta name="apple-mobile-web-app-capable" content="yes">

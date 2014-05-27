@@ -28,12 +28,13 @@ wb.add_worksheet(:name => "QuizSessionResults_" + @quiz_session.id.to_s) do |she
 	rowContents[1] = ["Id", @quiz_session.id.to_s]
 	rowContents[2] = ["Author", current_user.name]
 	rowContents[3] = [t('quiz.createdAt').capitalize, @quiz_session.created_at.to_s]
-	rowContents[4] = [t('quiz.closedAt').capitalize, @quiz_session.closed_at.to_s]
+	rowContents[4] = [t('quiz.closedAt').capitalize, @quiz_session.active==false ? @quiz_session.closed_at.to_s : "-"]
 	rowContents[5] = [t('quiz.launchIn').capitalize, @processedQS["presentationName"]]
 	rowContents[6] = ["Quiz Type", @processedQS["quizType"]]
 	rowContents[7] = ["", ""]
 	rowContents[8] = ["Question", @processedQS["question"]]
 
+	columnLength = 2
 	rowContentsIndex = rowContents.length
 
 	case @processedQS["quizType"]
@@ -49,7 +50,7 @@ wb.add_worksheet(:name => "QuizSessionResults_" + @quiz_session.id.to_s) do |she
 		@processedQS["choices"].each_with_index do |choice,index|
 			rowContents[rowContentsIndex] = [(index+97).chr, choice["value"],@processedQS["processedResults"][index]["n"]]
 			if includePercentage
-				rowContents[rowContentsIndex].push(@processedQS["processedResults"][index]["percentage"])
+				rowContents[rowContentsIndex].push(@processedQS["processedResults"][index]["percentage"].to_s+"%")
 			end
 			rowContentsIndex = rowContentsIndex + 1
 		end
@@ -58,8 +59,18 @@ wb.add_worksheet(:name => "QuizSessionResults_" + @quiz_session.id.to_s) do |she
 			rowContents[rowContentsIndex] = [t('quiz.total'),"",@processedQS["totalAnswers"],""]
 			rowContentsIndex = rowContentsIndex + 1
 		end
+		columnLength = 4
 
 	when  "truefalse"
+		rowContents[rowContentsIndex] = ["Choices", "Choices Value", t('quiz.trueL').capitalize, "", t('quiz.falseL').capitalize, ""]
+		rowContentsIndex = rowContentsIndex + 1
+		@processedQS["choices"].each_with_index do |choice,index|
+			if choice["value"]
+				rowContents[rowContentsIndex] = [(index+97).chr, choice["value"],@processedQS["processedResults"][index]["T"],@processedQS["processedResults"][index]["Tpercentage"].to_s + "%",@processedQS["processedResults"][index]["F"],@processedQS["processedResults"][index]["Fpercentage"].to_s + "%"]
+			end
+			rowContentsIndex = rowContentsIndex + 1
+		end
+		columnLength = 6
 
 	else
 
@@ -79,13 +90,9 @@ wb.add_worksheet(:name => "QuizSessionResults_" + @quiz_session.id.to_s) do |she
 	#Automatically set the column width to fit content
 	#It seems that xlsx_package.use_autowidth = true is not working very well...
 
-	#Get column contents from rowContents
 	columnContents = []
-	unless rowContents.first.nil?
-		# rowContents.first.length.times do |i|
-		4.times do |i|
-			columnContents[i] = []
-		end
+	columnLength.times do |i|
+		columnContents[i] = []
 	end
 
 	rowContents.each_with_index do |rowContent,index|
@@ -111,7 +118,7 @@ wb.add_worksheet(:name => "QuizSessionResults_" + @quiz_session.id.to_s) do |she
 
 	#Filter extreme wider columns
 	columnWidths.each_with_index do |columnWidth,index|
-		columnWidths[index] = [columnWidth,75].min
+		columnWidths[index] = [columnWidth,125].min
 	end
 
 	sheet.column_info.each_with_index do |cInfo,index|
