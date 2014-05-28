@@ -650,11 +650,12 @@ en:
     add: "add"
     new: "new"
   order_by:
-    popularity: "Popularity"
     created_at: "Creation"
     favorites: "Favorites"
-    updated_at: "Modification"
+    popularity: "Popularity"
+    relevance: "Relevance"
     title: "Order by"
+    updated_at: "Modification"
     visits: "Visits"
   organization:
     one: "organization"
