@@ -3,12 +3,11 @@ namespace :mve do
 
 	task :mve => :environment do
 		puts "Recalculating M(ost)V(aluable)E(xcursions) in all tables"
-		#
-		#
-		#
-		#
+		# => This task recalculates MVE score in Excursions and Actors
+		# => We use this MVE score to assign the Best Excursions of the Month and the Best Actors of the month
+		# => Also is the task in charge of the ranking
+
 		puts "Calculating Excursions MVE"
-		#Cálculo Mve in Excursion
 		biggest_mve = 0
 		ident = 1
 		for en in Excursion.all do
@@ -19,6 +18,7 @@ namespace :mve do
 
 			mve_count = ((followers * 5) + (visits * 5) + (comments * 5) + (likes * 10))
 			
+			#A different implementation of the algorithm to influence the time, and give dynamism, finally doing differently
 			#Add this lines instead if want to include time influence
 			#threshold = 100
 			#created =  (DateTime.now.to_i - DateTime.parse(en.created_at.to_s).to_i)/threshold 
@@ -36,10 +36,25 @@ namespace :mve do
 			en.update_column :is_mve, false
 		end
 
-		best_excursion = Excursion.find( id = ident)
+		best_excursion = Excursion.find(ident)
 		best_excursion.update_column :is_mve, true
 
 		puts "The best excursion is number " + id.to_s
+		puts " "
+		
+
+		puts "Generating MVE Rank in excursions"
+		
+		rank_counter = 1
+		@mveRank = Excursion.all
+		
+		while (@mveRank.length != 0) do
+			ranking_excursion = Excursion.find(@mveRank.max_by(&:mve).id)
+			ranking_excursion.update_column :rankMve, rank_counter
+			@mveRank.delete(@mveRank.max_by(&:mve))
+			rank_counter+=1
+		end
+
 		puts " "
 		puts "Calculating Authors MVE"
 
@@ -67,10 +82,24 @@ namespace :mve do
 			end
 		end
 
-		best_actor = Actor.find( id = bestactorid)
+		best_actor = Actor.find(bestactorid)
 		best_actor.update_column :is_mve, true
 
 		puts "The best Actor is " + best_actor.name
+		puts " "
+		
+		puts "Generating MVE Rank in Actors"
+		
+		rank_counter = 1
+		@mveRank = Actor.all
+		
+		while (@mveRank.length != 0)
+			ranking_actor = Actor.find(@mveRank.max_by(&:mve).id) #find looks for primary key
+			ranking_actor.update_column :rankMve, rank_counter
+			@mveRank.delete(@mveRank.max_by(&:mve))
+			rank_counter+=1
+		end
+
 	end
 
 end
