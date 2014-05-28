@@ -47,28 +47,27 @@ class SearchController < ApplicationController
     page =  ( mode == :quick ? 1 : params[:page] )
     limit = ( mode == :quick ? 7 : RESULTS_SEARCH_PER_PAGE )
     the_query = nil
-    if params[:sort_by]== nil
-        order = 'popularity DESC'
+    if params[:sort_by]==nil
+      order = nil
+    else
+      case params[:sort_by]
+      when 'updated_at'
+        order = 'updated_at DESC'
+      when 'created_at'
+        order = 'created_at DESC'
+      when 'visits'
+        order = 'visit_count DESC'
+      when 'favorites'
+        order = 'like_count DESC'
       else
-        case params[:sort_by]
-        when 'updated_at'
-          order = 'updated_at DESC'
-        when 'created_at'
-          order = 'created_at DESC'
-        when 'visits'
-          order = 'visit_count DESC'
-        when 'favorites'
-          order = 'like_count DESC'
-        else
-          order = 'popularity DESC'
-        end
+        order = 'popularity DESC'
       end
+    end
 
     if(params[:q] && params[:q]!="")
       the_query_or = Riddle.escape(params[:q].strip).gsub(" ", " | ")
       the_query = "(^" + params[:q].strip + "$) | (" + params[:q].strip + ") | (" + the_query_or + ")"
       # order = nil #so it searches exact first
-
     end
 
     SocialStream::Search.search(the_query, 
