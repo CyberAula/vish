@@ -38,7 +38,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 		}
 	};
 
-	var _getTrans = function(s, params) {
+	var _getTrans = function(s,params){
 		if (translations[s]){
 			return _getTransWithParams(translations[s],params);
 		}
@@ -72,8 +72,8 @@ VISH.QuizCharts = (function(V,$,undefined){
 		var quizParams = _getQuizParams(quizJSON);
 		var answersList = _getAnswers(results);
 
-		switch (quizParams.quizType) {
-			case V.Constant.QZ_TYPE.OPEN:
+		switch(quizParams.quizType){
+		case V.Constant.QZ_TYPE.OPEN:
 			break;
 		case V.Constant.QZ_TYPE.MCHOICE:
 			if(quizParams.extras.multipleAnswer==true){
@@ -92,21 +92,21 @@ VISH.QuizCharts = (function(V,$,undefined){
 	};
 
 	var _drawMcChoiceQuizChart = function(canvas,quizParams,answersList,options){
-		var pieFragments = [];
+		var pieFragments = {};
 		var data = [];
-		var choicesQuantity = quizParams.choices.length;
-
 		var pBCL = pieBackgroundColor.length;
 		var pLCL = pieLetterColor.length;
 
+		var choicesQuantity = quizParams.choices.length;
 		for(var i=0; i<choicesQuantity; i++){
-			pieFragments[i] = {};
-			pieFragments[i].value = 0;
-			pieFragments[i].label = String.fromCharCode(96+i+1);
-			pieFragments[i].color = pieBackgroundColor[i%pBCL];
-			pieFragments[i].labelColor = pieLetterColor[i%pLCL];
-			pieFragments[i].labelFontSize = '16';
-			pieFragments[i].tooltipLabel = _purgeString(quizParams.choices[i].value);
+			var choiceId = quizParams.choices[i].id;
+			pieFragments[choiceId] = {};
+			pieFragments[choiceId].value = 0;
+			pieFragments[choiceId].label = String.fromCharCode(96+i+1);
+			pieFragments[choiceId].color = pieBackgroundColor[i%pBCL];
+			pieFragments[choiceId].labelColor = pieLetterColor[i%pLCL];
+			pieFragments[choiceId].labelFontSize = '16';
+			pieFragments[choiceId].tooltipLabel = _purgeString(quizParams.choices[i].value);
 		}
 
 		var alL = answersList.length;
@@ -117,16 +117,17 @@ VISH.QuizCharts = (function(V,$,undefined){
 			var aL = answers.length;
 			for(var k=0; k<aL; k++){
 				var answer = answers[k];
-				var index = answer.no-1;
+				var choiceId = answer.choiceId;
 
-				if((answer.answer==="true")&&(pieFragments[index])){
-					pieFragments[index].value++;
+				if((answer.answer==="true")&&(pieFragments[choiceId])){
+					pieFragments[choiceId].value++;
 				}
 			}
 		}
 
-		for(var i=0; i<choicesQuantity; i++){
-			data.push(pieFragments[i]);
+		for(var l=0; l<choicesQuantity; l++){
+			var choiceId = quizParams.choices[l].id;
+			data.push(pieFragments[choiceId]);
 		}
 
 		var ctx = $(canvas).get(0).getContext("2d");
@@ -154,17 +155,18 @@ VISH.QuizCharts = (function(V,$,undefined){
 	};
 
 	var _drawMcChoiceMAnswerQuizChart = function(canvas,quizParams,answersList,options){
-		var labels = [];
-		var tooltipLabels = [];
-		var data = [];
-		var choicesQuantity = quizParams.choices.length;
+		var labels = {};
+		var tooltipLabels = {};
+		var dataValues = {};
 		var maxValue = 0;
 		var scaleSteps = 10;
 
+		var choicesQuantity = quizParams.choices.length;
 		for(var i=0; i<choicesQuantity; i++){
-			labels[i] = String.fromCharCode(96+i+1);
-			tooltipLabels[i] = _purgeString(quizParams.choices[i].value);
-			data[i] = 0;
+			var choiceId = quizParams.choices[i].id;
+			labels[choiceId] = String.fromCharCode(96+i+1);
+			tooltipLabels[choiceId] = _purgeString(quizParams.choices[i].value);
+			dataValues[choiceId] = 0;
 		}
 
 		var alL = answersList.length;
@@ -175,16 +177,17 @@ VISH.QuizCharts = (function(V,$,undefined){
 			var aL = answers.length;
 			for(var k=0; k<aL; k++){
 				var answer = answers[k];
-				var index = answer.no-1;
+				var choiceId = answer.choiceId;
 				if(answer.answer==="true"){
-					data[index]++;
+					dataValues[choiceId]++;
 				}
 			} 
 		}
 
 		for(var l=0; l<choicesQuantity; l++){
-			if(data[l] > maxValue){
-				maxValue = data[l];
+			var choiceId = quizParams.choices[l].id;
+			if(dataValues[choiceId] > maxValue){
+				maxValue = dataValues[choiceId];
 			}
 		}
 
@@ -194,13 +197,13 @@ VISH.QuizCharts = (function(V,$,undefined){
 
 		var ctx = $(canvas).get(0).getContext("2d");
 		var data = {
-			labels : labels,
-			tooltipLabels: tooltipLabels,
+			labels : $.map(labels, function(v){return v;}),
+			tooltipLabels: $.map(tooltipLabels, function(v){return v;}),
 			datasets : [
 				{
-				fillColor : "#E2FFE3",
-				strokeColor : "rgba(220,220,220,1)",
-				data : data
+					fillColor : "#E2FFE3",
+					strokeColor : "rgba(220,220,220,1)",
+					data : $.map(dataValues, function(v){return v;})
 				}
 			]
 		};
@@ -232,19 +235,21 @@ VISH.QuizCharts = (function(V,$,undefined){
 
 
 	var _drawTFQuizChart = function(canvas,quizParams,answersList,options){
-		var labels = [];
-		var tooltipLabels = [];
-		var dataTrue = [];
-		var dataFalse = [];
-		var choicesQuantity = quizParams.choices.length;
+		var labels = {};
+		var tooltipLabels = {};
+		var dataTrue = {};
+		var dataFalse = {};
 		var maxValue = 0;
 		var scaleSteps = 10;
 
+		var choicesQuantity = quizParams.choices.length;
 		for(var i=0; i<choicesQuantity; i++){
-			labels[i] = _getTrans("i.T") + "       " + String.fromCharCode(96+i+1) + "       " + _getTrans("i.F");
-			tooltipLabels[i] = _purgeString(quizParams.choices[i].value);
-			dataTrue[i] = 0;
-			dataFalse[i] = 0;
+			var choiceId = quizParams.choices[i].id;
+
+			labels[choiceId] = _getTrans("i.T") + "       " + String.fromCharCode(96+i+1) + "       " + _getTrans("i.F");
+			tooltipLabels[choiceId] = _purgeString(quizParams.choices[i].value);
+			dataTrue[choiceId] = 0;
+			dataFalse[choiceId] = 0;
 		}
 
 		var alL = answersList.length;
@@ -255,21 +260,23 @@ VISH.QuizCharts = (function(V,$,undefined){
 			var aL = answers.length;
 			for(var k=0; k<aL; k++){
 				var answer = answers[k];
-				var index = answer.no-1;
+				var choiceId = answer.choiceId;
+
 				if(answer.answer==="true"){
-					dataTrue[index]++;
+					dataTrue[choiceId]++;
 				} else {
-					dataFalse[index]++;
+					dataFalse[choiceId]++;
 				}
 			}
 		}
 
 		for(var l=0; l<choicesQuantity; l++){
-			if(dataTrue[l] > maxValue){
-				maxValue = dataTrue[l];
+			var choiceId = quizParams.choices[l].id;
+			if(dataTrue[choiceId] > maxValue){
+				maxValue = dataTrue[choiceId];
 			}
-			if(dataFalse[l] > maxValue){
-				maxValue = dataFalse[l];
+			if(dataFalse[choiceId] > maxValue){
+				maxValue = dataFalse[choiceId];
 			}
 		}
 
@@ -279,19 +286,19 @@ VISH.QuizCharts = (function(V,$,undefined){
 
 		var ctx = $(canvas).get(0).getContext("2d");
 		var data = {
-			labels : labels,
-			tooltipLabels: tooltipLabels,
+			labels : $.map(labels, function(v){return v;}),
+			tooltipLabels: $.map(tooltipLabels, function(v){return v;}),
 			datasets : [
-			{
-				fillColor : "#E2FFE3",
-				strokeColor : "rgba(220,220,220,1)",
-				data : dataTrue
-			},
-			{
-				fillColor : "#FFE2E2",
-				strokeColor : "rgba(220,220,220,1)",
-				data : dataFalse
-			}
+				{
+					fillColor : "#E2FFE3",
+					strokeColor : "rgba(220,220,220,1)",
+					data : $.map(dataTrue, function(v){return v;})
+				},
+				{
+					fillColor : "#FFE2E2",
+					strokeColor : "rgba(220,220,220,1)",
+					data : $.map(dataFalse, function(v){return v;})
+				}
 			]
 		};
 

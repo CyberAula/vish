@@ -16170,6 +16170,7 @@ VISH.Flashcard = function(V, $, undefined) {
 VISH.Quiz = function(V, $, undefined) {
   var quizMode;
   var quizzes = {};
+  var quizChoicesIds = {};
   var currentQuizDOM;
   var currentQuizSession;
   var currentPolling;
@@ -16217,6 +16218,7 @@ VISH.Quiz = function(V, $, undefined) {
       var zoneId = elJSON["id"];
       var quizId = V.Utils.getId("quiz");
       elJSON["quizId"] = quizId;
+      elJSON = _changeQuizChoicesIds(elJSON);
       quizzes[quizId] = elJSON;
       var quizDOM = quizModule.render(elJSON, template);
       return"<div id='" + zoneId + "' class='quizWrapper " + template + "_" + elJSON["areaid"] + " " + template + "_quiz" + "'>" + quizDOM + "</div>"
@@ -16681,6 +16683,9 @@ VISH.Quiz = function(V, $, undefined) {
   var getQuiz = function(quizId) {
     return quizzes[quizId]
   };
+  var getQuizChoiceOriginalId = function(newQuizChoiceId) {
+    return quizChoicesIds[newQuizChoiceId]
+  };
   var _getQuizModule = function(quiz_type) {
     switch(quiz_type) {
       case V.Constant.QZ_TYPE.OPEN:
@@ -16695,6 +16700,23 @@ VISH.Quiz = function(V, $, undefined) {
         return null;
         break
     }
+  };
+  var _changeQuizChoicesIds = function(quizJSON) {
+    $(quizJSON.choices).each(function(index, choice) {
+      var newChoiceId = _generateRandomQuizChoiceId();
+      quizChoicesIds[newChoiceId] = quizJSON.choices[index].id;
+      quizJSON.choices[index].id = newChoiceId
+    });
+    return quizJSON
+  };
+  var _usedQuizChoicesIds = [];
+  var _generateRandomQuizChoiceId = function() {
+    var randomInteger;
+    while(typeof randomInteger == "undefined" || _usedQuizChoicesIds.indexOf(randomInteger) != -1) {
+      randomInteger = Math.round(Math.random() * Math.pow(10, 16))
+    }
+    _usedQuizChoicesIds.push(randomInteger);
+    return randomInteger
   };
   var updateCheckbox = function(checkbox, check) {
     if(typeof check == "boolean") {
@@ -16726,7 +16748,7 @@ VISH.Quiz = function(V, $, undefined) {
       }
     }, 500)
   };
-  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, getQuiz:getQuiz, updateCheckbox:updateCheckbox, enableAnswerButton:enableAnswerButton, retryAnswerButton:retryAnswerButton, continueAnswerButton:continueAnswerButton, disableAnswerButton:disableAnswerButton, loadTab:loadTab, aftersetupSize:aftersetupSize}
+  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, getQuiz:getQuiz, getQuizChoiceOriginalId:getQuizChoiceOriginalId, updateCheckbox:updateCheckbox, enableAnswerButton:enableAnswerButton, retryAnswerButton:retryAnswerButton, continueAnswerButton:continueAnswerButton, disableAnswerButton:disableAnswerButton, loadTab:loadTab, aftersetupSize:aftersetupSize}
 }(VISH, jQuery);
 VISH.Editor.Tools = function(V, $, undefined) {
   var toolbarEventsLoaded = false;
@@ -28811,10 +28833,10 @@ VISH.Quiz.API = function(V, $, undefined) {
           data = []
         }else {
           if(getResultsCount < 3) {
-            data = [{"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-30T12:35:05Z", "id":82, "quiz_session_id":59}]
+            data = [{"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-30T12:35:05Z", "id":82, "quiz_session_id":59}]
           }else {
-            data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-29T17:49:59Z", "id":74, "quiz_session_id":56}, {"answer":'[{"no":"2","answer":"true"}]', "created_at":"2013-11-29T17:50:03Z", "id":75, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:07Z", "id":76, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:12Z", "id":77, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', 
-            "created_at":"2013-11-29T17:50:15Z", "id":78, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:19Z", "id":79, "quiz_session_id":56}, {"answer":'[{"no":"2","answer":"true"}]', "created_at":"2013-11-29T17:50:23Z", "id":80, "quiz_session_id":56}]
+            data = [{"answer":'[{"choiceId":"3","answer":"true"}]', "created_at":"2013-11-29T17:49:59Z", "id":74, "quiz_session_id":56}, {"answer":'[{"choiceId":"2","answer":"true"}]', "created_at":"2013-11-29T17:50:03Z", "id":75, "quiz_session_id":56}, {"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:07Z", "id":76, "quiz_session_id":56}, {"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:12Z", "id":77, "quiz_session_id":56}, {"answer":'[{"choiceId":"1","answer":"true"}]', 
+            "created_at":"2013-11-29T17:50:15Z", "id":78, "quiz_session_id":56}, {"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:19Z", "id":79, "quiz_session_id":56}, {"answer":'[{"choiceId":"2","answer":"true"}]', "created_at":"2013-11-29T17:50:23Z", "id":80, "quiz_session_id":56}]
           }
         }
         getResultsCount++;
@@ -28876,7 +28898,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
     var quizChoicesLength = quizJSON.choices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
       var option = quizJSON.choices[i];
-      var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
+      var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox = $("<td><input class='mc_box' type='" + inputType + "' name='mc_option' value='" + i + "'/></td>");
       var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + String.fromCharCode(96 + i + 1) + ") </span></td>");
       var optionText = $("<td><div class='mc_option_text mc_option_text_viewer'></div></td>");
@@ -28899,9 +28921,15 @@ VISH.Quiz.MC = function(V, $, undefined) {
     var answeredQuizWrong = false;
     var quizJSON = V.Quiz.getQuiz($(quiz).attr("id"));
     var quizChoices = quizJSON.choices;
-    $(quiz).find("input[name='mc_option']").each(function(index, radioBox) {
+    var quizChoicesById = {};
+    $(quizChoices).each(function(index, quizChoice) {
+      quizChoicesById[quizChoice.id] = quizChoice
+    });
+    $(quiz).find("tr.mc_option").each(function(index, tr) {
+      var choiceId = $(tr).attr("choiceid");
+      var choice = quizChoicesById[choiceId];
+      var radioBox = $(tr).find("input[name='mc_option']");
       var answerValue = parseInt($(radioBox).attr("value"));
-      var choice = quizChoices[answerValue];
       if($(radioBox).is(":checked")) {
         var trAnswer = $("tr.mc_option").has(radioBox);
         if(choice.answer === true) {
@@ -28920,15 +28948,15 @@ VISH.Quiz.MC = function(V, $, undefined) {
     var willRetry = canRetry && answeredQuizCorrectly === false;
     if(!willRetry) {
       var trCorrectAnswers = [];
-      for(var key in quizChoices) {
-        if(quizChoices[key].answer === true) {
-          var trCorrect = $(quiz).find("tr.mc_option")[key];
-          trCorrectAnswers.push($(quiz).find("tr.mc_option")[key]);
+      $(quizChoices).each(function(index, quizChoice) {
+        if(quizChoice.answer === true) {
+          var trCorrect = $(quiz).find("tr.mc_option[choiceid='" + quizChoice.id + "']");
+          trCorrectAnswers.push(trCorrect);
           if(answeredQuiz) {
             $(trCorrect).addClass("mc_correct_choice")
           }
         }
-      }
+      })
     }
     if(!answeredQuiz) {
       if(!willRetry) {
@@ -28963,9 +28991,11 @@ VISH.Quiz.MC = function(V, $, undefined) {
   var getReport = function(quiz) {
     var report = {};
     report.answers = [];
-    $(quiz).find("input[name='mc_option']").each(function(index, radioBox) {
+    $(quiz).find("tr.mc_option").each(function(index, tr) {
+      var radioBox = $(tr).find("input[name='mc_option']");
       if($(radioBox).is(":checked")) {
-        report.answers.push({no:(index + 1).toString(), answer:"true"})
+        var choiceId = $(tr).attr("choiceid");
+        report.answers.push({choiceId:V.Quiz.getQuizChoiceOriginalId(choiceId).toString(), answer:"true"})
       }
     });
     report.empty = report.answers.length === 0;
@@ -29001,7 +29031,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
     var quizChoicesLength = quizJSON.choices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
       var option = quizJSON.choices[i];
-      var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
+      var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true'  /></td>");
       var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' /></td>");
       var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + String.fromCharCode(96 + i + 1) + ") </span></td>");
@@ -29024,6 +29054,10 @@ VISH.Quiz.TF = function(V, $, undefined) {
     var answeredQuizCorrectly = true;
     var quizJSON = V.Quiz.getQuiz($(quiz).attr("id"));
     var quizChoices = quizJSON.choices;
+    var quizChoicesById = {};
+    $(quizChoices).each(function(index, quizChoice) {
+      quizChoicesById[quizChoice.id] = quizChoice
+    });
     $(quiz).find("tr.mc_option").not(".tf_head").each(function(index, tr) {
       var trueRadio = $(tr).find("input[type='radio'][column='true']")[0];
       var falseRadio = $(tr).find("input[type='radio'][column='false']")[0];
@@ -29037,22 +29071,26 @@ VISH.Quiz.TF = function(V, $, undefined) {
           myAnswer = undefined
         }
       }
-      var choice = quizChoices[index];
-      var trChoice = $(quiz).find("tr.mc_option").not(".tf_head")[index];
-      if(myAnswer === choice.answer) {
-        $(trChoice).addClass("mc_correct_choice")
-      }else {
-        if(typeof myAnswer != "undefined") {
-          answeredQuizCorrectly = false;
-          $(trChoice).addClass("mc_wrong_choice")
+      var choiceId = $(tr).attr("choiceid");
+      var choice = quizChoicesById[choiceId];
+      var choiceHasAnswer = typeof choice.answer == "boolean";
+      if(choiceHasAnswer) {
+        var trChoice = $(quiz).find("tr.mc_option").not(".tf_head")[index];
+        if(myAnswer === choice.answer) {
+          $(trChoice).addClass("mc_correct_choice")
         }else {
-          answeredQuizCorrectly = false;
-          if(!canRetry) {
-            if(choice.answer === true) {
-              $(trueRadio).attr("checked", true)
-            }else {
-              if(choice.answer === false) {
-                $(falseRadio).attr("checked", true)
+          if(typeof myAnswer != "undefined") {
+            answeredQuizCorrectly = false;
+            $(trChoice).addClass("mc_wrong_choice")
+          }else {
+            answeredQuizCorrectly = false;
+            if(!canRetry) {
+              if(choice.answer === true) {
+                $(trueRadio).attr("checked", true)
+              }else {
+                if(choice.answer === false) {
+                  $(falseRadio).attr("checked", true)
+                }
               }
             }
           }
@@ -29090,15 +29128,17 @@ VISH.Quiz.TF = function(V, $, undefined) {
     $(quiz).find("tr.mc_option").not(".tf_head").each(function(index, tr) {
       var trueRadio = $(tr).find("input[type='radio'][column='true']")[0];
       var falseRadio = $(tr).find("input[type='radio'][column='false']")[0];
+      var choiceId = $(tr).attr("choiceid");
+      var originalChoiceId = V.Quiz.getQuizChoiceOriginalId(choiceId);
       if($(trueRadio).is(":checked")) {
-        report.answers.push({no:(index + 1).toString(), answer:"true"});
+        report.answers.push({choiceId:originalChoiceId.toString(), answer:"true"});
         report.empty = false
       }else {
         if($(falseRadio).is(":checked")) {
-          report.answers.push({no:(index + 1).toString(), answer:"false"});
+          report.answers.push({choiceId:originalChoiceId.toString(), answer:"false"});
           report.empty = false
         }else {
-          report.answers.push({no:(index + 1).toString(), answer:"none"})
+          report.answers.push({choiceId:originalChoiceId.toString(), answer:"none"})
         }
       }
     });
@@ -29177,19 +29217,20 @@ VISH.QuizCharts = function(V, $, undefined) {
     }
   };
   var _drawMcChoiceQuizChart = function(canvas, quizParams, answersList, options) {
-    var pieFragments = [];
+    var pieFragments = {};
     var data = [];
-    var choicesQuantity = quizParams.choices.length;
     var pBCL = pieBackgroundColor.length;
     var pLCL = pieLetterColor.length;
+    var choicesQuantity = quizParams.choices.length;
     for(var i = 0;i < choicesQuantity;i++) {
-      pieFragments[i] = {};
-      pieFragments[i].value = 0;
-      pieFragments[i].label = String.fromCharCode(96 + i + 1);
-      pieFragments[i].color = pieBackgroundColor[i % pBCL];
-      pieFragments[i].labelColor = pieLetterColor[i % pLCL];
-      pieFragments[i].labelFontSize = "16";
-      pieFragments[i].tooltipLabel = _purgeString(quizParams.choices[i].value)
+      var choiceId = quizParams.choices[i].id;
+      pieFragments[choiceId] = {};
+      pieFragments[choiceId].value = 0;
+      pieFragments[choiceId].label = String.fromCharCode(96 + i + 1);
+      pieFragments[choiceId].color = pieBackgroundColor[i % pBCL];
+      pieFragments[choiceId].labelColor = pieLetterColor[i % pLCL];
+      pieFragments[choiceId].labelFontSize = "16";
+      pieFragments[choiceId].tooltipLabel = _purgeString(quizParams.choices[i].value)
     }
     var alL = answersList.length;
     for(var j = 0;j < alL;j++) {
@@ -29197,14 +29238,15 @@ VISH.QuizCharts = function(V, $, undefined) {
       var aL = answers.length;
       for(var k = 0;k < aL;k++) {
         var answer = answers[k];
-        var index = answer.no - 1;
-        if(answer.answer === "true" && pieFragments[index]) {
-          pieFragments[index].value++
+        var choiceId = answer.choiceId;
+        if(answer.answer === "true" && pieFragments[choiceId]) {
+          pieFragments[choiceId].value++
         }
       }
     }
-    for(var i = 0;i < choicesQuantity;i++) {
-      data.push(pieFragments[i])
+    for(var l = 0;l < choicesQuantity;l++) {
+      var choiceId = quizParams.choices[l].id;
+      data.push(pieFragments[choiceId])
     }
     var ctx = $(canvas).get(0).getContext("2d");
     var chartOptions = {showTooltips:true, animation:false};
@@ -29222,16 +29264,17 @@ VISH.QuizCharts = function(V, $, undefined) {
     }
   };
   var _drawMcChoiceMAnswerQuizChart = function(canvas, quizParams, answersList, options) {
-    var labels = [];
-    var tooltipLabels = [];
-    var data = [];
-    var choicesQuantity = quizParams.choices.length;
+    var labels = {};
+    var tooltipLabels = {};
+    var dataValues = {};
     var maxValue = 0;
     var scaleSteps = 10;
+    var choicesQuantity = quizParams.choices.length;
     for(var i = 0;i < choicesQuantity;i++) {
-      labels[i] = String.fromCharCode(96 + i + 1);
-      tooltipLabels[i] = _purgeString(quizParams.choices[i].value);
-      data[i] = 0
+      var choiceId = quizParams.choices[i].id;
+      labels[choiceId] = String.fromCharCode(96 + i + 1);
+      tooltipLabels[choiceId] = _purgeString(quizParams.choices[i].value);
+      dataValues[choiceId] = 0
     }
     var alL = answersList.length;
     for(var j = 0;j < alL;j++) {
@@ -29239,22 +29282,29 @@ VISH.QuizCharts = function(V, $, undefined) {
       var aL = answers.length;
       for(var k = 0;k < aL;k++) {
         var answer = answers[k];
-        var index = answer.no - 1;
+        var choiceId = answer.choiceId;
         if(answer.answer === "true") {
-          data[index]++
+          dataValues[choiceId]++
         }
       }
     }
     for(var l = 0;l < choicesQuantity;l++) {
-      if(data[l] > maxValue) {
-        maxValue = data[l]
+      var choiceId = quizParams.choices[l].id;
+      if(dataValues[choiceId] > maxValue) {
+        maxValue = dataValues[choiceId]
       }
     }
     if(maxValue < 10) {
       scaleSteps = Math.max(1, maxValue)
     }
     var ctx = $(canvas).get(0).getContext("2d");
-    var data = {labels:labels, tooltipLabels:tooltipLabels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:data}]};
+    var data = {labels:$.map(labels, function(v) {
+      return v
+    }), tooltipLabels:$.map(tooltipLabels, function(v) {
+      return v
+    }), datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:$.map(dataValues, function(v) {
+      return v
+    })}]};
     var chartOptions = {showTooltips:true, animation:false, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps};
     if(options && options.animation === true) {
       chartOptions.animation = true;
@@ -29270,18 +29320,19 @@ VISH.QuizCharts = function(V, $, undefined) {
     }
   };
   var _drawTFQuizChart = function(canvas, quizParams, answersList, options) {
-    var labels = [];
-    var tooltipLabels = [];
-    var dataTrue = [];
-    var dataFalse = [];
-    var choicesQuantity = quizParams.choices.length;
+    var labels = {};
+    var tooltipLabels = {};
+    var dataTrue = {};
+    var dataFalse = {};
     var maxValue = 0;
     var scaleSteps = 10;
+    var choicesQuantity = quizParams.choices.length;
     for(var i = 0;i < choicesQuantity;i++) {
-      labels[i] = _getTrans("i.T") + "       " + String.fromCharCode(96 + i + 1) + "       " + _getTrans("i.F");
-      tooltipLabels[i] = _purgeString(quizParams.choices[i].value);
-      dataTrue[i] = 0;
-      dataFalse[i] = 0
+      var choiceId = quizParams.choices[i].id;
+      labels[choiceId] = _getTrans("i.T") + "       " + String.fromCharCode(96 + i + 1) + "       " + _getTrans("i.F");
+      tooltipLabels[choiceId] = _purgeString(quizParams.choices[i].value);
+      dataTrue[choiceId] = 0;
+      dataFalse[choiceId] = 0
     }
     var alL = answersList.length;
     for(var j = 0;j < alL;j++) {
@@ -29289,27 +29340,36 @@ VISH.QuizCharts = function(V, $, undefined) {
       var aL = answers.length;
       for(var k = 0;k < aL;k++) {
         var answer = answers[k];
-        var index = answer.no - 1;
+        var choiceId = answer.choiceId;
         if(answer.answer === "true") {
-          dataTrue[index]++
+          dataTrue[choiceId]++
         }else {
-          dataFalse[index]++
+          dataFalse[choiceId]++
         }
       }
     }
     for(var l = 0;l < choicesQuantity;l++) {
-      if(dataTrue[l] > maxValue) {
-        maxValue = dataTrue[l]
+      var choiceId = quizParams.choices[l].id;
+      if(dataTrue[choiceId] > maxValue) {
+        maxValue = dataTrue[choiceId]
       }
-      if(dataFalse[l] > maxValue) {
-        maxValue = dataFalse[l]
+      if(dataFalse[choiceId] > maxValue) {
+        maxValue = dataFalse[choiceId]
       }
     }
     if(maxValue < 10) {
       scaleSteps = Math.max(1, maxValue)
     }
     var ctx = $(canvas).get(0).getContext("2d");
-    var data = {labels:labels, tooltipLabels:tooltipLabels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:dataTrue}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:dataFalse}]};
+    var data = {labels:$.map(labels, function(v) {
+      return v
+    }), tooltipLabels:$.map(tooltipLabels, function(v) {
+      return v
+    }), datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:$.map(dataTrue, function(v) {
+      return v
+    })}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:$.map(dataFalse, function(v) {
+      return v
+    })}]};
     var chartOptions = {showTooltips:true, animation:false, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps};
     if(options && options.animation === true) {
       chartOptions.animation = true;
