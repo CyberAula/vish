@@ -1,5 +1,5 @@
 module HomeHelper
-  PER_PAGE_IN_HOME = 16
+  ITEMS_PER_PAGE = 16
 
   def current_subject_excursions(options = {})
     subject_excursions current_subject, options
@@ -123,7 +123,7 @@ module HomeHelper
 
     # pagination, 0 means without pagination
     if options[:page] != 0
-      query = query.page(options[:page]).per(PER_PAGE_IN_HOME)
+      query = query.page(options[:page]).per(ITEMS_PER_PAGE)
     end
 
     return query.map{|ao| ao.object} if klass.is_a?(Array)

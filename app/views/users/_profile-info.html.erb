@@ -85,41 +85,21 @@
           <% if profile_subject_is_current? %>
             <%= render partial: 'excursions/excursion-add' %>
           <% end %>
-          <%= render partial: 'excursions/excursions', :locals => { :scope => :me, :page => 0, :sort_by=> params[:sort_by]||"updated_at"} %>
+          <%= render partial: 'excursions/excursions', :locals => { :scope => :me, :page => 1, :sort_by=> params[:sort_by]||"updated_at"} %>
         </ul>
+        <div id="loader_pagination">
+          <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="msg" style="font-size:2em">
+              <%=t('search.loading')%>
+            </div>
+            <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+          </div>
         </div>
-      </div>
-
-      <div class="tab-pane" id="tab2">
-        <div id="events">
-          <%= render partial: 'events/events', :locals => { :scope => :me } %>
         </div>
+
       </div>
 
-
-      <div class="tab-pane" id="tab3">
-        <div id="resources">
-        <%= render partial: 'repositories/resources', :locals => { :scope => :me } %>
-        </div>
-      </div>
-
-      <div class="tab-pane" id="tab4">
-        <div id="categories">
-          <%= render partial: 'categories/categories', :locals => { :scope => :me } %>
-        </div>
-      </div>
-
-      <div class="tab-pane" id="tab5">
-        <ul>
-          <%= render partial: 'users/user', collection: profile_subject.followers %>
-        </ul>
-      </div>
-
-      <div class="tab-pane" id="tab6">
-        <ul>
-          <%= render partial: 'users/user', collection: profile_subject.followings.where(object_type: 'Actor').includes(:actor).map(&:actor) %>
-        </ul>
-      </div>
+      
 
     </div>
   </div>

@@ -13,7 +13,7 @@
 	}
 </script>
 
-<%- if controller_name == 'excursions' && page != 0%>
+<%- if (controller_name == 'excursions' || controller_name =='users') && page ==1%>
 	<%= content_for :javascript do %>
 	    $('#excursions ul').pageless({ 
 	                        totalPages: <%=excursions.num_pages%>,
