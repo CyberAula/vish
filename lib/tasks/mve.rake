@@ -5,8 +5,20 @@ namespace :mve do
 		puts "Recalculating M(ost)V(aluable)E(xcursions) in all tables"
 		# => This task recalculates MVE score in Excursions and Actors
 		# => We use this MVE score to assign the Best Excursions of the Month and the Best Actors of the month
-		# => Also is the task in charge of the ranking
+		# => Also is the task in charge of the ranking				
+		
+		recalculateMveExcursions
+		rankMveExcursions
+		recalculateMveAuthors
+		rankMveAuthors
+	
+	end
 
+	task :excludeBest => :environment do
+
+	end
+
+	def recalculateMveExcursions
 		puts "Calculating Excursions MVE"
 		biggest_mve = 0
 		ident = 1
@@ -39,10 +51,11 @@ namespace :mve do
 		best_excursion = Excursion.find(ident)
 		best_excursion.update_column :is_mve, true
 
-		puts "The best excursion is number " + id.to_s
+		puts "The best excursion is number " + best_excursion.id.to_s
 		puts " "
-		
+	end
 
+	def rankMveExcursions
 		puts "Generating MVE Rank in excursions"
 		
 		rank_counter = 1
@@ -54,8 +67,12 @@ namespace :mve do
 			@mveRank.delete(@mveRank.max_by(&:mve))
 			rank_counter+=1
 		end
-
+		
+		puts "Ranking complete"
 		puts " "
+	end
+
+	def recalculateMveAuthors
 		puts "Calculating Authors MVE"
 
 		#Clean Authors MVE
@@ -87,7 +104,9 @@ namespace :mve do
 
 		puts "The best Actor is " + best_actor.name
 		puts " "
-		
+	end
+
+	def rankMveAuthors
 		puts "Generating MVE Rank in Actors"
 		
 		rank_counter = 1
@@ -99,7 +118,7 @@ namespace :mve do
 			@mveRank.delete(@mveRank.max_by(&:mve))
 			rank_counter+=1
 		end
-
+		puts "Ranking complete"
 	end
 
 end
