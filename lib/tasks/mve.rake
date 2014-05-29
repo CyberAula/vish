@@ -15,9 +15,39 @@ namespace :mve do
 	end
 
 	task :excludeBest => :environment do
+		puts "Introducing into exclusion list best excursions"
+		bestExcursion = Excursion.where(is_mve: true)
+		exc = ExcludeExcMve.new :id => bestExcursion[0].id, :excName=> bestExcursion[0].title ,:rankTime =>0 
+		exc.save
+		puts "Introducing into exclusion list best author"
+		bestAuthor = Actor.where(is_mve: true)
+		au = ExcludeAuthMve.new :id => bestAuthor[0].id, :authName=> bestAuthor[0].name, :rankTime =>0 
+		au.save
+
+		for excExc in ExcludeExcMve.all do
+			rank = excExc.rankTime + 1 
+			excExc.update_column :rankTime, rank
+		end
+		for excAuth in ExcludeAuthMve.all do
+			rank= excAuth.rankTime + 1
+			excAuth.update_column :rankTime, rank
+		end
+
+		ExcludeAuthMve.where(rankTime: 10).destroy_all
+		ExcludeExcMve.where(rankTime: 10).destroy_all
 
 	end
 
+	task :Rank => :environment do
+		Rake::Task["mve:mve"].invoke
+		Rake::Task["mve:excludeBest"].invoke
+	end
+
+	task :cleanExcluded => :environment do
+		puts "Cleaned Excursions: " + ExcludeExcMve.delete_all.to_s
+		puts "Cleaned Authors: " + ExcludeAuthMve.delete_all.to_s
+	end
+	
 	def recalculateMveExcursions
 		puts "Calculating Excursions MVE"
 		biggest_mve = 0
@@ -48,11 +78,7 @@ namespace :mve do
 			en.update_column :is_mve, false
 		end
 
-		best_excursion = Excursion.find(ident)
-		best_excursion.update_column :is_mve, true
-
-		puts "The best excursion is number " + best_excursion.id.to_s
-		puts " "
+		
 	end
 
 	def rankMveExcursions
@@ -68,6 +94,24 @@ namespace :mve do
 			rank_counter+=1
 		end
 		
+		id_toCheck = 0
+		check = true
+		@mveRank = Excursion.all
+
+		while check do		
+			id_toCheck = Excursion.find(@mveRank.max_by(&:mve)).id
+
+			if ExcludeExcMve.where(id: id_toCheck).length == 1
+				@mveRank.delete(@mveRank.max_by(&:mve))
+			else
+				Excursion.find(id_toCheck).update_column :is_mve, true
+				check=false
+			end
+	    end
+		
+		puts "The best excursion is number " + id_toCheck.to_s
+		puts " "
+
 		puts "Ranking complete"
 		puts " "
 	end
@@ -118,6 +162,20 @@ namespace :mve do
 			@mveRank.delete(@mveRank.max_by(&:mve))
 			rank_counter+=1
 		end
+
+		id_toCheck = 0
+		check = true
+		@mveRank = Actor.all
+		while check do		
+			id_toCheck = Actor.find(@mveRank.max_by(&:mve)).id
+			if ExcludeAuthMve.where(id: id_toCheck).length == 1
+				@mveRank.delete(@mveRank.max_by(&:mve))
+			else
+				Actor.find(id_toCheck).update_column :is_mve, true
+				check=false
+			end
+	    end
+
 		puts "Ranking complete"
 	end
 
