@@ -14,15 +14,24 @@ namespace :mve do
 	
 	end
 
+	#Task to fill with best into the excluded table
 	task :excludeBest => :environment do
 		puts "Introducing into exclusion list best excursions"
+
 		bestExcursion = Excursion.where(is_mve: true)
-		exc = ExcludeExcMve.new :id => bestExcursion[0].id, :excName=> bestExcursion[0].title ,:rankTime =>0 
-		exc.save
+		if ExcludeExcMve.where(id: bestExcursion[0].id).length == 0
+			exc = ExcludeExcMve.new :id => bestExcursion[0].id, :excName=> bestExcursion[0].title ,:rankTime =>0 
+			exc.save
+			puts "Excursion " + bestExcursion[0].title + " excluded"
+		end
 		puts "Introducing into exclusion list best author"
+
 		bestAuthor = Actor.where(is_mve: true)
-		au = ExcludeAuthMve.new :id => bestAuthor[0].id, :authName=> bestAuthor[0].name, :rankTime =>0 
-		au.save
+		if ExcludeAuthMve.where(id: bestAuthor[0].id).length == 0
+			au = ExcludeAuthMve.new :id => bestAuthor[0].id, :authName=> bestAuthor[0].name, :rankTime =>0 
+			au.save
+			puts "Author " + bestAuthor[0].title + " excluded"
+		end
 
 		for excExc in ExcludeExcMve.all do
 			rank = excExc.rankTime + 1 
@@ -38,11 +47,13 @@ namespace :mve do
 
 	end
 
+	#This is the main Task. Used in cron to keep ranking the way, that has to be.
 	task :Rank => :environment do
 		Rake::Task["mve:mve"].invoke
 		Rake::Task["mve:excludeBest"].invoke
 	end
 
+	#Task to clean excluded tables
 	task :cleanExcluded => :environment do
 		puts "Cleaned Excursions: " + ExcludeExcMve.delete_all.to_s
 		puts "Cleaned Authors: " + ExcludeAuthMve.delete_all.to_s
@@ -67,7 +78,6 @@ namespace :mve do
 			#updated = (DateTime.now.to_i - DateTime.parse(en.updated_at.to_s).to_i)/threshold 
 			#timing_things = updated - created
 			#mve_count = ((followers * 5) + (visits * 5) + (comments * 5) + (likes * 10))/timing_things
-			
 			
 			if(mve_count > biggest_mve)
 				biggest_mve = mve_count
@@ -132,22 +142,6 @@ namespace :mve do
 			author.update_column :mve, author_mve
 
 		end
-
-		bestactorid = 1
-		bestmve = 0
-		#Get the MVE
-		for searchMVE in Actor.all do 
-			if (searchMVE.mve > bestmve)
-				bestmve = searchMVE.mve
-				bestactorid = searchMVE.id				
-			end
-		end
-
-		best_actor = Actor.find(bestactorid)
-		best_actor.update_column :is_mve, true
-
-		puts "The best Actor is " + best_actor.name
-		puts " "
 	end
 
 	def rankMveAuthors
