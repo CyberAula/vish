@@ -69,6 +69,7 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+
   #Usage
   #Development:   bundle exec rake fix:authors
   #In production: bundle exec rake fix:authors RAILS_ENV=production
@@ -101,6 +102,44 @@ namespace :fix do
 
       ex.update_column :json, eJson.to_json;
     }
+
+    printTitle("Task Finished")
+  end
+
+
+  #Usage
+  #Development:   bundle exec rake fix:quizSessionResults
+  #In production: bundle exec rake fix:quizSessionResults RAILS_ENV=production
+  task :quizSessionResults => :environment do
+
+    printTitle("Fixing Quiz Session Results")
+
+    #Get all excursions
+    quizAnswers = QuizAnswer.all
+    quizAnswers.each do |qAnswer|
+      begin
+        answers = JSON(qAnswer.answer)
+        newanswers = []
+
+        if !answers.nil?
+          answers.each do |answer|
+            if !answer["no"].nil?
+              answer["choiceId"] = answer["no"]
+              answer.delete "no"
+            end
+            newanswers.push(answer)
+          end
+        end
+
+        qAnswer.update_column :answer, newanswers.to_json
+
+      rescue Exception => e
+        puts "Quiz Answers with id:"
+        puts qAnswer.id.to_s
+        puts "Exception message"
+        puts e.message
+      end
+    end
 
     printTitle("Task Finished")
   end
