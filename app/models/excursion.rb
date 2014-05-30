@@ -101,6 +101,10 @@ class Excursion < ActiveRecord::Base
           zos.put_next_entry(fileName +"_" + i.to_s + ".xml")
           zos.print qti_tf.target!()
         end
+        main_tf = Excursion.generate_mainQTIMC(qjson,fileName)
+        zos.put_next_entry(fileName + ".xml")
+        zos.print main_tf
+
       when "multiplechoice"
         qti_mc = Excursion.generate_QTIMC(qjson)
         zos.put_next_entry(fileName + ".xml")
@@ -115,6 +119,8 @@ class Excursion < ActiveRecord::Base
       t.close
     end
   end
+
+  
 
   def self.generate_QTITF(qjson,index)
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
@@ -292,10 +298,58 @@ class Excursion < ActiveRecord::Base
     end
   end
 
+  def self.generate_mainQTIMC(qjson,fileName)
+    resource_identifier = "resource-item-quiz-" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
+
+    myxml = ::Builder::XmlMarkup.new(:indent => 2)
+    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+
+    myxml.assessmentTest("xmlns" => "http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation" => "http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/imsqti_v2p1.xsd", "identifier" => "TrueFalseTest", "title" => "True False Tests", "toolName"=>"VISH Editor", "toolVersion" => "2.3") do
+      myxml.outcomeDeclaration("identifier" => "SCORE", "cardinality" => "single", "baseType" => "integer") do
+      end
+        if qjson["quiztype"] == "truefalse"
+          for i in 0..((qjson["choices"].size)-1)
+            myxml.assessmentItemRef("identifier" => resource_identifier + i.to_s, "href" => fileName + "_" + i.to_s + ".xml") do
+            end
+          end        
+        end     
+      
+    end
+end
+
+
+
+
+
+
   def self.generate_qti_resources(qjson,fileName,myxml)
     resource_identifier = "resource-item-quiz-" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
 
     if qjson["quiztype"] == "truefalse"
+      myxml.resource("identifier" => resource_identifier , "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do
+          myxml.metadata do
+            myxml.tag!("imsmd:lom") do
+              myxml.tag!("imsmd:general") do
+                myxml.tag!("imsmd:title") do
+                  myxml.tag!("imsmd:langstring",{"xml:lang"=>"en"}) do
+                    myxml.text!("TrueFalse")
+                  end
+                end
+              end
+              myxml.tag!("imsmd:technical") do
+                myxml.tag!("imsmd:format") do
+                  myxml.text!("text/x-imsqti-item-xml")
+                end
+              end
+            end
+            myxml.tag!("imsqti:qtiMetadata") do
+              myxml.tag!("imsqti:interactionType") do
+                myxml.text!("choiceInteraction")
+              end
+            end
+          end
+          myxml.file("href" => fileName + ".xml")
+        end
       for i in 0..((qjson["choices"].size)-1)
         myxml.resource("identifier" => resource_identifier + i.to_s, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + "_" + i.to_s + ".xml") do
           myxml.metadata do
@@ -321,6 +375,10 @@ class Excursion < ActiveRecord::Base
           end
           myxml.file("href" => fileName + "_" + i.to_s + ".xml")
         end
+
+
+
+
       end
     elsif qjson["quiztype"] == "multiplechoice"
       myxml.resource("identifier" => resource_identifier, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do
