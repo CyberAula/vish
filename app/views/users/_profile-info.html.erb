@@ -1,32 +1,176 @@
 <%= content_for :javascript do %>
-   /*
-   $.ajax({
+  
+  $("#excursions_tab").click(function(){
+    re_apply_pageless("excursions");
+  });
+
+  var resources_tab_loaded = false;
+  $("#resources_tab").click(function(){
+    if(resources_tab_loaded===false){
+      resources_tab_loaded = true;
+      $.ajax({
           type : "GET",
-          url : "<%= user_url(profile_subject) %>"+"/resources",
+          url : "<%= user_url(profile_subject) %>/resources",
           success : function(html) {      
-            $("#resources").append(html);
+            $("#tab3").append(html);
+            re_apply_pageless("resources");
           },
           error: function(){
-            console.log("error");
+            console.log("error loading resources");
          }
         });
-        */
-  $("#resources_tab").click(function(){
-    re_apply_resources_backstrech();
+    } else {
+      re_apply_pageless("resources");
+    }
   });
 
+  var events_tab_loaded = false;
   $("#events_tab").click(function(){
-    re_apply_events_backstrech();
+    if(events_tab_loaded===false){
+      events_tab_loaded = true;
+      $.ajax({
+          type : "GET",
+          url : "<%= user_url(profile_subject) %>/events",
+          success : function(html) {      
+            $("#tab2").append(html);
+            re_apply_pageless("events");
+          },
+          error: function(){
+            console.log("error loading events");
+         }
+        });
+    } else {
+      re_apply_pageless("events");
+    }
   });
+
+  var categories_tab_loaded = false;
+  $("#categories_tab").click(function(){
+    if(categories_tab_loaded===false){
+      categories_tab_loaded = true;
+      $.ajax({
+          type : "GET",
+          url : "<%= user_url(profile_subject) %>/categories",
+          success : function(html) {      
+            $("#tab4").append(html);
+            re_apply_pageless("categories");
+          },
+          error: function(){
+            console.log("error loading categories");
+         }
+        });
+    } else {
+      re_apply_pageless("categories");
+    }
+  });
+
+  var followers_tab_loaded = false;
+  $("#followers_tab").click(function(){
+    if(followers_tab_loaded===false){
+      followers_tab_loaded = true;
+      $.ajax({
+          type : "GET",
+          url : "<%= user_url(profile_subject) %>/followers",
+          success : function(html) {      
+            $("#followers_ul").append(html);
+            re_apply_pageless("followers");
+          },
+          error: function(){
+            console.log("error loading followers");
+         }
+        });
+    } else {
+      re_apply_pageless("followers");
+    }
+  });
+
+  var followings_tab_loaded = false;
+  $("#followings_tab").click(function(){
+    if(followings_tab_loaded===false){
+      followings_tab_loaded = true;
+      $.ajax({
+          type : "GET",
+          url : "<%= user_url(profile_subject) %>/followings",
+          success : function(html) {      
+            $("#followings_ul").append(html);
+            re_apply_pageless("followings");
+          },
+          error: function(){
+            console.log("error loading followings");
+         }
+        });
+    } else {
+      re_apply_pageless("followings");
+    }
+  });
+
+
 
 <%end%>
+
+<script>
+//important that this is here and not in document ready, so they are defined when document is ready and we can use them
+var pageless_state = {
+      "excursions":{
+        "url": "<%= user_url(profile_or_current_subject) %>",
+        "num_pages":0,
+        "current_page":0
+      },
+      "events":{
+        "url": "<%= user_url(profile_or_current_subject) %>/events",
+        "num_pages":0,
+        "current_page":0
+      },
+      "resources":{
+        "url": "<%= user_url(profile_or_current_subject) %>/resources",
+        "num_pages":0,
+        "current_page":0
+      },
+      "categories":{
+        "url": "<%= user_url(profile_or_current_subject) %>/categories",
+        "num_pages":0,
+        "current_page":0
+      },
+      "followers":{
+        "url": "<%= user_url(profile_or_current_subject) %>/followers",
+        "num_pages":0,
+        "current_page":0
+      },
+      "followings":{
+        "url": "<%= user_url(profile_or_current_subject) %>/followings",
+        "num_pages":0,
+        "current_page":0
+      }
+    };
+
+function update_pageless_state(tab, num_pages, current_page){
+    pageless_state[tab].num_pages = num_pages;
+    pageless_state[tab].current_page = current_page;
+}
+
+function re_apply_pageless(tab){
+    //first remove old pageless
+    $.pagelessStop();
+
+    $("#" + tab + " ul").pageless({ 
+                    totalPages: pageless_state[tab].num_pages ,
+                    url: pageless_state[tab].url,
+                    currentPage: pageless_state[tab].current_page,
+                    loader: '.loader_pagination',
+                    end: function(){
+                      $('.loader_pagination').hide();
+                    }
+    });
+  }
+
+</script>
 
 <section class="info-profile">
   <div class="tabbable">
     <ul class="nav nav-tabs">
 <!--excursions-->
       <li class="active">
-        <a href="#tab1" data-toggle="tab">
+        <a id="excursions_tab" href="#tab1" data-toggle="tab">
           <i class="icon-book"></i>
           <span class=" hidden-phone hidden-tablet"><%=t('excursion.other')%></span>
         </a>
@@ -47,24 +191,22 @@
       </li>
 
       <li>
-        <a href="#tab4" data-toggle="tab">
+        <a id="categories_tab" href="#tab4" data-toggle="tab">
           <i class="icon-th-large"></i>
           <span class=" hidden-phone hidden-tablet"><%=t('categories.other')%></span>
         </a>
       </li>
       
-
-
       <li class="follow-tab">
-        <a href="#tab5" data-toggle="tab">
-
+        <a id="followers_tab" href="#tab5" data-toggle="tab">
           <span><%= profile_subject.followers.count.to_s %></span>
           <i class="icon-group "></i>
           <span class=" hidden-phone hidden-tablet"><%= t('follow.followers') %></span>
         </a>
       </li>
+
       <li class="follow-tab">
-        <a href="#tab6" data-toggle="tab">
+        <a id="followings_tab" href="#tab6" data-toggle="tab">
           <span><%= profile_subject.following_actor_objects.includes(:actor).count.to_s %></span>
           <i class="icon-group green"></i>
           <span class=" hidden-phone hidden-tablet"><%= t('follow.followings') %></span>
@@ -74,11 +216,8 @@
     </ul>
 
 
-
-    
-
     <div class="tab-content">
-<%= render partial: 'users/order_by_dropdown' %>
+      <%= render partial: 'users/order_by_dropdown' %>
       <div class="tab-pane active" id="tab1">
         <div id="excursions">
         <ul class="">
@@ -87,7 +226,7 @@
           <% end %>
           <%= render partial: 'excursions/excursions', :locals => { :scope => :me, :page => 1, :sort_by=> params[:sort_by]||"updated_at"} %>
         </ul>
-        <div id="loader_pagination">
+        <div class="loader_pagination" style="display:none">
           <div id="pageless-loader" style="text-align:center;width:100%;">
             <div class="msg" style="font-size:2em">
               <%=t('search.loading')%>
@@ -99,6 +238,29 @@
 
       </div>
 
+      <div class="tab-pane" id="tab2">
+          
+      </div>
+
+      <div class="tab-pane" id="tab3">
+        
+      </div>
+
+      <div class="tab-pane" id="tab4">
+                  
+      </div>
+
+      <div class="tab-pane" id="tab5">
+        <ul id="followers_ul">
+          
+        </ul>
+      </div>
+
+      <div class="tab-pane" id="tab6">
+        <ul id="followings_ul">
+         
+        </ul>
+      </div>
       
 
     </div>

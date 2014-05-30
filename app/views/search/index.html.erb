@@ -80,7 +80,7 @@
               </script>
             </ul>
           </div>
-          <div id="loader_pagination">
+          <div class="loader_pagination">
             <div id="pageless-loader" style="text-align:center;width:100%;">
               <div class="msg" style="font-size:2em">
                 <%=t('search.loading')%>
@@ -101,9 +101,9 @@
                         totalPages: <%=@search_result.num_pages%>,
                         url: window.location.href,
                         currentPage: <%=@search_result.current_page%>,
-                        loader: '#loader_pagination',
+                        loader: '.loader_pagination',
                         end: function(){
-                          $('#loader_pagination').hide();
+                          $('.loader_pagination').hide();
                           $("#last_content_shown").show();
                         },
                         finishedAddingHiddenElem: function(hidden_elem){

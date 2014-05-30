@@ -1,27 +1,42 @@
+<div id="events">
+
 <ul class="events">
   <% if profile_subject_is_current? %>
     <%= render partial: 'events/event-add' %>
   <% end %>
 
-  <% all_events = subject_events(profile_or_current_subject, {:scope => scope, :limit => 0})%>
+  <% all_events = subject_events(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||"updated_at"}) %>
   <% all_events.each do |event| %>
       <%= render :partial => 'events/event', :locals => { :event => event } %>
   <% end %>
 </ul>
-
-<%= content_for :javascript do %>
-  $('a[href="#tab2"]').on('shown', function (e) {
-    $(".event").fitText(0.4);
-  });
-<% end %>
+  <div class="loader_pagination" style="display:none">
+    <div id="pageless-loader" style="text-align:center;width:100%;">
+      <div class="msg" style="font-size:2em">
+        <%=t('search.loading')%>
+      </div>
+      <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+    </div>
+  </div>
 
 
 <script>
+  $(document).ready(function(){
+    update_pageless_state("events", <%=all_events.num_pages%>, <%=all_events.current_page%>);
+
+    $("#events_tab").click(function(){
+      re_apply_events_backstrech();
+    });
+    
+    $('a[href="#tab2"]').on('shown', function (e) {
+      $(".event").fitText(0.4);
+    });    
+  });
+
 	function re_apply_events_backstrech(){
 		<% all_events.each do |event| %>
     		$("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
   		<% end %> 
 	}
-
 </script>
 

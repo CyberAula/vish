@@ -6,6 +6,16 @@
   <% end %> 
 
 <script>
+	$(document).ready(function(){		
+		update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>);
+
+		re_apply_pageless("excursions");
+
+		$("footer#footer").addClass("fixed-bottom");
+
+	    re_apply_backstrech_on_home();
+	});
+
 	function re_apply_backstrech_on_home(){
 		<% excursions.each do |excursion| %>
     		$("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>"); 
@@ -13,21 +23,3 @@
 	}
 </script>
 
-<%- if (controller_name == 'excursions' || controller_name =='users') && page ==1%>
-	<%= content_for :javascript do %>
-	    $('#excursions ul').pageless({ 
-	                        totalPages: <%=excursions.num_pages%>,
-	                        url: window.location.href,
-	                        currentPage: <%=excursions.current_page%>,
-	                        loader: '#loader_pagination',
-	                        end: function(){
-	                          $('#loader_pagination').hide();
-	                          //$("#last_content_shown").show();
-	                        }
-	    });
-
-	    $("footer#footer").addClass("fixed-bottom");
-
-	    re_apply_backstrech_on_home();
-  	<% end %>
-<%end%>

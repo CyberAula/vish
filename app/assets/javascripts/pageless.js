@@ -106,6 +106,14 @@
     }
   };
 
+  $.pagelessStop = function () {
+    if(settings.inited===true){
+      settings.inited = false;
+      stopListener();
+    }
+    
+  }
+
   var loaderHtml = function () {
     return settings.loaderHtml ||
       '<div id="pageless-loader" style="display:none;text-align:center;width:100%;">' +
@@ -236,7 +244,7 @@
     my_num++;
     var currentPage = settingOrFunc('currentPage');
     var totalPages = settingOrFunc('totalPages');
-
+    console.log("container " + settings.container + " url " + settings.url);
     // listener was stopped or we've run out of pages
     //MODIFIED BY KIKE. Added !isLoading to still wait for the last page, this was a bug
     //XXX

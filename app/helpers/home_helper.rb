@@ -88,8 +88,6 @@ module HomeHelper
 
     query = query.where("draft is false") if (klass == Excursion) && (options[:scope] == :net || options[:scope] == :more || (options[:scope] == :me && defined?(current_subject) && subject != current_subject))
 
-    
-
     case options[:sort_by]
       when "updated_at"
         query = query.order('activity_objects.updated_at DESC')
@@ -103,9 +101,6 @@ module HomeHelper
         query = query.order('activity_objects.popularity DESC') 
     end
     
-
-
-
     query = query.limit(options[:limit]) if options[:limit] > 0
     query = query.offset(options[:offset]) if options[:offset] > 0
 
@@ -126,7 +121,7 @@ module HomeHelper
       query = query.page(options[:page]).per(ITEMS_PER_PAGE)
     end
 
-    return query.map{|ao| ao.object} if klass.is_a?(Array)
+    #return query.map{|ao| ao.object} if klass.is_a?(Array)
     query
   end
 
