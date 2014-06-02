@@ -1,10 +1,16 @@
 <div class="dropdown" id="order_by_selector">
 <span class="order_by"><%=t('order_by.title')%></span>
-  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenuOrdBy" data-toggle="dropdown"><%=t('order_by.popularity')%>
-    <i class="icon-angle-down"></i>
+  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenuOrdBy" data-toggle="dropdown"><i class="icon-eye-open"></i>
+    <%=t('order_by.relevance')%>
   </button>
 
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+   <li>
+        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type])%>" sort-by-key='relevance'>
+          <i class="icon-eye-open"></i>
+          <span><%=t('order_by.relevance')%> </span>
+        </a>
+    </li>
    <li>
         <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"popularity")%>" sort-by-key='popularity'>
           <i class="icon-dashboard"></i>

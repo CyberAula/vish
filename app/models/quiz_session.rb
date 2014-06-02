@@ -79,7 +79,7 @@ class QuizSession < ActiveRecord::Base
             #Result is an array of responses
             result.each do |response|
               if response["answer"]=="true"
-                qparams["processedResults"][response["no"].to_i-1]["n"] = qparams["processedResults"][response["no"].to_i-1]["n"].to_i + 1
+                qparams["processedResults"][response["choiceId"].to_i-1]["n"] = qparams["processedResults"][response["choiceId"].to_i-1]["n"].to_i + 1
               end
             end
           end
@@ -112,9 +112,9 @@ class QuizSession < ActiveRecord::Base
             #Result is an array of responses
             result.each do |response|
               if response["answer"]=="true"
-                qparams["processedResults"][response["no"].to_i-1]["T"] = qparams["processedResults"][response["no"].to_i-1]["T"].to_i + 1
+                qparams["processedResults"][response["choiceId"].to_i-1]["T"] = qparams["processedResults"][response["choiceId"].to_i-1]["T"].to_i + 1
               elsif response["answer"]=="false"
-                qparams["processedResults"][response["no"].to_i-1]["F"] = qparams["processedResults"][response["no"].to_i-1]["F"].to_i + 1
+                qparams["processedResults"][response["choiceId"].to_i-1]["F"] = qparams["processedResults"][response["choiceId"].to_i-1]["F"].to_i + 1
               end
             end
           end

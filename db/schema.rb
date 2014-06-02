@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140521134712) do
+ActiveRecord::Schema.define(:version => 20140529135751) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20140521134712) do
     t.string   "notification_settings"
     t.integer  "mve",                   :default => 0
     t.boolean  "is_mve",                :default => false
+    t.integer  "rankMve",               :default => 0
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
@@ -219,6 +220,20 @@ ActiveRecord::Schema.define(:version => 20140521134712) do
   add_index "events", ["activity_object_id"], :name => "events_on_activity_object_id"
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
+  create_table "exclude_auth_mves", :force => true do |t|
+    t.string   "authName"
+    t.integer  "rankTime",   :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "exclude_exc_mves", :force => true do |t|
+    t.string   "excName"
+    t.integer  "rankTime",   :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
   create_table "excursion_contributors", :force => true do |t|
     t.integer "excursion_id"
     t.integer "contributor_id"
@@ -264,6 +279,7 @@ ActiveRecord::Schema.define(:version => 20140521134712) do
     t.datetime "pdf_timestamp"
     t.integer  "mve",                :default => 0
     t.boolean  "is_mve",             :default => false
+    t.integer  "rankMve",            :default => 0
   end
 
   create_table "groups", :force => true do |t|
