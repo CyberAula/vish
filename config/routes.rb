@@ -19,11 +19,11 @@ Vish::Application.routes.draw do
   match 'legal_notice' => 'legal_notice#index'
   match 'overview' => 'overview#index'
   
-  match 'users/:user_id/resources' => 'users#resources'
-  match 'users/:user_id/events' => 'users#events'
-  match 'users/:user_id/categories' => 'users#categories'
-  match 'users/:user_id/followers' => 'users#followers'
-  match 'users/:user_id/followings' => 'users#followings'
+  match 'users/:id/resources' => 'users#resources'
+  match 'users/:id/events' => 'users#events'
+  match 'users/:id/categories' => 'users#categories'
+  match 'users/:id/followers' => 'users#followers'
+  match 'users/:id/followings' => 'users#followings'
 
   # Match the filter before the individual resources
   match 'excursions/search' => 'excursions#search'

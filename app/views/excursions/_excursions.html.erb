@@ -7,9 +7,22 @@
 
 <script>
 	$(document).ready(function(){		
-		update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>);
+		<%- if controller_name == 'excursions' && page != 0%>
+			$('#excursions ul').pageless({ 
+                          totalPages: <%=excursions.num_pages%>,
+                          url: window.location.href,
+                          currentPage: <%=excursions.current_page%>,
+                          loader: '.loader_pagination',
+                          end: function(){
+                            $('.loader_pagination').hide();
+                          }
+      		});
+		<%elsif controller_name == "users" %>
+			update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>);
 
-		re_apply_pageless("excursions");
+			re_apply_pageless("excursions");
+		<%end%>
+		
 
 		$("footer#footer").addClass("fixed-bottom");
 

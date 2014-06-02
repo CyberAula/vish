@@ -244,7 +244,6 @@
     my_num++;
     var currentPage = settingOrFunc('currentPage');
     var totalPages = settingOrFunc('totalPages');
-    console.log("container " + settings.container + " url " + settings.url);
     // listener was stopped or we've run out of pages
     //MODIFIED BY KIKE. Added !isLoading to still wait for the last page, this was a bug
     //XXX

@@ -112,32 +112,32 @@
 //important that this is here and not in document ready, so they are defined when document is ready and we can use them
 var pageless_state = {
       "excursions":{
-        "url": "<%= user_url(profile_or_current_subject) %>",
+        "url": "<%= user_url(profile_subject) %>",
         "num_pages":0,
         "current_page":0
       },
       "events":{
-        "url": "<%= user_url(profile_or_current_subject) %>/events",
+        "url": "<%= user_url(profile_subject) %>/events",
         "num_pages":0,
         "current_page":0
       },
       "resources":{
-        "url": "<%= user_url(profile_or_current_subject) %>/resources",
+        "url": "<%= user_url(profile_subject) %>/resources",
         "num_pages":0,
         "current_page":0
       },
       "categories":{
-        "url": "<%= user_url(profile_or_current_subject) %>/categories",
+        "url": "<%= user_url(profile_subject) %>/categories",
         "num_pages":0,
         "current_page":0
       },
       "followers":{
-        "url": "<%= user_url(profile_or_current_subject) %>/followers",
+        "url": "<%= user_url(profile_subject) %>/followers",
         "num_pages":0,
         "current_page":0
       },
       "followings":{
-        "url": "<%= user_url(profile_or_current_subject) %>/followings",
+        "url": "<%= user_url(profile_subject) %>/followings",
         "num_pages":0,
         "current_page":0
       }

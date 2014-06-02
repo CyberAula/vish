@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include SocialStream::Controllers::Subjects
 
-  load_and_authorize_resource :except => [:current, :resources, :events, :categories, :followers, :followings]
+  load_and_authorize_resource :except => [:current]
 
   before_filter :authenticate_user!, only: :current
 

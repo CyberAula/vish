@@ -28,16 +28,3 @@
   <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
 
 </section>
-
-<%= content_for :javascript do %>
-      $('#excursions ul').pageless({ 
-                          totalPages: <%=excursions.num_pages%>,
-                          url: window.location.href,
-                          currentPage: <%=excursions.current_page%>,
-                          loader: '.loader_pagination',
-                          end: function(){
-                            $('.loader_pagination').hide();
-                          }
-      });
-<% end %>
-
