@@ -7,12 +7,14 @@
   var resources_tab_loaded = false;
   $("#resources_tab").click(function(){
     if(resources_tab_loaded===false){
+      $('.loader_pagination').show();
       resources_tab_loaded = true;
       $.ajax({
           type : "GET",
           url : "<%= user_url(profile_subject) %>/resources",
-          success : function(html) {      
-            $("#tab3").append(html);
+          success : function(html) {
+            $('.loader_pagination').hide();      
+            $("#tab3").prepend(html);
             re_apply_pageless("resources");
           },
           error: function(){
@@ -27,12 +29,14 @@
   var events_tab_loaded = false;
   $("#events_tab").click(function(){
     if(events_tab_loaded===false){
+      $('.loader_pagination').show();
       events_tab_loaded = true;
       $.ajax({
           type : "GET",
           url : "<%= user_url(profile_subject) %>/events",
-          success : function(html) {      
-            $("#tab2").append(html);
+          success : function(html) {  
+            $('.loader_pagination').hide();
+            $("#tab2").prepend(html);
             re_apply_pageless("events");
           },
           error: function(){
@@ -47,12 +51,14 @@
   var categories_tab_loaded = false;
   $("#categories_tab").click(function(){
     if(categories_tab_loaded===false){
+      $('.loader_pagination').show();
       categories_tab_loaded = true;
       $.ajax({
           type : "GET",
           url : "<%= user_url(profile_subject) %>/categories",
           success : function(html) {      
-            $("#tab4").append(html);
+            $('.loader_pagination').hide();
+            $("#tab4").prepend(html);
             re_apply_pageless("categories");
           },
           error: function(){
@@ -67,12 +73,14 @@
   var followers_tab_loaded = false;
   $("#followers_tab").click(function(){
     if(followers_tab_loaded===false){
+      $('.loader_pagination').show();
       followers_tab_loaded = true;
       $.ajax({
           type : "GET",
           url : "<%= user_url(profile_subject) %>/followers",
-          success : function(html) {      
-            $("#followers_ul").append(html);
+          success : function(html) {
+            $('.loader_pagination').hide();
+            $("#followers_ul").prepend(html);
             re_apply_pageless("followers");
           },
           error: function(){
@@ -87,12 +95,14 @@
   var followings_tab_loaded = false;
   $("#followings_tab").click(function(){
     if(followings_tab_loaded===false){
+      $('.loader_pagination').show();
       followings_tab_loaded = true;
       $.ajax({
           type : "GET",
           url : "<%= user_url(profile_subject) %>/followings",
-          success : function(html) {      
-            $("#followings_ul").append(html);
+          success : function(html) {
+            $('.loader_pagination').hide();   
+            $("#followings_ul").prepend(html);
             re_apply_pageless("followings");
           },
           error: function(){
@@ -239,27 +249,64 @@ function re_apply_pageless(tab){
       </div>
 
       <div class="tab-pane" id="tab2">
-          
+        <div class="loader_pagination" style="display:none">
+          <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="msg" style="font-size:2em">
+              <%=t('search.loading')%>
+            </div>
+            <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+          </div>
+        </div>
       </div>
 
       <div class="tab-pane" id="tab3">
-        
+        <div class="loader_pagination" style="display:none">
+          <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="msg" style="font-size:2em">
+              <%=t('search.loading')%>
+            </div>
+            <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+          </div>
+        </div>
       </div>
 
       <div class="tab-pane" id="tab4">
-                  
+        <div class="loader_pagination" style="display:none">
+          <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="msg" style="font-size:2em">
+              <%=t('search.loading')%>
+            </div>
+            <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+          </div>
+        </div>        
       </div>
 
       <div class="tab-pane" id="tab5">
         <ul id="followers_ul">
           
         </ul>
+        <div class="loader_pagination" style="display:none">
+          <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="msg" style="font-size:2em">
+              <%=t('search.loading')%>
+            </div>
+            <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+          </div>
+        </div>
       </div>
 
       <div class="tab-pane" id="tab6">
         <ul id="followings_ul">
          
         </ul>
+        <div class="loader_pagination" style="display:none">
+          <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="msg" style="font-size:2em">
+              <%=t('search.loading')%>
+            </div>
+            <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+          </div>
+        </div>
       </div>
       
 

@@ -8,14 +8,7 @@
       	<%= render :partial => 'repositories/resource', :locals => { :resource => resource.object } %>
     <% end %> 
   </ul>
-  <div class="loader_pagination" style="display:none">
-    <div id="pageless-loader" style="text-align:center;width:100%;">
-      <div class="msg" style="font-size:2em">
-        <%=t('search.loading')%>
-      </div>
-      <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
-    </div>
-  </div>
+  
 </div>
 
 <script>

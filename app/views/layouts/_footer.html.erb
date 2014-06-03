@@ -61,7 +61,8 @@
       <li class="dropup">
 
         <div data-toggle="dropdown" class="btn dropdown-toggle">
-          <span class="idioma"><%= t('lang.title') %></span>
+          <% the_locale = current_user ? current_user.language : I18n.locale %>
+          <span class="idioma"><%= t('lang.title') %><%=image_tag("flags/" + the_locale.to_s + ".png", :title=>the_locale.to_s, :class=> "")%></span>
           <i class="icon-angle-up"></i>
         </div>  
           <ul class="dropdown-menu">
