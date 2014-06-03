@@ -7,6 +7,7 @@ class Ability
     # end
 
     can :show_favorites, Category
+    can :excursions, User
     can :resources, User
     can :events, User
     can :categories, User

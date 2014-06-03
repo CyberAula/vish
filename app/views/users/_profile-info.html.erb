@@ -14,7 +14,7 @@
           url : "<%= user_url(profile_subject) %>/resources",
           success : function(html) {
             $('.loader_pagination').hide();      
-            $("#tab3").prepend(html);
+            $("#resources_tab_ready").append(html);
             re_apply_pageless("resources");
           },
           error: function(){
@@ -36,7 +36,7 @@
           url : "<%= user_url(profile_subject) %>/events",
           success : function(html) {  
             $('.loader_pagination').hide();
-            $("#tab2").prepend(html);
+            $("#events_tab_ready").append(html);
             re_apply_pageless("events");
           },
           error: function(){
@@ -58,7 +58,7 @@
           url : "<%= user_url(profile_subject) %>/categories",
           success : function(html) {      
             $('.loader_pagination').hide();
-            $("#tab4").prepend(html);
+            $("#categories_tab_ready").append(html);
             re_apply_pageless("categories");
           },
           error: function(){
@@ -164,7 +164,7 @@ function re_apply_pageless(tab){
 
     $("#" + tab + " ul").pageless({ 
                     totalPages: pageless_state[tab].num_pages ,
-                    url: pageless_state[tab].url,
+                    url: get_url_with_sort_by(tab),
                     currentPage: pageless_state[tab].current_page,
                     loader: '.loader_pagination',
                     end: function(){
@@ -172,6 +172,14 @@ function re_apply_pageless(tab){
                     }
     });
   }
+
+function get_url_with_sort_by(tab){
+  var the_url = pageless_state[tab].url;
+  if($(".sort_by_selected") != undefined){
+    the_url = the_url + "?sort_by=" + $(".sort_by_selected").attr("sort-by-key");
+  }
+  return the_url;
+}
 
 </script>
 
@@ -185,13 +193,6 @@ function re_apply_pageless(tab){
           <span class=" hidden-phone hidden-tablet"><%=t('excursion.other')%></span>
         </a>
       </li>
-<!--events-->
-      <li>
-        <a id="events_tab" href="#tab2" data-toggle="tab">
-          <i class="icon-facetime-video"></i>
-          <span class=" hidden-phone hidden-tablet"><%=t('event.other')%></span>
-        </a>
-      </li>
 <!--resources-->      
       <li>
         <a id="resources_tab" href="#tab3" data-toggle="tab">
@@ -199,7 +200,13 @@ function re_apply_pageless(tab){
           <span class=" hidden-phone hidden-tablet"><%=t('resource.other')%></span>
         </a>
       </li>
-
+<!--events-->
+      <li>
+        <a id="events_tab" href="#tab2" data-toggle="tab">
+          <i class="icon-facetime-video"></i>
+          <span class=" hidden-phone hidden-tablet"><%=t('event.other')%></span>
+        </a>
+      </li>
       <li>
         <a id="categories_tab" href="#tab4" data-toggle="tab">
           <i class="icon-th-large"></i>
@@ -227,28 +234,23 @@ function re_apply_pageless(tab){
 
 
     <div class="tab-content">
-      <%= render partial: 'users/order_by_dropdown' %>
+      
       <div class="tab-pane active" id="tab1">
-        <div id="excursions">
-        <ul class="">
-          <% if profile_subject_is_current? %>
-            <%= render partial: 'excursions/excursion-add' %>
-          <% end %>
-          <%= render partial: 'excursions/excursions', :locals => { :scope => :me, :page => 1, :sort_by=> params[:sort_by]||"updated_at"} %>
-        </ul>
-        <div class="loader_pagination" style="display:none">
-          <div id="pageless-loader" style="text-align:center;width:100%;">
-            <div class="msg" style="font-size:2em">
-              <%=t('search.loading')%>
+          <%= render partial: 'users/order_by_dropdown_excursions' %>
+          <%= render partial: 'excursions/profile_excursions', :locals => {:scope => :me, :limit => 0, :page=> 1, :sort_by=> params[:sort_by]||"updated_at"}%>
+          <div class="loader_pagination" style="display:none">
+            <div id="pageless-loader" style="text-align:center;width:100%;">
+              <div class="msg" style="font-size:2em">
+                <%=t('search.loading')%>
+              </div>
+              <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
             </div>
-            <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
           </div>
-        </div>
-        </div>
-
       </div>
 
       <div class="tab-pane" id="tab2">
+        <%= render partial: 'users/order_by_dropdown_events' %>
+        <div id="events_tab_ready"></div>
         <div class="loader_pagination" style="display:none">
           <div id="pageless-loader" style="text-align:center;width:100%;">
             <div class="msg" style="font-size:2em">
@@ -260,6 +262,8 @@ function re_apply_pageless(tab){
       </div>
 
       <div class="tab-pane" id="tab3">
+        <%= render partial: 'users/order_by_dropdown_resources' %>
+        <div id="resources_tab_ready"></div>
         <div class="loader_pagination" style="display:none">
           <div id="pageless-loader" style="text-align:center;width:100%;">
             <div class="msg" style="font-size:2em">
@@ -271,6 +275,8 @@ function re_apply_pageless(tab){
       </div>
 
       <div class="tab-pane" id="tab4">
+        <%= render partial: 'users/order_by_dropdown_categories' %>
+        <div id="categories_tab_ready"></div>
         <div class="loader_pagination" style="display:none">
           <div id="pageless-loader" style="text-align:center;width:100%;">
             <div class="msg" style="font-size:2em">

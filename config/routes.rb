@@ -19,6 +19,7 @@ Vish::Application.routes.draw do
   match 'legal_notice' => 'legal_notice#index'
   match 'overview' => 'overview#index'
   
+  match 'users/:id/excursions' => 'users#excursions'
   match 'users/:id/resources' => 'users#resources'
   match 'users/:id/events' => 'users#events'
   match 'users/:id/categories' => 'users#categories'
