@@ -7,7 +7,7 @@
   </div>
   <ul class="dropdown-menu">
     <li>
-      <a tabindex="-1" href="<%=search_path(:browse=>"true")%>">
+      <a tabindex="-1" href="<%=search_path(:browse=>"true", :sort_by => "popularity")%>">
         <i class="icon-dashboard"></i> 
         <%=t('browse.all')%>
       </a>
@@ -15,19 +15,19 @@
 
     <li class="divider"></li>
     <li>
-      <a tabindex="-1" href="<%=search_path(:type => "excursion", :browse=>"true")%>">
+      <a tabindex="-1" href="<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "popularity")%>">
         <i class="icon-book"></i> 
         <%=t('excursion.other')%>
       </a>
     </li>
     <li>
-      <a tabindex="-1" href="<%=search_path(:type => "user", :browse=>"true")%>">
+      <a tabindex="-1" href="<%=search_path(:type => "user", :browse=>"true", :sort_by => "popularity")%>">
         <i class="icon-group"></i>
         <%=t('user.other')%>
       </a>
     </li>
     <li>
-      <a tabindex="-1" href="<%=search_path(:type => "resource", :browse=>"true")%>">
+      <a tabindex="-1" href="<%=search_path(:type => "resource", :browse=>"true", :sort_by => "popularity")%>">
         <i class="icon-file"></i>
         <%=t('resource.other')%>
       </a>
