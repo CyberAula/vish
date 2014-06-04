@@ -1,9 +1,5 @@
 = ViSH
 Virtual Science Hub, a network for exploring science.
-This branch intends to clean ViSH views to use upstream bootstrap
-
-{<img src="https://secure.travis-ci.org/ging/vish.png" />}[http://travis-ci.org/ging/vish]
-{<img src="https://gemnasium.com/ging/vish.png" />}[https://gemnasium.com/ging/vish]
 
 ViSH is a social network for scientists, teachers and pupils. It contains the infrastructure to build, share and participate in virtual excursions and help pupils discover science in areas of high relevance for the future, such as nano- and biotechnologies.  
 

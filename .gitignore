@@ -82,3 +82,5 @@ chromedriver.log
 
 # Mac files
 .DS_Store
+
+unicorn.conf
