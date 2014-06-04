@@ -4784,783 +4784,6 @@ window.Chart = function(context, options) {
     return"rgb(" + rCur + "," + gCur + "," + bCur + ")"
   }
 };
-(function(b) {
-  b.support.touch = "ontouchend" in document;
-  if(!b.support.touch) {
-    return
-  }
-  var c = b.ui.mouse.prototype, e = c._mouseInit, a;
-  function d(g, h) {
-    if(g.originalEvent.touches.length > 1) {
-      return
-    }
-    g.preventDefault();
-    var i = g.originalEvent.changedTouches[0], f = document.createEvent("MouseEvents");
-    f.initMouseEvent(h, true, true, window, 1, i.screenX, i.screenY, i.clientX, i.clientY, false, false, false, false, 0, null);
-    g.target.dispatchEvent(f)
-  }
-  c._touchStart = function(g) {
-    var f = this;
-    if(a || !f._mouseCapture(g.originalEvent.changedTouches[0])) {
-      return
-    }
-    a = true;
-    f._touchMoved = false;
-    d(g, "mouseover");
-    d(g, "mousemove");
-    d(g, "mousedown")
-  };
-  c._touchMove = function(f) {
-    if(!a) {
-      return
-    }
-    this._touchMoved = true;
-    d(f, "mousemove")
-  };
-  c._touchEnd = function(f) {
-    if(!a) {
-      return
-    }
-    d(f, "mouseup");
-    d(f, "mouseout");
-    if(!this._touchMoved) {
-      d(f, "click")
-    }
-    a = false
-  };
-  c._mouseInit = function() {
-    var f = this;
-    f.element.bind("touchstart", b.proxy(f, "_touchStart")).bind("touchmove", b.proxy(f, "_touchMove")).bind("touchend", b.proxy(f, "_touchEnd"));
-    e.call(f)
-  }
-})(jQuery);
-var VISH = VISH || {};
-VISH.VERSION = "0.8.7";
-VISH.AUTHORS = "GING";
-VISH.URL = "http://github.com/ging/vish_editor";
-VISH.Constant = VISH.Constant || {};
-VISH.Constant.Edit = "Editor";
-VISH.Constant.Viewer = "Viewer";
-VISH.Constant.AnyMode = "Both";
-VISH.Constant.NOSERVER = "noserver";
-VISH.Constant.VISH = "vish";
-VISH.Constant.STANDALONE = "node";
-VISH.Constant.UA_IE = "Microsoft Internet Explorer";
-VISH.Constant.UA_NETSCAPE = "Netscape";
-VISH.Constant.IE = "Internet Explorer";
-VISH.Constant.FIREFOX = "Mozilla Firefox";
-VISH.Constant.CHROME = "Google Chrome";
-VISH.Constant.SAFARI = "Safari";
-VISH.Constant.ANDROID_BROWSER = "Android Browser";
-VISH.Constant.EXTRA_SMALL = "extra_small";
-VISH.Constant.SMALL = "small";
-VISH.Constant.MEDIUM = "medium";
-VISH.Constant.LARGE = "large";
-VISH.Constant.THUMBNAIL = "thumbnail";
-VISH.Constant.NONE = "none";
-VISH.Constant.UNKNOWN = "Unknown";
-VISH.Constant.AGE_RANGE_MIN = 4;
-VISH.Constant.AGE_RANGE_MAX = 20;
-VISH.Constant.AGE_RANGE = VISH.Constant.AGE_RANGE_MIN + " - " + VISH.Constant.AGE_RANGE_MAX;
-VISH.Constant.DIFFICULTY = 0;
-VISH.Constant.PRESENTATION = "presentation";
-VISH.Constant.QUIZ_SIMPLE = "quiz_simple";
-VISH.Constant.STANDARD = "standard";
-VISH.Constant.SLIDESET = "slideset";
-VISH.Constant.FLASHCARD = "flashcard";
-VISH.Constant.VTOUR = "VirtualTour";
-VISH.Constant.EVIDEO = "enrichedvideo";
-VISH.Constant.GAME = "game";
-VISH.Constant.TEXT = "text";
-VISH.Constant.IMAGE = "image";
-VISH.Constant.AUDIO = "audio";
-VISH.Constant.VIDEO = "video";
-VISH.Constant.OBJECT = "object";
-VISH.Constant.SNAPSHOT = "snapshot";
-VISH.Constant.APPLET = "applet";
-VISH.Constant.QUIZ = "quiz";
-VISH.Constant.MEDIA = {};
-VISH.Constant.MEDIA.IMAGE = "image";
-VISH.Constant.MEDIA.FLASH = "swf";
-VISH.Constant.MEDIA.PDF = "pdf";
-VISH.Constant.MEDIA.YOUTUBE_VIDEO = "Youtube";
-VISH.Constant.MEDIA.HTML5_VIDEO = "HTML5_VIDEO";
-VISH.Constant.MEDIA.HTML5_AUDIO = "HTML5_AUDIO";
-VISH.Constant.MEDIA.SOUNDCLOUD_AUDIO = "Soundcloud";
-VISH.Constant.MEDIA.WEB = "web";
-VISH.Constant.MEDIA.JSON = "json";
-VISH.Constant.MEDIA.DOC = "doc";
-VISH.Constant.MEDIA.PPT = "ppt";
-VISH.Constant.MEDIA.SCORM_PACKAGE = "scormpackage";
-VISH.Constant.MEDIA.WEB_APP = "webapp";
-VISH.Constant.MEDIA.IMS_QTI_QUIZ = "IMS_QTI_QUIZ";
-VISH.Constant.WRAPPER = {};
-VISH.Constant.WRAPPER.EMBED = "EMBED";
-VISH.Constant.WRAPPER.OBJECT = "OBJECT";
-VISH.Constant.WRAPPER.IFRAME = "IFRAME";
-VISH.Constant.WRAPPER.VIDEO = "VIDEO";
-VISH.Constant.WRAPPER.AUDIO = "AUDIO";
-VISH.Constant.QZ_TYPE = {};
-VISH.Constant.QZ_TYPE.OPEN = "open";
-VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
-VISH.Constant.QZ_TYPE.TF = "truefalse";
-VISH.Constant.QZ_TYPE.SORTING = "sorting";
-VISH.Constant.QZ_MODE = {};
-VISH.Constant.QZ_MODE.SELFA = "selfA";
-VISH.Constant.QZ_MODE.RT = "realTime";
-VISH.Constant.TextDefault = 12;
-VISH.Constant.TextBase = 12;
-VISH.Constant.Clipboard = {};
-VISH.Constant.Clipboard.Slide = "slide";
-VISH.Constant.Clipboard.LocalStorageStack = "VishEditorClipboardStack";
-VISH.Constant.Themes = {};
-VISH.Constant.Themes.Default = "theme1";
-VISH.Constant.Animations = {};
-VISH.Constant.Animations.Default = "animation1";
-VISH.Constant.Event = {};
-VISH.Constant.Event.onMessage = "onMessage";
-VISH.Constant.Event.onGoToSlide = "onGoToSlide";
-VISH.Constant.Event.onPlayVideo = "onPlayVideo";
-VISH.Constant.Event.onPauseVideo = "onPauseVideo";
-VISH.Constant.Event.onSeekVideo = "onSeekVideo";
-VISH.Constant.Event.onSubslideOpen = "onSubslideOpen";
-VISH.Constant.Event.onSubslideClosed = "onSubslideClosed";
-VISH.Constant.Event.onSetSlave = "onSetSlave";
-VISH.Constant.Event.onPreventDefault = "onPreventDefault";
-VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
-VISH.Constant.Event.onSelectedSlides = "onSelectedSlides";
-VISH.Constant.Event.onVEFocusChange = "onVEFocusChange";
-VISH.Constant.Event.onSimpleClick = "onSimpleClick";
-VISH.Constant.Event.onLongClick = "onLongClick";
-VISH.Constant.Event.onUnknownTouchMovement = "onUnknownTouchMovement";
-VISH.Constant.Storage = {};
-VISH.Constant.Storage.Device = "Device";
-VISH.Constant.VTour = {};
-VISH.Constant.VTour.DEFAULT_MAP = "roadmap";
-VISH.Constant.VTour.ROADMAP = "roadmap";
-VISH.Constant.VTour.SERVICES = {};
-VISH.Constant.VTour.SERVICES.GMaps = "Google Maps";
-VISH.Constant.EVideo = {};
-VISH.Constant.EVideo.Status = {};
-VISH.Constant.EVideo.Status.Ended = 0;
-VISH.Constant.EVideo.Status.Playing = 1;
-VISH.Constant.EVideo.Status.Paused = 2;
-VISH.Constant.INTRO = 13;
-VISH.Configuration = function(V, $, undefined) {
-  var configuration;
-  var init = function(myConfiguration) {
-    configuration = myConfiguration;
-    _initPaths()
-  };
-  var _initPaths = function() {
-    V.ImagesPath = configuration["ImagesPath"];
-    V.StylesheetsPath = configuration["StylesheetsPath"];
-    V.UploadImagePath = configuration["uploadImagePath"];
-    V.UploadObjectPath = configuration["uploadObjectPath"];
-    V.UploadPresentationPath = configuration["uploadPresentationPath"];
-    V.UploadPDF2PPath = configuration["uploadPDF2PPath"];
-    V.SearchLREPath = configuration["SearchLREPath"]
-  };
-  var applyConfiguration = function() {
-    if(configuration["presentationSettings"]) {
-      if(!configuration["presentationTags"]) {
-        $(".tagBoxUpload").css("display", "none");
-        $("#tagBoxIntro").css("display", "none")
-      }
-      if(!configuration["presentationThumbnails"]) {
-        $("#thumbnails_in_excursion_details").css("display", "none")
-      }
-    }
-    if(!configuration["VishLives"]) {
-      $(".addLive").css("display", "none")
-    }
-    if(!configuration["VishRepo"]) {
-      $("#tab_pic_repo").css("display", "none");
-      $("#tab_object_repo").css("display", "none");
-      $("#tab_video_repo").css("display", "none")
-    }
-    if(!configuration["Upload"]) {
-      $("#tab_pic_upload").css("display", "none");
-      $("#tab_object_upload").css("display", "none")
-    }
-    if(!configuration["Youtube"]) {
-      $("#tab_video_youtube").css("display", "none")
-    }
-    if(!configuration["Vimeo"]) {
-      $("#tab_video_vimeo").css("display", "none")
-    }
-    if(!configuration["LRE"]) {
-      $("#tab_pic_lre").css("display", "none");
-      $("#tab_object_lre").css("display", "none")
-    }
-    if(!configuration["Flickr"]) {
-      $("#tab_pic_flikr").css("display", "none")
-    }
-  };
-  var getConfiguration = function() {
-    return configuration
-  };
-  return{init:init, applyConfiguration:applyConfiguration, getConfiguration:getConfiguration}
-}(VISH, jQuery);
-var VISH = VISH || {};
-VISH.Constant = VISH.Constant || {};
-VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
-VISH.Constant.QZ_TYPE.OPEN = "open";
-VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
-VISH.Constant.QZ_TYPE.TF = "truefalse";
-VISH.QuizCharts = function(V, $, undefined) {
-  var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
-  var pieLetterColor = ["#000"];
-  var choices = {};
-  var language = "en";
-  var i18n = {"es":{"i.T":"V", "i.F":"F"}, "default":{"i.T":"T", "i.F":"F"}};
-  var translations = i18n["default"];
-  var init = function(options) {
-    if(options && options.lang) {
-      language = options.lang
-    }
-    if(i18n[language]) {
-      translations = i18n[language]
-    }
-  };
-  var _getTrans = function(s, params) {
-    if(translations[s]) {
-      return _getTransWithParams(translations[s], params)
-    }
-    return _getTransWithParams(i18n["default"][s], params)
-  };
-  var _getTransWithParams = function(trans, params) {
-    if(typeof params != "object") {
-      return trans
-    }
-    for(var key in params) {
-      var stringToReplace = "#{" + key + "}";
-      if(trans.indexOf(stringToReplace) != -1) {
-        trans = trans.replaceAll(stringToReplace, params[key])
-      }
-    }
-    return trans
-  };
-  var drawQuizChart = function(canvas, quizJSON, results, options) {
-    var quizParams = _getQuizParams(quizJSON);
-    var answersList = _getAnswers(results);
-    switch(quizParams.quizType) {
-      case V.Constant.QZ_TYPE.OPEN:
-        break;
-      case V.Constant.QZ_TYPE.MCHOICE:
-        if(quizParams.extras.multipleAnswer == true) {
-          _drawMcChoiceMAnswerQuizChart(canvas, quizParams, answersList, options)
-        }else {
-          _drawMcChoiceQuizChart(canvas, quizParams, answersList, options)
-        }
-        break;
-      case V.Constant.QZ_TYPE.TF:
-        _drawTFQuizChart(canvas, quizParams, answersList, options);
-        break;
-      default:
-        return null;
-        break
-    }
-  };
-  var _drawMcChoiceQuizChart = function(canvas, quizParams, answersList, options) {
-    var pieFragments = {};
-    var data = [];
-    var pBCL = pieBackgroundColor.length;
-    var pLCL = pieLetterColor.length;
-    var choicesQuantity = quizParams.choices.length;
-    for(var i = 0;i < choicesQuantity;i++) {
-      var choiceId = quizParams.choices[i].id;
-      pieFragments[choiceId] = {};
-      pieFragments[choiceId].value = 0;
-      pieFragments[choiceId].label = String.fromCharCode(96 + i + 1);
-      pieFragments[choiceId].color = pieBackgroundColor[i % pBCL];
-      pieFragments[choiceId].labelColor = pieLetterColor[i % pLCL];
-      pieFragments[choiceId].labelFontSize = "16";
-      pieFragments[choiceId].tooltipLabel = _purgeString(quizParams.choices[i].value)
-    }
-    var alL = answersList.length;
-    for(var j = 0;j < alL;j++) {
-      var answers = answersList[j];
-      var aL = answers.length;
-      for(var k = 0;k < aL;k++) {
-        var answer = answers[k];
-        var choiceId = answer.choiceId;
-        if(answer.answer === "true" && pieFragments[choiceId]) {
-          pieFragments[choiceId].value++
-        }
-      }
-    }
-    for(var l = 0;l < choicesQuantity;l++) {
-      var choiceId = quizParams.choices[l].id;
-      data.push(pieFragments[choiceId])
-    }
-    var ctx = $(canvas).get(0).getContext("2d");
-    var chartOptions = {showTooltips:true, animation:false};
-    if(options && options.animation === true) {
-      chartOptions.animation = true;
-      chartOptions.onAnimationComplete = function() {
-        if(typeof options.callback == "function") {
-          options.callback()
-        }
-      }
-    }
-    var myNewChart = (new Chart(ctx)).Pie(data, chartOptions);
-    if(options && options.animation != true && typeof options.callback == "function") {
-      options.callback()
-    }
-  };
-  var _drawMcChoiceMAnswerQuizChart = function(canvas, quizParams, answersList, options) {
-    var labels = {};
-    var tooltipLabels = {};
-    var dataValues = {};
-    var maxValue = 0;
-    var scaleSteps = 10;
-    var choicesQuantity = quizParams.choices.length;
-    for(var i = 0;i < choicesQuantity;i++) {
-      var choiceId = quizParams.choices[i].id;
-      labels[choiceId] = String.fromCharCode(96 + i + 1);
-      tooltipLabels[choiceId] = _purgeString(quizParams.choices[i].value);
-      dataValues[choiceId] = 0
-    }
-    var alL = answersList.length;
-    for(var j = 0;j < alL;j++) {
-      var answers = answersList[j];
-      var aL = answers.length;
-      for(var k = 0;k < aL;k++) {
-        var answer = answers[k];
-        var choiceId = answer.choiceId;
-        if(answer.answer === "true") {
-          dataValues[choiceId]++
-        }
-      }
-    }
-    for(var l = 0;l < choicesQuantity;l++) {
-      var choiceId = quizParams.choices[l].id;
-      if(dataValues[choiceId] > maxValue) {
-        maxValue = dataValues[choiceId]
-      }
-    }
-    if(maxValue < 10) {
-      scaleSteps = Math.max(1, maxValue)
-    }
-    var ctx = $(canvas).get(0).getContext("2d");
-    var data = {labels:$.map(labels, function(v) {
-      return v
-    }), tooltipLabels:$.map(tooltipLabels, function(v) {
-      return v
-    }), datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:$.map(dataValues, function(v) {
-      return v
-    })}]};
-    var chartOptions = {showTooltips:true, animation:false, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps};
-    if(options && options.animation === true) {
-      chartOptions.animation = true;
-      chartOptions.onAnimationComplete = function() {
-        if(typeof options.callback == "function") {
-          options.callback()
-        }
-      }
-    }
-    var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
-    if(options && options.animation != true && typeof options.callback == "function") {
-      options.callback()
-    }
-  };
-  var _drawTFQuizChart = function(canvas, quizParams, answersList, options) {
-    var labels = {};
-    var tooltipLabels = {};
-    var dataTrue = {};
-    var dataFalse = {};
-    var maxValue = 0;
-    var scaleSteps = 10;
-    var choicesQuantity = quizParams.choices.length;
-    for(var i = 0;i < choicesQuantity;i++) {
-      var choiceId = quizParams.choices[i].id;
-      labels[choiceId] = _getTrans("i.T") + "       " + String.fromCharCode(96 + i + 1) + "       " + _getTrans("i.F");
-      tooltipLabels[choiceId] = _purgeString(quizParams.choices[i].value);
-      dataTrue[choiceId] = 0;
-      dataFalse[choiceId] = 0
-    }
-    var alL = answersList.length;
-    for(var j = 0;j < alL;j++) {
-      var answers = answersList[j];
-      var aL = answers.length;
-      for(var k = 0;k < aL;k++) {
-        var answer = answers[k];
-        var choiceId = answer.choiceId;
-        if(answer.answer === "true") {
-          dataTrue[choiceId]++
-        }else {
-          dataFalse[choiceId]++
-        }
-      }
-    }
-    for(var l = 0;l < choicesQuantity;l++) {
-      var choiceId = quizParams.choices[l].id;
-      if(dataTrue[choiceId] > maxValue) {
-        maxValue = dataTrue[choiceId]
-      }
-      if(dataFalse[choiceId] > maxValue) {
-        maxValue = dataFalse[choiceId]
-      }
-    }
-    if(maxValue < 10) {
-      scaleSteps = Math.max(1, maxValue)
-    }
-    var ctx = $(canvas).get(0).getContext("2d");
-    var data = {labels:$.map(labels, function(v) {
-      return v
-    }), tooltipLabels:$.map(tooltipLabels, function(v) {
-      return v
-    }), datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:$.map(dataTrue, function(v) {
-      return v
-    })}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:$.map(dataFalse, function(v) {
-      return v
-    })}]};
-    var chartOptions = {showTooltips:true, animation:false, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps};
-    if(options && options.animation === true) {
-      chartOptions.animation = true;
-      chartOptions.onAnimationComplete = function() {
-        if(typeof options.callback == "function") {
-          options.callback()
-        }
-      }
-    }
-    var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
-    if(options && options.animation != true && typeof options.callback == "function") {
-      options.callback()
-    }
-  };
-  var _getAnswers = function(results) {
-    var answers = [];
-    var rL = results.length;
-    for(var i = 0;i < rL;i++) {
-      answers.push(JSON.parse(results[i].answer))
-    }
-    return answers
-  };
-  var _getQuizParams = function(quiz) {
-    var params = {};
-    params.extras = {};
-    try {
-      var quizEls = quiz["slides"][0]["elements"];
-      var quizElsL = quizEls.length;
-      for(var i = 0;i < quizElsL;i++) {
-        if(quizEls[i]["type"] === "quiz") {
-          var quizEl = quizEls[i];
-          params.quizType = quizEl["quiztype"];
-          if(params.quizType == V.Constant.QZ_TYPE.MCHOICE) {
-            if(quizEl.extras && quizEl.extras.multipleAnswer == true) {
-              params.extras.multipleAnswer = true
-            }
-          }
-          params.choices = quizEl["choices"];
-          params.nAnswers = params.choices.length
-        }
-      }
-    }catch(e) {
-    }
-    return params
-  };
-  var _purgeString = function(str) {
-    if(typeof str != "string") {
-      return str
-    }
-    str = str.replace(/\u00e2\u20ac\u2039/g, "");
-    return str.replace(/\u00c2/g, "")
-  };
-  return{init:init, drawQuizChart:drawQuizChart}
-}(VISH, jQuery);
-var VISH = VISH || {};
-VISH.Constant = VISH.Constant || {};
-VISH.Constant.Event = {};
-VISH.Constant.Event.onMessage = "onMessage";
-VISH.Constant.Event.onGoToSlide = "onGoToSlide";
-VISH.Constant.Event.onPlayVideo = "onPlayVideo";
-VISH.Constant.Event.onPauseVideo = "onPauseVideo";
-VISH.Constant.Event.onSeekVideo = "onSeekVideo";
-VISH.Constant.Event.onSubslideOpen = "onSubslideOpen";
-VISH.Constant.Event.onSubslideClosed = "onSubslideClosed";
-VISH.Constant.Event.onSetSlave = "onSetSlave";
-VISH.Constant.Event.onPreventDefault = "onPreventDefault";
-VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
-VISH.Constant.Event.onSelectedSlides = "onSelectedSlides";
-VISH.Constant.Event.onVEFocusChange = "onVEFocusChange";
-VISH.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello";
-VISH.IframeAPI = function(V, undefined) {
-  var helloAttempts;
-  var maxHelloAttempts = 40;
-  var helloTimeout;
-  var options;
-  var listeners;
-  var init = function(initOptions) {
-    options = initOptions;
-    if(window.addEventListener) {
-      window.addEventListener("message", _onWrapperedVEMessage, false)
-    }else {
-      if(window.attachEvent) {
-        window.attachEvent("message", _onWrapperedVEMessage)
-      }
-    }
-    listeners = new Array;
-    _startHelloExchange()
-  };
-  var _startHelloExchange = function() {
-    registerCallback(VISH.Constant.Event.onIframeMessengerHello, function(origin) {
-      if(helloTimeout) {
-        clearTimeout(helloTimeout)
-      }
-      _applyOptions(origin);
-      if(options && typeof options.callback === "function") {
-        options.callback(origin)
-      }
-    });
-    helloAttempts = 0;
-    helloTimeout = setInterval(function() {
-      _sayHello()
-    }, 1250);
-    _sayHello()
-  };
-  var _sayHello = function() {
-    var helloMessage = _createMessage(VISH.Constant.Event.onIframeMessengerHello);
-    sendMessage(helloMessage, "*");
-    helloAttempts++;
-    if(helloAttempts >= maxHelloAttempts && helloTimeout) {
-      clearTimeout(helloTimeout)
-    }
-  };
-  var _sendPreventDefaults = function(preventDefaults, destination) {
-    var params = {};
-    params.preventDefaults = preventDefaults;
-    var VEMessage = _createMessage(VISH.Constant.Event.onPreventDefault, params, null, destination);
-    sendMessage(VEMessage, destination)
-  };
-  var _applyOptions = function(destination) {
-    if(options) {
-      if(options.preventDefault === true) {
-        _sendPreventDefaults(true, destination)
-      }
-    }
-  };
-  var registerCallback = function(listenedEvent, callback) {
-    if(callback) {
-      listeners[listenedEvent] = callback
-    }
-  };
-  var unRegisterCallback = function(listenedEvent) {
-    if(listenedEvent in listeners) {
-      listeners[listenedEvent] = null
-    }
-  };
-  function message(VEevent, params, origin, destination) {
-    this.vishEditor = true;
-    this.VEevent = VEevent;
-    if(params) {
-      this.params = params
-    }
-    if(origin) {
-      this.origin = origin
-    }else {
-      this.origin = "?"
-    }
-    if(destination) {
-      this.destination = destination
-    }else {
-      this.destination = "*"
-    }
-  }
-  var _createMessage = function(VEevent, params, origin, destination) {
-    var VEMessage = new message(VEevent, params, origin, destination);
-    return JSON.stringify(VEMessage)
-  };
-  var _validateVEMessage = function(VEMessage) {
-    if(typeof VEMessage !== "string") {
-      return false
-    }
-    try {
-      var VEMessageObject = JSON.parse(VEMessage);
-      if(typeof VEMessageObject !== "object") {
-        return false
-      }
-      if(VEMessageObject.vishEditor !== true) {
-        return false
-      }
-      if(!VEMessageObject.VEevent) {
-        return false
-      }
-    }catch(e) {
-      return false
-    }
-    return true
-  };
-  var sendMessage = function(VEMessage, destination) {
-    if(typeof destination === "string") {
-      if(destination === "*") {
-        _broadcastMessage(VEMessage)
-      }else {
-        var iframe = document.getElementById(destination);
-        if(iframe && iframe.contentWindow) {
-          iframe.contentWindow.postMessage(VEMessage, "*")
-        }
-      }
-    }else {
-      if(_isArray(destination) && typeof destination[0] == "string") {
-        for(var i = 0;i < destination.length;i++) {
-          var iframe = document.getElementById(destination[i]);
-          if(iframe && iframe.contentWindow) {
-            iframe.contentWindow.postMessage(VEMessage, "*")
-          }
-        }
-      }else {
-        _broadcastMessage(VEMessage)
-      }
-    }
-  };
-  var _broadcastMessage = function(VEMessage) {
-    var allVEIframes = document.querySelectorAll(".vishEditorIframe");
-    for(var i = 0;i < allVEIframes.length;i++) {
-      allVEIframes[i].contentWindow.postMessage(VEMessage, "*")
-    }
-  };
-  var _onWrapperedVEMessage = function(wrapperedVEMessage) {
-    if(wrapperedVEMessage) {
-      if(_validateVEMessage(wrapperedVEMessage.data)) {
-        _processVEMessage(wrapperedVEMessage.data)
-      }
-    }
-  };
-  var _processVEMessage = function(VEMessage) {
-    var VEMessageObject = JSON.parse(VEMessage);
-    if(listeners[VISH.Constant.Event.onMessage]) {
-      listeners[VISH.Constant.Event.onMessage](VEMessage, VEMessageObject.origin)
-    }
-    var callback = listeners[VEMessageObject.VEevent];
-    if(!callback) {
-      return
-    }
-    switch(VEMessageObject.VEevent) {
-      case VISH.Constant.Event.onGoToSlide:
-        if(VEMessageObject.params) {
-          callback(VEMessageObject.params.slideNumber, VEMessageObject.origin)
-        }
-        break;
-      case VISH.Constant.Event.onPlayVideo:
-        if(VEMessageObject.params) {
-          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
-        }
-        break;
-      case VISH.Constant.Event.onPauseVideo:
-        if(VEMessageObject.params) {
-          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
-        }
-        break;
-      case VISH.Constant.Event.onSeekVideo:
-        if(VEMessageObject.params) {
-          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
-        }
-        break;
-      case VISH.Constant.Event.onSubslideOpen:
-        if(VEMessageObject.params) {
-          callback(VEMessageObject.params.slideId, VEMessageObject.origin)
-        }
-        break;
-      case VISH.Constant.Event.onSubslideClosed:
-        if(VEMessageObject.params) {
-          callback(VEMessageObject.params.slideId, VEMessageObject.origin)
-        }
-        break;
-      case VISH.Constant.Event.onVEFocusChange:
-        if(VEMessageObject.params) {
-          callback(VEMessageObject.params.focus, VEMessageObject.origin)
-        }
-        break;
-      case VISH.Constant.Event.onIframeMessengerHello:
-        callback(VEMessageObject.origin);
-        break;
-      default:
-        _print("VISH.Messenger.Proceesor Error: Unrecognized event: " + VEMessageObject.VEevent);
-        break
-    }
-  };
-  var goToSlide = function(slideNumber, destination) {
-    var params = {};
-    params.slideNumber = slideNumber;
-    var VEMessage = _createMessage(VISH.Constant.Event.onGoToSlide, params, null, destination);
-    sendMessage(VEMessage, destination)
-  };
-  var playVideo = function(videoId, currentTime, videoSlideNumber, destination) {
-    var params = {};
-    params.videoId = videoId;
-    params.currentTime = currentTime;
-    params.slideNumber = videoSlideNumber;
-    var VEMessage = _createMessage(VISH.Constant.Event.onPlayVideo, params, null, destination);
-    sendMessage(VEMessage, destination)
-  };
-  var pauseVideo = function(videoId, currentTime, videoSlideNumber, destination) {
-    var params = {};
-    params.videoId = videoId;
-    params.currentTime = currentTime;
-    params.slideNumber = videoSlideNumber;
-    var VEMessage = _createMessage(VISH.Constant.Event.onPauseVideo, params, null, destination);
-    sendMessage(VEMessage, destination)
-  };
-  var seekVideo = function(videoId, currentTime, videoSlideNumber, destination) {
-    var params = {};
-    params.videoId = videoId;
-    params.currentTime = currentTime;
-    params.slideNumber = videoSlideNumber;
-    var VEMessage = _createMessage(VISH.Constant.Event.onSeekVideo, params, null, destination);
-    sendMessage(VEMessage, destination)
-  };
-  var openSubslide = function(slideId, destination) {
-    var params = {};
-    params.slideId = slideId;
-    var VEMessage = _createMessage(VISH.Constant.Event.onSubslideOpen, params, null, destination);
-    sendMessage(VEMessage, destination)
-  };
-  var closeSubslide = function(slideId, destination) {
-    var params = {};
-    params.slideId = slideId;
-    var VEMessage = _createMessage(VISH.Constant.Event.onSubslideClosed, params, null, destination);
-    sendMessage(VEMessage, destination)
-  };
-  var setSlave = function(slave, destination) {
-    var params = {};
-    params.slave = slave;
-    var VEMessage = _createMessage(VISH.Constant.Event.onSetSlave, params, null, destination);
-    sendMessage(VEMessage, destination)
-  };
-  var setMaster = function(master) {
-    var params = {};
-    var allVEIframes = document.querySelectorAll(".vishEditorIframe");
-    for(var i = 0;i < allVEIframes.length;i++) {
-      if(allVEIframes[i].id !== master) {
-        params.slave = true
-      }else {
-        params.slave = false
-      }
-      var destination = allVEIframes[i].id;
-      var VEMessage = _createMessage(VISH.Constant.Event.onSetSlave, params, null, destination);
-      sendMessage(VEMessage, destination)
-    }
-  };
-  var allowExitWithoutConfirmation = function(destination) {
-    var params = {};
-    var VEMessage = _createMessage(VISH.Constant.Event.allowExitWithoutConfirmation, params, null, destination);
-    sendMessage(VEMessage, destination)
-  };
-  var _print = function(objectToPrint) {
-    if(console && console.log) {
-      console.log(objectToPrint)
-    }
-  };
-  var _isArray = function(object) {
-    if(typeof object !== "undefined") {
-      return object.constructor === Array
-    }
-    return false
-  };
-  return{init:init, registerCallback:registerCallback, unRegisterCallback:unRegisterCallback, sendMessage:sendMessage, setSlave:setSlave, setMaster:setMaster, allowExitWithoutConfirmation:allowExitWithoutConfirmation, goToSlide:goToSlide, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, openSubslide:openSubslide, closeSubslide:closeSubslide}
-}(VISH);
 (function(e, t) {
   function i(t, n) {
     var r, i, o, u = t.nodeName.toLowerCase();
@@ -9065,6 +8288,783 @@ window.Modernizr = function(a, b, c) {
 }, Modernizr.addTest("ie8compat", function() {
   return!window.addEventListener && document.documentMode && document.documentMode === 7
 });
+(function(b) {
+  b.support.touch = "ontouchend" in document;
+  if(!b.support.touch) {
+    return
+  }
+  var c = b.ui.mouse.prototype, e = c._mouseInit, a;
+  function d(g, h) {
+    if(g.originalEvent.touches.length > 1) {
+      return
+    }
+    g.preventDefault();
+    var i = g.originalEvent.changedTouches[0], f = document.createEvent("MouseEvents");
+    f.initMouseEvent(h, true, true, window, 1, i.screenX, i.screenY, i.clientX, i.clientY, false, false, false, false, 0, null);
+    g.target.dispatchEvent(f)
+  }
+  c._touchStart = function(g) {
+    var f = this;
+    if(a || !f._mouseCapture(g.originalEvent.changedTouches[0])) {
+      return
+    }
+    a = true;
+    f._touchMoved = false;
+    d(g, "mouseover");
+    d(g, "mousemove");
+    d(g, "mousedown")
+  };
+  c._touchMove = function(f) {
+    if(!a) {
+      return
+    }
+    this._touchMoved = true;
+    d(f, "mousemove")
+  };
+  c._touchEnd = function(f) {
+    if(!a) {
+      return
+    }
+    d(f, "mouseup");
+    d(f, "mouseout");
+    if(!this._touchMoved) {
+      d(f, "click")
+    }
+    a = false
+  };
+  c._mouseInit = function() {
+    var f = this;
+    f.element.bind("touchstart", b.proxy(f, "_touchStart")).bind("touchmove", b.proxy(f, "_touchMove")).bind("touchend", b.proxy(f, "_touchEnd"));
+    e.call(f)
+  }
+})(jQuery);
+var VISH = VISH || {};
+VISH.VERSION = "0.8.7";
+VISH.AUTHORS = "GING";
+VISH.URL = "http://github.com/ging/vish_editor";
+VISH.Constant = VISH.Constant || {};
+VISH.Constant.Edit = "Editor";
+VISH.Constant.Viewer = "Viewer";
+VISH.Constant.AnyMode = "Both";
+VISH.Constant.NOSERVER = "noserver";
+VISH.Constant.VISH = "vish";
+VISH.Constant.STANDALONE = "node";
+VISH.Constant.UA_IE = "Microsoft Internet Explorer";
+VISH.Constant.UA_NETSCAPE = "Netscape";
+VISH.Constant.IE = "Internet Explorer";
+VISH.Constant.FIREFOX = "Mozilla Firefox";
+VISH.Constant.CHROME = "Google Chrome";
+VISH.Constant.SAFARI = "Safari";
+VISH.Constant.ANDROID_BROWSER = "Android Browser";
+VISH.Constant.EXTRA_SMALL = "extra_small";
+VISH.Constant.SMALL = "small";
+VISH.Constant.MEDIUM = "medium";
+VISH.Constant.LARGE = "large";
+VISH.Constant.THUMBNAIL = "thumbnail";
+VISH.Constant.NONE = "none";
+VISH.Constant.UNKNOWN = "Unknown";
+VISH.Constant.AGE_RANGE_MIN = 4;
+VISH.Constant.AGE_RANGE_MAX = 20;
+VISH.Constant.AGE_RANGE = VISH.Constant.AGE_RANGE_MIN + " - " + VISH.Constant.AGE_RANGE_MAX;
+VISH.Constant.DIFFICULTY = 0;
+VISH.Constant.PRESENTATION = "presentation";
+VISH.Constant.QUIZ_SIMPLE = "quiz_simple";
+VISH.Constant.STANDARD = "standard";
+VISH.Constant.SLIDESET = "slideset";
+VISH.Constant.FLASHCARD = "flashcard";
+VISH.Constant.VTOUR = "VirtualTour";
+VISH.Constant.EVIDEO = "enrichedvideo";
+VISH.Constant.GAME = "game";
+VISH.Constant.TEXT = "text";
+VISH.Constant.IMAGE = "image";
+VISH.Constant.AUDIO = "audio";
+VISH.Constant.VIDEO = "video";
+VISH.Constant.OBJECT = "object";
+VISH.Constant.SNAPSHOT = "snapshot";
+VISH.Constant.APPLET = "applet";
+VISH.Constant.QUIZ = "quiz";
+VISH.Constant.MEDIA = {};
+VISH.Constant.MEDIA.IMAGE = "image";
+VISH.Constant.MEDIA.FLASH = "swf";
+VISH.Constant.MEDIA.PDF = "pdf";
+VISH.Constant.MEDIA.YOUTUBE_VIDEO = "Youtube";
+VISH.Constant.MEDIA.HTML5_VIDEO = "HTML5_VIDEO";
+VISH.Constant.MEDIA.HTML5_AUDIO = "HTML5_AUDIO";
+VISH.Constant.MEDIA.SOUNDCLOUD_AUDIO = "Soundcloud";
+VISH.Constant.MEDIA.WEB = "web";
+VISH.Constant.MEDIA.JSON = "json";
+VISH.Constant.MEDIA.DOC = "doc";
+VISH.Constant.MEDIA.PPT = "ppt";
+VISH.Constant.MEDIA.SCORM_PACKAGE = "scormpackage";
+VISH.Constant.MEDIA.WEB_APP = "webapp";
+VISH.Constant.MEDIA.IMS_QTI_QUIZ = "IMS_QTI_QUIZ";
+VISH.Constant.WRAPPER = {};
+VISH.Constant.WRAPPER.EMBED = "EMBED";
+VISH.Constant.WRAPPER.OBJECT = "OBJECT";
+VISH.Constant.WRAPPER.IFRAME = "IFRAME";
+VISH.Constant.WRAPPER.VIDEO = "VIDEO";
+VISH.Constant.WRAPPER.AUDIO = "AUDIO";
+VISH.Constant.QZ_TYPE = {};
+VISH.Constant.QZ_TYPE.OPEN = "open";
+VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
+VISH.Constant.QZ_TYPE.TF = "truefalse";
+VISH.Constant.QZ_TYPE.SORTING = "sorting";
+VISH.Constant.QZ_MODE = {};
+VISH.Constant.QZ_MODE.SELFA = "selfA";
+VISH.Constant.QZ_MODE.RT = "realTime";
+VISH.Constant.TextDefault = 12;
+VISH.Constant.TextBase = 12;
+VISH.Constant.Clipboard = {};
+VISH.Constant.Clipboard.Slide = "slide";
+VISH.Constant.Clipboard.LocalStorageStack = "VishEditorClipboardStack";
+VISH.Constant.Themes = {};
+VISH.Constant.Themes.Default = "theme1";
+VISH.Constant.Animations = {};
+VISH.Constant.Animations.Default = "animation1";
+VISH.Constant.Event = {};
+VISH.Constant.Event.onMessage = "onMessage";
+VISH.Constant.Event.onGoToSlide = "onGoToSlide";
+VISH.Constant.Event.onPlayVideo = "onPlayVideo";
+VISH.Constant.Event.onPauseVideo = "onPauseVideo";
+VISH.Constant.Event.onSeekVideo = "onSeekVideo";
+VISH.Constant.Event.onSubslideOpen = "onSubslideOpen";
+VISH.Constant.Event.onSubslideClosed = "onSubslideClosed";
+VISH.Constant.Event.onSetSlave = "onSetSlave";
+VISH.Constant.Event.onPreventDefault = "onPreventDefault";
+VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
+VISH.Constant.Event.onSelectedSlides = "onSelectedSlides";
+VISH.Constant.Event.onVEFocusChange = "onVEFocusChange";
+VISH.Constant.Event.onSimpleClick = "onSimpleClick";
+VISH.Constant.Event.onLongClick = "onLongClick";
+VISH.Constant.Event.onUnknownTouchMovement = "onUnknownTouchMovement";
+VISH.Constant.Storage = {};
+VISH.Constant.Storage.Device = "Device";
+VISH.Constant.VTour = {};
+VISH.Constant.VTour.DEFAULT_MAP = "roadmap";
+VISH.Constant.VTour.ROADMAP = "roadmap";
+VISH.Constant.VTour.SERVICES = {};
+VISH.Constant.VTour.SERVICES.GMaps = "Google Maps";
+VISH.Constant.EVideo = {};
+VISH.Constant.EVideo.Status = {};
+VISH.Constant.EVideo.Status.Ended = 0;
+VISH.Constant.EVideo.Status.Playing = 1;
+VISH.Constant.EVideo.Status.Paused = 2;
+VISH.Constant.INTRO = 13;
+VISH.Configuration = function(V, $, undefined) {
+  var configuration;
+  var init = function(myConfiguration) {
+    configuration = myConfiguration;
+    _initPaths()
+  };
+  var _initPaths = function() {
+    V.ImagesPath = configuration["ImagesPath"];
+    V.StylesheetsPath = configuration["StylesheetsPath"];
+    V.UploadImagePath = configuration["uploadImagePath"];
+    V.UploadObjectPath = configuration["uploadObjectPath"];
+    V.UploadPresentationPath = configuration["uploadPresentationPath"];
+    V.UploadPDF2PPath = configuration["uploadPDF2PPath"];
+    V.SearchLREPath = configuration["SearchLREPath"]
+  };
+  var applyConfiguration = function() {
+    if(configuration["presentationSettings"]) {
+      if(!configuration["presentationTags"]) {
+        $(".tagBoxUpload").css("display", "none");
+        $("#tagBoxIntro").css("display", "none")
+      }
+      if(!configuration["presentationThumbnails"]) {
+        $("#thumbnails_in_excursion_details").css("display", "none")
+      }
+    }
+    if(!configuration["VishLives"]) {
+      $(".addLive").css("display", "none")
+    }
+    if(!configuration["VishRepo"]) {
+      $("#tab_pic_repo").css("display", "none");
+      $("#tab_object_repo").css("display", "none");
+      $("#tab_video_repo").css("display", "none")
+    }
+    if(!configuration["Upload"]) {
+      $("#tab_pic_upload").css("display", "none");
+      $("#tab_object_upload").css("display", "none")
+    }
+    if(!configuration["Youtube"]) {
+      $("#tab_video_youtube").css("display", "none")
+    }
+    if(!configuration["Vimeo"]) {
+      $("#tab_video_vimeo").css("display", "none")
+    }
+    if(!configuration["LRE"]) {
+      $("#tab_pic_lre").css("display", "none");
+      $("#tab_object_lre").css("display", "none")
+    }
+    if(!configuration["Flickr"]) {
+      $("#tab_pic_flikr").css("display", "none")
+    }
+  };
+  var getConfiguration = function() {
+    return configuration
+  };
+  return{init:init, applyConfiguration:applyConfiguration, getConfiguration:getConfiguration}
+}(VISH, jQuery);
+var VISH = VISH || {};
+VISH.Constant = VISH.Constant || {};
+VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
+VISH.Constant.QZ_TYPE.OPEN = "open";
+VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
+VISH.Constant.QZ_TYPE.TF = "truefalse";
+VISH.QuizCharts = function(V, $, undefined) {
+  var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
+  var pieLetterColor = ["#000"];
+  var choices = {};
+  var language = "en";
+  var i18n = {"es":{"i.T":"V", "i.F":"F"}, "default":{"i.T":"T", "i.F":"F"}};
+  var translations = i18n["default"];
+  var init = function(options) {
+    if(options && options.lang) {
+      language = options.lang
+    }
+    if(i18n[language]) {
+      translations = i18n[language]
+    }
+  };
+  var _getTrans = function(s, params) {
+    if(translations[s]) {
+      return _getTransWithParams(translations[s], params)
+    }
+    return _getTransWithParams(i18n["default"][s], params)
+  };
+  var _getTransWithParams = function(trans, params) {
+    if(typeof params != "object") {
+      return trans
+    }
+    for(var key in params) {
+      var stringToReplace = "#{" + key + "}";
+      if(trans.indexOf(stringToReplace) != -1) {
+        trans = trans.replaceAll(stringToReplace, params[key])
+      }
+    }
+    return trans
+  };
+  var drawQuizChart = function(canvas, quizJSON, results, options) {
+    var quizParams = _getQuizParams(quizJSON);
+    var answersList = _getAnswers(results);
+    switch(quizParams.quizType) {
+      case V.Constant.QZ_TYPE.OPEN:
+        break;
+      case V.Constant.QZ_TYPE.MCHOICE:
+        if(quizParams.extras.multipleAnswer == true) {
+          _drawMcChoiceMAnswerQuizChart(canvas, quizParams, answersList, options)
+        }else {
+          _drawMcChoiceQuizChart(canvas, quizParams, answersList, options)
+        }
+        break;
+      case V.Constant.QZ_TYPE.TF:
+        _drawTFQuizChart(canvas, quizParams, answersList, options);
+        break;
+      default:
+        return null;
+        break
+    }
+  };
+  var _drawMcChoiceQuizChart = function(canvas, quizParams, answersList, options) {
+    var pieFragments = {};
+    var data = [];
+    var pBCL = pieBackgroundColor.length;
+    var pLCL = pieLetterColor.length;
+    var choicesQuantity = quizParams.choices.length;
+    for(var i = 0;i < choicesQuantity;i++) {
+      var choiceId = quizParams.choices[i].id;
+      pieFragments[choiceId] = {};
+      pieFragments[choiceId].value = 0;
+      pieFragments[choiceId].label = String.fromCharCode(96 + i + 1);
+      pieFragments[choiceId].color = pieBackgroundColor[i % pBCL];
+      pieFragments[choiceId].labelColor = pieLetterColor[i % pLCL];
+      pieFragments[choiceId].labelFontSize = "16";
+      pieFragments[choiceId].tooltipLabel = _purgeString(quizParams.choices[i].value)
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var choiceId = answer.choiceId;
+        if(answer.answer === "true" && pieFragments[choiceId]) {
+          pieFragments[choiceId].value++
+        }
+      }
+    }
+    for(var l = 0;l < choicesQuantity;l++) {
+      var choiceId = quizParams.choices[l].id;
+      data.push(pieFragments[choiceId])
+    }
+    var ctx = $(canvas).get(0).getContext("2d");
+    var chartOptions = {showTooltips:true, animation:false};
+    if(options && options.animation === true) {
+      chartOptions.animation = true;
+      chartOptions.onAnimationComplete = function() {
+        if(typeof options.callback == "function") {
+          options.callback()
+        }
+      }
+    }
+    var myNewChart = (new Chart(ctx)).Pie(data, chartOptions);
+    if(options && options.animation != true && typeof options.callback == "function") {
+      options.callback()
+    }
+  };
+  var _drawMcChoiceMAnswerQuizChart = function(canvas, quizParams, answersList, options) {
+    var labels = {};
+    var tooltipLabels = {};
+    var dataValues = {};
+    var maxValue = 0;
+    var scaleSteps = 10;
+    var choicesQuantity = quizParams.choices.length;
+    for(var i = 0;i < choicesQuantity;i++) {
+      var choiceId = quizParams.choices[i].id;
+      labels[choiceId] = String.fromCharCode(96 + i + 1);
+      tooltipLabels[choiceId] = _purgeString(quizParams.choices[i].value);
+      dataValues[choiceId] = 0
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var choiceId = answer.choiceId;
+        if(answer.answer === "true") {
+          dataValues[choiceId]++
+        }
+      }
+    }
+    for(var l = 0;l < choicesQuantity;l++) {
+      var choiceId = quizParams.choices[l].id;
+      if(dataValues[choiceId] > maxValue) {
+        maxValue = dataValues[choiceId]
+      }
+    }
+    if(maxValue < 10) {
+      scaleSteps = Math.max(1, maxValue)
+    }
+    var ctx = $(canvas).get(0).getContext("2d");
+    var data = {labels:$.map(labels, function(v) {
+      return v
+    }), tooltipLabels:$.map(tooltipLabels, function(v) {
+      return v
+    }), datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:$.map(dataValues, function(v) {
+      return v
+    })}]};
+    var chartOptions = {showTooltips:true, animation:false, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps};
+    if(options && options.animation === true) {
+      chartOptions.animation = true;
+      chartOptions.onAnimationComplete = function() {
+        if(typeof options.callback == "function") {
+          options.callback()
+        }
+      }
+    }
+    var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
+    if(options && options.animation != true && typeof options.callback == "function") {
+      options.callback()
+    }
+  };
+  var _drawTFQuizChart = function(canvas, quizParams, answersList, options) {
+    var labels = {};
+    var tooltipLabels = {};
+    var dataTrue = {};
+    var dataFalse = {};
+    var maxValue = 0;
+    var scaleSteps = 10;
+    var choicesQuantity = quizParams.choices.length;
+    for(var i = 0;i < choicesQuantity;i++) {
+      var choiceId = quizParams.choices[i].id;
+      labels[choiceId] = _getTrans("i.T") + "       " + String.fromCharCode(96 + i + 1) + "       " + _getTrans("i.F");
+      tooltipLabels[choiceId] = _purgeString(quizParams.choices[i].value);
+      dataTrue[choiceId] = 0;
+      dataFalse[choiceId] = 0
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var choiceId = answer.choiceId;
+        if(answer.answer === "true") {
+          dataTrue[choiceId]++
+        }else {
+          dataFalse[choiceId]++
+        }
+      }
+    }
+    for(var l = 0;l < choicesQuantity;l++) {
+      var choiceId = quizParams.choices[l].id;
+      if(dataTrue[choiceId] > maxValue) {
+        maxValue = dataTrue[choiceId]
+      }
+      if(dataFalse[choiceId] > maxValue) {
+        maxValue = dataFalse[choiceId]
+      }
+    }
+    if(maxValue < 10) {
+      scaleSteps = Math.max(1, maxValue)
+    }
+    var ctx = $(canvas).get(0).getContext("2d");
+    var data = {labels:$.map(labels, function(v) {
+      return v
+    }), tooltipLabels:$.map(tooltipLabels, function(v) {
+      return v
+    }), datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:$.map(dataTrue, function(v) {
+      return v
+    })}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:$.map(dataFalse, function(v) {
+      return v
+    })}]};
+    var chartOptions = {showTooltips:true, animation:false, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps};
+    if(options && options.animation === true) {
+      chartOptions.animation = true;
+      chartOptions.onAnimationComplete = function() {
+        if(typeof options.callback == "function") {
+          options.callback()
+        }
+      }
+    }
+    var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
+    if(options && options.animation != true && typeof options.callback == "function") {
+      options.callback()
+    }
+  };
+  var _getAnswers = function(results) {
+    var answers = [];
+    var rL = results.length;
+    for(var i = 0;i < rL;i++) {
+      answers.push(JSON.parse(results[i].answer))
+    }
+    return answers
+  };
+  var _getQuizParams = function(quiz) {
+    var params = {};
+    params.extras = {};
+    try {
+      var quizEls = quiz["slides"][0]["elements"];
+      var quizElsL = quizEls.length;
+      for(var i = 0;i < quizElsL;i++) {
+        if(quizEls[i]["type"] === "quiz") {
+          var quizEl = quizEls[i];
+          params.quizType = quizEl["quiztype"];
+          if(params.quizType == V.Constant.QZ_TYPE.MCHOICE) {
+            if(quizEl.extras && quizEl.extras.multipleAnswer == true) {
+              params.extras.multipleAnswer = true
+            }
+          }
+          params.choices = quizEl["choices"];
+          params.nAnswers = params.choices.length
+        }
+      }
+    }catch(e) {
+    }
+    return params
+  };
+  var _purgeString = function(str) {
+    if(typeof str != "string") {
+      return str
+    }
+    str = str.replace(/\u00e2\u20ac\u2039/g, "");
+    return str.replace(/\u00c2/g, "")
+  };
+  return{init:init, drawQuizChart:drawQuizChart}
+}(VISH, jQuery);
+var VISH = VISH || {};
+VISH.Constant = VISH.Constant || {};
+VISH.Constant.Event = {};
+VISH.Constant.Event.onMessage = "onMessage";
+VISH.Constant.Event.onGoToSlide = "onGoToSlide";
+VISH.Constant.Event.onPlayVideo = "onPlayVideo";
+VISH.Constant.Event.onPauseVideo = "onPauseVideo";
+VISH.Constant.Event.onSeekVideo = "onSeekVideo";
+VISH.Constant.Event.onSubslideOpen = "onSubslideOpen";
+VISH.Constant.Event.onSubslideClosed = "onSubslideClosed";
+VISH.Constant.Event.onSetSlave = "onSetSlave";
+VISH.Constant.Event.onPreventDefault = "onPreventDefault";
+VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
+VISH.Constant.Event.onSelectedSlides = "onSelectedSlides";
+VISH.Constant.Event.onVEFocusChange = "onVEFocusChange";
+VISH.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello";
+VISH.IframeAPI = function(V, undefined) {
+  var helloAttempts;
+  var maxHelloAttempts = 40;
+  var helloTimeout;
+  var options;
+  var listeners;
+  var init = function(initOptions) {
+    options = initOptions;
+    if(window.addEventListener) {
+      window.addEventListener("message", _onWrapperedVEMessage, false)
+    }else {
+      if(window.attachEvent) {
+        window.attachEvent("message", _onWrapperedVEMessage)
+      }
+    }
+    listeners = new Array;
+    _startHelloExchange()
+  };
+  var _startHelloExchange = function() {
+    registerCallback(VISH.Constant.Event.onIframeMessengerHello, function(origin) {
+      if(helloTimeout) {
+        clearTimeout(helloTimeout)
+      }
+      _applyOptions(origin);
+      if(options && typeof options.callback === "function") {
+        options.callback(origin)
+      }
+    });
+    helloAttempts = 0;
+    helloTimeout = setInterval(function() {
+      _sayHello()
+    }, 1250);
+    _sayHello()
+  };
+  var _sayHello = function() {
+    var helloMessage = _createMessage(VISH.Constant.Event.onIframeMessengerHello);
+    sendMessage(helloMessage, "*");
+    helloAttempts++;
+    if(helloAttempts >= maxHelloAttempts && helloTimeout) {
+      clearTimeout(helloTimeout)
+    }
+  };
+  var _sendPreventDefaults = function(preventDefaults, destination) {
+    var params = {};
+    params.preventDefaults = preventDefaults;
+    var VEMessage = _createMessage(VISH.Constant.Event.onPreventDefault, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var _applyOptions = function(destination) {
+    if(options) {
+      if(options.preventDefault === true) {
+        _sendPreventDefaults(true, destination)
+      }
+    }
+  };
+  var registerCallback = function(listenedEvent, callback) {
+    if(callback) {
+      listeners[listenedEvent] = callback
+    }
+  };
+  var unRegisterCallback = function(listenedEvent) {
+    if(listenedEvent in listeners) {
+      listeners[listenedEvent] = null
+    }
+  };
+  function message(VEevent, params, origin, destination) {
+    this.vishEditor = true;
+    this.VEevent = VEevent;
+    if(params) {
+      this.params = params
+    }
+    if(origin) {
+      this.origin = origin
+    }else {
+      this.origin = "?"
+    }
+    if(destination) {
+      this.destination = destination
+    }else {
+      this.destination = "*"
+    }
+  }
+  var _createMessage = function(VEevent, params, origin, destination) {
+    var VEMessage = new message(VEevent, params, origin, destination);
+    return JSON.stringify(VEMessage)
+  };
+  var _validateVEMessage = function(VEMessage) {
+    if(typeof VEMessage !== "string") {
+      return false
+    }
+    try {
+      var VEMessageObject = JSON.parse(VEMessage);
+      if(typeof VEMessageObject !== "object") {
+        return false
+      }
+      if(VEMessageObject.vishEditor !== true) {
+        return false
+      }
+      if(!VEMessageObject.VEevent) {
+        return false
+      }
+    }catch(e) {
+      return false
+    }
+    return true
+  };
+  var sendMessage = function(VEMessage, destination) {
+    if(typeof destination === "string") {
+      if(destination === "*") {
+        _broadcastMessage(VEMessage)
+      }else {
+        var iframe = document.getElementById(destination);
+        if(iframe && iframe.contentWindow) {
+          iframe.contentWindow.postMessage(VEMessage, "*")
+        }
+      }
+    }else {
+      if(_isArray(destination) && typeof destination[0] == "string") {
+        for(var i = 0;i < destination.length;i++) {
+          var iframe = document.getElementById(destination[i]);
+          if(iframe && iframe.contentWindow) {
+            iframe.contentWindow.postMessage(VEMessage, "*")
+          }
+        }
+      }else {
+        _broadcastMessage(VEMessage)
+      }
+    }
+  };
+  var _broadcastMessage = function(VEMessage) {
+    var allVEIframes = document.querySelectorAll(".vishEditorIframe");
+    for(var i = 0;i < allVEIframes.length;i++) {
+      allVEIframes[i].contentWindow.postMessage(VEMessage, "*")
+    }
+  };
+  var _onWrapperedVEMessage = function(wrapperedVEMessage) {
+    if(wrapperedVEMessage) {
+      if(_validateVEMessage(wrapperedVEMessage.data)) {
+        _processVEMessage(wrapperedVEMessage.data)
+      }
+    }
+  };
+  var _processVEMessage = function(VEMessage) {
+    var VEMessageObject = JSON.parse(VEMessage);
+    if(listeners[VISH.Constant.Event.onMessage]) {
+      listeners[VISH.Constant.Event.onMessage](VEMessage, VEMessageObject.origin)
+    }
+    var callback = listeners[VEMessageObject.VEevent];
+    if(!callback) {
+      return
+    }
+    switch(VEMessageObject.VEevent) {
+      case VISH.Constant.Event.onGoToSlide:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onPlayVideo:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onPauseVideo:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onSeekVideo:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onSubslideOpen:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.slideId, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onSubslideClosed:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.slideId, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onVEFocusChange:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.focus, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onIframeMessengerHello:
+        callback(VEMessageObject.origin);
+        break;
+      default:
+        _print("VISH.Messenger.Proceesor Error: Unrecognized event: " + VEMessageObject.VEevent);
+        break
+    }
+  };
+  var goToSlide = function(slideNumber, destination) {
+    var params = {};
+    params.slideNumber = slideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onGoToSlide, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var playVideo = function(videoId, currentTime, videoSlideNumber, destination) {
+    var params = {};
+    params.videoId = videoId;
+    params.currentTime = currentTime;
+    params.slideNumber = videoSlideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onPlayVideo, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var pauseVideo = function(videoId, currentTime, videoSlideNumber, destination) {
+    var params = {};
+    params.videoId = videoId;
+    params.currentTime = currentTime;
+    params.slideNumber = videoSlideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onPauseVideo, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var seekVideo = function(videoId, currentTime, videoSlideNumber, destination) {
+    var params = {};
+    params.videoId = videoId;
+    params.currentTime = currentTime;
+    params.slideNumber = videoSlideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onSeekVideo, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var openSubslide = function(slideId, destination) {
+    var params = {};
+    params.slideId = slideId;
+    var VEMessage = _createMessage(VISH.Constant.Event.onSubslideOpen, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var closeSubslide = function(slideId, destination) {
+    var params = {};
+    params.slideId = slideId;
+    var VEMessage = _createMessage(VISH.Constant.Event.onSubslideClosed, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var setSlave = function(slave, destination) {
+    var params = {};
+    params.slave = slave;
+    var VEMessage = _createMessage(VISH.Constant.Event.onSetSlave, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var setMaster = function(master) {
+    var params = {};
+    var allVEIframes = document.querySelectorAll(".vishEditorIframe");
+    for(var i = 0;i < allVEIframes.length;i++) {
+      if(allVEIframes[i].id !== master) {
+        params.slave = true
+      }else {
+        params.slave = false
+      }
+      var destination = allVEIframes[i].id;
+      var VEMessage = _createMessage(VISH.Constant.Event.onSetSlave, params, null, destination);
+      sendMessage(VEMessage, destination)
+    }
+  };
+  var allowExitWithoutConfirmation = function(destination) {
+    var params = {};
+    var VEMessage = _createMessage(VISH.Constant.Event.allowExitWithoutConfirmation, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var _print = function(objectToPrint) {
+    if(console && console.log) {
+      console.log(objectToPrint)
+    }
+  };
+  var _isArray = function(object) {
+    if(typeof object !== "undefined") {
+      return object.constructor === Array
+    }
+    return false
+  };
+  return{init:init, registerCallback:registerCallback, unRegisterCallback:unRegisterCallback, sendMessage:sendMessage, setSlave:setSlave, setMaster:setMaster, allowExitWithoutConfirmation:allowExitWithoutConfirmation, goToSlide:goToSlide, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, openSubslide:openSubslide, closeSubslide:closeSubslide}
+}(VISH);
 VISH.User = function(V, $, undefined) {
   var _user;
   var init = function(options) {
