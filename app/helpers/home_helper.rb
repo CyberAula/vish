@@ -58,6 +58,7 @@ module HomeHelper
     options[:scope] ||= :net
     options[:offset] ||= 0
     options[:page] ||= 0 #page 0 means without pagination
+    binding.pry
     options[:sort_by] ||="popularity"
 
     following_ids = subject.following_actor_ids
