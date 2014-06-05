@@ -1,25 +1,7 @@
-<div id="categories">
-  <ul class="categories">
-    <% if profile_subject_is_current? %>
-      <%= render partial: 'categories/category-add' %>
-      <%= render partial: 'categories/category_fav' %>
-    <% end %>
-
-    <% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||"updated_at"}) %>
-    <% all_categories.each do |category| %>
-        <%= render :partial => 'categories/category', :locals => { :category => category } %>
-    <% end %> 
-  </ul>
-  <div class="loader_pagination" style="display:none">
-    <div id="pageless-loader" style="text-align:center;width:100%;">
-      <div class="msg" style="font-size:2em">
-        <%=t('search.loading')%>
-      </div>
-      <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
-    </div>
-  </div>
-
-</div>
+<% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"updated_at"}) %>
+<% all_categories.each do |category| %>
+    <%= render :partial => 'categories/category', :locals => { :category => category } %>
+<% end %> 
 
 <script>
   $(document).ready(function(){

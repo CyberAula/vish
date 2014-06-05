@@ -1,15 +1,8 @@
-<div class="resources">
-  <ul class="repository-item">
-    <% if profile_subject_is_current? && (page == 0 || page == 1)%>
-  	 <%= render partial: 'repositories/resource-add' %>
-    <% end %> 
-    <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
-    <% all_resources = subject_resources(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||default_sort_by}) %>
-    <% all_resources.each do |resource| %>
-      	<%= render :partial => 'repositories/resource', :locals => { :resource => resource.object } %>
-    <% end %> 
-  </ul>  
-</div>
+
+<% all_resources = subject_resources(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"popularity"}) %>
+<% all_resources.each do |resource| %>
+    <%= render :partial => 'repositories/resource', :locals => { :resource => resource.object } %>
+<% end %> 
 
 <script>
   $(document).ready(function(){

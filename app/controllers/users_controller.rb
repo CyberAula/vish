@@ -34,23 +34,35 @@ class UsersController < ApplicationController
   def resources
     respond_to do |format|
       format.html{        
-        render :partial => 'repositories/resources', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        if !params[:page] || (params[:page] && (params[:page] == 1 || params[:page]==0))
+          render :partial => 'repositories/profile_resources', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        else
+          render :partial => 'repositories/resources', :locals => {:scope => :me, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        end
       }
     end
   end
 
   def events
     respond_to do |format|
-      format.html{        
-        render :partial => 'events/events', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+      format.html{       
+        if !params[:page] || (params[:page] && (params[:page] == 1 || params[:page]==0)) 
+          render :partial => 'events/profile_events', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        else
+          render :partial => 'events/events', :locals => {:scope => :me, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        end
       }
     end
   end
 
   def categories
     respond_to do |format|
-      format.html{        
-        render :partial => 'categories/categories', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+      format.html{  
+        if !params[:page] || (params[:page] && (params[:page] == 1 || params[:page]==0))
+          render :partial => 'categories/profile_categories', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        else
+          render :partial => 'categories/categories', :locals => {:scope => :me, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        end
       }
     end
   end
