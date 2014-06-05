@@ -154,8 +154,8 @@
     //var $loader = $(opts.loader, $el);
     var $loader = $(opts.loader);
 
-    init(opts);
     element = $el;
+    init(opts);    
 
     // loader element
     if (opts.loader && $loader.length) {
@@ -219,6 +219,7 @@
   function animateSlowAppendAndFinishLoading(my_element, arr){ 
     var tmp_elem = arr.pop();
    
+    console.log("appending data to: " + $(my_element).parent().attr("class"));
     var hidden_elem = $(tmp_elem).hide().appendTo($(my_element));
     
     if ($.isFunction(settings.finishedAddingHiddenElem)) {
@@ -232,6 +233,7 @@
       window.setTimeout(function(){animateSlowAppendAndFinishLoading(my_element, arr)}, 20);
     }
     else{
+      console.log("vamos a poner loading a false en la funcion append");
       loading(false);
       // if there is a complete callback we call it
       if (settings.complete) {
@@ -270,6 +272,8 @@
         settings.currentPage = currentPage;
       }
 
+      console.log("cambiando el parent_to_append a " + $(element).parent().attr("class"));
+      console.log("pidiendo: " + url);
       var parent_to_append = element;  //saved because with several tabs, we can start another pageless and it changes the var "element"
       // set up ajax query params
       $.extend(requestParams, { page: currentPage });
