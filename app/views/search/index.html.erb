@@ -69,6 +69,12 @@
                     elem.value = "<%=excursion_raw_thumbail(result)%>";
                     array_of_id_and_image.push(elem); 
                   <%end%>
+                  <% if result.class == Event %>
+                    elem = {};
+                    elem.id = "#event-<%=result.id%>";
+                    elem.value = "<%=event_raw_thumbail(result)%>";
+                    array_of_id_and_image.push(elem); 
+                  <%end%>
                 <% end %> 
 
                 function re_apply_backstrech_on_search(){
@@ -147,6 +153,9 @@
         $("#search .user").click(function(){
           window.location.href = '<%=search_path(:type => "user", :browse=>"true", :sort_by => "popularity")%>';
         });
+        $("#search .event").click(function(){
+          window.location.href = '<%=search_path(:type => "event", :browse=>"true", :sort_by => "popularity")%>';
+        });
         $("#search .resource").click(function(){
           window.location.href = '<%=search_path(:type => "resource", :browse=>"true", :sort_by => "popularity")%>';
         });
@@ -194,6 +203,10 @@
       $(".search .resource").click(function(){
         re_apply_backstrech_on_search();
       });
+      $(".search .event").click(function(){
+        re_apply_backstrech_on_search();
+      });
+
 
     <% end %>
   </div>
