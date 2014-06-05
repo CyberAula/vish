@@ -18,7 +18,7 @@
             re_apply_pageless("resources");
           },
           error: function(){
-            console.log("error loading resources");
+            //console.log("error loading resources");
          }
         });
     } else {
@@ -40,7 +40,7 @@
             re_apply_pageless("events");
           },
           error: function(){
-            console.log("error loading events");
+            //console.log("error loading events");
          }
         });
     } else {
@@ -62,7 +62,7 @@
             re_apply_pageless("categories");
           },
           error: function(){
-            console.log("error loading categories");
+            //console.log("error loading categories");
          }
         });
     } else {
@@ -84,7 +84,7 @@
             re_apply_pageless("followers");
           },
           error: function(){
-            console.log("error loading followers");
+            //console.log("error loading followers");
          }
         });
     } else {
@@ -106,7 +106,7 @@
             re_apply_pageless("followings");
           },
           error: function(){
-            console.log("error loading followings");
+            //console.log("error loading followings");
          }
         });
     } else {
@@ -171,10 +171,8 @@ function update_pageless_state(tab, num_pages, current_page){
 
 function re_apply_pageless(tab){
     //first remove old pageless
-    console.log("vamos a quitar el pageless");
     $.pagelessStop();
 
-    console.log("vamos a aplicar el nuevo pageless para " + tab);
     $("#" + tab + "_tab_ready ul").pageless({ 
                     totalPages: pageless_state[tab].num_pages ,
                     url: get_url_with_sort_by(tab),
