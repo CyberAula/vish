@@ -5,7 +5,8 @@
     <%= render partial: 'events/event-add' %>
   <% end %>
 
-  <% all_events = subject_events(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||"updated_at"}) %>
+  <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
+  <% all_events = subject_events(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||default_sort_by}) %>
   <% all_events.each do |event| %>
       <%= render :partial => 'events/event', :locals => { :event => event } %>
   <% end %>

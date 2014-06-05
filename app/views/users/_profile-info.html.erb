@@ -237,7 +237,8 @@ function get_url_with_sort_by(tab){
       
       <div class="tab-pane active" id="tab1">
           <%= render partial: 'users/order_by_dropdown_excursions' %>
-          <%= render partial: 'excursions/profile_excursions', :locals => {:scope => :me, :limit => 0, :page=> 1, :sort_by=> params[:sort_by]||"updated_at"}%>
+          <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
+          <%= render partial: 'excursions/profile_excursions', :locals => {:scope => :me, :limit => 0, :page=> 1, :sort_by=> params[:sort_by]||default_sort_by}%>
           <div class="loader_pagination" style="display:none">
             <div id="pageless-loader" style="text-align:center;width:100%;">
               <div class="msg" style="font-size:2em">
