@@ -24,20 +24,20 @@
 <script>
   $(document).ready(function(){
     update_pageless_state("events", <%=all_events.num_pages%>, <%=all_events.current_page%>);
-
-    $("#events_tab").click(function(){
-      re_apply_events_backstrech();
-    });
     
     $('a[href="#tab2"]').on('shown', function (e) {
       $(".event").fitText(0.4);
     });    
   });
 
-	function re_apply_events_backstrech(){
+	function add_events_backstrech(){
 		<% all_events.each do |event| %>
-    		$("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
+    		if(backstrech_items!=undefined){
+            backstrech_items.events["#event-<%=event.id%>"] = "<%=event_raw_thumbail(event)%>";
+          }
   		<% end %> 
 	}
+
+  add_events_backstrech();
 </script>
 

@@ -34,5 +34,15 @@
     		$("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>"); 
   		<% end %> 
 	}
+
+	function add_excursions_backstrech(){		
+  		<% excursions.each do |excursion| %>
+    	  if(backstrech_items!=undefined){
+            backstrech_items.excursions["#excursion-<%=excursion.id%>"] = "<%=excursion_raw_thumbail(excursion)%>";
+          }    		
+  		<% end %> 
+	}
+
+	add_excursions_backstrech();
 </script>
 

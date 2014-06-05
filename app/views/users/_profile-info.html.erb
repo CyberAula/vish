@@ -114,6 +114,17 @@
     }
   });
 
+  $("#excursions_tab").click(function(){
+    re_apply_backstrech("excursions");
+  });
+
+  $("#events_tab").click(function(){
+    re_apply_backstrech("events");
+  });
+  
+  $("#resources_tab").click(function(){
+    re_apply_backstrech("resources");
+  });
 
 
 <%end%>
@@ -179,6 +190,25 @@ function get_url_with_sort_by(tab){
     the_url = the_url + "?sort_by=" + $(".sort_by_selected").attr("sort-by-key");
   }
   return the_url;
+}
+
+var backstrech_items = {
+  excursions: {
+
+  },
+  resources: {
+
+  }, 
+  events: {
+
+  }
+}
+
+function re_apply_backstrech(tab){
+  for (var key in backstrech_items[tab]) {
+    $(""+ key).backstretch( backstrech_items[tab][key] );  
+    console.log("reaplicando backstrech a " + key + " con " + backstrech_items[tab][key]);
+  }
 }
 
 </script>

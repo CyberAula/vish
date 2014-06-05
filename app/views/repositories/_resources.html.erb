@@ -15,22 +15,22 @@
   $(document).ready(function(){
     update_pageless_state("resources", <%=all_resources.num_pages%>, <%=all_resources.current_page%>);
 
-    $("#resources_tab").click(function(){
-      re_apply_resources_backstrech();
-    });
-
     $('a[href="#tab3"]').on('shown', function (e) {
       $(".resource").fitText(0.4);
     });    
   });
 	
-  function re_apply_resources_backstrech(){
+  function add_resources_backstrech(){
 		<% all_resources.each do |resource| %>
-    		<%if resource.respond_to?(:type) && resource.type =="Picture"%>
-    			$("#document-<%=resource.id%>").backstretch("<%=resource.file%>?style=500");  
+    		<%if resource.object.respond_to?(:type) && resource.object.type =="Picture"%>
+    			if(backstrech_items!=undefined){
+            backstrech_items.resources["#document-<%=resource.object.id%>"] = "<%=resource.object.file%>?style=500";
+          }          
     		<%end%>
   		<% end %> 
 	}
+
+  add_resources_backstrech(); 
 
 </script>
 
