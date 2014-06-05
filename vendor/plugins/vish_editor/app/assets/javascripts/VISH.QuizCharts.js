@@ -10,22 +10,26 @@ VISH.QuizCharts = (function(V,$,undefined){
   
 	var pieBackgroundColor = ["#F38630","#E0E4CC","#69D2E7","#FFF82A","#FF0FB4","#2A31FF","#FF6075","#00D043"];
 	var pieLetterColor = ["#000"];
-	var choices = {};
 
 	//Translations
 	var language = "en";
 	var i18n = 
 		{ "es":
 			{
-				"i.T"	: "V",
-				"i.F"	: "F"
+				"i.T"			: "V",
+				"i.F"			: "F",
+				"i.Correct"		: "Correctas",
+				"i.Incorrect"	: "Incorrectas"
 			},
 		  "default":
 			{
-				"i.T"	: "T",
-				"i.F"	: "F"
+				"i.T"			: "T",
+				"i.F"			: "F",
+				"i.Correct"		: "Correct",
+				"i.Incorrect"	: "Incorrect"
 			}
 		};
+
 	var translations = i18n["default"];
 
 	var init = function(options){
@@ -84,6 +88,9 @@ VISH.QuizCharts = (function(V,$,undefined){
 			break;
 		case V.Constant.QZ_TYPE.TF:
 			_drawTFQuizChart(canvas,quizParams,answersList,options);
+			break;
+		case V.Constant.QZ_TYPE.SORTING:
+			_drawSortingQuizChart(canvas,quizParams,answersList,options);
 			break;
 		default:
 			return null; 
@@ -321,6 +328,68 @@ VISH.QuizCharts = (function(V,$,undefined){
 		}
 
 		var myNewChart = new Chart(ctx).Bar(data,chartOptions);
+
+		if((options)&&(options.animation!=true)&&(typeof options.callback == "function")){
+			options.callback();
+		}
+	};
+
+	var _drawSortingQuizChart = function(canvas,quizParams,answersList,options){
+		var pieFragments = {};
+		var data = [];
+		var pBCL = pieBackgroundColor.length;
+		var pLCL = pieLetterColor.length;
+
+		for(var i=0; i<2; i++){
+			var fragmentId = (i===0) ? "true" : "false";
+			pieFragments[fragmentId] = {};
+			pieFragments[fragmentId].value = 0;
+			pieFragments[fragmentId].label = (i===0) ? _getTrans("i.Correct") : _getTrans("i.Incorrect");
+			pieFragments[fragmentId].color = pieBackgroundColor[i%pBCL];
+			pieFragments[fragmentId].labelColor = pieLetterColor[i%pLCL];
+			pieFragments[fragmentId].labelFontSize = '16';
+			pieFragments[fragmentId].tooltipLabel = (i===0) ? _getTrans("i.Correct") : _getTrans("i.Incorrect");
+		}
+
+		var alL = answersList.length;
+		for(var j=0; j<alL; j++){
+			//List of answers of a user
+			var answers = answersList[j];
+
+			var aL = answers.length;
+			for(var k=0; k<aL; k++){
+				var answer = answers[k];
+				if((answer.selfAssessment)&&(typeof answer.selfAssessment.result == "boolean")){
+					if(answer.selfAssessment.result===true){
+						pieFragments["true"].value++;
+					} else {
+						pieFragments["false"].value++;
+					}
+				}
+			}
+		}
+
+		data.push(pieFragments["true"]);
+		data.push(pieFragments["false"]);
+
+		var ctx = $(canvas).get(0).getContext("2d");
+
+		var chartOptions = {
+			showTooltips: true,
+			animation: false
+		}
+
+		if((options)&&(options.animation===true)){
+			//Include animation
+			chartOptions.animation = true;
+			chartOptions.onAnimationComplete = function(){
+				if(typeof options.callback == "function"){
+					options.callback();
+				}
+			}
+		}
+
+		var myNewChart = new Chart(ctx).Pie(data,chartOptions);
 
 		if((options)&&(options.animation!=true)&&(typeof options.callback == "function")){
 			options.callback();

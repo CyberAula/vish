@@ -131,6 +131,38 @@ class QuizSession < ActiveRecord::Base
             end
           end
 
+        when "sorting"
+          #TODO
+          qparams["totalAnswers"] = self.results.length
+
+          2.times do |index|
+            qResult = Hash.new
+            qResult["n"] = 0;
+            qparams["processedResults"].push(qResult)
+          end
+
+          self.results.each do |result|
+            result = JSON(result["answer"])
+
+            #Result is an array of responses
+            result.each do |response|
+              if !response["selfAssessment"].nil?
+                if response["selfAssessment"]["result"]==true
+                  qparams["processedResults"][0]["n"] = qparams["processedResults"][0]["n"].to_i + 1
+                elsif response["selfAssessment"]["result"]==false
+                  qparams["processedResults"][1]["n"] = qparams["processedResults"][1]["n"].to_i + 1
+                end
+              end
+            end
+          end
+
+          if qparams["totalAnswers"] > 0
+            #Calculate percentage
+            qparams["processedResults"].each do |result|
+              result["percentage"] = ((result["n"]*100)/qparams["totalAnswers"])
+            end
+          end
+
         else
           # Unrecognized quiz type
       end
