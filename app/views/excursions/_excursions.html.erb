@@ -8,7 +8,7 @@
 <script>
 	$(document).ready(function(){		
 		<%- if controller_name == 'excursions' && page != 0%>
-			$('#excursions ul').pageless({ 
+			$('#excursions_tab_ready ul').pageless({ 
                           totalPages: <%=excursions.num_pages%>,
                           url: window.location.href,
                           currentPage: <%=excursions.current_page%>,
@@ -24,23 +24,15 @@
 		<%end%>
 		
 
-		$("footer#footer").addClass("fixed-bottom");
-
-	    re_apply_backstrech_on_home();
+		$("footer#footer").addClass("fixed-bottom");	    
 	});
-
-	function re_apply_backstrech_on_home(){
-		<% excursions.each do |excursion| %>
-    		$("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>"); 
-  		<% end %> 
-	}
-
+	
 	function add_excursions_backstrech(){		
-  		<% excursions.each do |excursion| %>
-    	  if(backstrech_items!=undefined){
+  		if(backstrech_items!=undefined){
+  		<% excursions.each do |excursion| %>    	  
             backstrech_items.excursions["#excursion-<%=excursion.id%>"] = "<%=excursion_raw_thumbail(excursion)%>";
-          }    		
   		<% end %> 
+  		}
 	}
 
 	add_excursions_backstrech();

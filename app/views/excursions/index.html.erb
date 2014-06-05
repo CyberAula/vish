@@ -7,7 +7,7 @@
   </div>
 </div>
 <%= render partial: 'layouts/order_by_dropdown' %>
-<section id="excursions">
+<section id="excursions_tab_ready" class="excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>
     <%if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
@@ -28,3 +28,30 @@
   <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
 
 </section>
+
+
+<script>
+//this will be needed when we have several tabs in the home page
+var backstrech_items = {
+  excursions: {
+
+  },
+  resources: {
+
+  }, 
+  events: {
+
+  }
+};
+
+
+function re_apply_backstrech(tab){
+  for (var key in backstrech_items[tab]) {
+    $(""+ key).backstretch( backstrech_items[tab][key] );  
+    console.log("reaplicando backstrech a " + key + " con " + backstrech_items[tab][key]);
+  }
+}
+
+
+
+</script>

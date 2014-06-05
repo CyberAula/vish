@@ -59,7 +59,7 @@
 
 <script>
 var resources_dropdown_select = function(option) {
-  $("#resources").html("");
+  $("#resources_tab_ready").html("");
   $('.loader_pagination').show();
   $.ajax({
       type : "GET",
@@ -70,7 +70,7 @@ var resources_dropdown_select = function(option) {
         $("#order_by_selector_resources .dropdown-menu [sort-by-key="+option+"]").addClass("sort_by_selected");
         $("#dropdownMenuOrdByresources").html(value + '<i class="icon-angle-down"></i>');
         $('.loader_pagination').hide();      
-        $("#resources").append(html);
+        $("#resources_tab_ready").append(html);
         re_apply_pageless("resources");
       },
       error: function(){

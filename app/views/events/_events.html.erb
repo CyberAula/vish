@@ -1,4 +1,4 @@
-<div id="events">
+<div class="events">
 
 <ul class="events">
   <% if profile_subject_is_current? %>
@@ -31,11 +31,11 @@
   });
 
 	function add_events_backstrech(){
+    if(backstrech_items!=undefined){
 		<% all_events.each do |event| %>
-    		if(backstrech_items!=undefined){
-            backstrech_items.events["#event-<%=event.id%>"] = "<%=event_raw_thumbail(event)%>";
-          }
-  		<% end %> 
+        backstrech_items.events["#event-<%=event.id%>"] = "<%=event_raw_thumbail(event)%>";
+  		<% end %>
+    }
 	}
 
   add_events_backstrech();

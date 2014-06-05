@@ -1,4 +1,4 @@
-<div id="resources">
+<div class="resources">
   <ul class="repository-item">
     <% if profile_subject_is_current? && (page == 0 || page == 1)%>
   	 <%= render partial: 'repositories/resource-add' %>
@@ -21,13 +21,13 @@
   });
 	
   function add_resources_backstrech(){
-		<% all_resources.each do |resource| %>
+    if(backstrech_items!=undefined){
+		  <% all_resources.each do |resource| %>
     		<%if resource.object.respond_to?(:type) && resource.object.type =="Picture"%>
-    			if(backstrech_items!=undefined){
             backstrech_items.resources["#document-<%=resource.object.id%>"] = "<%=resource.object.file%>?style=500";
-          }          
     		<%end%>
   		<% end %> 
+    }
 	}
 
   add_resources_backstrech(); 
