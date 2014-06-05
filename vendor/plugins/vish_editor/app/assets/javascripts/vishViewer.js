@@ -8339,7 +8339,7 @@ window.Modernizr = function(a, b, c) {
   }
 })(jQuery);
 var VISH = VISH || {};
-VISH.VERSION = "0.8.7";
+VISH.VERSION = "0.8.8";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -8515,9 +8515,8 @@ VISH.Constant.QZ_TYPE.TF = "truefalse";
 VISH.QuizCharts = function(V, $, undefined) {
   var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
   var pieLetterColor = ["#000"];
-  var choices = {};
   var language = "en";
-  var i18n = {"es":{"i.T":"V", "i.F":"F"}, "default":{"i.T":"T", "i.F":"F"}};
+  var i18n = {"es":{"i.T":"V", "i.F":"F", "i.Correct":"Correctas", "i.Incorrect":"Incorrectas"}, "default":{"i.T":"T", "i.F":"F", "i.Correct":"Correct", "i.Incorrect":"Incorrect"}};
   var translations = i18n["default"];
   var init = function(options) {
     if(options && options.lang) {
@@ -8560,6 +8559,9 @@ VISH.QuizCharts = function(V, $, undefined) {
         break;
       case V.Constant.QZ_TYPE.TF:
         _drawTFQuizChart(canvas, quizParams, answersList, options);
+        break;
+      case V.Constant.QZ_TYPE.SORTING:
+        _drawSortingQuizChart(canvas, quizParams, answersList, options);
         break;
       default:
         return null;
@@ -8730,6 +8732,53 @@ VISH.QuizCharts = function(V, $, undefined) {
       }
     }
     var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
+    if(options && options.animation != true && typeof options.callback == "function") {
+      options.callback()
+    }
+  };
+  var _drawSortingQuizChart = function(canvas, quizParams, answersList, options) {
+    var pieFragments = {};
+    var data = [];
+    var pBCL = pieBackgroundColor.length;
+    var pLCL = pieLetterColor.length;
+    for(var i = 0;i < 2;i++) {
+      var fragmentId = i === 0 ? "true" : "false";
+      pieFragments[fragmentId] = {};
+      pieFragments[fragmentId].value = 0;
+      pieFragments[fragmentId].label = i === 0 ? _getTrans("i.Correct") : _getTrans("i.Incorrect");
+      pieFragments[fragmentId].color = pieBackgroundColor[i % pBCL];
+      pieFragments[fragmentId].labelColor = pieLetterColor[i % pLCL];
+      pieFragments[fragmentId].labelFontSize = "16";
+      pieFragments[fragmentId].tooltipLabel = i === 0 ? _getTrans("i.Correct") : _getTrans("i.Incorrect")
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        if(answer.selfAssessment && typeof answer.selfAssessment.result == "boolean") {
+          if(answer.selfAssessment.result === true) {
+            pieFragments["true"].value++
+          }else {
+            pieFragments["false"].value++
+          }
+        }
+      }
+    }
+    data.push(pieFragments["true"]);
+    data.push(pieFragments["false"]);
+    var ctx = $(canvas).get(0).getContext("2d");
+    var chartOptions = {showTooltips:true, animation:false};
+    if(options && options.animation === true) {
+      chartOptions.animation = true;
+      chartOptions.onAnimationComplete = function() {
+        if(typeof options.callback == "function") {
+          options.callback()
+        }
+      }
+    }
+    var myNewChart = (new Chart(ctx)).Pie(data, chartOptions);
     if(options && options.animation != true && typeof options.callback == "function") {
       options.callback()
     }
@@ -16614,6 +16663,27 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
   var getReport = function(quiz) {
     var report = {};
     report.answers = [];
+    var quizJSON = V.Quiz.getQuiz($(quiz).attr("id"));
+    var quizChoices = quizJSON.choices;
+    var quizChoicesById = {};
+    $(quizChoices).each(function(index, quizChoice) {
+      quizChoicesById[quizChoice.id] = quizChoice
+    });
+    var answeredQuizCorrectly = undefined;
+    $(quiz).find("tr.mc_option").each(function(index, tr) {
+      var choiceId = $(tr).attr("choiceid");
+      var choice = quizChoicesById[choiceId];
+      var answerValue = index + 1;
+      if(choice.answer === answerValue) {
+        answeredQuizCorrectly = true
+      }else {
+        answeredQuizCorrectly = false
+      }
+      report.answers.push({choiceId:V.Quiz.getQuizChoiceOriginalId(choiceId).toString(), answer:answerValue})
+    });
+    if(typeof answeredQuizCorrectly == "boolean") {
+      report.answers.push({selfAssessment:{result:answeredQuizCorrectly}})
+    }
     report.empty = report.answers.length === 0;
     return report
   };
@@ -16628,6 +16698,123 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
   var _enableQuiz = function(quiz) {
     var tableTBody = $(quiz).find("table.sorting_options tbody");
     $(tableTBody).sortable("enable")
+  };
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz}
+}(VISH, jQuery);
+VISH.Quiz.Open = function(V, $, undefined) {
+  var hiddenLinkToShowAnswer;
+  var currentQuizJSONToShowInFancy;
+  var init = function() {
+    _loadEvents()
+  };
+  var _loadEvents = function() {
+    hiddenLinkToShowAnswer = $('<a href="#openQuizAnswer_fancybox" style="display:none"></a>');
+    $(hiddenLinkToShowAnswer).fancybox({"autoDimensions":false, "scrolling":"no", "width":"0%", "height":"0%", "padding":0, "autoScale":true, "onStart":function(data) {
+      $("#fancybox-close").css("visibility", "hidden");
+      if(typeof currentQuizJSONToShowInFancy == "object") {
+        var answerBody = $("#openQuizAnswer_fancybox").find("div.oQA_body");
+        $(answerBody).html(currentQuizJSONToShowInFancy.answer.wysiwygValue)
+      }
+    }, "onComplete":function(data) {
+      setTimeout(function() {
+        V.ViewerAdapter.updateFancyboxAfterSetupSize();
+        $("#fancybox-close").css("visibility", "visible")
+      }, 300)
+    }, "onClosed":function() {
+      currentQuizJSONToShowInFancy = undefined
+    }})
+  };
+  var render = function(quizJSON, template) {
+    var quizId = quizJSON.quizId;
+    var container = $("<div id='" + quizId + "' class='quizContainer openQContainer' type='" + V.Constant.QZ_TYPE.OPEN + "'></div>");
+    var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
+    $(questionWrapper).html(quizJSON.question.wysiwygValue);
+    $(container).append(questionWrapper);
+    var answerTextArea = $("<textarea class='openQTextArea'></textarea>");
+    $(container).append(answerTextArea);
+    var quizButtons = V.Quiz.renderButtons(quizJSON);
+    $(container).append(quizButtons);
+    return V.Utils.getOuterHTML(container)
+  };
+  var onAnswerQuiz = function(quiz, options) {
+    var afterAnswerAction = typeof options.afterAnswerAction == "string" ? options.afterAnswerAction : "disabled";
+    var canRetry = typeof options.canRetry == "boolean" ? options.canRetry : false;
+    var quizJSON = V.Quiz.getQuiz($(quiz).attr("id"));
+    var textArea = $(quiz).find("textarea.openQTextArea");
+    if(quizJSON.selfA) {
+      var quizAnswer = V.Utils.purgeString(quizJSON.answer.value);
+      var userAnswer = V.Utils.purgeString($(textArea).val());
+      var sA = userAnswer.toLowerCase().replace(/\r\n|\n|\r/g, " ").replace(/\s{2,}/g, " ");
+      var sB = quizAnswer.toLowerCase().replace(/\r\n|\n|\r/g, " ").replace(/\s{2,}/g, " ");
+      sA = V.Utils.purgeString(sA);
+      sB = V.Utils.purgeString(sB);
+      var levenshteinDistance = V.Utils.getLevenshteinDistance(sA, sB);
+      var answeredQuizCorrectly = false;
+      if(levenshteinDistance === 0) {
+        $(textArea).addClass("openQ_correct_answer");
+        answeredQuizCorrectly = true
+      }else {
+        $(textArea).addClass("openQ_wrong_answer")
+      }
+      var willRetry = canRetry && answeredQuizCorrectly === false;
+      if(willRetry) {
+        _disableQuiz(quiz);
+        V.Quiz.retryAnswerButton(quiz)
+      }else {
+        if(answeredQuizCorrectly === false) {
+          var rawUserAnswer = $(textArea).val();
+          $(textArea).val($(textArea).val() + "\n\n" + V.I18n.getTrans("i.ResponseCorrect") + ":" + "\n" + V.Utils.purgeString(quizJSON.answer.value))
+        }
+        switch(afterAnswerAction) {
+          case "continue":
+            V.Quiz.continueAnswerButton(quiz);
+            break;
+          case "disabled":
+          ;
+          default:
+            disableQuiz(quiz);
+            break
+        }
+      }
+    }else {
+      currentQuizJSONToShowInFancy = quizJSON;
+      $(hiddenLinkToShowAnswer).trigger("click");
+      switch(afterAnswerAction) {
+        case "continue":
+          V.Quiz.continueAnswerButton(quiz);
+          break;
+        case "disabled":
+        ;
+        default:
+          break
+      }
+    }
+  };
+  var onRetryQuiz = function(quizDOM) {
+    var textArea = $(quizDOM).find("textarea.openQTextArea");
+    $(textArea).removeClass("openQ_correct_answer");
+    $(textArea).removeClass("openQ_wrong_answer");
+    _enableQuiz(quizDOM);
+    V.Quiz.enableAnswerButton(quizDOM)
+  };
+  var getReport = function(quiz) {
+    var report = {};
+    report.answers = [];
+    report.empty = report.answers.length === 0;
+    return report
+  };
+  var disableQuiz = function(quiz) {
+    _disableQuiz(quiz);
+    V.Quiz.disableAnswerButton(quiz)
+  };
+  var _disableQuiz = function(quiz) {
+    var textArea = $(quiz).find("textarea.openQTextArea");
+    $(textArea).attr("readonly", "readonly")
+  };
+  var _enableQuiz = function(quiz) {
+    var textArea = $(quiz).find("textarea.openQTextArea");
+    $(textArea).removeAttr("readonly");
+    $(textArea).text("")
   };
   return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz}
 }(VISH, jQuery);
@@ -16739,10 +16926,9 @@ VISH.Quiz.API = function(V, $, undefined) {
           data = []
         }else {
           if(getResultsCount < 3) {
-            data = [{"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-30T12:35:05Z", "id":82, "quiz_session_id":59}]
+            data = [{"answer":'[{"choiceId":"2","answer":2},{"choiceId":"1","answer":1},{"choiceId":"3","answer":3},{"selfAssessment":{"result":true}}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}]
           }else {
-            data = [{"answer":'[{"choiceId":"3","answer":"true"}]', "created_at":"2013-11-29T17:49:59Z", "id":74, "quiz_session_id":56}, {"answer":'[{"choiceId":"2","answer":"true"}]', "created_at":"2013-11-29T17:50:03Z", "id":75, "quiz_session_id":56}, {"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:07Z", "id":76, "quiz_session_id":56}, {"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:12Z", "id":77, "quiz_session_id":56}, {"answer":'[{"choiceId":"1","answer":"true"}]', 
-            "created_at":"2013-11-29T17:50:15Z", "id":78, "quiz_session_id":56}, {"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:19Z", "id":79, "quiz_session_id":56}, {"answer":'[{"choiceId":"2","answer":"true"}]', "created_at":"2013-11-29T17:50:23Z", "id":80, "quiz_session_id":56}]
+            data = [{"answer":'[{"choiceId":"2","answer":2},{"choiceId":"1","answer":1},{"choiceId":"3","answer":3},{"selfAssessment":{"result":true}}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}, {"answer":'[{"choiceId":"2","answer":1},{"choiceId":"1","answer":2},{"choiceId":"3","answer":3},{"selfAssessment":{"result":false}}]', "created_at":"2013-11-26T12:49:34Z", "id":48, "quiz_session_id":31}]
           }
         }
         getResultsCount++;
