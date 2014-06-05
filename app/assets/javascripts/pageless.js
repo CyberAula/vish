@@ -216,10 +216,10 @@
    * also show the element or hide it depending on the tab selected
    * xxx
    */
-  function animateSlowAppendAndFinishLoading(element, arr){ 
+  function animateSlowAppendAndFinishLoading(my_element, arr){ 
     var tmp_elem = arr.pop();
    
-    var hidden_elem = $(tmp_elem).hide().appendTo($(element));
+    var hidden_elem = $(tmp_elem).hide().appendTo($(my_element));
     
     if ($.isFunction(settings.finishedAddingHiddenElem)) {
       settings.finishedAddingHiddenElem(hidden_elem);
@@ -229,7 +229,7 @@
     }
     
     if(arr.length>0){
-      window.setTimeout(function(){animateSlowAppendAndFinishLoading(element, arr)}, 20);
+      window.setTimeout(function(){animateSlowAppendAndFinishLoading(my_element, arr)}, 20);
     }
     else{
       loading(false);
@@ -270,6 +270,7 @@
         settings.currentPage = currentPage;
       }
 
+      var parent_to_append = element;  //saved because with several tabs, we can start another pageless and it changes the var "element"
       // set up ajax query params
       $.extend(requestParams, { page: currentPage });
       // finally ajax query
@@ -288,7 +289,7 @@
           //if (loader) {
           //   loader.before(data);
           //} else {
-            animateSlowAppendAndFinishLoading(element, jQuery.makeArray($(data)) );
+            animateSlowAppendAndFinishLoading(parent_to_append, jQuery.makeArray($(data)) );
           //}
           
 
