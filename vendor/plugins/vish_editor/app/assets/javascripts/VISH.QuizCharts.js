@@ -1,7 +1,7 @@
 var VISH = VISH || {};
 VISH.Constant = VISH.Constant || {};
 VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
-VISH.Constant.QZ_TYPE.OPEN = "open";
+VISH.Constant.QZ_TYPE.OPEN = "openAnswer";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
 
