@@ -242,12 +242,6 @@ nl:
     possible_answers: "Mogelijke antwoorden"
     yes: "Ja"
   recommended: "aanbevolen"
-  recsys:
-    recommended:
-      excursions:
-        explain_html: "Bekeken door gebruikers die uw interesses delen:"
-      resources:
-        explain_html: "Bekeken door gebruikers die uw interesses delen:"
   repository:
     one: "leermiddelenbank"
     other: "leermiddelenbanken"

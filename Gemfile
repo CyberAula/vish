@@ -33,9 +33,6 @@ end
 # Force the first version of avatars_for_rails that does not collide with bootstrap
 gem 'avatars_for_rails', '~> 1.1.0'
 
-# Composite keys for vish-recsys
-gem 'composite_primary_keys'
-
 # We do not know the reasons for this gem:
 #gem 'therubyracer'
 

@@ -719,12 +719,6 @@ en:
     trueL: "True"
     untitled: "Untitled"
   recommended: "recommended"
-  recsys:
-    recommended:
-      excursions:
-        explain_html: "Viewed by users sharing your interests:"
-      resources:
-        explain_html: "Viewed by users sharing your interests:"
   repository:
     one: "repository"
     other: "repositories"
