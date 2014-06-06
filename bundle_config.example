@@ -1,0 +1,10 @@
+This file explains how to use Social Stream Gem locally.
+You have to add the next lines in a file called "config" in a folder called ".bundle"
+So in "vish_folder/.bundle/config" you should have:
+
+-------------------
+BUNDLE_LOCAL__SOCIAL_STREAM-BASE: /home/username/workspace/social_stream
+BUNDLE_LOCAL__SOCIAL_STREAM-DOCUMENTS: /home/username/workspace/social_stream
+
+
+
