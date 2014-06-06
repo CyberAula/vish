@@ -93,7 +93,19 @@ class Scormfile < ActiveRecord::Base
 
       return resource
     rescue Exception => e
-      return "Invalid SCORM package (" + e.message + ")"
+      begin
+        #Remove previous ZIP file
+        zipfile.destroy
+      rescue
+      end
+
+      errorMsgMaxLength = 255
+      if e.message.length > errorMsgMaxLength
+        errorMsg =  e.message[0,errorMsgMaxLength] + "..."
+      else
+        errorMsg = e.message
+      end
+      return "Invalid SCORM package (" + errorMsg + ")"
     end
   end
 
