@@ -22,7 +22,7 @@ gem 'json', '1.7.4'
 gem 'sinatra', '1.3.2'
 gem 'selenium-webdriver', '=2.30.0'
 
-git 'git://github.com/ging/social_stream.git', branch: "master" do
+git 'git://github.com/ging/social_stream.git', branch: "vish" do
   gem 'social_stream-base'
   gem 'social_stream-documents'
   gem 'social_stream-linkser'

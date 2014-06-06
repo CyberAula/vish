@@ -23,7 +23,7 @@ GIT
 GIT
   remote: git://github.com/ging/social_stream.git
   revision: a77380f47f35a85f9fb5ad5846a42c8ce4a6f563
-  branch: master
+  branch: vish
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.2.2)
@@ -182,7 +182,7 @@ GEM
     deface (0.9.1)
       nokogiri (~> 1.5.0)
       rails (~> 3.1)
-    delayed_paperclip (2.7.0)
+    delayed_paperclip (2.7.1)
       paperclip (>= 3.3)
     devise (2.2.8)
       bcrypt-ruby (~> 3.0)
