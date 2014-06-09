@@ -700,9 +700,11 @@ en:
     createdAt: "Created at"
     closedAt: "closed at"
     closedAtS: "and closed at"
+    correctResponses: "Correct"
     error: "Sorry, an error has occurred processing this quiz"
     falseC: "F"
     falseL: "False"
+    incorrectResponses: "Incorrect"
     launchIn: "launched in the Virtual Excursion: "
     legend:
       name: "Live Quiz Name"
