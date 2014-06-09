@@ -21,9 +21,13 @@ GIT
     simple_captcha (0.1.6)
 
 GIT
-  remote: git://github.com/ging/social_stream.git
-  revision: a77380f47f35a85f9fb5ad5846a42c8ce4a6f563
-  branch: vish
+  remote: git://github.com/pahanix/delegates_attributes_to.git
+  revision: 69704cb6268c521e0e48ccb8d8b78930d1e7da67
+  specs:
+    delegates_attributes_to (0.0.1)
+
+PATH
+  remote: /home/aldo/workspace/social_stream
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.2.2)
@@ -70,12 +74,6 @@ GIT
       nokogiri (> 1.4.4)
       proudhon (>= 0.3.6)
       social_stream-base (~> 2.2.2)
-
-GIT
-  remote: git://github.com/pahanix/delegates_attributes_to.git
-  revision: 69704cb6268c521e0e48ccb8d8b78930d1e7da67
-  specs:
-    delegates_attributes_to (0.0.1)
 
 GEM
   remote: http://rubygems.org/
@@ -144,7 +142,7 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
-    capybara (2.2.1)
+    capybara (2.3.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -155,7 +153,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    childprocess (0.5.1)
+    childprocess (0.5.3)
       ffi (~> 1.0, >= 1.0.11)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -169,13 +167,13 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
-    columnize (0.3.6)
-    debugger (1.6.6)
+    columnize (0.8.9)
+    debugger (1.6.8)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.3.2)
+      debugger-ruby_core_source (~> 1.3.5)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.3.2)
+    debugger-ruby_core_source (1.3.5)
     deep_merge (1.0.1)
     deface (0.9.1)
       nokogiri (~> 1.5.0)
@@ -191,17 +189,19 @@ GEM
     erubis (2.7.0)
     exception_notification (3.0.1)
       actionmailer (>= 3.0.4)
-    execjs (2.0.2)
+    execjs (2.2.0)
     factory_girl (2.6.4)
       activesupport (>= 2.3.9)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
     ffi (1.9.3)
     flashy (0.0.1)
       railties (>= 3.1.0)
     foreigner (1.1.6)
       activerecord (>= 3.0.0)
-    forgery (0.5.0)
+    forgery (0.6.0)
     ging-opengraph (0.0.5)
       hashie
       nokogiri (>= 1.4.0)
@@ -211,10 +211,10 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashery (2.1.1)
-    hashie (2.0.5)
+    hashie (2.1.1)
     highline (1.6.21)
     hike (1.2.3)
-    htmlentities (4.3.1)
+    htmlentities (4.3.2)
     i18n (0.6.9)
     i18n-js (2.1.2)
       i18n
@@ -229,8 +229,7 @@ GEM
       railties (>= 3.1.0)
     jruby-pageant (1.1.1)
     json (1.7.4)
-    jwt (0.1.11)
-      multi_json (>= 1.5)
+    jwt (1.0.0)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -252,10 +251,10 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     modernizr-rails (2.0.6)
-    multi_json (1.9.2)
+    multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.3.15)
+    mysql2 (0.3.16)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -265,12 +264,14 @@ GEM
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     nokogiri (1.5.11)
-    oai (0.0.13)
+    oai (0.3.1)
       builder (>= 2.0.0)
+      faraday
+      faraday_middleware
     oauth (0.4.7)
-    oauth2 (0.9.3)
+    oauth2 (0.9.4)
       faraday (>= 0.8, < 0.10)
-      jwt (~> 0.1.8)
+      jwt (~> 1.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
@@ -306,7 +307,7 @@ GEM
       ruby-rc4
       ttfunk
     pg (0.17.1)
-    polyglot (0.3.4)
+    polyglot (0.3.5)
     proudhon (0.3.7)
       json
       nokogiri
@@ -321,7 +322,7 @@ GEM
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
-    rack-protection (1.5.2)
+    rack-protection (1.5.3)
       rack
     rack-ssl (1.3.4)
       rack
@@ -350,7 +351,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     raindrops (0.13.0)
-    rake (10.1.1)
+    rake (10.3.2)
     rdoc (3.12.2)
       json (~> 1.4)
     recurrence (1.2.0)
@@ -368,7 +369,7 @@ GEM
       vegas (~> 0.1.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    riddle (1.5.10)
+    riddle (1.5.11)
     rmagick (2.13.2)
     rspec (2.9.0)
       rspec-core (~> 2.9.0)
@@ -386,7 +387,7 @@ GEM
     ruby-imagespec (0.2.0)
     ruby-rc4 (0.1.5)
     rubyzip (0.9.9)
-    sass (3.3.4)
+    sass (3.3.8)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -432,7 +433,7 @@ GEM
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    unicorn (4.8.2)
+    unicorn (4.8.3)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
