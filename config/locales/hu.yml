@@ -378,12 +378,6 @@ hu:
     possible_answers: "Lehetséges válaszok"
     yes: "Yes"
   recommended: "ajánlott"
-  recsys:
-    recommended:
-      excursions:
-        explain_html: "Hasonló érdeklődésű felhasználók által megtekintve:"
-      resources:
-        explain_html: " Hasonló érdeklődésű felhasználók által megtekintve:"
   repository:
     one: "tár"
     other: "tárak"

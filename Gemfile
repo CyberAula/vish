@@ -22,19 +22,27 @@ gem 'json', '1.7.4'
 gem 'sinatra', '1.3.2'
 gem 'selenium-webdriver', '=2.30.0'
 
-git 'git://github.com/ging/social_stream.git', branch: "vish" do
-  gem 'social_stream-base'
-  gem 'social_stream-documents'
-  gem 'social_stream-linkser'
-  gem 'social_stream-ostatus'
-  gem 'social_stream-events'
+# $ export FORCE_LOCAL_SS=socialStreamPath
+if ENV['FORCE_LOCAL_SS'] 
+  path ENV['FORCE_LOCAL_SS'] do
+    gem 'social_stream-base'
+    gem 'social_stream-documents'
+    gem 'social_stream-linkser'
+    gem 'social_stream-ostatus'
+    gem 'social_stream-events'
+  end
+else
+  git 'git://github.com/ging/social_stream.git', branch: "vish" do
+    gem 'social_stream-base'
+    gem 'social_stream-documents'
+    gem 'social_stream-linkser'
+    gem 'social_stream-ostatus'
+    gem 'social_stream-events'
+  end
 end
 
 # Force the first version of avatars_for_rails that does not collide with bootstrap
 gem 'avatars_for_rails', '~> 1.1.0'
-
-# Composite keys for vish-recsys
-gem 'composite_primary_keys'
 
 # We do not know the reasons for this gem:
 #gem 'therubyracer'
