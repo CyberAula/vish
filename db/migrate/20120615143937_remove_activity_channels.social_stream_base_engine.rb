@@ -25,6 +25,9 @@ class RemoveActivityChannels < ActiveRecord::Migration
     remove_foreign_key :activities, :name => 'index_activities_on_channel_id'
     remove_column :activities, :channel_id
 
+    remove_foreign_key :activity_objects, :name => "index_activity_objects_on_channel_id"
+    remove_column :activity_objects, :channel_id
+
     Activity.reset_column_information
 
     drop_table :channels

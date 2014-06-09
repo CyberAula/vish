@@ -72,10 +72,36 @@ wb.add_worksheet(:name => "QuizSessionResults_" + @quiz_session.id.to_s) do |she
 		end
 		columnLength = 6
 
+	when "sorting"
+		rowContents[rowContentsIndex] = ["Choices", "Choices Value"]
+		rowContentsIndex = rowContentsIndex + 1
+
+		@processedQS["choices"].each_with_index do |choice,index|
+			rowContents[rowContentsIndex] = [index+1, choice["value"]]
+			rowContentsIndex = rowContentsIndex + 1
+		end
+
+		if @processedQS["processedResults"][0] and @processedQS["processedResults"][1]
+			rowContents[rowContentsIndex] = ["", ""]
+			rowContentsIndex = rowContentsIndex + 1
+
+			rowContents[rowContentsIndex] = ["","Responses","Percentage"]
+			rowContentsIndex = rowContentsIndex + 1
+
+			rowContents[rowContentsIndex] = [t('quiz.correctResponses'),@processedQS["processedResults"][0],@processedQS["processedResults"][2]]
+			rowContentsIndex = rowContentsIndex + 1
+			rowContents[rowContentsIndex] = [t('quiz.incorrectResponses'),@processedQS["processedResults"][1],@processedQS["processedResults"][3]]
+			rowContentsIndex = rowContentsIndex + 1
+			if @processedQS["totalAnswers"]
+				rowContents[rowContentsIndex] = [t('quiz.total'),@processedQS["totalAnswers"],""]
+				rowContentsIndex = rowContentsIndex + 1
+			end
+		end
+
+		columnLength = 4
 	else
-
+		#Quiz not recognized
 	end
-
 
 	rowContents.each_with_index do |rowContent,index|
 		style = odd_row_style

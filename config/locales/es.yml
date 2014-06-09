@@ -702,9 +702,11 @@ es:
     confirm_delete: "¿Borrar cuestionario en vivo? Perderás todas las respuestas almacenadas."
     createdAt: "Creado el"
     closedAtS: "y cerrado el"
+    correctResponses: "Correctas"
     error: "Lo sentimos, ha ocurrido un error procesando este cuestionario"
     falseC: "F"
     falseL: "Falso"
+    incorrectResponses: "Incorrectas"
     launchIn: "lanzado en la Excursión Virtual: "
     legend:
       name: "Nombre del cuestionario en vivo"

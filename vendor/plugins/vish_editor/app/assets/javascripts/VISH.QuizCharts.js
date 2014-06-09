@@ -4,6 +4,7 @@ VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
 VISH.Constant.QZ_TYPE.OPEN = "openAnswer";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
+VISH.Constant.QZ_TYPE.SORTING = "sorting";
 
 
 VISH.QuizCharts = (function(V,$,undefined){
