@@ -10,18 +10,21 @@
 <%end%>
 
 
-
 <section id="frontpage">
 
-  <div id="presentation">
-    <%= render partial: 'frontpage/presentation' %>
+  <!--<#%= render :partial => "frontpage/info" %>-->
+  <!-- <#%= render partial: 'frontpage/info-vish' %> -->
+
+  <div class="competition">
+    <%if I18n.locale==:es%>
+      <%= link_to image_tag("competition/ban_winner_02_esp.png",  :class=> "" ), "/contest" %>
+    <%else%>
+      <%= link_to image_tag("competition/ban_winner_02.png",  :class=> "" ), "/contest" %>
+    <%end%>
   </div>
 
-  <div id="info-vish">
-    <%= render partial: 'frontpage/info-vish' %>
-  </div>
-
-  <div id="excursions">
+  <div class="excursions">
     <%= render partial: 'frontpage/excursions' %>
   </div>
+
 </section>

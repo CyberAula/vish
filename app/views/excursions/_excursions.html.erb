@@ -1,33 +1,40 @@
 
-  <% excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||"popularity"}) %>
+  <% excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"popularity"}) %>
   
   <% excursions.each do |excursion| %>
     <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
   <% end %> 
 
 <script>
-	function re_apply_backstrech_on_home(){
-		<% excursions.each do |excursion| %>
-    		$("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>"); 
+	$(document).ready(function(){		
+		<%- if controller_name == 'excursions' && page != 0%>
+			$('#excursions_tab_ready ul').pageless({ 
+                          totalPages: <%=excursions.num_pages%>,
+                          url: window.location.href,
+                          currentPage: <%=excursions.current_page%>,
+                          loader: '.loader_pagination',
+                          end: function(){
+                            $('.loader_pagination').hide();
+                          }
+      		});
+		<%elsif controller_name == "users" %>
+			update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>);
+
+			re_apply_pageless("excursions");
+		<%end%>
+		
+
+		$("footer#footer").addClass("fixed-bottom");	    
+	});
+	
+	function add_excursions_backstrech(){		
+  		if(backstrech_items!=undefined){
+  		<% excursions.each do |excursion| %>    	  
+            backstrech_items.excursions["#excursion-<%=excursion.id%>"] = "<%=excursion_raw_thumbail(excursion)%>";
   		<% end %> 
+  		}
 	}
+
+	add_excursions_backstrech();
 </script>
 
-<%- if controller_name == 'excursions' && page != 0%>
-	<%= content_for :javascript do %>
-	    $('#excursions ul').pageless({ 
-	                        totalPages: <%=excursions.num_pages%>,
-	                        url: window.location.href,
-	                        currentPage: <%=excursions.current_page%>,
-	                        loader: '#loader_pagination',
-	                        end: function(){
-	                          $('#loader_pagination').hide();
-	                          //$("#last_content_shown").show();
-	                        }
-	    });
-
-	    $("footer#footer").addClass("fixed-bottom");
-
-	    re_apply_backstrech_on_home();
-  	<% end %>
-<%end%>

@@ -62,10 +62,13 @@
 										<a class="menu_option menu_action" action="insertPDFex" i18n-key="i.PDFSlideshow">PDF Slideshow</a>
 									</li>
 									<li>
-										<a class="menu_option menu_action" action="insertPresentation" i18n-key="i.Presentation">Excursion</a>
+										<a class="menu_option menu_action" action="insertPackage" i18n-key="i.ePackage">e-Learning Package</a>
 									</li>
 									<li class="liInsertJson">
-										<a class="menu_option menu_action" action="insertJSON">JSON</a>
+										<a class="menu_option menu_action" action="insertEFile" i18n-key="i.File">File</a>
+									</li>
+									<li>
+										<a class="menu_option menu_action" action="insertPresentation" i18n-key="i.Excursion">Excursion</a>
 									</li>
 								</ul>
 							</li>
@@ -169,7 +172,7 @@
 				</div>
 			</div>
 			<div id="toolbar_element" class="withLeftBorder">
-				<div id="settings_quiz_wrapper" class="toolbar_presentation_wrapper withRightBorder" style="display:none">
+				<div id="settings_quiz_wrapper" class="toolbar_presentation_wrapper withRightBorder toolbar_quiz" style="display:none">
 					<a id="settings_quiz" class="tool_action" action="quizSettings" href="#">
 						<button type="button" class="btn btn-primary btn-small btn-toolbarElementWrapper">
 							<img src="/assets/toolbar/quiz_settings.png"/>
@@ -474,16 +477,19 @@
 			<div class='fancy_tabs' id='thumcontent_tabs'>
 				<ul>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_slides'); return false;" id="tab_slides" class="fancy_tab tabbable" i18n-key="i.Slides">Slides</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_slides'); return false;" id="tab_slides" class="fancy_tab tabbable" i18n-key="i.Slide">Slide</a>
 					</li>
 					<li>
 						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pdfex'); return false;" id="tab_pdfex" class="fancy_tab">PDF</a>
 					</li>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo'); return false;" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Excursions">Excursions</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_epackage'); return false;" id="tab_epackage" class="fancy_tab" i18n-key="i.Package">Package</a>
 					</li>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_json_file'); return false;" id="tab_json_file" class="fancy_tab">JSON</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_efile'); return false;" id="tab_efile" class="fancy_tab" i18n-key="i.File">File</a>
+					</li>
+					<li>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo'); return false;" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Excursion">Excursion</a>
 					</li>
 				</ul>
 			</div> 
@@ -589,7 +595,7 @@
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
 
 					<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
-						<input id="upload_file_input" type="file" name="pdfex[attach]" class="upload_file_input">
+						<input type="file" name="pdfex[attach]" class="upload_file_input">
 						<input type="hidden" name="document[owner_id]">
 						<input type="hidden" name="authenticity_token">
 						<input id="upload_pdfex_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
@@ -600,6 +606,44 @@
 						<div class="upload_progress_bar_percent">0%</div >
 					</div>
 
+				</div>
+			</div>
+
+			<div id='tab_epackage_content' class="fancy_tab_content" style='display:none'>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_epackage_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<div class="box1 box1fancy3">
+					<p class="textfancy" i18n-key="i.AddePackage">Add an e-Learning package from a ZIP file. Supported formats: SCORM and custom HTML5 Web Applications.</p></br>
+					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+					<form id="package_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+						<input type="file" name="document[file]" class="upload_file_input">
+						<input type="hidden" name="document[title]">
+						<input type="hidden" name="document[description]">
+						<input type="hidden" name="document[owner_id]">
+						<input type="hidden" name="authenticity_token">
+						<input type="hidden" name="document[tag_list]">
+						<input id="upload_package_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload" style="display: none;">
+					</form>
+					<div class="upload_progress_bar_wrapper">
+						<div class="upload_progress_bar"></div >
+						<div class="upload_progress_bar_percent">0%</div >
+					</div>
+					<div class="tagBoxUpload">
+						<ul class="tagList"></ul>
+					</div>
+				</div>
+			</div>
+
+			<div id='tab_efile_content' class="fancy_tab_content" style='display:none'>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_efile_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<div class="box1 box1fancy3">
+					<p class="textfancy" i18n-key="i.ImportFromEFile">Import resources from external files:</p>
+					<ul class="listInFancy">
+						<li><p class="textfancy" i18n-key="i.ImportFromEFileVEJSON">ViSH Editor Presentations and Slides from JSON files</p></li>
+						<li><p class="textfancy" i18n-key="i.ImportFromEFileIMSQTI">Quizzes from IMS QTI 2.1 compliant XML files</p></li>
+					</ul>
+					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+					<input id="efile_input" type="file" id="files" name="files[]" multiple />
+					<button id="efile_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
 				</div>
 			</div>
 
@@ -619,16 +663,6 @@
 						</div>
 					</div> 	
 				</div>	
-			</div>
-
-			<div id='tab_json_file_content' class="fancy_tab_content" style='display:none'>
-				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_json_file_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<div class="box1 box1fancy3">
-					<p class="textfancy" i18n-key="i.AddFromJSONfile">Add ViSH Editor Presentation from JSON file</p></br>
-					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-					<input id="json_file_input" type="file" id="files" name="files[]" multiple />
-					<button id="json_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
-				</div>
 			</div>
 
 		</div>
@@ -651,11 +685,19 @@
 			<div id='tab_quizzes_content' class="fancy_tab_content">
 				<div class='quizFancythumb'>
 					<img src='/assets/templatesthumbs/tquiz2.png' onclick='VISH.Editor.Quiz.add("multiplechoice"); return false;'/>
-					<p><span i18n-key="i.walkQuiz_MC1">Multiple choice</span></p>
+					<p><span i18n-key="i.walkQuiz_MC1">Multiple Choice</span></p>
 				</div>
 				<div class='quizFancythumb'>
 					<img src='/assets/templatesthumbs/tquiz3.png' onclick='VISH.Editor.Quiz.add("truefalse"); return false;'/>
 					<p><span i18n-key="i.walkQuiz_TF1">True / False</span></p>
+				</div>
+				<div class='quizFancythumb'>
+					<img src='/assets/templatesthumbs/tquiz5.png' onclick='VISH.Editor.Quiz.add("sorting"); return false;'/>
+					<p><span i18n-key="i.walkQuiz_Sorting1">Sorting</span></p>
+				</div>
+				<div class='quizFancythumb'>
+					<img src='/assets/templatesthumbs/tquiz1.png' onclick='VISH.Editor.Quiz.add("openAnswer"); return false;'/>
+					<p><span i18n-key="i.walkQuiz_Open1">Open Ended</span></p>
 				</div>
 			</div>
 		</div>
@@ -794,7 +836,7 @@
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
 
 					<form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-						<input id="upload_file_input" type="file" name="document[file]" class="upload_file_input">
+						<input type="file" name="document[file]" class="upload_file_input">
 						<input type="hidden" name="document[title]">
 						<input type="hidden" name="document[description]">
 						<input type="hidden" name="document[owner_id]">
@@ -1271,9 +1313,46 @@
 
 	<!-- Quiz Settings -->
 	<div style='display:none'>
-		<div id="quizSettings_fancybox">
-			<p>Quiz Settings</p>
-			<p class="test"></p>
+		<div id="quizSettings_fancybox" class="elSettings_fancybox">
+			<p class="elsettings_fancybox_title">Quiz Settings</p>
+
+			<input type="hidden" name="elId">
+
+			<div class="new_elsettings_field">
+				<span i18n-key="i.NAttempts">Number of Attempts</span>
+				<select id="quizSettings_nAttempts" class="el_settings_select">
+					<option value="1" selected="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="unlimited" i18n-key="i.Unlimited">Unlimited</option>
+				</select>
+			</div>
+
+			<div class="new_elsettings_field">
+				<span i18n-key="i.AudienceResponseSystem">Audience Response System</span>
+				<div class="new_elsettings_subfield">
+					<p>
+						<span i18n-key="i.Enable">Enable</span>
+						<input type="checkbox" name="enableARS">
+					</p>
+				</div>
+			</div>
+
+			<div class="new_elsettings_field">
+				<a id="exportQuizToIMSQTI">
+					<p>
+						<i class="icon-button icon-rotate-180 icon-download-alt"></i>&nbsp;&nbsp;
+						<span i18n-key="i.ExportToIMSQTI">Export to IMS QTI 2.1</span>
+					</p>
+				</a>
+			</div>
+
+			<div class="elSettingsButtonsWrapper">
+				<button id="quizSettingsDone" type="button" class="button" i18n-key="i.Done">Done</button>
+			</div>
+
 		</div>
 	</div>
 
@@ -1630,6 +1709,36 @@
 		</li>
 	</ol>
 
+	<!-- Help uploading e-Learning Packages -->
+	<ol id="help_epackage_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkEPackage_1">Insert an e-Learning Package</h2>
+			<p i18n-key="i.walkEPackage_2">Select an e-Learning Package in ZIP format and upload the file. Only files with ZIP format are allowed. You can upload standard SCORM Packages or custom HTML5 web applications. To upload a custom web application, the main HTML file should be renamed as 'index.html' and included in the ZIP file together with all the necessary files.</p>
+			<p i18n-key="i.walkEPackage_3">Once the upload of the ZIP file is complete, a new screen will pop up for you to preview and confirm the content to be inserted.</p>
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Help importing external files (JSON, IMS QTI, ...) -->
+	<ol id="help_efile_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkInsertEfile_1">Import resources from external files</h2>
+			<p i18n-key="i.walkInsertEfile_2" class="tut_withoutbottomspace">This screen allows you to import different type of resources from external files.</p>
+			<p i18n-key="i.walkInsertEfile_3" class="tut_withouttopspace">The following options are available:</p>
+			<p class="tut_space">&nbsp;</p>
+
+			<h3>-> <span i18n-key="i.walkInsertJSONfile_1">Add a ViSH Editor Presentation from a JSON file</span></h3>
+			<p i18n-key="i.walkInsertJSONfile_2" class="tut_withlittletopspace">Pick the file in JSON format (.json) in which the presentation you want to insert is saved. Then, click on the preview button. A new screen will appear for you to select the slides to import.</p>
+			<p i18n-key="i.walkInsertJSONfile_3">You can save your presentation in JSON format by clicking on 'Menu -> Export -> toJSON'. A JSON file containing your presentation will be downloaded to your device. This  way you can share your presentation through a file (for instance sending it by email) and store it where you want.</p>
+			<p class="tut_space">&nbsp;</p>
+
+			<h3>-> <span i18n-key="i.walkInsertIMSQTI_1">Add a Quizz from a IMS QTI 2.1 compliant XML file</span></h3>
+			<p i18n-key="i.walkInsertIMSQTI_2" class="tut_withlittletopspace">Pick the file in XML format (.xml) in which the quiz you want to insert is saved according to the IMS QTI 2.1 standard. Then, click on the preview button. A new screen will appear for you to preview the quiz before inserting it.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
 	<!-- Help searching presentations in ViSH to insert -->
 	<ol id="help_excursion_selection_help" class="joyRideTipContent">
 		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
@@ -1639,16 +1748,6 @@
 				<span i18n-key="i.walkSearch1">Write the name you want to search inside the text box, for example</span> <i><span i18n-key="i.nature">nature</span></i>, <span i18n-key="i.walkPresSearch2">and press the 'enter' key to start the search. When the search has finished, the found Virtual Excursions will be shown in this screen.</span>
 			</p>
 			<p i18n-key="i.walkInsertingViSHPres_3">Click on any of the Virtual Excursions to select it. After that, a new button "Preview" will be displayed.	Once you click on this button, a new screen will pop up for you to select the slides  that you want to insert in your presentation.</p>
-			<p class="tut_space">&nbsp;</p>
-		</li>
-	</ol>
-
-	<!-- Help importing JSON -->
-	<ol id="help_iJSON_help" class="joyRideTipContent">
-		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
-			<h2 i18n-key="i.walkInsertJSONfile_1">Add a ViSH Editor Presentation from a JSON file</h2>
-			<p i18n-key="i.walkInsertJSONfile_2">Pick the file in JSON format (.json) in which the presentation you want to insert is saved. Then, click on the preview button. A new screen will appear for you to select the slides to import.</p>
-			<p i18n-key="i.walkInsertJSONfile_3">You can save your presentation in JSON format by clicking on 'Menu -> Export -> toJSON'. A JSON file containing your presentation will be downloaded to your device. This  way you can share your presentation through a file (for instance sending it by email) and store it where you want.</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 	</ol>
@@ -2151,7 +2250,7 @@
 
 	<!-- Help inserting Quizzes -->
 	<ol id="quiz_help" class="joyRideTipContent">
-		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width600_center tut_without_arrow" data-options="tipLocation:none">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_quizzes_fancybox tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
 		<h2 i18n-key="i.walkQuiz_1">Adding Quizzes</h2>
 		<p><span i18n-key="i.walkQuiz_2">You can add different type of quizzes to your presentation. The current available quizzes are showed below</span>:</p>
 			<table class="tut_table_imagewithsubtitle">
@@ -2163,8 +2262,16 @@
 					<td><img src="/assets/templatesthumbs/tquiz3.png"/><p i18n-key="i.walkQuiz_TF1">True / False</p></td>
 					<td><p i18n-key="i.walkQuiz_TF2">A true/false quiz is a a form of assessment in which respondents are asked to select, for each statement, if it is true or false.</p></td>
 				</tr>
+				<tr>
+					<td><img src="/assets/templatesthumbs/tquiz5.png"/><p i18n-key="i.walkQuiz_Sorting1">Sorting</p></td>
+					<td><p i18n-key="i.walkQuiz_Sorting2">Sorting or sequence quizzes are a form of assessment in which respondents are required to drag and drop items to arrange in sequence. All items must be in the proper sequence for the question to be graded as correct.</p></td>
+				</tr>
+				<tr>
+					<td><img src="/assets/templatesthumbs/tquiz1.png"/><p i18n-key="i.walkQuiz_Open1">Open Ended</p></td>
+					<td><p i18n-key="i.walkQuiz_Open2">In a open ended quiz, the student types in a word or phrase in response to a question. Open Ended quizzes can be self&#8209;assessed when the answer is short. In this case these quizzes are called "Short Answer" quizzes. The answer could be a word or a phrase, but it must match the proposed answer exactly.</p></td>
+				</tr>
 			</table>
-			<p i18n-key="i.walkQuiz_3">In addition to the content, you also can define the correct answers of the quiz, allowing this way self-assessment and the auto tracking of students progress in Learning Management Systems like Moodle.</p>
+			<p i18n-key="i.walkQuiz_3">In addition to the content, you also can define the correct answers of the quiz, allowing this way self&#8209;assessment and the auto tracking of students progress in Learning Management Systems like Moodle.</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 	</ol>

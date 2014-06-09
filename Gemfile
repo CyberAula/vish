@@ -22,7 +22,7 @@ gem 'json', '1.7.4'
 gem 'sinatra', '1.3.2'
 gem 'selenium-webdriver', '=2.30.0'
 
-git 'git://github.com/ging/social_stream.git', branch: "master" do
+git 'git://github.com/ging/social_stream.git', branch: "vish" do
   gem 'social_stream-base'
   gem 'social_stream-documents'
   gem 'social_stream-linkser'
@@ -32,9 +32,6 @@ end
 
 # Force the first version of avatars_for_rails that does not collide with bootstrap
 gem 'avatars_for_rails', '~> 1.1.0'
-
-# Composite keys for vish-recsys
-gem 'composite_primary_keys'
 
 # We do not know the reasons for this gem:
 #gem 'therubyracer'
@@ -104,3 +101,8 @@ gem "oai_repository", :git => 'git://github.com/ebarra/oai_repository.git'
 gem "scorm", :git => 'git://github.com/ebarra/scorm.git', :branch => "master"
 
 gem "paperclip", '=3.5.1'
+
+#xlsx generation
+gem 'axlsx'
+gem 'axlsx_rails'
+gem 'acts_as_xlsx'

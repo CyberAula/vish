@@ -26,61 +26,61 @@
 		<p class="quizQuestionTitle"><%=@processedQS["question"]%></p>
 
 		<% case @processedQS["quizType"] %>
-			<% when "multiplechoice" %>
-
-				<% if @processedQS["choices"] %>
-					<table class="quizResultsTable" border="0">
-					<% @processedQS["choices"].each_with_index do |choice,index|%>
-						<% if choice["value"] %>
-							<tr>
-							<td><%=(index+97).chr%>)</td>
-							<td><%=choice["value"]%></td>
-							<% if @processedQS["processedResults"] %>
-								<td class="tdaRight"><%=@processedQS["processedResults"][index]["n"]%></td>
-								<% if !(@processedQS["extras"] && @processedQS["extras"]["multipleAnswer"]==true) %>
-									<td class="tdaRight"><%=@processedQS["processedResults"][index]["percentage"]%> %</td>
-								<% end %>
-							<% end %>
-							</tr>
-						<% end %>
-					<% end %>
-					<% if @processedQS["totalAnswers"] && !(@processedQS["extras"] && @processedQS["extras"]["multipleAnswer"]==true) %>
-					<tr class="trLast">
-						<td colspan="2"><%=t('quiz.total')%></td>
-						<td><%=@processedQS["totalAnswers"]%></td>
-					</tr>
-					<% end %>
-					</table>
-				<% end %>
-			<% when  "truefalse" %>
+		<% when "multiplechoice" %>
+			<% if @processedQS["choices"] %>
 				<table class="quizResultsTable" border="0">
-				<% if @processedQS["processedResults"] %>
-					<tr>
-						<td></td><td></td><td colspan="2"></i><%=t('quiz.trueC')%></td><td colspan="2"><%=t('quiz.falseC')%></td>
-					</tr>
-				<% end %>
 				<% @processedQS["choices"].each_with_index do |choice,index|%>
 					<% if choice["value"] %>
 						<tr>
 						<td><%=(index+97).chr%>)</td>
 						<td><%=choice["value"]%></td>
 						<% if @processedQS["processedResults"] %>
-							<td class="tdaRight tdbeforeTFPercentage"><%=@processedQS["processedResults"][index]["T"]%></td>
-							<td class="tdTFPercentage">(<%=@processedQS["processedResults"][index]["Tpercentage"]%>%)</td>
-							<td class="tdaRight tdbeforeTFPercentage"><%=@processedQS["processedResults"][index]["F"]%></td>
-							<td class="tdTFPercentage">(<%=@processedQS["processedResults"][index]["Fpercentage"]%>%)</td>
+							<td class="tdaRight"><%=@processedQS["processedResults"][index]["n"]%></td>
+							<% if !(@processedQS["extras"] && @processedQS["extras"]["multipleAnswer"]==true) %>
+								<td class="tdaRight"><%=@processedQS["processedResults"][index]["percentage"]%> %</td>
+							<% end %>
 						<% end %>
 						</tr>
 					<% end %>
 				<% end %>
+				<% if @processedQS["totalAnswers"] && !(@processedQS["extras"] && @processedQS["extras"]["multipleAnswer"]==true) %>
+				<tr class="trLast">
+					<td colspan="2"><%=t('quiz.total')%></td>
+					<td><%=@processedQS["totalAnswers"]%></td>
+				</tr>
+				<% end %>
 				</table>
-			<% else %>
+			<% end %>
+		<% when  "truefalse" %>
+			<table class="quizResultsTable" border="0">
+			<% if @processedQS["processedResults"] %>
+				<tr>
+					<td></td><td></td><td colspan="2"></i><%=t('quiz.trueC')%></td><td colspan="2"><%=t('quiz.falseC')%></td>
+				</tr>
+			<% end %>
+			<% @processedQS["choices"].each_with_index do |choice,index|%>
+				<% if choice["value"] %>
+					<tr>
+					<td><%=(index+97).chr%>)</td>
+					<td><%=choice["value"]%></td>
+					<% if @processedQS["processedResults"] %>
+						<td class="tdaRight tdbeforeTFPercentage"><%=@processedQS["processedResults"][index]["T"]%></td>
+						<td class="tdTFPercentage">(<%=@processedQS["processedResults"][index]["Tpercentage"]%>%)</td>
+						<td class="tdaRight tdbeforeTFPercentage"><%=@processedQS["processedResults"][index]["F"]%></td>
+						<td class="tdTFPercentage">(<%=@processedQS["processedResults"][index]["Fpercentage"]%>%)</td>
+					<% end %>
+					</tr>
+				<% end %>
+			<% end %>
+			</table>
+		<% else %>
 		<% end %>
 
 		<% if answersLength == 0%>
 			<p class="quizWithoutAnswers"><%=t('quiz.noAnswers')%></p>
 		<% else %>
 			<canvas id="quiz_chart" width="700" height="400"></canvas>
+			<%= link_to t('downloadxlsx'), "/quiz_sessions/#{@quiz_session.id}/results.xlsx", :class => "quizDownloadAsXLSX" %>
 		<% end %>
 
 	<% else %>

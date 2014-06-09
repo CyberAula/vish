@@ -11,7 +11,7 @@
 
   </div>
   
-  <div id="excursions">
+  <div class="excursions">
     <ul class="">
     <%# excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>
       <% items = subject_content current_subject, [Excursion, Picture, Video, Document, Embed, Link], {:scope => :like, :limit=>0} %>

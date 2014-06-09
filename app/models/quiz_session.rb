@@ -19,6 +19,7 @@ class QuizSession < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User'
   has_many :quiz_answers, :dependent => :destroy
   
+  acts_as_xlsx
 
   def quizJSON(options=nil)
   	self.quiz
@@ -78,7 +79,7 @@ class QuizSession < ActiveRecord::Base
             #Result is an array of responses
             result.each do |response|
               if response["answer"]=="true"
-                qparams["processedResults"][response["no"].to_i-1]["n"] = qparams["processedResults"][response["no"].to_i-1]["n"].to_i + 1
+                qparams["processedResults"][response["choiceId"].to_i-1]["n"] = qparams["processedResults"][response["choiceId"].to_i-1]["n"].to_i + 1
               end
             end
           end
@@ -111,9 +112,9 @@ class QuizSession < ActiveRecord::Base
             #Result is an array of responses
             result.each do |response|
               if response["answer"]=="true"
-                qparams["processedResults"][response["no"].to_i-1]["T"] = qparams["processedResults"][response["no"].to_i-1]["T"].to_i + 1
+                qparams["processedResults"][response["choiceId"].to_i-1]["T"] = qparams["processedResults"][response["choiceId"].to_i-1]["T"].to_i + 1
               elsif response["answer"]=="false"
-                qparams["processedResults"][response["no"].to_i-1]["F"] = qparams["processedResults"][response["no"].to_i-1]["F"].to_i + 1
+                qparams["processedResults"][response["choiceId"].to_i-1]["F"] = qparams["processedResults"][response["choiceId"].to_i-1]["F"].to_i + 1
               end
             end
           end
@@ -127,6 +128,38 @@ class QuizSession < ActiveRecord::Base
             else
               choiceResult["Tpercentage"] = 0;
               choiceResult["Fpercentage"] = 0;
+            end
+          end
+
+        when "sorting"
+          #TODO
+          qparams["totalAnswers"] = self.results.length
+
+          2.times do |index|
+            qResult = Hash.new
+            qResult["n"] = 0;
+            qparams["processedResults"].push(qResult)
+          end
+
+          self.results.each do |result|
+            result = JSON(result["answer"])
+
+            #Result is an array of responses
+            result.each do |response|
+              if !response["selfAssessment"].nil?
+                if response["selfAssessment"]["result"]==true
+                  qparams["processedResults"][0]["n"] = qparams["processedResults"][0]["n"].to_i + 1
+                elsif response["selfAssessment"]["result"]==false
+                  qparams["processedResults"][1]["n"] = qparams["processedResults"][1]["n"].to_i + 1
+                end
+              end
+            end
+          end
+
+          if qparams["totalAnswers"] > 0
+            #Calculate percentage
+            qparams["processedResults"].each do |result|
+              result["percentage"] = ((result["n"]*100)/qparams["totalAnswers"])
             end
           end
 

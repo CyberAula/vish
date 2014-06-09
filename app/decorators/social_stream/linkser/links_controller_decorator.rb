@@ -8,7 +8,7 @@ LinksController.class_eval do
     super do |format|
       format.json { render :json => resource }
       format.js { render }
-      format.all {redirect_to user_path(current_user)}    
+      format.all {redirect_to link_path(resource) || user_path(current_user)}    
   	end
   end
   

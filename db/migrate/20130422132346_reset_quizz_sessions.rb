@@ -27,7 +27,7 @@ class ResetQuizzSessions < ActiveRecord::Migration
 
   def down
     begin
-  	 drop_table :quiz_sessions
+      drop_table :quiz_sessions
       drop_table :quiz_answers
     rescue
     end

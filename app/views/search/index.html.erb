@@ -22,7 +22,7 @@
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
           </li>
 
-          <li class="user <%= " active" if params[:type] == "excursions" %><%= " disabled" unless search_results?("user") %>">
+          <li class="user <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
             <%= link_to raw('<i class="icon-group"></i><span class=" hidden-phone hidden-tablet">'+t("user.title.other")+'</span>'), "#user",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
           </li>
@@ -69,6 +69,12 @@
                     elem.value = "<%=excursion_raw_thumbail(result)%>";
                     array_of_id_and_image.push(elem); 
                   <%end%>
+                  <% if result.class == Event %>
+                    elem = {};
+                    elem.id = "#event-<%=result.id%>";
+                    elem.value = "<%=event_raw_thumbail(result)%>";
+                    array_of_id_and_image.push(elem); 
+                  <%end%>
                 <% end %> 
 
                 function re_apply_backstrech_on_search(){
@@ -80,7 +86,7 @@
               </script>
             </ul>
           </div>
-          <div id="loader_pagination">
+          <div class="loader_pagination">
             <div id="pageless-loader" style="text-align:center;width:100%;">
               <div class="msg" style="font-size:2em">
                 <%=t('search.loading')%>
@@ -101,9 +107,9 @@
                         totalPages: <%=@search_result.num_pages%>,
                         url: window.location.href,
                         currentPage: <%=@search_result.current_page%>,
-                        loader: '#loader_pagination',
+                        loader: '.loader_pagination',
                         end: function(){
-                          $('#loader_pagination').hide();
+                          $('.loader_pagination').hide();
                           $("#last_content_shown").show();
                         },
                         finishedAddingHiddenElem: function(hidden_elem){
@@ -139,16 +145,19 @@
       <%if params[:type]%>
         //if "popular" links used, the tabs are links to other "popular" searches
         $("#search .all_results").click(function(){
-          window.location.href = '<%=search_path()%>';
+          window.location.href = '<%=search_path(:browse=>"true", :sort_by => "popularity")%>';
         });
         $("#search .excursion").click(function(){
-          window.location.href = '<%=search_path(:type => "excursion")%>';
+          window.location.href = '<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "popularity")%>';
         });
         $("#search .user").click(function(){
-          window.location.href = '<%=search_path(:type => "user")%>';
+          window.location.href = '<%=search_path(:type => "user", :browse=>"true", :sort_by => "popularity")%>';
+        });
+        $("#search .event").click(function(){
+          window.location.href = '<%=search_path(:type => "event", :browse=>"true", :sort_by => "popularity")%>';
         });
         $("#search .resource").click(function(){
-          window.location.href = '<%=search_path(:type => "resource")%>';
+          window.location.href = '<%=search_path(:type => "resource", :browse=>"true", :sort_by => "popularity")%>';
         });
       <%else%>
         //if search is manual, the tabs are like filters, so done with js
@@ -185,6 +194,9 @@
 
       re_apply_backstrech_on_search();
 
+      $(".search .all_results").click(function(){
+        re_apply_backstrech_on_search();
+      });
       $(".search .excursion").click(function(){
         re_apply_backstrech_on_search();
       });
@@ -194,6 +206,10 @@
       $(".search .resource").click(function(){
         re_apply_backstrech_on_search();
       });
+      $(".search .event").click(function(){
+        re_apply_backstrech_on_search();
+      });
+
 
     <% end %>
   </div>

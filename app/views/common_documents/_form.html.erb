@@ -16,11 +16,13 @@
       </ul>
     </div>
 
-    <section class="upload">
-      <%= f.label :file, t('document.info.file') %>
-      <%= f.file_field :file %>
-      <!-- <input id="document_file" name="document[file]" type="file"> -->
-    </section>
+    <% if controller.action_name == "create" %>
+      <section class="upload">
+        <%= f.label :file, t('document.info.file') %>
+        <%= f.file_field :file %>
+        <!-- <input id="document_file" name="document[file]" type="file"> -->
+      </section>
+    <% end %>
 
     <section class="hidden-desktop hidden-phone hidden-tablet">
       <%= f.label :file, "Image" %>

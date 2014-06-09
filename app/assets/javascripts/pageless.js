@@ -106,6 +106,14 @@
     }
   };
 
+  $.pagelessStop = function () {
+    if(settings.inited===true){
+      settings.inited = false;
+      stopListener();
+    }
+    
+  }
+
   var loaderHtml = function () {
     return settings.loaderHtml ||
       '<div id="pageless-loader" style="display:none;text-align:center;width:100%;">' +
@@ -146,8 +154,8 @@
     //var $loader = $(opts.loader, $el);
     var $loader = $(opts.loader);
 
-    init(opts);
-    element = $el;
+    element = $el;  
+    init(opts);  
 
     // loader element
     if (opts.loader && $loader.length) {
@@ -208,10 +216,10 @@
    * also show the element or hide it depending on the tab selected
    * xxx
    */
-  function animateSlowAppendAndFinishLoading(element, arr){ 
+  function animateSlowAppendAndFinishLoading(my_element, arr){ 
     var tmp_elem = arr.pop();
    
-    var hidden_elem = $(tmp_elem).hide().appendTo($(element));
+    var hidden_elem = $(tmp_elem).hide().appendTo($(my_element));
     
     if ($.isFunction(settings.finishedAddingHiddenElem)) {
       settings.finishedAddingHiddenElem(hidden_elem);
@@ -221,7 +229,7 @@
     }
     
     if(arr.length>0){
-      window.setTimeout(function(){animateSlowAppendAndFinishLoading(element, arr)}, 20);
+      window.setTimeout(function(){animateSlowAppendAndFinishLoading(my_element, arr)}, 20);
     }
     else{
       loading(false);
@@ -236,7 +244,6 @@
     my_num++;
     var currentPage = settingOrFunc('currentPage');
     var totalPages = settingOrFunc('totalPages');
-
     // listener was stopped or we've run out of pages
     //MODIFIED BY KIKE. Added !isLoading to still wait for the last page, this was a bug
     //XXX
@@ -263,6 +270,7 @@
         settings.currentPage = currentPage;
       }
 
+      var parent_to_append = element;  //saved because with several tabs, we can start another pageless and it changes the var "element"
       // set up ajax query params
       $.extend(requestParams, { page: currentPage });
       // finally ajax query
@@ -281,7 +289,7 @@
           //if (loader) {
           //   loader.before(data);
           //} else {
-            animateSlowAppendAndFinishLoading(element, jQuery.makeArray($(data)) );
+            animateSlowAppendAndFinishLoading(parent_to_append, jQuery.makeArray($(data)) );
           //}
           
 

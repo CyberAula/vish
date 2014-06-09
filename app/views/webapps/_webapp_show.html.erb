@@ -1,0 +1,14 @@
+<%= div_for webapp, :class => 'content_size' do %>
+  <div class="webapp_show">
+    <iframe width=<%=webapp.width%> height="<%=webapp.height%>" class="webapp_wrapper" style="border: none; max-width: 100%" src="<%=webapp.lourl%>"></iframe>
+	<div class="link_address">
+    	<a href="<%=webapp_path(webapp, :format => :full)%>" target="_blank"><i class="icon-fullscreen"></i><%= t("webapp.view_full") %></a>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
+	

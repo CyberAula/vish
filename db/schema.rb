@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140425135810) do
+ActiveRecord::Schema.define(:version => 20140529135751) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(:version => 20140425135810) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
-    t.string   "email",                 :default => "",   :null => false
+    t.string   "email",                 :default => "",    :null => false
     t.string   "slug"
     t.string   "subject_type"
     t.boolean  "notify_by_email",       :default => true
@@ -116,6 +116,9 @@ ActiveRecord::Schema.define(:version => 20140425135810) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "notification_settings"
+    t.integer  "mve",                   :default => 0
+    t.boolean  "is_mve",                :default => false
+    t.integer  "rankMve",               :default => 0
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
@@ -217,6 +220,20 @@ ActiveRecord::Schema.define(:version => 20140425135810) do
   add_index "events", ["activity_object_id"], :name => "events_on_activity_object_id"
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
+  create_table "exclude_auth_mves", :force => true do |t|
+    t.string   "authName"
+    t.integer  "rankTime",   :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "exclude_exc_mves", :force => true do |t|
+    t.string   "excName"
+    t.integer  "rankTime",   :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
   create_table "excursion_contributors", :force => true do |t|
     t.integer "excursion_id"
     t.integer "contributor_id"
@@ -261,6 +278,8 @@ ActiveRecord::Schema.define(:version => 20140425135810) do
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
     t.integer  "mve",                :default => 0
+    t.boolean  "is_mve",             :default => false
+    t.integer  "rankMve",            :default => 0
   end
 
   create_table "groups", :force => true do |t|
@@ -552,6 +571,18 @@ ActiveRecord::Schema.define(:version => 20140425135810) do
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "webapps", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "zipurl"
+    t.text     "lourl"
+    t.text     "zippath"
+    t.text     "lopath"
+    t.integer  "width",              :default => 800
+    t.integer  "height",             :default => 600
+  end
 
   add_foreign_key "activities", "activity_verbs", :name => "index_activities_on_activity_verb_id"
 

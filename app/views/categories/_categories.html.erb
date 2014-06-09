@@ -1,20 +1,18 @@
-<ul class="categories">
-  <% if profile_subject_is_current? %>
-    <%= render partial: 'categories/category-add' %>
-    <%= render partial: 'categories/category_fav' %>
-  <% end %>
+<% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"updated_at"}) %>
+<% all_categories.each do |category| %>
+    <%= render :partial => 'categories/category', :locals => { :category => category } %>
+<% end %> 
 
-  <% subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).each do |category| %>
-      <%= render :partial => 'categories/category', :locals => { :category => category } %>
-  <% end %> 
-</ul>
-
-<%= content_for :javascript do %>
-  $('a[href="#tab4"]').on('shown', function (e) {
-    $(".category").fitText(0.4);
+<script>
+  $(document).ready(function(){
+    update_pageless_state("categories", <%=all_categories.num_pages%>, <%=all_categories.current_page%>);
+    
+    $('a[href="#tab4"]').on('shown', function (e) {
+      $(".category").fitText(0.4);
+    });    
   });
-<% end %>
 
+</script>
 
 
 
