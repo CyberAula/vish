@@ -4,6 +4,7 @@ VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
 VISH.Constant.QZ_TYPE.OPEN = "openAnswer";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
+VISH.Constant.QZ_TYPE.SORTING = "sorting";
 
 
 VISH.QuizCharts = (function(V,$,undefined){
@@ -19,14 +20,18 @@ VISH.QuizCharts = (function(V,$,undefined){
 				"i.T"			: "V",
 				"i.F"			: "F",
 				"i.Correct"		: "Correctas",
-				"i.Incorrect"	: "Incorrectas"
+				"i.Incorrect"	: "Incorrectas",
+				"i.Responses"	: "Respuestas",
+				"i.WaitingResponses"	: "Esperando respuestas..."
 			},
 		  "default":
 			{
 				"i.T"			: "T",
 				"i.F"			: "F",
 				"i.Correct"		: "Correct",
-				"i.Incorrect"	: "Incorrect"
+				"i.Incorrect"	: "Incorrect",
+				"i.Responses"	: "Responses",
+				"i.WaitingResponses"	: "Waiting for responses..."
 			}
 		};
 
@@ -40,6 +45,8 @@ VISH.QuizCharts = (function(V,$,undefined){
 		if(i18n[language]){
 			translations = i18n[language];
 		}
+
+		_insertCss("div.openQuizAnswersListWrapper{ overflow: auto; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; padding: 15px;} ul.openQuizAnswersList{ padding: 0px; list-style: none; } ul.openQuizAnswersList li { font-style: italic; border-bottom: 1px solid #D7EEFF; padding: 3% 6% 2% 6%; font-size: 1.5rem; } ul.openQuizAnswersList li:first-child { font-family: 'Open Sans', arial, sans-serif; color: #ff005d; font-weight: bold; border-bottom: 1px solid #D8DAFF; padding-top: 0%; border-bottom: 1px solid #AFAFAF; font-style: normal; padding-bottom: 20px; font-size: 1.7rem; -webkit-border-top-left-radius: 15px; -webkit-border-top-right-radius: 15px; -moz-border-radius-topleft: 15px; -moz-border-radius-topright: 15px; border-top-left-radius: 15px; border-top-right-radius: 15px; text-align: center; } ul.openQuizAnswersList li:last-child { -webkit-border-bottom-left-radius: 15px; -webkit-border-bottom-right-radius: 15px; -moz-border-radius-bottomleft: 15px; -moz-border-radius-bottomright: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; }");
 	};
 
 	var _getTrans = function(s,params){
@@ -78,6 +85,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 
 		switch(quizParams.quizType){
 		case V.Constant.QZ_TYPE.OPEN:
+			_drawOpenEndedQuizAnswers(canvas,quizParams,answersList,options);
 			break;
 		case V.Constant.QZ_TYPE.MCHOICE:
 			if(quizParams.extras.multipleAnswer==true){
@@ -396,6 +404,58 @@ VISH.QuizCharts = (function(V,$,undefined){
 		}
 	};
 
+	var _drawOpenEndedQuizAnswers = function(canvas,quizParams,answersList,options){
+		//Answer from open ended quizzes are not drawing in a canvas.
+		//Instead, we will use a div
+
+		var canvasWrapper = $(canvas).parent();
+		var container = $(canvasWrapper).find("div.openQuizAnswersListWrapper");
+
+		if($(container).length===0){
+			//Create container
+			var canvasWidth = $(canvas).width();
+			var canvasHeight = $(canvas).height();
+
+			if(canvasWidth===0){
+				canvasWidth = $(canvas).attr("width");
+			}
+			if(canvasHeight===0){
+				canvasHeight = $(canvas).attr("height");
+			}
+
+			container = $("<div class='openQuizAnswersListWrapper' style='width:"+canvasWidth+"px; height:"+canvasHeight+"px; display: block;'></div>");
+			$(container).insertBefore(canvas);
+		}
+
+		$(canvas).hide();
+		$(container).html("");
+		$(container).append("<ul class='openQuizAnswersList'></ul>");
+		var answersListDOM = $(container).find("ul.openQuizAnswersList");
+
+		var alL = answersList.length;
+		for(var j=0; j<alL; j++){
+			//List of answers of a user
+			var answers = answersList[j];
+
+			var aL = answers.length;
+			for(var k=0; k<aL; k++){
+				var answer = answers[k];
+				var userAnswer = answer.answer;
+				$(answersListDOM).append("<li>"+userAnswer+"</li>");
+			} 
+		}
+
+		if($(answersListDOM).children().length===0){
+			$(answersListDOM).append("<li>"+_getTrans("i.WaitingResponses")+"</li>");
+		} else {
+			$(answersListDOM).prepend("<li>"+_getTrans("i.Responses")+"</li>");
+		}
+
+		if(typeof options.callback == "function"){
+			options.callback();
+		}
+	};
+
 	/**
 	* Helpers
 	*/
@@ -438,6 +498,20 @@ VISH.QuizCharts = (function(V,$,undefined){
 		}
 		str = str.replace(/â€‹/g, '');
 		return str.replace(/Â/g, '');
+	};
+
+	var _insertCss = function(code){
+		var style = document.createElement('style');
+		style.type = 'text/css';
+
+		if (style.styleSheet) {
+			// IE
+			style.styleSheet.cssText = code;
+		} else {
+			// Other browsers
+			style.innerHTML = code;
+		}
+		document.getElementsByTagName("head")[0].appendChild(style);
 	};
 
 	return {

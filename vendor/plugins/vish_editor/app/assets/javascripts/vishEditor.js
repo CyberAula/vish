@@ -16815,6 +16815,7 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _cleanResults = function() {
     var canvas = $("#quiz_chart");
+    $(canvas).parent().find("div.openQuizAnswersListWrapper").remove();
     var ctx = $(canvas).get(0).getContext("2d");
     ctx.clearRect(0, 0, $(canvas).width(), $(canvas).height());
     $(canvas).hide()
@@ -29295,9 +29296,9 @@ VISH.Quiz.API = function(V, $, undefined) {
           data = []
         }else {
           if(getResultsCount < 3) {
-            data = [{"answer":'[{"choiceId":"2","answer":2},{"choiceId":"1","answer":1},{"choiceId":"3","answer":3},{"selfAssessment":{"result":true}}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}]
+            data = [{"answer":'[{"answer":"Lorem ipsum dolor si amet one."}]', "created_at":"2013-11-28T13:24:14Z", "id":62, "quiz_session_id":50}]
           }else {
-            data = [{"answer":'[{"choiceId":"2","answer":2},{"choiceId":"1","answer":1},{"choiceId":"3","answer":3},{"selfAssessment":{"result":true}}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}, {"answer":'[{"choiceId":"2","answer":1},{"choiceId":"1","answer":2},{"choiceId":"3","answer":3},{"selfAssessment":{"result":false}}]', "created_at":"2013-11-26T12:49:34Z", "id":48, "quiz_session_id":31}]
+            data = [{"answer":'[{"answer":"Lorem ipsum dolor si amet one."}]', "created_at":"2013-11-28T13:24:14Z", "id":62, "quiz_session_id":50}, {"answer":'[{"answer":"Proin in blandit odio. Mauris placerat sollicitudin urna, at malesuada odio rhoncus eget."}]', "created_at":"2013-11-28T13:24:14Z", "id":63, "quiz_session_id":50}, {"answer":'[{"answer":"Aenean imperdiet tortor arcu, at congue sapien aliquam a."}]', "created_at":"2013-11-28T13:24:14Z", "id":64, "quiz_session_id":50}]
           }
         }
         getResultsCount++;
@@ -29573,6 +29574,9 @@ VISH.Quiz.Open = function(V, $, undefined) {
   var getReport = function(quiz) {
     var report = {};
     report.answers = [];
+    var textArea = $(quiz).find("textarea.openQTextArea");
+    var userAnswer = V.Utils.purgeString($(textArea).val());
+    report.answers.push({answer:userAnswer});
     report.empty = report.answers.length === 0;
     return report
   };
@@ -29890,11 +29894,12 @@ VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
 VISH.Constant.QZ_TYPE.OPEN = "openAnswer";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
+VISH.Constant.QZ_TYPE.SORTING = "sorting";
 VISH.QuizCharts = function(V, $, undefined) {
   var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
   var pieLetterColor = ["#000"];
   var language = "en";
-  var i18n = {"es":{"i.T":"V", "i.F":"F", "i.Correct":"Correctas", "i.Incorrect":"Incorrectas"}, "default":{"i.T":"T", "i.F":"F", "i.Correct":"Correct", "i.Incorrect":"Incorrect"}};
+  var i18n = {"es":{"i.T":"V", "i.F":"F", "i.Correct":"Correctas", "i.Incorrect":"Incorrectas", "i.Responses":"Respuestas", "i.WaitingResponses":"Esperando respuestas..."}, "default":{"i.T":"T", "i.F":"F", "i.Correct":"Correct", "i.Incorrect":"Incorrect", "i.Responses":"Responses", "i.WaitingResponses":"Waiting for responses..."}};
   var translations = i18n["default"];
   var init = function(options) {
     if(options && options.lang) {
@@ -29903,6 +29908,7 @@ VISH.QuizCharts = function(V, $, undefined) {
     if(i18n[language]) {
       translations = i18n[language]
     }
+    _insertCss("div.openQuizAnswersListWrapper{ overflow: auto; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; padding: 15px;} ul.openQuizAnswersList{ padding: 0px; list-style: none; } ul.openQuizAnswersList li { font-style: italic; border-bottom: 1px solid #D7EEFF; padding: 3% 6% 2% 6%; font-size: 1.5rem; } ul.openQuizAnswersList li:first-child { font-family: 'Open Sans', arial, sans-serif; color: #ff005d; font-weight: bold; border-bottom: 1px solid #D8DAFF; padding-top: 0%; border-bottom: 1px solid #AFAFAF; font-style: normal; padding-bottom: 20px; font-size: 1.7rem; -webkit-border-top-left-radius: 15px; -webkit-border-top-right-radius: 15px; -moz-border-radius-topleft: 15px; -moz-border-radius-topright: 15px; border-top-left-radius: 15px; border-top-right-radius: 15px; text-align: center; } ul.openQuizAnswersList li:last-child { -webkit-border-bottom-left-radius: 15px; -webkit-border-bottom-right-radius: 15px; -moz-border-radius-bottomleft: 15px; -moz-border-radius-bottomright: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; }")
   };
   var _getTrans = function(s, params) {
     if(translations[s]) {
@@ -29927,6 +29933,7 @@ VISH.QuizCharts = function(V, $, undefined) {
     var answersList = _getAnswers(results);
     switch(quizParams.quizType) {
       case V.Constant.QZ_TYPE.OPEN:
+        _drawOpenEndedQuizAnswers(canvas, quizParams, answersList, options);
         break;
       case V.Constant.QZ_TYPE.MCHOICE:
         if(quizParams.extras.multipleAnswer == true) {
@@ -30161,6 +30168,44 @@ VISH.QuizCharts = function(V, $, undefined) {
       options.callback()
     }
   };
+  var _drawOpenEndedQuizAnswers = function(canvas, quizParams, answersList, options) {
+    var canvasWrapper = $(canvas).parent();
+    var container = $(canvasWrapper).find("div.openQuizAnswersListWrapper");
+    if($(container).length === 0) {
+      var canvasWidth = $(canvas).width();
+      var canvasHeight = $(canvas).height();
+      if(canvasWidth === 0) {
+        canvasWidth = $(canvas).attr("width")
+      }
+      if(canvasHeight === 0) {
+        canvasHeight = $(canvas).attr("height")
+      }
+      container = $("<div class='openQuizAnswersListWrapper' style='width:" + canvasWidth + "px; height:" + canvasHeight + "px; display: block;'></div>");
+      $(container).insertBefore(canvas)
+    }
+    $(canvas).hide();
+    $(container).html("");
+    $(container).append("<ul class='openQuizAnswersList'></ul>");
+    var answersListDOM = $(container).find("ul.openQuizAnswersList");
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var userAnswer = answer.answer;
+        $(answersListDOM).append("<li>" + userAnswer + "</li>")
+      }
+    }
+    if($(answersListDOM).children().length === 0) {
+      $(answersListDOM).append("<li>" + _getTrans("i.WaitingResponses") + "</li>")
+    }else {
+      $(answersListDOM).prepend("<li>" + _getTrans("i.Responses") + "</li>")
+    }
+    if(typeof options.callback == "function") {
+      options.callback()
+    }
+  };
   var _getAnswers = function(results) {
     var answers = [];
     var rL = results.length;
@@ -30198,6 +30243,16 @@ VISH.QuizCharts = function(V, $, undefined) {
     }
     str = str.replace(/\u00e2\u20ac\u2039/g, "");
     return str.replace(/\u00c2/g, "")
+  };
+  var _insertCss = function(code) {
+    var style = document.createElement("style");
+    style.type = "text/css";
+    if(style.styleSheet) {
+      style.styleSheet.cssText = code
+    }else {
+      style.innerHTML = code
+    }
+    document.getElementsByTagName("head")[0].appendChild(style)
   };
   return{init:init, drawQuizChart:drawQuizChart}
 }(VISH, jQuery);
