@@ -1,7 +1,6 @@
 # This migration comes from social_stream_base_engine (originally 20120326083509)
 class ObjectChannelsToActions < ActiveRecord::Migration
   def up
-=begin
     add_column :activity_actions, :author, :boolean, :default => false
     add_column :activity_actions, :user_author, :boolean, :default => false
     add_column :activity_actions, :owner, :boolean, :default => false
@@ -33,7 +32,6 @@ class ObjectChannelsToActions < ActiveRecord::Migration
 
     ActivityAction.record_timestamps = true
     ActivityObject.record_timestamps = true
-=end
   end
 
   def down
