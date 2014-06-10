@@ -1,18 +1,18 @@
 GIT
+  remote: git://github.com/agordillo/scorm.git
+  revision: fef3256e74c5076c6c6099acac26a544cfbd8f08
+  branch: master
+  specs:
+    scorm (1.0.4)
+      rubyzip (~> 0.9.4)
+
+GIT
   remote: git://github.com/ebarra/oai_repository.git
   revision: 26e791e05f76295b144568fef8033446c2ad01e9
   specs:
     oai_repository (0.9.5)
       oai
       rails (~> 3.1)
-
-GIT
-  remote: git://github.com/ebarra/scorm.git
-  revision: fef3256e74c5076c6c6099acac26a544cfbd8f08
-  branch: master
-  specs:
-    scorm (1.0.4)
-      rubyzip (~> 0.9.4)
 
 GIT
   remote: git://github.com/galetahub/simple-captcha.git

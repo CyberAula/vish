@@ -109,7 +109,12 @@ gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attri
 
 gem "oai_repository", :git => 'git://github.com/ebarra/oai_repository.git'
 
-gem "scorm", :git => 'git://github.com/ebarra/scorm.git', :branch => "master"
+# $ export FORCE_LOCAL_SCORM=scormGemPath
+if ENV['FORCE_LOCAL_SCORM']
+  gem "scorm", :path => ENV['FORCE_LOCAL_SCORM'], :branch => "master"
+else
+  gem "scorm", :git => 'git://github.com/agordillo/scorm.git', :branch => "master"
+end
 
 gem "paperclip", '=3.5.1'
 
