@@ -46,7 +46,8 @@ VISH.QuizCharts = (function(V,$,undefined){
 			translations = i18n[language];
 		}
 
-		_insertCss("div.openQuizAnswersListWrapper{ overflow: auto; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; padding: 15px;} ul.openQuizAnswersList{ padding: 0px; list-style: none; } ul.openQuizAnswersList li { font-style: italic; border-bottom: 1px solid #D7EEFF; padding: 3% 6% 2% 6%; font-size: 1.5rem; } ul.openQuizAnswersList li:first-child { font-family: 'Open Sans', arial, sans-serif; color: #ff005d; font-weight: bold; border-bottom: 1px solid #D8DAFF; padding-top: 0%; border-bottom: 1px solid #AFAFAF; font-style: normal; padding-bottom: 20px; font-size: 1.7rem; -webkit-border-top-left-radius: 15px; -webkit-border-top-right-radius: 15px; -moz-border-radius-topleft: 15px; -moz-border-radius-topright: 15px; border-top-left-radius: 15px; border-top-right-radius: 15px; text-align: center; } ul.openQuizAnswersList li:last-child { -webkit-border-bottom-left-radius: 15px; -webkit-border-bottom-right-radius: 15px; -moz-border-radius-bottomleft: 15px; -moz-border-radius-bottomright: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; }");
+		_insertCss("div.openQuizAnswersListWrapper{ overflow: auto; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; padding: 15px;} ul.openQuizAnswersList{ padding: 0px; list-style: none; } ul.openQuizAnswersList li { position: relative; font-style: italic; border-bottom: 1px solid #D7EEFF; padding: 3% 6% 2% 6%; font-size: 1.5rem; } ul.openQuizAnswersList li:first-child { font-family: 'Open Sans', arial, sans-serif; color: #ff005d; font-weight: bold; border-bottom: 1px solid #D8DAFF; padding-top: 0%; border-bottom: 1px solid #AFAFAF; font-style: normal; padding-bottom: 20px; font-size: 1.7rem; -webkit-border-top-left-radius: 15px; -webkit-border-top-right-radius: 15px; -moz-border-radius-topleft: 15px; -moz-border-radius-topright: 15px; border-top-left-radius: 15px; border-top-right-radius: 15px; text-align: center; } ul.openQuizAnswersList li:last-child { -webkit-border-bottom-left-radius: 15px; -webkit-border-bottom-right-radius: 15px; -moz-border-radius-bottomleft: 15px; -moz-border-radius-bottomright: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; }");
+		_insertCss("div.openQuizAnswerLeft{position: absolute; width: 5%; height: 70%; top: 15%; left: 3%; background-image: url('"+(VISH.ImagesPath||"")+"vicons/userAnswer.png'); background-position: center; background-size: contain; background-repeat: no-repeat;} div.openQuizAnswerRight{ margin-left: 5%; };");
 	};
 
 	var _getTrans = function(s,params){
@@ -441,7 +442,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 			for(var k=0; k<aL; k++){
 				var answer = answers[k];
 				var userAnswer = answer.answer;
-				$(answersListDOM).append("<li>"+userAnswer+"</li>");
+				$(answersListDOM).append("<li><div class='openQuizAnswerLeft'></div><div class='openQuizAnswerRight'>"+userAnswer+"</div></li>");
 			} 
 		}
 
