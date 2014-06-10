@@ -117,6 +117,7 @@ else
 end
 
 gem "paperclip", '=3.5.1'
+gem "delayed_paperclip", "=2.7.0"
 
 #xlsx generation
 gem 'axlsx'
