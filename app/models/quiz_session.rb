@@ -160,6 +160,8 @@ class QuizSession < ActiveRecord::Base
             qparams["processedResults"][3] = ((qparams["processedResults"][1]*100)/qparams["totalAnswers"])
           end
 
+        when "openAnswer"
+          #Do nothing
         else
           # Unrecognized quiz type
       end
@@ -187,7 +189,7 @@ class QuizSession < ActiveRecord::Base
           qparams["choices"] = el["choices"];
         end
         if el["answer"]
-          qparams["choices"] = el["answer"];
+          qparams["answer"] = el["answer"];
         end
         if el["extras"]
           qparams["extras"] = el["extras"];

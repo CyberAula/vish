@@ -99,6 +99,20 @@ wb.add_worksheet(:name => "QuizSessionResults_" + @quiz_session.id.to_s) do |she
 		end
 
 		columnLength = 4
+	when "openAnswer"
+		rowContents[rowContentsIndex] = ["Responses"]
+		rowContentsIndex = rowContentsIndex + 1
+
+		@quiz_session.results.each do |result|
+			result = JSON(result["answer"])
+			#Result is an array of responses
+			result.each do |response|
+				if response["answer"]
+					rowContents[rowContentsIndex] = [response["answer"]]
+					rowContentsIndex = rowContentsIndex + 1
+				end
+			end
+		end
 	else
 		#Quiz not recognized
 	end
