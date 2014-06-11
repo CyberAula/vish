@@ -79,7 +79,7 @@ GIT
 
 GIT
   remote: git@github.com:ebarra/paperclip-ffmpeg.git
-  revision: da82d9cd7c97295e6fe4ee90c22222ca3fa9fab5
+  revision: 338fd7a74a03aa87c9278f20e7fa49f77cfc3dcd
   specs:
     paperclip-ffmpeg (1.0.1)
       paperclip (>= 2.5.2)

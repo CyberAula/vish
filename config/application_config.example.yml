@@ -1,0 +1,14 @@
+#Copy this file to application_config.yml
+#Configure here all the variables of your Virtual Science Hub instance.
+
+development:
+  domain: "localhost"
+  test_domain: true
+  no_reply_mail: "no-reply@vishub.org"
+  main_mail: "virtual.science.hub@gmail.com"
+
+production:
+  domain: "vishub.org"
+  test_domain: false
+  no_reply_mail: "no-reply@vishub.org"
+  main_mail: "virtual.science.hub@gmail.com"
