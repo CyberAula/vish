@@ -30,4 +30,11 @@ Vish::Application.configure do
 
   #default host for routes
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+
+  #Autoload scorm gem
+  if ENV['FORCE_LOCAL_SCORM']
+    config.autoload_paths += %W(#{config.root}/../scorm/lib)
+    ActiveSupport::Dependencies.explicitly_unloadable_constants << 'scorm'
+  end
+ 
 end
