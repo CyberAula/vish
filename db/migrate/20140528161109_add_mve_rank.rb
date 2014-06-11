@@ -5,6 +5,8 @@ class AddMveRank < ActiveRecord::Migration
   end
 
   def down
+  	remove_column :actors, :rankMve
+  	remove_column :excursions, :rankMve
   end
 end
 
