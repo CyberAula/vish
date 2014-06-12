@@ -6,5 +6,8 @@ class AddMvetoAuthors < ActiveRecord::Migration
   end
 
   def down
+  	remove_column :actors, :mve
+  	remove_column :actors, :is_mve
+  	remove_column :excursions, :is_mve
   end
 end

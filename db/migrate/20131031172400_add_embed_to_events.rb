@@ -4,6 +4,6 @@ class AddEmbedToEvents < ActiveRecord::Migration
   end
 
   def down
-    remove_column :events, :text
+    remove_column :events, :embed
   end
 end

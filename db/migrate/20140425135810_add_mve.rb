@@ -4,5 +4,6 @@ class AddMve < ActiveRecord::Migration
   end
 
   def down
+  	remove_column :excursions, :mve
   end
 end

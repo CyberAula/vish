@@ -14,7 +14,7 @@ module Vish
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.  
-    config.APP_CONFIG = YAML.load_file("config/application_config.yml")[ENV["RAILS_ENV"]]
+    config.APP_CONFIG = YAML.load_file("config/application_config.yml")[ENV["RAILS_ENV"] || "development"]
     
     config.full_domain = "http://" + config.APP_CONFIG['domain']
 
