@@ -206,7 +206,7 @@ class QuizSessionsController < ApplicationController
       answers = JSON(params[:answers])
       answers.each do |answer|
         if !answer["answer"].nil? and !(answer["answer"].is_a? Fixnum)
-          answer["answer"] = Sanitize.clean(answers[0]["answer"],Sanitize::Config::RESTRICTED)
+          answer["answer"] = Sanitize.clean(answer["answer"],Sanitize::Config::RESTRICTED)
         end
         sanitizeAnswers.push(answer)
       end
