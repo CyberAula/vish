@@ -124,3 +124,5 @@ gem 'paperclip-ffmpeg', :git => 'git@github.com:ebarra/paperclip-ffmpeg.git'
 gem 'axlsx'
 gem 'axlsx_rails'
 gem 'acts_as_xlsx'
+
+gem 'sanitize', '=2.1.0'
