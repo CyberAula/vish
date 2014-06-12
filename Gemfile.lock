@@ -475,7 +475,9 @@ DEPENDENCIES
   forgery (= 0.6.0)
   god (= 0.13.4)
   jquery-rails (= 3.1.0)
+  jquery-ui-rails (= 4.1.2)
   json (= 1.7.4)
+  mailboxer (= 0.10.3)
   mysql2 (= 0.3.16)
   net-ssh (= 2.4.0)
   oai_repository!
@@ -485,7 +487,10 @@ DEPENDENCIES
   pg (= 0.17.1)
   pry-debugger (= 0.2.2)
   rails (= 3.2.14)
+  redis (= 3.0.7)
+  resque (= 1.23.1)
   rest-client (= 1.6.7)
+  rmagick (= 2.13.2)
   rspec-rails (= 2.9.0)
   rubyzip (= 0.9.9)
   sanitize (= 2.1.0)
@@ -501,5 +506,6 @@ DEPENDENCIES
   social_stream-linkser!
   social_stream-ostatus!
   sqlite3 (= 1.3.9)
+  thinking-sphinx (= 2.0.14)
   uglifier (= 1.2.3)
   unicorn (= 4.8.3)
