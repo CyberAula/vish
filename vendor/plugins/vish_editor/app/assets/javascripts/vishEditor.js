@@ -17784,9 +17784,13 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     $(_hiddenLinkToInitQuizSettings).fancybox({"autoDimensions":false, "height":330, "width":400, "scrolling":"no", "showCloseButton":false, "padding":0, "onStart":function(data) {
       var qSF = $("#quizSettings_fancybox");
       var quiz = V.Editor.getCurrentArea();
+      var quizType = $(quiz).attr("quiztype");
+      var quizModule = _getQuizModule(quizType);
       $(qSF).find("input[type='hidden'][name='elId']").val($(quiz).attr("id"));
       var qSettings = $(quiz).attr("elSettings");
       var nAttempts = 1;
+      var shuffleChoices = false;
+      var disableShuffleChoices = false;
       var ARSEnabled = false;
       if(typeof qSettings == "string") {
         try {
@@ -17797,12 +17801,52 @@ VISH.Editor.Quiz = function(V, $, undefined) {
           if(qSettings.ARSEnabled === true) {
             ARSEnabled = true
           }
+          if(qSettings.shuffleChoices === true) {
+            shuffleChoices = true
+          }
         }catch(e) {
         }
       }
+      switch(quizType) {
+        case V.Constant.QZ_TYPE.OPEN:
+          shuffleChoices = false;
+          disableShuffleChoices = true;
+          break;
+        case V.Constant.QZ_TYPE.MCHOICE:
+          break;
+        case V.Constant.QZ_TYPE.TF:
+          break;
+        case V.Constant.QZ_TYPE.SORTING:
+          shuffleChoices = true;
+          disableShuffleChoices = true;
+          break;
+        default:
+          break
+      }
+      var isSelfAssessment = false;
+      if(quizModule && typeof quizModule.isSelfAssessment == "function") {
+        isSelfAssessment = quizModule.isSelfAssessment(quiz)
+      }
       var nAttemptsDOM = $(qSF).find("#quizSettings_nAttempts");
+      if(!isSelfAssessment) {
+        $(nAttemptsDOM).prop("disabled", true);
+        $(nAttemptsDOM).parent().addClass("disableSettingsField");
+        $(nAttemptsDOM).val(1)
+      }else {
+        $(nAttemptsDOM).prop("disabled", false);
+        $(nAttemptsDOM).parent().removeClass("disableSettingsField");
+        $(nAttemptsDOM).val(nAttempts)
+      }
+      var shuffleChoicesCheckbox = $(qSF).find("input[type='checkbox'][name='shuffleChoices']");
+      $(shuffleChoicesCheckbox).prop("checked", shuffleChoices);
+      if(disableShuffleChoices) {
+        $(shuffleChoicesCheckbox).parent().addClass("disableSettingsField");
+        $(shuffleChoicesCheckbox).attr("disabled", "disabled")
+      }else {
+        $(shuffleChoicesCheckbox).parent().removeClass("disableSettingsField");
+        $(shuffleChoicesCheckbox).removeAttr("disabled")
+      }
       var ARSEnabledCheckbox = $(qSF).find("input[type='checkbox'][name='enableARS']");
-      $(nAttemptsDOM).val(nAttempts);
       $(ARSEnabledCheckbox).prop("checked", ARSEnabled)
     }, "onComplete":function(data) {
     }, "onClosed":function(data) {
@@ -17812,6 +17856,7 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     var qSF = $("#quizSettings_fancybox");
     var qSettings = {};
     qSettings.nAttempts = $(qSF).find("#quizSettings_nAttempts").val();
+    qSettings.shuffleChoices = $(qSF).find("input[type='checkbox'][name='shuffleChoices']").is(":checked");
     qSettings.ARSEnabled = $(qSF).find("input[type='checkbox'][name='enableARS']").is(":checked");
     var quizId = $(qSF).find("input[type='hidden'][name='elId']").val();
     var quiz = $("#" + quizId);
@@ -25375,7 +25420,16 @@ VISH.Editor.Quiz.MC = function(V, $, undefined) {
       _addOptionInQuiz(area, choice.wysiwygValue, check)
     })
   };
-  return{init:init, add:add, save:save, draw:draw}
+  var isSelfAssessment = function(quizDOM) {
+    var sA = false;
+    $(quizDOM).find("img.mcCheckbox").each(function(index, checkbox) {
+      if($(checkbox).attr("check") === "true") {
+        sA = true
+      }
+    });
+    return sA
+  };
+  return{init:init, add:add, save:save, draw:draw, isSelfAssessment:isSelfAssessment}
 }(VISH, jQuery);
 VISH.Editor.Quiz.Open = function(V, $, undefined) {
   var initialized = false;
@@ -25475,15 +25529,15 @@ VISH.Editor.Quiz.Open = function(V, $, undefined) {
     $(checkbox).prop("disabled", false);
     V.Quiz.updateCheckbox(checkbox, "none")
   };
-  var _isSelfAssesment = function(area) {
-    var openCheckBox = $(area).find("img.openQCheckbox");
+  var isSelfAssessment = function(quizDOM) {
+    var openCheckBox = $(quizDOM).find("img.openQCheckbox");
     return $(openCheckBox).attr("check") === "true" && $(openCheckBox).hasClass("quizCheckBoxDisabled") === false
   };
   var save = function(area) {
     var textArea = $(area).find(".mc_question_wrapper");
     var quiz = {};
     quiz.quizType = V.Constant.QZ_TYPE.OPEN;
-    quiz.selfA = _isSelfAssesment(area);
+    quiz.selfA = isSelfAssessment(area);
     var questionInstance = V.Editor.Text.getCKEditorFromTextArea($(area).find(".mc_question_wrapper"));
     quiz.question = {};
     quiz.question.value = questionInstance.getPlainText();
@@ -25510,7 +25564,7 @@ VISH.Editor.Quiz.Open = function(V, $, undefined) {
     }
     V.Editor.addDeleteButton(area)
   };
-  return{init:init, add:add, save:save, draw:draw}
+  return{init:init, add:add, save:save, draw:draw, isSelfAssessment:isSelfAssessment}
 }(VISH, jQuery);
 VISH.Editor.Quiz.Sorting = function(V, $, undefined) {
   var addQuizOptionButtonClass = "add_quiz_option_sorting";
@@ -25669,10 +25723,13 @@ VISH.Editor.Quiz.Sorting = function(V, $, undefined) {
     });
     _applySortable(area)
   };
+  var isSelfAssessment = function() {
+    return true
+  };
   var afterCopyQuiz = function(quizDOM) {
     _applySortable(quizDOM)
   };
-  return{init:init, add:add, save:save, draw:draw, afterCopyQuiz:afterCopyQuiz}
+  return{init:init, add:add, save:save, draw:draw, isSelfAssessment:isSelfAssessment, afterCopyQuiz:afterCopyQuiz}
 }(VISH, jQuery);
 VISH.Editor.Quiz.TF = function(V, $, undefined) {
   var addQuizOptionButtonClass = "add_quiz_option_tf";
@@ -25856,7 +25913,16 @@ VISH.Editor.Quiz.TF = function(V, $, undefined) {
       _addOptionInQuiz(area, choice.wysiwygValue, check)
     })
   };
-  return{init:init, add:add, save:save, draw:draw}
+  var isSelfAssessment = function(quizDOM) {
+    var sA = false;
+    $(quizDOM).find("img.tfCheckbox").each(function(index, checkbox) {
+      if($(checkbox).attr("check") === "true" || $(checkbox).attr("check") === "false") {
+        sA = true
+      }
+    });
+    return sA
+  };
+  return{init:init, add:add, save:save, draw:draw, isSelfAssessment:isSelfAssessment}
 }(VISH, jQuery);
 VISH.Editor.Renderer = function(V, $, undefined) {
   var slides = null;
@@ -29357,9 +29423,15 @@ VISH.Quiz.MC = function(V, $, undefined) {
     $(questionWrapper).html(quizJSON.question.wysiwygValue);
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='mc_options'></table>");
-    var quizChoicesLength = quizJSON.choices.length;
+    var quizChoices;
+    if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
+      quizChoices = V.Utils.shuffle(quizJSON.choices)
+    }else {
+      quizChoices = quizJSON.choices
+    }
+    var quizChoicesLength = quizChoices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
-      var option = quizJSON.choices[i];
+      var option = quizChoices[i];
       var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox = $("<td><input class='mc_box' type='" + inputType + "' name='mc_option' value='" + i + "'/></td>");
       var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + String.fromCharCode(96 + i + 1) + ") </span></td>");
@@ -29764,9 +29836,15 @@ VISH.Quiz.TF = function(V, $, undefined) {
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='tf_options'></table>");
     var newTr = $("<tr class='mc_option tf_head'><td><img src='" + V.ImagesPath + "quiz/checkbox_checked.png' class='tfCheckbox_viewer'/></td><td><img src='" + V.ImagesPath + "quiz/checkbox_wrong.png' class='tfCheckbox_viewer'/></td><td></td><td></td></tr>");
     $(optionsWrapper).prepend(newTr);
-    var quizChoicesLength = quizJSON.choices.length;
+    var quizChoices;
+    if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
+      quizChoices = V.Utils.shuffle(quizJSON.choices)
+    }else {
+      quizChoices = quizJSON.choices
+    }
+    var quizChoicesLength = quizChoices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
-      var option = quizJSON.choices[i];
+      var option = quizChoices[i];
       var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true'  /></td>");
       var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' /></td>");

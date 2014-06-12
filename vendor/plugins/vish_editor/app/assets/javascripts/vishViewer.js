@@ -16343,9 +16343,15 @@ VISH.Quiz.MC = function(V, $, undefined) {
     $(questionWrapper).html(quizJSON.question.wysiwygValue);
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='mc_options'></table>");
-    var quizChoicesLength = quizJSON.choices.length;
+    var quizChoices;
+    if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
+      quizChoices = V.Utils.shuffle(quizJSON.choices)
+    }else {
+      quizChoices = quizJSON.choices
+    }
+    var quizChoicesLength = quizChoices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
-      var option = quizJSON.choices[i];
+      var option = quizChoices[i];
       var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox = $("<td><input class='mc_box' type='" + inputType + "' name='mc_option' value='" + i + "'/></td>");
       var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + String.fromCharCode(96 + i + 1) + ") </span></td>");
@@ -16476,9 +16482,15 @@ VISH.Quiz.TF = function(V, $, undefined) {
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='tf_options'></table>");
     var newTr = $("<tr class='mc_option tf_head'><td><img src='" + V.ImagesPath + "quiz/checkbox_checked.png' class='tfCheckbox_viewer'/></td><td><img src='" + V.ImagesPath + "quiz/checkbox_wrong.png' class='tfCheckbox_viewer'/></td><td></td><td></td></tr>");
     $(optionsWrapper).prepend(newTr);
-    var quizChoicesLength = quizJSON.choices.length;
+    var quizChoices;
+    if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
+      quizChoices = V.Utils.shuffle(quizJSON.choices)
+    }else {
+      quizChoices = quizJSON.choices
+    }
+    var quizChoicesLength = quizChoices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
-      var option = quizJSON.choices[i];
+      var option = quizChoices[i];
       var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true'  /></td>");
       var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' /></td>");
