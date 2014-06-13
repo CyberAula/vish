@@ -8526,7 +8526,7 @@ VISH.QuizCharts = function(V, $, undefined) {
     if(i18n[language]) {
       translations = i18n[language]
     }
-    _insertCss("div.openQuizAnswersListWrapper{ overflow: auto; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; padding: 15px;} ul.openQuizAnswersList{ padding: 0px; list-style: none; } ul.openQuizAnswersList li { position: relative; font-style: italic; border-bottom: 1px solid #D7EEFF; padding: 3% 6% 2% 6%; font-size: 1.5rem; } ul.openQuizAnswersList li:first-child { font-family: 'Open Sans', arial, sans-serif; color: #ff005d; font-weight: bold; border-bottom: 1px solid #D8DAFF; padding-top: 0%; border-bottom: 1px solid #AFAFAF; font-style: normal; padding-bottom: 20px; font-size: 1.7rem; -webkit-border-top-left-radius: 15px; -webkit-border-top-right-radius: 15px; -moz-border-radius-topleft: 15px; -moz-border-radius-topright: 15px; border-top-left-radius: 15px; border-top-right-radius: 15px; text-align: center; } ul.openQuizAnswersList li:last-child { -webkit-border-bottom-left-radius: 15px; -webkit-border-bottom-right-radius: 15px; -moz-border-radius-bottomleft: 15px; -moz-border-radius-bottomright: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; }");
+    _insertCss("div.openQuizAnswersListWrapper{ overflow: auto; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; padding: 15px;} ul.openQuizAnswersList{ padding: 0px; list-style: none; } ul.openQuizAnswersList li { font-family: 'Open Sans', arial, sans-serif; position: relative; font-style: italic; border-bottom: 1px solid #D7EEFF; padding: 3% 6% 2% 6%; font-size: 1.2rem; } ul.openQuizAnswersList li:first-child { padding-left: 10%; text-align: left; color: #838383; font-weight: bold; border-bottom: 1px solid #D8DAFF; padding-top: 0%; border-bottom: 1px solid #AFAFAF; font-style: normal; padding-bottom: 20px; font-size: 1.7rem; } ul.openQuizAnswersList li:last-child { -webkit-border-bottom-left-radius: 15px; -webkit-border-bottom-right-radius: 15px; -moz-border-radius-bottomleft: 15px; -moz-border-radius-bottomright: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; }");
     _insertCss("div.openQuizAnswerLeft{position: absolute; width: 5%; height: 70%; top: 15%; left: 3%; background-image: url('" + (VISH.ImagesPath || "") + "vicons/userAnswer.png'); background-position: center; background-size: contain; background-repeat: no-repeat;} div.openQuizAnswerRight{ margin-left: 5%; };")
   };
   var _getTrans = function(s, params) {
@@ -16343,9 +16343,15 @@ VISH.Quiz.MC = function(V, $, undefined) {
     $(questionWrapper).html(quizJSON.question.wysiwygValue);
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='mc_options'></table>");
-    var quizChoicesLength = quizJSON.choices.length;
+    var quizChoices;
+    if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
+      quizChoices = V.Utils.shuffle(quizJSON.choices)
+    }else {
+      quizChoices = quizJSON.choices
+    }
+    var quizChoicesLength = quizChoices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
-      var option = quizJSON.choices[i];
+      var option = quizChoices[i];
       var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox = $("<td><input class='mc_box' type='" + inputType + "' name='mc_option' value='" + i + "'/></td>");
       var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + String.fromCharCode(96 + i + 1) + ") </span></td>");
@@ -16476,9 +16482,15 @@ VISH.Quiz.TF = function(V, $, undefined) {
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='tf_options'></table>");
     var newTr = $("<tr class='mc_option tf_head'><td><img src='" + V.ImagesPath + "quiz/checkbox_checked.png' class='tfCheckbox_viewer'/></td><td><img src='" + V.ImagesPath + "quiz/checkbox_wrong.png' class='tfCheckbox_viewer'/></td><td></td><td></td></tr>");
     $(optionsWrapper).prepend(newTr);
-    var quizChoicesLength = quizJSON.choices.length;
+    var quizChoices;
+    if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
+      quizChoices = V.Utils.shuffle(quizJSON.choices)
+    }else {
+      quizChoices = quizJSON.choices
+    }
+    var quizChoicesLength = quizChoices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
-      var option = quizJSON.choices[i];
+      var option = quizChoices[i];
       var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true'  /></td>");
       var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' /></td>");
@@ -16722,7 +16734,9 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
     $(quizChoices).each(function(index, quizChoice) {
       quizChoicesById[quizChoice.id] = quizChoice
     });
-    var answeredQuizCorrectly = undefined;
+    var answeredQuizCorrectly = false;
+    var answeredQuizWrong = false;
+    var quizAnswered = false;
     $(quiz).find("tr.mc_option").each(function(index, tr) {
       var choiceId = $(tr).attr("choiceid");
       var choice = quizChoicesById[choiceId];
@@ -16730,11 +16744,13 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
       if(choice.answer === answerValue) {
         answeredQuizCorrectly = true
       }else {
-        answeredQuizCorrectly = false
+        answeredQuizWrong = true
       }
+      quizAnswered = true;
       report.answers.push({choiceId:V.Quiz.getQuizChoiceOriginalId(choiceId).toString(), answer:answerValue})
     });
-    if(typeof answeredQuizCorrectly == "boolean") {
+    answeredQuizCorrectly = answeredQuizCorrectly && !answeredQuizWrong;
+    if(quizAnswered) {
       report.answers.push({selfAssessment:{result:answeredQuizCorrectly}})
     }
     report.empty = report.answers.length === 0;
