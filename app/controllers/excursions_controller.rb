@@ -133,7 +133,7 @@ class ExcursionsController < ApplicationController
 
   def destroy
     destroy! do |format|
-      format.all { redirect_to excursions_path }
+      format.all { redirect_to user_path(current_subject) }
     end
   end
 
