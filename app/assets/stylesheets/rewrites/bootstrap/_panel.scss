@@ -1,0 +1,28 @@
+.panel-default > .panel-heading{
+  background-color: $white;
+  color: $gray-darker;
+  min-height: 43px;
+  a{
+    color: $brand-primary-2;
+    &:hover{
+      color: $brand-primary;
+    }
+  }
+}
+
+.panel-title {
+  padding-top: 0 !important;
+  line-height: 23px;
+  font-family: $corporate-font-family-sans-serif-Regular;
+}
+
+
+
+
+.panel-footer {
+  border-top: 1px solid $gray-lighter;
+  .view-all{
+    float: right;  
+  }
+}
+

@@ -13,7 +13,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.fittext
 //= require social_stream-base
 //= require social_stream-linkser
 //= require social_stream-documents
@@ -28,7 +27,8 @@
 //= require jquery.multiselect
 //= require jquery.jplayer
 //= require social_stream-events
-//= require bootstrap-dropdown
+//= require bootstrap.min
+//= require docs.min
 //= require bootstrap-datetimepicker.min
 //= require_tree .
 

@@ -45,7 +45,7 @@
   </head>
 
 <body class="hidden-tablet hidden-desktop">
-  <%= render :partial => "layouts/header" %>
+  <%= render :partial => "layouts/header/header" %>
   <%= flashy %>
 </body>
 
@@ -67,8 +67,7 @@
         }(document, 'script', 'facebook-jssdk'));
       </script>
     
-          hola paco
-      <div class="wrapper container-fluid">
+      <div class="container-fluid">
         <%= yield %>
   
       </div>  

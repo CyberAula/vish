@@ -1,0 +1,8 @@
+.badge {
+  background-color: #AFAFAF;
+}
+
+a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
+  color: $brand-primary;
+  background-color: #FFF;
+}

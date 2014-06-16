@@ -12,8 +12,8 @@ gem 'mysql2'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'sass-rails', '~> 3.2.4'
-gem 'bootstrap-sass'
+gem 'sass-rails', '~> 3.2.6'
+gem 'bootstrap-sass','~> 3.1.0'
 gem 'coffee-rails'
 gem 'uglifier', '>= 1.2.3'
 
@@ -32,7 +32,7 @@ if ENV['FORCE_LOCAL_SS']
     gem 'social_stream-events'
   end
 else
-  git 'git://github.com/ging/social_stream.git', branch: "vish" do
+  git 'git://github.com/ging/social_stream.git', branch: "vish-b3" do
     gem 'social_stream-base'
     gem 'social_stream-documents'
     gem 'social_stream-linkser'

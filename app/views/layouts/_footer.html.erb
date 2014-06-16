@@ -1,27 +1,17 @@
-<footer id="footer" class="container-fluid hidden-phone hidden-tablet">
-  <nav class="footercontent">
-    <ul class="ul-content">
-
-
+<footer class="container-fluid">
+  <ul>
 <!-- legal notice-->
-
       <li class="item_footer">
-        <a class="style_link_footer" href="/legal_notice"><%= t('conditions.other') %></a>     
+        <%= link_to t('conditions.other'), '/legal_notice', :class => "btn btn-default" %>
       </li>
-
 <!-- legal notice-->
 
-      <li class="dropup">
-        <div data-toggle="dropdown" class="btn dropdown-toggle">
+      <li class="btn-group dropup">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
           <span class="idioma"><%= t('help') %></span>
-          <i class="icon-angle-up"></i>
-        </div>  
-
-
-
-
+          <i class="fa fa-angle-up"></i>
+        </button>  
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-          
           <li class="">
             <a href="/overview">
               <i class="icon-question-sign"> </i>
@@ -40,14 +30,12 @@
               <span><%=t('faq.title')%></span>
             <% end %>
           </li>-->
-
           <li class="">
             <%= link_to user_manual_path do %>
               <i class='icon-download'> </i> 
               <span><%= t('help_manual')%>   </span>    
             <% end %>
           </li>
-
           <!--<li class="">
             <%= link_to help_path do %>
               <i class="icon-question-sign"> </i> 
@@ -58,13 +46,13 @@
       </li>
 
 <!-- lang-->
-      <li class="dropup">
+      <li class="btn-group dropup">
 
-        <div data-toggle="dropdown" class="btn dropdown-toggle">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
           <% the_locale = current_user ? current_user.language : I18n.locale %>
           <span class="idioma"><%=image_tag("flags/" + the_locale.to_s + ".png", :title=>the_locale.to_s, :class=> "")%><%= t('lang.title') %></span>
-          <i class="icon-angle-up"></i>
-        </div>  
+          <i class="fa fa-angle-up"></i>
+        </button>  
           <ul class="dropdown-menu">
             <% for locale in (I18n.available_locales) -%> 
              <li class="">
@@ -75,16 +63,19 @@
       </li>
 <!-- contact-->
       <li>
-         <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript, :class=> "style_link_footer") %>
+         <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript, :class=> "btn btn-default") %>
       </li>
 <!-- social-->
-      <li class="social-img">
-        <%= link_to image_tag("footer/facebook-logo.png",  :class=> "social-img" ), "https://www.facebook.com/VirtualScienceHub", :target=> "_blank" %>
-        <%= link_to image_tag("footer/twitter-logo.png",  :class=> "social-img " ), "https://twitter.com/ViSH_portal", :target=> "_blank" %>
-      </li>
+      <li class="social">
+          <a href="https://www.facebook.com/VirtualScienceHub" class="btn btn-default" target="_blank"><i alt="Facebook-logo" class="social-img fa fa-facebook"></i>
+          </a>
+          <a href="https://twitter.com/ViSH_portal" class="btn btn-default" target="_blank"><i alt="Twitter-logo" class="social-img fa fa-twitter"></i>
+          </a>
+        </li>
+
 <!-- global-->
-      <li>
-        <%= link_to image_tag("footer/global.png",  :class=> "imgnoradio" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
+      <li class="global">
+        <%= link_to image_tag("footer/global.png",  :class=> "btn btn-default" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
       </li>
 
 

@@ -1,0 +1,351 @@
+/************* typography************
+                                    *
+Setting root sizes and base styles.*/
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  @include rootsize-0;
+  @include breakpoint(break-1) {
+    @include rootsize-1;
+  }
+  @include breakpoint(break-2) {
+    @include rootsize-2;
+  }
+  @include breakpoint(break-3) {
+    @include rootsize-3;
+  }
+  @include breakpoint(break-4) {
+    @include rootsize-4;
+  }
+}
+
+/* Site-wide base styles.*/
+body {
+  font-family: $font-family-sans-serif;
+  font-style: normal;
+  @include fontsize-0(13);
+  @include breakpoint(break-1) {
+    @include fontsize-1(13);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(15);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(17);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(19);
+  }
+}
+
+footer {
+  @include fontsize-0(13);
+  @include breakpoint(break-1) {
+    @include fontsize-1(14);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(15);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(17);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(19);
+  }
+}
+
+/* Links. */
+a {
+  @include transition (.1s color);
+  color: $link-color;
+  &:hover, &:active, &:focus {
+    color: $link-hover-color;
+  }
+}
+
+
+/* Heading level 1.*/
+h1, .alpha {
+  @include fontsize-0(22);
+  @include breakpoint(break-1) {
+    @include fontsize-1(22);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(26);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(34);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(36);
+  }
+}
+
+/* Heading level 2.*/
+h2, .beta {
+  @include fontsize-0(20);
+  @include breakpoint(break-1) {
+    @include fontsize-1(20);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(22);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(24);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(26);
+  }
+}
+
+/* Heading level 3.*/
+h3, .gamma {
+  @include fontsize-0(18);
+  @include breakpoint(break-1) {
+    @include fontsize-1(18);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(20);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(22);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(24);
+  }
+}
+
+/* Heading level 4.*/
+h4, .delta {
+  @include fontsize-0(16);
+  @include breakpoint(break-1) {
+    @include fontsize-1(16);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(18);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(20);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(22);
+  }
+}
+
+/* Heading level 5.*/
+h5, .epsilon {
+  @include fontsize-0(14);
+  @include breakpoint(break-1) {
+    @include fontsize-1(14);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(16);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(18);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(20);
+  }
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: $corporate-font-family-sans-serif-Bold;
+}
+
+
+/* Remove padding-top from first heading*/
+section > .container > :first-child {
+  padding-top: 0;
+}
+
+/* Lists.*/
+ul, ol {
+  li a {
+    color: $link-color;
+    &:hover, &:active, &:focus {
+      color: $link-hover-color;
+    }
+  }
+}
+
+/* Bold.*/
+b, strong, .bold {
+  font-family: $corporate-font-family-sans-serif-Bold;
+}
+
+
+/* Caption or inline small text.*/
+small, .caption {
+  font-family: $corporate-font-family-sans-serif-Light;
+  @include fontsize-0(12);
+  @include breakpoint(break-1) {
+    @include fontsize-1(14);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(16);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(17);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(18);
+  }
+}
+
+/* Nice spacing for captions.*/
+h1 + .caption, .alpha + .caption, h2 + .caption, .beta + .caption, h3 + .caption, .gamma + .caption, img + .caption {
+  margin-top: 0;
+}
+
+/* Quotes.*/
+blockquote {
+  p {
+    font-family: $corporate-font-family-sans-serif-Light;
+  }
+}
+
+em{
+  font-family: $corporate-font-family-sans-serif-RegularItalic;
+}
+
+/* Letter space those capitals people, Jan Tschichold would be proud.*/
+.upper {
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+/************* dropdown-menu *************/
+.dropdown-menu {
+  @include fontsize-0(13);
+  @include breakpoint(break-1) {
+    @include fontsize-1(13);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(14);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(15);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(15);
+  }
+}
+
+/************* dropdown-menu *************/
+.btn {
+  @include fontsize-0(13);
+  @include breakpoint(break-1) {
+    @include fontsize-1(13);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(14);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(15);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(15);
+  }
+}
+
+/************* close modals *************/
+.close {
+  @include fontsize-0(20);
+  @include breakpoint(break-1) {
+    @include fontsize-1(20);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(21);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(22);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(23);
+  }
+}
+
+/************* label *************/
+label {
+  @include fontsize-0(12);
+  @include breakpoint(break-1) {
+    @include fontsize-1(12);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(13);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(13);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(14);
+  }
+}
+
+/************* form-control *************/
+.form-control {
+  @include fontsize-0(13);
+  @include breakpoint(break-1) {
+    @include fontsize-1(13);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(14);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(15);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(16);
+  }
+}
+
+/************* navbar-toogle *************/
+.navbar-toggle i {
+    @include fontsize-0(23);
+  @include breakpoint(break-1) {
+    @include fontsize-1(23);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(24);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(25);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(26);
+  }
+}
+
+/************* thumbnails *************/
+.author {
+  @include fontsize-0(12);
+  @include breakpoint(break-1) {
+    @include fontsize-1(12);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(12);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(13);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(13);
+  }
+}
+.info-bottom {
+  @include fontsize-0(13);
+  @include breakpoint(break-1) {
+    @include fontsize-1(13);
+  }
+  @include breakpoint(break-2) {
+    @include fontsize-2(13);
+  }
+  @include breakpoint(break-3) {
+    @include fontsize-3(14);
+  }
+  @include breakpoint(break-4) {
+    @include fontsize-4(14);
+  }
+}
+

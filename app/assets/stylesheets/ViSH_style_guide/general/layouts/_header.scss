@@ -1,0 +1,32 @@
+.logo-header{
+  display: inline;
+  a{
+    @include logo-img;
+  }
+}
+
+.search-nav {
+  display: inline;
+  .input-group {
+    @media (max-width: $screen-xs-max){
+      margin-left: 0px !important;
+      width: 100%;
+    }
+  }
+  .search-query {
+    @media (max-width: $screen-xs-max){
+      width: 90%;
+    }
+  }
+}
+
+.mobile-nav{
+  @include hidden-sm;
+  @include hidden-md;
+  @include hidden-lg;
+}
+
+.desktop-nav{
+  @include hidden-xs;
+  @extend .pull-right;
+}

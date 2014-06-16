@@ -1,0 +1,80 @@
+@mixin item{
+  @extend .thumbnail;
+  @media (min-width: 0px) and (max-width: 320px){
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+// 2---------------------
+  @media (min-width: 321px) and (max-width: 480px){
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+// 3---------------------
+  @media (min-width: 481px) and (max-width: 767px){
+    width: 31.5%;
+    margin: 0 0.6% 15px;
+  }
+// 4---------------------
+  @media (min-width: 768px) and (max-width: 991px){
+    width: 23.7669%;
+    margin: 0 0.4% 10px;
+  }
+// 5---------------------
+  @media (min-width: 992px) and (max-width: 1199px){
+    width: 18.751414%;
+    margin: 0 0.4% 10px;
+  }
+// 6---------------------
+  @media (min-width: 1200px) and (max-width: 1500px){
+    width: 15.4977%;
+    margin: 0 0.4% 10px;
+  }
+// 7---------------------
+  @media (min-width: 1501px) and (max-width: 1750px){
+    width: 13.1855%;
+    margin: 0 0.4% 10px;
+  }
+// 8---------------------
+  @media (min-width: 1751px){
+    width: 11.4398%;
+    margin: 0 0.4% 10px;
+  }
+}
+
+@mixin items{
+  margin-top: 80px;
+  margin-bottom: 10px;
+  padding: 0 20px;
+  @include center-block;
+  @media (max-width: $screen-xs-max){
+    padding: 0;
+  }
+  li{
+    display: inline-block;
+    @include item;
+    &:hover{
+      @include box-shadow (0 5px 20px 3px rgba(0, 0, 0, 0.1));
+      @include transition (all 0.2s ease 0s);
+      transform: scale(1.05);
+      -ms-transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+    }
+    img{
+      @include img-responsive;
+      @include border-top-radius ($border-radius-base);
+    }
+  }
+}
+
+@mixin logo-img {
+  img{
+    float: left;
+    padding: 3px 0px;
+    margin-left: 15px;
+    margin-right: 15px;
+    @include opacity (0.7);
+    &:hover{
+      @include opacity (1);
+    }
+  }
+}

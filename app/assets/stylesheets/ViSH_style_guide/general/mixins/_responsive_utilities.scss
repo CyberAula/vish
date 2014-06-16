@@ -1,0 +1,15 @@
+@mixin hidden-xs{
+  @extend .hidden-xs;
+}
+
+@mixin hidden-sm{
+  @extend .hidden-sm;
+}
+
+@mixin hidden-md{
+  @extend .hidden-md;
+}
+
+@mixin hidden-lg{
+  @extend .hidden-lg;
+}

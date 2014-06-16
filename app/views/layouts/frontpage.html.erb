@@ -60,20 +60,18 @@
       </script>
    
       <%= render :partial => "layouts/header" %>
+      
       <%= flashy %>
 
-      <div class="container_carousel">
-          <%= render :partial => "frontpage/explanation" %>
-      </div>
+      <%= render :partial => "frontpage/explanation" %>
           
-      <div class="wrapper container-fluid">
+      <div class="container-fluid">
         <%= yield %>
-  
       </div>  
     </div>
-    <div id="footer">
-      <%= render :partial => "layouts/footer" %>
-    </div>
+    
+    <%= render :partial => "layouts/footer" %>
+   
     <%= render :partial => "layouts/crazyegg" %>
   </body>
 </html>

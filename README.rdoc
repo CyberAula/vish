@@ -1,14 +1,12 @@
-= ViSH
+= ViSH v.3
 Virtual Science Hub, a network for exploring science.
 
-ViSH is a social network for scientists, teachers and pupils. It contains the infrastructure to build, share and participate in virtual excursions and help pupils discover science in areas of high relevance for the future, such as nano- and biotechnologies.  
 
-Excursions can be easily created by participants and are built using arbitrary HTML5 content and possibly include a video-conference room.  Sharing allows users to rate resources and re-use content for a better excursion-creation experience. The video-conference technology let us participate live in the most thrilling scientific experiments.  Excursions include simple questions to ascertain students have understood the content.
+= What's new ?
 
-{VISH}[http://github.com/ging/vish] is based on
-{Social Stream}[http://github.com/ging/social_stream] which provides a robust and flexible core with social networking features and activity streams for building websites.
+- Hundreds of improvements over the previous {version of Bootstrap}[https://github.com/twbs/bootstrap/releases].
 
-= Discussion
+- New iconic font version designed for Bootstrap {Font awesome}[http://fontawesome.io/]
 
-Feel free to raise an issue or send us a message at github[https://github.com/ging/vish].
+- New visual style, folders organization, best Sass use (new call files, typography, optimization code lines..). Working on it! (less is more!)
 

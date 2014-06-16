@@ -1,0 +1,44 @@
+.form-control {
+  height: 37px;
+  padding: 9px 8px;
+  box-shadow: transparent;
+  color: #888;
+}
+
+.input-group-lg>.form-control, 
+.input-group-lg>.input-group-addon, 
+.input-group-lg>.input-group-btn>.btn {
+  height: 46px;
+  padding: 10px 12px;
+}
+
+.input-group-addon.input-sm, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .input-group-addon.btn {
+  padding: 0 6px;
+}
+
+.form-control-feedback {
+  top: 20px;
+  height: 33px;
+}
+
+label {
+  color: $brand-primary;
+}
+
+.form-horizontal .has-feedback .form-control-feedback {
+  top: -4px;
+}
+@media (min-width: $screen-sm-max) {
+  .form-inline .has-feedback .form-control-feedback, .navbar-form .has-feedback .form-control-feedback {
+    top: -4px;
+  }
+}
+
+.table-striped tbody > tr:nth-child(odd) > td, .table-striped tbody > tr:nth-child(odd) > th {
+  background-color: rgba(255, 255, 255, 0.79);
+}
+
+.table-hover tbody tr:hover > td, .table-hover tbody tr:hover > th {
+  background-color: $brand-primary;
+  color: #ffffff;
+}

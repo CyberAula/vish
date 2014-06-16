@@ -1,0 +1,8 @@
+a.list-group-item:hover, a.list-group-item:focus {
+text-decoration: none;
+color: $white;
+background-color: $nav-tabs-active-link-hover-bg;
+.list-group-item-heading{
+	color: $white;
+}
+}

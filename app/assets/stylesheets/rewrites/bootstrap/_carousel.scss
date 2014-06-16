@@ -1,0 +1,58 @@
+.carousel-inner,
+.carousel-inner > .item {
+  max-height: 270px;
+}
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+  width: 100%;
+}
+
+.carousel-indicators {
+  bottom: 1%;
+  width: auto;
+  margin-left: 0;
+  li{
+    background-color: rgba(255,255,255,0.6);
+    border: none;
+  }
+}
+
+.carousel-indicators .active {
+  background-color: #fafafa;
+}
+
+.carousel-caption {
+  position: absolute;
+  left: 10%;
+  right: auto;
+  bottom: 16%;
+  padding-top: 0px;
+  padding-bottom: 6px;
+  text-align: left;
+  text-shadow: none;
+  background-color: rgba(0,0,0,0.2);
+  h5, p{
+    padding: 2px 9px;
+  }
+  p{
+    margin-bottom: 0;
+  }
+}
+
+.carousel-control .fa {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+}
+
+.carousel-control .fa-caret-left {
+  left: 0;
+}
+
+.carousel-control .fa-caret-right {
+  right: 0;
+}

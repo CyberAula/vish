@@ -1,0 +1,14 @@
+.popover-title {
+  color: $gray-light;
+  padding-top: 8px 14px !important;
+  border-bottom: 1px solid #EBEBEB;
+  background-color: #F7F7F7
+}
+
+.popover-footer {
+	padding: 14px 15px 15px;
+	margin-bottom: 0;
+	background-color: #F5F5F5;
+	border-top: 1px solid #DDD;
+	@include box-shadow (inset 0 1px 0 #FFF);
+}

@@ -1,0 +1,57 @@
+
+/* ADDONS
+-------------------------------------------------- */
+
+/* tour */
+
+.addons .popover{
+width: 265px;
+}
+.popover-navigation .btn.btn-sm.btn-default {
+padding: 3px 12px 2px;
+}
+
+
+/* backstretch */
+#backstretch .backstretch{
+  height: 100px !important;
+}
+
+
+/* font-awesome */
+.font-awesome h5 i{
+  color: #666;
+}
+
+.font-awesome h5 i:hover{
+  font-size: 20px;
+}
+
+.rating{
+  unicode-bidi:bidi-override;
+  direction:rtl;
+  font-size:30px;
+}
+
+.rating span.star{
+  font-family:FontAwesome;
+  font-weight:normal;
+  font-style:normal;
+  display:inline-block;
+}
+
+.rating span.star:hover{
+  cursor:pointer;
+}
+
+.rating span.star:before{
+  content:"\f006";
+  padding-right:5px;
+  color:#999999;
+}
+
+.rating span.star:hover:before,
+.rating span.star:hover~span.star:before{
+  content:"\f005";
+  color:#FFE616;
+}

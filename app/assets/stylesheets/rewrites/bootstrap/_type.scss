@@ -1,0 +1,21 @@
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: $corporate-font-family-sans-serif-Regular;
+}
+
+.page-header {
+  border-bottom: 1px solid #E2E2E2;
+}
+
+blockquote {
+  border-left: 5px solid $brand-primary-2;
+  p{
+  	font-family: $corporate-font-family-sans-serif-RegularItalic;
+  }
+  footer{
+  	background: transparent;
+  }
+}
+
+.blockquote-reverse, blockquote.pull-right {
+  border-right: 5px solid $brand-primary-2;
+}

@@ -1,4 +1,4 @@
-<li class="box-item excursion-item">
+<li class="excursion">
   <%if excursion.is_mostvaluable? %>
     <div class="badge-excursion-active"></div>
   <%end%>
@@ -31,7 +31,7 @@
   </script>
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
-  <div class="info">
+  <div class="caption">
     <!--Tags - not shown now, but used for filtering search results. maybe shown in next version on hover-->
     <!-- if modified to show them, careful because they are used in the filters, check that they work-->
     <div class="exc_tags" style="display:none">
@@ -42,9 +42,9 @@
       <% end %>
     </div>
 <!--Title -->
-    <div class="name">
+    <h6>
       <%= link_to excursion.title, excursion %>
-    </div>
+    </h6>
 <!--Autor -->
     <div class="author"> 
       <span class="by"><%=t('by')%></span>
@@ -52,7 +52,6 @@
     </div>
     <!--____________________ -->
     <div class="info-bottom">
-      <hr class="soften">
       <!--like -->
       <div class="like">        
          <% if excursion.post_activity%>
@@ -65,7 +64,7 @@
       <!--views -->
       <div class="views">
         <%=excursion.visit_count.to_s%>
-        <i class="icon-eye-open"></i>
+          <i class="fa fa-eye"></i>
         <%#=t('follow.views')%>
       </div>
     </div>

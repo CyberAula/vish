@@ -1,0 +1,52 @@
+footer {
+  height: 50px;
+  margin-top: 20px;
+  padding-top: 9px; 
+  background-color: rgba(213, 213, 213, 0.9);
+  @include hidden-xs;
+  ul{
+    margin: 0 auto;
+    width: 718px;
+    padding: 0;
+  }
+  li{
+    display: inline;
+    padding-left: 2%;
+    padding-right: 2%;
+    color: $gray;
+    .btn{
+      background-color: transparent;
+      border: 0px solid transparent;
+      color: $gray;
+      img{
+        padding-top: 3px;
+        margin-right: 5px;
+      }
+      &:hover{
+        border: 0px solid transparent;
+
+      }
+    }
+    .dropdown-menu{
+      width: auto;
+    }
+  }
+  li.social{    
+    i{
+      font-size: 18px;
+    }
+  }
+  li.global{    
+    img{
+      padding-top: 6px;
+    }
+  }
+  .dropdown-menu li{
+    display: block
+  }
+}
+
+#push{
+  height: 100px;
+  clear: both;
+}

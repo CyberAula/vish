@@ -1,0 +1,56 @@
+.thumbnail{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
+  border: none;
+  .avatar{
+    margin-top: 20%;
+    margin-bottom: 9%;
+    width: 48%;
+    @include border-top-radius ($border-radius-base);
+    @include border-bottom-radius ($border-radius-base);
+  }
+}
+.thumbnail .caption {
+  padding: $padding-large-horizontal $padding-large-horizontal $padding-small-vertical $padding-large-horizontal;
+  color: $gray-darker;
+  h6{
+    font-family: $corporate-font-family-sans-serif-Medium;
+  }
+  .author a{
+    color: $brand-primary-2;
+    cursor: pointer;
+    font-family: $corporate-font-family-sans-serif-Light;
+    &:hover{
+      color: #315AD6;
+    }
+  }
+  .name{
+    display: block;
+    text-align: center;
+    font-family: $corporate-font-family-sans-serif-Light;
+    color: $gray-dark;
+    &:hover{
+      color: $brand-primary;
+    }
+  }
+  button{
+    @include center-block;
+  }
+  img{
+    width: 100%;
+  }
+  hr {
+    margin: 0 0 1px 0;
+  }
+
+  .like {
+  	display: inline;
+  	.count{
+  	    display: inline;
+  	}
+  }
+  .views {
+	float: right;
+  text-align: right;
+  width: 55%; 
+  }
+}

@@ -1,0 +1,21 @@
+.dropdown-menu > .disabled > a:hover,
+.dropdown-menu > .disabled > a:focus {
+  text-decoration: none;
+  cursor: default;
+  background-color: transparent;
+  background-image: none;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.dropdown-menu > li > a {
+  padding: 3px 20px;
+  @include border-top-radius ($border-radius-base);
+  @include border-bottom-radius ($border-radius-base);
+  @include border-left-radius ($border-radius-base);
+  @include border-right-radius ($border-radius-base);
+  &:hover{
+  	text-decoration: none;
+    color: #F0F0F0;
+    background-color: #E60054 !important;
+  }
+}

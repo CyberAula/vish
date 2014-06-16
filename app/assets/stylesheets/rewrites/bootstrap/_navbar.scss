@@ -1,0 +1,70 @@
+.navbar-fixed-top{
+  background-color: $navbar-default-bg;
+  padding: 0;
+}
+
+.navbar-default .navbar-text {
+  padding: 14px 0 9px;
+  margin-bottom: 0;
+}
+.navbar{
+  margin-bottom: 0;
+}
+
+.navbar-default{
+  @include box-shadow (0 -2px 20px rgba(0, 0, 0, 0.1));
+  padding: 2px 0 0;
+  .nav-pills{
+    float: left;
+  }
+}
+
+.navbar .divider-vertical {
+  background-color: #f9f9f9;
+  border-right: 1px solid #f9f9f9;
+  border: none;
+}
+
+.navbar .btn-navbar .icon-bar {
+    background-color: $brand-primary;
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
+  color: $brand-primary-2;
+}
+
+.nav-collapse.collapse {
+  background-color: $gray;
+}
+
+ul.navbar-nav > li {
+  font-family: $corporate-font-family-sans-serif-Regular;
+}
+
+.navbar-nav > li a {
+  font-family: $corporate-font-family-sans-serif-Regular;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: $zero;
+}
+
+.navbar-inverse .navbar-nav > .active > a, 
+.navbar-inverse .navbar-nav > .active > a:hover, 
+.navbar-inverse .navbar-nav > .active > a:focus {
+  background-color: darken($navbar-inverse-bg, 10%);
+}
+
+.navbar-collapse li a:hover{
+  background-color: #F8F8F8 !important;
+  @include border-top-radius ($border-radius-base);
+  @include border-bottom-radius ($border-radius-base);
+  @include border-left-radius ($border-radius-base);
+  @include border-right-radius ($border-radius-base);
+}
+
+.navbar-collapse li.active a:hover{
+  background-color: #EEE !important;
+}

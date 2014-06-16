@@ -1,10 +1,8 @@
-<li class ="toggler  dropdown browse_btn">
-  <div class="without-data-toggle">
-    <div class="browse_name">
-      <%=t('browse.title')%>
-      <i class="icon-angle-down"></i>
-    </div>
-  </div>
+<div class ="btn-group">
+  <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <%=t('browse.title')%>
+    <i class="fa fa-angle-down"></i>
+  </a>
   <ul class="dropdown-menu">
     <li>
       <a tabindex="-1" href="<%=search_path(:browse=>"true", :sort_by => "popularity")%>">
@@ -48,5 +46,5 @@
       </a>
     </li>
   </ul>
-</li>
+</div>
 

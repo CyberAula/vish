@@ -1,0 +1,9 @@
+.close {
+  font-family: $corporate-font-family-sans-serif-Bold;
+  color: $gray;
+  text-shadow: 0 1px 0 #FFF;
+  &:hover{
+    color: $black;
+    background-color: $gray-lighter;
+  }
+}

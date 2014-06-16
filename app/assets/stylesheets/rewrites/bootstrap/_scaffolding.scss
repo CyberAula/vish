@@ -1,0 +1,44 @@
+body{
+  padding-top: 45px;
+  background-color: $body-bg;
+  color: #707070;
+  text-rendering: optimizeLegibility;
+}
+
+a{
+  color: $gray;
+  &:hover{
+    color: $brand-primary;
+    text-decoration: none;
+}
+}
+
+li{
+  list-style: none;
+}
+hr{
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #FFF;
+}
+
+textarea{
+  resize: none;
+}
+
+
+h1, h2, h3, h4, h5, h6{
+  font-family: $corporate-font-family-sans-serif-Bold;
+  font-weight: normal;
+}
+
+
+.text-font{
+  font-family: $font-family-sans-serif;
+}
+
+h1.text-font{
+  line-height: 75px;
+}
+h1 small, h1 .small, h2 small, h2 .small, h3 small, h3 .small, h4 small, h4 .small, h5 small, h5 .small, h6 small, h6 .small, .h1 small, .h1 .small, .h2 small, .h2 .small, .h3 small, .h3 .small, .h4 small, .h4 .small, .h5 small, .h5 .small, .h6 small, .h6 .small {
+  color: $brand-primary-2;
+}
