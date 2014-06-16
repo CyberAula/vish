@@ -59,10 +59,6 @@
       -ms-transform: scale(1.05);
       -webkit-transform: scale(1.05);
     }
-    img{
-      @include img-responsive;
-      @include border-top-radius ($border-radius-base);
-    }
   }
 }
 

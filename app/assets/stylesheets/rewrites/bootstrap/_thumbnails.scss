@@ -8,19 +8,90 @@
     @include border-top-radius ($border-radius-base);
     @include border-bottom-radius ($border-radius-base);
   }
+
+  //BAGDE EXCURSION
+  .badge-excursion-active{
+    position: absolute;
+    top: 15px;
+    left: -15px;
+    z-index: 10;
+    background-image: url("badges/excursionofthemonth.png" );
+    height: 110px;
+    width: 75px;
+    pointer-events: none;
+  }
+  // IMG BOX
+  .container-img{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    @media (max-width: $screen-xs-max){
+      width: 32%;
+      float: left;
+      margin-right: 15px;
+    }
+    .dummy{
+      padding-top: 75%; // 4:3 aspect ratio
+      @media (max-width: $screen-xs-max){
+        padding-top: 80px;
+      }
+    }
+    .element{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+      text-align: center;
+      width: 100%;
+      @include border-top-radius ($border-radius-base);
+      @media (max-width: $screen-xs-max){
+        @include border-top-radius (0);
+        @include border-left-radius ($border-radius-base);
+      }
+      .img-box{
+        width: 100%;
+        padding-bottom: 75%;
+        float: left;
+        img{
+          float: left;
+          width: 100%;
+          height: 100%;
+        }
+      }  
+      i{
+        font-size: 70px;
+        color: $brand-primary-2;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+  }
 }
+
 .thumbnail .caption {
   padding: $padding-large-horizontal $padding-large-horizontal $padding-small-vertical $padding-large-horizontal;
   color: $gray-darker;
   h6{
     font-family: $corporate-font-family-sans-serif-Medium;
+    height: 27px;
+    word-wrap: break-word;
+    overflow: hidden;
+    line-height: 1.3rem;
+    margin: 0px 0 0.3rem;
   }
-  .author a{
-    color: $brand-primary-2;
-    cursor: pointer;
-    font-family: $corporate-font-family-sans-serif-Light;
-    &:hover{
-      color: #315AD6;
+  .author {
+    @include text-overflow;
+    a{
+      color: $brand-primary-2;
+      cursor: pointer;
+      font-family: $corporate-font-family-sans-serif-Light;
+    
+      &:hover{
+        color: #315AD6;
+      }
     }
   }
   .name{
