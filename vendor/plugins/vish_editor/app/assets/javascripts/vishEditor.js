@@ -31102,7 +31102,9 @@ VISH.Storage = function(V, $, undefined) {
     var LSSupported = typeof Storage !== "undefined";
     if(LSSupported) {
       try {
+        localStorage.setItem("myKey", "myKeyValue");
         localStorage.getItem("myKey");
+        localStorage.removeItem("myKey");
         return true
       }catch(e) {
         return false
