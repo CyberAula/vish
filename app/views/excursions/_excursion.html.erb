@@ -41,16 +41,17 @@
           </span>
       <% end %>
     </div>
-<!--Title -->
-    <h6>
+    
+    <h6><!--Title -->
       <%= link_to excursion.title, excursion %>
     </h6>
-<!--Autor -->
-    <div class="author"> 
+    <div class="author"><!--Autor -->
       <span class="by"><%=t('by')%></span>
       <%= link_to excursion.author.name, excursion.author.subject %>
     </div>
-    <!--____________________ -->
+    
+    <hr>
+    
     <div class="info-bottom">
       <!--like -->
       <div class="like">        

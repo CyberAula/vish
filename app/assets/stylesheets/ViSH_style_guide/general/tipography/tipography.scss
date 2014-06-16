@@ -159,16 +159,6 @@ section > .container > :first-child {
   padding-top: 0;
 }
 
-/* Lists.*/
-ul, ol {
-  li a {
-    color: $link-color;
-    &:hover, &:active, &:focus {
-      color: $link-hover-color;
-    }
-  }
-}
-
 /* Bold.*/
 b, strong, .bold {
   font-family: $corporate-font-family-sans-serif-Bold;
@@ -320,6 +310,7 @@ label {
 /************* thumbnails *************/
 .author {
   @include fontsize-0(12);
+  font-family: $corporate-font-family-sans-serif-Light;
   @include breakpoint(break-1) {
     @include fontsize-1(12);
   }
