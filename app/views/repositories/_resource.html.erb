@@ -15,9 +15,8 @@
           <%= link_to "<i class='icon-code'></i>".html_safe, resource %>
         <%elsif resource.class==Scormfile%>
           <%= link_to "<i class='icon-scorm-new '></i>".html_safe, resource %>
-
-
-
+        <%elsif resource.class==Webapp%>
+          <%= link_to "<i class='icon-webapp-new '></i>".html_safe, resource %>
         <%else%>
           <%= link_to icon(resource), resource, :title => resource.file_file_name %>
         <%end%>

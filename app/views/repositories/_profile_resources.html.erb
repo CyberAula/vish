@@ -1,0 +1,9 @@
+<div class="resources">
+  <ul class="repository-item">
+    <% if profile_subject_is_current?%>
+  	 <%= render partial: 'repositories/resource-add' %>
+    <% end %> 
+    <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
+    <%= render partial: 'repositories/resources', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> params[:sort_by]||default_sort_by} %>
+  </ul>  
+</div>

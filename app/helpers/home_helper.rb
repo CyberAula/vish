@@ -1,5 +1,5 @@
 module HomeHelper
-  PER_PAGE_IN_HOME = 16
+  ITEMS_PER_PAGE = 16
 
   def current_subject_excursions(options = {})
     subject_excursions current_subject, options
@@ -34,7 +34,7 @@ module HomeHelper
   end
 
   def subject_resources(subject, options = {})
-    subject_content subject, [Document, Embed, Link, Scormfile], options
+    subject_content subject, [Document, Embed, Link, Scormfile, Webapp], options
   end
 
   def current_subject_categories(options = {})
@@ -88,8 +88,6 @@ module HomeHelper
 
     query = query.where("draft is false") if (klass == Excursion) && (options[:scope] == :net || options[:scope] == :more || (options[:scope] == :me && defined?(current_subject) && subject != current_subject))
 
-    
-
     case options[:sort_by]
       when "updated_at"
         query = query.order('activity_objects.updated_at DESC')
@@ -103,9 +101,6 @@ module HomeHelper
         query = query.order('activity_objects.popularity DESC') 
     end
     
-
-
-
     query = query.limit(options[:limit]) if options[:limit] > 0
     query = query.offset(options[:offset]) if options[:offset] > 0
 
@@ -123,10 +118,10 @@ module HomeHelper
 
     # pagination, 0 means without pagination
     if options[:page] != 0
-      query = query.page(options[:page]).per(PER_PAGE_IN_HOME)
+      query = query.page(options[:page]).per(ITEMS_PER_PAGE)
     end
 
-    return query.map{|ao| ao.object} if klass.is_a?(Array)
+    #return query.map{|ao| ao.object} if klass.is_a?(Array)
     query
   end
 

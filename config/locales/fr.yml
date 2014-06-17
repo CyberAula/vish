@@ -242,12 +242,6 @@ fr:
     possible_answers: "Réponses possibles"
     yes: "Oui"
   recommended: "recommandées"
-  recsys:
-    recommended:
-      excursions:
-        explain_html: "Consulté(e) par des utilisateurs qui partagent vos intérêts :"
-      resources:
-        explain_html: "Consulté(e) par des utilisateurs qui partagent vos intérêts :"
   repository:
     one: "bibliothèque"
     other: "bibliothèques"

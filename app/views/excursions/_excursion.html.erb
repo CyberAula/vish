@@ -1,5 +1,5 @@
 <li class="box-item excursion-item">
-  <%if excursion.id==515%>
+  <%if excursion.is_mostvaluable? %>
     <div class="badge-excursion-active"></div>
   <%end%>
   <%= link_to(excursion) do %>

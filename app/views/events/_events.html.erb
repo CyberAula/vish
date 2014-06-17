@@ -1,27 +1,25 @@
-<ul class="events">
-  <% if profile_subject_is_current? %>
-    <%= render partial: 'events/event-add' %>
-  <% end %>
-
-  <% all_events = subject_events(profile_or_current_subject, {:scope => scope, :limit => 0})%>
+<% all_events = subject_events(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"popularity"}) %>
   <% all_events.each do |event| %>
       <%= render :partial => 'events/event', :locals => { :event => event } %>
   <% end %>
-</ul>
-
-<%= content_for :javascript do %>
-  $('a[href="#tab2"]').on('shown', function (e) {
-    $(".event").fitText(0.4);
-  });
-<% end %>
-
 
 <script>
-	function re_apply_events_backstrech(){
+  $(document).ready(function(){
+    update_pageless_state("events", <%=all_events.num_pages%>, <%=all_events.current_page%>);
+    
+    $('a[href="#tab2"]').on('shown', function (e) {
+      $(".event").fitText(0.4);
+    });    
+  });
+
+	function add_events_backstrech(){
+    if(backstrech_items!=undefined){
 		<% all_events.each do |event| %>
-    		$("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
-  		<% end %> 
+        backstrech_items.events["#event-<%=event.id%>"] = "<%=event_raw_thumbail(event)%>";
+  		<% end %>
+    }
 	}
 
+  add_events_backstrech();
 </script>
 

@@ -20,6 +20,12 @@
         elem.value = "<%=excursion_raw_thumbail(result)%>";
         array_of_id_and_image.push(elem); 
       <%end%>
+      <% if result.class == Event %>
+        elem = {};
+        elem.id = "#event-<%=result.id%>";
+        elem.value = "<%=event_raw_thumbail(result)%>";
+        array_of_id_and_image.push(elem); 
+      <%end%>
     <% end %> 
     
   </script>

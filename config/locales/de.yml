@@ -376,12 +376,6 @@ de:
     possible_answers: "Mögliche Antworten"
     yes: "Ja"
   recommended: "empfohlen"
-  recsys:
-    recommended:
-      excursions:
-        explain_html: "Wurde von Benutzern, die deine Interessen teilen, angesehen:"
-      resources:
-        explain_html: " Wurde von Benutzern, die deine Interessen teilen, angesehen:"
   repository:
     one: "Ablage"
     other: "Ablagen"

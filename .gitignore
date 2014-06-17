@@ -42,10 +42,13 @@ public/assets
 public/scorm/excursions/*
 public/scorm/packages/*
 
+#web apps
+public/webappscode/*
 
 #tmp files
 public/tmp/json/*
 public/tmp/scorm/*
+public/tmp/qti/*
 
 #tmp simplecaptcha
 public/tmp/simple_captcha/*
@@ -79,3 +82,5 @@ chromedriver.log
 
 # Mac files
 .DS_Store
+
+unicorn.conf

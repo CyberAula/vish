@@ -1,9 +1,9 @@
 <section id="<%= document.class.to_s.underscore %>">
   <%= render :partial => 'objects/show',
   :locals  => { :object => document } %>
-  <% profile_subject ||= document.owner_subject %>
+  <% document_profile_subject ||= document.owner_subject %>
   <% content_for :title do %>
-    <%= profile_subject.name + ": " + t('repository.title') %>
+    <%= document_profile_subject.name + ": " + t('repository.title') %>
   <% end %>
   <%= div_for document do %>
     <div class="box-show">

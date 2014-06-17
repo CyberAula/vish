@@ -67,6 +67,8 @@
 
     <%elsif resource.class==Scormfile%>
 
+    <%elsif resource.class==Webapp%>
+
     <%else%>
       <% unless document.file_file_size.blank? %>
         <dt><%= t('document.info.size') %></dt>

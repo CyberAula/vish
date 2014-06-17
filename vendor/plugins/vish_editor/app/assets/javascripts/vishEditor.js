@@ -30,7 +30,8 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.walkVideosUpload_4":"Buscar tu v\u00eddeo en el repositorio del ViSH desde el ViSH Editor a trav\u00e9s de la pesta\u00f1a 'ViSH'. En este caso tendr\u00e1s que esperar varias horas (como m\u00e1ximo) hasta que el motor de b\u00fasqueda del ViSH haya indexado el nuevo v\u00eddeo.", "i.walkVideosUpload_5":"Otra forma es acceder a la p\u00e1gina del v\u00eddeo en ViSH (por ejemplo http://vishub.org/videos/3366), y seleccionar la tab 'insertar'. Despu\u00e9s hay que copiar el c\u00f3digo de inserci\u00f3n proporcionado y pegarlo en la caja de texto de la tab 'url' en el ViSH Editor. De esta forma, el video ser\u00e1 insertado de forma inmediata.", 
 "i.walkVideosUpload_6":"Dado que ViSH Editor permite insertar videos de YouTube, tambi\u00e9n puedes subir tus videos a YouTube", "i.walkVideosUpload_7":"Una vez que hayas subido un video satisfactoriamente a YouTube, puedes insertarlo mediante su url, el c\u00f3digo de inserci\u00f3n proporcionado por YouTube o b\u00fascandolo desde el ViSH Editor mediante la tab 'YouTube'. YouTube tambi\u00e9n proporciona los videos en formatos de v\u00eddeo HTML5, por lo que funcionar\u00e1n en practicamente todos los dispositivos incluyendo tel\u00e9fonos m\u00f3viles.", 
 "i.walkQuiz_1":"A\u00f1adiendo cuestionarios (Quizzes)", "i.walkQuiz_2":"Puedes a\u00f1adir diferentes tipos de cuestionarios o quizzes a tu presentaci\u00f3n. Los cuestionarios actualmente disponibles se muestran a continuaci\u00f3n", "i.walkQuiz_MC1":"Respuesta m\u00faltiple", "i.walkQuiz_MC2":"Los cuestionarios de respuesta m\u00faltiple son una forma de evaluaci\u00f3n en la que se les solicita a los encuestados que seleccionen la mejor respuesta posible  (o respuestas) de una lista de posibles opciones.", 
-"i.walkQuiz_TF1":"Verdadero / Falso", "i.walkQuiz_TF2":"Un cuestionario de verdadero/falso es una forma de evaluaci\u00f3n en la que se solicita a los encuestados que seleccionen, para cada afirmaci\u00f3n o sentencia, si esta es verdadera o falsa.", "i.walkQuiz_3":"Ademas de los contenidos, tambi\u00e9n puedes definir las respuestas correctas del cuestionario o quiz, permitiendo de esta manera la autoevaluaci\u00f3n y el seguimiento autom\u00e1tico del progreso de los estudiantes en plataformas de aprendizaje como Moodle.", 
+"i.walkQuiz_TF1":"Verdadero / Falso", "i.walkQuiz_TF2":"Un cuestionario de verdadero/falso es una forma de evaluaci\u00f3n en la que se solicita a los encuestados que seleccionen, para cada afirmaci\u00f3n o sentencia, si esta es verdadera o falsa.", "i.walkQuiz_Sorting1":"Ordenaci\u00f3n", "i.walkQuiz_Sorting2":"Los cuestionarios de ordenaci\u00f3n o secuencia son una forma de evaluaci\u00f3n en la que se requiere a los encuestados arrastrar y soltar una serie de elementos para ordenarlos de acuerdo a una secuencia determinada. Todos los elementos deben estar en el orden correcto para que la pregunta pueda ser calificada como correcta.", 
+"i.walkQuiz_Open1":"Respuesta Abierta", "i.walkQuiz_Open2":"En un cuestionario de respuesta abierta, los estudiantes escriben una palabra o frase en respuesta a una pregunta. Los cuestionarios de respuesta abierta pueden ser autoevaluados cuando la respuesta es corta. En este caso los cuestionarios se llaman 'Cuestionarios de Respuesta Corta'. La respuesta puede ser una palabra o una frase, pero debe coincidir con la respuesta propuesta de forma exacta.", "i.walkQuiz_3":"Ademas de los contenidos, tambi\u00e9n puedes definir las respuestas correctas del cuestionario o quiz, permitiendo de esta manera la autoevaluaci\u00f3n y el seguimiento autom\u00e1tico del progreso de los estudiantes en plataformas de aprendizaje como Moodle.", 
 "i.walkLive_1":"A\u00f1adiendo contenidos en directo", "i.walkLive_2":"ViSH (Virtual Science Hub) ofrece recursos especiales como webcams en vivo, microscopios o laboratorios virtuales provistos por determinadas ciberinfraestructuras.", "i.walkLive_3":"En esta pantalla podr\u00e1s buscar recursos de este tipo en el repositorio del ViSH.", "i.walkLive_4":"Si quieres descubrir m\u00e1s recursos de ciberinfraestructuras o atender a eventos de ciencia en directo puedes visitar", "i.walkAddSlide_1":"A\u00f1adiendo Diapositivas", 
 "i.walkAddSlide_2":"Aqu\u00ed puedes a\u00f1adir a tu presentaci\u00f3n una nueva diapositiva vac\u00eda con una plantilla espec\u00edfica. Para esto, simplemente selecciona la plantilla que quieras de las disponibles en el panel 'Plantillas'. Ten en cuenta que la plantilla define la posici\u00f3n y tama\u00f1o de las zonas en las cuales podr\u00e1s a\u00f1adir contenidos en la nueva diapositiva.", "i.walkAddSlide_3":"Adem\u00e1s de diapositivas normales, tambi\u00e9n puedes a\u00f1adir a tu presentaci\u00f3n elementos m\u00e1s interactivos llamados 'Smartcards'. Para insertar cualquiera de estos elementos, simplemente haz click en el que desees dentro del panel de 'Smartcards'. Una vez que hayas insertado una Smartcard podr\u00e1s personalizarla con el contenido que quieras.", 
 "i.walkAddSlide_4":"Haz click aqu\u00ed para ver m\u00e1s informaci\u00f3n sobre los tipos disponibles de Smartcards y para aprender c\u00f3mo crearlas.", "i.walkSmartcards_1":"Las Smartcards son elementos interactivos que pueden ser insertados en la presentaci\u00f3n como si fueran diapositivas normales.", "i.walkSmartcards_2":"Los siguientes tipos de Smartcards est\u00e1n disponibles", "i.flashcardDef":"Las Flashcards son recursos presentados como una imagen de fondo con 'zonas calientes' se\u00f1aladas por flechas sobre las que el usuario puede hacer click para ver contenidos adicionales que han sido previamente etiquetados.", 
@@ -38,16 +39,17 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.flashcardLearnHow":"Haz click aqu\u00ed para aprender como crear una Flashcard.", "i.vtLearnHow":"Haz click aqu\u00ed para aprender como crear un Tour Virtual.", "i.eVideoLearnHow":"Haz click aqu\u00ed para aprender como crear un V\u00eddeo Enriquecido.", "i.walkPdf2ex_1":"Insertar una presentaci\u00f3n PDF", "i.walkPdf2ex_2":"Selecciona una presentaci\u00f3n en formato PDF y sube el archivo. \u00danicamente se admiten archivos en formato PDF. Si quieres insertar una presentaci\u00f3n en otro formato como PowerPoint (.ppt) debes de convertir el archivo a PDF primero.", 
 "i.walkPdf2ex_3":"Una vez que la subida del fichero PDF haya finalizado, aparecer\u00e1 una nueva ventana para que elijas las diapositivas que quieres insertar de la presentaci\u00f3n que has subido.", "i.walkPdf2ex_4":"Esta funcionalidad convertir\u00e1 la presentaci\u00f3n PDF en una presentaci\u00f3n de ViSH Editor, esto quiere decir que cada una de las diapositivas seleccionadas de la presentaci\u00f3n PDF ser\u00e1 insertada en la presentaci\u00f3n actual como una diapositiva nueva.", "i.walkPdf2ex_5":"Si lo que quiere es insertar un documento PDF entero en la misma diapositiva para que pueda ser leido como un libro, debe de subir el archivo PDF desde el panel 'Objectos'.", 
 "i.walkInsertingViSHPres_1":"A\u00f1adiendo Diapositivas de Excursiones Virtuales", "i.walkInsertingViSHPres_2":"Aqu\u00ed puedes buscar Excursiones Virtuales en la plataforma ViSH para a\u00f1adirlas (o a\u00f1adir determinadas diapositivas de ellas) a tu presentaci\u00f3n.", "i.walkInsertingViSHPres_3":"Haz click en cualquiera de las Excursiones Virtuales para seleccionarla. Despu\u00e9s, se mostrar\u00e1 un nuevo bot\u00f3n 'Vista Previa'. Cuando pulses este bot\u00f3n, aparecer\u00e1 una nueva ventana para que elijas las diapositivas que quieres insertar en tu presentaci\u00f3n.", 
-"i.walkPresSearch2":"y pulsa la tecla 'intro' para comenzar la b\u00fasqueda. Cuando termine la b\u00fasqueda, las Excursiones Virtuales encontradas ser\u00e1n mostradas en esta pantalla.", "i.walkInsertingViSHSmart_1":"A\u00f1adiendo Smartcards", "i.walkInsertingViSHSmart_2":"Aqu\u00ed puedes buscar Smartcards en la plataforma ViSH para a\u00f1adirlas a tu presentaci\u00f3n.", "i.walkInsertingViSHSmart_3":"Haz click en cualquiera de las Smartcards para seleccionarla. Despu\u00e9s, se mostrar\u00e1 un nuevo bot\u00f3n 'Vista Previa'. Cuando pulses este bot\u00f3n, aparecer\u00e1 una nueva ventana para que puedas ver la Smartcard antes de insertarla en tu presentaci\u00f3n.", 
-"i.walkSmartSearch2":"y pulsa la tecla 'intro' para comenzar la b\u00fasqueda. Cuando termine la b\u00fasqueda, las Smartcards encontradas ser\u00e1n mostradas en esta pantalla.", "i.walkLearnMoreSmartcards":"Pulsa aqu\u00ed para aprender m\u00e1s sobre las Smartcards.", "i.walkInsertJSONfile_1":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.walkInsertJSONfile_2":"Selecciona el archivo en formato JSON (.json) en el cual est\u00e1 guardada la presentaci\u00f3n que quieres insertar. A continuaci\u00f3n, pulsa sobre el bot\u00f3n 'Vista Previa'. Aparecer\u00e1 una nueva pantalla para que elijas las diapositivas a importar.", 
-"i.walkInsertJSONfile_3":"Puedes salvar tu presentaci\u00f3n en formato JSON haciendo click en 'Men\u00fa -> Exportar -> a JSON'. Se descargar\u00e1 a tu dispositivo un fichero JSON conteniendo tu presentaci\u00f3n. De esta forma puedes compartir tu presentaci\u00f3n mediante un archivo (por ejemplo envi\u00e1ndolo por email) y almacenarla donde quieras.", "i.walkThemes_1":"Temas de ViSH Editor", "i.walkThemes_4":"Recuerda que puedes cambiar el tema de la presentaci\u00f3n en cualquier momento accediendo a esta pantalla o seleccionando la opci\u00f3n 'Ajustes' en el menu.", 
-"i.walkAnimations_1":"Animaciones de Vish Editor", "i.walkAnimations_2":"Una animaci\u00f3n define las transiciones visuales entre las slides de la presentaci\u00f3n.Vish Editor ofrece diferentes animaciones entre las cuales puedes escojer.", "i.walkAnimations_3":"Para escojer una animaci\u00f3n, solamente debes pasar con el cursor por encima de los iconos para previsualizar la animaci\u00f3n que te gustar\u00eda a\u00f1adir dentro de esta galer\u00eda.", "i.walkAnimations_4":"Recuerda que puedes cambiar la animaci\u00f3n entre las slides en cualquier momento accediendo a esta pantalla desde el icono superior.", 
-"i.CreatingFlashcards":"Creando Flashcards", "i.walkFlashcard_1":"Para empezar a crear una Flashcard debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de Flashcard en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 una Flashcard vacia en la pantalla.", "i.FlashcardIcon":"Icono de Flashcard", "i.walkFlashcard_2":"Para seleccionar la imagen de fondo de la Flashcard debes pulsar sobre el siguiente bot\u00f3n", 
-"i.walkFlashcard_3":"Puedes cambiar el fondo seleccionado en cualquier momento haciendo click en el bot\u00f3n 'Fondo' de la barra de herramientas.", "i.walkContinueWalkthrough":"Haz click en 'Siguiente' para continuar con este tutorial.", "i.walkFlashcard_4":"Cuando est\u00e1s creando una Flashcard, se muestra un nuevo panel en la parte inferior de la pantalla. Nos referiremos a este panel como el 'panel de Flashcard'.", "i.walkFlashcard_5":"Para a\u00f1adir una nueva diapositiva a la Flashcard pulsa sobre el bot\u00f3n 'A\u00f1adir' situado en el 'panel de Flashcard' y contin\u00faa con el procedimiento habitual para a\u00f1adir una diapositiva. Despu\u00e9s de a\u00f1adirla, la miniatura de la nueva diapositiva aparecer\u00e1 en el panel y se mostrar\u00e1 la diapositiva en la pantalla.", 
-"i.walkFlashcard_6":"Cuando la diapositiva est\u00e1 seleccionada, se muestra en la pantalla y puedes editarla y borrarla de la misma forma que las diapositivas normales. Para seleccionar una diapositiva simplemente pulsa sobre ella en el 'panel de Flashcard'. Si quieres seleccionar la Flashcard nuevamente para editarla, debes hacer click en el icono de Flashcard situado a la izquierda del 'panel de Flashcard'.", "i.walkFlashcard_7":"Las diapositivas tienen flechas arrastrables en su parte superior. Puedes arrastrar cualquiera de ellas a la imagen de fondo de la Flashcard para crear una nueva 'zona caliente'. De este modo, cuando los usuarios hagan click sobre una flecha ver\u00e1n la diapositiva asociada. ", 
-"i.walkRememberPreview":"Recuerda que puedes previsualizar el objeto que est\u00e1s creando en cualquier momento haciendo click sobre el bot\u00f3n 'Vista Previa' situado en la barra de herramientas", "i.CreatingVirtualTours":"Creando Tours Virtuales", "i.walkVirtualTour_1":"Para empezar a crear un Tour Virtual debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de Tour Virtual en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 un Tour Virtual vacio en la pantalla.", 
-"i.VirtualTourIcon":"Icono de Tour Virtual", "i.walkVirtualTour_2a":"Cuando estas creando un Tour Virtual, se muestra un mapa interactivo con una caja de b\u00fasqueda en su parte superior. Puedes usar esta caja de texto para buscar lugares y localizaciones. Escribe la localizaci\u00f3n que quieras buscar, por ejemplo", "i.walkVirtualTour_2b":"Se mostrar\u00e1 una lista de resultados en la parte inferior de la caja de b\u00fasqueda. Puedes elegir cualquier de ellos o  pulsar la tecla 'intro' para seleccionar autom\u00e1ticamente el primero. El mapa mostrar\u00e1 la localizaci\u00f3n seleccionada.", 
-"i.walkVirtualTour_3":"Cuando est\u00e1s creando un Tour Virtual, se muestra un nuevo panel en la parte inferior de la pantalla. Nos referiremos a este panel como el 'panel de Tour Virtual'.", "i.walkVirtualTour_4":"Para a\u00f1adir una nueva diapositiva al Tour Virtual pulsa sobre el bot\u00f3n 'A\u00f1adir' situado en el 'panel de Tour Virtual' y contin\u00faa con el procedimiento habitual para a\u00f1adir una diapositiva. Despu\u00e9s de a\u00f1adirla, la miniatura de la nueva diapositiva aparecer\u00e1 en el panel y se mostrar\u00e1 la diapositiva en la pantalla.", 
+"i.walkPresSearch2":"y pulsa la tecla 'intro' para comenzar la b\u00fasqueda. Cuando termine la b\u00fasqueda, las Excursiones Virtuales encontradas ser\u00e1n mostradas en esta pantalla.", "i.walkLearnMoreSmartcards":"Pulsa aqu\u00ed para aprender m\u00e1s sobre las Smartcards.", "i.walkEPackage_1":"Insertar un paquete de e-Learning", "i.walkEPackage_2":"Selecciona un paquete de e-Learning en formato ZIP y sube el archivo. Solo est\u00e1n admitidos archivos en formato ZIP. Puedes subir paquetes SCORM o aplicaciones web HTML5 personalizadas. Para subir una aplicaci\u00f3n web personalizada, el archivo HTML principal debe ser renombrado como 'index.html' y debe ser incluido en el archivo ZIP junto con todos los archivos necesarios.", 
+"i.walkEPackage_3":"Una vez que la subida del archivo ZIP se haya completado, una nueva ventana aparecer\u00e1 para que previsualices y confirmes el contenido que se va a insertar.", "i.walkInsertEfile_1":"Importar recursos de ficheros externos", "i.walkInsertEfile_2":"Esta pantalla te permite importar diferentes tipos de recursos mediante ficheros externos.", "i.walkInsertEfile_3":"Las siguientes opciones se encuentran disponibles:", "i.walkInsertJSONfile_1":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", 
+"i.walkInsertJSONfile_2":"Selecciona el archivo en formato JSON (.json) en el cual est\u00e1 guardada la presentaci\u00f3n que quieres insertar. A continuaci\u00f3n, pulsa sobre el bot\u00f3n 'Vista Previa'. Aparecer\u00e1 una nueva pantalla para que elijas las diapositivas a importar.", "i.walkInsertJSONfile_3":"Puedes salvar tu presentaci\u00f3n en formato JSON haciendo click en 'Men\u00fa -> Exportar -> a JSON'. Se descargar\u00e1 a tu dispositivo un fichero JSON conteniendo tu presentaci\u00f3n. De esta forma puedes compartir tu presentaci\u00f3n mediante un archivo (por ejemplo envi\u00e1ndolo por email) y almacenarla donde quieras.", 
+"i.walkInsertIMSQTI_1":"A\u00f1adir un Cuestionario (Quiz) mediante un archivo XML compatible con IMS QTI 2.1", "i.walkInsertIMSQTI_2":"Selecciona el archivo en formato XML (.xml) en el cual est\u00e1 guardado el cuestionario/quiz que quieres insertar acorde al est\u00e1ndar IMS QTI 2.1. A continuaci\u00f3n, pulsa sobre el bot\u00f3n 'Vista Previa'. Aparecer\u00e1 una nueva pantalla en la que podr\u00e1s previsualizar el cuestionario antes de a\u00f1adirlo.", "i.walkThemes_1":"Temas de ViSH Editor", 
+"i.walkThemes_4":"Recuerda que puedes cambiar el tema de la presentaci\u00f3n en cualquier momento accediendo a esta pantalla o seleccionando la opci\u00f3n 'Ajustes' en el menu.", "i.walkAnimations_1":"Animaciones de Vish Editor", "i.walkAnimations_2":"Una animaci\u00f3n define las transiciones visuales entre las slides de la presentaci\u00f3n.Vish Editor ofrece diferentes animaciones entre las cuales puedes escojer.", "i.walkAnimations_3":"Para escojer una animaci\u00f3n, solamente debes pasar con el cursor por encima de los iconos para previsualizar la animaci\u00f3n que te gustar\u00eda a\u00f1adir dentro de esta galer\u00eda.", 
+"i.walkAnimations_4":"Recuerda que puedes cambiar la animaci\u00f3n entre las slides en cualquier momento accediendo a esta pantalla desde el icono superior.", "i.CreatingFlashcards":"Creando Flashcards", "i.walkFlashcard_1":"Para empezar a crear una Flashcard debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de Flashcard en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 una Flashcard vacia en la pantalla.", 
+"i.FlashcardIcon":"Icono de Flashcard", "i.walkFlashcard_2":"Para seleccionar la imagen de fondo de la Flashcard debes pulsar sobre el siguiente bot\u00f3n", "i.walkFlashcard_3":"Puedes cambiar el fondo seleccionado en cualquier momento haciendo click en el bot\u00f3n 'Fondo' de la barra de herramientas.", "i.walkContinueWalkthrough":"Haz click en 'Siguiente' para continuar con este tutorial.", "i.walkFlashcard_4":"Cuando est\u00e1s creando una Flashcard, se muestra un nuevo panel en la parte inferior de la pantalla. Nos referiremos a este panel como el 'panel de Flashcard'.", 
+"i.walkFlashcard_5":"Para a\u00f1adir una nueva diapositiva a la Flashcard pulsa sobre el bot\u00f3n 'A\u00f1adir' situado en el 'panel de Flashcard' y contin\u00faa con el procedimiento habitual para a\u00f1adir una diapositiva. Despu\u00e9s de a\u00f1adirla, la miniatura de la nueva diapositiva aparecer\u00e1 en el panel y se mostrar\u00e1 la diapositiva en la pantalla.", "i.walkFlashcard_6":"Cuando la diapositiva est\u00e1 seleccionada, se muestra en la pantalla y puedes editarla y borrarla de la misma forma que las diapositivas normales. Para seleccionar una diapositiva simplemente pulsa sobre ella en el 'panel de Flashcard'. Si quieres seleccionar la Flashcard nuevamente para editarla, debes hacer click en el icono de Flashcard situado a la izquierda del 'panel de Flashcard'.", 
+"i.walkFlashcard_7":"Las diapositivas tienen flechas arrastrables en su parte superior. Puedes arrastrar cualquiera de ellas a la imagen de fondo de la Flashcard para crear una nueva 'zona caliente'. De este modo, cuando los usuarios hagan click sobre una flecha ver\u00e1n la diapositiva asociada. ", "i.walkRememberPreview":"Recuerda que puedes previsualizar el objeto que est\u00e1s creando en cualquier momento haciendo click sobre el bot\u00f3n 'Vista Previa' situado en la barra de herramientas", 
+"i.CreatingVirtualTours":"Creando Tours Virtuales", "i.walkVirtualTour_1":"Para empezar a crear un Tour Virtual debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de Tour Virtual en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 un Tour Virtual vacio en la pantalla.", "i.VirtualTourIcon":"Icono de Tour Virtual", "i.walkVirtualTour_2a":"Cuando estas creando un Tour Virtual, se muestra un mapa interactivo con una caja de b\u00fasqueda en su parte superior. Puedes usar esta caja de texto para buscar lugares y localizaciones. Escribe la localizaci\u00f3n que quieras buscar, por ejemplo", 
+"i.walkVirtualTour_2b":"Se mostrar\u00e1 una lista de resultados en la parte inferior de la caja de b\u00fasqueda. Puedes elegir cualquier de ellos o  pulsar la tecla 'intro' para seleccionar autom\u00e1ticamente el primero. El mapa mostrar\u00e1 la localizaci\u00f3n seleccionada.", "i.walkVirtualTour_3":"Cuando est\u00e1s creando un Tour Virtual, se muestra un nuevo panel en la parte inferior de la pantalla. Nos referiremos a este panel como el 'panel de Tour Virtual'.", "i.walkVirtualTour_4":"Para a\u00f1adir una nueva diapositiva al Tour Virtual pulsa sobre el bot\u00f3n 'A\u00f1adir' situado en el 'panel de Tour Virtual' y contin\u00faa con el procedimiento habitual para a\u00f1adir una diapositiva. Despu\u00e9s de a\u00f1adirla, la miniatura de la nueva diapositiva aparecer\u00e1 en el panel y se mostrar\u00e1 la diapositiva en la pantalla.", 
 "i.walkVirtualTour_5":"Cuando la diapositiva est\u00e1 seleccionada, se muestra en la pantalla y puedes editarla y borrarla de la misma forma que las diapositivas normales. Para seleccionar una diapositiva simplemente pulsa sobre ella en el 'panel de Tour Virtual'. Si quieres seleccionar el Tour Virtual nuevamente para editarlo, debes hacer click en el icono de Tour Virtual situado a la izquierda del 'panel de Tour Virtual'.", "i.walkVirtualTour_6":"Las diapositivas tienen flechas arrastrables en su parte superior. Puedes arrastrar cualquiera de ellas dentro del mapa para crear una nueva localizaci\u00f3n. Cuando arrastres una flecha dentro del mapa, un nuevo 'pin' aparecer\u00e1 en la localizaci\u00f3n seleccionada. De esta forma, cuando los usuarios hagan click sobre un 'pin' en el mapa ver\u00e1n la diapositiva asociada. Los 'pins' tambi\u00e9n son arrastrables, de modo que puedes moverlos a lo largo del mapa. Para eliminar un 'pin' en el mapa, simplemente haz click sobre \u00e9l.", 
 "i.CreatingEnrichedVideos":"Creando Videos Enriquecidos", "i.EVideoDef2":"Los Videos Enriquecidos han sido dise\u00f1ados para ser usados en MOOCs (Cursos Online Masivos y Abiertos), con el objetivo de integrar preguntas y cuestionarios en videos de clases asi como contenidos adicionales. Sin embargo, su flexibilidad les permite ser usados en muchos otros entornos educativos.", "i.walkEVideo_1":"Para empezar a crear un V\u00eddeo Enriquecido debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de V\u00eddeo Enriquecido en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 un V\u00eddeo Enriquecido vacio en la pantalla.", 
 "i.EVideoIcon":"Icono de V\u00eddeo Enriquecido", "i.walkEVideo_2":"En primer lugar, debes selecconar la fuente del v\u00eddeo para el V\u00eddeo Enriquecido pulsando sobre el siguiente bot\u00f3n", "i.walkEVideo_3":"Puedes cambiar la fuente de v\u00eddeo seleccionada en cualquier momento haciendo click en el bot\u00f3n 'Video' de la barra de herramientas.", "i.walkEVideo_4":"Puedes usar videos de YouTube y HTML5 (formatos mp4, webm y ogg). Adem\u00e1s, puedes subir tu propio v\u00eddeo al repositorio del ViSH para que sea convertido en formatos compatibles con HTML5 asegurando una compatibilidad completa en todos los dispositivos", 
@@ -63,39 +65,42 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.walkQuizzes_4":"Despu\u00e9s de que lances un cuestionario en vivo usando el bot\u00f3n 'Lanzar' situado en la parte inferior del cuestionario, una nueva pantalla aparecer\u00e1 ('pantalla de cuestionario en vivo') mostrando diversos elementos", "i.walkQuizzes_5a":"Un hiperenlace al cuestionario en vivo, por ejemplo", "i.walkQuizzes_5b":"Este hiperenlace es utilizado para responder al cuestionario. Cualquier persona que acceda a esta direcci\u00f3n de internet podr\u00e1 responder al cuestionario en vivo. Por lo tanto puedes compartir tu cuestionario en vivo mediante este hiperenlace, por ejemplo envi\u00e1ndolo por correo electr\u00f3nico o peg\u00e1ndolo en un foro.", 
 "i.walkQuizzes_6":"Algunos logos de redes sociales populares (Twitter, Facebook, Google+, ...). Puedes compartir el hiperenalce del cuestionario en vivo en cualquiera de estas redes sociales pulsando sobre el logo correspondiente.", "i.walkQuizzes_7":"Un c\u00f3digo QR para dispositivos m\u00f3viles. Cualquier dispositivo puede obtener autom\u00e1ticamente el hiperenlace del cuestionario en vivo escaneando este c\u00f3digo QR.", "i.walkQuizzes_8":"Una pesta\u00f1a 'Resultados' situada en la parte superior, que permite ver en tiempo real los resultados del cuestionario. Dependiendo del tipo de cuestionario, la representaci\u00f3n de los resultados ser\u00e1 diferente (gr\u00e1fico circular, de barras, etc.).", 
 "i.walkQuizzes_9":"Si quieres 'cerrar' el cuestionario en vivo debes hacer click en el bot\u00f3n 'Detener' situado en la parte inferior derecha. Despu\u00e9s de cerrar un cuestionario, no se admitir\u00e1n ni guardar\u00e1n m\u00e1s respuestas. Tambi\u00e9n puedes cerrar un cuestionario en cualquier momento desde la plataforma ViSH. Cuando cierras un cuestionario en vivo, puedes, opcionalmente, especificar un nombre para facilitar su b\u00fasqueda posterior en el ViSH.", "i.walkQuizzes_10":"Si sales de la pantalla de cuestionarios en vivo, puedes regresar en cualquier momento haciendo click sobre el bot\u00f3n 'Opciones' situado en la parte inferior del cuestionario. Tenga en cuenta que si un cuestionario ha sido lanzado, el bot\u00f3n 'Lanzar' es reemplazado por un bot\u00f3n 'Opciones'. Cuando se cierre el cuestionario, el bot\u00f3n 'Lanzar' volver\u00e1 a aparecer. Finalmente, tenga en cuenta que no puede lanzar m\u00e1s de un cuestionario en vivo a la vez.", 
-"i.vtTitle_GStarted":"Introducci\u00f3n a ViSH Editor", "i.About2":"C\u00f3digo disponible en", "i.About3":"visita nuestro canal de YouTube", "i.About4":"Desarrollado por", "i.VESurvey1":"Ay\u00fadanos a mejorar ViSH Editor", "i.VESurvey2":"Por favor, rellena", "i.VESurvey3":"esta encuesta", "i.VESurvey4":"\u00a1Gracias por tu colaboraci\u00f3n", "i.VESurveyURL":"https://docs.google.com/forms/d/1b_Ml2iua0oDNKkJqc7eT1W2CDlRhIZR__w2AlicfwjA/viewform", "i.walkCompetitions1_1":"Estamos organizando una competici\u00f3n", 
-"i.walkCompetitions1_2":"Para participar s\u00f3lo tienes que a\u00f1adir el tag ViSHCompetition2013 a tu excursi\u00f3n y uno o m\u00e1s de los siguientes tags:", "i.walkCompetitions1_3":"Maths, Physics, Chemistry, Biology, EnvironmentalStudies, Geography, Engineering, Humanities, NaturalScience o ComputerScience.", "i.walkCompetitions1_4":"Para m\u00e1s informaci\u00f3n ve a", "i.walkCompetitions1_5":"la p\u00e1gina de informaci\u00f3n", "i.walkCompetitions1_6":"o a la", "i.walkCompetitions1_7":"secci\u00f3n de preguntas frecuentes", 
-"i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", "i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", "i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", 
-"i.AddTags":"A\u00f1adir etiquetas", "i.AddTimestampLink":"A\u00f1adir marca de tiempo", "i.addvideourl":"a\u00f1adir URL de v\u00eddeo (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Animations":"Animaciones", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", "i.Opacity":"Opacidad", "i.Elements":"Elementos", "i.Rotate":"Rotar", "i.Diagonal1":"Diagonal #1", "i.Diagonal2":"Diagonal #2", "i.Inside":"Dentro", "i.Zoom":"Ampliar", "i.Flip1":"Vuelta #1", 
-"i.Flip2":"Vuelta #2", "i.3D":"3D", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.by":"por", "i.cancel":"cancelar", "i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", 
-"i.close":"cerrar", "i.Close":"Cerrar", "i.CloseWSaving":"cerrar sin guardar", "i.Competitions":"Competici\u00f3n", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", "i.delete":"borrar", "i.Description":"Descripci\u00f3n", "i.difficult":"dif\u00edcil", "i.Difficulty":"Dificultad", "i.Documentation":"Documentaci\u00f3n", 
-"i.done":"hecho", "i.Done":"Hecho", "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", "i.Electronics":"Electr\u00f3nica", "i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", "i.EnrichedVideo":"V\u00eddeo Enriquecido", "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", 
-"i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", "i.errorYoutubeConnection":"Error conectando con YouTube", "i.Ethics":"\u00c9tica", "i.Evaluate":"Evaluar", "i.evaluateTitle":"\u00bfQuieres contribuir evaluando esta excursi\u00f3n?", "i.eVideoChangeNotification":"Si cambias la fuente del v\u00eddeo perder\u00e1s todas las marcas de tiempo que hayas a\u00f1adido. En cualquier caso, conservar\u00e1s las diapositivas que hayas creado. \u00bfEst\u00e1s seguro de que quieres continuar?", 
-"i.ExcursionDetails":"Informaci\u00f3n de la Excursi\u00f3n", "i.Excursions":"Excursiones", "i.Exit":"Salir", "i.exitConfirmation":"Vas a abandonar ViSH Editor. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.exitConfirmation2":"\u00bfSeguro que quieres abandonar esta p\u00e1gina?", "i.exitConfirmationMenu":"La Excursi\u00f3n Virtual se ha modificado. Si la cierra sin guardar perder\u00e1 todos los cambios. \u00bfQu\u00e9 desea hacer?", "i.ExitWSaving":"salir sin guardar", "i.Export":"Exportar", 
-"i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un fichero JSON.", "i.exportPresToSCORMerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un paquete SCORM.", "i.exviews":"visitas", "i.Filllater":"Rellenar despu\u00e9s", "i.Finish":"Terminar", "i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", "i.ForeignLanguages":"Idiomas", "i.Game":"Juego", "i.GeneralCulture":"Cultura General", "i.Geography":"Geograf\u00eda", 
-"i.Geology":"Geolog\u00eda", "i.GotoSettings":"Ir a Ajustes", "i.HealthEducation":"Educaci\u00f3n para la Salud", "i.Help":"Ayuda", "i.HigherEducation":"Educaci\u00f3n Superior", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Hours":"Horas", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Import":"Importar", "i.Insert":"Insertar", "i.invalidvalue":"valor inv\u00e1lido", "i.ItemAndBall":"Esta entrada est\u00e1 enlazada con la diapositiva #{letter} del V\u00eddeo Enriquecido.", 
-"i.Language":"Idioma", "i.Languageindependent":"Independiente del idioma", "i.Law":"Derecho", "i.License":"Licencia", "i.limitReached":"limite alcanzado", "i.link":"enlace", "i.Literature":"Literatura", "i.LiveQuiz":"Cuestionario en Vivo", "i.LiveResources":"Contenidos en directo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", "i.math":"matem\u00e1ticas", "i.Mathematics":"Matem\u00e1ticas", "i.medium":"medio", 
-"i.Minutes":"Minutos", "i.Music":"M\u00fasica", "i.nanoscience":"nanociencia", "i.NaturalSciences":"Ciencias Naturales", "i.next":"siguiente", "i.Next":"Siguiente", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"\u00bfQuieres participar en la competici\u00f3n? Puedes ganar un gran premio. Lee la guia de c\u00f3mo hacerlo <a href='http://vishub.org/competitions' target='_blank'>aqu\u00ed</a>", "i.NoCompetitions2":"A\u00f1ade una o m\u00e1s de las siguientes tags para participar:", "i.NoCompetitions3":"Se a\u00f1adir\u00e1n a las tags de la excursi\u00f3n. Las puedes revisar o cambiar en la p\u00e1gina de ajustes", 
-"i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON", "i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.NoThanks":"No gracias", "i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", "i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un v\u00eddeo HTML5 o de YouTube", 
-"i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido.", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido.", "i.pdfErrorNotificationSize":"Ha ocurrido un error. El fichero PDF debe tener un tama\u00f1o inferior a 8 Mb.", "i.pdfErrorNotificationPages":"Ha ocurrido un error. El fichero PDF tiene demasiadas p\u00e1ginas.", "i.PDFSlideshow":"Presentaci\u00f3n PDF", 
-"i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.pEducation":"Educaci\u00f3n Primaria", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Educaci\u00f3n Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", 
-"i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.publishing":"Publicando", "i.Publishing":"Publicando", "i.Publish_confirmation":"Vas a guardar y publicar esta Excursi\u00f3n Virtual en la plataforma ViSH. Despu\u00e9s de esto, la excursi\u00f3n ser\u00e1 p\u00fablica y cualquiera podr\u00e1 acceder a ella. \u00bfQu\u00e9 deseas hacer?", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", 
-"i.QuizButtonContinue":"Continuar", "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizCreateSessionError":"Lo sentimos, ha ocurrido un error al crear un nuevo cuestionario en vivo", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", "i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", 
-"i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizSettings":"Ajustes de Quiz", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", "i.readJSONfileError":"Error al leer el fichero JSON", "i.recommendationsTitle":"Excursiones recomendadas:", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", 
-"i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.save":"guardar", "i.Save":"Guardar", "i.SaveAndExit":"guardar y salir", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.sEducation":"Educaci\u00f3n Secundaria", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", 
-"i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", 
-"i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Time":"Tiempo", "i.Title":"T\u00edtulo", "i.TitleM":"T\u00edtulo *", "i.toJSON":"a JSON", "i.toSCORM":"a SCORM", "i.PTraining":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", 
+"i.vtTitle_GStarted":"Introducci\u00f3n a ViSH Editor", "i.About2":"C\u00f3digo disponible en", "i.About3":"visita nuestro canal de YouTube", "i.About4":"Desarrollado por", "i.VESurvey1":"Ay\u00fadanos a mejorar ViSH Editor", "i.VESurvey2":"Por favor, rellena", "i.VESurvey3":"esta encuesta", "i.VESurvey4":"\u00a1Gracias por tu colaboraci\u00f3n", "i.VESurveyURL":"https://docs.google.com/forms/d/1b_Ml2iua0oDNKkJqc7eT1W2CDlRhIZR__w2AlicfwjA/viewform", "i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", 
+"i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddePackage":"A\u00f1adir un paquete de e-Learning mediante un archivo ZIP. Formatos soportados: SCORM y aplicaciones web HTML5 personalizadas.", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", 
+"i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", "i.AddTags":"A\u00f1adir etiquetas", "i.AddTimestampLink":"A\u00f1adir marca de tiempo", "i.addvideourl":"a\u00f1adir URL de v\u00eddeo (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Animations":"Animaciones", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", "i.Opacity":"Opacidad", "i.Elements":"Elementos", "i.Rotate":"Rotar", 
+"i.Diagonal1":"Diagonal #1", "i.Diagonal2":"Diagonal #2", "i.Inside":"Dentro", "i.Zoom":"Ampliar", "i.Flip1":"Vuelta #1", "i.Flip2":"Vuelta #2", "i.3D":"3D", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.by":"por", "i.cancel":"cancelar", 
+"i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", "i.close":"cerrar", "i.Close":"Cerrar", "i.CloseWSaving":"cerrar sin guardar", "i.Competitions":"Competici\u00f3n", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", 
+"i.delete":"borrar", "i.Description":"Descripci\u00f3n", "i.difficult":"dif\u00edcil", "i.Difficulty":"Dificultad", "i.Documentation":"Documentaci\u00f3n", "i.done":"hecho", "i.Done":"Hecho", "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", "i.Electronics":"Electr\u00f3nica", 
+"i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", "i.EnrichedVideo":"V\u00eddeo Enriquecido", "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", "i.ePackage":"Paquete e-Learning", "i.ePackageError1":"Ocurri\u00f3 un error al subir el paquete de e&#8209;Learning.", "i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", "i.errorYoutubeConnection":"Error conectando con YouTube", 
+"i.Ethics":"\u00c9tica", "i.Evaluate":"Evaluar", "i.evaluateTitle":"\u00bfQuieres contribuir evaluando esta excursi\u00f3n?", "i.eVideoChangeNotification":"Si cambias la fuente del v\u00eddeo perder\u00e1s todas las marcas de tiempo que hayas a\u00f1adido. En cualquier caso, conservar\u00e1s las diapositivas que hayas creado. \u00bfEst\u00e1s seguro de que quieres continuar?", "i.ExcursionDetails":"Informaci\u00f3n de la Excursi\u00f3n", "i.Excursion":"Excursi\u00f3n", "i.Excursions":"Excursiones", 
+"i.Exit":"Salir", "i.exitConfirmation":"Vas a abandonar ViSH Editor. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.exitConfirmation2":"\u00bfSeguro que quieres abandonar esta p\u00e1gina?", "i.exitConfirmationMenu":"La Excursi\u00f3n Virtual se ha modificado. Si la cierra sin guardar perder\u00e1 todos los cambios. \u00bfQu\u00e9 desea hacer?", "i.ExitWSaving":"salir sin guardar", "i.Export":"Exportar", "i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un fichero JSON.", 
+"i.exportPresToSCORMerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un paquete SCORM.", "i.exportQuizToQTIerrorNotification":"Ha ocurrido un error. No ha sido posible exportar el cuestionario al formato IMS QTI 2.1.", "i.exportQuizToMoodleXMLerrorNotification":"Ha ocurrido un error. No ha sido posible exportar el cuestionario al formato Moodle XML.", "i.exviews":"visitas", "i.File":"Archivo", "i.Filllater":"Rellenar despu\u00e9s", "i.Finish":"Terminar", 
+"i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", "i.ForeignLanguages":"Idiomas", "i.Game":"Juego", "i.GeneralCulture":"Cultura General", "i.Geography":"Geograf\u00eda", "i.Geology":"Geolog\u00eda", "i.GotoSettings":"Ir a Ajustes", "i.HealthEducation":"Educaci\u00f3n para la Salud", "i.Help":"Ayuda", "i.HigherEducation":"Educaci\u00f3n Superior", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Hours":"Horas", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", 
+"i.Import":"Importar", "i.ImportFromEFile":"Importar recursos mediante archivos externos:", "i.ImportFromEFileVEJSON":"Presentaciones y Diapositivas de ViSH Editor de archivos JSON", "i.ImportFromEFileIMSQTI":"Cuestionarios (Quizzes) de archivos XML compatibles con IMS QTI 2.1", "i.Insert":"Insertar", "i.invalidvalue":"valor inv\u00e1lido", "i.ItemAndBall":"Esta entrada est\u00e1 enlazada con la diapositiva #{letter} del V\u00eddeo Enriquecido.", "i.Language":"Idioma", "i.Languageindependent":"Independiente del idioma", 
+"i.Law":"Derecho", "i.License":"Licencia", "i.limitReached":"limite alcanzado", "i.link":"enlace", "i.Literature":"Literatura", "i.LiveQuiz":"Cuestionario en Vivo", "i.LiveResources":"Contenidos en directo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", "i.math":"matem\u00e1ticas", "i.Mathematics":"Matem\u00e1ticas", "i.medium":"medio", "i.Minutes":"Minutos", "i.Music":"M\u00fasica", "i.nanoscience":"nanociencia", 
+"i.NaturalSciences":"Ciencias Naturales", "i.next":"siguiente", "i.Next":"Siguiente", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"\u00bfQuieres participar en la competici\u00f3n? Puedes ganar un gran premio. Lee la guia de c\u00f3mo hacerlo <a href='http://vishub.org/competitions' target='_blank'>aqu\u00ed</a>", "i.NoCompetitions2":"A\u00f1ade una o m\u00e1s de las siguientes tags para participar:", "i.NoCompetitions3":"Se a\u00f1adir\u00e1n a las tags de la excursi\u00f3n. Las puedes revisar o cambiar en la p\u00e1gina de ajustes", 
+"i.NoFileError":"No has seleccionado ning\u00fan archivo para importar.", "i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON.", "i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.NoThanks":"No gracias", "i.NoSupportedFileError":"El archivo no puede ser importado. El formato no est\u00e1 soportado.", "i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", 
+"i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.Package":"Paquete", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un v\u00eddeo HTML5 o de YouTube", "i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido.", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido.", 
+"i.pdfErrorNotificationSize":"Ha ocurrido un error. El fichero PDF debe tener un tama\u00f1o inferior a 8 Mb.", "i.pdfErrorNotificationPages":"Ha ocurrido un error. El fichero PDF tiene demasiadas p\u00e1ginas.", "i.PDFSlideshow":"Presentaci\u00f3n PDF", "i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.pEducation":"Educaci\u00f3n Primaria", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", 
+"i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Educaci\u00f3n Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.publishing":"Publicando", "i.Publishing":"Publicando", "i.Publish_confirmation":"Vas a guardar y publicar esta Excursi\u00f3n Virtual en la plataforma ViSH. Despu\u00e9s de esto, la excursi\u00f3n ser\u00e1 p\u00fablica y cualquiera podr\u00e1 acceder a ella. \u00bfQu\u00e9 deseas hacer?", 
+"i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", "i.QuizButtonContinue":"Continuar", "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizCreateSessionError":"Lo sentimos, ha ocurrido un error al crear un nuevo cuestionario en vivo", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", 
+"i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", "i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizSettings":"Ajustes de Quiz", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", "i.QuizzesWriteOptions":"Escribe aqu\u00ed las opciones", "i.QuizzesWriteOptionsOpen":"Escribe aqu\u00ed la respuesta", 
+"i.QuizzesWriteOptionsSorting":"Escribe aqu\u00ed el primer elemento de la secuencia", "i.readJSONfileError":"Error al leer el fichero JSON", "i.recommendationsTitle":"Excursiones recomendadas:", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.Response":"Respuesta", "i.ResponseCorrect":"Respuesta correcta", "i.save":"guardar", "i.Save":"Guardar", 
+"i.SaveAndExit":"guardar y salir", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.sEducation":"Educaci\u00f3n Secundaria", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", "i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", 
+"i.Settings":"Ajustes", "i.Slide":"Diapositiva", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Time":"Tiempo", "i.Title":"T\u00edtulo", "i.TitleM":"T\u00edtulo *", "i.toJSON":"a JSON", "i.toSCORM":"a SCORM", 
+"i.PTraining":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", 
 "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.Untitled":"Sin T\u00edtulo", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.YouTubePlayAlert":"Haz click sobre el v\u00eddeo para empezar la reproducci\u00f3n", 
 "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.tooltip.Help":"Ayuda", "i.last":"\u00faltimo"}, "default":{"i.AddSlideMin":"Add Slide", "i.add":"add", 
-"i.Add":"Add", "i.AddTags":"Add tags", "i.AddTimestampLink":"Add timestamp link", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.close":"close", "i.Close":"Close", "i.CloseWSaving":"close without saving", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", 
-"i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.eVideoChangeNotification":"If you change the v\u00eddeo source you will lose all the timestamp links you have added. In any case, you will keep the slides you have created. Are you sure you want to continue?", "i.Exit":"Exit", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", "i.exitConfirmation2":"Are you sure you want to leave this page?", 
-"i.exitConfirmationMenu":"The Virtual Excursion has been modified. If you close without saving you will lose all changes. What would you like to do?", "i.ExitWSaving":"exit without saving", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.exportPresToSCORMerrorNotification":"An error has ocurred. Is not possible to export the presentation to a SCORM package.", "i.exviews":"views", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", 
-"i.ItemAndBall":"This item is linked to the #{letter} slide of the Enriched Video.", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", "i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", "i.NoCompetitions2":"Add one or more of the following tags to participate:", 
-"i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", "i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube v\u00eddeo URL", "i.pasteWeb":"paste website URL", 
-"i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", "i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", 
+"i.Add":"Add", "i.AddTags":"Add tags", "i.AddTimestampLink":"Add timestamp link", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.close":"close", "i.Close":"Close", "i.CloseWSaving":"close without saving", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.ePackageError1":"An error ocurred when uploading the e&#8209;Learning package.", "i.errorFlickrConnection":"Error connecting to Flickr", 
+"i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.eVideoChangeNotification":"If you change the v\u00eddeo source you will lose all the timestamp links you have added. In any case, you will keep the slides you have created. Are you sure you want to continue?", "i.Exit":"Exit", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", 
+"i.exitConfirmation2":"Are you sure you want to leave this page?", "i.exitConfirmationMenu":"The Virtual Excursion has been modified. If you close without saving you will lose all changes. What would you like to do?", "i.ExitWSaving":"exit without saving", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.exportPresToSCORMerrorNotification":"An error has ocurred. Is not possible to export the presentation to a SCORM package.", 
+"i.exportQuizToQTIerrorNotification":"An error has ocurred. Is not possible to export the quiz to the IMS QTI 2.1 format.", "i.exportQuizToMoodleXMLerrorNotification":"An error has ocurred. Is not possible to export the quiz to the Moodle XML format.", "i.exviews":"views", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.ItemAndBall":"This item is linked to the #{letter} slide of the Enriched Video.", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", 
+"i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", "i.NoCompetitions2":"Add one or more of the following tags to participate:", "i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", "i.NoFileError":"You have not selected any file to import.", "i.NoJSONFileError":"You have to select a file to import in JSON format", 
+"i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.NoSupportedFileError":"The file cannot be imported. The format is not supported.", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube v\u00eddeo URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", 
+"i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", "i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", 
 "i.QuizButtonAnswer":"Answer", "i.QuizButtonContinue":"Continue", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", 
-"i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizSettings":"Quiz Settings", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", 
-"i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Time":"Time", "i.Title":"Title", "i.TitleM":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", 
+"i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizSettings":"Quiz Settings", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.QuizzesWriteOptions":"Write options here", "i.QuizzesWriteOptionsOpen":"Write the answer here", "i.QuizzesWriteOptionsSorting":"Write the first item of the sequence here", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", 
+"i.Response":"Response", "i.ResponseCorrect":"Correct response", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Time":"Time", "i.Title":"Title", "i.TitleM":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", 
 "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.Untitled":"Untitled", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.YouTubePlayAlert":"Click on the video to start playing", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}, "fr":{"i.Saved":"Enregistr\u00e9", 
 "i.Saving":"Enregistrement", "i.Unpublish_confirmation":"Vous allez d\u00e9publier ce Excursion virtuelle de la plate-forme Vish. Apr\u00e8s cela, l'excursion sera priv\u00e9 et ne vous sera en mesure d'y acc\u00e9der. Que souhaitez-vous faire?", "i.Animations":"Animation", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", "i.Opacity":"Opacit\u00e9", "i.Elements":"\u00c9l\u00e9ments", "i.Rotate":"tourner", "i.Diagonal1":"Diagonale #1", "i.Diagonal2":"Diagonale #2", "i.Inside":"Int\u00e9rieur", 
 "i.Zoom":"Ampliar", "i.Flip1":"Tour #1", "i.Flip2":"Tour #2", "i.3D":"3D", "i.accept":"accepter", "i.AddSlideMin":"Ajouter", "i.add":"ajouter", "i.Add":"Ajouter", "i.Addanavatar":"Ajouter un avatar*", "i.addatitle":"ajouter un titre", "i.AddContent":"Ajouter un contenu", "i.addembeddedobject":"ajouter un objet incorpor\u00e9", "i.AddFromJSONfile":"Ajouter une pr\u00e9sentation ViSH editor \u00e0 partir d'un fichier JSON", "i.addpicurl":"ajouter l'URL d'une image", "i.AddSlide":"Ajouter une diapositive", 
@@ -162,14 +167,14 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.Noresultsfound":"Keine Ergebnisse", "i.NoSlidesOnSaveNotification":"Bevor du speichern kannst, musst du zumindest eine Folie erstellen.", "i.Object":"Objekt", "i.Objects":"Objekte", "i.or":"oder", "i.Other":"Andere", "i.Others":"Andere", "i.pasteEmbedObject":"Eine URL f\u00fcr SWF oder PDF Datei einf\u00fcgen", "i.pasteImageURL":"Eine Bild URL einf\u00fcgen", "i.pasteVideoURL":"Eine HTML5 oder YouTube Video URL einf\u00fcgen", "i.pasteWeb":"Eine Webseiten URL einf\u00fcgen", "i.pdfErrorNotification":"Ein Fehler ist aufgetreten. Stelle sicher, dass die PDF Datei g\u00fcltig ist.", 
 "i.PDFNotValid":" Ein Fehler ist aufgetreten. Stelle sicher, dass die PDF Datei korrekt ist.", "i.PDFSlideshow":"PDF Pr\u00e4sentation", "i.PedagogicalAspects":"P\u00e4dagogische Aspekte", "i.Philosophy":"Philosophie", "i.PhysicalEducation":"Sport", "i.Physics":"Physik", "i.pNotValid":"Diese Ressource kann nicht ge\u00f6ffnet werden. Sie ist entweder besch\u00e4digt oder nicht mit der Version des ViSH Editors kompatibel.", "i.Politics":"Politik", "i.Preschool":"Vorschule", "i.Presentation":"Pr\u00e4sentation", 
 "i.presDescriptionPlaceHolder":"Bitte gib kurz an, um was es bei dieser Exkursion geht...", "i.presTitle":"Titel der Exkursion", "i.Preview":"Vorschau", "i.Psychology":"Psychologie", "i.publish":"Ver\u00f6ffentlichen", "i.Publish":"Ver\u00f6ffentlichen", "i.Quiz":"Quizz", "i.QuizButtonAnswer":"Antwort", "i.QuizButtonLaunch":"Starten", "i.QuizButtonOptions":"Optionen", "i.QuizButtonRetry":"Neuer Versuch", "i.QuizEmptyAnswerAlert":"Bitte beantworte die Fragen, bevor du das Quizz abschickst", "i.QuizLaunch":"Starten", 
-"i.QuizMultipleLaunchAlert":"Bitte stoppe alle laufenden Quizze bevor du ein weiteres Quizz startest", "i.QuizNotSubmittedAlert":"Sorry, deine Antwort konnte nicht geschickt werden", "i.QuizResults":"Ergebnisse", "i.QuizSaveConfirmation":"Willst du die Ergebnisse vom Quizz speichern?", "i.QuizSessionName":"Name des live Quizz", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Deine Antwort wurde zugestellt", "i.Quizzes":"Quizze", "i.readJSONfileError":"Fehler beim Lesen der JSON Datei", "i.Religion":"Religion", 
-"i.Remove":"L\u00f6schen", "i.resourceNonCompatibleNotification":"Diese Ressource ist besch\u00e4digt oder nicht mit der aktuellen ViSH Editor Version kompatibel und kann nicht ge\u00f6ffnet werden.", "i.save":"Speichern", "i.Save":"Speichern", "i.Saving":"Speichern", "i.School":"Schule", "i.SearchContent":"Inhalt suchen", "i.Searchplaces":"Orte suchen", "i.Seconds":"Sekunden", "i.SelectAll":"Alle ausw\u00e4hlen", "i.selectObjectUpload":"Eine Datei zum Hochladen aussuchen", "i.selectObjectUpload2":"Unterst\u00fctze Formate: SWF (Flash), PDF", 
-"i.selectPicture":"Ein Bild zum Hochladen aussuchen", "i.SelectSlide":"Folie ausw\u00e4hlen", "i.SelectTheme":"Thema ausw\u00e4hlen", "i.Settings":"Einstellungen", "i.Slides":"Folien", "i.SocialSciences":"Sozialwissenschaften", "i.SoftwareEngineering":"Software Engineering", "i.Style":"Stil", "i.Subject":"Fach", "i.Tags":"Schlagw\u00f6rter", "i.Technology":"Technologie", "i.Templates":"Vorlagen", "i.text":"Text", "i.Text":"Text", "i.Telecommunications":"Telekommunikation", "i.Title":"Titel *", "i.toJSON":"an JSON", 
-"i.Training":"Training", "i.Typicallearningtime":"\u00fcbliche Dauer f\u00fcr die Lerneinheit", "i.unpublish":"unver\u00f6ffentlicht", "i.Unpublish":"Unver\u00f6ffentlicht", "i.University":"Universit\u00e4t", "i.UnselectAll":"Gesamte Auswahl r\u00fcckg\u00e4ngig machen", "i.UnselectSlide":"Auswahl der Folie r\u00fcckg\u00e4ngig machen", "i.unspecified":"Nicht spezifiziert", "i.Unspecified":"Nicht spezifiziert", "i.unpublishing":"aufheben", "i.Unpublishing":"Aufheben", "i.upload":"Hochladen", "i.Upload":"Hochladen", 
-"i.Version":"Version", "i.verydifficult":"Sehr schwierig", "i.veryeasy":"Sehr einfach", "i.VESurvey1":"Hilf uns, den ViSH Editor zu verbessern", "i.VESurvey2":"Bitte ausf\u00fcllen", "i.VESurvey3":"diese Umfrage", "i.VESurvey4":"Danke f\u00fcr deinen Beitrag", "i.video":"Video", "i.videos":"Videos", "i.VirtualTour":"Virtuelle Tour", "i.yes":"Ja", "i.Yes":"Ja", "i.ZoneTooltip":"Hier klicken um Inhalte hinzuzuf\u00fcgen", "i.tooltip.QSInput":"Einen Namen f\u00fcr das live Quizz eingeben"}}, "standalone":{"es":{"i.save":"Standalone"}, 
-"default":{"i.save":"Standalone"}}};
+"i.QuizMultipleLaunchAlert":"Bitte stoppe alle laufenden Quizze bevor du ein weiteres Quizz startest", "i.QuizNotSubmittedAlert":"Sorry, deine Antwort konnte nicht geschickt werden", "i.QuizResults":"Ergebnisse", "i.QuizSaveConfirmation":"Willst du die Ergebnisse vom Quizz speichern?", "i.QuizSessionName":"Name des live Quizz", "i.QuizSettings":"Quiz", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Deine Antwort wurde zugestellt", "i.Quizzes":"Quizze", "i.readJSONfileError":"Fehler beim Lesen der JSON Datei", 
+"i.Religion":"Religion", "i.Remove":"L\u00f6schen", "i.resourceNonCompatibleNotification":"Diese Ressource ist besch\u00e4digt oder nicht mit der aktuellen ViSH Editor Version kompatibel und kann nicht ge\u00f6ffnet werden.", "i.save":"Speichern", "i.Save":"Speichern", "i.Saving":"Speichern", "i.School":"Schule", "i.SearchContent":"Inhalt suchen", "i.Searchplaces":"Orte suchen", "i.Seconds":"Sekunden", "i.SelectAll":"Alle ausw\u00e4hlen", "i.selectObjectUpload":"Eine Datei zum Hochladen aussuchen", 
+"i.selectObjectUpload2":"Unterst\u00fctze Formate: SWF (Flash), PDF", "i.selectPicture":"Ein Bild zum Hochladen aussuchen", "i.SelectSlide":"Folie ausw\u00e4hlen", "i.SelectTheme":"Thema ausw\u00e4hlen", "i.Settings":"Einstellungen", "i.Slides":"Folien", "i.SocialSciences":"Sozialwissenschaften", "i.SoftwareEngineering":"Software Engineering", "i.Style":"Stil", "i.Subject":"Fach", "i.Tags":"Schlagw\u00f6rter", "i.Technology":"Technologie", "i.Templates":"Vorlagen", "i.text":"Text", "i.Text":"Text", 
+"i.Telecommunications":"Telekommunikation", "i.Title":"Titel *", "i.toJSON":"an JSON", "i.Training":"Training", "i.Typicallearningtime":"\u00fcbliche Dauer f\u00fcr die Lerneinheit", "i.unpublish":"unver\u00f6ffentlicht", "i.Unpublish":"Unver\u00f6ffentlicht", "i.University":"Universit\u00e4t", "i.UnselectAll":"Gesamte Auswahl r\u00fcckg\u00e4ngig machen", "i.UnselectSlide":"Auswahl der Folie r\u00fcckg\u00e4ngig machen", "i.unspecified":"Nicht spezifiziert", "i.Unspecified":"Nicht spezifiziert", 
+"i.unpublishing":"aufheben", "i.Unpublishing":"Aufheben", "i.upload":"Hochladen", "i.Upload":"Hochladen", "i.Version":"Version", "i.verydifficult":"Sehr schwierig", "i.veryeasy":"Sehr einfach", "i.VESurvey1":"Hilf uns, den ViSH Editor zu verbessern", "i.VESurvey2":"Bitte ausf\u00fcllen", "i.VESurvey3":"diese Umfrage", "i.VESurvey4":"Danke f\u00fcr deinen Beitrag", "i.video":"Video", "i.videos":"Videos", "i.VirtualTour":"Virtuelle Tour", "i.yes":"Ja", "i.Yes":"Ja", "i.ZoneTooltip":"Hier klicken um Inhalte hinzuzuf\u00fcgen", 
+"i.tooltip.QSInput":"Einen Namen f\u00fcr das live Quizz eingeben"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
-VISH.VERSION = "0.8.7";
+VISH.VERSION = "0.8.8";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -226,6 +231,7 @@ VISH.Constant.MEDIA.JSON = "json";
 VISH.Constant.MEDIA.DOC = "doc";
 VISH.Constant.MEDIA.PPT = "ppt";
 VISH.Constant.MEDIA.SCORM_PACKAGE = "scormpackage";
+VISH.Constant.MEDIA.WEB_APP = "webapp";
 VISH.Constant.MEDIA.IMS_QTI_QUIZ = "IMS_QTI_QUIZ";
 VISH.Constant.WRAPPER = {};
 VISH.Constant.WRAPPER.EMBED = "EMBED";
@@ -234,9 +240,10 @@ VISH.Constant.WRAPPER.IFRAME = "IFRAME";
 VISH.Constant.WRAPPER.VIDEO = "VIDEO";
 VISH.Constant.WRAPPER.AUDIO = "AUDIO";
 VISH.Constant.QZ_TYPE = {};
-VISH.Constant.QZ_TYPE.OPEN = "open";
+VISH.Constant.QZ_TYPE.OPEN = "openAnswer";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
+VISH.Constant.QZ_TYPE.SORTING = "sorting";
 VISH.Constant.QZ_MODE = {};
 VISH.Constant.QZ_MODE.SELFA = "selfA";
 VISH.Constant.QZ_MODE.RT = "realTime";
@@ -351,7 +358,7 @@ VISH.Constant.INTRO = 13;
               }
             }
           }
-          !n && (!p && f.error("No conversion from " + m.replace(" ", " to "))), n !== !0 && (c = n ? n(c) : p(o(c)))
+          !n && !p && f.error("No conversion from " + m.replace(" ", " to ")), n !== !0 && (c = n ? n(c) : p(o(c)))
         }
       }
     }
@@ -418,7 +425,7 @@ VISH.Constant.INTRO = 13;
     for(;i < j && (k || !l);i++) {
       l = h[i](c, d, e), typeof l == "string" && (!k || g[l] ? l = b : (c.dataTypes.unshift(l), l = bZ(a, c, d, e, l, g)))
     }
-    (k || !l) && (!g["*"] && (l = bZ(a, c, d, e, "*", g)));
+    (k || !l) && !g["*"] && (l = bZ(a, c, d, e, "*", g));
     return l
   }
   function bY(a) {
@@ -464,7 +471,7 @@ VISH.Constant.INTRO = 13;
   }
   function bn(a) {
     var b = (a.nodeName || "").toLowerCase();
-    b === "input" ? bm(a) : b !== "script" && (typeof a.getElementsByTagName != "undefined" && f.grep(a.getElementsByTagName("input"), bm))
+    b === "input" ? bm(a) : b !== "script" && typeof a.getElementsByTagName != "undefined" && f.grep(a.getElementsByTagName("input"), bm)
   }
   function bm(a) {
     if(a.type === "checkbox" || a.type === "radio") {
@@ -476,7 +483,7 @@ VISH.Constant.INTRO = 13;
   }
   function bk(a, b) {
     var c;
-    b.nodeType === 1 && (b.clearAttributes && b.clearAttributes(), b.mergeAttributes && b.mergeAttributes(a), c = b.nodeName.toLowerCase(), c === "object" ? b.outerHTML = a.outerHTML : c !== "input" || a.type !== "checkbox" && a.type !== "radio" ? c === "option" ? b.selected = a.defaultSelected : c === "input" || c === "textarea" ? b.defaultValue = a.defaultValue : c === "script" && (b.text !== a.text && (b.text = a.text)) : (a.checked && (b.defaultChecked = b.checked = a.checked), b.value !== a.value && 
+    b.nodeType === 1 && (b.clearAttributes && b.clearAttributes(), b.mergeAttributes && b.mergeAttributes(a), c = b.nodeName.toLowerCase(), c === "object" ? b.outerHTML = a.outerHTML : c !== "input" || a.type !== "checkbox" && a.type !== "radio" ? c === "option" ? b.selected = a.defaultSelected : c === "input" || c === "textarea" ? b.defaultValue = a.defaultValue : c === "script" && b.text !== a.text && (b.text = a.text) : (a.checked && (b.defaultChecked = b.checked = a.checked), b.value !== a.value && 
     (b.value = a.value)), b.removeAttribute(f.expando), b.removeAttribute("_submit_attached"), b.removeAttribute("_change_attached"))
   }
   function bj(a, b) {
@@ -532,7 +539,7 @@ VISH.Constant.INTRO = 13;
     })
   }
   function S(a) {
-    return!a || (!a.parentNode || a.parentNode.nodeType === 11)
+    return!a || !a.parentNode || a.parentNode.nodeType === 11
   }
   function K() {
     return!0
@@ -542,9 +549,9 @@ VISH.Constant.INTRO = 13;
   }
   function n(a, b, c) {
     var d = b + "defer", e = b + "queue", g = b + "mark", h = f._data(a, d);
-    h && ((c === "queue" || !f._data(a, e)) && ((c === "mark" || !f._data(a, g)) && setTimeout(function() {
-      !f._data(a, e) && (!f._data(a, g) && (f.removeData(a, d, !0), h.fire()))
-    }, 0)))
+    h && (c === "queue" || !f._data(a, e)) && (c === "mark" || !f._data(a, g)) && setTimeout(function() {
+      !f._data(a, e) && !f._data(a, g) && (f.removeData(a, d, !0), h.fire())
+    }, 0)
   }
   function m(a) {
     for(var b in a) {
@@ -607,12 +614,12 @@ VISH.Constant.INTRO = 13;
         this.context = this[0] = a, this.length = 1;
         return this
       }
-      if(a === "body" && (!d && c.body)) {
+      if(a === "body" && !d && c.body) {
         this.context = c, this[0] = c.body, this.selector = a, this.length = 1;
         return this
       }
       if(typeof a == "string") {
-        a.charAt(0) !== "<" || (a.charAt(a.length - 1) !== ">" || a.length < 3) ? g = i.exec(a) : g = [null, a, null];
+        a.charAt(0) !== "<" || a.charAt(a.length - 1) !== ">" || a.length < 3 ? g = i.exec(a) : g = [null, a, null];
         if(g && (g[1] || !d)) {
           if(g[1]) {
             d = d instanceof e ? d[0] : d, k = d ? d.ownerDocument || d : c, j = m.exec(a), j ? e.isPlainObject(d) ? (a = [c.createElement(j[1])], e.fn.attr.call(a, d, !0)) : a = [k.createElement(j[1])] : (j = e.buildFragment([g[1]], [k]), a = (j.cacheable ? e.clone(j.fragment) : j.fragment).childNodes);
@@ -667,7 +674,7 @@ VISH.Constant.INTRO = 13;
       return this.prevObject || this.constructor(null)
     }, push:E, sort:[].sort, splice:[].splice}, e.fn.init.prototype = e.fn, e.extend = e.fn.extend = function() {
       var a, c, d, f, g, h, i = arguments[0] || {}, j = 1, k = arguments.length, l = !1;
-      typeof i == "boolean" && (l = i, i = arguments[1] || {}, j = 2), typeof i != "object" && (!e.isFunction(i) && (i = {})), k === j && (i = this, --j);
+      typeof i == "boolean" && (l = i, i = arguments[1] || {}, j = 2), typeof i != "object" && !e.isFunction(i) && (i = {}), k === j && (i = this, --j);
       for(;j < k;j++) {
         if((a = arguments[j]) != null) {
           for(c in a) {
@@ -675,13 +682,13 @@ VISH.Constant.INTRO = 13;
             if(i === f) {
               continue
             }
-            l && (f && (e.isPlainObject(f) || (g = e.isArray(f)))) ? (g ? (g = !1, h = d && e.isArray(d) ? d : []) : h = d && e.isPlainObject(d) ? d : {}, i[c] = e.extend(l, h, f)) : f !== b && (i[c] = f)
+            l && f && (e.isPlainObject(f) || (g = e.isArray(f))) ? (g ? (g = !1, h = d && e.isArray(d) ? d : []) : h = d && e.isPlainObject(d) ? d : {}, i[c] = e.extend(l, h, f)) : f !== b && (i[c] = f)
           }
         }
       }
       return i
     }, e.extend({noConflict:function(b) {
-      a.$ === e && (a.$ = g), b && (a.jQuery === e && (a.jQuery = f));
+      a.$ === e && (a.$ = g), b && a.jQuery === e && (a.jQuery = f);
       return e
     }, isReady:!1, readyWait:1, holdReady:function(a) {
       a ? e.readyWait++ : e.ready(!0)
@@ -712,7 +719,7 @@ VISH.Constant.INTRO = 13;
               b = a.frameElement == null
             }catch(d) {
             }
-            c.documentElement.doScroll && (b && J())
+            c.documentElement.doScroll && b && J()
           }
         }
       }
@@ -727,11 +734,11 @@ VISH.Constant.INTRO = 13;
     }, type:function(a) {
       return a == null ? String(a) : I[C.call(a)] || "object"
     }, isPlainObject:function(a) {
-      if(!a || (e.type(a) !== "object" || (a.nodeType || e.isWindow(a)))) {
+      if(!a || e.type(a) !== "object" || a.nodeType || e.isWindow(a)) {
         return!1
       }
       try {
-        if(a.constructor && (!D.call(a, "constructor") && !D.call(a.constructor.prototype, "isPrototypeOf"))) {
+        if(a.constructor && !D.call(a, "constructor") && !D.call(a.constructor.prototype, "isPrototypeOf")) {
           return!1
         }
       }catch(c) {
@@ -770,13 +777,13 @@ VISH.Constant.INTRO = 13;
       }catch(g) {
         d = b
       }
-      (!d || (!d.documentElement || d.getElementsByTagName("parsererror").length)) && e.error("Invalid XML: " + c);
+      (!d || !d.documentElement || d.getElementsByTagName("parsererror").length) && e.error("Invalid XML: " + c);
       return d
     }, noop:function() {
     }, globalEval:function(b) {
-      b && (j.test(b) && (a.execScript || function(b) {
+      b && j.test(b) && (a.execScript || function(b) {
         a.eval.call(a, b)
-      })(b))
+      })(b)
     }, camelCase:function(a) {
       return a.replace(w, "ms-").replace(v, x)
     }, nodeName:function(a, b) {
@@ -821,7 +828,7 @@ VISH.Constant.INTRO = 13;
       var c = b || [];
       if(a != null) {
         var d = e.type(a);
-        a.length == null || (d === "string" || (d === "function" || (d === "regexp" || e.isWindow(a)))) ? E.call(c, a) : e.merge(c, a)
+        a.length == null || d === "string" || d === "function" || d === "regexp" || e.isWindow(a) ? E.call(c, a) : e.merge(c, a)
       }
       return c
     }, inArray:function(a, b, c) {
@@ -859,7 +866,7 @@ VISH.Constant.INTRO = 13;
       }
       return d
     }, map:function(a, c, d) {
-      var f, g, h = [], i = 0, j = a.length, k = a instanceof e || j !== b && (typeof j == "number" && (j > 0 && (a[0] && a[j - 1]) || (j === 0 || e.isArray(a))));
+      var f, g, h = [], i = 0, j = a.length, k = a instanceof e || j !== b && typeof j == "number" && (j > 0 && a[0] && a[j - 1] || j === 0 || e.isArray(a));
       if(k) {
         for(;i < j;i++) {
           f = c(a[i], i, d), f != null && (h[h.length] = f)
@@ -881,7 +888,7 @@ VISH.Constant.INTRO = 13;
       var f = F.call(arguments, 2), g = function() {
         return a.apply(c, f.concat(F.call(arguments)))
       };
-      g.guid = a.guid = a.guid || (g.guid || e.guid++);
+      g.guid = a.guid = a.guid || g.guid || e.guid++;
       return g
     }, access:function(a, c, d, f, g, h, i) {
       var j, k = d == null, l = 0, m = a.length;
@@ -908,14 +915,14 @@ VISH.Constant.INTRO = 13;
       return(new Date).getTime()
     }, uaMatch:function(a) {
       a = a.toLowerCase();
-      var b = r.exec(a) || (s.exec(a) || (t.exec(a) || (a.indexOf("compatible") < 0 && u.exec(a) || [])));
+      var b = r.exec(a) || s.exec(a) || t.exec(a) || a.indexOf("compatible") < 0 && u.exec(a) || [];
       return{browser:b[1] || "", version:b[2] || "0"}
     }, sub:function() {
       function a(b, c) {
         return new a.fn.init(b, c)
       }
       e.extend(!0, a, this), a.superclass = this, a.fn = a.prototype = this(), a.fn.constructor = a, a.sub = this.sub, a.fn.init = function(d, f) {
-        f && (f instanceof e && (!(f instanceof a) && (f = a(f))));
+        f && f instanceof e && !(f instanceof a) && (f = a(f));
         return e.fn.init.call(this, d, f, b)
       }, a.fn.init.prototype = a.fn;
       var b = a(c);
@@ -934,7 +941,7 @@ VISH.Constant.INTRO = 13;
     var c = [], d = [], e, i, j, k, l, m, n = function(b) {
       var d, e, g, h, i;
       for(d = 0, e = b.length;d < e;d++) {
-        g = b[d], h = f.type(g), h === "array" ? n(g) : h === "function" && ((!a.unique || !p.has(g)) && c.push(g))
+        g = b[d], h = f.type(g), h === "array" ? n(g) : h === "function" && (!a.unique || !p.has(g)) && c.push(g)
       }
     }, o = function(b, f) {
       f = f || [], e = !a.memory || [b, f], i = !0, j = !0, m = k || 0, k = 0, l = c.length;
@@ -944,11 +951,11 @@ VISH.Constant.INTRO = 13;
           break
         }
       }
-      j = !1, c && (a.once ? e === !0 ? p.disable() : c = [] : d && (d.length && (e = d.shift(), p.fireWith(e[0], e[1]))))
+      j = !1, c && (a.once ? e === !0 ? p.disable() : c = [] : d && d.length && (e = d.shift(), p.fireWith(e[0], e[1])))
     }, p = {add:function() {
       if(c) {
         var a = c.length;
-        n(arguments), j ? l = c.length : e && (e !== !0 && (k = a, o(e[0], e[1])))
+        n(arguments), j ? l = c.length : e && e !== !0 && (k = a, o(e[0], e[1]))
       }
       return this
     }, remove:function() {
@@ -957,7 +964,7 @@ VISH.Constant.INTRO = 13;
         for(;d < e;d++) {
           for(var f = 0;f < c.length;f++) {
             if(b[d] === c[f]) {
-              j && (f <= l && (l--, f <= m && m--)), c.splice(f--, 1);
+              j && f <= l && (l--, f <= m && m--), c.splice(f--, 1);
               if(a.unique) {
                 break
               }
@@ -1049,10 +1056,10 @@ VISH.Constant.INTRO = 13;
         b[a] = arguments.length > 1 ? i.call(arguments, 0) : c, --g || j.resolveWith(j, b)
       }
     }
-    var b = i.call(arguments, 0), c = 0, d = b.length, e = Array(d), g = d, h = d, j = d <= 1 && (a && f.isFunction(a.promise)) ? a : f.Deferred(), k = j.promise();
+    var b = i.call(arguments, 0), c = 0, d = b.length, e = Array(d), g = d, h = d, j = d <= 1 && a && f.isFunction(a.promise) ? a : f.Deferred(), k = j.promise();
     if(d > 1) {
       for(;c < d;c++) {
-        b[c] && (b[c].promise && f.isFunction(b[c].promise)) ? b[c].promise().then(l(c), j.reject, m(c)) : --g
+        b[c] && b[c].promise && f.isFunction(b[c].promise) ? b[c].promise().then(l(c), j.reject, m(c)) : --g
       }
       g || j.resolveWith(j, b)
     }else {
@@ -1062,7 +1069,7 @@ VISH.Constant.INTRO = 13;
   }}), f.support = function() {
     var b, d, e, g, h, i, j, k, l, m, n, o, p = c.createElement("div"), q = c.documentElement;
     p.setAttribute("className", "t"), p.innerHTML = "   <link/><table></table><a href='/a' style='top:1px;float:left;opacity:.55;'>a</a><input type='checkbox'/>", d = p.getElementsByTagName("*"), e = p.getElementsByTagName("a")[0];
-    if(!d || (!d.length || !e)) {
+    if(!d || !d.length || !e) {
       return{}
     }
     g = c.createElement("select"), h = g.appendChild(c.createElement("option")), i = p.getElementsByTagName("input")[0], b = {leadingWhitespace:p.firstChild.nodeType === 3, tbody:!p.getElementsByTagName("tbody").length, htmlSerialize:!!p.getElementsByTagName("link").length, style:/top/.test(e.getAttribute("style")), hrefNormalized:e.getAttribute("href") === "/a", opacity:/^0.55/.test(e.style.opacity), cssFloat:!!e.style.cssFloat, checkOn:i.value === "on", optSelected:h.selected, getSetAttribute:p.className !== 
@@ -1072,9 +1079,9 @@ VISH.Constant.INTRO = 13;
     }catch(r) {
       b.deleteExpando = !1
     }
-    !p.addEventListener && (p.attachEvent && (p.fireEvent && (p.attachEvent("onclick", function() {
+    !p.addEventListener && p.attachEvent && p.fireEvent && (p.attachEvent("onclick", function() {
       b.noCloneEvent = !1
-    }), p.cloneNode(!0).fireEvent("onclick")))), i = c.createElement("input"), i.value = "t", i.setAttribute("type", "radio"), b.radioValue = i.value === "t", i.setAttribute("checked", "checked"), i.setAttribute("name", "t"), p.appendChild(i), j = c.createDocumentFragment(), j.appendChild(p.lastChild), b.checkClone = j.cloneNode(!0).cloneNode(!0).lastChild.checked, b.appendChecked = i.checked, j.removeChild(i), j.appendChild(p);
+    }), p.cloneNode(!0).fireEvent("onclick")), i = c.createElement("input"), i.value = "t", i.setAttribute("type", "radio"), b.radioValue = i.value === "t", i.setAttribute("checked", "checked"), i.setAttribute("name", "t"), p.appendChild(i), j = c.createDocumentFragment(), j.appendChild(p.lastChild), b.checkClone = j.cloneNode(!0).cloneNode(!0).lastChild.checked, b.appendChecked = i.checked, j.removeChild(i), j.appendChild(p);
     if(p.attachEvent) {
       for(n in{submit:1, change:1, focusin:1}) {
         m = "on" + n, o = m in p, o || (p.setAttribute(m, "return;"), o = typeof p[m] == "function"), b[n + "Bubbles"] = o
@@ -1097,7 +1104,7 @@ VISH.Constant.INTRO = 13;
   }, data:function(a, c, d, e) {
     if(!!f.acceptData(a)) {
       var g, h, i, j = f.expando, k = typeof c == "string", l = a.nodeType, m = l ? f.cache : a, n = l ? a[j] : a[j] && j, o = c === "events";
-      if((!n || (!m[n] || !o && (!e && !m[n].data))) && (k && d === b)) {
+      if((!n || !m[n] || !o && !e && !m[n].data) && k && d === b) {
         return
       }
       n || (l ? a[j] = n = ++f.uuid : n = j), m[n] || (m[n] = {}, l || (m[n].toJSON = f.noop));
@@ -1170,7 +1177,7 @@ VISH.Constant.INTRO = 13;
     d = a.split(".", 2), d[1] = d[1] ? "." + d[1] : "", e = d[1] + "!";
     return f.access(this, function(c) {
       if(c === b) {
-        m = this.triggerHandler("getData" + e, [d[0]]), m === b && (j && (m = f.data(j, a), m = l(j, a, m)));
+        m = this.triggerHandler("getData" + e, [d[0]]), m === b && j && (m = f.data(j, a), m = l(j, a, m));
         return m === b && d[1] ? this.data(d[0]) : m
       }
       d[1] = c, this.each(function() {
@@ -1211,7 +1218,7 @@ VISH.Constant.INTRO = 13;
     }
     return c === b ? this : this.each(function() {
       var b = f.queue(this, a, c);
-      a === "fx" && (b[0] !== "inprogress" && f.dequeue(this, a))
+      a === "fx" && b[0] !== "inprogress" && f.dequeue(this, a)
     })
   }, dequeue:function(a) {
     return this.each(function() {
@@ -1345,7 +1352,7 @@ VISH.Constant.INTRO = 13;
           e ? h = a.call(this, d, g.val()) : h = a, h == null ? h = "" : typeof h == "number" ? h += "" : f.isArray(h) && (h = f.map(h, function(a) {
             return a == null ? "" : a + ""
           })), c = f.valHooks[this.type] || f.valHooks[this.nodeName.toLowerCase()];
-          if(!c || (!("set" in c) || c.set(this, h, "value") === b)) {
+          if(!c || !("set" in c) || c.set(this, h, "value") === b) {
             this.value = h
           }
         }
@@ -1353,7 +1360,7 @@ VISH.Constant.INTRO = 13;
     }
     if(g) {
       c = f.valHooks[g.type] || f.valHooks[g.nodeName.toLowerCase()];
-      if(c && ("get" in c && (d = c.get(g, "value")) !== b)) {
+      if(c && "get" in c && (d = c.get(g, "value")) !== b) {
         return d
       }
       d = g.value;
@@ -1370,7 +1377,7 @@ VISH.Constant.INTRO = 13;
     c = j ? g : 0, d = j ? g + 1 : i.length;
     for(;c < d;c++) {
       e = i[c];
-      if(e.selected && ((f.support.optDisabled ? !e.disabled : e.getAttribute("disabled") === null) && (!e.parentNode.disabled || !f.nodeName(e.parentNode, "optgroup")))) {
+      if(e.selected && (f.support.optDisabled ? !e.disabled : e.getAttribute("disabled") === null) && (!e.parentNode.disabled || !f.nodeName(e.parentNode, "optgroup"))) {
         b = f(e).val();
         if(j) {
           return b
@@ -1378,7 +1385,7 @@ VISH.Constant.INTRO = 13;
         h.push(b)
       }
     }
-    if(j && (!h.length && i.length)) {
+    if(j && !h.length && i.length) {
       return f(i[g]).val()
     }
     return h
@@ -1390,7 +1397,7 @@ VISH.Constant.INTRO = 13;
     return c
   }}}, attrFn:{val:!0, css:!0, html:!0, text:!0, data:!0, width:!0, height:!0, offset:!0}, attr:function(a, c, d, e) {
     var g, h, i, j = a.nodeType;
-    if(!!a && (j !== 3 && (j !== 8 && j !== 2))) {
+    if(!!a && j !== 3 && j !== 8 && j !== 2) {
       if(e && c in f.attrFn) {
         return f(a)[c](d)
       }
@@ -1403,13 +1410,13 @@ VISH.Constant.INTRO = 13;
           f.removeAttr(a, c);
           return
         }
-        if(h && ("set" in h && (i && (g = h.set(a, d, c)) !== b))) {
+        if(h && "set" in h && i && (g = h.set(a, d, c)) !== b) {
           return g
         }
         a.setAttribute(c, "" + d);
         return d
       }
-      if(h && ("get" in h && (i && (g = h.get(a, c)) !== null))) {
+      if(h && "get" in h && i && (g = h.get(a, c)) !== null) {
         return g
       }
       g = a.getAttribute(c);
@@ -1420,14 +1427,14 @@ VISH.Constant.INTRO = 13;
     if(b && a.nodeType === 1) {
       d = b.toLowerCase().split(p), g = d.length;
       for(;i < g;i++) {
-        e = d[i], e && (c = f.propFix[e] || e, h = u.test(e), h || f.attr(a, e, ""), a.removeAttribute(v ? e : c), h && (c in a && (a[c] = !1)))
+        e = d[i], e && (c = f.propFix[e] || e, h = u.test(e), h || f.attr(a, e, ""), a.removeAttribute(v ? e : c), h && c in a && (a[c] = !1))
       }
     }
   }, attrHooks:{type:{set:function(a, b) {
     if(r.test(a.nodeName) && a.parentNode) {
       f.error("type property can't be changed")
     }else {
-      if(!f.support.radioValue && (b === "radio" && f.nodeName(a, "input"))) {
+      if(!f.support.radioValue && b === "radio" && f.nodeName(a, "input")) {
         var c = a.value;
         a.setAttribute("type", b), c && (a.value = c);
         return b
@@ -1445,16 +1452,16 @@ VISH.Constant.INTRO = 13;
     a.value = b
   }}}, propFix:{tabindex:"tabIndex", readonly:"readOnly", "for":"htmlFor", "class":"className", maxlength:"maxLength", cellspacing:"cellSpacing", cellpadding:"cellPadding", rowspan:"rowSpan", colspan:"colSpan", usemap:"useMap", frameborder:"frameBorder", contenteditable:"contentEditable"}, prop:function(a, c, d) {
     var e, g, h, i = a.nodeType;
-    if(!!a && (i !== 3 && (i !== 8 && i !== 2))) {
+    if(!!a && i !== 3 && i !== 8 && i !== 2) {
       h = i !== 1 || !f.isXMLDoc(a), h && (c = f.propFix[c] || c, g = f.propHooks[c]);
-      return d !== b ? g && ("set" in g && (e = g.set(a, d, c)) !== b) ? e : a[c] = d : g && ("get" in g && (e = g.get(a, c)) !== null) ? e : a[c]
+      return d !== b ? g && "set" in g && (e = g.set(a, d, c)) !== b ? e : a[c] = d : g && "get" in g && (e = g.get(a, c)) !== null ? e : a[c]
     }
   }, propHooks:{tabIndex:{get:function(a) {
     var c = a.getAttributeNode("tabindex");
     return c && c.specified ? parseInt(c.value, 10) : s.test(a.nodeName) || t.test(a.nodeName) && a.href ? 0 : b
   }}}}), f.attrHooks.tabindex = f.propHooks.tabIndex, x = {get:function(a, c) {
     var d, e = f.prop(a, c);
-    return e === !0 || typeof e != "boolean" && ((d = a.getAttributeNode(c)) && d.nodeValue !== !1) ? c.toLowerCase() : b
+    return e === !0 || typeof e != "boolean" && (d = a.getAttributeNode(c)) && d.nodeValue !== !1 ? c.toLowerCase() : b
   }, set:function(a, b, c) {
     var d;
     b === !1 ? f.removeAttr(a, c) : (d = f.propFix[c] || c, d in a && (a[d] = !0), a.setAttribute(c, c.toLowerCase()));
@@ -1506,13 +1513,13 @@ VISH.Constant.INTRO = 13;
     return b
   }, H = function(a, b) {
     var c = a.attributes || {};
-    return(!b[1] || a.nodeName.toLowerCase() === b[1]) && ((!b[2] || (c.id || {}).value === b[2]) && (!b[3] || b[3].test((c["class"] || {}).value)))
+    return(!b[1] || a.nodeName.toLowerCase() === b[1]) && (!b[2] || (c.id || {}).value === b[2]) && (!b[3] || b[3].test((c["class"] || {}).value))
   }, I = function(a) {
     return f.event.special.hover ? a : a.replace(B, "mouseenter$1 mouseleave$1")
   };
   f.event = {add:function(a, c, d, e, g) {
     var h, i, j, k, l, m, n, o, p, q, r, s;
-    if(!(a.nodeType === 3 || (a.nodeType === 8 || (!c || (!d || !(h = f._data(a))))))) {
+    if(!(a.nodeType === 3 || a.nodeType === 8 || !c || !d || !(h = f._data(a)))) {
       d.handler && (p = d, d = p.handler, g = p.selector), d.guid || (d.guid = f.guid++), j = h.events, j || (h.events = j = {}), i = h.handle, i || (h.handle = i = function(a) {
         return typeof f != "undefined" && (!a || f.event.triggered !== a.type) ? f.event.dispatch.apply(i.elem, arguments) : b
       }, i.elem = a), c = f.trim(I(c)).split(" ");
@@ -1542,9 +1549,9 @@ VISH.Constant.INTRO = 13;
         }
         p = f.event.special[j] || {}, j = (d ? p.delegateType : p.bindType) || j, r = o[j] || [], m = r.length, l = l ? new RegExp("(^|\\.)" + l.split(".").sort().join("\\.(?:.*\\.)?") + "(\\.|$)") : null;
         for(n = 0;n < r.length;n++) {
-          s = r[n], (e || k === s.origType) && ((!c || c.guid === s.guid) && ((!l || l.test(s.namespace)) && ((!d || (d === s.selector || d === "**" && s.selector)) && (r.splice(n--, 1), s.selector && r.delegateCount--, p.remove && p.remove.call(a, s)))))
+          s = r[n], (e || k === s.origType) && (!c || c.guid === s.guid) && (!l || l.test(s.namespace)) && (!d || d === s.selector || d === "**" && s.selector) && (r.splice(n--, 1), s.selector && r.delegateCount--, p.remove && p.remove.call(a, s))
         }
-        r.length === 0 && (m !== r.length && ((!p.teardown || p.teardown.call(a, l) === !1) && f.removeEvent(a, j, g.handle), delete o[j]))
+        r.length === 0 && m !== r.length && ((!p.teardown || p.teardown.call(a, l) === !1) && f.removeEvent(a, j, g.handle), delete o[j])
       }
       f.isEmptyObject(o) && (q = g.handle, q && (q.elem = null), f.removeData(a, ["events", "handle"], !0))
     }
@@ -1562,7 +1569,7 @@ VISH.Constant.INTRO = 13;
       if(!e) {
         j = f.cache;
         for(l in j) {
-          j[l].events && (j[l].events[h] && f.event.trigger(c, d, j[l].handle.elem, !0))
+          j[l].events && j[l].events[h] && f.event.trigger(c, d, j[l].handle.elem, !0)
         }
         return
       }
@@ -1571,17 +1578,17 @@ VISH.Constant.INTRO = 13;
         return
       }
       r = [[e, p.bindType || h]];
-      if(!g && (!p.noBubble && !f.isWindow(e))) {
+      if(!g && !p.noBubble && !f.isWindow(e)) {
         s = p.delegateType || h, m = E.test(s + h) ? e : e.parentNode, n = null;
         for(;m;m = m.parentNode) {
           r.push([m, s]), n = m
         }
-        n && (n === e.ownerDocument && r.push([n.defaultView || (n.parentWindow || a), s]))
+        n && n === e.ownerDocument && r.push([n.defaultView || n.parentWindow || a, s])
       }
       for(l = 0;l < r.length && !c.isPropagationStopped();l++) {
-        m = r[l][0], c.type = r[l][1], q = (f._data(m, "events") || {})[c.type] && f._data(m, "handle"), q && q.apply(m, d), q = o && m[o], q && (f.acceptData(m) && (q.apply(m, d) === !1 && c.preventDefault()))
+        m = r[l][0], c.type = r[l][1], q = (f._data(m, "events") || {})[c.type] && f._data(m, "handle"), q && q.apply(m, d), q = o && m[o], q && f.acceptData(m) && q.apply(m, d) === !1 && c.preventDefault()
       }
-      c.type = h, !g && (!c.isDefaultPrevented() && ((!p._default || p._default.apply(e.ownerDocument, d) === !1) && ((h !== "click" || !f.nodeName(e, "a")) && (f.acceptData(e) && (o && (e[h] && ((h !== "focus" && h !== "blur" || c.target.offsetWidth !== 0) && (!f.isWindow(e) && (n = e[o], n && (e[o] = null), f.event.triggered = h, e[h](), f.event.triggered = b, n && (e[o] = n))))))))));
+      c.type = h, !g && !c.isDefaultPrevented() && (!p._default || p._default.apply(e.ownerDocument, d) === !1) && (h !== "click" || !f.nodeName(e, "a")) && f.acceptData(e) && o && e[h] && (h !== "focus" && h !== "blur" || c.target.offsetWidth !== 0) && !f.isWindow(e) && (n = e[o], n && (e[o] = null), f.event.triggered = h, e[h](), f.event.triggered = b, n && (e[o] = n));
       return c.result
     }
   }, dispatch:function(c) {
@@ -1606,7 +1613,7 @@ VISH.Constant.INTRO = 13;
         q = j[k], c.currentTarget = q.elem;
         for(l = 0;l < q.matches.length && !c.isImmediatePropagationStopped();l++) {
           s = q.matches[l];
-          if(h || (!c.namespace && !s.namespace || c.namespace_re && c.namespace_re.test(s.namespace))) {
+          if(h || !c.namespace && !s.namespace || c.namespace_re && c.namespace_re.test(s.namespace)) {
             c.data = s.data, c.handleObj = s, o = ((f.event.special[s.origType] || {}).handle || s.handler).apply(q.elem, g), o !== b && (c.result = o, o === !1 && (c.preventDefault(), c.stopPropagation()))
           }
         }
@@ -1619,8 +1626,7 @@ VISH.Constant.INTRO = 13;
     return a
   }}, mouseHooks:{props:"button buttons clientX clientY fromElement offsetX offsetY pageX pageY screenX screenY toElement".split(" "), filter:function(a, d) {
     var e, f, g, h = d.button, i = d.fromElement;
-    a.pageX == null && (d.clientX != null && (e = a.target.ownerDocument || c, f = e.documentElement, g = e.body, a.pageX = d.clientX + (f && f.scrollLeft || (g && g.scrollLeft || 0)) - (f && f.clientLeft || (g && g.clientLeft || 0)), a.pageY = d.clientY + (f && f.scrollTop || (g && g.scrollTop || 0)) - (f && f.clientTop || (g && g.clientTop || 0)))), !a.relatedTarget && (i && (a.relatedTarget = i === a.target ? d.toElement : i)), !a.which && (h !== b && (a.which = h & 1 ? 1 : h & 2 ? 3 : h & 4 ? 
-    2 : 0));
+    a.pageX == null && d.clientX != null && (e = a.target.ownerDocument || c, f = e.documentElement, g = e.body, a.pageX = d.clientX + (f && f.scrollLeft || g && g.scrollLeft || 0) - (f && f.clientLeft || g && g.clientLeft || 0), a.pageY = d.clientY + (f && f.scrollTop || g && g.scrollTop || 0) - (f && f.clientTop || g && g.clientTop || 0)), !a.relatedTarget && i && (a.relatedTarget = i === a.target ? d.toElement : i), !a.which && h !== b && (a.which = h & 1 ? 1 : h & 2 ? 3 : h & 4 ? 2 : 0);
     return a
   }}, fix:function(a) {
     if(a[f.expando]) {
@@ -1648,7 +1654,7 @@ VISH.Constant.INTRO = 13;
     if(!(this instanceof f.Event)) {
       return new f.Event(a, b)
     }
-    a && a.type ? (this.originalEvent = a, this.type = a.type, this.isDefaultPrevented = a.defaultPrevented || (a.returnValue === !1 || a.getPreventDefault && a.getPreventDefault()) ? K : J) : this.type = a, b && f.extend(this, b), this.timeStamp = a && a.timeStamp || f.now(), this[f.expando] = !0
+    a && a.type ? (this.originalEvent = a, this.type = a.type, this.isDefaultPrevented = a.defaultPrevented || a.returnValue === !1 || a.getPreventDefault && a.getPreventDefault() ? K : J) : this.type = a, b && f.extend(this, b), this.timeStamp = a && a.timeStamp || f.now(), this[f.expando] = !0
   }, f.Event.prototype = {preventDefault:function() {
     this.isDefaultPrevented = K;
     var a = this.originalEvent;
@@ -1673,12 +1679,12 @@ VISH.Constant.INTRO = 13;
     }
     f.event.add(this, "click._submit keypress._submit", function(a) {
       var c = a.target, d = f.nodeName(c, "input") || f.nodeName(c, "button") ? c.form : b;
-      d && (!d._submit_attached && (f.event.add(d, "submit._submit", function(a) {
+      d && !d._submit_attached && (f.event.add(d, "submit._submit", function(a) {
         a._submit_bubble = !0
-      }), d._submit_attached = !0))
+      }), d._submit_attached = !0)
     })
   }, postDispatch:function(a) {
-    a._submit_bubble && (delete a._submit_bubble, this.parentNode && (!a.isTrigger && f.event.simulate("submit", this.parentNode, a, !0)))
+    a._submit_bubble && (delete a._submit_bubble, this.parentNode && !a.isTrigger && f.event.simulate("submit", this.parentNode, a, !0))
   }, teardown:function() {
     if(f.nodeName(this, "form")) {
       return!1
@@ -1690,20 +1696,20 @@ VISH.Constant.INTRO = 13;
         f.event.add(this, "propertychange._change", function(a) {
           a.originalEvent.propertyName === "checked" && (this._just_changed = !0)
         }), f.event.add(this, "click._change", function(a) {
-          this._just_changed && (!a.isTrigger && (this._just_changed = !1, f.event.simulate("change", this, a, !0)))
+          this._just_changed && !a.isTrigger && (this._just_changed = !1, f.event.simulate("change", this, a, !0))
         })
       }
       return!1
     }
     f.event.add(this, "beforeactivate._change", function(a) {
       var b = a.target;
-      z.test(b.nodeName) && (!b._change_attached && (f.event.add(b, "change._change", function(a) {
-        this.parentNode && (!a.isSimulated && (!a.isTrigger && f.event.simulate("change", this.parentNode, a, !0)))
-      }), b._change_attached = !0))
+      z.test(b.nodeName) && !b._change_attached && (f.event.add(b, "change._change", function(a) {
+        this.parentNode && !a.isSimulated && !a.isTrigger && f.event.simulate("change", this.parentNode, a, !0)
+      }), b._change_attached = !0)
     })
   }, handle:function(a) {
     var b = a.target;
-    if(this !== b || (a.isSimulated || (a.isTrigger || b.type !== "radio" && b.type !== "checkbox"))) {
+    if(this !== b || a.isSimulated || a.isTrigger || b.type !== "radio" && b.type !== "checkbox") {
       return a.handleObj.handler.apply(this, arguments)
     }
   }, teardown:function() {
@@ -1745,7 +1751,7 @@ VISH.Constant.INTRO = 13;
   }, one:function(a, b, c, d) {
     return this.on(a, b, c, d, 1)
   }, off:function(a, c, d) {
-    if(a && (a.preventDefault && a.handleObj)) {
+    if(a && a.preventDefault && a.handleObj) {
       var e = a.handleObj;
       f(a.delegateTarget).off(e.namespace ? e.origType + "." + e.namespace : e.origType, e.selector, e.handler);
       return this
@@ -1846,7 +1852,7 @@ VISH.Constant.INTRO = 13;
               k = e[j.sizset];
               break
             }
-            j.nodeType === 1 && (!g && (j[d] = c, j.sizset = h));
+            j.nodeType === 1 && !g && (j[d] = c, j.sizset = h);
             if(j.nodeName.toLowerCase() === b) {
               k = j;
               break
@@ -1892,9 +1898,9 @@ VISH.Constant.INTRO = 13;
           }
         }
       }else {
-        !f && (w.length > 1 && (d.nodeType === 9 && (!v && (o.match.ID.test(w[0]) && (!o.match.ID.test(w[w.length - 1]) && (n = m.find(w.shift(), d, v), d = n.expr ? m.filter(n.expr, n.set)[0] : n.set[0]))))));
+        !f && w.length > 1 && d.nodeType === 9 && !v && o.match.ID.test(w[0]) && !o.match.ID.test(w[w.length - 1]) && (n = m.find(w.shift(), d, v), d = n.expr ? m.filter(n.expr, n.set)[0] : n.set[0]);
         if(d) {
-          n = f ? {expr:w.pop(), set:s(f)} : m.find(w.pop(), w.length === 1 && ((w[0] === "~" || w[0] === "+") && d.parentNode) ? d.parentNode : d, v), j = n.expr ? m.filter(n.expr, n.set) : n.set, w.length > 0 ? k = s(j) : u = !1;
+          n = f ? {expr:w.pop(), set:s(f)} : m.find(w.pop(), w.length === 1 && (w[0] === "~" || w[0] === "+") && d.parentNode ? d.parentNode : d, v), j = n.expr ? m.filter(n.expr, n.set) : n.set, w.length > 0 ? k = s(j) : u = !1;
           while(w.length) {
             q = w.pop(), r = q, o.relative[q] ? r = w.pop() : q = "", r == null && (r = d), o.relative[q](k, r, v)
           }
@@ -1909,11 +1915,11 @@ VISH.Constant.INTRO = 13;
         }else {
           if(d && d.nodeType === 1) {
             for(t = 0;k[t] != null;t++) {
-              k[t] && ((k[t] === !0 || k[t].nodeType === 1 && m.contains(d, k[t])) && e.push(j[t]))
+              k[t] && (k[t] === !0 || k[t].nodeType === 1 && m.contains(d, k[t])) && e.push(j[t])
             }
           }else {
             for(t = 0;k[t] != null;t++) {
-              k[t] && (k[t].nodeType === 1 && e.push(j[t]))
+              k[t] && k[t].nodeType === 1 && e.push(j[t])
             }
           }
         }
@@ -1958,7 +1964,7 @@ VISH.Constant.INTRO = 13;
       d || (d = typeof b.getElementsByTagName != "undefined" ? b.getElementsByTagName("*") : []);
       return{set:d, expr:a}
     }, m.filter = function(a, c, d, e) {
-      var f, g, h, i, j, k, l, n, p, q = a, r = [], s = c, t = c && (c[0] && m.isXML(c[0]));
+      var f, g, h, i, j, k, l, n, p, q = a, r = [], s = c, t = c && c[0] && m.isXML(c[0]);
       while(a && c.length) {
         for(h in o.filter) {
           if((f = o.leftMatch[h].exec(a)) != null && f[2]) {
@@ -2007,7 +2013,7 @@ VISH.Constant.INTRO = 13;
     var n = m.getText = function(a) {
       var b, c, d = a.nodeType, e = "";
       if(d) {
-        if(d === 1 || (d === 9 || d === 11)) {
+        if(d === 1 || d === 9 || d === 11) {
           if(typeof a.textContent == "string") {
             return a.textContent
           }
@@ -2063,10 +2069,10 @@ VISH.Constant.INTRO = 13;
       }
     }, "":function(a, b, c) {
       var d, f = e++, g = x;
-      typeof b == "string" && (!l.test(b) && (b = b.toLowerCase(), d = b, g = w)), g("parentNode", b, f, a, d, c)
+      typeof b == "string" && !l.test(b) && (b = b.toLowerCase(), d = b, g = w), g("parentNode", b, f, a, d, c)
     }, "~":function(a, b, c) {
       var d, f = e++, g = x;
-      typeof b == "string" && (!l.test(b) && (b = b.toLowerCase(), d = b, g = w)), g("previousSibling", b, f, a, d, c)
+      typeof b == "string" && !l.test(b) && (b = b.toLowerCase(), d = b, g = w), g("previousSibling", b, f, a, d, c)
     }}, find:{ID:function(a, b, c) {
       if(typeof b.getElementById != "undefined" && !c) {
         var d = b.getElementById(a[1]);
@@ -2100,7 +2106,7 @@ VISH.Constant.INTRO = 13;
     }, CHILD:function(a) {
       if(a[1] === "nth") {
         a[2] || m.error(a[0]), a[2] = a[2].replace(/^\+|\s*/g, "");
-        var b = /(-?)(\d*)(?:n([+\-]?\d*))?/.exec(a[2] === "even" && "2n" || (a[2] === "odd" && "2n+1" || (!/\D/.test(a[2]) && "0n+" + a[2] || a[2])));
+        var b = /(-?)(\d*)(?:n([+\-]?\d*))?/.exec(a[2] === "even" && "2n" || a[2] === "odd" && "2n+1" || !/\D/.test(a[2]) && "0n+" + a[2] || a[2]);
         a[2] = b[1] + (b[2] || 1) - 0, a[3] = b[3] - 0
       }else {
         a[2] && m.error(a[0])
@@ -2109,7 +2115,7 @@ VISH.Constant.INTRO = 13;
       return a
     }, ATTR:function(a, b, c, d, e, f) {
       var g = a[1] = a[1].replace(j, "");
-      !f && (o.attrMap[g] && (a[1] = o.attrMap[g])), a[4] = (a[4] || (a[5] || "")).replace(j, ""), a[2] === "~=" && (a[4] = " " + a[4] + " ");
+      !f && o.attrMap[g] && (a[1] = o.attrMap[g]), a[4] = (a[4] || a[5] || "").replace(j, ""), a[2] === "~=" && (a[4] = " " + a[4] + " ");
       return a
     }, PSEUDO:function(b, c, d, e, f) {
       if(b[1] === "not") {
@@ -2148,7 +2154,7 @@ VISH.Constant.INTRO = 13;
       return/h\d/i.test(a.nodeName)
     }, text:function(a) {
       var b = a.getAttribute("type"), c = a.type;
-      return a.nodeName.toLowerCase() === "input" && ("text" === c && (b === c || b === null))
+      return a.nodeName.toLowerCase() === "input" && "text" === c && (b === c || b === null)
     }, radio:function(a) {
       return a.nodeName.toLowerCase() === "input" && "radio" === a.type
     }, checkbox:function(a) {
@@ -2194,7 +2200,7 @@ VISH.Constant.INTRO = 13;
         return f(a, c, b, d)
       }
       if(e === "contains") {
-        return(a.textContent || (a.innerText || (n([a]) || ""))).indexOf(b[3]) >= 0
+        return(a.textContent || a.innerText || n([a]) || "").indexOf(b[3]) >= 0
       }
       if(e === "not") {
         var g = b[3];
@@ -2357,7 +2363,7 @@ VISH.Constant.INTRO = 13;
         }
       }, o.filter.ID = function(a, b) {
         var c = typeof a.getAttributeNode != "undefined" && a.getAttributeNode("id");
-        return a.nodeType === 1 && (c && c.nodeValue === b)
+        return a.nodeType === 1 && c && c.nodeValue === b
       }), e.removeChild(a), e = a = null
     }(), function() {
       var a = c.createElement("div");
@@ -2371,9 +2377,9 @@ VISH.Constant.INTRO = 13;
           c = d
         }
         return c
-      }), a.innerHTML = "<a href='#'></a>", a.firstChild && (typeof a.firstChild.getAttribute != "undefined" && (a.firstChild.getAttribute("href") !== "#" && (o.attrHandle.href = function(a) {
+      }), a.innerHTML = "<a href='#'></a>", a.firstChild && typeof a.firstChild.getAttribute != "undefined" && a.firstChild.getAttribute("href") !== "#" && (o.attrHandle.href = function(a) {
         return a.getAttribute("href", 2)
-      }))), a = null
+      }), a = null
     }(), c.querySelectorAll && function() {
       var a = m, b = c.createElement("div"), d = "__sizzle__";
       b.innerHTML = "<p class='TEST'></p>";
@@ -2386,7 +2392,7 @@ VISH.Constant.INTRO = 13;
               if(h[1]) {
                 return s(e.getElementsByTagName(b), f)
               }
-              if(h[2] && (o.find.CLASS && e.getElementsByClassName)) {
+              if(h[2] && o.find.CLASS && e.getElementsByClassName) {
                 return s(e.getElementsByClassName(h[2]), f)
               }
             }
@@ -2410,7 +2416,7 @@ VISH.Constant.INTRO = 13;
             }else {
               if(e.nodeType === 1 && e.nodeName.toLowerCase() !== "object") {
                 var k = e, l = e.getAttribute("id"), n = l || d, p = e.parentNode, q = /^\s*[+~]/.test(b);
-                l ? n = n.replace(/'/g, "\\$&") : e.setAttribute("id", n), q && (p && (e = e.parentNode));
+                l ? n = n.replace(/'/g, "\\$&") : e.setAttribute("id", n), q && p && (e = e.parentNode);
                 try {
                   if(!q || p) {
                     return s(e.querySelectorAll("[id='" + n + "'] " + b), f)
@@ -2430,7 +2436,7 @@ VISH.Constant.INTRO = 13;
         b = null
       }
     }(), function() {
-      var a = c.documentElement, b = a.matchesSelector || (a.mozMatchesSelector || (a.webkitMatchesSelector || a.msMatchesSelector));
+      var a = c.documentElement, b = a.matchesSelector || a.mozMatchesSelector || a.webkitMatchesSelector || a.msMatchesSelector;
       if(b) {
         var d = !b.call(c.createElement("div"), "div"), e = !1;
         try {
@@ -2444,7 +2450,7 @@ VISH.Constant.INTRO = 13;
             try {
               if(e || !o.match.PSEUDO.test(c) && !/!=/.test(c)) {
                 var f = b.call(a, c);
-                if(f || (!d || a.document && a.document.nodeType !== 11)) {
+                if(f || !d || a.document && a.document.nodeType !== 11) {
                   return f
                 }
               }
@@ -2537,7 +2543,7 @@ VISH.Constant.INTRO = 13;
     var c = [], d, e, g = this[0];
     if(f.isArray(a)) {
       var h = 1;
-      while(g && (g.ownerDocument && g !== b)) {
+      while(g && g.ownerDocument && g !== b) {
         for(d = 0;d < a.length;d++) {
           f(g).is(a[d]) && c.push({selector:a[d], elem:g, level:h})
         }
@@ -2554,7 +2560,7 @@ VISH.Constant.INTRO = 13;
           break
         }
         g = g.parentNode;
-        if(!g || (!g.ownerDocument || (g === b || g.nodeType === 11))) {
+        if(!g || !g.ownerDocument || g === b || g.nodeType === 11) {
           break
         }
       }
@@ -2602,7 +2608,7 @@ VISH.Constant.INTRO = 13;
   }}, function(a, b) {
     f.fn[a] = function(c, d) {
       var e = f.map(this, b, c);
-      L.test(a) || (d = c), d && (typeof d == "string" && (e = f.filter(d, e))), e = this.length > 1 && !R[a] ? f.unique(e) : e, (this.length > 1 || N.test(d)) && (M.test(a) && (e = e.reverse()));
+      L.test(a) || (d = c), d && typeof d == "string" && (e = f.filter(d, e)), e = this.length > 1 && !R[a] ? f.unique(e) : e, (this.length > 1 || N.test(d)) && M.test(a) && (e = e.reverse());
       return this.pushStack(e, a, P.call(arguments).join(","))
     }
   }), f.extend({filter:function(a, b, c) {
@@ -2610,7 +2616,7 @@ VISH.Constant.INTRO = 13;
     return b.length === 1 ? f.find.matchesSelector(b[0], a) ? [b[0]] : [] : f.find.matches(a, b)
   }, dir:function(a, c, d) {
     var e = [], g = a[c];
-    while(g && (g.nodeType !== 9 && (d === b || (g.nodeType !== 1 || !f(g).is(d))))) {
+    while(g && g.nodeType !== 9 && (d === b || g.nodeType !== 1 || !f(g).is(d))) {
       g.nodeType === 1 && e.push(g), g = g[c]
     }
     return e
@@ -2626,7 +2632,7 @@ VISH.Constant.INTRO = 13;
   }, sibling:function(a, b) {
     var c = [];
     for(;a;a = a.nextSibling) {
-      a.nodeType === 1 && (a !== b && c.push(a))
+      a.nodeType === 1 && a !== b && c.push(a)
     }
     return c
   }});
@@ -2705,7 +2711,7 @@ VISH.Constant.INTRO = 13;
   }, remove:function(a, b) {
     for(var c = 0, d;(d = this[c]) != null;c++) {
       if(!a || f.filter(a, [d]).length) {
-        !b && (d.nodeType === 1 && (f.cleanData(d.getElementsByTagName("*")), f.cleanData([d]))), d.parentNode && d.parentNode.removeChild(d)
+        !b && d.nodeType === 1 && (f.cleanData(d.getElementsByTagName("*")), f.cleanData([d])), d.parentNode && d.parentNode.removeChild(d)
       }
     }
     return this
@@ -2728,7 +2734,7 @@ VISH.Constant.INTRO = 13;
       if(a === b) {
         return c.nodeType === 1 ? c.innerHTML.replace(W, "") : null
       }
-      if(typeof a == "string" && (!ba.test(a) && ((f.support.leadingWhitespace || !X.test(a)) && !bg[(Z.exec(a) || ["", ""])[1].toLowerCase()]))) {
+      if(typeof a == "string" && !ba.test(a) && (f.support.leadingWhitespace || !X.test(a)) && !bg[(Z.exec(a) || ["", ""])[1].toLowerCase()]) {
         a = a.replace(Y, "<$1></$2>");
         try {
           for(;d < e;d++) {
@@ -2759,7 +2765,7 @@ VISH.Constant.INTRO = 13;
     return this.remove(a, !0)
   }, domManip:function(a, c, d) {
     var e, g, h, i, j = a[0], k = [];
-    if(!f.support.checkClone && (arguments.length === 3 && (typeof j == "string" && bd.test(j)))) {
+    if(!f.support.checkClone && arguments.length === 3 && typeof j == "string" && bd.test(j)) {
       return this.each(function() {
         f(this).domManip(a, c, d, !0)
       })
@@ -2771,7 +2777,7 @@ VISH.Constant.INTRO = 13;
       })
     }
     if(this[0]) {
-      i = j && j.parentNode, f.support.parentNode && (i && (i.nodeType === 11 && i.childNodes.length === this.length)) ? e = {fragment:i} : e = f.buildFragment(a, this, k), h = e.fragment, h.childNodes.length === 1 ? g = h = h.firstChild : g = h.firstChild;
+      i = j && j.parentNode, f.support.parentNode && i && i.nodeType === 11 && i.childNodes.length === this.length ? e = {fragment:i} : e = f.buildFragment(a, this, k), h = e.fragment, h.childNodes.length === 1 ? g = h = h.firstChild : g = h.firstChild;
       if(g) {
         c = c && f.nodeName(g, "tr");
         for(var l = 0, m = this.length, n = m - 1;l < m;l++) {
@@ -2779,18 +2785,18 @@ VISH.Constant.INTRO = 13;
         }
       }
       k.length && f.each(k, function(a, b) {
-        b.src ? f.ajax({type:"GET", global:!1, url:b.src, async:!1, dataType:"script"}) : f.globalEval((b.text || (b.textContent || (b.innerHTML || ""))).replace(bf, "/*$0*/")), b.parentNode && b.parentNode.removeChild(b)
+        b.src ? f.ajax({type:"GET", global:!1, url:b.src, async:!1, dataType:"script"}) : f.globalEval((b.text || b.textContent || b.innerHTML || "").replace(bf, "/*$0*/")), b.parentNode && b.parentNode.removeChild(b)
       })
     }
     return this
   }}), f.buildFragment = function(a, b, d) {
     var e, g, h, i, j = a[0];
-    b && (b[0] && (i = b[0].ownerDocument || b[0])), i.createDocumentFragment || (i = c), a.length === 1 && (typeof j == "string" && (j.length < 512 && (i === c && (j.charAt(0) === "<" && (!bb.test(j) && ((f.support.checkClone || !bd.test(j)) && ((f.support.html5Clone || !bc.test(j)) && (g = !0, h = f.fragments[j], h && (h !== 1 && (e = h)))))))))), e || (e = i.createDocumentFragment(), f.clean(a, i, e, d)), g && (f.fragments[j] = h ? e : 1);
+    b && b[0] && (i = b[0].ownerDocument || b[0]), i.createDocumentFragment || (i = c), a.length === 1 && typeof j == "string" && j.length < 512 && i === c && j.charAt(0) === "<" && !bb.test(j) && (f.support.checkClone || !bd.test(j)) && (f.support.html5Clone || !bc.test(j)) && (g = !0, h = f.fragments[j], h && h !== 1 && (e = h)), e || (e = i.createDocumentFragment(), f.clean(a, i, e, d)), g && (f.fragments[j] = h ? e : 1);
     return{fragment:e, cacheable:g}
   }, f.fragments = {}, f.each({appendTo:"append", prependTo:"prepend", insertBefore:"before", insertAfter:"after", replaceAll:"replaceWith"}, function(a, b) {
     f.fn[a] = function(c) {
       var d = [], e = f(c), g = this.length === 1 && this[0].parentNode;
-      if(g && (g.nodeType === 11 && (g.childNodes.length === 1 && e.length === 1))) {
+      if(g && g.nodeType === 11 && g.childNodes.length === 1 && e.length === 1) {
         e[b](this[0]);
         return this
       }
@@ -2801,8 +2807,8 @@ VISH.Constant.INTRO = 13;
       return this.pushStack(d, a, e.selector)
     }
   }), f.extend({clone:function(a, b, c) {
-    var d, e, g, h = f.support.html5Clone || (f.isXMLDoc(a) || !bc.test("<" + a.nodeName + ">")) ? a.cloneNode(!0) : bo(a);
-    if((!f.support.noCloneEvent || !f.support.noCloneChecked) && ((a.nodeType === 1 || a.nodeType === 11) && !f.isXMLDoc(a))) {
+    var d, e, g, h = f.support.html5Clone || f.isXMLDoc(a) || !bc.test("<" + a.nodeName + ">") ? a.cloneNode(!0) : bo(a);
+    if((!f.support.noCloneEvent || !f.support.noCloneChecked) && (a.nodeType === 1 || a.nodeType === 11) && !f.isXMLDoc(a)) {
       bk(a, h), d = bl(a), e = bl(h);
       for(g = 0;d[g];++g) {
         e[g] && bk(d[g], e[g])
@@ -2821,7 +2827,7 @@ VISH.Constant.INTRO = 13;
     return h
   }, clean:function(a, b, d, e) {
     var g, h, i, j = [];
-    b = b || c, typeof b.createElement == "undefined" && (b = b.ownerDocument || (b[0] && b[0].ownerDocument || c));
+    b = b || c, typeof b.createElement == "undefined" && (b = b.ownerDocument || b[0] && b[0].ownerDocument || c);
     for(var k = 0, l;(l = a[k]) != null;k++) {
       typeof l == "number" && (l += "");
       if(!l) {
@@ -2840,10 +2846,10 @@ VISH.Constant.INTRO = 13;
           if(!f.support.tbody) {
             var s = $.test(l), t = m === "table" && !s ? p.firstChild && p.firstChild.childNodes : n[1] === "<table>" && !s ? p.childNodes : [];
             for(i = t.length - 1;i >= 0;--i) {
-              f.nodeName(t[i], "tbody") && (!t[i].childNodes.length && t[i].parentNode.removeChild(t[i]))
+              f.nodeName(t[i], "tbody") && !t[i].childNodes.length && t[i].parentNode.removeChild(t[i])
             }
           }
-          !f.support.leadingWhitespace && (X.test(l) && p.insertBefore(b.createTextNode(X.exec(l)[0]), p.firstChild)), l = p.childNodes, p && (p.parentNode.removeChild(p), q.length > 0 && (r = q[q.length - 1], r && (r.parentNode && r.parentNode.removeChild(r))))
+          !f.support.leadingWhitespace && X.test(l) && p.insertBefore(b.createTextNode(X.exec(l)[0]), p.firstChild), l = p.childNodes, p && (p.parentNode.removeChild(p), q.length > 0 && (r = q[q.length - 1], r && r.parentNode && r.parentNode.removeChild(r)))
         }
       }
       var u;
@@ -2864,7 +2870,7 @@ VISH.Constant.INTRO = 13;
       };
       for(k = 0;j[k];k++) {
         h = j[k];
-        if(e && (f.nodeName(h, "script") && (!h.type || be.test(h.type)))) {
+        if(e && f.nodeName(h, "script") && (!h.type || be.test(h.type))) {
           e.push(h.parentNode ? h.parentNode.removeChild(h) : h)
         }else {
           if(h.nodeType === 1) {
@@ -2907,21 +2913,21 @@ VISH.Constant.INTRO = 13;
     }
     return a.style.opacity
   }}}, cssNumber:{fillOpacity:!0, fontWeight:!0, lineHeight:!0, opacity:!0, orphans:!0, widows:!0, zIndex:!0, zoom:!0}, cssProps:{"float":f.support.cssFloat ? "cssFloat" : "styleFloat"}, style:function(a, c, d, e) {
-    if(!!a && (a.nodeType !== 3 && (a.nodeType !== 8 && !!a.style))) {
+    if(!!a && a.nodeType !== 3 && a.nodeType !== 8 && !!a.style) {
       var g, h, i = f.camelCase(c), j = a.style, k = f.cssHooks[i];
       c = f.cssProps[i] || i;
       if(d === b) {
-        if(k && ("get" in k && (g = k.get(a, !1, e)) !== b)) {
+        if(k && "get" in k && (g = k.get(a, !1, e)) !== b) {
           return g
         }
         return j[c]
       }
-      h = typeof d, h === "string" && ((g = bu.exec(d)) && (d = +(g[1] + 1) * +g[2] + parseFloat(f.css(a, c)), h = "number"));
+      h = typeof d, h === "string" && (g = bu.exec(d)) && (d = +(g[1] + 1) * +g[2] + parseFloat(f.css(a, c)), h = "number");
       if(d == null || h === "number" && isNaN(d)) {
         return
       }
-      h === "number" && (!f.cssNumber[i] && (d += "px"));
-      if(!k || (!("set" in k) || (d = k.set(a, d)) !== b)) {
+      h === "number" && !f.cssNumber[i] && (d += "px");
+      if(!k || !("set" in k) || (d = k.set(a, d)) !== b) {
         try {
           j[c] = d
         }catch(l) {
@@ -2931,7 +2937,7 @@ VISH.Constant.INTRO = 13;
   }, css:function(a, c, d) {
     var e, g;
     c = f.camelCase(c), g = f.cssHooks[c], c = f.cssProps[c] || c, c === "cssFloat" && (c = "float");
-    if(g && ("get" in g && (e = g.get(a, !0, d)) !== b)) {
+    if(g && "get" in g && (e = g.get(a, !0, d)) !== b) {
       return e
     }
     if(by) {
@@ -2947,13 +2953,13 @@ VISH.Constant.INTRO = 13;
       a.style[f] = d[f]
     }
     return e
-  }}), f.curCSS = f.css, c.defaultView && (c.defaultView.getComputedStyle && (bz = function(a, b) {
+  }}), f.curCSS = f.css, c.defaultView && c.defaultView.getComputedStyle && (bz = function(a, b) {
     var c, d, e, g, h = a.style;
-    b = b.replace(br, "-$1").toLowerCase(), (d = a.ownerDocument.defaultView) && ((e = d.getComputedStyle(a, null)) && (c = e.getPropertyValue(b), c === "" && (!f.contains(a.ownerDocument.documentElement, a) && (c = f.style(a, b))))), !f.support.pixelMargin && (e && (bv.test(b) && (bt.test(c) && (g = h.width, h.width = c, c = e.width, h.width = g))));
+    b = b.replace(br, "-$1").toLowerCase(), (d = a.ownerDocument.defaultView) && (e = d.getComputedStyle(a, null)) && (c = e.getPropertyValue(b), c === "" && !f.contains(a.ownerDocument.documentElement, a) && (c = f.style(a, b))), !f.support.pixelMargin && e && bv.test(b) && bt.test(c) && (g = h.width, h.width = c, c = e.width, h.width = g);
     return c
-  })), c.documentElement.currentStyle && (bA = function(a, b) {
+  }), c.documentElement.currentStyle && (bA = function(a, b) {
     var c, d, e, f = a.currentStyle && a.currentStyle[b], g = a.style;
-    f == null && (g && ((e = g[b]) && (f = e))), bt.test(f) && (c = g.left, d = a.runtimeStyle && a.runtimeStyle.left, d && (a.runtimeStyle.left = a.currentStyle.left), g.left = b === "fontSize" ? "1em" : f, f = g.pixelLeft + "px", g.left = c, d && (a.runtimeStyle.left = d));
+    f == null && g && (e = g[b]) && (f = e), bt.test(f) && (c = g.left, d = a.runtimeStyle && a.runtimeStyle.left, d && (a.runtimeStyle.left = a.currentStyle.left), g.left = b === "fontSize" ? "1em" : f, f = g.pixelLeft + "px", g.left = c, d && (a.runtimeStyle.left = d));
     return f === "" ? "auto" : f
   }), by = bz || bA, f.each(["height", "width"], function(a, b) {
     f.cssHooks[b] = {get:function(a, c, d) {
@@ -2968,7 +2974,7 @@ VISH.Constant.INTRO = 13;
   }), f.support.opacity || (f.cssHooks.opacity = {get:function(a, b) {
     return bq.test((b && a.currentStyle ? a.currentStyle.filter : a.style.filter) || "") ? parseFloat(RegExp.$1) / 100 + "" : b ? "1" : ""
   }, set:function(a, b) {
-    var c = a.style, d = a.currentStyle, e = f.isNumeric(b) ? "alpha(opacity=" + b * 100 + ")" : "", g = d && d.filter || (c.filter || "");
+    var c = a.style, d = a.currentStyle, e = f.isNumeric(b) ? "alpha(opacity=" + b * 100 + ")" : "", g = d && d.filter || c.filter || "";
     c.zoom = 1;
     if(b >= 1 && f.trim(g.replace(bp, "")) === "") {
       c.removeAttribute("filter");
@@ -2983,16 +2989,16 @@ VISH.Constant.INTRO = 13;
         return b ? by(a, "margin-right") : a.style.marginRight
       })
     }})
-  }), f.expr && (f.expr.filters && (f.expr.filters.hidden = function(a) {
+  }), f.expr && f.expr.filters && (f.expr.filters.hidden = function(a) {
     var b = a.offsetWidth, c = a.offsetHeight;
     return b === 0 && c === 0 || !f.support.reliableHiddenOffsets && (a.style && a.style.display || f.css(a, "display")) === "none"
   }, f.expr.filters.visible = function(a) {
     return!f.expr.filters.hidden(a)
-  })), f.each({margin:"", padding:"", border:"Width"}, function(a, b) {
+  }), f.each({margin:"", padding:"", border:"Width"}, function(a, b) {
     f.cssHooks[a + b] = {expand:function(c) {
       var d, e = typeof c == "string" ? c.split(" ") : [c], f = {};
       for(d = 0;d < 4;d++) {
-        f[a + bx[d] + b] = e[d] || (e[d - 2] || e[0])
+        f[a + bx[d] + b] = e[d] || e[d - 2] || e[0]
       }
       return f
     }}
@@ -3031,7 +3037,7 @@ VISH.Constant.INTRO = 13;
     return this.map(function() {
       return this.elements ? f.makeArray(this.elements) : this
     }).filter(function() {
-      return this.name && (!this.disabled && (this.checked || (bN.test(this.nodeName) || bH.test(this.type))))
+      return this.name && !this.disabled && (this.checked || bN.test(this.nodeName) || bH.test(this.type))
     }).map(function(a, b) {
       var c = f(this).val();
       return c == null ? null : f.isArray(c) ? f.map(c, function(a, c) {
@@ -3127,11 +3133,11 @@ VISH.Constant.INTRO = 13;
         }
       }
       return this
-    }, d.url = ((a || d.url) + "").replace(bF, "").replace(bK, bV[1] + "//"), d.dataTypes = f.trim(d.dataType || "*").toLowerCase().split(bO), d.crossDomain == null && (r = bQ.exec(d.url.toLowerCase()), d.crossDomain = !(!r || r[1] == bV[1] && (r[2] == bV[2] && (r[3] || (r[1] === "http:" ? 80 : 443)) == (bV[3] || (bV[1] === "http:" ? 80 : 443))))), d.data && (d.processData && (typeof d.data != "string" && (d.data = f.param(d.data, d.traditional)))), bZ(bS, d, c, v);
+    }, d.url = ((a || d.url) + "").replace(bF, "").replace(bK, bV[1] + "//"), d.dataTypes = f.trim(d.dataType || "*").toLowerCase().split(bO), d.crossDomain == null && (r = bQ.exec(d.url.toLowerCase()), d.crossDomain = !(!r || r[1] == bV[1] && r[2] == bV[2] && (r[3] || (r[1] === "http:" ? 80 : 443)) == (bV[3] || (bV[1] === "http:" ? 80 : 443)))), d.data && d.processData && typeof d.data != "string" && (d.data = f.param(d.data, d.traditional)), bZ(bS, d, c, v);
     if(s === 2) {
       return!1
     }
-    t = d.global, d.type = d.type.toUpperCase(), d.hasContent = !bJ.test(d.type), t && (f.active++ === 0 && f.event.trigger("ajaxStart"));
+    t = d.global, d.type = d.type.toUpperCase(), d.hasContent = !bJ.test(d.type), t && f.active++ === 0 && f.event.trigger("ajaxStart");
     if(!d.hasContent) {
       d.data && (d.url += (bL.test(d.url) ? "&" : "?") + d.data, delete d.data), k = d.url;
       if(d.cache === !1) {
@@ -3139,7 +3145,7 @@ VISH.Constant.INTRO = 13;
         d.url = y + (y === d.url ? (bL.test(d.url) ? "&" : "?") + "_=" + x : "")
       }
     }
-    (d.data && (d.hasContent && d.contentType !== !1) || c.contentType) && v.setRequestHeader("Content-Type", d.contentType), d.ifModified && (k = k || d.url, f.lastModified[k] && v.setRequestHeader("If-Modified-Since", f.lastModified[k]), f.etag[k] && v.setRequestHeader("If-None-Match", f.etag[k])), v.setRequestHeader("Accept", d.dataTypes[0] && d.accepts[d.dataTypes[0]] ? d.accepts[d.dataTypes[0]] + (d.dataTypes[0] !== "*" ? ", " + bW + "; q=0.01" : "") : d.accepts["*"]);
+    (d.data && d.hasContent && d.contentType !== !1 || c.contentType) && v.setRequestHeader("Content-Type", d.contentType), d.ifModified && (k = k || d.url, f.lastModified[k] && v.setRequestHeader("If-Modified-Since", f.lastModified[k]), f.etag[k] && v.setRequestHeader("If-None-Match", f.etag[k])), v.setRequestHeader("Accept", d.dataTypes[0] && d.accepts[d.dataTypes[0]] ? d.accepts[d.dataTypes[0]] + (d.dataTypes[0] !== "*" ? ", " + bW + "; q=0.01" : "") : d.accepts["*"]);
     for(u in d.headers) {
       v.setRequestHeader(u, d.headers[u])
     }
@@ -3154,9 +3160,9 @@ VISH.Constant.INTRO = 13;
     if(!p) {
       w(-1, "No Transport")
     }else {
-      v.readyState = 1, t && g.trigger("ajaxSend", [v, d]), d.async && (d.timeout > 0 && (q = setTimeout(function() {
+      v.readyState = 1, t && g.trigger("ajaxSend", [v, d]), d.async && d.timeout > 0 && (q = setTimeout(function() {
         v.abort("timeout")
-      }, d.timeout)));
+      }, d.timeout));
       try {
         s = 1, p.send(l, w)
       }catch(z) {
@@ -3194,7 +3200,7 @@ VISH.Constant.INTRO = 13;
       b.jsonp !== !1 && (j = j.replace(cd, l), b.url === j && (e && (k = k.replace(cd, l)), b.data === k && (j += (/\?/.test(j) ? "&" : "?") + b.jsonp + "=" + h))), b.url = j, b.data = k, a[h] = function(a) {
         g = [a]
       }, d.always(function() {
-        a[h] = i, g && (f.isFunction(i) && a[h](g[0]))
+        a[h] = i, g && f.isFunction(i) && a[h](g[0])
       }), b.converters["script json"] = function() {
         g || f.error(h + " was not called");
         return g[0]
@@ -3208,11 +3214,11 @@ VISH.Constant.INTRO = 13;
     a.cache === b && (a.cache = !1), a.crossDomain && (a.type = "GET", a.global = !1)
   }), f.ajaxTransport("script", function(a) {
     if(a.crossDomain) {
-      var d, e = c.head || (c.getElementsByTagName("head")[0] || c.documentElement);
+      var d, e = c.head || c.getElementsByTagName("head")[0] || c.documentElement;
       return{send:function(f, g) {
         d = c.createElement("script"), d.async = "async", a.scriptCharset && (d.charset = a.scriptCharset), d.src = a.url, d.onload = d.onreadystatechange = function(a, c) {
-          if(c || (!d.readyState || /loaded|complete/.test(d.readyState))) {
-            d.onload = d.onreadystatechange = null, e && (d.parentNode && e.removeChild(d)), d = b, c || g(200, "success")
+          if(c || !d.readyState || /loaded|complete/.test(d.readyState)) {
+            d.onload = d.onreadystatechange = null, e && d.parentNode && e.removeChild(d), d = b, c || g(200, "success")
           }
         }, e.insertBefore(d, e.firstChild)
       }, abort:function() {
@@ -3240,7 +3246,7 @@ VISH.Constant.INTRO = 13;
             h[j] = c.xhrFields[j]
           }
         }
-        c.mimeType && (h.overrideMimeType && h.overrideMimeType(c.mimeType)), !c.crossDomain && (!e["X-Requested-With"] && (e["X-Requested-With"] = "XMLHttpRequest"));
+        c.mimeType && h.overrideMimeType && h.overrideMimeType(c.mimeType), !c.crossDomain && !e["X-Requested-With"] && (e["X-Requested-With"] = "XMLHttpRequest");
         try {
           for(j in e) {
             h.setRequestHeader(j, e[j])
@@ -3255,7 +3261,7 @@ VISH.Constant.INTRO = 13;
               if(e) {
                 h.readyState !== 4 && h.abort()
               }else {
-                j = h.status, l = h.getAllResponseHeaders(), m = {}, n = h.responseXML, n && (n.documentElement && (m.xml = n));
+                j = h.status, l = h.getAllResponseHeaders(), m = {}, n = h.responseXML, n && n.documentElement && (m.xml = n);
                 try {
                   m.text = h.responseText
                 }catch(a) {
@@ -3265,7 +3271,7 @@ VISH.Constant.INTRO = 13;
                 }catch(o) {
                   k = ""
                 }
-                !j && (c.isLocal && !c.crossDomain) ? j = m.text ? 200 : 404 : j === 1223 && (j = 204)
+                !j && c.isLocal && !c.crossDomain ? j = m.text ? 200 : 404 : j === 1223 && (j = 204)
               }
             }
           }catch(p) {
@@ -3285,7 +3291,7 @@ VISH.Constant.INTRO = 13;
       return this.animate(ct("show", 3), a, b, c)
     }
     for(var g = 0, h = this.length;g < h;g++) {
-      d = this[g], d.style && (e = d.style.display, !f._data(d, "olddisplay") && (e === "none" && (e = d.style.display = "")), (e === "" && f.css(d, "display") === "none" || !f.contains(d.ownerDocument.documentElement, d)) && f._data(d, "olddisplay", cu(d.nodeName)))
+      d = this[g], d.style && (e = d.style.display, !f._data(d, "olddisplay") && e === "none" && (e = d.style.display = ""), (e === "" && f.css(d, "display") === "none" || !f.contains(d.ownerDocument.documentElement, d)) && f._data(d, "olddisplay", cu(d.nodeName)))
     }
     for(g = 0;g < h;g++) {
       d = this[g];
@@ -3303,7 +3309,7 @@ VISH.Constant.INTRO = 13;
     }
     var d, e, g = 0, h = this.length;
     for(;g < h;g++) {
-      d = this[g], d.style && (e = f.css(d, "display"), e !== "none" && (!f._data(d, "olddisplay") && f._data(d, "olddisplay", e)))
+      d = this[g], d.style && (e = f.css(d, "display"), e !== "none" && !f._data(d, "olddisplay") && f._data(d, "olddisplay", e))
     }
     for(g = 0;g < h;g++) {
       this[g].style && (this[g].style.display = "none")
@@ -3333,11 +3339,11 @@ VISH.Constant.INTRO = 13;
         }
       }
       for(g in a) {
-        h = a[g], f.isArray(h) ? (b.animatedProperties[g] = h[1], h = a[g] = h[0]) : b.animatedProperties[g] = b.specialEasing && b.specialEasing[g] || (b.easing || "swing");
+        h = a[g], f.isArray(h) ? (b.animatedProperties[g] = h[1], h = a[g] = h[0]) : b.animatedProperties[g] = b.specialEasing && b.specialEasing[g] || b.easing || "swing";
         if(h === "hide" && d || h === "show" && !d) {
           return b.complete.call(this)
         }
-        c && ((g === "height" || g === "width") && (b.overflow = [this.style.overflow, this.style.overflowX, this.style.overflowY], f.css(this, "display") === "inline" && (f.css(this, "float") === "none" && (!f.support.inlineBlockNeedsLayout || cu(this.nodeName) === "inline" ? this.style.display = "inline-block" : this.style.zoom = 1))))
+        c && (g === "height" || g === "width") && (b.overflow = [this.style.overflow, this.style.overflowX, this.style.overflowY], f.css(this, "display") === "inline" && f.css(this, "float") === "none" && (!f.support.inlineBlockNeedsLayout || cu(this.nodeName) === "inline" ? this.style.display = "inline-block" : this.style.zoom = 1))
       }
       b.overflow != null && (this.style.overflow = "hidden");
       for(i in a) {
@@ -3353,7 +3359,7 @@ VISH.Constant.INTRO = 13;
     a = f.extend({}, a);
     return e.queue === !1 ? this.each(g) : this.queue(e.queue, g)
   }, stop:function(a, c, d) {
-    typeof a != "string" && (d = c, c = a, a = b), c && (a !== !1 && this.queue(a || "fx", []));
+    typeof a != "string" && (d = c, c = a, a = b), c && a !== !1 && this.queue(a || "fx", []);
     return this.each(function() {
       function h(a, b, c) {
         var e = b[c];
@@ -3363,13 +3369,13 @@ VISH.Constant.INTRO = 13;
       d || f._unmark(!0, this);
       if(a == null) {
         for(b in g) {
-          g[b] && (g[b].stop && (b.indexOf(".run") === b.length - 4 && h(this, g, b)))
+          g[b] && g[b].stop && b.indexOf(".run") === b.length - 4 && h(this, g, b)
         }
       }else {
-        g[b = a + ".run"] && (g[b].stop && h(this, g, b))
+        g[b = a + ".run"] && g[b].stop && h(this, g, b)
       }
       for(b = e.length;b--;) {
-        e[b].elem === this && ((a == null || e[b].queue === a) && (d ? e[b](!0) : e[b].saveState(), c = !0, e.splice(b, 1)))
+        e[b].elem === this && (a == null || e[b].queue === a) && (d ? e[b](!0) : e[b].saveState(), c = !0, e.splice(b, 1))
       }
       (!d || !c) && f.dequeue(this, a)
     })
@@ -3378,7 +3384,7 @@ VISH.Constant.INTRO = 13;
       return this.animate(b, a, c, d)
     }
   }), f.extend({speed:function(a, b, c) {
-    var d = a && typeof a == "object" ? f.extend({}, a) : {complete:c || (!c && b || f.isFunction(a) && a), duration:a, easing:c && b || b && (!f.isFunction(b) && b)};
+    var d = a && typeof a == "object" ? f.extend({}, a) : {complete:c || !c && b || f.isFunction(a) && a, duration:a, easing:c && b || b && !f.isFunction(b) && b};
     d.duration = f.fx.off ? 0 : typeof d.duration == "number" ? d.duration : d.duration in f.fx.speeds ? f.fx.speeds[d.duration] : f.fx.speeds._default;
     if(d.queue == null || d.queue === !0) {
       d.queue = "fx"
@@ -3406,9 +3412,9 @@ VISH.Constant.INTRO = 13;
       return e.step(a)
     }
     var e = this, g = f.fx;
-    this.startTime = cq || cr(), this.end = c, this.now = this.start = a, this.pos = this.state = 0, this.unit = d || (this.unit || (f.cssNumber[this.prop] ? "" : "px")), h.queue = this.options.queue, h.elem = this.elem, h.saveState = function() {
+    this.startTime = cq || cr(), this.end = c, this.now = this.start = a, this.pos = this.state = 0, this.unit = d || this.unit || (f.cssNumber[this.prop] ? "" : "px"), h.queue = this.options.queue, h.elem = this.elem, h.saveState = function() {
       f._data(e.elem, "fxshow" + e.prop) === b && (e.options.hide ? f._data(e.elem, "fxshow" + e.prop, e.start) : e.options.show && f._data(e.elem, "fxshow" + e.prop, e.end))
-    }, h() && (f.timers.push(h) && (!co && (co = setInterval(g.tick, g.interval))))
+    }, h() && f.timers.push(h) && !co && (co = setInterval(g.tick, g.interval))
   }, show:function() {
     var a = f._data(this.elem, "fxshow" + this.prop);
     this.options.orig[this.prop] = a || f.style(this.elem, this.prop), this.options.show = !0, a !== b ? this.custom(this.cur(), a) : this.custom(this.prop === "width" || this.prop === "height" ? 1 : 0, this.cur()), f(this.elem).show()
@@ -3422,9 +3428,9 @@ VISH.Constant.INTRO = 13;
         i.animatedProperties[b] !== !0 && (g = !1)
       }
       if(g) {
-        i.overflow != null && (!f.support.shrinkWrapBlocks && f.each(["", "X", "Y"], function(a, b) {
+        i.overflow != null && !f.support.shrinkWrapBlocks && f.each(["", "X", "Y"], function(a, b) {
           h.style["overflow" + b] = i.overflow[a]
-        })), i.hide && f(h).hide();
+        }), i.hide && f(h).hide();
         if(i.hide || i.show) {
           for(b in i.animatedProperties) {
             f.style(h, b, i.orig[b]), f.removeData(h, "fxshow" + b, !0), f.removeData(h, "toggle" + b, !0)
@@ -3439,7 +3445,7 @@ VISH.Constant.INTRO = 13;
   }}, f.extend(f.fx, {tick:function() {
     var a, b = f.timers, c = 0;
     for(;c < b.length;c++) {
-      a = b[c], !a() && (b[c] === a && b.splice(c--, 1))
+      a = b[c], !a() && b[c] === a && b.splice(c--, 1)
     }
     b.length || f.fx.stop()
   }, interval:13, stop:function() {
@@ -3452,11 +3458,11 @@ VISH.Constant.INTRO = 13;
     b.indexOf("margin") && (f.fx.step[b] = function(a) {
       f.style(a.elem, b, Math.max(0, a.now) + a.unit)
     })
-  }), f.expr && (f.expr.filters && (f.expr.filters.animated = function(a) {
+  }), f.expr && f.expr.filters && (f.expr.filters.animated = function(a) {
     return f.grep(f.timers, function(b) {
       return a === b.elem
     }).length
-  }));
+  });
   var cv, cw = /^t(?:able|d|h)$/i, cx = /^(?:body|html)$/i;
   "getBoundingClientRect" in c.documentElement ? cv = function(a, b, c, d) {
     try {
@@ -3466,21 +3472,21 @@ VISH.Constant.INTRO = 13;
     if(!d || !f.contains(c, a)) {
       return d ? {top:d.top, left:d.left} : {top:0, left:0}
     }
-    var g = b.body, h = cy(b), i = c.clientTop || (g.clientTop || 0), j = c.clientLeft || (g.clientLeft || 0), k = h.pageYOffset || (f.support.boxModel && c.scrollTop || g.scrollTop), l = h.pageXOffset || (f.support.boxModel && c.scrollLeft || g.scrollLeft), m = d.top + k - i, n = d.left + l - j;
+    var g = b.body, h = cy(b), i = c.clientTop || g.clientTop || 0, j = c.clientLeft || g.clientLeft || 0, k = h.pageYOffset || f.support.boxModel && c.scrollTop || g.scrollTop, l = h.pageXOffset || f.support.boxModel && c.scrollLeft || g.scrollLeft, m = d.top + k - i, n = d.left + l - j;
     return{top:m, left:n}
   } : cv = function(a, b, c) {
     var d, e = a.offsetParent, g = a, h = b.body, i = b.defaultView, j = i ? i.getComputedStyle(a, null) : a.currentStyle, k = a.offsetTop, l = a.offsetLeft;
-    while((a = a.parentNode) && (a !== h && a !== c)) {
+    while((a = a.parentNode) && a !== h && a !== c) {
       if(f.support.fixedPosition && j.position === "fixed") {
         break
       }
-      d = i ? i.getComputedStyle(a, null) : a.currentStyle, k -= a.scrollTop, l -= a.scrollLeft, a === e && (k += a.offsetTop, l += a.offsetLeft, f.support.doesNotAddBorder && ((!f.support.doesAddBorderForTableAndCells || !cw.test(a.nodeName)) && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 0)), g = e, e = a.offsetParent), f.support.subtractsBorderForOverflowNotVisible && (d.overflow !== "visible" && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 
-      0)), j = d
+      d = i ? i.getComputedStyle(a, null) : a.currentStyle, k -= a.scrollTop, l -= a.scrollLeft, a === e && (k += a.offsetTop, l += a.offsetLeft, f.support.doesNotAddBorder && (!f.support.doesAddBorderForTableAndCells || !cw.test(a.nodeName)) && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 0), g = e, e = a.offsetParent), f.support.subtractsBorderForOverflowNotVisible && d.overflow !== "visible" && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 
+      0), j = d
     }
     if(j.position === "relative" || j.position === "static") {
       k += h.offsetTop, l += h.offsetLeft
     }
-    f.support.fixedPosition && (j.position === "fixed" && (k += Math.max(c.scrollTop, h.scrollTop), l += Math.max(c.scrollLeft, h.scrollLeft)));
+    f.support.fixedPosition && j.position === "fixed" && (k += Math.max(c.scrollTop, h.scrollTop), l += Math.max(c.scrollLeft, h.scrollLeft));
     return{top:k, left:l}
   }, f.fn.offset = function(a) {
     if(arguments.length) {
@@ -3515,7 +3521,7 @@ VISH.Constant.INTRO = 13;
   }, offsetParent:function() {
     return this.map(function() {
       var a = this.offsetParent || c.body;
-      while(a && (!cx.test(a.nodeName) && f.css(a, "position") === "static")) {
+      while(a && !cx.test(a.nodeName) && f.css(a, "position") === "static") {
         a = a.offsetParent
       }
       return a
@@ -3544,7 +3550,7 @@ VISH.Constant.INTRO = 13;
         var i, j, k, l;
         if(f.isWindow(a)) {
           i = a.document, j = i.documentElement[d];
-          return f.support.boxModel && j || (i.body && i.body[d] || j)
+          return f.support.boxModel && j || i.body && i.body[d] || j
         }
         if(a.nodeType === 9) {
           i = a.documentElement;
@@ -3560,14 +3566,14 @@ VISH.Constant.INTRO = 13;
         f(a).css(c, h)
       }, c, a, arguments.length, null)
     }
-  }), a.jQuery = a.$ = f, typeof define == "function" && (define.amd && (define.amd.jQuery && define("jquery", [], function() {
+  }), a.jQuery = a.$ = f, typeof define == "function" && define.amd && define.amd.jQuery && define("jquery", [], function() {
     return f
-  })))
+  })
 })(window);
 (function(e, t) {
   function i(t, n) {
     var r, i, o, u = t.nodeName.toLowerCase();
-    return"area" === u ? (r = t.parentNode, i = r.name, !t.href || (!i || r.nodeName.toLowerCase() !== "map") ? !1 : (o = e("img[usemap=#" + i + "]")[0], !!o && s(o))) : (/input|select|textarea|button|object/.test(u) ? !t.disabled : "a" === u ? t.href || n : n) && s(t)
+    return"area" === u ? (r = t.parentNode, i = r.name, !t.href || !i || r.nodeName.toLowerCase() !== "map" ? !1 : (o = e("img[usemap=#" + i + "]")[0], !!o && s(o))) : (/input|select|textarea|button|object/.test(u) ? !t.disabled : "a" === u ? t.href || n : n) && s(t)
   }
   function s(t) {
     return e.expr.filters.visible(t) && !e(t).parents().andSelf().filter(function() {
@@ -3601,7 +3607,7 @@ VISH.Constant.INTRO = 13;
       var r = e(this[0]), i, s;
       while(r.length && r[0] !== document) {
         i = r.css("position");
-        if(i === "absolute" || (i === "relative" || i === "fixed")) {
+        if(i === "absolute" || i === "relative" || i === "fixed") {
           s = parseInt(r.css("zIndex"), 10);
           if(!isNaN(s) && s !== 0) {
             return s
@@ -3669,7 +3675,7 @@ VISH.Constant.INTRO = 13;
     }
   }, call:function(e, t, n) {
     var r, i = e.plugins[t];
-    if(!i || (!e.element[0].parentNode || e.element[0].parentNode.nodeType === 11)) {
+    if(!i || !e.element[0].parentNode || e.element[0].parentNode.nodeType === 11) {
       return
     }
     for(r = 0;r < i.length;r++) {
@@ -3726,7 +3732,7 @@ VISH.Constant.INTRO = 13;
     var i = r.call(arguments, 1), s = 0, o = i.length, u, a;
     for(;s < o;s++) {
       for(u in i[s]) {
-        a = i[s][u], i[s].hasOwnProperty(u) && (a !== t && (e.isPlainObject(a) ? n[u] = e.isPlainObject(n[u]) ? e.widget.extend({}, n[u], a) : e.widget.extend({}, a) : n[u] = a))
+        a = i[s][u], i[s].hasOwnProperty(u) && a !== t && (e.isPlainObject(a) ? n[u] = e.isPlainObject(n[u]) ? e.widget.extend({}, n[u], a) : e.widget.extend({}, a) : n[u] = a)
       }
     }
     return n
@@ -3753,7 +3759,7 @@ VISH.Constant.INTRO = 13;
     }
   }, e.Widget = function() {
   }, e.Widget._childConstructors = [], e.Widget.prototype = {widgetName:"widget", widgetEventPrefix:"", defaultElement:"<div>", options:{disabled:!1, create:null}, _createWidget:function(t, r) {
-    r = e(r || (this.defaultElement || this))[0], this.element = e(r), this.uuid = n++, this.eventNamespace = "." + this.widgetName + this.uuid, this.options = e.widget.extend({}, this.options, this._getCreateOptions(), t), this.bindings = e(), this.hoverable = e(), this.focusable = e(), r !== this && (e.data(r, this.widgetName, this), e.data(r, this.widgetFullName, this), this._on(!0, this.element, {remove:function(e) {
+    r = e(r || this.defaultElement || this)[0], this.element = e(r), this.uuid = n++, this.eventNamespace = "." + this.widgetName + this.uuid, this.options = e.widget.extend({}, this.options, this._getCreateOptions(), t), this.bindings = e(), this.hoverable = e(), this.focusable = e(), r !== this && (e.data(r, this.widgetName, this), e.data(r, this.widgetFullName, this), this._on(!0, this.element, {remove:function(e) {
       e.target === r && this.destroy()
     }}), this.document = e(r.style ? r.ownerDocument : r.document || r), this.window = e(this.document[0].defaultView || this.document[0].parentWindow)), this._create(), this._trigger("create", null, this._getCreateEventData()), this._init()
   }, _getCreateOptions:e.noop, _getCreateEventData:e.noop, _create:e.noop, _init:e.noop, destroy:function() {
@@ -3806,7 +3812,7 @@ VISH.Constant.INTRO = 13;
         }
         return(typeof o == "string" ? s[o] : o).apply(s, arguments)
       }
-      typeof o != "string" && (u.guid = o.guid = o.guid || (u.guid || e.guid++));
+      typeof o != "string" && (u.guid = o.guid = o.guid || u.guid || e.guid++);
       var a = r.match(/^(\w+)\s*(.*)$/), f = a[1] + s.eventNamespace, l = a[2];
       l ? i.delegate(l, f, u) : n.bind(f, u)
     })
@@ -3843,7 +3849,7 @@ VISH.Constant.INTRO = 13;
     e.Widget.prototype["_" + t] = function(r, i, s) {
       typeof i == "string" && (i = {effect:i});
       var o, u = i ? i === !0 || typeof i == "number" ? n : i.effect || n : t;
-      i = i || {}, typeof i == "number" && (i = {duration:i}), o = !e.isEmptyObject(i), i.complete = s, i.delay && r.delay(i.delay), o && (e.effects && (e.effects.effect[u] || e.uiBackCompat !== !1 && e.effects[u])) ? r[t](i) : u !== t && r[u] ? r[u](i.duration, i.easing, s) : r.queue(function(n) {
+      i = i || {}, typeof i == "number" && (i = {duration:i}), o = !e.isEmptyObject(i), i.complete = s, i.delay && r.delay(i.delay), o && e.effects && (e.effects.effect[u] || e.uiBackCompat !== !1 && e.effects[u]) ? r[t](i) : u !== t && r[u] ? r[u](i.duration, i.easing, s) : r.queue(function(n) {
         e(this)[t](), s && s.call(r[0]), n()
       })
     }
@@ -3872,7 +3878,7 @@ VISH.Constant.INTRO = 13;
     }
     this._mouseStarted && this._mouseUp(t), this._mouseDownEvent = t;
     var r = this, i = t.which === 1, s = typeof this.options.cancel == "string" && t.target.nodeName ? e(t.target).closest(this.options.cancel).length : !1;
-    if(!i || (s || !this._mouseCapture(t))) {
+    if(!i || s || !this._mouseCapture(t)) {
       return!0
     }
     this.mouseDelayMet = !this.options.delay, this.mouseDelayMet || (this._mouseDelayTimer = setTimeout(function() {
@@ -3890,7 +3896,7 @@ VISH.Constant.INTRO = 13;
       return r._mouseUp(e)
     }, e(document).bind("mousemove." + this.widgetName, this._mouseMoveDelegate).bind("mouseup." + this.widgetName, this._mouseUpDelegate), t.preventDefault(), n = !0, !0
   }, _mouseMove:function(t) {
-    return!e.ui.ie || (document.documentMode >= 9 || !!t.button) ? this._mouseStarted ? (this._mouseDrag(t), t.preventDefault()) : (this._mouseDistanceMet(t) && (this._mouseDelayMet(t) && (this._mouseStarted = this._mouseStart(this._mouseDownEvent, t) !== !1, this._mouseStarted ? this._mouseDrag(t) : this._mouseUp(t))), !this._mouseStarted) : this._mouseUp(t)
+    return!e.ui.ie || document.documentMode >= 9 || !!t.button ? this._mouseStarted ? (this._mouseDrag(t), t.preventDefault()) : (this._mouseDistanceMet(t) && this._mouseDelayMet(t) && (this._mouseStarted = this._mouseStart(this._mouseDownEvent, t) !== !1, this._mouseStarted ? this._mouseDrag(t) : this._mouseUp(t)), !this._mouseStarted) : this._mouseUp(t)
   }, _mouseUp:function(t) {
     return e(document).unbind("mousemove." + this.widgetName, this._mouseMoveDelegate).unbind("mouseup." + this.widgetName, this._mouseUpDelegate), this._mouseStarted && (this._mouseStarted = !1, t.target === this._mouseDownEvent.target && e.data(t.target, this.widgetName + ".preventClickEvent", !0), this._mouseStop(t)), !1
   }, _mouseDistanceMet:function(e) {
@@ -3940,7 +3946,7 @@ VISH.Constant.INTRO = 13;
         e.ui.position[E[r]] && e.ui.position[E[r]][i](C, {targetWidth:l, targetHeight:d, elemWidth:f, elemHeight:c, collisionPosition:o, collisionWidth:T, collisionHeight:N, offset:[n[0] + k[0], n[1] + k[1]], my:t.my, at:t.at, within:y, elem:a})
       }), e.fn.bgiframe && a.bgiframe(), t.using && (u = function(e) {
         var n = v.left - C.left, s = n + l - f, o = v.top - C.top, u = o + d - c, h = {target:{element:g, left:v.left, top:v.top, width:l, height:d}, element:{element:a, left:C.left, top:C.top, width:f, height:c}, horizontal:s < 0 ? "left" : n > 0 ? "right" : "center", vertical:u < 0 ? "top" : o > 0 ? "bottom" : "middle"};
-        l < f && (i(n + s) < l && (h.horizontal = "center")), d < c && (i(o + u) < d && (h.vertical = "middle")), r(i(n), i(s)) > r(i(o), i(u)) ? h.important = "horizontal" : h.important = "vertical", t.using.call(this, e, h)
+        l < f && i(n + s) < l && (h.horizontal = "center"), d < c && i(o + u) < d && (h.vertical = "middle"), r(i(n), i(s)) > r(i(o), i(u)) ? h.important = "horizontal" : h.important = "vertical", t.using.call(this, e, h)
       }), a.offset(e.extend(C, {using:u}))
     })
   }, e.ui.position = {fit:{left:function(e, t) {
@@ -3966,7 +3972,7 @@ VISH.Constant.INTRO = 13;
     }
   }, top:function(e, t) {
     var n = t.within, r = n.offset.top + n.scrollTop, s = n.height, o = n.isWindow ? n.scrollTop : n.offset.top, u = e.top - t.collisionPosition.marginTop, a = u - o, f = u + t.collisionHeight - s - o, l = t.my[1] === "top", c = l ? -t.elemHeight : t.my[1] === "bottom" ? t.elemHeight : 0, h = t.at[1] === "top" ? t.targetHeight : t.at[1] === "bottom" ? -t.targetHeight : 0, p = -2 * t.offset[1], d, v;
-    a < 0 ? (v = e.top + c + h + p + t.collisionHeight - s - r, e.top + c + h + p > a && ((v < 0 || v < i(a)) && (e.top += c + h + p))) : f > 0 && (d = e.top - t.collisionPosition.marginTop + c + h + p - o, e.top + c + h + p > f && ((d > 0 || i(d) < f) && (e.top += c + h + p)))
+    a < 0 ? (v = e.top + c + h + p + t.collisionHeight - s - r, e.top + c + h + p > a && (v < 0 || v < i(a)) && (e.top += c + h + p)) : f > 0 && (d = e.top - t.collisionPosition.marginTop + c + h + p - o, e.top + c + h + p > f && (d > 0 || i(d) < f) && (e.top += c + h + p))
   }}, flipfit:{left:function() {
     e.ui.position.flip.left.apply(this, arguments), e.ui.position.fit.left.apply(this, arguments)
   }, top:function() {
@@ -3991,18 +3997,18 @@ VISH.Constant.INTRO = 13;
 })(jQuery);
 (function(e, t) {
   e.widget("ui.draggable", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"drag", options:{addClasses:!0, appendTo:"parent", axis:!1, connectToSortable:!1, containment:!1, cursor:"auto", cursorAt:!1, grid:!1, handle:!1, helper:"original", iframeFix:!1, opacity:!1, refreshPositions:!1, revert:!1, revertDuration:500, scope:"default", scroll:!0, scrollSensitivity:20, scrollSpeed:20, snap:!1, snapMode:"both", snapTolerance:20, stack:!1, zIndex:!1}, _create:function() {
-    this.options.helper == "original" && (!/^(?:r|a|f)/.test(this.element.css("position")) && (this.element[0].style.position = "relative")), this.options.addClasses && this.element.addClass("ui-draggable"), this.options.disabled && this.element.addClass("ui-draggable-disabled"), this._mouseInit()
+    this.options.helper == "original" && !/^(?:r|a|f)/.test(this.element.css("position")) && (this.element[0].style.position = "relative"), this.options.addClasses && this.element.addClass("ui-draggable"), this.options.disabled && this.element.addClass("ui-draggable-disabled"), this._mouseInit()
   }, _destroy:function() {
     this.element.removeClass("ui-draggable ui-draggable-dragging ui-draggable-disabled"), this._mouseDestroy()
   }, _mouseCapture:function(t) {
     var n = this.options;
-    return this.helper || (n.disabled || e(t.target).is(".ui-resizable-handle")) ? !1 : (this.handle = this._getHandle(t), this.handle ? (e(n.iframeFix === !0 ? "iframe" : n.iframeFix).each(function() {
+    return this.helper || n.disabled || e(t.target).is(".ui-resizable-handle") ? !1 : (this.handle = this._getHandle(t), this.handle ? (e(n.iframeFix === !0 ? "iframe" : n.iframeFix).each(function() {
       e('<div class="ui-draggable-iframeFix" style="background: #fff;"></div>').css({width:this.offsetWidth + "px", height:this.offsetHeight + "px", position:"absolute", opacity:"0.001", zIndex:1E3}).css(e(this).offset()).appendTo("body")
     }), !0) : !1)
   }, _mouseStart:function(t) {
     var n = this.options;
     return this.helper = this._createHelper(t), this.helper.addClass("ui-draggable-dragging"), this._cacheHelperProportions(), e.ui.ddmanager && (e.ui.ddmanager.current = this), this._cacheMargins(), this.cssPosition = this.helper.css("position"), this.scrollParent = this.helper.scrollParent(), this.offset = this.positionAbs = this.element.offset(), this.offset = {top:this.offset.top - this.margins.top, left:this.offset.left - this.margins.left}, e.extend(this.offset, {click:{left:t.pageX - this.offset.left, 
-    top:t.pageY - this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), this.originalPosition = this.position = this._generatePosition(t), this.originalPageX = t.pageX, this.originalPageY = t.pageY, n.cursorAt && this._adjustOffsetFromHelper(n.cursorAt), n.containment && this._setContainment(), this._trigger("start", t) === !1 ? (this._clear(), !1) : (this._cacheHelperProportions(), e.ui.ddmanager && (!n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)), this._mouseDrag(t, 
+    top:t.pageY - this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), this.originalPosition = this.position = this._generatePosition(t), this.originalPageX = t.pageX, this.originalPageY = t.pageY, n.cursorAt && this._adjustOffsetFromHelper(n.cursorAt), n.containment && this._setContainment(), this._trigger("start", t) === !1 ? (this._clear(), !1) : (this._cacheHelperProportions(), e.ui.ddmanager && !n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t), this._mouseDrag(t, 
     !0), e.ui.ddmanager && e.ui.ddmanager.dragStart(this, t), !0)
   }, _mouseDrag:function(t, n) {
     this.position = this._generatePosition(t), this.positionAbs = this._convertPositionTo("absolute");
@@ -4022,7 +4028,7 @@ VISH.Constant.INTRO = 13;
     return e.ui.ddmanager && e.ui.ddmanager.drag(this, t), !1
   }, _mouseStop:function(t) {
     var n = !1;
-    e.ui.ddmanager && (!this.options.dropBehaviour && (n = e.ui.ddmanager.drop(this, t))), this.dropped && (n = this.dropped, this.dropped = !1);
+    e.ui.ddmanager && !this.options.dropBehaviour && (n = e.ui.ddmanager.drop(this, t)), this.dropped && (n = this.dropped, this.dropped = !1);
     var r = this.element[0], i = !1;
     while(r && (r = r.parentNode)) {
       r == document && (i = !0)
@@ -4030,7 +4036,7 @@ VISH.Constant.INTRO = 13;
     if(!i && this.options.helper === "original") {
       return!1
     }
-    if(this.options.revert == "invalid" && !n || (this.options.revert == "valid" && n || (this.options.revert === !0 || e.isFunction(this.options.revert) && this.options.revert.call(this.element, n)))) {
+    if(this.options.revert == "invalid" && !n || this.options.revert == "valid" && n || this.options.revert === !0 || e.isFunction(this.options.revert) && this.options.revert.call(this.element, n)) {
       var s = this;
       e(this.helper).animate(this.originalPosition, parseInt(this.options.revertDuration, 10), function() {
         s._trigger("stop", t) !== !1 && s._clear()
@@ -4052,14 +4058,14 @@ VISH.Constant.INTRO = 13;
     }), n
   }, _createHelper:function(t) {
     var n = this.options, r = e.isFunction(n.helper) ? e(n.helper.apply(this.element[0], [t])) : n.helper == "clone" ? this.element.clone().removeAttr("id") : this.element;
-    return r.parents("body").length || r.appendTo(n.appendTo == "parent" ? this.element[0].parentNode : n.appendTo), r[0] != this.element[0] && (!/(fixed|absolute)/.test(r.css("position")) && r.css("position", "absolute")), r
+    return r.parents("body").length || r.appendTo(n.appendTo == "parent" ? this.element[0].parentNode : n.appendTo), r[0] != this.element[0] && !/(fixed|absolute)/.test(r.css("position")) && r.css("position", "absolute"), r
   }, _adjustOffsetFromHelper:function(t) {
     typeof t == "string" && (t = t.split(" ")), e.isArray(t) && (t = {left:+t[0], top:+t[1] || 0}), "left" in t && (this.offset.click.left = t.left + this.margins.left), "right" in t && (this.offset.click.left = this.helperProportions.width - t.right + this.margins.left), "top" in t && (this.offset.click.top = t.top + this.margins.top), "bottom" in t && (this.offset.click.top = this.helperProportions.height - t.bottom + this.margins.top)
   }, _getParentOffset:function() {
     this.offsetParent = this.helper.offsetParent();
     var t = this.offsetParent.offset();
-    this.cssPosition == "absolute" && (this.scrollParent[0] != document && (e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop())));
-    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && (this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie)) {
+    this.cssPosition == "absolute" && this.scrollParent[0] != document && e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop());
+    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie) {
       t = {top:0, left:0}
     }
     return{top:t.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0), left:t.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)}
@@ -4117,7 +4123,7 @@ VISH.Constant.INTRO = 13;
     }
     return{top:o - this.offset.click.top - this.offset.relative.top - this.offset.parent.top + (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : i ? 0 : r.scrollTop()), left:s - this.offset.click.left - this.offset.relative.left - this.offset.parent.left + (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : i ? 0 : r.scrollLeft())}
   }, _clear:function() {
-    this.helper.removeClass("ui-draggable-dragging"), this.helper[0] != this.element[0] && (!this.cancelHelperRemoval && this.helper.remove()), this.helper = null, this.cancelHelperRemoval = !1
+    this.helper.removeClass("ui-draggable-dragging"), this.helper[0] != this.element[0] && !this.cancelHelperRemoval && this.helper.remove(), this.helper = null, this.cancelHelperRemoval = !1
   }, _trigger:function(t, n, r) {
     return r = r || this._uiHash(), e.ui.plugin.call(this, t, [n, r]), t == "drag" && (this.positionAbs = this._convertPositionTo("absolute")), e.Widget.prototype._trigger.call(this, t, n, r)
   }, plugins:{}, _uiHash:function(e) {
@@ -4126,7 +4132,7 @@ VISH.Constant.INTRO = 13;
     var r = e(this).data("draggable"), i = r.options, s = e.extend({}, n, {item:r.element});
     r.sortables = [], e(i.connectToSortable).each(function() {
       var n = e.data(this, "sortable");
-      n && (!n.options.disabled && (r.sortables.push({instance:n, shouldRevert:n.options.revert}), n.refreshPositions(), n._trigger("activate", t, s)))
+      n && !n.options.disabled && (r.sortables.push({instance:n, shouldRevert:n.options.revert}), n.refreshPositions(), n._trigger("activate", t, s))
     })
   }, stop:function(t, n) {
     var r = e(this).data("draggable"), i = e.extend({}, n, {item:r.element});
@@ -4141,7 +4147,7 @@ VISH.Constant.INTRO = 13;
     e.each(r.sortables, function(s) {
       var o = !1, u = this;
       this.instance.positionAbs = r.positionAbs, this.instance.helperProportions = r.helperProportions, this.instance.offset.click = r.offset.click, this.instance._intersectsWith(this.instance.containerCache) && (o = !0, e.each(r.sortables, function() {
-        return this.instance.positionAbs = r.positionAbs, this.instance.helperProportions = r.helperProportions, this.instance.offset.click = r.offset.click, this != u && (this.instance._intersectsWith(this.instance.containerCache) && (e.ui.contains(u.instance.element[0], this.instance.element[0]) && (o = !1))), o
+        return this.instance.positionAbs = r.positionAbs, this.instance.helperProportions = r.helperProportions, this.instance.offset.click = r.offset.click, this != u && this.instance._intersectsWith(this.instance.containerCache) && e.ui.contains(u.instance.element[0], this.instance.element[0]) && (o = !1), o
       })), o ? (this.instance.isOver || (this.instance.isOver = 1, this.instance.currentItem = e(i).clone().removeAttr("id").appendTo(this.instance.element).data("sortable-item", !0), this.instance.options._helper = this.instance.options.helper, this.instance.options.helper = function() {
         return n.helper[0]
       }, t.target = this.instance.currentItem[0], this.instance._mouseCapture(t, !0), this.instance._mouseStart(t, !0, !0), this.instance.offset.click.top = r.offset.click.top, this.instance.offset.click.left = r.offset.click.left, this.instance.offset.parent.left -= r.offset.parent.left - this.instance.offset.parent.left, this.instance.offset.parent.top -= r.offset.parent.top - this.instance.offset.parent.top, r._trigger("toSortable", t), r.dropped = this.instance.element, r.currentItem = r.element, 
@@ -4162,7 +4168,7 @@ VISH.Constant.INTRO = 13;
     r._opacity && e(n.helper).css("opacity", r._opacity)
   }}), e.ui.plugin.add("draggable", "scroll", {start:function(t, n) {
     var r = e(this).data("draggable");
-    r.scrollParent[0] != document && (r.scrollParent[0].tagName != "HTML" && (r.overflowOffset = r.scrollParent.offset()))
+    r.scrollParent[0] != document && r.scrollParent[0].tagName != "HTML" && (r.overflowOffset = r.scrollParent.offset())
   }, drag:function(t, n) {
     var r = e(this).data("draggable"), i = r.options, s = !1;
     if(r.scrollParent[0] != document && r.scrollParent[0].tagName != "HTML") {
@@ -4180,7 +4186,7 @@ VISH.Constant.INTRO = 13;
         t.pageX - e(document).scrollLeft() < i.scrollSensitivity ? s = e(document).scrollLeft(e(document).scrollLeft() - i.scrollSpeed) : e(window).width() - (t.pageX - e(document).scrollLeft()) < i.scrollSensitivity && (s = e(document).scrollLeft(e(document).scrollLeft() + i.scrollSpeed))
       }
     }
-    s !== !1 && (e.ui.ddmanager && (!i.dropBehaviour && e.ui.ddmanager.prepareOffsets(r, t)))
+    s !== !1 && e.ui.ddmanager && !i.dropBehaviour && e.ui.ddmanager.prepareOffsets(r, t)
   }}), e.ui.plugin.add("draggable", "snap", {start:function(t, n) {
     var r = e(this).data("draggable"), i = r.options;
     r.snapElements = [], e(i.snap.constructor != String ? i.snap.items || ":data(draggable)" : i.snap).each(function() {
@@ -4191,20 +4197,20 @@ VISH.Constant.INTRO = 13;
     var r = e(this).data("draggable"), i = r.options, s = i.snapTolerance, o = n.offset.left, u = o + r.helperProportions.width, a = n.offset.top, f = a + r.helperProportions.height;
     for(var l = r.snapElements.length - 1;l >= 0;l--) {
       var c = r.snapElements[l].left, h = c + r.snapElements[l].width, p = r.snapElements[l].top, d = p + r.snapElements[l].height;
-      if(!(c - s < o && (o < h + s && (p - s < a && a < d + s)) || (c - s < o && (o < h + s && (p - s < f && f < d + s)) || (c - s < u && (u < h + s && (p - s < a && a < d + s)) || c - s < u && (u < h + s && (p - s < f && f < d + s)))))) {
-        r.snapElements[l].snapping && (r.options.snap.release && r.options.snap.release.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item}))), r.snapElements[l].snapping = !1;
+      if(!(c - s < o && o < h + s && p - s < a && a < d + s || c - s < o && o < h + s && p - s < f && f < d + s || c - s < u && u < h + s && p - s < a && a < d + s || c - s < u && u < h + s && p - s < f && f < d + s)) {
+        r.snapElements[l].snapping && r.options.snap.release && r.options.snap.release.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item})), r.snapElements[l].snapping = !1;
         continue
       }
       if(i.snapMode != "inner") {
         var v = Math.abs(p - f) <= s, m = Math.abs(d - a) <= s, g = Math.abs(c - u) <= s, y = Math.abs(h - o) <= s;
         v && (n.position.top = r._convertPositionTo("relative", {top:p - r.helperProportions.height, left:0}).top - r.margins.top), m && (n.position.top = r._convertPositionTo("relative", {top:d, left:0}).top - r.margins.top), g && (n.position.left = r._convertPositionTo("relative", {top:0, left:c - r.helperProportions.width}).left - r.margins.left), y && (n.position.left = r._convertPositionTo("relative", {top:0, left:h}).left - r.margins.left)
       }
-      var b = v || (m || (g || y));
+      var b = v || m || g || y;
       if(i.snapMode != "outer") {
         var v = Math.abs(p - a) <= s, m = Math.abs(d - f) <= s, g = Math.abs(c - o) <= s, y = Math.abs(h - u) <= s;
         v && (n.position.top = r._convertPositionTo("relative", {top:p, left:0}).top - r.margins.top), m && (n.position.top = r._convertPositionTo("relative", {top:d - r.helperProportions.height, left:0}).top - r.margins.top), g && (n.position.left = r._convertPositionTo("relative", {top:0, left:c}).left - r.margins.left), y && (n.position.left = r._convertPositionTo("relative", {top:0, left:h - r.helperProportions.width}).left - r.margins.left)
       }
-      !r.snapElements[l].snapping && ((v || (m || (g || (y || b)))) && (r.options.snap.snap && r.options.snap.snap.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item})))), r.snapElements[l].snapping = v || (m || (g || (y || b)))
+      !r.snapElements[l].snapping && (v || m || g || y || b) && r.options.snap.snap && r.options.snap.snap.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item})), r.snapElements[l].snapping = v || m || g || y || b
     }
   }}), e.ui.plugin.add("draggable", "stack", {start:function(t, n) {
     var r = e(this).data("draggable").options, i = e.makeArray(e(r.stack)).sort(function(t, n) {
@@ -4267,7 +4273,7 @@ VISH.Constant.INTRO = 13;
     var i = !1;
     return this.element.find(":data(droppable)").not(".ui-draggable-dragging").each(function() {
       var t = e.data(this, "droppable");
-      if(t.options.greedy && (!t.options.disabled && (t.options.scope == r.options.scope && (t.accept.call(t.element[0], r.currentItem || r.element) && e.ui.intersect(r, e.extend(t, {offset:t.element.offset()}), t.options.tolerance))))) {
+      if(t.options.greedy && !t.options.disabled && t.options.scope == r.options.scope && t.accept.call(t.element[0], r.currentItem || r.element) && e.ui.intersect(r, e.extend(t, {offset:t.element.offset()}), t.options.tolerance)) {
         return i = !0, !1
       }
     }), i ? !1 : this.accept.call(this.element[0], r.currentItem || r.element) ? (this.options.activeClass && this.element.removeClass(this.options.activeClass), this.options.hoverClass && this.element.removeClass(this.options.hoverClass), this._trigger("drop", t, this.ui(r)), this.element) : !1
@@ -4280,14 +4286,14 @@ VISH.Constant.INTRO = 13;
     var i = (t.positionAbs || t.position.absolute).left, s = i + t.helperProportions.width, o = (t.positionAbs || t.position.absolute).top, u = o + t.helperProportions.height, a = n.offset.left, f = a + n.proportions.width, l = n.offset.top, c = l + n.proportions.height;
     switch(r) {
       case "fit":
-        return a <= i && (s <= f && (l <= o && u <= c));
+        return a <= i && s <= f && l <= o && u <= c;
       case "intersect":
-        return a < i + t.helperProportions.width / 2 && (s - t.helperProportions.width / 2 < f && (l < o + t.helperProportions.height / 2 && u - t.helperProportions.height / 2 < c));
+        return a < i + t.helperProportions.width / 2 && s - t.helperProportions.width / 2 < f && l < o + t.helperProportions.height / 2 && u - t.helperProportions.height / 2 < c;
       case "pointer":
         var h = (t.positionAbs || t.position.absolute).left + (t.clickOffset || t.offset.click).left, p = (t.positionAbs || t.position.absolute).top + (t.clickOffset || t.offset.click).top, d = e.ui.isOver(p, h, l, a, n.proportions.height, n.proportions.width);
         return d;
       case "touch":
-        return(o >= l && o <= c || (u >= l && u <= c || o < l && u > c)) && (i >= a && i <= f || (s >= a && s <= f || i < a && s > f));
+        return(o >= l && o <= c || u >= l && u <= c || o < l && u > c) && (i >= a && i <= f || s >= a && s <= f || i < a && s > f);
       default:
         return!1
     }
@@ -4315,7 +4321,7 @@ VISH.Constant.INTRO = 13;
       if(!this.options) {
         return
       }
-      !this.options.disabled && (this.visible && (e.ui.intersect(t, this, this.options.tolerance) && (r = this._drop.call(this, n) || r))), !this.options.disabled && (this.visible && (this.accept.call(this.element[0], t.currentItem || t.element) && (this.isout = 1, this.isover = 0, this._deactivate.call(this, n))))
+      !this.options.disabled && this.visible && e.ui.intersect(t, this, this.options.tolerance) && (r = this._drop.call(this, n) || r), !this.options.disabled && this.visible && this.accept.call(this.element[0], t.currentItem || t.element) && (this.isout = 1, this.isover = 0, this._deactivate.call(this, n))
     }), r
   }, dragStart:function(t, n) {
     t.element.parentsUntil("body").bind("scroll.droppable", function() {
@@ -4323,7 +4329,7 @@ VISH.Constant.INTRO = 13;
     })
   }, drag:function(t, n) {
     t.options.refreshPositions && e.ui.ddmanager.prepareOffsets(t, n), e.each(e.ui.ddmanager.droppables[t.options.scope] || [], function() {
-      if(this.options.disabled || (this.greedyChild || !this.visible)) {
+      if(this.options.disabled || this.greedyChild || !this.visible) {
         return
       }
       var r = e.ui.intersect(t, this, this.options.tolerance), i = !r && this.isover == 1 ? "isout" : r && this.isover == 0 ? "isover" : null;
@@ -4337,7 +4343,7 @@ VISH.Constant.INTRO = 13;
         });
         u.length && (s = e.data(u[0], "droppable"), s.greedyChild = i == "isover" ? 1 : 0)
       }
-      s && (i == "isover" && (s.isover = 0, s.isout = 1, s._out.call(s, n))), this[i] = 1, this[i == "isout" ? "isover" : "isout"] = 0, this[i == "isover" ? "_over" : "_out"].call(this, n), s && (i == "isout" && (s.isout = 0, s.isover = 1, s._over.call(s, n)))
+      s && i == "isover" && (s.isover = 0, s.isout = 1, s._out.call(s, n)), this[i] = 1, this[i == "isout" ? "isover" : "isout"] = 0, this[i == "isover" ? "_over" : "_out"].call(this, n), s && i == "isout" && (s.isout = 0, s.isover = 1, s._over.call(s, n))
     })
   }, dragStop:function(t, n) {
     t.element.parentsUntil("body").unbind("scroll.droppable"), t.options.refreshPositions || e.ui.ddmanager.prepareOffsets(t, n)
@@ -4346,7 +4352,7 @@ VISH.Constant.INTRO = 13;
 (function(e, t) {
   e.widget("ui.sortable", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"sort", ready:!1, options:{appendTo:"parent", axis:!1, connectWith:!1, containment:!1, cursor:"auto", cursorAt:!1, dropOnEmpty:!0, forcePlaceholderSize:!1, forceHelperSize:!1, grid:!1, handle:!1, helper:"original", items:"> *", opacity:!1, placeholder:!1, revert:!1, scroll:!0, scrollSensitivity:20, scrollSpeed:20, scope:"default", tolerance:"intersect", zIndex:1E3}, _create:function() {
     var e = this.options;
-    this.containerCache = {}, this.element.addClass("ui-sortable"), this.refresh(), this.floating = this.items.length ? e.axis === "x" || (/left|right/.test(this.items[0].item.css("float")) || /inline|table-cell/.test(this.items[0].item.css("display"))) : !1, this.offset = this.element.offset(), this._mouseInit(), this.ready = !0
+    this.containerCache = {}, this.element.addClass("ui-sortable"), this.refresh(), this.floating = this.items.length ? e.axis === "x" || /left|right/.test(this.items[0].item.css("float")) || /inline|table-cell/.test(this.items[0].item.css("display")) : !1, this.offset = this.element.offset(), this._mouseInit(), this.ready = !0
   }, _destroy:function() {
     this.element.removeClass("ui-sortable ui-sortable-disabled"), this._mouseDestroy();
     for(var e = this.items.length - 1;e >= 0;e--) {
@@ -4387,21 +4393,21 @@ VISH.Constant.INTRO = 13;
     var i = this.options;
     this.currentContainer = this, this.refreshPositions(), this.helper = this._createHelper(t), this._cacheHelperProportions(), this._cacheMargins(), this.scrollParent = this.helper.scrollParent(), this.offset = this.currentItem.offset(), this.offset = {top:this.offset.top - this.margins.top, left:this.offset.left - this.margins.left}, e.extend(this.offset, {click:{left:t.pageX - this.offset.left, top:t.pageY - this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), 
     this.helper.css("position", "absolute"), this.cssPosition = this.helper.css("position"), this.originalPosition = this._generatePosition(t), this.originalPageX = t.pageX, this.originalPageY = t.pageY, i.cursorAt && this._adjustOffsetFromHelper(i.cursorAt), this.domPosition = {prev:this.currentItem.prev()[0], parent:this.currentItem.parent()[0]}, this.helper[0] != this.currentItem[0] && this.currentItem.hide(), this._createPlaceholder(), i.containment && this._setContainment(), i.cursor && (e("body").css("cursor") && 
-    (this._storedCursor = e("body").css("cursor")), e("body").css("cursor", i.cursor)), i.opacity && (this.helper.css("opacity") && (this._storedOpacity = this.helper.css("opacity")), this.helper.css("opacity", i.opacity)), i.zIndex && (this.helper.css("zIndex") && (this._storedZIndex = this.helper.css("zIndex")), this.helper.css("zIndex", i.zIndex)), this.scrollParent[0] != document && (this.scrollParent[0].tagName != "HTML" && (this.overflowOffset = this.scrollParent.offset())), this._trigger("start", 
+    (this._storedCursor = e("body").css("cursor")), e("body").css("cursor", i.cursor)), i.opacity && (this.helper.css("opacity") && (this._storedOpacity = this.helper.css("opacity")), this.helper.css("opacity", i.opacity)), i.zIndex && (this.helper.css("zIndex") && (this._storedZIndex = this.helper.css("zIndex")), this.helper.css("zIndex", i.zIndex)), this.scrollParent[0] != document && this.scrollParent[0].tagName != "HTML" && (this.overflowOffset = this.scrollParent.offset()), this._trigger("start", 
     t, this._uiHash()), this._preserveHelperProportions || this._cacheHelperProportions();
     if(!r) {
       for(var s = this.containers.length - 1;s >= 0;s--) {
         this.containers[s]._trigger("activate", t, this._uiHash(this))
       }
     }
-    return e.ui.ddmanager && (e.ui.ddmanager.current = this), e.ui.ddmanager && (!i.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)), this.dragging = !0, this.helper.addClass("ui-sortable-helper"), this._mouseDrag(t), !0
+    return e.ui.ddmanager && (e.ui.ddmanager.current = this), e.ui.ddmanager && !i.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t), this.dragging = !0, this.helper.addClass("ui-sortable-helper"), this._mouseDrag(t), !0
   }, _mouseDrag:function(t) {
     this.position = this._generatePosition(t), this.positionAbs = this._convertPositionTo("absolute"), this.lastPositionAbs || (this.lastPositionAbs = this.positionAbs);
     if(this.options.scroll) {
       var n = this.options, r = !1;
       this.scrollParent[0] != document && this.scrollParent[0].tagName != "HTML" ? (this.overflowOffset.top + this.scrollParent[0].offsetHeight - t.pageY < n.scrollSensitivity ? this.scrollParent[0].scrollTop = r = this.scrollParent[0].scrollTop + n.scrollSpeed : t.pageY - this.overflowOffset.top < n.scrollSensitivity && (this.scrollParent[0].scrollTop = r = this.scrollParent[0].scrollTop - n.scrollSpeed), this.overflowOffset.left + this.scrollParent[0].offsetWidth - t.pageX < n.scrollSensitivity ? 
       this.scrollParent[0].scrollLeft = r = this.scrollParent[0].scrollLeft + n.scrollSpeed : t.pageX - this.overflowOffset.left < n.scrollSensitivity && (this.scrollParent[0].scrollLeft = r = this.scrollParent[0].scrollLeft - n.scrollSpeed)) : (t.pageY - e(document).scrollTop() < n.scrollSensitivity ? r = e(document).scrollTop(e(document).scrollTop() - n.scrollSpeed) : e(window).height() - (t.pageY - e(document).scrollTop()) < n.scrollSensitivity && (r = e(document).scrollTop(e(document).scrollTop() + 
-      n.scrollSpeed)), t.pageX - e(document).scrollLeft() < n.scrollSensitivity ? r = e(document).scrollLeft(e(document).scrollLeft() - n.scrollSpeed) : e(window).width() - (t.pageX - e(document).scrollLeft()) < n.scrollSensitivity && (r = e(document).scrollLeft(e(document).scrollLeft() + n.scrollSpeed))), r !== !1 && (e.ui.ddmanager && (!n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)))
+      n.scrollSpeed)), t.pageX - e(document).scrollLeft() < n.scrollSensitivity ? r = e(document).scrollLeft(e(document).scrollLeft() - n.scrollSpeed) : e(window).width() - (t.pageX - e(document).scrollLeft()) < n.scrollSensitivity && (r = e(document).scrollLeft(e(document).scrollLeft() + n.scrollSpeed))), r !== !1 && e.ui.ddmanager && !n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)
     }
     this.positionAbs = this._convertPositionTo("absolute");
     if(!this.options.axis || this.options.axis != "y") {
@@ -4418,7 +4424,7 @@ VISH.Constant.INTRO = 13;
       if(s.instance !== this.currentContainer) {
         continue
       }
-      if(o != this.currentItem[0] && (this.placeholder[u == 1 ? "next" : "prev"]()[0] != o && (!e.contains(this.placeholder[0], o) && (this.options.type == "semi-dynamic" ? !e.contains(this.element[0], o) : !0)))) {
+      if(o != this.currentItem[0] && this.placeholder[u == 1 ? "next" : "prev"]()[0] != o && !e.contains(this.placeholder[0], o) && (this.options.type == "semi-dynamic" ? !e.contains(this.element[0], o) : !0)) {
         this.direction = u == 1 ? "down" : "up";
         if(this.options.tolerance != "pointer" && !this._intersectsWithSides(s)) {
           break
@@ -4432,7 +4438,7 @@ VISH.Constant.INTRO = 13;
     if(!t) {
       return
     }
-    e.ui.ddmanager && (!this.options.dropBehaviour && e.ui.ddmanager.drop(this, t));
+    e.ui.ddmanager && !this.options.dropBehaviour && e.ui.ddmanager.drop(this, t);
     if(this.options.revert) {
       var r = this, i = this.placeholder.offset();
       this.reverting = !0, e(this.helper).animate({left:i.left - this.offset.parent.left - this.margins.left + (this.offsetParent[0] == document.body ? 0 : this.offsetParent[0].scrollLeft), top:i.top - this.offset.parent.top - this.margins.top + (this.offsetParent[0] == document.body ? 0 : this.offsetParent[0].scrollTop)}, parseInt(this.options.revert, 10) || 500, function() {
@@ -4449,21 +4455,21 @@ VISH.Constant.INTRO = 13;
         this.containers[t]._trigger("deactivate", null, this._uiHash(this)), this.containers[t].containerCache.over && (this.containers[t]._trigger("out", null, this._uiHash(this)), this.containers[t].containerCache.over = 0)
       }
     }
-    return this.placeholder && (this.placeholder[0].parentNode && this.placeholder[0].parentNode.removeChild(this.placeholder[0]), this.options.helper != "original" && (this.helper && (this.helper[0].parentNode && this.helper.remove())), e.extend(this, {helper:null, dragging:!1, reverting:!1, _noFinalSort:null}), this.domPosition.prev ? e(this.domPosition.prev).after(this.currentItem) : e(this.domPosition.parent).prepend(this.currentItem)), this
+    return this.placeholder && (this.placeholder[0].parentNode && this.placeholder[0].parentNode.removeChild(this.placeholder[0]), this.options.helper != "original" && this.helper && this.helper[0].parentNode && this.helper.remove(), e.extend(this, {helper:null, dragging:!1, reverting:!1, _noFinalSort:null}), this.domPosition.prev ? e(this.domPosition.prev).after(this.currentItem) : e(this.domPosition.parent).prepend(this.currentItem)), this
   }, serialize:function(t) {
     var n = this._getItemsAsjQuery(t && t.connected), r = [];
     return t = t || {}, e(n).each(function() {
       var n = (e(t.item || this).attr(t.attribute || "id") || "").match(t.expression || /(.+)[-=_](.+)/);
       n && r.push((t.key || n[1] + "[]") + "=" + (t.key && t.expression ? n[1] : n[2]))
-    }), !r.length && (t.key && r.push(t.key + "=")), r.join("&")
+    }), !r.length && t.key && r.push(t.key + "="), r.join("&")
   }, toArray:function(t) {
     var n = this._getItemsAsjQuery(t && t.connected), r = [];
     return t = t || {}, n.each(function() {
       r.push(e(t.item || this).attr(t.attribute || "id") || "")
     }), r
   }, _intersectsWith:function(e) {
-    var t = this.positionAbs.left, n = t + this.helperProportions.width, r = this.positionAbs.top, i = r + this.helperProportions.height, s = e.left, o = s + e.width, u = e.top, a = u + e.height, f = this.offset.click.top, l = this.offset.click.left, c = r + f > u && (r + f < a && (t + l > s && t + l < o));
-    return this.options.tolerance == "pointer" || (this.options.forcePointerForContainers || this.options.tolerance != "pointer" && this.helperProportions[this.floating ? "width" : "height"] > e[this.floating ? "width" : "height"]) ? c : s < t + this.helperProportions.width / 2 && (n - this.helperProportions.width / 2 < o && (u < r + this.helperProportions.height / 2 && i - this.helperProportions.height / 2 < a))
+    var t = this.positionAbs.left, n = t + this.helperProportions.width, r = this.positionAbs.top, i = r + this.helperProportions.height, s = e.left, o = s + e.width, u = e.top, a = u + e.height, f = this.offset.click.top, l = this.offset.click.left, c = r + f > u && r + f < a && t + l > s && t + l < o;
+    return this.options.tolerance == "pointer" || this.options.forcePointerForContainers || this.options.tolerance != "pointer" && this.helperProportions[this.floating ? "width" : "height"] > e[this.floating ? "width" : "height"] ? c : s < t + this.helperProportions.width / 2 && n - this.helperProportions.width / 2 < o && u < r + this.helperProportions.height / 2 && i - this.helperProportions.height / 2 < a
   }, _intersectsWithPointer:function(t) {
     var n = this.options.axis === "x" || e.ui.isOverAxis(this.positionAbs.top + this.offset.click.top, t.top, t.height), r = this.options.axis === "y" || e.ui.isOverAxis(this.positionAbs.left + this.offset.click.left, t.left, t.width), i = n && r, s = this._getDragVerticalDirection(), o = this._getDragHorizontalDirection();
     return i ? this.floating ? o && o == "right" || s == "down" ? 2 : 1 : s && (s == "down" ? 2 : 1) : !1
@@ -4488,7 +4494,7 @@ VISH.Constant.INTRO = 13;
         var o = e(i[s]);
         for(var u = o.length - 1;u >= 0;u--) {
           var a = e.data(o[u], this.widgetName);
-          a && (a != this && (!a.options.disabled && r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element) : e(a.options.items, a.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), a])))
+          a && a != this && !a.options.disabled && r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element) : e(a.options.items, a.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), a])
         }
       }
     }
@@ -4517,7 +4523,7 @@ VISH.Constant.INTRO = 13;
         var o = e(i[s]);
         for(var u = o.length - 1;u >= 0;u--) {
           var a = e.data(o[u], this.widgetName);
-          a && (a != this && (!a.options.disabled && (r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element[0], t, {item:this.currentItem}) : e(a.options.items, a.element), a]), this.containers.push(a))))
+          a && a != this && !a.options.disabled && (r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element[0], t, {item:this.currentItem}) : e(a.options.items, a.element), a]), this.containers.push(a))
         }
       }
     }
@@ -4529,10 +4535,10 @@ VISH.Constant.INTRO = 13;
       }
     }
   }, refreshPositions:function(t) {
-    this.offsetParent && (this.helper && (this.offset.parent = this._getParentOffset()));
+    this.offsetParent && this.helper && (this.offset.parent = this._getParentOffset());
     for(var n = this.items.length - 1;n >= 0;n--) {
       var r = this.items[n];
-      if(r.instance != this.currentContainer && (this.currentContainer && r.item[0] != this.currentItem[0])) {
+      if(r.instance != this.currentContainer && this.currentContainer && r.item[0] != this.currentItem[0]) {
         continue
       }
       var i = this.options.toleranceElement ? e(this.options.toleranceElement, r.item) : r.item;
@@ -4611,8 +4617,8 @@ VISH.Constant.INTRO = 13;
   }, _getParentOffset:function() {
     this.offsetParent = this.helper.offsetParent();
     var t = this.offsetParent.offset();
-    this.cssPosition == "absolute" && (this.scrollParent[0] != document && (e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop())));
-    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && (this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie)) {
+    this.cssPosition == "absolute" && this.scrollParent[0] != document && e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop());
+    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie) {
       t = {top:0, left:0}
     }
     return{top:t.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0), left:t.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)}
@@ -4643,7 +4649,7 @@ VISH.Constant.INTRO = 13;
     return{top:n.top + this.offset.relative.top * r + this.offset.parent.top * r - (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : o ? 0 : s.scrollTop()) * r, left:n.left + this.offset.relative.left * r + this.offset.parent.left * r - (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : o ? 0 : s.scrollLeft()) * r}
   }, _generatePosition:function(t) {
     var n = this.options, r = this.cssPosition != "absolute" || this.scrollParent[0] != document && !!e.contains(this.scrollParent[0], this.offsetParent[0]) ? this.scrollParent : this.offsetParent, i = /(html|body)/i.test(r[0].tagName);
-    this.cssPosition == "relative" && ((this.scrollParent[0] == document || this.scrollParent[0] == this.offsetParent[0]) && (this.offset.relative = this._getRelativeOffset()));
+    this.cssPosition == "relative" && (this.scrollParent[0] == document || this.scrollParent[0] == this.offsetParent[0]) && (this.offset.relative = this._getRelativeOffset());
     var s = t.pageX, o = t.pageY;
     if(this.originalPosition) {
       this.containment && (t.pageX - this.offset.click.left < this.containment[0] && (s = this.containment[0] + this.offset.click.left), t.pageY - this.offset.click.top < this.containment[1] && (o = this.containment[1] + this.offset.click.top), t.pageX - this.offset.click.left > this.containment[2] && (s = this.containment[2] + this.offset.click.left), t.pageY - this.offset.click.top > this.containment[3] && (o = this.containment[3] + this.offset.click.top));
@@ -4664,7 +4670,7 @@ VISH.Constant.INTRO = 13;
   }, _clear:function(t, n) {
     this.reverting = !1;
     var r = [];
-    !this._noFinalSort && (this.currentItem.parent().length && this.placeholder.before(this.currentItem)), this._noFinalSort = null;
+    !this._noFinalSort && this.currentItem.parent().length && this.placeholder.before(this.currentItem), this._noFinalSort = null;
     if(this.helper[0] == this.currentItem[0]) {
       for(var i in this._storedCSS) {
         if(this._storedCSS[i] == "auto" || this._storedCSS[i] == "static") {
@@ -4675,11 +4681,11 @@ VISH.Constant.INTRO = 13;
     }else {
       this.currentItem.show()
     }
-    this.fromOutside && (!n && r.push(function(e) {
+    this.fromOutside && !n && r.push(function(e) {
       this._trigger("receive", e, this._uiHash(this.fromOutside))
-    })), (this.fromOutside || (this.domPosition.prev != this.currentItem.prev().not(".ui-sortable-helper")[0] || this.domPosition.parent != this.currentItem.parent()[0])) && (!n && r.push(function(e) {
+    }), (this.fromOutside || this.domPosition.prev != this.currentItem.prev().not(".ui-sortable-helper")[0] || this.domPosition.parent != this.currentItem.parent()[0]) && !n && r.push(function(e) {
       this._trigger("update", e, this._uiHash())
-    })), this !== this.currentContainer && (n || (r.push(function(e) {
+    }), this !== this.currentContainer && (n || (r.push(function(e) {
       this._trigger("remove", e, this._uiHash())
     }), r.push(function(e) {
       return function(t) {
@@ -4809,7 +4815,7 @@ VISH.Constant.INTRO = 13;
       e(t.target).closest(".ui-menu-item").length || this._delay(function() {
         var t = this;
         this.document.one("mousedown", function(r) {
-          r.target !== t.element[0] && (r.target !== n && (!e.contains(n, r.target) && t.close()))
+          r.target !== t.element[0] && r.target !== n && !e.contains(n, r.target) && t.close()
         })
       })
     }, menufocus:function(t, n) {
@@ -4823,7 +4829,7 @@ VISH.Constant.INTRO = 13;
         }
       }
       var r = n.item.data("ui-autocomplete-item") || n.item.data("item.autocomplete");
-      !1 !== this._trigger("focus", t, {item:r}) ? t.originalEvent && (/^key/.test(t.originalEvent.type) && this._value(r.value)) : this.liveRegion.text(r.value)
+      !1 !== this._trigger("focus", t, {item:r}) ? t.originalEvent && /^key/.test(t.originalEvent.type) && this._value(r.value) : this.liveRegion.text(r.value)
     }, menuselect:function(e, t) {
       var n = t.item.data("ui-autocomplete-item") || t.item.data("item.autocomplete"), r = this.previous;
       this.element[0] !== this.document[0].activeElement && (this.element.focus(), this.previous = r, this._delay(function() {
@@ -4835,7 +4841,7 @@ VISH.Constant.INTRO = 13;
   }, _destroy:function() {
     clearTimeout(this.searching), this.element.removeClass("ui-autocomplete-input").removeAttr("autocomplete"), this.menu.element.remove(), this.liveRegion.remove()
   }, _setOption:function(e, t) {
-    this._super(e, t), e === "source" && this._initSource(), e === "appendTo" && this.menu.element.appendTo(this.document.find(t || "body")[0]), e === "disabled" && (t && (this.xhr && this.xhr.abort()))
+    this._super(e, t), e === "source" && this._initSource(), e === "appendTo" && this.menu.element.appendTo(this.document.find(t || "body")[0]), e === "disabled" && t && this.xhr && this.xhr.abort()
   }, _isMultiLine:function() {
     return this.element.is("textarea") ? !0 : this.element.is("input") ? !1 : this.element.prop("isContentEditable")
   }, _initSource:function() {
@@ -4870,7 +4876,7 @@ VISH.Constant.INTRO = 13;
       t === n && e.__response(r), e.pending--, e.pending || e.element.removeClass("ui-autocomplete-loading")
     }
   }, __response:function(e) {
-    e && (e = this._normalize(e)), this._trigger("response", null, {content:e}), !this.options.disabled && (e && (e.length && !this.cancelSearch)) ? (this._suggest(e), this._trigger("open")) : this._close()
+    e && (e = this._normalize(e)), this._trigger("response", null, {content:e}), !this.options.disabled && e && e.length && !this.cancelSearch ? (this._suggest(e), this._trigger("open")) : this._close()
   }, close:function(e) {
     this.cancelSearch = !0, this._close(e)
   }, _close:function(e) {
@@ -4878,7 +4884,7 @@ VISH.Constant.INTRO = 13;
   }, _change:function(e) {
     this.previous !== this._value() && this._trigger("change", e, {item:this.selectedItem})
   }, _normalize:function(t) {
-    return t.length && (t[0].label && t[0].value) ? t : e.map(t, function(t) {
+    return t.length && t[0].label && t[0].value ? t : e.map(t, function(t) {
       return typeof t == "string" ? {label:t, value:t} : e.extend({label:t.label || t.value, value:t.value || t.label}, t)
     })
   }, _suggest:function(t) {
@@ -4919,7 +4925,7 @@ VISH.Constant.INTRO = 13;
   }, filter:function(t, n) {
     var r = new RegExp(e.ui.autocomplete.escapeRegex(n), "i");
     return e.grep(t, function(e) {
-      return r.test(e.label || (e.value || e))
+      return r.test(e.label || e.value || e)
     })
   }}), e.widget("ui.autocomplete", e.ui.autocomplete, {options:{messages:{noResults:"No search results.", results:function(e) {
     return e + (e > 1 ? " results are" : " result is") + " available, use up and down arrow keys to navigate."
@@ -4943,7 +4949,7 @@ VISH.Constant.INTRO = 13;
       e.preventDefault()
     }, "click .ui-menu-item:has(a)":function(t) {
       var r = e(t.target).closest(".ui-menu-item");
-      !n && (r.not(".ui-state-disabled").length && (n = !0, this.select(t), r.has(".ui-menu").length ? this.expand(t) : this.element.is(":focus") || (this.element.trigger("focus", [!0]), this.active && (this.active.parents(".ui-menu").length === 1 && clearTimeout(this.timer)))))
+      !n && r.not(".ui-state-disabled").length && (n = !0, this.select(t), r.has(".ui-menu").length ? this.expand(t) : this.element.is(":focus") || (this.element.trigger("focus", [!0]), this.active && this.active.parents(".ui-menu").length === 1 && clearTimeout(this.timer)))
     }, "mouseenter .ui-menu-item":function(t) {
       var n = e(t.currentTarget);
       n.siblings().children(".ui-state-active").removeClass("ui-state-active"), this.focus(t, n)
@@ -4990,7 +4996,7 @@ VISH.Constant.INTRO = 13;
         this.collapse(t);
         break;
       case e.ui.keyCode.RIGHT:
-        this.active && (!this.active.is(".ui-state-disabled") && this.expand(t));
+        this.active && !this.active.is(".ui-state-disabled") && this.expand(t);
         break;
       case e.ui.keyCode.ENTER:
       ;
@@ -5020,14 +5026,14 @@ VISH.Constant.INTRO = 13;
     }), t = r.add(this.element), t.children(":not(.ui-menu-item):has(a)").addClass("ui-menu-item").attr("role", "presentation").children("a").uniqueId().addClass("ui-corner-all").attr({tabIndex:-1, role:this._itemRole()}), t.children(":not(.ui-menu-item)").each(function() {
       var t = e(this);
       /[^\-\u2014\u2013\s]/.test(t.text()) || t.addClass("ui-widget-content ui-menu-divider")
-    }), t.children(".ui-state-disabled").attr("aria-disabled", "true"), this.active && (!e.contains(this.element[0], this.active[0]) && this.blur())
+    }), t.children(".ui-state-disabled").attr("aria-disabled", "true"), this.active && !e.contains(this.element[0], this.active[0]) && this.blur()
   }, _itemRole:function() {
     return{menu:"menuitem", listbox:"option"}[this.options.role]
   }, focus:function(e, t) {
     var n, r;
     this.blur(e, e && e.type === "focus"), this._scrollIntoView(t), this.active = t.first(), r = this.active.children("a").addClass("ui-state-focus"), this.options.role && this.element.attr("aria-activedescendant", r.attr("id")), this.active.parent().closest(".ui-menu-item").children("a:first").addClass("ui-state-active"), e && e.type === "keydown" ? this._close() : this.timer = this._delay(function() {
       this._close()
-    }, this.delay), n = t.children(".ui-menu"), n.length && (/^mouse/.test(e.type) && this._startOpening(n)), this.activeMenu = t.parent(), this._trigger("focus", e, {item:t})
+    }, this.delay), n = t.children(".ui-menu"), n.length && /^mouse/.test(e.type) && this._startOpening(n), this.activeMenu = t.parent(), this._trigger("focus", e, {item:t})
   }, _scrollIntoView:function(t) {
     var n, r, i, s, o, u;
     this._hasScroll() && (n = parseFloat(e.css(this.activeMenu[0], "borderTopWidth")) || 0, r = parseFloat(e.css(this.activeMenu[0], "paddingTop")) || 0, i = t.offset().top - this.activeMenu.offset().top - n - r, s = this.activeMenu.scrollTop(), o = this.activeMenu.height(), u = t.height(), i < 0 ? this.activeMenu.scrollTop(s + i) : i + u > o && this.activeMenu.scrollTop(s + i - o + u))
@@ -5057,12 +5063,12 @@ VISH.Constant.INTRO = 13;
     e || (e = this.active ? this.active.parent() : this.element), e.find(".ui-menu").hide().attr("aria-hidden", "true").attr("aria-expanded", "false").end().find("a.ui-state-active").removeClass("ui-state-active")
   }, collapse:function(e) {
     var t = this.active && this.active.parent().closest(".ui-menu-item", this.element);
-    t && (t.length && (this._close(), this.focus(e, t)))
+    t && t.length && (this._close(), this.focus(e, t))
   }, expand:function(e) {
     var t = this.active && this.active.children(".ui-menu ").children(".ui-menu-item").first();
-    t && (t.length && (this._open(t.parent()), this._delay(function() {
+    t && t.length && (this._open(t.parent()), this._delay(function() {
       this.focus(e, t)
-    })))
+    }))
   }, next:function(e) {
     this._move("next", "first", e)
   }, previous:function(e) {
@@ -5074,7 +5080,7 @@ VISH.Constant.INTRO = 13;
   }, _move:function(e, t, n) {
     var r;
     this.active && (e === "first" || e === "last" ? r = this.active[e === "first" ? "prevAll" : "nextAll"](".ui-menu-item").eq(-1) : r = this.active[e + "All"](".ui-menu-item").eq(0));
-    if(!r || (!r.length || !this.active)) {
+    if(!r || !r.length || !this.active) {
       r = this.activeMenu.children(".ui-menu-item")[t]()
     }
     this.focus(n, r)
@@ -5114,8 +5120,8 @@ VISH.Constant.INTRO = 13;
   var n = 5;
   e.widget("ui.slider", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"slide", options:{animate:!1, distance:0, max:100, min:0, orientation:"horizontal", range:!1, step:1, value:0, values:null}, _create:function() {
     var t, r, i = this.options, s = this.element.find(".ui-slider-handle").addClass("ui-state-default ui-corner-all"), o = "<a class='ui-slider-handle ui-state-default ui-corner-all' href='#'></a>", u = [];
-    this._keySliding = !1, this._mouseSliding = !1, this._animateOff = !0, this._handleIndex = null, this._detectOrientation(), this._mouseInit(), this.element.addClass("ui-slider ui-slider-" + this.orientation + " ui-widget" + " ui-widget-content" + " ui-corner-all" + (i.disabled ? " ui-slider-disabled ui-disabled" : "")), this.range = e([]), i.range && (i.range === !0 && (i.values || (i.values = [this._valueMin(), this._valueMin()]), i.values.length && (i.values.length !== 2 && (i.values = [i.values[0], 
-    i.values[0]]))), this.range = e("<div></div>").appendTo(this.element).addClass("ui-slider-range ui-widget-header" + (i.range === "min" || i.range === "max" ? " ui-slider-range-" + i.range : ""))), r = i.values && i.values.length || 1;
+    this._keySliding = !1, this._mouseSliding = !1, this._animateOff = !0, this._handleIndex = null, this._detectOrientation(), this._mouseInit(), this.element.addClass("ui-slider ui-slider-" + this.orientation + " ui-widget" + " ui-widget-content" + " ui-corner-all" + (i.disabled ? " ui-slider-disabled ui-disabled" : "")), this.range = e([]), i.range && (i.range === !0 && (i.values || (i.values = [this._valueMin(), this._valueMin()]), i.values.length && i.values.length !== 2 && (i.values = [i.values[0], 
+    i.values[0]])), this.range = e("<div></div>").appendTo(this.element).addClass("ui-slider-range ui-widget-header" + (i.range === "min" || i.range === "max" ? " ui-slider-range-" + i.range : ""))), r = i.values && i.values.length || 1;
     for(t = s.length;t < r;t++) {
       u.push(o)
     }
@@ -5199,8 +5205,8 @@ VISH.Constant.INTRO = 13;
     return c.disabled ? !1 : (this.elementSize = {width:this.element.outerWidth(), height:this.element.outerHeight()}, this.elementOffset = this.element.offset(), n = {x:t.pageX, y:t.pageY}, r = this._normValueFromMouse(n), i = this._valueMax() - this._valueMin() + 1, this.handles.each(function(t) {
       var n = Math.abs(r - l.values(t));
       i > n && (i = n, s = e(this), o = t)
-    }), c.range === !0 && (this.values(1) === c.min && (o += 1, s = e(this.handles[o]))), u = this._start(t, o), u === !1 ? !1 : (this._mouseSliding = !0, this._handleIndex = o, s.addClass("ui-state-active").focus(), a = s.offset(), f = !e(t.target).parents().andSelf().is(".ui-slider-handle"), this._clickOffset = f ? {left:0, top:0} : {left:t.pageX - a.left - s.width() / 2, top:t.pageY - a.top - s.height() / 2 - (parseInt(s.css("borderTopWidth"), 10) || 0) - (parseInt(s.css("borderBottomWidth"), 
-    10) || 0) + (parseInt(s.css("marginTop"), 10) || 0)}, this.handles.hasClass("ui-state-hover") || this._slide(t, o, r), this._animateOff = !0, !0))
+    }), c.range === !0 && this.values(1) === c.min && (o += 1, s = e(this.handles[o])), u = this._start(t, o), u === !1 ? !1 : (this._mouseSliding = !0, this._handleIndex = o, s.addClass("ui-state-active").focus(), a = s.offset(), f = !e(t.target).parents().andSelf().is(".ui-slider-handle"), this._clickOffset = f ? {left:0, top:0} : {left:t.pageX - a.left - s.width() / 2, top:t.pageY - a.top - s.height() / 2 - (parseInt(s.css("borderTopWidth"), 10) || 0) - (parseInt(s.css("borderBottomWidth"), 10) || 
+    0) + (parseInt(s.css("marginTop"), 10) || 0)}, this.handles.hasClass("ui-state-hover") || this._slide(t, o, r), this._animateOff = !0, !0))
   }, _mouseStart:function() {
     return!0
   }, _mouseDrag:function(e) {
@@ -5215,18 +5221,17 @@ VISH.Constant.INTRO = 13;
     return this.orientation === "horizontal" ? (t = this.elementSize.width, n = e.x - this.elementOffset.left - (this._clickOffset ? this._clickOffset.left : 0)) : (t = this.elementSize.height, n = e.y - this.elementOffset.top - (this._clickOffset ? this._clickOffset.top : 0)), r = n / t, r > 1 && (r = 1), r < 0 && (r = 0), this.orientation === "vertical" && (r = 1 - r), i = this._valueMax() - this._valueMin(), s = this._valueMin() + r * i, this._trimAlignValue(s)
   }, _start:function(e, t) {
     var n = {handle:this.handles[t], value:this.value()};
-    return this.options.values && (this.options.values.length && (n.value = this.values(t), n.values = this.values())), this._trigger("start", e, n)
+    return this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("start", e, n)
   }, _slide:function(e, t, n) {
     var r, i, s;
-    this.options.values && this.options.values.length ? (r = this.values(t ? 0 : 1), this.options.values.length === 2 && (this.options.range === !0 && ((t === 0 && n > r || t === 1 && n < r) && (n = r))), n !== this.values(t) && (i = this.values(), i[t] = n, s = this._trigger("slide", e, {handle:this.handles[t], value:n, values:i}), r = this.values(t ? 0 : 1), s !== !1 && this.values(t, n, !0))) : n !== this.value() && (s = this._trigger("slide", e, {handle:this.handles[t], value:n}), s !== !1 && 
-    this.value(n))
+    this.options.values && this.options.values.length ? (r = this.values(t ? 0 : 1), this.options.values.length === 2 && this.options.range === !0 && (t === 0 && n > r || t === 1 && n < r) && (n = r), n !== this.values(t) && (i = this.values(), i[t] = n, s = this._trigger("slide", e, {handle:this.handles[t], value:n, values:i}), r = this.values(t ? 0 : 1), s !== !1 && this.values(t, n, !0))) : n !== this.value() && (s = this._trigger("slide", e, {handle:this.handles[t], value:n}), s !== !1 && this.value(n))
   }, _stop:function(e, t) {
     var n = {handle:this.handles[t], value:this.value()};
-    this.options.values && (this.options.values.length && (n.value = this.values(t), n.values = this.values())), this._trigger("stop", e, n)
+    this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("stop", e, n)
   }, _change:function(e, t) {
     if(!this._keySliding && !this._mouseSliding) {
       var n = {handle:this.handles[t], value:this.value()};
-      this.options.values && (this.options.values.length && (n.value = this.values(t), n.values = this.values())), this._trigger("change", e, n)
+      this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("change", e, n)
     }
   }, value:function(e) {
     if(arguments.length) {
@@ -5307,8 +5312,8 @@ VISH.Constant.INTRO = 13;
     this.options.values && this.options.values.length ? this.handles.each(function(r) {
       n = (a.values(r) - a._valueMin()) / (a._valueMax() - a._valueMin()) * 100, l[a.orientation === "horizontal" ? "left" : "bottom"] = n + "%", e(this).stop(1, 1)[f ? "animate" : "css"](l, u.animate), a.options.range === !0 && (a.orientation === "horizontal" ? (r === 0 && a.range.stop(1, 1)[f ? "animate" : "css"]({left:n + "%"}, u.animate), r === 1 && a.range[f ? "animate" : "css"]({width:n - t + "%"}, {queue:!1, duration:u.animate})) : (r === 0 && a.range.stop(1, 1)[f ? "animate" : "css"]({bottom:n + 
       "%"}, u.animate), r === 1 && a.range[f ? "animate" : "css"]({height:n - t + "%"}, {queue:!1, duration:u.animate}))), t = n
-    }) : (r = this.value(), i = this._valueMin(), s = this._valueMax(), n = s !== i ? (r - i) / (s - i) * 100 : 0, l[this.orientation === "horizontal" ? "left" : "bottom"] = n + "%", this.handle.stop(1, 1)[f ? "animate" : "css"](l, u.animate), o === "min" && (this.orientation === "horizontal" && this.range.stop(1, 1)[f ? "animate" : "css"]({width:n + "%"}, u.animate)), o === "max" && (this.orientation === "horizontal" && this.range[f ? "animate" : "css"]({width:100 - n + "%"}, {queue:!1, duration:u.animate})), 
-    o === "min" && (this.orientation === "vertical" && this.range.stop(1, 1)[f ? "animate" : "css"]({height:n + "%"}, u.animate)), o === "max" && (this.orientation === "vertical" && this.range[f ? "animate" : "css"]({height:100 - n + "%"}, {queue:!1, duration:u.animate})))
+    }) : (r = this.value(), i = this._valueMin(), s = this._valueMax(), n = s !== i ? (r - i) / (s - i) * 100 : 0, l[this.orientation === "horizontal" ? "left" : "bottom"] = n + "%", this.handle.stop(1, 1)[f ? "animate" : "css"](l, u.animate), o === "min" && this.orientation === "horizontal" && this.range.stop(1, 1)[f ? "animate" : "css"]({width:n + "%"}, u.animate), o === "max" && this.orientation === "horizontal" && this.range[f ? "animate" : "css"]({width:100 - n + "%"}, {queue:!1, duration:u.animate}), 
+    o === "min" && this.orientation === "vertical" && this.range.stop(1, 1)[f ? "animate" : "css"]({height:n + "%"}, u.animate), o === "max" && this.orientation === "vertical" && this.range[f ? "animate" : "css"]({height:100 - n + "%"}, {queue:!1, duration:u.animate}))
   }})
 })(jQuery);
 (function(d) {
@@ -5452,7 +5457,7 @@ window.Chart = function(context, options) {
     }else {
       var s = p / (2 * Math.PI) * Math.asin(1 / a)
     }
-    return-(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p))
+    return-(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p))
   }, easeOutElastic:function(t) {
     var s = 1.70158;
     var p = 0;
@@ -5472,7 +5477,7 @@ window.Chart = function(context, options) {
     }else {
       var s = p / (2 * Math.PI) * Math.asin(1 / a)
     }
-    return a * Math.pow(2, -10 * t) * Math.sin((t * 1 - s) * (2 * Math.PI) / p) + 1
+    return a * Math.pow(2, -10 * t) * Math.sin((t * 1 - s) * 2 * Math.PI / p) + 1
   }, easeInOutElastic:function(t) {
     var s = 1.70158;
     var p = 0;
@@ -5484,7 +5489,7 @@ window.Chart = function(context, options) {
       return 1
     }
     if(!p) {
-      p = 1 * (0.3 * 1.5)
+      p = 1 * 0.3 * 1.5
     }
     if(a < Math.abs(1)) {
       a = 1;
@@ -5493,9 +5498,9 @@ window.Chart = function(context, options) {
       var s = p / (2 * Math.PI) * Math.asin(1 / a)
     }
     if(t < 1) {
-      return-0.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p))
+      return-0.5 * a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p)
     }
-    return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p) * 0.5 + 1
+    return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p) * 0.5 + 1
   }, easeInBack:function(t) {
     var s = 1.70158;
     return 1 * (t /= 1) * t * ((s + 1) * t - s)
@@ -5505,14 +5510,14 @@ window.Chart = function(context, options) {
   }, easeInOutBack:function(t) {
     var s = 1.70158;
     if((t /= 1 / 2) < 1) {
-      return 1 / 2 * (t * t * (((s *= 1.525) + 1) * t - s))
+      return 1 / 2 * t * t * (((s *= 1.525) + 1) * t - s)
     }
     return 1 / 2 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2)
   }, easeInBounce:function(t) {
     return 1 - animationOptions.easeOutBounce(1 - t)
   }, easeOutBounce:function(t) {
     if((t /= 1) < 1 / 2.75) {
-      return 1 * (7.5625 * t * t)
+      return 1 * 7.5625 * t * t
     }else {
       if(t < 2 / 2.75) {
         return 1 * (7.5625 * (t -= 1.5 / 2.75) * t + 0.75)
@@ -5546,7 +5551,7 @@ window.Chart = function(context, options) {
       if(this.areaObj.type) {
         switch(this.areaObj.type) {
           case "rect":
-            return x >= this.areaObj.x && x <= this.areaObj.x + this.areaObj.width && (y >= this.areaObj.y && y <= this.areaObj.y + this.areaObj.height);
+            return x >= this.areaObj.x && x <= this.areaObj.x + this.areaObj.width && y >= this.areaObj.y && y <= this.areaObj.y + this.areaObj.height;
             break;
           case "circle":
             return Math.pow(x - this.areaObj.x, 2) + Math.pow(y - this.areaObj.y, 2) < Math.pow(this.areaObj.r, 2);
@@ -5554,7 +5559,7 @@ window.Chart = function(context, options) {
           case "shape":
             var poly = this.areaObj.points;
             for(var c = false, i = -1, l = poly.length, j = l - 1;++i < l;j = i) {
-              (poly[i].y <= y && y < poly[j].y || poly[j].y <= y && y < poly[i].y) && (x < (poly[j].x - poly[i].x) * (y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x && (c = !c))
+              (poly[i].y <= y && y < poly[j].y || poly[j].y <= y && y < poly[i].y) && x < (poly[j].x - poly[i].x) * (y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x && (c = !c)
             }
             return c;
             break
@@ -5835,7 +5840,7 @@ window.Chart = function(context, options) {
       for(var i = 0;i < data.datasets.length;i++) {
         var offset = calculateOffset(data.datasets[i].data[0], calculatedScale, scaleHop);
         ctx.beginPath();
-        ctx.moveTo(0, animationDecimal * (-1 * offset));
+        ctx.moveTo(0, animationDecimal * -1 * offset);
         if(animationDecimal >= 1 && config.showTooltips) {
           var curX = width / 2 + offset * Math.cos(0 - Math.PI / 2), curY = height / 2 + offset * Math.sin(0 - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[0].trim() != "" ? data.labels[0] + ": " + data.datasets[i].data[0] : data.datasets[i].data[0];
           registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[0], value:data.datasets[i].data[0]}, "Radar")
@@ -5843,7 +5848,7 @@ window.Chart = function(context, options) {
         for(var j = 1;j < data.datasets[i].data.length;j++) {
           offset = calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop);
           ctx.rotate(rotationDegree);
-          ctx.lineTo(0, animationDecimal * (-1 * offset));
+          ctx.lineTo(0, animationDecimal * -1 * offset);
           if(animationDecimal >= 1 && config.showTooltips) {
             var curX = width / 2 + offset * Math.cos(j * rotationDegree - Math.PI / 2), curY = height / 2 + offset * Math.sin(j * rotationDegree - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[j].trim() != "" ? data.labels[j] + ": " + data.datasets[i].data[j] : data.datasets[i].data[j];
             registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Radar")
@@ -5862,7 +5867,7 @@ window.Chart = function(context, options) {
           for(var k = 0;k < data.datasets[i].data.length;k++) {
             ctx.rotate(rotationDegree);
             ctx.beginPath();
-            ctx.arc(0, animationDecimal * (-1 * calculateOffset(data.datasets[i].data[k], calculatedScale, scaleHop)), config.pointDotRadius, 2 * Math.PI, false);
+            ctx.arc(0, animationDecimal * -1 * calculateOffset(data.datasets[i].data[k], calculatedScale, scaleHop), config.pointDotRadius, 2 * Math.PI, false);
             ctx.fill();
             ctx.stroke()
           }
@@ -5988,7 +5993,7 @@ window.Chart = function(context, options) {
         }
       }
       for(var i = 0;i < data.length;i++) {
-        var segmentAngle = rotateAnimation * (data[i].value / segmentTotal * (Math.PI * 2));
+        var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
         segmentAngle = Math.min(Math.PI * 1.99999, segmentAngle);
         ctx.beginPath();
         ctx.arc(width / 2, height / 2, scaleAnimation * pieRadius, cumulativeAngle, cumulativeAngle + segmentAngle);
@@ -6078,7 +6083,7 @@ window.Chart = function(context, options) {
         }
       }
       for(var i = 0;i < data.length;i++) {
-        var segmentAngle = rotateAnimation * (data[i].value / segmentTotal * (Math.PI * 2));
+        var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
         ctx.beginPath();
         ctx.arc(width / 2, height / 2, scaleAnimation * doughnutRadius, cumulativeAngle, cumulativeAngle + segmentAngle, false);
         ctx.arc(width / 2, height / 2, scaleAnimation * cutoutRadius, cumulativeAngle + segmentAngle, cumulativeAngle, true);
@@ -6472,9 +6477,9 @@ window.Chart = function(context, options) {
     }
   }
   var requestAnimFrame = function() {
-    return window.requestAnimationFrame || (window.webkitRequestAnimationFrame || (window.mozRequestAnimationFrame || (window.oRequestAnimationFrame || (window.msRequestAnimationFrame || function(callback) {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
       window.setTimeout(callback, 1E3 / 60)
-    }))))
+    }
   }();
   function calculateScale(drawingHeight, maxSteps, minSteps, maxValue, minValue, labelTemplateString) {
     var graphMin, graphMax, graphRange, stepValue, numberOfSteps, valueRange, rangeOrderOfMagnitude, decimalNum;
@@ -6622,8 +6627,8 @@ jQuery.cookie = function(key, value, options) {
   return(result = (new RegExp("(?:^|; )" + encodeURIComponent(key) + "=([^;]*)")).exec(document.cookie)) ? decode(result[1]) : null
 };
 (function($) {
-  var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right, selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [], ajaxLoader = null, imgPreloader = new Image, imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, loadingTimer, loadingFrame = 1, titleHeight = 0, titleStr = "", start_pos, final_pos, busy = false, fx = $.extend($("<div/>")[0], {prop:0}), isIE6 = $.browser.msie && ($.browser.version < 
-  7 && !window.XMLHttpRequest), _abort = function() {
+  var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right, selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [], ajaxLoader = null, imgPreloader = new Image, imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, loadingTimer, loadingFrame = 1, titleHeight = 0, titleStr = "", start_pos, final_pos, busy = false, fx = $.extend($("<div/>")[0], {prop:0}), isIE6 = $.browser.msie && $.browser.version < 
+  7 && !window.XMLHttpRequest, _abort = function() {
     loading.hide();
     imgPreloader.onerror = imgPreloader.onload = null;
     if(ajaxLoader) {
@@ -6654,14 +6659,14 @@ jQuery.cookie = function(key, value, options) {
         selectedOpts = $.extend(selectedOpts, ret)
       }
     }
-    title = selectedOpts.title || ((obj.nodeName ? $(obj).attr("title") : obj.title) || "");
+    title = selectedOpts.title || (obj.nodeName ? $(obj).attr("title") : obj.title) || "";
     if(obj.nodeName && !selectedOpts.orig) {
       selectedOpts.orig = $(obj).children("img:first").length ? $(obj).children("img:first") : $(obj)
     }
-    if(title === "" && (selectedOpts.orig && selectedOpts.titleFromAlt)) {
+    if(title === "" && selectedOpts.orig && selectedOpts.titleFromAlt) {
       title = selectedOpts.orig.attr("alt")
     }
-    href = selectedOpts.href || ((obj.nodeName ? $(obj).attr("href") : obj.href) || null);
+    href = selectedOpts.href || (obj.nodeName ? $(obj).attr("href") : obj.href) || null;
     if(/^(?:javascript)/i.test(href) || href == "#") {
       href = null
     }
@@ -6707,7 +6712,7 @@ jQuery.cookie = function(key, value, options) {
     selectedOpts.href = href;
     selectedOpts.title = title;
     if(selectedOpts.autoDimensions) {
-      if(selectedOpts.type == "html" || (selectedOpts.type == "inline" || selectedOpts.type == "ajax")) {
+      if(selectedOpts.type == "html" || selectedOpts.type == "inline" || selectedOpts.type == "ajax") {
         selectedOpts.width = "auto";
         selectedOpts.height = "auto"
       }else {
@@ -6944,7 +6949,7 @@ jQuery.cookie = function(key, value, options) {
           e.preventDefault();
           $.fancybox.close()
         }else {
-          if((e.keyCode == 37 || e.keyCode == 39) && (currentOpts.enableKeyboardNav && (e.target.tagName !== "INPUT" && (e.target.tagName !== "TEXTAREA" && e.target.tagName !== "SELECT")))) {
+          if((e.keyCode == 37 || e.keyCode == 39) && currentOpts.enableKeyboardNav && e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA" && e.target.tagName !== "SELECT") {
             e.preventDefault();
             $.fancybox[e.keyCode == 37 ? "prev" : "next"]()
           }
@@ -7093,7 +7098,7 @@ jQuery.cookie = function(key, value, options) {
       selectedArray = [];
       selectedIndex = 0;
       var rel = $(this).attr("rel") || "";
-      if(!rel || (rel == "" || rel === "nofollow")) {
+      if(!rel || rel == "" || rel === "nofollow") {
         selectedArray.push(this)
       }else {
         selectedArray = $("a[rel=" + rel + "], area[rel=" + rel + "]");
@@ -7309,7 +7314,7 @@ jQuery.cookie = function(key, value, options) {
     method = this.attr("method");
     action = this.attr("action");
     url = typeof action === "string" ? $.trim(action) : "";
-    url = url || (window.location.href || "");
+    url = url || window.location.href || "";
     if(url) {
       url = (url.match(/^([^#]+)/) || [])[1]
     }
@@ -7644,9 +7649,9 @@ jQuery.cookie = function(key, value, options) {
           if(timedOut) {
             throw"timeout";
           }
-          var isXml = s.dataType == "xml" || (doc.XMLDocument || $.isXMLDoc(doc));
+          var isXml = s.dataType == "xml" || doc.XMLDocument || $.isXMLDoc(doc);
           log("isXml=" + isXml);
-          if(!isXml && (window.opera && (doc.body === null || !doc.body.innerHTML))) {
+          if(!isXml && window.opera && (doc.body === null || !doc.body.innerHTML)) {
             if(--domCheckCount) {
               log("requeing onLoad callback, DOM not available");
               setTimeout(cb, 250);
@@ -7689,7 +7694,7 @@ jQuery.cookie = function(key, value, options) {
               }
             }
           }else {
-            if(dt == "xml" && (!xhr.responseXML && xhr.responseText)) {
+            if(dt == "xml" && !xhr.responseXML && xhr.responseText) {
               xhr.responseXML = toXml(xhr.responseText)
             }
           }
@@ -7759,7 +7764,7 @@ jQuery.cookie = function(key, value, options) {
         }else {
           doc = (new DOMParser).parseFromString(s, "text/xml")
         }
-        return doc && (doc.documentElement && doc.documentElement.nodeName != "parsererror") ? doc : null
+        return doc && doc.documentElement && doc.documentElement.nodeName != "parsererror" ? doc : null
       };
       var parseJSON = $.parseJSON || function(s) {
         return window["eval"]("(" + s + ")")
@@ -7866,7 +7871,7 @@ jQuery.cookie = function(key, value, options) {
       if(!n) {
         continue
       }
-      if(semantic && (form.clk && el.type == "image")) {
+      if(semantic && form.clk && el.type == "image") {
         if(!el.disabled && form.clk == el) {
           a.push({name:n, value:$(el).val(), type:el.type});
           a.push({name:n + ".x", value:form.clk_x}, {name:n + ".y", value:form.clk_y})
@@ -7882,7 +7887,7 @@ jQuery.cookie = function(key, value, options) {
           a.push({name:n, value:v[j]})
         }
       }else {
-        if(feature.fileapi && (el.type == "file" && !el.disabled)) {
+        if(feature.fileapi && el.type == "file" && !el.disabled) {
           if(elements) {
             elements.push(el)
           }
@@ -7907,7 +7912,7 @@ jQuery.cookie = function(key, value, options) {
     if(!semantic && form.clk) {
       var $input = $(form.clk), input = $input[0];
       n = input.name;
-      if(n && (!input.disabled && input.type == "image")) {
+      if(n && !input.disabled && input.type == "image") {
         a.push({name:n, value:$input.val()});
         a.push({name:n + ".x", value:form.clk_x}, {name:n + ".y", value:form.clk_y})
       }
@@ -7941,7 +7946,7 @@ jQuery.cookie = function(key, value, options) {
     for(var val = [], i = 0, max = this.length;i < max;i++) {
       var el = this[i];
       var v = $.fieldValue(el, successful);
-      if(v === null || (typeof v == "undefined" || v.constructor == Array && !v.length)) {
+      if(v === null || typeof v == "undefined" || v.constructor == Array && !v.length) {
         continue
       }
       if(v.constructor == Array) {
@@ -7957,7 +7962,7 @@ jQuery.cookie = function(key, value, options) {
     if(successful === undefined) {
       successful = true
     }
-    if(successful && (!n || (el.disabled || (t == "reset" || (t == "button" || ((t == "checkbox" || t == "radio") && !el.checked || ((t == "submit" || t == "image") && (el.form && el.form.clk != el) || tag == "select" && el.selectedIndex == -1))))))) {
+    if(successful && (!n || el.disabled || t == "reset" || t == "button" || (t == "checkbox" || t == "radio") && !el.checked || (t == "submit" || t == "image") && el.form && el.form.clk != el || tag == "select" && el.selectedIndex == -1)) {
       return null
     }
     if(tag == "select") {
@@ -7973,7 +7978,7 @@ jQuery.cookie = function(key, value, options) {
         if(op.selected) {
           var v = op.value;
           if(!v) {
-            v = op.attributes && (op.attributes["value"] && !op.attributes["value"].specified) ? op.text : op.value
+            v = op.attributes && op.attributes["value"] && !op.attributes["value"].specified ? op.text : op.value
           }
           if(one) {
             return v
@@ -8039,7 +8044,7 @@ jQuery.cookie = function(key, value, options) {
       }else {
         if(this.tagName.toLowerCase() == "option") {
           var $sel = $(this).parent("select");
-          if(select && ($sel[0] && $sel[0].type == "select-one")) {
+          if(select && $sel[0] && $sel[0].type == "select-one") {
             $sel.find("option").selected(false)
           }
           this.selected = select
@@ -8076,7 +8081,7 @@ jQuery.cookie = function(key, value, options) {
         return'<div class="joyride-tip-guide ' + tipClass + '" id="joyRidePopup' + index + '"><span class="joyride-nub"></span><div class="joyride-content-wrapper">' + $(self).html() + buttonText + '<a href="#close" class="joyride-close-tip"></a>' + timerIndicatorInstance + "</div></div>"
       };
       var tipLayout = function(tipClass, index, buttonText, self) {
-        if(index == 0 && (settings.startTimerOnClick && settings.timer > 0) || settings.timer == 0) {
+        if(index == 0 && settings.startTimerOnClick && settings.timer > 0 || settings.timer == 0) {
           timerIndicatorInstance = ""
         }else {
           timerIndicatorInstance = timerIndicatorTemplate
@@ -8259,7 +8264,7 @@ jQuery.cookie = function(key, value, options) {
           settings.postStepCallback(prevCount)
         }
       };
-      if(!settings.inline || (!settings.cookieMonster || !$.cookie(settings.cookieName))) {
+      if(!settings.inline || !settings.cookieMonster || !$.cookie(settings.cookieName)) {
         $(window).resize(function() {
           var parentElementID = $(tipContent[prevCount]).data("id"), currentTipPosition = $("#" + parentElementID).offset(), currentParentHeight = $("#" + parentElementID).outerHeight(), currentTipHeight = $("#joyRidePopup" + prevCount).outerHeight(), nubHeight = Math.ceil($(".joyride-nub").outerHeight() / 2);
           if(Modernizr.mq("only screen and (max-width: 769px)")) {
@@ -8347,7 +8352,7 @@ jQuery.cookie = function(key, value, options) {
 (function(a) {
   function d(b) {
     var c = b || window.event, d = [].slice.call(arguments, 1), e = 0, f = !0, g = 0, h = 0;
-    return b = a.event.fix(c), b.type = "mousewheel", c.wheelDelta && (e = c.wheelDelta / 120), c.detail && (e = -c.detail / 3), h = e, c.axis !== undefined && (c.axis === c.HORIZONTAL_AXIS && (h = 0, g = -1 * e)), c.wheelDeltaY !== undefined && (h = c.wheelDeltaY / 120), c.wheelDeltaX !== undefined && (g = -1 * c.wheelDeltaX / 120), d.unshift(b, e, g, h), (a.event.dispatch || a.event.handle).apply(this, d)
+    return b = a.event.fix(c), b.type = "mousewheel", c.wheelDelta && (e = c.wheelDelta / 120), c.detail && (e = -c.detail / 3), h = e, c.axis !== undefined && c.axis === c.HORIZONTAL_AXIS && (h = 0, g = -1 * e), c.wheelDeltaY !== undefined && (h = c.wheelDeltaY / 120), c.wheelDeltaX !== undefined && (g = -1 * c.wheelDeltaX / 120), d.unshift(b, e, g, h), (a.event.dispatch || a.event.handle).apply(this, d)
   }
   var b = ["DOMMouseScroll", "mousewheel"];
   if(a.event.fixHooks) {
@@ -8575,7 +8580,7 @@ jQuery.cookie = function(key, value, options) {
           k.data({on_drag:true});
           j.addClass("mCSB_dragger_onDrag");
           var G = c(this), J = G.offset(), F = H.originalEvent.pageX - J.left, I = H.originalEvent.pageY - J.top;
-          if(F < G.width() && (F > 0 && (I < G.height() && I > 0))) {
+          if(F < G.width() && F > 0 && I < G.height() && I > 0) {
             n = I;
             o = F
           }
@@ -8605,7 +8610,7 @@ jQuery.cookie = function(key, value, options) {
             F = H.pageX - K.left;
             J = H.pageY - K.top
           }
-          if(F < G.width() && (F > 0 && (J < G.height() && J > 0))) {
+          if(F < G.width() && F > 0 && J < G.height() && J > 0) {
             n = J;
             o = F
           }
@@ -9229,7 +9234,7 @@ jQuery.cookie = function(key, value, options) {
   c.support.touch = !!("ontouchstart" in window);
   c.support.msPointer = window.navigator.msPointerEnabled;
   var a = "https:" == document.location.protocol ? "https:" : "http:";
-  c.event.special.mousewheel || document.write('<script src="' + a + '//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.0.6/jquery.mousewheel.min.js">\x3c/script>');
+  c.event.special.mousewheel || document.write('<script src="' + a + '//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.0.6/jquery.mousewheel.min.js"><\/script>');
   c.fn.mCustomScrollbar = function(e) {
     if(b[e]) {
       return b[e].apply(this, Array.prototype.slice.call(arguments, 1))
@@ -9288,7 +9293,7 @@ jQuery.cookie = function(key, value, options) {
       this.dataList.push(new u(a));
       this.dataCache = null
     }, isDark:function(a, c) {
-      if(0 > a || (this.moduleCount <= a || (0 > c || this.moduleCount <= c))) {
+      if(0 > a || this.moduleCount <= a || 0 > c || this.moduleCount <= c) {
         throw Error(a + "," + c);
       }
       return this.modules[a][c]
@@ -9332,7 +9337,7 @@ jQuery.cookie = function(key, value, options) {
       for(var d = -1;7 >= d;d++) {
         if(!(-1 >= a + d || this.moduleCount <= a + d)) {
           for(var b = -1;7 >= b;b++) {
-            -1 >= c + b || (this.moduleCount <= c + b || (this.modules[a + d][c + b] = 0 <= d && (6 >= d && (0 == b || 6 == b)) || (0 <= b && (6 >= b && (0 == d || 6 == d)) || 2 <= d && (4 >= d && (2 <= b && 4 >= b))) ? !0 : !1))
+            -1 >= c + b || this.moduleCount <= c + b || (this.modules[a + d][c + b] = 0 <= d && 6 >= d && (0 == b || 6 == b) || 0 <= b && 6 >= b && (0 == d || 6 == d) || 2 <= d && 4 >= d && 2 <= b && 4 >= b ? !0 : !1)
           }
         }
       }
@@ -9369,7 +9374,7 @@ jQuery.cookie = function(key, value, options) {
           if(null == this.modules[b][e]) {
             for(var f = -2;2 >= f;f++) {
               for(var i = -2;2 >= i;i++) {
-                this.modules[b + f][e + i] = -2 == f || (2 == f || (-2 == i || (2 == i || 0 == f && 0 == i))) ? !0 : !1
+                this.modules[b + f][e + i] = -2 == f || 2 == f || -2 == i || 2 == i || 0 == f && 0 == i ? !0 : !1
               }
             }
           }
@@ -9570,7 +9575,7 @@ jQuery.cookie = function(key, value, options) {
           for(var f = 0, i = a.isDark(b, e), g = -1;1 >= g;g++) {
             if(!(0 > b + g || c <= b + g)) {
               for(var h = -1;1 >= h;h++) {
-                0 > e + h || (c <= e + h || (0 == g && 0 == h || i == a.isDark(b + g, e + h) && f++))
+                0 > e + h || c <= e + h || 0 == g && 0 == h || i == a.isDark(b + g, e + h) && f++
               }
             }
           }
@@ -9586,12 +9591,12 @@ jQuery.cookie = function(key, value, options) {
       }
       for(b = 0;b < c;b++) {
         for(e = 0;e < c - 6;e++) {
-          a.isDark(b, e) && (!a.isDark(b, e + 1) && (a.isDark(b, e + 2) && (a.isDark(b, e + 3) && (a.isDark(b, e + 4) && (!a.isDark(b, e + 5) && (a.isDark(b, e + 6) && (d += 40)))))))
+          a.isDark(b, e) && !a.isDark(b, e + 1) && a.isDark(b, e + 2) && a.isDark(b, e + 3) && a.isDark(b, e + 4) && !a.isDark(b, e + 5) && a.isDark(b, e + 6) && (d += 40)
         }
       }
       for(e = 0;e < c;e++) {
         for(b = 0;b < c - 6;b++) {
-          a.isDark(b, e) && (!a.isDark(b + 1, e) && (a.isDark(b + 2, e) && (a.isDark(b + 3, e) && (a.isDark(b + 4, e) && (!a.isDark(b + 5, e) && (a.isDark(b + 6, e) && (d += 40)))))))
+          a.isDark(b, e) && !a.isDark(b + 1, e) && a.isDark(b + 2, e) && a.isDark(b + 3, e) && a.isDark(b + 4, e) && !a.isDark(b + 5, e) && a.isDark(b + 6, e) && (d += 40)
         }
       }
       for(e = f = 0;e < c;e++) {
@@ -9787,16 +9792,16 @@ jQuery.cookie = function(key, value, options) {
     })
   }, _hide:function(n, i) {
     var a = n[0], w = (a.value || r).replace(l, r), h = n.data(f) || r, p = n.data(b) || 0, y = n.data(o), s, u;
-    h.length && (w == h && (a.value = r, n.data(e) && ((n.attr(v) || r) === "text" && (s = n.data(e) || [], u = n.parent() || [], s.length && (u.length && (u[0].removeChild(n[0]), u[0].appendChild(s[0]), n = s)))), p && (n.attr(c, p), n.removeData(b)), i && (n.attr("autocomplete", "off"), t.setTimeout(function() {
+    h.length && w == h && (a.value = r, n.data(e) && (n.attr(v) || r) === "text" && (s = n.data(e) || [], u = n.parent() || [], s.length && u.length && (u[0].removeChild(n[0]), u[0].appendChild(s[0]), n = s)), p && (n.attr(c, p), n.removeData(b)), i && (n.attr("autocomplete", "off"), t.setTimeout(function() {
       n.select()
-    }, 1)))), y && n.removeClass(y)
+    }, 1))), y && n.removeClass(y)
   }, show:function(t) {
     n(t).filter(it).each(function() {
       n.watermark._show(n(this))
     })
   }, _show:function(t) {
     var p = t[0], g = (p.value || r).replace(l, r), i = t.data(f) || r, k = t.attr(v) || r, d = t.data(o), h, s, a;
-    g.length != 0 && g != i || t.data(w) ? n.watermark._hide(t) : (y = u, t.data(e) && (k === nt && (h = t.data(e) || [], s = t.parent() || [], h.length && (s.length && (s[0].removeChild(t[0]), s[0].appendChild(h[0]), t = h, t.attr(c, i.length), p = t[0])))), (k === "text" || k === "search") && (a = t.attr(c) || 0, a > 0 && (i.length > a && (t.data(b, a), t.attr(c, i.length)))), d && t.addClass(d), p.value = i)
+    g.length != 0 && g != i || t.data(w) ? n.watermark._hide(t) : (y = u, t.data(e) && k === nt && (h = t.data(e) || [], s = t.parent() || [], h.length && s.length && (s[0].removeChild(t[0]), s[0].appendChild(h[0]), t = h, t.attr(c, i.length), p = t[0])), (k === "text" || k === "search") && (a = t.attr(c) || 0, a > 0 && i.length > a && (t.data(b, a), t.attr(c, i.length))), d && t.addClass(d), p.value = i)
   }, hideAll:function() {
     y && (n.watermark.hide(p), y = h)
   }, showAll:function() {
@@ -9817,7 +9822,7 @@ jQuery.cookie = function(key, value, options) {
         if(h.data(s)) {
           (b || k) && (n.watermark._hide(h), b && h.data(f, i), k && h.data(o, y.className))
         }else {
-          if(ut && (y.useNative.call(ft, h) && (h.attr("tagName") || r) !== g)) {
+          if(ut && y.useNative.call(ft, h) && (h.attr("tagName") || r) !== g) {
             b && h.attr(rt, i);
             return
           }
@@ -9956,7 +9961,7 @@ window.Modernizr = function(a, b, c) {
       while(g--) {
         j[i[g].id] = i[g]
       }
-      e.touch = "ontouchstart" in a || (a.DocumentTouch && b instanceof DocumentTouch || (j.touch && j.touch.offsetTop) === 9)
+      e.touch = "ontouchstart" in a || a.DocumentTouch && b instanceof DocumentTouch || (j.touch && j.touch.offsetTop) === 9
     }, g, d)
   }([, ["@media (", m.join("touch-enabled),("), h, ")", "{#touch{top:9px;position:absolute}}"].join("")], [, "touch"]);
   n.touch = function() {
@@ -9989,7 +9994,7 @@ window.Modernizr = function(a, b, c) {
   function f() {
   }
   function g(a) {
-    return!a || (a == "loaded" || (a == "complete" || a == "uninitialized"))
+    return!a || a == "loaded" || a == "complete" || a == "uninitialized"
   }
   function h() {
     var a = p.shift();
@@ -9999,7 +10004,7 @@ window.Modernizr = function(a, b, c) {
   }
   function i(a, c, d, e, f, i, j) {
     function k(b) {
-      if(!o && (g(l.readyState) && (u.r = o = 1, !q && h(), l.onload = l.onreadystatechange = null, b))) {
+      if(!o && g(l.readyState) && (u.r = o = 1, !q && h(), l.onload = l.onreadystatechange = null, b)) {
         a != "img" && m(function() {
           t.removeChild(l)
         }, 50);
@@ -10038,7 +10043,7 @@ window.Modernizr = function(a, b, c) {
     }
     function g(a, e, f, g, i) {
       var j = b(a), l = j.autoCallback;
-      j.url.split(".").pop().split("?").shift(), j.bypass || (e && (e = d(e) ? e : e[a] || (e[g] || (e[a.split("/").pop().split("?")[0]] || h))), j.instead ? j.instead(a, e, f, g, i) : (y[j.url] ? j.noexec = !0 : y[j.url] = 1, f.load(j.url, j.forceCSS || !j.forceJS && "css" == j.url.split(".").pop().split("?").shift() ? "c" : c, j.noexec, j.attrs, j.timeout), (d(e) || d(l)) && f.load(function() {
+      j.url.split(".").pop().split("?").shift(), j.bypass || (e && (e = d(e) ? e : e[a] || e[g] || e[a.split("/").pop().split("?")[0]] || h), j.instead ? j.instead(a, e, f, g, i) : (y[j.url] ? j.noexec = !0 : y[j.url] = 1, f.load(j.url, j.forceCSS || !j.forceJS && "css" == j.url.split(".").pop().split("?").shift() ? "c" : c, j.noexec, j.attrs, j.timeout), (d(e) || d(l)) && f.load(function() {
         k(), e && e(j.origUrl, i, g), l && l(j.origUrl, i, g), y[j.url] = 2
       })))
     }
@@ -10059,7 +10064,7 @@ window.Modernizr = function(a, b, c) {
                 }
                 return b
               }(), a) {
-                a.hasOwnProperty(n) && (!c && (!--m && (d(j) ? j = function() {
+                a.hasOwnProperty(n) && (!c && !--m && (d(j) ? j = function() {
                   var a = [].slice.call(arguments);
                   k.apply(this, a), l()
                 } : j[n] = function(a) {
@@ -10067,7 +10072,7 @@ window.Modernizr = function(a, b, c) {
                     var b = [].slice.call(arguments);
                     a && a.apply(this, b), l()
                   }
-                }(k[n]))), g(a[n], j, b, n, h))
+                }(k[n])), g(a[n], j, b, n, h))
               }
             }
           }
@@ -10094,16 +10099,16 @@ window.Modernizr = function(a, b, c) {
     z[a] = b
   }, B.addFilter = function(a) {
     x.push(a)
-  }, B.errorTimeout = 1E4, b.readyState == null && (b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function() {
+  }, B.errorTimeout = 1E4, b.readyState == null && b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function() {
     b.removeEventListener("DOMContentLoaded", A, 0), b.readyState = "complete"
-  }, 0))), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function(a, c, d, e, i, j) {
+  }, 0)), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function(a, c, d, e, i, j) {
     var k = b.createElement("script"), l, o, e = e || B.errorTimeout;
     k.src = a;
     for(o in d) {
       k.setAttribute(o, d[o])
     }
     c = j ? h : c || f, k.onreadystatechange = k.onload = function() {
-      !l && (g(k.readyState) && (l = 1, c(), k.onload = k.onreadystatechange = null))
+      !l && g(k.readyState) && (l = 1, c(), k.onload = k.onreadystatechange = null)
     }, m(function() {
       l || (l = 1, c(1))
     }, e), i ? k.onload() : n.parentNode.insertBefore(k, n)
@@ -10118,7 +10123,7 @@ window.Modernizr = function(a, b, c) {
 }(this, document), Modernizr.load = function() {
   yepnope.apply(window, [].slice.call(arguments, 0))
 }, Modernizr.addTest("ie8compat", function() {
-  return!window.addEventListener && (document.documentMode && document.documentMode === 7)
+  return!window.addEventListener && document.documentMode && document.documentMode === 7
 });
 window.Modernizr = function(a, b, c) {
   function v(a) {
@@ -10223,7 +10228,7 @@ window.Modernizr = function(a, b, c) {
         self._popTag(tag)
       }else {
         self.input.focus();
-        if(self.options.emptySearch && ($(e.target).hasClass("tagit-input") && (self.input.val() == "" && self.input.autocomplete != undefined))) {
+        if(self.options.emptySearch && $(e.target).hasClass("tagit-input") && self.input.val() == "" && self.input.autocomplete != undefined) {
           self.input.autocomplete("search")
         }
       }
@@ -10257,7 +10262,7 @@ window.Modernizr = function(a, b, c) {
       if(e.which == self._keys.backspace) {
         return self._backspace(lastLi)
       }
-      if(self._isInitKey(e.which) && !(self._isTabKey(e.which) && (this.value == "" && !self.input.data("autoCompleteTag")))) {
+      if(self._isInitKey(e.which) && !(self._isTabKey(e.which) && this.value == "" && !self.input.data("autoCompleteTag"))) {
         e.preventDefault();
         self.input.data("autoCompleteTag", false);
         if(self.options.allowNewTags && $(this).val().length >= self.options.minLength) {
@@ -10557,39 +10562,41 @@ VISH.Renderer = function(V, $, undefined) {
         extraButtons = options.extraButtons
       }
     }
-    for(el in slide.elements) {
-      if(!V.Renderer.Filter.allowElement(slide.elements[el])) {
-        content += V.Renderer.Filter.renderContentFiltered(slide.elements[el], slide.template)
+    var elL = slide.elements.length;
+    for(var i = 0;i < elL;i++) {
+      var element = slide.elements[i];
+      if(!V.Renderer.Filter.allowElement(element)) {
+        content += V.Renderer.Filter.renderContentFiltered(element, slide.template)
       }else {
-        if(slide.elements[el].type === V.Constant.TEXT) {
-          content += _renderText(slide.elements[el], slide.template)
+        if(element.type === V.Constant.TEXT) {
+          content += _renderText(element, slide.template)
         }else {
-          if(slide.elements[el].type === V.Constant.IMAGE) {
-            content += _renderImage(slide.elements[el], slide.template)
+          if(element.type === V.Constant.IMAGE) {
+            content += _renderImage(element, slide.template)
           }else {
-            if(slide.elements[el].type === V.Constant.VIDEO) {
-              content += _renderHTML5Video(slide.elements[el], slide.template)
+            if(element.type === V.Constant.VIDEO) {
+              content += _renderHTML5Video(element, slide.template)
             }else {
-              if(slide.elements[el].type === V.Constant.AUDIO) {
-                content += _renderHTML5Audio(slide.elements[el], slide.template)
+              if(element.type === V.Constant.AUDIO) {
+                content += _renderHTML5Audio(element, slide.template)
               }else {
-                if(slide.elements[el].type === V.Constant.OBJECT) {
-                  content += _renderObject(slide.elements[el], slide.template);
+                if(element.type === V.Constant.OBJECT) {
+                  content += _renderObject(element, slide.template);
                   classes += "object "
                 }else {
-                  if(slide.elements[el].type === V.Constant.SNAPSHOT) {
-                    content += _renderSnapshot(slide.elements[el], slide.template);
+                  if(element.type === V.Constant.SNAPSHOT) {
+                    content += _renderSnapshot(element, slide.template);
                     classes += "snapshot "
                   }else {
-                    if(slide.elements[el].type === V.Constant.APPLET) {
-                      content += _renderApplet(slide.elements[el], slide.template);
+                    if(element.type === V.Constant.APPLET) {
+                      content += _renderApplet(element, slide.template);
                       classes += "applet "
                     }else {
-                      if(slide.elements[el].type === V.Constant.QUIZ) {
-                        content += V.Quiz.render(slide.elements[el], slide.template);
+                      if(element.type === V.Constant.QUIZ) {
+                        content += V.Quiz.render(element, slide.template);
                         classes += V.Constant.QUIZ
                       }else {
-                        content += _renderEmpty(slide.elements[el], slide.template)
+                        content += _renderEmpty(element, slide.template)
                       }
                     }
                   }
@@ -10604,8 +10611,9 @@ VISH.Renderer = function(V, $, undefined) {
   };
   var _renderSlideset = function(slidesetJSON) {
     var allSubslides = "";
-    for(index in slidesetJSON.slides) {
-      var subslide = slidesetJSON.slides[index];
+    var subslidesL = slidesetJSON.slides.length;
+    for(var i = 0;i < subslidesL;i++) {
+      var subslide = slidesetJSON.slides[i];
       allSubslides += _renderStandardSlide(subslide, {extraClasses:"hide_in_smartcard", extraButtons:"<div class='close_subslide' id='close" + subslide.id + "'></div>"})
     }
     return $("<article type='" + slidesetJSON.type + "' id='" + slidesetJSON.id + "'>" + allSubslides + "</article>")
@@ -10653,6 +10661,9 @@ VISH.Renderer = function(V, $, undefined) {
         break;
       case V.Constant.MEDIA.SCORM_PACKAGE:
         return V.SCORM.renderSCORMFromJSON(element, {extraClasses:"" + template + "_" + element["areaid"]});
+        break;
+      case V.Constant.MEDIA.WEB_APP:
+        return V.Object.Webapp.renderWebappFromJSON(element, {extraClasses:"" + template + "_" + element["areaid"]});
         break;
       default:
         var style = element["style"] ? element["style"] : "";
@@ -10930,7 +10941,7 @@ VISH.Status.Device = function(V, $, undefined) {
       device.features = V.Status.Device.Features.fillFeatures();
       V.Storage.add(V.Constant.Storage.Device, device, false);
       if(device.android && device.browser.name === V.Constant.ANDROID_BROWSER) {
-        if(device.hasTestingViewport === true) {
+        if(device.hasTestingViewport === true && V.Storage.isSupported()) {
           _reloadOnAndroidTestingViewport(callback, device);
           return
         }
@@ -11194,7 +11205,7 @@ VISH.Utils = function(V, undefined) {
     }
   };
   var fixPresentation = function(presentation) {
-    if(typeof presentation == "undefined" || (presentation === null || typeof presentation.slides == "undefined")) {
+    if(typeof presentation == "undefined" || presentation === null || typeof presentation.slides == "undefined") {
       return null
     }
     if(typeof presentation.VEVersion == "undefined") {
@@ -11450,7 +11461,7 @@ VISH.Utils = function(V, undefined) {
     return url
   };
   var addParamToUrl = function(url, paramName, paramValue) {
-    if(typeof url !== "string" || (typeof paramName !== "string" || typeof paramValue !== "string")) {
+    if(typeof url !== "string" || typeof paramName !== "string" || typeof paramValue !== "string") {
       return url
     }
     url = removeParamFromUrl(url, paramName);
@@ -11517,7 +11528,7 @@ VISH.Utils = function(V, undefined) {
   };
   var getSrcFromCSS = function(css) {
     try {
-      if(typeof css == "string" && (css.indexOf("url") === 0 && css.length > 3)) {
+      if(typeof css == "string" && css.indexOf("url") === 0 && css.length > 3) {
         var quote = css[4];
         if(quote == '"' || quote == "'") {
           return css.substring(5, css.length - 2)
@@ -12001,10 +12012,218 @@ VISH.Utils = function(V, undefined) {
       }
     })
   };
+  var shuffle = function(o) {
+    for(var j, x, i = o.length;i;j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {
+    }
+    return o
+  };
+  var purgeString = function(str) {
+    if(typeof str != "string") {
+      return str
+    }
+    str = str.replace(/\u00e2\u20ac\u2039/g, "");
+    str = str.replace(/\u00c2/g, "");
+    str = str.replace(/&shy/g, "");
+    str = str.replace(String.fromCharCode(8203), "");
+    var charCodesToPurge = [32, 160, 173];
+    var strL = str.length;
+    var lastValidCharIndex = strL - 1;
+    for(var i = strL - 1;i > -1;i--) {
+      if(charCodesToPurge.indexOf(str.charCodeAt(i)) != -1) {
+      }else {
+        lastValidCharIndex = i;
+        break
+      }
+    }
+    str = str.substr(0, lastValidCharIndex + 1);
+    strL = str.length;
+    lastValidCharIndex = 0;
+    for(var i = 0;i < strL;i++) {
+      if(charCodesToPurge.indexOf(str.charCodeAt(i)) != -1) {
+      }else {
+        lastValidCharIndex = i;
+        break
+      }
+    }
+    str = str.substr(lastValidCharIndex, strL);
+    return str
+  };
+  var getLevenshteinDistance = function(a, b) {
+    var cost;
+    var m = a.length;
+    var n = b.length;
+    if(m < n) {
+      var c = a;
+      a = b;
+      b = c;
+      var o = m;
+      m = n;
+      n = o
+    }
+    var r = new Array;
+    r[0] = new Array;
+    for(var c = 0;c < n + 1;c++) {
+      r[0][c] = c
+    }
+    for(var i = 1;i < m + 1;i++) {
+      r[i] = new Array;
+      r[i][0] = i;
+      for(var j = 1;j < n + 1;j++) {
+        cost = a.charAt(i - 1) == b.charAt(j - 1) ? 0 : 1;
+        r[i][j] = _minimator(r[i - 1][j] + 1, r[i][j - 1] + 1, r[i - 1][j - 1] + cost)
+      }
+    }
+    return r[m][n]
+  };
+  var _minimator = function(x, y, z) {
+    if(x < y && x < z) {
+      return x
+    }
+    if(y < x && y < z) {
+      return y
+    }
+    return z
+  };
   return{init:init, getOptions:getOptions, dimentionsToDraw:dimentionsToDraw, fitChildInParent:fitChildInParent, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, 
   getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, getBackgroundPosition:getBackgroundPosition, sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, removeParamFromUrl:removeParamFromUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion, updateHash:updateHash, cleanHash:cleanHash, removeHashFromUrlString:removeHashFromUrlString, getHashParams:getHashParams, getSlideNumberFromHash:getSlideNumberFromHash, 
-  checkAnimationsFinish:checkAnimationsFinish, fomatTimeForMPlayer:fomatTimeForMPlayer, delayFunction:delayFunction, addTempShown:addTempShown, removeTempShown:removeTempShown}
+  checkAnimationsFinish:checkAnimationsFinish, fomatTimeForMPlayer:fomatTimeForMPlayer, delayFunction:delayFunction, addTempShown:addTempShown, removeTempShown:removeTempShown, shuffle:shuffle, purgeString:purgeString, getLevenshteinDistance:getLevenshteinDistance}
 }(VISH);
+VISH.Object = function(V, $, undefined) {
+  var init = function() {
+    V.Object.Webapp.init()
+  };
+  function objectInfo(wrapper, source, sourceType) {
+    this.wrapper = wrapper;
+    this.source = source;
+    this.type = sourceType
+  }
+  var getObjectInfo = function(object) {
+    var wrapper = null;
+    if(typeof object == "string") {
+      var videoPattern = new RegExp("^<video", "g");
+      if(videoPattern.exec(object) != null) {
+        wrapper = "VIDEO"
+      }
+      var audioPattern = new RegExp("^<audio", "g");
+      if(audioPattern.exec(object) != null) {
+        wrapper = "AUDIO"
+      }
+    }
+    if(wrapper === null || typeof wrapper == "undefined") {
+      var element = $(object)[0];
+      if(typeof element != "undefined") {
+        wrapper = element.tagName
+      }
+    }
+    var source = _getSourceFromObject(object, wrapper);
+    var type;
+    switch(wrapper) {
+      case "VIDEO":
+        type = V.Constant.MEDIA.HTML5_VIDEO;
+        break;
+      case "AUDIO":
+        type = V.Constant.MEDIA.HTML5_AUDIO;
+        break;
+      case "IFRAME":
+        var objectTypeAttr = $(object).attr("objecttype");
+        if(typeof objectTypeAttr == "string") {
+          if(objectTypeAttr == V.Constant.MEDIA.SCORM_PACKAGE) {
+            type = V.Constant.MEDIA.SCORM_PACKAGE;
+            break
+          }else {
+            if(objectTypeAttr == V.Constant.MEDIA.WEB_APP) {
+              type = V.Constant.MEDIA.WEB_APP;
+              break
+            }
+          }
+        }
+      ;
+      default:
+        type = _getTypeFromSource(source)
+    }
+    return new objectInfo(wrapper, source, type)
+  };
+  var _getSourceFromObject = function(object, wrapper) {
+    switch(wrapper) {
+      case null:
+        return object;
+      case V.Constant.WRAPPER.EMBED:
+        return $(object).attr("src");
+      case V.Constant.WRAPPER.OBJECT:
+        if(typeof $(object).attr("src") != "undefined") {
+          return $(object).attr("src")
+        }
+        if(typeof $(object).attr("data") != "undefined") {
+          return $(object).attr("data")
+        }
+        return"source not founded";
+      case V.Constant.WRAPPER.IFRAME:
+        return $(object).attr("src");
+      case V.Constant.WRAPPER.VIDEO:
+        return V.Video.HTML5.getSources(object);
+      case V.Constant.WRAPPER.AUDIO:
+        return V.Audio.HTML5.getSources(object);
+      default:
+        V.Debugging.log("Unrecognized object wrapper: " + wrapper);
+        return null;
+        break
+    }
+  };
+  var _getTypeFromSource = function(source) {
+    if(typeof source == "object" && typeof source.length == "number" && source.length > 0) {
+      source = source[0]
+    }
+    var http_urls_pattern = /(http(s)?:\/\/)([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
+    var www_urls_pattern = /(www[.])([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
+    var youtube_video_pattern = /(http(s)?:\/\/)?(((youtu.be\/)([aA-zZ0-9-]+))|((www.youtube.com\/((watch\?v=)|(embed\/)|(v\/)))([aA-z0-9-Z&=.])+))/g;
+    var html5VideoFormats = ["mp4", "webm", "ogg"];
+    var imageFormats = ["jpg", "jpeg", "png", "gif", "bmp", "svg"];
+    var audioFormats = ["mp3", "wav", "ogg"];
+    if(typeof source != "string") {
+      return null
+    }
+    if(source.match(youtube_video_pattern) != null) {
+      return V.Constant.MEDIA.YOUTUBE_VIDEO
+    }
+    source = source.split("?")[0];
+    var extension = getExtensionFromSrc(source);
+    if(imageFormats.indexOf(extension) != "-1") {
+      return V.Constant.MEDIA.IMAGE
+    }
+    if(extension == "swf") {
+      return V.Constant.MEDIA.FLASH
+    }
+    if(extension == "pdf") {
+      return V.Constant.MEDIA.PDF
+    }
+    if(html5VideoFormats.indexOf(extension) != "-1") {
+      return V.Constant.MEDIA.HTML5_VIDEO
+    }
+    if(audioFormats.indexOf(extension) != "-1") {
+      return V.Constant.MEDIA.HTML5_AUDIO
+    }
+    if(extension == "json") {
+      return V.Constant.MEDIA.JSON
+    }
+    if(extension == "doc") {
+      return V.Constant.MEDIA.DOC
+    }
+    if(extension == "ppt" || extension == "pptx") {
+      return V.Constant.MEDIA.PPT
+    }
+    if(extension == "odp") {
+      return V.Constant.MEDIA.PPT
+    }
+    if(source.match(http_urls_pattern) != null || source.match(www_urls_pattern) != null) {
+      return V.Constant.MEDIA.WEB
+    }
+    return extension
+  };
+  var getExtensionFromSrc = function(source) {
+    return source.split(".").pop().split("&")[0].toLowerCase()
+  };
+  return{init:init, getExtensionFromSrc:getExtensionFromSrc, getObjectInfo:getObjectInfo}
+}(VISH, jQuery);
 VISH.Editor = function(V, $, undefined) {
   var initOptions;
   var initialPresentation = false;
@@ -12030,7 +12249,7 @@ VISH.Editor = function(V, $, undefined) {
       initOptions = {}
     }
     if(V.Debugging.isDevelopping()) {
-      if(options.configuration.mode == V.Constant.NOSERVER && (V.Debugging.getActionInit() == "loadSamples" && !presentation)) {
+      if(options.configuration.mode == V.Constant.NOSERVER && V.Debugging.getActionInit() == "loadSamples" && !presentation) {
         presentation = V.Debugging.getPresentationSamples()
       }
     }
@@ -12109,6 +12328,7 @@ VISH.Editor = function(V, $, undefined) {
     V.Editor.Audio.init();
     V.Editor.Object.init();
     V.Editor.PDFex.init();
+    V.Editor.EPackage.init();
     V.Editor.Presentation.Repository.init();
     V.Editor.Thumbnails.init();
     V.Editor.Quiz.init();
@@ -12402,6 +12622,13 @@ VISH.Editor = function(V, $, undefined) {
         element.id = $(div).attr("id");
         element.type = $(div).attr("type");
         element.areaid = $(div).attr("areaid");
+        var elSettings = $(div).attr("elSettings");
+        if(typeof elSettings == "string") {
+          try {
+            element.settings = JSON.parse(elSettings)
+          }catch(e) {
+          }
+        }
         if(element.type == V.Constant.TEXT) {
           var CKEditor = V.Editor.Text.getCKEditorFromZone(div);
           if(CKEditor !== null) {
@@ -12470,7 +12697,12 @@ VISH.Editor = function(V, $, undefined) {
                     element.quiztype = quizJSON.quizType;
                     element.selfA = quizJSON.selfA;
                     element.question = quizJSON.question;
-                    element.choices = quizJSON.choices;
+                    if(typeof quizJSON.choices != "undefined") {
+                      element.choices = quizJSON.choices
+                    }
+                    if(typeof quizJSON.answer != "undefined") {
+                      element.answer = quizJSON.answer
+                    }
                     if(quizJSON.extras) {
                       element.extras = quizJSON.extras
                     }
@@ -12554,7 +12786,7 @@ VISH.Editor = function(V, $, undefined) {
         $.ajax({type:send_type, url:V.UploadPresentationPath, data:params, success:function(data) {
           if(order != "unpublish") {
             lastStoredPresentationStringify = jsonPresentation;
-            if(createNewPresentation && (typeof data != "undefined" && data.uploadPath)) {
+            if(createNewPresentation && typeof data != "undefined" && data.uploadPath) {
               V.UploadPresentationPath = data.uploadPath;
               if(V.Status.getDevice().features.historypushState) {
                 if(data.editPath) {
@@ -12736,7 +12968,7 @@ VISH.Editor.Utils = function(V, $, undefined) {
     }
     var filterStyle = "";
     $.each(style.split(";"), function(index, property) {
-      if(property.indexOf("-ms-transform") === -1 && (property.indexOf("-moz-transform") === -1 && (property.indexOf("-o-transform") === -1 && (property.indexOf("-webkit-transform") === -1 && (property.indexOf("-moz-transform-origin") === -1 && (property.indexOf("-webkit-transform-origin") === -1 && (property.indexOf("-o-transform-origin") === -1 && property.indexOf("-ms-transform-origin") === -1))))))) {
+      if(property.indexOf("-ms-transform") === -1 && property.indexOf("-moz-transform") === -1 && property.indexOf("-o-transform") === -1 && property.indexOf("-webkit-transform") === -1 && property.indexOf("-moz-transform-origin") === -1 && property.indexOf("-webkit-transform-origin") === -1 && property.indexOf("-o-transform-origin") === -1 && property.indexOf("-ms-transform-origin") === -1) {
         filterStyle = filterStyle + property + "; "
       }
     });
@@ -12803,7 +13035,7 @@ VISH.Editor.Utils = function(V, $, undefined) {
     var http_urls_pattern = /(^http(s)?:\/\/)/g;
     var anchor_urls_pattern = /(^#)/g;
     var objectInfo = V.Object.getObjectInfo(input);
-    if(objectInfo.wrapper == null && (input.match(http_urls_pattern) == null && input.match(anchor_urls_pattern) == null)) {
+    if(objectInfo.wrapper == null && input.match(http_urls_pattern) == null && input.match(anchor_urls_pattern) == null) {
       return"http://" + input
     }else {
       return input
@@ -13046,11 +13278,14 @@ VISH.Editor.Utils = function(V, $, undefined) {
       case "tab_live_resource":
         V.Editor.Object.Live.onLoadTab();
         break;
-      case "tab_json_file":
+      case "tab_efile":
         V.Editor.Presentation.File.onLoadTab();
         break;
       case "tab_pdfex":
         V.Editor.PDFex.onLoadTab();
+        break;
+      case "tab_epackage":
+        V.Editor.EPackage.onLoadTab();
         break;
       default:
         break
@@ -13061,7 +13296,20 @@ VISH.Editor.Utils = function(V, $, undefined) {
     $("div.fancy_tabs a.fancy_tab:not(.disabled)").show();
     $("a.venondefaulttab").hide()
   };
-  return{setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, refreshDraggables:refreshDraggables, replaceIdsForSlide:replaceIdsForSlide, replaceIdsForSlideJSON:replaceIdsForSlideJSON, generateTable:generateTable, convertToTagsArray:convertToTagsArray, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath, loadTab:loadTab, hideNonDefaultTabs:hideNonDefaultTabs}
+  var showErrorDialog = function(msg) {
+    var options = {};
+    options.width = 650;
+    options.height = 190;
+    options.text = msg;
+    var button1 = {};
+    button1.text = V.I18n.getTrans("i.Ok");
+    button1.callback = function() {
+      $.fancybox.close()
+    };
+    options.buttons = [button1];
+    V.Utils.showDialog(options)
+  };
+  return{setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, refreshDraggables:refreshDraggables, replaceIdsForSlide:replaceIdsForSlide, replaceIdsForSlideJSON:replaceIdsForSlideJSON, generateTable:generateTable, convertToTagsArray:convertToTagsArray, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath, loadTab:loadTab, hideNonDefaultTabs:hideNonDefaultTabs, showErrorDialog:showErrorDialog}
 }(VISH, jQuery);
 VISH.Editor.Text = function(V, $, undefined) {
   var initialized = false;
@@ -13072,27 +13320,40 @@ VISH.Editor.Text = function(V, $, undefined) {
       CKEDITOR.on("dialogDefinition", function(ev) {
         var dialogName = ev.data.name;
         var dialogDefinition = ev.data.definition;
-        if(dialogName == "link") {
-          dialogDefinition.getContents("info").remove("linkType");
-          var protocols = dialogDefinition.getContents("info").get("protocol").items;
-          protocols.splice(3, 1);
-          protocols.splice(2, 1);
-          dialogDefinition.removeContents("advanced");
-          var targetTab = dialogDefinition.getContents("target");
-          var targetField = targetTab.get("linkTargetType");
-          targetField["default"] = "_blank";
-          targetField.items.splice(6, 1);
-          targetField.items.splice(4, 1);
-          targetField.items.splice(1, 1);
-          targetField.items.splice(0, 1)
-        }
-        if(dialogName == "table") {
-          dialogDefinition.removeContents("advanced");
-          var info = dialogDefinition.getContents("info");
-          var alignment = info.get("cmbAlign");
-          alignment.items.splice(0, 1);
-          alignment["default"] = "center";
-          info.remove("selHeaders")
+        switch(dialogName) {
+          case "link":
+            dialogDefinition.getContents("info").remove("linkType");
+            var protocols = dialogDefinition.getContents("info").get("protocol").items;
+            protocols.splice(3, 1);
+            protocols.splice(2, 1);
+            dialogDefinition.removeContents("advanced");
+            var targetTab = dialogDefinition.getContents("target");
+            var targetField = targetTab.get("linkTargetType");
+            targetField["default"] = "_blank";
+            targetField.items.splice(6, 1);
+            targetField.items.splice(4, 1);
+            targetField.items.splice(1, 1);
+            targetField.items.splice(0, 1);
+            break;
+          case "table":
+            dialogDefinition.removeContents("advanced");
+            var info = dialogDefinition.getContents("info");
+            var alignment = info.get("cmbAlign");
+            alignment.items.splice(0, 1);
+            alignment["default"] = "center";
+            info.remove("selHeaders");
+            break;
+          case "image":
+            dialogDefinition.removeContents("advanced");
+            var linkTab = dialogDefinition.getContents("Link");
+            var targetField = linkTab.get("cmbTarget");
+            targetField["default"] = "_blank";
+            targetField.items.splice(4, 1);
+            targetField.items.splice(2, 1);
+            targetField.items.splice(0, 1);
+            break;
+          case "MediaEmbedDialog":
+            break
         }
       });
       initialized = true
@@ -13116,29 +13377,37 @@ VISH.Editor.Text = function(V, $, undefined) {
     if(typeof $(current_area).attr("id") == "undefined") {
       $(current_area).attr("id", V.Utils.getId("TmpShownId"))
     }
-    V.Utils.addTempShown(current_area);
+    var disableTmpShown = options && options.disableTmpShown;
+    if(!disableTmpShown) {
+      V.Utils.addTempShown(current_area)
+    }
     var currentAreaHeight = $(current_area).height();
     var currentAreaWidth = $(current_area).width();
-    V.Utils.removeTempShown(current_area);
+    if(!disableTmpShown) {
+      V.Utils.removeTempShown(current_area)
+    }
     var wysiwygContainerId = V.Utils.getId();
     var wysiwygContainer = $("<div id='" + wysiwygContainerId + "' class='wysiwygTextArea'></div>");
     $(wysiwygContainer).attr("style", "width: 100%; height: 100%");
     $(current_area).append(wysiwygContainer);
     var config = {};
     config.toolbar = "Full";
-    config.toolbar_Full = [{name:"first", items:["Bold", "Italic", "Underline", "-", "Subscript", "Superscript", "Font", "FontSize", "TextColor", "BGColor"]}, "/", {name:"lists", items:["NumberedList", "BulletedList", "Table"]}, {name:"alignment", items:["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"]}, {name:"link", items:["Link"]}];
+    config.toolbar_Full = [{name:"first", items:["Bold", "Italic", "Underline", "-", "Subscript", "Superscript", "Font", "FontSize", "TextColor", "BGColor"]}, "/", {name:"lists", items:["NumberedList", "BulletedList", "Table"]}, {name:"alignment", items:["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"]}, {name:"link", items:["Link"]}, {name:"Objects", items:["Image", "MediaEmbed"]}, {name:"symbols", items:["SpecialChar"]}];
     config.sharedSpaces = {top:"toolbar_text"};
     config.toolbarCanCollapse = false;
     config.resize_enabled = false;
     config.removePlugins = "elementspath";
-    config.extraPlugins = "tableresize,autogrow,specialchar";
+    config.extraPlugins = "tableresize,autogrow,specialchar,mediaembed";
     if(options && options.autogrow) {
       config.autoGrow_minHeight = 34;
       config.autoGrow_maxHeight = 800
     }
     config.specialChars = [];
-    config.specialChars = config.specialChars.concat([["&alpha;", "Alpha"]], [["&beta;", "Beta"]], [["&gamma;", "Gamma"]], [["&delta;", "Delta"]], [["&epsilon;", "Epsilon"]], [["&zeta;", "Zeta"]], [["&eta;", "Eta"]], [["&theta;", "Theta"]], [["&iota;", "Iota"]], [["&kappa;", "Kappa"]], [["&lambda;", "Lambda"]], [["&mu;", "Mu"]], [["&nu;", "Nu"]], [["&xi;", "Xi"]], [["&omicron;", "Omicron"]], [["&pi;", "Pi"]], [["&rho;", "Rho"]], [["&sigma;", "Sigma"]], [["&sigma;", "Sigma"]], [["&tau;", "Tau"]], 
-    [["&upsilon;", "Upsilon"]], [["&phi;", "Phi"]], [["&chi;", "Chi"]], [["&psi;", "Psi"]], [["&omega;", "Omega"]]);
+    config.specialChars = config.specialChars.concat([["&alpha;", "Alpha"]], [["&beta;", "Beta"]], [["&gamma;", "Gamma"]], [["&delta;", "Delta"]], [["&epsilon;", "Epsilon"]], [["&zeta;", "Zeta"]], [["&eta;", "Eta"]], [["&theta;", "Theta"]], [["&iota;", "Iota"]], [["&kappa;", "Kappa"]], [["&lambda;", "Lambda"]], [["&mu;", "Mu"]], [["&nu;", "Nu"]], [["&xi;", "Xi"]], [["&omicron;", "Omicron"]], [["&pi;", "Pi"]], [["&rho;", "Rho"]], [["&sigma;", "Sigma"]], [["&tau;", "Tau"]], [["&upsilon;", "Upsilon"]], 
+    [["&phi;", "Phi"]], [["&chi;", "Chi"]], [["&psi;", "Psi"]], [["&omega;", "Omega"]], [["&divide;", ""]], [["&radic;", ""]], [["&bull;", ""]], [["&middot;", ""]], [["&plusmn;", ""]], [["&frac14;", ""]], [["&frac12;", ""]], [["&frac34;", ""]], [["&permil;", ""]], [["&weierp;", ""]], [["&image;", ""]], [["&real;", ""]], [["&forall;", ""]], [["&part;", ""]], [["&exist;", ""]], [["&empty;", ""]], [["&nabla;", ""]], [["&isin;", ""]], [["&notin;", ""]], [["&ni;", ""]], [["&prod;", ""]], [["&sum;", ""]], 
+    [["&minus;", ""]], [["&lowast;", ""]], [["&prop;", ""]], [["&infin;", ""]], [["&ang;", ""]], [["&and;", ""]], [["&or;", ""]], [["&cap;", ""]], [["&cup;", ""]], [["&int;", ""]], [["&cong;", ""]], [["&asymp;", ""]], [["&ne;", ""]], [["&equiv;", ""]], [["&le;", ""]], [["&ge;", ""]], [["&sub;", ""]], [["&sup;", ""]], [["&nsub;", ""]], [["&sube;", ""]], [["&supe;", ""]], [["&oplus;", ""]], [["&otimes;", ""]], [["&perp;", ""]], [["&lang;", ""]], [["&rang;", ""]], [["&lceil;", ""]], [["&rceil;", ""]], 
+    [["&lfloor;", ""]], [["&rfloor;", ""]], [["&fnof;", ""]], [["&lsquo;", ""]], [["&rsquo;", ""]], [["&ldquo;", ""]], [["&rdquo;", ""]], [["&larr;", ""]], [["&uarr;", ""]], [["&darr;", ""]], [["&rarr;", ""]], [["&harr;", ""]], [["&crarr;", ""]], [["&lArr;", ""]], [["&uArr;", ""]], [["&dArr;", ""]], [["&rArr;", ""]], [["&hArr;", ""]], [["&euro;", "Euro"]], [["&cent;", "Cent"]], [["&pound;", "Pound"]], [["&yen;", ""]], [["&curren;", ""]], [["&brvbar;", ""]], [["&sect;", ""]], [["&copy;", ""]], [["&reg;", 
+    ""]], [["&ordf;", ""]], [["&ordm;", ""]], [["&deg;", ""]], [["&laquo;", ""]], [["&raquo;", ""]], [["&not;", ""]], [["&para;", ""]], [["&loz;", ""]], [["&spades;", ""]], [["&clubs;", ""]], [["&hearts;", ""]], [["&diams;", ""]], [["&dagger;", ""]]);
     config.width = "100%";
     config.height = currentAreaHeight;
     config.fontSize_defaultLabel = "12";
@@ -13181,7 +13450,7 @@ VISH.Editor.Text = function(V, $, undefined) {
           initialTextColor = "color:#ccc"
         }
       }
-      if(isTemplateArea || (typeof initial_text != "string" || initial_text === "")) {
+      if(isTemplateArea || typeof initial_text != "string" || initial_text === "") {
         initial_text = "&shy"
       }
       initial_text = "<p style='text-align:" + defaultAlignment + ";'><span autoColor='true' style='" + initialTextColor + "'><span style='font-size:" + defaultFontSize + "px;'>" + initial_text + "</span></span></p>";
@@ -13191,11 +13460,15 @@ VISH.Editor.Text = function(V, $, undefined) {
     var myWidth = currentAreaWidth;
     var myHeight = currentAreaHeight;
     if(!newInstance) {
-      V.Utils.addTempShown([slide, subslide, current_area]);
+      if(!disableTmpShown) {
+        V.Utils.addTempShown([slide, subslide, current_area])
+      }
       setTimeout(function() {
         if(_initializedCKEditorInstances[ckeditor.name] !== true) {
           _initializedCKEditorInstances[ckeditor.name] = false;
-          V.Utils.removeTempShown([slide, subslide, current_area])
+          if(!disableTmpShown) {
+            V.Utils.removeTempShown([slide, subslide, current_area])
+          }
         }else {
           _initializedCKEditorInstances[ckeditor.name] = undefined
         }
@@ -13207,13 +13480,17 @@ VISH.Editor.Text = function(V, $, undefined) {
           if(isQuiz) {
             if(!newInstance) {
               setTimeout(function() {
-                V.Utils.addTempShown([slide, subslide, current_area]);
+                if(!disableTmpShown) {
+                  V.Utils.addTempShown([slide, subslide, current_area])
+                }
                 var iframeContent = _getCKEditorIframeContentFromInstance(ckeditor);
                 var newMyHeight = $(iframeContent).find("html").height();
                 if(newMyHeight > myHeight) {
                   ckeditor.resize(myWidth, newMyHeight)
                 }
-                V.Utils.removeTempShown([slide, subslide, current_area])
+                if(!disableTmpShown) {
+                  V.Utils.removeTempShown([slide, subslide, current_area])
+                }
               }, 1E3)
             }
           }else {
@@ -13224,15 +13501,28 @@ VISH.Editor.Text = function(V, $, undefined) {
               ckeditor.focus()
             }
           }
+          if(options && typeof options.callback == "function") {
+            options.callback()
+          }
         })
       }
       if(!newInstance) {
         if(typeof _initializedCKEditorInstances[ckeditor.name] == "undefined") {
           _initializedCKEditorInstances[ckeditor.name] = true;
-          V.Utils.removeTempShown([slide, subslide, current_area])
+          if(!disableTmpShown) {
+            V.Utils.removeTempShown([slide, subslide, current_area])
+          }
         }else {
           _initializedCKEditorInstances[ckeditor.name] = undefined
         }
+      }
+      if(options && typeof options.onKeyup === "function" && options.placeholder != true) {
+        ckeditor.document.on("keyup", function(event) {
+          options.onKeyup(current_area, ckeditor, event)
+        })
+      }
+      if(!initial_text && options && typeof options.callback == "function") {
+        options.callback()
       }
     });
     ckeditor.on("resize", function(event) {
@@ -13244,7 +13534,13 @@ VISH.Editor.Text = function(V, $, undefined) {
         var b = $(event.editor.getData()).text().replace(/\s+/g, "");
         if(a == b) {
           setTimeout(function() {
-            event.editor.setData(initial_text_blank);
+            event.editor.setData(initial_text_blank, function() {
+              if(options && typeof options.onKeyup === "function") {
+                ckeditor.document.on("keyup", function(event) {
+                  options.onKeyup(current_area, ckeditor, event)
+                })
+              }
+            });
             event.editor.focus()
           }, 20)
         }
@@ -13261,7 +13557,7 @@ VISH.Editor.Text = function(V, $, undefined) {
     }
   };
   var getCKEditorFromZone = function(zone) {
-    if(!zone || (typeof CKEDITOR === "undefined" || typeof CKEDITOR.instances === "undefined")) {
+    if(!zone || typeof CKEDITOR === "undefined" || typeof CKEDITOR.instances === "undefined") {
       return null
     }
     var CKEditorInstance = null;
@@ -13294,7 +13590,7 @@ VISH.Editor.Text = function(V, $, undefined) {
     return $(iframe).contents()[0]
   };
   var getCKEditorFromTextArea = function(textArea) {
-    if(!textArea || (typeof CKEDITOR === "undefined" || typeof CKEDITOR.instances === "undefined")) {
+    if(!textArea || typeof CKEDITOR === "undefined" || typeof CKEDITOR.instances === "undefined") {
       return null
     }
     if(!$(textArea).hasClass(".cke_skin_vEditor")) {
@@ -13313,7 +13609,14 @@ VISH.Editor.Text = function(V, $, undefined) {
     return CKEditorInstance
   };
   var _getPlainText = function() {
-    return $(this.getSnapshot()).text()
+    var _plainText = "";
+    $(this.getSnapshot()).each(function(index, p) {
+      if(index != 0) {
+        _plainText = _plainText + "\n"
+      }
+      _plainText = _plainText + $(p).text()
+    });
+    return _plainText
   };
   var _fixCKEDITORBug = function(editor) {
     if(CKEDITOR.env.webkit) {
@@ -13614,6 +13917,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     V.Editor.Object.GoogleDOC.init();
     V.Editor.Object.Snapshot.init();
     V.Editor.Object.Scorm.init();
+    V.Editor.Object.Webapp.init();
     var urlInput = $("#" + urlDivId).find("input");
     $("#" + urlDivId + " .previewButton").click(function(event) {
       if(V.Police.validateObject($("#" + urlInputId).val())[0]) {
@@ -13726,6 +14030,10 @@ VISH.Editor.Object = function(V, $, undefined) {
           var objectToDraw = jsonResponse.src;
           if(jsonResponse.type === V.Constant.MEDIA.SCORM_PACKAGE) {
             objectToDraw = V.Editor.Object.Scorm.generateWrapperForScorm(jsonResponse.src)
+          }else {
+            if(jsonResponse.type === V.Constant.MEDIA.WEB_APP) {
+              objectToDraw = V.Editor.Object.Webapp.generateWrapper(jsonResponse.src)
+            }
           }
           drawPreview(uploadDivId, objectToDraw);
           contentToAdd = objectToDraw
@@ -13862,6 +14170,9 @@ VISH.Editor.Object = function(V, $, undefined) {
           case V.Constant.MEDIA.SCORM_PACKAGE:
             return V.Editor.Object.Scorm.generatePreviewWrapperForScorm(object);
             break;
+          case V.Constant.MEDIA.WEB_APP:
+            return V.Editor.Object.Webapp.generatePreviewWrapper(object);
+            break;
           default:
             V.Debugging.log("Unrecognized object source type");
             break
@@ -13877,7 +14188,11 @@ VISH.Editor.Object = function(V, $, undefined) {
         if(objectType == V.Constant.MEDIA.SCORM_PACKAGE) {
           return V.Editor.Object.Scorm.generatePreviewWrapperForScorm(objectInfo.source)
         }else {
-          return _genericWrapperPreview(object)
+          if(objectType == V.Constant.MEDIA.WEB_APP) {
+            return V.Editor.Object.Webapp.generatePreviewWrapper(objectInfo.source)
+          }else {
+            return _genericWrapperPreview(object)
+          }
         }
         break;
       case V.Constant.WRAPPER.VIDEO:
@@ -13956,6 +14271,9 @@ VISH.Editor.Object = function(V, $, undefined) {
           case V.Constant.MEDIA.SCORM_PACKAGE:
             V.Editor.Object.drawObject(V.Editor.Object.Scorm.generateWrapperForScorm(object));
             break;
+          case V.Constant.MEDIA.WEB_APP:
+            V.Editor.Object.drawObject(V.Editor.Object.Webapp.generateWrapper(object));
+            break;
           default:
             V.Debugging.log("Unrecognized object source type: " + objectInfo.type);
             break
@@ -14014,8 +14332,13 @@ VISH.Editor.Object = function(V, $, undefined) {
       $(wrapperTag).attr("style", zoomInStyle);
       V.ObjectPlayer.adjustDimensionsAfterZoom($(wrapperTag))
     }
-    if($(wrapperTag).attr("objecttype") == V.Constant.MEDIA.SCORM_PACKAGE) {
+    var objectTypeAttr = $(wrapperTag).attr("objecttype");
+    if(objectTypeAttr == V.Constant.MEDIA.SCORM_PACKAGE) {
       V.Editor.Object.Scorm.afterDrawSCORM(wrapperTag)
+    }else {
+      if(objectTypeAttr == V.Constant.MEDIA.WEB_APP) {
+        V.Editor.Object.Webapp.afterDraw(wrapperTag)
+      }
     }
   };
   return{init:init, onLoadTab:onLoadTab, drawObject:drawObject, renderObjectPreview:renderObjectPreview, resizeObject:resizeObject, autofixWrapperedObjectAfterZoom:autofixWrapperedObjectAfterZoom, drawPreview:drawPreview, resetPreview:resetPreview, drawPreviewElement:drawPreviewElement, drawPreviewObject:drawPreviewObject}
@@ -14089,7 +14412,50 @@ VISH.Editor.Presentation = function(V, $, undefined) {
     }
     $.fancybox.close()
   };
-  return{init:init, insertPresentation:insertPresentation, previewPresentation:previewPresentation}
+  var generatePresentationScaffold = function(elements, options) {
+    var presentation = {};
+    presentation.VEVersion = V.VERSION;
+    presentation.type = V.Constant.PRESENTATION;
+    presentation.theme = V.Constant.Themes.Default;
+    presentation.slides = [];
+    var elL = elements.length;
+    for(var i = 0;i < elL;i++) {
+      presentation.slides.push(_generateSlideScaffold(i + 1, elements[i], options))
+    }
+    return presentation
+  };
+  var _generateSlideScaffold = function(index, element, options) {
+    var slide = {};
+    slide.id = "article" + index;
+    slide.type = V.Constant.STANDARD;
+    var defaultTemplate = "t10";
+    if(element.template) {
+      slide.template = options.template
+    }else {
+      if(options && options.template) {
+        slide.template = options.template
+      }else {
+        slide.template = defaultTemplate
+      }
+    }
+    slide.elements = [];
+    var element = element || {};
+    element.id = slide.id + "_zone1";
+    switch(slide.template) {
+      case "t2":
+        element.areaid = "left";
+        break;
+      default:
+        element.areaid = "center"
+    }
+    if(options && options.pdfexId) {
+      element.options = element.options || {};
+      element.options["vishubPdfexId"] = options.pdfexId
+    }
+    slide.elements.push(element);
+    return slide
+  };
+  return{init:init, insertPresentation:insertPresentation, previewPresentation:previewPresentation, generatePresentationScaffold:generatePresentationScaffold}
 }(VISH, jQuery);
 VISH.Editor.Presentation.Repository = function(V, $, undefined) {
   var containerDivId = "tab_presentations_repo_content";
@@ -14147,7 +14513,7 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || (!data.excursions || data.excursions.length == 0)) {
+    if(!data || !data.excursions || data.excursions.length == 0) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -14845,7 +15211,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
       if(slidesetJSON.pois) {
         var validPois = [];
         $(slidesetJSON.pois).each(function(index, poi) {
-          if(poi.x && (poi.y && (poi.x <= 100 && poi.y <= 100))) {
+          if(poi.x && poi.y && poi.x <= 100 && poi.y <= 100) {
             validPois.push(poi)
           }
         });
@@ -15102,7 +15468,9 @@ VISH.Samples = function(V, undefined) {
   {"id":"article16_article2_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"article16_article2_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, 
   {"id":"article16_article2_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, {"id":"article16_article3", "type":"standard", "template":"t10", "elements":[{"id":"article16_article3_zone1", "type":"object", "areaid":"center", 
   "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article16_article4", "type":"standard", "template":"t10", "elements":[{"id":"article16_article4_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', 
-  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article17", "type":"standard", "template":"t10", "elements":[{"id":"article17_zone1", "type":"audio", "areaid":"center", "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "sources":'[{ "type": "audio/ogg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.ogg"},{ "type": "audio/mpeg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.mp3"}]'}]}]};
+  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article17", "type":"standard", "template":"t10", "elements":[{"id":"article17_zone1", "type":"audio", "areaid":"center", "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "sources":'[{ "type": "audio/ogg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.ogg"},{ "type": "audio/mpeg", "src": "http://demos.w3avenue.com/html5-unleashed-tips-tricks-and-techniques/demo-audio.mp3"}]'}]}, 
+  {"id":"article18", "type":"standard", "template":"t2", "elements":[{"id":"article18_zone1", "type":"object", "areaid":"left", "body":'<iframe objecttype="scormpackage" src="examples/contents/scormappcode/41/vishubcode_scorm_wrapper.html?wmode=opaque" wmode="opaque" id="resizableunicID55" class="t2_object"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "subtype":"scormpackage"}]}, {"id":"article19", "type":"standard", "template":"t2", "elements":[{"id":"article19_zone1", 
+  "type":"object", "areaid":"left", "body":'<iframe src="examples/contents/webappcode/11/index.html" width="800" height="600" objecttype="webapp" id="resizableunicID53" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;", "subtype":"webapp"}]}]};
   var fc_sample = {"id":"3", "VEVersion":"0.2", "type":"flashcard", "title":"Curiosity Flashcard", "description":'A Flashcard about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "avatar":"http://vishub.org/pictures/311.jpg", "tags":["Science", "Space", "Mars"], "age_range":"12 - 30", "subject":["Astronomy"], "language":"independent", "educational_objectives":'Know about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "adquired_competencies":"Pupils will be smarter", 
   "author":"ViSH Editor Team", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://vishub.org/pictures/311.jpg)", "pois":[{"id":"article4_poi1", "x":"88.88", "y":"50.83", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"45.5", "y":"2.5", "slide_id":"article4_article3"}, {"id":"article4_poi3", "x":"13.5", "y":"63.17", "slide_id":"article4_article4"}], "slides":[{"id":"article4_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", 
   "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/P4boyXQuUIw?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article4_article3", "type":"standard", "template":"t7", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, 
@@ -15132,33 +15500,51 @@ VISH.Samples = function(V, undefined) {
   "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article2_article4", "type":"standard", "template":"t10", "elements":[{"id":"article2_article4_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', 
   "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}, {"id":"article3", "type":"standard", "template":"t2", "elements":[{"id":"article3_zone1", "areaid":"left"}]}, {"id":"article4", "type":"standard", "template":"t2", "elements":[{"id":"article4_zone1", "areaid":"left"}]}, {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "areaid":"left"}]}, {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "areaid":"left"}]}, 
   {"id":"article7", "type":"standard", "template":"t2", "elements":[{"id":"article7_zone1", "areaid":"left"}]}]};
-  var quiz_samples = {"VEVersion":"0.8.6", "type":"presentation", "title":"Quiz samples", "description":"Quiz example", "avatar":"http://vishub.org/assets/logos/original/excursion-15.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "tags":["Quizzes", "Lynx", "Biology", "Maths"], "theme":"theme1", "animation":"animation1", "language":"independent", "age_range":"4 - 20", "subject":["Education", "Environmental Education", "Geology", "Physics"], "vishMetadata":{"url":"http://vishub.org", 
-  "draft":"false", "id":"500"}, "slides":[{"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', 
-  "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', 
-  "answer":false}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article2", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, 
+  var quiz_samples = {"VEVersion":"0.8.7", "type":"presentation", "title":"Quiz samples", "description":"Quiz example", "avatar":"http://vishub.org/assets/logos/original/excursion-15.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "tags":["Quizzes", "Lynx", "Biology", "Maths"], "theme":"theme1", "animation":"animation1", "language":"independent", "age_range":"4 - 20", "subject":["Education", "Environmental Education", "Geology", "Physics"], "vishMetadata":{"url":"http://vishub.org", 
+  "draft":"false", "id":"500"}, "slides":[{"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"unlimited", "ARSEnabled":true}, "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, 
   "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', 
-  "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', "answer":false}], "extras":{"multipleAnswer":false}}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"\u00adWhat of the followings are ancient weapons?", 
-  "wysiwygValue":'<p style="text-align:left;">\n\t<span style="color:#ff0000;"><span style="font-size:10px;"><span autocolor="true">&shy;</span><span autocolor="true"><span style="font-size:24px;">What of the followings are ancient weapons?</span></span></span></span></p>\n'}, "choices":[{"id":"1", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24.44444465637207px;">Chu Ko Nuh</span></p>\n', 
-  "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", "value":"Halberd", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Halberd</font></p>\n', "answer":true}, {"id":"4", "value":"Battleaxe", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Battleaxe</font></p>\n', 
-  "answer":true}], "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article1", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article1_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"\u00adWhat of the followings are ancient weapons?", "wysiwygValue":'<p style="text-align:left;">\n\t<span style="color:#ff0000;"><span style="font-size:10px;"><span autocolor="true">&shy;</span><span autocolor="true"><span style="font-size:24px;">What of the followings are ancient weapons?</span></span></span></span></p>\n'}, 
+  "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', "answer":false}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article2", "type":"quiz_simple", "template":"t2", 
+  "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"unlimited", "ARSEnabled":true}, "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', 
+  "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', 
+  "answer":false}], "extras":{"multipleAnswer":false}}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_zone1", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"2", "ARSEnabled":true}, "quiztype":"truefalse", "selfA":true, "question":{"value":"\u00adWhat of the followings are ancient weapons?", "wysiwygValue":'<p style="text-align:left;">\n\t<span style="color:#ff0000;"><span style="font-size:10px;"><span autocolor="true">&shy;</span><span autocolor="true"><span style="font-size:24px;">What of the followings are ancient weapons?</span></span></span></span></p>\n'}, 
   "choices":[{"id":"1", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24.44444465637207px;">Chu Ko Nuh</span></p>\n', "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", 
-  "value":"Halberd", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Halberd</font></p>\n', "answer":true}, {"id":"4", "value":"Battleaxe", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Battleaxe</font></p>\n', "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article3", "type":"standard", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, 
-  "question":{"value":"What are ancient weapons?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What are ancient weapons?&shy;</span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n'}, "choices":[{"id":"1", "value":"\u00adFu", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Fu</span></span></p>\n', 
+  "value":"Halberd", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Halberd</font></p>\n', "answer":true}, {"id":"4", "value":"Battleaxe", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Battleaxe</font></p>\n', "answer":true}], "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article1", "type":"quiz_simple", 
+  "template":"t2", "elements":[{"id":"article1_zone1", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"2", "ARSEnabled":true}, "quiztype":"truefalse", "selfA":true, "question":{"value":"\u00adWhat of the followings are ancient weapons?", "wysiwygValue":'<p style="text-align:left;">\n\t<span style="color:#ff0000;"><span style="font-size:10px;"><span autocolor="true">&shy;</span><span autocolor="true"><span style="font-size:24px;">What of the followings are ancient weapons?</span></span></span></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24.44444465637207px;">Chu Ko Nuh</span></p>\n', "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", 
+  "value":"Halberd", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Halberd</font></p>\n', "answer":true}, {"id":"4", "value":"Battleaxe", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Battleaxe</font></p>\n', "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article3", "type":"standard", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"1", "ARSEnabled":true}, 
+  "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\n\nWhat are ancient weapons?\u00ad\n", "wysiwygValue":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What are ancient weapons?&shy;</span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n'}, "choices":[{"id":"1", "value":"\u00adFu", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Fu</span></span></p>\n', 
   "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", "value":"Chu Ko Nuh\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Chu Ko Nuh&shy;</span></span></p>\n', "answer":true}, {"id":"4", "value":"\u00adNuclear bomb", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Nuclear bomb</span></span></p>\n', 
-  "answer":false}], "extras":{"multipleAnswer":true}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article3", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"What are ancient weapons?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What are ancient weapons?&shy;</span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n'}, 
-  "choices":[{"id":"1", "value":"\u00adFu", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Fu</span></span></p>\n', "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", "value":"Chu Ko Nuh\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Chu Ko Nuh&shy;</span></span></p>\n', 
-  "answer":true}, {"id":"4", "value":"\u00adNuclear bomb", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Nuclear bomb</span></span></p>\n', "answer":false}], "extras":{"multipleAnswer":true}}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article4", "type":"standard", "template":"t8", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:18px;">Ejemplo de un Quiz enriquecido&shy;</span></span></p>\n'}, 
-  {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://farm8.staticflickr.com/7328/11049505694_7e90530bee.jpg", "style":"position: relative; width:110.9704641350211%; height:121.81818181818181%; top:-0.9090909090909091%; left:-3.7908755274261603%;"}, {"id":"article4_zone3", "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"What is the capital of Spain?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What is the capital of Spain?&shy;</span></span></p>\n'}, 
+  "answer":false}], "extras":{"multipleAnswer":true}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article3", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"1", "ARSEnabled":true}, "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\n\nWhat are ancient weapons?\u00ad\n", 
+  "wysiwygValue":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What are ancient weapons?&shy;</span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n'}, "choices":[{"id":"1", "value":"\u00adFu", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Fu</span></span></p>\n', 
+  "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", "value":"Chu Ko Nuh\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Chu Ko Nuh&shy;</span></span></p>\n', "answer":true}, {"id":"4", "value":"\u00adNuclear bomb", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Nuclear bomb</span></span></p>\n', 
+  "answer":false}], "extras":{"multipleAnswer":true}}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article4", "type":"standard", "template":"t8", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:18px;">Ejemplo de un Quiz enriquecido&shy;</span></span></p>\n'}, {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://farm8.staticflickr.com/7328/11049505694_7e90530bee.jpg", 
+  "style":"position: relative; width:110.9704641350211%; height:121.81818181818181%; top:-0.9090909090909091%; left:-3.7776898734177213%;"}, {"id":"article4_zone3", "type":"quiz", "areaid":"center", "settings":{"nAttempts":"1", "ARSEnabled":false}, "quiztype":"multiplechoice", "selfA":true, "question":{"value":"What is the capital of Spain?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What is the capital of Spain?&shy;</span></span></p>\n'}, 
   "choices":[{"id":"1", "value":"Barcelona\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Barcelona&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00adMadrid", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Madrid</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adLugo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Lugo</span></span></p>\n', 
   "answer":false}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article4", "type":"quiz_simple", "template":"t8", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:18px;">Ejemplo de un Quiz enriquecido&shy;</span></span></p>\n'}, 
-  {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://farm8.staticflickr.com/7328/11049505694_7e90530bee.jpg", "style":"position: relative; width:110.9704641350211%; height:121.81818181818181%; top:-0.9090909090909091%; left:-3.7908755274261603%;"}, {"id":"article4_zone3", "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"What is the capital of Spain?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What is the capital of Spain?&shy;</span></span></p>\n'}, 
+  {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://farm8.staticflickr.com/7328/11049505694_7e90530bee.jpg", "style":"position: relative; width:110.9704641350211%; height:121.81818181818181%; top:-0.9090909090909091%; left:-3.7776898734177213%;"}, {"id":"article4_zone3", "type":"quiz", "areaid":"center", "settings":{"nAttempts":"1", "ARSEnabled":false}, "quiztype":"multiplechoice", "selfA":true, "question":{"value":"What is the capital of Spain?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What is the capital of Spain?&shy;</span></span></p>\n'}, 
   "choices":[{"id":"1", "value":"Barcelona\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Barcelona&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00adMadrid", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Madrid</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adLugo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Lugo</span></span></p>\n', 
-  "answer":false}], "extras":{"multipleAnswer":false}}, {"id":"article4_zone4", "type":"image", "areaid":"right", "body":"http://farm6.staticflickr.com/5520/11018661665_67b642b119.jpg", "style":"position: relative; width:109.70464135021098%; height:140.8906882591093%; top:-17.440536437246962%; left:-9.27610759493671%;"}], "containsQuiz":true}]}}, {"id":"article4_zone4", "type":"image", "areaid":"right", "body":"http://farm6.staticflickr.com/5520/11018661665_67b642b119.jpg", "style":"position: relative; width:109.70464135021098%; height:140.8906882591093%; top:-17.440536437246962%; left:-9.27610759493671%;"}], 
-  "containsQuiz":true}, {"id":"article5", "type":"standard", "template":"t5", "elements":[{"id":"article5_zone1", "areaid":"header"}, {"id":"article5_zone2", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"Small quiz\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Small quiz&shy;</span></span></p>\n'}, "choices":[{"id":"1", "value":"Option a\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option a&shy;</span></span></p>\n', 
-  "answer":true}, {"id":"2", "value":"Option b\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option b&shy;</span></span></p>\n', "answer":false}, {"id":"3", "value":"Option c\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option c&shy;</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u200bOption d\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option d&shy;</span></span></p>\n', 
-  "answer":"?"}], "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article5", "type":"quiz_simple", "template":"t5", "elements":[{"id":"article5_zone1", "areaid":"header"}, {"id":"article5_zone2", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"Small quiz\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Small quiz&shy;</span></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"Option a\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option a&shy;</span></span></p>\n', "answer":true}, {"id":"2", "value":"Option b\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option b&shy;</span></span></p>\n', "answer":false}, {"id":"3", "value":"Option c\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option c&shy;</span></span></p>\n', 
-  "answer":false}, {"id":"4", "value":"\u200bOption d\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option d&shy;</span></span></p>\n', "answer":"?"}]}, {"id":"article5_zone3", "areaid":"right"}], "containsQuiz":true}]}}, {"id":"article5_zone3", "areaid":"right"}], "containsQuiz":true}]};
+  "answer":false}], "extras":{"multipleAnswer":false}}, {"id":"article4_zone4", "type":"image", "areaid":"right", "body":"http://farm6.staticflickr.com/5520/11018661665_67b642b119.jpg", "style":"position: relative; width:109.70464135021098%; height:140.8906882591093%; top:-17.503795546558706%; left:-9.26292194092827%;"}], "containsQuiz":true}]}}, {"id":"article4_zone4", "type":"image", "areaid":"right", "body":"http://farm6.staticflickr.com/5520/11018661665_67b642b119.jpg", "style":"position: relative; width:109.70464135021098%; height:140.8906882591093%; top:-17.503795546558706%; left:-9.26292194092827%;"}], 
+  "containsQuiz":true}, {"id":"article5", "type":"standard", "template":"t5", "elements":[{"id":"article5_zone1", "areaid":"header"}, {"id":"article5_zone2", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"1", "ARSEnabled":true}, "quiztype":"truefalse", "selfA":true, "question":{"value":"Small quiz\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Small quiz&shy;</span></span></p>\n'}, "choices":[{"id":"1", "value":"Option a\u00ad", 
+  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option a&shy;</span></span></p>\n', "answer":true}, {"id":"2", "value":"Option b\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option b&shy;</span></span></p>\n', "answer":false}, {"id":"3", "value":"Option c\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option c&shy;</span></span></p>\n', 
+  "answer":false}, {"id":"4", "value":"Option d\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option d&shy;</span></span></p>\n', "answer":"?"}], "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article5", "type":"quiz_simple", "template":"t5", "elements":[{"id":"article5_zone1", 
+  "areaid":"header"}, {"id":"article5_zone2", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"1", "ARSEnabled":true}, "quiztype":"truefalse", "selfA":true, "question":{"value":"Small quiz\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Small quiz&shy;</span></span></p>\n'}, "choices":[{"id":"1", "value":"Option a\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option a&shy;</span></span></p>\n', 
+  "answer":true}, {"id":"2", "value":"Option b\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option b&shy;</span></span></p>\n', "answer":false}, {"id":"3", "value":"Option c\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option c&shy;</span></span></p>\n', "answer":false}, {"id":"4", "value":"Option d\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Option d&shy;</span></span></p>\n', 
+  "answer":"?"}]}, {"id":"article5_zone3", "areaid":"right"}], "containsQuiz":true}]}}, {"id":"article5_zone3", "areaid":"right"}], "containsQuiz":true}, {"id":"article6", "type":"standard", "template":"t18", "elements":[{"id":"article6_zone1", "areaid":"header"}, {"id":"article6_zone2", "type":"quiz", "areaid":"center", "settings":{"nAttempts":"3", "ARSEnabled":true}, "quiztype":"sorting", "selfA":true, "question":{"value":"Ordena los siguientes eventos de m\u00e1s moderno (1) a m\u00e1s antiguo.\u00ad\n\u00ad", 
+  "wysiwygValue":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size: 38px; text-align: center;">Ordena los siguientes eventos de m&aacute;s moderno (1) a m&aacute;s antiguo.&shy;</span></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;</span></span></p>\n'}, "choices":[{"id":"1", "value":"Mundial Brasil (2014\u00ad)\n\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size: 24px;">Mundial Brasil (2014&shy;)</span></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span></p>\n', 
+  "answer":1}, {"id":"2", "value":"Comienzo Segunda Guerra Mundial (1939)\n\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size: 24px; color: rgb(34, 34, 34);">Comienzo Segunda Guerra Mundial (1939)</span></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span></p>\n', "answer":2}, {"id":"3", "value":"\u00adDescubrimiento de Am\u00e9rica (1492)", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24px;">Descubrimiento de Am&eacute;rica (1492)</span></p>\n', 
+  "answer":3}], "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article6", "type":"quiz_simple", "template":"t18", "elements":[{"id":"article6_zone1", "areaid":"header"}, {"id":"article6_zone2", "type":"quiz", "areaid":"center", "settings":{"nAttempts":"3", "ARSEnabled":true}, "quiztype":"sorting", "selfA":true, "question":{"value":"Ordena los siguientes eventos de m\u00e1s moderno (1) a m\u00e1s antiguo.\u00ad\n\u00ad", 
+  "wysiwygValue":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size: 38px; text-align: center;">Ordena los siguientes eventos de m&aacute;s moderno (1) a m&aacute;s antiguo.&shy;</span></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;</span></span></p>\n'}, "choices":[{"id":"1", "value":"Mundial Brasil (2014\u00ad)\n\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size: 24px;">Mundial Brasil (2014&shy;)</span></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span></p>\n', 
+  "answer":1}, {"id":"2", "value":"Comienzo Segunda Guerra Mundial (1939)\n\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size: 24px; color: rgb(34, 34, 34);">Comienzo Segunda Guerra Mundial (1939)</span></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span></p>\n', "answer":2}, {"id":"3", "value":"\u00adDescubrimiento de Am\u00e9rica (1492)", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24px;">Descubrimiento de Am&eacute;rica (1492)</span></p>\n', 
+  "answer":3}]}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article7", "type":"standard", "template":"t2", "elements":[{"id":"article7_zone1", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"3", "ARSEnabled":true}, "quiztype":"openAnswer", "selfA":true, "question":{"value":"\u00bfCuanto vale 2+2?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&iquest;Cuanto vale 2+2?&shy;</span></span></p>\n'}, 
+  "answer":{"value":"4\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">4&shy;</span></span></p>\n'}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article7", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article7_zone1", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"3", 
+  "ARSEnabled":true}, "quiztype":"openAnswer", "selfA":true, "question":{"value":"\u00bfCuanto vale 2+2?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&iquest;Cuanto vale 2+2?&shy;</span></span></p>\n'}, "answer":{"value":"4\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">4&shy;</span></span></p>\n'}}], "containsQuiz":true}]}}], "containsQuiz":true}, 
+  {"id":"article8", "type":"standard", "template":"t2", "elements":[{"id":"article8_zone1", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"1", "ARSEnabled":true}, "quiztype":"openAnswer", "selfA":false, "question":{"value":"\nEscribe todo lo que sepas sobre la II Guerra Mundial.", "wysiwygValue":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span style="font-size:24px;"><font color="#000000">Escribe todo lo que sepas sobre la II Guerra Mundial.</font></span></p>\n'}, 
+  "answer":{"value":"La Segunda Guerra Mundial fue un conflicto militar global que se desarroll\u00f3 entre 1939 y 1945. En \u00e9l se vieron implicadas la mayor parte de las naciones del mundo, incluidas todas las grandes potencias, agrupadas en dos alianzas militares enfrentadas: los Aliados y las Potencias del Eje. Fue la mayor contienda b\u00e9lica de laHistoria, con m\u00e1s de cien millones de militares movilizados y un estado de \u00abguerra total\u00bb en que los grandes contendientes destinaron toda su capacidad econ\u00f3mica, militar y cient\u00edfica al servicio del esfuerzo b\u00e9lico, borrando la distinci\u00f3n entre recursos civiles y militares. Marcada por hechos de enorme significaci\u00f3n que incluyeron la muerte masiva de civiles, el Holocausto y el uso, por primera y \u00fanica vez, de armas nucleares en un conflicto militar, la Segunda Guerra Mundial fue el conflicto m\u00e1s mort\u00edfero en la historia de la humanidad,1 con un resultado final de entre 50 y 70 millones de v\u00edctimas.\n\u00ad", 
+  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">La&nbsp;</span><b style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">Segunda Guerra Mundial</b><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;fue un&nbsp;</span><a href="http://es.wikipedia.org/wiki/Guerra" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Guerra">conflicto militar</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;global que se desarroll&oacute; entre&nbsp;</span><a href="http://es.wikipedia.org/wiki/1939" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="1939">1939</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;y&nbsp;</span><a href="http://es.wikipedia.org/wiki/1945" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="1945">1945</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">. En &eacute;l se vieron implicadas la&nbsp;</span><a href="http://es.wikipedia.org/wiki/Anexo:Participantes_en_la_Segunda_Guerra_Mundial" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Anexo:Participantes en la Segunda Guerra Mundial">mayor parte de las naciones del mundo</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">, incluidas todas las&nbsp;</span><a href="http://es.wikipedia.org/wiki/Potencia_mundial" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Potencia mundial">grandes potencias</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">, agrupadas en dos alianzas militares enfrentadas: los&nbsp;</span><a href="http://es.wikipedia.org/wiki/Aliados_de_la_Segunda_Guerra_Mundial" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Aliados de la Segunda Guerra Mundial">Aliados</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;y las&nbsp;</span><a href="http://es.wikipedia.org/wiki/Potencias_del_Eje_en_la_Segunda_Guerra_Mundial" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Potencias del Eje en la Segunda Guerra Mundial">Potencias del Eje</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">. Fue la mayor contienda b&eacute;lica de la</span><a href="http://es.wikipedia.org/wiki/Historia_universal" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Historia universal">Historia</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">, con m&aacute;s de cien millones de&nbsp;</span><a href="http://es.wikipedia.org/wiki/Militar" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Militar">militares</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;movilizados y un estado de &laquo;</span><a href="http://es.wikipedia.org/wiki/Guerra_total" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Guerra total">guerra total</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&raquo; en que los grandes contendientes destinaron toda su capacidad econ&oacute;mica, militar y cient&iacute;fica al servicio del esfuerzo b&eacute;lico, borrando la distinci&oacute;n entre recursos civiles y militares. Marcada por hechos de enorme significaci&oacute;n que incluyeron la muerte masiva de civiles, el&nbsp;</span><a href="http://es.wikipedia.org/wiki/Holocausto" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Holocausto">Holocausto</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;y el uso, por primera y &uacute;nica vez, de&nbsp;</span><a href="http://es.wikipedia.org/wiki/Arma_nuclear" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Arma nuclear">armas nucleares</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;en un conflicto militar, la Segunda Guerra Mundial fue el conflicto m&aacute;s mort&iacute;fero en la historia de la humanidad,</span><sup class="reference" id="cite_ref-1" style="line-height: 1em; unicode-bidi: -webkit-isolate; color: rgb(37, 37, 37); font-family: sans-serif; background-color: rgb(255, 255, 255);"><a href="http://es.wikipedia.org/wiki/Segunda_Guerra_Mundial#cite_note-1" style="color: rgb(11, 0, 128); white-space: nowrap; background: none;">1</a></sup><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;con un resultado final de entre&nbsp;</span><a href="http://es.wikipedia.org/wiki/Anexo:V%C3%ADctimas_de_la_Segunda_Guerra_Mundial" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Anexo:V\u00edctimas de la Segunda Guerra Mundial">50 y 70 millones de v&iacute;ctimas</a><font color="#252525" face="sans-serif"><span style="font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">.</span></font></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span></p>\n'}, 
+  "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "type":"quiz_simple", "theme":"theme1", "slides":[{"id":"article8", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article8_zone1", "type":"quiz", "areaid":"left", "settings":{"nAttempts":"1", "ARSEnabled":true}, "quiztype":"openAnswer", "selfA":false, "question":{"value":"\nEscribe todo lo que sepas sobre la II Guerra Mundial.", "wysiwygValue":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span style="font-size:24px;"><font color="#000000">Escribe todo lo que sepas sobre la II Guerra Mundial.</font></span></p>\n'}, 
+  "answer":{"value":"La Segunda Guerra Mundial fue un conflicto militar global que se desarroll\u00f3 entre 1939 y 1945. En \u00e9l se vieron implicadas la mayor parte de las naciones del mundo, incluidas todas las grandes potencias, agrupadas en dos alianzas militares enfrentadas: los Aliados y las Potencias del Eje. Fue la mayor contienda b\u00e9lica de laHistoria, con m\u00e1s de cien millones de militares movilizados y un estado de \u00abguerra total\u00bb en que los grandes contendientes destinaron toda su capacidad econ\u00f3mica, militar y cient\u00edfica al servicio del esfuerzo b\u00e9lico, borrando la distinci\u00f3n entre recursos civiles y militares. Marcada por hechos de enorme significaci\u00f3n que incluyeron la muerte masiva de civiles, el Holocausto y el uso, por primera y \u00fanica vez, de armas nucleares en un conflicto militar, la Segunda Guerra Mundial fue el conflicto m\u00e1s mort\u00edfero en la historia de la humanidad,1 con un resultado final de entre 50 y 70 millones de v\u00edctimas.\n\u00ad", 
+  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">La&nbsp;</span><b style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">Segunda Guerra Mundial</b><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;fue un&nbsp;</span><a href="http://es.wikipedia.org/wiki/Guerra" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Guerra">conflicto militar</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;global que se desarroll&oacute; entre&nbsp;</span><a href="http://es.wikipedia.org/wiki/1939" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="1939">1939</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;y&nbsp;</span><a href="http://es.wikipedia.org/wiki/1945" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="1945">1945</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">. En &eacute;l se vieron implicadas la&nbsp;</span><a href="http://es.wikipedia.org/wiki/Anexo:Participantes_en_la_Segunda_Guerra_Mundial" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Anexo:Participantes en la Segunda Guerra Mundial">mayor parte de las naciones del mundo</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">, incluidas todas las&nbsp;</span><a href="http://es.wikipedia.org/wiki/Potencia_mundial" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Potencia mundial">grandes potencias</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">, agrupadas en dos alianzas militares enfrentadas: los&nbsp;</span><a href="http://es.wikipedia.org/wiki/Aliados_de_la_Segunda_Guerra_Mundial" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Aliados de la Segunda Guerra Mundial">Aliados</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;y las&nbsp;</span><a href="http://es.wikipedia.org/wiki/Potencias_del_Eje_en_la_Segunda_Guerra_Mundial" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Potencias del Eje en la Segunda Guerra Mundial">Potencias del Eje</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">. Fue la mayor contienda b&eacute;lica de la</span><a href="http://es.wikipedia.org/wiki/Historia_universal" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Historia universal">Historia</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">, con m&aacute;s de cien millones de&nbsp;</span><a href="http://es.wikipedia.org/wiki/Militar" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Militar">militares</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;movilizados y un estado de &laquo;</span><a href="http://es.wikipedia.org/wiki/Guerra_total" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Guerra total">guerra total</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&raquo; en que los grandes contendientes destinaron toda su capacidad econ&oacute;mica, militar y cient&iacute;fica al servicio del esfuerzo b&eacute;lico, borrando la distinci&oacute;n entre recursos civiles y militares. Marcada por hechos de enorme significaci&oacute;n que incluyeron la muerte masiva de civiles, el&nbsp;</span><a href="http://es.wikipedia.org/wiki/Holocausto" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Holocausto">Holocausto</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;y el uso, por primera y &uacute;nica vez, de&nbsp;</span><a href="http://es.wikipedia.org/wiki/Arma_nuclear" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Arma nuclear">armas nucleares</a><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;en un conflicto militar, la Segunda Guerra Mundial fue el conflicto m&aacute;s mort&iacute;fero en la historia de la humanidad,</span><sup class="reference" id="cite_ref-1" style="line-height: 1em; unicode-bidi: -webkit-isolate; color: rgb(37, 37, 37); font-family: sans-serif; background-color: rgb(255, 255, 255);"><a href="http://es.wikipedia.org/wiki/Segunda_Guerra_Mundial#cite_note-1" style="color: rgb(11, 0, 128); white-space: nowrap; background: none;">1</a></sup><span style="color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">&nbsp;con un resultado final de entre&nbsp;</span><a href="http://es.wikipedia.org/wiki/Anexo:V%C3%ADctimas_de_la_Segunda_Guerra_Mundial" style="color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.399999618530273px; background: none rgb(255, 255, 255);" title="Anexo:V\u00edctimas de la Segunda Guerra Mundial">50 y 70 millones de v&iacute;ctimas</a><font color="#252525" face="sans-serif"><span style="font-size: 14px; line-height: 22.399999618530273px; background-color: rgb(255, 255, 255);">.</span></font></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span></p>\n'}}], 
+  "containsQuiz":true}]}}], "containsQuiz":true}]};
   var text_samples = {"VEVersion":"0.3", "id":"4", "type":"presentation", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "tags":["Do\u00c3\u00b1ana", "Lynx", "Biology"], "theme":"theme1", "age_range":"4 - 20", "subject":["Biology"], "language":"en", "educational_objectives":"Know about Iberian Lynx", "adquired_competencies":"Pupils will be smarter", 
   "author":"", "slides":[{"id":"article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_zone1", "type":"text", "areaid":"left", "body":'<p>\n\taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>\n<p>\n\tbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>\n<p>\n\t<span style="font-size:10px;">10cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc</span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;">16ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</span></span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;"><span style="font-size:26px;">26eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</span></span></span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;"><span style="font-size:26px;"><span style="font-size:48px;">48ffffffffffffffffffffffffffffffffffffffffffffffff</span></span></span></span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;"><span style="font-size:26px;"><span style="font-size:48px;"><span style="font-size:72px;">72ggggggggggggggg</span></span></span></span></span></p>\n<p>\n\t&nbsp;</p>\n'}]}, 
   {"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align: center;">\n\t<span style="color:#ff0000;"><span style="font-size:48px;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">Hello World</span></span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span style="color: rgb(255, 0, 0); font-family: \'trebuchet ms\', helvetica, sans-serif; font-size: 48px;">Hello World</span></p>\n'}]}, 
@@ -15196,7 +15582,9 @@ VISH.Samples = function(V, undefined) {
   "choices":[{"id":"1", "value":"HTTP permite procesar remotamente recursos en un servidor.", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5"><strong>HTTP</strong> permite procesar remotamente recursos en un servidor.</font></p>\n', "answer":true}, {"id":"2", "value":"\u00c2\u00adUna URL identifica sin ambiguedad un recurso en Internet.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Una </span></span><strong><span style="color:#000000;"><span autocolor="true"><span style="font-size:24px;">URL</span></span></span></strong><span autocolor="true" style="color:#000"><span style="font-size:24px;"> identifica sin ambiguedad un recurso en Internet.</span></span></p>\n', 
   "answer":true}, {"id":"3", "value":"\u00c2\u00adJavaScript es igual al lenguaje de programacion Java.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>JavaScript</strong> es igual al lenguaje de programaci&oacute;n Java.</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00c2\u00adHTML define la estructura de la informacion de una pagina web.", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;<strong>HTML</strong> define la estructura de la informaci&oacute;n de una p&aacute;gina web.</span></span></p>\n', 
   "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}]}]};
-  return{basic_samples:basic_samples, full_samples:full_samples, fc_sample:fc_sample, vt_sample:vt_sample, evideo_sample:evideo_sample, quiz_samples:quiz_samples, text_samples:text_samples, VE01_samples:VE01_samples, mooc_samples:mooc_samples}
+  var SCORMexample = {"author":"Aldo", "description":"Uploaded by Aldo via ViSH Editor", "id":48, "src":"examples/contents/scormappcode/41/vishubcode_scorm_wrapper.html", "title":"AncientWeapons.zip", "type":"scormpackage"};
+  var Webappexample = {"author":"Aldo", "description":"Uploaded by Aldo via ViSH Editor", "id":52, "src":"examples/contents/webappcode/11/index.html", "title":"HelloWorld.zip", "type":"webapp"};
+  return{basic_samples:basic_samples, full_samples:full_samples, fc_sample:fc_sample, vt_sample:vt_sample, evideo_sample:evideo_sample, quiz_samples:quiz_samples, text_samples:text_samples, VE01_samples:VE01_samples, mooc_samples:mooc_samples, SCORMexample:SCORMexample, Webappexample:Webappexample}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
   var recommendationList = [{"id":"1", "url":"http://vishub.org/excursions/144", "title":"Nanogame", "author":"Enrique Barra", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-05.png", "views":"56", "favourites":"3", "number_of_slides":"8"}, {"id":"2", "url":"http://vishub.org/excursions/83", "title":"Flascard Curiosity", "author":"Evita Tassiopolu", "description":" bla bla bla 2", "image":"http://www.topsecretwriters.com/wp-content/uploads/2012/08/curiosityrover.jpg", 
@@ -15266,7 +15654,7 @@ VISH.Samples.API = function(V, undefined) {
   "object":'<video preload="metadata" poster="http://vishub.org/videos/325.png?style=170x127%23"><source src="http://vishub.org/videos/325.webm" type="video/webm"><source src="http://vishub.org/videos/325.mp4" type="video/mp4"><source src="http://vishub.org/videos/325.flv" type="video/x-flv"><p>Your browser does not support HTML5 video.</p></video>'}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, 
   {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, {"id":"1538", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "object":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}, 
   {"id":"1539", "title":"Image", "description":"Image Embed", "author":"Globedia", "object":'<embed width="100%" src="http://globedia.com/imagenes/noticias/2011/2/10/encuentran-octava-maravilla-mundo-destruida-125-anos_2_585286.jpg"></embed>'}, {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, 
-  {"id":"5432115", "title":"Medieval Armor", "description":"Description of the SCORM Package", "author":"Aldo", "object":"http://localhost:3000/scorm/packages/41/vishubcode_scorm_wrapper.html", "type":"scormpackage"}];
+  {"id":"5432115", "title":"Medieval Armor", "description":"Description of the SCORM Package", "author":"Aldo", "object":"http://localhost:3000/scorm/packages/41/vishubcode_scorm_wrapper.html", "type":"scormpackage"}, {"id":"9512332115", "title":"My First Web App", "description":"", "author":"Aldo", "object":"http://localhost:3000/webappscode/9/index.html", "type":"webapp"}];
   var objectListLittle = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
   "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}];
   var objectListDummy = [];
@@ -15458,7 +15846,7 @@ VISH.Slides = function(V, $, undefined) {
     if(slideEl && slideEl.tagName === "ARTICLE") {
       return $(slideEl).attr("type")
     }else {
-      if(typeof slideEl == "object" && (slideEl.length === 1 && slideEl[0].tagName === "ARTICLE")) {
+      if(typeof slideEl == "object" && slideEl.length === 1 && slideEl[0].tagName === "ARTICLE") {
         return $(slideEl).attr("type")
       }else {
         if(typeof slideEl == "object" && typeof slideEl.type == "string") {
@@ -15532,11 +15920,11 @@ VISH.Slides = function(V, $, undefined) {
     goToSlide(no)
   };
   var goToSlide = function(no, triggeredByUser) {
-    if(no === getCurrentSlideNumber() || (no > slideEls.length || no <= 0)) {
+    if(no === getCurrentSlideNumber() || no > slideEls.length || no <= 0) {
       return
     }
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && (V.Status.isPreventDefaultMode() && V.Messenger)) {
+    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
       var params = {};
       params.slideNumber = no;
       V.Messenger.notifyEventByMessage(V.Constant.Event.onGoToSlide, params);
@@ -15584,7 +15972,7 @@ VISH.Slides = function(V, $, undefined) {
   };
   var openSubslide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && (V.Status.isPreventDefaultMode() && V.Messenger)) {
+    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
       var params = new Object;
       params.slideId = slide_id;
       V.Messenger.notifyEventByMessage(V.Constant.Event.onSubslideOpen, params);
@@ -15600,7 +15988,7 @@ VISH.Slides = function(V, $, undefined) {
   };
   var closeSubslide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && (V.Status.isPreventDefaultMode() && V.Messenger)) {
+    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
       var params = new Object;
       params.slideId = slide_id;
       V.Messenger.notifyEventByMessage(V.Constant.Event.onSubslideClosed, params);
@@ -15820,7 +16208,7 @@ VISH.Flashcard = function(V, $, undefined) {
     }
   };
   var _addArrow = function(fcId, poi) {
-    if(!poi || (!poi.x || (!poi.y || (poi.x > 100 || poi.y > 100)))) {
+    if(!poi || !poi.x || !poi.y || poi.x > 100 || poi.y > 100) {
       return
     }
     var flashcard_div = $("#" + fcId);
@@ -15846,7 +16234,7 @@ VISH.Flashcard = function(V, $, undefined) {
     _stopAnimation($(slideset).attr("id"))
   };
   var _startAnimation = function(slideId) {
-    if(typeof flashcards !== "undefined" && (typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer == "undefined")) {
+    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer == "undefined") {
       flashcards[slideId].timer = setInterval(function() {
         _animateArrows(slideId)
       }, 1E3 / FPS)
@@ -15873,7 +16261,7 @@ VISH.Flashcard = function(V, $, undefined) {
     })
   };
   var _stopAnimation = function(slideId) {
-    if(typeof flashcards !== "undefined" && (typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer !== "undefined")) {
+    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer !== "undefined") {
       clearTimeout(flashcards[slideId].timer);
       flashcards[slideId].timer = undefined
     }
@@ -15919,6 +16307,7 @@ VISH.Flashcard = function(V, $, undefined) {
 VISH.Quiz = function(V, $, undefined) {
   var quizMode;
   var quizzes = {};
+  var quizChoicesIds = {};
   var currentQuizDOM;
   var currentQuizSession;
   var currentPolling;
@@ -15938,6 +16327,8 @@ VISH.Quiz = function(V, $, undefined) {
     V.Quiz.API.init(V.Utils.getOptions().quizSessionAPI);
     V.Quiz.MC.init();
     V.Quiz.TF.init();
+    V.Quiz.Sorting.init();
+    V.Quiz.Open.init();
     V.QuizCharts.init(V.Utils.getOptions());
     _loadEvents()
   };
@@ -15966,18 +16357,26 @@ VISH.Quiz = function(V, $, undefined) {
       var zoneId = elJSON["id"];
       var quizId = V.Utils.getId("quiz");
       elJSON["quizId"] = quizId;
+      elJSON = _changeQuizChoicesIds(elJSON);
       quizzes[quizId] = elJSON;
       var quizDOM = quizModule.render(elJSON, template);
       return"<div id='" + zoneId + "' class='quizWrapper " + template + "_" + elJSON["areaid"] + " " + template + "_quiz" + "'>" + quizDOM + "</div>"
     }
   };
-  var renderButtons = function(selfA) {
+  var renderButtons = function(quizJSON) {
+    var selfA = quizJSON.selfA;
+    var ARSEnabled = false;
+    if(typeof quizJSON.settings == "object") {
+      if(quizJSON.settings.ARSEnabled === true || quizJSON.settings.ARSEnabled === "true") {
+        ARSEnabled = true
+      }
+    }
     var quizButtons = $("<div class='quizButtons'></div>");
-    if(quizMode === V.Constant.QZ_MODE.SELFA && ((V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && (V.User.isLogged() && !V.Utils.getOptions().preview))) {
+    if(quizMode === V.Constant.QZ_MODE.SELFA && ARSEnabled == true && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
       var startButton = $("<input type='button' class='buttonQuiz quizStartButton' value='" + V.I18n.getTrans("i.QuizLaunch") + "'/>");
       $(quizButtons).append(startButton)
     }
-    if(selfA || quizMode === V.Constant.QZ_MODE.RT) {
+    if(selfA || quizJSON.quiztype === V.Constant.QZ_TYPE.OPEN || quizMode === V.Constant.QZ_MODE.RT) {
       var answerButton = $("<input type='button' class='buttonQuiz quizAnswerButton' value='" + V.I18n.getTrans("i.QuizButtonAnswer") + "'/>");
       $(quizButtons).append(answerButton)
     }
@@ -16047,7 +16446,18 @@ VISH.Quiz = function(V, $, undefined) {
           _afterAnswerAction = "continue"
         }
         var quizId = $(quizDOM).attr("id");
+        var quizJSON = quizzes[quizId];
         var nAttempts = 1;
+        if(typeof quizJSON.settings == "object") {
+          var settingsNAttempts = quizJSON.settings.nAttempts;
+          if(typeof settingsNAttempts != "undefined") {
+            if(settingsNAttempts === "unlimited") {
+              nAttempts = settingsNAttempts
+            }else {
+              nAttempts = parseInt(settingsNAttempts)
+            }
+          }
+        }
         if(typeof quizzes[quizId] != "undefined") {
           if(typeof quizzes[quizId].cnAttempts != "undefined") {
             nAttempts = quizzes[quizId].cnAttempts
@@ -16412,9 +16822,13 @@ VISH.Quiz = function(V, $, undefined) {
   var getQuiz = function(quizId) {
     return quizzes[quizId]
   };
+  var getQuizChoiceOriginalId = function(newQuizChoiceId) {
+    return quizChoicesIds[newQuizChoiceId]
+  };
   var _getQuizModule = function(quiz_type) {
     switch(quiz_type) {
       case V.Constant.QZ_TYPE.OPEN:
+        return V.Quiz.Open;
         break;
       case V.Constant.QZ_TYPE.MCHOICE:
         return V.Quiz.MC;
@@ -16422,10 +16836,30 @@ VISH.Quiz = function(V, $, undefined) {
       case V.Constant.QZ_TYPE.TF:
         return V.Quiz.TF;
         break;
+      case V.Constant.QZ_TYPE.SORTING:
+        return V.Quiz.Sorting;
+        break;
       default:
         return null;
         break
     }
+  };
+  var _changeQuizChoicesIds = function(quizJSON) {
+    $(quizJSON.choices).each(function(index, choice) {
+      var newChoiceId = _generateRandomQuizChoiceId();
+      quizChoicesIds[newChoiceId] = quizJSON.choices[index].id;
+      quizJSON.choices[index].id = newChoiceId
+    });
+    return quizJSON
+  };
+  var _usedQuizChoicesIds = [];
+  var _generateRandomQuizChoiceId = function() {
+    var randomInteger;
+    while(typeof randomInteger == "undefined" || _usedQuizChoicesIds.indexOf(randomInteger) != -1) {
+      randomInteger = Math.round(Math.random() * Math.pow(10, 16))
+    }
+    _usedQuizChoicesIds.push(randomInteger);
+    return randomInteger
   };
   var updateCheckbox = function(checkbox, check) {
     if(typeof check == "boolean") {
@@ -16457,7 +16891,7 @@ VISH.Quiz = function(V, $, undefined) {
       }
     }, 500)
   };
-  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, getQuiz:getQuiz, updateCheckbox:updateCheckbox, enableAnswerButton:enableAnswerButton, retryAnswerButton:retryAnswerButton, continueAnswerButton:continueAnswerButton, disableAnswerButton:disableAnswerButton, loadTab:loadTab, aftersetupSize:aftersetupSize}
+  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, getQuiz:getQuiz, getQuizChoiceOriginalId:getQuizChoiceOriginalId, updateCheckbox:updateCheckbox, enableAnswerButton:enableAnswerButton, retryAnswerButton:retryAnswerButton, continueAnswerButton:continueAnswerButton, disableAnswerButton:disableAnswerButton, loadTab:loadTab, aftersetupSize:aftersetupSize}
 }(VISH, jQuery);
 VISH.Editor.Tools = function(V, $, undefined) {
   var toolbarEventsLoaded = false;
@@ -16963,7 +17397,7 @@ VISH.Addons = function(V, undefined) {
   var init = function(addons) {
     if(typeof addons === "object") {
       for(var i = 0;i < addons.length;i++) {
-        var targeted = V.Editing && addons[i].target === V.Constant.Edit || (!V.Editing && addons[i].target === V.Constant.Viewer || addons[i].target === V.Constant.AnyMode);
+        var targeted = V.Editing && addons[i].target === V.Constant.Edit || !V.Editing && addons[i].target === V.Constant.Viewer || addons[i].target === V.Constant.AnyMode;
         if(targeted) {
           if(typeof V.Addons[addons[i].id] !== "undefined" && typeof V.Addons[addons[i].id].init === "function") {
             V.Addons[addons[i].id].init(addons[i].config)
@@ -17343,21 +17777,60 @@ VISH.Editor.Quiz = function(V, $, undefined) {
   var init = function() {
     V.Editor.Quiz.MC.init();
     V.Editor.Quiz.TF.init();
+    V.Editor.Quiz.Sorting.init();
+    V.Editor.Quiz.Open.init();
     _hiddenLinkToInitQuizSettings = $('<a href="#quizSettings_fancybox" style="display:none"></a>');
     $(_hiddenLinkToInitQuizSettings).fancybox({"autoDimensions":false, "height":330, "width":400, "scrolling":"no", "showCloseButton":false, "padding":0, "onStart":function(data) {
+      var qSF = $("#quizSettings_fancybox");
+      var quiz = V.Editor.getCurrentArea();
+      $(qSF).find("input[type='hidden'][name='elId']").val($(quiz).attr("id"));
+      var qSettings = $(quiz).attr("elSettings");
+      var nAttempts = 1;
+      var ARSEnabled = false;
+      if(typeof qSettings == "string") {
+        try {
+          qSettings = JSON.parse(qSettings);
+          if(typeof qSettings.nAttempts != "undefined") {
+            nAttempts = qSettings.nAttempts
+          }
+          if(qSettings.ARSEnabled === true) {
+            ARSEnabled = true
+          }
+        }catch(e) {
+        }
+      }
+      var nAttemptsDOM = $(qSF).find("#quizSettings_nAttempts");
+      var ARSEnabledCheckbox = $(qSF).find("input[type='checkbox'][name='enableARS']");
+      $(nAttemptsDOM).val(nAttempts);
+      $(ARSEnabledCheckbox).prop("checked", ARSEnabled)
     }, "onComplete":function(data) {
     }, "onClosed":function(data) {
     }})
   };
+  var onQuizSettingsDone = function() {
+    var qSF = $("#quizSettings_fancybox");
+    var qSettings = {};
+    qSettings.nAttempts = $(qSF).find("#quizSettings_nAttempts").val();
+    qSettings.ARSEnabled = $(qSF).find("input[type='checkbox'][name='enableARS']").is(":checked");
+    var quizId = $(qSF).find("input[type='hidden'][name='elId']").val();
+    var quiz = $("#" + quizId);
+    var qSSerialized = JSON.stringify(qSettings);
+    $(quiz).attr("elSettings", qSSerialized);
+    $.fancybox.close()
+  };
   var _getQuizModule = function(quiz_type) {
     switch(quiz_type) {
-      case VISH.Constant.QZ_TYPE.OPEN:
+      case V.Constant.QZ_TYPE.OPEN:
+        return V.Editor.Quiz.Open;
         break;
-      case VISH.Constant.QZ_TYPE.MCHOICE:
+      case V.Constant.QZ_TYPE.MCHOICE:
         return V.Editor.Quiz.MC;
         break;
-      case VISH.Constant.QZ_TYPE.TF:
+      case V.Constant.QZ_TYPE.TF:
         return V.Editor.Quiz.TF;
+        break;
+      case V.Constant.QZ_TYPE.SORTING:
+        return V.Editor.Quiz.Sorting;
         break;
       default:
         return null;
@@ -17396,7 +17869,67 @@ VISH.Editor.Quiz = function(V, $, undefined) {
   var showQuizSettings = function() {
     $(_hiddenLinkToInitQuizSettings).trigger("click")
   };
-  return{init:init, add:add, save:save, draw:draw, showQuizSettings:showQuizSettings}
+  var _exportTo = function(format, successCallback, failCallback) {
+    var cJSONQuiz = _getCurrentJSONQuiz();
+    if(typeof cJSONQuiz == "undefined") {
+      if(typeof failCallback == "function") {
+        failCallback()
+      }
+      return
+    }
+    V.Editor.API.uploadTmpJSON(cJSONQuiz, format, successCallback, failCallback)
+  };
+  var onExportTo = function(format) {
+    $.fancybox.close();
+    _exportTo(format, function() {
+    }, function() {
+      setTimeout(function() {
+        var options = {};
+        options.width = 600;
+        options.height = 185;
+        if(format == "QTI") {
+          options.text = V.I18n.getTrans("i.exportQuizToQTIerrorNotification")
+        }else {
+          if(format == "MoodleXML") {
+            options.text = V.I18n.getTrans("i.exportQuizToMoodleXMLerrorNotification")
+          }
+        }
+        var button1 = {};
+        button1.text = V.I18n.getTrans("i.Ok");
+        button1.callback = function() {
+          $.fancybox.close()
+        };
+        options.buttons = [button1];
+        V.Utils.showDialog(options)
+      }, 600)
+    })
+  };
+  var _getCurrentJSONQuiz = function() {
+    var quizJSON = undefined;
+    var presentation = V.Editor.savePresentation();
+    var cslide = V.Slides.getCurrentSlide();
+    if(typeof cslide == "object") {
+      var cslideId = $(cslide).attr("id");
+      $.each(presentation.slides, function(index, value) {
+        if(value.id == cslideId && value.containsQuiz == true) {
+          $.each(value.elements, function(index, elVal) {
+            if(elVal.type == "quiz") {
+              quizJSON = elVal
+            }
+          })
+        }
+      })
+    }
+    return quizJSON
+  };
+  var afterCopyQuiz = function(quizDOM) {
+    var quizType = $(quizDOM).attr("quiztype");
+    var quizModule = _getQuizModule(quizType);
+    if(quizModule && typeof quizModule.afterCopyQuiz == "function") {
+      return quizModule.afterCopyQuiz(quizDOM)
+    }
+  };
+  return{init:init, add:add, save:save, draw:draw, onExportTo:onExportTo, showQuizSettings:showQuizSettings, onQuizSettingsDone:onQuizSettingsDone, afterCopyQuiz:afterCopyQuiz}
 }(VISH, jQuery);
 /*
  Copyright (c) 2009-2014, Cybercussion Interactive LLC
@@ -17407,8 +17940,8 @@ VISH.Editor.Quiz = function(V, $, undefined) {
  @constructor
 */
 function SCORM_API(options) {
-  var defaults = {version:"3.1.0", createDate:"04/05/2011 08:56AM", modifiedDate:"01/16/2014 03:57PM", debug:false, isActive:false, throw_alerts:false, prefix:"SCORM_API", exit_type:"suspend", success_status:"unknown", use_standalone:true, standalone:false, completion_status:"unknown", time_type:"GMT", cmi:null}, settings = $.extend(defaults, options), isError = 0, error = {0:"No Error", 404:"Not Found", 405:"Prevented on a read only resource"}, API = {connection:false, version:"none", mode:"", path:false, 
-  data:{completion_status:settings.completion_status, success_status:settings.success_status, exit_type:settings.exit_type}, isActive:settings.isActive}, self = this;
+  var defaults = {version:"3.1.0", createDate:"04/05/2011 08:56AM", modifiedDate:"01/16/2014 03:57PM", debug:false, isActive:false, throw_alerts:false, prefix:"SCORM_API", exit_type:"suspend", success_status:"unknown", use_standalone:true, standalone:false, completion_status:"unknown", time_type:"GMT", cmi:null}, settings = $.extend(defaults, options), isError = 0, error = {"0":"No Error", 404:"Not Found", 405:"Prevented on a read only resource"}, API = {connection:false, version:"none", mode:"", 
+  path:false, data:{completion_status:settings.completion_status, success_status:settings.success_status, exit_type:settings.exit_type}, isActive:settings.isActive}, self = this;
   settings.error = error;
   settings.startDate = {};
   function noconsole(msg, lvl) {
@@ -17450,7 +17983,7 @@ function SCORM_API(options) {
   }
   function findAPI(win) {
     var attempts = 0, limit = 500;
-    while(!win.API && !win.API_1484_11 && (win.parent && (win.parent !== win && attempts <= limit))) {
+    while(!win.API && !win.API_1484_11 && win.parent && win.parent !== win && attempts <= limit) {
       attempts += 1;
       win = win.parent
     }
@@ -17493,7 +18026,7 @@ function SCORM_API(options) {
     if(nD > 0) {
       str += nD + "D"
     }
-    if(nH > 0 || (nMin > 0 || nCs > 0)) {
+    if(nH > 0 || nMin > 0 || nCs > 0) {
       str += "T";
       if(nH > 0) {
         str += nH + "H"
@@ -17524,7 +18057,7 @@ function SCORM_API(options) {
         }
         p = str.indexOf(aT[i]);
         if(p > -1) {
-          if(i === 1 && (str.indexOf("T") > -1 && str.indexOf("T") < p)) {
+          if(i === 1 && str.indexOf("T") > -1 && str.indexOf("T") < p) {
             continue
           }
           if(aT[i] === "S") {
@@ -17791,7 +18324,7 @@ function SCORM_API(options) {
       d = getDiagnostic(ec);
       $(self).triggerHandler({"type":"getvalue", "n":n, "v":v, "error":{"code":ec, "message":m, "diagnostic":d}});
       if(ec === 0 || ec === 403) {
-        if(v === "undefined" || (v === null || v === "null")) {
+        if(v === "undefined" || v === null || v === "null") {
           v = ""
         }
         return String(v)
@@ -18036,7 +18569,7 @@ function SCORM_API(options) {
   this.getObjectiveByID = function(id) {
     var count = self.getvalue("cmi.objectives._count"), i, tID;
     scorm.debug(settings.prefix + ": Set Objective - Begin search, Objective count is " + count, 4);
-    if(count === "" || (count === "false" || count === "-1")) {
+    if(count === "" || count === "false" || count === "-1") {
       return"false"
     }
     count = parseInt(count, 10) - 1;
@@ -18053,7 +18586,7 @@ function SCORM_API(options) {
   };
   this.getInteractionByID = function(id) {
     var count = self.getvalue("cmi.interactions._count"), i, tID;
-    if(count === "" || (count === "false" || count === "-1")) {
+    if(count === "" || count === "false" || count === "-1") {
       return"false"
     }
     count = parseInt(count, 10) - 1;
@@ -18688,7 +19221,7 @@ function SCOBot(options) {
       scorm.debug(settings.launch_data, 4);
       settings.mode = scorm.getvalue("cmi.mode");
       settings.entry = scorm.getvalue("cmi.entry");
-      if(settings.mode === "review" || (settings.entry === "" || settings.entry === "resume")) {
+      if(settings.mode === "review" || settings.entry === "" || settings.entry === "resume") {
         settings.location = scorm.getvalue("cmi.location");
         settings.suspend_data = scorm.getvalue("cmi.suspend_data");
         if(settings.suspend_data.length > 0 && !isBadValue(settings.suspend_data)) {
@@ -19614,7 +20147,7 @@ VISH.EVideo = function(V, $, undefined) {
         eVideoJSON.balls.push(value)
       });
       eVideoJSON.balls = eVideoJSON.balls.filter(function(ball) {
-        return typeof ball.etime != "undefined" && (!isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0)
+        return typeof ball.etime != "undefined" && !isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0
       }).map(function(ball) {
         ball.etime = parseFloat(ball.etime);
         ball.eVideoId = eVideoJSON.id;
@@ -19668,7 +20201,7 @@ VISH.EVideo = function(V, $, undefined) {
   };
   var _renderVideo = function(eVideoId) {
     var eVideoJSON = eVideos[eVideoId];
-    if(typeof eVideoJSON != "object" || (typeof eVideoJSON.video != "object" || !haveSources(eVideoJSON))) {
+    if(typeof eVideoJSON != "object" || typeof eVideoJSON.video != "object" || !haveSources(eVideoJSON)) {
       return
     }
     var videoBody = $("#" + eVideoId).find(".evideoBody");
@@ -19861,7 +20394,7 @@ VISH.EVideo = function(V, $, undefined) {
     if(volume >= 50 && _lastVolumeValue < 50) {
       _updateVolumeImg(video, volume)
     }else {
-      if(volume < 50 && (volume > 0 && (_lastVolumeValue > 50 || _lastVolumeValue == 0))) {
+      if(volume < 50 && volume > 0 && (_lastVolumeValue > 50 || _lastVolumeValue == 0)) {
         _updateVolumeImg(video, volume)
       }else {
         _updateVolumeImg(video, volume)
@@ -20231,7 +20764,7 @@ VISH.EVideo = function(V, $, undefined) {
           return false
         }
       }else {
-        if(typeof ball.slide_id != "undefined" && (ball.etime >= cTime && eVideos[eVideoId].prevBalls.indexOf(ball) == -1)) {
+        if(typeof ball.slide_id != "undefined" && ball.etime >= cTime && eVideos[eVideoId].prevBalls.indexOf(ball) == -1) {
           nextBall = ball;
           return false
         }
@@ -21375,6 +21908,116 @@ VISH.Editor.Dummies = function(V, undefined) {
   };
   return{init:init, getDummy:getDummy, getScaffoldForSlide:getScaffoldForSlide}
 }(VISH);
+VISH.Editor.EPackage = function(V, $, undefined) {
+  var uploadDivId = "tab_epackage_content";
+  var init = function() {
+    var options = V.Editor.getOptions();
+    var tagList = $("#" + uploadDivId + " .tagList");
+    var bar = $("#" + uploadDivId + " .upload_progress_bar");
+    var percent = $("#" + uploadDivId + " .upload_progress_bar_percent");
+    $("#" + uploadDivId + " input[name='document[file]']").change(function() {
+      var filterFilePath = V.Editor.Utils.filterFilePath($("#" + uploadDivId + " input:file").val());
+      $("#" + uploadDivId + " input[name='document[title]']").val(filterFilePath);
+      _resetUploadFields();
+      $(tagList).parent().show();
+      $("#" + uploadDivId + " form" + " .button").show();
+      $("#" + uploadDivId + " .upload_progress_bar_wrapper").hide()
+    });
+    $("#" + uploadDivId + " #upload_package_submit").click(function(event) {
+      if(!V.Police.validateFileUpload($("#" + uploadDivId + " input[name='document[file]']").val())[0]) {
+        event.preventDefault()
+      }else {
+        if(options) {
+          var description = "Uploaded by " + V.User.getName() + " via ViSH Editor";
+          $("#" + uploadDivId + " input[name='document[description]']").val(description);
+          $("#" + uploadDivId + " input[name='document[owner_id]']").val(V.User.getId());
+          $("#" + uploadDivId + " input[name='authenticity_token']").val(V.User.getToken());
+          $("#" + uploadDivId + " .documentsForm").attr("action", V.UploadObjectPath);
+          var tagList = $("#" + uploadDivId + " .tagList");
+          $("#" + uploadDivId + " input[name='document[tag_list]']").val(V.Editor.Utils.convertToTagsArray($(tagList).tagit("tags")));
+          $(tagList).parent().hide();
+          $("#" + uploadDivId + " .upload_progress_bar_wrapper").show()
+        }
+      }
+    });
+    $("#" + uploadDivId + " form").ajaxForm({beforeSend:function() {
+      var percentVal = "0%";
+      bar.width(percentVal);
+      percent.html(percentVal)
+    }, uploadProgress:function(event, position, total, percentComplete) {
+      var percentVal = percentComplete + "%";
+      bar.width(percentVal);
+      percent.html(percentVal)
+    }, complete:function(xhr) {
+      switch(V.Configuration.getConfiguration()["mode"]) {
+        case V.Constant.NOSERVER:
+          break;
+        case V.Constant.VISH:
+          _processResponse(xhr.responseText);
+          break;
+        case V.Constant.STANDALONE:
+          _processResponse(xhr.responseText);
+          break
+      }
+      var percentVal = "100%";
+      bar.width(percentVal);
+      percent.html(percentVal)
+    }, error:function(error) {
+      V.Debugging.log("Upload error");
+      V.Debugging.log(error);
+      V.Editor.Utils.showErrorDialog(V.I18n.getTrans("i.ePackageError1"))
+    }})
+  };
+  var onLoadTab = function() {
+    var tagList = $("#" + uploadDivId + " .tagList");
+    $(tagList).parent().hide();
+    $("#" + uploadDivId + " form" + " .button").hide();
+    $("#" + uploadDivId + " .upload_progress_bar_wrapper").hide();
+    $("#" + uploadDivId + " input[name='document[file]']").val("");
+    _resetUploadFields();
+    V.Editor.API.requestTags(_onTagsReceived)
+  };
+  var _resetUploadFields = function() {
+    var bar = $("#" + uploadDivId + " .upload_progress_bar");
+    var percent = $("#" + uploadDivId + " .upload_progress_bar_percent");
+    bar.width("0%");
+    percent.html("0%");
+    var tagList = $("#" + uploadDivId + " .tagList");
+    if($(tagList)[0].children.length !== 0) {
+      $(tagList).tagit("reset")
+    }
+  };
+  var _onTagsReceived = function(data) {
+    var tagList = $("#" + uploadDivId + " .tagList");
+    if($(tagList).children().length == 0) {
+      $(tagList).tagit({tagSource:data, sortable:true, maxLength:20, maxTags:8, watermarkAllowMessage:V.I18n.getTrans("i.AddTags"), watermarkDenyMessage:V.I18n.getTrans("i.limitReached")})
+    }
+  };
+  var _processResponse = function(response) {
+    try {
+      var jsonResponse = JSON.parse(response);
+      if(jsonResponse.src) {
+        if(V.Police.validateObject(jsonResponse.src)[0]) {
+          var presentation = _generatePresentationWithEPackage(jsonResponse);
+          V.Editor.Presentation.previewPresentation(presentation);
+          return
+        }
+      }
+    }catch(e) {
+    }
+    V.Editor.Utils.showErrorDialog(V.I18n.getTrans("i.ePackageError1"))
+  };
+  var _generatePresentationWithEPackage = function(ePackage) {
+    var element = {};
+    element.type = "object";
+    element.body = '<iframe src="' + ePackage.src + '" objecttype="' + ePackage.type + '"></iframe>';
+    element.style = "position: relative; width:100%; height:100%; top:0%; left:0%;";
+    var elements = [element];
+    var options = {template:"t10"};
+    return V.Editor.Presentation.generatePresentationScaffold(elements, options)
+  };
+  return{init:init, onLoadTab:onLoadTab}
+}(VISH, jQuery);
 VISH.Editor.EVideo = function(V, $, undefined) {
   var initialized = false;
   var eVideos;
@@ -21392,7 +22035,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     }
   };
   var _loadEvents = function() {
-    hiddenLinkToAddVideos = $('<a id="hidden_button_to_change_video" href="#video_fancybox" style="display:none"></a>');
+    hiddenLinkToAddVideos = $('<a href="#video_fancybox" style="display:none"></a>');
     $(hiddenLinkToAddVideos).fancybox({"autoDimensions":false, "width":800, "height":600, "scrolling":"no", "padding":0, "onStart":function(data) {
       V.Editor.Video.setAddContentMode(V.Constant.EVIDEO);
       V.Editor.Utils.loadTab("tab_video_youtube")
@@ -21528,7 +22171,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
         eVideos[eVideoId].balls.push(poi)
       });
       eVideos[eVideoId].balls = eVideos[eVideoId].balls.filter(function(ball) {
-        return typeof ball.etime != "undefined" && (!isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0)
+        return typeof ball.etime != "undefined" && !isNaN(parseFloat(ball.etime)) && parseFloat(ball.etime) >= 0
       }).map(function(ball) {
         ball.letter = _getLetterForBall(eVideos[eVideoId], ball);
         ball.etime = parseFloat(ball.etime);
@@ -22078,7 +22721,7 @@ VISH.Editor.EVideo = function(V, $, undefined) {
     var hours = $("#eVideochapters_hours").val();
     var minutes = $("#eVideochapters_minutes").val();
     var seconds = $("#eVideochapters_seconds").val();
-    if(jQuery.isNumeric(hours) && (jQuery.isNumeric(minutes) && jQuery.isNumeric(seconds))) {
+    if(jQuery.isNumeric(hours) && jQuery.isNumeric(minutes) && jQuery.isNumeric(seconds)) {
       hours = parseInt(hours);
       minutes = parseInt(minutes);
       seconds = parseInt(seconds);
@@ -22414,6 +23057,10 @@ VISH.Editor.Events = function(V, $, undefined) {
         }
         V.Editor.Image.setAddContentMode(V.Constant.NONE)
       }});
+      $(document).on("click", "#quizSettingsDone", V.Editor.Quiz.onQuizSettingsDone);
+      $(document).on("click", "#exportQuizToIMSQTI", function() {
+        V.Editor.Quiz.onExportTo("QTI")
+      });
       window.onbeforeunload = _exitConfirmation;
       confirmOnExit = true;
       $(window.document).on("click", function(ev) {
@@ -22449,14 +23096,17 @@ VISH.Editor.Events = function(V, $, undefined) {
     $(document).on("click", "#tab_pdfex_help", function() {
       V.Tour.startTourWithId("help_pdfex_help", "bottom")
     });
-    $(document).on("click", "#tab_json_file_help", function() {
-      V.Tour.startTourWithId("help_iJSON_help", "bottom")
+    $(document).on("click", "#tab_epackage_help", function() {
+      V.Tour.startTourWithId("help_epackage_help", "bottom")
     });
-    $(document).on("click", "#tab_presentations_lre_help", function() {
-      V.Tour.startTourWithId("tab_presentations_lre_help", "bottom")
+    $(document).on("click", "#tab_efile_help", function() {
+      V.Tour.startTourWithId("help_efile_help", "bottom")
     });
     $(document).on("click", "#tab_presentations_repo_help", function() {
       V.Tour.startTourWithId("help_excursion_selection_help", "bottom")
+    });
+    $(document).on("click", "#tab_presentations_lre_help", function() {
+      V.Tour.startTourWithId("tab_presentations_lre_help", "bottom")
     });
     $(document).on("click", "#help_themes_selection", function() {
       V.Tour.startTourWithId("themes_help", "bottom")
@@ -22666,6 +23316,143 @@ VISH.Editor.Filter = function(V, $, undefined) {
   };
   return{init:init}
 }(VISH, jQuery);
+VISH.Editor.IMSQTI = function(V, $, undefined) {
+  var init = function() {
+  };
+  var isCompliantXMLFile = function(fileXML) {
+    var contains;
+    var schema;
+    var xmlDoc = $.parseXML(fileXML);
+    var xml = $(xmlDoc);
+    if($(xml).find("assessmentItem").length != 0) {
+      $(xml).find("assessmentItem").each(function() {
+        $(this.attributes).each(function(index, attribute) {
+          if(attribute.name == "xsi:schemaLocation") {
+            if(attribute.textContent.indexOf("http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd") != -1 || attribute.textContent.indexOf("http://www.imsglobal.org/xsd/imsqti_v2p1.xsd") != -1) {
+              schema = true
+            }else {
+              schema = false
+            }
+          }
+        })
+      })
+    }else {
+      schema = false
+    }
+    if(checkQuizType(fileXML) == "multipleCA") {
+      var itemBody = $(xml).find("itemBody");
+      var simpleChoice = $(xml).find("simpleChoice");
+      var correctResponse = $(xml).find("correctResponse value");
+      if(itemBody.length == 0 || simpleChoice.length == 0 || correctResponse.length == 0 || schema == false) {
+        contains = false
+      }else {
+        contains = true
+      }
+    }else {
+      alert("no es un tipo v\u00e1lido!");
+      contains = false
+    }
+    return contains
+  };
+  var checkAnswer = function(answer, correctArray) {
+    var answerBoolean;
+    if(jQuery.inArray(answer, correctArray) == -1) {
+      answerBoolean = false
+    }else {
+      answerBoolean = true
+    }
+    return answerBoolean
+  };
+  var checkQuizType = function(fileXML) {
+    var quizType;
+    var xmlDoc = $.parseXML(fileXML);
+    var xml = $(xmlDoc);
+    var multipleCA = $(xml).find("simpleChoice");
+    var fillInTheBlankText = $(xml).find("textEntryInteraction");
+    var hotSpotClick = $(xml).find("selectPointInteraction");
+    var openshortAnswer = $(xml).find("extendTextInteraction");
+    var order = $(xml).find("orderInteraction");
+    var fillInTheBlankGap = $(xml).find("gapMatchInteraction");
+    var matching = $(xml).find("matchInteraction");
+    if(fillInTheBlankText.length != 0) {
+      quizType = "fillInTheBlankText"
+    }else {
+      if(hotSpotClick.length != 0) {
+        quizType = "hotSpotClick"
+      }else {
+        if(openshortAnswer.length != 0) {
+          quizType = "openshortAnswer"
+        }else {
+          if(order.length != 0) {
+            quizType = "order"
+          }else {
+            if(fillInTheBlankGap.length != 0) {
+              quizType = "fillInTheBlankGap"
+            }else {
+              if(matching.length != 0) {
+                quizType = "matching"
+              }else {
+                if(multipleCA.length != 0) {
+                  quizType = "multipleCA"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return quizType
+  };
+  var getJSONFromXMLFile = function(fileXML) {
+    var elements = [];
+    var question;
+    var answerArray = [];
+    var correctanswerArray = [];
+    var nAnswers;
+    var answerIds = [];
+    var xmlDoc = $.parseXML(fileXML);
+    var xml = $(xmlDoc);
+    if($(xml).find("prompt").length != 0) {
+      $(xml).find("prompt").each(function() {
+        question = $(this).text()
+      })
+    }else {
+      $(xml).find("itemBody").children().first().each(function() {
+        question = $(this).text()
+      })
+    }
+    $(xml).find("simpleChoice").each(function() {
+      var answer = $(this).text();
+      answerArray.push(answer)
+    });
+    $(xml).find("correctResponse value").each(function() {
+      var cAnswer = $(this).text();
+      correctanswerArray.push(cAnswer)
+    });
+    $(xml).find("simpleChoice").each(function() {
+      $(this.attributes).each(function(index, attribute) {
+        if(attribute.name == "identifier") {
+          answerIds.push(attribute.textContent)
+        }
+      })
+    });
+    if(correctanswerArray.length > 1) {
+      nAnswers = true
+    }else {
+      nAnswers = false
+    }
+    var choices = [];
+    for(var i = 1;i <= answerArray.length;i++) {
+      var iChoice;
+      iChoice = {"id":i.toString(), "value":answerArray[i - 1].toString(), "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;' + answerArray[i - 1].toString() + "&shy;</span></span></p>\n", "answer":checkAnswer(answerIds[i - 1], correctanswerArray)};
+      choices.push(iChoice)
+    }
+    elements.push({"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":question, "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;' + question + "</span></span></p>\n"}, "choices":$.extend([{}], choices), "extras":{"multipleAnswer":nAnswers}});
+    var options = {template:"t2"};
+    return V.Editor.Presentation.generatePresentationScaffold(elements, options)
+  };
+  return{init:init, isCompliantXMLFile:isCompliantXMLFile, getJSONFromXMLFile:getJSONFromXMLFile}
+}(VISH, jQuery);
 VISH.Editor.Image.Flikr = function(V, $, undefined) {
   var containerDivId = "tab_pic_flikr_content";
   var carrouselDivId = "tab_pic_flikr_content_carrousel";
@@ -22718,7 +23505,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || (!data.items || data.items.length == 0)) {
+    if(!data || !data.items || data.items.length == 0) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -22835,7 +23622,7 @@ VISH.Editor.Image.LRE = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || (!data.pictures || data.pictures.length == 0)) {
+    if(!data || !data.pictures || data.pictures.length == 0) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -22959,7 +23746,7 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || (!data.pictures || data.pictures.length == 0)) {
+    if(!data || !data.pictures || data.pictures.length == 0) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -23260,7 +24047,7 @@ VISH.Editor.LRE = function(V, $, undefined) {
           if(type === "image" && exp.manifestations[j].player == "webBrowser") {
             return exp.manifestations[j].urls[0]
           }else {
-            if(type === "object" && (exp.manifestations[j].player == "webBrowser" || (exp.manifestations[j].player == "landingPage" || exp.manifestations[j].player == "printable"))) {
+            if(type === "object" && (exp.manifestations[j].player == "webBrowser" || exp.manifestations[j].player == "landingPage" || exp.manifestations[j].player == "printable")) {
               return exp.manifestations[j].urls[0]
             }
           }
@@ -23324,7 +24111,7 @@ VISH.Editor.MenuTablet = function(V, $, undefined) {
       }
     });
     $("a.menu_option").click(function(event) {
-      if(!$(this).hasClass("menu_action") && ($(this).parent()[0].tagName === "LI" && $(this).parent().find("ul").length == 1)) {
+      if(!$(this).hasClass("menu_action") && $(this).parent()[0].tagName === "LI" && $(this).parent().find("ul").length == 1) {
         event.preventDefault();
         event.stopPropagation();
         var subMenu = $(this).parent().find("ul")[0];
@@ -23426,7 +24213,7 @@ VISH.Editor.Object.LRE = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || (!data.length || data.length == 0)) {
+    if(!data || !data.length || data.length == 0) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -23801,6 +24588,9 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
         case V.Constant.MEDIA.SCORM_PACKAGE:
           imageSource = V.ImagesPath + "carrousel/scorm.png";
           break;
+        case V.Constant.MEDIA.WEB_APP:
+          imageSource = V.ImagesPath + "carrousel/webapp.png";
+          break;
         case V.Constant.MEDIA.IMS_QTI_QUIZ:
           imageSource = V.ImagesPath + "carrousel/quizxml.png";
           break;
@@ -24109,6 +24899,21 @@ VISH.Editor.Object.Web = function(V, $, undefined) {
   };
   return{init:init, onLoadTab:onLoadTab, drawPreviewElement:drawPreviewElement, generatePreviewWrapperForWeb:generatePreviewWrapperForWeb, generateWrapperForWeb:generateWrapperForWeb}
 }(VISH, jQuery);
+VISH.Editor.Object.Webapp = function(V, $, undefined) {
+  var init = function() {
+  };
+  var generatePreviewWrapper = function(url) {
+    url = V.Utils.addParamToUrl(url, "wmode", "opaque");
+    return"<iframe class='objectPreview' objecttype='" + V.Constant.MEDIA.WEB_APP + "' src='" + url + "' wmode='opaque'></iframe>"
+  };
+  var generateWrapper = function(url) {
+    url = V.Utils.addParamToUrl(url, "wmode", "opaque");
+    return"<iframe objecttype='" + V.Constant.MEDIA.WEB_APP + "' src='" + url + "' wmode='opaque'></iframe>"
+  };
+  var afterDraw = function(iframe) {
+  };
+  return{init:init, generatePreviewWrapper:generatePreviewWrapper, generateWrapper:generateWrapper, afterDraw:afterDraw}
+}(VISH, jQuery);
 VISH.Editor.PDFex = function(V, $, undefined) {
   var uploadDivId = "tab_pdfex_content";
   var init = function() {
@@ -24237,94 +25042,102 @@ VISH.Editor.PDFex = function(V, $, undefined) {
     }
   };
   var _generatePresentationWithImgArray = function(imgs, pdfexId) {
-    var presentation = {};
-    presentation.VEVersion = V.VERSION;
-    presentation.type = V.Constant.PRESENTATION;
-    presentation.theme = V.Constant.Themes.Default;
-    presentation.slides = [];
-    for(var i = 0;i < imgs.length;i++) {
-      var imageUrl = imgs[i];
-      presentation.slides.push(_generateSlideWithImg(i, imageUrl, pdfexId))
+    var elements = [];
+    var imgL = imgs.length;
+    for(var i = 0;i < imgL;i++) {
+      elements.push({"body":imgs[i], "type":V.Constant.IMAGE})
     }
-    return presentation
-  };
-  var _generateSlideWithImg = function(index, imgUrl, pdfexId) {
-    var slide = {};
-    slide.id = "article" + index;
-    slide.type = V.Constant.STANDARD;
-    slide.template = "t10";
-    slide.elements = [];
-    var element = {};
-    element.areaid = "center";
-    element.body = imgUrl;
-    element.id = slide.id + "_zone1";
-    element.type = V.Constant.IMAGE;
-    if(typeof pdfexId != "undefined") {
-      element.options = {};
-      element.options["vishubPdfexId"] = pdfexId
-    }
-    slide.elements.push(element);
-    return slide
+    var options = {template:"t10", pdfexId:pdfexId};
+    return V.Editor.Presentation.generatePresentationScaffold(elements, options)
   };
   return{init:init, onLoadTab:onLoadTab}
 }(VISH, jQuery);
 VISH.Editor.Presentation.File = function(V, $, undefined) {
-  var fileDivId = "tab_json_file_content";
-  var inputFilesId = "json_file_input";
-  var buttonId = "json_preview_button";
+  var fileDivId = "tab_efile_content";
+  var inputFileId = "efile_input";
+  var buttonId = "efile_preview_button";
   var initialized = false;
   var init = function() {
     if(!initialized) {
-      $("#" + buttonId).click(function() {
-        var files = $("#" + inputFilesId)[0].files;
+      var previewButton = $("#" + buttonId);
+      var formInputEl = $("#" + inputFileId);
+      $(previewButton).click(function() {
+        var files = $("#" + inputFileId)[0].files;
         if(files.length > 0) {
           _insertFile(files[0])
         }else {
-          _showNoFileDialog()
+          _showErrorDialog(V.I18n.getTrans("i.NoFileError"))
         }
+      });
+      $(formInputEl).change(function() {
+        $(previewButton).show()
       });
       initialized = true
     }
   };
   var onLoadTab = function(tab) {
-    $("#json_file_input").attr("value", "")
+    $("#" + buttonId).hide();
+    $("#" + inputFileId).attr("value", "")
   };
   var _insertFile = function(file) {
+    var fileType = undefined;
+    if(file.type != "") {
+      if(file.type.match("text/xml")) {
+        fileType = "xml"
+      }else {
+        if(file.type.match("json")) {
+          fileType = "json"
+        }
+      }
+    }else {
+      var objectInfo = V.Object.getObjectInfo(file.name);
+      if(objectInfo.type === "json" || objectInfo === "xml") {
+        fileType = objectInfo.type
+      }
+    }
+    if(typeof fileType == "undefined") {
+      _showErrorDialog(V.I18n.getTrans("i.NoSupportedFileError"));
+      return
+    }
     var reader = new FileReader;
     reader.onload = function(theFile) {
       return function(e) {
-        try {
-          var json = JSON.parse(e.target.result);
-          V.Editor.Presentation.previewPresentation(json)
-        }catch(e) {
-          _showErrorDialog()
+        switch(fileType) {
+          case "xml":
+            var isIMSQTICompliant = V.Editor.IMSQTI.isCompliantXMLFile(e.target.result);
+            if(isIMSQTICompliant) {
+              var json = V.Editor.IMSQTI.getJSONFromXMLFile(e.target.result);
+              V.Editor.Presentation.previewPresentation(json)
+            }else {
+              _showErrorDialog(V.I18n.getTrans("i.NoSupportedFileError"));
+              return
+            }
+            break;
+          case "json":
+            try {
+              var json = JSON.parse(e.target.result);
+              V.Editor.Presentation.previewPresentation(json)
+            }catch(e) {
+              _showErrorDialog(V.I18n.getTrans("i.readJSONfileError"))
+            }
+            break;
+          default:
+            _showErrorDialog(V.I18n.getTrans("i.NoSupportedFileError"));
+            return
         }
       }
     }(file);
     reader.readAsText(file)
   };
-  var _showErrorDialog = function() {
+  var _showErrorDialog = function(msg) {
     var options = {};
     options.width = 650;
     options.height = 190;
-    options.text = V.I18n.getTrans("i.readJSONfileError");
+    options.text = msg;
     var button1 = {};
     button1.text = V.I18n.getTrans("i.Ok");
     button1.callback = function() {
-      $.fancybox.close()
-    };
-    options.buttons = [button1];
-    V.Utils.showDialog(options)
-  };
-  var _showNoFileDialog = function() {
-    var options = {};
-    options.width = 650;
-    options.height = 190;
-    options.text = V.I18n.getTrans("i.NoJSONFileError");
-    var button1 = {};
-    button1.text = V.I18n.getTrans("i.Ok");
-    button1.callback = function() {
-      V.Editor.Tools.Menu.insertJSON()
+      V.Editor.Tools.Menu.insertEFile()
     };
     options.buttons = [button1];
     V.Utils.showDialog(options)
@@ -24363,7 +25176,7 @@ VISH.Editor.Preview = function(V, $, undefined) {
   };
   var _prepare = function(options) {
     var slideNumberToPreview;
-    if(!options || (!options["slideNumberToPreview"] || typeof options["slideNumberToPreview"] != "number")) {
+    if(!options || !options["slideNumberToPreview"] || typeof options["slideNumberToPreview"] != "number") {
       slideNumberToPreview = V.Slides.getCurrentSlideNumber()
     }else {
       slideNumberToPreview = options["slideNumberToPreview"]
@@ -24378,12 +25191,12 @@ VISH.Editor.Preview = function(V, $, undefined) {
         }
       }
     }
-    if(!options || (!options["presentationJSON"] || typeof options["presentationJSON"] != "object")) {
+    if(!options || !options["presentationJSON"] || typeof options["presentationJSON"] != "object") {
       presentationPreview = V.Editor.savePresentation()
     }else {
       presentationPreview = options["presentationJSON"]
     }
-    if(options && (options["insertMode"] && typeof options["insertMode"] == "boolean")) {
+    if(options && options["insertMode"] && typeof options["insertMode"] == "boolean") {
       presentationPreview.insertMode = options["insertMode"]
     }
   };
@@ -24458,8 +25271,7 @@ VISH.Editor.Quiz.MC = function(V, $, undefined) {
   };
   var _addOptionInQuiz = function(area, value, check) {
     var nChoices = $(area).find("li.mc_option").size();
-    var quiz_option = _getOptionDummy();
-    var quiz_option = $(quiz_option).attr("nChoice", nChoices + 1);
+    var quiz_option = $(_getOptionDummy()).attr("nChoice", nChoices + 1);
     $(area).find(".mc_options").append(quiz_option);
     _refreshChoicesIndexs(area);
     if(check) {
@@ -24495,7 +25307,7 @@ VISH.Editor.Quiz.MC = function(V, $, undefined) {
     var textArea = $(area).find(".mc_option_text")[nChoice];
     if(!value) {
       if(first) {
-        V.Editor.Text.launchTextEditor({}, textArea, "Write options here", {forceNew:true, fontSize:24, autogrow:true, placeholder:true})
+        V.Editor.Text.launchTextEditor({}, textArea, V.I18n.getTrans("i.QuizzesWriteOptions"), {forceNew:true, fontSize:24, autogrow:true, placeholder:true})
       }else {
         V.Editor.Text.launchTextEditor({}, textArea, "", {forceNew:true, fontSize:24, autogrow:true, focus:true})
       }
@@ -24506,7 +25318,7 @@ VISH.Editor.Quiz.MC = function(V, $, undefined) {
   var save = function(area) {
     var textArea = $(area).find(".mc_question_wrapper");
     var quiz = {};
-    quiz.quizType = VISH.Constant.QZ_TYPE.MCHOICE;
+    quiz.quizType = V.Constant.QZ_TYPE.MCHOICE;
     quiz.selfA = false;
     quiz.extras = {};
     quiz.extras.multipleAnswer = false;
@@ -24563,6 +25375,303 @@ VISH.Editor.Quiz.MC = function(V, $, undefined) {
     })
   };
   return{init:init, add:add, save:save, draw:draw}
+}(VISH, jQuery);
+VISH.Editor.Quiz.Open = function(V, $, undefined) {
+  var initialized = false;
+  var qCheckbox = "openQCheckbox";
+  var SHORT_ANSWER_MAX_WORDS = 6;
+  var SHORT_ANSWER_MAX_CHARS = 40;
+  var init = function() {
+    if(!initialized) {
+      $(document).on("click", "." + "openQContainer", _clickOnQuizArea);
+      $(document).on("click", "." + qCheckbox, _onCheckboxClick);
+      initialized = true
+    }
+  };
+  var _clickOnQuizArea = function(event) {
+    switch(event.target.classList[0]) {
+      case "openQContainer":
+        V.Editor.setCurrentArea($("#" + event.target.parentElement.id));
+        break;
+      default:
+        break
+    }
+  };
+  var _onCheckboxClick = function(event) {
+    var check = $(event.target).attr("check");
+    switch(check) {
+      case "true":
+        V.Quiz.updateCheckbox(event.target, "none");
+        break;
+      case "false":
+        break;
+      case "none":
+      ;
+      default:
+        V.Quiz.updateCheckbox(event.target, "true");
+        break
+    }
+  };
+  var add = function(area) {
+    area.append(_getDummy());
+    area.find(".menuselect_hide").remove();
+    area.attr("type", "quiz");
+    area.attr("quiztype", V.Constant.QZ_TYPE.OPEN);
+    _launchTextEditorForQuestion(area);
+    _launchTextEditorForAnswer(area);
+    V.Editor.addDeleteButton(area)
+  };
+  var _getDummy = function() {
+    return"<div class='openQContainer'><div class='mc_question_wrapper'></div>" + _getAnswerDummy() + "<input type='hidden' name='quiz_id'/></div></div>"
+  };
+  var _getAnswerDummy = function() {
+    return"<div class='openq_answer_wrapper'><div class='openq_answer_text'></div><table class='open_checks'><tr class='checkFirstRow'><td><img src='" + V.ImagesPath + "quiz/checkbox.png' class='" + qCheckbox + "' check='none'/></td></tr></table></div>"
+  };
+  var _launchTextEditorForQuestion = function(area, question, callback) {
+    var textArea = $(area).find(".mc_question_wrapper");
+    if(!question) {
+      V.Editor.Text.launchTextEditor({}, textArea, "", {forceNew:true, fontSize:38, focus:true, autogrow:true})
+    }else {
+      V.Editor.Text.launchTextEditor({}, textArea, question, {autogrow:true})
+    }
+  };
+  var _launchTextEditorForAnswer = function(area, answer, callback) {
+    var textArea = $(area).find(".openq_answer_text");
+    if(!answer) {
+      V.Editor.Text.launchTextEditor({}, textArea, V.I18n.getTrans("i.QuizzesWriteOptionsOpen"), {forceNew:true, fontSize:24, autogrow:true, placeholder:true, onKeyup:_onAnswerKeyUp, callback:callback})
+    }else {
+      V.Editor.Text.launchTextEditor({}, textArea, answer, {autogrow:true, onKeyup:_onAnswerKeyUp, callback:callback})
+    }
+  };
+  var _onAnswerKeyUp = function(area, ckeditorInstance) {
+    var checkBox = $(area).parent().find("img.openQCheckbox");
+    var checkBoxDisabled = $(checkBox).hasClass("quizCheckBoxDisabled");
+    var answer = ckeditorInstance.getPlainText();
+    try {
+      var charCount = answer.length;
+      var wordCount = answer.match(/\w+/g).length
+    }catch(e) {
+      var charCount = 0;
+      var wordCount = 0
+    }
+    if(wordCount > SHORT_ANSWER_MAX_WORDS || charCount > SHORT_ANSWER_MAX_CHARS) {
+      if(!checkBoxDisabled) {
+        _disableCheckBox(checkBox)
+      }
+    }else {
+      if(checkBoxDisabled) {
+        _enableCheckBox(checkBox)
+      }
+    }
+  };
+  var _disableCheckBox = function(checkbox) {
+    $(checkbox).addClass("quizCheckBoxDisabled");
+    $(checkbox).prop("disabled", true);
+    V.Quiz.updateCheckbox(checkbox, "none")
+  };
+  var _enableCheckBox = function(checkbox) {
+    $(checkbox).removeClass("quizCheckBoxDisabled");
+    $(checkbox).prop("disabled", false);
+    V.Quiz.updateCheckbox(checkbox, "none")
+  };
+  var _isSelfAssesment = function(area) {
+    var openCheckBox = $(area).find("img.openQCheckbox");
+    return $(openCheckBox).attr("check") === "true" && $(openCheckBox).hasClass("quizCheckBoxDisabled") === false
+  };
+  var save = function(area) {
+    var textArea = $(area).find(".mc_question_wrapper");
+    var quiz = {};
+    quiz.quizType = V.Constant.QZ_TYPE.OPEN;
+    quiz.selfA = _isSelfAssesment(area);
+    var questionInstance = V.Editor.Text.getCKEditorFromTextArea($(area).find(".mc_question_wrapper"));
+    quiz.question = {};
+    quiz.question.value = questionInstance.getPlainText();
+    quiz.question.wysiwygValue = questionInstance.getData();
+    var answerInstance = V.Editor.Text.getCKEditorFromTextArea($(area).find(".openq_answer_text"));
+    quiz.answer = {};
+    quiz.answer.value = answerInstance.getPlainText();
+    quiz.answer.wysiwygValue = answerInstance.getData();
+    return quiz
+  };
+  var draw = function(area, quiz) {
+    $(area).append(_getDummy());
+    $(area).attr("type", V.Constant.QUIZ);
+    $(area).attr("quiztype", V.Constant.QZ_TYPE.OPEN);
+    _launchTextEditorForQuestion(area, quiz.question.wysiwygValue);
+    _launchTextEditorForAnswer(area, quiz.answer.wysiwygValue, function() {
+      var openQAnswerTextArea = $(area).find("div.openq_answer_text");
+      _onAnswerKeyUp(openQAnswerTextArea, V.Editor.Text.getCKEditorFromTextArea(openQAnswerTextArea))
+    });
+    if(quiz.selfA) {
+      var checkBox = $(area).find("img.openQCheckbox");
+      _enableCheckBox(checkBox);
+      V.Quiz.updateCheckbox(checkBox, "true")
+    }
+    V.Editor.addDeleteButton(area)
+  };
+  return{init:init, add:add, save:save, draw:draw}
+}(VISH, jQuery);
+VISH.Editor.Quiz.Sorting = function(V, $, undefined) {
+  var addQuizOptionButtonClass = "add_quiz_option_sorting";
+  var deleteQuizOptionButtonClass = "delete_quiz_option_sorting";
+  var initialized = false;
+  var ckEditorTmpData;
+  var init = function() {
+    if(!initialized) {
+      $(document).on("click", "." + "sortingQContainer", _clickOnQuizArea);
+      $(document).on("click", "." + addQuizOptionButtonClass, _clickToAddOptionInQuiz);
+      $(document).on("click", "." + deleteQuizOptionButtonClass, _removeOptionInQuiz);
+      initialized = true
+    }
+  };
+  var _clickOnQuizArea = function(event) {
+    switch(event.target.classList[0]) {
+      case "sortingQContainer":
+        V.Editor.setCurrentArea($("#" + event.target.parentElement.id));
+        break;
+      case "mc_option_text":
+        V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.parentElement.id));
+        break;
+      case "mc_option":
+        V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.id));
+        break;
+      default:
+        break
+    }
+  };
+  var add = function(area) {
+    area.append(_getDummy());
+    area.find(".menuselect_hide").remove();
+    area.attr("type", "quiz");
+    area.attr("quiztype", V.Constant.QZ_TYPE.SORTING);
+    _launchTextEditorForQuestion(area);
+    _addOptionInQuiz(area);
+    V.Editor.addDeleteButton(area);
+    _applySortable(area)
+  };
+  var _applySortable = function(area) {
+    $(area).find(".mc_options").sortable({cursor:"move", start:function(event, ui) {
+      try {
+        var textArea = $(ui.item).find(".wysiwygTextArea");
+        var ckEditorInstance = V.Editor.Text.getCKEditorFromTextArea(textArea);
+        ckEditorTmpData = ckEditorInstance.getData()
+      }catch(e) {
+        ckEditorTmpData = undefined
+      }
+    }, stop:function(event, ui) {
+      var textArea = $(ui.item).find(".wysiwygTextArea");
+      var ckEditorInstance = V.Editor.Text.getCKEditorFromTextArea(textArea);
+      ckEditorInstance.destroy();
+      if(typeof ckEditorTmpData != "string" || $(ckEditorTmpData).text().trim() == "\u00ad") {
+        V.Editor.Text.launchTextEditor({}, $(textArea).parent(), "", {forceNew:true, fontSize:24, autogrow:true, focus:false, disableTmpShown:true})
+      }else {
+        V.Editor.Text.launchTextEditor({}, $(textArea).parent(), ckEditorTmpData, {autogrow:true, disableTmpShown:true})
+      }
+      ckEditorTmpData = undefined;
+      _refreshChoicesIndex(area)
+    }})
+  };
+  var _getDummy = function() {
+    return"<div class='sortingQContainer'><div class='mc_question_wrapper'></div><ul class='mc_options'></ul><img src='" + V.ImagesPath + "icons/add.png' class='" + addQuizOptionButtonClass + "'/><input type='hidden' name='quiz_id'/></div></div>"
+  };
+  var _getOptionDummy = function() {
+    return"<li class='mc_option'><div class='mc_option_wrapper'><span class='mc_option_index sorting_option_index'></span><div class='mc_option_text sorting_option_text'></div><table class='mc_checks sorting_checks'><tr class='checkFirstRow'><td><img src='" + V.ImagesPath + "icons/ve_delete.png' class='" + deleteQuizOptionButtonClass + "'/></td></tr></table></div></li>"
+  };
+  var _clickToAddOptionInQuiz = function(event) {
+    var area = $("#" + event.target.parentElement.parentElement.id);
+    V.Editor.setCurrentArea(area);
+    _addOptionInQuiz(area)
+  };
+  var _addOptionInQuiz = function(area, value) {
+    var nChoices = $(area).find("li.mc_option").size();
+    var quiz_option = $(_getOptionDummy()).attr("nChoice", nChoices + 1);
+    $(area).find(".mc_options").append(quiz_option);
+    _refreshChoicesIndex(area);
+    _launchTextEditorForOptions(area, nChoices, value);
+    if(nChoices > 0) {
+      $(area).find("li[nChoice='" + (nChoices + 1) + "']").find("." + deleteQuizOptionButtonClass).css("visibility", "visible")
+    }
+  };
+  var _removeOptionInQuiz = function(event) {
+    var area = $("div[type='quiz']").has(event.target);
+    V.Editor.setCurrentArea(area);
+    var liToRemove = $("li.mc_option").has(event.target);
+    $(liToRemove).remove();
+    _refreshChoicesIndex(area)
+  };
+  var _refreshChoicesIndex = function(area) {
+    var choices = $(area).find("li.mc_option");
+    var nChoices = $(choices).length;
+    $(choices).each(function(index, optEl) {
+      var deleteButton = $(optEl).find("." + deleteQuizOptionButtonClass);
+      if(index === 0 && nChoices === 1) {
+        $(deleteButton).css("visibility", "hidden")
+      }else {
+        $(deleteButton).css("visibility", "visible")
+      }
+      $(optEl).find(".sorting_option_index").text((index + 1).toString() + ")")
+    })
+  };
+  var _launchTextEditorForQuestion = function(area, question) {
+    var textArea = $(area).find(".mc_question_wrapper");
+    if(!question) {
+      V.Editor.Text.launchTextEditor({}, textArea, "", {forceNew:true, fontSize:38, focus:true, autogrow:true})
+    }else {
+      V.Editor.Text.launchTextEditor({}, textArea, question, {autogrow:true})
+    }
+  };
+  var _launchTextEditorForOptions = function(area, nChoice, value) {
+    var first = nChoice === 0;
+    var textArea = $(area).find(".mc_option_text")[nChoice];
+    if(!value) {
+      if(first) {
+        V.Editor.Text.launchTextEditor({}, textArea, V.I18n.getTrans("i.QuizzesWriteOptionsSorting"), {forceNew:true, fontSize:24, autogrow:true, placeholder:true})
+      }else {
+        V.Editor.Text.launchTextEditor({}, textArea, "", {forceNew:true, fontSize:24, autogrow:true, focus:true})
+      }
+    }else {
+      V.Editor.Text.launchTextEditor({}, textArea, value, {autogrow:true})
+    }
+  };
+  var save = function(area) {
+    var textArea = $(area).find(".mc_question_wrapper");
+    var quiz = {};
+    quiz.quizType = V.Constant.QZ_TYPE.SORTING;
+    quiz.selfA = true;
+    var questionInstance = V.Editor.Text.getCKEditorFromTextArea($(area).find(".mc_question_wrapper"));
+    quiz.question = {};
+    quiz.question.value = questionInstance.getPlainText();
+    quiz.question.wysiwygValue = questionInstance.getData();
+    quiz.choices = [];
+    var nChoices = $(area).find("li.mc_option").size();
+    var optionTextAreas = $(area).find(".mc_option_text");
+    for(var i = 0;i < nChoices;i++) {
+      var textArea = optionTextAreas[i];
+      var optionInstance = V.Editor.Text.getCKEditorFromTextArea(textArea);
+      var choice = {};
+      choice.id = (i + 1).toString();
+      choice.value = optionInstance.getPlainText();
+      choice.wysiwygValue = optionInstance.getData();
+      choice.answer = i + 1;
+      quiz.choices.push(choice)
+    }
+    return quiz
+  };
+  var draw = function(area, quiz) {
+    $(area).append(_getDummy());
+    $(area).attr("type", V.Constant.QUIZ);
+    $(area).attr("quiztype", V.Constant.QZ_TYPE.SORTING);
+    _launchTextEditorForQuestion(area, quiz.question.wysiwygValue);
+    V.Editor.addDeleteButton(area);
+    $(quiz.choices).each(function(index, choice) {
+      _addOptionInQuiz(area, choice.wysiwygValue)
+    });
+    _applySortable(area)
+  };
+  var afterCopyQuiz = function(quizDOM) {
+    _applySortable(quizDOM)
+  };
+  return{init:init, add:add, save:save, draw:draw, afterCopyQuiz:afterCopyQuiz}
 }(VISH, jQuery);
 VISH.Editor.Quiz.TF = function(V, $, undefined) {
   var addQuizOptionButtonClass = "add_quiz_option_tf";
@@ -24682,7 +25791,7 @@ VISH.Editor.Quiz.TF = function(V, $, undefined) {
     var textArea = $(area).find(".mc_option_text")[nChoice];
     if(!value) {
       if(first) {
-        V.Editor.Text.launchTextEditor({}, textArea, "Write options here", {forceNew:true, fontSize:24, autogrow:true, placeholder:true})
+        V.Editor.Text.launchTextEditor({}, textArea, V.I18n.getTrans("i.QuizzesWriteOptions"), {forceNew:true, fontSize:24, autogrow:true, placeholder:true})
       }else {
         V.Editor.Text.launchTextEditor({}, textArea, "", {forceNew:true, fontSize:24, autogrow:true, focus:true})
       }
@@ -24693,7 +25802,7 @@ VISH.Editor.Quiz.TF = function(V, $, undefined) {
   var save = function(area) {
     var textArea = $(area).find(".mc_question_wrapper");
     var quiz = {};
-    quiz.quizType = VISH.Constant.QZ_TYPE.TF;
+    quiz.quizType = V.Constant.QZ_TYPE.TF;
     quiz.selfA = false;
     var questionInstance = V.Editor.Text.getCKEditorFromTextArea($(area).find(".mc_question_wrapper"));
     quiz.question = {};
@@ -24793,37 +25902,43 @@ VISH.Editor.Renderer = function(V, $, undefined) {
       var scaffoldDOM = $("#" + $(scaffold).attr("id"));
       V.Utils.addTempShown(scaffoldDOM)
     }
-    for(el in slide.elements) {
-      var areaId = slide.elements[el].id;
-      var area = $("div#" + areaId + "[areaid='" + slide.elements[el].areaid + "']");
+    var slideElementsLength = slide.elements.length;
+    for(var i = 0;i < slideElementsLength;i++) {
+      var element = slide.elements[i];
+      var zoneId = element.id;
+      var area = $("div#" + zoneId + "[areaid='" + element.areaid + "']");
       if(area.length === 0) {
         continue
       }
-      if(slide.elements[el].type === V.Constant.TEXT) {
-        V.Editor.Text.launchTextEditor({}, area, slide.elements[el].body)
+      if(element.settings) {
+        var serializedSettings = JSON.stringify(element.settings);
+        $(area).attr("elSettings", serializedSettings)
+      }
+      if(element.type === V.Constant.TEXT) {
+        V.Editor.Text.launchTextEditor({}, area, element.body)
       }else {
-        if(slide.elements[el].type === V.Constant.IMAGE) {
-          V.Editor.Image.drawImage(slide.elements[el].body, area, slide.elements[el].style, slide.elements[el].hyperlink, slide.elements[el].options)
+        if(element.type === V.Constant.IMAGE) {
+          V.Editor.Image.drawImage(element.body, area, element.style, element.hyperlink, element.options)
         }else {
-          if(slide.elements[el].type === V.Constant.VIDEO) {
+          if(element.type === V.Constant.VIDEO) {
             var options = [];
-            options["poster"] = slide.elements[el].poster;
-            options["autoplay"] = slide.elements[el].autoplay;
-            V.Editor.Video.HTML5.drawVideo(V.Video.HTML5.getSourcesFromJSON(slide.elements[el]), options, area, slide.elements[el].style)
+            options["poster"] = element.poster;
+            options["autoplay"] = element.autoplay;
+            V.Editor.Video.HTML5.drawVideo(V.Video.HTML5.getSourcesFromJSON(element), options, area, element.style)
           }else {
-            if(slide.elements[el].type === V.Constant.AUDIO) {
+            if(element.type === V.Constant.AUDIO) {
               var options = [];
-              options["autoplay"] = slide.elements[el].autoplay;
-              V.Editor.Audio.HTML5.drawAudio(V.Audio.HTML5.getSourcesFromJSON(slide.elements[el]), options, area, slide.elements[el].style)
+              options["autoplay"] = element.autoplay;
+              V.Editor.Audio.HTML5.drawAudio(V.Audio.HTML5.getSourcesFromJSON(element), options, area, element.style)
             }else {
-              if(slide.elements[el].type === V.Constant.OBJECT) {
-                V.Editor.Object.drawObject(slide.elements[el].body, {area:area, style:slide.elements[el].style, zoomInStyle:slide.elements[el].zoomInStyle})
+              if(element.type === V.Constant.OBJECT) {
+                V.Editor.Object.drawObject(element.body, {area:area, style:element.style, zoomInStyle:element.zoomInStyle})
               }else {
-                if(slide.elements[el].type === V.Constant.SNAPSHOT) {
-                  V.Editor.Object.Snapshot.drawSnapShot(slide.elements[el].body, area, slide.elements[el].style, slide.elements[el].scrollTop, slide.elements[el].scrollLeft)
+                if(element.type === V.Constant.SNAPSHOT) {
+                  V.Editor.Object.Snapshot.drawSnapShot(element.body, area, element.style, element.scrollTop, element.scrollLeft)
                 }else {
-                  if(slide.elements[el].type === V.Constant.QUIZ) {
-                    V.Editor.Quiz.draw(area, slide.elements[el])
+                  if(element.type === V.Constant.QUIZ) {
+                    V.Editor.Quiz.draw(area, element)
                   }
                 }
               }
@@ -25310,11 +26425,11 @@ VISH.Editor.Settings = function(V, $, undefined) {
     var hours = $("#tlt_hours").val();
     var minutes = $("#tlt_minutes").val();
     var seconds = $("#tlt_seconds").val();
-    if(jQuery.isNumeric(hours) && (jQuery.isNumeric(minutes) && jQuery.isNumeric(seconds))) {
+    if(jQuery.isNumeric(hours) && jQuery.isNumeric(minutes) && jQuery.isNumeric(seconds)) {
       hours = parseInt(hours);
       minutes = parseInt(minutes);
       seconds = parseInt(seconds);
-      if(hours >= 0 && (hours < 100 && (minutes >= 0 && (minutes < 60 && (seconds >= 0 && seconds < 60))))) {
+      if(hours >= 0 && hours < 100 && minutes >= 0 && minutes < 60 && seconds >= 0 && seconds < 60) {
         if(hours * 24 * 60 + minutes * 60 + seconds > 0) {
           if(hours != 0) {
             TLT = TLT + hours + "H"
@@ -25327,7 +26442,7 @@ VISH.Editor.Settings = function(V, $, undefined) {
           }
           return TLT
         }else {
-          if(hours === 0 && (minutes === 0 && seconds === 0)) {
+          if(hours === 0 && minutes === 0 && seconds === 0) {
             return undefined
           }
         }
@@ -25460,7 +26575,7 @@ VISH.Editor.Slides = function(V, $, undefined) {
         return
       }
     }
-    if(slide_to_move.tagName != "ARTICLE" || (reference_slide.tagName != "ARTICLE" || slide_to_move == reference_slide)) {
+    if(slide_to_move.tagName != "ARTICLE" || reference_slide.tagName != "ARTICLE" || slide_to_move == reference_slide) {
       return
     }
     var movement = null;
@@ -25552,6 +26667,16 @@ VISH.Editor.Slides = function(V, $, undefined) {
         _loadTextAreasOfSlide(slideCopied, options.textAreas)
       }
     }
+    $(slideToCopy).find("div.vezone").each(function(index, zone) {
+      var zoneType = $(zone).attr("type");
+      switch(zoneType) {
+        case V.Constant.QUIZ:
+          V.Editor.Quiz.afterCopyQuiz(zone);
+          break;
+        default:
+          break
+      }
+    });
     V.Slides.updateSlides();
     V.Editor.Thumbnails.redrawThumbnails(function() {
       if(currentSlide) {
@@ -25913,7 +27038,7 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
     }else {
       if(slideType == V.Constant.STANDARD) {
         var zone = $(slide).children("div.vezone");
-        if($(zone).length === 1 && (!V.Editor.isZoneEmpty(zone) && $(zone).attr("type") == "image")) {
+        if($(zone).length === 1 && !V.Editor.isZoneEmpty(zone) && $(zone).attr("type") == "image") {
           var img = $(zone).find("img");
           if($(img).length === 1 && typeof $(img).attr("src") == "string") {
             thumbnailURL = $(img).attr("src")
@@ -26248,14 +27373,6 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     V.Editor.Events.allowExitWithoutConfirmation();
     window.top.location.href = V.exitPath
   };
-  var insertSmartcard = function() {
-    $("#addSlideFancybox").trigger("click");
-    V.Editor.Utils.loadTab("tab_smartcards_repo")
-  };
-  var insertPresentation = function() {
-    $("#addSlideFancybox").trigger("click");
-    V.Editor.Utils.loadTab("tab_presentations_repo")
-  };
   var insertSlide = function() {
     $("#addSlideFancybox").trigger("click");
     V.Editor.Utils.loadTab("tab_slides");
@@ -26267,14 +27384,23 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     V.Editor.Utils.loadTab("tab_slides");
     return false
   };
-  var insertJSON = function() {
-    $("#addSlideFancybox").trigger("click");
-    V.Editor.Utils.loadTab("tab_json_file")
-  };
   var insertPDFex = function() {
     $("#addSlideFancybox").trigger("click");
     V.Editor.Utils.loadTab("tab_pdfex");
     return false
+  };
+  var insertPackage = function() {
+    $("#addSlideFancybox").trigger("click");
+    V.Editor.Utils.loadTab("tab_epackage");
+    return false
+  };
+  var insertEFile = function() {
+    $("#addSlideFancybox").trigger("click");
+    V.Editor.Utils.loadTab("tab_efile")
+  };
+  var insertPresentation = function() {
+    $("#addSlideFancybox").trigger("click");
+    V.Editor.Utils.loadTab("tab_presentations_repo")
   };
   var _exportTo = function(format) {
     var t1 = Date.now();
@@ -26319,7 +27445,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       }, 500)
     }
   };
-  return{init:init, disableMenu:disableMenu, enableMenu:enableMenu, insertPresentation:insertPresentation, insertSmartcard:insertSmartcard, insertSlide:insertSlide, insertSubslide:insertSubslide, insertJSON:insertJSON, insertPDFex:insertPDFex, exportToJSON:exportToJSON, exportToSCORM:exportToSCORM, displaySettings:displaySettings, onPublishButtonClicked:onPublishButtonClicked, onUnpublishButtonClicked:onUnpublishButtonClicked, onSaveButtonClicked:onSaveButtonClicked, preview:preview, help:help, about:about, 
+  return{init:init, disableMenu:disableMenu, enableMenu:enableMenu, insertSlide:insertSlide, insertSubslide:insertSubslide, insertPDFex:insertPDFex, insertPackage:insertPackage, insertEFile:insertEFile, insertPresentation:insertPresentation, exportToJSON:exportToJSON, exportToSCORM:exportToSCORM, displaySettings:displaySettings, onPublishButtonClicked:onPublishButtonClicked, onUnpublishButtonClicked:onUnpublishButtonClicked, onSaveButtonClicked:onSaveButtonClicked, preview:preview, help:help, about:about, 
   exit:exit}
 }(VISH, jQuery);
 VISH.Editor.Utils.LOM = function(V, $, undefined) {
@@ -26589,7 +27715,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || (!data.videos || data.videos.length == 0)) {
+    if(!data || !data.videos || data.videos.length == 0) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -26777,7 +27903,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || (!data.feed || (data.feed.length == 0 || !data.feed.entry))) {
+    if(!data || !data.feed || data.feed.length == 0 || !data.feed.entry) {
       _onSearchFinished();
       _drawData(true);
       return
@@ -27294,10 +28420,10 @@ VISH.FullScreen = function(V, $, undefined) {
     }
   };
   var _getFsElement = function(myDoc) {
-    return myDoc.fullscreenElement || (myDoc.mozFullScreenElement || (myDoc.webkitFullscreenElement || myDoc.msFullscreenElement))
+    return myDoc.fullscreenElement || myDoc.mozFullScreenElement || myDoc.webkitFullscreenElement || myDoc.msFullscreenElement
   };
   var _getFsEnabled = function(myDoc) {
-    return myDoc.fullscreenEnabled || (myDoc.mozFullScreenEnabled || (myDoc.webkitFullscreenEnabled || myDoc.msFullscreenEnabled))
+    return myDoc.fullscreenEnabled || myDoc.mozFullScreenEnabled || myDoc.webkitFullscreenEnabled || myDoc.msFullscreenEnabled
   };
   var _launchFullscreenForElement = function(myDoc, element) {
     if(element.requestFullscreen) {
@@ -27348,7 +28474,7 @@ VISH.FullScreen = function(V, $, undefined) {
   };
   var isFullScreenSupported = function() {
     var elem = document.createElement("div");
-    if(elem && (elem.requestFullScreen || (elem.mozRequestFullScreen || (elem.webkitRequestFullScreen || elem.msRequestFullscreen)))) {
+    if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen || elem.msRequestFullscreen)) {
       return true
     }else {
       return false
@@ -27844,7 +28970,7 @@ VISH.Messenger.Helper = function(V, undefined) {
       if(!VEMessageObject.VEevent) {
         return false
       }
-      if(V.Status.getIsInIframe() && (V.Status.getIframe() != null && (params && params.allowSelfMessages === false))) {
+      if(V.Status.getIsInIframe() && V.Status.getIframe() != null && params && params.allowSelfMessages === false) {
         if(VEMessageObject.origin === V.Status.getIframe().id) {
           return false
         }
@@ -27926,132 +29052,25 @@ VISH.Messenger.Helper = function(V, undefined) {
   };
   return{createMessage:createMessage, processVEMessage:processVEMessage, validateVEMessage:validateVEMessage}
 }(VISH, jQuery);
-VISH.Object = function(V, $, undefined) {
+VISH.Object.Webapp = function(V, $, undefined) {
   var init = function() {
   };
-  function objectInfo(wrapper, source, sourceType) {
-    this.wrapper = wrapper;
-    this.source = source;
-    this.type = sourceType
-  }
-  var getObjectInfo = function(object) {
-    var wrapper = null;
-    if(typeof object == "string") {
-      var videoPattern = new RegExp("^<video", "g");
-      if(videoPattern.exec(object) != null) {
-        wrapper = "VIDEO"
-      }
-      var audioPattern = new RegExp("^<audio", "g");
-      if(audioPattern.exec(object) != null) {
-        wrapper = "AUDIO"
+  var renderWebappFromJSON = function(webappJSON, options) {
+    var style = webappJSON["style"] ? webappJSON["style"] : "";
+    var body = webappJSON["body"];
+    var webappBody = $(body);
+    $(webappBody).attr("objecttype", V.Constant.MEDIA.WEB_APP);
+    webappBody = V.Utils.getOuterHTML(webappBody);
+    var zoomInStyle = webappJSON["zoomInStyle"] ? webappJSON["zoomInStyle"] : "";
+    var classes = "objectelement";
+    if(options) {
+      if(options.extraClasses) {
+        classes = classes + " " + options.extraClasses
       }
     }
-    if(wrapper === null || typeof wrapper == "undefined") {
-      var element = $(object)[0];
-      if(typeof element != "undefined") {
-        wrapper = element.tagName
-      }
-    }
-    var source = _getSourceFromObject(object, wrapper);
-    var type;
-    switch(wrapper) {
-      case "VIDEO":
-        type = V.Constant.MEDIA.HTML5_VIDEO;
-        break;
-      case "AUDIO":
-        type = V.Constant.MEDIA.HTML5_AUDIO;
-        break;
-      case "IFRAME":
-        if($(object).attr("objecttype") == V.Constant.MEDIA.SCORM_PACKAGE) {
-          type = V.Constant.MEDIA.SCORM_PACKAGE;
-          break
-        }
-      ;
-      default:
-        type = _getTypeFromSource(source)
-    }
-    return new objectInfo(wrapper, source, type)
+    return"<div id='" + webappJSON["id"] + "' class='" + classes + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper='" + webappBody + "'>" + "" + "</div>"
   };
-  var _getSourceFromObject = function(object, wrapper) {
-    switch(wrapper) {
-      case null:
-        return object;
-      case V.Constant.WRAPPER.EMBED:
-        return $(object).attr("src");
-      case V.Constant.WRAPPER.OBJECT:
-        if(typeof $(object).attr("src") != "undefined") {
-          return $(object).attr("src")
-        }
-        if(typeof $(object).attr("data") != "undefined") {
-          return $(object).attr("data")
-        }
-        return"source not founded";
-      case V.Constant.WRAPPER.IFRAME:
-        return $(object).attr("src");
-      case V.Constant.WRAPPER.VIDEO:
-        return V.Video.HTML5.getSources(object);
-      case V.Constant.WRAPPER.AUDIO:
-        return V.Audio.HTML5.getSources(object);
-      default:
-        V.Debugging.log("Unrecognized object wrapper: " + wrapper);
-        return null;
-        break
-    }
-  };
-  var _getTypeFromSource = function(source) {
-    if(typeof source == "object" && (typeof source.length == "number" && source.length > 0)) {
-      source = source[0]
-    }
-    var http_urls_pattern = /(http(s)?:\/\/)([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
-    var www_urls_pattern = /(www[.])([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
-    var youtube_video_pattern = /(http(s)?:\/\/)?(((youtu.be\/)([aA-zZ0-9-]+))|((www.youtube.com\/((watch\?v=)|(embed\/)|(v\/)))([aA-z0-9-Z&=.])+))/g;
-    var html5VideoFormats = ["mp4", "webm", "ogg"];
-    var imageFormats = ["jpg", "jpeg", "png", "gif", "bmp", "svg"];
-    var audioFormats = ["mp3", "wav", "ogg"];
-    if(typeof source != "string") {
-      return null
-    }
-    if(source.match(youtube_video_pattern) != null) {
-      return V.Constant.MEDIA.YOUTUBE_VIDEO
-    }
-    source = source.split("?")[0];
-    var extension = getExtensionFromSrc(source);
-    if(imageFormats.indexOf(extension) != "-1") {
-      return V.Constant.MEDIA.IMAGE
-    }
-    if(extension == "swf") {
-      return V.Constant.MEDIA.FLASH
-    }
-    if(extension == "pdf") {
-      return V.Constant.MEDIA.PDF
-    }
-    if(html5VideoFormats.indexOf(extension) != "-1") {
-      return V.Constant.MEDIA.HTML5_VIDEO
-    }
-    if(audioFormats.indexOf(extension) != "-1") {
-      return V.Constant.MEDIA.HTML5_AUDIO
-    }
-    if(extension == "json") {
-      return V.Constant.MEDIA.JSON
-    }
-    if(extension == "doc") {
-      return V.Constant.MEDIA.DOC
-    }
-    if(extension == "ppt" || extension == "pptx") {
-      return V.Constant.MEDIA.PPT
-    }
-    if(extension == "odp") {
-      return V.Constant.MEDIA.PPT
-    }
-    if(source.match(http_urls_pattern) != null || source.match(www_urls_pattern) != null) {
-      return V.Constant.MEDIA.WEB
-    }
-    return extension
-  };
-  var getExtensionFromSrc = function(source) {
-    return source.split(".").pop().split("&")[0].toLowerCase()
-  };
-  return{init:init, getExtensionFromSrc:getExtensionFromSrc, getObjectInfo:getObjectInfo}
+  return{init:init, renderWebappFromJSON:renderWebappFromJSON}
 }(VISH, jQuery);
 VISH.ObjectPlayer = function(V, $, undefined) {
   var loadObject = function(slide) {
@@ -28276,10 +29295,9 @@ VISH.Quiz.API = function(V, $, undefined) {
           data = []
         }else {
           if(getResultsCount < 3) {
-            data = [{"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-30T12:35:05Z", "id":82, "quiz_session_id":59}]
+            data = [{"answer":'[{"choiceId":"2","answer":2},{"choiceId":"1","answer":1},{"choiceId":"3","answer":3},{"selfAssessment":{"result":true}}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}]
           }else {
-            data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-29T17:49:59Z", "id":74, "quiz_session_id":56}, {"answer":'[{"no":"2","answer":"true"}]', "created_at":"2013-11-29T17:50:03Z", "id":75, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:07Z", "id":76, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:12Z", "id":77, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', 
-            "created_at":"2013-11-29T17:50:15Z", "id":78, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:19Z", "id":79, "quiz_session_id":56}, {"answer":'[{"no":"2","answer":"true"}]', "created_at":"2013-11-29T17:50:23Z", "id":80, "quiz_session_id":56}]
+            data = [{"answer":'[{"choiceId":"2","answer":2},{"choiceId":"1","answer":1},{"choiceId":"3","answer":3},{"selfAssessment":{"result":true}}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}, {"answer":'[{"choiceId":"2","answer":1},{"choiceId":"1","answer":2},{"choiceId":"3","answer":3},{"selfAssessment":{"result":false}}]', "created_at":"2013-11-26T12:49:34Z", "id":48, "quiz_session_id":31}]
           }
         }
         getResultsCount++;
@@ -28324,23 +29342,24 @@ VISH.Quiz.MC = function(V, $, undefined) {
   };
   var _loadEvents = function() {
   };
-  var render = function(slide, template) {
-    var quizId = slide.quizId;
+  var render = function(quizJSON, template) {
+    var quizId = quizJSON.quizId;
     var container = $("<div id='" + quizId + "' class='quizContainer mcContainer' type='" + V.Constant.QZ_TYPE.MCHOICE + "'></div>");
     var multipleAnswer = false;
     var inputType = "radio";
-    if(slide.extras && slide.extras.multipleAnswer === true) {
+    if(quizJSON.extras && quizJSON.extras.multipleAnswer === true) {
       multipleAnswer = true;
       inputType = "checkbox";
       $(container).attr("multipleAnswer", true)
     }
     var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
-    $(questionWrapper).html(slide.question.wysiwygValue);
+    $(questionWrapper).html(quizJSON.question.wysiwygValue);
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='mc_options'></table>");
-    for(var i = 0;i < slide.choices.length;i++) {
-      var option = slide.choices[i];
-      var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
+    var quizChoicesLength = quizJSON.choices.length;
+    for(var i = 0;i < quizChoicesLength;i++) {
+      var option = quizJSON.choices[i];
+      var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox = $("<td><input class='mc_box' type='" + inputType + "' name='mc_option' value='" + i + "'/></td>");
       var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + String.fromCharCode(96 + i + 1) + ") </span></td>");
       var optionText = $("<td><div class='mc_option_text mc_option_text_viewer'></div></td>");
@@ -28351,7 +29370,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
       $(optionsWrapper).append(optionWrapper)
     }
     $(container).append(optionsWrapper);
-    var quizButtons = V.Quiz.renderButtons(slide.selfA);
+    var quizButtons = V.Quiz.renderButtons(quizJSON);
     $(container).append(quizButtons);
     return V.Utils.getOuterHTML(container)
   };
@@ -28363,9 +29382,15 @@ VISH.Quiz.MC = function(V, $, undefined) {
     var answeredQuizWrong = false;
     var quizJSON = V.Quiz.getQuiz($(quiz).attr("id"));
     var quizChoices = quizJSON.choices;
-    $(quiz).find("input[name='mc_option']").each(function(index, radioBox) {
+    var quizChoicesById = {};
+    $(quizChoices).each(function(index, quizChoice) {
+      quizChoicesById[quizChoice.id] = quizChoice
+    });
+    $(quiz).find("tr.mc_option").each(function(index, tr) {
+      var choiceId = $(tr).attr("choiceid");
+      var choice = quizChoicesById[choiceId];
+      var radioBox = $(tr).find("input[name='mc_option']");
       var answerValue = parseInt($(radioBox).attr("value"));
-      var choice = quizChoices[answerValue];
       if($(radioBox).is(":checked")) {
         var trAnswer = $("tr.mc_option").has(radioBox);
         if(choice.answer === true) {
@@ -28384,15 +29409,15 @@ VISH.Quiz.MC = function(V, $, undefined) {
     var willRetry = canRetry && answeredQuizCorrectly === false;
     if(!willRetry) {
       var trCorrectAnswers = [];
-      for(var key in quizChoices) {
-        if(quizChoices[key].answer === true) {
-          var trCorrect = $(quiz).find("tr.mc_option")[key];
-          trCorrectAnswers.push($(quiz).find("tr.mc_option")[key]);
+      $(quizChoices).each(function(index, quizChoice) {
+        if(quizChoice.answer === true) {
+          var trCorrect = $(quiz).find("tr.mc_option[choiceid='" + quizChoice.id + "']");
+          trCorrectAnswers.push(trCorrect);
           if(answeredQuiz) {
             $(trCorrect).addClass("mc_correct_choice")
           }
         }
-      }
+      })
     }
     if(!answeredQuiz) {
       if(!willRetry) {
@@ -28427,9 +29452,11 @@ VISH.Quiz.MC = function(V, $, undefined) {
   var getReport = function(quiz) {
     var report = {};
     report.answers = [];
-    $(quiz).find("input[name='mc_option']").each(function(index, radioBox) {
+    $(quiz).find("tr.mc_option").each(function(index, tr) {
+      var radioBox = $(tr).find("input[name='mc_option']");
       if($(radioBox).is(":checked")) {
-        report.answers.push({no:(index + 1).toString(), answer:"true"})
+        var choiceId = $(tr).attr("choiceid");
+        report.answers.push({choiceId:V.Quiz.getQuizChoiceOriginalId(choiceId).toString(), answer:"true"})
       }
     });
     report.empty = report.answers.length === 0;
@@ -28447,24 +29474,292 @@ VISH.Quiz.MC = function(V, $, undefined) {
   };
   return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz}
 }(VISH, jQuery);
+VISH.Quiz.Open = function(V, $, undefined) {
+  var hiddenLinkToShowAnswer;
+  var currentQuizJSONToShowInFancy;
+  var init = function() {
+    _loadEvents()
+  };
+  var _loadEvents = function() {
+    hiddenLinkToShowAnswer = $('<a href="#openQuizAnswer_fancybox" style="display:none"></a>');
+    $(hiddenLinkToShowAnswer).fancybox({"autoDimensions":false, "scrolling":"no", "width":"0%", "height":"0%", "padding":0, "autoScale":true, "onStart":function(data) {
+      $("#fancybox-close").css("visibility", "hidden");
+      if(typeof currentQuizJSONToShowInFancy == "object") {
+        var answerBody = $("#openQuizAnswer_fancybox").find("div.oQA_body");
+        $(answerBody).html(currentQuizJSONToShowInFancy.answer.wysiwygValue)
+      }
+    }, "onComplete":function(data) {
+      setTimeout(function() {
+        V.ViewerAdapter.updateFancyboxAfterSetupSize();
+        $("#fancybox-close").css("visibility", "visible")
+      }, 300)
+    }, "onClosed":function() {
+      currentQuizJSONToShowInFancy = undefined
+    }})
+  };
+  var render = function(quizJSON, template) {
+    var quizId = quizJSON.quizId;
+    var container = $("<div id='" + quizId + "' class='quizContainer openQContainer' type='" + V.Constant.QZ_TYPE.OPEN + "'></div>");
+    var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
+    $(questionWrapper).html(quizJSON.question.wysiwygValue);
+    $(container).append(questionWrapper);
+    var answerTextArea = $("<textarea class='openQTextArea'></textarea>");
+    $(container).append(answerTextArea);
+    var quizButtons = V.Quiz.renderButtons(quizJSON);
+    $(container).append(quizButtons);
+    return V.Utils.getOuterHTML(container)
+  };
+  var onAnswerQuiz = function(quiz, options) {
+    var afterAnswerAction = typeof options.afterAnswerAction == "string" ? options.afterAnswerAction : "disabled";
+    var canRetry = typeof options.canRetry == "boolean" ? options.canRetry : false;
+    var quizJSON = V.Quiz.getQuiz($(quiz).attr("id"));
+    var textArea = $(quiz).find("textarea.openQTextArea");
+    if(quizJSON.selfA) {
+      var quizAnswer = V.Utils.purgeString(quizJSON.answer.value);
+      var userAnswer = V.Utils.purgeString($(textArea).val());
+      var sA = userAnswer.toLowerCase().replace(/\r\n|\n|\r/g, " ").replace(/\s{2,}/g, " ");
+      var sB = quizAnswer.toLowerCase().replace(/\r\n|\n|\r/g, " ").replace(/\s{2,}/g, " ");
+      sA = V.Utils.purgeString(sA);
+      sB = V.Utils.purgeString(sB);
+      var levenshteinDistance = V.Utils.getLevenshteinDistance(sA, sB);
+      var answeredQuizCorrectly = false;
+      if(levenshteinDistance === 0) {
+        $(textArea).addClass("openQ_correct_answer");
+        answeredQuizCorrectly = true
+      }else {
+        $(textArea).addClass("openQ_wrong_answer")
+      }
+      var willRetry = canRetry && answeredQuizCorrectly === false;
+      if(willRetry) {
+        _disableQuiz(quiz);
+        V.Quiz.retryAnswerButton(quiz)
+      }else {
+        if(answeredQuizCorrectly === false) {
+          var rawUserAnswer = $(textArea).val();
+          $(textArea).val($(textArea).val() + "\n\n" + V.I18n.getTrans("i.ResponseCorrect") + ":" + "\n" + V.Utils.purgeString(quizJSON.answer.value))
+        }
+        switch(afterAnswerAction) {
+          case "continue":
+            V.Quiz.continueAnswerButton(quiz);
+            break;
+          case "disabled":
+          ;
+          default:
+            disableQuiz(quiz);
+            break
+        }
+      }
+    }else {
+      currentQuizJSONToShowInFancy = quizJSON;
+      $(hiddenLinkToShowAnswer).trigger("click");
+      switch(afterAnswerAction) {
+        case "continue":
+          V.Quiz.continueAnswerButton(quiz);
+          break;
+        case "disabled":
+        ;
+        default:
+          break
+      }
+    }
+  };
+  var onRetryQuiz = function(quizDOM) {
+    var textArea = $(quizDOM).find("textarea.openQTextArea");
+    $(textArea).removeClass("openQ_correct_answer");
+    $(textArea).removeClass("openQ_wrong_answer");
+    _enableQuiz(quizDOM);
+    V.Quiz.enableAnswerButton(quizDOM)
+  };
+  var getReport = function(quiz) {
+    var report = {};
+    report.answers = [];
+    report.empty = report.answers.length === 0;
+    return report
+  };
+  var disableQuiz = function(quiz) {
+    _disableQuiz(quiz);
+    V.Quiz.disableAnswerButton(quiz)
+  };
+  var _disableQuiz = function(quiz) {
+    var textArea = $(quiz).find("textarea.openQTextArea");
+    $(textArea).attr("readonly", "readonly")
+  };
+  var _enableQuiz = function(quiz) {
+    var textArea = $(quiz).find("textarea.openQTextArea");
+    $(textArea).removeAttr("readonly");
+    $(textArea).text("")
+  };
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz}
+}(VISH, jQuery);
+VISH.Quiz.Sorting = function(V, $, undefined) {
+  var init = function() {
+    _loadEvents()
+  };
+  var _loadEvents = function() {
+    $("section.slides").find("div.quizContainer[type='sorting'] table.sorting_options tbody").each(function(index, tableTbody) {
+      _applySortable(tableTbody)
+    })
+  };
+  var _applySortable = function(tableTbody) {
+    $(tableTbody).sortable({cursor:"move", start:function(event, ui) {
+    }, stop:function(event, ui) {
+      var trOption = ui.item;
+      _refreshChoicesIndex(trOption)
+    }})
+  };
+  var _refreshChoicesIndex = function(trOption) {
+    var tableTBody = $(trOption).parent();
+    $(tableTBody).find("tr").each(function(index, tr) {
+      $($(tr).find("td")[0]).html("<span class='mc_option_index sorting_option_index sorting_option_index_viewer'>" + (index + 1) + ") </span>")
+    })
+  };
+  var render = function(quizJSON, template) {
+    var quizId = quizJSON.quizId;
+    var container = $("<div id='" + quizId + "' class='quizContainer sortingQContainer' type='" + V.Constant.QZ_TYPE.SORTING + "'></div>");
+    var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
+    $(questionWrapper).html(quizJSON.question.wysiwygValue);
+    $(container).append(questionWrapper);
+    var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='sorting_options'></table>");
+    var quizChoices = V.Utils.shuffle(quizJSON.choices);
+    var quizChoicesLength = quizChoices.length;
+    for(var i = 0;i < quizChoicesLength;i++) {
+      var option = quizChoices[i];
+      var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
+      var optionIndex = $("<td><span class='mc_option_index sorting_option_index sorting_option_index_viewer'>" + (i + 1) + ") </span></td>");
+      var optionText = $("<td></td>");
+      var optionTextWrapper = $("<div class='sorting_option_text_wrapper_viewer'></div>");
+      $(optionTextWrapper).html(option.wysiwygValue);
+      $(optionText).append(optionTextWrapper);
+      $(optionWrapper).append(optionIndex);
+      $(optionWrapper).append(optionText);
+      $(optionsWrapper).append(optionWrapper)
+    }
+    $(container).append(optionsWrapper);
+    var quizButtons = V.Quiz.renderButtons(quizJSON);
+    $(container).append(quizButtons);
+    return V.Utils.getOuterHTML(container)
+  };
+  var onAnswerQuiz = function(quiz, options) {
+    var afterAnswerAction = typeof options.afterAnswerAction != "undefined" && typeof options.afterAnswerAction == "string" ? options.afterAnswerAction : "disabled";
+    var canRetry = typeof options.canRetry != "undefined" && typeof options.canRetry == "boolean" ? options.canRetry : false;
+    var answeredQuiz = true;
+    var answeredQuizCorrectly = false;
+    var answeredQuizWrong = false;
+    var quizJSON = V.Quiz.getQuiz($(quiz).attr("id"));
+    var quizChoices = quizJSON.choices;
+    var quizChoicesById = {};
+    $(quizChoices).each(function(index, quizChoice) {
+      quizChoicesById[quizChoice.id] = quizChoice
+    });
+    $(quiz).find("tr.mc_option").each(function(index, tr) {
+      var choiceId = $(tr).attr("choiceid");
+      var choice = quizChoicesById[choiceId];
+      var answerValue = index + 1;
+      if(choice.answer === answerValue) {
+        $(tr).addClass("mc_correct_choice");
+        answeredQuizCorrectly = true
+      }else {
+        $(tr).addClass("mc_wrong_choice");
+        answeredQuizWrong = true
+      }
+    });
+    answeredQuizCorrectly = answeredQuizCorrectly && !answeredQuizWrong;
+    var willRetry = canRetry && answeredQuizCorrectly === false;
+    if(!willRetry) {
+      var trCorrectAnswers = [];
+      $(quizChoices).each(function(index, quizChoice) {
+        var answerValue = index + 1;
+        if(quizChoice.answer === answerValue) {
+          var trCorrect = $(quiz).find("tr.mc_option[choiceid='" + quizChoice.id + "']");
+          trCorrectAnswers.push(trCorrect);
+          if(answeredQuiz) {
+            $(trCorrect).addClass("mc_correct_choice")
+          }
+        }
+      })
+    }
+    if(willRetry) {
+      _disableQuiz(quiz);
+      V.Quiz.retryAnswerButton(quiz)
+    }else {
+      switch(afterAnswerAction) {
+        case "continue":
+          V.Quiz.continueAnswerButton(quiz);
+          break;
+        case "disabled":
+        ;
+        default:
+          disableQuiz(quiz);
+          break
+      }
+    }
+  };
+  var onRetryQuiz = function(quizDOM) {
+    $(quizDOM).find("tr").removeClass("mc_correct_choice");
+    $(quizDOM).find("tr").removeClass("mc_wrong_choice");
+    _enableQuiz(quizDOM);
+    V.Quiz.enableAnswerButton(quizDOM)
+  };
+  var getReport = function(quiz) {
+    var report = {};
+    report.answers = [];
+    var quizJSON = V.Quiz.getQuiz($(quiz).attr("id"));
+    var quizChoices = quizJSON.choices;
+    var quizChoicesById = {};
+    $(quizChoices).each(function(index, quizChoice) {
+      quizChoicesById[quizChoice.id] = quizChoice
+    });
+    var answeredQuizCorrectly = undefined;
+    $(quiz).find("tr.mc_option").each(function(index, tr) {
+      var choiceId = $(tr).attr("choiceid");
+      var choice = quizChoicesById[choiceId];
+      var answerValue = index + 1;
+      if(choice.answer === answerValue) {
+        answeredQuizCorrectly = true
+      }else {
+        answeredQuizCorrectly = false
+      }
+      report.answers.push({choiceId:V.Quiz.getQuizChoiceOriginalId(choiceId).toString(), answer:answerValue})
+    });
+    if(typeof answeredQuizCorrectly == "boolean") {
+      report.answers.push({selfAssessment:{result:answeredQuizCorrectly}})
+    }
+    report.empty = report.answers.length === 0;
+    return report
+  };
+  var disableQuiz = function(quiz) {
+    _disableQuiz(quiz);
+    V.Quiz.disableAnswerButton(quiz)
+  };
+  var _disableQuiz = function(quiz) {
+    var tableTBody = $(quiz).find("table.sorting_options tbody");
+    $(tableTBody).sortable("disable")
+  };
+  var _enableQuiz = function(quiz) {
+    var tableTBody = $(quiz).find("table.sorting_options tbody");
+    $(tableTBody).sortable("enable")
+  };
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz}
+}(VISH, jQuery);
 VISH.Quiz.TF = function(V, $, undefined) {
   var init = function() {
     _loadEvents()
   };
   var _loadEvents = function() {
   };
-  var render = function(slide, template) {
-    var quizId = slide.quizId;
+  var render = function(quizJSON, template) {
+    var quizId = quizJSON.quizId;
     var container = $("<div id='" + quizId + "' class='quizContainer mcContainer' type='" + V.Constant.QZ_TYPE.TF + "'></div>");
     var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
-    $(questionWrapper).html(slide.question.wysiwygValue);
+    $(questionWrapper).html(quizJSON.question.wysiwygValue);
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='tf_options'></table>");
     var newTr = $("<tr class='mc_option tf_head'><td><img src='" + V.ImagesPath + "quiz/checkbox_checked.png' class='tfCheckbox_viewer'/></td><td><img src='" + V.ImagesPath + "quiz/checkbox_wrong.png' class='tfCheckbox_viewer'/></td><td></td><td></td></tr>");
     $(optionsWrapper).prepend(newTr);
-    for(var i = 0;i < slide.choices.length;i++) {
-      var option = slide.choices[i];
-      var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
+    var quizChoicesLength = quizJSON.choices.length;
+    for(var i = 0;i < quizChoicesLength;i++) {
+      var option = quizJSON.choices[i];
+      var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true'  /></td>");
       var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' /></td>");
       var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + String.fromCharCode(96 + i + 1) + ") </span></td>");
@@ -28477,7 +29772,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
       $(optionsWrapper).append(optionWrapper)
     }
     $(container).append(optionsWrapper);
-    var quizButtons = V.Quiz.renderButtons(slide.selfA);
+    var quizButtons = V.Quiz.renderButtons(quizJSON);
     $(container).append(quizButtons);
     return V.Utils.getOuterHTML(container)
   };
@@ -28487,6 +29782,10 @@ VISH.Quiz.TF = function(V, $, undefined) {
     var answeredQuizCorrectly = true;
     var quizJSON = V.Quiz.getQuiz($(quiz).attr("id"));
     var quizChoices = quizJSON.choices;
+    var quizChoicesById = {};
+    $(quizChoices).each(function(index, quizChoice) {
+      quizChoicesById[quizChoice.id] = quizChoice
+    });
     $(quiz).find("tr.mc_option").not(".tf_head").each(function(index, tr) {
       var trueRadio = $(tr).find("input[type='radio'][column='true']")[0];
       var falseRadio = $(tr).find("input[type='radio'][column='false']")[0];
@@ -28500,22 +29799,26 @@ VISH.Quiz.TF = function(V, $, undefined) {
           myAnswer = undefined
         }
       }
-      var choice = quizChoices[index];
-      var trChoice = $(quiz).find("tr.mc_option").not(".tf_head")[index];
-      if(myAnswer === choice.answer) {
-        $(trChoice).addClass("mc_correct_choice")
-      }else {
-        if(typeof myAnswer != "undefined") {
-          answeredQuizCorrectly = false;
-          $(trChoice).addClass("mc_wrong_choice")
+      var choiceId = $(tr).attr("choiceid");
+      var choice = quizChoicesById[choiceId];
+      var choiceHasAnswer = typeof choice.answer == "boolean";
+      if(choiceHasAnswer) {
+        var trChoice = $(quiz).find("tr.mc_option").not(".tf_head")[index];
+        if(myAnswer === choice.answer) {
+          $(trChoice).addClass("mc_correct_choice")
         }else {
-          answeredQuizCorrectly = false;
-          if(!canRetry) {
-            if(choice.answer === true) {
-              $(trueRadio).attr("checked", true)
-            }else {
-              if(choice.answer === false) {
-                $(falseRadio).attr("checked", true)
+          if(typeof myAnswer != "undefined") {
+            answeredQuizCorrectly = false;
+            $(trChoice).addClass("mc_wrong_choice")
+          }else {
+            answeredQuizCorrectly = false;
+            if(!canRetry) {
+              if(choice.answer === true) {
+                $(trueRadio).attr("checked", true)
+              }else {
+                if(choice.answer === false) {
+                  $(falseRadio).attr("checked", true)
+                }
               }
             }
           }
@@ -28553,15 +29856,17 @@ VISH.Quiz.TF = function(V, $, undefined) {
     $(quiz).find("tr.mc_option").not(".tf_head").each(function(index, tr) {
       var trueRadio = $(tr).find("input[type='radio'][column='true']")[0];
       var falseRadio = $(tr).find("input[type='radio'][column='false']")[0];
+      var choiceId = $(tr).attr("choiceid");
+      var originalChoiceId = V.Quiz.getQuizChoiceOriginalId(choiceId);
       if($(trueRadio).is(":checked")) {
-        report.answers.push({no:(index + 1).toString(), answer:"true"});
+        report.answers.push({choiceId:originalChoiceId.toString(), answer:"true"});
         report.empty = false
       }else {
         if($(falseRadio).is(":checked")) {
-          report.answers.push({no:(index + 1).toString(), answer:"false"});
+          report.answers.push({choiceId:originalChoiceId.toString(), answer:"false"});
           report.empty = false
         }else {
-          report.answers.push({no:(index + 1).toString(), answer:"none"})
+          report.answers.push({choiceId:originalChoiceId.toString(), answer:"none"})
         }
       }
     });
@@ -28582,15 +29887,14 @@ VISH.Quiz.TF = function(V, $, undefined) {
 var VISH = VISH || {};
 VISH.Constant = VISH.Constant || {};
 VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
-VISH.Constant.QZ_TYPE.OPEN = "open";
+VISH.Constant.QZ_TYPE.OPEN = "openAnswer";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
 VISH.QuizCharts = function(V, $, undefined) {
   var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
   var pieLetterColor = ["#000"];
-  var choices = {};
   var language = "en";
-  var i18n = {"es":{"i.T":"V", "i.F":"F"}, "default":{"i.T":"T", "i.F":"F"}};
+  var i18n = {"es":{"i.T":"V", "i.F":"F", "i.Correct":"Correctas", "i.Incorrect":"Incorrectas"}, "default":{"i.T":"T", "i.F":"F", "i.Correct":"Correct", "i.Incorrect":"Incorrect"}};
   var translations = i18n["default"];
   var init = function(options) {
     if(options && options.lang) {
@@ -28634,25 +29938,29 @@ VISH.QuizCharts = function(V, $, undefined) {
       case V.Constant.QZ_TYPE.TF:
         _drawTFQuizChart(canvas, quizParams, answersList, options);
         break;
+      case V.Constant.QZ_TYPE.SORTING:
+        _drawSortingQuizChart(canvas, quizParams, answersList, options);
+        break;
       default:
         return null;
         break
     }
   };
   var _drawMcChoiceQuizChart = function(canvas, quizParams, answersList, options) {
-    var pieFragments = [];
+    var pieFragments = {};
     var data = [];
-    var choicesQuantity = quizParams.choices.length;
     var pBCL = pieBackgroundColor.length;
     var pLCL = pieLetterColor.length;
+    var choicesQuantity = quizParams.choices.length;
     for(var i = 0;i < choicesQuantity;i++) {
-      pieFragments[i] = {};
-      pieFragments[i].value = 0;
-      pieFragments[i].label = String.fromCharCode(96 + i + 1);
-      pieFragments[i].color = pieBackgroundColor[i % pBCL];
-      pieFragments[i].labelColor = pieLetterColor[i % pLCL];
-      pieFragments[i].labelFontSize = "16";
-      pieFragments[i].tooltipLabel = _purgeString(quizParams.choices[i].value)
+      var choiceId = quizParams.choices[i].id;
+      pieFragments[choiceId] = {};
+      pieFragments[choiceId].value = 0;
+      pieFragments[choiceId].label = String.fromCharCode(96 + i + 1);
+      pieFragments[choiceId].color = pieBackgroundColor[i % pBCL];
+      pieFragments[choiceId].labelColor = pieLetterColor[i % pLCL];
+      pieFragments[choiceId].labelFontSize = "16";
+      pieFragments[choiceId].tooltipLabel = _purgeString(quizParams.choices[i].value)
     }
     var alL = answersList.length;
     for(var j = 0;j < alL;j++) {
@@ -28660,14 +29968,15 @@ VISH.QuizCharts = function(V, $, undefined) {
       var aL = answers.length;
       for(var k = 0;k < aL;k++) {
         var answer = answers[k];
-        var index = answer.no - 1;
-        if(answer.answer === "true" && pieFragments[index]) {
-          pieFragments[index].value++
+        var choiceId = answer.choiceId;
+        if(answer.answer === "true" && pieFragments[choiceId]) {
+          pieFragments[choiceId].value++
         }
       }
     }
-    for(var i = 0;i < choicesQuantity;i++) {
-      data.push(pieFragments[i])
+    for(var l = 0;l < choicesQuantity;l++) {
+      var choiceId = quizParams.choices[l].id;
+      data.push(pieFragments[choiceId])
     }
     var ctx = $(canvas).get(0).getContext("2d");
     var chartOptions = {showTooltips:true, animation:false};
@@ -28680,21 +29989,22 @@ VISH.QuizCharts = function(V, $, undefined) {
       }
     }
     var myNewChart = (new Chart(ctx)).Pie(data, chartOptions);
-    if(options && (options.animation != true && typeof options.callback == "function")) {
+    if(options && options.animation != true && typeof options.callback == "function") {
       options.callback()
     }
   };
   var _drawMcChoiceMAnswerQuizChart = function(canvas, quizParams, answersList, options) {
-    var labels = [];
-    var tooltipLabels = [];
-    var data = [];
-    var choicesQuantity = quizParams.choices.length;
+    var labels = {};
+    var tooltipLabels = {};
+    var dataValues = {};
     var maxValue = 0;
     var scaleSteps = 10;
+    var choicesQuantity = quizParams.choices.length;
     for(var i = 0;i < choicesQuantity;i++) {
-      labels[i] = String.fromCharCode(96 + i + 1);
-      tooltipLabels[i] = _purgeString(quizParams.choices[i].value);
-      data[i] = 0
+      var choiceId = quizParams.choices[i].id;
+      labels[choiceId] = String.fromCharCode(96 + i + 1);
+      tooltipLabels[choiceId] = _purgeString(quizParams.choices[i].value);
+      dataValues[choiceId] = 0
     }
     var alL = answersList.length;
     for(var j = 0;j < alL;j++) {
@@ -28702,22 +30012,29 @@ VISH.QuizCharts = function(V, $, undefined) {
       var aL = answers.length;
       for(var k = 0;k < aL;k++) {
         var answer = answers[k];
-        var index = answer.no - 1;
+        var choiceId = answer.choiceId;
         if(answer.answer === "true") {
-          data[index]++
+          dataValues[choiceId]++
         }
       }
     }
     for(var l = 0;l < choicesQuantity;l++) {
-      if(data[l] > maxValue) {
-        maxValue = data[l]
+      var choiceId = quizParams.choices[l].id;
+      if(dataValues[choiceId] > maxValue) {
+        maxValue = dataValues[choiceId]
       }
     }
     if(maxValue < 10) {
       scaleSteps = Math.max(1, maxValue)
     }
     var ctx = $(canvas).get(0).getContext("2d");
-    var data = {labels:labels, tooltipLabels:tooltipLabels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:data}]};
+    var data = {labels:$.map(labels, function(v) {
+      return v
+    }), tooltipLabels:$.map(tooltipLabels, function(v) {
+      return v
+    }), datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:$.map(dataValues, function(v) {
+      return v
+    })}]};
     var chartOptions = {showTooltips:true, animation:false, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps};
     if(options && options.animation === true) {
       chartOptions.animation = true;
@@ -28728,23 +30045,24 @@ VISH.QuizCharts = function(V, $, undefined) {
       }
     }
     var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
-    if(options && (options.animation != true && typeof options.callback == "function")) {
+    if(options && options.animation != true && typeof options.callback == "function") {
       options.callback()
     }
   };
   var _drawTFQuizChart = function(canvas, quizParams, answersList, options) {
-    var labels = [];
-    var tooltipLabels = [];
-    var dataTrue = [];
-    var dataFalse = [];
-    var choicesQuantity = quizParams.choices.length;
+    var labels = {};
+    var tooltipLabels = {};
+    var dataTrue = {};
+    var dataFalse = {};
     var maxValue = 0;
     var scaleSteps = 10;
+    var choicesQuantity = quizParams.choices.length;
     for(var i = 0;i < choicesQuantity;i++) {
-      labels[i] = _getTrans("i.T") + "       " + String.fromCharCode(96 + i + 1) + "       " + _getTrans("i.F");
-      tooltipLabels[i] = _purgeString(quizParams.choices[i].value);
-      dataTrue[i] = 0;
-      dataFalse[i] = 0
+      var choiceId = quizParams.choices[i].id;
+      labels[choiceId] = _getTrans("i.T") + "       " + String.fromCharCode(96 + i + 1) + "       " + _getTrans("i.F");
+      tooltipLabels[choiceId] = _purgeString(quizParams.choices[i].value);
+      dataTrue[choiceId] = 0;
+      dataFalse[choiceId] = 0
     }
     var alL = answersList.length;
     for(var j = 0;j < alL;j++) {
@@ -28752,27 +30070,36 @@ VISH.QuizCharts = function(V, $, undefined) {
       var aL = answers.length;
       for(var k = 0;k < aL;k++) {
         var answer = answers[k];
-        var index = answer.no - 1;
+        var choiceId = answer.choiceId;
         if(answer.answer === "true") {
-          dataTrue[index]++
+          dataTrue[choiceId]++
         }else {
-          dataFalse[index]++
+          dataFalse[choiceId]++
         }
       }
     }
     for(var l = 0;l < choicesQuantity;l++) {
-      if(dataTrue[l] > maxValue) {
-        maxValue = dataTrue[l]
+      var choiceId = quizParams.choices[l].id;
+      if(dataTrue[choiceId] > maxValue) {
+        maxValue = dataTrue[choiceId]
       }
-      if(dataFalse[l] > maxValue) {
-        maxValue = dataFalse[l]
+      if(dataFalse[choiceId] > maxValue) {
+        maxValue = dataFalse[choiceId]
       }
     }
     if(maxValue < 10) {
       scaleSteps = Math.max(1, maxValue)
     }
     var ctx = $(canvas).get(0).getContext("2d");
-    var data = {labels:labels, tooltipLabels:tooltipLabels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:dataTrue}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:dataFalse}]};
+    var data = {labels:$.map(labels, function(v) {
+      return v
+    }), tooltipLabels:$.map(tooltipLabels, function(v) {
+      return v
+    }), datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:$.map(dataTrue, function(v) {
+      return v
+    })}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:$.map(dataFalse, function(v) {
+      return v
+    })}]};
     var chartOptions = {showTooltips:true, animation:false, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps};
     if(options && options.animation === true) {
       chartOptions.animation = true;
@@ -28783,7 +30110,54 @@ VISH.QuizCharts = function(V, $, undefined) {
       }
     }
     var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
-    if(options && (options.animation != true && typeof options.callback == "function")) {
+    if(options && options.animation != true && typeof options.callback == "function") {
+      options.callback()
+    }
+  };
+  var _drawSortingQuizChart = function(canvas, quizParams, answersList, options) {
+    var pieFragments = {};
+    var data = [];
+    var pBCL = pieBackgroundColor.length;
+    var pLCL = pieLetterColor.length;
+    for(var i = 0;i < 2;i++) {
+      var fragmentId = i === 0 ? "true" : "false";
+      pieFragments[fragmentId] = {};
+      pieFragments[fragmentId].value = 0;
+      pieFragments[fragmentId].label = i === 0 ? _getTrans("i.Correct") : _getTrans("i.Incorrect");
+      pieFragments[fragmentId].color = pieBackgroundColor[i % pBCL];
+      pieFragments[fragmentId].labelColor = pieLetterColor[i % pLCL];
+      pieFragments[fragmentId].labelFontSize = "16";
+      pieFragments[fragmentId].tooltipLabel = i === 0 ? _getTrans("i.Correct") : _getTrans("i.Incorrect")
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        if(answer.selfAssessment && typeof answer.selfAssessment.result == "boolean") {
+          if(answer.selfAssessment.result === true) {
+            pieFragments["true"].value++
+          }else {
+            pieFragments["false"].value++
+          }
+        }
+      }
+    }
+    data.push(pieFragments["true"]);
+    data.push(pieFragments["false"]);
+    var ctx = $(canvas).get(0).getContext("2d");
+    var chartOptions = {showTooltips:true, animation:false};
+    if(options && options.animation === true) {
+      chartOptions.animation = true;
+      chartOptions.onAnimationComplete = function() {
+        if(typeof options.callback == "function") {
+          options.callback()
+        }
+      }
+    }
+    var myNewChart = (new Chart(ctx)).Pie(data, chartOptions);
+    if(options && options.animation != true && typeof options.callback == "function") {
       options.callback()
     }
   };
@@ -28843,7 +30217,7 @@ VISH.Recommendations = function(V, $, undefined) {
     _requesting = false;
     _generated = false;
     var options = V.Utils.getOptions();
-    if(options && (!options.preview && (typeof options["recommendationsAPI"] != "undefined" && typeof options["recommendationsAPI"]["rootURL"] == "string"))) {
+    if(options && !options.preview && typeof options["recommendationsAPI"] != "undefined" && typeof options["recommendationsAPI"]["rootURL"] == "string") {
       _recommendationAPIUrl = options["recommendationsAPI"]["rootURL"];
       _enabled = true
     }else {
@@ -28879,7 +30253,7 @@ VISH.Recommendations = function(V, $, undefined) {
     return true
   };
   var canShowEvaluateButton = function() {
-    var _showEvaluateButton = V.Status.getIsInVishSite() || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER && (!V.Status.getIsScorm() && !V.Status.getIsEmbed());
+    var _showEvaluateButton = V.Status.getIsInVishSite() || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER && !V.Status.getIsScorm() && !V.Status.getIsEmbed();
     _showEvaluateButton = _showEvaluateButton && V.Status.getDevice().desktop;
     _showEvaluateButton = _showEvaluateButton && V.Status.getIsInIframe();
     return _showEvaluateButton
@@ -28897,7 +30271,7 @@ VISH.Recommendations = function(V, $, undefined) {
     }
   };
   var _requestRecommendations = function() {
-    if(_enabled && (typeof _recommendationAPIUrl != "undefined" && (!_generated && _requesting != true))) {
+    if(_enabled && typeof _recommendationAPIUrl != "undefined" && !_generated && _requesting != true) {
       _requesting = true;
       if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
         var params = {};
@@ -29455,7 +30829,7 @@ VISH.Status.Device.Browser = function(V, $, undefined) {
     var rv = -1;
     if(navigator.appName === V.Constant.UA_NETSCAPE) {
       var ua = navigator.userAgent;
-      if(ua.indexOf("Safari") !== -1 && (ua.indexOf("Chrome") === -1 && ua.indexOf("crmo") == -1)) {
+      if(ua.indexOf("Safari") !== -1 && ua.indexOf("Chrome") === -1 && ua.indexOf("crmo") == -1) {
         var rv = -2;
         var re = new RegExp(".* Version/([0-9.]+)");
         if(re.exec(ua) != null) {
@@ -29475,13 +30849,13 @@ VISH.Status.Device.Features = function(V, $, undefined) {
     features.fullscreen = V.FullScreen.isFullScreenSupported();
     features.touchScreen = !!("ontouchstart" in window);
     features.localStorage = V.Storage.checkLocalStorageSupport();
-    features.history = typeof history === "object" && (typeof history.back === "function" && typeof history.go === "function");
+    features.history = typeof history === "object" && typeof history.back === "function" && typeof history.go === "function";
     if(features.history && typeof history.pushState == "function") {
       features.historypushState = true
     }else {
       features.historypushState = false
     }
-    if(window.File && (window.FileReader && (window.FileList && window.Blob))) {
+    if(window.File && window.FileReader && window.FileList && window.Blob) {
       features.reader = true
     }else {
       features.reader = false
@@ -29504,6 +30878,12 @@ VISH.Storage = function(V, $, undefined) {
         _isLocalStorageSupported = false
       }
     }
+  };
+  var isSupported = function() {
+    if(!_initialized) {
+      init()
+    }
+    return _isLocalStorageSupported
   };
   var add = function(key, value, persistent) {
     if(!_initialized) {
@@ -29581,7 +30961,17 @@ VISH.Storage = function(V, $, undefined) {
     }
   };
   var checkLocalStorageSupport = function() {
-    return typeof Storage !== "undefined"
+    var LSSupported = typeof Storage !== "undefined";
+    if(LSSupported) {
+      try {
+        localStorage.getItem("myKey");
+        return true
+      }catch(e) {
+        return false
+      }
+    }else {
+      return false
+    }
   };
   var clear = function() {
     localStorage.clear()
@@ -29589,7 +30979,7 @@ VISH.Storage = function(V, $, undefined) {
   var setTestingMode = function(bolean) {
     _testing = bolean
   };
-  return{init:init, add:add, get:get, addPresentation:addPresentation, checkLocalStorageSupport:checkLocalStorageSupport, clear:clear, setTestingMode:setTestingMode}
+  return{init:init, isSupported:isSupported, add:add, get:get, addPresentation:addPresentation, checkLocalStorageSupport:checkLocalStorageSupport, clear:clear, setTestingMode:setTestingMode}
 }(VISH, jQuery);
 VISH.Text = function(V, $, undefined) {
   var disableConversion = false;
@@ -29849,7 +31239,7 @@ VISH.User = function(V, $, undefined) {
     return!(JSON.stringify(_user) == "{}")
   };
   var isLogged = function() {
-    if(_user && (typeof _user.token == "string" && _user.id)) {
+    if(_user && typeof _user.token == "string" && _user.id) {
       return true
     }else {
       return false
@@ -30607,7 +31997,7 @@ VISH.Video.HTML5 = function(V, $, undefined) {
     if(typeof videoDOM == "string") {
       var posterPattern = new RegExp("poster=('||\")([a-z.://0-9?=%]+)", "g");
       var found = posterPattern.exec(videoDOM);
-      if(typeof found != "undefined" && (found != null && found.length > 2)) {
+      if(typeof found != "undefined" && found != null && found.length > 2) {
         return found[2]
       }
       return undefined
@@ -30895,11 +32285,11 @@ VISH.Viewer = function(V, $, undefined) {
     }else {
       initOptions = {}
     }
-    if(options && (options["configuration"] && V.Configuration)) {
+    if(options && options["configuration"] && V.Configuration) {
       V.Configuration.init(options["configuration"])
     }
     if(V.Debugging.isDevelopping()) {
-      if(options["configuration"]["mode"] === V.Constant.NOSERVER && (!presentation && V.Debugging.getPresentationSamples() !== null)) {
+      if(options["configuration"]["mode"] === V.Constant.NOSERVER && !presentation && V.Debugging.getPresentationSamples() !== null) {
         presentation = V.Debugging.getPresentationSamples()
       }
     }

@@ -7,7 +7,7 @@
   </div>
 </div>
 <%= render partial: 'layouts/order_by_dropdown' %>
-<section id="excursions">
+<section id="excursions_tab_ready" class="excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>
     <%if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
@@ -17,7 +17,7 @@
       end%>
     <%= render partial: 'excursions/excursions', :locals => { :scope => scope, :page => params[:page] || 1, :sort_by=> params[:sort_by]||"popularity"} %>
   </ul>
-  <div id="loader_pagination">
+  <div class="loader_pagination">
     <div id="pageless-loader" style="text-align:center;width:100%;">
       <div class="msg" style="font-size:2em">
         <%=t('search.loading')%>
@@ -28,31 +28,29 @@
   <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
 
 </section>
-<!--
-<section id="excursions">
-  <div class="tabbable">
-    <ul class="nav nav-tabs">
-      <li><h1><%= t("excursion.other")%></h1></li>
-      <li class="active"><a href="#tab1" data-toggle="tab"><%= t("excursion.all")%></a></li>
-      <li><a href="#tab2" data-toggle="tab"><%= t("excursion.other")%></a></li>
-      <li><a href="#tab3" data-toggle="tab">examples</a></li>
-    </ul>
-    <div class="tab-content">
-        
-      <div class="tab-pane active" id="tab1">
-        <%#= render partial: 'excursions/excursions', :locals => { :scope => :net } %>
-      </div>
-
-      <div class="tab-pane" id="tab2">
-        <%#= render partial: 'excursions/excursions', :locals => { :scope => :net } %>
-      </div>
-
-      <div class="tab-pane" id="tab3">
-        <%#= render partial: 'excursions/show' %>
-      </div>
-    </ul>
-  </div>
-</section>
--->
 
 
+<script>
+//this will be needed when we have several tabs in the home page
+var backstrech_items = {
+  excursions: {
+
+  },
+  resources: {
+
+  }, 
+  events: {
+
+  }
+};
+
+
+function re_apply_backstrech(tab){
+  for (var key in backstrech_items[tab]) {
+    $(""+ key).backstretch( backstrech_items[tab][key] ); 
+  }
+}
+
+
+
+</script>
