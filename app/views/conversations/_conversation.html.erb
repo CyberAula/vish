@@ -19,6 +19,10 @@
 
       <%= link_to truncate_name(conversation.originator.name) + addMsgCount, conversation.originator.subject %>
     </a>
+    <div class="date">
+      <%= t('time.ago', :time => time_ago_in_words(conversation.updated_at)) %>
+    </div>
+
   </header>
 </div>
   <div class="content_right">
@@ -31,8 +35,8 @@
     </div>
     
   <% unless @box.eql?'trash' %>
-    <div class="action">
-      <%= link_to(raw("<i class='icon-trash'></i> "),
+    <div class="action"> 
+      <%= link_to(raw("<i class='fa fa-trash-o'></i> "),
         conversation_path(conversation, :location => @box, :box => @box, :page => params[:page]),
         :alt => t('mailboxer.delete'), 
         :title => t('mailboxer.delete'),
@@ -43,10 +47,7 @@
     </div>
   <% end %>
 
-    <div class="date">
-      <%= t('time.ago', :time => time_ago_in_words(conversation.updated_at)) %>
-    </div>
-
+   
   </div>
 
 <% end %>
