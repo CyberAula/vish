@@ -1,4 +1,4 @@
-<ul class="nav">
+<ul class="nav nav-pills mobile-nav">
 
 <!--search-->
   <li class="search-ui ">
@@ -16,28 +16,28 @@
     <!-- dropdown menu links -->
     <li>
     <a href="<%=new_document_path%>">
-      <i class="icon-plus"></i>
+      <i class="fa fa-plus"></i>
       <%=t('resource.actions.add')%>
     </a>
   </li>
 <!--message-->
   <li class="">
     <%= link_to messages_path do %>
-      <i class="icon-envelope"></i>
+      <i class="fa fa-envelope"></i>
       <%= t('message.messages') %>
     <% end %>
   </li>
 <!--settings-->
   <li class="">
     <%= link_to activities_path do %>
-      <i class='icon-globe'></i> 
+      <i class='fa fa-globe'></i> 
       <%= t('activity.other') %>
     <% end %>
   </li>
 <!--quiz-->
   <li class="">
     <%= link_to quiz_sessions_path do %>
-    <i class="icon-puzzle-piece"></i>
+    <i class="fa fa-puzzle-piece"></i>
     <%= t('quiz.live') %>
     <% end %>
   </li>
@@ -47,14 +47,14 @@
 <!--profile-->
   <!--li class="settings-menu">
     <%= link_to current_subject do %>
-    <i class="icon-user"></i>
+    <i class="fa fa-user"></i>
     <%= t('profile.one') %>
     <% end %>
   </li-->
 
   <li class="settings-menu">
     <%= link_to settings_path do %>
-    <i class="icon-cog"></i>
+    <i class="fa fa-cog"></i>
     <%= t('dropdown.settings') %>
     <% end %>
   </li>
@@ -63,7 +63,7 @@
   <!--lang-->
   <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-      <i class="icon-flag-checkered"></i>
+      <i class="fa fa-flag-checkered"></i>
       <%= t('lang.title') %>
       <b class="caret"></b>
     </a>
@@ -78,7 +78,7 @@
 <!--legal_notice-->
   <li>
     <a href="/legal_notice">
-      <i class="icon-legal"></i>
+      <i class="fa fa-legal"></i>
       <%= t('conditions.other') %>
     </a>     
   </li>
@@ -87,14 +87,14 @@
 
   <li>
     <%= link_to faq_path do %>
-      <i class="icon-question-sign"> </i> <%=t('faq.title')%>
+      <i class="fa fa-question-sign"> </i> <%=t('faq.title')%>
     <% end %>
   </li>
 
 <!--sign out-->
   <li class="active">
     <%= link_to destroy_user_session_path, :method => :delete do %>
-    <i class="icon-signout"></i>
+    <i class="fa fa-sign-out"></i>
     <%= t('sign_out') %>
     <% end %>
   </li>

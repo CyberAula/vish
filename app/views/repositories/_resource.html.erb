@@ -3,20 +3,20 @@
 <% end %>
 
 
-<li class="box-item resource-item">
+<li class="resource">
 <!--IMG resource-->
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element resource-center">
 
         <%if resource.class==Link%>
-          <%= link_to "<i class='icon-link'></i>".html_safe, resource %>
+          <%= link_to "<i class='fa fa-link'></i>".html_safe, resource %>
         <%elsif resource.class==Embed%>
-          <%= link_to "<i class='icon-code'></i>".html_safe, resource %>
+          <%= link_to "<i class='fa fa-code'></i>".html_safe, resource %>
         <%elsif resource.class==Scormfile%>
-          <%= link_to "<i class='icon-scorm-new '></i>".html_safe, resource %>
+          <%= link_to "<i class='fa fa-crop '></i>".html_safe, resource %>
         <%elsif resource.class==Webapp%>
-          <%= link_to "<i class='icon-webapp-new '></i>".html_safe, resource %>
+          <%= link_to "<i class='fa fa-cubes '></i>".html_safe, resource %>
         <%else%>
           <%= link_to icon(resource), resource, :title => resource.file_file_name %>
         <%end%>
@@ -32,20 +32,22 @@
 
 
 <!--INFO resource-->
-  <div class="info">
+  <div class="caption">
 <!--Title -->
-    <div class="name">
+    <h6>
 
           <%= link_to resource.title, resource %>
 
-    </div>
+    </h6>
 <!--Autor -->
-    <span class="author"> 
+    <div class="author"> 
       <span class="by"><%=t('by')%></span>
       <!-- <a><%= raw t('document.by', author: link_to(resource.author.name, resource.author_subject)) %></a> -->
       <%= link_to truncate_name(resource.author.name, length: 25), resource.author.subject %>
 
-    </span>
+    </div>
+
+    <hr>
 <!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
@@ -57,7 +59,7 @@
       <!--views -->
       <div class="views">
         <%=resource.visit_count.to_s%>
-        <i class="icon-eye-open"></i>
+        <i class="fa fa-eye"></i>
         <%#=t('follow.views')%>
       </div>
     </div>

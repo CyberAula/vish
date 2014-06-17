@@ -14,9 +14,9 @@
 
       <%= f.text_field :email, :class => "form_tag", :placeholder => t('devise.passwords.instructions') %>
         
-      <%= f.submit t('action.send'), :class => "btn" %>
+      <%= f.submit t('action.send'), :class => "btn btn-primary" %>
       
-      <hr class="soften">
+      <hr>
 
     <%= render :partial => "devise/shared/links" %>
 

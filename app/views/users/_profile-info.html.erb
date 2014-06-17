@@ -214,49 +214,49 @@ function re_apply_backstrech(tab){
 </script>
 
 <section class="info-profile">
-  <div class="tabbable">
+
     <ul class="nav nav-tabs">
 <!--excursions-->
       <li class="active">
         <a id="excursions_tab" href="#tab1" data-toggle="tab">
-          <i class="icon-book"></i>
-          <span class=" hidden-phone hidden-tablet"><%=t('excursion.other')%></span>
+          <i class="fa fa-book"></i>
+          <span class=" hidden-xs hidden-sm"><%=t('excursion.other')%></span>
         </a>
       </li>
 <!--resources-->      
       <li>
         <a id="resources_tab" href="#tab3" data-toggle="tab">
-          <i class="icon-file"></i>
-          <span class=" hidden-phone hidden-tablet"><%=t('resource.other')%></span>
+          <i class="fa fa-file"></i>
+          <span class=" hidden-xs hidden-sm"><%=t('resource.other')%></span>
         </a>
       </li>
 <!--events-->
       <li>
         <a id="events_tab" href="#tab2" data-toggle="tab">
-          <i class="icon-facetime-video"></i>
-          <span class=" hidden-phone hidden-tablet"><%=t('event.other')%></span>
+          <i class="fa fa-facetime-video"></i>
+          <span class=" hidden-xs hidden-sm"><%=t('event.other')%></span>
         </a>
       </li>
       <li>
         <a id="categories_tab" href="#tab4" data-toggle="tab">
-          <i class="icon-th-large"></i>
-          <span class=" hidden-phone hidden-tablet"><%=t('categories.other')%></span>
+          <i class="fa fa-th-large"></i>
+          <span class="hidden-xs hidden-sm"><%=t('categories.other')%></span>
         </a>
       </li>
       
       <li class="follow-tab">
         <a id="followers_tab" href="#tab5" data-toggle="tab">
           <span><%= profile_subject.followers.count.to_s %></span>
-          <i class="icon-group "></i>
-          <span class=" hidden-phone hidden-tablet"><%= t('follow.followers') %></span>
+          <i class="fa fa-group "></i>
+          <span class="hidden-xs hidden-sm"><%= t('follow.followers') %></span>
         </a>
       </li>
 
       <li class="follow-tab">
         <a id="followings_tab" href="#tab6" data-toggle="tab">
           <span><%= profile_subject.following_actor_objects.includes(:actor).count.to_s %></span>
-          <i class="icon-group green"></i>
-          <span class=" hidden-phone hidden-tablet"><%= t('follow.followings') %></span>
+          <i class="fa fa-group green"></i>
+          <span class="hidden-xs hidden-sm"><%= t('follow.followings') %></span>
         </a>
       </li>
 
@@ -347,5 +347,4 @@ function re_apply_backstrech(tab){
       
 
     </div>
-  </div>
 </section>

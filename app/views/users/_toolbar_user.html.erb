@@ -14,7 +14,7 @@
   <% @profile = profile_or_current_subject.profile %>
   <% if can?(:update, @profile) %>
   <div class="edit_icon btn">
-    <%= link_to(raw("<i class='icon-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %> 
+    <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %> 
   </div>
   <% end %>
 
@@ -26,16 +26,16 @@
   <!--BTN MESSAGE-->
 
   <% if !profile_subject_is_current? && user_signed_in?%>
-  <button href="#new_messages_profile" id="mesage-profile" role="button" class="btn" data-toggle="modal" data-remote="false">
+  <button href="#new_messages_profile" id="mesage-profile" role="button" class="btn btn-default" data-toggle="modal" data-remote="false">
     <%= link_to new_message_path(receiver: profile_subject.slug) do %>
-    <i class="icon-envelope-alt"></i>
+    <i class="fa fa-envelope-alt"></i>
     <%= t 'mailboxer.send' %>
     <% end %>
   </button>
   <% end %>
 
   <button href="#" id="showMore" class="btn" status="showMore" class="ui-state-default ui-corner-all">
-  <i class="icon-plus"></i>
+  <i class="fa fa-plus"></i>
   <%=t('excursion.actions.show_more')%>
   </button>
 
@@ -43,19 +43,23 @@
 </div>
   <!-- Button to trigger modal --> 
   <!-- Modal -->
-  <div id="new_messages_profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-    <div class="modal-header">
-      <h4><%=t('message.new')%></h4>
-    </div>
-    <div class="modal-body">
-      <section id="new_message_profile">
-        <%= render :partial => 'messages/new', :locals => {:@recipient => Actor.find_by_slug(profile_subject.slug)} %>
-      </section>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <input type="button" class="btn btn-primary" value="<%=t('mailboxer.send')%>"/>
+  <div id="new_messages_profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><%=t('message.new')%></h4>
+        </div>
+        <div class="modal-body">
+          <section id="new_message_profile">
+            <%= render :partial => 'messages/new', :locals => {:@recipient => Actor.find_by_slug(profile_subject.slug)} %>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <input type="button" class="btn btn-primary" value="<%=t('mailboxer.send')%>"/>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -66,11 +70,11 @@
       $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
       $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
       if($("#showMore").attr("status")=== "showMore"){
-        $("#showMore").html('<i class="icon-minus"></i><%=t("excursion.actions.show_fewer")%>');
+        $("#showMore").html('<i class="fa fa-minus"></i><%=t("excursion.actions.show_fewer")%>');
         $("#showMore").attr("status", "showFewer");
       }
       else{
-        $("#showMore").html('<i class="icon-plus"></i><%=t("excursion.actions.show_more")%>');
+        $("#showMore").html('<i class="fa fa-plus"></i><%=t("excursion.actions.show_more")%>');
         $("#showMore").attr("status", "showMore");
       }
       return false;

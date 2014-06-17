@@ -1,9 +1,9 @@
 <section class="settings">
-  <h2 class="colorfont">
+  <h5 class="lead"> 
     <%= t('settings.for')%> <%= current_subject.name %>
-  </h2>
+  </h5>
 
-  <div class="accordion" id="settings-accordion">
+  <div class="panel-group" id="settings-accordion">
     <% if current_subject == current_user %>
       <%= render partial: "devise/registrations/edit_user",
                  locals: { resource: current_user,

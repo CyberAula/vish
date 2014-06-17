@@ -1,0 +1,27 @@
+.registration,
+.forgot,
+.confirmation,
+#sign_in
+  @include devise-box
+
+
+.registration
+  hr
+    border: 1px solid $gray-lighter
+  ul.tag-list
+    margin-left: 0
+
+
+.simple_captcha
+  width: 100%
+  float: left
+  margin-top: 7px
+  .simple_captcha_image
+    width: 40%
+    display: block
+    float: left
+  .simple_captcha_field
+    width: 50%
+    display: block
+    float: left
+    margin-left: 15px

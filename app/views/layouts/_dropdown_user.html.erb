@@ -1,6 +1,6 @@
 <li class ="toggler user-settings dropdown">
   <a  href="<%=user_path(current_subject)%>" class="without-data-toggle logo-small "></a>
-    <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %><i class="icon-angle-down"></i></span>
+    <span class="name hidden-xs"><%= truncate_name(current_subject.name, length: 15) %><i class="fa fa-angle-down"></i></span>
   </a>
   
   <div style="display:none">hola</div>
@@ -9,13 +9,13 @@
     <!-- dropdown menu links -->
      <li class="settings-menu">
        <%= link_to home_path do %>
-       <i class="icon-home"></i>
+       <i class="fa fa-home"></i>
        <span><%= t('navigation.home') %></span>
        <% end %>
      </li>
     <li class="settings-menu">
       <%= link_to current_subject do %>
-        <i class="icon-user"></i>
+        <i class="fa fa-user"></i>
         <span><%= t('profile.one') %></span>
       <% end %>
     </li>
@@ -33,14 +33,14 @@
     </li>
     <li class="settings-menu">
       <%= link_to quiz_sessions_path do %>
-      <i class="icon-puzzle-piece"></i>
+      <i class="fa fa-puzzle-piece"></i>
       <span><%= t('quiz.live') %></span>
       <% end %>
     </li>
     <li class="divider"></li>
     <li>
       <%= link_to destroy_user_session_path, :method => :delete do %>
-      <i class="icon-signout"></i>
+      <i class="fa fa-sign-out"></i>
       <span><%= t('sign_out') %></span>
       <% end %>
     </li>

@@ -116,30 +116,29 @@ $(document).ready(function(){
     <%#= render :partial => 'events/button-new-mashme'%>
   <% end %>
 </div>
-
-<div class="tabbable">
+sd
   <ul class="nav nav-tabs">
     <li class="<%= document_details_tab_class document, :info %>">
-      <%= link_to (raw("<i class='icon-align-left'></i> <span class='hidden-tablet hidden-phone'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
+      <%= link_to (raw("<i class='fa fa-align-left'></i> <span class='hidden-sx hidden-sm'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
     </li> 
 <!--edit info-->
      <% if user_signed_in? and (can? :update, @event) %>
       <li class="<%= document_details_tab_class document, :edit %>">
-        <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
+        <%= link_to (raw("<i class='fa fa-edit'></i> <span class='hidden-tablethidden-xs'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
       </li>
     <% end %>
     <li>
       <a href="#tab3" data-toggle="tab">
-        <i class="icon-share"></i>
-        <span class=" hidden-tablet hidden-phone">
+        <i class="fa fa-share"></i>
+        <span class=" hidden-xs hidden-sm">
           <%=t('excursion.actions.share')%>
         </span>
-      </a>
+      </a>a
     </li> 
     <li>
       <a href="#tab5" data-toggle="tab">
-                  <i class="icon-flag"></i> 
-          <span class=" hidden-tablet hidden-phone">
+                  <i class="fa fa-flag"></i> 
+          <span class=" hidden-sm hidden-xs">
             <%=t('excursion.actions.spam')%>
           </span>
 

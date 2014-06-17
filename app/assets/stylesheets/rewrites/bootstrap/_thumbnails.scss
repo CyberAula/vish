@@ -25,7 +25,7 @@
     display: inline-block;
     position: relative;
     width: 100%;
-    @media (max-width: $screen-xs-max){
+    @media (max-width: 480px){
       width: 32%;
       float: left;
       margin-right: 15px;

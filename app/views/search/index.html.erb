@@ -1,39 +1,37 @@
 <section id="search" class="">
   <div class="search">
-    <div class="tabbable">
-      <ul class="nav nav-tabs">
-        <%if params[:browse]%>
+            <%if params[:browse]%>
           <%content_for :title do%>
             <%= t("site.current.browse")%>
           <%end%>
-          <li><h1><i class="icon-folder-open"></i><%= t("browse.title")%></h1></li>          
+          <li><h1><i class="fa fa-folder-open"></i><%= t("browse.title")%></h1></li>          
         <%else%>
           <%content_for :title do%>
             <%= t("site.current.search")%>
           <%end%>
-          <li><h1><i class="icon-search"></i><%= t("search.title")%></h1></li>
+          <li><h1><i class="fa fa-search"></i><%= t("search.title")%></h1></li>
         <%end%>
           <li class="all_results <%= 'active' if params[:type].blank? %>">
-            <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
+            <%= link_to raw('<i class="fa fa-asterisk"></i><span class="hidden-xs hidden-sm">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
           </li>
 
           <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
-            <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), "#excursion",
+            <%= link_to raw('<i class="fa fa-book"></i><span class="hidden-xs hidden-sm">'+t("excursion.other")+'</span>'), "#excursion",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
           </li>
 
           <li class="user <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
-            <%= link_to raw('<i class="icon-group"></i><span class=" hidden-phone hidden-tablet">'+t("user.title.other")+'</span>'), "#user",
+            <%= link_to raw('<i class="fa fa-group"></i><span class="hidden-xs hidden-sm">'+t("user.title.other")+'</span>'), "#user",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
           </li>
 
           <li class="event <%= " active" if params[:type] == "event" %><%= " disabled" unless search_results?("event") %>">
-            <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), "#event",
+            <%= link_to raw('<i class="fa fa-facetime-video"></i><span class="hidden-xs hidden-sm">'+t("event.title.other")+'</span>'), "#event",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
           </li>
 
           <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("resource") %>">
-            <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), "#resource",
+            <%= link_to raw('<i class="fa fa-file"></i><span class="hidden-xs hidden-sm">'+t("resource.title.other")+'</span>'), "#resource",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
           </li>
 
@@ -98,7 +96,7 @@
         </div>
         
       </div>
-    </div>
+   
 
    <%= content_for :javascript do %>
     SocialStream.Repository.show();

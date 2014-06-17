@@ -1,0 +1,44 @@
+#settings  
+  .accordion
+    @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+    background: $white
+    .accordion-group
+      .accordion-heading
+        a
+          outline: 0px
+          &:hover,&:focus
+            color: $brand-primary
+            text-decoration: none  
+      
+    .settings_content
+      background: #f3f3f3
+      .accordion-toggle
+        @include text-overflow
+
+
+      input
+        &[type="submit"]
+          @extend .btn-primary
+      
+      #user_password,
+      #user_current_password,
+      #user_password_confirmation,
+      #user_email
+        border: none
+        box-shadow: none
+        border-bottom: 1px solid #777
+        background-color: transparent
+
+    #cancel_account
+      &:hover
+        border-color: $brand-primary !important
+        text-decoration: none
+        a
+          color: $brand-primary !important
+      #cancel_account_content
+        margin-top: 10px
+        margin-bottom: 10px
+        a
+          color: $brand-primary-2 !important
+          &:hover
+            text-decoration: none

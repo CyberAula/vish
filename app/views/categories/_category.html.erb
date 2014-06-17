@@ -1,4 +1,4 @@
-<li class="box-item excursion-item">
+<li class="excursion">
 
   <div class="container-img">
       <div class="dummy"></div>
@@ -12,24 +12,23 @@
             </div>
           <% end %>
         </div>
-
       </div>
   </div>
     
 <!--INFO excursuion-->
-  <div class="info">
+  <div class="caption">
 <!--Title -->
-    <div class="name">
+    <h6>
       <%= link_to category.title, category %>
-    </div>
+    </h6>
 <!--Autor -->
     <div class="author"> 
       <span class="by"><%=t('by')%></span>
       <%= link_to category.author.name, category.author.subject %>
     </div>
+    <hr>
     <!--____________________ -->
     <div class="info-bottom">
-      <hr class="soften">
       <!--like -->
       <div class="categories_inside">  
         <%=category.property_objects.count.to_s%>

@@ -19,6 +19,13 @@
     }
   }
 }
+.dropdown-log{
+  @include dropdown-log;
+}
+
+#dropdownMenuLog{
+  @include border-right-radius ($border-radius-small);
+}
 
 .mobile-nav{
   @include hidden-sm;
@@ -29,4 +36,22 @@
 .desktop-nav{
   @include hidden-xs;
   @extend .pull-right;
+}
+
+.photo-user{
+  a{
+    padding: 3px !important;
+    img{
+      width: 28px;
+    }
+  }
+}
+
+.headernav{
+  a{display: inline-block;
+    &:first-child{
+      margin-right: 2px; 
+    }
+  }
+
 }

@@ -1,24 +1,24 @@
 
     <!--activity-->
     <div class="activity">
-      <div class="tabbable">
+
         <ul class="nav nav-tabs">  
           <li class="active">
             <a href="#coment1" data-toggle="tab">
-              <i class="icon-comment"></i>
-              <span class=" hidden-phone hidden-tablet"><%=t('comment.other')%></span>
+              <i class="fa fa-comment"></i>
+              <span class=" hidden-xs hidden-sm"><%=t('comment.other')%></span>
             </a>
           </li>
           <li>
             <a href="#evaluation1" data-toggle="tab">
-              <i class="icon-ok-sign"></i>
-              <span class=" hidden-phone "><%=t('evaluation.teaching')%></span>
+              <i class="fa fa-ok-sign"></i>
+              <span class="hidden-xs"><%=t('evaluation.teaching')%></span>
             </a>
           </li>
-          <li class="suggestion_show hidden-desktop">
+          <li class="suggestion_show hidden-md">
             <a  href="#suggestion_show"  data-toggle="tab">
-              <i class="icon-reorder"></i>
-              <span class=" hidden-phone"><%=t('recommended')%></span>
+              <i class="fa fa-reorder"></i>
+              <span class="hidden-xs"><%=t('recommended')%></span>
             </a>
           </li>
         </ul>
@@ -64,7 +64,7 @@
           </div>  
         -->
         </div>
-      </div>    
+   
     </div>
     <!-- Modal -->
   <%= render :partial => "excursions/excursion_evaluate" %>

@@ -18,44 +18,51 @@
     
 
 <!--______________________________desktop-->
-      <ul class="nav nav-pills desktop-nav">
 
-        
-        <li> <!--sign_up-->
-          <a class="btn btn-secundary" href="<%=new_user_registration_path%>">
-            <%=t("sign_up")%>
-          </a>
-        </li>
+<div class="btn-toolbar desktop-nav">
+  
+  <div class="btn-group">
+    <button type="button" class="btn btn-secundary btn-sm" href="<%=new_user_registration_path%>"> 
+      <%=t("sign_up")%>
+    </button>
+  </div>
 
-        <li class="dropdown"> <!--login-->
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <%=t("sign_in")%>
-            <i class="fa fa-angle-down"></i>
-          </a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-            <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
-              <%= f.email_field :email, :id => "username" %>
-              <%= f.password_field :password, :id => "password"  %>
-              <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
-              <label class="checkbox">
-                <input type="checkbox"> <%=t("activerecord.attributes.user.remember_me")%>
-              </label>
-              <%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
-            <% end %>
-            <%= javascript_tag do %>
-            $(function() {
-            if ("placeholder" in document.createElement("input")) {
+  <div class="btn-group">
+    <button id="dropdownMenuLog" class="btn btn-primary btn-sm dropdown-toogle" type="button" data-toggle="dropdown">
+      <%=t("sign_in")%> 
+      <i class="fa fa-angle-down"></i>
+    </button>
+
+    <ul class="dropdown-menu dropdown-menu-right dropdown-log" role="menu" aria-labelledby="dropdownMenuLog">
+      <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
+        <div class="form-group">
+          <%= f.email_field :email, :id => "username" %>
+          <%= f.password_field :password, :id => "password"  %>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> <%=t("activerecord.attributes.user.remember_me")%>
+          </label>
+        </div>
+        <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
+        <hr>
+        <%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
+      <% end %>
+      <%= javascript_tag do %>
+        $(function() {
+          if ("placeholder" in document.createElement("input")) {
             $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
-            } else {
+          } else {
             $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
-            }
+          }
             $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
-            });
-            <% end %>
-          </ul>
-        </li>
-
-      </ul>
+          });
+        <% end %>
+    </ul>
+  </div>
+</div>
+     
+          
 
       <!--search-->
 

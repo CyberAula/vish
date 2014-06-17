@@ -1,11 +1,11 @@
 <section id="messages-toolbar">
-  <div class="tabbable">
+
     <ul class="nav nav-tabs">   
       
       <li class="<%= 'active' if controller.action_name == 'new' %>">
         <%= link_to new_message_path do %>
-          <i class='icon-edit '></i> 
-          <span class="hidden-phone hidden-tablet">
+          <i class='fa fa-edit '></i> 
+          <span class="hidden-xs hidden-sm">
             <%= t('message.new') %>
           </span>
         <% end %>
@@ -13,8 +13,8 @@
 
       <li class=" <%= 'active' if params[:box] == 'inbox' %>">
         <%= link_to conversations_path(box: :inbox) do %>
-            <i class='icon-inbox'></i> 
-            <span class="hidden-phone hidden-tablet">
+            <i class='fa fa-inbox'></i> 
+            <span class="hidden-xs hidden-sm">
               <%= t('message.inbox') %> (<%= current_subject.unread_messages_count %>)
             </span>
         <% end %>
@@ -22,8 +22,8 @@
       
       <li class="<%= 'active' if params[:box] == 'sentbox' %>">
         <%= link_to conversations_path(box: :sentbox) do %>
-            <i class='icon-signout icon-rotate-270 '></i> 
-            <span class="hidden-phone hidden-tablet">
+            <i class='fa fa-sign-out icon-rotate-270 '></i> 
+            <span class="hidden-xs hidden-sm">
               <%= t('message.sentbox') %>
             </span>
         <% end %>
@@ -31,16 +31,13 @@
 
       <li class="<%= 'active' if params[:box] == 'trash' %>">
         <%= link_to conversations_path(box: :trash) do %>
-            <i class='icon-trash '></i> 
-            <span class="hidden-phone hidden-tablet">
+            <i class='fa fa-trash-o '></i> 
+            <span class="hidden-xs hidden-sm">
               <%= t('message.trash') %>
             </span>
         <% end %>
       </li>
 
     </ul>
-
-
-  </div>
 </section>
 

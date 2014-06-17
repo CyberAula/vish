@@ -1,14 +1,12 @@
 <div id="search">
-  <div class="tabbable" >
-    <ul class="nav nav-tabs">
-      <li><h1><i class="icon-home"></i><%= t("home")%></h1></li>
-      <%= render partial: 'help/help_home' %>
-    </ul>
-  </div>
+  <ul class="nav nav-tabs">
+    <li><h1><i class="fa fa-home"></i><%= t("home")%></h1></li>
+    <%= render partial: 'help/help_home' %>
+  </ul>
 </div>
 <%= render partial: 'layouts/order_by_dropdown' %>
 <section id="excursions_tab_ready" class="excursions">
-  <ul class="">
+  <ul class="items">
     <%= render partial: 'excursions/excursion-add' %>
     <%if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
         scope = :more

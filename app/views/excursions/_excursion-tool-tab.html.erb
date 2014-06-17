@@ -137,15 +137,15 @@
 
   <!-- Edit -->
   <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
-    <button class="with_tooltip btn hidden-phone" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
+    <button class="with_tooltip btnhidden-xs" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="fa fa-edit"></i></button>
   <%end%>
 
   <!-- Clone -->
   <% if user_signed_in? && !editingToolbar %>
-    <button class="with_tooltip clone btn popover-link hidden-phone" title="<%=t('excursion.actions.clone')%>" ><i class="icon-copy"></i></button>
+    <button class="with_tooltip clone btn popover-linkhidden-xs" title="<%=t('excursion.actions.clone')%>" ><i class="fa fa-copy"></i></button>
     
     <div class="contentclone" style="display: none">
-      <p class=""><i class="icon-copy"></i>  <%=t('excursion.clone.confirm')%></p>
+      <p class=""><i class="fa fa-copy"></i>  <%=t('excursion.clone.confirm')%></p>
       <div class="actions">
         <a class="btn btn_cancel"><%=t('cancel')%></a>
         <a class="btn btn-primary" onclick="location.href='<%=excursion_path(@excursion) + '/clone'%>'"><%=t('excursion.actions.clone')%></a>
@@ -155,11 +155,11 @@
 
   <!--Remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
-    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
+    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="fa fa-trash"></i></button>
   <%end%>
 
   <div class="contentdelete" style="display: none">
-    <p class="delete_p"><i class="icon-trash"></i>  <%=t('excursion.confirm_delete')%></p>
+    <p class="delete_p"><i class="fa fa-trash"></i>  <%=t('excursion.confirm_delete')%></p>
     <div class="actions">
       <a class="btn btn_cancel"><%=t('cancel')%></a>
       <%= link_to t('excursion.actions.delete'),  @excursion, :method => :delete, :class => 'btn btn-primary' %>
@@ -169,7 +169,7 @@
   <% unless editingToolbar %>
     <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
     
-    <!--<button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>-->
+    <!--<button class="btn" rel="tooltip" title="my room"><i class="fa fa-facetime-video"></i></button>-->
       <%if user_signed_in? %>
         <%=categories_select(:category_id, @excursion)%>
         <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
@@ -182,54 +182,53 @@
 
 <% unless editingToolbar %>
   <!--TABS-->
-  <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active">
         <a href="#tab1" tabTitle='description' data-toggle="tab">
-          <i class="icon-align-left"></i> 
-          <span class="  hidden-phone">
+          <i class="fa fa-align-left"></i> 
+          <span class="  hidden-xs">
             <%=t('excursion.description')%>
           </span>
         </a>
       </li>
       <li>
         <a href="#tab2" tabTitle='embed' data-toggle="tab">
-          <i class="icon-code"></i> 
-          <span class="  hidden-phone">
+          <i class="fa fa-code"></i> 
+          <span class="  hidden-xs">
             <%=t('excursion.actions.embed') %>
           </span>
         </a>
       </li>
       <li>
         <a href="#tab3" tabTitle='share' data-toggle="tab">
-          <i class="icon-share"></i>
-          <span class=" hidden-phone">
+          <i class="fa fa-share"></i>
+          <span class=" hidden-xs">
             <%=t('excursion.actions.share')%>
           </span>
         </a>
       </li>    
       <li>
         <a href="#tab4" tabTitle='download' data-toggle="tab">
-          <i class="icon-download"></i> 
-          <span class="  hidden-phone">
+          <i class="fa fa-download"></i> 
+          <span class="  hidden-xs">
             <%=t('document.actions.download')%>
           </span>
         </a>
       </li>  
       <li>
         <a href="#tab5" tabTitle='flag' data-toggle="tab">
-          <i class="icon-flag"></i> 
-          <span class=" hidden-phone spam-name ">
+          <i class="fa fa-flag"></i> 
+          <span class=" hidden-xs spam-name ">
           <%=t('excursion.actions.spam')%>
           </span>
-          <!--span class=" hidden-tablet hidden-phone">
+          <!--span class=" hidden-tablethidden-xs">
             <%#=t('excursion.actions.scorm')%>
           </span-->
         </a>
       </li>
       <%= render partial: 'help/help_show_excursion' %>     
     </ul>
-  </div>
+
 
   <h2><%= @excursion.title %></h2>
 
@@ -246,7 +245,7 @@
       <div class="contentembed">
         <textarea class="shortUrl" readonly="true" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='//<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0; webkitallowfullscreen mozallowfullscreen allowfullscreen &gt;&lt;/iframe&gt</textarea>
         <button class="btn " id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-          <i class="icon-copy large"></i>
+          <i class="fa fa-copy large"></i>
         </button>
       </div>
     </div>
@@ -256,7 +255,7 @@
         <div class="input-append url-input">
           <input class="shortUrl" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
             <button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-              <i class="icon-copy "></i>
+              <i class="fa fa-copy "></i>
             </button>
         </div>
         <div class="social_toolbar_excursion">
@@ -279,7 +278,7 @@
     <!-- tab4 / scorm -->
     <div class="tab-pane" id="tab4">
       <div class="contentscorm">
-        <a class="btn btn-primary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a> 
+        <a class="btn btn-primary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a> 
         <p><%=t("excursion.download_scorm")%></p><br/>
       </div> 
     </div> 

@@ -1,0 +1,69 @@
+@mixin dropdown-log 
+  padding: $padding-base-vertical $padding-base-horizontal
+  .form-group
+    margin-bottom: 0
+  input
+    &[type="email"],
+    &[type="password"]
+      float: none
+      margin: 0 0 10px
+  .checkbox
+    float: left
+    margin-top: 0
+    margin-bottom: 5px
+  input
+    &[type="submit"]
+      float: right
+  hr
+    margin: 0px
+    clear: both
+    border: 1px solid transparent
+  a, label
+    color: $white
+    &:hover
+      color: $white
+      background-color: transparent !important
+
+@mixin devise-box
+  @include box-shadow(0px 1px 1px rgba(50, 50, 50, 0.15))
+  @include border-top-radius ($border-radius-base)
+  @include border-bottom-radius ($border-radius-base)
+  padding: $padding-base-vertical $padding-base-horizontal
+  background-color: $white
+  color: $gray
+  @include make-sm-column(6, $gutter: $grid-gutter-width)
+  @include make-md-column(6, $gutter: $grid-gutter-width)
+  @include make-lg-column(6, $gutter: $grid-gutter-width)
+  @include center-block
+  float: none !important
+  display: block
+  h3
+    font-family: $corporate-font-family-sans-serif-Medium
+  h3, p
+    margin: 0 0 18px 0
+  label
+    @extend .caption
+    margin-bottom: 0px
+    width: 100%
+    margin-top: 10px
+  input
+    &[type="text"],
+    &[type="email"],
+    &[type="password"]
+      width: 100%
+      
+  hr
+    border: 1px solid transparent
+  #remember
+    display: inline
+    padding-left: 0
+    color: $gray
+    input
+      float: none
+      margin: 0    
+  input
+    &[type="submit"]
+      float: right
+      display: inline-block
+      margin-bottom: 10px
+
