@@ -171,10 +171,13 @@ class Excursion < ActiveRecord::Base
   def self.generate_scorm_manifest(ejson,excursion)
     if excursion and !excursion.id.nil?
       identifier = excursion.id.to_s
+      lomIdentifier = Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)
     elsif (ejson["vishMetadata"] and ejson["vishMetadata"]["id"])
       identifier = ejson["vishMetadata"]["id"].to_s
+      lomIdentifier = "urn:ViSH:" + identifier
     else
       identifier = "TmpSCORM_" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
+      lomIdentifier = "urn:ViSH:" + identifier
     end
 
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
@@ -192,26 +195,15 @@ class Excursion < ActiveRecord::Base
         myxml.schema("ADL SCORM")
         myxml.schemaversion("CAM 1.3")
         #Add LOM metadata
-        Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => identifier})
+        Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier})
       end
 
-      myxml.organizations('default'=>"ViSH",'structure'=>"hierarchical") do
-        myxml.organization('identifier'=>"ViSH") do
-          myxml.title("Virtual Science Hub")
-          myxml.metadata() do
-            myxml.schema("ADL SCORM")
-            myxml.schemaversion("CAM 1.3")
-            myxml.lom do
-              myxml.general do
-                myxml.identifier("ViSH")
-                myxml.title do
-                  myxml.langstring("Virtual Science Hub")
-                end
-                myxml.description do
-                  myxml.langstring("Virtual Science Hub. http://vishub.org.")
-                end
-              end
-            end
+      myxml.organizations('default'=>"defaultOrganization",'structure'=>"hierarchical") do
+        myxml.organization('identifier'=>"defaultOrganization") do
+          if ejson["title"]
+            myxml.title(ejson["title"])
+          else
+            myxml.title("Untitled")
           end
           myxml.item('identifier'=>"VIRTUAL_EXCURSION_" + identifier,'identifierref'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE") do
             if ejson["title"]
@@ -287,16 +279,36 @@ class Excursion < ActiveRecord::Base
       end
 
       myxml.general do
+        
         if options and options[:id]
           myxml.identifier do
-            if options[:id] =~ URI::regexp
+
+            isURI = false
+            isURN = false
+            _LOid = options[:id].to_s
+            begin
+              _LOuri = URI.parse(_LOid)
+              if %w( http https ).include?(_LOuri.scheme)
+                isURI = true
+              elsif %w( urn ).include?(_LOuri.scheme)
+                isURN = true
+              end
+            rescue
+            end
+
+            if isURI
               myxml.catalog("URI")
             else
+              if !isURN
+                _LOid = "urn:ViSH:"+_LOid
+              end
               myxml.catalog("URN")
             end
-            myxml.entry(options[:id])
+
+            myxml.entry(_LOid)
           end
         end
+
         myxml.title do
           if ejson["title"]
             myxml.string(ejson["title"], :language=> language)
@@ -346,7 +358,7 @@ class Excursion < ActiveRecord::Base
         end
         myxml.aggregationLevel do
           myxml.source("LOMv1.0")
-          myxml.value("3")
+          myxml.value("2")
         end
       end
 
@@ -356,7 +368,11 @@ class Excursion < ActiveRecord::Base
         end
         myxml.status do
           myxml.source("LOMv1.0")
-          myxml.value("final")
+          if ejson["vishMetadata"] and ejson["vishMetadata"]["draft"]==="true"
+            myxml.value("draft")
+          else
+            myxml.value("final")
+          end
         end
 
         if (ejson["author"] and ejson["author"]["name"]) or (!excursion.nil? and !excursion.author.nil? and !excursion.author.name.nil?)
