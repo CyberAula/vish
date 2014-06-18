@@ -41,8 +41,8 @@ Vish::Application.routes.draw do
 
   match 'excursions/preview' => 'excursions#preview'
  
+  match 'excursions/:id/metadata' => 'excursions#metadata'
   match 'excursions/:id/clone' => 'excursions#clone'
-  
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
   match '/excursions/:id/learning_evaluate' => 'excursions#learning_evaluate'
   
