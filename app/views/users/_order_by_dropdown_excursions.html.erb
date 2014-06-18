@@ -4,8 +4,8 @@
 <span class="order_by"><%=t('order_by.title')%></span>
   <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
   <% icon = profile_subject_is_current? ? "pencil" : "dashboard"%>
-  <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="dropdownMenuOrdByExcursions" data-toggle="dropdown"><i class="icon-<%=icon%>"></i> <%=t('order_by.'+ default_sort_by)%>
-    <i class="icon-angle-down"></i>
+  <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="dropdownMenuOrdByExcursions" data-toggle="dropdown"><i class="fa fa-<%=icon%>"></i> <%=t('order_by.'+ default_sort_by)%>
+    <i class="fa fa-angle-down"></i>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 
@@ -13,31 +13,31 @@
 
     <li>
         <a href="#" onclick="excursions_dropdown_select('popularity');" class="sort_by_selected" sort-by-key='popularity'> 
-          <i class="icon-dashboard"></i>
+          <i class="fa fa-dashboard"></i>
           <span><%=t('order_by.popularity')%> </span>
         </a>
     </li>
     <li>
       <a href="#" onclick="excursions_dropdown_select('updated_at');" sort-by-key='updated_at'>
-        <i class="icon-pencil"></i>
+        <i class="fa fa-pencil"></i>
         <span><%=t('order_by.updated_at')%> </span>
       </a>
     </li>
     <li>
       <a href="#" onclick="excursions_dropdown_select('created_at');" sort-by-key='created_at'>
-        <i class="icon-bolt"></i>
+        <i class="fa fa-bolt"></i>
         <span><%=t('order_by.created_at')%> </span>
       </a>
     </li>
     <li>
         <a href="#" onclick="excursions_dropdown_select('visits');" sort-by-key='visits'>
-          <i class="icon-eye-open"></i> 
+          <i class="fa fa-eye-open"></i> 
           <span><%=t('order_by.visits')%> </span>
         </a>
     </li>
     <li>
         <a href="#" onclick="excursions_dropdown_select('favorites');" sort-by-key='favorites'>
-          <i class="icon-star"></i> 
+          <i class="fa fa-star"></i> 
           <span><%=t('order_by.favorites')%> </span>
         </a>
     </li>
@@ -52,7 +52,7 @@
 
   if(param && param!=""){
     var value = $("#order_by_selector_excursions .dropdown-menu [sort-by-key="+param+"]").html();
-    $("#dropdownMenuOrdByExcursions").html(value + '<i class="icon-angle-down"></i>'); 
+    $("#dropdownMenuOrdByExcursions").html(value + '<i class="fa fa-angle-down"></i>'); 
   }
   
 <%end%>
@@ -68,7 +68,7 @@ var excursions_dropdown_select = function(option) {
         $(".sort_by_selected").removeClass("sort_by_selected");        
         var value = $("#order_by_selector_excursions .dropdown-menu [sort-by-key="+option+"]").html();
         $("#order_by_selector_excursions .dropdown-menu [sort-by-key="+option+"]").addClass("sort_by_selected");
-        $("#dropdownMenuOrdByExcursions").html(value + '<i class="icon-angle-down"></i>');
+        $("#dropdownMenuOrdByExcursions").html(value + '<i class="fa fa-angle-down"></i>');
         $('.loader_pagination').hide();      
         $("#excursions_tab_ready").replaceWith(html);
         re_apply_pageless("excursions");

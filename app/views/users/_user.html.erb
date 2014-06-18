@@ -1,4 +1,4 @@
-<li class="box-item contact" id="<%= dom_id user %>">
+<li class="contact" id="<%= dom_id user %>">
   <%if user.is_mve %>
     <div class="badge-teacher-active">  </div>
   <%end%>
@@ -12,20 +12,20 @@
   </div>
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
-  <div class="info">
+  <div class="caption">
 <!--Title -->
-    <div class="name">
+    <h6>
       <%= link_to(truncate_name(user.name), user.subject)%>
-    </div>
+    </h6>
 <!--Autor -->
       <div class="add">
         <%= contact_button(user) %>
       </div> 
-    <!--____________________ -->
+    <!--____________________ 
     <div class="info-bottom">
       <hr class="soften">
       <%#= contact_count(user) %>
-    </div>
+    </div>-->
   </div>
 </li>
 

@@ -1,11 +1,11 @@
-<li class="box-item event-item">
+<li class="event">
   <%= link_to(event) do %>
     <div class="container-img">
       <div class="dummy"></div>
       <div class="element resource-center">
         <div class="img-box resource-center" id="event-<%=event.id%>">
           <div class="event">
-            <i class='icon-facetime-video'></i>
+            <i class='fa fa-video-camera'></i>
           </div>
         </div>
       </div>
@@ -17,19 +17,18 @@
 
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
-  <div class="info">
+  <div class="caption">
 <!--Title -->
-    <div class="name">
+    <h6>
       <%= link_to event.title, event %>
-    </div>
+    </h6>
 <!--Autor -->
     <div class="author"> 
       <span class="by"><%=t('by')%></span>
       <%= link_to event.author.name, event.author.subject %>
     </div>
-    <!--____________________ -->
-    <div class="info-bottom">
-      <hr class="soften">
+    <hr>
+    <div class="info-bottom">  
       <!--like -->
       <div class="like">  
         <% if event.post_activity%>
@@ -42,7 +41,7 @@
       <!--views -->
       <div class="views">
         <%=event.visit_count.to_s%>
-        <i class="icon-eye-open"></i>
+        <i class="fa fa-eye-open"></i>
         <%#=t('follow.views')%>
       </div>
     </div>

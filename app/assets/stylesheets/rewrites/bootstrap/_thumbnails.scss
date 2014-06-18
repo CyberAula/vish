@@ -26,9 +26,10 @@
     position: relative;
     width: 100%;
     @media (max-width: 480px){
-      width: 32%;
+      width: 31%;
       float: left;
       margin-right: 15px;
+      height: 68px;
     }
     .dummy{
       padding-top: 75%; // 4:3 aspect ratio
@@ -46,7 +47,7 @@
       text-align: center;
       width: 100%;
       @include border-top-radius ($border-radius-base);
-      @media (max-width: $screen-xs-max){
+      @media (max-width: 480px){
         @include border-top-radius (0);
         @include border-left-radius ($border-radius-base);
       }
@@ -72,15 +73,18 @@
 }
 
 .thumbnail .caption {
-  padding: $padding-large-horizontal $padding-large-horizontal $padding-small-vertical $padding-large-horizontal;
+  padding: $padding-large-horizontal $padding-large-horizontal 0 $padding-large-horizontal;
   color: $gray-darker;
   h6{
     font-family: $corporate-font-family-sans-serif-Medium;
-    height: 27px;
+    height: 28px;
     word-wrap: break-word;
     overflow: hidden;
-    line-height: 1.3rem;
     margin: 0px 0 0.3rem;
+    @media (max-width: 480px){
+      @include text-overflow;
+      height: 17px;
+    }
   }
   .author {
     @include text-overflow;
@@ -110,7 +114,7 @@
     width: 100%;
   }
   hr {
-    margin: 0 0 1px 0;
+    margin: 3px 0 -1px;
   }
 
   .like {

@@ -1,7 +1,7 @@
 <!-- insert_after "code[erb-loud]:contains('link_to')" -->
 
 <% if like_status(activity).last === 'like' %>
-  <i class="icon-star"></i>
+  <i class="fa fa-star"></i>
 <% else %>
-  <i class="icon-star-empty"></i>
+  <i class="fa fa-star-empty"></i>
 <% end %>

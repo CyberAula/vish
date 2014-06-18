@@ -1,0 +1,429 @@
+#time-line
+  @include make-xs-column(8, $gutter: $grid-gutter-width)
+  @include make-sm-column(8, $gutter: $grid-gutter-width)
+  @include make-md-column(8, $gutter: $grid-gutter-width)
+  @include make-lg-column(8, $gutter: $grid-gutter-width)
+  display: block
+  margin: 0 auto
+  .activities
+    header
+      h2
+    .wall_input
+      position: relative
+      margin-bottom: 40px
+      form
+        @include make-xs-column(11, $gutter: $grid-gutter-width)
+        @include make-sm-column(11, $gutter: $grid-gutter-width)
+        @include make-md-column(11, $gutter: $grid-gutter-width)
+        @include make-lg-column(11, $gutter: $grid-gutter-width)
+        display: block
+        margin: 0 auto
+        label
+        textarea
+          width: 96%
+          padding: 4px 2%
+          margin-top: 10px
+      .wall_input-actions
+        @include make-xs-column(12, $gutter: $grid-gutter-width)
+        @include make-sm-column(12, $gutter: $grid-gutter-width)
+        @include make-md-column(12, $gutter: $grid-gutter-width)
+        @include make-lg-column(12, $gutter: $grid-gutter-width)
+        display: block
+        position: absolute
+        left: 0
+        input
+          &[type="submit"]
+            display: block
+            margin: 0px 
+            float: right
+            width: 150px
+        .btn
+        .new_document
+          display: block
+          float: right
+          margin-right: 10px
+
+
+#time-line
+  .activities
+    header
+      text-align: left !important
+      h2
+        width: 80%
+        text-align: left !important
+
+
+#time-line
+  .timeline
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(12, $gutter: $grid-gutter-width)
+    @include make-md-column(12, $gutter: $grid-gutter-width)
+    @include make-lg-column(12, $gutter: $grid-gutter-width)
+    display: block
+    margin: 0 auto
+    .root:hover,
+    .media:hover
+      .media-heading
+        .x
+          display: block
+          float: right
+          margin-top: 5px
+          a
+            color: $gray
+    .root,
+    .media
+      margin-top: 1%
+      border: 1px solid #ddd
+      overflow: visible
+      display: block
+      float: left
+      background: rgba(255, 255, 255, 0.5)
+      padding: 1%
+      width: 98% !important
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(12, $gutter: $grid-gutter-width)
+      @include make-md-column(12, $gutter: $grid-gutter-width)
+      @include make-lg-column(12, $gutter: $grid-gutter-width)
+      .avatar
+        width: 5%
+        display: block
+        float: left
+        img
+          @include border-top-radius($border-radius-base)
+          @include border-bottom-radius($border-radius-base)
+      .media-heading
+        display: block
+        text-align: left
+        width: 93%
+        margin-bottom: 0px
+        float: left
+        clear: right
+        h3
+          margin: 0px
+          font-size: 18px
+          padding-left: 2%
+          display: block
+          float: left
+          word-wrap: break-word
+          width: 88%
+          line-height: 20px
+          height: 20px
+          a
+            color: $gray-dark
+            word-wrap: break-word
+            &:hover
+              text-decoration: none
+        .x
+          display: block
+          float: right
+          margin-top: 5px
+          width: 10%
+          text-align: right
+          a
+            color: $gray
+            &:hover
+              color: $brand-primary
+              text-decoration: none
+      .media-body
+        display: block
+        overflow: visible
+        width: 93%
+        float: left
+        hr
+          @include make-xs-column(11, $gutter: $grid-gutter-width)
+          @include make-sm-column(11, $gutter: $grid-gutter-width)
+          @include make-md-column(11, $gutter: $grid-gutter-width)
+          @include make-lg-column(11, $gutter: $grid-gutter-width)
+          display: block
+          margin: 0px auto 5px
+          clear: both
+        .objects
+          margin-bottom: 5px
+          .post
+            padding-left: 2%
+            width: 98%
+        .recomended
+          .recomended-items
+            ul
+              @include make-xs-column(11, $gutter: $grid-gutter-width)
+              @include make-sm-column(11, $gutter: $grid-gutter-width)
+              @include make-md-column(11, $gutter: $grid-gutter-width)
+              @include make-lg-column(11, $gutter: $grid-gutter-width)
+              clear: both
+              display: block
+              margin: 16px auto 10px
+              height: 90px
+              p.info_action
+                @include make-xs-column(12, $gutter: $grid-gutter-width)
+                @include make-sm-column(12, $gutter: $grid-gutter-width)
+                @include make-md-column(12, $gutter: $grid-gutter-width)
+                @include make-lg-column(12, $gutter: $grid-gutter-width)
+                text-align: left
+                margin: 0px auto 
+              hr
+                margin: 0 auto
+                li.box-item
+                  margin-bottom: 10px
+        .actions
+          @include make-xs-column(11, $gutter: $grid-gutter-width)
+          @include make-sm-column(11, $gutter: $grid-gutter-width)
+          @include make-md-column(11, $gutter: $grid-gutter-width)
+          @include make-lg-column(11, $gutter: $grid-gutter-width)
+          display: block
+          margin: 10px auto 10px
+          margin-top: 3% !important
+          .post_time_ago
+            float: right
+            color: $gray-light
+            font-style: italic
+            margin-bottom: -1%
+          .to_comment
+            float: right
+            margin-right: 20px
+            display: block
+            a
+              color: $gray
+              &:hover
+                font-family: $corporate-font-family-sans-serif-Medium
+          .to_like
+            float: left
+            visibility: hidden
+
+            a
+              color: lighten($brand-primary, 20%)
+        .likes
+          display: none
+          a
+            text-overflow: ellipsis
+            width: 120px
+    .more
+      margin-top: 2% !important
+      margin-bottom: 2% !important
+      display: block
+      width: 100px
+      text-align: center
+      @extend .btn-primary
+      height: 20px
+      margin: 0 auto
+      float: none
+      clear: both
+      a
+        color: $white
+        &:hover
+          text-decoration: none
+
+
+
+.comments
+  @include make-xs-column(11, $gutter: $grid-gutter-width)
+  @include make-sm-column(11, $gutter: $grid-gutter-width)
+  @include make-md-column(11, $gutter: $grid-gutter-width)
+  @include make-lg-column(11, $gutter: $grid-gutter-width)
+  display: block
+  margin: 10px auto 
+  padding-top: 10px
+  clear: both
+  .activity
+  .media
+    border: 1px solid #ddd
+    overflow: visible
+    margin-top: 5px
+    margin-bottom: 10px
+    display: block
+    float: left
+    background: rgba(255, 255, 255, 0.5)
+    padding: 2%
+
+    .child
+      border-top: 1px solid #ddd
+    .avatar
+      display: block
+      float: left
+      width: 15%
+      max-width: none
+    .media-heading
+      width: 75% !important
+      display: block
+      float: left
+      clear: none
+      margin: 0
+      margin-left: 3%
+      h6
+        margin: 0
+        line-height: 0
+        font-size: 14px
+        text-overflow: ellipsis
+        width: 75%
+        float: left
+        line-height: 17px
+        a
+          color: $gray-darker
+          word-wrap: break-word
+    .media-body
+      clear: both
+      display: block
+      margin: 14px 0px 0px 0px
+      overflow: visible
+      width: 80% !important
+      margin-left: 10%
+      margin-right: 10%%
+      float: left
+      .objects
+        .comment
+          font-size: 13px
+          font-style: italic
+          margin-top: -1%
+          margin-left: 6%
+          margin-bottom: -3%
+      .actions
+        margin-top: -8px !important
+        width: 100% !important
+        font-size: 10px
+        .post_time_ago
+          float: right
+        .to_like
+          float: left
+          visibility: hidden
+          margin-bottom: -19px
+          a
+            color: lighten($brand-primary, 20%)
+.new_comment
+  width: 80%
+  margin: 0 auto
+  display: block
+  clear: both
+  .avatar
+    display: block
+    float: left
+    width: 15%
+  form#new_comment
+    width: 82%
+    display: block
+    float: left
+    clear: none
+    margin: 0
+    margin-left: 3%
+    
+
+    textarea
+      width: 100%
+      margin-top: 0
+      margin-bottom: 0
+      margin-bottom: 10px
+    input
+      &[type="submit"]
+        margin-top: -10px
+        margin-left: 85%
+        @extend .btn-primary
+        @include border-top-radius(0px)
+        @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
+            
+
+
+
+
+
+
+
+
+
+
+.description-activity
+  background-color: $gray
+  .activity-box
+    .activity
+      .tabbable
+        .tab-content,.tab-pane
+          .comments
+            margin: 0 auto 
+            padding-top: 0px 
+            .new-comments-box
+              .new_comment
+                width: 90%
+                .avatar
+                  width: auto
+                  display: inline
+                  width: 5%
+                  img
+                    @include border-top-radius($border-radius-base)
+                    @include border-bottom-radius($border-radius-base)
+
+                form#new_comment
+                  width: 93%
+                  margin-left: 2%
+                  display: inline
+                  margin-bottom: 10px
+                  textarea
+                  input[type="submit"]
+            .comments
+              .activity  
+                margin-bottom: 5px
+              .child
+              .media
+                padding: 1%
+                margin-top: 0
+                .pull-left
+                  margin-right: 2%
+                .avatar
+                  width: 5%
+                  
+                  .media-object
+                    a
+                      img
+                        @include border-top-radius($border-radius-base)
+                        @include border-bottom-radius($border-radius-base)
+                .media-heading
+                  margin: 0
+                  width: 93% !important
+                  height: 20px
+                  overflow: hidden
+                  h6
+                  .x
+                    margin-right: 5px
+                .media-body
+                  margin: 0
+                  clear: none
+                  margin-top: 5px
+                  .objects
+                    .comment
+                      margin-left: 2%
+                      font-size: 12px
+                      p
+                  .actions
+                    .post_time_ago
+                      color: $gray-light
+                      margin-top: 5px
+                    .to_like
+                      display: none
+
+
+
+
+
+
+
+
+#time-line
+  .activities
+    header
+      h2
+        text-align: center
+    .wall_input
+      border-bottom-right-radius: 0px
+      form
+        label
+          text-align: center
+        textarea
+          background-color: $gray-lighter
+          resize: none
+      .wall_input-actions
+        input
+          &[type="submit"]
+            @extend .btn-primary
+            @include border-top-radius(0px)
+            @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
+        .btn
+          background-image: none
+          @include border-top-radius(0px)
+        .new_document
+

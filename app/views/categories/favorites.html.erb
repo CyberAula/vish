@@ -1,8 +1,8 @@
 
 <section id="category">
   <div class="category_info">
-    <div class="icon-box-fav">
-      <i class="icon-star "></i>
+    <div class="fa fa-box-fav">
+      <i class="fa fa-star "></i>
     </div>  
     <%= render partial: 'help/help_favourite' %>
     <h2><%= t('categories.favorites.title') %></h2>    
@@ -12,7 +12,7 @@
   </div>
   
   <div class="excursions">
-    <ul class="">
+    <ul class="items">
     <%# excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>
       <% items = subject_content current_subject, [Excursion, Picture, Video, Document, Embed, Link], {:scope => :like, :limit=>0} %>
       <% items.each do |item| %>
