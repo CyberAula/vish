@@ -572,6 +572,11 @@ class Excursion < ActiveRecord::Base
         qti_mc = Excursion.generate_QTIMC(qjson)
         zos.put_next_entry(fileName + ".xml")
         zos.print qti_mc.target!()
+
+      when "sorting"
+        qti_ordered = Excursion.generate_QTIOrdered(qjson)
+        zos.put_next_entry(fileName + ".xml")
+        zos.print qti_ordered.target!()
       else
       end
 
@@ -581,7 +586,7 @@ class Excursion < ActiveRecord::Base
 
       t.close
     end
-  end
+end
 
   def self.generate_QTITF(qjson,index)
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
@@ -627,6 +632,68 @@ class Excursion < ActiveRecord::Base
 
     return myxml;
   end
+
+    def self.generate_QTIOrdered(qjson)
+    myxml = ::Builder::XmlMarkup.new(:indent => 2)
+    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+      
+    nChoices = qjson["choices"].size
+
+    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive"=>"false") do
+
+    identifiers= [] 
+      qjson["choices"].each_with_index do |choice,i|
+        identifiers.push("A" + i.to_s())
+      end
+
+   
+      myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "ordered", "baseType" => "identifier") do
+      
+        myxml.correctResponse() do
+          for i in 0..((nChoices)-1)
+              myxml.value(identifiers[i])
+          end
+        end  
+      end
+
+      myxml.outcomeDeclaration("cardinality"=>"single", "baseType"=>"identifier", "identifier"=>"FEEDBACK") do
+      end
+    
+      myxml.itemBody() do
+        myxml.orderInteraction("responseIdentifier"=>"RESPONSE", "shuffle"=>"true",  "maxChoices" => "0", "minChoices"=>"0", "orientation"=>"vertical") do
+          myxml.prompt(qjson["question"]["value"])
+          for i in 0..((nChoices)-1)
+              myxml.simpleChoice(qjson["choices"][i]["value"],"identifier"=> identifiers[i], "showHide" => "show")
+          end
+        end
+      end
+          
+      myxml.responseProcessing()
+  end
+
+    return myxml;
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   def self.generate_QTIMC(qjson)
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
