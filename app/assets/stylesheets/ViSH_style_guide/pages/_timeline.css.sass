@@ -1,36 +1,32 @@
 #time-line
-  @include make-xs-column(12, $gutter: $grid-gutter-width)
-  @include make-sm-column(12, $gutter: $grid-gutter-width)
-  @include make-md-column(12, $gutter: $grid-gutter-width)
-  @include make-lg-column(12, $gutter: $grid-gutter-width)
   display: block
   margin: 0 auto
   .activities
-    header
-      h2
+    header h2
+      width: 80%
+      text-align: left !important
     .wall_input
       position: relative
       margin-bottom: 40px
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(12, $gutter: $grid-gutter-width)
+      @include make-md-column(12, $gutter: $grid-gutter-width)
+      @include make-lg-column(12, $gutter: $grid-gutter-width)
+      background-color: $white
+      @include border-top-radius ($border-radius-base)
+      @include border-bottom-radius ($border-radius-base)
       form
-        @include make-xs-column(11, $gutter: $grid-gutter-width)
-        @include make-sm-column(11, $gutter: $grid-gutter-width)
-        @include make-md-column(11, $gutter: $grid-gutter-width)
-        @include make-lg-column(11, $gutter: $grid-gutter-width)
         display: block
-        margin: 0 auto
+        @include center-block
         label
         textarea
-          width: 96%
+          width: 100%
           padding: 4px 2%
-          margin-top: 10px
+          margin: 10px auto 6px
       .wall_input-actions
-        @include make-xs-column(12, $gutter: $grid-gutter-width)
-        @include make-sm-column(12, $gutter: $grid-gutter-width)
-        @include make-md-column(12, $gutter: $grid-gutter-width)
-        @include make-lg-column(12, $gutter: $grid-gutter-width)
         display: block
         position: absolute
-        left: 0
+        right: 0
         input
           &[type="submit"]
             display: block
@@ -45,27 +41,23 @@
 
 
 #time-line
-  .activities
-    header
-      text-align: left !important
-      h2
-        width: 80%
-        text-align: left !important
+  .activity
+    .panel
+      background-color: transparent
+      border: none
+
+
+
 
 
 #time-line
   .timeline
-    @include make-xs-column(12, $gutter: $grid-gutter-width)
-    @include make-sm-column(12, $gutter: $grid-gutter-width)
-    @include make-md-column(12, $gutter: $grid-gutter-width)
-    @include make-lg-column(12, $gutter: $grid-gutter-width)
     display: block
-    margin: 0 auto
+    @include center-block
     .root:hover,
     .media:hover
       .media-heading
         .x
-          display: block
           float: right
           margin-top: 5px
           a
@@ -76,28 +68,19 @@
       border: 1px solid #ddd
       overflow: visible
       display: block
-      float: left
       background: rgba(255, 255, 255, 0.5)
-      padding: 1%
-      width: 98% !important
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(12, $gutter: $grid-gutter-width)
       @include make-md-column(12, $gutter: $grid-gutter-width)
       @include make-lg-column(12, $gutter: $grid-gutter-width)
       .avatar
-        width: 5%
         display: block
         float: left
         img
+          width: 38px
           @include border-top-radius($border-radius-base)
           @include border-bottom-radius($border-radius-base)
       .media-heading
-        display: block
-        text-align: left
-        width: 93%
-        margin-bottom: 0px
-        float: left
-        clear: right
         h3
           margin: 0px
           font-size: 18px
@@ -124,73 +107,50 @@
             &:hover
               color: $brand-primary
               text-decoration: none
-      .media-body
+      .panel-body
         display: block
-        overflow: visible
-        width: 93%
-        float: left
-        hr
-          @include make-xs-column(11, $gutter: $grid-gutter-width)
-          @include make-sm-column(11, $gutter: $grid-gutter-width)
-          @include make-md-column(11, $gutter: $grid-gutter-width)
-          @include make-lg-column(11, $gutter: $grid-gutter-width)
-          display: block
-          margin: 0px auto 5px
-          clear: both
-        .objects
-          margin-bottom: 5px
-          .post
-            padding-left: 2%
-            width: 98%
-        .recomended
-          .recomended-items
-            ul
-              @include make-xs-column(11, $gutter: $grid-gutter-width)
-              @include make-sm-column(11, $gutter: $grid-gutter-width)
-              @include make-md-column(11, $gutter: $grid-gutter-width)
-              @include make-lg-column(11, $gutter: $grid-gutter-width)
-              clear: both
-              display: block
-              margin: 16px auto 10px
-              height: 90px
-              p.info_action
-                @include make-xs-column(12, $gutter: $grid-gutter-width)
-                @include make-sm-column(12, $gutter: $grid-gutter-width)
-                @include make-md-column(12, $gutter: $grid-gutter-width)
-                @include make-lg-column(12, $gutter: $grid-gutter-width)
-                text-align: left
-                margin: 0px auto 
-              hr
-                margin: 0 auto
-                li.box-item
-                  margin-bottom: 10px
-        .actions
-          @include make-xs-column(11, $gutter: $grid-gutter-width)
-          @include make-sm-column(11, $gutter: $grid-gutter-width)
-          @include make-md-column(11, $gutter: $grid-gutter-width)
-          @include make-lg-column(11, $gutter: $grid-gutter-width)
-          display: block
-          margin: 10px auto 10px
-          margin-top: 3% !important
-          .post_time_ago
-            float: right
-            color: $gray-light
-            font-style: italic
-            margin-bottom: -1%
-          .to_comment
-            float: right
-            margin-right: 20px
-            display: block
-            a
-              color: $gray
-              &:hover
-                font-family: $corporate-font-family-sans-serif-Medium
-          .to_like
-            float: left
-            visibility: hidden
+        margin: 0px auto 5px
+        clear: both
+      .objects
+        margin-bottom: 5px
+        .post
+          padding-left: 2%
+          width: 98%
+      .recomended
+        .recomended-items
+          ul
+            clear: both
+            height: 90px
+            padding-left: 16px
 
-            a
-              color: lighten($brand-primary, 20%)
+            hr
+              margin: 0 auto
+              li.box-item
+                margin-bottom: 10px
+      .actions
+        display: block
+        margin: 10px auto 10px
+        margin-top: 3% !important
+        .post_time_ago
+          float: right
+          color: $gray-light
+          font-family: $corporate-font-family-sans-serif-LightItalic
+          margin-bottom: -1%
+          font-size: 12px
+        .to_comment
+          float: right
+          margin-right: 20px
+          display: block
+          a
+            color: $gray
+            &:hover
+              font-family: $corporate-font-family-sans-serif-Medium
+        .to_like
+          float: left
+          visibility: hidden
+
+          a
+            color: lighten($brand-primary, 20%)
         .likes
           display: none
           a
@@ -239,15 +199,11 @@
     .avatar
       display: block
       float: left
-      width: 15%
       max-width: none
     .media-heading
-      width: 75% !important
       display: block
-      float: left
       clear: none
       margin: 0
-      margin-left: 3%
       h6
         margin: 0
         line-height: 0
@@ -261,20 +217,14 @@
           word-wrap: break-word
     .media-body
       clear: both
-      display: block
-      margin: 14px 0px 0px 0px
       overflow: visible
-      width: 80% !important
       margin-left: 10%
-      margin-right: 10%%
-      float: left
       .objects
         .comment
           font-size: 13px
-          font-style: italic
           margin-top: -1%
-          margin-left: 6%
           margin-bottom: -3%
+          font-family: $corporate-font-family-sans-serif-LightItalic
       .actions
         margin-top: -8px !important
         width: 100% !important
@@ -295,7 +245,6 @@
   .avatar
     display: block
     float: left
-    width: 15%
   form#new_comment
     width: 82%
     display: block

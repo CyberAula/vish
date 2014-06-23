@@ -2,11 +2,12 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
   border: none;
   .avatar{
-    margin-top: 20%;
-    margin-bottom: 9%;
+    margin: 20% auto 9%;
     width: 48%;
-    @include border-top-radius ($border-radius-base);
-    @include border-bottom-radius ($border-radius-base);
+    img{
+      @include border-top-radius ($border-radius-base);
+      @include border-bottom-radius ($border-radius-base);
+    }
   }
 
   //BAGDE EXCURSION

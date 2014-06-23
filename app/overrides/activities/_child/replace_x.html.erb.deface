@@ -1,5 +1,5 @@
 <!-- replace_contents '.x' -->
 
-      <%= link_to raw("<i class='fa fa-trash'></i>"), activity.direct_object , :confirm => t('confirm_delete', 
+      <%= link_to raw("<i class='fa fa-trash-o'></i>"), activity.direct_object , :confirm => t('confirm_delete', 
                     :scope => activity.direct_object.class.to_s.underscore), :method => :delete,  
                     :remote => true %> 

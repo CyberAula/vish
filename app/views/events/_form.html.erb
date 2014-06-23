@@ -1,137 +1,136 @@
 <!-- Button to trigger modal -->
 <!-- Modal -->
-<div id="AddEvent" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div id="AddEvent" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <%= render partial: 'help/help_event_new' %>
+        <h3 id="AddCategoryLabel"><%= t('event.main_title')%></h3>
+      </div>
 
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <%= render partial: 'help/help_event_new' %>
-    <h3 id="AddCategoryLabel"><%= t('event.main_title')%></h3>
-  </div>
+      <div class="modal-body">
+        <%#= form_for Event.new(:owner_id => Actor.normalize_id(current_user)) do |f| %>
+        <%= form_for Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
+          <%= f.hidden_field :owner_id  %>
+          <%= f.hidden_field :start_at %>
+          <%= f.hidden_field :end_at %>
+          <%= f.hidden_field :all_day %>
+          <!--TITULO-->
+          <label><%= t('event.leyend.title')%></label>
+          <%= f.text_field :title, :placeholder => t('event.title_input') %>
+          
+          <!--DESCRIPCION-->
+          <label><%= t('event.leyend.description')%></label>
+          <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
 
-  <div class="modal-body">
-    <%#= form_for Event.new(:owner_id => Actor.normalize_id(current_user)) do |f| %>
-    <%= form_for Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
-      <%= f.hidden_field :owner_id  %>
-      <%= f.hidden_field :start_at %>
-      <%= f.hidden_field :end_at %>
-      <%= f.hidden_field :all_day %>
-      <!--TITULO-->
-      <label><%= t('event.leyend.title')%></label>
-      <%= f.text_field :title, :placeholder => t('event.title_input') %>
-      
-      <!--DESCRIPCION-->
-      <label><%= t('event.leyend.description')%></label>
-      <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
+          <!--TYPE-->
+          <label><%= t('event.leyend.type')%></label>
+          <%= f.radio_button :streaming, false, checked: true %> <%= t('event.type.videoconference') %>
+          <%= f.radio_button :streaming, true %> <%= t('event.type.streaming') %>
 
-      <!--TYPE-->
-      <label><%= t('event.leyend.type')%></label>
-      <%= f.radio_button :streaming, false, checked: true %> <%= t('event.type.videoconference') %>
-      <%= f.radio_button :streaming, true %> <%= t('event.type.streaming') %>
-
-      <!--EMBED-->
-      <label><%= t('document.options.embed')%></label>
-      <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
-      <script type="text/javascript">
-        $("#event_streaming_false").on("click", function() {
-          $("#event_embed").attr("disabled", true);
-        });
-        $("#event_streaming_true").on("click", function() {
-          $("#event_embed").attr("disabled", false);
-        });
-        $(document).ready(function(){
-          if ($("#event_streaming_true").is(':checked')) {
-            $("#event_embed").attr("disabled", false);
-          }
-        });
-      </script>
-
-      <!--DATE-->
-      <label><%= t('event.leyend.fecha')%></label>
-        <div id="date" class="input-append">
-          <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
-          <span class="add-on">
-            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-            </i>
-          </span>
-        </div>
-      <!--HORA INICIO-->
-      <label><%= t('event.leyend.Hora de Inicio')%></label>
-        <div id="hourinit" class="input-append">
-          <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
-          <span class="add-on">
-            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-            </i>
-          </span>
-        </div>
-      <!--HORA FINALIZACION-->
-      <label><%= t('event.leyend.Hora de Finalizacion')%></label>
-        <div id="hourfinish" class="input-append">
-          <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
-          <span class="add-on">
-            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-            </i>
-          </span>
-        </div>
-
-      <script type="text/javascript">
-        $(function() {
-          $('#hourinit').datetimepicker({
-            pickDate: false
-          });
-        });
-        $(function() {
-          $('#hourfinish').datetimepicker({
-            pickDate: false
-          });
-        });
-        $(function() {
-          $('#date').datetimepicker({
-            pickTime: false
-          });
-        });
-      </script>
-
-      <script>
-        $(document).ready(function(){
-          var saveEventButton = $("#AddEvent input[type='submit']");
-          var eventButton = $("#AddEvent input[value=<%= t('categories.save')%>][type='button'][class='btn-primary']");
-          $(eventButton).click(function(event) {
-            if ($("#AddEvent input[name='event[title]']").val() == "") {
-              $("#AddEvent .errors").remove();
-              $("#AddEvent .new_event").after("<div class='errors'><%= t('event.title_input')%></div>");
-            } else {
-              // $("#AddEvent input[name='event[start_at]']").val($("#AddEvent input[name='event_day']").val() + " " + $("#AddEvent input[name='event_start_time']").val());
-              $("#AddEvent input[name='event[start_at]']").val(new Date(Date.parse($("#AddEvent input[name='event_day']").val().replace(/-/g,"/") + " " + $("#AddEvent input[name='event_start_time']").val())));
-              
-              if ($("#AddEvent input[name='event_end_time']").val() < $("#AddEvent input[name='event_start_time']").val()) {
-                var d = new Date($("#AddEvent input[name='event_day']").val());
-                d.setDate(d.getDate()+1);
-                // $("#AddEvent input[name='event[end_at]']").val(d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate() + " " + $("#AddEvent input[name='event_end_time']").val());
-                $("#AddEvent input[name='event[end_at]']").val(new Date(Date.parse(d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate() + " " + $("#AddEvent input[name='event_end_time']").val())).toUTCString());
-              } else {
-              // $("#AddEvent input[name='event[end_at]']").val($("#AddEvent input[name='event_day']").val() + " " + $("#AddEvent input[name='event_end_time']").val());
-              $("#AddEvent input[name='event[end_at]']").val(new Date(Date.parse($("#AddEvent input[name='event_day']").val().replace(/-/g,"/") + " " + $("#AddEvent input[name='event_end_time']").val())).toUTCString());
+          <!--EMBED-->
+          <label><%= t('document.options.embed')%></label>
+          <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
+          <script type="text/javascript">
+            $("#event_streaming_false").on("click", function() {
+              $("#event_embed").attr("disabled", true);
+            });
+            $("#event_streaming_true").on("click", function() {
+              $("#event_embed").attr("disabled", false);
+            });
+            $(document).ready(function(){
+              if ($("#event_streaming_true").is(':checked')) {
+                $("#event_embed").attr("disabled", false);
               }
-              $(saveEventButton).click();
-            }
-          });
-        });
+            });
+          </script>
 
-      </script>
+          <!--DATE-->
+          <label><%= t('event.leyend.fecha')%></label>
+            <div id="date" class="input-append">
+              <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+              </span>
+            </div>
+          <!--HORA INICIO-->
+          <label><%= t('event.leyend.Hora de Inicio')%></label>
+            <div id="hourinit" class="input-append">
+              <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+              </span>
+            </div>
+          <!--HORA FINALIZACION-->
+          <label><%= t('event.leyend.Hora de Finalizacion')%></label>
+            <div id="hourfinish" class="input-append">
+              <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+              </span>
+            </div>
 
-      <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
-    <% end %>
-  </div><!-- CIERRA BODY-->
+          <script type="text/javascript">
+            $(function() {
+              $('#hourinit').datetimepicker({
+                pickDate: false
+              });
+            });
+            $(function() {
+              $('#hourfinish').datetimepicker({
+                pickDate: false
+              });
+            });
+            $(function() {
+              $('#date').datetimepicker({
+                pickTime: false
+              });
+            });
+          </script>
 
-  <!-- FOOTER -->
-  <div class="modal-footer">
-      <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
-      <!--<b id="foo" rel="popover">Ayuda </b>-->
-    
-  
+          <script>
+            $(document).ready(function(){
+              var saveEventButton = $("#AddEvent input[type='submit']");
+              var eventButton = $("#AddEvent input[value=<%= t('categories.save')%>][type='button'][class='btn-primary']");
+              $(eventButton).click(function(event) {
+                if ($("#AddEvent input[name='event[title]']").val() == "") {
+                  $("#AddEvent .errors").remove();
+                  $("#AddEvent .new_event").after("<div class='errors'><%= t('event.title_input')%></div>");
+                } else {
+                  // $("#AddEvent input[name='event[start_at]']").val($("#AddEvent input[name='event_day']").val() + " " + $("#AddEvent input[name='event_start_time']").val());
+                  $("#AddEvent input[name='event[start_at]']").val(new Date(Date.parse($("#AddEvent input[name='event_day']").val().replace(/-/g,"/") + " " + $("#AddEvent input[name='event_start_time']").val())));
+                  
+                  if ($("#AddEvent input[name='event_end_time']").val() < $("#AddEvent input[name='event_start_time']").val()) {
+                    var d = new Date($("#AddEvent input[name='event_day']").val());
+                    d.setDate(d.getDate()+1);
+                    // $("#AddEvent input[name='event[end_at]']").val(d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate() + " " + $("#AddEvent input[name='event_end_time']").val());
+                    $("#AddEvent input[name='event[end_at]']").val(new Date(Date.parse(d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate() + " " + $("#AddEvent input[name='event_end_time']").val())).toUTCString());
+                  } else {
+                  // $("#AddEvent input[name='event[end_at]']").val($("#AddEvent input[name='event_day']").val() + " " + $("#AddEvent input[name='event_end_time']").val());
+                  $("#AddEvent input[name='event[end_at]']").val(new Date(Date.parse($("#AddEvent input[name='event_day']").val().replace(/-/g,"/") + " " + $("#AddEvent input[name='event_end_time']").val())).toUTCString());
+                  }
+                  $(saveEventButton).click();
+                }
+              });
+            });
 
-    <input type="button" class="btn-primary" value="<%= t('categories.save')%>"/>
-      
+          </script>
+
+          <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
+        <% end %>
+      </div><!-- CIERRA BODY-->
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
+        <!--<b id="foo" rel="popover">Ayuda </b>-->
+        <input type="button" class="btn-primary" value="<%= t('categories.save')%>"/>
+      </div>
+    </div>   
   </div>
 </div>
 

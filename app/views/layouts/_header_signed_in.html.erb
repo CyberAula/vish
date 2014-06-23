@@ -22,18 +22,18 @@
           <%= render partial: 'layouts/basic_navegation' %>
         </li>
         <!--add-->
-        <li class="dropdown">
-          <div class="btn btn-default" data-toggle="dropdown" href="#" >
+        <li class ="btn-group">
+          <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-plus"></i>
-          </div>
+          </a>
           <ul class="dropdown-menu dropdown-menu-right">
-            <!-- dropdown menu links -->
             <li><%= link_to new_excursion_path do %><i class="fa fa-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
-            <li><a href="#AddEvent" data-toggle="modal"><i class="fa fa-facetime-video"></i> <%=t('event.actions.add')%></a></li>
+            <li><a href="#AddEvent" data-toggle="modal"><i class="fa fa-video-camera"></i> <%=t('event.actions.add')%></a></li>
             <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="fa fa-th-large"></i> <%=t('categories.actions.add')%></a></li>
             <li><a href="#AddResource" data-toggle="modal"><i class="fa fa-file"></i> <%=t('resource.actions.add')%></a></li>
           </ul>
         </li>
+       
 
             <!--div class="btn without-data-toggle tooltip-header" data-original-title="<%#=t('header.tooltip.add_button')%>" data-toggle="dropdown" href="#" >
                 <i class="fa fa-plus"></i>

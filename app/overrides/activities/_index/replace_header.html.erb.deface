@@ -1,0 +1,4 @@
+<!-- replace_contents 'header' -->
+
+      <h1>  <%= t 'activity.title' %> </h1>
+      <%= render partial: 'help/help_activity' %> 

@@ -25,6 +25,16 @@ textarea{
   resize: none;
 }
 
+header{ 
+  h1{ 
+    width: 80%;
+    margin-top: 0;
+    float: left;
+  }
+  .helpheader{
+    float: right;
+  }
+}
 
 h1, h2, h3, h4, h5, h6{
   font-family: $corporate-font-family-sans-serif-Bold;

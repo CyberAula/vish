@@ -6,15 +6,15 @@
     </div>
 
     <div class="media-body">
-      <h5 class="media-heading"><%= activity.title(self) %></h5>
+      <h5 class="media-heading"><%= activity.title(self) %>
 
       <% if activity.direct_object && !activity.direct_object.acts_as_actor? && can?(:destroy, activity.direct_object) %>
         <div class="x"> 
-          <%= link_to raw("<i class='fa fa-trash'></i>"), activity.direct_object , :confirm => t('confirm_delete', 
+          <%= link_to raw("<i class='fa fa-trash-o'></i>"), activity.direct_object , :confirm => t('confirm_delete', 
                       :scope => activity.direct_object.class.to_s.underscore), :method => :delete,  
                       :remote => true %> 
         </div>
-      <% end %>
+      <% end %></h5>
 
       <div class="panel panel-default">
         <div class="panel-body">
