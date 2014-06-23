@@ -269,71 +269,120 @@ class Excursion < ActiveRecord::Base
       end
     end
 
+
     myxml.tag!("lom",lomHeaderOptions) do
 
-      language = nil
-      if ejson["language"]
-        if ejson["language"]!="independent"
-          language = ejson["language"]
+      #Calculate some recurrent vars
+
+      #Identifier
+      loIdIsURI = false
+      loIdIsURN = false
+      loId = nil
+
+      if options and options[:id]
+          loId = options[:id].to_s
+
+          begin
+            loUri = URI.parse(loId)
+            if %w( http https ).include?(loUri.scheme)
+              loIdIsURI = true
+            elsif %w( urn ).include?(loUri.scheme)
+              loIdIsURN = true
+            end
+          rescue
+          end
+
+          if !loIdIsURI and !loIdIsURN
+            #Build URN
+            loId = "urn:ViSH:"+loId
+          end
+      end
+
+      #Location
+      loLocation = nil
+      if excursion
+        if excursion.draft == false
+          loLocation = Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)
+        end
+      elsif ejson["vishMetadata"] and ejson["vishMetadata"]["id"] and (ejson["vishMetadata"]["draft"] == false or ejson["vishMetadata"]["draft"] == "false")
+        begin
+          excursionInstance = Excursion.find(ejson["vishMetadata"]["id"])
+          loLocation = Rails.application.routes.url_helpers.excursion_url(:id => excursionInstance.id)
+        rescue
         end
       end
 
+      #Language (LO language and metadata language)
+      loLanguage = nil
+      if ejson["language"]
+        if ejson["language"]!="independent"
+          loLanguage = ejson["language"]
+        end
+      end
+      metadataLanguage = "en"
+
+      #Author name
+      authorName = nil
+      if ejson["author"] and ejson["author"]["name"]
+        authorName = ejson["author"]["name"]
+      elsif (!excursion.nil? and !excursion.author.nil? and !excursion.author.name.nil?)
+        authorName = excursion.author.name
+      end
+
+      # loDate 
+      # According to ISO 8601 (e.g. 2014-06-23)
+      if excursion
+        loDate = excursion.updated_at
+      else
+        loDate = Time.now
+      end
+      loDate = (loDate).strftime("%Y-%m-%d").to_s
+
+      #VE version
+      atVersion = ""
+      if ejson["VEVersion"]
+        atVersion = "v." + ejson["VEVersion"] + " "
+      end
+      atVersion = atVersion + "(http://github.com/ging/vish_editor)"
+
       myxml.general do
         
-        if options and options[:id]
+        if !loId.nil?
           myxml.identifier do
-
-            isURI = false
-            isURN = false
-            _LOid = options[:id].to_s
-            begin
-              _LOuri = URI.parse(_LOid)
-              if %w( http https ).include?(_LOuri.scheme)
-                isURI = true
-              elsif %w( urn ).include?(_LOuri.scheme)
-                isURN = true
-              end
-            rescue
-            end
-
-            if isURI
+            if loIdIsURI
               myxml.catalog("URI")
             else
-              if !isURN
-                _LOid = "urn:ViSH:"+_LOid
-              end
               myxml.catalog("URN")
             end
-
-            myxml.entry(_LOid)
+            myxml.entry(loId)
           end
         end
 
         myxml.title do
           if ejson["title"]
-            myxml.string(ejson["title"], :language=> language)
+            myxml.string(ejson["title"], :language=> loLanguage)
           else
-            myxml.string("Untitled", :language=> language)
+            myxml.string("Untitled", :language=> metadataLanguage)
           end
         end
 
-        if language
-          myxml.language(language)
+        if loLanguage
+          myxml.language(loLanguage)
         end
         
         myxml.description do
           if ejson["description"]
-            myxml.string(ejson["description"], :language=> language)
+            myxml.string(ejson["description"], :language=> loLanguage)
           elsif ejson["title"]
-            myxml.string(ejson["title"] + ". A Virtual Excursion provided by http://vishub.org.", :language=> language)
+            myxml.string(ejson["title"] + ". A Virtual Excursion provided by http://vishub.org.", :language=> metadataLanguage)
           else
-            myxml.string("Virtual Excursion provided by http://vishub.org.", :language=> language)
+            myxml.string("Virtual Excursion provided by http://vishub.org.", :language=> metadataLanguage)
           end
         end
         if ejson["tags"] && ejson["tags"].kind_of?(Array)
           ejson["tags"].each do |tag|
             myxml.keyword do
-              myxml.string(tag.to_s, :language=> language)
+              myxml.string(tag.to_s, :language=> loLanguage)
             end
           end
         end
@@ -342,12 +391,12 @@ class Excursion < ActiveRecord::Base
           if ejson["subject"].kind_of?(Array)
             ejson["subject"].each do |subject|
               myxml.keyword do
-                myxml.string(subject, :language=> language)
+                myxml.string(subject, :language=> loLanguage)
               end 
             end
           elsif ejson["subject"].kind_of?(String)
             myxml.keyword do
-                myxml.string(ejson["subject"], :language=> language)
+                myxml.string(ejson["subject"], :language=> loLanguage)
             end
           end
         end
@@ -364,7 +413,7 @@ class Excursion < ActiveRecord::Base
 
       myxml.lifeCycle do
         myxml.version do
-          myxml.string("1.0", :language=> "en")
+          myxml.string("v"+loDate.gsub("-","."), :language=>metadataLanguage)
         end
         myxml.status do
           myxml.source("LOMv1.0")
@@ -375,39 +424,66 @@ class Excursion < ActiveRecord::Base
           end
         end
 
-        if (ejson["author"] and ejson["author"]["name"]) or (!excursion.nil? and !excursion.author.nil? and !excursion.author.name.nil?)
+        if !authorName.nil?
           myxml.contribute do
             myxml.role do
               myxml.source("LOMv1.0")
               myxml.value("author")
             end
-            
-            if ejson["author"] and ejson["author"]["name"]
-              the_entity = "BEGIN:VCARD\n\r\n\r VERSION:3.0 \n\r\n\r N:"+ejson["author"]["name"]+"\n\r\n\r FN:"+ejson["author"]["name"]+"\n\r\n\r END:VCARD"
-            else
-              the_entity = "BEGIN:VCARD\n\r\n\r VERSION:3.0 \n\r N:"+excursion.author.name+"\n\r FN:"+excursion.author.name+"\n\r END:VCARD"
-            end
-            myxml.entity(the_entity)
+
+            authorEntity = "BEGIN:VCARD\n\r\n\r VERSION:3.0 \n\r N:"+authorName+"\n\r FN:"+authorName+"\n\r END:VCARD"
+            myxml.entity(authorEntity)
             
             myxml.date do
-              if excursion and !excursion.updated_at.nil?
-                myxml.dateTime(excursion.updated_at.strftime("%Y-%m-%d"))
-              else
-                myxml.dateTime(Time.now.strftime("%Y-%m-%d"))
+              myxml.dateTime(loDate)
+              myxml.description("This date represents the date the author finished the indicated version of the Learning Object.", :language=>metadataLanguage)
+            end
+          end
+        end
+        myxml.contribute do
+          myxml.role do
+            myxml.source("LOMv1.0")
+            myxml.value("technical implementer")
+          end
+          authoringToolName = "Authoring Tool ViSH Editor " + atVersion
+          authoringToolEntity = "BEGIN:VCARD\n\r\n\r VERSION:3.0 \n\r N:"+authoringToolName+"\n\r FN:"+authoringToolName+"\n\r END:VCARD"
+          myxml.entity(authoringToolEntity)
+        end
+      end
+
+      myxml.metaMetadata do
+        if !loId.nil? and loIdIsURI and excursion
+          myxml.identifier do
+            myxml.catalog("URI")
+            myxml.entry(Rails.application.routes.url_helpers.excursion_url(:id => excursion.id) + "/metadata.xml")
+          end
+
+          if !authorName.nil?
+            myxml.contribute do
+              myxml.role do
+                myxml.source("LOMv1.0")
+                myxml.value("creator")
+              end
+
+              creatorEntity = "BEGIN:VCARD\n\r\n\r VERSION:3.0 \n\r N:"+authorName+"\n\r FN:"+authorName+"\n\r END:VCARD"
+              myxml.entity(creatorEntity)
+              
+              myxml.date do
+                myxml.dateTime(loDate)
+                myxml.description("This date represents the date the author finished authoring the metadata of the indicated version of the Learning Object.", :language=>metadataLanguage)
               end
             end
           end
+
+          myxml.metadataSchema("LOMv1.0", :language=>metadataLanguage)
+          myxml.language(metadataLanguage)
         end
       end
 
       myxml.technical do
         myxml.format("text/html")
-        if excursion and excursion.draft == false
-          myxml.location("http://vishub.org/excursions/"+excursion.id.to_s)
-        elsif ejson["vishMetadata"] and ejson["vishMetadata"]["id"] and (ejson["vishMetadata"]["draft"] == false or ejson["vishMetadata"]["draft"] == "false")
-          myxml.location("http://vishub.org/excursions/"+ejson["vishMetadata"]["id"].to_s)
-        else
-          myxml.location("http://vishub.org/")
+        if !loLocation.nil?
+          myxml.location(loLocation)
         end
         myxml.requirement do
           myxml.orComposite do
@@ -422,7 +498,10 @@ class Excursion < ActiveRecord::Base
           end
         end
         myxml.otherPlatformRequirements do
-          myxml.string("HTML5-compliant web browser", :language=> "en")
+          myxml.string("HTML5-compliant web browser", :language=> metadataLanguage)
+          if ejson["VEVersion"]
+            myxml.string("ViSH Viewer " + atVersion, :language=> metadataLanguage)
+          end
         end
       end
 
@@ -433,8 +512,14 @@ class Excursion < ActiveRecord::Base
         end
         myxml.learningResourceType do
           myxml.source("LOMv1.0")
-          myxml.value("presentation")
+          myxml.value("lecture")
         end
+        myxml.learningResourceType do
+          myxml.source("LOMv1.0")
+          myxml.value("slide")
+        end
+        #TODO: Explore JSON and include more elements.
+
         myxml.interactivityLevel do
           myxml.source("LOMv1.0")
           myxml.value("very high")
@@ -452,7 +537,7 @@ class Excursion < ActiveRecord::Base
         end
         if ejson["age_range"]
           myxml.typicalAgeRange do
-            myxml.string(ejson["age_range"], :language=> "en")
+            myxml.string(ejson["age_range"], :language=> metadataLanguage)
           end
         end
         if ejson["difficulty"]
@@ -476,13 +561,31 @@ class Excursion < ActiveRecord::Base
         end
         if ejson["educational_objectives"]
           myxml.description do
-              myxml.string(ejson["educational_objectives"], :language=> language)
+              myxml.string(ejson["educational_objectives"], :language=> loLanguage)
           end
         end
-        if ejson["language"]
-          myxml.language(language)                 
+        if loLanguage
+          myxml.language(loLanguage)                 
         end
       end
+
+      myxml.rights do
+        myxml.cost do
+          myxml.source("LOMv1.0")
+          myxml.value("no")
+        end
+
+        myxml.copyrightAndOtherRestrictions do
+          myxml.source("LOMv1.0")
+          myxml.value("yes")
+        end
+
+        myxml.description do
+          myxml.source("For additional information or questions regarding copyright, distribution and reproduction, visit http://vishub.org/legal_notice", :language=> metadataLanguage)
+        end
+
+      end
+      
     end
 
     myxml

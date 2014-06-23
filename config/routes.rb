@@ -1,6 +1,5 @@
 Vish::Application.routes.draw do
 
-
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations'}
 
   resource :session_locale
@@ -29,9 +28,6 @@ Vish::Application.routes.draw do
   # Match the filter before the individual resources
   match 'excursions/search' => 'excursions#search'
   match 'excursions/recommended' => 'excursions#recommended'
-
-  #resources :excursions
-  
   match 'excursions/last_slide' => 'excursions#last_slide'
   match '/apis/iframe_api' => 'excursions#iframe_api'
   match '/apis/excursion_search' => 'excursions#cross_search'
@@ -42,6 +38,7 @@ Vish::Application.routes.draw do
   match 'excursions/preview' => 'excursions#preview'
  
   match 'excursions/:id/metadata' => 'excursions#metadata'
+  match 'excursions/:id/scormMetadata' => 'excursions#scormMetadata'
   match 'excursions/:id/clone' => 'excursions#clone'
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
   match '/excursions/:id/learning_evaluate' => 'excursions#learning_evaluate'
