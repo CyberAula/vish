@@ -11,6 +11,11 @@
   box-shadow: none !important;
 
 }
+.nav > li > a:hover, .nav > li > a:focus {
+  text-decoration: none;
+  background-color: #EEE;
+} 
+
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
   background-color: #EEE;
 }

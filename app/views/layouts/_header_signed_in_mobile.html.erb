@@ -1,40 +1,38 @@
-<ul class="nav nav-pills mobile-nav">
+<ul class="nav navbar-nav mobile-nav">
 
-<!--search-->
-  <li class="search-ui ">
-    <%= render partial: 'layouts/uisearch_header' %>
-  </li>
-
-
-<!--user-->
+  <!--user-->
   <li class="user">
     <%= link_to current_subject do %>
       <%= image_tag current_subject.logo.url(:small) %>
       <%= truncate_name(current_subject.name, length: 20) %>
     <% end %>
   </li>
-    <!-- dropdown menu links -->
-    <li>
+
+  <!-- dropdown menu links -->
+  <li>
     <a href="<%=new_document_path%>">
       <i class="fa fa-plus"></i>
       <%=t('resource.actions.add')%>
     </a>
   </li>
-<!--message-->
+  
+  <!--message-->
   <li class="">
     <%= link_to messages_path do %>
       <i class="fa fa-envelope"></i>
       <%= t('message.messages') %>
     <% end %>
   </li>
-<!--settings-->
+  
+  <!--settings-->
   <li class="">
     <%= link_to activities_path do %>
       <i class='fa fa-globe'></i> 
       <%= t('activity.other') %>
     <% end %>
   </li>
-<!--quiz-->
+  
+  <!--quiz-->
   <li class="">
     <%= link_to quiz_sessions_path do %>
     <i class="fa fa-puzzle-piece"></i>
@@ -42,15 +40,13 @@
     <% end %>
   </li>
 
-
-
-<!--profile-->
-  <!--li class="settings-menu">
+  <!--profile
+  <li class="settings-menu">
     <%= link_to current_subject do %>
     <i class="fa fa-user"></i>
     <%= t('profile.one') %>
     <% end %>
-  </li-->
+  </li> -->
 
   <li class="settings-menu">
     <%= link_to settings_path do %>
@@ -59,13 +55,12 @@
     <% end %>
   </li>
 
-
   <!--lang-->
-  <li class="dropdown">
+  <li class="btn-group">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
       <i class="fa fa-flag-checkered"></i>
       <%= t('lang.title') %>
-      <b class="caret"></b>
+      <i class="fa fa-angle-down"></i>
     </a>
     <ul class="dropdown-menu">
       <% for locale in (I18n.available_locales) -%> 
@@ -75,29 +70,28 @@
       <% end %>
     </ul>
   </li>
-<!--legal_notice-->
+
+  <!--legal_notice-->
   <li>
     <a href="/legal_notice">
       <i class="fa fa-legal"></i>
       <%= t('conditions.other') %>
     </a>     
   </li>
-<!--manual-->
 
-
+  <!--manual-->
   <li>
     <%= link_to faq_path do %>
       <i class="fa fa-question-sign"> </i> <%=t('faq.title')%>
     <% end %>
   </li>
 
-<!--sign out-->
+  <hr>
+  <!--sign out-->
   <li class="active">
     <%= link_to destroy_user_session_path, :method => :delete do %>
     <i class="fa fa-sign-out"></i>
     <%= t('sign_out') %>
     <% end %>
   </li>
-
-
 </ul>

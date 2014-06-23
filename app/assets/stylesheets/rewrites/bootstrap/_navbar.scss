@@ -36,6 +36,11 @@
   color: $brand-primary-2;
 }
 
+@media (max-width: 767px){
+  .navbar-nav .open .dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.57);
+  }
+}
 .nav-collapse.collapse {
   background-color: $gray;
 }

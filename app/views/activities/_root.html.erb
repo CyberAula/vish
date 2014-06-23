@@ -1,42 +1,41 @@
-<%= div_for activity, :class => 'root media' do %>
-  <div class="avatar ">
-    <div class="media-object">
+<%= div_for activity, :class => 'media' do %>
+
+    <div class="pull-left">
       <%= link_to image_tag(activity.sender_subject.logo.url('small'),
-        :alt => activity.sender_subject.name), activity.sender_subject %>
+        :alt => activity.sender_subject.name), activity.sender_subject, :class => "media-object" %>
     </div>
-  </div>
-  <header class="media-heading">
-    <h3><%= activity.title(self) %></h3>
 
-    <% if activity.direct_object && !activity.direct_object.acts_as_actor? && can?(:destroy, activity.direct_object) %>
-    <div class="x"> 
-      <%= link_to raw("<i class='icon-trash'></i>"), activity.direct_object , :confirm => t('confirm_delete', 
-                    :scope => activity.direct_object.class.to_s.underscore), :method => :delete,  
-                    :remote => true %> 
+    <div class="media-body">
+      <h5 class="media-heading"><%= activity.title(self) %></h5>
+
+      <% if activity.direct_object && !activity.direct_object.acts_as_actor? && can?(:destroy, activity.direct_object) %>
+        <div class="x"> 
+          <%= link_to raw("<i class='fa fa-trash'></i>"), activity.direct_object , :confirm => t('confirm_delete', 
+                      :scope => activity.direct_object.class.to_s.underscore), :method => :delete,  
+                      :remote => true %> 
+        </div>
+      <% end %>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= render partial: 'activity_objects/timeline', 
+                     collection: activity.activity_objects,
+                     as: :object %>
+        
+
+        <%= render :partial => 'activities/actions',
+                   :locals => { :activity => activity } %>
+       
+        <%= render :partial => 'activities/likes',
+                   :locals => { :activity => activity } %>
+        <hr>
+
+        <%= render :partial => 'comments/new',
+                   :locals => { :activity => activity } %>
+
+        <%= render :partial => 'activities/comments',
+                   :locals => { :activity => activity } %>
+        </div>
+      </div>
     </div>
-    <% end %>
-  </header>
-  
-  <div class="media-body">
-
-    <section class="objects">
-      <%= render partial: 'activity_objects/timeline', 
-                 collection: activity.activity_objects,
-                 as: :object %>
-    </section>
-
-    <%= render :partial => 'activities/actions',
-               :locals => { :activity => activity } %>
-   
-    <%= render :partial => 'activities/likes',
-               :locals => { :activity => activity } %>
-    <hr>
-
-    <%= render :partial => 'comments/new',
-               :locals => { :activity => activity } %>
-
-    <%= render :partial => 'activities/comments',
-               :locals => { :activity => activity } %>
-
-  </div>
-<% end %>
+  <% end %>

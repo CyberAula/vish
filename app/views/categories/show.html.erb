@@ -1,7 +1,7 @@
 
 <section id="category">
   <div class="category_info">
-    <div class="icon-box">
+    <div class="fa fa-box">
       <%=category_thumbnail(@category)%>
     </div>  
     <div class="information">
@@ -15,11 +15,11 @@
     <div class="btn-group">
       <!--editar-->
       <% if can?(:update, @category) %>
-      <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %> 
+      <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %> 
       <% end %>
       <!--borrar-->
       <% if user_signed_in? and can?(:destroy, @category) %>
-      <%= link_to(raw("<i class='icon-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
+      <%= link_to(raw("<i class='fa fa-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
       <% end %>
     </div>
     <div class="update" style="display:none">

@@ -19,3 +19,8 @@ blockquote {
 .blockquote-reverse, blockquote.pull-right {
   border-right: 5px solid $brand-primary-2;
 }
+
+h1{
+  color: $gray-lighter;
+  margin-bottom: 0;
+}

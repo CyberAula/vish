@@ -1,8 +1,8 @@
-<header class="navbar navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
  <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
+      <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse-in">
         <i class="fa fa-angle-down"></i>
       </a>
       <!--logo-->
@@ -10,111 +10,112 @@
         <%= link_to(image_tag('logo/brand.svg', :alt => t('site.name')), '/', :class => "logo"); %>
       </div>
       <!--BROWSE-->
-
       <%= render partial: 'layouts/browse_header'%>
     </div>
-<!--collapse-->
-    <div class="collapse navbar-collapse" id="nav-collapse">
+
+    <!--collapse-->
+    <div class="collapse navbar-collapse" id="nav-collapse-in">
 
       <ul class="nav nav-pills desktop-nav">
-          <!--search-->
-          <li>
-            <%= render partial: 'layouts/uisearch_header' %>
-          </li>
-          <!--navegation-->
-          <li class="navegation ">
-            <%= render partial: 'layouts/basic_navegation' %>
-          </li>
-          <!--add-->
-          <li class="dropdown">
-            <div class="btn btn-default" data-toggle="dropdown" href="#" >
-              <i class="fa fa-plus"></i>
-            </div>
-            <ul class="dropdown-menu">
-              <!-- dropdown menu links -->
-              <li><%= link_to new_excursion_path do %><i class="fa fa-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
-              <li><a href="#AddEvent" data-toggle="modal"><i class="fa fa-facetime-video"></i> <%=t('event.actions.add')%></a></li>
-              <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="fa fa-th-large"></i> <%=t('categories.actions.add')%></a></li>
-              <li><a href="#AddResource" data-toggle="modal"><i class="fa fa-file"></i> <%=t('resource.actions.add')%></a></li>
-            </ul>
+        <!--navegation-->
+        <li class="navegation ">
+          <%= render partial: 'layouts/basic_navegation' %>
+        </li>
+        <!--add-->
+        <li class="dropdown">
+          <div class="btn btn-default" data-toggle="dropdown" href="#" >
+            <i class="fa fa-plus"></i>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <!-- dropdown menu links -->
+            <li><%= link_to new_excursion_path do %><i class="fa fa-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
+            <li><a href="#AddEvent" data-toggle="modal"><i class="fa fa-facetime-video"></i> <%=t('event.actions.add')%></a></li>
+            <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="fa fa-th-large"></i> <%=t('categories.actions.add')%></a></li>
+            <li><a href="#AddResource" data-toggle="modal"><i class="fa fa-file"></i> <%=t('resource.actions.add')%></a></li>
+          </ul>
+        </li>
 
+            <!--div class="btn without-data-toggle tooltip-header" data-original-title="<%#=t('header.tooltip.add_button')%>" data-toggle="dropdown" href="#" >
+                <i class="fa fa-plus"></i>
+              </div-->
+        <!-- 
+          <li> 
+            <%#= render partial: 'layouts/header_dropdown_menu' %>
           </li>
-
-              <!--div class="btn without-data-toggle tooltip-header" data-original-title="<%#=t('header.tooltip.add_button')%>" data-toggle="dropdown" href="#" >
-                  <i class="fa fa-plus"></i>
-                </div-->
-          <!-- 
-            <li> 
-              <%#= render partial: 'layouts/header_dropdown_menu' %>
-            </li>
-          -->
-          <!--user-->
-          <li class="photo-user">
-            <%= link_to current_subject do %>              
-            <%= image_tag current_subject.logo.url(:small) %>
+        -->
+        <!--user-->
+        <li class="photo-user">
+          <%= link_to current_subject do %>              
+          <%= image_tag current_subject.logo.url(:small) %>
+          <% end %>
+        </li>
+        <li class ="btn-group">
+      
+            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              <%= truncate_name(current_subject.name, length: 15) %>
+              <i class="fa fa-angle-down"></i>
+           </a>
+        
+          <ul class="dropdown-menu dropdown-menu-right">
+           <li class="settings-menu">
+             <%= link_to home_path do %>
+             <i class="fa fa-home"></i>
+             <%= t('navigation.home') %>
+             <% end %>
+           </li>
+           <li class="settings-menu">
+            <%= link_to current_subject do %>
+            <i class="fa fa-user"></i>
+            <%= t('profile.one') %>
             <% end %>
           </li>
-          <li class ="dropdown">
-
-              <div class="btn btn-default">
-                <%= truncate_name(current_subject.name, length: 15) %>
-                <i class="fa fa-angle-down"></i>
-              </div>
-          
-            <ul class="dropdown-menu">
-             <li class="settings-menu">
-               <%= link_to home_path do %>
-               <i class="fa fa-home"></i>
-               <%= t('navigation.home') %>
-               <% end %>
-             </li>
-             <li class="settings-menu">
-              <%= link_to current_subject do %>
-              <i class="fa fa-user"></i>
-              <%= t('profile.one') %>
-              <% end %>
-            </li>
-            <!--<li class="settings-menu">
-              <%= link_to activities_path do %>
-              <i class="fa fa-globe"></i>
-              <%= t('activity.other') %>
-              <% end %>
-            </li>-->
-            <li class="settings-menu">
-              <%= link_to settings_path do %>
-              <i class="fa fa-cog"></i>
-              <%= t('dropdown.settings') %>
-              <% end %>
-            </li>
-            <li class="settings-menu">
-              <%= link_to quiz_sessions_path do %>
-              <i class="fa fa-puzzle-piece"></i>
-              <%= t('quiz.live') %>
-              <% end %>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <%= link_to destroy_user_session_path, :method => :delete do %>
-              <i class="fa fa-signout"></i>
-              <%= t('sign_out') %>
-              <% end %>
-            </li>
+          <!--<li class="settings-menu">
+            <%= link_to activities_path do %>
+            <i class="fa fa-globe"></i>
+            <%= t('activity.other') %>
+            <% end %>
+          </li>-->
+          <li class="settings-menu">
+            <%= link_to settings_path do %>
+            <i class="fa fa-cog"></i>
+            <%= t('dropdown.settings') %>
+            <% end %>
+          </li>
+          <li class="settings-menu">
+            <%= link_to quiz_sessions_path do %>
+            <i class="fa fa-puzzle-piece"></i>
+            <%= t('quiz.live') %>
+            <% end %>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <%= link_to destroy_user_session_path, :method => :delete do %>
+            <i class="fa fa-signout"></i>
+            <%= t('sign_out') %>
+            <% end %>
+          </li>
           </ul>      
         </li>
 
-            <!-- carga de modales -->
-            <%= render partial: 'events/form' %>
-            <%= render partial: 'repositories/form' %>
-            <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
+          <!-- carga de modales -->
+          <%= render partial: 'events/form' %>
+          <%= render partial: 'repositories/form' %>
+          <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
       </ul>
-      <%= render partial: 'layouts/header_signed_in_mobile' %>
+
+    <!--search-->
+    <%= render partial: 'layouts/uisearch_header' %>
+
+    <%= render partial: 'layouts/header_signed_in_mobile' %>
     </div>
   </div>  
-</header>
+</nav>
 
   <script type="text/javascript">
     $(document).ready(function() {          
      $('.tooltip-header').tooltip({ placement: 'bottom'});
+
+     $('.dropdown-toggle').dropdown();
    });
   </script>
   <!-- SCRIPT FOR AUTOMATIC BOOTSTRAP-DROPDOWN HOVER -->

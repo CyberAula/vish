@@ -41,11 +41,16 @@
 
 
 <%= content_for :javascript do %>
-
+  $(document).ready(function() {
+    $('.dropdown-toggle').dropdown();
+  });
+  
   var param = "<%=params[:sort_by]%>";
 
   if(param && param!=""){
     var value = $(".order_by_selector .dropdown-menu [sort-by-key="+param+"]").html();
     $(".dropdownMenuOrdBy").html(value + '<i class="fa fa-angle-down"></i>'); 
   }
+
+  
 <%end%>
