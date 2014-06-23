@@ -675,26 +675,6 @@ end
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   def self.generate_QTIMC(qjson)
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
@@ -845,6 +825,7 @@ end
   end
 
   def self.generate_qti_resources(qjson,fileName,myxml)
+
     resource_identifier = "resource-item-quiz-" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
 
     if qjson["quiztype"] == "truefalse"
@@ -898,14 +879,23 @@ end
           myxml.file("href" => fileName + "_" + i.to_s + ".xml")
         end
       end
-    elsif qjson["quiztype"] == "multiplechoice"
+    elsif qjson["quiztype"] == "multiplechoice" || qjson["quiztype"] == "sorting"
+      
+      if qjson["quiztype"] == "sorting"
+        typeQ = "Sorting"
+        typeInteraction = "Sorting Interaction"
+      else
+        typeQ = "MultipleChoice"
+        typeInteraction = "choiceInteraction"
+      end
+
       myxml.resource("identifier" => resource_identifier, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do
         myxml.metadata do
           myxml.tag!("imsmd:lom") do
             myxml.tag!("imsmd:general") do
               myxml.tag!("imsmd:title") do
                 myxml.tag!("imsmd:langstring",{"xml:lang"=>"en"}) do
-                  myxml.text!("MultipleChoice")
+                  myxml.text!(typeQ)
                 end
               end
             end
@@ -917,7 +907,7 @@ end
           end
           myxml.tag!("imsqti:qtiMetadata") do
             myxml.tag!("imsqti:interactionType") do
-              myxml.text!("choiceInteraction")
+              myxml.text!(typeInteraction)
             end
           end
         end
