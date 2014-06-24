@@ -178,7 +178,7 @@
 							<img src="/assets/toolbar/quiz_settings.png"/>
 						</button>
 					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.QuizSettings">Quiz Settings</p>
+					<p class="toolbar_presentation_title" i18n-key="i.QuizSettingsToolbar">Quiz Settings</p>
 				</div>
 				<img class="toolbar_icon toolbar_image" style="display:none" action="addLink" src="/assets/toolbar/addLink.png"/>
 				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot" style="display:none" action="resizeLess" src="/assets/toolbar/resizeLess.png"/>
@@ -1314,7 +1314,7 @@
 	<!-- Quiz Settings -->
 	<div style='display:none'>
 		<div id="quizSettings_fancybox" class="elSettings_fancybox">
-			<p class="elsettings_fancybox_title">Quiz Settings</p>
+			<p class="elsettings_fancybox_title" i18n-key="i.QuizSettings">Quiz Settings</p>
 
 			<input type="hidden" name="elId">
 
@@ -1328,6 +1328,11 @@
 					<option value="5">5</option>
 					<option value="unlimited" i18n-key="i.Unlimited">Unlimited</option>
 				</select>
+			</div>
+
+			<div class="new_elsettings_field">
+				<span i18n-key="i.ShuffleChoices">Shuffle choices</span>
+				<input type="checkbox" name="shuffleChoices">
 			</div>
 
 			<div class="new_elsettings_field">

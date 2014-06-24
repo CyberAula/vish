@@ -19,6 +19,7 @@ config/initializers/exception_notification.rb
 config/initializers/social_stream-ostatus.rb
 config/development.sphinx.conf
 config/initializers/loep_token.rb
+config/application_config.yml
 
 # Ignore all logfiles and tempfiles.
 /log
@@ -49,6 +50,8 @@ public/webappscode/*
 public/tmp/json/*
 public/tmp/scorm/*
 public/tmp/qti/*
+
+dumps/*
 
 #tmp simplecaptcha
 public/tmp/simple_captcha/*

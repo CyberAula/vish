@@ -1,1 +1,0 @@
-#this initialization code is in environment.rb because here caused race conditions and did not worked

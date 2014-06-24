@@ -183,12 +183,14 @@ class QuizSessionsController < ApplicationController
   def updateAnswers
     @quiz_session = QuizSession.find(params[:id])
 
+    answers = _sanitizeAnswers(params)
+
     response = Hash.new
 
-    if @quiz_session
+    if @quiz_session && answers.length > 0
       qa = QuizAnswer.new
       qa.quiz_session_id = @quiz_session.id
-      qa.answer = JSON(params[:answers]).to_json
+      qa.answer = answers.to_json
       qa.save!
       response["processed"] = true;
     else
@@ -198,6 +200,21 @@ class QuizSessionsController < ApplicationController
     render :json => response
   end
 
+  def _sanitizeAnswers(params)
+    sanitizeAnswers = []
+    begin
+      answers = JSON(params[:answers])
+      answers.each do |answer|
+        if !answer["answer"].nil? and !(answer["answer"].is_a? Fixnum)
+          answer["answer"] = Sanitize.clean(answer["answer"],Sanitize::Config::RESTRICTED)
+        end
+        sanitizeAnswers.push(answer)
+      end
+      return sanitizeAnswers
+    rescue
+      return []
+    end
+  end
 
   private
 

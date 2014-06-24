@@ -132,14 +132,12 @@ class QuizSession < ActiveRecord::Base
           end
 
         when "sorting"
-          #TODO
           qparams["totalAnswers"] = self.results.length
 
-          2.times do |index|
-            qResult = Hash.new
-            qResult["n"] = 0;
-            qparams["processedResults"].push(qResult)
-          end
+          qparams["processedResults"][0] = 0 #True responses
+          qparams["processedResults"][1] = 0 #False responses
+          qparams["processedResults"][2] = 0 #True percentage
+          qparams["processedResults"][3] = 0 #False percentage
 
           self.results.each do |result|
             result = JSON(result["answer"])
@@ -148,9 +146,9 @@ class QuizSession < ActiveRecord::Base
             result.each do |response|
               if !response["selfAssessment"].nil?
                 if response["selfAssessment"]["result"]==true
-                  qparams["processedResults"][0]["n"] = qparams["processedResults"][0]["n"].to_i + 1
+                  qparams["processedResults"][0] = qparams["processedResults"][0].to_i + 1
                 elsif response["selfAssessment"]["result"]==false
-                  qparams["processedResults"][1]["n"] = qparams["processedResults"][1]["n"].to_i + 1
+                  qparams["processedResults"][1] = qparams["processedResults"][1].to_i + 1
                 end
               end
             end
@@ -158,11 +156,12 @@ class QuizSession < ActiveRecord::Base
 
           if qparams["totalAnswers"] > 0
             #Calculate percentage
-            qparams["processedResults"].each do |result|
-              result["percentage"] = ((result["n"]*100)/qparams["totalAnswers"])
-            end
+            qparams["processedResults"][2] = ((qparams["processedResults"][0]*100)/qparams["totalAnswers"])
+            qparams["processedResults"][3] = ((qparams["processedResults"][1]*100)/qparams["totalAnswers"])
           end
 
+        when "openAnswer"
+          #Do nothing
         else
           # Unrecognized quiz type
       end
@@ -185,8 +184,13 @@ class QuizSession < ActiveRecord::Base
         #quiz founded
         qparams["question"] = el["question"]["value"];
         qparams["quizType"] = el["quiztype"];
-        qparams["nAnswers"] = el["choices"].length;
-        qparams["choices"] = el["choices"];
+        if el["choices"]
+          qparams["nAnswers"] = el["choices"].length;
+          qparams["choices"] = el["choices"];
+        end
+        if el["answer"]
+          qparams["answer"] = el["answer"];
+        end
         if el["extras"]
           qparams["extras"] = el["extras"];
         end

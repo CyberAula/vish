@@ -73,6 +73,49 @@
 				<% end %>
 			<% end %>
 			</table>
+		<% when "sorting" %>
+			<% if @processedQS["choices"] %>
+				<% @processedQS["choices"].each_with_index do |choice,index|%>
+					<p class="quizQuestionChoice"><%=choice["value"]%></p>
+				<% end %>
+				<br/>
+
+				<table class="quizResultsTable" border="0">
+				<tr>
+					<td><%=t('quiz.correctResponses')%></td>
+					<td>
+						<% if @processedQS["processedResults"] and @processedQS["processedResults"][0] %>
+							<%=@processedQS["processedResults"][0]%>
+						<% end %>
+					<td>
+					<td>
+						<% if @processedQS["processedResults"] and @processedQS["processedResults"][2] %>
+							<%=@processedQS["processedResults"][2]%>%
+						<% end %>
+					<td>
+				</tr>
+				<tr>
+					<td><%=t('quiz.incorrectResponses')%></td>
+					<td>
+						<% if @processedQS["processedResults"] and @processedQS["processedResults"][1] %>
+							<%=@processedQS["processedResults"][1]%>
+						<% end %>
+					<td>
+					<td>
+						<% if @processedQS["processedResults"] and @processedQS["processedResults"][3] %>
+							<%=@processedQS["processedResults"][3]%>%
+						<% end %>
+					<td>
+				</tr>
+				<% if @processedQS["totalAnswers"] %>
+					<tr class="trLast">
+						<td><%=t('quiz.total')%></td>
+						<td><%=@processedQS["totalAnswers"]%></td>
+					</tr>
+				<% end %>
+				</table>
+			<% end %>
+		<% when "openAnswer" %>
 		<% else %>
 		<% end %>
 

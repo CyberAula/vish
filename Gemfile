@@ -1,108 +1,89 @@
 source 'http://rubygems.org'
 
-#gem 'rails', '~> 3.2.0'
-gem 'rails', '3.2.14'
+gem 'rails', '= 3.2.14'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+#Database Adapters
+gem 'sqlite3', '= 1.3.9'
+gem 'pg', '= 0.17.1'
+gem 'mysql2', '= 0.3.16'
 
-gem 'sqlite3'
-gem 'pg'
-gem 'mysql2'
+gem 'sass-rails', '= 3.2.6'
+gem 'bootstrap-sass', '= 2.3.2.2'
+gem 'coffee-rails', '= 3.2.2'
+gem 'uglifier', '= 1.2.3'
+gem 'jquery-rails', '= 3.1.0'
+gem 'jquery-ui-rails', '= 4.1.2'
+gem 'json', '= 1.7.4'
+gem 'sinatra', '= 1.3.2'
+gem 'selenium-webdriver', '= 2.30.0'
+gem 'god', '= 0.13.4'
+gem 'redis', '= 3.0.7'
+gem 'resque', '= 1.23.1'
+gem 'rmagick', '=2.13.2'
+gem 'thinking-sphinx', '= 2.0.14'
+gem 'exception_notification', '= 3.0.1'
+gem 'rspec-rails', '= 2.9.0'
+gem 'net-ssh', '= 2.4.0'
+gem 'shortener', '= 0.3.0'
+gem 'rubyzip', '= 0.9.9'
+gem 'pry-debugger', '= 0.2.2'
+gem 'rest-client', '= 1.6.7'
+gem 'pdf-reader', '= 1.3.3'
+gem 'avatars_for_rails', '= 1.1.4'
+gem 'axlsx', '= 2.0.0' #xlsx generation
+gem 'axlsx_rails', '= 0.1.5'
+gem 'acts_as_xlsx', '= 1.0.6'
+gem "paperclip", '= 3.5.1'
+gem "delayed_paperclip", "= 2.7.0"
+gem 'sanitize', '= 2.1.0'
+gem 'mailboxer', '= 0.10.3'
 
-# Gems used only for assets and not required
-# in production environments by default.
-gem 'sass-rails', '~> 3.2.4'
-gem 'bootstrap-sass'
-gem 'coffee-rails'
-gem 'uglifier', '>= 1.2.3'
+#Gems from Git repositories
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git', :ref => '2602bf1'
+gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attributes_to.git', :ref => '69704cb'
+gem "oai_repository", :git => 'git://github.com/ebarra/oai_repository.git'
+gem 'paperclip-ffmpeg', :git => 'git@github.com:ebarra/paperclip-ffmpeg.git'
 
-gem 'jquery-rails', '>=2.0.2'
-gem 'json', '1.7.4'
-gem 'sinatra', '1.3.2'
-gem 'selenium-webdriver', '=2.30.0'
-
-git 'git://github.com/ging/social_stream.git', branch: "vish" do
-  gem 'social_stream-base'
-  gem 'social_stream-documents'
-  gem 'social_stream-linkser'
-  gem 'social_stream-ostatus'
-  gem 'social_stream-events'
+#Customized/Local Gems
+# $ export FORCE_LOCAL_SS=socialStreamPath
+if ENV['FORCE_LOCAL_SS'] 
+  path ENV['FORCE_LOCAL_SS'] do
+    gem 'social_stream-base'
+    gem 'social_stream-documents'
+    gem 'social_stream-linkser'
+    gem 'social_stream-ostatus'
+    gem 'social_stream-events'
+  end
+else
+  git 'git://github.com/ging/social_stream.git', branch: "vish" do
+    gem 'social_stream-base'
+    gem 'social_stream-documents'
+    gem 'social_stream-linkser'
+    gem 'social_stream-ostatus'
+    gem 'social_stream-events'
+  end
 end
 
-# Force the first version of avatars_for_rails that does not collide with bootstrap
-gem 'avatars_for_rails', '~> 1.1.0'
+# $ export FORCE_LOCAL_SCORM=scormGemPath
+if ENV['FORCE_LOCAL_SCORM']
+  gem "scorm", :path => ENV['FORCE_LOCAL_SCORM'], :branch => "master"
+else
+  gem "scorm", :git => 'git://github.com/agordillo/scorm.git', :branch => "master"
+end
 
-# We do not know the reasons for this gem:
-#gem 'therubyracer'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+#Development & Test gems
 
-# Use unicorn as the web server
 group :development do
+  # Use unicorn as the web server
   #Usage bundle exec unicorn -p 3000 -c config/unicorn.rb
-  gem 'unicorn'
+  gem 'unicorn', '= 4.8.3'
+  gem 'capistrano', '= 2.15.5'
+  gem 'forgery', '= 0.6.0'
 end
-
-# Deploy with Capistrano
-group :development do
-  gem 'capistrano', '=2.15.5'
-  #gem 'rvm-capistrano'
-end
-
-# Use god for its own purpose
-gem 'god'
-
-# Use exception notification
-gem 'exception_notification', '=3.0.1'
-
-# Be able to pass tests
-gem 'rspec-rails', '=2.9.0'
-gem 'net-ssh', '=2.4.0'
-
-# Shortener
-gem 'shortener'
-
-gem 'rubyzip', '=0.9.9'
 
 group :test do
   # Pretty printed test output
-  gem 'factory_girl', '~> 2.6'
-  gem 'capybara'
+  gem 'factory_girl', '= 2.6'
+  gem 'capybara', '= 2.3.0'
 end
-
-group :development do
-  gem 'forgery'
-
-  # Debug with Ruby 1.9.2
-  # use with:
-  # $ export VISH_DEBUG=true
-
-  #if ENV['VISH_DEV'] || ENV['VISH_DEBUG']	  	
-  #  gem 'unicorn', '=4.6.2'
-  #end
-
-end
-
-#gem 'pry-rails'
-
-gem 'pry-debugger'
-
-gem 'rest-client'
-
-gem 'pdf-reader'
-
-gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
-gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attributes_to.git'
-
-gem "oai_repository", :git => 'git://github.com/ebarra/oai_repository.git'
-
-gem "scorm", :git => 'git://github.com/ebarra/scorm.git', :branch => "master"
-
-gem "paperclip", '=3.5.1'
-
-#xlsx generation
-gem 'axlsx'
-gem 'axlsx_rails'
-gem 'acts_as_xlsx'

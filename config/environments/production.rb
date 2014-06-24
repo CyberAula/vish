@@ -12,7 +12,7 @@ Vish::Application.configure do
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS
-  if ENV['VISH_TEST']
+  if Vish::Application.config.APP_CONFIG["test_domain"]
     config.assets.compress = false
   else
     config.assets.compress = true
@@ -63,9 +63,5 @@ Vish::Application.configure do
   config.active_support.deprecation = :notify
 
   #default host for routes
-  if ENV['VISH_TEST']
-    Rails.application.routes.default_url_options[:host] = 'vishub-test.dit.upm.es'
-  else
-    Rails.application.routes.default_url_options[:host] = 'vishub.org'
-  end  
+  Rails.application.routes.default_url_options[:host] = config.APP_CONFIG['domain']
 end
