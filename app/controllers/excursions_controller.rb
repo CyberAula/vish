@@ -243,13 +243,7 @@ class ExcursionsController < ApplicationController
       if index<10
         tnumber = "0" + tnumber
       end
-      my_site = ""
-      if !Site.current.config[:documents_hostname]
-        my_site = "http://vishub.org/"
-      else
-        my_site = Site.current.config[:documents_hostname]
-      end
-      thumbnail["src"] = my_site + "assets/logos/original/excursion-"+tnumber+".png"
+      thumbnail["src"] = Site.current.config[:documents_hostname] + "assets/logos/original/excursion-"+tnumber+".png"
       thumbnails["pictures"].push(thumbnail)
     end
 
