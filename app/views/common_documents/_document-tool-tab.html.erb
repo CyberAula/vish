@@ -39,7 +39,7 @@
 
 <div class="btn-group">
   <% if can? :destroy, document %>
-    <%= link_to raw("<i class=fa fa-trash'></i> "),  document,
+    <%= link_to raw("<i class=fa fa-trash-o'></i> "),  document,
     confirm: t('confirm_delete', scope: document.class.to_s.underscore),
     title: t('document.actions.delete'),
     method: :delete,
@@ -120,7 +120,7 @@
       <% else %>
         <%downloadPath = download_document_path(document) %>
       <% end %>
-      <a class="btn btn-primary" href='<%=downloadPath%>'><i class="icon-download"></i> <%=t('document.actions.download')%></a> 
+      <a class="btn btn-primary" href='<%=downloadPath%>'><i class="fa fa-download"></i> <%=t('document.actions.download')%></a> 
     </div>
   </div>
 
@@ -131,7 +131,7 @@
           <textarea class="shortUrl" readonly="true" rows="5" id="textarea_for_iframe" type="text">&lt;video preload="metadata" controls="controls" poster="<%=video_url(document, :format => :png, :style => '170x127#')%>"&gt;&lt;source src="<%= video_url(document, :format => :webm) %>" type="video/webm"&gt;&lt;source src="<%= video_url(document, :format => :mp4) %>" type="video/mp4"&gt;&lt;source src="<%= video_url(document, :format => :flv) %>" type="video/x-flv"&gt;&lt;p&gt;Your browser does not support HTML5 video.&lt;/p&gt;&lt;/video&gt;</textarea>
 
           <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-            <i class="icon-copy large"></i>
+            <i class="fa fa-copy large"></i>
           </button>
         </div>
     </div>
@@ -147,7 +147,7 @@
            &lt;/audio&gt;</textarea>
 
           <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-            <i class="icon-copy large"></i>
+            <i class="fa fa-copy large"></i>
           </button>
         </div>
     </div>
@@ -158,7 +158,7 @@
           <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe" type="text"><%=Site.current.config[:documents_hostname] + document.file.to_s[1..-1]%></textarea>
 
           <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-            <i class="icon-copy large"></i>
+            <i class="fa fa-copy large"></i>
           </button>
         </div>
     </div>
@@ -169,7 +169,7 @@
       <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe" type="text">&lt;embed wmode="opaque" src="<%= Site.current.config[:documents_hostname] + document.file.to_s[1..-1] %>" width="auto" height="auto"&gt;&lt;/embed&gt;</textarea>
 
         <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-          <i class="icon-copy large"></i>
+          <i class="fa fa-copy large"></i>
         </button>
       </div>
     </div>
@@ -180,7 +180,7 @@
       <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe" type="text"><%= document.fulltext %></textarea>
 
         <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-          <i class="icon-copy large"></i>
+          <i class="fa fa-copy large"></i>
         </button>
       </div>
     </div>
@@ -190,7 +190,7 @@
       <div class="contentembed">
       <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe" type="text">&lt;iframe src="http://docs.google.com/viewer?url=<%= Site.current.config[:documents_hostname] + document.file.url[1..-1] %>&embedded=true" width="100%" height="500" style="border: none;"&gt;&lt;/iframe&gt;</textarea>
         <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-          <i class="icon-copy large"></i>
+          <i class="fa fa-copy large"></i>
         </button>
       </div>
     </div>
@@ -201,7 +201,7 @@
       <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe" type="text">&lt;iframe src="<%=document.lourl%>" width="<%=document.width%>" height="<%=document.height%>" objecttype="scormpackage" &gt;&lt;/iframe&gt;</textarea>
 
         <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-          <i class="icon-copy large"></i>
+          <i class="fa fa-copy large"></i>
         </button>
       </div>
     </div>
@@ -212,7 +212,7 @@
       <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe" type="text">&lt;iframe src="<%=document.lourl%>" width="<%=document.width%>" height="<%=document.height%>" objecttype="webapp" &gt;&lt;/iframe&gt;</textarea>
 
         <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-          <i class="icon-copy large"></i>
+          <i class="fa fa-copy large"></i>
         </button>
       </div>
     </div>
@@ -223,7 +223,7 @@
       <textarea class="shortUrl" readonly="true" rows="6" id="textarea_for_iframe" type="text">&lt;iframe src="<%=document.url%>" width="800" height="600" &gt;&lt;/iframe&gt;</textarea>
 
         <button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-          <i class="icon-copy large"></i>
+          <i class="fa fa-copy large"></i>
         </button>
       </div>
     </div>

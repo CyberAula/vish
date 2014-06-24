@@ -1,8 +1,8 @@
     <section class="search-nav">
       
         <%= form_tag search_path, method: 'get', class: "navbar-form navbar-form-search navbar-right form-inline" do %>
-          <div class="input-group">
-            <%= text_field_tag :q, nil, autocomplete: :off, class: 'search-query ', placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
+          <div class="form-group">
+            <%= text_field_tag :q, nil, autocomplete: :off, class: 'form-control search-query ', placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
              <a type="button" id="search_button" class="btn btn-default"><i class="fa fa-search"></i></a>
           </div>
         <% end %>

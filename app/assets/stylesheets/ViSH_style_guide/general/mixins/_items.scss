@@ -1,5 +1,6 @@
 @mixin item{
   @extend .thumbnail;
+  float: left;
   @media (min-width: 0px) and (max-width: 320px){
     width: 100%;
     margin: 0 0 10px 0;
@@ -49,7 +50,6 @@
     padding: 0;
   }
   li{
-    display: inline-block;
     @include item;
     &:hover{
       @include box-shadow (0 5px 20px 3px rgba(0, 0, 0, 0.1));

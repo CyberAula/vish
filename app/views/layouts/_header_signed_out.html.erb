@@ -31,10 +31,10 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-right dropdown-log" role="menu" aria-labelledby="drop3">
             
-            <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
+            <%= form_for User.new, :as => :user, :class => "form-horizontal", :url => user_session_path do |f| %>
               <div class="form-group">
-                <%= f.email_field :email, :id => "username" %>
-                <%= f.password_field :password, :id => "password"  %>
+                <%= f.email_field :email, :id => "username", :class => "form-control" %>
+                <%= f.password_field :password, :id => "password", :class => "form-control"  %>
               </div>
               <div class="checkbox">
                 <label>

@@ -65,6 +65,7 @@
       i{
         font-size: 70px;
         color: $brand-primary-2;
+        padding-top: 39px;
         &:hover{
           text-decoration: none;
         }
@@ -73,9 +74,14 @@
   }
 }
 
+.add-item{
+  background-image: url("items/malla.png") !important;
+}
+
 .thumbnail .caption {
   padding: $padding-large-horizontal $padding-large-horizontal 0 $padding-large-horizontal;
   color: $gray-darker;
+  min-height: 82px;
   h6{
     font-family: $corporate-font-family-sans-serif-Medium;
     height: 28px;
@@ -99,14 +105,17 @@
       }
     }
   }
-  .name{
+  .name,
+  .action{
     display: block;
     text-align: center;
-    font-family: $corporate-font-family-sans-serif-Light;
     color: $gray-dark;
     &:hover{
       color: $brand-primary;
     }
+  }
+  .action{
+    font-family: $corporate-font-family-sans-serif-Medium;
   }
   button{
     @include center-block;

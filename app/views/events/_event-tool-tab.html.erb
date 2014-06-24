@@ -84,11 +84,11 @@ $(document).ready(function(){
 <div class="btn-group">
   <!--remove-->
   <% if user_signed_in? and can?(:destroy, @event) %>
-    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
+    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="fa fa-trash"></i></button>
   <%end%>
 
   <div class="contentdelete" style="display: none">
-    <p class="delete_p"><i class="icon-trash"></i> <%=t('event.confirm_delete')%></p>
+    <p class="delete_p"><i class="fa fa-trash"></i> <%=t('event.confirm_delete')%></p>
     <div class="actions">
       <a class="btn btn_cancel"><%=t('cancel')%></a>
       <%= link_to t('excursion.actions.delete'),  @event, :method => :delete, :class => 'btn btn-primary' %>
@@ -192,7 +192,7 @@ sd
       <div class="input-append url-input">
         <% shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + event_path(@event) ) %>
         <input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
-        <!--button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy "></i></button-->
+        <!--button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="fa fa-copy "></i></button-->
       </div>
       <div class="social_toolbar_excursion">
         <div class="twitter_toolbar_excursion">
