@@ -436,7 +436,7 @@ class Excursion < ActiveRecord::Base
             
             myxml.date do
               myxml.dateTime(loDate)
-              myxml.description("This date represents the date the author finished the indicated version of the Learning Object.", :language=>metadataLanguage)
+              myxml.description("This date represents the date the author finished the indicated version of the Learning Object.")
             end
           end
         end
@@ -470,12 +470,12 @@ class Excursion < ActiveRecord::Base
               
               myxml.date do
                 myxml.dateTime(loDate)
-                myxml.description("This date represents the date the author finished authoring the metadata of the indicated version of the Learning Object.", :language=>metadataLanguage)
+                myxml.description("This date represents the date the author finished authoring the metadata of the indicated version of the Learning Object.")
               end
             end
           end
 
-          myxml.metadataSchema("LOMv1.0", :language=>metadataLanguage)
+          myxml.metadataSchema("LOMv1.0")
           myxml.language(metadataLanguage)
         end
       end
@@ -510,13 +510,24 @@ class Excursion < ActiveRecord::Base
           myxml.source("LOMv1.0")
           myxml.value("mixed")
         end
-        myxml.learningResourceType do
-          myxml.source("LOMv1.0")
-          myxml.value("lecture")
+
+        if !getLearningResourceType("lecture", _LOMmode, _LOMextension).nil?
+          myxml.learningResourceType do
+            myxml.source("LOMv1.0")
+            myxml.value("lecture")
+          end
         end
-        myxml.learningResourceType do
-          myxml.source("LOMv1.0")
-          myxml.value("slide")
+        if !getLearningResourceType("presentation", _LOMmode, _LOMextension).nil?
+          myxml.learningResourceType do
+            myxml.source("LOMv1.0")
+            myxml.value("presentation")
+          end
+        end
+        if !getLearningResourceType("slide", _LOMmode, _LOMextension).nil?
+          myxml.learningResourceType do
+            myxml.source("LOMv1.0")
+            myxml.value("slide")
+          end
         end
         #TODO: Explore JSON and include more elements.
 
@@ -581,7 +592,7 @@ class Excursion < ActiveRecord::Base
         end
 
         myxml.description do
-          myxml.source("For additional information or questions regarding copyright, distribution and reproduction, visit " + Vish::Application.config.full_domain + "/legal_notice", :language=> metadataLanguage)
+          myxml.string("For additional information or questions regarding copyright, distribution and reproduction, visit " + Vish::Application.config.full_domain + "/legal_notice", :language=> metadataLanguage)
         end
 
       end
@@ -647,6 +658,30 @@ class Excursion < ActiveRecord::Base
     end
   end
 
+  def self.getLearningResourceType(lreType, _LOMmode, _LOMextension)
+    allowedLREtypes = []
+
+    if _LOMmode == "custom" or _LOMmode == "loose"
+      #Extensions are allowed
+      if _LOMextension == "ODS"
+        #ODS LOM Extension
+        #According to ODS, the Learning REsources type has to be one of this:
+        allowedLREtypes = ["application", "assessment", "blog", "broadcast", "case study", "courses", "demonstration", "drill and practice", "educational game", "educational scenario", "learning scenario", "pedagogical scenario", "enquiry-oriented activity", "exercise", "experiment", "glossaries", "guide", "learning pathways", "lecture", "lesson plan", "open activity", "other", "presentation", "project", "reference", "role play", "simulation", "social media", "textbook", "tool", "website", "wiki", "audio", "data", "image", "text", "video"]
+      else
+        #ViSH LOM extension
+        allowedLREtypes = ["lecture", "slide"]
+      end
+    else
+      #Strict LOM mode. Extensions are not allowed (TODO)
+      allowedLREtypes = ["lecture", "slide"]
+    end
+
+    if allowedLREtypes.include? lreType
+      return lreType
+    else
+      return nil
+    end
+  end
 
 
   ####################

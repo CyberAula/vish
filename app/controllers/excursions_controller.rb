@@ -179,7 +179,8 @@ class ExcursionsController < ApplicationController
     excursion = Excursion.find_by_id(params[:id])
     respond_to do |format|
       format.xml {
-        xmlMetadata = Excursion.generate_LOM_metadata(JSON(excursion.json),excursion,{:id => Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)})
+        # xmlMetadata = Excursion.generate_LOM_metadata(JSON(excursion.json),excursion,{:id => Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)})
+        xmlMetadata = Excursion.generate_LOM_metadata(JSON(excursion.json),excursion,{:id => Rails.application.routes.url_helpers.excursion_url(:id => excursion.id), LOMextension: "ODS"})
         render :xml => xmlMetadata.target!
       }
       format.any {
