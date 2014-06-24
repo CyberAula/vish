@@ -101,9 +101,9 @@ module HomeHelper
         query = query.order('activity_objects.popularity DESC') 
     end
     
-    query = query.limit(options[:limit]) if options[:limit] > 0
+   
     query = query.offset(options[:offset]) if options[:offset] > 0
-
+    query = query.limit(options[:limit]) if options[:limit] > 0
     # Do not optimize likes. They should go anyways....
     if options[:scope] == :like
       return query.map { |a| a.direct_object }
@@ -115,14 +115,17 @@ module HomeHelper
             else
               query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}]) 
             end
+    
+    #return query.map{|ao| ao.object} if klass.is_a?(Array)
 
     # pagination, 0 means without pagination
     if options[:page] != 0
-      query = query.page(options[:page]).per(ITEMS_PER_PAGE)
+      items = options[:limit] if options[:limit] > 0
+      query = query.page(options[:page]).per(items)
     end
 
-    #return query.map{|ao| ao.object} if klass.is_a?(Array)
-    query
+   
+
   end
 
   
