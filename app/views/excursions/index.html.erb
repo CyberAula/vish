@@ -1,12 +1,16 @@
 <div id="search">
   <div class="tabbable" >
     <ul class="nav nav-tabs">
-      <li><h1><i class="icon-home"></i><%= t("home")%></h1></li>
+     <li class="active">
+      <a href="#"><%= t("home")%></a>
+    </li>
+    <li><a href="#">Mi red </a></li>
+    <li><a href="#">Catálogo</a></li>     
       <%= render partial: 'help/help_home' %>
     </ul>
   </div>
 </div>
-<%= render partial: 'layouts/order_by_dropdown' %>
+
 <section id="excursions_tab_ready2" class="excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>
