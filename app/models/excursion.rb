@@ -782,6 +782,11 @@ end
     return myxml;
 end
 def self.generate_QTIopenAnswer(qjson)
+  if qjson["selfA"] == true    
+    expectedLength = "40"
+  else
+    expectedLength = "120"
+  end 
   myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
       
@@ -806,7 +811,7 @@ def self.generate_QTIopenAnswer(qjson)
       myxml.itemBody() do
           myxml.prompt(qjson["question"]["value"])
           if qjson["selfA"] == true    
-          myxml.textEntryInteraction("responseIdentifier" => "RESPONSE", "expectedLength" => "40")
+          myxml.textEntryInteraction("responseIdentifier" => "RESPONSE", "expectedLength" => expectedLength) 
           else
           end
       end
@@ -1036,7 +1041,7 @@ def self.generate_QTIMC(qjson)
         typeQ = "OpenAnswer"
         typeInteraction = "extendedTextInteraction"
       end
-      
+
       myxml.resource("identifier" => resource_identifier, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do
         myxml.metadata do
           myxml.tag!("imsmd:lom") do
