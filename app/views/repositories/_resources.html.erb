@@ -14,7 +14,7 @@
   });
 	
   function add_resources_backstrech(){
-    if(backstrech_items!=undefined){
+    if(typeof backstrech_items != "undefined"){
 		  <% all_resources.each do |resource| %>
     		<%if resource.object.respond_to?(:type) && resource.object.type =="Picture"%>
             backstrech_items.resources["#document-<%=resource.object.id%>"] = "<%=resource.object.file%>?style=500";
