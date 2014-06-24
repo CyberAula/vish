@@ -676,6 +676,11 @@ class Excursion < ActiveRecord::Base
         zos.put_next_entry(fileName + ".xml")
         zos.print qti_mc.target!()
 
+      when "openAnswer"
+        qti_open = Excursion.generate_QTIopenAnswer(qjson)
+        zos.put_next_entry(fileName + ".xml")
+        zos.print qti_open.target!()
+
       when "sorting"
         qti_ordered = Excursion.generate_QTIOrdered(qjson)
         zos.put_next_entry(fileName + ".xml")
@@ -742,7 +747,7 @@ end
       
     nChoices = qjson["choices"].size
 
-    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive"=>"false") do
+    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"Sorting Quiz", "title"=>"Sorting Quiz", "timeDependent"=>"false", "adaptive"=>"false") do
 
     identifiers= [] 
       qjson["choices"].each_with_index do |choice,i|
@@ -776,51 +781,46 @@ end
 
     return myxml;
 end
-    def self.generate_QTIOpenAnswer(qjson)
-      #qjson["answer"]["value"] => valor de la respuesta 
-    myxml = ::Builder::XmlMarkup.new(:indent => 2)
+def self.generate_QTIopenAnswer(qjson)
+  myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
       
-    nChoices = qjson["choices"].size
+    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"openAnswer", "title"=>"Open Answer Quiz", "timeDependent"=>"false", "adaptive"=>"false") do
 
-    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive"=>"false") do
-
-    identifiers= [] 
-      qjson["choices"].each_with_index do |choice,i|
-        identifiers.push("A" + i.to_s())
-      end
-
-   
-      myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "ordered", "baseType" => "identifier") do
-      
+      myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "single", "baseType" => "string") do
+      if qjson["selfA"] == true    
         myxml.correctResponse() do
-          for i in 0..((nChoices)-1)
-              myxml.value(identifiers[i])
-          end
-        end  
-      end
+              myxml.value(qjson["answer"]["value"]);
+        end
 
-      myxml.outcomeDeclaration("cardinality"=>"single", "baseType"=>"identifier", "identifier"=>"FEEDBACK") do
+        myxml.mapping("defaultValue" => "0") do
+          myxml.mapEntry("mapKey" => qjson["answer"]["value"], "mappedValue" => "1")
+        end
+      end
+    else
+    end
+
+      myxml.outcomeDeclaration("cardinality"=>"single", "baseType"=>"float", "identifier"=>"SCORE") do
       end
     
       myxml.itemBody() do
-        myxml.orderInteraction("responseIdentifier"=>"RESPONSE", "shuffle"=>"true",  "maxChoices" => "0", "minChoices"=>"0", "orientation"=>"vertical") do
           myxml.prompt(qjson["question"]["value"])
-          for i in 0..((nChoices)-1)
-              myxml.simpleChoice(qjson["choices"][i]["value"],"identifier"=> identifiers[i], "showHide" => "show")
+          if qjson["selfA"] == true    
+          myxml.textEntryInteraction("responseIdentifier" => "RESPONSE", "expectedLength" => "40")
+          else
           end
-        end
       end
-          
-      myxml.responseProcessing()
+      
+      if qjson["selfA"] == true    
+      myxml.responseProcessing("template" => "http://www.imsglobal.org/question/qti_v2p1/rptemplates/map_response")
+      else
+      end
   end
 
     return myxml;
 end
 
-
-
-  def self.generate_QTIMC(qjson)
+def self.generate_QTIMC(qjson)
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
       
@@ -1024,16 +1024,19 @@ end
           myxml.file("href" => fileName + "_" + i.to_s + ".xml")
         end
       end
-    elsif qjson["quiztype"] == "multiplechoice" || qjson["quiztype"] == "sorting"
-      
-      if qjson["quiztype"] == "sorting"
+    elsif qjson["quiztype"] == "multiplechoice" || qjson["quiztype"] == "sorting" || qjson["quiztype"] == "openAnswer"
+      case qjson["quiztype"]
+      when qjson["quiztype"] == "sorting"
         typeQ = "Sorting"
         typeInteraction = "Sorting Interaction"
-      else
+      when qjson["quiztype"] == "multiplechoice"
         typeQ = "MultipleChoice"
         typeInteraction = "choiceInteraction"
+      when qjson["quiztype"] == "openAnswer"
+        typeQ = "OpenAnswer"
+        typeInteraction = "extendedTextInteraction"
       end
-
+      
       myxml.resource("identifier" => resource_identifier, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do
         myxml.metadata do
           myxml.tag!("imsmd:lom") do
