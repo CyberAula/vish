@@ -374,9 +374,9 @@ class Excursion < ActiveRecord::Base
           if ejson["description"]
             myxml.string(ejson["description"], :language=> loLanguage)
           elsif ejson["title"]
-            myxml.string(ejson["title"] + ". A Virtual Excursion provided by http://vishub.org.", :language=> metadataLanguage)
+            myxml.string(ejson["title"] + ". A Virtual Excursion provided by " + Vish::Application.config.full_domain + ".", :language=> metadataLanguage)
           else
-            myxml.string("Virtual Excursion provided by http://vishub.org.", :language=> metadataLanguage)
+            myxml.string("Virtual Excursion provided by " + Vish::Application.config.full_domain + ".", :language=> metadataLanguage)
           end
         end
         if ejson["tags"] && ejson["tags"].kind_of?(Array)
@@ -581,7 +581,7 @@ class Excursion < ActiveRecord::Base
         end
 
         myxml.description do
-          myxml.source("For additional information or questions regarding copyright, distribution and reproduction, visit http://vishub.org/legal_notice", :language=> metadataLanguage)
+          myxml.source("For additional information or questions regarding copyright, distribution and reproduction, visit " + Vish::Application.config.full_domain + "/legal_notice", :language=> metadataLanguage)
         end
 
       end

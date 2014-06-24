@@ -2,7 +2,7 @@
 #Configure here all the variables of your Virtual Science Hub instance.
 
 development:
-  domain: "localhost"
+  domain: "localhost:3000"
   test_domain: true
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"

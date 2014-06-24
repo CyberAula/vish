@@ -107,7 +107,7 @@
 </div>
 <!--settings-->
 <span style="color: #3366FF; opacity: 0.6; font-weight: normal; padding-left: 40px;">
-  <%= raw t('notification.config_html', :url => 'http://vishub.org/settings') %>
+  <%= raw t('notification.config_html', :url => (Vish::Application.config.full_domain + '/settings')) %>
 </span>
 </body>
 </html>
