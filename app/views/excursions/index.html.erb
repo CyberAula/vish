@@ -10,18 +10,19 @@
     </ul>
   </div>
 </div>
-
+<% @done={} %>
 <section id="excursions_tab_ready2" class="excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>
-    <%if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
+    <%
+      if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
         scope = :more
       else
         scope = :net
       end%>
   <div>
 
-    <%= render partial: 'excursions/excursionshome', :locals => { :scope => scope, :page => 1, :limit => 6, :sort_by=> params[:sort_by]||"popularity"} %>
+    <%= render partial: 'excursions/excursionshome', :locals => { :scope => scope, :page => 1, :limit => 6, :type => "random" } %>
   </div>
   <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
 
@@ -33,7 +34,7 @@
   <ul class="">
   <div>
     <p> Populares </p>
-  <%= render partial: 'excursions/excursionshome', :locals => { :scope => scope, :page => 2, :limit =>  7, :sort_by=> params[:sort_by]||"popularity"} %>
+  <%= render partial: 'excursions/excursionshome', :locals => { :scope => scope, :page => 2, :limit =>  7, :sort_by=> params[:sort_by]||"popularity", :type => "popular"} %>
 
   </div>
 </section>
