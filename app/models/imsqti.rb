@@ -159,15 +159,14 @@ class IMSQTI
         myxml.correctResponse() do
           myxml.value(qjson["answer"]["value"])
         end
-        if qjson["selfA"] == true
-          myxml.mapping("defaultValue" => "0") do
-            myxml.mapEntry("mapKey" => qjson["answer"]["value"], "mappedValue" => "1")
-          end
-        else
+        myxml.mapping("defaultValue" => "0") do
+          myxml.mapEntry("mapKey" => qjson["answer"]["value"], "mappedValue" => "1")
         end
       end
-
-        myxml.outcomeDeclaration("identifier"=>"SCORE", "cardinality"=>"single", "baseType"=>"float") do
+        if qjson["selfA"] == true
+          myxml.outcomeDeclaration("identifier"=>"SCORE", "cardinality"=>"single", "baseType"=>"float") 
+        else
+          myxml.outcomeDeclaration("identifier" => "FEEDBACK", "cardinality" => "multiple", "baseType"=>"identifier")
         end
       
         myxml.itemBody() do
@@ -184,10 +183,23 @@ class IMSQTI
           if qjson["selfA"] == true    
             myxml.responseProcessing("template" => "http://www.imsglobal.org/question/qti_v2p1/rptemplates/map_response")
           else
-          end
-      end
+             myxml.responseProcessing() do
+               myxml.setOutcomeValue("identifier" => "FEEDBACK") do
+                 myxml.multiple() do
+                   myxml.variable("identifier" => "FEEDBACK")
+                   myxml.baseValue("baseType" => "identifier") do
+                    myxml.text!("FEEDBACK_QUIZ")
+                   end
+                end
+               end
+            end
 
-    return myxml;
+            myxml.modalFeedback("outcomeIdentifier" => "FEEDBACK", "showHide"=> "show", "identifier" =>"FEEDBACK_QUIZ") do
+              myxml.text!(qjson["answer"]["value"])
+            end
+          end
+        end
+      return myxml;
   end
 
   def self.generate_QTIMC(qjson)
@@ -255,28 +267,6 @@ class IMSQTI
       return myxml;
     end
 
-  def self.generate_MoodleQUIZXML(qjson)
-    myxml = ::Builder::XmlMarkup.new(:indent => 2)
-    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-
-    myxml.quiz do
-      myxml.question("type" => "category") do
-        myxml.category do
-          myxml.text do
-             myxml.text!("Moodle QUIZ XML export")
-          end
-        end
-      end
-
-      myxml.question("type" => "multichoice") do
-        myxml.name do
-          myxml.text do
-            myxml.text!("La pregunta")
-          end
-        end
-      end
-    end
-  end
 
   def self.generate_qti_manifest(qjson,fileName)
     identifier = "TmpIMSQTI_" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
