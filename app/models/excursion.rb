@@ -71,7 +71,7 @@ class Excursion < ActiveRecord::Base
   def to_oai_lom
     identifier = Rails.application.routes.url_helpers.excursion_url(:id => self.id)
     xmlMetadata = ::Builder::XmlMarkup.new(:indent => 2)
-    Excursion.generate_LOM_metadata(JSON(self.json),self,{LOMextension: "ODS", :target => xmlMetadata, :id => identifier})
+    Excursion.generate_LOM_metadata(JSON(self.json),self,{LOMschema: "ODS", :target => xmlMetadata, :id => identifier})
     xmlMetadata
   end
 
@@ -168,7 +168,7 @@ class Excursion < ActiveRecord::Base
 
   # Metadata based on LOM (Learning Object Metadata) standard
   # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
-  def self.generate_scorm_manifest(ejson,excursion)
+  def self.generate_scorm_manifest(ejson,excursion,options=nil)
     if excursion and !excursion.id.nil?
       identifier = excursion.id.to_s
       lomIdentifier = Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)
@@ -195,7 +195,7 @@ class Excursion < ActiveRecord::Base
         myxml.schema("ADL SCORM")
         myxml.schemaversion("CAM 1.3")
         #Add LOM metadata
-        Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier})
+        Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier, :LOMschema => (options and options[:LOMschema]) ? options[:LOMschema] : "custom"})
       end
 
       myxml.organizations('default'=>"defaultOrganization",'structure'=>"hierarchical") do
@@ -233,16 +233,11 @@ class Excursion < ActiveRecord::Base
   ####################
 
   def self.generate_LOM_metadata(ejson, excursion, options=nil)
-    _LOMmode = "custom"
-    _LOMextension = nil
+    _LOMschema = "custom"
 
-    if options
-      if options[:LOMmode]
-        _LOMmode = options[:LOMmode]
-      end
-      if options[:LOMextension]
-        _LOMextension = options[:LOMextension]
-      end
+    supportedLOMSchemas = ["custom","loose","ODS","ViSH"]
+    if options and options[:LOMschema] and supportedLOMSchemas.include? options[:LOMschema]
+      _LOMschema = options[:LOMschema]
     end
 
     if options and options[:target]
@@ -254,19 +249,21 @@ class Excursion < ActiveRecord::Base
    
     #Select LOM Header options
     lomHeaderOptions = {}
-    if((_LOMmode != "custom" and _LOMmode != "loose") or (_LOMextension==nil))
-      lomHeaderOptions = {}
+
+    case _LOMschema
+    when "loose","custom"
+      lomHeaderOptions =  { 'xmlns' => "http://ltsc.ieee.org/xsd/LOM",
+                            'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+                            'xsi:schemaLocation' => %{http://ltsc.ieee.org/xsd/LOM lomODS.xsd}
+                          }
+    when "ODS"
+      lomHeaderOptions =  { 'xmlns' => "http://ltsc.ieee.org/xsd/LOM",
+                            'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+                            'xsi:schemaLocation' => %{http://ltsc.ieee.org/xsd/LOM lomODS.xsd}
+                          }
     else
-      #LOMmode allow LOM extensions, and some extension is define
-      if _LOMextension == "ODS"
-        lomHeaderOptions = { 'xmlns' => "http://ltsc.ieee.org/xsd/LOM",
-                             'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-                             'xsi:schemaLocation' => %{http://ltsc.ieee.org/xsd/LOM lomODS.xsd}
-                           }
-      else
-        #Extension not supported/recognized
-        lomHeaderOptions = {}
-      end
+      #Extension not supported/recognized
+      lomHeaderOptions = {}
     end
 
 
@@ -313,11 +310,9 @@ class Excursion < ActiveRecord::Base
       end
 
       #Language (LO language and metadata language)
-      loLanguage = nil
-      if ejson["language"]
-        if ejson["language"]!="independent"
-          loLanguage = ejson["language"]
-        end
+      loLanguage = getLOMLoLanguage(ejson["language"], _LOMschema)
+      if loLanguage.nil?
+        loLanguage = "en"
       end
       metadataLanguage = "en"
 
@@ -430,13 +425,16 @@ class Excursion < ActiveRecord::Base
               myxml.source("LOMv1.0")
               myxml.value("author")
             end
-
-            authorEntity = "BEGIN:VCARD\n\r\n\r VERSION:3.0 \n\r N:"+authorName+"\n\r FN:"+authorName+"\n\r END:VCARD"
+            authorEntity = generateVCard(authorName)
             myxml.entity(authorEntity)
             
             myxml.date do
               myxml.dateTime(loDate)
-              myxml.description("This date represents the date the author finished the indicated version of the Learning Object.")
+              unless _LOMschema == "ODS"
+                myxml.description do
+                  myxml.string("This date represents the date the author finished the indicated version of the Learning Object.", :language=> metadataLanguage)
+                end
+              end
             end
           end
         end
@@ -446,7 +444,7 @@ class Excursion < ActiveRecord::Base
             myxml.value("technical implementer")
           end
           authoringToolName = "Authoring Tool ViSH Editor " + atVersion
-          authoringToolEntity = "BEGIN:VCARD\n\r\n\r VERSION:3.0 \n\r N:"+authoringToolName+"\n\r FN:"+authoringToolName+"\n\r END:VCARD"
+          authoringToolEntity = generateVCard(authoringToolName)
           myxml.entity(authoringToolEntity)
         end
       end
@@ -465,13 +463,18 @@ class Excursion < ActiveRecord::Base
                 myxml.value("creator")
               end
 
-              creatorEntity = "BEGIN:VCARD\n\r\n\r VERSION:3.0 \n\r N:"+authorName+"\n\r FN:"+authorName+"\n\r END:VCARD"
+              creatorEntity = generateVCard(authorName)
               myxml.entity(creatorEntity)
               
               myxml.date do
                 myxml.dateTime(loDate)
-                myxml.description("This date represents the date the author finished authoring the metadata of the indicated version of the Learning Object.")
+                unless _LOMschema == "ODS"
+                  myxml.description do
+                    myxml.string("This date represents the date the author finished authoring the metadata of the indicated version of the Learning Object.", :language=> metadataLanguage)
+                  end
+                end
               end
+
             end
           end
 
@@ -511,19 +514,19 @@ class Excursion < ActiveRecord::Base
           myxml.value("mixed")
         end
 
-        if !getLearningResourceType("lecture", _LOMmode, _LOMextension).nil?
+        if !getLearningResourceType("lecture", _LOMschema).nil?
           myxml.learningResourceType do
             myxml.source("LOMv1.0")
             myxml.value("lecture")
           end
         end
-        if !getLearningResourceType("presentation", _LOMmode, _LOMextension).nil?
+        if !getLearningResourceType("presentation", _LOMschema).nil?
           myxml.learningResourceType do
             myxml.source("LOMv1.0")
             myxml.value("presentation")
           end
         end
-        if !getLearningResourceType("slide", _LOMmode, _LOMextension).nil?
+        if !getLearningResourceType("slide", _LOMschema).nil?
           myxml.learningResourceType do
             myxml.source("LOMv1.0")
             myxml.value("slide")
@@ -539,7 +542,7 @@ class Excursion < ActiveRecord::Base
           myxml.source("LOMv1.0")
           myxml.value("learner")
         end
-        _LOMcontext = readableContext(ejson["context"], _LOMmode, _LOMextension)
+        _LOMcontext = readableContext(ejson["context"], _LOMschema)
         if _LOMcontext
           myxml.context do
             myxml.source("LOMv1.0")
@@ -602,78 +605,95 @@ class Excursion < ActiveRecord::Base
     myxml
   end
 
-  def self.readableContext(context, _LOMmode, _LOMextension)
-    if _LOMmode == "custom" or _LOMmode == "loose"
-      #Extensions are allowed
-      if _LOMextension == "ODS"
-        #ODS LOM Extension
-        #According to ODS, context has to be one of ["primary education", "secondary education", "informal context"]
-        case context
-        when "preschool", "pEducation", "primary education", "school"
-          return "primary education"
-        when "sEducation", "higher education", "university"
-          return "secondary education"
-        when "training", "other"
-          return "informal context"
-        else
-          return nil
-        end
+  def self.getLOMLoLanguage(language, _LOMschema)
+    #List of language codes according to ISO-639:1988
+    # lanCodes = ["aa","ab","af","am","ar","as","ay","az","ba","be","bg","bh","bi","bn","bo","br","ca","co","cs","cy","da","de","dz","el","en","eo","es","et","eu","fa","fi","fj","fo","fr","fy","ga","gd","gl","gn","gu","gv","ha","he","hi","hr","hu","hy","ia","id","ie","ik","is","it","iu","ja","jw","ka","kk","kl","km","kn","ko","ks","ku","kw","ky","la","lb","ln","lo","lt","lv","mg","mi","mk","ml","mn","mo","mr","ms","mt","my","na","ne","nl","no","oc","om","or","pa","pl","ps","pt","qu","rm","rn","ro","ru","rw","sa","sd","se","sg","sh","si","sk","sl","sm","sn","so","sq","sr","ss","st","su","sv","sw","ta","te","tg","th","ti","tk","tl","tn","to","tr","ts","tt","tw","ug","uk","ur","uz","vi","vo","wo","xh","yi","yo","za","zh","zu"]
+    lanCodesMin = ["de","en","es","fr","it","pt","hu"]
+
+    case _LOMschema
+    when "ODS"
+      #ODS requires language, and admits blank language.
+      if language.nil? or language == "independent" or !lanCodesMin.include?(language)
+        return "none"
+      end
+    else
+      if language.nil?
+        return nil
+      end
+      if language == "independent"
+        return "none"
+      end
+      if !lanCodesMin.include?(language)
+        return nil
+      end
+    end
+
+    #It is included in the lanCodes array
+    return language
+  end
+
+  def self.readableContext(context, _LOMschema)
+    case _LOMschema
+    when "ODS" 
+      #ODS LOM Extension
+      #According to ODS, context has to be one of ["primary education", "secondary education", "informal context"]
+      case context
+      when "preschool", "pEducation", "primary education", "school"
+        return "primary education"
+      when "sEducation", "higher education", "university"
+        return "secondary education"
+      when "training", "other"
+        return "informal context"
       else
-        #ViSH LOM extension
-        case context
-        when "unspecified"
-          return "Unspecified"
-        when "preschool"
-          return "Preschool Education"
-        when "pEducation"
-          return "Primary Education"
-        when "sEducation"
-          return "Secondary Education"
-        when "higher education"
-          return "Higher Education"
-        when "training"
-          return "Professional Training"
-        when "other"
-          return "Other"
-        else
-          return context
-        end
+        return nil
+      end
+    when "ViSH"
+      #ViSH LOM extension
+      case context
+      when "unspecified"
+        return "Unspecified"
+      when "preschool"
+        return "Preschool Education"
+      when "pEducation"
+        return "Primary Education"
+      when "sEducation"
+        return "Secondary Education"
+      when "higher education"
+        return "Higher Education"
+      when "training"
+        return "Professional Training"
+      when "other"
+        return "Other"
+      else
+        return context
       end
     else
       #Strict LOM mode. Extensions are not allowed
       case context
-        when "unspecified"
-          return nil
-        when "preschool"
-        when "pEducation"
-        when "sEducation"
-          return "school"
-        when "higher education"
-          return "higher education"
-        when "training"
-          return "training"
-        else
-          return "other"
-        end
+      when "unspecified"
+        return nil
+      when "preschool"
+      when "pEducation"
+      when "sEducation"
+        return "school"
+      when "higher education"
+        return "higher education"
+      when "training"
+        return "training"
+      else
+        return "other"
+      end
     end
   end
 
-  def self.getLearningResourceType(lreType, _LOMmode, _LOMextension)
-    allowedLREtypes = []
-
-    if _LOMmode == "custom" or _LOMmode == "loose"
-      #Extensions are allowed
-      if _LOMextension == "ODS"
-        #ODS LOM Extension
-        #According to ODS, the Learning REsources type has to be one of this:
-        allowedLREtypes = ["application", "assessment", "blog", "broadcast", "case study", "courses", "demonstration", "drill and practice", "educational game", "educational scenario", "learning scenario", "pedagogical scenario", "enquiry-oriented activity", "exercise", "experiment", "glossaries", "guide", "learning pathways", "lecture", "lesson plan", "open activity", "other", "presentation", "project", "reference", "role play", "simulation", "social media", "textbook", "tool", "website", "wiki", "audio", "data", "image", "text", "video"]
-      else
-        #ViSH LOM extension
-        allowedLREtypes = ["lecture", "slide"]
-      end
+  def self.getLearningResourceType(lreType, _LOMschema)
+    case _LOMschema
+    when "ODS"
+      #ODS LOM Extension
+      #According to ODS, the Learning REsources type has to be one of this:
+      allowedLREtypes = ["application","assessment","blog","broadcast","case study","courses","demonstration","drill and practice","educational game","educational scenario","learning scenario","pedagogical scenario","enquiry-oriented activity","exercise","experiment","glossaries","guide","learning pathways","lecture","lesson plan","open activity","other","presentation","project","reference","role play","simulation","social media","textbook","tool","website","wiki","audio","data","image","text","video"]
     else
-      #Strict LOM mode. Extensions are not allowed (TODO)
-      allowedLREtypes = ["lecture", "slide"]
+      allowedLREtypes = ["exercise","simulation","questionnaire","diagram","figure","graph","index","slide","table","narrative text","exam","experiment","problem statement","self assessment","lecture"]
     end
 
     if allowedLREtypes.include? lreType
@@ -681,6 +701,10 @@ class Excursion < ActiveRecord::Base
     else
       return nil
     end
+  end
+
+  def self.generateVCard(fullName)
+    return "BEGIN:VCARD&#xD;VERSION:3.0&#xD;N:"+fullName+"&#xD;FN:"+fullName+"&#xD;END:VCARD"
   end
 
 
