@@ -124,11 +124,79 @@ module HomeHelper
       query = query.page(options[:page]).per(items)
     end
 
-   
-
   end
 
-  
+  def home_content (subject, klass, options = {})
+      options[:limit] ||= 4
+      options[:scope] ||= :net
+      options[:offset] ||= 0
+      options[:page] ||= 0 #page 0 means without pagination
+      options[:sort_by] ||="popularity"
+
+      following_ids = subject.following_actor_ids
+      following_ids |= [ subject.actor_id ]
+
+      query = klass
+      if klass.is_a?(Array)
+        query = ActivityObject.where(:object_type => klass.map{|t| t.to_s})
+      else
+        query = query.includes(:activity_object)
+      end
+
+      case options[:scope]
+      when :me
+        query = query.authored_by(subject.actor_id)
+      when :net
+        query = query.authored_by(following_ids)
+      when :like
+        query = if klass.is_a?(Array)
+          Activity.joins(:activity_objects).includes(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
+        else
+          Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type = (?)", klass.to_s)
+        end
+      when :more
+        following_ids |= [ subject.actor_id ]
+        query = query.not_authored_by(following_ids)
+      end
+
+      query = query.where("draft is false") if (klass == Excursion) && (options[:scope] == :net || options[:scope] == :more || (options[:scope] == :me && defined?(current_subject) && subject != current_subject))
+
+      case options[:sort_by]
+        when "updated_at"
+          query = query.order('activity_objects.updated_at DESC')
+        when  "created_at"
+          query = query.order('activity_objects.created_at DESC')
+        when "visits"  
+          query = query.order('activity_objects.visit_count DESC')
+        when "favorites"
+          query = query.order('activity_objects.like_count DESC') 
+        when "popularity"
+          query = query.order('activity_objects.popularity DESC') 
+      end
+      
+     
+      query = query.offset(options[:offset]) if options[:offset] > 0
+      query = query.limit(options[:limit]) if options[:limit] > 0
+      # Do not optimize likes. They should go anyways....
+      if options[:scope] == :like
+        return query.map { |a| a.direct_object }
+      end
+
+      # This is the optimization code. It's ugly and *BAD*
+      query = if klass.is_a?(Array)
+                query.includes(klass.map{ |e| e.to_s.downcase.to_sym} + [:received_actions, { :received_actions => [:actor]}]) 
+              else
+                query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}]) 
+              end
+      
+      #return query.map{|ao| ao.object} if klass.is_a?(Array)
+
+      # pagination, 0 means without pagination
+      if options[:page] != 0
+        items = options[:limit] if options[:limit] > 0
+        query = query.page(options[:page]).per(items)
+      end
+  end
 
 
 end
