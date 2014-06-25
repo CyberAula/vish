@@ -150,22 +150,16 @@ class IMSQTI
   end
 
   def self.generate_QTIopenAnswer(qjson)
-    if qjson["selfA"] == true    
-      expectedLength = "40"
-    else
-      expectedLength = "120"
-    end
 
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
         
     myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"openAnswer", "title"=>"Open Answer Quiz", "timeDependent"=>"false", "adaptive"=>"false") do
       myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "single", "baseType" => "string") do
+        myxml.correctResponse() do
+          myxml.value(qjson["answer"]["value"])
+        end
         if qjson["selfA"] == true
-          myxml.correctResponse() do
-            myxml.value(qjson["answer"]["value"])
-          end
-
           myxml.mapping("defaultValue" => "0") do
             myxml.mapEntry("mapKey" => qjson["answer"]["value"], "mappedValue" => "1")
           end
@@ -177,19 +171,20 @@ class IMSQTI
         end
       
         myxml.itemBody() do
-            myxml.p(qjson["question"]["value"])
-            if qjson["selfA"] == true    
-              myxml.div() do
-                myxml.textEntryInteraction("responseIdentifier" => "RESPONSE", "expectedLength" => expectedLength) 
+          myxml.p(qjson["question"]["value"])
+            myxml.div() do
+              if qjson["selfA"] == true   
+                myxml.textEntryInteraction("responseIdentifier" => "RESPONSE", "expectedLength" => "40") 
+              else
+                myxml.extendedTextInteraction("responseIdentifier" => "RESPONSE", "expectedLength" => "120", "expectedLines" => "5") 
               end
-            else
             end
-        end
+          end
         
-        if qjson["selfA"] == true    
-          myxml.responseProcessing("template" => "http://www.imsglobal.org/question/qti_v2p1/rptemplates/map_response")
-        else
-        end
+          if qjson["selfA"] == true    
+            myxml.responseProcessing("template" => "http://www.imsglobal.org/question/qti_v2p1/rptemplates/map_response")
+          else
+          end
       end
 
     return myxml;
