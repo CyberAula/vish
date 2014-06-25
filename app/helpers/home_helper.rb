@@ -54,7 +54,7 @@ module HomeHelper
   end
 
   def home_content (subject, options = {})
-     options[:limit] = 100
+     options[:limit] = 30
      excursions = subject_content subject, Excursion, options
   end
 
