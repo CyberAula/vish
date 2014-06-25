@@ -2,7 +2,7 @@ if ($(".verb_like.like_<%= dom_id(@like.object) %>").length <1) {
   $(".like_<%= dom_id(@like.object) %>").html("<%= escape_javascript(render partial: 'activities/like', locals: { activity: @like.object }) %>");
 } else {
   $(".verb_like.like_<%= dom_id(@like.object) %>").data('method', 'post');
-  $(".verb_like.like_<%= dom_id(@like.object) %> .icon-star").removeClass("icon-star").addClass("icon-star-empty");
+  $(".verb_like.like_<%= dom_id(@like.object) %> .fa-star").removeClass("fa-star").addClass("fa-star-o");
   var new_num = parseInt($(".like_count_<%= dom_id(@like.object) %>").html()) - 1;
   $(".like_count_<%= dom_id(@like.object) %>").html(new_num);
 }

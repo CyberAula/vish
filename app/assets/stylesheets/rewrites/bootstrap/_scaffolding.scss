@@ -5,13 +5,6 @@ body{
   text-rendering: optimizeLegibility;
 }
 
-a{
-  color: $gray;
-  &:hover{
-    color: $brand-primary;
-    text-decoration: none;
-}
-}
 
 li{
   list-style: none;

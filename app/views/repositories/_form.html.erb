@@ -1,161 +1,167 @@
 <!-- Button to trigger modal -->
 
+<div id="AddResource" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="AddResourceLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <%= render partial: 'help/help_resource_new' %>
+        <h4 id="AddResourceLabel"><%= t('document.main_title')%></h4>
+      </div>
+      <div class="modal-body">
+        <div class="layoutform">
+        <!-- Tags preloaded -->
+        <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+        <ul id="resourcePreloadTagList" style="display:none">
+          <%@tags.each do |tag| %>
+            <li><%=tag.name%></li>
+          <%end%>
+        </ul>
 
-<!-- Modal -->
-<div id="AddResource" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AddResourceLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <%= render partial: 'help/help_resource_new' %>
-    <h4 id="AddResourceLabel"><%= t('document.main_title')%></h4>
-  </div>
+        <p><%= t('document.body.title1')%></p>
 
-  <div class="modal-body">
-  <div class="layoutform">
-    <!-- Tags preloaded -->
-    <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
-    <ul id="resourcePreloadTagList" style="display:none">
-      <%@tags.each do |tag| %>
-        <li><%=tag.name%></li>
-      <%end%>
-    </ul>
+        <div class="panel-group" id="accordion1">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#document">
+                  <i class="fa fa-folder-open"></i> <%= t('document.options.documents')%>
+                </a>
+              </h4>
+            </div>
 
-    <p><%= t('document.body.title1')%></p>
-    
-    <div class="accordion" id="accordion2">
-      <div class="accordion-group">
-        <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#document">
-            <i class="icon-folder-open"></i> <%= t('document.options.documents')%>
-          </a>
-        </div>
-        <div id="document" class="accordion-body collapse in">
-          <div class="accordion-inner">
-            <% d = Document.new %>
-            <% d.owner_id = Actor.normalize_id(current_user) %>
-            <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
-              <%= f.hidden_field :owner_id %>
-              <%= f.file_field :file %>
-              <%= f.hidden_field :title%>
-              <%= f.hidden_field :description%>
-              <%= f.hidden_field :tag_list, :multiple => true %>
-              <%= f.hidden_field :language, :value => "" %>
-              <%= f.hidden_field :age_min, :value => "4" %>
-              <%= f.hidden_field :age_max, :value => "20" %>
-              <%= f.submit t('button.save'), :class => "document hide"%>
-            <% end %>
+            <div id="document" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <% d = Document.new %>
+                <% d.owner_id = Actor.normalize_id(current_user) %>
+                <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+                  <%= f.hidden_field :owner_id %>
+                  <%= f.file_field :file %>
+                  <%= f.hidden_field :title%>
+                  <%= f.hidden_field :description%>
+                  <%= f.hidden_field :tag_list, :multiple => true %>
+                  <%= f.hidden_field :language, :value => "" %>
+                  <%= f.hidden_field :age_min, :value => "4" %>
+                  <%= f.hidden_field :age_max, :value => "20" %>
+                  <%= f.submit t('button.save'), :class => "document hide"%>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#link">
+                  <i class="fa fa-link"></i> <%= t('document.options.links')%> 
+                </a>
+              </h4>
+            </div>
+            <div id="link" class="panel-collapse collapse">
+              <div class="panel-body">
+                <% d = Link.new %>
+                <% d.owner_id = Actor.normalize_id(current_user) %>
+                <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+                  <%= f.hidden_field :owner_id %>
+                  <%= f.hidden_field :callback_url %>
+                  <%= f.hidden_field :loaded %>
+                  <%#= f.hidden_field :image %>
+                  <%= f.text_field :url %>
+                  <%= f.hidden_field :title%>
+                  <%= f.hidden_field :description%>
+                  <%= f.hidden_field :tag_list, :multiple => true %>
+                  <%= f.hidden_field :language, :value => "" %>
+                  <%= f.hidden_field :age_min, :value => "4" %>
+                  <%= f.hidden_field :age_max, :value => "20" %>
+                  <%= f.submit t('button.save'), :class => "link hide"%>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#embed">
+                  <i class="fa fa-code"></i> <%= t('document.options.embed')%> 
+                </a>
+              </h4>
+            </div>
+            <div id="embed" class="panel-collapse collapse">
+              <div class="panel-body">
+                <% d = Embed.new %>
+                <% d.owner_id = Actor.normalize_id(current_user) %>
+                <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+                  <%= f.hidden_field :owner_id %>
+                  <%#= f.hidden_field :image %>
+                  <%= f.text_field :fulltext %>
+                  <%= f.hidden_field :title%>
+                  <%= f.hidden_field :description%>
+                  <%= f.hidden_field :tag_list, :multiple => true %>
+                  <%= f.hidden_field :language, :value => "" %>
+                  <%= f.hidden_field :age_min, :value => "4" %>
+                  <%= f.hidden_field :age_max, :value => "20" %>
+                  <%= f.submit t('button.save'), :class => "embed hide"%>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      
+      <div class="layoutform">
+        <p><%= t('document.body.title2')%></p>
+        <!--TITULO-->
+        <label><%= t('document.leyend.title')%></label>
+        <input type="text" class="title" placeholder="<%= t('document.title_input')%>">
+        
+        <!--DESCRIPCION-->
+        <label><%= t('document.leyend.description')%></label>
+        <textarea type="text" class="description" placeholder="<%= t('document.input')%>"></textarea>
 
-      <div class="accordion-group">
-        <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#link">
-            <i class="icon-link"></i> <%= t('document.options.links')%> 
-          </a>
+        <!--TAGS-->
+        <label><%= t('document.leyend.tags')%></label>
+
+        <div class="tagBoxDocument">
+           <ul class="resourceTagList"></ul>
         </div>
-        <div id="link" class="accordion-body collapse">
-          <div class="accordion-inner">
-            <% d = Link.new %>
-            <% d.owner_id = Actor.normalize_id(current_user) %>
-            <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
-              <%= f.hidden_field :owner_id %>
-              <%= f.hidden_field :callback_url %>
-              <%= f.hidden_field :loaded %>
-              <%#= f.hidden_field :image %>
-              <%= f.text_field :url %>
-              <%= f.hidden_field :title%>
-              <%= f.hidden_field :description%>
-              <%= f.hidden_field :tag_list, :multiple => true %>
-              <%= f.hidden_field :language, :value => "" %>
-              <%= f.hidden_field :age_min, :value => "4" %>
-              <%= f.hidden_field :age_max, :value => "20" %>
-              <%= f.submit t('button.save'), :class => "link hide"%>
-            <% end %>
-          </div>
+    <!--_______________________________-->
+        <div class="clearfloat"></div>
+        
+        <!--LANGUAGE-->
+        <label><%= t('document.leyend.language')%></label>
+        <select class="language">
+          <option value="" selected="1">(<%= t('lang.independent') %>)</option>
+          <option value="de">Deutsch</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="ru">Русский</option>
+          <option value="ot"><%= t('lang.others') %></option>
+        </select>
+        
+        <!--AGE SLIDER-->
+        <label><%= t('document.leyend.recommended_age')%></label>
+        <div class="limits">
+          <div class="limit1">4</div>
+          <div class="limit2">20</div>
         </div>
+        <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+        <br>
       </div>
+      
 
-      <div class="accordion-group">
-        <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#embed">
-            <i class="icon-code"></i> <%= t('document.options.embed')%> 
-          </a>
-        </div>
-        <div id="embed" class="accordion-body collapse">
-          <div class="accordion-inner">
-            <% d = Embed.new %>
-            <% d.owner_id = Actor.normalize_id(current_user) %>
-            <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
-              <%= f.hidden_field :owner_id %>
-              <%#= f.hidden_field :image %>
-              <%= f.text_field :fulltext %>
-              <%= f.hidden_field :title%>
-              <%= f.hidden_field :description%>
-              <%= f.hidden_field :tag_list, :multiple => true %>
-              <%= f.hidden_field :language, :value => "" %>
-              <%= f.hidden_field :age_min, :value => "4" %>
-              <%= f.hidden_field :age_max, :value => "20" %>
-              <%= f.submit t('button.save'), :class => "embed hide"%>
-            <% end %>
-          </div>
-        </div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
       </div>
-    </div>
-    <br>
-    </div>
-    
-    <div class="layoutform">
-    <p><%= t('document.body.title2')%></p>
-    <!--TITULO-->
-    <label><%= t('document.leyend.title')%></label>
-    <input type="text" class="title" placeholder="<%= t('document.title_input')%>">
-    
-    <!--DESCRIPCION-->
-    <label><%= t('document.leyend.description')%></label>
-    <textarea type="text" class="description" placeholder="<%= t('document.input')%>"></textarea>
-
-    <!--TAGS-->
-    <label><%= t('document.leyend.tags')%></label>
-
-    <div class="tagBoxDocument">
-       <ul class="resourceTagList"></ul>
-    </div>
-<!--_______________________________-->
-    <div class="clearfloat"></div>
-    
-    <!--LANGUAGE-->
-    <label><%= t('document.leyend.language')%></label>
-    <select class="language">
-      <option value="" selected="1">(<%= t('lang.independent') %>)</option>
-      <option value="de">Deutsch</option>
-      <option value="en">English</option>
-      <option value="es">Español</option>
-      <option value="fr">Français</option>
-      <option value="it">Italiano</option>
-      <option value="pt">Português</option>
-      <option value="ru">Русский</option>
-      <option value="ot"><%= t('lang.others') %></option>
-    </select>
-    
-    <!--AGE SLIDER-->
-    <label><%= t('document.leyend.recommended_age')%></label>
-    <div class="limits">
-      <div class="limit1">4</div>
-      <div class="limit2">20</div>
-    </div>
-    <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
-    <br>
-    </div>
-  </div><!-- CIERRA BODY-->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
-  <!-- FOOTER -->
-  <div class="modal-footer">
 
-
-    <input type="button" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
-  </div>
-</div>
 
 <!-- SCRIPTS -->
 <script>

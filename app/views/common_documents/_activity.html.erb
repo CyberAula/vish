@@ -1,19 +1,17 @@
 <div class="activity">
-  <div class="tabbable">
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a href="#comments" data-toggle="tab">
-          <%= t 'comment.title.other' %>
-        </a>
-      </li>
-    </ul>
-    <div class="tab-pane active" id="coment1">
-      <div id="comments" class="comments">
-        <div class="new-comments-box">
-          <%= render :partial => 'comments/new', :locals => { :activity => document.post_activity } %>
-        </div>
-        <%= render :partial => 'activities/comments', :locals => { :activity => document.post_activity } %>
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#comments" data-toggle="tab">
+        <%= t 'comment.title.other' %>
+      </a>
+    </li>
+  </ul>
+  <div class="tab-pane active" id="coment1">
+    <div id="comments" class="comments">
+      <div class="new-comments-box">
+        <%= render :partial => 'comments/new', :locals => { :activity => document.post_activity } %>
       </div>
+      <%= render :partial => 'activities/comments', :locals => { :activity => document.post_activity } %>
     </div>
   </div>
 </div>

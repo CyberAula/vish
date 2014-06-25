@@ -10,9 +10,9 @@
           <% if @event.streaming && ((Time.now <=> (@event.start_at - (60 * 30))) > -1) && ((Time.now <=> (@event.end_at + (60 * 60 * 2))) < 1) %>
           <%= raw @event.embed %>
         <% else %>
-            <div class="icon-box" id="event-<%=@event.id%>">
+            <div class="fa fa-box" id="event-<%=@event.id%>">
               <% if @event.poster.new_record? %>
-                <i class="icon-facetime-video"></i>
+                <i class="fa fa-video-camera"></i>
 
 
                 <%= image_tag('items/rec2.jpg', :class=> "event-img") %>
@@ -33,13 +33,12 @@
       </div>
     </div>
     <div class="recomended">
-      <div class="recomended-items">
-        <ul class="small-box clearfix">
+        <ul class="items clearfix">
           <% popular_resources(16).each do |resource| %>
             <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
           <% end %>
         </ul>
-      </div>
+
     </div>
 
     <div class="description-activity">

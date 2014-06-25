@@ -43,9 +43,9 @@ $body-bg:               $gray-lighter !default;
 $text-color:            $gray-dark !default;
 
 //** Global textual link color.
-$link-color:            $brand-primary !default;
+$link-color:            $brand-secundary !default;
 //** Link hover color set via `darken()` function.
-$link-hover-color:      darken($brand-primary, 10%) !default;
+$link-hover-color:      darken($link-color, 10%) !default;
 
 
 //== Typography
@@ -340,7 +340,7 @@ $grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
 //##
 
 // Basics of a navbar
-$navbar-height:                    37px !important;
+$navbar-height:                    42px !important;
 $navbar-margin-bottom:             $line-height-computed !default;
 $navbar-border-radius:             $border-radius-base !default;
 $navbar-padding-horizontal:        0 !default;

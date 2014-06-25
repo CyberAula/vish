@@ -1,5 +1,5 @@
 /*
-  Fi-ware style guide's documentation styles for presenting Bootstrap's documentation and examples
+  ViSH style guide's documentation styles for presenting Bootstrap's documentation and examples
 */
 /*!
  * Bootstrap Docs (http://getbootstrap.com)
@@ -71,12 +71,6 @@ div.level-two {
 
 .bs-docs-sidebar {
   margin-left: 14px;
-  @media (max-width: $screen-sm-max){
-  	padding-left: 0;
-  	border-top: 1px solid $gray-light;
-  	clear: both;
-  	margin: 33px 0px;
-  }
 }
 
 
@@ -90,16 +84,15 @@ top: 60px;
 } 
 
 .bs-docs-sidenav {
-  margin-bottom: 30px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
 /* All levels of nav */
 .bs-docs-sidebar .nav > li > a {
   display: block;
   color: $gray;
-  padding: 5px 20px;
+  padding: 10px 0px;
 }
 
 .bs-docs-sidebar .nav > li > a:hover,
@@ -127,6 +120,10 @@ top: 60px;
 
 .bs-docs-sidebar .nav .nav > li > a {
   font-size: 11px;
+}
+
+.bs-docs-sidebar .nav .nav {
+  display: initial;
 }
 
 /* Code

@@ -6,9 +6,16 @@
 }
 
 .popover-footer {
-	padding: 14px 15px 15px;
+	padding: 0;
 	margin-bottom: 0;
 	background-color: #F5F5F5;
 	border-top: 1px solid #DDD;
 	@include box-shadow (inset 0 1px 0 #FFF);
+}
+
+.popover.left{
+    top: 55px !important; 
+  .arrow {
+    top: 20px !important;
+  }
 }

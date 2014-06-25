@@ -13,10 +13,10 @@
                 <%=t('quiz.untitled')%>
               <% end %>
               <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
-                <i class="icon-trash"></i>
+                <i class="fa fa-trash-o"></i>
               </button>
               <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
-                <i class="icon-edit"></i>
+                <i class="fa fa-edit"></i>
               </button>
               <button class="with_tooltip closeqb btn popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-container="body" title="<%=t('quiz.actions.close')%>" aria-hidden="true">
                 x
@@ -43,10 +43,10 @@
                 <%=t('quiz.untitled')%>
               <% end %>
               <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
-                <i class="icon-trash"></i>
+                <i class="fa fa-trash-o"></i>
               </button>
               <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
-                <i class="icon-edit"></i>
+                <i class="fa fa-edit"></i>
               </button>
               <p class="creation_date">
                 <%=t('quiz.openPeriod')%> <%= q.created_at.strftime("%d-%m-%Y %H:%M UTC") %>
@@ -75,7 +75,7 @@
 
   <!-- Quiz session delete confirmation-->
   <div class="contentdelete" style="display: none">
-    <p class="delete_p"><i class="icon-trash"></i>  <%=t('quiz.confirm_delete')%></p>
+    <p class="delete_p"><i class="fa fa-trash-o"></i>  <%=t('quiz.confirm_delete')%></p>
     <div class="actions">
       <a class="btn btn_cancel"><%=t('cancel')%></a>
       <a class="btn btn-primary quiz_actions_delete"><%=t('quiz.actions.delete')%></a>
@@ -84,27 +84,36 @@
 
 </section>
 
-<div id="QuizAnalitycs" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <p></p>
-  </div>
-  <div class="modal-body">
-    <!-- This body is replaced with show_results.html.erb every time the modal is called -->
-  </div>
-  <div class="modal-footer"> </div>
-</div>
+<div id="QuizAnalitycs" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- This body is replaced with show_results.html.erb every time the modal is called -->
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-<div id="QuizEdit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <p></p>
-  </div>
-  <div class="modal-body">
-    <!-- This body is replaced with edit.html.erb every time the modal is called -->
-  </div>
-  <div class="modal-footer"> </div>
-</div>
+<div id="QuizEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- This body is replaced with edit.html.erb every time the modal is called -->
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 
 <%= content_for :javascript do %>

@@ -27,9 +27,9 @@ DocumentsHelper.module_eval do
       else icon_mime_type document
     end
     if icon_name == "picture"
-      "<div class='img-box' id='document-#{document.id}'></div><i class=\"icon-#{ icon_name }\"></i>".html_safe
+      "<div class='img-box' id='document-#{document.id}'></div><i class=\"fa fa-#{ icon_name }\"></i>".html_safe
     else
-      "<i class=\"icon-#{ icon_name }\"></i>".html_safe
+      "<i class=\"fa fa-#{ icon_name }\"></i>".html_safe
     end
   end
 

@@ -1,94 +1,136 @@
 <section id="overview">
 	<div class="whiteframe">
-		<div class="overviewindex visible-desktop">
-		<legend><%= t('overview_title') %></legend>
-		<ul class="nav bs-docs-sidenav">
-			<li><h4><%= t('overview.list') %></h4></li>
-			<a href="#overview"><li style="list-style: initial"><%= t('overview.list1') %></li></a>
-			<a href="#overview2"><li style="list-style: initial"><%= t('overview.list2') %></li></a>
-			<a href="#overview3"><li style="list-style: initial"><%= t('overview.list3') %></li></a>
-			<a href="#overview4"><li style="list-style: initial"><%= t('overview.list4') %></li></a>
-			<a href="#overview5"><li style="list-style: initial"><%= t('overview.list5') %></li></a>
-			<a href="#overview6"><li style="list-style: initial"><%= t('overview.list6') %></li></a>
-			<a href="#overview7"><li style="list-style: initial"><%= t('overview.list7') %></li></a>
-		</ul>
-		<hr>
-		<button type="button" class="btn btn-default btn-md"><%= t('overview.downloadpdf') %></button>
-		</div>
-		<div class="overviewmiddle visible-desktop">
-		</div>
-		<div class="overviewcontent">
-				<legend><%= t('overview.overview1') %></legend>
-				<br>
+		<div class="bs-docs-sidebar overviewindex"  data-spy="affix" data-offset-top="96" data-offset-bottom="0">
+	  	<legend><%= t('overview_title') %></legend>
+		  <ul class="nav bs-docs-sidenav">
+		    <li><h4><%= t('overview.list') %></h4></li>
+		    <li style="list-style: initial">
+  			  <a href="#overview">
+  			    <%= t('overview.list1') %>
+  			  </a>
+          <ul class="nav">
+            <li><a href="#overview2"><%= t('overview.list2') %></a></li>
+          </ul>
+  			</li>
+  			<li><a href="#overview3"><%= t('overview.list3') %></a></li>
+  			<li><a href="#overview4"><%= t('overview.list4') %></a></li>
+  			<li><a href="#overview5"><%= t('overview.list5') %></a></li>
+  			<li><a href="#overview6"><%= t('overview.list6') %></a></li>
+  			<li><a href="#overview7"><%= t('overview.list7') %></a></li>
+  		</ul>
+  		<hr>
+  		<button type="button" class="btn btn-default btn-md"><%= t('overview.downloadpdf') %></button>
+  	</div>
+  	
+  	<div class="overviewcontent">
+			<legend><%= t('overview.overview1') %></legend>
+			<br>
+			<p>
+        <a href="www.vishub.org">
+          <%= t('thevish') %>
+        </a>
+        <%= t('overview.overview2') %>
+      </p>
+      <br>
+			<p>
+        <%= t('overview.overview3') %>
+      </p>
+      <br>
+			<ul>
+				<li><a target="_blank" href="http://vishub.org/excursions/595">Stellar Trip</a></li>
+				<li><a target="_blank" href="http://vishub.org/excursions/83">Mars Curiosity Rover</a></li>
+				<li><a target="_blank" href="http://www.vishub.org/excursions/912">Minerals - Amethyst</a></li>
+				<li><a target="_blank" href="http://www.vishub.org/excursions/560">Higgs Particle</a></li>
+				<li><a target="_blank" href="http://www.vishub.org/excursions/63">Human 3D model</a></li>
+				<li><a target="_blank" href="http://vishub.org/excursions/632">Roman Villas in Spain (Spanish)</a></li>
+			</ul>
+		  <br>
+			<p>
+        <%= t('overview.overview4') %>
+      </p>
+      <br>
+			<p>
+				<ul>
+  				<li><a target="_blank" href="http://www.vishub.org/excursions/515">Classroom project</a></li>
+  				<li><a target="_blank" href="http://www.vishub.org/excursions/395">Student work (Amatista in Spanish)</a></li>
+  				<li><a target="_blank" href="http://www.vishub.org/excursions/912">Student work translated to English</a></li>
+				</ul>
+			</p>
+      <br>
+			<p>
+        <%= t('overview.overview5') %>
+      </p>
+      <br>
+			<p>
+				<ul>
+  				<li><%= t('overview.overview6') %></li>
+  				<li><%= t('overview.overview7') %></li>
+  				<li><%= t('overview.overview8') %><a target="_blank" href="http://www.mashme.tv"> MashMe.tv</a>. </li>
+  				<li><%= t('overview.overview9') %></li>
+  				<li><%= t('overview.overview10') %></li>
+  				<li><%= t('overview.overview11') %></li>
+  				<li><%= t('overview.overview12') %></li>
+				</ul>
+			</p>
+      <br>
 
-				<div class="header_text margin-top10"><a href="www.vishub.org"><%= t('thevish') %></a><%= t('overview.overview2') %></div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview3') %></div><br>
-				<div class="header_text margin-top10">
+			<p id="overview2">
+				<%= t('overview.overview13') %>
+        <a target="_blank" href="http://www.vishub.org/catalogue">
+          <%= t('overview.overview14') %>
+        </a> 
+        <%= t('overview.overview15') %>
+			</p>
+			<br>
+			<p>
+        <%= t('overview.overview17') %>
+			  <a target="_blank" href="http://vishub.org/legal_notice">
+          <%= t('overview.overview18') %>
+        </a>
+        <%= t('overview.overview19') %>
+			</p>
+      <br>
+			<p>
+        <%= t('overview.overview20') %>
+			</p>
+      <br>
+			<p>
 				<ul>
-				<a target="_blank" href="http://vishub.org/excursions/595"><li style="list-style: initial">Stellar Trip</li></a>
-				<a target="_blank" href="http://vishub.org/excursions/83"><li style="list-style: initial">Mars Curiosity Rover</li></a>
-				<a target="_blank" href="http://www.vishub.org/excursions/912"><li style="list-style: initial">Minerals - Amethyst</li></a>
-				<a target="_blank" href="http://www.vishub.org/excursions/560"><li style="list-style: initial">Higgs Particle</li></a>
-				<a target="_blank" href="http://www.vishub.org/excursions/63"><li style="list-style: initial">Human 3D model</li></a>
-				<a target="_blank" href="http://vishub.org/excursions/632"><li style="list-style: initial">Roman Villas in Spain (Spanish)</li></a>
+  				<li><%= t('overview.overview21') %></li>
+  				<li><%= t('overview.overview22') %></li>
+  				<li><%= t('overview.overview23') %></li>
+  				<li><%= t('overview.overview24') %></li>
 				</ul>
-				</div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview4') %></div><br>
-				<div class="header_text margin-top10">
-				<ul>
-				<a target="_blank" href="http://www.vishub.org/excursions/515"><li style="list-style: initial">Classroom project</li></a>
-				<a target="_blank" href="http://www.vishub.org/excursions/395"><li style="list-style: initial">Student work (Amatista in Spanish)</li></a>
-				<a target="_blank" href="http://www.vishub.org/excursions/912"><li style="list-style: initial">Student work translated to English</li></a>
-				</ul>
-				</div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview5') %></div><br>
-				<div class="header_text margin-top10">
-				<ul>
-				<li style="list-style: initial"><%= t('overview.overview6') %></li>
-				<li style="list-style: initial"><%= t('overview.overview7') %></li>
-				<li style="list-style: initial"><%= t('overview.overview8') %><a target="_blank" href="http://www.mashme.tv"> MashMe.tv</a>. </li>
-				<li style="list-style: initial"><%= t('overview.overview9') %></li>
-				<li style="list-style: initial"><%= t('overview.overview10') %></li>
-				<li style="list-style: initial"><%= t('overview.overview11') %></li>
-				<li style="list-style: initial"><%= t('overview.overview12') %></li>
-				</ul>
-				</div><br>
-				<div id="overview2" class="header_text margin-top10">
-				<%= t('overview.overview13') %><a target="_blank" href="http://www.vishub.org/catalogue"><%= t('overview.overview14') %></a> <%= t('overview.overview15') %>
-				</div><br>
-				<div class="header_text margin-top10">
-				<br> 
-				<legend ></legend>
-				<br>
-				</div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview17') %>
-				<a target="_blank" href="http://vishub.org/legal_notice"><%= t('overview.overview18') %></a><%= t('overview.overview19') %>
-				</div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview20') %>
-				</div><br>
-				<div class="header_text margin-top10">
-				<ul>
-				<li style="list-style: initial"><%= t('overview.overview21') %></li>
-				<li style="list-style: initial"><%= t('overview.overview22') %></li>
-				<li style="list-style: initial"><%= t('overview.overview23') %></li>
-				<li style="list-style: initial"><%= t('overview.overview24') %></li>
-				</ul>
-				</div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview25') %>
-				</div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview26') %>
-				</div><br>
-				<div id="overview3" class="header_text margin-top10"><%= t('overview.overview27') %>
-				</div><br>
-				<div class="header_text margin-top10">
+			</p>
+      <br>
+			<p>
+        <%= t('overview.overview25') %>
+			</p>
+      <br>
+			<p>
+        <%= t('overview.overview26') %>
+			</p>
+      <br>
+			<p id="overview3">
+        <%= t('overview.overview27') %>
+			</p>
+      <br>
+			<p>
 				<br> 
 				<legend><%= t('overview.overview28') %></legend>
 				<br>
-				</div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview29') %></div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview30') %></div><br>
-				<ul>
-				<li style="list-style: initial">
+			</p>
+      <br>
+			<p>
+        <%= t('overview.overview29') %>
+      </p>
+      <br>
+			<p>
+        <%= t('overview.overview30') %>
+      </p>
+      <br>
+			<ul>
+				<li>
 					<b><%= t('overview.overview31') %></b>
 					<%= t('overview.overview32') %>
 					<a target="_blank" href="http://vishub.org/categories/64"><%= t('overview.overview33') %></a>, 
@@ -96,68 +138,95 @@
 					<a target="_blank" href="http://vishub.org/categories/62"><%= t('overview.overview35') %></a>, 
 					<a target="_blank" href="http://vishub.org/categories/63"><%= t('overview.overview36') %></a>, 
 					<%= t('overview.overview37') %>
-				</li><br>
-				<li style="list-style: initial"><b><%= t('overview.overview38') %></b><%= t('overview.overview39') %><a target="_blank" href="http://vishub.org/categories/61"><%= t('overview.overview40') %></a><%= t('overview.overview41') %></li><br>
-				<li style="list-style: initial"><b><%= t('overview.overview42') %></b><%= t('overview.overview43') %><a target="_blank" href="http://vishub.org/categories/57"><%= t('overview.overview44') %></a></li><br>
-				<li style="list-style: initial"><b><%= t('overview.overview45') %></b><%= t('overview.overview46') %><a target="_blank" href="http://vishub.org/categories/58"><%= t('overview.overview47') %></a>
-				</li><br>
-				<li style="list-style: initial"><b><%= t('overview.overview48') %></b><%= t('overview.overview49') %><a target="_blank" href="http://vishub.org/categories/59"><%= t('overview.overview50') %></a>
-				</li><br>
-				<li style="list-style: initial"><b><%= t('overview.overview51') %></b><%= t('overview.overview52') %><a target="_blank" href="http://vishub.org/categories/60"><%= t('overview.overview53') %></a><%= t('overview.overview54') %></li>
-				</ul><br>
-				<div  id="overview4" class="header_text margin-top10"><%= t('overview.overview55') %>
-				</div><br>
-				<div class="header_text margin-top10">
+				</li>
+        <br>
+				<li><b><%= t('overview.overview38') %></b><%= t('overview.overview39') %><a target="_blank" href="http://vishub.org/categories/61"><%= t('overview.overview40') %></a><%= t('overview.overview41') %>
+        </li>
+        <br>
+				<li><b><%= t('overview.overview42') %></b><%= t('overview.overview43') %><a target="_blank" href="http://vishub.org/categories/57"><%= t('overview.overview44') %></a>
+        </li>
+        <br>
+				<li><b><%= t('overview.overview45') %></b><%= t('overview.overview46') %><a target="_blank" href="http://vishub.org/categories/58"><%= t('overview.overview47') %></a>
+				</li>
+        <br>
+				<li><b><%= t('overview.overview48') %></b><%= t('overview.overview49') %><a target="_blank" href="http://vishub.org/categories/59"><%= t('overview.overview50') %></a>
+				</li>
+        <br>
+				<li><b><%= t('overview.overview51') %></b><%= t('overview.overview52') %><a target="_blank" href="http://vishub.org/categories/60"><%= t('overview.overview53') %></a><%= t('overview.overview54') %>
+        </li>
+			</ul>
+      <br>
+			<p id="overview4">
+        <%= t('overview.overview55') %>
+			</p>
+      <br>
+			<p>
 				<br> 
-				<legend><%= t('overview.overview56') %></legend>
+				<legend>
+          <%= t('overview.overview56') %>
+        </legend>
 				<br>
-				</div><br>
-				<div class="header_text margin-top10">
-				<%= t('overview.overview57') %>
-				</div><br>
-				<div  id="overview5" class="header_text margin-top10"><%= t('overview.overview58') %>
-				</div><br>
-				<div class="header_text margin-top10">
+			</p><br>
+			<p>
+			  <%= t('overview.overview57') %>
+			</p>
+      <br>
+			<p  id="overview5">
+        <%= t('overview.overview58') %>
+			</p>
+      <br>
+			<p>
 				<br> 
-				<legend><%= t('overview.overview59') %></legend>
+				<legend>
+          <%= t('overview.overview59') %>
+        </legend>
 				<br>
-				</div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview60') %>
-				</div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview61') %>
-				</div><br>
-				<div id="overview6" class="header_text margin-top10"><%= t('overview.overview62') %>
-				</div><br>
-				<div class="header_text margin-top10">
+			</p>
+      <br>
+			<p>
+        <%= t('overview.overview60') %>
+			</p>
+      <br>
+			<p>
+        <%= t('overview.overview61') %>
+			</p>
+      <br>
+			<p id="overview6">
+        <%= t('overview.overview62') %>
+			</p>
+      <br>
+			<p>
 				<br> 
 				<legend><%= t('overview.overview63') %></legend>
 				<br>
-				</div><br>
-				<div class="header_text margin-top10">
-				<%= t('overview.overview64') %>
-				</div><br>
-				<div class="header_text margin-top10">
-				<%= t('overview.overview65') %></div><br>
-				<div class="header_text margin-top10">
-				<%= t('overview.overview66') %>
-				</div><br>
-				<div class="header_text margin-top10">
-				<br id="overview7"> 
-				<legend><%= t('overview.overview67') %></legend>
-				<br> 
-				</div><br>
-				<div class="header_text margin-top10">
-				<%= t('overview.overview68') %><a href="http://www.mashme.tv">MashMe.tv</a> <%= t('overview.overview69') %></div><br>
-				<div class="header_text margin-top10"><%= t('overview.overview70') %>
-				</div><br>
+			</p>
+      <br>
+			<p>
+			  <%= t('overview.overview64') %>
+			</p><br>
+			<p>
+			  <%= t('overview.overview65') %></p><br>
+			<p>
+			  <%= t('overview.overview66') %>
+			</p>
+      <br>
+			<p>
+			  <br id="overview7"> 
+			  <legend><%= t('overview.overview67') %></legend>
+			  <br> 
+			</p>
+      <br>
+			<p>
+			  <%= t('overview.overview68') %>
+        <a href="http://www.mashme.tv">
+          MashMe.tv
+        </a> 
+        <%= t('overview.overview69') %>
+      </p>
+      <br>
+			<p>
+        <%= t('overview.overview70') %>
+			</p>
 		</div>
+  </div>
 </section>
-
-<script>
-$('a').click(function(){
-    $('html, body').animate({
-        scrollTop: $( $.attr(this, 'href') ).offset().top
-    }, 500);
-    return false;
-});
-</script>

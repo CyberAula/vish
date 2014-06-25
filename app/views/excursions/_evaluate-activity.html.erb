@@ -43,13 +43,13 @@
           </div>
           <div class="tab-pane" id="suggestion_show">
             <div class="recomended2" id="recomended2_box">
-              <div class="recomended-items">
-                <ul class="small-box clearfix">
+
+                <ul class="items clearfix">
                   <% popular_excursions(10).each do |excursion| %>
                     <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :container_id => "recomended2_box" } %>
                   <% end %>
                 </ul>
-              </div>
+
             </div>
           </div>
           <!--

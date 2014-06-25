@@ -55,7 +55,8 @@
     padding-left: 5%
     padding-bottom: 10%
     background-color: $white
-    border-radius: $baseBorderRadius
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
     float: left
     width: 90%
     min-height: 500px

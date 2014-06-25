@@ -1,0 +1,68 @@
+@mixin follow-profile
+  text-align: center
+  color: $brand-primary
+  font-family: $corporate-font-family-sans-serif-Light
+  position: relative
+  form
+    margin: 0px
+    input
+      border: none
+      min-height: 33px
+      background-color: $brand-primary
+      color: $white
+      width: 100%
+      margin-top: 0px
+      padding: 0px
+      font-family: $corporate-font-family-sans-serif-Regular
+
+  .following-button
+    background-color: $brand-secundary
+    width: 100%
+    color: $white
+    margin-top: 0px
+    padding: 6px 0
+    font-family: $corporate-font-family-sans-serif-Regular
+
+  .unfollow-button
+    form
+      margin: 0px
+      input
+        border: 0px none 
+        width: 100%
+        min-height: 33px
+        background-color: $gray
+        color: $white
+        margin-top: 0px
+        padding: 0px
+        font-family: $corporate-font-family-sans-serif-Regular
+
+
+@mixin see-more
+  margin-top: 2% !important
+  margin-bottom: 2% !important
+  display: block
+  width: 160px
+  @extend .btn
+  @extend .btn-primary
+  height: 33px
+  margin: 0 auto
+  float: none
+  clear: both
+  a
+    color: $white
+    &:hover
+      text-decoration: none
+  
+  &.disabled,
+  &[disabled] 
+    cursor: default
+    @include opacity(65)
+
+  .loading
+    z-index: 200
+    position: relative
+
+
+@mixin help
+  margin-top: 2%
+  margin-bottom: 10%

@@ -65,6 +65,7 @@
     .root,
     .media
       margin-top: 1%
+      padding-top: 15px
       border: 1px solid #ddd
       overflow: visible
       display: block
@@ -157,21 +158,7 @@
             text-overflow: ellipsis
             width: 120px
     .more
-      margin-top: 2% !important
-      margin-bottom: 2% !important
-      display: block
-      width: 100px
-      text-align: center
-      @extend .btn-primary
-      height: 20px
-      margin: 0 auto
-      float: none
-      clear: both
-      a
-        color: $white
-        &:hover
-          text-decoration: none
-
+      @include see-more
 
 
 .comments
@@ -276,74 +263,74 @@
 
 
 
-
-.description-activity
-  background-color: $gray
-  .activity-box
-    .activity
-      .tabbable
-        .tab-content,.tab-pane
-          .comments
-            margin: 0 auto 
-            padding-top: 0px 
-            .new-comments-box
-              .new_comment
-                width: 90%
-                .avatar
-                  width: auto
-                  display: inline
-                  width: 5%
-                  img
-                    @include border-top-radius($border-radius-base)
-                    @include border-bottom-radius($border-radius-base)
-
-                form#new_comment
-                  width: 93%
-                  margin-left: 2%
-                  display: inline
-                  margin-bottom: 10px
-                  textarea
-                  input[type="submit"]
+#timeline
+  .description-activity
+    background-color: $gray
+    .activity-box
+      .activity
+        .tabbable
+          .tab-content,.tab-pane
             .comments
-              .activity  
-                margin-bottom: 5px
-              .child
-              .media
-                padding: 1%
-                margin-top: 0
-                .pull-left
-                  margin-right: 2%
-                .avatar
-                  width: 5%
-                  
-                  .media-object
-                    a
-                      img
-                        @include border-top-radius($border-radius-base)
-                        @include border-bottom-radius($border-radius-base)
-                .media-heading
-                  margin: 0
-                  width: 93% !important
-                  height: 20px
-                  overflow: hidden
-                  h6
-                  .x
-                    margin-right: 5px
-                .media-body
-                  margin: 0
-                  clear: none
-                  margin-top: 5px
-                  .objects
-                    .comment
-                      margin-left: 2%
-                      font-size: 12px
-                      p
-                  .actions
-                    .post_time_ago
-                      color: $gray-light
-                      margin-top: 5px
-                    .to_like
-                      display: none
+              margin: 0 auto 
+              padding-top: 0px 
+              .new-comments-box
+                .new_comment
+                  width: 90%
+                  .avatar
+                    width: auto
+                    display: inline
+                    width: 5%
+                    img
+                      @include border-top-radius($border-radius-base)
+                      @include border-bottom-radius($border-radius-base)
+
+                  form#new_comment
+                    width: 93%
+                    margin-left: 2%
+                    display: inline
+                    margin-bottom: 10px
+                    textarea
+                    input[type="submit"]
+              .comments
+                .activity  
+                  margin-bottom: 5px
+                .child
+                .media
+                  padding: 1%
+                  margin-top: 0
+                  .pull-left
+                    margin-right: 2%
+                  .avatar
+                    width: 5%
+                    
+                    .media-object
+                      a
+                        img
+                          @include border-top-radius($border-radius-base)
+                          @include border-bottom-radius($border-radius-base)
+                  .media-heading
+                    margin: 0
+                    width: 93% !important
+                    height: 20px
+                    overflow: hidden
+                    h6
+                    .x
+                      margin-right: 5px
+                  .media-body
+                    margin: 0
+                    clear: none
+                    margin-top: 5px
+                    .objects
+                      .comment
+                        margin-left: 2%
+                        font-size: 12px
+                        p
+                    .actions
+                      .post_time_ago
+                        color: $gray-light
+                        margin-top: 5px
+                      .to_like
+                        display: none
 
 
 

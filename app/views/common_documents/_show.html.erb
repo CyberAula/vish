@@ -16,30 +16,28 @@
         </div>
       </div>
     </div>
-    <!--recomended-->
-    <div class="recomended">
-      <div class="recomended-items">
-        <ul class="small-box clearfix">
-          <% popular_resources(16).each do |resource| %>
-            <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
-          <% end %>
-        </ul>
+    
+    <div class="description-activity">
+      <div class="box_description">
+        <!--tool-->
+        <div class="excursion_tool">
+          <%= render :partial => 'common_documents/document-tool-tab', :locals => { :document => document } %>
+        </div>     
+      </div>
+      
+      <!--activity-->
+      <div class="activity-box">
+        <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
       </div>
     </div>
-
-  <div class="description-activity">
-    <div class="box_description">
-      <!--tool-->
-      <div class="excursion_tool">
-        <%= render :partial => 'common_documents/document-tool-tab', :locals => { :document => document } %>
-      </div>     
-    </div>
-    
-    <!--activity-->
-    <div class="activity-box">
-      <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
-    </div>
-  </div>
+    <!--recomended-->
+    <aside class="recomended">
+      <ul class="items clearfix">
+        <% popular_resources(16).each do |resource| %>
+          <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
+        <% end %>
+      </ul>
+    </aside>
 
 <% end %>
 
