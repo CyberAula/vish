@@ -171,14 +171,17 @@ class IMSQTI
           end
         else
         end
+      end
 
-        myxml.outcomeDeclaration("cardinality"=>"single", "baseType"=>"float", "identifier"=>"SCORE") do
+        myxml.outcomeDeclaration("identifier"=>"SCORE", "cardinality"=>"single", "baseType"=>"float") do
         end
       
         myxml.itemBody() do
-            myxml.prompt(qjson["question"]["value"])
+            myxml.p(qjson["question"]["value"])
             if qjson["selfA"] == true    
-              myxml.textEntryInteraction("responseIdentifier" => "RESPONSE", "expectedLength" => expectedLength) 
+              myxml.div() do
+                myxml.textEntryInteraction("responseIdentifier" => "RESPONSE", "expectedLength" => expectedLength) 
+              end
             else
             end
         end
@@ -188,7 +191,6 @@ class IMSQTI
         else
         end
       end
-    end
 
     return myxml;
   end
