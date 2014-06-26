@@ -35,6 +35,7 @@ class Excursion < ActiveRecord::Base
     has draft
     has activity_object.like_count, :as => :like_count
     has activity_object.visit_count, :as => :visit_count
+    has activity_object.download_count, :as => :download_count
   end
 
 

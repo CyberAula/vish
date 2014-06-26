@@ -37,6 +37,7 @@ gem "paperclip", '= 3.5.1'
 gem "delayed_paperclip", "= 2.7.0"
 gem 'sanitize', '= 2.1.0'
 gem 'mailboxer', '= 0.10.3'
+gem 'hashie', '= 2.1.2'
 
 #Gems from Git repositories
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git', :ref => '2602bf1'

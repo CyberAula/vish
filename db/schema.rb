@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140529135751) do
+ActiveRecord::Schema.define(:version => 20140626122837) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20140529135751) do
     t.boolean  "notified_after_draft",               :default => false
     t.integer  "comment_count",                      :default => 0
     t.integer  "popularity",                         :default => 0
+    t.integer  "download_count",                     :default => 0
   end
 
   create_table "activity_verbs", :force => true do |t|
@@ -269,7 +270,7 @@ ActiveRecord::Schema.define(:version => 20140529135751) do
     t.integer  "slide_count",        :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",              :default => false
-    t.text     "offline_manifest"
+    t.text     "offline_manifest",   :default => ""
     t.string   "excursion_type",     :default => "presentation"
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"

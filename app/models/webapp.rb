@@ -121,6 +121,9 @@ class Webapp < ActiveRecord::Base
     }
   end
 
+  def increment_download_count
+    self.activity_object.increment_download_count
+  end
 
   private
 
