@@ -243,7 +243,7 @@ class ExcursionsController < ApplicationController
       if index<10
         tnumber = "0" + tnumber
       end
-      thumbnail["src"] = Site.current.config[:documents_hostname] + "assets/logos/original/excursion-"+tnumber+".png"
+      thumbnail["src"] = Vish::Application.config.full_domain + "/assets/logos/original/excursion-"+tnumber+".png"
       thumbnails["pictures"].push(thumbnail)
     end
 
@@ -439,30 +439,30 @@ class ExcursionsController < ApplicationController
           end
         end
 
-        count = Site.current.config["tmpJSONcount"].nil? ? 1 : Site.current.config["tmpJSONcount"]
-        Site.current.config["tmpJSONcount"] = count +1
+        count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+        Site.current.config["tmpCounter"] = count + 1
         Site.current.save!
 
         if responseFormat == "json"
           #Generate JSON file
-          filePath = "#{Rails.root}/public/tmp/json/#{count}.json"
+          filePath = "#{Rails.root}/public/tmp/json/#{count.to_s}.json"
           t = File.open(filePath, 'w')
           t.write json
           t.close
-          results["url"] = "#{Site.current.config[:documents_hostname]}excursions/tmpJson.json?fileId=#{count.to_s}"
+          results["url"] = "#{Vish::Application.config.full_domain}/excursions/tmpJson.json?fileId=#{count.to_s}"
         elsif responseFormat == "scorm"
           #Generate SCORM package
           filePath = "#{Rails.root}/public/tmp/scorm/"
-          fileName = "scorm-tmp-#{count}"
+          fileName = "scorm-tmp-#{count.to_s}"
           Excursion.createSCORM(filePath,fileName,JSON(json),nil,self)
-          results["url"] = "#{Site.current.config[:documents_hostname]}tmp/scorm/#{fileName}.zip"
+          results["url"] = "#{Vish::Application.config.full_domain}/tmp/scorm/#{fileName}.zip"
         elsif responseFormat == "qti"
            #Generate QTI package
            filePath = "#{Rails.root}/public/tmp/qti/"
            FileUtils.mkdir_p filePath
-           fileName = "qti-tmp-#{count}"
+           fileName = "qti-tmp-#{count.to_s}"
            Excursion.createQTI(filePath,fileName,JSON(json))
-           results["url"] = "#{Site.current.config[:documents_hostname]}tmp/qti/#{fileName}.zip"
+           results["url"] = "#{Vish::Application.config.full_domain}/tmp/qti/#{fileName}.zip"
         end
 
         render :json => results

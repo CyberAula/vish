@@ -269,7 +269,11 @@ class IMSQTI
 
 
   def self.generate_qti_manifest(qjson,fileName)
-    identifier = "TmpIMSQTI_" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
+    count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+    Site.current.config["tmpCounter"] = count + 1
+    Site.current.save!
+
+    identifier = "TmpIMSQTI_" + (count.to_s)
 
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
@@ -313,7 +317,11 @@ class IMSQTI
   end
 
   def self.generate_mainQTIMC(qjson,fileName)
-    resource_identifier = "resource-item-quiz-" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
+    count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+    Site.current.config["tmpCounter"] = count + 1
+    Site.current.save!
+
+    resource_identifier = "resource-item-quiz-" + (count.to_s)
 
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
@@ -331,7 +339,11 @@ class IMSQTI
   end
 
   def self.generate_qti_resources(qjson,fileName,myxml)
-    resource_identifier = "resource-item-quiz-" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
+    count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+    Site.current.config["tmpCounter"] = count + 1
+    Site.current.save!
+
+    resource_identifier = "resource-item-quiz-" + (count.to_s)
 
     if qjson["quiztype"] == "truefalse"
       myxml.resource("identifier" => resource_identifier , "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do

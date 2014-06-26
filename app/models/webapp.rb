@@ -50,13 +50,13 @@ class Webapp < ActiveRecord::Base
       #Save the resource to get its id
       resource.save!
 
-      if Site.current.config[:code_hostname].nil? or Site.current.config[:code_path].nil?
+      if Vish::Application.config.APP_CONFIG["code_path"].nil?
         webappsDirectoryPath = Rails.root.join('public', 'webappscode').to_s
       else
-        webappsDirectoryPath = Site.current.config[:code_path] + "/webappscode"
+        webappsDirectoryPath = Vish::Application.config.APP_CONFIG["code_path"] + "/webappscode"
       end
       loDirectoryPath = webappsDirectoryPath + "/" + resource.id.to_s
-      loURLRoot = (Site.current.config[:code_hostname].nil? ? Site.current.config[:documents_hostname] : Site.current.config[:code_hostname]) + "webappscode/" + resource.id.to_s
+      loURLRoot = Vish::Application.config.full_code_domain + "/webappscode/" + resource.id.to_s
 
       require "fileutils"
       FileUtils.mkdir_p(loDirectoryPath)
@@ -72,7 +72,7 @@ class Webapp < ActiveRecord::Base
         }
       }
 
-      resource.zipurl = Site.current.config[:documents_hostname] + resource.file.url[1..-1]
+      resource.zipurl = Vish::Application.config.full_domain + "/" + resource.file.url[1..-1]
       resource.zippath = resource.file.path
       resource.lopath = loDirectoryPath
       resource.lourl = loURLRoot + "/index.html"

@@ -63,13 +63,13 @@ class Scormfile < ActiveRecord::Base
       #Save the resource to get its id
       resource.save!
 
-      if Site.current.config[:code_hostname].nil? or Site.current.config[:code_path].nil?
+      if Vish::Application.config.APP_CONFIG["code_path"].nil?
         scormPackagesDirectoryPath = Rails.root.join('public', 'scorm', 'packages').to_s
       else
-        scormPackagesDirectoryPath = Site.current.config[:code_path] + "/scorm/packages"
+        scormPackagesDirectoryPath = Vish::Application.config.APP_CONFIG["code_path"] + "/scorm/packages"
       end
       loDirectoryPath = scormPackagesDirectoryPath + "/" + resource.id.to_s
-      loURLRoot = (Site.current.config[:code_hostname].nil? ? Site.current.config[:documents_hostname] : Site.current.config[:code_hostname]) + "scorm/packages/" + resource.id.to_s
+      loURLRoot = Vish::Application.config.full_code_domain + "/scorm/packages/" + resource.id.to_s
 
 
       require "fileutils"
@@ -81,7 +81,7 @@ class Scormfile < ActiveRecord::Base
       scormWrapperFilePath = loDirectoryPath + "/vishubcode_scorm_wrapper.html"
       File.open(scormWrapperFilePath, "w"){|f| f << scormWrapperFile }
 
-      resource.zipurl = Site.current.config[:documents_hostname] + resource.file.url[1..-1]
+      resource.zipurl = Vish::Application.config.full_domain + "/" + resource.file.url[1..-1]
       resource.zippath = resource.file.path
       resource.lopath = loDirectoryPath
       resource.lourl = loURLRoot + "/vishubcode_scorm_wrapper.html"

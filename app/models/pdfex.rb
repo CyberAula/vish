@@ -27,17 +27,11 @@ class Pdfex < ActiveRecord::Base
 		imgs = Hash.new
 		imgs["urls"] = []
 		imgLength.times do |index|
-			imgs["urls"].push(Site.current.config[:documents_hostname].to_s + getRootUrl + getFullFileNameForIndex(index))
+			imgs["urls"].push(Vish::Application.config.full_domain + "/" + getRootUrl + getFullFileNameForIndex(index))
 		end
 
 		#Add PDFEx Id
 		imgs["pdfexId"] = self.id
-
-		# Development
-		# Site.current.config[:documents_hostname] = "http://localhost:3000/"
-		# Site.current.save!
-		# On production 
-		# Site.current.config[:documents_hostname] = "http://vishub.org/"
 
 		imgs
 	end

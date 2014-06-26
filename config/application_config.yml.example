@@ -3,12 +3,15 @@
 
 development:
   domain: "localhost:3000"
+  code_domain: "localhost:3000"
   test_domain: true
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
 
 production:
   domain: "vishub.org"
+  code_domain: "vishubcode.global.dit.upm.es"
+  code_path: "/home/isabel/vish-shared/documents/code"
   test_domain: false
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"

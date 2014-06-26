@@ -176,7 +176,11 @@ class Excursion < ActiveRecord::Base
       identifier = ejson["vishMetadata"]["id"].to_s
       lomIdentifier = "urn:ViSH:" + identifier
     else
-      identifier = "TmpSCORM_" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
+      count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+      Site.current.config["tmpCounter"] = count + 1
+      Site.current.save!
+      
+      identifier = "TmpSCORM_" + count.to_s
       lomIdentifier = "urn:ViSH:" + identifier
     end
 
@@ -911,7 +915,7 @@ class Excursion < ActiveRecord::Base
         :title => title,
         :author => author.name,
         :description => description,
-        :image => thumbnail_url ? thumbnail_url : Site.current.config[:documents_hostname] + "assets/logos/original/excursion-00.png",
+        :image => thumbnail_url ? thumbnail_url : Vish::Application.config.full_domain + "/assets/logos/original/excursion-00.png",
         :views => visit_count,
         :favourites => like_count,
         :number_of_slides => slide_count
@@ -969,7 +973,7 @@ class Excursion < ActiveRecord::Base
     self.update_column :json, parsed_json.to_json
     self.update_column :excursion_type, parsed_json["type"]
     self.update_column :slide_count, parsed_json["slides"].size
-    self.update_column :thumbnail_url, parsed_json["avatar"] ? parsed_json["avatar"] : Site.current.config[:documents_hostname] + "assets/logos/original/excursion-00.png"
+    self.update_column :thumbnail_url, parsed_json["avatar"] ? parsed_json["avatar"] : Vish::Application.config.full_domain + "/assets/logos/original/excursion-00.png"
   end
 
   def fix_relation_ids_drafts
