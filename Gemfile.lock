@@ -17,19 +17,20 @@ GIT
 GIT
   remote: git://github.com/galetahub/simple-captcha.git
   revision: 2602bf19a63df25929960b5a7721a9d265281ec1
+  ref: 2602bf1
   specs:
     simple_captcha (0.1.6)
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 9f37c89fd01e58840a18796ae8e49e595f351187
-  branch: vish-b3
+  revision: 3210f1c6af3fbef81b31cf651d5b8725a055354d
+  branch: vish
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.2.2)
       ancestry (~> 1.2.3)
       avatars_for_rails (~> 1.1.4)
-      bootstrap-sass (~> 3.1.0)
+      bootstrap-sass (~> 2.3.2.0)
       cancan (~> 1.6.7)
       deep_merge
       deface (~> 0.9.1)
@@ -50,7 +51,7 @@ GIT
       rails_autolink (~> 1.0.4)
       rails_engine_decorators
       resque (~> 1.23.0)
-      sass-rails (>= 3.2.6)
+      sass-rails (>= 3.1.0)
       select2-rails (~> 3.3.0)
       stringex (~> 1.5.1)
       strong_parameters (~> 0.2.1)
@@ -74,6 +75,7 @@ GIT
 GIT
   remote: git://github.com/pahanix/delegates_attributes_to.git
   revision: 69704cb6268c521e0e48ccb8d8b78930d1e7da67
+  ref: 69704cb
   specs:
     delegates_attributes_to (0.0.1)
 
@@ -141,7 +143,7 @@ GEM
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
-    bootstrap-sass (3.1.1.1)
+    bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.10)
@@ -199,7 +201,7 @@ GEM
     exception_notification (3.0.1)
       actionmailer (>= 3.0.4)
     execjs (2.2.0)
-    factory_girl (2.6.4)
+    factory_girl (2.6.0)
       activesupport (>= 2.3.9)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -220,7 +222,7 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashery (2.1.1)
-    hashie (2.1.1)
+    hashie (2.1.2)
     highline (1.6.21)
     hike (1.2.3)
     htmlentities (4.3.2)
@@ -394,6 +396,8 @@ GEM
     ruby-imagespec (0.2.0)
     ruby-rc4 (0.1.5)
     rubyzip (0.9.9)
+    sanitize (2.1.0)
+      nokogiri (>= 1.4.4)
     sass (3.3.8)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -437,9 +441,9 @@ GEM
       polyglot (>= 0.3.1)
     ttfunk (1.1.1)
     tzinfo (0.3.39)
-    uglifier (2.2.1)
+    uglifier (1.2.3)
       execjs (>= 0.3.0)
-      multi_json (~> 1.0, >= 1.0.2)
+      multi_json (>= 1.0.2)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -456,38 +460,45 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_xlsx
-  avatars_for_rails (~> 1.1.0)
-  axlsx
-  axlsx_rails
-  bootstrap-sass (~> 3.1.0)
+  acts_as_xlsx (= 1.0.6)
+  avatars_for_rails (= 1.1.4)
+  axlsx (= 2.0.0)
+  axlsx_rails (= 0.1.5)
+  bootstrap-sass (= 2.3.2.2)
   capistrano (= 2.15.5)
-  capybara
-  coffee-rails
+  capybara (= 2.3.0)
+  coffee-rails (= 3.2.2)
   delayed_paperclip (= 2.7.0)
   delegates_attributes_to!
   exception_notification (= 3.0.1)
-  factory_girl (~> 2.6)
-  forgery
-  god
-  jquery-rails (>= 2.0.2)
+  factory_girl (= 2.6)
+  forgery (= 0.6.0)
+  god (= 0.13.4)
+  hashie (= 2.1.2)
+  jquery-rails (= 3.1.0)
+  jquery-ui-rails (= 4.1.2)
   json (= 1.7.4)
-  mysql2
+  mailboxer (= 0.10.3)
+  mysql2 (= 0.3.16)
   net-ssh (= 2.4.0)
   oai_repository!
   paperclip (= 3.5.1)
   paperclip-ffmpeg!
-  pdf-reader
-  pg
-  pry-debugger
+  pdf-reader (= 1.3.3)
+  pg (= 0.17.1)
+  pry-debugger (= 0.2.2)
   rails (= 3.2.14)
-  rest-client
+  redis (= 3.0.7)
+  resque (= 1.23.1)
+  rest-client (= 1.6.7)
+  rmagick (= 2.13.2)
   rspec-rails (= 2.9.0)
   rubyzip (= 0.9.9)
-  sass-rails (~> 3.2.6)
+  sanitize (= 2.1.0)
+  sass-rails (= 3.2.6)
   scorm!
   selenium-webdriver (= 2.30.0)
-  shortener
+  shortener (= 0.3.0)
   simple_captcha!
   sinatra (= 1.3.2)
   social_stream-base!
@@ -495,6 +506,7 @@ DEPENDENCIES
   social_stream-events!
   social_stream-linkser!
   social_stream-ostatus!
-  sqlite3
-  uglifier (>= 1.2.3)
-  unicorn
+  sqlite3 (= 1.3.9)
+  thinking-sphinx (= 2.0.14)
+  uglifier (= 1.2.3)
+  unicorn (= 4.8.3)

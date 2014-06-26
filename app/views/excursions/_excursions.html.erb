@@ -28,10 +28,10 @@
 	});
 	
 	function add_excursions_backstrech(){		
-  		if(backstrech_items!=undefined){
-  		<% excursions.each do |excursion| %>    	  
-            backstrech_items.excursions["#excursion-<%=excursion.id%>"] = "<%=excursion_raw_thumbail(excursion)%>";
-  		<% end %> 
+      if(typeof backstrech_items != "undefined"){
+        <% excursions.each do |excursion| %>    	  
+              backstrech_items.excursions["#excursion-<%=excursion.id%>"] = "<%=excursion_raw_thumbail(excursion)%>";
+        <% end %> 
   		}
 	}
 

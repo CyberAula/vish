@@ -111,14 +111,14 @@ def bringLO(lo)
   # params["authentication"] = 'Basic ' + Base64.encode64("name" + ':' + "password")
   # params["authenticity_token"] = '';
   params["app_name"] = "ViSH"
-  params["auth_token"] = "2UGvHgJn6GwYcGOGMbzATVnb8Gs8NGflZOtD9P2Tqte-4SLgzmRnvZVdaPHgxNR8qyWUxFVQ2IRXbfxD"
+  params["auth_token"] = Vish::Application.config.loep_token
 
   #LO
   params["lo"] = Hash.new
   if !lo.title.blank?
     params["lo"]["name"] = lo.title
   end
-  params["lo"]["url"] = Site.current.config[:documents_hostname] + "excursions/" + lo.id.to_s
+  params["lo"]["url"] = Vish::Application.config.full_domain + "/excursions/" + lo.id.to_s
   params["lo"]["repository"] = "ViSH"
   if !lo.description.blank?
     params["lo"]["description"] = lo.description

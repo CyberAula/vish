@@ -17,9 +17,11 @@ module Vish
     config.APP_CONFIG = YAML.load_file("config/application_config.yml")[ENV["RAILS_ENV"] || "development"]
     
     config.full_domain = "http://" + config.APP_CONFIG['domain']
+    config.full_code_domain = "http://" + config.APP_CONFIG['code_domain']
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    # config.autoload_paths += %W(#{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

@@ -16,7 +16,7 @@
       </ul>
     </div>
 
-    <% if controller.action_name == "create" %>
+    <% if controller.action_name == "create" or  controller.action_name == "new" %>
       <section class="upload">
         <%= f.label :file, t('document.info.file') %>
         <%= f.file_field :file %>

@@ -24,7 +24,7 @@ namespace :fix do
                 if _isWrongImagePath(imgPath)
                   # puts imgPath
                   #Fix it
-                  el["body"] = Site.current.config[:documents_hostname][0..-2] + imgPath
+                  el["body"] = Vish::Application.config.full_domain + imgPath
                   # puts "Fix image, new URL:"
                   # puts el["body"]
                   jsonChange = true
@@ -36,7 +36,7 @@ namespace :fix do
       if jsonChange
         puts "Excursion ID"
         puts excursion.id
-        excursion.update_column :json, eJson.to_json;
+        #excursion.update_column :json, eJson.to_json;
       end
       rescue Exception => e
         puts "Exception with excursion id:"
@@ -192,7 +192,7 @@ end
 
 # Excursion.all.map { |ex| 
 # if (!ex.thumbnail_url.nil? and ex.thumbnail_url.include?("/assets/logos/original/excursion-") and !ex.thumbnail_url.include?("vishub") and !ex.thumbnail_url.include?("http://") and !ex.thumbnail_url.include?("https://"))
-#   newThumbnailUrl = Site.current.config[:documents_hostname][0..-2] + ex.thumbnail_url;
+#   newThumbnailUrl = Vish::Application.config.full_domain + ex.thumbnail_url;
 # ex.update_column :thumbnail_url, newThumbnailUrl;
 # ejson = JSON(ex.json); 
 # ejson["avatar"]=newThumbnailUrl;
@@ -208,14 +208,10 @@ end
 
 # Excursion.all.map { |ex| 
 # if (!ex.thumbnail_url.nil? and ex.thumbnail_url.include?("/pictures/") and !ex.thumbnail_url.include?("vishub") and !ex.thumbnail_url.include?("http://") and !ex.thumbnail_url.include?("https://"))
-#   newThumbnailUrl = Site.current.config[:documents_hostname][0..-2] + ex.thumbnail_url;
+#   newThumbnailUrl = Vish::Application.config.full_domain + ex.thumbnail_url;
 # ex.update_column :thumbnail_url, newThumbnailUrl;
 # ejson = JSON(ex.json); 
 # ejson["avatar"]=newThumbnailUrl;
 # ex.update_column :json, ejson.to_json;
 # end
 # }
-
-# # Configurar correctamente el current Site para desarrollo
-# Site.current.config[:documents_hostname] = "http://localhost:3000/"
-# Site.current.save!

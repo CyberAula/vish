@@ -1,13 +1,13 @@
 <html>
 <head>
-	<% if Site.current.config[:code_hostname].nil? %>
-		<script src="<%=Site.current.config[:documents_hostname]%>scorm_api/jquery-1.11.1.min.js" type="text/javascript"></script>
-		<script src="<%=Site.current.config[:documents_hostname]%>scorm_api/Local_API_1484_11.js" type="text/javascript"></script>
-		<script src="<%=Site.current.config[:documents_hostname]%>scorm_api/SCORM_ContentAdaptor.js" type="text/javascript"></script>
+	<% if Vish::Application.config.APP_CONFIG["code_path"].nil? %>
+		<script src="<%=Vish::Application.config.full_domain%>/scorm_api/jquery-1.11.1.min.js" type="text/javascript"></script>
+		<script src="<%=Vish::Application.config.full_domain%>/scorm_api/Local_API_1484_11.js" type="text/javascript"></script>
+		<script src="<%=Vish::Application.config.full_domain%>/scorm_api/SCORM_ContentAdaptor.js" type="text/javascript"></script>
 	<% else %>
-		<script src="<%=Site.current.config[:code_hostname]%>libs/jquery-1.11.1.min.js" type="text/javascript"></script>
-		<script src="<%=Site.current.config[:code_hostname]%>libs/Local_API_1484_11.js" type="text/javascript"></script>
-		<script src="<%=Site.current.config[:code_hostname]%>libs/SCORM_ContentAdaptor.js" type="text/javascript"></script>
+		<script src="<%=Vish::Application.config.full_code_domain%>/libs/jquery-1.11.1.min.js" type="text/javascript"></script>
+		<script src="<%=Vish::Application.config.full_code_domain%>/libs/Local_API_1484_11.js" type="text/javascript"></script>
+		<script src="<%=Vish::Application.config.full_code_domain%>/libs/SCORM_ContentAdaptor.js" type="text/javascript"></script>
 	<% end %>
 </head>
 

@@ -35,7 +35,20 @@ class Excursion < ActiveRecord::Base
     has draft
     has activity_object.like_count, :as => :like_count
     has activity_object.visit_count, :as => :visit_count
+    has activity_object.download_count, :as => :download_count
   end
+
+
+
+  ####################
+  ## Model methods
+  ####################
+
+  def to_json(options=nil)
+    json
+  end
+
+
 
   ####################
   ## OAI-PMH Management
@@ -56,362 +69,42 @@ class Excursion < ActiveRecord::Base
     author.name
   end
 
-  ####################
-  ## LOM Management
-  ####################
-
-  def to_oai_lom    
+  def to_oai_lom
     identifier = Rails.application.routes.url_helpers.excursion_url(:id => self.id)
-    
-    lomxml = ::Builder::XmlMarkup.new(:indent => 2)
-    lomxml.tag!("lom", {'xmlns' => "http://ltsc.ieee.org/xsd/LOM",                                
-                                'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-                                'xsi:schemaLocation' => 
-                                  %{http://ltsc.ieee.org/xsd/LOM lomODS.xsd}            
-                                }) do
-      lomxml = Excursion.addLOMtoXML(lomxml, JSON(self.json), self, identifier, "ODS")
-
-    end
+    xmlMetadata = ::Builder::XmlMarkup.new(:indent => 2)
+    Excursion.generate_LOM_metadata(JSON(self.json),self,{LOMschema: "ODS", :target => xmlMetadata, :id => identifier})
+    xmlMetadata
   end
 
-  ####################
-  ## JSON Management
-  ####################
-
-  def to_json(options=nil)
-    json
-  end
-
-
-  ####################
-  ## IMS QTI 2.1 Management
-  ####################
-
-  def self.createQTI(filePath,fileName,qjson)
-    require 'zip/zip'
-    require 'zip/zipfilesystem'
-
-    t = File.open("#{filePath}#{fileName}.zip", 'w')
-
-    Zip::ZipOutputStream.open(t.path) do |zos|
-      case qjson["quiztype"]
-      when "truefalse"
-        for i in 0..((qjson["choices"].size)-1)
-          qti_tf = Excursion.generate_QTITF(qjson,i)
-          zos.put_next_entry(fileName +"_" + i.to_s + ".xml")
-          zos.print qti_tf.target!()
-        end
-        main_tf = Excursion.generate_mainQTIMC(qjson,fileName)
-        zos.put_next_entry(fileName + ".xml")
-        zos.print main_tf
-
-      when "multiplechoice"
-        qti_mc = Excursion.generate_QTIMC(qjson)
-        zos.put_next_entry(fileName + ".xml")
-        zos.print qti_mc.target!()
-      else
-      end
-
-      xml_truemanifest = Excursion.generate_qti_manifest(qjson,fileName)
-      zos.put_next_entry("imsmanifest.xml")
-      zos.print xml_truemanifest
-
-      t.close
-    end
-  end
-
-  
-
-  def self.generate_QTITF(qjson,index)
-    myxml = ::Builder::XmlMarkup.new(:indent => 2)
-    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    
-    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive" => "false") do
-      
-      myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "single", "baseType" => "identifier") do
-        
-        myxml.correctResponse() do
-          if qjson["choices"][index]["answer"] == true 
-            myxml.value("A0")
-          else
-            myxml.value("A1")
-          end
-        end
-        
-        myxml.mapping("lowerBound" => "-1", "upperBound"=>"1", "defaultValue"=>"0") do
-          if qjson["choices"][index]["answer"] == true
-            myxml.mapEntry("mapKey"=>"A0", "mappedValue"=> 1)
-            myxml.mapEntry("mapKey"=> "A1", "mappedValue"=> -1)
-          else
-            myxml.mapEntry("mapKey"=>"A0", "mappedValue"=> -1)
-            myxml.mapEntry("mapKey"=> "A1", "mappedValue"=> 1)
-          end             
-        end
-
-      end
-
-      myxml.outcomeDeclaration("identifier"=>"SCORE", "cardinality"=>"single", "baseType"=>"float") do
-      end
-
-      myxml.itemBody() do
-        myxml.choiceInteraction("responseIdentifier"=>"RESPONSE", "shuffle" => "false", "maxChoices" => "1", "minChoices"=>"0") do
-          myxml.prompt(qjson["question"]["value"]  + ": " + qjson["choices"][index]["value"])
-          myxml.simpleChoice("True","identifier"=>"A0")
-          myxml.simpleChoice("False","identifier"=>"A1") 
-        end
-      end
-
-      myxml.responseProcessing()
-    end
-
-    return myxml;
-  end
-
-  def self.generate_QTIMC(qjson)
-    myxml = ::Builder::XmlMarkup.new(:indent => 2)
-    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-      
-    nChoices = qjson["choices"].size
-
-    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive"=>"false") do
-
-      identifiers= [] 
-      qjson["choices"].each_with_index do |choice,i|
-        identifiers.push("A" + i.to_s())
-      end
-
-      if qjson["extras"]["multipleAnswer"] == false 
-        card = "single"
-        maxC = "1"
-      else
-        card = "multiple"
-        maxC = "0"
-      end 
-
-      myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => card, "baseType" => "identifier") do
-      
-        vcont = 0
-        myxml.correctResponse() do
-          for i in 0..((nChoices)-1)
-            if qjson["choices"][i]["answer"] == true 
-              myxml.value(identifiers[i])
-              vcont = vcont + 1
-            end
-          end
-        end  
-        
-        myxml.mapping("lowerBound" => "0", "upperBound"=>"1", "defaultValue"=>"0") do
-          for i in 0..((nChoices)-1)
-            if qjson["choices"][i]["answer"] == true
-              mappedV = 1/vcont.to_f
-            else
-              mappedV = 0.to_f
-              #mappedV = -1/(qjson["choices"].size)
-            end
-            myxml.mapEntry("mapKey"=> identifiers[i], "mappedValue"=> mappedV)
-          end
-        end 
-      end
-
-      myxml.outcomeDeclaration("identifier"=>"SCORE", "cardinality"=>"single", "baseType"=>"float") do
-      end
-    
-      myxml.itemBody() do
-        myxml.choiceInteraction("responseIdentifier"=>"RESPONSE", "shuffle"=>"false",  "maxChoices" => maxC, "minChoices"=>"0") do
-          myxml.prompt(qjson["question"]["value"])
-          for i in 0..((nChoices)-1)
-              myxml.simpleChoice(qjson["choices"][i]["value"],"identifier"=> identifiers[i])
-          end
-        end
-      end
-          
-      myxml.responseProcessing()
-    end
-
-    return myxml;
-  end
-
-  def self.generate_MoodleQUIZXML(qjson)
-    myxml = ::Builder::XmlMarkup.new(:indent => 2)
-    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-
-    myxml.quiz do
-      myxml.question("type" => "category") do
-        myxml.category do
-          myxml.text do
-             myxml.text!("Moodle QUIZ XML export")
-          end
-        end
-      end
-
-      myxml.question("type" => "multichoice") do
-        myxml.name do
-          myxml.text do
-            myxml.text!("La pregunta")
-          end
-        end
-      end
-    end
-  end
-
-  def self.generate_qti_manifest(qjson,fileName)
-    identifier = "TmpIMSQTI_" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
-
-    myxml = ::Builder::XmlMarkup.new(:indent => 2)
-    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    
-    myxml.manifest("identifier"=>"VISH_QUIZ_" + identifier, "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 http://www.imsglobal.org/xsd/imscp_v1p2.xsd http://www.imsglobal.org/xsd/imsmd_v1p2 http://www.imsglobal.org/xsd/imsmd_v1p2p2.xsd http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/imsqti_v2p1.xsd", "xmlns" => "http://www.imsglobal.org/xsd/imscp_v1p2","xmlns:imsqti" => "http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:imsmd" => "http://www.imsglobal.org/xsd/imsmd_v1p2", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance") do
-      
-      myxml.metadata do
-        myxml.schema("IMS Content")
-        myxml.schemaversion("1.2")
-        myxml.tag!("imsmd:lom") do
-          myxml.tag!("imsmd:general") do
-            myxml.tag!("imsmd:title") do
-              myxml.tag!("imsmd:langstring", {"xml:lang"=>"en"}) do
-                myxml.text!("Content package including QTI v2.1. items")
-              end
-            end
-          end
-          myxml.tag!("imsmd:technical") do
-            myxml.tag!("imsmd:format") do
-              myxml.text!("text/x-imsqti-item-xml")
-            end
-          end
-          myxml.tag!("imsmd:rights") do
-            myxml.tag!("imsmd:description") do
-              myxml.tag!("imsmd:langstring", {"xml:lang"=>"en"}) do
-                myxml.text!("Copyright (C) Virtual Science Hub 2014")
-              end
-            end
-          end
-        end
-      end
-      
-      myxml.organizations do
-      end
-
-      myxml.resources do
-        Excursion.generate_qti_resources(qjson,fileName,myxml)
-      end
-
-    end
-  end
-
-  def self.generate_mainQTIMC(qjson,fileName)
-    resource_identifier = "resource-item-quiz-" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
-
-    myxml = ::Builder::XmlMarkup.new(:indent => 2)
-    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-
-    myxml.assessmentTest("xmlns" => "http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation" => "http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/imsqti_v2p1.xsd", "identifier" => "TrueFalseTest", "title" => "True False Tests", "toolName"=>"VISH Editor", "toolVersion" => "2.3") do
-      myxml.outcomeDeclaration("identifier" => "SCORE", "cardinality" => "single", "baseType" => "integer") do
-      end
-        if qjson["quiztype"] == "truefalse"
-          for i in 0..((qjson["choices"].size)-1)
-            myxml.assessmentItemRef("identifier" => resource_identifier + i.to_s, "href" => fileName + "_" + i.to_s + ".xml") do
-            end
-          end        
-        end     
-      
-    end
-end
-
-
-
-
-
-
-  def self.generate_qti_resources(qjson,fileName,myxml)
-    resource_identifier = "resource-item-quiz-" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
-
-    if qjson["quiztype"] == "truefalse"
-      myxml.resource("identifier" => resource_identifier , "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do
-          myxml.metadata do
-            myxml.tag!("imsmd:lom") do
-              myxml.tag!("imsmd:general") do
-                myxml.tag!("imsmd:title") do
-                  myxml.tag!("imsmd:langstring",{"xml:lang"=>"en"}) do
-                    myxml.text!("TrueFalse")
-                  end
-                end
-              end
-              myxml.tag!("imsmd:technical") do
-                myxml.tag!("imsmd:format") do
-                  myxml.text!("text/x-imsqti-item-xml")
-                end
-              end
-            end
-            myxml.tag!("imsqti:qtiMetadata") do
-              myxml.tag!("imsqti:interactionType") do
-                myxml.text!("choiceInteraction")
-              end
-            end
-          end
-          myxml.file("href" => fileName + ".xml")
-        end
-      for i in 0..((qjson["choices"].size)-1)
-        myxml.resource("identifier" => resource_identifier + i.to_s, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + "_" + i.to_s + ".xml") do
-          myxml.metadata do
-            myxml.tag!("imsmd:lom") do
-              myxml.tag!("imsmd:general") do
-                myxml.tag!("imsmd:title") do
-                  myxml.tag!("imsmd:langstring",{"xml:lang"=>"en"}) do
-                    myxml.text!("TrueFalse")
-                  end
-                end
-              end
-              myxml.tag!("imsmd:technical") do
-                myxml.tag!("imsmd:format") do
-                  myxml.text!("text/x-imsqti-item-xml")
-                end
-              end
-            end
-            myxml.tag!("imsqti:qtiMetadata") do
-              myxml.tag!("imsqti:interactionType") do
-                myxml.text!("choiceInteraction")
-              end
-            end
-          end
-          myxml.file("href" => fileName + "_" + i.to_s + ".xml")
-        end
-
-
-
-
-      end
-    elsif qjson["quiztype"] == "multiplechoice"
-      myxml.resource("identifier" => resource_identifier, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do
-        myxml.metadata do
-          myxml.tag!("imsmd:lom") do
-            myxml.tag!("imsmd:general") do
-              myxml.tag!("imsmd:title") do
-                myxml.tag!("imsmd:langstring",{"xml:lang"=>"en"}) do
-                  myxml.text!("MultipleChoice")
-                end
-              end
-            end
-            myxml.tag!("imsmd:technical") do
-              myxml.tag!("imsmd:format") do
-              myxml.text!("text/x-imsqti-item-xml")
-              end
-            end
-          end
-          myxml.tag!("imsqti:qtiMetadata") do
-            myxml.tag!("imsqti:interactionType") do
-              myxml.text!("choiceInteraction")
-            end
-          end
-        end
-        myxml.file("href" => fileName + ".xml")
-      end
-    end
-  end
 
 
   ####################
   ## SCORM Management
   ####################
+
+  def to_scorm(controller)
+    if self.scorm_needs_generate
+      filePath = "#{Rails.root}/public/scorm/excursions/"
+      fileName = self.id
+      json = JSON(self.json)
+      Excursion.createSCORM(filePath,fileName,json,self,controller)
+      self.update_column(:scorm_timestamp, Time.now)
+    end
+  end
+
+  def scorm_needs_generate
+    if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp or !File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
+      return true
+    else
+      return false
+    end
+  end
+
+  def remove_scorm
+    if File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
+      File.delete("#{Rails.root}/public/scorm/excursions/#{self.id}.zip") 
+    end
+  end
 
   def self.createSCORM(filePath,fileName,json,excursion,controller)
     require 'zip/zip'
@@ -476,13 +169,20 @@ end
 
   # Metadata based on LOM (Learning Object Metadata) standard
   # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
-  def self.generate_scorm_manifest(ejson,excursion)
+  def self.generate_scorm_manifest(ejson,excursion,options=nil)
     if excursion and !excursion.id.nil?
       identifier = excursion.id.to_s
+      lomIdentifier = Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)
     elsif (ejson["vishMetadata"] and ejson["vishMetadata"]["id"])
       identifier = ejson["vishMetadata"]["id"].to_s
+      lomIdentifier = "urn:ViSH:" + identifier
     else
-      identifier = "TmpSCORM_" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
+      count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+      Site.current.config["tmpCounter"] = count + 1
+      Site.current.save!
+      
+      identifier = "TmpSCORM_" + count.to_s
+      lomIdentifier = "urn:ViSH:" + identifier
     end
 
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
@@ -499,28 +199,16 @@ end
       myxml.metadata() do
         myxml.schema("ADL SCORM")
         myxml.schemaversion("CAM 1.3")
-        myxml.lom do
-          myxml = addLOMtoXML(myxml, ejson, excursion, "VISH_VIRTUAL_EXCURSION_"+identifier, "SCORM")
-        end
+        #Add LOM metadata
+        Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier, :LOMschema => (options and options[:LOMschema]) ? options[:LOMschema] : "custom"})
       end
 
-      myxml.organizations('default'=>"ViSH",'structure'=>"hierarchical") do
-        myxml.organization('identifier'=>"ViSH") do
-          myxml.title("Virtual Science Hub")
-          myxml.metadata() do
-            myxml.schema("ADL SCORM")
-            myxml.schemaversion("CAM 1.3")
-            myxml.lom do
-              myxml.general do
-                myxml.identifier("ViSH")
-                myxml.title do
-                  myxml.langstring("Virtual Science Hub")
-                end
-                myxml.description do
-                  myxml.langstring("Virtual Science Hub. http://vishub.org.")
-                end
-              end
-            end
+      myxml.organizations('default'=>"defaultOrganization",'structure'=>"hierarchical") do
+        myxml.organization('identifier'=>"defaultOrganization") do
+          if ejson["title"]
+            myxml.title(ejson["title"])
+          else
+            myxml.title("Untitled")
           end
           myxml.item('identifier'=>"VIRTUAL_EXCURSION_" + identifier,'identifierref'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE") do
             if ejson["title"]
@@ -543,43 +231,158 @@ end
     return myxml
   end
 
-  #prepare_for is a param to indicate who is the target. It can be "SCORM" or "ODS" in this version
-  def self.addLOMtoXML(myxml, ejson, excursion, identifier, prepare_for)    
-      language = nil
-      if ejson["language"]
-        if ejson["language"]!="independent"          
-          language = ejson["language"]
-        end          
+
+
+  ####################
+  ## LOM Metadata
+  ####################
+
+  def self.generate_LOM_metadata(ejson, excursion, options=nil)
+    _LOMschema = "custom"
+
+    supportedLOMSchemas = ["custom","loose","ODS","ViSH"]
+    if options and options[:LOMschema] and supportedLOMSchemas.include? options[:LOMschema]
+      _LOMschema = options[:LOMschema]
+    end
+
+    if options and options[:target]
+      myxml = ::Builder::XmlMarkup.new(:indent => 2, :target => options[:target])
+    else
+      myxml = ::Builder::XmlMarkup.new(:indent => 2)
+      myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+    end
+   
+    #Select LOM Header options
+    lomHeaderOptions = {}
+
+    case _LOMschema
+    when "loose","custom"
+      lomHeaderOptions =  { 'xmlns' => "http://ltsc.ieee.org/xsd/LOM",
+                            'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+                            'xsi:schemaLocation' => %{http://ltsc.ieee.org/xsd/LOM lomODS.xsd}
+                          }
+    when "ODS"
+      lomHeaderOptions =  { 'xmlns' => "http://ltsc.ieee.org/xsd/LOM",
+                            'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+                            'xsi:schemaLocation' => %{http://ltsc.ieee.org/xsd/LOM lomODS.xsd}
+                          }
+    else
+      #Extension not supported/recognized
+      lomHeaderOptions = {}
+    end
+
+
+    myxml.tag!("lom",lomHeaderOptions) do
+
+      #Calculate some recurrent vars
+
+      #Identifier
+      loIdIsURI = false
+      loIdIsURN = false
+      loId = nil
+
+      if options and options[:id]
+          loId = options[:id].to_s
+
+          begin
+            loUri = URI.parse(loId)
+            if %w( http https ).include?(loUri.scheme)
+              loIdIsURI = true
+            elsif %w( urn ).include?(loUri.scheme)
+              loIdIsURN = true
+            end
+          rescue
+          end
+
+          if !loIdIsURI and !loIdIsURN
+            #Build URN
+            loId = "urn:ViSH:"+loId
+          end
       end
 
-      myxml.general do
-        myxml.identifier do
-          myxml.catalog("VISH")
-          myxml.entry(identifier)
+      #Location
+      loLocation = nil
+      if excursion
+        if excursion.draft == false
+          loLocation = Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)
         end
-        myxml.title do
-          if ejson["title"]
-            myxml.string(ejson["title"], :language=> language)
-          else
-            myxml.string("Untitled", :language=> language)
+      elsif ejson["vishMetadata"] and ejson["vishMetadata"]["id"] and (ejson["vishMetadata"]["draft"] == false or ejson["vishMetadata"]["draft"] == "false")
+        begin
+          excursionInstance = Excursion.find(ejson["vishMetadata"]["id"])
+          loLocation = Rails.application.routes.url_helpers.excursion_url(:id => excursionInstance.id)
+        rescue
+        end
+      end
+
+      #Language (LO language and metadata language)
+      loLanguage = getLOMLoLanguage(ejson["language"], _LOMschema)
+      if loLanguage.nil?
+        loLanguage = "en"
+      end
+      metadataLanguage = "en"
+
+      #Author name
+      authorName = nil
+      if ejson["author"] and ejson["author"]["name"]
+        authorName = ejson["author"]["name"]
+      elsif (!excursion.nil? and !excursion.author.nil? and !excursion.author.name.nil?)
+        authorName = excursion.author.name
+      end
+
+      # loDate 
+      # According to ISO 8601 (e.g. 2014-06-23)
+      if excursion
+        loDate = excursion.updated_at
+      else
+        loDate = Time.now
+      end
+      loDate = (loDate).strftime("%Y-%m-%d").to_s
+
+      #VE version
+      atVersion = ""
+      if ejson["VEVersion"]
+        atVersion = "v." + ejson["VEVersion"] + " "
+      end
+      atVersion = atVersion + "(http://github.com/ging/vish_editor)"
+
+      myxml.general do
+        
+        if !loId.nil?
+          myxml.identifier do
+            if loIdIsURI
+              myxml.catalog("URI")
+            else
+              myxml.catalog("URN")
+            end
+            myxml.entry(loId)
           end
         end
 
-        myxml.language(language)
+        myxml.title do
+          if ejson["title"]
+            myxml.string(ejson["title"], :language=> loLanguage)
+          else
+            myxml.string("Untitled", :language=> metadataLanguage)
+          end
+        end
+
+        if loLanguage
+          myxml.language(loLanguage)
+        end
         
         myxml.description do
           if ejson["description"]
-            myxml.string(ejson["description"], :language=> language)
+            myxml.string(ejson["description"], :language=> loLanguage)
           elsif ejson["title"]
-            myxml.string(ejson["title"] + ". A Virtual Excursion provided by http://vishub.org.", :language=> language)
+            myxml.string(ejson["title"] + ". A Virtual Excursion provided by " + Vish::Application.config.full_domain + ".", :language=> metadataLanguage)
           else
-            myxml.string("Virtual Excursion provided by http://vishub.org.", :language=> language)
+            myxml.string("Virtual Excursion provided by " + Vish::Application.config.full_domain + ".", :language=> metadataLanguage)
           end
         end
         if ejson["tags"] && ejson["tags"].kind_of?(Array)
           ejson["tags"].each do |tag|
             myxml.keyword do
-              myxml.string(tag.to_s, :language=> language)
+              myxml.string(tag.to_s, :language=> loLanguage)
             end
           end
         end
@@ -588,12 +391,12 @@ end
           if ejson["subject"].kind_of?(Array)
             ejson["subject"].each do |subject|
               myxml.keyword do
-                myxml.string(subject, :language=> language)
+                myxml.string(subject, :language=> loLanguage)
               end 
             end
           elsif ejson["subject"].kind_of?(String)
             myxml.keyword do
-                myxml.string(ejson["subject"], :language=> language)
+                myxml.string(ejson["subject"], :language=> loLanguage)
             end
           end
         end
@@ -604,52 +407,91 @@ end
         end
         myxml.aggregationLevel do
           myxml.source("LOMv1.0")
-          myxml.value("3")
+          myxml.value("2")
         end
       end
 
       myxml.lifeCycle do
         myxml.version do
-          myxml.string("1.0", :language=> "en")
+          myxml.string("v"+loDate.gsub("-","."), :language=>metadataLanguage)
         end
         myxml.status do
           myxml.source("LOMv1.0")
-          myxml.value("final")
+          if ejson["vishMetadata"] and ejson["vishMetadata"]["draft"]==="true"
+            myxml.value("draft")
+          else
+            myxml.value("final")
+          end
         end
 
-        if (ejson["author"] and ejson["author"]["name"]) or (!excursion.nil? and !excursion.author.nil? and !excursion.author.name.nil?)
+        if !authorName.nil?
           myxml.contribute do
             myxml.role do
               myxml.source("LOMv1.0")
               myxml.value("author")
             end
-            
-            if ejson["author"] and ejson["author"]["name"]
-              the_entity = "BEGIN:VCARD\n\r\n\r VERSION:3.0 \n\r\n\r N:"+ejson["author"]["name"]+"\n\r\n\r FN:"+ejson["author"]["name"]+"\n\r\n\r END:VCARD"
-            else
-              the_entity = "BEGIN:VCARD\n\r\n\r VERSION:3.0 \n\r N:"+excursion.author.name+"\n\r FN:"+excursion.author.name+"\n\r END:VCARD"
-            end
-            myxml.entity(the_entity)
+            authorEntity = generateVCard(authorName)
+            myxml.entity(authorEntity)
             
             myxml.date do
-              if excursion and !excursion.updated_at.nil?
-                myxml.dateTime(excursion.updated_at.strftime("%Y-%m-%d"))
-              else
-                myxml.dateTime(Time.now.strftime("%Y-%m-%d"))
+              myxml.dateTime(loDate)
+              unless _LOMschema == "ODS"
+                myxml.description do
+                  myxml.string("This date represents the date the author finished the indicated version of the Learning Object.", :language=> metadataLanguage)
+                end
               end
             end
           end
+        end
+        myxml.contribute do
+          myxml.role do
+            myxml.source("LOMv1.0")
+            myxml.value("technical implementer")
+          end
+          authoringToolName = "Authoring Tool ViSH Editor " + atVersion
+          authoringToolEntity = generateVCard(authoringToolName)
+          myxml.entity(authoringToolEntity)
+        end
+      end
+
+      myxml.metaMetadata do
+        if !loId.nil? and loIdIsURI and excursion
+          myxml.identifier do
+            myxml.catalog("URI")
+            myxml.entry(Rails.application.routes.url_helpers.excursion_url(:id => excursion.id) + "/metadata.xml")
+          end
+
+          if !authorName.nil?
+            myxml.contribute do
+              myxml.role do
+                myxml.source("LOMv1.0")
+                myxml.value("creator")
+              end
+
+              creatorEntity = generateVCard(authorName)
+              myxml.entity(creatorEntity)
+              
+              myxml.date do
+                myxml.dateTime(loDate)
+                unless _LOMschema == "ODS"
+                  myxml.description do
+                    myxml.string("This date represents the date the author finished authoring the metadata of the indicated version of the Learning Object.", :language=> metadataLanguage)
+                  end
+                end
+              end
+
+            end
+          end
+
+          myxml.metadataSchema("LOMv1.0")
+          myxml.language(metadataLanguage)
         end
       end
 
       myxml.technical do
         myxml.format("text/html")
-        if excursion and excursion.draft == false
-          myxml.location("http://vishub.org/excursions/"+excursion.id.to_s)
-        elsif ejson["vishMetadata"] and ejson["vishMetadata"]["id"] and (ejson["vishMetadata"]["draft"] == false or ejson["vishMetadata"]["draft"] == "false")
-          myxml.location("http://vishub.org/excursions/"+ejson["vishMetadata"]["id"].to_s)
-        else
-          myxml.location("http://vishub.org/")
+        if !loLocation.nil?
+          myxml.location(loLocation)
         end
         myxml.requirement do
           myxml.orComposite do
@@ -664,7 +506,10 @@ end
           end
         end
         myxml.otherPlatformRequirements do
-          myxml.string("HTML5-compliant web browser", :language=> "en")
+          myxml.string("HTML5-compliant web browser", :language=> metadataLanguage)
+          if ejson["VEVersion"]
+            myxml.string("ViSH Viewer " + atVersion, :language=> metadataLanguage)
+          end
         end
       end
 
@@ -673,10 +518,27 @@ end
           myxml.source("LOMv1.0")
           myxml.value("mixed")
         end
-        myxml.learningResourceType do
-          myxml.source("LOMv1.0")
-          myxml.value("presentation")
+
+        if !getLearningResourceType("lecture", _LOMschema).nil?
+          myxml.learningResourceType do
+            myxml.source("LOMv1.0")
+            myxml.value("lecture")
+          end
         end
+        if !getLearningResourceType("presentation", _LOMschema).nil?
+          myxml.learningResourceType do
+            myxml.source("LOMv1.0")
+            myxml.value("presentation")
+          end
+        end
+        if !getLearningResourceType("slide", _LOMschema).nil?
+          myxml.learningResourceType do
+            myxml.source("LOMv1.0")
+            myxml.value("slide")
+          end
+        end
+        #TODO: Explore JSON and include more elements.
+
         myxml.interactivityLevel do
           myxml.source("LOMv1.0")
           myxml.value("very high")
@@ -685,15 +547,16 @@ end
           myxml.source("LOMv1.0")
           myxml.value("learner")
         end
-        if ejson["context"]
+        _LOMcontext = readableContext(ejson["context"], _LOMschema)
+        if _LOMcontext
           myxml.context do
             myxml.source("LOMv1.0")
-            myxml.value(readableContext(ejson["context"], prepare_for))
+            myxml.value(_LOMcontext)
           end
         end
         if ejson["age_range"]
           myxml.typicalAgeRange do
-            myxml.string(ejson["age_range"], :language=> "en")
+            myxml.string(ejson["age_range"], :language=> metadataLanguage)
           end
         end
         if ejson["difficulty"]
@@ -717,31 +580,80 @@ end
         end
         if ejson["educational_objectives"]
           myxml.description do
-              myxml.string(ejson["educational_objectives"], :language=> language)
+              myxml.string(ejson["educational_objectives"], :language=> loLanguage)
           end
         end
-        if ejson["language"]
-          myxml.language(language)                 
+        if loLanguage
+          myxml.language(loLanguage)                 
         end
-      end    
+      end
+
+      myxml.rights do
+        myxml.cost do
+          myxml.source("LOMv1.0")
+          myxml.value("no")
+        end
+
+        myxml.copyrightAndOtherRestrictions do
+          myxml.source("LOMv1.0")
+          myxml.value("yes")
+        end
+
+        myxml.description do
+          myxml.string("For additional information or questions regarding copyright, distribution and reproduction, visit " + Vish::Application.config.full_domain + "/legal_notice", :language=> metadataLanguage)
+        end
+
+      end
+      
+    end
 
     myxml
   end
 
-  def self.readableContext(context, prepare_for)
-    #if prepare_for is "ODS": according to ODS, context has to be one of ["primary education", "secondary education", "informal context"]
-    if prepare_for == "ODS"
+  def self.getLOMLoLanguage(language, _LOMschema)
+    #List of language codes according to ISO-639:1988
+    # lanCodes = ["aa","ab","af","am","ar","as","ay","az","ba","be","bg","bh","bi","bn","bo","br","ca","co","cs","cy","da","de","dz","el","en","eo","es","et","eu","fa","fi","fj","fo","fr","fy","ga","gd","gl","gn","gu","gv","ha","he","hi","hr","hu","hy","ia","id","ie","ik","is","it","iu","ja","jw","ka","kk","kl","km","kn","ko","ks","ku","kw","ky","la","lb","ln","lo","lt","lv","mg","mi","mk","ml","mn","mo","mr","ms","mt","my","na","ne","nl","no","oc","om","or","pa","pl","ps","pt","qu","rm","rn","ro","ru","rw","sa","sd","se","sg","sh","si","sk","sl","sm","sn","so","sq","sr","ss","st","su","sv","sw","ta","te","tg","th","ti","tk","tl","tn","to","tr","ts","tt","tw","ug","uk","ur","uz","vi","vo","wo","xh","yi","yo","za","zh","zu"]
+    lanCodesMin = ["de","en","es","fr","it","pt","hu"]
+
+    case _LOMschema
+    when "ODS"
+      #ODS requires language, and admits blank language.
+      if language.nil? or language == "independent" or !lanCodesMin.include?(language)
+        return "none"
+      end
+    else
+      if language.nil?
+        return nil
+      end
+      if language == "independent"
+        return "none"
+      end
+      if !lanCodesMin.include?(language)
+        return nil
+      end
+    end
+
+    #It is included in the lanCodes array
+    return language
+  end
+
+  def self.readableContext(context, _LOMschema)
+    case _LOMschema
+    when "ODS" 
+      #ODS LOM Extension
+      #According to ODS, context has to be one of ["primary education", "secondary education", "informal context"]
       case context
       when "preschool", "pEducation", "primary education", "school"
         return "primary education"
-      when "unspecified", "sEducation", "higher education", "university"
+      when "sEducation", "higher education", "university"
         return "secondary education"
       when "training", "other"
         return "informal context"
       else
-        return "secondary education"
+        return nil
       end
-    else
+    when "ViSH"
+      #ViSH LOM extension
       case context
       when "unspecified"
         return "Unspecified"
@@ -760,31 +672,54 @@ end
       else
         return context
       end
-    end
-  end
-
-  def to_scorm(controller)
-    if self.scorm_needs_generate
-      filePath = "#{Rails.root}/public/scorm/excursions/"
-      fileName = self.id
-      json = JSON(self.json)
-      Excursion.createSCORM(filePath,fileName,json,self,controller)
-      self.update_column(:scorm_timestamp, Time.now)
-    end
-  end
-
-  def scorm_needs_generate
-    if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp or !File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
-      return true
     else
-      return false
+      #Strict LOM mode. Extensions are not allowed
+      case context
+      when "unspecified"
+        return nil
+      when "preschool"
+      when "pEducation"
+      when "sEducation"
+        return "school"
+      when "higher education"
+        return "higher education"
+      when "training"
+        return "training"
+      else
+        return "other"
+      end
     end
   end
 
-  def remove_scorm
-    if File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
-      File.delete("#{Rails.root}/public/scorm/excursions/#{self.id}.zip") 
+  def self.getLearningResourceType(lreType, _LOMschema)
+    case _LOMschema
+    when "ODS"
+      #ODS LOM Extension
+      #According to ODS, the Learning REsources type has to be one of this:
+      allowedLREtypes = ["application","assessment","blog","broadcast","case study","courses","demonstration","drill and practice","educational game","educational scenario","learning scenario","pedagogical scenario","enquiry-oriented activity","exercise","experiment","glossaries","guide","learning pathways","lecture","lesson plan","open activity","other","presentation","project","reference","role play","simulation","social media","textbook","tool","website","wiki","audio","data","image","text","video"]
+    else
+      allowedLREtypes = ["exercise","simulation","questionnaire","diagram","figure","graph","index","slide","table","narrative text","exam","experiment","problem statement","self assessment","lecture"]
     end
+
+    if allowedLREtypes.include? lreType
+      return lreType
+    else
+      return nil
+    end
+  end
+
+  def self.generateVCard(fullName)
+    return "BEGIN:VCARD&#xD;VERSION:3.0&#xD;N:"+fullName+"&#xD;FN:"+fullName+"&#xD;END:VCARD"
+  end
+
+
+  ####################
+  ## IMS QTI 2.1 Management (Handled by the IMSQTI module imsqti.rb)
+  ####################
+
+  def self.createQTI(filePath,fileName,qjson)
+    require 'imsqti'
+    IMSQTI.createQTI(filePath,fileName,qjson)
   end
 
 
@@ -898,6 +833,8 @@ end
     end
   end
 
+
+
   ####################
   ## Evaluations
   #################### 
@@ -943,6 +880,7 @@ end
   end
 
 
+
   ####################
   ## Other Methods
   #################### 
@@ -978,7 +916,7 @@ end
         :title => title,
         :author => author.name,
         :description => description,
-        :image => thumbnail_url ? thumbnail_url : Site.current.config[:documents_hostname] + "assets/logos/original/excursion-00.png",
+        :image => thumbnail_url ? thumbnail_url : Vish::Application.config.full_domain + "/assets/logos/original/excursion-00.png",
         :views => visit_count,
         :favourites => like_count,
         :number_of_slides => slide_count
@@ -987,7 +925,7 @@ end
 
   #we don't know what happens or how it happens but sometimes in social_stream
   # the activity inside the activity_object is nil, so we fix it here
-  def fix_post_activity_nil      
+  def fix_post_activity_nil
     if self.post_activity == nil
       a = Activity.new :verb         => "post",
                        :author_id    => self.activity_object.author_id,
@@ -1005,6 +943,9 @@ end
   def is_mostvaluable?
     is_mve
   end
+
+
+
 
   private
 
@@ -1033,7 +974,7 @@ end
     self.update_column :json, parsed_json.to_json
     self.update_column :excursion_type, parsed_json["type"]
     self.update_column :slide_count, parsed_json["slides"].size
-    self.update_column :thumbnail_url, parsed_json["avatar"] ? parsed_json["avatar"] : Site.current.config[:documents_hostname] + "assets/logos/original/excursion-00.png"
+    self.update_column :thumbnail_url, parsed_json["avatar"] ? parsed_json["avatar"] : Vish::Application.config.full_domain + "/assets/logos/original/excursion-00.png"
   end
 
   def fix_relation_ids_drafts

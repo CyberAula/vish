@@ -56,7 +56,7 @@
 
 	//URL to access to the Recommendation API
 	options["recommendationsAPI"] = {
-		rootURL: "<%=Site.current.config[:documents_hostname]%>" + "excursions/last_slide.json"
+		rootURL: "<%=Vish::Application.config.full_domain%>" + "/excursions/last_slide.json"
 	};
 	
 	//Extra options from parent

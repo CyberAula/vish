@@ -18,20 +18,23 @@
 class ExcursionsController < ApplicationController
 
   require 'fileutils'
+
   # Quick hack for bypassing social stream's auth
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :cross_search]
 
-  # Enable CORS for last_slide method (http://www.tsheffler.com/blog/?p=428), and iframe_api and cross_search
+  # Enable CORS (http://www.tsheffler.com/blog/?p=428) for last_slide, and iframe_api and cross_search methods
   before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api, :cross_search]
   after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api, :cross_search]
   skip_after_filter :discard_flash, :only => [:clone]
 
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :cross_search]
   include SocialStream::Controllers::Objects
-  #include HomeHelper
 
+  #############
+  # CORS
+  #############
   def cors_set_access_control_headers
     headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
@@ -51,24 +54,10 @@ class ExcursionsController < ApplicationController
     end
   end
 
-  def manifest
-    headers['Last-Modified'] = Time.now.httpdate
-    @excursion = Excursion.find_by_id(params[:id])
-    render 'cache.manifest', :layout => false, :content_type => 'text/cache-manifest'
-  end
 
-  def clone
-    original = Excursion.find_by_id(params[:id])
-    if original.blank?
-      flash[:error] = t('excursion.clone.not_found')
-      redirect_to excursions_path if original.blank? # Bad parameter
-    else
-      # Do clone
-      excursion = original.clone_for current_subject.actor
-      flash[:success] = t('excursion.clone.ok')
-      redirect_to excursion_path(excursion)
-    end
-  end
+  #############
+  # REST methods
+  #############
 
   def index
     index! do |format|
@@ -77,6 +66,44 @@ class ExcursionsController < ApplicationController
           render "index"
         else
           render :partial => "excursions/excursions", :locals => {:scope => :net, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity"}, :layout => false
+        end
+      }
+    end
+  end
+
+  def show 
+    show! do |format|
+      format.html {
+        @evaluations = @excursion.averageEvaluation
+        @numberOfEvaluations = @excursion.numberOfEvaluations
+        @learningEvaluations = @excursion.averageLearningEvaluation
+        @numberOfLearningEvaluations = @excursion.numberOfLearningEvaluations
+        if @excursion.draft and (can? :edit, @excursion)
+          redirect_to edit_excursion_path(@excursion)
+        else
+          render
+        end
+      }
+      format.full {
+        @orgUrl = params[:orgUrl]
+        render :layout => 'iframe'
+      }
+      format.mobile { render :layout => 'iframe' }
+      format.json { render :json => resource }
+      format.gateway { 
+        @gateway = params[:gateway]
+        render :layout => 'iframe.full'
+      }
+      format.scorm {
+        @excursion.to_scorm(self)
+        send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
+      }
+      format.pdf{
+        @excursion.to_pdf(self)
+        if File.exist?("#{Rails.root}/public/pdf/excursions/#{@excursion.id}/#{@excursion.id}.pdf")
+          send_file "#{Rails.root}/public/pdf/excursions/#{@excursion.id}/#{@excursion.id}.pdf", :type => 'application/pdf', :disposition => 'attachment', :filename => "#{@excursion.id}.pdf"
+        else
+          render :nothing => true, :status => 500
         end
       }
     end
@@ -133,9 +160,14 @@ class ExcursionsController < ApplicationController
 
   def destroy
     destroy! do |format|
-      format.all { redirect_to excursions_path }
+      format.all { redirect_to user_path(current_subject) }
     end
   end
+
+
+  ############################
+  # Custom actions over Excursions and services provided by excursions controller
+  ############################
 
   def preview
     respond_to do |format|
@@ -143,43 +175,85 @@ class ExcursionsController < ApplicationController
     end
   end
 
-  def show    
-    show! do |format|
-      format.html {
-        @evaluations = @excursion.averageEvaluation
-        @numberOfEvaluations = @excursion.numberOfEvaluations
-        @learningEvaluations = @excursion.averageLearningEvaluation
-        @numberOfLearningEvaluations = @excursion.numberOfLearningEvaluations
-        if @excursion.draft and (can? :edit, @excursion)
-          redirect_to edit_excursion_path(@excursion)
-        else
-          render
-        end
+  def metadata
+    excursion = Excursion.find_by_id(params[:id])
+    respond_to do |format|
+      format.xml {
+        xmlMetadata = Excursion.generate_LOM_metadata(JSON(excursion.json),excursion,{:id => Rails.application.routes.url_helpers.excursion_url(:id => excursion.id), :LOMschema => params[:LOMschema] || "custom"})
+        render :xml => xmlMetadata.target!
       }
-      format.full {
-        @orgUrl = params[:orgUrl]
-        render :layout => 'iframe'
-      }
-      format.mobile { render :layout => 'iframe' }
-      format.json { render :json => resource }
-      format.gateway { 
-        @gateway = params[:gateway]
-        render :layout => 'iframe.full'
-      }
-      format.scorm {
-        @excursion.to_scorm(self)
-        send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
-      }
-      format.pdf{
-        @excursion.to_pdf(self)
-        if File.exist?("#{Rails.root}/public/pdf/excursions/#{@excursion.id}/#{@excursion.id}.pdf")
-          send_file "#{Rails.root}/public/pdf/excursions/#{@excursion.id}/#{@excursion.id}.pdf", :type => 'application/pdf', :disposition => 'attachment', :filename => "#{@excursion.id}.pdf"
-        else
-          render :nothing => true, :status => 500
-        end
+      format.any {
+        redirect_to excursion_path(excursion)+"/metadata.xml"
       }
     end
   end
+
+  def scormMetadata
+    excursion = Excursion.find_by_id(params[:id])
+    respond_to do |format|
+      format.xml {
+        xmlMetadata = Excursion.generate_scorm_manifest(JSON(excursion.json),excursion,{:LOMschema => params[:LOMschema]})
+        render :xml => xmlMetadata.target!
+      }
+      format.any {
+        redirect_to excursion_path(excursion)+"/scormMetadata.xml"
+      }
+    end
+  end
+
+  def clone
+    original = Excursion.find_by_id(params[:id])
+    if original.blank?
+      flash[:error] = t('excursion.clone.not_found')
+      redirect_to excursions_path if original.blank? # Bad parameter
+    else
+      # Do clone
+      excursion = original.clone_for current_subject.actor
+      flash[:success] = t('excursion.clone.ok')
+      redirect_to excursion_path(excursion)
+    end
+  end
+
+  def manifest
+    headers['Last-Modified'] = Time.now.httpdate
+    @excursion = Excursion.find_by_id(params[:id])
+    render 'cache.manifest', :layout => false, :content_type => 'text/cache-manifest'
+  end
+
+  def iframe_api
+    respond_to do |format|
+      format.js {
+        render :file => "#{Rails.root}/vendor/plugins/vish_editor/app/assets/javascripts/VISH.IframeAPI.js",
+          :content_type => 'application/javascript',
+          :layout => false
+      }
+    end
+  end
+
+  def excursion_thumbnails
+    thumbnails = Hash.new
+    thumbnails["pictures"] = []
+
+    81.times do |index|
+      index = index+1
+      thumbnail = Hash.new
+      thumbnail["title"] = "Thumbnail " + index.to_s
+      thumbnail["description"] = "Sample Thumbnail"
+      tnumber = index.to_s
+      if index<10
+        tnumber = "0" + tnumber
+      end
+      thumbnail["src"] = Vish::Application.config.full_domain + "/assets/logos/original/excursion-"+tnumber+".png"
+      thumbnails["pictures"].push(thumbnail)
+    end
+
+    render :json => thumbnails
+  end
+
+
+  ##################
+  # Search Methods
+  ##################
 
   def search
     headers['Last-Modified'] = Time.now.httpdate
@@ -212,6 +286,37 @@ class ExcursionsController < ApplicationController
     end
   end
 
+  def cross_search
+    limit = [Integer(params[:l]),200].min rescue 20
+    @found_excursions = (Excursion.search params[:q], search_options).sample(limit)
+    
+    holes = [0,limit-@found_excursions.length].max
+    if holes > 0
+      popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").reject{ |ex| @found_excursions.map{ |fex| fex.id }.include? ex.id }
+      popularExcursions.in_groups_of(100+holes){ |group|
+        popularExcursions = group
+        break
+      }
+      @found_excursions.concat(popularExcursions.sample(holes))
+    end
+
+    respond_to do |format|    
+      format.json {
+        results = Hash.new
+        results["excursions"] = []
+        @found_excursions.each do |excursion|
+          results["excursions"].push(excursion.reduced_json(self))
+        end
+        render :json => results
+      }
+    end
+  end
+
+
+  ##################
+  # Evaluation Methods
+  ##################
+  
   def evaluate
     @excursion_evaluation = ExcursionEvaluation.new(:excursion => Excursion.find_by_id(params[:id]))
     @excursion_evaluation.ip = request.remote_ip
@@ -236,6 +341,11 @@ class ExcursionsController < ApplicationController
     end
   end
 
+
+  ##################
+  # Recomendation
+  ##################
+  
   def recommended
     render :partial => "excursions/filter_results", :locals => {:excursions => current_subject.excursion_suggestions(4) }
   end
@@ -301,44 +411,13 @@ class ExcursionsController < ApplicationController
     end
   end
 
-  def iframe_api
-    respond_to do |format|
-      format.js {
-        render :file => "#{Rails.root}/vendor/plugins/vish_editor/app/assets/javascripts/VISH.IframeAPI.js",
-          :content_type => 'application/javascript',
-          :layout => false
-      }
-    end
-  end
 
-  def cross_search
-    limit = [Integer(params[:l]),200].min rescue 20
-    @found_excursions = (Excursion.search params[:q], search_options).sample(limit)
-    
-    holes = [0,limit-@found_excursions.length].max
-    if holes > 0
-      popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").reject{ |ex| @found_excursions.map{ |fex| fex.id }.include? ex.id }
-      popularExcursions.in_groups_of(100+holes){ |group|
-        popularExcursions = group
-        break
-      }
-      @found_excursions.concat(popularExcursions.sample(holes))
-    end
 
-    respond_to do |format|    
-      format.json {
-        results = Hash.new
-        results["excursions"] = []
-        @found_excursions.each do |excursion|
-          results["excursions"].push(excursion.reduced_json(self))
-        end
-        render :json => results
-      }
-    end
-  end
+  #####################
+  ## VE Methods
+  ####################
 
   def uploadTmpJSON
-
     respond_to do |format|  
       format.json {
         results = Hash.new
@@ -360,30 +439,30 @@ class ExcursionsController < ApplicationController
           end
         end
 
-        count = Site.current.config["tmpJSONcount"].nil? ? 1 : Site.current.config["tmpJSONcount"]
-        Site.current.config["tmpJSONcount"] = count +1
+        count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+        Site.current.config["tmpCounter"] = count + 1
         Site.current.save!
 
         if responseFormat == "json"
           #Generate JSON file
-          filePath = "#{Rails.root}/public/tmp/json/#{count}.json"
+          filePath = "#{Rails.root}/public/tmp/json/#{count.to_s}.json"
           t = File.open(filePath, 'w')
           t.write json
           t.close
-          results["url"] = "#{Site.current.config[:documents_hostname]}/excursions/tmpJson.json?fileId=#{count.to_s}"
+          results["url"] = "#{Vish::Application.config.full_domain}/excursions/tmpJson.json?fileId=#{count.to_s}"
         elsif responseFormat == "scorm"
           #Generate SCORM package
           filePath = "#{Rails.root}/public/tmp/scorm/"
-          fileName = "scorm-tmp-#{count}"
+          fileName = "scorm-tmp-#{count.to_s}"
           Excursion.createSCORM(filePath,fileName,JSON(json),nil,self)
-          results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/scorm/#{fileName}.zip"
+          results["url"] = "#{Vish::Application.config.full_domain}/tmp/scorm/#{fileName}.zip"
         elsif responseFormat == "qti"
            #Generate QTI package
            filePath = "#{Rails.root}/public/tmp/qti/"
            FileUtils.mkdir_p filePath
-           fileName = "qti-tmp-#{count}"
+           fileName = "qti-tmp-#{count.to_s}"
            Excursion.createQTI(filePath,fileName,JSON(json))
-           results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/qti/#{fileName}.zip"
+           results["url"] = "#{Vish::Application.config.full_domain}/tmp/qti/#{fileName}.zip"
         end
 
         render :json => results
@@ -418,31 +497,6 @@ class ExcursionsController < ApplicationController
     end
   end
 
-  def excursion_thumbnails
-    thumbnails = Hash.new
-    thumbnails["pictures"] = []
-
-    81.times do |index|
-      index = index+1
-      thumbnail = Hash.new
-      thumbnail["title"] = "Thumbnail " + index.to_s
-      thumbnail["description"] = "Sample Thumbnail"
-      tnumber = index.to_s
-      if index<10
-        tnumber = "0" + tnumber
-      end
-      my_site = ""
-      if !Site.current.config[:documents_hostname]
-        my_site = "http://vishub.org/"
-      else
-        my_site = Site.current.config[:documents_hostname]
-      end
-      thumbnail["src"] = my_site + "assets/logos/original/excursion-"+tnumber+".png"
-      thumbnails["pictures"].push(thumbnail)
-    end
-
-    render :json => thumbnails
-  end
 
 
   private
