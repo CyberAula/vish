@@ -31,6 +31,7 @@ Vish::Application.routes.draw do
   match 'excursions/last_slide' => 'excursions#last_slide'
   match '/apis/iframe_api' => 'excursions#iframe_api'
   match '/apis/excursion_search' => 'excursions#cross_search'
+  match '/apis/recommender' => 'recommender#api_excursion_suggestions'
 
   match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
   match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
