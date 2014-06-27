@@ -21,13 +21,15 @@ class RecommenderSystem
   
   def self.excursion_suggestions(user,excursion,options=nil)
     excursions = []
+    n = getN(options)
+    nMax = getNMax(n)
+
     keywords = compose_keywords(user,excursion,options)
-    searchTerms = keywords.join(",")
-    relatedExcursions = (Excursion.search searchTerms, search_options(user,excursion,options)).map{|e| e} rescue []
+    searchTerms = keywords.join(" ")
+    relatedExcursions = (Excursion.search searchTerms, search_options(user,excursion,n,nMax,options)).select{|e| !e.nil?} rescue []
     excursions.concat(relatedExcursions)
 
     # popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").select{|ex| ex.draft == false}
-
     return excursions.sample(2)
   end
 
@@ -89,17 +91,47 @@ class RecommenderSystem
 
   private
 
-  def self.search_options(user,excursion,options=nil)
+
+  def self.search_options(user,excursion,n,nMax,options=nil)
     opts = {}
 
+    #Logical conector: OR
+    opts[:match_mode] = :any
+    opts[:rank_mode] = :wordcount
+    opts[:per_page] = nMax
+    opts[:field_weights]= {
+       :title => 50, 
+       :tags => 10, 
+       :description => 2
+    }
+    opts[:with] = {}
+    opts[:with][:draft] = false
+
     if !user.nil?
-      opts = { :without => { :author_id => [user.id] }, :with => { :draft => false } }
-    else
-      opts = { :with => { :draft => false } }
+      opts[:without] = {}
+      opts[:without][:author_id] = [user.id]
     end
 
     return opts
   end
 
+  def self.getN(options)
+    if !options.nil? and options[:n].is_a? Integer
+      n = options[:n]
+    else
+      #Default value
+      n = 20
+    end
+    n
+  end
+
+  def self.getNMax(n)
+    if n<10
+      nMax = 30
+    else
+      nMax = 3*n
+    end
+    nMax
+  end
 
 end
