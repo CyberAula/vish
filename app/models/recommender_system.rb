@@ -101,8 +101,8 @@ class RecommenderSystem
     opts[:per_page] = nMax
     opts[:field_weights]= {
        :title => 50, 
-       :tags => 10, 
-       :description => 2
+       :tags => 40,
+       :description => 1
     }
     opts[:with] = {}
     opts[:with][:draft] = false
