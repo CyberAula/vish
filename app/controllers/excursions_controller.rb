@@ -71,7 +71,7 @@ class ExcursionsController < ApplicationController
     end
   end
 
-  def show
+  def show 
     show! do |format|
       format.html {
         @evaluations = @excursion.averageEvaluation
@@ -346,6 +346,10 @@ class ExcursionsController < ApplicationController
   # Recomendation
   ##################
   
+  def recommended
+    render :partial => "excursions/filter_results", :locals => {:excursions => current_subject.excursion_suggestions(4) }
+  end
+
   def last_slide
     excursions = []
     cExcursionId = nil
