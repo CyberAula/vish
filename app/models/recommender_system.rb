@@ -20,12 +20,15 @@
 class RecommenderSystem
   
   def self.excursion_suggestions(user,excursion,options=nil)
+    excursions = []
     keywords = compose_keywords(user,excursion,options)
+    searchTerms = keywords.join(",")
+    relatedExcursions = (Excursion.search searchTerms, search_options(user,excursion,options)).map{|e| e} rescue []
+    excursions.concat(relatedExcursions)
 
+    # popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").select{|ex| ex.draft == false}
 
-
-    popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").select{|ex| ex.draft == false}
-    return popularExcursions.sample(2)
+    return excursions.sample(2)
   end
 
   def self.compose_keywords(user,excursion,options=nil)
@@ -83,113 +86,20 @@ class RecommenderSystem
     return keywords
   end
 
-  # def self.excursion_suggestions(user,excursion,options)
-  #   excursions = []
-  #   cExcursionId = nil
 
-  #   if params[:excursion_id]
-  #     current_excursion =  Excursion.find(params[:excursion_id]) rescue nil
-  #     cExcursionId = current_excursion.id rescue nil
-  #   end
+  private
 
-  #   if params[:q]
-  #     searchTerms = params[:q].split(",")
-  #   else
-  #     searchTerms = []
-  #   end
+  def self.search_options(user,excursion,options=nil)
+    opts = {}
 
-  #   #Add excursions based on the current excursion
-  #   if !current_excursion.nil?
+    if !user.nil?
+      opts = { :without => { :author_id => [user.id] }, :with => { :draft => false } }
+    else
+      opts = { :with => { :draft => false } }
+    end
 
-  #     if !current_excursion.tag_list.empty?
-  #       searchTerms.concat(current_excursion.tag_list)
-  #     end
+    return opts
+  end
 
-  #     if !current_excursion.author.nil?
-  #       authorExcursions = ActivityObject.where(:object_type=>"Excursion").select{ |e| e.author_id == current_excursion.author.id }.map { |ao| ao.excursion }.select{|e| e.id != current_excursion.id and e.draft == false}
-  #       #Limit the number of authorExcursions
-  #       authorExcursions = authorExcursions.sample(2)
-  #       excursions.concat(authorExcursions)
-  #     end
-
-  #   end
-
-  #   searchTerms.uniq!
-  #   searchTerms = searchTerms.join(",")
-  #   relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != cExcursionId and e.draft == false} rescue []
-  #   excursions.concat(relatedExcursions)
-
-  #   #Remove drafts and current excursion
-  #   excursions.uniq!
-  #   excursions = excursions.select{|ex| ex.draft == false}.reject{ |ex| ex.id == cExcursionId }
-
-  #   #Fill excursions (until 6), with popular excursions
-  #   holes = [0,6-excursions.length].max
-  #   if holes > 0
-  #     popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").select{|ex| ex.draft == false}.reject{ |ex| excursions.map{ |fex| fex.id }.include? ex.id || (!current_excursion.nil? and ex.id == current_excursion.id) }
-  #     popularExcursions.in_groups_of(80){ |group|
-  #       popularExcursions = group
-  #       break
-  #     }
-  #     excursions.concat(popularExcursions.sample(holes))
-  #   end
-  #   excursions = excursions.sample(6)
-
-  #   respond_to do |format|
-  #     format.json { 
-  #       results = []
-  #       excursions.map { |ex| results.push(ex.reduced_json(self)) }
-  #       render :json => results
-  #     }
-  #   end
-  # end
-
-  # private
-
-  # def search_options
-  #   opts = search_scope_options
-
-  #   # Allow me to search only one type
-  #   opts.deep_merge!({
-  #     :conditions => { :excursion_type => params[:type] }
-  #   }) unless params[:type].blank?
-
-  #   # Pagination
-  #   opts.deep_merge!({
-  #     :order => :created_at,
-  #     :sort_mode => :desc,
-  #     :per_page => params[:per_page] || 20,
-  #     :page => params[:page]
-  #   })
-
-  #   opts
-  # end
-
-  # def search_subject
-  #   return current_subject if request.referer.blank?
-  #   @search_subject ||=
-  #     ( Actor.find_by_slug(URI(request.referer).path.split("/")[2]) || current_subject )
-  # end
-
-  # def search_scope_options
-  #   if params[:scope].blank? || search_subject.blank?
-  #     return {}
-  #   end
-
-  #   case params[:scope]
-  #   when "me"
-  #     if user_signed_in? and (search_subject == current_subject)
-  #       { :with => { :author_id => [ search_subject.id ] } }
-  #     else
-  #       { :with => { :author_id => [ search_subject.id ], :draft => false } }
-  #     end
-  #   when "net"
-  #     { :with => { :author_id => search_subject.following_actor_ids, :draft => false } }
-  #   when "other"
-  #     { :without => { :author_id => search_subject.following_actor_and_self_ids }, :with => { :draft => false } }
-  #   else
-  #     raise "Unknown search scope #{ params[:scope] }"
-  #   end
-  # end
 
 end
