@@ -20,17 +20,21 @@
 class RecommenderSystem
   
   def self.excursion_suggestions(user,excursion,options=nil)
-    excursions = []
+    preSelection = []
     n = getN(options)
     nMax = getNMax(n)
 
     keywords = compose_keywords(user,excursion,options)
     searchTerms = keywords.join(" ")
-    relatedExcursions = (Excursion.search searchTerms, search_options(user,excursion,n,nMax,options)).select{|e| !e.nil?} rescue []
-    excursions.concat(relatedExcursions)
+    searchEngineExcursions = (Excursion.search searchTerms, search_options(user,excursion,n,nMax,options)).select{|e| !e.nil?} rescue []
+    preSelection.concat(searchEngineExcursions)
 
-    # popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").select{|ex| ex.draft == false}
-    return excursions.sample(2)
+    pSL = preSelection.length
+    if pSL < n
+      preSelection.concat(getExcursionsToFill(n-pSL,preSelection.map{|e| e.id}))
+    end
+
+    return preSelection.sample(2)
   end
 
   def self.compose_keywords(user,excursion,options=nil)
@@ -132,6 +136,16 @@ class RecommenderSystem
       nMax = 3*n
     end
     nMax
+  end
+
+  def self.getExcursionsToFill(n,ids=nil)
+    excursions = []
+    nSubset = [80,4*n].max
+    if !ids.is_a? Array
+      ids = []
+    end
+
+    excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids).order("activity_objects.popularity DESC").limit(nSubset).sample(n)
   end
 
 end
