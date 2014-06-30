@@ -184,7 +184,7 @@ end
         puts 'Current site population'
         current_site_start = Time.now
 
-        Site.current.config[:documents_hostname] = "http://localhost:3000/"
+        Site.current.config["tmpCounter"] = 1
         Site.current.save!
 
         current_site_end = Time.now

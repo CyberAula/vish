@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+  <%= render :partial => 'layouts/header/header_signed_in' %>
+  <% else %>
+  <%= render :partial => 'layouts/header/header_signed_out' %>
+<% end %>

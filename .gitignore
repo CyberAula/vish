@@ -51,6 +51,8 @@ public/tmp/json/*
 public/tmp/scorm/*
 public/tmp/qti/*
 
+dumps/*
+
 #tmp simplecaptcha
 public/tmp/simple_captcha/*
 

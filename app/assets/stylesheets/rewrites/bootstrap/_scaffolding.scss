@@ -19,30 +19,26 @@ textarea{
   resize: none;
 }
 
-header{ 
-  h1{ 
-    width: 80%;
-    margin-top: 0;
-    float: left;
-  }
-  .helpheader{
-    float: right;
-  }
-}
-
 h1, h2, h3, h4, h5, h6{
   font-family: $corporate-font-family-sans-serif-Bold;
   font-weight: normal;
 }
 
-
-.text-font{
-  font-family: $font-family-sans-serif;
+header{ 
+  h1{ 
+    width: 80%;
+    margin-top: 0;
+    float: left;
+    font-family: $corporate-font-family-sans-serif-Light;
+  }
+  .helpheader{
+    float: right;
+  }
+  hr{
+    margin-bottom: 0;
+  }
 }
 
-h1.text-font{
-  line-height: 75px;
-}
 h1 small, h1 .small, h2 small, h2 .small, h3 small, h3 .small, h4 small, h4 .small, h5 small, h5 .small, h6 small, h6 .small, .h1 small, .h1 .small, .h2 small, .h2 .small, .h3 small, .h3 .small, .h4 small, .h4 .small, .h5 small, .h5 .small, .h6 small, .h6 .small {
   color: $brand-primary-2;
 }

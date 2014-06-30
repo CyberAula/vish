@@ -186,9 +186,8 @@ function re_apply_pageless(tab){
 
 function get_url_with_sort_by(tab){
   var the_url = pageless_state[tab].url;
-  if($(".sort_by_selected") != undefined){
-    the_url = the_url + "?sort_by=" + $(".sort_by_selected").attr("sort-by-key");
-  }
+
+  the_url = the_url + "?sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
   return the_url;
 }
 

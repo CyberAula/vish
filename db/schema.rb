@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140529135751) do
+ActiveRecord::Schema.define(:version => 20140626122837) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -57,9 +57,6 @@ ActiveRecord::Schema.define(:version => 20140529135751) do
     t.datetime "updated_at",         :null => false
   end
 
-  add_index "activity_object_audiences", ["activity_object_id"], :name => "activity_object_audiences_on_activity_object_id"
-  add_index "activity_object_audiences", ["relation_id"], :name => "activity_object_audiences_on_relation_id"
-
   create_table "activity_object_properties", :force => true do |t|
     t.integer "activity_object_id"
     t.integer "property_id"
@@ -85,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20140529135751) do
     t.boolean  "notified_after_draft",               :default => false
     t.integer  "comment_count",                      :default => 0
     t.integer  "popularity",                         :default => 0
+    t.integer  "download_count",                     :default => 0
   end
 
   create_table "activity_verbs", :force => true do |t|
@@ -217,7 +215,6 @@ ActiveRecord::Schema.define(:version => 20140529135751) do
     t.text     "embed"
   end
 
-  add_index "events", ["activity_object_id"], :name => "events_on_activity_object_id"
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
   create_table "exclude_auth_mves", :force => true do |t|
@@ -273,7 +270,7 @@ ActiveRecord::Schema.define(:version => 20140529135751) do
     t.integer  "slide_count",        :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",              :default => false
-    t.text     "offline_manifest"
+    t.text     "offline_manifest",   :default => ""
     t.string   "excursion_type",     :default => "presentation"
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"

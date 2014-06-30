@@ -44,8 +44,8 @@
     });
   </script>
   <%= yield :headers %>
-  <%= render :partial => 'layouts/google_analytics' %>
-  <%= render :partial => 'layouts/uservoice' %>
+  <%= render :partial => 'layouts/tools/google_analytics' %>
+  <%= render :partial => 'layouts/tools/uservoice' %>
 
 </head>
 <body>
@@ -59,7 +59,7 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
-    <%= render :partial => "layouts/header" %>
+    <%= render :partial => "layouts/header/header" %>
     <%#= render partial: 'search/toolbar-search' %>
     <div class="wrapper">      
       <%= flashy %>
@@ -68,7 +68,7 @@
     <div class="push">  </div>   
   </div>
   <%= render :partial => "layouts/footer" %>
-  <%= render :partial => "layouts/crazyegg" %>
+  <%= render :partial => "layouts/tools/crazyegg" %>
 
 </body>
 </html>

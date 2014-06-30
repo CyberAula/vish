@@ -38,7 +38,7 @@
       <a href="#" onclick="excursions_dropdown_select('favorites');" sort-by-key='favorites'>
         <i class="fa fa-star"></i> 
         <%=t('order_by.favorites')%>
-        </a>
+      </a>
     </li>
   </ul>
 </div>
@@ -49,7 +49,7 @@
 
   if(param && param!=""){
     var value = $("#order_by_selector_excursions .dropdown-menu [sort-by-key="+param+"]").html();
-    $("#dropdownMenuOrdByExcursions").html(value + '<i class="fa fa-angle-down"></i>'); 
+    $("#dropdownMenuOrdByExcursions").html(value + '<i class="icon-angle-down"></i>'); 
   }
   
 <%end%>
@@ -61,11 +61,10 @@ var excursions_dropdown_select = function(option) {
   $.ajax({
       type : "GET",
       url : "<%= user_url(profile_subject) %>/excursions?sort_by=" + option,
-      success : function(html) {
-        $(".sort_by_selected").removeClass("sort_by_selected");        
+      success : function(html) { 
+        $("#order_by_selector_excursions").attr("li_selected", option);
         var value = $("#order_by_selector_excursions .dropdown-menu [sort-by-key="+option+"]").html();
-        $("#order_by_selector_excursions .dropdown-menu [sort-by-key="+option+"]").addClass("sort_by_selected");
-        $("#dropdownMenuOrdByExcursions").html(value + '<i class="fa fa-angle-down"></i>');
+        $("#dropdownMenuOrdByExcursions").html(value + '<i class="icon-angle-down"></i>');
         $('.loader_pagination').hide();      
         $("#excursions_tab_ready").replaceWith(html);
         re_apply_pageless("excursions");

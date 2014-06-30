@@ -39,8 +39,8 @@
       });
     </script>
     <%= yield :headers %>
-    <%= render :partial => 'layouts/google_analytics' %>
-    <%= render :partial => 'layouts/uservoice' %>
+    <%= render :partial => 'layouts/tools/google_analytics' %>
+    <%= render :partial => 'layouts/tools/uservoice' %>
       
   </head>
 
@@ -67,6 +67,6 @@
     <div id="footer">
       <%= render :partial => "layouts/footer" %>
     </div>
-    <%= render :partial => "layouts/crazyegg" %>
+    <%= render :partial => "layouts/tools/crazyegg" %>
   </body>
 </html>

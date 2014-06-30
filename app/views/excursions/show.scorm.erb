@@ -25,7 +25,7 @@
 
 		//URL to access to the Recommendation API
 		options["recommendationsAPI"] = {
-			rootURL: "<%=Site.current.config[:documents_hostname]%>" + "excursions/last_slide.json"
+			rootURL: "<%=Vish::Application.config.full_domain%>" + "/excursions/last_slide.json"
 		};
 
 		<% if excursion %>
@@ -38,7 +38,7 @@
 			<% if !presId.nil? and !draft and !excursion.nil? and excursion.draft == false %>
 				options["watermarkURL"] = "<%=excursion_url(excursion)%>";
 			<% else %>
-				options["watermarkURL"] = "<%=Site.current.config[:documents_hostname]%>";
+				options["watermarkURL"] = "<%=Vish::Application.config.full_domain%>";
 			<% end %>
 			
 			var presentation = <%= raw json.to_json %>;

@@ -10,7 +10,7 @@
         <%= link_to(image_tag('logo/brand.svg', :alt => t('site.name')), '/', :class => "logo"); %>
       </div>
       <!--BROWSE-->
-      <%= render partial: 'layouts/browse_header'%>
+      <%= render partial: 'layouts/header/browse_header'%>
     </div>
 
     <!--collapse-->
@@ -18,7 +18,7 @@
 
       <ul class="nav nav-pills desktop-nav">
         <!--navegation-->
-        <%= render partial: 'layouts/basic_navegation' %>
+        <%= render partial: 'layouts/header/basic_navegation' %>
         
         <!--add-->
         <li class ="btn-group">
@@ -102,9 +102,9 @@
       </ul>
 
     <!--search-->
-    <%= render partial: 'layouts/uisearch_header' %>
+    <%= render partial: 'layouts/header/uisearch_header' %>
 
-    <%= render partial: 'layouts/header_signed_in_mobile' %>
+    <%= render partial: 'layouts/header/header_signed_in_mobile' %>
     </div>
   </div>  
 </nav>

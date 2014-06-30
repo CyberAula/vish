@@ -67,40 +67,39 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.walkQuizzes_9":"Si quieres 'cerrar' el cuestionario en vivo debes hacer click en el bot\u00f3n 'Detener' situado en la parte inferior derecha. Despu\u00e9s de cerrar un cuestionario, no se admitir\u00e1n ni guardar\u00e1n m\u00e1s respuestas. Tambi\u00e9n puedes cerrar un cuestionario en cualquier momento desde la plataforma ViSH. Cuando cierras un cuestionario en vivo, puedes, opcionalmente, especificar un nombre para facilitar su b\u00fasqueda posterior en el ViSH.", "i.walkQuizzes_10":"Si sales de la pantalla de cuestionarios en vivo, puedes regresar en cualquier momento haciendo click sobre el bot\u00f3n 'Opciones' situado en la parte inferior del cuestionario. Tenga en cuenta que si un cuestionario ha sido lanzado, el bot\u00f3n 'Lanzar' es reemplazado por un bot\u00f3n 'Opciones'. Cuando se cierre el cuestionario, el bot\u00f3n 'Lanzar' volver\u00e1 a aparecer. Finalmente, tenga en cuenta que no puede lanzar m\u00e1s de un cuestionario en vivo a la vez.", 
 "i.vtTitle_GStarted":"Introducci\u00f3n a ViSH Editor", "i.About2":"C\u00f3digo disponible en", "i.About3":"visita nuestro canal de YouTube", "i.About4":"Desarrollado por", "i.VESurvey1":"Ay\u00fadanos a mejorar ViSH Editor", "i.VESurvey2":"Por favor, rellena", "i.VESurvey3":"esta encuesta", "i.VESurvey4":"\u00a1Gracias por tu colaboraci\u00f3n", "i.VESurveyURL":"https://docs.google.com/forms/d/1b_Ml2iua0oDNKkJqc7eT1W2CDlRhIZR__w2AlicfwjA/viewform", "i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", 
 "i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddePackage":"A\u00f1adir un paquete de e-Learning mediante un archivo ZIP. Formatos soportados: SCORM y aplicaciones web HTML5 personalizadas.", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", 
-"i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", "i.AddTags":"A\u00f1adir etiquetas", "i.AddTimestampLink":"A\u00f1adir marca de tiempo", "i.addvideourl":"a\u00f1adir URL de v\u00eddeo (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Animations":"Animaciones", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", "i.Opacity":"Opacidad", "i.Elements":"Elementos", "i.Rotate":"Rotar", 
-"i.Diagonal1":"Diagonal #1", "i.Diagonal2":"Diagonal #2", "i.Inside":"Dentro", "i.Zoom":"Ampliar", "i.Flip1":"Vuelta #1", "i.Flip2":"Vuelta #2", "i.3D":"3D", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.by":"por", "i.cancel":"cancelar", 
-"i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", "i.close":"cerrar", "i.Close":"Cerrar", "i.CloseWSaving":"cerrar sin guardar", "i.Competitions":"Competici\u00f3n", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", 
-"i.delete":"borrar", "i.Description":"Descripci\u00f3n", "i.difficult":"dif\u00edcil", "i.Difficulty":"Dificultad", "i.Documentation":"Documentaci\u00f3n", "i.done":"hecho", "i.Done":"Hecho", "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", "i.Electronics":"Electr\u00f3nica", 
-"i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", "i.EnrichedVideo":"V\u00eddeo Enriquecido", "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", "i.ePackage":"Paquete e-Learning", "i.ePackageError1":"Ocurri\u00f3 un error al subir el paquete de e&#8209;Learning.", "i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", "i.errorYoutubeConnection":"Error conectando con YouTube", 
-"i.Ethics":"\u00c9tica", "i.Evaluate":"Evaluar", "i.evaluateTitle":"\u00bfQuieres contribuir evaluando esta excursi\u00f3n?", "i.eVideoChangeNotification":"Si cambias la fuente del v\u00eddeo perder\u00e1s todas las marcas de tiempo que hayas a\u00f1adido. En cualquier caso, conservar\u00e1s las diapositivas que hayas creado. \u00bfEst\u00e1s seguro de que quieres continuar?", "i.ExcursionDetails":"Informaci\u00f3n de la Excursi\u00f3n", "i.Excursion":"Excursi\u00f3n", "i.Excursions":"Excursiones", 
-"i.Exit":"Salir", "i.exitConfirmation":"Vas a abandonar ViSH Editor. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.exitConfirmation2":"\u00bfSeguro que quieres abandonar esta p\u00e1gina?", "i.exitConfirmationMenu":"La Excursi\u00f3n Virtual se ha modificado. Si la cierra sin guardar perder\u00e1 todos los cambios. \u00bfQu\u00e9 desea hacer?", "i.ExitWSaving":"salir sin guardar", "i.Export":"Exportar", "i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un fichero JSON.", 
+"i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", "i.AddTags":"A\u00f1adir etiquetas", "i.AddTimestampLink":"A\u00f1adir marca de tiempo", "i.addvideourl":"a\u00f1adir URL de v\u00eddeo (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Animations":"Animaciones", "i.AudienceResponseSystem":"Sistema de Respuesta de Audiencia", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", 
+"i.Opacity":"Opacidad", "i.Elements":"Elementos", "i.Enable":"Habilitar", "i.ExportToIMSQTI":"Exportar a IMS QTI 2.1", "i.Rotate":"Rotar", "i.Diagonal1":"Diagonal #1", "i.Diagonal2":"Diagonal #2", "i.Inside":"Dentro", "i.Zoom":"Ampliar", "i.Flip1":"Vuelta #1", "i.Flip2":"Vuelta #2", "i.3D":"3D", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", 
+"i.by":"por", "i.cancel":"cancelar", "i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", "i.close":"cerrar", "i.Close":"Cerrar", "i.CloseWSaving":"cerrar sin guardar", "i.Competitions":"Competici\u00f3n", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", 
+"i.ComputerScience":"Inform\u00e1tica", "i.delete":"borrar", "i.Description":"Descripci\u00f3n", "i.difficult":"dif\u00edcil", "i.Difficulty":"Dificultad", "i.Documentation":"Documentaci\u00f3n", "i.done":"hecho", "i.Done":"Hecho", "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", 
+"i.Electronics":"Electr\u00f3nica", "i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", "i.EnrichedVideo":"V\u00eddeo Enriquecido", "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", "i.ePackage":"Paquete e-Learning", "i.ePackageError1":"Ocurri\u00f3 un error al subir el paquete de e&#8209;Learning.", "i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", 
+"i.errorYoutubeConnection":"Error conectando con YouTube", "i.Ethics":"\u00c9tica", "i.Evaluate":"Evaluar", "i.evaluateTitle":"\u00bfQuieres contribuir evaluando esta excursi\u00f3n?", "i.eVideoChangeNotification":"Si cambias la fuente del v\u00eddeo perder\u00e1s todas las marcas de tiempo que hayas a\u00f1adido. En cualquier caso, conservar\u00e1s las diapositivas que hayas creado. \u00bfEst\u00e1s seguro de que quieres continuar?", "i.ExcursionDetails":"Informaci\u00f3n de la Excursi\u00f3n", 
+"i.Excursion":"Excursi\u00f3n", "i.Excursions":"Excursiones", "i.Exit":"Salir", "i.exitConfirmation":"Vas a abandonar ViSH Editor. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.exitConfirmation2":"\u00bfSeguro que quieres abandonar esta p\u00e1gina?", "i.exitConfirmationMenu":"La Excursi\u00f3n Virtual se ha modificado. Si la cierra sin guardar perder\u00e1 todos los cambios. \u00bfQu\u00e9 desea hacer?", "i.ExitWSaving":"salir sin guardar", "i.Export":"Exportar", "i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un fichero JSON.", 
 "i.exportPresToSCORMerrorNotification":"Ha ocurrido un error. No ha sido posible exportar la presentaci\u00f3n a un paquete SCORM.", "i.exportQuizToQTIerrorNotification":"Ha ocurrido un error. No ha sido posible exportar el cuestionario al formato IMS QTI 2.1.", "i.exportQuizToMoodleXMLerrorNotification":"Ha ocurrido un error. No ha sido posible exportar el cuestionario al formato Moodle XML.", "i.exviews":"visitas", "i.File":"Archivo", "i.Filllater":"Rellenar despu\u00e9s", "i.Finish":"Terminar", 
 "i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", "i.ForeignLanguages":"Idiomas", "i.Game":"Juego", "i.GeneralCulture":"Cultura General", "i.Geography":"Geograf\u00eda", "i.Geology":"Geolog\u00eda", "i.GotoSettings":"Ir a Ajustes", "i.HealthEducation":"Educaci\u00f3n para la Salud", "i.Help":"Ayuda", "i.HigherEducation":"Educaci\u00f3n Superior", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Hours":"Horas", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", 
 "i.Import":"Importar", "i.ImportFromEFile":"Importar recursos mediante archivos externos:", "i.ImportFromEFileVEJSON":"Presentaciones y Diapositivas de ViSH Editor de archivos JSON", "i.ImportFromEFileIMSQTI":"Cuestionarios (Quizzes) de archivos XML compatibles con IMS QTI 2.1", "i.Insert":"Insertar", "i.invalidvalue":"valor inv\u00e1lido", "i.ItemAndBall":"Esta entrada est\u00e1 enlazada con la diapositiva #{letter} del V\u00eddeo Enriquecido.", "i.Language":"Idioma", "i.Languageindependent":"Independiente del idioma", 
 "i.Law":"Derecho", "i.License":"Licencia", "i.limitReached":"limite alcanzado", "i.link":"enlace", "i.Literature":"Literatura", "i.LiveQuiz":"Cuestionario en Vivo", "i.LiveResources":"Contenidos en directo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", "i.math":"matem\u00e1ticas", "i.Mathematics":"Matem\u00e1ticas", "i.medium":"medio", "i.Minutes":"Minutos", "i.Music":"M\u00fasica", "i.nanoscience":"nanociencia", 
-"i.NaturalSciences":"Ciencias Naturales", "i.next":"siguiente", "i.Next":"Siguiente", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"\u00bfQuieres participar en la competici\u00f3n? Puedes ganar un gran premio. Lee la guia de c\u00f3mo hacerlo <a href='http://vishub.org/competitions' target='_blank'>aqu\u00ed</a>", "i.NoCompetitions2":"A\u00f1ade una o m\u00e1s de las siguientes tags para participar:", "i.NoCompetitions3":"Se a\u00f1adir\u00e1n a las tags de la excursi\u00f3n. Las puedes revisar o cambiar en la p\u00e1gina de ajustes", 
-"i.NoFileError":"No has seleccionado ning\u00fan archivo para importar.", "i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON.", "i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.NoThanks":"No gracias", "i.NoSupportedFileError":"El archivo no puede ser importado. El formato no est\u00e1 soportado.", "i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", 
-"i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.Package":"Paquete", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un v\u00eddeo HTML5 o de YouTube", "i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido.", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido.", 
+"i.NaturalSciences":"Ciencias Naturales", "i.NAttempts":"N\u00famero de intentos", "i.next":"siguiente", "i.Next":"Siguiente", "i.no":"no", "i.No":"No", "i.NoFileError":"No has seleccionado ning\u00fan archivo para importar.", "i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON.", "i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.NoThanks":"No gracias", "i.NoSupportedFileError":"El archivo no puede ser importado. El formato no est\u00e1 soportado.", 
+"i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", "i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.Package":"Paquete", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un v\u00eddeo HTML5 o de YouTube", "i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido.", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido.", 
 "i.pdfErrorNotificationSize":"Ha ocurrido un error. El fichero PDF debe tener un tama\u00f1o inferior a 8 Mb.", "i.pdfErrorNotificationPages":"Ha ocurrido un error. El fichero PDF tiene demasiadas p\u00e1ginas.", "i.PDFSlideshow":"Presentaci\u00f3n PDF", "i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.pEducation":"Educaci\u00f3n Primaria", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", 
 "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Educaci\u00f3n Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.publishing":"Publicando", "i.Publishing":"Publicando", "i.Publish_confirmation":"Vas a guardar y publicar esta Excursi\u00f3n Virtual en la plataforma ViSH. Despu\u00e9s de esto, la excursi\u00f3n ser\u00e1 p\u00fablica y cualquiera podr\u00e1 acceder a ella. \u00bfQu\u00e9 deseas hacer?", 
 "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", "i.QuizButtonContinue":"Continuar", "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizCreateSessionError":"Lo sentimos, ha ocurrido un error al crear un nuevo cuestionario en vivo", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", 
-"i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", "i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizSettings":"Ajustes de Quiz", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", "i.QuizzesWriteOptions":"Escribe aqu\u00ed las opciones", "i.QuizzesWriteOptionsOpen":"Escribe aqu\u00ed la respuesta", 
-"i.QuizzesWriteOptionsSorting":"Escribe aqu\u00ed el primer elemento de la secuencia", "i.readJSONfileError":"Error al leer el fichero JSON", "i.recommendationsTitle":"Excursiones recomendadas:", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.Response":"Respuesta", "i.ResponseCorrect":"Respuesta correcta", "i.save":"guardar", "i.Save":"Guardar", 
-"i.SaveAndExit":"guardar y salir", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.sEducation":"Educaci\u00f3n Secundaria", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", "i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", 
-"i.Settings":"Ajustes", "i.Slide":"Diapositiva", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Time":"Tiempo", "i.Title":"T\u00edtulo", "i.TitleM":"T\u00edtulo *", "i.toJSON":"a JSON", "i.toSCORM":"a SCORM", 
-"i.PTraining":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", 
-"i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.Untitled":"Sin T\u00edtulo", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.YouTubePlayAlert":"Haz click sobre el v\u00eddeo para empezar la reproducci\u00f3n", 
+"i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", "i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizSettings":"Ajustes de Quiz", "i.QuizSettingsToolbar":"Ajustes de Quiz", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", "i.QuizzesWriteOptions":"Escribe aqu\u00ed las opciones", 
+"i.QuizzesWriteOptionsOpen":"Escribe aqu\u00ed la respuesta", "i.QuizzesWriteOptionsSorting":"Escribe aqu\u00ed el primer elemento de la secuencia", "i.readJSONfileError":"Error al leer el fichero JSON", "i.recommendationsTitle":"Excursiones recomendadas:", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.Response":"Respuesta", "i.ResponseCorrect":"Respuesta correcta", 
+"i.save":"guardar", "i.Save":"Guardar", "i.SaveAndExit":"guardar y salir", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.sEducation":"Educaci\u00f3n Secundaria", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", "i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", 
+"i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.ShuffleChoices":"Barajar opciones", "i.Slide":"Diapositiva", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Time":"Tiempo", "i.Title":"T\u00edtulo", 
+"i.TitleM":"T\u00edtulo *", "i.toJSON":"a JSON", "i.toSCORM":"a SCORM", "i.PTraining":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", 
+"i.Unlimited":"Ilimitado", "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.Untitled":"Sin T\u00edtulo", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.YouTubePlayAlert":"Haz click sobre el v\u00eddeo para empezar la reproducci\u00f3n", 
 "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.tooltip.Help":"Ayuda", "i.last":"\u00faltimo"}, "default":{"i.AddSlideMin":"Add Slide", "i.add":"add", 
 "i.Add":"Add", "i.AddTags":"Add tags", "i.AddTimestampLink":"Add timestamp link", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.close":"close", "i.Close":"Close", "i.CloseWSaving":"close without saving", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.ePackageError1":"An error ocurred when uploading the e&#8209;Learning package.", "i.errorFlickrConnection":"Error connecting to Flickr", 
 "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.eVideoChangeNotification":"If you change the v\u00eddeo source you will lose all the timestamp links you have added. In any case, you will keep the slides you have created. Are you sure you want to continue?", "i.Exit":"Exit", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", 
 "i.exitConfirmation2":"Are you sure you want to leave this page?", "i.exitConfirmationMenu":"The Virtual Excursion has been modified. If you close without saving you will lose all changes. What would you like to do?", "i.ExitWSaving":"exit without saving", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.exportPresToSCORMerrorNotification":"An error has ocurred. Is not possible to export the presentation to a SCORM package.", 
 "i.exportQuizToQTIerrorNotification":"An error has ocurred. Is not possible to export the quiz to the IMS QTI 2.1 format.", "i.exportQuizToMoodleXMLerrorNotification":"An error has ocurred. Is not possible to export the quiz to the Moodle XML format.", "i.exviews":"views", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.ItemAndBall":"This item is linked to the #{letter} slide of the Enriched Video.", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", 
-"i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", "i.NoCompetitions2":"Add one or more of the following tags to participate:", "i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", "i.NoFileError":"You have not selected any file to import.", "i.NoJSONFileError":"You have to select a file to import in JSON format", 
-"i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.NoSupportedFileError":"The file cannot be imported. The format is not supported.", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube v\u00eddeo URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", 
-"i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", "i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", 
-"i.QuizButtonAnswer":"Answer", "i.QuizButtonContinue":"Continue", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", 
-"i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizSettings":"Quiz Settings", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.QuizzesWriteOptions":"Write options here", "i.QuizzesWriteOptionsOpen":"Write the answer here", "i.QuizzesWriteOptionsSorting":"Write the first item of the sequence here", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", 
-"i.Response":"Response", "i.ResponseCorrect":"Correct response", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Time":"Time", "i.Title":"Title", "i.TitleM":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", 
+"i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoFileError":"You have not selected any file to import.", "i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.NoSupportedFileError":"The file cannot be imported. The format is not supported.", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", 
+"i.pasteVideoURL":"paste HTML5 or YouTube v\u00eddeo URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", "i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", 
+"i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", "i.QuizButtonAnswer":"Answer", "i.QuizButtonContinue":"Continue", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", 
+"i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", "i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizSettings":"Quiz Settings", "i.QuizSettingsToolbar":"Quiz Settings", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", 
+"i.QuizzesWriteOptions":"Write options here", "i.QuizzesWriteOptionsOpen":"Write the answer here", "i.QuizzesWriteOptionsSorting":"Write the first item of the sequence here", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.Response":"Response", "i.ResponseCorrect":"Correct response", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", 
+"i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Time":"Time", "i.Title":"Title", "i.TitleM":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", 
 "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.Untitled":"Untitled", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.YouTubePlayAlert":"Click on the video to start playing", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}, "fr":{"i.Saved":"Enregistr\u00e9", 
 "i.Saving":"Enregistrement", "i.Unpublish_confirmation":"Vous allez d\u00e9publier ce Excursion virtuelle de la plate-forme Vish. Apr\u00e8s cela, l'excursion sera priv\u00e9 et ne vous sera en mesure d'y acc\u00e9der. Que souhaitez-vous faire?", "i.Animations":"Animation", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", "i.Opacity":"Opacit\u00e9", "i.Elements":"\u00c9l\u00e9ments", "i.Rotate":"tourner", "i.Diagonal1":"Diagonale #1", "i.Diagonal2":"Diagonale #2", "i.Inside":"Int\u00e9rieur", 
 "i.Zoom":"Ampliar", "i.Flip1":"Tour #1", "i.Flip2":"Tour #2", "i.3D":"3D", "i.accept":"accepter", "i.AddSlideMin":"Ajouter", "i.add":"ajouter", "i.Add":"Ajouter", "i.Addanavatar":"Ajouter un avatar*", "i.addatitle":"ajouter un titre", "i.AddContent":"Ajouter un contenu", "i.addembeddedobject":"ajouter un objet incorpor\u00e9", "i.AddFromJSONfile":"Ajouter une pr\u00e9sentation ViSH editor \u00e0 partir d'un fichier JSON", "i.addpicurl":"ajouter l'URL d'une image", "i.AddSlide":"Ajouter une diapositive", 
@@ -17784,9 +17783,13 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     $(_hiddenLinkToInitQuizSettings).fancybox({"autoDimensions":false, "height":330, "width":400, "scrolling":"no", "showCloseButton":false, "padding":0, "onStart":function(data) {
       var qSF = $("#quizSettings_fancybox");
       var quiz = V.Editor.getCurrentArea();
+      var quizType = $(quiz).attr("quiztype");
+      var quizModule = _getQuizModule(quizType);
       $(qSF).find("input[type='hidden'][name='elId']").val($(quiz).attr("id"));
       var qSettings = $(quiz).attr("elSettings");
       var nAttempts = 1;
+      var shuffleChoices = false;
+      var disableShuffleChoices = false;
       var ARSEnabled = false;
       if(typeof qSettings == "string") {
         try {
@@ -17797,12 +17800,52 @@ VISH.Editor.Quiz = function(V, $, undefined) {
           if(qSettings.ARSEnabled === true) {
             ARSEnabled = true
           }
+          if(qSettings.shuffleChoices === true) {
+            shuffleChoices = true
+          }
         }catch(e) {
         }
       }
+      switch(quizType) {
+        case V.Constant.QZ_TYPE.OPEN:
+          shuffleChoices = false;
+          disableShuffleChoices = true;
+          break;
+        case V.Constant.QZ_TYPE.MCHOICE:
+          break;
+        case V.Constant.QZ_TYPE.TF:
+          break;
+        case V.Constant.QZ_TYPE.SORTING:
+          shuffleChoices = true;
+          disableShuffleChoices = true;
+          break;
+        default:
+          break
+      }
+      var isSelfAssessment = false;
+      if(quizModule && typeof quizModule.isSelfAssessment == "function") {
+        isSelfAssessment = quizModule.isSelfAssessment(quiz)
+      }
       var nAttemptsDOM = $(qSF).find("#quizSettings_nAttempts");
+      if(!isSelfAssessment) {
+        $(nAttemptsDOM).prop("disabled", true);
+        $(nAttemptsDOM).parent().addClass("disableSettingsField");
+        $(nAttemptsDOM).val(1)
+      }else {
+        $(nAttemptsDOM).prop("disabled", false);
+        $(nAttemptsDOM).parent().removeClass("disableSettingsField");
+        $(nAttemptsDOM).val(nAttempts)
+      }
+      var shuffleChoicesCheckbox = $(qSF).find("input[type='checkbox'][name='shuffleChoices']");
+      $(shuffleChoicesCheckbox).prop("checked", shuffleChoices);
+      if(disableShuffleChoices) {
+        $(shuffleChoicesCheckbox).parent().addClass("disableSettingsField");
+        $(shuffleChoicesCheckbox).attr("disabled", "disabled")
+      }else {
+        $(shuffleChoicesCheckbox).parent().removeClass("disableSettingsField");
+        $(shuffleChoicesCheckbox).removeAttr("disabled")
+      }
       var ARSEnabledCheckbox = $(qSF).find("input[type='checkbox'][name='enableARS']");
-      $(nAttemptsDOM).val(nAttempts);
       $(ARSEnabledCheckbox).prop("checked", ARSEnabled)
     }, "onComplete":function(data) {
     }, "onClosed":function(data) {
@@ -17812,6 +17855,7 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     var qSF = $("#quizSettings_fancybox");
     var qSettings = {};
     qSettings.nAttempts = $(qSF).find("#quizSettings_nAttempts").val();
+    qSettings.shuffleChoices = $(qSF).find("input[type='checkbox'][name='shuffleChoices']").is(":checked");
     qSettings.ARSEnabled = $(qSF).find("input[type='checkbox'][name='enableARS']").is(":checked");
     var quizId = $(qSF).find("input[type='hidden'][name='elId']").val();
     var quiz = $("#" + quizId);
@@ -25375,7 +25419,16 @@ VISH.Editor.Quiz.MC = function(V, $, undefined) {
       _addOptionInQuiz(area, choice.wysiwygValue, check)
     })
   };
-  return{init:init, add:add, save:save, draw:draw}
+  var isSelfAssessment = function(quizDOM) {
+    var sA = false;
+    $(quizDOM).find("img.mcCheckbox").each(function(index, checkbox) {
+      if($(checkbox).attr("check") === "true") {
+        sA = true
+      }
+    });
+    return sA
+  };
+  return{init:init, add:add, save:save, draw:draw, isSelfAssessment:isSelfAssessment}
 }(VISH, jQuery);
 VISH.Editor.Quiz.Open = function(V, $, undefined) {
   var initialized = false;
@@ -25475,15 +25528,15 @@ VISH.Editor.Quiz.Open = function(V, $, undefined) {
     $(checkbox).prop("disabled", false);
     V.Quiz.updateCheckbox(checkbox, "none")
   };
-  var _isSelfAssesment = function(area) {
-    var openCheckBox = $(area).find("img.openQCheckbox");
+  var isSelfAssessment = function(quizDOM) {
+    var openCheckBox = $(quizDOM).find("img.openQCheckbox");
     return $(openCheckBox).attr("check") === "true" && $(openCheckBox).hasClass("quizCheckBoxDisabled") === false
   };
   var save = function(area) {
     var textArea = $(area).find(".mc_question_wrapper");
     var quiz = {};
     quiz.quizType = V.Constant.QZ_TYPE.OPEN;
-    quiz.selfA = _isSelfAssesment(area);
+    quiz.selfA = isSelfAssessment(area);
     var questionInstance = V.Editor.Text.getCKEditorFromTextArea($(area).find(".mc_question_wrapper"));
     quiz.question = {};
     quiz.question.value = questionInstance.getPlainText();
@@ -25510,7 +25563,7 @@ VISH.Editor.Quiz.Open = function(V, $, undefined) {
     }
     V.Editor.addDeleteButton(area)
   };
-  return{init:init, add:add, save:save, draw:draw}
+  return{init:init, add:add, save:save, draw:draw, isSelfAssessment:isSelfAssessment}
 }(VISH, jQuery);
 VISH.Editor.Quiz.Sorting = function(V, $, undefined) {
   var addQuizOptionButtonClass = "add_quiz_option_sorting";
@@ -25669,10 +25722,13 @@ VISH.Editor.Quiz.Sorting = function(V, $, undefined) {
     });
     _applySortable(area)
   };
+  var isSelfAssessment = function() {
+    return true
+  };
   var afterCopyQuiz = function(quizDOM) {
     _applySortable(quizDOM)
   };
-  return{init:init, add:add, save:save, draw:draw, afterCopyQuiz:afterCopyQuiz}
+  return{init:init, add:add, save:save, draw:draw, isSelfAssessment:isSelfAssessment, afterCopyQuiz:afterCopyQuiz}
 }(VISH, jQuery);
 VISH.Editor.Quiz.TF = function(V, $, undefined) {
   var addQuizOptionButtonClass = "add_quiz_option_tf";
@@ -25856,7 +25912,16 @@ VISH.Editor.Quiz.TF = function(V, $, undefined) {
       _addOptionInQuiz(area, choice.wysiwygValue, check)
     })
   };
-  return{init:init, add:add, save:save, draw:draw}
+  var isSelfAssessment = function(quizDOM) {
+    var sA = false;
+    $(quizDOM).find("img.tfCheckbox").each(function(index, checkbox) {
+      if($(checkbox).attr("check") === "true" || $(checkbox).attr("check") === "false") {
+        sA = true
+      }
+    });
+    return sA
+  };
+  return{init:init, add:add, save:save, draw:draw, isSelfAssessment:isSelfAssessment}
 }(VISH, jQuery);
 VISH.Editor.Renderer = function(V, $, undefined) {
   var slides = null;
@@ -29357,9 +29422,15 @@ VISH.Quiz.MC = function(V, $, undefined) {
     $(questionWrapper).html(quizJSON.question.wysiwygValue);
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='mc_options'></table>");
-    var quizChoicesLength = quizJSON.choices.length;
+    var quizChoices;
+    if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
+      quizChoices = V.Utils.shuffle(quizJSON.choices)
+    }else {
+      quizChoices = quizJSON.choices
+    }
+    var quizChoicesLength = quizChoices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
-      var option = quizJSON.choices[i];
+      var option = quizChoices[i];
       var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox = $("<td><input class='mc_box' type='" + inputType + "' name='mc_option' value='" + i + "'/></td>");
       var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + String.fromCharCode(96 + i + 1) + ") </span></td>");
@@ -29713,7 +29784,9 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
     $(quizChoices).each(function(index, quizChoice) {
       quizChoicesById[quizChoice.id] = quizChoice
     });
-    var answeredQuizCorrectly = undefined;
+    var answeredQuizCorrectly = false;
+    var answeredQuizWrong = false;
+    var quizAnswered = false;
     $(quiz).find("tr.mc_option").each(function(index, tr) {
       var choiceId = $(tr).attr("choiceid");
       var choice = quizChoicesById[choiceId];
@@ -29721,11 +29794,13 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
       if(choice.answer === answerValue) {
         answeredQuizCorrectly = true
       }else {
-        answeredQuizCorrectly = false
+        answeredQuizWrong = true
       }
+      quizAnswered = true;
       report.answers.push({choiceId:V.Quiz.getQuizChoiceOriginalId(choiceId).toString(), answer:answerValue})
     });
-    if(typeof answeredQuizCorrectly == "boolean") {
+    answeredQuizCorrectly = answeredQuizCorrectly && !answeredQuizWrong;
+    if(quizAnswered) {
       report.answers.push({selfAssessment:{result:answeredQuizCorrectly}})
     }
     report.empty = report.answers.length === 0;
@@ -29760,9 +29835,15 @@ VISH.Quiz.TF = function(V, $, undefined) {
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='tf_options'></table>");
     var newTr = $("<tr class='mc_option tf_head'><td><img src='" + V.ImagesPath + "quiz/checkbox_checked.png' class='tfCheckbox_viewer'/></td><td><img src='" + V.ImagesPath + "quiz/checkbox_wrong.png' class='tfCheckbox_viewer'/></td><td></td><td></td></tr>");
     $(optionsWrapper).prepend(newTr);
-    var quizChoicesLength = quizJSON.choices.length;
+    var quizChoices;
+    if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
+      quizChoices = V.Utils.shuffle(quizJSON.choices)
+    }else {
+      quizChoices = quizJSON.choices
+    }
+    var quizChoicesLength = quizChoices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
-      var option = quizJSON.choices[i];
+      var option = quizChoices[i];
       var optionWrapper = $("<tr class='mc_option' choiceId='" + option.id + "'></tr>");
       var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true'  /></td>");
       var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' /></td>");
@@ -29908,7 +29989,7 @@ VISH.QuizCharts = function(V, $, undefined) {
     if(i18n[language]) {
       translations = i18n[language]
     }
-    _insertCss("div.openQuizAnswersListWrapper{ overflow: auto; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; padding: 15px;} ul.openQuizAnswersList{ padding: 0px; list-style: none; } ul.openQuizAnswersList li { position: relative; font-style: italic; border-bottom: 1px solid #D7EEFF; padding: 3% 6% 2% 6%; font-size: 1.5rem; } ul.openQuizAnswersList li:first-child { font-family: 'Open Sans', arial, sans-serif; color: #ff005d; font-weight: bold; border-bottom: 1px solid #D8DAFF; padding-top: 0%; border-bottom: 1px solid #AFAFAF; font-style: normal; padding-bottom: 20px; font-size: 1.7rem; -webkit-border-top-left-radius: 15px; -webkit-border-top-right-radius: 15px; -moz-border-radius-topleft: 15px; -moz-border-radius-topright: 15px; border-top-left-radius: 15px; border-top-right-radius: 15px; text-align: center; } ul.openQuizAnswersList li:last-child { -webkit-border-bottom-left-radius: 15px; -webkit-border-bottom-right-radius: 15px; -moz-border-radius-bottomleft: 15px; -moz-border-radius-bottomright: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; }");
+    _insertCss("div.openQuizAnswersListWrapper{ overflow: auto; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; padding: 15px;} ul.openQuizAnswersList{ padding: 0px; list-style: none; } ul.openQuizAnswersList li { font-family: 'Open Sans', arial, sans-serif; position: relative; font-style: italic; border-bottom: 1px solid #D7EEFF; padding: 3% 6% 2% 6%; font-size: 1.2rem; } ul.openQuizAnswersList li:first-child { padding-left: 10%; text-align: left; color: #838383; font-weight: bold; border-bottom: 1px solid #D8DAFF; padding-top: 0%; border-bottom: 1px solid #AFAFAF; font-style: normal; padding-bottom: 20px; font-size: 1.7rem; } ul.openQuizAnswersList li:last-child { -webkit-border-bottom-left-radius: 15px; -webkit-border-bottom-right-radius: 15px; -moz-border-radius-bottomleft: 15px; -moz-border-radius-bottomright: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; }");
     _insertCss("div.openQuizAnswerLeft{position: absolute; width: 5%; height: 70%; top: 15%; left: 3%; background-image: url('" + (VISH.ImagesPath || "") + "vicons/userAnswer.png'); background-position: center; background-size: contain; background-repeat: no-repeat;} div.openQuizAnswerRight{ margin-left: 5%; };")
   };
   var _getTrans = function(s, params) {
@@ -30371,7 +30452,7 @@ VISH.Recommendations = function(V, $, undefined) {
         result += '<a target="_blank" href="' + ex.url + '">'
       }
       result += '<div class="rec-excursion" id="recom-' + ex.id + '" number="' + i + '">' + '<ul class="rec-thumbnail">' + '<li class="rec-img-excursion">' + '<img src="' + ex.image + '">' + '<div class="rec-number_pages">' + ex.number_of_slides + "</div>" + "</li>" + '<li class="rec-info-excursion">' + '<div class="rec-title-excursion">' + ex.title + "</div>" + '<div class="rec-by">by <span class="rec-name">' + ex.author + "</span></div>" + '<span class="rec-visits">' + ex.views + '</span> <span class="rec-views">' + 
-      V.I18n.getTrans("i.exviews") + "</span>" + '<div class="rec-likes"><span class="rec-likes-number">' + ex.favourites + '</span><img class="rec-menu_icon" src="http://vishub.org/assets/icons/star-on10.png"></div>' + "</li>" + "</ul>" + "</div>";
+      V.I18n.getTrans("i.exviews") + "</span>" + '<div class="rec-likes"><span class="rec-likes-number">' + ex.favourites + '</span><img class="rec-menu_icon" src="' + V.ImagesPath + 'vicons/star-on10.png"></div>' + "</li>" + "</ul>" + "</div>";
       if(applyTargetBlank) {
         result += "</a>"
       }
@@ -31020,7 +31101,9 @@ VISH.Storage = function(V, $, undefined) {
     var LSSupported = typeof Storage !== "undefined";
     if(LSSupported) {
       try {
+        localStorage.setItem("myKey", "myKeyValue");
         localStorage.getItem("myKey");
+        localStorage.removeItem("myKey");
         return true
       }catch(e) {
         return false

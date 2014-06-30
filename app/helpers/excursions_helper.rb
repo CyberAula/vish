@@ -87,4 +87,8 @@ module ExcursionsHelper
     end
   end
 
+  def excursion_metadata_path(excursion)
+    return excursion_path(excursion) + "/metadata.xml"
+  end
+
 end

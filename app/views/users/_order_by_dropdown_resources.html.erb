@@ -49,7 +49,7 @@
 
   if(param && param!=""){
     var value = $("#order_by_selector_resources .dropdown-menu [sort-by-key="+param+"]").html();
-    $("#dropdownMenuOrdByresources").html(value + '<i class="fa fa-angle-down"></i>'); 
+    $("#dropdownMenuOrdByresources").html(value + '<i class="icon-angle-down"></i>'); 
   }
   
 <%end%>
@@ -62,10 +62,9 @@ var resources_dropdown_select = function(option) {
       type : "GET",
       url : "<%= user_url(profile_subject) %>/resources?sort_by=" + option,
       success : function(html) {
-        $(".sort_by_selected").removeClass("sort_by_selected");        
+        $("#order_by_selector_resources").attr("li_selected", option);
         var value = $("#order_by_selector_resources .dropdown-menu [sort-by-key="+option+"]").html();
-        $("#order_by_selector_resources .dropdown-menu [sort-by-key="+option+"]").addClass("sort_by_selected");
-        $("#dropdownMenuOrdByresources").html(value + '<i class="fa fa-angle-down"></i>');
+        $("#dropdownMenuOrdByresources").html(value + '<i class="icon-angle-down"></i>');
         $('.loader_pagination').hide();      
         $("#resources_tab_ready").replaceWith(html);
         re_apply_pageless("resources");
