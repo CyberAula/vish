@@ -24,13 +24,13 @@ class RecommenderSystem
     options = prepareOptions(options)
 
     #Step 1: Preselection
-    preSelection = getPreselection(user,excursion,options)
+    preSelectionLOs = getPreselection(user,excursion,options)
 
     #Step 2: Scoring
+    rankedLOs = orderByScore(preSelectionLOs,user,excursion,options)
 
     #Step 3
-
-    return preSelection.first(options[:n])
+    return rankedLOs.first(options[:n])
   end
 
   # Step 0: Initialize all variables (N,NMax,random,...)
@@ -97,6 +97,83 @@ class RecommenderSystem
     end
 
     return preSelection
+  end
+
+  #Step 2: Scoring
+  def self.orderByScore(preSelectionLOs,user,excursion,options)
+
+    #Get some vars to normalize scores
+    maxPopularity = preSelectionLOs.max_by {|e| e.popularity }.popularity
+    maxQuality = preSelectionLOs.max_by {|e| e.qscore }.qscore
+
+    weights = {}
+    weights[:cs_score] = 0.25
+    weights[:ups_score] = 0.25
+    weights[:popularity_score] = 0.25
+    weights[:quality_score] = 0.25
+
+    calculateCSScore = !excursion.nil?
+    calculateUPSScore = !user.nil?
+    calculatePopularityScore = !(maxPopularity.nil? or maxPopularity == 0)
+    calculateQualityScore = !(maxQuality.nil? or maxQuality == 0)
+
+    preSelectionLOs.map{ |e|
+      if calculateCSScore
+        cs_score = RecommenderSystem.contentSimilarityScore(excursion,e)
+      else
+        cs_score = 0
+      end
+
+      if calculateUPSScore
+        ups_score = RecommenderSystem.userProfileSimilarityScore(user,e)
+      else
+        ups_score = 0
+      end
+
+      if calculatePopularityScore
+        popularity_score = RecommenderSystem.popularityScore(e,maxPopularity)
+      else
+        popularity_score = 0
+      end
+
+      if calculateQualityScore
+        quality_score = RecommenderSystem.qualityScore(e,maxQuality)
+      else
+        quality_score = 0
+      end
+
+      e.score = weights[:cs_score] * cs_score + weights[:ups_score] * ups_score + weights[:popularity_score] * popularity_score + weights[:quality_score] * quality_score
+      e.score_tracking = {
+        :cs_score => cs_score,
+        :ups_score => ups_score,
+        :popularity_score => popularity_score,
+        :quality_score => quality_score,
+        :overall_score => e.score,
+        :rec => "ViSHRecommenderSystem"
+      }.to_json
+    }
+
+    preSelectionLOs.sort! { |a,b|  b.score <=> a.score }
+  end
+
+  #Content Similarity Score (between 0 and 1)
+  def self.contentSimilarityScore(loA,loB)
+    return 0
+  end
+
+  #User profile Similarity Score (between 0 and 1)
+  def self.userProfileSimilarityScore(user,lo)
+    return 0
+  end
+
+  #Popularity Score (between 0 and 1)
+  def self.popularityScore(lo,maxPopularity)
+    return lo.popularity/maxPopularity.to_f
+  end
+
+  #Quality Score (between 0 and 1)
+  def self.qualityScore(lo,maxQualityScore)
+    return lo.qscore/maxQualityScore.to_f
   end
 
 

@@ -40,6 +40,8 @@ class Excursion < ActiveRecord::Base
     has activity_object.download_count, :as => :download_count
   end
 
+  attr_accessor :score
+  attr_accessor :score_tracking
 
 
   ####################
@@ -946,8 +948,14 @@ class Excursion < ActiveRecord::Base
     is_mve
   end
 
+  ####################
+  ## Quality Metrics
+  ####################
 
-
+  #Get quality score (in a 0-10 scale)
+  def qscore
+    return nil
+  end
 
   private
 
