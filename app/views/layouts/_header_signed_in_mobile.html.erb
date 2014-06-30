@@ -82,13 +82,13 @@
   <!--manual-->
   <li>
     <%= link_to faq_path do %>
-      <i class="fa fa-question-sign"> </i> <%=t('faq.title')%>
+      <i class="fa fa-question-circle"> </i> <%=t('faq.title')%>
     <% end %>
   </li>
 
   <hr>
   <!--sign out-->
-  <li class="active">
+  <li>
     <%= link_to destroy_user_session_path, :method => :delete do %>
     <i class="fa fa-sign-out"></i>
     <%= t('sign_out') %>

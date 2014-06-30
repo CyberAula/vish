@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 9f37c89fd01e58840a18796ae8e49e595f351187
+  revision: bb21243ec934f1991d4b6249cc1d4ce916c0f2dd
   branch: vish-b3
   specs:
     social_stream-base (2.2.2)
@@ -220,7 +220,7 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashery (2.1.1)
-    hashie (2.1.1)
+    hashie (2.1.2)
     highline (1.6.21)
     hike (1.2.3)
     htmlentities (4.3.2)
@@ -364,9 +364,9 @@ GEM
     recurrence (1.2.0)
       activesupport (>= 2.3.0)
       i18n
-    redis (3.0.7)
-    redis-namespace (1.4.1)
-      redis (~> 3.0.4)
+    redis (3.1.0)
+    redis-namespace (1.5.0)
+      redis (~> 3.0, >= 3.0.4)
     responders (1.0.0)
       railties (>= 3.2, < 5)
     resque (1.23.1)

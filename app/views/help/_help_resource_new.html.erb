@@ -1,19 +1,19 @@
-<li class="helpheader">   
-<i class="fa fa-question-circle helpResources" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.title')%>" data-footer="whatever" href='#' value="" ></i>
-<div class="contentHelpResources" style="display: none">
-  <div>
-        <%= t('document.help.info1_html')%>  <br/>
-        <%= t('document.help.info2_html')%>  <br/>
-        <%= t('document.help.info3_html')%>  <br/>
-        <%= t('document.help.info4_html')%>  <br/>
-        <%= t('document.help.info5_html')%>  <br/>
-        <%= t('document.help.info6_html')%>  <br/>
-        <%= t('document.help.info7_html')%>  <br/>
-        <%= t('document.help.info8_html')%>
+<span class="helpheader">   
+  <i class="fa fa-question-circle helpResources" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.title')%>" data-footer="whatever" href='#' value="" ></i>
+  <div class="contentHelpResources" style="display: none">
+    <div>
+          <%= t('document.help.info1_html')%>  <br/>
+          <%= t('document.help.info2_html')%>  <br/>
+          <%= t('document.help.info3_html')%>  <br/>
+          <%= t('document.help.info4_html')%>  <br/>
+          <%= t('document.help.info5_html')%>  <br/>
+          <%= t('document.help.info6_html')%>  <br/>
+          <%= t('document.help.info7_html')%>  <br/>
+          <%= t('document.help.info8_html')%>
+    </div>
+    <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
-  <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
-</div>
-</li>
+</span>
 <script>
 $(document).ready(function(){
   $('.helpResources').popover({ 

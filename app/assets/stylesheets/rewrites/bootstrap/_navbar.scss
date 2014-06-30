@@ -14,7 +14,7 @@
 
 .navbar-default{
   @include box-shadow (0 -2px 20px rgba(0, 0, 0, 0.1));
-  padding: 2px 0 0;
+  padding: 3px 0 0;
   .nav-pills{
     float: left;
   }
@@ -76,4 +76,10 @@ ul.navbar-nav > li {
 
 .navbar-collapse li.active a:hover{
   background-color: #EEE !important;
+}
+
+@media (max-width: 767px){
+  .navbar-fixed-top .navbar-collapse{
+    max-height: auto !important;
+  }
 }

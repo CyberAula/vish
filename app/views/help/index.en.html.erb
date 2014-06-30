@@ -1,49 +1,41 @@
 <section id="help">
   <div class="whiteframe">
     <legend><%= t('help_page')%></legend>
-    <div class="header_text"><b><%= t('project')%></b></div>
+    <br/>
+    <b>
+      <%= t('project')%>
+    </b>
     <br/>
     The EU-funded Global Excursion Project aims to improve the science curriculum at upper stage school levels (i.e. pupils in the 14-18 age range) through an innovative e-platform called the Virtual Science Hub (ViSH).
-    <div class="row space_center"></div>
-    <div class="row space_center"></div>
     <br/>
-    <div class="header_text"><b><%= t('vish.about')%></b></div>
+    <br/>
+    <br/>
+    <b>
+      <%= t('vish.about')%>
+    </b>
     <br/>
     The Virtual Science Hub is a meeting point for scientists and teachers and is based around the idea of “Virtual Excursions”, the online analog to an on-site visit, during which the students discover science in Europe’s top scientific centers. Several media such as flashcards, video-conference and virtual experiments help them feel the science rather than just study it.
 
     ViSH will be using Social Stream as a social networking library and it is entering its development phase. You can find the code at the GING github page.
-
-    <div class="row space_center"></div>
-    <div class="row space_center"></div>
     <br/>
-    <div class="header_text"><b><%= t('vish.starterguide')%></b></div>
     <br/>
-    
-      <!--<div class="span3">
-        <#%= link_to image_tag("logos/original/excursion-vish.png"),"/excursions/6"%>
-      </div>-->
-
-      <div class="span6">
-        <div class="caption inline-block size16">
-          <%= link_to  t('excursion.how'), "/excursions/6"%>
-          <span class="blue-opacity">by <%= t('site.name') %></span>
-        </div>     
-      </div>
-      
-      <div class="span6">
-        <div class="caption inline-block size16">
-          <a data-toggle="modal" href="#" class="link-modal-button-modal-no-trigger"><%= truncate_name(t('document.screencast'), :length => 20) %></a>
-          <span class="blue-opacity">by <%= t('site.name') %></span>
-        </div>
-      </div>
-
-      <div class="span3">
-        <div id="margin-resources">
-          <a data-toggle="modal" href="#" class="iconx-video link-modal-button-modal-no-trigger" alt="<%=t('document.screencast') %>"></a>
-        </div>
-      </div>
-
-    <!--<div class="row space_double_center"></div>-->
+    <br/>
+    <b>
+      <%= t('vish.starterguide')%>
+    </b>
+    <br/>
+    <div class="caption">
+      <%= link_to  t('excursion.how'), "/excursions/6"%>
+      <span class="small">by <%= t('site.name') %></span>
+    </div>     
+    <div class="caption">
+      <a data-toggle="modal" href="#" class="link-modal-button-modal-no-trigger"><%= truncate_name(t('document.screencast'), :length => 20) %></a>
+      <span class="small">by <%= t('site.name') %></span>
+    </div>
+    <div id="margin-resources">
+      <a data-toggle="modal" href="#" class="fa fa-video-camera link-modal-button-modal-no-trigger" alt="<%=t('document.screencast') %>"></a>
+    </div>
+    <br/>
   </div>
 </section>
 

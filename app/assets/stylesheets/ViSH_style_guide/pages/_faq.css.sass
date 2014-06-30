@@ -1,0 +1,40 @@
+#faq
+  @extend .well
+  padding-top: 12px
+  header
+    border-bottom: 1px solid #CCC
+    padding-bottom: 12px
+    margin-bottom: 20px
+    .form-group
+      float: right
+  header,
+  footer
+    clear: both
+    width: 100%
+  footer
+    background-color: transparent
+    border-top: 1px solid #ccc
+    text-align: right
+    padding-right: 15px
+    span
+      display: block
+    
+.faq
+  .nav-stacked
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(3, $gutter: $grid-gutter-width)
+    @include make-md-column(3, $gutter: $grid-gutter-width)
+    @include make-lg-column(3, $gutter: $grid-gutter-width)
+    margin-bottom: 20px
+    li + li
+      margin-left: 0px
+
+  .tab-content
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(9, $gutter: $grid-gutter-width)
+    @include make-md-column(9, $gutter: $grid-gutter-width)
+    @include make-lg-column(9, $gutter: $grid-gutter-width)
+    .panel-default
+      border-color: transparent
+      span
+        margin-right: 10px

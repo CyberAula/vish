@@ -1,3 +1,10 @@
 .items{
   @include items;
 }
+
+.contact{
+  background-color: transparent !important;
+  .add{
+  	@include follow-profile;
+  }
+}

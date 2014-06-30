@@ -67,3 +67,20 @@
       display: inline-block
       margin-bottom: 10px
 
+@mixin excursion-small
+  width: 100%
+  .container-img
+    width: 31%
+    float: left
+    margin-right: 15px
+    height: 68px
+    
+    .dummy
+      padding-top: 80px
+    .element
+      @include border-top-radius (0)
+      @include border-left-radius ($border-radius-base)
+      i
+        font-size: 44px
+        padding-top: 14px
+

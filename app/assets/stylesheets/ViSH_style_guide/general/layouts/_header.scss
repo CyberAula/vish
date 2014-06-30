@@ -15,7 +15,8 @@
   }
   .search-query {
     @media (max-width: $screen-xs-max){
-      width: 90%;
+      width: 95%;
+      @include center-block;
     }
   }
 }
@@ -31,15 +32,21 @@
   @include hidden-sm;
   @include hidden-md;
   @include hidden-lg;
+  .user{
+    margin-bottom: 0;
+    img{
+      width: 25px;
+    }
+  }
 }
 
 .desktop-nav{
   @include hidden-xs;
   @extend .pull-right;
 }
-
-.photo-user{
-  a{
+.user-menu{
+  margin-left: 12px !important;
+  a.photo-user{
     padding: 3px !important;
     img{
       width: 28px;
@@ -53,5 +60,27 @@
       margin-right: 2px; 
     }
   }
+}
+
+form.navbar-form-search{
+  margin-right: 12px;
+  @media (max-width: $screen-xs-max){
+    margin-right: 0;
+  }
+}
+
+#search_button{
+  @include hidden-xs;
+}
+
+.navbar-collapse {
+  background-color: $white;
+  overflow-x: visible;
+  padding-right: 0;
+  padding-left: 0;
+  border-top: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  -webkit-overflow-scrolling: touch;
+  margin-top: 3px;
 
 }

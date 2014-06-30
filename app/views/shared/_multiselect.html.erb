@@ -6,12 +6,12 @@ var is_hover_dropdown = false;
 
 $("#category_id").multiselect({
       header: false,
-      classes: "categorize_select with_tooltip",
+      classes: "categorize_select with_tooltip btn btn-default",
       height: 190,
       minWidth: "30",
       menuWidth: 200,
-      noneSelectedText: '<i class="icon-th-large"></i><b class="caret"></b>',
-      selectedText: '<i class="icon-th-large"></i><b class="caret"></b>',
+      noneSelectedText: '<i class="fa fa-th-large"></i><i class="fa fa-angle-down"></i>',
+      selectedText: '<i class="fa fa-th-large"></i><i class="fa fa-angle-down"></i>',
       open: function(event,ui){
         multiselect_closed = false;
       },

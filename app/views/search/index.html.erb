@@ -1,16 +1,21 @@
 <section id="search" class="">
   <div class="search">
-            <%if params[:browse]%>
+
+        <ul class="nav nav-tabs">
+          <%if params[:browse]%>
           <%content_for :title do%>
             <%= t("site.current.browse")%>
           <%end%>
-          <li><h1><i class="fa fa-folder-open"></i><%= t("browse.title")%></h1></li>          
-        <%else%>
+          <h1><i class="fa fa-folder-open"></i><%= t("browse.title")%></h1> 
+   
+          <%else%>
           <%content_for :title do%>
             <%= t("site.current.search")%>
           <%end%>
-          <li><h1><i class="fa fa-search"></i><%= t("search.title")%></h1></li>
-        <%end%>
+          <h1><i class="fa fa-search"></i><%= t("search.title")%></h1>
+
+          
+      <%end%>
           <li class="all_results <%= 'active' if params[:type].blank? %>">
             <%= link_to raw('<i class="fa fa-asterisk"></i><span class="hidden-xs hidden-sm">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
           </li>
@@ -26,7 +31,7 @@
           </li>
 
           <li class="event <%= " active" if params[:type] == "event" %><%= " disabled" unless search_results?("event") %>">
-            <%= link_to raw('<i class="fa fa-facetime-video"></i><span class="hidden-xs hidden-sm">'+t("event.title.other")+'</span>'), "#event",
+            <%= link_to raw('<i class="fa fa-video-camera"></i><span class="hidden-xs hidden-sm">'+t("event.title.other")+'</span>'), "#event",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
           </li>
 
@@ -34,7 +39,6 @@
             <%= link_to raw('<i class="fa fa-file"></i><span class="hidden-xs hidden-sm">'+t("resource.title.other")+'</span>'), "#resource",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
           </li>
-
           <%= render partial: 'help/help_search' %>
       </ul>
       <%= render partial: 'search/order_by_dropdown' %> 
@@ -45,7 +49,7 @@
         <%#= render partial: 'layouts/loading' %>
         <div class="tab-pane active" id="tab1 ">
           <div id="search-all">
-            <ul>  
+            <ul class="items">  
               <% @search_result.each do |r| %>              
                   <%= render partial: "#{ r.class.to_s.tableize }/search_result",
                              locals:  { r.class.to_s.underscore.to_sym => r }  %>

@@ -1,11 +1,13 @@
-<li class="helpheader">   
-<i class="fa fa-question-circle helphome" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.resources1_html')%>" href='#' value="" ></i>
-<div class="contenthome" style="display: none">
-  <div>
-    <%= t('document.help.resources2_html')%>
+<li class="helpheader">  
+  <a> 
+    <i class="fa fa-question-circle helphome" data-placement='right' aria-hidden="true" data-original-title="<%= t('document.help.resources1_html')%>" href='#' value="" ></i>
+  </a>
+  <div class="contenthome" style="display: none">
+    <div>
+      <%= t('document.help.resources2_html')%>
+    </div>
+    <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
-  <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
-</div>
 </li>
 <script>
 $(document).ready(function(){

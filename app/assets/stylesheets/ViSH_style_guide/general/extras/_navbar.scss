@@ -25,8 +25,8 @@ li.btn-group{
     @include border-bottom-radius ($border-radius-base);
 }
 
-ul .btn-group .btn-default {
-  border: none;
+.navbar-fixed-top .btn{
+  padding: 7px 6px;
 }
 
 

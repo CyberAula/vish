@@ -1,13 +1,13 @@
-<li class="helpheader">   
-<i class="fa fa-question-circle helpCategories" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.cat')%>" href='#' value="" ></i>
-<div class="contenthelpCategories" style="display: none">
-  <div>
-          <%= t('document.help.cat1_html')%>  <br/>
-          <%= t('document.help.cat2_html')%>
+<span class="helpheader">   
+  <i class="fa fa-question-circle helpCategories" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.cat')%>" href='#' value="" ></i>
+  <div class="contenthelpCategories" style="display: none">
+    <div>
+            <%= t('document.help.cat1_html')%>  <br/>
+            <%= t('document.help.cat2_html')%>
+    </div>
+    <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
-  <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
-</div>
-</li>
+</span>
 <script>
 $(document).ready(function(){
   $('.helpCategories').popover({ 

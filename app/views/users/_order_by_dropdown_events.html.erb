@@ -1,50 +1,48 @@
-
-
-<div class="dropdown order_by_selector" id="order_by_selector_events">
-<span class="order_by"><%=t('order_by.title')%></span>
+<div class="btn-group order_by_selector" id="order_by_selector_events">
+  <span>
+    <%=t('order_by.title')%>
+  </span>
   <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
   <% icon = profile_subject_is_current? ? "pencil" : "dashboard"%>
-  <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="dropdownMenuOrdByevents" data-toggle="dropdown"><i class="fa fa-<%=icon%>"></i> <%=t('order_by.' + default_sort_by)%>
+  <a type="button" id="dropdownMenuOrdByevents" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-<%=icon%>"></i> 
+    <%=t('order_by.' + default_sort_by)%>
     <i class="fa fa-angle-down"></i>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+  </a>
 
-
-
+  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
     <li>
-        <a href="#" onclick="events_dropdown_select('popularity');" class="sort_by_selected" sort-by-key='popularity'> 
-          <i class="fa fa-dashboard"></i>
-          <span><%=t('order_by.popularity')%> </span>
-        </a>
+      <a href="#" onclick="events_dropdown_select('popularity');" class="sort_by_selected" sort-by-key='popularity'> 
+        <i class="fa fa-dashboard"></i>
+        <%=t('order_by.popularity')%>
+      </a>
     </li>
     <li>
       <a href="#" onclick="events_dropdown_select('updated_at');" sort-by-key='updated_at'>
         <i class="fa fa-pencil"></i>
-        <span><%=t('order_by.updated_at')%> </span>
+        <%=t('order_by.updated_at')%>
       </a>
     </li>
     <li>
       <a href="#" onclick="events_dropdown_select('created_at');" sort-by-key='created_at'>
         <i class="fa fa-bolt"></i>
-        <span><%=t('order_by.created_at')%> </span>
+        <%=t('order_by.created_at')%>
       </a>
     </li>
     <li>
-        <a href="#" onclick="events_dropdown_select('visits');" sort-by-key='visits'>
-          <i class="fa fa-eye-open"></i> 
-          <span><%=t('order_by.visits')%> </span>
-        </a>
+      <a href="#" onclick="events_dropdown_select('visits');" sort-by-key='visits'>
+        <i class="fa fa-eye-open"></i> 
+        <%=t('order_by.visits')%>
+      </a>
     </li>
     <li>
-        <a href="#" onclick="events_dropdown_select('favorites');" sort-by-key='favorites'>
-          <i class="fa fa-star"></i> 
-          <span><%=t('order_by.favorites')%> </span>
-        </a>
+      <a href="#" onclick="events_dropdown_select('favorites');" sort-by-key='favorites'>
+        <i class="fa fa-star"></i> 
+        <%=t('order_by.favorites')%>
+      </a>
     </li>
   </ul>
-
 </div>
-
 
 <%= content_for :javascript do %>
  

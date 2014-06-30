@@ -4,8 +4,7 @@ aside.recomended
   @include make-md-column(4, $gutter: $grid-gutter-width)
   @include make-lg-column(4, $gutter: $grid-gutter-width)
 
-.description-activity,
-.box-show
+.doc-show
   @include make-sm-column(8, $gutter: $grid-gutter-width)
   @include make-md-column(8, $gutter: $grid-gutter-width)
   @include make-lg-column(8, $gutter: $grid-gutter-width)
@@ -15,6 +14,8 @@ aside.recomended
   background-color: $white
   padding: 0
   border: none
+  @media (max-width: $screen-xs-min)
+    clear: both
   h2,
   .tab-content
     width: 95%
@@ -22,15 +23,48 @@ aside.recomended
   h2
     font-family: $corporate-font-family-sans-serif-Regular
   .tab-content
-    .left-info,
     .newClass,
     .avatar,
     #effect,
     .right-name
       float: left
+      .add
+        @include follow-profile
+        margin-top: -10px
     .left-info
-      .viewsAndConunt
+      @include make-sm-column(4, $gutter: $grid-gutter-width)
+      @include make-md-column(4, $gutter: $grid-gutter-width)
+      @include make-lg-column(4, $gutter: $grid-gutter-width)
+      .viewsAndCount
         clear: both
+        padding-top: 2px
+        .views
+          display: inline
+          font-family: $corporate-font-family-sans-serif-Medium
+          span
+            font-family: $corporate-font-family-sans-serif-Light
+        .like
+          font-family: $corporate-font-family-sans-serif-Medium
+          display: inline-block
+          margin-left: 8px
+          .count
+            display: inline
+      
+    .avatar img
+      width: 30px
+    .right-name
+      @include make-sm-column(9, $gutter: $grid-gutter-width)
+      @include make-md-column(9, $gutter: $grid-gutter-width)
+      @include make-lg-column(9, $gutter: $grid-gutter-width)
+    .panel-group
+      @include make-sm-column(8, $gutter: $grid-gutter-width)
+      @include make-md-column(8, $gutter: $grid-gutter-width)
+      @include make-lg-column(8, $gutter: $grid-gutter-width)
+      .panel-body
+        padding: 0 
+      .table
+        margin-bottom: 0
+      
   .comments,
   .child
     width: 100%
@@ -44,6 +78,26 @@ aside.recomended
     clear: none
 
 .box-show
-  background-color: $gray-lighter
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  background-color: #E2E2E2
+  padding: 11px 0
   .container-visor
     width: 100%
+
+aside.recomended
+  float: right !important
+  .items
+    padding: 0
+  .thumbnail
+    @include excursion-small
+
+.box-show
+  a,
+  i
+    text-align: center
+    width: 100%
+    float: left
+    font-size: 44px

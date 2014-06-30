@@ -28,314 +28,333 @@
 
   $("#launch_uservoice").click(function(){
     UserVoice.showPopupWidget();
-    event.preventDefault();
+    events.preventDefault();
   });
 
 <%end%>
 
 
 <section id="faq">
+  
+    <header class="navbar-form navbar-left" role="search">
+      <%= t('faq.title')%>
+      <div class="form-group">
+        <input class="form-control" id="appendedInputButton" type="text">
+        <button class="btn btn-default" type="button">Filter</button>
+      </div>
+    </header>
   <div class="faq">
-  <legend>
-    <%= t('faq.title')%>
-    <div class="input-append">
-      <input class="span2" id="appendedInputButton" type="text">
-      <button class="btn" type="button">Filter</button>
-    </div>
-  </legend>
+    <ul class="nav nav-pills nav-stacked">
+  <!--______________CONTENT INDEX________________-->
+      <li class="active"><a href="#tab1" data-toggle="tab">ViSHub</a></li>
+      <li><a href="#tab2" data-toggle="tab">eExcursions</a></li>
+      <li><a href="#tab3" data-toggle="tab">Resources</a></li>
+      <li><a href="#tab4" data-toggle="tab">eVisits</a></li>
+      <li><a href="#tab5" data-toggle="tab">Competitions</a></li>
+    </ul>
 
+  <!--______________CONTENT FAQS________________-->
 
-<div class="tabbable tabs-left">
-  <ul class="nav nav-tabs">
-<!--______________CONTENT INDEX________________-->
-    <li class="active"><a href="#tab1" data-toggle="tab">ViSHub</a></li>
-    <li><a href="#tab2" data-toggle="tab">eExcursions</a></li>
-    <li><a href="#tab3" data-toggle="tab">Resources</a></li>
-    <li><a href="#tab4" data-toggle="tab">eVisits</a></li>
-    <li><a href="#tab5" data-toggle="tab">Competitions</a></li>
-  </ul>
+    <div class="tab-content">
+  <!--______________CONTENT VISH________________-->
+      <div class="tab-pane active" id="tab1">
 
-<!--______________CONTENT FAQS________________-->
-
-  <div class="tab-content">
-<!--______________CONTENT VISH________________-->
-    <div class="tab-pane active" id="tab1">
-
-    
-      <div class="accordion" id="accordion_faq_vish">
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish" href="#faq_vish_1">
-               <div class="number">1. </div><%=t('faq.question1')%>
-            </a>
-          </div>
-          <div id="faq_vish_1" class="accordion-body collapse ">
-            <div class="accordion-inner">
-              <%=t('faq.answer1')%>
+        <div class="panel-group" id="accordion_faq_vish">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_vish" href="#faq_vish_1">
+                  <span>1.</span><%=t('faq.question1')%>
+                </a>
+              </h4>
             </div>
-          </div>
-        </div>
-
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish" href="#faq_vish_2">
-              <div class="number">2. </div><%=t('faq.question2')%>
-            </a>
-          </div>
-          <div id="faq_vish_2" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%=raw t('faq.answer2')%>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish" href="#faq_vish_3">
-              <div class="number">3. </div><%=t('faq.question3')%>
-            </a>
-          </div>
-          <div id="faq_vish_3" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%=t('faq.answer3')%>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-<!--______________CONTENT VISHEDITOR________________-->
-    <div class="tab-pane " id="tab2">
-      <div class="accordion" id="accordion_faq_vish_editor">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish_editor" href="#faq_vish_editor_1">
-                <div class="number">1. </div><%=t('faq.editor_question1')%>
-              </a>
-            </div>
-            <div id="faq_vish_editor_1" class="accordion-body collapse ">
-              <div class="accordion-inner">
-                <%=raw t('faq.editor_answer1')%>
+            <div id="faq_vish_1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.answer1')%>
               </div>
             </div>
           </div>
 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish_editor" href="#faq_vish_editor_2">
-                <div class="number">2. </div><%=t('faq.editor_question2')%>
-              </a>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_vish" href="#faq_vish_2">
+                  <span>2.</span><%=t('faq.question2')%>
+                </a>
+              </h4>
             </div>
-            <div id="faq_vish_editor_2" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%=raw t('faq.editor_answer2')%>
+            <div id="faq_vish_2" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.answer2')%>
               </div>
             </div>
           </div>
 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish_editor" href="#faq_vish_editor_3">
-                <div class="number">3. </div><%=t('faq.editor_question3')%>
-              </a>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_vish" href="#faq_vish_3">
+                  <span>3.</span><%=t('faq.question3')%>
+                </a>
+              </h4>
             </div>
-            <div id="faq_vish_editor_3" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%=raw t('faq.editor_answer3')%>
+            <div id="faq_vish_3" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.answer3')%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <!--______________CONTENT VISHEDITOR________________-->
+      <div class="tab-pane " id="tab2">
+
+        <div class="panel-group" id="accordion_faq_vish_editor">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_vish_editor" href="#faq_vish_editor_1">
+                  <span>1.</span><%=t('faq.editor_question1')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_vish_editor_1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.editor_answer1')%>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_vish_editor" href="#faq_vish_editor_2">
+                  <span>2.</span><%=t('faq.editor_question2')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_vish_editor_2" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.editor_answer2')%>
               </div>
             </div>
           </div>
 
-      </div>
-    </div>
-<!--______________CONTENT resources________________-->
-    <div class="tab-pane" id="tab3">
-
-      <div class="accordion" id="accordion_faq_resources">
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_resources" href="#faq_resources_1">
-              <div class="number">1. </div><%=t('faq.resources_question1')%>
-            </a>
-          </div>
-          <div id="faq_resources_1" class="accordion-body collapse ">
-            <div class="accordion-inner">
-              <%=t('faq.resources_answer1')%>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_vish_editor" href="#faq_vish_editor_3">
+                  <span>3.</span><%=t('faq.editor_question3')%>
+                </a>
+              </h4>
             </div>
-          </div>
-        </div>
-
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_resources" href="#faq_resources_2">
-              <div class="number">2. </div><%=t('faq.resources_question2')%>
-            </a>
-          </div>
-          <div id="faq_resources_2" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%=t('faq.resources_answer2')%>
+            <div id="faq_vish_editor_3" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.editor_answer3')%>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-<!--______________CONTENT events________________-->
-    <div class="tab-pane" id="tab4">
-
-      <div class="accordion" id="accordion_faq_events">
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_events" href="#faq_event_1">
-              <div class="number">1. </div><%=t('faq.events_question1')%>
-            </a>
+  <!--______________CONTENT resources________________-->
+      <div class="tab-pane" id="tab3">
+        <div class="panel-group" id="accordion_faq_resources">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_resources" href="#faq_resources_1">
+                  <span>1.</span><%=t('faq.resources_question1')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_resources_1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.resources_answer1')%>
+              </div>
+            </div>
           </div>
-          <div id="faq_event_1" class="accordion-body collapse ">
-            <div class="accordion-inner">
-              <%=raw t('faq.events_answer1')%>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_resources" href="#faq_resources_2">
+                  <span>1.</span><%=t('faq.resources_question2')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_resources_2" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.resources_answer2')%>
+              </div>
             </div>
           </div>
         </div>
-
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_events" href="#faq_event_2">
-              <div class="number">2. </div><%=t('faq.events_question2')%>
-            </a>
+      </div>
+  <!--______________CONTENT events________________-->
+      <div class="tab-pane" id="tab4">
+        <div class="panel-group" id="accordion_faq_events">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_events" href="#faq_events_1">
+                  <span>1.</span><%=t('faq.events_question1')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_events_1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.events_answer1')%>
+              </div>
+            </div>
           </div>
-          <div id="faq_event_2" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%=t('faq.events_answer2')%>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_events" href="#faq_events_2">
+                  <span>2.</span><%=t('faq.events_question2')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_events_2" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.events_answer2')%>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_events" href="#faq_events_3">
+                  <span>3.</span><%=t('faq.events_question3')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_events_3" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.events_answer3')%>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_events" href="#faq_event_3">
-              <div class="number">3. </div><%=t('faq.events_question3')%>
-            </a>
+
+      <!--______________CONTENT competitions________________-->
+      <div class="tab-pane" id="tab5">
+
+        <div class="panel-group" id="accordion_faq_competitions">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_competitions" href="#faq_competitions_1">
+                  <span>1.</span><%=t('faq.competitions_question1')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_competitions_1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.competitions_answer1')%>
+              </div>
+            </div>
           </div>
-          <div id="faq_event_3" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%=t('faq.events_answer3')%>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_competitions" href="#faq_competitions_2">
+                  <span>2.</span><%=t('faq.competitions_question2')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_competitions_2" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.competitions_answer2')%>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_competitions" href="#faq_competitions_3">
+                  <span>3.</span><%=t('faq.competitions_question3')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_competitions_3" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.competitions_answer3')%>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_competitions" href="#faq_competitions_4">
+                  <span>4.</span><%=t('faq.competitions_question4')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_competitions_4" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.competitions_answer4')%>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_competitions" href="#faq_competitions_5">
+                  <span>5.</span><%=t('faq.competitions_question5')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_competitions_5" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.competitions_answer5')%>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_competitions" href="#faq_competitions_6">
+                  <span>6.</span><%=t('faq.competitions_question6')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_competitions_6" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.competitions_answer6')%>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="accordion_faq_competitions" href="#faq_competitions_7">
+                  <span>7.</span><%=t('faq.competitions_question7')%>
+                </a>
+              </h4>
+            </div>
+            <div id="faq_competitions_7" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%=t('faq.competitions_answer7')%>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-    <!--______________CONTENT competitions________________-->
-    <div class="tab-pane" id="tab5">
-
-      <div class="accordion" id="accordion_faq_competitions">
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_competitions" href="#faq_competitions_1">
-              <div class="number">1. </div><%=t('faq.competitions_question1')%>
-            </a>
-          </div>
-          <div id="faq_competitions_1" class="accordion-body collapse ">
-            <div class="accordion-inner">
-              <%=t('faq.competitions_answer1')%>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_competitions" href="#faq_competitions_2">
-              <div class="number">2. </div><%=t('faq.competitions_question2')%>
-            </a>
-          </div>
-          <div id="faq_competitions_2" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%=t('faq.competitions_answer2')%>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_competitions" href="#faq_competitions_3">
-              <div class="number">3. </div><%=t('faq.competitions_question3')%>
-            </a>
-          </div>
-          <div id="faq_competitions_3" class="accordion-body collapse ">
-            <div class="accordion-inner">
-              <%=t('faq.competitions_answer3')%>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_competitions" href="#faq_competitions_4">
-              <div class="number">4. </div><%=t('faq.competitions_question4')%>
-            </a>
-          </div>
-          <div id="faq_competitions_4" class="accordion-body collapse ">
-            <div class="accordion-inner">
-              <%=t('faq.competitions_answer4')%>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_competitions" href="#faq_competitions_5">
-              <div class="number">5. </div><%=t('faq.competitions_question5')%>
-            </a>
-          </div>
-          <div id="faq_competitions_5" class="accordion-body collapse ">
-            <div class="accordion-inner">
-              <%=t('faq.competitions_answer5')%>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_competitions" href="#faq_competitions_6">
-              <div class="number">6. </div><%=t('faq.competitions_question6')%>
-            </a>
-          </div>
-          <div id="faq_competitions_6" class="accordion-body collapse ">
-            <div class="accordion-inner">
-              <%=t('faq.competitions_answer6')%>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_competitions" href="#faq_competitions_7">
-              <div class="number">7. </div><%=t('faq.competitions_question7')%>
-            </a>
-          </div>
-          <div id="faq_competitions_7" class="accordion-body collapse ">
-            <div class="accordion-inner">
-              <%=raw t('faq.competitions_answer7')%>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-
+    <footer>
+      <span>Was the content on this page helpful to you? </span>
+      <a>Yes</a> / 
+      <a id="launch_uservoice" href="" role="button" class="">No</a>
+    </footer>
   </div>
-</div>
-<p class="help">
-  Was the content on this page helpful to you? 
-  <a>Yes</a> / 
-  <a id="launch_uservoice" href="" role="button" class="">No</a>
-</p>
-</div>
-
 </section>

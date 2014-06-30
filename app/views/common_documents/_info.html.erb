@@ -17,22 +17,83 @@
     </div>
   </div>
 </div>
-  <div class="viewsAndConunt">
-  <%#= render partial: 'objects/counters', locals: { object: document } %>
-  <div class="views">
-    <%=document.visit_count.to_s%> 
-    <span>
-      <%=t('follow.views')%>
-    </span>   
-  </div>
-  <div class="like">    
-    <div class="count"><%=document.post_activity.likes.count.to_s%></div>
-    <%= link_like(document.post_activity)%>
-  </div>
-</div>
+  
+      <div class="viewsAndCount">
+        <%#= render partial: 'objects/counters', locals: { object: document } %>
+        <div class="views">
+          <%=document.visit_count.to_s%> 
+          <span>
+            <%=t('follow.views')%>
+          </span>   
+        </div>
+        <div class="like">    
+          <div class="count"><%=document.post_activity.likes.count.to_s%></div>
+          <%= link_like(document.post_activity)%>
+        </div>
+      </div>
 
 </div>
-<div id="effect" class="newClass ui-corner-all">
+<div class="panel-group" id="accordion">
+  <div class="panel">
+    <header>
+    <table class="table table-hover">
+          <tr class="<%= 'blank' if document.description.blank? %>">
+            <td>
+              <%= t 'document.info.description' %>
+            </td>
+            <td>
+              <%= document.description %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t 'document.info.tags' %>
+            </td>
+            <td>
+              <%= tag_list document %>
+            </td>
+          </tr>
+          </table>
+      
+    </header>
+    <div id="collapseInfo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <table class="table table-hover">
+          <tr class="<%= 'blank' if document.description.blank? %>">
+            
+          <tr>
+            <td>
+              <%= t('document.info.date.created_at') %>
+            </td>
+            <td>
+              <%= I18n.localize document.created_at, :format => :long %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t('document.info.date.updated_at') %>
+            </td>
+            <td>
+              <%= I18n.localize document.updated_at, :format => :long %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t('document.info.size') %>
+            </td>
+            <td>
+              <%= number_to_human_size document.file_file_size %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div> 
+  <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">--- <%=t('excursion.actions.show_more')%> ---</a>
+</div>
+
+
+<!--<div id="effect" class="newClass ui-corner-all">
 
 
 
@@ -78,7 +139,7 @@
   </dl>
 </div>
 
-<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
+<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button> 
 
 <script>
 $(function() {
@@ -97,3 +158,5 @@ $(function() {
   });
 });
 </script>
+
+-->

@@ -4,7 +4,7 @@
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
       <i class="fa fa-signin"></i>
       <%=t("sign_in")%>
-      <b class="caret"></b>
+      <i class="fa fa-angle-down"></i>
     </a>
     <ul class="dropdown-menu">
 
@@ -44,7 +44,7 @@
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
       <i class="fa fa-flag-checkered"></i>
       <%= t('lang.title') %>
-      <b class="caret"></b>
+      <i class="fa fa-angle-down"></i>
     </a>
     <ul class="dropdown-menu">
       <% for locale in (I18n.available_locales) -%> 
@@ -66,7 +66,7 @@
   <!--manual-->
   <li>
     <%= link_to help_path do %>
-      <i class="fa fa-question-sign"> </i> <%=t('help_page')%>
+      <i class="fa fa-question-circle"> </i> <%=t('help_page')%>
     <% end %>
   </li>
 </ul>

@@ -3,32 +3,32 @@
     <label><%=  t('avatar.profile_change') %></label>
     <%= render partial: 'profiles/avatar_edit' %>
 
-    <%= form_for(current_subject, :url => [current_subject]) do |f| %>
+    <%= form_for(current_subject, :class => "form-group", :url => [current_subject]) do |f| %>
 
       <%= f.label t('actor.name'), :class => "name-required"  %><!--span>*</span-->
-      <%= f.text_field :name, :class => "required", :maxlength => 50 %>
+      <%= f.text_field :name, :class => "form-control required", :maxlength => 50 %>
 
       <%= f.label t('profile.occupation.label'), :class => "text" %>
       <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]], current_subject.occupation)) %>
              
           <%= f.label t('profile.organization'), :class => "text" %>
-          <%= f.text_field :organization, :class => "input_settings" %>
+          <%= f.text_field :organization, :class => "form-control" %>
 
           <%= f.label t('profile.website'), :class => "text" %>
-          <%= f.url_field :website, :class => "input_settings" %>
+          <%= f.url_field :website, :class => "form-control" %>
 
           <div class="birthday">
           <%= f.label t('profile.' + current_subject.class.to_s.downcase + '.birthday'), :class => "text" %>
           <%= date_select "user", "birthday", :order => [:day, :month, :year], :end_year => Date.today.year, :start_year => (Date.today.year - 100), :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>
           </div>
           <%= f.label t('profile.city'), :class => "text" %>
-          <%= f.text_field :city, :class => "input_settings" %>
+          <%= f.text_field :city, :class => "form-control" %>
 
           <%= f.label t('profile.country'), :class => "text" %>
-          <%= f.text_field :country, :class => "input_settings" %>
+          <%= f.text_field :country, :class => "form-control" %>
        
           <%= f.label :description, t("profile.#{ current_subject.class.to_s.downcase }.about") %>
-          <%= f.text_area :description, :maxlength => 500, :rows => 2 %>
+          <%= f.text_area :description, :class => "form-control", :maxlength => 500, :rows => 2 %>
 
           <!--TAGS-->
           <!-- Tags preloaded -->
@@ -53,7 +53,7 @@
           <div class="tagBoxNew">
             <ul class="tagList"></ul>
           </div>
-          <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags') %>
+          <%= f.hidden_field :tag_list, :class => "form-control form_tag", :id => "input_tag_list", :placeholder => t('devise.tags') %>
 
           <!--p>
             <%= t('required') %>
@@ -61,7 +61,7 @@
 
           <div class="actions">
           <%= f.submit t('button.update'), "data-loading-text" => t('button.sending'), :class=>"btn btn-primary" %>
-          <%=link_to t('hide'), "#", :id=>"hide_profile_form", :class=>"btn"%>
+          <%=link_to t('hide'), "#", :id=>"hide_profile_form", :class=>"btn btn-defaul"%>
           </div>
         <% end %>
 

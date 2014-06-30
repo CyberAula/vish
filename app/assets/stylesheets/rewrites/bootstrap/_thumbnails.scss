@@ -69,6 +69,11 @@
         &:hover{
           text-decoration: none;
         }
+        @media (max-width: 480px){
+          font-size: 44px;
+          color: #008FD1;
+          padding-top: 14px;
+        }
       }
     }
   }

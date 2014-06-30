@@ -6,10 +6,6 @@
 <script>
   $(document).ready(function(){
     update_pageless_state("categories", <%=all_categories.num_pages%>, <%=all_categories.current_page%>);
-    
-    $('a[href="#tab4"]').on('shown', function (e) {
-      $(".category").fitText(0.4);
-    });    
   });
 
 </script>

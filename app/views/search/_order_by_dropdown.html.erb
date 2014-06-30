@@ -1,60 +1,59 @@
-<div class="dropdown order_by_selector" id="">
-<span class="order_by"><%=t('order_by.title')%></span>
-  <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="" data-toggle="dropdown"><i class="icon-eye-open"></i>
-    <%=t('order_by.relevance')%><i class="icon-angle-down"></i>
-  </button>
-
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-   <li>
-        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type])%>" sort-by-key='relevance'>
-          <i class="icon-eye-open"></i>
-          <span><%=t('order_by.relevance')%> </span>
-        </a>
-    </li>
-   <li>
-        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"popularity")%>" sort-by-key='popularity'>
-          <i class="icon-dashboard"></i>
-          <span><%=t('order_by.popularity')%> </span>
-        </a>
-    </li>
+<div class="btn-group order_by_selector">
+  <span>
+    <%=t('order_by.title')%>
+  </span>
+  <a type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-eye"></i>
+    <%=t('order_by.relevance')%>
+    <i class="fa fa-angle-down"></i>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
     <li>
-        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"updated_at")%>" sort-by-key='updated_at'>
-        <i class="icon-pencil"></i>
-        <span><%=t('order_by.updated_at')%> </span>
+      <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type])%>" sort-by-key='relevance'>
+        <i class="fa fa-eye"></i>
+        <%=t('order_by.relevance')%>
       </a>
     </li>
     <li>
-        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type], :sort_by=>"created_at")%>" sort-by-key='created_at'>        
-          <i class="icon-bolt"></i>
-          <span><%=t('order_by.created_at')%> </span>
+      <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"popularity")%>" sort-by-key='popularity'>
+        <i class="fa fa-dashboard"></i>
+        <%=t('order_by.popularity')%>
+      </a>
+    </li>
+    <li>
+      <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"updated_at")%>" sort-by-key='updated_at'>
+        <i class="fa fa-pencil"></i>
+        <%=t('order_by.updated_at')%>
+      </a>
+    </li>
+    <li>
+      <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type], :sort_by=>"created_at")%>" sort-by-key='created_at'>        
+        <i class="fa fa-bolt"></i>
+        <%=t('order_by.created_at')%>
       </a>
     </li>
     <%if params[:type]!="user"%>
       <li>
-          <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"visits")%>" sort-by-key='visits'>          
-            <i class="icon-eye-open"></i> 
-            <span><%=t('order_by.visits')%> </span>
-          </a>
+        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"visits")%>" sort-by-key='visits'>          
+          <i class="fa fa-eye"></i> 
+          <%=t('order_by.visits')%>
+        </a>
       </li>
       <li>
-          <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"favorites")%>" sort-by-key='favorites'>          
-            <i class="icon-star"></i> 
-            <span><%=t('order_by.favorites')%> </span>
-          </a>
+        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"favorites")%>" sort-by-key='favorites'>          
+          <i class="fa fa-star"></i> 
+          <%=t('order_by.favorites')%>
+        </a>
       </li>
     <%end%>
-
   </ul>
-
 </div>
 
-
 <%= content_for :javascript do %>
-
   var param = "<%=params[:sort_by]%>";
 
   if(param && param!=""){
     var value = $(".order_by_selector .dropdown-menu [sort-by-key="+param+"]").html();
-    $(".dropdownMenuOrdBy").html(value + '<i class="icon-angle-down"></i>'); 
+    $(".dropdownMenuOrdBy").html(value + '<i class="fa fa-angle-down"></i>'); 
   }
 <%end%>

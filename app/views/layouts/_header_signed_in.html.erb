@@ -18,9 +18,8 @@
 
       <ul class="nav nav-pills desktop-nav">
         <!--navegation-->
-        <li class="navegation ">
-          <%= render partial: 'layouts/basic_navegation' %>
-        </li>
+        <%= render partial: 'layouts/basic_navegation' %>
+        
         <!--add-->
         <li class ="btn-group">
           <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -44,59 +43,58 @@
           </li>
         -->
         <!--user-->
-        <li class="photo-user">
-          <%= link_to current_subject do %>              
-          <%= image_tag current_subject.logo.url(:small) %>
-          <% end %>
-        </li>
-        <li class ="btn-group">
-      
-            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-              <%= truncate_name(current_subject.name, length: 15) %>
-              <i class="fa fa-angle-down"></i>
-           </a>
+        <li class ="btn-group user-menu">
+            <%= link_to current_subject, :class => "btn btn-default photo-user" do %>              
+              <%= image_tag current_subject.logo.url(:small) %>
+            <% end %>
         
-          <ul class="dropdown-menu dropdown-menu-right">
-           <li class="settings-menu">
-             <%= link_to home_path do %>
-             <i class="fa fa-home"></i>
-             <%= t('navigation.home') %>
-             <% end %>
-           </li>
-           <li class="settings-menu">
-            <%= link_to current_subject do %>
-            <i class="fa fa-user"></i>
-            <%= t('profile.one') %>
-            <% end %>
-          </li>
-          <!--<li class="settings-menu">
-            <%= link_to activities_path do %>
-            <i class="fa fa-globe"></i>
-            <%= t('activity.other') %>
-            <% end %>
-          </li>-->
-          <li class="settings-menu">
-            <%= link_to settings_path do %>
-            <i class="fa fa-cog"></i>
-            <%= t('dropdown.settings') %>
-            <% end %>
-          </li>
-          <li class="settings-menu">
-            <%= link_to quiz_sessions_path do %>
-            <i class="fa fa-puzzle-piece"></i>
-            <%= t('quiz.live') %>
-            <% end %>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <%= link_to destroy_user_session_path, :method => :delete do %>
-            <i class="fa fa-signout"></i>
-            <%= t('sign_out') %>
-            <% end %>
-          </li>
-          </ul>      
-        </li>
 
+              <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <%= truncate_name(current_subject.name, length: 15) %>
+                <i class="fa fa-angle-down"></i>
+             </a>
+          
+            <ul class="dropdown-menu dropdown-menu-right">
+             <li class="settings-menu">
+               <%= link_to home_path do %>
+               <i class="fa fa-home"></i>
+               <%= t('navigation.home') %>
+               <% end %>
+             </li>
+             <li class="settings-menu">
+              <%= link_to current_subject do %>
+              <i class="fa fa-user"></i>
+              <%= t('profile.one') %>
+              <% end %>
+            </li>
+            <!--<li class="settings-menu">
+              <%= link_to activities_path do %>
+              <i class="fa fa-globe"></i>
+              <%= t('activity.other') %>
+              <% end %>
+            </li>-->
+            <li class="settings-menu">
+              <%= link_to settings_path do %>
+              <i class="fa fa-cog"></i>
+              <%= t('dropdown.settings') %>
+              <% end %>
+            </li>
+            <li class="settings-menu">
+              <%= link_to quiz_sessions_path do %>
+              <i class="fa fa-puzzle-piece"></i>
+              <%= t('quiz.live') %>
+              <% end %>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to destroy_user_session_path, :method => :delete do %>
+              <i class="fa fa-sign-out"></i>
+              <%= t('sign_out') %>
+              <% end %>
+            </li>
+            </ul>      
+          </li>
+ 
           <!-- carga de modales -->
           <%= render partial: 'events/form' %>
           <%= render partial: 'repositories/form' %>
