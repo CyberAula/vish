@@ -3,7 +3,6 @@
 
 development:
   domain: "localhost:3000"
-  code_domain: "localhost:3000"
   test_domain: true
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"

@@ -282,7 +282,7 @@ class IMSQTI
       
       myxml.metadata do
         myxml.schema("IMS Content")
-        myxml.schemaversion("1.2")
+        myxml.schemaversion("1.1")
         myxml.tag!("imsmd:lom") do
           myxml.tag!("imsmd:general") do
             myxml.tag!("imsmd:title") do

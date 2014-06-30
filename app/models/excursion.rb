@@ -31,6 +31,8 @@ class Excursion < ActiveRecord::Base
   define_index do
     activity_object_index
     indexes excursion_type
+    
+    has id
     has slide_count
     has draft
     has activity_object.like_count, :as => :like_count
@@ -38,6 +40,8 @@ class Excursion < ActiveRecord::Base
     has activity_object.download_count, :as => :download_count
   end
 
+  attr_accessor :score
+  attr_accessor :score_tracking
 
 
   ####################
@@ -911,7 +915,7 @@ class Excursion < ActiveRecord::Base
   #method used to return json objects to the recommendation in the last slide
   def reduced_json(controller)
       excursion_url = controller.excursion_url(:id => self.id)
-      { :id => id,
+      rjson = { :id => id,
         :url => excursion_url,
         :title => title,
         :author => author.name,
@@ -921,6 +925,12 @@ class Excursion < ActiveRecord::Base
         :favourites => like_count,
         :number_of_slides => slide_count
       }
+      
+      if !score_tracking.nil?
+        rjson[:recommender_data] = score_tracking
+      end
+
+      rjson
   end
 
   #we don't know what happens or how it happens but sometimes in social_stream
@@ -944,8 +954,14 @@ class Excursion < ActiveRecord::Base
     is_mve
   end
 
+  ####################
+  ## Quality Metrics
+  ####################
 
-
+  #Get quality score (in a 0-10 scale)
+  def qscore
+    return nil
+  end
 
   private
 

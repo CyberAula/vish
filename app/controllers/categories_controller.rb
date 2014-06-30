@@ -8,8 +8,6 @@ class CategoriesController < ApplicationController
     render "favorites"
   end
 
-
-
   def create
     create! do |success, failure|
       success.json { render :json => {"title"=>@category.title, "id"=>@category.id}, :status => 200 }

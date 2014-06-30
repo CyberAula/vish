@@ -351,56 +351,18 @@ class ExcursionsController < ApplicationController
   end
 
   def last_slide
-    excursions = []
-    cExcursionId = nil
+    #Prepare parameters to call the RecommenderSystem
 
     if params[:excursion_id]
       current_excursion =  Excursion.find(params[:excursion_id]) rescue nil
-      cExcursionId = current_excursion.id rescue nil
     end
 
+    options = {:n => 6}
     if params[:q]
-      searchTerms = params[:q].split(",")
-    else
-      searchTerms = []
+      options[:keywords] = params[:q].split(",")
     end
 
-    #Add excursions based on the current excursion
-    if !current_excursion.nil?
-
-      if !current_excursion.tag_list.empty?
-        searchTerms.concat(current_excursion.tag_list)
-      end
-
-      if !current_excursion.author.nil?
-        authorExcursions = ActivityObject.where(:object_type=>"Excursion").select{ |e| e.author_id == current_excursion.author.id }.map { |ao| ao.excursion }.select{|e| e.id != current_excursion.id and e.draft == false}
-        #Limit the number of authorExcursions
-        authorExcursions = authorExcursions.sample(2)
-        excursions.concat(authorExcursions)
-      end
-
-    end
-
-    searchTerms.uniq!
-    searchTerms = searchTerms.join(",")
-    relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != cExcursionId and e.draft == false} rescue []
-    excursions.concat(relatedExcursions)
-
-    #Remove drafts and current excursion
-    excursions.uniq!
-    excursions = excursions.select{|ex| ex.draft == false}.reject{ |ex| ex.id == cExcursionId }
-
-    #Fill excursions (until 6), with popular excursions
-    holes = [0,6-excursions.length].max
-    if holes > 0
-      popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").select{|ex| ex.draft == false}.reject{ |ex| excursions.map{ |fex| fex.id }.include? ex.id || (!current_excursion.nil? and ex.id == current_excursion.id) }
-      popularExcursions.in_groups_of(80){ |group|
-        popularExcursions = group
-        break
-      }
-      excursions.concat(popularExcursions.sample(holes))
-    end
-    excursions = excursions.sample(6)
+    excursions = RecommenderSystem.excursion_suggestions(current_subject,current_excursion,options)
 
     respond_to do |format|
       format.json { 
