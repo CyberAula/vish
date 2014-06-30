@@ -32,6 +32,7 @@ class Excursion < ActiveRecord::Base
     activity_object_index
     indexes excursion_type
     
+    has id
     has slide_count
     has draft
     has activity_object.like_count, :as => :like_count
