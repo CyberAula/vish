@@ -23,14 +23,14 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 3210f1c6af3fbef81b31cf651d5b8725a055354d
-  branch: vish
+  revision: b4e7b9cd6b73649f60c08caae5f54caf27d75a70
+  branch: vish-b3
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.2.2)
       ancestry (~> 1.2.3)
       avatars_for_rails (~> 1.1.4)
-      bootstrap-sass (~> 2.3.2.0)
+      bootstrap-sass (~> 3.1.0)
       cancan (~> 1.6.7)
       deep_merge
       deface (~> 0.9.1)
@@ -51,7 +51,7 @@ GIT
       rails_autolink (~> 1.0.4)
       rails_engine_decorators
       resque (~> 1.23.0)
-      sass-rails (>= 3.1.0)
+      sass-rails (>= 3.2.6)
       select2-rails (~> 3.3.0)
       stringex (~> 1.5.1)
       strong_parameters (~> 0.2.1)
@@ -143,7 +143,7 @@ GEM
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
-    bootstrap-sass (2.3.2.2)
+    bootstrap-sass (3.1.0.0)
       sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.10)
@@ -366,7 +366,7 @@ GEM
     recurrence (1.2.0)
       activesupport (>= 2.3.0)
       i18n
-    redis (3.1.0)
+    redis (3.0.7)
     redis-namespace (1.5.0)
       redis (~> 3.0, >= 3.0.4)
     responders (1.0.0)
@@ -464,7 +464,7 @@ DEPENDENCIES
   avatars_for_rails (= 1.1.4)
   axlsx (= 2.0.0)
   axlsx_rails (= 0.1.5)
-  bootstrap-sass (= 2.3.2.2)
+  bootstrap-sass (= 3.1.0)
   capistrano (= 2.15.5)
   capybara (= 2.3.0)
   coffee-rails (= 3.2.2)
