@@ -151,7 +151,10 @@ namespace :fix do
 
     printTitle("Filling Excursions language")
 
-    Excursion.all.map { |ex| 
+    validLanguageCodes = ["de","en","es","fr","it","pt","ru"]
+    #"ot" is for "other"
+
+    Excursion.all.map { |ex|
       eJson = JSON(ex.json)
 
       lan = eJson["language"]
@@ -159,13 +162,38 @@ namespace :fix do
 
       if emptyLan
         #Try to infer language
-        # lan = inferredLan
-        # emptyLan = false
+        #Use https://github.com/detectlanguage/detect_language gem
+
+        stringToTestLanguage = ""
+        if ex.title.is_a? String and !ex.title.blank?
+          stringToTestLanguage = stringToTestLanguage + ex.title + " "
+        end
+        if ex.description.is_a? String and !ex.description.blank?
+          stringToTestLanguage = stringToTestLanguage + ex.description + " "
+        end
+
+        if stringToTestLanguage.is_a? String and !stringToTestLanguage.blank?
+          detectionResult = (DetectLanguage.detect(stringToTestLanguage) rescue [])
+          detectionResult.each do |result|
+            if result["isReliable"] == true
+              detectedLanguageCode = result["language"]
+              if validLanguageCodes.include? detectedLanguageCode
+                lan = detectedLanguageCode
+              else
+                lan = "ot"
+              end
+              emptyLan = false
+              break
+            end
+          end
+        end
       end
 
       if !emptyLan
         ao = ex.activity_object
-        ao.update_column :language, lan
+        if ao.language != lan
+          ao.update_column :language, lan
+        end
 
         if eJson["language"] != lan
           eJson["language"] = lan
