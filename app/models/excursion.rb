@@ -87,7 +87,8 @@ class Excursion < ActiveRecord::Base
   ####################
 
   def to_scorm(controller)
-    if self.scorm_needs_generate
+    # if self.scorm_needs_generate
+    if true
       filePath = "#{Rails.root}/public/scorm/excursions/"
       fileName = self.id
       json = JSON(self.json)
@@ -119,7 +120,7 @@ class Excursion < ActiveRecord::Base
     # json = JSON(self.json)
     t = File.open("#{filePath}#{fileName}.zip", 'w')
 
-    #Generate Manifest and HTML file
+    #Add manifest, main HTML file and additional files
     Zip::ZipOutputStream.open(t.path) do |zos|
       xml_manifest = Excursion.generate_scorm_manifest(json,excursion)
       zos.put_next_entry("imsmanifest.xml")
@@ -129,9 +130,26 @@ class Excursion < ActiveRecord::Base
       zos.print controller.render_to_string "show.scorm.erb", :locals => {:excursion=>excursion, :json => json}, :layout => false  
     end
 
+    #Add required XSD files and folders
+    xsdFileDir = "#{Rails.root}/public/xsd"
+    xsdFiles = ["adlcp_v1p3.xsd","adlnav_v1p3.xsd","adlseq_v1p3.xsd","imscp_v1p1.xsd","imsss_v1p0.xsd","lom.xsd"]
+    xsdFolders = ["common","extend","unique","vocab"]
+
+    #Add required xsd files
+    Zip::ZipFile.open(t.path, Zip::ZipFile::CREATE) { |zipfile|
+      xsdFiles.each do |xsdFileName|
+        zipfile.add(xsdFileName,xsdFileDir+"/"+xsdFileName)
+      end
+    }
+
+    #Add required XSD folders
+    xsdFolders.each do |xsdFolderName|
+      zip_folder(t.path,xsdFileDir,xsdFileDir+"/"+xsdFolderName)
+    end
+
     #Copy SCORM assets (image, javascript and css files)
     dir = "#{Rails.root}/vendor/plugins/vish_editor/app/scorm"
-    zip_folder(t.path,dir,nil)
+    zip_folder(t.path,dir)
 
     #Add theme
     themesPath = "#{Rails.root}/vendor/plugins/vish_editor/app/assets/images/themes/"
@@ -145,7 +163,7 @@ class Excursion < ActiveRecord::Base
     t.close
   end
 
-  def self.zip_folder(zipFilePath,root,dir)
+  def self.zip_folder(zipFilePath,root,dir=nil)
     unless dir 
       dir = root
     end
