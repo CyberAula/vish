@@ -107,10 +107,10 @@ class RecommenderSystem
     maxQuality = preSelectionLOs.max_by {|e| e.qscore }.qscore
 
     weights = {}
-    weights[:cs_score] = 0.25
-    weights[:ups_score] = 0.25
-    weights[:popularity_score] = 0.25
-    weights[:quality_score] = 0.25
+    weights[:cs_score] = 0.60
+    weights[:ups_score] = 0.15
+    weights[:popularity_score] = 0.10
+    weights[:quality_score] = 0.15
 
     calculateCSScore = !excursion.nil?
     calculateUPSScore = !user.nil?
@@ -158,12 +158,27 @@ class RecommenderSystem
 
   #Content Similarity Score (between 0 and 1)
   def self.contentSimilarityScore(loA,loB)
-    return 0
+    weights = {}
+    weights[:language] = 0.6
+    weights[:keywords] = 0.4
+    # nMetadataFields = weights.length
+
+    languageD = RecommenderSystem.getSemanticDistance(loA.language,loB.language)
+    keywordsD = RecommenderSystem.getKeywordsDistance(loA.tag_list,loB.tag_list)
+
+    return weights[:language] * languageD + weights[:keywords] * keywordsD
   end
 
   #User profile Similarity Score (between 0 and 1)
   def self.userProfileSimilarityScore(user,lo)
-    return 0
+    weights = {}
+    weights[:language] = 0.6
+    weights[:keywords] = 0.4
+
+    languageD = RecommenderSystem.getSemanticDistance(user.language,lo.language)
+    keywordsD = RecommenderSystem.getKeywordsDistance(user.tag_list,lo.tag_list)
+
+    return weights[:language] * languageD + weights[:keywords] * keywordsD
   end
 
   #Popularity Score (between 0 and 1)
@@ -175,6 +190,7 @@ class RecommenderSystem
   def self.qualityScore(lo,maxQualityScore)
     return lo.qscore/maxQualityScore.to_f
   end
+
 
 
   private
@@ -288,6 +304,47 @@ class RecommenderSystem
     end
 
     return ids_to_avoid
+  end
+
+  #############
+  # Utils to calculate LO similarity and User Profile similarity
+  #############
+
+  #Semantic distance (between 0 and 1)
+  def self.getSemanticDistance(stringA,stringB)
+    if stringA.nil? or stringB.nil?
+      return 0
+    end
+
+    stringA =  I18n.transliterate(stringA.downcase.strip)
+    stringB =  I18n.transliterate(stringB.downcase.strip)
+
+    if stringA.downcase == stringB
+      return 1
+    else
+      return 0
+    end
+  end
+
+  #Semantic distance between keyword arrays (in a 0-1 scale)
+  def self.getKeywordsDistance(keywordsA,keywordsB)
+    if keywordsA.nil? or keywordsB.nil? or keywordsA.empty? or keywordsB.empty?
+      return 0
+    end 
+
+    similarKeywords = 0
+    kParam = [keywordsA.length,keywordsB.length].min
+
+    keywordsA.each do |kA|
+      keywordsB.each do |kB|
+        if getSemanticDistance(kA,kB) == 1
+          similarKeywords = similarKeywords + 1
+          break
+        end
+      end
+    end
+
+    return similarKeywords/kParam.to_f
   end
 
 end

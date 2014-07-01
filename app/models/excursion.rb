@@ -971,6 +971,7 @@ class Excursion < ActiveRecord::Base
     activity_object.title = parsed_json["title"] ? parsed_json["title"] : "Title"
     activity_object.description = parsed_json["description"] 
     activity_object.tag_list = parsed_json["tags"]
+    activity_object.language = parsed_json["language"]
     begin
       ageRange = parsed_json["age_range"]
       activity_object.age_min = ageRange.split("-")[0].delete(' ')
