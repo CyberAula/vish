@@ -2,7 +2,7 @@
   <!--author-->
   <%= render :partial => 'excursions/items-owner-profile' %>
   <!--tittle-->
-  <div class="viewsAndConunt">        
+  <div class="viewsAndCount">        
     <div class="views">
       <%=@excursion.visit_count.to_s%> 
       <span>
@@ -15,7 +15,12 @@
     </div>
   </div>  
 </div>
- <div id="effect" class="newClass ui-corner-all">
+
+
+<div class="panel-group" id="accordion">
+  <div class="panel">
+    <header>
+    <table class="table table-hover">
 
     <%= javascript_tag do %>
     <%#= modal_for(@excursion.author.subject) %>
@@ -23,6 +28,8 @@
     <%#= modal_for(c.subject) %>
     <% end%>
     <% end %>
+
+
     <dl class="dl-horizontal">
 
       <% unless @excursion.contributors.blank? %>
@@ -102,11 +109,8 @@
     <dd><button href="#MetadataModal" id="showMeta" data-toggle="modal" class="ui-state-default ui-corner-all">
       <%=t('excursion.actions.show_meta')%></button></dd>
   </dl>
-</div>
-
-
-<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
-
+</table>
+ 
 
 <div id="MetadataModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myMetadataLabel" aria-hidden="true">
   <div class="modal-header">
@@ -124,21 +128,7 @@
   </ul>
   </div>
 </div>
-
-<script>
-$(function() {
-  $("#showMore").click(function(){
-    $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
-    $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
-    if($("#showMore").attr("status")=== "showMore"){
-      $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
-      $("#showMore").attr("status", "showFewer");
-    }
-    else{
-      $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
-      $("#showMore").attr("status", "showMore");
-    }
-    return false;
-  });
-});
-</script>
+     </div>
+    </div>
+  </div> 
+  <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">--- <%=t('excursion.actions.show_more')%> ---</a>

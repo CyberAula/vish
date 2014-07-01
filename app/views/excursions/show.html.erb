@@ -90,55 +90,56 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
 
 <!--div class="page-header"><%= @excursion.title %></div-->
 <section id="show_items">
-
-  <div class="box-show">
-    <!--visor-->
-    <div class="container-visor">
-      <div class="elemento-visor"></div>
-      <div class="caja-visor">
-        <%if @excursion.is_mostvaluable? %>
-          <div class="badge-excursion-active"></div>
-        <%end%>
-        <iframe class="vishEditorIframe" id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="100%" height="100%" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true">
-        </iframe>
-      </div>
-    </div>
-  </div>
   <!--recomended-->
-  <div class="recomended" id="recomended_box">
+  <aside class="recomended" id="recomended_box">
       <ul class="items clearfix">
         <% popular_excursions(16).each do |excursion| %>
           <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :container_id => "recomended_box" } %>
         <% end %>
       </ul>
-
-  </div>
-  <!--owner-profile-->
-  <div class="description-activity">
-    <div class="box_description">
-      <!--tool-->
-      <div class="excursion_tool">
-        <%= render :partial => 'excursions/excursion-tool-tab', :locals => { :shortURL => shortURL} %>
-      </div>     
+  </aside>
+  <div class="doc-show">
+    <div class="box-show">
+      <!--visor-->
+      <div class="container-visor">
+        <div class="elemento-visor"></div>
+        <div class="caja-visor">
+          <%if @excursion.is_mostvaluable? %>
+            <div class="badge-excursion-active"></div>
+          <%end%>
+          <iframe class="vishEditorIframe" id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="100%" height="100%" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true">
+          </iframe>
+        </div>
+      </div>
     </div>
-    
-    <!--activity-->
-    <div class="activity-box">
-      <%= render :partial => 'excursions/evaluate-activity'%>
-    </div>
-  </div>
-</section>
 
-<a id="congratulations-button" href="#CongratModal" role="button" class="" style="display:none" data-toggle="modal"></a>
-<div id="CongratModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myCongratLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myCongratLabel"><%= t('excursion.modal.title') %></h3>
-  </div>
-  <div class="modal-body evaluation_body">
-    <p><i class="fa fa-ok"></i>  <%=t("excursion.modal.normal_body")%></p>
-    <p><%=raw t("excursion.modal.survey")%></p>
-    <p class="thank"><i class="fa fa-smile"></i>  <%=raw t("excursion.modal.thank")%></p>
+    <!--owner-profile-->
+    <div class="description-activity">
+      <div class="box_description">
+        <!--tool-->
+        <div class="excursion_tool">
+          <%= render :partial => 'excursions/excursion-tool-tab', :locals => { :shortURL => shortURL} %>
+        </div>     
+      </div>
+      
+      <!--activity-->
+      <div class="activity-box">
+        <%= render :partial => 'excursions/evaluate-activity'%>
+      </div>
+    </div>
+  </section>
+
+  <a id="congratulations-button" href="#CongratModal" role="button" class="" style="display:none" data-toggle="modal"></a>
+  <div id="CongratModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myCongratLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myCongratLabel"><%= t('excursion.modal.title') %></h3>
+    </div>
+    <div class="modal-body evaluation_body">
+      <p><i class="fa fa-ok"></i>  <%=t("excursion.modal.normal_body")%></p>
+      <p><%=raw t("excursion.modal.survey")%></p>
+      <p class="thank"><i class="fa fa-smile"></i>  <%=raw t("excursion.modal.thank")%></p>
+    </div>
   </div>
 </div>
 
