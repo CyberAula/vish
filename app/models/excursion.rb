@@ -119,7 +119,7 @@ class Excursion < ActiveRecord::Base
     # json = JSON(self.json)
     t = File.open("#{filePath}#{fileName}.zip", 'w')
 
-    #Generate Manifest and HTML file
+    #Add manifest, main HTML file and additional files
     Zip::ZipOutputStream.open(t.path) do |zos|
       xml_manifest = Excursion.generate_scorm_manifest(json,excursion)
       zos.put_next_entry("imsmanifest.xml")
@@ -129,9 +129,26 @@ class Excursion < ActiveRecord::Base
       zos.print controller.render_to_string "show.scorm.erb", :locals => {:excursion=>excursion, :json => json}, :layout => false  
     end
 
+    #Add required XSD files and folders
+    xsdFileDir = "#{Rails.root}/public/xsd"
+    xsdFiles = ["adlcp_v1p3.xsd","adlnav_v1p3.xsd","adlseq_v1p3.xsd","imscp_v1p1.xsd","imsss_v1p0.xsd","lom.xsd"]
+    xsdFolders = ["common","extend","unique","vocab"]
+
+    #Add required xsd files
+    Zip::ZipFile.open(t.path, Zip::ZipFile::CREATE) { |zipfile|
+      xsdFiles.each do |xsdFileName|
+        zipfile.add(xsdFileName,xsdFileDir+"/"+xsdFileName)
+      end
+    }
+
+    #Add required XSD folders
+    xsdFolders.each do |xsdFolderName|
+      zip_folder(t.path,xsdFileDir,xsdFileDir+"/"+xsdFolderName)
+    end
+
     #Copy SCORM assets (image, javascript and css files)
     dir = "#{Rails.root}/vendor/plugins/vish_editor/app/scorm"
-    zip_folder(t.path,dir,nil)
+    zip_folder(t.path,dir)
 
     #Add theme
     themesPath = "#{Rails.root}/vendor/plugins/vish_editor/app/assets/images/themes/"
@@ -145,7 +162,7 @@ class Excursion < ActiveRecord::Base
     t.close
   end
 
-  def self.zip_folder(zipFilePath,root,dir)
+  def self.zip_folder(zipFilePath,root,dir=nil)
     unless dir 
       dir = root
     end
@@ -192,23 +209,25 @@ class Excursion < ActiveRecord::Base
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
     myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_" + identifier,
-      "version"=>"1.0",
-      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3.xsd http://www.imsglobal.org/xsd/imsss_v1p0.xsd http://ltsc.ieee.org/xsd/LOM/lom.xsd",
-      "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
-      "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+      "version"=>"1.3",
       "xmlns"=>"http://www.imsglobal.org/xsd/imscp_v1p1",
+      "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
+      "xmlns:adlseq"=>"http://www.adlnet.org/xsd/adlseq_v1p3",
+      "xmlns:adlnav"=>"http://www.adlnet.org/xsd/adlnav_v1p3",
       "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
-      "xmlns:lom"=>"http://ltsc.ieee.org/xsd/LOM/lom.xsd" ) do
+      "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd",
+    ) do
 
       myxml.metadata() do
         myxml.schema("ADL SCORM")
-        myxml.schemaversion("CAM 1.3")
+        myxml.schemaversion("2004 4th Edition")
         #Add LOM metadata
         Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier, :LOMschema => (options and options[:LOMschema]) ? options[:LOMschema] : "custom"})
       end
 
-      myxml.organizations('default'=>"defaultOrganization",'structure'=>"hierarchical") do
-        myxml.organization('identifier'=>"defaultOrganization") do
+      myxml.organizations('default'=>"defaultOrganization") do
+        myxml.organization('identifier'=>"defaultOrganization", 'structure'=>"hierarchical") do
           if ejson["title"]
             myxml.title(ejson["title"])
           else
@@ -225,7 +244,7 @@ class Excursion < ActiveRecord::Base
       end
 
       myxml.resources do         
-        myxml.resource('identifier'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormtype'=>"sco") do
+        myxml.resource('identifier'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormType'=>"sco") do
           myxml.file('href'=> "excursion.html")
         end
       end
@@ -263,12 +282,12 @@ class Excursion < ActiveRecord::Base
     when "loose","custom"
       lomHeaderOptions =  { 'xmlns' => "http://ltsc.ieee.org/xsd/LOM",
                             'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-                            'xsi:schemaLocation' => %{http://ltsc.ieee.org/xsd/LOM lomODS.xsd}
+                            'xsi:schemaLocation' => "http://ltsc.ieee.org/xsd/LOM lom.xsd"
                           }
     when "ODS"
       lomHeaderOptions =  { 'xmlns' => "http://ltsc.ieee.org/xsd/LOM",
                             'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-                            'xsi:schemaLocation' => %{http://ltsc.ieee.org/xsd/LOM lomODS.xsd}
+                            'xsi:schemaLocation' => "http://ltsc.ieee.org/xsd/LOM lomODS.xsd"
                           }
     else
       #Extension not supported/recognized
