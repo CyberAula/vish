@@ -87,8 +87,7 @@ class Excursion < ActiveRecord::Base
   ####################
 
   def to_scorm(controller)
-    # if self.scorm_needs_generate
-    if true
+    if self.scorm_needs_generate
       filePath = "#{Rails.root}/public/scorm/excursions/"
       fileName = self.id
       json = JSON(self.json)
@@ -210,23 +209,25 @@ class Excursion < ActiveRecord::Base
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
     myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_" + identifier,
-      "version"=>"1.0",
-      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3.xsd http://www.imsglobal.org/xsd/imsss_v1p0.xsd http://ltsc.ieee.org/xsd/LOM/lom.xsd",
-      "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
-      "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+      "version"=>"1.3",
       "xmlns"=>"http://www.imsglobal.org/xsd/imscp_v1p1",
+      "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
+      "xmlns:adlseq"=>"http://www.adlnet.org/xsd/adlseq_v1p3",
+      "xmlns:adlnav"=>"http://www.adlnet.org/xsd/adlnav_v1p3",
       "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
-      "xmlns:lom"=>"http://ltsc.ieee.org/xsd/LOM/lom.xsd" ) do
+      "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd",
+    ) do
 
       myxml.metadata() do
         myxml.schema("ADL SCORM")
-        myxml.schemaversion("CAM 1.3")
+        myxml.schemaversion("2004 4th Edition")
         #Add LOM metadata
         Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier, :LOMschema => (options and options[:LOMschema]) ? options[:LOMschema] : "custom"})
       end
 
-      myxml.organizations('default'=>"defaultOrganization",'structure'=>"hierarchical") do
-        myxml.organization('identifier'=>"defaultOrganization") do
+      myxml.organizations('default'=>"defaultOrganization") do
+        myxml.organization('identifier'=>"defaultOrganization", 'structure'=>"hierarchical") do
           if ejson["title"]
             myxml.title(ejson["title"])
           else
@@ -243,7 +244,7 @@ class Excursion < ActiveRecord::Base
       end
 
       myxml.resources do         
-        myxml.resource('identifier'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormtype'=>"sco") do
+        myxml.resource('identifier'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormType'=>"sco") do
           myxml.file('href'=> "excursion.html")
         end
       end
@@ -281,12 +282,12 @@ class Excursion < ActiveRecord::Base
     when "loose","custom"
       lomHeaderOptions =  { 'xmlns' => "http://ltsc.ieee.org/xsd/LOM",
                             'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-                            'xsi:schemaLocation' => %{http://ltsc.ieee.org/xsd/LOM lomODS.xsd}
+                            'xsi:schemaLocation' => "http://ltsc.ieee.org/xsd/LOM lom.xsd"
                           }
     when "ODS"
       lomHeaderOptions =  { 'xmlns' => "http://ltsc.ieee.org/xsd/LOM",
                             'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-                            'xsi:schemaLocation' => %{http://ltsc.ieee.org/xsd/LOM lomODS.xsd}
+                            'xsi:schemaLocation' => "http://ltsc.ieee.org/xsd/LOM lomODS.xsd"
                           }
     else
       #Extension not supported/recognized
