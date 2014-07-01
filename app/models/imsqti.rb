@@ -29,7 +29,10 @@ class IMSQTI
 
     t = File.open("#{filePath}#{fileName}.zip", 'w')
 
+
+
     Zip::ZipOutputStream.open(t.path) do |zos|
+    
       case qjson["quiztype"]
       when "truefalse"
         for i in 0..((qjson["choices"].size)-1)
@@ -269,6 +272,7 @@ class IMSQTI
 
 
   def self.generate_qti_manifest(qjson,fileName)
+  
     count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
     Site.current.config["tmpCounter"] = count + 1
     Site.current.save!
@@ -278,8 +282,7 @@ class IMSQTI
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
     
-    myxml.manifest("identifier"=>"VISH_QUIZ_" + identifier, "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 http://www.imsglobal.org/xsd/imscp_v1p2.xsd http://www.imsglobal.org/xsd/imsmd_v1p2 http://www.imsglobal.org/xsd/imsmd_v1p2p2.xsd http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/imsqti_v2p1.xsd", "xmlns" => "http://www.imsglobal.org/xsd/imscp_v1p2","xmlns:imsqti" => "http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:imsmd" => "http://www.imsglobal.org/xsd/imsmd_v1p2", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance") do
-      
+    myxml.manifest("xmlns" => "http://www.imsglobal.org/xsd/imscp_v1p1", "xmlns:imsmd" => "http://www.imsglobal.org/xsd/imsmd_v1p2", "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance", "xmlns:imsqti" => "http://www.imsglobal.org/xsd/imsqti_metadata_v2p1", "identifier"=>"VISH_QUIZ_" + identifier, "xsi:schemaLocation" => "http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.imsglobal.org/xsd/imsmd_v1p2 imsmd_v1p2p4.xsd http://www.imsglobal.org/xsd/imsqti_metadata_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_metadata_v2p1.xsd") do
       myxml.metadata do
         myxml.schema("IMS Content")
         myxml.schemaversion("1.1")
