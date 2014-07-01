@@ -1,14 +1,15 @@
 @mixin item{
   @extend .thumbnail;
   float: left;
-  @media (min-width: 0px) and (max-width: 320px){
-    width: 100%;
-    margin: 0 0 10px 0;
-  }
+ 
 // 2---------------------
-  @media (min-width: 321px) and (max-width: 480px){
+  @media (max-width: 480px){
     width: 100%;
     margin: 0 0 10px 0;
+    .caption{
+      width: 68%;
+      float: left;
+    }
   }
 // 3---------------------
   @media (min-width: 481px) and (max-width: 767px){
@@ -57,6 +58,12 @@
       transform: scale(1.05);
       -ms-transform: scale(1.05);
       -webkit-transform: scale(1.05);
+    }
+    @media (max-width: 480px){
+      height: 68px;
+      .container-img{
+        margin-right: 1% !important;
+      }
     }
   }
 }

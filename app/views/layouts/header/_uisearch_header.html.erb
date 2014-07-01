@@ -5,30 +5,31 @@
             <%= text_field_tag :q, nil, autocomplete: :off, class: 'form-control search-query ', placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
              <a type="button" id="search_button" class="btn btn-default"><i class="fa fa-search"></i></a>
           </div>
+
+          <div class="mat">
+            <%= render partial: 'layouts/loading' %>
+
+            <div class="query_too_short">
+              <%= t 'search.at_least', count: SocialStream::Search::MIN_QUERY %>
+            </div>
+
+            <div class="no_results">
+              <%= t 'search.nothing' %>
+            </div>
+
+            <div class="results">
+            </div>
+          </div>
         <% end %>
 
         
 
-        <div class="mat">
-          <%= render partial: 'layouts/loading' %>
-
-          <div class="query_too_short">
-            <%= t 'search.at_least', count: SocialStream::Search::MIN_QUERY %>
-          </div>
-
-          <div class="no_results">
-            <%= t 'search.nothing' %>
-          </div>
-
-          <div class="results">
-          </div>
-        </div>
    
 
       <%= javascript_tag do %>
         $(function() {
           SocialStream.SearchHeader.show();
-          $(".search_button_class").on("click", function(){
+          $("#search_button").on("click", function(){
             document.location= "/search?q=" + $("#q").val();
           });
 

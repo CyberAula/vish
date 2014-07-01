@@ -12,3 +12,143 @@
     span.helpheader
       float: right
       padding-top: 15px
+
+
+.mat
+  z-index: 10
+  position: absolute
+  width: 250px
+  @include border-bottom-radius ($border-radius-base)
+
+  .query_too_short
+    @include border-bottom-radius ($border-radius-base)
+    color: $white
+    width: 92%
+    background-color: $gray
+    text-align: center
+    padding: 3px
+    margin-top: 2px
+    -webkit-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
+    -moz-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
+    box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
+  .no_results
+    display: block
+    @include border-bottom-radius ($border-radius-base)
+    color: $white
+    background-color: $brand-primary
+    width: 92%
+    text-align: center
+    padding: 3px
+    margin-top: 2px
+    -webkit-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
+    -moz-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
+    box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
+
+  .results
+    background-color: rgba(85,85,85,0.97)
+    width: 95%
+
+    ul
+      margin: 0
+      padding-left: 0
+      @include box-shadow (0 1px 3px rgba(20, 20, 20, 0.4))
+      @include border-bottom-radius ($border-radius-base)
+
+      li
+        list-style: none
+        height: 57px
+        padding-left: 7px
+        padding-right: 7px
+        border-bottom: 1px solid #515151
+        clear: both
+
+        &:first-child
+          margin-top: 2px
+        &:last-child
+          border: none
+        &:hover
+          background: rgba(233,0,85,0.97)
+          .author
+            a
+              color: $white !important
+        .picture,
+        .document,
+        .contact,
+        .video,
+        .quick_search
+          margin-top: 5px
+          margin-bottom: 5px
+          .avatar,
+          .photo,
+          .video,
+          .thumb
+            width: 40px
+            display: block
+            float: left
+            padding: 0
+            text-align: center
+            img
+              border: 0px solid $white
+            a
+              
+              font-size: 45px
+              i
+                vertical-align: text-top
+                &:hover
+                  text-decoration: none
+
+          .photo,
+          .video,
+          .thumb
+            float: left
+            img
+              @include size (45px, 45px)
+              @include border-top-radius ($border-radius-base)
+              @include border-bottom-radius ($border-radius-base)
+          .data,
+          .brifing
+            width: 80%
+            display: block
+            float: left
+            text-align: left
+            padding-left: 10px
+            color: $white
+            .name,
+            h5
+              @include text-overflow
+              font-weight: bold
+              a
+                text-decoration: none
+                color: $white
+                font-family: $corporate-font-family-sans-serif-Medium
+                font-weight: bold
+            h5
+              margin: 0
+            .name
+              font-family: $corporate-font-family-sans-serif-Medium
+              font-weight: bold
+            .counters
+              display: none
+            .info,
+            .author
+              @include text-overflow
+              a
+                color: $gray-lighter
+
+      .more
+        display: block
+        clear: both
+        text-align: center
+        height: auto
+        padding-bottom: 3px
+        padding-top: 2px
+        a
+          color: $white
+          font-family: $corporate-font-family-sans-serif-Medium
+          text-decoration: none
+        &:hover
+          background: #333
+          a
+            color: $white
+            &:hover
+              background-color: #333 !important
