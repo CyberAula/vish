@@ -144,6 +144,40 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:fillExcursionsLanguage
+  #In production: bundle exec rake fix:fillExcursionsLanguage RAILS_ENV=production
+  task :fillExcursionsLanguage => :environment do
+
+    printTitle("Filling Excursions language")
+
+    Excursion.all.map { |ex| 
+      eJson = JSON(ex.json)
+
+      lan = eJson["language"]
+      emptyLan = (lan.nil? or !lan.is_a? String or lan=="independent")
+
+      if emptyLan
+        #Try to infer language
+        # lan = inferredLan
+        # emptyLan = false
+      end
+
+      if !emptyLan
+        ao = ex.activity_object
+        ao.update_column :language, lan
+
+        if eJson["language"] != lan
+          eJson["language"] = lan
+          ex.update_column :json, eJson.to_json
+        end
+      end
+
+    }
+
+    printTitle("Task Finished")
+  end
+
 
   ####################
   #Task Utils
