@@ -9,14 +9,27 @@ aside.recomended
   @include make-sm-column(8, $gutter: $grid-gutter-width)
   @include make-md-column(8, $gutter: $grid-gutter-width)
   @include make-lg-column(8, $gutter: $grid-gutter-width)
+
+.description-activity
+  .box_description
+    min-height: 202px
+  .activity-box
+    clear: both
+    padding-bottom: 15px
+    .activity
+      width: 100%
+      float: none
+      div.comments,
+      .child
+        float: none
+
 .description-activity
   @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
   @extend .well
   background-color: $white
   padding: 0
   border: none
-  @media (max-width: $screen-xs-min)
-    clear: both
+  clear: both
   h2,
   .tab-content
     width: 95%
@@ -66,6 +79,7 @@ aside.recomended
       .table
         margin-bottom: 0
       
+
   .comments,
   .child
     width: 100%
@@ -113,4 +127,35 @@ aside.recomended
     right: 0
     width: 100%
 
+.social_toolbar_excursion
+  div.social
+    display: inline-block
+    vertical-align: top
+    .btn
+      padding: 0
+  &:first-child
+    display: inline
 
+.contentscorm
+  a
+    float: left
+    margin-right: 15px 
+    @media (max-width: $screen-xs-max)
+      float: none
+      margin-bottom: 15px
+  p
+    overflow: hidden
+    zoom: 1
+
+.contentReport
+  .btn-group-vertical,
+  .captcha
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(6, $gutter: $grid-gutter-width)
+    @include make-md-column(6, $gutter: $grid-gutter-width)
+    @include make-lg-column(6, $gutter: $grid-gutter-width)
+  .simple_captcha,
+  .simple_captcha_image
+    float: none !important
+  .btn  
+    float: right

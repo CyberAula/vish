@@ -20,115 +20,132 @@
 <div class="panel-group" id="accordion">
   <div class="panel">
     <header>
-    <table class="table table-hover">
-
-    <%= javascript_tag do %>
-    <%#= modal_for(@excursion.author.subject) %>
-    <% @excursion.contributors.each do |c| %>
-    <%#= modal_for(c.subject) %>
-    <% end%>
-    <% end %>
-
-
-    <dl class="dl-horizontal">
-
-      <% unless @excursion.contributors.blank? %>
-        <!--contributors-->
-        <dt><%= t('excursion.contributors.name').capitalize %></dt>
-        <dd>
-          <% isFirst = true %>
-          <% @excursion.contributors.uniq.each do |c| %>
-            <% if !isFirst %>
-              ,
-            <% else %>
-              <%isFirst = false%>
-            <% end %>
-            <%= link_to c.name, c.subject %>            
-            </a> 
-          <%end%>
-        </dd>
-      <%end%>
-
-      <% unless @excursion.description.blank? %>
-      <!--description-->
-      <dt><%= t('info.description') %></dt>
-      <dd><%= truncate(@excursion.description, :length => 400) %></dd>
-      <% end %>
-      <% unless @excursion.tag_list.blank? %>
-      <!--tags-->
-      <dt><%= t('info.tags') %></dt>
-      <dd>
-        <ul class="tagit-suggestions">
-          <% @excursion.tag_list.each do |tag| %>
-          <li class="tagit-choice">
-            <%= link_to tag, search_path(:q => tag) %>
-          </li>
-          <% end %>
-        </ul>
-      </dd>
-      <% end %>
-      <% unless @excursion.language.blank? %>
-      <!--language-->
-      <dt><%= t('lang.title').capitalize %></dt>
-      <dd>
-        <%= case @excursion.language
-        when '';
-          t('lang.independent')
-        when 'de';
-          'Deutsch'
-        when 'en';
-          'English'
-        when 'es';
-          'Español'
-        when 'fr';
-          'Français'
-        when 'it';
-          'Italiano'
-        when 'pt';
-          'Português'
-        when 'ru';
-          'Русский'
-        else
-          ; t('lang.others')
-          end %>
-        </dd>
+      <table class="table table-hover">
+        <%= javascript_tag do %>
+          <%#= modal_for(@excursion.author.subject) %>
+          <% @excursion.contributors.each do |c| %>
+          <%#= modal_for(c.subject) %>
+          <% end%>
         <% end %>
-        
-<!--date-create
-      <div class="tittle-notebook">
-      <%= t('document.info.date.created_at') %>
-      </div>
-      <div class="text-notebook">
-      <%= I18n.localize @excursion.created_at, :format => :long %>
-      </div>
-    -->
-    <!--date-upload-->
-    <dt><%= t('document.info.date.updated_at') %></dt>
-    <dd><%= I18n.localize @excursion.updated_at, :format => :long %></dd>
-    <dt></dt>
-    <dd><button href="#MetadataModal" id="showMeta" data-toggle="modal" class="ui-state-default ui-corner-all">
-      <%=t('excursion.actions.show_meta')%></button></dd>
-  </dl>
-</table>
- 
 
-<div id="MetadataModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myMetadataLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myMetadataLabel"><%= t('excursion.modal.metadata_title') %></h3>
-  </div>
-  <div class="modal-body">
-    <ul class="metadatalist">
-    <% metadata(@excursion).each do |key, value| %>
-      <li>
-        <span class="metadatalistkey"><%=key%>:</span>
-        <span class="metadatalistkey2"><%=value%></span>
-      </li>
-    <%end%>
-  </ul>
-  </div>
-</div>
-     </div>
+        <tr>
+          <% unless @excursion.contributors.blank? %>
+            <!--contributors-->
+            <td><%= t('excursion.contributors.name').capitalize %></td>
+            <td>
+              <% isFirst = true %>
+              <% @excursion.contributors.uniq.each do |c| %>
+                <% if !isFirst %>
+                  ,
+                <% else %>
+                  <%isFirst = false%>
+                <% end %>
+                <%= link_to c.name, c.subject %>            
+                </a> 
+              <%end%>
+            </td>
+          <%end%>
+        </tr>
+
+        <tr>
+          <% unless @excursion.description.blank? %>
+          <!--description-->
+          <td><%= t('info.description') %></td>
+          <td><%= truncate(@excursion.description, :length => 400) %></td>
+          <% end %>
+        </tr>  
+      </table>
+    </header>
+    <div id="collapseInfo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <table class="table table-hover">
+
+          <tr>
+             <% unless @excursion.tag_list.blank? %>
+            <!--tags-->
+            <td><%= t('info.tags') %></td>
+            <td>
+              <ul class="tagit-suggestions">
+                <% @excursion.tag_list.each do |tag| %>
+                <li class="tagit-choice">
+                  <%= link_to tag, search_path(:q => tag) %>
+                </li>
+                <% end %>
+              </ul>
+            </td>
+            <% end %>
+          </tr>
+          <tr>
+            <% unless @excursion.language.blank? %>
+            <!--language-->
+            <td><%= t('lang.title').capitalize %></td>
+            <td>
+              <%= case @excursion.language
+              when '';
+                t('lang.independent')
+              when 'de';
+                'Deutsch'
+              when 'en';
+                'English'
+              when 'es';
+                'Español'
+              when 'fr';
+                'Français'
+              when 'it';
+                'Italiano'
+              when 'pt';
+                'Português'
+              when 'ru';
+                'Русский'
+              else
+                ; t('lang.others')
+                end %>
+              </td>
+              <% end %>
+          </tr>
+          <tr>    
+            <!--date-upload-->
+            <td><%= t('document.info.date.updated_at') %></td>
+            <td><%= I18n.localize @excursion.updated_at, :format => :long %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <button href="#MetadataModal" id="showMeta" data-toggle="modal" class="ui-state-default ui-corner-all">
+                <%=t('excursion.actions.show_meta')%>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div id="MetadataModal" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+              </button>
+              <h3 id="myMetadataLabel">
+                <%= t('excursion.modal.metadata_title') %>
+              </h3>
+            </div>
+            <div class="modal-body">
+              <ul class="metadatalist">
+                <% metadata(@excursion).each do |key, value| %>
+                  <li>
+                    <span class="metadatalistkey"><%=key%>:</span>
+                    <span class="metadatalistkey2"><%=value%></span>
+                  </li>
+                <%end%>
+              </ul>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
     </div>
-  </div> 
-  <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">--- <%=t('excursion.actions.show_more')%> ---</a>
+  </div>
+  <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
+    --- <%=t('excursion.actions.show_more')%> ---
+  </a>
+</div>

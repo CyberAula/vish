@@ -235,60 +235,82 @@
   <div class="tab-content excursion-social">
     <!-- tab1 / description -->
     <div class="tab-pane active" id="tab1">
-      <div class="toggler">
+
         <!--description-->
         <%= render :partial => 'excursions/excursion-info' %>
-      </div>
     </div>
     <!-- tab2 / embed -->
-    <div class="tab-pane" id="tab2">
-      <div class="contentembed">
-        <textarea class="shortUrl" readonly="true" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='//<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0; webkitallowfullscreen mozallowfullscreen allowfullscreen &gt;&lt;/iframe&gt</textarea>
-        <button class="btn " id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-          <i class="fa fa-copy large"></i>
-        </button>
-      </div>
+    <div class="tab-pane contentembed" id="tab2">
+      <div class="form-group">
+        <div class="input-group">
+          <textarea class="form-control" readonly="true" id="textarea_for_iframe" type="text">
+            &lt;iframe id='presentation_iframe' src='//<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0; webkitallowfullscreen mozallowfullscreen allowfullscreen &gt;&lt;/iframe&gt
+          </textarea>
+          <div class="input-group-addon">
+            <a id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+              <i class="fa fa-copy "></i>
+            </a>
+          </div>
+        </div>
+      </div>           
     </div>
     <!-- tab3 / share -->
-    <div class="tab-pane" id="tab3">
-      <div class="contentShare">
-        <div class="input-append url-input">
-          <input class="shortUrl" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
-            <button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-              <i class="fa fa-copy "></i>
-            </button>
+    <div class="tab-pane contentShare" id="tab3">
+
+        <div class="form-group">
+          <div class="input-group">
+          
+            <input class="form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+            <div class="input-group-addon">
+              <a id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+                <i class="fa fa-copy "></i>
+              </a>
+            </div>
+          </div>
         </div>
+
         <div class="social_toolbar_excursion">
-          <div class="twitter_toolbar_excursion">
+          <div class="social">
             <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
           </div>
-          <div class="facebook_toolbar_excursion">
+          <div class="social">
             <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
           </div>
-          <div class="gplus_toolbar_excursion ">
+          <div class="social">
             <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
           </div>
-          <div class="email_toolbar_excursion">
+          <div class="social">
             <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
           </div>
         </div>
       </div>
-    </div> 
+
      
     <!-- tab4 / scorm -->
-    <div class="tab-pane" id="tab4">
-      <div class="contentscorm">
-        <a class="btn btn-primary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a> 
-        <p><%=t("excursion.download_scorm")%></p><br/>
-      </div> 
+    <div class="tab-pane contentscorm" id="tab4">
+
+      <a class="btn btn-primary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a> 
+      <p><%=t("excursion.download_scorm")%></p>
+
     </div> 
     <!-- tab5 / spam -->
-    <div class="tab-pane" id="tab5">
-      <div class="contentReport">
-        <dt><%=t('spam.report_excursion')%></dt>
+    <div class="tab-pane contentReport" id="tab5">
 
-        <%= form_tag spam_report_path, method: 'post', class: "" do %>
-          <%=hidden_field_tag "activity_object_id", @excursion.activity_object_id%>
+        <div class="small">
+          <%=t('spam.report_excursion')%>
+        </div>
+
+        <%= form_tag spam_report_path, method: 'post' do %>
+          <div class="btn-group-vertical" data-toggle="buttons">
+            <label class="btn btn-default">
+              <input type="radio" name="options" id="option1" checked=""> <%=t('spam.spam_content')%>
+            </label>
+            <label class="btn btn-default">
+              <input type="radio" name="options" id="option2"> <%=t('spam.error_content')%>
+            </label>
+          </div>
+
+         <!-- <%=hidden_field_tag "activity_object_id", @excursion.activity_object_id%>
           <div class="radio">
             <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
             <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
@@ -296,15 +318,19 @@
           <div class="radio">
             <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content')%>
             <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-            <div>
-          <%= t('simple_captcha.title') %>
-          </div>
-          <div><%=t('simple_captcha.subtitle')%></div>
-          <%= show_simple_captcha %>
+            <div>  -->
+          <div class="captcha">
+            <header>  
+              <%= t('simple_captcha.title') %>, <%=t('simple_captcha.subtitle')%>
+            </header>
+            <%= show_simple_captcha %>
           </div>
           <button class="report btn btn-primary"> <%=t('send.send')%></button>
         <% end %>
-      </div> 
+
+
+        
+      
     </div> 
   </div>
 <%end%>

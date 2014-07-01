@@ -9,6 +9,12 @@
       @include border-bottom-radius ($border-radius-base);
     }
   }
+  a{
+    &:hover{
+      padding: 0;
+    }
+  }
+  
 
   //BAGDE EXCURSION
   .badge-excursion-active{
