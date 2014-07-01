@@ -14,3 +14,7 @@ production:
   test_domain: false
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
+
+
+#Other configuration options
+#languageDetectionAPIKEY: "API Key from http://detectlanguage.com to allow automatic language detection."

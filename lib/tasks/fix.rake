@@ -144,6 +144,68 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:fillExcursionsLanguage
+  #In production: bundle exec rake fix:fillExcursionsLanguage RAILS_ENV=production
+  task :fillExcursionsLanguage => :environment do
+
+    printTitle("Filling Excursions language")
+
+    validLanguageCodes = ["de","en","es","fr","it","pt","ru"]
+    #"ot" is for "other"
+
+    Excursion.all.map { |ex|
+      eJson = JSON(ex.json)
+
+      lan = eJson["language"]
+      emptyLan = (lan.nil? or !lan.is_a? String or lan=="independent")
+
+      if emptyLan
+        #Try to infer language
+        #Use https://github.com/detectlanguage/detect_language gem
+
+        stringToTestLanguage = ""
+        if ex.title.is_a? String and !ex.title.blank?
+          stringToTestLanguage = stringToTestLanguage + ex.title + " "
+        end
+        if ex.description.is_a? String and !ex.description.blank?
+          stringToTestLanguage = stringToTestLanguage + ex.description + " "
+        end
+
+        if stringToTestLanguage.is_a? String and !stringToTestLanguage.blank?
+          detectionResult = (DetectLanguage.detect(stringToTestLanguage) rescue [])
+          detectionResult.each do |result|
+            if result["isReliable"] == true
+              detectedLanguageCode = result["language"]
+              if validLanguageCodes.include? detectedLanguageCode
+                lan = detectedLanguageCode
+              else
+                lan = "ot"
+              end
+              emptyLan = false
+              break
+            end
+          end
+        end
+      end
+
+      if !emptyLan
+        ao = ex.activity_object
+        if ao.language != lan
+          ao.update_column :language, lan
+        end
+
+        if eJson["language"] != lan
+          eJson["language"] = lan
+          ex.update_column :json, eJson.to_json
+        end
+      end
+
+    }
+
+    printTitle("Task Finished")
+  end
+
 
   ####################
   #Task Utils
