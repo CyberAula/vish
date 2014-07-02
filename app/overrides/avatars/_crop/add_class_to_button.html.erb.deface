@@ -1,3 +1,0 @@
-<!-- replace "code[erb-loud]:contains('btn')" -->
-
-<%= f.submit t('avatar.crop_submit'), class: "btn btn-primary" %>

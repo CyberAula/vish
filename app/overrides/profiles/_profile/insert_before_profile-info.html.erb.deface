@@ -1,7 +1,0 @@
-<!-- insert_before '#profile-info' -->
-  <h2>
-    <%= t('profile.one') %>
-  </h2>
-  
-
-

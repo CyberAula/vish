@@ -1,0 +1,25 @@
+<% if can? :create, new_post(receiver) %>
+  <article class="wall_input">
+    <%= form_for Post.new(owner_id: Actor.normalize_id(receiver)), remote: true do |f| %>
+      <%= f.hidden_field :owner_id %>
+    
+      <%= f.text_area :text, rows: 1, placeholder: t('post.input') %>
+
+      <section class="wall_input-actions">
+      <%= f.submit t('activity.share'), class: "btn", 'data-loading-text' => t('activity.share_loading') %>
+
+        <% SocialStream.activity_forms.each do |element| %>
+          <%= render partial: "#{ element.to_s.pluralize }/new_activity",
+                     locals: { f: f, receiver: receiver } %>
+        <% end %>
+      </section>
+      <% end %>
+  </article>
+ 
+
+  <%= javascript_tag do %>
+    $(function(){  
+      SocialStream.Wall.show();  
+    });
+  <% end %>
+<% end %>

@@ -1,4 +1,14 @@
-<!-- insert_after 'code[erb-loud]:contains("form_for")' -->
+<%= form_for @event.poster do |f| %>
+  <% if f.object.new_record? %>
+    <%= f.hidden_field :add_holder_event_id %>
+  <% end %>
+
+  <%= f.hidden_field :owner_id %>
+
+  <%= f.file_field :file, onchange: 'showButton()' %>
+
+  <%= f.submit t('event.poster.button') %>
+<% end %>
 
 <script>
   $(document).ready(function(){

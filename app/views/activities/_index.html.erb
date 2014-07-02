@@ -1,0 +1,12 @@
+<section class="activities">
+  <header>
+    <h1>  
+      <%= t 'activity.title' %> 
+    </h1>
+    <%= render partial: 'help/help_activity' %> 
+  </header>
+  <%= render :partial => 'activities/new', :locals => { :receiver => owner } %>
+
+  <%= render :partial => 'activities/timeline',
+             :locals  => { :section => section } %>
+</section>

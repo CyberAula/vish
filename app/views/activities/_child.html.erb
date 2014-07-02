@@ -1,0 +1,28 @@
+<%= div_for activity, :class => "child media" do %>
+  <div class="pull-left avatar">
+    <div class="media-object">
+    <%= link_to image_tag(activity.sender_subject.logo.url('small'),
+                          :alt => activity.sender_subject.name),
+                 activity.sender_subject %>
+    </div>
+  </div>
+  <header class="media-heading">
+    <h6>
+      <%= link_to(activity.sender_subject.name, activity.sender_subject) %>
+    </h6>
+    <% if activity.direct_object && !activity.direct_object.acts_as_actor? && can?(:destroy, activity.direct_object) %>
+      <div class="x" style="float: right"> 
+        <%= link_to raw("<i class='fa fa-trash-o'></i>"), activity.direct_object , :confirm => t('confirm_delete', 
+                    :scope => activity.direct_object.class.to_s.underscore), :method => :delete,  
+                    :remote => true %> 
+      </div>
+    <% end %>
+  </header>
+  <div class="media-body">
+    <div class="objects">
+      <%= render activity.activity_objects %>
+    </div>
+    <%= render :partial => 'activities/actions',
+               :locals => { :activity => activity } %>
+  </div>
+<% end %>
