@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140626122837) do
+ActiveRecord::Schema.define(:version => 20140702111006) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -71,18 +71,21 @@ ActiveRecord::Schema.define(:version => 20140626122837) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "object_type",          :limit => 45
-    t.integer  "like_count",                         :default => 0
-    t.string   "title",                              :default => ""
+    t.integer  "like_count",                                                        :default => 0
+    t.string   "title",                                                             :default => ""
     t.text     "description"
-    t.integer  "follower_count",                     :default => 0
-    t.integer  "visit_count",                        :default => 0
+    t.integer  "follower_count",                                                    :default => 0
+    t.integer  "visit_count",                                                       :default => 0
     t.string   "language"
-    t.integer  "age_min",                            :default => 4
-    t.integer  "age_max",                            :default => 30
-    t.boolean  "notified_after_draft",               :default => false
-    t.integer  "comment_count",                      :default => 0
-    t.integer  "popularity",                         :default => 0
-    t.integer  "download_count",                     :default => 0
+    t.integer  "age_min",                                                           :default => 4
+    t.integer  "age_max",                                                           :default => 30
+    t.boolean  "notified_after_draft",                                              :default => false
+    t.integer  "comment_count",                                                     :default => 0
+    t.integer  "popularity",                                                        :default => 0
+    t.integer  "download_count",                                                    :default => 0
+    t.decimal  "qscore",                             :precision => 12, :scale => 6
+    t.decimal  "reviewers_qscore",                   :precision => 12, :scale => 6
+    t.decimal  "users_qscore",                       :precision => 12, :scale => 6
   end
 
   create_table "activity_verbs", :force => true do |t|
