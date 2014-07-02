@@ -82,6 +82,10 @@ class IMSQTI
 end
 
   def self.generate_QTITF(qjson,index)
+    count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+    Site.current.config["tmpCounter"] = count + 1
+    Site.current.save!
+
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
 
@@ -220,7 +224,10 @@ end
   end
 
   def self.generate_QTIMC(qjson)
-
+      count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+      Site.current.config["tmpCounter"] = count + 1
+      Site.current.save!
+      
       myxml = ::Builder::XmlMarkup.new(:indent => 2)
       myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
         
