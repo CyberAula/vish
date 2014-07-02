@@ -18,3 +18,12 @@ production:
 
 #Other configuration options
 #languageDetectionAPIKEY: "API Key from http://detectlanguage.com to allow automatic language detection."
+
+#LOEP configuration
+#  loep:
+#    domain: "http://loep.global.dit.upm.es"
+#    # domain: "http://localhost:8080"
+#    api_version: "v1"
+#    app_name: "ViSH"
+#    auth_token: "secret_loep_token"
+#    repository_name: "ViSH"

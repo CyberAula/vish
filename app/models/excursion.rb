@@ -974,10 +974,9 @@ class Excursion < ActiveRecord::Base
   ## Quality Metrics
   ####################
 
-  #Get quality score (in a 0-10 scale)
-  def qscore
-    return nil
-  end
+  #See app/decorators/social_stream/base/activity_object_decorator.rb
+  #Method calculate_qscore
+
 
   private
 

@@ -48,7 +48,6 @@ def bringChunk(excursions)
   }
 end
 
-
 def recursiveBringLO(excursions,nExcursions,index)
   cExcursion = excursions[index]
   bringLO(cExcursion){ |response,code|
@@ -111,7 +110,7 @@ def bringLO(lo)
   # params["authentication"] = 'Basic ' + Base64.encode64("name" + ':' + "password")
   # params["authenticity_token"] = '';
   params["app_name"] = "ViSH"
-  params["auth_token"] = Vish::Application.config.loep_token
+  params["auth_token"] = Vish::Application.config.APP_CONFIG['loep']['auth_token']
 
   #LO
   params["lo"] = Hash.new
