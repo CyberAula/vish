@@ -1,0 +1,67 @@
+<% content_for :javascript do %>
+  $(".user_edit").validate({errorClass: "validation_error"});
+<%end%>
+
+<div id="password_form" class="panel panel-default">
+  <header class="panel-heading">
+    <h5>
+      <%= link_to t("settings.password_change.briefing"),  "javascript:void(0);", class: 'accordion-toggle', "data-toggle" => 'collapse', "data-parent" => "#settings-accordion", "data-target" => "#password_form_content" %>
+    </h5>
+  </header>
+
+  <div class="panel-body collapse" id="password_form_content">
+    <% content_for :javascript do %>
+      <%= form_for(resource, :as => resource_name, :class => "form-group", :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+
+        <%= f.label t('account.password.new') %>
+
+        <%= f.password_field :password, :class => "form-control" %>
+
+
+        <%= f.label t('account.password.retype') %>
+
+        <%= f.password_field :password_confirmation, :class => "form-control" %>
+ 
+
+        <%= f.label t('account.password.current') %>
+
+        <%= f.password_field :current_password, :class => "form-control" %>
+
+        <%= f.submit t('button.update'), :class => "btn" %>
+      <% end%>
+    <% end%>
+  </div>
+</div>
+
+
+
+<div id="email_form" class="panel panel-default">
+  <header class="panel-heading">
+    <h5>
+      <%= link_to t("settings.email_change.briefing"),  "javascript:void(0);", class: 'accordion-toggle', "data-toggle" => "collapse", "data-parent" => "#settings-accordion", 'data-target' => '#email_form_content' %>
+    </h5>
+  </header>
+
+  <div class="panel-body collapse" id="email_form_content">
+    <%= form_for(resource, :as => resource_name, :class => "form-group", :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+   
+      <%= f.label :email %>
+
+      <%= f.email_field :email, :class => "required form-control" %>
+
+
+      <%= f.label :current_password %>
+ 
+      <%= f.password_field :current_password, :class => "required form-control" %>
+ 
+      <%= f.submit t('button.update'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
+
+      <script>
+        $("#email_form .edit_user [type='submit']").click(function(event) {
+          $(this).button('loading');
+        });
+      </script>
+    <% end%>
+  </div>
+</div>
+

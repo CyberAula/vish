@@ -1,0 +1,34 @@
+<section id="sign_in">
+  <h3>
+    <%= t('sign_in') %>
+  </h3>
+
+  <%= form_for(resource, :as => resource_name, :class="form-group", :url => session_path(resource_name)) do |f| %>
+    <%= devise_error_messages! if controller.controller_name == 'sessions' %>
+
+    <article class="login_data">
+
+      <%= f.label :email %>
+
+      <%= f.email_field :email, :class="form-group" %>
+
+      <%= f.label :password %>
+
+      <%= f.password_field :password, :class="form-group" %>
+
+      <% if devise_mapping.rememberable? -%>
+        <div id="remember">
+          <%= f.check_box :remember_me %> 
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <%= f.submit t('sign_in'), :class =>"btn btn-primary" %>
+
+      <hr>
+
+      <%= link_to t('devise.links.forgot_password'), new_password_path(resource_name),  :class=> "forgot-link" %> 
+
+    </article>
+  <% end %>
+</section>

@@ -1,0 +1,23 @@
+<div id="language_settings" class="panel panel-default">
+  <header class="panel-heading">
+    <h5>
+      <%= link_to t("settings.lang_change.briefing"),  "javascript:void(0);", class: 'accordion-toggle', "data-toggle" => 'collapse', "data-parent" => "#settings-accordion", "data-target" => "#language_settings_content" %>
+    </h5>
+  </header>
+  
+  <div class="panel-body collapse" id="language_settings_content">
+    <%= form_tag update_all_settings_path, :method => :put, :id => 'form_lang', :remote => false do %>
+    <div class="form_label">
+      <%= label_tag :language, t('settings.lang_change.name') %>
+    </div>
+    <div class="form_field">
+      <%= select_tag(:language, options_for_select([[t('lang.browser'), 'browser']] + I18n.available_locales.map{|l| [ t(:language_name, :locale => l.to_s), l.to_s ] }, (current_user.language.blank? ? 'browser' : current_user.language)), :class => 'form_tag', :onchange => "$(\'#form_lang\').submit();" )%>
+    </div>
+    <%= hidden_field_tag :settings_section, :language %>
+		<noscript>
+      <%= submit_tag "Update Settings", :class => "btn" %>
+		</noscript>
+    <% end%>
+  </div>
+</div>
+

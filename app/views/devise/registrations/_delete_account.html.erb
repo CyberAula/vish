@@ -1,0 +1,12 @@
+<div id="cancel_account" class="panel panel-default">
+  <header class="panel-heading">
+    <h5>
+      <%= link_to t('settings.cancel_account.briefing'), "javascript:void(0);", class: 'accordion-toggle', "data-toggle" => 'collapse', "data-parent" => "#settings-accordion", "data-target" => "#cancel_account_content" %>
+    </h5>
+  </header>
+  
+  <div class="panel-body collapse" id="cancel_account_content">
+    Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>
+  </div>
+
+</div>

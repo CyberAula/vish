@@ -1,5 +1,5 @@
-<!-- replace_contents '.forgot' -->
-
+<section id="forgot-pass">
+  <section class="forgot">
     <h3>
       <%= t('devise.passwords.forgot') %>
     </h3>
@@ -7,19 +7,15 @@
       Write down the email address you associated to your account and you will receive an email with instructions about how to reset your password in a few minutes
     </p>
 
-    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+    <%= form_for(resource, :as => resource_name, :class => "form-group", :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
       <%= devise_error_messages! %>
 
       <%= f.label :email %>
 
-      <%= f.text_field :email, :class => "form_tag", :placeholder => t('devise.passwords.instructions') %>
+      <%= f.text_field :email, :class => "form-control", :placeholder => t('devise.passwords.instructions') %>
         
       <%= f.submit t('action.send'), :class => "btn btn-primary" %>
-      
-      <hr>
-
-    <%= render :partial => "devise/shared/links" %>
-
   
-  <% end %>
-
+    <% end %>
+  </section>
+</section>

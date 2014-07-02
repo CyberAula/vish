@@ -1,2 +1,0 @@
-<!-- insert_before '.soften' -->
-<%= link_to t('devise.links.forgot_password'), new_password_path(resource_name),  :class=> "forgot-link" %>

@@ -1,0 +1,110 @@
+<section id="registration"> 
+  <section class="registration">
+    <h3>
+      <%= t('sign_up').capitalize %>
+    </h3>
+    <%= form_for(resource, :as => resource_name, :class => "form-group", :url => registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+    <div class="reg-labels">
+      <%= f.label :name %>
+      
+      <%= f.text_field :name, :class =>"form-control" %>
+      
+      <%= f.label :email %>
+      
+      <%= f.text_field :email, :class =>"form-control" %>
+      
+      <%= f.label :password %>
+      
+      <%= f.password_field :password, :class =>"form-control", :id => "password" %>
+
+      <%= f.label :password_confirmation %>
+      
+      <%= f.password_field :password_confirmation, :class =>"form-control"%>
+
+      <%= f.label t('profile.occupation.label') %>
+
+      <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]], params[:user] ? params[:user][:occupation]:nil)) %>
+
+      <%= f.label t('activerecord.attributes.user.tag') %>
+      <div class="tagBoxNew">
+        <ul class="tagList"></ul>
+      </div>
+
+      <%= f.hidden_field :tag_list, :class => "form-control", :id => "input_tag_list", :placeholder => t('devise.tags')   %>
+
+      <% @tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+      <ul id="preloadTagList" style="display:none">
+        <%@tags.each do |tag| %>
+          <li>
+            <%=tag.name%>
+          </li>
+        <%end%>
+      </ul>
+
+      <%= f.label t('simple_captcha.title') %>
+      <span ><%=t('simple_captcha.subtitle')%></span>
+      <%= show_simple_captcha %>      
+      <hr>
+      <div class="conditions">
+        <%= t('conditions.check_message') %>
+
+        <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
+
+        <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+          <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>.
+        <% end -%>
+      </div>
+      <%= f.submit t('action.accept').capitalize,:class=>"btn pull-right"%>
+    </div>
+    <% end %>
+  </section>
+</section>
+
+  <%= content_for :javascript do %>
+  $(document).ready(function() {
+    var tagList = $(".tagList");
+    var tags = [];
+
+    //Load tags
+    $.each($("#preloadTagList li"), function(index, element) {
+       tags.push($(element).html());
+    });
+    
+    $(tagList).tagit({
+      tagSource:tags, 
+      sortable:true, 
+      maxLength:15, 
+      maxTags:8,
+      watermarkAllowMessage: '<%=t('document.tags.areasOfInterestMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' ,
+      initialTags: <%=(params[:user] && params[:user][:tag_list]) ? raw(params[:user][:tag_list].split(",")) : "[]" %>,
+      tagsChanged:function (tag, action) {
+        //Check if the element popped is a suggestion
+        if(action=="popped"){
+          $.each($(".tagit-suggestions li"), function(index, element) {
+            if($(element).html()==tag){
+              $(element).show();
+            }
+          });
+        }
+      } 
+    });
+
+    //Allow suggestions
+    $(".tagit-suggestions li").on("click", function(){
+      var result = $(".tagit").tagit('add', $(this).html() );
+      if(result==true){
+        $(this).hide();
+      }
+    });
+
+    //Fill tag_list hidden input before send
+     var button = $("input[type='submit'][class='btn pull-right']");
+      $(button).click(function(event) {
+       var tagList = $(".tagList");
+       $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+       return true;
+     });
+
+  });
+<% end %>
