@@ -160,7 +160,7 @@ namespace :fix do
       lan = eJson["language"]
       emptyLan = (lan.nil? or !lan.is_a? String or lan=="independent")
 
-      if emptyLan
+      if emptyLan and !Vish::Application.config.APP_CONFIG["languageDetectionAPIKEY"].nil?
         #Try to infer language
         #Use https://github.com/detectlanguage/detect_language gem
 
