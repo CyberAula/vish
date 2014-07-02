@@ -216,7 +216,7 @@ class Excursion < ActiveRecord::Base
       "xmlns:adlnav"=>"http://www.adlnet.org/xsd/adlnav_v1p3",
       "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
       "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
-      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd",
+      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd",
     ) do
 
       myxml.metadata() do
@@ -340,7 +340,9 @@ class Excursion < ActiveRecord::Base
       #Language (LO language and metadata language)
       loLanguage = getLOMLoLanguage(ejson["language"], _LOMschema)
       if loLanguage.nil?
-        loLanguage = "en"
+        loLanOpts = {}
+      else
+        loLanOpts = { :language=> loLanguage }
       end
       metadataLanguage = "en"
 
@@ -383,7 +385,7 @@ class Excursion < ActiveRecord::Base
 
         myxml.title do
           if ejson["title"]
-            myxml.string(ejson["title"], :language=> loLanguage)
+            myxml.string(ejson["title"], loLanOpts)
           else
             myxml.string("Untitled", :language=> metadataLanguage)
           end
@@ -395,7 +397,7 @@ class Excursion < ActiveRecord::Base
         
         myxml.description do
           if ejson["description"]
-            myxml.string(ejson["description"], :language=> loLanguage)
+            myxml.string(ejson["description"], loLanOpts)
           elsif ejson["title"]
             myxml.string(ejson["title"] + ". A Virtual Excursion provided by " + Vish::Application.config.full_domain + ".", :language=> metadataLanguage)
           else
@@ -405,7 +407,7 @@ class Excursion < ActiveRecord::Base
         if ejson["tags"] && ejson["tags"].kind_of?(Array)
           ejson["tags"].each do |tag|
             myxml.keyword do
-              myxml.string(tag.to_s, :language=> loLanguage)
+              myxml.string(tag.to_s, loLanOpts)
             end
           end
         end
@@ -414,12 +416,12 @@ class Excursion < ActiveRecord::Base
           if ejson["subject"].kind_of?(Array)
             ejson["subject"].each do |subject|
               myxml.keyword do
-                myxml.string(subject, :language=> loLanguage)
+                myxml.string(subject, loLanOpts)
               end 
             end
           elsif ejson["subject"].kind_of?(String)
             myxml.keyword do
-                myxml.string(ejson["subject"], :language=> loLanguage)
+                myxml.string(ejson["subject"], loLanOpts)
             end
           end
         end
@@ -603,7 +605,7 @@ class Excursion < ActiveRecord::Base
         end
         if ejson["educational_objectives"]
           myxml.description do
-              myxml.string(ejson["educational_objectives"], :language=> loLanguage)
+              myxml.string(ejson["educational_objectives"], loLanOpts)
           end
         end
         if loLanguage
@@ -645,13 +647,8 @@ class Excursion < ActiveRecord::Base
         return "none"
       end
     else
-      if language.nil?
-        return nil
-      end
-      if language == "independent"
-        return "none"
-      end
-      if !lanCodesMin.include?(language)
+      #When language=nil, no language attribute is provided
+      if language.nil? or language == "independent" or !lanCodesMin.include?(language)
         return nil
       end
     end

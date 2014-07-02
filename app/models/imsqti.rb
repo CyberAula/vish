@@ -24,16 +24,17 @@ require 'builder'
 class IMSQTI
 
   def self.createQTI(filePath,fileName,qjson)
-    require 'zip/zip'
+        require 'zip/zip'
     require 'zip/zipfilesystem'
 
+    # filePath = "#{Rails.root}/public/scorm/excursions/"
+    # fileName = self.id
+    # json = JSON(self.json)
     t = File.open("#{filePath}#{fileName}.zip", 'w')
 
-
-
+    #Add manifest, main HTML file and additional files
     Zip::ZipOutputStream.open(t.path) do |zos|
-    
-      case qjson["quiztype"]
+    case qjson["quiztype"]
       when "truefalse"
         for i in 0..((qjson["choices"].size)-1)
           qti_tf = IMSQTI.generate_QTITF(qjson,i)
@@ -64,16 +65,26 @@ class IMSQTI
       xml_truemanifest = IMSQTI.generate_qti_manifest(qjson,fileName)
       zos.put_next_entry("imsmanifest.xml")
       zos.print xml_truemanifest
-
-      t.close
     end
-  end
+
+       xsdFileDir = "#{Rails.root}/public/xsd"
+      xsdFiles = ["imscp_v1p1.xsd","imsmd_v1p2p4.xsd"]
+
+      #Add required xsd files
+      
+       Zip::ZipFile.open(t.path, Zip::ZipFile::CREATE) { |zipfile|
+      xsdFiles.each do |xsdFileName|
+        zipfile.add(xsdFileName,xsdFileDir+"/"+xsdFileName)
+      end
+    }
+  t.close
+end
 
   def self.generate_QTITF(qjson,index)
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
     
-    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive" => "false") do
+    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive" => "false") do
       
       myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "single", "baseType" => "identifier") do
         
@@ -120,7 +131,7 @@ class IMSQTI
       
     nChoices = qjson["choices"].size
 
-    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"Sorting Quiz", "title"=>"Sorting Quiz", "timeDependent"=>"false", "adaptive"=>"false") do
+    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1p1.xsd","identifier"=>"Sorting Quiz", "title"=>"Sorting Quiz", "timeDependent"=>"false", "adaptive"=>"false") do
 
       identifiers= [] 
         qjson["choices"].each_with_index do |choice,i|
@@ -157,7 +168,7 @@ class IMSQTI
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
         
-    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"openAnswer", "title"=>"Open Answer Quiz", "timeDependent"=>"false", "adaptive"=>"false") do
+    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1p1.xsd","identifier"=>"openAnswer", "title"=>"Open Answer Quiz", "timeDependent"=>"false", "adaptive"=>"false") do
       myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "single", "baseType" => "string") do
         myxml.correctResponse() do
           myxml.value(qjson["answer"]["value"])
@@ -212,7 +223,7 @@ class IMSQTI
         
       nChoices = qjson["choices"].size
 
-      myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive"=>"false") do
+      myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive"=>"false") do
 
         identifiers= [] 
         qjson["choices"].each_with_index do |choice,i|
@@ -282,7 +293,7 @@ class IMSQTI
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
     
-    myxml.manifest("xmlns" => "http://www.imsglobal.org/xsd/imscp_v1p1", "xmlns:imsmd" => "http://www.imsglobal.org/xsd/imsmd_v1p2", "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance", "xmlns:imsqti" => "http://www.imsglobal.org/xsd/imsqti_metadata_v2p1", "identifier"=>"VISH_QUIZ_" + identifier, "xsi:schemaLocation" => "http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.imsglobal.org/xsd/imsmd_v1p2 imsmd_v1p2p4.xsd http://www.imsglobal.org/xsd/imsqti_metadata_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_metadata_v2p1.xsd") do
+    myxml.manifest("xmlns" => "http://www.imsglobal.org/xsd/imscp_v1p1", "xmlns:imsmd" => "http://www.imsglobal.org/xsd/imsmd_v1p2", "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance", "xmlns:imsqti" => "http://www.imsglobal.org/xsd/imsqti_metadata_v2p1", "identifier"=>"VISH_QUIZ_" + identifier, "xsi:schemaLocation" => "http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.imsglobal.org/xsd/imsmd_v1p2 imsmd_v1p2p4.xsd http://www.imsglobal.org/xsd/imsqti_metadata_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_metadata_v2p1p1.xsd") do
       myxml.metadata do
         myxml.schema("IMS Content")
         myxml.schemaversion("1.1")
@@ -360,15 +371,11 @@ class IMSQTI
                 end
               end
               myxml.tag!("imsmd:technical") do
-                myxml.tag!("imsmd:format") do
-                  myxml.text!("text/x-imsqti-item-xml")
-                end
+                myxml.tag!("imsmd:format", "text/x-imsqti-item-xml")
               end
             end
             myxml.tag!("imsqti:qtiMetadata") do
-              myxml.tag!("imsqti:interactionType") do
-                myxml.text!("choiceInteraction")
-              end
+              myxml.tag!("imsqti:interactionType","choiceInteraction")
             end
           end
           myxml.file("href" => fileName + ".xml")
@@ -385,15 +392,11 @@ class IMSQTI
                 end
               end
               myxml.tag!("imsmd:technical") do
-                myxml.tag!("imsmd:format") do
-                  myxml.text!("text/x-imsqti-item-xml")
-                end
+                myxml.tag!("imsmd:format","text/x-imsqti-item-xml")
               end
             end
             myxml.tag!("imsqti:qtiMetadata") do
-              myxml.tag!("imsqti:interactionType") do
-                myxml.text!("choiceInteraction")
-              end
+              myxml.tag!("imsqti:interactionType", "choiceInteraction")
             end
           end
           myxml.file("href" => fileName + "_" + i.to_s + ".xml")
@@ -403,7 +406,7 @@ class IMSQTI
       case qjson["quiztype"]
       when "sorting"
         typeQ = "Sorting"
-        typeInteraction = "Sorting Interaction"
+        typeInteraction = "orderInteraction"
       when "multiplechoice"
         typeQ = "MultipleChoice"
         typeInteraction = "choiceInteraction"
@@ -417,21 +420,15 @@ class IMSQTI
           myxml.tag!("imsmd:lom") do
             myxml.tag!("imsmd:general") do
               myxml.tag!("imsmd:title") do
-                myxml.tag!("imsmd:langstring",{"xml:lang"=>"en"}) do
-                  myxml.text!(typeQ)
-                end
+                myxml.tag!("imsmd:langstring",typeQ, {"xml:lang"=>"en"})
               end
             end
             myxml.tag!("imsmd:technical") do
-              myxml.tag!("imsmd:format") do
-              myxml.text!("text/x-imsqti-item-xml")
-              end
+              myxml.tag!("imsmd:format", "text/x-imsqti-item-xml")
             end
           end
           myxml.tag!("imsqti:qtiMetadata") do
-            myxml.tag!("imsqti:interactionType") do
-              myxml.text!(typeInteraction)
-            end
+            myxml.tag!("imsqti:interactionType", typeInteraction)
           end
         end
         myxml.file("href" => fileName + ".xml")
