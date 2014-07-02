@@ -351,7 +351,7 @@ es:
       resources2_html : "En esta sección se muestra el recurso en el que ha entrado. En la zona de la derecha, tendrás recursos recomendadas, bajo el recurso se muestra la información de la misma, así como las maneras sencillas de compartirla , descargarlo, marcarla como spam, hacerlo favorita, o etiquetarlo dentro de una de sus categorías. También puedes comentar el recurso desde la parte inferior."
       favourite1_html : "Favoritos"
       favourite2_html : "Esta sección muestra tus recursos favoritos, en el veras los elementos que has hecho favoritos."
-      overview_html: "<a href='/overview'><i class='icon-info-sign btn-mini'></i>¿Qué es ViSH?</a>"
+      overview_html: "<a href='/overview'><i class='fa fa-info-circle btn-mini'></i>¿Qué es ViSH?</a>"
     helpquiz:
       info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>" 
     how: "Cómo compartir un recurso"
