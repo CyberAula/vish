@@ -907,7 +907,7 @@ class Excursion < ActiveRecord::Base
   def afterPublish
     #If LOEP is enabled, upload the excursion to LOEP
     if !Vish::Application.config.APP_CONFIG['loep'].nil?
-      VishLoep.registerExcursionInLOEP(self) rescue nil
+      VishLoep.registerExcursion(self) rescue nil
     end
   end
 

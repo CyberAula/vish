@@ -3,7 +3,28 @@ require 'json'
 
 class VishLoep
   
-  def self.registerExcursionInLOEP(ex)
+  def self.getExcursionMetrics(ex)
+    Loep.getLO(ex.id){ |response,code|
+      if response.class == Hash and response["id_repository"] == ex.id
+        fillExcursionMetrics(ex,response)
+        response
+      end
+    }
+  end
+
+  def self.fillExcursionMetrics(excursion,loepData)
+    if loepData["Metric Score: LORI Weighted Arithmetic Mean"].is_a? Float
+      excursion.activity_object.update_column :reviewers_qscore, loepData["Metric Score: LORI Weighted Arithmetic Mean"]
+    end
+
+    if loepData["Metric Score: WBLT-S Weighted Arithmetic Mean"].is_a? Float
+      excursion.activity_object.update_column :users_qscore, loepData["Metric Score: WBLT-S Weighted Arithmetic Mean"]
+    end
+
+    excursion.calculate_qscore
+  end
+
+  def self.registerExcursion(ex)
     if ex.nil?
       if block_given?
         yield "Excursion is nil", nil
@@ -57,7 +78,7 @@ class VishLoep
     lo["hasVirtualTours"] = elemTypes.include?("VirtualTour") ? "1" : "0"
     lo["hasEnrichedVideos"] = elemTypes.include?("enrichedvideo") ? "1" : "0"
 
-    Loep.uploadLO(lo){ |response,code|
+    Loep.createLO(lo){ |response,code|
       #TODO: Create assignments through LOEP
       if block_given?
         yield response, code

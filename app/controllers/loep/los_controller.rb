@@ -31,15 +31,7 @@ class Loep::LosController < Loep::BaseController
     # ...
     # eEvData["LORI v1.5 item9"]
 
-    if eEvData["Metric Score: LORI Weighted Arithmetic Mean"].is_a? Float
-      excursion.activity_object.update_column :reviewers_qscore, eEvData["Metric Score: LORI Weighted Arithmetic Mean"]
-    end
-
-    if eEvData["Metric Score: WBLT-S Weighted Arithmetic Mean"].is_a? Float
-      excursion.activity_object.update_column :users_qscore, eEvData["Metric Score: WBLT-S Weighted Arithmetic Mean"]
-    end
-
-    excursion.calculate_qscore
+    VishLoep.fillExcursionMetrics(excursion,eEvData)
 
     respond_to do |format|
         format.any { 
