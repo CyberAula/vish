@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140703092026) do
+ActiveRecord::Schema.define(:version => 20140703122542) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -301,13 +301,6 @@ ActiveRecord::Schema.define(:version => 20140703092026) do
   end
 
   add_index "links", ["activity_object_id"], :name => "index_links_on_activity_object_id"
-
-  create_table "live_sessions", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "excursion_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
 
   create_table "notifications", :force => true do |t|
     t.string   "type"
