@@ -7,7 +7,9 @@ class VishLoep
     Loep.getLO(ex.id){ |response,code|
       if response.class == Hash and response["id_repository"] == ex.id
         fillExcursionMetrics(ex,response)
-        response
+        if block_given?
+          yield response
+        end
       end
     }
   end
@@ -85,6 +87,63 @@ class VishLoep
       end
     }
 
+  end
+
+  def self.registerExcursions(excursions,options=nil)
+    unless !options.nil? and options[:async]==true
+      return _registerExcursionsSync(excursions,options)
+    else
+      _registerExcursionsAsync(excursions,options){
+        if block_given?
+          yield "Finish"
+        end
+      }
+    end
+  end
+
+  def self._registerExcursionsSync(excursions,options=nil)
+    excursions.each do |excursion|
+      VishLoep.registerExcursion(excursion){ |response,code|
+        if !options.nil? and options[:trace]==true
+          puts "Excursion with id: " + excursion.id.to_s
+          puts response.to_s
+        end
+      }
+      sleep 2
+    end
+    return "Finish"
+  end
+
+  def self._registerExcursionsAsync(excursions,options=nil)
+    eChunks = excursions.each_slice(25).to_a
+    _rChunks(0,eChunks,options){
+        yield "F"
+    }
+  end
+
+  def self._rChunks(cA,eChunks,options=nil)
+    _rChunk(0,eChunks[cA],options){
+      unless cA==eChunks.length-1
+        _rChunks(cA+1,eChunks,options){ yield "F" }
+      else
+        yield "F"
+      end
+    }
+  end
+
+  def self._rChunk(cB,exs,options=nil)
+    VishLoep.registerExcursion(exs[cB]){ |response,code|
+      if !options.nil? and options[:trace]==true
+        puts "Excursion with id: " + exs[cB].id.to_s
+        puts response.to_s
+      end
+
+      unless cB==exs.length-1
+        _rChunk(cB+1,exs,options){ yield "F" }
+      else
+        yield "F"
+      end
+    }
   end
 
 end
