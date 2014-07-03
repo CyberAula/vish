@@ -182,15 +182,20 @@ class RecommenderSystem
   end
 
   #Popularity Score (between 0 and 1)
+  #See scheduled:recalculatePopularity task in lib/tasks/scheduled.rake to adjust popularity weights
   def self.popularityScore(lo,maxPopularity)
     return lo.popularity/maxPopularity.to_f
   end
 
   #Quality Score (between 0 and 1)
+  #See app/decorators/social_stream/base/activity_object_decorator.rb, method calculate_qscore to adjust weights
   def self.qualityScore(lo,maxQualityScore)
-    return lo.qscore/maxQualityScore.to_f
+    if lo.qscore.nil?
+      return 0
+    else
+      return lo.qscore/maxQualityScore.to_f
+    end
   end
-
 
 
   private

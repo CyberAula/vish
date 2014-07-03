@@ -41,6 +41,7 @@ class IMSQTI
           zos.put_next_entry(fileName +"_" + i.to_s + ".xml")
           zos.print qti_tf.target!()
         end
+        #Generate main file 
         main_tf = IMSQTI.generate_mainQTIMC(qjson,fileName)
         zos.put_next_entry(fileName + ".xml")
         zos.print main_tf
@@ -81,10 +82,16 @@ class IMSQTI
 end
 
   def self.generate_QTITF(qjson,index)
+    count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+    Site.current.config["tmpCounter"] = count + 1
+    Site.current.save!
+
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+
+    title_identifier = "AssesmentItem " + (count.to_s)
     
-    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive" => "false") do
+    myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1p1.xsd","identifier"=>"choiceMultiple", "title"=> title_identifier, "timeDependent"=>"false", "adaptive" => "false") do
       
       myxml.responseDeclaration("identifier"=>"RESPONSE", "cardinality" => "single", "baseType" => "identifier") do
         
@@ -217,13 +224,19 @@ end
   end
 
   def self.generate_QTIMC(qjson)
-
+      count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+      Site.current.config["tmpCounter"] = count + 1
+      Site.current.save!
+      
       myxml = ::Builder::XmlMarkup.new(:indent => 2)
       myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
         
       nChoices = qjson["choices"].size
 
-      myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1p1.xsd","identifier"=>"choiceMultiple", "title"=>"Prueba", "timeDependent"=>"false", "adaptive"=>"false") do
+      title_identifier = "AssesmentItem " + (count.to_s)
+
+
+      myxml.assessmentItem("xmlns"=>"http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1p1.xsd","identifier"=>"choiceMultiple", "title"=> title_identifier, "timeDependent"=>"false", "adaptive"=>"false") do
 
         identifiers= [] 
         qjson["choices"].each_with_index do |choice,i|
@@ -336,20 +349,24 @@ end
     Site.current.save!
 
     resource_identifier = "resource-item-quiz-" + (count.to_s)
+    test_identifier = "test-identifier" + (count.to_s)
+    section_identifier = "section-identifier" + (count.to_s)
 
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
 
     myxml.assessmentTest("xmlns" => "http://www.imsglobal.org/xsd/imsqti_v2p1", "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation" => "http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/imsqti_v2p1.xsd", "identifier" => "TrueFalseTest", "title" => "True False Tests", "toolName"=>"VISH Editor", "toolVersion" => "2.3") do
-      myxml.outcomeDeclaration("identifier" => "SCORE", "cardinality" => "single", "baseType" => "integer") do
-      end
-        if qjson["quiztype"] == "truefalse"
-          for i in 0..((qjson["choices"].size)-1)
-            myxml.assessmentItemRef("identifier" => resource_identifier + i.to_s, "href" => fileName + "_" + i.to_s + ".xml") do
+      myxml.testPart("identifier" => test_identifier, "navigationMode" => "nonlinear", "submissionMode" => "simultaneous") do
+          if qjson["quiztype"] == "truefalse"
+            myxml.assessmentSection("identifier" => section_identifier, "title" => "Section", "visible" => "true") do
+            for i in 0..((qjson["choices"].size)-1)
+              myxml.assessmentItemRef("identifier" => resource_identifier + i.to_s, "href" => fileName + "_" + i.to_s + ".xml") do
+              end
+            end
             end
           end
         end
-    end
+      end
   end
 
   def self.generate_qti_resources(qjson,fileName,myxml)
@@ -358,9 +375,8 @@ end
     Site.current.save!
 
     resource_identifier = "resource-item-quiz-" + (count.to_s)
-
     if qjson["quiztype"] == "truefalse"
-      myxml.resource("identifier" => resource_identifier , "type"=>"imsqti_item_xmlv2p1", "href" => fileName + ".xml") do
+      myxml.resource("identifier" => resource_identifier , "type"=>"imsqti_test_xmlv2p1", "href" => fileName + ".xml") do
           myxml.metadata do
             myxml.tag!("imsmd:lom") do
               myxml.tag!("imsmd:general") do
@@ -379,6 +395,9 @@ end
             end
           end
           myxml.file("href" => fileName + ".xml")
+          for i in 0..((qjson["choices"].size)-1)
+            myxml.dependency("identifierref" => resource_identifier + i.to_s)
+          end
         end
       for i in 0..((qjson["choices"].size)-1)
         myxml.resource("identifier" => resource_identifier + i.to_s, "type"=>"imsqti_item_xmlv2p1", "href" => fileName + "_" + i.to_s + ".xml") do
