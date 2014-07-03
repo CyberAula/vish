@@ -1,6 +1,5 @@
 #excursions_catalogue,
 #open_catalogue
-  
   .back_catalogue
     display: inline-block
     float: left
@@ -24,7 +23,7 @@
   cursor: pointer
   font-size: 11px
   font-weight: bold
-  line-height: 24px
+  line-height: 18px
   text-align: center
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8)
   background-color: #ddd
@@ -42,10 +41,8 @@
   cursor: pointer
   font-size: 11px
   line-height: 24px
-  text-align: center
   border: none
   background: $brand-secundary
-  margin: -29px auto 0
   width: 100%
   a
     color: $white
@@ -58,17 +55,14 @@
   background: $brand-secundary
 
 
-  ul.Tags_list_as
+  div.Tags_list_as
     margin: 0
     padding-left: 0
-
-
     .info_catalogue
       width: 132px
       height: 100%
       background: darken($brand-secundary, 10%) 
       position: absolute
-
       h3
         text-align: center
         width: auto
@@ -84,14 +78,18 @@
       display: block
       float: left
       padding: 10px 0 10px 132px
-      width: 93%
+      width: 100%
       li 
-        input
-          margin: 0
         label
           color: $white
-          @include text-overflow
-          width: 90%
+          font-size: 13px
+          line-height: 23px
+          input
+            margin: 6px 4px 0px 0
+          span
+            @include text-overflow
+            width: 85%
+            float: left
 
     .newClass 
       li
@@ -122,7 +120,7 @@
 @media (max-width: $screen-xs-max)
 
   #catalogue 
-    ul.Tags_list_as 
+    div.Tags_list_as 
       .info_catalogue
         width: 17%
         h3
@@ -141,7 +139,7 @@
 @media (min-width: $screen-md-min)
 
   #catalogue 
-    ul.Tags_list_as 
+    div.Tags_list_as 
       #effect
         li
           width: 25%
@@ -150,18 +148,31 @@
 
 @media (min-width: $screen-lg-min)
   #catalogue 
-    ul.Tags_list_as
+    div.Tags_list_as
       #effect
         li
-          width: 19%
+          width: 16%
   
+@media (min-width: 1404px)
+  #catalogue 
+    div.Tags_list_as
+      #effect
+        li
+          width: 13%
+
+@media (min-width: 1808px)
+  #catalogue 
+    div.Tags_list_as
+      #effect
+        li
+          width: 10%
 
 
 
 @media (max-width: 479px)
 
   #catalogue 
-    ul.Tags_list_as 
+    div.Tags_list_as 
       .info_catalogue
         width: 74px
       #effect
@@ -171,82 +182,27 @@
 
 
 
-
-
-
-/*8*/
-@media (min-width: 1751px)
-  #excursions_catalogue
-    ul
-      .box-item  
-        display: none
-      .box-item:nth-of-type(-n+8) 
-        display: block
-
-
-/*7*/
-@media (min-width: 1500px) and (max-width: 1750px)
-  #excursions_catalogue
-    ul
-      .box-item  
-        display: none
-      .box-item:nth-of-type(-n+7) 
-        display: block
-
-
-/*6*/
-@media (min-width: 1250px) and (max-width: 1500px)
-  #excursions_catalogue
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+6) 
-      display: block
-
-/*5*/
-@media (min-width: 1000px) and (max-width: 1250px)
-  #excursions_catalogue
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+5) 
-      display: block
-
-
-
-/*4*/
-@media (min-width: 750px) and (max-width: 1000px)
-  #excursions_catalogue
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+4) 
-      display: block
-
-
-
-/*3*/
-@media (min-width: 500px) and (max-width: 750px)
-  #excursions_catalogue
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+3) 
-      display: block
-
-
-
-/*2*/
-@media (min-width: 320px) and (max-width: 500px)
-  #excursions_catalogue
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+2) 
-      display: block
-
-
-
-/*1*/
-@media (max-width: 320px)
-  #excursions_catalogue
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+1) 
-      display: block
+#excursions_catalogue
+  margin-top: 185px
+  @media (max-width: $screen-xs-max)
+    margin-top: 205px
+  @media (min-width: $screen-md-min)
+    margin-top: 165px
+  @media (min-width: $screen-lg-min)
+    margin-top: 125px
+  @media (min-width: 1404px)
+    margin-top: 90px
+  @media (min-width: 1808px)
+    margin-top: 68px
+  @media (max-width: 479px)
+    margin-top: 400px
+  header
+    border-bottom: 1px solid #CCC
+    width: 100%
+    float: left
+    padding-bottom: 4px
+    h1
+      font-family: $corporate-font-family-sans-serif-Regular
+  ul
+    margin-bottom: 8px
 

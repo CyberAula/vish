@@ -1,7 +1,9 @@
 
 <div id="open_catalogue" >
 	<a class="back_catalogue" href="/catalogue"><i class  ="fa fa-arrow-circle-left" ></i></a>
-	<h2><%=@category%></h2>
+	<h1>
+    <%=@category%>
+  </h1>
 	<ul>
 		<%for excursion in @excursions%>
 			<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion } %>
