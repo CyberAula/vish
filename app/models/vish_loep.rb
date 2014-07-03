@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'json'
 
-class ViSHLOEP
+class VishLoep
   
   def self.uploadExcursionToLOEP(ex)
     if ex.nil?
@@ -21,6 +21,7 @@ class ViSHLOEP
     end
     
     lo["url"] = Vish::Application.config.full_domain + "/excursions/" + ex.id.to_s
+    lo["id_repository"] = ex.id
     
     if !ex.description.blank?
       lo["description"] = ex.description
@@ -41,7 +42,7 @@ class ViSHLOEP
     lo["lotype"] = "VE slideshow"
     lo["technology"] = "HTML"
 
-    elemTypes = getElementTypesOfExcursion(exJSON)
+    elemTypes = VishEditor.getElementTypes(exJSON)
 
     lo["hasText"] = elemTypes.include?("text") ? "1" : "0"
     lo["hasImages"] = elemTypes.include?("image") ? "1" : "0"
@@ -56,66 +57,13 @@ class ViSHLOEP
     lo["hasVirtualTours"] = elemTypes.include?("VirtualTour") ? "1" : "0"
     lo["hasEnrichedVideos"] = elemTypes.include?("enrichedvideo") ? "1" : "0"
 
-    LOEP.uploadLO(lo){ |response,code|
+    Loep.uploadLO(lo){ |response,code|
       #TODO: Create assignments through LOEP
       if block_given?
         yield response, code
       end
     }
 
-  end
-
-  def self.getElementTypesOfExcursion(loJSON)
-    types = []
-    begin
-      slides = loJSON["slides"]
-      types = types + slides.map { |s| s["type"] }
-      slides.each do |slide|
-        els = slide["elements"]
-        if !els.nil?
-          types = types + els.map {|el| getElType(el)}
-        end
-      end
-      types.uniq!
-      types = types.reject { |type| type.nil? }
-    rescue => e
-      puts "Exception"
-      puts e.message
-    end
-    types
-  end
-
-  def self.getElType(el)
-    if el.nil?
-      return nil
-    end
-
-    elType = el["type"]
-
-    if elType != "object"
-      return elType
-    else
-      #Look in body param
-      elBody = el["body"]
-
-      if elBody.nil? or !elBody.is_a? String
-        return elType
-      end
-
-      if elBody.include?("http://docs.google.com")
-        return "document"
-      end
-
-      if elBody.include?("www.youtube.com")
-        return "video"
-      end
-
-      if elBody.include?(".swf") and elBody.include?("embed")
-        return "flash"
-      end
-
-      return "web"
-    end
   end
 
 end

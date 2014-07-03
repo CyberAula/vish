@@ -2,7 +2,7 @@
 require 'restclient'
 require 'json'
 
-class LOEP
+class Loep
 
   def self.uploadLO(lo)
     params = getParams
