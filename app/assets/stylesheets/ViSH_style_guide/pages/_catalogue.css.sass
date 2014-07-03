@@ -1,0 +1,252 @@
+#excursions_catalogue,
+#open_catalogue
+  
+  .back_catalogue
+    display: inline-block
+    float: left
+    font-size: 20px
+    margin-right: 10px
+    margin-top: 11px
+    &:hover
+      text-decoration: none
+  h2
+    width: auto
+    float: left
+    display: inline-block
+  ul
+    clear: both
+    width: 100%
+
+.show_more_catalogue
+  display: inline-block
+  float: right
+  color: #333333
+  cursor: pointer
+  font-size: 11px
+  font-weight: bold
+  line-height: 24px
+  text-align: center
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8)
+  background-color: #ddd
+  border-radius: 3px
+  border: 1px solid #ccc
+  margin-right: 10px
+
+.show_more_catalogue:hover
+  background-color: #fff
+
+#showMore_tags
+  position: absolute
+  bottom: 0
+  color: $white
+  cursor: pointer
+  font-size: 11px
+  line-height: 24px
+  text-align: center
+  border: none
+  background: $brand-secundary
+  margin: -29px auto 0
+  width: 100%
+  a
+    color: $white
+
+#catalogue
+  width: 100%
+  position: absolute
+  left: 0
+  margin-top: -21px
+  background: $brand-secundary
+
+
+  ul.Tags_list_as
+    margin: 0
+    padding-left: 0
+
+
+    .info_catalogue
+      width: 132px
+      height: 100%
+      background: darken($brand-secundary, 10%) 
+      position: absolute
+
+      h3
+        text-align: center
+        width: auto
+        margin: 0 auto
+        display: block
+        font-family: #017CC8
+        color: lighten($brand-secundary, 5%) 
+        margin-top: 14px
+        font-size: 20px
+      i
+        margin: 0
+    #effect
+      display: block
+      float: left
+      padding: 10px 0 10px 132px
+      width: 93%
+      li 
+        input
+          margin: 0
+        label
+          color: $white
+          @include text-overflow
+          width: 90%
+
+    .newClass 
+      li
+        display: none
+      li:nth-of-type(-n+10) 
+        display: block
+        margin-top: 5px
+        width: 31%
+        display: block
+        float: left
+        padding-left: 1%
+        word-wrap: ellipsis
+
+
+    .anotherNewClass 
+      li
+        display: none
+      li:nth-of-type(-n+50) 
+        display: block
+        margin-top: 5px
+        width: 19%
+        display: block
+        float: left
+        padding-left: 1%
+        word-wrap: ellipsis
+
+
+@media (max-width: $screen-xs-max)
+
+  #catalogue 
+    ul.Tags_list_as 
+      .info_catalogue
+        width: 17%
+        h3
+          @include rotate(-90deg)
+          position: absolute
+          top: 25%
+          right: 0
+      #effect
+        padding: 10px 0 10px 17%
+        width: 82%
+        li
+          width: 50%
+
+
+
+@media (min-width: $screen-md-min)
+
+  #catalogue 
+    ul.Tags_list_as 
+      #effect
+        li
+          width: 25%
+
+
+
+@media (min-width: $screen-lg-min)
+  #catalogue 
+    ul.Tags_list_as
+      #effect
+        li
+          width: 19%
+  
+
+
+
+@media (max-width: 479px)
+
+  #catalogue 
+    ul.Tags_list_as 
+      .info_catalogue
+        width: 74px
+      #effect
+        padding: 10px 0 10px 79px
+        li
+          width: 100%
+
+
+
+
+
+
+/*8*/
+@media (min-width: 1751px)
+  #excursions_catalogue
+    ul
+      .box-item  
+        display: none
+      .box-item:nth-of-type(-n+8) 
+        display: block
+
+
+/*7*/
+@media (min-width: 1500px) and (max-width: 1750px)
+  #excursions_catalogue
+    ul
+      .box-item  
+        display: none
+      .box-item:nth-of-type(-n+7) 
+        display: block
+
+
+/*6*/
+@media (min-width: 1250px) and (max-width: 1500px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+6) 
+      display: block
+
+/*5*/
+@media (min-width: 1000px) and (max-width: 1250px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+5) 
+      display: block
+
+
+
+/*4*/
+@media (min-width: 750px) and (max-width: 1000px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+4) 
+      display: block
+
+
+
+/*3*/
+@media (min-width: 500px) and (max-width: 750px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+3) 
+      display: block
+
+
+
+/*2*/
+@media (min-width: 320px) and (max-width: 500px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+2) 
+      display: block
+
+
+
+/*1*/
+@media (max-width: 320px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+1) 
+      display: block
+

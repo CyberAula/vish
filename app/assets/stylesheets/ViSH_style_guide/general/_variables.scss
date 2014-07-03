@@ -219,7 +219,7 @@ $input-border-focus:             #66afe9 !default;
 $input-color-placeholder:        $gray-light !default;
 
 //** Default `.form-control` height
-$input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;
+$input-height-base:              ($line-height-computed + ($padding-base-vertical * 1) + 1) !default;
 //** Large `.form-control` height
 $input-height-large:             (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2) !default;
 //** Small `.form-control` height
@@ -340,7 +340,7 @@ $grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
 //##
 
 // Basics of a navbar
-$navbar-height:                    42px !important;
+$navbar-height:                    42px !default;
 $navbar-margin-bottom:             $line-height-computed !default;
 $navbar-border-radius:             $border-radius-base !default;
 $navbar-padding-horizontal:        0 !default;
@@ -868,7 +868,7 @@ $container-lg:                 $container-large-desktop !default;
 $break-0: 0;                          // Mobile first yo
 $break-1: (480 / 14) * 1em;           // 480px   -  Small tablet up
 $break-2: (768 / 14) * 1em;           // 768px   -  Large tablet up
-$break-3: (979 / 14) * 1em;          // 979px  -  Desktop up
+$break-3: (992 / 14) * 1em;          // 979px  -  Desktop up
 $break-4: (1200 / 14) * 1em;          // 1200px  -  Large desktop up
 
 // Root font-sizes. Set to half desired line-height of body text.

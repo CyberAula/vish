@@ -43,6 +43,7 @@
 .desktop-nav{
   @include hidden-xs;
   @extend .pull-right;
+  margin-bottom: 0;
 }
 .user-menu{
   margin-left: 12px !important;
@@ -50,6 +51,9 @@
     padding: 3px !important;
     img{
       width: 28px;
+      @media (min-width: $screen-lg-min){
+        min-height: 29px;
+      }
     }
   }
 }
@@ -74,7 +78,6 @@ form.navbar-form-search{
 }
 
 .navbar-collapse {
-  background-color: $white;
   overflow-x: visible;
   padding-right: 0;
   padding-left: 0;

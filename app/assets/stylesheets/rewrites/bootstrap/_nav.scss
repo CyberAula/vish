@@ -113,8 +113,9 @@
   color: $white;
 }
 
-.navbar-default .navbar-toggle {
+.navbar-toggle {
   border-color: transparent;
+  margin-top: 0px;
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {

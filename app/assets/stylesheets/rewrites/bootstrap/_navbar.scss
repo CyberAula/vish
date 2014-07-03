@@ -9,7 +9,19 @@
 }
 .navbar{
   margin-bottom: 0;
-  max-height: 42px;
+  @media (min-width: $screen-sm-min){
+    min-height: 47px;
+  }
+  @media (min-width: $screen-md-min){
+    min-height: 49px;
+  }
+  @media (min-width: $screen-lg-min){
+    min-height: 50px;
+  }
+}
+
+.navbar-header{
+  margin-top: 3px;
 }
 
 .navbar-default{
@@ -66,6 +78,15 @@ ul.navbar-nav > li {
   background-color: darken($navbar-inverse-bg, 10%);
 }
 
+.navbar-collapse{
+  background-color: transparent;
+  @media (max-width: $screen-xs-max){
+    background-color: $white;
+    margin-top: 0;
+  }
+}
+
+
 .navbar-collapse li a:hover{
   background-color: #F8F8F8 !important;
   @include border-top-radius ($border-radius-base);
@@ -82,4 +103,7 @@ ul.navbar-nav > li {
   .navbar-fixed-top .navbar-collapse{
     max-height: auto !important;
   }
+}
+.navbar-form{
+  margin-top: 0; 
 }

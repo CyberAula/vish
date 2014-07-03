@@ -30,6 +30,9 @@
   border: 1px solid $brand-primary;
 }
 
+.open .btn-default.dropdown-toggle {
+  background-color: rgba(85, 85, 85, 0.97) !important;
+}
 
 .btn-secundary {
   background-color: $btn-secundary-bg;

@@ -6,8 +6,13 @@
     width: 100%
     @extend .well
     border: none
+    padding-left: 0
+    padding-top: 0
+    padding-bottom: 0
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
     position: relative
+    @media (max-width: $screen-xs-max)
+      padding: 10px
     .avatar
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(2, $gutter: $grid-gutter-width)
@@ -41,6 +46,8 @@
       @include make-sm-column(10, $gutter: $grid-gutter-width)
       @include make-md-column(10, $gutter: $grid-gutter-width)
       @include make-lg-column(10, $gutter: $grid-gutter-width)
+      padding-top: 10px
+      padding-bottom: 10px
       .briefing
         .helpheader
           @include hidden-xs
@@ -75,11 +82,17 @@
               padding-right: 15px
               vertical-align: top
               display: inline
-              span 
-                display: inline-block
-                font-size: 11px
-                color: $gray      
-                margin-top: 10px
+              @media (max-width: $screen-xs-max)
+                display: block
+                text-align: center
+            span 
+              display: inline-block
+              font-size: 11px
+              color: $gray      
+              margin-top: 10px
+              @media (max-width: $screen-xs-max)
+                display: block
+                text-align: center
             .panel-body
               padding: 0
               div.ocupation
