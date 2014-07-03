@@ -124,12 +124,20 @@ class ExcursionsController < ApplicationController
   def create
     params[:excursion].permit!
     @excursion = Excursion.new(params[:excursion])
+
     if(params[:draft] and params[:draft] == "true")
       @excursion.draft = true
     else
       @excursion.draft = false
     end
+
     @excursion.save!
+
+    published = (@excursion.draft===false)
+    if published
+      @excursion.afterPublish
+    end
+
     render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource, :recent => :true)),
                       :uploadPath => excursion_path(@excursion, :format=> "json"),
                       :editPath => edit_excursion_path(@excursion)
@@ -140,7 +148,9 @@ class ExcursionsController < ApplicationController
     if params[:excursion]
       params[:excursion].permit!
     end
+
     @excursion = Excursion.find(params[:id])
+    wasDraft = @excursion.draft
 
     if(params[:draft])
       if(params[:draft] == "true")
@@ -151,6 +161,12 @@ class ExcursionsController < ApplicationController
     end
 
     @excursion.update_attributes!(params[:excursion])
+
+    published = (wasDraft===true and @excursion.draft===false)
+    if published
+      @excursion.afterPublish
+    end
+
     render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource, :recent => :true)),
                       :uploadPath => excursion_path(@excursion, :format=> "json"),
                       :editPath => edit_excursion_path(@excursion),
@@ -464,20 +480,11 @@ class ExcursionsController < ApplicationController
   private
 
   def allowed_params
-    [:json, :slide_count, :thumbnail_url, :draft, :offline_manifest, :excursion_type]
+    [:json, :slide_count, :thumbnail_url, :draft, :offline_manifest]
   end
 
   def search_options
     opts = search_scope_options
-
-    if params[:type] == "smartcard"
-      params[:type] = "flashcard|virtualTour"
-    end
-
-    # Allow me to search only one type (e.g.) Flashcards
-    opts.deep_merge!({
-      :conditions => { :excursion_type => params[:type] }
-    }) unless params[:type].blank?
 
     # Pagination
     opts.deep_merge!({

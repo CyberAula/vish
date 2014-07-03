@@ -22,15 +22,14 @@ class Excursion < ActiveRecord::Base
   has_many :contributors, :class_name => "Actor", :through => :excursion_contributors
 
   validates_presence_of :json
-  after_save :parse_for_meta
   before_save :fix_relation_ids_drafts
+  after_save :parse_for_meta
+  after_save :fix_post_activity_nil
   after_destroy :remove_scorm
   after_destroy :remove_pdf
-  after_save :fix_post_activity_nil
-
+  
   define_index do
     activity_object_index
-    indexes excursion_type
     
     has id
     has slide_count
@@ -905,6 +904,13 @@ class Excursion < ActiveRecord::Base
   ## Other Methods
   #################### 
 
+  def afterPublish
+    #If LOEP is enabled, upload the excursion to LOEP
+    if !Vish::Application.config.APP_CONFIG['loep'].nil?
+      VishLoep.registerExcursionInLOEP(self) rescue nil
+    end
+  end
+
   def clone_for sbj
     return nil if sbj.blank?
     e=Excursion.new
@@ -1004,7 +1010,6 @@ class Excursion < ActiveRecord::Base
     parsed_json["author"] = {name: author.name, vishMetadata:{ id: author.id}}
 
     self.update_column :json, parsed_json.to_json
-    self.update_column :excursion_type, parsed_json["type"]
     self.update_column :slide_count, parsed_json["slides"].size
     self.update_column :thumbnail_url, parsed_json["avatar"] ? parsed_json["avatar"] : Vish::Application.config.full_domain + "/assets/logos/original/excursion-00.png"
   end

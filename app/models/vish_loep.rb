@@ -3,7 +3,7 @@ require 'json'
 
 class VishLoep
   
-  def self.uploadExcursionToLOEP(ex)
+  def self.registerExcursionInLOEP(ex)
     if ex.nil?
       if block_given?
         yield "Excursion is nil", nil
