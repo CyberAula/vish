@@ -62,7 +62,6 @@ namespace :fix do
     printTitle("Reset scorm timestamp")
 
     Excursion.all.map { |ex| 
-      ex.scorm_timestamp = nil; 
       ex.update_column :scorm_timestamp, nil
     }
 

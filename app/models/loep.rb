@@ -2,9 +2,21 @@
 require 'restclient'
 require 'json'
 
-class LOEP
+class Loep
 
-  def self.uploadLO(lo)
+  #Get LO
+  def self.getLO(lo_id)
+    params = getParams
+
+    callAPI("GET","los/" + lo_id.to_s,params){ |response,code|
+      if block_given?
+        yield response, code
+      end
+    }
+  end
+
+  #Create LO
+  def self.createLO(lo)
     params = getParams
 
     params["lo"] = lo
@@ -19,8 +31,10 @@ class LOEP
       end
     end
 
-    invokePostApiMethod("los",params){ |response,code|
-      yield response, code
+    callAPI("POST","los",params){ |response,code|
+      if block_given?
+        yield response, code
+      end
     }
   end
 
@@ -37,25 +51,50 @@ class LOEP
     params
   end
 
-  def self.invokePostApiMethod(method,params)
-    apiURL = getAPIUrl
-    apiMethodURL = apiURL+method
+  def self.callAPI(method,apiPath,params)
+    apiBaseURL = getAPIBaseUrl
+    apiMethodURL = apiBaseURL+apiPath
+
+    if method.nil?
+      method = "GET"
+    end
 
     begin
-      RestClient.post(
-        apiMethodURL,
-        params.to_json,
-        :content_type => :json,
-        :accept => :json
-      ){ |response|
-        yield JSON(response),response.code
-      }
+      case method.upcase
+      when "POST"
+        RestClient.post(
+          apiMethodURL,
+          params.to_json,
+          :content_type => :json,
+          :accept => :json
+        ){ |response|
+          if block_given?
+            yield JSON(response),response.code
+          end
+        }
+      when "GET"
+        RestClient.get(
+          apiMethodURL,
+          {:params => params}
+        ){ |response|
+          if block_given?
+            yield JSON(response),response.code
+          end
+        }
+      else
+        if block_given?
+          yield "Error in Loep.callAPI: No method specified.",nil
+        end
+      end
+
     rescue => e
-      puts "Exception: " + e.message
+      if block_given?
+        yield "Error in Loep.callAPI. Exception: " + e.message,nil
+      end
     end
   end
 
-  def self.getAPIUrl
+  def self.getAPIBaseUrl
     loepConfig = Vish::Application.config.APP_CONFIG['loep']
     return loepConfig['domain']+"/api/"+(loepConfig['api_version'] || "v1")+"/"
   end

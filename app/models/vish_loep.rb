@@ -1,9 +1,32 @@
 # encoding: utf-8
 require 'json'
 
-class ViSHLOEP
+class VishLoep
   
-  def self.uploadExcursionToLOEP(ex)
+  def self.getExcursionMetrics(ex)
+    Loep.getLO(ex.id){ |response,code|
+      if response.class == Hash and response["id_repository"] == ex.id
+        fillExcursionMetrics(ex,response)
+        if block_given?
+          yield response
+        end
+      end
+    }
+  end
+
+  def self.fillExcursionMetrics(excursion,loepData)
+    if loepData["Metric Score: LORI Weighted Arithmetic Mean"].is_a? Float
+      excursion.activity_object.update_column :reviewers_qscore, loepData["Metric Score: LORI Weighted Arithmetic Mean"]
+    end
+
+    if loepData["Metric Score: WBLT-S Weighted Arithmetic Mean"].is_a? Float
+      excursion.activity_object.update_column :users_qscore, loepData["Metric Score: WBLT-S Weighted Arithmetic Mean"]
+    end
+
+    excursion.calculate_qscore
+  end
+
+  def self.registerExcursion(ex)
     if ex.nil?
       if block_given?
         yield "Excursion is nil", nil
@@ -21,6 +44,7 @@ class ViSHLOEP
     end
     
     lo["url"] = Vish::Application.config.full_domain + "/excursions/" + ex.id.to_s
+    lo["id_repository"] = ex.id
     
     if !ex.description.blank?
       lo["description"] = ex.description
@@ -41,7 +65,7 @@ class ViSHLOEP
     lo["lotype"] = "VE slideshow"
     lo["technology"] = "HTML"
 
-    elemTypes = getElementTypesOfExcursion(exJSON)
+    elemTypes = VishEditor.getElementTypes(exJSON)
 
     lo["hasText"] = elemTypes.include?("text") ? "1" : "0"
     lo["hasImages"] = elemTypes.include?("image") ? "1" : "0"
@@ -56,7 +80,7 @@ class ViSHLOEP
     lo["hasVirtualTours"] = elemTypes.include?("VirtualTour") ? "1" : "0"
     lo["hasEnrichedVideos"] = elemTypes.include?("enrichedvideo") ? "1" : "0"
 
-    LOEP.uploadLO(lo){ |response,code|
+    Loep.createLO(lo){ |response,code|
       #TODO: Create assignments through LOEP
       if block_given?
         yield response, code
@@ -65,57 +89,61 @@ class ViSHLOEP
 
   end
 
-  def self.getElementTypesOfExcursion(loJSON)
-    types = []
-    begin
-      slides = loJSON["slides"]
-      types = types + slides.map { |s| s["type"] }
-      slides.each do |slide|
-        els = slide["elements"]
-        if !els.nil?
-          types = types + els.map {|el| getElType(el)}
+  def self.registerExcursions(excursions,options=nil)
+    unless !options.nil? and options[:async]==true
+      return _registerExcursionsSync(excursions,options)
+    else
+      _registerExcursionsAsync(excursions,options){
+        if block_given?
+          yield "Finish"
         end
-      end
-      types.uniq!
-      types = types.reject { |type| type.nil? }
-    rescue => e
-      puts "Exception"
-      puts e.message
+      }
     end
-    types
   end
 
-  def self.getElType(el)
-    if el.nil?
-      return nil
+  def self._registerExcursionsSync(excursions,options=nil)
+    excursions.each do |excursion|
+      VishLoep.registerExcursion(excursion){ |response,code|
+        if !options.nil? and options[:trace]==true
+          puts "Excursion with id: " + excursion.id.to_s
+          puts response.to_s
+        end
+      }
+      sleep 2
     end
+    return "Finish"
+  end
 
-    elType = el["type"]
+  def self._registerExcursionsAsync(excursions,options=nil)
+    eChunks = excursions.each_slice(25).to_a
+    _rChunks(0,eChunks,options){
+        yield "F"
+    }
+  end
 
-    if elType != "object"
-      return elType
-    else
-      #Look in body param
-      elBody = el["body"]
+  def self._rChunks(cA,eChunks,options=nil)
+    _rChunk(0,eChunks[cA],options){
+      unless cA==eChunks.length-1
+        _rChunks(cA+1,eChunks,options){ yield "F" }
+      else
+        yield "F"
+      end
+    }
+  end
 
-      if elBody.nil? or !elBody.is_a? String
-        return elType
+  def self._rChunk(cB,exs,options=nil)
+    VishLoep.registerExcursion(exs[cB]){ |response,code|
+      if !options.nil? and options[:trace]==true
+        puts "Excursion with id: " + exs[cB].id.to_s
+        puts response.to_s
       end
 
-      if elBody.include?("http://docs.google.com")
-        return "document"
+      unless cB==exs.length-1
+        _rChunk(cB+1,exs,options){ yield "F" }
+      else
+        yield "F"
       end
-
-      if elBody.include?("www.youtube.com")
-        return "video"
-      end
-
-      if elBody.include?(".swf") and elBody.include?("embed")
-        return "flash"
-      end
-
-      return "web"
-    end
+    }
   end
 
 end

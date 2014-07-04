@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140702111006) do
+ActiveRecord::Schema.define(:version => 20140703144033) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -266,15 +266,14 @@ ActiveRecord::Schema.define(:version => 20140702111006) do
   end
 
   create_table "excursions", :force => true do |t|
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.integer  "activity_object_id"
     t.text     "json"
     t.integer  "slide_count",        :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",              :default => false
     t.text     "offline_manifest",   :default => ""
-    t.string   "excursion_type",     :default => "presentation"
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
     t.integer  "mve",                :default => 0
@@ -302,13 +301,6 @@ ActiveRecord::Schema.define(:version => 20140702111006) do
   end
 
   add_index "links", ["activity_object_id"], :name => "index_links_on_activity_object_id"
-
-  create_table "live_sessions", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "excursion_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
 
   create_table "notifications", :force => true do |t|
     t.string   "type"
@@ -498,13 +490,6 @@ ActiveRecord::Schema.define(:version => 20140702111006) do
   end
 
   add_index "sites", ["actor_id"], :name => "index_sites_on_actor_id"
-
-  create_table "slides", :force => true do |t|
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.integer  "activity_object_id"
-    t.text     "json"
-  end
 
   create_table "spam_reports", :force => true do |t|
     t.integer  "activity_object_id"

@@ -104,7 +104,14 @@ class RecommenderSystem
 
     #Get some vars to normalize scores
     maxPopularity = preSelectionLOs.max_by {|e| e.popularity }.popularity
-    maxQuality = preSelectionLOs.max_by {|e| e.qscore }.qscore
+
+    #We need to filter LOs without qscore attribute, because BigDecimal (qscore) can't be compared against nil
+    preSelectionLOsWithQuality = preSelectionLOs.reject{|lo| lo.qscore.nil?}
+    unless preSelectionLOsWithQuality.empty?
+      maxQuality = preSelectionLOsWithQuality.max_by {|e| e.qscore }.qscore
+    else
+      maxQuality = nil
+    end
 
     weights = {}
     weights[:cs_score] = 0.60
