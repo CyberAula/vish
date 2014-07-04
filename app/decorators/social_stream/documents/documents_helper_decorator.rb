@@ -15,14 +15,14 @@ DocumentsHelper.module_eval do
   def icon document, size=50
     icon_name = case icon_mime_type document
       when :default then "file"
-      when :text then "file-text"
-      when :image then "picture"
+      when :text then "file-text-o"
+      when :image then "image"
       when :audio then "music"
-      when :video then "film"
-      when :pdf then "pdf-new"
-      when :zip then "zip-new"
-      when :scorm then "scorm-new"
-      when :swf then "swf-new"
+      when :video then "file-video-o"
+      when :pdf then "file-pdf-o"
+      when :zip then "file-pdf-o"
+      when :scorm then "bullseye"
+      when :swf then "file-swf-o"
 
       else icon_mime_type document
     end

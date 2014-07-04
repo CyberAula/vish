@@ -4,7 +4,7 @@
 
 <div class="action">
     <% unless @box.eql?'trash' %>
-      <%= link_to(raw("<i class='fa fa-trash'></i>"),
+      <%= link_to(raw("<i class='fa fa-trash-o'></i>"),
       conversation_path(conversation, :location => 'conversation', :box => @box),
       :confirm => t('mailboxer.delete_confirm', :csubject => conversation.subject),
       :method => :delete, :remote => true) %>

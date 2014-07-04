@@ -1,9 +1,9 @@
 <% if can? :create, new_post(receiver) %>
   <article class="wall_input">
-    <%= form_for Post.new(owner_id: Actor.normalize_id(receiver)), remote: true do |f| %>
+    <%= form_for Post.new(owner_id: Actor.normalize_id(receiver)), :class => "form-goup", remote: true do |f| %>
       <%= f.hidden_field :owner_id %>
     
-      <%= f.text_area :text, rows: 1, placeholder: t('post.input') %>
+      <%= f.text_area :text, rows: 1, :class => "form-control", placeholder: t('post.input') %>
 
       <section class="wall_input-actions">
       <%= f.submit t('activity.share'), class: "btn", 'data-loading-text' => t('activity.share_loading') %>

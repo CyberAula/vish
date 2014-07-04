@@ -24,30 +24,13 @@
         @include center-block
         width: 200px
         float: none
-      .category_thumb
-        .category_thumb_0,
-        .category_thumb_1,
-        .category_thumb_2,
-        .category_thumb_3
-          width: 47%
-          height: 70px
-          border: 2px solid #fff
-          display: block
-          float: left
-          position: static
-          overflow: hidden
-          background: #007cc8
-          -webkit-border-radius: 5px
-          -moz-border-radius: 5px
-          border-radius: 5px
-          img
-            max-width: 100%
       i.icon-th-large
         font-size: 92px
         display: block
         text-align: center
       
-
+    .my_favorites
+      width: 100% !important
 
     .information
       @include make-xs-column(12, $gutter: $grid-gutter-width)
@@ -110,6 +93,23 @@
           &:hover
             color: $white
  
-
+.category_thumb
+  .category_thumb_0,
+  .category_thumb_1,
+  .category_thumb_2,
+  .category_thumb_3
+    width: 50%
+    height: 70px
+    border: 2px solid #fff
+    display: block
+    float: left
+    position: static
+    overflow: hidden
+    background: #007cc8
+    -webkit-border-radius: 5px
+    -moz-border-radius: 5px
+    border-radius: 5px
+    img
+      max-width: 100%
 
 

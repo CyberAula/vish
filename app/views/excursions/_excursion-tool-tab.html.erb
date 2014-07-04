@@ -155,11 +155,11 @@
 
   <!--Remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
-    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="fa fa-trash"></i></button>
+    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="fa fa-trash-o"></i></button>
   <%end%>
 
   <div class="contentdelete" style="display: none">
-    <p class="delete_p"><i class="fa fa-trash"></i>  <%=t('excursion.confirm_delete')%></p>
+    <p class="delete_p"><i class="fa fa-trash-o"></i>  <%=t('excursion.confirm_delete')%></p>
     <div class="actions">
       <a class="btn btn_cancel"><%=t('cancel')%></a>
       <%= link_to t('excursion.actions.delete'),  @excursion, :method => :delete, :class => 'btn btn-primary' %>

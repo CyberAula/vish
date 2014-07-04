@@ -50,6 +50,7 @@
   a.photo-user{
     padding: 3px !important;
     img{
+      @include border-left-radius ($border-radius-small);
       width: 28px;
       @media (min-width: $screen-lg-min){
         min-height: 29px;

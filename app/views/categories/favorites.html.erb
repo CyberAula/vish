@@ -1,16 +1,18 @@
 
 <section id="category">
   <div class="category_info">
-    <div class="fa fa-box-fav">
-      <i class="fa fa-star "></i>
-    </div>  
-    <%= render partial: 'help/help_favourite' %>
-    <h2><%= t('categories.favorites.title') %></h2>    
-    <h4><%= t('categories.favorites.description') %></h3>
-     
-
+    <div class="information my_favorites">
+      <div class="briefing">
+        <header>
+          <!--titulo-->
+          <h1><i class="fa fa-star"></i> <%= t('categories.favorites.title') %> </h1>
+          <!--ayuda-->
+          <%= render partial: 'help/help_categories' %>
+        </header>   
+        <div class="description"> <%= t('categories.favorites.description') %> </div>
+      </div>
+    </div>
   </div>
-  
   <div class="excursions">
     <ul class="items">
     <%# excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>

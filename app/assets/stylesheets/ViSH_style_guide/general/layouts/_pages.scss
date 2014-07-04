@@ -8,3 +8,10 @@
   	@include follow-profile;
   }
 }
+
+.avatar{
+	img{
+		@include border-top-radius ($border-radius-base);
+        @include border-bottom-radius ($border-radius-base);
+	}
+}
