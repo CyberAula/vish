@@ -2,27 +2,27 @@
   <%= render(:partial => 'events/form_poster', :locals => { :event => @event }) %>
 <% end %>
 
-<%= form_for @event || Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
+<%= form_for @event || Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1, :class => "form-group") do |f| %>
   <%= f.hidden_field :owner_id  %>
   <%= f.hidden_field :start_at %>
   <%= f.hidden_field :end_at %>
   <%= f.hidden_field :all_day %>
   <!--TITULO-->
-  <legend><%= t('event.leyend.title')%></legend>
-  <%= f.text_field :title, :placeholder => t('event.title_input') %>
+  <label><%= t('event.leyend.title')%></label>
+  <%= f.text_field :title, :class => "form-control", :placeholder => t('event.title_input') %>
   
   <!--DESCRIPCION-->
-  <legend><%= t('event.leyend.description')%></legend>
-  <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
+  <label><%= t('event.leyend.description')%></label>
+  <%= f.text_area :description, :rows => 5, :class => "form-control", :placeholder => t('event.description_input') %>
 
   <!--TYPE-->
-  <legend><%= t('event.leyend.type')%></legend>
+  <label><%= t('event.leyend.type')%></label>
   <%= f.radio_button :streaming, false, checked: true %> <%= t('event.type.videoconference') %>
   <%= f.radio_button :streaming, true %> <%= t('event.type.streaming') %>
 
   <!--EMBED-->
-  <legend><%= t('document.options.embed')%></legend>
-  <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
+  <label><%= t('document.options.embed')%></label>
+  <%= f.text_area :embed, :rows => 5, :class => "form-control", :placeholder => t('embed.input'), :disabled => true %>
   <script type="text/javascript">
     $("#document-edit #event_streaming_false").on("click", function() {
       $("#document-edit #event_embed").attr("disabled", true);
@@ -38,30 +38,48 @@
   </script>
 
   <!--DATE-->
-  <legend><%= t('event.leyend.date')%></legend>
-    <div id="editdate" class="input-append">
-      <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
+  <label><%= t('event.leyend.date')%></label>
+    <!-- <div id="editdate" class="input-append">
+      <input class="form-control" data-format="yyyy-MM-dd" type="text" name="event_day"></input>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
         </i>
+      </span>
+    </div> -->
+    <div id="editdate" class="input-group">
+      <input class="form-control" data-format="yyyy-MM-dd" type="text" name="event_day">
+      <span class="input-group-addon">
+        <i class="fa fa-calendar" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
       </span>
     </div>
   <!--HORA INICIO-->
-  <legend><%= t('event.leyend.start_time')%></legend>
-    <div id="edithourinit" class="input-append">
-      <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
+  <label><%= t('event.leyend.start_time')%></label>
+    <!-- <div id="edithourinit" class="input-append">
+      <input class="form-control" data-format="hh:mm:ss" type="text" name="event_start_time"></input>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
         </i>
       </span>
+    </div> -->
+    <div id="edithourinit" class="input-group">
+      <input class="form-control" data-format="hh:mm:ss" type="text" name="event_start_time">
+      <span class="input-group-addon">
+        <i class="fa fa-calendar" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
+      </span>
     </div>
   <!--HORA FINALIZACION-->
-  <legend><%= t('event.leyend.end_time')%></legend>
-    <div id="edithourfinish" class="input-append">
+  <label><%= t('event.leyend.end_time')%></label>
+    <!-- <div id="edithourfinish" class="input-append">
       <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
-      <span class="add-on">
+      <span class="form-control" class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
         </i>
+      </span>
+    </div> -->
+    <div id="edithourfinish" class="input-group">
+      <input class="form-control" data-format="hh:mm:ss" type="text" name="event_end_time">
+      <span class="input-group-addon">
+        <i class="fa fa-calendar" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
       </span>
     </div>
   <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>

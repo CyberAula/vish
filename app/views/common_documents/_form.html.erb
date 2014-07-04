@@ -1,5 +1,5 @@
 <article id="new_file">
-  <%= form_for(document) do |f| %>
+  <%= form_for(document, :class => "form-group") do |f| %>
     <%= f.hidden_field :owner_id %>
 
     <div class="error">
@@ -19,7 +19,7 @@
     <% if controller.action_name == "create" or  controller.action_name == "new" %>
       <section class="upload">
         <%= f.label :file, t('document.info.file') %>
-        <%= f.file_field :file %>
+        <%= f.file_field :file, :class => "form-control" %>
         <!-- <input id="document_file" name="document[file]" type="file"> -->
       </section>
     <% end %>
@@ -36,18 +36,18 @@
 
     <section class="title">
       <%= f.label :title, t('document.info.title') %>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, :class => "form-control" %>
     </section>
     <section class="description">
       <%= f.label :description, t('document.info.description') %>
-      <%= f.text_area :description %>
+      <%= f.text_area :description, :rows => 5, :class => "form-control" %>
     </section>
     <section class="tags">
       <%= f.label :tag_list, t('document.info.tags') %>
-      <%= f.text_field :tag_list, 'data-path' => tags_path(format: 'json') %>
+      <%= f.text_field :tag_list, :class => "form-control", 'data-path' => tags_path(format: 'json') %>
     </section>
 
-    <%= f.submit :class => "btn-primary", "data-loading-text" => t('button.sending') %>
+    <%= f.submit :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
   <% end %>
 
   <%= javascript_tag do %>

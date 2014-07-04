@@ -84,11 +84,11 @@ $(document).ready(function(){
 <div class="btn-group">
   <!--remove-->
   <% if user_signed_in? and can?(:destroy, @event) %>
-    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="fa fa-trash"></i></button>
+    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="fa fa-trash-o"></i></button>
   <%end%>
 
   <div class="contentdelete" style="display: none">
-    <p class="delete_p"><i class="fa fa-trash"></i> <%=t('event.confirm_delete')%></p>
+    <p class="delete_p"><i class="fa fa-trash-o"></i> <%=t('event.confirm_delete')%></p>
     <div class="actions">
       <a class="btn btn_cancel"><%=t('cancel')%></a>
       <%= link_to t('excursion.actions.delete'),  @event, :method => :delete, :class => 'btn btn-primary' %>
@@ -116,7 +116,7 @@ $(document).ready(function(){
     <%#= render :partial => 'events/button-new-mashme'%>
   <% end %>
 </div>
-sd
+
   <ul class="nav nav-tabs">
     <li class="<%= document_details_tab_class document, :info %>">
       <%= link_to (raw("<i class='fa fa-align-left'></i> <span class='hidden-sx hidden-sm'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
@@ -133,7 +133,7 @@ sd
         <span class=" hidden-xs hidden-sm">
           <%=t('excursion.actions.share')%>
         </span>
-      </a>a
+      </a>
     </li> 
     <li>
       <a href="#tab5" data-toggle="tab">
@@ -171,6 +171,8 @@ sd
       <%= render partial: "events/info", locals: { document: document } %>
     </div>
   </div>
+
+
   <!-- tab2 / editar -->
   <% if can? :update, @event %>
   <div class="tab-pane <%= document_details_tab_class document, :edit %>" id="document-edit">
@@ -186,39 +188,61 @@ sd
     });
   </script>
   <% end %>
+
+
   <!-- tab3 / share -->
-  <div class="tab-pane" id="tab3">
-    <div class="contentShare">
-      <div class="input-append url-input">
-        <% shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + event_path(@event) ) %>
-        <input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
-        <!--button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="fa fa-copy "></i></button-->
+  <div class="tab-pane contentShare" id="tab3">
+
+    <div class="form-group">
+      <% shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + event_path(@event) ) %>
+      <input class="form-control" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+      <!-- <div class="input-group-addon">
+        <a id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+          <i class="fa fa-copy"></i>
+        </a>
+      </div> -->
+    </div>
+    <div class="social_toolbar_excursion">
+      <div class="social">
+        <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + event_path(@event) )} %>
       </div>
-      <div class="social_toolbar_excursion">
-        <div class="twitter_toolbar_excursion">
-          <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + event_path(@event) )} %>
-        </div>
-        <div class="facebook_toolbar_excursion">
-          <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
-        </div>
-        <div class="gplus_toolbar_excursion ">
-          <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
-        </div>
-        <button class="email_toolbar_excursion">
-          <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @event.title, :name => (user_signed_in? ? current_subject.name : '')} %>
-        </button>
+      <div class="social">
+        <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
+      </div>
+      <div class="social">
+        <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
+      </div>
+      <div class="social">
+        <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @event.title, :name => (user_signed_in? ? current_subject.name : '')} %>
       </div>
     </div>
-  </div> 
+  </div>
+ 
 
     <!-- tab5 / spam -->
-  <div class="tab-pane" id="tab5">
-    <div class="contentReport">
-      <dt><%=t('spam.report_excursion')%></dt>
+  <div class="tab-pane contentReport" id="tab5">
+    
+    <div class="small">
+          <%=t('spam.report_excursion')%>
+        </div>
 
-      <%= form_tag spam_report_path, method: 'post', class: "" do %>
+        <%= form_tag spam_report_path, method: 'post', class: "" do %>
+          <%=hidden_field_tag "activity_object_id", @event.activity_object_id%>
+          <div class="btn-group-vertical" data-toggle="buttons">
+            <label class="btn btn-default">
+              <input type="radio" name="options" id="option1" checked=""> <%=t('spam.spam_content')%>
+            </label>
+            <label class="btn btn-default">
+              <input type="radio" name="options" id="option2"> <%=t('spam.error_placeholder')%>
+            </label>
+          </div>
+
+          <button class="report btn btn-primary"> <%=t('send.send')%></button>
+
+      <!-- %= form_tag spam_report_path, method: 'post', class: "" do %>
         <%=hidden_field_tag "activity_object_id", @event.activity_object_id%>
         <div class="radio">
+
           <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
           <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
         </div>
@@ -227,9 +251,7 @@ sd
           <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
         </div>
         <button class="report btn btn-primary"> <%=t('send.send')%></button>
-      <% end %>
-          
-      
-    </div> 
+      <% end %> -->
+  
   </div>
 </div>

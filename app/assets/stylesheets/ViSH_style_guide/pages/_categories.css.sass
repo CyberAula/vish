@@ -1,0 +1,115 @@
+#category
+  margin-bottom: 20px
+  .category_info
+    margin-bottom: 20px
+    float: left
+    width: 100%
+    @extend .well
+    border: none
+    padding-left: 0
+    padding-top: 0
+    padding-bottom: 0
+    @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+    position: relative
+    @media (max-width: $screen-xs-max)
+      padding: 10px
+    .fa-box
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(3, $gutter: $grid-gutter-width)
+      @include make-md-column(2, $gutter: $grid-gutter-width)
+      @include make-lg-column(2, $gutter: $grid-gutter-width)
+      padding-left: 0
+      @media (max-width: $screen-xs-max)
+        padding-right: 0
+        @include center-block
+        width: 200px
+        float: none
+      .category_thumb
+        .category_thumb_0,
+        .category_thumb_1,
+        .category_thumb_2,
+        .category_thumb_3
+          width: 47%
+          height: 70px
+          border: 2px solid #fff
+          display: block
+          float: left
+          position: static
+          overflow: hidden
+          background: #007cc8
+          -webkit-border-radius: 5px
+          -moz-border-radius: 5px
+          border-radius: 5px
+          img
+            max-width: 100%
+      i.icon-th-large
+        font-size: 92px
+        display: block
+        text-align: center
+      
+
+
+    .information
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(9, $gutter: $grid-gutter-width)
+      @include make-md-column(10, $gutter: $grid-gutter-width)
+      @include make-lg-column(10, $gutter: $grid-gutter-width)
+      padding-top: 10px
+      padding-bottom: 10px
+      .description
+        clear: both
+        border-top: 1px solid #CCC
+        padding-top: 10px
+      .briefing
+        .helpheader
+          @include hidden-xs
+        .name h2
+          margin-top: 0
+          color: $gray
+          font-family: $corporate-font-family-sans-serif-Medium
+          word-wrap: break-word
+        .description
+          color: $gray-light
+          font-size: 14px
+          word-wrap: break-word
+          margin-bottom: 20px
+        .btn-group
+          .action
+            &:hover
+              background-color: $brand-primary
+              color: $white
+
+
+
+  //FORMULARIO
+  .information
+    .update
+      label
+        font-size: 12px
+        font-family: $corporate-font-family-sans-serif-Light
+        color: $brand-primary
+        display: block
+        clear: both
+        margin-top: 12px
+      input 
+        &[type="text"]
+          display: block
+          width: 100%
+          padding: 4px 2%
+      .actions
+        margin-top: 8px
+        display: block
+        input
+          width: auto
+          float: right
+        a
+          float: right
+          margin-right: 10px
+          background-color: $brand-primary
+          color: $white
+          &:hover
+            color: $white
+ 
+
+
+

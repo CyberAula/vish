@@ -7,7 +7,7 @@
 
   <%= f.file_field :file, onchange: 'showButton()' %>
 
-  <%= f.submit t('event.poster.button') %>
+  <%= f.submit t('event.poster.button'), :class => "btn btn-default" %>
 <% end %>
 
 <script>

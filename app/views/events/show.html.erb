@@ -1,60 +1,62 @@
 <section id="event">
-
   <div class="event">
-    <div class="box-show">
-      <!--visor-->
-      <div class="container-visor">
-        <!--div class="elemento-visor"></div-->
-        <div class="caja-elementos">
-          <!-- Streming from 10 minutes before until 2 hours later -->
-          <% if @event.streaming && ((Time.now <=> (@event.start_at - (60 * 30))) > -1) && ((Time.now <=> (@event.end_at + (60 * 60 * 2))) < 1) %>
-          <%= raw @event.embed %>
-        <% else %>
-            <div class="fa fa-box" id="event-<%=@event.id%>">
-              <% if @event.poster.new_record? %>
-                <i class="fa fa-video-camera"></i>
-
-
-                <%= image_tag('items/rec2.jpg', :class=> "event-img") %>
-
-
-              <% else %>
-                <%= image_tag(@event.poster.file) %>
-                <script>
-                  $("#event-<%=@event.id%>").addClass("high")
-                </script>
-              <% end %>
-              <% if (can?(:update, @event) && @event.poster.new_record?) %>
-                  <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
-              <% end %>
-            </div>  
-         <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="recomended">
+    <aside class="recomended">
         <ul class="items clearfix">
           <% popular_resources(16).each do |resource| %>
             <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
           <% end %>
         </ul>
 
-    </div>
+    </aside>
 
-    <div class="description-activity">
-      <div class="box_description">
-        <!--tool-->
-        <div class="excursion_tool">
-          <%= render :partial => 'events/event-tool-tab', :locals => { :document => @event } %>
-        </div>     
-      </div>
-      
-      <!--activity-->
-      <div class="activity-box">
-        <%= render :partial => 'common_documents/activity', :locals => { :document => @event } %>
+    <div class="eve-show">
+        <!--visor-->
+        <div class="container-visor">
+          <!--div class="elemento-visor"></div-->
+          <div class="caja-elementos">
+            <!-- Streming from 10 minutes before until 2 hours later -->
+            <% if @event.streaming && ((Time.now <=> (@event.start_at - (60 * 30))) > -1) && ((Time.now <=> (@event.end_at + (60 * 60 * 2))) < 1) %>
+            <%= raw @event.embed %>
+          <% else %>
+              <div class="icon-box" id="event-<%=@event.id%>">
+                <% if @event.poster.new_record? %>
+                  <div class="upload">
+                    <i class="fa fa-video-camera"></i>
+                    <% if (can?(:update, @event) && @event.poster.new_record?) %>
+                      <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
+                    <% end %>
+                  </div>
+
+                  <%= image_tag('items/rec2.jpg', :class=> "event-img") %>
+
+
+                  <% else %>
+                    <%= image_tag(@event.poster.file) %>
+                    <script>
+                      $("#event-<%=@event.id%>").addClass("high")
+                    </script>
+                <% end %>
+            
+              </div>  
+           <% end %>
+          </div>
+        </div>
+    
+      <div class="description-activity">
+        <div class="box_description">
+          <!--tool-->
+          <div class="excursion_tool">
+            <%= render :partial => 'events/event-tool-tab', :locals => { :document => @event } %>
+          </div>     
+        
+        
+          <!--activity-->
+          <div class="activity-box">
+            <%= render :partial => 'common_documents/activity', :locals => { :document => @event } %>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
 
 </section>

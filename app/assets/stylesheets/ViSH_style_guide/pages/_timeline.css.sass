@@ -252,7 +252,7 @@
     input
       &[type="submit"]
         margin-top: -10px
-        margin-left: 85%
+        float: right
         @extend .btn-primary
         @include border-top-radius(0px)
         @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
@@ -335,8 +335,17 @@
                       .to_like
                         display: none
 
-
-
+#last_content_shown
+  clear: both
+  height: 50px
+  width: 100% !important
+  background-color: #555
+  @include opacity(0.7)
+  @include border-bottom-radius($border-radius-base)
+  color: #FFF
+  text-align: center
+  padding-top: 10px
+  display: block
 
 
 
