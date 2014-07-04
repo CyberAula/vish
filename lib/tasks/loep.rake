@@ -23,6 +23,11 @@ namespace :loep do
 
     #Excursions tagged with ViSHCompetition2013
     # excursions = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}
+
+    #Excursions published in the last 3 months
+    # endDate = Time.now
+    # startDate = endDate.advance(:months => -3)
+    # excursions = Excursion.where(:draft=> false, :created_at => startDate..endDate)
     
 
     VishLoep.registerExcursions(excursions,{:sync=>true,:trace=>true})
