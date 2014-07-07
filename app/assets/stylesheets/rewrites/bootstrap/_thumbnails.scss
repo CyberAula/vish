@@ -99,6 +99,13 @@
     word-wrap: break-word;
     overflow: hidden;
     margin: 0px 0 0.3rem;
+    a{
+      color: $gray-darker;
+      &:hover{
+        color: $brand-primary;
+        text-decoration: none;
+      }
+    }
     @media (max-width: 480px){
       @include text-overflow;
       height: 17px;
@@ -140,6 +147,12 @@
 
   .like {
   	display: inline;
+    i{
+      color: $gray-dark;
+    }
+    i.fa-star{
+      color: $brand-primary;
+    }
   	.count{
   	    display: inline;
   	}

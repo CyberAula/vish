@@ -21,7 +21,7 @@ DocumentsHelper.module_eval do
       when :video then "file-video-o"
       when :pdf then "file-pdf-o"
       when :zip then "file-pdf-o"
-      when :scorm then "bullseye"
+      when :scorm then "cube"
       when :swf then "file-swf-o"
 
       else icon_mime_type document

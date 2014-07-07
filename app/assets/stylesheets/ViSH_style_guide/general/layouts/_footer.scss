@@ -3,11 +3,19 @@ footer {
   margin-top: 20px;
   padding-top: 9px; 
   background-color: rgba(213, 213, 213, 0.9);
+  border-top: 1px solid #E9E9E9;
   @include hidden-xs;
   ul{
     margin: 0 auto;
     width: 718px;
     padding: 0;
+  }
+  .open{
+    .btn{
+      &:hover{
+        border: 1px solid transparent
+      }
+    }
   }
   li{
     display: inline;
@@ -16,14 +24,15 @@ footer {
     color: $gray;
     .btn{
       background-color: transparent;
-      border: 0px solid transparent;
+      border: 1px solid transparent;
       color: $gray;
       img{
         padding-top: 3px;
         margin-right: 5px;
       }
-      &:hover{
-        border: 0px solid transparent;
+      &:hover,
+      &:focus{
+        border: 1px solid transparent;
 
       }
     }

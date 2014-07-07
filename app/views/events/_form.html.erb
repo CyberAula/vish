@@ -1,6 +1,6 @@
 <!-- Button to trigger modal -->
 <!-- Modal -->
-<div id="AddEvent" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div id="AddEvent myModal-event" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="AddCategoryLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -18,11 +18,11 @@
           <%= f.hidden_field :all_day %>
           <!--TITULO-->
           <label><%= t('event.leyend.title')%></label>
-          <%= f.text_field :title, :placeholder => t('event.title_input') %>
+          <%= f.text_field :title, :class => "form-control", :placeholder => t('event.title_input') %>
           
           <!--DESCRIPCION-->
           <label><%= t('event.leyend.description')%></label>
-          <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
+          <%= f.text_area :description, :class => "form-control", :rows => 4, :placeholder => t('event.description_input') %>
 
           <!--TYPE-->
           <label><%= t('event.leyend.type')%></label>
@@ -31,7 +31,7 @@
 
           <!--EMBED-->
           <label><%= t('document.options.embed')%></label>
-          <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
+          <%= f.text_area :embed, :class => "form-control", :rows => 4, :placeholder => t('embed.input'), :disabled => true %>
           <script type="text/javascript">
             $("#event_streaming_false").on("click", function() {
               $("#event_embed").attr("disabled", true);

@@ -1,29 +1,31 @@
-<section class="settings">
-  <h5 class="lead"> 
-    <%= t('settings.for')%> <%= current_subject.name %>
-  </h5>
+<div id="settings">
+  <section class="settings">
+    <h5 class="lead"> 
+      <%= t('settings.for')%> <%= current_subject.name %>
+    </h5>
 
-  <div class="panel-group" id="settings-accordion">
-    <% if current_subject == current_user %>
-      <%= render partial: "devise/registrations/edit_user",
-                 locals: { resource: current_user,
-                           resource_name: :user } %>
+    <div class="panel-group" id="settings-accordion">
+      <% if current_subject == current_user %>
+        <%= render partial: "devise/registrations/edit_user",
+                   locals: { resource: current_user,
+                             resource_name: :user } %>
 
-      <%= render partial: "settings/language" %>
-    <% end %>
+        <%= render partial: "settings/language" %>
+      <% end %>
 
-    <%= render partial: "settings/notifications" %>
+      <%= render partial: "settings/notifications" %>
 
-    <% if current_subject.respond_to? :authentication_token %>
-      <%= render partial: 'settings/api_key' %>
-    <% end %>
+      <% if current_subject.respond_to? :authentication_token %>
+        <%= render partial: 'settings/api_key' %>
+      <% end %>
 
-    <% if current_subject == current_user %>
-      <%= render partial: "devise/registrations/delete_account",
-                 locals: { resource: current_user,
-                           resource_name: :user } %>
-    <% else %>
-      <%= render partial: 'destroy' %>
-    <% end %>
-  </div>
-</section>
+      <% if current_subject == current_user %>
+        <%= render partial: "devise/registrations/delete_account",
+                   locals: { resource: current_user,
+                             resource_name: :user } %>
+      <% else %>
+        <%= render partial: 'destroy' %>
+      <% end %>
+    </div>
+  </section>
+</div>

@@ -30,5 +30,7 @@
 //= require bootstrap.min
 //= require docs.min
 //= require bootstrap-datetimepicker.min
+//= require jquery.scrollUp.min
+//= require jquery.easing.min
 //= require_tree .
 

@@ -116,6 +116,26 @@
         padding-left: 1%
         word-wrap: ellipsis
 
+/* check tags */
+.Tags_list_as
+  input[type="checkbox"] 
+    display: none
+
+
+  input[type="checkbox"] + span.icon
+    display: inline-block
+    width: 19px !important
+    height: 19px !important
+    margin: -1px 4px 0 0
+    vertical-align: middle
+    background: url(icons/check_radio_sheet.png) left top no-repeat
+    cursor: pointer
+
+  input[type="checkbox"]:checked + span.icon
+    background: url(icons/check_radio_sheet.png) -19px top no-repeat
+
+
+
 
 @media (max-width: $screen-xs-max)
 
