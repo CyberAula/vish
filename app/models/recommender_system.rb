@@ -18,7 +18,7 @@
 # ViSH Recommender System
 
 class RecommenderSystem
-  
+
   def self.excursion_suggestions(user,excursion,options=nil)
     # Step 0: Initialize all variables (N,NMax,random,...)
     options = prepareOptions(options)

@@ -24,13 +24,16 @@ namespace :scheduled do
     #ao.popularity is in a scale [0,1000000]
     #ao.qscore is in a scale [-1,1]
 
+    #Since Sphinx does not support signed integers, we have to store the ranking metric in a positive scale
+    #We will use qscore' = (ao.qscore+1), which is in a scale [0,2]
+
     ActivityObject.all.each do |ao|
       ao_popularity = (ao.popularity.nil? ? 0 : ao.popularity)
-      ao_qscore = (ao.qscore.nil? ? 0 : ao.qscore.to_f * popularityScaleFactor)
-      #Now, ao_qscore is in a scale [-1000000,1000000]
+      ao_qscore = (ao.qscore.nil? ? 0 : (ao.qscore.to_f+1) * popularityScaleFactor)
+      #Now, ao_qscore is in a scale [0,2000000] (no evaluated objects will have an ao_qscore value of 10000)
 
       ao_ranking = rankingWeights[:popularity] * ao_popularity +  rankingWeights[:qscore] * ao_qscore
-      #ao_ranking will be in a scale [-1000000*rankingWeights[:qscore],1000000]
+      #ao_ranking will be in a scale [0,1000000(1+rankingWeights[:qscore])]
 
       ao.update_column :ranking, ao_ranking
     end
