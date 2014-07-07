@@ -17,6 +17,7 @@
     .panel-heading
       a
         outline: 0px
+        font-family: $corporate-font-family-sans-serif-Light
         &:hover,&:focus
           color: $brand-primary
           text-decoration: none  
@@ -29,15 +30,10 @@
     input
       &[type="submit"]
         @extend .btn-primary
-    
-    #user_password,
-    #user_current_password,
-    #user_password_confirmation,
-    #user_email
-      border: none
-      box-shadow: none
-      border-bottom: 1px solid #777
-      background-color: transparent
+        @extend .pull-right
+        margin-top: 15px
+
+
 
   #cancel_account
     &:hover
@@ -50,3 +46,9 @@
       color: $brand-primary-2 !important
       &:hover
         text-decoration: none
+
+#notifications_settings_content
+  span
+    font-family: $corporate-font-family-sans-serif-Light
+  .options
+    margin-bottom: 10px

@@ -8,7 +8,7 @@
   <div class="panel-body collapse" id="notifications_settings_content">
     <%= form_tag update_all_settings_path, :method => :put do %>
 
-      <%= t('settings.notifications.by_email.name')%>
+      <span> <%= t('settings.notifications.by_email.name') %> </span>
 
       <div class="options">
         <%= radio_button_tag :notify_by_email, 'always', current_subject.notify_by_email %> <%= t('settings.notifications.by_email.always') %>
@@ -16,7 +16,7 @@
       </div>
 
       <% SocialStream.default_notification_settings.keys.each do |key| %>
-          <%= [t("settings.notification_settings.prefix"), t("settings.notification_settings.#{key}")].join " " %>
+          <span> <%= [t("settings.notification_settings.prefix"), t("settings.notification_settings.#{key}")].join " " %> </span> 
 
           <div class="options">
             <%= radio_button_tag "notification_settings[#{key}]", 'always', current_subject.notification_settings[key] %> <%= t('settings.notifications.by_email.always') %>

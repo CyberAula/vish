@@ -88,3 +88,19 @@ form.navbar-form-search{
   margin-top: 3px;
 
 }
+
+#nav-collapse-out{
+  ul{
+    .btn-primary{
+      &:hover{
+        background-color: darken($brand-primary, 20%) !important;
+      }
+    }
+    .btn-secundary{
+      &:hover{
+        background-color: darken($brand-secundary, 10%) !important;
+      }
+    }
+  }
+}
+
