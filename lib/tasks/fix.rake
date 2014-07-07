@@ -205,6 +205,18 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:recalculateScores
+  #In production: bundle exec rake fix:recalculateScores RAILS_ENV=production
+  task :recalculateScores => :environment do
+    printTitle("Recalculating activity object scores")
+    ActivityObject.all.each do |ao|
+      ao.calculate_qscore
+    end
+    printTitle("Task Finished")
+  end
+  
+
 
   ####################
   #Task Utils

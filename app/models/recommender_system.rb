@@ -104,14 +104,7 @@ class RecommenderSystem
 
     #Get some vars to normalize scores
     maxPopularity = preSelectionLOs.max_by {|e| e.popularity }.popularity
-
-    #We need to filter LOs without qscore attribute, because BigDecimal (qscore) can't be compared against nil
-    preSelectionLOsWithQuality = preSelectionLOs.reject{|lo| lo.qscore.nil?}
-    unless preSelectionLOsWithQuality.empty?
-      maxQuality = preSelectionLOsWithQuality.max_by {|e| e.qscore }.qscore
-    else
-      maxQuality = nil
-    end
+    maxQuality = preSelectionLOs.max_by {|lo| lo.qscore }.qscore
 
     weights = {}
     weights[:cs_score] = 0.60
@@ -197,13 +190,64 @@ class RecommenderSystem
   #Quality Score (between 0 and 1)
   #See app/decorators/social_stream/base/activity_object_decorator.rb, method calculate_qscore to adjust weights
   def self.qualityScore(lo,maxQualityScore)
-    if lo.qscore.nil?
-      return 0
-    else
-      return lo.qscore/maxQualityScore.to_f
-    end
+    return lo.qscore/maxQualityScore.to_f
   end
 
+
+  #######################
+  ## Recommended Search
+  #######################
+
+  # (e.g.) RecommenderSystem.search({:keywords=>"biology"})
+  def self.search(options=nil)
+    if options.class!=Hash or ![String,Array].include? options[:keywords].class
+      return []
+    end
+
+    #Specify searchTerms
+    if  options[:keywords].is_a? Array
+      searchTerms = keywords.join(" ")
+    else
+      searchTerms = options[:keywords]
+    end
+
+    #Specify search options
+    opts = {}
+
+    if options[:n].is_a? Integer
+      n = options[:n]
+    else
+      n = 20 #default
+    end
+
+    #Logical conector: OR
+    opts[:match_mode] = :any
+    opts[:rank_mode] = :wordcount
+    opts[:per_page] = n
+    opts[:field_weights] = {
+       :title => 50, 
+       :tags => 40,
+       :description => 1
+    }
+    opts[:with] = {}
+    opts[:with][:draft] = false
+
+    # Order by custom weight
+    opts[:sort_mode] = :expr
+   
+    # TODO
+    # Documentation: http://pat.github.io/thinking-sphinx/searching/ts2.html#sorting
+    # Discussion: http://sphinxsearch.com/forum/view.html?id=3675
+    # searchEngineExcursions = (Excursion.search searchTerms, opts).reject{|e| e.nil?} rescue []
+    # (Excursion.search searchTerms, opts).results[:matches].map{|m| m[:weight]}
+    # (Excursion.search searchTerms, opts).results[:matches].map{|m| m[:attributes]["@expr"]}
+
+    # opts[:field_weights][:title]*
+
+    # # opts[:select] = '*, @weight as w'
+    opts[:order] = '@weight * 10'
+    # opts[:order] = 'title.length'
+  end
 
   private
 

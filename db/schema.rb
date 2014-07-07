@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140705103124) do
+ActiveRecord::Schema.define(:version => 20140707132934) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(:version => 20140705103124) do
     t.integer  "comment_count",                                                     :default => 0
     t.integer  "popularity",                                                        :default => 0
     t.integer  "download_count",                                                    :default => 0
-    t.decimal  "qscore",                             :precision => 12, :scale => 6
+    t.integer  "qscore",                                                            :default => 500000
     t.decimal  "reviewers_qscore",                   :precision => 12, :scale => 6
     t.decimal  "users_qscore",                       :precision => 12, :scale => 6
     t.integer  "ranking"
