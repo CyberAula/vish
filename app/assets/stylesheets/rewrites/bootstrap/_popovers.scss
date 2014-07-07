@@ -1,3 +1,10 @@
+.popover{
+  top: 0 !important;
+  width: 300px;
+  .arrow {
+    top: 20px !important;
+  }
+}
 .popover-content {
   padding: 0;
 }
@@ -23,12 +30,5 @@
 	@include box-shadow (inset 0 1px 0 #FFF);
   i{
     margin-right: 8px;
-  }
-}
-
-.popover.left{
-    top: 55px !important; 
-  .arrow {
-    top: 20px !important;
   }
 }

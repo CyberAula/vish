@@ -324,7 +324,7 @@
             tag.element = $('<li class="tagit-choice"'
                 + (value !== undefined ? ' tagValue="' + value + '"' : '') + '>'
                 + (this.options.sortable == 'handle' ? '<a class="ui-icon ui-icon-grip-dotted-vertical" style="float:left"></a>' : '')
-                + label + '<a class="icon-remove-sign tagit-close"></a></li>');
+                + label + '<a class="fa fa-plus-circle tagit-close"></a></li>');
             tag.element.insertBefore(this.input.parent());
             this.tagsArray.push(tag);
 

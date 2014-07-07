@@ -44,7 +44,7 @@
     </section>
     <section class="tags">
       <%= f.label :tag_list, t('document.info.tags') %>
-      <%= f.text_field :tag_list, :class => "form-control", 'data-path' => tags_path(format: 'json') %>
+      <%= f.text_field :tag_list, 'data-path' => tags_path(format: 'json') %>
     </section>
 
     <%= f.submit :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>

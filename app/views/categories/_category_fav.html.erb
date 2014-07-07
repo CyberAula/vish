@@ -1,20 +1,13 @@
-
-
-
 <li class="box-item resource-item favouritebox">
 <!--IMG resource-->
   <div class="container-img">
-      <div class="dummy"></div>
-      <div class="element resource-center">
-
-          <%= link_to "/categories/favorites" do %>
-                <i class="fa fa-star "></i>
-          <% end %>
-
-      </div>
+    <div class="dummy"></div>
+    <div class="element resource-center">
+      <%= link_to "/categories/favorites" do %>
+        <i class="fa fa-star"></i>
+      <% end %>
+    </div>
   </div>
-
-
 <!--INFO resource-->
   <div class="caption">
 <!--Title -->
@@ -24,8 +17,7 @@
 <!--Autor -->
     <span class="author"> 
       <span class="by"><%=t('by')%></span>
-<%= link_to current_subject.name, current_subject.subject %>
-
+      <%= link_to current_subject.name, current_subject.subject %>
     </span>
   </div>
 </li>

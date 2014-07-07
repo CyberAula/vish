@@ -74,7 +74,7 @@
 
     <div class="btn-group">
       <% if can? :destroy, document %>
-        <%= link_to raw("<i class=fa fa-trash-o'></i> "),  document,
+        <%= link_to raw("<i class='fa fa-trash-o'></i> "),  document,
         confirm: t('confirm_delete', scope: document.class.to_s.underscore),
         title: t('document.actions.delete'),
         method: :delete,
@@ -87,7 +87,9 @@
         <%= content_for :javascript do %> 
           <%= render partial: 'shared/multiselect', :locals => {:item => document} %>
         <% end %>
+
         <%= link_like(document.post_activity, {:size => :big, :class=>'btn btn-default', :title =>t('excursion.actions.favorite')})%>
+        
         <%=categories_select(:category_id, document)%>
         <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
         <%= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>

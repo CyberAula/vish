@@ -2,7 +2,11 @@
   <i class="fa fa-circle  fa fa-stack-base"></i>
   <i class="fa fa-info  fa fa-light"></i>
 </span>
-<p class="info"><%=t('categories.info')%></p>
+
+<p class="info">
+  <%=t('categories.info')%>
+</p>
+
 <div class="actions-clone">
   <% categories = subject_categories(current_subject, {:scope => :me, :limit => 0}) %>
 
@@ -10,10 +14,12 @@
     <a class="btn btn-primary" href="#AddCategory" data-toggle="modal"><%=t('categories.actions.add')%></a>
   <% else %>
     <% categories_array = categories.map { |category| [category.title, category.id] } %>
+    
     <% more_options = options_for_select(["-----", [t('categories.actions.add')]], disabled: "-----") %>
+    
     <%= select_tag(:category_id, options_for_select(categories_array) + more_options)%>
 
-    <%= form_for categories.first, :remote => true do |f| %>
+    <%= form_for categories.first, :remote => true, :class => "form-group", do |f| %>
       <%= f.hidden_field :item_type, :value => item.class.to_s %>
       <%= f.hidden_field :item_id, :value => item.id %>
       <a class="btn btn_cancel"><%=t('cancel')%></a>
@@ -33,6 +39,4 @@
       });
     </script>
   <% end %>
-
-
 </div>

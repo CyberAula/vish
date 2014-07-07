@@ -1,16 +1,19 @@
 <!-- Button to trigger modal -->
 <!-- Modal -->
-<div id="AddEvent myModal-event" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="AddCategoryLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-        <%= render partial: 'help/help_event_new' %>
-        <h3 id="AddCategoryLabel"><%= t('event.main_title')%></h3>
-      </div>
-
-      <div class="modal-body">
-        <%#= form_for Event.new(:owner_id => Actor.normalize_id(current_user)) do |f| %>
+<div id="AddEvent" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+              </button>
+              <%= render partial: 'help/help_event_new' %>
+              <h3 id="myMetadataLabel">
+                <%= t('excursion.modal.metadata_title') %>
+              </h3>
+            </div>
+            <div class="modal-body">
+              <%#= form_for Event.new(:owner_id => Actor.normalize_id(current_user)) do |f| %>
         <%= form_for Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
           <%= f.hidden_field :owner_id  %>
           <%= f.hidden_field :start_at %>
@@ -47,6 +50,31 @@
           </script>
 
           <!--DATE-->
+  <label><%= t('event.leyend.date')%></label>
+    <div id="editdate" class="input-group">
+      <input class="form-control" data-format="yyyy-MM-dd" type="text" name="event_day">
+      <span class="input-group-addon">
+        <i class="fa fa-calendar" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
+      </span>
+    </div>
+  <!--HORA INICIO-->
+  <label><%= t('event.leyend.start_time')%></label>
+    <div id="edithourinit" class="input-group">
+      <input class="form-control" data-format="hh:mm:ss" type="text" name="event_start_time">
+      <span class="input-group-addon">
+        <i class="fa fa-calendar" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
+      </span>
+    </div>
+  <!--HORA FINALIZACION-->
+  <label><%= t('event.leyend.end_time')%></label>
+    <div id="edithourfinish" class="input-group">
+      <input class="form-control" data-format="hh:mm:ss" type="text" name="event_end_time">
+      <span class="input-group-addon">
+        <i class="fa fa-calendar" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
+      </span>
+    </div>
+
+          <!--DATE
           <label><%= t('event.leyend.fecha')%></label>
             <div id="date" class="input-append">
               <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
@@ -55,7 +83,7 @@
                 </i>
               </span>
             </div>
-          <!--HORA INICIO-->
+          <!--HORA INICIO
           <label><%= t('event.leyend.Hora de Inicio')%></label>
             <div id="hourinit" class="input-append">
               <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
@@ -64,7 +92,7 @@
                 </i>
               </span>
             </div>
-          <!--HORA FINALIZACION-->
+          <!--HORA FINALIZACION
           <label><%= t('event.leyend.Hora de Finalizacion')%></label>
             <div id="hourfinish" class="input-append">
               <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
@@ -72,7 +100,7 @@
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
               </span>
-            </div>
+            </div>-->
 
           <script type="text/javascript">
             $(function() {
@@ -128,9 +156,8 @@
       <div class="modal-footer">
         <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
         <!--<b id="foo" rel="popover">Ayuda </b>-->
-        <input type="button" class="btn-primary" value="<%= t('categories.save')%>"/>
+        <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
       </div>
     </div>   
   </div>
 </div>
-

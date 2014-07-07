@@ -1,4 +1,3 @@
-
 .eve-show
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(8, $gutter: $grid-gutter-width)
@@ -33,3 +32,25 @@
     .btn
       float: right
       margin-top: -26px
+
+
+.limits
+  position: relative
+  .limit1, .limit2
+    position: absolute
+    left: 0px
+    top: 22px
+
+.slider
+  .slider-selection
+    background: $brand-secundary
+  .slider-handle
+    background-color: $brand-secundary
+
+input.age-slider
+  border: none !important
+  color: $white
+
+
+.slider-track
+  background-color: lighten($brand-primary, 30%)

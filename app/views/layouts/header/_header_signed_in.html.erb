@@ -39,7 +39,7 @@
               </a>
             </li>
             <li>
-              <a href="#AddCategoryHeader" data-toggle="modal">
+              <a href="#AddCategory" data-toggle="modal">
                 <i class="fa fa-th-large"></i> 
                 <%= t('categories.actions.add') %>
               </a>
@@ -119,6 +119,8 @@
           <%= render partial: 'events/form' %>
           <%= render partial: 'repositories/form' %>
           <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
+
+
       </ul>
 
     <!--search-->

@@ -137,7 +137,7 @@
 
   <!-- Edit -->
   <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
-    <button class="with_tooltip btnhidden-xs" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="fa fa-edit"></i></button>
+    <button class="with_tooltip btn hidden-xs" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="fa fa-edit"></i></button>
   <%end%>
 
   <!-- Clone -->

@@ -1,0 +1,25 @@
+.items
+  @include items
+
+.contact
+  background-color: transparent !important
+  .add
+    @include follow-profile
+
+.avatar
+  img
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+
+.tab-content
+  label
+    margin-top: 10px
+
+
+.left-info
+  .add
+    form 
+      input
+        min-height: 19px !important
+      .following-button
+        padding: 1px 0

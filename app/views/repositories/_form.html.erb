@@ -1,12 +1,12 @@
-<!-- Button to trigger modal -->
 
-<div id="AddResource myModal-resource" class="modal" tabindex="-1" role="dialog" aria-labelledby="AddResourceLabel" aria-hidden="true">
+<!-- Button to trigger modal -->
+<div id="AddResource" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <%= render partial: 'help/help_resource_new' %>
-        <h4 id="AddResourceLabel"><%= t('document.main_title')%></h4>
+        <h4><%= t('document.main_title')%></h4>
       </div>
       <div class="modal-body">
         <div class="layoutform">
@@ -61,12 +61,12 @@
               <div class="panel-body">
                 <% d = Link.new %>
                 <% d.owner_id = Actor.normalize_id(current_user) %>
-                <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+                <%= form_for d, :namespace => 'new_file_only', :remote => false, :class => "form-group" do |f| %>
                   <%= f.hidden_field :owner_id %>
                   <%= f.hidden_field :callback_url %>
                   <%= f.hidden_field :loaded %>
                   <%#= f.hidden_field :image %>
-                  <%= f.text_field :url %>
+                  <%= f.text_field :url, :class => "form-control" %>
                   <%= f.hidden_field :title%>
                   <%= f.hidden_field :description%>
                   <%= f.hidden_field :tag_list, :multiple => true %>
@@ -91,10 +91,10 @@
               <div class="panel-body">
                 <% d = Embed.new %>
                 <% d.owner_id = Actor.normalize_id(current_user) %>
-                <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+                <%= form_for d, :namespace => 'new_file_only', :remote => false, :class => "form-group" do |f| %>
                   <%= f.hidden_field :owner_id %>
                   <%#= f.hidden_field :image %>
-                  <%= f.text_field :fulltext %>
+                  <%= f.text_field :fulltext, :class => "form-control" %>
                   <%= f.hidden_field :title%>
                   <%= f.hidden_field :description%>
                   <%= f.hidden_field :tag_list, :multiple => true %>
@@ -107,52 +107,51 @@
             </div>
           </div>
         </div>
-      </div>
       
-      <div class="layoutform">
-        <p><%= t('document.body.title2')%></p>
-        <!--TITULO-->
-        <label><%= t('document.leyend.title')%></label>
-        <input type="text" class="title" placeholder="<%= t('document.title_input')%>">
-        
-        <!--DESCRIPCION-->
-        <label><%= t('document.leyend.description')%></label>
-        <textarea type="text" class="description" placeholder="<%= t('document.input')%>"></textarea>
+        <form class="form-group layoutform">
+          <p><%= t ('document.body.title2') %></p>
+          <!--TITULO-->
+          <label><%= t('document.leyend.title') %></label>
+          <input type="text" class="form-control" placeholder="<%= t('document.title_input')%>">
+          
+          <!--DESCRIPCION-->
+          <label><%= t('document.leyend.description')%></label>
+          <textarea type="text" class="form-control" placeholder="<%= t('document.input')%>"></textarea>
 
-        <!--TAGS-->
-        <label><%= t('document.leyend.tags')%></label>
+          <!--TAGS-->
+          <label><%= t('document.leyend.tags') %></label>
 
-        <div class="tagBoxDocument">
-           <ul class="resourceTagList"></ul>
-        </div>
-    <!--_______________________________-->
-        <div class="clearfloat"></div>
-        
-        <!--LANGUAGE-->
-        <label><%= t('document.leyend.language')%></label>
-        <select class="language">
-          <option value="" selected="1">(<%= t('lang.independent') %>)</option>
-          <option value="de">Deutsch</option>
-          <option value="en">English</option>
-          <option value="es">Español</option>
-          <option value="fr">Français</option>
-          <option value="it">Italiano</option>
-          <option value="pt">Português</option>
-          <option value="ru">Русский</option>
-          <option value="ot"><%= t('lang.others') %></option>
-        </select>
-        
-        <!--AGE SLIDER-->
-        <label><%= t('document.leyend.recommended_age')%></label>
-        <div class="limits">
-          <div class="limit1">4</div>
-          <div class="limit2">20</div>
-        </div>
-        <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
-        <br>
+          <div class="tagBoxDocument">
+             <ul class="resourceTagList"></ul>
+          </div>
+      <!--_______________________________-->
+          <div class="clearfloat"></div>
+          
+          <!--LANGUAGE-->
+          <label><%= t('document.leyend.language')%></label>
+          <select class="language">
+            <option value="" selected="1">(<%= t('lang.independent') %>)</option>
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="it">Italiano</option>
+            <option value="pt">Português</option>
+            <option value="ru">Русский</option>
+            <option value="ot"><%= t('lang.others') %></option>
+          </select>
+          
+          <!--AGE SLIDER-->
+          <label><%= t('document.leyend.recommended_age') %></label>
+          <div class="limits">
+            <div class="limit1">4</div>
+            <div class="limit2">20</div>
+          </div>
+          <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+          <br>
+        </form>
       </div>
-      
-
+      </div>
       <div class="modal-footer">
         <input type="button" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
       </div>

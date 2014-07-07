@@ -1,24 +1,22 @@
 <section id="events">
-  <div class="tabbable">
-    <ul class="nav nav-tabs">
-      <li><h1>events</h1></li>
-      <li class="active"><a href="#tab1" data-toggle="tab">all</a></li>
-      <li><a href="#tab2" data-toggle="tab">mine</a></li>
-      <li><a href="#tab3" data-toggle="tab">recorded</a></li>
-    </ul>
-    <div class="tab-content">
+  <ul class="nav nav-tabs">
+    <li><h1>events</h1></li>
+    <li class="active"><a href="#tab1" data-toggle="tab">all</a></li>
+    <li><a href="#tab2" data-toggle="tab">mine</a></li>
+    <li><a href="#tab3" data-toggle="tab">recorded</a></li>
+  </ul>
+  <div class="tab-content">
 
-      <div class="tab-pane active" id="tab1">
-        <%= render partial: 'events/events', :locals => { :scope => :net } %>
-      </div>
+    <div class="tab-pane active" id="tab1">
+      <%= render partial: 'events/events', :locals => { :scope => :net } %>
+    </div>
 
-      <div class="tab-pane" id="tab2">
-        <%= render partial: 'events/events', :locals => { :scope => :me } %>
-      </div>
+    <div class="tab-pane" id="tab2">
+      <%= render partial: 'events/events', :locals => { :scope => :me } %>
+    </div>
 
-      <div class="tab-pane" id="tab3">
-        <%= render partial: 'events/events', :locals => { :scope => :net } %>
-      </div>
+    <div class="tab-pane" id="tab3">
+      <%= render partial: 'events/events', :locals => { :scope => :net } %>
     </div>
   </div>
 </section>
