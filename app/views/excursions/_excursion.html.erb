@@ -2,12 +2,11 @@
   <%if excursion.is_mostvaluable? %>
     <div class="badge-excursion-active"></div>
   <%end%>
+
   <%= link_to(excursion) do %>
-  <div class="container-img">
+    <div class="container-img">
       <div class="dummy"></div>
       <div class="element">
-        
-        
         <div class="img-box" id="excursion-<%=excursion.id%>"></div>
         <%if excursion.draft%>
         <div class="excursion-draft">
@@ -16,19 +15,17 @@
             <%=t('excursion.draft')%>
           </h2>
         </div>
-        <%end%>
+    </div> 
+  <% end %>
 
-      </div>
-  </div>
-    
-<% end %>
   <script>
     <%if defined?(container_id) %>
-      $("#<%=container_id%> #excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
+      $("#<%=container_id%> #excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");
     <%else%>
       $("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
     <%end%>    
   </script>
+
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
   <div class="caption">
@@ -41,7 +38,7 @@
           </span>
       <% end %>
     </div>
-    
+
     <h6><!--Title -->
       <%= link_to excursion.title, excursion %>
     </h6>
@@ -53,21 +50,24 @@
     <hr>
     
     <div class="info-bottom">
+
       <!--like -->
       <div class="like">        
          <% if excursion.post_activity%>
-          <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
-          <%= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>
-        <%else%>
-          <div class="count">0</div>
-        <%end%>
+            <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
+            <%= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>
+          <%else%>
+            <div class="count">0</div>
+          <%end%>
       </div>
+
       <!--views -->
       <div class="views">
         <%=excursion.visit_count.to_s%>
           <i class="fa fa-eye"></i>
         <%#=t('follow.views')%>
       </div>
+      
     </div>
 
   </div>

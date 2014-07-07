@@ -3,6 +3,44 @@
 namespace :scheduled do
 
   #Usage
+  #Development:   bundle exec rake scheduled:recalculateRankingMetrics
+  #In production: bundle exec rake scheduled:recalculateRankingMetrics RAILS_ENV=production
+  task :recalculateRankingMetrics => :environment do
+    puts "Recalculate ranking metrics"
+    timeStart = Time.now
+
+    #1. Recalculate popularity
+    Rake::Task["scheduled:recalculatePopularity"].invoke
+
+    #2. Recalculate ranking metrics
+    puts "Recalculating ranking metrics"
+    
+    rankingWeights = {}
+    rankingWeights[:popularity] = 0.7
+    rankingWeights[:qscore] = 0.3
+
+    popularityScaleFactor = 1000000
+
+    #ao.popularity is in a scale [0,1000000]
+    #ao.qscore is in a scale [-1,1]
+
+    ActivityObject.all.each do |ao|
+      ao_popularity = (ao.popularity.nil? ? 0 : ao.popularity)
+      ao_qscore = (ao.qscore.nil? ? 0 : ao.qscore.to_f * popularityScaleFactor)
+      #Now, ao_qscore is in a scale [-1000000,1000000]
+
+      ao_ranking = rankingWeights[:popularity] * ao_popularity +  rankingWeights[:qscore] * ao_qscore
+      #ao_ranking will be in a scale [-1000000*rankingWeights[:qscore],1000000]
+
+      ao.update_column :ranking, ao_ranking
+    end
+
+    timeFinish = Time.now
+    puts "Recalculating ranking metrics: Task finished"
+    puts "Elapsed time: " + (timeFinish - timeStart).round(1).to_s + " (s)"
+  end
+
+  #Usage
   #Development:   bundle exec rake scheduled:recalculatePopularity
   #In production: bundle exec rake scheduled:recalculatePopularity RAILS_ENV=production
 	task :recalculatePopularity => :environment do
@@ -148,7 +186,7 @@ namespace :scheduled do
     end
 
     timeFinish = Time.now
-    puts "Task finished"
+    puts "Recalculating popularity: Task finished"
     puts "Elapsed time: " + (timeFinish - timeStart).round(1).to_s + " (s)"
 	end
 

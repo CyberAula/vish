@@ -909,6 +909,52 @@ class Excursion < ActiveRecord::Base
     if !Vish::Application.config.APP_CONFIG['loep'].nil?
       VishLoep.registerExcursion(self) rescue nil
     end
+
+    #Try to infer the language of the excursion if it is not spcifiyed
+    if (self.language.nil? or !self.language.is_a? String or self.language=="independent")
+      self.inferLanguage
+    end
+  end
+
+  def inferLanguage
+    unless Vish::Application.config.APP_CONFIG["languageDetectionAPIKEY"].nil?
+      stringToTestLanguage = ""
+      if self.title.is_a? String and !self.title.blank?
+        stringToTestLanguage = stringToTestLanguage + self.title + " "
+      end
+      if self.description.is_a? String and !self.description.blank?
+        stringToTestLanguage = stringToTestLanguage + self.description + " "
+      end
+
+      if stringToTestLanguage.is_a? String and !stringToTestLanguage.blank?
+        
+        begin
+          detectionResult = DetectLanguage.detect(stringToTestLanguage)
+        rescue Exception => e
+          detectionResult = []
+        end
+        
+        validLanguageCodes = ["de","en","es","fr","it","pt","ru"]
+
+        detectionResult.each do |result|
+          if result["isReliable"] == true
+            detectedLanguageCode = result["language"]
+            if validLanguageCodes.include? detectedLanguageCode
+              lan = detectedLanguageCode
+            else
+              lan = "ot"
+            end
+
+            #Update language
+            self.activity_object.update_column :language, lan
+            eJson = JSON(self.json)
+            eJson["language"] = lan
+            self.update_column :json, eJson.to_json
+            break
+          end
+        end
+      end
+    end
   end
 
   def clone_for sbj
