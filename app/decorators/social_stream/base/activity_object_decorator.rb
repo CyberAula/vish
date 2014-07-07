@@ -1,5 +1,7 @@
 ActivityObject.class_eval do
 
+  before_save :fill_indexed_lengths
+
   #Calculate quality score (in a 0-10 scale) 
   def calculate_qscore
     #self.reviewers_qscore is the LORI score in a 0-10 scale
@@ -29,6 +31,18 @@ ActivityObject.class_eval do
     overallQualityScore = overallQualityScore * 100000
 
     self.update_column :qscore, overallQualityScore
+  end
+
+  def fill_indexed_lengths
+    if self.title.is_a? String and self.title.scan(/\w+/).size>0
+      self.title_length = self.title.scan(/\w+/).size
+    end
+    if self.description.is_a? String and self.description.scan(/\w+/).size>0
+      self.desc_length = self.description.scan(/\w+/).size
+    end
+    if self.tag_list.is_a? ActsAsTaggableOn::TagList and self.tag_list.length>0
+      self.tags_length = self.tag_list.length
+    end
   end
 
 end

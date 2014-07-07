@@ -215,8 +215,26 @@ namespace :fix do
     end
     printTitle("Task Finished")
   end
-  
 
+  #Usage
+  #Development:   bundle exec rake fix:fillIndexedLengths
+  #In production: bundle exec rake fix:fillIndexedLengths RAILS_ENV=production
+  task :fillIndexedLengths => :environment do
+    printTitle("Filling indexed lengths")
+    ActivityObject.all.each do |ao|
+      if ao.title.is_a? String and ao.title.scan(/\w+/).size>0
+        ao.update_column :title_length, ao.title.scan(/\w+/).size
+      end
+      if ao.description.is_a? String and ao.description.scan(/\w+/).size>0
+        ao.update_column :desc_length, ao.description.scan(/\w+/).size
+      end
+      if ao.tag_list.is_a? ActsAsTaggableOn::TagList and ao.tag_list.length>0
+        ao.update_column :tags_length, ao.tag_list.length
+      end
+    end
+    printTitle("Task Finished")
+  end
+  
 
   ####################
   #Task Utils

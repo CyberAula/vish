@@ -198,7 +198,7 @@ class RecommenderSystem
   ## Recommended Search
   #######################
 
-  # (e.g.) RecommenderSystem.search({:keywords=>"biology"})
+  # Usage example: RecommenderSystem.search({:keywords=>"biology", :n=>10})
   def self.search(options=nil)
     if options.class!=Hash or ![String,Array].include? options[:keywords].class
       return []
@@ -235,18 +235,21 @@ class RecommenderSystem
     # Order by custom weight
     opts[:sort_mode] = :expr
    
-    # TODO
+    # Ordering by custom weight
     # Documentation: http://pat.github.io/thinking-sphinx/searching/ts2.html#sorting
     # Discussion: http://sphinxsearch.com/forum/view.html?id=3675
-    # searchEngineExcursions = (Excursion.search searchTerms, opts).reject{|e| e.nil?} rescue []
     # (Excursion.search searchTerms, opts).results[:matches].map{|m| m[:weight]}
     # (Excursion.search searchTerms, opts).results[:matches].map{|m| m[:attributes]["@expr"]}
 
-    # opts[:field_weights][:title]*
+    weights = {}
+    weights[:relevance] = 0.80
+    weights[:popularity_score] = 0.10
+    weights[:quality_score] = 0.10
 
-    # # opts[:select] = '*, @weight as w'
-    opts[:order] = '@weight * 10'
-    # opts[:order] = 'title.length'
+    orderByRelevance = "((@weight)/(" + opts[:field_weights][:title].to_s + "*title_length + " + opts[:field_weights][:description].to_s + "*desc_length + " + opts[:field_weights][:tags].to_s + "*tags_length))"
+    opts[:order] = weights[:relevance].to_s + "*" + orderByRelevance + " + " + weights[:popularity_score].to_s + "*popularity + " + weights[:quality_score].to_s + "*qscore"
+
+    searchEngineExcursions = (Excursion.search searchTerms, opts).reject{|e| e.nil?} rescue []
   end
 
   private
