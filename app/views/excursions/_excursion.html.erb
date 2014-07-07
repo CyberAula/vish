@@ -9,13 +9,15 @@
       <div class="element">
         <div class="img-box" id="excursion-<%=excursion.id%>"></div>
         <%if excursion.draft%>
-        <div class="excursion-draft">
-          <h2 class="draftstyle">
-            <i class="fa fa-edit"></i>
-            <%=t('excursion.draft')%>
-          </h2>
-        </div>
-    </div> 
+          <div class="excursion-draft">
+            <h2 class="draftstyle">
+              <i class="fa fa-edit"></i>
+              <%=t('excursion.draft')%>
+            </h2>
+          </div>
+        <% end %>  
+      </div> 
+    </div>
   <% end %>
 
   <script>
@@ -26,7 +28,6 @@
     <%end%>    
   </script>
 
-<%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
   <div class="caption">
     <!--Tags - not shown now, but used for filtering search results. maybe shown in next version on hover-->
@@ -38,15 +39,15 @@
           </span>
       <% end %>
     </div>
-
-    <h6><!--Title -->
+    <!--Title -->
+    <h6>
       <%= link_to excursion.title, excursion %>
     </h6>
-    <div class="author"><!--Autor -->
+    <!--Autor -->
+    <div class="author">
       <span class="by"><%=t('by')%></span>
       <%= link_to excursion.author.name, excursion.author.subject %>
     </div>
-    
     <hr>
     
     <div class="info-bottom">
@@ -67,9 +68,7 @@
           <i class="fa fa-eye"></i>
         <%#=t('follow.views')%>
       </div>
-      
     </div>
-
   </div>
 </li>
 
