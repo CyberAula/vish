@@ -200,14 +200,51 @@ namespace :db do
     printTitle("Anonymizing database")
 
     User.record_timestamps=false
+    Actor.record_timestamps=false
+    Profile.record_timestamps=false
 
     User.all.each do |u|
-      u.name = Faker::Name.name
+      u.name = Faker::Name.name[0,30]
       u.email = "noreply" + u.id.to_s + "@example.com" #(Include u.id to create a uniq email)
       u.password = "demonstration"
+      u.slug = u.name.to_url #Create slug using stringex gem
+      unless User.find_by_slug(u.slug).nil?
+        u.slug = u.slug + "-" + u.id.to_s
+      end
       u.current_sign_in_ip = nil
       u.last_sign_in_ip = nil
       u.save(:validate => false)
+
+      #User profile
+      up = u.profile
+      unless up.description.nil?
+        up.description = Faker::Lorem.sentence(20, true)
+      end
+      unless up.organization.nil?
+        up.organization = Faker::Company.name[0,30]
+      end
+      unless up.city.nil?
+        up.city = Faker::Address.city[0,30]
+      end
+      unless up.country.nil?
+        up.country = Faker::Address.country[0,30]
+      end
+      unless up.website.nil?
+        up.website = Faker::Internet.url[0,30]
+      end
+      
+      up.birthday = nil
+      up.phone = nil
+      up.mobile = nil
+      up.fax = nil
+      up.address = nil
+      up.zipcode = nil
+      up.province = nil
+      up.prefix_key = nil
+      up.experience = nil
+      up.skype = nil
+
+      up.save(:validate => false)
     end
 
     #Create demo user
@@ -217,14 +254,17 @@ namespace :db do
     end
 
     unless user.nil?
-      user.name = Faker::Name.name
+      user.name = Faker::Name.name[0,30]
       user.email = "demo@vishub.org"
       user.password = "demonstration"
+      user.slug = user.name.to_url
       user.save(:validate => false)
       printTitle("Demo user created with email: 'demo@vishub.org' and password 'demonstration'.")
     end
 
     User.record_timestamps=true
+    Actor.record_timestamps=true
+    Profile.record_timestamps=true
 
     #Removing private messages
     Receipt.delete_all
