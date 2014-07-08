@@ -13,8 +13,7 @@ module ApplicationHelper
 	end
 
 	def popular_excursions(number=10)
-		# We take visits and likes for now...
-    	Excursion.joins(:activity_object).where("draft is false").order("activity_objects.visit_count + (10 * activity_objects.like_count) DESC").first(number)
+    	Excursion.getPopular(number,nil,current_user)
 	end
 
 	def excursions_with_tag(tag)
