@@ -18,7 +18,7 @@
 # ViSH Recommender System
 
 class RecommenderSystem
-  
+
   def self.excursion_suggestions(user,excursion,options=nil)
     # Step 0: Initialize all variables (N,NMax,random,...)
     options = prepareOptions(options)
@@ -104,14 +104,7 @@ class RecommenderSystem
 
     #Get some vars to normalize scores
     maxPopularity = preSelectionLOs.max_by {|e| e.popularity }.popularity
-
-    #We need to filter LOs without qscore attribute, because BigDecimal (qscore) can't be compared against nil
-    preSelectionLOsWithQuality = preSelectionLOs.reject{|lo| lo.qscore.nil?}
-    unless preSelectionLOsWithQuality.empty?
-      maxQuality = preSelectionLOsWithQuality.max_by {|e| e.qscore }.qscore
-    else
-      maxQuality = nil
-    end
+    maxQuality = preSelectionLOs.max_by {|lo| lo.qscore }.qscore
 
     weights = {}
     weights[:cs_score] = 0.60
@@ -197,13 +190,67 @@ class RecommenderSystem
   #Quality Score (between 0 and 1)
   #See app/decorators/social_stream/base/activity_object_decorator.rb, method calculate_qscore to adjust weights
   def self.qualityScore(lo,maxQualityScore)
-    if lo.qscore.nil?
-      return 0
-    else
-      return lo.qscore/maxQualityScore.to_f
-    end
+    return lo.qscore/maxQualityScore.to_f
   end
 
+
+  #######################
+  ## Recommended Search
+  #######################
+
+  # Usage example: RecommenderSystem.search({:keywords=>"biology", :n=>10})
+  def self.search(options=nil)
+    if options.class!=Hash or ![String,Array].include? options[:keywords].class
+      return []
+    end
+
+    #Specify searchTerms
+    if  options[:keywords].is_a? Array
+      searchTerms = keywords.join(" ")
+    else
+      searchTerms = options[:keywords]
+    end
+
+    #Specify search options
+    opts = {}
+
+    if options[:n].is_a? Integer
+      n = options[:n]
+    else
+      n = 20 #default
+    end
+
+    #Logical conector: OR
+    opts[:match_mode] = :any
+    opts[:rank_mode] = :wordcount
+    opts[:per_page] = n
+    opts[:field_weights] = {
+       :title => 50, 
+       :tags => 40,
+       :description => 1
+    }
+    opts[:with] = {}
+    opts[:with][:draft] = false
+
+    # Order by custom weight
+    opts[:sort_mode] = :expr
+   
+    # Ordering by custom weight
+    # Documentation: http://pat.github.io/thinking-sphinx/searching/ts2.html#sorting
+    # Discussion: http://sphinxsearch.com/forum/view.html?id=3675
+    # (Excursion.search searchTerms, opts).results[:matches].map{|m| m[:weight]}
+    # (Excursion.search searchTerms, opts).results[:matches].map{|m| m[:attributes]["@expr"]}
+
+    weights = {}
+    weights[:relevance] = 0.80
+    weights[:popularity_score] = 0.10
+    weights[:quality_score] = 0.10
+
+    orderByRelevance = "((@weight)/(" + opts[:field_weights][:title].to_s + "*title_length + " + opts[:field_weights][:description].to_s + "*desc_length + " + opts[:field_weights][:tags].to_s + "*tags_length))"
+    opts[:order] = weights[:relevance].to_s + "*" + orderByRelevance + " + " + weights[:popularity_score].to_s + "*popularity + " + weights[:quality_score].to_s + "*qscore"
+
+    searchEngineExcursions = (Excursion.search searchTerms, opts).reject{|e| e.nil?} rescue []
+  end
 
   private
 

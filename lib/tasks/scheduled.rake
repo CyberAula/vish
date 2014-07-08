@@ -14,24 +14,18 @@ namespace :scheduled do
 
     #2. Recalculate ranking metrics
     puts "Recalculating ranking metrics"
-    
+
     rankingWeights = {}
     rankingWeights[:popularity] = 0.7
     rankingWeights[:qscore] = 0.3
 
-    popularityScaleFactor = 1000000
-
+    #Since Sphinx does not support signed integers, we have to store the ranking metric in a positive scale.
     #ao.popularity is in a scale [0,1000000]
-    #ao.qscore is in a scale [-1,1]
+    #ao.qscore is in a scale [0,1000000]
 
     ActivityObject.all.each do |ao|
-      ao_popularity = (ao.popularity.nil? ? 0 : ao.popularity)
-      ao_qscore = (ao.qscore.nil? ? 0 : ao.qscore.to_f * popularityScaleFactor)
-      #Now, ao_qscore is in a scale [-1000000,1000000]
-
-      ao_ranking = rankingWeights[:popularity] * ao_popularity +  rankingWeights[:qscore] * ao_qscore
-      #ao_ranking will be in a scale [-1000000*rankingWeights[:qscore],1000000]
-
+      #ao_ranking will be in a scale [0,1000000]
+      ao_ranking = rankingWeights[:popularity] * ao.popularity +  rankingWeights[:qscore] * ao.qscore
       ao.update_column :ranking, ao_ranking
     end
 
@@ -191,13 +185,18 @@ namespace :scheduled do
 	end
 
   #Usage
-  #Development:   bundle exec rake scheduled:resetPopularity
-  #In production: bundle exec rake scheduled:resetPopularity RAILS_ENV=production
-  task :resetPopularity => :environment do
-    puts "Reset popularity"
+  #Development:   bundle exec rake scheduled:resetRankingMetrics
+  #In production: bundle exec rake scheduled:resetRankingMetrics RAILS_ENV=production
+  task :resetRankingMetrics => :environment do
+    puts "Reset popularity and updating quality scores"
+    
     ActivityObject.all.each do |ao|
       ao.update_column :popularity, 0
+      ao.calculate_qscore
     end
+
+    Rake::Task["scheduled:recalculateRankingMetrics"].invoke
+
     puts "Task finished"
   end
 

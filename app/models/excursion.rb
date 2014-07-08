@@ -34,9 +34,6 @@ class Excursion < ActiveRecord::Base
     has id
     has slide_count
     has draft
-    has activity_object.like_count, :as => :like_count
-    has activity_object.visit_count, :as => :visit_count
-    has activity_object.download_count, :as => :download_count
   end
 
   attr_accessor :score
