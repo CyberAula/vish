@@ -250,6 +250,8 @@ class RecommenderSystem
     opts[:order] = weights[:relevance].to_s + "*" + orderByRelevance + " + " + weights[:popularity_score].to_s + "*popularity + " + weights[:quality_score].to_s + "*qscore"
 
     searchEngineExcursions = (Excursion.search searchTerms, opts).reject{|e| e.nil?} rescue []
+
+    return searchEngineExcursions
   end
 
   private
@@ -341,7 +343,7 @@ class RecommenderSystem
     excursions = []
     nSubset = [80,4*n].max
     ids_to_avoid = getIdsToAvoid(preSelection,user,excursion,options)
-    excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.popularity DESC").limit(nSubset).sample(n)
+    excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").limit(nSubset).sample(n)
   end
 
   def self.getIdsToAvoid(preSelection,user,excursion,options=nil)

@@ -96,6 +96,7 @@ class ExcursionsController < ApplicationController
       }
       format.scorm {
         @excursion.to_scorm(self)
+        @excursion.increment_download_count
         send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
       }
       format.pdf{
@@ -308,7 +309,7 @@ class ExcursionsController < ApplicationController
     
     holes = [0,limit-@found_excursions.length].max
     if holes > 0
-      popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").reject{ |ex| @found_excursions.map{ |fex| fex.id }.include? ex.id }
+      popularExcursions = Excursion.joins(:activity_object).order("activity_objects.ranking DESC").reject{ |ex| @found_excursions.map{ |fex| fex.id }.include? ex.id }
       popularExcursions.in_groups_of(100+holes){ |group|
         popularExcursions = group
         break
