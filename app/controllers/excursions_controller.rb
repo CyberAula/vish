@@ -96,6 +96,7 @@ class ExcursionsController < ApplicationController
       }
       format.scorm {
         @excursion.to_scorm(self)
+        @excursion.increment_download_count
         send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
       }
       format.pdf{
