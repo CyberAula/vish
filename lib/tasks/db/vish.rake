@@ -4,12 +4,11 @@
 #
 
 namespace :db do
+
   namespace :populate do
     # Clear existing tasks
     task(:create_ties).prerequisites.clear
     task(:create_ties).clear
-#    task('create:groups').clear
-#    task(:create).prerequisites.delete('db:seed')
     %w( db:seed create:groups ).each do |t|
       task(:create).prerequisites.delete(t)
     end
@@ -23,6 +22,7 @@ namespace :db do
 
 
     namespace :create do
+      
       desc "Create Ties as follows and rejects only"
       task :ties do
         puts 'Follows population'
@@ -111,10 +111,9 @@ namespace :db do
           owner  = author
           user_author =  ( author.subject_type == "User" ? author : author.user_author )
 
-	if user_author == nil
-
-user_author = author
-end
+          if user_author == nil
+            user_author = author
+          end
 
           e = Excursion.create! :json => {  :title => "kike#{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
                                             :description => "#{Forgery::LoremIpsum.paragraph(:random => true)}",
@@ -128,7 +127,7 @@ end
                                 :owner_id   => owner.id,
                                 :user_author_id => user_author.id,
                                 :relation_ids => [Relation::Public.instance.id],
-				:tag_list => ["Maths","Physics","Chemistry","Geography","Biology","ComputerScience","EnvironmentalStudies","Engineering","Humanities","NaturalScience"].sample(2).join(",")
+				                        :tag_list => ["Maths","Physics","Chemistry","Geography","Biology","ComputerScience","EnvironmentalStudies","Engineering","Humanities","NaturalScience"].sample(2).join(",")
           e.save!
         end
 
@@ -139,9 +138,10 @@ end
           owner  = author
           user_author =  ( author.subject_type == "User" ? author : author.user_author )
 
-	if user_author ==nil
-user_author = author
-end
+          if user_author ==nil
+            user_author = author
+          end
+
           e = Excursion.create! :json => {  :title => "#{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
                                             :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
                                             :author => author.name,
@@ -192,5 +192,17 @@ end
       end
     end
   end
+
+  #Usage
+  #Development:   bundle exec rake db:anonymize
+  #In production: bundle exec rake db:anonymize RAILS_ENV=production
+  task :anonymize => :environment do
+    printTitle("Anonymizing database")
+
+    #TODO...
+
+    printTitle("Task Finished")
+  end
+
 end
 
