@@ -24,7 +24,7 @@ namespace :fix do
                 if _isWrongImagePath(imgPath)
                   # puts imgPath
                   #Fix it
-                  el["body"] = Site.current.config[:documents_hostname][0..-2] + imgPath
+                  el["body"] = Vish::Application.config.full_domain + imgPath
                   # puts "Fix image, new URL:"
                   # puts el["body"]
                   jsonChange = true
@@ -36,7 +36,7 @@ namespace :fix do
       if jsonChange
         puts "Excursion ID"
         puts excursion.id
-        excursion.update_column :json, eJson.to_json;
+        #excursion.update_column :json, eJson.to_json;
       end
       rescue Exception => e
         puts "Exception with excursion id:"
@@ -62,7 +62,6 @@ namespace :fix do
     printTitle("Reset scorm timestamp")
 
     Excursion.all.map { |ex| 
-      ex.scorm_timestamp = nil; 
       ex.update_column :scorm_timestamp, nil
     }
 
@@ -144,6 +143,98 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:fillExcursionsLanguage
+  #In production: bundle exec rake fix:fillExcursionsLanguage RAILS_ENV=production
+  task :fillExcursionsLanguage => :environment do
+
+    printTitle("Filling Excursions language")
+
+    validLanguageCodes = ["de","en","es","fr","it","pt","ru"]
+    #"ot" is for "other"
+
+    Excursion.all.map { |ex|
+      eJson = JSON(ex.json)
+
+      lan = eJson["language"]
+      emptyLan = (lan.nil? or !lan.is_a? String or lan=="independent")
+
+      if emptyLan and !Vish::Application.config.APP_CONFIG["languageDetectionAPIKEY"].nil?
+        #Try to infer language
+        #Use https://github.com/detectlanguage/detect_language gem
+
+        stringToTestLanguage = ""
+        if ex.title.is_a? String and !ex.title.blank?
+          stringToTestLanguage = stringToTestLanguage + ex.title + " "
+        end
+        if ex.description.is_a? String and !ex.description.blank?
+          stringToTestLanguage = stringToTestLanguage + ex.description + " "
+        end
+
+        if stringToTestLanguage.is_a? String and !stringToTestLanguage.blank?
+          detectionResult = (DetectLanguage.detect(stringToTestLanguage) rescue [])
+          detectionResult.each do |result|
+            if result["isReliable"] == true
+              detectedLanguageCode = result["language"]
+              if validLanguageCodes.include? detectedLanguageCode
+                lan = detectedLanguageCode
+              else
+                lan = "ot"
+              end
+              emptyLan = false
+              break
+            end
+          end
+        end
+      end
+
+      if !emptyLan
+        ao = ex.activity_object
+        if ao.language != lan
+          ao.update_column :language, lan
+        end
+
+        if eJson["language"] != lan
+          eJson["language"] = lan
+          ex.update_column :json, eJson.to_json
+        end
+      end
+
+    }
+
+    printTitle("Task Finished")
+  end
+
+  #Usage
+  #Development:   bundle exec rake fix:recalculateScores
+  #In production: bundle exec rake fix:recalculateScores RAILS_ENV=production
+  task :recalculateScores => :environment do
+    printTitle("Recalculating activity object scores")
+    ActivityObject.all.each do |ao|
+      ao.calculate_qscore
+    end
+    printTitle("Task Finished")
+  end
+
+  #Usage
+  #Development:   bundle exec rake fix:fillIndexedLengths
+  #In production: bundle exec rake fix:fillIndexedLengths RAILS_ENV=production
+  task :fillIndexedLengths => :environment do
+    printTitle("Filling indexed lengths")
+    ActivityObject.all.each do |ao|
+      if ao.title.is_a? String and ao.title.scan(/\w+/).size>0
+        ao.update_column :title_length, ao.title.scan(/\w+/).size
+      end
+      if ao.description.is_a? String and ao.description.scan(/\w+/).size>0
+        ao.update_column :desc_length, ao.description.scan(/\w+/).size
+      end
+      if ao.tag_list.is_a? ActsAsTaggableOn::TagList and ao.tag_list.length>0
+        ao.update_column :tags_length, ao.tag_list.length
+      end
+    end
+    printTitle("Task Finished")
+  end
+  
 
   ####################
   #Task Utils
@@ -192,7 +283,7 @@ end
 
 # Excursion.all.map { |ex| 
 # if (!ex.thumbnail_url.nil? and ex.thumbnail_url.include?("/assets/logos/original/excursion-") and !ex.thumbnail_url.include?("vishub") and !ex.thumbnail_url.include?("http://") and !ex.thumbnail_url.include?("https://"))
-#   newThumbnailUrl = Site.current.config[:documents_hostname][0..-2] + ex.thumbnail_url;
+#   newThumbnailUrl = Vish::Application.config.full_domain + ex.thumbnail_url;
 # ex.update_column :thumbnail_url, newThumbnailUrl;
 # ejson = JSON(ex.json); 
 # ejson["avatar"]=newThumbnailUrl;
@@ -208,14 +299,10 @@ end
 
 # Excursion.all.map { |ex| 
 # if (!ex.thumbnail_url.nil? and ex.thumbnail_url.include?("/pictures/") and !ex.thumbnail_url.include?("vishub") and !ex.thumbnail_url.include?("http://") and !ex.thumbnail_url.include?("https://"))
-#   newThumbnailUrl = Site.current.config[:documents_hostname][0..-2] + ex.thumbnail_url;
+#   newThumbnailUrl = Vish::Application.config.full_domain + ex.thumbnail_url;
 # ex.update_column :thumbnail_url, newThumbnailUrl;
 # ejson = JSON(ex.json); 
 # ejson["avatar"]=newThumbnailUrl;
 # ex.update_column :json, ejson.to_json;
 # end
 # }
-
-# # Configurar correctamente el current Site para desarrollo
-# Site.current.config[:documents_hostname] = "http://localhost:3000/"
-# Site.current.save!

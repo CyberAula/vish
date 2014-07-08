@@ -124,12 +124,20 @@ class ExcursionsController < ApplicationController
   def create
     params[:excursion].permit!
     @excursion = Excursion.new(params[:excursion])
+
     if(params[:draft] and params[:draft] == "true")
       @excursion.draft = true
     else
       @excursion.draft = false
     end
+
     @excursion.save!
+
+    published = (@excursion.draft===false)
+    if published
+      @excursion.afterPublish
+    end
+
     render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource, :recent => :true)),
                       :uploadPath => excursion_path(@excursion, :format=> "json"),
                       :editPath => edit_excursion_path(@excursion)
@@ -140,7 +148,9 @@ class ExcursionsController < ApplicationController
     if params[:excursion]
       params[:excursion].permit!
     end
+
     @excursion = Excursion.find(params[:id])
+    wasDraft = @excursion.draft
 
     if(params[:draft])
       if(params[:draft] == "true")
@@ -151,6 +161,12 @@ class ExcursionsController < ApplicationController
     end
 
     @excursion.update_attributes!(params[:excursion])
+
+    published = (wasDraft===true and @excursion.draft===false)
+    if published
+      @excursion.afterPublish
+    end
+
     render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource, :recent => :true)),
                       :uploadPath => excursion_path(@excursion, :format=> "json"),
                       :editPath => edit_excursion_path(@excursion),
@@ -179,7 +195,7 @@ class ExcursionsController < ApplicationController
     excursion = Excursion.find_by_id(params[:id])
     respond_to do |format|
       format.xml {
-        xmlMetadata = Excursion.generate_LOM_metadata(JSON(excursion.json),excursion,{:id => Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)})
+        xmlMetadata = Excursion.generate_LOM_metadata(JSON(excursion.json),excursion,{:id => Rails.application.routes.url_helpers.excursion_url(:id => excursion.id), :LOMschema => params[:LOMschema] || "custom"})
         render :xml => xmlMetadata.target!
       }
       format.any {
@@ -192,7 +208,7 @@ class ExcursionsController < ApplicationController
     excursion = Excursion.find_by_id(params[:id])
     respond_to do |format|
       format.xml {
-        xmlMetadata = Excursion.generate_scorm_manifest(JSON(excursion.json),excursion)
+        xmlMetadata = Excursion.generate_scorm_manifest(JSON(excursion.json),excursion,{:LOMschema => params[:LOMschema]})
         render :xml => xmlMetadata.target!
       }
       format.any {
@@ -243,13 +259,7 @@ class ExcursionsController < ApplicationController
       if index<10
         tnumber = "0" + tnumber
       end
-      my_site = ""
-      if !Site.current.config[:documents_hostname]
-        my_site = "http://vishub.org/"
-      else
-        my_site = Site.current.config[:documents_hostname]
-      end
-      thumbnail["src"] = my_site + "assets/logos/original/excursion-"+tnumber+".png"
+      thumbnail["src"] = Vish::Application.config.full_domain + "/assets/logos/original/excursion-"+tnumber+".png"
       thumbnails["pictures"].push(thumbnail)
     end
 
@@ -357,56 +367,18 @@ class ExcursionsController < ApplicationController
   end
 
   def last_slide
-    excursions = []
-    cExcursionId = nil
+    #Prepare parameters to call the RecommenderSystem
 
     if params[:excursion_id]
       current_excursion =  Excursion.find(params[:excursion_id]) rescue nil
-      cExcursionId = current_excursion.id rescue nil
     end
 
+    options = {:n => 6}
     if params[:q]
-      searchTerms = params[:q].split(",")
-    else
-      searchTerms = []
+      options[:keywords] = params[:q].split(",")
     end
 
-    #Add excursions based on the current excursion
-    if !current_excursion.nil?
-
-      if !current_excursion.tag_list.empty?
-        searchTerms.concat(current_excursion.tag_list)
-      end
-
-      if !current_excursion.author.nil?
-        authorExcursions = ActivityObject.where(:object_type=>"Excursion").select{ |e| e.author_id == current_excursion.author.id }.map { |ao| ao.excursion }.select{|e| e.id != current_excursion.id and e.draft == false}
-        #Limit the number of authorExcursions
-        authorExcursions = authorExcursions.sample(2)
-        excursions.concat(authorExcursions)
-      end
-
-    end
-
-    searchTerms.uniq!
-    searchTerms = searchTerms.join(",")
-    relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != cExcursionId and e.draft == false} rescue []
-    excursions.concat(relatedExcursions)
-
-    #Remove drafts and current excursion
-    excursions.uniq!
-    excursions = excursions.select{|ex| ex.draft == false}.reject{ |ex| ex.id == cExcursionId }
-
-    #Fill excursions (until 6), with popular excursions
-    holes = [0,6-excursions.length].max
-    if holes > 0
-      popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").select{|ex| ex.draft == false}.reject{ |ex| excursions.map{ |fex| fex.id }.include? ex.id || (!current_excursion.nil? and ex.id == current_excursion.id) }
-      popularExcursions.in_groups_of(80){ |group|
-        popularExcursions = group
-        break
-      }
-      excursions.concat(popularExcursions.sample(holes))
-    end
-    excursions = excursions.sample(6)
+    excursions = RecommenderSystem.excursion_suggestions(current_subject,current_excursion,options)
 
     respond_to do |format|
       format.json { 
@@ -445,30 +417,30 @@ class ExcursionsController < ApplicationController
           end
         end
 
-        count = Site.current.config["tmpJSONcount"].nil? ? 1 : Site.current.config["tmpJSONcount"]
-        Site.current.config["tmpJSONcount"] = count +1
+        count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+        Site.current.config["tmpCounter"] = count + 1
         Site.current.save!
 
         if responseFormat == "json"
           #Generate JSON file
-          filePath = "#{Rails.root}/public/tmp/json/#{count}.json"
+          filePath = "#{Rails.root}/public/tmp/json/#{count.to_s}.json"
           t = File.open(filePath, 'w')
           t.write json
           t.close
-          results["url"] = "#{Site.current.config[:documents_hostname]}excursions/tmpJson.json?fileId=#{count.to_s}"
+          results["url"] = "#{Vish::Application.config.full_domain}/excursions/tmpJson.json?fileId=#{count.to_s}"
         elsif responseFormat == "scorm"
           #Generate SCORM package
           filePath = "#{Rails.root}/public/tmp/scorm/"
-          fileName = "scorm-tmp-#{count}"
+          fileName = "scorm-tmp-#{count.to_s}"
           Excursion.createSCORM(filePath,fileName,JSON(json),nil,self)
-          results["url"] = "#{Site.current.config[:documents_hostname]}tmp/scorm/#{fileName}.zip"
+          results["url"] = "#{Vish::Application.config.full_domain}/tmp/scorm/#{fileName}.zip"
         elsif responseFormat == "qti"
            #Generate QTI package
            filePath = "#{Rails.root}/public/tmp/qti/"
            FileUtils.mkdir_p filePath
-           fileName = "qti-tmp-#{count}"
+           fileName = "qti-tmp-#{count.to_s}"
            Excursion.createQTI(filePath,fileName,JSON(json))
-           results["url"] = "#{Site.current.config[:documents_hostname]}tmp/qti/#{fileName}.zip"
+           results["url"] = "#{Vish::Application.config.full_domain}/tmp/qti/#{fileName}.zip"
         end
 
         render :json => results
@@ -508,20 +480,11 @@ class ExcursionsController < ApplicationController
   private
 
   def allowed_params
-    [:json, :slide_count, :thumbnail_url, :draft, :offline_manifest, :excursion_type]
+    [:json, :slide_count, :thumbnail_url, :draft, :offline_manifest]
   end
 
   def search_options
     opts = search_scope_options
-
-    if params[:type] == "smartcard"
-      params[:type] = "flashcard|virtualTour"
-    end
-
-    # Allow me to search only one type (e.g.) Flashcards
-    opts.deep_merge!({
-      :conditions => { :excursion_type => params[:type] }
-    }) unless params[:type].blank?
 
     # Pagination
     opts.deep_merge!({

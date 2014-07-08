@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140529135751) do
+ActiveRecord::Schema.define(:version => 20140707150431) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -71,17 +71,25 @@ ActiveRecord::Schema.define(:version => 20140529135751) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "object_type",          :limit => 45
-    t.integer  "like_count",                         :default => 0
-    t.string   "title",                              :default => ""
+    t.integer  "like_count",                                                        :default => 0
+    t.string   "title",                                                             :default => ""
     t.text     "description"
-    t.integer  "follower_count",                     :default => 0
-    t.integer  "visit_count",                        :default => 0
+    t.integer  "follower_count",                                                    :default => 0
+    t.integer  "visit_count",                                                       :default => 0
     t.string   "language"
-    t.integer  "age_min",                            :default => 4
-    t.integer  "age_max",                            :default => 30
-    t.boolean  "notified_after_draft",               :default => false
-    t.integer  "comment_count",                      :default => 0
-    t.integer  "popularity",                         :default => 0
+    t.integer  "age_min",                                                           :default => 4
+    t.integer  "age_max",                                                           :default => 30
+    t.boolean  "notified_after_draft",                                              :default => false
+    t.integer  "comment_count",                                                     :default => 0
+    t.integer  "popularity",                                                        :default => 0
+    t.integer  "download_count",                                                    :default => 0
+    t.integer  "qscore",                                                            :default => 500000
+    t.decimal  "reviewers_qscore",                   :precision => 12, :scale => 6
+    t.decimal  "users_qscore",                       :precision => 12, :scale => 6
+    t.integer  "ranking"
+    t.integer  "title_length",                                                      :default => 1
+    t.integer  "desc_length",                                                       :default => 1
+    t.integer  "tags_length",                                                       :default => 1
   end
 
   create_table "activity_verbs", :force => true do |t|
@@ -262,15 +270,14 @@ ActiveRecord::Schema.define(:version => 20140529135751) do
   end
 
   create_table "excursions", :force => true do |t|
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.integer  "activity_object_id"
     t.text     "json"
     t.integer  "slide_count",        :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",              :default => false
-    t.text     "offline_manifest"
-    t.string   "excursion_type",     :default => "presentation"
+    t.text     "offline_manifest",   :default => ""
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
     t.integer  "mve",                :default => 0
@@ -298,13 +305,6 @@ ActiveRecord::Schema.define(:version => 20140529135751) do
   end
 
   add_index "links", ["activity_object_id"], :name => "index_links_on_activity_object_id"
-
-  create_table "live_sessions", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "excursion_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
 
   create_table "notifications", :force => true do |t|
     t.string   "type"
@@ -494,13 +494,6 @@ ActiveRecord::Schema.define(:version => 20140529135751) do
   end
 
   add_index "sites", ["actor_id"], :name => "index_sites_on_actor_id"
-
-  create_table "slides", :force => true do |t|
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.integer  "activity_object_id"
-    t.text     "json"
-  end
 
   create_table "spam_reports", :force => true do |t|
     t.integer  "activity_object_id"

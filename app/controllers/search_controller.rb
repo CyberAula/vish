@@ -47,21 +47,25 @@ class SearchController < ApplicationController
     page =  ( mode == :quick ? 1 : params[:page] )
     limit = ( mode == :quick ? 7 : RESULTS_SEARCH_PER_PAGE )
     the_query = nil
-    if params[:sort_by]==nil
-      order = nil
+
+    case params[:sort_by]
+    when 'ranking'
+      order = 'ranking DESC'
+    when 'popularity'
+      #Use ranking instead of popularity
+      order = 'ranking DESC'
+      # order = 'popularity DESC'
+    when 'updated_at'
+      order = 'updated_at DESC'
+    when 'created_at'
+      order = 'created_at DESC'
+    when 'visits'
+      order = 'visit_count DESC'
+    when 'favorites'
+      order = 'like_count DESC'
     else
-      case params[:sort_by]
-      when 'updated_at'
-        order = 'updated_at DESC'
-      when 'created_at'
-        order = 'created_at DESC'
-      when 'visits'
-        order = 'visit_count DESC'
-      when 'favorites'
-        order = 'like_count DESC'
-      else
-        order = 'popularity DESC'
-      end
+      #order by relevance
+      order = nil
     end
 
     if(params[:q] && params[:q]!="")

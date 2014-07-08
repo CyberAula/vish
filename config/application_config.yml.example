@@ -2,13 +2,28 @@
 #Configure here all the variables of your Virtual Science Hub instance.
 
 development:
-  domain: "localhost"
+  domain: "localhost:3000"
   test_domain: true
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
 
 production:
   domain: "vishub.org"
+  code_domain: "vishubcode.global.dit.upm.es"
+  code_path: "/home/isabel/vish-shared/documents/code"
   test_domain: false
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
+
+
+#Other configuration options
+#languageDetectionAPIKEY: "API Key from http://detectlanguage.com to allow automatic language detection."
+
+#LOEP configuration
+#  loep:
+#    domain: "http://loep.global.dit.upm.es"
+#    # domain: "http://localhost:8080"
+#    api_version: "v1"
+#    app_name: "ViSH"
+#    auth_token: "secret_loep_token"
+#    repository_name: "ViSH"

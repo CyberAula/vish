@@ -75,6 +75,7 @@ module SocialStream
           indexes actor.slug
           
           has activity_object.popularity, :as => :popularity, :sortable => true
+          has activity_object.ranking, :as => :ranking, :sortable => true
           has created_at
           has Relation::Public.instance.id.to_s, :type => :integer, :as => :relation_ids
           

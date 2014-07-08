@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 7a41c5eb1fcf9759296a73e1f2ea46d8b02dd935
+  revision: 3210f1c6af3fbef81b31cf651d5b8725a055354d
   branch: vish
   specs:
     social_stream-base (2.2.2)
@@ -191,6 +191,7 @@ GEM
       rails (~> 3.1)
     delayed_paperclip (2.7.0)
       paperclip (>= 3.3)
+    detect_language (1.0.5)
     devise (2.2.8)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -222,7 +223,7 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashery (2.1.1)
-    hashie (2.1.1)
+    hashie (2.1.2)
     highline (1.6.21)
     hike (1.2.3)
     htmlentities (4.3.2)
@@ -470,10 +471,12 @@ DEPENDENCIES
   coffee-rails (= 3.2.2)
   delayed_paperclip (= 2.7.0)
   delegates_attributes_to!
+  detect_language (= 1.0.5)
   exception_notification (= 3.0.1)
   factory_girl (= 2.6)
   forgery (= 0.6.0)
   god (= 0.13.4)
+  hashie (= 2.1.2)
   jquery-rails (= 3.1.0)
   jquery-ui-rails (= 4.1.2)
   json (= 1.7.4)
