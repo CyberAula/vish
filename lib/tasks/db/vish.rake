@@ -199,7 +199,42 @@ namespace :db do
   task :anonymize => :environment do
     printTitle("Anonymizing database")
 
-    #TODO...
+    User.record_timestamps=false
+
+    User.all.each do |u|
+      u.name = Faker::Name.name
+      u.email = "noreply" + u.id.to_s + "@example.com" #(Include u.id to create a uniq email)
+      u.password = "demonstration"
+      u.current_sign_in_ip = nil
+      u.last_sign_in_ip = nil
+      u.save(:validate => false)
+    end
+
+    #Create demo user
+    user = User.all.select{|u| Excursion.authored_by(u).length>0 && u.follower_count>0}.sort{|ub,ua| ua.ranking<=>ub.ranking}.first
+    if user.nil?
+      user = User.all.sample
+    end
+
+    unless user.nil?
+      user.name = Faker::Name.name
+      user.email = "demo@vishub.org"
+      user.password = "demonstration"
+      user.save(:validate => false)
+      printTitle("Demo user created with email: 'demo@vishub.org' and password 'demonstration'.")
+    end
+
+    User.record_timestamps=true
+
+    #Removing private messages
+    Receipt.delete_all
+    Notification.delete_all
+    Conversation.delete_all
+    Message.delete_all
+
+    #Removing QuizSession results
+    QuizSession.delete_all
+    QuizAnswer.delete_all
 
     printTitle("Task Finished")
   end
