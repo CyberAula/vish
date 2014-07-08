@@ -17,11 +17,15 @@
       </div>
     </div>
     <!--recomended-->
-    <div class="recomended">
+    <div class="recomended" id="recomended_box">
       <div class="recomended-items">
         <ul class="small-box clearfix">
           <% popular_resources(16).each do |resource| %>
-            <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
+            <% if resource.class == Excursion %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => resource, :container_id => "recomended_box" } %>
+            <% else %>
+              <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
+            <% end %>
           <% end %>
         </ul>
       </div>

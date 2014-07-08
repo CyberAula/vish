@@ -1033,7 +1033,7 @@ class Excursion < ActiveRecord::Base
   #######################
   ## Get Excursion subsets
   ######################
-  def self.getPopular(n,preSelection=nil,user=nil)
+  def self.getPopular(n=20,preSelection=nil,user=nil)
     excursions = []
     nSubset = [80,4*n].max
     ids_to_avoid = getIdsToAvoid(preSelection,user)
