@@ -299,7 +299,7 @@
         <div class="small">
           <%=t('spam.report_excursion')%>
         </div>
-
+<!--
         <%= form_tag spam_report_path, method: 'post' do %>
           <div class="btn-group-vertical" data-toggle="buttons">
             <label class="btn btn-default">
@@ -309,8 +309,8 @@
               <input type="radio" name="options" id="option2"> <%=t('spam.error_content')%>
             </label>
           </div>
-
-         <!-- <%=hidden_field_tag "activity_object_id", @excursion.activity_object_id%>
+-->
+        <%=hidden_field_tag "activity_object_id", @excursion.activity_object_id%>
           <div class="radio">
             <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
             <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
@@ -318,7 +318,7 @@
           <div class="radio">
             <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content')%>
             <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-            <div>  -->
+            <div>
           <div class="captcha">
             <header>  
               <%= t('simple_captcha.title') %>, <%=t('simple_captcha.subtitle')%>
