@@ -1,6 +1,11 @@
 #time-line
-  display: block
-  margin: 0 auto
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(10, $gutter: $grid-gutter-width)
+  @include make-sm-column-offset(1)
+  @include make-md-column(8, $gutter: $grid-gutter-width)
+  @include make-md-column-offset(2)
+  @include make-lg-column(8, $gutter: $grid-gutter-width)
+  @include center-block
   .activities
     header h2
       width: 80%
@@ -45,12 +50,9 @@
     .panel
       background-color: transparent
       border: none
-
+      margin-bottom: 0
   .thumbnail
     @include excursion-small
-
-
-
 
 
 #time-line
@@ -115,63 +117,29 @@
         display: block
         margin: 0px auto 5px
         clear: both
-      .objects
-        margin-bottom: 5px
-        .post
-          padding-left: 2%
-          width: 98%
-      .recomended
-        .recomended-items
-          ul
-            clear: both
-            height: 90px
-            padding-left: 16px
-
-            hr
-              margin: 0 auto
-              li.box-item
-                margin-bottom: 10px
-      .actions
-        display: block
-        margin: 10px auto 10px
-        margin-top: 3% !important
-        .post_time_ago
-          float: right
-          color: $gray-light
-          font-family: $corporate-font-family-sans-serif-LightItalic
-          margin-bottom: -1%
-          font-size: 12px
-        .to_comment
-          float: right
-          margin-right: 20px
+        padding: 0
+        .actions
           display: block
-          a
-            color: $gray
-            &:hover
-              font-family: $corporate-font-family-sans-serif-Medium
-        .to_like
-          float: left
-          visibility: hidden
-
-          a
-            color: lighten($brand-primary, 20%)
-        .likes
-          display: none
-          a
-            text-overflow: ellipsis
-            width: 120px
+          margin: 10px auto 10px
+          margin-top: 3% !important
+          .post_time_ago
+            float: right
+            color: $gray-light
+            font-family: $corporate-font-family-sans-serif-LightItalic
+            font-size: 12px
+        
     .more
       @include see-more
 
 
 .comments
-  @include make-xs-column(11, $gutter: $grid-gutter-width)
-  @include make-sm-column(11, $gutter: $grid-gutter-width)
-  @include make-md-column(11, $gutter: $grid-gutter-width)
-  @include make-lg-column(11, $gutter: $grid-gutter-width)
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
   display: block
   margin: 10px auto 
-  padding-top: 10px
+  padding: 0px
   clear: both
   .activity
   .media
@@ -186,14 +154,12 @@
 
     .child
       border-top: 1px solid #ddd
+
     .avatar
       display: block
       float: left
       max-width: none
     .media-heading
-      display: block
-      clear: none
-      margin: 0
       h6
         margin: 0
         line-height: 0
@@ -206,136 +172,55 @@
           color: $gray-darker
           word-wrap: break-word
     .media-body
-      clear: both
-      overflow: visible
-      margin-left: 10%
-      .objects
-        .comment
-          font-size: 13px
-          margin-top: -1%
-          margin-bottom: -3%
-          font-family: $corporate-font-family-sans-serif-LightItalic
       .actions
         margin-top: -8px !important
         width: 100% !important
         font-size: 10px
         .post_time_ago
           float: right
-        .to_like
-          float: left
-          visibility: hidden
-          margin-bottom: -19px
-          a
-            color: lighten($brand-primary, 20%)
-.new_comment
-  width: 90%
-  margin: 0 auto
+
+div.new_comment
+  width: 100%
   display: block
   clear: both
-  .avatar
-    display: block
-    float: left
-    img
-      width: 38px
+  border-top: 1px solid #CCC
+  padding-top: 8px
   form#new_comment
-    width: 82%
+    height: 38px
     display: block
-    float: left
     clear: none
-    margin: 0
-    margin-left: 3%
-    
+    margin: 0 auto 8px
+    width: 96%
+    .input-group
+      float: left
+    .input-group-addon
+      padding: 0
+      max-height: 38px
+      height: 38px !important
+      vertical-align: top
+      border: none
+      background: none
+      img
+        width: 38px
+        @include border-left-radius ($border-radius-base)
+    .form-control
+      @include border-right-radius ($border-radius-base)
 
-    textarea
-      width: 100%
-      margin-top: 0
-      margin-bottom: 0
-      margin-bottom: 10px
     input
       &[type="submit"]
-        margin-top: -10px
+        margin: -1px 5px 15px 0
         float: right
         @extend .btn-primary
         @include border-top-radius(0px)
         @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
-            
 
 
 
-
-
-
-
-
-
-#timeline
-  .description-activity
-    background-color: $gray
-    .activity-box
-      .activity
-        .tabbable
-          .tab-content,.tab-pane
-            .comments
-              margin: 0 auto 
-              padding-top: 0px 
-              .new-comments-box
-                .new_comment
-                  width: 90%
-                  .avatar
-                    width: auto
-                    display: inline
-                    width: 5%
-                    img
-                      @include border-top-radius($border-radius-base)
-                      @include border-bottom-radius($border-radius-base)
-
-                  form#new_comment
-                    width: 93%
-                    margin-left: 2%
-                    display: inline
-                    margin-bottom: 10px
-                    textarea
-                    input[type="submit"]
-              .comments
-                .activity  
-                  margin-bottom: 5px
-                .child
-                .media
-                  padding: 1%
-                  margin-top: 0
-                  .pull-left
-                    margin-right: 2%
-                  .avatar
-                    width: 5%
-                    
-                    .media-object
-                      a
-                        img
-                          @include border-top-radius($border-radius-base)
-                          @include border-bottom-radius($border-radius-base)
-                  .media-heading
-                    margin: 0
-                    width: 93% !important
-                    height: 20px
-                    overflow: hidden
-                    h6
-                    .x
-                      margin-right: 5px
-                  .media-body
-                    margin: 0
-                    clear: none
-                    margin-top: 5px
-                    .objects
-                      .comment
-                        margin-left: 2%
-                        font-size: 12px
-                        p
-                    .actions
-                      .post_time_ago
-                        color: $gray-light
-                        margin-top: 5px
-                      .to_like
-                        display: none
+.comments   
+  .child
+    .media-body
+      .objects
+        clear: both
 
 #last_content_shown
   clear: both
@@ -375,5 +260,4 @@
         .btn
           background-image: none
           @include border-top-radius(0px)
-        .new_document
 

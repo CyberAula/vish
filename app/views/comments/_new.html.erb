@@ -1,0 +1,9 @@
+<% if user_signed_in? && current_subject.can_comment?(activity) %>
+  <div class="new_comment">
+    <%= render partial: 'comments/new_form',
+               locals: {
+                 owner_id: Actor.normalize_id(activity.receiver),
+                 _activity_parent_id: activity.id
+               } %>
+  </div>
+<% end %>

@@ -25,16 +25,12 @@
 
         <%= render :partial => 'activities/actions',
                    :locals => { :activity => activity } %>
-       
-    
-        <hr>
-
-        <%= render :partial => 'comments/new',
-                   :locals => { :activity => activity } %>
-
-        <%= render :partial => 'activities/comments',
-                   :locals => { :activity => activity } %>
         </div>
       </div>
     </div>
+    <%= render :partial => 'activities/comments',
+               :locals => { :activity => activity } %>
+               
+    <%= render :partial => 'comments/new',
+               :locals => { :activity => activity } %>
   <% end %>
