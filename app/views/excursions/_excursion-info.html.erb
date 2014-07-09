@@ -146,6 +146,27 @@
     </div>
   </div>
   <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
+  
+   
+    <span class="showMore accordion-toggle btn" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
     --- <%=t('excursion.actions.show_more')%> ---
-  </a>
+    </span>
+</a>
 </div>
+
+<script>
+$(function() {
+  $(".showMore").hover(function(){
+
+    if($(".showMore").attr("title")=== "showMore"){
+      $(".showMore").html('--- <%=t("excursion.actions.show_more")%> ---');
+      $(".showMore").attr("title", "showFewer");
+    }
+    else{
+      $(".showMore").html('--- <%=t("excursion.actions.show_fewer")%> ---');
+      $(".showMore").attr("title", "showMore");
+    }
+    return false;
+  });
+});
+</script>
