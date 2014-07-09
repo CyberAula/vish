@@ -200,16 +200,24 @@ class RecommenderSystem
 
   # Usage example: RecommenderSystem.search({:keywords=>"biology", :n=>10})
   def self.search(options=nil)
-    if options.class!=Hash or ![String,Array].include? options[:keywords].class
-      return []
+    if options.class!=Hash 
+      options = Hash.new
     end
 
     #Specify searchTerms
-    if  options[:keywords].is_a? Array
-      searchTerms = keywords.join(" ")
+    if (![String,Array].include? options[:keywords].class) or (options[:keywords].is_a? String and options[:keywords].strip=="")
+      browse = true
+      searchTerms = ""
     else
-      searchTerms = options[:keywords]
+      browse = false
+      if options[:keywords].is_a? String
+        searchTerms = options[:keywords].split(" ")
+      end
+      #Remove keywords with less than 3 characters
+      searchTerms.reject!{|s| s.length < 3}
+      searchTerms = searchTerms.join(" ")
     end
+
 
     #Specify search options
     opts = {}
@@ -217,41 +225,79 @@ class RecommenderSystem
     if options[:n].is_a? Integer
       n = options[:n]
     else
-      n = 20 #default
+      if !options[:page].nil?
+        n = 16    #default results when pagination is requested
+      else
+        n = 10000 #default (All results found)
+      end
     end
+
+    #Old version with extended mode (match exact first)
+    # if(params[:q] && params[:q]!="")
+    #   the_query_or = Riddle.escape(params[:q].strip).gsub(" ", " | ")
+    #   the_query = "(^" + params[:q].strip + "$) | (" + params[:q].strip + ") | (" + the_query_or + ")"
+    #   # order = nil #so it searches exact first
+    # end
 
     #Logical conector: OR
     opts[:match_mode] = :any
     opts[:rank_mode] = :wordcount
     opts[:per_page] = n
     opts[:field_weights] = {
-       :title => 50, 
+       :title => 50,
        :tags => 40,
-       :description => 1
+       :description => 1,
+       :name => 60 #(For users)
     }
     opts[:with] = {}
-    opts[:with][:draft] = false
+    #Only 'Public' objects, drafts are not searched.
+    opts[:with][:relation_ids] = Relation.ids_shared_with(nil)
 
-    # Order by custom weight
-    opts[:sort_mode] = :expr
-   
-    # Ordering by custom weight
-    # Documentation: http://pat.github.io/thinking-sphinx/searching/ts2.html#sorting
-    # Discussion: http://sphinxsearch.com/forum/view.html?id=3675
-    # (Excursion.search searchTerms, opts).results[:matches].map{|m| m[:weight]}
-    # (Excursion.search searchTerms, opts).results[:matches].map{|m| m[:attributes]["@expr"]}
+    if !options[:page].nil?
+      opts[:page] = options[:page].to_i
+    end
 
-    weights = {}
-    weights[:relevance] = 0.80
-    weights[:popularity_score] = 0.10
-    weights[:quality_score] = 0.10
+    if options[:order].is_a? String
+      opts[:order] = options[:order]
+    end
 
-    orderByRelevance = "((@weight)/(" + opts[:field_weights][:title].to_s + "*title_length + " + opts[:field_weights][:description].to_s + "*desc_length + " + opts[:field_weights][:tags].to_s + "*tags_length))"
-    opts[:order] = weights[:relevance].to_s + "*" + orderByRelevance + " + " + weights[:popularity_score].to_s + "*popularity + " + weights[:quality_score].to_s + "*qscore"
+    if options[:models].is_a? Array
+      opts[:classes] = options[:models]
+    else
+      opts[:classes] = SocialStream::Search.models(:extended)
+    end
 
-    searchEngineExcursions = (Excursion.search searchTerms, opts).reject{|e| e.nil?} rescue []
+    if browse==true
+      #Browse
+      opts[:match_mode] = :extended
+    else
+      queryLength = searchTerms.scan(/\w+/).size
 
-    return searchEngineExcursions
+      #Search for some search terms
+      if queryLength > 0 and opts[:order].nil?
+        # Order by custom weight
+        opts[:sort_mode] = :expr
+       
+        # Ordering by custom weight
+        # Documentation: http://pat.github.io/thinking-sphinx/searching/ts2.html#sorting
+        # Discussion: http://sphinxsearch.com/forum/view.html?id=3675
+        # ThinkingSphinx..search(searchTerms, opts).results[:matches].map{|m| m[:weight]}
+        # ThinkingSphinx.search(searchTerms, opts).results[:matches].map{|m| m[:attributes]["@expr"]}
+
+        weights = {}
+        weights[:relevance] = 0.80
+        weights[:popularity_score] = 0.10
+        weights[:quality_score] = 0.10
+
+        orderByRelevance = "1000000*MIN(1,((@weight)/(" + opts[:field_weights][:title].to_s + "*MIN(title_length," + queryLength.to_s + ") + " + opts[:field_weights][:description].to_s + "*MIN(desc_length," + queryLength.to_s + ") + " + opts[:field_weights][:tags].to_s + "*MIN(tags_length," + queryLength.to_s + "))))"
+        opts[:order] = weights[:relevance].to_s + "*" + orderByRelevance + " + " + weights[:popularity_score].to_s + "*popularity + " + weights[:quality_score].to_s + "*qscore"
+      else
+        # Search with an specified order.
+        # Search for words with a length shorten than 3 characraters. In this case, the search engine will return empty results.
+      end
+    end
+
+    return ThinkingSphinx.search searchTerms, opts
   end
 
   private
