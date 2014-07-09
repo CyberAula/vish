@@ -1,0 +1,38 @@
+
+  <% if :type == "random"
+
+      excursions = home_content(profile_or_current_subject, {:scope => scope, :limit => limit || 0, :page=> page, :sort_by=> "updated_at"}) 
+    else
+      excursions = home_content(profile_or_current_subject, {:scope => scope, :limit => limit || 0, :page=> page, :sort_by=> "popularity"})
+    end
+    
+    if @done.size == 0
+
+    excursions = excursions.sample(limit)
+    @done= excursions
+
+    else 
+      excursions = excursions.reject{ |e| @done.include? e }
+      excursions = excursions.sample(limit)
+      @done+=excursions
+    end
+     %>
+  
+  <% excursions.each do |excursion| %>
+    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+  <% end %> 
+
+<script>
+
+	
+	function add_excursions_backstrech(){		
+  		if(backstrech_items!=undefined){
+  		<% excursions.each do |excursion| %>    	  
+            backstrech_items.excursions["#excursion-<%=excursion.id%>"] = "<%=excursion_raw_thumbail(excursion)%>";
+  		<% end %> 
+  		}
+	}
+
+	add_excursions_backstrech();
+</script>
+
