@@ -1,12 +1,4 @@
-
-  <% if :type == "random"
-
-      excursions = home_content(profile_or_current_subject, {:scope => scope, :limit => limit || 0, :page=> page, :sort_by=> "updated_at"}) 
-    else
-      excursions = home_content(profile_or_current_subject, {:scope => scope, :limit => limit || 0, :page=> page, :sort_by=> "popularity"})
-    end
-    
-    if @done.size == 0
+    <% if @done.size == 0
 
     excursions = excursions.sample(limit)
     @done= excursions

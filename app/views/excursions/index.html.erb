@@ -5,7 +5,7 @@
       <a href="#"><%= t("home")%></a>
     </li>
     <li><a href="#">Mi red </a></li>
-    <li><a href="#">Catálogo</a></li>     
+    <li><a href="#">Catálogo</a></li>
       <%= render partial: 'help/help_home' %>
     </ul>
   </div>
@@ -21,8 +21,11 @@
         scope = :net
       end%>
   <div>
-
-    <%= render partial: 'excursions/excursionshome', :locals => { :scope => scope, :page => 1, :limit => 6, :type => "random" } %>
+     <%
+        excursionsRandom = home_content(profile_or_current_subject, {:scope => scope, :limit => 6, :page=> 1, :sort_by=> "updated_at"})
+        excursionsRecommended = RecommenderSystem.excursion_suggestions(current_user, nil, nil)
+     %> 
+    <%= render partial: 'excursions/excursionshome', :locals => { :excursions => excursionsRandom, :limit => 6 } %>
   </div>
   <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
 
@@ -33,8 +36,8 @@
   <div class="tabbable" ><br></div>
   <ul class="">
   <div>
-    <p> Populares </p>
-  <%= render partial: 'excursions/excursionshome', :locals => { :scope => scope, :page => 2, :limit =>  7, :sort_by=> params[:sort_by]||"popularity", :type => "popular"} %>
+    <p> Para ti </p>
+  <%= render partial: 'excursions/excursionshome', :locals => {:excursions => excursionsRecommended, :limit => 7} %>
 
   </div>
 </section>
@@ -43,17 +46,20 @@
   <div class="tabbable" ><br></div>
   <ul class="">
   <div>
-    <p> Para ti </p>
- <%= render partial: 'excursions/excursions', :locals => { :scope => scope, :page => 1, :limit => 14, :sort_by=> params[:sort_by]||"popularity"} %>
+  <p> Populares </p> 
+  <%
+    excursionsDone = excursionsRandom + excursionsRecommended
+  %>
+ <%= render partial: 'excursions/excursions', :locals => { :scope => scope, :page => 1, :limit => 14, :sort_by=> params[:sort_by]||"popularity", :renderedExcursions => excursionsDone} %>
    </ul>
-   
+
  <div class="loader_pagination">
--    <div id="pageless-loader" style="text-align:center;width:100%;">
--      <div class="msg" style="font-size:2em">
--        <%=t('search.loading')%>
--      </div>
--      <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
--    </div>
+    <div id="pageless-loader" style="text-align:center;width:100%;">
+      <div class="msg" style="font-size:2em">
+       <%=t('search.loading')%>
+      </div>
+     <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
+   </div>
 
     </div>
 </section>
