@@ -202,6 +202,9 @@ namespace :db do
     User.record_timestamps=false
     Actor.record_timestamps=false
     Profile.record_timestamps=false
+    Comment.record_timestamps=false
+    ActivityObject.record_timestamps=false
+
 
     User.all.each do |u|
       u.name = Faker::Name.name[0,30]
@@ -262,10 +265,6 @@ namespace :db do
       printTitle("Demo user created with email: 'demo@vishub.org' and password 'demonstration'.")
     end
 
-    User.record_timestamps=true
-    Actor.record_timestamps=true
-    Profile.record_timestamps=true
-
     #Removing private messages
     Receipt.delete_all
     Notification.delete_all
@@ -275,6 +274,20 @@ namespace :db do
     #Removing QuizSession results
     QuizSession.delete_all
     QuizAnswer.delete_all
+
+    #Anonymizing comments
+    Comment.all.each do |c|
+      c.activity_object.update_column :description, Faker::Lorem.sentence(20, true)
+    end
+
+    #Updating excursion authors
+    Rake::Task["fix:authors"].invoke
+
+    User.record_timestamps=true
+    Actor.record_timestamps=true
+    Profile.record_timestamps=true
+    Comment.record_timestamps=true
+    ActivityObject.record_timestamps=true
 
     printTitle("Task Finished")
   end
