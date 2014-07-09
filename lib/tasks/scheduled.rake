@@ -15,18 +15,61 @@ namespace :scheduled do
     #2. Recalculate ranking metrics
     puts "Recalculating ranking metrics"
 
-    rankingWeights = {}
-    rankingWeights[:popularity] = 0.7
-    rankingWeights[:qscore] = 0.3
+    modelCoefficients = {}
+    modelCoefficients[:Excursion] = 1
+    modelCoefficients[:Resource] = 0.9
+    modelCoefficients[:User] = 0.9
+    modelCoefficients[:Event] = 0.9
 
     #Since Sphinx does not support signed integers, we have to store the ranking metric in a positive scale.
     #ao.popularity is in a scale [0,1000000]
     #ao.qscore is in a scale [0,1000000]
+    #ao_ranking will be in a scale [0,1000000]
+    #We will take into account qscore only for resources
+    
+    resourceAOTypes = ["Document", "Excursion", "Webapp", "Scormfile","Link","Embed"]
+    resourceAOs = ActivityObject.where("object_type in (?)", resourceAOTypes)
+    nonResourceAOs = ActivityObject.where("object_type not in (?)", resourceAOTypes)
 
-    ActivityObject.all.each do |ao|
-      #ao_ranking will be in a scale [0,1000000]
-      ao_ranking = rankingWeights[:popularity] * ao.popularity +  rankingWeights[:qscore] * ao.qscore
+    resourceRankingWeights = {}
+    resourceRankingWeights[:popularity] = 0.7
+    resourceRankingWeights[:qscore] = 0.3
+
+    resourceAOs.all.each do |ao|
+      ao_ranking = resourceRankingWeights[:popularity] * ao.popularity +  resourceRankingWeights[:qscore] * ao.qscore
       ao.update_column :ranking, ao_ranking
+    end
+
+    nonResourceAOs.all.each do |ao|
+      ao.ranking = ao.popularity
+
+      if ao.object_type == "Actor"
+        ao.ranking = ao.ranking * modelCoefficients[:User]
+      elsif ao.object_type == "Event"
+        ao.ranking = ao.ranking * modelCoefficients[:Event]
+      end
+
+      ao.update_column :ranking, ao.ranking
+    end
+
+    #3. Fit ranking metrics
+    #Needed to compare different models using the ranking metrics
+    #Popularity metric has been corrected in the recalculate popularity method.
+    puts "Fitting scores and applying correction coefficients"
+
+    metricsScaleFactor = 1000000
+
+    maxRankingForResources = [resourceAOs.max_by {|ao| ao.ranking }.ranking,1].max
+    resourcesCoefficient = (1*metricsScaleFactor)/maxRankingForResources.to_f
+
+    resourceAOs.each do |ao|
+      ao.ranking = ao.ranking * resourcesCoefficient
+      if ao.object_type == "Excursion"
+        ao.ranking = ao.ranking * modelCoefficients[:Excursion]
+      else
+        ao.ranking = ao.ranking * modelCoefficients[:Resource]
+      end
+      ao.update_column :ranking, ao.ranking
     end
 
     timeFinish = Time.now
@@ -56,8 +99,8 @@ namespace :scheduled do
 
     #Popularity is calculated in a 0-1 scale.
     #We have to convert it to an integer.
-    # popularityScaleFactor = 1000000 will store 6 significative numbers
-    popularityScaleFactor = 1000000
+    # metricsScaleFactor = 1000000 will store 6 significative numbers
+    metricsScaleFactor = 1000000
 
     #################################
     #First. Resource popularity
@@ -93,7 +136,7 @@ namespace :scheduled do
         rWeights = resourceWeights
       end
 
-      ao.popularity = ((rWeights[:fVisits] * fVisits + rWeights[:fDownloads] * fDownloads + rWeights[:fLikes] * fLikes)*popularityScaleFactor).round(0)
+      ao.popularity = ((rWeights[:fVisits] * fVisits + rWeights[:fDownloads] * fDownloads + rWeights[:fLikes] * fLikes)*metricsScaleFactor).round(0)
     end
 
     ###################################
@@ -115,7 +158,7 @@ namespace :scheduled do
       uFollowers = ao.follower_count/user_maxFollowerCount.to_f
       uResourcesPopularity = (Excursion.authored_by(ao.object).map{|e| e.popularity}.sum)/user_maxResourcesPopularity.to_f
 
-      ao.popularity = ((userWeights[:followerCount] * uFollowers + userWeights[:resourcesPopularity] * uResourcesPopularity)*popularityScaleFactor).round(0)
+      ao.popularity = ((userWeights[:followerCount] * uFollowers + userWeights[:resourcesPopularity] * uResourcesPopularity)*metricsScaleFactor).round(0)
     end
 
     ###################################
@@ -136,7 +179,7 @@ namespace :scheduled do
       fVisits = (ao.visit_count/timeWindow.to_f)/events_maxVisitCount
       fLikes = (ao.like_count/timeWindow.to_f)/events_maxLikeCount
 
-      ao.popularity = ((eventWeights[:fVisits] * fVisits + eventWeights[:fLikes] * fLikes)*popularityScaleFactor).round(0)
+      ao.popularity = ((eventWeights[:fVisits] * fVisits + eventWeights[:fLikes] * fLikes)*metricsScaleFactor).round(0)
     end
 
     ##############
@@ -155,9 +198,9 @@ namespace :scheduled do
     maxPopularityForUsers = [userAOs.max_by {|ao| ao.popularity }.popularity,1].max
     maxPopularityForEvents = [eventAOs.max_by {|ao| ao.popularity }.popularity,1].max
 
-    resourcesCoefficient = (1*popularityScaleFactor)/maxPopularityForResources.to_f
-    usersCoefficient = (1*popularityScaleFactor)/maxPopularityForUsers.to_f
-    eventsCoefficient = (1*popularityScaleFactor)/maxPopularityForEvents.to_f
+    resourcesCoefficient = (1*metricsScaleFactor)/maxPopularityForResources.to_f
+    usersCoefficient = (1*metricsScaleFactor)/maxPopularityForUsers.to_f
+    eventsCoefficient = (1*metricsScaleFactor)/maxPopularityForEvents.to_f
 
     resourceAOs.each do |ao|
       ao.popularity = ao.popularity * resourcesCoefficient
@@ -192,6 +235,7 @@ namespace :scheduled do
     
     ActivityObject.all.each do |ao|
       ao.update_column :popularity, 0
+      ao.update_column :ranking, 0
       ao.calculate_qscore
     end
 

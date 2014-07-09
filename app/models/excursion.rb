@@ -1015,6 +1015,10 @@ class Excursion < ActiveRecord::Base
     end
   end
 
+  def increment_download_count
+    self.activity_object.increment_download_count
+  end
+
   def is_mostvaluable?
     is_mve
   end
@@ -1026,6 +1030,36 @@ class Excursion < ActiveRecord::Base
   #See app/decorators/social_stream/base/activity_object_decorator.rb
   #Method calculate_qscore
 
+  #######################
+  ## Get Excursion subsets
+  ######################
+  def self.getPopular(n=20,preSelection=nil,user=nil)
+    excursions = []
+    nSubset = [80,4*n].max
+    ids_to_avoid = getIdsToAvoid(preSelection,user)
+    excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").limit(nSubset).sample(n)
+  end
+
+  def self.getIdsToAvoid(preSelection=nil,user=nil)
+    ids_to_avoid = []
+
+    if preSelection.is_a? Array
+      ids_to_avoid = preSelection.map{|e| e.id}
+    end
+
+    if !user.nil?
+      ids_to_avoid.concat(Excursion.authored_by(user).map{|e| e.id})
+    end
+
+    ids_to_avoid.uniq!
+
+    if !ids_to_avoid.is_a? Array or ids_to_avoid.empty?
+      #if ids=[] the queries may returns [], so we fill it with an invalid id (no excursion will ever have id=-1)
+      ids_to_avoid = [-1]
+    end
+
+    return ids_to_avoid
+  end
 
   private
 

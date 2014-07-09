@@ -45,4 +45,39 @@ ActivityObject.class_eval do
     end
   end
 
+  def self.getPopular(n=20,models=nil,preSelection=nil,user=nil)
+    resources = []
+    nSubset = [80,4*n].max
+
+    if models.nil?
+      #All models
+      models = ["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"]
+    end
+
+    ids_to_avoid = getIdsToAvoid(preSelection,user)
+
+    ActivityObject.where("object_type in (?) and id not in (?)", models, ids_to_avoid).order("ranking DESC").limit(nSubset).sample(n).map{|ao| ao.object}
+  end
+
+  def self.getIdsToAvoid(preSelection=nil,user=nil)
+    ids_to_avoid = []
+
+    if preSelection.is_a? Array
+      ids_to_avoid = preSelection.map{|e| e.id}
+    end
+
+    if !user.nil?
+      ids_to_avoid.concat(ActivityObject.authored_by(user).map{|ao| ao.id})
+    end
+
+    ids_to_avoid.uniq!
+
+    if !ids_to_avoid.is_a? Array or ids_to_avoid.empty?
+      #if ids=[] the queries may returns [], so we fill it with an invalid id (no excursion will ever have id=-1)
+      ids_to_avoid = [-1]
+    end
+
+    return ids_to_avoid
+  end
+
 end

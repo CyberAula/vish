@@ -76,11 +76,24 @@ namespace :fix do
 
     printTitle("Fix authors and contributors")
 
-    Excursion.all.map { |ex|
+    Excursion.all.select{|e| !e.author.nil?}.map { |ex|
       eJson = JSON(ex.json)
 
       #Fix author
       eJson["author"] = {name: ex.author.name, vishMetadata:{ id: ex.author.id}}
+
+      #Fix author in quiz_simple_json.
+      begin
+        eJson["slides"].each do |slide|
+          _fixAuthorInSlide(slide,ex)
+          unless slide["slides"].nil?
+            slide["slides"].each do |subslide|
+              _fixAuthorInSlide(subslide,ex)
+            end
+          end
+        end
+      rescue
+      end
 
       #Fix contributors
       if ex.contributors
@@ -103,6 +116,16 @@ namespace :fix do
     }
 
     printTitle("Task Finished")
+  end
+
+  def _fixAuthorInSlide(slide,excursion)
+    if slide["containsQuiz"]=="true" or slide["containsQuiz"]==true
+      slide["elements"].each do |el|
+        if el["type"]=="quiz" and !el["quiz_simple_json"].nil?
+          el["quiz_simple_json"]["author"] = {name: excursion.author.name, vishMetadata:{ id: excursion.author.id}}
+        end
+      end
+    end
   end
 
 

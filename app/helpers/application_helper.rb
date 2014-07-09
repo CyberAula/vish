@@ -13,8 +13,7 @@ module ApplicationHelper
 	end
 
 	def popular_excursions(number=10)
-		# We take visits and likes for now...
-    	Excursion.joins(:activity_object).where("draft is false").order("activity_objects.visit_count + (10 * activity_objects.like_count) DESC").first(number)
+    	Excursion.getPopular(number,nil,current_user)
 	end
 
 	def excursions_with_tag(tag)
@@ -22,7 +21,7 @@ module ApplicationHelper
 	end
 
 	def popular_resources(number=10)
-		ActivityObject.where(:object_type => [Document, Embed, Link].map{|t| t.to_s}).first(number).map{|ao| ao.object}
+		ActivityObject.getPopular(10,["Excursion","Document", "Webapp", "Scormfile","Link","Embed"],nil,current_user)
 	end
 
 	def category_thumbnail(category)		
