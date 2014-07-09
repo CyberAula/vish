@@ -51,56 +51,29 @@
 
           <!--DATE-->
   <label><%= t('event.leyend.date')%></label>
-    <div id="editdate" class="input-group">
+    <div id="date" class="input-group">
       <input class="form-control" data-format="yyyy-MM-dd" type="text" name="event_day">
       <span class="input-group-addon">
-        <i class="fa fa-calendar" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="fa fa-calendar" ></i>
       </span>
     </div>
   <!--HORA INICIO-->
   <label><%= t('event.leyend.start_time')%></label>
-    <div id="edithourinit" class="input-group">
+    <div id="hourinit" class="input-group">
       <input class="form-control" data-format="hh:mm:ss" type="text" name="event_start_time">
       <span class="input-group-addon">
-        <i class="fa fa-calendar" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="fa fa-calendar"></i>
       </span>
     </div>
   <!--HORA FINALIZACION-->
   <label><%= t('event.leyend.end_time')%></label>
-    <div id="edithourfinish" class="input-group">
+    <div id="hourfinish" class="input-group">
       <input class="form-control" data-format="hh:mm:ss" type="text" name="event_end_time">
       <span class="input-group-addon">
-        <i class="fa fa-calendar" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="fa fa-calendar"></i>
       </span>
     </div>
 
-          <!--DATE
-          <label><%= t('event.leyend.fecha')%></label>
-            <div id="date" class="input-append">
-              <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
-              <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-              </span>
-            </div>
-          <!--HORA INICIO
-          <label><%= t('event.leyend.Hora de Inicio')%></label>
-            <div id="hourinit" class="input-append">
-              <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
-              <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-              </span>
-            </div>
-          <!--HORA FINALIZACION
-          <label><%= t('event.leyend.Hora de Finalizacion')%></label>
-            <div id="hourfinish" class="input-append">
-              <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
-              <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-              </span>
-            </div>-->
 
           <script type="text/javascript">
             $(function() {
