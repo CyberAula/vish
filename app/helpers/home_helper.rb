@@ -103,9 +103,7 @@ module HomeHelper
       when "favorites"
         query = query.order('activity_objects.like_count DESC') 
       when "popularity"
-        #Use ranking instead of popularity
-        query = query.order('activity_objects.ranking DESC') 
-        # query = query.order('activity_objects.popularity DESC') 
+        query = query.order('activity_objects.popularity DESC') 
     end
     
    
@@ -130,7 +128,7 @@ module HomeHelper
       items = options[:limit] if options[:limit] > 0
       query = query.page(options[:page]).per(items)
     end
-
+    query
   end
 
   
