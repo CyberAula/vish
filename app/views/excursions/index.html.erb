@@ -45,6 +45,8 @@
   <div>
     <p> Para ti </p>
  <%= render partial: 'excursions/excursions', :locals => { :scope => scope, :page => 1, :limit => 14, :sort_by=> params[:sort_by]||"popularity"} %>
+   </ul>
+   
  <div class="loader_pagination">
 -    <div id="pageless-loader" style="text-align:center;width:100%;">
 -      <div class="msg" style="font-size:2em">
