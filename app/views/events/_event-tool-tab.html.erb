@@ -117,7 +117,7 @@ $(document).ready(function(){
   <% end %>
 </div>
 
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs tooltab">
     <li class="<%= document_details_tab_class document, :info %>">
       <%= link_to (raw("<i class='fa fa-align-left'></i> <span class='hidden-sx hidden-sm'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
     </li> 
@@ -226,20 +226,8 @@ $(document).ready(function(){
           <%=t('spam.report_excursion')%>
         </div>
 
-        <%= form_tag spam_report_path, method: 'post', class: "" do %>
-          <%=hidden_field_tag "activity_object_id", @event.activity_object_id%>
-          <div class="btn-group-vertical" data-toggle="buttons">
-            <label class="btn btn-default">
-              <input type="radio" name="options" id="option1" checked=""> <%=t('spam.spam_content')%>
-            </label>
-            <label class="btn btn-default">
-              <input type="radio" name="options" id="option2"> <%=t('spam.error_placeholder')%>
-            </label>
-          </div>
 
-          <button class="report btn btn-primary"> <%=t('send.send')%></button>
-
-      <!-- %= form_tag spam_report_path, method: 'post', class: "" do %>
+      <%= form_tag spam_report_path, method: 'post', class: "" do %>
         <%=hidden_field_tag "activity_object_id", @event.activity_object_id%>
         <div class="radio">
 
@@ -251,7 +239,7 @@ $(document).ready(function(){
           <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
         </div>
         <button class="report btn btn-primary"> <%=t('send.send')%></button>
-      <% end %> -->
+      <% end %> 
   
   </div>
 </div>
