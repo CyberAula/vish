@@ -275,9 +275,6 @@ class RecommenderSystem
        :description => 1,
        :name => 60 #(For users)
     }
-    opts[:with] = {}
-    #Only 'Public' objects, drafts are not searched.
-    opts[:with][:relation_ids] = Relation.ids_shared_with(nil)
 
     if !options[:page].nil?
       opts[:page] = options[:page].to_i
@@ -292,6 +289,19 @@ class RecommenderSystem
     else
       opts[:classes] = SocialStream::Search.models(:extended)
     end
+
+    opts[:with] = {}
+    #Only 'Public' objects, drafts are not searched.
+    opts[:with][:relation_ids] = Relation.ids_shared_with(nil)
+
+    opts[:without] = {}
+    if options[:users_to_avoid] and !options[:users_to_avoid].reject{|u| u.nil?}.empty?
+      opts[:without][:owner_id] = Actor.normalize_id(options[:users_to_avoid])
+    end
+    if opts[:classes]==[Excursion] and options[:ids_to_avoid] and !options[:ids_to_avoid].reject{|id| id.nil?}.empty?
+      opts[:without][:id] = options[:ids_to_avoid]
+    end
+    
 
     if browse==true
       #Browse
