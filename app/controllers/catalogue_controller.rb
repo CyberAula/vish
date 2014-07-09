@@ -38,7 +38,7 @@ class CatalogueController < ApplicationController
 		                            key:   key,
 		                            page:  page,
 		                            limit: limit,
-		                            order: 'popularity DESC')
+		                            order: 'ranking DESC')
 
 	end
 

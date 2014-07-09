@@ -22,6 +22,7 @@
             locals: { document.class.to_s.underscore.to_sym => document } %>
         </div>
       </div>
+<<<<<<< HEAD
       
       <div class="description-activity">
         <div class="box_description">
@@ -35,6 +36,21 @@
         <div class="activity-box">
           <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
         </div>
+=======
+    </div>
+    <!--recomended-->
+    <div class="recomended" id="recomended_box">
+      <div class="recomended-items">
+        <ul class="small-box clearfix">
+          <% popular_resources(16).each do |resource| %>
+            <% if resource.class == Excursion %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => resource, :container_id => "recomended_box" } %>
+            <% else %>
+              <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
+            <% end %>
+          <% end %>
+        </ul>
+>>>>>>> 46f4ae6bf3aea87b7e572e16c28165cd9e532e79
       </div>
     </div>
 
