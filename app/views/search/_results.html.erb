@@ -8,7 +8,8 @@
 
   <script>
     var elem = {};
-
+    var array_of_id_and_image = array_of_id_and_image || [];
+    
     <% @search_result.each do |result| %>
       <% unless result.nil? %>
         <%if result.respond_to?(:type) && result.type =="Picture"%>
