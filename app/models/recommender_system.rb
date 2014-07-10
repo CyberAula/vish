@@ -106,16 +106,32 @@ class RecommenderSystem
     maxPopularity = preSelectionLOs.max_by {|e| e.popularity }.popularity
     maxQuality = preSelectionLOs.max_by {|lo| lo.qscore }.qscore
 
-    weights = {}
-    weights[:cs_score] = 0.60
-    weights[:ups_score] = 0.15
-    weights[:popularity_score] = 0.10
-    weights[:quality_score] = 0.15
-
     calculateCSScore = !excursion.nil?
     calculateUPSScore = !user.nil?
     calculatePopularityScore = !(maxPopularity.nil? or maxPopularity == 0)
     calculateQualityScore = !(maxQuality.nil? or maxQuality == 0)
+
+    weights = {}
+
+    if calculateCSScore
+      #Recommend items similar to other item
+      weights[:cs_score] = 0.70
+      weights[:ups_score] = 0.10
+      weights[:popularity_score] = 0.10
+      weights[:quality_score] = 0.10
+    elsif calculateUPSScore
+      #Recommend items for a user
+      weights[:cs_score] = 0.0
+      weights[:ups_score] = 0.50
+      weights[:popularity_score] = 0.25
+      weights[:quality_score] = 0.25
+    else
+      #Recommend items for anonymous users
+      weights[:cs_score] = 0.0
+      weights[:ups_score] = 0.0
+      weights[:popularity_score] = 0.5
+      weights[:quality_score] = 0.5
+    end
 
     preSelectionLOs.map{ |e|
       if calculateCSScore
@@ -159,14 +175,20 @@ class RecommenderSystem
   #Content Similarity Score (between 0 and 1)
   def self.contentSimilarityScore(loA,loB)
     weights = {}
-    weights[:language] = 0.6
-    weights[:keywords] = 0.4
+    weights[:language] = 0.5
+    weights[:keywords] = 0.3
+    weights[:title] = 0.2
     # nMetadataFields = weights.length
 
-    languageD = RecommenderSystem.getSemanticDistance(loA.language,loB.language)
-    keywordsD = RecommenderSystem.getKeywordsDistance(loA.tag_list,loB.tag_list)
-
-    return weights[:language] * languageD + weights[:keywords] * keywordsD
+    unless ["independent","ot"].include? loA.language
+      languageD = RecommenderSystem.getSemanticDistance(loA.language,loB.language)
+    else
+      languageD = 0
+    end
+    keywordsD = RecommenderSystem.getKeywordsDistance(loA.tag_list.delete_if{|e| e=="ViSHCompetition2013"},loB.tag_list)
+    titleD = RecommenderSystem.getKeywordsDistance(loA.title.split(" ").reject{|w| w.length<3},loB.title.split(" ").reject{|w| w.length<3})
+    
+    return weights[:language] * languageD + weights[:keywords] * keywordsD + weights[:title] * titleD
   end
 
   #User profile Similarity Score (between 0 and 1)
@@ -175,7 +197,11 @@ class RecommenderSystem
     weights[:language] = 0.6
     weights[:keywords] = 0.4
 
-    languageD = RecommenderSystem.getSemanticDistance(user.language,lo.language)
+    unless ["independent","ot"].include? lo.language
+      languageD = RecommenderSystem.getSemanticDistance(user.language,lo.language)
+    else
+      languageD = 0
+    end
     keywordsD = RecommenderSystem.getKeywordsDistance(user.tag_list,lo.tag_list)
 
     return weights[:language] * languageD + weights[:keywords] * keywordsD
@@ -249,9 +275,6 @@ class RecommenderSystem
        :description => 1,
        :name => 60 #(For users)
     }
-    opts[:with] = {}
-    #Only 'Public' objects, drafts are not searched.
-    opts[:with][:relation_ids] = Relation.ids_shared_with(nil)
 
     if !options[:page].nil?
       opts[:page] = options[:page].to_i
@@ -266,6 +289,19 @@ class RecommenderSystem
     else
       opts[:classes] = SocialStream::Search.models(:extended)
     end
+
+    opts[:with] = {}
+    #Only 'Public' objects, drafts are not searched.
+    opts[:with][:relation_ids] = Relation.ids_shared_with(nil)
+
+    opts[:without] = {}
+    if options[:users_to_avoid] and !options[:users_to_avoid].reject{|u| u.nil?}.empty?
+      opts[:without][:owner_id] = Actor.normalize_id(options[:users_to_avoid])
+    end
+    if opts[:classes]==[Excursion] and options[:ids_to_avoid] and !options[:ids_to_avoid].reject{|id| id.nil?}.empty?
+      opts[:without][:id] = options[:ids_to_avoid]
+    end
+    
 
     if browse==true
       #Browse
@@ -426,7 +462,7 @@ class RecommenderSystem
     stringA =  I18n.transliterate(stringA.downcase.strip)
     stringB =  I18n.transliterate(stringB.downcase.strip)
 
-    if stringA.downcase == stringB
+    if stringA == stringB
       return 1
     else
       return 0
