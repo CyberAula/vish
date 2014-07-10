@@ -22,7 +22,6 @@
 //= require jquery.jscrollpane.min
 //= require jquery.mousewheel
 //= require classie
-//= require bootstrap-slider/bootstrap-slider
 //= require tagit
 //= require jquery.multiselect
 //= require jquery.jplayer
@@ -32,5 +31,6 @@
 //= require bootstrap-datetimepicker.min
 //= require jquery.scrollUp.min
 //= require jquery.easing.min
+//= require bootstrap-slider/bootstrap-slider
 //= require_tree .
 

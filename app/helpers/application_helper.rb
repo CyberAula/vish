@@ -13,7 +13,7 @@ module ApplicationHelper
 	end
 
 	def popular_excursions(number=10)
-    	Excursion.getPopular(number,nil,current_user)
+    	Excursion.getPopular(number,{:user=> current_user, :random=>true})
 	end
 
 	def excursions_with_tag(tag)
