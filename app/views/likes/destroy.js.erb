@@ -5,3 +5,4 @@ if ($(".verb_like.like_<%= dom_id(@like.object) %>").length <1) {
   $(".verb_like.like_<%= dom_id(@like.object) %> .fa-star").removeClass("fa-star").addClass("fa-star-o");
   var n = parseInt($(".verb_like.like_<%= dom_id(@like.object) %>").closest(".like").children(".count").html()) - 1;
   $(".verb_like.like_<%= dom_id(@like.object) %>").closest(".like").children(".count").html(n + "");
+}

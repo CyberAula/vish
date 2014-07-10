@@ -3,12 +3,9 @@ if ($(".verb_like.like_<%= dom_id(@like.object) %>").length <1) {
 } else {
   $(".verb_like.like_<%= dom_id(@like.object) %>").data('method', 'delete');
   $(".verb_like.like_<%= dom_id(@like.object) %> .fa-star-o").removeClass("fa-star-o").addClass("fa-star");
-<<<<<<< HEAD
-  var new_num = parseInt($(".like_count_<%= dom_id(@like.object) %>").html()) + 1;
-  $(".like_count_<%= dom_id(@like.object) %>").html(new_num);
-=======
-  var new_num = parseInt($(".verb_like.like_<%= dom_id(@like.object) %>").closest(".like").children(".count").value()) + 1;
-   $(".verb_like.like_<%= dom_id(@like.object)").closest(".like").children(".count").html(new_num);
->>>>>>> 09eea20ba2fe9408f859b698ae397946773fa816
+
+  var n = parseInt($(".verb_like.like_<%= dom_id(@like.object) %>").closest(".like").children(".count").html()) + 1;
+  $(".verb_like.like_<%= dom_id(@like.object) %>").closest(".like").children(".count").html(n + "");
+
   
 }
