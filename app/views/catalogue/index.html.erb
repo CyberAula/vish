@@ -6,7 +6,7 @@
   		</h1>
       <button class="show_more_catalogue" name="<%=name%>"><%=t('view_all')%></button>
     </header>
-		<ul id="container_<%=name%>" class="items">
+		<ul id="container_<%=name%>">
 			<%for excursion in the_array%>
 				<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion, :container_id => "container_#{name}" } %>
 			<%end%>
