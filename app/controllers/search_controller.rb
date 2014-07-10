@@ -73,6 +73,7 @@ class SearchController < ApplicationController
     end
 
     models = SocialStream::Search.models(mode, params[:type])
+
     RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page=>page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid]})
   end
 
