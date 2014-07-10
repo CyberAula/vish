@@ -47,10 +47,8 @@
   <ul class="">
   <div>
   <p> Populares </p> 
-  <%
-    excursionsDone = excursionsRandom + excursionsRecommended
-  %>
- <%= render partial: 'excursions/excursions', :locals => { :scope => scope, :page => 1, :limit => 14, :sort_by=> params[:sort_by]||"popularity", :renderedExcursions => excursionsDone} %>
+  <%excursionsDone = excursionsRandom + excursionsRecommended %>
+ <%= render partial: 'excursions/excursions', :locals => {:ids_to_avoid => excursionsDone,  :page => 1} %>
    </ul>
 
  <div class="loader_pagination">
