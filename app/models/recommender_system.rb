@@ -298,9 +298,12 @@ class RecommenderSystem
     if options[:users_to_avoid] and !options[:users_to_avoid].reject{|u| u.nil?}.empty?
       opts[:without][:owner_id] = Actor.normalize_id(options[:users_to_avoid])
     end
-    if opts[:classes]==[Excursion] and options[:ids_to_avoid] and !options[:ids_to_avoid].reject{|id| id.nil?}.empty?
+    if opts[:classes].length==1 and ["Excursion"].include? opts[:classes][0].name and options[:ids_to_avoid].is_a? Array and !options[:ids_to_avoid].reject{|id| id.nil?}.empty?
       opts[:without][:id] = options[:ids_to_avoid]
     end
+
+    # (Try to) Avoid nil results (See http://pat.github.io/thinking-sphinx/searching.html#nils)
+    opts[:retry_stale] = true
     
 
     if browse==true
