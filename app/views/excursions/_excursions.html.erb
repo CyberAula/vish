@@ -17,8 +17,8 @@ end
 	$(document).ready(function(){		
 		<%- if controller_name == 'excursions' && page != 0%>
 			$('#excursions_tab_ready ul').pageless({ 
-                          totalPages: <%=excursions.num_pages%>,
-                          url: <%=Vish::Application.config.full_domain + "/search?sort_by=popularity&type=excursion&ids_to_avoid=" + ids_to_avoid.join(",")%>,
+                          totalPages:  <%=excursions.num_pages%>,
+                          url: " <%= Vish::Application.config.full_domain + "/search?sort_by=popularity&type=excursion&ids_to_avoid=" + ids_to_avoid.join(",")%>",
                           currentPage: <%=excursions.current_page%>,
                           loader: '.loader_pagination',
                           end: function(){
