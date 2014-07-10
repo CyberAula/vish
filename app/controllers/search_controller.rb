@@ -68,8 +68,13 @@ class SearchController < ApplicationController
       order = nil
     end
 
+    unless params[:ids_to_avoid].nil?
+      params[:ids_to_avoid] = params[:ids_to_avoid].split(",")
+    end
+
     models = SocialStream::Search.models(mode, params[:type])
-    RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page=>page, :order => order, :models => models})
+
+    RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page=>page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid]})
   end
 
 end
