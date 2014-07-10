@@ -4,6 +4,8 @@ class SearchController < ApplicationController
   RESULTS_SEARCH_PER_PAGE=24
 
   def index
+    params[:page] = params[:page] || 1
+
     @search_result =
       if params[:q].blank?
         search :extended # TODO: this should have :match_mode => :fullscan for efficiency
@@ -12,7 +14,6 @@ class SearchController < ApplicationController
       elsif params[:mode] == "quick"
         search :quick
       else
-    
         search :extended
       end
 
@@ -46,7 +47,6 @@ class SearchController < ApplicationController
   def search mode
     page =  ( mode == :quick ? 1 : params[:page] )
     limit = ( mode == :quick ? 7 : RESULTS_SEARCH_PER_PAGE )
-    the_query = nil
 
     case params[:sort_by]
     when 'ranking'
@@ -68,21 +68,14 @@ class SearchController < ApplicationController
       order = nil
     end
 
-    if(params[:q] && params[:q]!="")
-      the_query_or = Riddle.escape(params[:q].strip).gsub(" ", " | ")
-      the_query = "(^" + params[:q].strip + "$) | (" + params[:q].strip + ") | (" + the_query_or + ")"
-      # order = nil #so it searches exact first
+    unless params[:ids_to_avoid].nil?
+      params[:ids_to_avoid] = params[:ids_to_avoid].split(",")
     end
 
-    SocialStream::Search.search(the_query, 
-      current_subject, 
-      mode: mode, 
-      key: params[:type],
-      page: page, 
-      limit: limit,
-      order: order)
-
+    models = SocialStream::Search.models(mode, params[:type])
+    RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page=>page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid]})
   end
+
 end
 
           

@@ -1033,11 +1033,29 @@ class Excursion < ActiveRecord::Base
   #######################
   ## Get Excursion subsets
   ######################
-  def self.getPopular(n,preSelection=nil,user=nil)
-    excursions = []
-    nSubset = [80,4*n].max
-    ids_to_avoid = getIdsToAvoid(preSelection,user)
-    excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").limit(nSubset).sample(n)
+
+  def self.getPopular(n=20,options={})
+    #(options[:page] only works when options[:random]==false)
+
+    random = (options[:random]!=false)
+
+    if random
+      nSubset = [80,4*n].max
+    else
+      nSubset = n
+    end
+
+    # Using db queries (old version)
+    # Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").limit(nSubset).sample(n)
+    
+    # Using thinking sphinx
+    excursions = RecommenderSystem.search({:n=>nSubset, :order => 'ranking DESC', :models => [Excursion], :users_to_avoid => [options[:user]], :ids_to_avoid => options[:ids_to_avoid], :page => options[:page]})
+
+    if random
+      return excursions.first(nSubset).sample(n)
+    else
+      return excursions
+    end
   end
 
   def self.getIdsToAvoid(preSelection=nil,user=nil)
