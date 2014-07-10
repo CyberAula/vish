@@ -19,9 +19,21 @@
 
 class RecommenderSystem
 
-  def self.excursion_suggestions(user,excursion,options=nil)
+  def self.excursion_suggestions(user=nil,excursion=nil,options=nil)
     # Step 0: Initialize all variables (N,NMax,random,...)
     options = prepareOptions(options)
+
+    # Uncomment this block to activate A/B testing
+    # A/B Testing: 50% of the requests will be attended by the RS, the other 50% will be attended by a random algorithm
+    # if rand < 0.5
+    #   preSelectionLOs = Excursion.where(:draft=>false).sample(options[:n])
+    #   preSelectionLOs.map{ |e|
+    #     e.score_tracking = {
+    #       :rec => "Random"
+    #     }.to_json
+    #   }
+    #   return preSelectionLOs
+    # end
 
     #Step 1: Preselection
     preSelectionLOs = getPreselection(user,excursion,options)
@@ -298,9 +310,12 @@ class RecommenderSystem
     if options[:users_to_avoid] and !options[:users_to_avoid].reject{|u| u.nil?}.empty?
       opts[:without][:owner_id] = Actor.normalize_id(options[:users_to_avoid])
     end
-    if opts[:classes]==[Excursion] and options[:ids_to_avoid] and !options[:ids_to_avoid].reject{|id| id.nil?}.empty?
+    if opts[:classes].length==1 and ["Excursion"].include? opts[:classes][0].name and options[:ids_to_avoid].is_a? Array and !options[:ids_to_avoid].reject{|id| id.nil?}.empty?
       opts[:without][:id] = options[:ids_to_avoid]
     end
+
+    # (Try to) Avoid nil results (See http://pat.github.io/thinking-sphinx/searching.html#nils)
+    opts[:retry_stale] = true
     
 
     if browse==true
