@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140707150431) do
+ActiveRecord::Schema.define(:version => 20140710102208) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -56,9 +56,6 @@ ActiveRecord::Schema.define(:version => 20140707150431) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
-
-  add_index "activity_object_audiences", ["activity_object_id"], :name => "activity_object_audiences_on_activity_object_id"
-  add_index "activity_object_audiences", ["relation_id"], :name => "activity_object_audiences_on_relation_id"
 
   create_table "activity_object_properties", :force => true do |t|
     t.integer "activity_object_id"
@@ -225,7 +222,6 @@ ActiveRecord::Schema.define(:version => 20140707150431) do
     t.text     "embed"
   end
 
-  add_index "events", ["activity_object_id"], :name => "events_on_activity_object_id"
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
   create_table "exclude_auth_mves", :force => true do |t|
@@ -281,7 +277,7 @@ ActiveRecord::Schema.define(:version => 20140707150431) do
     t.integer  "slide_count",        :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",              :default => false
-    t.text     "offline_manifest"
+    t.text     "offline_manifest",   :default => ""
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
     t.integer  "mve",                :default => 0
@@ -539,6 +535,20 @@ ActiveRecord::Schema.define(:version => 20140707150431) do
 
   add_index "ties", ["contact_id"], :name => "index_ties_on_contact_id"
   add_index "ties", ["relation_id"], :name => "index_ties_on_relation_id"
+
+  create_table "tracking_system_entries", :force => true do |t|
+    t.string   "app_id"
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tracking_system_entrys", :force => true do |t|
+    t.string   "app_id"
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "encrypted_password",     :limit => 128, :default => "",     :null => false

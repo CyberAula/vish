@@ -27,3 +27,6 @@ production:
 #    app_name: "ViSH"
 #    auth_token: "secret_loep_token"
 #    repository_name: "ViSH"
+
+#TrackingSystem Key
+#trackingSystemAPIKEY: "secret_key"

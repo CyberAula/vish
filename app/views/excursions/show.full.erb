@@ -58,6 +58,11 @@
 	options["recommendationsAPI"] = {
 		rootURL: "<%=Vish::Application.config.full_domain%>" + "/excursions/last_slide.json"
 	};
+
+	//Tracking System
+	<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? %>
+		options["trackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";
+	<%end%>
 	
 	//Extra options from parent
 	try {
