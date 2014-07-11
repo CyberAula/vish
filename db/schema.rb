@@ -543,13 +543,6 @@ ActiveRecord::Schema.define(:version => 20140710102208) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "tracking_system_entrys", :force => true do |t|
-    t.string   "app_id"
-    t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "users", :force => true do |t|
     t.string   "encrypted_password",     :limit => 128, :default => "",     :null => false
     t.string   "password_salt"
