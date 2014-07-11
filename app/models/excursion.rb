@@ -1058,6 +1058,26 @@ class Excursion < ActiveRecord::Base
     end
   end
 
+  def self.getRecent(n=20, options={})
+    
+    excursions = RecommenderSystem.search({:n=>n, :order => 'updated_at DESC', :models => [Excursion], :users_to_avoid => [options[:user]], :ids_to_avoid => options[:ids_to_avoid], :page => options[:page]})
+  
+  end
+
+  def self.getHome(n=20, type=nil, options={})
+
+    typeOfExcursions = type || 'Recent'
+
+    if 'Recent'
+        excursions = getRecent({:n => n, :options => options})
+    elsif 'Recommended'
+        excursions = RecommenderSystem.search({:n => n, :options => options})
+    else
+        excursions = getPopular({:n => n, :options => options})
+    end
+    excursions
+  end
+
   def self.getIdsToAvoid(preSelection=nil,user=nil)
     ids_to_avoid = []
 
