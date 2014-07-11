@@ -50,9 +50,10 @@
           <div id="search-all">
             <ul class="items">  
               <% @search_result.each do |r| %>
-                  <% unless r.nil? %>              
-                    <%= render partial: "#{ r.class.to_s.tableize }/search_result",
-                               locals:  { r.class.to_s.underscore.to_sym => r }  %>
+                <% unless r.nil? %>              
+                  <%= render partial: "#{ r.class.to_s.tableize }/search_result",
+                             locals:  { r.class.to_s.underscore.to_sym => r }  %>
+                <% end %>
               <% end %>
               <script>
                 var array_of_id_and_image = [];
@@ -216,6 +217,7 @@
 
 
     <% end %>
+   
   </div>
 
 </section>
