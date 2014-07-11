@@ -24,11 +24,12 @@ class ExcursionsController < ApplicationController
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
   skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :cross_search]
-
+  skip_after_filter :discard_flash, :only => [:clone]
+  
   # Enable CORS (http://www.tsheffler.com/blog/?p=428) for last_slide, and iframe_api and cross_search methods
   before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api, :cross_search]
   after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api, :cross_search]
-  skip_after_filter :discard_flash, :only => [:clone]
+  
 
   include SocialStream::Controllers::Objects
 

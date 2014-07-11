@@ -7,6 +7,10 @@
 	configuration["ImagesPath"] = "/assets/";
 	configuration["StylesheetsPath"] = "/assets/";
 	configuration["mode"] = "vish";
+	//Tracking System
+	<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? %>
+		configuration["TrackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";
+	<%end%>
 	options["configuration"] = configuration;
 	options["developping"] = false;
 
