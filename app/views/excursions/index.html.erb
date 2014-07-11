@@ -2,10 +2,10 @@
   <div class="tabbable" >
     <ul class="nav nav-tabs">
      <li class="active">
-      <a href="#"><%= t("home")%></a>
+      <a href="#"><%= t("navigation.home")%></a>
     </li>
-    <li><a href="#">Mi red </a></li>
-    <li><a href="#">Catálogo</a></li>
+    <li><a href="#"><%=t("navigation.mynetwork") %></a></li>
+    <li><a href="#"><%=t("navigation.catalogue") %></a></li>
       <%= render partial: 'help/help_home' %>
     </ul>
   </div>
@@ -21,11 +21,9 @@
         scope = :net
       end%>
   <div>
-     <%
-        excursionsRandom = home_content(profile_or_current_subject, {:scope => scope, :limit => 6, :page=> 1, :sort_by=> "updated_at"})
-        excursionsRecommended = RecommenderSystem.excursion_suggestions(current_user, nil, nil)
-     %> 
-    <%= render partial: 'excursions/excursionshome', :locals => { :excursions => excursionsRandom, :limit => 6 } %>
+     <% excursionsRandom = home_content(profile_or_current_subject, {:scope => scope, :limit => 6, :page=> 1, :sort_by=> "updated_at"})
+        excursionsRecommended = RecommenderSystem.excursion_suggestions(current_user, nil, nil)%> 
+    <%= render partial: 'excursions/excursionshome', :locals => { :excursions => excursionsRandom, :limit => 9 } %>
   </div>
   <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
 
@@ -36,8 +34,8 @@
   <div class="tabbable" ><br></div>
   <ul class="">
   <div>
-    <p> Para ti </p>
-  <%= render partial: 'excursions/excursionshome', :locals => {:excursions => excursionsRecommended, :limit => 7} %>
+    <p> <%= t("home.foryou")%> </p>
+  <%= render partial: 'excursions/excursionshome', :locals => {:excursions => excursionsRecommended, :limit => 10} %>
 
   </div>
 </section>
@@ -46,8 +44,8 @@
   <div class="tabbable" ><br></div>
   <ul class="">
   <div>
-  <p> Populares </p> 
-  <%excursionsDone = excursionsRandom + excursionsRecommended %>
+  <p> <%= t("home.populars")%> </p> 
+  <% excursionsDone = @done %>
  <%= render partial: 'excursions/excursions', :locals => {:ids_to_avoid => excursionsDone,  :page => 1} %>
    </ul>
 

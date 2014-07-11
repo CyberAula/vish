@@ -596,6 +596,9 @@ es:
   help_page: "AYUDA DE ViSH"
   help_manual: "Descargar el manual de usuario"
   hide: "Ocultar"
+  home:
+    foryou: "Para ti"
+    populars: "Populares"
   lang:
     independent: "No depende del lenguaje"
     changed: "Se cambia el idioma a %{lang}"
@@ -630,7 +633,9 @@ es:
     launch: "Empezar"
     room_name: "Nombre de la sala"
   navigation:
+    catalogue: "Catálogo"
     home: "Inicio"
+    mynetwork: "Mi red"
   no_bio: "Este usuario no ha actualizado su biografía."
   notice:
     fill_profile: "No tienes relleno tu perfil con tus <b>areas de interés</b> y tu <b>ocupación</b> en la sección de información personal. Con estos datos te podremos dar una mejor recomendación personalizada. Por favor rellena tu perfil <a href='%{url}'>aquí</a>."
