@@ -3,19 +3,18 @@
 
         <ul class="nav nav-tabs">
           <%if params[:browse]%>
-          <%content_for :title do%>
-            <%= t("site.current.browse")%>
-          <%end%>
-          <h1><i class="fa fa-folder-open"></i><%= t("browse.title")%></h1> 
+            <%content_for :title do%>
+              <%= t("site.current.browse")%>
+            <%end%>
+            <h1><i class="fa fa-folder-open"></i><%= t("browse.title")%></h1> 
    
           <%else%>
-          <%content_for :title do%>
-            <%= t("site.current.search")%>
+            <%content_for :title do%>
+              <%= t("site.current.search")%>
+            <%end%>
+            <h1><i class="fa fa-search"></i><%= t("search.title")%></h1>
           <%end%>
-          <h1><i class="fa fa-search"></i><%= t("search.title")%></h1>
 
-          
-      <%end%>
           <li class="all_results <%= 'active' if params[:type].blank? %>">
             <%= link_to raw('<i class="fa fa-asterisk"></i><span class="hidden-xs hidden-sm">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
           </li>
@@ -54,7 +53,7 @@
                   <% unless r.nil? %>              
                     <%= render partial: "#{ r.class.to_s.tableize }/search_result",
                                locals:  { r.class.to_s.underscore.to_sym => r }  %>
-                  <% end %>
+              <% end %>
               <script>
                 var array_of_id_and_image = [];
                 var elem = {};
@@ -219,7 +218,7 @@
     <% end %>
   </div>
 
-
+</section>
 
 <!--scroll-->    
 <script>
@@ -228,7 +227,3 @@
     $('.scroll-pane').jScrollPane();
   });
 </script>
-</section>
-
-
-

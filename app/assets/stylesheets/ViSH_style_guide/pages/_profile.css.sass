@@ -19,6 +19,7 @@
       @include make-md-column(2, $gutter: $grid-gutter-width)
       @include make-lg-column(2, $gutter: $grid-gutter-width)
       padding-left: 0
+      padding-right: 0
       @media (max-width: $screen-xs-max)
         padding-right: 0
       img.avatar_img
@@ -27,6 +28,7 @@
         @include border-bottom-radius ($border-radius-base)
         @include border-left-radius ($border-radius-base)
         @include border-right-radius ($border-radius-base)
+        
         @include img-responsive
         @media (max-width: $screen-xs-max)
           @include center-block

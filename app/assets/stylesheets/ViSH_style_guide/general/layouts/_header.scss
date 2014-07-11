@@ -48,10 +48,10 @@
 .user-menu{
   margin-left: 12px !important;
   a.photo-user{
-    padding: 3px !important;
+    padding: 0px !important;
     img{
       @include border-left-radius ($border-radius-small);
-      width: 28px;
+      width: 35px;
       @media (min-width: $screen-lg-min){
         min-height: 29px;
       }
