@@ -45,7 +45,8 @@
   <ul class="">
   <div>
   <p> <%= t("home.populars")%> </p> 
-  <% excursionsDone = @done %>
+  <% excursionsDone = @done 
+  %>
  <%= render partial: 'excursions/excursions', :locals => {:ids_to_avoid => excursionsDone,  :page => 1} %>
    </ul>
 
