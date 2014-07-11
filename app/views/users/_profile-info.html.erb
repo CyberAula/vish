@@ -218,27 +218,27 @@ function re_apply_backstrech(tab){
 <!--excursions-->
       <li class="active">
         <a id="excursions_tab" href="#tab1" data-toggle="tab">
-          <i class="fa fa-book"></i>
+          <i class="fa fa-book fa-fw"></i>
           <span class=" hidden-xs hidden-sm"><%=t('excursion.other')%></span>
         </a>
       </li>
 <!--resources-->      
       <li>
         <a id="resources_tab" href="#tab3" data-toggle="tab">
-          <i class="fa fa-file"></i>
+          <i class="fa fa-file fa-fw"></i>
           <span class=" hidden-xs hidden-sm"><%=t('resource.other')%></span>
         </a>
       </li>
 <!--events-->
       <li>
         <a id="events_tab" href="#tab2" data-toggle="tab">
-          <i class="fa fa-video-camera"></i>
+          <i class="fa fa-video-camera fa-fw"></i>
           <span class=" hidden-xs hidden-sm"><%=t('event.other')%></span>
         </a>
       </li>
       <li>
         <a id="categories_tab" href="#tab4" data-toggle="tab">
-          <i class="fa fa-th-large"></i>
+          <i class="fa fa-th-large fa-fw"></i>
           <span class="hidden-xs hidden-sm"><%=t('categories.other')%></span>
         </a>
       </li>
@@ -246,7 +246,7 @@ function re_apply_backstrech(tab){
       <li class="follow-tab">
         <a id="followers_tab" href="#tab5" data-toggle="tab">
           <span><%= profile_subject.followers.count.to_s %></span>
-          <i class="fa fa-group "></i>
+          <i class="fa fa-group fa-fw"></i>
           <span class="hidden-xs hidden-sm"><%= t('follow.followers') %></span>
         </a>
       </li>
@@ -254,7 +254,7 @@ function re_apply_backstrech(tab){
       <li class="follow-tab">
         <a id="followings_tab" href="#tab6" data-toggle="tab">
           <span><%= profile_subject.following_actor_objects.includes(:actor).count.to_s %></span>
-          <i class="fa fa-group green"></i>
+          <i class="fa fa-group fa-fw"></i>
           <span class="hidden-xs hidden-sm"><%= t('follow.followings') %></span>
         </a>
       </li>
