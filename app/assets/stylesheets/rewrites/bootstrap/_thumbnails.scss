@@ -156,6 +156,11 @@
   	.count{
   	    display: inline;
   	}
+    a{
+      &active,&focus{
+        outline:0;
+      }
+    }
   }
   .views {
 	float: right;
