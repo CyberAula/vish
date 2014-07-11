@@ -16,7 +16,13 @@ class TrackingSystemEntriesController < ApplicationController
 
   # POST /tracking_system_entries 
   def create
-    tsentry = TrackingSystemEntry.new(params[:tracking_system_entry])
+    tsentry = TrackingSystemEntry.new
+    tsentry.app_id = params[:app_id]
+    unless params[:data].nil?
+      params[:data] = fillUserData(params[:data])
+    end
+    tsentry.data = params[:data].to_json
+    
     if tsentry.save
       render :json => tsentry.to_json
     else
@@ -33,6 +39,21 @@ class TrackingSystemEntriesController < ApplicationController
         return render :json => ["Unauthorized"], :status => :unauthorized
       end
     end
+  end
+
+  def fillUserData(data)
+    if !data[:user].nil? and !data[:user][:id].nil?
+      user = User.find(data[:user][:id]) rescue nil
+      if !user.nil?
+        data[:user][:age] = user.profile.age
+        data[:user][:country] = user.profile.country
+        data[:user][:city] = user.profile.city
+        data[:user][:tags] = user.tag_list
+        data[:user][:language] = user.language
+        data[:user][:popularity] = user.popularity
+      end
+    end
+    return data
   end
 
   #############
