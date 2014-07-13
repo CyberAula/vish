@@ -1,6 +1,7 @@
 class TrackingSystemEntriesController < ApplicationController
 
   before_filter :authenticate_app, :only => [ :index, :create ]
+  skip_load_and_authorize_resource :only => [ :create ]
 
   # Enable CORS
   before_filter :cors_preflight_check, :only => [ :create ]
