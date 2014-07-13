@@ -173,7 +173,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.unpublishing":"aufheben", "i.Unpublishing":"Aufheben", "i.upload":"Hochladen", "i.Upload":"Hochladen", "i.Version":"Version", "i.verydifficult":"Sehr schwierig", "i.veryeasy":"Sehr einfach", "i.VESurvey1":"Hilf uns, den ViSH Editor zu verbessern", "i.VESurvey2":"Bitte ausf\u00fcllen", "i.VESurvey3":"diese Umfrage", "i.VESurvey4":"Danke f\u00fcr deinen Beitrag", "i.video":"Video", "i.videos":"Videos", "i.VirtualTour":"Virtuelle Tour", "i.yes":"Ja", "i.Yes":"Ja", "i.ZoneTooltip":"Hier klicken um Inhalte hinzuzuf\u00fcgen", 
 "i.tooltip.QSInput":"Einen Namen f\u00fcr das live Quizz eingeben"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
-VISH.VERSION = "0.8.8";
+VISH.VERSION = "0.8.9";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -11079,11 +11079,13 @@ VISH.Status.Device = function(V, $, undefined) {
     }else {
       device.desktop = false
     }
-    device.userAgent = window.navigator.userAgent;
-    device.appName = window.navigator.appName;
-    device.appVersion = window.navigator.appVersion;
-    device.platform = window.navigator.platform;
-    device.language = window.navigator.language
+    if(typeof navigator == "object") {
+      device.userAgent = navigator.userAgent;
+      device.appName = navigator.appName;
+      device.appVersion = navigator.appVersion;
+      device.platform = navigator.platform;
+      device.language = navigator.language
+    }
   };
   var fillScreen = function(device) {
     device.viewport = {width:window.innerWidth, height:window.innerHeight};
@@ -28901,7 +28903,7 @@ VISH.I18n = function(V, $, undefined) {
 }(VISH, jQuery);
 var VISH = VISH || {};
 VISH.Constant = VISH.Constant || {};
-VISH.Constant.Event = {};
+VISH.Constant.Event = VISH.Constant.Event || {};
 VISH.Constant.Event.onMessage = "onMessage";
 VISH.Constant.Event.onGoToSlide = "onGoToSlide";
 VISH.Constant.Event.onPlayVideo = "onPlayVideo";
@@ -31639,6 +31641,7 @@ VISH.TrackingSystem = function(V, $, undefined) {
     if(typeof sessionOptions == "object") {
       _environment.lang = sessionOptions.lang;
       _environment.scorm = sessionOptions.scorm || false;
+      _environment.embed = V.Status.getIsEmbed();
       _environment.vish = V.Status.getIsInVishSite();
       _environment.iframe = V.Status.getIsInIframe();
       _environment.developping = sessionOptions.developping
