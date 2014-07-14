@@ -1,21 +1,22 @@
-
-STATS_FILE_PATH = "public/";
-
+# encoding: utf-8
+STATS_FILE_PATH = "reports/stats.txt";
 
 namespace :stats do
 
-  task :prepare do
-    puts "PREPARE"
-    system "rm " + STATS_FILE_PATH + "stats.txt"
-    system "touch " + STATS_FILE_PATH + "stats.txt"
-    write("ViSH Stats Report")
-  end
-
+  #Usage
+  #Development:   bundle exec rake stats:all
+  #In production: bundle exec rake stats:all RAILS_ENV=production
   task :all => :environment do
     Rake::Task["stats:prepare"].invoke
     Rake::Task["stats:excursions"].invoke(false)
     Rake::Task["stats:resources"].invoke(false)
     Rake::Task["stats:users"].invoke(false)
+  end
+
+  task :prepare do
+    require "#{Rails.root}/lib/task_utils"
+    prepareFile(STATS_FILE_PATH)
+    writeInStats("ViSH Stats Report")
   end
 
   task :excursions, [:prepare] => :environment do |t,args|
@@ -25,9 +26,9 @@ namespace :stats do
       Rake::Task["stats:prepare"].invoke
     end
 
-    write("")
-    write("Excursions Report")
-    write("")
+    writeInStats("")
+    writeInStats("Excursions Report")
+    writeInStats("")
 
     allCreatedExcursions = [];
     for year in 2012..2014
@@ -37,41 +38,41 @@ namespace :stats do
         startDate = DateTime.new(year,month,1)
         endDate = startDate.next_month;
         excursions = Excursion.where(:created_at => startDate..endDate)
-        write(startDate.strftime("%B %Y"))
+        writeInStats(startDate.strftime("%B %Y"))
         allCreatedExcursions.push(excursions);
       end
     end
 
-    write("")
-    write("Total Views")
+    writeInStats("")
+    writeInStats("Total Views")
 
     allTotalViews = [];
     allCreatedExcursions.each do |excursions|
       totalViews = getViews(excursions)
       allTotalViews.push(totalViews);
-      write(totalViews)
+      writeInStats(totalViews)
     end
 
-    write("")
-    write("Total Accumulative Views")
+    writeInStats("")
+    writeInStats("Total Accumulative Views")
     accumulativeViews = 0;
     allTotalViews.each do |totalViews|
       accumulativeViews = accumulativeViews + totalViews
-      write(accumulativeViews)
+      writeInStats(accumulativeViews)
     end
 
-    write("")
-    write("Created Excursions")
+    writeInStats("")
+    writeInStats("Created Excursions")
     allCreatedExcursions.each do |createdExcursions|
-      write(createdExcursions.count)
+      writeInStats(createdExcursions.count)
     end
 
-    write("")
-    write("Accumulative Created Excursions")
+    writeInStats("")
+    writeInStats("Accumulative Created Excursions")
     accumulativeExcursions = 0;
     allCreatedExcursions.each do |createdExcursions|
       accumulativeExcursions = accumulativeExcursions + createdExcursions.count
-      write(accumulativeExcursions)
+      writeInStats(accumulativeExcursions)
     end
 
     # Evaluations
@@ -81,26 +82,26 @@ namespace :stats do
     end
     evaluationsAverage = getAverage(evaluations)
  
-    write("")
-    write("Evaluations: Average")
-    write("Content")
-    write("Design")
-    write("Motivation")
-    write("Engagement")
-    write("Interdisciplinary")
-    write("Use again")
-    write("All")
+    writeInStats("")
+    writeInStats("Evaluations: Average")
+    writeInStats("Content")
+    writeInStats("Design")
+    writeInStats("Motivation")
+    writeInStats("Engagement")
+    writeInStats("Interdisciplinary")
+    writeInStats("Use again")
+    writeInStats("All")
 
     evaluations.each do |evaluation|
-      write(evaluation);
+      writeInStats(evaluation);
     end
-    write(evaluationsAverage);
+    writeInStats(evaluationsAverage);
 
 
     # Evaluations evolution
-    write("")
-    write("Evaluations: Evolution")
-    write("[Content,Design,Motivation,Engagement,Interdisciplinary,Use again]")
+    writeInStats("")
+    writeInStats("Evaluations: Evolution")
+    writeInStats("[Content,Design,Motivation,Engagement,Interdisciplinary,Use again]")
 
     averageEvalsList = [];
     allCreatedExcursions.each do |createdExcursions|
@@ -124,14 +125,14 @@ namespace :stats do
         end
       end
       averageEvalsList.push(averageEval);
-      write(averageEval)
+      writeInStats(averageEval)
     end
 
-    write("")
-    write("Average of all evaluations")
+    writeInStats("")
+    writeInStats("Average of all evaluations")
     averageEvalsList.each do |averageEvals|
       averageEval = getAverage(averageEvals);
-      write(averageEval);
+      writeInStats(averageEval);
     end
 
   end
@@ -143,9 +144,9 @@ namespace :stats do
       Rake::Task["stats:prepare"].invoke
     end
 
-    write("")
-    write("Resources Report")
-    write("")
+    writeInStats("")
+    writeInStats("Resources Report")
+    writeInStats("")
 
     allCreatedResources = [];
     for year in 2012..2014
@@ -155,33 +156,33 @@ namespace :stats do
         startDate = DateTime.new(year,month,1)
         endDate = startDate.next_month;
         resources = Document.where(:created_at => startDate..endDate)
-        write(startDate.strftime("%B %Y"))
+        writeInStats(startDate.strftime("%B %Y"))
         allCreatedResources.push(resources);
       end
     end
 
-    write("")
-    write("Created Resources")
+    writeInStats("")
+    writeInStats("Created Resources")
     allCreatedResources.each do |createdResources|
-      write(createdResources.count)
+      writeInStats(createdResources.count)
     end
 
-    write("")
-    write("Accumulative Created Resources")
+    writeInStats("")
+    writeInStats("Accumulative Created Resources")
     accumulativeResources = 0;
     allCreatedResources.each do |createdResources|
       accumulativeResources = accumulativeResources + createdResources.count
-      write(accumulativeResources)
+      writeInStats(accumulativeResources)
     end
 
     #Resources type
-    write("")
-    write("Type of Resources")
+    writeInStats("")
+    writeInStats("Type of Resources")
     resourcesReport = getResourcesByType(Document.all)
 
     resourcesReport.each do |resourceReport|
-      write(resourceReport["resourceType"].to_s);
-      write(resourceReport["percent"].to_s)
+      writeInStats(resourceReport["resourceType"].to_s);
+      writeInStats(resourceReport["percent"].to_s)
     end
 
   end
@@ -193,9 +194,9 @@ namespace :stats do
       Rake::Task["stats:prepare"].invoke
     end
 
-    write("")
-    write("Users Report")
-    write("")
+    writeInStats("")
+    writeInStats("Users Report")
+    writeInStats("")
 
     allUsers = [];
     for year in 2012..2014
@@ -205,23 +206,23 @@ namespace :stats do
         startDate = DateTime.new(year,month,1)
         endDate = startDate.next_month;
         users = User.where(:created_at => startDate..endDate)
-        write(startDate.strftime("%B %Y"))
+        writeInStats(startDate.strftime("%B %Y"))
         allUsers.push(users);
       end
     end
 
-    write("")
-    write("Registered Users")
+    writeInStats("")
+    writeInStats("Registered Users")
     allUsers.each do |users|
-      write(users.count)
+      writeInStats(users.count)
     end
 
-    write("")
-    write("Accumulative Registered Users")
+    writeInStats("")
+    writeInStats("Accumulative Registered Users")
     accumulativeUsers = 0;
     allUsers.each do |users|
       accumulativeUsers = accumulativeUsers + users.count
-      write(accumulativeUsers)
+      writeInStats(accumulativeUsers)
     end
 
   end
@@ -260,18 +261,6 @@ namespace :stats do
     end
     totalViews
   end
-  
-  def write(line)
-    if line==nil
-      line = "nil"
-    end
-    puts line.to_s
-
-    # Create a new file and write to it  
-    File.open(STATS_FILE_PATH+'stats.txt', 'a') do |f| 
-      f.puts  line.to_s + "\n"
-    end
-  end
 
   def getAverage(array)
     accumulativeItem = 0;
@@ -282,6 +271,10 @@ namespace :stats do
        accumulativeItem = accumulativeItem + item;
     end
     return (accumulativeItem/array.count.to_f).round(2)
+  end
+
+  def writeInStats(line)
+    write(line,STATS_FILE_PATH)
   end
 
 end
