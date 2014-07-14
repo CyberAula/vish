@@ -11,7 +11,9 @@
   </div>
 </div>
 <% @done={} %>
-<section id="excursions_tab_ready2" class="excursions">
+
+
+<section id="excursions_tab_ready2 " class="excursions recent_excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>
     <%
@@ -30,26 +32,30 @@
 
 </section>
 
-<section id="excursions_tab_ready2" class="excursions">
 
-  <div class="tabbable" ><br></div>
+
+<section id="excursions_tab_ready2 " class="excursions foryou_excursions">
   <ul class="">
   <div>
-    <p> <%= t("home.foryou")%> </p>
+    <h3> <%= t("home.foryou")%> </h3>
   <%= render partial: 'excursions/excursionshome', :locals => {:excursions => excursionsRecommended, :limit => 10} %>
 
   </div>
 </section>
  
+
+
  <section id="excursions_tab_ready" class="excursions">
-  <div class="tabbable" ><br></div>
   <ul class="">
   <div>
-  <p> <%= t("home.populars")%> </p> 
+  <h3> <%= t("home.populars")%> </h3> 
   <% excursionsDone = @done 
   %>
  <%= render partial: 'excursions/excursions', :locals => {:ids_to_avoid => excursionsDone,  :page => 1} %>
    </ul>
+
+
+
 
  <div class="loader_pagination">
     <div id="pageless-loader" style="text-align:center;width:100%;">
