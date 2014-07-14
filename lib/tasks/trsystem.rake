@@ -65,6 +65,9 @@ namespace :trsystem do
 
   end
 
+  #Usage
+  #Development:   bundle exec rake trsystem:rs
+  #In production: bundle exec rake trsystem:rs RAILS_ENV=production
   task :rs, [:prepare] => :environment do |t,args|
     args.with_defaults(:prepare => true)
 
@@ -76,6 +79,63 @@ namespace :trsystem do
     writeInTRS("Recommender System Report")
     writeInTRS("")
 
+    vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer")
+
+    recTSD = {}
+
+    recTSD["Random"] = {}
+    recTSD["Random"]["totalRec"] = 0
+    recTSD["Random"]["totalRecShow"] = 0
+    recTSD["Random"]["totalRecAccepted"] = 0
+    recTSD["Random"]["totalRecDenied"] = 0
+
+    recTSD["ViSHRecommenderSystem"] = {}
+    recTSD["ViSHRecommenderSystem"]["totalRec"] = 0
+    recTSD["ViSHRecommenderSystem"]["totalRecShow"] = 0
+    recTSD["ViSHRecommenderSystem"]["totalRecAccepted"] = 0
+    recTSD["ViSHRecommenderSystem"]["totalRecDenied"] = 0
+
+    vvEntries.each do |e|
+      recData = JSON(e["data"])["rs"] rescue nil
+      unless recData.nil? or recData["tdata"].nil?
+        firstItem = recData["tdata"].values.first
+        rsItemTrackingData = JSON(firstItem["recommender_data"]) rescue nil
+        unless rsItemTrackingData.nil? or !["Random","ViSHRecommenderSystem"].include? rsItemTrackingData["rec"]
+          thisRecTSD = recTSD[rsItemTrackingData["rec"]]
+          thisRecTSD["totalRec"] += 1
+
+          if recData["shown"]=="true" || recData["shown"]==true
+            thisRecTSD["totalRecShow"] += 1
+          end
+
+          if recData["accepted"] == "false" or recData["accepted"]==false
+            thisRecTSD["totalRecDenied"] += 1
+          elsif recData["accepted"] == "undefined"
+            #Do nothing
+          elsif recData["accepted"].is_a? String
+            thisRecTSD["totalRecAccepted"] += 1
+          end
+        end
+      end
+    end
+
+    writeInTRS("")
+    writeInTRS("Recommender System: Random")
+    writeInTRS("Showed Recommendations:")
+    writeInTRS(recTSD["Random"]["totalRecShow"])
+    writeInTRS("Accepted Recommendations:")
+    writeInTRS(recTSD["Random"]["totalRecAccepted"])
+    writeInTRS("Denied Recommendations:")
+    writeInTRS(recTSD["Random"]["totalRecDenied"])
+
+    writeInTRS("")
+    writeInTRS("Recommender System: ViSH Recommender")
+    writeInTRS("Showed Recommendations:")
+    writeInTRS(recTSD["ViSHRecommenderSystem"]["totalRecShow"])
+    writeInTRS("Accepted Recommendations:")
+    writeInTRS(recTSD["ViSHRecommenderSystem"]["totalRecAccepted"])
+    writeInTRS("Denied Recommendations:")
+    writeInTRS(recTSD["ViSHRecommenderSystem"]["totalRecDenied"])
   end
 
   def writeInTRS(line)
