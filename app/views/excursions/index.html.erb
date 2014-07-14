@@ -21,7 +21,8 @@
         scope = :net
       end%>
   <div>
-     <% excursionsRandom = home_content(profile_or_current_subject, {:scope => scope, :limit => 6, :page=> 1, :sort_by=> "updated_at"})
+     <% #excursionsRandom = home_content(profile_or_current_subject, {:scope => scope, :limit => 6, :page=> 1, :sort_by=> "updated_at"})
+        excursionsRandom = Excursion.getHome(30, 'Recent')
         excursionsRecommended = RecommenderSystem.excursion_suggestions(current_user, nil, nil)%> 
     <%= render partial: 'excursions/excursionshome', :locals => { :excursions => excursionsRandom, :limit => 9 } %>
   </div>
