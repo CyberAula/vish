@@ -2,25 +2,31 @@
     <!--activity-->
     <div class="activity">
       <div class="tabbable">
-        <ul class="nav nav-tabs">  
+        <ul class="nav nav-tabs"> 
+
           <li class="active">
             <a href="#coment1" data-toggle="tab">
               <i class="icon-comment"></i>
               <span class=" hidden-phone hidden-tablet"><%=t('comment.other')%></span>
             </a>
           </li>
+
           <li>
             <a href="#evaluation1" data-toggle="tab">
               <i class="icon-ok-sign"></i>
               <span class=" hidden-phone "><%=t('evaluation.teaching')%></span>
             </a>
           </li>
+
+
           <li class="suggestion_show hidden-desktop">
-            <a  href="#suggestion_show"  data-toggle="tab">
+            <a  href="#suggestion_show" data-toggle="tab">
               <i class="icon-reorder"></i>
               <span class=" hidden-phone"><%=t('recommended')%></span>
             </a>
           </li>
+
+
         </ul>
         <div class="tab-content">
           
@@ -42,6 +48,19 @@
             <div class="excursion-eval-results">
               <canvas id="evalChart" width="600" height="600"></canvas>
             </div>
+          </div>
+
+          <div class="tab-pane" id="suggestion_show">
+
+  <div class="recomended-mobile hidden-desktop" id="recomended_box">
+    <div class="recomended-items">
+      <ul class="small-box clearfix">
+        <% RecommenderSystem.excursion_suggestions(current_subject,@excursion,{:n=>16}).each do |excursion| %>
+          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :container_id => "recomended_box" } %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
           </div>
 
         </div>
