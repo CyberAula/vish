@@ -1058,21 +1058,33 @@ class Excursion < ActiveRecord::Base
     end
   end
 
-  def self.getRecent(n=20, options={})
-    excursions = RecommenderSystem.search({:n=>n, :order => 'updated_at DESC', :models => [Excursion], :users_to_avoid => [options[:user]], :ids_to_avoid => options[:ids_to_avoid], :page => options[:page]})
+  def self.getRecent(n = 20, options={})
+    nsize = [60,3*n].max
+    nHalf = (n/2.to_f).ceil
+    excursionsRecent = RecommenderSystem.search({:n=> nsize, :order => 'updated_at DESC', :models => [Excursion], :users_to_avoid => [options[:user]], :ids_to_avoid => options[:ids_to_avoid], :page => options[:page]})
+    excursionsRecent.sort!{|b,a| a.ranking <=> b.ranking}
+    excursionsRecent = excursionsRecent.first(nsize/2).sample(nHalf)
+
+    ids_to_avoid = ((options[:ids_to_avoid] || []) + (excursionsRecent.map{|e| e.id})).uniq
+
+    excursionsPopulars = RecommenderSystem.search({:n=> nsize, :order => 'ranking DESC', :models => [Excursion], :users_to_avoid => [options[:user]], :ids_to_avoid => ids_to_avoid, :page => options[:page]})
+    excursionsPopulars.sort!{|b,a| a.updated_at <=> b.updated_at}
+    excursionsPopulars = excursionsPopulars.first(nsize/2).sample(nHalf)
+    
+    excursions = excursionsRecent + excursionsPopulars
   end
 
-  def self.getHome(n=20, type=nil, options={})
-      #n, orde
-    typeOfExcursions = type || 'Recent'
-
-    if typeOfExcursions == 'Recent'
-        excursions = getRecent({:n => n, :options => options})
-    elsif typeOfExcursions == 'Recommended'
-        excursions = RecommenderSystem.search({:n=>n, :order => 'updated_at DESC', :models => [Excursion], :users_to_avoid => [options[:user]], :ids_to_avoid => options[:ids_to_avoid], :page => options[:page]})
+  def self.getHome(n=20, type='Recent', options={})
+    if type == 'Recent'
+        #Param example: (30, 'Recent')
+        excursions = getRecent(n,options)
+    elsif type == 'Recommended'
+        #Param example: (30,'Recommended',{:user => current_user})
+        excursions =  RecommenderSystem.excursion_suggestions(options[:user], nil, options)
     else
-        excursions = getPopular({:n => n, :options => options})
+        excursions = getPopular(n,options)
     end
+    
     excursions
   end
 
