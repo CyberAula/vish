@@ -1,9 +1,7 @@
  <% 
 if controller_name == 'excursions'
  ids_to_avoid= ids_to_avoid.map{|e| e.id}
- #RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page=>page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid]})
-  excursions = RecommenderSystem.search({:order => 'ranking DESC',:n => 20, :ids_to_avoid => ids_to_avoid, :page => page, :models =>[Excursion]})
-  
+  excursions = Excursion.getHome(30,'Popular',{:random => false, :ids_to_avoid => ids_to_avoid})
 else
    excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"popularity"})
 end

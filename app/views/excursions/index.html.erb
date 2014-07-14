@@ -21,10 +21,10 @@
         scope = :net
       end%>
   <div>
-     <% #excursionsRandom = home_content(profile_or_current_subject, {:scope => scope, :limit => 6, :page=> 1, :sort_by=> "updated_at"})
-        excursionsRandom = Excursion.getHome(30, 'Recent')
-        excursionsRecommended = RecommenderSystem.excursion_suggestions(current_user, nil, nil)%> 
-    <%= render partial: 'excursions/excursionshome', :locals => { :excursions => excursionsRandom, :limit => 9 } %>
+     <% excursionsRecent = Excursion.getHome( 30 , 'Recent')
+        excursionsRecommended = Excursion.getHome( 30 ,'Recommended',{:user => current_user})%>
+
+    <%= render partial: 'excursions/excursionshome', :locals => { :excursions => excursionsRecent, :limit => 9 } %>
   </div>
   <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
 
