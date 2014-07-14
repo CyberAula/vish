@@ -32,6 +32,7 @@ production:
 
 # Enable tracking system to record all user actions while viewing resources.
 # trackingSystemAPIKEY: "secret_key"
+# trackingSystemAPIURL: "http://#{ViSH domain}/tracking_system_entries"
 
 # Enable SoundCloud in the ViSH Editor
 # soundCloudAPIKEY: "secret_key"
