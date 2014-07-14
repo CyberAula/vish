@@ -119,7 +119,7 @@ class RecommenderSystem
     maxQuality = preSelectionLOs.max_by {|lo| lo.qscore }.qscore
 
     calculateCSScore = !excursion.nil?
-    calculateUPSScore = !user.nil?
+    calculateUSScore = !user.nil?
     calculatePopularityScore = !(maxPopularity.nil? or maxPopularity == 0)
     calculateQualityScore = !(maxQuality.nil? or maxQuality == 0)
 
@@ -128,19 +128,19 @@ class RecommenderSystem
     if calculateCSScore
       #Recommend items similar to other item
       weights[:cs_score] = 0.70
-      weights[:ups_score] = 0.10
+      weights[:us_score] = 0.10
       weights[:popularity_score] = 0.10
       weights[:quality_score] = 0.10
-    elsif calculateUPSScore
+    elsif calculateUSScore
       #Recommend items for a user
       weights[:cs_score] = 0.0
-      weights[:ups_score] = 0.50
+      weights[:us_score] = 0.50
       weights[:popularity_score] = 0.25
       weights[:quality_score] = 0.25
     else
       #Recommend items for anonymous users
       weights[:cs_score] = 0.0
-      weights[:ups_score] = 0.0
+      weights[:us_score] = 0.0
       weights[:popularity_score] = 0.5
       weights[:quality_score] = 0.5
     end
@@ -152,10 +152,10 @@ class RecommenderSystem
         cs_score = 0
       end
 
-      if calculateUPSScore
-        ups_score = RecommenderSystem.userProfileSimilarityScore(user,e)
+      if calculateUSScore
+        us_score = RecommenderSystem.userProfileSimilarityScore(user,e)
       else
-        ups_score = 0
+        us_score = 0
       end
 
       if calculatePopularityScore
@@ -170,10 +170,10 @@ class RecommenderSystem
         quality_score = 0
       end
 
-      e.score = weights[:cs_score] * cs_score + weights[:ups_score] * ups_score + weights[:popularity_score] * popularity_score + weights[:quality_score] * quality_score
+      e.score = weights[:cs_score] * cs_score + weights[:us_score] * us_score + weights[:popularity_score] * popularity_score + weights[:quality_score] * quality_score
       e.score_tracking = {
         :cs_score => cs_score,
-        :ups_score => ups_score,
+        :us_score => us_score,
         :popularity_score => popularity_score,
         :quality_score => quality_score,
         :weights => weights,
