@@ -1,6 +1,6 @@
 <%= render :partial => 'excursions/vish_viewer.full' %>
 
-<script>    
+<script>
 	options = {};
 	var configuration = {};
 
@@ -10,6 +10,9 @@
 	//Tracking System
 	<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? %>
 		configuration["TrackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";
+		<% unless Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'].nil? %>
+			configuration["TrackingSystemAPIURL"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'] %>";
+		<%end%>
 	<%end%>
 	options["configuration"] = configuration;
 	options["developping"] = false;

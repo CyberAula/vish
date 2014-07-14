@@ -80,7 +80,7 @@ class RecommenderSystem
     keywords = compose_keywords(user,excursion,options)
     if !keywords.empty?
       searchTerms = keywords.join(" ")
-      searchEngineExcursions = (Excursion.search searchTerms, search_options(user,excursion,options)).select{|e| !e.nil?} rescue []
+      searchEngineExcursions = (Excursion.search searchTerms, search_options(user,excursion,options)).reject{|e| e.nil?} rescue []
       preSelection.concat(searchEngineExcursions)
     end
 
@@ -176,6 +176,7 @@ class RecommenderSystem
         :ups_score => ups_score,
         :popularity_score => popularity_score,
         :quality_score => quality_score,
+        :weights => weights,
         :overall_score => e.score,
         :rec => "ViSHRecommenderSystem"
       }.to_json
@@ -403,7 +404,7 @@ class RecommenderSystem
     end
 
     #Remove unuseful keywords
-    keywords.delete_if{|el| el=="ViSHCompetition2013"}
+    keywords.delete_if{|el| ["ViSHCompetition2013"].include? el or el.length < 2}
 
     return keywords
   end

@@ -27,15 +27,10 @@
 		configuration["SoundCloud"] = true;
 		configuration["SoundCloudAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'] %>";
 	<%end%>
-	
 	configuration["Upload"] = true;
-
-	<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? %>
-		configuration["TrackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";
-	<%end%>
-
 	configuration["mode"] = "vish";
 	options["configuration"] = configuration;
+	
 	options["developping"] = false;
 
 	options["user"] = {
