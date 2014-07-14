@@ -1059,45 +1059,32 @@ class Excursion < ActiveRecord::Base
   end
 
   def self.getRecent(n = 20, options={})
-    
-    nsize =  n * 3 || 20 * 3
-    if n < 20
-      nsize = 20
-    end
-    excursionsRec = RecommenderSystem.search({:n=> nsize, :order => 'updated_at DESC', :models => [Excursion], :users_to_avoid => [options[:user]], :ids_to_avoid => options[:ids_to_avoid], :page => options[:page]})
-    ids_to_avoid = options[:ids_to_avoid]
-    
-    ids_to_avoid2 = excursionsRec.map{|e| e.id}
-    
-    if ids_to_avoid == nil
-    ids_to_avoid= ids_to_avoid2
-    else
-    ids_to_avoid = ids_to_avoid2.concat(ids_to_avoid)
-    end
+    nsize = [60,3*n].max
+    nHalf = (n/2.to_f).ceil
+    excursionsRecent = RecommenderSystem.search({:n=> nsize, :order => 'updated_at DESC', :models => [Excursion], :users_to_avoid => [options[:user]], :ids_to_avoid => options[:ids_to_avoid], :page => options[:page]})
+    excursionsRecent.sort!{|b,a| a.ranking <=> b.ranking}
+    excursionsRecent = excursionsRecent.first(nsize/2).sample(nHalf)
+
+    ids_to_avoid = ((options[:ids_to_avoid] || []) + (excursionsRecent.map{|e| e.id})).uniq
+
     excursionsPopulars = RecommenderSystem.search({:n=> nsize, :order => 'ranking DESC', :models => [Excursion], :users_to_avoid => [options[:user]], :ids_to_avoid => ids_to_avoid, :page => options[:page]})
-
-    excursionsRec.sort!{|a,b| a.popularity <=> b.popularity}
-    excursionsPopulars.sort!{|a,b| a.updated_at <=> b.updated_at}
-
-    exc1 = excursionsRec.first(nsize/2)
-    exc2 = excursionsPopulars.first(nsize/2)
+    excursionsPopulars.sort!{|b,a| a.updated_at <=> b.updated_at}
+    excursionsPopulars = excursionsPopulars.first(nsize/2).sample(nHalf)
     
-    excursions = exc1 + exc2
-    excursions = excursions.sample(n)
+    excursions = excursionsRecent + excursionsPopulars
   end
 
-  def self.getHome(n=20, type=nil, options={})
-    typeOfExcursions = type || 'Recent'
-
-    if typeOfExcursions == 'Recent'
+  def self.getHome(n=20, type='Recent', options={})
+    if type == 'Recent'
         #Param example: (30, 'Recent')
-        excursions = getRecent(n, options)
-    elsif typeOfExcursions == 'Recommended'
+        excursions = getRecent(n,options)
+    elsif type == 'Recommended'
         #Param example: (30,'Recommended',{:user => current_user})
         excursions =  RecommenderSystem.excursion_suggestions(options[:user], nil, options)
     else
-        excursions = getPopular(n, options)
+        excursions = getPopular(n,options)
     end
+    
     excursions
   end
 
