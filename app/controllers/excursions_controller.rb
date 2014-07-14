@@ -380,7 +380,18 @@ class ExcursionsController < ApplicationController
       options[:keywords] = params[:q].split(",")
     end
 
-    excursions = RecommenderSystem.excursion_suggestions(current_user,current_excursion,options)
+    # Uncomment this block to activate the A/B testing
+    # A/B Testing: 50% of the requests will be attended by the RS, the other 50% will be attended by a random algorithm
+    if rand < 0.5
+      excursions = Excursion.where(:draft=>false).sample(options[:n])
+      excursions.map{ |e|
+        e.score_tracking = {
+          :rec => "Random"
+        }.to_json
+      }
+    else
+      excursions = RecommenderSystem.excursion_suggestions(current_user,current_excursion,options)
+    end
 
     respond_to do |format|
       format.json {
