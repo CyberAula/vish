@@ -9,7 +9,7 @@
   padding: 6px;
 }
 
-.btn:hover {
+.btn:hover, .btn a {
   text-decoration: none;
   -moz-transition-property: background-color, color;
   -moz-transition-duration: .2s;
@@ -26,7 +26,7 @@
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .btn-default.disabled, .btn-default[disabled] {
   background-color: $white;
-  color: $gray;
+  color: $brand-primary;
   border: 1px solid $brand-primary;
 }
 
