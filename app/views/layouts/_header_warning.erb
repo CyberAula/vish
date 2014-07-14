@@ -2,7 +2,7 @@
 	<div id="warning_cookie_bar">
 		<div>
 	Usamos cookies propias y de terceros para facilitar el uso de esta web y obtener estadísticas destinadas a la investigación. Si continua navegando consideramos que acepta el uso de cookies.
-	<a href="javascript:void(0);" style="padding:4px;background:#4682B4;text-decoration:none;color:#fff;" onclick="PonerCookie();"><b>OK</b></a>
+	<a href="javascript:void(0);" style="padding:4px;background:#4682B4;text-decoration:none;color:#fff;" onclick="setCookieOn();"><b>OK</b></a>
 		</div>
 	</div>
 </ul>
@@ -35,13 +35,13 @@
 	}
 	
 	function getgeoip(json){
-			if (json.country_code=="ES" && getCookie('aviso')!="1") {
+			if (json.country_code=="ES" && getCookie('cookie_warning')!="1") {
 				document.getElementById("warning_cookie_bar").style.display="block";
 			}
 
 		}
-	function PonerCookie(){
-		setCookie('aviso','1',365);
+	function setCookieOn(){
+		setCookie('cookie_warning','1',365);
 		document.getElementById("warning_cookie_bar").style.display="none";
 	}
 </script>
