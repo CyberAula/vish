@@ -23,12 +23,12 @@ class ExcursionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :cross_search]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
   skip_after_filter :discard_flash, :only => [:clone]
   
-  # Enable CORS (http://www.tsheffler.com/blog/?p=428) for last_slide, and iframe_api and cross_search methods
-  before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api, :cross_search]
-  after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api, :cross_search]
+  # Enable CORS (http://www.tsheffler.com/blog/?p=428) for last_slide, and iframe_api methods
+  before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api]
+  after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api]
   
 
   include SocialStream::Controllers::Objects
@@ -270,68 +270,6 @@ class ExcursionsController < ApplicationController
 
 
   ##################
-  # Search Methods
-  ##################
-
-  def search
-    headers['Last-Modified'] = Time.now.httpdate
-
-    @found_excursions = if params[:scope].present? and params[:scope] == "like"
-                          subject_excursions search_subject, { :scope => :like, :limit => params[:per_page].to_i } # This WON'T search... it's a scam
-                        else
-                          Excursion.search params[:q], search_options
-                        end
-    
-    respond_to do |format|
-      format.html {
-        if @found_excursions.size == 0 and params[:scope].present? and params[:scope] == "like"
-          render :partial => "excursions/fav_zero_screen"
-        else
-          render :layout => false
-        end
-      }
-     
-      format.json {
-        results = Hash.new
-        results["excursions"] = []
-        @found_excursions.each do |excursion|
-          unless excursion.nil?
-            results["excursions"].push(JSON(excursion.json))
-          end
-        end
-        render :json => results
-      }
-    end
-  end
-
-  def cross_search
-    limit = [Integer(params[:l]),200].min rescue 20
-    @found_excursions = (Excursion.search params[:q], search_options).sample(limit)
-    
-    holes = [0,limit-@found_excursions.length].max
-    if holes > 0
-      popularExcursions = Excursion.joins(:activity_object).order("activity_objects.ranking DESC").reject{ |ex| @found_excursions.map{ |fex| fex.id }.include? ex.id }
-      popularExcursions.in_groups_of(100+holes){ |group|
-        popularExcursions = group
-        break
-      }
-      @found_excursions.concat(popularExcursions.sample(holes))
-    end
-
-    respond_to do |format|    
-      format.json {
-        results = Hash.new
-        results["excursions"] = []
-        @found_excursions.each do |excursion|
-          results["excursions"].push(excursion.reduced_json(self))
-        end
-        render :json => results
-      }
-    end
-  end
-
-
-  ##################
   # Evaluation Methods
   ##################
   
@@ -361,13 +299,9 @@ class ExcursionsController < ApplicationController
 
 
   ##################
-  # Recomendation
+  # Recomendation on the last slide
   ##################
   
-  def recommended
-    render :partial => "excursions/filter_results", :locals => {:excursions => current_subject.excursion_suggestions(4) }
-  end
-
   def last_slide
     #Prepare parameters to call the RecommenderSystem
 
@@ -487,52 +421,10 @@ class ExcursionsController < ApplicationController
   end
 
 
-
   private
 
   def allowed_params
     [:json, :slide_count, :thumbnail_url, :draft, :offline_manifest]
-  end
-
-  def search_options
-    opts = search_scope_options
-
-    # Pagination
-    opts.deep_merge!({
-      :order => :created_at,
-      :sort_mode => :desc,
-      :per_page => params[:per_page] || 20,
-      :page => params[:page]
-    })
-
-    opts
-  end
-
-  def search_subject
-    return current_subject if request.referer.blank?
-    @search_subject ||=
-      ( Actor.find_by_slug(URI(request.referer).path.split("/")[2]) || current_subject )
-  end
-
-  def search_scope_options
-    if params[:scope].blank? || search_subject.blank?
-      return {}
-    end
-
-    case params[:scope]
-    when "me"
-      if user_signed_in? and (search_subject == current_subject)
-        { :with => { :author_id => [ search_subject.id ] } }
-      else
-        { :with => { :author_id => [ search_subject.id ], :draft => false } }
-      end
-    when "net"
-      { :with => { :author_id => search_subject.following_actor_ids, :draft => false } }
-    when "other"
-      { :without => { :author_id => search_subject.following_actor_and_self_ids }, :with => { :draft => false } }
-    else
-      raise "Unknown search scope #{ params[:scope] }"
-    end
   end
 
   def hack_auth
