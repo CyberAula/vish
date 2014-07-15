@@ -1,24 +1,28 @@
   <script>
-   
+   // En este orden, comprobar que aplicamos el pageless y cambiar de tab.
+   // Lo primero es echar un ojo a cambiar de tab
+
+   $('#home div').tab('show');
+   $('#network div').tab('show');
+   $('#catalogue div').tab('show');
   </script>
 
 <div id="search">
   <div class="tabbable" >
     <ul class="nav nav-tabs">
      <li class="active">
-      <a href="#home"><%= t("navigation.home")%></a>
+      <a href="#home" data-toggle="tab"><%= t("navigation.home")%></a>
     </li>
-    <li><a href="#network"><%=t("navigation.mynetwork") %></a></li>
-    <li><a href="#catalogue"><%=t("navigation.catalogue") %></a></li>
-      
+    <li><a href="#network" data-toggle="tab" ><%=t("navigation.mynetwork") %></a></li>
+    <li><a href="#catforhome" data-toggle="tab" ><%=t("navigation.catalogue") %></a></li>
     </ul>
   </div>
 </div>
    
 
    <div class="tab-content">
-    <div class="tab-pane active" id="home"><%= render partial: 'excursions/home_excursions' %></div>
-    <div class="tab-pane" id="network">...</div>
-    <div class="tab-pane" id="catalogue">...</div>
+    <div class="tab-pane active" id="home"><%= render partial: "excursions/home_excursions"%></div>
+    <div class="tab-pane" id="network"> ... </div>
+    <div class="tab-pane" id="catforhome"> <!-- layouts/catalogue--> </div>
   </div>
 
