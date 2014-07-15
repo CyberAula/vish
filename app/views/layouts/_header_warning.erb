@@ -43,11 +43,11 @@
 		}
 	function setCookieOn(){
 		setCookie('cookie_warning','1',365);
-		document.getElementById("warning_cookie_bar").style.display="block"; //cambiar a block para volver a ver
+		document.getElementById("warning_cookie_bar").style.display="none"; //cambiar a block para volver a ver
 	}
 
 	if (getCookie('cookie_warning') != 1 && geoplugin_countryCode() === "ES"){
-		document.getElementById("warning_cookie_bar").style.display="block";
+		document.getElementById("warning_cookie_bar").style.display="none";
 	}
 	else{
 		document.getElementById("warning_cookie_bar").style.display="block";
