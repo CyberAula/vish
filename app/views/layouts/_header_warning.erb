@@ -4,7 +4,7 @@
 	<a href="javascript:void(0);" onclick="setCookieOn();">OK</a>
 		</div>
 	</div>
-
+<script type="application/javascript" src="http://www.geoplugin.net/javascript.gp"></script>
 <script>
 
 	function getCookie(c_name){
@@ -44,11 +44,11 @@
 		document.getElementById("warning_cookie_bar").style.display="none";
 	}
 
-	if (getCookie('cookie_warning') == 1){
-		document.getElementById("warning_cookie_bar").style.display="none";
+	if (getCookie('cookie_warning') != 1 && geoplugin_countryCode() === "ES"){
+		document.getElementById("warning_cookie_bar").style.display="block";
 	}
 	else{
-		document.getElementById("warning_cookie_bar").style.display="block";
+		document.getElementById("warning_cookie_bar").style.display="none";
 	};
+
 </script>
-<script type="application/javascript" src="http://www.telize.com/geoip?callback=getgeoip"></script>
