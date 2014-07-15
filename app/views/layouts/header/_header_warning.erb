@@ -1,0 +1,54 @@
+	<div id="warning_cookie_bar">
+		<div>
+	Usamos cookies propias y de terceros para facilitar el uso de esta web y obtener estadísticas destinadas a la investigación. Si continua navegando consideramos que acepta el uso de cookies.
+	<a href="javascript:void(0);" onclick="setCookieOn();">OK</a>
+		</div>
+	</div>
+<script type="application/javascript" src="http://www.geoplugin.net/javascript.gp"></script>
+<script>
+
+	function getCookie(c_name){
+		var c_value = document.cookie;
+		var c_start = c_value.indexOf(" " + c_name + "=");
+		if (c_start == -1){
+			c_start = c_value.indexOf(c_name + "=");
+		}
+		if (c_start == -1){
+			c_value = null;
+		}else{
+			c_start = c_value.indexOf("=", c_start) + 1;
+			var c_end = c_value.indexOf(";", c_start);
+			if (c_end == -1){
+				c_end = c_value.length;
+			}
+			c_value = unescape(c_value.substring(c_start,c_end));
+		}
+		return c_value;
+	}
+
+	function setCookie(c_name,value,exdays){
+		var exdate=new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+		document.cookie=c_name + "=" + c_value;
+	}
+	
+	function getgeoip(json){
+			if (json.country_code=="ES" && getCookie('cookie_warning')!="1") {
+				document.getElementById("warning_cookie_bar").style.display="block";
+			}
+
+		}
+	function setCookieOn(){
+		setCookie('cookie_warning','1',365);
+		document.getElementById("warning_cookie_bar").style.display="none"; //For styles changing change to block
+	}
+
+	if (getCookie('cookie_warning') != 1 && geoplugin_countryCode() === "ES"){
+		document.getElementById("warning_cookie_bar").style.display="block";
+	}
+	else{
+		document.getElementById("warning_cookie_bar").style.display="none";
+	};
+
+</script>
