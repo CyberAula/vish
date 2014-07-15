@@ -1,13 +1,12 @@
-<ul class="nav">
 	<div id="warning_cookie_bar">
 		<div>
 	Usamos cookies propias y de terceros para facilitar el uso de esta web y obtener estadísticas destinadas a la investigación. Si continua navegando consideramos que acepta el uso de cookies.
-	<a href="javascript:void(0);" style="padding:4px;background:#4682B4;text-decoration:none;color:#fff;" onclick="setCookieOn();"><b>OK</b></a>
+	<a href="javascript:void(0);" onclick="setCookieOn();">OK</a>
 		</div>
 	</div>
-</ul>
 
 <script>
+
 	function getCookie(c_name){
 		var c_value = document.cookie;
 		var c_start = c_value.indexOf(" " + c_name + "=");
@@ -44,5 +43,12 @@
 		setCookie('cookie_warning','1',365);
 		document.getElementById("warning_cookie_bar").style.display="none";
 	}
+
+	if (getCookie('cookie_warning') == 1){
+		document.getElementById("warning_cookie_bar").style.display="none";
+	}
+	else{
+		document.getElementById("warning_cookie_bar").style.display="block";
+	};
 </script>
 <script type="application/javascript" src="http://www.telize.com/geoip?callback=getgeoip"></script>
