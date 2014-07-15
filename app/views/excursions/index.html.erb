@@ -1,95 +1,24 @@
+  <script>
+   
+  </script>
+
 <div id="search">
   <div class="tabbable" >
     <ul class="nav nav-tabs">
      <li class="active">
-      <a href="#"><%= t("navigation.home")%></a>
+      <a href="#home"><%= t("navigation.home")%></a>
     </li>
-    <li><a href="#"><%=t("navigation.mynetwork") %></a></li>
-    <li><a href="#"><%=t("navigation.catalogue") %></a></li>
-      <%= render partial: 'help/help_home' %>
+    <li><a href="#network"><%=t("navigation.mynetwork") %></a></li>
+    <li><a href="#catalogue"><%=t("navigation.catalogue") %></a></li>
+      
     </ul>
   </div>
 </div>
-<% @done={} %>
+   
 
-
-<section id="excursions_tab_ready2 " class="excursions recent_excursions">
-  <ul class="">
-    <%= render partial: 'excursions/excursion-add' %>
-    <%
-      if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
-        scope = :more
-      else
-        scope = :net
-      end%>
-  <div>
-     <% excursionsRecent = Excursion.getHome( 30 , 'Recent')
-        excursionsRecommended = Excursion.getHome( 30 ,'Recommended',{:user => current_user})%>
-
-    <%= render partial: 'excursions/excursionshome', :locals => { :excursions => excursionsRecent, :limit => 9 } %>
+   <div class="tab-content">
+    <div class="tab-pane active" id="home"><%= render partial: 'excursions/home_excursions' %></div>
+    <div class="tab-pane" id="network">...</div>
+    <div class="tab-pane" id="catalogue">...</div>
   </div>
-  <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
 
-</section>
-
-
-
-<section id="excursions_tab_ready2 " class="excursions foryou_excursions">
-  <ul class="">
-  <div>
-    <h3> <%= t("home.foryou")%> </h3>
-  <%= render partial: 'excursions/excursionshome', :locals => {:excursions => excursionsRecommended, :limit => 10} %>
-
-  </div>
-</section>
- 
-
-
- <section id="excursions_tab_ready" class="excursions">
-  <ul class="">
-  <div>
-  <h3> <%= t("home.populars")%> </h3> 
-  <% excursionsDone = @done 
-  %>
- <%= render partial: 'excursions/excursions', :locals => {:ids_to_avoid => excursionsDone,  :page => 1} %>
-   </ul>
-
-
-
-
- <div class="loader_pagination">
-    <div id="pageless-loader" style="text-align:center;width:100%;">
-      <div class="msg" style="font-size:2em">
-       <%=t('search.loading')%>
-      </div>
-     <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
-   </div>
-
-    </div>
-</section>
-
-
-<script>
-//this will be needed when we have several tabs in the home page
-var backstrech_items = {
-  excursions: {
-
-  },
-  resources: {
-
-  }, 
-  events: {
-
-  }
-};
-
-
-function re_apply_backstrech(tab){
-  for (var key in backstrech_items[tab]) {
-    $(""+ key).backstretch( backstrech_items[tab][key] ); 
-  }
-}
-
-
-
-</script>
