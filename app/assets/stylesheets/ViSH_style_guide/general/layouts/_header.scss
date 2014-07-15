@@ -108,4 +108,19 @@ form.navbar-form-search{
   padding: 10px;
 }
 
+#warning_cookie_bar{
+  display: block;
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  height: 30px;
+  background-color: $brand-secundary;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  a{
+    background-color: white;
+    font-family: $corporate-font-family-sans-serif-Bold;
+  }
+}
 
