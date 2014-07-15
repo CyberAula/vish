@@ -1,15 +1,12 @@
-<div class="btn-group order_by_selector" id="order_by_selector_excursions">
-  <span>
-    <%=t('order_by.title')%>
-  </span>
+<div class="dropdown">
   <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
   <% icon = profile_subject_is_current? ? "pencil" : "dashboard"%>
-  <a type="button" id="dropdownMenuOrdByExcursions" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown">
     <i class="fa fa-<%=icon%>"></i> 
     <%=t('order_by.'+ default_sort_by)%>
     <i class="fa fa-angle-down"></i>
-  </a>
-  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+  </button>
+  <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dLabel">
     <li>
       <a href="#" onclick="excursions_dropdown_select('popularity');" class="sort_by_selected" sort-by-key='popularity'> 
         <i class="fa fa-dashboard"></i>

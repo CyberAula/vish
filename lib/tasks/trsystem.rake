@@ -88,16 +88,24 @@ namespace :trsystem do
     recTSD["Random"]["totalRecShow"] = 0
     recTSD["Random"]["totalRecAccepted"] = 0
     recTSD["Random"]["totalRecDenied"] = 0
+    recTSD["Random"]["timeToAccept"] = []
 
     recTSD["ViSHRecommenderSystem"] = {}
     recTSD["ViSHRecommenderSystem"]["totalRec"] = 0
     recTSD["ViSHRecommenderSystem"]["totalRecShow"] = 0
     recTSD["ViSHRecommenderSystem"]["totalRecAccepted"] = 0
     recTSD["ViSHRecommenderSystem"]["totalRecDenied"] = 0
+    recTSD["ViSHRecommenderSystem"]["timeToAccept"] = []
+
+    #Compare Accepted group vs Denied group
+    recTSD["ViSHRecommenderSystem"]["accepted"] = []
+    recTSD["ViSHRecommenderSystem"]["denied"] = []
+
 
     vvEntries.each do |e|
-      recData = JSON(e["data"])["rs"] rescue nil
-      unless recData.nil? or recData["tdata"].nil?
+      d = JSON(e["data"]) rescue {}
+      recData = d["rs"]
+      unless recData.nil? or !recData["tdata"].is_a? Hash
         firstItem = recData["tdata"].values.first
         rsItemTrackingData = JSON(firstItem["recommender_data"]) rescue nil
         unless rsItemTrackingData.nil? or !["Random","ViSHRecommenderSystem"].include? rsItemTrackingData["rec"]
@@ -114,9 +122,49 @@ namespace :trsystem do
             #Do nothing
           elsif recData["accepted"].is_a? String
             thisRecTSD["totalRecAccepted"] += 1
+
+            #When accepted, measure time.
+            allActions = d["chronology"].values.map{|c| c["actions"].values}.flatten
+            onShowRecommendationAction = allActions.select{|a| a["id"]=="onShowRecommendations" }.last
+            onAcceptRecommendationAction = allActions.select{|a| a["id"]=="onAcceptRecommendation" }.last
+
+            if !onShowRecommendationAction.nil? and !onAcceptRecommendationAction.nil? and !onShowRecommendationAction["t"].nil? and !onAcceptRecommendationAction["t"].nil?
+              recTime = (onAcceptRecommendationAction["t"].to_f - onShowRecommendationAction["t"].to_f).round(2)
+              if recTime > 0
+                thisRecTSD["timeToAccept"].push(recTime)
+              end
+            end
+
+            #When accepted, and RS is ViSHRecommender, store accepted and denied items
+            if rsItemTrackingData["rec"] == "ViSHRecommenderSystem"
+              acceptedItem = recData["tdata"].values.select{|item| item["id"]==recData["accepted"]}[0]
+              acceptedItemData = JSON(acceptedItem["recommender_data"])
+              recTSD["ViSHRecommenderSystem"]["accepted"].push(acceptedItemData)
+
+              deniedItemsLength = recData["tdata"].values.select{|item| item["id"]!=recData["accepted"]}
+              deniedItemsLengthData = deniedItemsLength.map{|item| JSON(item["recommender_data"])}
+              recTSD["ViSHRecommenderSystem"]["denied"] += deniedItemsLengthData
+            end
           end
         end
       end
+    end
+
+
+    ###############
+    # ViSH Recommender System vs Random
+    ###############
+
+    if recTSD["Random"]["timeToAccept"].length > 0
+      randomAverageTimeToAccept = (recTSD["Random"]["timeToAccept"].sum/recTSD["Random"]["timeToAccept"].size.to_f).round(2)
+    else
+      randomAverageTimeToAccept = 0
+    end
+
+    if recTSD["ViSHRecommenderSystem"]["timeToAccept"].length > 0
+      vishRSAverageTimeToAccept = (recTSD["ViSHRecommenderSystem"]["timeToAccept"].sum/recTSD["ViSHRecommenderSystem"]["timeToAccept"].size.to_f).round(2)
+    else
+      vishRSAverageTimeToAccept = 0
     end
 
     writeInTRS("")
@@ -127,7 +175,9 @@ namespace :trsystem do
     writeInTRS(recTSD["Random"]["totalRecAccepted"])
     writeInTRS("Denied Recommendations:")
     writeInTRS(recTSD["Random"]["totalRecDenied"])
-
+    writeInTRS("Average time to accept a recommendation:")
+    writeInTRS(randomAverageTimeToAccept)
+    
     writeInTRS("")
     writeInTRS("Recommender System: ViSH Recommender")
     writeInTRS("Showed Recommendations:")
@@ -136,6 +186,57 @@ namespace :trsystem do
     writeInTRS(recTSD["ViSHRecommenderSystem"]["totalRecAccepted"])
     writeInTRS("Denied Recommendations:")
     writeInTRS(recTSD["ViSHRecommenderSystem"]["totalRecDenied"])
+    writeInTRS("Average time to accept a recommendation:")
+    writeInTRS(vishRSAverageTimeToAccept)
+
+
+    ###############
+    # Accepted vs denied LOs
+    ###############
+
+    acceptedItemsLength = [1,recTSD["ViSHRecommenderSystem"]["accepted"].length].max
+    deniedItemsLength = [1,recTSD["ViSHRecommenderSystem"]["denied"].length].max
+
+    accceptedAverageOverallScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["overall_score"]}.sum/acceptedItemsLength.to_f).round(4)
+    deniedAverageOverallScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["overall_score"]}.sum/deniedItemsLength.to_f).round(4)
+
+    accceptedAverageCSScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["cs_score"]}.sum/acceptedItemsLength.to_f).round(4)
+    deniedAverageCSScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["cs_score"]}.sum/deniedItemsLength.to_f).round(4)
+
+    accceptedAverageUSScore = (recTSD["ViSHRecommenderSystem"]["accepted"].reject{|i| i["us_score"].nil?}.map{|i| i["us_score"]}.sum/acceptedItemsLength.to_f).round(4)
+    deniedAverageUSScore = (recTSD["ViSHRecommenderSystem"]["denied"].reject{|i| i["us_score"].nil?}.map{|i| i["us_score"]}.sum/deniedItemsLength.to_f).round(4)
+
+    accceptedAveragePopularityScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["popularity_score"]}.sum/acceptedItemsLength.to_f).round(4)
+    deniedAveragePopularityScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["popularity_score"]}.sum/deniedItemsLength.to_f).round(4)
+
+    accceptedAverageQualityScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["quality_score"]}.sum/acceptedItemsLength.to_f).round(4)
+    deniedAverageQualityScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["quality_score"]}.sum/deniedItemsLength.to_f).round(4)
+
+    writeInTRS("")
+    writeInTRS("Group of accepted LOs")
+    writeInTRS("Overall score:")
+    writeInTRS(accceptedAverageOverallScore)
+    writeInTRS("Content similarity score:")
+    writeInTRS(accceptedAverageCSScore)
+    writeInTRS("User similarity score:")
+    writeInTRS(accceptedAverageUSScore)
+    writeInTRS("Popularity score:")
+    writeInTRS(accceptedAveragePopularityScore)
+    writeInTRS("Quality score:")
+    writeInTRS(accceptedAverageQualityScore)
+
+    writeInTRS("")
+    writeInTRS("Group of denied LOs")
+    writeInTRS("Overall score:")
+    writeInTRS(deniedAverageOverallScore)
+    writeInTRS("Content similarity score:")
+    writeInTRS(deniedAverageCSScore)
+    writeInTRS("User similarity score:")
+    writeInTRS(deniedAverageUSScore)
+    writeInTRS("Popularity score:")
+    writeInTRS(deniedAveragePopularityScore)
+    writeInTRS("Quality score:")
+    writeInTRS(deniedAverageQualityScore)
   end
 
   def writeInTRS(line)

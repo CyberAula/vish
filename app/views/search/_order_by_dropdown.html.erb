@@ -1,13 +1,14 @@
-<div class="btn-group order_by_selector">
-  <span>
-    <%=t('order_by.title')%>
-  </span>
-  <a type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+
+
+
+<div class="dropdown"  >
+ 
+ <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
     <i class="fa fa-eye"></i>
     <%=t('order_by.relevance')%>
     <i class="fa fa-angle-down"></i>
-  </a>
-  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+  </button>
+  <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dLabel">
     <li>
       <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type])%>" sort-by-key='relevance'>
         <i class="fa fa-eye"></i>

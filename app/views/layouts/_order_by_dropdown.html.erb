@@ -1,12 +1,10 @@
-<div class="btn-group order_by_selector">
-  <span>
-    <%= t('order_by.title') %>
-  </span>
-  <a href="#" class="btn btn-default btn-xs dropdown-toggle dropdownMenuOrdBy" type="button" id="" data-toggle="dropdown">
+<div class="dropdown">
+ 
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
     <i class="fa fa-desktop"> <%= t('order_by.popularity') %></i>
     <i class="fa fa-angle-down"></i>
-  </a>
-  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+  </button>
+  <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dLabel">
     <li>
         <a href="<%=home_path(:sort_by=>"popularity")%>" sort-by-key='popularity'> 
           <i class="fa fa-dashboard"></i>

@@ -87,6 +87,9 @@
 
 .add-item{
   background-image: url("items/malla.png") !important;
+  a{
+    text-decoration: none;
+  }
 }
 
 .thumbnail .caption {
@@ -114,12 +117,13 @@
   .author {
     @include text-overflow;
     a{
+      text-decoration: none;
       color: $brand-primary-2;
       cursor: pointer;
       font-family: $corporate-font-family-sans-serif-Light;
     
       &:hover{
-        color: #315AD6;
+        
       }
     }
   }

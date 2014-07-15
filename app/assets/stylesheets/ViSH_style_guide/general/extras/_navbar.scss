@@ -22,7 +22,7 @@
 
 li.btn-group{
 	@include border-top-radius ($border-radius-base);
-    @include border-bottom-radius ($border-radius-base);
+  @include border-bottom-radius ($border-radius-base);
 }
 
 .navbar-fixed-top .btn{
@@ -33,8 +33,8 @@ li.btn-group{
 .nav-pills .open {
 	&:hover{
 		background-color: $gray !important;
-		 @include border-top-radius ($border-radius-base);
-         @include border-bottom-radius ($border-radius-base);
+		@include border-top-radius ($border-radius-base);
+    @include border-bottom-radius ($border-radius-base);
 
 	}
 }
