@@ -21,8 +21,17 @@
    
 
    <div class="tab-content">
-    <div class="tab-pane active" id="home"><%= render partial: "excursions/home_excursions"%></div>
-    <div class="tab-pane" id="networking"> <%= render partial: "excursions/home_mynetwork", :locals =>{:scope => :me, :page => 1, :sort_by => "popularity"}%></div>
-    <div class="tab-pane" id="catforhome"> <%= render :partial => "catalogue/tags"%> </div>
+    <div class="tab-pane active" id="home">
+      <%= render partial: "excursions/home_excursions"%>
+    </div>
+
+    <div class="tab-pane" id="networking"> 
+      <%= render partial: "excursions/home_mynetwork", :locals =>{:scope => :me, :page => 1, :sort_by => "popularity"}%>
+    </div>
+
+    <div class="tab-pane" id="catforhome"> 
+      <%= render :partial => "catalogue/tags"%> 
+    </div>
+    
   </div>
 
