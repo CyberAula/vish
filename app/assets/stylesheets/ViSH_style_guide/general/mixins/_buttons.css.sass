@@ -1,27 +1,35 @@
 @mixin follow-profile
   text-align: center
   color: $brand-primary
-  font-family: $corporate-font-family-sans-serif-Light
-  position: relative
+  font-family: $corporate-font-family-sans-serif-Regular
+  font-size: 0.8em
+  position: absolute
+  bottom: 6px
+  
+
   form
     margin: 0px
+    width: 100%
     input
       border: none
-      min-height: 33px
+      height: 30px
       background-color: $brand-primary
       color: $white
       width: 100%
       margin-top: 0px
-      padding: 0px
-      font-family: $corporate-font-family-sans-serif-Regular
+      padding: 5px      
+      @include border-top-radius ($border-radius-base)
+      @include border-bottom-radius ($border-radius-base)
 
   .following-button
     background-color: $brand-secundary
     width: 100%
     color: $white
     margin-top: 0px
-    padding: 6px 0
-    font-family: $corporate-font-family-sans-serif-Regular
+    padding: 5px
+    height: 30px
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
 
   .unfollow-button
     form
@@ -29,13 +37,13 @@
       input
         border: 0px none 
         width: 100%
-        min-height: 33px
+        height: 30px
         background-color: $gray
         color: $white
         margin-top: 0px
-        padding: 0px
-        font-family: $corporate-font-family-sans-serif-Regular
-
+        padding: 5px
+        @include border-top-radius ($border-radius-base)
+        @include border-bottom-radius ($border-radius-base)
 
 @mixin see-more
   margin-top: 2% !important
