@@ -63,7 +63,7 @@ class ExcursionsController < ApplicationController
   def index
     index! do |format|
       format.html{
-        if !params[:page]
+        if !params[:networking]
           render "index"
         else
           render :partial => "excursions/home_mynetwork", :locals => {:scope => :net, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity"}, :layout => false
