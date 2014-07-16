@@ -124,7 +124,7 @@ namespace :trsystem do
             thisRecTSD["totalRecAccepted"] += 1
 
             #When accepted, measure time.
-            allActions = d["chronology"].values.map{|c| c["actions"].values}.flatten
+            allActions = d["chronology"].values.map{|c| c["actions"].values}.flatten rescue []
             onShowRecommendationAction = allActions.select{|a| a["id"]=="onShowRecommendations" }.last
             onAcceptRecommendationAction = allActions.select{|a| a["id"]=="onAcceptRecommendation" }.last
 
