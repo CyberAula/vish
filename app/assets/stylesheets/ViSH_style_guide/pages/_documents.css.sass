@@ -45,11 +45,14 @@ aside.recomended
       float: left
       .add
         @include follow-profile
-        margin-top: -10px
+        width: 100%
+        height: 20px
+
     .left-info
       @include make-sm-column(4, $gutter: $grid-gutter-width)
       @include make-md-column(4, $gutter: $grid-gutter-width)
       @include make-lg-column(4, $gutter: $grid-gutter-width)
+      padding: 0
       .viewsAndCount
         clear: both
         padding-top: 2px
@@ -62,6 +65,11 @@ aside.recomended
           font-family: $corporate-font-family-sans-serif-Medium
           display: inline-block
           margin-left: 8px
+          i
+            .fa-star,
+            .fa-star-o
+              color: $brand-primary
+
           a
           &:active
             outline: none
@@ -70,11 +78,13 @@ aside.recomended
             display: inline
       
     .avatar img
-      width: 30px
+
     .right-name
       @include make-sm-column(9, $gutter: $grid-gutter-width)
       @include make-md-column(9, $gutter: $grid-gutter-width)
       @include make-lg-column(9, $gutter: $grid-gutter-width)
+      p
+        margin-bottom: 7px
     .panel-group
       @include make-sm-column(8, $gutter: $grid-gutter-width)
       @include make-md-column(8, $gutter: $grid-gutter-width)
