@@ -25,48 +25,48 @@ class MOODLEQUIZXML
 
 
   def self.generate_MoodleQUIZMC(qjson)
-  #   myxml = ::Builder::XmlMarkup.new(:indent => 2)
-  #   myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+     myxml = ::Builder::XmlMarkup.new(:indent => 2)
+     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
 
-  #   nChoices = qjson["choices"].size
+     nChoices = qjson["choices"].size
 
-  #   if qjson["extras"]["multipleAnswer"] == false 
-  #         card = "true"
-  #       else
-  #         card = "false"
-  #   end 
+     if qjson["extras"]["multipleAnswer"] == false 
+           card = "true"
+         else
+           card = "false"
+     end 
 
-  #   myxml.quiz do
-  #     myxml.question("type" => "category") do
-  #       myxml.category do
-  #         myxml.text do
-  #            myxml.text!("Moodle QUIZ XML export")
-  #         end
-  #       end
-  #     end
+     myxml.quiz do
+       myxml.question("type" => "category") do
+         myxml.category do
+           myxml.text do
+              myxml.text!("Moodle QUIZ XML export")
+           end
+         end
+       end
 
-  #     myxml.question("type" => "multichoice") do
-  #       myxml.name do
-  #         myxml.text do
-  #           myxml.text!(qjson["question"]["value"])
-  #         end #end del text
-  #       end #end del name
-  #       for i in 0..((nChoices)-1)
-  #         if qjson["choices"][i]["answer"] == true
-  #           mappedV = "100"
-  #         else
-  #           mappedV = "0"
-  #         end
-  #           myxml.answer("fraction" => mappedV) do
-  #             myxml.text(qjson["choices"][i]["value"])
-  #           end
-  #         end
-  #         myxml.shuffleanswers("1")
-  #         myxml.single(card)
-  #     end #end del question
-  #   end
-  # end
-  # return myxml;
+       myxml.question("type" => "multichoice") do
+         myxml.name do
+           myxml.text do
+             myxml.text!(qjson["question"]["value"])
+           end #end del text
+         end #end del name
+         for i in 0..((nChoices)-1)
+           if qjson["choices"][i]["answer"] == true
+             mappedV = "100"
+           else
+             mappedV = "0"
+           end
+             myxml.answer("fraction" => mappedV) do
+               myxml.text(qjson["choices"][i]["value"])
+             end
+           end
+           myxml.shuffleanswers("1")
+           myxml.single(card)
+       end #end del question
+     end
+   end
+   return myxml;
 end
 
 

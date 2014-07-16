@@ -24,7 +24,7 @@ require 'builder'
 class IMSQTI
 
   def self.createQTI(filePath,fileName,qjson)
-        require 'zip/zip'
+    require 'zip/zip'
     require 'zip/zipfilesystem'
 
     # filePath = "#{Rails.root}/public/scorm/excursions/"
@@ -227,7 +227,7 @@ end
       count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
       Site.current.config["tmpCounter"] = count + 1
       Site.current.save!
-      
+
       myxml = ::Builder::XmlMarkup.new(:indent => 2)
       myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
         
