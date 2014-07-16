@@ -1,34 +1,59 @@
   <script>
-   // En este orden, comprobar que aplicamos el pageless y cambiar de tab.
-   // Lo primero es echar un ojo a cambiar de tab
-
-   $('#home div').tab('show');
-   $('#network div').tab('show');
-   $('#catalogue div').tab('show');
+  $(document).ready(function(){   
+    var networking_tab_loaded = false;
+    $("#networking_tab").click(function(){
+      if(networking_tab_loaded===false){
+        $('.loader_pagination').show();
+        networking_tab_loaded = true;
+        $.ajax({
+            type : "GET",
+            url : "<%= home_path(:networking=>'true') %>",
+            success : function(html) {
+              $('.loader_pagination').hide();      
+              $("#networking_tab_ready").append(html);
+              //re_apply_pageless("networking");
+            },
+            error: function(){
+              console.log("error loading networking tab");
+           }
+          });
+      } else {
+        //re_apply_pageless("networking");
+      }
+    });
+  });
   </script>
 
 <div id="search">
   <div class="tabbable" >
     <ul class="nav nav-tabs">
      <li class="active">
-      <a href="#home" data-toggle="tab"><%= t("navigation.home")%></a>
+      <a id="home_tab" href="#home" data-toggle="tab"><%= t("navigation.home")%></a>
     </li>
-    <li><a href="#networking" data-toggle="tab" ><%=t("navigation.mynetwork") %></a></li>
-    <li><a target="_blank" href="<%=Vish::Application.config.full_domain%>/catalogue" ><%=t("navigation.catalogue") %></a></li>
+    <li><a id="networking_tab" href="#networking" data-toggle="tab" ><%=t("navigation.mynetwork") %></a></li>
+    <li><a id="catalogue_tab" target="_blank" href="<%=Vish::Application.config.full_domain%>/catalogue" ><%=t("navigation.catalogue") %></a></li>
     </ul>
   </div>
 </div>
    
 
-   <div class="tab-content">
+  <div class="tab-content">
     <div class="tab-pane active" id="home">
       <%= render partial: "excursions/home_excursions"%>
     </div>
 
     <div class="tab-pane" id="networking"> 
-      <%= render partial: "excursions/home_mynetwork", :locals =>{:scope => :me, :page => 1, :sort_by => "popularity"}%>
-    </div>
-    
-    
+      <%#= render partial: "excursions/home_mynetwork", :locals =>{:scope => :me, :page => 1, :sort_by => "popularity"}%>
+      <%= render partial: 'excursions/order_by_dropdown' %>
+      <div id="networking_tab_ready"></div>
+      <div class="loader_pagination" style="display:none">
+        <div id="pageless-loader" style="text-align:center;width:100%;">
+          <div class="msg" style="font-size:2em">
+            <%=t('search.loading')%>
+          </div>
+          <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+        </div>
+      </div>
+    </div>   
   </div>
 
