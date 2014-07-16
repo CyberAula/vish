@@ -25,17 +25,16 @@ Vish::Application.routes.draw do
   match 'users/:id/followers' => 'users#followers'
   match 'users/:id/followings' => 'users#followings'
 
-  # Match the filter before the individual resources
-  match 'excursions/search' => 'excursions#search'
-  match 'excursions/recommended' => 'excursions#recommended'
-  match 'excursions/last_slide' => 'excursions#last_slide'
+  # APIs
+  match '/apis/search' => 'federated_search#search'
   match '/apis/iframe_api' => 'excursions#iframe_api'
-  match '/apis/excursion_search' => 'excursions#cross_search'
   match '/apis/recommender' => 'recommender#api_excursion_suggestions'
 
+  # Match the filter before the excursions resources
   match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
   match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
 
+  match 'excursions/last_slide' => 'excursions#last_slide'
   match 'excursions/preview' => 'excursions#preview'
  
   match 'excursions/:id/metadata' => 'excursions#metadata'
@@ -90,6 +89,7 @@ Vish::Application.routes.draw do
     resources :los
   end
 
+  resources :tracking_system_entries
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

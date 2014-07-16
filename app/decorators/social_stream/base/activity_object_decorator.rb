@@ -45,4 +45,150 @@ ActivityObject.class_eval do
     end
   end
 
+  def search_json(controller)
+    resource = self.object
+
+    #Title
+    unless self.object.class.name == "User"
+      title = resource.title
+    else
+      title = resource.name
+    end
+
+    #Author
+    if  defined? resource.author and resource.author.class.name == "Actor" and !resource.author.user.nil?
+      author = resource.author.name
+      author_profile_url = controller.url_for(resource.author.user)
+    else
+      author = nil
+      author_profile_url = nil
+    end
+
+    #Common fields
+    searchJson =  {
+      :id => self.getUniversalId(),
+      :type => self.getType(),
+      :title => title,
+      :description => resource.description,
+      :tags => resource.tags,
+      :url =>  controller.url_for(resource)
+    }
+
+    fullUrl = self.getFullUrl(controller)
+    unless fullUrl.nil?
+      searchJson[:url_full] = fullUrl
+    end
+
+    downloadUrl = self.getDownloadUrl(controller)
+    unless downloadUrl.nil?
+      searchJson[:file_url] = downloadUrl
+    end
+
+    unless author.nil? or author_profile_url.nil?
+      searchJson[:author] = author
+      searchJson[:author_profile_url] = author_profile_url
+    end
+
+    return searchJson
+  end
+
+  def getUniversalId
+    self.object.class.name + ":" + self.object.id.to_s + "@" + Vish::Application.config.APP_CONFIG["domain"]
+  end
+
+  def getType
+    self.object.class.name
+  end
+
+  def getFullUrl(controller)
+    relativePath = nil
+    absolutePath = nil
+
+    resource = self.object
+
+    if resource.class.superclass.name=="Document"
+      if ["Picture"].include? resource.class.name
+        relativePath = resource.file.url
+      end
+    elsif ["Scormfile","Webapp"].include? resource.class.name
+      absolutePath = resource.lourl
+    elsif ["Excursion"].include? resource.class.name
+      # relativePath = Rails.application.routes.url_helpers.excursion_path(resource, :format=> "full")
+      absolutePath = controller.url_for(resource) + ".full"
+    elsif ["Link"].include? resource.class.name
+      absolutePath = resource.url
+    elsif ["Embed"].include? resource.class.name
+      # absolutePath = resource.fulltext
+      # Not secure. Extract url from fulltext may work.
+    end
+
+    if absolutePath.nil? and !relativePath.nil?
+      absolutePath = Vish::Application.config.full_domain + relativePath
+    end
+
+    return absolutePath
+  end
+
+  def getDownloadUrl(controller)
+    relativePath = nil
+    absolutePath = nil
+
+    resource = self.object
+
+    if resource.class.superclass.name=="Document"
+      relativePath = resource.file.url
+    elsif ["Scormfile","Webapp"].include? resource.class.name
+      absolutePath = resource.zipurl
+    elsif ["Excursion"].include? resource.class.name
+      # relativePath = Rails.application.routes.url_helpers.excursion_path(resource, :format=> "scorm")
+      absolutePath = controller.url_for(resource) + ".scorm"
+    end
+
+    if absolutePath.nil? and !relativePath.nil?
+      absolutePath = Vish::Application.config.full_domain + relativePath
+    end
+
+    return absolutePath
+  end
+
+
+  ##############
+  ## Class Methods
+  ##############
+
+  def self.getPopular(n=20,models=nil,preSelection=nil,user=nil)
+    resources = []
+    nSubset = [80,4*n].max
+
+    if models.nil?
+      #All models
+      models = ["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"]
+    end
+
+    ids_to_avoid = getIdsToAvoid(preSelection,user)
+
+    ActivityObject.where("object_type in (?) and id not in (?)", models, ids_to_avoid).order("ranking DESC").limit(nSubset).sample(n).map{|ao| ao.object}
+  end
+
+  def self.getIdsToAvoid(preSelection=nil,user=nil)
+    ids_to_avoid = []
+
+    if preSelection.is_a? Array
+      ids_to_avoid = preSelection.map{|e| e.id}
+    end
+
+    if !user.nil?
+      ids_to_avoid.concat(ActivityObject.authored_by(user).map{|ao| ao.id})
+    end
+
+    ids_to_avoid.uniq!
+
+    if !ids_to_avoid.is_a? Array or ids_to_avoid.empty?
+      #if ids=[] the queries may returns [], so we fill it with an invalid id (no excursion will ever have id=-1)
+      ids_to_avoid = [-1]
+    end
+
+    return ids_to_avoid
+  end
+
 end

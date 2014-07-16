@@ -76,11 +76,24 @@ namespace :fix do
 
     printTitle("Fix authors and contributors")
 
-    Excursion.all.map { |ex|
+    Excursion.all.select{|e| !e.author.nil?}.map { |ex|
       eJson = JSON(ex.json)
 
       #Fix author
       eJson["author"] = {name: ex.author.name, vishMetadata:{ id: ex.author.id}}
+
+      #Fix author in quiz_simple_json.
+      begin
+        eJson["slides"].each do |slide|
+          _fixAuthorInSlide(slide,ex)
+          unless slide["slides"].nil?
+            slide["slides"].each do |subslide|
+              _fixAuthorInSlide(subslide,ex)
+            end
+          end
+        end
+      rescue
+      end
 
       #Fix contributors
       if ex.contributors
@@ -103,6 +116,16 @@ namespace :fix do
     }
 
     printTitle("Task Finished")
+  end
+
+  def _fixAuthorInSlide(slide,excursion)
+    if slide["containsQuiz"]=="true" or slide["containsQuiz"]==true
+      slide["elements"].each do |el|
+        if el["type"]=="quiz" and !el["quiz_simple_json"].nil?
+          el["quiz_simple_json"]["author"] = {name: excursion.author.name, vishMetadata:{ id: excursion.author.id}}
+        end
+      end
+    end
   end
 
 
@@ -232,6 +255,39 @@ namespace :fix do
         ao.update_column :tags_length, ao.tag_list.length
       end
     end
+    printTitle("Task Finished")
+  end
+
+
+  #Usage
+  #Development:   bundle exec rake fix:absoluteZipPaths
+  #In production: bundle exec rake fix:absoluteZipPaths RAILS_ENV=production
+  task :absoluteZipPaths => :environment do
+    printTitle("Fixing absolute zip paths")
+
+    (Scormfile.all + Webapp.all).each do |resource|
+      unless resource.zippath.nil? or resource.zippath.index("/documents/").nil? or resource.zippath.index("/documents/")==0
+        newZippath = resource.zippath[resource.zippath.index("/documents/")..-1]
+        resource.update_column :zippath, newZippath
+      end
+
+      #Fix also loPaths when APP_CONFIG["code_path"] is not defined
+      if Vish::Application.config.APP_CONFIG["code_path"].nil?
+        unless resource.class != Scormfile or resource.lopath.nil? or resource.lopath.index("/public/scorm/packages").nil? or resource.lopath.index("/public/scorm/packages")==0
+          #Fix Scormfiles
+          newLopath = resource.lopath[resource.lopath.index("/public/scorm/packages")..-1]
+          resource.update_column :lopath, newLopath
+        end
+
+        unless resource.class != Webapp or resource.lopath.nil? or resource.lopath.index("/public/webappscode").nil? or resource.lopath.index("/public/webappscode")==0
+          #Fix WebApps
+          newLopath = resource.lopath[resource.lopath.index("/public/webappscode")..-1]
+          resource.update_column :lopath, newLopath
+        end
+      end
+
+    end
+
     printTitle("Task Finished")
   end
   

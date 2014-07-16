@@ -4,12 +4,11 @@
 #
 
 namespace :db do
+
   namespace :populate do
     # Clear existing tasks
     task(:create_ties).prerequisites.clear
     task(:create_ties).clear
-#    task('create:groups').clear
-#    task(:create).prerequisites.delete('db:seed')
     %w( db:seed create:groups ).each do |t|
       task(:create).prerequisites.delete(t)
     end
@@ -23,6 +22,7 @@ namespace :db do
 
 
     namespace :create do
+      
       desc "Create Ties as follows and rejects only"
       task :ties do
         puts 'Follows population'
@@ -111,10 +111,9 @@ namespace :db do
           owner  = author
           user_author =  ( author.subject_type == "User" ? author : author.user_author )
 
-	if user_author == nil
-
-user_author = author
-end
+          if user_author == nil
+            user_author = author
+          end
 
           e = Excursion.create! :json => {  :title => "kike#{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
                                             :description => "#{Forgery::LoremIpsum.paragraph(:random => true)}",
@@ -128,7 +127,7 @@ end
                                 :owner_id   => owner.id,
                                 :user_author_id => user_author.id,
                                 :relation_ids => [Relation::Public.instance.id],
-				:tag_list => ["Maths","Physics","Chemistry","Geography","Biology","ComputerScience","EnvironmentalStudies","Engineering","Humanities","NaturalScience"].sample(2).join(",")
+				                        :tag_list => ["Maths","Physics","Chemistry","Geography","Biology","ComputerScience","EnvironmentalStudies","Engineering","Humanities","NaturalScience"].sample(2).join(",")
           e.save!
         end
 
@@ -139,9 +138,10 @@ end
           owner  = author
           user_author =  ( author.subject_type == "User" ? author : author.user_author )
 
-	if user_author ==nil
-user_author = author
-end
+          if user_author ==nil
+            user_author = author
+          end
+
           e = Excursion.create! :json => {  :title => "#{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
                                             :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
                                             :author => author.name,
@@ -192,5 +192,105 @@ end
       end
     end
   end
+
+  #Usage
+  #Development:   bundle exec rake db:anonymize
+  #In production: bundle exec rake db:anonymize RAILS_ENV=production
+  task :anonymize => :environment do
+    printTitle("Anonymizing database")
+
+    User.record_timestamps=false
+    Actor.record_timestamps=false
+    Profile.record_timestamps=false
+    Comment.record_timestamps=false
+    ActivityObject.record_timestamps=false
+
+
+    User.all.each do |u|
+      u.name = Faker::Name.name[0,30]
+      u.email = "noreply" + u.id.to_s + "@example.com" #(Include u.id to create a uniq email)
+      u.password = "demonstration"
+      u.slug = u.name.to_url #Create slug using stringex gem
+      unless User.find_by_slug(u.slug).nil?
+        u.slug = u.slug + "-" + u.id.to_s
+      end
+      u.current_sign_in_ip = nil
+      u.last_sign_in_ip = nil
+      u.save(:validate => false)
+
+      #User profile
+      up = u.profile
+      unless up.description.nil?
+        up.description = Faker::Lorem.sentence(20, true)
+      end
+      unless up.organization.nil?
+        up.organization = Faker::Company.name[0,30]
+      end
+      unless up.city.nil?
+        up.city = Faker::Address.city[0,30]
+      end
+      unless up.country.nil?
+        up.country = Faker::Address.country[0,30]
+      end
+      unless up.website.nil?
+        up.website = Faker::Internet.url[0,30]
+      end
+      
+      up.birthday = nil
+      up.phone = nil
+      up.mobile = nil
+      up.fax = nil
+      up.address = nil
+      up.zipcode = nil
+      up.province = nil
+      up.prefix_key = nil
+      up.experience = nil
+      up.skype = nil
+
+      up.save(:validate => false)
+    end
+
+    #Create demo user
+    user = User.all.select{|u| Excursion.authored_by(u).length>0 && u.follower_count>0}.sort{|ub,ua| ua.ranking<=>ub.ranking}.first
+    if user.nil?
+      user = User.all.sample
+    end
+
+    unless user.nil?
+      user.name = Faker::Name.name[0,30]
+      user.email = "demo@vishub.org"
+      user.password = "demonstration"
+      user.slug = user.name.to_url
+      user.save(:validate => false)
+      printTitle("Demo user created with email: 'demo@vishub.org' and password 'demonstration'.")
+    end
+
+    #Removing private messages
+    Receipt.delete_all
+    Notification.delete_all
+    Conversation.delete_all
+    Message.delete_all
+
+    #Removing QuizSession results
+    QuizSession.delete_all
+    QuizAnswer.delete_all
+
+    #Anonymizing comments
+    Comment.all.each do |c|
+      c.activity_object.update_column :description, Faker::Lorem.sentence(20, true)
+    end
+
+    #Updating excursion authors
+    Rake::Task["fix:authors"].invoke
+
+    User.record_timestamps=true
+    Actor.record_timestamps=true
+    Profile.record_timestamps=true
+    Comment.record_timestamps=true
+    ActivityObject.record_timestamps=true
+
+    printTitle("Task Finished")
+  end
+
 end
 

@@ -13,7 +13,7 @@ module ApplicationHelper
 	end
 
 	def popular_excursions(number=10)
-    	Excursion.getPopular(number,nil,current_user)
+    	Excursion.getPopular(number,{:user=> current_user, :random=>true})
 	end
 
 	def excursions_with_tag(tag)
@@ -21,7 +21,7 @@ module ApplicationHelper
 	end
 
 	def popular_resources(number=10)
-		ActivityObject.where(:object_type => [Document, Embed, Link].map{|t| t.to_s}).first(number).map{|ao| ao.object}
+		ActivityObject.getPopular(10,["Excursion","Document", "Webapp", "Scormfile","Link","Embed"],nil,current_user)
 	end
 
 	def category_thumbnail(category)		
