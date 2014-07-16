@@ -31,7 +31,7 @@
       <a id="home_tab" href="#home" data-toggle="tab"><%= t("navigation.home")%></a>
     </li>
     <li><a id="networking_tab" href="#networking" data-toggle="tab" ><%=t("navigation.mynetwork") %></a></li>
-    <li><a id="catalogue_tab" target="_blank" href="<%=Vish::Application.config.full_domain%>/catalogue" ><%=t("navigation.catalogue") %></a></li>
+    <li><a id="catalogue_tab" href="#catforhome" data-toggle="tab" ><%=t("navigation.catalogue") %></a></li>
     </ul>
   </div>
 </div>
@@ -55,5 +55,11 @@
         </div>
       </div>
     </div>   
+
+
+    <div class="tab-pane" id="catforhome"> 
+      <%= render :partial => "catalogue/tags"%> 
+    </div>
+    
   </div>
 

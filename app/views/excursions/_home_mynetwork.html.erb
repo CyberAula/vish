@@ -1,4 +1,4 @@
-<section id="excursions_tab_ready4 " class="excursions recent_excursions">
+<section id="excursions_tab_ready4 " class="excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>   
   	<% excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"popularity"}) %>

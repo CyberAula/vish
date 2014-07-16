@@ -1,3 +1,6 @@
+.catalogue-layout
+  height: 39px
+
 #excursions_catalogue,
 #open_catalogue
   display: block
@@ -20,44 +23,27 @@
     clear: both
     width: 100%
 
-.show_more_catalogue
-  display: inline-block
-  float: right
-  color: #333333
-  cursor: pointer
-  font-size: 11px
-  font-weight: bold
-  line-height: 24px
-  text-align: center
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8)
-  background-color: #ddd
-  border-radius: 3px
-  border: 1px solid #ccc
-  margin-right: 10px
-
-.show_more_catalogue:hover
-  background-color: #fff
 
 #showMore_tags
-  display: inline-block
-  float: left
-  color: $white
+  display: block
+  clear: both
+  color: $gray
+  background-color: $white
   cursor: pointer
   font-size: 11px
   line-height: 24px
   text-align: center
-  border: none
-  background: $secondColor
-  width: 10%
+  width: 150px
   margin: 0 auto
+  border: 1px solid #999999
   a
-    color: $white
+    color: $gray
 
 #catalogue
   width: 100%
   float: left
-  background: $secondColor
-  margin-top: 50px
+  background: none
+  margin-top: -25px
   display: block
 
   ul.Tags_list_as
@@ -79,23 +65,36 @@
       margin: 0
       position: absolute
 
-      h3
-        text-align: center
-        width: auto
-        margin: 0 auto
-        display: block
-        font-family: #017CC8
-        color: lighten($secondColor, 5%) 
-        margin-top: 14px
-        font-size: 20px
       i
         margin: 0
     #effect
       display: block
       float: left
-      margin-left: 10%
-      padding: 10px 0
-      width: 90%
+      border-bottom: 1px solid #999999
+      padding: 5px 0
+      width: 100%
+
+      li
+        text-align: center
+        label
+          color: $gray
+          font-weight: 500
+          text-shadow: none
+          position: relative
+          width: 100%
+          height: auto
+
+
+        label:hover
+          color: darken($gray, 20%) 
+          font-weight: 600
+
+
+
+
+
+
+
 
     .newClass 
       li
@@ -103,10 +102,11 @@
       li:nth-of-type(-n+10) 
         display: block
         margin-top: 5px
-        width: 19%
+        width: 20%
         display: block
         float: left
-        padding-left: 1%
+        padding-left: 0
+
         word-wrap: ellipsis
 
 
@@ -116,11 +116,19 @@
       li:nth-of-type(-n+50) 
         display: block
         margin-top: 5px
-        width: 19%
+        width: 20%
         display: block
+        padding-left: 0
         float: left
-        padding-left: 1%
         word-wrap: ellipsis
+
+
+
+
+
+
+
+
 
 
 
@@ -128,13 +136,6 @@
 @media (min-width: 900px) and (max-width: 1060px)
   #catalogue 
     ul.Tags_list_as 
-      .info_catalogue
-        h3
-          transform: rotate(-90deg)
-          -ms-transform: rotate(-90deg) /* IE 9 */
-          -webkit-transform: rotate(-90deg) /* Safari and Chrome */
-          position: absolute
-          top: 30%
 
       #effect
         li
@@ -151,13 +152,6 @@
 
   #catalogue 
     ul.Tags_list_as 
-      .info_catalogue
-        h3
-          transform: rotate(-90deg)
-          -ms-transform: rotate(-90deg) /* IE 9 */
-          -webkit-transform: rotate(-90deg) /* Safari and Chrome */
-          position: absolute
-          top: 20%
       #effect
         li
           width: 32%
@@ -168,15 +162,6 @@
     width: 15%
   #catalogue 
     ul.Tags_list_as 
-
-      .info_catalogue
-        width: 15%
-        h3
-          transform: rotate(-90deg)
-          -ms-transform: rotate(-90deg) /* IE 9 */
-          -webkit-transform: rotate(-90deg) /* Safari and Chrome */
-          position: absolute
-          top: 10%
       #effect
         width: 85%
         margin-left: 15%
@@ -189,16 +174,6 @@
     width: 20%
   #catalogue 
     ul.Tags_list_as 
-
-      .info_catalogue
-        width: 20%
-        h3
-          transform: rotate(-90deg)
-          -ms-transform: rotate(-90deg) /* IE 9 */
-          -webkit-transform: rotate(-90deg) /* Safari and Chrome */
-          position: absolute
-          top: 10%
-
       #effect
         width: 80%
         margin-left: 20%
@@ -288,4 +263,8 @@
       display: none
     .box-item:nth-of-type(-n+1) 
       display: block
+
+
+
+
 
