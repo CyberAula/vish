@@ -1,27 +1,109 @@
-  <script>
-  $(document).ready(function(){   
+<script>
+
+  $(document).ready(function(){  
+
     var networking_tab_loaded = false;
+
     $("#networking_tab").click(function(){
       if(networking_tab_loaded===false){
         $('.loader_pagination').show();
         networking_tab_loaded = true;
+        console.log(networking_tab_loaded);
         $.ajax({
             type : "GET",
-            url : "<%= home_path(:networking=>'true') %>",
+            url : "<%= home_path(:networking=>'true', :page => 1) %>",
             success : function(html) {
               $('.loader_pagination').hide();      
               $("#networking_tab_ready").append(html);
-              //re_apply_pageless("networking");
+              re_apply_pageless("networking");
             },
             error: function(){
               console.log("error loading networking tab");
            }
           });
       } else {
-        //re_apply_pageless("networking");
+        re_apply_pageless("networking");
       }
     });
+    
+
+    $("#home_tab").click(function(){
+      re_apply_pageless("home");
+    });
+
   });
+ var urlforhome = "";
+
+  var pageless_state = {
+      "home":{
+        "url": urlforhome,
+        "num_pages":0,
+        "current_page":0
+      },
+      "networking":{
+        "url": "<%= home_path(:networking=>'true') %>",
+        "num_pages":0,
+        "current_page":0
+      }/*,
+      "catalogue":{
+        "url": "<%= search_path() %>",
+        "num_pages":0,
+        "current_page":0
+      }*/
+    };
+  
+    function update_pageless_state(tab, num_pages, current_page){
+      pageless_state[tab].num_pages = num_pages;
+      pageless_state[tab].current_page = current_page;
+    }
+
+
+
+    function re_apply_pageless(tab){
+    //first remove old pageless
+      $.pagelessStop();
+
+      
+      $("#" + tab + "_tab_ready ul").pageless({ 
+                      totalPages: pageless_state[tab].num_pages ,
+                      url: get_url_with_sort_by(tab),
+                      currentPage: pageless_state[tab].current_page,
+                      loader: '.loader_pagination',
+                      end: function(){
+                        $('.loader_pagination').hide();
+                      }
+      });
+      console.log("why this isn't working");
+    }
+
+    function get_url_with_sort_by(tab){
+      var the_url = pageless_state[tab].url;
+      console.log(the_url);
+      //the_url = the_url + "?sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
+      return the_url;
+    } 
+
+    /*
+    var backstrech_items = {
+      excursions: {
+
+      },
+      resources: {
+
+      }, 
+      events: {
+
+      }
+    }
+
+    
+    function re_apply_backstrech(tab){
+      for (var key in backstrech_items[tab]) {
+        $(""+ key).backstretch( backstrech_items[tab][key] );  
+        //console.log("reaplicando backstrech a " + key + " con " + backstrech_items[tab][key]);
+      }
+    }
+    */
   </script>
 
 <div id="search">

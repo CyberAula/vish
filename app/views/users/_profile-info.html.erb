@@ -172,7 +172,7 @@ function update_pageless_state(tab, num_pages, current_page){
 function re_apply_pageless(tab){
     //first remove old pageless
     $.pagelessStop();
-
+    console.log("YOLO");
     $("#" + tab + "_tab_ready ul").pageless({ 
                     totalPages: pageless_state[tab].num_pages ,
                     url: get_url_with_sort_by(tab),
