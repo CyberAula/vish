@@ -109,18 +109,29 @@ form.navbar-form-search{
 }
 
 #warning_cookie_bar{
-  display: block;
-  position: absolute;
-  top: 50px;
-  width: 100%;
-  height: 30px;
-  background-color: $brand-secundary;
-  padding: 5px;
   text-align: center;
   color: white;
-  a{
-    background-color: white;
-    font-family: $corporate-font-family-sans-serif-Bold;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: auto;
+  width: 100%;
+  z-index: 999;
+  position: fixed;
+  top: 50px;
+  h3{
+    display: block;
+    margin: 0;
   }
+  p{
+    border-radius: 0 0 10px 10px;
+    color: #FFFFFF;
+    margin: 0 auto;
+    font-family: $corporate-font-family-sans-serif-Bold;
+    width: 80%;
+    a{
+      color: $white;
+      font-family: $corporate-font-family-sans-serif-Bold;
+    }
+  }
+ 
 }
 
