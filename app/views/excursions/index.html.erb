@@ -13,7 +13,7 @@
      <li class="active">
       <a href="#home" data-toggle="tab"><%= t("navigation.home")%></a>
     </li>
-    <li><a href="#network" data-toggle="tab" ><%=t("navigation.mynetwork") %></a></li>
+    <li><a href="#networking" data-toggle="tab" ><%=t("navigation.mynetwork") %></a></li>
     <li><a href="#catforhome" data-toggle="tab" ><%=t("navigation.catalogue") %></a></li>
     </ul>
   </div>
@@ -22,7 +22,7 @@
 
    <div class="tab-content">
     <div class="tab-pane active" id="home"><%= render partial: "excursions/home_excursions"%></div>
-    <div class="tab-pane" id="network"> ... </div>
-    <div class="tab-pane" id="catforhome"> <!-- layouts/catalogue--> </div>
+    <div class="tab-pane" id="networking"> <%= render partial: "excursions/home_mynetwork", :locals =>{:scope => :me, :page => 1, :sort_by => "popularity"}%></div>
+    <div class="tab-pane" id="catforhome"> <%= render :partial => "catalogue/tags"%> </div>
   </div>
 
