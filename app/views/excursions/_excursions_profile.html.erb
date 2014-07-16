@@ -1,0 +1,27 @@
+ <% 
+   excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"popularity"})
+   %>
+  
+  <% excursions.each do |excursion| %>
+    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+  <% end %> 
+
+<script>
+	$(document).ready(function(){		
+			update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>);
+
+			re_apply_pageless("excursions");		
+
+		$("footer#footer").addClass("fixed-bottom");	    
+	});
+	
+	function add_excursions_backstrech(){		
+      if(typeof backstrech_items != "undefined"){
+        <% excursions.each do |excursion| %>    	  
+              backstrech_items.excursions["#excursion-<%=excursion.id%>"] = "<%=excursion_raw_thumbail(excursion)%>";
+        <% end %> 
+  		}
+	}
+
+	add_excursions_backstrech();
+</script>

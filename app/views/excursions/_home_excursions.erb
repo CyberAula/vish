@@ -1,5 +1,5 @@
 <% @done={} %>
-<section id="excursions_tab_ready2 " class="excursions recent_excursions">
+<section id="excursions_tab_ready3 " class="excursions recent_excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>
     <%
@@ -8,12 +8,11 @@
       else
         scope = :net
       end%>
-  <div>
      <% excursionsRecent = Excursion.getHome( 30 , 'Recent')
         excursionsRecommended = Excursion.getHome( 30 ,'Recommended',{:user => current_user})%>
 
     <%= render partial: 'excursions/excursionshome', :locals => { :excursions => excursionsRecent, :limit => 9 } %>
-  </div>
+  </ul>
   <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
 
 </section>
@@ -22,22 +21,20 @@
 
 <section id="excursions_tab_ready2 " class="excursions foryou_excursions">
   <ul class="">
-  <div>
     <h3> <%= t("home.foryou")%> </h3>
   <%= render partial: 'excursions/excursionshome', :locals => {:excursions => excursionsRecommended, :limit => 10} %>
 
-  </div>
+  </ul>
 </section>
  
 
 
  <section id="excursions_tab_ready" class="excursions">
   <ul class="">
-  <div>
   <h3> <%= t("home.populars")%> </h3> 
   <% excursionsDone = @done 
   %>
- <%= render partial: 'excursions/excursions', :locals => {:ids_to_avoid => excursionsDone,  :page => 1} %>
+ <%= render partial: 'excursions/excursions_popular', :locals => {:ids_to_avoid => excursionsDone,  :page => 1} %>
    </ul>
 
 
@@ -51,7 +48,7 @@
      <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
    </div>
 
-    </div>
+  </div>
 </section>
 
 

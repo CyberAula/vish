@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         if !params[:page]
           render "show"
         else
-          render :partial => "excursions/excursions", :locals => {:scope => :me, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+          render :partial => "excursions/excursions_profile", :locals => {:scope => :me, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
         end
       }
     end
