@@ -9189,7 +9189,9 @@ VISH.User = function(V, $, undefined) {
   var init = function(options) {
     _user = {};
     if(options.scorm === true) {
-      delete options["user"]["token"]
+      if(typeof options["user"] == "object") {
+        delete options["user"]["token"]
+      }
     }
     setUser(options["user"])
   };
