@@ -19,12 +19,21 @@
     margin: 0px
     clear: both
     border: 1px solid transparent
-  a, label
+  a, 
+  label
     color: $white
-    &:hover
-      color: $white
-      background-color: transparent !important
+  
+  .new_user
+    .remember_password
+      clear: both
+      a
+        font-size: 0.8em
+        &:hover
+          background-color: none !important
+          color: $black
+          text-decoration: none
 
+    
 @mixin devise-box
   @include box-shadow(0px 1px 1px rgba(50, 50, 50, 0.15))
   @include border-top-radius ($border-radius-base)

@@ -42,8 +42,11 @@
                 </label>
               </div>
               <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
-              <hr>
-              <%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
+              <div class="remember_password"><%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
+              </div>
+              
+              
+              
             <% end %>
             <%= javascript_tag do %>
               $(function() {
