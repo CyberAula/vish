@@ -18298,21 +18298,12 @@ VISH.ProgressTracking = function(V, $, undefined) {
     var slidesL = presentation.slides.length;
     for(var i = 0;i < slidesL;i++) {
       var slide = presentation.slides[i];
-      if(slide.containsQuiz == true) {
-        var slideElementsL = slide.elements.length;
-        for(var j = 0;j < slideElementsL;j++) {
-          var element = slide.elements[j];
-          if(element.type === V.Constant.QUIZ) {
-            if(element.selfA === true) {
-              hasScore = true;
-              var scoreWeight = 10;
-              if(typeof element.settings == "object" && typeof element.settings.score != "undefined") {
-                scoreWeight = parseInt(element.settings.score)
-              }
-              var quizObjective = new Objective(element.quizId, undefined, scoreWeight);
-              objectives[quizObjective.id] = quizObjective
-            }
-          }
+      _createObjectiveForStandardSlide(slide);
+      if(typeof slide.slides == "object") {
+        var subslidesL = slide.slides.length;
+        for(var k = 0;k < subslidesL;k++) {
+          var subslide = slide.slides[k];
+          _createObjectiveForStandardSlide(subslide)
         }
       }
     }
@@ -18343,6 +18334,28 @@ VISH.ProgressTracking = function(V, $, undefined) {
           }
         })
       }
+    }
+  };
+  var _createObjectiveForStandardSlide = function(slideJSON) {
+    if(slideJSON.containsQuiz === true) {
+      var slideElementsL = slideJSON.elements.length;
+      for(var j = 0;j < slideElementsL;j++) {
+        var element = slideJSON.elements[j];
+        if(element.type === V.Constant.QUIZ) {
+          _createObjectiveForQuiz(element)
+        }
+      }
+    }
+  };
+  var _createObjectiveForQuiz = function(quizJSON) {
+    if(quizJSON.selfA === true) {
+      hasScore = true;
+      var scoreWeight = 10;
+      if(typeof quizJSON.settings == "object" && typeof quizJSON.settings.score != "undefined") {
+        scoreWeight = parseInt(quizJSON.settings.score)
+      }
+      var quizObjective = new Objective(quizJSON.quizId, undefined, scoreWeight);
+      objectives[quizObjective.id] = quizObjective
     }
   };
   var Objective = function(id, completion_weight, score_weight, description) {
