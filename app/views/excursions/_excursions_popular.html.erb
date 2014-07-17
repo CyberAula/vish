@@ -8,38 +8,14 @@
   <% end %> 
 
 <script>
-	$(document).ready(function(){		
-		<%- if page != 0%>
-			$('#home_tab_ready ul').pageless({ 
-                          totalPages:  <%=excursions.num_pages%>,
-                          url: "<%= Vish::Application.config.full_domain + "/search?sort_by=popularity&type=excursion&ids_to_avoid=" + ids_to_avoid.join(",")%>",
-                          currentPage: <%=excursions.current_page%>,
-                          loader: '.loader_pagination',
-                          end: function(){
-                            $('.loader_pagination').hide();
-                          }
-      		});
-      //Hay que hacer que se actualice el pageless y hacer el update y que lo cojan todas las páginas
-      pageless_state.home.url = "<%= Vish::Application.config.full_domain + "/search?sort_by=popularity&type=excursion&ids_to_avoid=" + ids_to_avoid.join(",")%>"
-        ;		
-    <% else %>
+	$(document).ready(function(){
+
+      pageless_state.home.url = "<%= Vish::Application.config.full_domain + "/search?sort_by=popularity&type=excursion&ids_to_avoid=" + ids_to_avoid.join(",")%>";
       update_pageless_state("home", <%=excursions.num_pages%>, <%=excursions.current_page%>);
       re_apply_pageless("home");    
-		<% end %>
 
 		$("footer#footer").addClass("fixed-bottom");	    
 	});
 	
-
-
-	function add_excursions_backstrech(){		
-      if(typeof backstrech_items != "undefined"){
-        <% excursions.each do |excursion| %>    	  
-              backstrech_items.excursions["#excursion-<%=excursion.id%>"] = "<%=excursion_raw_thumbail(excursion)%>";
-        <% end %> 
-  		}
-	}
-
-	add_excursions_backstrech();
 </script>
 

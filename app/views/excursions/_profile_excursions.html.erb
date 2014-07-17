@@ -1,8 +1,5 @@
-<div id="excursions_tab_ready" class="excursions">        
-  <ul class="">
-    <% if profile_subject_is_current? %>
-      <%= render partial: 'excursions/excursion-add' %>
-    <% end %>
-    <%= render partial: 'excursions/excursions_profile', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> sort_by} %>
-  </ul>
-</div>
+<div id="excursions_tab_ready" class="excursions">           <ul class="">
+<% if profile_subject_is_current? %>       <%= render partial: 'excursions
+/excursion-add' %>     <% end %>     <%= render partial:
+'excursions/excursions_profile', :locals => { :scope => scope, :limit =>
+limit, :page => page, :sort_by=> sort_by} %>   </ul> </div>

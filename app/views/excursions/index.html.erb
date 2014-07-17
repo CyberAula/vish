@@ -64,11 +64,13 @@
       $.pagelessStop();
 
       console.log('Parameters: totalPages = ' + pageless_state[tab].num_pages + ' currentPage= '+ pageless_state[tab].current_page + ' url = ' + get_url_with_sort_by(tab));
+     
       $("#" + tab + "_tab_ready ul").pageless({ 
                       totalPages: pageless_state[tab].num_pages ,
                       url: get_url_with_sort_by(tab),
                       currentPage: pageless_state[tab].current_page,
                       loader: '.loader_pagination',
+  //remake the updating | For 17
                       end: function(){
                         $('.loader_pagination').hide();
                       }
