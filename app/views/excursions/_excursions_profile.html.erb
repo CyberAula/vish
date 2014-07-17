@@ -15,13 +15,5 @@
 		$("footer#footer").addClass("fixed-bottom");	    
 	});
 	
-	function add_excursions_backstrech(){		
-      if(typeof backstrech_items != "undefined"){
-        <% excursions.each do |excursion| %>    	  
-              backstrech_items.excursions["#excursion-<%=excursion.id%>"] = "<%=excursion_raw_thumbail(excursion)%>";
-        <% end %> 
-  		}
-	}
-
-	add_excursions_backstrech();
+	
 </script>

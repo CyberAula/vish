@@ -11,7 +11,7 @@
         console.log(networking_tab_loaded);
         $.ajax({
             type : "GET",
-            url : "<%= home_path(:networking=>'true', :page => 1) %>",
+            url : "<%= home_path(:networking=>'true', :page =>1) %>",
             success : function(html) {
               $('.loader_pagination').hide();      
               $("#networking_tab_ready").append(html);
@@ -32,8 +32,8 @@
     });
 
   });
- var urlforhome = "";
-
+  
+  var urlforhome= "";
   var pageless_state = {
       "home":{
         "url": urlforhome,
@@ -63,7 +63,7 @@
     //first remove old pageless
       $.pagelessStop();
 
-      
+      console.log('Parameters: totalPages = ' + pageless_state[tab].num_pages + ' currentPage= '+ pageless_state[tab].current_page + ' url = ' + get_url_with_sort_by(tab));
       $("#" + tab + "_tab_ready ul").pageless({ 
                       totalPages: pageless_state[tab].num_pages ,
                       url: get_url_with_sort_by(tab),
@@ -73,7 +73,6 @@
                         $('.loader_pagination').hide();
                       }
       });
-      console.log("why this isn't working");
     }
 
     function get_url_with_sort_by(tab){
