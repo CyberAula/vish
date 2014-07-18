@@ -11163,6 +11163,22 @@ VISH.Utils = function(V, undefined) {
         return res
       }
     }
+    if(!Array.prototype.indexOf) {
+      Array.prototype.indexOf = function(elt) {
+        var len = this.length >>> 0;
+        var from = Number(arguments[1]) || 0;
+        from = from < 0 ? Math.ceil(from) : Math.floor(from);
+        if(from < 0) {
+          from += len
+        }
+        for(;from < len;from++) {
+          if(from in this && this[from] === elt) {
+            return from
+          }
+        }
+        return-1
+      }
+    }
     jQuery.fn.vewatermark = function(text) {
       if(V.Status.getDevice().browser.name != V.Constant.IE) {
         $(this).watermark(text)
@@ -15728,7 +15744,7 @@ VISH.Slides = function(V, $, undefined) {
   var init = function() {
   };
   var updateSlides = function() {
-    setSlides(document.querySelectorAll("section.slides > article"));
+    setSlides($("section.slides > article"));
     _updateSlideClasses();
     if(!V.Editing) {
     }
@@ -15865,7 +15881,7 @@ VISH.Slides = function(V, $, undefined) {
     }
   };
   var getSlidesQuantity = function() {
-    return document.querySelectorAll("section.slides > article").length
+    return $("section.slides > article").length
   };
   var getSlideType = function(slideEl) {
     if(slideEl && slideEl.tagName === "ARTICLE") {
@@ -15912,15 +15928,35 @@ VISH.Slides = function(V, $, undefined) {
   };
   var triggerEnterEventById = function(slide_id) {
     var el = $("#" + slide_id)[0];
-    var evt = document.createEvent("Event");
-    evt.initEvent("slideenter", true, true);
-    el.dispatchEvent(evt)
+    if(typeof el == "undefined") {
+      return
+    }
+    if(document.createEvent) {
+      var evt = document.createEvent("Event");
+      evt.initEvent("slideenter", true, true);
+      el.dispatchEvent(evt)
+    }else {
+      if(document.createEventObject) {
+        var evt = document.createEventObject();
+        el.fireEvent("onslideenter", evt)
+      }
+    }
   };
   var triggerLeaveEventById = function(slide_id) {
     var el = $("#" + slide_id)[0];
-    var evt = document.createEvent("Event");
-    evt.initEvent("slideleave", true, true);
-    el.dispatchEvent(evt)
+    if(typeof el == "undefined") {
+      return
+    }
+    if(document.createEvent) {
+      var evt = document.createEvent("Event");
+      evt.initEvent("slideleave", true, true);
+      el.dispatchEvent(evt)
+    }else {
+      if(document.createEventObject) {
+        var evt = document.createEventObject();
+        el.fireEvent("onslideleave", evt)
+      }
+    }
   };
   var forwardOneSlide = function(event) {
     moveSlides(1)
@@ -26505,7 +26541,6 @@ VISH.Editor.Slides = function(V, $, undefined) {
       if(movement == "before") {
         $(article_reference).before(article_to_move)
       }else {
-        V.Debugging.log("V.Slides: Error. Movement not defined... !");
         return
       }
     }
@@ -26514,7 +26549,7 @@ VISH.Editor.Slides = function(V, $, undefined) {
     _cleanTextAreas(article_to_move);
     _loadTextAreasOfSlide(article_to_move, textAreas);
     V.Utils.removeTempShown(article_to_move);
-    V.Slides.setSlides(document.querySelectorAll("section.slides > article"));
+    V.Slides.setSlides($("section.slides > article"));
     $("#slides_list").find("div.wrapper_barbutton:has(img[slidenumber])").each(function(index, div) {
       var slideNumber = index + 1;
       var p = $(div).find("p.ptext_barbutton");
