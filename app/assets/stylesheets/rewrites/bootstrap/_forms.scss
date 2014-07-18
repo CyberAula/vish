@@ -37,7 +37,12 @@ label {
   background-color: rgba(255, 255, 255, 0.79);
 }
 
+.table-hover tbody tr{
+    font-size: 0.8em;  
+    .translation_missing{
+      font-family: $corporate-font-family-sans-serif-Bold;
+    }
+}
 .table-hover tbody tr:hover > td, .table-hover tbody tr:hover > th {
-  background-color: $brand-primary;
-  color: #ffffff;
+  background-color: $white;
 }
