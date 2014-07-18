@@ -23,18 +23,21 @@
           });
       } else {
         re_apply_pageless("networking");
+        re_apply_backstrech("networking");
       }
     });
     
 
     $("#home_tab").click(function(){
       re_apply_pageless("home");
+      re_apply_backstrech("home");
     });
 
   });
   
   var urlforhome= "";
   var pageless_state = {
+    "actual_state": "home",
       "home":{
         "url": urlforhome,
         "num_pages":0,
@@ -53,8 +56,10 @@
     };
   
     function update_pageless_state(tab, num_pages, current_page){
-      pageless_state[tab].num_pages = num_pages;
-      pageless_state[tab].current_page = current_page;
+      if(pageless_state[tab].num_pages == "0"){
+        pageless_state[tab].num_pages = num_pages;
+        pageless_state[tab].current_page = current_page;
+      }    
     }
 
 
@@ -63,14 +68,20 @@
     //first remove old pageless
       $.pagelessStop();
 
-      console.log('Parameters: totalPages = ' + pageless_state[tab].num_pages + ' currentPage= '+ pageless_state[tab].current_page + ' url = ' + get_url_with_sort_by(tab));
+      
      
       $("#" + tab + "_tab_ready ul").pageless({ 
                       totalPages: pageless_state[tab].num_pages ,
                       url: get_url_with_sort_by(tab),
                       currentPage: pageless_state[tab].current_page,
                       loader: '.loader_pagination',
-  //remake the updating | For 17
+                      complete: function(){
+
+                        pageless_state[tab].current_page += 1;
+                        pageless_state.actual_state = tab;
+
+                        console.log('Parameters: totalPages = ' + pageless_state[tab].num_pages + ' currentPage= '+ pageless_state[tab].current_page + ' url = ' + get_url_with_sort_by(tab));
+                      },  //remake the updating | For 17
                       end: function(){
                         $('.loader_pagination').hide();
                       }
@@ -84,12 +95,12 @@
       return the_url;
     } 
 
-    /*
+    
     var backstrech_items = {
-      excursions: {
+      home: {
 
       },
-      resources: {
+      networking: {
 
       }, 
       events: {
@@ -104,7 +115,7 @@
         //console.log("reaplicando backstrech a " + key + " con " + backstrech_items[tab][key]);
       }
     }
-    */
+    
   </script>
 
 <div id="search">

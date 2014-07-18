@@ -1,6 +1,6 @@
 <% 
  ids_to_avoid= ids_to_avoid.map{|e| e.id}
-  excursions = Excursion.getHome(30,'Popular',{:random => false, :ids_to_avoid => ids_to_avoid})
+  excursions = Excursion.getHome(30,'Popular',{:random => false, :ids_to_avoid => ids_to_avoid, :page => params[:page] || 1})
    %>
   
   <% excursions.each do |excursion| %>
