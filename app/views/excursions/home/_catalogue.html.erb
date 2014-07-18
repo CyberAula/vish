@@ -1,0 +1,20 @@
+
+<div id="excursions_catalogue" >
+	<%@all_categories.each do |name, the_array| %>
+		<h2><%=name%></h2>
+		
+		<ul id="container_<%=name%>">
+			<%for excursion in the_array%>
+				<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion, :container_id => "container_#{name}" } %>
+			<%end%>
+		</ul>
+		<button class="show_more_catalogue" name="<%=name%>"><%=t('view_all')%></button>
+	<%end%>
+</div>
+
+<script type="text/javascript">
+	$(".show_more_catalogue").click(function(event) {
+		var name = $(this).attr("name");
+		window.location = "/catalogue/" + name;
+	});
+</script>

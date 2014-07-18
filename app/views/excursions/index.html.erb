@@ -8,14 +8,13 @@
       if(networking_tab_loaded===false){
         $('.loader_pagination').show();
         networking_tab_loaded = true;
-        console.log(networking_tab_loaded);
         $.ajax({
             type : "GET",
             url : "<%= home_path(:networking=>'true', :page =>1) %>",
             success : function(html) {
               $('.loader_pagination').hide();      
               $("#networking_tab_ready").append(html);
-              re_apply_pageless("networking");
+              //re_apply_pageless("networking");
             },
             error: function(){
               console.log("error loading networking tab");
@@ -27,6 +26,29 @@
       }
     });
     
+    var catalogue_tab_loaded = false;
+
+    $("#catalogue_tab").click(function(){
+      if(catalogue_tab_loaded===false){
+        $('.loader_pagination').show();
+        catalogue_tab_loaded = true;
+        $.ajax({
+            type : "GET",
+            url : "<%= catalogue_path(:home =>true) %>",
+            success : function(html) {
+              $('.loader_pagination').hide();      
+              $("#catalogue_tab_ready").append(html);
+              //re_apply_pageless("networking");
+            },
+            error: function(){
+              console.log("error loading catalogue tab");
+           }
+          });
+      } else {
+        re_apply_backstrech("catalogue");
+      }
+    });
+
 
     $("#home_tab").click(function(){
       re_apply_pageless("home");
@@ -56,9 +78,10 @@
     };
   
     function update_pageless_state(tab, num_pages, current_page){
+      console.log("paso por aquí");
       if(pageless_state[tab].num_pages == "0"){
         pageless_state[tab].num_pages = num_pages;
-        pageless_state[tab].current_page = current_page;
+        pageless_state[tab].current_page = current_page + 1 ;
       }    
     }
 
@@ -133,7 +156,7 @@
 
   <div class="tab-content">
     <div class="tab-pane active" id="home">
-      <%= render partial: "excursions/home_excursions"%>
+      <%= render partial: "excursions/home/home_excursions"%>
     </div>
 
     <div class="tab-pane" id="networking"> 
@@ -152,7 +175,9 @@
 
 
     <div class="tab-pane" id="catforhome"> 
-      <%= render :partial => "catalogue/tags"%> 
+      <%= render :partial => "excursions/home/tags"%> 
+        <div id="catalogue_tab_ready"></div>
+        <div class="loader_pagination" style="display:none">
     </div>
     
   </div>

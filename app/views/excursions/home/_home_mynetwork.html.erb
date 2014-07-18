@@ -1,0 +1,7 @@
+<section id="networking_tab_ready" class="excursions">
+  <ul class="">
+    <%= render partial: 'excursions/excursion-add' %>  
+    <%= render partial: 'excursions/home/mynetwork_home', :locals => { :scope => scope, :limit => params[:limit], :page => params[:page], :sort_by=> sort_by} %>
+  </ul>
+</section>
+
