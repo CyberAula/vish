@@ -317,6 +317,14 @@ class RecommenderSystem
       opts[:with][:language] = [options[:language].to_s.to_crc32]
     end
 
+    #Filter by quality score
+    if options[:qualityThreshold]
+      qualityThreshold = [[0,options[:qualityThreshold].to_i].max,10].min rescue 0
+      qualityThreshold = qualityThreshold*100000
+      opts[:with][:qscore] = qualityThreshold..1000000
+    end
+
+
     opts[:without] = {}
     if options[:users_to_avoid] and !options[:users_to_avoid].reject{|u| u.nil?}.empty?
       opts[:without][:owner_id] = Actor.normalize_id(options[:users_to_avoid])
