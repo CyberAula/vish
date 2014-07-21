@@ -3,7 +3,7 @@
    %>
   
   <% excursions.each do |excursion| %>
-    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :prefix_id => "profile" } %>
   <% end %> 
 
 <script>
@@ -11,9 +11,14 @@
 			update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>);
 
 			re_apply_pageless("excursions");		
-
+			re_apply_backstrech_on_profile();
 		$("footer#footer").addClass("fixed-bottom");	    
 	});
 	
+	function re_apply_backstrech_on_profile(){
+                  $("div[bs-img]").each(function() {
+                    $(this).backstretch( $(this).attr("bs-img") );
+                  });
+                }
 	
 </script>
