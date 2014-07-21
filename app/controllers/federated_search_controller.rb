@@ -58,8 +58,8 @@ class FederatedSearchController < ApplicationController
     end
 
     type = processTypeParam(params[:type])
-    
-    results = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :order => order, :models => type[:models], :subtypes => type[:subtypes]})
+
+    results = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :order => order, :models => type[:models], :subtypes => type[:subtypes], :startDate => params[:startDate], :endDate => params[:endDate]})
 
     respond_to do |format|
       format.any {

@@ -71,6 +71,7 @@ ActivityObject.class_eval do
     searchJson =  {
       :id => self.getUniversalId(),
       :type => self.getType(),
+      :created_at => self.created_at.strftime("%d-%m-%Y"),
       :title => title,
       :description => resource.description || "",
       :tags => resource.tag_list,
