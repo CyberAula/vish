@@ -340,6 +340,11 @@ class RecommenderSystem
     if browse==true
       #Browse
       opts[:match_mode] = :extended
+
+      #Browse can't order by relevance. Set ranking by default.
+      if opts[:order].nil?
+        opts[:order] = 'ranking DESC'
+      end
     else
       queryLength = searchTerms.scan(/\w+/).size
 
