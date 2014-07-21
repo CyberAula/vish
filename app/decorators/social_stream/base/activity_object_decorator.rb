@@ -133,6 +133,22 @@ ActivityObject.class_eval do
       end
     end
 
+    if ["Video","Audio"].include? resource.class.name
+      if resource.class.name == "Video"
+        searchJson[:sources] = [
+          { type: Mime::WEBM.to_s, src: controller.video_url(resource, :format => :webm) },
+          { type: Mime::MP4.to_s,  src: controller.video_url(resource, :format => :mp4) },
+          { type: Mime::FLV.to_s,  src: controller.video_url(resource, :format => :flv) }
+        ]
+      elsif resource.class.name == "Audio"
+        searchJson[:sources] = [
+          { type: Mime::MP3.to_s, src: controller.audio_url(resource, :format => :mp3) },
+          { type: Mime::WAV.to_s,  src: controller.audio_url(resource, :format => :wav) },
+          { type: Mime::WEBMA.to_s,  src: controller.audio_url(resource, :format => :webma) }
+        ]
+      end
+    end
+
     return searchJson
   end
 
