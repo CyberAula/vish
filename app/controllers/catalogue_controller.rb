@@ -24,9 +24,12 @@ class CatalogueController < ApplicationController
 	def show
 		@category = params[:category]	
 		@excursions = search(@category, LIMIT_IN_SHOW)		
-
 		respond_to do |format|
-      		format.all { render :layout => 'catalogue' }
+			if params[:home]== "true"
+      		format.html { render :partial => 'excursions/home/show' }
+    		else
+    		format.all { render :layout => 'catalogue' }
+    		end
     	end
 	end
 

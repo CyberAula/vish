@@ -8,3 +8,13 @@
 		<%end%>
 	</ul>
 </div>
+
+<script>
+	function re_apply_backstrech_on_catalogue(){
+	      $("div[bs-img]").each(function() {
+	        $(this).backstretch( $(this).attr("bs-img") );
+	      });
+	    }
+
+	re_apply_backstrech_on_catalogue();
+</script>

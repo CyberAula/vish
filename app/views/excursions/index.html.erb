@@ -48,6 +48,8 @@
         re_apply_backstretch("catalogue");
       }
     });
+  //Catalogue behaviour
+ 
 
 
     $("#home_tab").click(function(){
@@ -166,6 +168,13 @@
       <%= render :partial => "excursions/home/tags"%> 
         <div id="catalogue_tab_ready"></div>
         <div class="loader_pagination" style="display:none">
+        <div id="pageless-loader" style="text-align:center;width:100%;">
+          <div class="msg" style="font-size:2em">
+            <%=t('search.loading')%>
+          </div>
+          <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+        </div>
+      </div>
     </div>
     
   </div>
