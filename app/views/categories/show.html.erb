@@ -62,25 +62,22 @@
 
 <%= content_for :javascript do %>
 
-
-
   $(document).ready(function() {
-  $(".resource").fitText(0.4);
+    $(".resource").fitText(0.4);
 
-  $(".edit_icon").click(function(){
-    alert( "clicked" );
-    $(".update").show("slow");
-    $(".btn-group").hide("slow");
-    $(".information").hide("slow");
-  });
+    $(".edit_icon").click(function(){
+      alert( "clicked" );
+      $(".update").show("slow");
+      $(".btn-group").hide("slow");
+      $(".information").hide("slow");
+    });
 
-  $("#hide_category_form").on("click", function(){
-    $(".update").hide("slow");
-    $(".btn-group").show("slow");
-    $(".information").show("slow");
-  });
+    $("#hide_category_form").on("click", function(e){
+      $(".update").hide("slow");
+      $(".btn-group").show("slow");
+      $(".information").show("slow");
+    });
   });
 
 <% end %>
-
 

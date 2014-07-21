@@ -109,13 +109,7 @@
             <td><%= I18n.localize @excursion.updated_at, :format => :long %></td>
             <td></td>
           </tr>
-          <tr>
-            <td>
-              <button href="#MetadataModal" id="showMeta" data-toggle="modal" class="ui-state-default ui-corner-all">
-                <%=t('excursion.actions.show_meta')%>
-              </button>
-            </td>
-          </tr>
+         
         </table>
       </div>
 
@@ -148,25 +142,26 @@
   <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
   
    
-    <span class="showMore accordion-toggle btn" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-    --- <%=t('excursion.actions.show_more')%> ---
+    <span id="showingMore" class="showMore accordion-toggle btn btn-default" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" title=<%=t("excursion.actions.show_more")%>>
+    <%=t('excursion.actions.show_more')%>
     </span>
 </a>
+<button href="#MetadataModal" id="showMeta" data-toggle="modal" class="btn btn-default">
+                <%=t('excursion.actions.show_meta')%>
+</button>
 </div>
 
-<script>
-$(function() {
-  $(".showMore").hover(function(){
+<script language="javascript" type="text/javascript" >
 
-    if($(".showMore").attr("title")=== "showMore"){
-      $(".showMore").html('--- <%=t("excursion.actions.show_more")%> ---');
-      $(".showMore").attr("title", "showFewer");
+  $("#showingMore").click(function(e){
+    if($("#showingMore").attr("title")==="showMore"){
+      $("#showingMore").html('<%=t("excursion.actions.show_more")%>');
+      $("#showingMore").attr("title", "showFewer");
     }
     else{
-      $(".showMore").html('--- <%=t("excursion.actions.show_fewer")%> ---');
-      $(".showMore").attr("title", "showMore");
+      $(".showMore").html('<%=t("excursion.actions.show_fewer")%>');
+      $("#showingMore").attr("title", "showMore");
     }
-    return false;
   });
-});
+
 </script>
