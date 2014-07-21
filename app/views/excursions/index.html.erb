@@ -14,7 +14,7 @@
             success : function(html) {
               $('.loader_pagination').hide();      
               $("#networking_tab_ready").append(html);
-              //re_apply_pageless("networking");
+              re_apply_backstretch("networking");
             },
             error: function(){
               console.log("error loading networking tab");
@@ -22,7 +22,7 @@
           });
       } else {
         re_apply_pageless("networking");
-        re_apply_backstrech("networking");
+        re_apply_backstretch("networking");
       }
     });
     
@@ -38,22 +38,26 @@
             success : function(html) {
               $('.loader_pagination').hide();      
               $("#catalogue_tab_ready").append(html);
-              //re_apply_pageless("networking");
+              re_apply_backstretch("catalogue");
             },
             error: function(){
               console.log("error loading catalogue tab");
            }
           });
       } else {
-        re_apply_backstrech("catalogue");
+        re_apply_backstretch("catalogue");
       }
     });
 
 
     $("#home_tab").click(function(){
+      console.log("CLICK EN HOME TAB");
       re_apply_pageless("home");
-      re_apply_backstrech("home");
+      re_apply_backstretch("home");
     });
+
+    console.log("LLAMAMOS EN DOCUMENT READY");
+    re_apply_backstretch("home");
 
   });
   
@@ -89,9 +93,7 @@
 
     function re_apply_pageless(tab){
     //first remove old pageless
-      $.pagelessStop();
-
-      
+      $.pagelessStop();      
      
       $("#" + tab + "_tab_ready ul").pageless({ 
                       totalPages: pageless_state[tab].num_pages ,
@@ -116,27 +118,13 @@
       console.log(the_url);
       //the_url = the_url + "?sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
       return the_url;
-    } 
-
-    
-    var backstrech_items = {
-      home: {
-
-      },
-      networking: {
-
-      }, 
-      events: {
-
-      }
     }
 
     
-    function re_apply_backstrech(tab){
-      for (var key in backstrech_items[tab]) {
-        $(""+ key).backstretch( backstrech_items[tab][key] );  
-        //console.log("reaplicando backstrech a " + key + " con " + backstrech_items[tab][key]);
-      }
+    function re_apply_backstretch(tab){   
+      $("#" + tab + " div[bs-img]").each(function() {
+        $(this).backstretch( $(this).attr("bs-img") );
+      });
     }
     
   </script>

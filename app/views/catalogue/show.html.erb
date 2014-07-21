@@ -4,7 +4,7 @@
 	<h2><%=@category%></h2>
 	<ul>
 		<%for excursion in @excursions%>
-			<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion } %>
+			<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion , :prefix_id => "catalogue"} %>
 		<%end%>
 	</ul>
 </div>

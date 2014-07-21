@@ -11,7 +11,7 @@
      %>
   
   <% excursions.each do |excursion| %>
-    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :prefix_id=> prefix_id } %>
   <% end %> 
 
 
