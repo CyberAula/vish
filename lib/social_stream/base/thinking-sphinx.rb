@@ -27,7 +27,17 @@ module SocialStream
             has activity_object.qscore, :as => :qscore, :sortable => true
             has activity_object.ranking, :as => :ranking, :sortable => true
 
-            has "array_to_string(array_agg(CRC32(activity_objects.language)), ',')", :as => :language, :type => :multi
+            #Thinking Sphinx cannot filter by 'string' attributes (like language).
+            #So, we will use the CRC32 codification of the string, which is an integer. This way, we have to search for crc32 code instead of the string itself. To search for the language "en", we have to search for "en".to_crc32.
+            #This is done in a different way according to the database (MySQL or PostgreSQL). See http://www.coderexception.com/CNuH6z16USXyQSUy/using-crc32-tweak-on-hasmany-relations-in-thinking-sphinx for mroe info.
+            if ActiveRecord::Base.connection.adapter_name == "PostgreSQL"
+              #CRC32 is not a native function in PostgreSQL, and so you may need to add it yourself. Thinking Sphinx prior to v3 do this for you.
+              has "array_to_string(array_agg(CRC32(activity_objects.language)), ',')", :as => :language, :type => :multi
+            elsif ActiveRecord::Base.connection.adapter_name == "Mysql2" or ActiveRecord::Base.connection.adapter_name == "MySQL"
+              has "GROUP_CONCAT(CRC32(activity_objects.language) SEPARATOR ',')", :as => :language, :type => :integer, :multi => true
+            else
+              has activity_object.language, :as => :language
+            end
           end
         end
       end
