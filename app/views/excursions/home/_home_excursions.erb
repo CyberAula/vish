@@ -1,6 +1,6 @@
 <% @done={} %>
 <section id="excursions_tab_ready3 " class="excursions recent_excursions">
-  <ul class="">
+  <ul class="first_excursions">
     <%= render partial: 'excursions/excursion-add' %>
     <%
       if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4

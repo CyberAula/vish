@@ -1,6 +1,5 @@
 .catalogue-layout
   height: 39px
-
 #excursions_catalogue,
 #open_catalogue
   display: block
@@ -22,8 +21,10 @@
   ul
     clear: both
     width: 100%
-
-
+  button
+    display: block
+    float: right
+    clear: left
 #showMore_tags
   display: block
   clear: both
@@ -38,14 +39,12 @@
   border: 1px solid #999999
   a
     color: $gray
-
 #catalogue
   width: 100%
   float: left
   background: none
   margin-top: -25px
   display: block
-
   ul.Tags_list_as
     width: 100%
     height: auto
@@ -54,7 +53,6 @@
     margin: 0
     position: relative
     border-left: none
-
     .info_catalogue
       width: 10%
       height: 100%
@@ -64,7 +62,6 @@
       background: darken($secondColor, 10%) 
       margin: 0
       position: absolute
-
       i
         margin: 0
     #effect
@@ -73,7 +70,6 @@
       border-bottom: 1px solid #999999
       padding: 5px 0
       width: 100%
-
       li
         text-align: center
         label
@@ -83,19 +79,9 @@
           position: relative
           width: 100%
           height: auto
-
-
         label:hover
           color: darken($gray, 20%) 
           font-weight: 600
-
-
-
-
-
-
-
-
     .newClass 
       li
         display: none
@@ -106,10 +92,7 @@
         display: block
         float: left
         padding-left: 0
-
         word-wrap: ellipsis
-
-
     .anotherNewClass 
       li
         display: none
@@ -122,17 +105,6 @@
         float: left
         word-wrap: ellipsis
 
-
-
-
-
-
-
-
-
-
-
-
 @media (min-width: 900px) and (max-width: 1060px)
   #catalogue 
     ul.Tags_list_as 
@@ -141,8 +113,6 @@
         li
           width: 24%
   
-
-
 @media (min-width: 0px) and (max-width: 979px)
   #catalogue
     margin-top: 0px
@@ -163,8 +133,7 @@
   #catalogue 
     ul.Tags_list_as 
       #effect
-        width: 85%
-        margin-left: 15%
+        width: 100%
         li
           width: 48%
 
@@ -175,8 +144,8 @@
   #catalogue 
     ul.Tags_list_as 
       #effect
-        width: 80%
-        margin-left: 20%
+        width: 100%
+
         li
           width: 99%
   #showMore_tags
