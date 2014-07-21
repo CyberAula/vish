@@ -122,7 +122,6 @@
 
     
     function re_apply_backstretch(tab){   
-      console.log("re_apply_backstretch " + tab);  
       $("#" + tab + " div[bs-img]").each(function() {
         $(this).backstretch( $(this).attr("bs-img") );
       });
