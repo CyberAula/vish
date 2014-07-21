@@ -109,7 +109,7 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
     <div class="recomended-items">
       <ul class="small-box clearfix">
         <% RecommenderSystem.excursion_suggestions(current_subject,@excursion,{:n=>16}).each do |excursion| %>
-          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :container_id => "recomended_box" } %>
+          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :container_id => "recomended_box", :prefix_id => "recommended" } %>
         <% end %>
       </ul>
     </div>
@@ -147,4 +147,11 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
   //VE extra vars
   var options = {};
   options["readHashFromParent"] = true;
+  function re_apply_backstrech_on_recommended(){
+                  $("div[bs-img]").each(function() {
+                    $(this).backstretch( $(this).attr("bs-img") );
+                  });
+                }
+                re_apply_backstrech_on_recommended();
+
 </script>
