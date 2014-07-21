@@ -226,6 +226,10 @@
     }
     else{
       hidden_elem.fadeIn();
+      var array_matches = hidden_elem.find('div[bs-img]');
+      if(array_matches.length>0){ 
+        $(array_matches[0]).backstretch($(array_matches[0]).attr("bs-img"));
+      }
     }
     
     if(arr.length>0){
