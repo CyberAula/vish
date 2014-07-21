@@ -1,0 +1,38 @@
+
+<div id="open_catalogue" >
+	<a class="back_catalogue"><i class="icon-circle-arrow-left" ></i></a>
+	<h2><%=@category%></h2>
+	<ul>
+		<%for excursion in @excursions%>
+			<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion , :prefix_id => "catalogue"} %>
+		<%end%>
+	</ul>
+</div>
+
+<script>
+	function re_apply_backstrech_on_catalogue(){
+	      $("div[bs-img]").each(function() {
+	        $(this).backstretch( $(this).attr("bs-img") );
+	      });
+	    }
+
+	re_apply_backstrech_on_catalogue();
+
+	$(".back_catalogue").click(function(event) {
+		$("#catalogue_tab_ready").empty();
+		$('.loader_pagination').show();
+		$.ajax({
+            type : "GET",
+            url : "<%= catalogue_path(:home =>true) %>",
+            success : function(html) {
+              $("#catalogue_tab_ready").append(html);
+              re_apply_backstretch("catalogue");
+              $('.loader_pagination').hide();
+            },
+            error: function(){
+              console.log("error loading catalogue tab");
+           }
+          });
+		});
+
+</script>
