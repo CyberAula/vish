@@ -11794,6 +11794,42 @@ VISH.Utils = function(V, undefined) {
         return-1
       }
     }
+    if(!Object.keys) {
+      Object.keys = function() {
+        var hasOwnProperty = Object.prototype.hasOwnProperty, hasDontEnumBug = !{toString:null}.propertyIsEnumerable("toString"), dontEnums = ["toString", "toLocaleString", "valueOf", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "constructor"], dontEnumsLength = dontEnums.length;
+        return function(obj) {
+          if(typeof obj !== "object" && (typeof obj !== "function" || obj === null)) {
+            throw new TypeError("Object.keys called on non-object");
+          }
+          var result = [], prop, i;
+          for(prop in obj) {
+            if(hasOwnProperty.call(obj, prop)) {
+              result.push(prop)
+            }
+          }
+          if(hasDontEnumBug) {
+            for(i = 0;i < dontEnumsLength;i++) {
+              if(hasOwnProperty.call(obj, dontEnums[i])) {
+                result.push(dontEnums[i])
+              }
+            }
+          }
+          return result
+        }
+      }()
+    }
+    if(typeof Array.prototype.forEach !== "function") {
+      Array.prototype.forEach = function(callback) {
+        for(var i = 0;i < this.length;i++) {
+          callback.apply(this, [this[i], i, this])
+        }
+      }
+    }
+    if(typeof String.prototype.trim !== "function") {
+      String.prototype.trim = function() {
+        return this.replace(/^\s+|\s+$/g, "")
+      }
+    }
     jQuery.fn.vewatermark = function(text) {
       if(V.Status.getDevice().browser.name != V.Constant.IE) {
         $(this).watermark(text)
@@ -13955,11 +13991,10 @@ VISH.VirtualTour = function(V, $, undefined) {
   var virtualTours;
   var gMlLoaded = false;
   var gMlLoading = false;
-  var lastIncrease;
   var init = function() {
     if(!initialized) {
       initialized = true;
-      virtualTours = new Array;
+      virtualTours = {};
       _loadEvents()
     }
   };
@@ -14011,6 +14046,7 @@ VISH.VirtualTour = function(V, $, undefined) {
     var myOptions = {zoom:parseInt(vtJSON.zoom), center:center, mapTypeId:vtJSON.mapType};
     var map = new google.maps.Map(document.getElementById(canvasId), myOptions);
     virtualTours[vtJSON.id].map = map;
+    virtualTours[vtJSON.id].currentCenter = center;
     $(vtJSON.pois).each(function(index, poi) {
       _addMarkerToCoordinates(canvasId, map, poi.lat, poi.lng, poi.slide_id)
     });
@@ -14027,10 +14063,12 @@ VISH.VirtualTour = function(V, $, undefined) {
   var onEnterSlideset = function(slideset) {
     var vtId = $(slideset).attr("id");
     var canvas = $("#" + vtId).find(".map_canvas");
-    $(canvas).show()
+    $(canvas).show();
+    _triggerOnResizeMap(vtId)
   };
   var onLeaveSlideset = function(slideset) {
     var vtId = $(slideset).attr("id");
+    virtualTours[vtId].currentCenter = virtualTours[vtId].map.getCenter();
     var canvas = $("#" + vtId).find(".map_canvas");
     $(canvas).hide()
   };
@@ -14053,15 +14091,18 @@ VISH.VirtualTour = function(V, $, undefined) {
     return marker
   };
   var afterSetupSize = function(increase) {
-  };
-  var _getZoomForIncreaseDiff = function(zoom, increaseDiff) {
-    var absIncreaseDiff = Math.floor(Math.abs(increaseDiff) / 0.3);
-    if(increaseDiff > 0) {
-      var newZoom = zoom + absIncreaseDiff
-    }else {
-      var newZoom = zoom - absIncreaseDiff
+    var currentSlideId = $(V.Slides.getCurrentSlide()).attr("id");
+    if(typeof virtualTours[currentSlideId] == "object") {
+      virtualTours[currentSlideId].currentCenter = virtualTours[currentSlideId].map.getCenter();
+      _triggerOnResizeMap(currentSlideId)
     }
-    return Math.max(Math.min(newZoom, 20), 1)
+  };
+  var _triggerOnResizeMap = function(vtId) {
+    var vt = virtualTours[vtId];
+    if(typeof vt == "object" && typeof vt.map == "object") {
+      google.maps.event.trigger(vt.map, "resize");
+      vt.map.setCenter(vt.currentCenter)
+    }
   };
   return{init:init, draw:draw, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, afterSetupSize:afterSetupSize}
 }(VISH, jQuery);
@@ -18924,8 +18965,8 @@ VISH.SCORM.API = function(V, $, undefined) {
     };
     this.commit = function() {
       var s = "false", lms = API.path, ec = 0, session_secs, saveDate = new Date;
-      session_secs = (saveDate.getTime() - settings.startDate.getTime()) / 1E3;
       if(API.isActive) {
+        session_secs = (saveDate.getTime() - settings.startDate.getTime()) / 1E3;
         debug("Committing data", 3);
         switch(API.version) {
           case "1.2":

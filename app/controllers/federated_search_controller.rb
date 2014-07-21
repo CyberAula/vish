@@ -58,12 +58,12 @@ class FederatedSearchController < ApplicationController
     end
 
     type = processTypeParam(params[:type])
-    
-    results = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :order => order, :models => type[:models], :subtypes => type[:subtypes]})
+
+    results = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :order => order, :models => type[:models], :subtypes => type[:subtypes], :startDate => params[:startDate], :endDate => params[:endDate], :language => params[:language], :qualityThreshold => params[:qualityThreshold]})
 
     respond_to do |format|
       format.any {
-        render :json => results.map{|r| r.search_json(self)}
+        render :json => results.map{|r| r.search_json(self)}, :content_type => 'json'
       }
     end
   end
@@ -71,13 +71,14 @@ class FederatedSearchController < ApplicationController
   def processTypeParam(type)
     # Possible models
     # ["User", "Category", "Event", "Excursion", "Document", "Link", "Embed", "Webapp", "Scormfile"]
+    # and the document subclasses also ["Picture","Audio","Video",...]
 
     models = []
     subtypes = []
 
-    unless type.nil? or type == "Resource"
+    unless type.nil?
       acceptedSubtypes = {
-        "picture" => [Document]
+        "Resource" => [Excursion,Document,Link,Embed,Webapp,Scormfile]
       }
 
       type.split(",").each do |type|
@@ -89,7 +90,7 @@ class FederatedSearchController < ApplicationController
           end
         else
           #Is a subtype
-          models.push(acceptedSubtypes[type])
+          models.concat(acceptedSubtypes[type])
           subtypes.push(type)
         end
       end
