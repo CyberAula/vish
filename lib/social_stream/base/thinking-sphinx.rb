@@ -26,6 +26,8 @@ module SocialStream
             has activity_object.popularity, :as => :popularity, :sortable => true
             has activity_object.qscore, :as => :qscore, :sortable => true
             has activity_object.ranking, :as => :ranking, :sortable => true
+
+            has "array_to_string(array_agg(CRC32(activity_objects.language)), ',')", :as => :language, :type => :multi
           end
         end
       end

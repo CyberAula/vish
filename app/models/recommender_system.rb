@@ -312,6 +312,11 @@ class RecommenderSystem
       opts[:with][:created_at] = startDate..endDate
     end
 
+    #Filter by language
+    if options[:language]
+      opts[:with][:language] = [options[:language].to_s.to_crc32]
+    end
+
     opts[:without] = {}
     if options[:users_to_avoid] and !options[:users_to_avoid].reject{|u| u.nil?}.empty?
       opts[:without][:owner_id] = Actor.normalize_id(options[:users_to_avoid])
