@@ -45,11 +45,14 @@ ActivityObject.class_eval do
     end
   end
 
+  ##############
+  # Return JSON to the SEARCH API (federated search)
+  ##############
   def search_json(controller)
     resource = self.object
 
     #Title
-    unless self.object.class.name == "User"
+    unless resource.class.name == "User"
       title = resource.title
     else
       title = resource.name
@@ -68,9 +71,10 @@ ActivityObject.class_eval do
     searchJson =  {
       :id => self.getUniversalId(),
       :type => self.getType(),
+      :created_at => self.created_at.strftime("%d-%m-%Y"),
       :title => title,
-      :description => resource.description,
-      :tags => resource.tags,
+      :description => resource.description || "",
+      :tags => resource.tag_list,
       :url =>  controller.url_for(resource)
     }
 
@@ -87,6 +91,46 @@ ActivityObject.class_eval do
     unless author.nil? or author_profile_url.nil?
       searchJson[:author] = author
       searchJson[:author_profile_url] = author_profile_url
+    end
+
+    unless resource.language.blank?
+      searchJson[:language] = resource.language
+    end
+
+    avatarUrl = getAvatardUrl(controller)
+    unless avatarUrl.nil?
+      searchJson[:avatar_url] = avatarUrl
+    end
+
+    unless resource.class.name == "User"
+      searchJson[:visit_count] = self.visit_count
+      searchJson[:like_count] = self.like_count
+      searchJson[:download_count] = self.download_count
+    else
+      unless resource.occupation.nil?
+        searchJson[:occupation] = resource.occupation_t
+      end
+    end
+
+    if resource.class.name == "Excursion"
+      searchJson[:loModel] = JSON(resource.json)
+    end
+
+    unless resource.reviewers_qscore.nil?
+      searchJson[:reviewers_qscore] = resource.reviewers_qscore.to_f
+    end
+
+    unless resource.users_qscore.nil?
+      searchJson[:users_qscore] = resource.users_qscore.to_f
+    end
+
+    if resource.class.name == "Event"
+      searchJson[:start_data] = resource.start_date.to_s
+      searchJson[:end_data] = resource.end_date.to_s
+      searchJson[:streaming] = resource.streaming
+      unless resource.embed.nil?
+        searchJson[:embed] = resource.embed.to_s
+      end
     end
 
     return searchJson
@@ -142,6 +186,22 @@ ActivityObject.class_eval do
     elsif ["Excursion"].include? resource.class.name
       # relativePath = Rails.application.routes.url_helpers.excursion_path(resource, :format=> "scorm")
       absolutePath = controller.url_for(resource) + ".scorm"
+    end
+
+    if absolutePath.nil? and !relativePath.nil?
+      absolutePath = Vish::Application.config.full_domain + relativePath
+    end
+
+    return absolutePath
+  end
+
+  def getAvatardUrl(controller)
+    resource = self.object
+
+    if resource.class.name=="User"
+      relativePath = resource.logo.to_s
+    elsif resource.class.name=="Excursion"
+      absolutePath = resource.thumbnail_url
     end
 
     if absolutePath.nil? and !relativePath.nil?

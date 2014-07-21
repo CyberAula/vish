@@ -2,8 +2,48 @@
   <div class="event">
     <aside class="recomended">
         <ul class="items clearfix">
+    <div class="box-show">
+      <!--visor-->
+      <div class="container-visor">
+        <!--div class="elemento-visor"></div-->
+        <div class="caja-elementos">
+          <!-- Streming from 10 minutes before until 2 hours later -->
+          <% if @event.streaming && ((Time.now <=> (@event.start_at - (60 * 30))) > -1) && ((Time.now <=> (@event.end_at + (60 * 60 * 2))) < 1) %>
+          <%= raw @event.embed %>
+        <% else %>
+            <div class="icon-box" id="event-<%=@event.id%>">
+              <% if @event.poster.new_record? %>
+                <i class="icon-facetime-video"></i>
+
+
+                <%= image_tag('items/rec2.jpg', :class=> "event-img") %>
+
+
+              <% else %>
+                <%= image_tag(@event.poster.file) %>
+                <script>
+                  $("#event-<%=@event.id%>").addClass("high")
+                </script>
+              <% end %>
+              <% if (can?(:update, @event) && @event.poster.new_record?) %>
+                  <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
+              <% end %>
+            </div>  
+         <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!--recomended-->
+    <div class="recomended" id="recomended_box">
+      <div class="recomended-items">
+        <ul class="small-box clearfix">
           <% popular_resources(16).each do |resource| %>
-            <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
+            <% if resource.class == Excursion %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => resource, :container_id => "recomended_box" } %>
+            <% else %>
+              <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
+            <% end %>
           <% end %>
         </ul>
 
