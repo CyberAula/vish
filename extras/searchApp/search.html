@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>ViSH Search API</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<style>
 		html {
@@ -12,18 +13,22 @@
 			overflow: hidden;
 			width: 100%;
 			height: 100%;
+			font-family: arial, sans-serif;
+			line-height: 15px;
 		}
 		#header{
 			display: block;
-			height: 60px;
+			height: 10%;
 			width: 100%;
 		}
 		#results{
 			display: block;
 			float: right;
-			height: 100%;
+			height: 90%;
 			width:100%;
 			background: #f2f2f2;
+			display: inline-block;
+			overflow-y: scroll;
 		}
 		div.search {
 			display: block;
@@ -43,7 +48,6 @@
 			border-top: 1px solid rgba(0,0,0,0.25);
 			height: 25px;
 			padding-left: 4px;
-			font-family: 'Open Sans', arial, sans-serif;
 			margin-top: 15px;
 		}
 		input.search_input:hover {
@@ -74,14 +78,148 @@
 			width: 19px;
 			padding: 3px 0px 0px 1px;
 		}
+		div.result{
+			width: 200px;
+			height: 245px;
+			background: white;
+			float: left;
+			overflow: hidden;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.16);
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+			margin: 10px;
+		}
+		div.result a{
+			text-decoration: none;
+		}
+		div.resultImageWrapper{
+			width: 200px;
+			height: 170px;
+			text-align: center;
+		}
+		div.resultImageWrapper img{
+			width: 90%;
+			height: 90%;
+			margin-top: 4%;
+		}
+		div.resultTitle{
+			width: 190px;
+			height: 31px;
+			margin-bottom: 5px;
+			font-size: 15px;
+			word-wrap: break-word;
+			padding: 0px 5px 0px 5px;
+			overflow: hidden;
+		}
+		div.resultTitle a{
+			color: #555 !important;
+		}
+		div.resultAuthor{
+			width: 190px;
+			height: 20px;
+			font-size: 12px;
+			padding: 0px 5px 0px 5px;
+			overflow: hidden;
+		}
+		div.resultAuthor a{
+			color: #004d7c !important;
+		}
+		div.resultBottom{
+			width: 190px;
+			height: 20px;
+			padding: 0px 5px 0px 5px;
+			display: inline-block;
+			font-size: 14px;
+			overflow: hidden;
+		}
+		div.likes{
+			display: inline-block;
+		}
+		div.views{
+			display: inline-block;
+			float: right;
+		}
+		img.inlineIcon{
+			height: 15px;
+			position: relative;
+			top: 2px;
+		}
+		.waiting{
+			cursor: wait !important;
+		}
 	</style>
 </head>
 
 <body>
+	<script>
+		$(document).ready(function(){
+			//Set events
+			$("#search_box").bind('keypress', function(e){
+				var code = e.keyCode || e.which;
+				if(code == 13) { //Enter keycode
+					onSearch();
+				}
+			});
+
+			$("#search_button").bind('click', function(e){
+				onSearch();
+			});
+		});
+
+		var _id = 0;
+		var getId = function(){
+			_id += 1;
+			return _id;
+		};
+
+		var createDOMResult = function(JSONresult){
+			var avatarURL = (typeof JSONresult.avatar_url == "string" ? JSONresult.avatar_url : "lo.png");
+			_createDOMResult(avatarURL, JSONresult.url,JSONresult.title,JSONresult.author_profile_url,JSONresult.author,JSONresult.like_count,JSONresult.visit_count);
+		};
+
+		var _createDOMResult = function(avatarURL,resourceURL,resourceTitle,authorURL,authorName,nFavorites,nViews){
+			var scaffold = 	$('<div class="result" id="box'+getId()+'"><div class="resultImageWrapper"><img class="resultImage" src="'+avatarURL+'"></div><div class="resultTitle"><a target="_blank" href="'+resourceURL+'">'+resourceTitle+'</a></div><div class="resultAuthor"><span class="by">by</span> <a target="_blank" href="'+authorURL+'">'+authorName+'</a></div><div class="resultBottom"><div class="likes"><span>'+nFavorites+'</span> <img class="inlineIcon" src="star.png"></div><div class="views"><span>'+nViews+'</span> <img class="inlineIcon" src="eye.png"></div></div></div>');
+
+			$("#results").append(scaffold);
+		};
+
+		var cleanResults = function(){
+			$("#results").html("");
+		};
+
+
+		var onSearch = function(){
+			$("*").addClass("waiting");
+			var query = $("#search_box").val();
+			searchInViSHInstance("http://vishub.org",query);
+		};
+
+		var searchInViSHInstance = function(domain,query,options){
+			var ViSHSearchAPIURL = domain + "/apis/search?q="+query+"&n=20"
+
+			$.ajax({
+				type    : 'GET',
+				url     : ViSHSearchAPIURL,
+				success : function(data) {
+					cleanResults();
+					$(data).each(function(index,value){
+						createDOMResult(value);
+					});
+					$("*").removeClass("waiting");
+				},
+				error: function(error){
+					$("*").removeClass("waiting");
+					console.error("Error connecting with the ViSH API of " + domain);
+				}
+			});
+		};
+	</script>
+
 	<div id="header">
 		<div class="search">
-			<input class="search_input" type="text" placeholder="Search educational resources" autocomplete="off">
-			<button class="toolbar_button search_button">
+			<input id="search_box" class="search_input" type="text" placeholder="Search educational resources" autocomplete="off">
+			<button id="search_button" class="toolbar_button search_button">
 				<img class="search_button_img" src="search.png">
 			</button>
 			<button class="toolbar_button settings_button">
@@ -90,7 +228,23 @@
 		</div>
 	</div>
 	<div id="results">
-
+		<!-- Example of a result -->
+<!-- 		<div class="result" id="box1">
+			<div class="resultImageWrapper">
+				<img class="resultImage" src="lo.png">
+			</div>
+			<div class="resultTitle">
+				<a target="_blank" href="http://vishub.org/excursions/616">Viajar y aprender francés</a>
+			</div>
+			<div class="resultAuthor"> 
+				<span class="by">por</span>
+				<a target="_blank" href="http://vishub.org/users/alvaro-1">Alvaro</a>
+			</div>
+			<div class="resultBottom">
+				<div class="likes"><span>152</span><img class="inlineIcon" src="star.png"></div>
+				<div class="views"><span>2222</span><img class="inlineIcon" src="eye.png"></div>
+			</div>
+		</div> -->
 	</div>
 </body>
 
