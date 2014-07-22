@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ViSH Search API</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<style>
+		html {
+			width: 100%;
+			height: 100%;
+		}
+		body{
+			overflow: hidden;
+			width: 100%;
+			height: 100%;
+		}
+		#header{
+			display: block;
+			height: 60px;
+			width: 100%;
+		}
+		#results{
+			display: block;
+			float: right;
+			height: 100%;
+			width:100%;
+			background: #f2f2f2;
+		}
+		div.search {
+			display: block;
+			height: 80%;
+			width: 80%;
+			margin: 0% 10% 0% 10%;
+			position: relative;
+			top: 5%;
+			overflow: hidden;
+			min-height: 60px;
+			text-align: center;
+		}
+		input.search_input {
+			width: 486px;
+			background-color: #fff;
+			border: 1px solid rgba(0,0,0,0.15);
+			border-top: 1px solid rgba(0,0,0,0.25);
+			height: 25px;
+			padding-left: 4px;
+			font-family: 'Open Sans', arial, sans-serif;
+			margin-top: 15px;
+		}
+		input.search_input:hover {
+			-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+			-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+			box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+			border: 1px solid #4d90fe;
+		}
+		button.toolbar_button {
+			background: #4d90fe !important;
+			background-color: #3079ed !important;
+			background-image: -webkit-linear-gradient(top, #4d90fe,#4787ed) !important;
+			width: 44px;
+			height: 30px;
+			position: relative;
+		}
+		button.search_button {
+			top: 4px;
+		}
+		button.settings_button {
+			top: 5px;
+		}
+		img.search_button_img {
+			border: 0;
+		}
+		img.settings_button_img {
+			border: 0;
+			width: 19px;
+			padding: 3px 0px 0px 1px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="header">
+		<div class="search">
+			<input class="search_input" type="text" placeholder="Search educational resources" autocomplete="off">
+			<button class="toolbar_button search_button">
+				<img class="search_button_img" src="search.png">
+			</button>
+			<button class="toolbar_button settings_button">
+				<img class="settings_button_img" src="settings.png">
+			</button>
+		</div>
+	</div>
+	<div id="results">
+
+	</div>
+</body>
+
+</html>
