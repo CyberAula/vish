@@ -114,6 +114,7 @@ ActivityObject.class_eval do
 
     if resource.class.name == "Excursion"
       searchJson[:loModel] = JSON(resource.json)
+      searchJson[:slide_count] = resource.slide_count
     end
 
     unless resource.reviewers_qscore.nil?

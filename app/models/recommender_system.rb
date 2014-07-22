@@ -75,9 +75,11 @@ class RecommenderSystem
     #Add other excursions of the same author
     if !excursion.nil?
       userIdToReject = (!user.nil?) ? user.id : -1
-      authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == userIdToReject or e.id == excursion.id}
-      preSelection.concat(authoredExcursions)
-      preSelection.uniq!
+      unless userIdToReject == excursion.author.id
+        authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == userIdToReject or e.id == excursion.id}
+        preSelection.concat(authoredExcursions)
+        preSelection.uniq!
+      end
     end
 
     pSL = preSelection.length
@@ -238,13 +240,12 @@ class RecommenderSystem
     else
       browse = false
       if options[:keywords].is_a? String
-        searchTerms = options[:keywords].split(" ")
+        searchTerms = options[:keywords].gsub(/[,+|&]/,' ').split(" ")
       end
       #Remove keywords with less than 3 characters
       searchTerms.reject!{|s| s.length < 3}
       searchTerms = searchTerms.join(" ")
     end
-
 
     #Specify search options
     opts = {}
