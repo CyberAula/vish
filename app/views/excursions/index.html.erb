@@ -21,8 +21,8 @@
            }
           });
       } else {
-        re_apply_pageless("networking");
         re_apply_backstretch("networking");
+        re_apply_pageless("networking");
       }
     });
     
@@ -47,8 +47,9 @@
 
     $("#home_tab").click(function(){
       console.log("CLICK EN HOME TAB");
-      re_apply_pageless("home");
       re_apply_backstretch("home");
+      re_apply_pageless("home");
+      
     });
     re_apply_backstretch("home");
 
