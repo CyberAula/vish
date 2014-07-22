@@ -39,6 +39,7 @@
               $('.loader_pagination').hide();      
               $("#catalogue_tab_ready").append(html);
               re_apply_backstretch("catalogue");
+              $.pagelessStop();
             },
             error: function(){
               console.log("error loading catalogue tab");
@@ -75,14 +76,12 @@
         "url": "<%= home_path(:networking=>'true') %>",
         "num_pages":0,
         "current_page":0
-      }/*,
-      "catalogue":{
-        "url": "<%= search_path() %>",
-        "num_pages":0,
-        "current_page":0
-      }*/
+      }
     };
-  
+    
+  var catalogue_charge = {
+    
+  }
     function update_pageless_state(tab, num_pages, current_page){
       console.log("paso por aquí");
       if(pageless_state[tab].num_pages == "0"){
