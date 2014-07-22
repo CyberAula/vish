@@ -75,9 +75,11 @@ class RecommenderSystem
     #Add other excursions of the same author
     if !excursion.nil?
       userIdToReject = (!user.nil?) ? user.id : -1
-      authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == userIdToReject or e.id == excursion.id}
-      preSelection.concat(authoredExcursions)
-      preSelection.uniq!
+      unless userIdToReject == excursion.author.id
+        authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == userIdToReject or e.id == excursion.id}
+        preSelection.concat(authoredExcursions)
+        preSelection.uniq!
+      end
     end
 
     pSL = preSelection.length

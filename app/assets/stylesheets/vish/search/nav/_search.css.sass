@@ -28,6 +28,7 @@ header
       display: inline-block
       float: left
     .mat
+      display: none
       z-index: 10
       position: absolute
       margin-top: 48px
@@ -35,6 +36,7 @@ header
       @include border-bottom-radius (5px)
 
       .query_too_short
+        display: none
         @include border-bottom-radius (5px)
         color: $white
         width: 92%
