@@ -71,6 +71,10 @@ aside.recomended
               color: $brand-primary
 
           a
+            .fa-star
+              color: $brand-primary
+            .fa-star-o
+              color: $gray                       
           &:active
             outline: none
             outline: 0
@@ -104,6 +108,11 @@ aside.recomended
     right: 0
     float: right
     display: inline-block
+    a
+      .fa-star
+        color: $brand-primary
+      .fa-star-o
+        color: $gray
   ul.nav-tabs
     clear: none
 
@@ -121,6 +130,7 @@ aside.recomended
   float: right !important
   .items
     padding: 0
+
   .thumbnail
     @include excursion-small
 
@@ -155,12 +165,14 @@ aside.recomended
 .contentscorm
   a
     float: left
-    margin-right: 15px 
+    margin-right: 15px
+
     @media (max-width: $screen-xs-max)
       float: none
       margin-bottom: 15px
   p
     overflow: hidden
+    font-size: 0.9em 
     zoom: 1
 
 .edit_document

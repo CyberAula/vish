@@ -35,8 +35,6 @@
 </div>
 
 <script>
-
-
   $('#AddCategory .new_category').bind('ajax:success', function(evt, data, status, xhr){
     $('#AddCategory').modal('hide');
     window.location.href = "/categories/" + data.id;
