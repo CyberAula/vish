@@ -59,11 +59,11 @@ ActivityObject.class_eval do
     end
 
     #Author
-    if  defined? resource.author and resource.author.class.name == "Actor" and !resource.author.user.nil?
-      author = resource.author.name
+    begin
+      authorName = resource.author.name
       author_profile_url = controller.url_for(resource.author.user)
-    else
-      author = nil
+    rescue
+      authorName = nil
       author_profile_url = nil
     end
 
@@ -88,8 +88,8 @@ ActivityObject.class_eval do
       searchJson[:file_url] = downloadUrl
     end
 
-    unless author.nil? or author_profile_url.nil?
-      searchJson[:author] = author
+    unless authorName.nil? or author_profile_url.nil?
+      searchJson[:author] = authorName
       searchJson[:author_profile_url] = author_profile_url
     end
 
@@ -114,6 +114,7 @@ ActivityObject.class_eval do
 
     if resource.class.name == "Excursion"
       searchJson[:loModel] = JSON(resource.json)
+      searchJson[:slide_count] = resource.slide_count
     end
 
     unless resource.reviewers_qscore.nil?
@@ -125,8 +126,8 @@ ActivityObject.class_eval do
     end
 
     if resource.class.name == "Event"
-      searchJson[:start_data] = resource.start_date.to_s
-      searchJson[:end_data] = resource.end_date.to_s
+      searchJson[:start_date] = resource.start_at.strftime("%d-%m-%Y %H:%M")
+      searchJson[:end_date] = resource.end_at.strftime("%d-%m-%Y %H:%M")
       searchJson[:streaming] = resource.streaming
       unless resource.embed.nil?
         searchJson[:embed] = resource.embed.to_s

@@ -216,6 +216,7 @@ namespace :db do
       end
       u.current_sign_in_ip = nil
       u.last_sign_in_ip = nil
+      u.logo = nil
       u.save(:validate => false)
 
       #User profile
@@ -274,6 +275,9 @@ namespace :db do
     #Removing QuizSession results
     QuizSession.delete_all
     QuizAnswer.delete_all
+
+    #Removing Tracking System data
+    TrackingSystemEntry.delete_all
 
     #Anonymizing comments
     Comment.all.each do |c|

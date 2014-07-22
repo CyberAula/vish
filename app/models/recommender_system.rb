@@ -75,9 +75,11 @@ class RecommenderSystem
     #Add other excursions of the same author
     if !excursion.nil?
       userIdToReject = (!user.nil?) ? user.id : -1
-      authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == userIdToReject or e.id == excursion.id}
-      preSelection.concat(authoredExcursions)
-      preSelection.uniq!
+      unless userIdToReject == excursion.author.id
+        authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == userIdToReject or e.id == excursion.id}
+        preSelection.concat(authoredExcursions)
+        preSelection.uniq!
+      end
     end
 
     pSL = preSelection.length
@@ -340,6 +342,11 @@ class RecommenderSystem
     if browse==true
       #Browse
       opts[:match_mode] = :extended
+
+      #Browse can't order by relevance. Set ranking by default.
+      if opts[:order].nil?
+        opts[:order] = 'ranking DESC'
+      end
     else
       queryLength = searchTerms.scan(/\w+/).size
 
