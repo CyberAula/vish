@@ -35,7 +35,7 @@ class FederatedSearchController < ApplicationController
   #############
 
   def search
-    limit = [Integer(params[:l]),200].min rescue 20
+    limit = [Integer(params[:n]),200].min rescue 20
 
     case params[:sort_by]
     when 'ranking'
