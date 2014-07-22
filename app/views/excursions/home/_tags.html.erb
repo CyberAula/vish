@@ -14,17 +14,8 @@
             var name = $(this).attr("name");
             $("#catalogue_tab_ready").empty();
 			$('.loader_pagination').show();
-			$.ajax({
-	           type : "GET",
-	           url : "/catalogue/" + name + "?home=true",
-	           success : function(html) {   
-	             $("#catalogue_tab_ready").append(html);
-	             $('.loader_pagination').hide();
-	           },
-	           error: function(){
-	              console.log("error loading catalogue tab");
-	           }
-	        });
+			var url= "/catalogue/" + name + "?home=true";
+			catalogue_state(url);
 
 
         });

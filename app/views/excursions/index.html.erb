@@ -32,21 +32,11 @@
       if(catalogue_tab_loaded===false){
         $('.loader_pagination').show();
         catalogue_tab_loaded = true;
-        $.ajax({
-            type : "GET",
-            url : "<%= catalogue_path(:home =>true) %>",
-            success : function(html) {
-              $('.loader_pagination').hide();      
-              $("#catalogue_tab_ready").append(html);
-              re_apply_backstretch("catalogue");
-              $.pagelessStop();
-            },
-            error: function(){
-              console.log("error loading catalogue tab");
-           }
-          });
+        var next = "<%= catalogue_path(:home =>true) %>";
+        catalogue_state(next);
       } else {
         re_apply_backstretch("catalogue");
+        $.pagelessStop();
       }
     });
   //Catalogue behaviour
@@ -79,16 +69,42 @@
       }
     };
     
-  var catalogue_charge = {
-    
-  }
-    function update_pageless_state(tab, num_pages, current_page){
-      console.log("paso por aquí");
-      if(pageless_state[tab].num_pages == "0"){
-        pageless_state[tab].num_pages = num_pages;
-        pageless_state[tab].current_page = current_page + 1 ;
-      }    
+  var catalogue_charge = {}
+
+  function catalogue_state(next_state){
+    if (catalogue_charge[next_state] == null){
+       $.ajax({
+            type : "GET",
+            url : next_state,
+            success : function(html) {
+              $('.loader_pagination').hide();      
+              $("#catalogue_tab_ready").append(html);
+              //We add charged states to variable
+              re_apply_backstretch("catalogue");
+              $.pagelessStop();
+              //We change actual state
+              catalogue_charge[next_state] = html;
+            },
+            error: function(){
+              console.log("error loading catalogue tab");
+           }
+          });
     }
+    else {
+      $('.loader_pagination').hide();
+      $("#catalogue_tab_ready").empty()
+      $("#catalogue_tab_ready").append(catalogue_charge[next_state]);
+
+    }
+  }
+
+  function update_pageless_state(tab, num_pages, current_page){
+    console.log("paso por aquí");
+    if(pageless_state[tab].num_pages == "0"){
+      pageless_state[tab].num_pages = num_pages;
+      pageless_state[tab].current_page = current_page + 1 ;
+    }    
+  }
 
 
 

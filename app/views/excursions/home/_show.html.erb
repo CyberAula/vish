@@ -17,22 +17,12 @@
 	    }
 
 	re_apply_backstrech_on_catalogue();
-
+	$(document).ready(function(){  
 	$(".back_catalogue").click(function(event) {
 		$("#catalogue_tab_ready").empty();
 		$('.loader_pagination').show();
-		$.ajax({
-            type : "GET",
-            url : "<%= catalogue_path(:home =>true) %>",
-            success : function(html) {
-              $("#catalogue_tab_ready").append(html);
-              re_apply_backstretch("catalogue");
-              $('.loader_pagination').hide();
-            },
-            error: function(){
-              console.log("error loading catalogue tab");
-           }
-          });
+		var next = "<%= catalogue_path(:home =>true) %>";
+			catalogue_state(next);
 		});
-
+		});
 </script>
