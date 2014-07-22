@@ -35,8 +35,10 @@
         var next = "<%= catalogue_path(:home =>true) %>";
         catalogue_state(next);
       } else {
-        re_apply_backstretch("catalogue");
+        $('.loader_pagination').hide();
         $.pagelessStop();
+        re_apply_backstretch("catalogue");
+        
       }
     });
   //Catalogue behaviour
@@ -48,8 +50,6 @@
       re_apply_pageless("home");
       re_apply_backstretch("home");
     });
-
-    console.log("LLAMAMOS EN DOCUMENT READY");
     re_apply_backstretch("home");
 
   });
