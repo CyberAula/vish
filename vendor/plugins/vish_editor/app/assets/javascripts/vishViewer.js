@@ -11727,13 +11727,26 @@ VISH.Utils = function(V, undefined) {
       var str = this;
       return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&"), "g"), replace)
     };
-    Array.prototype.select = function(selectFunction) {
-      for(var n = 0;n < this.length;n++) {
-        if(selectFunction(this[n])) {
-          return this[n]
+    Array.prototype.filter = function(fun) {
+      if(this === void 0 || this === null) {
+        throw new TypeError;
+      }
+      var t = Object(this);
+      var len = t.length >>> 0;
+      if(typeof fun !== "function") {
+        throw new TypeError;
+      }
+      var res = [];
+      var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+      for(var i = 0;i < len;i++) {
+        if(i in t) {
+          var val = t[i];
+          if(fun.call(thisArg, val, i, t)) {
+            res.push(val)
+          }
         }
       }
-      return null
+      return res
     };
     if(!Array.prototype.filter) {
       Array.prototype.filter = function(fun) {
@@ -16475,7 +16488,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='mc_options'></table>");
     var quizChoices;
     if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
-      quizChoices = V.Utils.shuffle(quizJSON.choices)
+      quizChoices = V.Utils.shuffle(jQuery.extend(true, [], quizJSON.choices))
     }else {
       quizChoices = quizJSON.choices
     }
@@ -16626,7 +16639,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
     $(optionsWrapper).prepend(newTr);
     var quizChoices;
     if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
-      quizChoices = V.Utils.shuffle(quizJSON.choices)
+      quizChoices = V.Utils.shuffle(jQuery.extend(true, [], quizJSON.choices))
     }else {
       quizChoices = quizJSON.choices
     }
@@ -16798,7 +16811,7 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
     $(questionWrapper).html(quizJSON.question.wysiwygValue);
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='sorting_options'></table>");
-    var quizChoices = V.Utils.shuffle(quizJSON.choices);
+    var quizChoices = V.Utils.shuffle(jQuery.extend(true, [], quizJSON.choices));
     var quizChoicesLength = quizChoices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
       var option = quizChoices[i];
