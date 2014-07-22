@@ -11112,13 +11112,26 @@ VISH.Utils = function(V, undefined) {
       var str = this;
       return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&"), "g"), replace)
     };
-    Array.prototype.select = function(selectFunction) {
-      for(var n = 0;n < this.length;n++) {
-        if(selectFunction(this[n])) {
-          return this[n]
+    Array.prototype.filter = function(fun) {
+      if(this === void 0 || this === null) {
+        throw new TypeError;
+      }
+      var t = Object(this);
+      var len = t.length >>> 0;
+      if(typeof fun !== "function") {
+        throw new TypeError;
+      }
+      var res = [];
+      var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+      for(var i = 0;i < len;i++) {
+        if(i in t) {
+          var val = t[i];
+          if(fun.call(thisArg, val, i, t)) {
+            res.push(val)
+          }
         }
       }
-      return null
+      return res
     };
     if(!Array.prototype.filter) {
       Array.prototype.filter = function(fun) {
@@ -11161,6 +11174,58 @@ VISH.Utils = function(V, undefined) {
           }
         }
         return res
+      }
+    }
+    if(!Array.prototype.indexOf) {
+      Array.prototype.indexOf = function(elt) {
+        var len = this.length >>> 0;
+        var from = Number(arguments[1]) || 0;
+        from = from < 0 ? Math.ceil(from) : Math.floor(from);
+        if(from < 0) {
+          from += len
+        }
+        for(;from < len;from++) {
+          if(from in this && this[from] === elt) {
+            return from
+          }
+        }
+        return-1
+      }
+    }
+    if(!Object.keys) {
+      Object.keys = function() {
+        var hasOwnProperty = Object.prototype.hasOwnProperty, hasDontEnumBug = !{toString:null}.propertyIsEnumerable("toString"), dontEnums = ["toString", "toLocaleString", "valueOf", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "constructor"], dontEnumsLength = dontEnums.length;
+        return function(obj) {
+          if(typeof obj !== "object" && (typeof obj !== "function" || obj === null)) {
+            throw new TypeError("Object.keys called on non-object");
+          }
+          var result = [], prop, i;
+          for(prop in obj) {
+            if(hasOwnProperty.call(obj, prop)) {
+              result.push(prop)
+            }
+          }
+          if(hasDontEnumBug) {
+            for(i = 0;i < dontEnumsLength;i++) {
+              if(hasOwnProperty.call(obj, dontEnums[i])) {
+                result.push(dontEnums[i])
+              }
+            }
+          }
+          return result
+        }
+      }()
+    }
+    if(typeof Array.prototype.forEach !== "function") {
+      Array.prototype.forEach = function(callback) {
+        for(var i = 0;i < this.length;i++) {
+          callback.apply(this, [this[i], i, this])
+        }
+      }
+    }
+    if(typeof String.prototype.trim !== "function") {
+      String.prototype.trim = function() {
+        return this.replace(/^\s+|\s+$/g, "")
       }
     }
     jQuery.fn.vewatermark = function(text) {
@@ -15728,7 +15793,7 @@ VISH.Slides = function(V, $, undefined) {
   var init = function() {
   };
   var updateSlides = function() {
-    setSlides(document.querySelectorAll("section.slides > article"));
+    setSlides($("section.slides > article"));
     _updateSlideClasses();
     if(!V.Editing) {
     }
@@ -15865,7 +15930,7 @@ VISH.Slides = function(V, $, undefined) {
     }
   };
   var getSlidesQuantity = function() {
-    return document.querySelectorAll("section.slides > article").length
+    return $("section.slides > article").length
   };
   var getSlideType = function(slideEl) {
     if(slideEl && slideEl.tagName === "ARTICLE") {
@@ -15912,15 +15977,35 @@ VISH.Slides = function(V, $, undefined) {
   };
   var triggerEnterEventById = function(slide_id) {
     var el = $("#" + slide_id)[0];
-    var evt = document.createEvent("Event");
-    evt.initEvent("slideenter", true, true);
-    el.dispatchEvent(evt)
+    if(typeof el == "undefined") {
+      return
+    }
+    if(document.createEvent) {
+      var evt = document.createEvent("Event");
+      evt.initEvent("slideenter", true, true);
+      el.dispatchEvent(evt)
+    }else {
+      if(document.createEventObject) {
+        var evt = document.createEventObject();
+        el.fireEvent("onslideenter", evt)
+      }
+    }
   };
   var triggerLeaveEventById = function(slide_id) {
     var el = $("#" + slide_id)[0];
-    var evt = document.createEvent("Event");
-    evt.initEvent("slideleave", true, true);
-    el.dispatchEvent(evt)
+    if(typeof el == "undefined") {
+      return
+    }
+    if(document.createEvent) {
+      var evt = document.createEvent("Event");
+      evt.initEvent("slideleave", true, true);
+      el.dispatchEvent(evt)
+    }else {
+      if(document.createEventObject) {
+        var evt = document.createEventObject();
+        el.fireEvent("onslideleave", evt)
+      }
+    }
   };
   var forwardOneSlide = function(event) {
     moveSlides(1)
@@ -18019,6 +18104,395 @@ VISH.Editor.Quiz = function(V, $, undefined) {
   };
   return{init:init, add:add, save:save, draw:draw, onExportTo:onExportTo, showQuizSettings:showQuizSettings, onQuizSettingsDone:onQuizSettingsDone, afterCopyQuiz:afterCopyQuiz}
 }(VISH, jQuery);
+VISH.TrackingSystem = function(V, $, undefined) {
+  var _enabled = false;
+  var _timeReference;
+  var _currentTimeReference;
+  var _lo;
+  var _user;
+  var _device;
+  var _environment;
+  var _chronology;
+  var _rs;
+  var _app_id;
+  var _apiKey;
+  var _apiUrl;
+  var init = function(animation, callback) {
+    _timeReference = (new Date).getTime();
+    _currentTimeReference = _timeReference;
+    _apiKey = V.Configuration.getConfiguration().TrackingSystemAPIKEY;
+    _apiUrl = V.Configuration.getConfiguration().TrackingSystemAPIURL;
+    if(typeof _apiKey == "undefined" || typeof _apiUrl == "undefined" || V.Status.getIsPreview()) {
+      _enabled = false;
+      return
+    }else {
+      _enabled = true
+    }
+    if(!V.Editing) {
+      _app_id = "ViSH Viewer"
+    }else {
+      _app_id = "ViSH Editor"
+    }
+    _lo = new LO;
+    if(V.User.isLogged()) {
+      _user = new User
+    }
+    _device = V.Status.getDevice();
+    _rs = new RS;
+    _environment = {};
+    var sessionOptions = V.Viewer.getOptions();
+    if(typeof sessionOptions == "object") {
+      _environment.lang = sessionOptions.lang;
+      _environment.scorm = sessionOptions.scorm || false;
+      _environment.embed = V.Status.getIsEmbed();
+      _environment.vish = V.Status.getIsInVishSite();
+      _environment.iframe = V.Status.getIsInIframe();
+      _environment.developping = sessionOptions.developping
+    }
+    _chronology = [];
+    _chronology.push(new ChronologyEntry(V.Slides.getCurrentSlideNumber()));
+    V.EventsNotifier.registerCallback(V.Constant.Event.onGoToSlide, function(params) {
+      _cTime = (new Date).getTime();
+      if(typeof _chronology[_chronology.length - 1] != "undefined") {
+        _chronology[_chronology.length - 1].duration = _getTimeDiff(_cTime, _currentTimeReference)
+      }
+      _currentTimeReference = _cTime;
+      setTimeout(function() {
+        _chronology.push(new ChronologyEntry(V.Slides.getCurrentSlideNumber()))
+      }, 10)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onSubslideOpen, function(params) {
+      registerAction(V.Constant.Event.onSubslideOpen, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onSubslideClosed, function(params) {
+      registerAction(V.Constant.Event.onSubslideClosed, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onPlayVideo, function(params) {
+      registerAction(V.Constant.Event.onPlayVideo, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onPauseVideo, function(params) {
+      registerAction(V.Constant.Event.onPauseVideo, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onSeekVideo, function(params) {
+      registerAction(V.Constant.Event.onSeekVideo, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onPlayAudio, function(params) {
+      registerAction(V.Constant.Event.onPlayAudio, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onPauseAudio, function(params) {
+      registerAction(V.Constant.Event.onPauseAudio, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onSeekAudio, function(params) {
+      registerAction(V.Constant.Event.onSeekAudio, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onAnswerQuiz, function(params) {
+      registerAction(V.Constant.Event.onAnswerQuiz, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onShowRecommendations, function(params) {
+      _rs.shown = true;
+      _rs.tdata = V.Recommendations.getData();
+      registerAction(V.Constant.Event.onShowRecommendations, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onHideRecommendations, function(params) {
+      if(typeof _rs.accepted == "undefined") {
+        _rs.accepted = false
+      }
+      registerAction(V.Constant.Event.onHideRecommendations, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onAcceptRecommendation, function(params) {
+      if(typeof _rs.accepted == "undefined" || _rs.accepted === false) {
+        _rs.accepted = params.id
+      }
+      registerAction(V.Constant.Event.onAcceptRecommendation, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onEvaluate, function(params) {
+      registerAction(V.Constant.Event.onEvaluate, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onEvaluateCompletion, function(params) {
+      registerAction(V.Constant.Event.onEvaluateCompletion, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.exit, function() {
+      _cTime = (new Date).getTime();
+      if(typeof _chronology[_chronology.length - 1] != "undefined") {
+        _chronology[_chronology.length - 1].duration = _getTimeDiff(_cTime, _currentTimeReference)
+      }
+      registerAction(V.Constant.Event.exit);
+      sendTrackingObject()
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onViewportResize, function(params) {
+      registerAction(V.Constant.Event.onViewportResize, params)
+    });
+    $(document).bind("click", function(event) {
+      var params = {};
+      params["x"] = event.clientX;
+      params["y"] = event.clientY;
+      if(event.target) {
+        if(event.target.tagName) {
+          params["tagName"] = event.target.tagName
+        }
+        if(event.target.id) {
+          params["id"] = event.target.id
+        }
+      }
+      registerAction("click", params)
+    })
+  };
+  var registerAction = function(id, params) {
+    if(_enabled && typeof _chronology[_chronology.length - 1] != "undefined") {
+      _chronology[_chronology.length - 1].actions.push(new Action(id, params))
+    }
+  };
+  var sendTrackingObject = function() {
+    if(!_enabled) {
+      return
+    }
+    var data = _composeTrackingObject();
+    if(V.User.isLogged() && typeof V.User.getToken() != "undefined") {
+      data["authenticity_token"] = V.User.getToken()
+    }
+    $.ajax({type:"POST", url:_apiUrl, data:data, async:false})
+  };
+  var _composeTrackingObject = function() {
+    return{"app_id":_app_id, "app_key":_apiKey, "data":_composeData()}
+  };
+  var _composeData = function() {
+    var data = {};
+    data["lo"] = _lo;
+    if(typeof _user != "undefined") {
+      data["user"] = _user
+    }
+    data["device"] = _device;
+    data["environment"] = _environment;
+    data["chronology"] = _chronology;
+    data["rs"] = _rs;
+    data["duration"] = getAbsoluteTime();
+    return data
+  };
+  var getAbsoluteTime = function() {
+    return _getTimeDiff((new Date).getTime(), _timeReference)
+  };
+  var getRelativeTime = function() {
+    return _getTimeDiff((new Date).getTime(), _currentTimeReference)
+  };
+  var _getTimeDiff = function(t1, t2) {
+    return+((t1 - t2) / 1E3).toFixed(2)
+  };
+  var getChronology = function() {
+    return _chronology
+  };
+  var LO = function() {
+    var current_presentation = V.Viewer.getCurrentPresentation();
+    if(typeof current_presentation == "object") {
+      this.content = current_presentation;
+      if(typeof current_presentation.vishMetadata == "object") {
+        this.id = current_presentation.vishMetadata.id
+      }
+    }
+  };
+  var User = function() {
+    var current_user = V.User.getUser();
+    if(typeof current_user == "object") {
+      this.id = current_user.id
+    }
+  };
+  var ChronologyEntry = function(slideNumber) {
+    this.slideNumber = slideNumber;
+    this.actions = [];
+    this.t = getAbsoluteTime()
+  };
+  var Action = function(id, params) {
+    this.id = id;
+    this.t = getAbsoluteTime();
+    if(typeof params != "undefined") {
+      this.params = params
+    }
+  };
+  var RS = function() {
+    this.shown = false;
+    this.accepted = undefined;
+    this.tdata = {}
+  };
+  return{init:init, registerAction:registerAction, getAbsoluteTime:getAbsoluteTime, getRelativeTime:getRelativeTime, getChronology:getChronology, _composeTrackingObject:_composeTrackingObject, sendTrackingObject:sendTrackingObject}
+}(VISH, jQuery);
+VISH.ProgressTracking = function(V, $, undefined) {
+  var SCORE_THRESHOLD = 0.5;
+  var objectives = {};
+  var minRequiredTime = 1;
+  var hasScore = false;
+  var init = function(animation, callback) {
+    _createObjectives();
+    minRequiredTime = _getMinRequiredTime();
+    setTimeout(function() {
+      objectives["slide_average_time"].completed = true;
+      objectives["slide_average_time"].progress = 1;
+      V.EventsNotifier.notifyEvent(V.Constant.Event.onProgressObjectiveUpdated, objectives["slide_average_time"], false)
+    }, minRequiredTime * 1E3);
+    V.EventsNotifier.registerCallback(V.Constant.Event.onAnswerQuiz, function(params) {
+      if(params.quizId && typeof objectives[params.quizId] != "undefined") {
+        objectives[params.quizId].progress = 1;
+        objectives[params.quizId].completed = true;
+        if(typeof params.score == "number") {
+          var scaledScore = params.score / 100;
+          objectives[params.quizId].score = scaledScore;
+          if(scaledScore >= SCORE_THRESHOLD) {
+            objectives[params.quizId].success = true
+          }else {
+            objectives[params.quizId].success = false
+          }
+        }
+        V.EventsNotifier.notifyEvent(V.Constant.Event.onProgressObjectiveUpdated, objectives[params.quizId], false)
+      }
+    })
+  };
+  var _getMinRequiredTime = function() {
+    var AVERAGE_SLIDE_TIME = 4;
+    try {
+      _minRequiredTime = V.Viewer.getCurrentPresentation().slides.length * AVERAGE_SLIDE_TIME
+    }catch(e) {
+      _minRequiredTime = 1
+    }
+    return _minRequiredTime
+  };
+  var getProgressMeasure = function() {
+    if(objectives["slide_average_time"].progress < 1) {
+      objectives["slide_average_time"].progress = Math.min(1, V.TrackingSystem.getAbsoluteTime() / minRequiredTime)
+    }
+    var overallProgressMeasure = 0;
+    Object.keys(objectives).forEach(function(key) {
+      overallProgressMeasure += objectives[key].progress * objectives[key].completion_weight
+    });
+    return+overallProgressMeasure.toFixed(6)
+  };
+  var getScore = function() {
+    var overallScore = 0;
+    Object.keys(objectives).forEach(function(key) {
+      if(typeof objectives[key].score == "number") {
+        overallScore += objectives[key].score * objectives[key].score_weight
+      }
+    });
+    return+overallScore.toFixed(6)
+  };
+  var getHasScore = function() {
+    return hasScore
+  };
+  var getObjectives = function() {
+    return objectives
+  };
+  var _createObjectives = function() {
+    var presentation = V.Viewer.getCurrentPresentation();
+    var slidesL = presentation.slides.length;
+    for(var i = 0;i < slidesL;i++) {
+      var slide = presentation.slides[i];
+      _createObjectiveForStandardSlide(slide);
+      if(typeof slide.slides == "object") {
+        var subslidesL = slide.slides.length;
+        for(var k = 0;k < subslidesL;k++) {
+          var subslide = slide.slides[k];
+          _createObjectiveForStandardSlide(subslide)
+        }
+      }
+    }
+    var timeObjective = new Objective("slide_average_time");
+    if(hasScore) {
+      timeObjective.completion_weight = 0.5
+    }else {
+      timeObjective.completion_weight = 1
+    }
+    objectives[timeObjective.id] = timeObjective;
+    var objectivesKeys = Object.keys(objectives);
+    var nObjectives = objectivesKeys.length;
+    if(nObjectives > 1) {
+      var defaultCompletionWeight = (1 - timeObjective.completion_weight) / (nObjectives - 1);
+      var scoreWeightSum = 0;
+      objectivesKeys.forEach(function(key) {
+        if(typeof objectives[key].completion_weight == "undefined") {
+          objectives[key].completion_weight = defaultCompletionWeight
+        }
+        if(typeof objectives[key].score_weight == "number") {
+          scoreWeightSum += objectives[key].score_weight
+        }
+      });
+      if(scoreWeightSum > 0) {
+        objectivesKeys.forEach(function(key) {
+          if(typeof objectives[key].score_weight == "number") {
+            objectives[key].score_weight = objectives[key].score_weight / scoreWeightSum
+          }
+        })
+      }
+    }
+  };
+  var _createObjectiveForStandardSlide = function(slideJSON) {
+    if(slideJSON.containsQuiz === true) {
+      var slideElementsL = slideJSON.elements.length;
+      for(var j = 0;j < slideElementsL;j++) {
+        var element = slideJSON.elements[j];
+        if(element.type === V.Constant.QUIZ) {
+          _createObjectiveForQuiz(element)
+        }
+      }
+    }
+  };
+  var _createObjectiveForQuiz = function(quizJSON) {
+    if(quizJSON.selfA === true) {
+      hasScore = true;
+      var scoreWeight = 10;
+      if(typeof quizJSON.settings == "object" && typeof quizJSON.settings.score != "undefined") {
+        scoreWeight = parseInt(quizJSON.settings.score)
+      }
+      var quizObjective = new Objective(quizJSON.quizId, undefined, scoreWeight);
+      objectives[quizObjective.id] = quizObjective
+    }
+  };
+  var Objective = function(id, completion_weight, score_weight, description) {
+    this.id = id;
+    this.seq_id = _getObjectiveId();
+    this.completed = false;
+    this.progress = 0;
+    this.score = undefined;
+    this.success = undefined;
+    if(typeof completion_weight == "number") {
+      this.completion_weight = completion_weight
+    }
+    if(typeof score_weight == "number") {
+      this.score_weight = score_weight
+    }
+    if(typeof description == "string") {
+      this.description = description
+    }
+  };
+  var lastObjectiveId = -1;
+  var _getObjectiveId = function() {
+    lastObjectiveId += 1;
+    return lastObjectiveId
+  };
+  return{init:init, getProgressMeasure:getProgressMeasure, getScore:getScore, getHasScore:getHasScore, getObjectives:getObjectives}
+}(VISH, jQuery);
+VISH.SCORM = function(V, $, undefined) {
+  var _API;
+  var init = function() {
+  };
+  var initAfterRender = function() {
+    if(V.Utils.getOptions().scorm == true) {
+      V.SCORM.API.init()
+    }
+  };
+  var renderSCORMFromJSON = function(scormJSON, options) {
+    var style = scormJSON["style"] ? scormJSON["style"] : "";
+    var body = scormJSON["body"];
+    var scormBody = $(body);
+    $(scormBody).attr("objecttype", V.Constant.MEDIA.SCORM_PACKAGE);
+    scormBody = V.Utils.getOuterHTML(scormBody);
+    var zoomInStyle = scormJSON["zoomInStyle"] ? scormJSON["zoomInStyle"] : "";
+    var classes = "objectelement";
+    if(options) {
+      if(options.extraClasses) {
+        classes = classes + " " + options.extraClasses
+      }
+    }
+    return"<div id='" + scormJSON["id"] + "' class='" + classes + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper='" + scormBody + "'>" + "" + "</div>"
+  };
+  return{init:init, initAfterRender:initAfterRender, renderSCORMFromJSON:renderSCORMFromJSON}
+}(VISH, jQuery);
 /*
  Copyright (c) 2009-2014, Cybercussion Interactive LLC
  As of 3.0.0 this code is under a Creative Commons Attribution-ShareAlike 4.0 International License.
@@ -18027,16 +18501,141 @@ VISH.Editor.Quiz = function(V, $, undefined) {
  @param options {Object} override default values
  @constructor
 */
-function SCORM_API(options) {
-  var defaults = {version:"3.1.0", createDate:"04/05/2011 08:56AM", modifiedDate:"01/16/2014 03:57PM", debug:false, isActive:false, throw_alerts:false, prefix:"SCORM_API", exit_type:"suspend", success_status:"unknown", use_standalone:true, standalone:false, completion_status:"unknown", time_type:"GMT", cmi:null}, settings = $.extend(defaults, options), isError = 0, error = {"0":"No Error", 404:"Not Found", 405:"Prevented on a read only resource"}, API = {connection:false, version:"none", mode:"", 
-  path:false, data:{completion_status:settings.completion_status, success_status:settings.success_status, exit_type:settings.exit_type}, isActive:settings.isActive}, self = this;
-  settings.error = error;
-  settings.startDate = {};
-  function noconsole(msg, lvl) {
-    $(self).triggerHandler({"type":"debug", "msg":msg, "lvl":lvl})
-  }
-  function debug(msg, lvl) {
-    if(settings.debug) {
+VISH.SCORM.API = function(V, $, undefined) {
+  var scorm;
+  var connected;
+  var COMPLETION_THRESHOLD = 0.9;
+  var COMPLETION_ATTEMPT_THRESHOLD = 0.1;
+  var SCORE_THRESHOLD = 0.5;
+  var hasScore = false;
+  var init = function() {
+    scorm = new SCORM_API({debug:V.Utils.getOptions().developping === true, windowDebug:false, exit_type:""});
+    connected = scorm.initialize();
+    scorm.debug("Connected: " + connected, 4);
+    if(!connected) {
+      return
+    }
+    V.ProgressTracking.init();
+    var learnerName = scorm.getvalue("cmi.learner_name");
+    var learnerId = scorm.getvalue("cmi.learner_id");
+    var myUser = V.User.getUser();
+    if(typeof myUser == "object") {
+      if(_isValidAPIResponse(learnerName)) {
+        myUser.name = learnerName
+      }
+      if(_isValidAPIResponse(learnerId)) {
+        myUser.id = learnerId
+      }
+      V.User.setUser(myUser)
+    }
+    _updateProgressMeasure(0);
+    hasScore = V.ProgressTracking.getHasScore();
+    if(hasScore) {
+      scorm.setvalue("cmi.score.min", (0).toString());
+      scorm.setvalue("cmi.score.max", (100).toString());
+      _updateScore(0)
+    }
+    V.EventsNotifier.registerCallback(V.Constant.Event.onProgressObjectiveUpdated, function(objective) {
+      var updateProgress = typeof objective.progress != "undefined";
+      var updateScore = typeof objective.score != "undefined";
+      if(updateProgress) {
+        _updateProgressMeasure(V.ProgressTracking.getProgressMeasure())
+      }
+      if(updateScore) {
+        _updateScore(V.ProgressTracking.getScore())
+      }
+      if(updateProgress || updateScore) {
+        scorm.commit()
+      }
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.exit, function() {
+      _updateProgressMeasure(V.ProgressTracking.getProgressMeasure());
+      scorm.terminate()
+    })
+  };
+  var _updateProgressMeasure = function(progressMeasure) {
+    if(typeof progressMeasure == "number") {
+      scorm.setvalue("cmi.progress_measure", progressMeasure.toString());
+      _updateCompletionStatus(progressMeasure)
+    }
+  };
+  var _updateCompletionStatus = function(progressMeasure) {
+    var completionStatus;
+    if(progressMeasure >= COMPLETION_THRESHOLD) {
+      completionStatus = "completed"
+    }else {
+      if(progressMeasure >= COMPLETION_ATTEMPT_THRESHOLD) {
+        completionStatus = "incomplete"
+      }else {
+        completionStatus = "not attempted"
+      }
+    }
+    scorm.setvalue("cmi.completion_status", completionStatus)
+  };
+  var _updateScore = function(score) {
+    if(typeof score == "number") {
+      score = Math.max(0, Math.min(1, score));
+      scorm.setvalue("cmi.score.scaled", score.toString());
+      scorm.setvalue("cmi.score.raw", (score * 100).toString());
+      _updateSuccessStatus(score)
+    }
+  };
+  var _updateSuccessStatus = function(score) {
+    var successStatus;
+    if(typeof score != "number") {
+      successStatus = "unknown"
+    }else {
+      if(score >= SCORE_THRESHOLD) {
+        successStatus = "passed"
+      }else {
+        successStatus = "failed"
+      }
+    }
+    scorm.setvalue("cmi.success_status", successStatus)
+  };
+  var _isValidAPIResponse = function(string) {
+    if(typeof string == "string" && string.trim() != "" && string != "false") {
+      return true
+    }else {
+      return false
+    }
+  };
+  var getAPIInstance = function() {
+    if(connected) {
+      return scorm
+    }else {
+      return undefined
+    }
+  };
+  var getLMSAPIInstance = function() {
+    if(connected && scorm && scorm.API && scorm.API.path) {
+      return scorm.API.path
+    }else {
+      return undefined
+    }
+  };
+  function SCORM_API(options) {
+    var defaults = {version:"3.1.1", createDate:"04/05/2011 08:56AM", modifiedDate:"07/16/2014 09:40AM", debug:false, windowDebug:false, isActive:false, throw_alerts:false, prefix:"SCORM_API", exit_type:"suspend", success_status:"unknown", use_standalone:true, standalone:false, completion_status:"unknown", time_type:"GMT", cmi:null}, settings = $.extend(defaults, options), isError = 0, error = {"0":"No Error", 404:"Not Found", 405:"Prevented on a read only resource"}, API = {connection:false, version:"none", 
+    mode:"", path:false, data:{completion_status:settings.completion_status, success_status:settings.success_status, exit_type:settings.exit_type}, isActive:settings.isActive}, self = this;
+    settings.error = error;
+    settings.startDate = {};
+    function debug(msg, lvl) {
+      if(settings) {
+        msg = settings.prefix + ": " + msg;
+        if(settings.debug) {
+          if(settings.windowDebug == true) {
+            windowDebug(msg, lvl)
+          }else {
+            _debug(msg, lvl)
+          }
+        }
+        if(lvl < 3 && settings.throw_alerts) {
+          alert(msg)
+        }
+      }
+      return false
+    }
+    function _debug(msg, lvl) {
       if(!window.console) {
         window.console = {};
         window.console.info = noconsole;
@@ -18064,385 +18663,328 @@ function SCORM_API(options) {
       }
       return true
     }
-    if(lvl < 3 && settings.throw_alerts) {
-      alert(msg)
+    function noconsole(msg, lvl) {
+      $(self).triggerHandler({"type":"debug", "msg":msg, "lvl":lvl})
     }
-    return false
-  }
-  function findAPI(win) {
-    var attempts = 0, limit = 500;
-    while(!win.API && !win.API_1484_11 && win.parent && win.parent !== win && attempts <= limit) {
-      attempts += 1;
-      win = win.parent
-    }
-    if(win.API_1484_11) {
-      API.version = "2004";
-      API.path = win.API_1484_11
-    }else {
-      if(win.API) {
-        API.version = "1.2";
-        API.path = win.API
+    var aryDebug = new Array;
+    var strDebug = "";
+    var winDebug;
+    function windowDebug(strInfo, lvl) {
+      var isDebugWindowShown = false;
+      if(!winDebug || winDebug.closed) {
+        isDebugWindowShown = ShowDebugWindow()
       }else {
+        isDebugWindowShown = true
+      }
+      if(isDebugWindowShown == false) {
+        settings.windowDebug = false;
+        debug("Window debug has been blocked", 1);
+        debug("Debugging messages will be displayed in the console", 2);
+        debug(strInfo, lvl);
         return false
       }
-    }
-    return true
-  }
-  function centisecsToISODuration(n, bPrecise) {
-    var str = "P", nCs = Math.max(n, 0), nY = 0, nM = 0, nD = 0, nH, nMin;
-    nCs = Math.round(nCs);
-    if(bPrecise === true) {
-      nD = Math.floor(nCs / 864E4)
-    }else {
-      nY = Math.floor(nCs / 315576E4);
-      nCs -= nY * 315576E4;
-      nM = Math.floor(nCs / 26298E4);
-      nCs -= nM * 26298E4;
-      nD = Math.floor(nCs / 864E4)
-    }
-    nCs -= nD * 864E4;
-    nH = Math.floor(nCs / 36E4);
-    nCs -= nH * 36E4;
-    nMin = Math.floor(nCs / 6E3);
-    nCs -= nMin * 6E3;
-    if(nY > 0) {
-      str += nY + "Y"
-    }
-    if(nM > 0) {
-      str += nM + "M"
-    }
-    if(nD > 0) {
-      str += nD + "D"
-    }
-    if(nH > 0 || nMin > 0 || nCs > 0) {
-      str += "T";
-      if(nH > 0) {
-        str += nH + "H"
+      var strLine;
+      strLine = aryDebug.length + 1 + ": " + strInfo;
+      aryDebug[aryDebug.length] = strLine;
+      if(winDebug && !winDebug.closed) {
+        winDebug.document.write(strLine + "<br>\n")
       }
-      if(nMin > 0) {
-        str += nMin + "M"
-      }
-      if(nCs > 0) {
-        str += nCs / 100 + "S"
-      }
+      return true
     }
-    if(str === "P") {
-      str = "PT0H0M0S"
+    function ShowDebugWindow() {
+      if(winDebug && !winDebug.closed) {
+        winDebug.close()
+      }
+      winDebug = window.open("", "Debug", "width=600,height=300,resizable,scrollbars");
+      if(typeof winDebug == "undefined") {
+        return false
+      }
+      winDebug.document.write(aryDebug.join("<br>\n"));
+      winDebug.document.close();
+      winDebug.focus();
+      return true
     }
-    return str
-  }
-  function ISODurationToCentisec(str) {
-    var aV = [0, 0, 0, 0, 0, 0], bErr = !!(str.indexOf("P") !== 0), bTFound = false, aT = ["Y", "M", "D", "H", "M", "S"], p = 0, i = 0, len;
-    if(!bErr) {
-      str = str.substr(1);
-      len = aT.length;
-      i = 0;
-      while(i < len) {
-        if(str.indexOf("T") === 0) {
-          str = str.substr(1);
-          i = Math.max(i, 3);
-          bTFound = true
+    function findAPI(win) {
+      var attempts = 0, limit = 500;
+      while(!win.API && !win.API_1484_11 && win.parent && win.parent !== win && attempts <= limit) {
+        attempts += 1;
+        win = win.parent
+      }
+      if(win.API_1484_11) {
+        API.version = "2004";
+        API.path = win.API_1484_11
+      }else {
+        if(win.API) {
+          API.version = "1.2";
+          API.path = win.API
+        }else {
+          return false
         }
-        p = str.indexOf(aT[i]);
-        if(p > -1) {
-          if(i === 1 && str.indexOf("T") > -1 && str.indexOf("T") < p) {
-            continue
-          }
-          if(aT[i] === "S") {
-            aV[i] = parseFloat(str.substr(0, p))
-          }else {
-            aV[i] = parseInt(str.substr(0, p), 10)
-          }
-          if(isNaN(aV[i])) {
-            bErr = true;
-            break
-          }
-          if(i > 2 && !bTFound) {
-            bErr = true;
-            break
-          }
-          str = str.substr(p + 1)
-        }
-        i += 1
       }
-      bErr = !!(!bErr && len !== 0)
+      return true
     }
-    if(bErr) {
-      return 0
-    }
-    return aV[0] * 315576E4 + aV[1] * 26298E4 + aV[2] * 864E4 + aV[3] * 36E4 + aV[4] * 6E3 + Math.round(aV[5] * 100)
-  }
-  function padTime(n) {
-    return n < 10 ? "0" + n : n
-  }
-  function isoDateToStringUTC(d) {
-    return d.getUTCFullYear() + "-" + padTime(d.getUTCMonth() + 1) + "-" + padTime(d.getUTCDate()) + "T" + padTime(d.getUTCHours()) + ":" + padTime(d.getUTCMinutes()) + ":" + padTime(d.getUTCSeconds()) + "." + Math.round(d.getUTCMilliseconds() / 1E3 % 1E3) + "Z"
-  }
-  function isoDateToString(d) {
-    var offset = d.getTimezoneOffset() > 0 ? "-" : "+";
-    return d.getFullYear() + "-" + padTime(d.getMonth() + 1) + "-" + padTime(d.getDate()) + "T" + padTime(d.getHours()) + ":" + padTime(d.getMinutes()) + ":" + padTime(d.getSeconds()) + "." + Math.round(d.getMilliseconds() / 1E3 % 1E3) + offset + padTime(d.getTimezoneOffset() / 60) + ":00"
-  }
-  function isoStringToDate(str) {
-    var MM = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], d, uoffset, offset = 0, mil = 0, dd;
-    switch(settings.time_type) {
-      case "UTC":
-        d = str.replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d+))(|Z)/, function($0, $Year, $Month, $Day, $Hour, $Min, $Sec) {
-          return MM[$Month - 1] + " " + $Day + ", " + $Year + " " + $Hour + ":" + $Min + ":" + $Sec
-        });
-        dd = new Date.UTC(d);
-        return dd;
-      case "GMT":
-        d = str.replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d+))([\+|\-]\d+:\d+)/, function($0, $Year, $Month, $Day, $Hour, $Min, $Sec, $Ms, $Offset) {
-          offset = parseInt($Offset.substring(1, $Offset.length), 10) * 60 * 60 * 60;
-          mil = $Ms;
-          return MM[$Month - 1] + " " + $Day + ", " + $Year + " " + $Hour + ":" + $Min + ":" + $Sec
-        });
-        dd = new Date(d);
-        uoffset = dd.getTimezoneOffset() * 60 * 60;
-        if(uoffset !== offset) {
-          dd = new Date(dd.getTime() + offset + uoffset);
-          dd.setMilliseconds(mil)
+    function centisecsToISODuration(n, bPrecise) {
+      var str = "P", nCs = Math.max(n, 0), nY = 0, nM = 0, nD = 0, nH, nMin;
+      nCs = Math.round(nCs);
+      if(bPrecise === true) {
+        nD = Math.floor(nCs / 864E4)
+      }else {
+        nY = Math.floor(nCs / 315576E4);
+        nCs -= nY * 315576E4;
+        nM = Math.floor(nCs / 26298E4);
+        nCs -= nM * 26298E4;
+        nD = Math.floor(nCs / 864E4)
+      }
+      nCs -= nD * 864E4;
+      nH = Math.floor(nCs / 36E4);
+      nCs -= nH * 36E4;
+      nMin = Math.floor(nCs / 6E3);
+      nCs -= nMin * 6E3;
+      if(nY > 0) {
+        str += nY + "Y"
+      }
+      if(nM > 0) {
+        str += nM + "M"
+      }
+      if(nD > 0) {
+        str += nD + "D"
+      }
+      if(nH > 0 || nMin > 0 || nCs > 0) {
+        str += "T";
+        if(nH > 0) {
+          str += nH + "H"
         }
-        return dd;
-      default:
-        d = str.replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/, function($0, $Year, $Month, $Day, $Hour, $Min, $Sec) {
-          return MM[$Month - 1] + " " + $Day + ", " + $Year + " " + $Hour + ":" + $Min + ":" + $Sec
-        });
-        dd = new Date(d);
-        return dd
+        if(nMin > 0) {
+          str += nMin + "M"
+        }
+        if(nCs > 0) {
+          str += nCs / 100 + "S"
+        }
+      }
+      if(str === "P") {
+        str = "PT0H0M0S"
+      }
+      return str
     }
-  }
-  function centisecsToSCORM12Duration(n) {
-    var str, nH, nCs, nM, nS;
-    n = Math.round(n);
-    nH = Math.floor(n / 36E4);
-    nCs = n - nH * 36E4;
-    nM = Math.floor(nCs / 6E3);
-    nCs = nCs - nM * 6E3;
-    nS = Math.floor(nCs / 100);
-    nCs = nCs - nS * 100;
-    str = "0000" + nH + ":";
-    str = str.substr(str.length - 5, 5);
-    if(nM < 10) {
-      str += "0"
+    function ISODurationToCentisec(str) {
+      var aV = [0, 0, 0, 0, 0, 0], bErr = !!(str.indexOf("P") !== 0), bTFound = false, aT = ["Y", "M", "D", "H", "M", "S"], p = 0, i = 0, len;
+      if(!bErr) {
+        str = str.substr(1);
+        len = aT.length;
+        i = 0;
+        while(i < len) {
+          if(str.indexOf("T") === 0) {
+            str = str.substr(1);
+            i = Math.max(i, 3);
+            bTFound = true
+          }
+          p = str.indexOf(aT[i]);
+          if(p > -1) {
+            if(i === 1 && str.indexOf("T") > -1 && str.indexOf("T") < p) {
+              continue
+            }
+            if(aT[i] === "S") {
+              aV[i] = parseFloat(str.substr(0, p))
+            }else {
+              aV[i] = parseInt(str.substr(0, p), 10)
+            }
+            if(isNaN(aV[i])) {
+              bErr = true;
+              break
+            }
+            if(i > 2 && !bTFound) {
+              bErr = true;
+              break
+            }
+            str = str.substr(p + 1)
+          }
+          i += 1
+        }
+        bErr = !!(!bErr && len !== 0)
+      }
+      if(bErr) {
+        return 0
+      }
+      return aV[0] * 315576E4 + aV[1] * 26298E4 + aV[2] * 864E4 + aV[3] * 36E4 + aV[4] * 6E3 + Math.round(aV[5] * 100)
     }
-    str += nM + ":";
-    if(nS < 10) {
-      str += "0"
+    function padTime(n) {
+      return n < 10 ? "0" + n : n
     }
-    str += nS;
-    if(nCs > 0) {
-      str += ".";
-      if(nCs < 10) {
+    function isoDateToStringUTC(d) {
+      return d.getUTCFullYear() + "-" + padTime(d.getUTCMonth() + 1) + "-" + padTime(d.getUTCDate()) + "T" + padTime(d.getUTCHours()) + ":" + padTime(d.getUTCMinutes()) + ":" + padTime(d.getUTCSeconds()) + "." + Math.round(d.getUTCMilliseconds() / 1E3 % 1E3) + "Z"
+    }
+    function isoDateToString(d) {
+      var offset = d.getTimezoneOffset() > 0 ? "-" : "+";
+      return d.getFullYear() + "-" + padTime(d.getMonth() + 1) + "-" + padTime(d.getDate()) + "T" + padTime(d.getHours()) + ":" + padTime(d.getMinutes()) + ":" + padTime(d.getSeconds()) + "." + Math.round(d.getMilliseconds() / 1E3 % 1E3) + offset + padTime(d.getTimezoneOffset() / 60) + ":00"
+    }
+    function isoStringToDate(str) {
+      var MM = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], d, uoffset, offset = 0, mil = 0, dd;
+      switch(settings.time_type) {
+        case "UTC":
+          d = str.replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d+))(|Z)/, function($0, $Year, $Month, $Day, $Hour, $Min, $Sec) {
+            return MM[$Month - 1] + " " + $Day + ", " + $Year + " " + $Hour + ":" + $Min + ":" + $Sec
+          });
+          dd = new Date.UTC(d);
+          return dd;
+        case "GMT":
+          d = str.replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d+))([\+|\-]\d+:\d+)/, function($0, $Year, $Month, $Day, $Hour, $Min, $Sec, $Ms, $Offset) {
+            offset = parseInt($Offset.substring(1, $Offset.length), 10) * 60 * 60 * 60;
+            mil = $Ms;
+            return MM[$Month - 1] + " " + $Day + ", " + $Year + " " + $Hour + ":" + $Min + ":" + $Sec
+          });
+          dd = new Date(d);
+          uoffset = dd.getTimezoneOffset() * 60 * 60;
+          if(uoffset !== offset) {
+            dd = new Date(dd.getTime() + offset + uoffset);
+            dd.setMilliseconds(mil)
+          }
+          return dd;
+        default:
+          d = str.replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/, function($0, $Year, $Month, $Day, $Hour, $Min, $Sec) {
+            return MM[$Month - 1] + " " + $Day + ", " + $Year + " " + $Hour + ":" + $Min + ":" + $Sec
+          });
+          dd = new Date(d);
+          return dd
+      }
+    }
+    function centisecsToSCORM12Duration(n) {
+      var str, nH, nCs, nM, nS;
+      n = Math.round(n);
+      nH = Math.floor(n / 36E4);
+      nCs = n - nH * 36E4;
+      nM = Math.floor(nCs / 6E3);
+      nCs = nCs - nM * 6E3;
+      nS = Math.floor(nCs / 100);
+      nCs = nCs - nS * 100;
+      str = "0000" + nH + ":";
+      str = str.substr(str.length - 5, 5);
+      if(nM < 10) {
         str += "0"
       }
-      str += nCs
-    }
-    return str
-  }
-  function makeBoolean(str) {
-    if(str === undefined) {
-      debug(settings.prefix + " : makeBoolean was given empty string, converting to false", 2);
-      return false
-    }
-    if(str === true || str === false) {
-      return Boolean(str)
-    }
-    switch(str.toLowerCase()) {
-      case "true":
-      ;
-      case "yes":
-      ;
-      case "1":
-        return true;
-      case "false":
-      ;
-      case "no":
-      ;
-      case "0":
-      ;
-      case null:
-        return false;
-      default:
-        return Boolean(str)
-    }
-  }
-  function triggerWarning(n) {
-    debug(error[n], 2);
-    return true
-  }
-  function triggerException(msg) {
-    $(self).triggerHandler({"type":"exception", "error":msg})
-  }
-  function getLastErrorCode() {
-    var lms = API.path, code = 0;
-    if(lms) {
-      switch(API.version) {
-        case "1.2":
-          code = parseInt(lms.LMSGetLastError(), 10);
-          break;
-        case "2004":
-          code = parseInt(lms.GetLastError(), 10);
-          break;
-        default:
-          break
+      str += nM + ":";
+      if(nS < 10) {
+        str += "0"
       }
-    }
-    return code
-  }
-  function getLastErrorMessage(n) {
-    var lms = API.path, result = "No LMS Connectivity";
-    if(lms) {
-      switch(API.version) {
-        case "1.2":
-          result = lms.LMSGetErrorString(n.toString());
-          break;
-        case "2004":
-          result = lms.GetErrorString(n.toString());
-          break;
-        default:
-          break
-      }
-    }
-    return String(result)
-  }
-  function getDiagnostic(n) {
-    var lms = API.path, result = "No LMS Connectivity";
-    if(lms) {
-      switch(API.version) {
-        case "1.2":
-          result = lms.LMSGetDiagnostic(n.toString());
-          break;
-        case "2004":
-          result = lms.GetDiagnostic(n.toString());
-          break;
-        default:
-          break
-      }
-    }
-    return String(result)
-  }
-  this.getvalue = function(n) {
-    var v = null, lms = API.path, ec = 0, m = "", d = "", nn = null, ig = false;
-    if(API.isActive) {
-      switch(API.version) {
-        case "1.2":
-          switch(n) {
-            case "cmi.comments_from_lms._count":
-            ;
-            case "cmi.comments_from_learner._count":
-              ig = true;
-              break;
-            case "cmi.credit":
-              nn = "cmi.core.credit";
-              break;
-            case "cmi.location":
-              nn = "cmi.core.lesson_location";
-              break;
-            case "cmi.completion_threshold":
-              ig = true;
-              break;
-            case "cmi.entry":
-              nn = "cmi.core.entry";
-              break;
-            case "cmi.mode":
-              nn = "cmi.core.lesson_mode";
-              break;
-            case "cmi.exit":
-              nn = "cmi.core.exit";
-              break;
-            case "cmi.score.raw":
-              nn = "cmi.core.score.raw";
-              break;
-            case "cmi.score.min":
-              nn = "cmi.core.score.min";
-              break;
-            case "cmi.score.max":
-              nn = "cmi.core.score.max";
-              break;
-            case "cmi.scaled_passing_score":
-              nn = "cmi.student_data.mastery_score";
-              break;
-            case "cmi.max_time_allowed":
-              nn = "cmi.student_data.max_time_allowed";
-              break;
-            case "cmi.time_limit_action":
-              nn = "cmi.student_data.time_limit_action";
-              break;
-            case "cmi.learner_preferences.audio_level":
-              nn = "cmi.student_preferences.audio";
-              break;
-            case "cmi.learner_preferences.delivery_speed":
-              nn = "cmi.student_preferences.speed";
-              break;
-            case "cmi.learner_preferences.language":
-              nn = "cmi.student_preferences.language";
-              break;
-            case "cmi.learner_preferences.audio_captioning":
-              nn = "cmi.student_preferences.text";
-              break;
-            case "cmi.success_status":
-            ;
-            case "cmi.completion_status":
-              nn = "cmi.core.lesson_status";
-              break;
-            case "cmi.session_time":
-              nn = "cmi.core.session_time";
-              break;
-            case "cmi.suspend_data":
-              nn = n;
-              break;
-            default:
-              nn = n;
-              break
-          }
-          if(ig) {
-            return"false"
-          }
-          v = lms.LMSGetValue(nn);
-          break;
-        case "2004":
-          v = lms.GetValue(n);
-          break;
-        default:
-          break
-      }
-      ec = getLastErrorCode();
-      m = getLastErrorMessage(ec);
-      d = getDiagnostic(ec);
-      $(self).triggerHandler({"type":"getvalue", "n":n, "v":v, "error":{"code":ec, "message":m, "diagnostic":d}});
-      if(ec === 0 || ec === 403) {
-        if(v === "undefined" || v === null || v === "null") {
-          v = ""
+      str += nS;
+      if(nCs > 0) {
+        str += ".";
+        if(nCs < 10) {
+          str += "0"
         }
-        return String(v)
+        str += nCs
       }
-      debug(settings.prefix + ": Error\nError Code: " + ec + "\nError Message: " + m + "\nDiagnostic: " + d, 1);
-      return"false"
+      return str
     }
-    debug(settings.prefix + ": " + n + " Get Aborted, connection not initialized! " + API.isActive, 2);
-    return"false"
-  };
-  this.setvalue = function(n, v) {
-    var s = "false", lms = API.path, ec = 0, m = "", d = "", nn = null, ig = false;
-    if(API.isActive) {
-      switch(API.version) {
-        case "1.2":
-          API.mode = API.mode === "" ? lms.LMSGetValue("cmi.core.lesson_mode") : API.mode;
-          if(API.mode === "normal") {
+    function makeBoolean(str) {
+      if(str === undefined) {
+        debug("makeBoolean was given empty string, converting to false", 2);
+        return false
+      }
+      if(str === true || str === false) {
+        return Boolean(str)
+      }
+      switch(str.toLowerCase()) {
+        case "true":
+        ;
+        case "yes":
+        ;
+        case "1":
+          return true;
+        case "false":
+        ;
+        case "no":
+        ;
+        case "0":
+        ;
+        case null:
+          return false;
+        default:
+          return Boolean(str)
+      }
+    }
+    function triggerWarning(n) {
+      debug(error[n], 2);
+      return true
+    }
+    function triggerException(msg) {
+      $(self).triggerHandler({"type":"exception", "error":msg})
+    }
+    function getLastErrorCode() {
+      var lms = API.path, code = 0;
+      if(lms) {
+        switch(API.version) {
+          case "1.2":
+            code = parseInt(lms.LMSGetLastError(), 10);
+            break;
+          case "2004":
+            code = parseInt(lms.GetLastError(), 10);
+            break;
+          default:
+            break
+        }
+      }
+      return code
+    }
+    function getLastErrorMessage(n) {
+      var lms = API.path, result = "No LMS Connectivity";
+      if(lms) {
+        switch(API.version) {
+          case "1.2":
+            result = lms.LMSGetErrorString(n.toString());
+            break;
+          case "2004":
+            result = lms.GetErrorString(n.toString());
+            break;
+          default:
+            break
+        }
+      }
+      return String(result)
+    }
+    function getDiagnostic(n) {
+      var lms = API.path, result = "No LMS Connectivity";
+      if(lms) {
+        switch(API.version) {
+          case "1.2":
+            result = lms.LMSGetDiagnostic(n.toString());
+            break;
+          case "2004":
+            result = lms.GetDiagnostic(n.toString());
+            break;
+          default:
+            break
+        }
+      }
+      return String(result)
+    }
+    this.getvalue = function(n) {
+      var v = null, lms = API.path, ec = 0, m = "", d = "", nn = null, ig = false;
+      if(API.isActive) {
+        switch(API.version) {
+          case "1.2":
             switch(n) {
+              case "cmi.comments_from_lms._count":
+              ;
+              case "cmi.comments_from_learner._count":
+                ig = true;
+                break;
+              case "cmi.credit":
+                nn = "cmi.core.credit";
+                break;
               case "cmi.location":
-                if(v.length > 255) {
-                  debug(settings.prefix + ": Warning, your bookmark is over the limit!!", 2)
-                }
                 nn = "cmi.core.lesson_location";
+                break;
+              case "cmi.completion_threshold":
+                ig = true;
+                break;
+              case "cmi.entry":
+                nn = "cmi.core.entry";
                 break;
               case "cmi.mode":
                 nn = "cmi.core.lesson_mode";
                 break;
               case "cmi.exit":
                 nn = "cmi.core.exit";
-                API.exit_type = v;
                 break;
               case "cmi.score.raw":
                 nn = "cmi.core.score.raw";
@@ -18453,17 +18995,14 @@ function SCORM_API(options) {
               case "cmi.score.max":
                 nn = "cmi.core.score.max";
                 break;
-              case "cmi.score.scaled":
-                ig = true;
-                break;
-              case "cmi.success_status":
-              ;
-              case "cmi.completion_status":
-                nn = "cmi.core.lesson_status";
-                API.data.completion_status = v;
-                break;
               case "cmi.scaled_passing_score":
                 nn = "cmi.student_data.mastery_score";
+                break;
+              case "cmi.max_time_allowed":
+                nn = "cmi.student_data.max_time_allowed";
+                break;
+              case "cmi.time_limit_action":
+                nn = "cmi.student_data.time_limit_action";
                 break;
               case "cmi.learner_preferences.audio_level":
                 nn = "cmi.student_preferences.audio";
@@ -18477,16 +19016,15 @@ function SCORM_API(options) {
               case "cmi.learner_preferences.audio_captioning":
                 nn = "cmi.student_preferences.text";
                 break;
+              case "cmi.success_status":
+              ;
+              case "cmi.completion_status":
+                nn = "cmi.core.lesson_status";
+                break;
               case "cmi.session_time":
                 nn = "cmi.core.session_time";
                 break;
-              case "cmi.total_time":
-                nn = "cmi.core.total_time";
-                break;
               case "cmi.suspend_data":
-                if(v.length > 4096) {
-                  debug(settings.prefix + ": Warning, your suspend data is over the limit!!", 2)
-                }
                 nn = n;
                 break;
               default:
@@ -18496,1288 +19034,420 @@ function SCORM_API(options) {
             if(ig) {
               return"false"
             }
-            s = lms.LMSSetValue(nn, v)
-          }else {
-            debug(settings.prefix + ": Warning, you are not in normal mode.  Ignoring 'set' requests.", 2);
-            return"false"
-          }
-          break;
-        case "2004":
-          API.mode = API.mode === "" ? lms.GetValue("cmi.mode") : API.mode;
-          if(API.mode === "normal") {
-            switch(n) {
-              case "cmi.location":
-                if(v.length > 1E3) {
-                  debug(settings.prefix + ": Warning, your bookmark is over the limit!!", 2)
-                }
-                break;
-              case "cmi.completion_status":
-                API.data.completion_status = v;
-                break;
-              case "cmi.success_status":
-                API.data.success_status = v;
-                break;
-              case "cmi.exit":
-                API.data.exit_type = v;
-                break;
-              case "suspend_data":
-                if(v.length > 64E3) {
-                  debug(settings.prefix + ": Warning, your suspend data is over the limit!!", 2)
-                }
-                break;
-              default:
-                break
-            }
-            s = lms.SetValue(n, v)
-          }else {
-            debug(settings.prefix + ": Warning, you are not in normal mode.  Ignoring 'set' requests.", 2);
-            return"false"
-          }
-          break;
-        default:
-          break
-      }
-      ec = getLastErrorCode();
-      m = getLastErrorMessage(ec);
-      d = getDiagnostic(ec);
-      $(self).triggerHandler({"type":"setvalue", "n":n, "v":v, "error":{"code":ec, "message":m, "diagnostic":d}});
-      if(ec === 0 || ec === 403) {
-        return s
-      }
-      debug(settings.prefix + ": Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for " + n + "\nDiagnostic: " + getDiagnostic(ec), 1);
-      return s
-    }
-    debug(settings.prefix + ": " + n + " Set Aborted, connection not initialized! Locate where you called it after you Terminated.", 2);
-    return"false"
-  };
-  this.commit = function() {
-    var s = "false", lms = API.path, ec = 0, session_secs, saveDate = new Date;
-    session_secs = (saveDate.getTime() - settings.startDate.getTime()) / 1E3;
-    if(API.isActive) {
-      debug(settings.prefix + ": Committing data", 3);
-      switch(API.version) {
-        case "1.2":
-          self.setvalue("cmi.core.session_time", centisecsToSCORM12Duration(session_secs * 100));
-          s = lms.LMSCommit("");
-          break;
-        case "2004":
-          self.setvalue("cmi.session_time", centisecsToISODuration(session_secs * 100, true));
-          s = lms.Commit("");
-          break;
-        default:
-          break
-      }
-      ec = getLastErrorCode();
-      if(ec === 0) {
-        return s
-      }
-      debug(settings.prefix + ": Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for Commit.\nDiagnostic: " + getDiagnostic(ec), 1);
-      return"false"
-    }
-    debug(settings.prefix + ": Commit Aborted, connection not initialized!", 2);
-    return"false"
-  };
-  this.initialize = function() {
-    debug(settings.prefix + ": Initialize Called. \n\tversion: " + settings.version + "\n\tModified: " + settings.modifiedDate, 3);
-    var s = false, lms = API.path, ec = 0;
-    if(!API.isActive) {
-      if(lms) {
-        switch(API.version) {
-          case "1.2":
-            s = makeBoolean(lms.LMSInitialize(""));
+            v = lms.LMSGetValue(nn);
             break;
           case "2004":
-            s = makeBoolean(lms.Initialize(""));
+            v = lms.GetValue(n);
             break;
           default:
             break
         }
         ec = getLastErrorCode();
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>" + s + ">>>>>>>>>>>>>>>>>>>>>>>>");
-        if(s && ec === 0) {
-          API.isActive = true;
-          API.data.completion_status = self.getvalue("cmi.completion_status");
-          settings.startDate = new Date;
-          debug(settings.prefix + ": SCO is initialized.", 3);
-          switch(API.data.completion_status) {
-            case "not attempted":
-            ;
-            case "unknown":
-              self.setvalue("cmi.completion_status", "incomplete");
-              break;
-            default:
-              if(API.data.completion_status === "") {
-                triggerException("LMS compatibility issue, Please notify a administrator.  Completion Status is empty.")
-              }
-              break
+        m = getLastErrorMessage(ec);
+        d = getDiagnostic(ec);
+        $(self).triggerHandler({"type":"getvalue", "n":n, "v":v, "error":{"code":ec, "message":m, "diagnostic":d}});
+        if(ec === 0 || ec === 403) {
+          if(v === "undefined" || v === null || v === "null") {
+            v = ""
           }
-          return"true"
+          return String(v)
         }
-        debug(settings.prefix + ": Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for Initialize.\nDiagnostic: " + getDiagnostic(ec), 1)
-      }else {
-        debug(settings.prefix + ": Aborted, LMS could not be located!.", 2)
+        debug("Error\nError Code: " + ec + "\nError Message: " + m + "\nDiagnostic: " + d, 1);
+        return"false"
       }
-    }else {
-      debug(settings.prefix + ": Aborted, connection already initialized!.", 2)
-    }
-    return"false"
-  };
-  this.terminate = function() {
-    var s = false, lms = API.path, ec = 0;
-    debug(settings.prefix + ": Terminating " + API.isActive + " " + lms, 4);
-    if(API.isActive) {
-      if(lms) {
-        debug(settings.prefix + ": completion_status = " + API.data.completion_status + "|| success_status = " + API.data.success_status, 3);
-        self.commit();
+      debug(n + " Get Aborted, connection not initialized! " + API.isActive, 2);
+      return"false"
+    };
+    this.setvalue = function(n, v) {
+      var s = "false", lms = API.path, ec = 0, m = "", d = "", nn = null, ig = false;
+      if(API.isActive) {
         switch(API.version) {
           case "1.2":
-            s = lms.LMSFinish("");
+            API.mode = API.mode === "" ? lms.LMSGetValue("cmi.core.lesson_mode") : API.mode;
+            if(API.mode === "normal") {
+              switch(n) {
+                case "cmi.location":
+                  if(v.length > 255) {
+                    debug("Warning, your bookmark is over the limit!!", 2)
+                  }
+                  nn = "cmi.core.lesson_location";
+                  break;
+                case "cmi.mode":
+                  nn = "cmi.core.lesson_mode";
+                  break;
+                case "cmi.exit":
+                  nn = "cmi.core.exit";
+                  API.exit_type = v;
+                  break;
+                case "cmi.score.raw":
+                  nn = "cmi.core.score.raw";
+                  break;
+                case "cmi.score.min":
+                  nn = "cmi.core.score.min";
+                  break;
+                case "cmi.score.max":
+                  nn = "cmi.core.score.max";
+                  break;
+                case "cmi.score.scaled":
+                  ig = true;
+                  break;
+                case "cmi.success_status":
+                ;
+                case "cmi.completion_status":
+                  nn = "cmi.core.lesson_status";
+                  API.data.completion_status = v;
+                  break;
+                case "cmi.scaled_passing_score":
+                  nn = "cmi.student_data.mastery_score";
+                  break;
+                case "cmi.learner_preferences.audio_level":
+                  nn = "cmi.student_preferences.audio";
+                  break;
+                case "cmi.learner_preferences.delivery_speed":
+                  nn = "cmi.student_preferences.speed";
+                  break;
+                case "cmi.learner_preferences.language":
+                  nn = "cmi.student_preferences.language";
+                  break;
+                case "cmi.learner_preferences.audio_captioning":
+                  nn = "cmi.student_preferences.text";
+                  break;
+                case "cmi.session_time":
+                  nn = "cmi.core.session_time";
+                  break;
+                case "cmi.total_time":
+                  nn = "cmi.core.total_time";
+                  break;
+                case "cmi.suspend_data":
+                  if(v.length > 4096) {
+                    debug("Warning, your suspend data is over the limit!!", 2)
+                  }
+                  nn = n;
+                  break;
+                default:
+                  nn = n;
+                  break
+              }
+              if(ig) {
+                return"false"
+              }
+              debug("SCORM 1.2 LMS SetValue with n: " + nn + " and v: " + v, 3);
+              s = lms.LMSSetValue(nn, v)
+            }else {
+              debug("Warning, you are not in normal mode.  Ignoring 'set' requests.", 2);
+              return"false"
+            }
             break;
           case "2004":
-            s = lms.Terminate("");
+            API.mode = API.mode === "" ? lms.GetValue("cmi.mode") : API.mode;
+            if(API.mode === "normal") {
+              switch(n) {
+                case "cmi.location":
+                  if(v.length > 1E3) {
+                    debug("Warning, your bookmark is over the limit!!", 2)
+                  }
+                  break;
+                case "cmi.completion_status":
+                  API.data.completion_status = v;
+                  break;
+                case "cmi.success_status":
+                  API.data.success_status = v;
+                  break;
+                case "cmi.exit":
+                  API.data.exit_type = v;
+                  break;
+                case "suspend_data":
+                  if(v.length > 64E3) {
+                    debug("Warning, your suspend data is over the limit!!", 2)
+                  }
+                  break;
+                default:
+                  break
+              }
+              debug("SCORM 2004 LMS SetValue with n: " + n + " and v: " + v, 3);
+              s = lms.SetValue(n, v)
+            }else {
+              debug("Warning, you are not in normal mode.  Ignoring 'set' requests.", 2);
+              return"false"
+            }
             break;
           default:
             break
         }
-        if(makeBoolean(s)) {
-          debug(settings.prefix + ": Terminated.", 3);
-          API.isActive = false
-        }else {
+        ec = getLastErrorCode();
+        m = getLastErrorMessage(ec);
+        d = getDiagnostic(ec);
+        $(self).triggerHandler({"type":"setvalue", "n":n, "v":v, "error":{"code":ec, "message":m, "diagnostic":d}});
+        if(ec === 0 || ec === 403) {
+          return s
+        }
+        debug("Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for " + n + "\nDiagnostic: " + getDiagnostic(ec), 1);
+        return s
+      }
+      debug(n + " Set Aborted, connection not initialized! Locate where you called it after you Terminated.", 2);
+      return"false"
+    };
+    this.commit = function() {
+      var s = "false", lms = API.path, ec = 0, session_secs, saveDate = new Date;
+      if(API.isActive) {
+        session_secs = (saveDate.getTime() - settings.startDate.getTime()) / 1E3;
+        debug("Committing data", 3);
+        switch(API.version) {
+          case "1.2":
+            self.setvalue("cmi.core.session_time", centisecsToSCORM12Duration(session_secs * 100));
+            s = lms.LMSCommit("");
+            break;
+          case "2004":
+            self.setvalue("cmi.session_time", centisecsToISODuration(session_secs * 100, true));
+            s = lms.Commit("");
+            break;
+          default:
+            break
+        }
+        ec = getLastErrorCode();
+        if(ec === 0) {
+          return s
+        }
+        debug("Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for Commit.\nDiagnostic: " + getDiagnostic(ec), 1);
+        return"false"
+      }
+      debug("Commit Aborted, connection not initialized!", 2);
+      return"false"
+    };
+    this.initialize = function() {
+      debug("Initialize Called. \n\tversion: " + settings.version + "\n\tModified: " + settings.modifiedDate, 3);
+      var s = false, lms = API.path, ec = 0;
+      if(!API.isActive) {
+        if(lms) {
+          switch(API.version) {
+            case "1.2":
+              s = makeBoolean(lms.LMSInitialize(""));
+              break;
+            case "2004":
+              s = makeBoolean(lms.Initialize(""));
+              break;
+            default:
+              break
+          }
           ec = getLastErrorCode();
-          debug(settings.prefix + ": Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for Commit.\nDiagnostic: " + getDiagnostic(ec), 1)
+          if(s && ec === 0) {
+            API.isActive = true;
+            API.data.completion_status = self.getvalue("cmi.completion_status");
+            settings.startDate = new Date;
+            debug("SCO is initialized.", 3);
+            switch(API.data.completion_status) {
+              case "not attempted":
+              ;
+              case "unknown":
+                self.setvalue("cmi.completion_status", "incomplete");
+                break;
+              default:
+                if(API.data.completion_status === "") {
+                  triggerException("LMS compatibility issue, Please notify a administrator.  Completion Status is empty.")
+                }
+                break
+            }
+            return"true"
+          }
+          debug("Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for Initialize.\nDiagnostic: " + getDiagnostic(ec), 1)
+        }else {
+          debug("Aborted, LMS could not be located!.", 2)
         }
       }else {
-        debug(settings.prefix + ": Lost connection to LMS", 2)
+        debug("Aborted, connection already initialized!.", 2)
       }
-    }else {
-      debug(settings.prefix + ": Terminate Aborted, connection not initialized!", 2)
-    }
-    return s
-  };
-  this.getObjectiveByID = function(id) {
-    var count = self.getvalue("cmi.objectives._count"), i, tID;
-    scorm.debug(settings.prefix + ": Set Objective - Begin search, Objective count is " + count, 4);
-    if(count === "" || count === "false" || count === "-1") {
       return"false"
-    }
-    count = parseInt(count, 10) - 1;
-    i = count;
-    while(i >= 0) {
-      tID = self.getvalue("cmi.objectives." + i + ".id");
-      if(id === tID) {
-        scorm.debug(settings.prefix + ": Objective ID Match on " + i, 4);
-        return i
+    };
+    this.terminate = function() {
+      var s = false, lms = API.path, ec = 0;
+      debug("Terminating " + API.isActive + " " + lms, 4);
+      if(API.isActive) {
+        if(lms) {
+          debug("completion_status = " + API.data.completion_status + "|| success_status = " + API.data.success_status, 3);
+          self.commit();
+          switch(API.version) {
+            case "1.2":
+              s = lms.LMSFinish("");
+              break;
+            case "2004":
+              s = lms.Terminate("");
+              break;
+            default:
+              break
+          }
+          if(makeBoolean(s)) {
+            debug("Terminated.", 3);
+            API.isActive = false
+          }else {
+            ec = getLastErrorCode();
+            debug("Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for Commit.\nDiagnostic: " + getDiagnostic(ec), 1)
+          }
+        }else {
+          debug("Lost connection to LMS", 2)
+        }
+      }else {
+        debug("Terminate Aborted, connection not initialized!", 2)
       }
-      i -= 1
-    }
-    return"false"
-  };
-  this.getInteractionByID = function(id) {
-    var count = self.getvalue("cmi.interactions._count"), i, tID;
-    if(count === "" || count === "false" || count === "-1") {
+      return s
+    };
+    this.getObjectiveByID = function(id) {
+      var count = self.getvalue("cmi.objectives._count"), i, tID;
+      scorm.debug("Set Objective - Begin search, Objective count is " + count, 4);
+      if(count === "" || count === "false" || count === "-1") {
+        return"false"
+      }
+      count = parseInt(count, 10) - 1;
+      i = count;
+      while(i >= 0) {
+        tID = self.getvalue("cmi.objectives." + i + ".id");
+        if(id === tID) {
+          scorm.debug("Objective ID Match on " + i, 4);
+          return i
+        }
+        i -= 1
+      }
       return"false"
-    }
-    count = parseInt(count, 10) - 1;
-    scorm.debug(settings.prefix + ": Getting interactions from count " + count, 4);
-    i = count;
-    while(i >= 0) {
-      tID = this.getvalue("cmi.interactions." + i + ".id");
-      if(id === tID) {
-        scorm.debug(settings.prefix + ": Interaction By ID Returning " + i);
-        return i
+    };
+    this.getInteractionByID = function(id) {
+      var count = self.getvalue("cmi.interactions._count"), i, tID;
+      if(count === "" || count === "false" || count === "-1") {
+        return"false"
       }
-      i -= 1
-    }
-    return"false"
-  };
-  this.getInteractionObjectiveByID = function(n, id) {
-    var count = self.getvalue("cmi.interactions." + n + ".objectives._count"), i, tID;
-    if(count === "" || count === "false") {
-      return"0"
-    }
-    count = parseInt(count, 10) - 1;
-    scorm.debug(settings.prefix + ": Getting interaction objectives from count " + count, 4);
-    i = count;
-    while(i >= 0) {
-      tID = self.getvalue("cmi.interactions." + n + ".objectives." + i + ".id");
-      if(id === tID) {
-        scorm.debug(settings.prefix + ": Interaction Objective By ID Returning " + i);
-        return i
+      count = parseInt(count, 10) - 1;
+      scorm.debug("Getting interactions from count " + count, 4);
+      i = count;
+      while(i >= 0) {
+        tID = this.getvalue("cmi.interactions." + i + ".id");
+        if(id === tID) {
+          scorm.debug("Interaction By ID Returning " + i);
+          return i
+        }
+        i -= 1
       }
-      i -= 1
-    }
-    return"false"
-  };
-  this.getInteractionCorrectResponsesByPattern = function(n, pattern) {
-    var count = self.getvalue("cmi.interactions." + n + ".correct_responses._count"), i, p;
-    if(count === "" || count === "false") {
-      scorm.debug(settings.prefix + ": Correct Responses pattern was empty or false", 4);
-      return"0"
-    }
-    count = parseInt(count, 10) - 1;
-    scorm.debug(settings.prefix + ": Getting interaction correct responses from count " + count, 4);
-    i = count;
-    while(i >= 0) {
-      p = self.getvalue("cmi.interactions." + n + ".correct_responses." + i + ".pattern");
-      if(pattern === p) {
-        scorm.debug(settings.prefix + ": Interaction Correct Responses By Pattern Returning " + i);
-        return"match"
+      return"false"
+    };
+    this.getInteractionObjectiveByID = function(n, id) {
+      var count = self.getvalue("cmi.interactions." + n + ".objectives._count"), i, tID;
+      if(count === "" || count === "false") {
+        return"0"
       }
-      i -= 1
-    }
-    return"false"
-  };
-  this.init = function() {
-    var win;
-    try {
-      win = window.parent;
-      if(win && win !== window) {
-        findAPI(window.parent)
+      count = parseInt(count, 10) - 1;
+      scorm.debug("Getting interaction objectives from count " + count, 4);
+      i = count;
+      while(i >= 0) {
+        tID = self.getvalue("cmi.interactions." + n + ".objectives." + i + ".id");
+        if(id === tID) {
+          scorm.debug("Interaction Objective By ID Returning " + i);
+          return i
+        }
+        i -= 1
       }
-    }catch(e) {
-      debug(e, 1)
-    }
-    if(!API.path) {
+      return"false"
+    };
+    this.getInteractionCorrectResponsesByPattern = function(n, pattern) {
+      var count = self.getvalue("cmi.interactions." + n + ".correct_responses._count"), i, p;
+      if(count === "" || count === "false") {
+        scorm.debug("Correct Responses pattern was empty or false", 4);
+        return"0"
+      }
+      count = parseInt(count, 10) - 1;
+      scorm.debug("Getting interaction correct responses from count " + count, 4);
+      i = count;
+      while(i >= 0) {
+        p = self.getvalue("cmi.interactions." + n + ".correct_responses." + i + ".pattern");
+        if(pattern === p) {
+          scorm.debug("Interaction Correct Responses By Pattern Returning " + i);
+          return"match"
+        }
+        i -= 1
+      }
+      return"false"
+    };
+    this.init = function() {
+      var win;
       try {
-        win = window.top.opener;
-        findAPI(win)
-      }catch(ee) {
-        debug(ee, 1)
+        win = window.parent;
+        if(win && win !== window) {
+          findAPI(window.parent)
+        }
+      }catch(e) {
+        debug(e, 1)
       }
-    }
-    if(API.path) {
-      API.connection = true;
-      return true
-    }
-    debug(settings.prefix + ": I was unable to locate an API for communication", 2);
-    if(settings.use_standalone) {
-      debug(settings.prefix + ": If you included Local_API_1484_11 I'll mimic the LMS.  If not, all SCORM calls will fail.", 4);
-      settings.standalone = true;
-      API.version = "2004";
-      API.path = typeof Local_API_1484_11 === "function" ? new Local_API_1484_11({cmi:settings.cmi}) : null;
-      $(API.path).on("StoreData", function(e) {
-        $(self).triggerHandler({type:"StoreData", runtimedata:e.runtimedata})
-      });
-      return true
-    }
-    return false
-  };
-  this.getLastError = function(n) {
-    return error[n]
-  };
-  this.isLMSConnected = function() {
-    return API.connection
-  };
-  this.set = function(n, v) {
-    switch(n) {
-      case "version":
-      ;
-      case "createDate":
-      ;
-      case "modifiedDate":
-      ;
-      case "prefix":
-        triggerWarning(405);
-        return false;
-      case "isActive":
-        API.isActive = v;
-        settings[n] = v;
-        break;
-      case "startDate":
-        settings[n] = new Date(v);
-        break;
-      default:
-        settings[n] = v;
-        break
-    }
-    return isError !== 0
-  };
-  this.get = function(n) {
-    if(settings[n] === undefined) {
-      triggerWarning(404);
+      if(!API.path) {
+        try {
+          win = window.top.opener;
+          findAPI(win)
+        }catch(ee) {
+          debug(ee, 1)
+        }
+      }
+      if(API.path) {
+        API.connection = true;
+        return true
+      }
+      debug("I was unable to locate an API for communication", 2);
+      if(settings.use_standalone) {
+        debug("If you included Local_API_1484_11 I'll mimic the LMS.  If not, all SCORM calls will fail.", 4);
+        settings.standalone = true;
+        API.version = "2004";
+        API.path = typeof Local_API_1484_11 === "function" ? new Local_API_1484_11({cmi:settings.cmi}) : null;
+        $(API.path).on("StoreData", function(e) {
+          $(self).triggerHandler({type:"StoreData", runtimedata:e.runtimedata})
+        });
+        return true
+      }
       return false
-    }
-    return settings[n]
-  };
-  this.centisecsToSCORM12Duration = centisecsToSCORM12Duration;
-  this.centisecsToISODuration = centisecsToISODuration;
-  this.ISODurationToCentisec = ISODurationToCentisec;
-  this.isoDateToStringUTC = isoDateToStringUTC;
-  this.isoDateToString = isoDateToString;
-  this.isoStringToDate = isoStringToDate;
-  this.makeBoolean = makeBoolean;
-  this.debug = debug;
-  this.init()
-}
-;/*
- Copyright (c) 2009-2014, Cybercussion Interactive LLC
- As of 3.0.0 this code is under a Creative Commons Attribution-ShareAlike 4.0 International License.
- @requires scorm, JQuery
- @version 3.1.0
- @param options {Object} override default values
- @constructor
-*/
-function SCOBot(options) {
-  var defaults = {version:"3.1.0", createDate:"04/07/2011 09:33AM", modifiedDate:"01/16/2014 03:57PM", prefix:"SCOBot", launch_data:{}, interaction_mode:"state", launch_data_type:"querystring", initiate_timer:true, scorm_strict:true, scorm_edition:"3rd", success_status:"unknown", location:"", completion_status:"", suspend_data:{pages:[]}, mode:"", completion_threshold:0, scaled_passing_score:0.7, max_time_allowed:"", totalInteractions:0, totalObjectives:0, startTime:0}, settings = $.extend(defaults, 
-  options), lmsconnected = false, isError = false, isStarted = false, badValues = "|null|undefined|false|NaN|| |", error = scorm.get("error"), self = this;
-  function initSCO() {
-    lmsconnected = scorm.initialize();
-    scorm.debug(settings.prefix + ": SCO Loaded from window.onload " + lmsconnected, 4);
-    if(lmsconnected) {
-      self.start();
-      $(self).triggerHandler({"type":"load"})
-    }
-    return lmsconnected
-  }
-  function exitSCO() {
-    scorm.debug("SCO is being asked, *cough* forced to exit ...", 3);
-    if(isStarted) {
-      $(self).triggerHandler({"type":"unload"});
-      switch(scorm.get("exit_type")) {
-        case "finish":
-          self.finish();
+    };
+    this.getLastError = function(n) {
+      return error[n]
+    };
+    this.isLMSConnected = function() {
+      return API.connection
+    };
+    this.set = function(n, v) {
+      switch(n) {
+        case "version":
+        ;
+        case "createDate":
+        ;
+        case "modifiedDate":
+        ;
+        case "prefix":
+          triggerWarning(405);
+          return false;
+        case "isActive":
+          API.isActive = v;
+          settings[n] = v;
           break;
-        case "suspend":
-          self.suspend();
-          break;
-        case "timeout":
-          self.timeout();
+        case "startDate":
+          settings[n] = new Date(v);
           break;
         default:
-          scorm.debug(settings.prefix + ": unknown exit type", 2);
+          settings[n] = v;
           break
       }
-      scorm.debug(settings.prefix + ": SCO is done unloading.", 4);
-      isStarted = false
-    }
-    return true
-  }
-  function triggerWarning(n) {
-    scorm.debug(error[n], 2);
-    return true
-  }
-  function triggerException(msg) {
-    $(self).triggerHandler({"type":"exception", "error":msg})
-  }
-  function isPassed() {
-    var success = scorm.getvalue("cmi.success_status");
-    return!(success !== "passed" && success !== "failed")
-  }
-  function verifyScoreScaled() {
-    var success = scorm.getvalue("cmi.success_status");
-    if(success === "passed" && scorm.get("exit_type") === "finish") {
-      if(scorm.getvalue("cmi.score.scaled") === "false") {
-        if(scorm.getvalue("cmi.score.max") === "1") {
-          scorm.setvalue("cmi.score.scaled", "1")
-        }
-      }
-    }
-  }
-  function isBadValue(v) {
-    return badValues.indexOf("|" + v + "|") >= 0
-  }
-  function cleanseData(str) {
-    var cleanseExp = /[^\f\r\n\t\v\0\s\S\w\W\d\D\b\\B\\cX\\xhh\\uhhh]/gi;
-    return str.replace(cleanseExp, "")
-  }
-  function isISO8601(v) {
-    var iso8601Exp;
-    switch(scorm.get("time_type")) {
-      case "UTC":
-        iso8601Exp = /^(\d{4})-0?(\d+)-0?(\d+)[T ]0?(\d+):0?(\d+):0?(\d+)(?:\.(\d+))(|Z)$/;
-        break;
-      case "GMT":
-        iso8601Exp = /^(\d{4})-0?(\d+)-0?(\d+)[T ]0?(\d+):0?(\d+):0?(\d+)(?:\.(\d+))[\+\-]\d{2}:\d{2}$/;
-        break;
-      default:
-        iso8601Exp = /^(\d{4})-0?(\d+)-0?(\d+)[T ]0?(\d+):0?(\d+):0?(\d+)$/;
-        break
-    }
-    return iso8601Exp.test(v)
-  }
-  function isISO8601Duration(v) {
-    var iso8601Dur = /^(?:P)([^T]*)(?:T)?(.*)?$/;
-    return iso8601Dur.test(v)
-  }
-  function notStartedYet() {
-    scorm.debug(settings.prefix + ": You didn't call 'start()' yet, or you already terminated, ignoring.", 2);
-    return"false"
-  }
-  function currentTime() {
-    return(new Date).getTime()
-  }
-  function trueRound(v, dec) {
-    var num = parseFloat(v);
-    return parseFloat(num.toPrecision(dec))
-  }
-  function findResponseType(type, str) {
-    var reg = 0;
-    switch(type) {
-      case "order_matters":
-        reg = /^\{order_matters=.*?\}/;
-        break;
-      case "case_matters":
-        reg = /^\{case_matters=.*?\}/;
-        break;
-      case "lang":
-        reg = /^\{lang=.*?\}/;
-        break;
-      default:
-        scorm.debug(settings.prefix + ": Sorry, this is not a valid Response type.", 1);
-        break
-    }
-    return reg.exec(str)
-  }
-  function timesUp() {
-    scorm.debug("Times Up!");
-    var time_action = scorm.getvalue("cmi.time_limit_action").split(","), message = !!(time_action[1] === "message");
-    if(message) {
-      $(self).triggerHandler({"type":"message", "text":"Time Limit Exceeded"})
-    }
-    scorm.set("exit_type", "timeout");
-    if(time_action[0] === "exit") {
-      exitSCO()
-    }else {
-      $(self).triggerHandler({"type":"continue"})
-    }
-  }
-  function encodeInteractionType(type, value) {
-    var str = "", str2 = "", i = 0, arr = [], arr2 = [], len, index;
-    switch(type) {
-      case "true-false":
-        value = value.toString();
-        if(value === "true" || value === "false") {
-          return value
-        }
-        scorm.debug(settings.prefix + ": Developer, you're not passing true or false for true-false.  I got " + value + " instead", 1);
-        return"";
-      case "choice":
-      ;
-      case "sequencing":
-        if($.isArray(value)) {
-          index = 0;
-          if(value.length > 36 && settings.scorm_strict) {
-            scorm.debug(settings.prefix + ": Developer, you're passing a sum of values that exceeds SCORM's limit of 36 for this pattern.", 2);
-            value = value.slice(0, 36)
-          }
-          for(index in value) {
-            if(value.hasOwnProperty(index)) {
-              if(value[index].length > 10 && settings.scorm_strict) {
-                scorm.debug(settings.prefix + ": Developer, you're passing values that exceed SCORM's limit of 10 characters.  Yours have " + value[index].length + ". I will truncate this as not to lose data.", 2);
-                value[index] = value[index].substring(0, 10)
-              }
-            }
-          }
-          str = value.join("[,]");
-          value = str
-        }else {
-          scorm.debug(settings.prefix + ": Developer, you're not passing a array type for sequencing/choice.  I got " + typeof value + " instead\n" + JSON.stringify(value), 1);
-          value = ""
-        }
-        return value;
-      case "fill-in":
-        if($.isPlainObject(value)) {
-          if(value.case_matters !== undefined) {
-            str += "{case_matters=" + value.case_matters + "}"
-          }
-          if(value.order_matters !== undefined) {
-            str += "{order_matters=" + value.order_matters + "}"
-          }
-          if(value.lang !== undefined) {
-            str += "{lang=" + value.lang + "}"
-          }
-          str += value.words.join("[,]");
-          value = str
-        }else {
-          scorm.debug(settings.prefix + ": Developer, you're not passing a object type for fill in.  I got " + typeof value + " instead", 1);
-          value = ""
-        }
-        return value;
-      case "long-fill-in":
-        if($.isPlainObject(value)) {
-          if(value.case_matters !== undefined) {
-            str += "{case_matters=" + value.case_matters + "}"
-          }
-          if(value.lang !== undefined) {
-            str += "{lang=" + value.lang + "}"
-          }
-          str += value.text;
-          value = str
-        }else {
-          scorm.debug(settings.prefix + ": Developer, you're not passing a object type for long fill in.  I got " + typeof value + " instead", 1);
-          value = ""
-        }
-        return value;
-      case "matching":
-        if($.isArray(value)) {
-          len = value.length;
-          i = 0;
-          while(i < len) {
-            if($.isArray(value[i])) {
-              arr.push(value[i].join("[.]"))
-            }else {
-              scorm.debug(settings.prefix + ": Developer, you're not passing a array type for matching/performance.  I got " + typeof value + " instead", 1);
-              return""
-            }
-            i += 1
-          }
-          str = arr.join("[,]");
-          value = str
-        }else {
-          scorm.debug(settings.prefix + ": Developer, you're not passing a array type for matching/performance.  I got " + typeof value + " instead", 1);
-          value = ""
-        }
-        return value;
-      case "performance":
-        if(!$.isArray(value)) {
-          if(value.order_matters !== undefined) {
-            str += "{order_matters=" + value.order_matters + "}"
-          }
-          if($.isArray(value.answers)) {
-            len = value.answers.length;
-            i = 0;
-            while(i < len) {
-              if($.isArray(value.answers[i])) {
-                if($.isPlainObject(value.answers[i][1])) {
-                  arr2 = [trueRound(value.answers[i][1].min, 7), trueRound(value.answers[i][1].max, 7)];
-                  str2 = arr2.join("[:]");
-                  value.answers[i][1] = str2
-                }
-                arr.push(value.answers[i].join("[.]"))
-              }else {
-                scorm.debug(settings.prefix + ": Developer, you're not passing a array type for performance correct response.  I got " + typeof value.answers[i] + " instead on " + i, 1);
-                scorm.debug(value, 1);
-                return""
-              }
-              i += 1
-            }
-            str += arr.join("[,]")
-          }else {
-            scorm.debug(settings.prefix + ": Developer, you're not passing a array type for performance correct response.  I got " + typeof value.answers + " instead", 1);
-            scorm.debug(value, 1)
-          }
-        }else {
-          if(typeof $.isArray(value)) {
-            len = value.length;
-            i = 0;
-            while(i < len) {
-              if($.isArray(value[i])) {
-                arr.push(value[i].join("[.]"))
-              }else {
-                scorm.debug(settings.prefix + ": Developer, you're not passing a array type for performance learner response.  I got " + typeof value[i] + " instead on " + i, 1);
-                scorm.debug(value, 1);
-                return""
-              }
-              i += 1
-            }
-            str = arr.join("[,]")
-          }else {
-            scorm.debug(settings.prefix + ": Developer, you're not passing a array type for performance learner response.  I got " + typeof value + " instead", 1);
-            value = ""
-          }
-        }
-        value = str;
-        return value;
-      case "numeric":
-        if(typeof value === "number") {
-          str = value.toString()
-        }else {
-          if($.isPlainObject(value)) {
-            arr = [trueRound(value.min, 7), trueRound(value.max, 7)];
-            str = arr.join("[:]")
-          }else {
-            str = parseFloat(value);
-            if(str === "NaN") {
-              scorm.debug(settings.prefix + ": Developer, your not passing a number for a numeric interaction.  I got " + value + " instead", 1)
-            }
-            str += ""
-          }
-        }
-        return str;
-      case "likert":
-      ;
-      case "other":
-        return value.toString();
-      default:
-        scorm.debug(settings.prefix + ": Sorry, invalid interaction type detected for " + type + " on " + value, 1);
+      return isError !== 0
+    };
+    this.get = function(n) {
+      if(settings[n] === undefined) {
+        triggerWarning(404);
         return false
-    }
+      }
+      return settings[n]
+    };
+    this.centisecsToSCORM12Duration = centisecsToSCORM12Duration;
+    this.centisecsToISODuration = centisecsToISODuration;
+    this.ISODurationToCentisec = ISODurationToCentisec;
+    this.isoDateToStringUTC = isoDateToStringUTC;
+    this.isoDateToString = isoDateToString;
+    this.isoStringToDate = isoStringToDate;
+    this.makeBoolean = makeBoolean;
+    this.debug = debug;
+    this.settings = settings;
+    this.API = API;
+    this.init()
   }
-  function decodeInteractionType(type, value) {
-    var i = 0, arr = [], obj = {}, len, match = false;
-    switch(type) {
-      case "true-false":
-        return value;
-      case "choice":
-      ;
-      case "sequencing":
-        arr = value.split("[,]");
-        value = arr;
-        return value;
-      case "fill-in":
-        arr = findResponseType("case_matters", value);
-        if(arr !== null) {
-          if(arr[0].search(/^\{case_matters=(true|false)\}$/) !== -1) {
-            obj.case_matters = arr[0].substring("{case_matters=".length, arr[0].length - 1);
-            value = value.substring(arr[0].length, value.length);
-            scorm.debug("=== case matters" + value, 4)
-          }
-        }
-        arr = findResponseType("order_matters", value);
-        if(arr !== null) {
-          if(arr[0].search(/^\{order_matters=(true|false)\}$/) !== -1) {
-            obj.order_matters = arr[0].substring("{order_matters=".length, arr[0].length - 1);
-            value = value.substring(arr[0].length, value.length);
-            scorm.debug("=== order matters" + value, 4)
-          }
-        }
-        arr = findResponseType("lang", value);
-        if(arr !== null) {
-          if(arr[0].search(/^\{lang=.*?\}$/) !== -1) {
-            obj.lang = arr[0].substring("{lang=".length, arr[0].length - 1);
-            value = value.substring(arr[0].length, value.length)
-          }
-        }
-        obj.words = value.split("[,]");
-        return obj;
-      case "long-fill-in":
-        arr = findResponseType("case_matters", value);
-        if(arr !== null) {
-          if(arr[0].search(/^\{case_matters=(true|false)\}$/) !== -1) {
-            obj.case_matters = arr[0].substring("{case_matters=".length, arr[0].length - 1);
-            value = value.substring(arr[0].length, value.length);
-            scorm.debug("=== case matters" + value, 4)
-          }
-        }
-        arr = findResponseType("lang", value);
-        if(arr !== null) {
-          if(arr[0].search(/^\{lang=.*?\}$/) !== -1) {
-            obj.lang = arr[0].substring("{lang=".length, arr[0].length - 1);
-            value = value.substring(arr[0].length, value.length)
-          }
-        }
-        obj.text = value;
-        return obj;
-      case "matching":
-        arr = value.split("[,]");
-        len = arr.length;
-        i = 0;
-        while(i < len) {
-          arr[i] = arr[i].split("[.]");
-          i += 1
-        }
-        return arr;
-      case "performance":
-        arr = findResponseType("order_matters", value);
-        if(arr !== null) {
-          if(arr[0].search(/^\{order_matters=(true|false)\}$/) !== -1) {
-            match = true;
-            obj.order_matters = arr[0].substring("{order_matters=".length, arr[0].length - 1);
-            value = value.substring(arr[0].length, value.length);
-            scorm.debug("=== order matters" + value, 4)
-          }
-        }
-        arr = value.split("[,]");
-        len = arr.length;
-        i = 0;
-        while(i < len) {
-          arr[i] = arr[i].split("[.]");
-          i += 1
-        }
-        if(match) {
-          obj.answers = arr;
-          return obj
-        }
-        return arr;
-      case "numeric":
-      ;
-      case "likert":
-      ;
-      case "other":
-        return value;
-      default:
-        scorm.debug(settings.prefix + ": Sorry, invalid interaction type detected for " + type + " on " + value, 1);
-        return false
-    }
-  }
-  function setSuspendData() {
-    var result;
-    result = scorm.setvalue("cmi.suspend_data", cleanseData(JSON.stringify(settings.suspend_data)));
-    if(result === "true") {
-      scorm.debug(settings.prefix + ": Suspend Data saved", 4);
-      scorm.debug(settings.suspend_data, 4);
-      return"true"
-    }
-    return"false"
-  }
-  function checkProgress() {
-    if(isStarted) {
-      var scoreRaw = 0, tmpRaw = 0, scoreScaled = 1, progressMeasure, totalObjectivesCompleted = 0, i = 0, count;
-      if(settings.totalInteractions === 0 || settings.totalObjectives === 0) {
-        scorm.debug(settings.prefix + ": Sorry, I cannot calculate Progress as the totalInteractions and or Objectives are zero", 2);
-        return"false"
-      }
-      count = parseInt(scorm.getvalue("cmi.objectives._count"), 10);
-      scorm.debug(settings.prefix + " Count is " + count);
-      if(count > 0) {
-        count = count - 1;
-        i = count;
-        while(i >= 0) {
-          tmpRaw = parseFloat(scorm.getvalue("cmi.objectives." + i + ".score.raw"));
-          scorm.debug("Score Raw: " + tmpRaw);
-          if(!isNaN(tmpRaw)) {
-            scoreRaw += parseFloat(tmpRaw)
-          }else {
-            scorm.debug(settings.prefix + " We got a NaN converting objectives." + i + ".score.raw", 2)
-          }
-          if(scorm.getvalue("cmi.objectives." + i + ".completion_status") === "completed") {
-            totalObjectivesCompleted += 1
-          }
-          i -= 1
-        }
-      }
-      scorm.debug(settings.prefix + " Setting score " + scorm.setvalue("cmi.score.raw", scoreRaw.toString()));
-      if(settings.scoreMax - settings.scoreMin === 0) {
-        scorm.debug(settings.prefix + ": Division by Zero for scoreMax - scoreMin " + settings.scoreMax, 2);
-        scorm.setvalue("cmi.score.scaled", scoreScaled)
-      }else {
-        scoreScaled = ((scoreRaw - settings.scoreMin) / (settings.scoreMax - settings.scoreMin)).toString();
-        scorm.debug(settings.prefix + ": Score Scaled = " + scoreScaled, 3);
-        scorm.setvalue("cmi.score.scaled", trueRound(scoreScaled, 7))
-      }
-      progressMeasure = (totalObjectivesCompleted / settings.totalObjectives).toString();
-      scorm.setvalue("cmi.progress_measure", trueRound(progressMeasure, 7));
-      settings.completion_status = parseFloat(progressMeasure) >= parseFloat(settings.completion_threshold) ? "completed" : "incomplete";
-      scorm.setvalue("cmi.completion_status", settings.completion_status);
-      settings.success_status = parseFloat(scoreScaled) >= parseFloat(settings.scaled_passing_score) ? "passed" : "failed";
-      scorm.setvalue("cmi.success_status", settings.success_status);
-      return{score_scaled:scorm.getvalue("cmi.score.scaled"), success_status:scorm.getvalue("cmi.success_status"), progress_measure:scorm.getvalue("cmi.progress_measure"), completion_status:scorm.getvalue("cmi.completion_status")}
-    }
-    return notStartedYet()
-  }
-  function getCommentsFromLMS() {
-    if(isStarted) {
-      var p1 = "cmi.comments_from_lms.", count = scorm.getvalue(p1 + "_count"), response = [], obj = {}, i;
-      if(!isBadValue(count)) {
-        return"false"
-      }
-      count -= 1;
-      i = 0;
-      while(i <= count) {
-        p1 += i + ".";
-        obj.comment = scorm.getvalue(p1 + "comment");
-        obj.location = scorm.getvalue(p1 + "location");
-        obj.timestamp = scorm.getvalue(p1 + "timestamp");
-        response.push(obj);
-        obj = {};
-        i += 1
-      }
-      return response
-    }
-    return notStartedYet()
-  }
-  function updateStatus() {
-    verifyScoreScaled();
-    if(!isPassed()) {
-      scorm.setvalue("cmi.success_status", "unknown")
-    }
-    if(scorm.get("success_status") === "passed") {
-      scorm.setvalue("cmi.success_status", "passed")
-    }
-    if(scorm.getvalue("cmi.completion_status") !== "completed") {
-      scorm.setvalue("cmi.completion_status", "incomplete")
-    }
-    if(scorm.get("completion_status") === "completed") {
-      scorm.setvalue("cmi.completion_status", "completed")
-    }
-  }
-  this.start = function() {
-    var tmpCompletionThreshold = "", tmpScaledPassingScore = "", tmpLaunchData = "";
-    scorm.debug(settings.prefix + ": I am starting...", 3);
-    if(!isStarted) {
-      isStarted = true;
-      settings.startTime = currentTime();
-      tmpLaunchData = scorm.getvalue("cmi.launch_data");
-      if(settings.launch_data_type === "json") {
-        settings.launch_data = JSON.parse(tmpLaunchData)
-      }else {
-        tmpLaunchData.replace(new RegExp("([^?=&]+)(=([^&]*))?", "g"), function($0, $1, $2, $3) {
-          settings.launch_data[$1] = $3
-        })
-      }
-      scorm.debug(settings.prefix + ": Launch Data:", 4);
-      scorm.debug(settings.launch_data, 4);
-      settings.mode = scorm.getvalue("cmi.mode");
-      settings.entry = scorm.getvalue("cmi.entry");
-      if(settings.mode === "review" || settings.entry === "" || settings.entry === "resume") {
-        settings.location = scorm.getvalue("cmi.location");
-        settings.suspend_data = scorm.getvalue("cmi.suspend_data");
-        if(settings.suspend_data.length > 0 && !isBadValue(settings.suspend_data)) {
-          scorm.debug(settings.prefix + ": Returning suspend data object from a prior session", 4);
-          settings.suspend_data = JSON.parse(settings.suspend_data);
-          scorm.debug(settings.suspend_data, 4);
-          if(settings.entry === "") {
-            settings.entry = "resume"
-          }
-        }else {
-          scorm.debug(settings.prefix + ": Creating new suspend data object", 4)
-        }
-      }else {
-        scorm.debug(settings.prefix + ": First time running this SCO based on LMS entry value.", 4);
-        scorm.debug(settings.prefix + ": Creating new suspend data object", 4)
-      }
-      tmpCompletionThreshold = scorm.getvalue("cmi.completion_threshold");
-      if(!isBadValue(tmpCompletionThreshold) && tmpCompletionThreshold !== "-1") {
-        settings.completion_threshold = tmpCompletionThreshold
-      }
-      tmpScaledPassingScore = scorm.getvalue("cmi.scaled_passing_score");
-      if(!isBadValue(tmpScaledPassingScore) && tmpScaledPassingScore !== "-1") {
-        settings.scaled_passing_score = tmpScaledPassingScore
-      }
-      settings.completion_status = scorm.getvalue("cmi.completion_status");
-      settings.success_status = scorm.getvalue("cmi.success_status");
-      settings.comments_from_lms = getCommentsFromLMS();
-      if(settings.comments_from_lms !== "false") {
-        $(self).triggerHandler({"type":"comments_lms", "data":settings.comments_from_lms})
-      }
-      settings.max_time_allowed = scorm.getvalue("cmi.max_time_allowed");
-      if(isISO8601Duration(settings.max_time_allowed)) {
-        if(settings.initiate_timer) {
-          scorm.debug(settings.prefix + ": This SCO has a set time, I am starting the timer for " + settings.max_time_allowed + "...");
-          self.startTimer()
-        }
-      }else {
-        scorm.debug(settings.prefix + ": This is not ISO8601 time duration. " + settings.max_time_allowed)
-      }
-    }else {
-      scorm.debug(settings.prefix + ": You already called start!  I don't see much point in doing this more than once.", 2);
-      return false
-    }
-    return true
-  };
-  this.setTotals = function(data) {
-    if(isStarted) {
-      if(!isBadValue(data.totalInteractions)) {
-        settings.totalInteractions = data.totalInteractions
-      }
-      if(!isBadValue(data.totalObjectives)) {
-        settings.totalObjectives = data.totalObjectives
-      }
-      if(!isBadValue(data.scoreMin)) {
-        settings.scoreMin = trueRound(data.scoreMin, 7);
-        scorm.setvalue("cmi.score.min", data.scoreMin.toString())
-      }
-      if(!isBadValue(data.scoreMax)) {
-        settings.scoreMax = trueRound(data.scoreMax, 7);
-        scorm.setvalue("cmi.score.max", data.scoreMax.toString())
-      }
-      return"true"
-    }
-    return notStartedYet()
-  };
-  this.startTimer = function() {
-    var time = scorm.ISODurationToCentisec(settings.max_time_allowed) * 10;
-    setTimeout(timesUp, time)
-  };
-  this.debug = scorm.debug;
-  this.getvalue = scorm.getvalue;
-  this.setvalue = scorm.setvalue;
-  this.getMode = function() {
-    if(isStarted) {
-      return settings.mode
-    }
-    return notStartedYet()
-  };
-  this.getEntry = function() {
-    if(isStarted) {
-      return settings.entry
-    }
-    return notStartedYet()
-  };
-  this.setBookmark = function(v) {
-    if(isStarted) {
-      settings.location = v.toString();
-      return scorm.setvalue("cmi.location", settings.location)
-    }
-    return notStartedYet()
-  };
-  this.getBookmark = function() {
-    if(isStarted) {
-      return settings.location
-    }
-    return notStartedYet()
-  };
-  this.progress = checkProgress;
-  this.setSuspendDataByPageID = function(id, title, data) {
-    if(isStarted) {
-      var i = 0, len = settings.suspend_data.pages.length;
-      while(i < len) {
-        if(settings.suspend_data.pages[i].id === id) {
-          settings.suspend_data.pages[i].data = data;
-          scorm.debug(settings.prefix + ": Suspend Data Set", 4);
-          scorm.debug(settings.suspend_data, 4);
-          return setSuspendData()
-        }
-        i += 1
-      }
-      settings.suspend_data.pages.push({"id":id, "title":title, "data":data});
-      scorm.debug(settings.prefix + ": Suspend Data set:", 4);
-      scorm.debug(settings.suspend_data, 4);
-      return setSuspendData()
-    }
-    return notStartedYet()
-  };
-  this.getSuspendDataByPageID = function(id) {
-    if(isStarted) {
-      var i = 0, len = settings.suspend_data.pages.length;
-      while(i < len) {
-        if(settings.suspend_data.pages[i].id === id) {
-          return settings.suspend_data.pages[i].data
-        }
-        i += 1
-      }
-      return"false"
-    }
-    return notStartedYet()
-  };
-  this.getSecondsFromStart = function() {
-    return settings.startTime - currentTime()
-  };
-  this.setInteraction = function(data) {
-    if(isStarted) {
-      var n, m, i, j, p, p1 = "cmi.interactions.", p2, orig_timestamp = data.timestamp || scorm.isoStringToDate(scorm.getvalue(p1 + scorm.getInteractionByID(data.id) + ".timestamp")), timestamp, latency, result, len, key;
-      if(!$.isPlainObject(data)) {
-        scorm.debug(settings.prefix + ": Developer, your not passing a {object} argument!!  Got " + typeof data + " instead.", 1);
-        return"false"
-      }
-      if(isBadValue(data.id)) {
-        scorm.debug(settings.prefix + ": Developer, your passing a interaction without a ID\nSee question:\n" + data.description, 1);
-        for(key in data) {
-          if(data.hasOwnProperty(key)) {
-            scorm.debug("key: " + key + "\n value: " + data[key])
-          }
-        }
-        return"false"
-      }
-      if($.type(data.timestamp) === "date") {
-        timestamp = scorm.isoDateToString(data.timestamp)
-      }
-      data.timestamp = timestamp;
-      if($.type(data.latency) === "date") {
-        latency = (data.latency.getTime() - orig_timestamp.getTime()) * 0.001;
-        data.latency = scorm.centisecsToISODuration(latency * 100, true)
-      }else {
-        if(data.learner_response.length > 0 && !isBadValue(data.learner_response)) {
-          data.latency = new Date;
-          latency = (data.latency.getTime() - orig_timestamp.getTime()) * 0.001;
-          data.latency = scorm.centisecsToISODuration(latency * 100, true)
-        }
-      }
-      p2 = "_count";
-      if(settings.interaction_mode === "journaled") {
-        n = scorm.getvalue(p1 + p2) === "-1" ? "0" : scorm.getvalue(p1 + p2)
-      }else {
-        n = scorm.getInteractionByID(data.id);
-        if(isBadValue(n)) {
-          n = scorm.getvalue(p1 + p2) === "-1" ? "0" : scorm.getvalue(p1 + p2)
-        }
-      }
-      p1 += n + ".";
-      if(!isBadValue(data.id)) {
-        result = scorm.setvalue(p1 + "id", data.id)
-      }
-      if(!isBadValue(data.type)) {
-        result = scorm.setvalue(p1 + "type", data.type)
-      }
-      p2 = "objectives._count";
-      if(data.objectives !== undefined) {
-        i = 0;
-        len = data.objectives.length;
-        while(i < len) {
-          m = scorm.getInteractionObjectiveByID(n, data.objectives[i].id);
-          if(m === "false") {
-            m = scorm.getvalue(p1 + p2) === "-1" ? "0" : scorm.getvalue(p1 + p2)
-          }
-          result = scorm.setvalue(p1 + "objectives." + m + ".id", data.objectives[i].id);
-          i += 1
-        }
-      }
-      if(data.timestamp !== undefined) {
-        result = scorm.setvalue(p1 + "timestamp", data.timestamp)
-      }
-      p2 = "correct_responses._count";
-      if($.isArray(data.correct_responses)) {
-        j = 0;
-        len = data.correct_responses.length;
-        while(j < len) {
-          p = scorm.getInteractionCorrectResponsesByPattern(n, data.correct_responses[j].pattern);
-          scorm.debug(settings.prefix + ": Trying to locate pattern " + data.correct_responses[j].pattern + " resulted in " + p, 4);
-          if(p === "false") {
-            p = scorm.getvalue(p1 + p2) === "-1" ? 0 : scorm.getvalue(p1 + p2);
-            scorm.debug(settings.prefix + ": p is now " + p, 4)
-          }
-          if(p === "match") {
-            scorm.debug(settings.prefix + ": Developer, I've already added this correct response type '" + data.correct_responses[j].pattern + "'", 2)
-          }else {
-            result = scorm.setvalue(p1 + "correct_responses." + p + ".pattern", encodeInteractionType(data.type, data.correct_responses[j].pattern))
-          }
-          j += 1
-        }
-      }else {
-        scorm.debug(settings.prefix + ": Something went wrong with Correct Responses, it wasn't an Array.", 1)
-      }
-      if(!isBadValue(data.weighting)) {
-        result = scorm.setvalue(p1 + "weighting", data.weighting)
-      }
-      if(!isBadValue(data.learner_response)) {
-        result = scorm.setvalue(p1 + "learner_response", encodeInteractionType(data.type, data.learner_response))
-      }
-      if(!isBadValue(data.result)) {
-        result = scorm.setvalue(p1 + "result", data.result)
-      }
-      if(!isBadValue(data.latency)) {
-        result = scorm.setvalue(p1 + "latency", data.latency)
-      }
-      if(!isBadValue(data.description)) {
-        result = scorm.setvalue(p1 + "description", data.description)
-      }
-      return result
-    }
-    return notStartedYet()
-  };
-  this.getInteraction = function(id) {
-    if(isStarted) {
-      var n, p1 = "cmi.interactions.", m, p, i = 0, obj = {}, ts, ly, timestamp, latency;
-      n = scorm.getInteractionByID(id);
-      if(n === "false") {
-        return n
-      }
-      p1 += n + ".";
-      obj.id = id;
-      obj.type = scorm.getvalue(p1 + "type");
-      m = scorm.getvalue(p1 + "objectives._count");
-      ts = scorm.getvalue(p1 + "timestamp");
-      ly = scorm.getvalue(p1 + "latency");
-      timestamp = isISO8601(ts) ? scorm.isoStringToDate(ts) : ts;
-      latency = isISO8601(ly) ? scorm.isoStringToDate(ly) : ly;
-      obj.objectives = [];
-      if(m !== "false") {
-        while(i < m) {
-          obj.objectives.push({id:scorm.getvalue(p1 + "objectives." + i + ".id")});
-          i += 1
-        }
-      }
-      obj.timestamp = timestamp;
-      p = scorm.getvalue(p1 + "correct_responses._count");
-      obj.correct_responses = [];
-      if(p !== "false") {
-        i = 0;
-        while(i < p) {
-          obj.correct_responses.push({pattern:decodeInteractionType(obj.type, scorm.getvalue(p1 + "correct_responses." + i + ".pattern"))});
-          i += 1
-        }
-      }
-      obj.weighting = scorm.getvalue(p1 + "weighting");
-      obj.learner_response = decodeInteractionType(obj.type, scorm.getvalue(p1 + "learner_response"));
-      obj.result = scorm.getvalue(p1 + "result");
-      obj.latency = latency;
-      obj.description = scorm.getvalue(p1 + "description");
-      return obj
-    }
-    return notStartedYet()
-  };
-  this.setObjective = function(data) {
-    if(isStarted) {
-      var p1 = "cmi.objectives.", n = scorm.getObjectiveByID(data.id), result = "false", f = false, def1 = ": Passed no or bad ", def2 = " ignored.", sv = scorm.setvalue, key;
-      scorm.debug(settings.prefix + ": Setting Objective at " + n + " (This may be false)");
-      if(isBadValue(n)) {
-        n = scorm.getvalue(p1 + "_count");
-        if(n === "false") {
-          scorm.debug(settings.prefix + ": LMS is return false, can not proceed, check error codes");
-          return n
-        }
-        scorm.debug(settings.prefix + ": Objective " + data.id + " was not found.  Adding new at " + n + " " + data.description);
-        f = true
-      }
-      p1 += n + ".";
-      if(f) {
-        if(!isBadValue(data.id)) {
-          sv(p1 + "id", data.id.toString())
-        }else {
-          scorm.debug(settings.prefix + ": You did not pass an objective ID!!  What I did get below:", 1);
-          for(key in data) {
-            if(data.hasOwnProperty(key)) {
-              scorm.debug("key: " + key + "\n value: " + data[key])
-            }
-          }
-          return"false"
-        }
-      }
-      if($.isPlainObject(data.score)) {
-        result = !isBadValue(data.score.scaled) ? sv(p1 + "score.scaled", trueRound(data.score.scaled, 7).toString()) : scorm.debug(settings.prefix + def1 + p1 + "score.scaled: " + data.score.scaled + def2, 3);
-        result = !isBadValue(data.score.raw) ? sv(p1 + "score.raw", trueRound(data.score.raw, 7).toString()) : scorm.debug(settings.prefix + def1 + p1 + "score.raw: " + data.score.raw + def2, 3);
-        result = !isBadValue(data.score.min) ? sv(p1 + "score.min", trueRound(data.score.min, 7).toString()) : scorm.debug(settings.prefix + def1 + p1 + "score.min: " + data.score.min + def2, 3);
-        result = !isBadValue(data.score.max) ? sv(p1 + "score.max", trueRound(data.score.max, 7).toString()) : scorm.debug(settings.prefix + def1 + p1 + "score.max: " + data.score.max + def2, 3)
-      }else {
-        scorm.debug(settings.prefix + ": Did not receive a score object.  May or may not be an issue.", 4)
-      }
-      result = !isBadValue(data.success_status) ? sv(p1 + "success_status", data.success_status) : scorm.debug(settings.prefix + def1 + p1 + "success_status: " + data.success_status + def2, 3);
-      result = !isBadValue(data.completion_status) ? sv(p1 + "completion_status", data.completion_status) : scorm.debug(settings.prefix + def1 + p1 + "completion_status: " + data.completion_status + def2, 3);
-      result = !isBadValue(data.progress_measure) ? sv(p1 + "progress_measure", data.progress_measure) : scorm.debug(settings.prefix + def1 + p1 + "progress_measure: " + data.progress_measure + def2, 3);
-      result = !isBadValue(data.description) ? sv(p1 + "description", data.description) : scorm.debug(settings.prefix + def1 + p1 + "description: " + data.description + def2, 3);
-      scorm.debug(settings.prefix + ": Progress\n" + JSON.stringify(checkProgress(), null, " "), 4);
-      return result.toString()
-    }
-    return notStartedYet()
-  };
-  this.getObjective = function(id) {
-    if(isStarted) {
-      var n = scorm.getObjectiveByID(id), p1 = "cmi.objectives.";
-      if(n === "false") {
-        return n
-      }
-      p1 += n + ".";
-      return{id:scorm.getvalue(p1 + "id"), score:{scaled:scorm.getvalue(p1 + "score.scaled"), raw:scorm.getvalue(p1 + "score.raw"), min:scorm.getvalue(p1 + "score.min"), max:scorm.getvalue(p1 + "score.max")}, success_status:scorm.getvalue(p1 + "success_status"), completion_status:scorm.getvalue(p1 + "completion_status"), progress_measure:scorm.getvalue(p1 + "progress_measure"), description:scorm.getvalue(p1 + "description")}
-    }
-    return notStartedYet()
-  };
-  this.setCommentFromLearner = function(msg, loc, date) {
-    if(isStarted) {
-      var p1 = "cmi.comments_from_learner.", n = scorm.getvalue(p1 + "_count");
-      if(n === "false") {
-        scorm.debug(settings.prefix + ": Sorry, LMS returned a comments count of 'false'.  Review error logs.");
-        return n
-      }
-      if(msg.length === 0 || msg.length > 4E3) {
-        scorm.debug(settings.prefix + ": Sorry, message from learner was empty or exceeded the limit. Length:" + msg.length, 2)
-      }
-      p1 += n + ".";
-      scorm.setvalue(p1 + "comment", msg);
-      scorm.setvalue(p1 + "location", loc);
-      return scorm.setvalue(p1 + "timestamp", scorm.isoDateToString(date))
-    }
-    return notStartedYet()
-  };
-  this.gradeIt = function() {
-    var scoreScaled = 1, scoreRaw = scorm.getvalue("cmi.score.raw"), scoreMin = scorm.getvalue("cmi.score.min"), scoreMax = scorm.getvalue("cmi.score.max"), progressMeasure = scorm.getvalue("cmi.progress_measure");
-    if(scoreMax - scoreMin === 0) {
-      scorm.debug(settings.prefix + ": Division by Zero for scoreMax - scoreMin " + scoreMax, 2);
-      scorm.setvalue("cmi.score.scaled", scoreScaled)
-    }else {
-      scoreScaled = ((scoreRaw - scoreMin) / (scoreMax - scoreMin)).toString();
-      scorm.debug(settings.prefix + ": Score Scaled = " + scoreScaled, 3);
-      scorm.setvalue("cmi.score.scaled", trueRound(scoreScaled, 7))
-    }
-    settings.completion_status = parseFloat(progressMeasure) >= parseFloat(settings.completion_threshold) ? "completed" : "incomplete";
-    scorm.setvalue("cmi.completion_status", settings.completion_status);
-    settings.success_status = parseFloat(scoreScaled) >= parseFloat(settings.scaled_passing_score) ? "passed" : "failed";
-    scorm.setvalue("cmi.success_status", settings.success_status);
-    return"true"
-  };
-  this.happyEnding = function() {
-    if(isStarted) {
-      scorm.setvalue("cmi.score.scaled", "1");
-      scorm.setvalue("cmi.score.min", "0");
-      scorm.setvalue("cmi.score.max", "1");
-      scorm.setvalue("cmi.score.raw", "1");
-      scorm.setvalue("cmi.success_status", "passed");
-      scorm.setvalue("cmi.progress_measure", "1");
-      return scorm.setvalue("cmi.completion_status", "completed")
-    }
-    return notStartedYet()
-  };
-  this.commit = function() {
-    if(isStarted) {
-      return scorm.commit("")
-    }
-    return notStartedYet()
-  };
-  this.suspend = function() {
-    if(isStarted) {
-      scorm.debug(settings.prefix + ": I am suspending...", 3);
-      scorm.setvalue("cmi.exit", "suspend");
-      updateStatus();
-      isStarted = false;
-      return scorm.terminate()
-    }
-    return notStartedYet()
-  };
-  this.finish = function() {
-    if(isStarted) {
-      scorm.debug(settings.prefix + ": I am finishing...", 3);
-      scorm.setvalue("cmi.exit", "normal");
-      updateStatus();
-      isStarted = false;
-      return scorm.terminate()
-    }
-    return notStartedYet()
-  };
-  this.timeout = function() {
-    if(isStarted) {
-      scorm.debug(settings.prefix + ": I am timing out...", 3);
-      scorm.setvalue("cmi.exit", "time-out");
-      updateStatus();
-      isStarted = false;
-      return scorm.terminate()
-    }
-    return notStartedYet()
-  };
-  this.isISO8601 = isISO8601;
-  this.set = function(n, v) {
-    switch(n) {
-      case "version":
-      ;
-      case "createDate":
-      ;
-      case "modifiedDate":
-      ;
-      case "prefix":
-        triggerWarning(405);
-        break;
-      default:
-        settings[n] = v;
-        break
-    }
-    return isError === false
-  };
-  this.get = function(n) {
-    if(settings[n] === undefined) {
-      triggerWarning(404);
-      return false
-    }
-    return settings[n]
-  };
-  $(window).bind("load", initSCO);
-  $(window).bind("unload", exitSCO);
-  $(scorm).on("exception", function(e) {
-    triggerException(e.error)
-  })
-}
-;VISH.SCORM = function(V, $, undefined) {
-  var _API;
-  var init = function() {
-  };
-  var initAfterRender = function() {
-    if(V.Utils.getOptions().scorm == true) {
-      V.SCORM.API.init()
-    }
-  };
-  var renderSCORMFromJSON = function(scormJSON, options) {
-    var style = scormJSON["style"] ? scormJSON["style"] : "";
-    var body = scormJSON["body"];
-    var scormBody = $(body);
-    $(scormBody).attr("objecttype", V.Constant.MEDIA.SCORM_PACKAGE);
-    scormBody = V.Utils.getOuterHTML(scormBody);
-    var zoomInStyle = scormJSON["zoomInStyle"] ? scormJSON["zoomInStyle"] : "";
-    var classes = "objectelement";
-    if(options) {
-      if(options.extraClasses) {
-        classes = classes + " " + options.extraClasses
-      }
-    }
-    return"<div id='" + scormJSON["id"] + "' class='" + classes + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper='" + scormBody + "'>" + "" + "</div>"
-  };
-  return{init:init, initAfterRender:initAfterRender, renderSCORMFromJSON:renderSCORMFromJSON}
+  return{init:init, getAPIInstance:getAPIInstance, getLMSAPIInstance:getLMSAPIInstance}
 }(VISH, jQuery);
 VISH.Addons.IframeMessenger = function(V, undefined) {
   var _listenerInitialized = false;
@@ -23566,8 +23236,7 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
         $(this).parent().each(function() {
           $(this.attributes).each(function(index, attribute) {
             if(attribute.name == "identifier") {
-              ident = attribute.textContent;
-              console.log(ident)
+              ident = attribute.textContent
             }
           })
         });
@@ -23586,7 +23255,6 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
             if(myRandomHash[attribute.textContent] != undefined) {
               $(xml).find("itemBody").each(function() {
                 $(this).find("printedVariable").replaceWith(myRandomHash[attribute.textContent].toString());
-                console.log("itemBody");
                 itemBodyContent = $(xml).find("itemBody")
               })
             }
@@ -26922,7 +26590,6 @@ VISH.Editor.Slides = function(V, $, undefined) {
       if(movement == "before") {
         $(article_reference).before(article_to_move)
       }else {
-        V.Debugging.log("V.Slides: Error. Movement not defined... !");
         return
       }
     }
@@ -26931,7 +26598,7 @@ VISH.Editor.Slides = function(V, $, undefined) {
     _cleanTextAreas(article_to_move);
     _loadTextAreasOfSlide(article_to_move, textAreas);
     V.Utils.removeTempShown(article_to_move);
-    V.Slides.setSlides(document.querySelectorAll("section.slides > article"));
+    V.Slides.setSlides($("section.slides > article"));
     $("#slides_list").find("div.wrapper_barbutton:has(img[slidenumber])").each(function(index, div) {
       var slideNumber = index + 1;
       var p = $(div).find("p.ptext_barbutton");
@@ -29513,146 +29180,6 @@ VISH.Presentation = function(V, undefined) {
   };
   return{init:init}
 }(VISH);
-VISH.ProgressTracking = function(V, $, undefined) {
-  var SCORE_THRESHOLD = 0.5;
-  var objectives = {};
-  var minRequiredTime = 1;
-  var hasScore = false;
-  var init = function(animation, callback) {
-    _createObjectives();
-    minRequiredTime = _getMinRequiredTime();
-    setTimeout(function() {
-      objectives["slide_average_time"].completed = true;
-      objectives["slide_average_time"].progress = 1;
-      V.EventsNotifier.notifyEvent(V.Constant.Event.onProgressObjectiveUpdated, objectives["slide_average_time"], false)
-    }, minRequiredTime * 1E3);
-    V.EventsNotifier.registerCallback(V.Constant.Event.onAnswerQuiz, function(params) {
-      if(params.quizId && typeof objectives[params.quizId] != "undefined") {
-        objectives[params.quizId].progress = 1;
-        objectives[params.quizId].completed = true;
-        if(typeof params.score == "number") {
-          var scaledScore = params.score / 10;
-          objectives[params.quizId].score = scaledScore;
-          if(scaledScore >= SCORE_THRESHOLD) {
-            objectives[params.quizId].success = true
-          }else {
-            objectives[params.quizId].success = false
-          }
-        }
-        V.EventsNotifier.notifyEvent(V.Constant.Event.onProgressObjectiveUpdated, objectives[params.quizId], false)
-      }
-    })
-  };
-  var _getMinRequiredTime = function() {
-    var AVERAGE_SLIDE_TIME = 4;
-    try {
-      _minRequiredTime = V.Viewer.getCurrentPresentation().slides.length * AVERAGE_SLIDE_TIME
-    }catch(e) {
-      _minRequiredTime = 1
-    }
-    return _minRequiredTime
-  };
-  var getProgressMeasure = function() {
-    if(objectives["slide_average_time"].progress < 1) {
-      objectives["slide_average_time"].progress = Math.min(1, V.TrackingSystem.getAbsoluteTime() / minRequiredTime)
-    }
-    var overallProgressMeasure = 0;
-    Object.keys(objectives).forEach(function(key) {
-      overallProgressMeasure += objectives[key].progress * objectives[key].completion_weight
-    });
-    return+overallProgressMeasure.toFixed(6)
-  };
-  var getScore = function() {
-    var overallScore = 0;
-    Object.keys(objectives).forEach(function(key) {
-      if(typeof objectives[key].score == "number") {
-        overallScore += objectives[key].score * objectives[key].score_weight
-      }
-    });
-    return+overallScore.toFixed(6)
-  };
-  var getHasScore = function() {
-    return hasScore
-  };
-  var getObjectives = function() {
-    return objectives
-  };
-  var _createObjectives = function() {
-    var presentation = V.Viewer.getCurrentPresentation();
-    var slidesL = presentation.slides.length;
-    for(var i = 0;i < slidesL;i++) {
-      var slide = presentation.slides[i];
-      if(slide.containsQuiz == true) {
-        var slideElementsL = slide.elements.length;
-        for(var j = 0;j < slideElementsL;j++) {
-          var element = slide.elements[j];
-          if(element.type === V.Constant.QUIZ) {
-            if(element.selfA === true) {
-              hasScore = true;
-              var quizScore = 10;
-              if(typeof element.settings == "object" && typeof element.settings.score != "undefined") {
-                quizScore = parseInt(element.settings.score)
-              }
-              var quizObjective = new Objective(element.quizId, undefined, quizScore);
-              objectives[quizObjective.id] = quizObjective
-            }
-          }
-        }
-      }
-    }
-    var timeObjective = new Objective("slide_average_time");
-    if(hasScore) {
-      timeObjective.completion_weight = 0.5
-    }else {
-      timeObjective.completion_weight = 1
-    }
-    objectives[timeObjective.id] = timeObjective;
-    var objectivesKeys = Object.keys(objectives);
-    var nObjectives = objectivesKeys.length;
-    if(nObjectives > 1) {
-      var defaultCompletionWeight = (1 - timeObjective.completion_weight) / (nObjectives - 1);
-      var scoreWeightSum = 0;
-      objectivesKeys.forEach(function(key) {
-        if(typeof objectives[key].completion_weight == "undefined") {
-          objectives[key].completion_weight = defaultCompletionWeight
-        }
-        if(typeof objectives[key].score_weight == "number") {
-          scoreWeightSum += objectives[key].score_weight
-        }
-      });
-      if(scoreWeightSum > 0) {
-        objectivesKeys.forEach(function(key) {
-          if(typeof objectives[key].score_weight == "number") {
-            objectives[key].score_weight = objectives[key].score_weight / scoreWeightSum
-          }
-        })
-      }
-    }
-  };
-  var Objective = function(id, completion_weight, score_weight, description) {
-    this.id = id;
-    this.seq_id = _getObjectiveId();
-    this.completed = false;
-    this.progress = 0;
-    this.score = undefined;
-    this.success = undefined;
-    if(typeof completion_weight == "number") {
-      this.completion_weight = completion_weight
-    }
-    if(typeof score_weight == "number") {
-      this.score_weight = score_weight
-    }
-    if(typeof description == "string") {
-      this.description = description
-    }
-  };
-  var lastObjectiveId = -1;
-  var _getObjectiveId = function() {
-    lastObjectiveId += 1;
-    return lastObjectiveId
-  };
-  return{init:init, getProgressMeasure:getProgressMeasure, getScore:getScore, getHasScore:getHasScore, getObjectives:getObjectives}
-}(VISH, jQuery);
 VISH.Quiz.API = function(V, $, undefined) {
   var quizSessionAPIrootURL;
   var getResultsCount = 0;
@@ -29824,7 +29351,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='mc_options'></table>");
     var quizChoices;
     if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
-      quizChoices = V.Utils.shuffle(quizJSON.choices)
+      quizChoices = V.Utils.shuffle(jQuery.extend(true, [], quizJSON.choices))
     }else {
       quizChoices = quizJSON.choices
     }
@@ -29885,9 +29412,9 @@ VISH.Quiz.MC = function(V, $, undefined) {
     answeredQuizCorrectly = correctStatements > 0 && incorrectStatements == 0;
     if(multipleAnswer) {
       totalCorrectStatements = Math.max(1, totalCorrectStatements);
-      var quizScore = Math.max(0, correctStatements - incorrectStatements) / totalCorrectStatements * 10
+      var quizScore = Math.max(0, correctStatements - incorrectStatements) / totalCorrectStatements * 100
     }else {
-      var quizScore = answeredQuizCorrectly == true ? 10 : 0
+      var quizScore = answeredQuizCorrectly == true ? 100 : 0
     }
     V.EventsNotifier.notifyEvent(V.Constant.Event.onAnswerQuiz, {"id":quizJSON.id, "quizId":quizJSON.quizId, "type":V.Constant.QZ_TYPE.MCHOICE, "correct":answeredQuizCorrectly, "multipleAnswer":multipleAnswer, "score":quizScore}, true);
     var willRetry = canRetry && answeredQuizCorrectly === false;
@@ -30013,7 +29540,7 @@ VISH.Quiz.Open = function(V, $, undefined) {
       }else {
         $(textArea).addClass("openQ_wrong_answer")
       }
-      var quizScore = answeredQuizCorrectly == true ? 10 : 0;
+      var quizScore = answeredQuizCorrectly == true ? 100 : 0;
       V.EventsNotifier.notifyEvent(V.Constant.Event.onAnswerQuiz, {"id":quizJSON.id, "quizId":quizJSON.quizId, "type":V.Constant.QZ_TYPE.OPEN, "correct":answeredQuizCorrectly, "score":quizScore}, true);
       var willRetry = canRetry && answeredQuizCorrectly === false;
       if(willRetry) {
@@ -30110,7 +29637,7 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
     $(questionWrapper).html(quizJSON.question.wysiwygValue);
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='sorting_options'></table>");
-    var quizChoices = V.Utils.shuffle(quizJSON.choices);
+    var quizChoices = V.Utils.shuffle(jQuery.extend(true, [], quizJSON.choices));
     var quizChoicesLength = quizChoices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
       var option = quizChoices[i];
@@ -30154,7 +29681,7 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
       }
     });
     answeredQuizCorrectly = answeredQuizCorrectly && !answeredQuizWrong;
-    var quizScore = answeredQuizCorrectly == true ? 10 : 0;
+    var quizScore = answeredQuizCorrectly == true ? 100 : 0;
     V.EventsNotifier.notifyEvent(V.Constant.Event.onAnswerQuiz, {"id":quizJSON.id, "quizId":quizJSON.quizId, "type":V.Constant.QZ_TYPE.SORTING, "correct":answeredQuizCorrectly, "score":quizScore}, true);
     var willRetry = canRetry && answeredQuizCorrectly === false;
     if(!willRetry) {
@@ -30254,7 +29781,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
     $(optionsWrapper).prepend(newTr);
     var quizChoices;
     if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
-      quizChoices = V.Utils.shuffle(quizJSON.choices)
+      quizChoices = V.Utils.shuffle(jQuery.extend(true, [], quizJSON.choices))
     }else {
       quizChoices = quizJSON.choices
     }
@@ -30333,8 +29860,9 @@ VISH.Quiz.TF = function(V, $, undefined) {
       }
     });
     var totalStatements = correctStatements + incorrectStatements;
+    var quizScore;
     if(totalStatements > 0) {
-      var quizScore = correctStatements / totalStatements * 10
+      quizScore = correctStatements / totalStatements * 100
     }
     V.EventsNotifier.notifyEvent(V.Constant.Event.onAnswerQuiz, {"id":quizJSON.id, "quizId":quizJSON.quizId, "type":V.Constant.QZ_TYPE.TF, "correct":answeredQuizCorrectly, "correctStatements":correctStatements, "incorrectStatements":incorrectStatements, "score":quizScore}, true);
     var willRetry = canRetry && answeredQuizCorrectly === false;
@@ -31041,939 +30569,6 @@ VISH.Renderer.Filter = function(V, $, undefined) {
     return"<div id='" + element["id"] + "' class='contentfiltered " + template + "_" + element["areaid"] + "'><img class='" + template + "_image' src='" + V.ImagesPath + "adverts/advert_new_grey.png'/></div>"
   };
   return{init:init, allowElement:allowElement, renderContentFiltered:renderContentFiltered}
-}(VISH, jQuery);
-/*
- Copyright (c) 2009-2014, Cybercussion Interactive LLC
- As of 3.0.0 this code is under a Creative Commons Attribution-ShareAlike 4.0 International License.
- @requires JQuery
- @version 3.1.0
- @param options {Object} override default values
- @constructor
-*/
-VISH.SCORM.API = function(V, $, undefined) {
-  var scorm;
-  var connected;
-  var COMPLETION_THRESHOLD = 0.9;
-  var COMPLETION_ATTEMPT_THRESHOLD = 0.1;
-  var SCORE_THRESHOLD = 0.5;
-  var hasScore = false;
-  var init = function() {
-    scorm = new SCORM_API({debug:V.Utils.getOptions().developping === true, windowDebug:true, exit_type:""});
-    connected = scorm.initialize();
-    scorm.debug("Connected: " + connected, 4);
-    if(!connected) {
-      return
-    }
-    var learnerName = scorm.getvalue("cmi.learner_name");
-    var learnerId = scorm.getvalue("cmi.learner_id");
-    var myUser = V.User.getUser();
-    if(typeof myUser == "object") {
-      if(_isValidAPIResponse(learnerName)) {
-        myUser.name = learnerName
-      }
-      if(_isValidAPIResponse(learnerId)) {
-        myUser.id = learnerId
-      }
-      V.User.setUser(myUser)
-    }
-    V.ProgressTracking.init();
-    hasScore = V.ProgressTracking.getHasScore();
-    if(hasScore) {
-      scorm.setvalue("cmi.score.min", (0).toString());
-      scorm.setvalue("cmi.score.max", (10).toString())
-    }
-    V.EventsNotifier.registerCallback(V.Constant.Event.onProgressObjectiveUpdated, function(objective) {
-      var updateProgress = typeof objective.progress != "undefined";
-      var updateScore = typeof objective.score != "undefined";
-      if(updateProgress) {
-        _updateProgressMeasure(V.ProgressTracking.getProgressMeasure())
-      }
-      if(updateScore) {
-        _updateScore(V.ProgressTracking.getScore())
-      }
-      if(updateProgress || updateScore) {
-        scorm.commit()
-      }
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.exit, function() {
-      _updateProgressMeasure(V.ProgressTracking.getProgressMeasure());
-      scorm.terminate()
-    })
-  };
-  var _updateProgressMeasure = function(progressMeasure) {
-    if(typeof progressMeasure == "number") {
-      scorm.setvalue("cmi.progress_measure", progressMeasure.toString());
-      _updateCompletionStatus(progressMeasure)
-    }
-  };
-  var _updateCompletionStatus = function(progressMeasure) {
-    var completionStatus;
-    if(progressMeasure >= COMPLETION_THRESHOLD) {
-      completionStatus = "completed"
-    }else {
-      if(progressMeasure >= COMPLETION_ATTEMPT_THRESHOLD) {
-        completionStatus = "incomplete"
-      }else {
-        completionStatus = "not attempted"
-      }
-    }
-    scorm.setvalue("cmi.completion_status", completionStatus)
-  };
-  var _updateScore = function(score) {
-    if(typeof score == "number") {
-      score = Math.max(0, Math.min(1, score));
-      scorm.setvalue("cmi.score.scaled", score.toString());
-      scorm.setvalue("cmi.score.raw", (score * 10).toString());
-      _updateSuccessStatus(score)
-    }
-  };
-  var _updateSuccessStatus = function(score) {
-    var successStatus;
-    if(typeof score != "number") {
-      successStatus = "unknown"
-    }else {
-      if(score >= SCORE_THRESHOLD) {
-        successStatus = "passed"
-      }else {
-        successStatus = "failed"
-      }
-    }
-    scorm.setvalue("cmi.success_status", successStatus)
-  };
-  var _isValidAPIResponse = function(string) {
-    if(typeof string == "string" && string.trim() != "" && string != "false") {
-      return true
-    }else {
-      return false
-    }
-  };
-  function SCORM_API(options) {
-    var defaults = {version:"3.1.1", createDate:"04/05/2011 08:56AM", modifiedDate:"07/16/2014 09:40AM", debug:false, windowDebug:false, isActive:false, throw_alerts:false, prefix:"SCORM_API", exit_type:"suspend", success_status:"unknown", use_standalone:true, standalone:false, completion_status:"unknown", time_type:"GMT", cmi:null}, settings = $.extend(defaults, options), isError = 0, error = {"0":"No Error", 404:"Not Found", 405:"Prevented on a read only resource"}, API = {connection:false, version:"none", 
-    mode:"", path:false, data:{completion_status:settings.completion_status, success_status:settings.success_status, exit_type:settings.exit_type}, isActive:settings.isActive}, self = this;
-    settings.error = error;
-    settings.startDate = {};
-    function debug(msg, lvl) {
-      if(settings.debug) {
-        if(settings.windowDebug == true) {
-          windowDebug(msg, lvl)
-        }else {
-          _debug(msg, lvl)
-        }
-      }
-      if(lvl < 3 && settings.throw_alerts) {
-        alert(msg)
-      }
-      return false
-    }
-    function _debug(msg, lvl) {
-      if(!window.console) {
-        window.console = {};
-        window.console.info = noconsole;
-        window.console.log = noconsole;
-        window.console.warn = noconsole;
-        window.console.error = noconsole;
-        window.console.trace = noconsole
-      }
-      switch(lvl) {
-        case 1:
-          console.error(msg);
-          break;
-        case 2:
-          console.warn(msg);
-          break;
-        case 4:
-          console.info(msg);
-          break;
-        case 3:
-          console.log(msg);
-          break;
-        default:
-          console.log(msg);
-          return false
-      }
-      return true
-    }
-    function noconsole(msg, lvl) {
-      $(self).triggerHandler({"type":"debug", "msg":msg, "lvl":lvl})
-    }
-    var aryDebug = new Array;
-    var strDebug = "";
-    var winDebug;
-    function windowDebug(strInfo, lvl) {
-      var isDebugWindowShown = false;
-      if(!winDebug || winDebug.closed) {
-        isDebugWindowShown = ShowDebugWindow()
-      }else {
-        isDebugWindowShown = true
-      }
-      if(isDebugWindowShown == false) {
-        settings.windowDebug = false;
-        debug("Window debug has been blocked", 1);
-        debug("Debugging messages will be displayed in the console", 2);
-        debug(strInfo, lvl);
-        return false
-      }
-      var strLine;
-      strLine = aryDebug.length + 1 + ": " + strInfo;
-      aryDebug[aryDebug.length] = strLine;
-      if(winDebug && !winDebug.closed) {
-        winDebug.document.write(strLine + "<br>\n")
-      }
-      return true
-    }
-    function ShowDebugWindow() {
-      if(winDebug && !winDebug.closed) {
-        winDebug.close()
-      }
-      winDebug = window.open("", "Debug", "width=600,height=300,resizable,scrollbars");
-      if(typeof winDebug == "undefined") {
-        return false
-      }
-      winDebug.document.write(aryDebug.join("<br>\n"));
-      winDebug.document.close();
-      winDebug.focus();
-      return true
-    }
-    function findAPI(win) {
-      var attempts = 0, limit = 500;
-      while(!win.API && !win.API_1484_11 && win.parent && win.parent !== win && attempts <= limit) {
-        attempts += 1;
-        win = win.parent
-      }
-      if(win.API_1484_11) {
-        API.version = "2004";
-        API.path = win.API_1484_11
-      }else {
-        if(win.API) {
-          API.version = "1.2";
-          API.path = win.API
-        }else {
-          return false
-        }
-      }
-      return true
-    }
-    function centisecsToISODuration(n, bPrecise) {
-      var str = "P", nCs = Math.max(n, 0), nY = 0, nM = 0, nD = 0, nH, nMin;
-      nCs = Math.round(nCs);
-      if(bPrecise === true) {
-        nD = Math.floor(nCs / 864E4)
-      }else {
-        nY = Math.floor(nCs / 315576E4);
-        nCs -= nY * 315576E4;
-        nM = Math.floor(nCs / 26298E4);
-        nCs -= nM * 26298E4;
-        nD = Math.floor(nCs / 864E4)
-      }
-      nCs -= nD * 864E4;
-      nH = Math.floor(nCs / 36E4);
-      nCs -= nH * 36E4;
-      nMin = Math.floor(nCs / 6E3);
-      nCs -= nMin * 6E3;
-      if(nY > 0) {
-        str += nY + "Y"
-      }
-      if(nM > 0) {
-        str += nM + "M"
-      }
-      if(nD > 0) {
-        str += nD + "D"
-      }
-      if(nH > 0 || nMin > 0 || nCs > 0) {
-        str += "T";
-        if(nH > 0) {
-          str += nH + "H"
-        }
-        if(nMin > 0) {
-          str += nMin + "M"
-        }
-        if(nCs > 0) {
-          str += nCs / 100 + "S"
-        }
-      }
-      if(str === "P") {
-        str = "PT0H0M0S"
-      }
-      return str
-    }
-    function ISODurationToCentisec(str) {
-      var aV = [0, 0, 0, 0, 0, 0], bErr = !!(str.indexOf("P") !== 0), bTFound = false, aT = ["Y", "M", "D", "H", "M", "S"], p = 0, i = 0, len;
-      if(!bErr) {
-        str = str.substr(1);
-        len = aT.length;
-        i = 0;
-        while(i < len) {
-          if(str.indexOf("T") === 0) {
-            str = str.substr(1);
-            i = Math.max(i, 3);
-            bTFound = true
-          }
-          p = str.indexOf(aT[i]);
-          if(p > -1) {
-            if(i === 1 && str.indexOf("T") > -1 && str.indexOf("T") < p) {
-              continue
-            }
-            if(aT[i] === "S") {
-              aV[i] = parseFloat(str.substr(0, p))
-            }else {
-              aV[i] = parseInt(str.substr(0, p), 10)
-            }
-            if(isNaN(aV[i])) {
-              bErr = true;
-              break
-            }
-            if(i > 2 && !bTFound) {
-              bErr = true;
-              break
-            }
-            str = str.substr(p + 1)
-          }
-          i += 1
-        }
-        bErr = !!(!bErr && len !== 0)
-      }
-      if(bErr) {
-        return 0
-      }
-      return aV[0] * 315576E4 + aV[1] * 26298E4 + aV[2] * 864E4 + aV[3] * 36E4 + aV[4] * 6E3 + Math.round(aV[5] * 100)
-    }
-    function padTime(n) {
-      return n < 10 ? "0" + n : n
-    }
-    function isoDateToStringUTC(d) {
-      return d.getUTCFullYear() + "-" + padTime(d.getUTCMonth() + 1) + "-" + padTime(d.getUTCDate()) + "T" + padTime(d.getUTCHours()) + ":" + padTime(d.getUTCMinutes()) + ":" + padTime(d.getUTCSeconds()) + "." + Math.round(d.getUTCMilliseconds() / 1E3 % 1E3) + "Z"
-    }
-    function isoDateToString(d) {
-      var offset = d.getTimezoneOffset() > 0 ? "-" : "+";
-      return d.getFullYear() + "-" + padTime(d.getMonth() + 1) + "-" + padTime(d.getDate()) + "T" + padTime(d.getHours()) + ":" + padTime(d.getMinutes()) + ":" + padTime(d.getSeconds()) + "." + Math.round(d.getMilliseconds() / 1E3 % 1E3) + offset + padTime(d.getTimezoneOffset() / 60) + ":00"
-    }
-    function isoStringToDate(str) {
-      var MM = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], d, uoffset, offset = 0, mil = 0, dd;
-      switch(settings.time_type) {
-        case "UTC":
-          d = str.replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d+))(|Z)/, function($0, $Year, $Month, $Day, $Hour, $Min, $Sec) {
-            return MM[$Month - 1] + " " + $Day + ", " + $Year + " " + $Hour + ":" + $Min + ":" + $Sec
-          });
-          dd = new Date.UTC(d);
-          return dd;
-        case "GMT":
-          d = str.replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d+))([\+|\-]\d+:\d+)/, function($0, $Year, $Month, $Day, $Hour, $Min, $Sec, $Ms, $Offset) {
-            offset = parseInt($Offset.substring(1, $Offset.length), 10) * 60 * 60 * 60;
-            mil = $Ms;
-            return MM[$Month - 1] + " " + $Day + ", " + $Year + " " + $Hour + ":" + $Min + ":" + $Sec
-          });
-          dd = new Date(d);
-          uoffset = dd.getTimezoneOffset() * 60 * 60;
-          if(uoffset !== offset) {
-            dd = new Date(dd.getTime() + offset + uoffset);
-            dd.setMilliseconds(mil)
-          }
-          return dd;
-        default:
-          d = str.replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/, function($0, $Year, $Month, $Day, $Hour, $Min, $Sec) {
-            return MM[$Month - 1] + " " + $Day + ", " + $Year + " " + $Hour + ":" + $Min + ":" + $Sec
-          });
-          dd = new Date(d);
-          return dd
-      }
-    }
-    function centisecsToSCORM12Duration(n) {
-      var str, nH, nCs, nM, nS;
-      n = Math.round(n);
-      nH = Math.floor(n / 36E4);
-      nCs = n - nH * 36E4;
-      nM = Math.floor(nCs / 6E3);
-      nCs = nCs - nM * 6E3;
-      nS = Math.floor(nCs / 100);
-      nCs = nCs - nS * 100;
-      str = "0000" + nH + ":";
-      str = str.substr(str.length - 5, 5);
-      if(nM < 10) {
-        str += "0"
-      }
-      str += nM + ":";
-      if(nS < 10) {
-        str += "0"
-      }
-      str += nS;
-      if(nCs > 0) {
-        str += ".";
-        if(nCs < 10) {
-          str += "0"
-        }
-        str += nCs
-      }
-      return str
-    }
-    function makeBoolean(str) {
-      if(str === undefined) {
-        debug(settings.prefix + " : makeBoolean was given empty string, converting to false", 2);
-        return false
-      }
-      if(str === true || str === false) {
-        return Boolean(str)
-      }
-      switch(str.toLowerCase()) {
-        case "true":
-        ;
-        case "yes":
-        ;
-        case "1":
-          return true;
-        case "false":
-        ;
-        case "no":
-        ;
-        case "0":
-        ;
-        case null:
-          return false;
-        default:
-          return Boolean(str)
-      }
-    }
-    function triggerWarning(n) {
-      debug(error[n], 2);
-      return true
-    }
-    function triggerException(msg) {
-      $(self).triggerHandler({"type":"exception", "error":msg})
-    }
-    function getLastErrorCode() {
-      var lms = API.path, code = 0;
-      if(lms) {
-        switch(API.version) {
-          case "1.2":
-            code = parseInt(lms.LMSGetLastError(), 10);
-            break;
-          case "2004":
-            code = parseInt(lms.GetLastError(), 10);
-            break;
-          default:
-            break
-        }
-      }
-      return code
-    }
-    function getLastErrorMessage(n) {
-      var lms = API.path, result = "No LMS Connectivity";
-      if(lms) {
-        switch(API.version) {
-          case "1.2":
-            result = lms.LMSGetErrorString(n.toString());
-            break;
-          case "2004":
-            result = lms.GetErrorString(n.toString());
-            break;
-          default:
-            break
-        }
-      }
-      return String(result)
-    }
-    function getDiagnostic(n) {
-      var lms = API.path, result = "No LMS Connectivity";
-      if(lms) {
-        switch(API.version) {
-          case "1.2":
-            result = lms.LMSGetDiagnostic(n.toString());
-            break;
-          case "2004":
-            result = lms.GetDiagnostic(n.toString());
-            break;
-          default:
-            break
-        }
-      }
-      return String(result)
-    }
-    this.getvalue = function(n) {
-      var v = null, lms = API.path, ec = 0, m = "", d = "", nn = null, ig = false;
-      if(API.isActive) {
-        switch(API.version) {
-          case "1.2":
-            switch(n) {
-              case "cmi.comments_from_lms._count":
-              ;
-              case "cmi.comments_from_learner._count":
-                ig = true;
-                break;
-              case "cmi.credit":
-                nn = "cmi.core.credit";
-                break;
-              case "cmi.location":
-                nn = "cmi.core.lesson_location";
-                break;
-              case "cmi.completion_threshold":
-                ig = true;
-                break;
-              case "cmi.entry":
-                nn = "cmi.core.entry";
-                break;
-              case "cmi.mode":
-                nn = "cmi.core.lesson_mode";
-                break;
-              case "cmi.exit":
-                nn = "cmi.core.exit";
-                break;
-              case "cmi.score.raw":
-                nn = "cmi.core.score.raw";
-                break;
-              case "cmi.score.min":
-                nn = "cmi.core.score.min";
-                break;
-              case "cmi.score.max":
-                nn = "cmi.core.score.max";
-                break;
-              case "cmi.scaled_passing_score":
-                nn = "cmi.student_data.mastery_score";
-                break;
-              case "cmi.max_time_allowed":
-                nn = "cmi.student_data.max_time_allowed";
-                break;
-              case "cmi.time_limit_action":
-                nn = "cmi.student_data.time_limit_action";
-                break;
-              case "cmi.learner_preferences.audio_level":
-                nn = "cmi.student_preferences.audio";
-                break;
-              case "cmi.learner_preferences.delivery_speed":
-                nn = "cmi.student_preferences.speed";
-                break;
-              case "cmi.learner_preferences.language":
-                nn = "cmi.student_preferences.language";
-                break;
-              case "cmi.learner_preferences.audio_captioning":
-                nn = "cmi.student_preferences.text";
-                break;
-              case "cmi.success_status":
-              ;
-              case "cmi.completion_status":
-                nn = "cmi.core.lesson_status";
-                break;
-              case "cmi.session_time":
-                nn = "cmi.core.session_time";
-                break;
-              case "cmi.suspend_data":
-                nn = n;
-                break;
-              default:
-                nn = n;
-                break
-            }
-            if(ig) {
-              return"false"
-            }
-            v = lms.LMSGetValue(nn);
-            break;
-          case "2004":
-            v = lms.GetValue(n);
-            break;
-          default:
-            break
-        }
-        ec = getLastErrorCode();
-        m = getLastErrorMessage(ec);
-        d = getDiagnostic(ec);
-        $(self).triggerHandler({"type":"getvalue", "n":n, "v":v, "error":{"code":ec, "message":m, "diagnostic":d}});
-        if(ec === 0 || ec === 403) {
-          if(v === "undefined" || v === null || v === "null") {
-            v = ""
-          }
-          return String(v)
-        }
-        debug(settings.prefix + ": Error\nError Code: " + ec + "\nError Message: " + m + "\nDiagnostic: " + d, 1);
-        return"false"
-      }
-      debug(settings.prefix + ": " + n + " Get Aborted, connection not initialized! " + API.isActive, 2);
-      return"false"
-    };
-    this.setvalue = function(n, v) {
-      var s = "false", lms = API.path, ec = 0, m = "", d = "", nn = null, ig = false;
-      if(API.isActive) {
-        switch(API.version) {
-          case "1.2":
-            API.mode = API.mode === "" ? lms.LMSGetValue("cmi.core.lesson_mode") : API.mode;
-            if(API.mode === "normal") {
-              switch(n) {
-                case "cmi.location":
-                  if(v.length > 255) {
-                    debug(settings.prefix + ": Warning, your bookmark is over the limit!!", 2)
-                  }
-                  nn = "cmi.core.lesson_location";
-                  break;
-                case "cmi.mode":
-                  nn = "cmi.core.lesson_mode";
-                  break;
-                case "cmi.exit":
-                  nn = "cmi.core.exit";
-                  API.exit_type = v;
-                  break;
-                case "cmi.score.raw":
-                  nn = "cmi.core.score.raw";
-                  break;
-                case "cmi.score.min":
-                  nn = "cmi.core.score.min";
-                  break;
-                case "cmi.score.max":
-                  nn = "cmi.core.score.max";
-                  break;
-                case "cmi.score.scaled":
-                  ig = true;
-                  break;
-                case "cmi.success_status":
-                ;
-                case "cmi.completion_status":
-                  nn = "cmi.core.lesson_status";
-                  API.data.completion_status = v;
-                  break;
-                case "cmi.scaled_passing_score":
-                  nn = "cmi.student_data.mastery_score";
-                  break;
-                case "cmi.learner_preferences.audio_level":
-                  nn = "cmi.student_preferences.audio";
-                  break;
-                case "cmi.learner_preferences.delivery_speed":
-                  nn = "cmi.student_preferences.speed";
-                  break;
-                case "cmi.learner_preferences.language":
-                  nn = "cmi.student_preferences.language";
-                  break;
-                case "cmi.learner_preferences.audio_captioning":
-                  nn = "cmi.student_preferences.text";
-                  break;
-                case "cmi.session_time":
-                  nn = "cmi.core.session_time";
-                  break;
-                case "cmi.total_time":
-                  nn = "cmi.core.total_time";
-                  break;
-                case "cmi.suspend_data":
-                  if(v.length > 4096) {
-                    debug(settings.prefix + ": Warning, your suspend data is over the limit!!", 2)
-                  }
-                  nn = n;
-                  break;
-                default:
-                  nn = n;
-                  break
-              }
-              if(ig) {
-                return"false"
-              }
-              s = lms.LMSSetValue(nn, v)
-            }else {
-              debug(settings.prefix + ": Warning, you are not in normal mode.  Ignoring 'set' requests.", 2);
-              return"false"
-            }
-            break;
-          case "2004":
-            API.mode = API.mode === "" ? lms.GetValue("cmi.mode") : API.mode;
-            if(API.mode === "normal") {
-              switch(n) {
-                case "cmi.location":
-                  if(v.length > 1E3) {
-                    debug(settings.prefix + ": Warning, your bookmark is over the limit!!", 2)
-                  }
-                  break;
-                case "cmi.completion_status":
-                  API.data.completion_status = v;
-                  break;
-                case "cmi.success_status":
-                  API.data.success_status = v;
-                  break;
-                case "cmi.exit":
-                  API.data.exit_type = v;
-                  break;
-                case "suspend_data":
-                  if(v.length > 64E3) {
-                    debug(settings.prefix + ": Warning, your suspend data is over the limit!!", 2)
-                  }
-                  break;
-                default:
-                  break
-              }
-              s = lms.SetValue(n, v)
-            }else {
-              debug(settings.prefix + ": Warning, you are not in normal mode.  Ignoring 'set' requests.", 2);
-              return"false"
-            }
-            break;
-          default:
-            break
-        }
-        ec = getLastErrorCode();
-        m = getLastErrorMessage(ec);
-        d = getDiagnostic(ec);
-        $(self).triggerHandler({"type":"setvalue", "n":n, "v":v, "error":{"code":ec, "message":m, "diagnostic":d}});
-        if(ec === 0 || ec === 403) {
-          return s
-        }
-        debug(settings.prefix + ": Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for " + n + "\nDiagnostic: " + getDiagnostic(ec), 1);
-        return s
-      }
-      debug(settings.prefix + ": " + n + " Set Aborted, connection not initialized! Locate where you called it after you Terminated.", 2);
-      return"false"
-    };
-    this.commit = function() {
-      var s = "false", lms = API.path, ec = 0, session_secs, saveDate = new Date;
-      session_secs = (saveDate.getTime() - settings.startDate.getTime()) / 1E3;
-      if(API.isActive) {
-        debug(settings.prefix + ": Committing data", 3);
-        switch(API.version) {
-          case "1.2":
-            self.setvalue("cmi.core.session_time", centisecsToSCORM12Duration(session_secs * 100));
-            s = lms.LMSCommit("");
-            break;
-          case "2004":
-            self.setvalue("cmi.session_time", centisecsToISODuration(session_secs * 100, true));
-            s = lms.Commit("");
-            break;
-          default:
-            break
-        }
-        ec = getLastErrorCode();
-        if(ec === 0) {
-          return s
-        }
-        debug(settings.prefix + ": Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for Commit.\nDiagnostic: " + getDiagnostic(ec), 1);
-        return"false"
-      }
-      debug(settings.prefix + ": Commit Aborted, connection not initialized!", 2);
-      return"false"
-    };
-    this.initialize = function() {
-      debug(settings.prefix + ": Initialize Called. \n\tversion: " + settings.version + "\n\tModified: " + settings.modifiedDate, 3);
-      var s = false, lms = API.path, ec = 0;
-      if(!API.isActive) {
-        if(lms) {
-          switch(API.version) {
-            case "1.2":
-              s = makeBoolean(lms.LMSInitialize(""));
-              break;
-            case "2004":
-              s = makeBoolean(lms.Initialize(""));
-              break;
-            default:
-              break
-          }
-          ec = getLastErrorCode();
-          if(s && ec === 0) {
-            API.isActive = true;
-            API.data.completion_status = self.getvalue("cmi.completion_status");
-            settings.startDate = new Date;
-            debug(settings.prefix + ": SCO is initialized.", 3);
-            switch(API.data.completion_status) {
-              case "not attempted":
-              ;
-              case "unknown":
-                self.setvalue("cmi.completion_status", "incomplete");
-                break;
-              default:
-                if(API.data.completion_status === "") {
-                  triggerException("LMS compatibility issue, Please notify a administrator.  Completion Status is empty.")
-                }
-                break
-            }
-            return"true"
-          }
-          debug(settings.prefix + ": Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for Initialize.\nDiagnostic: " + getDiagnostic(ec), 1)
-        }else {
-          debug(settings.prefix + ": Aborted, LMS could not be located!.", 2)
-        }
-      }else {
-        debug(settings.prefix + ": Aborted, connection already initialized!.", 2)
-      }
-      return"false"
-    };
-    this.terminate = function() {
-      var s = false, lms = API.path, ec = 0;
-      debug(settings.prefix + ": Terminating " + API.isActive + " " + lms, 4);
-      if(API.isActive) {
-        if(lms) {
-          debug(settings.prefix + ": completion_status = " + API.data.completion_status + "|| success_status = " + API.data.success_status, 3);
-          self.commit();
-          switch(API.version) {
-            case "1.2":
-              s = lms.LMSFinish("");
-              break;
-            case "2004":
-              s = lms.Terminate("");
-              break;
-            default:
-              break
-          }
-          if(makeBoolean(s)) {
-            debug(settings.prefix + ": Terminated.", 3);
-            API.isActive = false
-          }else {
-            ec = getLastErrorCode();
-            debug(settings.prefix + ": Error\nError Code: " + ec + "\nError Message: " + getLastErrorMessage(ec) + " for Commit.\nDiagnostic: " + getDiagnostic(ec), 1)
-          }
-        }else {
-          debug(settings.prefix + ": Lost connection to LMS", 2)
-        }
-      }else {
-        debug(settings.prefix + ": Terminate Aborted, connection not initialized!", 2)
-      }
-      return s
-    };
-    this.getObjectiveByID = function(id) {
-      var count = self.getvalue("cmi.objectives._count"), i, tID;
-      scorm.debug(settings.prefix + ": Set Objective - Begin search, Objective count is " + count, 4);
-      if(count === "" || count === "false" || count === "-1") {
-        return"false"
-      }
-      count = parseInt(count, 10) - 1;
-      i = count;
-      while(i >= 0) {
-        tID = self.getvalue("cmi.objectives." + i + ".id");
-        if(id === tID) {
-          scorm.debug(settings.prefix + ": Objective ID Match on " + i, 4);
-          return i
-        }
-        i -= 1
-      }
-      return"false"
-    };
-    this.getInteractionByID = function(id) {
-      var count = self.getvalue("cmi.interactions._count"), i, tID;
-      if(count === "" || count === "false" || count === "-1") {
-        return"false"
-      }
-      count = parseInt(count, 10) - 1;
-      scorm.debug(settings.prefix + ": Getting interactions from count " + count, 4);
-      i = count;
-      while(i >= 0) {
-        tID = this.getvalue("cmi.interactions." + i + ".id");
-        if(id === tID) {
-          scorm.debug(settings.prefix + ": Interaction By ID Returning " + i);
-          return i
-        }
-        i -= 1
-      }
-      return"false"
-    };
-    this.getInteractionObjectiveByID = function(n, id) {
-      var count = self.getvalue("cmi.interactions." + n + ".objectives._count"), i, tID;
-      if(count === "" || count === "false") {
-        return"0"
-      }
-      count = parseInt(count, 10) - 1;
-      scorm.debug(settings.prefix + ": Getting interaction objectives from count " + count, 4);
-      i = count;
-      while(i >= 0) {
-        tID = self.getvalue("cmi.interactions." + n + ".objectives." + i + ".id");
-        if(id === tID) {
-          scorm.debug(settings.prefix + ": Interaction Objective By ID Returning " + i);
-          return i
-        }
-        i -= 1
-      }
-      return"false"
-    };
-    this.getInteractionCorrectResponsesByPattern = function(n, pattern) {
-      var count = self.getvalue("cmi.interactions." + n + ".correct_responses._count"), i, p;
-      if(count === "" || count === "false") {
-        scorm.debug(settings.prefix + ": Correct Responses pattern was empty or false", 4);
-        return"0"
-      }
-      count = parseInt(count, 10) - 1;
-      scorm.debug(settings.prefix + ": Getting interaction correct responses from count " + count, 4);
-      i = count;
-      while(i >= 0) {
-        p = self.getvalue("cmi.interactions." + n + ".correct_responses." + i + ".pattern");
-        if(pattern === p) {
-          scorm.debug(settings.prefix + ": Interaction Correct Responses By Pattern Returning " + i);
-          return"match"
-        }
-        i -= 1
-      }
-      return"false"
-    };
-    this.init = function() {
-      var win;
-      try {
-        win = window.parent;
-        if(win && win !== window) {
-          findAPI(window.parent)
-        }
-      }catch(e) {
-        debug(e, 1)
-      }
-      if(!API.path) {
-        try {
-          win = window.top.opener;
-          findAPI(win)
-        }catch(ee) {
-          debug(ee, 1)
-        }
-      }
-      if(API.path) {
-        API.connection = true;
-        return true
-      }
-      debug(settings.prefix + ": I was unable to locate an API for communication", 2);
-      if(settings.use_standalone) {
-        debug(settings.prefix + ": If you included Local_API_1484_11 I'll mimic the LMS.  If not, all SCORM calls will fail.", 4);
-        settings.standalone = true;
-        API.version = "2004";
-        API.path = typeof Local_API_1484_11 === "function" ? new Local_API_1484_11({cmi:settings.cmi}) : null;
-        $(API.path).on("StoreData", function(e) {
-          $(self).triggerHandler({type:"StoreData", runtimedata:e.runtimedata})
-        });
-        return true
-      }
-      return false
-    };
-    this.getLastError = function(n) {
-      return error[n]
-    };
-    this.isLMSConnected = function() {
-      return API.connection
-    };
-    this.set = function(n, v) {
-      switch(n) {
-        case "version":
-        ;
-        case "createDate":
-        ;
-        case "modifiedDate":
-        ;
-        case "prefix":
-          triggerWarning(405);
-          return false;
-        case "isActive":
-          API.isActive = v;
-          settings[n] = v;
-          break;
-        case "startDate":
-          settings[n] = new Date(v);
-          break;
-        default:
-          settings[n] = v;
-          break
-      }
-      return isError !== 0
-    };
-    this.get = function(n) {
-      if(settings[n] === undefined) {
-        triggerWarning(404);
-        return false
-      }
-      return settings[n]
-    };
-    this.centisecsToSCORM12Duration = centisecsToSCORM12Duration;
-    this.centisecsToISODuration = centisecsToISODuration;
-    this.ISODurationToCentisec = ISODurationToCentisec;
-    this.isoDateToStringUTC = isoDateToStringUTC;
-    this.isoDateToString = isoDateToString;
-    this.isoStringToDate = isoStringToDate;
-    this.makeBoolean = makeBoolean;
-    this.debug = debug;
-    this.init()
-  }
-  return{init:init}
 }(VISH, jQuery);
 VISH.SlidesSelector = function(V, $, undefined) {
   var initialized = false;
@@ -32735,212 +31330,6 @@ VISH.Tour = function(V, $, undefined) {
     }
   };
   return{startTourWithId:startTourWithId, getCurrentTour:getCurrentTour}
-}(VISH, jQuery);
-VISH.TrackingSystem = function(V, $, undefined) {
-  var _enabled = false;
-  var _timeReference;
-  var _currentTimeReference;
-  var _lo;
-  var _user;
-  var _device;
-  var _environment;
-  var _chronology;
-  var _rs;
-  var _app_id;
-  var _apiKey;
-  var _apiUrl;
-  var init = function(animation, callback) {
-    _timeReference = (new Date).getTime();
-    _currentTimeReference = _timeReference;
-    _apiKey = V.Configuration.getConfiguration().TrackingSystemAPIKEY;
-    _apiUrl = V.Configuration.getConfiguration().TrackingSystemAPIURL;
-    if(typeof _apiKey == "undefined" || typeof _apiUrl == "undefined" || V.Status.getIsPreview()) {
-      _enabled = false;
-      return
-    }else {
-      _enabled = true
-    }
-    if(!V.Editing) {
-      _app_id = "ViSH Viewer"
-    }else {
-      _app_id = "ViSH Editor"
-    }
-    _lo = new LO;
-    if(V.User.isLogged()) {
-      _user = new User
-    }
-    _device = V.Status.getDevice();
-    _rs = new RS;
-    _environment = {};
-    var sessionOptions = V.Viewer.getOptions();
-    if(typeof sessionOptions == "object") {
-      _environment.lang = sessionOptions.lang;
-      _environment.scorm = sessionOptions.scorm || false;
-      _environment.embed = V.Status.getIsEmbed();
-      _environment.vish = V.Status.getIsInVishSite();
-      _environment.iframe = V.Status.getIsInIframe();
-      _environment.developping = sessionOptions.developping
-    }
-    _chronology = [];
-    _chronology.push(new ChronologyEntry(V.Slides.getCurrentSlideNumber()));
-    V.EventsNotifier.registerCallback(V.Constant.Event.onGoToSlide, function(params) {
-      _cTime = (new Date).getTime();
-      if(typeof _chronology[_chronology.length - 1] != "undefined") {
-        _chronology[_chronology.length - 1].duration = _getTimeDiff(_cTime, _currentTimeReference)
-      }
-      _currentTimeReference = _cTime;
-      setTimeout(function() {
-        _chronology.push(new ChronologyEntry(V.Slides.getCurrentSlideNumber()))
-      }, 10)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onSubslideOpen, function(params) {
-      registerAction(V.Constant.Event.onSubslideOpen, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onSubslideClosed, function(params) {
-      registerAction(V.Constant.Event.onSubslideClosed, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onPlayVideo, function(params) {
-      registerAction(V.Constant.Event.onPlayVideo, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onPauseVideo, function(params) {
-      registerAction(V.Constant.Event.onPauseVideo, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onSeekVideo, function(params) {
-      registerAction(V.Constant.Event.onSeekVideo, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onPlayAudio, function(params) {
-      registerAction(V.Constant.Event.onPlayAudio, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onPauseAudio, function(params) {
-      registerAction(V.Constant.Event.onPauseAudio, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onSeekAudio, function(params) {
-      registerAction(V.Constant.Event.onSeekAudio, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onAnswerQuiz, function(params) {
-      registerAction(V.Constant.Event.onAnswerQuiz, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onShowRecommendations, function(params) {
-      _rs.shown = true;
-      _rs.tdata = V.Recommendations.getData();
-      registerAction(V.Constant.Event.onShowRecommendations, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onHideRecommendations, function(params) {
-      _rs.accepted = false;
-      registerAction(V.Constant.Event.onHideRecommendations, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onAcceptRecommendation, function(params) {
-      _rs.accepted = params.id;
-      registerAction(V.Constant.Event.onAcceptRecommendation, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onEvaluate, function(params) {
-      registerAction(V.Constant.Event.onEvaluate, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onEvaluateCompletion, function(params) {
-      registerAction(V.Constant.Event.onEvaluateCompletion, params)
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.exit, function() {
-      _cTime = (new Date).getTime();
-      if(typeof _chronology[_chronology.length - 1] != "undefined") {
-        _chronology[_chronology.length - 1].duration = _getTimeDiff(_cTime, _currentTimeReference)
-      }
-      registerAction(V.Constant.Event.exit);
-      sendTrackingObject()
-    });
-    V.EventsNotifier.registerCallback(V.Constant.Event.onViewportResize, function(params) {
-      registerAction(V.Constant.Event.onViewportResize, params)
-    });
-    $(document).bind("click", function(event) {
-      var params = {};
-      params["x"] = event.clientX;
-      params["y"] = event.clientY;
-      if(event.target) {
-        if(event.target.tagName) {
-          params["tagName"] = event.target.tagName
-        }
-        if(event.target.id) {
-          params["id"] = event.target.id
-        }
-      }
-      registerAction("click", params)
-    })
-  };
-  var registerAction = function(id, params) {
-    if(_enabled && typeof _chronology[_chronology.length - 1] != "undefined") {
-      _chronology[_chronology.length - 1].actions.push(new Action(id, params))
-    }
-  };
-  var sendTrackingObject = function() {
-    if(!_enabled) {
-      return
-    }
-    var data = _composeTrackingObject();
-    if(V.User.isLogged() && typeof V.User.getToken() != "undefined") {
-      data["authenticity_token"] = V.User.getToken()
-    }
-    $.ajax({type:"POST", url:_apiUrl, data:data, async:false})
-  };
-  var _composeTrackingObject = function() {
-    return{"app_id":_app_id, "app_key":_apiKey, "data":_composeData()}
-  };
-  var _composeData = function() {
-    var data = {};
-    data["lo"] = _lo;
-    if(typeof _user != "undefined") {
-      data["user"] = _user
-    }
-    data["device"] = _device;
-    data["environment"] = _environment;
-    data["chronology"] = _chronology;
-    data["rs"] = _rs;
-    data["duration"] = getAbsoluteTime();
-    return data
-  };
-  var getAbsoluteTime = function() {
-    return _getTimeDiff((new Date).getTime(), _timeReference)
-  };
-  var getRelativeTime = function() {
-    return _getTimeDiff((new Date).getTime(), _currentTimeReference)
-  };
-  var _getTimeDiff = function(t1, t2) {
-    return+((t1 - t2) / 1E3).toFixed(2)
-  };
-  var getChronology = function() {
-    return _chronology
-  };
-  var LO = function() {
-    var current_presentation = V.Viewer.getCurrentPresentation();
-    if(typeof current_presentation == "object") {
-      this.content = current_presentation;
-      if(typeof current_presentation.vishMetadata == "object") {
-        this.id = current_presentation.vishMetadata.id
-      }
-    }
-  };
-  var User = function() {
-    var current_user = V.User.getUser();
-    if(typeof current_user == "object") {
-      this.id = current_user.id
-    }
-  };
-  var ChronologyEntry = function(slideNumber) {
-    this.slideNumber = slideNumber;
-    this.actions = [];
-    this.t = getAbsoluteTime()
-  };
-  var Action = function(id, params) {
-    this.id = id;
-    this.t = getAbsoluteTime();
-    if(typeof params != "undefined") {
-      this.params = params
-    }
-  };
-  var RS = function() {
-    this.shown = false;
-    this.accepted = undefined;
-    this.tdata = {}
-  };
-  return{init:init, registerAction:registerAction, getAbsoluteTime:getAbsoluteTime, getRelativeTime:getRelativeTime, getChronology:getChronology, _composeTrackingObject:_composeTrackingObject, sendTrackingObject:sendTrackingObject}
 }(VISH, jQuery);
 VISH.User = function(V, $, undefined) {
   var _user;
@@ -34465,11 +32854,10 @@ VISH.VirtualTour = function(V, $, undefined) {
   var virtualTours;
   var gMlLoaded = false;
   var gMlLoading = false;
-  var lastIncrease;
   var init = function() {
     if(!initialized) {
       initialized = true;
-      virtualTours = new Array;
+      virtualTours = {};
       _loadEvents()
     }
   };
@@ -34521,6 +32909,7 @@ VISH.VirtualTour = function(V, $, undefined) {
     var myOptions = {zoom:parseInt(vtJSON.zoom), center:center, mapTypeId:vtJSON.mapType};
     var map = new google.maps.Map(document.getElementById(canvasId), myOptions);
     virtualTours[vtJSON.id].map = map;
+    virtualTours[vtJSON.id].currentCenter = center;
     $(vtJSON.pois).each(function(index, poi) {
       _addMarkerToCoordinates(canvasId, map, poi.lat, poi.lng, poi.slide_id)
     });
@@ -34537,10 +32926,12 @@ VISH.VirtualTour = function(V, $, undefined) {
   var onEnterSlideset = function(slideset) {
     var vtId = $(slideset).attr("id");
     var canvas = $("#" + vtId).find(".map_canvas");
-    $(canvas).show()
+    $(canvas).show();
+    _triggerOnResizeMap(vtId)
   };
   var onLeaveSlideset = function(slideset) {
     var vtId = $(slideset).attr("id");
+    virtualTours[vtId].currentCenter = virtualTours[vtId].map.getCenter();
     var canvas = $("#" + vtId).find(".map_canvas");
     $(canvas).hide()
   };
@@ -34563,15 +32954,18 @@ VISH.VirtualTour = function(V, $, undefined) {
     return marker
   };
   var afterSetupSize = function(increase) {
-  };
-  var _getZoomForIncreaseDiff = function(zoom, increaseDiff) {
-    var absIncreaseDiff = Math.floor(Math.abs(increaseDiff) / 0.3);
-    if(increaseDiff > 0) {
-      var newZoom = zoom + absIncreaseDiff
-    }else {
-      var newZoom = zoom - absIncreaseDiff
+    var currentSlideId = $(V.Slides.getCurrentSlide()).attr("id");
+    if(typeof virtualTours[currentSlideId] == "object") {
+      virtualTours[currentSlideId].currentCenter = virtualTours[currentSlideId].map.getCenter();
+      _triggerOnResizeMap(currentSlideId)
     }
-    return Math.max(Math.min(newZoom, 20), 1)
+  };
+  var _triggerOnResizeMap = function(vtId) {
+    var vt = virtualTours[vtId];
+    if(typeof vt == "object" && typeof vt.map == "object") {
+      google.maps.event.trigger(vt.map, "resize");
+      vt.map.setCenter(vt.currentCenter)
+    }
   };
   return{init:init, draw:draw, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, afterSetupSize:afterSetupSize}
 }(VISH, jQuery);

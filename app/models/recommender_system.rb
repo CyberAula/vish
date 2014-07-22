@@ -75,9 +75,11 @@ class RecommenderSystem
     #Add other excursions of the same author
     if !excursion.nil?
       userIdToReject = (!user.nil?) ? user.id : -1
-      authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == userIdToReject or e.id == excursion.id}
-      preSelection.concat(authoredExcursions)
-      preSelection.uniq!
+      unless userIdToReject == excursion.author.id
+        authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == userIdToReject or e.id == excursion.id}
+        preSelection.concat(authoredExcursions)
+        preSelection.uniq!
+      end
     end
 
     pSL = preSelection.length
@@ -294,6 +296,36 @@ class RecommenderSystem
     opts[:with] = {}
     #Only 'Public' objects, drafts are not searched.
     opts[:with][:relation_ids] = Relation.ids_shared_with(nil)
+    
+    #Data range filter
+    if options[:startDate] or options[:endDate]
+      if options[:startDate].class.name != "Time"
+        #e.g. Time.parse("21-07-2014 11:41:00")
+        startDate = Time.parse(options[:startDate]) rescue 1000.year.ago
+      else
+        startDate = options[:startDate]
+      end
+      if options[:endDate].class.name != "Time"
+        endDate = Time.parse(options[:endDate]) rescue Time.now
+      else
+        endDate = options[:endDate]
+      end
+
+      opts[:with][:created_at] = startDate..endDate
+    end
+
+    #Filter by language
+    if options[:language]
+      opts[:with][:language] = [options[:language].to_s.to_crc32]
+    end
+
+    #Filter by quality score
+    if options[:qualityThreshold]
+      qualityThreshold = [[0,options[:qualityThreshold].to_i].max,10].min rescue 0
+      qualityThreshold = qualityThreshold*100000
+      opts[:with][:qscore] = qualityThreshold..1000000
+    end
+
 
     opts[:without] = {}
     if options[:users_to_avoid] and !options[:users_to_avoid].reject{|u| u.nil?}.empty?
@@ -310,6 +342,11 @@ class RecommenderSystem
     if browse==true
       #Browse
       opts[:match_mode] = :extended
+
+      #Browse can't order by relevance. Set ranking by default.
+      if opts[:order].nil?
+        opts[:order] = 'ranking DESC'
+      end
     else
       queryLength = searchTerms.scan(/\w+/).size
 
