@@ -88,16 +88,31 @@
             display: inline-block
             float: left
             overflow: hidden
-            h3
-              line-height: 15px
-              color: $firstColor
-              font-size: 20px
-              font-family: $firstFontFamily
-              //border-right: 1px solid $grayLighter
-              padding-right: 15px
-              vertical-align: top
-              display: block
+            .organization,
+            .website,
+            .birthday,
+            .city,
+            .county
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
               float: left
+              display: block
+              clear: right
+              height: 30px
+              -webkit-transition: all 2s ease-in
+              -moz-transition: all 2s ease-in
+              -ms-transition: all 2s ease-in
+              -o-transition: all 2s ease-in
+              transition: all 2s ease-in
+              h3
+                line-height: 15px
+                color: $firstColor
+                font-size: 20px
+                font-family: $firstFontFamily
+                //border-right: 1px solid $grayLighter
+                padding-right: 15px
+                display: block
+                float: left
+
           .newClass
             height: 0px
             overflow: hidden
@@ -108,26 +123,30 @@
 
 
 
-            .organization     
+            .organization,
+            .website,
+            .birthday,
+            .city,
+            .county
               @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
               float: left
-              display: inline-block 
-            .website
-              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              float: left
-              display: inline-block 
-            .birthday
-              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              float: left
-              display: inline-block
-            .city
-              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              float: left
-              display: inline-block
-            .county 
-              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              float: left
-              display: inline-block
+              display: block
+              clear: right
+              height: 30px
+              -webkit-transition: all 2s ease-in
+              -moz-transition: all 2s ease-in
+              -ms-transition: all 2s ease-in
+              -o-transition: all 2s ease-in
+              transition: all 2s ease-in
+              h3
+                line-height: 15px
+                color: $firstColor
+                font-size: 20px
+                font-family: $firstFontFamily
+                //border-right: 1px solid $grayLighter
+                padding-right: 15px
+                display: block
+                float: left
           .toolbar-profile
             position: relative
             bottom: 5px

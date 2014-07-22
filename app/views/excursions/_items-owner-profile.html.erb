@@ -8,8 +8,9 @@
     <% end %>
   </div>
   <div class="right-name">
+    <%= link_to @excursion.author.subject do %>
     <p><%= truncate_name(@excursion.author.name, :length => 50) %></p>
-
+    <% end %>
     <div class="add">
       <% if user_signed_in?%>
         <%= contact_button(current_subject.contact_to!(@excursion.author)) %>
