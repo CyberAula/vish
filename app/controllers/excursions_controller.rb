@@ -73,22 +73,27 @@ class ExcursionsController < ApplicationController
             #Ajax call
             if !params[:tab] || params[:tab]=="home"
               if !params[:page] || params[:page] == "1"
-                render partial: "excursions/home/home_excursions"
+                render partial: "excursions/home/home_main"
               else
-                render partial: "excursions/home/excursions_popular", :locals => {:ids_to_avoid=>params[:ids_to_avoid].split(','), :prefix_id=>"home"}, :layout => false
+                render partial: "excursions/home/home_min", :locals => {:ids_to_avoid=>params[:ids_to_avoid].split(','), :prefix_id=>"home"}, :layout => false
               end
             elsif params[:tab]=="net"
               if !params[:page] || params[:page] == "1"
-                render :partial => "excursions/home/home_mynetwork", :locals => {:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}, :layout => false
+                render :partial => "excursions/home/net_main", :locals => {:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}, :layout => false
               else
-                render :partial => "excursions/home/mynetwork_home", :locals => {:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}, :layout => false
+                render :partial => "excursions/home/net_min", :locals => {:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}, :layout => false
               end
             else
-              @all_categories = Hash.new
-              for cat in DEFAULT_CATEGORIES 
-                @all_categories[cat] = SocialStream::Search.search(cat, current_subject, mode:  :extended, key: "excursions", page:  1, limit: 7, order: 'ranking DESC')
+              if params[:category] 
+                @excursions = SocialStream::Search.search(params[:category] , current_subject, mode: :extended, key: "excursions", page:  1, limit: 40, order: 'ranking DESC')
+                render :partial => 'excursions/home/catalogue_show' #check if is prefered to use @excursions as param or better do it globally like it's done already
+              else
+                @all_categories = Hash.new
+                for cat in DEFAULT_CATEGORIES 
+                  @all_categories[cat] = SocialStream::Search.search(cat, current_subject, mode: :extended, key: "excursions", page:  1, limit: 7, order: 'ranking DESC')
+                end
+                render :partial => "excursions/home/catalogue_main"
               end
-              render :partial => "excursions/home/catalogue"
             end 
         else          
           render "index"
