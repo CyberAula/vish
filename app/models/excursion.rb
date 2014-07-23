@@ -738,6 +738,13 @@ class Excursion < ActiveRecord::Base
     IMSQTI.createQTI(filePath,fileName,qjson)
   end
 
+
+  ####################
+  ## Moodle Quiz XML Management (Handled by the MOODLEXML module moodlexml.rb)
+  ####################
+
+
+
   def  self.createMoodleQUIZXML(filePath,fileName,qjson)
     require 'moodlexml'
     MOODLEQUIZXML.createMoodleQUIZXML(filePath,fileName,qjson)

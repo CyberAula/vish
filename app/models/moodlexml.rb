@@ -27,21 +27,26 @@ class MOODLEQUIZXML
 
   def self.createMoodleQUIZXML(filePath,fileName,qjson)
 
-    t = File.open("#{filePath}#{fileName}.xml", 'w')
+    require 'zip/zip'
+    require 'zip/zipfilesystem'
 
+    # filePath = "#{Rails.root}/public/scorm/excursions/"
+    # fileName = self.id
+    # json = JSON(self.json)
 
-    case qjson["quiztype"]
-        when "multiplechoice"
-          moodlequizmc = MOODLEQUIZXML.generate_MoodleQUIZMC(qjson)
-          t.write moodlequizmc
-        else
+    t = File.open("#{filePath}#{fileName}.zip", 'w')
+
+    Zip::ZipOutputStream.open(t.path) do |zos|
+      case qjson["quiztype"]
+          when "multiplechoice"
+            moodlequizmc = MOODLEQUIZXML.generate_MoodleQUIZMC(qjson)
+            zos.put_next_entry(fileName + ".xml")
+            zos.print moodlequizmc.target!()
+          else
+      end
     end   
     t.close
   end
-
-
-
-
 
   def self.generate_MoodleQUIZMC(qjson)
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
