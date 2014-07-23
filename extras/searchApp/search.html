@@ -236,6 +236,8 @@
 
 <body>
 	<script>
+		var QUERY_TIMEOUT = 6000;
+
 		$(document).ready(function(){
 			//Set events
 			$("#search_box").bind('keypress', function(e){
@@ -320,9 +322,11 @@
 		var queriesCounter = 0;
 		var queriesData = [];
 		var searchId = -1;
+		var sessionSearchs = {};
 
 		var onSearch = function(){
 			$("#settings").hide();
+			cleanResults();
 
 			//1. Build Query
 			var searchTerms = $("#search_box").val();
@@ -336,11 +340,13 @@
 			queriesCounter = 0;
 			queriesData = [];
 			searchId = getId();
+			sessionSearchs[searchId] = {};
 
 			if(instancesL>0){
 				$("*").addClass("waiting");
 
 				for(var i=0; i<instancesL; i++){
+					sessionSearchs[searchId][instances[i]] = {completed: false};
 					searchInViSHInstance(searchId,instances[i],query,function(data){
 						if((typeof data.searchId == "undefined")||(data.searchId != searchId)){
 							//Result of an old search
@@ -435,17 +441,26 @@
 				type    : 'GET',
 				url     : ViSHSearchAPIURL,
 				success : function(data) {
-					if(typeof callback=="function"){
+					if(sessionSearchs[searchId][domain].completed == false){
+						sessionSearchs[searchId][domain].completed = true;
 						callback({success:true, results: data, searchId:searchId});
 					}
 				},
 				error: function(error){
-					if(typeof callback=="function"){
+					if(sessionSearchs[searchId][domain].completed == false){
+						sessionSearchs[searchId][domain].completed = true;
 						callback({success:false, searchId:searchId});
 					}
 					debug("Error connecting with the ViSH API of " + domain,true);
 				}
 			});
+
+			setTimeout(function(){
+				if(sessionSearchs[searchId][domain].completed == false){
+					sessionSearchs[searchId][domain].completed = true;
+					callback({success:false, searchId:searchId});
+				}
+			},QUERY_TIMEOUT);
 		};
 
 		///////////
