@@ -1035,8 +1035,6 @@ class Excursion < ActiveRecord::Base
   ######################
 
   def self.getPopular(n=20,options={})
-    #(options[:page] only works when options[:random]==false)
-
     random = (options[:random]!=false)
 
     if random
@@ -1045,31 +1043,21 @@ class Excursion < ActiveRecord::Base
       nSubset = n
     end
 
-    # Using db queries (old version)
-    # Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").limit(nSubset).sample(n)
+    ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:user])
+    excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").first(nSubset)
     
-    # Using thinking sphinx
-    excursions = RecommenderSystem.search({:n=>nSubset, :order => 'ranking DESC', :models => [Excursion], :users_to_avoid => [options[:user]], :ids_to_avoid => options[:ids_to_avoid], :page => options[:page]})
-
     if random
-      return excursions.first(nSubset).sample(n)
-    else
-      return excursions
+      excursions = excursions.sample(n)
     end
+
+    return excursions
   end
 
-  def self.getIdsToAvoid(preSelection=nil,user=nil)
-    ids_to_avoid = []
-
-    if preSelection.is_a? Array
-      ids_to_avoid = preSelection.map{|e| e.id}
-    end
-
+  def self.getIdsToAvoid(ids_to_avoid=[],user=nil)
     if !user.nil?
       ids_to_avoid.concat(Excursion.authored_by(user).map{|e| e.id})
+      ids_to_avoid.uniq!
     end
-
-    ids_to_avoid.uniq!
 
     if !ids_to_avoid.is_a? Array or ids_to_avoid.empty?
       #if ids=[] the queries may returns [], so we fill it with an invalid id (no excursion will ever have id=-1)

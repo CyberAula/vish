@@ -13,18 +13,18 @@ module ApplicationHelper
 	end
 
 	def popular_excursions(number=10)
-    	Excursion.getPopular(number,{:user=> current_user, :random=>true})
+		Excursion.getPopular(number,{:user=>current_user, :random=>true})
+	end
+
+	def popular_resources(number=10)
+		ActivityObject.getPopular(number,{:models=>["Excursion","Document", "Webapp", "Scormfile","Link","Embed"], :user=>current_user, :random=>true})
 	end
 
 	def excursions_with_tag(tag)
 		ActivityObject.tagged_with(tag).sort{ |x,y| y.like_count <=> x.like_count }.map(&:object).select{|a| a.class==Excursion && a.draft == false}
 	end
 
-	def popular_resources(number=10)
-		ActivityObject.getPopular(10,["Excursion","Document", "Webapp", "Scormfile","Link","Embed"],nil,current_user)
-	end
-
-	def category_thumbnail(category)		
+	def category_thumbnail(category)
 		thumbs_array = []
 		category.property_objects.each do |item|
 			if item.object.class == Picture
@@ -46,9 +46,6 @@ module ApplicationHelper
 		end			
 		result += "</div>"
 		return raw result
-
-
-
 	end
 
 end
