@@ -738,6 +738,11 @@ class Excursion < ActiveRecord::Base
     IMSQTI.createQTI(filePath,fileName,qjson)
   end
 
+  def  self.createMoodleQUIZXML(filePath,fileName,qjson)
+    require 'moodlexml'
+    MOODLEQUIZXML.createMoodleQUIZXML(filePath,fileName,qjson)
+  end
+
 
   ####################
   ## Excursion to PDF Management
