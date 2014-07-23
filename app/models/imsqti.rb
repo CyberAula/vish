@@ -24,12 +24,13 @@ require 'builder'
 class IMSQTI
 
   def self.createQTI(filePath,fileName,qjson)
-        require 'zip/zip'
+    require 'zip/zip'
     require 'zip/zipfilesystem'
 
     # filePath = "#{Rails.root}/public/scorm/excursions/"
     # fileName = self.id
     # json = JSON(self.json)
+
     t = File.open("#{filePath}#{fileName}.zip", 'w')
 
     #Add manifest, main HTML file and additional files
@@ -68,7 +69,7 @@ class IMSQTI
       zos.print xml_truemanifest
     end
 
-       xsdFileDir = "#{Rails.root}/public/xsd"
+      xsdFileDir = "#{Rails.root}/public/xsd"
       xsdFiles = ["imscp_v1p1.xsd","imsmd_v1p2p4.xsd"]
 
       #Add required xsd files
@@ -227,10 +228,15 @@ end
       count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
       Site.current.config["tmpCounter"] = count + 1
       Site.current.save!
-      
+
       myxml = ::Builder::XmlMarkup.new(:indent => 2)
       myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-        
+       
+
+      Rails.logger.info(qjson)
+      puts "holaaaaaaaaaaaaa"
+      puts qjson
+
       nChoices = qjson["choices"].size
 
       title_identifier = "AssesmentItem " + (count.to_s)

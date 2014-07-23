@@ -351,6 +351,8 @@ class ExcursionsController < ApplicationController
         else
           json = params["json"]
         end
+        response = params["responseFormat"]
+
 
         responseFormat = "json" #Default
         if params["responseFormat"].is_a? String
@@ -360,11 +362,15 @@ class ExcursionsController < ApplicationController
           if params["responseFormat"].downcase == "qti"
             responseFormat = "qti"
           end
+          if params["responseFormat"].downcase == "moodlexml"
+            responseFormat = "MoodleXML"
+          end
         end
 
         count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
         Site.current.config["tmpCounter"] = count + 1
         Site.current.save!
+
 
         if responseFormat == "json"
           #Generate JSON file
@@ -386,6 +392,12 @@ class ExcursionsController < ApplicationController
            fileName = "qti-tmp-#{count.to_s}"
            Excursion.createQTI(filePath,fileName,JSON(json))
            results["url"] = "#{Vish::Application.config.full_domain}/tmp/qti/#{fileName}.zip"
+        elsif responseFormat == "MoodleXML"
+           filePath = "#{Rails.root}/public/tmp/moodlequizxml/"
+           FileUtils.mkdir_p filePath
+           fileName = "moodlequizxml-tmp-#{count.to_s}"
+           Excursion.createMoodleQUIZXML(filePath,fileName,JSON(json))
+           results["url"] = "#{Vish::Application.config.full_domain}/tmp/moodlequizxml/#{fileName}.zip"
         end
 
         render :json => results
