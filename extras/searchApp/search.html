@@ -370,21 +370,61 @@
 		};
 
 		var getInstances = function(){
-			return ["http://vishub.org"];
+			return $("#ViSHinstances").find("ul li input[type='checkbox']:checked'").map(function(index,input){ return $(input).parent().find("span").html();});
 		};
 
 		var getSettings = function(){
+			var settings = {};
+
+			settings.n = $("#n").val();
+
+			//Entities to search
+			settings.entities_type = $("#entity_types").val().join(",");
+			settings.sort_by = $("#sort_by").val();
+			if(settings.sort_by=="Relevance"){
+				delete settings.sort_by
+			}
+			
 			var startDate = $("#startDate").val().split("-").reverse().join("-");
-			if(startDate.trim()==""){
-				startDate = undefined;
+			if(startDate.trim()!=""){
+				settings.startDate = startDate;
+			}
+			var endDate = $("#endDate").val().split("-").reverse().join("-");
+			if(endDate.trim()!=""){
+				settings.endDate = endDate;
 			}
 
-			return {};
+			var language = $("#language").val();
+			if(language.trim()!=""){
+				settings.language = language;
+			}
+
+			settings.qualityThreshold = $("#qualityThreshold").val();
+
+			return settings;
 		};
 
 		var buildQuery = function(searchTerms,settings){
-			var query = "/apis/search?"
-			query += "q="+searchTerms+"&n=20"
+			var query = "/apis/search?n="+settings.n+"&q="+searchTerms+"&type="+settings.entities_type
+
+			if(settings.sort_by){
+				query += "&sort_by="+settings.sort_by;
+			}
+
+			if(settings.startDate){
+				query += "&startDate="+settings.startDate;
+			}
+
+			if(settings.endDate){
+				query += "&endDate="+settings.endDate;
+			}
+
+			if(settings.language){
+				query += "&language="+settings.language;
+			}
+
+			query += "&qualityThreshold="+settings.qualityThreshold;
+
 			return query;
 		};
 
@@ -458,6 +498,9 @@
 				<option value="Officedoc">Office documents</option>
 				<option value="Swf">Flash Objects</option>
 				<option value="Zipfile">ZIP files</option>
+				<option value="User">User</option>
+				<option value="Event">Event</option>
+				<option value="Category">Category</option>
 			</select>
 		</div>
 		<div id="settingsRow2" class="settingsColumn">
