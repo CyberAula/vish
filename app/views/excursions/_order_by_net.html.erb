@@ -1,35 +1,35 @@
-<div class="dropdown order_by_selector" id="">
+<div class="dropdown order_by_selector" li_selected="popularity" id="order_by_selector_net">
 <span class="order_by"><%=t('order_by.title')%></span>
   <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="" data-toggle="dropdown"><i class="icon-dashboard"> </i><%=t('order_by.popularity')%>
     <i class="icon-angle-down"></i>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
     <li>
-        <a href="<%=home_path(:sort_by=>"popularity")%>" sort-by-key='popularity'> 
+        <a href="<%=home_path(:tab=>"net", :sort_by=>"popularity")%>" sort-by-key='popularity'> 
           <i class="icon-dashboard"></i>
           <span><%=t('order_by.popularity')%> </span>
         </a>
     </li>
     <li>
-      <a href="<%=home_path(:sort_by=>"updated_at")%>" sort-by-key='updated_at'>
+      <a href="<%=home_path(:tab=>"net", :sort_by=>"updated_at")%>" sort-by-key='updated_at'>
         <i class="icon-pencil"></i>
         <span><%=t('order_by.updated_at')%> </span>
       </a>
     </li>
     <li>
-      <a href="<%=home_path(:sort_by=>"created_at")%>" sort-by-key='created_at'>
+      <a href="<%=home_path(:tab=>"net", :sort_by=>"created_at")%>" sort-by-key='created_at'>
         <i class="icon-bolt"></i>
         <span><%=t('order_by.created_at')%> </span>
       </a>
     </li>
     <li>
-        <a href="<%=home_path(:sort_by=>"visits")%>" sort-by-key='visits'>
+        <a href="<%=home_path(:tab=>"net", :sort_by=>"visits")%>" sort-by-key='visits'>
           <i class="icon-eye-open"></i> 
           <span><%=t('order_by.visits')%> </span>
         </a>
     </li>
     <li>
-        <a href="<%=home_path(:sort_by=>"favorites")%>" sort-by-key='favorites'>
+        <a href="<%=home_path(:tab=>"net", :sort_by=>"favorites")%>" sort-by-key='favorites'>
           <i class="icon-star"></i> 
           <span><%=t('order_by.favorites')%> </span>
         </a>
@@ -39,12 +39,13 @@
 </div>
 
 
-<%= content_for :javascript do %>
+<script>
+  $(document).ready(function(){ 
+    var param = "<%=params[:sort_by]%>";
 
-  var param = "<%=params[:sort_by]%>";
-
-  if(param && param!=""){
-    var value = $(".order_by_selector .dropdown-menu [sort-by-key="+param+"]").html();
-    $(".dropdownMenuOrdBy").html(value + '<i class="icon-angle-down"></i>'); 
-  }
-<%end%>
+    if(param && param!=""){
+      var value = $("#order_by_selector_net .dropdown-menu [sort-by-key="+param+"]").html();
+      $(".dropdownMenuOrdBy").html(value + '<i class="icon-angle-down"></i>'); 
+    }
+  });
+</script>

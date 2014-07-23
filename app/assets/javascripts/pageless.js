@@ -74,7 +74,7 @@
     pagination: '.pagination',
     params: {},
     url: location.href,
-    loaderImage: "/images/load.gif",
+    loaderImage: "/assets/load.gif",
     method: 'get'
   };
   var container;
@@ -96,7 +96,7 @@
       pagination: '.pagination',
       params: {},
       url: location.href,
-      loaderImage: "/images/load.gif",
+      loaderImage: "/assets/load.gif",
       method: 'get'
     };
     stopListener();

@@ -31,45 +31,9 @@
 
  <section id="home_tab_ready" class="excursions">
   <ul class="">
-  <h3> <%= t("home.populars")%> </h3> 
-  <% excursionsDone = @done %>
- <%= render partial: 'excursions/home/excursions_popular', :locals => {:ids_to_avoid => excursionsDone,  :page => 1, :prefix_id=>"home"} %>
-   </ul>
+    <h3> <%= t("home.populars")%> </h3> 
+    <% excursionsDone = @done.map{|e| e.id} %>
+    <%= render partial: 'excursions/home/excursions_popular', :locals => {:ids_to_avoid => excursionsDone,  :page => "1", :prefix_id=>"home"} %>
+  </ul>
 
-
-
-
- <div class="loader_pagination">
-    <div id="pageless-loader" style="text-align:center;width:100%;">
-      <div class="msg" style="font-size:2em">
-       <%=t('search.loading')%>
-      </div>
-     <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
-   </div>
-
-  </div>
 </section>
-
-
-<script>
-//this will be needed when we have several tabs in the home page
-var backstrech_items = {
-  excursions: {
-
-  },
-  resources: {
-
-  }, 
-  events: {
-
-  }
-};
-
-
-function re_apply_backstrech(tab){
-  for (var key in backstrech_items[tab]) {
-    $(""+ key).backstretch( backstrech_items[tab][key] ); 
-  }
-}
-
-</script>

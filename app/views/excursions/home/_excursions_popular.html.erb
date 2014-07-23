@@ -1,6 +1,4 @@
-<% 
- ids_to_avoid= ids_to_avoid.map{|e| e.id}
-  excursions = Excursion.getHome(30,'Popular',{:random => false, :ids_to_avoid => ids_to_avoid, :page => params[:page] || 1})
+<% excursions = Excursion.getHome(30,'Popular',{:random => false, :ids_to_avoid => ids_to_avoid, :page => params[:page] || "1"})
    %>
   
   <% excursions.each do |excursion| %>
@@ -10,7 +8,7 @@
 <script>
 	$(document).ready(function(){
 
-      pageless_state.home.url = "<%= Vish::Application.config.full_domain + "/search?sort_by=popularity&type=excursion&ids_to_avoid=" + ids_to_avoid.join(",")%>";
+      pageless_state.home.url = "/home?tab=home&sort_by=popularity&ids_to_avoid=<%=ids_to_avoid.join(',')%>";
       update_pageless_state("home", <%=excursions.num_pages%>, <%=excursions.current_page%>);
       re_apply_pageless("home");    
 
