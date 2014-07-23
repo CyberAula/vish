@@ -1,14 +1,38 @@
-#Copy this file to application_config.yml
-#Configure here all the variables of your Virtual Science Hub instance.
+# Copy this file to application_config.yml
+# Configure here all the variables of your Virtual Science Hub instance.
 
 development:
-  domain: "localhost"
+  domain: "localhost:3000"
   test_domain: true
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
 
 production:
   domain: "vishub.org"
+  code_domain: "vishubcode.global.dit.upm.es"
+  code_path: "/home/isabel/vish-shared/documents/code"
   test_domain: false
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
+
+
+#Other configuration options
+
+# LOEP configuration. Allow to evaluate the quality of the ViSH resources in a systematic way (See http://loep.global.dit.upm.es for mroe info).
+#  loep:
+#    domain: "http://loep.global.dit.upm.es"
+#    # domain: "http://localhost:8080"
+#    api_version: "v1"
+#    app_name: "ViSH"
+#    auth_token: "secret_loep_token"
+#    repository_name: "ViSH"
+
+# Automatically detect resources language using the service provided by http://detectlanguage.com
+# languageDetectionAPIKEY: "API Key from http://detectlanguage.com to allow automatic language detection."
+
+# Enable tracking system to record all user actions while viewing resources.
+# trackingSystemAPIKEY: "secret_key"
+# trackingSystemAPIURL: "http://#{ViSH domain}/tracking_system_entries"
+
+# Enable SoundCloud in the ViSH Editor
+# soundCloudAPIKEY: "secret_key"

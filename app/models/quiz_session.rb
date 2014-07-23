@@ -34,9 +34,7 @@ class QuizSession < ActiveRecord::Base
   end
 
   def self.root_url
-    if Site.current.config[:documents_hostname]
-      return Site.current.config[:documents_hostname].to_s + "quiz_sessions/"
-    end
+    return Vish::Application.config.full_domain + "/quiz_sessions/"
   end
 
   def close_url
@@ -48,9 +46,7 @@ class QuizSession < ActiveRecord::Base
   end
 
   def answer_url
-    if Site.current.config[:documents_hostname]
-      return Site.current.config[:documents_hostname].to_s + "qs/" + self.id.to_s()
-    end
+    return Vish::Application.config.full_domain + "/qs/" + self.id.to_s()
   end
 
   def results_url

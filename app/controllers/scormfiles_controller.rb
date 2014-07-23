@@ -4,10 +4,12 @@ class ScormfilesController < ApplicationController
   def show
     respond_to do |format|
       format.zip {
-        return send_file resource.zippath, :type=>"application/zip"
+        resource.increment_download_count
+        return send_file resource.getZipPath(), :type=>"application/zip"
       }
       format.scorm {
-        return send_file resource.zippath, :type=>"application/zip"
+        resource.increment_download_count
+        return send_file resource.getZipPath(), :type=>"application/zip"
       }
       format.json {
         render :json => resource.as_json

@@ -50,13 +50,13 @@ class Webapp < ActiveRecord::Base
       #Save the resource to get its id
       resource.save!
 
-      if Site.current.config[:code_hostname].nil? or Site.current.config[:code_path].nil?
+      if Vish::Application.config.APP_CONFIG["code_path"].nil?
         webappsDirectoryPath = Rails.root.join('public', 'webappscode').to_s
       else
-        webappsDirectoryPath = Site.current.config[:code_path] + "/webappscode"
+        webappsDirectoryPath = Vish::Application.config.APP_CONFIG["code_path"] + "/webappscode"
       end
       loDirectoryPath = webappsDirectoryPath + "/" + resource.id.to_s
-      loURLRoot = (Site.current.config[:code_hostname].nil? ? Site.current.config[:documents_hostname] : Site.current.config[:code_hostname]) + "webappscode/" + resource.id.to_s
+      loURLRoot = Vish::Application.config.full_code_domain + "/webappscode/" + resource.id.to_s
 
       require "fileutils"
       FileUtils.mkdir_p(loDirectoryPath)
@@ -72,9 +72,20 @@ class Webapp < ActiveRecord::Base
         }
       }
 
-      resource.zipurl = Site.current.config[:documents_hostname] + resource.file.url[1..-1]
-      resource.zippath = resource.file.path
-      resource.lopath = loDirectoryPath
+      #URLs are saved as absolute URLs
+      #ZIP paths are always saved as relative paths (the same as the rest of the documents)
+      #LO paths are saved as absolute paths when APP_CONFIG["code_path"] is defined
+      resourceRelativePath = resource.file.path
+      resourceRelativePath.slice! Rails.root.to_s
+
+      loDirectoryPathToSave = loDirectoryPath
+      if Vish::Application.config.APP_CONFIG["code_path"].nil?
+        loDirectoryPathToSave.slice! Rails.root.to_s
+      end
+
+      resource.zipurl = Vish::Application.config.full_domain + "/" + resource.file.url[1..-1]
+      resource.zippath = resourceRelativePath
+      resource.lopath = loDirectoryPathToSave
       resource.lourl = loURLRoot + "/index.html"
 
       resource.save!
@@ -121,13 +132,31 @@ class Webapp < ActiveRecord::Base
     }
   end
 
+  def increment_download_count
+    self.activity_object.increment_download_count
+  end
+
+  def getZipPath
+    #ZIP paths are always saved as relative paths (the same as the rest of the documents)
+    return Rails.root.to_s + self.zippath
+  end
+
+  def getLoPath
+    #LO paths are saved as relative paths when APP_CONFIG["code_path"] is not defined
+    if Vish::Application.config.APP_CONFIG["code_path"].nil?
+      return Rails.root.to_s + self.lopath
+    end
+
+    #LO paths are saved as absolute paths when APP_CONFIG["code_path"] is defined
+    return self.lopath
+  end
 
   private
 
   def remove_files
     #Remove SCORM files from the public folder
     require "fileutils"
-    FileUtils.rm_rf(self.lopath)
+    FileUtils.rm_rf(self.getLoPath())
   end
   
 end

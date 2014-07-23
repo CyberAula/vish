@@ -1,6 +1,6 @@
 class AddOfflineManifestToExcursion < ActiveRecord::Migration
   def up
-    add_column :excursions, :offline_manifest, :text, :default => nil
+    add_column :excursions, :offline_manifest, :text
   end
 
   def down

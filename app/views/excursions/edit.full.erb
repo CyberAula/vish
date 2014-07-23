@@ -23,13 +23,14 @@
 	configuration["Youtube"] = true;
 	configuration["Vimeo"] = false;
 	configuration["LRE"] = true;
-	configuration["Soundcloud"] = true;
-	configuration["SoundcloudAPIKey"] = 'bb5aebd03b5d55670ba8fa5b5c3a3da5';
-
+	<%unless Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'].nil? %>
+		configuration["SoundCloud"] = true;
+		configuration["SoundCloudAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'] %>";
+	<%end%>
 	configuration["Upload"] = true;
-
 	configuration["mode"] = "vish";
 	options["configuration"] = configuration;
+	
 	options["developping"] = false;
 
 	options["user"] = {

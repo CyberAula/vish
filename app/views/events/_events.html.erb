@@ -13,10 +13,10 @@
   });
 
 	function add_events_backstrech(){
-    if(backstrech_items!=undefined){
-		<% all_events.each do |event| %>
+    if(typeof backstrech_items != "undefined"){
+      <% all_events.each do |event| %>
         backstrech_items.events["#event-<%=event.id%>"] = "<%=event_raw_thumbail(event)%>";
-  		<% end %>
+      <% end %>
     }
 	}
 

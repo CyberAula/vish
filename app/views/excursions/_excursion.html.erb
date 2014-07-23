@@ -1,36 +1,36 @@
 <li class="box-item excursion-item">
+  
   <%if excursion.is_mostvaluable? %>
     <div class="badge-excursion-active"></div>
   <%end%>
-  <%= link_to(excursion) do %>
-  <div class="container-img">
-      <div class="dummy"></div>
-      <div class="element">
-        
-        
-        <div class="img-box" id="excursion-<%=excursion.id%>"></div>
-        <%if excursion.draft%>
-        <div class="excursion-draft">
-          <h2 class="draftstyle">
-            <i class="icon-edit"></i>
-            <%=t('excursion.draft')%>
-          </h2>
-        </div>
-        <%end%>
 
-      </div>
-  </div>
-    
-<% end %>
+  <%= link_to(excursion) do %>
+    <div class="container-img">
+        <div class="dummy"></div>
+        <div class="element">
+          <div class="img-box" id="excursion-<%=excursion.id%>"></div>
+          <%if excursion.draft%>
+            <div class="excursion-draft">
+              <h2 class="draftstyle">
+                <i class="icon-edit"></i>
+                <%=t('excursion.draft')%>
+              </h2>
+            </div>
+          <%end%>
+        </div>
+    </div> 
+  <% end %>
+
   <script>
     <%if defined?(container_id) %>
-      $("#<%=container_id%> #excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
+      $("#<%=container_id%> #excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");
     <%else%>
       $("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
     <%end%>    
   </script>
-<%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
-<!--INFO excursuion-->
+
+
+  <!--INFO excursuion-->
   <div class="info">
     <!--Tags - not shown now, but used for filtering search results. maybe shown in next version on hover-->
     <!-- if modified to show them, careful because they are used in the filters, check that they work-->
@@ -41,33 +41,39 @@
           </span>
       <% end %>
     </div>
-<!--Title -->
+
+    <!--Title -->
     <div class="name">
       <%= link_to excursion.title, excursion %>
     </div>
-<!--Autor -->
+
+    <!--Autor -->
     <div class="author"> 
       <span class="by"><%=t('by')%></span>
       <%= link_to excursion.author.name, excursion.author.subject %>
     </div>
-    <!--____________________ -->
+
+    <!--More info (Likes and views) -->
     <div class="info-bottom">
       <hr class="soften">
+
       <!--like -->
       <div class="like">        
          <% if excursion.post_activity%>
-          <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
-          <%= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>
-        <%else%>
-          <div class="count">0</div>
-        <%end%>
+            <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
+            <%= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>
+          <%else%>
+            <div class="count">0</div>
+          <%end%>
       </div>
+
       <!--views -->
       <div class="views">
         <%=excursion.visit_count.to_s%>
         <i class="icon-eye-open"></i>
         <%#=t('follow.views')%>
       </div>
+      
     </div>
 
   </div>

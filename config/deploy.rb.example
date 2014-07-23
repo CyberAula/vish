@@ -81,6 +81,7 @@ namespace(:deploy) do
   task :link_files do
     run "ln -s #{ shared_path}/documents #{ release_path }/"
     run "ln -s #{ shared_path}/database.yml #{ release_path }/config"
+    run "ln -s #{ shared_path}/application_config.yml #{ release_path }/config"
     run "ln -s #{ shared_path}/exception_notification.rb #{ release_path }/config/initializers"
     run "ln -s #{ shared_path}/social_stream-ostatus.rb #{ release_path }/config/initializers"
   end

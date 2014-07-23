@@ -21,7 +21,7 @@
 				<legend><%= t('overview.overview1') %></legend>
 				<br>
 
-				<div class="header_text margin-top10"><a href="www.vishub.org"><%= t('thevish') %></a><%= t('overview.overview2') %></div><br>
+				<div class="header_text margin-top10"><a target="_blank" href="<%=Vish::Application.config.full_domain=%>"><%= t('thevish') %></a><%= t('overview.overview2') %></div><br>
 				<div class="header_text margin-top10"><%= t('overview.overview3') %></div><br>
 				<div class="header_text margin-top10">
 				<ul>
@@ -54,7 +54,7 @@
 				</ul>
 				</div><br>
 				<div id="overview2" class="header_text margin-top10">
-				<%= t('overview.overview13') %><a target="_blank" href="http://www.vishub.org/catalogue"><%= t('overview.overview14') %></a> <%= t('overview.overview15') %>
+				<%= t('overview.overview13') %><a target="_blank" href="<%=Vish::Application.config.full_domain=%>/catalogue"><%= t('overview.overview14') %></a> <%= t('overview.overview15') %>
 				</div><br>
 				<div class="header_text margin-top10">
 				<br> 
@@ -62,7 +62,7 @@
 				<br>
 				</div><br>
 				<div class="header_text margin-top10"><%= t('overview.overview17') %>
-				<a target="_blank" href="http://vishub.org/legal_notice"><%= t('overview.overview18') %></a><%= t('overview.overview19') %>
+				<a target="_blank" href="<%=Vish::Application.config.full_domain=%>/legal_notice"><%= t('overview.overview18') %></a><%= t('overview.overview19') %>
 				</div><br>
 				<div class="header_text margin-top10"><%= t('overview.overview20') %>
 				</div><br>
@@ -97,8 +97,8 @@
 					<a target="_blank" href="http://vishub.org/categories/63"><%= t('overview.overview36') %></a>, 
 					<%= t('overview.overview37') %>
 				</li><br>
-				<li style="list-style: initial"><b><%= t('overview.overview38') %></b><%= t('overview.overview39') %><a target="_blank" href="http://vishub.org/categories/61"><%= t('overview.overview40') %></a><%= t('overview.overview41') %></li><br>
-				<li style="list-style: initial"><b><%= t('overview.overview42') %></b><%= t('overview.overview43') %><a target="_blank" href="http://vishub.org/categories/57"><%= t('overview.overview44') %></a></li><br>
+				<li style="list-style: initial"><b><%= t('overview.overview38') %></b><%= t('overview.overview39') %> <a target="_blank" href="http://vishub.org/categories/61"><%= t('overview.overview40') %></a><%= t('overview.overview41') %></li><br>
+				<li style="list-style: initial"><b><%= t('overview.overview42') %></b><%= t('overview.overview43') %> <a target="_blank" href="http://vishub.org/categories/57"><%= t('overview.overview44') %></a></li><br>
 				<li style="list-style: initial"><b><%= t('overview.overview45') %></b><%= t('overview.overview46') %><a target="_blank" href="http://vishub.org/categories/58"><%= t('overview.overview47') %></a>
 				</li><br>
 				<li style="list-style: initial"><b><%= t('overview.overview48') %></b><%= t('overview.overview49') %><a target="_blank" href="http://vishub.org/categories/59"><%= t('overview.overview50') %></a>
@@ -141,13 +141,13 @@
 				<div class="header_text margin-top10">
 				<%= t('overview.overview66') %>
 				</div><br>
-				<div class="header_text margin-top10">
-				<br id="overview7"> 
+				<div id="overview7" class="header_text margin-top10">
+				<br> 
 				<legend><%= t('overview.overview67') %></legend>
 				<br> 
 				</div><br>
 				<div class="header_text margin-top10">
-				<%= t('overview.overview68') %><a href="http://www.mashme.tv">MashMe.tv</a> <%= t('overview.overview69') %></div><br>
+				<%= t('overview.overview68') %><a target="_blank" href="http://www.mashme.tv">MashMe.tv</a> <%= t('overview.overview69') %></div><br>
 				<div class="header_text margin-top10"><%= t('overview.overview70') %>
 				</div><br>
 		</div>

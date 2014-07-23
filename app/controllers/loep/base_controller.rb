@@ -10,7 +10,7 @@ class Loep::BaseController < ActionController::Base
       return
     end
 
-    if params["app_name"]!="ViSH" or params["auth_token"] != Vish::Application.config.loep_token
+    if params["app_name"]!=Vish::Application.config.APP_CONFIG['loep']['app_name'] or params["auth_token"] != Vish::Application.config.APP_CONFIG['loep']['auth_token']
       render :json => ["Unauthorized"], :status => :unauthorized
       return
     end

@@ -61,6 +61,7 @@ public/pdf/excursions/*
 
 # stats
 public/stats.txt
+reports/*
 
 #temporal files
 app/views/layouts/_grid.html.erb

@@ -1,0 +1,20 @@
+# This file should be in /etc/cron.d/vish
+# Set the appropriate users and paths for your environment
+
+# Every hour (at minute 5)
+#5 * * * * www-data cd /home/username/vish && bundle exec rake --silent cron:hourly RAILS_ENV=production
+
+# Daily (at 4:15am)
+15 4 * * * www-data cd /home/username/vish && bundle exec rake --silent cron:daily RAILS_ENV=production
+
+# Weekly (Sundays at 4:15am)
+#15 4 * * 0 www-data cd /home/username/vish && bundle exec rake --silent cron:weekly RAILS_ENV=production
+
+# Monthly
+@monthly www-data cd /home/username/vish && bundle exec rake --silent cron:monthly RAILS_ENV=production
+
+# Sphinx (Search engine)
+# Index searches every 10 minutes
+*/10 * * * * www-data cd /home/username/vish && bundle exec rake --silent ts:index RAILS_ENV=production
+
+# Visit https://help.ubuntu.com/community/CronHowto for more information about cron

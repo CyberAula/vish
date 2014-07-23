@@ -1,12 +1,19 @@
 <%= render :partial => 'excursions/vish_viewer.full' %>
 
-<script>    
+<script>
 	options = {};
 	var configuration = {};
 
 	configuration["ImagesPath"] = "/assets/";
 	configuration["StylesheetsPath"] = "/assets/";
 	configuration["mode"] = "vish";
+	//Tracking System
+	<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? %>
+		configuration["TrackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";
+		<% unless Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'].nil? %>
+			configuration["TrackingSystemAPIURL"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'] %>";
+		<%end%>
+	<%end%>
 	options["configuration"] = configuration;
 	options["developping"] = false;
 
@@ -56,7 +63,7 @@
 
 	//URL to access to the Recommendation API
 	options["recommendationsAPI"] = {
-		rootURL: "<%=Site.current.config[:documents_hostname]%>" + "excursions/last_slide.json"
+		rootURL: "<%=Vish::Application.config.full_domain%>" + "/excursions/last_slide.json"
 	};
 	
 	//Extra options from parent
