@@ -191,7 +191,8 @@ class RecommenderSystem
     else
       languageD = 0
     end
-    keywordsD = RecommenderSystem.getKeywordsDistance(loA.tag_list.delete_if{|e| e=="ViSHCompetition2013"},loB.tag_list)
+
+    keywordsD = RecommenderSystem.getKeywordsDistance(loA.tag_list.to_a.delete_if{|e| e=="ViSHCompetition2013"},loB.tag_list.to_a)
     titleD = RecommenderSystem.getKeywordsDistance(loA.title.split(" ").reject{|w| w.length<3},loB.title.split(" ").reject{|w| w.length<3})
     
     return weights[:language] * languageD + weights[:keywords] * keywordsD + weights[:title] * titleD
@@ -208,7 +209,7 @@ class RecommenderSystem
     else
       languageD = 0
     end
-    keywordsD = RecommenderSystem.getKeywordsDistance(user.tag_list,lo.tag_list)
+    keywordsD = RecommenderSystem.getKeywordsDistance(user.tag_list.to_a,lo.tag_list.to_a)
 
     return weights[:language] * languageD + weights[:keywords] * keywordsD
   end
