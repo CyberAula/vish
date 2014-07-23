@@ -13,6 +13,9 @@
     &:hover{
       padding: 0;
     }
+    &:focus{
+      padding: 0 !important;
+    }  
   }
   
 
@@ -89,7 +92,9 @@
   background-image: url("items/malla.png") !important;
   a{
     text-decoration: none;
+
   }
+
 }
 
 .thumbnail .caption {

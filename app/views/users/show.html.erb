@@ -49,10 +49,12 @@
                     </span>
                   <% end %>
             </header>
+            
             <div id="collapseInfo" class="panel-collapse collapse">
+              
               <div class="panel-body">
                 <div class="ocupation">
-              <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>          
+                  <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>          
                     <h4 class="select">
                       <%= link_to t('profile.occupation.select'), '#', :id => "select_occupation_link" %> 
                     </h4>
@@ -67,45 +69,46 @@
                 </div>
 
                 <div class="organization">
-                    <h4><%= t('profile.organization') %></h4>
-                    <span><%= @user.profile.organization %></span>
-                  </div>
+                  <h4><%= t('profile.organization') %></h4>
+                  <span><%= @user.profile.organization %></span>
+                </div>
 
-                  <!--__Website -->
-                  <div class="website">
-                    <h4><%= t('profile.website') %></h4>
-                    <span><%= link_to @user.profile.website,  @user.profile.website, :target=>'_blank' %></span>
-                  </div>
+                <!--__Website -->
+                <div class="website">
+                  <h4><%= t('profile.website') %></h4>
+                  <span><%= link_to @user.profile.website,  @user.profile.website, :target=>'_blank' %></span>
+                </div>
 
-                  <!--__birthday -->
-                  <div class="birthday">
-                    <h4><%= t('profile.' + current_subject.class.to_s.downcase + '.birthday') %></h4>
-                    <span><%= @user.profile.birthday %></span>
-                  </div>
+                <!--__birthday -->
+                <div class="birthday">
+                  <h4><%= t('profile.' + current_subject.class.to_s.downcase + '.birthday') %></h4>
+                  <span><%= @user.profile.birthday %></span>
+                </div>
 
-                  <!--__city -->
-                  <div class="city">
-                    <h4><%= t('profile.city') %></h4>
-                    <span><%= @user.profile.city %></span>
-                  </div>
+                <!--__city -->
+                <div class="city">
+                  <h4><%= t('profile.city') %></h4>
+                  <span><%= @user.profile.city %></span>
+                </div>
 
-                  <!--__Country -->
-                  <div class="county">
-                    <h4><%= t('profile.country') %></h4>
-                    <span><%= @user.profile.country %></span>
-                  </div>
+                <!--__Country -->
+                <div class="county">
+                  <h4><%= t('profile.country') %></h4>
+                  <span><%= @user.profile.country %></span>
+                </div>
               </div>
-            </div>
-          </div> 
-        </div>
-
+            
+            </div><!-- collapseInfo -->
+          
+          </div> <!-- panel -->
+        </div><!-- panel-group -->
         
         <!--__toobar-profile -->
         <div class="toolbar-profile">
           <%= render :partial => 'users/toolbar_user' %>
         </div>
 
-      </div>
+      </div><!-- briefing -->
 
       <%= render :partial => 'users/form_update_profile' %>
     </section>
@@ -114,6 +117,7 @@
   <%= render partial: 'users/profile-info' %>
 
   <%= javascript_tag do %>
+
     $(function() {
       SocialStream.Profile.show({
       section: "<%= params[:section ] %>"
@@ -124,6 +128,9 @@
       $("#edit_icon_link").click();
     });
   <% end %>
+
+
+
 </div>
 
 

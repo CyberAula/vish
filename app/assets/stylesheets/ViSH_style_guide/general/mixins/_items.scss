@@ -59,6 +59,10 @@
       -ms-transform: scale(1.05);
       -webkit-transform: scale(1.05);
     }
+    a
+      &.focus{
+        padding: 0 !important;
+      }
     @media (max-width: 480px){
       height: 68px;
       .container-img{
