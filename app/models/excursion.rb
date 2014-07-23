@@ -1066,6 +1066,11 @@ class Excursion < ActiveRecord::Base
   end
 
   def self.getIdsToAvoid(ids_to_avoid=[],user=nil)
+    
+    if ids_to_avoid.nil?
+      ids_to_avoid = []
+    end
+
     if !user.nil?
       ids_to_avoid.concat(Excursion.authored_by(user).map{|e| e.id})
       ids_to_avoid.uniq!
