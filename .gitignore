@@ -50,6 +50,7 @@ public/webappscode/*
 public/tmp/json/*
 public/tmp/scorm/*
 public/tmp/qti/*
+public/tmp/moodlequizxml/*
 
 dumps/*
 
