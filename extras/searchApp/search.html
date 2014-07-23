@@ -167,20 +167,30 @@
 			});
 		});
 
-		var _id = 0;
-		var getId = function(){
-			_id += 1;
-			return _id;
-		};
 
-		var createDOMResult = function(JSONresult){
+		///////////
+		// UI Methods
+		///////////
+		var drawResultInDOM = function(JSONresult){
 			var avatarURL = (typeof JSONresult.avatar_url == "string" ? JSONresult.avatar_url : "lo.png");
-			_createDOMResult(avatarURL, JSONresult.url,JSONresult.title,JSONresult.author_profile_url,JSONresult.author,JSONresult.like_count,JSONresult.visit_count);
+			_drawResultInDOM(avatarURL, JSONresult.url,JSONresult.title,JSONresult.author_profile_url,JSONresult.author,JSONresult.like_count,JSONresult.visit_count);
 		};
 
-		var _createDOMResult = function(avatarURL,resourceURL,resourceTitle,authorURL,authorName,nFavorites,nViews){
-			var scaffold = 	$('<div class="result" id="box'+getId()+'"><div class="resultImageWrapper"><img class="resultImage" src="'+avatarURL+'"></div><div class="resultTitle"><a target="_blank" href="'+resourceURL+'">'+resourceTitle+'</a></div><div class="resultAuthor"><span class="by">by</span> <a target="_blank" href="'+authorURL+'">'+authorName+'</a></div><div class="resultBottom"><div class="likes"><span>'+nFavorites+'</span> <img class="inlineIcon" src="star.png"></div><div class="views"><span>'+nViews+'</span> <img class="inlineIcon" src="eye.png"></div></div></div>');
-
+		var _drawResultInDOM = function(avatarURL,resourceURL,resourceTitle,authorURL,authorName,nFavorites,nViews){
+			var scaffold = $('<div class="result" id="box'+getId()+'"></div>');
+			if(avatarURL){
+				$(scaffold).append('<div class="resultImageWrapper"><img class="resultImage" src="'+avatarURL+'"></div>');
+			}
+			if((resourceTitle)&&(resourceURL)){
+				$(scaffold).append('<div class="resultTitle"><a target="_blank" href="'+resourceURL+'">'+resourceTitle+'</a></div>');
+			}
+			if((authorName)&&(authorURL)){
+				$(scaffold).append('<div class="resultAuthor"><span class="by">by</span> <a target="_blank" href="'+authorURL+'">'+authorName+'</a></div>');
+			};
+			if((nFavorites)&&(nViews)){
+				$(scaffold).append('<div class="resultBottom"><div class="likes"><span>'+nFavorites+'</span> <img class="inlineIcon" src="star.png"></div><div class="views"><span>'+nViews+'</span> <img class="inlineIcon" src="eye.png"></div></div>');
+			};
+			
 			$("#results").append(scaffold);
 		};
 
@@ -189,30 +199,113 @@
 		};
 
 
+
+		///////////
+		// Search Methods
+		///////////
+
+		var queriesCounter = 0;
+		var queriesData = [];
+		var searchId = -1;
+
 		var onSearch = function(){
-			$("*").addClass("waiting");
-			var query = $("#search_box").val();
-			searchInViSHInstance("http://vishub.org",query);
+			//1. Build Query
+			var searchTerms = $("#search_box").val();
+			var settings = getSettings();
+			var query = buildQuery(searchTerms,settings);
+
+			//2. Peform the search in the instances
+			var instances = getInstances();
+			var instancesL = instances.length;
+
+			queriesCounter = 0;
+			queriesData = [];
+			searchId = getId();
+
+			if(instancesL>0){
+				$("*").addClass("waiting");
+
+				for(var i=0; i<instancesL; i++){
+					searchInViSHInstance(searchId,instances[i],query,function(data){
+						if((typeof data.searchId == "undefined")||(data.searchId != searchId)){
+							//Result of an old search
+							return;
+						}
+
+						queriesCounter += 1;
+						if((data.success===true)&&(typeof data.results != "undefined")){
+							queriesData = queriesData.concat(data.results)
+						}
+
+						if(queriesCounter===instancesL){
+							//All searches finished
+							onFinishSearch(queriesData);
+						}
+					});
+				}
+			}
 		};
 
-		var searchInViSHInstance = function(domain,query,options){
-			var ViSHSearchAPIURL = domain + "/apis/search?q="+query+"&n=20"
+		var onFinishSearch = function(data){
+			cleanResults();
+			$(data).each(function(index,value){
+				drawResultInDOM(value);
+			});
+			$("*").removeClass("waiting");
+		};
+
+		var getInstances = function(){
+			return ["http://vishub.org"];
+		};
+
+		var getSettings = function(){
+			return {};
+		};
+
+		var buildQuery = function(searchTerms,settings){
+			var query = "/apis/search?"
+			query += "q="+searchTerms+"&n=20"
+			return query;
+		};
+
+		var searchInViSHInstance = function(searchId,domain,query,callback){
+			var ViSHSearchAPIURL = domain + query
 
 			$.ajax({
 				type    : 'GET',
 				url     : ViSHSearchAPIURL,
 				success : function(data) {
-					cleanResults();
-					$(data).each(function(index,value){
-						createDOMResult(value);
-					});
-					$("*").removeClass("waiting");
+					if(typeof callback=="function"){
+						callback({success:true, results: data, searchId:searchId});
+					}
 				},
 				error: function(error){
-					$("*").removeClass("waiting");
-					console.error("Error connecting with the ViSH API of " + domain);
+					if(typeof callback=="function"){
+						callback({success:false, searchId:searchId});
+					}
+					debug("Error connecting with the ViSH API of " + domain,true);
 				}
 			});
+		};
+
+		///////////
+		// Utils
+		///////////
+
+		var _id = 0;
+		var getId = function(){
+			_id += 1;
+			return _id;
+		};
+
+		var debug = function(msg,isError){
+			if(console){
+				if(error){
+					console.error(msg);
+				} else {
+					console.info(msg);
+				}
+			}
 		};
 	</script>
 
