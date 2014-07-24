@@ -256,6 +256,8 @@ ActivityObject.class_eval do
   end
 
    def self.getIdsToAvoid(ids_to_avoid=[],user=nil)
+    ids_to_avoid = ids_to_avoid || []
+
     if !user.nil?
       ids_to_avoid.concat(ActivityObject.authored_by(user).map{|ao| ao.id})
       ids_to_avoid.uniq!

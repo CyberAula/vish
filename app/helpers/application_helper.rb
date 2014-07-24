@@ -48,4 +48,12 @@ module ApplicationHelper
 		return raw result
 	end
 
+	def isAdmin?
+		user_signed_in? and current_user.admin?
+	end
+
+	def admin_path
+		"/admin"
+	end
+
 end
