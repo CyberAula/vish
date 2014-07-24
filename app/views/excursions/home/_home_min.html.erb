@@ -1,5 +1,4 @@
-<% excursions = Excursion.getHome(30,'Popular',{:random => false, :ids_to_avoid => ids_to_avoid, :page => params[:page] || "1"})
-   %>
+<% excursions = Excursion.getHome(30,'Popular',{ :ids_to_avoid => ids_to_avoid, :page => params[:page] || "1", :models=> [Excursion]}) %>
   
   <% excursions.each do |excursion| %>
     <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :prefix_id=> prefix_id } %>

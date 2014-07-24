@@ -1089,7 +1089,7 @@ class Excursion < ActiveRecord::Base
         #Param example: (30,'Recommended',{:user => current_user})
         excursions =  RecommenderSystem.excursion_suggestions(options[:user], nil, options)
     else
-        excursions = []
+        excursions = RecommenderSystem.search(options)
     end
     
     excursions

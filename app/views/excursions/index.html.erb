@@ -125,10 +125,8 @@
   }
 
   function update_pageless_state(tab, num_pages, current_page){
-    if(pageless_state[tab].num_pages == "0"){
       pageless_state[tab].num_pages = num_pages;
-      pageless_state[tab].current_page = current_page;
-    }    
+      pageless_state[tab].current_page = current_page;  
   }
 
 
@@ -143,8 +141,7 @@
                       currentPage: pageless_state[tab].current_page,
                       loader: '.loader_pagination',
                       complete: function(){
-                        pageless_state[tab].current_page += 1;
-                        pageless_state.actual_state = tab;
+                
                       },  //remake the updating | For 17
                       end: function(){
                         $('.loader_pagination').hide();
@@ -154,7 +151,9 @@
 
     function get_url_with_sort_by(tab){
       var the_url = pageless_state[tab].url;
+      if(tab == "net"){
       the_url = the_url + "&sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
+      }
       return the_url;
     }
 
