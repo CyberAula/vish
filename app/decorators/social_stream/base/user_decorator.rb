@@ -28,4 +28,9 @@ User.class_eval do
   def description
     profile.description
   end
+
+  def admin?
+    self.is_admin
+  end
+  
 end
