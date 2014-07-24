@@ -102,6 +102,9 @@ class FederatedSearchController < ApplicationController
       subtypes = []
     end
 
+    models.uniq!
+    subtypes.uniq!
+
     return {
       :models => models,
       :subtypes => subtypes
