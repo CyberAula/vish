@@ -15,6 +15,8 @@
 			height: 100%;
 			font-family: arial, sans-serif;
 			line-height: 15px;
+			padding: 0px;
+			margin: 0px;
 		}
 		#header{
 			display: block;
@@ -28,7 +30,18 @@
 			width:100%;
 			background: #f2f2f2;
 			display: inline-block;
-			overflow-y: scroll;
+			overflow-y: auto;
+		}
+		#settings{
+			display: none;
+			height: 325px;
+			width: 98%;
+			padding: 1%;
+			overflow-y: auto;
+			position: absolute;
+			top: 10%;
+			background-color: #404040;
+			color: #f2f2f2;
 		}
 		div.search {
 			display: block;
@@ -36,10 +49,11 @@
 			width: 80%;
 			margin: 0% 10% 0% 10%;
 			position: relative;
-			top: 5%;
+			top: 0%;
 			overflow: hidden;
 			min-height: 60px;
 			text-align: center;
+			z-index: 2;
 		}
 		input.search_input {
 			width: 486px;
@@ -148,11 +162,82 @@
 		.waiting{
 			cursor: wait !important;
 		}
+		div.settingsColumn{
+			text-align: center;
+			height: 100%;
+			width: 33%;
+			display: inline-block;
+			float: left;
+		}
+		div.settingsColumn p.settingsTitle {
+			margin-top: 0px;
+			margin-bottom: 10px;
+		}
+		div.settingsColumn p.settingsTitleSec {
+			margin-top: 15px;
+			margin-bottom: 0px;
+		}
+		div.settingsColumn p.settingsField {
+			text-align: left;
+			margin-bottom: 8px;
+			margin-top: 20px;
+		}
+		select {
+			width: auto;
+			min-width: 80%;
+			padding: 5px;
+		}
+		select#entity_types{
+			height: 80%;
+		}
+		#dateWrapper{
+			display: inline-block;
+		}
+		#dateWrapper div{
+			width: 50%;
+			float: left;
+			display: block;
+		}
+		#dateWrapper p{
+			margin-top: 0px;
+			margin-bottom: 5px;
+			font-size: 14px;
+		}
+		#ViSHinstances{
+			overflow-y: auto;
+		}
+		#ViSHinstances ul{
+			list-style-type: none;
+			text-align: left;
+			height: 140px;
+		}
+		#ViSHinstances ul li{
+			margin-top: 5px;
+		}
+
+		#addInstanceButton{
+			margin-left: 15px;
+			font-size: 13px;
+			cursor: pointer;		
+		}
+		span.deleteEntity{
+			margin-left: 20px;
+			font-size: 13px;
+			cursor: pointer;
+		}
+		span#closeSettings{
+			float: right;
+			cursor: pointer;
+			font-size: 10px;
+		}
 	</style>
 </head>
 
+
 <body>
 	<script>
+		var QUERY_TIMEOUT = 6000;
+
 		$(document).ready(function(){
 			//Set events
 			$("#search_box").bind('keypress', function(e){
@@ -165,22 +250,59 @@
 			$("#search_button").bind('click', function(e){
 				onSearch();
 			});
+
+			$("#settings_button").bind('click', function(e){
+				var isSettignsOpen = $("#settings").is(":visible");
+				if(isSettignsOpen){
+					$("#settings").fadeOut();
+				} else {
+					$("#settings").fadeIn();
+				}
+			});
+
+			$("#addInstanceButton").bind('click', function(e){
+				var el = $('<li><input type="checkbox"><span>'+$("#addInstanceInput").val()+'</span><span class="deleteEntity" title="delete">[X]</span></li>');
+				$("#ViSHinstances").find("ul").append(el);
+			});
+
+			$(document).on('click','span.deleteEntity', function(e){
+				$(this).parent().remove();
+			});
+
+			$("#header, #results, #closeSettings").bind('click', function(e){
+				if($(e.target).hasClass("settings_button_img") || $(e.target).hasClass("settings_button")){
+					//Allow
+				} else {
+					$("#settings").hide();
+				}
+			});
+	
 		});
 
-		var _id = 0;
-		var getId = function(){
-			_id += 1;
-			return _id;
-		};
 
-		var createDOMResult = function(JSONresult){
+		///////////
+		// UI Methods
+		///////////
+		var drawResultInDOM = function(JSONresult){
 			var avatarURL = (typeof JSONresult.avatar_url == "string" ? JSONresult.avatar_url : "lo.png");
-			_createDOMResult(avatarURL, JSONresult.url,JSONresult.title,JSONresult.author_profile_url,JSONresult.author,JSONresult.like_count,JSONresult.visit_count);
+			_drawResultInDOM(avatarURL, JSONresult.url,JSONresult.title,JSONresult.author_profile_url,JSONresult.author,JSONresult.like_count,JSONresult.visit_count);
 		};
 
-		var _createDOMResult = function(avatarURL,resourceURL,resourceTitle,authorURL,authorName,nFavorites,nViews){
-			var scaffold = 	$('<div class="result" id="box'+getId()+'"><div class="resultImageWrapper"><img class="resultImage" src="'+avatarURL+'"></div><div class="resultTitle"><a target="_blank" href="'+resourceURL+'">'+resourceTitle+'</a></div><div class="resultAuthor"><span class="by">by</span> <a target="_blank" href="'+authorURL+'">'+authorName+'</a></div><div class="resultBottom"><div class="likes"><span>'+nFavorites+'</span> <img class="inlineIcon" src="star.png"></div><div class="views"><span>'+nViews+'</span> <img class="inlineIcon" src="eye.png"></div></div></div>');
-
+		var _drawResultInDOM = function(avatarURL,resourceURL,resourceTitle,authorURL,authorName,nFavorites,nViews){
+			var scaffold = $('<div class="result" id="box'+getId()+'"></div>');
+			if(avatarURL){
+				$(scaffold).append('<div class="resultImageWrapper"><img class="resultImage" src="'+avatarURL+'"></div>');
+			}
+			if((resourceTitle)&&(resourceURL)){
+				$(scaffold).append('<div class="resultTitle"><a target="_blank" href="'+resourceURL+'">'+resourceTitle+'</a></div>');
+			}
+			if((authorName)&&(authorURL)){
+				$(scaffold).append('<div class="resultAuthor"><span class="by">by</span> <a target="_blank" href="'+authorURL+'">'+authorName+'</a></div>');
+			};
+			if((nFavorites)&&(nViews)){
+				$(scaffold).append('<div class="resultBottom"><div class="likes"><span>'+nFavorites+'</span> <img class="inlineIcon" src="star.png"></div><div class="views"><span>'+nViews+'</span> <img class="inlineIcon" src="eye.png"></div></div>');
+			};
+			
 			$("#results").append(scaffold);
 		};
 
@@ -188,31 +310,177 @@
 			$("#results").html("");
 		};
 
-
-		var onSearch = function(){
-			$("*").addClass("waiting");
-			var query = $("#search_box").val();
-			searchInViSHInstance("http://vishub.org",query);
+		var updateRange = function(val){
+			$("#rangeValue").html(val);
 		};
 
-		var searchInViSHInstance = function(domain,query,options){
-			var ViSHSearchAPIURL = domain + "/apis/search?q="+query+"&n=20"
+
+		///////////
+		// Search Methods
+		///////////
+
+		var queriesCounter = 0;
+		var queriesData = [];
+		var searchId = -1;
+		var sessionSearchs = {};
+
+		var onSearch = function(){
+			$("#settings").hide();
+			cleanResults();
+
+			//1. Build Query
+			var searchTerms = $("#search_box").val();
+			var settings = getSettings();
+			var query = buildQuery(searchTerms,settings);
+
+			//2. Peform the search in the instances
+			var instances = getInstances();
+			var instancesL = instances.length;
+
+			queriesCounter = 0;
+			queriesData = [];
+			searchId = getId();
+			sessionSearchs[searchId] = {};
+
+			if(instancesL>0){
+				$("*").addClass("waiting");
+
+				for(var i=0; i<instancesL; i++){
+					sessionSearchs[searchId][instances[i]] = {completed: false};
+					searchInViSHInstance(searchId,instances[i],query,function(data){
+						if((typeof data.searchId == "undefined")||(data.searchId != searchId)){
+							//Result of an old search
+							return;
+						}
+
+						queriesCounter += 1;
+						if((data.success===true)&&(typeof data.results != "undefined")){
+							queriesData = queriesData.concat(data.results)
+						}
+
+						if(queriesCounter===instancesL){
+							//All searches finished
+							onFinishSearch(queriesData);
+						}
+					});
+				}
+			}
+		};
+
+		var onFinishSearch = function(data){
+			cleanResults();
+			$(data).each(function(index,value){
+				drawResultInDOM(value);
+			});
+			$("*").removeClass("waiting");
+		};
+
+		var getInstances = function(){
+			return $("#ViSHinstances").find("ul li input[type='checkbox']:checked'").map(function(index,input){ return $(input).parent().find("span").html();});
+		};
+
+		var getSettings = function(){
+			var settings = {};
+
+			settings.n = $("#n").val();
+
+			//Entities to search
+			settings.entities_type = $("#entity_types").val().join(",");
+			settings.sort_by = $("#sort_by").val();
+			if(settings.sort_by=="Relevance"){
+				delete settings.sort_by
+			}
+			
+			var startDate = $("#startDate").val().split("-").reverse().join("-");
+			if(startDate.trim()!=""){
+				settings.startDate = startDate;
+			}
+			var endDate = $("#endDate").val().split("-").reverse().join("-");
+			if(endDate.trim()!=""){
+				settings.endDate = endDate;
+			}
+
+			var language = $("#language").val();
+			if(language.trim()!=""){
+				settings.language = language;
+			}
+
+			settings.qualityThreshold = $("#qualityThreshold").val();
+
+			return settings;
+		};
+
+		var buildQuery = function(searchTerms,settings){
+			var query = "/apis/search?n="+settings.n+"&q="+searchTerms+"&type="+settings.entities_type
+
+			if(settings.sort_by){
+				query += "&sort_by="+settings.sort_by;
+			}
+
+			if(settings.startDate){
+				query += "&startDate="+settings.startDate;
+			}
+
+			if(settings.endDate){
+				query += "&endDate="+settings.endDate;
+			}
+
+			if(settings.language){
+				query += "&language="+settings.language;
+			}
+
+			query += "&qualityThreshold="+settings.qualityThreshold;
+
+			return query;
+		};
+
+		var searchInViSHInstance = function(searchId,domain,query,callback){
+			var ViSHSearchAPIURL = domain + query
 
 			$.ajax({
 				type    : 'GET',
 				url     : ViSHSearchAPIURL,
 				success : function(data) {
-					cleanResults();
-					$(data).each(function(index,value){
-						createDOMResult(value);
-					});
-					$("*").removeClass("waiting");
+					if(sessionSearchs[searchId][domain].completed == false){
+						sessionSearchs[searchId][domain].completed = true;
+						callback({success:true, results: data, searchId:searchId});
+					}
 				},
 				error: function(error){
-					$("*").removeClass("waiting");
-					console.error("Error connecting with the ViSH API of " + domain);
+					if(sessionSearchs[searchId][domain].completed == false){
+						sessionSearchs[searchId][domain].completed = true;
+						callback({success:false, searchId:searchId});
+					}
+					debug("Error connecting with the ViSH API of " + domain,true);
 				}
 			});
+
+			setTimeout(function(){
+				if(sessionSearchs[searchId][domain].completed == false){
+					sessionSearchs[searchId][domain].completed = true;
+					callback({success:false, searchId:searchId});
+				}
+			},QUERY_TIMEOUT);
+		};
+
+		///////////
+		// Utils
+		///////////
+
+		var _id = 0;
+		var getId = function(){
+			_id += 1;
+			return _id;
+		};
+
+		var debug = function(msg,isError){
+			if(console){
+				if(error){
+					console.error(msg);
+				} else {
+					console.info(msg);
+				}
+			}
 		};
 	</script>
 
@@ -222,29 +490,97 @@
 			<button id="search_button" class="toolbar_button search_button">
 				<img class="search_button_img" src="search.png">
 			</button>
-			<button class="toolbar_button settings_button">
+			<button id="settings_button" class="toolbar_button settings_button">
 				<img class="settings_button_img" src="settings.png">
 			</button>
 		</div>
 	</div>
 	<div id="results">
-		<!-- Example of a result -->
-<!-- 		<div class="result" id="box1">
-			<div class="resultImageWrapper">
-				<img class="resultImage" src="lo.png">
+	</div>
+	<div id="settings">
+		<div id="settingsRow1" class="settingsColumn">
+			<p class="settingsTitle">Select Entities to search</p>
+			<select multiple id="entity_types">
+				<option selected="selected" value="Resource">Resources</option>
+				<option value="Excursion">Excursions</option>
+				<option value="Link">Links</option>
+				<option value="Embed">Embeds</option>
+				<option value="Scormfile">SCORM Packages</option>
+				<option value="Webapp">Web Applications</option>
+				<option value="Picture">Pictures</option>
+				<option value="Video">Videos</option>
+				<option value="Audio">Audios</option>
+				<option value="Officedoc">Office documents</option>
+				<option value="Swf">Flash Objects</option>
+				<option value="Zipfile">ZIP files</option>
+				<option value="User">User</option>
+				<option value="Event">Event</option>
+				<option value="Category">Category</option>
+			</select>
+		</div>
+		<div id="settingsRow2" class="settingsColumn">
+			<p class="settingsTitle">Sorting</p>
+			<select id="sort_by">
+				<option selected="selected" value="Relevance">Relevance</option>
+				<option value="ranking">Ranking</option>
+				<option value="popularity">Popularity</option>
+				<option value="modification">Modification</option>
+				<option value="creation">Creation</option>
+				<option value="visits">Visits</option>
+				<option value="favorites">Favorites</option>
+				<option value="quality">Quality</option>
+			</select>
+			<p class="settingsTitleSec">Filters</p>
+			<p class="settingsField" style="margin-top: 9px !important;">Date</p>
+			<div id="dateWrapper">
+				<div>
+					<p>Start Date</p>
+					<input type="date" id="startDate" name="startDate">
+				</div>
+				<div>
+					<p>End Date</p>
+					<input type="date" id="endDate" name="endDate">
+				</div>
 			</div>
-			<div class="resultTitle">
-				<a target="_blank" href="http://vishub.org/excursions/616">Viajar y aprender francés</a>
+			<p class="settingsField">Language</p>
+			<select id="language">
+				<option selected="selected" value="">Select a language</option>
+				<option value="en">English</option>
+				<option value="es">Spanish</option>
+				<option value="de">German</option>
+				<option value="fr">Français</option>
+				<option value="it">Italian</option>
+				<option value="pt">Português</option>
+			</select>
+			<p class="settingsField" style="margin-top: 23px !important;"><span>Quality Threshold (0-10): &nbsp;</span><span id="rangeValue">5.0</span></p>
+			<input id="qualityThreshold" type="range" min="0" max="10" step="0.1" value="5" onchange="updateRange(this.value)"/>
+		</div>
+		<div id="settingsRow3" class="settingsColumn">
+			<p class="settingsTitle">ViSH Intances <span id="closeSettings">close</span></p>
+
+			<p class="settingsField">Results per instance</p>
+			<select id="n">
+				<option value="1">1</option>
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option selected="selected" value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+			</select>
+
+			<p class="settingsField">ViSH Intances</p>
+			<div id="ViSHinstances">
+				<input type="text" id="addInstanceInput" placeholder="Add Instance"><span id="addInstanceButton" title="add">[Add]</span>
+				<ul>
+					<li>
+						<input type="checkbox" checked="checked"></input><span>http://vishub.org</span>
+					</li>
+					<li>
+						<input type="checkbox"></input><span>http://localhost:3000</span><span class="deleteEntity" title="delete">[X]</span>
+					</li>
+				</ul>
 			</div>
-			<div class="resultAuthor"> 
-				<span class="by">por</span>
-				<a target="_blank" href="http://vishub.org/users/alvaro-1">Alvaro</a>
-			</div>
-			<div class="resultBottom">
-				<div class="likes"><span>152</span><img class="inlineIcon" src="star.png"></div>
-				<div class="views"><span>2222</span><img class="inlineIcon" src="eye.png"></div>
-			</div>
-		</div> -->
+		</div>
 	</div>
 </body>
 

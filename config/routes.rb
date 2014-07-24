@@ -78,6 +78,9 @@ Vish::Application.routes.draw do
   match '/catalogue' => 'catalogue#index'
   match '/catalogue/:category' => 'catalogue#show'
 
+  #Administration panel
+  match 'admin' => 'admin#index'
+
   # Add this at the end so other URLs take prio
   match '/s/:id' => "shortener/shortened_urls#show"
 

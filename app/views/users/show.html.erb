@@ -40,7 +40,13 @@
             <% end %>
           </div>
 
-
+<!--__Email (only for admins) -->
+        <%if isAdmin? %>
+          <div class="ocupation">
+              <h3 class="name-roll">Email</h3>
+                <span><%= profile_subject.email %></span>
+          </div>
+        <%end%>
 
 <!--__Occupation -->
           <div class="ocupation">

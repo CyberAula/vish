@@ -290,6 +290,33 @@ namespace :fix do
 
     printTitle("Task Finished")
   end
+
+  #Usage
+  #Development:   bundle exec rake fix:ViSHCompetition2013
+  #In production: bundle exec rake fix:ViSHCompetition2013 RAILS_ENV=production
+  task :ViSHCompetition2013 => :environment do
+    printTitle("Fixing ViSH Competitions 2013")
+
+    competitionsIds = [616, 560, 488, 485, 483, 477, 476, 634, 515, 543, 484, 487, 486, 516, 517, 601, 512, 536, 527, 479, 617, 556, 480, 631, 44, 64, 620, 511, 287, 614, 603, 590, 522, 592, 659, 656, 74, 531, 496, 613, 682, 503, 448, 606, 450, 632, 508, 510, 675, 667, 564, 474, 562, 668, 645, 605, 530, 97, 669, 397, 465, 650, 458, 520, 430, 646, 648, 435, 390, 461, 431, 624, 630, 526, 539, 162, 657, 432, 454, 540, 437, 460, 433, 429, 593, 492, 434, 463, 647, 469, 414, 436, 653, 563, 548, 439, 654, 490, 440, 629, 441, 447, 535, 636, 602, 655, 421, 644, 591, 600, 491, 473, 468, 416, 660, 415, 413, 412, 678, 580, 674, 579, 686, 676, 688, 637, 482, 842, 481]
+
+    Excursion.record_timestamps=false
+    ActivityObject.record_timestamps=false
+
+    competitionsIds.each do |id|
+      e = Excursion.find(id) rescue nil
+      unless e.nil?
+        e.tag_list.push("ViSHCompetition2013")
+        e.tag_list.uniq!
+        e.save!
+      end
+    end
+
+    Excursion.record_timestamps=true
+    ActivityObject.record_timestamps=true
+
+    printTitle("Task Finished")
+  end
+
   
 
   ####################

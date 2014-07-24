@@ -233,32 +233,35 @@ ActivityObject.class_eval do
   ## Class Methods
   ##############
 
-  def self.getPopular(n=20,models=nil,preSelection=nil,user=nil)
-    resources = []
-    nSubset = [80,4*n].max
-
-    if models.nil?
-      #All models
-      models = ["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"]
+  def self.getPopular(n=20,options={})
+    random = (options[:random]!=false)
+    if random
+      nSubset = [80,4*n].max
+    else
+      nSubset = n
     end
 
-    ids_to_avoid = getIdsToAvoid(preSelection,user)
+    if options[:models].nil?
+      options[:models] = ["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"]
+    end
 
-    ActivityObject.where("object_type in (?) and id not in (?)", models, ids_to_avoid).order("ranking DESC").limit(nSubset).sample(n).map{|ao| ao.object}
+    ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:user])
+    aos = ActivityObject.joins(:activity_object_audiences).where("activity_objects.object_type in (?) and activity_objects.id not in (?) and activity_object_audiences.relation_id in (?)", options[:models], ids_to_avoid, Relation::Public.first.id).order("ranking DESC").first(nSubset)
+
+    if random
+      aos = aos.sample(n)
+    end
+
+    return aos.map{|ao| ao.object}
   end
 
-  def self.getIdsToAvoid(preSelection=nil,user=nil)
-    ids_to_avoid = []
-
-    if preSelection.is_a? Array
-      ids_to_avoid = preSelection.map{|e| e.id}
-    end
+   def self.getIdsToAvoid(ids_to_avoid=[],user=nil)
+    ids_to_avoid = ids_to_avoid || []
 
     if !user.nil?
       ids_to_avoid.concat(ActivityObject.authored_by(user).map{|ao| ao.id})
+      ids_to_avoid.uniq!
     end
-
-    ids_to_avoid.uniq!
 
     if !ids_to_avoid.is_a? Array or ids_to_avoid.empty?
       #if ids=[] the queries may returns [], so we fill it with an invalid id (no excursion will ever have id=-1)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140710102208) do
+ActiveRecord::Schema.define(:version => 20140724083120) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20140710102208) do
     t.integer  "qscore",                                                            :default => 500000
     t.decimal  "reviewers_qscore",                   :precision => 12, :scale => 6
     t.decimal  "users_qscore",                       :precision => 12, :scale => 6
-    t.integer  "ranking"
+    t.integer  "ranking",                                                           :default => 0
     t.integer  "title_length",                                                      :default => 1
     t.integer  "desc_length",                                                       :default => 1
     t.integer  "tags_length",                                                       :default => 1
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20140710102208) do
     t.integer  "mve",                   :default => 0
     t.boolean  "is_mve",                :default => false
     t.integer  "rankMve",               :default => 0
+    t.boolean  "is_admin",              :default => false
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
