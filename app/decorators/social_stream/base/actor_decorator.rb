@@ -9,7 +9,11 @@ Actor.class_eval do
 
   def fix_relation_ids
     if self.activity_object.relation_ids.blank?
-      self.activity_object.relation_ids=[Relation::Public.instance.id]
+      if self.is_admin
+        self.activity_object.relation_ids=[Relation::Private.instance.id]
+      else
+        self.activity_object.relation_ids=[Relation::Public.instance.id]
+      end
     end
     # if self.relation_ids.blank?
     #   self.relation_ids=[Relation::Public.instance.id]

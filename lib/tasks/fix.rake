@@ -317,6 +317,27 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:actorRelations
+  #In production: bundle exec rake fix:actorRelations RAILS_ENV=production
+  task :actorRelations => :environment do
+    printTitle("Fixing Actor relations")
+
+    Actor.record_timestamps=false
+    User.record_timestamps=false
+    ActivityObject.record_timestamps=false
+
+    Actor.all.each do |actor|
+      actor.save!
+    end
+
+    Actor.record_timestamps=true
+    User.record_timestamps=true
+    ActivityObject.record_timestamps=true
+
+    printTitle("Task Finished")
+  end
+
   
 
   ####################
