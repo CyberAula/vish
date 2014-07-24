@@ -607,6 +607,7 @@ en:
     confirm_delete: "Delete link?"
     go: "Go to link"
     title3: "Write the link you want to upload"
+    name: "link"
   lre:
     data_error: "There was an error and the data server responded with a code %{code}"
     json_error: "There was an error with the returned contents, try with another search terms"
@@ -751,6 +752,7 @@ en:
     upload: "upload"
   save: "Save"
   scormfile:
+    name: "SCORM package"
     confirm_delete: "Delete SCORM package?"
     view_full: "View full"
   search:
@@ -823,6 +825,7 @@ en:
     success: "We have received your report. We will take a look at it very shortly. Thank you"  
   swf:
     confirm_delete: "Delete SWF?"
+    name: "flash object"
   today: "Today"
   top10: "Top 10"
   url:
@@ -854,8 +857,10 @@ en:
       truncate: "..."
   view_all: "view all"
   webapp:
+    name: "Web Application"
     confirm_delete: "Delete Web application?"
     view_full: "View full"
   yesterday: "Yesterday"
   zipfile:
+    name: "ZIP file"
     confirm_delete: "Delete Zip file?"

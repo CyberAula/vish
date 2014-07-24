@@ -392,7 +392,7 @@ es:
     content: "Contenido en directo"
     embed: "insertar"
     input: "Pega aquí el recurso a insertar"
-    name: "insertar"
+    name: "embed"
     title3: "Escribe el recurso a insertar"
   evaluation:
     teaching: "Experiencia de enseñanza"
@@ -611,6 +611,7 @@ es:
     confirm_delete: "¿Borrar enlace?"
     go: "Ir al enlace"
     title3: "Escribe el enlace que quieres subir"
+    name: "enlace"
   lre:
     data_error: "Se produjo un error y el servidor de datos responde con un código de %{code}"
     json_error: "Hubo un error con el contenido devueltos, pruebe con otros términos de búsqueda"
@@ -753,6 +754,7 @@ es:
     upload: "subir"
   save: "Salvar"
   scormfile:
+    name: "paquete SCORM"
     confirm_delete: "¿Eliminar paquete SCORM?"
     view_full: "Pantalla completa"
   search:
@@ -823,8 +825,8 @@ es:
     report_resource: "Reportar recurso"
     spam_content: "Contenido inapropiado o spam"
     success: "Hemos recibido tu reporte. Lo miraremos en la mayor brevedad posible. Muchas gracias"
-
   swf:
+    name: "objecto flash"
     confirm_delete: "¿Borrar SWF?"
   today: "Hoy"
   top10: "Mejores 10"
@@ -858,7 +860,11 @@ es:
       truncate: "..."            
   view_all: "ver todos"
   webapp:
+    name: "aplicación web"
     confirm_delete: "¿Borrar aplicación web?"
     view_full: "Pantalla completa"
   yesterday: "Ayer"
+  zipfile:
+    name: "fichero ZIP"
+    confirm_delete: "¿Borrar fichero ZIP?"
 
