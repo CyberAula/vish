@@ -137,12 +137,12 @@
 
   <!-- Edit -->
   <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
-    <button class="with_tooltip btn hidden-xs" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="fa fa-edit"></i></button>
+    <button class="with_tooltip btn btn-default hidden-xs" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="fa fa-edit"></i></button>
   <%end%>
 
   <!-- Clone -->
   <% if user_signed_in? && !editingToolbar %>
-    <button class="with_tooltip clone btn popover-linkhidden-xs" title="<%=t('excursion.actions.clone')%>" ><i class="fa fa-copy"></i></button>
+    <button class="with_tooltip clone btn btn-default popover-linkhidden-xs" title="<%=t('excursion.actions.clone')%>" ><i class="fa fa-copy"></i></button>
     
     <div class="contentclone" style="display: none">
       <p class=""><i class="fa fa-copy"></i>  <%=t('excursion.clone.confirm')%></p>
@@ -155,7 +155,7 @@
 
   <!--Remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
-    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="fa fa-trash-o"></i></button>
+    <button class="with_tooltip delete btn btn-default popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="fa fa-trash-o"></i></button>
   <%end%>
 
   <div class="contentdelete" style="display: none">
@@ -165,9 +165,9 @@
       <%= link_to t('excursion.actions.delete'),  @excursion, :method => :delete, :class => 'btn btn-primary' %>
     </div>
   </div>
-
+  <!--favorite-->
   <% unless editingToolbar %>
-    <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
+    <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn btn-default', :title =>t('excursion.actions.favorite')})%>
     
     <!--<button class="btn" rel="tooltip" title="my room"><i class="fa fa-facetime-video"></i></button>-->
       <%if user_signed_in? %>

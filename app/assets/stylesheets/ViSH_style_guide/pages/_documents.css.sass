@@ -37,6 +37,7 @@ aside.recomended
     @include center-block
   h2
     //font-family: $corporate-font-family-sans-serif-Regular
+    color: $gray
   .tab-content
     .newClass,
     .avatar,
@@ -93,10 +94,15 @@ aside.recomended
       @include make-sm-column(8, $gutter: $grid-gutter-width)
       @include make-md-column(8, $gutter: $grid-gutter-width)
       @include make-lg-column(8, $gutter: $grid-gutter-width)
-      .panel-body
-        padding: 0 
+      .panel
+        @include box-shadow(0 0 0 transparent)
+        .panel-body
+          padding: 0 
       .table
         //margin-bottom: 0
+        border-collapse: none
+    
+
    
 
   .comments,
