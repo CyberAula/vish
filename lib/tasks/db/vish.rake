@@ -197,44 +197,45 @@ namespace :db do
       end
 
       #Usage
-      #Development:   bundle exec rake db:create:admin
-      #In production: bundle exec rake db:create:admin RAILS_ENV=production
+      #Development:   bundle exec rake db:populate:create:admin
+      #In production: bundle exec rake db:populate:create:admin RAILS_ENV=production
       desc "Create ViSH Admin"
       task :admin => :environment do
         puts 'Creating admin user'
 
-          # Create admin user if not present
-          admin = User.find_by_slug('admin')
-          if admin.blank?
-            admin = User.new
-          end
+        # Create admin user if not present
+        admin = User.find_by_slug('admin')
+        if admin.blank?
+          admin = User.new
+        end
 
-          # If present, ensure that has the appropiate data
-          admin.name = 'ViSH Admin'
-          admin.email = 'admin@vishub.org'
-          admin.password = 'demonstration'
-          admin.password_confirmation = admin.password
-           #prevent Admin to be indexed by the search engine
-          admin.relation_ids = [Relation::Private.instance.id]
-          admin.activity_object.relation_ids = admin.relation_ids
-          admin.save(:validate => false)
-          admin.actor!.update_attribute :slug, 'admin'
+        admin.name = 'ViSH Admin'
+        admin.email = 'admin@vishub.org'
+        admin.password = 'demonstration'
+        admin.password_confirmation = admin.password
+        admin.save!
+        admin.actor!.update_attribute :slug, 'admin'
 
-          #Make Demo ViSH admin
-          admin.actor!.update_attribute :is_admin, true
+        #prevent Admin to be indexed by the search engine
+        admin.relation_ids = [Relation::Private.instance.id]
+        admin.activity_object.relation_ids = [Relation::Private.instance.id]
+        admin.save!
 
-          #Make Demo admin 'in the Social Stream way'
-          contact = Site.current.contact_to!(admin.actor)
-          contact.user_author = admin
-          contact.relation_ids = [ Relation::LocalAdmin.instance.id ]
-          contact.save!
+        #Make Demo ViSH admin
+        admin.actor!.update_attribute :is_admin, true
 
-          puts "Admin created with email: " + admin.email + " and password: " + admin.password
+        #Make Demo admin 'in the Social Stream way'
+        contact = Site.current.contact_to!(admin.actor)
+        contact.user_author = admin
+        contact.relation_ids = [ Relation::LocalAdmin.instance.id ]
+        contact.save!
+
+        puts "Admin created with email: " + admin.email + " and password: " + admin.password
       end
 
       #Usage
-      #Development:   bundle exec rake db:create:demo_user
-      #In production: bundle exec rake db:create:demo_user RAILS_ENV=production
+      #Development:   bundle exec rake db:populate:create:demo_user
+      #In production: bundle exec rake db:populate:create:demo_user RAILS_ENV=production
       desc "Create ViSH demo user"
       task :demo_user => :environment do
         puts 'Creating demo user'
@@ -250,7 +251,7 @@ namespace :db do
           demo.email = 'demo@vishub.org'
           demo.password = 'demonstration'
           demo.password_confirmation = demo.password
-          demo.save(:validate => false)
+          demo.save!
           demo.actor!.update_attribute :slug, 'demo'
           demo.actor!.update_attribute :is_admin, false
 

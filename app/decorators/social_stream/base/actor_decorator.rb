@@ -15,9 +15,6 @@ Actor.class_eval do
         self.activity_object.relation_ids=[Relation::Public.instance.id]
       end
     end
-    # if self.relation_ids.blank?
-    #   self.relation_ids=[Relation::Public.instance.id]
-    # end
   end
 
 end
