@@ -1,0 +1,35 @@
+<div class="contentReport">
+
+  <%if @activity_object.object.class.name == "Excursion" %>
+    <dt><%=t('spam.report_excursion')%></dt>
+  <% elsif @activity_object.object.class.name == "Event"%>
+    <dt><%=t('spam.report_event')%></dt>
+  <% else %>
+    <dt><%=t('spam.report_resource')%></dt>
+  <%end%>
+  
+  <%= form_tag spam_reports_path, method: 'post', class: "" do %>
+    <%=hidden_field_tag "activity_object_id", @activity_object.id%>
+    <div class="radio">
+      <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
+      <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
+    </div>
+    <div class="radio">
+      <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content_resource')%>
+      <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
+      <div>
+    <%= t('simple_captcha.title') %>
+    </div>
+    <div><%=t('simple_captcha.subtitle')%></div>
+      <%= show_simple_captcha %>
+    </div>
+    <button class="report btn btn-primary"> <%=t('send.send')%></button>
+  <% end %>
+</div>
+
+<%= content_for :javascript do %>
+    $("div.contentReport .spam_radio").click(function(e) {
+      $(".textarea_spam").hide("slow");
+      $(e.target).siblings("textarea").show("slow");
+    });
+<% end %>

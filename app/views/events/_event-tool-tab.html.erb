@@ -65,12 +65,6 @@ $('.delete').popover({
   container: "body"
 });
 
-$(".spam_radio").click(function(e) {
-  $(".textarea_spam").hide("slow");
-  $(e.target).siblings("textarea").show("slow");
-
-});
-
 <%end%>
 
 
@@ -214,23 +208,8 @@ $(document).ready(function(){
 
     <!-- tab5 / spam -->
   <div class="tab-pane" id="tab5">
-    <div class="contentReport">
-      <dt><%=t('spam.report_excursion')%></dt>
-
-      <%= form_tag spam_reports_path, method: 'post', class: "" do %>
-        <%=hidden_field_tag "activity_object_id", @event.activity_object_id%>
-        <div class="radio">
-          <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
-          <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-        </div>
-        <div class="radio">
-          <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content')%>
-          <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-        </div>
-        <button class="report btn btn-primary"> <%=t('send.send')%></button>
-      <% end %>
-          
-      
-    </div> 
+    <%@activity_object = @event.activity_object%>
+    <%= render '/spam_report/form' %>
   </div>
+
 </div>

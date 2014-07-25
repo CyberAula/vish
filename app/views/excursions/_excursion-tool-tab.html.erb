@@ -116,11 +116,6 @@
       });
     });
 
-    $(".spam_radio").click(function(e) {
-      $(".textarea_spam").hide("slow");
-      $(e.target).siblings("textarea").show("slow");
-    });
-
     $(".with_tooltip").tooltip({ placement: 'bottom'});
   });
 </script>
@@ -234,6 +229,7 @@
   <h2><%= @excursion.title %></h2>
 
   <div class="tab-content excursion-social">
+
     <!-- tab1 / description -->
     <div class="tab-pane active" id="tab1">
       <div class="toggler">
@@ -241,6 +237,7 @@
         <%= render :partial => 'excursions/excursion-info' %>
       </div>
     </div>
+
     <!-- tab2 / embed -->
     <div class="tab-pane" id="tab2">
       <div class="contentembed">
@@ -250,6 +247,7 @@
         </button>
       </div>
     </div>
+
     <!-- tab3 / share -->
     <div class="tab-pane" id="tab3">
       <div class="contentShare">
@@ -283,29 +281,12 @@
         <p><%=t("excursion.download_scorm")%></p><br/>
       </div> 
     </div> 
+
     <!-- tab5 / spam -->
     <div class="tab-pane" id="tab5">
-      <div class="contentReport">
-        <dt><%=t('spam.report_excursion')%></dt>
+      <%@activity_object = @excursion.activity_object%>
+      <%= render '/spam_report/form' %>
+    </div>
 
-        <%= form_tag spam_reports_path, method: 'post', class: "" do %>
-          <%=hidden_field_tag "activity_object_id", @excursion.activity_object_id%>
-          <div class="radio">
-            <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
-            <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-          </div>
-          <div class="radio">
-            <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content')%>
-            <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-            <div>
-          <%= t('simple_captcha.title') %>
-          </div>
-          <div><%=t('simple_captcha.subtitle')%></div>
-          <%= show_simple_captcha %>
-          </div>
-          <button class="report btn btn-primary"> <%=t('send.send')%></button>
-        <% end %>
-      </div> 
-    </div> 
   </div>
 <%end%>
