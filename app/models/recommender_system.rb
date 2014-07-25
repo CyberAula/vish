@@ -104,6 +104,10 @@ class RecommenderSystem
   #Step 2: Scoring
   def self.orderByScore(preSelectionLOs,user,excursion,options)
 
+    if preSelectionLOs.blank?
+      return preSelectionLOs
+    end
+
     #Get some vars to normalize scores
     maxPopularity = preSelectionLOs.max_by {|e| e.popularity }.popularity
     maxQuality = preSelectionLOs.max_by {|lo| lo.qscore }.qscore

@@ -12,6 +12,7 @@
       <a id="congratulations-button" href="#CongratModal" class="sign_up btn" role="button" data-toggle="modal"><h4><i class="fa fa-trophy"></i><%=t('contest.prizes')%></h4></a>
     </div>
 </div>
+
 <div id="CongratModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myCongratLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -21,17 +22,17 @@
     <p><%=t('contest.prizes2')%>
         </br><%=t('contest.prizes_first_a')%>
         </br><%=t('contest.prizes_second_a')%>
+        </br>
         </br><%=t('contest.prizes3')%>
         </br><%=t('contest.prizes_first')%>
         </br><%=t('contest.prizes_second')%>
         </br><%=t('contest.prizes_third')%>
-        </br><%=t('contest.prizes4')%>
         </br>
+        </br><%=t('contest.prizes4')%>
+        </br></br>
         <strong><%=t('contest.amazon')%></strong><%=t('contest.prizes5')%>
       </p>
 
-
-    <p class="thank"><i class="fa fa-smile"></i>  <%=raw t("excursion.modal.thank")%></p>
   </div>
 </div>
 
@@ -39,11 +40,9 @@
   <div id="podium">
     <div class="podiuminside">
       <div class="podiuminside1">
-        <div class="excursions" class="excursions">
-          <ul class="items">
-            <li id="winner1">
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } %>
-            </li>
+        <div class="excursions">
+          <ul>
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } %>
           </ul>
         </div>
         <div class="podiumart">
@@ -55,9 +54,7 @@
       <div class="podiuminside2">
         <div class="excursions">
           <ul>
-            <li id="winner2">
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } %>
-            </li>
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } %>
           </ul>
         </div>
         <div class="podiumart">
@@ -69,9 +66,7 @@
       <div class="podiuminside3">
         <div class="excursions">
           <ul>
-            <li id="winner3">
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } %>
-            </li>
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } %>
           </ul>
         </div>
         <div class="podiumart">
@@ -386,18 +381,11 @@
 
 </div>
 
-
-
-
-
  <script>
-
     $(".subrow2 #excursion-560").backstretch("http://vishub.org/pictures/2731.jpeg");
 
     $(".subrow2 #excursion-515").backstretch("http://vishub.org/pictures/1730.jpeg");
 
     $(".subrow2 #excursion-659").backstretch("http://vishub.org/pictures/1730.jpeg");
-
-
 </script>
  
