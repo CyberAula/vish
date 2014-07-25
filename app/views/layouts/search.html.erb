@@ -38,6 +38,7 @@
   <script type="text/javascript">
     $(document).ready(function() {  
       $("#q").val("<%=params[:q]%>");
+      $("#qmobile").val("<%=params[:q]%>");
       setTimeout(function(){ $("#flash .alert").hide("slow") }, 5000);
 
       <%= yield :javascript%>
