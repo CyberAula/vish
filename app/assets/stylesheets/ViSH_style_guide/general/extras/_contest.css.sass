@@ -1,5 +1,5 @@
 #winners
-  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  //@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   .tabexcursions
     padding-top: 1%
     padding-bottom: 1%
@@ -23,20 +23,20 @@
   #banner
     float: left
     position: relative
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    //@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     width: 100%
     img
       width: 100%
   #podium
     float: left
     position: relative
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    //@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     margin-top: 4%
     .podiuminside
-      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      //@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       height: 400px
       .podiuminside1
-        @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        //@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
         height: 100%
         float: left
         margin-left: 15%
@@ -75,7 +75,7 @@
               margin-left: 5%
               width: 90%
       .podiuminside2
-        @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        //@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
         height: 100%
         float: left
         .excursions
@@ -111,7 +111,7 @@
             font-size: 121px
             text-shadow: 0px 0px 0 rgb(231,231,231),1px 1px 0 rgb(217,217,217),2px 2px 0 rgb(203,203,203),3px 3px 0 rgb(189,189,189),4px 4px 0 rgb(175,175,175), 5px 5px 0 rgb(161,161,161),6px 6px 5px rgba(0,0,0,0.9),6px 6px 1px rgba(0,0,0,0.5),0px 0px 5px rgba(0,0,0,.2)
       .podiuminside3
-        @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        //@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
         height: 100%
         float: left
         .excursions
@@ -150,13 +150,13 @@
             text-shadow: 0px 0px 0 rgb(231,231,231),1px 1px 0 rgb(217,217,217),2px 2px 0 rgb(203,203,203),3px 3px 0 rgb(189,189,189),4px 4px 0 rgb(175,175,175), 5px 5px 0 rgb(161,161,161),6px 6px 5px rgba(0,0,0,0.9),6px 6px 1px rgba(0,0,0,0.5),0px 0px 5px rgba(0,0,0,.2)
   #subjectwinners
     float: left
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    //@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     position: relative
     display: block
     height: 100%
     padding-bottom: 4%
     .subrow
-      @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      //@include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
       margin-left: 3%
       margin-right: 4%
       float: left
@@ -182,9 +182,9 @@
       section
         position: relative
         float: right
-        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        //@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         .badimg
-          @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          //@include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
           position: relative
           float: left
           .bd1
@@ -198,11 +198,11 @@
             clear: both
             float: left
         .recomended
-          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          //@include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: right
           position: relative
     .subrow2
-      @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      //@include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
       margin-left: 3%
       float: left
       margin-top: 2%
@@ -227,9 +227,9 @@
       section
         position: relative
         float: right
-        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        //@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         .badimg
-          @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          //@include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
           position: relative
           float: left
           .bd1
@@ -243,22 +243,23 @@
             clear: both
             float: left
         .recomended
-          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          //@include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left
           position: relative
   #participants
     margin-top: -5%
     float: left
     position: relative
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    //@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .sign_up
-      font-family: $secondFontFamily
+      font-family: $corporate-font-family-sans-serif-Regular
       font-size: 17px !important
       padding: 1% !important
       border: 1px solid #EEEEEE
-      @include border-radius($baseBorderRadius)
-      @include btn-primary
-      background-color: $secondColor
+      @include border-top-radius ($border-radius-base)
+      @include border-bottom-radius ($border-radius-base)
+      @extend .btn-primary
+      background-color: $brand-secundary
       margin-right: 10px
       background-image: none
       margin-left: 10px
@@ -268,7 +269,7 @@
           text-decoration: none 
           outline: none    
       &:hover
-        background-color: lighten($secondColor, 10%) 
+        background-color: lighten($brand-secundary, 10%) 
 #contest
   .tabexcursions
     position: relative
