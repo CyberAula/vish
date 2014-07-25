@@ -16,7 +16,13 @@
         $(function() {
           SocialStream.SearchHeader.show();
           $(".search_button_class").on("click", function(){
+          if ($("input.search-query-mobile").val() != ""{
             document.location= "/search?q=" + $("input.search-query-mobile").val()
+          }
+          else
+          {
+            document.location= "/search?q=" + $("#q").val();
+          }
           });
 
         });
