@@ -41,7 +41,8 @@ class MOODLEQUIZXML
           when "multiplechoice"
             moodlequizmc = MOODLEQUIZXML.generate_MoodleQUIZMC(qjson)
             zos.put_next_entry(fileName + ".xml")
-            zos.print moodlequizmc.target!()
+            #Zero-width space <200b> erased from target in moodlequizmc
+            zos.print moodlequizmc.target!().gsub("\u{200B}","" )
           else
       end
     end   
@@ -54,6 +55,7 @@ class MOODLEQUIZXML
 
 
     nChoices = qjson["choices"].size
+    question_t = (qjson["question"]["value"]).to_s.lstrip.chop
 
     if qjson["extras"]["multipleAnswer"] == false 
       card = "true"
@@ -64,18 +66,19 @@ class MOODLEQUIZXML
     myxml.quiz do  
       myxml.question("type" => "category") do
         myxml.category do
-          myxml.text do
-            myxml.text!("Moodle QUIZ XML export")
-          end
+          myxml.text("Moodle QUIZ XML export")
         end
       end
 
       myxml.question("type" => "multichoice") do
         myxml.name do
-          myxml.text do
-            myxml.text!(qjson["question"]["value"])
-          end
+          myxml.text(question_t)
         end
+        myxml.questiontext do
+          myxml.text(((qjson["question"]["value"]).to_s).lstrip.chop)  
+        end
+        myxml.shuffleanswers("1")
+        myxml.single(card)
         for i in 0..((nChoices)-1)
           if qjson["choices"][i]["answer"] == true
             mappedV = "100"
@@ -83,11 +86,9 @@ class MOODLEQUIZXML
             mappedV = "0"
           end
           myxml.answer("fraction" => mappedV) do
-            myxml.text(qjson["choices"][i]["value"])
+            myxml.text(((qjson["choices"][i]["value"]).to_s).lstrip.chop)
           end
         end
-        myxml.shuffleanswers("1")
-        myxml.single(card)
       end
     end
     return myxml;
