@@ -18,14 +18,17 @@ class SpamReportsController < ApplicationController
         end
 
         @spam = SpamReport.new(:activity_object_id=> params[:activity_object_id], :reporter_actor_id => !current_subject.nil? ? Actor.normalize_id(current_subject) : nil, :issue=> issue, :report_value=> params[:option])    
-        @spam.save!
 
-        flash[:success] = t('spam.success')
-        SpamReportMailer.send_report(current_subject, @spam.issueType, issue, params[:activity_object_id]).deliver
+        if @spam.save
+          flash[:success] = t('spam.success')
+          SpamReportMailer.send_report(current_subject, @spam.issueType, issue, params[:activity_object_id]).deliver
+        else
+          flash[:failure] = t('spam.failure')
+        end
 
         redirect_to request.referer
      else
-        flash.now[:failure] = t('spam.failure')
+        flash[:failure] = t('simple_captcha.error')
         redirect_to request.referer
     end
   end

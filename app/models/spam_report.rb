@@ -20,7 +20,7 @@ class SpamReport < ActiveRecord::Base
 
   validates :report_value,
   :presence => true
-  validates_inclusion_of :report_value, :in => [0, 1], :allow_nil => false, :message => I18n.t('spam.report_error')
+  validates_inclusion_of :report_value, :in => [0, 1], :allow_nil => false, :message => I18n.t('spam.failure')
   #Report value: 0=spam/inappropriate content, 1=error
 
   validates :activity_object_id,
@@ -42,7 +42,7 @@ class SpamReport < ActiveRecord::Base
      if validAO
      	true
      else
-     	errors.add(:report, I18n.t('spam.report_error'))
+     	errors.add(:report, I18n.t('spam.failure'))
      end
   end
 
