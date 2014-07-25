@@ -9,9 +9,9 @@ class SpamReportsController < ApplicationController
   def create
      if simple_captcha_valid?
         case params[:option]
-        when 0
+        when "0"
           issue = params[:comment_spam]
-        when 1
+        when "1"
           issue = params[:comment_error]
         else
           issue = nil

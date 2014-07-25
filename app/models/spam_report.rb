@@ -55,11 +55,11 @@ class SpamReport < ActiveRecord::Base
   end
 
   def reporterName
-    theReporter = self.reporter
+    theReporter = self.actor_reporter
     if theReporter.nil?
       I18n.t('user.anonymous')
     else
-      theReporter.name
+      theReporter.subject.name
     end
   end
 
