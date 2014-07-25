@@ -812,14 +812,16 @@ es:
       activity: "Virtual Science Hub - Actividades"
     name: "Virtual Science Hub"
   spam:
-    error_content: "Reportar un error en la excursión"
-    error_content_resource: "Reportar un error en el recurso"
+    error_content: "Error en la excursión"
+    error_content_resource: "Error en el recurso"
+    spam_content: "Contenido inapropiado o spam"
     failure: "El captcha es inválido"
     placeholder: "¿Cúal es el problema?"
     report_excursion: "Reportar excursión"
     report_resource: "Reportar recurso"
-    spam_content: "Contenido inapropiado o spam"
     success: "Hemos recibido tu reporte. Lo miraremos en la mayor brevedad posible. Muchas gracias"
+    report_mail_subject: "ViSH: Reporte de spam/error"
+    report_error: 'El reporte no pudo ser enviado.'
   swf:
     name: "objecto flash"
     confirm_delete: "¿Borrar SWF?"
@@ -830,7 +832,9 @@ es:
   user:
     one: "usuario"
     other: "usuarios"
+    anonymous: "Anónimo"
   username: "usuario"
+  unknown: "Desconocido"
   vish:
     about: "Acerca de ViSH"    
     carousel_title: "ViSH: Virtual Science Hub"

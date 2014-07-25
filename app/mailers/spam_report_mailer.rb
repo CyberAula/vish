@@ -6,8 +6,7 @@ class SpamReportMailer < ActionMailer::Base
     @report_value = report_value
     @issue = issue
     @activity_object_id = activity_object_id
-    mail(:to => Vish::Application.config.spam_report_recipient, :subject => "ViSH spam/error report")
+    mail(:to => Vish::Application.config.spam_report_recipient, :subject => I18n.t('spam.report_mail_subject'))
   end
-
 
 end

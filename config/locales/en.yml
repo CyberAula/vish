@@ -23,6 +23,10 @@ en:
   activity_action:
     follow: "+ Follow"
     unfollow: "UnFollow"
+  admin:
+    title: ViSH Administration Panel
+    noitems: There are no items.
+    noreports: There are no spam reports.
   all: "all"
   announce: 
     title: "Announcement"
@@ -810,24 +814,28 @@ en:
       activity: "Virtual Science Hub - Activities"
     name: "Virtual Science Hub"
   spam:
-    error_content: "There is an error in the excursion"
-    error_content_resource: "There is an error in the resource"
+    error_content: "Error in the excursion"
+    error_content_resource: "Error in the resource"
+    spam_content: "Spam or inappropriate content"
     failure: "Captcha is invalid"
     placeholder: "What is the issue?"
     report_excursion: "Report excursion"
     report_resource: "Report resource"
-    spam_content: "Spam or inappropriate content"
-    success: "We have received your report. We will take a look at it very shortly. Thank you"  
+    success: "We have received your report. We will take a look at it very shortly. Thank you"
+    report_mail_subject: "ViSH spam/error report"
+    report_error: 'The report could not be sent.'
   swf:
     confirm_delete: "Delete SWF?"
     name: "flash object"
   today: "Today"
   top10: "Top 10"
+  unknown: "Unknown"
   url:
     input: "Paste your link here"
   user:
     one: "user"
     other: "users"
+    anonymous: "Anonymous"
   username: "username"
   vish:
     about: "About ViSH"   
