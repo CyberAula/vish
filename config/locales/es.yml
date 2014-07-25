@@ -820,7 +820,6 @@ es:
     report_excursion: "Reportar excursión"
     report_resource: "Reportar recurso"
     success: "Hemos recibido tu reporte. Lo miraremos en la mayor brevedad posible. Muchas gracias"
-    report_mail_subject: "ViSH: Reporte de spam/error"
     report_error: 'El reporte no pudo ser enviado.'
   swf:
     name: "objecto flash"

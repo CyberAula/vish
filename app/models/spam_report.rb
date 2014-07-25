@@ -66,13 +66,11 @@ class SpamReport < ActiveRecord::Base
   def issueType
     case self.report_value
     when 0
-      #Spam or inappropriate content
-      I18n.t('spam.spam_content')
+      "Spam or inappropriate content"
     when 1
-      #Error in the resource
-      I18n.t('spam.error_content_resource')
+      "Error in the resource"
     else
-      I18n.t('unknown')
+      "Unknown"
     end
   end
 
