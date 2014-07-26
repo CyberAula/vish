@@ -743,8 +743,6 @@ class Excursion < ActiveRecord::Base
   ## Moodle Quiz XML Management (Handled by the MOODLEXML module moodlexml.rb)
   ####################
 
-
-
   def  self.createMoodleQUIZXML(filePath,fileName,qjson)
     require 'moodlexml'
     MOODLEQUIZXML.createMoodleQUIZXML(filePath,fileName,qjson)
@@ -1010,23 +1008,6 @@ class Excursion < ActiveRecord::Base
       rjson
   end
 
-  #we don't know what happens or how it happens but sometimes in social_stream
-  # the activity inside the activity_object is nil, so we fix it here
-  def fix_post_activity_nil
-    if self.post_activity == nil
-      a = Activity.new :verb         => "post",
-                       :author_id    => self.activity_object.author_id,
-                       :user_author  => self.activity_object.user_author,
-                       :owner        => self.activity_object.owner,
-                       :relation_ids => self.activity_object.relation_ids,
-                       :parent_id    => self.activity_object._activity_parent_id
-
-      a.activity_objects << self.activity_object
-
-      a.save!
-    end
-  end
-
   def increment_download_count
     self.activity_object.increment_download_count
   end
@@ -1041,6 +1022,7 @@ class Excursion < ActiveRecord::Base
 
   #See app/decorators/social_stream/base/activity_object_decorator.rb
   #Method calculate_qscore
+
 
   #######################
   ## Get Excursion subsets
@@ -1081,6 +1063,7 @@ class Excursion < ActiveRecord::Base
     return ids_to_avoid
   end
 
+
   private
 
   def parse_for_meta
@@ -1097,6 +1080,9 @@ class Excursion < ActiveRecord::Base
     rescue
     end
     activity_object.save!
+
+    #Ensure that the updated_at value of the AO is consistent with the object
+    activity_object.update_column :updated_at, self.updated_at
 
     if !parsed_json["vishMetadata"]
       parsed_json["vishMetadata"] = {}
@@ -1116,6 +1102,23 @@ class Excursion < ActiveRecord::Base
       activity_object.relation_ids=[Relation::Private.instance.id]
     else
       activity_object.relation_ids=[Relation::Public.instance.id]
+    end
+  end
+
+  # We don't know what happens or how it happens but sometimes in social_stream
+  # the activity inside the activity_object is nil, so we fix it here
+  def fix_post_activity_nil
+    if self.post_activity == nil
+      a = Activity.new :verb         => "post",
+                       :author_id    => self.activity_object.author_id,
+                       :user_author  => self.activity_object.user_author,
+                       :owner        => self.activity_object.owner,
+                       :relation_ids => self.activity_object.relation_ids,
+                       :parent_id    => self.activity_object._activity_parent_id
+
+      a.activity_objects << self.activity_object
+
+      a.save!
     end
   end
   
