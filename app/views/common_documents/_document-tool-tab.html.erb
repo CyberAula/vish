@@ -69,15 +69,16 @@
 
     <% if can? :update, document %>
     <li class="<%= document_details_tab_class document, :edit %>">
-
       <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
     </li>
     <% end %>
+
     <%if document.class==Video || document.class==Audio || document.class==Picture || document.class==Swf || document.class==Embed || document.class==Officedoc || document.class == Scormfile || document.class == Webapp ||  document.class == Link %>
       <li class="<%= document_details_tab_class document, :embed %>">
           <%= link_to (raw("<i class='icon-code'></i> <span class='hidden-tablet hidden-phone'>")) + t('excursion.actions.embed')+ raw("</span>"), '#document-embed', 'data-toggle' => 'tab' %>
       </li>
     <%end%>
+
     <%if document.class!=Link %>
       <li class="<%= document_details_tab_class document, :download %>">
           <%= link_to (raw("<i class='icon-download'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.download')+ raw("</span>"), '#document-download', 'data-toggle' => 'tab' %>
@@ -90,12 +91,9 @@
           <span class=" hidden-tablet hidden-phone">
             <%=t('excursion.actions.spam')%>
           </span>
-
-        <!--span class=" hidden-tablet hidden-phone">
-          <%#=t('excursion.actions.scorm')%>
-        </span-->
       </a>
     </li>
+    
     <%= render partial: 'help/help_show_resource' %>  
   </ul>
 </div>

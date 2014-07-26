@@ -1079,10 +1079,13 @@ class Excursion < ActiveRecord::Base
       activity_object.age_max = ageRange.split("-")[1].delete(' ')
     rescue
     end
+    original_updated_at = self.updated_at
     activity_object.save!
 
     #Ensure that the updated_at value of the AO is consistent with the object
-    activity_object.update_column :updated_at, self.updated_at
+    #Prevent admin to modify updated_at values as well.
+    self.update_column :updated_at, original_updated_at
+    activity_object.update_column :updated_at, original_updated_at
 
     if !parsed_json["vishMetadata"]
       parsed_json["vishMetadata"] = {}
