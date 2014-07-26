@@ -162,7 +162,9 @@
   </div>
 
   <% unless editingToolbar %>
-    <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
+    <% unless @excursion.post_activity.nil? %>
+      <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
+    <%end%>
     
     <!--<button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>-->
       <%if user_signed_in? %>

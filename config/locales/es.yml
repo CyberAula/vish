@@ -688,6 +688,7 @@ es:
         scientist: "Ciencia"
         select: "Selecciona tu ocupación"
         teacher: "Educación"
+    remove: "Borrar usuario"
     tags:
       default: "VisHub, virtual, excursión"
       other: "Áreas de interés"

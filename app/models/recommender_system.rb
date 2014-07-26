@@ -75,7 +75,7 @@ class RecommenderSystem
     #Add other excursions of the same author
     if !excursion.nil? and !options[:test]
       authorIdToReject = (!user.nil?) ? Actor.normalize_id(user) : -1
-      unless authorIdToReject == excursion.author.id
+      unless excursion.author.nil? or authorIdToReject == excursion.author.id
         authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == authorIdToReject or e.id == excursion.id}
         preSelection.concat(authoredExcursions)
         preSelection.uniq!

@@ -685,6 +685,7 @@ en:
         teacher: "Education"
         other: "Other"
       select: "Select your occupation"
+    remove: "Remove user"
     tags:
       default: "VisHub, virtual, excursion"
       other: "Areas of interest"
