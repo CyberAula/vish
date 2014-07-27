@@ -1037,7 +1037,7 @@ class Excursion < ActiveRecord::Base
       nSubset = n
     end
 
-    ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:user])
+    ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:actor])
     excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").first(nSubset)
     
     if random
@@ -1047,11 +1047,11 @@ class Excursion < ActiveRecord::Base
     return excursions
   end
 
-  def self.getIdsToAvoid(ids_to_avoid=[],user=nil)
+  def self.getIdsToAvoid(ids_to_avoid=[],actor=nil)
     ids_to_avoid = ids_to_avoid || []
     
-    if !user.nil?
-      ids_to_avoid.concat(Excursion.authored_by(user).map{|e| e.id})
+    if !actor.nil?
+      ids_to_avoid.concat(Excursion.authored_by(actor).map{|e| e.id})
       ids_to_avoid.uniq!
     end
 

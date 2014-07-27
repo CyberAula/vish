@@ -26,7 +26,7 @@ wb.add_worksheet(:name => "QuizSessionResults_" + @quiz_session.id.to_s) do |she
 	rowContents = [];
 	rowContents[0] = ["Quiz Session Name", (@quiz_session.name or "Untitled")]
 	rowContents[1] = ["Id", @quiz_session.id.to_s]
-	rowContents[2] = ["Author", current_user.name]
+	rowContents[2] = ["Author", current_subject.name]
 	rowContents[3] = [t('quiz.createdAt').capitalize, @quiz_session.created_at.to_s]
 	rowContents[4] = [t('quiz.closedAt').capitalize, @quiz_session.active==false ? @quiz_session.closed_at.to_s : "-"]
 	rowContents[5] = [t('quiz.launchIn').capitalize, @processedQS["presentationName"]]

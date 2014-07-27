@@ -30,7 +30,7 @@ class ScormfilesController < ApplicationController
   def destroy
     destroy! do |format|
       format.html {
-        redirect_to user_path(current_user)
+        redirect_to url_for(current_subject)
        }
     end
   end

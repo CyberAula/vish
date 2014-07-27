@@ -47,7 +47,7 @@ class CategoriesController < ApplicationController
   def destroy
     super do |format|
       format.html {
-        redirect_to user_path(current_user)
+        redirect_to url_for(current_subject)
        }
 
       format.js
