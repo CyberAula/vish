@@ -11,7 +11,6 @@ class CategoriesController < ApplicationController
   def create
     create! do |success, failure|
       success.json { render :json => {"title"=>@category.title, "id"=>@category.id}, :status => 200 }
-      #failure.json { render :json => {"errors" => @category.errors}, :status => 400}
       failure.json { render :json => {"errors" => @category.errors.full_messages.to_sentence}, :status => 400}
     end
   end

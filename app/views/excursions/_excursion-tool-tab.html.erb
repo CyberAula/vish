@@ -166,7 +166,6 @@
       <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
     <%end%>
     
-    <!--<button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>-->
       <%if user_signed_in? %>
         <%=categories_select(:category_id, @excursion)%>
         <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
