@@ -216,19 +216,8 @@ namespace :db do
         admin.save!
         admin.actor!.update_attribute :slug, 'admin'
 
-        #prevent Admin to be indexed by the search engine
-        admin.relation_ids = [Relation::Private.instance.id]
-        admin.activity_object.relation_ids = [Relation::Private.instance.id]
-        admin.save!
-
-        #Make Demo ViSH admin
-        admin.actor!.update_attribute :is_admin, true
-
-        #Make Demo admin 'in the Social Stream way'
-        contact = Site.current.contact_to!(admin.actor)
-        contact.user_author = admin
-        contact.relation_ids = [ Relation::LocalAdmin.instance.id ]
-        contact.save!
+        #Make the user 'admin' the administrator of the ViSH Site
+        admin.actor!.make_me_admin
 
         puts "Admin created with email: " + admin.email + " and password: " + admin.password
       end

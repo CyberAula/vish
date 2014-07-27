@@ -17,4 +17,24 @@ Actor.class_eval do
     end
   end
 
+  def admin?
+    self.is_admin
+  end
+
+  #Make the actor admin
+  def make_me_admin
+    self.is_admin = true
+
+    #prevent the admin to be indexed by the search engine
+    self.relation_ids = [Relation::Private.instance.id]
+    self.activity_object.relation_ids = [Relation::Private.instance.id]
+    self.save!
+
+    #Make the actor admin 'in the Social Stream way'
+    contact = Site.current.contact_to!(self)
+    contact.user_author = self
+    contact.relation_ids = [ Relation::LocalAdmin.instance.id ]
+    contact.save!
+  end
+
 end
