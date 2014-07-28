@@ -35,7 +35,7 @@ class FederatedSearchController < ApplicationController
   #############
 
   def search
-    limit = [Integer(params[:n]),200].min rescue 20
+    limit = [1,[Integer(params[:n]),200].min].max rescue 20
 
     case params[:sort_by]
     when 'ranking'
@@ -59,11 +59,21 @@ class FederatedSearchController < ApplicationController
 
     type = processTypeParam(params[:type])
 
-    results = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :order => order, :models => type[:models], :subtypes => type[:subtypes], :startDate => params[:startDate], :endDate => params[:endDate], :language => params[:language], :qualityThreshold => params[:qualityThreshold]})
+    searchEngineResults = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page => params[:page], :order => order, :models => type[:models], :subtypes => type[:subtypes], :startDate => params[:startDate], :endDate => params[:endDate], :language => params[:language], :qualityThreshold => params[:qualityThreshold]})
+
+    response = Hash.new
+    response["total_results"] = [searchEngineResults.total_entries,5000].min
+    response["total_results_delivered"] = searchEngineResults.length
+    unless params[:page].nil?
+      response["total_pages"] = searchEngineResults.total_pages
+      response["page"] = searchEngineResults.current_page
+      response["results_per_page"] = searchEngineResults.per_page
+    end
+    response["results"] = searchEngineResults.map{|r| r.search_json(self)}
 
     respond_to do |format|
       format.any {
-        render :json => results.map{|r| r.search_json(self)}, :content_type => 'json'
+        render :json => response, :content_type => 'json'
       }
     end
   end

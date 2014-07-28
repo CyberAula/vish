@@ -4,6 +4,7 @@ development:
  indexer_binary_name: 'indexer'
  enable_star: 0
  min_infix_len: 1
+ max_matches: 5000
  charset_table: "0..9, a..z, _, A..Z->a..z, U+00C0->a, U+00C1->a,
         U+00C2->a, U+00C3->a, U+00C4->a, U+00C5->a, U+00C7->c, U+00C8->e,
         U+00C9->e, U+00CA->e, U+00CB->e, U+00CC->i, U+00CD->i, U+00CE->i,
@@ -100,6 +101,7 @@ production:
  indexer_binary_name: 'indexer'
  enable_star: 0
  min_infix_len: 1
+ max_matches: 5000
  charset_table: "0..9, a..z, _, A..Z->a..z, U+00C0->a, U+00C1->a,
         U+00C2->a, U+00C3->a, U+00C4->a, U+00C5->a, U+00C7->c, U+00C8->e,
         U+00C9->e, U+00CA->e, U+00CB->e, U+00CC->i, U+00CD->i, U+00CE->i,
