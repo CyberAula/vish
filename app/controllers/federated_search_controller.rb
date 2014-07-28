@@ -35,41 +35,45 @@ class FederatedSearchController < ApplicationController
   #############
 
   def search
-    limit = [1,[Integer(params[:n]),200].min].max rescue 20
-
-    case params[:sort_by]
-    when 'ranking'
-      order = 'ranking DESC'
-    when 'popularity'
-      order = 'popularity DESC'
-    when 'modification'
-      order = 'updated_at DESC'
-    when 'creation'
-      order = 'created_at DESC'
-    when 'visits'
-      order = 'visit_count DESC'
-    when 'favorites'
-      order = 'like_count DESC'
-    when 'quality'
-      order = 'qscore DESC'
+    unless params[:id].nil?
+      response = search_by_id
     else
-      #order by relevance
-      order = nil
+      limit = [1,[Integer(params[:n]),200].min].max rescue 20
+
+      case params[:sort_by]
+      when 'ranking'
+        order = 'ranking DESC'
+      when 'popularity'
+        order = 'popularity DESC'
+      when 'modification'
+        order = 'updated_at DESC'
+      when 'creation'
+        order = 'created_at DESC'
+      when 'visits'
+        order = 'visit_count DESC'
+      when 'favorites'
+        order = 'like_count DESC'
+      when 'quality'
+        order = 'qscore DESC'
+      else
+        #order by relevance
+        order = nil
+      end
+
+      type = processTypeParam(params[:type])
+
+      searchEngineResults = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page => params[:page], :order => order, :models => type[:models], :subtypes => type[:subtypes], :startDate => params[:startDate], :endDate => params[:endDate], :language => params[:language], :qualityThreshold => params[:qualityThreshold]})
+
+      response = Hash.new
+      response["total_results"] = [searchEngineResults.total_entries,5000].min
+      response["total_results_delivered"] = searchEngineResults.length
+      unless params[:page].nil?
+        response["total_pages"] = searchEngineResults.total_pages
+        response["page"] = searchEngineResults.current_page
+        response["results_per_page"] = searchEngineResults.per_page
+      end
+      response["results"] = searchEngineResults.map{|r| r.search_json(self)}
     end
-
-    type = processTypeParam(params[:type])
-
-    searchEngineResults = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page => params[:page], :order => order, :models => type[:models], :subtypes => type[:subtypes], :startDate => params[:startDate], :endDate => params[:endDate], :language => params[:language], :qualityThreshold => params[:qualityThreshold]})
-
-    response = Hash.new
-    response["total_results"] = [searchEngineResults.total_entries,5000].min
-    response["total_results_delivered"] = searchEngineResults.length
-    unless params[:page].nil?
-      response["total_pages"] = searchEngineResults.total_pages
-      response["page"] = searchEngineResults.current_page
-      response["results_per_page"] = searchEngineResults.per_page
-    end
-    response["results"] = searchEngineResults.map{|r| r.search_json(self)}
 
     respond_to do |format|
       format.any {
@@ -119,6 +123,16 @@ class FederatedSearchController < ApplicationController
       :models => models,
       :subtypes => subtypes
     }
+  end
+
+  #Search elements by universal Ids
+  def search_by_id
+    ao = ActivityObject.getActivityObjectFromUniversalId(params[:id])
+    unless ao.nil?
+      ao.search_json(self)
+    else
+      {}
+    end
   end
 
 end
