@@ -168,7 +168,7 @@ ActivityObject.class_eval do
     resource = self.object
 
     if resource.class.superclass.name=="Document"
-      if ["Picture"].include? resource.class.name
+      if ["Picture","Swf"].include? resource.class.name
         relativePath = resource.file.url
       end
     elsif ["Scormfile","Webapp"].include? resource.class.name
