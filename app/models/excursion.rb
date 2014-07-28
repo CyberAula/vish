@@ -1047,7 +1047,6 @@ class Excursion < ActiveRecord::Base
     return excursions
   end
 
-<<<<<<< HEAD
   def self.getRecent(n = 20, options={})
     nsize = [60,3*n].max
     nHalf = (n/2.to_f).ceil
