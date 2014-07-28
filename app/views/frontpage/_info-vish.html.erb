@@ -8,9 +8,9 @@
 </div>
 <div class="all-items-count" >
 	<h3>Our community grows slowly, already counting :</h3>
-	<span id="count-all-excursion">555555</span><p>Excursions</p>
-	<span id="count-all-resources">555555</span><p>Resources</p>
-	<span id="count-all-users">555555</span><p>Users</p>
+	<span id="count-all-excursion"><%= Excursion.count %></span><p>Excursions</p>
+	<span id="count-all-resources"><%= Embed.count + Swf.all.length +  Officedoc.all.length + Link.count +  Video.all.length + Audio.all.length + Scormfile.count + Webapp.count %></span><p>Resources</p>
+	<span id="count-all-users"><%= User.count %></span><p>Users</p>
 	<div class="">Share your knowledge in our community and help us to grow</div>
 </div>
 <div class="decoration" >
