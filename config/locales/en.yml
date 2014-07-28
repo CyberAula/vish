@@ -24,11 +24,18 @@ en:
     follow: "+ Follow"
     unfollow: "UnFollow"
   admin:
-    title: "ViSH Administration Panel"
+    close_report: "Close report"
+    closed_reports: "Closed reports"
     noitems: "There are no items."
     noreports: "There are no reports."
     noresource: "This resource no longer exists."
     nouser: "This user no longer exists."
+    open_report: "Open report"
+    pending_reports: "Pending reports"
+    reporter: "Reporter"
+    reports: "Reports"
+    title: "ViSH Administration Panel"
+    users: "Users Administration"
   all: "all"
   announce: 
     title: "Announcement"
@@ -303,6 +310,8 @@ en:
     overview69: "to implement a virtual classroom based on collaborative videoconferencing, where several classrooms in different schools can connect and participate in a virtual event with live demonstrations, discussions, remote lecture delivery, etc. These meetings can be based on excursions or on other social media available on the Internet."
     overview70: "MashMe.tv supports access to the webinar rooms from desktops, smartphones and tablets. The webcam of a mobile device can be used to show the physical place being visited, the expositions of a museum, to interview people at the visited site or the result of a scientific experiment (telescope, microscope, accelerator, etc.) directly on the scientific infrastructure. Mobile devices can be used to walk freely around the visited site and show the most relevant parts of it."
   copy_to_clip: "Copy to clipboard"
+  date: "date"
+  description: "description"
   devise:
     invalid_login: "Please enter your email and password to continue."
     tags: "tags"

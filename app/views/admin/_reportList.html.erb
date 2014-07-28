@@ -6,13 +6,13 @@
   <table id="spam_table" cellspacing='0' class="vish_admin_table">
     <thead>
       <tr>
-        <th class="admin-checkbox"><input type="checkbox" class="checkallresources" autocomplete="off" value="all"/></th>
-        <th class="admin-resource">Resource</th>
-        <th class="admin-type">Type</th>
-        <th class="admin-user">User</th>
-        <th class="admin-reporter">Reporter</th>
-        <th class="admin-description">Description</th>
-        <th class="admin-date">Date</th>
+        <th class="admin-checkbox"><input type="checkbox" class="checkallresources" autocomplete="off" value="all" style="display:none" /></th>
+        <th class="admin-resource"><%=t('resource.title.one').capitalize%></th>
+        <th class="admin-type"><%=t('search.type').capitalize%></th>
+        <th class="admin-user"><%=t('user.one').capitalize%></th>
+        <th class="admin-reporter"><%=t('admin.reporter').capitalize%></th>
+        <th class="admin-description"><%=t('description').capitalize%></th>
+        <th class="admin-date"><%=t('date').capitalize%></th>
         <th class="admin-icontrash"></th>
         <th class="admin-iconlock"></th>
       </tr>
@@ -21,7 +21,7 @@
     <% @reports.each do |report| %>
       <tr>
         <td class="admin-checkbox">
-          <input type="checkbox" autocomplete="off" value="<%=report.id%>"/>
+          <input type="checkbox" autocomplete="off" value="<%=report.id%>" style="display:none" />
         </td>
          <td class="admin-resource">
           <%unless report.activity_object.nil?%>
@@ -64,9 +64,9 @@
         </td>
         <td class="admin-iconlock">
             <%if report.pending %>
-              <%= link_to(raw("<i class='icon-lock'></i> "), close_spam_report(report), :method => "get")%>
+              <%= link_to(raw("<i title='"+t('admin.close_report')+"' class='icon-lock'></i> "), close_spam_report(report), :method => "get")%>
             <%else%>
-              <%= link_to(raw("<i class='icon-unlock'></i> "), open_spam_report(report), :method => "get")%>
+              <%= link_to(raw("<i title='"+t('admin.open_report')+"' class='icon-unlock'></i> "), open_spam_report(report), :method => "get")%>
             <%end%>
         </td>
       </tr>
