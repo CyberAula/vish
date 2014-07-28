@@ -51,7 +51,11 @@ class SpamReport < ActiveRecord::Base
   end
 
   def actor
-    self.activity_object.owner
+    unless self.activity_object.nil?
+      self.activity_object.owner
+    else
+      nil
+    end
   end
 
   def reporterName
