@@ -12,9 +12,11 @@
   <% @profile = profile_or_current_subject.profile %>
   <% if can?(:update, @profile) %>
 
-    <button class="edit_icon btn btn-default">
-      <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %> 
+    <button class="edit_icon btn btn-default" >
+      <%= link_to(raw("<i class='fa fa-edit'></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %>
     </button>
+   
+
   <% end %>
   <!--BTN MESSAGE-->
   <% if !profile_subject_is_current? && user_signed_in?%>
@@ -32,9 +34,6 @@
   </button>
 </div>
   <!-- Button to trigger modal --> 
-  
-
-
 
   <!-- Modal -->
 

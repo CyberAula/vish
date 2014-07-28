@@ -11,12 +11,19 @@
       </div>
       <!--BROWSE-->
       <%= render partial: 'layouts/header/browse_header'%>
+
+      
     </div>
 
     <!--collapse-->
     <div class="collapse navbar-collapse" id="nav-collapse-in">
 
       <ul class="nav nav-pills desktop-nav">
+
+        <!--search-->
+          <li class="search-ui ">
+            <%= render partial: 'layouts/header/uisearch_header' %>
+          </li> 
         <!--navegation-->
         <%= render partial: 'layouts/header/basic_navegation' %>
         
@@ -54,14 +61,6 @@
         </li>
        
 
-            <!--div class="btn without-data-toggle tooltip-header" data-original-title="<%#=t('header.tooltip.add_button')%>" data-toggle="dropdown" href="#" >
-                <i class="fa fa-plus"></i>
-              </div-->
-        <!-- 
-          <li> 
-            <%#= render partial: 'layouts/header_dropdown_menu' %>
-          </li>
-        -->
         <!--user-->
         <li class ="btn-group user-menu">
             <%= link_to current_subject, :class => "btn btn-default photo-user" do %>              
@@ -81,32 +80,40 @@
                <%= t('navigation.home') %>
                <% end %>
              </li>
+
+             <%if isAdmin? %>
+                <li class="settings-menu">
+                  <%= link_to admin_path do %>
+                    <i class="fa fa-wrench"></i>
+                    <span><%= 'Admin Panel' %></span>
+                  <% end %>
+                </li>
+              <%end%>
+
              <li class="settings-menu">
               <%= link_to current_subject do %>
               <i class="fa fa-user"></i>
               <%= t('profile.one') %>
               <% end %>
             </li>
-            <!--<li class="settings-menu">
-              <%= link_to activities_path do %>
-              <i class="fa fa-globe"></i>
-              <%= t('activity.other') %>
-              <% end %>
-            </li>-->
+           
             <li class="settings-menu">
               <%= link_to settings_path do %>
               <i class="fa fa-cog"></i>
               <%= t('dropdown.settings') %>
               <% end %>
             </li>
+
             <li class="settings-menu">
               <%= link_to quiz_sessions_path do %>
               <i class="fa fa-puzzle-piece"></i>
               <%= t('quiz.live') %>
               <% end %>
             </li>
+
             <li class="divider"></li>
             <li>
+
               <%= link_to destroy_user_session_path, :method => :delete do %>
               <i class="fa fa-sign-out"></i>
               <%= t('sign_out') %>
@@ -115,9 +122,6 @@
             </ul>      
           </li>
  
-          
-
-
       </ul>
 
     

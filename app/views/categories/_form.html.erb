@@ -33,12 +33,7 @@
 </div>
 
 <script>
-<<<<<<< HEAD
-  $('#AddCategory .new_category').bind('ajax:success', function(evt, data, status, xhr){
-    $('#AddCategory').modal('hide');
-    window.location.href = "/categories/" + data.id;
-  });
-=======
+
 
     $('#<%=div_id%> .new_category').bind('ajax:success', function(evt, data, status, xhr){
       $('#<%=div_id%>').modal('hide');
@@ -64,7 +59,6 @@
       } else {
         var errors = "There was an unexpected error on the server. Please contact the technical support so they can solve it.";
       }
->>>>>>> d810be0df94db692153f3870db6e0b44f1b8fff1
 
       if (errors.indexOf("duplicated") != -1) {
         $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.errors.duplicated')%></div>");

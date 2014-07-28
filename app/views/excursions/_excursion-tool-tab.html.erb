@@ -295,51 +295,12 @@
     </div> 
 
     <!-- tab5 / spam -->
-<<<<<<< HEAD
-    <div class="tab-pane contentReport" id="tab5">
 
-        <div class="small">
-          <%=t('spam.report_excursion')%>
-        </div>
-<!--
-        <%= form_tag spam_report_path, method: 'post' do %>
-          <div class="btn-group-vertical" data-toggle="buttons">
-            <label class="btn btn-default">
-              <input type="radio" name="options" id="option1" checked=""> <%=t('spam.spam_content')%>
-            </label>
-            <label class="btn btn-default">
-              <input type="radio" name="options" id="option2"> <%=t('spam.error_content')%>
-            </label>
-          </div>
--->
-        <%=hidden_field_tag "activity_object_id", @excursion.activity_object_id%>
-          <div class="radio">
-            <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
-            <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-          </div>
-          <div class="radio">
-            <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content')%>
-            <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-            <div>
-          <div class="captcha">
-            <header>  
-              <%= t('simple_captcha.title') %>, <%=t('simple_captcha.subtitle')%>
-            </header>
-            <%= show_simple_captcha %>
-          </div>
-          <button class="report btn btn-primary"> <%=t('send.send')%></button>
-        <% end %>
-
-
-        
-      
-    </div> 
-=======
     <div class="tab-pane" id="tab5">
       <%@activity_object = @excursion.activity_object%>
       <%= render '/spam_report/form' %>
     </div>
 
->>>>>>> d810be0df94db692153f3870db6e0b44f1b8fff1
+
   </div>
 <%end%>
