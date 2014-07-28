@@ -29,8 +29,8 @@
 </div>
 
 <%= content_for :javascript do %>
-    $("div.contentReport .spam_radio").click(function(e) {
+    $("div.contentReport .spam_radio").click(function(e){
       $(".textarea_spam").hide("slow");
-      $(e.target).siblings("textarea").show("slow");
+      $(this).parent().find("textarea").show("slow");
     });
 <% end %>
