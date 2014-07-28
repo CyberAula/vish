@@ -82,16 +82,20 @@ module HomeHelper
       query = query.authored_by(following_ids)
     when :like
       query = if klass.is_a?(Array)
-        Activity.joins(:activity_objects).includes(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
+        Activity.joins(:activity_objects).includes(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.actor_id}).where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
       else
-        Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type = (?)", klass.to_s)
+        Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.actor_id}).where("activity_objects.object_type = (?)", klass.to_s)
       end
     when :more
       following_ids |= [ subject.actor_id ]
       query = query.not_authored_by(following_ids)
     end
 
-    query = query.where("draft is false") if (klass == Excursion) && (options[:scope] == :net || options[:scope] == :more || (options[:scope] == :me && defined?(current_subject) && subject != current_subject))
+    #Filtering private entities
+    unless (defined?(current_subject)&&((options[:scope] == :me && subject == current_subject)||(!current_subject.nil? && current_subject.admin?)))
+      query = query.includes("activity_object_audiences")
+      query = query.where("activity_object_audiences.relation_id='"+Relation::Public.instance.id.to_s+"'")
+    end
 
     case options[:sort_by]
       when "updated_at"

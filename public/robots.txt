@@ -12,6 +12,7 @@ Disallow: /categories
 Disallow: /users/*/followings
 Disallow: /users/*/followers
 Disallow: /users/*/excursions*
+Disallow: /spam_reports
 
 user-agent: AhrefsBot
 disallow: /excursions/new

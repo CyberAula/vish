@@ -20,8 +20,8 @@
 	//User data
 	<% if user_signed_in? %>
 		options["user"] = {
-			name: "<%= current_user.name %>",
-			id: "<%= Actor.normalize_id(current_user) %>",
+			name: "<%= current_subject.name %>",
+			id: "<%= Actor.normalize_id(current_subject) %>",
 			token: "<%= form_authenticity_token %>"
 		}
 	<% end %>

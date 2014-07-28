@@ -89,8 +89,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    respond_to do |format|
+      format.any {
+        u = User.find_by_slug(params[:id])
+        unless u.nil?
+          u.destroy
+        end
+        #Only admins can destroy users. Redirect to home.
+        redirect_to home_path
+      }
+    end
+  end
+
   # Supported through devise
   def new; end; def create; end
-  # Not supported yet
-  def destroy; end
+
 end

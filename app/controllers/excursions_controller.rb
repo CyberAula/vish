@@ -192,8 +192,19 @@ class ExcursionsController < ApplicationController
       end
     end
 
-    @excursion.update_attributes!(params[:excursion])
+    isAdmin = current_subject.admin?
 
+    begin
+      if isAdmin
+        Excursion.record_timestamps=false
+      end
+      @excursion.update_attributes!(params[:excursion])
+    ensure
+      if isAdmin
+        Excursion.record_timestamps=true
+      end
+    end
+   
     published = (wasDraft===true and @excursion.draft===false)
     if published
       @excursion.afterPublish

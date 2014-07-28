@@ -354,8 +354,8 @@
 						}
 
 						queriesCounter += 1;
-						if((data.success===true)&&(typeof data.results != "undefined")){
-							queriesData = queriesData.concat(data.results)
+						if((data.success===true)&&(typeof data.response != "undefined")&&(typeof data.response.results != "undefined")){
+							queriesData = queriesData.concat(data.response.results)
 						}
 
 						if(queriesCounter===instancesL){
@@ -367,10 +367,11 @@
 			}
 		};
 
-		var onFinishSearch = function(data){
+		var onFinishSearch = function(results){
 			cleanResults();
-			$(data).each(function(index,value){
-				drawResultInDOM(value);
+
+			$(results).each(function(index,result){
+				drawResultInDOM(result);
 			});
 			$("*").removeClass("waiting");
 		};
@@ -443,7 +444,7 @@
 				success : function(data) {
 					if(sessionSearchs[searchId][domain].completed == false){
 						sessionSearchs[searchId][domain].completed = true;
-						callback({success:true, results: data, searchId:searchId});
+						callback({success:true, response: data, searchId:searchId});
 					}
 				},
 				error: function(error){

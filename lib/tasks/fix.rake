@@ -338,6 +338,27 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+
+  #Usage
+  #Development:   bundle exec rake fix:removeInvalidSpamReports
+  #In production: bundle exec rake fix:removeInvalidSpamReports RAILS_ENV=production
+  task :removeInvalidSpamReports => :environment do
+    printTitle("Removing invalid/corrupted spam reports")
+
+    SpamReport.all.each do |report|
+      if report.activity_object_id.nil? or report.activity_object.nil? or report.activity_object.object_type.nil? or SpamReport.disabledActivityObjectTypes.include? report.activity_object.object_type or report.report_value.nil? or ![0,1].include? report.report_value
+        report.destroy
+      else
+        #Fix other fields
+        if report.reporter_actor_id == 0
+          report.update_column :reporter_actor_id, nil
+        end
+      end
+    end
+
+    printTitle("Task Finished")
+  end
+
   
 
   ####################

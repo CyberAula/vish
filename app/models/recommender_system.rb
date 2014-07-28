@@ -74,16 +74,16 @@ class RecommenderSystem
 
     #Add other excursions of the same author
     if !excursion.nil? and !options[:test]
-      userIdToReject = (!user.nil?) ? user.id : -1
-      unless userIdToReject == excursion.author.id
-        authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == userIdToReject or e.id == excursion.id}
+      authorIdToReject = (!user.nil?) ? Actor.normalize_id(user) : -1
+      unless excursion.author.nil? or authorIdToReject == excursion.author.id
+        authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == authorIdToReject or e.id == excursion.id}
         preSelection.concat(authoredExcursions)
         preSelection.uniq!
       end
     end
 
     pSL = preSelection.length
-
+    
     if options[:random]
       #Random: fill to Nmax, and select 2/3Nmax randomly
       if pSL < options[:nMax]
@@ -276,6 +276,10 @@ class RecommenderSystem
        :name => 60 #(For users)
     }
 
+    if n > 1000
+      opts[:max_matches] = n
+    end
+
     if !options[:page].nil?
       opts[:page] = options[:page].to_i
     end
@@ -419,7 +423,7 @@ class RecommenderSystem
       keywordsMargin = maxKeywords - keywords.length
       if keywordsMargin > 0
         #Tags of the excursions the user like
-        allLikedKeywords = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => user.id}).where("activity_objects.object_type IN (?)", ["Excursion"]).map{ |activity| activity.activity_objects.first.tag_list }.flatten.uniq
+        allLikedKeywords = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => Actor.normalize_id(user)}).where("activity_objects.object_type IN (?)", ["Excursion"]).map{ |activity| activity.activity_objects.first.tag_list }.flatten.uniq
         keywords = keywords + allLikedKeywords.sample(keywordsMargin)
         keywords.uniq!
       end
@@ -449,7 +453,7 @@ class RecommenderSystem
     if !user.nil? or !excursion.nil?
       opts[:without] = {}
       if !user.nil?
-        opts[:without][:author_id] = [user.id]
+        opts[:without][:author_id] = [ Actor.normalize_id(user) ]
       end
       if !excursion.nil?
         opts[:without][:id] = [excursion.id]
@@ -462,7 +466,7 @@ class RecommenderSystem
   def self.getExcursionsToFill(n,preSelection,user,excursion,options={})
     excursions = []
     nSubset = [80,4*n].max
-    ids_to_avoid = getIdsToAvoid(preSelection,excursion)
+    ids_to_avoid = getIdsToAvoid(preSelection,excursion,user)
     excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").limit(nSubset).sample(n)
   end
 

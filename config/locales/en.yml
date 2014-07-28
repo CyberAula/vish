@@ -23,6 +23,10 @@ en:
   activity_action:
     follow: "+ Follow"
     unfollow: "UnFollow"
+  admin:
+    title: "ViSH Administration Panel"
+    noitems: "There are no items."
+    noreports: "There are no reports."
   all: "all"
   announce: 
     title: "Announcement"
@@ -392,6 +396,7 @@ en:
     name: "embed"
     title3: "Write the embed you want to upload"
   evaluation:
+    alert: "Please fill in all evaluation questions. Thank you."
     teaching: "Teaching experience"
     contribute:
       zero: "Nobody has rated this excursion yet. Want to be the first?"
@@ -424,7 +429,6 @@ en:
     qlabel4: "Interdisciplinary"
     qlabel5: "label 5"
     learning: "Learning experience"
-    alert: "Please fill in all evaluation questions. Thank you."
     strong_disagree_b: "Strongly disagree"
     disagree_b: "Disagree"
     neutral_b: "Neutral"
@@ -686,6 +690,7 @@ en:
         teacher: "Education"
         other: "Other"
       select: "Select your occupation"
+    remove: "Remove user"
     tags:
       default: "VisHub, virtual, excursion"
       other: "Areas of interest"
@@ -815,24 +820,27 @@ en:
       activity: "Virtual Science Hub - Activities"
     name: "Virtual Science Hub"
   spam:
-    error_content: "There is an error in the excursion"
-    error_content_resource: "There is an error in the resource"
-    failure: "Captcha is invalid"
+    error_content: "Error in the excursion"
+    error_content_resource: "Error in the resource"
+    failure: "The report could not be sent"
     placeholder: "What is the issue?"
+    report_event: "Report event"
     report_excursion: "Report excursion"
     report_resource: "Report resource"
     spam_content: "Spam or inappropriate content"
-    success: "We have received your report. We will take a look at it very shortly. Thank you"  
+    success: "We have received your report. We will take a look at it very shortly. Thank you"
   swf:
     confirm_delete: "Delete SWF?"
     name: "flash object"
   today: "Today"
   top10: "Top 10"
+  unknown: "Unknown"
   url:
     input: "Paste your link here"
   user:
     one: "user"
     other: "users"
+    anonymous: "Anonymous"
   username: "username"
   vish:
     about: "About ViSH"   

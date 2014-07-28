@@ -11,7 +11,6 @@ class CategoriesController < ApplicationController
   def create
     create! do |success, failure|
       success.json { render :json => {"title"=>@category.title, "id"=>@category.id}, :status => 200 }
-      #failure.json { render :json => {"errors" => @category.errors}, :status => 400}
       failure.json { render :json => {"errors" => @category.errors.full_messages.to_sentence}, :status => 400}
     end
   end
@@ -48,7 +47,7 @@ class CategoriesController < ApplicationController
   def destroy
     super do |format|
       format.html {
-        redirect_to user_path(current_user)
+        redirect_to url_for(current_subject)
        }
 
       format.js
