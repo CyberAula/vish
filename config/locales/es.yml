@@ -40,6 +40,7 @@ es:
   announce: 
     title: "Noticia"
     body: "Durante febrero, el proyecto GLOBAL excursion va a organizar dos sesiones online con científicos. Más información y registro en"
+  are_you_sure: "Are you sure?"
   author: "autor"
   browse:
     title: "explorar"
@@ -690,8 +691,10 @@ es:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
     search_name: "actualización de estado"
   profile:
+    degrade: "Degradar a usuario"
     edit: "Editar perfil"
     profile: "Perfil"
+    promote: "Hacer administrador"
     occupation:
       label: "Ocupación"
       options:

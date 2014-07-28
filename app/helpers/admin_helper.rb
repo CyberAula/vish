@@ -22,4 +22,12 @@ module AdminHelper
 	def close_spam_report(report)
 		"/spam_reports/"+report.id.to_s+"/close"
 	end
+
+	def promote_user_path(subject)
+		user_path(subject) + "/promote"
+	end
+
+	def degrade_user_path(subject)
+		user_path(subject) + "/degrade"
+	end
 end
