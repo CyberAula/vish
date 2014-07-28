@@ -276,6 +276,10 @@ class RecommenderSystem
        :name => 60 #(For users)
     }
 
+    if n > 1000
+      opts[:max_matches] = n
+    end
+
     if !options[:page].nil?
       opts[:page] = options[:page].to_i
     end

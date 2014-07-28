@@ -271,4 +271,20 @@ ActivityObject.class_eval do
     return ids_to_avoid
   end
 
+  def self.getActivityObjectFromUniversalId(id)
+    #Universal id example: "Excursion:616@localhost:3000"
+    begin
+      fSplit = id.split("@")
+      unless fSplit[1]==Vish::Application.config.APP_CONFIG["domain"]
+        raise "This resource does not belong to this domain"
+      end
+      sSplit = fSplit[0].split(":")
+      objectType = sSplit[0]
+      objectId = sSplit[1]
+      objectType.singularize.classify.constantize.find_by_id(objectId)
+    rescue
+      nil
+    end
+  end
+
 end
