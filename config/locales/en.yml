@@ -27,6 +27,8 @@ en:
     title: "ViSH Administration Panel"
     noitems: "There are no items."
     noreports: "There are no reports."
+    noresource: "This resource no longer exists."
+    nouser: "This user no longer exists."
   all: "all"
   announce: 
     title: "Announcement"

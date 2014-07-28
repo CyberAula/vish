@@ -6,34 +6,45 @@
   <table id="spam_table" cellspacing='0' class="vish_admin_table">
     <thead>
       <tr>
-        <th><input type="checkbox" class="checkallresources" autocomplete="off" value="all"/></th>
-        <th>Resource</th>
-        <th>Type</th>
-        <th>User</th>
-        <th>Reporter</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th></th>
-        <th></th>
+        <th class="admin-checkbox"><input type="checkbox" class="checkallresources" autocomplete="off" value="all"/></th>
+        <th class="admin-resource">Resource</th>
+        <th class="admin-type">Type</th>
+        <th class="admin-user">User</th>
+        <th class="admin-reporter">Reporter</th>
+        <th class="admin-description">Description</th>
+        <th class="admin-date">Date</th>
+        <th class="admin-icontrash"></th>
+        <th class="admin-iconlock"></th>
       </tr>
     </thead>
     <tbody>
     <% @reports.each do |report| %>
       <tr>
-        <td>
+        <td class="admin-checkbox">
           <input type="checkbox" autocomplete="off" value="<%=report.id%>"/>
         </td>
-         <td>
-          <a target="_blank" href="<%=url_for(report.activity_object.object)%>"><span><%= report.activity_object.title %></span></a>
+         <td class="admin-resource">
+          <%unless report.activity_object.nil?%>
+            <a target="_blank" href="<%=url_for(report.activity_object.object)%>"><span><%= report.activity_object.title %></span></a>
+          <%else%>
+            <span><%=t('admin.noresource')%></span>
+          <%end%>
         </td>
-        <td>
+        <td class="admin-type">
           <!-- report.issueType -->
           <span><%=report.issueIcon=%></span>
         </td>
-        <td>
-          <a target="_blank" href="<%=url_for(report.actor.subject)%>"><span><%= report.actor.name %></span></a>
+        <td class="admin-user">
+          <%unless report.actor.nil? %>
+            <a target="_blank" href="<%=url_for(report.actor.subject)%>">
+              <span><%= report.actor.name %></span>
+              <address><%= report.actor.email%></address>
+            </a>
+          <%else%>
+            <span><%=t('admin.nouser')%></span>
+          <%end%>
         </td>
-        <td>
+        <td class="admin-reporter">
           <%reporter = report.actor_reporter%>
           <% unless reporter.nil? %>
             <a target="_blank" href="<%=url_for(reporter.subject)%>"><span><%= reporter.name %></span></a>
@@ -41,16 +52,17 @@
             <span><%= t('user.anonymous') %></span>
           <%end%>
         </td>
-        <td>
-          <span><%=report.issue=%></span>
+        <td class="admin-description">
+          <span><%= report.issue %></span>
+          <!--span><%#= truncate_name(report.issue, :length => 200) %></span-->
         </td>
-        <td>
+        <td class="admin-date">
           <span><%=report.created_at=%></span>
         </td>
-        <td>
+        <td class="admin-icontrash">
             <%= link_to(raw("<i class='icon-trash'></i> "), spam_report_path(report), :confirm => 'Are you sure?', :method => "delete")%>
         </td>
-        <td>
+        <td class="admin-iconlock">
             <%= link_to(raw("<i class='icon-lock'></i> "), close_spam_report(report), :method => "get")%>
         </td>
       </tr>
@@ -58,3 +70,6 @@
     </tbody>
   </table>
 <% end %>
+
+
+

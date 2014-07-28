@@ -1,6 +1,7 @@
 ActivityObject.class_eval do
 
   before_save :fill_indexed_lengths
+  before_destroy :destroy_spam_reports
 
   #Calculate quality score (in a 0-10 scale) 
   def calculate_qscore
@@ -33,17 +34,6 @@ ActivityObject.class_eval do
     self.update_column :qscore, overallQualityScore
   end
 
-  def fill_indexed_lengths
-    if self.title.is_a? String and self.title.scan(/\w+/).size>0
-      self.title_length = self.title.scan(/\w+/).size
-    end
-    if self.description.is_a? String and self.description.scan(/\w+/).size>0
-      self.desc_length = self.description.scan(/\w+/).size
-    end
-    if self.tag_list.is_a? ActsAsTaggableOn::TagList and self.tag_list.length>0
-      self.tags_length = self.tag_list.length
-    end
-  end
 
   ##############
   # Return JSON to the SEARCH API (federated search)
@@ -284,6 +274,27 @@ ActivityObject.class_eval do
       objectType.singularize.classify.constantize.find_by_id(objectId)
     rescue
       nil
+    end
+  end
+
+
+  private
+
+  def fill_indexed_lengths
+    if self.title.is_a? String and self.title.scan(/\w+/).size>0
+      self.title_length = self.title.scan(/\w+/).size
+    end
+    if self.description.is_a? String and self.description.scan(/\w+/).size>0
+      self.desc_length = self.description.scan(/\w+/).size
+    end
+    if self.tag_list.is_a? ActsAsTaggableOn::TagList and self.tag_list.length>0
+      self.tags_length = self.tag_list.length
+    end
+  end
+
+  def destroy_spam_reports
+    SpamReport.where(:activity_object_id => self.id).each do |spamReport|
+      spamReport.destroy
     end
   end
 
