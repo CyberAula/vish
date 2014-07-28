@@ -13,11 +13,11 @@ module ApplicationHelper
 	end
 
 	def popular_excursions(number=10)
-		Excursion.getPopular(number,{:user=>current_user, :random=>true})
+		Excursion.getPopular(number,{:actor=>current_subject, :random=>true})
 	end
 
 	def popular_resources(number=10)
-		ActivityObject.getPopular(number,{:models=>["Excursion","Document", "Webapp", "Scormfile","Link","Embed"], :user=>current_user, :random=>true})
+		ActivityObject.getPopular(number,{:models=>["Excursion","Document", "Webapp", "Scormfile","Link","Embed"], :actor=>current_subject, :random=>true})
 	end
 
 	def excursions_with_tag(tag)
@@ -46,6 +46,10 @@ module ApplicationHelper
 		end			
 		result += "</div>"
 		return raw result
+	end
+
+	def isAdmin?
+		user_signed_in? and current_user.admin?
 	end
 
 end

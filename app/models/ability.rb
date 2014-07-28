@@ -2,9 +2,10 @@ class Ability
   include SocialStream::Ability
 
   def initialize(subject)
-    # if subject.admin?
-    #   can :manage, Object
-    # end
+    
+    if !subject.nil? and subject.is_admin
+      can :manage, :all
+    end
 
     can :show_favorites, Category
     can :excursions, User

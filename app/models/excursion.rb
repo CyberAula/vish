@@ -743,8 +743,6 @@ class Excursion < ActiveRecord::Base
   ## Moodle Quiz XML Management (Handled by the MOODLEXML module moodlexml.rb)
   ####################
 
-
-
   def  self.createMoodleQUIZXML(filePath,fileName,qjson)
     require 'moodlexml'
     MOODLEQUIZXML.createMoodleQUIZXML(filePath,fileName,qjson)
@@ -1010,23 +1008,6 @@ class Excursion < ActiveRecord::Base
       rjson
   end
 
-  #we don't know what happens or how it happens but sometimes in social_stream
-  # the activity inside the activity_object is nil, so we fix it here
-  def fix_post_activity_nil
-    if self.post_activity == nil
-      a = Activity.new :verb         => "post",
-                       :author_id    => self.activity_object.author_id,
-                       :user_author  => self.activity_object.user_author,
-                       :owner        => self.activity_object.owner,
-                       :relation_ids => self.activity_object.relation_ids,
-                       :parent_id    => self.activity_object._activity_parent_id
-
-      a.activity_objects << self.activity_object
-
-      a.save!
-    end
-  end
-
   def increment_download_count
     self.activity_object.increment_download_count
   end
@@ -1042,6 +1023,7 @@ class Excursion < ActiveRecord::Base
   #See app/decorators/social_stream/base/activity_object_decorator.rb
   #Method calculate_qscore
 
+
   #######################
   ## Get Excursion subsets
   ######################
@@ -1055,7 +1037,7 @@ class Excursion < ActiveRecord::Base
       nSubset = n
     end
 
-    ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:user])
+    ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:actor])
     excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").first(nSubset)
     
     if random
@@ -1065,9 +1047,11 @@ class Excursion < ActiveRecord::Base
     return excursions
   end
 
-  def self.getIdsToAvoid(ids_to_avoid=[],user=nil)
-    if !user.nil?
-      ids_to_avoid.concat(Excursion.authored_by(user).map{|e| e.id})
+  def self.getIdsToAvoid(ids_to_avoid=[],actor=nil)
+    ids_to_avoid = ids_to_avoid || []
+    
+    if !actor.nil?
+      ids_to_avoid.concat(Excursion.authored_by(actor).map{|e| e.id})
       ids_to_avoid.uniq!
     end
 
@@ -1078,6 +1062,7 @@ class Excursion < ActiveRecord::Base
 
     return ids_to_avoid
   end
+
 
   private
 
@@ -1094,7 +1079,13 @@ class Excursion < ActiveRecord::Base
       activity_object.age_max = ageRange.split("-")[1].delete(' ')
     rescue
     end
+    original_updated_at = self.updated_at
     activity_object.save!
+
+    #Ensure that the updated_at value of the AO is consistent with the object
+    #Prevent admin to modify updated_at values as well.
+    self.update_column :updated_at, original_updated_at
+    activity_object.update_column :updated_at, original_updated_at
 
     if !parsed_json["vishMetadata"]
       parsed_json["vishMetadata"] = {}
@@ -1114,6 +1105,23 @@ class Excursion < ActiveRecord::Base
       activity_object.relation_ids=[Relation::Private.instance.id]
     else
       activity_object.relation_ids=[Relation::Public.instance.id]
+    end
+  end
+
+  # We don't know what happens or how it happens but sometimes in social_stream
+  # the activity inside the activity_object is nil, so we fix it here
+  def fix_post_activity_nil
+    if self.post_activity == nil
+      a = Activity.new :verb         => "post",
+                       :author_id    => self.activity_object.author_id,
+                       :user_author  => self.activity_object.user_author,
+                       :owner        => self.activity_object.owner,
+                       :relation_ids => self.activity_object.relation_ids,
+                       :parent_id    => self.activity_object._activity_parent_id
+
+      a.activity_objects << self.activity_object
+
+      a.save!
     end
   end
   

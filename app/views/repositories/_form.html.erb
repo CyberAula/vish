@@ -31,7 +31,7 @@
         <div id="document" class="accordion-body collapse in">
           <div class="accordion-inner">
             <% d = Document.new %>
-            <% d.owner_id = Actor.normalize_id(current_user) %>
+            <% d.owner_id = Actor.normalize_id(current_subject) %>
             <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
               <%= f.hidden_field :owner_id %>
               <%= f.file_field :file %>
@@ -56,7 +56,7 @@
         <div id="link" class="accordion-body collapse">
           <div class="accordion-inner">
             <% d = Link.new %>
-            <% d.owner_id = Actor.normalize_id(current_user) %>
+            <% d.owner_id = Actor.normalize_id(current_subject) %>
             <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
               <%= f.hidden_field :owner_id %>
               <%= f.hidden_field :callback_url %>
@@ -84,7 +84,7 @@
         <div id="embed" class="accordion-body collapse">
           <div class="accordion-inner">
             <% d = Embed.new %>
-            <% d.owner_id = Actor.normalize_id(current_user) %>
+            <% d.owner_id = Actor.normalize_id(current_subject) %>
             <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
               <%= f.hidden_field :owner_id %>
               <%#= f.hidden_field :image %>

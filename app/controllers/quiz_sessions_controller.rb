@@ -5,7 +5,7 @@ class QuizSessionsController < ApplicationController
   # GET /quiz_sessions/
   # List all sessions
   def index
-    @quiz_sessions = QuizSession.where(:owner_id => Actor.normalize_id(current_user))
+    @quiz_sessions = QuizSession.where(:owner_id => Actor.normalize_id(current_subject))
     @quiz_active_sessions = @quiz_sessions.where(:active => true).order('created_at DESC')
     @quiz_inactive_sessions = @quiz_sessions.where(:active => false).order('created_at DESC')
   end
@@ -15,7 +15,7 @@ class QuizSessionsController < ApplicationController
   # Respond with the quiz session id
   def create
     qs = QuizSession.new
-    qs.owner_id = Actor.normalize_id(current_user)
+    qs.owner_id = Actor.normalize_id(current_subject)
 
     if params[:name]
       qs.name = params[:name]
@@ -216,10 +216,11 @@ class QuizSessionsController < ApplicationController
     end
   end
 
+
   private
 
   def verify_owner(qs)
-    return qs.owner == current_user
+    return (!qs.owner.nil? and !current_subject.nil? and (qs.owner.id == current_subject.actor.id))
   end
 
 end

@@ -2,22 +2,6 @@ Vish::Application.routes.draw do
 
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations'}
 
-  resource :session_locale
-  resource :spam_report
-
-  resources :quiz_sessions do
-    get "results", :on => :member
-  end
-  match 'quiz_sessions/:id/close' => 'quiz_sessions#close'
-  match 'quiz_sessions/:id/delete' => 'quiz_sessions#delete'
-  match 'quiz_sessions/:id/answer' => 'quiz_sessions#updateAnswers'
-  match 'qs/:id' => 'quiz_sessions#show'
-
-  match 'help' => 'help#index'
-  match 'faq' => 'faq#index'
-  match 'legal_notice' => 'legal_notice#index'
-  match 'overview' => 'overview#index'
-  
   match 'users/:id/excursions' => 'users#excursions'
   match 'users/:id/resources' => 'users#resources'
   match 'users/:id/events' => 'users#events'
@@ -25,12 +9,30 @@ Vish::Application.routes.draw do
   match 'users/:id/followers' => 'users#followers'
   match 'users/:id/followings' => 'users#followings'
 
+  resource :session_locale
+
+  #redirect /home to /excursions
+  match '/home' => 'excursions#index'
+  #Allow login for applications (i.e. ViSH Mobile) that uses the home.json.
+  match '/home.json' => 'home#index', :format => :json
+
+  match 'help' => 'help#index'
+  match 'faq' => 'faq#index'
+  match 'legal_notice' => 'legal_notice#index'
+  match 'overview' => 'overview#index'
+  #Download the user manual and count the number of downloads
+  match 'user_manual' => 'help#download_user_manual'
+  
   # APIs
   match '/apis/search' => 'federated_search#search'
   match '/apis/iframe_api' => 'excursions#iframe_api'
   match '/apis/recommender' => 'recommender#api_excursion_suggestions'
 
-  # Match the filter before the excursions resources
+  #Search APIs used by VE
+  match 'resources/search' => 'resources#search'
+  match 'lre/search' => 'lre#search_lre'
+
+  # Excursions. Match the filter before the excursions resources
   match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
   match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
 
@@ -50,34 +52,43 @@ Vish::Application.routes.draw do
   match '/excursions/tmpJson' => 'excursions#uploadTmpJSON', :via => :post
   match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
 
-  match '/categories/add_items' => 'categories#add_items', :via => :post
-  match '/categories/favorites' => 'categories#show_favorites'
-
-  match 'resources/search' => 'resources#search'
-  
-  match 'lre/search' => 'lre#search_lre'
-
-  #redirect /home.json to the original path
-  #This way, ViSH Mobile login continue working
-  match '/home.json' => 'home#index', :format => :json
-
-  #redirect /home to /excursions
-  match '/home' => 'excursions#index'
+  #Quiz Sessions
+  resources :quiz_sessions do
+    get "results", :on => :member
+  end
+  match 'quiz_sessions/:id/close' => 'quiz_sessions#close'
+  match 'quiz_sessions/:id/delete' => 'quiz_sessions#delete'
+  match 'quiz_sessions/:id/answer' => 'quiz_sessions#updateAnswers'
+  match 'qs/:id' => 'quiz_sessions#show'
 
   #PDF to Excursion
   resources :pdfexes
 
-  #Download the user manual and count the number of downloads
-  match 'user_manual' => 'help#download_user_manual'
+  #Categories
+  match '/categories/add_items' => 'categories#add_items', :via => :post
+  match '/categories/favorites' => 'categories#show_favorites'
 
+  #Catalogue
+  match '/catalogue' => 'catalogue#index'
+  match '/catalogue/:category' => 'catalogue#show'
+
+  #Competitions
   resources :competitions
   resource :contest
   resources :contest_all
   resources :about
 
-  match '/catalogue' => 'catalogue#index'
-  match '/catalogue/:category' => 'catalogue#show'
+  #Administration panel
+  match 'admin' => 'admin#index'
+  match 'admin/closed_reports' => 'admin#closed_reports'
+  match 'admin/users' => 'admin#users'
 
+  #Spam reports
+  resources :spam_reports
+  match 'spam_reports/:id/open' => 'spam_reports#open'
+  match 'spam_reports/:id/close' => 'spam_reports#close'
+
+  # Shorten URLs
   # Add this at the end so other URLs take prio
   match '/s/:id' => "shortener/shortened_urls#show"
 
@@ -89,7 +100,10 @@ Vish::Application.routes.draw do
     resources :los
   end
 
+  #Tracking System
   resources :tracking_system_entries
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -168,7 +168,7 @@ ActivityObject.class_eval do
     resource = self.object
 
     if resource.class.superclass.name=="Document"
-      if ["Picture"].include? resource.class.name
+      if ["Picture","Swf"].include? resource.class.name
         relativePath = resource.file.url
       end
     elsif ["Scormfile","Webapp"].include? resource.class.name
@@ -245,7 +245,7 @@ ActivityObject.class_eval do
       options[:models] = ["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"]
     end
 
-    ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:user])
+    ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:actor])
     aos = ActivityObject.joins(:activity_object_audiences).where("activity_objects.object_type in (?) and activity_objects.id not in (?) and activity_object_audiences.relation_id in (?)", options[:models], ids_to_avoid, Relation::Public.first.id).order("ranking DESC").first(nSubset)
 
     if random
@@ -255,9 +255,11 @@ ActivityObject.class_eval do
     return aos.map{|ao| ao.object}
   end
 
-   def self.getIdsToAvoid(ids_to_avoid=[],user=nil)
-    if !user.nil?
-      ids_to_avoid.concat(ActivityObject.authored_by(user).map{|ao| ao.id})
+   def self.getIdsToAvoid(ids_to_avoid=[],actor=nil)
+    ids_to_avoid = ids_to_avoid || []
+
+    if !actor.nil?
+      ids_to_avoid.concat(ActivityObject.authored_by(actor).map{|ao| ao.id})
       ids_to_avoid.uniq!
     end
 
@@ -267,6 +269,22 @@ ActivityObject.class_eval do
     end
 
     return ids_to_avoid
+  end
+
+  def self.getActivityObjectFromUniversalId(id)
+    #Universal id example: "Excursion:616@localhost:3000"
+    begin
+      fSplit = id.split("@")
+      unless fSplit[1]==Vish::Application.config.APP_CONFIG["domain"]
+        raise "This resource does not belong to this domain"
+      end
+      sSplit = fSplit[0].split(":")
+      objectType = sSplit[0]
+      objectId = sSplit[1]
+      objectType.singularize.classify.constantize.find_by_id(objectId)
+    rescue
+      nil
+    end
   end
 
 end

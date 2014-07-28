@@ -14,9 +14,9 @@
 
     <%= render partial: "settings/notifications" %>
 
-    <% if current_subject.respond_to? :authentication_token %>
-      <%= render partial: 'settings/api_key' %>
-    <% end %>
+    <% #if current_subject.respond_to? :authentication_token %>
+      <% #render partial: 'settings/api_key' %>
+    <% #end %>
 
     <% if current_subject == current_user %>
       <%= render partial: "devise/registrations/delete_account",

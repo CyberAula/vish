@@ -78,12 +78,13 @@ module SocialStream
           has activity_object.qscore, :as => :qscore, :sortable => true
           has activity_object.ranking, :as => :ranking, :sortable => true
           has created_at
-          has Relation::Public.instance.id.to_s, :type => :integer, :as => :relation_ids
+          has activity_object.activity_object_audiences(:relation_id), :as => :relation_ids
 
           has activity_object.title_length, :as => :title_length, :type => :integer, :sortable => true
           has activity_object.desc_length, :as => :desc_length, :type => :integer, :sortable => true
           has activity_object.tags_length, :as => :tags_length, :type => :integer, :sortable => true
         end
+
       end
       
       module ClassMethods

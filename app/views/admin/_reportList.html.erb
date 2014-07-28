@@ -1,0 +1,60 @@
+<% rL = @reports.length %>
+<% if rL === 0 %>
+  <%= render '/layouts/emptytable', :fullmessage => t('admin.noreports') %>
+<% else %>
+
+  <table id="spam_table" cellspacing='0' class="vish_admin_table">
+    <thead>
+      <tr>
+        <th><input type="checkbox" class="checkallresources" autocomplete="off" value="all"/></th>
+        <th>Resource</th>
+        <th>Type</th>
+        <th>User</th>
+        <th>Reporter</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td>
+          <input type="checkbox" autocomplete="off" value="<%=report.id%>"/>
+        </td>
+         <td>
+          <a target="_blank" href="<%=url_for(report.activity_object.object)%>"><span><%= report.activity_object.title %></span></a>
+        </td>
+        <td>
+          <!-- report.issueType -->
+          <span><%=report.issueIcon=%></span>
+        </td>
+        <td>
+          <a target="_blank" href="<%=url_for(report.actor.subject)%>"><span><%= report.actor.name %></span></a>
+        </td>
+        <td>
+          <%reporter = report.actor_reporter%>
+          <% unless reporter.nil? %>
+            <a target="_blank" href="<%=url_for(reporter.subject)%>"><span><%= reporter.name %></span></a>
+          <% else %>
+            <span><%= t('user.anonymous') %></span>
+          <%end%>
+        </td>
+        <td>
+          <span><%=report.issue=%></span>
+        </td>
+        <td>
+          <span><%=report.created_at=%></span>
+        </td>
+        <td>
+            <%= link_to(raw("<i class='icon-trash'></i> "), spam_report_path(report), :confirm => 'Are you sure?', :method => "delete")%>
+        </td>
+        <td>
+            <%= link_to(raw("<i class='icon-lock'></i> "), close_spam_report(report), :method => "get")%>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

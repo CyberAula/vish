@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140723111544) do
+ActiveRecord::Schema.define(:version => 20140725114512) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20140723111544) do
     t.integer  "mve",                   :default => 0
     t.boolean  "is_mve",                :default => false
     t.integer  "rankMve",               :default => 0
+    t.boolean  "is_admin",              :default => false
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
@@ -501,11 +502,12 @@ ActiveRecord::Schema.define(:version => 20140723111544) do
 
   create_table "spam_reports", :force => true do |t|
     t.integer  "activity_object_id"
-    t.integer  "reporter_user_id"
-    t.string   "issue"
+    t.integer  "reporter_actor_id"
+    t.text     "issue"
     t.integer  "report_value"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "pending",            :default => true
   end
 
   create_table "stats", :force => true do |t|
