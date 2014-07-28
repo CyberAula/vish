@@ -1,0 +1,86 @@
+//tabs
+.admin
+  .tabbable 
+    @include header-tabbable-new
+#spam_table
+  thead
+    tr
+      height: 30px
+      border-bottom: 1px solid #D0D0D0
+      th
+        font-family: $firstFontFamily
+        font-size: 18px
+        color: $gray
+        text-align: left
+  tbody
+    tr
+      margin-top: 10px
+      td
+      .admin-checkbox
+
+      .admin-resource
+        span
+          font-family: $thirdFontFamily
+          font-size: 14px
+          color: $gray
+      .admin-type
+        i
+          color: $firstColor
+          font-size: 25px
+          opacity: 0.5
+      .admin-user,
+      .admin-reporter
+        a
+          span
+            font-family: $thirdFontFamily
+            font-size: 16px
+            color: $grayLight
+            &:hover
+              color: $secondColor
+          &:hover
+            text-decoration: none
+      .admin-description
+        span
+          font-family: $secondFontFamily
+          font-size: 12px
+          color: $gray
+          height: 20px
+          overflow-y: hidden
+          &:hover
+            height: auto
+            overflow-y: auto
+      .admin-date
+        span
+          font-family: $secondFontFamily
+          font-size: 14px
+          color: #9E9E9E
+      .admin-icontrash,
+      .admin-iconlock
+        text-align: right
+        font-size: 25px
+        a
+          color: $gray
+          &:hover
+            color: $secondColor
+            text-decoration: none
+
+
+
+  .admin-checkbox
+    width: 3%
+  .admin-resource
+    width: 10%
+  .admin-type
+    width: 5%
+  .admin-user
+    width: 10%
+  .admin-reporter
+    width: 10%
+  .admin-description
+    width: 40%
+  .admin-date
+    width: 12%
+  .admin-icontrash
+    width: 5%
+  .admin-iconlock
+    width: 5%

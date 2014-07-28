@@ -1,4 +1,25 @@
-<p><a href="<%=admin_open_reports_path%>">Pending reports</a> | <a href="<%=admin_closed_reports_path%>">Closed reports</a></p>
-<br><br>
 
-<%= render '/admin/reportList' %>
+<section class="admin">
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+<!--excursions-->
+      <li class="active">
+        <a href="<%=admin_open_reports_path%>" data-toggle="tab">
+          <i class="icon-exclamation-sign"></i>
+          <span class="">Pending reports</span>
+        </a>
+      </li>
+<!--resources-->      
+      <li>
+        <a href="<%=admin_open_reports_path%>" data-toggle="tab">
+          <i class='icon-lock'></i>
+          <span class="">Closed reports</span>
+        </a>
+      </li>
+
+
+    </ul>
+  </div>
+</section>
+
+ <%= render '/admin/reportList' %>
