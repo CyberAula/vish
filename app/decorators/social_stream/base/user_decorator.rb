@@ -36,11 +36,19 @@ User.class_eval do
 
   def destroy_user_resources
     #Destroy user resources
-    ActivityObject.authored_by(self).map{|ao| ao.object}.each do |object|
-      object.destroy
+
+    ActivityObject.authored_by(self).each do |ao|
+      object = ao.object
+      unless object.nil?
+        object.destroy
+      end
     end
-    ActivityObject.owned_by(self).map{|ao| ao.object}.each do |object|
-      object.destroy
+    
+    ActivityObject.owned_by(self).each do |ao|
+      object = ao.object
+      unless object.nil?
+        object.destroy
+      end
     end
   end
   
