@@ -27,6 +27,8 @@ es:
     title: "Panel de Administración de ViSH"
     noitems: "No hay elementos."
     noreports: "No hay reportes."
+    noresource: "Este recurso ya no existe."
+    nouser: "Este usuario ya no existe."
   all: "todos"
   announce: 
     title: "Noticia"

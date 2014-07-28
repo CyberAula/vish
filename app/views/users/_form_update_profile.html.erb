@@ -120,7 +120,7 @@
                $(this).button('loading');
                $("#hide_profile_form").hide();
 
-               var tagList = $(".tagList");
+               var tagList = $(".tagList")[1];
                $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
                return true;
              });
