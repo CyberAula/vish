@@ -53,8 +53,8 @@
           <%end%>
         </td>
         <td class="admin-description">
-          <span><%= report.issue %></span>
-          <!--span><%#= truncate_name(report.issue, :length => 200) %></span-->
+          <!--span><%= report.issue %></span-->
+          <span><%= truncate_name(report.issue, :length => 200) %></span>
         </td>
         <td class="admin-date">
           <span><%=report.created_at=%></span>
