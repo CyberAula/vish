@@ -116,11 +116,6 @@
       });
     });
 
-    $(".spam_radio").click(function(e) {
-      $(".textarea_spam").hide("slow");
-      $(e.target).siblings("textarea").show("slow");
-    });
-
     $(".with_tooltip").tooltip({ placement: 'bottom'});
   });
 </script>
@@ -167,9 +162,11 @@
   </div>
   <!--favorite-->
   <% unless editingToolbar %>
-    <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn btn-default', :title =>t('excursion.actions.favorite')})%>
+ 
+    <% unless @excursion.post_activity.nil? %>
+      <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
+    <%end%>
     
-    <!--<button class="btn" rel="tooltip" title="my room"><i class="fa fa-facetime-video"></i></button>-->
       <%if user_signed_in? %>
         <%=categories_select(:category_id, @excursion)%>
         <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
@@ -233,12 +230,14 @@
   <h2><%= @excursion.title %></h2>
 
   <div class="tab-content excursion-social">
+
     <!-- tab1 / description -->
     <div class="tab-pane active" id="tab1">
 
         <!--description-->
         <%= render :partial => 'excursions/excursion-info' %>
     </div>
+
     <!-- tab2 / embed -->
     <div class="tab-pane contentembed" id="tab2">
       <div class="form-group">
@@ -254,6 +253,7 @@
         </div>
       </div>           
     </div>
+
     <!-- tab3 / share -->
     <div class="tab-pane contentShare" id="tab3">
 
@@ -293,7 +293,9 @@
       <p><%=t("excursion.download_scorm")%></p>
 
     </div> 
+
     <!-- tab5 / spam -->
+<<<<<<< HEAD
     <div class="tab-pane contentReport" id="tab5">
 
         <div class="small">
@@ -332,5 +334,12 @@
         
       
     </div> 
+=======
+    <div class="tab-pane" id="tab5">
+      <%@activity_object = @excursion.activity_object%>
+      <%= render '/spam_report/form' %>
+    </div>
+
+>>>>>>> d810be0df94db692153f3870db6e0b44f1b8fff1
   </div>
 <%end%>

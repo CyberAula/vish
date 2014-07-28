@@ -1,8 +1,10 @@
 <section class="user">
   <header>
-<!--box info-->
+
+  <!--box info-->
     <div id="profile-info">
-<!--avatar-->
+
+      <!--avatar-->
       <div class="avatar">
         <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
         <%if @user.is_mve %>
@@ -10,28 +12,28 @@
         <%end%>
       </div>
 
-
-<!--box personal info-->
+      <!--box personal info-->
       <section class="information">
+
         <div class="briefing">
 
-<!--__Tags -->
+          <!-- Tags -->
           <div class="tags-profile">
             <ul class="tagList">
               <%= @user.profile.subject.tag_list%>
             </ul>
           </div>
 
-
-<!--__name-->
+          <!--name-->
           <div class="name">
             <h2><%= @user.name %></h2>
           </div>
 
-<!--__help-->
+      <!--__help-->
       <%= render :partial => 'help/help_profile' %>
 
-<!--__description-->
+
+          <!--description-->
           <div class="description">
             <% if @user.profile.description? %>
               <%= @user.profile.description%>
@@ -40,15 +42,15 @@
             <% end %>
           </div>
 
-<!--__Email (only for admins) -->
-        <%if isAdmin? %>
-          <div class="ocupation">
-              <h3 class="name-roll">Email</h3>
-                <span><%= profile_subject.email %></span>
-          </div>
-        <%end%>
+          <!--__Email (only for admins) -->
+          <% if isAdmin? %>
+            <div class="ocupation">
+                <h3 class="name-roll">Email</h3>
+                  <span><%= profile_subject.email %></span>
+            </div>
+          <%end%>
 
-<!--__Occupation -->
+          <!--__Occupation -->
           <div class="ocupation">
             <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>
               <h3 class="select">
@@ -62,7 +64,39 @@
             <% end %>
           </div>
 
+          <div id="effect" class="newClass ui-corner-all">
 
+            <!--__Organization -->
+            <div class="organization">
+              <h3><%= t('profile.organization') %></h3>
+              <span><%= @user.profile.organization %></span>
+            </div>
+
+            <!--__Website -->
+            <div class="website">
+              <h3><%= t('profile.website') %></h3>
+              <span><%= link_to @user.profile.website,  @user.profile.website, :target=>'_blank' %></span>
+            </div>
+
+            <!--__birthday -->
+            <div class="birthday">
+              <h3><%= t('profile.' + current_subject.class.to_s.downcase + '.birthday') %></h3>
+              <span><%= @user.profile.birthday %></span>
+            </div>
+
+            <!--__city -->
+            <div class="city">
+            <h3><%= t('profile.city') %></h3>
+            <span><%= @user.profile.city %></span>
+            </div>
+
+            <!--__Country -->
+            <div class="county">
+              <h3><%= t('profile.country') %></h3>
+              <span><%= @user.profile.country %></span>
+            </div>
+
+<<<<<<< HEAD
 
 <div id="effect" class="newClass ui-corner-all">
 
@@ -104,6 +138,9 @@
 
 
 
+=======
+          </div>
+>>>>>>> d810be0df94db692153f3870db6e0b44f1b8fff1
 
           <div class="toolbar-profile">
             <%= render :partial => 'users/toolbar_user' %>
@@ -114,8 +151,6 @@
         <%= render :partial => 'users/form_update_profile' %>
       </section>
     </div>
-
-
   </header>
 
 <%= render partial: 'users/profile-info' %>
@@ -133,5 +168,8 @@ $("#select_occupation_link").click(function(){
 
 <% end %>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d810be0df94db692153f3870db6e0b44f1b8fff1
 </section>

@@ -1,13 +1,17 @@
 <div class="btn-group">
+  
   <!--BTN ADD-->
   <% if !profile_subject_is_current? %>
+
     <button class="btn btn-follow">
       <%= contact_button(profile_subject) %>
      </button>
+
   <% end %>
   <!-- Edit your profile -->
   <% @profile = profile_or_current_subject.profile %>
   <% if can?(:update, @profile) %>
+
     <button class="edit_icon btn btn-default">
       <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %> 
     </button>
@@ -50,9 +54,15 @@
         <input type="button" class="btn btn-primary" value="<%=t('mailboxer.send')%>"/>
       </div>
     </div>
+
   </div>
 </div>
 
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <input type="button" class="btn btn-primary" value="<%=t('mailboxer.send')%>"/>
+  </div>
+</div>
 
 <script>
   $(function() {

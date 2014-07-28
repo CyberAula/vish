@@ -1,5 +1,3 @@
-<!-- ESPACIO PARA QUE @HOLACAROL JUEGUE CON SUS BOTONES -->
-
 <% if user_signed_in? %>
   <button class="mashme-button" id="mashme-button-excursion">
     <i class="icon"></i>
@@ -49,7 +47,7 @@
     var target_url = encodeURI("<%= request.url %>" + "|||" + $('#mashme-room-id').val());
     <% end %>
     var target_title = encodeURI("<%= @event.title.split(' ').map {|w| w.capitalize }.join('') unless @event.title.blank? %>");
-    name="<%= if user_signed_in?; then CGI::escapeHTML(current_user.name); else ""; end %>"
+    name="<%= if user_signed_in?; then CGI::escapeHTML(current_subject.name); else ""; end %>"
     $.ajax({
       url: "http://www.mashme.tv/api/buttons",
       type: "POST",

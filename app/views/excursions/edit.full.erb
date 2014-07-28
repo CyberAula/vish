@@ -33,11 +33,19 @@
 	
 	options["developping"] = false;
 
-	options["user"] = {
-		name: "<%= current_user.name %>",
-		id: "<%= Actor.normalize_id(current_user) %>",
-		token: "<%= form_authenticity_token %>"
-	}
+	<% unless current_subject.admin? %>
+		options["user"] = {
+			name: "<%= current_subject.name %>",
+			id: "<%= Actor.normalize_id(current_subject) %>",
+			token: "<%= form_authenticity_token %>"
+		}
+	<% else %>
+		options["user"] = {
+			name: "<%= @excursion.owner.name %>",
+			id: "<%= Actor.normalize_id(@excursion.owner) %>",
+			token: "<%= form_authenticity_token %>"
+		}
+	<% end %>
 
 	options["draft"] = <%= @excursion.draft.to_s %>;
 
@@ -47,7 +55,7 @@
 		<% if @excursion.draft.to_s == "false" %>
 			options["exitURL"]  = "<%= excursion_path(@excursion) %>";
 		<% else %>
-			options["exitURL"]  = "<%= user_path(current_subject) %>";
+			options["exitURL"]  = "<%= url_for(current_subject) %>";
 		<% end %>
 	<% end %>
 

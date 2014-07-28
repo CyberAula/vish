@@ -66,7 +66,7 @@
                   <%= f.hidden_field :callback_url %>
                   <%= f.hidden_field :loaded %>
                   <%#= f.hidden_field :image %>
-                  <%= f.text_field :url, :class => "form-control" %>
+                  <%= f.text_field :url %>
                   <%= f.hidden_field :title%>
                   <%= f.hidden_field :description%>
                   <%= f.hidden_field :tag_list, :multiple => true %>
@@ -94,7 +94,7 @@
                 <%= form_for d, :namespace => 'new_file_only', :remote => false, :class => "form-group" do |f| %>
                   <%= f.hidden_field :owner_id %>
                   <%#= f.hidden_field :image %>
-                  <%= f.text_field :fulltext, :class => "form-control" %>
+                  <%= f.text_field :fulltext %>
                   <%= f.hidden_field :title%>
                   <%= f.hidden_field :description%>
                   <%= f.hidden_field :tag_list, :multiple => true %>
@@ -105,6 +105,7 @@
                 <% end %>
               </div>
             </div>
+
           </div>
         </div>
       

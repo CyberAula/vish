@@ -23,6 +23,10 @@ es:
   activity_action:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
+  admin:
+    title: "Panel de Administración de ViSH"
+    noitems: "No hay elementos."
+    noreports: "No hay reportes."
   all: "todos"
   announce: 
     title: "Noticia"
@@ -395,13 +399,14 @@ es:
     name: "embed"
     title3: "Escribe el recurso a insertar"
   evaluation:
+    alert: "Por favor rellena todas las preguntas de evaluación. Gracias."
     teaching: "Experiencia de enseñanza"
     contribute: 
       zero: "Nadie ha evaluado esta excursión todavía. ¿Quieres ser el primero?"
       one: "1 persona ha valorado esta excursión. ¿Quieres contribuir?"
       other: "%{count} personas han valorado esta excursión. ¿Quieres contribuir?"
+    evaluation: "evalúa"  
     experience: "Tu experiencia de profesor con esta excursión"
-    evaluation: "evalúa"    
     phrase0: "Evalúa el contenido de esta excursión"
     phrase1: "Evalúa el diseño de esta excursión"
     phrase2: "¿Están los alumnos motivados con las actividades de la excursión?"
@@ -437,7 +442,6 @@ es:
     neutral_a: "Medio"
     disagree_a: "Malo"
     strong_disagree_a: "Muy malo"
-    alert: "Por favor rellena todas las preguntas de evaluación. Gracias."
     success: "Tus respuestas se han guardado. Gracias por ayudar a evaluar esta excursión."
   event:
     actions:
@@ -684,6 +688,7 @@ es:
         scientist: "Ciencia"
         select: "Selecciona tu ocupación"
         teacher: "Educación"
+    remove: "Borrar usuario"
     tags:
       default: "VisHub, virtual, excursión"
       other: "Áreas de interés"
@@ -812,24 +817,27 @@ es:
       activity: "Virtual Science Hub - Actividades"
     name: "Virtual Science Hub"
   spam:
-    error_content: "Reportar un error en la excursión"
-    error_content_resource: "Reportar un error en el recurso"
-    failure: "El captcha es inválido"
+    error_content: "Error en la excursión"
+    error_content_resource: "Error en el recurso"
+    failure: "El reporte no pudo ser enviado"
     placeholder: "¿Cúal es el problema?"
+    report_event: "Reportar evento"
     report_excursion: "Reportar excursión"
     report_resource: "Reportar recurso"
     spam_content: "Contenido inapropiado o spam"
     success: "Hemos recibido tu reporte. Lo miraremos en la mayor brevedad posible. Muchas gracias"
   swf:
-    name: "objecto flash"
     confirm_delete: "¿Borrar SWF?"
+    name: "objecto flash"
   today: "Hoy"
   top10: "Mejores 10"
+  unknown: "Desconocido"
   url:
     input: "Pega aquí el enlace"
   user:
     one: "usuario"
     other: "usuarios"
+    anonymous: "Anónimo"
   username: "usuario"
   vish:
     about: "Acerca de ViSH"    
@@ -842,7 +850,6 @@ es:
     description3: "ViSH te permite organizar y anunciar reuniones en MashMe para mostrar excursiones virtuales en tiempo real a participantes remotos."
     description4: "Período de competición Vish está abierto ahora! Usted puede participar fácilmente creando nuevas excursiones."
     description41: "Obtener el <a href='http://vishub.org/VISH_competitions.pdf'>folleto</a> o consulta la <a href='http://vishub.org/faq#faq_competitions_1a'>ayuda</a>"
-
     sentence1: "Crea tu cuenta con ViSH"
     sentence2: "ViSH es una plataforma social de ciencia"
     team: "El equipo de ViSH"

@@ -10,6 +10,8 @@ User.class_eval do
 
   delegate_attributes :birthday, :birthday=,
                       :to => :profile
+
+  before_destroy :destroy_user_resources
   
   Occupation = [:select, :teacher, :scientist, :other]
 
@@ -29,8 +31,17 @@ User.class_eval do
     profile.description
   end
 
-  def admin?
-    self.is_admin
+
+  private
+
+  def destroy_user_resources
+    #Destroy user resources
+    ActivityObject.authored_by(self).map{|ao| ao.object}.each do |object|
+      object.destroy
+    end
+    ActivityObject.owned_by(self).map{|ao| ao.object}.each do |object|
+      object.destroy
+    end
   end
   
 end
