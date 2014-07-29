@@ -24,9 +24,7 @@ Actor.class_eval do
   #Make the actor admin
   def make_me_admin
     self.is_admin = true
-
     #prevent the admin to be indexed by the search engine
-    self.relation_ids = [Relation::Private.instance.id]
     self.activity_object.relation_ids = [Relation::Private.instance.id]
     self.save!
 
@@ -35,6 +33,19 @@ Actor.class_eval do
     contact.user_author = self
     contact.relation_ids = [ Relation::LocalAdmin.instance.id ]
     contact.save!
+  end
+
+  #Remove admin privilegies of the actor
+  def degrade
+    self.is_admin = false
+    self.activity_object.relation_ids = [Relation::Public.instance.id]
+    self.save!
+
+    #Remove contact in Social Stream
+    contact = Contact.where(:sender_id=>Site.current.actor.id, :receiver_id=>self.id).first
+    unless contact.nil?
+      contact.destroy
+    end
   end
 
 end
