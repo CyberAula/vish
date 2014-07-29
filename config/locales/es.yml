@@ -751,6 +751,7 @@ es:
     error_content: "Error en la excursión"
     error_content_resource: "Error en el recurso"
     failure: "El reporte no pudo ser enviado"
+    low_content_quality: "Recurso de baja calidad"
     low_content_quality_msg: "Este recurso ha sido reportado de forma automática por la plataforma por haber sido evaluado como un recurso de baja de calidad."
     placeholder: "¿Cúal es el problema?"
     report_event: "Reportar evento"

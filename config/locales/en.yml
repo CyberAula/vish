@@ -749,6 +749,7 @@ en:
     error_content: "Error in the excursion"
     error_content_resource: "Error in the resource"
     failure: "The report could not be sent"
+    low_content_quality: "Resource of low quality"
     low_content_quality_msg: "This resource has been reported automatically by the platform because it has been evaluated as a low quality resource."
     placeholder: "What is the issue?"
     report_event: "Report event"
