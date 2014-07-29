@@ -11,10 +11,8 @@
   <!-- Edit your profile -->
   <% @profile = profile_or_current_subject.profile %>
   <% if can?(:update, @profile) %>
-
-
-    <div class="edit_icon btn">
-      <%= link_to(raw("<i class='icon-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %> 
+    <div class="edit_icon btn btn-default">
+      <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %>
     </div>
    
 
@@ -23,8 +21,8 @@
   <!-- Remove user (only for admins) -->
   <% if isAdmin? %>
     <% if can?(:destroy, @profile) and !profile_subject.admin? and current_subject!=profile_subject %>
-      <div class="edit_icon btn">
-        <%= link_to(raw("<i class='icon-trash '></i>")+ t('profile.remove'), user_path(profile_subject), :confirm => t('are_you_sure'), :method => "delete")%>
+      <div class="edit_icon btn btn-default">
+        <%= link_to(raw("<i class='fa fa-trash '></i>")+ t('profile.remove'), user_path(profile_subject), :confirm => t('are_you_sure'), :method => "delete")%>
       </div>
     <% end %>
   <% end %>
@@ -33,12 +31,12 @@
   <% if isAdmin? %>
     <% if can?(:make_admin, @profile) and current_subject!=profile_subject %>
       <% unless profile_subject.admin? %>
-      <div class="edit_icon btn">
-        <%= link_to(raw("<i class=' icon-thumbs-up '></i>")+ t('profile.promote'), promote_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
+      <div class="edit_icon btn btn-default">
+        <%= link_to(raw("<i class='fa fa-thumbs-up'></i>")+ t('profile.promote'), promote_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
       </div>
       <% else %>
-      <div class="edit_icon btn">
-        <%= link_to(raw("<i class=' icon-thumbs-down '></i>")+ t('profile.degrade'), degrade_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
+      <div class="edit_icon btn btn-default">
+        <%= link_to(raw("<i class='fa fa-thumbs-down'></i>")+ t('profile.degrade'), degrade_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
       </div>
       <% end %>
     <% end %>

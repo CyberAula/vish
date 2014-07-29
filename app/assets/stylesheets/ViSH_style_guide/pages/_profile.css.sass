@@ -28,7 +28,7 @@
           @include border-top-radius ($border-radius-base)
           @include border-bottom-radius ($border-radius-base)
           @include border-left-radius ($border-radius-base)
-          @include border-right-radius (0)
+          @include border-right-radius ($border-radius-base )
           
           @include img-responsive
           @media (max-width: $screen-xs-max)
@@ -69,37 +69,45 @@
             @include make-md-column(10, $gutter: $grid-gutter-width)
             @include make-lg-column(10, $gutter: $grid-gutter-width)
             float: left
- 
+            padding-left: 0!important
             h3
               line-height: 15px
               color: $brand-primary
               font-size: 0.9em
-              font-family: $corporate-font-family-sans-serif-Bold
+              font-family: $corporate-font-family-sans-serif-Regular
               padding-right: 15px
               vertical-align: top
               display: block
               float: left
+              margin-top: 5px
+              margin-bottom: 0
+            span
+              font-size: 0.9em
             
           #effect
             position: relative
             min-height: 0px
+            padding-left: 0!important
             @include make-xs-column(12, $gutter: $grid-gutter-width)
             @include make-sm-column(10, $gutter: $grid-gutter-width)
             @include make-md-column(10, $gutter: $grid-gutter-width)
             @include make-lg-column(10, $gutter: $grid-gutter-width)
-            display: inline-block
+           
             float: left
             overflow: hidden
+
             h3
-              line-height: 15px
               color: $brand-primary
               font-size: 0.9em
-              font-family: $corporate-font-family-sans-serif-Bold
+              font-family: $corporate-font-family-sans-serif-Regular
               padding-right: 15px
               vertical-align: top
               display: block
+              margin-top: 7px
+              margin-bottom: 10px
               float: left
-            
+            span
+              font-size: 0.9em
 
           .tags-profile
             float: right
@@ -231,6 +239,8 @@
   //FORMULARIO
   .information
     .update
+      margin-top: 20px
+      margin-bottom: 20px
       background-color: $white
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(10, $gutter: $grid-gutter-width)
@@ -243,6 +253,7 @@
         display: block
         clear: both
         margin-top: 12px
+
       span
         font-size: 10px
         float: left
@@ -250,7 +261,7 @@
       textarea
         display: block
         width: 100%
-        padding: 4px 2%
+    
       select
         padding-right: 10px
         display: block
@@ -269,9 +280,11 @@
             margin: 0
             input
               margin-top: 0
-              width: 200px
+              width: 70%
               padding: 0
               display: inline
+              @media (max-width: $screen-xs-max)
+                width: 50%
         #avatar-progress
           display: block
           margin-top: 7px
@@ -294,6 +307,7 @@
           float: left
 
         .actions
+          margin-top: 12px
           display: block
           input
             width: auto

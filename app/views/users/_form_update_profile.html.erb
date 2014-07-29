@@ -59,17 +59,11 @@
           </div>
           <%= f.hidden_field :tag_list, :class => "form-control form_tag", :id => "input_tag_list", :placeholder => t('devise.tags') %>
 
-          <!--p>
-            <%= t('required') %>
-          </p-->
-
           <div class="actions">
           <%= f.submit t('button.update'), "data-loading-text" => t('button.sending'), :class=>"btn btn-primary" %>
           <%=link_to t('hide'), "#", :id=>"hide_profile_form", :class=>"btn btn-defaul"%>
           </div>
         <% end %>
-
-
 
         <%= javascript_tag do %>
           $('#user_description').val("<%= profile_subject.description %>");
