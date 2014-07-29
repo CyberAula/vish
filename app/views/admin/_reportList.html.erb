@@ -47,7 +47,11 @@
         <td class="admin-reporter">
           <%reporter = report.actor_reporter%>
           <% unless reporter.nil? %>
-            <a target="_blank" href="<%=url_for(reporter.subject)%>"><span><%= reporter.name %></span></a>
+            <% unless reporter.subject_type=="Site" %>
+              <a target="_blank" href="<%=url_for(reporter.subject)%>"><span><%= reporter.name %></span></a>
+            <% else %>
+              <span><%= reporter.name %></span>
+            <% end %>
           <% else %>
             <span><%= t('user.anonymous') %></span>
           <%end%>
