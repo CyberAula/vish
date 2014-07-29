@@ -26,6 +26,7 @@ en:
   admin:
     close_report: "Close report"
     closed_reports: "Closed reports"
+    menu_entry: "Admin Panel"
     noitems: "There are no items."
     noreports: "There are no reports."
     noresource: "This resource no longer exists."
@@ -748,6 +749,7 @@ en:
     error_content: "Error in the excursion"
     error_content_resource: "Error in the resource"
     failure: "The report could not be sent"
+    low_content_quality: "Resource of low quality"
     low_content_quality_msg: "This resource has been reported automatically by the platform because it has been evaluated as a low quality resource."
     placeholder: "What is the issue?"
     report_event: "Report event"

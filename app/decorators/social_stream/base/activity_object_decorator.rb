@@ -308,7 +308,7 @@ ActivityObject.class_eval do
       if overallQualityScore < Vish::Application.config.APP_CONFIG["qualityThreshold"]["create_report"].to_f
         #Generate spamReport (prevent duplicates)
         if self.lowQualityReports.blank?
-          report = SpamReport.new(:activity_object_id=> self.id, :reporter_actor_id => Site.current.actor.id, :issue=> I18n.t("report.low_content_quality_msg"), :report_value=> 2)
+          report = SpamReport.new(:activity_object_id=> self.id, :reporter_actor_id => Site.current.actor.id, :issue=> I18n.t("report.low_content_quality_msg", :locale => I18n.default_locale), :report_value=> 2)
           report.save!
         end
       end

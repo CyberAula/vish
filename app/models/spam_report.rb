@@ -70,13 +70,16 @@ class SpamReport < ActiveRecord::Base
   def issueType
     case self.report_value
     when 0
-      "Spam or inappropriate content"
+      #"Spam or inappropriate content"
+      I18n.t("report.spam_content", :locale => I18n.default_locale)
     when 1
-      "Error in the resource"
+      #"Error in the resource"
+      I18n.t("report.error_content_resource", :locale => I18n.default_locale)
     when 2
-      "Low quality resource"
+      #"Low quality resource"
+      I18n.t("report.low_content_quality", :locale => I18n.default_locale)
     else
-      "Unknown"
+      I18n.t("unknown", :locale => I18n.default_locale)
     end
   end
 
