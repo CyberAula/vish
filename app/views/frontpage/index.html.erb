@@ -1,12 +1,8 @@
 <%= content_for :javascript do %>
-
-$("footer#footer").addClass("fixed-bottom");
+	$("footer#footer").addClass("fixed-bottom");
 <%end%>
 
-
 <section id="frontpage">
-
-  
   <div id="presentation">
     <%= render :partial => "frontpage/presentation" %>
   </div>
@@ -16,5 +12,4 @@ $("footer#footer").addClass("fixed-bottom");
   <div class="excursions">
     <%= render partial: 'frontpage/excursions' %>
   </div>
-
 </section>
