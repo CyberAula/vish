@@ -1,3 +1,34 @@
+.adminPanel-header
+  h1
+    width: 100%
+    text-align: left
+    margin-top: 2px !important
+    margin-bottom: 2px !important
+    i
+      color: #BEBEBE
+      font-size: 26px
+      margin-right: 5px
+  hr
+    border-bottom-color: $gray
+    margin: 0 0 10px 0
+  .nav-pills > li > a
+    background-color: $white
+    margin-right: 10px
+    border: 1px solid $secondColor
+    &:hover
+      background-color: lighten($secondColor, 10%) 
+      color: $white
+
+  .nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus
+    background-color: $secondColor
+    color: #FFFFFF
+    border: 1px solid darken($secondColor, 10%) 
+    &:hover
+      background-color: darken($secondColor, 10%) 
+      color: $white
+
+
+
 //tabs
 .admin
   .tabbable 
@@ -69,7 +100,7 @@
           color: #9E9E9E
       .admin-icontrash,
       .admin-iconlock
-        text-align: right
+        text-align: center
         font-size: 25px
         i
           vertical-align: middle
