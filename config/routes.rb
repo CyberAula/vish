@@ -8,6 +8,8 @@ Vish::Application.routes.draw do
   match 'users/:id/categories' => 'users#categories'
   match 'users/:id/followers' => 'users#followers'
   match 'users/:id/followings' => 'users#followings'
+  match 'users/:id/promote' => 'users#promote'
+  match 'users/:id/degrade' => 'users#degrade'
 
   resource :session_locale
 

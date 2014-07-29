@@ -89,6 +89,27 @@ class UsersController < ApplicationController
     end
   end
 
+  #Make user admin
+  def promote
+    u = User.find_by_slug(params[:id])
+    authorize! :make_admin, u
+
+    u.make_me_admin
+
+    redirect_to user_path(u)
+  end
+
+  #Degrade admin to user
+  def degrade
+    u = User.find_by_slug(params[:id])
+    authorize! :make_admin, u
+    
+    # TODO
+    # u.degrade_me
+
+    redirect_to user_path(u)
+  end
+
   def destroy
     respond_to do |format|
       format.any {

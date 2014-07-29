@@ -12,12 +12,38 @@
   <% @profile = profile_or_current_subject.profile %>
   <% if can?(:update, @profile) %>
 
-    <button class="edit_icon btn btn-default" >
-      <%= link_to(raw("<i class='fa fa-edit'></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %>
-    </button>
+
+    <div class="edit_icon btn">
+      <%= link_to(raw("<i class='icon-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %> 
+    </div>
    
 
   <% end %>
+
+  <!-- Remove user (only for admins) -->
+  <% if isAdmin? %>
+    <% if can?(:destroy, @profile) and !profile_subject.admin? and current_subject!=profile_subject %>
+      <div class="edit_icon btn">
+        <%= link_to(raw("<i class='icon-trash '></i>")+ t('profile.remove'), user_path(profile_subject), :confirm => t('are_you_sure'), :method => "delete")%>
+      </div>
+    <% end %>
+  <% end %>
+
+  <!-- Promote user to administrator (only for admins) -->
+  <% if isAdmin? %>
+    <% if can?(:make_admin, @profile) and current_subject!=profile_subject %>
+      <% unless profile_subject.admin? %>
+      <div class="edit_icon btn">
+        <%= link_to(raw("<i class=' icon-thumbs-up '></i>")+ t('profile.promote'), promote_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
+      </div>
+      <% else %>
+      <div class="edit_icon btn">
+        <%= link_to(raw("<i class=' icon-thumbs-down '></i>")+ t('profile.degrade'), degrade_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
+      </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
   <!--BTN MESSAGE-->
   <% if !profile_subject_is_current? && user_signed_in?%>
     <button href="#new_messages_profile" id="mesage-profile" role="button" class="btn btn-default" data-toggle="modal" data-remote="false">

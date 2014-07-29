@@ -24,15 +24,23 @@ es:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
   admin:
-    title: "Panel de Administración de ViSH"
+    close_report: "Cerrar reporte"
+    closed_reports: "Reportes cerrados"
     noitems: "No hay elementos."
     noreports: "No hay reportes."
     noresource: "Este recurso ya no existe."
     nouser: "Este usuario ya no existe."
+    open_report: "Abrir reporte"
+    pending_reports: "Reportes pendientes"
+    reporter: "Reportador"
+    reports: "Reportes"
+    title: "Panel de Administración de ViSH"
+    users: "Administración de Usuarios"
   all: "todos"
   announce: 
     title: "Noticia"
     body: "Durante febrero, el proyecto GLOBAL excursion va a organizar dos sesiones online con científicos. Más información y registro en"
+  are_you_sure: "Are you sure?"
   author: "autor"
   browse:
     title: "explorar"
@@ -303,6 +311,8 @@ es:
     overview69: "un aula virtual basado en la videoconferencia colaborativa, donde varias aulas en diferentes o  escuelas pueden conectarse y participar en un evento virtual con demostraciones en directo, debates, conferencia a distancia, etc . Estas reuniones se puede basar en excursiones o en otros medios de comunicación social disponible en Internet."
     overview70: "MashMe.tv apoya el acceso a las salas de seminario de ordenadores, teléfonos inteligentes y tabletas. La cámara web de un dispositivo móvil que se puede utilizar para mostrar el lugar físico que se visita, las exposiciones de un museo, para entrevistar a la gente en el lugar visitado o el resultado de un experimento científico (telescopio, microscopio, acelerador, etc) directamente en el infraestructura científica. Los dispositivos móviles pueden ser utilizados para caminar libremente alrededor del lugar visitado y mostrar las partes más relevantes de la misma."
   copy_to_clip: "Copiar al portapapeles"
+  date: "fecha"
+  description: "descripción"
   devise:
     email: "Email"
     name: "Nombre"
@@ -681,8 +691,10 @@ es:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
     search_name: "actualización de estado"
   profile:
+    degrade: "Degradar a usuario"
     edit: "Editar perfil"
     profile: "Perfil"
+    promote: "Hacer administrador"
     occupation:
       label: "Ocupación"
       options:
@@ -750,7 +762,7 @@ es:
     one: "recurso"
     other: "recursos"
     title:
-      one: "recursos"
+      one: "recurso"
       other: "recursos"
     top: "paraMí"
     upload: "subir"
