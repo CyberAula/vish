@@ -26,6 +26,7 @@ en:
   admin:
     close_report: "Close report"
     closed_reports: "Closed reports"
+    menu_entry: "Admin Panel"
     noitems: "There are no items."
     noreports: "There are no reports."
     noresource: "This resource no longer exists."

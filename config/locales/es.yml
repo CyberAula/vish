@@ -26,6 +26,7 @@ es:
   admin:
     close_report: "Cerrar reporte"
     closed_reports: "Reportes cerrados"
+    menu_entry: "Administración"
     noitems: "No hay elementos."
     noreports: "No hay reportes."
     noresource: "Este recurso ya no existe."
