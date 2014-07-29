@@ -1,10 +1,9 @@
 <div class="tabbable">
-	<ul class="nav nav-tabs">
-		<li>
-			<h1><i class="icon-wrench"></i> <%=t('admin.title')%> </h1>
-		</li>
-	</ul>
-</div>
 
-<p><a href="<%=admin_open_reports_path%>"><%=t('admin.reports')%></a> | <a href="<%=admin_users_path%>"><%=t('admin.users')%></a></p>
-<br><br>
+	<h1><i class="icon-wrench"></i> <%=t('admin.title')%> </h1>
+	<hr>
+	<ul class="nav nav-pills">
+	<li class="active"><a href="<%=admin_open_reports_path%>"><%=t('admin.reports')%></a></li>
+	<li><a href="<%=admin_users_path%>"><%=t('admin.users')%></a></li>
+</ul>
+</div>
