@@ -104,19 +104,21 @@ class UsersController < ApplicationController
     u = User.find_by_slug(params[:id])
     authorize! :make_admin, u
     
-    # TODO
-    # u.degrade_me
+    u.degrade
 
     redirect_to user_path(u)
   end
 
   def destroy
+    u = User.find_by_slug(params[:id])
+    authorize! :destroy, u
+
+    unless u.nil?
+      u.destroy
+    end
+
     respond_to do |format|
       format.any {
-        u = User.find_by_slug(params[:id])
-        unless u.nil?
-          u.destroy
-        end
         #Only admins can destroy users. Redirect to home.
         redirect_to home_path
       }
