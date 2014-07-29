@@ -6,11 +6,18 @@ class AdminController < ApplicationController
 		#pending reports
 		@reports = SpamReport.where(:pending=>true).sort{|b,a| a.created_at <=> b.created_at}
 		@pending = true
+
+		@pending_reports_quantity = @reports.length
+		@closed_reports_quantity = SpamReport.where(:pending=>false).length
 	end
 
 	def closed_reports
 		@reports = SpamReport.where(:pending=>false).sort{|b,a| a.created_at <=> b.created_at}
 		@pending = false
+
+		@pending_reports_quantity = SpamReport.where(:pending=>true).length
+		@closed_reports_quantity = @reports.length
+
 		render :index
 	end
 
