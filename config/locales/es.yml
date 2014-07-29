@@ -30,6 +30,7 @@ es:
     noreports: "No hay reportes."
     noresource: "Este recurso ya no existe."
     nouser: "Este usuario ya no existe."
+    nousers: "No hay usuarios."
     open_report: "Abrir reporte"
     pending_reports: "Reportes pendientes"
     reporter: "Reportador"
@@ -849,9 +850,11 @@ es:
   url:
     input: "Pega aquí el enlace"
   user:
+    anonymous: "Anónimo"
+    email: "email"
+    name: "nombre"
     one: "usuario"
     other: "usuarios"
-    anonymous: "Anónimo"
   username: "usuario"
   vish:
     about: "Acerca de ViSH"    

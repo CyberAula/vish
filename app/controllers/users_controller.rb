@@ -119,8 +119,12 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.any {
-        #Only admins can destroy users. Redirect to home.
-        redirect_to home_path
+        if !request.referrer.nil? and request.referrer.include?("/admin/users")
+          redirect_to admin_users_path
+        else
+          #Only admins can destroy users. Redirect to home.
+          redirect_to home_path
+        end
       }
     end
   end
