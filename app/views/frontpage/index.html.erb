@@ -1,27 +1,21 @@
 <%= content_for :javascript do %>
-  $('#desktop_carousel').carousel({
-    interval: 8000
-  });
-  $('#mobile_carousel').carousel({
-    interval: 8000
-  });
 
-  $("footer#footer").addClass("fixed-bottom");
+$("footer#footer").addClass("fixed-bottom");
 <%end%>
 
 
-
 <section id="frontpage">
-  <!--<#%= render :partial => "frontpage/info" %>-->
-  <div class="competition">
-    <%if I18n.locale==:es%>
-      <%= link_to image_tag("competition/ban_winner_02_esp.png",  :class=> "img-responsive" ), "/contest" %>
-    <%else%>
-      <%= link_to image_tag("competition/ban_winner_02.png",  :class=> "img-responsive" ), "/contest" %>
-    <%end%>
+
+  
+  <div id="presentation">
+    <%= render :partial => "frontpage/presentation" %>
+  </div>
+  <div id="info-vish">
+    <%= render partial: 'frontpage/info-vish' %>
+
   </div>
   <div class="excursions">
-
     <%= render partial: 'frontpage/excursions' %>
   </div>
+
 </section>

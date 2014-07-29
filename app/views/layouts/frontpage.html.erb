@@ -63,8 +63,14 @@
       <%= render :partial => "layouts/header/header" %>
       
       <%= flashy %>
-     
+
+
+      <div class="ilustration">
+          <%= render :partial => "frontpage/explanation" %>
+      </div>
+          
       <div class="container-fluid">
+
         <%= yield %>
       </div>  
     </div>

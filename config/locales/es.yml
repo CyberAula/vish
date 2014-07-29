@@ -30,6 +30,7 @@ es:
     noreports: "No hay reportes."
     noresource: "Este recurso ya no existe."
     nouser: "Este usuario ya no existe."
+    nousers: "No hay usuarios."
     open_report: "Abrir reporte"
     pending_reports: "Reportes pendientes"
     reporter: "Reportador"
@@ -745,6 +746,17 @@ es:
     trueL: "Verdadero"
     untitled: "Sin título"
   recommended: "recomendados"
+  report:
+    error_content: "Error en la excursión"
+    error_content_resource: "Error en el recurso"
+    failure: "El reporte no pudo ser enviado"
+    low_content_quality_msg: "Este recurso ha sido reportado de forma automática por la plataforma por haber sido evaluado como un recurso de baja de calidad."
+    placeholder: "¿Cúal es el problema?"
+    report_event: "Reportar evento"
+    report_excursion: "Reportar excursión"
+    report_resource: "Reportar recurso"
+    spam_content: "Contenido inapropiado o spam"
+    success: "Hemos recibido tu reporte. Lo miraremos en la mayor brevedad posible. Muchas gracias"
   repository:
     one: "repositorio"
     other: "repositorios"
@@ -830,16 +842,6 @@ es:
       msg: "Virtual Science Hub - Mensajes"
       activity: "Virtual Science Hub - Actividades"
     name: "Virtual Science Hub"
-  spam:
-    error_content: "Error en la excursión"
-    error_content_resource: "Error en el recurso"
-    failure: "El reporte no pudo ser enviado"
-    placeholder: "¿Cúal es el problema?"
-    report_event: "Reportar evento"
-    report_excursion: "Reportar excursión"
-    report_resource: "Reportar recurso"
-    spam_content: "Contenido inapropiado o spam"
-    success: "Hemos recibido tu reporte. Lo miraremos en la mayor brevedad posible. Muchas gracias"
   swf:
     confirm_delete: "¿Borrar SWF?"
     name: "objecto flash"
@@ -849,9 +851,11 @@ es:
   url:
     input: "Pega aquí el enlace"
   user:
+    anonymous: "Anónimo"
+    email: "email"
+    name: "nombre"
     one: "usuario"
     other: "usuarios"
-    anonymous: "Anónimo"
   username: "usuario"
   vish:
     about: "Acerca de ViSH"    

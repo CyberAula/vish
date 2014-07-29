@@ -30,6 +30,7 @@ en:
     noreports: "There are no reports."
     noresource: "This resource no longer exists."
     nouser: "This user no longer exists."
+    nousers: "There are no users."
     open_report: "Open report"
     pending_reports: "Pending reports"
     reporter: "Reporter"
@@ -743,6 +744,17 @@ en:
     trueL: "True"
     untitled: "Untitled"
   recommended: "recommended"
+  report:
+    error_content: "Error in the excursion"
+    error_content_resource: "Error in the resource"
+    failure: "The report could not be sent"
+    low_content_quality_msg: "This resource has been reported automatically by the platform because it has been evaluated as a low quality resource."
+    placeholder: "What is the issue?"
+    report_event: "Report event"
+    report_excursion: "Report excursion"
+    report_resource: "Report resource"
+    spam_content: "Spam or inappropriate content"
+    success: "We have received your report. We will take a look at it very shortly. Thank you"
   repository:
     one: "repository"
     other: "repositories"
@@ -828,16 +840,6 @@ en:
       msg: "Virtual Science Hub - Messages"
       activity: "Virtual Science Hub - Activities"
     name: "Virtual Science Hub"
-  spam:
-    error_content: "Error in the excursion"
-    error_content_resource: "Error in the resource"
-    failure: "The report could not be sent"
-    placeholder: "What is the issue?"
-    report_event: "Report event"
-    report_excursion: "Report excursion"
-    report_resource: "Report resource"
-    spam_content: "Spam or inappropriate content"
-    success: "We have received your report. We will take a look at it very shortly. Thank you"
   swf:
     confirm_delete: "Delete SWF?"
     name: "flash object"
@@ -847,9 +849,11 @@ en:
   url:
     input: "Paste your link here"
   user:
+    anonymous: "Anonymous"
+    email: "email"
+    name: "name"
     one: "user"
     other: "users"
-    anonymous: "Anonymous"
   username: "username"
   vish:
     about: "About ViSH"   
