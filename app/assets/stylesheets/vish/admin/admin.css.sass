@@ -69,6 +69,7 @@
           vertical-align: text-top
 
       .admin-user,
+      .admin-user-user,
       .admin-reporter
         a
           span
@@ -91,6 +92,11 @@
           &:hover
             height: auto
             overflow-y: auto
+      .admin-email
+        a
+          font-family: $firstFontFamily
+          font-size: 14px
+          color: $secondColor
       .admin-date
         span
           font-family: $secondFontFamily
@@ -128,3 +134,18 @@
     width: 5%
   .admin-iconlock
     width: 5%
+
+  .admin-user-user
+    width: 30%
+  .admin-date-user
+    width: 20%
+  .admin-email
+    width: 40%
+
+
+#user_table
+  width: 100%
+  tbody
+    tr
+      .admin-icontrash
+        font-size: 15px !important
