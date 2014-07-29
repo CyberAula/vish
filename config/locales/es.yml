@@ -589,7 +589,6 @@ es:
     competitions_answer6: Nosotros pagaremos a una persona los gastos de viaje (tren en clase turista o los billetes de avión) y la  (habitacion de hotel con subsistencia) en la ciudad de Bruselas. Le invitamos a unirse a la Conferencia final de Global Excursion con otras partes interesadas y expertos de la entorno europeo e-learning. "
     competitions_question7: "¿Dónde puedo ver todas las excursiones que participan?"
     competitions_answer7: "<a href='http://vishub.org/contest'>Click here</a> para ver la página de competiciones. Comparte la página con tus contactos y amigos."
-
   filter: "filtrar"
   follow:
     add_favorite: "Añadir favorito"
@@ -601,10 +600,19 @@ es:
     is_favorite: "Favorito"
     views: "visitas"
   frontpage:
-    nanotechnology: "nanotecnología"
-    gridComputing: "computación distribuida"
-    lifesciences: "ciencias naturales"
-    biotechnology: "biotecnología"
+    main_text: "ViSH is a social and collaborative site for creating knowledge resources for the realization of educational activities."
+    educational:
+      title: "Educational"
+      description: "Find the best free and openly licensed educational resources and learning objects classified by subject. ViSH resources can be used for teaching, learning, assessment, research and other purposes."
+    community:
+        title: "Community"
+        description: "ViSH is a community for teachers and educational professionals who want to know new educators, create, share and discover novel educational resources, and get access to tools for maximizing technology enhanced learning."
+    elearning:
+        title: "e-Learning"
+        description: "ViSH provides a collection of tools and services for facilitates the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems."
+    community_stats:
+        title: "Our community grows every day!"
+        subtitle: "Share your knowledge in our community and help us to grow"
   go:
     repository: "ir a repositorio"
   header:
