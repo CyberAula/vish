@@ -54,7 +54,15 @@
         </td>
         <td class="admin-description">
           <!--span><%= report.issue %></span-->
-          <span><%= truncate_name(report.issue, :length => 200) %></span>
+          <%#= truncate_name(report.issue, :length => 200) %>
+          <span>
+            <% if report.issue.length > 200 %>
+              <%= truncate(report.issue, length: 200) %>
+              <%= link_to_function '...Read more', "$(this).parent().html('#{escape_javascript report.issue}')" %>
+            <% else %>
+              <%= report.issue %>
+            <% end %>
+          </span>
         </td>
         <td class="admin-date">
           <span><%=report.created_at=%></span>
@@ -74,6 +82,5 @@
     </tbody>
   </table>
 <% end %>
-
 
 
