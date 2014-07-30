@@ -1,6 +1,10 @@
 ActivityObject.class_eval do
 
+  has_many :spam_reports
+
   before_save :fill_indexed_lengths
+  before_destroy :destroy_spam_reports
+
 
   #Calculate quality score (in a 0-10 scale) 
   def calculate_qscore
@@ -31,18 +35,14 @@ ActivityObject.class_eval do
     overallQualityScore = overallQualityScore * 100000
 
     self.update_column :qscore, overallQualityScore
+
+    after_update_qscore
+
+    overallQualityScore
   end
 
-  def fill_indexed_lengths
-    if self.title.is_a? String and self.title.scan(/\w+/).size>0
-      self.title_length = self.title.scan(/\w+/).size
-    end
-    if self.description.is_a? String and self.description.scan(/\w+/).size>0
-      self.desc_length = self.description.scan(/\w+/).size
-    end
-    if self.tag_list.is_a? ActsAsTaggableOn::TagList and self.tag_list.length>0
-      self.tags_length = self.tag_list.length
-    end
+  def lowQualityReports
+    self.spam_reports.where(:report_value=>2)
   end
 
   ##############
@@ -284,6 +284,40 @@ ActivityObject.class_eval do
       objectType.singularize.classify.constantize.find_by_id(objectId)
     rescue
       nil
+    end
+  end
+
+
+  private
+
+  def fill_indexed_lengths
+    if self.title.is_a? String and self.title.scan(/\w+/).size>0
+      self.title_length = self.title.scan(/\w+/).size
+    end
+    if self.description.is_a? String and self.description.scan(/\w+/).size>0
+      self.desc_length = self.description.scan(/\w+/).size
+    end
+    if self.tag_list.is_a? ActsAsTaggableOn::TagList and self.tag_list.length>0
+      self.tags_length = self.tag_list.length
+    end
+  end
+
+  def after_update_qscore
+    if Vish::Application.config.APP_CONFIG["qualityThreshold"] and Vish::Application.config.APP_CONFIG["qualityThreshold"]["create_report"] and !self.qscore.nil?
+      overallQualityScore = (self.qscore/100000.to_f)
+      if overallQualityScore < Vish::Application.config.APP_CONFIG["qualityThreshold"]["create_report"].to_f
+        #Generate spamReport (prevent duplicates)
+        if self.lowQualityReports.blank?
+          report = SpamReport.new(:activity_object_id=> self.id, :reporter_actor_id => Site.current.actor.id, :issue=> I18n.t("report.low_content_quality_msg", :locale => I18n.default_locale), :report_value=> 2)
+          report.save!
+        end
+      end
+    end
+  end
+
+  def destroy_spam_reports
+    SpamReport.where(:activity_object_id => self.id).each do |spamReport|
+      spamReport.destroy
     end
   end
 

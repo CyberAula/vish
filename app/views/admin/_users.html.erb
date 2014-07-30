@@ -1,1 +1,42 @@
-<p> Users here </p>
+<% uL = @users.length %>
+<% if uL === 0 %>
+  <%= render '/layouts/emptytable', :fullmessage => t('admin.nousers') %>
+<% else %>
+  <table id="user_table" cellspacing='0' class="vish_admin_table">
+    <thead>
+      <tr>
+        <th class="admin-checkbox"><input type="checkbox" class="checkallresources" autocomplete="off" value="all" style="display:none" /></th>
+
+        <th class="admin-user-user"><%=t('user.name').capitalize%></th>
+        <th class="admin-email"><%=t('user.email').capitalize%></th>
+        <th class="admin-date-user"><%=t('date').capitalize%></th>
+        <th class="admin-icontrash"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td class="admin-checkbox">
+          <input type="checkbox" autocomplete="off" value="<%=user.id%>" style="display:none" />
+        </td>
+         <td class="admin-user-user">
+            <a target="_blank" href="<%=url_for(user)%>"><span><%= user.name %></span></a>
+        </td>
+         <td class="admin-email">
+            <a target="_blank" href="mailto:<%=user.email%>"><span><%=user.email%></span></a>
+        </td>
+        <td class="admin-date-user">
+          <span><%=user.created_at=%></span>
+        </td>
+        <td class="admin-icontrash">
+        	<%if can?(:delete, user) and !user.admin? %>
+            	<%= link_to(raw("<i class='icon-trash'></i> "), user_path(user), :confirm => t("are_you_sure"), :method => "delete")%>
+            <%end%>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+
