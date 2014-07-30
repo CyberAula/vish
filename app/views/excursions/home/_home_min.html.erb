@@ -6,13 +6,12 @@
 
 <script>
 	$(document).ready(function(){
+    pageless_state.home.url = "/home?tab=home&sort_by=popularity&ids_to_avoid=<%=ids_to_avoid.join(',')%>";
+    update_pageless_state("home", <%=excursions.num_pages%>, <%=excursions.current_page%>);
+    re_apply_pageless("home");    
 
-      pageless_state.home.url = "/home?tab=home&sort_by=popularity&ids_to_avoid=<%=ids_to_avoid.join(',')%>";
-      update_pageless_state("home", <%=excursions.num_pages%>, <%=excursions.current_page%>);
-      re_apply_pageless("home");    
-
-		$("footer#footer").addClass("fixed-bottom");	    
+		$("footer#footer").addClass("fixed-bottom");
+    $("#wrap").addClass("wrap-when-fixed-bottom");
 	});
-	
 </script>
 
