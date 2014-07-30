@@ -600,20 +600,20 @@ es:
     is_favorite: "Favorito"
     views: "visitas"
   frontpage:
-    main_text: "ViSH is a social and collaborative site for creating knowledge resources for the realization of educational activities."
+    main_text: "ViSH es una red social colaborativa centrada en la creación y compartición de recursos educativos para la realización de actividades didácticas."
     educational:
-      title: "Educational"
-      description: "Find the best free and openly licensed educational resources and learning objects classified by subject. ViSH resources can be used for teaching, learning, assessment, research and other purposes."
+      title: "Educación"
+      description: "Encuentra los mejores recursos educativos y objetos de aprendizaje libres y gratuitos clasificados por temática. Los recursos de ViSH pueden ser utilizados para la enseñanza, el aprendizaje, como materiales de evaluación, en investigación o para otros fines."
     community:
-        title: "Community"
-        description: "ViSH is a community for teachers and educational professionals who want to meet new educators, create, share and discover novel educational resources, and get access to tools for maximizing technology enhanced learning."
+        title: "Comunidad"
+        description: "ViSH es una comunidad para profesores y profesionales de la educación que quieren conocer nuevos educadores, crear, compartir y descubrir recursos educativos innovadores, y conseguir acceso a herramientas para maximizar el aprendizaje potenciado por la tecnología."
     elearning:
         title: "e-Learning"
-        description: "ViSH provides a collection of tools and services for facilitates the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems."
+        description: "ViSH proporciona una colección de herramientas y servicios para facilitar la creación de materiales didácticos de alta calidad e impulsar el aprendizaje potenciado por la tecnología tanto en el aula como en Entornos de Aprendizaje Virtuales (VLEs) y Sistemas de Gestión del Aprendizaje (LMSs)."
     community_stats:
-        title: "Our community grows every day"
-        subtitle: "Share your knowledge in our community and help us to grow"
-    join_us: "Join to ViSH!"
+        title: "Nuestra comunidad crece cada día."
+        subtitle: "Comparte tu conocimiento en nuestra comunidad y ayúdanos a crecer"
+    join_us: "¡Únete a ViSH!"
   go:
     repository: "ir a repositorio"
   header:

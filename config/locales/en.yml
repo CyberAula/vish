@@ -596,7 +596,7 @@ en:
     is_favorite: "Is favorite"
     views: "views"
   frontpage:
-    main_text: "ViSH is a social and collaborative site for creating knowledge resources for the realization of educational activities."
+    main_text: "ViSH is a social and collaborative site for creating and sharing knowledge resources for the realization of educational activities."
     educational:
       title: "Educational"
       description: "Find the best free and openly licensed educational resources and learning objects classified by subject. ViSH resources can be used for teaching, learning, assessment, research and other purposes."
@@ -621,7 +621,7 @@ en:
   hide: "Hide"
   lang:
     independent: "Language independent"
-    changed: "Changed language to %{lang}"
+    changed: "Language changed to %{lang}"
     error: "Language \"%{lang}\" not available"
     title: "language"   
     others: Others 
