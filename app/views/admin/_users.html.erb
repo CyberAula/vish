@@ -6,9 +6,10 @@
     <thead>
       <tr>
         <th class="admin-checkbox"><input type="checkbox" class="checkallresources" autocomplete="off" value="all" style="display:none" /></th>
-        <th class="admin-resource"><%=t('user.name').capitalize%></th>
-        <th class="admin-resource"><%=t('user.email').capitalize%></th>
-        <th class="admin-date"><%=t('date').capitalize%></th>
+
+        <th class="admin-user-user"><%=t('user.name').capitalize%></th>
+        <th class="admin-email"><%=t('user.email').capitalize%></th>
+        <th class="admin-date-user"><%=t('date').capitalize%></th>
         <th class="admin-icontrash"></th>
       </tr>
     </thead>
@@ -18,13 +19,13 @@
         <td class="admin-checkbox">
           <input type="checkbox" autocomplete="off" value="<%=user.id%>" style="display:none" />
         </td>
-         <td class="admin-resource">
+         <td class="admin-user-user">
             <a target="_blank" href="<%=url_for(user)%>"><span><%= user.name %></span></a>
         </td>
-         <td class="admin-resource">
+         <td class="admin-email">
             <a target="_blank" href="mailto:<%=user.email%>"><span><%=user.email%></span></a>
         </td>
-        <td class="admin-date">
+        <td class="admin-date-user">
           <span><%=user.created_at=%></span>
         </td>
         <td class="admin-icontrash">

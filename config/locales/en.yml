@@ -26,6 +26,7 @@ en:
   admin:
     close_report: "Close report"
     closed_reports: "Closed reports"
+    menu_entry: "Admin Panel"
     noitems: "There are no items."
     noreports: "There are no reports."
     noresource: "This resource no longer exists."
@@ -584,7 +585,6 @@ en:
     competitions_answer6: "We’ll pay you (one person) the travel expenses (economy class train or flight ticket, hotel room, subsistence) from you city to Brussels. We kindly invite you to join the Global Excursion Final Conference with other stakeholders and experts from the European e-learning environment. "
     competitions_question7: "Where can I see all the participating excursions?"
     competitions_answer7: "<a href='http://vishub.org/contest'>Click here</a> to see the competitions page. Share that page with your contacts and friends."
-
   filter: "filter"
   follow:
     add_favorite: "Add favorite"
@@ -596,10 +596,19 @@ en:
     is_favorite: "Is favorite"
     views: "views"
   frontpage:
-    nanotechnology: "nanotechnology"
-    gridComputing: "grid computing"
-    lifesciences: "lifes ciences"
-    biotechnology: "biotechnology"
+    main_text: "ViSH is a social and collaborative site for creating knowledge resources for the realization of educational activities."
+    educational:
+      title: "Educational"
+      description: "Find the best free and openly licensed educational resources and learning objects classified by subject. ViSH resources can be used for teaching, learning, assessment, research and other purposes."
+    community:
+        title: "Community"
+        description: "ViSH is a community for teachers and educational professionals who want to know new educators, create, share and discover novel educational resources, and get access to tools for maximizing technology enhanced learning."
+    elearning:
+        title: "e-Learning"
+        description: "ViSH provides a collection of tools and services for facilitates the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems."
+    community_stats:
+        title: "Our community grows every day!"
+        subtitle: "Share your knowledge in our community and help us to grow"
   go:
     repository: "go to repository"
   header:
@@ -748,6 +757,7 @@ en:
     error_content: "Error in the excursion"
     error_content_resource: "Error in the resource"
     failure: "The report could not be sent"
+    low_content_quality: "Resource of low quality"
     low_content_quality_msg: "This resource has been reported automatically by the platform because it has been evaluated as a low quality resource."
     placeholder: "What is the issue?"
     report_event: "Report event"

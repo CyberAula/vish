@@ -1,24 +1,19 @@
-
 <div class="decoration" >
   <hr>
   <i class="icon-circle-blank"></i>
   <hr>
 </div>
-<!--div class="advertising" ></div-->
+
 <div class="all-items-count" >
-
-
-	<h3>Our community grows slowly, already counting :</h3>
-
-    <span id="count-all-excursion"><%= Excursion.count %> <p>Excursions</p></span>
-    <span id="count-all-resources"><%= Embed.count + Swf.all.length +  Officedoc.all.length + Link.count +  Video.all.length + Audio.all.length + Scormfile.count + Webapp.count %> <p>Resources</p></span>
-    <span id="count-all-users"><%= User.count %> <p>Users</p></span>
-
-
-	<div class="">Share your knowledge in our community and help us to grow</div>
+	<h3><%=t("frontpage.community_stats.title")=%></h3>
+  <span id="count-all-excursion"><%= Excursion.count %> <p><%=t("excursion.title.other").capitalize%></p></span>
+  <span id="count-all-resources"><%= Embed.count + Swf.all.length +  Officedoc.all.length + Link.count +  Video.all.length + Audio.all.length + Scormfile.count + Webapp.count %> <p><%=t("resource.title.other").capitalize%></p></span>
+  <span id="count-all-users"><%= User.count %> <p><%=t("user.title.other").capitalize%></p></span>
+	<div class=""><%=t("frontpage.community_stats.subtitle")=%></div>
 </div>
 <div class="decoration" >
   <hr>
   <i class="icon-circle-blank"></i>
   <hr>
 </div>
+

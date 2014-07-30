@@ -145,11 +145,6 @@ nl:
     followings: "gevolgde"
     is_favorite: "Is favoriet"
     views: "meningen"
-  frontpage:
-    nanotechnology: "nanotechnologie"
-    gridComputing: "grid computing"
-    lifesciences: "biowetenschappen"
-    biotechnology: "biotechnologie"
   go:
     repository: "ga naar de leermiddelenbank"
   help: "hulp"
@@ -635,8 +630,6 @@ nl:
     competitions_question7: "Waar kan ik alle deelnemende excursies zien?"
     competitions_answer7: "<a href='http://vishub.org/contest'>Klik hier</a> voor de competitiepagina. Deel die pagina met uw contacten en vrienden."
   filter: "filteren"
-  frontpage:
-    gridComputing: "grid computing"
   header:
     tooltip:
       add_button: "Excursies, hulpbronnen, enz. creëren."

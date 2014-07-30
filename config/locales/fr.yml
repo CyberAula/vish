@@ -145,11 +145,6 @@ fr:
     followings: "abonnements"
     is_favorite: "Est favorite"
     views: "vues"
-  frontpage:
-    nanotechnology: "nanotechnologies"
-    gridComputing: "informatique en grille"
-    lifesciences: "sciences de la vie"
-    biotechnology: "biotechnologies"
   go:
     repository: "accéder à la bibliothèque"
   help: "aide"
