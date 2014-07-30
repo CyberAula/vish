@@ -22,4 +22,8 @@
 		var name = $(this).attr("name");
 		window.location = "/catalogue/" + name;
 	});
+
+	$("div[bs-img]").each(function() {
+	        $(this).backstretch( $(this).attr("bs-img") );
+	      });
 </script>
