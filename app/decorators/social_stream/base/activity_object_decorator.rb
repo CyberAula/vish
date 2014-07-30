@@ -6,6 +6,14 @@ ActivityObject.class_eval do
   before_destroy :destroy_spam_reports
 
 
+  def public?
+    !private? and self.relation_ids.include? Relation::Public.instance.id
+  end
+
+  def private?
+    self.relation_ids.include? Relation::Private.instance.id
+  end
+
   #Calculate quality score (in a 0-10 scale) 
   def calculate_qscore
     #self.reviewers_qscore is the LORI score in a 0-10 scale

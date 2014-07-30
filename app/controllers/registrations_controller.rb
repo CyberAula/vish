@@ -5,6 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
 
         #Infer user language from client information
         if !I18n.locale.nil? and !params[:user].nil? and Vish::Application.config.platformLanCodes.include? I18n.locale.to_s
+          params[:user] ||= {}
           params[:user][:language] = I18n.locale.to_s
         end
 

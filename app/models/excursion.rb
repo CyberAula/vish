@@ -1103,9 +1103,11 @@ class Excursion < ActiveRecord::Base
 
   def fix_relation_ids_drafts
     if self.draft
-      activity_object.relation_ids=[Relation::Private.instance.id]
+      self.relation_ids=[Relation::Private.instance.id]
+      self.activity_object.relation_ids=[Relation::Private.instance.id]
     else
-      activity_object.relation_ids=[Relation::Public.instance.id]
+      self.relation_ids=[Relation::Public.instance.id]
+      self.activity_object.relation_ids=[Relation::Public.instance.id]
     end
   end
 
