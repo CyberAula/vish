@@ -8,10 +8,10 @@
 		
 		<ul id="container_<%=name%>">
 			<%for excursion in the_array%>
-				<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion, :container_id => "container_#{name}" } %>
+				<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion , :prefix_id => "catalogue"} %>
 			<%end%>
 		</ul>
-		<button class="show_more_catalogue" name="<%=name%>"><%=t('view_all')%></button>
+		<button class="show_more_catalogue" name="<%=name.capitalize%>"><%=t('view_all')%></button>
 	<%end%>
 </div>
 
@@ -22,15 +22,5 @@
 		$('.loader_pagination').show();
 		var next = "/home?tab=catalogue&category=" + name ;
 		catalogue_state(next);
-	});
-
-	$( document ).ready(function() {
-		function re_apply_backstrech_on_catalogue(){
-	      $("div[bs-img]").each(function() {
-	        $(this).backstretch( $(this).attr("bs-img") );
-	      });
-	    }
-
-	    re_apply_backstrech_on_catalogue();
 	});
 </script>

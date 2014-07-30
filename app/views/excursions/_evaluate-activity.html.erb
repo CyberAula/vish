@@ -56,7 +56,7 @@
     <div class="recomended-items">
       <ul class="small-box clearfix">
         <% RecommenderSystem.excursion_suggestions(current_subject,@excursion,{:n=>16}).each do |excursion| %>
-          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :container_id => "recomended_box" } %>
+          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion} %>
         <% end %>
       </ul>
     </div>
