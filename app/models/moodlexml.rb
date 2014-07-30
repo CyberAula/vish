@@ -142,10 +142,10 @@ class MOODLEQUIZXML
             end
                
              myxml.answer("fraction" => mappedVT) do
-                myxml.text("True")
+                myxml.text("true")
               end
               myxml.answer("fraction" => mappedVF) do
-                myxml.text("False")
+                myxml.text("false")
               end         
           end
         end
@@ -225,7 +225,7 @@ class MOODLEQUIZXML
           myxml.questiontext do
             myxml.text(((qjson["question"]["value"]).to_s).lstrip.chop)  
           end
-          myxml.shuffleanswers("true")
+          myxml.shuffleanswers("false")
           for i in 0..((nChoices)-1)
             myxml.subquestion do
               myxml.text((i+1).to_s)
