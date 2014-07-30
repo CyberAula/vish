@@ -24,7 +24,6 @@ fr:
   all: "toutes"
   announce: 
     title: "Annonce"
-    body: ""
   author: "auteur"
   cancel: "Annuler"
   close: "Fermer"
@@ -145,11 +144,6 @@ fr:
     followings: "abonnements"
     is_favorite: "Est favorite"
     views: "vues"
-  frontpage:
-    nanotechnology: "nanotechnologies"
-    gridComputing: "informatique en grille"
-    lifesciences: "sciences de la vie"
-    biotechnology: "biotechnologies"
   go:
     repository: "accéder à la bibliothèque"
   help: "aide"
@@ -311,10 +305,7 @@ fr:
     other: "utilisateurs"
   username: "nom d'utilisateur"
   vish:
-    about: "À propos de la plateforme VISH"    
-    sentence1: "Créez votre compte VISH"
-    sentence2: "VISH est une plateforme de sciences sociales"
-    team: "L'équipe VISH"    
+    about: "À propos de la plateforme VISH"
   views:
     pagination:
       next: "Â»"

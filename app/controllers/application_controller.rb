@@ -13,18 +13,15 @@ class ApplicationController < ActionController::Base
   end
   
   def store_location
-	  # store last url - this is needed for post-login redirect to whatever the user last visited.
-	  if (request.fullpath != "/users/sign_in" &&
-	      request.fullpath != "/users/sign_up" &&
-	      request.fullpath != "/users/sign_out" &&
-	      request.fullpath != "/users/password" &&
-	      request.fullpath != "/users/password/new" &&
-	      request.fullpath != "/users" &&
-	      request.format == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
-	      !request.fullpath.end_with?(".full") &&   #do not save .full because we have saved the vish excursion page instead
-	      !request.xhr?) # don't store ajax calls
-	    session[:user_return_to] = request.fullpath 
-	  end
+    urls_to_avoid_redirect = ["/users/sign_in","/users/sign_up","/users/sign_out","/users/password","/users/password/new","/users","/legal_notice"]
+
+    # store last url - this is needed for post-login redirect to whatever the user last visited.
+    if ((!urls_to_avoid_redirect.include? request.fullpath) &&
+    request.format == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
+    !request.fullpath.end_with?(".full") &&   #do not save .full because we have saved the vish excursion page instead
+    !request.xhr?) # don't store ajax calls
+      session[:user_return_to] = request.fullpath
+    end
   end
 
 end

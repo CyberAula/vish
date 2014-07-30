@@ -1,22 +1,22 @@
 <div class="contentReport">
 
   <%if @activity_object.object.class.name == "Excursion" %>
-    <dt><%=t('spam.report_excursion')%></dt>
+    <dt><%=t('report.report_excursion')%></dt>
   <% elsif @activity_object.object.class.name == "Event"%>
-    <dt><%=t('spam.report_event')%></dt>
+    <dt><%=t('report.report_event')%></dt>
   <% else %>
-    <dt><%=t('spam.report_resource')%></dt>
+    <dt><%=t('report.report_resource')%></dt>
   <%end%>
   
   <%= form_tag spam_reports_path, method: 'post', class: "" do %>
     <%=hidden_field_tag "activity_object_id", @activity_object.id%>
     <div class="radio">
-      <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
-      <div style="display:block"><%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%></div>
+      <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('report.spam_content')%>
+      <div style="display:block"><%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('report.placeholder')%></div>
     </div>
     <div class="radio">
-      <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content_resource')%>
-      <div style="display:block"><%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%></div>
+      <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('report.error_content_resource')%>
+      <div style="display:block"><%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('report.placeholder')%></div>
     </div>
     
     <h4><%= t('simple_captcha.title') %></h4>

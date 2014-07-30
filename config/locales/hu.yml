@@ -26,7 +26,6 @@ hu:
   all: "all"
   announce: 
     title: "Közlemény"
-    body: ""
   author: "szerző"
   cancel: "Mégse"
   close: "Bezár"
@@ -284,11 +283,6 @@ hu:
     followings: "követett"
     is_favorite: "kedvenc"
     views: "megtekintés"
-  frontpage:
-    nanotechnology: "nanotechnológia"
-    gridComputing: "grid számítástechnika"
-    lifesciences: "élettudományok"
-    biotechnology: "biotechnológia"
   go:
     repository: "menj a tárházhoz"
   help: "súgó"
@@ -447,10 +441,7 @@ hu:
     other: "felhasználók"
   username: "felhasználónév"
   vish:
-    about: "A ViSH-ről"    
-    sentence1: "Regisztrálj egy fiókot a ViSH-en,"
-    sentence2: "a közösségi tudományos platformon!"
-    team: "A ViSH csapata"    
+    about: "A ViSH-ről"   
   views:
     pagination:
       next: "Â»"

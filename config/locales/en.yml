@@ -26,10 +26,12 @@ en:
   admin:
     close_report: "Close report"
     closed_reports: "Closed reports"
+    menu_entry: "Admin Panel"
     noitems: "There are no items."
     noreports: "There are no reports."
     noresource: "This resource no longer exists."
     nouser: "This user no longer exists."
+    nousers: "There are no users."
     open_report: "Open report"
     pending_reports: "Pending reports"
     reporter: "Reporter"
@@ -583,7 +585,6 @@ en:
     competitions_answer6: "We’ll pay you (one person) the travel expenses (economy class train or flight ticket, hotel room, subsistence) from you city to Brussels. We kindly invite you to join the Global Excursion Final Conference with other stakeholders and experts from the European e-learning environment. "
     competitions_question7: "Where can I see all the participating excursions?"
     competitions_answer7: "<a href='http://vishub.org/contest'>Click here</a> to see the competitions page. Share that page with your contacts and friends."
-
   filter: "filter"
   follow:
     add_favorite: "Add favorite"
@@ -595,10 +596,20 @@ en:
     is_favorite: "Is favorite"
     views: "views"
   frontpage:
-    nanotechnology: "nanotechnology"
-    gridComputing: "grid computing"
-    lifesciences: "lifes ciences"
-    biotechnology: "biotechnology"
+    main_text: "ViSH is a social and collaborative site for creating and sharing knowledge resources for the realization of educational activities."
+    educational:
+      title: "Educational"
+      description: "Find the best free and openly licensed educational resources and learning objects classified by subject. ViSH resources can be used for teaching, learning, assessment, research and other purposes."
+    community:
+        title: "Community"
+        description: "ViSH is a community for teachers and educational professionals who want to meet new educators, create, share and discover novel educational resources, and get access to tools for maximizing technology enhanced learning."
+    elearning:
+        title: "e-Learning"
+        description: "ViSH provides a collection of tools and services for facilitates the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems."
+    community_stats:
+        title: "Our community grows every day"
+        subtitle: "Share your knowledge in our community and help us to grow"
+    join_us: "Join to ViSH!"
   go:
     repository: "go to repository"
   header:
@@ -610,7 +621,7 @@ en:
   hide: "Hide"
   lang:
     independent: "Language independent"
-    changed: "Changed language to %{lang}"
+    changed: "Language changed to %{lang}"
     error: "Language \"%{lang}\" not available"
     title: "language"   
     others: Others 
@@ -743,6 +754,18 @@ en:
     trueL: "True"
     untitled: "Untitled"
   recommended: "recommended"
+  report:
+    error_content: "Error in the excursion"
+    error_content_resource: "Error in the resource"
+    failure: "The report could not be sent"
+    low_content_quality: "Resource of low quality"
+    low_content_quality_msg: "This resource has been reported automatically by the platform because it has been evaluated as a low quality resource."
+    placeholder: "What is the issue?"
+    report_event: "Report event"
+    report_excursion: "Report excursion"
+    report_resource: "Report resource"
+    spam_content: "Spam or inappropriate content"
+    success: "We have received your report. We will take a look at it very shortly. Thank you"
   repository:
     one: "repository"
     other: "repositories"
@@ -828,16 +851,6 @@ en:
       msg: "Virtual Science Hub - Messages"
       activity: "Virtual Science Hub - Activities"
     name: "Virtual Science Hub"
-  spam:
-    error_content: "Error in the excursion"
-    error_content_resource: "Error in the resource"
-    failure: "The report could not be sent"
-    placeholder: "What is the issue?"
-    report_event: "Report event"
-    report_excursion: "Report excursion"
-    report_resource: "Report resource"
-    spam_content: "Spam or inappropriate content"
-    success: "We have received your report. We will take a look at it very shortly. Thank you"
   swf:
     confirm_delete: "Delete SWF?"
     name: "flash object"
@@ -847,26 +860,15 @@ en:
   url:
     input: "Paste your link here"
   user:
+    anonymous: "Anonymous"
+    email: "email"
+    name: "name"
     one: "user"
     other: "users"
-    anonymous: "Anonymous"
   username: "username"
   vish:
     about: "About ViSH"   
-    carousel_title: "ViSH: Virtual Science Hub"
-    carousel_title2: "ViSHEditor: Create and share virtual excursions"
-    carousel_title3: "ViSHEvents: Meetings on MashMe"
-    carousel_title4: "Competitions"
-    description: "ViSH is a collaborative social network for creating and sharing educational knowledge resources in HTML5. ViSH connects your resources directly with the classroom, either physical or virtual."
-    description2: "Virtual excursions are visual knowledge resources designed for proyection in the virtual or phisical classroom integrating multimedia content brought in real time from the local repository or from the internet using HTML5 and JSON."   
-    description3: "ViSH allows you to organize and announce meetings in MashMe virtual rooms to show virtual excursions in real time to remote participants."
-    description4: "ViSH competition period is open now! You can participate easily creating new excursions."
-    description41: "Get the <a href='http://vishub.org/VISH_competitions.pdf'>flyer</a> or read the <a href='http://vishub.org/faq#faq_competitions_1a'>faq</a>"
-    sentence1: "Create your account with ViSH"
-    sentence2: "ViSH is a social science platform"
-    team: "The ViSH Team" 
-    starterguide: "Starter Guide"   
-    register_with: "Register with your "
+    starterguide: "Starter Guide"
   views:
     pagination:
       next: "»"

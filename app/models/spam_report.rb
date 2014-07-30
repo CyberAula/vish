@@ -20,8 +20,8 @@ class SpamReport < ActiveRecord::Base
 
   validates :report_value,
   :presence => true
-  validates_inclusion_of :report_value, :in => [0, 1], :allow_nil => false, :message => I18n.t('spam.failure')
-  #Report value: 0=spam/inappropriate content, 1=error
+  validates_inclusion_of :report_value, :in => [0, 1, 2], :allow_nil => false, :message => I18n.t('report.failure')
+  #Report value: 0=spam/inappropriate content, 1=error, 2=low quality content
 
   validates :activity_object_id,
   :presence => true
@@ -42,7 +42,7 @@ class SpamReport < ActiveRecord::Base
      if validAO
      	true
      else
-     	errors.add(:report, I18n.t('spam.failure'))
+     	errors.add(:report, I18n.t('report.failure'))
      end
   end
 
@@ -70,11 +70,16 @@ class SpamReport < ActiveRecord::Base
   def issueType
     case self.report_value
     when 0
-      "Spam or inappropriate content"
+      #"Spam or inappropriate content"
+      I18n.t("report.spam_content", :locale => I18n.default_locale)
     when 1
-      "Error in the resource"
+      #"Error in the resource"
+      I18n.t("report.error_content_resource", :locale => I18n.default_locale)
+    when 2
+      #"Low quality resource"
+      I18n.t("report.low_content_quality", :locale => I18n.default_locale)
     else
-      "Unknown"
+      I18n.t("unknown", :locale => I18n.default_locale)
     end
   end
 
@@ -85,7 +90,10 @@ class SpamReport < ActiveRecord::Base
      ('<i class="icon-flag"></i>').html_safe
     when 1
       #Error in the resource
-      ('<i class=" icon-warning-sign"></i>').html_safe
+      ('<i class="icon-warning-sign"></i>').html_safe
+    when 2
+      #Low quality resource
+      ('<i class="icon-remove"></i>').html_safe
     else
       ''
     end

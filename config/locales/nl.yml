@@ -24,7 +24,6 @@ nl:
   all: "alle"
   announce: 
     title: "Mededeling"
-    body: ""
   author: "auteur"
   cancel: "Annuleren"
   close: "Sluiten"
@@ -145,11 +144,6 @@ nl:
     followings: "gevolgde"
     is_favorite: "Is favoriet"
     views: "meningen"
-  frontpage:
-    nanotechnology: "nanotechnologie"
-    gridComputing: "grid computing"
-    lifesciences: "biowetenschappen"
-    biotechnology: "biotechnologie"
   go:
     repository: "ga naar de leermiddelenbank"
   help: "hulp"
@@ -311,10 +305,7 @@ nl:
     other: "gebruikers"
   username: "gebruikersnaam"
   vish:
-    about: "Over VISH"    
-    sentence1: "Maak uw account aan bij VISH"
-    sentence2: "VISH is een platform voor sociale wetenschap"
-    team: "Het VISH Team"    
+    about: "Over VISH"   
   views:
     pagination:
       next: "Â»"
@@ -635,8 +626,6 @@ nl:
     competitions_question7: "Waar kan ik alle deelnemende excursies zien?"
     competitions_answer7: "<a href='http://vishub.org/contest'>Klik hier</a> voor de competitiepagina. Deel die pagina met uw contacten en vrienden."
   filter: "filteren"
-  frontpage:
-    gridComputing: "grid computing"
   header:
     tooltip:
       add_button: "Excursies, hulpbronnen, enz. creëren."

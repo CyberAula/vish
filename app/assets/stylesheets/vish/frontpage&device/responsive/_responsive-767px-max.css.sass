@@ -3,7 +3,88 @@
 // --------------------------------------------------
 
 
-@media (max-width: 767px)
+@media (min-width: 580px) and  (max-width: 767px)
+  #head_front
+    margin-top: -50px
+    .vish_logo_center
+      width: 200px
+      margin-left: -100px
+      bottom: -142px
+      p
+        font-size: 14px
+        line-height: 18px
+
+    .ilustration
+      margin-top: 50px
+      width: 100%
+      &:before
+        padding-top: 42%
+      .vish_ilustration
+        .tree
+          width: 42%
+          margin-left: -21%
+        .vishphoto
+          display: none
+        .vishphoto_mobile
+          display: block
+          width: 100%
+
+
+
+  #frontpage
+    #presentation 
+      .front_info 
+        .text_2_info
+          margin-top: 90px  !important
+        .text_1_info,
+        .text_3_info
+          margin-top: -40px !important
+
+      .front_info
+
+        .ch-grid 
+          h2
+            font-size: 24px
+          p
+            font-size: 12px
+        .ch-grid li 
+          width: 90px
+          height: 90px
+        .ch-info-wrap
+          position: absolute
+          width: 80px
+          height: 80px
+          top: 5px
+          left: 5px
+        .ch-info
+          width: 80px
+          height: 80px
+        .ch-info i 
+          margin: -25px 15px 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -11,47 +92,38 @@
   .navbar-fixed-top 
     margin-bottom: 0px
 
-  .container_carousel
-    margin-bottom: 20px
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    margin-top: 0
-    .characteristics
-      .carousel
-        max-height: 367px
-        //height: 100%
-        overflow: hidden
-        float: left
-        display: block
-        position: relative
-        margin-bottom: 0
-        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        .carousel-inner
-          .img_carousel
-            img
-              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          .description
-            position: absolute
-            right: 5%
-            top: 5%
-            left: 5%
-            z-index: 2
-            width: auto
-            background: rgba( 0, 0, 0, 0.5)
-            @include border-radius($baseBorderRadius)
-            padding: 10px
-            h1
-              color: $white !important
-              font-family: $secondFontFamily
-              font-size: 25px
-              line-height: 28px
-            p
-              margin-bottom: 5px
-              line-height: 20px
-              color: $white 
-            .redes
-              margin-bottom: 30px
-     
+@media (max-width: 580px)
+  #head_front
+    margin-top: -50px
+    .vish_logo_center
+      width: 350px
+      margin-left: -175px
+      bottom: -130px
+      p
+        font-size: 18px
+        line-height: 20px
 
+    .ilustration
+      margin-top: 50px
+      width: 100%
+      &:before
+        padding-top: 75%
+
+      .vish_ilustration
+        .tree
+          width: 75%
+          margin-left: -37.5%
+
+  #frontpage
+    #presentation 
+      .front_info 
+        .text_1_info
+          margin-top: 80px !important
+        .text_2_info,
+        .text_3_info
+          margin-top: 20px !important
+        .ch-grid
+          width: 100%
 // UP TO LANDSCAPE PHONE
 // ---------------------
 
@@ -59,46 +131,16 @@
   #frontpage
     .competition
       display: none
-  .container_carousel
-    margin-bottom: 20px
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    margin-top: 0
-    .characteristics
-      .carousel
-        max-height: 367px
-        //height: 100%
-        overflow: hidden
-        float: left
-        display: block
-        position: relative
-        margin-bottom: 0
-        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        .carousel-inner
-          .img_carousel
-            img
-              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          .description
-            position: absolute
-            right: 5%
-            top: 5%
-            left: 5%
-            z-index: 2
-            width: auto
-            background: rgba( 0, 0, 0, 0.5)
-            @include border-radius($baseBorderRadius)
-            padding: 10px
-            h1
-              color: $white !important
-              font-family: $secondFontFamily
-              font-size: 25px
-              line-height: 28px
-            p
-              margin-bottom: 5px
-              line-height: 20px
-              color: $white 
-            .redes
-              margin-bottom: 30px
-     
-          
 
+  #head_front
+    margin-top: -50px
+    .vish_logo_center
+      width: 300px
+      margin-left: -150px
+      bottom: -152px
 
+  #frontpage
+    #presentation 
+      .front_info 
+        .text_1_info
+          margin-top: 90px !important
