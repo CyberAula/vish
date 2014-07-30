@@ -30,3 +30,23 @@
 // ---------------------
 
 @media (max-width: 480px)
+  .search-nav
+    form.navbar-search 
+      width: 100%
+      display: block
+      float: left
+      input.search-query 
+        @include border-radius (5px)
+        height: 25px
+        margin-top: 0
+        width: 70%
+        float: left
+        padding: 8px 2%
+      button
+        display: inline-block
+        background: $white
+        border: none
+        width: 20%
+        padding-left: 6%
+        float: left
+
