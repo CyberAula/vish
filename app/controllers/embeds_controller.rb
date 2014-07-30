@@ -1,6 +1,6 @@
 class EmbedsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :create, :update ]
-  before_filter :hack_auth, :only => :create
+  before_filter :fill_create_params, :only => [:new, :create]
   include SocialStream::Controllers::Objects
 
   def create
@@ -29,10 +29,27 @@ class EmbedsController < ApplicationController
     [:fulltext, :width, :height, :live, :language, :age_min, :age_max]
   end
 
-  def hack_auth
+  def fill_create_params
     params["embed"] ||= {}
-    params["embed"]["relation_ids"] = [Relation::Public.instance.id]
+
+    if params["embed"]["scope"].is_a? String
+      case params["embed"]["scope"]
+      when "public"
+        params["embed"]["relation_ids"] = [Relation::Public.instance.id]
+      when "private"
+        params["embed"]["relation_ids"] = [Relation::Private.instance.id]
+      end
+      params["embed"].delete "scope"
+    end
+
+    unless params["embed"]["relation_ids"].present?
+      #Public by default
+      params["embed"]["relation_ids"] = [Relation::Public.instance.id]
+    end
+    
     params["embed"]["owner_id"] = current_subject.actor_id
+    params["embed"]["author_id"] = current_subject.actor_id
+    params["embed"]["user_author_id"] = current_subject.actor_id
   end
 end
 
