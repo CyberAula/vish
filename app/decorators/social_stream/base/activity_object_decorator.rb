@@ -287,6 +287,14 @@ ActivityObject.class_eval do
     end
   end
 
+  def self.getResourceCount
+    getCount(["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"])
+  end
+
+  def self.getCount(models=[])
+    ActivityObject.where("object_type in (?)", models).count
+  end
+
 
   private
 

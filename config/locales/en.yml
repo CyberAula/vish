@@ -602,13 +602,14 @@ en:
       description: "Find the best free and openly licensed educational resources and learning objects classified by subject. ViSH resources can be used for teaching, learning, assessment, research and other purposes."
     community:
         title: "Community"
-        description: "ViSH is a community for teachers and educational professionals who want to know new educators, create, share and discover novel educational resources, and get access to tools for maximizing technology enhanced learning."
+        description: "ViSH is a community for teachers and educational professionals who want to meet new educators, create, share and discover novel educational resources, and get access to tools for maximizing technology enhanced learning."
     elearning:
         title: "e-Learning"
         description: "ViSH provides a collection of tools and services for facilitates the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems."
     community_stats:
-        title: "Our community grows every day!"
+        title: "Our community grows every day"
         subtitle: "Share your knowledge in our community and help us to grow"
+    join_us: "Join to ViSH!"
   go:
     repository: "go to repository"
   header:
@@ -867,20 +868,7 @@ en:
   username: "username"
   vish:
     about: "About ViSH"   
-    carousel_title: "ViSH: Virtual Science Hub"
-    carousel_title2: "ViSHEditor: Create and share virtual excursions"
-    carousel_title3: "ViSHEvents: Meetings on MashMe"
-    carousel_title4: "Competitions"
-    description: "ViSH is a collaborative social network for creating and sharing educational knowledge resources in HTML5. ViSH connects your resources directly with the classroom, either physical or virtual."
-    description2: "Virtual excursions are visual knowledge resources designed for proyection in the virtual or phisical classroom integrating multimedia content brought in real time from the local repository or from the internet using HTML5 and JSON."   
-    description3: "ViSH allows you to organize and announce meetings in MashMe virtual rooms to show virtual excursions in real time to remote participants."
-    description4: "ViSH competition period is open now! You can participate easily creating new excursions."
-    description41: "Get the <a href='http://vishub.org/VISH_competitions.pdf'>flyer</a> or read the <a href='http://vishub.org/faq#faq_competitions_1a'>faq</a>"
-    sentence1: "Create your account with ViSH"
-    sentence2: "ViSH is a social science platform"
-    team: "The ViSH Team" 
-    starterguide: "Starter Guide"   
-    register_with: "Register with your "
+    starterguide: "Starter Guide"
   views:
     pagination:
       next: "»"
