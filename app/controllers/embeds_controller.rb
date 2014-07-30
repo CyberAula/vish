@@ -4,6 +4,8 @@ class EmbedsController < ApplicationController
   include SocialStream::Controllers::Objects
 
   def create
+    resource.relation_ids = params["embed"]["relation_ids"] if params["embed"]["relation_ids"].present?
+
     super do |format|
       format.json { render :json => resource }
       format.js{ render }
