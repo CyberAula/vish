@@ -6,24 +6,28 @@
 
 <div class="all-items-count" >
 	<h3><%=t("frontpage.community_stats.title")=%>. <a class="join_us_link" href="<%=new_user_registration_path%>"><%=t("frontpage.join_us")%></a></h3>
-  <a href="<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking")%>">
-    <span id="count-all-excursion" class="frontpage_count_entry">
-      <%= Excursion.count %>
-      <p><%=t("excursion.title.other").capitalize%></p>
-    </span>
-  </a>
-  <a href="<%=search_path(:type => "resource", :browse=>"true", :sort_by => "ranking")%>">
-    <span id="count-all-resources" class="frontpage_count_entry">
-      <%= ActivityObject.getResourceCount() %>
-      <p><%=t("resource.title.other").capitalize%></p>
-    </span>
-  </a>
-  <a href="<%=search_path(:type => "user", :browse=>"true", :sort_by => "created_at")%>">
-    <span id="count-all-users" class="frontpage_count_entry">
-      <%= User.count %>
-      <p><%=t("user.title.other").capitalize%></p>
-    </span>
-  </a>
+  
+  <p id="count-all-excursion" class="frontpage_count_entry">
+    <a href="<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking")%>">
+      <span class="vish-info-item-count-number"><%= Excursion.count %></span> 
+      <span class="vish-info-item-count-title"><%=t("excursion.title.other").capitalize%></span>
+    </a>
+  </p>
+  
+  <p id="count-all-resources" class="frontpage_count_entry">
+    <a href="<%=search_path(:type => "resource", :browse=>"true", :sort_by => "ranking")%>">
+      <span class="vish-info-item-count-number"><%= ActivityObject.getResourceCount()%></span>
+      <span class="vish-info-item-count-title"><%=t("resource.title.other").capitalize%></span>
+    </a>
+  </p>
+
+  <p id="count-all-users" class="frontpage_count_entry">
+    <a href="<%=search_path(:type => "user", :browse=>"true", :sort_by => "created_at")%>">
+      <span class="vish-info-item-count-number"><%= User.count %></span>
+      <span class="vish-info-item-count-title"><%=t("user.title.other").capitalize%></span>
+    </a>
+  </p>
+
 	<div><%=t("frontpage.community_stats.subtitle")%></div>
 </div>
 
