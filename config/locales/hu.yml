@@ -284,11 +284,6 @@ hu:
     followings: "követett"
     is_favorite: "kedvenc"
     views: "megtekintés"
-  frontpage:
-    nanotechnology: "nanotechnológia"
-    gridComputing: "grid számítástechnika"
-    lifesciences: "élettudományok"
-    biotechnology: "biotechnológia"
   go:
     repository: "menj a tárházhoz"
   help: "súgó"

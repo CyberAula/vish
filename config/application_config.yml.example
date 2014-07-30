@@ -36,3 +36,7 @@ production:
 
 # Enable SoundCloud in the ViSH Editor
 # soundCloudAPIKEY: "secret_key"
+
+# Set a quality threshold to automatically generate reports when a resource is judged below the threshold.
+# qualityThreshold:
+#   create_report: "3"
