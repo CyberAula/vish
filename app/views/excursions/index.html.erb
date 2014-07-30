@@ -21,7 +21,6 @@
            }
           });
       } else {
-        re_apply_backstretch("net");
         re_apply_pageless("net");
       }
     });
@@ -62,7 +61,6 @@
            }
           });
       } else {
-        re_apply_backstretch("home");
         re_apply_pageless("home");
       }   
     });
@@ -106,7 +104,7 @@
               $('.loader_pagination').hide();      
               $("#catalogue_tab_ready").append(html);
               //We add charged states to variable
-              re_apply_backstretch("catalogue");
+              re_apply_backstretch("catforhome");
               $.pagelessStop();
               //We change actual state
               catalogue_charge[next_state] = html;
@@ -120,7 +118,7 @@
       $('.loader_pagination').hide();
       $("#catalogue_tab_ready").empty()
       $("#catalogue_tab_ready").append(catalogue_charge[next_state]);
-
+      re_apply_backstretch("catforhome");
     }
   }
 
@@ -152,15 +150,43 @@
     function get_url_with_sort_by(tab){
       var the_url = pageless_state[tab].url;
       if(tab == "net"){
-      the_url = the_url + "&sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
+        the_url = the_url + "&sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
       }
       return the_url;
     }
 
     
-    function re_apply_backstretch(tab){   
+    function re_apply_backstretch(tab){ 
       $("#" + tab + " div[bs-img]").each(function() {
-        $(this).backstretch( $(this).attr("bs-img") );
+        if($(this).parents(".tab-pane").css('display')!="none"){        
+          $(this).backstretch( $(this).attr("bs-img") );      
+        }
+        else{
+          $(this).attr("fix-bs", "true");
+        }   
+      });
+    }
+
+    $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+      fix_backstretch($(e.target).attr("href").substring(1));
+    });
+
+    function fix_backstretch(tab){
+      $("#" + tab + " div[fix-bs]").each(function() {
+        if($(this).parents(".tab-pane").css('display')!="none"){        
+          $(this).backstretch( $(this).attr("bs-img") );
+          $(this).removeAttr("fix-bs");
+        }        
+      });     
+    }
+
+    $(window).on('resize.backstretch', set_fix_bs_on_hidden_tabs)
+             .on('orientationchange.backstretch', set_fix_bs_on_hidden_tabs);
+    
+
+    function set_fix_bs_on_hidden_tabs(){
+      $(".tab-pane:hidden").each(function(){
+        $(".tab-pane:hidden").find("div[bs-img]").attr("fix-bs","true");
       });
     }
     
