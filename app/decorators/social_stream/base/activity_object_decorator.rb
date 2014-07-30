@@ -2,16 +2,19 @@ ActivityObject.class_eval do
 
   has_many :spam_reports
 
+  before_save :fill_relation_ids
   before_save :fill_indexed_lengths
   before_destroy :destroy_spam_reports
 
 
   def public?
-    !private? and self.relation_ids.include? Relation::Public.instance.id
+    # !private? and self.relation_ids.include? Relation::Public.instance.id
+    self.scope == 0
   end
 
   def private?
-    self.relation_ids.include? Relation::Private.instance.id
+    # self.relation_ids.include? Relation::Private.instance.id
+    self.scope == 1
   end
 
   #Calculate quality score (in a 0-10 scale) 
@@ -305,6 +308,18 @@ ActivityObject.class_eval do
 
 
   private
+
+  def fill_relation_ids
+    case self.scope
+    when 0
+      #Public
+      self.relation_ids = [Relation::Public.instance.id]
+    when 1
+      #Private
+      self.relation_ids = [Relation::Private.instance.id]
+    else
+    end
+  end
 
   def fill_indexed_lengths
     if self.title.is_a? String and self.title.scan(/\w+/).size>0

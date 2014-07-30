@@ -4,7 +4,7 @@ DocumentsController.class_eval do
 
 
   def create
-    resource.relation_ids = params["document"]["relation_ids"] if params["document"]["relation_ids"].present?
+    resource.scope = params["document"]["scope"]
 
     super do |format|
       if resource.is_a? Zipfile
@@ -69,22 +69,7 @@ DocumentsController.class_eval do
 
   def fill_create_params
     params["document"] ||= {}
-
-    if params["document"]["scope"].is_a? String
-      case params["document"]["scope"]
-      when "public"
-        params["document"]["relation_ids"] = [Relation::Public.instance.id]
-      when "private"
-        params["document"]["relation_ids"] = [Relation::Private.instance.id]
-      end
-      params["document"].delete "scope"
-    end
-
-    unless params["document"]["relation_ids"].present?
-      #Public by default
-      params["document"]["relation_ids"] = [Relation::Public.instance.id]
-    end
-    
+    params["document"]["scope"] ||= "0" #public
     params["document"]["owner_id"] = current_subject.actor_id
     params["document"]["author_id"] = current_subject.actor_id
     params["document"]["user_author_id"] = current_subject.actor_id

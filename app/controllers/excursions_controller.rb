@@ -157,8 +157,10 @@ class ExcursionsController < ApplicationController
     if(params[:draft])
       if(params[:draft] == "true")
         @excursion.draft = true
+        @excursion.scope = 1
       elsif (params[:draft] == "false")
         @excursion.draft = false
+        @excursion.scope = 0
       end
     end
 
@@ -454,9 +456,9 @@ class ExcursionsController < ApplicationController
     params["excursion"] ||= {}
 
     if params["draft"]==="true"
-      params["excursion"]["relation_ids"] = [Relation::Private.instance.id]
+      params["excursion"]["scope"] = "1" #private
     else
-      params["excursion"]["relation_ids"] = [Relation::Public.instance.id]
+      params["excursion"]["scope"] = "0" #public
     end
     
     params["excursion"]["owner_id"] = current_subject.actor_id

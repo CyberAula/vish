@@ -4,7 +4,7 @@ LinksController.class_eval do
 
 
   def create
-    resource.relation_ids = params["link"]["relation_ids"] if params["link"]["relation_ids"].present?
+    resource.scope = params["link"]["scope"]
 
     super do |format|
       format.json { render :json => resource }
@@ -22,22 +22,7 @@ LinksController.class_eval do
 
   def fill_create_params
     params["link"] ||= {}
-
-    if params["link"]["scope"].is_a? String
-      case params["link"]["scope"]
-      when "public"
-        params["link"]["relation_ids"] = [Relation::Public.instance.id]
-      when "private"
-        params["link"]["relation_ids"] = [Relation::Private.instance.id]
-      end
-      params["link"].delete "scope"
-    end
-
-    unless params["link"]["relation_ids"].present?
-      #Public by default
-      params["link"]["relation_ids"] = [Relation::Public.instance.id]
-    end
-    
+    params["link"]["scope"] ||= "0" #public
     params["link"]["owner_id"] = current_subject.actor_id
     params["link"]["author_id"] = current_subject.actor_id
     params["link"]["user_author_id"] = current_subject.actor_id

@@ -22,7 +22,6 @@ class Excursion < ActiveRecord::Base
   has_many :contributors, :class_name => "Actor", :through => :excursion_contributors
 
   validates_presence_of :json
-  before_save :fix_relation_ids_drafts
   after_save :parse_for_meta
   after_save :fix_post_activity_nil
   after_destroy :remove_scorm
@@ -1101,18 +1100,7 @@ class Excursion < ActiveRecord::Base
     self.update_column :thumbnail_url, parsed_json["avatar"] ? parsed_json["avatar"] : Vish::Application.config.full_domain + "/assets/logos/original/excursion-00.png"
   end
 
-  def fix_relation_ids_drafts
-    if self.draft
-      self.relation_ids=[Relation::Private.instance.id]
-      self.activity_object.relation_ids=[Relation::Private.instance.id]
-    else
-      self.relation_ids=[Relation::Public.instance.id]
-      self.activity_object.relation_ids=[Relation::Public.instance.id]
-    end
-  end
-
-  # We don't know what happens or how it happens but sometimes in social_stream
-  # the activity inside the activity_object is nil, so we fix it here
+  # Ensure that activity inside the activity_object is not nil. Social Stream does not guarantee this 100%.
   def fix_post_activity_nil
     if self.post_activity == nil
       a = Activity.new :verb         => "post",

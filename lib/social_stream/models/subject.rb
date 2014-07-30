@@ -74,15 +74,19 @@ module SocialStream
           indexes actor.email
           indexes actor.slug
           
+          has created_at
+
           has activity_object.popularity, :as => :popularity, :sortable => true
           has activity_object.qscore, :as => :qscore, :sortable => true
           has activity_object.ranking, :as => :ranking, :sortable => true
-          has created_at
+          
           has activity_object.activity_object_audiences(:relation_id), :as => :relation_ids
+          has activity_object.scope, :as => :scope, :type => :integer
 
           has activity_object.title_length, :as => :title_length, :type => :integer, :sortable => true
           has activity_object.desc_length, :as => :desc_length, :type => :integer, :sortable => true
           has activity_object.tags_length, :as => :tags_length, :type => :integer, :sortable => true
+
         end
 
       end
