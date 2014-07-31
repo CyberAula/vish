@@ -75,6 +75,7 @@ module SocialStream
           indexes actor.slug
           
           has created_at
+          has updated_at
 
           has activity_object.popularity, :as => :popularity, :sortable => true
           has activity_object.qscore, :as => :qscore, :sortable => true
