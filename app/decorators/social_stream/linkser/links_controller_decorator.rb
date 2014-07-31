@@ -1,15 +1,31 @@
 LinksController.class_eval do
 
-  def allowed_params
-    [:url, :image, :callback, :width, :height, :callback_url, :loaded, :language, :age_min, :age_max, :tag_list=>[]]
-  end
+  before_filter :fill_create_params, :only => [:new, :create]
+
 
   def create
+    resource.scope = params["link"]["scope"]
+
     super do |format|
       format.json { render :json => resource }
       format.js { render }
       format.all {redirect_to link_path(resource) || url_for(current_subject)}
   	end
+  end
+
+
+  private
+
+  def allowed_params
+    [:url, :image, :callback, :width, :height, :callback_url, :loaded, :language, :age_min, :age_max, :tag_list=>[]]
+  end
+
+  def fill_create_params
+    params["link"] ||= {}
+    params["link"]["scope"] ||= "0" #public
+    params["link"]["owner_id"] = current_subject.actor_id
+    params["link"]["author_id"] = current_subject.actor_id
+    params["link"]["user_author_id"] = current_subject.actor_id
   end
   
 end

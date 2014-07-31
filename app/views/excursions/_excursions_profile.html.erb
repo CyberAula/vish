@@ -9,16 +9,9 @@
 <script>
 	$(document).ready(function(){	
 		update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>);
-
-		re_apply_pageless("excursions");		
-		re_apply_backstrech_on_profile();
+		re_apply_backstrech("excursions");
+		re_apply_pageless("excursions");
 		$("footer#footer").addClass("fixed-bottom");
 		$("#wrap").addClass("wrap-when-fixed-bottom");    
 	});
-	
-	function re_apply_backstrech_on_profile(){
-		$("div[bs-img]").each(function(){
-			$(this).backstretch($(this).attr("bs-img"));
-		});
-    }
 </script>

@@ -45,6 +45,8 @@ class AddChannels < ActiveRecord::Migration
     remove_column :activity_objects, :user_author_id
 
     ActivityObject.reset_column_information
+
+    ActivityObject.record_timestamps = true
   end
 
   def down
@@ -84,5 +86,7 @@ class AddChannels < ActiveRecord::Migration
     remove_foreign_key "channels", :name => "index_channels_on_user_author_id"
 
     drop_table :channels
+
+    ActivityObject.record_timestamps = true
   end
 end

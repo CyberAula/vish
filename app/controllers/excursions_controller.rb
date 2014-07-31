@@ -25,7 +25,7 @@ class ExcursionsController < ApplicationController
   # Quick hack for bypassing social stream's auth
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
-  before_filter :hack_auth, :only => [ :new, :create]
+  before_filter :fill_create_params, :only => [ :new, :create]
   skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
   skip_after_filter :discard_flash, :only => [:clone]
   
@@ -187,8 +187,10 @@ class ExcursionsController < ApplicationController
     if(params[:draft])
       if(params[:draft] == "true")
         @excursion.draft = true
+        @excursion.scope = 1
       elsif (params[:draft] == "false")
         @excursion.draft = false
+        @excursion.scope = 0
       end
     end
 
@@ -477,12 +479,18 @@ class ExcursionsController < ApplicationController
   private
 
   def allowed_params
-    [:json, :slide_count, :thumbnail_url, :draft, :offline_manifest]
+    [:json, :slide_count, :thumbnail_url, :draft]
   end
 
-  def hack_auth
+  def fill_create_params
     params["excursion"] ||= {}
-    params["excursion"]["relation_ids"] = [Relation::Public.instance.id]
+
+    if params["draft"]==="true"
+      params["excursion"]["scope"] = "1" #private
+    else
+      params["excursion"]["scope"] = "0" #public
+    end
+    
     params["excursion"]["owner_id"] = current_subject.actor_id
     params["excursion"]["author_id"] = current_subject.actor_id
     params["excursion"]["user_author_id"] = current_subject.actor_id

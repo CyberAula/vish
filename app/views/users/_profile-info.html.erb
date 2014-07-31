@@ -16,13 +16,16 @@
             $('.loader_pagination').hide();      
             $("#resources_tab_ready").append(html);
             re_apply_pageless("resources");
+            re_apply_backstrech("resources");
           },
           error: function(){
             //console.log("error loading resources");
          }
         });
+
     } else {
       re_apply_pageless("resources");
+      
     }
   });
 
@@ -38,11 +41,13 @@
             $('.loader_pagination').hide();
             $("#events_tab_ready").append(html);
             re_apply_pageless("events");
+            re_apply_backstrech("events");
           },
           error: function(){
             //console.log("error loading events");
          }
         });
+
     } else {
       re_apply_pageless("events");
     }
@@ -109,24 +114,11 @@
             //console.log("error loading followings");
          }
         });
+
     } else {
       re_apply_pageless("followings");
     }
   });
-
-  $("#excursions_tab").click(function(){
-    re_apply_backstrech("excursions");
-  });
-
-  $("#events_tab").click(function(){
-    re_apply_backstrech("events");
-  });
-  
-  $("#resources_tab").click(function(){
-    re_apply_backstrech("resources");
-  });
-
-
 <%end%>
 
 <script>
@@ -190,24 +182,40 @@ function get_url_with_sort_by(tab){
   return the_url;
 }
 
-var backstrech_items = {
-  excursions: {
-
-  },
-  resources: {
-
-  }, 
-  events: {
-
+  function re_apply_backstrech(tab){
+    console.log(tab + ' clicked');
+    $("#" + tab + "_tab_ready"  + " div[bs-img]").each(function() {
+          if($(this).parents(".tab-pane").css('display')!="none"){        
+            $(this).backstretch( $(this).attr("bs-img") );      
+          }
+          else{
+            $(this).attr("fix-bs", "true");
+          }   
+    });
   }
-}
 
-function re_apply_backstrech(tab){
-  for (var key in backstrech_items[tab]) {
-    $(""+ key).backstretch( backstrech_items[tab][key] );  
-    //console.log("reaplicando backstrech a " + key + " con " + backstrech_items[tab][key]);
-  }
-}
+    $(window).on('resize.backstretch', set_fix_bs_on_hidden_tabs)
+             .on('orientationchange.backstretch', set_fix_bs_on_hidden_tabs);
+    
+
+    function set_fix_bs_on_hidden_tabs(){
+      $(".tab-pane:hidden").each(function(){
+        $(".tab-pane:hidden").find("div[bs-img]").attr("fix-bs","true");
+      });
+    }
+
+    $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+      fix_backstretch($(e.target).attr("href").substring(1));
+    });
+
+    function fix_backstretch(tab){
+      $("#" + tab +" div[fix-bs]").each(function() {
+        if($(this).parents(".tab-pane").css('display')!="none"){        
+          $(this).backstretch( $(this).attr("bs-img") );
+          $(this).removeAttr("fix-bs");
+        }        
+      });     
+    }
 
 </script>
 
