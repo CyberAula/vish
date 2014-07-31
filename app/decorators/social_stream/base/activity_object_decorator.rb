@@ -8,12 +8,10 @@ ActivityObject.class_eval do
 
 
   def public?
-    # !private? and self.relation_ids.include? Relation::Public.instance.id
     self.scope == 0
   end
 
   def private?
-    # self.relation_ids.include? Relation::Private.instance.id
     self.scope == 1
   end
 
@@ -310,14 +308,15 @@ ActivityObject.class_eval do
   private
 
   def fill_relation_ids
-    case self.scope
-    when 0
-      #Public
-      self.relation_ids = [Relation::Public.instance.id]
-    when 1
-      #Private
-      self.relation_ids = [Relation::Private.instance.id]
-    else
+    unless self.object_type == "Actor" or self.object.nil?
+      unless self.object_type == "Excursion" and self.object.draft==true
+        #Always public except drafts
+        self.object.relation_ids = [Relation::Public.instance.id]
+        self.relation_ids = [Relation::Public.instance.id]
+      else
+        self.object.relation_ids = [Relation::Private.instance.id]
+        self.relation_ids = [Relation::Private.instance.id]
+      end
     end
   end
 
