@@ -329,9 +329,11 @@ namespace :fix do
 
     Actor.all.each do |actor|
       if actor.admin?
-        actor.scope = 1
+        actor.activity_object.scope = 1
+        actor.activity_object.relation_ids = [Relation::Private.instance.id]
       else
-        actor.scope = 0
+        actor.activity_object.scope = 0
+        actor.activity_object.relation_ids = [Relation::Public.instance.id]
       end
       actor.save!
     end
