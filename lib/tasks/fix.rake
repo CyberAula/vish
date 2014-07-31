@@ -328,6 +328,11 @@ namespace :fix do
     ActivityObject.record_timestamps=false
 
     Actor.all.each do |actor|
+      if actor.admin?
+        actor.scope = 1
+      else
+        actor.scope = 0
+      end
       actor.save!
     end
 
@@ -338,6 +343,52 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+
+  #Usage
+  #Development:   bundle exec rake fix:scopes
+  #In production: bundle exec rake fix:scopes RAILS_ENV=production
+  task :scopes => :environment do
+    printTitle("Fixing scopes")
+
+    Rake::Task["fix:actorRelations"].invoke
+
+    # publicRelationId = Relation::Public.instance.id
+    privateRelationId = Relation::Private.instance.id
+
+    ActivityObject.all.each do |ao|
+      unless ao.object.nil?
+        if (!ao.relation_ids.nil? and (ao.relation_ids.include? privateRelationId) and ao.scope==0)
+          #This is a private ao
+          ao.update_column :scope, 1
+        end
+      end
+    end
+
+    printTitle("Task Finished")
+  end
+
+
+  #Usage
+  #Development:   bundle exec rake fix:scopeForVEResources
+  #In production: bundle exec rake fix:scopeForVEResources RAILS_ENV=production
+  task :scopeForVEResources => :environment do
+    printTitle("Fixing scope for resources uploaded from VE")
+
+    ActivityObject.record_timestamps=false
+
+    ActivityObject.where("scope=0 and object_type in (?)", ["Document", "Webapp", "Scormfile","Link","Embed"]).select{ |ao|
+        !ao.object.nil? and !ao.owner.nil? and !ao.description.nil? and ao.description.start_with? "Uploaded by" and (ao.description.end_with? "via Vish Editor" or ao.description.end_with? "via ViSH Editor")
+    }.each do |ao|
+      ao.object.class.record_timestamps=false
+      ao.scope = 1
+      ao.save!
+      ao.object.class.record_timestamps=true
+    end
+
+    ActivityObject.record_timestamps=true
+
+    printTitle("Task Finished")
+  end
 
   #Usage
   #Development:   bundle exec rake fix:removeInvalidSpamReports
