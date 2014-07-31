@@ -186,7 +186,10 @@ function get_url_with_sort_by(tab){
     console.log(tab + ' clicked');
     $("#" + tab + "_tab_ready"  + " div[bs-img]").each(function() {
           if($(this).parents(".tab-pane").css('display')!="none"){        
-            $(this).backstretch( $(this).attr("bs-img") );      
+            $(this).backstretch( $(this).attr("bs-img") );   
+            if($(this).parents(".tab-pane").css('display')=="none"){
+              $(this).attr("fix-bs", "true");
+            }
           }
           else{
             $(this).attr("fix-bs", "true");
