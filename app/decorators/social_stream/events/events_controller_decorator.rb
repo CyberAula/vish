@@ -14,7 +14,8 @@ EventsController.class_eval do
       :week_day_order, :week_day, :interval,
       :room_id,
       :streaming,
-      :embed
+      :embed,
+      :scope
     ]
   end
 

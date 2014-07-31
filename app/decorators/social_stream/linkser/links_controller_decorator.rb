@@ -4,8 +4,6 @@ LinksController.class_eval do
 
 
   def create
-    resource.scope = params["link"]["scope"]
-
     super do |format|
       format.json { render :json => resource }
       format.js { render }
@@ -17,7 +15,7 @@ LinksController.class_eval do
   private
 
   def allowed_params
-    [:url, :image, :callback, :width, :height, :callback_url, :loaded, :language, :age_min, :age_max, :tag_list=>[]]
+    [:url, :image, :callback, :width, :height, :callback_url, :loaded, :language, :age_min, :age_max, :scope, :tag_list=>[]]
   end
 
   def fill_create_params

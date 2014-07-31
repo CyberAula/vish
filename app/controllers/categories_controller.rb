@@ -71,7 +71,7 @@ class CategoriesController < ApplicationController
   end
 
   def allowed_params
-    [:item_type, :item_id]
+    [:item_type, :item_id, :scope]
   end
 
 end
