@@ -1,7 +1,4 @@
-
-
-
-<div class="dropdown"  >
+<div class="dropdown">
  
  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
     <i class="fa fa-eye"></i>
@@ -54,7 +51,13 @@
   var param = "<%=params[:sort_by]%>";
 
   if(param && param!=""){
+
+    if(param=="ranking"){
+      param = "popularity";
+    }
+
     var value = $(".order_by_selector .dropdown-menu [sort-by-key="+param+"]").html();
     $(".dropdownMenuOrdBy").html(value + '<i class="fa fa-angle-down"></i>'); 
+
   }
 <%end%>

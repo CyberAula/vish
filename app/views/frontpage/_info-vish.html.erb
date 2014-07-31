@@ -4,13 +4,33 @@
 </div>
 
 <div class="all-items-count" >
-	<h3><%=t("frontpage.community_stats.title")=%></h3>
-  <span id="count-all-excursion"><%= Excursion.count %> <p><%=t("excursion.title.other").capitalize%></p></span>
-  <span id="count-all-resources"><%= Embed.count + Swf.all.length +  Officedoc.all.length + Link.count +  Video.all.length + Audio.all.length + Scormfile.count + Webapp.count %> <p><%=t("resource.title.other").capitalize%></p></span>
-  <span id="count-all-users"><%= User.count %> <p><%=t("user.title.other").capitalize%></p></span>
-	<div class=""><%=t("frontpage.community_stats.subtitle")=%></div>
+	<h3><%=t("frontpage.community_stats.title")=%>. <a class="join_us_link" href="<%=new_user_registration_path%>"><%=t("frontpage.join_us")%></a></h3>
+  
+  <p id="count-all-excursion" class="frontpage_count_entry">
+    <a href="<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking")%>">
+      <span class="vish-info-item-count-number"><%= Excursion.count %></span> 
+      <span class="vish-info-item-count-title"><%=t("excursion.title.other").capitalize%></span>
+    </a>
+  </p>
+  
+  <p id="count-all-resources" class="frontpage_count_entry">
+    <a href="<%=search_path(:type => "resource", :browse=>"true", :sort_by => "ranking")%>">
+      <span class="vish-info-item-count-number"><%= ActivityObject.getResourceCount()%></span>
+      <span class="vish-info-item-count-title"><%=t("resource.title.other").capitalize%></span>
+    </a>
+  </p>
+
+  <p id="count-all-users" class="frontpage_count_entry">
+    <a href="<%=search_path(:type => "user", :browse=>"true", :sort_by => "created_at")%>">
+      <span class="vish-info-item-count-number"><%= User.count %></span>
+      <span class="vish-info-item-count-title"><%=t("user.title.other").capitalize%></span>
+    </a>
+  </p>
+
+	<div><%=t("frontpage.community_stats.subtitle")%></div>
 </div>
-<div class="decoration" >
+
+<div class="decoration">
   <hr>
   <hr>
 </div>

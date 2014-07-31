@@ -24,7 +24,6 @@ nl:
   all: "alle"
   announce: 
     title: "Mededeling"
-    body: ""
   author: "auteur"
   cancel: "Annuleren"
   close: "Sluiten"
@@ -306,10 +305,7 @@ nl:
     other: "gebruikers"
   username: "gebruikersnaam"
   vish:
-    about: "Over VISH"    
-    sentence1: "Maak uw account aan bij VISH"
-    sentence2: "VISH is een platform voor sociale wetenschap"
-    team: "Het VISH Team"    
+    about: "Over VISH"   
   views:
     pagination:
       next: "Â»"

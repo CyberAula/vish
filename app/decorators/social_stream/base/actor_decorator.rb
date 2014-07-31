@@ -1,20 +1,10 @@
 Actor.class_eval do
 
-  before_save :fix_relation_ids
+  before_save :fill_actor_relation_ids
 
   # Activities are shared publicly by default
   def activity_relations
     [ Relation::Public.instance ]
-  end
-
-  def fix_relation_ids
-    if self.activity_object.relation_ids.blank?
-      if self.is_admin
-        self.activity_object.relation_ids=[Relation::Private.instance.id]
-      else
-        self.activity_object.relation_ids=[Relation::Public.instance.id]
-      end
-    end
   end
 
   def admin?
@@ -24,8 +14,7 @@ Actor.class_eval do
   #Make the actor admin
   def make_me_admin
     self.is_admin = true
-    #prevent the admin to be indexed by the search engine
-    self.activity_object.relation_ids = [Relation::Private.instance.id]
+    self.scope = 1
     self.save!
 
     #Make the actor admin 'in the Social Stream way'
@@ -38,13 +27,26 @@ Actor.class_eval do
   #Remove admin privilegies of the actor
   def degrade
     self.is_admin = false
-    self.activity_object.relation_ids = [Relation::Public.instance.id]
+    self.scope = 0
     self.save!
 
     #Remove contact in Social Stream
     contact = Contact.where(:sender_id=>Site.current.actor.id, :receiver_id=>self.id).first
     unless contact.nil?
       contact.destroy
+    end
+  end
+
+
+  private
+
+  def fill_actor_relation_ids
+    if self.is_admin
+      self.activity_object.scope = 1
+      self.activity_object.relation_ids=[Relation::Private.instance.id]
+    else
+      self.activity_object.scope = 0
+      self.activity_object.relation_ids=[Relation::Public.instance.id]
     end
   end
 
