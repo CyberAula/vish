@@ -1,20 +1,27 @@
 <%= render :partial => 'excursions/vish_viewer.full' %>
 
-<script>    
+<script>
 	options = {};
 	var configuration = {};
 
 	configuration["ImagesPath"] = "/assets/";
 	configuration["StylesheetsPath"] = "/assets/";
 	configuration["mode"] = "vish";
+	//Tracking System
+	<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? %>
+		configuration["TrackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";
+		<% unless Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'].nil? %>
+			configuration["TrackingSystemAPIURL"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'] %>";
+		<%end%>
+	<%end%>
 	options["configuration"] = configuration;
 	options["developping"] = false;
 
 	//User data
 	<% if user_signed_in? %>
 		options["user"] = {
-			name: "<%= current_user.name %>",
-			id: "<%= Actor.normalize_id(current_user) %>",
+			name: "<%= current_subject.name %>",
+			id: "<%= Actor.normalize_id(current_subject) %>",
 			token: "<%= form_authenticity_token %>"
 		}
 	<% end %>

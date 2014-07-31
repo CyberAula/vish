@@ -1,0 +1,17 @@
+<div class="decoration" >
+  <hr>
+  <hr>
+</div>
+
+<div class="all-items-count" >
+	<h3><%=t("frontpage.community_stats.title")=%></h3>
+  <span id="count-all-excursion"><%= Excursion.count %> <p><%=t("excursion.title.other").capitalize%></p></span>
+  <span id="count-all-resources"><%= Embed.count + Swf.all.length +  Officedoc.all.length + Link.count +  Video.all.length + Audio.all.length + Scormfile.count + Webapp.count %> <p><%=t("resource.title.other").capitalize%></p></span>
+  <span id="count-all-users"><%= User.count %> <p><%=t("user.title.other").capitalize%></p></span>
+	<div class=""><%=t("frontpage.community_stats.subtitle")=%></div>
+</div>
+<div class="decoration" >
+  <hr>
+  <hr>
+</div>
+

@@ -4,7 +4,7 @@
 	<h1>
     <%=@category%>
   </h1>
-	<ul>
+	<ul class="items">
 		<%for excursion in @excursions%>
 			<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion } %>
 		<%end%>

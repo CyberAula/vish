@@ -25,11 +25,11 @@
 }
 
 .nav-tabs a:hover {
-      color: $gray;
+  color: $gray;
 }
 
 .nav-tabs a .active{
-      color: $gray-dark;
+  color: $gray-dark;
 }
 
 .navbar-search {
@@ -49,6 +49,7 @@
 .nav-tabs {
   clear: both;
   border-bottom: 1px solid $gray-dark;
+  margin-bottom: 10px;
 }
 
 .nav-tabs > li > a{
@@ -56,6 +57,7 @@
   border-right: none;
   border-top: none;
   padding: 7px 7px 6px 7px;
+  outline: 0;
   margin-top: 5px;
   width: 100%;
   color: $gray
@@ -70,6 +72,7 @@
            
 .nav-tabs > li > a i{       
   display: inline;
+  margin-right: 5px;
 }  
  .nav-tabs > li > a i.active{
   padding-right: 3px;
@@ -86,7 +89,7 @@
 .nav-tabs > li.active{
   background-color: transparent !important;
   border: none;
-  border-bottom: 3px solid $brand-primary-2;
+  border-bottom: 3px solid $brand-primary;
 }
 .nav-tabs > li.active > a:hover{
   color: $gray-darker !important;

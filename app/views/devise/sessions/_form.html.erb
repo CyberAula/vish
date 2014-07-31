@@ -3,18 +3,18 @@
     <%= t('sign_in') %>
   </h3>
 
-  <%= form_for(resource, :as => resource_name, :class="form-group", :url => session_path(resource_name)) do |f| %>
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <%= devise_error_messages! if controller.controller_name == 'sessions' %>
 
     <article class="login_data">
 
       <%= f.label :email %>
 
-      <%= f.email_field :email, :class="form-group" %>
+      <%= f.email_field :email %>
 
       <%= f.label :password %>
 
-      <%= f.password_field :password, :class="form-group" %>
+      <%= f.password_field :password %>
 
       <% if devise_mapping.rememberable? -%>
         <div id="remember">

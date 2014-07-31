@@ -1,17 +1,47 @@
 <div class="btn-group">
+  
   <!--BTN ADD-->
   <% if !profile_subject_is_current? %>
+
     <button class="btn btn-follow">
       <%= contact_button(profile_subject) %>
      </button>
+
   <% end %>
   <!-- Edit your profile -->
   <% @profile = profile_or_current_subject.profile %>
   <% if can?(:update, @profile) %>
-    <button class="edit_icon btn btn-default">
-      <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %> 
-    </button>
+    <div class="edit_icon btn btn-default">
+      <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %>
+    </div>
+   
+
   <% end %>
+
+  <!-- Remove user (only for admins) -->
+  <% if isAdmin? %>
+    <% if can?(:destroy, @profile) and !profile_subject.admin? and current_subject!=profile_subject %>
+      <div class="edit_icon btn btn-default">
+        <%= link_to(raw("<i class='fa fa-trash '></i>")+ t('profile.remove'), user_path(profile_subject), :confirm => t('are_you_sure'), :method => "delete")%>
+      </div>
+    <% end %>
+  <% end %>
+
+  <!-- Promote user to administrator (only for admins) -->
+  <% if isAdmin? %>
+    <% if can?(:make_admin, @profile) and current_subject!=profile_subject %>
+      <% unless profile_subject.admin? %>
+      <div class="edit_icon btn btn-default">
+        <%= link_to(raw("<i class='fa fa-thumbs-up'></i>")+ t('profile.promote'), promote_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
+      </div>
+      <% else %>
+      <div class="edit_icon btn btn-default">
+        <%= link_to(raw("<i class='fa fa-thumbs-down'></i>")+ t('profile.degrade'), degrade_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
+      </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
   <!--BTN MESSAGE-->
   <% if !profile_subject_is_current? && user_signed_in?%>
     <button href="#new_messages_profile" id="mesage-profile" role="button" class="btn btn-default" data-toggle="modal" data-remote="false">
@@ -22,12 +52,13 @@
     </button>
   <% end %>
   <!--BTN show-more-->
-  <button class="btn btn-default btn-show ui-state-default ui-corner-all" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
+  <button type="button" class="btn btn-default btn-show ui-state-default ui-corner-all" data-toggle="collapse" data-target="#effect" href="#collapseInfo">
     <i class="fa fa-plus"></i>
     <%=t('excursion.actions.show_more')%>
   </button>
 </div>
   <!-- Button to trigger modal --> 
+
   <!-- Modal -->
 
 <div id="new_messages_profile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -49,7 +80,7 @@
   </div>
 </div>
 
-
+ 
 <script>
   $(function() {
     $("#showMore").click(function(){

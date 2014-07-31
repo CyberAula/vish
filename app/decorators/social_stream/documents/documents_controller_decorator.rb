@@ -52,7 +52,7 @@ DocumentsController.class_eval do
   def destroy
     super do |format|
       format.html {
-        redirect_to current_user
+        redirect_to url_for(current_subject)
       }
 
       format.js

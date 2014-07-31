@@ -203,15 +203,17 @@ div.new_comment
       img
         width: 38px
         @include border-left-radius ($border-radius-base)
+   
+        
     .form-control
       @include border-right-radius ($border-radius-base)
-
+      height: 38px !important
     input
       &[type="submit"]
-        margin: -1px 5px 15px 0
+        margin: 10px 5px 10px 0 
         float: right
-        @extend .btn-primary
-        @include border-top-radius(0px)
+        @extend .btn-default
+     
         @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
 
 

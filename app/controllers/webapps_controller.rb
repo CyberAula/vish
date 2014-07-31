@@ -5,7 +5,7 @@ class WebappsController < ApplicationController
     respond_to do |format|
       format.zip {
         resource.increment_download_count
-        return send_file resource.zippath, :type=>"application/zip"
+        return send_file resource.getZipPath(), :type=>"application/zip"
       }
       format.json {
         render :json => resource.as_json
@@ -26,7 +26,7 @@ class WebappsController < ApplicationController
   def destroy
     destroy! do |format|
       format.html {
-        redirect_to user_path(current_user)
+        redirect_to url_for(current_subject)
        }
     end
   end

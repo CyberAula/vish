@@ -89,8 +89,47 @@ class UsersController < ApplicationController
     end
   end
 
+  #Make user admin
+  def promote
+    u = User.find_by_slug(params[:id])
+    authorize! :make_admin, u
+
+    u.make_me_admin
+
+    redirect_to user_path(u)
+  end
+
+  #Degrade admin to user
+  def degrade
+    u = User.find_by_slug(params[:id])
+    authorize! :make_admin, u
+    
+    u.degrade
+
+    redirect_to user_path(u)
+  end
+
+  def destroy
+    u = User.find_by_slug(params[:id])
+    authorize! :destroy, u
+
+    unless u.nil?
+      u.destroy
+    end
+
+    respond_to do |format|
+      format.any {
+        if !request.referrer.nil? and request.referrer.include?("/admin/users")
+          redirect_to admin_users_path
+        else
+          #Only admins can destroy users. Redirect to home.
+          redirect_to home_path
+        end
+      }
+    end
+  end
+
   # Supported through devise
   def new; end; def create; end
-  # Not supported yet
-  def destroy; end
+
 end

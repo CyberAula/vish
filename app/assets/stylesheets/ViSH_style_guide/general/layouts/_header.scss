@@ -48,10 +48,10 @@
 .user-menu{
   margin-left: 12px !important;
   a.photo-user{
-    padding: 3px !important;
+    padding: 0px !important;
     img{
       @include border-left-radius ($border-radius-small);
-      width: 28px;
+      width: 35px;
       @media (min-width: $screen-lg-min){
         min-height: 29px;
       }
@@ -102,5 +102,38 @@ form.navbar-form-search{
       }
     }
   }
+}
+
+#new_user{
+  padding: 10px;
+}
+
+#warning_cookie_bar{
+  display: none;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: auto;
+  width: 100%;
+  z-index: 999;
+  position: fixed;
+  top: 50px;
+
+  h3{
+    display: block;
+    margin: 0;
+  }
+  p{
+    border-radius: 0 0 10px 10px;
+    color: #FFFFFF;
+    margin: 0 auto;
+    font-family: $corporate-font-family-sans-serif-Bold;
+    width: 80%;
+    a{
+      color: $white;
+      font-family: $corporate-font-family-sans-serif-Bold;
+    }
+  }
+ 
 }
 

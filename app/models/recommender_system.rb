@@ -18,8 +18,7 @@
 # ViSH Recommender System
 
 class RecommenderSystem
-
-  def self.excursion_suggestions(user=nil,excursion=nil,options=nil)
+  def self.excursion_suggestions(user=nil,excursion=nil,options={})
     # Step 0: Initialize all variables (N,NMax,random,...)
     options = prepareOptions(options)
 
@@ -46,19 +45,19 @@ class RecommenderSystem
   end
 
   # Step 0: Initialize all variables (N,NMax,random,...)
-  def self.prepareOptions(options=nil)
-    if !options.nil?
-      unless options[:n].is_a? Integer
-        options[:n] = 20
-      end
-      unless options[:random] == false
-        options[:random] = true
-      end
+  def self.prepareOptions(options={})
+    #Performance test
+    if options[:test]==true
+      return options
     else
-      options = {}
+      options[:test] = false
+    end
 
-      #Default values
+    unless options[:n].is_a? Integer
       options[:n] = 20
+    end
+
+    unless options[:random] == false
       options[:random] = true
     end
 
@@ -73,27 +72,29 @@ class RecommenderSystem
   end
 
   #Step 1: Preselection
-  def self.getPreselection(user,excursion,options=nil)
+  def self.getPreselection(user,excursion,options={})
     preSelection = []
 
     #Search excursions using the search engine
     keywords = compose_keywords(user,excursion,options)
     if !keywords.empty?
       searchTerms = keywords.join(" ")
-      searchEngineExcursions = (Excursion.search searchTerms, search_options(user,excursion,options)).select{|e| !e.nil?} rescue []
+      searchEngineExcursions = (Excursion.search searchTerms, search_options(user,excursion,options)).reject{|e| e.nil?} rescue []
       preSelection.concat(searchEngineExcursions)
     end
 
     #Add other excursions of the same author
-    if !excursion.nil?
-      userIdToReject = (!user.nil?) ? user.id : -1
-      authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == userIdToReject or e.id == excursion.id}
-      preSelection.concat(authoredExcursions)
-      preSelection.uniq!
+    if !excursion.nil? and !options[:test]
+      authorIdToReject = (!user.nil?) ? Actor.normalize_id(user) : -1
+      unless excursion.author.nil? or authorIdToReject == excursion.author.id
+        authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == authorIdToReject or e.id == excursion.id}
+        preSelection.concat(authoredExcursions)
+        preSelection.uniq!
+      end
     end
 
     pSL = preSelection.length
-
+    
     if options[:random]
       #Random: fill to Nmax, and select 2/3Nmax randomly
       if pSL < options[:nMax]
@@ -114,12 +115,16 @@ class RecommenderSystem
   #Step 2: Scoring
   def self.orderByScore(preSelectionLOs,user,excursion,options)
 
+    if preSelectionLOs.blank?
+      return preSelectionLOs
+    end
+
     #Get some vars to normalize scores
     maxPopularity = preSelectionLOs.max_by {|e| e.popularity }.popularity
     maxQuality = preSelectionLOs.max_by {|lo| lo.qscore }.qscore
 
     calculateCSScore = !excursion.nil?
-    calculateUPSScore = !user.nil?
+    calculateUSScore = !user.nil?
     calculatePopularityScore = !(maxPopularity.nil? or maxPopularity == 0)
     calculateQualityScore = !(maxQuality.nil? or maxQuality == 0)
 
@@ -128,19 +133,19 @@ class RecommenderSystem
     if calculateCSScore
       #Recommend items similar to other item
       weights[:cs_score] = 0.70
-      weights[:ups_score] = 0.10
+      weights[:us_score] = 0.10
       weights[:popularity_score] = 0.10
       weights[:quality_score] = 0.10
-    elsif calculateUPSScore
+    elsif calculateUSScore
       #Recommend items for a user
       weights[:cs_score] = 0.0
-      weights[:ups_score] = 0.50
+      weights[:us_score] = 0.50
       weights[:popularity_score] = 0.25
       weights[:quality_score] = 0.25
     else
       #Recommend items for anonymous users
       weights[:cs_score] = 0.0
-      weights[:ups_score] = 0.0
+      weights[:us_score] = 0.0
       weights[:popularity_score] = 0.5
       weights[:quality_score] = 0.5
     end
@@ -152,10 +157,10 @@ class RecommenderSystem
         cs_score = 0
       end
 
-      if calculateUPSScore
-        ups_score = RecommenderSystem.userProfileSimilarityScore(user,e)
+      if calculateUSScore
+        us_score = RecommenderSystem.userProfileSimilarityScore(user,e)
       else
-        ups_score = 0
+        us_score = 0
       end
 
       if calculatePopularityScore
@@ -170,15 +175,19 @@ class RecommenderSystem
         quality_score = 0
       end
 
-      e.score = weights[:cs_score] * cs_score + weights[:ups_score] * ups_score + weights[:popularity_score] * popularity_score + weights[:quality_score] * quality_score
-      e.score_tracking = {
-        :cs_score => cs_score,
-        :ups_score => ups_score,
-        :popularity_score => popularity_score,
-        :quality_score => quality_score,
-        :overall_score => e.score,
-        :rec => "ViSHRecommenderSystem"
-      }.to_json
+      e.score = weights[:cs_score] * cs_score + weights[:us_score] * us_score + weights[:popularity_score] * popularity_score + weights[:quality_score] * quality_score
+      
+      unless options[:test]
+        e.score_tracking = {
+          :cs_score => cs_score,
+          :us_score => us_score,
+          :popularity_score => popularity_score,
+          :quality_score => quality_score,
+          :weights => weights,
+          :overall_score => e.score,
+          :rec => "ViSHRecommenderSystem"
+        }.to_json
+      end
     }
 
     preSelectionLOs.sort! { |a,b|  b.score <=> a.score }
@@ -197,7 +206,8 @@ class RecommenderSystem
     else
       languageD = 0
     end
-    keywordsD = RecommenderSystem.getKeywordsDistance(loA.tag_list.delete_if{|e| e=="ViSHCompetition2013"},loB.tag_list)
+
+    keywordsD = RecommenderSystem.getKeywordsDistance(loA.tag_list.to_a.delete_if{|e| e=="ViSHCompetition2013"},loB.tag_list.to_a)
     titleD = RecommenderSystem.getKeywordsDistance(loA.title.split(" ").reject{|w| w.length<3},loB.title.split(" ").reject{|w| w.length<3})
     
     return weights[:language] * languageD + weights[:keywords] * keywordsD + weights[:title] * titleD
@@ -214,7 +224,7 @@ class RecommenderSystem
     else
       languageD = 0
     end
-    keywordsD = RecommenderSystem.getKeywordsDistance(user.tag_list,lo.tag_list)
+    keywordsD = RecommenderSystem.getKeywordsDistance(user.tag_list.to_a,lo.tag_list.to_a)
 
     return weights[:language] * languageD + weights[:keywords] * keywordsD
   end
@@ -237,10 +247,7 @@ class RecommenderSystem
   #######################
 
   # Usage example: RecommenderSystem.search({:keywords=>"biology", :n=>10})
-  def self.search(options=nil)
-    if options.class!=Hash 
-      options = Hash.new
-    end
+  def self.search(options={})
 
     #Specify searchTerms
     if (![String,Array].include? options[:keywords].class) or (options[:keywords].is_a? String and options[:keywords].strip=="")
@@ -249,13 +256,12 @@ class RecommenderSystem
     else
       browse = false
       if options[:keywords].is_a? String
-        searchTerms = options[:keywords].split(" ")
+        searchTerms = options[:keywords].gsub(/[,+|&]/,' ').split(" ")
       end
       #Remove keywords with less than 3 characters
       searchTerms.reject!{|s| s.length < 3}
       searchTerms = searchTerms.join(" ")
     end
-
 
     #Specify search options
     opts = {}
@@ -270,13 +276,6 @@ class RecommenderSystem
       end
     end
 
-    #Old version with extended mode (match exact first)
-    # if(params[:q] && params[:q]!="")
-    #   the_query_or = Riddle.escape(params[:q].strip).gsub(" ", " | ")
-    #   the_query = "(^" + params[:q].strip + "$) | (" + params[:q].strip + ") | (" + the_query_or + ")"
-    #   # order = nil #so it searches exact first
-    # end
-
     #Logical conector: OR
     opts[:match_mode] = :any
     opts[:rank_mode] = :wordcount
@@ -287,6 +286,10 @@ class RecommenderSystem
        :description => 1,
        :name => 60 #(For users)
     }
+
+    if n > 1000
+      opts[:max_matches] = n
+    end
 
     if !options[:page].nil?
       opts[:page] = options[:page].to_i
@@ -305,6 +308,36 @@ class RecommenderSystem
     opts[:with] = {}
     #Only 'Public' objects, drafts are not searched.
     opts[:with][:relation_ids] = Relation.ids_shared_with(nil)
+    
+    #Data range filter
+    if options[:startDate] or options[:endDate]
+      if options[:startDate].class.name != "Time"
+        #e.g. Time.parse("21-07-2014 11:41:00")
+        startDate = Time.parse(options[:startDate]) rescue 1000.year.ago
+      else
+        startDate = options[:startDate]
+      end
+      if options[:endDate].class.name != "Time"
+        endDate = Time.parse(options[:endDate]) rescue Time.now
+      else
+        endDate = options[:endDate]
+      end
+
+      opts[:with][:created_at] = startDate..endDate
+    end
+
+    #Filter by language
+    if options[:language]
+      opts[:with][:language] = [options[:language].to_s.to_crc32]
+    end
+
+    #Filter by quality score
+    if options[:qualityThreshold]
+      qualityThreshold = [[0,options[:qualityThreshold].to_i].max,10].min rescue 0
+      qualityThreshold = qualityThreshold*100000
+      opts[:with][:qscore] = qualityThreshold..1000000
+    end
+
 
     opts[:without] = {}
     if options[:users_to_avoid] and !options[:users_to_avoid].reject{|u| u.nil?}.empty?
@@ -321,6 +354,11 @@ class RecommenderSystem
     if browse==true
       #Browse
       opts[:match_mode] = :extended
+
+      #Browse can't order by relevance. Set ranking by default.
+      if opts[:order].nil?
+        opts[:order] = 'ranking DESC'
+      end
     else
       queryLength = searchTerms.scan(/\w+/).size
 
@@ -351,64 +389,64 @@ class RecommenderSystem
     return ThinkingSphinx.search searchTerms, opts
   end
 
+
   private
 
-  def self.compose_keywords(user,excursion,options=nil)
+  #######################
+  ## Utils (private methods)
+  #######################
+
+  def self.compose_keywords(user,excursion,options={})
     maxKeywords = 25
     keywords = []
     
     #User tags
     if !user.nil?
-      keywords = keywords + user.tag_list
+      keywords += user.tag_list
     end
 
     #Excursion tags
     if !excursion.nil?
-      keywords = keywords + excursion.tag_list
+      keywords += excursion.tag_list
     end
 
     #Keywords specified in the options
-    if !options.nil? and options[:keywords].is_a? Array
-      keywords = keywords + options[:keywords]
+    if options[:keywords].is_a? Array
+      keywords += options[:keywords]
     end
 
     keywords.uniq!
+
+    if options[:test]
+      return keywords
+    end
 
     #If keywords are least than the maxKeywords, fill it with additional data about the user
     if !user.nil?
       keywordsMargin = maxKeywords - keywords.length
       if keywordsMargin > 0
         #Tags of the excursions the user created
-        allAuthoredKeywords = []
-        ActivityObject.where(:object_type=>"Excursion").authored_by(user).map{ |activity_object| activity_object.tag_list }.each do |authoredKeywords|
-          allAuthoredKeywords = allAuthoredKeywords + authoredKeywords
-        end
-        allAuthoredKeywords.uniq!
+        allAuthoredKeywords = Excursion.authored_by(user).map{ |e| e.tag_list }.flatten.uniq
         keywords = keywords + allAuthoredKeywords.sample(keywordsMargin)
         keywords.uniq!
       end
 
       keywordsMargin = maxKeywords - keywords.length
       if keywordsMargin > 0
-        allLikedKeywords = []
         #Tags of the excursions the user like
-        Activity.joins(:activity_objects).includes(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => user.id}).where("activity_objects.object_type IN (?)", ["Excursion"]).map{ |activity| activity.activity_objects.first.tag_list }.each do |likedKeywords|
-          allLikedKeywords = allLikedKeywords + likedKeywords
-        end
-        allLikedKeywords.uniq!
-
+        allLikedKeywords = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => Actor.normalize_id(user)}).where("activity_objects.object_type IN (?)", ["Excursion"]).map{ |activity| activity.activity_objects.first.tag_list }.flatten.uniq
         keywords = keywords + allLikedKeywords.sample(keywordsMargin)
         keywords.uniq!
       end
     end
 
     #Remove unuseful keywords
-    keywords.delete_if{|el| el=="ViSHCompetition2013"}
+    keywords.delete_if{|el| ["ViSHCompetition2013"].include? el or el.length < 2}
 
     return keywords
   end
 
-  def self.search_options(user,excursion,options=nil)
+  def self.search_options(user,excursion,options={})
     opts = {}
 
     #Logical conector: OR
@@ -426,7 +464,7 @@ class RecommenderSystem
     if !user.nil? or !excursion.nil?
       opts[:without] = {}
       if !user.nil?
-        opts[:without][:author_id] = [user.id]
+        opts[:without][:author_id] = [ Actor.normalize_id(user) ]
       end
       if !excursion.nil?
         opts[:without][:id] = [excursion.id]
@@ -436,22 +474,22 @@ class RecommenderSystem
     return opts
   end
 
-  def self.getExcursionsToFill(n,preSelection,user,excursion,options=nil)
+  def self.getExcursionsToFill(n,preSelection,user,excursion,options={})
     excursions = []
     nSubset = [80,4*n].max
-    ids_to_avoid = getIdsToAvoid(preSelection,user,excursion,options)
+    ids_to_avoid = getIdsToAvoid(preSelection,excursion,user)
     excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").limit(nSubset).sample(n)
   end
 
-  def self.getIdsToAvoid(preSelection,user,excursion,options=nil)
+  def self.getIdsToAvoid(preSelection,excursion,user=nil)
     ids_to_avoid = preSelection.map{|e| e.id}
-
-    if !user.nil?
-      ids_to_avoid.concat(Excursion.authored_by(user).map{|e| e.id})
-    end
 
     if !excursion.nil?
       ids_to_avoid.push(excursion.id)
+    end
+
+    if !user.nil?
+      ids_to_avoid.concat(Excursion.authored_by(user).map{|e| e.id})
     end
 
     ids_to_avoid.uniq!
@@ -470,7 +508,7 @@ class RecommenderSystem
 
   #Semantic distance (between 0 and 1)
   def self.getSemanticDistance(stringA,stringB)
-    if stringA.nil? or stringB.nil?
+    if stringA.blank? or stringB.blank?
       return 0
     end
 
@@ -486,7 +524,7 @@ class RecommenderSystem
 
   #Semantic distance between keyword arrays (in a 0-1 scale)
   def self.getKeywordsDistance(keywordsA,keywordsB)
-    if keywordsA.nil? or keywordsB.nil? or keywordsA.empty? or keywordsB.empty?
+    if keywordsA.blank? or keywordsB.blank?
       return 0
     end 
 
@@ -496,7 +534,7 @@ class RecommenderSystem
     keywordsA.each do |kA|
       keywordsB.each do |kB|
         if getSemanticDistance(kA,kB) == 1
-          similarKeywords = similarKeywords + 1
+          similarKeywords += 1
           break
         end
       end

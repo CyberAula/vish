@@ -1,9 +1,9 @@
 
-	<ul class="items">
-	  <% popular_excursions(16).each do |excursion| %>
-	    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
-	  <% end %>
+<ul class="excursions_front items">
+	<% popular_excursions(16).each do |excursion| %>
+		<%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+	<% end %>
+</ul>
 
-	</ul>
 
 

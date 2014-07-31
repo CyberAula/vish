@@ -1,0 +1,15 @@
+<% fullHTMLmessage ||= false %>
+<% fullmessage ||= false %>
+<div class="empty_table">
+		<% if fullHTMLmessage.blank? %>
+			<p>
+				<% if !fullmessage.blank? %>
+					<%= fullmessage %>
+				<% else %>
+					<%t('admin.noitems')%>
+				<% end %>
+			</p>
+		<% else %>
+			<%= fullHTMLmessage.html_safe %>
+		<% end %>
+</div>

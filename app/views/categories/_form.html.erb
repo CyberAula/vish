@@ -1,69 +1,82 @@
 <!-- Button to trigger modal --> 
 <!-- Modal Categories-->
 
-<div id="AddCategory" class="modal fade" aria-labelledby="AddCategoryLabel">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-        <%= render partial: 'help/help_categorie_new' %>
-        <h2 class="modal-title" id="myModalLabel AddCategoryLabel"><%= t('categories.main_title')%></h2>
-      </div>
+<div id="<%=div_id%>" class="modal hide fade category_form_wrapper" tabindex="-1" role="dialog" aria-labelledby="<%=div_id%>AddCategoryLabel" aria-hidden="true">
 
-      <div class="modal-body">
-        <%= form_for Category.new(:owner_id => Actor.normalize_id(current_user)), :html => {:'data-type' => :json}, :class => "form-group", :remote => remote do |f| %>
-          <%= f.hidden_field :owner_id %>
-          <!--TITULO-->
-          <label><%= t('categories.leyend.title')%></label>
-          <%= f.text_field :title, :class => "form-control", :placeholder => t('categories.title_input') %>
-          
-          <!--DESCRIPCION-->
-          <label><%= t('categories.leyend.description')%></label>
-          <%= f.text_field :description, :class => "form-control", :placeholder => t('categories.description_input') %>
-          <%= f.submit t('categories.save'), :class => "hidden", :id => "saveCategory" %>
-        <% end %>
-      </div>
-
-      <div class="modal-footer">      
-        <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
-        <!--<b id="foo" rel="popover">Ayuda </b>-->
-        <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
-      </div>
-    </div>    
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <%= render partial: 'help/help_categorie_new' %>
+    <h2 id="<%=div_id%>AddCategoryLabel"><%= t('categories.main_title')%></h2>
   </div>
+
+  <div class="modal-body">
+    <%= form_for Category.new(:owner_id => Actor.normalize_id(current_subject)), :html => {:id => div_id+"_form", :'data-type' => :json}, :remote => remote do |f| %>
+
+      <!-- Owner -->
+      <%= f.hidden_field :owner_id, :id => div_id+"_owner_id" %>
+
+      <!--Title-->
+      <label><%= t('categories.leyend.title')%></label>
+      <%= f.text_field :title, :id => div_id+"_category_title", :placeholder => t('categories.title_input') %>
+      
+      <!--Description-->
+      <label><%= t('categories.leyend.description')%></label>
+      <%= f.text_field :description, :id => div_id+"_category_description", :placeholder => t('categories.description_input') %>
+
+      <%= f.submit t('categories.save'), :class => "hidden" %>
+    <% end %>
+  </div>
+
+    <div class="modal-footer">      
+      <input type="button" class="btn-primary" value="<%= t('categories.save') %>"/>
+    </div>
 </div>
 
 <script>
 
 
-  $('#AddCategory .new_category').bind('ajax:success', function(evt, data, status, xhr){
-    $('#AddCategory').modal('hide');
-    window.location.href = "/categories/" + data.id;
-  });
+    $('#<%=div_id%> .new_category').bind('ajax:success', function(evt, data, status, xhr){
+      $('#<%=div_id%>').modal('hide');
+      <% if div_id == "AddCategoryHeader" %>
+        window.location.href = "/categories/" + data.id;
+      <% elsif div_id == "AddCategory" %>
+        //add the new entry to categories
+        opt = $('<option />', {
+          value: data.id,
+          text: data.title
+        });               
+        opt.appendTo($("#category_id"));
+        $("#category_id").multiselect("refresh");
+        $("#category_id").multiselect("open");
+      <% end %>
+    });
 
-  $('#<%=div_id%> .new_category').bind('ajax:error', function(evt, data, status, xhr){
-    $("#<%=div_id%> .errors").remove();
-    var errors = "There was an unexpected error on the server. Please contact the technical support so they can solve it.";
-    if(data.responseJSON!=undefined){
-      errors = data.responseJSON.errors;
-    }
-    if (errors.indexOf("duplicated") != -1) {
-      $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.errors.duplicated')%></div>");
-    } else {
-      $("#<%=div_id%> .new_category").after("<div class='errors'>" + errors + "</div>");
-    }
-  });
-
-  var saveCategoryButton = $("#<%=div_id%> input[type='submit']");
-  var categoryButton = $("#<%=div_id%> input[value=<%= t('categories.save')%>][type='button'][class='btn-primary']");
-  $(categoryButton).click(function(event) {
-    if ($("#<%=div_id%> input[name='category[title]']").val() == "") {
+    $('#<%=div_id%> .new_category').bind('ajax:error', function(evt, data, status, xhr){
       $("#<%=div_id%> .errors").remove();
-      $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.title_input')%></div>");
-    } else {
-      $(saveCategoryButton).click();
-    }
-  });
+      
+      if(data.responseJSON!=undefined){
+        var errors = data.responseJSON.errors;
+      } else {
+        var errors = "There was an unexpected error on the server. Please contact the technical support so they can solve it.";
+      }
+
+      if (errors.indexOf("duplicated") != -1) {
+        $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.errors.duplicated')%></div>");
+      } else {
+        $("#<%=div_id%> .new_category").after("<div class='errors'>" + errors + "</div>");
+      }
+    });
+
+    //Category button event
+    $("#<%=div_id%> input[value=<%= t('categories.save')%>][type='button'][class='btn-primary']").click(function(event) {
+      if ($("#<%=div_id%> input[name='category[title]']").val() == "") {
+        $("#<%=div_id%> .errors").remove();
+        $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.title_input')%></div>");
+      } else {
+        //SaveCategoryButton click
+        $("#<%=div_id%> input[type='submit']").click();
+      }
+    });
+
 </script>
 

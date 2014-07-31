@@ -2,9 +2,15 @@
   @include items
 
 .contact
-  background-color: transparent !important
-  .add
-    @include follow-profile
+  background-color: white
+  .caption
+    position: relative
+    .add
+      @include follow-profile      
+      position: absolute
+      bottom: 6px
+      width: 91% 
+      height: 30px
 
 .avatar
   img
@@ -23,3 +29,4 @@
         min-height: 19px !important
       .following-button
         padding: 1px 0
+        

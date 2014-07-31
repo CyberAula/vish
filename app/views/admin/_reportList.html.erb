@@ -1,0 +1,105 @@
+<% rL = @reports.length %>
+<% if rL === 0 %>
+  <%= render '/layouts/emptytable', :fullmessage => t('admin.noreports') %>
+<% else %>
+
+  <table id="spam_table" cellspacing='0' class="vish_admin_table">
+    <thead>
+      <tr>
+        <th class="admin-checkbox"><input type="checkbox" class="checkallresources" autocomplete="off" value="all" style="display:none" /></th>
+        <th class="admin-resource"><%=t('resource.title.one').capitalize%></th>
+        <th class="admin-type"><%=t('search.type').capitalize%></th>
+        <th class="admin-user"><%=t('user.one').capitalize%></th>
+        <th class="admin-reporter"><%=t('admin.reporter').capitalize%></th>
+        <th class="admin-description"><%=t('description').capitalize%></th>
+        <th class="admin-date"><%=t('date').capitalize%></th>
+        <th class="admin-icontrash"></th>
+        <th class="admin-iconlock"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td class="admin-checkbox">
+          <input type="checkbox" autocomplete="off" value="<%=report.id%>" style="display:none" />
+        </td>
+         <td class="admin-resource">
+          <%unless report.activity_object.nil?%>
+            <a target="_blank" href="<%=url_for(report.activity_object.object)%>"><span><%= report.activity_object.title %></span></a>
+          <%else%>
+            <span><%=t('admin.noresource')%></span>
+          <%end%>
+        </td>
+        <td class="admin-type">
+          <!-- report.issueType -->
+          <span><%=report.issueIcon=%></span>
+        </td>
+        <td class="admin-user">
+          <%unless report.actor.nil? %>
+            <a target="_blank" href="<%=url_for(report.actor.subject)%>">
+              <span><%= report.actor.name %></span>
+            </a>
+            <a href="mailto:<%=report.actor.email%>"><address><%=report.actor.email%></address></a>
+          <%else%>
+            <span><%=t('admin.nouser')%></span>
+          <%end%>
+        </td>
+        <td class="admin-reporter">
+          <%reporter = report.actor_reporter%>
+          <% unless reporter.nil? %>
+            <% unless reporter.subject_type=="Site" %>
+              <a target="_blank" href="<%=url_for(reporter.subject)%>"><span><%= reporter.name %></span></a>
+            <% else %>
+              <span><%= reporter.name %></span>
+            <% end %>
+          <% else %>
+            <span><%= t('user.anonymous') %></span>
+          <%end%>
+        </td>
+        <td class="admin-description">
+          <!--span><%= report.issue %></span-->
+          <%#= truncate_name(report.issue, :length => 200) %>
+          <span>
+            <% if report.issue.length > 200 %>
+              <%= truncate(report.issue, length: 200) %>
+              <%= link_to_function '...Read more', "$(this).parent().html('#{escape_javascript report.issue}')" %>
+            <% else %>
+              <%= report.issue %>
+            <% end %>
+          </span>
+        </td>
+        <td class="admin-date">
+          <span><%=report.created_at=%></span>
+        </td>
+        <td class="admin-icontrash">
+            <%= link_to(raw("<i class='icon-trash'></i> "), spam_report_path(report), :confirm => 'Are you sure?', :method => "delete")%>
+        </td>
+        <td class="admin-iconlock">
+            <%if report.pending %>
+              <%= link_to(raw("<i title='"+t('admin.close_report')+"' class='icon-lock'></i> "), close_spam_report(report), :method => "get")%>
+            <%else%>
+              <%= link_to(raw("<i title='"+t('admin.open_report')+"' class='icon-unlock'></i> "), open_spam_report(report), :method => "get")%>
+            <%end%>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <div class="reports_type_legend">
+    <ul>
+      <li>
+        <i class="icon-flag"></i><span><%=t("report.spam_content")%></span>
+      </li>
+      <li>
+        <i class="icon-warning-sign"></i><span><%=t("report.error_content_resource")%></span>
+      </li>
+      <li>
+        <i class="icon-remove"></i><span><%=t("report.low_content_quality")%></span>
+      </li>
+    </ul>
+  </div>
+
+<% end %>
+
+

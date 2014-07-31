@@ -1,5 +1,14 @@
-<ul class="nav navbar-nav mobile-nav">
-  <!--user-->
+
+<ul class="nav">
+
+<!--search-->
+  <li class="search-ui ">
+    <%= render partial: 'layouts/search_mobile' %>
+  </li>
+
+
+<!--user-->
+
   <li class="user">
     <%= link_to current_subject do %>
       <%= image_tag current_subject.logo.url(:small) %>

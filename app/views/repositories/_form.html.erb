@@ -66,7 +66,7 @@
                   <%= f.hidden_field :callback_url %>
                   <%= f.hidden_field :loaded %>
                   <%#= f.hidden_field :image %>
-                  <%= f.text_field :url, :class => "form-control" %>
+                  <%= f.text_field :url %>
                   <%= f.hidden_field :title%>
                   <%= f.hidden_field :description%>
                   <%= f.hidden_field :tag_list, :multiple => true %>
@@ -94,7 +94,7 @@
                 <%= form_for d, :namespace => 'new_file_only', :remote => false, :class => "form-group" do |f| %>
                   <%= f.hidden_field :owner_id %>
                   <%#= f.hidden_field :image %>
-                  <%= f.text_field :fulltext, :class => "form-control" %>
+                  <%= f.text_field :fulltext %>
                   <%= f.hidden_field :title%>
                   <%= f.hidden_field :description%>
                   <%= f.hidden_field :tag_list, :multiple => true %>
@@ -105,6 +105,7 @@
                 <% end %>
               </div>
             </div>
+
           </div>
         </div>
       
@@ -146,10 +147,14 @@
           <div class="limits">
             <div class="limit1">4</div>
             <div class="limit2">20</div>
+            <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>   
           </div>
-          <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
           <br>
         </form>
+        <!--TEST AGE SLIDER-->
+        <b>4</b> <input type="text" class="slider" value="" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-orientation="horizontal" data-slider-value="[4,20]" style="width: 300px"/> <b>20</b>
+
+
       </div>
       </div>
       <div class="modal-footer">
@@ -159,10 +164,12 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
-
-
 <!-- SCRIPTS -->
+<!--TEST SCRIPT AGE SLIDER-->
+<script type="text/javascript">
+  $(".slider").slider({});
+</script>
+
 <script>
 $(document).ready(function(){
   $('.helpResources').popover({ 
@@ -217,9 +224,7 @@ $(document).ready(function(){
   var uploadButton = $("input[value=<%= t('document.upload')%>][type='button'][class='btn btn-primary']");
   $(uploadButton).click(function(event) {
     var resource_type = $(".accordion-body.collapse.in").attr('id');
-
-   
-    
+ 
     if(resource_type == "document" && $("#AddResource input[name='"+resource_type+"[file]']").val() == "") {
       alert("<%= t('document.body.title3')%>");
     } else if (resource_type == "link" && $("#AddResource input[name='"+resource_type+"[url]']").val() == "") {

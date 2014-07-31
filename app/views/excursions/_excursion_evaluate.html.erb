@@ -1,4 +1,6 @@
-          <div id="myTeachingModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div id="myTeachingModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
             <%= content_for :javascript do%>
               $('#myTeachingModal input.star').rating({
                 focus: function(value, link){
@@ -72,7 +74,10 @@
 
                 </div>
                 <% end %>
-                <div class="evaluation_form_button_div btn-modal-footer">
-                  <button type="button" class="btn btn-primary evaluation_form_button"><%=t('save')%></button>
+                <div class="evaluation_form_button_div modal-footer">
+                  
+                  <button type="button" class="btn btn-primary evaluation_form_button" data-dismiss="modal"><%=t('save')%></button>
                 </div>            
+          </div>
+          </div>
           </div>

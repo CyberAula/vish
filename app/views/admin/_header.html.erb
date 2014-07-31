@@ -1,0 +1,12 @@
+<div class="tabbable admin_header">
+	<h1><i class="icon-wrench"></i> <span class="admin_header_text_title"><%=t('admin.title')%></span> </h1>
+	<hr>
+	<ul class="nav nav-pills">
+		<li <%=!@reports.nil? ? "class=active" : ""%>>
+			<a href="<%=admin_open_reports_path%>"><%=t('admin.reports')%></a>
+		</li>
+		<li <%=!@users.nil? ? "class=active" : ""%>>
+			<a href="<%=admin_users_path%>"><%=t('admin.users')%></a>
+		</li>
+	</ul>
+</div>

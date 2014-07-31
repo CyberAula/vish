@@ -1,0 +1,42 @@
+#!/bin/bash
+
+function vishLogo(){
+echo "
+
+   \ \    / / (_)  / ____| | |  | | 
+    \ \  / /   _  | (___   | |__| | 
+     \ \/ /   | |  \___ \  |  __  | 
+      \  /    | |  ____) | | |  | | 
+       \/     |_| |_____/  |_|  |_| 
+
+"
+}
+
+if [ "$1" = "fix" ];
+then
+	vishLogo
+	echo "Running Fixes and Starting server..."
+	echo " "
+	bundle exec rake db:migrate ts:rebuild; rails s
+elif [ "$1" = "run" ];
+then	
+	vishLogo
+	echo "Starting server normally..."
+	echo " "
+	bundle exec rake ts:start; rails s
+elif [ "$1" = "reset" ];
+then
+	vishLogo
+	echo "Reseting Fulldatabase, Populating and starting server..."
+	echo " " 
+	bundle exec rake db:reset db:migrate db:populate ts:rebuild; rails s
+else
+	vishLogo
+	echo " "
+	echo "If you want to VisH application use: ./vish run"
+	echo " "
+	echo "If you want to do migrations and reindex do: ./vish fix"
+	echo " "
+	echo "For reseting VisH and Populate again run: ./vish reset"
+	echo " "
+fi

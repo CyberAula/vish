@@ -1,4 +1,6 @@
-= ViSH v.3
+
+= ViSH
+
 Virtual Science Hub, a network for exploring science.
 
 

@@ -65,12 +65,6 @@ $('.delete').popover({
   container: "body"
 });
 
-$(".spam_radio").click(function(e) {
-  $(".textarea_spam").hide("slow");
-  $(e.target).siblings("textarea").show("slow");
-
-});
-
 <%end%>
 
 
@@ -113,7 +107,6 @@ $(document).ready(function(){
   <% else %>
     <!--mashme-->
     <%= render :partial => 'events/button-mashme'%>
-    <%#= render :partial => 'events/button-new-mashme'%>
   <% end %>
 </div>
 
@@ -220,26 +213,10 @@ $(document).ready(function(){
  
 
     <!-- tab5 / spam -->
-  <div class="tab-pane contentReport" id="tab5">
-    
-    <div class="small">
-          <%=t('spam.report_excursion')%>
-        </div>
 
-
-      <%= form_tag spam_report_path, method: 'post', class: "" do %>
-        <%=hidden_field_tag "activity_object_id", @event.activity_object_id%>
-        <div class="radio">
-
-          <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
-          <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-        </div>
-        <div class="radio">
-          <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content')%>
-          <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-        </div>
-        <button class="report btn btn-primary"> <%=t('send.send')%></button>
-      <% end %> 
-  
+  <div class="tab-pane" id="tab5">
+    <%@activity_object = @event.activity_object%>
+    <%= render '/spam_report/form' %>
   </div>
+
 </div>

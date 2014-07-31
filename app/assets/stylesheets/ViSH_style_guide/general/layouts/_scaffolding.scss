@@ -17,6 +17,20 @@ body{
   }
 }
 
+div#wrap.wrap-when-fixed-bottom{
+  padding: 0 0 38px 0;  /* must be same height as the footer */
+}
+
 #uvTab{
   max-width: 24px !important;
+}
+
+*{
+  outline: 0 !important;
+}
+
+a{
+  &:hover,&:focus{
+    text-decoration: none
+  }
 }

@@ -50,6 +50,7 @@ public/webappscode/*
 public/tmp/json/*
 public/tmp/scorm/*
 public/tmp/qti/*
+public/tmp/moodlequizxml/*
 
 dumps/*
 
@@ -61,6 +62,7 @@ public/pdf/excursions/*
 
 # stats
 public/stats.txt
+reports/*
 
 #temporal files
 app/views/layouts/_grid.html.erb

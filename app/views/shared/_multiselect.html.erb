@@ -75,18 +75,6 @@ $("#category_id").multiselect({
       }
       });
 
-      $('#AddCategory .new_category').bind('ajax:success', function(evt, data, status, xhr){
-        $('#AddCategory').modal('hide');
-        //add the new entry to categories
-        opt = $('<option />', {
-          value: data.id,
-          text: data.title
-        });               
-        opt.appendTo($("#category_id"));
-        $("#category_id").multiselect("refresh");
-        $("#category_id").multiselect("open");
-      });
-
       $("#category_id").siblings(".ui-multiselect").on("mouseenter", function(){
         is_hover_button = true;
         $("#category_id").multiselect("open");

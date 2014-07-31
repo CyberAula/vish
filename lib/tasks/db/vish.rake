@@ -6,6 +6,7 @@
 namespace :db do
 
   namespace :populate do
+    
     # Clear existing tasks
     task(:create_ties).prerequisites.clear
     task(:create_ties).clear
@@ -17,9 +18,8 @@ namespace :db do
     ENV['LOGOS_TOTAL'] = 12.to_s
 
     desc "Create populate data for ViSH"
-    task :create => [ 'create:occupations', 'create:excursions', 'create:current_site']
+    task :create => [ 'create:occupations', 'create:excursions', 'create:current_site', 'create:admin', 'create:demo_user']
     #task :create => [ :read_environment, :create_users, :create_ties, :create_posts, :create_messages, :create_excursions, :create_documents, :create_avatars ]
-
 
     namespace :create do
       
@@ -127,7 +127,7 @@ namespace :db do
                                 :owner_id   => owner.id,
                                 :user_author_id => user_author.id,
                                 :relation_ids => [Relation::Public.instance.id],
-				                        :tag_list => ["Maths","Physics","Chemistry","Geography","Biology","ComputerScience","EnvironmentalStudies","Engineering","Humanities","NaturalScience"].sample(2).join(",")
+                              :tag_list => ["Maths","Physics","Chemistry","Geography","Biology","ComputerScience","EnvironmentalStudies","Engineering","Humanities","NaturalScience"].sample(2).join(",")
           e.save!
         end
 
@@ -184,11 +184,67 @@ namespace :db do
         puts 'Current site population'
         current_site_start = Time.now
 
+        Site.current.name = "ViSH"
+        Site.current.email = Vish::Application.config.APP_CONFIG["main_mail"]
+        Site.current.relation_ids = [Relation::Private.instance.id]
+        Site.current.activity_object.relation_ids = [Relation::Private.instance.id]
+        Site.current.actor!.update_attribute :slug, 'vish'
         Site.current.config["tmpCounter"] = 1
         Site.current.save!
 
         current_site_end = Time.now
         puts '   -> ' +  (current_site_end - current_site_start).round(4).to_s + 's'
+      end
+
+      #Usage
+      #Development:   bundle exec rake db:populate:create:admin
+      #In production: bundle exec rake db:populate:create:admin RAILS_ENV=production
+      desc "Create ViSH Admin"
+      task :admin => :environment do
+        puts 'Creating admin user'
+
+        # Create admin user if not present
+        admin = User.find_by_slug('admin')
+        if admin.blank?
+          admin = User.new
+        end
+
+        admin.name = 'ViSH Admin'
+        admin.email = 'admin@vishub.org'
+        admin.password = 'demonstration'
+        admin.password_confirmation = admin.password
+        admin.save!
+        admin.actor!.update_attribute :slug, 'admin'
+
+        #Make the user 'admin' the administrator of the ViSH Site
+        admin.actor!.make_me_admin
+
+        puts "Admin created with email: " + admin.email + " and password: " + admin.password
+      end
+
+      #Usage
+      #Development:   bundle exec rake db:populate:create:demo_user
+      #In production: bundle exec rake db:populate:create:demo_user RAILS_ENV=production
+      desc "Create ViSH demo user"
+      task :demo_user => :environment do
+        puts 'Creating demo user'
+
+          # Create demo user if not present
+          demo = User.find_by_slug('demo')
+          if demo.blank?
+            demo = User.new
+          end
+
+          # If present, ensure that has the appropiate data
+          demo.name = 'Demo'
+          demo.email = 'demo@vishub.org'
+          demo.password = 'demonstration'
+          demo.password_confirmation = demo.password
+          demo.save!
+          demo.actor!.update_attribute :slug, 'demo'
+          demo.actor!.update_attribute :is_admin, false
+
+          puts "Demo user created with email: " + demo.email + " and password: " + demo.password
       end
     end
   end
@@ -196,6 +252,7 @@ namespace :db do
   #Usage
   #Development:   bundle exec rake db:anonymize
   #In production: bundle exec rake db:anonymize RAILS_ENV=production
+  desc "Anonymize database for delivering"
   task :anonymize => :environment do
     printTitle("Anonymizing database")
 
@@ -216,6 +273,7 @@ namespace :db do
       end
       u.current_sign_in_ip = nil
       u.last_sign_in_ip = nil
+      u.logo = nil
       u.save(:validate => false)
 
       #User profile
@@ -275,6 +333,9 @@ namespace :db do
     QuizSession.delete_all
     QuizAnswer.delete_all
 
+    #Removing Tracking System data
+    TrackingSystemEntry.delete_all
+
     #Anonymizing comments
     Comment.all.each do |c|
       c.activity_object.update_column :description, Faker::Lorem.sentence(20, true)
@@ -290,6 +351,35 @@ namespace :db do
     ActivityObject.record_timestamps=true
 
     printTitle("Task Finished")
+  end
+
+  #Usage
+  #Development:   bundle exec rake db:install
+  #In production: bundle exec rake db:install RAILS_ENV=production
+  desc "Anonymize database for delivering"
+  task :install => :environment do
+    printTitle("Installation: populating database")
+
+    Rake::Task["db:reset"].invoke
+    Rake::Task["db:seed"].invoke
+    Rake::Task["db:populate:create:current_site"].invoke
+    Rake::Task["db:populate:create:demo_user"].invoke
+    Rake::Task["db:populate:create:admin"].invoke
+
+    #Create excursions
+    eURL = Vish::Application.config.full_domain + "/examples/"
+    author = Actor.find_by_slug("demo")
+    e = Excursion.create! :json => '{"VEVersion":"0.8.9","type":"presentation","title":"SCORM and Games","description":"Integration of SCORM Packages into Web Games. Presentation of the SGAME framework.","avatar":"'+eURL+'SGAME-0.jpg","author":{"name":"Aldo","vishMetadata":{"id":20}},"tags":["SCORM","Games","e-Learning","Education"],"theme":"theme1","animation":"animation1","language":"en","context":"higher education","age_range":"18 - 30","difficulty":"easy","TLT":"PT15M","subject":["Education","Software Engineering"],"educational_objectives":"Integration of SCORM Packages into Web Games. Presentation of the SGAME framework.","vishMetadata":{"draft":"false","id":"1057"},"slides":[{"id":"article3","type":"standard","template":"t10","elements":[{"id":"article3_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-0.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article4","type":"standard","template":"t10","elements":[{"id":"article4_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-1.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article5","type":"standard","template":"t10","elements":[{"id":"article5_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-2.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article6","type":"standard","template":"t10","elements":[{"id":"article6_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-3.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article7","type":"standard","template":"t10","elements":[{"id":"article7_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-4.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article8","type":"standard","template":"t10","elements":[{"id":"article8_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-5.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article9","type":"standard","template":"t10","elements":[{"id":"article9_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-6.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article10","type":"standard","template":"t10","elements":[{"id":"article10_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-7.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article11","type":"standard","template":"t10","elements":[{"id":"article11_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-8.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article12","type":"standard","template":"t10","elements":[{"id":"article12_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-9.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article13","type":"standard","template":"t10","elements":[{"id":"article13_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-10.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article14","type":"standard","template":"t10","elements":[{"id":"article14_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-11.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article15","type":"standard","template":"t10","elements":[{"id":"article15_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-12.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article16","type":"standard","template":"t10","elements":[{"id":"article16_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-13.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article17","type":"standard","template":"t10","elements":[{"id":"article17_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-14.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article18","type":"standard","template":"t10","elements":[{"id":"article18_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-15.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article19","type":"standard","template":"t10","elements":[{"id":"article19_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-16.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article20","type":"standard","template":"t10","elements":[{"id":"article20_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-17.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]},{"id":"article21","type":"standard","template":"t10","elements":[{"id":"article21_zone1","type":"image","areaid":"center","body":"'+eURL+'SGAME-18.jpg","style":"position: relative; width:100%; height:100%; top:0%; left:0%;","options":{"vishubPdfexId":"396"}}]}]}',
+                          :author_id  => author.id,
+                          :owner_id   => author.id,
+                          :user_author_id => author.id,
+                          :relation_ids => [Relation::Public.instance.id]
+    e.save!
+
+    printTitle("Starting search engine and reindexing data (Thinking Sphinx)")
+    Rake::Task["ts:rebuild"].invoke
+    
+    printTitle("Populate finished")
   end
 
 end

@@ -50,7 +50,12 @@ module HomeHelper
   end
 
   def subject_events(subject, options = {})
-    subject_content subject, Event, options
+    subject_content subject, Event, options 
+  end
+
+  def home_content (subject, options = {})
+     options[:limit] = 30
+     excursions = subject_content subject, Excursion, options
   end
 
   def subject_content(subject, klass, options = {})
@@ -77,16 +82,20 @@ module HomeHelper
       query = query.authored_by(following_ids)
     when :like
       query = if klass.is_a?(Array)
-        Activity.joins(:activity_objects).includes(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
+        Activity.joins(:activity_objects).includes(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.actor_id}).where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
       else
-        Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type = (?)", klass.to_s)
+        Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.actor_id}).where("activity_objects.object_type = (?)", klass.to_s)
       end
     when :more
       following_ids |= [ subject.actor_id ]
       query = query.not_authored_by(following_ids)
     end
 
-    query = query.where("draft is false") if (klass == Excursion) && (options[:scope] == :net || options[:scope] == :more || (options[:scope] == :me && defined?(current_subject) && subject != current_subject))
+    #Filtering private entities
+    unless (defined?(current_subject)&&((options[:scope] == :me && subject == current_subject)||(!current_subject.nil? && current_subject.admin?)))
+      query = query.includes("activity_object_audiences")
+      query = query.where("activity_object_audiences.relation_id='"+Relation::Public.instance.id.to_s+"'")
+    end
 
     case options[:sort_by]
       when "updated_at"
@@ -98,14 +107,12 @@ module HomeHelper
       when "favorites"
         query = query.order('activity_objects.like_count DESC') 
       when "popularity"
-        #Use ranking instead of popularity
-        query = query.order('activity_objects.ranking DESC') 
-        # query = query.order('activity_objects.popularity DESC') 
+        query = query.order('activity_objects.popularity DESC') 
     end
     
-    query = query.limit(options[:limit]) if options[:limit] > 0
+   
     query = query.offset(options[:offset]) if options[:offset] > 0
-
+    query = query.limit(options[:limit]) if options[:limit] > 0
     # Do not optimize likes. They should go anyways....
     if options[:scope] == :like
       return query.map { |a| a.direct_object }
@@ -117,13 +124,14 @@ module HomeHelper
             else
               query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}]) 
             end
+    
+    #return query.map{|ao| ao.object} if klass.is_a?(Array)
 
     # pagination, 0 means without pagination
     if options[:page] != 0
-      query = query.page(options[:page]).per(ITEMS_PER_PAGE)
+      items = options[:limit] if options[:limit] > 0
+      query = query.page(options[:page]).per(items)
     end
-
-    #return query.map{|ao| ao.object} if klass.is_a?(Array)
     query
   end
 

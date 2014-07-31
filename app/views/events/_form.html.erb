@@ -32,6 +32,7 @@
           <%= f.radio_button :streaming, false, checked: true %> <%= t('event.type.videoconference') %>
           <%= f.radio_button :streaming, true %> <%= t('event.type.streaming') %>
 
+
           <!--EMBED-->
           <label><%= t('document.options.embed')%></label>
           <%= f.text_area :embed, :class => "form-control", :rows => 4, :placeholder => t('embed.input'), :disabled => true %>

@@ -116,11 +116,6 @@
       });
     });
 
-    $(".spam_radio").click(function(e) {
-      $(".textarea_spam").hide("slow");
-      $(e.target).siblings("textarea").show("slow");
-    });
-
     $(".with_tooltip").tooltip({ placement: 'bottom'});
   });
 </script>
@@ -137,12 +132,12 @@
 
   <!-- Edit -->
   <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
-    <button class="with_tooltip btn hidden-xs" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="fa fa-edit"></i></button>
+    <button class="with_tooltip btn btn-default hidden-xs" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="fa fa-edit"></i></button>
   <%end%>
 
   <!-- Clone -->
   <% if user_signed_in? && !editingToolbar %>
-    <button class="with_tooltip clone btn popover-linkhidden-xs" title="<%=t('excursion.actions.clone')%>" ><i class="fa fa-copy"></i></button>
+    <button class="with_tooltip clone btn btn-default popover-linkhidden-xs" title="<%=t('excursion.actions.clone')%>" ><i class="fa fa-copy"></i></button>
     
     <div class="contentclone" style="display: none">
       <p class=""><i class="fa fa-copy"></i>  <%=t('excursion.clone.confirm')%></p>
@@ -155,7 +150,7 @@
 
   <!--Remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
-    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="fa fa-trash-o"></i></button>
+    <button class="with_tooltip delete btn btn-default popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="fa fa-trash-o"></i></button>
   <%end%>
 
   <div class="contentdelete" style="display: none">
@@ -165,11 +160,13 @@
       <%= link_to t('excursion.actions.delete'),  @excursion, :method => :delete, :class => 'btn btn-primary' %>
     </div>
   </div>
-
+  <!--favorite-->
   <% unless editingToolbar %>
-    <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
+ 
+    <% unless @excursion.post_activity.nil? %>
+      <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
+    <%end%>
     
-    <!--<button class="btn" rel="tooltip" title="my room"><i class="fa fa-facetime-video"></i></button>-->
       <%if user_signed_in? %>
         <%=categories_select(:category_id, @excursion)%>
         <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
@@ -233,12 +230,14 @@
   <h2><%= @excursion.title %></h2>
 
   <div class="tab-content excursion-social">
+
     <!-- tab1 / description -->
     <div class="tab-pane active" id="tab1">
 
         <!--description-->
         <%= render :partial => 'excursions/excursion-info' %>
     </div>
+
     <!-- tab2 / embed -->
     <div class="tab-pane contentembed" id="tab2">
       <div class="form-group">
@@ -254,6 +253,7 @@
         </div>
       </div>           
     </div>
+
     <!-- tab3 / share -->
     <div class="tab-pane contentShare" id="tab3">
 
@@ -289,48 +289,18 @@
     <!-- tab4 / scorm -->
     <div class="tab-pane contentscorm" id="tab4">
 
-      <a class="btn btn-primary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a> 
+      <a class="btn btn-default" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a> 
       <p><%=t("excursion.download_scorm")%></p>
 
     </div> 
+
     <!-- tab5 / spam -->
-    <div class="tab-pane contentReport" id="tab5">
 
-        <div class="small">
-          <%=t('spam.report_excursion')%>
-        </div>
-<!--
-        <%= form_tag spam_report_path, method: 'post' do %>
-          <div class="btn-group-vertical" data-toggle="buttons">
-            <label class="btn btn-default">
-              <input type="radio" name="options" id="option1" checked=""> <%=t('spam.spam_content')%>
-            </label>
-            <label class="btn btn-default">
-              <input type="radio" name="options" id="option2"> <%=t('spam.error_content')%>
-            </label>
-          </div>
--->
-        <%=hidden_field_tag "activity_object_id", @excursion.activity_object_id%>
-          <div class="radio">
-            <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
-            <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-          </div>
-          <div class="radio">
-            <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content')%>
-            <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
-            <div>
-          <div class="captcha">
-            <header>  
-              <%= t('simple_captcha.title') %>, <%=t('simple_captcha.subtitle')%>
-            </header>
-            <%= show_simple_captcha %>
-          </div>
-          <button class="report btn btn-primary"> <%=t('send.send')%></button>
-        <% end %>
+    <div class="tab-pane" id="tab5">
+      <%@activity_object = @excursion.activity_object%>
+      <%= render '/spam_report/form' %>
+    </div>
 
 
-        
-      
-    </div> 
   </div>
 <%end%>

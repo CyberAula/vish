@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140707150431) do
+ActiveRecord::Schema.define(:version => 20140725114512) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20140707150431) do
     t.integer  "qscore",                                                            :default => 500000
     t.decimal  "reviewers_qscore",                   :precision => 12, :scale => 6
     t.decimal  "users_qscore",                       :precision => 12, :scale => 6
-    t.integer  "ranking"
+    t.integer  "ranking",                                                           :default => 0
     t.integer  "title_length",                                                      :default => 1
     t.integer  "desc_length",                                                       :default => 1
     t.integer  "tags_length",                                                       :default => 1
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20140707150431) do
     t.integer  "mve",                   :default => 0
     t.boolean  "is_mve",                :default => false
     t.integer  "rankMve",               :default => 0
+    t.boolean  "is_admin",              :default => false
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
@@ -501,11 +502,12 @@ ActiveRecord::Schema.define(:version => 20140707150431) do
 
   create_table "spam_reports", :force => true do |t|
     t.integer  "activity_object_id"
-    t.integer  "reporter_user_id"
-    t.string   "issue"
+    t.integer  "reporter_actor_id"
+    t.text     "issue"
     t.integer  "report_value"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "pending",            :default => true
   end
 
   create_table "stats", :force => true do |t|
@@ -539,6 +541,13 @@ ActiveRecord::Schema.define(:version => 20140707150431) do
 
   add_index "ties", ["contact_id"], :name => "index_ties_on_contact_id"
   add_index "ties", ["relation_id"], :name => "index_ties_on_relation_id"
+
+  create_table "tracking_system_entries", :force => true do |t|
+    t.string   "app_id"
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "encrypted_password",     :limit => 128, :default => "",     :null => false

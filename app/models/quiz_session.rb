@@ -16,7 +16,7 @@
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
 class QuizSession < ActiveRecord::Base
-  belongs_to :owner, :class_name => 'User'
+  belongs_to :owner, :class_name => 'Actor'
   has_many :quiz_answers, :dependent => :destroy
   
   acts_as_xlsx
@@ -27,10 +27,6 @@ class QuizSession < ActiveRecord::Base
 
   def results
   	self.quiz_answers
-  end
-
-  def owner
-    return Actor.find_by_id(self.owner_id).user
   end
 
   def self.root_url

@@ -257,6 +257,108 @@ namespace :fix do
     end
     printTitle("Task Finished")
   end
+
+
+  #Usage
+  #Development:   bundle exec rake fix:absoluteZipPaths
+  #In production: bundle exec rake fix:absoluteZipPaths RAILS_ENV=production
+  task :absoluteZipPaths => :environment do
+    printTitle("Fixing absolute zip paths")
+
+    (Scormfile.all + Webapp.all).each do |resource|
+      unless resource.zippath.nil? or resource.zippath.index("/documents/").nil? or resource.zippath.index("/documents/")==0
+        newZippath = resource.zippath[resource.zippath.index("/documents/")..-1]
+        resource.update_column :zippath, newZippath
+      end
+
+      #Fix also loPaths when APP_CONFIG["code_path"] is not defined
+      if Vish::Application.config.APP_CONFIG["code_path"].nil?
+        unless resource.class != Scormfile or resource.lopath.nil? or resource.lopath.index("/public/scorm/packages").nil? or resource.lopath.index("/public/scorm/packages")==0
+          #Fix Scormfiles
+          newLopath = resource.lopath[resource.lopath.index("/public/scorm/packages")..-1]
+          resource.update_column :lopath, newLopath
+        end
+
+        unless resource.class != Webapp or resource.lopath.nil? or resource.lopath.index("/public/webappscode").nil? or resource.lopath.index("/public/webappscode")==0
+          #Fix WebApps
+          newLopath = resource.lopath[resource.lopath.index("/public/webappscode")..-1]
+          resource.update_column :lopath, newLopath
+        end
+      end
+
+    end
+
+    printTitle("Task Finished")
+  end
+
+  #Usage
+  #Development:   bundle exec rake fix:ViSHCompetition2013
+  #In production: bundle exec rake fix:ViSHCompetition2013 RAILS_ENV=production
+  task :ViSHCompetition2013 => :environment do
+    printTitle("Fixing ViSH Competitions 2013")
+
+    competitionsIds = [616, 560, 488, 485, 483, 477, 476, 634, 515, 543, 484, 487, 486, 516, 517, 601, 512, 536, 527, 479, 617, 556, 480, 631, 44, 64, 620, 511, 287, 614, 603, 590, 522, 592, 659, 656, 74, 531, 496, 613, 682, 503, 448, 606, 450, 632, 508, 510, 675, 667, 564, 474, 562, 668, 645, 605, 530, 97, 669, 397, 465, 650, 458, 520, 430, 646, 648, 435, 390, 461, 431, 624, 630, 526, 539, 162, 657, 432, 454, 540, 437, 460, 433, 429, 593, 492, 434, 463, 647, 469, 414, 436, 653, 563, 548, 439, 654, 490, 440, 629, 441, 447, 535, 636, 602, 655, 421, 644, 591, 600, 491, 473, 468, 416, 660, 415, 413, 412, 678, 580, 674, 579, 686, 676, 688, 637, 482, 842, 481]
+
+    Excursion.record_timestamps=false
+    ActivityObject.record_timestamps=false
+
+    competitionsIds.each do |id|
+      e = Excursion.find(id) rescue nil
+      unless e.nil?
+        e.tag_list.push("ViSHCompetition2013")
+        e.tag_list.uniq!
+        e.save!
+      end
+    end
+
+    Excursion.record_timestamps=true
+    ActivityObject.record_timestamps=true
+
+    printTitle("Task Finished")
+  end
+
+  #Usage
+  #Development:   bundle exec rake fix:actorRelations
+  #In production: bundle exec rake fix:actorRelations RAILS_ENV=production
+  task :actorRelations => :environment do
+    printTitle("Fixing Actor relations")
+
+    Actor.record_timestamps=false
+    User.record_timestamps=false
+    ActivityObject.record_timestamps=false
+
+    Actor.all.each do |actor|
+      actor.save!
+    end
+
+    Actor.record_timestamps=true
+    User.record_timestamps=true
+    ActivityObject.record_timestamps=true
+
+    printTitle("Task Finished")
+  end
+
+
+  #Usage
+  #Development:   bundle exec rake fix:removeInvalidSpamReports
+  #In production: bundle exec rake fix:removeInvalidSpamReports RAILS_ENV=production
+  task :removeInvalidSpamReports => :environment do
+    printTitle("Removing invalid/corrupted spam reports")
+
+    SpamReport.all.each do |report|
+      if report.activity_object_id.nil? or report.activity_object.nil? or report.activity_object.object_type.nil? or SpamReport.disabledActivityObjectTypes.include? report.activity_object.object_type or report.report_value.nil? or ![0,1].include? report.report_value
+        report.destroy
+      else
+        #Fix other fields
+        if report.reporter_actor_id == 0
+          report.update_column :reporter_actor_id, nil
+        end
+      end
+    end
+
+    printTitle("Task Finished")
+  end
+
   
 
   ####################

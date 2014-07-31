@@ -69,7 +69,28 @@
       </div>
     </div>
   </div>
-  <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">--- <%=t('excursion.actions.show_more')%> ---</a>
+  <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
+    <span id="showingMore2" class="showMore accordion-toggle btn btn-default" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" title=<%=t("excursion.actions.show_fewer")%>>
+    <%=t('excursion.actions.show_fewer')%>
+    </span>
+  </a>
 </div>
+
+<script language="javascript" type="text/javascript" >
+
+  $("#showingMore2").click(function(e){
+    if($("#showingMore2").attr("title")==="showMore"){
+      $(".showMore").html('<%=t("excursion.actions.show_fewer")%>');
+      $("#showingMore2").attr("title", "showFewer");
+    }
+    else{
+      $(".showMore").html('<%=t("excursion.actions.show_more")%>');
+      $("#showingMore2").attr("title", "showMore");
+    }
+  });
+
+</script>
+
+
 
 
