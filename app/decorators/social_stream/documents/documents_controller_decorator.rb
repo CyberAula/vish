@@ -4,8 +4,6 @@ DocumentsController.class_eval do
 
 
   def create
-    resource.scope = params["document"]["scope"]
-
     super do |format|
       if resource.is_a? Zipfile
         newResource = resource.getResourceAfterSave(self)
@@ -64,7 +62,7 @@ DocumentsController.class_eval do
   private
 
   def allowed_params
-    [:file, :language, :age_min, :age_max, :tag_list=>[]]
+    [:file, :language, :age_min, :age_max, :scope, :tag_list=>[]]
   end
 
   def fill_create_params

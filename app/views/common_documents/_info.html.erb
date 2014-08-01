@@ -17,8 +17,7 @@
     </div>
   </div>
   
-  <div class="viewsAndCount">
-    <%#= render partial: 'objects/counters', locals: { object: document } %>
+  <div class="viewsAndConunt">
     <div class="views">
       <%=document.visit_count.to_s%> 
       <span>
@@ -27,66 +26,61 @@
     </div>
     <div class="like">    
       <div class="count"><%=document.post_activity.likes.count.to_s%></div>
-      <%= link_like(document.post_activity)%>
-    </div>
-  </div>
-
-</div>
-<div class="panel-group" id="accordion">
-  <div class="panel">
-    <header>
-    <table class="table table-hover">
-          <tr class="<%= 'blank' if document.description.blank? %>">
-            <td>
-              <%= t 'document.info.description' %>
-            </td>
-            <td>
-              <%= document.description %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%= t 'document.info.tags' %>
-            </td>
-            <td>
-              <%= tag_list document %>
-            </td>
-          </tr>
-          </table>
-      
-    </header>
-    <div id="collapseInfo" class="panel-collapse collapse">
-      <div class="panel-body">
-        <table class="table table-hover">
-          <tr class="<%= 'blank' if document.description.blank? %>">
-          </tr>  
-          <tr>
-            <td>
-              <%= t('document.info.date.created_at') %>
-            </td>
-            <td>
-              <%= I18n.localize document.created_at, :format => :long %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%= t('document.info.date.updated_at') %>
-            </td>
-            <td>
-              <%= I18n.localize document.updated_at, :format => :long %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%= t('document.info.size') %>
-            </td>
-            <td>
-              <%= number_to_human_size document.file_file_size %>
-            </td>
-          </tr>
-        </table>
+        <%= link_like(document.post_activity)%>
       </div>
     </div>
-  </div> 
-  <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">--- <%=t('excursion.actions.show_more')%> ---</a>
 </div>
+
+<div id="effect" class="newClass ui-corner-all">
+
+  <dl class="dl-horizontal">
+    <% unless document.description.blank? %>
+      <dt><%= t 'document.info.description' %></dt>
+      <dd><%= document.description %></dd>
+    <%end%>
+    
+    <% unless document.tag_list.blank? %>
+      <dt><%= t 'document.info.tags' %></dt>
+      <dd>
+        <ul class="tagit-suggestions">
+          <% document.tag_list.each do |tag| %>
+            <li class="tagit-choice">
+              <%= link_to tag, search_path(:q => tag) %>
+            </li>
+          <% end %>
+        </ul>
+      </dd>
+    <%end%>
+    
+    <dt><%= t('document.info.date.created_at') %></dt>
+    <dd><%= I18n.localize document.created_at, :format => :long %></dd>
+    <dt><%= t('document.info.date.updated_at') %></dt>
+    <dd><%= I18n.localize document.updated_at, :format => :long %></dd>
+
+    <% unless !defined? document.file or document.file.nil? or !defined? document.file_file_size or document.file_file_size.blank? %>
+      <dt><%= t('document.info.size') %></dt>
+      <dd><%= number_to_human_size document.file_file_size %></dd>
+    <%end%>
+  </dl>
+</div>
+
+<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
+
+<script>
+$(function() {
+  $("#showMore").click(function(){
+    $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
+    $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
+    if($("#showMore").attr("status")=== "showMore"){
+      $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
+      $("#showMore").attr("status", "showFewer");
+    }
+    else{
+      $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
+      $("#showMore").attr("status", "showMore");
+    }
+    return false;
+  });
+});
+</script>
+

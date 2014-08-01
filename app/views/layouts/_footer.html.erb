@@ -47,20 +47,15 @@
 
 <!-- lang-->
       <li class="btn-group dropup">
-
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          <% the_locale = current_user ? current_user.language : I18n.locale %>
-          <% if (the_locale == "" || the_locale == nil)
-                the_locale = "en"
-             end
-          %>
-          <span class="idioma"><%=image_tag("flags/" + the_locale.to_s + ".png", :title=>the_locale.to_s, :class=> "")%><%= t('lang.title') %></span>
-          <i class="fa fa-angle-up"></i>
-        </button>  
+        <div data-toggle="dropdown" class="btn dropdown-toggle">
+          <% the_locale = I18n.locale.to_s %>
+          <span class="idioma"><%=image_tag("flags/" + the_locale + ".png", :title=>the_locale, :class=> "")%><%= t('lang.title') %></span>
+          <i class="icon-angle-up"></i>
+        </div>  
           <ul class="dropdown-menu">
-            <% for locale in (I18n.available_locales) -%> 
+            <% for locale in (I18n.available_locales.map{|i| i.to_s}) -%> 
              <li class="">
-                <%= link_to image_tag("flags/" + locale.to_s + ".png", :title=>locale.to_s, :class=> "") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
+                <%= link_to image_tag("flags/" + locale + ".png", :title=>locale, :class=> "") + " " + t(:language_name, :locale => locale), session_locale_path(:new_locale => locale), :method => :post, :remote => false %>
               </li>
             <% end %>
           </ul>

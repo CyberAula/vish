@@ -94,7 +94,7 @@ module HomeHelper
     #Filtering private entities
     unless (defined?(current_subject)&&((options[:scope] == :me && subject == current_subject)||(!current_subject.nil? && current_subject.admin?)))
       query = query.includes("activity_object_audiences")
-      query = query.where("activity_object_audiences.relation_id='"+Relation::Public.instance.id.to_s+"'")
+      query = query.where("activity_object_audiences.relation_id='"+Relation::Public.instance.id.to_s+"' and activity_objects.scope=0")
     end
 
     case options[:sort_by]

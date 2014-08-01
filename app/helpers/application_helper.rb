@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module ApplicationHelper
 	def categories_select(select_id, item)
 	  categories = subject_categories(current_subject, {:scope => :me, :limit => 0})
@@ -50,6 +52,10 @@ module ApplicationHelper
 
 	def isAdmin?
 		user_signed_in? and current_user.admin?
+	end
+
+	def resource_language_options_for_select(selected="")
+		options_for_select([[I18n.t('lang.independent'), ""], ['Deutsch', "de"], ['English', "en"], ['Español', "es"], ['Français', "fr"], ['Italiano', "it"], ['Magyar', "hu"], ['Nederlands', "nl"], ['Português', "pt"], ['Русский', "ru"], [I18n.t('lang.others'), "ot"]],selected)
 	end
 
 end

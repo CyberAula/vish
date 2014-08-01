@@ -184,6 +184,7 @@ namespace :db do
 
         Site.current.name = "ViSH"
         Site.current.email = Vish::Application.config.APP_CONFIG["main_mail"]
+        Site.current.activity_object.relation_ids = [Relation::Private.instance.id]
         Site.current.activity_object.scope = 1 #private
         Site.current.actor!.update_attribute :slug, 'vish'
         Site.current.config["tmpCounter"] = 1

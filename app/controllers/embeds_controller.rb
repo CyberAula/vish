@@ -5,8 +5,6 @@ class EmbedsController < ApplicationController
 
 
   def create
-    resource.scope = params["embed"]["scope"]
-
     super do |format|
       format.json { render :json => resource }
       format.js{ render }
@@ -30,7 +28,7 @@ class EmbedsController < ApplicationController
   private
 
   def allowed_params
-    [:fulltext, :width, :height, :live, :language, :age_min, :age_max]
+    [:fulltext, :width, :height, :live, :language, :age_min, :age_max, :scope]
   end
 
   def fill_create_params

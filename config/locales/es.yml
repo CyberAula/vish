@@ -313,7 +313,7 @@ es:
     overview69: "un aula virtual basado en la videoconferencia colaborativa, donde varias aulas en diferentes o  escuelas pueden conectarse y participar en un evento virtual con demostraciones en directo, debates, conferencia a distancia, etc . Estas reuniones se puede basar en excursiones o en otros medios de comunicación social disponible en Internet."
     overview70: "MashMe.tv apoya el acceso a las salas de seminario de ordenadores, teléfonos inteligentes y tabletas. La cámara web de un dispositivo móvil que se puede utilizar para mostrar el lugar físico que se visita, las exposiciones de un museo, para entrevistar a la gente en el lugar visitado o el resultado de un experimento científico (telescopio, microscopio, acelerador, etc) directamente en el infraestructura científica. Los dispositivos móviles pueden ser utilizados para caminar libremente alrededor del lugar visitado y mostrar las partes más relevantes de la misma."
   copy_to_clip: "Copiar al portapapeles"
-  date: "fecha"
+  date_name: "fecha"
   description: "descripción"
   devise:
     email: "Email"
@@ -381,9 +381,10 @@ es:
     leyend:
       description: "Descripción"
       language: "Idioma"
+      recommended_age: "Edad recomendada"
+      scope: Ámbito
       tags: "Etiquetas"
       title: "Título"
-      recommended_age: "Edad recomendada"
     main_title: "Sube videos, imágenes y otros recursos"
     new: "Añadir recurso" 
     options:
@@ -790,6 +791,9 @@ es:
     top: "paraMí"
     upload: "subir"
   save: "Salvar"
+  scope:
+    private: "Privado"
+    public: "Público"
   scormfile:
     name: "paquete SCORM"
     confirm_delete: "¿Eliminar paquete SCORM?"
