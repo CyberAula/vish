@@ -36,6 +36,7 @@ class Scormfile < ActiveRecord::Base
       resource.owner_id = zipfile.owner_id
       resource.author_id = zipfile.author_id
       resource.user_author = zipfile.user_author
+      resource.activity_object.scope = zipfile.activity_object.scope
       resource.activity_object.relation_ids = zipfile.activity_object.relation_ids
       resource.activity_object.title = zipfile.activity_object.title
       resource.activity_object.description = zipfile.activity_object.description

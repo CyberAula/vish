@@ -68,7 +68,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.vtTitle_GStarted":"Introducci\u00f3n a ViSH Editor", "i.About2":"C\u00f3digo disponible en", "i.About3":"visita nuestro canal de YouTube", "i.About4":"Desarrollado por", "i.VESurvey1":"Ay\u00fadanos a mejorar ViSH Editor", "i.VESurvey2":"Por favor, rellena", "i.VESurvey3":"esta encuesta", "i.VESurvey4":"\u00a1Gracias por tu colaboraci\u00f3n", "i.VESurveyURL":"https://docs.google.com/forms/d/1b_Ml2iua0oDNKkJqc7eT1W2CDlRhIZR__w2AlicfwjA/viewform", "i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", 
 "i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddePackage":"A\u00f1adir un paquete de e-Learning mediante un archivo ZIP. Formatos soportados: SCORM y aplicaciones web HTML5 personalizadas.", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", 
 "i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", "i.AddTags":"A\u00f1adir etiquetas", "i.AddTimestampLink":"A\u00f1adir marca de tiempo", "i.addvideourl":"a\u00f1adir URL de v\u00eddeo (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Animations":"Animaciones", "i.AudienceResponseSystem":"Sistema de Respuesta de Audiencia", "i.Horizontal":"Horizontal", "i.Vertical":"Vertical", 
-"i.Opacity":"Opacidad", "i.Elements":"Elementos", "i.Enable":"Habilitar", "i.ExportToIMSQTI":"Exportar a IMS QTI 2.1", "i.Rotate":"Rotar", "i.Diagonal1":"Diagonal #1", "i.Diagonal2":"Diagonal #2", "i.Inside":"Dentro", "i.Zoom":"Ampliar", "i.Flip1":"Vuelta #1", "i.Flip2":"Vuelta #2", "i.3D":"3D", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", 
+"i.Opacity":"Opacidad", "i.Elements":"Elementos", "i.Enable":"Habilitar", "i.ExportToIMSQTI":"Exportar a IMS QTI 2.1", "i.ExportToMoodleXML":"Exportar a Moodle XML", "i.Rotate":"Rotar", "i.Diagonal1":"Diagonal #1", "i.Diagonal2":"Diagonal #2", "i.Inside":"Dentro", "i.Zoom":"Ampliar", "i.Flip1":"Vuelta #1", "i.Flip2":"Vuelta #2", "i.3D":"3D", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", 
 "i.by":"por", "i.cancel":"cancelar", "i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", "i.close":"cerrar", "i.Close":"Cerrar", "i.CloseWSaving":"cerrar sin guardar", "i.Competitions":"Competici\u00f3n", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", 
 "i.ComputerScience":"Inform\u00e1tica", "i.delete":"borrar", "i.Description":"Descripci\u00f3n", "i.difficult":"dif\u00edcil", "i.Difficulty":"Dificultad", "i.Documentation":"Documentaci\u00f3n", "i.done":"hecho", "i.Done":"Hecho", "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", 
 "i.Electronics":"Electr\u00f3nica", "i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", "i.EnrichedVideo":"V\u00eddeo Enriquecido", "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", "i.ePackage":"Paquete e-Learning", "i.ePackageError1":"Ocurri\u00f3 un error al subir el paquete de e&#8209;Learning.", "i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", 
@@ -93,7 +93,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.Add":"Add", "i.AddTags":"Add tags", "i.AddTimestampLink":"Add timestamp link", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.close":"close", "i.Close":"Close", "i.CloseWSaving":"close without saving", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.ePackageError1":"An error ocurred when uploading the e&#8209;Learning package.", "i.errorFlickrConnection":"Error connecting to Flickr", 
 "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.eVideoChangeNotification":"If you change the v\u00eddeo source you will lose all the timestamp links you have added. In any case, you will keep the slides you have created. Are you sure you want to continue?", "i.Exit":"Exit", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", 
 "i.exitConfirmation2":"Are you sure you want to leave this page?", "i.exitConfirmationMenu":"The Virtual Excursion has been modified. If you close without saving you will lose all changes. What would you like to do?", "i.ExitWSaving":"exit without saving", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.exportPresToSCORMerrorNotification":"An error has ocurred. Is not possible to export the presentation to a SCORM package.", 
-"i.exportQuizToQTIerrorNotification":"An error has ocurred. Is not possible to export the quiz to the IMS QTI 2.1 format.", "i.exportQuizToMoodleXMLerrorNotification":"An error has ocurred. Is not possible to export the quiz to the Moodle XML format.", "i.exviews":"views", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.ItemAndBall":"This item is linked to the #{letter} slide of the Enriched Video.", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", 
+"i.exportQuizToQTIerrorNotification":"An error has ocurred. Is not possible to export the quiz to the IMS QTI 2.1 format.", "i.exportQuizToMoodleXMLerrorNotification":"An error has ocurred. Is not possible to export the quiz to Moodle XML format.", "i.exviews":"views", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.ItemAndBall":"This item is linked to the #{letter} slide of the Enriched Video.", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", 
 "i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoFileError":"You have not selected any file to import.", "i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.NoSupportedFileError":"The file cannot be imported. The format is not supported.", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", 
 "i.pasteVideoURL":"paste HTML5 or YouTube v\u00eddeo URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", "i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", 
 "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", "i.QuizButtonAnswer":"Answer", "i.QuizButtonContinue":"Continue", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", 
@@ -11729,13 +11729,26 @@ VISH.Utils = function(V, undefined) {
       var str = this;
       return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&"), "g"), replace)
     };
-    Array.prototype.select = function(selectFunction) {
-      for(var n = 0;n < this.length;n++) {
-        if(selectFunction(this[n])) {
-          return this[n]
+    Array.prototype.filter = function(fun) {
+      if(this === void 0 || this === null) {
+        throw new TypeError;
+      }
+      var t = Object(this);
+      var len = t.length >>> 0;
+      if(typeof fun !== "function") {
+        throw new TypeError;
+      }
+      var res = [];
+      var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+      for(var i = 0;i < len;i++) {
+        if(i in t) {
+          var val = t[i];
+          if(fun.call(thisArg, val, i, t)) {
+            res.push(val)
+          }
         }
       }
-      return null
+      return res
     };
     if(!Array.prototype.filter) {
       Array.prototype.filter = function(fun) {
@@ -11778,6 +11791,58 @@ VISH.Utils = function(V, undefined) {
           }
         }
         return res
+      }
+    }
+    if(!Array.prototype.indexOf) {
+      Array.prototype.indexOf = function(elt) {
+        var len = this.length >>> 0;
+        var from = Number(arguments[1]) || 0;
+        from = from < 0 ? Math.ceil(from) : Math.floor(from);
+        if(from < 0) {
+          from += len
+        }
+        for(;from < len;from++) {
+          if(from in this && this[from] === elt) {
+            return from
+          }
+        }
+        return-1
+      }
+    }
+    if(!Object.keys) {
+      Object.keys = function() {
+        var hasOwnProperty = Object.prototype.hasOwnProperty, hasDontEnumBug = !{toString:null}.propertyIsEnumerable("toString"), dontEnums = ["toString", "toLocaleString", "valueOf", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "constructor"], dontEnumsLength = dontEnums.length;
+        return function(obj) {
+          if(typeof obj !== "object" && (typeof obj !== "function" || obj === null)) {
+            throw new TypeError("Object.keys called on non-object");
+          }
+          var result = [], prop, i;
+          for(prop in obj) {
+            if(hasOwnProperty.call(obj, prop)) {
+              result.push(prop)
+            }
+          }
+          if(hasDontEnumBug) {
+            for(i = 0;i < dontEnumsLength;i++) {
+              if(hasOwnProperty.call(obj, dontEnums[i])) {
+                result.push(dontEnums[i])
+              }
+            }
+          }
+          return result
+        }
+      }()
+    }
+    if(typeof Array.prototype.forEach !== "function") {
+      Array.prototype.forEach = function(callback) {
+        for(var i = 0;i < this.length;i++) {
+          callback.apply(this, [this[i], i, this])
+        }
+      }
+    }
+    if(typeof String.prototype.trim !== "function") {
+      String.prototype.trim = function() {
+        return this.replace(/^\s+|\s+$/g, "")
       }
     }
     jQuery.fn.vewatermark = function(text) {
@@ -13941,11 +14006,10 @@ VISH.VirtualTour = function(V, $, undefined) {
   var virtualTours;
   var gMlLoaded = false;
   var gMlLoading = false;
-  var lastIncrease;
   var init = function() {
     if(!initialized) {
       initialized = true;
-      virtualTours = new Array;
+      virtualTours = {};
       _loadEvents()
     }
   };
@@ -13997,6 +14061,7 @@ VISH.VirtualTour = function(V, $, undefined) {
     var myOptions = {zoom:parseInt(vtJSON.zoom), center:center, mapTypeId:vtJSON.mapType};
     var map = new google.maps.Map(document.getElementById(canvasId), myOptions);
     virtualTours[vtJSON.id].map = map;
+    virtualTours[vtJSON.id].currentCenter = center;
     $(vtJSON.pois).each(function(index, poi) {
       _addMarkerToCoordinates(canvasId, map, poi.lat, poi.lng, poi.slide_id)
     });
@@ -14013,10 +14078,12 @@ VISH.VirtualTour = function(V, $, undefined) {
   var onEnterSlideset = function(slideset) {
     var vtId = $(slideset).attr("id");
     var canvas = $("#" + vtId).find(".map_canvas");
-    $(canvas).show()
+    $(canvas).show();
+    _triggerOnResizeMap(vtId)
   };
   var onLeaveSlideset = function(slideset) {
     var vtId = $(slideset).attr("id");
+    virtualTours[vtId].currentCenter = virtualTours[vtId].map.getCenter();
     var canvas = $("#" + vtId).find(".map_canvas");
     $(canvas).hide()
   };
@@ -14039,15 +14106,18 @@ VISH.VirtualTour = function(V, $, undefined) {
     return marker
   };
   var afterSetupSize = function(increase) {
-  };
-  var _getZoomForIncreaseDiff = function(zoom, increaseDiff) {
-    var absIncreaseDiff = Math.floor(Math.abs(increaseDiff) / 0.3);
-    if(increaseDiff > 0) {
-      var newZoom = zoom + absIncreaseDiff
-    }else {
-      var newZoom = zoom - absIncreaseDiff
+    var currentSlideId = $(V.Slides.getCurrentSlide()).attr("id");
+    if(typeof virtualTours[currentSlideId] == "object") {
+      virtualTours[currentSlideId].currentCenter = virtualTours[currentSlideId].map.getCenter();
+      _triggerOnResizeMap(currentSlideId)
     }
-    return Math.max(Math.min(newZoom, 20), 1)
+  };
+  var _triggerOnResizeMap = function(vtId) {
+    var vt = virtualTours[vtId];
+    if(typeof vt == "object" && typeof vt.map == "object") {
+      google.maps.event.trigger(vt.map, "resize");
+      vt.map.setCenter(vt.currentCenter)
+    }
   };
   return{init:init, draw:draw, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, afterSetupSize:afterSetupSize}
 }(VISH, jQuery);
@@ -15266,7 +15336,7 @@ VISH.Slides = function(V, $, undefined) {
   var init = function() {
   };
   var updateSlides = function() {
-    setSlides(document.querySelectorAll("section.slides > article"));
+    setSlides($("section.slides > article"));
     _updateSlideClasses();
     if(!V.Editing) {
     }
@@ -15403,7 +15473,7 @@ VISH.Slides = function(V, $, undefined) {
     }
   };
   var getSlidesQuantity = function() {
-    return document.querySelectorAll("section.slides > article").length
+    return $("section.slides > article").length
   };
   var getSlideType = function(slideEl) {
     if(slideEl && slideEl.tagName === "ARTICLE") {
@@ -15450,15 +15520,35 @@ VISH.Slides = function(V, $, undefined) {
   };
   var triggerEnterEventById = function(slide_id) {
     var el = $("#" + slide_id)[0];
-    var evt = document.createEvent("Event");
-    evt.initEvent("slideenter", true, true);
-    el.dispatchEvent(evt)
+    if(typeof el == "undefined") {
+      return
+    }
+    if(document.createEvent) {
+      var evt = document.createEvent("Event");
+      evt.initEvent("slideenter", true, true);
+      el.dispatchEvent(evt)
+    }else {
+      if(document.createEventObject) {
+        var evt = document.createEventObject();
+        el.fireEvent("onslideenter", evt)
+      }
+    }
   };
   var triggerLeaveEventById = function(slide_id) {
     var el = $("#" + slide_id)[0];
-    var evt = document.createEvent("Event");
-    evt.initEvent("slideleave", true, true);
-    el.dispatchEvent(evt)
+    if(typeof el == "undefined") {
+      return
+    }
+    if(document.createEvent) {
+      var evt = document.createEvent("Event");
+      evt.initEvent("slideleave", true, true);
+      el.dispatchEvent(evt)
+    }else {
+      if(document.createEventObject) {
+        var evt = document.createEventObject();
+        el.fireEvent("onslideleave", evt)
+      }
+    }
   };
   var forwardOneSlide = function(event) {
     moveSlides(1)
@@ -16400,7 +16490,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='mc_options'></table>");
     var quizChoices;
     if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
-      quizChoices = V.Utils.shuffle(quizJSON.choices)
+      quizChoices = V.Utils.shuffle(jQuery.extend(true, [], quizJSON.choices))
     }else {
       quizChoices = quizJSON.choices
     }
@@ -16551,7 +16641,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
     $(optionsWrapper).prepend(newTr);
     var quizChoices;
     if(quizJSON.settings && quizJSON.settings.shuffleChoices === true) {
-      quizChoices = V.Utils.shuffle(quizJSON.choices)
+      quizChoices = V.Utils.shuffle(jQuery.extend(true, [], quizJSON.choices))
     }else {
       quizChoices = quizJSON.choices
     }
@@ -16723,7 +16813,7 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
     $(questionWrapper).html(quizJSON.question.wysiwygValue);
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='sorting_options'></table>");
-    var quizChoices = V.Utils.shuffle(quizJSON.choices);
+    var quizChoices = V.Utils.shuffle(jQuery.extend(true, [], quizJSON.choices));
     var quizChoicesLength = quizChoices.length;
     for(var i = 0;i < quizChoicesLength;i++) {
       var option = quizChoices[i];
@@ -18084,21 +18174,12 @@ VISH.ProgressTracking = function(V, $, undefined) {
     var slidesL = presentation.slides.length;
     for(var i = 0;i < slidesL;i++) {
       var slide = presentation.slides[i];
-      if(slide.containsQuiz == true) {
-        var slideElementsL = slide.elements.length;
-        for(var j = 0;j < slideElementsL;j++) {
-          var element = slide.elements[j];
-          if(element.type === V.Constant.QUIZ) {
-            if(element.selfA === true) {
-              hasScore = true;
-              var scoreWeight = 10;
-              if(typeof element.settings == "object" && typeof element.settings.score != "undefined") {
-                scoreWeight = parseInt(element.settings.score)
-              }
-              var quizObjective = new Objective(element.quizId, undefined, scoreWeight);
-              objectives[quizObjective.id] = quizObjective
-            }
-          }
+      _createObjectiveForStandardSlide(slide);
+      if(typeof slide.slides == "object") {
+        var subslidesL = slide.slides.length;
+        for(var k = 0;k < subslidesL;k++) {
+          var subslide = slide.slides[k];
+          _createObjectiveForStandardSlide(subslide)
         }
       }
     }
@@ -18129,6 +18210,28 @@ VISH.ProgressTracking = function(V, $, undefined) {
           }
         })
       }
+    }
+  };
+  var _createObjectiveForStandardSlide = function(slideJSON) {
+    if(slideJSON.containsQuiz === true) {
+      var slideElementsL = slideJSON.elements.length;
+      for(var j = 0;j < slideElementsL;j++) {
+        var element = slideJSON.elements[j];
+        if(element.type === V.Constant.QUIZ) {
+          _createObjectiveForQuiz(element)
+        }
+      }
+    }
+  };
+  var _createObjectiveForQuiz = function(quizJSON) {
+    if(quizJSON.selfA === true) {
+      hasScore = true;
+      var scoreWeight = 10;
+      if(typeof quizJSON.settings == "object" && typeof quizJSON.settings.score != "undefined") {
+        scoreWeight = parseInt(quizJSON.settings.score)
+      }
+      var quizObjective = new Objective(quizJSON.quizId, undefined, scoreWeight);
+      objectives[quizObjective.id] = quizObjective
     }
   };
   var Objective = function(id, completion_weight, score_weight, description) {
@@ -18877,8 +18980,8 @@ VISH.SCORM.API = function(V, $, undefined) {
     };
     this.commit = function() {
       var s = "false", lms = API.path, ec = 0, session_secs, saveDate = new Date;
-      session_secs = (saveDate.getTime() - settings.startDate.getTime()) / 1E3;
       if(API.isActive) {
+        session_secs = (saveDate.getTime() - settings.startDate.getTime()) / 1E3;
         debug("Committing data", 3);
         switch(API.version) {
           case "1.2":

@@ -1,10 +1,11 @@
 DocumentsController.class_eval do
 
-  def allowed_params
-    [:file, :language, :age_min, :age_max, :tag_list=>[]]
-  end
-  
+  before_filter :fill_create_params, :only => [:new, :create]
+
+
   def create
+    resource.scope = params["document"]["scope"]
+
     super do |format|
       if resource.is_a? Zipfile
         newResource = resource.getResourceAfterSave(self)
@@ -57,6 +58,21 @@ DocumentsController.class_eval do
 
       format.js
     end
+  end
+
+
+  private
+
+  def allowed_params
+    [:file, :language, :age_min, :age_max, :tag_list=>[]]
+  end
+
+  def fill_create_params
+    params["document"] ||= {}
+    params["document"]["scope"] ||= "0" #public
+    params["document"]["owner_id"] = current_subject.actor_id
+    params["document"]["author_id"] = current_subject.actor_id
+    params["document"]["user_author_id"] = current_subject.actor_id
   end
 
 end

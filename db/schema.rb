@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140725114512) do
+ActiveRecord::Schema.define(:version => 20140730212038) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20140725114512) do
     t.integer  "title_length",                                                      :default => 1
     t.integer  "desc_length",                                                       :default => 1
     t.integer  "tags_length",                                                       :default => 1
+    t.integer  "scope",                                                             :default => 0
   end
 
   create_table "activity_verbs", :force => true do |t|

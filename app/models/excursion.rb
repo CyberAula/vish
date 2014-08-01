@@ -22,7 +22,6 @@ class Excursion < ActiveRecord::Base
   has_many :contributors, :class_name => "Actor", :through => :excursion_contributors
 
   validates_presence_of :json
-  before_save :fix_relation_ids_drafts
   after_save :parse_for_meta
   after_save :fix_post_activity_nil
   after_destroy :remove_scorm
@@ -634,7 +633,8 @@ class Excursion < ActiveRecord::Base
   def self.getLOMLoLanguage(language, _LOMschema)
     #List of language codes according to ISO-639:1988
     # lanCodes = ["aa","ab","af","am","ar","as","ay","az","ba","be","bg","bh","bi","bn","bo","br","ca","co","cs","cy","da","de","dz","el","en","eo","es","et","eu","fa","fi","fj","fo","fr","fy","ga","gd","gl","gn","gu","gv","ha","he","hi","hr","hu","hy","ia","id","ie","ik","is","it","iu","ja","jw","ka","kk","kl","km","kn","ko","ks","ku","kw","ky","la","lb","ln","lo","lt","lv","mg","mi","mk","ml","mn","mo","mr","ms","mt","my","na","ne","nl","no","oc","om","or","pa","pl","ps","pt","qu","rm","rn","ro","ru","rw","sa","sd","se","sg","sh","si","sk","sl","sm","sn","so","sq","sr","ss","st","su","sv","sw","ta","te","tg","th","ti","tk","tl","tn","to","tr","ts","tt","tw","ug","uk","ur","uz","vi","vo","wo","xh","yi","yo","za","zh","zu"]
-    lanCodesMin = ["de","en","es","fr","it","pt","hu"]
+    lanCodesMin = Vish::Application.config.platformLanCodes
+    lanCodesMin.concat(["it","pt"])
 
     case _LOMschema
     when "ODS"
@@ -1101,16 +1101,7 @@ class Excursion < ActiveRecord::Base
     self.update_column :thumbnail_url, parsed_json["avatar"] ? parsed_json["avatar"] : Vish::Application.config.full_domain + "/assets/logos/original/excursion-00.png"
   end
 
-  def fix_relation_ids_drafts
-    if self.draft
-      activity_object.relation_ids=[Relation::Private.instance.id]
-    else
-      activity_object.relation_ids=[Relation::Public.instance.id]
-    end
-  end
-
-  # We don't know what happens or how it happens but sometimes in social_stream
-  # the activity inside the activity_object is nil, so we fix it here
+  # Ensure that activity inside the activity_object is not nil. Social Stream does not guarantee this 100%.
   def fix_post_activity_nil
     if self.post_activity == nil
       a = Activity.new :verb         => "post",

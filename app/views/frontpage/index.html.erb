@@ -1,11 +1,6 @@
-<%= content_for :javascript do %>
-	$("footer#footer").addClass("fixed-bottom");
-  $("#wrap").addClass("wrap-when-fixed-bottom");
-<%end%>
-
 <section id="frontpage">
   <div id="presentation">
-    <%= render :partial => "frontpage/presentation" %>
+    <%= render :partial => "frontpage/main" %>
   </div>
   <div id="info-vish">
     <%= render partial: 'frontpage/info-vish' %>
@@ -15,3 +10,8 @@
     <%= render partial: 'frontpage/excursions' %>
   </div>
 </section>
+
+<%= content_for :javascript do %>
+  $("footer#footer").addClass("fixed-bottom");
+  $("#wrap").addClass("wrap-when-fixed-bottom");
+<%end%>
