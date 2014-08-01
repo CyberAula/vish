@@ -8,10 +8,18 @@ ActivityObject.class_eval do
 
 
   def public?
-    self.scope == 0
+    !private? and self.relation_ids.include? Relation::Public.instance.id
   end
 
   def private?
+    self.relation_ids.include? Relation::Private.instance.id
+  end
+
+  def public_scope?
+    self.scope == 0
+  end
+
+  def private_scope?
     self.scope == 1
   end
 

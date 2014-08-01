@@ -497,6 +497,7 @@
               height: 33px
               margin: 18px auto 0
               width: 28px
+
         .info
           @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left
@@ -615,3 +616,10 @@
           hr
             display: none
 
+div.private-resource-mark
+  position: absolute
+  top: 0
+  right: 1%
+  font-size: 15px
+  z-index: 2
+  pointer-events: none

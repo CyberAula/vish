@@ -17,6 +17,11 @@
           </script>
         <%end%>
       </div>
+      <%if resource.private_scope? %>
+        <div class="private-resource-mark">
+          <i class="icon-lock"></i>
+        </div>
+      <%end%>
   </div>
 
 
