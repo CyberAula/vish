@@ -1,7 +1,4 @@
-
-
-
-<div class="dropdown"  >
+<div class="dropdown">
  
  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
     <i class="fa fa-eye"></i>
@@ -28,21 +25,21 @@
       </a>
     </li>
     <li>
-      <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type], :sort_by=>"created_at")%>" sort-by-key='created_at'>        
+      <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type], :sort_by=>"created_at")%>" sort-by-key='created_at'>
         <i class="fa fa-bolt"></i>
         <%=t('order_by.created_at')%>
       </a>
     </li>
     <%if params[:type]!="user"%>
       <li>
-        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"visits")%>" sort-by-key='visits'>          
-          <i class="fa fa-eye"></i> 
+        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"visits")%>" sort-by-key='visits'>
+          <i class="fa fa-eye"></i>
           <%=t('order_by.visits')%>
         </a>
       </li>
       <li>
-        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"favorites")%>" sort-by-key='favorites'>          
-          <i class="fa fa-star"></i> 
+        <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"favorites")%>" sort-by-key='favorites'>
+          <i class="fa fa-star"></i>
           <%=t('order_by.favorites')%>
         </a>
       </li>
@@ -54,7 +51,13 @@
   var param = "<%=params[:sort_by]%>";
 
   if(param && param!=""){
+
+    if(param=="ranking"){
+      param = "popularity";
+    }
+
     var value = $(".order_by_selector .dropdown-menu [sort-by-key="+param+"]").html();
-    $(".dropdownMenuOrdBy").html(value + '<i class="fa fa-angle-down"></i>'); 
+    $(".dropdownMenuOrdBy").html(value + '<i class="fa fa-angle-down"></i>');
+
   }
 <%end%>

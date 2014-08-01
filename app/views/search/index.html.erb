@@ -1,4 +1,4 @@
-    <section id="search" class="">
+ <section id="search" class="">
   <div class="search">
 
         <ul class="nav nav-tabs">
@@ -6,7 +6,7 @@
             <%content_for :title do%>
               <%= t("site.current.browse")%>
             <%end%>
-            <h1><i class="fa fa-folder-open"></i><%= t("browse.title")%></h1> 
+            <h1><i class="fa fa-folder-open"></i><%= t("browse.title")%></h1>
    
           <%else%>
             <%content_for :title do%>
@@ -16,43 +16,65 @@
           <%end%>
 
           <li class="all_results <%= 'active' if params[:type].blank? %>">
-            <%= link_to raw('<i class="fa fa-asterisk"></i><span class="hidden-xs hidden-sm">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
+
+            <% unless params[:browse]%>
+              <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
+            <% else %>
+              <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'), search_path(:browse=>"true", :sort_by => "ranking") %>
+            <% end %>
           </li>
 
           <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
-            <%= link_to raw('<i class="fa fa-book"></i><span class="hidden-xs hidden-sm">'+t("excursion.other")+'</span>'), "#excursion",
+            <% unless params[:browse]%>
+              <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), "#excursion",
+
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
+            <% else %>
+              <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking") %>
+            <%end%>
           </li>
 
           <li class="user <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
-            <%= link_to raw('<i class="fa fa-group"></i><span class="hidden-xs hidden-sm">'+t("user.title.other")+'</span>'), "#user",
-              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
+
+            <% unless params[:browse]%>
+              <%= link_to raw('<i class="icon-group"></i><span class=" hidden-phone hidden-tablet">'+t("user.title.other")+'</span>'), "#user",:data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
+            <% else %>
+              <%= link_to raw('<i class="icon-group"></i><span class=" hidden-phone hidden-tablet">'+t("user.title.other")+'</span>'), search_path(:type => "user", :browse=>"true", :sort_by => "ranking") %>
+            <% end %>
           </li>
 
           <li class="event <%= " active" if params[:type] == "event" %><%= " disabled" unless search_results?("event") %>">
-            <%= link_to raw('<i class="fa fa-video-camera"></i><span class="hidden-xs hidden-sm">'+t("event.title.other")+'</span>'), "#event",
-              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
+
+            <% unless params[:browse]%>
+              <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), "#event",:data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
+            <% else %>
+              <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), search_path(:type => "event", :browse=>"true", :sort_by => "ranking") %>
+            <% end %>
           </li>
 
           <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("resource") %>">
-            <%= link_to raw('<i class="fa fa-file"></i><span class="hidden-xs hidden-sm">'+t("resource.title.other")+'</span>'), "#resource",
-              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
+
+            <% unless params[:browse]%>
+              <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), "#resource",:data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
+            <% else %>
+              <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), search_path(:type => "resource", :browse=>"true", :sort_by => "ranking") %>
+            <% end%>
           </li>
           <%= render partial: 'help/help_search' %>
       </ul>
-      <%= render partial: 'search/order_by_dropdown' %> 
+      <%= render partial: 'search/order_by_dropdown' %>
       <!--form style="display:none" action="<%=search_path%>" method="get" id="main_search_form" class="search_box">
-        <%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
-      </form-->
+<%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
+</form-->
       <div class="tab-content">
         <%#= render partial: 'layouts/loading' %>
         <div class="tab-pane active" id="tab1 ">
           <div id="search-all">
-            <ul class="items">  
+            <ul class="items">
               <% @search_result.each do |r| %>
-                <% unless r.nil? %>              
+                <% unless r.nil? %>
                   <%= render partial: "#{ r.class.to_s.tableize }/search_result",
-                             locals:  { r.class.to_s.underscore.to_sym => r }  %>
+                             locals: { r.class.to_s.underscore.to_sym => r } %>
                 <% end %>
               <% end %>
               <script>
@@ -60,7 +82,7 @@
                 var elem = {};
 
                 <% @search_result.each do |result| %>
-                  <% unless result.nil? %> 
+                  <% unless result.nil? %>
                     <%if result.respond_to?(:type) && result.type =="Picture"%>
                       elem = {};
                       elem.id = "#document-<%=result.id%>";
@@ -71,21 +93,21 @@
                       elem = {};
                       elem.id = "#excursion-<%=result.id%>";
                       elem.value = "<%=excursion_raw_thumbail(result)%>";
-                      array_of_id_and_image.push(elem); 
+                      array_of_id_and_image.push(elem);
                     <%end%>
                     <% if result.class == Event %>
                       elem = {};
                       elem.id = "#event-<%=result.id%>";
                       elem.value = "<%=event_raw_thumbail(result)%>";
-                      array_of_id_and_image.push(elem); 
+                      array_of_id_and_image.push(elem);
                     <%end%>
                   <%end%>
-                <% end %> 
+                <% end %>
 
                 function re_apply_backstrech_on_search(){
                   //this will have to be done with an array, as the results array changes when we bring more pages
                   for (var i = 0; i < array_of_id_and_image.length; i++) {
-                    $(array_of_id_and_image[i].id).backstretch(array_of_id_and_image[i].value); 
+                    $(array_of_id_and_image[i].id).backstretch(array_of_id_and_image[i].value);
                   }
                 }
               </script>
@@ -108,7 +130,7 @@
    <%= content_for :javascript do %>
     SocialStream.Repository.show();
     
-    $('#search-all ul').pageless({ 
+    $('#search-all ul').pageless({
                         totalPages: <%=@search_result.num_pages%>,
                         url: window.location.href,
                         currentPage: <%=@search_result.current_page%>,
@@ -151,19 +173,19 @@
       <%if params[:type]%>
         //if "popular" links used, the tabs are links to other "popular" searches
         $("#search .all_results").click(function(){
-          window.location.href = '<%=search_path(:browse=>"true", :sort_by => "popularity")%>';
+          window.location.href = '<%=search_path(:browse=>"true", :sort_by => "ranking")%>';
         });
         $("#search .excursion").click(function(){
-          window.location.href = '<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "popularity")%>';
+          window.location.href = '<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking")%>';
         });
         $("#search .user").click(function(){
-          window.location.href = '<%=search_path(:type => "user", :browse=>"true", :sort_by => "popularity")%>';
+          window.location.href = '<%=search_path(:type => "user", :browse=>"true", :sort_by => "ranking")%>';
         });
         $("#search .event").click(function(){
-          window.location.href = '<%=search_path(:type => "event", :browse=>"true", :sort_by => "popularity")%>';
+          window.location.href = '<%=search_path(:type => "event", :browse=>"true", :sort_by => "ranking")%>';
         });
         $("#search .resource").click(function(){
-          window.location.href = '<%=search_path(:type => "resource", :browse=>"true", :sort_by => "popularity")%>';
+          window.location.href = '<%=search_path(:type => "resource", :browse=>"true", :sort_by => "ranking")%>';
         });
       <%else%>
         //if search is manual, the tabs are like filters, so done with js
@@ -223,10 +245,11 @@
 
 </section>
 
-<!--scroll-->    
+<!--scroll-->
 <script>
   $(function()
   {
     $('.scroll-pane').jScrollPane();
   });
 </script>
+
