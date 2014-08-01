@@ -22,6 +22,7 @@
           });
       } else {
         re_apply_pageless("net");
+        fix_silly_kids_bug();
       }
     });
     
@@ -36,7 +37,7 @@
       } else {
         $('.loader_pagination').hide();
         $.pagelessStop();
-        
+        fix_silly_kids_bug();
       }
     });
   //Catalogue behaviour
@@ -61,6 +62,7 @@
           });
       } else {
         re_apply_pageless("home");
+        fix_silly_kids_bug();
       }   
     });
 
@@ -188,7 +190,15 @@
         $(".tab-pane:hidden").find("div[bs-img]").attr("fix-bs","true");
       });
     }
-    
+
+    function fix_silly_kids_bug(){
+      $(".backstretch").each(function(){
+        if ($(this).css("position") == "relative"){
+          $(this).backstretch( $(this).attr("bs-img") );
+        }
+      });
+    }
+
   </script>
 
 <div class="home_style" id="search">
