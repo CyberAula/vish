@@ -8,17 +8,7 @@
       <div class="dummy"></div>
       <div class="element resource-center">
 
-        <%if resource.class==Link%>
-          <%= link_to "<i class='icon-link'></i>".html_safe, resource %>
-        <%elsif resource.class==Embed%>
-          <%= link_to "<i class='icon-code'></i>".html_safe, resource %>
-        <%elsif resource.class==Scormfile%>
-          <%= link_to "<i class='icon-scorm-new '></i>".html_safe, resource %>
-        <%elsif resource.class==Webapp%>
-          <%= link_to "<i class='icon-webapp-new '></i>".html_safe, resource %>
-        <%else%>
-          <%= link_to icon(resource), resource, :title => resource.file_file_name %>
-        <%end%>
+        <%= link_to icon(resource), resource %>
 
         <%if resource.respond_to?(:type) && resource.type =="Picture"%>
           <script>
@@ -30,18 +20,17 @@
   </div>
 
 
-<!--INFO resource-->
+  <!-- INFO -->
   <div class="info">
     
-    <!--Title -->
+    <!-- Title -->
     <div class="name">
       <%= link_to resource.title, resource %>
     </div>
 
-    <!--Autor -->
+    <!-- Author -->
     <span class="author"> 
       <span class="by"><%=t('by')%></span>
-      <%= raw t('document.by', author: link_to(resource.author.name, resource.author_subject)) %>
       <%= link_to truncate_name(resource.author.name, length: 25), resource.author.subject %>
     </span>
 
