@@ -238,6 +238,20 @@
             width: 50%
             text-align: right
             cursor: default
+          .private-resource-mark
+            float: right
+            display: inline
+            background: $gray
+            @include border-radius($baseBorderRadius)
+            width: 18px
+            text-align: center
+            height: 18px
+            margin-left: 5px
+            i
+              color: $white
+              text-align: center
+              font-size: 11px
+              vertical-align: calc(15%)
           .categories_inside
             cursor: default
             width: 100%
@@ -545,6 +559,20 @@
             a
               i
                 text-decoration: none
+          .private-resource-mark
+            float: right
+            display: inline
+            background: $gray
+            @include border-radius($baseBorderRadius)
+            width: 18px
+            text-align: center
+            height: 18px
+            margin-left: 5px
+            i
+              color: $white
+              text-align: center
+              font-size: 11px
+              vertical-align: calc(15%)
 
       // ADD ITEM
       .add-item
@@ -616,10 +644,4 @@
           hr
             display: none
 
-div.private-resource-mark
-  position: absolute
-  top: 0
-  right: 1%
-  font-size: 15px
-  z-index: 2
-  pointer-events: none
+
