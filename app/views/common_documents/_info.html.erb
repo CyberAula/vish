@@ -1,40 +1,37 @@
 <div class="left-info">
-<div class="author">
-
-  <div class="avatar">
-    <%= link_to document.author.subject do %>
-    <%= image_tag document.author.logo.url(:small) %>
-    <% end %>
+  <div class="author">
+    <div class="avatar">
+      <%= link_to document.author.subject do %>
+      <%= image_tag document.author.logo.url(:small) %>
+      <% end %>
+    </div>
+    <div class="right-name">
+      <p><%= truncate_name(document.author.name, :length => 50) %></p>
+      <div class="add">
+        <% if user_signed_in?%>
+          <%= contact_button(current_subject.contact_to!(document.author)) %>
+        <%else%>
+          <%= contact_button(document.author) %>
+        <%end%>
+      </div>
+    </div>
   </div>
-  <div class="right-name">
-    <p><%= truncate_name(document.author.name, :length => 50) %></p>
-    <div class="add">
-      <% if user_signed_in?%>
-        <%= contact_button(current_subject.contact_to!(document.author)) %>
-      <%else%>
-        <%= contact_button(document.author) %>
-      <%end%>
+
+  <div class="viewsAndConunt">
+    <div class="views">
+      <%=document.visit_count.to_s%> 
+      <span>
+        <%=t('follow.views')%>
+      </span>   
+    </div>
+    <div class="like">    
+      <div class="count"><%=document.post_activity.likes.count.to_s%></div>
+      <%= link_like(document.post_activity)%>
     </div>
   </div>
 </div>
-  <div class="viewsAndConunt">
-  <%#= render partial: 'objects/counters', locals: { object: document } %>
-  <div class="views">
-    <%=document.visit_count.to_s%> 
-    <span>
-      <%=t('follow.views')%>
-    </span>   
-  </div>
-  <div class="like">    
-    <div class="count"><%=document.post_activity.likes.count.to_s%></div>
-    <%= link_like(document.post_activity)%>
-  </div>
-</div>
 
-</div>
 <div id="effect" class="newClass ui-corner-all">
-
-
 
   <dl class="dl-horizontal">
     <% unless document.description.blank? %>
@@ -47,9 +44,9 @@
       <dd>
         <ul class="tagit-suggestions">
           <% document.tag_list.each do |tag| %>
-          <li class="tagit-choice">
-            <%= link_to tag, search_path(:q => tag) %>
-          </li>
+            <li class="tagit-choice">
+              <%= link_to tag, search_path(:q => tag) %>
+            </li>
           <% end %>
         </ul>
       </dd>
@@ -57,23 +54,12 @@
     
     <dt><%= t('document.info.date.created_at') %></dt>
     <dd><%= I18n.localize document.created_at, :format => :long %></dd>
-    
     <dt><%= t('document.info.date.updated_at') %></dt>
     <dd><%= I18n.localize document.updated_at, :format => :long %></dd>
 
-    <%if resource.class==Embed%>
-    
-    <%elsif resource.class==Link%>
-
-    <%elsif resource.class==Scormfile%>
-
-    <%elsif resource.class==Webapp%>
-
-    <%else%>
-      <% unless document.file_file_size.blank? %>
-        <dt><%= t('document.info.size') %></dt>
-        <dd><%= number_to_human_size document.file_file_size %></dd>
-      <%end%>
+    <% unless !defined? document.file or document.file.nil? or !defined? document.file_file_size or document.file_file_size.blank? %>
+      <dt><%= t('document.info.size') %></dt>
+      <dd><%= number_to_human_size document.file_file_size %></dd>
     <%end%>
   </dl>
 </div>

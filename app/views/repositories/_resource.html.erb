@@ -1,10 +1,9 @@
 <% if resource.nil? %>
-<% return %>
+  <% return %>
 <% end %>
 
-
 <li class="box-item resource-item">
-<!--IMG resource-->
+
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element resource-center">
@@ -33,20 +32,19 @@
 
 <!--INFO resource-->
   <div class="info">
-<!--Title -->
+    
+    <!--Title -->
     <div class="name">
-
-          <%= link_to resource.title, resource %>
-
+      <%= link_to resource.title, resource %>
     </div>
-<!--Autor -->
+
+    <!--Autor -->
     <span class="author"> 
       <span class="by"><%=t('by')%></span>
-      <!-- <a><%= raw t('document.by', author: link_to(resource.author.name, resource.author_subject)) %></a> -->
+      <%= raw t('document.by', author: link_to(resource.author.name, resource.author_subject)) %>
       <%= link_to truncate_name(resource.author.name, length: 25), resource.author.subject %>
-
     </span>
-<!--____________________ -->
+
     <div class="info-bottom">
       <hr class="soften">
       <!--like -->
@@ -58,10 +56,10 @@
       <div class="views">
         <%=resource.visit_count.to_s%>
         <i class="icon-eye-open"></i>
-        <%#=t('follow.views')%>
       </div>
     </div>
   </div>
+
 </li>
 
 
