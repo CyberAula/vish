@@ -52,6 +52,7 @@
   <% end %>
 
   <%if user_signed_in?%>
+
     <%= content_for :javascript do %> 
       <%= render partial: 'shared/multiselect', :locals => {:item => document} %>
     <% end %>
