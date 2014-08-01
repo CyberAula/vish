@@ -192,9 +192,9 @@
     }
 
     function fix_silly_kids_bug(){
-      $(".backstretch").each(function(){
+      $(".tab-pane:visible .backstretch").each(function(){
         if ($(this).css("position") == "relative"){
-          $(this).backstretch( $(this).attr("bs-img") );
+          $(this).backstretch( $(this).attr("bs-img") );  
         }
       });
     }

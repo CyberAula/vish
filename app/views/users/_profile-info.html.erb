@@ -2,6 +2,7 @@
   
   $("#excursions_tab").click(function(){
     re_apply_pageless("excursions");
+    fix_silly_kids_bug();
   });
 
   var resources_tab_loaded = false;
@@ -25,7 +26,7 @@
 
     } else {
       re_apply_pageless("resources");
-      
+      fix_silly_kids_bug();
     }
   });
 
@@ -50,6 +51,7 @@
 
     } else {
       re_apply_pageless("events");
+      fix_silly_kids_bug();
     }
   });
 
@@ -218,6 +220,14 @@ function get_url_with_sort_by(tab){
           $(this).removeAttr("fix-bs");
         }        
       });     
+    }
+
+     function fix_silly_kids_bug(){
+      $(".tab-pane:visible .backstretch").each(function(){
+        if ($(this).css("position") == "relative"){
+          $(this).backstretch( $(this).attr("bs-img") );  
+        }
+      });
     }
 
 </script>
