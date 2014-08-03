@@ -19,6 +19,14 @@ class QuizSession < ActiveRecord::Base
   belongs_to :owner, :class_name => 'Actor'
   has_many :quiz_answers, :dependent => :destroy
   
+  scope :authored_by, lambda { |subject|
+    QuizSession.where(:owner_id => Actor.normalize_id(subject))
+  }
+
+  scope :owned_by, lambda { |subject|
+    QuizSession.authored_by(subject)
+  }
+
   acts_as_xlsx
 
   def quizJSON(options=nil)
