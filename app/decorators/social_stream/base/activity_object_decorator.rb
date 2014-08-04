@@ -4,7 +4,7 @@ ActivityObject.class_eval do
 
   before_save :fill_relation_ids
   before_save :fill_indexed_lengths
-  before_destroy :destroy_spam_reports
+  after_destroy :destroy_spam_reports
 
   has_attached_file :avatar,
                   :url => '/:class/avatar/:id.:extension',
