@@ -20,9 +20,7 @@ class Scormfile < ActiveRecord::Base
 
   include SocialStream::Models::Object
 
-  attr_accessor :file_file_name
-
-  has_attached_file :file, 
+  has_attached_file :file,
                     :url => '/:class/:id.:extension',
                     :path => ':rails_root/documents/:class/:id_partition/:filename.:extension'
 
@@ -46,6 +44,8 @@ class Scormfile < ActiveRecord::Base
       resource.activity_object.tag_list = zipfile.activity_object.tag_list
       #Copy attachment
       resource.file = zipfile.file
+      #Copy avatar
+      resource.avatar = zipfile.avatar
 
       #Unpack the SCORM package and fill the lourl, lopath, zipurl and zippath fields
       #If the Package is not correct, SCORM::Package.open will raise an exception

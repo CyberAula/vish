@@ -7,19 +7,19 @@
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element resource-center">
-
-        <%= link_to icon(resource), resource %>
-
-        <%if resource.respond_to?(:type) && resource.type =="Picture"%>
-          <script>
-            $("#document-<%=resource.id%>").addClass("img-box");
-            $("#document-<%=resource.id%>").backstretch("<%= thumb_file_for(resource, '500') %>"); 
-          </script>
-        <%end%>
+        <%= link_to raw(icon(resource)), resource %>
       </div>
-
   </div>
 
+  <script>
+    $("div.applyBackstretch").each(function(index,div){
+      $(div).removeClass("applyBackstretch");
+      var imgUrl = $(div).attr("bs-img");
+      if (typeof imgUrl != "undefined"){
+        $(div).backstretch(imgUrl); 
+      }
+    });
+  </script>
 
   <!-- INFO -->
   <div class="info">
@@ -41,22 +41,22 @@
 
     <div class="info-bottom">
       <hr class="soften">
-          <!--like -->
+      
       <div class="like">    
         <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
         <%= link_like(resource.post_activity)%>
       </div>
+
       <!--views -->
       <div class="views">
-        <%=resource.visit_count.to_s%>
-        <i class="fa fa-eye"></i>
-      <%if resource.private_scope? %>
-        <div class="private-resource-mark">
-          <i class="icon-lock"></i>
-        </div>
-      <%end%>
-        
-
+        <%if resource.private_scope? %>
+          <div class="private-resource-mark">
+            <i class="fa fa-eye"></i>
+          </div>
+        <%else%>
+          <%=resource.visit_count.to_s%>
+          <i class="fa fa-eye-slash"></i>
+        <%end%>
       </div>
 
     </div>

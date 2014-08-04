@@ -28,7 +28,7 @@ class EmbedsController < ApplicationController
   private
 
   def allowed_params
-    [:fulltext, :width, :height, :live, :language, :age_min, :age_max, :scope]
+    [:fulltext, :width, :height, :live, :language, :age_min, :age_max, :scope, :avatar]
   end
 
   def fill_create_params

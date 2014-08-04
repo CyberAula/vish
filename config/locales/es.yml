@@ -379,6 +379,7 @@ es:
     language:
       option1: "(No depende del lenguaje)"
     leyend:
+      avatar: "Escoge un avatar"
       description: "Descripción"
       language: "Idioma"
       recommended_age: "Edad recomendada"

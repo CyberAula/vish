@@ -15,7 +15,7 @@ LinksController.class_eval do
   private
 
   def allowed_params
-    [:url, :image, :callback, :width, :height, :callback_url, :loaded, :language, :age_min, :age_max, :scope, :tag_list=>[]]
+    [:url, :image, :callback, :width, :height, :callback_url, :loaded, :language, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
   end
 
   def fill_create_params
