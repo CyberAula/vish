@@ -81,10 +81,11 @@ module HomeHelper
     when :net
       query = query.authored_by(following_ids)
     when :like
-      query = if klass.is_a?(Array)
-        Activity.joins(:activity_objects).includes(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.actor_id}).where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
+      query = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.actor_id})
+      if klass.is_a?(Array)
+        query = query.where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
       else
-        Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.actor_id}).where("activity_objects.object_type = (?)", klass.to_s)
+        query = query.where("activity_objects.object_type = (?)", klass.to_s)
       end
     when :more
       following_ids |= [ subject.actor_id ]
@@ -93,8 +94,10 @@ module HomeHelper
 
     #Filtering private entities
     unless (defined?(current_subject)&&((options[:scope] == :me && subject == current_subject)||(!current_subject.nil? && current_subject.admin?)))
-      query = query.includes("activity_object_audiences")
-      query = query.where("activity_object_audiences.relation_id='"+Relation::Public.instance.id.to_s+"' and activity_objects.scope=0")
+      unless options[:scope] == :like   #Likes are filtering in other way
+        query = query.includes("activity_object_audiences")
+        query = query.where("activity_object_audiences.relation_id='"+Relation::Public.instance.id.to_s+"' and activity_objects.scope=0")
+      end
     end
 
     case options[:sort_by]
@@ -107,35 +110,36 @@ module HomeHelper
       when "favorites"
         query = query.order('activity_objects.like_count DESC') 
       when "popularity"
-        query = query.order('activity_objects.popularity DESC') 
+        #Use ranking instead of popularity
+        query = query.order('activity_objects.ranking DESC')  
     end
     
-   
-    query = query.offset(options[:offset]) if options[:offset] > 0
     query = query.limit(options[:limit]) if options[:limit] > 0
-    # Do not optimize likes. They should go anyways....
-    if options[:scope] == :like
-      return query.map { |a| a.direct_object }
-    end
+    query = query.offset(options[:offset]) if options[:offset] > 0
 
-    # This is the optimization code. It's ugly and *BAD*
-    query = if klass.is_a?(Array)
-              query.includes(klass.map{ |e| e.to_s.downcase.to_sym} + [:received_actions, { :received_actions => [:actor]}]) 
-            else
-              query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}]) 
-            end
-    
-    #return query.map{|ao| ao.object} if klass.is_a?(Array)
+    #Optimization code
+    #(Old version) return query.map{|ao| ao.object} if klass.is_a?(Array)
+    unless options[:scope] == :like
+      # This is the optimization code.
+      query = if klass.is_a?(Array)
+                query.includes(klass.map{ |e| e.to_s.downcase.to_sym} + [:received_actions, { :received_actions => [:actor]}]) 
+              else
+                query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}]) 
+              end
+    else
+      # Do not optimize likes.
+      if options[:scope] == :like
+        query = query.map{ |a| a.direct_object }.reject{ |o| o.scope==1 }
+      end
+    end
 
     # pagination, 0 means without pagination
     if options[:page] != 0
       items = options[:limit] if options[:limit] > 0
       query = query.page(options[:page]).per(items)
     end
+
     query
   end
-
-  
-
 
 end

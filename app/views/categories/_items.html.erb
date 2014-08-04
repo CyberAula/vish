@@ -1,0 +1,13 @@
+<div class="excursions">
+  <ul class="">
+	<% @items.each do |item| %>
+		<% hasOwnPartial = lookup_context.template_exists?(item.object.class.to_s.underscore, item.object.class.to_s.underscore.pluralize, true) %>
+		<% if hasOwnPartial %>
+			<%= render :partial => "#{item.object.class.to_s.tableize}/#{item.object.class.to_s.underscore}", :locals => { item.object.class.to_s.underscore.to_sym => item.object } %>
+		<% else %>
+			<%= render :partial => 'repositories/resource', :locals => { :resource => item.object } %>
+		<% end %>
+	<% end %>
+  </ul>
+</div>
+

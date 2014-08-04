@@ -17,11 +17,7 @@
           </script>
         <%end%>
       </div>
-      <%if resource.private_scope? %>
-        <div class="private-resource-mark">
-          <i class="icon-lock"></i>
-        </div>
-      <%end%>
+
   </div>
 
 
@@ -53,10 +49,16 @@
       <!--views -->
       <div class="views">
         <%=resource.visit_count.to_s%>
-
         <i class="fa fa-eye"></i>
+      <%if resource.private_scope? %>
+        <div class="private-resource-mark">
+          <i class="icon-lock"></i>
+        </div>
+      <%end%>
+        
 
       </div>
+
     </div>
   </div>
 

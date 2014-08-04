@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140801121923) do
+ActiveRecord::Schema.define(:version => 20140803175235) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -345,6 +345,7 @@ ActiveRecord::Schema.define(:version => 20140801121923) do
     t.datetime "attach_updated_at"
     t.boolean  "permanent",           :default => false
     t.integer  "pcount"
+    t.integer  "owner_id"
   end
 
   create_table "permissions", :force => true do |t|
@@ -470,6 +471,10 @@ ActiveRecord::Schema.define(:version => 20140801121923) do
     t.text     "lopath"
     t.integer  "width",              :default => 800
     t.integer  "height",             :default => 600
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "shortened_urls", :force => true do |t|
@@ -589,6 +594,10 @@ ActiveRecord::Schema.define(:version => 20140801121923) do
     t.text     "lopath"
     t.integer  "width",              :default => 800
     t.integer  "height",             :default => 600
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   add_foreign_key "activities", "activity_verbs", :name => "index_activities_on_activity_verb_id"
