@@ -178,30 +178,35 @@
   Backstretch.prototype = {
       resize: function () {
         try {
-          var bgCSS = {left: 0, top: 0}
-            , rootWidth = this.isBody ? this.$root.width() : this.$root.innerWidth()
-            , bgWidth = rootWidth
-            , rootHeight = this.isBody ? ( window.innerHeight ? window.innerHeight : this.$root.height() ) : this.$root.innerHeight()
-            , bgHeight = bgWidth / this.$img.data('ratio')
-            , bgOffset;
+          if($(this.$root).is(':visible')){
+              var bgCSS = {left: 0, top: 0}
+                , rootWidth = this.isBody ? this.$root.width() : this.$root.innerWidth()
+                , bgWidth = rootWidth
+                , rootHeight = this.isBody ? ( window.innerHeight ? window.innerHeight : this.$root.height() ) : this.$root.innerHeight()
+                , bgHeight = bgWidth / this.$img.data('ratio')
+                , bgOffset;
 
-            // Make adjustments based on image ratio
-            if (bgHeight >= rootHeight) {
-                bgOffset = (bgHeight - rootHeight) / 2;
-                if(this.options.centeredY) {
-                  bgCSS.top = '-' + bgOffset + 'px';
+                // Make adjustments based on image ratio
+                if (bgHeight >= rootHeight) {
+                    bgOffset = (bgHeight - rootHeight) / 2;
+                    if(this.options.centeredY) {
+                      bgCSS.top = '-' + bgOffset + 'px';
+                    }
+                } else {
+                    bgHeight = rootHeight;
+                    bgWidth = bgHeight * this.$img.data('ratio');
+                    bgOffset = (bgWidth - rootWidth) / 2;
+                    if(this.options.centeredX) {
+                      bgCSS.left = '-' + bgOffset + 'px';
+                    }
                 }
-            } else {
-                bgHeight = rootHeight;
-                bgWidth = bgHeight * this.$img.data('ratio');
-                bgOffset = (bgWidth - rootWidth) / 2;
-                if(this.options.centeredX) {
-                  bgCSS.left = '-' + bgOffset + 'px';
-                }
+                this.$wrap.css({width: rootWidth, height: rootHeight})
+                          .find('img:not(.deleteable)').css({width: bgWidth, height: bgHeight}).css(bgCSS);
             }
-
-            this.$wrap.css({width: rootWidth, height: rootHeight})
-                      .find('img:not(.deleteable)').css({width: bgWidth, height: bgHeight}).css(bgCSS);
+            else{
+                //Modified by KIKE XXX
+                $(this.$root).attr("fix-bs", "true");
+            }
         } catch(err) {
             // IE7 seems to trigger resize before the image is loaded.
             // This try/catch block is a hack to let it fail gracefully.
