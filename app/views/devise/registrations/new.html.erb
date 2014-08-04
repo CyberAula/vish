@@ -1,7 +1,5 @@
 
 <section id="registration"> 
-  <section class="welcome">
-  </section>
   <section class="registration">
     <h3>
       <%= t('sign_up').capitalize %>
@@ -9,18 +7,18 @@
 
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
-      <div class="reg-labels">
+      <div class="form-group reg-labels">
         <%= f.label :name %>
-        <%= f.text_field :name, :class =>"form_tag", :autocomplete => "off" %>
+        <%= f.text_field :name, :class =>"form-control", :autocomplete => "off" %>
         
         <%= f.label :email %>
-        <%= f.text_field :email, :class =>"form_tag", :autocomplete => "off" %>
+        <%= f.text_field :email, :class =>"form-control", :autocomplete => "off" %>
         
         <%= f.label :password %>
-        <%= f.password_field :password, :class =>"form_tag", :id => "password", :autocomplete => "off" %>
+        <%= f.password_field :password, :class =>"form-control", :id => "password", :autocomplete => "off" %>
 
         <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, :class =>"form_tag", :autocomplete => "off" %>
+        <%= f.password_field :password_confirmation, :class =>"form-control", :autocomplete => "off" %>
 
         <%= f.label t('profile.occupation.label') %>
         <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]], params[:user] ? params[:user][:occupation]:nil)) %>
@@ -29,7 +27,7 @@
         <div class="tagBoxNew">
           <ul class="tagList"></ul>
         </div>
-        <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags')   %>
+        <%= f.hidden_field :tag_list, :class => "form-control", :id => "input_tag_list", :placeholder => t('devise.tags')   %>
         <% @tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
         <ul id="preloadTagList" style="display:none">
           <%@tags.each do |tag| %>
@@ -56,9 +54,6 @@
 
         <%= f.submit t('action.accept').capitalize,:class=>"btn pull-right"%>
       </div>
-
-      <hr class="soften">
-      <%= render :partial => "devise/shared/links" %>
       
     <% end %>
   </section>

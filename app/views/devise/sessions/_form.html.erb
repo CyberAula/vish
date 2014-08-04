@@ -3,32 +3,29 @@
     <%= t('sign_in') %>
   </h3>
 
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <%= devise_error_messages! if controller.controller_name == 'sessions' %>
-
-    <article class="login_data">
-
-      <%= f.label :email %>
-
-      <%= f.email_field :email %>
-
-      <%= f.label :password %>
-
-      <%= f.password_field :password %>
-
-      <% if devise_mapping.rememberable? -%>
-        <div id="remember">
-          <%= f.check_box :remember_me %> 
-          <%= f.label :remember_me %>
-        </div>
-      <% end %>
-
-      <%= f.submit t('sign_in'), :class =>"btn btn-primary" %>
-
-      <hr>
-
-      <%= link_to t('devise.links.forgot_password'), new_password_path(resource_name),  :class=> "forgot-link" %> 
-
-    </article>
+  <%= form_for User.new, :as => :user, :class => "form-horizontal", :url => user_session_path do |f| %>
+    <div class="form-group">
+      <%= f.email_field :email, :id => "username", :class => "form-control" %>
+      <%= f.password_field :password, :id => "password", :class => "form-control"  %>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"> <%=t("activerecord.attributes.user.remember_me")%>
+      </label>
+    </div>
+    <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
+    <div class="remember_password"><%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
+    </div>
   <% end %>
+  <%= javascript_tag do %>
+    $(function() {
+      if ("placeholder" in document.createElement("input")) {
+        $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+      } else {
+        $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+      }
+        $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+      });
+  <% end %>
+
 </section>
