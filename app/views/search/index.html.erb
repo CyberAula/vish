@@ -196,22 +196,34 @@
       <%end%>
 
       re_apply_backstrech_on_search();
-
+      
       $(".search .all_results").click(function(){
-        re_apply_backstrech_on_search();
+        fix_backstretch();
       });
       $(".search .excursion").click(function(){
-        re_apply_backstrech_on_search();
+        fix_backstretch();
       });
       $(".search .user").click(function(){
-        re_apply_backstrech_on_search();
+        fix_backstretch();
       });
       $(".search .resource").click(function(){
-        re_apply_backstrech_on_search();
+        fix_backstretch();
       });
       $(".search .event").click(function(){
-        re_apply_backstrech_on_search();
+        fix_backstretch();
       });
+
+
+    function fix_backstretch(){
+      $("#search-all div[fix-bs]").each(function() {
+        if($(this).css('display')!="none"){        
+          $(this).backstretch( $(this).attr("bs-img") );
+          $(this).removeAttr("fix-bs");
+        }        
+      });     
+    }
+
+    
 
 
     <% end %>
@@ -225,6 +237,12 @@
   {
     $('.scroll-pane').jScrollPane();
   });
+
+  $( document ).ready(function() {
+   $(window).resize(re_apply_backstrech_on_search);
+   $(window).on('orientationchange', re_apply_backstrech_on_search);
+   });
+
 </script>
 </section>
 
