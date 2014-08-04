@@ -375,6 +375,7 @@ en:
     language:
       option1: "(Not depends on the language)"
     leyend:
+      avatar: "Pick up an avatar or thumbnail"
       description: "Description"
       language: "Language"
       recommended_age: "Recommended age"

@@ -46,6 +46,8 @@ class Webapp < ActiveRecord::Base
       resource.activity_object.tag_list = zipfile.activity_object.tag_list
       #Copy attachment
       resource.file = zipfile.file
+      #Copy avatar
+      resource.avatar = zipfile.avatar
 
       #Unpack the ZIP file and fill the lourl, lopath, zipurl and zippath fields
       #Save the resource to get its id

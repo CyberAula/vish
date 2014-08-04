@@ -6,6 +6,9 @@ ActivityObject.class_eval do
   before_save :fill_indexed_lengths
   before_destroy :destroy_spam_reports
 
+  has_attached_file :avatar,
+                  :url => '/:class/avatar/:id.:extension',
+                  :path => ':rails_root/documents/:class/avatar/:id_partition/:filename.:extension'
 
   def public?
     !private? and self.relation_ids.include? Relation::Public.instance.id
@@ -114,7 +117,7 @@ ActivityObject.class_eval do
       searchJson[:language] = resource.language
     end
 
-    avatarUrl = getAvatardUrl(controller)
+    avatarUrl = getAvatarUrl
     unless avatarUrl.nil?
       searchJson[:avatar_url] = avatarUrl
     end
@@ -229,13 +232,17 @@ ActivityObject.class_eval do
     return absolutePath
   end
 
-  def getAvatardUrl(controller)
+  def getAvatarUrl
     resource = self.object
 
     if resource.class.name=="User"
       relativePath = resource.logo.to_s
     elsif resource.class.name=="Excursion"
       absolutePath = resource.thumbnail_url
+    elsif resource.class.name=="Picture"
+      relativePath = document.file.url
+    elsif resource.avatar.exists?
+      relativePath = resource.avatar.url
     end
 
     if absolutePath.nil? and !relativePath.nil?

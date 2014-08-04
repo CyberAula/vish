@@ -1,8 +1,11 @@
 DocumentsHelper.module_eval do
 
-  # Return the right icon based on {#document}'s mime type
+  # Return the right icon of the resource
   def icon document, size=50
+
+    #Default icons
     unless document.class.superclass.name != "Document"
+      #For documents (based on SS documents)
       icon_name = case icon_mime_type document
         when :default then "file"
         when :text then "file-text"
@@ -10,12 +13,12 @@ DocumentsHelper.module_eval do
         when :audio then "music"
         when :video then "film"
         when :pdf then "pdf-new"
-        when :zip then "zip-new"
-        when :scorm then "scorm-new"
         when :swf then "swf-new"
+        when :zip then "zip-new" 
         else icon_mime_type document
       end
     else
+      #For new ViSH models
       icon_name = case document.class.name
         when "Link" then "link"
         when "Embed" then "code"
@@ -25,11 +28,14 @@ DocumentsHelper.module_eval do
       end
     end
 
-    if icon_name == "picture"
-      "<div class='img-box' id='document-#{document.id}'></div><i class=\"icon-#{ icon_name }\"></i>".html_safe
+    #Custom Avatars
+    customAvatar = document.getAvatarUrl
+    unless customAvatar.nil?
+      return "<div class='img-box applyBackstretch resource_avatar' bs-img='"+customAvatar+"'></div><i class=\"icon-#{ icon_name }_decorator\"></i>".html_safe
     else
-      "<i class=\"icon-#{ icon_name }\"></i>".html_safe
+      return "<i class=\"icon-#{ icon_name }\"></i>".html_safe
     end
+
   end
 
   # Find the right class for the icon of this document, based on its format

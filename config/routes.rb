@@ -25,7 +25,7 @@ Vish::Application.routes.draw do
   #Download the user manual and count the number of downloads
   match 'user_manual' => 'help#download_user_manual'
   
-  # APIs
+  #APIs
   match '/apis/search' => 'federated_search#search'
   match '/apis/iframe_api' => 'excursions#iframe_api'
   match '/apis/recommender' => 'recommender#api_excursion_suggestions'
@@ -34,7 +34,10 @@ Vish::Application.routes.draw do
   match 'resources/search' => 'resources#search'
   match 'lre/search' => 'lre#search_lre'
 
-  # Excursions. Match the filter before the excursions resources
+  #AO avatars
+  match 'activity_objects/avatar/:id' => 'activity_object#avatar'
+
+  #Excursions. Match the filter before the excursions resources
   match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
   match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
 

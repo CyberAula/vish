@@ -40,14 +40,23 @@
       <%= f.label :title, t('document.info.title') %>
       <%= f.text_field :title %>
     </section>
+
     <section class="description">
       <%= f.label :description, t('document.info.description') %>
       <%= f.text_area :description %>
     </section>
+
     <section class="tags">
       <%= f.label :tag_list, t('document.info.tags') %>
       <%= f.text_field :tag_list, 'data-path' => tags_path(format: 'json') %>
     </section>
+
+    <%unless resource.class.name=="Picture" %>
+      <section class="avatar">
+        <%= f.label :avatar, t('document.leyend.avatar') %>
+        <%= f.file_field :avatar %>
+      </section>
+    <%end%>
 
     <section class="language">
       <%= f.label :language, t('document.leyend.language') %>

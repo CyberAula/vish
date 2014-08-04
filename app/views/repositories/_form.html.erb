@@ -31,7 +31,7 @@
             <div class="accordion-inner">
               <% d = Document.new %>
               <% d.owner_id = Actor.normalize_id(current_subject) %>
-              <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+              <%= form_for d, :namespace => 'new_file_only', :html => { :multipart => true }, :remote => false do |f| %>
                 <%= f.hidden_field :owner_id %>
                 <%= f.file_field :file %>
                 <%= f.hidden_field :title%>
@@ -56,11 +56,10 @@
             <div class="accordion-inner">
               <% d = Link.new %>
               <% d.owner_id = Actor.normalize_id(current_subject) %>
-              <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+              <%= form_for d, :namespace => 'new_file_only', :html => { :multipart => true }, :remote => false do |f| %>
                 <%= f.hidden_field :owner_id %>
                 <%= f.hidden_field :callback_url %>
                 <%= f.hidden_field :loaded %>
-                <%#= f.hidden_field :image %>
                 <%= f.text_field :url %>
                 <%= f.hidden_field :title%>
                 <%= f.hidden_field :description%>
@@ -84,9 +83,8 @@
             <div class="accordion-inner">
               <% d = Embed.new %>
               <% d.owner_id = Actor.normalize_id(current_subject) %>
-              <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+              <%= form_for d, :namespace => 'new_file_only', :html => { :multipart => true }, :remote => false do |f| %>
                 <%= f.hidden_field :owner_id %>
-                <%#= f.hidden_field :image %>
                 <%= f.text_field :fulltext %>
                 <%= f.hidden_field :title%>
                 <%= f.hidden_field :description%>
@@ -122,6 +120,10 @@
       </div>
 
       <div class="clearfloat"></div>
+
+      <!--Avatar-->
+      <label class="new_file_avatar_label"><%= t('document.leyend.avatar')%></label>
+      <input class="new_file_avatar" type="file">
       
       <!--LANGUAGE-->
       <label><%= t('document.leyend.language')%></label>
@@ -210,7 +212,7 @@
   var uploadButton = $("#AddResource input[value=<%= t('document.upload')%>][type='button'][class='btn btn-primary']");
   
   $(uploadButton).click(function(event){
-    var resource_type = $(".accordion-body.collapse.in").attr('id');
+     var resource_type = $(".accordion-body.collapse.in").attr('id');
 
     if(resource_type == "document" && $("#AddResource input[name='"+resource_type+"[file]']").val() == ""){
       alert("<%= t('document.body.title3')%>");
@@ -228,6 +230,12 @@
       //TAGS
       var tagList = $("#AddResource .resourceTagList");
       $("#AddResource input[name='"+resource_type+"[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+      //Avatar
+      var avatarFileInput = $("#AddResource .new_file_avatar");
+      $(avatarFileInput).attr("name",resource_type+"[avatar]");
+      var myForm = $("#AddResource form#new_file_only_new_" + resource_type);
+      $(avatarFileInput).css("display","none");
+      $(avatarFileInput).appendTo(myForm);
       //LANGUAGE
       $("#AddResource input[name='"+resource_type+"[language]']").val($(".language").val());
       //AGE
@@ -255,6 +263,38 @@
     $(resourceTagList).tagit({tagSource:resourceTags, sortable:true, maxLength:15, maxTags:8 , 
       watermarkAllowMessage: '<%=t('document.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' });
   }
+
+  //File chooser listener
+  $("#new_file_only_document_file").on('change', function(e){
+    try{
+      var ext = $(this).val().split(".").pop().toLowerCase();
+      var imageFormats = ["jpg","jpeg","png","gif","bmp","svg"];
+      if(imageFormats.indexOf(ext)!=-1){
+        //Its a image
+        enableUploadAvatar(false);
+      } else {
+        enableUploadAvatar(true);
+      }
+    } catch(e){
+      enableUploadAvatar(true);
+    }
+  });
+
+  var enableUploadAvatar = function(enable){
+    var label = $("label.new_file_avatar_label");
+    var input = $("input.new_file_avatar");
+    $(input).prop('disabled', !enable);
+
+    if(enable===true){
+      $(label).removeClass("disabled");
+      $(label).show();
+      $(input).show();
+    }else{
+      $(label).addClass("disabled");
+      $(label).hide();
+      $(input).hide();
+    }
+  };
 
 </script>
 
