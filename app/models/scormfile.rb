@@ -20,9 +20,7 @@ class Scormfile < ActiveRecord::Base
 
   include SocialStream::Models::Object
 
-  attr_accessor :file_file_name
-
-  has_attached_file :file, 
+  has_attached_file :file,
                     :url => '/:class/:id.:extension',
                     :path => ':rails_root/documents/:class/:id_partition/:filename.:extension'
 
