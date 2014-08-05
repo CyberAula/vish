@@ -33,11 +33,11 @@ div#wrap.wrap-when-fixed-bottom{
   border-top-right-radius: 4px !important;
   border-bottom-right-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
-  left: -41px !important;
-  top: 59% !important;
-  margin-top: -47px !important;
-  min-width: 106px;
-  max-height: 27px;
+  left: -39px !important;
+  top: 47% !important;
+  margin-top: 0px !important;
+  min-width: 99px;
+  max-height: 21px;
   background: url(http://widget.uservoice.com/pkg/clients/widget2/tab-left-dark-e89fceb89af232658b40362993385936.png) 0% -1px no-repeat #999 !important;
   @include rotate(90deg)
 }
@@ -46,7 +46,11 @@ div#wrap.wrap-when-fixed-bottom{
   padding: 0 0 4px 3px !important;
   @include rotate (270deg);
   float: left;
-  margin: -21px 0 0 56px;
+  margin: -26px 0 0 49px;
+  img{
+    padding: 0px 9px 0 0px !important;
+    width: 92%;
+  }
 }
 
 *{

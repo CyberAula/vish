@@ -62,12 +62,12 @@
         @include border-left-radius ($border-radius-base);
       }
       .img-box{
-        width: 100%;
+        width: 100% !important;
         padding-bottom: 75%;
         float: left;
         img{
           float: left;
-          width: 100%;
+          width: 100% !important;
           height: 100%;
         }
       }  

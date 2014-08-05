@@ -13,39 +13,39 @@
   }
 // 3---------------------
   @media (min-width: 481px) and (max-width: 767px){
-    width: 31.5%;
+    width: 32.1%;
     margin: 0 0.6% 15px;
   }
 // 4---------------------
   @media (min-width: 768px) and (max-width: 991px){
-    width: 23.7669%;
+    width: 24.20%;
     margin: 0 0.4% 10px;
   }
 // 5---------------------
   @media (min-width: 992px) and (max-width: 1199px){
-    width: 18.751414%;
+    width: 19.20%;
     margin: 0 0.4% 10px;
   }
 // 6---------------------
   @media (min-width: 1200px) and (max-width: 1500px){
-    width: 15.4977%;
+    width: 15.86%;
     margin: 0 0.4% 10px;
   }
 // 7---------------------
   @media (min-width: 1501px) and (max-width: 1750px){
-    width: 13.1855%;
+    width: 15.4977%;
     margin: 0 0.4% 10px;
   }
 // 8---------------------
   @media (min-width: 1751px){
-    width: 11.4398%;
+    width: 13.4885%;
     margin: 0 0.4% 10px;
   }
 }
 
 @mixin items{
   margin-bottom: 10px;
-  padding: 0 20px;
+  padding: 0;
   @include center-block;
   @media (max-width: $screen-xs-max){
     padding: 0;
