@@ -22,7 +22,31 @@ div#wrap.wrap-when-fixed-bottom{
 }
 
 #uvTab{
-  max-width: 24px !important;
+  border-top-width: 1px !important;
+  border-right-width: 1px !important;
+  border-left-width: 1px !important;
+  border-style: solid solid none solid !important;
+  border-top-color: #FFF;
+  border-right-color: #FFF;
+  border-left-color: #FFF !important;
+  border-top-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  left: -41px !important;
+  top: 59% !important;
+  margin-top: -47px !important;
+  min-width: 106px;
+  max-height: 27px;
+  background: url(http://widget.uservoice.com/pkg/clients/widget2/tab-left-dark-e89fceb89af232658b40362993385936.png) 0% -1px no-repeat #999 !important;
+  @include rotate(90deg)
+}
+
+#uvTabLabel{
+  padding: 0 0 4px 3px !important;
+  @include rotate (270deg);
+  float: left;
+  margin: -21px 0 0 56px;
 }
 
 *{
