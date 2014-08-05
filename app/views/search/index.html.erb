@@ -72,43 +72,16 @@
           <div id="search-all">
             <ul class="items">
               <% @search_result.each do |r| %>
-                <% unless r.nil? %>
-                  <%= render partial: "#{ r.class.to_s.tableize }/search_result",
-                             locals: { r.class.to_s.underscore.to_sym => r } %>
-                <% end %>
+                  <% unless r.nil? %>              
+                    <%= render partial: "#{ r.class.to_s.tableize }/search_result",
+                               locals:  { r.class.to_s.underscore.to_sym => r, :prefix_id => "search" }  %>
+                  <% end %>
               <% end %>
               <script>
-                var array_of_id_and_image = [];
-                var elem = {};
-
-                <% @search_result.each do |result| %>
-                  <% unless result.nil? %>
-                    <%if result.respond_to?(:type) && result.type =="Picture"%>
-                      elem = {};
-                      elem.id = "#document-<%=result.id%>";
-                      elem.value = "<%=result.file%>?style=500";
-                      array_of_id_and_image.push(elem);
-                    <%end%>
-                    <% if result.class == Excursion %>
-                      elem = {};
-                      elem.id = "#excursion-<%=result.id%>";
-                      elem.value = "<%=excursion_raw_thumbail(result)%>";
-                      array_of_id_and_image.push(elem);
-                    <%end%>
-                    <% if result.class == Event %>
-                      elem = {};
-                      elem.id = "#event-<%=result.id%>";
-                      elem.value = "<%=event_raw_thumbail(result)%>";
-                      array_of_id_and_image.push(elem);
-                    <%end%>
-                  <%end%>
-                <% end %>
-
                 function re_apply_backstrech_on_search(){
-                  //this will have to be done with an array, as the results array changes when we bring more pages
-                  for (var i = 0; i < array_of_id_and_image.length; i++) {
-                    $(array_of_id_and_image[i].id).backstretch(array_of_id_and_image[i].value);
-                  }
+                  $("div[bs-img]").each(function() {
+                    $(this).backstretch( $(this).attr("bs-img") );
+                  });
                 }
               </script>
             </ul>
@@ -157,6 +130,11 @@
                             }
                             else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
                               hidden_elem.fadeIn();
+                            }
+
+                            var array_matches = hidden_elem.find('div[bs-img]');
+                            if(array_matches.length>0){ 
+                              $(array_matches[0]).backstretch($(array_matches[0]).attr("bs-img"));
                             }
                         },
                         complete: function(){
@@ -221,22 +199,34 @@
       <%end%>
 
       re_apply_backstrech_on_search();
-
+      
       $(".search .all_results").click(function(){
-        re_apply_backstrech_on_search();
+        fix_backstretch();
       });
       $(".search .excursion").click(function(){
-        re_apply_backstrech_on_search();
+        fix_backstretch();
       });
       $(".search .user").click(function(){
-        re_apply_backstrech_on_search();
+        fix_backstretch();
       });
       $(".search .resource").click(function(){
-        re_apply_backstrech_on_search();
+        fix_backstretch();
       });
       $(".search .event").click(function(){
-        re_apply_backstrech_on_search();
+        fix_backstretch();
       });
+
+
+    function fix_backstretch(){
+      $("#search-all div[fix-bs]").each(function() {
+        if($(this).css('display')!="none"){        
+          $(this).backstretch( $(this).attr("bs-img") );
+          $(this).removeAttr("fix-bs");
+        }        
+      });     
+    }
+
+    
 
 
     <% end %>
@@ -251,5 +241,11 @@
   {
     $('.scroll-pane').jScrollPane();
   });
+
+  $( document ).ready(function() {
+   $(window).resize(re_apply_backstrech_on_search);
+   $(window).on('orientationchange', re_apply_backstrech_on_search);
+   });
+
 </script>
 

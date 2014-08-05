@@ -74,7 +74,7 @@
     pagination: '.pagination',
     params: {},
     url: location.href,
-    loaderImage: "/images/load.gif",
+    loaderImage: "/assets/load.gif",
     method: 'get'
   };
   var container;
@@ -96,7 +96,7 @@
       pagination: '.pagination',
       params: {},
       url: location.href,
-      loaderImage: "/images/load.gif",
+      loaderImage: "/assets/load.gif",
       method: 'get'
     };
     stopListener();
@@ -226,10 +226,19 @@
     }
     else{
       hidden_elem.fadeIn();
+      var array_matches = hidden_elem.find('div[bs-img]');
+      if(array_matches.length>0){ //we have backstretch
+        if($(hidden_elem).parents(".tab-pane").css('display')!="none"){        
+          $(array_matches[0]).backstretch($(array_matches[0]).attr("bs-img"));        
+        }
+        else{
+          $(array_matches[0]).attr("fix-bs", "true");
+        } 
+      }     
     }
     
     if(arr.length>0){
-      window.setTimeout(function(){animateSlowAppendAndFinishLoading(my_element, arr)}, 20);
+      window.setTimeout(function(){animateSlowAppendAndFinishLoading(my_element, arr)}, 10);
     }
     else{
       loading(false);

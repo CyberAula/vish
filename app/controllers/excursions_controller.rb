@@ -15,9 +15,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
+require 'search_help_methods'
+
 class ExcursionsController < ApplicationController
 
   require 'fileutils'
+  include SearchHelpMethods
 
   # Quick hack for bypassing social stream's auth
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
@@ -30,7 +33,9 @@ class ExcursionsController < ApplicationController
   before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api]
   after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api]
   
-
+  POPULAR_PER_PAGE=24
+  DEFAULT_CATEGORIES = ["physics", "chemistry", "biology", "maths"]
+  
   include SocialStream::Controllers::Objects
 
   #############
@@ -62,11 +67,36 @@ class ExcursionsController < ApplicationController
 
   def index
     index! do |format|
+      params[:page] = params[:page]||"1"
       format.html{
-        if !params[:page]
+        if request.xhr?
+            #Ajax call
+            if !params[:tab] || params[:tab]=="home"
+              if !params[:page] || params[:page] == "1"
+                render partial: "excursions/home/home_main"
+              else
+                render partial: "excursions/home/home_min", :locals => {:ids_to_avoid=>params[:ids_to_avoid].split(','), :prefix_id=>"home"}, :layout => false
+              end
+            elsif params[:tab]=="net"
+              if !params[:page] || params[:page] == "1"
+                render :partial => "excursions/home/net_main", :locals => {:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}, :layout => false
+              else
+                render :partial => "excursions/home/net_min", :locals => {:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}, :layout => false
+              end
+            else
+              if params[:category] 
+                @excursions = SocialStream::Search.search(params[:category] , current_subject, mode: :extended, key: "excursions", page:  1, limit: 40, order: 'ranking DESC')
+                render :partial => 'excursions/home/catalogue_show' #check if is prefered to use @excursions as param or better do it globally like it's done already
+              else
+                @all_categories = Hash.new
+                for cat in DEFAULT_CATEGORIES 
+                  @all_categories[cat] = SocialStream::Search.search(cat, current_subject, mode: :extended, key: "excursions", page:  1, limit: 7, order: 'ranking DESC')
+                end
+                render :partial => "excursions/home/catalogue_main"
+              end
+            end 
+        else          
           render "index"
-        else
-          render :partial => "excursions/excursions", :locals => {:scope => :net, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity"}, :layout => false
         end
       }
     end

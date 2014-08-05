@@ -1,7 +1,6 @@
 
     <!--activity-->
     <div class="activity">
-
         <ul class="nav nav-tabs">  
           <li class="active">
             <a href="#coment1" data-toggle="tab">
@@ -9,6 +8,7 @@
               <span class=" hidden-xs hidden-sm"><%=t('comment.other')%></span>
             </a>
           </li>
+
           <li>
             <a href="#evaluation1" data-toggle="tab">
               <i class="fa fa-check-circle"></i>
@@ -21,6 +21,8 @@
               <span class="hidden-xs"><%=t('recommended')%></span>
             </a>
           </li>
+
+
         </ul>
         <div class="tab-content">
           
@@ -47,27 +49,20 @@
           </div>
 
           <div class="tab-pane" id="suggestion_show">
-            <div class="recomended2" id="recomended2_box">
 
-                <ul class="items clearfix">
-                  <% popular_excursions(10).each do |excursion| %>
-                    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :container_id => "recomended2_box" } %>
-                  <% end %>
-                </ul>
 
-            </div>
+  <div class="recomended-mobile hidden-desktop" id="recomended_box">
+    <div class="recomended-items">
+      <ul class="small-box clearfix">
+        <% RecommenderSystem.excursion_suggestions(current_subject,@excursion,{:n=>16}).each do |excursion| %>
+          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion} %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
           </div>
-          <!--
-          <div class="tab-pane" id="evaluation2">              
-            <div class="btn-evalue">
-              <%#= t('evaluation.contribute', :count => @numberOfLearningEvaluations) %>
-              <a id="learning_evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%#= t('evaluation.evaluation') %></a>
-            </div>
-            <div class="excursion-eval-results">
-              <canvas id="evalLearningChart" width="600" height="600"></canvas>
-            </div>
-          </div>  
-        -->
+
+
         </div>
    
     </div>

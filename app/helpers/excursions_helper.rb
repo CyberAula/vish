@@ -91,4 +91,12 @@ module ExcursionsHelper
     return excursion_path(excursion) + "/metadata.xml"
   end
 
+  def generic_categories
+    all_categories = Hash.new
+    categories = ["physics", "chemistry", "biology", "maths"]
+        for cat in categories
+          all_categories[cat] = SocialStream::Search.search(cat, current_subject, mode: :extended, key: "excursions", page:  1, limit: 7, order: 'ranking DESC')
+        end
+      all_categories
+  end
 end

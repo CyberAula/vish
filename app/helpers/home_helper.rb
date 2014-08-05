@@ -1,5 +1,4 @@
 module HomeHelper
-  ITEMS_PER_PAGE = 16
 
   def current_subject_excursions(options = {})
     subject_excursions current_subject, options
@@ -114,15 +113,23 @@ module HomeHelper
         query = query.order('activity_objects.ranking DESC')  
     end
     
-    query = query.limit(options[:limit]) if options[:limit] > 0
+
     query = query.offset(options[:offset]) if options[:offset] > 0
 
+    # pagination, 0 means without pagination
+    if options[:page] == 0
+      query = query.limit(options[:limit]) if options[:limit] > 0
+    else
+      #With pagination
+      items = options[:limit] if options[:limit] > 0
+      query = query.page(options[:page]).per(items)
+    end
     #Optimization code
     #(Old version) return query.map{|ao| ao.object} if klass.is_a?(Array)
     unless options[:scope] == :like
       # This is the optimization code.
       query = if klass.is_a?(Array)
-                query.includes(klass.map{ |e| e.to_s.downcase.to_sym} + [:received_actions, { :received_actions => [:actor]}]) 
+                query.includes(klass.map{ |e| e.to_s.downcase.to_sym} + [:received_actions, { :received_actions => [:actor]}])
               else
                 query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}]) 
               end
@@ -131,12 +138,6 @@ module HomeHelper
       if options[:scope] == :like
         query = query.map{ |a| a.direct_object }.reject{ |o| o.scope==1 }
       end
-    end
-
-    # pagination, 0 means without pagination
-    if options[:page] != 0
-      items = options[:limit] if options[:limit] > 0
-      query = query.page(options[:page]).per(items)
     end
 
     query

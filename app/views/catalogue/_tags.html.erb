@@ -18,15 +18,11 @@
 </script>
 
 
-<section id="catalogue">
+  <section id="catalogue">
 
-	<div class="Tags_list_as ">
-		<div class="info_catalogue">
-		  <h3><%=t('catalogue.title')%></h3>  
-		  <button href="#" id="showMore_tags" status="showMore" class="ui-state-default ui-corner-all"><%=t('excursion.actions.show_more')%></button>
-		</div>
+    <ul class="Tags_list_as ">
+    <div class="info_catalogue_bottom"></div>
 
-		<ul id="effect" class="newClass">
       <li class="checkbox" href="#">
         <label for="chk1">
           <input id="chk1" type="checkbox" name="Maths"/>
@@ -261,6 +257,10 @@
           </span>
         </label>
       </li>
+      
+      div id="effect" class="newClass ui-corner-all">
+      <li href="#"><input id="chk1" type="checkbox" name="Maths"/><label for="chk1"><span></span><%=t('competitions.Maths')%></label></li>
+
       <li class="checkbox" href="#">
         <label for="chk27">
           <input id="chk27" type="checkbox" name="Law"/>
@@ -354,8 +354,6 @@
 	</div>
 </section>
 
-
-
 <script>
   $(function() {
     $("#showMore_tags").click(function(){
@@ -372,4 +370,9 @@
       return false;
     });
   });
+});
 </script>
+
+
+
+>>>>>>> e8f0fa8ce7a3e782bf8de51b061f97cbdfe3c9e6

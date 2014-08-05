@@ -17,6 +17,10 @@ body{
   }
 }
 
+label{
+  cursor: auto;
+}
+
 div#wrap.wrap-when-fixed-bottom{
   padding: 0 0 38px 0;  /* must be same height as the footer */
 }
@@ -62,3 +66,18 @@ a{
     text-decoration: none
   }
 }
+
+.alert 
+  border-radius: 0 0 5px 5px
+  position: absolute
+  right: 5%
+  top: 51px
+  width: 30%
+  z-index: 42
+
+textarea,input
+  resize: none
+
+.tab-content
+  overflow: visible
+

@@ -1,3 +1,9 @@
+<div class="header_catalogue">
+	
+	<h1><i class="fa fa-tags"></i><%=t('catalogue.title')%></h1>
+	<hr>
+	<%= render :partial => "catalogue/tags"%>
+</div>
 <div id="excursions_catalogue" >
 	<%@all_categories.each do |name, the_array| %>
 		<header>
@@ -8,9 +14,12 @@
     </header>
 		<ul id="container_<%=name%>">
 			<%for excursion in the_array%>
-				<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion, :container_id => "container_#{name}" } %>
+				<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion, :prefix_id =>"catalogue" } %>
 			<%end%>
 		</ul>
+
+		<button class="show_more_catalogue" name="<%=name.capitalize%>"><%=t('view_all')%></button>
+
 	<%end%>
 </div>
 
@@ -18,5 +27,15 @@
 	$(".show_more_catalogue").click(function(event) {
 		var name = $(this).attr("name");
 		window.location = "/catalogue/" + name;
+	});
+
+	$(document).ready(function(){
+		function re_apply_backstrech_on_catalogue(){
+		      $("#excursions_catalogue div[bs-img]").each(function() {
+		        $(this).backstretch( $(this).attr("bs-img") );
+		      });
+		    }
+
+		re_apply_backstrech_on_catalogue();
 	});
 </script>

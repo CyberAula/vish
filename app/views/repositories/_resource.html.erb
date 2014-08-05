@@ -7,20 +7,13 @@
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element resource-center">
-        <%= link_to raw(icon(resource)), resource %>
+
+        <%= link_to raw(icon(resource)), resource, :title => resource.title %>
         <i class="fa fa-file"></i>
+
       </div>
   </div>
-
-  <script>
-    $("div.applyBackstretch").each(function(index,div){
-      $(div).removeClass("applyBackstretch");
-      var imgUrl = $(div).attr("bs-img");
-      if (typeof imgUrl != "undefined"){
-        $(div).backstretch(imgUrl); 
-      }
-    });
-  </script>
+  <%= render partial: "application/applyBackstretch" %>
 
   <!-- INFO -->
   <div class="caption">
