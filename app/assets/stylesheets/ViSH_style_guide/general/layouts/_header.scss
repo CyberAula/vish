@@ -52,10 +52,13 @@
     img{
       @include border-left-radius ($border-radius-small);
       width: 35px;
-      @media (min-width: $screen-lg-min){
-        min-height: 29px;
+      @media (max-width: $screen-sm-max){
+        width: 32px;
       }
     }
+  }
+  .dropdown-toggle:hover{
+    border: 1px solid $brand-primary;
   }
 }
 

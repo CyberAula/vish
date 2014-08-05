@@ -31,7 +31,8 @@
         list-style: none
         background-color: $white
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
-        @include border-radius($baseBorderRadius)
+        @include border-top-radius ($border-radius-base)
+        @include border-bottom-radius ($border-radius-base)
         //BAGDE EXCURSION
         .badge-excursion-active
           position: absolute
@@ -59,7 +60,7 @@
             overflow: hidden
             text-align: center
             width: 100%
-            @include border-top-radius($baseBorderRadius)
+            @include border-top-radius ($border-radius-base)
             .img-box
               width: 100%
               padding-bottom: 75%
@@ -314,7 +315,8 @@
                 margin-top: 20%
                 @include center-block()
                 @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-                @include border-radius($baseBorderRadius)
+                @include border-top-radius ($border-radius-base)
+                @include border-bottom-radius ($border-radius-base)
         .info
           height: 75px !important
           .name

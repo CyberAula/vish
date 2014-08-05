@@ -1,5 +1,5 @@
 .dropdown-menu{
-  padding: 0;  
+  padding: 2px 0;  
 }
 
 .dropdown-menu > .disabled > a:hover,
@@ -30,4 +30,8 @@
 
 .open .btn-default.dropdown-toggle {
 color: #D5D5D5;
+}
+
+.dropdown-menu .divider {
+  margin: 2px 0;
 }

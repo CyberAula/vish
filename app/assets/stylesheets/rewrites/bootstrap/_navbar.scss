@@ -88,7 +88,6 @@ ul.navbar-nav > li {
 
 
 .navbar-collapse li a:hover{
-  background-color: #F8F8F8 !important;
   @include border-top-radius ($border-radius-base);
   @include border-bottom-radius ($border-radius-base);
   @include border-left-radius ($border-radius-base);

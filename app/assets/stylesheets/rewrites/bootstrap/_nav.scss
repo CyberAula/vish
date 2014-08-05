@@ -5,7 +5,6 @@
 }
 
 .nav li a:hover{
-  border: 0;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
   box-shadow: none !important;
@@ -133,7 +132,7 @@
   border: 1px  solid transparent;
   padding: 7px 6px;
   border: 1px  solid $gray-extra;
-  color: $gray-light;
+  color: $gray-dark;
   &:hover {
     background-color: $white;
     border: 1px  solid darken($brand-primary, 7%);

@@ -60,6 +60,10 @@
   padding: 3px 6px;
 }
 
+.open .btn-default.dropdown-toggle, .open div.new_comment form#new_comment input.dropdown-toggle[type="submit"], div.new_comment form#new_comment .open input.dropdown-toggle[type="submit"] {
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
 .btn-group.open .dropdown-toggle {
   box-shadow: none;
 }
