@@ -6,9 +6,17 @@ class EmbedsController < ApplicationController
 
   def create
     super do |format|
-      format.json { render :json => resource }
-      format.js{ render }
-      format.all {redirect_to embed_path(resource) || home_path}
+      format.json { 
+        render :json => resource 
+      }
+      format.js
+      format.all {
+        if resource.new_record?
+          render action: :new
+        else
+          redirect_to embed_path(resource) || home_path
+        end
+      }
     end
   end
 

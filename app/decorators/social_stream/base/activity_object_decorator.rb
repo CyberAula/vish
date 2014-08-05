@@ -10,6 +10,8 @@ ActivityObject.class_eval do
                   :url => '/:class/avatar/:id.:extension',
                   :path => ':rails_root/documents/:class/avatar/:id_partition/:filename.:extension'
 
+  validates_attachment_content_type :avatar, :content_type =>["image/jpeg", "image/png", "image/gif", "image/tiff", "image/x-ms-bmp"], :message => 'Avatar should be an image. Non supported format.'
+
   def public?
     !private? and self.relation_ids.include? Relation::Public.instance.id
   end
