@@ -236,7 +236,6 @@
     </div>
 
     <div class="tab-pane <%= params[:tab]=='net' ? 'active':''%>" id="net"> 
-      <%#= render partial: "excursions/home_mynetwork", :locals =>{:scope => :me, :page => 1, :sort_by => "popularity"}%>
       <%= render partial: 'excursions/order_by_net' %>
       <div id="net_tab_ready">
         <%if params[:tab]=="net"%>
@@ -255,7 +254,7 @@
 
 
     <div class="tab-pane <%= params[:tab]=='catalogue' ? 'active':''%>" id="catforhome"> 
-      <%= render :partial => "excursions/home/catalogue_tags"%> 
+      <%= render :partial => "catalogue/tags"%>
       <div id="catalogue_tab_ready"><% if params[:tab] == 'catalogue'%>
       <%= render :partial => "excursions/home/catalogue_main" %>
          <script>

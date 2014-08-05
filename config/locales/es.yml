@@ -52,6 +52,28 @@ es:
   by: "por"
   cancel: "Cancelar"
   catalogue:
+    categories:
+        art: "Arte"
+        biology: "Biología"
+        chemistry: "Química"
+        citizenship: "Educación para la Ciudadanía"
+        computerScience: "Informática"
+        education: "Educación"
+        engineering: "Ingeniería"
+        foreignLanguages: "Idiomas"
+        geography: "Geografía"
+        geology: "Geología"
+        history: "Historia"
+        humanities : "Humanidades"
+        literature: "Literatura"
+        maths: "Matemáticas"
+        music: "Música"
+        naturalSciences: "Ciencias Naturales"
+        physics: "Física"
+        technology: "Tecnología"
+    extras:
+        learning: "aprendizaje"
+        teaching: "enseñanza"
     title: "Catálogo"
   category:
     confirm_delete: "Borrar categoria?"
