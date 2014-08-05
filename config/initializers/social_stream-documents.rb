@@ -72,7 +72,7 @@ SocialStream::Documents.setup do |config|
     ],
     subtypes: [
       #:pdf, :odt, :odp, :doc, :ppt, :xls, :docx, :pptx, :xslx, :rar,
-        :pdf, :zip, :scorm, :swf        
+      :pdf, :zipfile, :swf
     ]
   }
 

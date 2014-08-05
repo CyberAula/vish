@@ -1,7 +1,7 @@
 DocumentsHelper.module_eval do
 
   # Return the right icon of the resource
-  def icon document, size=50
+  def icon document, allowRaw=true
 
     #Default icons
     unless document.class.superclass.name != "Document"
@@ -14,7 +14,7 @@ DocumentsHelper.module_eval do
         when :video then "film"
         when :pdf then "pdf-new"
         when :swf then "swf-new"
-        when :zip then "zip-new" 
+        when :zipfile then "zip-new"
         else icon_mime_type document
       end
     else
@@ -29,7 +29,12 @@ DocumentsHelper.module_eval do
     end
 
     #Custom Avatars
-    customAvatar = document.getAvatarUrl
+    unless allowRaw==false
+      customAvatar = document.getAvatarUrl
+    else
+      customAvatar = nil
+    end
+
     unless customAvatar.nil?
       return "<div class='img-box applyBackstretch resource_avatar' bs-img='"+customAvatar+"'></div><i class=\"icon-#{ icon_name }_decorator\"></i>".html_safe
     else
