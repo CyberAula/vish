@@ -2,12 +2,13 @@
   <% return %>
 <% end %>
 
-<li class="box-item resource-item">
+<li class="resource">
 
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element resource-center">
         <%= link_to raw(icon(resource)), resource %>
+        <i class="fa fa-file"></i>
       </div>
   </div>
 
@@ -22,12 +23,12 @@
   </script>
 
   <!-- INFO -->
-  <div class="info">
+  <div class="caption">
     
     <!-- Title -->
-    <div class="name">
+    <h6>
       <%= link_to resource.title, resource %>
-    </div>
+    </h6>
 
     <!-- Author -->
     <span class="author"> 
@@ -38,9 +39,8 @@
 
     </span>
 
-
+    <hr>
     <div class="info-bottom">
-      <hr class="soften">
       
       <div class="like">    
         <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
