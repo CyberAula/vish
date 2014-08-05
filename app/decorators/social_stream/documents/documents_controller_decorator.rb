@@ -13,7 +13,7 @@ DocumentsController.class_eval do
           render action: :new
         else
           if params["format"] == "json"
-            render :json => newResource.as_json, status: :created
+            render :json => newResource.to_json(helper: self), status: :created
           else
             redirect_to newResource
           end
