@@ -244,8 +244,8 @@ class RecommenderSystem
       searchTerms = ""
     else
       browse = false
-      if options[:keywords].is_a? String
-        searchTerms = options[:keywords].gsub(/[,+|&]/,' ').split(" ")
+      if options[:keywords].is_a? String      
+        searchTerms = options[:keywords].gsub(/[^0-9a-z&]/i, ' ').split(" ")
       end
       #Remove keywords with less than 3 characters
       searchTerms.reject!{|s| s.length < 3}
@@ -295,8 +295,12 @@ class RecommenderSystem
     end
 
     opts[:with] = {}
-    #Only 'Public' objects, drafts are not searched.
-    opts[:with][:relation_ids] = Relation.ids_shared_with(nil)
+    
+    unless !options[:subject].nil? and options[:subject].admin?
+      #Only 'Public' objects, drafts and other private objects are not searched.
+      opts[:with][:relation_ids] = Relation.ids_shared_with(nil)
+      opts[:with][:scope] = 0
+    end
     
     #Data range filter
     if options[:startDate] or options[:endDate]

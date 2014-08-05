@@ -1,0 +1,10 @@
+<script>
+  $("div.applyBackstretch").each(function(index,div){
+    $(div).removeClass("applyBackstretch");
+    var imgUrl = $(div).attr("bs-img");
+    if (typeof imgUrl != "undefined"){
+      $(div).attr("bs-img");
+      $(div).backstretch(imgUrl); 
+    }
+  });
+</script>

@@ -313,7 +313,7 @@ en:
     overview69: "to implement a virtual classroom based on collaborative videoconferencing, where several classrooms in different schools can connect and participate in a virtual event with live demonstrations, discussions, remote lecture delivery, etc. These meetings can be based on excursions or on other social media available on the Internet."
     overview70: "MashMe.tv supports access to the webinar rooms from desktops, smartphones and tablets. The webcam of a mobile device can be used to show the physical place being visited, the expositions of a museum, to interview people at the visited site or the result of a scientific experiment (telescope, microscope, accelerator, etc.) directly on the scientific infrastructure. Mobile devices can be used to walk freely around the visited site and show the most relevant parts of it."
   copy_to_clip: "Copy to clipboard"
-  date: "date"
+  date_name: "date"
   description: "description"
   devise:
     invalid_login: "Please enter your email and password to continue."
@@ -375,11 +375,13 @@ en:
     language:
       option1: "(Not depends on the language)"
     leyend:
+      avatar: "Pick up an avatar or thumbnail"
       description: "Description"
       language: "Language"
+      recommended_age: "Recommended age"
+      scope: "Scope"
       tags: "Tags"
       title: "Title"
-      recommended_age: "Recommended age"
     main_title: "Upload pictures, videos and other resources"
     new: "Add resource"
     options:
@@ -793,6 +795,9 @@ en:
     top: "forMe"
     upload: "upload"
   save: "Save"
+  scope:
+    private: "Private"
+    public: "Public"
   scormfile:
     name: "SCORM package"
     confirm_delete: "Delete SCORM package?"

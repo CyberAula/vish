@@ -238,6 +238,21 @@
             width: 50%
             text-align: right
             cursor: default
+          .private-resource-mark
+            float: right
+            display: inline
+            background: $gray
+            @include border-radius($baseBorderRadius)
+            width: auto
+            text-align: center
+            height: 18px
+            margin-left: 5px
+            i
+              color: $white
+              text-align: center
+              padding: 0 5px
+              font-size: 11px
+              vertical-align: calc(15%)
           .categories_inside
             cursor: default
             width: 100%
@@ -497,6 +512,7 @@
               height: 33px
               margin: 18px auto 0
               width: 28px
+
         .info
           @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left
@@ -544,6 +560,20 @@
             a
               i
                 text-decoration: none
+          .private-resource-mark
+            float: right
+            display: inline
+            background: $gray
+            @include border-radius($baseBorderRadius)
+            width: 18px
+            text-align: center
+            height: 18px
+            margin-left: 5px
+            i
+              color: $white
+              text-align: center
+              font-size: 11px
+              vertical-align: calc(15%)
 
       // ADD ITEM
       .add-item
@@ -614,4 +644,5 @@
         .info-bottom
           hr
             display: none
+
 

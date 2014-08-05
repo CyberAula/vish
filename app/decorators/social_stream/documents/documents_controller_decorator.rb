@@ -4,8 +4,6 @@ DocumentsController.class_eval do
 
 
   def create
-    resource.scope = params["document"]["scope"]
-
     super do |format|
       if resource.is_a? Zipfile
         newResource = resource.getResourceAfterSave(self)
@@ -15,7 +13,7 @@ DocumentsController.class_eval do
           render action: :new
         else
           if params["format"] == "json"
-            render :json => newResource.as_json, status: :created
+            render :json => newResource.to_json(helper: self), status: :created
           else
             redirect_to newResource
           end
@@ -23,7 +21,9 @@ DocumentsController.class_eval do
         return
       end
       
-      format.json { render :json => resource.to_json(helper: self), status: :created }
+      format.json {
+        render :json => resource.to_json(helper: self), status: :created 
+      }
       format.js
       format.all {
         if resource.new_record?
@@ -64,7 +64,7 @@ DocumentsController.class_eval do
   private
 
   def allowed_params
-    [:file, :language, :age_min, :age_max, :tag_list=>[]]
+    [:file, :avatar, :language, :age_min, :age_max, :scope, :tag_list=>[]]
   end
 
   def fill_create_params

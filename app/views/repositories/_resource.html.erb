@@ -1,69 +1,55 @@
 <% if resource.nil? %>
-<% return %>
+  <% return %>
 <% end %>
 
-
 <li class="box-item resource-item">
-<!--IMG resource-->
+
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element resource-center">
-
-        <%if resource.class==Link%>
-          <%= link_to "<i class='icon-link'></i>".html_safe, resource %>
-        <%elsif resource.class==Embed%>
-          <%= link_to "<i class='icon-code'></i>".html_safe, resource %>
-        <%elsif resource.class==Scormfile%>
-          <%= link_to "<i class='icon-scorm-new '></i>".html_safe, resource %>
-        <%elsif resource.class==Webapp%>
-          <%= link_to "<i class='icon-webapp-new '></i>".html_safe, resource %>
-        <%else%>
-          <%= link_to icon(resource), resource, :title => resource.file_file_name %>
-        <%end%>
-
-        <%if resource.respond_to?(:type) && resource.type =="Picture"%>
-          <script>
-            
-            $("#document-<%=resource.id%>").attr("bs-img", "<%= thumb_file_for(resource, '500') %>");
-            $("#document-<%=resource.id%>").addClass("img-box");
-            $("#document-<%=resource.id%>").backstretch("<%= thumb_file_for(resource, '500') %>"); 
-          </script>
-        <%end%>
+        <%= link_to raw(icon(resource)), resource, :title => resource.title %>
       </div>
   </div>
+  <%= render partial: "application/applyBackstretch" %>
 
-
-<!--INFO resource-->
+  <!-- INFO -->
   <div class="info">
-<!--Title -->
+    
+    <!-- Title -->
     <div class="name">
-
-          <%= link_to resource.title, resource %>
-
+      <%= link_to resource.title, resource %>
     </div>
-<!--Autor -->
+
+    <!-- Author -->
     <span class="author"> 
       <span class="by"><%=t('by')%></span>
-      <!-- <a><%= raw t('document.by', author: link_to(resource.author.name, resource.author_subject)) %></a> -->
       <%= link_to truncate_name(resource.author.name, length: 25), resource.author.subject %>
-
     </span>
-<!--____________________ -->
+
     <div class="info-bottom">
       <hr class="soften">
+
       <!--like -->
       <div class="like">    
         <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
         <%= link_like(resource.post_activity)%>
       </div>
+
       <!--views -->
       <div class="views">
-        <%=resource.visit_count.to_s%>
-        <i class="icon-eye-open"></i>
-        <%#=t('follow.views')%>
+        <%if resource.private_scope? %>
+          <div class="private-resource-mark">
+            <i class="icon-lock"></i>
+          </div>
+        <%else%>
+          <%=resource.visit_count.to_s%>
+          <i class="icon-eye-open"></i>
+        <%end%>
       </div>
+
     </div>
   </div>
+
 </li>
 
 

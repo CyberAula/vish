@@ -5,12 +5,18 @@ class EmbedsController < ApplicationController
 
 
   def create
-    resource.scope = params["embed"]["scope"]
-
     super do |format|
-      format.json { render :json => resource }
-      format.js{ render }
-      format.all {redirect_to embed_path(resource) || home_path}
+      format.json { 
+        render :json => resource 
+      }
+      format.js
+      format.all {
+        if resource.new_record?
+          render action: :new
+        else
+          redirect_to embed_path(resource) || home_path
+        end
+      }
     end
   end
 
@@ -30,7 +36,7 @@ class EmbedsController < ApplicationController
   private
 
   def allowed_params
-    [:fulltext, :width, :height, :live, :language, :age_min, :age_max]
+    [:fulltext, :width, :height, :live, :language, :age_min, :age_max, :scope, :avatar]
   end
 
   def fill_create_params

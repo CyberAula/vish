@@ -15,8 +15,8 @@ Disallow: /users/*/excursions*
 Disallow: /spam_reports
 
 user-agent: AhrefsBot
-disallow: /excursions/new
-disallow: /search
+Disallow: /excursions/new
+Disallow: /search
 Disallow: /*/*/profile
 Disallow: /categories
 Disallow: /users/*/followings

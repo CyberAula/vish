@@ -8,9 +8,7 @@ class SearchController < ApplicationController
 
     @search_result =
       if params[:q].blank?
-        search :extended # TODO: this should have :match_mode => :fullscan for efficiency
-      # elsif params[:q].strip.size < SocialStream::Search::MIN_QUERY
-      #   Kaminari.paginate_array([]) ##THIS SHOULD BE REVISED, REPORTED BUG FOR MINOR QUERIES (LESS THAN 3 LETTERS)
+        search :extended
       elsif params[:mode] == "quick"
         search :quick
       else
@@ -74,7 +72,7 @@ class SearchController < ApplicationController
 
     models = SocialStream::Search.models(mode, params[:type])
 
-    RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page=>page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid]})
+    RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page=>page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid], :subject => current_subject})
   end
 
 end

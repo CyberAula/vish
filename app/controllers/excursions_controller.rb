@@ -479,7 +479,7 @@ class ExcursionsController < ApplicationController
   private
 
   def allowed_params
-    [:json, :slide_count, :thumbnail_url, :draft]
+    [:json, :slide_count, :thumbnail_url, :draft, :scope]
   end
 
   def fill_create_params
