@@ -1047,8 +1047,6 @@ class Excursion < ActiveRecord::Base
     return excursions
   end
 
-<<<<<<< HEAD
-=======
   def self.getRecent(n = 20, options={})
     nsize = [60,3*n].max
     nHalf = (n/2.to_f).ceil
@@ -1079,8 +1077,6 @@ class Excursion < ActiveRecord::Base
     excursions
   end
 
-
->>>>>>> e8f0fa8ce7a3e782bf8de51b061f97cbdfe3c9e6
 
   def self.getIdsToAvoid(ids_to_avoid=[],actor=nil)
     ids_to_avoid = ids_to_avoid || []

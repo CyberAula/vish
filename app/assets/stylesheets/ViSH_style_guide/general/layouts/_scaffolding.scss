@@ -67,17 +67,18 @@ a{
   }
 }
 
-.alert 
-  border-radius: 0 0 5px 5px
-  position: absolute
-  right: 5%
-  top: 51px
-  width: 30%
-  z-index: 42
-
-textarea,input
-  resize: none
-
-.tab-content
-  overflow: visible
+.alert {
+  border-radius: 0 0 5px 5px;
+  position: absolute;
+  right: 5%;
+  top: 51px;
+  width: 30%;
+  z-index: 42;
+}
+textarea,input{
+  resize: none;
+}
+.tab-content{
+  overflow: visible;
+}
 
