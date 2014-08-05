@@ -21,7 +21,9 @@ DocumentsController.class_eval do
         return
       end
       
-      format.json { render :json => resource.to_json(helper: self), status: :created }
+      format.json {
+        render :json => resource.to_json(helper: self), status: :created 
+      }
       format.js
       format.all {
         if resource.new_record?
