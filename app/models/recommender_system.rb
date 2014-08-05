@@ -255,8 +255,8 @@ class RecommenderSystem
       searchTerms = ""
     else
       browse = false
-      if options[:keywords].is_a? String
-        searchTerms = options[:keywords].gsub(/[,+|&]/,' ').split(" ")
+      if options[:keywords].is_a? String      
+        searchTerms = options[:keywords].gsub(/[^0-9a-z&]/i, ' ').split(" ")
       end
       #Remove keywords with less than 3 characters
       searchTerms.reject!{|s| s.length < 3}

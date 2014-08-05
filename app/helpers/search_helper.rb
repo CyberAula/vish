@@ -62,9 +62,13 @@ module SearchHelper
   end
 
   def search_results?(key)
-    SocialStream::Search.count(params[:q],
-                               current_subject,
-                               :key => key) > 0
+    begin
+      SocialStream::Search.count(params[:q],
+                                 current_subject,
+                                 :key => key) > 0
+    rescue
+      true
+    end
   end
 
 
