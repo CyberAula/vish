@@ -86,10 +86,6 @@
   <% end %>
 
   <%= javascript_tag do %>
-    $(function() {
-      SocialStream.Document.edit();
-    });
-
     $("#new_file input[type='submit']").click(function(event){
       //AGE
       var resource_type = "<%=resource.class.name.downcase%>";
@@ -132,6 +128,14 @@
     });
 
     $("#new_file .age-slider").before($(".limits"));
-    positionLimits();
+
+    $('a[href="#document-edit"]').on('shown', function(e){
+      positionLimits();
+    });
+
+    $(document).ready(function(){
+      SocialStream.Document.edit();
+      positionLimits();
+    });
   <% end %>
 </article>
