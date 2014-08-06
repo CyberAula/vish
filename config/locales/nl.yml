@@ -62,7 +62,6 @@ nl:
     recommended_age: "Aanbevolen leeftijd"
     recommended_age_detail: "Van %{min} tot %{max} jaar"
     input: "Voeg hier een beschrijving toe"
-    new: "Voeg leermiddel toe"
     screencast: "Screencast van VISH"
     title_input: "Naam voor dit leermiddel"
   email:

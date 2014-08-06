@@ -201,7 +201,6 @@ hu:
     recommended_age: "Ajánlott korosztály"
     recommended_age_detail: "%{min}-%{max} évig"
     input: "Adj hozzá leírást"
-    new: "Forrás hozzáadása"
     screencast: "ViSH képernyő"
     title_input: "A forrás neve"
   email:
