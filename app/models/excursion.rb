@@ -585,17 +585,9 @@ class Excursion < ActiveRecord::Base
             myxml.value(ejson["difficulty"])
           end
         end
-        if ejson["TLT"] or ejson["slides"]
+        if ejson["TLT"]
           myxml.typicalLearningTime do
-            if ejson["TLT"]
-              myxml.duration(ejson["TLT"])
-            else
-              #Inferred
-              # 1 min per slide
-              # inferredTPL = (excursion.slide_count * 1).to_s
-              inferredTPL = (ejson["slides"].length * 1).to_s
-              myxml.duration("PT"+inferredTPL+"M0S")
-            end
+            myxml.duration(ejson["TLT"])
           end
         end
         if ejson["educational_objectives"]

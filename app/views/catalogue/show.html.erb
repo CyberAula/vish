@@ -1,9 +1,9 @@
-
 <div id="open_catalogue" >
-
-	<a class="back_catalogue" href="/catalogue"><i class="icon-arrow-circle-left" ></i></a>
-	<h2><%=@category%></h2>
-	<ul class="items">
+	<a class="back_catalogue" href="/catalogue"><i class="fa fa-circle-arrow-left" ></i></a>
+	<h2>
+		<%=t("catalogue.categories." + @category, :default => "Category")%>
+	</h2>
+	<ul>
 		<%for excursion in @excursions%>
 			<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion , :prefix_id => "catalogue"} %>
 		<%end%>
@@ -13,11 +13,12 @@
 <script>
 	$(document).ready(function(){
 		function re_apply_backstrech_on_catalogue(){
-		      $("#open_catalogue div[bs-img]").each(function() {
-		        $(this).backstretch( $(this).attr("bs-img") );
-		      });
-		    }
+			$("#open_catalogue div[bs-img]").each(function() {
+				$(this).backstretch( $(this).attr("bs-img") );
+			});
+		};
 
 		re_apply_backstrech_on_catalogue();
+		
 	});
 </script>

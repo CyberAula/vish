@@ -2,8 +2,9 @@ Vish::Application.configure do
   
   #Init Catalogue
   config.after_initialize do
-    config.catalogue_categories = ["art","biology","chemistry","citizenship","computerScience","education","engineering","foreignLanguages","geography","geology","history","humanities","literature","maths","music","naturalSciences","physics","technology"]
-    combinedCategories = {"biology" => ["naturalSciences"], "engineering"=>["computerScience"], "humanities"=>["history","literature"], "technology"=>["engineering","computerScience"]}
+    config.catalogue_categories = ["art","biology","chemistry","citizenship","computerScience","economics","education","engineering","foreignLanguages","generalCulture","geography","geology","history","humanities","literature","maths","music","naturalScience","physics","technology"]
+    config.default_categories = ["maths","physics","biology","technology"]
+    combinedCategories = {"biology" => ["naturalScience","EnvironmentalStudies"], "engineering"=>["computerScience"], "generalCulture" => ["humanities","history","literature"], "humanities"=>["history","literature"], "naturalScience" => ["EnvironmentalStudies"], "technology"=>["engineering","computerScience"]}
     extraTerms = {"education"=>["eLearning","learning","teaching"],"maths"=>["math"]}
 
     #Build catalogue search terms
@@ -18,6 +19,7 @@ Vish::Application.configure do
         end
 
         allCategories.each do |c2|
+            config.catalogue[c1].push(c2)
             I18n.available_locales.each do |lang|
                 config.catalogue[c1].push(I18n.t("catalogue.categories." + c2, :locale => lang))
             end
