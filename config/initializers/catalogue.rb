@@ -2,9 +2,9 @@ Vish::Application.configure do
   
   #Init Catalogue
   config.after_initialize do
-    config.catalogue_categories = ["art","biology","chemistry","citizenship","computerScience","education","engineering","foreignLanguages","geography","geology","history","humanities","literature","maths","music","naturalScience","physics","technology"]
+    config.catalogue_categories = ["art","biology","chemistry","citizenship","computerScience","economics","education","engineering","foreignLanguages","generalCulture","geography","geology","history","humanities","literature","maths","music","naturalScience","physics","technology"]
     config.default_categories = ["maths","physics","biology","technology"]
-    combinedCategories = {"biology" => ["naturalScience","EnvironmentalStudies"], "engineering"=>["computerScience"], "humanities"=>["history","literature"], "technology"=>["engineering","computerScience"]}
+    combinedCategories = {"biology" => ["naturalScience","EnvironmentalStudies"], "engineering"=>["computerScience"], "generalCulture" => ["humanities","history","literature"], "humanities"=>["history","literature"], "naturalScience" => ["EnvironmentalStudies"], "technology"=>["engineering","computerScience"]}
     extraTerms = {"education"=>["eLearning","learning","teaching"],"maths"=>["math"]}
 
     #Build catalogue search terms
