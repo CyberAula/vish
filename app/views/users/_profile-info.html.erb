@@ -182,7 +182,6 @@ function get_url_with_sort_by(tab){
 }
 
   function re_apply_backstrech(tab){
-    console.log(tab + ' clicked');
     $("#" + tab + "_tab_ready"  + " div[bs-img]").each(function() {
           if($(this).parents(".tab-pane").css('display')!="none"){        
             $(this).backstretch( $(this).attr("bs-img") );   
@@ -194,7 +193,7 @@ function get_url_with_sort_by(tab){
             $(this).attr("fix-bs", "true");
           }   
     });
-  }
+  };
 
     $(window).on('resize.backstretch', set_fix_bs_on_hidden_tabs)
              .on('orientationchange.backstretch', set_fix_bs_on_hidden_tabs);
