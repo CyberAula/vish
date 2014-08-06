@@ -1,6 +1,8 @@
 <div id="open_catalogue" >
 	<a class="back_catalogue" href="/catalogue"><i class="icon-circle-arrow-left" ></i></a>
-	<h2><%=params[:category] || @category%></h2>
+	<h2>
+		<%=t("catalogue.categories." + @category, :default => "Category")%>
+	</h2>
 	<ul>
 		<%for excursion in @excursions%>
 			<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion , :prefix_id => "catalogue"} %>
@@ -17,17 +19,6 @@
 		};
 
 		re_apply_backstrech_on_catalogue();
-
-		var loadByAjax = false;
-		if(loadByAjax){
-			$(document).ready(function(){
-				$(".back_catalogue").click(function(event){
-					$("#catalogue_tab_ready").empty();
-					$('.loader_pagination').show();
-					var next = "<%= home_path(:tab =>'catalogue')%>";
-					catalogue_state(next);
-				});
-			});
-		}
+		
 	});
 </script>

@@ -10,15 +10,7 @@
       event.preventDefault();
 
       var categoryId = $(this).attr("categoryId");
-      var loadByAjax = false;
-      if(loadByAjax){
-        $("#catalogue_tab_ready").empty();
-        $('.loader_pagination').show();
-        var url= "/home?tab=catalogue&category=" + categoryId;
-        catalogue_state(url);
-      } else {
-        window.location = "/catalogue/" + categoryId;
-      }
+      window.location = "/catalogue/" + categoryId;      
     });
   });
 </script>

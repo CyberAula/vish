@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # Copyright 2011-2012 Universidad Politécnica de Madrid and Agora Systems S.A.
 #
 # This file is part of ViSH (Virtual Science Hub).
@@ -244,8 +246,10 @@ class RecommenderSystem
       searchTerms = ""
     else
       browse = false
-      if options[:keywords].is_a? String      
-        searchTerms = options[:keywords].gsub(/[^0-9a-z&]/i, ' ').split(" ")
+      if options[:keywords].is_a? String    
+        searchTerms = options[:keywords].gsub(/[^0-9a-z&áéíóú]/i, ' ').split(" ")
+      else
+        searchTerms = options[:keywords].map{|s| s.gsub(/[^0-9a-z&áéíóú]/i, ' ')}
       end
       #Remove keywords with less than 3 characters
       searchTerms.reject!{|s| s.length < 3}
@@ -261,7 +265,7 @@ class RecommenderSystem
       if !options[:page].nil?
         n = 16    #default results when pagination is requested
       else
-        n = 10000 #default (All results found)
+        n = 5000 #default (All results found)
       end
     end
 

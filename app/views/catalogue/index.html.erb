@@ -1,7 +1,1 @@
-<div class="header_catalogue">
-	<h1><i class="icon-tags"></i><%=t('catalogue.title')%></h1>
-	<hr>
-	<%= render :partial => "catalogue/tags"%>
-</div>
-
-<%= render :partial => "catalogue/main"%>
+<%= render :partial => "catalogue/index" , :locals => {:show_title=>true}%>

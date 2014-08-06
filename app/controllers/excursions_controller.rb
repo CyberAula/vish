@@ -66,40 +66,7 @@ class ExcursionsController < ApplicationController
   #############
 
   def index
-    index! do |format|
-      params[:page] = params[:page]||"1"
-      format.html{
-        if request.xhr?
-            #Ajax call
-            if !params[:tab] || params[:tab]=="home"
-              if !params[:page] || params[:page] == "1"
-                render partial: "excursions/home/home_main"
-              else
-                render partial: "excursions/home/home_min", :locals => {:ids_to_avoid=>params[:ids_to_avoid].split(','), :prefix_id=>"home"}, :layout => false
-              end
-            elsif params[:tab]=="net"
-              if !params[:page] || params[:page] == "1"
-                render :partial => "excursions/home/net_main", :locals => {:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}, :layout => false
-              else
-                render :partial => "excursions/home/net_min", :locals => {:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}, :layout => false
-              end
-            else
-              if params[:category] 
-                @excursions = SocialStream::Search.search(params[:category] , current_subject, mode: :extended, key: "excursions", page:  1, limit: 40, order: 'ranking DESC')
-                render :partial => 'catalogue/show' #check if is prefered to use @excursions as param or better do it globally like it's done already
-              else
-                @all_categories = Hash.new
-                for cat in DEFAULT_CATEGORIES 
-                  @all_categories[cat] = SocialStream::Search.search(cat, current_subject, mode: :extended, key: "excursions", page:  1, limit: 7, order: 'ranking DESC')
-                end
-                render :partial => "catalogue/main"
-              end
-            end
-        else          
-          render "index"
-        end
-      }
-    end
+    
   end
 
   def show 
