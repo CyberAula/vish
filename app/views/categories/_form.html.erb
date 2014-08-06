@@ -1,37 +1,35 @@
-<!-- Button to trigger modal --> 
-<!-- Modal Categories-->
+<div id="<%=div_id%>" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <%= render partial: 'help/help_resource_new' %>
+        <h4><%= t('document.main_title')%></h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for Category.new(:owner_id => Actor.normalize_id(current_subject)), :html => {:id => div_id+"_form", :'data-type' => :json}, :remote => remote do |f| %>
 
-<div id="<%=div_id%>" class="modal hide fade category_form_wrapper" tabindex="-1" role="dialog" aria-labelledby="<%=div_id%>AddCategoryLabel" aria-hidden="true">
+          <!-- Owner -->
+          <%= f.hidden_field :owner_id, :id => div_id+"_owner_id" %>
 
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <%= render partial: 'help/help_categorie_new' %>
-    <h2 id="<%=div_id%>AddCategoryLabel"><%= t('categories.main_title')%></h2>
-  </div>
+          <!--Title-->
+          <label><%= t('categories.leyend.title')%></label>
+          <%= f.text_field :title, :id => div_id+"_category_title", :placeholder => t('categories.title_input') %>
+          
+          <!--Description-->
+          <label><%= t('categories.leyend.description')%></label>
+          <%= f.text_field :description, :id => div_id+"_category_description", :placeholder => t('categories.description_input') %>
 
-  <div class="modal-body">
-    <%= form_for Category.new(:owner_id => Actor.normalize_id(current_subject)), :html => {:id => div_id+"_form", :'data-type' => :json}, :remote => remote do |f| %>
+          <%= f.submit t('categories.save'), :class => "hidden" %>
+        <% end %>
+      </div>
 
-      <!-- Owner -->
-      <%= f.hidden_field :owner_id, :id => div_id+"_owner_id" %>
-
-      <!--Title-->
-      <label><%= t('categories.leyend.title')%></label>
-      <%= f.text_field :title, :id => div_id+"_category_title", :placeholder => t('categories.title_input') %>
-      
-      <!--Description-->
-      <label><%= t('categories.leyend.description')%></label>
-      <%= f.text_field :description, :id => div_id+"_category_description", :placeholder => t('categories.description_input') %>
-
-      <%= f.submit t('categories.save'), :class => "hidden" %>
-    <% end %>
-  </div>
-
-    <div class="modal-footer">      
-      <input type="button" class="btn-primary" value="<%= t('categories.save') %>"/>
+      <div class="modal-footer">      
+        <input type="button" class="btn-primary" value="<%= t('categories.save') %>"/>
+      </div>
     </div>
+  </div>
 </div>
-
 <script>
 
 
