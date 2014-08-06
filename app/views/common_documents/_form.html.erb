@@ -1,8 +1,3 @@
-<div id="document_new_page">
-<div class="header_new_document">
-  <h3><%= t('document.main_title')%></h3>
-  <%= render partial: 'help/help_resource_new' %>
-</div>
 <article id="new_file">
 
   <%= form_for(document) do |f| %>
@@ -88,7 +83,7 @@
       </section>
     <% end%>
 
-    <div class="footer_new_document"><%= f.submit :class => "btn-primary", "data-loading-text" => t('button.sending') %></div>
+    <%= f.submit :class => "btn-primary", "data-loading-text" => t('button.sending') %>
   <% end %>
 
   <%= javascript_tag do %>
@@ -109,11 +104,11 @@
     var step = 1;
     var diff = max - min;
 
-    var positionLimits = function(){
+    var newFilePositionLimits = function(){
       var value1 = $('#new_file .age-slider').data('slider').getValue()[0];
       var value2 = $('#new_file .age-slider').data('slider').getValue()[1];
-      $('.limit1').text(value1);
-      $('.limit2').text(value2);
+      $('#new_file .limit1').text(value1);
+      $('#new_file .limit2').text(value2);
 
       var percentage =[
         (value1-min)*100/diff,
@@ -122,27 +117,26 @@
       ];
 
       $("#new_file .limit1").css("left", function(ev) {
-        return $('.slider').width() * percentage[0]/100 - $(".limit1").width()/2 + 'px';
+        return $('#new_file .slider').width() * percentage[0]/100 - $("#new_file .limit1").width()/2 + 'px';
       });
       $("#new_file .limit2").css("left", function(ev) {
-        return $('.slider').width() * percentage[1]/100 - $(".limit2").width()/2 + 'px';
+        return $('#new_file .slider').width() * percentage[1]/100 - $("#new_file .limit2").width()/2 + 'px';
       });
     };
 
     $("#new_file .age-slider").slider().on('slide', function(ev){
-      positionLimits();
+      newFilePositionLimits();
     });
 
-    $("#new_file .age-slider").before($(".limits"));
+    $("#new_file .age-slider").before($("#new_file .limits"));
 
     $('a[href="#document-edit"]').on('shown', function(e){
-      positionLimits();
+      newFilePositionLimits();
     });
 
     $(document).ready(function(){
       SocialStream.Document.edit();
-      positionLimits();
+      newFilePositionLimits();
     });
   <% end %>
 </article>
-</div>

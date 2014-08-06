@@ -181,29 +181,30 @@
     var diff = max - min;
 
     var positionLimits = function(){
-      var value1 = $('.age-slider').data('slider').getValue()[0];
-      var value2 = $('.age-slider').data('slider').getValue()[1];
-      $('.limit1').text(value1);
-      $('.limit2').text(value2);
+      var value1 = $('#AddResource .age-slider').data('slider').getValue()[0];
+      var value2 = $('#AddResource .age-slider').data('slider').getValue()[1];
+      $('#AddResource .limit1').text(value1);
+      $('#AddResource .limit2').text(value2);
 
       var percentage =[
         (value1-min)*100/diff,
         (value2-min)*100/diff,
         step*100/diff
       ];
-      $(".limit1").css("left", function(ev) {
-        return $('.slider').width() * percentage[0]/100 - $(".limit1").width()/2 + 'px';
+
+      $("#AddResource .limit1").css("left", function(ev) {
+        return $('#AddResource .slider').width() * percentage[0]/100 - $("#AddResource .limit1").width()/2 + 'px';
       });
-      $(".limit2").css("left", function(ev) {
-        return $('.slider').width() * percentage[1]/100 - $(".limit2").width()/2 + 'px';
+      $("#AddResource .limit2").css("left", function(ev) {
+        return $('#AddResource .slider').width() * percentage[1]/100 - $("#AddResource .limit2").width()/2 + 'px';
       });
     };
 
-    $(".age-slider").slider().on('slide', function(ev){
+    $("#AddResource .age-slider").slider().on('slide', function(ev){
       positionLimits();
     });
 
-    $(".age-slider").before($(".limits"));
+    $("#AddResource .age-slider").before($("#AddResource .limits"));
     positionLimits();
   });
 
@@ -212,7 +213,7 @@
   var uploadButton = $("#AddResource input[value=<%= t('document.upload')%>][type='button'][class='btn btn-primary']");
   
   $(uploadButton).click(function(event){
-     var resource_type = $(".accordion-body.collapse.in").attr('id');
+     var resource_type = $("#AddResource .accordion-body.collapse.in").attr('id');
 
     if(resource_type == "document" && $("#AddResource input[name='"+resource_type+"[file]']").val() == ""){
       alert("<%= t('document.body.title3')%>");
@@ -239,23 +240,23 @@
       //LANGUAGE
       $("#AddResource input[name='"+resource_type+"[language]']").val($(".language").val());
       //AGE
-      var value1 = $('.age-slider').data('slider').getValue()[0];
-      var value2 = $('.age-slider').data('slider').getValue()[1];
-      $('input[name="'+resource_type+'[age_min]"]').val(value1);
-      $('input[name="'+resource_type+'[age_max]"]').val(value2);
+      var value1 = $('#AddResource .age-slider').data('slider').getValue()[0];
+      var value2 = $('#AddResource .age-slider').data('slider').getValue()[1];
+      $('#AddResource input[name="'+resource_type+'[age_min]"]').val(value1);
+      $('#AddResource input[name="'+resource_type+'[age_max]"]').val(value2);
 
       $(this).button('loading');
       //SUBMIT
-      $("input[value=<%= t('button.save') %>][type='submit'][name='commit'][class='"+resource_type+" hide']").click();
+      $("#AddResource input[value=<%= t('button.save') %>][type='submit'][name='commit'][class='"+resource_type+" hide']").click();
     }
   });
 
   //Tags
-  var resourceTagList = $(".resourceTagList");
+  var resourceTagList = $("#AddResource .resourceTagList");
   var resourceTags = [];
   
   //Load tags
-  $.each($("#resourcePreloadTagList li"), function(index, element) {
+  $.each($("#AddResource #resourcePreloadTagList li"), function(index, element) {
      resourceTags.push($(element).html());
   });
           
@@ -265,7 +266,7 @@
   }
 
   //File chooser listener
-  $("#new_file_only_document_file").on('change', function(e){
+  $("#AddResource #new_file_only_document_file").on('change', function(e){
     try{
       var ext = $(this).val().split(".").pop().toLowerCase();
       var imageFormats = ["jpg","jpeg","png","gif","bmp","svg"];
@@ -281,8 +282,8 @@
   });
 
   var enableUploadAvatar = function(enable){
-    var label = $("label.new_file_avatar_label");
-    var input = $("input.new_file_avatar");
+    var label = $("#AddResource label.new_file_avatar_label");
+    var input = $("#AddResource input.new_file_avatar");
     $(input).prop('disabled', !enable);
 
     if(enable===true){
