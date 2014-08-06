@@ -1,5 +1,5 @@
 <div class="excursions">
-  <ul class="">
+  <ul class="items">
 	<% @items.each do |item| %>
 		<% hasOwnPartial = lookup_context.template_exists?("category_item", item.object.class.to_s.underscore.pluralize, true) %>
 		<% if hasOwnPartial %>
