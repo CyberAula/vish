@@ -15,7 +15,7 @@ DocumentsHelper.module_eval do
         when :pdf then "pdf-new"
         when :swf then "swf-new"
         when :zipfile then "zip-new"
-        else icon_mime_type document
+        else "file" #icon_mime_type document
       end
     else
       #For new ViSH models
@@ -24,7 +24,7 @@ DocumentsHelper.module_eval do
         when "Embed" then "code"
         when "Scormfile" then "scorm-new"
         when "Webapp" then "webapp-new"
-        else SocialStream::Documents.icon_mime_types[:default]
+        else "file" # SocialStream::Documents.icon_mime_types[:default]
       end
     end
 
@@ -36,7 +36,7 @@ DocumentsHelper.module_eval do
     end
 
     unless customAvatar.nil?
-      return "<div class='img-box applyBackstretch resource_avatar' bs-img='"+customAvatar+"'></div><i class=\"icon-#{ icon_name }_decorator\"></i>".html_safe
+      return "<div class='img-box applyBackstretch resource_avatar resource_avatar_for_#{ icon_name }' bs-img='"+customAvatar+"'></div><i class=\"icon-#{ icon_name } icon-#{ icon_name }_decorator\"></i>".html_safe
     else
       return "<i class=\"icon-#{ icon_name }\"></i>".html_safe
     end
@@ -50,7 +50,7 @@ DocumentsHelper.module_eval do
     elsif SocialStream::Documents.icon_mime_types[:types].include?(document.mime_type_type_sym)
       document.mime_type_type_sym
     else
-      SocialStream::Documents.icon_mime_types[:default]
+      "file" # SocialStream::Documents.icon_mime_types[:default]
     end
   end
 
