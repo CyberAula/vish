@@ -86,15 +86,15 @@ class ExcursionsController < ApplicationController
             else
               if params[:category] 
                 @excursions = SocialStream::Search.search(params[:category] , current_subject, mode: :extended, key: "excursions", page:  1, limit: 40, order: 'ranking DESC')
-                render :partial => 'excursions/home/catalogue_show' #check if is prefered to use @excursions as param or better do it globally like it's done already
+                render :partial => 'catalogue/show' #check if is prefered to use @excursions as param or better do it globally like it's done already
               else
                 @all_categories = Hash.new
                 for cat in DEFAULT_CATEGORIES 
                   @all_categories[cat] = SocialStream::Search.search(cat, current_subject, mode: :extended, key: "excursions", page:  1, limit: 7, order: 'ranking DESC')
                 end
-                render :partial => "excursions/home/catalogue_main"
+                render :partial => "catalogue/main"
               end
-            end 
+            end
         else          
           render "index"
         end
