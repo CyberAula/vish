@@ -19,14 +19,18 @@ class HomeController < ApplicationController
                 render :partial => "net_main", :locals => {:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}, :layout => false
               else
                 render :partial => "net_min", :locals => {:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}, :layout => false
-              end           
+              end
             end
-        else          
+        else
+          #Non-Ajax call
+          if params[:tab]=="catalogue"
+            @default_categories = view_context.getDefaultCategories
+          end
           render "index"
         end
       }
       format.json { render json: home_json }
-    end    
+    end
   end
 
   private
