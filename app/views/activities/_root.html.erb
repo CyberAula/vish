@@ -6,7 +6,7 @@
     </div>
 
     <div class="media-body">
-      <h5 class="media-heading"><%= activity.title(self) %>
+      <h6 class="media-heading"><%= activity.title(self) %>
 
       <% if activity.direct_object && !activity.direct_object.acts_as_actor? && can?(:destroy, activity.direct_object) %>
         <div class="x"> 
@@ -14,7 +14,7 @@
                       :scope => activity.direct_object.class.to_s.underscore), :method => :delete,  
                       :remote => true %> 
         </div>
-      <% end %></h5>
+      <% end %></h6>
 
       <div class="panel panel-default">
         <div class="panel-body">
