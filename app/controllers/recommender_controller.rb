@@ -19,11 +19,11 @@
 
 class RecommenderController < ApplicationController
 
-  skip_load_and_authorize_resource :only => [:api_excursion_suggestions]
+  skip_load_and_authorize_resource :only => [:api_resource_suggestions]
 
   # Enable CORS (http://www.tsheffler.com/blog/?p=428) for the recommender system
-  before_filter :cors_preflight_check, :only => [:api_excursion_suggestions]
-  after_filter :cors_set_access_control_headers, :only => [:api_excursion_suggestions]
+  before_filter :cors_preflight_check, :only => [:api_resource_suggestions]
+  after_filter :cors_set_access_control_headers, :only => [:api_resource_suggestions]
 
   #############
   # CORS
@@ -50,17 +50,16 @@ class RecommenderController < ApplicationController
   ##################
   # API REST
   ##################
-  def api_excursion_suggestions
-    if params[:excursion_id]
-      current_excursion =  Excursion.find(params[:excursion_id]) rescue nil
+  def api_resource_suggestions
+    if params[:resource_id]
+      current_resource =  ActivityObject.find(params[:resource_id]) rescue nil
     end
-    excursions = RecommenderSystem.excursion_suggestions(current_subject,current_excursion)
-
+    resources = RecommenderSystem.resource_suggestions(current_subject,current_resource)
     respond_to do |format|
       format.any { 
         results = []
-        excursions.map { |ex| results.push(ex.reduced_json(self)) }
-        render :json => results
+        resources.map { |r| results.push(r.activity_object.search_json(self)) }
+        render :json => results, :content_type => "application/json"
       }
     end
   end

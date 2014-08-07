@@ -29,7 +29,7 @@ Vish::Application.routes.draw do
   #APIs
   match '/apis/search' => 'federated_search#search'
   match '/apis/iframe_api' => 'excursions#iframe_api'
-  match '/apis/recommender' => 'recommender#api_excursion_suggestions'
+  match '/apis/recommender' => 'recommender#api_resource_suggestions'
 
   #Search APIs used by VE
   match 'resources/search' => 'resources#search'

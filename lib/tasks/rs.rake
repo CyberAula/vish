@@ -21,7 +21,8 @@ namespace :rs do
 
     write("Recommender System: Calcuting performance stats",RS_FILE_PATH)
 
-    ns = [1,5,10,20,50,100,250,500,1000,2000,10000,100000]
+    # ns = [1,5,10,20,50,100,250,500,1000,2000,10000,100000]
+    ns = [1,5,10,20]
     iterations = 100
 
     users = User.all.reject{|u| u.nil?}.sample(iterations)
@@ -41,9 +42,9 @@ namespace :rs do
       iterations.times do |i|
         iUser = users[i]
         iExcursion = excursions[i]
-        options = {:n => n, :nMax => n, :test => true}
+        options = {:n => n, :nMax => n, :models => ["Excursion"], :test => true}
         iTimeStart = Time.now
-        RecommenderSystem.excursion_suggestions(iUser,iExcursion,options)
+        RecommenderSystem.resource_suggestions(iUser,iExcursion,options)
         iElapsedTime = (Time.now - iTimeStart).round(1)
         iterationTimesItem.push(iElapsedTime)
         lastIterationTimesItem.push(iElapsedTime)
@@ -72,9 +73,9 @@ namespace :rs do
 
       iterations.times do |i|
         iUser = users[i]
-        options = {:n => n, :nMax => n, :test => true}
+        options = {:n => n, :nMax => n, :models => ["Excursion"], :test => true}
         iTimeStart = Time.now
-        RecommenderSystem.excursion_suggestions(iUser,nil,options)
+        RecommenderSystem.resource_suggestions(iUser,nil,options)
         iElapsedTime = (Time.now - iTimeStart).round(1)
         iterationTimesUser.push(iElapsedTime)
         lastIterationTimesUser.push(iElapsedTime)
@@ -104,9 +105,9 @@ namespace :rs do
       iterations.times do |i|
         iUser = users[i]
         iExcursion = excursions[i]
-        options = {:n => n, :nMax => n, :test => true}
+        options = {:n => n, :nMax => n, :models => ["Excursion"], :test => true}
         iTimeStart = Time.now
-        RecommenderSystem.excursion_suggestions(iUser,iExcursion,options)
+        RecommenderSystem.resource_suggestions(iUser,iExcursion,options)
         iElapsedTime = (Time.now - iTimeStart).round(1)
         iterationTimesItemAnonymous.push(iElapsedTime)
         lastIterationTimesItemAnonymous.push(iElapsedTime)

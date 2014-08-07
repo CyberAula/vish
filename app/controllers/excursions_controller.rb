@@ -319,7 +319,7 @@ class ExcursionsController < ApplicationController
       current_excursion =  Excursion.find(params[:excursion_id]) rescue nil
     end
 
-    options = {:n => (params[:quantity] || 6).to_i}
+    options = {:n => (params[:quantity] || 6).to_i, :models => ["Excursion"]}
     if params[:q]
       options[:keywords] = params[:q].split(",")
     end
@@ -334,7 +334,7 @@ class ExcursionsController < ApplicationController
         }.to_json
       }
     else
-      excursions = RecommenderSystem.excursion_suggestions(current_user,current_excursion,options)
+      excursions = RecommenderSystem.resource_suggestions(current_user,current_excursion,options)
     end
 
     respond_to do |format|

@@ -11,6 +11,8 @@ module SocialStream
             has created_at
             has updated_at
 
+            has id
+
             has activity_object.author_actions(:actor_id), :as => :author_id
             has activity_object.owner_actions(:actor_id),  :as => :owner_id
 
@@ -35,10 +37,13 @@ module SocialStream
             if ActiveRecord::Base.connection.adapter_name == "PostgreSQL"
               #CRC32 is not a native function in PostgreSQL, and so you may need to add it yourself. Thinking Sphinx prior to v3 do this for you.
               has "array_to_string(array_agg(CRC32(activity_objects.language)), ',')", :as => :language, :type => :multi
+              has "array_to_string(array_agg(CRC32(activity_objects.object_type)), ',')", :as => :object_type, :type => :multi
             elsif ActiveRecord::Base.connection.adapter_name == "Mysql2" or ActiveRecord::Base.connection.adapter_name == "MySQL"
               has "GROUP_CONCAT(CRC32(activity_objects.language) SEPARATOR ',')", :as => :language, :type => :integer, :multi => true
+              has "GROUP_CONCAT(CRC32(activity_objects.object_type) SEPARATOR ',')", :as => :object_type, :type => :integer, :multi => true
             else
               has activity_object.language, :as => :language
+              has activity_object.object_type, :as => :object_type
             end
           end
         end
