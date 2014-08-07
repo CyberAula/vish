@@ -356,6 +356,13 @@ class RecommenderSystem
       end
     end
 
+    if options[:ao_ids_to_avoid].is_a? Array
+      options[:ao_ids_to_avoid] = options[:ao_ids_to_avoid].compact
+      unless options[:ao_ids_to_avoid].empty?
+        opts[:without][:activity_object_id] = options[:ao_ids_to_avoid]
+      end
+    end
+
     # (Try to) Avoid nil results (See http://pat.github.io/thinking-sphinx/searching.html#nils)
     opts[:retry_stale] = true
     
@@ -470,7 +477,7 @@ class RecommenderSystem
     end
 
     unless resource.nil?
-      opts[:ids_to_avoid] = [resource.id]
+      opts[:ao_ids_to_avoid] = [resource.activity_object.id]
     end
 
     return opts

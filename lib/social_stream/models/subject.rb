@@ -78,6 +78,7 @@ module SocialStream
           has updated_at
 
           has id
+          has activity_object.id, :as => :activity_object_id, :type => :integer
 
           has activity_object.popularity, :as => :popularity, :sortable => true
           has activity_object.qscore, :as => :qscore, :sortable => true

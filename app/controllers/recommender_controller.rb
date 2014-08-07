@@ -52,7 +52,7 @@ class RecommenderController < ApplicationController
   ##################
   def api_resource_suggestions
     if params[:resource_id]
-      current_resource =  ActivityObject.find(params[:resource_id]) rescue nil
+      current_resource =  ActivityObject.find(params[:resource_id]).object rescue nil
     end
     resources = RecommenderSystem.resource_suggestions(current_subject,current_resource)
     respond_to do |format|
