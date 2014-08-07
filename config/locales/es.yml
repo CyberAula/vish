@@ -411,7 +411,6 @@ es:
       tags: "Etiquetas"
       title: "Título"
     main_title: "Sube videos, imágenes y otros recursos"
-    new: "Añadir recurso" 
     options:
       documents: "Documentos/Videos/Audios"
       embed: "Embed (Código HTML)"

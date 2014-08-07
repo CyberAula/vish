@@ -62,7 +62,6 @@ fr:
     recommended_age: "Âge recommandé"
     recommended_age_detail: "De %{min} à %{max} ans"
     input: "Ajoutez une description ici"
-    new: "Ajouter une ressource"
     screencast: "Capture vidéo de la plateforme VISH"
     title_input: "Nom pour cette ressource"
   email:
