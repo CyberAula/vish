@@ -13,7 +13,7 @@ class CatalogueController < ApplicationController
 		                @excursions = getCategoryResources(params[:category])
 		                render :partial => 'catalogue/show'
 		              else               
-		                render :partial => "catalogue/index"
+		                render :partial => "catalogue/index", :locals =>{ :is_home=> params[:is_home]}
 		              end
       			else
       				render :layout => 'catalogue' 

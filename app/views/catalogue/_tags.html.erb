@@ -10,7 +10,11 @@
       event.preventDefault();
 
       var categoryId = $(this).attr("categoryId");
-      window.location = "/catalogue/" + categoryId;      
+      <%if is_home%>
+        window.location = "/catalogue/" + categoryId + "?back_home=true";      
+      <%else%>
+        window.location = "/catalogue/" + categoryId;      
+      <%end%>
     });
   });
 </script>
