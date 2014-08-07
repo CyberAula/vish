@@ -1,38 +1,12 @@
 .select2-container
-  width: 100%
-  .select2-choices 
-    padding: 3px 6px 3px
-    .bit-box
+  ul.select2-choices
+    li.bit-box
+      background: none repeat scroll $zero $zero rgba(0, 232, 232, 0.1)
+      font-size: 12px
       margin: 3px
       padding: 4px 15px 4px 6px
       .closebutton
         margin-top: -4px
-
-
-.select2-dropdown-open  
-
-  .facebook-auto
-    margin-top: -10px
-    ul
-      width: auto !important
-      li
-        width: auto
-        margin-bottom: 1px
-
-  .send
-    float: right
-    margin: 10px 61px $zero $zero
-
-
-.select2-container
-  ul.select2-choices
-    background-image: none
-    background-color: #F5F5F5
-    border: none
-    li.bit-box
-      background: none repeat scroll $zero $zero rgba(0, 232, 232, 0.1)
-      font-size: 12px
-      .closebutton
         font-size: 10px
         color: $gray-light
         background: none
@@ -53,11 +27,15 @@
 
 .select2-dropdown-open  
   .facebook-auto
+    margin-top: -10px
     .default 
       font-family: $font-family-sans-serif
       font-size: 12px
     ul
+      width: auto !important
       li
+        width: auto
+        margin-bottom: 1px
         background: none repeat scroll $zero $zero $white
         color: $gray-light
         border: solid 1px $gray-lighter
@@ -68,5 +46,7 @@
           color: $gray
           background: none repeat scroll $zero $zero rgb(239,255,255)
           border: solid 1px rgb(239,255,255)
-
+  .send
+    float: right
+    margin: 10px 61px $zero $zero
 

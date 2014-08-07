@@ -8,11 +8,12 @@
     @include make-md-column(12, $gutter: $grid-gutter-width)
     @include make-lg-column(12, $gutter: $grid-gutter-width)
     min-height: 65px
-    margin-bottom: 12px
-    padding: 14px 15px
+    margin-bottom: 2px
+    padding: 14px 15px 10px
+    border-bottom: 1px solid #CECECE
     .content_left
       @include make-xs-column(12, $gutter: $grid-gutter-width)
-      @include make-sm-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(3, $gutter: $grid-gutter-width)
       @include make-md-column(3, $gutter: $grid-gutter-width)
       @include make-lg-column(3, $gutter: $grid-gutter-width)
       padding-left: 0
@@ -27,81 +28,57 @@
         float: left
         h5
           margin-top: $zero
-          margin-bottom: $zero  
-          
+          margin-bottom: $zero 
+          a
+            @include text-overflow 
+        .date
+          color: #888
+          font-size: 11px
     .content_right
       display: inline-block
       @include make-xs-column(12, $gutter: $grid-gutter-width)
-      @include make-sm-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(8, $gutter: $grid-gutter-width)
       @include make-md-column(8, $gutter: $grid-gutter-width)
       @include make-lg-column(8, $gutter: $grid-gutter-width)
+      color: $gray
       @media (max-width: $screen-sm-min)
-        margin: $zero
+        margin: 10px 0 0
         padding-left: $zero
+
       .subject
         font-size: 14px
-
+        font-weight: normal
+        @include text-overflow
+        a
+          font-weight: bold
+          &:hover
+            text-decoration: none
+      .briefing
+        @include text-overflow
+        color: $gray
+        font-family: $corporate-font-family-sans-serif-Light
+      .date
+        color: $gray
     .action
       position: absolute
       right: 5px
       top: 0px
-      @media (max-width: $screen-md-min)
+      @media (max-width: $screen-sm-min)
         top: -30px
-     
-
-form.new_message
-  margin-left: 20px
-  .btn
-    margin: 17px 10px $zero $zero
-
-  
-#ck_editor
-  .cleditorMain
-    width: 100%!important
-
- 
-#conversation
-  .conversation_full
-    .participants
-      padding: 7px 10px 9px 10px
-      border: 1px solid #f1f1f1
-      img
-        padding: 4px 1px 2px 2px
-        width: 40px
-    .action
-      display: inline-block
-      float: right
-      margin-top: 18px
-    .soften
-      margin: $zero
-
-    .cont_conversation
-      .cleditorMain
-        width: 100% !important
-        padding: $zero
-      .actions
-        margin-top: 10px
-        input
-          &[type="submit"]
-            width: 100%
-
-
-  .message
-    padding: 15px $zero 10px
-    .media
-      margin-left: 20px
-
-      .media-body
-        margin-top: 4px
-      .name
-        display: inline
-      .date
-        display: inline-block
+      a
+        &:link
+          color: $gray
+        &:hover
+          color: $brand-danger
+          text-decoration: none
+  .unread
+    background-color: $white
+    @include transition (background-color 1sec) 
+    border: 1px solid transparent  
 
 
 
 //New message
-
 #new_message
   ul.nav
     padding-left: 14px
@@ -123,21 +100,7 @@ form.new_message
           border-right: none
           border-bottom: none
           
-      .cleditorMain
-        border: 1px solid #D5D5D5
-        .cleditorToolbar
-          background: none
-          background-color: #F4F4F4
-        iframe
-          background-color: #f9f9f9
-          height: 221px !important
-      input
-        &[type="submit"]
-          float: right
-          margin-top: 13px
-          margin-right: -2px
     
-
 
 #content
   .read_all
@@ -145,105 +108,83 @@ form.new_message
     margin-top: -20px
   .notifications
     margin-top: 35px
-
+    color: $gray
     .notification
       margin-bottom: 20px
-@import "jquery.cleditor"
 
-#conversations
-  .content_left
-    h5 a
-      @include text-overflow
-    .date
-      color: #888
-      font-size: 11px
 
-  .content_right
+
+.cont_conversation
+  margin-top: 15px
+  .answer
     color: $gray
-    .subject
-      font-weight: normal
-      @include text-overflow
-      a
-        font-weight: bold
-        &:hover
-          text-decoration: none
-    .briefing
-      @include text-overflow
-      color: $gray
-      font-family: $corporate-font-family-sans-serif-Light
-
-    .date
-      color: $gray
-  .action
-    a
-      &:link
-        color: $gray
-      &:hover
-        color: $brand-danger
-        text-decoration: none
-
-
-  
-#ck_editor
   .cleditorMain
     @include border-top-radius ($border-radius-base)
     @include border-bottom-radius ($border-radius-base)
+    border: 1px solid #D5D5D5
+    width: 100% !important
+    padding: $zero
+    .cleditorToolbar
+      background: none
+      background-color: #CECECE
+      @include border-top-radius (4px)
+    iframe
+      background-color: #f9f9f9
+      height: 221px !important
+      @include border-bottom-radius (4px)
+  .actions
+    margin-top: 15px
+    input
+      &[type="submit"]
+        float: right
 
-.unread
-  background-color: $white
-  @include transition (background-color 1sec)
 
 .conversation_full
   h3
     @include text-overflow
     font-family: $corporate-font-family-sans-serif-Light
+    color: $black
+    width: 95%
+    float: left
   .participants
     @include border-top-radius ($border-radius-base)
-    @include border-bottom-radius ($border-radius-base)
-    background-color: #f1f1f1
+    background-color: #DBDBDB
+    clear: both
+    padding: 6px 15px 15px 15px
+    margin-bottom: 2px
     img
       @include border-top-radius ($border-radius-base)
       @include border-bottom-radius ($border-radius-base)
-  .soften
-    border-color: $white
-
-  .cont_conversation
-    .answer
-      color: $gray
-    .cleditorMain
-      @include border-top-radius ($border-radius-base)
-      @include border-bottom-radius ($border-radius-base)
-      border-color: #c5c5c5
-    .actions
-      input
-        &[type="submit"]
-          @include border-top-radius ($border-radius-base)
-          @include border-bottom-radius ($border-radius-base)
-
-
+      padding: 4px 1px 2px 2px
+      width: 40px
+  .action
+    display: inline-block
+    float: right
+    margin-top: 18px
 
   .message
+    padding: 15px 0
     border-bottom: 1px solid #f1f1f1
     background-color: $white
     .media
+      margin-left: 20px
+      .media-body
+        margin-top: 4px
+      .name
+        display: inline
       .pull-left
         img
           @include border-top-radius ($border-radius-base)
           @include border-bottom-radius ($border-radius-base)
       .date
         color: #999
+        display: inline-block
 
-#conversation
-  input
-    &[type="submit"]
-      &:hover
-        background-color: $brand-primary
-        color: $white
-
-
-#content
-  .notification
-    color: $gray
+.messages
+  margin: 0px auto !important
+  float: none !important
+  padding: 15px 15px 49px
+  background: #FFF
 
 .select2-choices
   padding-left: 0

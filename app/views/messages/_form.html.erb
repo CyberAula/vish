@@ -24,10 +24,11 @@
 
   <%= label_tag t('mailboxer.form.body') %>
 
-  <div id="ck_editor" >
+  <div id="ck_editor" class="cont_conversation" >
     <%= text_area_tag :body, nil,:rows =>6, :cols=> 53, :maxlength => 5000 %>
+    <div class="actions">
+      <%= submit_tag t('mailboxer.send'), :name => :send_message, :class => "btn btn-primary" %>
+    </div>
   </div>
-
-  <%= submit_tag t('mailboxer.send'), :name => :send_message, :class => "btn btn-primary" %>
 
 <% end %>
