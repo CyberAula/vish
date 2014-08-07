@@ -45,7 +45,7 @@ gem 'faker', '=1.2.0'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git', :ref => '2602bf1'
 gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attributes_to.git', :ref => '69704cb'
 gem "oai_repository", :git => 'git://github.com/ebarra/oai_repository.git'
-gem 'paperclip-ffmpeg', :git => 'git@github.com:ebarra/paperclip-ffmpeg.git'
+gem 'paperclip-ffmpeg', :git => 'git://github.com/ebarra/paperclip-ffmpeg.git'
 
 #Customized/Local Gems
 # $ export FORCE_LOCAL_SS=socialStreamPath

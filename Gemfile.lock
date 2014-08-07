@@ -15,6 +15,13 @@ GIT
       rails (~> 3.1)
 
 GIT
+  remote: git://github.com/ebarra/paperclip-ffmpeg.git
+  revision: 338fd7a74a03aa87c9278f20e7fa49f77cfc3dcd
+  specs:
+    paperclip-ffmpeg (1.0.1)
+      paperclip (>= 2.5.2)
+
+GIT
   remote: git://github.com/galetahub/simple-captcha.git
   revision: 2602bf19a63df25929960b5a7721a9d265281ec1
   ref: 2602bf1
@@ -79,13 +86,6 @@ GIT
   ref: 69704cb
   specs:
     delegates_attributes_to (0.0.1)
-
-GIT
-  remote: git@github.com:ebarra/paperclip-ffmpeg.git
-  revision: 338fd7a74a03aa87c9278f20e7fa49f77cfc3dcd
-  specs:
-    paperclip-ffmpeg (1.0.1)
-      paperclip (>= 2.5.2)
 
 GEM
   remote: http://rubygems.org/
