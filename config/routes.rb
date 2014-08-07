@@ -15,7 +15,7 @@ Vish::Application.routes.draw do
   resource :session_locale
 
   #redirect excursions index to home
-  match '/excursions' => 'home#index'
+  match '/excursions' => 'home#index', :constraints => { :format => 'html' }
   #Allow login for applications (i.e. ViSH Mobile) that uses the home.json.
   match '/home.json' => 'home#index', :format => :json
 
@@ -57,6 +57,9 @@ Vish::Application.routes.draw do
   #Download JSON
   match '/excursions/tmpJson' => 'excursions#uploadTmpJSON', :via => :post
   match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
+
+  resources :excursions
+
 
   #Quiz Sessions
   resources :quiz_sessions do
