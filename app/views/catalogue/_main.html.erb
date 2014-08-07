@@ -15,7 +15,11 @@
 	//Show More buttons
 	$(".show_more_catalogue").click(function(event) {
 		var name = $(this).attr("name");
-		window.location = "/catalogue/" + name;		
+	      <%if is_home%>
+	        window.location = "/catalogue/" + name + "?back_home=true";      
+	      <%else%>
+	        window.location = "/catalogue/" + name;	  
+	      <%end%>	
 	});
 
 	$(document).ready(function(){

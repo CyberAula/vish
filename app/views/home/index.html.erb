@@ -116,7 +116,7 @@
       if(catalogue_tab_loaded===false){
         $('.loader_pagination').show();
         catalogue_tab_loaded = true;
-        var next = "<%= catalogue_path %>";
+        var next = "<%= catalogue_path(:is_home=> true) %>";
         catalogue_state(next);
       } else {
         $('.loader_pagination').hide();        
@@ -156,6 +156,7 @@
       net_tab_loaded = true;
       re_apply_backstretch("net");
     <%else%>
+      $("#catalogue_tab").click();
       catalogue_tab_loaded = true;
       re_apply_backstretch("catalogue_tabpane");
     <%end%>
@@ -245,6 +246,11 @@
 
 </script>
 
+<<<<<<< HEAD
     <%= render :partial => "catalogue/js_common"%>
   </div>
 </div>
+=======
+<%= render :partial => "catalogue/js_common"%>
+</div>
+>>>>>>> 0b0ffce29fa2da9de6b3e4f09c48f4a1f6f83b13
