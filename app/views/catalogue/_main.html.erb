@@ -1,7 +1,7 @@
 <div id="excursions_catalogue" >
 	<%@default_categories.each do |name, resources| %>
 		<h2><%=t("catalogue.categories." + name, :default => "Category")%></h2>
-		<ul id="container_<%=name%>">
+		<ul id="items container_<%=name%>">
 			<%for excursion in resources%>
 				<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion, :prefix_id =>"catalogue" } %>
 			<%end%>
@@ -15,7 +15,11 @@
 	//Show More buttons
 	$(".show_more_catalogue").click(function(event) {
 		var name = $(this).attr("name");
-		window.location = "/catalogue/" + name;		
+	      <%if is_home%>
+	        window.location = "/catalogue/" + name + "?back_home=true";      
+	      <%else%>
+	        window.location = "/catalogue/" + name;	  
+	      <%end%>	
 	});
 
 	$(document).ready(function(){
