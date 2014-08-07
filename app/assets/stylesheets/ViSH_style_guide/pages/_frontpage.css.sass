@@ -89,13 +89,11 @@
         display: block
 
 #frontpage
-  //@include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  //@include make-sm-column(12, $gutter: $grid-gutter-width)
-  //@include make-md-column(12, $gutter: $grid-gutter-width)
-  //@include make-lg-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
   .competition
     display: block
-
     img
       width: 100%
 
@@ -109,19 +107,21 @@
     display: block
     width: 100%
     float: left
+    .frontpage_count_entry
+      margin-top: 4px
     .decoration
       hr
-        border-bottom: 1px solid $gray-light
-        width: 100%
+        border-bottom: 1px solid #999
+        width: 48%
         display: inline-block
         margin: 0
-        float: left
       i
-        width: 4%
+        width: 3%
         text-align: center
         display: inline-block
         margin: -5px 0 0 0
-        float: left
+        @media (max-width: $screen-sm-min)
+          width: 2%
 
     .all-items-count,
     .advertising
@@ -129,33 +129,28 @@
       display: block
       width: 80%
       text-align: center
-    .vertical-decoration
+    .vertical-decoration,
     .all-items-count
-
       h3
-        font-family: $corporate-font-family-sans-serif-Bold
-        margin-bottom: 10px !important
+        font-family: $corporate-font-family-sans-serif-Light
+        margin-bottom: 0px !important
         width: 100%
         color: $gray-dark
-      span, p
-        display: inline-block
-      span
-        width: 100%
-        color: $brand-secundary
-        font-family: $corporate-font-family-sans-serif-Bold
+        a.join_us_link 
+          color: $brand-primary
+          cursor: pointer
+      a span
         font-style: italic
         font-size: 18px
-        clear: both
-      p
-        margin-left: 5px
-        margin-bottom: 0
-        font-family: $corporate-font-family-sans-serif-Regular
-        font-style: italic
-        font-size: 14px
+        font-family: $corporate-font-family-sans-serif-Light
+      a span.vish-info-item-count-number  
+        color: $brand-secundary
+      a span.vish-info-item-count-title
         color: $gray
+        
       div
-        font-family: $corporate-font-family-sans-serif-Regular
         font-style: italic
+        font-family: $corporate-font-family-sans-serif-Light
         margin-top: 10px
 
 
@@ -319,66 +314,3 @@
   .text_3_info
     margin-top: -50px
 
-/*8*/
-@media (min-width: 1751px)
-  .excursions_front
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+16) 
-      display: block
-
-/*7*/
-@media (min-width: 1500px) and (max-width: 1750px)
-  .excursions_front
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+14) 
-      display: block
-
-/*6*/
-@media (min-width: 1250px) and (max-width: 1500px)
-  .excursions_front
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+12) 
-      display: block
-
-/*5*/
-@media (min-width: 1000px) and (max-width: 1250px)
-  .excursions_front
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+10) 
-      display: block
-
-/*4*/
-@media (min-width: 750px) and (max-width: 1000px)
-  .excursions_front
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+16) 
-      display: block
-
-/*3*/
-@media (min-width: 500px) and (max-width: 750px)
-  .excursions_front
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+12) 
-      display: block
-
-/*2*/
-@media (min-width: 320px) and (max-width: 500px)
-  .excursions_front
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+16) 
-      display: block
-
-/*1*/
-@media (max-width: 320px)
-  .excursions_front
-    .box-item  
-      display: none
-    .box-item:nth-of-type(-n+16) 
-      display: block
