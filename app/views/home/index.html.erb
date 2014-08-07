@@ -7,19 +7,19 @@
         <li class="<%=!params[:tab] || params[:tab]=='home' ? 'active':''%>">
           <a id="home_tab" href="#home" data-toggle="tab">
             <i class="fa fa-home"></i>
-            <span class=" hidden-phone hidden-tablet"><%= t("navigation.home")%></span>
+            <span class="hidden-xs hidden-sm"><%= t("navigation.home")%></span>
           </a>
         </li>
         <li class="<%= params[:tab]=='net' ? 'active':''%>">
           <a id="net_tab" href="#net" data-toggle="tab" >
             <i class="fa fa-group"></i>
-            <span class=" hidden-phone hidden-tablet"><%=t("navigation.mynetwork") %></span>
+            <span class="hidden-xs hidden-sm"><%=t("navigation.mynetwork") %></span>
           </a>
         </li>
         <li class="<%= params[:tab]=='catalogue' ? 'active':''%>">
           <a id="catalogue_tab" href="#catalogue_tabpane" data-toggle="tab" >
             <i class="fa fa-tags"></i>
-            <span class=" hidden-phone hidden-tablet"><%=t("navigation.catalogue") %></span>
+            <span class="hidden-xs hidden-sm"><%=t("navigation.catalogue") %></span>
           </a>
         </li>
         <%= render partial: 'help/help_home' %>
