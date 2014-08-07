@@ -196,10 +196,6 @@ ActiveRecord::Schema.define(:version => 20140804072954) do
     t.string   "file_content_type"
     t.string   "file_file_size"
     t.boolean  "file_processing"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
   end
 
   add_index "documents", ["activity_object_id"], :name => "index_documents_on_activity_object_id"
