@@ -21,8 +21,7 @@ namespace :rs do
 
     write("Recommender System: Calcuting performance stats",RS_FILE_PATH)
 
-    # ns = [1,5,10,20,50,100,250,500,1000,2000,10000,100000]
-    ns = [1,5,10,20]
+    ns = [1,5,10,20,50,100,250,500,1000,2000,10000,100000]
     iterations = 100
 
     users = User.all.reject{|u| u.nil?}.sample(iterations)
