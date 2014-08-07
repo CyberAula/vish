@@ -12,6 +12,10 @@ ActivityObject.class_eval do
 
   validates_attachment_content_type :avatar, :content_type =>["image/jpeg", "image/png", "image/gif", "image/tiff", "image/x-ms-bmp"], :message => 'Avatar should be an image. Non supported format.'
 
+  attr_accessor :score
+  attr_accessor :score_tracking
+  
+
   def public?
     !private? and self.relation_ids.include? Relation::Public.instance.id
   end

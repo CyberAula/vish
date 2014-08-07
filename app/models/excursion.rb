@@ -35,8 +35,6 @@ class Excursion < ActiveRecord::Base
     has draft
   end
 
-  attr_accessor :score
-  attr_accessor :score_tracking
 
 
   ####################
@@ -1061,7 +1059,8 @@ class Excursion < ActiveRecord::Base
         excursions = getRecent(n,options)
     elsif type == 'Recommended'
         #Param example: (30,'Recommended',{:user => current_user})
-        excursions =  RecommenderSystem.excursion_suggestions(options[:user], nil, options)
+        options[:models] = ["Excursion"]
+        excursions =  RecommenderSystem.resource_suggestions(options[:user], nil, options)
     else
         excursions = RecommenderSystem.search(options)
     end

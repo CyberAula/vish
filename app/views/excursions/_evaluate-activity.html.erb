@@ -55,7 +55,7 @@
   <div class="recomended-mobile hidden-desktop" id="recomended_box">
     <div class="recomended-items">
       <ul class="small-box clearfix">
-        <% RecommenderSystem.excursion_suggestions(current_subject,@excursion,{:n=>16}).each do |excursion| %>
+        <% RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models=>["Excursion"]}).each do |excursion| %>
           <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion} %>
         <% end %>
       </ul>

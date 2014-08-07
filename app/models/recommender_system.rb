@@ -21,15 +21,15 @@
 
 class RecommenderSystem
 
-  def self.excursion_suggestions(user=nil,excursion=nil,options={})
+  def self.resource_suggestions(user=nil,resource=nil,options={})
     # Step 0: Initialize all variables (N,NMax,random,...)
     options = prepareOptions(options)
 
     #Step 1: Preselection
-    preSelectionLOs = getPreselection(user,excursion,options)
+    preSelectionLOs = getPreselection(user,resource,options)
 
     #Step 2: Scoring
-    rankedLOs = orderByScore(preSelectionLOs,user,excursion,options)
+    rankedLOs = orderByScore(preSelectionLOs,user,resource,options)
 
     #Step 3
     return rankedLOs.first(options[:n])
@@ -59,27 +59,31 @@ class RecommenderSystem
       options[:nMax] = 3*options[:n]
     end
 
+    #Models
+    if options[:models].blank?
+      #All resources by default
+      options[:models] = ["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"]
+    end
+
     options
   end
 
   #Step 1: Preselection
-  def self.getPreselection(user,excursion,options={})
+  def self.getPreselection(user,resource,options={})
     preSelection = []
 
-    #Search excursions using the search engine
-    keywords = compose_keywords(user,excursion,options)
-    if !keywords.empty?
-      searchTerms = keywords.join(" ")
-      searchEngineExcursions = (Excursion.search searchTerms, search_options(user,excursion,options)).reject{|e| e.nil?} rescue []
-      preSelection.concat(searchEngineExcursions)
+    #Search resources using the search engine
+    keywords = compose_keywords(user,resource,options)
+    unless keywords.empty?
+      searchEngineResources = (RecommenderSystem.search search_options(keywords,user,resource,options)).compact rescue []
+      preSelection.concat(searchEngineResources)
     end
 
-    #Add other excursions of the same author
-    if !excursion.nil? and !options[:test]
-      authorIdToReject = (!user.nil?) ? Actor.normalize_id(user) : -1
-      unless excursion.author.nil? or authorIdToReject == excursion.author.id
-        authoredExcursions = Excursion.authored_by(excursion.author).reject{|e| e.draft == true or e.author_id == authorIdToReject or e.id == excursion.id}
-        preSelection.concat(authoredExcursions)
+    #Add other resources of the same author
+    unless options[:test] or resource.nil? or resource.author.nil?
+      unless (((!user.nil?) ? Actor.normalize_id(user) : -1) == resource.author.id)
+        authoredResources = ActivityObject.where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:models], resource.activity_object.id).authored_by(resource.author).map{|ao| ao.object}.compact
+        preSelection.concat(authoredResources)
         preSelection.uniq!
       end
     end
@@ -89,13 +93,13 @@ class RecommenderSystem
     if options[:random]
       #Random: fill to Nmax, and select 2/3Nmax randomly
       if pSL < options[:nMax]
-        preSelection.concat(getExcursionsToFill(options[:nMax]-pSL,preSelection,user,excursion,options))
+        preSelection.concat(getResourcesToFill(options[:nMax]-pSL,preSelection,user,resource,options))
       end
       sampleSize = (options[:nMax]*2/3.to_f).ceil
       preSelection = preSelection.sample(sampleSize)
     else
       if pSL < options[:n]
-        preSelection.concat(getExcursionsToFill(options[:n]-pSL,preSelection,user,excursion,options))
+        preSelection.concat(getResourcesToFill(options[:n]-pSL,preSelection,user,resource,options))
       end
       preSelection = preSelection.first(options[:nMax])
     end
@@ -104,7 +108,7 @@ class RecommenderSystem
   end
 
   #Step 2: Scoring
-  def self.orderByScore(preSelectionLOs,user,excursion,options)
+  def self.orderByScore(preSelectionLOs,user,resource,options)
 
     if preSelectionLOs.blank?
       return preSelectionLOs
@@ -114,7 +118,7 @@ class RecommenderSystem
     maxPopularity = preSelectionLOs.max_by {|e| e.popularity }.popularity
     maxQuality = preSelectionLOs.max_by {|lo| lo.qscore }.qscore
 
-    calculateCSScore = !excursion.nil?
+    calculateCSScore = !resource.nil?
     calculateUSScore = !user.nil?
     calculatePopularityScore = !(maxPopularity.nil? or maxPopularity == 0)
     calculateQualityScore = !(maxQuality.nil? or maxQuality == 0)
@@ -122,60 +126,61 @@ class RecommenderSystem
     weights = {}
 
     if calculateCSScore
-      #Recommend items similar to other item
+      #Recommend resources similar to other resource
       weights[:cs_score] = 0.70
       weights[:us_score] = 0.10
       weights[:popularity_score] = 0.10
       weights[:quality_score] = 0.10
     elsif calculateUSScore
-      #Recommend items for a user
+      #Recommend resources for a user
       weights[:cs_score] = 0.0
       weights[:us_score] = 0.50
       weights[:popularity_score] = 0.25
       weights[:quality_score] = 0.25
     else
-      #Recommend items for anonymous users
+      #Recommend resources for anonymous users
       weights[:cs_score] = 0.0
       weights[:us_score] = 0.0
       weights[:popularity_score] = 0.5
       weights[:quality_score] = 0.5
     end
 
-    preSelectionLOs.map{ |e|
+    preSelectionLOs.map{ |lo|
       if calculateCSScore
-        cs_score = RecommenderSystem.contentSimilarityScore(excursion,e)
+        cs_score = RecommenderSystem.contentSimilarityScore(resource,lo)
       else
         cs_score = 0
       end
 
       if calculateUSScore
-        us_score = RecommenderSystem.userProfileSimilarityScore(user,e)
+        us_score = RecommenderSystem.userProfileSimilarityScore(user,lo)
       else
         us_score = 0
       end
 
       if calculatePopularityScore
-        popularity_score = RecommenderSystem.popularityScore(e,maxPopularity)
+        popularity_score = RecommenderSystem.popularityScore(lo,maxPopularity)
       else
         popularity_score = 0
       end
 
       if calculateQualityScore
-        quality_score = RecommenderSystem.qualityScore(e,maxQuality)
+        quality_score = RecommenderSystem.qualityScore(lo,maxQuality)
       else
         quality_score = 0
       end
 
-      e.score = weights[:cs_score] * cs_score + weights[:us_score] * us_score + weights[:popularity_score] * popularity_score + weights[:quality_score] * quality_score
+      lo.score = weights[:cs_score] * cs_score + weights[:us_score] * us_score + weights[:popularity_score] * popularity_score + weights[:quality_score] * quality_score
       
       unless options[:test]
-        e.score_tracking = {
+        lo.score_tracking = {
           :cs_score => cs_score,
           :us_score => us_score,
           :popularity_score => popularity_score,
           :quality_score => quality_score,
           :weights => weights,
-          :overall_score => e.score,
+          :overall_score => lo.score,
+          :object_type => lo.object_type,
           :rec => "ViSHRecommenderSystem"
         }.to_json
       end
@@ -281,7 +286,7 @@ class RecommenderSystem
     }
 
     if n > 1000
-      opts[:max_matches] = n
+      opts[:max_matches] = [n,5000].min
     end
 
     if !options[:page].nil?
@@ -337,11 +342,18 @@ class RecommenderSystem
 
 
     opts[:without] = {}
-    if options[:users_to_avoid] and !options[:users_to_avoid].reject{|u| u.nil?}.empty?
-      opts[:without][:owner_id] = Actor.normalize_id(options[:users_to_avoid])
+    if options[:users_to_avoid].is_a? Array
+      options[:users_to_avoid] = options[:users_to_avoid].compact
+      unless options[:users_to_avoid].empty?
+        opts[:without][:owner_id] = Actor.normalize_id(options[:users_to_avoid])
+      end
     end
-    if opts[:classes].length==1 and ["Excursion"].include? opts[:classes][0].name and options[:ids_to_avoid].is_a? Array and !options[:ids_to_avoid].reject{|id| id.nil?}.empty?
-      opts[:without][:id] = options[:ids_to_avoid]
+
+    if options[:ids_to_avoid].is_a? Array
+      options[:ids_to_avoid] = options[:ids_to_avoid].compact
+      unless options[:ids_to_avoid].empty?
+        opts[:without][:id] = options[:ids_to_avoid]
+      end
     end
 
     # (Try to) Avoid nil results (See http://pat.github.io/thinking-sphinx/searching.html#nils)
@@ -393,7 +405,7 @@ class RecommenderSystem
   ## Utils (private methods)
   #######################
 
-  def self.compose_keywords(user,excursion,options={})
+  def self.compose_keywords(user,resource,options={})
     maxKeywords = 25
     keywords = []
     
@@ -402,9 +414,9 @@ class RecommenderSystem
       keywords += user.tag_list
     end
 
-    #Excursion tags
-    if !excursion.nil?
-      keywords += excursion.tag_list
+    #Resource tags
+    if !resource.nil?
+      keywords += resource.tag_list
     end
 
     #Keywords specified in the options
@@ -422,16 +434,16 @@ class RecommenderSystem
     if !user.nil?
       keywordsMargin = maxKeywords - keywords.length
       if keywordsMargin > 0
-        #Tags of the excursions the user created
-        allAuthoredKeywords = Excursion.authored_by(user).map{ |e| e.tag_list }.flatten.uniq
+        #Tags of the resources the user created
+        allAuthoredKeywords = ActivityObject.where("scope=0 and object_type IN (?)",options[:models]).authored_by(user).map{ |r| r.tag_list }.flatten.uniq
         keywords = keywords + allAuthoredKeywords.sample(keywordsMargin)
         keywords.uniq!
       end
 
       keywordsMargin = maxKeywords - keywords.length
       if keywordsMargin > 0
-        #Tags of the excursions the user like
-        allLikedKeywords = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => Actor.normalize_id(user)}).where("activity_objects.object_type IN (?)", ["Excursion"]).map{ |activity| activity.activity_objects.first.tag_list }.flatten.uniq
+        #Tags of the resources the user like
+        allLikedKeywords = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => Actor.normalize_id(user)}).where("activity_objects.scope=0 and activity_objects.object_type IN (?)", options[:models]).map{ |activity| activity.activity_objects.first.tag_list }.flatten.uniq
         keywords = keywords + allLikedKeywords.sample(keywordsMargin)
         keywords.uniq!
       end
@@ -443,56 +455,49 @@ class RecommenderSystem
     return keywords
   end
 
-  def self.search_options(user,excursion,options={})
+
+
+  def self.search_options(keywords,user,resource,options={})
     opts = {}
+    opts[:keywords] = keywords
+    opts[:n] = options[:nMax]
 
-    #Logical conector: OR
-    opts[:match_mode] = :any
-    opts[:rank_mode] = :wordcount
-    opts[:per_page] = options[:nMax]
-    opts[:field_weights]= {
-       :title => 50, 
-       :tags => 40,
-       :description => 1
-    }
-    opts[:with] = {}
-    opts[:with][:draft] = false
+    #Only search for desired models
+    opts[:models] = options[:models]
 
-    if !user.nil? or !excursion.nil?
-      opts[:without] = {}
-      if !user.nil?
-        opts[:without][:author_id] = [ Actor.normalize_id(user) ]
-      end
-      if !excursion.nil?
-        opts[:without][:id] = [excursion.id]
-      end
+    unless user.nil?
+      opts[:users_to_avoid] = [user]
+    end
+
+    unless resource.nil?
+      opts[:ids_to_avoid] = [resource.id]
     end
 
     return opts
   end
 
-  def self.getExcursionsToFill(n,preSelection,user,excursion,options={})
-    excursions = []
+  def self.getResourcesToFill(n,preSelection,user,resource,options)
+    resources = []
     nSubset = [80,4*n].max
-    ids_to_avoid = getIdsToAvoid(preSelection,excursion,user)
-    excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").limit(nSubset).sample(n)
+    ids_to_avoid = getIdsToAvoid(preSelection,user,resource,options)
+    resources = ActivityObject.where("scope=0 and object_type IN (?) and id not in (?)", options[:models], ids_to_avoid).order("ranking DESC").limit(nSubset).sample(n).map{|ao| ao.object}.compact
   end
 
-  def self.getIdsToAvoid(preSelection,excursion,user=nil)
-    ids_to_avoid = preSelection.map{|e| e.id}
+  def self.getIdsToAvoid(preSelection,user,resource,options)
+    ids_to_avoid = preSelection.map{|e| e.activity_object.id}
 
-    if !excursion.nil?
-      ids_to_avoid.push(excursion.id)
+    if !resource.nil?
+      ids_to_avoid.push(resource.activity_object.id)
     end
 
     if !user.nil?
-      ids_to_avoid.concat(Excursion.authored_by(user).map{|e| e.id})
+      ids_to_avoid.concat(ActivityObject.where("scope=0 and object_type IN (?)",options[:models]).authored_by(user).map{|r| r.id})
     end
 
     ids_to_avoid.uniq!
 
     if !ids_to_avoid.is_a? Array or ids_to_avoid.empty?
-      #if ids=[] the queries may returns [], so we fill it with an invalid id (no excursion will ever have id=-1)
+      #if ids=[] the queries may returns [], so we fill it with an invalid id (no resource will ever have id=-1)
       ids_to_avoid = [-1]
     end
 
