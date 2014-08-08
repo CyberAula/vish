@@ -677,6 +677,8 @@ es:
     send: "Enviar mensaje"
     new: "Mensaje nuevo"
     unread: " sin leer"
+  metadata:
+    access_lom: "Metadatos LOM"
   more: "mas"
   mashme:
     header_html: "Ver en <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
