@@ -123,6 +123,10 @@
         <span class="metadatalistkey2"><%=value%></span>
       </li>
     <%end%>
+    <li>
+      <span class="metadatalistkey"><%=t("metadata.access_lom")%>:</span>
+      <span class="metadatalistkey2"><a href="<%=excursion_metadata_path(@excursion)%>"><%=Vish::Application.config.full_domain + excursion_metadata_path(@excursion)%></a></span>
+    </li>
   </ul>
   </div>
 </div>
