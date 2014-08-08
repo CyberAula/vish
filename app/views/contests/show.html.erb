@@ -381,11 +381,15 @@
 
 </div>
 
- <script>
-    $(".subrow2 #excursion-560").backstretch("http://vishub.org/pictures/2731.jpeg");
 
-    $(".subrow2 #excursion-515").backstretch("http://vishub.org/pictures/1730.jpeg");
 
-    $(".subrow2 #excursion-659").backstretch("http://vishub.org/pictures/1730.jpeg");
+ <script type="text/javascript">
+  $(document).ready(function(){
+    
+    $("#winners div[bs-img]").each(function() {       
+        $(this).backstretch( $(this).attr("bs-img") );      
+    });
+    
+  });
+
 </script>
- 
