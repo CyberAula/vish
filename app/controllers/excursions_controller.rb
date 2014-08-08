@@ -33,8 +33,6 @@ class ExcursionsController < ApplicationController
   before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api]
   after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api]
   
-  POPULAR_PER_PAGE=24
-  DEFAULT_CATEGORIES = ["physics", "chemistry", "biology", "maths"]
   
   include SocialStream::Controllers::Objects
 
@@ -318,7 +316,7 @@ class ExcursionsController < ApplicationController
       current_excursion =  Excursion.find(params[:excursion_id]) rescue nil
     end
 
-    options = {:n => (params[:quantity] || 6).to_i, :models => ["Excursion"]}
+    options = {:n => (params[:quantity] || 6).to_i, :models => [Excursion]}
     if params[:q]
       options[:keywords] = params[:q].split(",")
     end
@@ -333,7 +331,7 @@ class ExcursionsController < ApplicationController
         }.to_json
       }
     else
-      excursions = RecommenderSystem.resource_suggestions(current_user,current_excursion,options)
+      excursions = RecommenderSystem.resource_suggestions(current_subject,current_excursion,options)
     end
 
     respond_to do |format|

@@ -41,7 +41,7 @@ namespace :rs do
       iterations.times do |i|
         iUser = users[i]
         iExcursion = excursions[i]
-        options = {:n => n, :nMax => n, :models => ["Excursion"], :test => true}
+        options = {:n => n, :nMax => n, :models => [Excursion], :model_names => ["Excursion"], :test => true}
         iTimeStart = Time.now
         RecommenderSystem.resource_suggestions(iUser,iExcursion,options)
         iElapsedTime = (Time.now - iTimeStart).round(1)
@@ -72,7 +72,7 @@ namespace :rs do
 
       iterations.times do |i|
         iUser = users[i]
-        options = {:n => n, :nMax => n, :models => ["Excursion"], :test => true}
+        options = {:n => n, :nMax => n, :models => [Excursion], :model_names => ["Excursion"], :test => true}
         iTimeStart = Time.now
         RecommenderSystem.resource_suggestions(iUser,nil,options)
         iElapsedTime = (Time.now - iTimeStart).round(1)
@@ -104,7 +104,7 @@ namespace :rs do
       iterations.times do |i|
         iUser = users[i]
         iExcursion = excursions[i]
-        options = {:n => n, :nMax => n, :models => ["Excursion"], :test => true}
+        options = {:n => n, :nMax => n, :models => [Excursion], :model_names => ["Excursion"], :test => true}
         iTimeStart = Time.now
         RecommenderSystem.resource_suggestions(iUser,iExcursion,options)
         iElapsedTime = (Time.now - iTimeStart).round(1)
