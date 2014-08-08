@@ -49,8 +49,9 @@
   display: block
   h3
     font-family: $corporate-font-family-sans-serif-Medium
-  h3, p
     margin: 0 0 18px 0
+  p
+    margin: 10px 0 0
   label
     @extend .caption
     margin-bottom: 0px
@@ -71,11 +72,11 @@
     input
       float: none
       margin: 0    
-  input
-    &[type="submit"]
-      float: right
-      display: inline-block
-      margin-bottom: 10px
+  .action
+    margin-top: 10px
+    input
+      &[type="submit"]
+        float: right
 
 @mixin excursion-small
   width: 100%

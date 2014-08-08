@@ -1,9 +1,9 @@
 
 <section id="registration"> 
   <section class="registration">
-    <h3>
+    <h4>
       <%= t('sign_up').capitalize %>
-    </h3>
+    </h4>
 
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
@@ -51,8 +51,9 @@
             <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>.
           <% end -%>
         </div>
-
-        <%= f.submit t('action.accept').capitalize,:class=>"btn pull-right"%>
+        <div class="action">
+          <%= f.submit t('action.accept').capitalize,:class=>"btn btn-primary pull-right"%>
+        </div>
       </div>
       
     <% end %>

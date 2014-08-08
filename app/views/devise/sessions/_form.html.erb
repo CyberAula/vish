@@ -1,7 +1,7 @@
 <section id="sign_in">
-  <h3>
+  <h4>
     <%= t('sign_in') %>
-  </h3>
+  </h4>
 
   <%= form_for User.new, :as => :user, :class => "form-horizontal", :url => user_session_path do |f| %>
     <div class="form-group">
@@ -13,7 +13,9 @@
         <input type="checkbox"> <%=t("activerecord.attributes.user.remember_me")%>
       </label>
     </div>
-    <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
+    <div class="action">
+      <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
+    </div>
     <div class="remember_password"><%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
     </div>
   <% end %>
