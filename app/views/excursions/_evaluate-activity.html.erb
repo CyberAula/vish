@@ -51,16 +51,15 @@
           </div>
 
           <div class="tab-pane" id="suggestion_show">
-
-  <div class="recomended-mobile hidden-desktop" id="recomended_box">
-    <div class="recomended-items">
-      <ul class="small-box clearfix">
-        <% RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models=>[Excursion]}).each do |excursion| %>
-          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion} %>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+            <div class="recomended-mobile hidden-desktop" id="recomended_box">
+              <div class="recomended-items">
+                <ul class="small-box clearfix">
+                  <% @resource_suggestions .each do |excursion| %>
+                    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion} %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
           </div>
 
         </div>

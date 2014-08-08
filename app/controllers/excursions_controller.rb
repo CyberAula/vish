@@ -69,13 +69,16 @@ class ExcursionsController < ApplicationController
   def show 
     show! do |format|
       format.html {
-        @evaluations = @excursion.averageEvaluation
-        @numberOfEvaluations = @excursion.numberOfEvaluations
-        @learningEvaluations = @excursion.averageLearningEvaluation
-        @numberOfLearningEvaluations = @excursion.numberOfLearningEvaluations
         if @excursion.draft and (can? :edit, @excursion)
           redirect_to edit_excursion_path(@excursion)
         else
+          @evaluations = @excursion.averageEvaluation
+          @numberOfEvaluations = @excursion.numberOfEvaluations
+          @learningEvaluations = @excursion.averageLearningEvaluation
+          @numberOfLearningEvaluations = @excursion.numberOfLearningEvaluations
+
+          @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})
+          
           render
         end
       }
@@ -83,9 +86,13 @@ class ExcursionsController < ApplicationController
         @orgUrl = params[:orgUrl]
         render :layout => 'iframe'
       }
-      format.mobile { render :layout => 'iframe' }
-      format.json { render :json => resource }
-      format.gateway { 
+      format.mobile { 
+        render :layout => 'iframe' 
+      }
+      format.json { 
+        render :json => resource 
+      }
+      format.gateway {
         @gateway = params[:gateway]
         render :layout => 'iframe.full'
       }
@@ -94,7 +101,7 @@ class ExcursionsController < ApplicationController
         @excursion.increment_download_count
         send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
       }
-      format.pdf{
+      format.pdf {
         @excursion.to_pdf(self)
         if File.exist?("#{Rails.root}/public/pdf/excursions/#{@excursion.id}/#{@excursion.id}.pdf")
           send_file "#{Rails.root}/public/pdf/excursions/#{@excursion.id}/#{@excursion.id}.pdf", :type => 'application/pdf', :disposition => 'attachment', :filename => "#{@excursion.id}.pdf"
