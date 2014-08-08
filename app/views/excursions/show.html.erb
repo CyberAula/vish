@@ -96,7 +96,7 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
 
   <aside class="recomended" id="recomended_box">
       <ul class="items clearfix">
-        <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => ["Excursion"]})} %>
+        <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})} %>
       </ul>
   </aside>
 
@@ -115,7 +115,7 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
         </div>
       </div>
     </div>
-
+  
     <!--owner-profile-->
     <div class="description-activity">
       <div class="box_description">
@@ -129,25 +129,6 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
       <div class="activity-box">
         <%= render :partial => 'excursions/evaluate-activity'%>
 
-      </div>
-
-      <a id="congratulations-button" href="#CongratModal" role="button" class="" style="display:none" data-toggle="modal"></a>
-      
-      <div id="CongratModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myCongratLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">×</span></button>
-              <h3 id="myCongratLabel"><%= t('excursion.modal.title') %></h3>
-            </div>
-            <div class="modal-body evaluation_body">
-              <p><i class="fa fa-ok"></i>  <%=t("excursion.modal.normal_body")%></p>
-              <p><%=raw t("excursion.modal.survey")%></p>
-              <p class="thank"><i class="fa fa-smile"></i>  <%=raw t("excursion.modal.thank")%></p>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
     </div>
   </div>
 </section>

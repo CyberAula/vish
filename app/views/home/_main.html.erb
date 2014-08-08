@@ -9,7 +9,7 @@
         scope = :net
       end%>
      <% excursionsRecent = Excursion.getHome( 30 , 'Recent')
-        excursionsRecommended = Excursion.getHome( 30 ,'Recommended',{:user => current_user})%>
+        excursionsRecommended = Excursion.getHome( 30 ,'Recommended',{:subject => current_subject})%>
 
     <%= render partial: 'min_others', :locals => { :excursions => excursionsRecent, :limit => 9, :prefix_id=>"home" } %>
   </ul>

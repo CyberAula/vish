@@ -20,7 +20,9 @@
 # ViSH Recommender System
 
 class RecommenderSystem
-  def self.resource_suggestions(user=nil,resource=nil,options={})
+
+  def self.resource_suggestions(subject=nil,resource=nil,options={})
+
     # Step 0: Initialize all variables (N,NMax,random,...)
     options = prepareOptions(options)
 
@@ -37,10 +39,10 @@ class RecommenderSystem
     # end
 
     #Step 1: Preselection
-    preSelectionLOs = getPreselection(user,resource,options)
+    preSelectionLOs = getPreselection(subject,resource,options)
 
     #Step 2: Scoring
-    rankedLOs = orderByScore(preSelectionLOs,user,resource,options)
+    rankedLOs = orderByScore(preSelectionLOs,subject,resource,options)
 
     #Step 3
     return rankedLOs.first(options[:n])
@@ -73,27 +75,29 @@ class RecommenderSystem
     #Models
     if options[:models].blank?
       #All resources by default
-      options[:models] = ["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"]
+      options[:models] = [Excursion, Document, Webapp, Scormfile, Link, Embed]
     end
+
+    options[:model_names] = options[:models].map{|m| m.name}
 
     options
   end
 
   #Step 1: Preselection
-  def self.getPreselection(user,resource,options={})
+  def self.getPreselection(subject,resource,options={})
     preSelection = []
 
     #Search resources using the search engine
-    keywords = compose_keywords(user,resource,options)
+    keywords = compose_keywords(subject,resource,options)
     unless keywords.empty?
-      searchEngineResources = (RecommenderSystem.search search_options(keywords,user,resource,options)).compact rescue []
+      searchEngineResources = (RecommenderSystem.search search_options(keywords,subject,resource,options)).compact rescue []
       preSelection.concat(searchEngineResources)
     end
 
     #Add other resources of the same author
     unless options[:test] or resource.nil? or resource.author.nil?
-      unless (((!user.nil?) ? Actor.normalize_id(user) : -1) == resource.author.id)
-        authoredResources = ActivityObject.where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:models], resource.activity_object.id).authored_by(resource.author).map{|ao| ao.object}.compact
+      unless (((!subject.nil?) ? Actor.normalize_id(subject) : -1) == resource.author.id)
+        authoredResources = ActivityObject.where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:model_names], resource.activity_object.id).authored_by(resource.author).map{|ao| ao.object}.compact
         preSelection.concat(authoredResources)
         preSelection.uniq!
       end
@@ -104,13 +108,13 @@ class RecommenderSystem
     if options[:random]
       #Random: fill to Nmax, and select 2/3Nmax randomly
       if pSL < options[:nMax]
-        preSelection.concat(getResourcesToFill(options[:nMax]-pSL,preSelection,user,resource,options))
+        preSelection.concat(getResourcesToFill(options[:nMax]-pSL,preSelection,subject,resource,options))
       end
       sampleSize = (options[:nMax]*2/3.to_f).ceil
       preSelection = preSelection.sample(sampleSize)
     else
       if pSL < options[:n]
-        preSelection.concat(getResourcesToFill(options[:n]-pSL,preSelection,user,resource,options))
+        preSelection.concat(getResourcesToFill(options[:n]-pSL,preSelection,subject,resource,options))
       end
       preSelection = preSelection.first(options[:nMax])
     end
@@ -119,7 +123,7 @@ class RecommenderSystem
   end
 
   #Step 2: Scoring
-  def self.orderByScore(preSelectionLOs,user,resource,options)
+  def self.orderByScore(preSelectionLOs,subject,resource,options)
 
     if preSelectionLOs.blank?
       return preSelectionLOs
@@ -130,7 +134,7 @@ class RecommenderSystem
     maxQuality = preSelectionLOs.max_by {|lo| lo.qscore }.qscore
 
     calculateCSScore = !resource.nil?
-    calculateUSScore = !user.nil?
+    calculateUSScore = !subject.nil?
     calculatePopularityScore = !(maxPopularity.nil? or maxPopularity == 0)
     calculateQualityScore = !(maxQuality.nil? or maxQuality == 0)
 
@@ -143,7 +147,7 @@ class RecommenderSystem
       weights[:popularity_score] = 0.10
       weights[:quality_score] = 0.10
     elsif calculateUSScore
-      #Recommend resources for a user
+      #Recommend resources for a user (or subject)
       weights[:cs_score] = 0.0
       weights[:us_score] = 0.50
       weights[:popularity_score] = 0.25
@@ -164,7 +168,7 @@ class RecommenderSystem
       end
 
       if calculateUSScore
-        us_score = RecommenderSystem.userProfileSimilarityScore(user,lo)
+        us_score = RecommenderSystem.userProfileSimilarityScore(subject,lo)
       else
         us_score = 0
       end
@@ -221,17 +225,17 @@ class RecommenderSystem
   end
 
   #User profile Similarity Score (between 0 and 1)
-  def self.userProfileSimilarityScore(user,lo)
+  def self.userProfileSimilarityScore(subject,lo)
     weights = {}
     weights[:language] = 0.6
     weights[:keywords] = 0.4
 
     unless ["independent","ot"].include? lo.language
-      languageD = RecommenderSystem.getSemanticDistance(user.language,lo.language)
+      languageD = RecommenderSystem.getSemanticDistance(subject.language,lo.language)
     else
       languageD = 0
     end
-    keywordsD = RecommenderSystem.getKeywordsDistance(user.tag_list.to_a,lo.tag_list.to_a)
+    keywordsD = RecommenderSystem.getKeywordsDistance(subject.tag_list.to_a,lo.tag_list.to_a)
 
     return weights[:language] * languageD + weights[:keywords] * keywordsD
   end
@@ -353,10 +357,10 @@ class RecommenderSystem
 
 
     opts[:without] = {}
-    if options[:users_to_avoid].is_a? Array
-      options[:users_to_avoid] = options[:users_to_avoid].compact
-      unless options[:users_to_avoid].empty?
-        opts[:without][:owner_id] = Actor.normalize_id(options[:users_to_avoid])
+    if options[:subjects_to_avoid].is_a? Array
+      options[:subjects_to_avoid] = options[:subjects_to_avoid].compact
+      unless options[:subjects_to_avoid].empty?
+        opts[:without][:owner_id] = Actor.normalize_id(options[:subjects_to_avoid])
       end
     end
 
@@ -423,13 +427,13 @@ class RecommenderSystem
   ## Utils (private methods)
   #######################
 
-  def self.compose_keywords(user,resource,options={})
+  def self.compose_keywords(subject,resource,options={})
     maxKeywords = 25
     keywords = []
     
-    #User tags
-    if !user.nil?
-      keywords += user.tag_list
+    #Subject tags (i.e. user tags)
+    if !subject.nil?
+      keywords += subject.tag_list
     end
 
     #Resource tags
@@ -448,20 +452,20 @@ class RecommenderSystem
       return keywords
     end
 
-    #If keywords are least than the maxKeywords, fill it with additional data about the user
-    if !user.nil?
+    #If keywords are least than the maxKeywords, fill it with additional data about the subject
+    if !subject.nil?
       keywordsMargin = maxKeywords - keywords.length
       if keywordsMargin > 0
-        #Tags of the resources the user created
-        allAuthoredKeywords = ActivityObject.where("scope=0 and object_type IN (?)",options[:models]).authored_by(user).map{ |r| r.tag_list }.flatten.uniq
+        #Tags of the resources the subject created
+        allAuthoredKeywords = ActivityObject.where("scope=0 and object_type IN (?)",options[:model_names]).authored_by(subject).map{ |r| r.tag_list }.flatten.uniq
         keywords = keywords + allAuthoredKeywords.sample(keywordsMargin)
         keywords.uniq!
       end
 
       keywordsMargin = maxKeywords - keywords.length
       if keywordsMargin > 0
-        #Tags of the resources the user like
-        allLikedKeywords = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => Actor.normalize_id(user)}).where("activity_objects.scope=0 and activity_objects.object_type IN (?)", options[:models]).map{ |activity| activity.activity_objects.first.tag_list }.flatten.uniq
+        #Tags of the resources the subject like
+        allLikedKeywords = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => Actor.normalize_id(subject)}).where("activity_objects.scope=0 and activity_objects.object_type IN (?)", options[:model_names]).map{ |activity| activity.activity_objects.first.tag_list }.flatten.uniq
         keywords = keywords + allLikedKeywords.sample(keywordsMargin)
         keywords.uniq!
       end
@@ -475,7 +479,7 @@ class RecommenderSystem
 
 
 
-  def self.search_options(keywords,user,resource,options={})
+  def self.search_options(keywords,subject,resource,options={})
     opts = {}
     opts[:keywords] = keywords
     opts[:n] = options[:nMax]
@@ -483,8 +487,8 @@ class RecommenderSystem
     #Only search for desired models
     opts[:models] = options[:models]
 
-    unless user.nil?
-      opts[:users_to_avoid] = [user]
+    unless subject.nil?
+      opts[:subjects_to_avoid] = [subject]
     end
 
     unless resource.nil?
@@ -494,22 +498,22 @@ class RecommenderSystem
     return opts
   end
 
-  def self.getResourcesToFill(n,preSelection,user,resource,options)
+  def self.getResourcesToFill(n,preSelection,subject,resource,options)
     resources = []
     nSubset = [80,4*n].max
-    ids_to_avoid = getIdsToAvoid(preSelection,user,resource,options)
-    resources = ActivityObject.where("scope=0 and object_type IN (?) and id not in (?)", options[:models], ids_to_avoid).order("ranking DESC").limit(nSubset).sample(n).map{|ao| ao.object}.compact
+    ids_to_avoid = getIdsToAvoid(preSelection,subject,resource,options)
+    resources = ActivityObject.where("scope=0 and object_type IN (?) and id not in (?)", options[:model_names], ids_to_avoid).order("ranking DESC").limit(nSubset).sample(n).map{|ao| ao.object}.compact
   end
 
-  def self.getIdsToAvoid(preSelection,user,resource,options)
+  def self.getIdsToAvoid(preSelection,subject,resource,options)
     ids_to_avoid = preSelection.map{|e| e.activity_object.id}
 
     if !resource.nil?
       ids_to_avoid.push(resource.activity_object.id)
     end
 
-    if !user.nil?
-      ids_to_avoid.concat(ActivityObject.where("scope=0 and object_type IN (?)",options[:models]).authored_by(user).map{|r| r.id})
+    if !subject.nil?
+      ids_to_avoid.concat(ActivityObject.where("scope=0 and object_type IN (?)",options[:model_names]).authored_by(subject).map{|r| r.id})
     end
 
     ids_to_avoid.uniq!
