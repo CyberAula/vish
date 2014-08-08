@@ -12,7 +12,7 @@ module SocialStream
             has updated_at
 
             has id
-            has activity_object.id, :as => :activity_object_id, :type => :integer
+            has activity_object.id, :as => :activity_object_id, :type => :integer, :sortable => true
 
             has activity_object.author_actions(:actor_id), :as => :author_id
             has activity_object.owner_actions(:actor_id),  :as => :owner_id
