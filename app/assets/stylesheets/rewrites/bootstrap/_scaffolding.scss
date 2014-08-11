@@ -29,7 +29,10 @@ header{
     width: 80%;
     margin-top: 0;
     float: left;
-    font-family: $corporate-font-family-sans-serif-Light;
+    font-family: $corporate-font-family-sans-serif-Regular;
+    i{
+      margin-right: 4px;
+    }
   }
   .helpheader{
     float: right;

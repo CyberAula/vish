@@ -1,3 +1,8 @@
+.catalogue
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
 .catalogue-layout
   height: 39px
 #excursions_catalogue,
@@ -23,6 +28,7 @@
     width: auto
     float: left
     display: inline-block
+    font-family: $corporate-font-family-sans-serif-Regular
   ul
     clear: both
     width: 100%
@@ -48,14 +54,14 @@
   h1
     width: 100%
     text-align: left
-    margin-top: 2px !important
-    margin-bottom: 2px !important
+    float: none
     i
       color: #BEBEBE
       font-size: 26px
       margin-right: 5px
   hr
     border-bottom-color: $gray
+    margin: 10px 0
 
 
 
@@ -74,6 +80,7 @@
     padding: 0
     position: relative
     border-left: none
+    margin-top: 12px
     .info_catalogue
       width: 10%
       height: 100%
@@ -100,6 +107,7 @@
           position: relative
           width: 100%
           height: auto
+          margin-top: 0
         label:hover
           color: darken($gray, 20%) 
           font-weight: 600
@@ -134,10 +142,6 @@
         li
           width: 24%
   
-@media (min-width: 0px) and (max-width: 979px)
-  #catalogue
-    margin-top: 0px
-
 
 @media (min-width: 650px) and (max-width: 899px)
 
