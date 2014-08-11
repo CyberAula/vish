@@ -30,7 +30,7 @@
         </td>
         <td class="admin-icontrash">
         	<%if can?(:delete, user) and !user.admin? %>
-            	<%= link_to(raw("<i class='fa fa-trash'></i> "), user_path(user), :confirm => t("are_you_sure"), :method => "delete")%>
+            	<%= link_to(raw("<i class='fa fa-trash-o'></i> "), user_path(user), :confirm => t("are_you_sure"), :method => "delete")%>
             <%end%>
         </td>
       </tr>

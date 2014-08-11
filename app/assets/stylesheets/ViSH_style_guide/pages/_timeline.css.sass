@@ -50,8 +50,11 @@
       background-color: transparent
       border: none
       margin-bottom: 0
+      box-shadow: none
   .thumbnail
     @include excursion-small
+    width: 92%
+    margin: 0 4%
 
 
 #time-line
@@ -70,10 +73,10 @@
     .media
       margin-top: 1%
       padding-top: 15px
-      border: 1px solid #ddd
+      border: 1px solid #EBEBEB
       overflow: visible
       display: block
-      background: rgba(255, 255, 255, 0.5)
+      background: $white
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(12, $gutter: $grid-gutter-width)
       @include make-md-column(12, $gutter: $grid-gutter-width)
@@ -117,16 +120,21 @@
         margin: 0px auto 5px
         clear: both
         padding: 0
+        .recomended
+          min-height: 105px
         .actions
           display: block
-          margin: 10px auto 10px
-          margin-top: 3% !important
+          margin: 13px auto 10px
           .post_time_ago
             float: right
             color: $gray-light
+            *font-style: italic
             font-family: $corporate-font-family-sans-serif-LightItalic
             font-size: 12px
         
+    .child
+      border-top: 1px solid #F5F5F5
+      background: #F5F5F5
     .more
       @include see-more
 
@@ -137,18 +145,18 @@
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   display: block
-  margin: 10px auto 
+  margin: 2px auto 
   padding: 0px
   clear: both
   .activity
   .media
-    border: 1px solid #ddd
+    border: 1px solid #EBEBEB
     overflow: visible
     margin-top: 5px
     margin-bottom: 10px
     display: block
     float: left
-    background: rgba(255, 255, 255, 0.5)
+    background: $white
     padding: 2%
 
     .child
@@ -189,7 +197,6 @@ div.new_comment
     display: block
     clear: none
     margin: 0 auto 8px
-    width: 96%
     .input-group
       float: left
     .input-group-addon
@@ -209,9 +216,9 @@ div.new_comment
       height: 38px !important
     input
       &[type="submit"]
-        margin: 10px 5px 10px 0 
+        margin: 10px 0px 
         float: right
-        @extend .btn-default
+        @extend .btn-primary
      
         @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
 

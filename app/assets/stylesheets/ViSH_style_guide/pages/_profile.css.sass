@@ -67,6 +67,7 @@
             color: $gray-light
             font-size: 14px
             word-wrap: break-word
+            clear: both
           .ocupation
             @include make-xs-column(12, $gutter: $grid-gutter-width)
             @include make-sm-column(10, $gutter: $grid-gutter-width)
@@ -87,6 +88,7 @@
               margin-bottom: 0
             span
               font-size: 0.9em
+          
             
           #effect
             position: relative
@@ -96,10 +98,13 @@
             @include make-sm-column(10, $gutter: $grid-gutter-width)
             @include make-md-column(10, $gutter: $grid-gutter-width)
             @include make-lg-column(10, $gutter: $grid-gutter-width)
-           
-            float: left
             overflow: hidden
-
+            div
+              width: 100%
+              float: left
+              display: block
+              clear: right
+              height: 30px
             h3
               color: $brand-primary
               font-size: 0.9em
@@ -117,6 +122,9 @@
             float: right
             display: none     
             margin-top: 3px
+          .name
+            width: 80%
+            float: left
           .panel
             @include box-shadow (0 0 0 transparent) 
 
