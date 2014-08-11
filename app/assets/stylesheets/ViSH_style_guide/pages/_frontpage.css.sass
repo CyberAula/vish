@@ -35,12 +35,15 @@
   position: relative
   .vish_logo_center
     width: 400px
-    margin-left: -200px
-    left: 50%
-    display: block
-    position: absolute
-    bottom: -170px
-    z-index: 7
+    @include center-block()
+    margin-top: -70px
+    position: relative
+    z-index: 666
+    @media (max-width: 500px)
+      width: 79%
+      margin-top: -14%
+    img
+      width: 100%
     hr
       border: 1px solid $gray-light
       margin: 5px 0
@@ -55,6 +58,8 @@
     //margin-top: 50px
     width: 100%
     overflow: hidden
+    margin-top: -20px
+
     &:before
       content: ""
       display: block
@@ -97,7 +102,6 @@
     img
       width: 100%
 
-
   .excursions
     display: block
 
@@ -107,6 +111,7 @@
     display: block
     width: 100%
     float: left
+
     .frontpage_count_entry
       margin-top: 4px
     .decoration
@@ -155,16 +160,18 @@
 
 
 .front_info
-  margin-top: 125px
 
-  .ch-grid 
-    float: left
+
+  .ch-grid
     margin: 0
     padding: 0
     list-style: none
     display: block
     text-align: center
-    width: 33.333333333%
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(4, $gutter: $grid-gutter-width)
+    @include make-md-column(4, $gutter: $grid-gutter-width)
+    @include make-lg-column(4, $gutter: $grid-gutter-width)
     h2
       width: 80%
       display: block
@@ -173,10 +180,13 @@
       color: $gray-dark
     p
       display: block
+      padding: 0 15px
       margin: 0 auto
       width: 80%
       font-size: 12px
       font-family: $corporate-font-family-sans-serif-Regular
+      @media (max-width: $screen-xs-max)
+      width: 100%
 
   .ch-grid li 
     width: 120px
@@ -313,4 +323,10 @@
   .text_1_info,
   .text_3_info
     margin-top: -50px
-
+  .text_2_info,
+  .text_3_info
+    @media (max-width: $screen-xs-max)
+      margin-top: 30px
+  .text_1_info
+    @media (max-width: $screen-xs-max)
+      margin-top: 0px
