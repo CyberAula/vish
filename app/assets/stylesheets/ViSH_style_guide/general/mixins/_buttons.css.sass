@@ -39,6 +39,44 @@
         @include border-top-radius ($border-radius-base)
         @include border-bottom-radius ($border-radius-base)
 
+@mixin follow-o
+  text-align: center
+  color: $brand-primary
+  font-family: $corporate-font-family-sans-serif-Regular
+  font-size: 0.8em
+  form
+    margin: 0px
+    width: 100%
+    input
+      border: none
+      background-color: transparent
+      color: $brand-primary
+      text-align: left
+      width: 100%
+      margin-top: 0px
+      padding: 5px 5px 5px 0
+
+  .following-button
+    background-color: transparent
+    color: $gray
+    text-align: left
+    width: 100%
+    margin-top: 0px
+    padding: 5px 5px 5px 0
+
+  .unfollow-button
+    form
+      margin: 0px
+      input
+        background-color: transparent
+        text-align: left
+        border: 0px none 
+        width: 100%
+        color: $brand-secundary
+        margin-top: 0px
+        padding: 5px 5px 5px 0
+
+
 @mixin see-more
   margin-top: 2% !important
   margin-bottom: 2% !important

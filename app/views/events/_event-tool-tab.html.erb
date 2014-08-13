@@ -88,7 +88,12 @@ $(document).ready(function(){
       <%= link_to t('excursion.actions.delete'),  @event, :method => :delete, :class => 'btn btn-primary' %>
     </div>
   </div>
-  
+  <% if @event.streaming %>
+    <!-- STREAMING CODE  -->
+  <% else %>
+    <!--mashme-->
+    <%= render :partial => 'events/button-mashme'%>
+  <% end %>
 <!--categoriess-->
   <%if user_signed_in?%>
     <%= content_for :javascript do %> 
@@ -101,13 +106,6 @@ $(document).ready(function(){
     <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
     <%= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>
   <%end%>
-
-  <% if @event.streaming %>
-    <!-- STREAMING CODE  -->
-  <% else %>
-    <!--mashme-->
-    <%= render :partial => 'events/button-mashme'%>
-  <% end %>
 </div>
 
   <ul class="nav nav-tabs tooltab">

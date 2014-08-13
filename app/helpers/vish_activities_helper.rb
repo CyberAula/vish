@@ -13,7 +13,7 @@ module VishActivitiesHelper
   def link_like_params(object,options)
     params = Array.new
     if !user_signed_in?
-      params << raw("<i class='fa fa-star-empty '></i> ") + options[:text].to_s                
+      params << raw("<i class='fa fa-star-o '></i> ") + options[:text].to_s                
       params << new_user_session_path
       params << {:class => "with_tooltip verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object)+ " " + options[:class].to_s, :title => options[:title].to_s}
     else

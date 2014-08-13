@@ -8,33 +8,40 @@
   <% end %>
 
   <%= div_for document do %>
-    
-    <!--visor-->
-    <div class="box-show">
-      <div class="container-visor">
-        <div class="caja-elementos">
+      <!--recomended-->
 
-          <%= render partial: "#{ document.class.to_s.tableize }/#{ document.class.to_s.underscore }_show",
-            locals: { document.class.to_s.underscore.to_sym => document } %>
+    <aside class="recomended" id="recomended_box">
+      <ul class="small-box clearfix">
+        <!--recomended-->
+        <!-- No option[:models] mean all resources -->
+        <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,document,{:n=>16})} %>
+      </ul>
+    </aside>
+
+    <!--visor-->
+    <div class="doc-show">
+      <div class="box-show">
+        <div class="container-visor">
+          <div class="caja-elementos">
+
+            <%= render partial: "#{ document.class.to_s.tableize }/#{ document.class.to_s.underscore }_show",
+              locals: { document.class.to_s.underscore.to_sym => document } %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!--recomended-->
-    <!-- No option[:models] mean all resources -->
-    <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,document,{:n=>16})} %>
-
-    <div class="description-activity">
-      <!--tool tab-->
-      <div class="box_description">   
-        <div class="excursion_tool">
-          <%= render :partial => 'common_documents/document-tool-tab', :locals => { :document => document } %>
-        </div>     
-      </div>
-        
-      <!--activity-->
-      <div class="activity-box">
-        <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
+      <div class="description-activity">
+        <!--tool tab-->
+        <div class="box_description">   
+          <div class="excursion_tool">
+            <%= render :partial => 'common_documents/document-tool-tab', :locals => { :document => document } %>
+          </div>     
+        </div>
+          
+        <!--activity-->
+        <div class="activity-box">
+          <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
+        </div>
       </div>
     </div>
 

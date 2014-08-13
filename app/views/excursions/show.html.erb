@@ -93,12 +93,8 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
 <section id="show_items">
 
   <!--recomended-->
+  <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})} %>
 
-  <aside class="recomended" id="recomended_box">
-      <ul class="items clearfix">
-        <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})} %>
-      </ul>
-  </aside>
 
 
   <div class="doc-show">

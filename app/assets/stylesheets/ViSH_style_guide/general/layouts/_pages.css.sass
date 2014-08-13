@@ -17,6 +17,9 @@
     @include border-top-radius ($border-radius-base)
     @include border-bottom-radius ($border-radius-base)
 
+.viewsAndConunt
+  @include creator
+
 .tab-content
   label
     margin-top: 10px
@@ -29,11 +32,13 @@
         min-height: 19px !important
       .following-button
         padding: 1px 0
-        
+
+#sign_in        
+  padding-bottom: 0px !important      
 
 .registration,
-.new-user,
-.password
+.forgot,
+#sign_in
   h4
     padding-bottom: 4px
   form

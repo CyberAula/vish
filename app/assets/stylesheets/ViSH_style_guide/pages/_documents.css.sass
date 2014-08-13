@@ -12,7 +12,8 @@ aside.recomended
 
 .description-activity
   .box_description
-    min-height: 202px
+    min-height: 171px
+    margin-bottom: 15px
   .activity-box
     clear: both
     padding-bottom: 15px
@@ -37,12 +38,15 @@ aside.recomended
   h2
     //font-family: $corporate-font-family-sans-serif-Regular
     color: $gray
+    min-height: 26px
   .tab-content
     .newClass,
     .avatar,
     #effect,
     .right-name
       float: left
+      a p
+        color: $gray
       .add
         @include follow-profile
         width: 100%
@@ -89,6 +93,8 @@ aside.recomended
       @include make-lg-column(9, $gutter: $grid-gutter-width)
       p
         margin-bottom: 7px
+      .add
+        @include follow-o
     .panel-group
       @include make-sm-column(8, $gutter: $grid-gutter-width)
       @include make-md-column(8, $gutter: $grid-gutter-width)
@@ -131,10 +137,10 @@ aside.recomended
 
 aside.recomended
   float: right !important
+.recomended-items
   .items
     padding: 0
-
-  .thumbnail
+  li
     @include excursion-small
 
 .box-show

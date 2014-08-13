@@ -64,7 +64,6 @@
 </div>
 
 
-<div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="<%= document_details_tab_class document, :info %>">
       <%= link_to (raw("<i class='fa fa-align-left'></i> <span class='hidden-sm hidden-xs'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
@@ -73,7 +72,7 @@
     <% if can? :update, document %>
 
       <li class="<%= document_details_tab_class document, :edit %>">
-        <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
+        <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-sm hidden-xs'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
       </li>
 
     <% end %>
@@ -126,7 +125,7 @@
 
     </div>-->
   </ul>
-</div>
+
 
 <h2><%= document.title %></h2>
 
