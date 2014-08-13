@@ -47,9 +47,8 @@
 
     <div class="tab-pane" id="suggestion_show">
 
-      <div class="recomended-mobile hidden-desktop" id="recomended_box">
-        <div class="recomended-items">
-          <ul class="small-box clearfix">
+      <div class="recomended-mobile hidden-md hidden-lg" id="recomended_box">
+          <ul class="items clearfix">
             <% @resource_suggestions .each do |excursion| %>
                         <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion} %>
                       <% end %>
