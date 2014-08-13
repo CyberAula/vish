@@ -34,8 +34,11 @@
   @include hidden-lg;
   .user{
     margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    float: none;
     img{
-      width: 25px;
+      width: 18px;
     }
   }
 }

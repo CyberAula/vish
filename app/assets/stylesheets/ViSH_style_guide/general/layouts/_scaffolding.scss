@@ -43,3 +43,6 @@ textarea,input{
   overflow: visible;
 }
 
+input#captcha{
+  @extend .form-control;
+}

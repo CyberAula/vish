@@ -19,10 +19,6 @@
 
       <ul class="nav nav-pills desktop-nav">
 
-        <!--search-->
-          <li class="search-ui ">
-            <%= render partial: 'layouts/header/uisearch_header' %>
-          </li> 
         <!--navegation-->
         <%= render partial: 'layouts/header/basic_navegation' %>
         
@@ -123,6 +119,11 @@
  
       </ul>
 
+      <!--search-->
+      <%= render partial: 'layouts/header/uisearch_header' %>
+
+<!--________________________mobile/tablet-->
+      <%= render partial: 'layouts/header/header_signed_in_mobile' %>
     
     </div>
   </div>  
