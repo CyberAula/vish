@@ -105,8 +105,9 @@ es:
     success: "Las categorías se han salvado con éxito"
   close: "Cerrar"
   conditions:
-    check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "
+    check_message: "Acepto las "
     check_message_1: "Condiciones de Uso"
+    check_message_2: " de ViSH."
     other: "términos de uso"
   contact:
     footer: "contacto"

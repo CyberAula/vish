@@ -28,8 +28,9 @@ fr:
   cancel: "Annuler"
   close: "Fermer"
   conditions:
-    check_message: "En cliquant sur le bouton Accepter, vous vous engagez à respecter nos "  
-    check_message_1: "conditions générales."
+    check_message: "J'accepte les "  
+    check_message_1: "conditions générales"
+    check_message_2: " de ViSH."
     other: "conditions"
   contact:
     pending:

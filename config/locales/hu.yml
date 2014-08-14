@@ -32,6 +32,7 @@ hu:
   conditions:
     check_message: "Az Elfogadásra kattintva, egyetértesz a "  
     check_message_1: "Felhasználási feltételekkel"
+    check_message_2: ""
     other: "feltételek"
   contact:
     pending:

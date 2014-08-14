@@ -28,8 +28,9 @@ nl:
   cancel: "Annuleren"
   close: "Sluiten"
   conditions:
-    check_message: "Door op Accepteren te klikken stemt u in met onze "  
-    check_message_1: "Algemene Voorwaarden."
+    check_message: "IK ga akkoord met de "  
+    check_message_1: "Algemene Voorwaarden"
+    check_message_2: " van ViSH."
     other: "voorwaarden"
   contact:
     pending:

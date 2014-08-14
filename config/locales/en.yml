@@ -108,8 +108,9 @@ en:
     success: "Categories saved succesfully"
   close: "Close"
   conditions:
-    check_message: "By clicking Accept, you agree to our "  
+    check_message: "I Accept ViSH "  
     check_message_1: "Terms and Conditions."
+    check_message_2: ""
     other: "terms of use"
   contact:
     footer: "contact"
