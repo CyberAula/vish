@@ -29,11 +29,11 @@
                   </a>
                 </h4>
               </div>
-              <div id="document" class="panel collapse in">
+              <div id="document" class="panel collapse">
                 <div class="panel-body">
                   <% d = Document.new %>
                   <% d.owner_id = Actor.normalize_id(current_subject) %>
-                  <%= form_for d, :namespace => 'new_file_only', :html => { :multipart => true }, :remote => false do |f| %>
+                  <%= form_for d, :class= => "form-group", :namespace => 'new_file_only', :html => { :multipart => true }, :remote => false do |f| %>
                     <%= f.hidden_field :owner_id %>
                     <%= f.file_field :file %>
                     <%= f.hidden_field :title%>
@@ -59,7 +59,7 @@
                   </a>
                 </h4>
               </div>
-              <div id="link" class="panel collapse in">
+              <div id="link" class="panel collapse">
                 <div class="panel-body">
 
                   <% d = Link.new %>

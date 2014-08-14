@@ -10,13 +10,8 @@
   <%= div_for document do %>
       <!--recomended-->
 
-    <aside class="recomended" id="recomended_box">
-      <ul class="items clearfix">
-        <!--recomended-->
-        <!-- No option[:models] mean all resources -->
-        <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,document,{:n=>16})} %>
-      </ul>
-    </aside>
+      <!-- No option[:models] mean all resources -->
+      <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,document,{:n=>16})} %>
 
     <!--visor-->
     <div class="doc-show">

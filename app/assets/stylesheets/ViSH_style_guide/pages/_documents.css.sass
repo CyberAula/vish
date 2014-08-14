@@ -38,7 +38,7 @@ aside.recomended
   h2
     //font-family: $corporate-font-family-sans-serif-Regular
     color: $gray
-    min-height: 26px
+    min-height: 38px
   .tab-content
     .newClass,
     .avatar,
@@ -117,11 +117,19 @@ aside.recomended
     right: 0
     float: right
     display: inline-block
-    a
-      .fa-star
-        color: $brand-primary
-      .fa-star-o
-        color: $gray
+    .btn:first-child:not(:last-child):not(.dropdown-toggle)
+      @include border-top-radius (0)
+      @include border-bottom-radius (0)
+      margin-left: 0
+    .ui-multiselect
+      width: 28px !important
+      background: rgba(0, 0, 0, 0)
+      margin-right: 5px
+    button
+      border: none
+      &:hover
+        border: none
+    
   ul.nav-tabs
     clear: none
 

@@ -76,6 +76,11 @@
             @include make-lg-column(10, $gutter: $grid-gutter-width)
             float: left
             padding-left: 0!important
+            @media (max-width: $screen-xs-max)
+              float: none
+              height: auto
+              text-align: center
+              padding-right: 0px
             h3
               line-height: 15px
               color: $brand-primary
@@ -87,8 +92,16 @@
               float: left
               margin-top: 5px
               margin-bottom: 0
+              @media (max-width: $screen-xs-max)
+                float: none
+                width: 100%
+                margin-top: 9px
+                margin-bottom: 0px
+                padding-right: 0px
             span
               font-size: 0.9em
+              @media (max-width: $screen-xs-max)
+                font-size: 1.2em
           
             
           #effect
@@ -106,6 +119,11 @@
               display: block
               clear: right
               height: 30px
+              @media (max-width: $screen-xs-max)
+                float: none
+                height: auto
+                text-align: center
+                padding-right: 0px
             h3
               color: $brand-primary
               font-size: 0.9em
@@ -116,9 +134,16 @@
               margin-top: 7px
               margin-bottom: 10px
               float: left
+              @media (max-width: $screen-xs-max)
+                float: none
+                width: 100%
+                margin-top: 9px
+                margin-bottom: 0px
+                padding-right: 0px
             span
               font-size: 0.9em
-
+              @media (max-width: $screen-xs-max)
+                font-size: 1.1em
           .tags-profile
             float: right
             display: none     
@@ -164,54 +189,16 @@
           @media (max-width: $screen-xs-max)
             .name,
             .description
-              text-align: center  
+              text-align: center 
+              width: 100% 
             .name
               margin-top: 20px             
 
 
-
-          .newClass
-            height: 0px
-            overflow: hidden
-          .anotherNewClass
-            height: auto
-            overflow: auto
-
-            .organization
-              @include make-xs-column(12, $gutter: $grid-gutter-width)
-              @include make-sm-column(10, $gutter: $grid-gutter-width)
-              @include make-md-column(10, $gutter: $grid-gutter-width)
-              @include make-lg-column(10, $gutter: $grid-gutter-width)
-              float: left
-              display: inline-block
-            .website
-              @include make-xs-column(12, $gutter: $grid-gutter-width)
-              @include make-sm-column(10, $gutter: $grid-gutter-width)
-              @include make-md-column(10, $gutter: $grid-gutter-width)
-              @include make-lg-column(10, $gutter: $grid-gutter-width)
-              float: left
-              display: inline-block
-            .birthday
-              @include make-xs-column(12, $gutter: $grid-gutter-width)
-              @include make-sm-column(10, $gutter: $grid-gutter-width)
-              @include make-md-column(10, $gutter: $grid-gutter-width)
-              @include make-lg-column(10, $gutter: $grid-gutter-width)
-              float: left
-              display: inline-block
-            .city
-              @include make-xs-column(12, $gutter: $grid-gutter-width)
-              @include make-sm-column(10, $gutter: $grid-gutter-width)
-              @include make-md-column(10, $gutter: $grid-gutter-width)
-              @include make-lg-column(10, $gutter: $grid-gutter-width)
-              float: left
-              display: inline-block
-            .county
-              @include make-xs-column(12, $gutter: $grid-gutter-width)
-              @include make-sm-column(10, $gutter: $grid-gutter-width)
-              @include make-md-column(10, $gutter: $grid-gutter-width)
-              @include make-lg-column(10, $gutter: $grid-gutter-width)
-              float: left
-              display: inline-block
+            #effect
+              div
+                width: 100%
+            
 
           .toolbar-profile
             position: relative
@@ -223,6 +210,7 @@
             margin-top: 10px
 
             .btn-group
+              margin-bottom: 9px
               i
                 margin-right: 5px
               .btn-follow
@@ -232,7 +220,7 @@
                 min-height: 35px
               .btn
                 a
-                  color: $gray 
+                  color: #333
                 @media (max-width: $screen-xs-max)
                   width: 100% !important
                   clear: both
@@ -240,6 +228,9 @@
                   float: left
                   @include border-top-radius ($border-radius-base)
                   @include border-bottom-radius ($border-radius-base)
+                &:hover
+                  a
+                    color: $brand-primary
               @media (max-width: $screen-xs-max)
                 width: 80%
                 @include center-block

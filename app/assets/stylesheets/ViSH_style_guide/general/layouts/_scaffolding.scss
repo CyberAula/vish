@@ -24,7 +24,16 @@ label{
 
 a{
   &:hover,&:focus{
-    text-decoration: none
+    text-decoration: none;
+  }
+  .fa-star{
+    color: $brand-primary;
+  }
+  .fa-star-o{
+    color: $gray;
+    &:hover{
+      color: $brand-primary !important;
+    }
   }
 }
 
