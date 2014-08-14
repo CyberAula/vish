@@ -1,0 +1,57 @@
+.btn
+  -moz-transition-property: background-color, color
+  -moz-transition-duration: .2s
+  -moz-transition-timing-function: ease-out
+  -webkit-transition-property: background-color, color
+  -webkit-transition-duration: .2s
+  -o-transition-property: background-color, color
+  -o-transition-duration: .2s
+  padding: 6px
+
+.btn:hover, .btn a
+  text-decoration: none
+  -moz-transition-property: background-color, color
+  -moz-transition-duration: .2s
+  -moz-transition-timing-function: ease-out
+  -webkit-transition-property: background-color, color
+  -webkit-transition-duration: .2s
+  -o-transition-property: background-color, color
+  -o-transition-duration: .2s
+
+
+.btn:focus
+  outline: none
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .btn-default.disabled, .btn-default[disabled]
+  background-color: $white
+  color: $brand-primary
+  border: 1px solid $brand-primary
+
+.open .btn-default.dropdown-toggle
+  background-color: rgba(85, 85, 85, 0.97) !important
+
+.btn-secundary
+  background-color: $btn-secundary-bg
+  color: $btn-secundary-color
+
+.btn-secundary:hover, .btn-secundary:focus, .btn-secundary:active, .btn-secundary.active, .btn-secundary.disabled, .btn-secundary[disabled] 
+  background-color: darken($btn-secundary-bg, 10%)
+  color: $btn-secundary-color
+
+.btn-group.open .btn-secundary.dropdown-toggle
+  background-color: darken($btn-secundary-bg, 10%)
+
+
+.btn-group.open .btn-primary.dropdown-toggle
+  background-color: darken($brand-primary, 7%)
+
+.label, .badge
+  text-shadow: 0 1px 0 transparent
+  font-weight: normal
+  padding: 3px 6px
+
+.open .btn-default.dropdown-toggle, .open div.new_comment form#new_comment input.dropdown-toggle[type="submit"], div.new_comment form#new_comment .open input.dropdown-toggle[type="submit"]
+  border: 1px solid rgba(0, 0, 0, 0)
+
+.btn-group.open .dropdown-toggle
+  box-shadow: none

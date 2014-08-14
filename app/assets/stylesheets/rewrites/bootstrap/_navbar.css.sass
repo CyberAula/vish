@@ -1,0 +1,84 @@
+.navbar-fixed-top
+  background-color: $navbar-default-bg
+  padding: 0
+
+.navbar-default .navbar-text 
+  padding: 14px 0 9px
+  margin-bottom: 0
+
+.navbar
+  margin-bottom: 0
+  @media (min-width: $screen-sm-min)
+    min-height: 47px
+  @media (min-width: $screen-md-min)
+    min-height: 49px
+  @media (min-width: $screen-lg-min)
+    min-height: 50px
+
+.navbar-header
+  margin-top: 3px
+
+.navbar-default
+  @include box-shadow (0 -2px 20px rgba(0, 0, 0, 0.1))
+  padding: 3px 0 0
+  .nav-pills
+    float: left
+
+.navbar-toggle 
+  padding: 9px 0px 0px 10px
+
+.navbar .divider-vertical 
+  background-color: #f9f9f9
+  border-right: 1px solid #f9f9f9
+  border: none
+
+.navbar .btn-navbar .icon-bar 
+  background-color: $brand-primary
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus 
+  color: $brand-primary-2
+
+@media (max-width: 767px)
+  .navbar-nav .open .dropdown-menu 
+    background-color: rgba(0, 0, 0, 0.57)
+
+.nav-collapse.collapse 
+  background-color: $gray
+
+ul.navbar-nav > li 
+  font-family: $corporate-font-family-sans-serif-Regular
+
+.navbar-nav > li a 
+  font-family: $corporate-font-family-sans-serif-Regular
+  padding-top: 9px
+  padding-bottom: 9px
+
+.navbar-nav.navbar-right:last-child 
+  margin-right: $zero
+
+.navbar-inverse .navbar-nav > .active > a, 
+.navbar-inverse .navbar-nav > .active > a:hover, 
+.navbar-inverse .navbar-nav > .active > a:focus 
+  background-color: darken($navbar-inverse-bg, 10%)
+
+.navbar-collapse
+  background-color: transparent
+  @media (max-width: $screen-xs-max)
+    background-color: $white
+    margin-top: 0
+
+
+.navbar-collapse li a:hover
+  @include border-top-radius ($border-radius-base)
+  @include border-bottom-radius ($border-radius-base)
+  @include border-left-radius ($border-radius-base)
+  @include border-right-radius ($border-radius-base)
+
+.navbar-collapse li.active a:hover
+  background-color: #EEE !important
+
+@media (max-width: 767px)
+  .navbar-fixed-top .navbar-collapse
+    max-height: auto !important
+.navbar-form
+  margin-top: 0

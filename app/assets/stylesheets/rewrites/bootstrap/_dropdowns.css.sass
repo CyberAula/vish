@@ -1,0 +1,28 @@
+.dropdown-menu
+  padding: 2px 0
+
+.dropdown-menu > .disabled > a:hover,
+.dropdown-menu > .disabled > a:focus 
+  text-decoration: none
+  cursor: default
+  background-color: transparent
+  background-image: none
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false)
+
+.dropdown-menu > li > a
+  padding: 3px 20px
+  @include border-top-radius ($border-radius-base)
+  @include border-bottom-radius ($border-radius-base)
+  &:hover
+    text-decoration: none
+    color: $gray-lighter-extra
+    background-color: #E60054 !important
+  i
+    margin-right: 8px
+
+
+.open .btn-default.dropdown-toggle
+  color: $gray-light
+
+.dropdown-menu .divider
+  margin: 2px 0

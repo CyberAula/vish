@@ -17,6 +17,7 @@
     margin-bottom: 2px
     padding: 14px 15px 10px
     border-bottom: 1px solid #CECECE
+    background: rgba(255, 255, 255, 0.42)
     .content_left
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(3, $gutter: $grid-gutter-width)
@@ -38,7 +39,7 @@
           a
             @include text-overflow 
         .date
-          color: #888
+          color: $gray
           font-size: 11px
     .content_right
       display: inline-block
@@ -94,17 +95,16 @@
       float: none !important
       padding: 15px 15px 58px
       background: $white
+      @extend .form-group
       label
         font-size: 15px
         display: block
       input
         &[type="text"]
           width: 100%
-          background-image: none !important
-          background-color: #f4f4f4
-          border-left: none
-          border-right: none
-          border-bottom: none
+          @extend .form-control
+      #subject
+        margin-bottom: 10px
           
     
 
@@ -121,7 +121,7 @@
 
 
 .cont_conversation
-  margin-top: 15px
+  margin-top: 6px
   .answer
     color: $gray
   .cleditorMain
@@ -135,7 +135,6 @@
       background-color: #CECECE
       @include border-top-radius (4px)
     iframe
-      background-color: #f9f9f9
       height: 221px !important
       width: 100% !important
       @include border-bottom-radius (4px)
@@ -155,7 +154,7 @@
     float: left
   .participants
     @include border-top-radius ($border-radius-base)
-    background-color: #DBDBDB
+    background-color: rgba(0, 0, 0, 0.09)
     clear: both
     padding: 6px 15px 15px 15px
     margin-bottom: 2px
@@ -171,7 +170,7 @@
 
   .message
     padding: 15px 0
-    border-bottom: 1px solid #f1f1f1
+    border-bottom: 1px solid $gray-light
     background-color: $white
     .media
       margin-left: 20px
