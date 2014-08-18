@@ -5,6 +5,20 @@
   </div>
   <div class="modal-body">
     <p>My categories</p>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#myTags").tagit();
+    });
+    </script>
+    <div class="tagBoxNew">
+      <ul id="myTags">
+    <!-- Existing list items will be pre-added to the tags -->
+      <% resource_categories = get_initial_categories(@excursion)%>
+        <% resource_categories.each do |cat| %>
+        <li><%=cat%></li>
+      <%end%> 
+</ul>
+    </div>  
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
