@@ -12,11 +12,10 @@
     </script>
     <div class="tagBoxNew">
       <ul id="myCategories">
-        <% binding.pry %>
     <!-- Existing list items will be pre-added to the tags -->
         <% resource_categories = get_initial_categories(@excursion) %>
           <% resource_categories.each do |cat| %>
-            <li><%=cat%></li>
+            <li><%= cat.title %></li>
         <%end%> 
       </ul>
     </div>
@@ -41,7 +40,6 @@ $.ajax({
         dataType: "json",
         data: { item_type:"<%=item.class.to_s%>", item_id:"<%=item.id.to_s%>", categories_array: JSON.stringify(cat_array) },
           success: function(data){        
-                  $("#categories_viewer_modal").hide();
               }
             });
 });
