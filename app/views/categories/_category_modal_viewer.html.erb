@@ -7,21 +7,42 @@
     <p>My categories</p>
     <script type="text/javascript">
     $(document).ready(function() {
-        $("#myTags").tagit();
+        $("#myCategories").tagit();
     });
     </script>
     <div class="tagBoxNew">
-      <ul id="myTags">
+      <ul id="myCategories">
+        <% binding.pry %>
     <!-- Existing list items will be pre-added to the tags -->
-      <% resource_categories = get_initial_categories(@excursion)%>
-        <% resource_categories.each do |cat| %>
-        <li><%=cat%></li>
-      <%end%> 
-</ul>
-    </div>  
+        <% resource_categories = get_initial_categories(@excursion) %>
+          <% resource_categories.each do |cat| %>
+            <li><%=cat%></li>
+        <%end%> 
+      </ul>
+    </div>
+
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    <button class="btn btn-primary">Save</button>
+    <button class="btn btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>
+    <button id="save_cat_button" class="btn btn-primary"><%= t('button.save')%></button>
   </div>
 </div>
+
+<script>
+
+$("#save_cat_button").click(function() {
+  var cat_array = [];
+$("#myCategories li").each(function(index,elem){cat_array.push($(elem).text())});
+
+
+$.ajax({
+        url: '/categories/add_items',
+        type: 'POST',
+        dataType: "json",
+        data: { item_type:"<%=item.class.to_s%>", item_id:"<%=item.id.to_s%>", categories_array: JSON.stringify(cat_array) },
+          success: function(data){        
+                  $("#categories_viewer_modal").hide();
+              }
+            });
+});
+</script>
