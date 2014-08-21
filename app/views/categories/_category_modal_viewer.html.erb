@@ -4,20 +4,33 @@
     <h3 id="myModalLabel">Add to my Categories</h3>
   </div>
   <div class="modal-body">
+    <p class= "information"> Suggested Categories </p>
+     <div id="suggested_categories" class="tagBoxNew">
+        <% generic_categories = categories = subject_categories(current_subject, {:scope => :me, :limit => 0}) %>
+        <% generic_categories.each do |init| %>
+          <ul id="suggestedCategories" class="tagit">
+            <li class="tagit-choice" value="<%= init.id %>" ><%=init.title %></li>
+          </ul>
+        <% end %>
+     </div>
+    <br>
     <p class="information">My categories</p>
     <script type="text/javascript">
     $(document).ready(function() {
         $("#myCategories").tagit();
+        
+        <% resource_categories = get_initial_categories(@excursion) %>
+          <% resource_categories.each do |cat| %>
+            <% ident = Category.find(cat) %>
+            $("#myCategories").tagit("add", "<%=ident.title %>", "<%=ident.id%>");
+        <%end%> 
+
     });
     </script>
     <div class="tagBoxNew">
       <ul id="myCategories">
     <!-- Existing list items will be pre-added to the tags -->
-        <% resource_categories = get_initial_categories(@excursion) %>
-          <% resource_categories.each do |cat| %>
-            <li><%= cat.title %></li>
-            <%binding.pry %>
-        <%end%> 
+        
       </ul>
     </div>
 
@@ -29,19 +42,38 @@
 </div>
 
 <script>
+//When click to suggested they go to down part
+$("#suggested_categories li").click(function(){
+  var value = $(this).val();
+  var name = $(this).html();
+
+  $("#myCategories").tagit("add", name, value);
+});
+
 
 $("#save_cat_button").click(function() {
-  var cat_array = [];
-$("#myCategories li").each(function(index,elem){cat_array.push($(elem).text())});
+  var cat_done_array = [];
+  var cat_todo_array = [];
+  $("#myCategories li").each(function(index,elem){
+    //comprobar primero los que tengan un attrvalue null para crearlos
+    if ($(elem).attr("tagvalue") != null){
+      cat_done_array.push($(elem).attr("tagvalue"));
+    }
+    else {
+      cat_todo_array.push($(elem).text());
+    }
+
+  });
 
 
-$.ajax({
-        url: '/categories/add_items',
-        type: 'POST',
-        dataType: "json",
-        data: { item_type:"<%=item.class.to_s%>", item_id:"<%=item.id.to_s%>", categories_array: JSON.stringify(cat_array) },
-          success: function(data){        
-              }
-            });
+  $.ajax({
+          url: '/categories/add_items',
+          type: 'POST',
+          dataType: "json",
+          data: { item_type:"<%=item.class.to_s%>", item_id:"<%=item.id.to_s%>", categories_array: JSON.stringify(cat_done_array) },
+            success: function(data){    
+              $("#categories_viewer_modal").modal('toggle');   
+                }
+  });
 });
 </script>
