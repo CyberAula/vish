@@ -69,6 +69,22 @@ class CategoriesController < ApplicationController
       params.delete :item_id
     end
   end
+ 
+  def categories_check
+    categories_already = {}
+    Category.all.each do |t|
+      categories_already << {t.title => t.id} 
+    end
+    if params[:category_array].present?
+      params[:category_array].each do |cat|
+        if !categories_already.member?(cat)
+        end
+      end
+    end
+    #Category.all
+    #Check in categories which categories are new and create them, when done, get an array with all ids
+    #apply the categories to an item
+  end
 
   def allowed_params
     [:item_type, :item_id, :scope]

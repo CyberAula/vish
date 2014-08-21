@@ -4,7 +4,7 @@
     <h3 id="myModalLabel">Add to my Categories</h3>
   </div>
   <div class="modal-body">
-    <p>My categories</p>
+    <p class="information">My categories</p>
     <script type="text/javascript">
     $(document).ready(function() {
         $("#myCategories").tagit();
@@ -16,6 +16,7 @@
         <% resource_categories = get_initial_categories(@excursion) %>
           <% resource_categories.each do |cat| %>
             <li><%= cat.title %></li>
+            <%binding.pry %>
         <%end%> 
       </ul>
     </div>
