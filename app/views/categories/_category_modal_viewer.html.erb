@@ -53,24 +53,23 @@ $("#suggested_categories li").click(function(){
 
 $("#save_cat_button").click(function() {
   var cat_done_array = [];
-  var cat_todo_array = [];
+
   $("#myCategories li").each(function(index,elem){
     //comprobar primero los que tengan un attrvalue null para crearlos
     if ($(elem).attr("tagvalue") != null){
-      cat_done_array.push($(elem).attr("tagvalue"));
+      cat_done_array.push({id: $(elem).attr("tagvalue")});
     }
     else {
-      cat_todo_array.push($(elem).text());
+      cat_done_array.push({title: $(elem).text()});
     }
-
   });
 
 
   $.ajax({
-          url: '/categories/add_items',
+          url: '/categories/categorize',
           type: 'POST',
           dataType: "json",
-          data: { item_type:"<%=item.class.to_s%>", item_id:"<%=item.id.to_s%>", categories_array: JSON.stringify(cat_done_array) },
+          data: { item_type:"<%=item.class.to_s%>", item_id:"<%=item.id.to_s%>", category_array: JSON.stringify(cat_done_array) },
             success: function(data){    
               $("#categories_viewer_modal").modal('toggle');   
                 }
