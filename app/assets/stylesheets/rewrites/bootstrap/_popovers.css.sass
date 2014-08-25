@@ -7,25 +7,27 @@
 
 .popover-content 
   padding: 0
-
+  background-color: $gray-darker
+  @include border-bottom-radius ($border-radius-base)
 
 .popover-title 
-  color: $gray
+  color: $gray-lighter
+  background-color: $gray-darker
   padding-top: 8px 14px !important
   border-bottom: 1px solid $gray-lighter
-  background-color: $gray-lighter-extra
   font-family: $corporate-font-family-sans-serif-Medium
 
 
 .popover-body 
   padding: 7px 14px
+  color: $gray-lighter-extra
 
 
 .popover-footer 
   padding: 4px 15px
   margin-bottom: 0
-  background-color: $gray-lighter-extra
-  border-top: 1px solid $gray-light
+  color: $gray-lighter
+  border-top: 1px solid $gray-lighter
   font-family: $corporate-font-family-sans-serif-Light
   @include box-shadow (inset 0 1px 0 $white)
   i
@@ -51,7 +53,6 @@
         &:hover
           border-bottom: 0px !important
     .popoverfix
-      margin-top: 15px
       font-size: 14px
       line-height: 18px
       color: #969595
@@ -59,7 +60,7 @@
       top: 8% !important
       
     .arrow:after 
-      border-left-color: $gray-lighter-extra
+      border-left-color: $gray-darker-extra
     .modal-footer
       a
         color: $gray
