@@ -78,7 +78,11 @@ es:
         teaching: "enseñanza"
     title: "Catálogo"
   category:
-    confirm_delete: "Borrar categoria?"
+    cat_add_title: "Mis categorías"
+    categorized_like: "Categorizada como:"
+    confirm_delete: "Borrar categoría?"
+    modalLabel: "Añadir a mis categorías"
+    tagit_watermark_cat: "Añade una nueva categoría"
   categories:
     actions:
       add: "Crear categoría"
