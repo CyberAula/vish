@@ -43,45 +43,55 @@
   </div>
 </div>
 <script>
-//When click to suggested they go to down part
-var appliedTags = "";
-$("#suggested_categories li").click(function(){
-  var value = $(this).val();
-  var name = $(this).html();
 
-  $("#myCategories").tagit("add", name, value);
-});
+  //When click to suggested they go to down part for being categorized
+  $("#suggested_categories li").click(function(){
+    var value = $(this).val();
+    var name = $(this).html();
 
-
-$("#save_cat_button").click(function() {
-  var cat_done_array = [];
-
-  $("#myCategories .tagit-choice").each(function(index,elem){
-    //comprobar primero los que tengan un attrvalue null para crearlos
-    if ($(elem).attr("tagvalue") != null){
-      cat_done_array.push({id: $(elem).attr("tagvalue")});
-    }
-    else {
-      cat_done_array.push({title: $(elem).text()});
-    }
+    $("#myCategories").tagit("add", name, value);
   });
 
+  //When saving gathering all tags and sending to server
+  $("#save_cat_button").click(function() {
+    var cat_done_array = [];
 
-  $.ajax({
-          url: '/categories/categorize',
-          type: 'POST',
-          dataType: "json",
-          data: { activity_object_id:"<%=item.activity_object.id
-.to_s%>", category_array: JSON.stringify(cat_done_array) },
-            success: function(data){    
-              $("#categories_viewer_modal").modal('toggle');
+    $("#myCategories .tagit-choice").each(function(index,elem){
+      //comprobar primero los que tengan un attrvalue null para crearlos
+      if ($(elem).attr("tagvalue") != null){
+        cat_done_array.push({id: $(elem).attr("tagvalue")});
+      }
+      else {
+        cat_done_array.push({title: $(elem).text()});
+      }
+    });
 
-                }
+    $.ajax({
+            url: '/categories/categorize',
+            type: 'POST',
+            dataType: "json",
+            data: { activity_object_id:"<%=item.activity_object.id
+  .to_s%>", category_array: JSON.stringify(cat_done_array) },
+              success: function(data){    
+                $("#categories_viewer_modal").modal('toggle');
+
+                  }
+    });
   });
-});
-$("#cancel_cat_button").click(function() {
 
-  $("#categories_viewer_modal").modal('toggle');
-});
+  $("#cancel_cat_button").click(function() {
+    $("#myCategories").tagit("reset");
+    for (key in appliedTags){
+      $("#myCategories").tagit("add",appliedTags[key]);
+    }
+    $("#categories_viewer_modal").modal('toggle');
+  });
+
+    var appliedTags = [];
+    $('#categories_viewer_modal').on('shown', function() {
+      $("#myCategories .tagit-choice").each(function(index,elem){
+        appliedTags.push($(elem).text());
+       });
+      });
 
 </script>
