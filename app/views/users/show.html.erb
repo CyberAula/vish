@@ -105,31 +105,27 @@
           <%= render :partial => 'users/toolbar_user' %>
         </div>
 
-       </div>
+      
 
         <%= render :partial => 'users/form_update_profile' %>
      
-
-      </section>
-    </div>
+       </div>
+    </section>
   </div>
 
-<%= render partial: 'users/profile-info' %>
+
+  <%= render partial: 'users/profile-info' %>
 
 <%= javascript_tag do %>
-$(function() {
-  SocialStream.Profile.show({
-  section: "<%= params[:section ] %>"
+  $(function() {
+    SocialStream.Profile.show({
+    section: "<%= params[:section ] %>"
+    });
   });
-});
 
-$("#select_occupation_link").click(function(){
-  $("#edit_icon_link").click();
-});
-
-
-
-
+  $("#select_occupation_link").click(function(){
+    $("#edit_icon_link").click();
+  });
 <% end %>
 
 

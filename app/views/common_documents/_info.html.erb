@@ -95,14 +95,14 @@
 </div>
 <script language="javascript" type="text/javascript" >
 
-  $("#showMore").click(function(e){
-    if($("#showMore").attr("title")==="showMore"){
-      $("#showMore").html('<%=t("excursion.actions.show_more")%><');
-      $("#showMore").attr("title", "showFewer");
+  $("#showingMore").click(function(e){
+    if($("#showingMore").attr("title")==="showMore"){
+      $("#showingMore").html('<%=t("excursion.actions.show_more")%>');
+      $("#showingMore").attr("title", "showFewer");
     }
     else{
       $(".showMore").html('<%=t("excursion.actions.show_fewer")%>');
-      $("#showMore").attr("title", "showMore");
+      $("#showingMore").attr("title", "showMore");
     }
   });
 
