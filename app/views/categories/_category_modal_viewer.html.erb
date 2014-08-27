@@ -4,10 +4,18 @@
     <h3 id="myModalLabel"><%= t("category.modalLabel")%></h3>
   </div>
   <div class="modal-body">
-    <p class= "information"><%= t("category.cat_add_title")%></p>
-     <div id="suggested_categories" class="tagBoxNew">
-        <% generic_categories = Category.authored_by(current_subject) %>
+    <% generic_categories = Category.authored_by(current_subject) %>
+    <p class= "information"><%= t("category.cat_add_title")%></p> 
+    <div id="categories_select_box" class="container-fluid">
+      <select>
         <% generic_categories.each do |init| %> 
+          <option value="<%=init.id%>"><%=init.title%></option>
+        <% end %>
+     </select>
+   </div>
+     <div id="suggested_categories" class="tagBoxNew">
+        <%simple_gen = generic_categories.sample(5)%>
+        <% simple_gen.each do |init| %> 
           <ul id="suggestedCategories" class="tagit">
             <li class="tagit-choice" value="<%= init.id %>" ><%=init.title%></li>
           </ul>
@@ -46,6 +54,14 @@
 
   //When click to suggested they go to down part for being categorized
   $("#suggested_categories li").click(function(){
+    var value = $(this).val();
+    var name = $(this).html();
+
+    $("#myCategories").tagit("add", name, value);
+  });
+
+  //TODO: Make it work
+  $("#categories_select_box select option").click(function(){
     var value = $(this).val();
     var name = $(this).html();
 
