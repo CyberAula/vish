@@ -31,7 +31,7 @@
        
 
           <%= f.label :description, t("profile.#{ profile_subject.class.to_s.downcase }.about") %>
-          <%= f.text_area :description, :maxlength => 500, :rows => 2 %>
+          <%= f.text_area :description, :maxlength => 500, :rows => 2, :class => "form-control" %>
 
 
           <!--TAGS-->

@@ -4,236 +4,190 @@
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
-  header
-    #profile-info
-      margin-bottom: 20px
-      float: left
-      width: 100%
-      @extend .well
-      border: none
+  
+  #profile-info
+    margin-bottom: 20px
+    float: left
+    width: 100%
+    @extend .well
+    border: none
+    padding-left: 0
+    padding-top: 0
+    padding-bottom: 0
+    @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+    position: relative
+    @media (max-width: $screen-xs-max)
+      padding: 10px
+    .avatar
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(2, $gutter: $grid-gutter-width)
+      @include make-md-column(2, $gutter: $grid-gutter-width)
+      @include make-lg-column(2, $gutter: $grid-gutter-width)
       padding-left: 0
-      padding-top: 0
-      padding-bottom: 0
-      @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
-      position: relative
+      padding-right: 0
       @media (max-width: $screen-xs-max)
-        padding: 10px
-      .avatar
-        @include make-xs-column(12, $gutter: $grid-gutter-width)
-        @include make-sm-column(2, $gutter: $grid-gutter-width)
-        @include make-md-column(2, $gutter: $grid-gutter-width)
-        @include make-lg-column(2, $gutter: $grid-gutter-width)
-        padding-left: 0
         padding-right: 0
-        @media (max-width: $screen-xs-max)
-          padding-right: 0
-        img.avatar_img
-          width: 100%
-          @include border-top-radius ($border-radius-base)
-          @include border-bottom-radius ($border-radius-base)
-          @include border-left-radius ($border-radius-base)
-          @include border-right-radius ($border-radius-base )
-          
-          @include img-responsive
-          @media (max-width: $screen-xs-max)
-            @include center-block
-            width: 30%
-          
-        .badge-teacher-active
-          background-image: url(" badges/teacherofthemonth.png" )
-          position: absolute
-          top: 15px
-          left: -15px
-          z-index: 10
-          height: 110px
-          width: 75px
-          pointer-events: none
-      
-      .information
-        @include make-xs-column(12, $gutter: $grid-gutter-width)
-        @include make-sm-column(10, $gutter: $grid-gutter-width)
-        @include make-md-column(10, $gutter: $grid-gutter-width)
-        @include make-lg-column(10, $gutter: $grid-gutter-width)
+      img.avatar_img
+        width: 100%
+        @include border-top-radius ($border-radius-base)
+        @include border-bottom-radius ($border-radius-base)
+        @include border-left-radius ($border-radius-base)
+        @include border-right-radius ($border-radius-base )
         
-        .briefing
-          padding-top: 15px
-          .helpheader
+        @include img-responsive
+        @media (max-width: $screen-xs-max)
+          @include center-block
+          width: 30%
+        
+      .badge-teacher-active
+        background-image: url(" badges/teacherofthemonth.png" )
+        position: absolute
+        top: 15px
+        left: -15px
+        z-index: 10
+        height: 110px
+        width: 75px
+        pointer-events: none
+    
+    .information
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(10, $gutter: $grid-gutter-width)
+      @include make-md-column(10, $gutter: $grid-gutter-width)
+      @include make-lg-column(10, $gutter: $grid-gutter-width)
+      
+      .briefing
+        padding-top: 15px
+        .helpheader
+          @include hidden-xs
+        .name h2
+          margin-top: 0
+          color: $gray
+          font-family: $corporate-font-family-sans-serif-Medium
+          word-wrap: break-word
+        .description
+          color: $gray-light
+          font-size: 14px
+          word-wrap: break-word
+          clear: both
+        .ocupation
+          @media (max-width: $screen-xs-max)
+            float: none
+            height: auto
+            text-align: center
+            padding-right: 0px
+
+
+        h3
+          color: $brand-primary
+          font-size: 0.9em
+          font-family: $corporate-font-family-sans-serif-Regular
+          padding-right: 15px
+          vertical-align: top
+          display: block
+          margin-top: 11px
+          margin-bottom: 10px
+          display: inline-table
+          @media (max-width: $screen-xs-max)
+            float: none
+            width: 100%
+            margin-top: 9px
+            margin-bottom: 0px
+            padding-right: 0px
+            text-align: center
+        span
+          font-size: 0.9em
+          @media (max-width: $screen-xs-max)
+            font-size: 1.1em
+        .tags-profile
+          float: right
+          display: none     
+          margin-top: 3px
+        .name
+          width: 80%
+          float: left
+        .panel
+          @include box-shadow (0 0 0 transparent) 
+
+          header
             @include hidden-xs
-          .name h2
-            margin-top: 0
-            color: $gray
-            font-family: $corporate-font-family-sans-serif-Medium
-            word-wrap: break-word
-          .description
-            color: $gray-light
-            font-size: 14px
-            word-wrap: break-word
-            clear: both
-          .ocupation
-            @include make-xs-column(12, $gutter: $grid-gutter-width)
-            @include make-sm-column(10, $gutter: $grid-gutter-width)
-            @include make-md-column(10, $gutter: $grid-gutter-width)
-            @include make-lg-column(10, $gutter: $grid-gutter-width)
-            float: left
-            padding-left: 0!important
-            @media (max-width: $screen-xs-max)
-              float: none
-              height: auto
-              text-align: center
-              padding-right: 0px
-            h3
-              line-height: 15px
+
+          @media (max-width: $screen-xs-max)
+            margin: 0
+        .panel-group 
+          margin-bottom: 0 
+          div
+            
+            h4
               color: $brand-primary
               font-size: 0.9em
               font-family: $corporate-font-family-sans-serif-Regular
               padding-right: 15px
-              vertical-align: top
-              display: block
-              float: left
-              margin-top: 5px
-              margin-bottom: 0
+              display: inline
               @media (max-width: $screen-xs-max)
-                float: none
-                width: 100%
-                margin-top: 9px
-                margin-bottom: 0px
-                padding-right: 0px
-            span
+                display: block
+                text-align: center
+            span 
+              display: inline-block
               font-size: 0.9em
+              color: $gray      
+              margin-top: 10px
               @media (max-width: $screen-xs-max)
-                font-size: 1.2em
-          
-            
+                display: block
+                text-align: center
+            .panel-body
+              padding: 0
+              div.ocupation
+                @include hidden-sm
+                @include hidden-md
+                @include hidden-lg
+        @media (max-width: $screen-xs-max)
+          .name,
+          .description
+            text-align: center 
+            width: 100% 
+          .name
+            margin-top: 20px             
+
+
           #effect
-            position: relative
-            min-height: 0px
-            padding-left: 0!important
-            @include make-xs-column(12, $gutter: $grid-gutter-width)
-            @include make-sm-column(10, $gutter: $grid-gutter-width)
-            @include make-md-column(10, $gutter: $grid-gutter-width)
-            @include make-lg-column(10, $gutter: $grid-gutter-width)
-            overflow: hidden
             div
               width: 100%
-              float: left
-              display: block
-              clear: right
-              height: 30px
+          
+
+        .toolbar-profile
+          position: relative
+          bottom: 5px
+          width: 100%
+          padding-top: 10px
+          display: block
+          float: left
+          margin-top: 10px
+
+          .btn-group
+            margin-bottom: 9px
+            i
+              margin-right: 5px
+            .btn-follow
+              @include follow-profile
+              width: 100px
+              padding: 0
+              min-height: 35px
+            .btn
+              a
+                color: $gray-darker-extra
               @media (max-width: $screen-xs-max)
-                float: none
-                height: auto
-                text-align: center
-                padding-right: 0px
-            h3
-              color: $brand-primary
-              font-size: 0.9em
-              font-family: $corporate-font-family-sans-serif-Regular
-              padding-right: 15px
-              vertical-align: top
-              display: block
-              margin-top: 7px
-              margin-bottom: 10px
-              float: left
-              @media (max-width: $screen-xs-max)
-                float: none
-                width: 100%
-                margin-top: 9px
-                margin-bottom: 0px
-                padding-right: 0px
-            span
-              font-size: 0.9em
-              @media (max-width: $screen-xs-max)
-                font-size: 1.1em
-          .tags-profile
-            float: right
-            display: none     
-            margin-top: 3px
-          .name
-            width: 80%
-            float: left
-          .panel
-            @include box-shadow (0 0 0 transparent) 
-
-            header
-              @include hidden-xs
-
-            @media (max-width: $screen-xs-max)
-              margin: 0
-          .panel-group 
-            margin-bottom: 0 
-            div
-              
-              h4
-                color: $brand-primary
-                font-size: 0.9em
-                font-family: $corporate-font-family-sans-serif-Regular
-                padding-right: 15px
-                display: inline
-                @media (max-width: $screen-xs-max)
-                  display: block
-                  text-align: center
-              span 
-                display: inline-block
-                font-size: 0.9em
-                color: $gray      
-                margin-top: 10px
-                @media (max-width: $screen-xs-max)
-                  display: block
-                  text-align: center
-              .panel-body
-                padding: 0
-                div.ocupation
-                  @include hidden-sm
-                  @include hidden-md
-                  @include hidden-lg
-          @media (max-width: $screen-xs-max)
-            .name,
-            .description
-              text-align: center 
-              width: 100% 
-            .name
-              margin-top: 20px             
-
-
-            #effect
-              div
-                width: 100%
-            
-
-          .toolbar-profile
-            position: relative
-            bottom: 5px
-            width: 100%
-            padding-top: 10px
-            display: block
-            float: left
-            margin-top: 10px
-
-            .btn-group
-              margin-bottom: 9px
-              i
-                margin-right: 5px
-              .btn-follow
-                @include follow-profile
-                width: 100px
-                padding: 0
-                min-height: 35px
-              .btn
+                width: 100% !important
+                clear: both
+                margin: 2px auto
+                float: left
+                @include border-top-radius ($border-radius-base)
+                @include border-bottom-radius ($border-radius-base)
+              &:hover
                 a
-                  color: $gray-darker-extra
-                @media (max-width: $screen-xs-max)
-                  width: 100% !important
-                  clear: both
-                  margin: 2px auto
-                  float: left
-                  @include border-top-radius ($border-radius-base)
-                  @include border-bottom-radius ($border-radius-base)
-                &:hover
-                  a
-                    color: $brand-primary
-              @media (max-width: $screen-xs-max)
-                width: 80%
-                @include center-block
+                  color: $brand-primary
+            @media (max-width: $screen-xs-max)
+              width: 80%
+              @include center-block
 
   .collapse, 
   .panel-body
