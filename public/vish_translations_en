@@ -1,0 +1,2107 @@
+VISH Translations
+This file was last updated on August 27, 2014
+------------------------------------------------------------------------------------
+
+ViSH Editor Translation File
+
+Instructions to translate this file:
+* Only the words in quotation marks ("") after the colon (:)  should be translated. They should be removed and replaced by the corresponding translation inside the quotation marks, i.e in spanish:
+"i.name": "Name", -> "i.name": "Nombre",
+
+* Even inside the quotation marks sometimes %{example} appears. That should not be translated as it will be substituted by a value, i.e in spanish:
+"i.welcome_message": "Hello %{name}, welcome to ViSH Editor.", -> "i.welcome_message": "Hola %{name}, bienvenido a ViSH Editor.",
+In the above example, %{name} should not be translated as it will be replaced by the name of the user.
+
+Some symbols are represented by codes. For instance, "&#8209;" means "-". So, "e-Learning", may be represented as "e&#8209;Learning". Please, keep the symbols.
+
+
+// About screen
+"i.About2"          : "Code available at",
+"i.About3"          : "visit our YouTube Channel",
+"i.About4"          : "Developed by",
+"i.VESurvey1"       : "Help us to improve ViSH Editor",
+"i.VESurvey2"       : "Please fill",
+"i.VESurvey3"       : "this survey",
+"i.VESurvey4"       : "Thank you for your collaboration",
+
+// UI
+"i.accept"          : "accept",
+"i.add"           : "add",
+"i.Add"           : "Add",
+"i.Addanavatar"       : "Add an avatar *",
+"i.addatitle"       : "add a title",
+"i.AddContent"        : "Add Content",
+"i.addembeddedobject"   : "add embedded object",
+"i.AddePackage"       : "Add an e-Learning package from a ZIP file. Supported formats: SCORM and custom HTML5 Web Applications.",
+"i.addpicurl"       : "add image url",
+"i.AddSlide"        : "Add Slide",
+"i.AddSlideMin"       : "Add Slide",
+"i.AddSlides"       : "Add Slides",
+"i.AddslideshowPDF"     : "Add slideshow from PDF file",
+"i.AddTags"         : "Add tags",
+"i.AddTimestampLink"    : "Add timestamp link",
+"i.addvideourl"       : "add video url (YouTube, HTML5)",
+"i.AgeRange"        : "Age Range",
+"i.Animations"        : "Animations",
+"i.areyousureNotification"  : "are you sure?",
+"i.Art"           : "Art",
+"i.Astronomy"       : "Astronomy",
+"i.AudienceResponseSystem"  : "Audience Response System",
+"i.Author"          : "Author",
+"i.Background"        : "Background",
+"i.biology"         : "biology",
+"i.Biology"         : "Biology",
+"i.browserrequirements"   : "Your browser does not meet the minimum requirements to init ViSH Editor, please update your browser.",
+"i.by"            : "by",
+"i.cancel"          : "cancel",
+"i.Cancel"          : "Cancel",
+"i.Chemistry"       : "Chemistry",
+"i.Citizenship"       : "Citizenship",
+"i.ClassicalLanguages"    : "Classical Languages",
+"i.close"         : "close",
+"i.Close"         : "Close",
+"i.CloseWSaving"      : "close without saving",
+"i.content"         : "content",
+"i.Content"         : "Content",
+"i.Context"         : "Context",
+"i.continue"        : "continue",
+"i.Continue"        : "Continue",
+"i.CrossCurricularEducation"  : "Cross Curricular Education",
+"i.ComputerScience"     : "Computer Science",
+"i.delete"          : "delete",
+"i.Description"       : "Description",
+"i.Diagonal1"       : "Diagonal #1",
+"i.Diagonal2"       : "Diagonal #2",
+"i.difficult"       : "difficult",
+"i.Difficulty"        : "Difficulty",
+"i.Documentation"     : "Documentation",
+"i.done"          : "done",
+"i.Done"          : "Done",
+"i.draft"         : "draft",
+"i.easy"          : "easy",
+"i.Economics"       : "Economics",
+"i.edit"          : "edit",
+"i.Education"       : "Education",
+"i.EducationalObjectives" : "Educational objectives",
+"i.EducationalObjectivesPlaceholder"    : "Please describe the educational objectives you aim to fulfil by using this excursion...",
+"i.Electronics"       : "Electronics",
+"i.Elements"        : "Elements",
+"i.embedwebsite"      : "embed website",
+"i.embedWebSnapshot"    : "embed Web Snapshot",
+"i.Enable"          : "Enable",
+"i.EnrichedVideo"     : "Enriched Video",
+"i.EnvironmentalEducation"  : "Environmental Education",
+"i.ePackage"        : "e-Learning Package",
+"i.ePackageError1"      : "An error ocurred when uploading the e&#8209;Learning package.",
+"i.errorFlickrConnection" : "Error connecting to Flickr",
+"i.errorLREConnection"    : "Error connecting to the LRE repository",
+"i.errorViSHConnection"   : "Error connecting to ViSH server",
+"i.errorYoutubeConnection"  : "Error connecting to YouTube",
+"i.Ethics"          : "Ethics",
+"i.Evaluate"        : "Evaluate",
+"i.evaluateTitle"     : "Want to contribute evaluating the excursion?",
+"i.eVideoChangeNotification" : "If you change the vídeo source you will lose all the timestamp links you have added. In any case, you will keep the slides you have created. Are you sure you want to continue?",
+"i.ExcursionDetails"    : "Excursion Details",
+"i.Excursion"       : "Excursion",
+"i.Excursions"        : "Excursions",
+"i.Exit"          : "Exit",
+"i.exitConfirmation"    : "You are about to leave ViSH Editor. You will lose any changes you have not saved.",
+"i.exitConfirmation2"   : "Are you sure you want to leave this page?",
+"i.exitConfirmationMenu"  : "The Virtual Excursion has been modified. If you close without saving you will lose all changes. What would you like to do?",
+"i.ExitWSaving"       : "exit without saving",
+"i.Export"          : "Export",
+"i.exportPresToJSONerrorNotification" : "An error has ocurred. Is not possible to export the presentation to a JSON file.",
+"i.exportPresToSCORMerrorNotification"  : "An error has ocurred. Is not possible to export the presentation to a SCORM package.",
+"i.exportQuizToQTIerrorNotification"  : "An error has ocurred. Is not possible to export the quiz to the IMS QTI 2.1 format.",
+"i.exportQuizToMoodleXMLerrorNotification"  : "An error has ocurred. Is not possible to export the quiz to Moodle XML format.",
+"i.ExportToIMSQTI"      : "Export to IMS QTI 2.1",
+"i.ExportToMoodleXML"   : "Export to Moodle XML",
+"i.exviews"         : "views",
+"i.File"          : "File",
+"i.Filllater"       : "Fill later",
+"i.Finish"          : "Finish",
+"i.Flip1"         : "Flip #1",
+"i.Flip2"         : "Flip #2",
+"i.ForeignLanguages"    : "Foreign Languages",
+"i.Game"          : "Game",
+"i.GeneralCulture"      : "General Culture",
+"i.Geography"       : "Geography",
+"i.Geology"         : "Geology",
+"i.GotoSettings"      : "Go to Settings",
+"i.HealthEducation"     : "Health Education",
+"i.Help"          : "Help",
+"i.HigherEducation"     : "Higher Education",
+"i.History"         : "History",
+"i.HomeEconomics"     : "Home Economics",
+"i.Horizontal"        : "Horizontal",
+"i.Hours"         : "Hours",
+"i.Image"         : "Image",
+"i.Images"          : "Images",
+"i.Import"          : "Import",
+"i.ImportFromEFile"     : "Import resources from external files:",
+"i.ImportFromEFileVEJSON" : "ViSH Editor Presentations and Slides from JSON files",
+"i.ImportFromEFileIMSQTI" : "Quizzes from IMS QTI 2.1 compliant XML files",
+"i.Insert"          : "Insert",
+"i.Inside"          : "Inside",
+"i.invalidvalue"      : "invalid value",
+"i.ItemAndBall"       : "This item is linked to the #{letter} slide of the Enriched Video.",
+"i.Language"        : "Language",
+"i.Languageindependent"   : "Language independent",
+"i.Law"           : "Law",
+"i.License"         : "License",
+"i.limitReached"      : "limit reached",
+"i.link"          : "link",
+"i.Literature"        : "Literature",
+"i.LiveQuiz"        : "Live Quiz",
+"i.LiveResources"     : "Live Resources",
+"i.MandatoryFieldsNotification" : "You need to write a title for the excursion and select an avatar before publish the excursion",
+"i.math"          : "math",
+"i.Mathematics"       : "Mathematics",
+"i.medium"          : "medium",
+"i.Minutes"         : "Minutes",
+"i.Music"         : "Music",
+"i.nanoscience"       : "nanoscience",
+"i.NaturalSciences"     : "Natural Sciences",
+"i.NAttempts"       : "Number of Attempts",
+"i.next"          : "next",
+"i.Next"          : "Next",
+"i.no"            : "no",
+"i.No"            : "No",
+"i.NoFileError"       : "You have not selected any file to import.",
+"i.NoJSONFileError"     : "You have to select a file to import in JSON format",
+"i.Noresultsfound"      : "No results found",
+"i.NoSlidesOnSaveNotification"  : "Create at least one slide before saving.",
+"i.NoThanks"        : "No thanks",
+"i.NoSupportedFileError"  : "The file cannot be imported. The format is not supported.",
+"i.Object"          : "Object",
+"i.Objects"         : "Objects",
+"i.Ok"            : "Ok",
+"i.OK"            : "OK",
+"i.Opacity"         : "Opacity",
+"i.or"            : "or",
+"i.Other"         : "Other",
+"i.Others"          : "Others",
+"i.Package"         : "Package",
+"i.pasteEmbedObject"    : "paste SWF or PDF file URL",
+"i.pasteImageURL"     : "paste image URL",
+"i.pasteVideoURL"     : "paste HTML5 or YouTube vídeo URL",
+"i.pasteWeb"        : "paste website URL",
+"i.pdfErrorNotification"  : "An error has occurred. Ensure that the PDF file is valid.",
+"i.pdfErrorNotificationFormat"  : "An error has occurred. The file format is not valid.",
+"i.pdfErrorNotificationSize"  : "An error has occurred. The size of the PDF file must be smaller than 8 Mb.",
+"i.pdfErrorNotificationPages" : "An error has occurred. The PDF file have too many pages.",
+"i.PDFSlideshow"      : "PDF Slideshow",
+"i.PedagogicalAspects"    : "Pedagogical Aspects",
+"i.pEducation"        : "Primary Education",
+"i.Philosophy"        : "Philosophy",
+"i.PhysicalEducation"   : "Physical Education",
+"i.Physics"         : "Physics",
+"i.Politics"        : "Politics",
+"i.Preschool"       : "Preschool Education",
+"i.Presentation"      : "Presentation",
+"i.presDescriptionPlaceHolder"  : "Please describe in a few words what your excursion is about...",
+"i.presTitle"       : "Excursion title",
+"i.Preview"         : "Preview",
+"i.Psychology"        : "Psychology",
+"i.PTraining"       : "Professional Training",
+"i.publish"         : "publish",
+"i.Publish"         : "Publish",
+"i.publishing"        : "publishing",
+"i.Publishing"        : "Publishing",
+"i.Publish_confirmation"  : "You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?",
+"i.Quiz"          : "Quiz",
+"i.QuizButtonAnswer"    : "Answer",
+"i.QuizButtonContinue"    : "Continue",
+"i.QuizButtonLaunch"    : "Launch",
+"i.QuizButtonOptions"   : "Options",
+"i.QuizButtonRetry"     : "Retry",
+"i.QuizCreateSessionError"  : "Sorry, an error occurred while creating the new Live Quiz",
+"i.QuizEmptyAnswerAlert"  : "Please, answer the quiz before send",
+"i.QuizLaunch"        : "Launch",
+"i.QuizMultipleLaunchAlert" : "Please stop all live quizzes before launch another one",
+"i.QuizNotSubmittedAlert" : "Sorry, your answer couldn't be sent",
+"i.QuizResults"       : "Results",
+"i.QuizRetry"       : "Retry",
+"i.QuizSaveConfirmation"  : "Do you want to save the quiz results?",
+"i.QuizSessionName"     : "Live Quiz Name",
+"i.QuizSettings"      : "Quiz Settings",
+"i.QuizSettingsToolbar"   : "Quiz Settings",
+"i.QuizStop"        : "Stop",
+"i.QuizSubmittedAlert"    : "Your answer has been submitted",
+"i.Quizzes"         : "Quizzes",
+"i.QuizzesWriteOptions"   : "Write options here",
+"i.QuizzesWriteOptionsOpen" : "Write the answer here",
+"i.QuizzesWriteOptionsSorting"  : "Write the first item of the sequence here",
+"i.readJSONfileError"   : "Error reading JSON file",
+"i.recommendationsTitle"  : "Recommended excursions:",
+"i.Religion"        : "Religion",
+"i.Remove"          : "Remove",
+"i.resourceNonCompatibleNotification" : "This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.",
+"i.Response"        : "Response",
+"i.ResponseCorrect"     : "Correct response",
+"i.Rotate"          : "Rotate",
+"i.save"          : "save",
+"i.Save"          : "Save",
+"i.SaveAndExit"       : "save and exit",
+"i.Saved"         : "Saved",
+"i.Saving"          : "Saving",
+"i.School"          : "School",
+"i.SearchContent"     : "Search Content",
+"i.Searchplaces"      : "Search places",
+"i.Seconds"         : "Seconds",
+"i.sEducation"        : "Secondary Education",
+"i.SelectAll"       : "Select All",
+"i.selectObjectUpload"    : "Select a file to upload",
+"i.selectObjectUpload2"   : "Supported formats: SWF (flash), PDF",
+"i.selectPicture"     : "Select picture to upload",
+"i.SelectSlide"       : "Select Slide",
+"i.SelectTheme"       : "Select Theme",
+"i.Settings"        : "Settings",
+"i.ShuffleChoices"      : "Shuffle choices",
+"i.Slide"         : "Slide",
+"i.Slides"          : "Slides",
+"i.SocialSciences"      : "Social Sciences",
+"i.SoftwareEngineering"   : "Software Engineering",
+"i.Style"         : "Style",
+"i.Subject"         : "Subject",
+"i.Tags"          : "Tags",
+"i.Technology"        : "Technology",
+"i.Templates"       : "Templates",
+"i.text"          : "text",
+"i.Text"          : "Text",
+"i.Telecommunications"    : "Telecommunications",
+"i.Time"          : "Time",
+"i.Title"         : "Title",
+"i.TitleM"          : "Title *",
+"i.toJSON"          : "to JSON",
+"i.toSCORM"         : "to SCORM",
+"i.Typicallearningtime"   : "Typical learning time",
+"i.University"        : "University",
+"i.unpublish"       : "unpublish",
+"i.Unpublish"       : "Unpublish",
+"i.unpublishing"      : "unpublishing",
+"i.Unpublishing"      : "Unpublishing",
+"i.Unpublish_confirmation"  : "You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?",
+"i.Unlimited"       : "Ilimitado",
+"i.UnselectAll"       : "Deseleccionar Todas",
+"i.UnselectSlide"     : "Unselect Slide",
+"i.unspecified"       : "unspecified",
+"i.Unspecified"       : "Unspecified",
+"i.Untitled"        : "Untitled",
+"i.upload"          : "upload",
+"i.Upload"          : "Upload",
+"i.url"           : "url",
+"i.Url"           : "Url",
+"i.Version"         : "Version",
+"i.Vertical"        : "Vertical",
+"i.verydifficult"     : "very difficult",
+"i.veryeasy"        : "very easy",
+"i.video"         : "video",
+"i.videos"          : "videos",
+"i.VirtualTour"       : "VirtualTour",
+"i.yes"           : "yes",
+"i.Yes"           : "Yes",
+"i.YouTubePlayAlert"    : "Click on the video to start playing",
+"i.ZoneTooltip"       : "Click here to add content",
+"i.Zoom"          : "Zoom",
+
+//Tooltips
+"i.tooltip.QSInput"     : "Enter a name for the live quiz",
+
+//Video Tutorials
+"i.vtTitle_GStarted"    : "Getting Started with ViSH Editor",
+
+//Last
+"i.last"          : "last"
+
+
+------------------------------------------------------------------------------------
+
+ViSH Translation File
+
+Instructions to translate this file:
+  * Only the words placed after a colon (:) on the same line should be translated. They should be removed and replaced by the corresponding translation.
+  Sometimes the words to translate are in quotation marks, and sometimes are not. If the words are in quotation marks, please keep the quotation marks.
+  
+  For instance, in spanish:
+  name: "Name" -> name: "Nombre"
+
+  Another example:
+  actor:          actor:  
+    name: Name ->   name: Nombre
+
+  Words before a colon (:) should be never translated.
+
+  *	Even inside the quotation marks sometimes %{example} appears. That should not be translated as it will be substituted by a value, i.e in spanish:
+  welcome_message: "Hello %{name}, welcome to ViSH." -> welcome_message: "Hola %{name}, bienvenido a ViSH."
+  In the above example, %{name} should not be translated as it will be replaced by the name of the user.
+
+  * Besides, you can find HTML tags (e.g. <a href="someURL">Some text</a>) inside some texts. Please, do not modify the tags or URLs, just the words inside the tags (i.e. "Some text" in the previous example).
+
+
+// ViSH Platform
+
+en:
+  activerecord:
+    attributes:
+      user:
+        email: "Email"
+        tag: "Areas of interest"
+  activity:
+    empty: "Your timeline is empty"
+    more: "See more..."
+    new_user: "Welcome to ViSH! Post and share your thoughts, links, videos with your followers."
+    newmessage: "This is your timeline. You can upload and share images, videos, links and more."
+    timeline: "timeline"
+    verb:
+      make-friend:
+        User:
+          title: "%{subject} and %{contact} are following each other."
+          message: "%{name} is following you back."
+  activity2:
+    one: "activity"
+    other: "activities"
+    title:
+      other: "activity"
+  activity_action:
+    follow: "+ Follow"
+    unfollow: "UnFollow"
+  admin:
+    close_report: "Close report"
+    closed_reports: "Closed reports"
+    menu_entry: "Admin Panel"
+    noitems: "There are no items."
+    noreports: "There are no reports."
+    noresource: "This resource no longer exists."
+    nouser: "This user no longer exists."
+    nousers: "There are no users."
+    open_report: "Open report"
+    pending_reports: "Pending reports"
+    reporter: "Reporter"
+    reports: "Reports"
+    title: "ViSH Administration Panel"
+    users: "Users Administration"
+  all: "all"
+  announce: 
+    title: "Announcement"
+    body: "In the course of February, the GLOBAL excursion project is organizing two live online sessions with scientists. More information and registration under"
+  are_you_sure: "¿Estás seguro?"
+  author: "author"
+  browse:
+    title: "browse"
+    popular: "popular content"
+  button: 
+    sending: "Sending..."
+  by: "by"
+  cancel: "Cancel"
+  catalogue:
+    categories:
+        art: "Art"
+        biology: "Biology"
+        chemistry: "Chemistry"
+        citizenship: "Citizenship"
+        computerScience: "Computer Science"
+        economics: "Economics"
+        education: "Education"
+        engineering: "Engineering"
+        foreignLanguages: "Foreign Languages"
+        generalCulture: "General Culture"
+        geography: "Geography"
+        geology: "Geology"
+        history: "History"
+        humanities : "Humanities"
+        literature: "Literature"
+        maths: "Mathematics"
+        music: "Music"
+        naturalScience: "Natural Sciences"
+        physics: "Physics"
+        technology: "Technology"
+    extras:
+        eLearning: "e-Learning"
+        learning: "learning"
+        listening: "listening"
+        math: "Math"
+        teaching: "teaching"
+    title: "Catalogue"
+  category:
+    confirm_delete: "Delete category?"
+  categories:
+    actions:
+      add: "Create category"
+      apply: "Apply"
+      verb: "Categorize"
+    description_input: "Description for this category"
+    errors:
+      duplicated: "You already have a category with this title. Please, give it another title."
+    favorites:
+      title: My favorites
+      description: This category shows your favorite things in the ViSH
+    info: "Add it to one of your categories"
+    input: "Add a description"
+    item_inside: "items inside"
+    leyend:
+      title: "Title"
+      description: "Description"
+      items: "Items in this category"
+    main_title: "Create new categories and organize your resources"
+    other: "categories"
+    title_input: "Name for this category"
+    save: "Save"
+    selected: "categories"
+    success: "Categories saved succesfully"
+  close: "Close"
+  conditions:
+    check_message: "By clicking Accept, you agree to our "  
+    check_message_1: "Terms and Conditions."
+    other: "terms of use"
+  contact:
+    footer: "contact"
+    follow: "Follow"
+    unfollow: "Unfollow"
+    following: "Following"
+  pending:
+    other: "Following you"
+  competitions:
+    poster:       "<a href='http://vishub.org/contest'>ViSH competition</a> period is open now! You can participate easily creating new excursions. Get the <a href='http://vishub.org/VISH_competitions.pdf'>flyer</a> or read the <a href='http://vishub.org/faq#faq_competitions_1a'>faq</a>"
+    introduction: "Introduction"
+    introduction1: "GLOBAL excursion (Extended Curriculum for Science Infrastructure Online) is a support action funded by the European Commission under the Seventh Framework Programme "
+    introduction2: " and attributed to "
+    introduction3: "DG Connect – Excellence in Science – Digital Science."
+    introduction4: " The aims of GLOBAL excursion are basically twofold: on the one hand we envision to enrich science teaching in European schools and on the other hand we offer researchers and their institutions a promotion channel towards a school audience."
+    introduction5: "Via a central web portal, called the "
+    introduction6: "Virtual Science Hub – “ViSH”"
+    introduction7: " we provide scientists, teachers and their pupils as well as policy makers a package of activities, materials, and tools for enabling the integration of e-Infrastructures into school curricula. ViSH supports a set of resources that can be uploaded to the platform and be made available for all the users: images, objects (flash objects), videos, live objects: webcams or microscopes provided by the e-Infrastructures."
+    introduction8: "As the project is heading to its conclusion, the consortium has decided to organise a competition that will contribute to the further dissemination of ViSH to its various stakeholders plus reward a number of teachers and scientists that have been particularly active regarding the creation of eExcursions."
+    categories: "Categories"
+    categories2: "The two (2) best eExcursions will be selected in the following categories:"
+    Maths: "Maths"
+    Physics: "Physics"
+    Chemistry: "Chemistry"
+    Biology: "Biology"
+    Geography: "Geography"
+    EnvironmentalStudies: "EnvironmentalStudies"
+    Engineering: "Engineering"
+    Humanities: "Humanities"
+    NaturalScience: "NaturalScience"
+    ComputerScience: "ComputerScience"
+    competitions: "Competition terms and conditions"
+    competitions_countries: "Participating countries"
+    competitions_countries2: "The competition for the best eExcursions is open to any registered ViSH user, independently of his/her country of origin. We encourage especially teachers, scientists and scientific organisations to create excursions."
+    submissions: "Submissions"
+    submissions2: "The competition will open on "
+    submissions3: " From that date until "
+    submissions4: ", all teachers, scientists and scientific organisations are welcome to submit their contributions."
+    submissions5: "The selection process will last for one week, till "
+    submissions6: "Selection results will be announced on "
+    submissions7:  "via email (to the winners) and project’s Facebook page: "
+    submissions8: "To register for the competition, participants tag their eExcursion with the tag "
+    submissions9: "following with the tag of the category they would like to compete on: Maths, Physics, Chemistry, Biology, Environmental Studies, Geography, Engineering, Humanities, Natural Science, and Computer Science."
+    submissionsdate: "20 October de 2013."
+    submissionsdate2: "16 December de 2013"
+    submissionsdate3: "23 December de 2013"
+    submissions10: "Please note:"
+    submissions11: " An eExcursion can be submitted to more than one category. However, participants can only win in one single category, so if they are initially selected as winner in two categories, participants will be asked to choose the one they prefer."
+    languages: "Languages"
+    languages2: "eExcursions can be submitted in the following languages: English, German, French, Spanish, Dutch, Hungarian, Romanian, Greek and Italian."
+    implementation: "Implementation of actions"
+    implementation2: "Only full eExcursions that are developed and implemented between 20 October 2013 and 16 December 2013 will be considered eligible for the competition."
+    contact: "Contact point"
+    contact2: "For any questions related to the competition, participants should contact vish.competitions@gmail.com to get assistance in any of the languages supported by the competition."
+    howto: "How to participate in the competition"
+    whocan: "Who can participate"
+    whocan1: "Individuals and organisations can participate.The competition for best eExcursions is open to "
+    whocan2: "any registered ViSH user."
+    whocan3: "We encourage especially teachers, scientists and scientific organisations to create excursions. But, if you are not a professional, your contribution is welcome as well. We are true supporters of open and citizen-led science!"
+    howto2: "How to register for the competition:"
+    howto3: "To register to the competition you must tag your eExcursion with the tag:"
+    howto4: "and with the tag of the category you would like to compete:"
+    howto5: "Maths, Physics, Chemistry, Biology, EnvironmentalStudies, Geography, Engineering, Humanities, NaturalScience, ComputerScience"
+    howto6: "An eExcursion can be send to more than one category."
+    objectives: "Objectives and requirements"
+    objectives2: "Participants are asked to submit an eExcursion through the online "
+    objectives3: "Virtual Science Hub – “ViSH”"
+    objectives4: " portal."
+    whatis: "What is an e-Excursion and what it should include?"
+    whatis2: "An eExcursion is a kind of presentation created with multimedia didactical material which allows a better understanding of a scientific infrastructure, equipment or facility. eExcursions are didactical units used for science teaching, either shown in class or to be explored by students on their own.An eExcursion should include one or more of the following: text, images, videos, flash objects (games, simulations, etc.), remote e-Infrastructure resources (live webcams, remote labs, etc.), quizzes, etc. that can be found through the ViSH portal."
+    examples: "Examples"
+    examples1: "Please find below some examples of inspiring eExcursions that can help you prepare you own submission:"
+    examples2: "More specific guidelines of how to create eExcursions and use the different features of the eExcursion editor can be found in the ViSH user manual, which can be downloaded here:"
+    criteria: "Selection criteria and evaluation"
+    criteria2: "After the submission deadline on 20 November 2013, all eExcursions will be ranked according to the number of favourites voted by the user community on ViSH. The first 10 ranked excursions will then be judged, by a dedicated board, according to the following criteria:"
+    criteria3: "1.Originality & Appeal: Pertinence, novelty, creativity and didactical approach, will all be taken into account during the evaluation process."
+    criteria4: "2.Pedagogical Value: Clear goals and objectives, motivation, presentation of resources, specific learning tasks, adaptability to individual needs will be taken into account during the evaluation process."
+    criteria5: "3.Interactivity: Superior level of creativity focusing on content, design, technological innovation, and the unique nature of the underlying idea;  good understanding of the theme and conveying convincing implementation methods, solutions and messages are going to be taken into account."
+    awards: "Awards & prizes"
+    awards2: "A total of 23 winners will receive prizes in the form of Amazon vouchers. For each of the above mentioned categories there is a chance to win a 1st and 2nd prize:"
+    awards3: "1st prize:"
+    awards4: " 400,- € voucher"
+    awards5: "2nd prize:"
+    awards6: " 200,- € voucher"
+    awards7: "On top of that, three (3) overall winners will receive extra prizes:"
+    awards8: "1st prize:"
+    awards9: " 500,- € voucher"
+    awards10: "2nd prize:"
+    awards11: "300,-€ voucher"
+    awards12: "3rd prize:"
+    awards13: " 200,-€ voucher"
+    awards14: "In addition to the prizes, the 3 overall winners will be invited to join our final conference in Brussels, scheduled for early 2014. Flight, hotel and subsistence will be covered by the project."
+    question: "Do you have any question?"
+    question2: "Read the "
+    question3: "Frequently Answered Questions"
+    spread: "Do you want to spread the word?"
+    spread2: "Download, print and share the flyer: "
+  contest:
+    winnersbycategory: "Winners by Category"
+    viewalltag: "View All #ViSHCompetition2013 Excursions"
+    moreinfo: "More Info"
+    faq: "Faq"
+    candidates: "Candidates"
+    intro: "We admit individuals or institutions. The competition for best eExcursions is open to any registered ViSH user. Only full eExcursions will enter the competition."
+    categories: "Categories"
+    categories2: "Maths, Physics, Chemistry, Biology, Geography, EnvironmentalStudies, Engineering, Humanities, NaturalScience, ComputerScience."
+    languages1: "eExcursions can be submitted in the following languages:"
+    languages2: "English, German, French, Spanish, Dutch, Hungarian, Romanian, Greek, Italian."
+    register: "How to register for the competition"
+    register2: "You must tag your eExcursion with the tag:"
+    register3: "ViSHCompetition2013"
+    register4: "and with the tag of the category you would like to compete"
+    register5: "An eExcursion can be sent to more than one category."
+    timeline: "Competition timeline"
+    timeline2: " Opening of competition"
+    timeline3: " Deadline for entries"
+    timeline4: " Selection process closed and announcement of winners"
+    timeline_date: "20 October 2013"
+    timeline_date2: "16 December 2013"
+    timeline_date3: "23 December 2013"
+    criteria: "Selection criteria"
+    criteria2: "The eExcursions will be ranked according to the number of favourites voted by the user community on ViSH.The first 10 ranked excursions will then be judged in order to select the winners."
+    prizes: "Check The Prizes"
+    prizes2: "The winners will receive prizes in the form of Amazon vouchers * For each of the categories there is a chance to win a 1st and 2nd prize"
+    prizes3: "The overall winners will receive extra prizes"
+    prizes4: "In addition, the 3 winners will be invited to join our confe-rence in Brussels, scheduled for early 2014"
+    prizes5: " is a promotional code for the online store Amazon that will allow you to buy whatever you may consider interesting for your work: books, little technological equipment."
+    prizes_first_a: "1st prize 400€ voucher "
+    prizes_second_a: "2st prize 200€ voucher "
+    prizes_first: "1st prize 500€ voucher "
+    prizes_second: "2st prize 300€ voucher "
+    prizes_third: "3st prize 200€ voucher "
+    amazon: "* The Amazon voucher "
+    ex_part: "All #ViSHCompetition2013 Excursions:"
+    filter: "Filter:"
+    All: "All"
+    Maths: "Maths"
+    Physics: "Physics"
+    Chemistry: "Chemistry"
+    Biology: "Biology"
+    Geography: "Geography"
+    EnvironmentalStudies: "EnvironmentalStudies"
+    Engineering: "Engineering"
+    Humanities: "Humanities"
+    NaturalScience: "NaturalScience"
+    ComputerScience: "ComputerScience"
+  thevish: "The Vish"
+  youtube: "ViSH Youtube Channel"
+  overview_title: "ViSH overview"
+  overview:
+    list: "Index"
+    list1: "Introduction to the ViSH"
+    list2: "The Community of ViSH registered users"
+    list3: "Creating virtual excursions with the excursion editor"
+    list4: "Uploading resources from mobiles and tablets"
+    list5: "Cloning virtual excursions"
+    list6: "Importing and exporting excursions"
+    list7: "Virtual meetings and events with remote and mobile access"
+    downloadpdf: "Download as pdf"
+    overview1: "Introduction to the ViSH"
+    overview2: " is a social and collaborative site for creating knowledge resources for the realization of educational activities. The central element of the ViSH is the virtual excursion, a sequence of visits (enriched slides or viewgraphs), designed for projection in the classroom. Each excursion is a sequence of well-designed visual compositions (mash-up) of multimedia resources linked from the Internet, from the local ViSH repository or from other federated repositories. The name virtual excursion is a metaphor for an excursion in a virtual world of knowledge resources."
+    overview3: "Excursions are public HTML5 Web resources, accessible over the Internet by means of a URL, which can be projected in full screen format with a beamer to support classroom activities. Some examples of excursions are:"
+    overview4: "The ViSH allows also the realization of collaborative activities and projects in the classroom involving teachers and students. The use of a shared account supervised by a teacher or tutor is recommended. For example the following excursion is the result of a real geology classroom project for mineral identification performed in a highschool in Galicia (Spain):"
+    overview5: "Excursions can be projected in a physical classroom in full-screen, like a slide or viewgraph presentation, but can be also:"
+    overview6: "Viewed on browsers, smartphones, tablets or any HTML5 enabled device."
+    overview7: "Embedded in Web pages or LMSs (Moodle, ..) like YouTube videos."
+    overview8: "Projected in the ViSH virtual classroom, based on"
+    overview9: "Exported as a SCORM object to be imported elsewhere."
+    overview10: "Downloaded for off-line presentation in a classroom or meeting (under development)."
+    overview11: "Cloned and modified or enriched by any other member of the community."
+    overview12: "Etc."
+    overview13: "Excursions can be added to a "
+    overview14: "catalogue of excursions"
+    overview15: " where they appear classified by topic. The initial focus of the ViSH was on science, but it is being used now in many other areas."
+    overview16: "The Community of ViSH registered users."
+    overview17: "Excursions are public objects, which can be freely reused in the classroom, blogs or LMSs by any person having access to the ViSH with a standard Internet access. But to create or modify excursions a user must register in the ViSH and become a member of the community. "
+    overview18: "The ViSH terms of use"
+    overview19: " must be accepted to obtain an account."
+    overview20: "Each account has a profile where a set of tabs on the left hand side provide access to:"
+    overview21: "The excursions created from scratch with the editor or the excursions cloned from other ViSH users and possibly edited afterwards."
+    overview22: "The events created by the user."
+    overview23: "The resources uploaded by the user in the ViSH repository, possibly as components of excursions. Pictures, videos or animations used in excursions can be uploaded in the repository or linked from the Internet."
+    overview24: "The categories to classify excursions according to user needs. Categories are tag names, which act as folders or directories of related content. The favorites category contains excursions marked as favorite."
+    overview25: "The ViSH is a social site where users can follow other users in order to receive information about the excursions they produce. The home of a user shows the excursions created or cloned by the users followed by him. The profile of a given user has also 2 tabs on the right hand side, with the users followed by him and the users who follow him."
+    overview26: "In addition, a recommender system will highlight the most relevant content in the ViSH related with the type of content accessed, when excursions are viewed. For a registered user his profile is also taken into account in the recommendation."
+    overview27: "Each resource supports spam or content error notifications, which provide the basis for thecontrol of the adequacy of excursions with the aims of the terms of use of the ViSH: useful,correct and good quality content."
+    overview28: "Creating virtual excursions with the excursion editor"
+    overview29: "Registered users can create excursions with the online editor. The editor is easy to use and does not require technical skills. A user can edit only the excursions he has created or cloned."
+    overview30: "Each virtual excursion is organized as a sequence of slides, with a standard slide or viewgraph format, where each can be one of the following elements:"
+    overview31: "Visual mash-up."
+    overview32: " Template based visual composition of text, pictures, videos, "
+    overview33: "audio records"
+    overview34: "interactive apps"
+    overview35: "3D objects"
+    overview36: "simulations"
+    overview37: " etc. The visual components included can be hosted in the local ViSH repository or in any server on the Internet."
+    overview38: "Quiz."
+    overview39: " An interactive slide designed to present a question or exercise to be answered in real time in a classroom from desktop, smartphones or tablets. "
+    overview40: "(Quizzes examples)"
+    overview41: ". True/false and multiple-choice is supported. Self evaluation or mobile, tablet PC based audience response system (ARS) can be added to the a quiz."
+    overview42: "Flashcards."
+    overview43: "  Slide with hot zones where clicking leads to a ViSH slide, another complete excursions or to any Website or resource on the Internet. "
+    overview44: "(Flashcards examples)"
+    overview45: "Virtual tours."
+    overview46: " Smartcards where the background is a specific Google Map configuratión. "
+    overview47: "(Virtual tour examples)"
+    overview48: "Enriched video."
+    overview49: "  A video with break points, where the video is stopped and a ViSH slide (explanation, quiz, etc.) is presented. The video continues when the slide is closed. "
+    overview50: "(Enriched videos examples)"
+    overview51: "Web Apps."
+    overview52: "  Interactive HTML5 Web apps to be inserted as an active component in a ViSH slide, such as interactive calculators, animations, simulators, virtual labs, etc. "
+    overview53: "(Web Apps examples)"
+    overview54: ". HTML5 Web apps are created using standard HTML, CSS and JavaScript exactly in the same way as standard HTML5 client side applications are created."
+    overview55: "Each excursion can be complemented with pedagogical information describing appropriate teaching scenarios, teaching guidelines, specific requirements, preparation tasks or simply ideas or feedback about the use of excursions in class."
+    overview56: "Uploading resources from mobiles and tablets"
+    overview57: "The ViSH and the virtual excursions have been designed in HTML5 to allow flexible ways of uploading resources from mobile devices. Pictures or videos taken with a mobile or tablet can be uploaded to the ViSH repository very easily."
+    overview58: "Just by accesing the ViSH with the browser of the smartphone or tablet, and selecting the resource upload function to do upload a picture or video taken on the fly or stored in the repository. After the resource has been uploaded in the repository, any excursions can use it."
+    overview59: "Cloning virtual excursions"
+    overview60: "One of the main goals of the ViSH is enabling collaborative content production. The basic mechanism for enriching or adapting an excursion somebody has produced is cloning. Therefore any excursion published in the ViSH can be cloned by other registered users for enrichment, modification, translation into another language or whatever."
+    overview61: "Excursions are published in the ViSH with a creative commons non-commercial alike license, where others have the right to use and modify the excursions for non-commercial purposes. The ViSH is contribution friendly and each excursion makes the authors of the cloning chain explicit, such that all who have contributed to a given excursion receive their recognition."
+    overview62: "When a user clones a given excursion a copy is made in the excursion area of his profile. The author of the cloned excursion and previous authors contributing to it, are added to the section “with content from”, such that authorship is properly recognized. The user becomes the owner of the cloned copy and can edit it as needed with the editor."
+    overview63: "Importing and exporting excursions."
+    overview64: "PDF presentations can be imported into an excursion to create new slides, which have the PDF slide as a background and where other elements can be added. "
+    overview65: "Excursions can also be imported and exported as SCORM objects. SCORM exported excursions can be imported in LMSs and other platforms supporting the standard. Excursions can also be accessed via an URL or embedded in Web pages, blogs or LMSs (Moodle, ..) like YouTube videos. "
+    overview66: "Downloading of excursions for off-line presentation in a classroom or meeting is under development using the HTML5 offline mode. Excursions will only be enabled for off-line presentation, if all the resources the use can be cached in the client, i.e. if they are hosted in the ViSH local repository. Downloading of excursions as a set of PDF slides, but loosing all the active multimedia content of the excursion, is also under study."
+    overview67: "Virtual meetings and events with remote and mobile access."
+    overview68: "The ViSH uses "
+    overview69: "to implement a virtual classroom based on collaborative videoconferencing, where several classrooms in different schools can connect and participate in a virtual event with live demonstrations, discussions, remote lecture delivery, etc. These meetings can be based on excursions or on other social media available on the Internet."
+    overview70: "MashMe.tv supports access to the webinar rooms from desktops, smartphones and tablets. The webcam of a mobile device can be used to show the physical place being visited, the expositions of a museum, to interview people at the visited site or the result of a scientific experiment (telescope, microscope, accelerator, etc.) directly on the scientific infrastructure. Mobile devices can be used to walk freely around the visited site and show the most relevant parts of it."
+  copy_to_clip: "Copy to clipboard"
+  date_name: "date"
+  description: "description"
+  devise:
+    invalid_login: "Please enter your email and password to continue."
+    tags: "tags"
+  disjunction:
+    or: "or"
+  document:
+    body:
+      title1: "Select the type of content that you upload"
+      title2: "Identify your resource"
+      title3: "Choose the file you want to upload"
+    close: "Close"
+    details:
+      info: "Info"
+    document: "document"
+    download_explanation: "Download this resource to your device"
+    embed_explanation: "You can use this code to insert this resource in the excursion creator tool or in other website:"
+    help:
+      title: "Uploading resources"
+      info1_html: "1. Click on <b>documents</b> or <b>links</b> / <b>embed</b> option.<br>"
+      info2_html: "2. If you want to upload a document, click on <b>browse</b> to choose a file from your computer. If your resource is a link or embed, you can <b>paste</b> it into the text box.<br>"
+      info3_html: "3. Type a <b>title</b> and <b>description</b>.<br>"
+      info4_html: "4. Add related <b>tags</b> to your resource. Your areas of interest have been assigned by default. However, you can delete them or add new tags.<br>"
+      info5_html: "5. Choose a required <b>language</b>, if necessary.<br>"
+      info6_html: "6. Select an <b>age </b>range. This information will be used for recommendation purposes.<br>"
+      info7_html: "7. If you want to embed a live streaming video, click on <b>Live</b> option.<br>"
+      info8_html: "8. Finally, click on <b> save </b> button to upload your resource."
+      home1_html: "This zone show the excursions created by people you are <a href=\"%{profile}\">following.</a>"
+      cat1_html: "1. Type a <b>title</b> and <b>description</b>.<br>"
+      cat2_html: "2. Then, click on <b> save </b> button to create your new category."
+      cat: "Create a new category"
+      event_html: "Create a new event"
+      event1_html : "1. Type a <b>title</b> and <b>description</b>.<br>"
+      event2_html : "2. Choose the type of event: Videoconference or Streaming.<i>If your choice is streaming, you should add the embed code of the stream.</i><br>"
+      event3_html : "3. Pick a date for the event by clicking in the calendar icon.<br>"
+      event4_html : "4. Define the start time and the end (approximately) of it by clicking the clock icons..<br>"
+      event5_html : "5. Finally, click on <b> save </b> button to publish your event."
+      exse_html : "This area allows the user to access the content of the platform in a particular way (<a href='http://vishub.org/search'>Search</a>) or unspecified (<a href='http://vishub.org/search?browse=true'>Browse</a>)"
+      exse2_html : "Explore / Search"
+      activity1_html : "Activity"
+      activity2_html : "This is the section of activities, here you can post and see the latest posts from the people you follow and your own."
+      categories1_html : "Categories"
+      categories2_html : "This is the view of the category you've created, under all the features you've added to it are displayed. At any time you can edit or delete the category."
+      profile1_html : "Profile"
+      profile2_html : "This section shows your profile, you can see the content you've created, users you follow and who follow you, you can also edit your data when you need it and change your profile image."
+      excursions1_html : "Excursions"
+      excursions2_html : "This section shows the excursion in which you have entered, navigate through the excursion slides by clicking on the arrow buttons, by clicking the left or right side of the slides or using the arrow keys on the keyboard. On the right zone, recommended excursions will be shown, under the excursion you have the information of it, as well as easy ways to share it, download it (in scorm format), mark it as spam, clone it to  your profile, make it as favorite, or put it into one of your categories. You can also comment the excursión from the bottom."
+      resources1_html : "Resources"
+      resources2_html : "This section shows the resource in which you have entered. On the right zone, recommended resources will be shown, under the resource you have the information of it, as well as easy ways to share it, download it, mark it as spam, make it as favorite, or put it into one of your categories. You can also comment the resource from the bottom."
+      favourite1_html : "Favourites"
+      favourite2_html : "This section displays your favorite resources on items that really have made favorites."
+      overview_html: "<a href='/overview'><i class='icon-info-sign btn-mini'></i>ViSH Overview</a>"
+    helpquiz:
+      info1_html: "1. Help test 1 for the quiz<br>"  
+    how: "How to share a resource"
+    info:
+      age: "Age"
+    input: "Add a description here"
+    language:
+      option1: "(Not depends on the language)"
+    leyend:
+      avatar: "Pick up an avatar or thumbnail"
+      description: "Description"
+      language: "Language"
+      recommended_age: "Recommended age"
+      scope: "Scope"
+      tags: "Tags"
+      title: "Title"
+    main_title: "Upload pictures, videos and other resources"
+    options:
+      documents: "Documents/Videos/Audios"
+      embed: "Embed (HTML code)"
+      links: "Links (URLs)"
+      browse: "Browse"
+    recommended_age_detail: "From %{min} to %{max} years"
+    screencast: "VISH's screencast"
+    tags:
+      title: "Topics"
+      areasOfInterestMessage: "Type here your areas of interest"
+      addMessage: "Add tags"
+      limitMessage: "limit reached"
+    title_input: "Name for this resource"
+    title_alert: "Write the title for this resource"
+    upload: "Upload"
+    uploading: "Uploading..."
+  downloadxlsx: "Download as XLSX"
+  email:
+    regards: "Kind regards,<br/>"
+    welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{profile}\"> to set up your profile</a> in order to enjoy a better service.<br/>"
+  embed:
+    confirm_delete: "Delete embed?"
+    content: "Live content"
+    embed: "embed"
+    input: "Paste your embed here"
+    name: "embed"
+    title3: "Write the embed you want to upload"
+  evaluation:
+    alert: "Please fill in all evaluation questions. Thank you."
+    teaching: "Teaching experience"
+    contribute:
+      zero: "Nobody has rated this excursion yet. Want to be the first?"
+      one: "1 person rated this excursion. Want to contribute?"
+      other: "%{count} people rated this excursion. Want to contribute?"
+    evaluation: "evaluate it"
+    experience: "Teaching Experience"
+    phrase0: "Rate the quality of the content used in this excursion"
+    phrase1: "Rate the quality of this excursion design"
+    phrase2: "Were the students motivated to participate in the activities related to this excursion?"
+    phrase3: "Did the excursion contribute to student involvement and to achieve their learning goals?"
+    phrase4: "Did the excursion include any interdisciplinary activities?"
+    phrase5: "Would you use this excursion for teaching again?"
+    question0: "quest 0"
+    question1: "quest 1"
+    question2: "quest 2"
+    question3: "quest 3"
+    question4: "quest 4"
+    question5: "quest 5"
+    label0: "Content"
+    label1: "Design"
+    label2: "Motivation"
+    label3: "Engagement"
+    label4: "Interdisciplinary"
+    label5: "Use again"       
+    qlabel0: "label 0"
+    qlabel1: "label 1"
+    qlabel2: "label 2"
+    qlabel3: "label 3"
+    qlabel4: "Interdisciplinary"
+    qlabel5: "label 5"
+    learning: "Learning experience"
+    strong_disagree_b: "Strongly disagree"
+    disagree_b: "Disagree"
+    neutral_b: "Neutral"
+    agree_b: "Agree"
+    strong_agree_b: "Strongly agree"
+    strong_agree_a: "Very Good"
+    agree_a: "Good"
+    neutral_a: "Average"
+    disagree_a: "Poor"
+    strong_disagree_a: "Very Poor"
+    success: "Your answers were succesfully recorded. Thank you for contributing."
+  event:
+    actions:
+      add: "Add event"
+    description_input: "Description for this event"
+    leyend:
+      date: "Date"
+      date_and_time: "Date, time and duration"
+      description: "Description"
+      end_time: "End time"
+      start_time: "Start time"
+      title: "Title"
+      type: "Type"
+    main_title: "Create a new event"
+    title_input: "Name for this event"
+    type:
+      streaming: "Streaming"
+      videoconference: "Videoconference"
+  excursion:
+    actions:
+      add: "Add excursion"
+      bookmark: "bookmark"
+      clone: "clone"
+      delete: "delete"
+      download: "download"            
+      edit: "edit"
+      embed: "embed"
+      favorite: "favorite"
+      my_room: "my room"
+      show: "show"
+      show_fewer: "Show fewer"
+      show_meta: "Metadata"
+      show_more: "Show more"
+      share: "share"
+      scorm: "scorm"
+      spam: "spam"
+    all: "all"
+    description: "description"
+    download_scorm: "A SCORM package is a collection of files which are packaged according to an agreed standard for learning objects. SCORM packages are zip files that can be integrated in any LMS (Learning Management System) that supports the standard (Moodle, Blackboard, …) and that can be used for presenting multimedia content and as assessment tools. Thus, you can integrate your Virtual Excursion in Moodle and other LMSs by downloading it as SCORM."
+    clone:
+      confirm: "This will clone this excursion to your own repository and will open it for editing"
+      not_found: "Excursion not found"
+      ok: "Succesfully cloned"
+      owner: "You already own this excursion"
+    confirm_delete: "Delete excursion?"
+    confirm_delete_offline: "You are going to remove the excursion from this list, but it will still be accesible on the server. Are you sure?"
+    contributors:
+      name: "With content from"
+    created: "created"
+    draft: "Draft"
+    favorites: "Favorites"    
+    how: "How to create an excursion"
+    invite:
+      email:
+        body: "Hi,%0A%0ACheck%20out%20this%20excursion%20at%20ViSH:%0A%0A%{url}%0A%0AI%20hope%20you%20like%20it!%0A%0A%{name}"
+        link: "e-mail"
+        subject: "Check%20out%20this%20excursion%20at%20http://vishub.org%20:%20%{title}"
+    is_draft: "[DRAFT]"
+    modal: 
+      title: "Congratulations"
+      metadata_title: "Metadata"
+      normal_body: "Congratulations. You have succesfully created this excursion."
+      survey: "Now you can fill in a quick survey to help us improve this tool. It will only take you about 3 minutes. <a href='https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform' target='_blank'>Fill in the survey</a>"
+      thank: "Thank you very much for your time and effort"
+    my: "my"
+    name: "excursion"
+    net: "network"
+    network: "my network excursions"
+    network2: "my network"
+    new: "Create New Excursion"
+    newmy_html: "You have not created any excursions yet. You can add a new one by clicking on the add button or on this "    
+    newnet_html: "Here you will see the excursions created by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
+    newfav_html: "You have no favorite excursions yet. Mark any excursion as favorite by clicking the star icon <img src='/assets/icons/star-off.png'>"
+    one: "excursion"
+    other: "excursions"
+    others: "others excursions"
+    session_start: "start session"
+    suggestion:
+      other: "Excursions"
+    title:
+      other: "excursions"
+    upcomming: "upcoming"
+    unload_warning: "The excursion is not saved!"
+    top: "forMe"
+  external: "external"
+  faq:
+    title: "Frequently Answered Questions"
+    question1: "What is ViSH?"
+    answer1: "The Virtual Science Hub is a meeting point for scientists and teachers and is based around the idea of “Virtual Excursions”, the online analog to an on-site visit, during which the students discover science in Europe’s top scientific centers. Several media such as flashcards, video-conference and virtual experiments help them feel the science rather than just study it. ViSH will be using Social Stream as a social networking library and it is entering its development phase. You can find the code at the GING github page."
+    question2: "What is Global Excursion?"
+    answer2: "It is a FP7 European Project, funded by the European Commission under the 7th Framework Programme. It is coordinated by ZSI and the consortium is formed by UPM, AGORA SYSTEMS, EUN, SZTAKI, UCAM and UNIZAR. Check this <a href='http://www.globalexcursion-project.eu' target='_blank'>http://www.globalexcursion-project.eu</a>"
+    question3: "What is the eScience?"
+    answer3: "eScience stands for “enhanced” science, in the sense of transdisciplinarity, global teams addressing large scale challenges, thanks to the use of new ICT tools and facilities. Include topics like high performance computing, large storage of data, complex networks of sensors, broadband communications, open repositories, new instrumentation, visualization tools…"
+    
+    editor_question1: "What is ViSH Editor?"
+    editor_answer1: "Vish Editor i is a HTML5 application to create web presentations in a simple and friendly way. It is integrated in ViSH and you can use it to create your eExcursions. If you are registered you can try it in: <a target='_blank' href='http://vishub.org/excursions/new'>http://vishub.org/excursions/new</a>"
+    editor_question2: "What is a eExcursion?"
+    editor_answer2: "It is a  kind of presentation created with multimedia didactical material which allows a better understanding of a scientific infrastructure, equipment of facility. eExcursions are didactical units used for science teaching, either shown in class or to be explored by students on their own. Check this video (English only) <a target='_blank' href='http://www.youtube.com/watch?v=tZ8qirSTIIs'>http://www.youtube.com/watch?v=tZ8qirSTIIs</a>"
+    editor_question3: "It is difficult to create a new eExcursion?"
+    editor_answer3: "It is very easy and straightforward. You will find it very familiar and intuitive! Prepare the content to be included, organize it in a didactical and understandable manner, and then drag and drop or select the shape of the slides. See a tutorial in <a target='_blank' href='http://www.youtube.com/watch?v=fBSNZxs8m0I&list=PLve_ezrFIJJxujiqCZid6KcgxPh4ksSp2&index=2'>Youtube ViSH channel</a>"
+    
+    events_question1: "What is a eVisit?"
+    events_answer1: "It is a virtual visit or videoconference to any e-Infrastructure or scientific center, performed among scientists, researchers, teachers and pupils. They are done inside ViSH using a videoconference tool called <a href='http://mashme.tv' target='_blank'>MashMe.tv</a>"
+    events_question2: "How can I organize a eVisit?"
+    events_answer2: "Creating a eVisit in ViSH is very easy. You can do it from any page in the + button that is in the headbar, they are called events. After creating the event you will have to invite the rest of the people that will participate."
+    events_question3: "Can I use the events with my pupils or with other people?"
+    events_answer3: "Of course. You can create an event in ViSH and invite whoever you want."
+    
+    resources_question1: "What is a resource?"
+    resources_answer1: "They are any kind of digital material that can be uploaded to the ViSH to be used in the eExcursions. For example, websites, live webcams, embed codes, links, flash objects, images, videos, audios, pdf files, etc."
+    resources_question2: "How can I upload a new resource?"
+    resources_answer2: "This can be done very easily. In the + button in the headbar you can select 'add resource' and in the form that appears upload the file, or select the embed code or link."
+    resources_question3: "How can I integrate a resource into my eExcursion?"
+    resources_answer3: "In the ViSH Editor, when creating a eExcursion you can add any resource from the panels that appear. The tab is called ViSH and has a search field to search in ViSH repository."
+    
+    competitions_question1: "Do I need to register in Vishub?"
+    competitions_answer1: "Yes, if you want to create a new eExcursion and participate in this competition. If you just want to hang around, or see what others have created, you may see all the contents without registering."
+    competitions_question2: "Can I participate in more than one category?"
+    competitions_answer2: "Sure! the more the better. Make use of your network, your contents, your ideas… and you will have more chances to win. But you can only win in one single category, so if you are initially selected as winner in two categories, you will be asked to choose the one you prefer."
+    competitions_question3: "I am not a professional, do I have any chance?"
+    competitions_answer3: "Yes, definitively. We believe in the power of open science. All the contributions are welcome, sometimes amateurs perform better that professionals, let’s try!"
+    competitions_question4: "Can I use my regional language?"
+    competitions_answer4: "Sorry, despite we understand the value of local actions and regional knowledge, it is too complicated for us to evaluate in languages we are not experts. The languages covered are English, German, French, Spanish, Dutch, Hungarian, Romanian, Greek and Italian."
+    competitions_question5: "What is an Amazon voucher?"
+    competitions_answer5: "It is a promotional code for the online store Amazon that will allow you to buy whatever you may consider interesting for your work: books, little technological equipment… "
+    competitions_question6: "What does the trip to Brussels award include?"
+    competitions_answer6: "We’ll pay you (one person) the travel expenses (economy class train or flight ticket, hotel room, subsistence) from you city to Brussels. We kindly invite you to join the Global Excursion Final Conference with other stakeholders and experts from the European e-learning environment. "
+    competitions_question7: "Where can I see all the participating excursions?"
+    competitions_answer7: "<a href='http://vishub.org/contest'>Click here</a> to see the competitions page. Share that page with your contacts and friends."
+  filter: "filter"
+  follow:
+    add_favorite: "Add favorite"
+    contacts: "contacts"
+    favorites: "Favorites"
+    find: "find"
+    followers: "followers"
+    followings: "following"
+    is_favorite: "Is favorite"
+    views: "views"
+  frontpage:
+    main_text: "ViSH is a social and collaborative site for creating and sharing knowledge resources for the realization of educational activities."
+    educational:
+      title: "Educational"
+      description: "Find the best free and openly licensed educational resources and learning objects classified by subject. ViSH resources can be used for teaching, learning, assessment, research and other purposes."
+    community:
+        title: "Community"
+        description: "ViSH is a community for teachers and educational professionals who want to meet new educators, create, share and discover novel educational resources, and get access to tools for maximizing technology enhanced learning."
+    elearning:
+        title: "e-Learning"
+        description: "ViSH provides a collection of tools and services for facilitates the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems."
+    community_stats:
+        title: "Our community grows every day"
+        subtitle: "Share your knowledge in our community and help us to grow"
+    join_us: "Join to ViSH!"
+  go:
+    repository: "go to repository"
+  header:
+    tooltip: 
+      add_button: "Create excursions, resources, etc."
+  help: "help"
+  help_page: "ViSH HELP"
+  help_manual: "Download user manual"
+  hide: "Hide"
+  home:
+    foryou: "For you"
+    populars: "Populars"
+  lang:
+    independent: "Language independent"
+    changed: "Language changed to %{lang}"
+    error: "Language \"%{lang}\" not available"
+    title: "language"   
+    others: Others 
+  link:
+    one: "link"
+    other: "links"
+    confirm_delete: "Delete link?"
+    go: "Go to link"
+    title3: "Write the link you want to upload"
+    name: "link"
+  lre:
+    data_error: "There was an error and the data server responded with a code %{code}"
+    json_error: "There was an error with the returned contents, try with another search terms"
+    search_error: "There was an error and the search server responded with a code %{code}"
+  translate:
+    change: "Change language"
+  mailboxer:
+    new_message_for: "New message for"
+    delete_confirm: "Do you want to move '%{csubject}' to trash?"
+  message:
+    send: "Send mesage"
+    new: "New message"
+    unread: " unread"
+  more: "more"
+  mashme:
+    header_html: "View in <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
+    invite_header: "Invite your contacts"
+    invitesubject: "Join me watching this excursion at MashMeTV!"
+    invitebody_html: "Click here to watch: <a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
+    launch: "Launch"
+    room_name: "Room name"
+  navigation:
+    catalogue: "Catalogue"
+    home: "Home"
+    mynetwork: "My network"
+  no_bio: "This user has not uploaded a biography."
+  notice:
+    fill_profile: "You don't have filled in your profile with your <b>areas of interest</b> and <b>occupation</b> on the personal info section. With them we will be able to place better personalized recommendations for you. Please fill in your profile <a href='%{url}'>here</a>."
+  notification:
+    config_html: "If you want to modify the notification service. Click <a href='%{url}'>here</a>"
+    makefriend:
+      user: "%{sender} is following %{who}."
+    unread: " unread"  
+  officedoc:
+    confirm_delete: "Delete document?"
+    download: "download"
+    title: "Office Documents"
+    mine: "My documents"
+    name: "document"
+    not_mine: "Documents"
+    one: "a document"
+    title:
+      one: "Document"
+      other: "Documents"
+  offline:
+    title: "Offline Mode"
+  options:
+    add: "add"
+    new: "new"
+  order_by:
+    created_at: "Creation"
+    favorites: "Favorites"
+    popularity: "Popularity"
+    relevance: "Relevance"
+    title: "Order by"
+    updated_at: "Modification"
+    visits: "Visits"
+  organization:
+    one: "organization"
+    other: "organizations"
+  organizer:
+    one: "organizer"
+    other: "organizers"
+  password: "password"
+  post:
+    input: "Share your thoughts, links, videos and more, here!"
+    search_name: "status update"
+  profile:
+    degrade: "Degrade to user"
+    edit: "Edit profile"
+    profile: "profile"
+    promote: "Promote to admin"
+    occupation: 
+      label: "Occupational field"
+      options:
+        select: "Select"
+        scientist: "Science"
+        teacher: "Education"
+        other: "Other"
+      select: "Select your occupation"
+    remove: "Remove user"
+    tags:
+      default: "VisHub, virtual, excursion"
+      other: "Areas of interest"
+  project: "Global Excursion"      
+  published: "Published"
+  quiz:
+    actions:
+      close:  "Close"
+      delete: "Delete"
+      edit: "Edit"
+    answer_url: "Answer this quiz on this URL"
+    answers: "answers"
+    closed: "Closed"
+    closedL: "Closed"
+    closeAlert: "Sorry, this quiz is closed."
+    confirm_close: "Close live quiz? No more answers could be sent after this."
+    confirm_delete: "Delete live quiz? You will lose all the stored answers."
+    createdAt: "Created at"
+    closedAt: "closed at"
+    closedAtS: "and closed at"
+    correctResponses: "Correct"
+    error: "Sorry, an error has occurred processing this quiz"
+    falseC: "F"
+    falseL: "False"
+    incorrectResponses: "Incorrect"
+    launchIn: "launched in the Virtual Excursion: "
+    legend:
+      name: "Live Quiz Name"
+    live: "Live Quizzes"
+    noAnswers: "There are no answers for this quiz"
+    noClosedQuizzes: "You don't have any closed quiz"
+    noOpenQuizzes: "You don't have any open quiz"
+    opened: "Open"
+    openedL: "Open (they still can be answered)"
+    openPeriod: "Period"
+    other: "quizzes"
+    placeholder:
+      name: "Write a new name"
+    total: "Total"
+    trueC: "T"
+    trueL: "True"
+    untitled: "Untitled"
+  recommended: "recommended"
+  report:
+    error_content: "Error in the excursion"
+    error_content_resource: "Error in the resource"
+    failure: "The report could not be sent"
+    low_content_quality: "Resource of low quality"
+    low_content_quality_msg: "This resource has been reported automatically by the platform because it has been evaluated as a low quality resource."
+    placeholder: "What is the issue?"
+    report_event: "Report event"
+    report_excursion: "Report excursion"
+    report_resource: "Report resource"
+    spam_content: "Spam or inappropriate content"
+    success: "We have received your report. We will take a look at it very shortly. Thank you"
+  repository:
+    one: "repository"
+    other: "repositories"
+    title: "Resources"
+  resource:
+    actions:
+      add: "Add resource"
+    empty: "You"    
+    network: "my network resources"
+    newmy_html: "You have not uploaded any resources yet. You can add a new one by clicking on the upload button or on this "    
+    newnet_html: "Here you will see the resources uploaded by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
+    newfav_html: "You have no favorite resources yet. Mark any resource as favorite by clicking the star icon <img src='/assets/icons/star-off.png'>"
+    my: "my"
+    net: "network"
+    one: "resource"
+    other: "resources"
+    title:
+      one: "resource"
+      other: "resources"
+    top: "forMe"
+    upload: "upload"
+  save: "Save"
+  scope:
+    private: "Private"
+    public: "Public"
+  scormfile:
+    name: "SCORM package"
+    confirm_delete: "Delete SCORM package?"
+    view_full: "View full"
+  search:
+    title: "search"
+    110slides: "1-10 slides"
+    1020slides: "10-20 slides"
+    20slides: "20+ slides"
+    always: "any time"
+    anyslides: "Any slides"
+    audio: "audio"
+    flash: "flash"
+    followers: "followers"
+    document: "document"
+    embed: "embed"
+    end: "No more search results. Try another search terms"
+    excursions: "excursions"
+    image: "image"
+    last_day: "yesterday"
+    last_month: "last month"
+    last_week: "last week"
+    last_year: "last year"
+    mostviewed: "most viewed"
+    mostfav: "most favorited"
+    mostslides: "most slides"
+    newest: "newest"
+    link: "link"
+    loading: "Loading information"
+    recent: "recent"
+    resources: "resources"
+    orderby: "order by"
+    quiz: "quiz"
+    relevance: "relevance"
+    slides: "slides"
+    time_constraint: "creation date"
+    type: "type"
+    video: "video"
+  send:
+    send: "Send"
+  share: "Post"
+  sharing:
+    email: "Share by email"
+  sign_up: "Register"
+  simple_captcha:
+    placeholder: "Enter the image value"
+    label: "Enter the code in the box:"
+    message:
+      default: "Secret Code did not match with the Image"
+      user: "The secret Image and code were different"
+    error: "There was an error with the captcha code below. Please re-enter the code."   
+    subtitle: "Enter the code in the box:"
+    title: "Captcha"
+  site:
+    current:
+      description: "A meeting point for scientists and teachers based around the idea of virtual excursions"
+      keywords: "VisHub,virtual,excursion"
+      title: "Virtual Science Hub"
+      search: "Virtual Science Hub - Search"
+      browse: "Virtual Science Hub - Explore"
+      msg: "Virtual Science Hub - Messages"
+      activity: "Virtual Science Hub - Activities"
+    name: "Virtual Science Hub"
+  swf:
+    confirm_delete: "Delete SWF?"
+    name: "flash object"
+  today: "Today"
+  top10: "Top 10"
+  unknown: "Unknown"
+  url:
+    input: "Paste your link here"
+  user:
+    anonymous: "Anonymous"
+    email: "email"
+    name: "name"
+    one: "user"
+    other: "users"
+  username: "username"
+  vish:
+    about: "About ViSH"   
+    starterguide: "Starter Guide"
+  views:
+    pagination:
+      next: "»"
+      previous: "«"            
+      truncate: "..."
+  view_all: "view all"
+  webapp:
+    name: "Web Application"
+    confirm_delete: "Delete Web application?"
+    view_full: "View full"
+  yesterday: "Yesterday"
+  zipfile:
+    name: "ZIP file"
+    confirm_delete: "Delete Zip file?"
+
+
+//Social Stream (Base)
+
+en:
+  language_name: English
+  actor:
+    name: Name
+    title:
+      other: Actors
+  action:
+    send: Send
+    accept: Accept
+  account:
+    cancel: Cancel account
+    edit: Edit account
+    email:
+      change: Change email address
+    lang:
+      change: Change language
+    one: Account
+    password:
+      change: Change password
+      new: New password
+      retype: Retype new password
+      current: Current password
+  activerecord:
+    attributes:
+      contact:
+        relation_ids: Roles
+      profile:
+        name: Name
+      relation/custom:
+        name: Name
+      user:
+        email: Email
+        name: Name
+        password: Password
+        password_confirmation: Confirm password
+        remember_me: Remember me
+  activity:
+    audience:
+      hidden:
+        summary: Restricted
+        full: Shared with contacts of %{audience}
+      public:
+        summary: Public
+        full: Shared with all the Internet
+      show: Show
+      visible:
+        summary: Restricted
+        full: Shared with %{audience}
+    confirm_delete: Delete activity?
+    delete: Delete
+    last: Last Activities
+    like: I like
+    like_sentence:
+      one: '%{likers} likes this'
+      other: '%{likers} like this'
+    one: Activity
+    other: Activities
+    privacy:
+      contact:
+        myself:
+          group: All members
+          user: Your contacts
+        outside:
+          group: Members of %{receiver}
+          user: Contacts of %{receiver}
+      relation:
+        one: '%{count} group'
+        other: '%{count} groups'
+    sending: Sending
+    share: Share
+    share_loading: Sharing...
+    stream:
+      atom_title: Activity Stream from %{subject}
+      title:
+        follow: '%{author} added %{activity_object} as contact'
+        like: '%{author} likes %{activity_object}'
+        make-friend: '%{author} also added %{activity_object} as contact'
+        post: '%{author} posted %{activity_object}'
+        updated: '%{author} posted %{activity_object}'
+    title: Activities
+    to_comment: Comment
+    unlike: I do not like anymore
+    verb:
+      follow:
+        User:
+          title: '%{subject} added %{contact} as contact.'
+          message: '%{name} added you as contact.'
+        Group:
+          title: '%{subject} added %{contact} as contact.'
+          message: '%{name} added you as contact.'
+      like:
+        User:
+          title: '%{subject} is a fan of %{contact}.'
+          message: '%{name} is now your fan.'
+        Group:
+          title: '%{subject} is a fan of %{contact}.'
+          message: '%{name} is now your fan.'
+      join:
+        one: '%{sender} joined the %{title} %{thing}.'
+      make-friend:
+        User:
+          title: '%{subject} and %{contact} are now connected.'
+          message: '%{name} also added you as contact.'
+        Group:
+          title: '%{subject} added %{contact} as contact.'
+          message: '%{name} added you as contact.'
+      post:
+        title:
+          other_wall: '%{sender} → %{receiver}'
+  activity_action:
+    follow: Follow
+    sentence:
+      follow:
+        one: '%{followers} follows this'
+        other: '%{followers} follow this'
+      more:
+        one: '%{count} more person'
+        other: '%{count} more people'
+    unfollow: Unfollow
+  administrators:
+    index:
+      title: Administrators
+  ajax:
+    error: There was an error in the remote server
+  browse: Browse
+  button:
+    cancel: Cancel
+    create: Create
+    save: Save
+    update: Update
+  cheesecake:
+    changes:
+      details: Change details
+      none: No changes
+      save: Save changes
+      saving: Saving...
+    form:
+      editing: Editing
+      fields:
+        color: Color
+        name: Name
+        permissions: Permissions
+        subsector: Subsector
+    select:
+      hint: Select by clicking the portraits
+  comment:
+    input: Write a comment...
+    confirm_delete: Delete comment?
+    name: comment
+    one: a comment
+    other: comments
+    title:
+      one: Comment
+      other: Comments
+    view_all: View all comments (%{count})
+  contact:
+    all_n: All contacts (%{count})
+    confirm_delete: Remove contact?
+    current: Current
+    delete: Delete
+    edit:
+      title: Edit contact to %{name}
+      submit: Edit contact
+    empty: You have not added anybody yet. What about <a href="%{explore}">exploring</a>?
+    error_count:
+      one: '1 error prohibited this contact from being saved:'
+      other: '%{count} errors prohibited this contact from being saved:'
+    follow: Add
+    following: Added
+    graph:
+      one: Graph
+      empty: We're sorry but you don't have any contacts yet. You can try the search
+        box to look for somebody!
+    in_common:
+      one: 1 contact in common
+      other: '%{count} contacts in common'
+    n:
+      one: '%{count} contact'
+      other: '%{count} contacts'
+    new:
+      added:
+        other: '%{actors} successfully added as %{relations}'
+      button:
+        zero: Add
+        one: '%{count} role'
+        other: '%{count} roles'
+      link: Add contact
+      modal:
+        button: Add
+        placeholder:
+          actors: Type names
+          relations: Type names
+        title: Add contacts
+      title: Add %{name} to your contacts
+      menu: Add contact
+      submit: Add Contact
+    new_modal:
+      label:
+        relations: Initially assigned roles
+    one: Contact
+    other: Contacts
+    pending:
+      other: Added you
+      all: All
+      all_n: See all pending requests (%{count})
+    received: Received
+    relation:
+      one: Contact type
+      new: New type
+    reply:
+      link: + Reply contact
+      title: Reply contact request to %{name}
+      submit: Reply contact
+    saving: Saving...
+    sent: Added
+    suggestion:
+      one: Suggestion
+      other: Suggestions
+      all: All
+    type:
+      new: + New type
+    unfollow: Remove
+    view_all: View all...
+  copyright: 2013 Copyright - All rights reserved
+  counter:
+    like:
+      one: <span class="counter">%{count}</span> like
+      other: <span class="counter">%{count}</span> likes
+    view:
+      one: <span class="counter">%{count}</span> view
+      other: <span class="counter">%{count}</span> views
+  delete:
+    confirm: Delete %{element}}?
+  devise:
+    links:
+      sign_in: Sign in
+      sign_up: Sign up
+      forgot_password: Forgot you password?
+      confirmation_instructions: Didn't receive confirmation instructions?
+      unlock_instructions: Didn't receive unlock instructions?
+      sign_in_with: Sign in with %{provider}
+    passwords:
+      confirm: Confirm password
+      forgot: Forgot your password?
+      instructions: 'Enter your email address and we will send you instructions to
+        change it:'
+      update: Change your password
+  dropdown:
+    notifications: Notifications
+    privacy: Privacy
+    settings: Settings
+  explore:
+    explore:
+      most_followed: Most followed
+      most_popular: Most popular
+    header:
+      explore: Explore
+      participants: Participants
+      resources: Resources
+      timeline: Timeline
+      tags: Tags
+      search: Search
+    link: Explore
+    or: or Explore
+    participants:
+      last_active: Last active
+      last_registered: Last registered
+      most_members: Most members
+      registered_since: since %{time}
+    resources:
+      last_uploaded: Last uploaded
+      most_visited: Most viewed
+      uploaded_since: since %{time}
+    search:
+      title: Advanced search
+      placeholder: looking for...
+      submit: Search
+  follower:
+    follower:
+      title: Followers
+    following:
+      title: Followings
+    n:
+      one: 1 follower
+      other: '%{count} followers'
+  forgot_password: Forgot you password?
+  frontpage:
+    main_title: Social Stream, a framework for building distributed social network
+      websites.
+    presentation:
+      modular:
+        header: Modular
+        p: Available <a href="https://github.com/ging/social_stream#social-stream-components">Social
+          Stream components</a> provide your application only with the features you
+          need in your social network. Just add your desired gems to your Gemfile
+      flexible:
+        header: Flexible
+        p: Completely customize your social network <a href="https://github.com/ging/social_stream/wiki/How-to-change-controllers%2C-models%2C-views%2C-assets-and-locales">changing
+          any Social Stream component</a>, <a href="https://github.com/ging/social_stream/wiki/How-to-add-new-activity-objects">adding
+          new activity objects</a> or changing the CSS using <a href="http://sass-lang.com/">Sass</a>
+      community:
+        header: Community
+        p: Social Stream enjoys a growing community of developers. Feel free to drop
+          a message at <a href="http://groups.google.com/group/social-stream">Social
+          Stream's Google group</a> or <a href="http://stackoverflow.com/questions/tagged/social-stream">StackOverflow</a>
+          if you have problems. <a href="https://github.com/ging/social_stream/issues/new">Open
+          an issue</a> if you find a defect. Pull request are very welcomed!
+    stats: '%{users} users and %{groups} groups registered'
+  group:
+    one: group
+    other: groups
+    all: All groups
+    all_n: All groups (%{count})
+    by: By groups
+    destroy:
+      one: Destroy group
+      explanation: All the activities, information and contacts of this group will
+        be destroyed!
+      go_ahead: Yes, I am sure. Destroy all!
+      last_confirm: This is your last chance. Are you really sure?
+    form:
+      title: Group
+    input: What is the name of the group?
+    last: Last groups
+    my: My groups
+    n:
+      one: '%{count} group'
+      other: '%{count} groups'
+    new:
+      link: New group
+      name: Name
+      description: Description
+      participants: Participants
+      title: New group
+    cloud: Group tag cloud
+    most:
+      followed: Most followed
+      liked: Most liked
+    tags: Tags
+    title:
+      one: Group
+      other: Groups
+    view_all: View all...
+  header:
+    icon:
+      contacts: Contacts
+      home: Home
+      messages: Messages
+      repository: Repository
+  help: Help
+  helpers:
+    submit:
+      relation_custom:
+        create: Save
+        update: Update
+  home: Home
+  inbox:
+    one: Inbox
+  invitation:
+    e-mails: E-mail addresses
+    error: Your request was unprocessable. Make sure you wrote correct e-mail addresses.
+    invited: '%{sender} has invited you to %{site}!'
+    join: Invite other people to join %{site}!
+    join_me: Join me at %{site}!
+    one: Invitation
+    other: Invitations
+    toolbar: Invite
+    success: Your invitations have successfully been sent
+    text: Write your own message
+  layout:
+    more: See more (%{count})
+  like:
+    n:
+      one: '%{count} like'
+      other: '%{count} likes'
+  location:
+    message: You are here > %{location}
+    base: You are here
+    separator: ' > '
+  mailboxer:
+    delete: Delete
+    delete_confirm: Do you want to move '%{object}' to trash?
+    form:
+      body: Body
+      recipients: Recipients
+      subject: Subject
+    mark_as_read: Mark as read
+    message_mailer:
+      has_sent_new:
+        event: has sent a new message to %{receiver}
+        group: has sent a new message to %{receiver}
+        user: has sent you a new message
+      has_sent_reply:
+        event: has sent a reply to %{receiver}
+        group: has sent a reply to %{receiver}
+        user: has sent you a reply
+      subject_new: '%{subject}'
+      subject_reply: '%{subject}'
+    notification_mailer:
+      subject: '%{subject}'
+    reply: Reply
+    send: Send message
+    sent: Your message was sent
+  menu:
+    options: Menu Options
+    information: Information
+    wall: Wall
+  message:
+    answer: Write your answer
+    inbox: Inbox
+    look: Take a look at this conversation
+    new: New Message
+    one: Message
+    other: Messages
+    participants: Participants
+    send: Send a message
+    sentbox: Sentbox
+    trash: Trash
+  notification:
+    all_text: Read the whole text at %{url}
+    confirm: Confirm %{sender} as contact?
+    default: You have a new notification
+    destroy_sure: Do you want to delete this notification?
+    fan: '%{sender} is now %{whose} fan.'
+    follow:
+      group: '%{sender} added %{who} as contact.'
+      user: '%{sender} added %{who} as contact.'
+    hello: Hi %{receiver},
+    like:
+      group: '%{sender} likes %{whose} %{thing}.'
+      user: '%{sender} likes %{whose} %{thing}.'
+    look: Take a look at %{sender}'s profile
+    makefriend:
+      group: '%{sender} also added %{who} as contact.'
+      user: '%{sender} also added %{who} as contact.'
+    one: Notification
+    other: Notifications
+    post:
+      group: '%{title} -- by %{sender} in %{whose} wall'
+      user: '%{title} -- by %{sender} in %{whose} wall'
+    read: Mark as read
+    read_all: Mark all as read
+    unread: Mark as unread
+    update:
+      group: '%{sender} updated %{thing} in %{whose} wall.'
+      user: '%{sender} updated %{thing} in %{whose} wall.'
+    visit: Visit %{url} and check all your notifications.
+    watch: Watch it at %{url}
+    watch_it: Watch it!
+    who:
+      group: '%{name}'
+      user: you
+    whose:
+      group: '%{receiver}''s'
+      user: your
+  post:
+    confirm_delete: Delete post?
+    form:
+      title: Post
+    input: Share your thoughts here!
+    name: post
+    one: a post
+    other: posts
+    title:
+      one: Post
+      other: Posts
+  profile:
+    one: Profile
+    age: Age
+    is_on: is on
+    must_be_signed_id: You must be signed in
+    group:
+      about: About us
+      birthday: Anniversary
+      experience: Area of expertise
+      info: Group information
+      tags: Group tags
+    user:
+      about: About me
+      birthday: Birthday
+      experience: Experience
+      info: Personal information
+      tags: User tags
+    address: Address
+    city: City
+    contact: Contact information
+    country: Country
+    email: E-mail
+    empty: These fields are empty. Please, update them.
+    fax: Fax
+    mobile: Mobile
+    organization: Organization
+    phone: Phone
+    profile: Edit profile
+    tags:
+      default: social, stream,
+      other: Tags
+    website: Website
+    update:
+      error: 'Please, check the format of your profile:'
+      success: Your profile has been updated
+  public:
+    other: Everybody
+  permission:
+    description:
+      default:
+        brief:
+          create:
+            activity: Post to your wall
+          follow:
+            nil: Follow their activity
+          read:
+            activity: Read your wall
+          represent:
+            nil: Administrate
+          notify:
+            nil: Notify
+        detailed:
+          create:
+            activity:
+              positive: They WILL BE ABLE to post new activities to your wall
+              negative: They WILL NOT BE ABLE to post new activities to your wall
+          follow:
+            nil:
+              positive: Activities of the contacts at %{relation} WILL APPEAR in your
+                home wall
+              negative: Activities of the contacts at %{relation} WILL NOT APPEAR
+                in your home wall
+          read:
+            activity:
+              positive: They WILL BE ABLE to read posts in your wall, except those
+                shared with specific contacts
+              negative: They WILL NOT BE ABLE to read posts in your wall, except those
+                marked as public
+          represent:
+            nil:
+              positive: They WILL BE ABLE to change session and act as %{name}
+              negative: They WILL NOT BE ABLE to change session and act as %{name}
+          notify:
+            nil:
+              positive: Activities WILL BE notified to contacts at %{name}
+              negative: Activities WILL NOT BE notified to contacts at %{name}
+    of_relation:
+      choose: Permissions in <strong>%{name}</strong> role
+    postit: Manage the permissions of your contacts and create new roles
+  privacy:
+    intro: 'Contacts at <strong>%{relation}</strong> level are only allowed to:'
+    rule:
+      add: Add
+      title: Privacy rules
+      saved: Privacy rules saved
+  relation_custom:
+    confirm_delete: Delete this role?
+    delete: Delete
+    edit: Change name
+    list:
+      title: Roles
+    new: + New role
+    title: Privacy
+  relation_local_admin:
+    name: Administrator
+  relation_owner:
+    name: Owner
+  relation_public:
+    name: Public
+  repository:
+    filter: filter
+    title: Repository
+    order:
+      by: Order by
+      last_modified: Last modified
+      most_popular: Most popular
+  representation:
+    notice: Your session has changed. Now you are acting on behalf of %{subject}.
+      Use the top-right menu to return to your session
+    switch: Switch session
+  required: (*) These fields are required
+  search:
+    all_results: Search all %{subject} (%{count})
+    at_least:
+      one: Write at least %{count} character
+      other: Write at least %{count} characters
+    global:
+      name: Global search
+      first_result:
+        more: Showing the first %{count} results.
+        one: Showing the first result.
+      query: See more results for %{query} >
+    name: Search
+    no_subject_found: No %{subject} was found.
+    nothing: Nothing found
+    searching: 'Searching: %{query}'
+    show_all: All
+    write: Write your query ...
+    wrong: There seems to be a problem with the search engine
+  settings:
+    api_key:
+      briefing: Manage your API key
+      confirm: Are you sure?
+      empty: Empty Token
+      explanation: This is your API key
+      name: API Key
+      regenerate: Regenerate API key
+    cancel_account:
+      briefing: Cancel account
+    email_change:
+      briefing: Change your email
+    lang_change:
+      briefing: Change your language
+      name: Change your language
+    error: Some errors raised when saving your changes
+    for: Settings for
+    main: Settings
+    manage:
+      name: Admin Contacts
+      briefing: Settings for contacts
+      explanation: Change contacts permissions
+    notifications:
+      briefing: Settings about notifications behaviour and mail alerts
+      name: Notifications
+      by_email:
+        name: Send me an email when I receive a notification
+        always: Always
+        never: Never
+    notification_settings:
+      prefix: Send me an email
+      someone_adds_me_as_a_contact: when someone adds me as a contact
+      someone_confirms_my_contact_request: when someone confirms my contact request
+      someone_likes_my_post: when someone likes my post
+      someone_comments_on_my_post: when someone comments on my post
+    one: Settings
+    password_change:
+      briefing: Change your password
+    success: Your settings were correctly changed
+  share: Share
+  sign_in: Sign in
+  sign_out: Sign out
+  sign_up: Sign up
+  site:
+    current:
+      description: A framework for building distributed social network websites
+      keywords: social stream,social software,framework,ruby on rails
+      title: Social Stream
+    name: Social Stream
+  subject:
+    this_is_you: This is you!
+  sure: Are you sure?
+  time:
+    ago: '%{time} ago'
+  unknown: Unknown
+  user:
+    all: All users
+    all_n: All users (%{count})
+    by: By Users
+    one: user
+    other: users
+    title:
+      one: User
+      other: Users
+  welcome: Welcome to %{site}!
+  lang:
+    browser: Auto-detect browser language
+    none: Language independent content
+
+
+// Social Stream Documents
+
+en:
+  activerecord:
+    attributes:
+      document:
+        title: Title
+    models:
+      document: File
+  audio:
+    confirm_delete: Delete audio?
+    title:
+      one: Audio
+      other: Audios
+    mine: My audios
+    name: audio
+    not_mine: Audios
+    one: an audio
+    other: audios
+    processing: Processing audio clip. Please wait...
+  details:
+    msg: See details...
+  document:
+    actions:
+      delete: Delete
+      details: Details
+      download: Download
+      edit: Edit
+    all: All files
+    by: by %{author}
+    confirm_delete: Delete file?
+    description:
+      input: Add a description here
+    filter: filter
+    form:
+      title: File
+    info:
+      author: Author
+      date:
+        created_at: Created at
+        updated_at: Updated at
+      description: Description
+      file: File
+      size: Size
+      tags: Tags
+      title: Title
+    mine: My files
+    name: file
+    new:
+      link: Add file
+      title: New file
+    new_activity:
+      attach: Attach file
+    not_mine: Files
+    one: a file
+    other: files
+    scope:
+      network: Network
+      own: Own
+    simple_all: All
+    title:
+      input: File title
+      one: File
+      other: Files
+  picture:
+    confirm_delete: Delete picture?
+    mine: My pictures
+    name: picture
+    not_mine: Pictures
+    one: a picture
+    other: pictures
+    title:
+      one: Picture
+      other: Pictures
+  resource:
+    all: All Resources
+    confirm_delete: Delete resource?
+    title: Resources
+    mine: My resources
+    not_mine: Resources
+  video:
+    confirm_delete: Delete video?
+    mine: My videos
+    name: video
+    not_mine: Videos
+    one: a video
+    other: videos
+    processing: Processing video. Please, wait...
+    title:
+      one: Video
+      other: Videos
+
+
+// Devise
+
+en:
+  errors:
+    messages:
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      already_confirmed: "was already confirmed, please try signing in"
+      not_locked: "was not locked"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
+
+  devise:
+    suggestion: "Popular tags"
+    email: "Email"
+    name: "Name"
+    password: "Password"
+    passwordconfirmation: "Password confirmation" 
+    tags: "Areas of interest" 
+    failure:
+      already_authenticated: 'You are already signed in.'
+      unauthenticated: 'You need to sign in or sign up before continuing.'
+      unconfirmed: 'You have to confirm your account before continuing.'
+      locked: 'Your account has been locked.'
+      invalid: 'Invalid email or password.'
+      invalid_token: 'Invalid authentication token.'
+      timeout: 'Your session has expired, please sign in again to continue.'
+      inactive: 'Your account has not been activated yet.'
+    sessions:
+      signed_in: 'Signed in successfully.'
+      signed_out: 'Signed out successfully.'
+    passwords:
+      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+      updated: 'Your password has been changed successfully. You are now signed in.'
+      updated_not_active: 'Your password has been changed successfully.'
+      send_paranoid_instructions: "If your e-mail exists on our database, you will receive a password recovery link on your e-mail"
+    confirmations:
+      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+      send_paranoid_instructions: 'If your e-mail exists on our database, you will receive an email with instructions about how to confirm your account in a few minutes.'
+      confirmed: 'Your account has been successfully confirmed. You are now signed in.'
+    registrations:
+      signed_up: 'Welcome! You have signed up successfully.'
+      signed_up_but_unconfirmed: 'A message with a confirmation link has been sent to your email address. Please open the link to activate your account.'
+      signed_up_but_inactive: 'You have signed up successfully. However, we could not sign you in because your account is not yet activated.'
+      signed_up_but_locked: 'You have signed up successfully. However, we could not sign you in because your account is locked.'
+      updated: 'You have updated your account successfully.'
+      destroyed: 'Bye! Your account has been successfully cancelled. We hope to see you again soon.'
+    unlocks:
+      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
+      unlocked: 'Your account has been successfully unlocked. You are now signed in.'
+      send_paranoid_instructions: 'If your account exists, you will receive an email with instructions about how to unlock it in a few minutes.'
+    omniauth_callbacks:
+      success: 'Successfully authorized from %{kind} account.'
+      failure: 'Could not authorize you from %{kind} because "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        subject: 'Confirmation instructions'
+      reset_password_instructions:
+        subject: 'Reset password instructions'
+      unlock_instructions:
+        subject: 'Unlock Instructions'
+
+
+// Linkser
+
+en:
+  linkser:
+    title: Linkser
+  link:
+    by: by %{author}
+    confirm_delete: Delete link?
+    errors:
+      loading: Error loading
+      only_webs: Only webpages are supported
+    form:
+      title: Link
+    input: Write the web address
+    name: link
+    one: a link
+    other: links
+    title: Links
+
+
