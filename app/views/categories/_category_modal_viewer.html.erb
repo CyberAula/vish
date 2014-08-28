@@ -30,10 +30,17 @@
      </div>
     <br>
     <p class="information"><%= t("category.categorized_like")%></p>
+    <%tagArray= generic_categories.map{|e| e.title}%>
     <script type="text/javascript">
     $(document).ready(function() {
+        var tagList= [
+          <%tagArray.each do |tags|%>
+            "<%=tags%>",
+          <%end%>
+        ];
         $("#myCategories").tagit({
-          watermarkAllowMessage: "<%= t('category.tagit_watermark_cat')%>"
+          watermarkAllowMessage: "<%= t('category.tagit_watermark_cat')%>",
+          tagSource: tagList
         });
         <% resource_categories = get_initial_categories(item) %>
           <% resource_categories.each do |cat| %>
