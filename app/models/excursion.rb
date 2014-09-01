@@ -1098,6 +1098,11 @@ class Excursion < ActiveRecord::Base
       activity_object.age_max = ageRange.split("-")[1].delete(' ')
     rescue
     end
+    if self.draft
+      activity_object.scope = 1 #private
+    else
+      activity_object.scope = 0 #public
+    end
     original_updated_at = self.updated_at
     activity_object.save!
 
