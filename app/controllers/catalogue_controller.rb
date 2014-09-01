@@ -2,7 +2,6 @@ class CatalogueController < ApplicationController
 
   def index
     @default_categories = view_context.getDefaultCategories
-
     respond_to do |format|
       format.html {
         if request.xhr?

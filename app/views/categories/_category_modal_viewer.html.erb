@@ -4,10 +4,25 @@
     <h3 id="myModalLabel"><%= t("category.modalLabel")%></h3>
   </div>
   <div class="modal-body">
-    <p class= "information"><%= t("category.cat_add_title")%></p>
-     <div id="suggested_categories" class="tagBoxNew">
-        <% generic_categories = Category.authored_by(current_subject) %>
+    <% generic_categories = Category.authored_by(current_subject) %>
+    <p class= "information"><%= t("category.cat_add_title")%></p> 
+    
+    <!-- Juancar echalé un ojo-->
+   <!-- <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+        Dropdown
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu scroll-menu" role="menu" aria-labelledby="dropdownMenu1">
         <% generic_categories.each do |init| %> 
+        <li role="presentation" value="<%=init.id%>"><a role="menuitem" tabindex="-1" ><%=init.title%></a></li>
+        <% end %>
+      </ul>
+    </div> -->
+    <!-- Necesito que se vea bien esta parte, que sea un dropdown con scroll que funcione normal-->
+     <div id="suggested_categories" class="tagBoxNew">
+        <%simple_gen = generic_categories.sample(5)%>
+        <% simple_gen.each do |init| %> 
           <ul id="suggestedCategories" class="tagit">
             <li class="tagit-choice" value="<%= init.id %>" ><%=init.title%></li>
           </ul>
@@ -15,10 +30,17 @@
      </div>
     <br>
     <p class="information"><%= t("category.categorized_like")%></p>
+    <%tagArray= generic_categories.map{|e| e.title}%>
     <script type="text/javascript">
     $(document).ready(function() {
+        var tagList= [
+          <%tagArray.each do |tags|%>
+            "<%=tags%>",
+          <%end%>
+        ];
         $("#myCategories").tagit({
-          watermarkAllowMessage: "<%= t('category.tagit_watermark_cat')%>"
+          watermarkAllowMessage: "<%= t('category.tagit_watermark_cat')%>",
+          tagSource: tagList
         });
         <% resource_categories = get_initial_categories(item) %>
           <% resource_categories.each do |cat| %>
@@ -43,45 +65,63 @@
   </div>
 </div>
 <script>
-//When click to suggested they go to down part
-var appliedTags = "";
-$("#suggested_categories li").click(function(){
-  var value = $(this).val();
-  var name = $(this).html();
 
-  $("#myCategories").tagit("add", name, value);
-});
+  //When click to suggested they go to down part for being categorized
+  $("#suggested_categories li").click(function(){
+    var value = $(this).val();
+    var name = $(this).html();
 
-
-$("#save_cat_button").click(function() {
-  var cat_done_array = [];
-
-  $("#myCategories .tagit-choice").each(function(index,elem){
-    //comprobar primero los que tengan un attrvalue null para crearlos
-    if ($(elem).attr("tagvalue") != null){
-      cat_done_array.push({id: $(elem).attr("tagvalue")});
-    }
-    else {
-      cat_done_array.push({title: $(elem).text()});
-    }
+    $("#myCategories").tagit("add", name, value);
   });
 
+  //TODO: Make it work
+  $("#categories_select_box select option").click(function(){
+    var value = $(this).val();
+    var name = $(this).html();
 
-  $.ajax({
-          url: '/categories/categorize',
-          type: 'POST',
-          dataType: "json",
-          data: { activity_object_id:"<%=item.activity_object.id
-.to_s%>", category_array: JSON.stringify(cat_done_array) },
-            success: function(data){    
-              $("#categories_viewer_modal").modal('toggle');
-
-                }
+    $("#myCategories").tagit("add", name, value);
   });
-});
-$("#cancel_cat_button").click(function() {
 
-  $("#categories_viewer_modal").modal('toggle');
-});
+  //When saving gathering all tags and sending to server
+  $("#save_cat_button").click(function() {
+    var cat_done_array = [];
+
+    $("#myCategories .tagit-choice").each(function(index,elem){
+      //comprobar primero los que tengan un attrvalue null para crearlos
+      if ($(elem).attr("tagvalue") != null){
+        cat_done_array.push({id: $(elem).attr("tagvalue")});
+      }
+      else {
+        cat_done_array.push({title: $(elem).text()});
+      }
+    });
+
+    $.ajax({
+            url: '/categories/categorize',
+            type: 'POST',
+            dataType: "json",
+            data: { activity_object_id:"<%=item.activity_object.id
+  .to_s%>", category_array: JSON.stringify(cat_done_array) },
+              success: function(data){    
+                $("#categories_viewer_modal").modal('toggle');
+
+                  }
+    });
+  });
+
+  $("#cancel_cat_button").click(function() {
+    $("#myCategories").tagit("reset");
+    for (key in appliedTags){
+      $("#myCategories").tagit("add",appliedTags[key]);
+    }
+    $("#categories_viewer_modal").modal('toggle');
+  });
+
+    var appliedTags = [];
+    $('#categories_viewer_modal').on('shown', function() {
+      $("#myCategories .tagit-choice").each(function(index,elem){
+        appliedTags.push($(elem).text());
+       });
+      });
 
 </script>
