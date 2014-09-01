@@ -35,6 +35,8 @@
     I18n.locale = "<%= I18n.locale %>";
   </script>
 
+  
+
   <script type="text/javascript">
     $(document).ready(function() {  
       //setTimeout(function(){ $("#flash .alert").hide("slow") }, 5000);
@@ -87,7 +89,22 @@
               zIndex: 2147483647 // Z-Index for the overlay
         });
       });
+
     </script>
+    <script>
+  $(function() {
+        $('#password').password().on('show.bs.password', function(e) {
+            $('#eventLog').text('On show event');
+            $('#methods').prop('checked', true);
+        }).on('hide.bs.password', function(e) {
+                    $('#eventLog').text('On hide event');
+                    $('#methods').prop('checked', false);
+                });
+        $('#methods').click(function() {
+            $('#password').password('toggle');
+        });
+    });
+  </script>
 
 </body>
 </html>

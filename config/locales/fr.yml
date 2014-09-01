@@ -94,6 +94,8 @@ fr:
       download: "télécharger"            
       edit: "éditer"
       show: "afficher"
+      show_more: "Déployer"
+      show_fewer: "Réduire"
       share: "partager"
       scorm: "scorm"
     clone:

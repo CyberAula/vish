@@ -77,7 +77,7 @@
             padding-right: 0px
 
 
-        h3
+        h4
           color: $brand-primary
           font-size: 0.9em
           font-family: $corporate-font-family-sans-serif-Regular
@@ -86,7 +86,8 @@
           display: block
           margin-top: 11px
           margin-bottom: 10px
-          display: inline-table
+          display: inline
+          vertical-align: initial
           @media (max-width: $screen-xs-max)
             float: none
             width: 100%
@@ -110,13 +111,15 @@
 
           header
             @include hidden-xs
+          .ocupation
+            margin-bottom: 8px
 
           @media (max-width: $screen-xs-max)
             margin: 0
         .panel-group 
           margin-bottom: 0 
           div
-            
+            margin-bottom: 8px
             h4
               color: $brand-primary
               font-size: 0.9em
@@ -129,8 +132,7 @@
             span 
               display: inline-block
               font-size: 0.9em
-              color: $gray      
-              margin-top: 10px
+              color: $gray    
               @media (max-width: $screen-xs-max)
                 display: block
                 text-align: center

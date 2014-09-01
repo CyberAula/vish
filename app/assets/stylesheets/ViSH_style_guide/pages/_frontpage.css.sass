@@ -3,7 +3,25 @@
 .confirmation,
 #sign_in
   @include devise-box
-  padding-bottom: 45px
+
+#new_session
+  .checkbox
+    margin-top: 13px
+    label
+      color: $gray !important
+  label
+    color: $brand-primary !important
+  .remember_password
+    a
+      color: $gray !important
+      &:hover
+        color: $gray-dark !important
+  hr
+    margin-top: 20px !important
+    margin-bottom: 20px !important
+  .new_session
+    padding: 17px 0px 7px !important
+
 
 .registration
   hr
@@ -12,13 +30,12 @@
     margin-left: 0
   .conditions
     font-size: 0.9em
-    padding-bottom: 10px
 
 .simple_captcha
   width: 100%
   float: left
   margin-top: 7px
-  margin-bottom: 15px
+  margin-bottom: 20px
   .simple_captcha_image
     width: 40%
     display: block
@@ -28,26 +45,10 @@
     display: block
     float: left
     margin-left: 15px
+.dropdown
+  form#new_user
+    @include dropdown-log 
 
-form.new_user
-  .form-group
-    margin-bottom: 0
-    .form-control
-      float: none
-      margin: 0 0 10px
-  .checkbox
-    float: left
-    label
-      color: $gray
-  .action
-    float: right
-  .remember_password
-    clear: both
-    a
-      font-size: 0.8em
-      &:hover
-        background-color: none !important
-        text-decoration: none
 
 /*FRONTPAGE*/
 #head_front
@@ -67,11 +68,10 @@ form.new_user
       border: 1px solid $gray-light
       margin: 5px 0
       border-bottom: none
-    p
+    h3
       text-align: center
       font-family: $corporate-font-family-sans-serif-Regular
-      font-size: 20px
-      line-height: 24px
+
   .ilustration
     position: relative
     //margin-top: 50px
@@ -179,8 +179,6 @@ form.new_user
 
 
 .front_info
-
-
   .ch-grid
     margin: 0
     padding: 0
@@ -202,7 +200,6 @@ form.new_user
       padding: 0 15px
       margin: 0 auto
       width: 80%
-      font-size: 12px
       font-family: $corporate-font-family-sans-serif-Regular
       @media (max-width: $screen-xs-max)
       width: 100%
@@ -308,7 +305,6 @@ form.new_user
     padding: 10px 5px
     font-style: italic
     margin: 0 30px
-    font-size: 12px
     border-top: 1px solid rgba(255,255,255,0.5)
 
   .ch-info p a 

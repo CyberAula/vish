@@ -36,6 +36,7 @@
               <div class="form-group">
                 <%= f.email_field :email, :id => "username", :class => "form-control" %>
                 <%= f.password_field :password, :id => "password", :class => "form-control"  %>
+                
               </div>
               <div class="checkbox">
                 <label>
@@ -119,4 +120,17 @@
       }, delay);
     });
   })(jQuery, window, 0); // 200 is the delay in milliseconds
+
+  $(function() {
+        $('#password').password().on('show.bs.password', function(e) {
+            $('#eventLog').text('On show event');
+            $('#methods').prop('checked', true);
+        }).on('hide.bs.password', function(e) {
+                    $('#eventLog').text('On hide event');
+                    $('#methods').prop('checked', false);
+                });
+        $('#methods').click(function() {
+            $('#password').password('toggle');
+        });
+    });
   </script>

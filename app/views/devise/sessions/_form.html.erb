@@ -5,7 +5,9 @@
 
   <%= form_for User.new, :as => :user, :class => "form-horizontal", :url => user_session_path do |f| %>
     <div class="form-group">
+    <%= f.label :name %>
       <%= f.email_field :email, :id => "username", :class => "form-control" %>
+      <%= f.label :password %>
       <%= f.password_field :password, :id => "password", :class => "form-control"  %>
     </div>
     <div class="checkbox">
@@ -13,10 +15,11 @@
         <input type="checkbox"> <%=t("activerecord.attributes.user.remember_me")%>
       </label>
     </div>
+    <div class="remember_password"><%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
+    </div>
+    <hr class="soften">
     <div class="action">
       <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
-    </div>
-    <div class="remember_password"><%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
     </div>
   <% end %>
   <%= javascript_tag do %>
@@ -28,6 +31,21 @@
       }
         $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
       });
+
   <% end %>
+<script>
+  $(function() {
+        $('#password, #user_password_confirmation, #user_current_password').password().on('show.bs.password', function(e) {
+            $('#eventLog').text('On show event');
+            $('#methods').prop('checked', true);
+        }).on('hide.bs.password', function(e) {
+                    $('#eventLog').text('On hide event');
+                    $('#methods').prop('checked', false);
+                });
+        $('#methods').click(function() {
+            $('#password, #user_password_confirmation, #user_current_password').password('toggle');
+        });
+    });
+  </script>
 
 </section>

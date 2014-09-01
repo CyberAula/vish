@@ -1,13 +1,24 @@
 @mixin dropdown-log 
   padding: $padding-base-vertical $padding-base-horizontal
   width: 250px
+  @include log 
+
+
+@mixin log 
   .form-group
-    margin-bottom: 0
+    margin-bottom: 10px
+    min-height: 76px
+    .add-on
+      padding: 5px 8px
   input
     &[type="email"],
     &[type="password"]
       float: none
+    &[type="email"]
       margin: 0 0 10px
+    &[type="password"]
+      margin: 0
+  
   .checkbox
     float: left
     margin-top: 0
@@ -39,15 +50,17 @@
   @include box-shadow(0px 1px 1px rgba(50, 50, 50, 0.15))
   @include border-top-radius ($border-radius-base)
   @include border-bottom-radius ($border-radius-base)
-  padding: $padding-base-vertical $padding-base-horizontal
-  background-color: $white
-  color: $gray
   @include make-sm-column(6, $gutter: $grid-gutter-width)
   @include make-md-column(6, $gutter: $grid-gutter-width)
   @include make-lg-column(6, $gutter: $grid-gutter-width)
   @include center-block
+  padding: 12px 15px !important
+  background-color: $white
+  color: $gray
   float: none !important
   display: block
+  .form-group
+    margin-bottom: 0
   h3
     font-family: $corporate-font-family-sans-serif-Medium
     margin: 0 0 18px 0
@@ -64,7 +77,7 @@
       width: 100%
       
   hr
-    border: 1px solid transparent
+    border: 1px solid #E7E7E7
   #remember
     display: inline
     padding-left: 0
@@ -73,7 +86,8 @@
       float: none
       margin: 0    
   .action
-    margin-top: 10px
+    clear: both
+    min-height: 40px
     input
       &[type="submit"]
         float: right
