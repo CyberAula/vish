@@ -461,9 +461,11 @@ class ExcursionsController < ApplicationController
     else
       params["excursion"]["scope"] = "0" #public
     end
-    
-    params["excursion"]["owner_id"] = current_subject.actor_id
-    params["excursion"]["author_id"] = current_subject.actor_id
-    params["excursion"]["user_author_id"] = current_subject.actor_id
+
+    unless current_subject.nil?
+      params["excursion"]["owner_id"] = current_subject.actor_id
+      params["excursion"]["author_id"] = current_subject.actor_id
+      params["excursion"]["user_author_id"] = current_subject.actor_id
+    end
   end
 end
