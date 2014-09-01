@@ -30,15 +30,14 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 3d150a753f4675639fd0023d483d84f917b0e290
-  ref: 3d150a753f4675639fd0023d483d84f917b0e290
-  branch: vish
+  revision: 831c7e4b047130872e8c7f9ebc3fa4b4aaa68467
+  branch: vish-b3
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.2.2)
       ancestry (~> 1.2.3)
       avatars_for_rails (~> 1.1.4)
-      bootstrap-sass (~> 3.1.0)
+      bootstrap-sass (>= 3.2.0.1)
       cancan (~> 1.6.7)
       deep_merge
       deface (~> 0.9.1)
@@ -59,7 +58,7 @@ GIT
       rails_autolink (~> 1.0.4)
       rails_engine_decorators
       resque (~> 1.23.0)
-      sass-rails (>= 3.2.6)
+      sass-rails (>= 3.1.0)
       select2-rails (~> 3.3.0)
       stringex (~> 1.5.1)
       strong_parameters (~> 0.2.1)
@@ -144,7 +143,7 @@ GEM
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
-    bootstrap-sass (3.1.0.0)
+    bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.10)
@@ -468,7 +467,7 @@ DEPENDENCIES
   avatars_for_rails (= 1.1.4)
   axlsx (= 2.0.0)
   axlsx_rails (= 0.1.5)
-  bootstrap-sass (= 3.1.0)
+  bootstrap-sass (>= 3.2.0.1)
   capistrano (= 2.15.5)
   capybara (= 2.3.0)
   coffee-rails (= 3.2.2)
