@@ -5,7 +5,7 @@
   </header>
   <%= render :partial => 'activities/new', :locals => { :receiver => owner } %>
 
-<div class="container-fluid">
+
   <ul class="timeline">
     <li><div class="tldate">Apr 2014</div></li>
     
@@ -222,47 +222,35 @@
           </div>
         </div>      
       </div> 
-    
-
-               
+  
       <div class="new_comment">
-    <form accept-charset="UTF-8" action="/comments" class="new_comment" data-remote="true" id="new_comment" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="9t7kfGqvNyTK5kqDCPixbXPZvfFNqhx6wnTPnu9DpeE="></div>
+        <form accept-charset="UTF-8" action="/comments" class="new_comment" data-remote="true" id="new_comment" method="post">
+          <div style="margin:0;padding:0;display:inline">
+            <input name="utf8" type="hidden" value="✓">
+            <input name="authenticity_token" type="hidden" value="9t7kfGqvNyTK5kqDCPixbXPZvfFNqhx6wnTPnu9DpeE=">
+          </div>
 
-  <div class="input-group">
-    <div class="input-group-addon">
-      <img alt="4" src="/system/actors/logos/000/000/001/small/4.jpg?1407147018">
-    </div>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <img alt="4" src="/system/actors/logos/000/000/001/small/4.jpg?1407147018">
+            </div>
 
-    <input id="comment_owner_id" name="comment[owner_id]" type="hidden" value="1">
-    <input id="comment__activity_parent_id" name="comment[_activity_parent_id]" type="hidden" value="610">
+            <input id="comment_owner_id" name="comment[owner_id]" type="hidden" value="1">
+            <input id="comment__activity_parent_id" name="comment[_activity_parent_id]" type="hidden" value="610">
 
-    <textarea class="form-control" cols="40" id="comment_text" name="comment[text]" placeholder="Comentar..." rows="1" style="overflow: hidden; word-wrap: break-word; resize: none; height: 41px;"></textarea>
+            <textarea class="form-control" cols="40" id="comment_text" name="comment[text]" placeholder="Comentar..." rows="1" style="overflow: hidden; word-wrap: break-word; resize: none; height: 41px;"></textarea>
 
-    <input class="btn btn-primary" data-loading-text="Enviando..." name="commit" type="submit" value="Comentar" style="display: none;">
-  </div>      
-</form>
-  </div>
-
-  </div>
-    </li>
-    
-    <li><div class="tldate">Mar 2014</div></li>
-    
-    <li>
-      <div class="tl-circ"></div>
-      <div class="timeline-panel">
-        <div class="tl-heading">
-          <h4>New Apple Device Release Date</h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 3/22/2014</small></p>
-        </div>
-        <div class="tl-body">
-          <p>In memory of Steve Jobs.</p>
-        </div>
+            <input class="btn btn-primary" data-loading-text="Enviando..." name="commit" type="submit" value="Comentar" style="display: none;">
+          </div>      
+        </form>
       </div>
     </li>
+    
+    <li><div class="btn btn-secundary">See more</div></li>
+    
    
   </ul>
-</div>
+
   <%= render :partial => 'activities/timeline',
              :locals  => { :section => section } %>
 </section>
