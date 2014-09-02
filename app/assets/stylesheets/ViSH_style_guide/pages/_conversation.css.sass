@@ -78,6 +78,10 @@
         &:hover
           color: $brand-danger
           text-decoration: none
+    &:first-child
+      @include border-top-radius ($border-radius-base)
+    &:last-child
+      @include border-bottom-radius ($border-radius-base)
   .unread
     background-color: $white
     @include transition (background-color 1sec) 
@@ -87,11 +91,13 @@
 
 //New message
 #new_message
-  ul.nav
-    padding-left: 14px
   #conversation
+    padding-left: 0
+    padding-right: 0
     form
-      margin: $zero auto !important
+      @include border-top-radius ($border-radius-base)
+      @include border-bottom-radius ($border-radius-base)
+      margin: $zero !important
       float: none !important
       padding: 15px 15px 58px
       background: $white

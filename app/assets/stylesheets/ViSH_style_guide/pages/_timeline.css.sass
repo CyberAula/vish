@@ -5,7 +5,7 @@
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   @include center-block
   .activities
-    header 
+    header
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(8, $gutter: $grid-gutter-width)
       @include make-sm-column-offset(2)
@@ -13,12 +13,14 @@
       @include make-md-column-offset(2)
       @include make-lg-column(8, $gutter: $grid-gutter-width)
       @include make-lg-column-offset(2)
+      padding-left: 0
+      padding-right: 0 
       h2
         width: 80%
         text-align: left !important
     .wall_input
       position: relative
-      margin-bottom: 40px
+      border-bottom-right-radius: 0px
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(8, $gutter: $grid-gutter-width)
       @include make-sm-column-offset(2)
@@ -33,121 +35,84 @@
       form
         display: block
         @include center-block
-        label
         textarea
           width: 100%
           background-color: $white
-          margin: 10px 0
-      .wall_input-actions
-        display: block
-        position: absolute
-        right: 0
-        input
-          &[type="submit"]
-            display: block
-            margin: 0px 
-            float: right
-            width: 150px
+          margin: 10px 0 0
+          height: auto !important
+          float: none
+          @include border-left-radius ($border-radius-base)
+          @include border-right-radius ($border-radius-base)
+      input
+        &[type="submit"]
+          display: inline-block
+          margin: 0px
+          @extend .btn-primary
+          @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
+      .input-group
+        label
+          display: none !important
+      .input-group-addon
+        background: rgba(0, 0, 0, 0)
+        border: none
+        margin: 0
+        padding: 12px 0 12px 6px !important
+        vertical-align: top
         .btn
-        .new_document
-          display: block
-          float: right
-          margin-right: 10px
+          padding: 7px
+          background-image: none
+          @extend .btn-default
+      .input-group-btn
+        width: 1%
+        white-space: nowrap
+        vertical-align: top
 
 
-#time-line
-  .activity
-    .panel
-      background-color: transparent
-      border: none
-      margin-bottom: 0
-      box-shadow: none
+
+.timeline
+  .panel
+    background-color: transparent
+    border: none
+    margin-bottom: 0
+    box-shadow: none
+    border-color: transparent
+    .panel-heading
+      min-height: 20px
+      padding: 0
+      border-color: rgba(0, 0, 0, 0)
+      border-bottom: none
+      width: auto
+      float: right
+      margin-top: 4px
+    .panel-body
+      border-top-color: transparent !important
+      padding: 0
+      clear: both
+
   .thumbnail
     @include excursion-small
     width: 92%
     margin: 0 4%
 
 
-#time-line
-  .timeline
-    display: block
-    @include center-block
-    .root:hover,
-    .media:hover
+ul.timeline
+  .timeline-panel
+    .pull-left
+      margin-right: 10px
+    .media-body
       .media-heading
+        a
+          display: inline
         .x
+          display: inline-block
           float: right
-          margin-top: 5px
-          a
-            color: $gray
-    .root,
-    .media
-      margin-top: 1%
-      padding-top: 15px
-      border: 1px solid $gray-lighter
-      overflow: visible
-      display: block
-      background: $white
-      @include make-xs-column(12, $gutter: $grid-gutter-width)
-      @include make-sm-column(12, $gutter: $grid-gutter-width)
-      @include make-md-column(12, $gutter: $grid-gutter-width)
-      @include make-lg-column(12, $gutter: $grid-gutter-width)
-      .avatar
-        display: block
-        float: left
-        img
-          width: 38px
-          @include border-top-radius($border-radius-base)
-          @include border-bottom-radius($border-radius-base)
-      .media-heading
-        h3
-          margin: 0px
-          font-size: 18px
-          padding-left: 2%
-          display: block
-          float: left
-          word-wrap: break-word
-          width: 88%
-          line-height: 20px
-          height: 20px
-          a
-            color: $gray-dark
-            word-wrap: break-word
-            &:hover
-              text-decoration: none
-        .x
-          display: block
+      .info_action
+        .post_time_ago
           float: right
-          margin-top: 5px
-          width: 10%
-          text-align: right
-          a
-            color: $gray
-            &:hover
-              color: $brand-primary
-              text-decoration: none
-      .panel-body
-        display: block
-        margin: 0px auto 5px
-        clear: both
-        padding: 0
-        .recomended
-          min-height: 105px
-        .actions
-          display: block
-          margin: 13px auto 10px
-          .post_time_ago
-            float: right
-            color: $gray-light
-            *font-style: italic
-            font-family: $corporate-font-family-sans-serif-LightItalic
-            font-size: 12px
-        
-    .child
-      border-top: 1px solid $gray-lighter-extra
-      background: $gray-lighter-extra
-    .more
-      @include see-more
+          *font-style: italic
+          font-family: $corporate-font-family-sans-serif-Light
+          font-family: $corporate-font-family-sans-serif-LightItalic
+
 
 
 .comments
@@ -159,54 +124,19 @@
   margin: 2px auto 
   padding: 0px
   clear: both
-  .activity
-  .media
-    border: 1px solid $gray-light
-    overflow: visible
-    margin-top: 5px
-    margin-bottom: 10px
-    display: block
-    float: left
-    background: $white
-    padding: 2%
-
-    .child
-      border-top: 1px solid $gray-light
-
-    .avatar
-      display: block
-      float: left
-      max-width: none
-    .media-heading
-      h6
-        margin: 0
-        line-height: 0
-        font-size: 14px
-        text-overflow: ellipsis
-        width: 75%
-        float: left
-        line-height: 17px
-        a
-          color: $gray-darker
-          word-wrap: break-word
-    .media-body
-      .actions
-        margin-top: -8px !important
-        width: 100% !important
-        font-size: 10px
-        .post_time_ago
-          float: right
+ 
+    
+       
 
 div.new_comment
   width: 100%
   display: block
   clear: both
-  margin-bottom: 10px
   form#new_comment
     height: 38px
     display: block
     clear: none
-    margin: 0 auto 8px
+    margin: 0 auto
     .input-group
       float: left
     .input-group-addon
@@ -218,9 +148,7 @@ div.new_comment
       background: none
       img
         width: 38px
-        @include border-left-radius ($border-radius-base)
-   
-        
+        @include border-left-radius ($border-radius-base)    
     .form-control
       @include border-right-radius ($border-radius-base)
       height: 38px !important
@@ -228,11 +156,8 @@ div.new_comment
       &[type="submit"]
         margin: 10px 0px 
         float: right
-        @extend .btn-primary
-     
+        @extend .btn-primary     
         @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
-
-
 
 .comments   
   .child
@@ -254,27 +179,4 @@ div.new_comment
 
 
 
-
-
-#time-line
-  .activities
-    header
-      h2
-        text-align: center
-    .wall_input
-      border-bottom-right-radius: 0px
-      margin-bottom: 12px
-      form
-        label
-          text-align: center
-        textarea
-          resize: none
-      .wall_input-actions
-        input
-          &[type="submit"]
-            @extend .btn-primary
-            @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
-        .btn
-          background-image: none
-          @extend .btn-default
 

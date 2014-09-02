@@ -6,13 +6,13 @@
             <%content_for :title do%>
               <%= t("site.current.browse")%>
             <%end%>
-            <h1><i class="fa fa-folder-open"></i><%= t("browse.title")%></h1>
+            <div class="icontitle"><i class="fa fa-folder-open"></i><%= t("browse.title")%></div>
    
           <%else%>
             <%content_for :title do%>
               <%= t("site.current.search")%>
             <%end%>
-            <h1><i class="fa fa-search"></i><%= t("search.title")%></h1>
+            <div class="icontitle"><i class="fa fa-search"></i><%= t("search.title")%></div>
           <%end%>
 
           <li class="all_results <%= 'active' if params[:type].blank? %>">

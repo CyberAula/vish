@@ -9,7 +9,7 @@
   bottom: 0;
   position: absolute;
   content: " ";
-  width: 3px;
+  width: 2px;
   background-color: #FAF9F9;
   left: 50%;
   margin-left: 19.5px;
@@ -18,13 +18,12 @@
 .tldate {
   display: block;
   width: 200px;
-  background: rgba(158, 158, 158, 0.54);
-  color: #F8F8F8;
+  color: $gray;
+  background: $body-bg url(bg-texture.jpg) center repeat;
   margin: 16px auto;
-  padding: 3px 0;
+  padding: 2px 0 3px;
   font-weight: bold;
   text-align: center;
-  -webkit-box-shadow: 0 0 11px rgba(0,0,0,0.35);
 }
 
 .timeline li {
@@ -112,21 +111,21 @@
 /** timeline circle icons **/
 .timeline li .tl-circ {
   position: absolute;
-  top: 23px;
+  top: 34px;
   left: 50%;
   text-align: center;
   background: $brand-secundary;
   color: #fff;
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-  margin-left: -16px;
+  width: 16px;
+  height: 16px;
+  line-height: 15px;
+  margin-left: -8px;
   border: 3px solid rgba(0, 143, 209, 0.47);
   border-top-right-radius: 50%;
   border-top-left-radius: 50%;
   border-bottom-right-radius: 50%;
   border-bottom-left-radius: 50%;
-  z-index: 99999;
+  z-index: 90;
 }
 
 

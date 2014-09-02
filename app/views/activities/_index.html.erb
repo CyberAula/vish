@@ -1,8 +1,6 @@
 <section class="activities">
-  <header>
-    <h1>  
+  <header class="icontitle">
       <i class="fa fa-list"></i><%= t 'activity.title' %> 
-    </h1>
     <%= render partial: 'help/help_activity' %> 
   </header>
   <%= render :partial => 'activities/new', :locals => { :receiver => owner } %>
@@ -23,13 +21,14 @@
       <h6 class="media-heading"><a href="/users/demo">Demo</a> y <a href="/users/paul-smith">Paul Smith</a> están siguiéndose
 
 </h6>
-
+<p class="info_action"> 
+            <span class="post_time_ago"> 
+              hace 17 días
+            </span>
+          </p>
     
 
-        <article class="actions">
-		  <div class="post_time_ago">
-		  hace 17 días
-		</div>
+    
    
 </article>
 
@@ -79,7 +78,13 @@
 
       <div class="recomended">
         <ul class="items">
-          <p class="info_action"> Added Excursion</p>
+          <p class="info_action"> 
+            Added Excursion 
+            <span class="post_time_ago"> 
+              hace 26 días
+            </span>
+          </p>
+     
           <li class="excursion">
 
 			  <a href="/excursions/498">
@@ -132,17 +137,18 @@
 
 
 			        
-
-        <article class="actions">
-  <div class="post_time_ago">
-  hace 26 días
-</div>
-   
-</article>
-
-        </div>
-      
-    <div class="comments" id="comments_activity_610">
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          <i class="fa fa-comment"></i>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="comments" id="comments_activity_610">
       <div class="activity child media" id="activity_627">
   <div class="pull-left avatar">
     <div class="media-object">
@@ -242,6 +248,14 @@
 
 </div>
 
+      </div>
+    </div>
+  </div>
+
+
+        </div>
+      
+    
 
                
       <div class="new_comment">
