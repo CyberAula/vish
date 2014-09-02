@@ -11,6 +11,9 @@
   <div class="modal-body">
     <%= form_for Category.new(:owner_id => Actor.normalize_id(current_subject)), :html => {:id => div_id+"_form", :'data-type' => :json}, :remote => remote do |f| %>
 
+      <!-- Owner -->
+      <%= f.hidden_field :owner_id, :id => div_id+"_owner_id" %>
+
       <!--Title-->
       <label><%= t('categories.leyend.title')%></label>
       <%= f.text_field :title, :id => div_id+"_category_title", :placeholder => t('categories.title_input') %>
