@@ -1,21 +1,16 @@
 <div id="categories_viewer_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel"><%= t("category.modalLabel")%></h3>
+    <h3 id="myModalLabel"><i class="icon-th-large"></i><%= t("category.modalLabel")%></h3>
   </div>
   <div class="modal-body">
 
     <!-- IIIIIIIIIIIIII-->
     <div class="left_categories">
-
-
-
       <% generic_categories = Category.authored_by(current_subject) %>
       <p class= "information"><%= t("category.cat_popular")%></p> 
-
-
-<!-- SUGGESTED-->
-      <div id="suggested_categories" class="tagBoxNew">
+<!--popular-->
+      <div id="suggested_categories" class="tagBoxNew popular_categories">
         <%simple_gen = generic_categories.sample(5)%>
         <% simple_gen.each do |init| %> 
         <ul id="suggestedCategories" class="tagit">
@@ -26,9 +21,11 @@
 
 <!-- MY-->
       <p class= "information"><%= t("category.cat_add_title")%></p> 
-      <% generic_categories.each do |init| %> 
-      <li class="tagit-choice" value="<%=init.id%>"><a ><%=init.title%></a></li>
-      <% end %>
+      <div class="my_categories">
+        <% generic_categories.each do |init| %> 
+        <li class="tagit-choice" value="<%=init.id%>"><a ><%=init.title%></a></li>
+        <% end %>
+      </div>
 
 
 <!-- new-->
@@ -71,7 +68,9 @@
     <!-- DDDDDDDDDDDDddd-->
     <div class="right_categories">
       <p class="information"><%= t("category.categorized_like")%></p>
-
+        <% generic_categories.each do |init| %> 
+        <li class="tagit-choice" value="<%=init.id%>"><a ><%=init.title%></a></li>
+        <% end %>
     </div>
 
     <!-- DDDDDDDDDDDDddd-->
