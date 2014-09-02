@@ -37,7 +37,7 @@ $("#category_id").multiselect({
       },
       beforeopen: function(event, ui){
         if($(".ui-multiselect-menu.categorize_select").children(".separator_line").length==0){
-          var piece = '<div class="categories_loading" style="display:none"><img src="/assets/load.gif"/></div><div class="separator_line"></div><li class=" "><button id="apply_category" title="" style="display:none" class="ui-corner-all ui-state-hover btn btn-primary"><span><%=t('categories.actions.apply')%></span></button><button id="add_category" title="" class="ui-corner-all ui-state-hover btn btn-primary"><span><%=t('categories.actions.add')%></span></button></li>';
+          var piece = '<div class="categories_loading" style="display:none"><i class="fa fa-spinner"></i><div class="separator_line"></div><li class=" "><button id="apply_category" title="" style="display:none" class="ui-corner-all ui-state-hover btn btn-primary"><span><%=t('categories.actions.apply')%></span></button><button id="add_category" title="" class="ui-corner-all ui-state-hover btn btn-primary"><span><%=t('categories.actions.add')%></span></button></li>';
           
           $(".ui-multiselect-menu.categorize_select").append(piece);
           $("#add_category").click(function(){
