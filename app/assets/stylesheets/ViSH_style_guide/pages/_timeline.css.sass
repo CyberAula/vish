@@ -5,7 +5,7 @@
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   @include center-block
   .activities
-    header
+    header.icontitle
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(8, $gutter: $grid-gutter-width)
       @include make-sm-column-offset(2)
@@ -112,7 +112,19 @@ ul.timeline
           *font-style: italic
           font-family: $corporate-font-family-sans-serif-Light
           font-family: $corporate-font-family-sans-serif-LightItalic
+          color: $gray-light
+          padding-top: 1px
+      .panel-body
+        background-color: #F3F3F3
+        padding: 8px 10px
+        @include border-top-radius ($border-radius-base)
+        @include border-bottom-radius ($border-radius-base)
+        .child 
+          .info_action
+            .post_time_ago
+              color: #CECECE
 
+      
 
 
 .comments
@@ -120,11 +132,17 @@ ul.timeline
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
-  display: block
-  margin: 2px auto 
+  display: block 
   padding: 0px
   clear: both
- 
+  border-top: 2px solid #FFF
+  padding: 15px 0
+  &:first-child
+    border-top: none
+    padding: 0
+  &:last-child
+    padding: 15px 0 0 0
+  
     
        
 
