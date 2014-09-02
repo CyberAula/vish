@@ -13,11 +13,13 @@
 <!--popular-->
       <div id="suggested_categories" class="tagBoxNew popular_categories">
         <%simple_gen = generic_categories.sample(5)%>
-        <% simple_gen.each do |init| %> 
+        
         <ul id="suggestedCategories" class="tagit">
+          <% simple_gen.each do |init| %> 
           <li class="tagit-choice" value="<%= init.id %>" ><%=init.title%></li>
+          <% end %>
         </ul>
-        <% end %>
+        
       </div>
 
 <!-- MY-->
