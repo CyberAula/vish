@@ -5,7 +5,7 @@
     <h3 id="myModalLabel"><i class="icon-th-large"></i><%= t("category.modalLabel")%></h3>
   </div>
   <div class="modal-body">
-    <% generic_categories = Category.authored_by(current_subject) %>
+    <% generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} %>
     <p class= "information"><%= t("category.cat_add_title")%></p> 
     
     <!-- Juancar echalé un ojo-->
@@ -26,7 +26,8 @@
     <!-- Necesito que se vea bien esta parte, que sea un dropdown con scroll que funcione normal-->
      <p class= "information"><%= t("category.cat_popular")%></p>
      <div id="suggested_categories" class="tagBoxNew">
-        <%simple_gen = generic_categories.sample(5)%>
+
+        <%simple_gen = generic_categories.sort{|a,b| b.property_objects.length <=> a.property_objects.length}.first(5)%>
         <% simple_gen.each do |init| %> 
           <ul id="suggestedCategories" class="tagit">
             <li class="tagit-choice" value="<%= init.id %>" ><%=init.title%></li>
@@ -109,7 +110,7 @@
   .to_s%>", category_array: JSON.stringify(cat_done_array) },
               success: function(data){    
                 $("#categories_viewer_modal").modal('toggle');
-                
+
                   }
     });
   });
