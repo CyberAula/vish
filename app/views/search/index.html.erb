@@ -34,7 +34,7 @@
             <%end%>
           </li>
 
-          <li class="user <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
+          <li class="users <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
 
             <% unless params[:browse]%>
               <%= link_to raw('<i class="fa fa-group"></i><span class="hidden-xs hidden-sm">'+t("user.title.other")+'</span>'), "#user",:data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>

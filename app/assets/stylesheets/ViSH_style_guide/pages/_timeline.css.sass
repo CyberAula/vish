@@ -5,7 +5,7 @@
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   @include center-block
   .activities
-    header.icontitle
+    header
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(8, $gutter: $grid-gutter-width)
       @include make-sm-column-offset(2)
@@ -13,21 +13,16 @@
       @include make-md-column-offset(2)
       @include make-lg-column(8, $gutter: $grid-gutter-width)
       @include make-lg-column-offset(2)
-      padding-left: 0
-      padding-right: 0 
-      h2
-        width: 80%
-        text-align: left !important
+      padding: 0
+      .icontitle
+        h2
+          width: 80%
+          text-align: left !important
+        .helpheader i
+          padding-top: 5px
     .wall_input
       position: relative
       border-bottom-right-radius: 0px
-      @include make-xs-column(12, $gutter: $grid-gutter-width)
-      @include make-sm-column(8, $gutter: $grid-gutter-width)
-      @include make-sm-column-offset(2)
-      @include make-md-column(8, $gutter: $grid-gutter-width)
-      @include make-md-column-offset(2)
-      @include make-lg-column(8, $gutter: $grid-gutter-width)
-      @include make-lg-column-offset(2)
       border-top: 1px solid
       padding: 0
       float: none !important
@@ -70,6 +65,7 @@
 
 
 .timeline
+  clear: both
   .panel
     background-color: transparent
     border: none

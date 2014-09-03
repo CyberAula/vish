@@ -27,7 +27,6 @@
 //= require jquery.jplayer
 //= require social_stream-events
 //= require bootstrap.min
-//= require docs.min
 //= require password
 //= require bootstrap-datetimepicker.min
 //= require jquery.scrollUp.min

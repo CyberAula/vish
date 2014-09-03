@@ -96,10 +96,7 @@
             margin-bottom: 0px
             padding-right: 0px
             text-align: center
-        span
-          font-size: 0.9em
-          @media (max-width: $screen-xs-max)
-            font-size: 1.1em
+
         .tags-profile
           float: right
           display: none     
@@ -138,7 +135,7 @@
             span 
               display: inline-block
               font-size: 1em
-              color: $gray-dark   
+              color: $gray-dark
               @media (max-width: $screen-xs-max)
                 display: block
                 text-align: center
@@ -176,6 +173,17 @@
               width: 100px
               padding: 0
               min-height: 35px
+              div
+                .following-button
+                  padding: 9px
+                .following-button,
+                .unfollow-button
+                  @include border-right-radius (0)
+                input
+                  &[type="submit"]
+                    padding: 9px
+                    @include border-right-radius (0)
+
             .btn
               a
                 color: $gray-darker-extra

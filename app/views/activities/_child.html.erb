@@ -7,10 +7,9 @@
     </div>
   </div>
   <div class="media-body">
-    <header class="media-heading">
-      <h6>
-        <%= link_to(activity.sender_subject.name, activity.sender_subject) %>
-      </h6>
+    <h6 class="media-heading"> 
+      <%= link_to(activity.sender_subject.name, activity.sender_subject) %>
+      
       <% if activity.direct_object && !activity.direct_object.acts_as_actor? && can?(:destroy, activity.direct_object) %>
         <div class="x" style="float: right"> 
           <%= link_to raw("<i class='fa fa-trash-o'></i>"), activity.direct_object , :confirm => t('confirm_delete', 
@@ -18,12 +17,12 @@
                       :remote => true %> 
         </div>
       <% end %>
-    </header>
-
+    </h6>
+    <%= render :partial => 'activities/actions',
+               :locals => { :activity => activity } %>
     <div class="objects">
       <%= render activity.activity_objects %>
     </div>
-    <%= render :partial => 'activities/actions',
-               :locals => { :activity => activity } %>
+    
   </div>
 <% end %>

@@ -40,6 +40,8 @@
       </div>
     </li>
 
+
+
 <%= div_for activity do %>
   <div class="tl-circ"></div>
   <div class="timeline-panel">
@@ -64,12 +66,27 @@
       <%= render partial: 'activity_objects/timeline', 
                  collection: activity.activity_objects,
                  as: :object %>
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                <i class="fa fa-comment-o"></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <%= render :partial => 'activities/comments',
+                         :locals => { :activity => activity } %>
+            </div>
+          </div>  
+        </div>
+      </div>
 
-      <%= render :partial => 'activities/comments',
-                 :locals => { :activity => activity } %>
              
-      <%= render :partial => 'comments/new',
-                 :locals => { :activity => activity } %>
     </div>
+    <%= render :partial => 'comments/new',
+                 :locals => { :activity => activity } %>
   </div>
 <% end %>
