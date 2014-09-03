@@ -223,6 +223,27 @@ p
   .modal-header
     i
       padding-right: 10px
+    //help
+    .helpheader_modal
+      float: right
+      margin-top: 3px
+      position: relative
+      i
+        cursor: pointer
+        font-size: 20px
+        color: $gray
+      .popover
+        font-size: 14px
+        width: 300px !important
+      .modal-footer
+        a
+          color: $gray
+      .popoverfix
+        width: 248px
+        margin-left: -15px
+        margin-bottom: -15px
+
+
   .modal-body
     p
       width: 100%
@@ -249,7 +270,7 @@ p
       float: left
       margin-bottom: 5px
       margin-right: 5px
-      padding: 5px 10px
+      padding: 3px 10px
       position: relative
 
       a
@@ -287,3 +308,6 @@ p
         cursor: pointer
         padding-left: 10px
         width: 100%
+  .modal-footer
+    button 
+      border-top-left-radius: $baseBorderRadius !important
