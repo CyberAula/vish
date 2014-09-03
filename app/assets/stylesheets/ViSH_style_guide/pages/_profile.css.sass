@@ -11,9 +11,7 @@
     width: 100%
     @extend .well
     border: none
-    padding-left: 0
-    padding-top: 0
-    padding-bottom: 0
+    padding: 0
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
     position: relative
     @media (max-width: $screen-xs-max)
@@ -48,6 +46,9 @@
         height: 110px
         width: 75px
         pointer-events: none
+    .helphome
+      margin-top: -9px
+      font-size: 1.3em !important
     
     .information
       @include make-xs-column(12, $gutter: $grid-gutter-width)
@@ -65,7 +66,7 @@
           font-family: $corporate-font-family-sans-serif-Medium
           word-wrap: break-word
         .description
-          color: $gray-light
+          color: $gray
           font-size: 14px
           word-wrap: break-word
           clear: both
@@ -112,30 +113,36 @@
           header
             @include hidden-xs
           .ocupation
-            margin-bottom: 8px
+            margin-bottom: -4px
 
           @media (max-width: $screen-xs-max)
             margin: 0
         .panel-group 
           margin-bottom: 0 
+          margin-top: 10px
           div
-            margin-bottom: 8px
+            margin-bottom: -4px
             h4
               color: $brand-primary
               font-size: 0.9em
               font-family: $corporate-font-family-sans-serif-Regular
-              padding-right: 15px
-              display: inline
+              display: inline-block
+              width: 92px
+              margin: 10px 0
               @media (max-width: $screen-xs-max)
                 display: block
                 text-align: center
+                width: 100%
+                margin-bottom: 0
+                margin-top: 14px
             span 
               display: inline-block
-              font-size: 0.9em
-              color: $gray    
+              font-size: 1em
+              color: $gray-dark   
               @media (max-width: $screen-xs-max)
                 display: block
                 text-align: center
+                font-size: 1.2em
             .panel-body
               padding: 0
               div.ocupation
@@ -146,9 +153,7 @@
           .name,
           .description
             text-align: center 
-            width: 100% 
-          .name
-            margin-top: 20px             
+            width: 100%              
 
 
           
@@ -160,7 +165,7 @@
           padding-top: 10px
           display: block
           float: left
-          margin-top: 10px
+          margin-top: 18px
 
           .btn-group
             margin-bottom: 9px
