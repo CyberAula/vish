@@ -6,7 +6,11 @@
   </header>
   <div class="panel-body collapse" id="destroy_settings_content">
     <div class="form_row">
-      <%= t("#{ current_subject.class.to_s.underscore }.destroy.explanation") %>
+      <div class="form_label">
+        <label>
+          <%= t("#{ current_subject.class.to_s.underscore }.destroy.explanation") %>
+        </label>
+      </div>
       <%= link_to t("#{ current_subject.class.to_s.underscore }.destroy.go_ahead"),
           current_subject,
           :method => :delete,

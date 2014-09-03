@@ -43,17 +43,22 @@
 
         <hr class="soften">
         <div class="conditions">
+        <label>
           <input type="checkbox" id="inlineCheckbox1" required="required" title="You need to accept the Terms and Conditions to create your account" value="option1">
-          <%= t('conditions.check_message') %>
+          
+          <span class="lbl padding-0">
+                
+            <%= t('conditions.check_message') %>
 
-          <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
+            <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
 
-          <%= t('conditions.check_message_2') %>
+            <%= t('conditions.check_message_2') %>
 
-          <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-            <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>.
-          <% end -%>
-        </div>
+            <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+              <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>.
+            <% end -%>
+          </span>
+        </label>
         <div class="action">
           <%= f.submit t('action.accept').capitalize,:class=>"btn btn-primary pull-right"%>
         </div>

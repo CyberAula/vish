@@ -27,6 +27,7 @@ aside.recomended
 .description-activity
   @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
   @extend .well
+  @include border-top-radius (0)
   background-color: $white
   padding: 0
   border: none
@@ -140,6 +141,7 @@ aside.recomended
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   background-color: rgba(216, 216, 216, 0.9)
   padding: 11px 0
+  @include border-top-radius ($border-radius-base)
   .container-visor
     width: 100%
 

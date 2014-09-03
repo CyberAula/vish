@@ -20,29 +20,23 @@
   width: 219px
   background-color: rgba(85,85,85,0.97)
   @include border-bottom-radius ($border-radius-base)
-
+  .spinner
+    margin: 35px auto 0 !important
+    display: none
   .query_too_short
     @include border-bottom-radius ($border-radius-base)
     color: $white
-    width: 92%
     text-align: center
     padding: 3px
     margin-top: 2px
-    -webkit-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
-    -moz-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
-    box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.75)
   .no_results
     display: block
     @include border-bottom-radius ($border-radius-base)
     color: $white
     background-color: $brand-primary
-    width: 92%
     text-align: center
     padding: 3px
     margin-top: 2px
-    -webkit-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
-    -moz-box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
-    box-shadow: inset -5px 10px 5px -7px rgba(0,0,0,0.3)
 
   .results
     ul
@@ -51,6 +45,8 @@
       float: none
       @include border-bottom-radius ($border-radius-base)
       @include center-block
+      li
+        margin: 0 0 6px
       .more
         display: block
         clear: both
