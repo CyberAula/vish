@@ -82,6 +82,8 @@ en:
     title: "Catalogue"
   category:
     cat_add_title: "My categories"
+    cat_create: "Create new categories"
+    cat_popular: "Your populars categories"
     categorized_like: "Categorized as:"
     confirm_delete: "Delete category?"
     modalLabel: "Add to my categories"

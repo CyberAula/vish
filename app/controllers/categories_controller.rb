@@ -98,9 +98,10 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    update! do |format|
-      format.json {render :json => { :success => true }}
-    end
+    @category.title = params[:category][:title]
+    @category.description = params[:category][:description]
+    @category.update
+    redirect_to @category
   end
 
   def destroy

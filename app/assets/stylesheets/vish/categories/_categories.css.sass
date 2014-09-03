@@ -215,3 +215,69 @@ p
   font-size: 14px
   float: left
   clear: both
+
+
+
+#categories_viewer_modal
+  .modal-header
+    i
+      padding-right: 10px
+  .modal-body
+    p
+      width: 100%
+      padding: 3px 0
+      
+    li.tagit-choice
+      background: #b5bdc8
+      background: -moz-linear-gradient(top, #b5bdc8 0%, #828c95 36%, #28343b 100%)
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b5bdc8), color-stop(36%,#828c95), color-stop(100%,#28343b))
+      background: -webkit-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%)
+      background: -o-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%)
+      background: -ms-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%)
+      background: linear-gradient(to bottom, #b5bdc8 0%,#828c95 36%,#28343b 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 )
+      border-radius: 2px
+      color: #FFFFFF
+      cursor: pointer
+      display: block
+      float: left
+      margin-bottom: 5px
+      margin-right: 5px
+      padding: 5px 10px
+      position: relative
+
+      a
+        display: block
+        float: left
+        color: $white
+        font-size: 14px
+        font-weight: lighter
+
+    .left_categories
+      width: 55%
+      float: left
+      height: 370px
+      .popular_categories
+        height: 105px
+        display: block
+        float: left
+        overflow: hidden
+      .my_categories
+        height: 105px
+        display: block
+        float: left
+        overflow-x: hidden
+        margin-bottom: 5px
+
+
+    .right_categories
+      width: 40%
+      margin-left: 2%
+      float: right
+      border-left: dashed 1px $grayLight
+      height: 370px
+      overflow-x: hidden
+      p
+        padding-left: 10px
+      li.tagit-choice
+        margin-left: 10px
