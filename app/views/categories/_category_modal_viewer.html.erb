@@ -23,11 +23,11 @@
       </ul>
     </div>
 
-    <!-- Necesito que se vea bien esta parte, que sea un dropdown con scroll que funcione normal-->
-     <p class= "information"><%= t("category.cat_popular")%></p>
+     <!--<p class= "information"><%= t("category.cat_popular")%></p>-->
+     <br>
      <div id="suggested_categories" class="tagBoxNew">
 
-        <%simple_gen = generic_categories.sort{|a,b| b.property_objects.length <=> a.property_objects.length}.first(5)%>
+        <%simple_gen = generic_categories.sort{|a,b| b.property_objects.length <=> a.property_objects.length}.first(7)%>
         <% simple_gen.each do |init| %> 
           <ul id="suggestedCategories" class="tagit">
             <li class="tagit-choice" value="<%= init.id %>" ><%=init.title%></li>
