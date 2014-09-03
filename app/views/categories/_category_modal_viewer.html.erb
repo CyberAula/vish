@@ -14,7 +14,7 @@
         <b><%= t("category.cat_add_select")%></b>
         <span class="caret"></span>
       </button>
-        <ul class="dropdown-menu scroll-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <ul id="catDropdownSel" class="dropdown-menu scroll-menu" role="menu" aria-labelledby="dropdownMenu1">
         <% generic_categories.each do |init| %> 
 
         <li role="presentation" value="<%=init.id%>"><a role="menuitem" tabindex="-1" ><%=init.title%></a></li>
@@ -80,9 +80,9 @@
   });
 
   //TODO: Make it work
-  $("#categories_select_box select option").click(function(){
+  $("#catDropdownSel li").click(function(){
     var value = $(this).val();
-    var name = $(this).html();
+    var name = $(this).children().html();
 
     $("#myCategories").tagit("add", name, value);
   });
