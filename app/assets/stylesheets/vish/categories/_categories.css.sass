@@ -219,6 +219,7 @@ p
 
 
 #categories_viewer_modal
+
   .modal-header
     i
       padding-right: 10px
@@ -226,7 +227,12 @@ p
     p
       width: 100%
       padding: 3px 0
-      
+    p.information
+      width: 20%
+      display: inline-block
+      float: left
+
+
     li.tagit-choice
       background: #b5bdc8
       background: -moz-linear-gradient(top, #b5bdc8 0%, #828c95 36%, #28343b 100%)
@@ -252,32 +258,32 @@ p
         color: $white
         font-size: 14px
         font-weight: lighter
-
-    .left_categories
-      width: 55%
-      float: left
-      height: 370px
-      .popular_categories
-        height: 105px
-        display: block
-        float: left
-        overflow: hidden
-      .my_categories
-        height: 105px
-        display: block
-        float: left
-        overflow-x: hidden
-        margin-bottom: 5px
-
-
-    .right_categories
-      width: 40%
-      margin-left: 2%
+    .dropdown
+      display: inline-block
       float: right
-      border-left: dashed 1px $grayLight
-      height: 370px
-      overflow-x: hidden
-      p
+      width: 75%
+      ul
+        width: 99%
+        opacity: 0.9
+      button 
+        border-top-left-radius: $baseBorderRadius !important
+        width: 100%
+        float: right
+        text-align: left
+        padding: 3px 12px !important
+      span
+        float: right
+        display: inline
+      b
+        display: inline
+        color: $grayLight
+        float: left
+      li
+        width: 95%
+        padding: 0px 2% !important
+      a
+        font-size: 14px
+        color: $white
+        cursor: pointer
         padding-left: 10px
-      li.tagit-choice
-        margin-left: 10px
+        width: 100%

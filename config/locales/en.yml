@@ -81,6 +81,7 @@ en:
         teaching: "teaching"
     title: "Catalogue"
   category:
+    cat_add_select: "Select your categories"
     cat_add_title: "My categories"
     cat_create: "Create new categories"
     cat_popular: "Your populars categories"

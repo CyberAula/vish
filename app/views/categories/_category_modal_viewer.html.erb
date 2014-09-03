@@ -2,25 +2,29 @@
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <%= render partial: 'help/help_categorize' %>
-    <h3 id="myModalLabel"><%= t("category.modalLabel")%></h3>
+    <h3 id="myModalLabel"><i class="icon-th-large"></i><%= t("category.modalLabel")%></h3>
   </div>
   <div class="modal-body">
     <% generic_categories = Category.authored_by(current_subject) %>
     <p class= "information"><%= t("category.cat_add_title")%></p> 
     
     <!-- Juancar echalé un ojo-->
-   <!-- <div class="dropdown">
+   <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        Dropdown
+        <b><%= t("category.cat_add_select")%></b>
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu scroll-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <ul class="dropdown-menu scroll-menu" role="menu" aria-labelledby="dropdownMenu1">
         <% generic_categories.each do |init| %> 
+
         <li role="presentation" value="<%=init.id%>"><a role="menuitem" tabindex="-1" ><%=init.title%></a></li>
+        
         <% end %>
       </ul>
-    </div>  -->
+    </div>
+
     <!-- Necesito que se vea bien esta parte, que sea un dropdown con scroll que funcione normal-->
+     <p class= "information"><%= t("category.cat_popular")%></p>
      <div id="suggested_categories" class="tagBoxNew">
         <%simple_gen = generic_categories.sample(5)%>
         <% simple_gen.each do |init| %> 
@@ -29,7 +33,7 @@
           </ul>
         <% end %>
      </div>
-    <br>
+
     <p class="information"><%= t("category.categorized_like")%></p>
     <%tagArray= generic_categories.map{|e| e.title}%>
     <script type="text/javascript">

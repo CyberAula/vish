@@ -78,6 +78,7 @@ es:
         teaching: "enseñanza"
     title: "Catálogo"
   category:
+    cat_add_select: "Selecciona entre tus categorías"
     cat_add_title: "Mis categorías"
     cat_create: "Crear nuevas categorías"
     cat_popular: "Tus categorías populares"
