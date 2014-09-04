@@ -214,26 +214,36 @@ aside.recomended,
 //    float: right
 
 .contentReport
+  min-height: 90px
   .nav-stacked
-    width: 34%
+    width: 40%
     float: left
     margin-right: 1%
     padding-right: 1%
     border-right: 1px solid #777
     border-bottom: none
-    li.active
-      background-color: #EDEDED
+    li a &:hover
+      background-color: $gray-lighter
+      @include border-top-radius ($border-radius-base)
+      @include border-bottom-radius ($border-radius-base)
+    li.active a
+      background-color: $gray-lighter-extra
       color: #006C9E
+      @include border-top-radius ($border-radius-base)
+      @include border-bottom-radius ($border-radius-base)
   .tab-content
     float: left
-    width: 62%
+    width: 59%
     .simple_captcha_image
       width: 30%
-    .captcha_report
-      h5 small
-        color: gray
     .simple_captcha_field
-      width: 57%
+      width: 66%
+      margin-left: 0
+      float: right
+  .tab-pane
+    h6 span
+      color: $gray
+      font-family: $corporate-font-family-sans-serif-Regular
 
   textarea.report
     margin-bottom: 15px
