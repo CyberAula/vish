@@ -81,7 +81,14 @@ en:
         teaching: "teaching"
     title: "Catalogue"
   category:
+    cat_add_select: "Select your categories"
+    cat_add_title: "My categories"
+    cat_create: "Create new categories"
+    cat_popular: "Your popular categories"
+    categorized_like: "Categorized as:"
     confirm_delete: "Delete category?"
+    modalLabel: "Add to my categories"
+    tagit_watermark_cat: "Add a new category"
   categories:
     actions:
       add: "Create category"
@@ -373,6 +380,7 @@ en:
       cat1_html: "1. Type a <b>title</b> and <b>description</b>.<br>"
       cat2_html: "2. Then, click on <b> save </b> button to create your new category."
       cat: "Create a new category"
+      categorize_html: "In this panel you can set the excursion or resource into one or more categories. <br><br>Selecting from the whole list of your categories, the most used by you or create new ones in the input case. <br><br> You can create as many as you want and all of them will show up in your profile categories section."
       event_html: "Create a new event"
       event1_html : "1. Type a <b>title</b> and <b>description</b>.<br>"
       event2_html : "2. Choose the type of event: Videoconference or Streaming.<i>If your choice is streaming, you should add the embed code of the stream.</i><br>"

@@ -78,7 +78,14 @@ es:
         teaching: "enseñanza"
     title: "Catálogo"
   category:
-    confirm_delete: "Borrar categoria?"
+    cat_add_select: "Selecciona entre tus categorías"
+    cat_add_title: "Mis categorías"
+    cat_create: "Crear nuevas categorías"
+    cat_popular: "Tus categorías populares"
+    categorized_like: "Categorizada como:"
+    confirm_delete: "Borrar categoría?"
+    modalLabel: "Añadir a mis categorías"
+    tagit_watermark_cat: "Añade una nueva categoría"
   categories:
     actions:
       add: "Crear categoría"
@@ -374,6 +381,7 @@ es:
       cat: "Crear una nueva categoría"
       cat1_html: "1. Escriba un <b>título</b> y una <b>descripción</b>.<br>"
       cat2_html: "2. Después, haga click en el botón <b> guardar </b>para crear su nueva categoría.<br>"
+      categorize_html: "En este panel puedes categorizar la excursión o el recurso en una o más categorías.<br><br>Puedes seleccionarlas desde las ya creadas de tu lista de categorías, de las que más uses o crear nuevas desde el cajetín de abajo.<br><br>Puedes crear tantas como quieras y todas ellas serán visibles desde tu perfil de usuario en la zona de categorías."
       event_html: "Crear un nuevo evento"
       event1_html : "1. Escriba un <b>título</b> y una <b>descripción</b>.<br>"
       event2_html : "2. Escoja entre el tipo de evento: Videoconferencia o Streaming.<i>Si escojes streaming deberas añadir el embed con el codigo que emita la señal de video</i><br>"

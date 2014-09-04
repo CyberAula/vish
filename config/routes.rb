@@ -74,7 +74,7 @@ Vish::Application.routes.draw do
   resources :pdfexes
 
   #Categories
-  match '/categories/add_items' => 'categories#add_items', :via => :post
+  match '/categories/categorize' => 'categories#categorize', :via => :post
   match '/categories/favorites' => 'categories#show_favorites'
 
   #Catalogue

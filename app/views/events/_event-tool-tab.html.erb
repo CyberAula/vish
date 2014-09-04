@@ -95,17 +95,19 @@ $(document).ready(function(){
     <%= render :partial => 'events/button-mashme'%>
   <% end %>
 <!--categoriess-->
-  <%if user_signed_in?%>
-    <%= content_for :javascript do %> 
-      <%= render partial: 'shared/multiselect', :locals => {:item => @event} %>
-    <% end %>
 
-    <%= link_like(@event.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
+  <%if user_signed_in? %>
+        <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @event} %>
+        <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" ><i class="icon-th-large"></i></button>
+        
+      <%end%>
 
-    <%=categories_select(:category_id, @event)%>
-    <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
-    <%= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>
-  <%end%>
+  <% if @event.streaming %>
+    <!-- STREAMING CODE  -->
+  <% else %>
+    <!--mashme-->
+    <%= render :partial => 'events/button-mashme'%>
+  <% end %>
 </div>
 
   <ul class="nav nav-tabs tooltab">
