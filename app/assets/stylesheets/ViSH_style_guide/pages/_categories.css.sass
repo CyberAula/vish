@@ -12,9 +12,7 @@
     width: 100%
     @extend .well
     border: none
-    padding-left: 0
-    padding-top: 0
-    padding-bottom: 0
+    padding: 0
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
     position: relative
     @media (max-width: $screen-xs-max)
@@ -47,19 +45,19 @@
       padding-bottom: 10px
       .description
         clear: both
-        border-top: 1px solid $gray-light
+        color: $gray-dark
+        font-family: $corporate-font-family-sans-serif-Light
         padding-top: 10px
+        border-top: 1px solid $gray-darker
       .briefing
         .helpheader
           @include hidden-xs
-        .name h2
-          margin-top: 0
-          color: $gray
-          font-family: $corporate-font-family-sans-serif-Medium
-          word-wrap: break-word
+          i
+            padding-top: 0
+
         .description
-          color: $gray-light
-          font-size: 14px
+          color: $gray-dark
+          font-family: $corporate-font-family-sans-serif-Light
           word-wrap: break-word
           margin-bottom: 20px
         .btn-group
