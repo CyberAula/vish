@@ -49,7 +49,10 @@
 
     <section class="tags">
       <%= f.label :tag_list, t('document.info.tags') %>
-      <%= f.text_field :tag_list, 'data-path' => tags_path(format: 'json') %>
+      <%= f.hidden_field :tag_list, :multiple => true %>
+      <div class="tagBoxDocument">
+         <ul class="resourceTagList"></ul>
+      </div>
     </section>
 
     <%unless resource.class.name=="Picture" %>
