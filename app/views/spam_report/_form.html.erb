@@ -1,4 +1,34 @@
 <div class="contentReport">
+<%if @activity_object.object.class.name == "Excursion" %>
+    <dt><%=t('report.report_excursion')%></dt>
+  <% elsif @activity_object.object.class.name == "Event"%>
+    <dt><%=t('report.report_event')%></dt>
+  <% else %>
+    <dt><%=t('report.report_resource')%></dt>
+  <%end%>
+    <ul id="myTab" class="nav nav-pils nav-stacked" role="tablist">
+      <li class=""><a href="#home" role="tab" data-toggle="tab"> <%=t('report.spam_content')%></a></li>
+      <li class=""><a href="#profile" role="tab" data-toggle="tab"><%=t('report.error_content_resource')%></a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade" id="home">
+       <div style="display:block width:100%"><%=text_area_tag 'comment_spam', nil, rows: 2, class: 'form-control textarea_spam report', :placeholder => t('report.placeholder')%></div>
+        <h5><%= t('simple_captcha.title') %> <span class="small"> <%=t('simple_captcha.subtitle')%> </span></h5>
+
+      <%= show_simple_captcha %>
+      <button class="report btn btn-primary"> <%=t('send.send')%></button>
+      </div>
+      <div class="tab-pane fade" id="profile">
+        <div style="display:block width:100%"><%=text_area_tag 'comment_error', nil, rows: 2,class: 'form-control textarea_spam report', :placeholder => t('report.placeholder')%></div>
+        <h5><%= t('simple_captcha.title') %> <span class="small"> <%=t('simple_captcha.subtitle')%> </span></h5>
+      <%= show_simple_captcha %>
+      <button class="report btn btn-primary"> <%=t('send.send')%></button>
+      </div>
+  </div>
+</div>
+
+
+<!-- <div class="contentReport" style="clear:both">
 
   <%if @activity_object.object.class.name == "Excursion" %>
     <dt><%=t('report.report_excursion')%></dt>
@@ -10,13 +40,26 @@
   
   <%= form_tag spam_reports_path, method: 'post', class: "" do %>
     <%=hidden_field_tag "activity_object_id", @activity_object.id%>
+
+
+
     <div class="radio">
-      <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('report.spam_content')%>
-      <div style="display:block"><%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('report.placeholder')%></div>
+      <label>
+        <%=radio_button_tag 'option', "0", false, class: "spam_radio"%>
+        <span class="lbl padding-0">
+          <%=t('report.spam_content')%>
+        </span>
+        <div style="display:block width:100%"><%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'form-control textarea_spam report', :placeholder => t('report.placeholder')%></div>
+      </label>
     </div>
     <div class="radio">
-      <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('report.error_content_resource')%>
-      <div style="display:block"><%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('report.placeholder')%></div>
+      <label>
+        <%=radio_button_tag 'option', "1", false, class: "spam_radio"%>
+        <span class="lbl padding-0">
+          <%=t('report.error_content_resource')%>
+        </span>
+        <div style="display:block width:100%"><%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'form-control textarea_spam report', :placeholder => t('report.placeholder')%></div>
+      </label>
     </div>
     
     <h4><%= t('simple_captcha.title') %></h4>
@@ -26,7 +69,7 @@
 
     <button class="report btn btn-primary"> <%=t('send.send')%></button>
   <% end %>
-</div>
+</div> -->
 
 <%= content_for :javascript do %>
     $("div.contentReport .spam_radio").click(function(e){

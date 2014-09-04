@@ -105,8 +105,9 @@ aside.recomended
         .panel-body
           padding: 0 
       .table
-        //margin-bottom: 0
         border-collapse: none
+        span
+          font-family: $corporate-font-family-sans-serif-Medium
     
 
   .comments,
@@ -119,8 +120,6 @@ aside.recomended
     float: right
     display: inline-block
     .btn:first-child:not(:last-child):not(.dropdown-toggle)
-      @include border-top-radius (0)
-      @include border-bottom-radius (0)
       margin-left: 0
     .ui-multiselect
       width: 28px !important
@@ -128,6 +127,7 @@ aside.recomended
       margin-right: 5px
     button
       border: none
+      background: transparent
       &:hover
         border: none
     
@@ -200,18 +200,47 @@ aside.recomended,
     float: right
     margin-top: 15px
 
+//.contentReport
+//  .btn-group-vertical,
+//  .captcha
+//    @include make-xs-column(12, $gutter: $grid-gutter-width)
+//    @include make-sm-column(12, $gutter: $grid-gutter-width)
+//    @include make-md-column(6, $gutter: $grid-gutter-width)
+//    @include make-lg-column(6, $gutter: $grid-gutter-width)
+//  .simple_captcha,
+//  .simple_captcha_image
+//    float: none !important
+//  .btn  
+//    float: right
+
 .contentReport
-  .btn-group-vertical,
-  .captcha
-    @include make-xs-column(12, $gutter: $grid-gutter-width)
-    @include make-sm-column(12, $gutter: $grid-gutter-width)
-    @include make-md-column(6, $gutter: $grid-gutter-width)
-    @include make-lg-column(6, $gutter: $grid-gutter-width)
-  .simple_captcha,
-  .simple_captcha_image
-    float: none !important
-  .btn  
+  .nav-stacked
+    width: 34%
+    float: left
+    margin-right: 1%
+    padding-right: 1%
+    border-right: 1px solid #777
+    border-bottom: none
+    li.active
+      background-color: #EDEDED
+      color: #006C9E
+  .tab-content
+    float: left
+    width: 62%
+    .simple_captcha_image
+      width: 30%
+    .captcha_report
+      h5 small
+        color: gray
+    .simple_captcha_field
+      width: 57%
+
+  textarea.report
+    margin-bottom: 15px
+  button.report
     float: right
+
+
 
 .limits
   position: relative

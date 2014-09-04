@@ -24,11 +24,11 @@
     <header>
       <table class="table table-hover">  
         <tr>
-          <td>Empieza el: </td>
+          <td><span>Empieza el: </span></td>
           <td id="start"><%= @event.start_at %></td>
         </tr>
         <tr>
-          <td>Termina el: </td>
+          <td><span>Termina el: </span></td>
           <td id="end"><%= @event.end_at %></td>
         </tr>
       </table>
@@ -39,7 +39,7 @@
         <table class="table table-hover">
           <tr>
             <% unless @event.description.blank? %>
-              <td><%= t 'document.info.description' %></td>
+              <td><span><%= t 'document.info.description' %></span></td>
               <td><%= @event.description %></td>
             <% end%>
           </tr>

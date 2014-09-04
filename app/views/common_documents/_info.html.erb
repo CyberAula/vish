@@ -45,13 +45,13 @@
       <table class="table table-hover">
         <% unless document.description.blank? %>
           <tr>
-            <td><%= t 'document.info.description' %></td>
+            <td><span><%= t 'document.info.description' %></span></td>
             <td><%= document.description %></td>
           </tr>
         <%end%>
         <tr>
           <% unless !defined? document.file or document.file.nil? or !defined? document.file_file_size or document.file_file_size.blank? %>
-              <td><%= t('document.info.size') %></td>
+              <td><span><%= t('document.info.size') %></span></td>
               <td><%= number_to_human_size document.file_file_size %></td>
           <%end%>
         </tr>
@@ -63,7 +63,7 @@
         <table class="table table-hover"> 
           <% unless document.tag_list.blank? %>
             <tr>
-              <td><%= t 'document.info.tags' %></td>
+              <td><span><%= t 'document.info.tags' %></span></td>
               <td>
                 <ul class="tagit-suggestions">
                   <% document.tag_list.each do |tag| %>
@@ -76,11 +76,11 @@
             </tr>
           <%end%>
           <tr>
-            <td><%= t('document.info.date.created_at') %></td>
+            <td><span><%= t('document.info.date.created_at') %></span></td>
             <td><%= I18n.localize document.created_at, :format => :long %></td>
           </tr>
           <tr>
-            <td><%= t('document.info.date.updated_at') %></td>
+            <td><span><%= t('document.info.date.updated_at') %></span></td>
             <td><%= I18n.localize document.updated_at, :format => :long %></td>
           </tr>
         </table>
