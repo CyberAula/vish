@@ -22,15 +22,19 @@
     </li>
   </ul>
   <div class="tab-content">
-      
     <div class="tab-pane active" id="coment1">
+      <div class="new-comments-box">
+        <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
+      </div>
       <div id="comments" class="comments">
-        <div class="new-comments-box">
-          <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
-        </div>
+        <div class="timeline-panel">
+        <div class="panel-body">
         <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
+        </div>
+        </div>
       </div>
     </div>
+
 
     <div class="tab-pane" id="evaluation1">              
       <div class="btn-evalue">

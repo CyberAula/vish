@@ -90,36 +90,46 @@
     margin: 0 4%
 
 
-ul.timeline
-  .timeline-panel
-    .pull-left
-      margin-right: 10px
-    .media-body
-      .media-heading
-        a
-          display: inline
-        .x
-          display: inline-block
-          float: right
+
+.timeline-panel
+  .pull-left
+    margin-right: 10px
+  .media-body
+    .media-heading
+      a
+        display: inline
+      .x
+        display: inline-block
+        float: right
+    .info_action
+      .post_time_ago
+        float: right
+        *font-style: italic
+        font-family: $corporate-font-family-sans-serif-Light
+        font-family: $corporate-font-family-sans-serif-LightItalic
+        color: $gray-light
+        padding-top: 3px
+    .panel-body
+      background-color: #F3F3F3
+      padding: 8px 10px
+      @include border-top-radius ($border-radius-base)
+      @include border-bottom-radius ($border-radius-base)
+      .child 
+        .info_action
+          .post_time_ago
+            color: #CECECE
+    .panel-group
+      margin-bottom: 15px
+  .panel-body
+    background-color: #F3F3F3
+    padding: 8px 10px
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+    margin-top: 10px
+    .child 
       .info_action
         .post_time_ago
-          float: right
-          *font-style: italic
-          font-family: $corporate-font-family-sans-serif-Light
-          font-family: $corporate-font-family-sans-serif-LightItalic
-          color: $gray-light
-          padding-top: 3px
-      .panel-body
-        background-color: #F3F3F3
-        padding: 8px 10px
-        @include border-top-radius ($border-radius-base)
-        @include border-bottom-radius ($border-radius-base)
-        .child 
-          .info_action
-            .post_time_ago
-              color: #CECECE
-      .panel-group
-        margin-bottom: 15px
+          color: #CECECE
 
       
 
@@ -132,14 +142,16 @@ ul.timeline
   display: block 
   padding: 0px
   clear: both
-  border-top: 2px solid #FFF
-  padding: 15px 0
-  &:first-child
-    border-top: none
-    padding: 0
-  &:last-child
-    padding: 15px 0 0 0
-  
+  .activity
+    clear: both
+    border-top: 2px solid #FFF
+    padding: 15px 0
+    &:first-child
+      border-top: none
+      padding: 0
+    &:last-child
+      padding: 15px 0 0 0
+    
     
        
 

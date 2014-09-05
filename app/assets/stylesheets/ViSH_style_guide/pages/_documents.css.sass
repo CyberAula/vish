@@ -96,6 +96,7 @@ aside.recomended
         margin-bottom: 7px
       .add
         @include follow-o
+        text-align: left
     .panel-group
       @include make-sm-column(8, $gutter: $grid-gutter-width)
       @include make-md-column(8, $gutter: $grid-gutter-width)
@@ -114,11 +115,19 @@ aside.recomended
   .child
     width: 100%
 
+.btn-group
+  a
+    color: $gray-darker-extra
 .excursion_tool
   .btn-group
     right: 0
     float: right
     display: inline-block
+    button
+    .btn
+      color: $gray
+      &:hover
+        color: $brand-primary
     .btn:first-child:not(:last-child):not(.dropdown-toggle)
       margin-left: 0
     .ui-multiselect
