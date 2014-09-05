@@ -1,48 +1,5 @@
-<li>
-      <div class="tl-circ"></div>
-      <div class="timeline-panel">
-        <div class="pull-left">
-          <a href="/users/demo" class="media-object avatar"><img alt="Demo" src="/system/actors/logos/000/000/001/small/4.jpg?1407147018"></a>
-        </div>
+<%= content_tag(:li, activity, class:"timeline-inverted") do %>
 
-        <div class="media-body">
-          <h6 class="media-heading"><a href="/users/demo">Demo</a> y <a href="/users/paul-smith">Paul Smith</a> están siguiéndose
-
-          </h6>
-          <p class="info_action"> 
-            <span class="post_time_ago small"> 
-              hace 17 días
-            </span>
-          </p>   
-        </div>
-        <div class="comments" id="comments_activity_645"></div>     
-        <div class="new_comment">
-          <form accept-charset="UTF-8" action="/comments" class="new_comment" data-remote="true" id="new_comment" method="post">
-            <div style="margin:0;padding:0;display:inline">
-              <input name="utf8" type="hidden" value="✓">
-              <input name="authenticity_token" type="hidden" value="9t7kfGqvNyTK5kqDCPixbXPZvfFNqhx6wnTPnu9DpeE=">
-            </div>
-
-            <div class="input-group">
-              <div class="input-group-addon">
-                <img alt="4" src="/system/actors/logos/000/000/001/small/4.jpg?1407147018">
-              </div>
-
-              <input id="comment_owner_id" name="comment[owner_id]" type="hidden" value="5">
-              <input id="comment__activity_parent_id" name="comment[_activity_parent_id]" type="hidden" value="645">
-
-              <textarea class="form-control" cols="40" id="comment_text" name="comment[text]" placeholder="Comentar..." rows="1" style="overflow: hidden; word-wrap: break-word; resize: none; height: 41px;"></textarea>
-
-              <input class="btn btn-primary" data-loading-text="Enviando..." name="commit" type="submit" value="Comentar" style="display: none;">
-            </div>      
-          </form>
-        </div>
-      </div>
-    </li>
-
-
-
-<%= div_for activity do %>
   <div class="tl-circ"></div>
   <div class="timeline-panel">
     <div class="pull-left">
@@ -90,3 +47,4 @@
                  :locals => { :activity => activity } %>
   </div>
 <% end %>
+
