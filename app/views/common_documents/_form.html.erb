@@ -54,7 +54,7 @@
       <%= f.label :tag_list, t('document.info.tags') %>
       <%= f.hidden_field :tag_list, :multiple => true %>
       <div class="tagBoxDocument">
-         <ul class="resourceTagList"></ul>
+         <ul class="resourceTagList partial-doc"></ul>
       </div>
     </section>
 
@@ -66,22 +66,27 @@
        end 
        
        tags2 += tags 
+       
+       initialTags = document.tags.all.map{|e| e.name} || []
     %>
-
+ 
     <script>
-    var tagn= [
+    var tagArchive= [
           <% tags2.each do |tag|%>
             "<%=tag%>",
           <%end%>
-          ]
+          ];
 
     $(".resourceTagList").tagit({
      watermarkAllowMessage:"",
-     tagSource: tagn
+     tagSource: tagArchive
     });
 
-    </script>
+    <% initialTags.each do |cnt| %>
+      $(".partial-doc").tagit("add", "<%= cnt %>");
+    <%end%> 
 
+    </script>
     <%unless resource.class.name=="Picture" %>
       <section class="avatar">
         <%= f.label :avatar, t('document.leyend.avatar') %>
