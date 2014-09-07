@@ -1,5 +1,5 @@
 <div id ="time-line">
-
+<% @lastMonth = @lastMonth || 0 %>
   <%= render :partial => "activities/index",
   :locals => { section: :home,
     owner: current_subject } %>

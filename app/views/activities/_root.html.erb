@@ -1,8 +1,29 @@
+<%#Render month title%>
+ <% @lastMonth = @lastMonth || params[:month]|| 0 %>
+<% modifDate = activity.created_at.strftime("%b") + " " + activity.created_at.strftime("%Y")  %>
+<% if @lastMonth != activity.created_at.month
+    @lastMonth = activity.created_at.month%>
+    <li><div class="tldate"> <%= modifDate %> </div></li>
+<%end%> 
+<%#Ends here%>
+<script>
+  var numberMonths = numberMonths || 0;
+  var dates= $(".tldate");
+    for(var n = 0; n<dates.lenght - 1; n++){
+      if ($(dates[n]).text() == $(dates[n+1]).text())
+        $(dates[n+1]).remove();
+    }
+  
+</script>
+<%# To get if inverted or not inverted %>
 <% @state = @state || 0%>
 <% position = "" %>
+
 <% @state % 2 == 0 ? position = "" : position = "timeline-inverted" %>
 <%= content_tag(:li, activity, class: position) do %>
-<% @state += 1 %>
+  <% @state += 1 %>
+<%#inverted algorithm ends here %>
+
   
   <div class="tl-circ"></div>
   <div class="timeline-panel">

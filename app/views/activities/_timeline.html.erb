@@ -1,5 +1,16 @@
 <% section ||= nil %>
 
+<script>
+/*
+  var numberMonths = numberMonths || 0;
+  var dates= $(".tldate");
+    for(var n = 0; n<dates.lenght - 1; n++){
+      if ($(dates[n]).text() == $(dates[n+1]).text())
+        $(dates[n+1]).remove();
+    }
+  */
+</script>
+
 <ul class="timeline" id="timeline-main">
   <%= render partial: 'activities/timeline_modal' %>
 
@@ -9,7 +20,8 @@
              locals: {
                path: polymorphic_path([ section, Activity.new ]),
                per_page: Activity.default_per_page,
-               total: activities.total_count
+               total: activities.total_count,
+               month: @lastMonth
              } %>
 </ul>
 
