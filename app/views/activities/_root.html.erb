@@ -1,5 +1,9 @@
-<%= content_tag(:li, activity, class:"timeline-inverted") do %>
-
+<% @state = @state || 0%>
+<% position = "" %>
+<% (@state % 2 == 0 ? position = "" : position = "timeline-inverted") %>
+<%= content_tag(:li, activity, class: position) do %>
+<% @state += 1 %>
+  
   <div class="tl-circ"></div>
   <div class="timeline-panel">
     <div class="pull-left">
