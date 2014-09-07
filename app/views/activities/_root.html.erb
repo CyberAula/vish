@@ -1,6 +1,6 @@
 <% @state = @state || 0%>
 <% position = "" %>
-<% (@state % 2 == 0 ? position = "" : position = "timeline-inverted") %>
+<% @state % 2 == 0 ? position = "" : position = "timeline-inverted" %>
 <%= content_tag(:li, activity, class: position) do %>
 <% @state += 1 %>
   
