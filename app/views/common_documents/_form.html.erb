@@ -47,6 +47,9 @@
       <%= f.text_area :description %>
     </section>
 
+    
+
+
     <section class="tags">
       <%= f.label :tag_list, t('document.info.tags') %>
       <%= f.hidden_field :tag_list, :multiple => true %>
@@ -54,6 +57,30 @@
          <ul class="resourceTagList"></ul>
       </div>
     </section>
+
+    <% tags = ActivityObject.tag_counts.all.map{|e| e.name.downcase} + Vish::Application.config.catalogue_categories 
+       tags.uniq!
+       tags2 =[]
+       tags.each do |e|
+       tags2.push e.capitalize
+       end 
+       
+       tags2 += tags 
+    %>
+
+    <script>
+    var tagn= [
+          <% tags2.each do |tag|%>
+            "<%=tag%>",
+          <%end%>
+          ]
+
+    $(".resourceTagList").tagit({
+     watermarkAllowMessage:"",
+     tagSource: tagn
+    });
+
+    </script>
 
     <%unless resource.class.name=="Picture" %>
       <section class="avatar">
@@ -86,9 +113,10 @@
       </section>
     <% end%>
 
-    <%= f.submit :class => "btn-primary", "data-loading-text" => t('button.sending') %>
+    <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
   <% end %>
 
+  
   <%= javascript_tag do %>
     $("#new_file input[type='submit']").click(function(event){
       //AGE
@@ -141,5 +169,16 @@
       SocialStream.Document.edit();
       newFilePositionLimits();
     });
+
+    $(".form-sender").click(function(){
+      var tagList=[]
+      $(".resourceTagList .tagit-choice").each(function(index,elem){
+        tagList.push($(elem).text());
+        });
+        $(".tags input").hide();
+        $(".tags input").val(tagList);
+      });
+
   <% end %>
+
 </article>
