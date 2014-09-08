@@ -101,6 +101,7 @@ aside.recomended
       @include make-sm-column(8, $gutter: $grid-gutter-width)
       @include make-md-column(8, $gutter: $grid-gutter-width)
       @include make-lg-column(8, $gutter: $grid-gutter-width)
+      padding-right: 0
       .panel
         @include box-shadow(0 0 0 transparent)
         .panel-body
@@ -204,10 +205,6 @@ aside.recomended,
     font-size: 0.9em 
     zoom: 1
 
-.edit_document
-  .btn
-    float: right
-    margin-top: 15px
 
 //.contentReport
 //  .btn-group-vertical,
@@ -289,6 +286,14 @@ input.age-slider
   a.btn
     @extend .btn-primary
 
+#new_file
+  section
+    clear: both
+    label
+      width: 100%
+  .btn 
+    float: right
+    margin-top: 15px
 
 .new_file_avatar_label
   margin-bottom: 2px

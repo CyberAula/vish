@@ -3,7 +3,12 @@
   list-style: none;
   position: relative;
 }
-
+.timeline > .more{
+  clear: both;
+  margin: 0 auto;
+  width: 120px;
+  text-align: center;
+}
 .timeline:before {
   top: 29px;
   bottom: 0;
@@ -12,7 +17,6 @@
   width: 2px;
   background-color: #FAF9F9;
   left: 50%;
-  margin-left: 19.5px;
 }
 
 .timeline li {

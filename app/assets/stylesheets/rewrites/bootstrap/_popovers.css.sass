@@ -1,13 +1,14 @@
 .popover
   top: 0 !important
   width: 600px
-  .arrow 
-    top: 20px !important
-  
+
+.popover.left > .arrow,
+.popover.right > .arrow
+  top: 16px !important
+
 
 .popover-content 
   padding: 0
-  background-color: $gray-darker
   @include border-bottom-radius ($border-radius-base)
 
 .popover-title 
@@ -21,31 +22,24 @@
 .popover-body 
   padding: 7px 14px
   color: $gray-lighter-extra
+  font-family: $corporate-font-family-sans-serif-Light
 
 
 .popover-footer 
-  padding: 0px 15px 13px
+  padding: 6px 15px 9px
   margin-bottom: 0
   color: $gray-lighter
   border-top: 1px solid $gray-lighter
   font-family: $corporate-font-family-sans-serif-Light
+  font-size: 1.1rem
   i
     margin-right: 8px
+    padding-top: 0
   a
     color: #7DB4CE
     &:hover
       color: #70A1B8
   
-
-
-.helpheader
-  float: right
-  margin-top: 4px
-  position: relative
-  i
-    cursor: pointer
-    padding-top: 13px
-    font-size: 1.05rem
 
   .popover
     top: 0px !important

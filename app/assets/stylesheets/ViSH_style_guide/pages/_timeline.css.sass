@@ -39,8 +39,6 @@
         &[type="submit"]
           display: inline-block
           margin: 0px
-          @extend .btn-primary
-          @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
       .input-group
         label
           display: none !important
@@ -50,7 +48,7 @@
         margin: 0
         padding: 2px 0 12px 6px !important
         vertical-align: top
-        .btn
+        .new_document
           padding: 7px
           background-image: none
           @extend .btn-default
@@ -63,6 +61,7 @@
 
 .timeline
   clear: both
+  padding-left: 0px
   .panel
     background-color: transparent
     border: none
@@ -85,6 +84,17 @@
     @include excursion-small
     width: 92%
     margin: 0 4%
+
+  .more 
+    a
+      @extend .btn
+      @extend .btn-primary
+      position: relative
+      margin-top: 30px
+    .spinner
+      margin: 10px auto 105px !important
+      width: 21% !important
+      height: 21% !important
 
 
 

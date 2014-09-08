@@ -284,8 +284,9 @@ $zindex-dropdown:          1000 !default;
 $zindex-popover:           1010 !default;
 $zindex-tooltip:           1030 !default;
 $zindex-navbar-fixed:      1030 !default;
-$zindex-modal-background:  1040 !default;
-$zindex-modal:             1050 !default;
+$zindex-footer-fixed:      1040 !default;
+$zindex-modal-background:  1050 !default;
+$zindex-modal:             1060 !default;
 
 $zindex-chat:            1000 !default;
 
@@ -523,11 +524,11 @@ $tooltip-arrow-color:         $black !default;
 //##
 
 //** Popover body background color
-$popover-bg:                          $white !default;
+$popover-bg:                          $gray-darker !default;
 //** Popover maximum width
 $popover-max-width:                   276px !default;
 //** Popover border color
-$popover-border-color:                $gray-light !default;
+$popover-border-color:                $gray !default;
 //** Popover fallback border color
 $popover-fallback-border-color:       $gray-light !default;
 
@@ -537,7 +538,7 @@ $popover-title-bg:                    darken($popover-bg, 3%) !default;
 //** Popover arrow width
 $popover-arrow-width:                 10px !default;
 //** Popover arrow color
-$popover-arrow-color:                 $white !default;
+$popover-arrow-color:                 $gray-darker !default;
 
 //** Popover outer arrow width
 $popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
