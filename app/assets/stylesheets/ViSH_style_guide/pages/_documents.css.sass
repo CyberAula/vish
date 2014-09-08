@@ -229,17 +229,14 @@ aside.recomended,
     float: left
     margin-right: 1%
     padding-right: 1%
-    border-right: 1px solid #777
+    border-right: 1px solid $gray-lighter
     border-bottom: none
-    li a &:hover
-      background-color: $gray-lighter
-      @include border-top-radius ($border-radius-base)
-      @include border-bottom-radius ($border-radius-base)
+ 
     li.active a
-      background-color: $gray-lighter-extra
-      color: #006C9E
-      @include border-top-radius ($border-radius-base)
-      @include border-bottom-radius ($border-radius-base)
+      &:hover
+        background-color: $white
+        color: $brand-primary
+        border: 1px solid $brand-primary
   .tab-content
     float: left
     width: 59%

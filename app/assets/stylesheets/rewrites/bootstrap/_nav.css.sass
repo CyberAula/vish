@@ -9,11 +9,6 @@
   -moz-box-shadow: none
   box-shadow: none !important
 
-.nav > li > a:hover, .nav > li > a:focus 
-  text-decoration: none
-  background-color: $gray-lighter-extra
-
-
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus 
   background-color: $gray-lighter-extra
 
@@ -41,7 +36,7 @@
 
 .nav-tabs 
   clear: both
-  border-bottom: 1px solid $gray-dark
+  border-bottom: 1px solid $nav-tabs-border-color
   margin-bottom: 10px
   .icontitle
     float: left
@@ -105,8 +100,8 @@
   background-color: rgb(0, 147, 198)
 
 .nav-pills > .active > a, .nav-pills > .active > a:hover
-  background-color: #002759
-  color: $white
+  background-color: $white
+  color: $brand-primary
 
 .navbar-toggle 
   border-color: transparent
@@ -125,21 +120,14 @@
   color: $gray-darker
   &:hover 
     background-color: $white
-    border: 1px  solid darken($brand-primary, 7%)
-    color: darken($brand-primary, 7%)
+    border: 1px  solid $brand-primary
+    color: $gray-dark
   
   &:focus 
-    background-color: $gray-lighter
-    border: 1px  solid $gray
-    color: darken($brand-primary, 7%)
-
-.nav-pills > li.active > a 
-  border: 1px solid $brand-primary
-  &:hover, &:focus 
-    background-color: $brand-primary !important
+    background-color: $white
     border: 1px  solid $brand-primary
-    color: $white
-  
+    color: $gray-dark
+
 
 .nav-pills > li + li 
   margin-left: 6px

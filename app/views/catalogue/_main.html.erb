@@ -1,13 +1,15 @@
 <div id="excursions_catalogue">
 	<%@default_categories.each do |name, resources| %>
 		<%unless resources.nil?%>
-			<h2><%=t("catalogue.categories." + name, :default => "Category")%></h2>
+					    <header class="icontitle">
+                <%=t("catalogue.categories." + name, :default => "Category")%>
+	            <button class="btn btn-default show_more_catalogue" name="<%=name%>"><%=t('view_all')%></button>
+            </header>
 			<ul id="container_<%=name%>" class="items">
 				<%for excursion in resources%>
 					<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion, :prefix_id =>"catalogue" } %>
 				<%end%>
 			</ul>
-			<button class="show_more_catalogue" name="<%=name%>"><%=t('view_all')%></button>
 		<%end%>
 	<%end%>
 </div>

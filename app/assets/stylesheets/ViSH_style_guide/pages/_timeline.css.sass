@@ -4,6 +4,8 @@
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   @include center-block
+  .icontitle
+    margin-top: 0
   .activities
     header
       @include make-xs-column(12, $gutter: $grid-gutter-width)
@@ -15,15 +17,10 @@
       @include make-lg-column-offset(2)
       padding: 0
       .icontitle
-        h2
-          width: 80%
-          text-align: left !important
         .helpheader i
-          padding-top: 5px
+          padding-top: 0px
     .wall_input
       position: relative
-      border-bottom-right-radius: 0px
-      border-top: 1px solid
       padding: 0
       float: none !important
       clear: both
@@ -33,7 +30,7 @@
         textarea
           width: 100%
           background-color: $white
-          margin: 10px 0 0
+          margin: 0
           height: auto !important
           float: none
           @include border-left-radius ($border-radius-base)
@@ -51,7 +48,7 @@
         background: rgba(0, 0, 0, 0)
         border: none
         margin: 0
-        padding: 12px 0 12px 6px !important
+        padding: 2px 0 12px 6px !important
         vertical-align: top
         .btn
           padding: 7px
@@ -120,6 +117,7 @@
             color: #CECECE
     .panel-group
       margin-bottom: 15px
+      clear: both
   .panel-body
     background-color: #F3F3F3
     padding: 8px 10px

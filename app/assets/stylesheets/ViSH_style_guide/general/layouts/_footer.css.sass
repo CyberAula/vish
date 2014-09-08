@@ -1,13 +1,19 @@
 footer
   height: 50px
-  margin-top: 20px
   padding-top: 9px
-  background-color: rgba(181, 181, 181, 0.45)
+  background-color: rgba(211, 211, 211, 0.85)
   border-top: 1px solid $gray-lighter-extra
+  bottom: -20px
+  position: fixed
+  width: 100%
   @include hidden-xs
+  &:hover
+    bottom: 0px
+    background-color: rgba(211, 211, 211, 0.98)
+    #scrollUp
+      bottom: 0px
   ul
-    margin: 0 auto
-    width: 750px
+    margin: 0 0 0 15px
     padding: 0
   
   .open

@@ -38,18 +38,9 @@
     clear: left
 #showMore_tags
   display: block
-  clear: both
-  color: $gray
-  background-color: $white
-  cursor: pointer
-  font-size: 11px
-  line-height: 24px
-  text-align: center
-  width: 150px
   margin: 0 auto
-  border: 1px solid $gray
-  a
-    color: $gray
+  @include border-top-radius (0)
+
 .header_catalogue
   h1
     width: 100%
@@ -95,9 +86,10 @@
     #effect
       display: block
       float: left
-      border-bottom: 1px solid $gray
+      border-bottom: 1px solid $nav-tabs-border-color
       padding: 5px 0
       width: 100%
+      margin-bottom: -1px
       li
         text-align: center
         label

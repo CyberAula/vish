@@ -2,15 +2,21 @@
   background-color: $white
   color: $gray-darker
   min-height: 43px
+  @include border-top-radius ($border-radius-base)
+  @include border-bottom-radius ($border-radius-base)
   a
     color: $gray-darker
     &:hover
       color: $brand-primary
+  a.active
+    color: $brand-primary
 
 .panel-title 
   padding-top: 0 !important
   line-height: 23px
   font-family: $corporate-font-family-sans-serif-Regular
+  .collapsed
+    color: $brand-primary
 
 
 

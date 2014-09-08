@@ -1,9 +1,9 @@
 <div id="settings">
   <section class="settings">
-    <header class="icontitle">
+    <div class="icontitle">
       <i class="fa fa-cog"></i>
       <%= t('settings.for')%> <%= current_subject.name %>
-    </header>
+    </div>
     <div class="panel-group" id="settings-accordion">
       <% if current_subject == current_user %>
         <%= render partial: "devise/registrations/edit_user",
