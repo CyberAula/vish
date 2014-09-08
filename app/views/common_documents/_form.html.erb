@@ -38,11 +38,46 @@
       <%= f.text_area :description, :rows => 5, :class => "form-control" %>
     </section>
 
+    
+
+
     <section class="tags">
       <%= f.label :tag_list, t('document.info.tags') %>
-      <%= f.text_field :tag_list, 'data-path' => tags_path(format: 'json') %>
+      <%= f.hidden_field :tag_list, :multiple => true %>
+      <div class="tagBoxDocument">
+         <ul class="resourceTagList partial-doc"></ul>
+      </div>
     </section>
 
+    <% tags = ActivityObject.tag_counts.all.map{|e| e.name.downcase} + Vish::Application.config.catalogue_categories 
+       tags.uniq!
+       tags2 =[]
+       tags.each do |e|
+       tags2.push e.capitalize
+       end 
+       
+       tags2 += tags 
+       
+       initialTags = document.tags.all.map{|e| e.name} || []
+    %>
+ 
+    <script>
+    var tagArchive= [
+          <% tags2.each do |tag|%>
+            "<%=tag%>",
+          <%end%>
+          ];
+
+    $(".resourceTagList").tagit({
+     watermarkAllowMessage:"",
+     tagSource: tagArchive
+    });
+
+    <% initialTags.each do |cnt| %>
+      $(".partial-doc").tagit("add", "<%= cnt %>");
+    <%end%> 
+
+    </script>
     <%unless resource.class.name=="Picture" %>
       <section class="avatar">
         <%= f.label :avatar, t('document.leyend.avatar') %>
@@ -74,10 +109,10 @@
       </section>
     <% end%>
 
-    <%= f.submit :class => "btn-primary", "data-loading-text" => t('button.sending') %>
-
+    <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
   <% end %>
 
+  
   <%= javascript_tag do %>
     $("#new_file input[type='submit']").click(function(event){
       //AGE
@@ -130,5 +165,16 @@
       SocialStream.Document.edit();
       newFilePositionLimits();
     });
+
+    $(".form-sender").click(function(){
+      var tagList=[]
+      $(".resourceTagList .tagit-choice").each(function(index,elem){
+        tagList.push($(elem).text());
+        });
+        $(".tags input").hide();
+        $(".tags input").val(tagList);
+      });
+
   <% end %>
+
 </article>

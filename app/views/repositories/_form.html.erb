@@ -165,6 +165,28 @@
         </div>
       </div>
 
+      <br>
+    </div>
+    
+    <div class="layoutform">
+      <p><%= t('document.body.title2')%></p>
+
+      <!--TITULO-->
+      <label><%= t('document.leyend.title')%></label>
+      <input type="text" class="title" placeholder="<%= t('document.title_input')%>">
+      
+      <!--DESCRIPCION-->
+      <label><%= t('document.leyend.description')%></label>
+      <textarea type="text" class="description" placeholder="<%= t('document.input')%>"></textarea>
+
+      <!--TAGS-->
+      <label><%= t('document.leyend.tags')%></label>
+
+      <div class="tagBoxDocument">
+         <ul class="resourceTagList"></ul>
+
+      </div>
+
       <!-- FOOTER -->
       <div class="modal-footer">
         <input type="button" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
