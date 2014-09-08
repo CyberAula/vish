@@ -12,16 +12,19 @@ Disallow: /categories
 Disallow: /users/*/followings
 Disallow: /users/*/followers
 Disallow: /users/*/excursions*
+Disallow: /users/*/categories
 Disallow: /spam_reports
 
 user-agent: AhrefsBot
-Disallow: /excursions/new
 Disallow: /search
+Disallow: /excursions/new
 Disallow: /*/*/profile
 Disallow: /categories
 Disallow: /users/*/followings
 Disallow: /users/*/followers
 Disallow: /users/*/excursions*
+Disallow: /users/*/categories
+Disallow: /spam_reports
 
 User-agent: Ezooms
 Disallow: /
