@@ -210,12 +210,15 @@ class ExcursionsController < ApplicationController
   def metadata
     excursion = Excursion.find_by_id(params[:id])
     respond_to do |format|
-      format.xml {
-        xmlMetadata = Excursion.generate_LOM_metadata(JSON(excursion.json),excursion,{:id => Rails.application.routes.url_helpers.excursion_url(:id => excursion.id), :LOMschema => params[:LOMschema] || "custom"})
-        render :xml => xmlMetadata.target!
-      }
       format.any {
-        redirect_to excursion_path(excursion)+"/metadata.xml"
+        unless excursion.nil?
+          xmlMetadata = Excursion.generate_LOM_metadata(JSON(excursion.json),excursion,{:id => Rails.application.routes.url_helpers.excursion_url(:id => excursion.id), :LOMschema => params[:LOMschema] || "custom"})
+        else
+          xmlMetadata = ::Builder::XmlMarkup.new(:indent => 2)
+          xmlMetadata.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+          xmlMetadata.error("Excursion not found")
+        end
+        render :xml => xmlMetadata.target!, :content_type => "text/xml"
       }
     end
   end
