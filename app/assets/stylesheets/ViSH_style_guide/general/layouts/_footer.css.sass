@@ -1,16 +1,20 @@
 footer
-  height: 50px
-  padding-top: 9px
+  height: 59px
+  padding-top: 18px
   background-color: rgba(211, 211, 211, 0.85)
-  border-top: 1px solid $gray-lighter-extra
-  bottom: -20px
+  border-top: 1px solid $gray-lighter
+  bottom: -33px
   position: fixed
   width: 100%
   z-index: $zindex-footer-fixed
-  @include hidden-xs
+  font-size: 0.9rem
+  @media (max-width: $screen-sm-min) 
+    height: 238px
+    bottom: -214px
   &:hover
     bottom: 0px
     background-color: rgba(211, 211, 211, 0.98)
+    @include transition (all 0.2s ease 0s)
     #scrollUp
       bottom: 0px
   ul
@@ -23,7 +27,7 @@ footer
         border: 1px solid transparent
       
   li
-    display: inline
+    float: left
     padding-left: 1%
     padding-right: 1%
     color: $gray-dark
@@ -44,11 +48,16 @@ footer
       
     .dropdown-menu
       width: auto
-    
+    @media (max-width: $screen-sm-min)  
+      float: none
   li.social
     i
       font-size: 18px
-    
+  
+  li.btn-group
+    @media (max-width: $screen-sm-min) 
+      display: block
+      min-height: 34px
   
   li.global    
     img

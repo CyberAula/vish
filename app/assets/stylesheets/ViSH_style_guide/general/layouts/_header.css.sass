@@ -25,6 +25,37 @@
   @include hidden-sm
   @include hidden-md
   @include hidden-lg
+  li
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+    &:hover
+      background-color: $gray-lighter-extra
+  li.open
+    a
+      @include border-top-radius ($border-radius-base)
+      color: $gray-light !important
+      &:hover
+        @include border-top-radius ($border-radius-base)
+        @include border-bottom-radius (0)
+    .dropdown-menu
+      @include dropdown-log
+      background-color: $dropdown-bg
+      &:hover
+        background-color: $dropdown-bg
+      form
+        padding: 0 7px 7px !important
+  li.language
+    ul li 
+      padding: 0 9px
+      &:hover
+        background-color: $white !important
+        a
+          color: $text-color !important
+          background-color: $white !important
+      a
+      padding: 0 9px
+
+ 
   .user
     margin-bottom: 0
     padding-left: 0
