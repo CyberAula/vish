@@ -28,11 +28,13 @@
      <div id="suggested_categories" class="tagBoxNew">
         <% rcCategories = generic_categories.reject{|e| get_initial_categories(item).include? e.id} %> 
         <%simple_gen = rcCategories.sort{|a,b| b.property_objects.length <=> a.property_objects.length}.first(7)%>
+        <ul id="suggestedCategories" class="tagit">
         <% simple_gen.each do |init| %> 
-          <ul id="suggestedCategories" class="tagit">
+          
             <li class="tagit-choice" value="<%= init.id %>" ><%=init.title%></li>
-          </ul>
+          
         <% end %>
+        </ul>
      </div>
 
     <p class="information"><%= t("category.categorized_like")%></p>
