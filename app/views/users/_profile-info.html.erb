@@ -225,27 +225,44 @@ function get_url_with_sort_by(tab){
   <div class="tabbable">
     <ul class="nav nav-tabs">
 <!--excursions-->
-      <li class="active">
+
+      <% params[:tab] == nil || params[:tab] == "excursions"%>
+        <li class="active">
+      <%else%>
+        <li>
+      <%end%>
         <a id="excursions_tab" href="#tab1" data-toggle="tab">
           <i class="icon-book"></i>
           <span class=" hidden-phone hidden-tablet"><%=t('excursion.other')%></span>
         </a>
       </li>
 <!--resources-->      
-      <li>
+      <%if params[:tab] == "resources"%>
+        <li class="active">
+      <%else%>
+        <li>
+      <%end%>
         <a id="resources_tab" href="#tab3" data-toggle="tab">
           <i class="icon-file"></i>
           <span class=" hidden-phone hidden-tablet"><%=t('resource.other')%></span>
         </a>
       </li>
 <!--events-->
-      <li>
+      <%if params[:tab] ==  "events"%>
+        <li class="active">
+      <%else%>
+        <li>
+      <%end%>
         <a id="events_tab" href="#tab2" data-toggle="tab">
           <i class="icon-facetime-video"></i>
           <span class=" hidden-phone hidden-tablet"><%=t('event.other')%></span>
         </a>
       </li>
-      <li>
+      <%if params[:tab] == "categories"%>
+        <li class="active">
+      <%else%>
+        <li>
+      <%end%>
         <a id="categories_tab" href="#tab4" data-toggle="tab">
           <i class="icon-th-large"></i>
           <span class=" hidden-phone hidden-tablet"><%=t('categories.other')%></span>
