@@ -226,7 +226,7 @@ function get_url_with_sort_by(tab){
     <ul class="nav nav-tabs">
 <!--excursions-->
 
-      <% params[:tab] == nil || params[:tab] == "excursions"%>
+      <%if params[:tab] == nil || params[:tab] == "excursions"%>
         <li class="active">
       <%else%>
         <li>
