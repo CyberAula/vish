@@ -12,7 +12,7 @@ class HomeController < ApplicationController
               if params[:page] == "1"
                 render partial: "main"
               else
-                render partial: "min", :locals => {:ids_to_avoid=>params[:ids_to_avoid].split(','), :prefix_id=>"home"}, :layout => false
+                render partial: "min", :locals => {:ids_to_avoid => params[:ids_to_avoid].split(','), :prefix_id=>"home"}, :layout => false
               end
             elsif params[:tab]=="net"
               if params[:page] == "1"
