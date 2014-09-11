@@ -1,4 +1,5 @@
 <footer id="footer">
+<nav>
   <ul>
 <!-- legal notice-->
       <li class="item_footer">
@@ -7,10 +8,10 @@
 <!-- legal notice-->
 
       <li class="btn-group dropup">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
           <span class="idioma"><%= t('help') %></span>
           <i class="fa fa-angle-up"></i>
-        </button>  
+        </a>  
         <ul class="dropdown-menu">
           <li class="">
             <a href="/overview">
@@ -64,19 +65,23 @@
       <li>
          <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript, :class=> "btn btn-default") %>
       </li>
-<!-- social-->
-      <li class="social">
-          <a href="https://www.facebook.com/VirtualScienceHub" class="btn btn-default" target="_blank"><i alt="Facebook-logo" class="social-img fa fa-facebook"></i>
-          </a>
-          <a href="https://twitter.com/ViSH_portal" class="btn btn-default" target="_blank"><i alt="Twitter-logo" class="social-img fa fa-twitter"></i>
-          </a>
-        </li>
+
 
 <!-- global-->
       <li class="global">
         <%= link_to image_tag("footer/global.png",  :class=> "btn btn-default" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
       </li>
     </ul>
+
+          <div class="social">
+          <h6>Síguenos</h6>
+          <a href="https://www.facebook.com/VirtualScienceHub" target="_blank"><i alt="Facebook-logo" class="social-img fa fa-facebook"></i>
+          </a>
+          <a href="https://twitter.com/ViSH_portal" target="_blank"><i alt="Twitter-logo" class="social-img fa fa-twitter"></i>
+          </a>
+          <div>Vish Hub © 2014</div>
+        </div>
+        </nav>
 </footer>
 <script>
     // scrollUp full options

@@ -1,25 +1,61 @@
-footer
-  height: 59px
+footer#footer:before
+  width: 30px
+  height: 20px
+  background-color: rgba(211, 211, 211, 0.85)
+  position: relative
+  content: "up"
+  margin: -36px auto 16px
+  @include border-top-radius ($border-radius-base)
+  padding: 2px 10px
+
+footer#footer
+  @extend .container-fluid
+  height: 161px
   padding-top: 18px
   background-color: rgba(211, 211, 211, 0.85)
   border-top: 1px solid $gray-lighter
-  bottom: -33px
+  bottom: -157px
   position: fixed
   width: 100%
   z-index: $zindex-footer-fixed
   font-size: 0.9rem
-  @media (max-width: $screen-sm-min) 
-    height: 238px
-    bottom: -214px
+  text-align: center 
+  @media (max-width: 500px) 
+    height: 278px
+    bottom: 0
   &:hover
     bottom: 0px
     background-color: rgba(211, 211, 211, 0.98)
-    @include transition (all 0.2s ease 0s)
-    #scrollUp
-      bottom: 0px
+    @include transition (all 0.8s ease 0.2s)
+  .social
+    clear: both
+    margin-top: -9px
+    color: $gray-dark
+    h6
+      margin: 0 auto 10px
+      width: 70px
+      background: rgba(211, 211, 211, 0.98)
+      height: 17px
+      font-family: $corporate-font-family-sans-serif-Regular
+    a
+      padding: 3px
+      i
+        font-size: 1.3rem
+    div
+      margin-top: 10px
+
   ul
-    margin: 0 0 0 15px
-    padding: 0
+    &:first-child
+      margin: 26px auto 0
+      padding: 0
+      height: 63px
+      width: 502px
+      text-align: center
+      border-bottom: 2px solid #C7C7C7
+      padding-bottom: 21px
+      @media (max-width: 500px) 
+        height: 189px
+        width: 100%
   
   .open
     .btn
@@ -36,8 +72,10 @@ footer
       border: 1px solid transparent
       color: $gray-dark
       img
-        padding-top: 3px
+        padding-top: 5px
         margin-right: 5px
+        width: 15px
+        
       
       &:hover,
       &:focus
@@ -45,23 +83,33 @@ footer
         background-color: rgba(0, 0, 0, 0)
         color: #000
 
-      
     .dropdown-menu
       width: auto
-    @media (max-width: $screen-sm-min)  
+    @media (max-width: 500px)  
       float: none
+      .dropdown-toggle
+        width: 100%
   li.social
+    a
+      color: $gray
+      &:hover
+        color: $gray-dark
     i
       font-size: 18px
+
   
   li.btn-group
-    @media (max-width: $screen-sm-min) 
+    @media (max-width: 500px) 
       display: block
       min-height: 34px
   
   li.global    
     img
-      padding-top: 6px
+      width: 116px
+      padding-top: 8px
+      @include opacity(0.8)
+      &:hover
+        @include opacity(0.99)
   .dropdown-menu li
     display: block
 

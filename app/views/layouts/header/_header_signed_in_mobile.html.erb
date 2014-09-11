@@ -1,5 +1,4 @@
-
-<ul class="mobile-nav nav">
+<ul class="nav navbar-nav mobile-nav">
 
 <!--user-->
 
@@ -58,7 +57,7 @@
   </li>
 
   <!--lang-->
-  <li class="btn-group">
+  <li class="dropdown language">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
       <i class="fa fa-flag-checkered"></i>
       <%= t('lang.title') %>
@@ -90,7 +89,7 @@
 
   <hr>
   <!--sign out-->
-  <li>
+  <li class="sign-out">
     <%= link_to destroy_user_session_path, :method => :delete do %>
     <i class="fa fa-sign-out"></i>
     <%= t('sign_out') %>

@@ -29,7 +29,12 @@
     @include border-top-radius ($border-radius-base)
     @include border-bottom-radius ($border-radius-base)
     &:hover
-      background-color: $gray-lighter-extra
+      background-color: $gray-lighter-extra !important
+    a
+      color: $gray !important
+      &:hover,
+      &:focus
+        background-color: $gray-lighter-extra
   li.open
     a
       @include border-top-radius ($border-radius-base)
@@ -63,11 +68,28 @@
     float: none
     img
       width: 18px
+      @include border-top-radius ($border-radius-small)
+      @include border-bottom-radius ($border-radius-small)
+
+  hr
+    margin-top: 6px
+    margin-bottom: 5px
+  li.sign-out
+    margin-bottom: 6px
 
 .desktop-nav
   @include hidden-xs
   @extend .pull-right
   margin-bottom: 0
+  li
+    a
+      color: $gray
+    &:hover
+      background-color: $gray-lighter-extra
+  li.open
+    a
+      @include border-top-radius ($border-radius-base)
+      color: $gray-light !important
 
 .user-menu
   margin-left: 12px !important
