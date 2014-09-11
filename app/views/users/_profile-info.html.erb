@@ -138,6 +138,7 @@
       re_apply_pageless("followings");
     }
   });
+ 
 <%end%>
 
 <script>
@@ -238,7 +239,18 @@ function get_url_with_sort_by(tab){
       });     
     }
 
-  
+  $(document).ready(function(){
+    <%if !params[:tab] || params[:tab]=="excursions"%>
+      excursions_tab_loaded = true;
+    <%elsif params[:tab]=="events"%>
+      events_tab_loaded = true;
+    <%elsif params[:tab] == "categories"%>
+      categories_tab_loaded = true;
+    <%elsif params[:tab] == "resources"%>
+      resources_tab_loaded = true;
+    <%end%>
+  });
+
 </script>
 
 <section class="info-profile">
