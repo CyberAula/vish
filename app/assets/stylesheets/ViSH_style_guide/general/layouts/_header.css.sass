@@ -99,10 +99,16 @@
       @include border-left-radius ($border-radius-small)
       width: 35px
       @media (max-width: $screen-sm-max)
-        width: 32px
+        width: 34px
+      @media (min-width: 779px) and (max-width: 877px)
+        width: 33px       
 
   .dropdown-toggle:hover
     border: 1px solid $brand-primary
+  .dropdown-menu
+    li
+      &:hover
+        background: transparent
 
 .headernav
   a

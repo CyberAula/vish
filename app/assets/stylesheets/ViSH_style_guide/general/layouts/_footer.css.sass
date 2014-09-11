@@ -21,12 +21,12 @@ footer#footer
   font-size: 0.9rem
   text-align: center 
   @media (max-width: 500px) 
-    height: 278px
-    bottom: 0
+    height: 283px
+    bottom: -274px
   &:hover
     bottom: 0px
     background-color: rgba(211, 211, 211, 0.98)
-    @include transition (all 0.8s ease 0.2s)
+    @include transition (all 0.8s ease-out 0.2s)
   .social
     clear: both
     margin-top: -9px
@@ -41,12 +41,16 @@ footer#footer
       padding: 3px
       i
         font-size: 1.3rem
+        color: $gray
+        &:hover
+          color: $gray-dark
     div
       margin-top: 10px
 
+
   ul
     &:first-child
-      margin: 26px auto 0
+      margin: 0 auto
       padding: 0
       height: 63px
       width: 502px
@@ -56,6 +60,8 @@ footer#footer
       @media (max-width: 500px) 
         height: 189px
         width: 100%
+      @media (min-width: 877px) 
+        width: 540px
   
   .open
     .btn
@@ -89,14 +95,6 @@ footer#footer
       float: none
       .dropdown-toggle
         width: 100%
-  li.social
-    a
-      color: $gray
-      &:hover
-        color: $gray-dark
-    i
-      font-size: 18px
-
   
   li.btn-group
     @media (max-width: 500px) 

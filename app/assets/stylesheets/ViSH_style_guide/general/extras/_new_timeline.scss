@@ -40,15 +40,10 @@
   width: 46%;
   float: left;
   background: #fff;
-  border: 1px solid #d4d4d4;
   padding: 15px;
   position: relative;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  @include border-top-radius ($border-radius-base);
+  @include box-shadow (0 2px 8px 0px rgba(0, 0, 0, 0.11));
 }
 .tldate {
   display: block;
@@ -67,8 +62,8 @@
   right: -15px;
   display: inline-block;
   border-top: 15px solid transparent;
-  border-left: 15px solid #ccc;
-  border-right: 0 solid #ccc;
+  border-left: 15px solid transparent;
+  border-right: 0 solid transparent;
   border-bottom: 15px solid transparent;
   content: " ";
 }
@@ -124,10 +119,8 @@
   line-height: 15px;
   margin-left: -5px;
   border: 3px solid rgba(0, 143, 209, 0.47);
-  border-top-right-radius: 50%;
-  border-top-left-radius: 50%;
-  border-bottom-right-radius: 50%;
-  border-bottom-left-radius: 50%;
+  @include border-top-radius (50%);
+  @include border-bottom-radius (50%);
   z-index: 90;
 }
 

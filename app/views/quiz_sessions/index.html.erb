@@ -1,6 +1,9 @@
 <section id="quiz">
+  <div class="icontitle">
+    <i class="fa fa-puzzle-piece"></i>
+    <%=t('quiz.live')%>
+  </div>
   <div class="whiteframe">
-    <legend><%=t('quiz.live')%></legend>
     <div class="textrow">
       <h4><%=t('quiz.openedL')%></h4>
       <% if @quiz_active_sessions.length > 0 %>

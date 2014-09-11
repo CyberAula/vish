@@ -19,6 +19,21 @@
 .settings
   header hr
     padding-top: 7px
+  .panel-group
+    margin-bottom: 20px
+    background: #FFF
+    padding: 0 15px
+    border-radius: 5px
+  .panel
+    border-left-color: rgba(0, 0, 0, 0)
+    border-right-color: rgba(0, 0, 0, 0)
+    border-bottom-color: rgba(0, 0, 0, 0)
+    @include border-top-radius (0)
+    @include border-bottom-radius (0)
+    &:first-child
+      border-top-color: rgba(0, 0, 0, 0)
+  .panel + .panel
+    margin-top: 0
   .panel-heading
     a
       outline: 0px
@@ -42,7 +57,7 @@
 
   #cancel_account
     &:hover
-      border-color: $brand-primary !important
+      border-top-color: $brand-primary !important
       text-decoration: none
       a
         color: $brand-primary !important
