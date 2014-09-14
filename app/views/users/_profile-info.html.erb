@@ -1,6 +1,14 @@
-<%= content_for :javascript do %>
+<script>
 
-  var excursions_tab_loaded = false;
+var excursions_tab_loaded = false;
+var resources_tab_loaded = false;
+var events_tab_loaded = false;
+var categories_tab_loaded = false;
+var followers_tab_loaded = false;
+var followings_tab_loaded = false;
+
+$(document).ready(function(){
+  
   
   $("#excursions_tab").click(function(){
     if(excursions_tab_loaded === false){
@@ -24,7 +32,7 @@
     }
   });
 
-  var resources_tab_loaded = false;
+  
   $("#resources_tab").click(function(){
     if(resources_tab_loaded===false){
       $('.loader_pagination').show();
@@ -48,7 +56,7 @@
     }
   });
 
-  var events_tab_loaded = false;
+  
   $("#events_tab").click(function(){
     if(events_tab_loaded===false){
       $('.loader_pagination').show();
@@ -72,9 +80,10 @@
     }
   });
 
-  var categories_tab_loaded = false;
+  
+  
   $("#categories_tab").click(function(){
-    if(categories_tab_loaded===false){
+    if (categories_tab_loaded === false){
       $('.loader_pagination').show();
       categories_tab_loaded = true;
       $.ajax({
@@ -83,7 +92,7 @@
           success : function(html) {      
             $('.loader_pagination').hide();
             $("#categories_tab_ready").append(html);
-            re_apply_pageless("categories");
+            re_apply_pageless("categories_tab");
           },
           error: function(){
             //console.log("error loading categories");
@@ -94,7 +103,7 @@
     }
   });
 
-  var followers_tab_loaded = false;
+ 
   $("#followers_tab").click(function(){get_url_with_sort_by
     if(followers_tab_loaded===false){
       $('.loader_pagination').show();
@@ -116,7 +125,7 @@
     }
   });
 
-  var followings_tab_loaded = false;
+
   $("#followings_tab").click(function(){
     if(followings_tab_loaded===false){
       $('.loader_pagination').show();
@@ -138,8 +147,8 @@
       re_apply_pageless("followings");
     }
   });
- 
-<%end%>
+ });
+</script>
 
 <script>
 //important that this is here and not in document ready, so they are defined when document is ready and we can use them
