@@ -85,6 +85,7 @@ es:
     categorized_like: "Categorizada como:"
     confirm_delete: "Borrar categoría?"
     modalLabel: "Añadir a mis categorías"
+    success: "Categorizado con éxito"
     tagit_watermark_cat: "Añade una nueva categoría"
   categories:
     actions:
