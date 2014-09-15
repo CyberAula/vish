@@ -36,7 +36,6 @@
         <% end %>
         </ul>
      </div>
-
     <p class="information"><%= t("category.categorized_like")%></p>
     <%tagArray= generic_categories.map{|e| e.title}%>
     <script type="text/javascript">
@@ -115,8 +114,6 @@
   .to_s%>", category_array: JSON.stringify(cat_done_array) },
               success: function(data){    
                 $("#categories_viewer_modal").modal('toggle');
-                alert("<%=t('category.success')%>");
-                location.reload();
                 }
     });
   });
