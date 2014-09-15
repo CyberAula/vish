@@ -127,9 +127,9 @@ class FederatedSearchController < ApplicationController
 
   #Search elements by universal Ids
   def search_by_id
-    ao = ActivityObject.getActivityObjectFromUniversalId(params[:id])
-    unless ao.nil?
-      ao.search_json(self)
+    object = ActivityObject.getObjectFromUniversalId(params[:id])
+    unless object.nil?
+      object.search_json(self)
     else
       {}
     end
