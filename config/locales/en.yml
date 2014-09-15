@@ -88,6 +88,7 @@ en:
     categorized_like: "Categorized as:"
     confirm_delete: "Delete category?"
     modalLabel: "Add to my categories"
+    success: "Succesfully categorized"
     tagit_watermark_cat: "Add a new category"
   categories:
     actions:

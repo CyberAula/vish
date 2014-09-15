@@ -50,7 +50,15 @@
           watermarkAllowMessage: "<%= t('category.tagit_watermark_cat')%>",
           tagSource: tagList
         });
-        <% resource_categories = get_initial_categories(item) %>
+        //Get categorized by this author
+        <% resource_categories = []
+        get_initial_categories(item).each do |e|
+        n = Category.find(e)
+          if generic_categories.include? n
+            resource_categories  += [n]
+         end
+        end
+         %>
           <% resource_categories.each do |cat| %>
             <% ident = Category.find(cat) %>
             $("#myCategories").tagit("add", "<%=ident.title %>", "<%=ident.id%>");
@@ -96,12 +104,7 @@
 
     $("#myCategories .tagit-choice").each(function(index,elem){
       //comprobar primero los que tengan un attrvalue null para crearlos
-      if ($(elem).attr("tagvalue") != null){
-        cat_done_array.push({id: $(elem).attr("tagvalue")});
-      }
-      else {
         cat_done_array.push({title: $(elem).text()});
-      }
     });
 
     $.ajax({
@@ -112,7 +115,7 @@
   .to_s%>", category_array: JSON.stringify(cat_done_array) },
               success: function(data){    
                 $("#categories_viewer_modal").modal('toggle');
-
+                alert("<%=t('category.success')%>");
                   }
     });
   });
