@@ -116,7 +116,8 @@
               success: function(data){    
                 $("#categories_viewer_modal").modal('toggle');
                 alert("<%=t('category.success')%>");
-                  }
+                location.reload();
+                }
     });
   });
 
