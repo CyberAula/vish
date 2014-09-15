@@ -25,7 +25,9 @@
 <%#inverted algorithm ends here %>
 
   
-  <div class="tl-circ"></div>
+ 
+  <div type="button" class="tl-circ" data-toggle="tooltip" data-placement="top" rel="tooltip" title="date of publication"></div>
+
   <div class="timeline-panel">
     <div class="pull-left">
       <%= link_to image_tag(activity.sender_subject.logo.url('small'),
@@ -42,8 +44,6 @@
           </div>
         <% end %>
       </h6>
-      <%= render :partial => 'activities/actions',
-                 :locals => { :activity => activity } %>
 
       <%= render partial: 'activity_objects/timeline', 
                  collection: activity.activity_objects,
@@ -53,7 +53,7 @@
           <div class="panel-heading">
             <h4 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion" href="#comment-activity">
-                <i class="fa fa-comment-o"></i>
+                view comments
               </a>
             </h4>
           </div>

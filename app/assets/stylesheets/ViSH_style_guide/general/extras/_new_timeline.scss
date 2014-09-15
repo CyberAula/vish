@@ -43,7 +43,8 @@
   padding: 15px;
   position: relative;
   @include border-top-radius ($border-radius-base);
-  @include box-shadow (0 2px 8px 0px rgba(0, 0, 0, 0.11));
+  @include border-bottom-radius ($border-radius-base);
+  @include box-shadow (0 0px 4px 0px rgba(0, 0, 0, 0.11));
 }
 .tldate {
   display: block;
@@ -141,7 +142,7 @@
   }
 
   ul.timeline:before {
-    left: 7px;
+    left: 26px;
   }
   
   .tldate { width: 140px; }

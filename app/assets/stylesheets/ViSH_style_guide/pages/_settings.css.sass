@@ -11,9 +11,14 @@
     @include make-sm-column-offset(3)
     @include make-md-column-offset(3)
     @include make-lg-column-offset(3) 
-    label
-      color: $gray-dark
-      font-size: $corporate-font-family-sans-serif-Medium
+    form 
+      margin-top: -4px
+      label
+        color: $gray-dark
+        margin: 8px 0 4px
+        font-size: 0.9rem
+        &:first-child
+          margin: 0px 0 4px
   .icontitle
     margin-top: 0
 .settings
@@ -35,6 +40,7 @@
   .panel + .panel
     margin-top: 0
   .panel-heading
+    padding: 4px 0px
     a
       outline: 0px
       font-family: $corporate-font-family-sans-serif-Light
@@ -43,10 +49,9 @@
         text-decoration: none  
     
   .panel-body
-    padding-top: 0
+    padding: 0 0 15px
     .accordion-toggle
       @include text-overflow
-
     input
       &[type="submit"]
         @extend .btn-primary

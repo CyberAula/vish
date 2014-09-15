@@ -32,46 +32,30 @@
   ul
     clear: both
     width: 100%
-  button
+  .show_more_catalogue
     display: block
     float: right
     clear: left
+    font-size: 0.9rem
 #showMore_tags
   display: block
   margin: 0 auto
   @include border-top-radius (0)
 
-.header_catalogue
-  h1
-    width: 100%
-    text-align: left
-    float: none
-    i
-      color: $gray-light
-      font-size: 26px
-      margin-right: 5px
-  hr
-    border-bottom-color: $gray
-    margin: 10px 0
 
 
 
 #catalogue
-  width: 100%
-  float: left
-  background: none
-  margin-top: -25px
-  display: block
   ul.Tags_list_as
+    @extend .well
     width: 100%
     height: auto
     float: left
     display: block
-    margin: 0
+    margin: 0 0 -1px 0
     padding: 0
     position: relative
     border-left: none
-    margin-top: 12px
     .info_catalogue
       width: 10%
       height: 100%
@@ -86,10 +70,8 @@
     #effect
       display: block
       float: left
-      border-bottom: 1px solid $nav-tabs-border-color
       padding: 5px 0
       width: 100%
-      margin-bottom: -1px
       li
         text-align: center
         label
