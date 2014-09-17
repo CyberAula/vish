@@ -1,12 +1,12 @@
 <span class="helpheader">   
-<i class="icon-question-sign helphome" data-placement='left' aria-hidden="true" data-original-title="help" href='#' value="" ></i>
+  <i class="icon-question-sign helphome" data-placement='left' aria-hidden="true" data-original-title="help" href='#' value="" ></i>
 
-<div class="contenthome" style="display: none">
-  <div class="popover-body">
-    <%= t('document.help.home1_html', :profile=> url_for(current_subject))%>
+  <div class="contenthome" style="display: none">
+    <div class="popover-body">
+      <p> <%= t('document.help.home1_html', :profile=> url_for(current_subject))%> </p>
+    </div>
+    <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
-  <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
-</div>
 </span>
 <script>
 $(document).ready(function(){
