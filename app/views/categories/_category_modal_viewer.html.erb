@@ -36,7 +36,6 @@
         <% end %>
         </ul>
      </div>
-
     <p class="information"><%= t("category.categorized_like")%></p>
     <%tagArray= generic_categories.map{|e| e.title}%>
     <script type="text/javascript">
@@ -84,7 +83,7 @@
 
   //When click to suggested they go to down part for being categorized
   $("#suggested_categories li").click(function(){
-    var value = $(this).val();
+    var value = $(this).html();
     var name = $(this).html();
 
     $("#myCategories").tagit("add", name, value);
@@ -92,7 +91,7 @@
 
   //TODO: Make it work
   $("#catDropdownSel li").click(function(){
-    var value = $(this).val();
+    var value = $(this).children().html();
     var name = $(this).children().html();
 
     $("#myCategories").tagit("add", name, value);
@@ -113,10 +112,28 @@
             dataType: "json",
             data: { activity_object_id:"<%=item.activity_object.id
   .to_s%>", category_array: JSON.stringify(cat_done_array) },
-              success: function(data){    
+              success: function(data){
                 $("#categories_viewer_modal").modal('toggle');
-                alert("<%=t('category.success')%>");
-                location.reload();
+                //Emulating alert with javascript
+                $('#flash').hide(); 
+                $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.success")%></div>')
+                            .fadeIn()
+                            .delay(6000)
+                            .fadeOut(300, function(){
+                              $('#flash').html("");
+                            });
+
+                },
+                error: function(){
+                  $("#categories_viewer_modal").modal('toggle');
+                  //Emulating alert with javascript
+                  $('#flash').hide(); 
+                  $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Error</div>')
+                            .fadeIn()
+                            .delay(6000)
+                            .fadeOut(300, function(){
+                              $('#flash').html("");
+                            });
                 }
     });
   });
