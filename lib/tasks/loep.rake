@@ -29,10 +29,10 @@ namespace :loep do
     # startDate = endDate.advance(:months => -3)
     # excursions = Excursion.where(:draft=> false, :created_at => startDate..endDate)
     
-
-    VishLoep.registerExcursions(excursions,{:sync=>true,:trace=>true})
+    aos = excursions.map{|ex| ex.activity_object}
+    VishLoep.registerActivityObjects(aos,{:sync=>true,:trace=>true})
     # Async
-    # VishLoep.registerExcursions(excursions,{:async=>true,:trace=>true})
+    # VishLoep.registerActivityObjects(aos,{:async=>true,:trace=>true})
     
   end
 
@@ -45,7 +45,7 @@ namespace :loep do
     puts "#####################################"
 
     Excursion.all.each do |ex|
-      VishLoep.getExcursionMetrics(ex){ |response|
+      VishLoep.getActivityObjectMetrics(ex.activity_object){ |response|
         puts "Metrics for excursion: " + ex.id.to_s
         puts response
       }

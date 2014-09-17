@@ -180,11 +180,40 @@ ActivityObject.class_eval do
   end
 
   def getUniversalId
-    self.object.class.name + ":" + self.object.id.to_s + "@" + Vish::Application.config.APP_CONFIG["domain"]
+    getGlobalId + "@" + Vish::Application.config.APP_CONFIG["domain"]
+  end
+
+  def getGlobalId
+    self.object.class.name + ":" + self.object.id.to_s
   end
 
   def getType
     self.object.class.name
+  end
+
+  def getUrl
+    begin
+      if self.object.nil?
+        return nil
+      end
+
+      if self.object_type == "Document" and !self.object.type.nil?
+        helper_name = self.object.type.downcase
+      elsif self.object_type == "Actor" 
+        if self.object.subject_type.nil? or ["Site","RemoteSubject"].include? self.object.subject_type
+          return nil
+        end
+        helper_name = self.object.subject_type.downcase
+      else
+        helper_name = self.object_type.downcase
+      end
+
+      relativePath = Rails.application.routes.url_helpers.send(helper_name + "_path",self.object)
+      absolutePath = Vish::Application.config.full_domain + relativePath
+      
+    rescue
+      nil
+    end
   end
 
   def getFullUrl(controller)
@@ -301,7 +330,7 @@ ActivityObject.class_eval do
     return ids_to_avoid
   end
 
-  def self.getActivityObjectFromUniversalId(id)
+  def self.getObjectFromUniversalId(id)
     #Universal id example: "Excursion:616@localhost:3000"
     begin
       fSplit = id.split("@")
@@ -315,6 +344,12 @@ ActivityObject.class_eval do
     rescue
       nil
     end
+  end
+
+  def self.getObjectFromGlobalId(id)
+    return nil if id.nil?
+    universalId = id.to_s + "@" + Vish::Application.config.APP_CONFIG["domain"]
+    getObjectFromUniversalId(universalId)
   end
 
   def self.getResourceCount
