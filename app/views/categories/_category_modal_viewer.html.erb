@@ -8,7 +8,6 @@
     <% generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} %>
     <p class= "information"><%= t("category.cat_add_title")%></p> 
     
-    <!-- Juancar echalé un ojo-->
    <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
         <b><%= t("category.cat_add_select")%></b>
@@ -102,7 +101,6 @@
     var cat_done_array = [];
 
     $("#myCategories .tagit-choice").each(function(index,elem){
-      //comprobar primero los que tengan un attrvalue null para crearlos
         cat_done_array.push({title: $(elem).text()});
     });
 
