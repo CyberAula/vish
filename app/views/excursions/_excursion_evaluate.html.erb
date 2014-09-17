@@ -50,7 +50,7 @@
             <%= form_tag("/excursions/#{ @excursion.id }/evaluate", :class => 'evaluation_form') do %>
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  <h3 id="myModalLabel"><%= t('evaluation.experience') %></h3>
+                  <h4 id="myModalLabel"><%= t('evaluation.experience') %></h4>
                 </div>
                 <div class="modal-body evaluation_body">
                   <% 6.times do |ind| %>
