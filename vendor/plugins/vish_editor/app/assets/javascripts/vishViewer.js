@@ -17694,7 +17694,11 @@ VISH.Recommendations = function(V, $, undefined) {
     return typeof _getLOEPSettings() == "object"
   };
   var _getLOEPSettings = function() {
-    return V.Utils.getOptions()["loepSettings"]
+    try {
+      return V.Utils.getOptions()["configuration"]["loepSettings"]
+    }catch(e) {
+      return undefined
+    }
   };
   var _showEvaluationsFancybox = function() {
     $("#fancyEvaluations").trigger("click")
