@@ -142,7 +142,7 @@ LOEP.IframeAPI = (function(L,undefined){
   };
 
   return {
-    init: init,
+    init: init
   };
 
 })(LOEP);
