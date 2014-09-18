@@ -22,7 +22,8 @@
   });
 
   $('#myLearningModal').on('hidden', function(){
-    //Teaching modal hidden
+    //Learning modal hidden
+    $(this).removeData('modal').find('.modal-body').html('');
   });
 
   $('#myTeachingModal').on('shown', function(){
@@ -44,6 +45,11 @@
     };
     loepSettings.debug = false;
     LOEP.IframeAPI.init(loepSettings);
+  });
+
+  $('#myTeachingModal').on('hidden', function(){
+    //Teaching modal hidden
+    $(this).removeData('modal').find('.modal-body').html('');
   });
 <%end%>
 
