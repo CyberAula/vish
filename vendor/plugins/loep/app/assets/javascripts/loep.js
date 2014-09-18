@@ -14,6 +14,7 @@ LOEP.IframeAPI = (function(L,undefined){
   //app: Name of the Application in LOEP
   //loId: Identifier of the LO to be evaluated
   //evmethod: Evaluation method of the form
+  //language: (Optional) Language of the form.
   //ajax: Set to false to disable ajax request. Default is true.
   //token: LOEP Session Token (if not defined, session token will be obtained from tokenURL)
   //tokenURL: URL to request the token (used if token is not specified)
@@ -89,6 +90,9 @@ LOEP.IframeAPI = (function(L,undefined){
       url = "//" + _settings.domain + "/evaluations/" + _settings.evmethod + "/embed?lo_id=" + _settings.loId + "&app_name=" + _settings.app + "&session_token=" + _settings.token
       if(_settings.ajax!==false){
         url = url + "&ajax=true"
+      }
+      if(typeof _settings.language == "string"){
+        url = url + "&locale=" + _settings.language
       }
     } catch (e){}
     return url;

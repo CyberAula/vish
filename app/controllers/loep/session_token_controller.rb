@@ -2,7 +2,7 @@
 
 class Loep::SessionTokenController < ApplicationController
 
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user! #Allow anonymous evaluations
 
   # API REST for Create Session Tokens
 

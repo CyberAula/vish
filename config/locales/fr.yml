@@ -73,18 +73,6 @@ fr:
     embed: "code intégré"
     input: "Collez votre code intégré ici"
     name: "code intégré"
-  evaluation:
-    teaching: "résultats concernant l'expérience d'enseignement..."
-    contribute: "Vous souhaitez contribuer ?"
-    evaluation: "évaluez-la"
-    experience: "expérience d'enseignement"
-    phrase0: "Évaluez la qualité du contenu utilisé dans cette excursion"
-    phrase1: "Les élèves étaient-ils motivés pour participer aux activités en rapport avec cette excursion ?"
-    phrase2: "L'excursion a-t-elle contribué à encourager la participation des élèves et les a-t-elle aidés à atteindre leurs objectifs d'apprentissage ?"
-    phrase3: "Avez-vous intégré des activités interdisciplinaires dans l'excursion ? Ces activités étaient-elles utiles ?"
-    phrase4: "Utiliseriez-vous à nouveau cette excursion dans le cadre de votre enseignement ?"
-    disagree: "pas d'accord"
-    agree: "d'accord"
   excursion:
     actions:
       bookmark: "signet"
@@ -523,31 +511,6 @@ fr:
     upload: "Télécharger"
   embed:
     title3: "Saisir le code incorporé à télécharger"
-  evaluation:
-    contribute:
-      zero: "Cette excursion n'a pas encore été évaluée. Souhaitez-vous être le ou la première ?"
-      one: "1 personne a évalué cette excursion. Vous souhaitez contribuer ?"
-      other: "%{count} personnes ont évalué cette excursion. Vous souhaitez contribuer ?"
-    phrase5: "Utiliseriez-vous à nouveau cette excursion dans le cadre de votre enseignement ?"
-    label0: "Contenu"
-    label1: "Conception"
-    label2: "Motivation"
-    label3: "Engagement"
-    label4: "Interdisciplinarité"
-    label5: "Volonté de réutiliser la ressource"  
-    learning: "Expérience d'apprentissage"
-    alert: "Veuillez répondre à toutes les questions d'évaluation. Merci."
-    strong_disagree_b: "Pas du tout d'accord"
-    disagree_b: "Pas d'accord"
-    neutral_b: "Pas d'avis"
-    agree_b: "D'accord"
-    strong_agree_b: "Tout à fait d'accord"
-    strong_agree_a: "Très bien"
-    agree_a: "Bien"
-    neutral_a: "Moyen"
-    disagree_a: "Mauvais"
-    strong_disagree_a: "Très mauvais"
-    success: "Vos réponses ont été enregistrées avec succès. Nous vous remercions de votre participation."
   event:
     actions:
       add: Add event
