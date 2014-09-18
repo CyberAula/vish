@@ -42,6 +42,7 @@ class VishLoep
     end
 
     lo["url"] = ao.getUrl
+    lo["repository"] = Vish::Application.config.APP_CONFIG['loep']['repository_name']
     lo["id_repository"] = ao.getGlobalId
     
     unless ao.description.blank?
@@ -52,8 +53,13 @@ class VishLoep
       lo["tag_list"] = ao.tag_list.join(",")
     end
 
-    unless ao.language.nil?
-      lo["lanCode"] =  ao.language
+    unless ao.language.blank?
+      case ao.language
+      when "independent"
+        lo["lanCode"] =  "lanin"
+      else
+        lo["lanCode"] =  ao.language
+      end
     end
 
     case ao.object_type
