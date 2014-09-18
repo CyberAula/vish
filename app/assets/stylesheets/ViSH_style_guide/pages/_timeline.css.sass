@@ -63,23 +63,7 @@
   clear: both
   padding-left: 0px
   .panel
-    background-color: transparent
-    border: none
-    margin-bottom: 0
-    box-shadow: none
-    border-color: transparent
-    .panel-heading
-      min-height: 20px
-      padding: 0
-      border-color: rgba(0, 0, 0, 0)
-      border-bottom: none
-      width: auto
-      float: right
-    .panel-body
-      border-top-color: transparent !important
-      padding: 0
-      clear: both
-
+    @include comments
   .thumbnail
     @include excursion-small
     width: 92%
@@ -88,64 +72,20 @@
   .more 
     a
       @extend .btn
-      @extend .btn-primary
+      @extend .btn-default
       position: relative
       margin-top: 30px
-    .spinner
-      margin: 10px auto 105px !important
-      width: 21% !important
-      height: 21% !important
-
 
 
 .timeline-panel
   .pull-left
     margin-right: 10px
-  .media-body
-    .media-heading
-      a
-        display: inline
-      .x
-        display: inline-block
-        float: right
-        a
-          color: $gray-dark
-          &:hover
-            color: $brand-primary
-    .info_action
-      .post_time_ago
-        float: right
-        *font-style: italic
-        font-family: $corporate-font-family-sans-serif-Light
-        font-family: $corporate-font-family-sans-serif-LightItalic
-        color: $gray-light
-        padding-top: 3px
-    .panel-body
-      background-color: #F3F3F3
-      padding: 8px 10px
-      @include border-top-radius ($border-radius-base)
-      @include border-bottom-radius ($border-radius-base)
-      .child 
-        .info_action
-          .post_time_ago
-            color: #CECECE
-    .panel-group
-      margin-bottom: 15px
-      clear: both
-  .panel-heading
-    a
-      font-size: 0.8rem
-      color: $gray !important
+  .panel-group
+    clear: both
+    @include comments
+
   .panel-body
-    background-color: #F3F3F3
-    padding: 8px 10px
-    @include border-top-radius ($border-radius-base)
-    @include border-bottom-radius ($border-radius-base)
     margin-top: 10px
-    .child 
-      .info_action
-        .post_time_ago
-          color: #CECECE
 
       
 

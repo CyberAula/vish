@@ -122,6 +122,53 @@
       a
         @include text-overflow
 
+@mixin comments
+  width: 100%
+  margin-bottom: 1px
+  .panel
+    background-color: transparent
+    border: none
+    margin-bottom: 0
+    box-shadow: none
+    border-color: transparent
+    .panel-heading
+      min-height: 20px
+      padding: 0
+      border-color: rgba(0, 0, 0, 0)
+      border-bottom: none
+      width: 100%
+      text-align: right
+      a
+        font-size: 0.8rem
+        color: $gray !important
+        display: inline
+      .x
+        display: inline-block
+        float: right
+        a
+          color: $gray-dark
+          &:hover
+            color: $brand-primary
+    .panel-collapse 
+      margin-bottom: 15px
+    .panel-body
+      border-top-color: transparent !important
+      padding: 0
+      clear: both
+      background-color: #F3F3F3
+      padding: 8px 10px
+      @include border-top-radius ($border-radius-base)
+      @include border-bottom-radius ($border-radius-base)
+      .post_time_ago
+        color: #CECECE
+        float: right
+        *font-style: italic
+        font-family: $corporate-font-family-sans-serif-Light
+        font-family: $corporate-font-family-sans-serif-LightItalic
+        color: $gray-light
+        padding-top: 3px
+
+
 @mixin creator
   clear: both
   padding-top: 10px
