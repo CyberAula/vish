@@ -32,10 +32,23 @@ class Loep
     }
   end
 
+  #Create SessionToken
+  def self.createSessionToken()
+    callAPI("POST","session_token"){ |response,code|
+      if block_given?
+        if code===200
+          yield response["auth_token"], code
+        else
+          yield nil, code
+        end
+      end
+    }
+  end
+
 
   private
 
-  def self.callAPI(method,apiPath,params)
+  def self.callAPI(method,apiPath,params={})
     apiBaseURL = getAPIBaseUrl
     apiMethodURL = apiBaseURL+apiPath
 

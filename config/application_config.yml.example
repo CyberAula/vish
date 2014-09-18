@@ -18,7 +18,7 @@ production:
 
 #Other configuration options
 
-# LOEP configuration. Allow to evaluate the quality of the ViSH resources in a systematic way (See http://loep.global.dit.upm.es for mroe info).
+# LOEP configuration. Allow to evaluate the quality of the ViSH resources in a systematic way (See http://loep.global.dit.upm.es for more info).
 #  loep:
 #    domain: "http://loep.global.dit.upm.es"
 #    # domain: "http://localhost:8080"
