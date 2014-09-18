@@ -1,3 +1,4 @@
+
 .select2-container
   ul.select2-choices
     li.bit-box
@@ -50,3 +51,39 @@
     float: right
     margin: 10px 61px $zero $zero
 
+.select2-results 
+  padding: 0
+  margin: 5px 0 3px 0
+  @include box-shadow ($zero $zero $zero rgba(0, 0, 0, 0))
+  .select2-highlighted
+    background: $gray-lighter
+    color: $gray-darker-extra
+
+.select2-drop-active
+  border: 1px solid $gray-light
+
+
+.select2-container
+  width: 100%
+  border: none
+  @include box-shadow ($zero $zero $zero rgba(0, 0, 0, 0))
+  margin-bottom: 10px
+
+.select2-choices
+  padding: $zero !important
+  margin: $zero !important
+  border: none !important
+  background: rgba(0, 0, 0, 0) 
+  background-image: none !important 
+
+.select2-search-field
+  width: 100%
+  border-radius: $zero
+
+.select2-input
+  border: none
+  @include box-shadow ($zero $zero $zero rgba(0, 0, 0, 0))
+  padding: $zero
+  margin: $zero
+  @include border-top-radius ($zero)
+  @include border-bottom-radius ($zero)

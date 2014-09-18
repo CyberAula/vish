@@ -158,9 +158,11 @@
     color: $black
     width: 95%
     float: left
+    line-height: 1.4
+    margin: 1px 0 19px
   .participants
     @include border-top-radius ($border-radius-base)
-    background-color: rgba(0, 0, 0, 0.09)
+    background-color: $gray-light
     clear: both
     padding: 6px 15px 15px 15px
     margin-bottom: 2px
@@ -172,7 +174,7 @@
   .action
     display: inline-block
     float: right
-    margin-top: 18px
+    margin-top: 9px
 
   .message
     padding: 15px 0
@@ -191,11 +193,13 @@
       .date
         color: #999
         display: inline-block
+    &:last-child
+      border-bottom: none
 
 .messages
   margin: 0px auto !important
   float: none !important
-  padding: 15px 15px 49px
+  padding: 5px 15px 49px
   background: $white
 
 .select2-choices
