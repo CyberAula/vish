@@ -15,7 +15,7 @@
 		<%end%>
 	<%end%>
 	//LOEP configuration
-	<%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
+	<%unless Vish::Application.config.APP_CONFIG['loep'].nil? or @excursion.nil? or @excursion.activity_object.nil?%>
 		<%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
 		<%tokenURL = (Vish::Application.config.full_domain + '/loep/session_token.json') %>
 		configuration["loepSettings"] = {
@@ -116,7 +116,7 @@
 		} else {
 			<% if @excursion %>
 				myexcursion = <%= raw @excursion.json %>;
-		  <% elsif @quiz_session %>
+		  	<% elsif @quiz_session %>
 				myexcursion = <%= raw @quiz_session.quizJSON %>;
 			<% else %>
 				myexcursion = null;
