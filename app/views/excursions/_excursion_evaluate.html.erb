@@ -17,6 +17,10 @@
       //"Sucesfully submitted"
       $('#myLearningModal').modal('hide');
     };
+    loepSettings.errorCallback = function(){
+      //"Error"
+      $('#myLearningModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
+    };
     loepSettings.debug = false;
     LOEP.IframeAPI.init(loepSettings);
   });
@@ -42,6 +46,10 @@
     loepSettings.submitCallback = function(){
       //"Sucesfully submitted"
       $('#myTeachingModal').modal('hide');
+    };
+    loepSettings.errorCallback = function(){
+      //"Error"
+      $('#myTeachingModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
     };
     loepSettings.debug = false;
     LOEP.IframeAPI.init(loepSettings);

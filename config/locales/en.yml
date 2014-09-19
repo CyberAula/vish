@@ -454,6 +454,8 @@ en:
       teacher:
         title: "Are you a teacher and have you used this educational resource in your lectures?"
         evaluate: "Evaluate your teaching experience"
+    error:
+        server: "Sorry the evaluation server is offline right now. Please check back a bit later."
     modaltitle: "Evaluate your experience with this educational resource"
     tabtitle: "Evaluations"
   event:
