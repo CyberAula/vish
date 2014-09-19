@@ -107,6 +107,7 @@ Vish::Application.routes.draw do
   #LOEP
   namespace :loep do
     resources :los
+    resources :session_token, :only => [:index, :create]
   end
 
   #Tracking System

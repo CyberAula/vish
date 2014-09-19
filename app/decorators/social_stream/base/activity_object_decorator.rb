@@ -36,26 +36,49 @@ ActivityObject.class_eval do
   def calculate_qscore
     #self.reviewers_qscore is the LORI score in a 0-10 scale
     #self.users_qscore is the WBLT-S score in a 0-10 scale
+    #self.teachers_qscore is the WBLT-T score in a 0-10 scale
     qscoreWeights = {}
-    qscoreWeights[:reviewers] = BigDecimal(0.9,6)
-    qscoreWeights[:users] = BigDecimal(0.1,6)
+    qscoreWeights[:reviewers] = BigDecimal(0.6,6)
+    qscoreWeights[:users] = BigDecimal(0.3,6)
+    qscoreWeights[:teachers] = BigDecimal(0.1,6)
 
-    if self.reviewers_qscore.nil?
-      #If nil, we consider it 5 in a [0,10] scale.
-      reviewerScore = BigDecimal(5.0,6)
+    unless (self.reviewers_qscore.nil? and self.users_qscore.nil? and self.teachers_qscore.nil?)
+      if self.reviewers_qscore.nil?
+        reviewersScore = 0
+        qscoreWeights[:reviewers] = 0
+      else
+        reviewersScore = self.reviewers_qscore
+      end
+
+      if self.users_qscore.nil?
+        usersScore = 0
+        qscoreWeights[:users] = 0
+      else
+        usersScore = self.users_qscore
+      end
+
+      if self.teachers_qscore.nil?
+        teachersScore = 0
+        qscoreWeights[:teachers] = 0
+      else
+        teachersScore = self.teachers_qscore
+      end
+
+      #Readjust weights to sum to 1
+      weightsSum = (qscoreWeights[:reviewers]+qscoreWeights[:users]+qscoreWeights[:teachers])
+
+      unless weightsSum===1
+        qscoreWeights[:reviewers] = qscoreWeights[:reviewers]/weightsSum
+        qscoreWeights[:users] = qscoreWeights[:users]/weightsSum
+        qscoreWeights[:teachers] = qscoreWeights[:teachers]/weightsSum
+      end
+
+      #overallQualityScore is in a  [0,10] scale
+      overallQualityScore = (qscoreWeights[:reviewers] * reviewersScore + qscoreWeights[:users] * usersScore + qscoreWeights[:teachers] * teachersScore)
     else
-      reviewerScore = self.reviewers_qscore
+      #This AO has no score
+      overallQualityScore = 5
     end
-
-    if self.users_qscore.nil?
-      #If nil, we consider it 5 in a [0,10] scale.
-      usersScore = BigDecimal(5.0,6)
-    else
-      usersScore = self.users_qscore
-    end
-
-    #overallQualityScore is in a  [0,10] scale
-    overallQualityScore = (qscoreWeights[:users] * usersScore + qscoreWeights[:reviewers] * reviewerScore)
 
     #Translate it to a scale of [0,1000000]
     overallQualityScore = overallQualityScore * 100000
