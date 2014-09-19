@@ -1,7 +1,8 @@
 # encoding: utf-8
 
 class Loep::SessionTokenController < ApplicationController
-  
+  protect_from_forgery :except => [:index,:create]
+
   # before_filter :authenticate_user! #Allow anonymous evaluations
   
   # Enable CORS
