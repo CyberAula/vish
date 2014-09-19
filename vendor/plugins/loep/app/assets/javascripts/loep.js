@@ -1,5 +1,6 @@
 /*
  * LOEP Iframe API
+ * http://loep.global.dit.upm.es
  * Provides an API that allows to embed LOEP evaluation forms via iframe
  * @author Aldo Gordillo
  * @version 1.0
@@ -19,8 +20,9 @@ LOEP.IframeAPI = (function(L,undefined){
   //token: LOEP Session Token (if not defined, session token will be obtained from tokenURL)
   //tokenURL: URL to request the token (used if token is not specified)
   //containerDOM: container DOM element
-  //successCallback: callback triggered when the evaluation is succesfully loaded
+  //loadCallback: callback triggered when the evaluation is loaded
   //submitCallback: callback triggered when the evaluation is succesfully submitted
+  //errorCallback: callback triggered when an error prevent the iframe to be loaded
   //debug: Print console messages
 
 
@@ -39,17 +41,17 @@ LOEP.IframeAPI = (function(L,undefined){
 
   var _initWithToken = function(token){
     if(typeof token != "string"){
-      return _print("No LOEP session token available");
+      return _onError("No LOEP session token available");
     }
 
     var url = _buildEmbededFormURL(token);
     if(typeof url != "string"){
-      return _print("URL could not be built. Incorrect or missing params.");
+      return _onError("URL could not be built. Incorrect or missing params.");
     }
 
     var container = $(_settings.containerDOM)[0];
     if(typeof container == "undefined"){
-      return _print("Container not found.");
+      return _onError("Container not found.");
     }
 
     _insertIframe(container,url);
@@ -74,11 +76,11 @@ LOEP.IframeAPI = (function(L,undefined){
         } else if((typeof response == "object")&&(typeof response["auth_token"]=="string")){
           callback(response["auth_token"]);
         } else {
-          callback(true);
+          callback();
         }
       },
       error:function (xhr, ajaxOptions, thrownError){
-          callback(false);
+          callback();
       }
     });
   };
@@ -86,8 +88,25 @@ LOEP.IframeAPI = (function(L,undefined){
   var _buildEmbededFormURL = function(token){
     var url;
     try {
-      //http://localhost:8080/evaluations/wbltses/embed?lo_id=Excursion:377&app_name=ViSH&session_token=GO7_TyuktFuErm-QDDPHAk24NtMGC6w8KpXj5RgWD-6pgUBd5Wg_No3CrGCC0PTqxEPJ8sEGuOVpDTvv
-      url = "//" + _settings.domain + "/evaluations/" + _settings.evmethod + "/embed?lo_id=" + _settings.loId + "&app_name=" + _settings.app + "&session_token=" + token
+
+      //Prepare Domain
+      try {
+        var isLocalFile = (window.location.href.indexOf("file://")===0);
+      } catch(e){
+        var isLocalFile = false;
+      }
+      if(!isLocalFile){
+        _settings.domain = _settings.domain.replace("http://","").replace("https://","").replace("//","");
+        _settings.domain = "//" + _settings.domain;
+      } else {
+        if (_settings.domain.indexOf("//")===0){
+          _settings.domain = _settings.domain.replace("//","");
+          _settings.domain = "http://" + _settings.domain;
+        }
+      }
+      
+      //e.g //localhost:8080/evaluations/wbltses/embed?lo_id=Excursion:377&app_name=ViSH&session_token=GO7_TyuktFuErm-QDDPHAk24NtMGC6w8KpXj5RgWDv
+      url = _settings.domain + "/evaluations/" + _settings.evmethod + "/embed?lo_id=" + _settings.loId + "&app_name=" + _settings.app + "&session_token=" + token
       if(_settings.ajax!==false){
         url = url + "&ajax=true"
       }
@@ -104,11 +123,14 @@ LOEP.IframeAPI = (function(L,undefined){
             iframeborder: '0',
             frameborder: '0',
             src: url,
-            load:function(){
-              _print("Form loaded successfuly.");
-              if(typeof _settings.successCallback == "function"){
-                _settings.successCallback();
+            load:function(data){
+              _print("Form loaded.");
+              if(typeof _settings.loadCallback == "function"){
+                _settings.loadCallback();
               }
+            },
+            error:function(){
+              //Not working for iframes loading...
             }
     });
     $(container).append(iframe);
@@ -125,13 +147,27 @@ LOEP.IframeAPI = (function(L,undefined){
         if(typeof _settings.submitCallback == "function"){
           _settings.submitCallback(LOEPdata);
         }
+      }else if(LOEPdata.error===true){
+        var errorCode = LOEPdata.error_code;
+        _onError(errorCode);
       }
     }
   };
 
-	///////////
-	// Helpers
-	///////////
+  ///////////
+  // Helpers
+  ///////////
+
+  var _onError = function(msg){
+    if(typeof msg != "string"){
+      msg = "";
+    }
+    errorMsg = "[Error] " + msg;
+    if(typeof _settings.errorCallback == "function"){
+      _settings.errorCallback(errorMsg);
+    }
+    return _print(errorMsg);
+  };
 
   var _print = function(msg){
     if((_settings.debug===true)&&(console)&&(console.log)){
@@ -146,6 +182,3 @@ LOEP.IframeAPI = (function(L,undefined){
   };
 
 })(LOEP);
-
-
-

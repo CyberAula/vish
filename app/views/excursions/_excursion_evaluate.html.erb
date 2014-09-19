@@ -3,15 +3,15 @@
   $('#myLearningModal').on('shown', function(){
     var loepSettings = {};
     <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
-    loepSettings.domain = '<%=loepConfig["domain"].gsub("http://","").gsub("https://","")%>';
+    loepSettings.domain = '<%=loepConfig["domain"]%>';
     loepSettings.app = '<%=loepConfig["app_name"]%>';
     loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
     loepSettings.evmethod = "wbltses";
     loepSettings.language = '<%=I18n.locale.to_s%>';
     loepSettings.tokenURL = "/loep/session_token.json";
     loepSettings.containerDOM = $('#myLearningModal').find(".modal-body");
-    loepSettings.successCallback = function(){
-      //Sucesfully loaded"
+    loepSettings.loadCallback = function(){
+      //LOEP form loaded"
     };
     loepSettings.submitCallback = function(){
       //"Sucesfully submitted"
@@ -29,15 +29,15 @@
   $('#myTeachingModal').on('shown', function(){
     var loepSettings = {};
     <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
-    loepSettings.domain = '<%=loepConfig["domain"].gsub("http://","").gsub("https://","")%>';
+    loepSettings.domain = '<%=loepConfig["domain"]%>';
     loepSettings.app = '<%=loepConfig["app_name"]%>';
     loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
     loepSettings.evmethod = "wbltts";
     loepSettings.language = '<%=I18n.locale.to_s%>';
     loepSettings.tokenURL = "/loep/session_token.json";
     loepSettings.containerDOM = $('#myTeachingModal').find(".modal-body");
-    loepSettings.successCallback = function(){
-      //Sucesfully loaded"
+    loepSettings.loadCallback = function(){
+      //LOEP form loaded"
     };
     loepSettings.submitCallback = function(){
       //"Sucesfully submitted"
