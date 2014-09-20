@@ -35,7 +35,7 @@ class Loep::LosController < Loep::BaseController
 
     respond_to do |format|
         format.any { 
-          render json: "Ok"
+          render json: "Done"
         }
     end
   end

@@ -32,10 +32,23 @@ class Loep
     }
   end
 
+  #Create SessionToken
+  def self.createSessionToken()
+    callAPI("POST","session_token"){ |response,code|
+      if block_given?
+        if code===200
+          yield response["auth_token"], code
+        else
+          yield nil, code
+        end
+      end
+    }
+  end
+
 
   private
 
-  def self.callAPI(method,apiPath,params)
+  def self.callAPI(method,apiPath,params={})
     apiBaseURL = getAPIBaseUrl
     apiMethodURL = apiBaseURL+apiPath
 
@@ -46,12 +59,11 @@ class Loep
     begin
       case method.upcase
       when "POST"
-        response = RestClient.post(
-          apiMethodURL,
-          params.to_json,
-          :content_type => :json,
-          :accept => :json,
-          :'Authorization' => getBasicAuthHeader
+        response = RestClient::Request.execute(
+          :method => :post,
+          :url => apiMethodURL,
+          :payload => params,
+          :headers => {:'Authorization' => getBasicAuthHeader, :content_type => :json, :accept => :json}
         ){ |response|
           if block_given?
             yield JSON(response),response.code
