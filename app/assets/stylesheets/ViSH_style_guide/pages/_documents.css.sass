@@ -112,7 +112,9 @@ aside.recomended
         border-collapse: none
         span
           font-family: $corporate-font-family-sans-serif-Medium
-    
+      @media (max-width: $screen-xs-max)
+        clear: both
+        padding-left: 0
 
   .comments,
   .child
@@ -124,7 +126,7 @@ aside.recomended
 
 .btn-group
   a
-    color: $gray-darker-extra
+    color: $gray
 .excursion_tool
   .helpheader i
     padding-top: 9px

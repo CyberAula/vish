@@ -46,20 +46,22 @@
       </div>
 
 
-
-
-    <div class="tab-pane" id="evaluation1">              
-      <div class="btn-evalue">
-        <%= t('evaluation.contribute', :count => @numberOfEvaluations) %>
-          <!-- Button to trigger modal -->
-        <a id="evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
-        
-        </button>
-      </div>
-      <div class="excursion-eval-results">
-        <canvas id="evalChart" width="600" height="600"></canvas>
-      </div>
-    </div>
+          <div class="tab-pane" id="evaluation1">              
+            <div class="btn-evalue">
+              <%= t('evaluation.contribute.student.title') %>
+                <!-- Button to trigger modal -->
+              <a id="evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.student.evaluate') %></a>
+            </div>
+            <br/>
+            <div class="btn-evalue">
+              <%= t('evaluation.contribute.teacher.title') %>
+                  <!-- Button to trigger modal -->
+                <a id="evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.teacher.evaluate') %></a>
+            </div>
+            <div class="excursion-eval-results">
+              <canvas id="evalChart" width="600" height="600"></canvas>
+            </div>
+          </div>
 
     <div class="tab-pane" id="suggestion_show">
 

@@ -84,20 +84,8 @@ header.home
 #MetadataModal
   .modal-body
     max-height: 600px
-    .metadatalist
-      li
-        display: block
-        padding: 0.4% 0
-        margin-bottom: 2%
-        .metadatalistkey
-          color: #007cc8
-          text-decoration: none
-          width: 100%
-          font-family: $corporate-font-family-sans-serif-Medium
-        .metadatalistkey2
-          width: 100%
-          font-size: 0.9em
-          text-align: justify
+    table
+      @include table-striped
 
 ul li.box-item .info .author span.by
   margin-right: 3px !important

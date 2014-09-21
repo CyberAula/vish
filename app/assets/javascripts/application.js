@@ -31,7 +31,6 @@
 //= require bootstrap-datetimepicker.min
 //= require jquery.scrollUp.min
 //= require jquery.easing.min
-//= require jquery.multiselect
 //= require bootstrap-slider/bootstrap-slider
 //= require_tree .
 

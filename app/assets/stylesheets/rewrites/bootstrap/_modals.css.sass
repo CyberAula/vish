@@ -19,12 +19,6 @@
   border-top: 1px solid $gray-light
   @include border-bottom-radius ($border-radius-base)
 
-
-.modal
-  background-color: rgba(0, 0, 0, 0.8)
-  select.language
-    width: 100%
-
 .modal-backdrop
-  position: static
-
+  &:last-child
+    position: relative

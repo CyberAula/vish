@@ -115,3 +115,98 @@
       max-width: 100%
 
 
+
+#categories_viewer_modal
+
+  .modal-header
+    i
+      padding-right: 10px
+    //help
+    .helpheader_modal
+      float: right
+      margin-top: 3px
+      position: relative
+      i
+        cursor: pointer
+        font-size: 20px
+        color: $gray
+      .popover
+        font-size: 14px
+        width: 300px !important
+      .modal-footer
+        a
+          color: $gray
+      .popoverfix
+        width: 248px
+        margin-left: -15px
+        margin-bottom: -15px
+
+
+  .modal-body
+    p
+      width: 100%
+      padding: 3px 0
+    p.information
+      width: 25%
+      display: inline-block
+
+    #suggestedCategories
+      height: 30px
+      overflow: hidden
+    li.tagit-choice
+      background: #b5bdc8
+      background: -moz-linear-gradient(top, #b5bdc8 0%, #828c95 36%, #28343b 100%)
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b5bdc8), color-stop(36%,#828c95), color-stop(100%,#28343b))
+      background: -webkit-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%)
+      background: -o-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%)
+      background: -ms-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%)
+      background: linear-gradient(to bottom, #b5bdc8 0%,#828c95 36%,#28343b 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 )
+      border-radius: 2px
+      color: #FFFFFF
+      cursor: pointer
+      display: block
+      float: left
+      margin-bottom: 5px
+      margin-right: 5px
+      padding: 3px 10px
+      position: relative
+
+      a
+        display: block
+        float: left
+        color: $white
+        font-size: 14px
+        font-weight: lighter
+    .dropdown
+      display: inline-block
+      float: right
+      width: 75%
+      ul
+        width: 99%
+        opacity: 0.9
+        height: 100px
+        overflow-y: auto
+
+      button 
+        border-top-left-radius: $border-radius-base !important
+        width: 100%
+        float: right
+        text-align: left
+        padding: 3px 12px !important
+      span
+        float: right
+        display: inline
+      b
+        display: inline
+        color: $gray-light
+        float: left
+      li
+        width: 95%
+        padding: 0px 2% !important
+      a
+        font-size: 14px
+        color: $white
+        cursor: pointer
+        padding-left: 10px
+        width: 100%

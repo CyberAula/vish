@@ -10,3 +10,7 @@ $("[rel=tooltip]").tooltip({ placement: 'bottom'});
 $(document).ready(function(){
 $("[rel=dropdown]").tooltip({ placement: 'bottom'});
 });
+
+$(document).ready(function(){
+$("select").select2();
+});

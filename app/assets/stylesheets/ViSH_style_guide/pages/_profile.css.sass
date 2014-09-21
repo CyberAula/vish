@@ -60,14 +60,17 @@
           @include hidden-xs
           .popover
             margin-top: -8px
-        .name h2
-          margin-top: 0
-          color: $gray
-          font-family: $corporate-font-family-sans-serif-Medium
-          word-wrap: break-word
+        .name 
+          width: 80%
+          float: left
+          h2
+            margin-top: 0
+            color: $gray
+            font-family: $corporate-font-family-sans-serif-Medium
+            word-wrap: break-word
         .description
           color: $gray
-          font-size: 14px
+          font-size: 1.2rem
           word-wrap: break-word
           clear: both
         .ocupation
@@ -76,72 +79,42 @@
             height: auto
             text-align: center
             padding-right: 0px
-
-
-        h4
-          color: $brand-primary
-          font-size: 0.9em
-          font-family: $corporate-font-family-sans-serif-Regular
-          padding-right: 15px
-          vertical-align: top
-          display: block
-          margin-top: 11px
-          margin-bottom: 10px
-          display: inline
-          vertical-align: initial
-          @media (max-width: $screen-xs-max)
-            float: none
-            width: 100%
-            margin-top: 9px
-            margin-bottom: 0px
-            padding-right: 0px
-            text-align: center
-
         .tags-profile
           float: right
           display: none     
           margin-top: 3px
-        .name
-          width: 80%
-          float: left
+
         .panel
           @include box-shadow (0 0 0 transparent) 
-
-          header
-            @include hidden-xs
           .ocupation
             margin-bottom: -4px
-
           @media (max-width: $screen-xs-max)
-            margin: 0
+            margin: $zero
+
         .panel-group 
-          margin-bottom: 0 
+          margin-bottom: $zero
           margin-top: 10px
-          div
+          table
             margin-bottom: -4px
-            h4
-              color: $brand-primary
-              font-size: 0.9em
-              font-family: $corporate-font-family-sans-serif-Regular
-              display: inline-block
-              width: 92px
-              margin: 10px 0
+            @include table-striped
+            td
+              &:first-child
+                padding-left: 0
               @media (max-width: $screen-xs-max)
-                display: block
-                text-align: center
-                width: 100%
-                margin-bottom: 0
-                margin-top: 14px
-            span 
-              display: inline-block
-              font-size: 1em
-              color: $gray-dark
-              @media (max-width: $screen-xs-max)
-                display: block
-                text-align: center
-                font-size: 1.2em
+                &:first-child
+                  display: block
+                  text-align: center
+                  width: 100%
+                  margin-bottom: $zero
+                  margin-top: 6px
+                  padding-bottom: 0
+              &:last-child
+                @media (max-width: $screen-xs-max)
+                  display: block
+                  text-align: center
+                  font-size: 1.2em
             .panel-body
-              padding: 0
+              padding: $zero
               div.ocupation
                 @include hidden-sm
                 @include hidden-md
@@ -152,9 +125,6 @@
             text-align: center 
             width: 100%              
 
-
-          
-
         .toolbar-profile
           position: relative
           bottom: 5px
@@ -163,7 +133,6 @@
           display: block
           float: left
           margin-top: 18px
-
           .btn-group
             margin-bottom: 9px
             i
@@ -171,7 +140,7 @@
             .btn-follow
               @include follow-profile
               width: 100px
-              padding: 0
+              padding: $zero
               min-height: 35px
               div
                 .following-button
@@ -183,10 +152,9 @@
                   &[type="submit"]
                     padding: 9px
                     @include border-right-radius (0)
-
             .btn
               a
-                color: $gray-darker-extra
+                color: $gray
               @media (max-width: $screen-xs-max)
                 width: 100% !important
                 clear: both
@@ -203,7 +171,7 @@
 
   .collapse, 
   .panel-body
-    margin: 0 !important
+    margin: $zero !important
 
 
   //FORMULARIO
@@ -216,25 +184,21 @@
       @include make-sm-column(10, $gutter: $grid-gutter-width)
       @include make-md-column(10, $gutter: $grid-gutter-width)
       @include make-lg-column(10, $gutter: $grid-gutter-width)
+      @media (max-width: $screen-xs-max)
+        padding: 0
       label
-        font-size: 12px
+        font-size: 0.9em
         font-family: $corporate-font-family-sans-serif-Light
         color: $brand-primary
         display: block
         clear: both
         margin-top: 12px
 
-      span
-        font-size: 10px
-        float: left
       input,
       textarea
         display: block
         width: 100%
     
-      select
-        padding-right: 10px
-        display: block
       .avatar-edit
         display: block
         margin-bottom: 10px
@@ -247,11 +211,11 @@
               @include border-bottom-radius ($border-radius-base)
               width: 50px
           form.edit_actor
-            margin: 0
+            margin: $zero
             input
-              margin-top: 0
+              margin-top: $zero
               width: 70%
-              padding: 0
+              padding: $zero
               display: inline
               @media (max-width: $screen-xs-max)
                 width: 50%
@@ -260,21 +224,18 @@
           margin-top: 7px
           margin-left: 5px
           .progress
-            margin-bottom: 0
+            margin-bottom: $zero
 
       form.edit_user
         display: block
         .birthday
           min-height: 42px
-          select
+          .select2-container
             width: 19%
             display: block
             float: left
             margin-right: 10px
-        span
-          font-size: 10px
-          margin-left: 28%
-          float: left
+  
 
         .actions
           margin-top: 12px
@@ -297,5 +258,3 @@
       display: inline 
       span
         color: $gray
-
-

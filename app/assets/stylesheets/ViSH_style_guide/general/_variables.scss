@@ -14,7 +14,7 @@ $gray-darker-extra:      #262626;
 $gray-darker:            #353535;
 $gray-dark:              #5E5E5E;
 $gray:                   #9B9B9B;
-$gray-light:             #CECECE;
+$gray-light:             #C7C7C7;
 $gray-lighter:           #E7E7E7;
 $gray-lighter-extra:     #EDEDED;
 $white:                  #FFFFFF;
@@ -169,7 +169,7 @@ $table-border-color:            $gray-light !default;
 
 $btn-font-weight:                normal !default;
 
-$btn-default-color:              $gray-darker-extra !default;
+$btn-default-color:              $gray !default;
 $btn-default-bg:                 $white !default;
 $btn-default-border:             $gray-light !default;
 

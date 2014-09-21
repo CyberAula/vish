@@ -177,3 +177,14 @@
     margin-right: 8px
   .like
     display: inline-block
+
+
+@mixin table-striped
+  td
+    border: none
+    &:first-child
+      color: $brand-primary
+      font-size: 0.9em
+      padding-top: 0.75em
+      width: 92px
+  
