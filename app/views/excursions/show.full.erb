@@ -14,6 +14,18 @@
 			configuration["TrackingSystemAPIURL"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'] %>";
 		<%end%>
 	<%end%>
+	//LOEP configuration
+	<%unless Vish::Application.config.APP_CONFIG['loep'].nil? or @excursion.nil? or @excursion.activity_object.nil?%>
+		<%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
+		<%tokenURL = (Vish::Application.config.full_domain + '/loep/session_token.json') %>
+		configuration["loepSettings"] = {
+			tokenURL: '<%=tokenURL%>',
+			domain: '<%=loepConfig["domain"]%>',
+			app: '<%=loepConfig["app_name"]%>',
+			loId: '<%=@excursion.activity_object.getGlobalId()%>',
+			evmethod: "wbltses"
+		};
+	<%end%>
 	options["configuration"] = configuration;
 	options["developping"] = false;
 
@@ -104,7 +116,7 @@
 		} else {
 			<% if @excursion %>
 				myexcursion = <%= raw @excursion.json %>;
-		  <% elsif @quiz_session %>
+		  	<% elsif @quiz_session %>
 				myexcursion = <%= raw @quiz_session.quizJSON %>;
 			<% else %>
 				myexcursion = null;

@@ -14,16 +14,18 @@
 <%=javascript_include_tag "jquery.zclip.min" %>
 <%=javascript_include_tag "loep" %>
 
+<script type="text/javascript">
+    var triggerEvaluation = function(){
+      $("#learning-evaluation-button-id").trigger("click");
+    };
+</script>
 
 <%= content_for :javascript do %> 
     if(window.location.search.indexOf("recent") !=-1){
       $("#congratulations-button").click();
     }
-
-    var triggerEvaluation = function(){
-      $("#evaluation-button-id").trigger("click");
-    };
 <%end%>
+
 
 <% unless @excursion.author.nil? %>
   <%= render :partial => 'objects/show', :locals  => { :object => @excursion } %>

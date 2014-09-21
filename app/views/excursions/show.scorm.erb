@@ -32,7 +32,7 @@
 			<%tokenURL = (Vish::Application.config.full_domain + '/loep/session_token.json') %>
 			configuration["loepSettings"] = {
 				tokenURL: '<%=tokenURL%>',
-				domain: '<%=loepConfig["domain"].gsub("http://","").gsub("https://","")%>',
+				domain: '<%=loepConfig["domain"]%>',
 				app: '<%=loepConfig["app_name"]%>',
 				loId: '<%=excursion.activity_object.getGlobalId()%>',
 				evmethod: "wbltses"

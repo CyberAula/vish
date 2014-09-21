@@ -8350,96 +8350,151 @@ window.Modernizr = function(a, b, c) {
 })(jQuery);
 var LOEP = LOEP || {};
 LOEP.IframeAPI = function(L, undefined) {
-  var _settings;
-  var init = function(settings) {
-    _settings = settings || {};
-    window.addEventListener("message", _onLOEPMessage, false);
-    if(typeof _settings.token == "string") {
-      _initWithToken(_settings.token)
-    }else {
-      _requestLOEPToken(function(token) {
-        _initWithToken(token)
-      })
-    }
-  };
-  var _initWithToken = function(token) {
-    if(typeof token != "string") {
-      return _print("No LOEP session token available")
-    }
-    var url = _buildEmbededFormURL(token);
-    if(typeof url != "string") {
-      return _print("URL could not be built. Incorrect or missing params.")
-    }
-    var container = $(_settings.containerDOM)[0];
-    if(typeof container == "undefined") {
-      return _print("Container not found.")
-    }
-    _insertIframe(container, url)
-  };
-  var _requestLOEPToken = function(callback) {
-    var urlToRequestToken;
-    if(typeof _settings.tokenURL == "string") {
-      urlToRequestToken = _settings.tokenURL
-    }else {
-      urlToRequestToken = "/loep/session_token.json"
-    }
-    $.ajax({type:"POST", url:urlToRequestToken, dataType:"json", success:function(response) {
-      if(typeof response == "string") {
-        callback(response)
+  var instance = function(settings) {
+    var _settings;
+    this.init = function(settings) {
+      _settings = settings || {};
+      _settings.action = _settings.action || "form";
+      if(["form", "representation"].indexOf(_settings.action) === -1) {
+        return _onError("No valid action.")
+      }
+      if(typeof _settings.domain != "string") {
+        return _onError("No valid domain.")
+      }
+      try {
+        var isLocalFile = window.location.href.indexOf("file://") === 0
+      }catch(e) {
+        var isLocalFile = false
+      }
+      if(!isLocalFile) {
+        _settings.domain = _settings.domain.replace("http://", "").replace("https://", "").replace("//", "");
+        _settings.domain = "//" + _settings.domain
       }else {
-        if(typeof response == "object" && typeof response["auth_token"] == "string") {
-          callback(response["auth_token"])
+        if(_settings.domain.indexOf("//") === 0) {
+          _settings.domain = _settings.domain.replace("//", "");
+          _settings.domain = "http://" + _settings.domain
+        }
+      }
+      window.addEventListener("message", _onLOEPMessage, false);
+      if(typeof _settings.token == "string") {
+        _initWithToken(_settings.token)
+      }else {
+        _requestLOEPToken(function(token) {
+          _initWithToken(token)
+        })
+      }
+    };
+    var _initWithToken = function(token) {
+      if(typeof token != "string") {
+        return _onError("No LOEP session token available")
+      }
+      var url = _buildEmbededFormURL(token);
+      if(typeof url != "string") {
+        return _onError("URL could not be built. Incorrect or missing params.")
+      }
+      var container = $(_settings.containerDOM)[0];
+      if(typeof container == "undefined") {
+        return _onError("Container not found.")
+      }
+      _insertIframe(container, url)
+    };
+    var _requestLOEPToken = function(callback) {
+      var urlToRequestToken;
+      if(typeof _settings.tokenURL == "string") {
+        urlToRequestToken = _settings.tokenURL
+      }else {
+        urlToRequestToken = "/loep/session_token.json"
+      }
+      $.ajax({type:"POST", url:urlToRequestToken, dataType:"json", success:function(response) {
+        if(typeof response == "string") {
+          callback(response)
         }else {
-          callback(true)
+          if(typeof response == "object" && typeof response["auth_token"] == "string") {
+            callback(response["auth_token"])
+          }else {
+            callback()
+          }
+        }
+      }, error:function(xhr, ajaxOptions, thrownError) {
+        callback()
+      }})
+    };
+    var _buildEmbededFormURL = function(token) {
+      var url;
+      try {
+        url = _settings.domain;
+        switch(_settings.action) {
+          case "form":
+            url += "/evaluations/" + _settings.evmethod + "/embed?lo_id=" + _settings.loId;
+            break;
+          case "representation":
+            url += "/los/" + _settings.loId + "/representation?evmethods=" + _settings.evmethod;
+            break;
+          default:
+            return
+        }
+        url += "&app_name=" + _settings.app + "&session_token=" + token;
+        if(_settings.ajax !== false) {
+          url += "&ajax=true"
+        }
+        if(typeof _settings.language == "string") {
+          url += "&locale=" + _settings.language
+        }
+      }catch(e) {
+      }
+      return url
+    };
+    var _insertIframe = function(container, url) {
+      var iframe = $("<iframe/>", {style:"width:100%; height:100%; border:0;", iframeborder:"0", frameborder:"0", src:url, load:function(data) {
+        _print("Form loaded.");
+        if(typeof _settings.loadCallback == "function") {
+          _settings.loadCallback()
+        }
+      }, error:function() {
+      }});
+      if(_settings.action == "representation") {
+        $(iframe).attr("overflow", "hidden");
+        $(iframe).attr("scrolling", "no")
+      }
+      $(container).append(iframe)
+    };
+    var _onLOEPMessage = function(msg) {
+      if(msg && (msg.data && msg.data.type == "LOEPMessage")) {
+        _print("Message received.");
+        var LOEPdata = msg.data;
+        if(LOEPdata.success === true) {
+          _print("Form submited successfuly.");
+          if(typeof _settings.submitCallback == "function") {
+            _settings.submitCallback(LOEPdata)
+          }
+        }else {
+          if(LOEPdata.error === true) {
+            var errorCode = LOEPdata.error_code;
+            _onError(errorCode)
+          }
         }
       }
-    }, error:function(xhr, ajaxOptions, thrownError) {
-      callback(false)
-    }})
-  };
-  var _buildEmbededFormURL = function(token) {
-    var url;
-    try {
-      url = "//" + _settings.domain + "/evaluations/" + _settings.evmethod + "/embed?lo_id=" + _settings.loId + "&app_name=" + _settings.app + "&session_token=" + token;
-      if(_settings.ajax !== false) {
-        url = url + "&ajax=true"
+    };
+    var _onError = function(msg) {
+      if(typeof msg != "string") {
+        msg = ""
       }
-      if(typeof _settings.language == "string") {
-        url = url + "&locale=" + _settings.language
+      errorMsg = "[Error] " + msg;
+      if(typeof _settings.errorCallback == "function") {
+        _settings.errorCallback(errorMsg)
       }
-    }catch(e) {
-    }
-    return url
-  };
-  var _insertIframe = function(container, url) {
-    var iframe = $("<iframe/>", {style:"width:100%; height:100%; border:0;", iframeborder:"0", frameborder:"0", src:url, load:function() {
-      _print("Form loaded successfuly.");
-      if(typeof _settings.successCallback == "function") {
-        _settings.successCallback()
+      return _print(errorMsg)
+    };
+    var _print = function(msg) {
+      if(_settings.debug === true && (console && console.log)) {
+        msg = "LOEP: " + msg.toString();
+        console.log(msg)
       }
-    }});
-    $(container).append(iframe)
+      return msg
+    };
+    this.init(settings)
   };
-  var _onLOEPMessage = function(msg) {
-    if(msg && (msg.data && msg.data.type == "LOEPMessage")) {
-      _print("Message received.");
-      var LOEPdata = msg.data;
-      if(LOEPdata.success === true) {
-        _print("Form submited successfuly.");
-        if(typeof _settings.submitCallback == "function") {
-          _settings.submitCallback(LOEPdata)
-        }
-      }
-    }
-  };
-  var _print = function(msg) {
-    if(_settings.debug === true && (console && console.log)) {
-      msg = "LOEP: " + msg.toString();
-      console.log(msg)
-    }
-    return msg
-  };
-  return{init:init}
+  return{instance:instance}
 }(LOEP);
 var VISH = VISH || {};
 VISH.VERSION = "0.8.9";
@@ -13706,10 +13761,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }
     }
     if(_showEval) {
-      $(".rec-first-row").show()
+      V.Recommendations.showEvaluations()
     }else {
-      $(".rec-first-row").hide();
-      $(".rec-second-row").css("margin-top", "10%")
+      V.Recommendations.hideEvaluations()
     }
     if(_closeButton) {
       $("button#closeButton").show()
@@ -17579,16 +17633,19 @@ VISH.Recommendations = function(V, $, undefined) {
       $("#fancybox-outer").css("display", "block");
       V.ViewerAdapter.decideIfPageSwitcher();
       var loepSettings = _getLOEPSettings();
-      loepSettings.domain = loepSettings.domain.replace("http://", "").replace("https://", "");
       loepSettings.language = V.Utils.getOptions()["lang"];
       loepSettings.containerDOM = $("#fancy_evaluations");
-      loepSettings.successCallback = function() {
+      loepSettings.loadCallback = function() {
       };
       loepSettings.submitCallback = function() {
         $.fancybox.close()
       };
-      loepSettings.debug = false;
-      LOEP.IframeAPI.init(loepSettings)
+      loepSettings.errorCallback = function(errorMsg) {
+        hideEvaluations();
+        $.fancybox.close()
+      };
+      loepSettings.debug = V.Debugging.isDevelopping();
+      new LOEP.IframeAPI.instance(loepSettings)
     }, "onClosed":function(data) {
       $("#fancy_evaluations").html("");
       $("#fancybox-outer").css("background", "white");
@@ -17603,9 +17660,8 @@ VISH.Recommendations = function(V, $, undefined) {
     return true
   };
   var canShowEvaluateButton = function() {
-    var _showEvaluateButton = V.Status.getIsInVishSite() || (_hasLOEPSettings() || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER && (!V.Status.getIsScorm() && !V.Status.getIsEmbed()));
+    var _showEvaluateButton = _hasLOEPSettings() || V.Status.getIsInVishSite() && V.Status.getIsInIframe();
     _showEvaluateButton = _showEvaluateButton && V.Status.getDevice().desktop;
-    _showEvaluateButton = _showEvaluateButton && V.Status.getIsInIframe();
     return _showEvaluateButton
   };
   var checkForRecommendations = function() {
@@ -17770,17 +17826,18 @@ VISH.Recommendations = function(V, $, undefined) {
   };
   var onClickEvaluateButton = function() {
     V.EventsNotifier.notifyEvent(V.Constant.Event.onEvaluate, {}, true);
-    if(V.Status.getIsInVishSite()) {
-      V.FullScreen.exitFromNativeFullScreen();
-      window.parent.document.getElementById("evaluation-button-id").click()
-    }else {
-      if(_hasLOEPSettings()) {
-        _showEvaluationsFancybox()
-      }else {
-        if(V.Debugging.isDevelopping()) {
-          window.alert("Evaluate!")
-        }
+    try {
+      if(V.Status.getIsInVishSite() && (V.Status.getIsInIframe() && typeof window.parent.triggerEvaluation == "function")) {
+        V.FullScreen.exitFromNativeFullScreen();
+        window.parent.triggerEvaluation();
+        return
       }
+    }catch(e) {
+    }
+    if(_hasLOEPSettings()) {
+      _showEvaluationsFancybox()
+    }else {
+      window.alert("Evaluate!")
     }
   };
   var _hasLOEPSettings = function() {
@@ -17796,7 +17853,14 @@ VISH.Recommendations = function(V, $, undefined) {
   var _showEvaluationsFancybox = function() {
     $("#fancyEvaluations").trigger("click")
   };
-  return{init:init, canShowRecommendations:canShowRecommendations, canShowEvaluateButton:canShowEvaluateButton, checkForRecommendations:checkForRecommendations, showFancybox:showFancybox, hideFancybox:hideFancybox, isRecVisible:isRecVisible, isEnabled:isEnabled, getData:getData, onClickEvaluateButton:onClickEvaluateButton, aftersetupSize:aftersetupSize}
+  var showEvaluations = function() {
+    $(".rec-first-row").show()
+  };
+  var hideEvaluations = function() {
+    $(".rec-first-row").hide();
+    $(".rec-second-row").css("margin-top", "10%")
+  };
+  return{init:init, canShowRecommendations:canShowRecommendations, canShowEvaluateButton:canShowEvaluateButton, checkForRecommendations:checkForRecommendations, showFancybox:showFancybox, hideFancybox:hideFancybox, isRecVisible:isRecVisible, isEnabled:isEnabled, getData:getData, onClickEvaluateButton:onClickEvaluateButton, showEvaluations:showEvaluations, hideEvaluations:hideEvaluations, aftersetupSize:aftersetupSize}
 }(VISH, jQuery);
 VISH.Tour = function(V, $, undefined) {
   var startTourWithId = function(helpid, tipLocation) {

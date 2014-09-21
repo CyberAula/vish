@@ -455,7 +455,9 @@ es:
       teacher:
         title: "¿Eres profesor y has usado este recurso educativo en clase?"
         evaluate: "Evalúa tu experiencia de enseñanza"
-    modaltitle: Evalúa tu experiencia con este recurso educativo"
+    error:
+        server: "Lo sentimos el servidor de evaluación no está operativo ahora mismo. Por favor, vuelva a intentarlo un poco más tarde."
+    modaltitle: "Evalúa tu experiencia con este recurso educativo"
     tabtitle: "Evaluaciones"
   event:
     actions:
