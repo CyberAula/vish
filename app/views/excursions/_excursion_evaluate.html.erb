@@ -23,7 +23,7 @@
         $('#myLearningModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
       };
       loepSettings.debug = false;
-      LOEP.IframeAPI.init(loepSettings);
+      new LOEP.IframeAPI.instance(loepSettings);
     <%end%>
   });
 
@@ -55,7 +55,7 @@
         $('#myTeachingModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
       };
       loepSettings.debug = false;
-      LOEP.IframeAPI.init(loepSettings);
+      new LOEP.IframeAPI.instance(loepSettings);
     <%end%>
   });
 
