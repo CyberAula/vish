@@ -3,6 +3,7 @@
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
+
 .catalogue-layout
   height: 39px
 #excursions_catalogue,
@@ -12,6 +13,7 @@
   height: auto
   width: 100%
   padding-bottom: 65px
+
   .back_catalogue
     display: inline-block
     float: left
@@ -24,11 +26,8 @@
       color: $brand-secundary
       cursor: pointer
       font-size: 40px
-  h2
-    width: auto
-    float: left
-    display: inline-block
-    font-family: $corporate-font-family-sans-serif-Regular
+  .icontitle
+    margin-top: 0
   ul
     clear: both
     width: 100%
@@ -41,8 +40,12 @@
   display: block
   margin: 0 auto
   @include border-top-radius (0)
-
-
+.catalogue
+  .icontitle
+    margin-top: 0
+#catalogue_tab_ready
+  .icontitle
+    display: none
 
 
 #catalogue

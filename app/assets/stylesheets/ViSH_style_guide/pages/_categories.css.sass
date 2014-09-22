@@ -17,6 +17,9 @@
     position: relative
     @media (max-width: $screen-xs-max)
       padding: 10px
+    .icontitle
+      margin-top: 0
+      margin-bottom: 8px
     .fa-box
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(3, $gutter: $grid-gutter-width)
@@ -57,7 +60,7 @@
           color: $gray-dark
           font-family: $corporate-font-family-sans-serif-Light
           word-wrap: break-word
-          margin-bottom: 20px
+          margin-bottom: 0px
         .btn-group
           .action
             &:hover
