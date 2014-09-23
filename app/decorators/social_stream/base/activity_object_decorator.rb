@@ -36,26 +36,49 @@ ActivityObject.class_eval do
   def calculate_qscore
     #self.reviewers_qscore is the LORI score in a 0-10 scale
     #self.users_qscore is the WBLT-S score in a 0-10 scale
+    #self.teachers_qscore is the WBLT-T score in a 0-10 scale
     qscoreWeights = {}
-    qscoreWeights[:reviewers] = BigDecimal(0.9,6)
-    qscoreWeights[:users] = BigDecimal(0.1,6)
+    qscoreWeights[:reviewers] = BigDecimal(0.6,6)
+    qscoreWeights[:users] = BigDecimal(0.3,6)
+    qscoreWeights[:teachers] = BigDecimal(0.1,6)
 
-    if self.reviewers_qscore.nil?
-      #If nil, we consider it 5 in a [0,10] scale.
-      reviewerScore = BigDecimal(5.0,6)
+    unless (self.reviewers_qscore.nil? and self.users_qscore.nil? and self.teachers_qscore.nil?)
+      if self.reviewers_qscore.nil?
+        reviewersScore = 0
+        qscoreWeights[:reviewers] = 0
+      else
+        reviewersScore = self.reviewers_qscore
+      end
+
+      if self.users_qscore.nil?
+        usersScore = 0
+        qscoreWeights[:users] = 0
+      else
+        usersScore = self.users_qscore
+      end
+
+      if self.teachers_qscore.nil?
+        teachersScore = 0
+        qscoreWeights[:teachers] = 0
+      else
+        teachersScore = self.teachers_qscore
+      end
+
+      #Readjust weights to sum to 1
+      weightsSum = (qscoreWeights[:reviewers]+qscoreWeights[:users]+qscoreWeights[:teachers])
+
+      unless weightsSum===1
+        qscoreWeights[:reviewers] = qscoreWeights[:reviewers]/weightsSum
+        qscoreWeights[:users] = qscoreWeights[:users]/weightsSum
+        qscoreWeights[:teachers] = qscoreWeights[:teachers]/weightsSum
+      end
+
+      #overallQualityScore is in a  [0,10] scale
+      overallQualityScore = (qscoreWeights[:reviewers] * reviewersScore + qscoreWeights[:users] * usersScore + qscoreWeights[:teachers] * teachersScore)
     else
-      reviewerScore = self.reviewers_qscore
+      #This AO has no score
+      overallQualityScore = 5
     end
-
-    if self.users_qscore.nil?
-      #If nil, we consider it 5 in a [0,10] scale.
-      usersScore = BigDecimal(5.0,6)
-    else
-      usersScore = self.users_qscore
-    end
-
-    #overallQualityScore is in a  [0,10] scale
-    overallQualityScore = (qscoreWeights[:users] * usersScore + qscoreWeights[:reviewers] * reviewerScore)
 
     #Translate it to a scale of [0,1000000]
     overallQualityScore = overallQualityScore * 100000
@@ -180,11 +203,40 @@ ActivityObject.class_eval do
   end
 
   def getUniversalId
-    self.object.class.name + ":" + self.object.id.to_s + "@" + Vish::Application.config.APP_CONFIG["domain"]
+    getGlobalId + "@" + Vish::Application.config.APP_CONFIG["domain"]
+  end
+
+  def getGlobalId
+    self.object.class.name + ":" + self.object.id.to_s
   end
 
   def getType
     self.object.class.name
+  end
+
+  def getUrl
+    begin
+      if self.object.nil?
+        return nil
+      end
+
+      if self.object_type == "Document" and !self.object.type.nil?
+        helper_name = self.object.type.downcase
+      elsif self.object_type == "Actor" 
+        if self.object.subject_type.nil? or ["Site","RemoteSubject"].include? self.object.subject_type
+          return nil
+        end
+        helper_name = self.object.subject_type.downcase
+      else
+        helper_name = self.object_type.downcase
+      end
+
+      relativePath = Rails.application.routes.url_helpers.send(helper_name + "_path",self.object)
+      absolutePath = Vish::Application.config.full_domain + relativePath
+      
+    rescue
+      nil
+    end
   end
 
   def getFullUrl(controller)
@@ -301,7 +353,7 @@ ActivityObject.class_eval do
     return ids_to_avoid
   end
 
-  def self.getActivityObjectFromUniversalId(id)
+  def self.getObjectFromUniversalId(id)
     #Universal id example: "Excursion:616@localhost:3000"
     begin
       fSplit = id.split("@")
@@ -315,6 +367,12 @@ ActivityObject.class_eval do
     rescue
       nil
     end
+  end
+
+  def self.getObjectFromGlobalId(id)
+    return nil if id.nil?
+    universalId = id.to_s + "@" + Vish::Application.config.APP_CONFIG["domain"]
+    getObjectFromUniversalId(universalId)
   end
 
   def self.getResourceCount

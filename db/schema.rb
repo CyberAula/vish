@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140804072954) do
+ActiveRecord::Schema.define(:version => 20140919112630) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20140804072954) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.decimal  "teachers_qscore",                    :precision => 12, :scale => 6
   end
 
   create_table "activity_verbs", :force => true do |t|

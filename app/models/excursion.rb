@@ -901,14 +901,14 @@ class Excursion < ActiveRecord::Base
   #################### 
 
   def afterPublish
-    #If LOEP is enabled, upload the excursion to LOEP
-    if !Vish::Application.config.APP_CONFIG['loep'].nil?
-      VishLoep.registerExcursion(self) rescue nil
-    end
-
     #Try to infer the language of the excursion if it is not spcifiyed
     if (self.language.nil? or !self.language.is_a? String or self.language=="independent")
       self.inferLanguage
+    end
+
+    #If LOEP is enabled, upload the excursion to LOEP
+    unless Vish::Application.config.APP_CONFIG['loep'].nil?
+      VishLoep.registerActivityObject(self.activity_object) rescue nil
     end
   end
 

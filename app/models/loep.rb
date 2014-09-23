@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'restclient'
 require 'json'
+require 'base64'
 
 class Loep
 
@@ -18,18 +19,11 @@ class Loep
   #Create LO
   def self.createLO(lo)
     params = getParams
-
     params["lo"] = lo
+    
     if params["lo"]["repository"].nil?
       params["lo"]["repository"] = Vish::Application.config.APP_CONFIG['loep']['repository_name']
     end 
-
-    if !params["lo"]["lanCode"].nil?
-      loep_langs = ["en", "es", "de", "fr", "it", "nl", "hu"]
-      unless loep_langs.include? params["lo"]["lanCode"]
-        params["lo"]["lanCode"] =  "lanot"
-      end
-    end
 
     callAPI("POST","los",params){ |response,code|
       if block_given?
@@ -38,20 +32,23 @@ class Loep
     }
   end
 
+  #Create SessionToken
+  def self.createSessionToken()
+    callAPI("POST","session_token"){ |response,code|
+      if block_given?
+        if code===200
+          yield response["auth_token"], code
+        else
+          yield nil, code
+        end
+      end
+    }
+  end
+
 
   private
 
-  def self.getParams(params=nil)
-    if params.nil?
-      params = Hash.new
-    end
-    params["utf8"] = "✓"
-    params["app_name"] = Vish::Application.config.APP_CONFIG['loep']['app_name']
-    params["auth_token"] = Vish::Application.config.APP_CONFIG['loep']['auth_token']
-    params
-  end
-
-  def self.callAPI(method,apiPath,params)
+  def self.callAPI(method,apiPath,params={})
     apiBaseURL = getAPIBaseUrl
     apiMethodURL = apiBaseURL+apiPath
 
@@ -62,20 +59,21 @@ class Loep
     begin
       case method.upcase
       when "POST"
-        RestClient.post(
-          apiMethodURL,
-          params.to_json,
-          :content_type => :json,
-          :accept => :json
+        response = RestClient::Request.execute(
+          :method => :post,
+          :url => apiMethodURL,
+          :payload => params,
+          :headers => {:'Authorization' => getBasicAuthHeader, :content_type => :json, :accept => :json}
         ){ |response|
           if block_given?
             yield JSON(response),response.code
           end
         }
       when "GET"
-        RestClient.get(
-          apiMethodURL,
-          {:params => params}
+        response = RestClient::Request.execute(
+          :method => :get,
+          :url => apiMethodURL,
+          :headers => {:'Authorization' => getBasicAuthHeader}
         ){ |response|
           if block_given?
             yield JSON(response),response.code
@@ -97,6 +95,18 @@ class Loep
   def self.getAPIBaseUrl
     loepConfig = Vish::Application.config.APP_CONFIG['loep']
     return loepConfig['domain']+"/api/"+(loepConfig['api_version'] || "v1")+"/"
+  end
+
+  def self.getBasicAuthHeader
+    auth_header = 'Basic ' + Base64.encode64("#{Vish::Application.config.APP_CONFIG['loep']['app_name']}:#{Vish::Application.config.APP_CONFIG['loep']['auth_token']}").gsub("\n","")
+  end
+
+  def self.getParams(params=nil)
+    if params.nil?
+      params = Hash.new
+    end
+    params["utf8"] = "✓"
+    params
   end
 
 end

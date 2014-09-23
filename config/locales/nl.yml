@@ -73,18 +73,6 @@ nl:
     embed: "embed-code"
     input: "Plak uw embed-code hier"
     name: "embed-code"
-  evaluation:
-    teaching: "resultaten van leservaring..."
-    contribute: "Wilt u bijdragen?"
-    evaluation: "evalueer het"
-    experience: "leservaring"
-    phrase0: "Geef een waardering voor de kwaliteit van de inhoud die gebruikt wordt in deze online presentatie"
-    phrase1: "Waren de leerlingen gemotiveerd om deel te nemen aan de activiteiten die betrekking hadden op deze presentatie?"
-    phrase2: "Droeg deze presentatie bij aan de betrokkenheid van de leerlingen en aan het bewerkstelligen van hun leerdoelen?"
-    phrase3: "Hebt u nog interdisciplinaire activiteiten opgenomen in de presentatie? Waren deze activiteiten nuttig?"
-    phrase4: "Zou u deze presentatie weer voor uw les gebruiken?"
-    disagree: "oneens"
-    agree: "eens"
   excursion:
     actions:
       bookmark: "bookmarken"
@@ -525,31 +513,6 @@ nl:
     upload: "Uploaden"
   embed:
     title3: "De embed invoeren die u wilt uploaden"
-  evaluation:
-    contribute:
-      zero: "Deze excursie heeft nog van niemand een waardering gekregen. Wilt u de eerste zijn?"
-      one: "1 persoon heeft een waardering gegeven voor deze excursie. Wilt u een bijdrage leveren?"
-      other: "%{count} personen hebben deze excursie een waardering gegeven. Wilt u een bijdrage leveren?"
-    phrase5: "Zou u deze excursie opnieuw gebruiken voor de les?"
-    label0: "Inhoud"
-    label1: "Ontwerp"
-    label2: "Motivatie"
-    label3: "Betrokkenheid"
-    label4: "Interdisciplinair"
-    label5: "Opnieuw gebruiken"  
-    learning: "Leerervaring"
-    alert: "Alle beoordelingsvragen invullen. Dank u."
-    strong_disagree_b: "Sterk mee oneens"
-    disagree_b: "Oneens"
-    neutral_b: "Neutraal"
-    agree_b: "Eens"
-    strong_agree_b: "Sterk mee eens"
-    strong_agree_a: "Zeer goed"
-    agree_a: "Goed"
-    neutral_a: "Gemiddeld"
-    disagree_a: "Slecht"
-    strong_disagree_a: "Zeer slecht"
-    success: "Uw antwoorden zijn met succes geregistreerd. Dank u voor uw bijdrage."
   event:
     actions:
       add: Evenement toevoegen

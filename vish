@@ -17,7 +17,7 @@ then
 	vishLogo
 	echo "Running Fixes and Starting server..."
 	echo " "
-	bundle exec rake db:migrate ts:rebuild; rails s
+	bundle install; bundle exec rake db:migrate ts:rebuild; rails s
 elif [ "$1" = "run" ];
 then	
 	vishLogo

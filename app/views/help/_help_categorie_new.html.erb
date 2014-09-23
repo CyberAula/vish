@@ -2,24 +2,19 @@
   <i class="icon-question-sign helpCategories" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.cat')%>" href='#' value="" ></i>
   <div class="contenthelpCategories" style="display: none">
     <div>
-      <%= t('document.help.cat1_html')%>  <br/>
-      <%= t('document.help.cat2_html')%>
+      Pollo frito
     </div>
     <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
 </li>
 <script>
-$(document).ready(function(){
   $('.helpCategories').popover({ 
     html : true,
     content: function() {
       return $('.contenthelpCategories').html();
     }
   });
-});
-</script>
 
-<script>
 $('body').on('click', function (e) {
   $('.helpCategories').each(function () {
         //the 'is' for buttons that trigger popups
