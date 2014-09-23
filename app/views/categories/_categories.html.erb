@@ -1,3 +1,7 @@
+<% if user_signed_in? #and profile_subject ==  %>
+ <!--Aquí van cosas de un botón-->
+ <%binding.pry%>
+<% end	%>
 <% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"updated_at"}) %>
 <% all_categories.each do |category| %>
     <%= render :partial => 'categories/category', :locals => { :category => category } %>
