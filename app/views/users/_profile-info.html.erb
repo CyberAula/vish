@@ -10,6 +10,7 @@ var followings_tab_loaded = false;
 $(document).ready(function(){
   
   
+  
   $("#excursions_tab").click(function(){
     if(excursions_tab_loaded === false){
       $('.loader_pagination').show();
@@ -104,7 +105,7 @@ $(document).ready(function(){
   });
 
  
-  $("#followers_tab").click(function(){get_url_with_sort_by
+  $("#followers_tab").click(function(){
     if(followers_tab_loaded===false){
       $('.loader_pagination').show();
       followers_tab_loaded = true;
@@ -147,6 +148,9 @@ $(document).ready(function(){
       re_apply_pageless("followings");
     }
   });
+
+  
+ 
  });
 </script>
 
@@ -206,8 +210,9 @@ function re_apply_pageless(tab){
 
 function get_url_with_sort_by(tab){
   var the_url = pageless_state[tab].url;
-
+  if (tab != "categories"){
   the_url = the_url + "?sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
+  }
   return the_url;
 }
 
@@ -248,17 +253,7 @@ function get_url_with_sort_by(tab){
       });     
     }
 
-  $(document).ready(function(){
-    <%if !params[:tab] || params[:tab]=="excursions"%>
-      excursions_tab_loaded = true;
-    <%elsif params[:tab]=="events"%>
-      events_tab_loaded = true;
-    <%elsif params[:tab] == "categories"%>
-      categories_tab_loaded = true;
-    <%elsif params[:tab] == "resources"%>
-      resources_tab_loaded = true;
-    <%end%>
-  });
+    
 
 </script>
 
@@ -417,3 +412,25 @@ function get_url_with_sort_by(tab){
     </div>
   </div>
 </section>
+<script>
+$(document).ready(function(){ 
+<% if !params[:tab] || params[:tab]=="excursions" %>
+    excursions_tab_loaded = true;
+    re_apply_pageless("excursions");
+    //$("footer#footer").addClass("fixed-bottom");
+    //$("#wrap").addClass("wrap-when-fixed-bottom");
+  <% end %>
+  <% if params[:tab]=="events" %>
+      events_tab_loaded = true;
+      re_apply_pageless("events");
+  <% end %>
+  <% if params[:tab] == "categories" %>
+      categories_tab_loaded = true;
+      re_apply_pageless("categories");
+  <% end %>
+  <% if params[:tab] == "resources" %>
+      resources_tab_loaded = true;
+      re_apply_pageless("resources");
+  <% end %>
+  });
+</script>
