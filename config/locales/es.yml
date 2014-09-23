@@ -696,6 +696,7 @@ es:
     created_at: "Creación"
     favorites: "Favoritos"
     popularity: "Popular"
+    quality: "Calidad"
     relevance: "Relevancia"
     title: "Ordenar por"
     updated_at: "Modificación"
