@@ -458,6 +458,7 @@ es:
         server: "Lo sentimos el servidor de evaluación no está operativo ahora mismo. Por favor, vuelva a intentarlo un poco más tarde."
     modaltitle: "Evalúa tu experiencia con este recurso educativo"
     tabtitle: "Evaluaciones"
+    verb: "Evaluar"
   event:
     actions:
       add: "Añadir evento"

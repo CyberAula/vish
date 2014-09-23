@@ -120,13 +120,6 @@
   });
 </script>
 
-<% unless editingToolbar %>
-  <%= content_for :javascript do %> 
-  <!--Javascript part of categorization -->
-    <%#= render partial: 'shared/multiselect', :locals => {:item => @excursion} %>
-  <% end %>
-<% end %>
-
 
 <!--BTN ACTIONS-->
 <div class="btn-group">
@@ -163,18 +156,26 @@
   </div>
 
   <% unless editingToolbar %>
+
+    <!--Favorite-->
     <% unless @excursion.post_activity.nil? %>
       <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
     <%end%>
+
+    <!--Evaluate-->
+    <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
+      <button onclick="triggerEvaluation()" class="btn with_tooltip" title="<%=t('evaluation.verb')%>">
+        <i class="icon-ok-sign"></i>
+      </button>
+    <%end%>
+
     <!--Categorize-->
-      <%if user_signed_in? %>
-        <%#=categories_select(:category_id, @excursion)%>
-        <%#= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
-        <%#= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>
-        <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @excursion} %>
-        <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" ><i class="icon-th-large"></i></button>
-        
-      <%end%>
+    <%if user_signed_in? %>
+      <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @excursion} %>
+      <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" >
+        <i class="icon-th-large"></i>
+      </button>
+    <%end%>
   <%end%>
 
 </div>
