@@ -148,7 +148,7 @@ GEM
       sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.10)
-    capistrano (2.15.5)
+    capistrano (2.14.2)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
@@ -469,7 +469,7 @@ DEPENDENCIES
   axlsx (= 2.0.0)
   axlsx_rails (= 0.1.5)
   bootstrap-sass (= 2.3.2.2)
-  capistrano (= 2.15.5)
+  capistrano (= 2.14.2)
   capybara (= 2.3.0)
   coffee-rails (= 3.2.2)
   delayed_paperclip (= 2.7.0)

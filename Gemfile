@@ -81,7 +81,7 @@ group :development do
   # Use unicorn as the web server
   #Usage bundle exec unicorn -p 3000 -c config/unicorn.rb
   gem 'unicorn', '= 4.8.3'
-  gem 'capistrano', '= 2.15.5'
+  gem 'capistrano', '= 2.14.2'
   gem 'forgery', '= 0.6.0'
 end
 
