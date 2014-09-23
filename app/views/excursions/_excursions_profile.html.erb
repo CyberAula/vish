@@ -8,6 +8,6 @@
 
 <script>
 	$(document).ready(function(){	
-		re_apply_backstrech("excursions");    
+		update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>); 
 	});
 </script>

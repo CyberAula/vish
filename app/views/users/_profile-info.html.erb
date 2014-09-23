@@ -20,7 +20,7 @@ $(document).ready(function(){
         url : "<%= user_url(profile_subject) %>/excursions",
         success : function(html) {
           $('.loader_pagination').hide();      
-          $("#excursions_tab_ready").append(html);
+          $("#excursions_tab_ready").append(html);        
           re_apply_pageless("excursions");
           re_apply_backstrech("excursions");
         },
@@ -28,8 +28,8 @@ $(document).ready(function(){
           //console.log("error loading excursions");
         }
       });
-  } else{
-    re_apply_pageless("excursions");
+    } else{
+      re_apply_pageless("excursions");
     }
   });
 
