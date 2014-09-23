@@ -1,0 +1,219 @@
+@mixin resource-item
+  .event-img,
+  .vish_picture_thumbnail
+    width: 100%
+    height: 100%
+  .resource,
+  .category
+    img
+      margin-top: -25%
+      min-width: 125%
+      min-height: 250%
+    i
+      margin-top: 2%
+    .category_thumb_0
+      width: 47.5%
+      height: 66px
+      border: 2px solid #fff
+      display: block
+      float: left
+      position: static
+      overflow: hidden
+      background: #007cc8
+      -webkit-border-radius: 5px
+      -moz-border-radius: 5px
+      border-radius: 5px
+    .category_thumb_1
+      width: 47.5%
+      height: 66px
+      border: 2px solid #fff
+      display: block
+      float: left
+      position: static
+      overflow: hidden
+      background: #007cc8
+      -webkit-border-radius: 5px
+      -moz-border-radius: 5px
+      border-radius: 5px
+    .category_thumb_2
+      width: 47.5%
+      height: 66px
+      border: 2px solid #fff
+      display: block
+      float: left
+      position: static
+      overflow: hidden
+      background: #007cc8
+      -webkit-border-radius: 5px
+      -moz-border-radius: 5px
+      border-radius: 5px
+    .category_thumb_3
+      width: 47.5%
+      height: 66px
+      border: 2px solid #fff
+      display: block
+      float: left
+      position: static
+      overflow: hidden
+      background: #007cc8
+      -webkit-border-radius: 5px
+      -moz-border-radius: 5px
+      border-radius: 5px
+    .container-img
+      padding-bottom: 0.3%
+      display: inline-block
+      position: relative
+      width: 100%
+      padding: 10%
+      background-color: #007cc8
+      .info
+        height: 75px
+      i
+        color: #fff !important
+        font-size: 2.3em
+        margin-left: -21%
+  .event
+    width: 100%
+    text-align: center
+    margin-top: 20%
+    float: left
+    a
+      text-decoration: none
+    i
+      font-size: 70px
+      color: $gray
+
+@mixin info-item
+  .info
+    font-family: $secondFontFamily
+    display: block
+    width: 94%
+    margin-left: auto
+    margin-right: auto
+    height: 69px
+    .name
+      @include box_title
+      margin: 0
+      height: 32px
+      line-height: 15px
+      overflow: hidden
+      width: 100%
+    .author
+      @include author
+      width: 100%
+      height: 20px
+      overflow: hidden
+      word-wrap: break-word
+      text-overflow: ellipsis
+
+      span
+        width: 20px
+        display: inline
+        float: left
+      a
+        word-wrap: break-word
+        text-overflow: ellipsis
+        overflow-y: hidden
+        height: 20px
+        width: 85%
+        display: inline
+        float: left
+
+@mixin footer-item
+  .info-bottom
+    font-family: $secondFontFamily !important
+    font-size: $baseFontSize
+    clear: both
+    .views
+      color: $gray
+    .views:after
+      color: $secondColor     
+    
+    hr
+      margin: 0
+    .soften
+      margin-bottom: 1px
+    .views
+      float: right
+      width: 50%
+      text-align: right
+      cursor: default
+    .categories_inside
+      cursor: default
+      width: 100%
+      float: left
+
+    .like
+      cursor: default
+      width: 50%
+      a
+        i
+          text-decoration: none
+          cursor: pointer
+    .number_elems
+      float: right
+      width: 100%
+      text-align: right
+@mixin add-item
+  .add-item
+    text-align: center
+    background-image: url('items/malla.png') !important
+    overflow: hidden
+    margin-bottom: -2px !important
+
+    &:hover
+      text-decoration: none
+    i
+      width: 100%
+      display: block
+      padding-top: 60px
+      opacity: 1
+      font-size: 92px
+      display: block
+    .info
+      height: 75px !important
+@mixin user-item
+  .contact
+    background-color: transparent !important
+    box-shadow: none !important
+
+    //BAGDE teacher
+    .badge-teacher-active
+      position: absolute
+      top: 50px
+      left: 33px
+      z-index: 10
+      background-image: url(" badges/teacherofthemonth.png" )
+      height: 80px
+      width: 55px
+      background-size: 54px
+      pointer-events: none
+
+    // IMG BOX
+    .container-img
+      .avatar
+        a
+          img
+            margin-top: 20%
+            @include center-block()
+            @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            @include border-radius($baseBorderRadius)
+    .info
+      height: 75px !important
+      .name
+        text-align: center
+        margin: 0
+        height: 30px
+        line-height: 15px
+        overflow: hidden
+        a
+          color: $black
+          font-family: $firstFontFamily
+          text-decoration: none
+          &:hover
+            color: $firstColor
+      .add
+        @include follow
+    .info-bottom
+      hr
+        display: none
