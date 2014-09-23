@@ -2,21 +2,20 @@
   <div class="author">
     <div class="avatar">
       <%= link_to @excursion.author.subject do %>
-      <%= image_tag @excursion.author.logo.url(:small) %>
+        <%= image_tag @excursion.author.logo.url(:small) %>
       <% end %>
     </div>
     <div class="right-name">
-      <p><%= truncate_name(@excursion.author.name, :length => 50) %></p>
-
-
-  </div>
-    <div class="add">
-      <% if user_signed_in?%>
-        <%= contact_button(current_subject.contact_to!(@excursion.author)) %>
-      <%else%>
-        <%= contact_button(@excursion.author) %>
+      <%= link_to @excursion.author.subject do %>
+        <p><%= truncate_name(@excursion.author.name, :length => 50) %></p>
       <%end%>
+      <div class="add">
+        <% if user_signed_in?%>
+          <%= contact_button(current_subject.contact_to!(@excursion.author)) %>
+        <%else%>
+          <%= contact_button(@excursion.author) %>
+        <%end%>
+      </div>
     </div>
   </div>
 <%end%>
-

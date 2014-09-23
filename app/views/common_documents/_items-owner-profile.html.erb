@@ -1,6 +1,3 @@
-
-    <!--autor-->
-    <!--dt><%#= t('author').capitalize %></dt-->
 <div class="author">
   <div class="avatar">
     <%= link_to document.author.subject do %>
@@ -9,7 +6,7 @@
   </div>
   <div class="right-name">
     <%= link_to document.author.subject do %>
-    <p><%= truncate_name(document.author.name, :length => 50) %></p>
+      <p><%= truncate_name(document.author.name, :length => 50) %></p>
     <% end %>
     <div class="add">
       <% if user_signed_in?%>
