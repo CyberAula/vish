@@ -1,0 +1,41 @@
+<%=javascript_include_tag "loep" %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    //Overflow fixes
+    $("#wrap").attr("style","height:83%!important");
+    $("div.wrapper").attr("style","height:83%!important");
+    $("div.push").remove();
+    $("footer#footer").addClass("fixed-bottom");
+
+    <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
+      var loepSettings = {};
+      <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
+      loepSettings.domain = '<%=loepConfig["domain"]%>';
+      loepSettings.app = '<%=loepConfig["app_name"]%>';
+      loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
+      loepSettings.evmethod = '<%=@evmethod%>';
+      loepSettings.language = '<%=I18n.locale.to_s%>';
+      loepSettings.tokenURL = "/loep/session_token.json";
+      loepSettings.containerDOM = $('div.evaluation_body');
+      loepSettings.ajax = true;
+      loepSettings.loadCallback = function(){
+        //LOEP form loaded"
+      };
+      loepSettings.submitCallback = function(){
+        //"Sucesfully submitted"
+        window.top.location.href = '<%=excursion_path(@excursion)%>';
+      };
+      loepSettings.errorCallback = function(){
+        //"Error"
+        $('div.evaluation_body').prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
+      };
+      loepSettings.debug = false;
+      new LOEP.IframeAPI.instance(loepSettings);
+    <%end%>
+  });
+
+</script>
+
+<div class="evaluation_body">
+</div>
