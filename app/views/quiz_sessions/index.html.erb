@@ -1,5 +1,5 @@
 <section id="quiz">
-  <div class="whiteframe">
+  <div class="quizwhiteframe">
     <legend><%=t('quiz.live')%></legend>
     <div class="textrow">
       <h4><%=t('quiz.openedL')%></h4>
@@ -7,11 +7,13 @@
         <ul id="sortable1" class="connectedSortable">
           <% @quiz_active_sessions.each do |q| %>
             <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.partial"%>>
-              <% if q.name && !q.name.empty? %>
-                <%= q.name %>
-              <% else %>
-                <%=t('quiz.untitled')%>
-              <% end %>
+              <p class="qs_name">
+                <% if q.name && !q.name.empty? %>
+                  <%= q.name %>
+                <% else %>
+                  <%=t('quiz.untitled')%>
+                <% end %>
+              </p>
               <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
                 <i class="icon-trash"></i>
               </button>
@@ -37,11 +39,13 @@
         <ul id="sortable2" class="connectedSortable">
           <% @quiz_inactive_sessions.each do |q| %>
             <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.partial"%>>
-              <% if q.name && !q.name.empty? %>
-                <%= q.name %>
-              <% else %>
-                <%=t('quiz.untitled')%>
-              <% end %>
+              <p class="qs_name">
+                <% if q.name && !q.name.empty? %>
+                  <%= q.name %>
+                <% else %>
+                  <%=t('quiz.untitled')%>
+                <% end %>
+              </p>
               <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
                 <i class="icon-trash"></i>
               </button>
