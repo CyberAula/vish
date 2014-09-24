@@ -111,6 +111,8 @@ module HomeHelper
       when "popularity"
         #Use ranking instead of popularity
         query = query.order('activity_objects.ranking DESC')
+      when "ranking"
+        query = query.order('activity_objects.ranking DESC')
       when "quality"
         query = query.order('activity_objects.qscore DESC')
     end

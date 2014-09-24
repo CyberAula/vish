@@ -1044,7 +1044,6 @@ class Excursion < ActiveRecord::Base
     excursionsRecent = excursionsRecent.first(nsize/2).sample(nHalf)
 
     ids_to_avoid = ((options[:ids_to_avoid] || []) + (excursionsRecent.map{|e| e.id})).uniq
-
     excursionsPopulars = RecommenderSystem.search({:n=> nsize, :order => 'ranking DESC', :models => [Excursion], :subjects_to_avoid => [options[:subject]], :ids_to_avoid => ids_to_avoid, :page => options[:page]})
     excursionsPopulars.sort!{|b,a| a.updated_at <=> b.updated_at}
     excursionsPopulars = excursionsPopulars.first(nsize/2).sample(nHalf)
