@@ -4,7 +4,8 @@
     <%= render partial: 'help/help_categorize' %>
     <h3 id="myModalLabel"><i class="icon-th-large"></i><%= t("category.modalLabel")%></h3>
   </div>
-  <div class="modal-body">
+  <div class="modal-body categorize-modal-body">
+
     <% generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} %>
     <p class= "information"><%= t("category.cat_add_title")%></p> 
     
