@@ -13,8 +13,10 @@ class HomeController < ApplicationController
               if params[:page] == "1"
                 render partial: "home"
               else
-                excursionsPopular = RecommenderSystem.search({:n => 16, :order => "ranking DESC", :ids_to_avoid => params[:ids_to_avoid].split(','), :page => params[:page], :models=> [Excursion]})
-                render partial: "home_popular", :locals => {:excursions => excursionsPopular, :ids_to_avoid => params[:ids_to_avoid].split(','), :prefix_id=>"home"}, :layout => false
+                # homeModels = VishConfig.getHomeModels({:return_instances => true})
+                homeModels = [Excursion]
+                resourcesPopular = RecommenderSystem.search({:n => 16, :order => "ranking DESC", :ids_to_avoid => params[:ids_to_avoid].split(','), :page => params[:page], :models=> homeModels})
+                render partial: "home_popular", :locals => {:resources => resourcesPopular, :ids_to_avoid => params[:ids_to_avoid].split(','), :prefix_id=>"home"}, :layout => false
               end
             elsif params[:tab]=="net"
               params[:sort_by] ||= "ranking"
