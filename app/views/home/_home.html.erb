@@ -2,8 +2,11 @@
   # homeModels = VishConfig.getHomeModels({:return_instances => true})
   homeModels = [Excursion]
   resourcesRecommended = RecommenderSystem.resource_suggestions(current_subject, nil, {:n => 15, :models => homeModels})
-  resourcesRecent = ActivityObject.getRecent(15,{:subject => current_subject, :ids_to_avoid => resourcesRecommended.map{|r| r.activity_object.id}, :models => homeModels})
-  resourcesPopular = RecommenderSystem.search({:n => 16, :order => "ranking DESC", :ids_to_avoid => (resourcesRecommended+resourcesRecent).map{|r| r.activity_object.id}, :page => 1, :models=> homeModels})
+  ids_to_avoid = resourcesRecommended.map{|r| r.activity_object.id}
+  resourcesRecent = ActivityObject.getRecent(15,{:subject => current_subject, :ids_to_avoid => ids_to_avoid, :models => homeModels})
+  ids_to_avoid += resourcesRecent.map{|r| r.activity_object.id}
+  resourcesPopular = RecommenderSystem.search({:n => 16, :order => "ranking DESC", :ids_to_avoid => ids_to_avoid, :page => 1, :models=> homeModels})
+  ids_to_avoid += resourcesPopular.map{|r| r.activity_object.id}
 %>
 
  <section id="excursions_tab_ready3 " class="excursions recent_excursions">
@@ -24,6 +27,6 @@
 <section id="home_tab_ready" class="excursions">
   <ul class="">
     <h3> <%= t("home.populars")%> </h3>
-    <%= render partial: 'home_popular', :locals => { :resources => resourcesPopular, :ids_to_avoid => (resourcesRecommended+resourcesRecent+resourcesPopular).map{|r| r.activity_object.id}, :prefix_id=>"home"} %>
+    <%= render partial: 'home_popular', :locals => { :resources => resourcesPopular, :ids_to_avoid => ids_to_avoid, :prefix_id=>"home"} %>
   </ul>
 </section>
