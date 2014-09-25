@@ -1,4 +1,4 @@
-class WaCarousel < ActiveRecord::Base
+class WaGallery < ActiveRecord::Base
 	belongs_to :workshop_activity
 	
 

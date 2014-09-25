@@ -1,7 +1,7 @@
 ActivityObject.class_eval do
 
   has_many :spam_reports
-  has_and_belongs_to_many :wa_carousels
+  has_and_belongs_to_many :wa_galleries
 
 
   before_save :fill_relation_ids
