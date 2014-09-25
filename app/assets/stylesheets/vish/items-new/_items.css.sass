@@ -13,20 +13,20 @@
       a
         color: $secondColor
     .info-bottom
+      hr
+        color: $gray !important
       .views
         color: $gray
       .views:after
         color: $secondColor   
       .like  
-        .count
-          .icon-star-empty 
-            color: $gray 
-          .icon-star
-            color: $firstColor 
-
+        .icon-star-empty 
+          color: $gray 
+        .icon-star
+          color: $firstColor 
+.categorie-item,
 .resource-item
   .info
-    background-color: $secondColor
     .name
       a
         color: $white
@@ -44,11 +44,70 @@
       .like
         .count
           color: $white
-          i
-            color: $white
+        i,a
+          color: $white
+      .categories_inside
+        color: $white
+
+.categorie-item
+  .info
+    background-color: $firstColor
+  .corner-color
+    border-color: $firstColor transparent transparent transparent
+
+.resource-item
+  .info
+    background-color: $secondColor
+  .corner-color
+    border-color: $secondColor transparent transparent transparent
 
 
+.corner-item
+  position: absolute
+  top: 0
+  left: 0
+  width: 75px
+  height: 75px
+  z-index: 2
+  .corner-item2
+    position: absolute
+    height: 60px
+    width: 60px
+    left: 5px
+    top: 5px
+    z-index: 4
+    -webkit-border-top-left-radius: 5px
+    -moz-border-radius-topleft: 5px
+    border-top-left-radius: 5px
+    overflow: hidden
 
+    .corner-color
+      position: absolute
+      width: 0
+      height: 0
+      border-style: solid
+      border-width: 55px 55px 0 0
+      
+      z-index: 5
+
+    i
+      position: absolute
+      top: 9px
+      left: 9px
+      color: $white
+      font-size: 15px
+      z-index: 6
+
+  .corner-background
+    position: absolute
+    width: 0
+    height: 0
+    border-style: solid
+    border-width: 75px 75px 0 0
+    border-color: $background transparent transparent transparent
+    z-index: 3
+    top: -5px
+    left: -5px
 
 
 
@@ -65,7 +124,7 @@
     @include border-radius($baseBorderRadius)
     &:hover
       text-decoration: none
-      box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.1)
+      //box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.1)
       transform: scale(1.05)
       -ms-transform: scale(1.05)
       -webkit-transform: scale(1.05)
