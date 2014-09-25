@@ -415,7 +415,8 @@
   $(document).ready(function(){
     <% if params[:tab]=="excursions" %>
       excursions_tab_loaded = true;
-      re_apply_pageless("excursions");
+        re_apply_pageless("excursions");
+        re_apply_backstrech("excursions");
     <% elsif params[:tab]=="events" %>
         events_tab_loaded = true;
         re_apply_pageless("events");
