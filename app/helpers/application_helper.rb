@@ -58,4 +58,17 @@ module ApplicationHelper
 		options_for_select([[I18n.t('lang.independent'), ""], ['Deutsch', "de"], ['English', "en"], ['Español', "es"], ['Français', "fr"], ['Italiano', "it"], ['Magyar', "hu"], ['Nederlands', "nl"], ['Português', "pt"], ['Русский', "ru"], [I18n.t('lang.others'), "ot"]],selected)
 	end
 
+	#Configuration
+	def available_models
+		VishConfig.getAvailableModels
+	end
+
+	def home_models
+		VishConfig.getHomeModels
+	end
+
+	def available_services
+		VishConfig.getAvailableServices
+	end
+
 end

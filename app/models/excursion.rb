@@ -1051,21 +1051,6 @@ class Excursion < ActiveRecord::Base
     excursions = excursionsRecent + excursionsPopulars
   end
 
-  def self.getHome(n=20, type='Recent', options={})
-    if type == 'Recent'
-        excursions = getRecent(n,options)
-    elsif type == 'Recommended'
-        options[:models] = [Excursion]
-        excursions =  RecommenderSystem.resource_suggestions(options[:subject], nil, options)
-    else
-        excursions = RecommenderSystem.search(options)
-    end
-    
-    excursions
-  end
-
-
-
   def self.getIdsToAvoid(ids_to_avoid=[],actor=nil)
     ids_to_avoid = ids_to_avoid || []
     
