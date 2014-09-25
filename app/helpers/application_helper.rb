@@ -15,7 +15,7 @@ module ApplicationHelper
 	end
 
 	def popular_excursions(number=10)
-		Excursion.getPopular(number,{:actor=>current_subject, :random=>true})
+		ActivityObject.getPopular(number,{:models=>["Excursion"], :actor=>current_subject, :random=>true})
 	end
 
 	def popular_resources(number=10)

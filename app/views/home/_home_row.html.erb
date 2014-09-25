@@ -1,8 +1,8 @@
-<% firstExcursions = excursions.shift(6).shuffle %>
-<% excursions = firstExcursions + excursions %>
+<% firstResources = resources.shift(6).shuffle %>
+<% resources = firstResources + resources %>
 
-<% excursions.each do |excursion| %>
-  <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :prefix_id=> prefix_id } %>
+<% resources.each do |resource| %>
+  <%= render :partial => 'excursions/excursion', :locals => { :excursion => resource, :prefix_id=> prefix_id } %>
 <% end %>
 
 
