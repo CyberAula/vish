@@ -11,6 +11,8 @@
       <h2><%= @category.title %></h2>
       <!--descripcion-->
       <div class="description"><%= @category.description %></div>
+      <!--author-->
+      <div class="author"> <span class="by"><%=t('by')%></span> <%= link_to @category.author.name, @category.author.subject %></div>
     </div>
     <div class="btn-group">
       <!--editar-->
