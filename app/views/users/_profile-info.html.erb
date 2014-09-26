@@ -344,7 +344,7 @@
         </div>
       <%end%>
 
-      <% if availableModels.include? "Events" %> 
+      <% if availableModels.include? "Event" %> 
         <div class="tab-pane <%= params[:tab]== 'events' ? 'active':''%>" id="tab2">
           <%= render partial: 'users/order_by_dropdown_events' %>
           <%if params[:tab]== 'events'%>
@@ -383,7 +383,7 @@
         </div>
       <%end%>
 
-      <% if availableModels.include? "Categories" %> 
+      <% if availableModels.include? "Category" %> 
         <div class="tab-pane <%=params[:tab]=='categories' ? 'active':''%>" id="tab4">
           <%if params[:tab] == 'categories'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
