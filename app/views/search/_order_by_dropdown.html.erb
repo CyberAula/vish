@@ -1,9 +1,9 @@
 <div class="dropdown order_by_selector" id="">
 <span class="order_by"><%=t('order_by.title')%></span>
-  <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="" data-toggle="dropdown"><i class="icon-eye-open"></i>
+  <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="" data-toggle="dropdown">
+    <i class="icon-eye-open"></i>
     <%=t('order_by.relevance')%><i class="icon-angle-down"></i>
   </button>
-
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
    <li>
         <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type])%>" sort-by-key='relevance'>
@@ -29,7 +29,17 @@
           <span><%=t('order_by.created_at')%> </span>
       </a>
     </li>
-    <%if params[:type]!="user"%>
+
+    <%if params[:type]=="excursion"%>
+      <li>
+          <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"quality")%>" sort-by-key='quality'>          
+            <i class="icon-ok-sign"></i> 
+            <span><%=t('order_by.quality')%> </span>
+          </a>
+      </li>
+    <%end%>
+
+    <%unless params[:type]=="user"%>
       <li>
           <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"visits")%>" sort-by-key='visits'>          
             <i class="icon-eye-open"></i> 
@@ -43,11 +53,8 @@
           </a>
       </li>
     <%end%>
-
   </ul>
-
 </div>
-
 
 <%= content_for :javascript do %>
   var param = "<%=params[:sort_by]%>";
