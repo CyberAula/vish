@@ -1,5 +1,5 @@
 class WaResource < ActiveRecord::Base
-	belongs_to :workshop_activity
+	has_one :workshop_activity, as: :wa_activity 
 	belongs_to :activity_object
 	
 

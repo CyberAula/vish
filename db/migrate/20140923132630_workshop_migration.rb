@@ -9,10 +9,7 @@ class WorkshopMigration < ActiveRecord::Migration
 
     create_table "workshop_activities", :force => true do |t|
       t.integer  "workshop_id"
-      t.integer  "wa_assignment_id"
-      t.integer  "wa_gallery_id"
-      t.integer  "wa_contributions_gallery_id"
-      t.integer  "wa_resource_id"
+      t.integer  "wa_activity_id"
       t.string   "wa_activity_type"
       t.integer  "position"
       t.string   "title"
@@ -21,10 +18,9 @@ class WorkshopMigration < ActiveRecord::Migration
     end
 
     create_table "wa_assignments", :force => true do |t|
-      t.integer  "workshop_activity_id"
       t.text     "description"
       t.datetime "open_date"    
-      t.datetime "close_date"
+      t.datetime "due_date"
       t.datetime "created_at"
       t.datetime "updated_at"
     end
@@ -38,12 +34,11 @@ class WorkshopMigration < ActiveRecord::Migration
     end
 
     create_table "wa_galleries", :force => true do |t|
-      t.integer  "workshop_activity_id"
       t.datetime "created_at"
       t.datetime "updated_at"
     end
 
-    create_table "wa_gallery_activity_objects", :force => true do |t|
+    create_table "wa_gallery_activity_objects", id: false, :force => true do |t|
       t.integer  "wa_gallery_id"
       t.integer  "activity_object_id"
       t.datetime "created_at"
@@ -51,12 +46,11 @@ class WorkshopMigration < ActiveRecord::Migration
     end
 
     create_table "wa_contributions_galleries", :force => true do |t|
-      t.integer  "workshop_activity_id"
       t.datetime "created_at"
       t.datetime "updated_at"
     end
 
-    create_table "wa_contributions_gallery_wa_assignments", :force => true do |t|
+    create_table "wa_contributions_gallery_wa_assignments", id: false, :force => true do |t|
       t.integer  "wa_contributions_gallery_id"
       t.integer  "wa_assignment_id"
       t.datetime "created_at"
@@ -64,7 +58,6 @@ class WorkshopMigration < ActiveRecord::Migration
     end
 
     create_table "wa_resources", :force => true do |t|
-      t.integer  "workshop_activity_id"
       t.integer  "activity_object_id"
       t.datetime "created_at"
       t.datetime "updated_at"
