@@ -1,3 +1,5 @@
+<% availableModels = available_models %>
+<% availableServices = available_services %>
 
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -26,9 +28,8 @@
           </li>
 
           <!--navegation-->
-          <li class="navegation ">
-            <%= render partial: 'layouts/basic_navegation' %>
-          </li>
+          <%= render partial: 'layouts/basic_navegation' %>
+          
 
           <!--add-->
           <li class="add_nav toggler dropdown">
@@ -37,10 +38,18 @@
             </div>
             <ul class="dropdown-menu">
               <!-- dropdown menu links -->
-              <li><%= link_to new_excursion_path do %><i class="icon-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
-              <li><a href="#AddEvent" data-toggle="modal"><i class="icon-facetime-video"></i> <%=t('event.actions.add')%></a></li>
-              <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
-              <li><a href="#AddResource" data-toggle="modal"><i class="icon-file"></i> <%=t('resource.actions.add')%></a></li>
+              <% if availableModels.include? "Excursion" %>
+                <li><%= link_to new_excursion_path do %><i class="icon-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
+              <%end%>
+              <% if availableModels.include? "Event" %>
+                <li><a href="#AddEvent" data-toggle="modal"><i class="icon-facetime-video"></i> <%=t('event.actions.add')%></a></li>
+              <%end%>
+              <% if availableModels.include? "Category" %>
+                <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
+              <%end%>
+              <% if availableModels.include? "Resource" %>
+                <li><a href="#AddResource" data-toggle="modal"><i class="icon-file"></i> <%=t('resource.actions.add')%></a></li>
+              <%end%>
             </ul>
 
           </li>
@@ -89,12 +98,14 @@
                 <% end %>
               </li>
 
-              <li class="settings-menu">
-                <%= link_to quiz_sessions_path do %>
-                  <i class="icon-check"></i>
-                  <%= t('quiz.live') %>
-                <% end %>
-              </li>
+              <% if availableModels.include? "Excursion" and availableServices.include? "ARS" %>
+                <li class="settings-menu">
+                  <%= link_to quiz_sessions_path do %>
+                    <i class="icon-check"></i>
+                    <%= t('quiz.live') %>
+                  <% end %>
+                </li>
+              <%end%>
 
               <li class="divider"></li>
 
@@ -108,9 +119,15 @@
           </li>
 
           <!-- load modals -->
-          <%= render partial: 'events/form' %>
-          <%= render partial: 'repositories/form' %>
-          <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
+          <% if availableModels.include? "Event" %>
+            <%= render partial: 'events/form' %>
+          <%end%>
+          <% if availableModels.include? "Resource" %>
+            <%= render partial: 'repositories/form' %>
+          <%end%>
+          <% if availableModels.include? "Category" %>
+            <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
+          <%end%>
         </ul>
       </div>
 

@@ -15,7 +15,7 @@ module ApplicationHelper
 	end
 
 	def popular_excursions(number=10)
-		Excursion.getPopular(number,{:actor=>current_subject, :random=>true})
+		ActivityObject.getPopular(number,{:models=>["Excursion"], :actor=>current_subject, :random=>true})
 	end
 
 	def popular_resources(number=10)
@@ -56,6 +56,19 @@ module ApplicationHelper
 
 	def resource_language_options_for_select(selected="")
 		options_for_select([[I18n.t('lang.independent'), ""], ['Deutsch', "de"], ['English', "en"], ['Español', "es"], ['Français', "fr"], ['Italiano', "it"], ['Magyar', "hu"], ['Nederlands', "nl"], ['Português', "pt"], ['Русский', "ru"], [I18n.t('lang.others'), "ot"]],selected)
+	end
+
+	#Configuration
+	def available_models
+		VishConfig.getAvailableModels
+	end
+
+	def home_models
+		VishConfig.getHomeModels
+	end
+
+	def available_services
+		VishConfig.getAvailableServices
 	end
 
 end

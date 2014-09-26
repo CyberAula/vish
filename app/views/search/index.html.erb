@@ -1,3 +1,5 @@
+<% availableModels = available_models %>
+
 <section id="search" class="">
   <div class="search">
     <div class="tabbable">
@@ -21,14 +23,16 @@
             <% end %>
           </li>
 
-          <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
-            <% unless params[:browse]%>
-              <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), "#excursion",
-              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
-            <% else %>
-              <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking") %>
-            <%end%>
-          </li>
+          <% if availableModels.include? "Excursion" %>
+            <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
+              <% unless params[:browse]%>
+                <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), "#excursion",
+                :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
+              <% else %>
+                <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking") %>
+              <%end%>
+            </li>
+          <%end%>
 
           <li class="user <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
             <% unless params[:browse]%>
@@ -39,23 +43,27 @@
             <% end %>
           </li>
 
-          <li class="event <%= " active" if params[:type] == "event" %><%= " disabled" unless search_results?("event") %>">
-            <% unless params[:browse]%>
-              <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), "#event",
-              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
-            <% else %>
-              <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), search_path(:type => "event", :browse=>"true", :sort_by => "ranking") %>
-            <% end %>
-          </li>
+          <% if availableModels.include? "Event" %>
+            <li class="event <%= " active" if params[:type] == "event" %><%= " disabled" unless search_results?("event") %>">
+              <% unless params[:browse]%>
+                <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), "#event",
+                :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
+              <% else %>
+                <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), search_path(:type => "event", :browse=>"true", :sort_by => "ranking") %>
+              <% end %>
+            </li>
+          <%end%>
 
-          <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("resource") %>">
-            <% unless params[:browse]%>
-              <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), "#resource",
-              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
-            <% else %>
-              <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), search_path(:type => "resource", :browse=>"true", :sort_by => "ranking") %>
-            <% end%>
-          </li>
+          <% if availableModels.include? "Resource" %>
+            <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("resource") %>">
+              <% unless params[:browse]%>
+                <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), "#resource",
+                :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
+              <% else %>
+                <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), search_path(:type => "resource", :browse=>"true", :sort_by => "ranking") %>
+              <% end%>
+            </li>
+          <%end%>
 
           <%= render partial: 'help/help_search' %>
       </ul>
