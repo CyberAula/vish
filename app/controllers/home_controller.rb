@@ -13,8 +13,7 @@ class HomeController < ApplicationController
               if params[:page] == "1"
                 render partial: "home"
               else
-                # homeModels = VishConfig.getHomeModels({:return_instances => true})
-                homeModels = [Excursion]
+                homeModels = VishConfig.getHomeModels({:return_instances => true})
                 resourcesPopular = RecommenderSystem.search({:n => 16, :order => "ranking DESC", :ids_to_avoid => params[:ids_to_avoid].split(','), :page => params[:page], :models=> homeModels})
                 render partial: "home_popular", :locals => {:resources => resourcesPopular, :ids_to_avoid => params[:ids_to_avoid].split(','), :prefix_id=>"home"}, :layout => false
               end

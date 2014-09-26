@@ -7,7 +7,15 @@ class VishConfig
   end
 
   def self.getAllResourceModels
-    ["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"]
+    ["Document","Webapp","Scormfile","Link","Embed"]
+  end
+
+  def self.getModelsWhichActAsItems
+    ["Excursion"]
+  end
+
+  def self.getAllItemModels
+    getAllResourceModels + getModelsWhichActAsItems
   end
 
   def self.getAllServices
@@ -63,13 +71,13 @@ class VishConfig
     end
   end
 
+  def self.getAvailableItemModels(options={})
+    availableItemModels = getAvailableResourceModels + getAvailableModels.select{|m| getModelsWhichActAsItems.include? m}
 
-
-  def self.getAvailableServices(options={})
-    if Vish::Application.config.APP_CONFIG["services"].nil?
-      return getAllServices
+    if options[:return_instances]
+      getInstances(availableItemModels)
     else
-      return (Vish::Application.config.APP_CONFIG["services"] & getAllServices)
+      availableItemModels
     end
   end
 
@@ -87,6 +95,14 @@ class VishConfig
         nil
       end
     }.compact
+  end
+
+  def self.getAvailableServices(options={})
+    if Vish::Application.config.APP_CONFIG["services"].nil?
+      return getAllServices
+    else
+      return (Vish::Application.config.APP_CONFIG["services"] & getAllServices)
+    end
   end
 
 end
