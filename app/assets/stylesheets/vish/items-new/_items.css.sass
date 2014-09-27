@@ -1,61 +1,11 @@
 //item types
 .excursion-item
-  .info
-    background-color: $white
-    .name
-      a
-        color: $gray
-      a:hover
-        text-decoration: none
-        color: $firstColor
-    .author
-      color: $black
-      a
-        color: $secondColor
-    .info-bottom
-      hr
-        color: $gray !important
-      .views
-        color: $gray
-      .views:after
-        color: $secondColor   
-      .like  
-        .icon-star-empty 
-          color: $gray 
-        .icon-star
-          color: $firstColor 
-
-
-
+  @include item-type-excursion
 
 .event-item,
 .categorie-item,
 .resource-item
-  .info
-    .name
-      a
-        color: $white
-      a:hover
-        color: $white
-    .author
-      color: $white
-      a
-        color: $white
-      span
-        color: $white
-    .info-bottom
-
-      .views
-        color: $white
-      .views:after
-        color: $white
-      .like
-        .count
-          color: $white
-        i,a
-          color: $white
-      .categories_inside
-        color: $white
+  @include item-type-resource
 
 .categorie-item
   .info
@@ -76,52 +26,8 @@
     border-color: $gray transparent transparent transparent 
 
 
-.corner-item
-  position: absolute
-  top: 0
-  left: 0
-  width: 75px
-  height: 75px
-  z-index: 2
-  .corner-item2
-    position: absolute
-    height: 60px
-    width: 60px
-    left: 3px
-    top: 3px
-    z-index: 4
-    -webkit-border-top-left-radius: 5px
-    -moz-border-radius-topleft: 5px
-    border-top-left-radius: 5px
-    overflow: hidden
 
-    .corner-color
-      position: absolute
-      width: 0
-      height: 0
-      border-style: solid
-      border-width: 55px 55px 0 0
-      
-      z-index: 5
 
-    i
-      position: absolute
-      top: 9px
-      left: 9px
-      color: $white
-      font-size: 15px
-      z-index: 6
-
-  .corner-background
-    position: absolute
-    width: 0
-    height: 0
-    border-style: solid
-    border-width: 72px 72px 0 0
-    border-color: $background transparent transparent transparent
-    z-index: 3
-    top: -5px
-    left: -5px
 
 
 
@@ -155,6 +61,8 @@
       height: 110px
       width: 75px
       pointer-events: none
+    .corner-item
+      @include item-corner
     // IMG BOX
     @include img-item-box
     //RESOURCES

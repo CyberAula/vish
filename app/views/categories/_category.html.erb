@@ -15,7 +15,8 @@
         <!--IMG categories-->
           <%= link_to(category) do %>
             <div class="category">
-              <%=category_thumbnail(category)%>            
+              <%#=category_thumbnail(category)%>
+              <%= render :partial => 'categories/thumbnail' %>            
             </div>
           <% end %>
         </div>
