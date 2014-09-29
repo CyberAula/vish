@@ -1,31 +1,3 @@
-//item types
-.excursion-item
-  @include item-type-excursion
-
-.event-item,
-.categorie-item,
-.resource-item
-  @include item-type-resource
-
-.categorie-item
-  .info
-    background-color: $firstColor
-  .corner-color
-    border-color: $firstColor transparent transparent transparent
-
-.resource-item
-  .info
-    background-color: $secondColor
-  .corner-color
-    border-color: $secondColor transparent transparent transparent
-
-.event-item
-  .info
-    background-color: $gray
-  .corner-color
-    border-color: $gray transparent transparent transparent 
-
-
 @media (min-width: 501px) 
   li.box-item
     //animation: 0.8s ease-out 0s normal none 1 zemslideup, 1s ease-out 0s normal none 1 zemfadein
@@ -70,5 +42,4 @@
   @include user-item
 
 
-
-
+@media (min-width: 0px) and (max-width: 501px)

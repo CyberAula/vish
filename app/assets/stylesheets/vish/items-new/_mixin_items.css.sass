@@ -3,7 +3,7 @@
     background-color: $white
     .name
       a
-        color: $gray
+        color: $grayDark
       a:hover
         text-decoration: none
         color: $firstColor
@@ -141,6 +141,8 @@
       color: $white
       font-size: 22px
       z-index: 6
+    i.icon-user
+      color: $gray
   .corner-background
     position: absolute
     width: 0
@@ -230,16 +232,16 @@
     margin-top: -5px
     height: 75px
     @include border-bottom-radius($baseBorderRadius)
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.50)
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.40)
     .name
-      font-family: $thirdFontFamily
-      font-size: 14px
+      font-family: $secondFontFamily
+      font-size: 15px
       word-wrap: break-word
       text-decoration: none
       cursor: pointer
       margin: 0
-      height: 35px
-      line-height: 17px
+      height: 37px
+      line-height: 18px
       overflow: hidden
       width: 100%
 
@@ -273,6 +275,10 @@
         font-size: 12px
         &:hover
           text-decoration: none
+
+
+
+
 
 @mixin footer-item
   .info-bottom
@@ -387,9 +393,6 @@
 
 @mixin user-item
   .contact
-    background-color: transparent !important
-    box-shadow: none !important
-
     //BAGDE teacher
     .badge-teacher-active
       position: absolute
@@ -407,26 +410,45 @@
       .avatar
         a
           img
-            margin-top: 20%
-            @include center-block()
-            @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            @include border-radius($baseBorderRadius)
-    .info
+            width: 100%
+    .info-user
       height: 75px !important
-      .name
+      font-family: $secondFontFamily
+      display: block
+      margin-left: 3px
+      margin-right: 3px
+      
+      margin-top: -5px
+      @include border-bottom-radius($baseBorderRadius)
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.50)
+      .name-user
         text-align: center
         margin: 0
-        height: 30px
+        height: 20px
         line-height: 15px
         overflow: hidden
+        font-family: $secondFontFamily
+        font-size: 18px
+        word-wrap: break-word
+        text-decoration: none
+        cursor: pointer
+        width: 100%
+        padding-top: 5px
         a
-          color: $black
-          font-family: $firstFontFamily
+          color: $grayDark
+          font-family: $secondFontFamily
           text-decoration: none
           &:hover
             color: $firstColor
-      .add
-        @include follow
-    .info-bottom
-      hr
-        display: none
+      .count-followers
+        font-size: 10px
+        margin: 0 auto
+        display: block
+        text-align: center
+        i
+          color: $grayLight
+
+
+      .info-bottom
+        .add
+          @include follow-items-user

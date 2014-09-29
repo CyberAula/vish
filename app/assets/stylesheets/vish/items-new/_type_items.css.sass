@@ -1,0 +1,34 @@
+//item tipography
+.excursion-item,
+.contact
+  @include item-type-excursion
+
+.event-item,
+.categorie-item,
+.resource-item
+  @include item-type-resource
+
+//item type
+.categorie-item
+  .info
+    background-color: $firstColor
+  .corner-color
+    border-color: $firstColor transparent transparent transparent
+
+.resource-item
+  .info
+    background-color: $secondColor
+  .corner-color
+    border-color: $secondColor transparent transparent transparent
+
+.event-item
+  .info
+    background-color: $gray
+  .corner-color
+    border-color: $gray transparent transparent transparent 
+
+.contact
+  .info-user
+    background-color: $white
+  .corner-color
+    border-color: $white transparent transparent transparent 
