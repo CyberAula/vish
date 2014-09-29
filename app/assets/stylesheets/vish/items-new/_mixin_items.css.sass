@@ -1,60 +1,7 @@
-@mixin item-type-excursion
-  .info
-    background-color: $white
-    .name
-      a
-        color: $grayDark
-      a:hover
-        text-decoration: none
-        color: $firstColor
-    .author
-      color: $black
-      a
-        color: $secondColor
-      span
-        color: $grayLight
-    .info-bottom
-      hr
-        color: $gray !important
-      .views
-        color: $gray
-      .views:after
-        color: $secondColor   
-      .like  
-        .icon-star-empty 
-          color: $gray 
-        .icon-star
-          color: $firstColor 
 
-@mixin item-type-resource
-  .info
-    .name
-      a
-        color: $white
-      a:hover
-        color: $white
-    .author
-      color: $white
-      a
-        color: $white
-      span
-        color: $white
-    .info-bottom
-
-      .views
-        color: $white
-      .views:after
-        color: $white
-      .like
-        .count
-          color: $white
-        i,a
-          color: $white
-      .categories_inside
-        color: $white
-
-
+// IMG 
 @mixin img-item-box
+
   .container-img
     display: inline-block
     position: relative
@@ -83,13 +30,11 @@
           float: left
           width: 100%
           height: 100%
-
       i
         font-size: 70px
         color: $secondColor
         &:hover
           text-decoration: none
-
     .resource-center
       i
         padding-top: 20% 
@@ -107,8 +52,30 @@
         color: $firstColor
       i.icon-facetime-video
         color: $gray
+  //small     
+  @media (min-width: 0px) and (max-width: 501px)
+    .container-img
+      width: 35%
+      @include border-left-radius($baseBorderRadius !important) 
+      @include border-right-radius(0 !important)
+      float: left
+      display: inline-block
+      .dummy
+        height: 85px
+        padding-top: 0
+      .element 
+        @include border-left-radius($baseBorderRadius !important) 
+        @include border-right-radius(0 !important)
+        i
+          font-size: 40px
+      .resource-center
+        i
+          padding-top: 17% 
 
 
+
+
+// corner left
 @mixin item-corner
   position: absolute
   top: 0
@@ -154,7 +121,28 @@
     top: -5px
     left: -5px
 
+  //small     
+  @media (min-width: 0px) and (max-width: 501px)
+    width: 66px
+    height: 66px
+    .corner-item2
+      height: 50px
+      width: 50px
+      left: 3px
+      top: 3px
+      .corner-color
+        border-width: 50px 50px 0 0
+      i
+        top: 6px
+        left: 6px
+        font-size: 15px
+    .corner-background
+      border-width: 66px 66px 0 0
+      border-color: $background transparent transparent transparent
+      top: -5px
+      left: -5px
 
+// categories and resource icon
 @mixin resource-item
   .event-img,
   .vish_picture_thumbnail
@@ -162,7 +150,6 @@
     height: 100%
   .resource,
   .category
-
     .category_thumb
       display: none /* old thumbail */
     .container-img-categorie_0
@@ -206,7 +193,6 @@
             float: left
             width: 100%
             height: 100%
-
     .container-img
       padding-bottom: 0.3%
       display: inline-block
@@ -221,7 +207,7 @@
         font-size: 2.3em
         margin-left: -21%
 
-
+//info-item
 @mixin info-item
   .info
     font-family: $secondFontFamily
@@ -244,11 +230,9 @@
       line-height: 18px
       overflow: hidden
       width: 100%
-
     .author
       text-decoration: none
       cursor: pointer
-
       font-size: 12px
       width: 100%
       height: 20px
@@ -262,7 +246,6 @@
         display: inline
         float: left
         font-family: $secondFontFamily
-
       a
         word-wrap: break-word
         text-overflow: ellipsis
@@ -276,10 +259,33 @@
         &:hover
           text-decoration: none
 
+  @media (min-width: 0px) and (max-width: 501px)
+    .info
+      width: 63%
+      height: 79px
+      float: left
+      display: inline-block
+      margin-left: 0
+      margin-right: 0
+      padding: 0 
+      padding-left: 2%
+      @include border-right-radius($baseBorderRadius !important) 
+      @include border-left-radius(0 !important)
+      margin-top: 3px
+      .name
 
+        font-size: 16px
+        margin-top: 3px
+        word-wrap: break-word
+        text-decoration: none
+        cursor: pointer
+        margin: 0
+        height: 34px
+        line-height: 18px
+        overflow: hidden
+        width: 100%
 
-
-
+// FOOTER item 
 @mixin footer-item
   .info-bottom
     font-family: $secondFontFamily !important
@@ -300,7 +306,6 @@
       width: 100%
       float: left
     .like
-
       a
         i
           text-decoration: none
@@ -309,29 +314,27 @@
       float: right
       width: 100%
       text-align: right
-
-.like
-  float: left
-  cursor: default
-  width: 50%
-  .count
-    display: inline-block
-    a
-      display: inline-block
-      i
-        text-decoration: none
-        cursor: pointer
-      .icon-star-empty 
-        margin-top: -5px
-        font-style: none
-      .icon-star
-        margin-top: -5px
-        font-style: none
-
-
-
-
-
+    .like
+      float: left
+      cursor: default
+      width: 50%
+      .count
+        display: inline-block
+        a
+          display: inline-block
+          i
+            text-decoration: none
+            cursor: pointer
+          .icon-star-empty 
+            margin-top: -5px
+            font-style: none
+          .icon-star
+            margin-top: -5px
+            font-style: none
+  @media (min-width: 0px) and (max-width: 501px)
+    .info-bottom
+      padding-right: 5px
+//ADD new
 @mixin add-item
   .add-item
     text-align: center
@@ -390,7 +393,7 @@
       color: $secondColor !important
 
 
-
+// USER item
 @mixin user-item
   .contact
     //BAGDE teacher
@@ -404,7 +407,6 @@
       width: 55px
       background-size: 54px
       pointer-events: none
-
     // IMG BOX
     .container-img
       .avatar
@@ -417,7 +419,6 @@
       display: block
       margin-left: 3px
       margin-right: 3px
-      
       margin-top: -5px
       @include border-bottom-radius($baseBorderRadius)
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.50)
@@ -447,8 +448,6 @@
         text-align: center
         i
           color: $grayLight
-
-
       .info-bottom
         .add
           @include follow-items-user

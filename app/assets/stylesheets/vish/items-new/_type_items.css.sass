@@ -1,12 +1,60 @@
 //item tipography
 .excursion-item,
 .contact
-  @include item-type-excursion
+  .info
+    background-color: $white
+    .name
+      a
+        color: $grayDark
+      a:hover
+        text-decoration: none
+        color: $firstColor
+    .author
+      color: $black
+      a
+        color: $secondColor
+      span
+        color: $grayLight
+    .info-bottom
+      hr
+        color: $gray !important
+      .views
+        color: $gray
+      .views:after
+        color: $secondColor   
+      .like  
+        .icon-star-empty 
+          color: $gray 
+        .icon-star
+          color: $firstColor 
 
 .event-item,
 .categorie-item,
 .resource-item
-  @include item-type-resource
+  .info
+    .name
+      a
+        color: $white
+      a:hover
+        color: $white
+    .author
+      color: $white
+      a
+        color: $white
+      span
+        color: $white
+    .info-bottom
+      .views
+        color: $white
+      .views:after
+        color: $white
+      .like
+        .count
+          color: $white
+        i,a
+          color: $white
+      .categories_inside
+        color: $white
 
 //item type
 .categorie-item

@@ -1,45 +1,43 @@
-@media (min-width: 501px) 
-  li.box-item
-    //animation: 0.8s ease-out 0s normal none 1 zemslideup, 1s ease-out 0s normal none 1 zemfadein
-    position: relative
-    float: left
-    overflow: inherit
-    list-style: none
-    //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
-    @include border-radius($baseBorderRadius)
-    &:hover
-      text-decoration: none
-      //box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.1)
-      transform: scale(1.05)
-      -ms-transform: scale(1.05)
-      -webkit-transform: scale(1.05)
-      transition: all 0.2s ease 0s
-      -ms-transition: all 0.2s ease 0s
-      -webkit-transition: all 0.2s ease 0s
-    //BAGDE EXCURSION
-    .badge-excursion-active
-      position: absolute
-      top: 15px
-      left: -15px
-      z-index: 10
-      background-image: url(" badges/excursionofthemonth.png" )
-      height: 110px
-      width: 75px
-      pointer-events: none
-    .corner-item
-      @include item-corner
-    // IMG BOX
-    @include img-item-box
-    //RESOURCES
-    @include resource-item
-    // NAME
-    @include info-item
-    // VIEWS AND COUNT
-    @include footer-item
-  // ADD ITEM
-  @include add-item
-  // USERS
-  @include user-item
 
+li.box-item
+  //animation: 0.8s ease-out 0s normal none 1 zemslideup, 1s ease-out 0s normal none 1 zemfadein
+  position: relative
+  float: left
+  overflow: inherit
+  list-style: none
+  //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
+  @include border-radius($baseBorderRadius)
+  &:hover
+    text-decoration: none
+    //box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.1)
+    transform: scale(1.05)
+    -ms-transform: scale(1.05)
+    -webkit-transform: scale(1.05)
+    transition: all 0.2s ease 0s
+    -ms-transition: all 0.2s ease 0s
+    -webkit-transition: all 0.2s ease 0s
 
-@media (min-width: 0px) and (max-width: 501px)
+  //BAGDE EXCURSION
+  .badge-excursion-active
+    position: absolute
+    top: 15px
+    left: -15px
+    z-index: 10
+    background-image: url(" badges/excursionofthemonth.png" )
+    height: 110px
+    width: 75px
+    pointer-events: none
+  .corner-item
+    @include item-corner
+  // IMG BOX
+  @include img-item-box
+  //RESOURCES
+  @include resource-item
+  // NAME
+  @include info-item
+  // VIEWS AND COUNT
+  @include footer-item
+// ADD ITEM
+@include add-item
+// USERS
+@include user-item
