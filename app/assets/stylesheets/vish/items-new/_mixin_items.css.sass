@@ -331,10 +331,12 @@
     text-align: center
     overflow: hidden
     margin-bottom: -2px !important
-    border: 3px dashed 
-
     &:hover
       text-decoration: none
+    .add_border
+      border: 3px dashed 
+      @include border-radius($baseBorderRadius)
+
     .container-img
       box-shadow: none !important
       background-color: transparent !important
@@ -351,22 +353,26 @@
       hr
         display: none
   .add-excursion
-    border-color: $grayLight !important
+    .add_border
+      border-color: $grayLight !important
     i,
     a
       color: $grayLight !important
   .add-event
-    border-color: $gray !important
+    .add_border
+      border-color: $gray !important
     i,
     a
       color: $gray !important
   .add-categorie
-    border-color: $firstColor !important
+    .add_border
+      border-color: $firstColor !important
     i,
     a
       color: $firstColor !important
   .add-resource
-    border-color: $secondColor !important
+    .add_border
+      border-color: $secondColor !important
     i,
     a
       color: $secondColor !important
