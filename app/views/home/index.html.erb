@@ -49,7 +49,7 @@
         <%= render partial: 'excursions/order_by_net' %>
         <div id="net_tab_ready">
           <%if params[:tab]=="net"%>
-            <%= render partial: "net_main", :locals =>{:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}%>
+            <%= render partial: "network", :locals =>{:scope => :net, :page=> params[:page], :sort_by=> params[:sort_by]||"popularity", :prefix_id=>"network"}%>
           <%end%>
         </div>
         <div class="loader_pagination" id="loader_pagination_net" style="display:none">
