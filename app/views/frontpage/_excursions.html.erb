@@ -1,4 +1,4 @@
-<ul class="excursions_front">
+<ul class="entities_front">
 	<% popular_excursions(20).each do |excursion| %>
 		<%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
 	<% end %>

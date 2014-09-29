@@ -324,12 +324,12 @@ ActivityObject.class_eval do
     end
 
     if options[:models].nil?
-      options[:models] = VishConfig.getAvailableResourceModels
+      options[:models] = VishConfig.getAvailableItemModels
     end
     options[:models] = options[:models].map{|m| m.to_s }
 
     ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:actor])
-    aos = ActivityObject.joins(:activity_object_audiences).where("activity_objects.object_type in (?) and activity_objects.id not in (?) and activity_object_audiences.relation_id in (?)", options[:models], ids_to_avoid, Relation::Public.first.id).order("ranking DESC").first(nSubset)
+    aos = ActivityObject.where("object_type in (?) and id not in (?) and scope=0", options[:models], ids_to_avoid).order("ranking DESC").first(nSubset)
 
     if random
       aos = aos.sample(n)
@@ -343,19 +343,19 @@ ActivityObject.class_eval do
     nHalf = (n/2.to_f).ceil
 
     if options[:models].nil?
-      options[:models] = VishConfig.getAvailableResourceModels
+      options[:models] = VishConfig.getAvailableItemModels
     end
     options[:models] = options[:models].map{|m| m.to_s }
 
     ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:subject])
-    allAOs = ActivityObject.joins(:activity_object_audiences).where("activity_objects.object_type in (?) and activity_objects.id not in (?) and activity_object_audiences.relation_id in (?)", options[:models], ids_to_avoid, Relation::Public.first.id)
+    allAOs = ActivityObject.where("object_type in (?) and id not in (?) and scope=0", options[:models], ids_to_avoid)
 
     aosRecent = allAOs.order("updated_at DESC").first(nsize)
     aosRecent.sort!{|b,a| a.ranking <=> b.ranking}
     aosRecent = aosRecent.first(nsize/2).sample(nHalf)
 
     ids_to_avoid = aosRecent.map{|ao| ao.id}
-    aosPopular = allAOs.where("activity_objects.id not in (?)", ids_to_avoid).order("ranking DESC").first(nsize)
+    aosPopular = allAOs.where("id not in (?)", ids_to_avoid).order("ranking DESC").first(nsize)
     aosPopular.sort!{|b,a| a.updated_at <=> b.updated_at}
     aosPopular = aosPopular.first(nsize/2).sample(nHalf)
     
