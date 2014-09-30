@@ -506,7 +506,16 @@ class RecommenderSystem
     resources = []
     nSubset = [80,4*n].max
     ids_to_avoid = getIdsToAvoid(preSelection,subject,resource,options)
-    resources = ActivityObject.where("scope=0 and object_type IN (?) and id not in (?)", options[:model_names], ids_to_avoid).order("ranking DESC").limit(nSubset).sample(n).map{|ao| ao.object}.compact
+    resources = ActivityObject.where("scope=0 and object_type IN (?) and id not in (?)", options[:model_names], ids_to_avoid)
+
+    unless options[:language].blank?
+      langResources = resources.where("language='" + options[:language] + "'")
+      if langResources.length >= n
+        resources = langResources
+      end
+    end
+
+    resources.order("ranking DESC").limit(nSubset).sample(n).map{|ao| ao.object}.compact
   end
 
   def self.getIdsToAvoid(preSelection,subject,resource,options)
