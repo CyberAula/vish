@@ -414,7 +414,7 @@
           img
             width: 100%
     .info-user
-      height: 75px !important
+      height: 75px 
       font-family: $secondFontFamily
       display: block
       margin-left: 3px
@@ -451,3 +451,42 @@
       .info-bottom
         .add
           @include follow-items-user
+
+  @media (min-width: 0px) and (max-width: 501px)
+    .info-user
+      width: 65%
+      height: 79px !important
+      float: left
+      display: inline-block
+      margin-left: 0 !important
+      margin-right: 0 !important
+      padding: 0 
+
+      @include border-right-radius($baseBorderRadius !important) 
+      @include border-left-radius(0 !important)
+      margin-top: 3px !important
+      
+      .name-user
+        font-size: 16px
+        margin-top: 3px
+        word-wrap: break-word
+        text-decoration: none
+        cursor: pointer
+        margin: 0
+        height: 24px !important
+        line-height: 18px
+        overflow: hidden
+        width: 100%
+        text-align: left
+      .info-bottom
+        padding-right: 0px !important
+        .add
+          form
+            input
+              @include border-radius(0 0 5px 0px !important)
+          .following-button
+            @include border-radius(0 0 5px 0px !important)
+          .unfollow-button
+            form
+              input
+                @include border-radius(0 0 5px 0px !important)
