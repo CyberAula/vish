@@ -71,8 +71,16 @@
       .resource-center
         i
           padding-top: 17% 
-
-
+        i.icon-scorm-new,
+        i.icon-pdf-new,
+        i.icon-swf-new,
+        i.icon-zip-new,
+        i.icon-webapp-new
+          display: block
+          width: 40px
+          height: 30px
+          margin: 21.5% auto 0
+          background-size: 100%
 
 
 // corner left
@@ -112,8 +120,36 @@
       color: $white
       font-size: 22px
       z-index: 6
+      height: 26px
+      width: 26px
+
     i.icon-user
       color: $gray
+    .icon-scorm-new
+      background-repeat: no-repeat !important
+      background-image: url("icons/resource/scorm-small.png") !important
+      background-size: 100%
+
+
+    .icon-webapp-new
+      background-repeat: no-repeat !important
+      background-image: url("icons/resource/app-small.png") !important
+      background-size: 100%
+
+    .icon-pdf-new
+      background-repeat: no-repeat !important
+      background-image: url("icons/resource/pdf-small.png") !important
+      background-size: 100%
+
+    .icon-zip-new
+      background-repeat: no-repeat !important
+      background-image: url("icons/resource/zip-small.png") !important
+      background-size: 100%
+
+    .icon-swf-new
+      background-repeat: no-repeat !important
+      background-image: url("icons/resource/swf-small.png") !important
+      background-size: 100%
   .corner-background
     position: absolute
     width: 0
@@ -140,6 +176,8 @@
         top: 6px
         left: 6px
         font-size: 15px
+        width: 20px
+        height: 20px
     .corner-background
       border-width: 66px 66px 0 0
       border-color: $background transparent transparent transparent
@@ -177,7 +215,7 @@
       display: inline-block
       position: relative
       border-radius: none
-      background-color: $grayLighter
+      background-color: #C4C4C4
       .dummy-categorie
         padding-top: 75% /* 4:3 aspect ratio */
       .element-categorie
@@ -210,6 +248,11 @@
         color: #fff !important
         font-size: 2.3em
         margin-left: -21%
+  //small     
+  @media (min-width: 0px) and (max-width: 501px)
+    .category
+
+
 
 //info-item
 @mixin info-item
