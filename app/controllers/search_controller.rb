@@ -53,6 +53,8 @@ class SearchController < ApplicationController
       #Use ranking instead of popularity
       order = 'ranking DESC'
       # order = 'popularity DESC'
+    when "quality"
+      order = 'qscore DESC'
     when 'updated_at'
       order = 'updated_at DESC'
     when 'created_at'

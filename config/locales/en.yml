@@ -459,6 +459,7 @@ en:
         server: "Sorry the evaluation server is offline right now. Please check back a bit later."
     modaltitle: "Evaluate your experience with this educational resource"
     tabtitle: "Evaluations"
+    verb: "Evaluate"
   event:
     actions:
       add: "Add event"
@@ -695,6 +696,7 @@ en:
     created_at: "Creation"
     favorites: "Favorites"
     popularity: "Popularity"
+    quality: "Quality"
     relevance: "Relevance"
     title: "Order by"
     updated_at: "Modification"

@@ -149,9 +149,9 @@ class RecommenderSystem
     elsif calculateUSScore
       #Recommend resources for a user (or subject)
       weights[:cs_score] = 0.0
-      weights[:us_score] = 0.50
-      weights[:popularity_score] = 0.25
-      weights[:quality_score] = 0.25
+      weights[:us_score] = 0.80
+      weights[:popularity_score] = 0.10
+      weights[:quality_score] = 0.10
     else
       #Recommend resources for anonymous users
       weights[:cs_score] = 0.0
@@ -227,8 +227,8 @@ class RecommenderSystem
   #User profile Similarity Score (between 0 and 1)
   def self.userProfileSimilarityScore(subject,lo)
     weights = {}
-    weights[:language] = 0.6
-    weights[:keywords] = 0.4
+    weights[:language] = 0.75
+    weights[:keywords] = 0.25
 
     unless ["independent","ot"].include? lo.language
       languageD = RecommenderSystem.getSemanticDistance(subject.language,lo.language)

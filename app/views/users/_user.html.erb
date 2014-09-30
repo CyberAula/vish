@@ -1,7 +1,10 @@
-<li class="contact" id="<%= dom_id user %>">
+<li class="box-item contact" id="<%= dom_id user %>">
+  
+
   <%if user.is_mve %>
-    <div class="badge-teacher-active">  </div>
+    <div class="badge-teacher-active"></div>
   <%end%>
+  
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element">
@@ -21,12 +24,13 @@
       <div class="add">
         <%= contact_button(user) %>
       </div> 
-    <!--____________________ 
+
     <div class="info-bottom">
       <hr class="soften">
       <%#= contact_count(user) %>
-    </div>-->
+    </div>
   </div>
+  
 </li>
 
 

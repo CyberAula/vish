@@ -1,3 +1,4 @@
+
 <span class="helpheader">   
   <i class="fa fa-question-circle helpCategorize" data-placement='left' aria-hidden="true" data-original-title="<%= t('categories.actions.verb')%>" href='#' value="" ></i>
   <div class="contenthelpCategorize" style="display: none">
@@ -5,6 +6,7 @@
       <p> <%= t('document.help.categorize_html')%> </p>
     </div>
     <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
+
   </div>
 </span>
 <script>
@@ -12,7 +14,7 @@ $(document).ready(function(){
   $('.helpCategorize').popover({ 
     html : true,
     content: function() {
-      return $('.contenthelpCategorize').html();
+      return $('.contentCategorize').html();
     }
   });
 });

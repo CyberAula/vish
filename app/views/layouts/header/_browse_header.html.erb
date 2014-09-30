@@ -1,8 +1,11 @@
+<% availableModels = available_models %>
+<% availableServices = available_services %>
 <div class ="btn-group">
   <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
     <%=t('browse.title')%>
     <i class="fa fa-angle-down"></i>
   </a>
+
   <ul class="dropdown-menu">
     <li>
       <a tabindex="-1" href="<%=search_path(:browse=>"true", :sort_by => "popularity")%>">
@@ -10,20 +13,23 @@
         <%=t('browse.all')%>
       </a>
     </li>
-
     <li class="divider"></li>
+    <% if availableModels.include? "Excursion" %>
     <li>
       <a tabindex="-1" href="<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "popularity")%>">
         <i class="fa fa-book"></i> 
         <%=t('excursion.other')%>
       </a>
     </li>
+
     <li>
       <a tabindex="-1" href="<%=search_path(:type => "user", :browse=>"true", :sort_by => "popularity")%>">
         <i class="fa fa-group"></i>
         <%=t('user.other')%>
       </a>
     </li>
+
+    <% if availableModels.include? "Resource" %>
     <li>
       <a tabindex="-1" href="<%=search_path(:type => "resource", :browse=>"true", :sort_by => "popularity")%>">
         <i class="fa fa-file"></i>
@@ -45,6 +51,7 @@
         <%=t('contest.#ViSHCompetition2013')%>
       </a>
     </li>
+
   </ul>
 </div>
 

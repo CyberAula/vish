@@ -1,0 +1,7 @@
+<% homeModels ||= VishConfig.getHomeModels %>
+<%if homeModels.length == 1%>
+  <% homeModel = homeModels.first %>
+  <%if lookup_context.template_exists?("order_by_net", homeModel.tableize, true)%>
+    <%= render partial: "#{homeModel.tableize}/order_by_net" %>
+  <%end%>
+<%end%>

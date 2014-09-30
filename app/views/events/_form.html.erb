@@ -25,7 +25,6 @@
           <label><%= t('event.leyend.description')%></label>
           <%= f.text_area :description, :class => "form-control", :rows => 4, :placeholder => t('event.description_input') %>
 
-          <!--TYPE-->
 
           <label><%= t('event.leyend.type')%></label>
           <div class="checkbox">
@@ -126,17 +125,8 @@
 
           </script>
 
-          <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
-        <% end %>
-      </div><!-- CIERRA BODY-->
-
-      <!-- FOOTER -->
-      <div class="modal-footer">
-        <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
-        <!--<b id="foo" rel="popover">Ayuda </b>-->
-        
-        <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
-      </div>
-    </div>   
+  <!-- FOOTER -->
+  <div class="modal-footer">
+    <input type="button" class="btn-primary" value="<%= t('categories.save')%>"/>
   </div>
 </div>
