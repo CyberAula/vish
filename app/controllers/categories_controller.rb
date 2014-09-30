@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   include SocialStream::Controllers::Objects
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:show]
   skip_load_and_authorize_resource :only => [:categorize]
   
   def index
