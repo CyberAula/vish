@@ -75,8 +75,18 @@ class RecommenderSystem
     preSelection = []
 
     #Search resources using the search engine
+
+    #Filter resources by language
+    if !resource.nil?
+      #Recommending resources similar to other resource
+      options[:language] = resource.language unless [nil,"independent","ot"].include? resource.language
+    elsif !subject.nil?
+      #Recommending resources to a user
+      options[:language] = subject.language unless [nil,"independent","ot"].include? subject.language
+    end
+
     keywords = compose_keywords(subject,resource,options)
-    unless keywords.empty?
+    unless keywords.blank? and options[:language].blank?
       searchEngineResources = (RecommenderSystem.search search_options(keywords,subject,resource,options)).compact rescue []
       preSelection.concat(searchEngineResources)
     end
@@ -91,7 +101,7 @@ class RecommenderSystem
     end
 
     pSL = preSelection.length
-    
+
     if options[:random]
       #Random: fill to Nmax, and select 2/3Nmax randomly
       if pSL < options[:nMax]
@@ -468,8 +478,11 @@ class RecommenderSystem
 
   def self.search_options(keywords,subject,resource,options={})
     opts = {}
-    opts[:keywords] = keywords
     opts[:n] = options[:nMax]
+
+    unless keywords.blank?
+      opts[:keywords] = keywords
+    end
 
     #Only search for desired models
     opts[:models] = options[:models]
@@ -480,6 +493,10 @@ class RecommenderSystem
 
     unless resource.nil?
       opts[:ao_ids_to_avoid] = [resource.activity_object.id]
+    end
+
+    unless options[:language].nil?
+      opts[:language] = options[:language]
     end
 
     return opts
