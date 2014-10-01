@@ -74,6 +74,11 @@ class CategoriesController < ApplicationController
     render :json => { :success => true }
   end
 
+  def reSort
+    render :json => { :success => true }
+  end
+
+
   def update
     @category.title = params[:category][:title]
     @category.description = params[:category][:description]
@@ -91,9 +96,14 @@ class CategoriesController < ApplicationController
     end
    end
 
-
   private
- 
+  
+  def moveThingsInsideOut( primary, secondary)
+      if Category.find(primary).class == Category || ActivityObject.find(primary).object_type == "Category"
+        
+      end
+  end
+
   def allowed_params
     [:item_type, :item_id, :scope]
   end
