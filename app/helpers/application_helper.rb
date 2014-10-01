@@ -60,11 +60,15 @@ module ApplicationHelper
 
 	#Configuration
 	def available_models
-		VishConfig.getAvailableModels
+		VishConfig.getAvailableMainModels
 	end
 
 	def home_models
 		VishConfig.getHomeModels
+	end
+
+	def catalogue_models
+		VishConfig.getCatalogueModels
 	end
 
 	def available_services
