@@ -1,7 +1,6 @@
 
 // IMG 
 @mixin img-item-box
-
   .container-img
     display: inline-block
     position: relative
@@ -37,7 +36,7 @@
           text-decoration: none
     .resource-center
       i
-        padding-top: 20% 
+        padding-top: 25px 
         display: block
       i.icon-scorm-new,
       i.icon-pdf-new,
@@ -52,36 +51,6 @@
         color: $firstColor
       i.icon-facetime-video
         color: $gray
-  //small     
-  @media (min-width: 0px) and (max-width: 501px)
-    .container-img
-      width: 35%
-      @include border-left-radius($baseBorderRadius !important) 
-      @include border-right-radius(0 !important)
-      float: left
-      display: inline-block
-      .dummy
-        height: 85px
-        padding-top: 0
-      .element 
-        @include border-left-radius($baseBorderRadius !important) 
-        @include border-right-radius(0 !important)
-        i
-          font-size: 40px
-      .resource-center
-        i
-          padding-top: 17% 
-        i.icon-scorm-new,
-        i.icon-pdf-new,
-        i.icon-swf-new,
-        i.icon-zip-new,
-        i.icon-webapp-new
-          display: block
-          width: 40px
-          height: 30px
-          margin: 21.5% auto 0
-          background-size: 100%
-
 
 // corner left
 @mixin item-corner
@@ -161,29 +130,6 @@
     top: -5px
     left: -5px
 
-  //small     
-  @media (min-width: 0px) and (max-width: 501px)
-    width: 66px
-    height: 66px
-    .corner-item2
-      height: 50px
-      width: 50px
-      left: 3px
-      top: 3px
-      .corner-color
-        border-width: 50px 50px 0 0
-      i
-        top: 6px
-        left: 6px
-        font-size: 15px
-        width: 20px
-        height: 20px
-    .corner-background
-      border-width: 66px 66px 0 0
-      border-color: $background transparent transparent transparent
-      top: -5px
-      left: -5px
-
 // categories and resource icon
 @mixin resource-item
   .event-img,
@@ -248,11 +194,6 @@
         color: #fff !important
         font-size: 2.3em
         margin-left: -21%
-  //small     
-  @media (min-width: 0px) and (max-width: 501px)
-    .category
-
-
 
 //info-item
 @mixin info-item
@@ -277,6 +218,8 @@
       line-height: 18px
       overflow: hidden
       width: 100%
+      a:hover
+        text-decoration: none
     .author
       text-decoration: none
       cursor: pointer
@@ -305,32 +248,6 @@
         font-size: 12px
         &:hover
           text-decoration: none
-
-  @media (min-width: 0px) and (max-width: 501px)
-    .info
-      width: 63%
-      height: 79px
-      float: left
-      display: inline-block
-      margin-left: 0
-      margin-right: 0
-      padding: 0 
-      padding-left: 2%
-      @include border-right-radius($baseBorderRadius !important) 
-      @include border-left-radius(0 !important)
-      margin-top: 3px
-      .name
-
-        font-size: 16px
-        margin-top: 3px
-        word-wrap: break-word
-        text-decoration: none
-        cursor: pointer
-        margin: 0
-        height: 34px
-        line-height: 18px
-        overflow: hidden
-        width: 100%
 
 // FOOTER item 
 @mixin footer-item
@@ -378,9 +295,7 @@
           .icon-star
             margin-top: -5px
             font-style: none
-  @media (min-width: 0px) and (max-width: 501px)
-    .info-bottom
-      padding-right: 5px
+
 //ADD new
 @mixin add-item
   .add-item
@@ -498,42 +413,3 @@
       .info-bottom
         .add
           @include follow-items-user
-
-  @media (min-width: 0px) and (max-width: 501px)
-    .info-user
-      width: 65%
-      height: 79px !important
-      float: left
-      display: inline-block
-      margin-left: 0 !important
-      margin-right: 0 !important
-      padding: 0 
-
-      @include border-right-radius($baseBorderRadius !important) 
-      @include border-left-radius(0 !important)
-      margin-top: 3px !important
-      
-      .name-user
-        font-size: 16px
-        margin-top: 3px
-        word-wrap: break-word
-        text-decoration: none
-        cursor: pointer
-        margin: 0
-        height: 24px !important
-        line-height: 18px
-        overflow: hidden
-        width: 100%
-        text-align: left
-      .info-bottom
-        padding-right: 0px !important
-        .add
-          form
-            input
-              @include border-radius(0 0 5px 0px !important)
-          .following-button
-            @include border-radius(0 0 5px 0px !important)
-          .unfollow-button
-            form
-              input
-                @include border-radius(0 0 5px 0px !important)
