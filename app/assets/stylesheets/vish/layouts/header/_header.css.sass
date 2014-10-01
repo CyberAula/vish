@@ -167,25 +167,33 @@ header.navbar,
         .navegation
           float: left
           margin-right: 7px
-          .headernav   
-            a
-              i
-                color: #c8c8c8
-                font-size: 20px
-                text-decoration: none
-                padding: 9px
-                margin: 5px 3px
-                display: block
-                float: left
+          border: solid 1px #EEE
+          border-radius: 3px
+          padding: 1px
+          margin-top: 5px  
+          a
+            padding: 8px
+            i
+              color: #c8c8c8
+              font-size: 20px
+              text-decoration: none
+              padding: 0
+              margin: 0
+              display: block
+              float: left
 
-              i:hover
-                color: $firstColor
-                text-decoration: none
-                border-color: $firstColor
-              .notification
-                color: $secondColor
+            i:hover
+              color: $firstColor
+              text-decoration: none
+              border-color: $firstColor
+            .notification
+              color: $secondColor
             .btnhomefix    
               margin-left: 4px
+          &:hover
+            border-color: $firstColor
+            a i 
+              color: $firstColor
         .search-ui
           float: left
 
@@ -282,7 +290,9 @@ header.navbar,
     color: #FFFFFF
     margin: 0 auto
     font-family: $firstFontFamily
-    width: 80%
+    width: 98%
+    padding: 0.5% 1% 0.5% 1%
+    text-align: center
     a
       color: $white
       font-family: $thirdFontFamily

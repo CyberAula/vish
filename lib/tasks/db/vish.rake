@@ -354,7 +354,7 @@ namespace :db do
   #Usage
   #Development:   bundle exec rake db:install
   #In production: bundle exec rake db:install RAILS_ENV=production
-  desc "Anonymize database for delivering"
+  desc "Install database for new ViSH instance"
   task :install => :environment do
     printTitle("Installation: populating database")
 

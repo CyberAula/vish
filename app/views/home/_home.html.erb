@@ -1,0 +1,31 @@
+<%
+  homeModels = VishConfig.getHomeModels({:return_instances => true})
+  resourcesRecommended = RecommenderSystem.resource_suggestions(current_subject, nil, {:n => 15, :models => homeModels})
+  ids_to_avoid = resourcesRecommended.map{|r| r.activity_object.id}
+  resourcesRecent = ActivityObject.getRecent(15,{:subject => current_subject, :ids_to_avoid => ids_to_avoid, :models => homeModels})
+  ids_to_avoid += resourcesRecent.map{|r| r.activity_object.id}
+  resourcesPopular = RecommenderSystem.search({:n => 16, :order => "ranking DESC", :ao_ids_to_avoid => ids_to_avoid, :page => 1, :models=> homeModels})
+  ids_to_avoid += resourcesPopular.map{|r| r.activity_object.id}
+%>
+
+<section id="excursions_tab_ready3" class="entities recent_entities">
+  <ul class="first_entities">
+    <%= render partial: "home/add_new" %>
+    <%= render partial: 'home_row', :locals => { :resources => resourcesRecent, :prefix_id=>"home" } %>
+  </ul>
+  <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
+</section>
+
+<section id="excursions_tab_ready2" class="entities foryou_entities">
+  <ul class="items">
+    <h3> <%= t("home.foryou")%> </h3>
+    <%= render partial: 'home_row', :locals => { :resources => resourcesRecommended, :prefix_id=>"home"} %>
+  </ul>
+</section>
+ 
+<section id="home_tab_ready" class="entities">
+  <ul class="">
+    <h3> <%= t("home.populars")%> </h3>
+    <%= render partial: 'home_popular', :locals => { :resources => resourcesPopular, :ids_to_avoid => ids_to_avoid, :prefix_id=>"home"} %>
+  </ul>
+</section>

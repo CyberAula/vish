@@ -18,7 +18,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myCongratLabel"><%= t('contest.prizes') %></h3>
   </div>
-  <div class="modal-body evaluation_body">
+  <div class="modal-body">
     <p><%=t('contest.prizes2')%>
         </br><%=t('contest.prizes_first_a')%>
         </br><%=t('contest.prizes_second_a')%>
@@ -39,7 +39,7 @@
   <div id="podium">
     <div class="podiuminside">
       <div class="podiuminside1">
-        <div class="excursions">
+        <div class="entities">
           <ul>
             <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } %>
           </ul>
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="podiuminside2">
-        <div class="excursions">
+        <div class="entities">
           <ul>
             <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } %>
           </ul>
@@ -63,7 +63,7 @@
         </div>
       </div>
       <div class="podiuminside3">
-        <div class="excursions">
+        <div class="entities">
           <ul>
             <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } %>
           </ul>

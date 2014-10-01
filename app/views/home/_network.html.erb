@@ -1,0 +1,7 @@
+<section id="networking_tab_ready" class="entities">
+  <ul class="items">
+    <%= render partial: "home/add_new" %>
+    <%= render partial: 'network_resources', :locals => { :scope => :net, :limit => params[:limit], :page => params[:page], :sort_by=> sort_by, :prefix_id=> prefix_id} %>
+  </ul>
+</section>
+
