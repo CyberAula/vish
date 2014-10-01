@@ -2,32 +2,40 @@
 
 class VishConfig
 
-  def self.getAllModels
+  def self.getMainModels
     ["Excursion","Event","Category","Resource"]
   end
 
-  def self.getAllResourceModels
+  def self.getResourceModels
     ["Document","Webapp","Scormfile","Link","Embed"]
   end
 
-  def self.getModelsWhichActAsItems
+  def self.getAllModels
+    processAlias(getMainModels)
+  end
+
+  def self.getAllPossibleModelValues
+    getMainModels + getResourceModels
+  end
+
+  def self.getModelsWhichActAsResources
     ["Excursion"]
   end
 
-  def self.getAllItemModels
-    getAllResourceModels + getModelsWhichActAsItems
+  def self.getAllResourceModels
+    getResourceModels + getModelsWhichActAsResources
   end
 
   def self.getAllServices
     ["ARS","Catalogue","Competitions2013"]
   end
 
-  def self.getAvailableModels(options={})
+  def self.getAvailableMainModels(options={})
     availableModels = []
     if Vish::Application.config.APP_CONFIG["models"].nil? or Vish::Application.config.APP_CONFIG["models"]["available"].nil?
-      availableModels = getAllModels
+      availableModels = getMainModels
     else
-      availableModels = (Vish::Application.config.APP_CONFIG["models"]["available"] & getAllModels)
+      availableModels = (Vish::Application.config.APP_CONFIG["models"]["available"] & getMainModels)
     end
 
     if options[:return_instances]
@@ -40,9 +48,9 @@ class VishConfig
   def self.getHomeModels(options={})
     homeModels = []
     if Vish::Application.config.APP_CONFIG["models"].nil? or Vish::Application.config.APP_CONFIG["models"]["home"].nil?
-      homeModels = getAllModels
+      homeModels = getAllResourceModels
     else
-      homeModels = (Vish::Application.config.APP_CONFIG["models"]["home"] & getAllModels)
+      homeModels = (Vish::Application.config.APP_CONFIG["models"]["home"] & getAllPossibleModelValues)
     end
 
     if options[:return_instances]
@@ -52,16 +60,31 @@ class VishConfig
     end
   end
 
+  def self.getCatalogueModels(options={})
+    catalogueModels = []
+    if Vish::Application.config.APP_CONFIG["models"].nil? or Vish::Application.config.APP_CONFIG["models"]["catalogue"].nil?
+      catalogueModels = getAllResourceModels
+    else
+      catalogueModels = (Vish::Application.config.APP_CONFIG["models"]["catalogue"] & getAllPossibleModelValues)
+    end
+
+    if options[:return_instances]
+      getInstances(catalogueModels)
+    else
+      catalogueModels
+    end
+  end
+
   def self.getAvailableResourceModels(options={})
-    unless getAvailableModels.include? "Resource"
+    unless getAvailableMainModels.include? "Resource"
       return []
     end
 
     availableResourceModels = []
     if Vish::Application.config.APP_CONFIG["models"].nil? or Vish::Application.config.APP_CONFIG["models"]["resources"].nil?
-      availableResourceModels = getAllResourceModels
+      availableResourceModels = getResourceModels
     else
-      availableResourceModels = (Vish::Application.config.APP_CONFIG["models"]["resources"] & getAllResourceModels)
+      availableResourceModels = (Vish::Application.config.APP_CONFIG["models"]["resources"] & getResourceModels)
     end
 
     if options[:return_instances]
@@ -71,8 +94,8 @@ class VishConfig
     end
   end
 
-  def self.getAvailableItemModels(options={})
-    availableItemModels = getAvailableResourceModels + getAvailableModels.select{|m| getModelsWhichActAsItems.include? m}
+  def self.getAvailableAllResourceModels(options={})
+    availableItemModels = getAvailableResourceModels + getAvailableMainModels.select{|m| getModelsWhichActAsResources.include? m}
 
     if options[:return_instances]
       getInstances(availableItemModels)
@@ -81,14 +104,17 @@ class VishConfig
     end
   end
 
-  def self.getInstances(models=[])
+  def self.processAlias(models=[])
     if models.include? "Resource"
       models.delete "Resource"
       models += getAvailableResourceModels
     end
     models.uniq!
+    return models
+  end
 
-    models.map{|m| 
+  def self.getInstances(models=[])
+    processAlias(models).map{ |m|
       begin
         m.constantize
       rescue

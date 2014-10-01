@@ -324,7 +324,7 @@ ActivityObject.class_eval do
     end
 
     if options[:models].nil?
-      options[:models] = VishConfig.getAvailableItemModels
+      options[:models] = VishConfig.getAvailableAllResourceModels
     end
     options[:models] = options[:models].map{|m| m.to_s }
 
@@ -343,7 +343,7 @@ ActivityObject.class_eval do
     nHalf = (n/2.to_f).ceil
 
     if options[:models].nil?
-      options[:models] = VishConfig.getAvailableItemModels
+      options[:models] = VishConfig.getAvailableAllResourceModels
     end
     options[:models] = options[:models].map{|m| m.to_s }
 
@@ -412,14 +412,24 @@ ActivityObject.class_eval do
   private
 
   def fill_relation_ids
-    unless self.object_type == "Actor" or self.object.nil?
-      unless self.object_type == "Excursion" and self.object.draft==true
-        #Always public except drafts
-        self.object.relation_ids = [Relation::Public.instance.id]
-        self.relation_ids = [Relation::Public.instance.id]
-      else
-        self.object.relation_ids = [Relation::Private.instance.id]
-        self.relation_ids = [Relation::Private.instance.id]
+    unless self.object.nil?
+      if self.object_type != "Actor"
+        #Resources
+        unless self.object_type == "Excursion" and self.object.draft==true
+          #Always public except drafts
+          self.object.relation_ids = [Relation::Public.instance.id]
+          self.relation_ids = [Relation::Public.instance.id]
+        else
+          self.object.relation_ids = [Relation::Private.instance.id]
+          self.relation_ids = [Relation::Private.instance.id]
+        end
+      elsif self.object_type == "Actor"
+        #Actors
+        if self.object.admin?
+          self.relation_ids = [Relation::Private.instance.id]
+        else
+          self.relation_ids = [Relation::Public.instance.id]
+        end
       end
     end
   end
