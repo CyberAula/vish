@@ -8,8 +8,9 @@ development:
   main_mail: "virtual.science.hub@gmail.com"
   models:
     available: ["Excursion","Resource","Event","Category"]
+    resources: ["Document","Webapp","Scormfile","Link","Embed"]
     home: ["Excursion"]
-    resources: ["Document", "Webapp", "Scormfile","Link","Embed"]
+    catalogue: ["Excursion"]
   services: ["ARS","Catalogue","Competitions2013"]
 
 production:
@@ -21,8 +22,9 @@ production:
   main_mail: "virtual.science.hub@gmail.com"
   models:
     available: ["Excursion","Resource","Event","Category"]
+    resources: ["Document","Webapp","Scormfile","Link","Embed"]
     home: ["Excursion"]
-    resources: ["Document", "Webapp", "Scormfile","Link","Embed"]
+    catalogue: ["Excursion"]
   services: ["ARS","Catalogue","Competitions2013"]
 
 #Other configuration options
