@@ -24,8 +24,16 @@ class DeviseInvitationsController < Devise::InvitationsController
 	  def create
 	    self.resource = resource_class.invite!(resource_params, current_inviter)
 	    if resource.errors.empty?
-	      set_flash_message :notice, :send_instructions, :email => self.resource.email
-	      respond_with resource, :location => after_invite_path_for(resource)
+	        respond_to do |format|
+		      format.html {
+		   		if request.xhr?
+					render nothing: true
+				else
+					set_flash_message :notice, :send_instructions, :email => self.resource.email
+	      			respond_with resource, :location => after_invite_path_for(resource)
+				end
+			  }
+			end	      
 	    else
 	      respond_with_navigational(resource) { render :new }
 	    end

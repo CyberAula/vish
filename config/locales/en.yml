@@ -354,6 +354,7 @@ en:
     invitations:
       modal_title: Send an invitation
       button: Invite anyone to join the community
+      submit_button: Send an invitation
       success: Invitation sent succesfully
     invalid_login: "Please enter your email and password to continue."
     tags: "tags"

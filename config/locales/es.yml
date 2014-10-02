@@ -351,6 +351,7 @@ es:
     invitations:
       modal_title: Enviar una invitación
       button: Invita a alguien a unirse a la comunidad
+      submit_button: Enviar una invitación
       success: Invitación enviada exitosamente
     email: "Email"
     name: "Nombre"
