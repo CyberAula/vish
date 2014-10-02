@@ -348,6 +348,10 @@ es:
   date_name: "fecha"
   description: "descripción"
   devise:
+    invitations:
+      modal_title: Enviar una invitación
+      button: Invita a alguien a unirse a la comunidad
+      success: Invitación enviada exitosamente
     email: "Email"
     name: "Nombre"
     password: "Contraseña"
@@ -402,6 +406,9 @@ es:
       resources2_html : "En esta sección se muestra el recurso en el que ha entrado. En la zona de la derecha, tendrás recursos recomendadas, bajo el recurso se muestra la información de la misma, así como las maneras sencillas de compartirla , descargarlo, marcarla como spam, hacerlo favorita, o etiquetarlo dentro de una de sus categorías. También puedes comentar el recurso desde la parte inferior."
       favourite1_html : "Favoritos"
       favourite2_html : "Esta sección muestra tus recursos favoritos, en el veras los elementos que has hecho favoritos."
+      inv: "Enviar una nueva invitación"
+      inv1_html: "1. Escribe el <b> email </b> de la persona a la que quieras invitar a la comunidad"
+      inv2_html: "2. Después, haz click en <b>Enviar una invitación</b>"
       overview_html: "<a href='/overview'><i class='icon-info-sign btn-mini'></i>¿Qué es ViSH?</a>"
     helpquiz:
       info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>" 

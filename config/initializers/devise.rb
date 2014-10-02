@@ -96,6 +96,7 @@ Devise.setup do |config|
   # Default: false
   # config.validate_on_invite = true
 
+
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
   # confirming his account. For instance, if set to 2.days, the user will be

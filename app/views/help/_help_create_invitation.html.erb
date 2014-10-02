@@ -1,0 +1,30 @@
+<li class="helpheader">   
+  <i class="icon-question-sign helpInvitations" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.inv')%>" href='#' value="" ></i>
+  <div class="contenthelpInvitations" style="display: none">
+    <div>
+       <%= t('document.help.inv1_html')%>
+       <br/>
+       <%= t('document.help.inv2_html')%>
+    </div>
+    <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
+  </div>
+</li>
+<script>
+  $('.helpInvitations').popover({ 
+    html : true,
+    content: function() {
+      return $('.contenthelpInvitations').html();
+    }
+  });
+
+$('body').on('click', function (e) {
+  $('.helpInvitations').each(function () {
+        //the 'is' for buttons that trigger popups
+        //the 'has' for icons within a button that triggers a popup
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+          $(this).popover('hide');
+        }
+      });
+});
+</script>
+

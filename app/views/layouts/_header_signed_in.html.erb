@@ -29,7 +29,7 @@
 
           <!--navegation-->
           <%= render partial: 'layouts/basic_navegation' %>
-          
+          <!-- modal with partial for invitation after header in this same file -->
 
           <!--add-->
           <li class="add_nav toggler dropdown">
@@ -138,6 +138,10 @@
     </div>
   </div>
 </header>
+
+<!-- modal with partial for invitation, filled by ajax-->
+<%= render partial: 'devise/invitations/new_modal' %>
+
 
   
   <script type="text/javascript">

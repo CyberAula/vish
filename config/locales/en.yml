@@ -351,6 +351,10 @@ en:
   date_name: "date"
   description: "description"
   devise:
+    invitations:
+      modal_title: Send an invitation
+      button: Invite anyone to join the community
+      success: Invitation sent succesfully
     invalid_login: "Please enter your email and password to continue."
     tags: "tags"
   disjunction:
@@ -401,6 +405,9 @@ en:
       resources2_html : "This section shows the resource in which you have entered. On the right zone, recommended resources will be shown, under the resource you have the information of it, as well as easy ways to share it, download it, mark it as spam, make it as favorite, or put it into one of your categories. You can also comment the resource from the bottom."
       favourite1_html : "Favourites"
       favourite2_html : "This section displays your favorite resources on items that really have made favorites."
+      inv: "Create a new invitation"
+      inv1_html: "1. Type the <b> email </b> of the person that you want to invite to join the community"
+      inv2_html: "2. Then, click on <b>Send an invitation</b>"
       overview_html: "<a href='/overview'><i class='icon-info-sign btn-mini'></i>ViSH Overview</a>"
     helpquiz:
       info1_html: "1. Help test 1 for the quiz<br>"  

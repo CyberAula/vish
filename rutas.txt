@@ -14,31 +14,11 @@ SOCIAL CONFIG
           edit_user_registration GET      /users/edit(.:format)                                                registrations#edit
                                  PUT      /users(.:format)                                                     registrations#update
                                  DELETE   /users(.:format)                                                     registrations#destroy
-          accept_user_invitation GET      /users/invitation/accept(.:format)                                   invitations#edit
-          remove_user_invitation GET      /users/invitation/remove(.:format)                                   invitations#destroy
-                 user_invitation POST     /users/invitation(.:format)                                          invitations#create
-             new_user_invitation GET      /users/invitation/new(.:format)                                      invitations#new
-                                 PUT      /users/invitation(.:format)                                          invitations#update
-                new_user_session GET      /users/sign_in(.:format)                                             devise/sessions#new
-                                 POST     /users/sign_in(.:format)                                             devise/sessions#create
-            destroy_user_session DELETE   /users/sign_out(.:format)                                            devise/sessions#destroy
-         user_omniauth_authorize GET|POST /users/auth/:provider(.:format)                                      devise/omniauth_callbacks#passthru {:provider=>/(?!)/}
-          user_omniauth_callback GET|POST /users/auth/:action/callback(.:format)                               devise/omniauth_callbacks#(?-mix:(?!))
-                                 POST     /users/password(.:format)                                            devise/passwords#create
-                                 GET      /users/password/new(.:format)                                        devise/passwords#new
-                                 GET      /users/password/edit(.:format)                                       devise/passwords#edit
-                                 PUT      /users/password(.:format)                                            devise/passwords#update
-                                 GET      /users/cancel(.:format)                                              devise_invitable/registrations#cancel
-                                 POST     /users(.:format)                                                     devise_invitable/registrations#create
-                                 GET      /users/sign_up(.:format)                                             devise_invitable/registrations#new
-                                 GET      /users/edit(.:format)                                                devise_invitable/registrations#edit
-                                 PUT      /users(.:format)                                                     devise_invitable/registrations#update
-                                 DELETE   /users(.:format)                                                     devise_invitable/registrations#destroy
-          accept_user_invitation GET      /users/invitation/accept(.:format)                                   users/invitations#edit
-          remove_user_invitation GET      /users/invitation/remove(.:format)                                   users/invitations#destroy
-                                 POST     /users/invitation(.:format)                                          users/invitations#create
-                                 GET      /users/invitation/new(.:format)                                      users/invitations#new
-                                 PUT      /users/invitation(.:format)                                          users/invitations#update
+          accept_user_invitation GET      /users/invitation/accept(.:format)                                   devise_invitations#edit
+          remove_user_invitation GET      /users/invitation/remove(.:format)                                   devise_invitations#destroy
+                 user_invitation POST     /users/invitation(.:format)                                          devise_invitations#create
+             new_user_invitation GET      /users/invitation/new(.:format)                                      devise_invitations#new
+                                 PUT      /users/invitation(.:format)                                          devise_invitations#update
                                           /users/:id/excursions(.:format)                                      users#excursions
                                           /users/:id/resources(.:format)                                       users#resources
                                           /users/:id/events(.:format)                                          users#events
@@ -173,7 +153,7 @@ SOCIAL CONFIG
                             room GET      /rooms/:id(.:format)                                                 rooms#show
                                  PUT      /rooms/:id(.:format)                                                 rooms#update
                                  DELETE   /rooms/:id(.:format)                                                 rooms#destroy
-                                          /.well-known/host-meta(.:format)                                     #<Proc:0x0000000b075e08@/var/lib/gems/1.9.1/gems/actionpack-3.2.14/lib/action_controller/metal.rb:245>
+                                          /.well-known/host-meta(.:format)                                     #<Proc:0x0000000a13b2f8@/var/lib/gems/1.9.1/gems/actionpack-3.2.14/lib/action_controller/metal.rb:245>
                        webfinger          /webfinger(.:format)                                                 webfinger#index
                             pshb          /pshb(.:format)                                                      pshb#index
                           salmon          /salmon/:slug(.:format)                                              salmon#index
