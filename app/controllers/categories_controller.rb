@@ -75,6 +75,18 @@ class CategoriesController < ApplicationController
   end
 
   def reSort
+
+    #if insertions array params presents
+    # parse.Json params
+    # for each in MovethingsOut
+    # then deletes of all elemens in delete
+    if params[:movements].present?
+      
+    end
+
+    if params[:deletions].present?
+
+    end
     render :json => { :success => true }
   end
 
@@ -98,9 +110,13 @@ class CategoriesController < ApplicationController
 
   private
   
-  def moveThingsInsideOut( primary, secondary)
-      if Category.find(primary).class == Category || ActivityObject.find(primary).object_type == "Category"
-        
+  def moveThingsInsideOut(primary, secondary)
+    #It would be nice to put a dot marking if that is a root category or not
+    #Cases -actual state is root goes to undercategory.
+    #      - actual state is not root and goes to root
+    #      - actual state is not root and goes to no root -> implemented
+      if ActivityObject.find(primary).object_type == "Category"
+          ActivityObject.find(primary).property_objects << secondary
       end
   end
 
