@@ -12,6 +12,8 @@ development:
     home: ["Excursion"]
     catalogue: ["Excursion"]
   services: ["ARS","Catalogue","Competitions2013"]
+  register_policy: "FREE"   #this can be FREE, HYBRID or INVITATION_ONLY
+
 
 production:
   domain: "vishub.org"
@@ -26,6 +28,8 @@ production:
     home: ["Excursion"]
     catalogue: ["Excursion"]
   services: ["ARS","Catalogue","Competitions2013"]
+  register_policy: "FREE"
+
 
 #Other configuration options
 

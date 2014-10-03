@@ -139,8 +139,10 @@
   </div>
 </header>
 
-<!-- modal with partial for invitation, filled by ajax-->
-<%= render partial: 'devise/invitations/new_modal' %>
+<%if Vish::Application.config.APP_CONFIG["register_policy"] == "INVITATION_ONLY"%>
+  <!-- modal with partial for invitation, filled by ajax-->
+  <%= render partial: 'devise/invitations/new_modal' %>
+<%end%>
 
 
   

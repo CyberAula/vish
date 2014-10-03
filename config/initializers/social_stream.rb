@@ -8,9 +8,19 @@ SocialStream.setup do |config|
   # Include devise modules in User. See devise documentation for details.
   # Others available are:
   # :confirmable, :lockable, :timeoutable, :validatable
-  config.devise_modules = :database_authenticatable, :registerable,
-                          :recoverable, :rememberable, :trackable,
-                          :omniauthable, :token_authenticatable, :invitable
+  if Vish::Application.config.APP_CONFIG["register_policy"] == "INVITATION_ONLY"
+    config.devise_modules = :database_authenticatable,
+                            :recoverable, :rememberable, :trackable,
+                            :omniauthable, :token_authenticatable, :invitable
+  elsif Vish::Application.config.APP_CONFIG["register_policy"] == "FREE"
+    config.devise_modules = :database_authenticatable, :registerable,
+                            :recoverable, :rememberable, :trackable,
+                            :omniauthable, :token_authenticatable
+  else
+    config.devise_modules = :database_authenticatable, :registerable,
+                            :recoverable, :rememberable, :trackable,
+                            :omniauthable, :token_authenticatable, :invitable
+  end
 
   # Type of activities managed by actors
   # Remember you must add an "activity_object_id" foreign key column to your migration!
