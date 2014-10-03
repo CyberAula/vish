@@ -2,7 +2,7 @@
 <section id="category">
   <div class="category_info">
     <div class="icon-box">
-      <%=category_thumbnail(@category)%>
+      <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category} %>
     </div>  
     <div class="information">
       <!--ayuda-->
