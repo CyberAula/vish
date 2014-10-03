@@ -376,14 +376,15 @@
           img
             width: 100%
     .info-user
-      height: 86px 
       font-family: $secondFontFamily
       display: block
       margin-left: 3px
       margin-right: 3px
+      padding: 5px 0 5px
       margin-top: -5px
+      height: 75px
       @include border-bottom-radius($baseBorderRadius)
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.50)
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.40)
       .name-user
         text-align: center
         margin: 0
@@ -404,7 +405,7 @@
           &:hover
             color: $firstColor
       .count-followers
-        font-size: 11px
+        font-size: 10px
         margin: 0 auto
         display: block
         text-align: center
@@ -412,5 +413,5 @@
           color: $grayLight
       .info-bottom
         .add
-          margin-top: 10px
+          margin-top: 6px
           @include follow-items-user
