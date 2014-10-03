@@ -9,6 +9,6 @@ module CatalogueHelper
 
 	def getCategoryResources(category,limit=100)
 		keywords = Vish::Application.config.catalogue[category]
-		RecommenderSystem.search({:keywords=>keywords, :n=>limit, :models => [Excursion], :order => 'ranking DESC', :qualityThreshold=>5})
+		RecommenderSystem.search({:keywords=>keywords, :n=>limit, :models => VishConfig.getCatalogueModels({:return_instances => true}), :order => 'ranking DESC', :qualityThreshold=>5})
 	end
 end

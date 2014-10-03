@@ -1,5 +1,6 @@
 class TrackingSystemEntriesController < ApplicationController
 
+  protect_from_forgery :except => [:index,:create]
   before_filter :authenticate_app, :only => [ :index, :create ]
   skip_load_and_authorize_resource :only => [ :create ]
 

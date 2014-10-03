@@ -7,10 +7,11 @@ development:
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
   models:
-    available: ["Excursion","Resource"]
+    available: ["Excursion","Resource","Event","Category"]
+    resources: ["Document","Webapp","Scormfile","Link","Embed"]
     home: ["Excursion"]
-    resources: ["Document", "Webapp", "Scormfile","Link","Embed"]
-  services: ["Catalogue"]
+    catalogue: ["Excursion"]
+  services: ["ARS","Catalogue","Competitions2013"]
 
 production:
   domain: "vishub.org"
@@ -19,7 +20,12 @@ production:
   test_domain: false
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
-
+  models:
+    available: ["Excursion","Resource","Event","Category"]
+    resources: ["Document","Webapp","Scormfile","Link","Embed"]
+    home: ["Excursion"]
+    catalogue: ["Excursion"]
+  services: ["ARS","Catalogue","Competitions2013"]
 
 #Other configuration options
 

@@ -29,7 +29,7 @@ then
 	vishLogo
 	echo "Reseting Fulldatabase, Populating and starting server..."
 	echo " " 
-	bundle exec rake db:reset db:migrate db:populate ts:rebuild; rails s
+	bundle exec rake db:reset db:migrate db:populate fix:actorRelations ts:rebuild; rails s
 else
 	vishLogo
 	echo " "

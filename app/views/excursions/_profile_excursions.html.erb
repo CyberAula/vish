@@ -1,7 +1,7 @@
-<div id="excursions_tab_ready" class="excursions">
+<div id="excursions_tab_ready" class="entities">
 	<ul>
 		<% if profile_subject_is_current? and page===1%>
-			<%= render partial: 'excursions/excursion-add' %>
+			<%= render partial: 'excursions/add_new' %>
 		<% end %>
 		<%= render partial: 'excursions/excursions_profile', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> sort_by} %>
 	</ul> 

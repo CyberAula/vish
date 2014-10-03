@@ -2,24 +2,40 @@
 
 class VishConfig
 
-  def self.getAllModels
+  def self.getMainModels
     ["Excursion","Event","Category","Resource"]
   end
 
+  def self.getResourceModels
+    ["Document","Webapp","Scormfile","Link","Embed"]
+  end
+
+  def self.getAllModels
+    processAlias(getMainModels)
+  end
+
+  def self.getAllPossibleModelValues
+    getMainModels + getResourceModels
+  end
+
+  def self.getModelsWhichActAsResources
+    ["Excursion"]
+  end
+
   def self.getAllResourceModels
-    ["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"]
+    getResourceModels + getModelsWhichActAsResources
   end
 
   def self.getAllServices
     ["ARS","Catalogue","Competitions2013"]
   end
 
-  def self.getAvailableModels(options={})
+  def self.getAvailableMainModels(options={})
     availableModels = []
     if Vish::Application.config.APP_CONFIG["models"].nil? or Vish::Application.config.APP_CONFIG["models"]["available"].nil?
-      availableModels = getAllModels
+      availableModels = getMainModels
     else
-      availableModels = (Vish::Application.config.APP_CONFIG["models"]["available"] & getAllModels)
+      availableModels = (Vish::Application.config.APP_CONFIG["models"]["available"] & getMainModels)
     end
 
     if options[:return_instances]
@@ -32,9 +48,9 @@ class VishConfig
   def self.getHomeModels(options={})
     homeModels = []
     if Vish::Application.config.APP_CONFIG["models"].nil? or Vish::Application.config.APP_CONFIG["models"]["home"].nil?
-      homeModels = getAllModels
+      homeModels = getAllResourceModels
     else
-      homeModels = (Vish::Application.config.APP_CONFIG["models"]["home"] & getAllModels)
+      homeModels = (Vish::Application.config.APP_CONFIG["models"]["home"] & getAllPossibleModelValues)
     end
 
     if options[:return_instances]
@@ -44,16 +60,31 @@ class VishConfig
     end
   end
 
+  def self.getCatalogueModels(options={})
+    catalogueModels = []
+    if Vish::Application.config.APP_CONFIG["models"].nil? or Vish::Application.config.APP_CONFIG["models"]["catalogue"].nil?
+      catalogueModels = getAllResourceModels
+    else
+      catalogueModels = (Vish::Application.config.APP_CONFIG["models"]["catalogue"] & getAllPossibleModelValues)
+    end
+
+    if options[:return_instances]
+      getInstances(catalogueModels)
+    else
+      catalogueModels
+    end
+  end
+
   def self.getAvailableResourceModels(options={})
-    unless getAvailableModels.include? "Resource"
+    unless getAvailableMainModels.include? "Resource"
       return []
     end
 
     availableResourceModels = []
     if Vish::Application.config.APP_CONFIG["models"].nil? or Vish::Application.config.APP_CONFIG["models"]["resources"].nil?
-      availableResourceModels = getAllResourceModels
+      availableResourceModels = getResourceModels
     else
-      availableResourceModels = (Vish::Application.config.APP_CONFIG["models"]["resources"] & getAllResourceModels)
+      availableResourceModels = (Vish::Application.config.APP_CONFIG["models"]["resources"] & getResourceModels)
     end
 
     if options[:return_instances]
@@ -63,7 +94,34 @@ class VishConfig
     end
   end
 
+  def self.getAvailableAllResourceModels(options={})
+    availableItemModels = getAvailableResourceModels + getAvailableMainModels.select{|m| getModelsWhichActAsResources.include? m}
 
+    if options[:return_instances]
+      getInstances(availableItemModels)
+    else
+      availableItemModels
+    end
+  end
+
+  def self.processAlias(models=[])
+    if models.include? "Resource"
+      models.delete "Resource"
+      models += getAvailableResourceModels
+    end
+    models.uniq!
+    return models
+  end
+
+  def self.getInstances(models=[])
+    processAlias(models).map{ |m|
+      begin
+        m.constantize
+      rescue
+        nil
+      end
+    }.compact
+  end
 
   def self.getAvailableServices(options={})
     if Vish::Application.config.APP_CONFIG["services"].nil?
@@ -71,22 +129,6 @@ class VishConfig
     else
       return (Vish::Application.config.APP_CONFIG["services"] & getAllServices)
     end
-  end
-
-  def self.getInstances(models=[])
-    if models.include? "Resource"
-      models.delete "Resource"
-      models += getAvailableResourceModels
-    end
-    models.uniq!
-
-    models.map{|m| 
-      begin
-        m.constantize
-      rescue
-        nil
-      end
-    }.compact
   end
 
 end

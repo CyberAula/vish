@@ -310,7 +310,9 @@ class ExcursionsController < ApplicationController
     #Prepare parameters to call the RecommenderSystem
 
     if params[:excursion_id]
-      current_excursion =  Excursion.find(params[:excursion_id]) rescue nil
+      current_excursion =  Excursion.find_by_id(params[:excursion_id])
+    else
+      current_excursion = nil
     end
 
     options = {:n => (params[:quantity] || 6).to_i, :models => [Excursion]}
