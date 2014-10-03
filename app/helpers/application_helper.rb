@@ -49,6 +49,20 @@ module ApplicationHelper
 		result += "</div>"
 		return raw result
 	end
+	
+	def new_category_thumbnail(category)
+		thumbs_array = []
+    	category.property_objects.each do |item|
+	      	if item.object.class == Picture
+	        	thumbs_array << item.object.file.to_s+"?style=500"
+	      	elsif item.object.class == Excursion
+	        	thumbs_array << excursion_raw_thumbail(item.object)
+	      	elsif item.object.class == Event && !item.object.poster.file_file_name.nil?
+	        	thumbs_array << item.object.poster.file.to_s
+	      	end
+    	end
+    	thumbs_array
+	end
 
 	def isAdmin?
 		user_signed_in? and current_user.admin?
