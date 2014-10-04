@@ -1,6 +1,7 @@
 <div id="categories_tab_ready" class="categories cat_container_generic">
 	<% if profile_subject_is_current? %>
  	<button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button">Editar</button>
+  <%= render partial: 'categories/edit_categories', :locals => { :scope => scope} %>
 	<% end	%>
   <ul class="categories"> 	
     <% if profile_subject_is_current? %>
@@ -15,33 +16,23 @@
 </div>
 <script>
 
+/* First version
 function eXtractAndRelocate(divfromExtract){
 	//Get Info and remove
 	var main = $(divfromExtract).html();
 	$(divfromExtract).html("");
 
-	var overlayItemStart = '<div class="overlay container" style="opacity: 0.90; background-color: gray; position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; z-index: 9999; overflow-y: auto;">';
+	var overlayItemStart = '<div class="overlay container" style="opacity: 0.90; background-color: gray; position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; z-index: 9999; overflow-y: auto; display:none;">';
 	var overlayItemEnd = '</div>';
 	$(divfromExtract).html(overlayItemStart + main + overlayItemEnd);
-
-
-}
-
+}*/
 
 
 $(document).ready(function(){
 	$(".btn-for-categorize").click(function(){
-		eXtractAndRelocate(".cat_container_generic");
-    /*
-      CSS from div .overlay
-      opacity: 0.90; background-color: black; position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; z-index: 9999;
-    */
+		$("#categories_edition").fadeIn();
   });
 });
 
 
-
-function createABlockingDiv( mainContainer, divClass){
-  
-}
 </script>
