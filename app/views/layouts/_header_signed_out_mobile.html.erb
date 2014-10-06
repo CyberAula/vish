@@ -36,7 +36,7 @@
     </ul>
   </li>
 
-  <%if Vish::Application.config.APP_CONFIG["register_policy"] == "FREE" || Vish::Application.config.APP_CONFIG["register_policy"] == "HYBRID"%>
+  <%if Vish::Application.config.APP_CONFIG["register_policy"] == "REGISTER_ONLY" || Vish::Application.config.APP_CONFIG["register_policy"] == "HYBRID"%>
   <!--sign_up-->
   <li class="sign_up_mobile">
     <a href="<%=new_user_registration_path%>"class="signin">

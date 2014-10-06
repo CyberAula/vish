@@ -12,7 +12,7 @@ SocialStream.setup do |config|
     config.devise_modules = :database_authenticatable,
                             :recoverable, :rememberable, :trackable,
                             :omniauthable, :token_authenticatable, :invitable
-  elsif Vish::Application.config.APP_CONFIG["register_policy"] == "FREE"
+  elsif Vish::Application.config.APP_CONFIG["register_policy"] == "REGISTER_ONLY"
     config.devise_modules = :database_authenticatable, :registerable,
                             :recoverable, :rememberable, :trackable,
                             :omniauthable, :token_authenticatable
