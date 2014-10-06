@@ -50,17 +50,17 @@
     class: "btn" %>
   <% end %>
 
+  <!--Favorite-->
+  <% unless document.post_activity.nil? %>
+    <%= link_like(document.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
+  <%end%>
 
   <%if user_signed_in? %>
-        <%#=categories_select(:category_id, @excursion)%>
-        <%#= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
-        <%#= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>
-        <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => resource} %>
-        <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" ><i class="icon-th-large"></i></button>
-        
-      <%end%>
-</div>
+    <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => resource} %>
+    <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" ><i class="icon-th-large"></i></button>
+  <%end%>
 
+</div>
 
 <div class="tabbable">
   <ul class="nav nav-tabs">
