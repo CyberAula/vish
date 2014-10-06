@@ -81,12 +81,32 @@ class CategoriesController < ApplicationController
     # for each in MovethingsOut
     # then deletes of all elemens in delete
     if params[:movements].present?
-      
+      begin
+        movements = JSON.parse(params[:movements])
+      rescue
+        movements = []
+      end
     end
+
+    movements.each do |n|
+      #Find n[0] put n[0] y n[1]
+
+    end
+
 
     if params[:deletions].present?
-
+      begin
+        deletions = JSON.parse(params[:deletions])
+      rescue
+        deletions = []
+      end
     end
+
+    deletions.each do |r|
+      #check if the object exists
+      ActivityObject.find(r).destroy!
+    end
+
     render :json => { :success => true }
   end
 
