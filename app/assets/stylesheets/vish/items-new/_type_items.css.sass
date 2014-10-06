@@ -1,6 +1,9 @@
 //item tipography
 .excursion-item,
-.contact
+.contact,
+.event-item,
+.categorie-item,
+.resource-item
   .info
     background-color: $white
     .name
@@ -14,10 +17,10 @@
       a
         color: $secondColor
       span
-        color: $grayLight
+        color: $gray
     .info-bottom
       hr
-        color: $gray !important
+        color: #C0C0C0 !important
       .views
         color: $gray
       .views:after
@@ -28,50 +31,23 @@
         .icon-star
           color: $firstColor 
 
-.event-item,
-.categorie-item,
-.resource-item
-  .info
-    .name
-      a
-        color: $white
-      a:hover
-        color: $white
-    .author
-      color: $white
-      a
-        color: $white
-      span
-        color: $white
-    .info-bottom
-      .views
-        color: $white
-      .views:after
-        color: $white
-      .like
-        .count
-          color: $white
-        i,a
-          color: $white
-      .categories_inside
-        color: $white
 
 //item type
 .categorie-item
   .info
-    background-color: $firstColor
+    background-color: $white
   .corner-color
     border-color: $firstColor transparent transparent transparent
 
 .resource-item
   .info
-    background-color: $secondColor
+    background-color: $white
   .corner-color
     border-color: $secondColor transparent transparent transparent
 
 .event-item
   .info
-    background-color: $gray
+    background-color: $white
   .corner-color
     border-color: $gray transparent transparent transparent 
 

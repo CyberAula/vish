@@ -218,7 +218,7 @@
       line-height: 18px
       overflow: hidden
       width: 100%
-      a:hover
+      &:hover
         text-decoration: none
     .author
       text-decoration: none
@@ -230,7 +230,7 @@
       word-wrap: break-word
       text-overflow: ellipsis
       &:before
-        color: $grayLight
+        color: $gray
       span
         width: 20px
         display: inline
@@ -258,6 +258,7 @@
     hr
       margin: 0
       border-width: 1px 0 0
+      border-top: 1px solid 
     .soften
       margin-bottom: 1px
     .views
@@ -327,8 +328,8 @@
         font-size: 18px !important
         line-height: 22px !important 
         overflow: visible !important
-      &:hover
-        text-decoration: none
+        &:hover
+          text-decoration: none
   .add-excursion
     .add_border
       border-color: $grayLight !important
@@ -389,7 +390,7 @@
         text-align: center
         margin: 0
         height: 20px
-        line-height: 15px
+        line-height: 18px
         overflow: hidden
         font-family: $secondFontFamily
         font-size: 18px
