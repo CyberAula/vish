@@ -2,7 +2,7 @@
 
   .category_info
     margin-bottom: 20px
-    background-color: $firstColor
+    background-color: $white
     display: block
     float: left
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -11,7 +11,7 @@
     position: relative
     .icon-box-fav
       font-size: 50px
-      color: $secondColor
+      color: $firstColor
       float: left
       display: inline-block
       clear: left
@@ -26,6 +26,9 @@
       margin-top: 0px
     .helpheader
       margin-right: 15px
+      .icon-question-sign 
+        i
+          color: $gray
 
 
     .icon-box
@@ -150,7 +153,7 @@
       h2
         @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
         line-height: 34px
-        color: $white
+        color: $gray
         font-family: $secondFontFamily
         word-wrap: break-word
 
@@ -158,15 +161,15 @@
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: left
         display: inline-block
-        color: $white
+        color: $grayLight
         font-size: 14px
         word-wrap: break-word
 
       .author
-        color: $white
+        color: $gray
         font-size: 10px
         a
-          color: $white
+          color: $secondColor
           font-weight: bold
           font-size: 14px
 
@@ -184,13 +187,13 @@
         height: 93%
         float: left
         i
-          color: $white
+          color: $firstColor
           position: absolute
           font-size: 8.3em
           padding-top: 1%
           padding-left: 3.3%
       .icon-question-sign
-        color: white
+        color: $gray
     .update
       @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
       float: left
@@ -198,7 +201,7 @@
       label
         font-size: 12px
         font-family: $secondFontFamily
-        color: $white
+        color: $firstColor
         display: block
         float: left
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -212,7 +215,6 @@
         float: left
         width: 96%
         padding: 4px 2%
-        border: none
       .actions
         display: block
         float: left
@@ -226,13 +228,7 @@
         a
           float: right
           margin-right: 10px
-        .btn,input
-          background-color: $white
-          background-image: none
-          color: $firstColor
-          border: 1px solid $firstColor 
-          i,a
-            color: $firstColor
+
 
 
 
@@ -242,25 +238,12 @@
       left: 15%
       bottom: 5px
       width: 84%
-      border-top: 1px solid $white
       padding-top: 5px
       padding-left: 10px
+      border-top: 1px solid $grayLight
       i
         margin-right: 5px
-      .btn:first-child
-        background-color: $white
-        background-image: none
-        color: $firstColor
-        
-        border-color: none
-      .btn
 
-        background-color: $white
-        background-image: none
-        color: $firstColor
-        border: 1px solid $firstColor 
-        i,a
-          color: $firstColor
 
 
 
