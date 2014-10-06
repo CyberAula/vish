@@ -36,7 +36,7 @@
       //setTimeout(function(){ $("#flash .alert").hide("slow") }, 5000);
       //code to hide the help popovers when clicking outside
       $('body').on('click', function (e) {
-              if (!$(e.target).parents(".helpbutton").size()>0) {
+              if ($(".popover").is(":visible") && !$(e.target).parents(".helpbutton").size()>0) {
                   $(".helppopover").popover('hide');
               }
       });
