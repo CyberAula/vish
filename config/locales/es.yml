@@ -13,7 +13,7 @@ es:
     verb:
       make-friend:
         User:
-          title: "%{subject} y %{contact} están siguiéndose"
+          title: "%{subject} y %{contact} están siguiéndose."
           message: "%{name} también te está siguiendo."
   activity2:
     one: "actividad"
@@ -673,8 +673,10 @@ es:
     fill_profile: "No tienes relleno tu perfil con tus <b>areas de interés</b> y tu <b>ocupación</b> en la sección de información personal. Con estos datos te podremos dar una mejor recomendación personalizada. Por favor rellena tu perfil <a href='%{url}'>aquí</a>."
   notification:
     config_html: "Si quieres modificar el servicio de notificaciones. Pulsa <a href='%{url}'>aquí</a>"
+    follow:
+      user: "%{sender} te está siguiendo."
     makefriend:
-      user: "%{sender} está siguiendo a %{who}."
+      user: "%{sender} te está siguiendo."
     unread: " sin leer"  
   offline:
     title: "Modo sin conexión"
