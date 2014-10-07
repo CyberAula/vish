@@ -239,6 +239,10 @@ namespace :fix do
         ao.update_column :language, "independent"
       end
     end
+
+    User.all.select{|u| u.language.blank?}.each do |user|
+      user.update_column :language, "en"
+    end
   end
 
   
