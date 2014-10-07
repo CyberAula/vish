@@ -229,6 +229,21 @@ namespace :fix do
   end
 
   #Usage
+  #Development:   bundle exec rake fix:AOsLanguage
+  #In production: bundle exec rake fix:AOsLanguage RAILS_ENV=production
+  task :AOsLanguage => :environment do
+    ActivityObject.all.select{|ao| ao.language.blank?}.each do |ao|
+      if ao.object_type=="Actor"
+        ao.update_column :language, "en"
+      elsif ["Document", "Link", "Excursion", "Embed", "Scormfile", "Webapp"].include? ao.object_type
+        ao.update_column :language, "independent"
+      end
+    end
+  end
+
+  
+
+  #Usage
   #Development:   bundle exec rake fix:recalculateScores
   #In production: bundle exec rake fix:recalculateScores RAILS_ENV=production
   task :recalculateScores => :environment do
