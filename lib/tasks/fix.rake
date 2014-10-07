@@ -232,6 +232,11 @@ namespace :fix do
   #Development:   bundle exec rake fix:AOsLanguage
   #In production: bundle exec rake fix:AOsLanguage RAILS_ENV=production
   task :AOsLanguage => :environment do
+    User.all.select{|u| u.language.blank?}.each do |user|
+      user.update_column :language, "en"
+      user.activity_object.update_column :language, "en"
+    end
+
     ActivityObject.all.select{|ao| ao.language.blank?}.each do |ao|
       if ao.object_type=="Actor"
         ao.update_column :language, "en"
@@ -240,8 +245,8 @@ namespace :fix do
       end
     end
 
-    User.all.select{|u| u.language.blank?}.each do |user|
-      user.update_column :language, "en"
+    User.all.select{|u| !u.language.blank? and u.language!=u.activity_object.language}.each do |user|
+      user.activity_object.update_column :language, user.language
     end
   end
 
