@@ -12,6 +12,14 @@ ActivityObject.class_eval do
 
   validates_attachment_content_type :avatar, :content_type =>["image/jpeg", "image/png", "image/gif", "image/tiff", "image/x-ms-bmp"], :message => 'Avatar should be an image. Non supported format.'
 
+  scope :with_tag, lambda { |tag|
+    ActivityObject.tagged_with(tag).where("scope=0").order("ranking DESC")
+  }
+
+  scope :public_scope, lambda {
+    ActivityObject.where("scope=0")
+  }
+
   attr_accessor :score
   attr_accessor :score_tracking
   
