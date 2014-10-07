@@ -13,21 +13,18 @@
       </div>
   </div>
 
-  <!--INFO excursuion-->
   <div class="info">
     <!--Title -->
     <div class="name">
       <%= link_to(truncate_name(user.name), user.subject)%>
     </div>
 
-    <!--Autor -->
     <div class="add">
       <%= contact_button(user) %>
     </div>
 
     <div class="info-bottom">
       <hr class="soften">
-      <%#= contact_count(user) %>
     </div>
   </div>
   
