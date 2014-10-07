@@ -59,17 +59,21 @@
 //info-item
 @mixin info-item-small
   .info
-    width: 58%
-    height: 79px
+    width: 56%
+    //width: 58%
+    //height: 79px
+    height: 85px
     float: left
     display: inline-block
-    margin-left: 0
+    //margin-left: 0
+    margin-left: -1px
     margin-right: 0
     padding: 0 
     padding-left: 2%
     @include border-right-radius($baseBorderRadius !important) 
     @include border-left-radius(0 !important)
-    margin-top: 3px
+    //margin-top: 3px
+    margin-top: 0px
     .name
 
       font-size: 16px
@@ -78,7 +82,8 @@
       text-decoration: none
       cursor: pointer
       margin: 0
-      height: 34px
+      //height: 34px
+      height: 40px
       line-height: 18px
       overflow: hidden
       width: 100%
@@ -94,17 +99,17 @@
 @mixin user-item-small
 
   .info-user
-    width: 60%
+    width: 58% !important
     height: 79px !important
     float: left
     display: inline-block
-    margin-left: 0 !important
+    margin-left: -1px !important
     margin-right: 0 !important
-    padding: 0 
+    padding: 0 0 6px!important
 
     @include border-right-radius($baseBorderRadius !important) 
     @include border-left-radius(0 !important)
-    margin-top: 3px !important
+    margin-top: 0px !important
     
     .name-user
       font-size: 16px
@@ -120,13 +125,13 @@
       text-align: left
     .info-bottom
       padding-right: 0px !important
-      .add
+    .add
+      form
+        input
+          @include border-radius(0 0 5px 0px !important)
+      .following-button
+        @include border-radius(0 0 5px 0px !important)
+      .unfollow-button
         form
           input
             @include border-radius(0 0 5px 0px !important)
-        .following-button
-          @include border-radius(0 0 5px 0px !important)
-        .unfollow-button
-          form
-            input
-              @include border-radius(0 0 5px 0px !important)

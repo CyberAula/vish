@@ -7,8 +7,7 @@
     width: 100%
     background-color: $white
     @include border-top-radius($baseBorderRadius)
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
-    //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+    //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
     .dummy
       padding-top: 75% /* 4:3 aspect ratio */
     .element
@@ -200,15 +199,20 @@
   .info
     font-family: $secondFontFamily
     display: block
-    margin-left: 3px
-    margin-right: 3px
-    padding: 5px
-    margin-top: -5px
+    margin-left: 0px
+    margin-right: 0px
+    //margin-left: 3px
+    //margin-right: 3px
+    //padding: 5px
+    padding: 3%
+    margin-top: -6px
     height: 75px
     @include border-bottom-radius($baseBorderRadius)
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.40)
+    //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.40)
+    
+    width: 94%
     .name
-      font-family: $secondFontFamily
+      font-family: $thirdFontFamily
       font-size: 15px
       word-wrap: break-word
       text-decoration: none
@@ -256,9 +260,11 @@
     font-size: $baseFontSize
     clear: both
     hr
-      margin: 0
+
+      margin: 0 0 0 -3%
       border-width: 1px 0 0
       border-top: 1px solid 
+      width: 106%
     .soften
       margin-bottom: 1px
     .views
@@ -306,7 +312,7 @@
     &:hover
       text-decoration: none
     .add_border
-      border: 3px dashed 
+      border: 2px dashed 
       @include border-radius($baseBorderRadius)
 
     .container-img
@@ -372,6 +378,7 @@
       pointer-events: none
     // IMG BOX
     .container-img
+      border: 1px solid $grayLight
       .avatar
         a
           img
@@ -379,13 +386,17 @@
     .info-user
       font-family: $secondFontFamily
       display: block
-      margin-left: 3px
-      margin-right: 3px
-      padding: 5px 0 5px
-      margin-top: -5px
+      margin-left: 0px
+      margin-right: 0px
+      padding: 3% 0 3% 0
+      margin-top: -6px
       height: 75px
       @include border-bottom-radius($baseBorderRadius)
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.40)
+      //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.40)
+      border: 1px solid $grayLight
+      width: 100%
+
+
       .name-user
         text-align: center
         margin: 0
@@ -413,6 +424,8 @@
         i
           color: $grayLight
       .info-bottom
-        .add
-          margin-top: 6px
-          @include follow-items-user
+        hr
+          display: none
+      .add
+        margin-top: 6px
+        @include follow-items-user
