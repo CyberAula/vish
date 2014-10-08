@@ -136,14 +136,7 @@
     var cat_done_array = [];
 
     $("#myCategories .tagit-choice").each(function(index,elem){
-<<<<<<< HEAD
-      //comprobar primero los que tengan un attrvalue null para crearlos
-      if ($(elem).attr("tagvalue") != null){
-        cat_done_array.push({id: $(elem).attr("tagvalue")});
-      }
-      else {
-=======
->>>>>>> 9a2f0185cd8ea02793a28c532f33aa5d18ed1d76
+
         cat_done_array.push({title: $(elem).text()});
       }
     });
