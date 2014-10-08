@@ -156,19 +156,7 @@
       
       <!--LANGUAGE-->
       <label><%= t('document.leyend.language')%></label>
-      <select class="language">
-        <option value="" selected="1">(<%= t('lang.independent') %>)</option>
-        <option value="de">Deutsch</option>
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <option value="fr">Français</option>
-        <option value="it">Italiano</option>
-        <option value="hu">Magyar</option>
-        <option value="nl">Nederlands</option>
-        <option value="pt">Português</option>
-        <option value="ru">Русский</option>
-        <option value="ot"><%= t('lang.others') %></option>
-      </select>
+      <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "language") %>
       
       <!--AGE SLIDER-->
       <label><%= t('document.leyend.recommended_age')%></label>

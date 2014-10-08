@@ -1,23 +1,30 @@
-<li class="box-item resource-item favouritebox">
-  <!--IMG resource-->
+<li class="box-item categorie-item">
+<div class="corner-item">
+  <div class="corner-item2">
+    <div class="corner-color"></div>
+    <i class="icon-star "></i>
+  </div>
+<div class="corner-background"></div>
+
+</div>
   <div class="container-img">
-    <div class="dummy"></div>
-    <div class="element resource-center">
+      <div class="dummy"></div>
+      <div class="element resource-center">
+
       <%= link_to "/categories/favorites" do %>
         <i class="icon-star "></i>
       <% end %>
-    </div>
+
+      </div>
   </div>
-
-  <!--INFO resource-->
+    
+<!--INFO excursuion-->
   <div class="info">
-
-    <!--Title -->
+<!--Title -->
     <div class="name">
       <%= link_to t('categories.favorites.title'), "/categories/favorites" %>
     </div>
-
-    <!--Autor -->
+<!--Autor -->
     <span class="author"> 
       <span class="by"><%=t('by')%></span>
       <%= link_to current_subject.name, current_subject.subject %>
@@ -34,5 +41,6 @@
 
       </div>
     </div>
+
   </div>
 </li>

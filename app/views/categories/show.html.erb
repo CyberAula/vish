@@ -1,8 +1,16 @@
 
 <section id="category">
   <div class="category_info">
+      <!-- corner -->
+    <div class="corner-item">
+      <div class="corner-item2">
+        <div class="corner-color"></div>
+        <i class="icon-th-large"></i>
+      </div>
+      <div class="corner-background"></div>
+    </div>
     <div class="icon-box">
-      <%=category_thumbnail(@category)%>
+      <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category} %>
     </div>  
     <div class="information">
       <!--ayuda-->
@@ -35,7 +43,7 @@
       <%= f.text_field :description %>
       <div class="actions">
         <%= f.submit t('categories.save'), :id => "saveCategory" %>
-        <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-primary"%>
+        <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn "%>
         <% end %>
       </div>
     </div>

@@ -139,7 +139,7 @@
   </div>
 </header>
 
-<%if Vish::Application.config.APP_CONFIG["register_policy"] == "INVITATION_ONLY" || Vish::Application.config.APP_CONFIG["register_policy"] == "HYBRID"%>
+<%if ["INVITATION_ONLY","HYBRID"].include? Vish::Application.config.APP_CONFIG["register_policy"] %>
   <!-- modal with partial for invitation, filled by ajax-->
   <%= render partial: 'devise/invitations/new_modal' %>
 <%end%>

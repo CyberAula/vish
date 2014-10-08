@@ -12,14 +12,14 @@ development:
     home: ["Excursion"]
     catalogue: ["Excursion"]
   services: ["ARS","Catalogue","Competitions2013"]
-  register_policy: "FREE"   #this can be FREE, HYBRID or INVITATION_ONLY
-
+  languages: ["en", "es", "de", "nl", "hu", "fr"]
+  register_policy: "FREE"   #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'
 
 production:
   domain: "vishub.org"
+  test_domain: false
   code_domain: "vishubcode.global.dit.upm.es"
   code_path: "/home/isabel/vish-shared/documents/code"
-  test_domain: false
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
   models:
@@ -28,6 +28,7 @@ production:
     home: ["Excursion"]
     catalogue: ["Excursion"]
   services: ["ARS","Catalogue","Competitions2013"]
+  languages: ["en", "es", "de", "nl", "hu", "fr"]
   register_policy: "FREE"
 
 

@@ -67,6 +67,9 @@ module Vish
     
     config.after_initialize do
       I18n.available_locales = [:en, :es, :de, :nl, :hu, :fr]
+      unless config.APP_CONFIG['languages'].nil?
+        I18n.available_locales = (config.APP_CONFIG['languages'].map{|l| l.to_sym} & I18n.available_locales)
+      end
     end
 
   end

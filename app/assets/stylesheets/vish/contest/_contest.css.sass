@@ -27,6 +27,8 @@
     width: 100%
     img
       width: 100%
+
+  //podium   
   #podium
     float: left
     position: relative
@@ -34,12 +36,23 @@
     margin-top: 4%
     .podiuminside
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      height: 400px
+      height: 450px
+
+
+      //podium 1
       .podiuminside1
         @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
         height: 100%
         float: left
         margin-left: 15%
+        .entities
+          ul
+            margin: 0
+            li.box-item
+              margin: 85px auto 0
+              float: none
+              display: block
+              width: 220px
         .podiumart
           text-align: center
           z-index: 0
@@ -68,22 +81,22 @@
             font-weight: bold
             font-size: 78px
             text-shadow: 0px 0px 0 rgb(231,231,231),1px 1px 0 rgb(217,217,217),2px 2px 0 rgb(203,203,203),3px 3px 0 rgb(189,189,189),4px 4px 0 rgb(175,175,175), 5px 5px 0 rgb(161,161,161),6px 6px 5px rgba(0,0,0,0.9),6px 6px 1px rgba(0,0,0,0.5),0px 0px 5px rgba(0,0,0,.2)
-        .entities
-          ul
-            li.box-item
-              margin-top: 15%
-              margin-left: 5%
-              width: 90%
+
+
+      //podium 2
       .podiuminside2
         @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
         height: 100%
         float: left
         .entities
           ul
+            margin: 0
             li.box-item
-              margin-top: -15%
-              margin-left: 5%
-              width: 90%
+
+              margin: 0 auto
+              float: none
+              display: block
+              width: 220px
         .podiumart
           text-align: center
           z-index: 1
@@ -110,16 +123,21 @@
             font-weight: bold
             font-size: 121px
             text-shadow: 0px 0px 0 rgb(231,231,231),1px 1px 0 rgb(217,217,217),2px 2px 0 rgb(203,203,203),3px 3px 0 rgb(189,189,189),4px 4px 0 rgb(175,175,175), 5px 5px 0 rgb(161,161,161),6px 6px 5px rgba(0,0,0,0.9),6px 6px 1px rgba(0,0,0,0.5),0px 0px 5px rgba(0,0,0,.2)
+      
+
+      //podium  3
       .podiuminside3
         @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
         height: 100%
         float: left
         .entities
           ul
+            margin: 0
             li.box-item
-              margin-top: 35%
-              margin-left: 5%
-              width: 90%
+              margin: 150px auto
+              float: none
+              display: block
+              width: 220px
         .podiumart
           text-align: center
           z-index: 0
@@ -148,6 +166,7 @@
             font-weight: bold
             font-size: 38px
             text-shadow: 0px 0px 0 rgb(231,231,231),1px 1px 0 rgb(217,217,217),2px 2px 0 rgb(203,203,203),3px 3px 0 rgb(189,189,189),4px 4px 0 rgb(175,175,175), 5px 5px 0 rgb(161,161,161),6px 6px 5px rgba(0,0,0,0.9),6px 6px 1px rgba(0,0,0,0.5),0px 0px 5px rgba(0,0,0,.2)
+  
   #subjectwinners
     float: left
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -197,10 +216,10 @@
             margin-top: 45%
             clear: both
             float: left
-        .recomended
+        ul.small-box
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: right
-          position: relative
+          margin: 0
     .subrow2
       @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
       margin-left: 3%
@@ -242,10 +261,11 @@
             margin-top: 45%
             clear: both
             float: left
-        .recomended
+        ul.small-box
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          float: left
-          position: relative
+          float: right
+          margin: 0
+
   #participants
     margin-top: -5%
     float: left
