@@ -21,6 +21,7 @@ class Writing < ActiveRecord::Base
   define_index do
     activity_object_index
 
+    #indexes plaintext
   end
 
   def as_json(options = nil)
