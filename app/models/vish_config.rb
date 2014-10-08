@@ -7,7 +7,7 @@ class VishConfig
   end
 
   def self.getResourceModels
-    ["Document","Webapp","Scormfile","Link","Embed"]
+    ["Document","Webapp","Scormfile","Link","Embed","Writing"]
   end
 
   def self.getAllModels

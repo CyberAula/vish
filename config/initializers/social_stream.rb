@@ -18,7 +18,7 @@ SocialStream.setup do |config|
     config.devise_modules << :registerable 
   else
     config.devise_modules << :invitable
-    config.devise_modules << :registerable     
+    config.devise_modules << :registerable
   end
 
   # Type of activities managed by actors
