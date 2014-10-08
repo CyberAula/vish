@@ -13,8 +13,26 @@ $(document).ready(function(){
 	$(".btn-for-categorize2").click(function(){
 		$("#categories_edition").fadeOut();
   });
-$(".edit_categories").sortable();
-$(".edit_categories").disableSelection();
+	var x;
+	var y;
+$(".edit_categories").sortable({
+	start:function(event,ui){
+		 //Reduces size
+		 $(ui.item).width($(ui.item).width()*0.85);
+		 $(ui.item).height($(ui.item).height()*0.85);
+		 
+		 //This is to fix cursor to middle position
+		// $(this).sortable("option", "cursorAt", {
+   		//	 left: Math.floor(ui.helper.width()),
+   		//	 top: Math.floor(ui.helper.height())
+ 		 //}); 
+	},
+	beforeStop:function(event,ui){
+
+	},
+
+	tolerance: "intersect"
+}).disableSelection();
  
 });
 </script>
