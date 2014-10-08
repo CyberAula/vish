@@ -1,13 +1,9 @@
-<div id="excursions_catalogue">
+<div id="resources_catalogue">
 	<%@default_categories.each do |name, resources| %>
 		<%unless resources.nil?%>
 			<ul id="container_<%=name%>" class="items">
-			    <div class="icontitle">
-                <%=t("catalogue.categories." + name, :default => "Category")%>
-                <a class="show_more_catalogue" name="<%=name%>"><%=t('view_all')%></a>
-                </div>
-				<%for excursion in resources%>
-					<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion, :prefix_id =>"catalogue" } %>
+				<%for resource in resources%>
+					<%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
 				<%end%>
 			</ul>
 		<%end%>
@@ -19,16 +15,16 @@
 	//Show More buttons
 	$(".show_more_catalogue").click(function(event) {
 		var name = $(this).attr("name");
-	      <%if is_home%>
-	        window.location = "/catalogue/" + name + "?back_home=true";      
-	      <%else%>
-	        window.location = "/catalogue/" + name;	  
-	      <%end%>	
+		<%if is_home%>
+			window.location = "/catalogue/" + name + "?back_home=true";      
+		<%else%>
+			window.location = "/catalogue/" + name;	  
+		<%end%>
 	});
 
 	$(document).ready(function(){
 		function re_apply_backstrech_on_catalogue(){
-			$("#excursions_catalogue div[bs-img]").each(function(){
+			$("#resources_catalogue div[bs-img]").each(function(){
 				$(this).backstretch( $(this).attr("bs-img") );
 			});
 		};

@@ -8,22 +8,26 @@ development:
   main_mail: "virtual.science.hub@gmail.com"
   models:
     available: ["Excursion","Resource","Event","Category"]
+    resources: ["Document","Webapp","Scormfile","Link","Embed"]
     home: ["Excursion"]
-    resources: ["Document", "Webapp", "Scormfile","Link","Embed"]
+    catalogue: ["Excursion"]
   services: ["ARS","Catalogue","Competitions2013"]
+  languages: ["en", "es", "de", "nl", "hu", "fr"]
 
 production:
   domain: "vishub.org"
+  test_domain: false
   code_domain: "vishubcode.global.dit.upm.es"
   code_path: "/home/isabel/vish-shared/documents/code"
-  test_domain: false
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
   models:
     available: ["Excursion","Resource","Event","Category"]
+    resources: ["Document","Webapp","Scormfile","Link","Embed"]
     home: ["Excursion"]
-    resources: ["Document", "Webapp", "Scormfile","Link","Embed"]
+    catalogue: ["Excursion"]
   services: ["ARS","Catalogue","Competitions2013"]
+  languages: ["en", "es", "de", "nl", "hu", "fr"]
 
 #Other configuration options
 

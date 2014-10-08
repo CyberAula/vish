@@ -1,17 +1,28 @@
-<li class="excursion">
-  <div class="container-img">
-      <div class="dummy"></div>
-      <div class="element">
 
-        <div class="img-box">
+<li class="excursion">
+  <!-- corner -->
+  <div class="corner-item">
+    <div class="corner-item2">
+      <div class="corner-color"></div>
+      <i class="icon-th-large"></i>
+    </div>
+    <div class="corner-background"></div>
+  </div>
+  <!-- image/icon -->
+
+  <div class="container-img">
+    <div class="dummy"></div>
+    <div class="element">
+      <div class="img-box">
         <!--IMG categories-->
-          <%= link_to(category) do %>
-            <div class="category">
-              <%=category_thumbnail(category)%>            
-            </div>
-          <% end %>
+        <%= link_to(category) do %>
+        <div class="category">
+          <%= render :partial => 'categories/thumbnail', :locals =>{ :category => category} %>            
         </div>
+
+        <% end %>
       </div>
+    </div>
   </div>
     
 <!--INFO excursuion-->
@@ -32,16 +43,7 @@
       <div class="categories_inside">  
         <%=category.property_objects.count.to_s%>
         <%=t('categories.item_inside')%>
+      </div>
     </div>
-
   </div>
 </li>
-
-
-
-
-
-
-
-
-

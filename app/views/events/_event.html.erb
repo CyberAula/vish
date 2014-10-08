@@ -1,4 +1,11 @@
 <li class="event">
+  <div class="corner-item">
+    <div class="corner-item2">
+      <div class="corner-color"></div>
+      <i class='icon-facetime-video'></i>
+    </div>
+    <div class="corner-background"></div>
+  </div>
   <%= link_to(event) do %>
     <div class="container-img">
       <div class="dummy"></div>
@@ -10,9 +17,10 @@
         </div>
       </div>
     </div>
+  </div>
   <% end %>
   <script>
-    $("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
+  $("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
   </script>    
 
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
@@ -32,10 +40,10 @@
       <!--like -->
       <div class="like">  
         <% if event.post_activity%>
-          <div class="count"><%=event.post_activity.likes.count.to_s%></div>
-          <%= link_like(event.post_activity, :title =>t('excursion.actions.favorite'))%>
+        <div class="count"><%=event.post_activity.likes.count.to_s%></div>
+        <%= link_like(event.post_activity, :title =>t('excursion.actions.favorite'))%>
         <%else%>
-          <div class="count">0</div>
+        <div class="count">0</div>
         <%end%>
       </div>
       <!--views -->
@@ -47,4 +55,3 @@
     </div>
   </div>
 </li>
-

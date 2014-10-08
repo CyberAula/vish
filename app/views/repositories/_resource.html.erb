@@ -1,20 +1,27 @@
 <% if resource.nil? or resource.author.nil? %>
-  <% return %>
+<% return %>
 <% end %>
 
 <li class="resource">
-
+  <!-- corner -->
+  <div class="corner-item">
+    <div class="corner-item2">
+      <div class="corner-color"></div>
+      <%= link_to raw(icon(resource)) %>
+    </div>
+    <div class="corner-background"></div>
+  </div>
+  <!-- image/icon -->
   <div class="container-img">
-      <div class="dummy"></div>
-      <div class="element resource-center">
-        <%= link_to raw(icon(resource)), resource, :title => resource.title %>
-      </div>
+    <div class="dummy"></div>
+    <div class="element resource-center">
+      <%= link_to raw(icon(resource)), resource, :title => resource.title %>
+    </div>
   </div>
   <%= render partial: "application/applyBackstretch" %>
-
   <!-- INFO -->
+
   <div class="caption">
-    
     <!-- Title -->
     <h6>
       <%= link_to resource.title, resource %>
@@ -31,12 +38,12 @@
 
     <hr>
     <div class="info-bottom">
-      
+
+      <!--like -->
       <div class="like">    
         <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
         <%= link_like(resource.post_activity)%>
       </div>
-
       <!--views -->
       <div class="views">
         <%if resource.private_scope? %>
@@ -51,6 +58,3 @@
     </div>
   </div>
 </li>
-
-
-

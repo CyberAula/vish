@@ -1,6 +1,12 @@
 <li class="box-item contact" id="<%= dom_id user %>">
-  
-
+  <!-- corner -->
+  <div class="corner-item">
+    <div class="corner-item2">
+      <div class="corner-color"></div>
+      <i class="icon-user"></i>
+    </div>
+    <div class="corner-background"></div>
+  </div>
   <%if user.is_mve %>
     <div class="badge-teacher-active"></div>
   <%end%>
@@ -13,32 +19,27 @@
       </div>
       </div>
   </div>
-<%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
-<!--INFO excursuion-->
+
+<!--INFO user-->
   <div class="caption">
-<!--Title -->
+<!--Autor -->
     <h6>
       <%= link_to(truncate_name(user.name), user.subject)%>
     </h6>
-<!--Autor -->
+
+    <div class="count-followers">
+      <i class="icon-group "></i>
+      <span class="count"><%=user.followers.count.to_s%></span>
+      <span class=""><%= t('follow.followers') %></span>
+    </div>
+
       <div class="add">
         <%= contact_button(user) %>
       </div> 
 
     <div class="info-bottom">
       <hr class="soften">
-      <%#= contact_count(user) %>
     </div>
   </div>
   
 </li>
-
-
-
-
-
-
-
-
-
-

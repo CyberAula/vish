@@ -1,21 +1,11 @@
 <section id="event">
   <div class="event">
-    <aside class="recomended">
-      <ul class="items clearfix">
-        <% popular_resources(16).each do |resource| %>
-          <% if resource.class == Excursion %>
-            <%= render :partial => 'excursions/excursion', :locals => { :excursion => resource } %>
-          <% else %>
-            <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
-          <% end %>
-        <% end %>
-      </ul>
-    </aside>
+    <!--recomended-->
+    <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@event,{:n=>12, :models => [Event]})} %>
 
     <div class="eve-show">
       <!--visor-->
       <div class="container-visor">
-        <!--div class="elemento-visor"></div-->
         <div class="caja-elementos">
           <!-- Streming from 10 minutes before until 2 hours later -->
           <% if @event.streaming && ((Time.now <=> (@event.start_at - (60 * 30))) > -1) && ((Time.now <=> (@event.end_at + (60 * 60 * 2))) < 1) %>
@@ -23,27 +13,24 @@
         <% else %>
             <div class="icon-box" id="event-<%=@event.id%>">
               <% if @event.poster.new_record? %>
-                <div class="upload">
-                  <i class="fa fa-video-camera"></i>
-                  <% if (can?(:update, @event) && @event.poster.new_record?) %>
-                    <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
-                  <% end %>
-                </div>
 
+                <i class="fa fa-video-camera"></i>
                 <%= image_tag('items/rec2.jpg', :class=> "event-img") %>
-
-
-                <% else %>
-                  <%= image_tag(@event.poster.file) %>
-                  <script>
-                    $("#event-<%=@event.id%>").addClass("high")
-                  </script>
+              <% else %>
+                <%= image_tag(@event.poster.file) %>
+                <script>
+                  $("#event-<%=@event.id%>").addClass("high")
+                </script>
+              <% end %>
+              <% if (can?(:update, @event) && @event.poster.new_record?) %>
+                  <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
               <% end %>
           
             </div>  
          <% end %>
         </div>
       </div>
+
     
       <div class="description-activity">
         <div class="box_description">
@@ -66,11 +53,9 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    
-    $("#recomended_box div[bs-img]").each(function() {       
-        $(this).backstretch( $(this).attr("bs-img") );      
+    $("#recomended_box div[bs-img]").each(function(){
+      $(this).backstretch($(this).attr("bs-img"));      
     });
-    
   });
-
 </script>
+

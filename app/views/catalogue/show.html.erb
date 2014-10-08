@@ -6,8 +6,8 @@
         <%=t("catalogue.categories." + @category, :default => "Category")%>
     </div>
 	<ul>
-		<%for excursion in @excursions%>
-			<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion , :prefix_id => "catalogue"} %>
+		<%for resource in @resources%>
+			<%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
 		<%end%>
 	</ul>
 </div>

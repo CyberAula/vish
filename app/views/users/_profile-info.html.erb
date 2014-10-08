@@ -196,7 +196,10 @@
       currentPage: pageless_state[tab].current_page,
       loader: '.loader_pagination',
       end: function(){
+        
         $('.loader_pagination').hide();
+        //dirty FIX
+        if (tab == "categories") re_apply_backstrech("categories");
       }
     });
   };

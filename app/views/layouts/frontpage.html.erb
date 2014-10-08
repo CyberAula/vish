@@ -8,7 +8,6 @@
     <meta name="keywords" content="<%= yield(:keywords).empty? ? t('site.current.keywords') : yield(:keywords) %>">
     <meta name="description" content="<%= yield(:description).empty? ? t('site.current.description') : yield(:description) %>">
     <meta name="generator" content="SocialStream" />
-    <!--meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" /-->
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta property="og:site_name" content="ViSH">
     <meta property="og:title" content="<%= yield(:title) %>">
@@ -22,10 +21,6 @@
     <%= favicon_link_tag "icons/favicon.ico" %>
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
-
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
 
     <% if protect_against_forgery? %>
       <%= csrf_meta_tag %>
