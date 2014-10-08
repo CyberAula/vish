@@ -433,6 +433,7 @@ en:
       embed: "Embed (HTML code)"
       links: "Links (URLs)"
       browse: "Browse"
+      writing: "Text"
     recommended_age_detail: "From %{min} to %{max} years"
     screencast: "VISH's screencast"
     tags:
@@ -904,6 +905,9 @@ en:
     name: "Web Application"
     confirm_delete: "Delete Web application?"
     view_full: "View full"
+  writing:
+    confirm_delete: "¿Delete writing?"
+    title3: "Write the text you want to add"
   yesterday: "Yesterday"
   zipfile:
     name: "ZIP file"

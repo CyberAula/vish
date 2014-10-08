@@ -433,6 +433,7 @@ es:
       embed: "Embed (Código HTML)"
       links: "Enlaces (URLs)"
       browse: "Buscar"
+      writing: "Texto"
     recommended_age_detail: "De %{min} a %{max} años"
     screencast: "Screencast de VISH"
     tags:
@@ -902,6 +903,9 @@ es:
     name: "aplicación web"
     confirm_delete: "¿Borrar aplicación web?"
     view_full: "Pantalla completa"
+  writing:
+    confirm_delete: "¿Borrar texto?"
+    title3: "Escribe el texto a subir"
   yesterday: "Ayer"
   zipfile:
     name: "fichero ZIP"
