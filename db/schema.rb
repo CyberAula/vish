@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141008084529) do
+ActiveRecord::Schema.define(:version => 20141008125350) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -181,6 +181,14 @@ ActiveRecord::Schema.define(:version => 20141008084529) do
   add_index "contacts", ["inverse_id"], :name => "index_contacts_on_inverse_id"
   add_index "contacts", ["receiver_id"], :name => "index_contacts_on_receiver_id"
   add_index "contacts", ["sender_id"], :name => "index_contacts_on_sender_id"
+
+  create_table "contributions", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.integer  "wa_assignment_id"
+    t.integer  "parent_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
@@ -589,6 +597,44 @@ ActiveRecord::Schema.define(:version => 20141008084529) do
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  create_table "wa_assignments", :force => true do |t|
+    t.text     "fulltext"
+    t.datetime "open_date"
+    t.datetime "due_date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "wa_contributions_galleries", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "wa_contributions_gallery_wa_assignments", :id => false, :force => true do |t|
+    t.integer  "wa_contributions_gallery_id"
+    t.integer  "wa_assignment_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "wa_galleries", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "wa_gallery_activity_objects", :id => false, :force => true do |t|
+    t.integer  "wa_gallery_id"
+    t.integer  "activity_object_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "wa_resources", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "webapps", :force => true do |t|
     t.integer  "activity_object_id"
     t.datetime "created_at"
@@ -603,6 +649,22 @@ ActiveRecord::Schema.define(:version => 20141008084529) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+  end
+
+  create_table "workshop_activities", :force => true do |t|
+    t.integer  "workshop_id"
+    t.string   "wa_activity_type"
+    t.integer  "position"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "workshops", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "writings", :force => true do |t|

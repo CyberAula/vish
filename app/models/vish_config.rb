@@ -3,7 +3,7 @@
 class VishConfig
 
   def self.getMainModels
-    ["Excursion","Event","Category","Resource"]
+    ["Excursion","Event","Category","Resource","Workshop"]
   end
 
   def self.getResourceModels
@@ -19,7 +19,7 @@ class VishConfig
   end
 
   def self.getModelsWhichActAsResources
-    ["Excursion"]
+    ["Excursion","Workshop"]
   end
 
   def self.getAllResourceModels
