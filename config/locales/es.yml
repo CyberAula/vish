@@ -349,8 +349,10 @@ es:
   description: "descripción"
   devise:
     invitations:
-      modal_title: Enviar una invitación
       button: Invita a alguien a unirse a la comunidad
+      edit:
+        header: Has sido invitado a unirte a la comunidad StoryRobin
+      modal_title: Enviar una invitación
       submit_button: Enviar una invitación
       success: Invitación enviada exitosamente
     email: "Email"

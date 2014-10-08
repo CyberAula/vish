@@ -9,6 +9,21 @@ Actor.class_eval do
     self.is_admin
   end
 
+  def create_slug
+    return unless self.slug.nil? or !self.name.nil?
+    
+    my_slug = self.name.to_url
+    final_slug = my_slug
+    index = 0
+    while(Actor.exists?(:slug => final_slug))
+      index += 1
+      final_slug = my_slug + index.to_s      
+    end
+
+    self.update_column :slug, final_slug
+
+  end
+
   #Make the actor admin
   def make_me_admin
     self.is_admin = true

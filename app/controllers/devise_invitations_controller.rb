@@ -1,5 +1,4 @@
 class DeviseInvitationsController < Devise::InvitationsController
-
 	  prepend_before_filter :authenticate_inviter!, :only => [:new, :create]
 	  prepend_before_filter :has_invitations_left?, :only => [:create]
 	  prepend_before_filter :require_no_authentication, :only => [:edit, :update, :destroy]
@@ -48,12 +47,19 @@ class DeviseInvitationsController < Devise::InvitationsController
 	  def update
 	    self.resource = resource_class.accept_invitation!(resource_params)
 
+	    if resource.respond_to?("create_slug")
+	    	resource.create_slug
+	    end
+
 	    if resource.errors.empty?
 	      flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
 	      set_flash_message :notice, flash_message
 	      sign_in(resource_name, resource)
 	      respond_with resource, :location => after_accept_path_for(resource)
 	    else
+	      if resource.respond_to?("create_slug")
+	        resource.actor.update_column :slug, nil
+	  	  end
 	      respond_with_navigational(resource){ render :edit }
 	    end
 	  end
@@ -87,6 +93,10 @@ class DeviseInvitationsController < Devise::InvitationsController
 
 	  def after_invite_path_for(resource)
     	request.referer
-  	end
+  	  end
+
+  	  def after_accept_path_for(resource)
+    	home_path
+  	  end
 
 end

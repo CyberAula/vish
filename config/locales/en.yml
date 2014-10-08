@@ -353,8 +353,10 @@ en:
   description: "description"
   devise:
     invitations:
-      modal_title: Send an invitation
       button: Invite anyone to join the community
+      edit:
+        header: You have been invited to join StoryRobin Community
+      modal_title: Send an invitation
       submit_button: Send an invitation
       success: Invitation sent succesfully
     invalid_login: "Please enter your email and password to continue."
