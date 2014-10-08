@@ -2,9 +2,7 @@
 
   <div class="event">
     <div class="box-show">
-      <!--visor-->
       <div class="container-visor">
-        <!--div class="elemento-visor"></div-->
         <div class="caja-elementos">
           <!-- Streming from 10 minutes before until 2 hours later -->
           <% if @event.streaming && ((Time.now <=> (@event.start_at - (60 * 30))) > -1) && ((Time.now <=> (@event.end_at + (60 * 60 * 2))) < 1) %>
@@ -13,11 +11,7 @@
             <div class="icon-box" id="event-<%=@event.id%>">
               <% if @event.poster.new_record? %>
                 <i class="icon-facetime-video"></i>
-
-
                 <%= image_tag('items/rec2.jpg', :class=> "event-img") %>
-
-
               <% else %>
                 <%= image_tag(@event.poster.file) %>
                 <script>
@@ -34,19 +28,7 @@
     </div>
 
     <!--recomended-->
-    <div class="recomended" id="recomended_box">
-      <div class="recomended-items">
-        <ul class="small-box clearfix">
-          <% popular_resources(16).each do |resource| %>
-            <% if resource.class == Excursion %>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => resource } %>
-            <% else %>
-              <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-    </div>
+    <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@event,{:n=>12, :models => [Event]})} %>
 
     <div class="description-activity">
       <div class="box_description">
@@ -68,11 +50,8 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    
-    $("#recomended_box div[bs-img]").each(function() {       
-        $(this).backstretch( $(this).attr("bs-img") );      
+    $("#recomended_box div[bs-img]").each(function(){
+      $(this).backstretch($(this).attr("bs-img"));      
     });
-    
   });
-
 </script>

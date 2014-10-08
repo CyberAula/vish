@@ -62,7 +62,7 @@ class RecommenderSystem
     #Models
     if options[:models].blank?
       #All resources by default
-      options[:models] = [Excursion, Document, Webapp, Scormfile, Link, Embed]
+      options[:models] = VishConfig.getAvailableAllResourceModels({:return_instances => true})
     end
 
     options[:model_names] = options[:models].map{|m| m.name}

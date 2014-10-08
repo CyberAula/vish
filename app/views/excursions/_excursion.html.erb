@@ -1,78 +1,67 @@
 <li class="box-item excursion-item">
+  <!--medallas-->
   <%if excursion.is_mostvaluable? %>
-    <div class="badge-excursion-active"></div>
+  <div class="badge-excursion-active"></div>
   <%end%>
-
   <%= link_to(excursion) do %>
-    <div class="container-img">
-        <div class="dummy"></div>
-        <div class="element">
-          <%if defined?(prefix_id) %>
-            <div bs-img="<%=excursion_raw_thumbail(excursion)%>" class="img-box" id="<%=prefix_id%>-excursion-<%=excursion.id%>"></div>
-          <%else%>
-            <div bs-img="<%=excursion_raw_thumbail(excursion)%>" class="img-box" id="excursion-<%=excursion.id%>"></div>
-          <%end%>
-
-          <%if excursion.draft%>
-            <div class="excursion-draft">
-              <h2 class="draftstyle">
-                <i class="icon-edit"></i>
-                <%=t('excursion.draft')%>
-              </h2>
-            </div>
-          <%end%>
-
-        </div>
-    </div> 
+  <!-- image/icon -->
+  <div class="container-img">
+    <div class="dummy"></div>
+    <div class="element">
+      <%if defined?(prefix_id) %>
+      <div bs-img="<%=excursion_raw_thumbail(excursion)%>" class="img-box" id="<%=prefix_id%>-excursion-<%=excursion.id%>"></div>
+      <%else%>
+      <div bs-img="<%=excursion_raw_thumbail(excursion)%>" class="img-box" id="excursion-<%=excursion.id%>"></div>
+      <%end%>
+      <%if excursion.draft%>
+      <div class="excursion-draft">
+        <h2 class="draftstyle">
+          <i class="icon-edit"></i>
+          <%=t('excursion.draft')%>
+        </h2>
+      </div>
+      <%end%>
+    </div>
+  </div> 
   <% end %>
-
-
   <!--INFO excursuion-->
   <div class="info">
     <!--Tags - not shown now, but used for filtering search results. maybe shown in next version on hover-->
     <!-- if modified to show them, careful because they are used in the filters, check that they work-->
     <div class="exc_tags" style="display:none">
       <% excursion.tag_list.each do |tag| %>
-          <span class="one_tag">
-            <%=tag%>
-          </span>
+      <span class="one_tag">
+        <%=tag%>
+      </span>
       <% end %>
     </div>
-
     <!--Title -->
     <div class="name">
       <%= link_to excursion.title, excursion %>
     </div>
-
     <!--Autor -->
     <div class="author"> 
       <span class="by"><%=t('by')%></span>
       <%= link_to excursion.author.name, excursion.author.subject %>
     </div>
-
     <!--More info (Likes and views) -->
     <div class="info-bottom">
       <hr class="soften">
-
       <!--like -->
       <div class="like">        
-         <% if excursion.post_activity%>
-            <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
-            <%= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>
-          <%else%>
-            <div class="count">0</div>
-          <%end%>
+        <% if excursion.post_activity%>
+        <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
+        <%= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>
+        <%else%>
+        <div class="count">0</div>
+        <%end%>
       </div>
-
-      <!--views -->
+       <!--views -->
       <div class="views">
         <%=excursion.visit_count.to_s%>
         <i class="icon-eye-open"></i>
         <%#=t('follow.views')%>
       </div>
-      
     </div>
-
   </div>
 </li>
-
