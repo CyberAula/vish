@@ -3,6 +3,10 @@ class WritingsController < ApplicationController
   before_filter :fill_create_params, :only => [:new, :create]
   include SocialStream::Controllers::Objects
 
+  def new
+
+  end
+  
 
   def create
     super do |format|
