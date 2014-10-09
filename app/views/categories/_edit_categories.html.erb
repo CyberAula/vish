@@ -66,12 +66,9 @@ $(".edit_categories").sortable({
    		//	 top: Math.floor(ui.helper.height())
  		 //}); 
 	},
-	receive:function(event,ui){
-		var hoverElem = null;
-		$('.overlay .box-item').hover(function() {hoverElem = this
-		console.log(hoverElem);
-		});
-
+	receive: function(event,ui){
+		console.log($(this).data().sortable.currentItem);
+		return true;
 	},
 
 	tolerance: "intersect"
