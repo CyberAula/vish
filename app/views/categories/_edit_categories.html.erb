@@ -1,14 +1,37 @@
 <div id="categories_edition" class="overlay container" >
 	<div class="editing_info">
 		<h3>Place your categories</h3>
+		<div class="delete">
+			<i class="icon-trash"></i>
+			<p> Drag here to remove</p>
+		</div>
 		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
+			<li>
+				<i class="icon-move"></i>
+				<h4>Drag and drop</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do consectetur adipiscing</p>
+			</li>
+			<li>
+				<i class="icon-folder-open-alt"></i>
+				<h4>Order your categories</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do consectetur adipiscing</p>
+			</li>
+			<li>
+				<i class="icon-archive"></i>
+				<h4>Group your knowledge</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do consectetur adipiscing</p>
+			</li>
 		</ul>
-		<div class="delete"></div>
+
+
+
+		<div class="actions">
+			<button type="button" class="btn btn-for-undo " data-toggle="button"><i class="icon-circle-arrow-left"></i>Undo</button>
+			<button type="button" class="btn btn-primary btn-for-categorize2 " data-toggle="button"><i class="icon-ok-sign"></i>Complete</button>
+
+		</div>
 	</div>
-	<button type="button" class="btn btn-primary btn-for-categorize2 active" data-toggle="button">Editar</button>
+	
 	<div class="layout_edit">
 		<ul class="categories edit_categories"> 
 		<% new_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}) %>
