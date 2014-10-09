@@ -217,9 +217,9 @@
       alert("<%= t('document.title_alert')%>");
     } else {
       //TITLE
-      $("#AddResource input[name='"+resource_type+"[title]']").val($(".title").val());
+      $("#AddResource input[name='"+resource_type+"[title]']").val($("#AddResource .title").val());
       //DESCRIPTION
-      $("#AddResource input[name='"+resource_type+"[description]']").val($(".description").val());
+      $("#AddResource input[name='"+resource_type+"[description]']").val($("#AddResource .description").val());
       //TAGS
       var tagList = $("#AddResource .resourceTagList");
       $("#AddResource input[name='"+resource_type+"[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
@@ -230,7 +230,7 @@
       $(avatarFileInput).css("display","none");
       $(avatarFileInput).appendTo(myForm);
       //LANGUAGE
-      $("#AddResource input[name='"+resource_type+"[language]']").val($(".language").val());
+      $("#AddResource input[name='"+resource_type+"[language]']").val($("#AddResource .language").val());
       //AGE
       var value1 = $('#AddResource .age-slider').data('slider').getValue()[0];
       var value2 = $('#AddResource .age-slider').data('slider').getValue()[1];

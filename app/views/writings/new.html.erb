@@ -30,13 +30,12 @@
     config.removePlugins = 'elementspath';
     //Enable table resize and autogrow
     config.extraPlugins = 'tableresize,autogrow,specialchar,mediaembed';
-
-
-      config.autoGrow_minHeight = 34;
-      config.autoGrow_maxHeight = 800;
+    
+    config.autoGrow_minHeight = 34;
+    config.autoGrow_maxHeight = 800;
 
     //Fit the current area
-    config.width = '100%';
+    config.width = '600px';
     //The height value defines the height of CKEditor editing area and can be given in pixels or em. Percent values are not supported. 
     //http://docs.cksource.com/CKEditor_3.x/Howto/Editor_Size_On_The_Fly
     config.height = "300px";
@@ -47,16 +46,16 @@
 
     //Apply vEditor skin
     var ckeditorBasePath = CKEDITOR.basePath.substr(0, CKEDITOR.basePath.indexOf("editor/"));
-    console.log("ckeditorBasePath: " + CKEDITOR.basePath);
     config.skin = 'vEditor,' + CKEDITOR.basePath + '/skins/vEditor/';
-          //Add ckeditor wysiwyg instance
-    var ckeditor = CKEDITOR.replace("new_file_only_writing_fulltext",config);
+    
+    //Add ckeditor wysiwyg instance
+    var ckeditor = CKEDITOR.replace("new_file_only_writing_plaintext", config);
 
 
   });
 </script>
 
-<div id="AddWriting" class="" tabindex="-1" role="dialog" aria-labelledby="AddWritingLabel">
+<div id="AddWriting" class="">
 
       <!-- Tags preloaded -->
       <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
@@ -74,7 +73,9 @@
               <%= form_for d, :namespace => 'new_file_only', :html => { :multipart => true }, :remote => false do |f| %>
                 <%= f.hidden_field :owner_id %>
                 <%= f.hidden_field :title%>
-                <%= f.text_area :fulltext %>
+                <%= f.hidden_field :description%>
+                <%= f.text_area :plaintext %>
+                <%= f.hidden_field :fulltext, :value => "" %>
                 <%= f.hidden_field :tag_list, :multiple => true %>
                 <%= f.hidden_field :language, :value => "" %>
                 <%= f.hidden_field :age_min, :value => "4" %>
@@ -184,21 +185,28 @@
     //XXX, resource_type a pincho
      var resource_type = "writing";//$("#AddWriting .accordion-body.collapse.in").attr('id');
 
+     //XXX nuevo
+     var plaintext = CKEDITOR.instances.new_file_only_writing_plaintext.document.getBody().getText();
+     var fulltext = CKEDITOR.instances.new_file_only_writing_plaintext.getData();
+
+     $("#new_file_only_writing_plaintext").val(plaintext);
+     $("#new_file_only_writing_fulltext").val(fulltext);
+
     if(resource_type == "document" && $("#AddWriting input[name='"+resource_type+"[file]']").val() == ""){
       alert("<%= t('document.body.title3')%>");
     } else if (resource_type == "link" && $("#AddWriting input[name='"+resource_type+"[url]']").val() == ""){
       alert("<%= t('link.title3')%>");
-    } else if (resource_type == "embed" && $("#AddWriting input[name='"+resource_type+"[fulltext]']").val() == "") {
+    } else if (resource_type == "embed" && $("#AddWriting input[name='"+resource_type+"[plaintext]']").val() == "") {
       alert("<%= t('embed.title3')%>");
-    } else if (resource_type == "writing" && $("#AddWriting textarea[name='"+resource_type+"[fulltext]']").val() == "") {
+    } else if (resource_type == "writing" && $("#AddWriting textarea[name='"+resource_type+"[plaintext]']").val() == "") {
       alert("<%= t('writing.title3')%>");
     } else if($("#AddWriting .title").val() == "") {
       alert("<%= t('document.title_alert')%>");
     } else {
       //TITLE
-      $("#AddWriting input[name='"+resource_type+"[title]']").val($(".title").val());
+      $("#AddWriting input[name='"+resource_type+"[title]']").val($("#AddWriting .title").val());
       //DESCRIPTION
-      $("#AddWriting input[name='"+resource_type+"[description]']").val($(".description").val());
+      $("#AddWriting input[name='"+resource_type+"[description]']").val($("#AddWriting .description").val());
       //TAGS
       var tagList = $("#AddWriting .resourceTagList");
       $("#AddWriting input[name='"+resource_type+"[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
@@ -209,7 +217,7 @@
       $(avatarFileInput).css("display","none");
       $(avatarFileInput).appendTo(myForm);
       //LANGUAGE
-      $("#AddWriting input[name='"+resource_type+"[language]']").val($(".language").val());
+      $("#AddWriting input[name='"+resource_type+"[language]']").val($("#AddWriting .language").val());
       //AGE
       var value1 = $('#AddWriting .age-slider').data('slider').getValue()[0];
       var value2 = $('#AddWriting .age-slider').data('slider').getValue()[1];

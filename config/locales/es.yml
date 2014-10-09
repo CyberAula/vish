@@ -908,6 +908,8 @@ es:
     confirm_delete: "¿Borrar aplicación web?"
     view_full: "Pantalla completa"
   writing:
+    actions:
+      add: "Añadir texto"
     confirm_delete: "¿Borrar texto?"
     title3: "Escribe el texto a subir"
   yesterday: "Ayer"

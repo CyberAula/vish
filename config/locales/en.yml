@@ -908,6 +908,8 @@ en:
     confirm_delete: "Delete Web application?"
     view_full: "View full"
   writing:
+    actions:
+      add: "Add text"
     confirm_delete: "¿Delete writing?"
     title3: "Write the text you want to add"
   yesterday: "Yesterday"

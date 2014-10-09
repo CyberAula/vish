@@ -6,9 +6,10 @@ class WritingsController < ApplicationController
   def new
 
   end
-  
+
 
   def create
+    binding.pry
     super do |format|
       format.json { 
         render :json => resource 
