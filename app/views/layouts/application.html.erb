@@ -21,6 +21,10 @@
   <%= favicon_link_tag "icons/favicon.ico" %>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
+  <script type="text/javascript">
+          var CKEDITOR_BASEPATH = '/assets/ckeditor/';
+        </script>
+  <%= javascript_include_tag "ckeditor/ckeditor" %>
 
   <% if protect_against_forgery? %>
   <%= csrf_meta_tag %>
@@ -42,6 +46,57 @@
       });
 
       <%= yield :javascript%>
+
+
+//Specified CKEditor configuration
+var config = {};
+
+
+//Select the features of the toolbar
+config.toolbar = 'Full';
+config.toolbar_Full =
+[
+  { name: 'first', items : ['Bold','Italic','Underline','-','Subscript','Superscript','Font','FontSize','TextColor','BGColor'] },
+  '/',
+  { name: 'lists', items : ['NumberedList','BulletedList','Table'] },
+  { name: 'alignment', items : ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'] },
+  { name: 'link', items : ['Link'] },
+  { name: 'Objects', items : ['Image','MediaEmbed'] },
+  { name: 'symbols', items : ['SpecialChar'] }
+];
+
+//Disable toolbar expansion
+config.toolbarCanCollapse = false;
+//Disable resizing
+config.resize_enabled = false;
+//Disable bottom tags
+config.removePlugins = 'elementspath';
+//Enable table resize and autogrow
+config.extraPlugins = 'tableresize,autogrow,specialchar,mediaembed';
+
+
+  config.autoGrow_minHeight = 34;
+  config.autoGrow_maxHeight = 800;
+
+//Fit the current area
+config.width = '100%';
+//The height value defines the height of CKEditor editing area and can be given in pixels or em. Percent values are not supported. 
+//http://docs.cksource.com/CKEditor_3.x/Howto/Editor_Size_On_The_Fly
+config.height = "300px";
+
+//Toolbar defaults
+config.fontSize_defaultLabel = '12';
+
+
+//Apply vEditor skin
+var ckeditorBasePath = CKEDITOR.basePath.substr(0, CKEDITOR.basePath.indexOf("editor/"));
+console.log("ckeditorBasePath: " + CKEDITOR.basePath);
+config.skin = 'vEditor,' + CKEDITOR.basePath + '/skins/vEditor/';
+      //Add ckeditor wysiwyg instance
+var ckeditor = CKEDITOR.replace("new_file_only_writing_fulltext",config);
+
+
+      
     });
   </script>
   <%= yield :headers %>

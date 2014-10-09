@@ -113,7 +113,7 @@
               <%= form_for d, :namespace => 'new_file_only', :html => { :multipart => true }, :remote => false do |f| %>
                 <%= f.hidden_field :owner_id %>
                 <%= f.hidden_field :title%>
-                <%= f.text_field :fulltext %>
+                <%= f.text_area :fulltext %>
                 <%= f.hidden_field :tag_list, :multiple => true %>
                 <%= f.hidden_field :language, :value => "" %>
                 <%= f.hidden_field :age_min, :value => "4" %>
