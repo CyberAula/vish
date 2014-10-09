@@ -43,6 +43,11 @@
 </div>
 
 <script>
+
+function getIdfromli(){
+
+}
+
 $(document).ready(function(){
 	$(".btn-for-categorize2").click(function(){
 		$("#categories_edition").fadeOut();
@@ -61,8 +66,9 @@ $(".edit_categories").sortable({
    		//	 top: Math.floor(ui.helper.height())
  		 //}); 
 	},
-	beforeStop:function(event,ui){
-
+	receive: function(event,ui){
+		console.log($(this).data().sortable.currentItem);
+		return true;
 	},
 
 	tolerance: "intersect"
