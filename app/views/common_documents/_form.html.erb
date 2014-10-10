@@ -135,6 +135,10 @@
       $('#new_file input[name="'+resource_type+'[age_min]"]').val(value1);
       $('#new_file input[name="'+resource_type+'[age_max]"]').val(value2);
 
+      <%if controller_name == "writings"%>
+        set_ckeditor_content_full_and_plaintext("writing_fulltext","writing_plaintext");
+      <%end%>
+
       $(this).button('loading');
     });
 

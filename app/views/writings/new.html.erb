@@ -3,57 +3,11 @@
 //quitado todo lo de accordion.
 //sitios donde pone XXX
 //sustituido AddWriting por AddWriting porque me daba conflicto con el del header los selectores, habría que hacer refactoring de todo si va bien
-
-  $(document).ready(function() {  
-    //Specified CKEditor configuration
-    var config = {};
-
-
-    //Select the features of the toolbar
-    config.toolbar = 'Full';
-    config.toolbar_Full =
-    [
-      { name: 'first', items : ['Bold','Italic','Underline','-','Subscript','Superscript','Font','FontSize','TextColor','BGColor'] },
-      '/',
-      { name: 'lists', items : ['NumberedList','BulletedList','Table'] },
-      { name: 'alignment', items : ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'] },
-      { name: 'link', items : ['Link'] },
-      { name: 'Objects', items : ['Image','MediaEmbed'] },
-      { name: 'symbols', items : ['SpecialChar'] }
-    ];
-
-    //Disable toolbar expansion
-    config.toolbarCanCollapse = false;
-    //Disable resizing
-    config.resize_enabled = false;
-    //Disable bottom tags
-    config.removePlugins = 'elementspath';
-    //Enable table resize and autogrow
-    config.extraPlugins = 'tableresize,autogrow,specialchar,mediaembed';
-    
-    config.autoGrow_minHeight = 34;
-    config.autoGrow_maxHeight = 800;
-
-    //Fit the current area
-    config.width = '600px';
-    //The height value defines the height of CKEditor editing area and can be given in pixels or em. Percent values are not supported. 
-    //http://docs.cksource.com/CKEditor_3.x/Howto/Editor_Size_On_The_Fly
-    config.height = "300px";
-
-    //Toolbar defaults
-    config.fontSize_defaultLabel = '12';
-
-
-    //Apply vEditor skin
-    var ckeditorBasePath = CKEDITOR.basePath.substr(0, CKEDITOR.basePath.indexOf("editor/"));
-    config.skin = 'vEditor,' + CKEDITOR.basePath + '/skins/vEditor/';
-    
-    //Add ckeditor wysiwyg instance
-    var ckeditor = CKEDITOR.replace("new_file_only_writing_fulltext", config);
-
-
-  });
 </script>
+
+<%= render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "new_file_only_writing_fulltext"} %>
+
+
 
 <div id="AddWriting" class="">
 
@@ -186,11 +140,8 @@
      var resource_type = "writing";//$("#AddWriting .accordion-body.collapse.in").attr('id');
 
      //XXX nuevo
-     var plaintext = CKEDITOR.instances.new_file_only_writing_fulltext.document.getBody().getText();
-     var fulltext = CKEDITOR.instances.new_file_only_writing_fulltext.getData();
-
-     $("#new_file_only_writing_plaintext").val(plaintext);
-     $("#new_file_only_writing_fulltext").val(fulltext);
+     set_ckeditor_content_full_and_plaintext("new_file_only_writing_fulltext","new_file_only_writing_plaintext");
+     
 
     if(resource_type == "document" && $("#AddWriting input[name='"+resource_type+"[file]']").val() == ""){
       alert("<%= t('document.body.title3')%>");

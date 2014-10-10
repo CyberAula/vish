@@ -9,7 +9,6 @@ class WritingsController < ApplicationController
 
 
   def create
-    binding.pry
     super do |format|
       format.json { 
         render :json => resource 
@@ -41,7 +40,7 @@ class WritingsController < ApplicationController
   private
 
   def allowed_params
-    [:fulltext, :language, :age_min, :age_max, :scope, :avatar]
+    [:plaintext, :fulltext, :language, :age_min, :age_max, :scope, :avatar]
   end
 
   def fill_create_params
