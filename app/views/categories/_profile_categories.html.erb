@@ -1,7 +1,7 @@
 <div id="categories_tab_ready" class="categories cat_container_generic">
 	<% if profile_subject_is_current? %>
 	<div class="toolbar_nav-tab">
- 		<button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button">Editar</button>
+ 		<button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i>Place your categories</button>
  	</div>
   <%= render partial: 'categories/edit_categories', :locals => { :scope => scope} %>
 	<% end	%>
