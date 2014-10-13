@@ -849,53 +849,6 @@ class Excursion < ActiveRecord::Base
   end
 
 
-
-  ####################
-  ## Evaluations
-  #################### 
-
-  def evaluations
-    ExcursionEvaluation.where(:excursion_id => self.id)
-  end
-
-  def averageEvaluation
-    evaluations_array = []
-    if self.evaluations.length > 0
-      6.times do |ind|
-        evaluations_array.push(ExcursionEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
-      end
-    else
-      evaluations_array = [0,0,0,0,0,0]
-    end
-    evaluations_array
-  end
-
-  def numberOfEvaluations
-    ExcursionEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
-  end
-
-  def learningEvaluations
-    ExcursionLearningEvaluation.where(:excursion_id => self.id)
-  end
-
-  def averageLearningEvaluation
-    evaluations_array = []
-    if self.learningEvaluations.length > 0
-      6.times do |ind|
-        evaluations_array.push(ExcursionLearningEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
-      end
-    else
-      evaluations_array = [0,0,0,0,0,0]
-    end
-    evaluations_array
-  end
-
-  def numberOfLearningEvaluations
-    ExcursionLearningEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
-  end
-
-
-
   ####################
   ## Other Methods
   #################### 
