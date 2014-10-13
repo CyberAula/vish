@@ -19,14 +19,16 @@
     padding: 0px !important
 
 #AddWriting
+  @include white-box
+  width: 98%
+  margin: 0 auto
+  padding: 2%
+  float: left
   p
     font-size: 18px
     width: 100%
     clear: both
-  @include white-box
-  width: 80%
-  margin: 0 auto
-  padding: 2%
+
   span.cke_skin_kama
     padding: 0
     border: none
@@ -35,14 +37,18 @@
       background-color: $grayLight
       background-image: none
   .layoutform
+    display: inline-block
+    float: left
+    width: 100%
+    height: 100%
+    min-height: 100%
     label
       width: 50%
       display: inline-block
       float: left
-      clear: none
-    input,
-    textarea,
-    select
+      clear: left
+    input
+      clear: left
       width: 47%
       display: inline-block
       float: left
@@ -51,8 +57,35 @@
     .description-zone
       float: right
       display: inline-block
-      width: 42%
+      width: 46%
       padding-left: 1.5%
       padding-right: 1.5%
+      textarea
+        width: 100%
+    input.new_file_avatar
+      margin-top: 5px
+      width: 50%
+      padding-right: 0 !important
+      padding-left: 0 !important
     .tagBoxDocument
-      width: 47%
+      width: 50%
+      input
+        width: 97%
+        padding-left: 1.5%
+        padding-right: 1.5%
+    select.language
+      clear: left
+      width: 50%
+      display: inline-block
+      float: left
+
+    .slider
+      clear: left
+      width: 50%
+      display: inline-block
+      float: left
+  .modal-footer
+    display: inline-block
+    float: left
+    width: 100%
+    height: auto
