@@ -22,6 +22,7 @@ class Workshop < ActiveRecord::Base
 
   define_index do
     activity_object_index
+    has draft
   end
 
 end

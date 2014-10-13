@@ -3,6 +3,7 @@ class WorkshopMigration < ActiveRecord::Migration
   def up
     create_table "workshops", :force => true do |t|
       t.integer  "activity_object_id"
+      t.boolean "draft"
       t.timestamps
     end
 
