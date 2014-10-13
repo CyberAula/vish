@@ -907,6 +907,9 @@ en:
     name: "Web Application"
     confirm_delete: "Delete Web application?"
     view_full: "View full"
+  workshop:
+    actions:
+        add: "Add Workshop"
   writing:
     actions:
       add: "Add text"

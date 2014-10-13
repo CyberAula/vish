@@ -30,16 +30,31 @@ class WorkshopsController < ApplicationController
     super
   end
 
-  def show 
-    super
+  def show
+    show! do |format|
+      format.html {
+        if @workshop.draft and (can? :edit, @workshop)
+          redirect_to edit_workshop_path(@workshop)
+        else
+          @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Workshop]})
+          render
+        end
+      }
+    end
   end
 
   def new
-    super
+    new! do |format|
+      format.any { 
+        render 'new'
+      }
+    end
   end
 
   def edit
-    super
+    edit! do |format|
+      format.any
+    end
   end
 
   def create
@@ -52,7 +67,7 @@ class WorkshopsController < ApplicationController
         if resource.new_record?
           render action: :new
         else
-          redirect_to workshop_path(resource) || home_path
+          redirect_to edit_workshop_path(resource) || home_path
         end
       }
     end
@@ -72,7 +87,7 @@ class WorkshopsController < ApplicationController
   private
 
   def allowed_params
-    [:scope,:avatar]
+    [:language, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
   end
 
   def fill_create_params

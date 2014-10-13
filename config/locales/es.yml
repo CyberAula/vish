@@ -907,6 +907,9 @@ es:
     name: "aplicación web"
     confirm_delete: "¿Borrar aplicación web?"
     view_full: "Pantalla completa"
+  workshop:
+    actions:
+        add: "Añadir Workshop"
   writing:
     actions:
       add: "Añadir texto"
