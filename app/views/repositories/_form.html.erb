@@ -115,3 +115,15 @@
 </div>
 
 <%= render :partial => "shared/resource_common_js", :locals => {:form_id=> "AddResource"} %>
+
+<script>
+
+  $(document).ready(function(){    
+
+    $(".accordion-body").on("shown",function(event){
+        //changes the value of the attribute "resource-type"
+        $("#AddResource").attr("resource-type", $(event.target).attr("id"));
+    });
+  });
+
+</script>
