@@ -72,13 +72,7 @@ class ExcursionsController < ApplicationController
         if @excursion.draft and (can? :edit, @excursion)
           redirect_to edit_excursion_path(@excursion)
         else
-          @evaluations = @excursion.averageEvaluation
-          @numberOfEvaluations = @excursion.numberOfEvaluations
-          @learningEvaluations = @excursion.averageLearningEvaluation
-          @numberOfLearningEvaluations = @excursion.numberOfLearningEvaluations
-
           @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})
-          
           render
         end
       }
