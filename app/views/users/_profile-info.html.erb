@@ -3,6 +3,7 @@
 <script type="text/javascript">
 
   var excursions_tab_loaded = false;
+  var workshops_tab_loaded = false;
   var resources_tab_loaded = false;
   var events_tab_loaded = false;
   var categories_tab_loaded = false;
@@ -31,6 +32,29 @@
         });
       } else{
         re_apply_pageless("excursions");
+      }
+    });
+
+    $("#workshops_tab").click(function(){
+      updateWindowTopUrl($(this).attr("id"));
+      if(workshops_tab_loaded===false){
+        $('.loader_pagination').show();
+        workshops_tab_loaded = true;
+        $.ajax({
+          type : "GET",
+          url : "<%=user_url(profile_subject)%>/workshops",
+          success : function(html) {
+            $('.loader_pagination').hide();      
+            $("#workshops_tab_ready").append(html);
+            re_apply_pageless("workshops");
+            re_apply_backstrech("workshops");
+          },
+          error: function(){
+            console.log("error loading workshops");
+         }
+        });
+      } else {
+        re_apply_pageless("resources");
       }
     });
 
@@ -155,8 +179,8 @@
       "num_pages":0,
       "current_page":0
     },
-    "events":{
-      "url": "<%= user_url(profile_subject) %>/events",
+    "workshops":{
+      "url": "<%=user_url(profile_subject)%>/workshops",
       "num_pages":0,
       "current_page":0
     },
@@ -167,6 +191,11 @@
     },
     "categories":{
       "url": "<%= user_url(profile_subject) %>/categories",
+      "num_pages":0,
+      "current_page":0
+    },
+    "events":{
+      "url": "<%= user_url(profile_subject) %>/events",
       "num_pages":0,
       "current_page":0
     },
@@ -264,46 +293,46 @@
       <% hasParamsTab = params[:tab].nil? %>
       <% params[:tab] ||= availableModels.first.downcase.pluralize %>
 
-      <% if availableModels.include? "Excursion" %>
-        <!--excursions-->
-        <li class="<%= params[:tab]=='excursions' ? 'active':''%>">
-          <a id="excursions_tab" href="#tab1" data-toggle="tab">
-            <i class="icon-book"></i>
-            <span class=" hidden-phone hidden-tablet"><%=t('excursion.other')%></span>
-          </a>
-        </li>
-      <%end%>
+      <!-- dropdown menu links -->
+      <% availableModels.each do |modelName| %>
+        <% if modelName == "Excursion" %>
+          <li class="<%= params[:tab]=='excursions' ? 'active':''%>">
+            <a id="excursions_tab" href="#tabExcursions" data-toggle="tab">
+              <i class="icon-book"></i>
+              <span class=" hidden-phone hidden-tablet"><%=t('excursion.other')%></span>
+            </a>
+          </li>
+        <% elsif modelName == "Workshop" %>
+          <li class="<%= params[:tab]=='workshops' ? 'active':''%>">
+            <a id="workshops_tab" href="#tabWorkshops" data-toggle="tab">
+              <i class="icon-file"></i>
+              <span class=" hidden-phone hidden-tablet"><%=t('workshop.other')%></span>
+            </a>
+          </li>
+        <% elsif modelName == "Resource" %>
+          <li class="<%= params[:tab]=='resources' ? 'active':''%>">
+            <a id="resources_tab" href="#tabResources" data-toggle="tab">
+              <i class="icon-file"></i>
+              <span class=" hidden-phone hidden-tablet"><%=t('resource.other')%></span>
+            </a>
+          </li>
+        <% elsif modelName == "Category" %>
+          <li class="<%= params[:tab]=='categories' ? 'active':''%>">
+            <a id="categories_tab" href="#tabCategories" data-toggle="tab">
+              <i class="icon-th-large"></i>
+              <span class=" hidden-phone hidden-tablet"><%=t('categories.other')%></span>
+            </a>
+          </li>
+        <% elsif modelName == "Event" %>
+          <li class="<%= params[:tab]=='events' ? 'active':''%>">
+            <a id="events_tab" href="#tabEvents" data-toggle="tab">
+              <i class="icon-facetime-video"></i>
+              <span class=" hidden-phone hidden-tablet"><%=t('event.other')%></span>
+            </a>
+          </li>
+        <%end%>
+      <% end %>
 
-      <% if availableModels.include? "Resource" %>
-        <!--resources-->      
-        <li class="<%= params[:tab]=='resources' ? 'active':''%>">
-          <a id="resources_tab" href="#tab3" data-toggle="tab">
-            <i class="icon-file"></i>
-            <span class=" hidden-phone hidden-tablet"><%=t('resource.other')%></span>
-          </a>
-        </li>
-      <%end%>
-
-      <% if availableModels.include? "Event" %>
-        <!--events-->
-        <li class="<%= params[:tab]=='events' ? 'active':''%>">
-          <a id="events_tab" href="#tab2" data-toggle="tab">
-            <i class="icon-facetime-video"></i>
-            <span class=" hidden-phone hidden-tablet"><%=t('event.other')%></span>
-          </a>
-        </li>
-      <%end%>
-
-      <% if availableModels.include? "Category" %>
-        <!--categories-->
-        <li class="<%= params[:tab]=='categories' ? 'active':''%>">
-          <a id="categories_tab" href="#tab4" data-toggle="tab">
-            <i class="icon-th-large"></i>
-            <span class=" hidden-phone hidden-tablet"><%=t('categories.other')%></span>
-          </a>
-        </li>
-      <%end%>
-      
       <!--followers-->
       <li class="follow-tab <%= params[:tab]=='followers' ? 'active':''%>">
         <a id="followers_tab" href="#tab5" data-toggle="tab">
@@ -328,7 +357,7 @@
     <div class="tab-content">
         
       <% if availableModels.include? "Excursion" %> 
-        <div class="tab-pane <%=params[:tab]=='excursions' ? 'active':''%>" id="tab1">
+        <div class="tab-pane <%=params[:tab]=='excursions' ? 'active':''%>" id="tabExcursions">
           <%= render partial: 'users/order_by_dropdown_excursions' %>
           <% if params[:tab]== 'excursions' %>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
@@ -348,7 +377,7 @@
       <%end%>
 
       <% if availableModels.include? "Event" %> 
-        <div class="tab-pane <%= params[:tab]== 'events' ? 'active':''%>" id="tab2">
+        <div class="tab-pane <%= params[:tab]== 'events' ? 'active':''%>" id="tabEvents">
           <%= render partial: 'users/order_by_dropdown_events' %>
           <%if params[:tab]== 'events'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
@@ -367,8 +396,27 @@
         </div>
       <%end%>
 
+      <% if availableModels.include? "Workshop" %> 
+        <div class="tab-pane <%=params[:tab]=='workshops' ? 'active':''%>" id="tabWorkshops">
+          <%= render partial: 'users/order_by_dropdown_resources' %>
+          <% if params[:tab] == 'workshops'%>
+            <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
+            <%= render partial: 'workshops/profile_workshops', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>
+          <%end%>
+          <div id="workshops_tab_ready"></div>
+          <div class="loader_pagination" style="display:none">
+            <div id="pageless-loader" style="text-align:center;width:100%;">
+              <div class="msg" style="font-size:2em">
+                <%=t('search.loading')%>
+              </div>
+              <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+            </div>
+          </div>
+        </div>
+      <%end%>
+
       <% if availableModels.include? "Resource" %> 
-        <div class="tab-pane <%=params[:tab]=='resources' ? 'active':''%>" id="tab3">
+        <div class="tab-pane <%=params[:tab]=='resources' ? 'active':''%>" id="tabResources">
           <%= render partial: 'users/order_by_dropdown_resources' %>
           <% if params[:tab] == 'resources'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
@@ -387,7 +435,7 @@
       <%end%>
 
       <% if availableModels.include? "Category" %> 
-        <div class="tab-pane <%=params[:tab]=='categories' ? 'active':''%>" id="tab4">
+        <div class="tab-pane <%=params[:tab]=='categories' ? 'active':''%>" id="tabCategories">
           <%if params[:tab] == 'categories'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'categories/profile_categories', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>
@@ -435,9 +483,13 @@
 <script>
   $(document).ready(function(){
     <% if params[:tab]=="excursions" %>
-      excursions_tab_loaded = true;
+        excursions_tab_loaded = true;
         re_apply_pageless("excursions");
         re_apply_backstrech("excursions");
+    <% elsif params[:tab]=="workshops" %>
+        workshops_tab_loaded = true;
+        re_apply_pageless("workshops");
+        re_apply_backstrech("workshops");
     <% elsif params[:tab]=="events" %>
         events_tab_loaded = true;
         re_apply_pageless("events");

@@ -60,8 +60,8 @@
         <div class="recomended-mobile hidden-desktop" id="recomended_box">
           <div class="recomended-items">
             <ul class="small-box clearfix">
-              <% @resource_suggestions .each do |excursion| %>
-                <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion} %>
+              <% @resource_suggestions .each do |resource| %>
+                <%= render :partial => 'entities/entity', :locals => { :entity => resource} %>
               <% end %>
             </ul>
           </div>

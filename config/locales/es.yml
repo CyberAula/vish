@@ -910,6 +910,8 @@ es:
   workshop:
     actions:
         add: "Añadir Workshop"
+    new: "Nuevo Workshop"
+    other: "Workshops"
   writing:
     actions:
       add: "Añadir texto"

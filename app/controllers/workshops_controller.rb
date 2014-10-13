@@ -36,7 +36,8 @@ class WorkshopsController < ApplicationController
         if @workshop.draft and (can? :edit, @workshop)
           redirect_to edit_workshop_path(@workshop)
         else
-          @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Workshop]})
+          # @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Workshop]})
+          @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Workshop,Excursion,Document]})
           render
         end
       }

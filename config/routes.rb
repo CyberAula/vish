@@ -4,6 +4,7 @@ Vish::Application.routes.draw do
 
 
   match 'users/:id/excursions' => 'users#excursions'
+  match 'users/:id/workshops' => 'users#workshops'
   match 'users/:id/resources' => 'users#resources'
   match 'users/:id/events' => 'users#events'
   match 'users/:id/categories' => 'users#categories'

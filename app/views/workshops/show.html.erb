@@ -1,7 +1,38 @@
-<p> Show Workshop </p>
-<p><a href="<%=edit_workshop_path(@workshop)%>">Turn on editing mode</a></p>
+<% if user_signed_in? and (can? :update, @workshop) %>
+  <p><a href="<%=edit_workshop_path(@workshop)%>">Turn on editing mode</a></p>
+<%end%>
 
-<p> Title </p>
-<p><b><%=@workshop.title%></b></p>
-<p> Tags </p>
-<p><b><%=@workshop.tag_list%></b></p>
+<section id="show_items">
+
+  <!--recomended-->
+  <%= render :partial => 'recommender/sidebar', :locals  => { :resources => @resource_suggestions } %>
+
+  <!--owner-profile-->
+  <div class="description-activity">
+    <div class="box_description">
+      <!--tool-->
+      <div class="excursion_tool">
+        <% shortURL = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + workshop_path(@workshop) %>
+        <%= render :partial => 'workshops/workshop-tool-tab', :locals => { :shortURL => shortURL} %>
+      </div>   
+    </div>
+  </div>
+
+  <div class="box-show">
+    <div class="container-visor">
+      <!-- TODO -->
+      <br/>
+      <p> Contenido del Workshop </p>
+      <p> Actividades del Workshop </p>
+      <br/>
+    </div>
+  </div>
+    
+  <div class="description-activity">
+    <!--activity (comments) -->
+    <div class="activity-box">
+      <%= render :partial => 'workshops/evaluate-activity'%>
+    </div>
+  </div>
+
+</section>

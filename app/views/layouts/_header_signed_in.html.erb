@@ -42,17 +42,17 @@
               <% availableModels.each do |modelName| %>
                 <% if modelName == "Excursion" %>
                   <li><%= link_to new_excursion_path do %><i class="icon-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
-                <% elsif modelName == "Event" %>
-                  <li><a href="#AddEvent" data-toggle="modal"><i class="icon-facetime-video"></i> <%=t('event.actions.add')%></a></li>
-                <% elsif modelName == "Category" %>
-                  <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
+                <% elsif modelName == "Workshop" %>
+                  <li><%= link_to new_workshop_path do %><i class="icon-list-alt"></i> <%= t('workshop.actions.add') %><% end %></li>
                 <% elsif modelName == "Resource" %>
                   <li><a href="#AddResource" data-toggle="modal"><i class="icon-file"></i> <%=t('resource.actions.add')%></a></li>
                   <% if availableResources.include? "Writing" %>
                     <li><%= link_to new_writing_path do %><i class="icon-edit-sign"></i> <%= t('writing.actions.add') %><% end %></li>
                   <%end%>
-                <% elsif modelName == "Workshop" %>
-                  <li><%= link_to new_workshop_path do %><i class="icon-list-alt"></i> <%= t('workshop.actions.add') %><% end %></li>
+                <% elsif modelName == "Category" %>
+                  <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
+                <% elsif modelName == "Event" %>
+                  <li><a href="#AddEvent" data-toggle="modal"><i class="icon-facetime-video"></i> <%=t('event.actions.add')%></a></li>
                 <%end%>
               <% end %>
             </ul>

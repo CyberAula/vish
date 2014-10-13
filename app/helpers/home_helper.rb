@@ -12,6 +12,10 @@ module HomeHelper
     subject_content subject, Excursion, options
   end
 
+  def subject_workshops(subject, options = {})
+    subject_content subject, Workshop, options
+  end
+
   def current_subject_documents(options = {})
     subject_documents current_subject, options
   end
