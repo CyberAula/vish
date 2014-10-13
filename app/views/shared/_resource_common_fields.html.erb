@@ -7,17 +7,16 @@
       <input type="text" class="title" placeholder="<%= t('document.title_input')%>">
       
       <!--DESCRIPCION-->
-      <label><%= t('document.leyend.description')%></label>
-      <textarea type="text" class="description" placeholder="<%= t('document.input')%>"></textarea>
-
+      <div class="description-zone">
+        <label class="description_label"><%= t('document.leyend.description')%></label>
+        <textarea type="text" class="description" placeholder="<%= t('document.input')%>"></textarea>
+      </div>
       <!--TAGS-->
       <label><%= t('document.leyend.tags')%></label>
 
       <div class="tagBoxDocument">
          <ul class="resourceTagList"></ul>
       </div>
-
-      <div class="clearfloat"></div>
 
       <!--Avatar-->
       <label class="new_file_avatar_label"><%= t('document.leyend.avatar')%></label>
