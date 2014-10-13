@@ -1,0 +1,149 @@
+
+<script>
+
+  $(document).ready(function(){
+    $('.helpResources').popover({ 
+      html : true,
+      content: function() {
+        return $('.contentHelpResources').html();
+      }
+    });
+  });
+
+  <%if form_id == "AddResource"%>
+    $("#<%=form_id%>").on('shown', function(){
+  <%end%>
+    //SLIDER
+    var min = 0;
+    var max = 30;
+    var step = 1;
+    var diff = max - min;
+
+    var positionLimits = function(){
+      var value1 = $('#<%=form_id%> .age-slider').data('slider').getValue()[0];
+      var value2 = $('#<%=form_id%> .age-slider').data('slider').getValue()[1];
+      $('#<%=form_id%> .limit1').text(value1);
+      $('#<%=form_id%> .limit2').text(value2);
+
+      var percentage =[
+        (value1-min)*100/diff,
+        (value2-min)*100/diff,
+        step*100/diff
+      ];
+
+      $("#<%=form_id%> .limit1").css("left", function(ev) {
+        return $('#<%=form_id%> .slider').width() * percentage[0]/100 - $("#<%=form_id%> .limit1").width()/2 + 'px';
+      });
+      $("#<%=form_id%> .limit2").css("left", function(ev) {
+        return $('#<%=form_id%> .slider').width() * percentage[1]/100 - $("#<%=form_id%> .limit2").width()/2 + 'px';
+      });
+    };
+
+    $("#<%=form_id%> .age-slider").slider().on('slide', function(ev){
+      positionLimits();
+    });
+
+    $("#<%=form_id%> .age-slider").before($("#<%=form_id%> .limits"));
+    positionLimits();
+
+  <%if form_id == "AddResource"%>
+    });
+  <%end%>
+
+
+
+  //COMMON FIELDS
+  var uploadButton = $("#<%=form_id%> input[value=<%= t('document.upload')%>][type='button'][class='btn btn-primary']");
+  
+  $(uploadButton).click(function(event){
+     var resource_type = $("#<%=form_id%>").attr('resource-type');
+
+    <%if form_id == "AddWriting"%>
+      set_ckeditor_content_full_and_plaintext("new_file_only_writing_fulltext","new_file_only_writing_plaintext");
+    <%end%>   
+
+    if(resource_type == "document" && $("#<%=form_id%> input[name='"+resource_type+"[file]']").val() == ""){
+      alert("<%= t('document.body.title3')%>");
+    } else if (resource_type == "link" && $("#<%=form_id%> input[name='"+resource_type+"[url]']").val() == ""){
+      alert("<%= t('link.title3')%>");
+    } else if (resource_type == "embed" && $("#<%=form_id%> input[name='"+resource_type+"[fulltext]']").val() == "") {
+      alert("<%= t('embed.title3')%>");
+    } else if (resource_type == "writing" && $("#<%=form_id%> textarea[name='"+resource_type+"[fulltext]']").val() == "") {
+      alert("<%= t('writing.title3')%>");
+    } else if($("#<%=form_id%> .title").val() == "") {
+      alert("<%= t('document.title_alert')%>");
+    } else {
+      //TITLE
+      $("#<%=form_id%> input[name='"+resource_type+"[title]']").val($("#<%=form_id%> .title").val());
+      //DESCRIPTION
+      $("#<%=form_id%> input[name='"+resource_type+"[description]']").val($("#<%=form_id%> .description").val());
+      //TAGS
+      var tagList = $("#<%=form_id%> .resourceTagList");
+      $("#<%=form_id%> input[name='"+resource_type+"[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+      //Avatar
+      var avatarFileInput = $("#<%=form_id%> .new_file_avatar");
+      $(avatarFileInput).attr("name",resource_type+"[avatar]");
+      var myForm = $("#<%=form_id%> form#new_file_only_new_" + resource_type);
+      $(avatarFileInput).css("display","none");
+      $(avatarFileInput).appendTo(myForm);
+      //LANGUAGE
+      $("#<%=form_id%> input[name='"+resource_type+"[language]']").val($("#<%=form_id%> .language").val());
+      //AGE
+      var value1 = $('#<%=form_id%> .age-slider').data('slider').getValue()[0];
+      var value2 = $('#<%=form_id%> .age-slider').data('slider').getValue()[1];
+      $('#<%=form_id%> input[name="'+resource_type+'[age_min]"]').val(value1);
+      $('#<%=form_id%> input[name="'+resource_type+'[age_max]"]').val(value2);
+
+      $(this).button('loading');
+      //SUBMIT
+      $("#<%=form_id%> input[value=<%= t('button.save') %>][type='submit'][name='commit'][class='"+resource_type+" hide']").click();
+    }
+  });
+
+  //Tags
+  var resourceTagList = $("#<%=form_id%> .resourceTagList");
+  var resourceTags = [];
+  
+  //Load tags
+  $.each($("#<%=form_id%> #resourcePreloadTagList li"), function(index, element) {
+     resourceTags.push($(element).html());
+  });
+          
+  if ($(resourceTagList).children().length == 0){
+    $(resourceTagList).tagit({tagSource:resourceTags, sortable:true, maxLength:15, maxTags:8 , 
+      watermarkAllowMessage: '<%=t('document.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' });
+  }
+
+  //File chooser listener
+  $("#<%=form_id%> #new_file_only_document_file").on('change', function(e){
+    try{
+      var ext = $(this).val().split(".").pop().toLowerCase();
+      var imageFormats = ["jpg","jpeg","png","gif","bmp","svg"];
+      if(imageFormats.indexOf(ext)!=-1){
+        //Its a image
+        enableUploadAvatar(false);
+      } else {
+        enableUploadAvatar(true);
+      }
+    } catch(e){
+      enableUploadAvatar(true);
+    }
+  });
+
+  var enableUploadAvatar = function(enable){
+    var label = $("#<%=form_id%> label.new_file_avatar_label");
+    var input = $("#<%=form_id%> input.new_file_avatar");
+    $(input).prop('disabled', !enable);
+
+    if(enable===true){
+      $(label).removeClass("disabled");
+      $(label).show();
+      $(input).show();
+    }else{
+      $(label).addClass("disabled");
+      $(label).hide();
+      $(input).hide();
+    }
+  };
+
+</script>
