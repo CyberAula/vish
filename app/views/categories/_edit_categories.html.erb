@@ -52,25 +52,34 @@ $(document).ready(function(){
 	$(".btn-for-categorize2").click(function(){
 		$("#categories_edition").fadeOut();
   });
+	
 	var x;
 	var y;
 $(".edit_categories").sortable({
 	start:function(event,ui){
 		 //Reduces size
-		 $(ui.item).width($(ui.item).width()*0.85);
-		 $(ui.item).height($(ui.item).height()*0.85);
+		 $(ui.item).width($(ui.item).width()*0.8);
+		 $(ui.item).height($(ui.item).height()*0.8);
 		 
 		 //This is to fix cursor to middle position
 		// $(this).sortable("option", "cursorAt", {
    		//	 left: Math.floor(ui.helper.width()),
    		//	 top: Math.floor(ui.helper.height())
  		 //}); 
-	$( ".edit_categories" ).mouseup(function() {
-  		alert( "Yolo420" );
-	});
 	},
 	tolerance: "intersect"
 }).disableSelection();
  
+$( ".box-item" ).mouseup(function() {
+  		console.log("x= " + event.pageX);
+  		console.log("y= " + event.pageY);
+  		var n = $(".box-item li").mouseover();
+  		n.hide();
+  		var r = $(".box-item li").mouseover();
+  	
+  		console.log(n);
+  		console.log(r);
+	});
+
 });
 </script>
