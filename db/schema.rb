@@ -98,6 +98,13 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
     t.decimal  "teachers_qscore",                    :precision => 12, :scale => 6
   end
 
+  create_table "activity_objects_wa_galleries", :id => false, :force => true do |t|
+    t.integer  "activity_object_id"
+    t.integer  "wa_gallery_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "activity_verbs", :force => true do |t|
     t.string   "name",       :limit => 45
     t.datetime "created_at"
@@ -622,13 +629,6 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "wa_gallery_activity_objects", :id => false, :force => true do |t|
-    t.integer  "wa_gallery_id"
-    t.integer  "activity_object_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
-
   create_table "wa_resources", :force => true do |t|
     t.integer  "activity_object_id"
     t.datetime "created_at",         :null => false
@@ -664,9 +664,9 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
 
   create_table "workshops", :force => true do |t|
     t.integer  "activity_object_id"
-    t.boolean  "draft"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.boolean  "draft",              :default => true
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "writings", :force => true do |t|

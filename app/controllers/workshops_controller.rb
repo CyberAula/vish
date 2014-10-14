@@ -19,6 +19,8 @@ class WorkshopsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update]
   before_filter :fill_create_params, :only => [:new, :create]
+  before_filter :fill_draft, :only => [:new, :create, :edit, :update]
+  skip_load_and_authorize_resource :only => [ :edit_details]
 
   include SocialStream::Controllers::Objects
 
@@ -46,7 +48,7 @@ class WorkshopsController < ApplicationController
 
   def new
     new! do |format|
-      format.any { 
+      format.any {
         render 'new'
       }
     end
@@ -58,13 +60,18 @@ class WorkshopsController < ApplicationController
     end
   end
 
+  def edit_details
+    @workshop = Workshop.find(params[:id])
+    authorize! :edit, @workshop
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def create
     super do |format|
-      format.json { 
-        render :json => resource 
-      }
-      format.js
-      format.all {
+      format.html {
         if resource.new_record?
           render action: :new
         else
@@ -75,7 +82,15 @@ class WorkshopsController < ApplicationController
   end
 
   def update
-    super
+    super do |format|
+      format.html {
+        if resource.draft
+          redirect_to edit_workshop_path(resource)
+        else
+          redirect_to workshop_path(resource)
+        end
+      }
+    end
   end
 
   def destroy
@@ -88,16 +103,28 @@ class WorkshopsController < ApplicationController
   private
 
   def allowed_params
-    [:language, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
+    [:draft, :language, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
   end
 
   def fill_create_params
     params["workshop"] ||= {}
-    params["workshop"]["scope"] ||= "0" #public
+
     unless current_subject.nil?
       params["workshop"]["owner_id"] = current_subject.actor_id
       params["workshop"]["author_id"] = current_subject.actor_id
       params["workshop"]["user_author_id"] = current_subject.actor_id
+    end
+  end
+
+  def fill_draft
+    params["workshop"] ||= {}
+
+    unless params["workshop"]["draft"]==="false"
+      params["workshop"]["scope"] = "1" #private
+      params["workshop"]["draft"] = true
+    else
+      params["workshop"]["scope"] = "0" #public
+      params["workshop"]["draft"] = false
     end
   end
 

@@ -1,0 +1,32 @@
+div.wa_activity_wrapper, wa_add_activity_wrapper{
+  padding: 3%;
+  width: 94%;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+div.wa_activity_wrapper {
+  background-color: #ccc;
+  border: 6px solid black;
+}
+
+div.wa_add_activity_wrapper{
+  text-align: center;
+  background-color: black;
+  border: 1px solid white;
+  color: white !important;
+  font-size: 1.4rem;
+}
+
+div.wa_add_activity_wrapper p{
+  line-height: normal;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: white !important;
+}
+
+img.workshop_thumbnail{
+  max-width: 250px;
+  max-height: 250px
+}
+

@@ -2,7 +2,6 @@ DocumentsHelper.module_eval do
 
   # Return the right icon of the resource
   def icon document, allowRaw=true
-
     #Default icons
     unless document.class.superclass.name != "Document"
       #For documents (based on SS documents)
@@ -41,7 +40,6 @@ DocumentsHelper.module_eval do
     else
       return "<i class=\"icon-#{ icon_name }\"></i>".html_safe
     end
-
   end
 
   # Find the right class for the icon of this document, based on its format

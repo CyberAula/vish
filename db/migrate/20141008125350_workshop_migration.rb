@@ -3,7 +3,7 @@ class WorkshopMigration < ActiveRecord::Migration
   def up
     create_table "workshops", :force => true do |t|
       t.integer  "activity_object_id"
-      t.boolean "draft"
+      t.boolean "draft", :default => true
       t.timestamps
     end
 
@@ -60,9 +60,15 @@ class WorkshopMigration < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table "wa_gallery_activity_objects", id: false, :force => true do |t|
-      t.integer  "wa_gallery_id"
+    # create_table "wa_gallery_activity_objects", id: false, :force => true do |t|
+    #   t.integer  "wa_gallery_id"
+    #   t.integer  "activity_object_id"
+    #   t.timestamps
+    # end
+
+    create_table "activity_objects_wa_galleries", id: false, :force => true do |t|
       t.integer  "activity_object_id"
+      t.integer  "wa_gallery_id"
       t.timestamps
     end
 

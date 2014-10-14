@@ -17,7 +17,7 @@
       <%= link_to raw(icon(resource)), resource, :title => resource.title %>
     </div>
   </div>
-  <%= render partial: "application/applyBackstretch" %>
+  <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
   <!-- INFO -->
   <div class="info">
     <!-- Title -->
