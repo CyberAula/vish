@@ -653,12 +653,13 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
 
   create_table "workshop_activities", :force => true do |t|
     t.integer  "workshop_id"
-    t.string   "wa_activity_type"
+    t.integer  "wa_id"
+    t.string   "wa_type"
     t.integer  "position"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "workshops", :force => true do |t|

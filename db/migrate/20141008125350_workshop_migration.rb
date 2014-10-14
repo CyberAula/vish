@@ -9,7 +9,12 @@ class WorkshopMigration < ActiveRecord::Migration
 
     create_table "workshop_activities", :force => true do |t|
       t.integer  "workshop_id"
-      t.string   "wa_activity_type"
+
+      #Polymorphic
+      t.integer  "wa_id"
+      t.string   "wa_type"
+
+      #Attrs
       t.integer  "position"
       t.string   "title"
       t.text     "description"
