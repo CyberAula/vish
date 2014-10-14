@@ -121,8 +121,9 @@
         <%= f.select(:scope, options_for_select([[t('scope.public'), 0], [t('scope.private'), 1]],resource.scope)) %>
       </section>
     <% end%>
-
+<div class="footer-form">
     <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+  </div>
   <% end %>
 
   
