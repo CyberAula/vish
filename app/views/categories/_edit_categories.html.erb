@@ -65,12 +65,10 @@ $(".edit_categories").sortable({
    		//	 left: Math.floor(ui.helper.width()),
    		//	 top: Math.floor(ui.helper.height())
  		 //}); 
+	$( ".edit_categories" ).mouseup(function() {
+  		alert( "Yolo420" );
+	});
 	},
-	receive: function(event,ui){
-		console.log($(this).data().sortable.currentItem);
-		return true;
-	},
-
 	tolerance: "intersect"
 }).disableSelection();
  
