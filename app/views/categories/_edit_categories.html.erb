@@ -36,7 +36,7 @@
 		<ul class="categories edit_categories"> 
 		<% new_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}) %>
 		<% new_categories.each do |category| %>
-		    <%= render :partial => 'categories/category', :locals => { :category => category } %>
+		    <%= render :partial => 'categories/category', :locals => { :category => category, :obj_id => category.activity_object.id} %>
 		<% end %> 
 		</ul>
 	</div>
@@ -44,9 +44,6 @@
 
 <script>
 
-function getIdfromli(){
-
-}
 
 $(document).ready(function(){
 	$(".btn-for-categorize2").click(function(){
@@ -55,7 +52,8 @@ $(document).ready(function(){
 	
 	var x;
 	var y;
-$(".edit_categories").sortable({
+
+var sortable = $(".edit_categories").sortable({
 	start:function(event,ui){
 		 //Reduces size
 		 $(ui.item).width($(ui.item).width()*0.8);
@@ -70,16 +68,33 @@ $(".edit_categories").sortable({
 	tolerance: "intersect"
 }).disableSelection();
  
+ //Handler Dropping
 $( ".box-item" ).mouseup(function() {
-  		console.log("x= " + event.pageX);
-  		console.log("y= " + event.pageY);
-  		var n = $(".box-item li").mouseover();
-  		n.hide();
-  		var r = $(".box-item li").mouseover();
-  	
-  		console.log(n);
-  		console.log(r);
+
+
+  		var dragged = document.elementFromPoint(event.clientX,event.clientY);
+  		dragged = $(dragged).closest(".overlay .box-item");
+  		dragged.hide();
+  		var pre_rec = document.elementFromPoint(event.clientX,event.clientY);
+  		dragged.show();
+  		var receiver = $(pre_rec).closest(".overlay .box-item");
+  		
+  		//if dragged onto another object
+  		if (receiver.length != 0){
+  			var dragged_id = dragged.attr("edit-id");
+  			var receiver_id = dragged.attr("edit-id");
+  		
+  			//ajax petition
+  		}
+  		
+  		receiver = $(pre_rec).closest(".overlay .delete");
+  		if (receiver.length != 0){
+  			dragged.remove();
+  		}
+  		//if dragged in the bin
+
 	});
 
 });
+
 </script>

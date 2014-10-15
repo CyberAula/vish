@@ -19,18 +19,7 @@
 
 <script>
 
-/* First version
-function eXtractAndRelocate(divfromExtract){
-	//Get Info and remove
-	var main = $(divfromExtract).html();
-	$(divfromExtract).html("");
-
-	var overlayItemStart = '<div class="overlay container" style="opacity: 0.90; background-color: gray; position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; z-index: 9999; overflow-y: auto; display:none;">';
-	var overlayItemEnd = '</div>';
-	$(divfromExtract).html(overlayItemStart + main + overlayItemEnd);
-}*/
-
-
+//Let the overlay appear
 $(document).ready(function(){
 	$(".btn-for-categorize").click(function(){
 		$("#categories_edition").fadeIn();
