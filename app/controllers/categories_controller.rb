@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   include SocialStream::Controllers::Objects
 
   before_filter :authenticate_user!, :except => [:show]
-  skip_load_and_authorize_resource :only => [:categorize]
+  skip_load_and_authorize_resource :only => [:categorize, :edit_categories]
   
   def index
     redirect_to url_for(current_subject) + "?tab=categories"
@@ -74,38 +74,50 @@ class CategoriesController < ApplicationController
     render :json => { :success => true }
   end
 
-  def reSort
+  def edit_categories
 
     #if insertions array params presents
     # parse.Json params
     # for each in MovethingsOut
     # then deletes of all elemens in delete
-    if params[:movements].present?
+     binding.pry
+
+    if params[:actions].present?
       begin
-        movements = JSON.parse(params[:movements])
+        actions = JSON.parse(params[:actions])
       rescue
-        movements = []
+        actions = []
       end
     end
 
-    movements.each do |n|
-      #Find n[0] put n[0] y n[1]
-
-    end
-
-
-    if params[:deletions].present?
-      begin
-        deletions = JSON.parse(params[:deletions])
-      rescue
-        deletions = []
+    #First we put stuff into others and delete stuff from categories 
+    actions.each do |n|
+      dragged = ActivityObject.find(n[0].to_i)
+      receiver = ActivityObject.find(n[1].to_i)
+      #If throwed to the bin
+      if n[1].to_i == -1
+        if dragged.object_type == "Category"
+         dragged.destroy
+        elsif receiver.property_objects.include?(dragged)
+          receiver.property_objects.delete(dragged)
+        end
+      #if dragged somewhere else
+      elsif [1] != -1
+        if dragged != nil && receiver != nil && dragged != receiver
+          receiver.property_objects << dragged
+          receiver.property_objects.uniq!
+        end
       end
     end
 
-    deletions.each do |r|
-      #check if the object exists
-      ActivityObject.find(r).destroy!
+    if params[:sort_order].present?
+      begin
+        sort_order = JSON.parse(params[:sort_order])
+      rescue
+        sort_order = []      
+      end
     end
+    
 
     render :json => { :success => true }
   end

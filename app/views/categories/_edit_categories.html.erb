@@ -26,7 +26,7 @@
 
 
 		<div class="actions">
-			<button type="button" class="btn btn-for-undo " data-toggle="button"><i class="icon-circle-arrow-left"></i>Undo</button>
+			<button type="button" class="btn btn-for-undo " data-toggle="button"><i class="icon-circle-arrow-left"></i>Cancel</button>
 			<button type="button" class="btn btn-primary btn-for-categorize2 " data-toggle="button"><i class="icon-ok-sign"></i>Complete</button>
 
 		</div>
@@ -44,36 +44,70 @@
 
 <script>
 
+// I couldn't make the serialize work, this is suppose to do the work
+
+function getidArray(){
+	var s = [];
+	$(".overlay .edit_categories .box-item").each(function(key, value){
+ 		s.push($(value).attr("edit-id"))
+	});
+	return s;
+}
 
 $(document).ready(function(){
+	//Array where placed all actions
+	movements_array = [];
+
+	//Complete button
 	$(".btn-for-categorize2").click(function(){
+
+		$.ajax({
+            url: '/categories/edit_categories',
+            type: 'POST',
+            dataType: "json",
+            data: { actions: movements_array, sort_order: getidArray()},
+              success: function(data){
+                //Emulating alert with javascript
+                $('#flash').hide(); 
+                $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Hecho</div>')
+                            .fadeIn()
+                            .delay(6000)
+                            .fadeOut(300, function(){
+                              $('#flash').html("");
+                            });
+                }
+    });
+
+  });
+	//Cancel button
+	$(".btn-for-undo").click(function(){
 		$("#categories_edition").fadeOut();
   });
 	
-	var x;
-	var y;
 
-var sortable = $(".edit_categories").sortable({
-	start:function(event,ui){
-		 //Reduces size
-		 $(ui.item).width($(ui.item).width()*0.8);
-		 $(ui.item).height($(ui.item).height()*0.8);
-		 
-		 //This is to fix cursor to middle position
-		// $(this).sortable("option", "cursorAt", {
-   		//	 left: Math.floor(ui.helper.width()),
-   		//	 top: Math.floor(ui.helper.height())
- 		 //}); 
-	},
-	tolerance: "intersect"
-}).disableSelection();
+	sortable_object = $(".edit_categories");
+	$(sortable_object).sortable({
+		start:function(event,ui){
+			 //Reduces size
+			 $(ui.item).width($(ui.item).width()*0.8);
+			 $(ui.item).height($(ui.item).height()*0.8);
+			 
+			 //This is to fix cursor to middle position
+			// $(this).sortable("option", "cursorAt", {
+	   		//	 left: Math.floor(ui.helper.width()),
+	   		//	 top: Math.floor(ui.helper.height())
+	 		 //}); 
+		},
+		tolerance: "intersect"
+	}).disableSelection();
  
  //Handler Dropping
-$( ".box-item" ).mouseup(function() {
+	$( ".box-item" ).mouseup(function() {
 
-
+		//Get dragged object 
   		var dragged = document.elementFromPoint(event.clientX,event.clientY);
   		dragged = $(dragged).closest(".overlay .box-item");
+  		//Get whatever is behind
   		dragged.hide();
   		var pre_rec = document.elementFromPoint(event.clientX,event.clientY);
   		dragged.show();
@@ -82,16 +116,23 @@ $( ".box-item" ).mouseup(function() {
   		//if dragged onto another object
   		if (receiver.length != 0){
   			var dragged_id = dragged.attr("edit-id");
-  			var receiver_id = dragged.attr("edit-id");
-  		
+  			var receiver_id = receiver.attr("edit-id");
+  			
+  			movements_array.push([dragged_id,receiver_id]);
+  			dragged.fadeOut();
+  			dragged.remove();
   			//ajax petition
   		}
-  		
+
+  		//if dragged into the bin
   		receiver = $(pre_rec).closest(".overlay .delete");
   		if (receiver.length != 0){
+  			var dragged_id = dragged.attr("edit-id");
+  			movements_array.push([dragged_id,"-1"]);
+  			dragged.fadeOut();
   			dragged.remove();
   		}
-  		//if dragged in the bin
+  		
 
 	});
 
