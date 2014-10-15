@@ -612,19 +612,19 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "wa_assignments_wa_contributions_galleries", :id => false, :force => true do |t|
+    t.integer  "wa_assignment_id"
+    t.integer  "wa_contributions_gallery_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
   create_table "wa_contributions_galleries", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "wa_contributions_gallery_wa_assignments", :id => false, :force => true do |t|
-    t.integer  "wa_contributions_gallery_id"
-    t.integer  "wa_assignment_id"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
-  create_table "wa_galleries", :force => true do |t|
+  create_table "wa_resource_galleries", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -633,6 +633,13 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
     t.integer  "activity_object_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "wa_texts", :force => true do |t|
+    t.text     "fulltext"
+    t.text     "plaintext"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "webapps", :force => true do |t|

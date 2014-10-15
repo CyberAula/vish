@@ -64,6 +64,14 @@ Vish::Application.routes.draw do
   match '/workshops/:id/edit_details' => 'workshops#edit_details'
   resources :workshops
 
+  #Workshops Activities
+  resources :wa_assignments
+  resources :wa_resources
+  resources :wa_resource_galleries
+  resource :wa_contributions_galleries
+  resource :wa_texts
+
+
   #Quiz Sessions
   resources :quiz_sessions do
     get "results", :on => :member

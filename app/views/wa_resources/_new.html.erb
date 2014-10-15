@@ -1,0 +1,4 @@
+<%= form_for WaResource.new, :remote => false do |f| %>
+  <%= f.hidden_field :workshop_id, :value => workshop.id %>
+  <input type="text" name="url"></input>
+<% end %>

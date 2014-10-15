@@ -410,6 +410,11 @@ ActivityObject.class_eval do
     getObjectFromUniversalId(universalId)
   end
 
+  def self.getObjectFromUrl(url)
+    #TODO
+    getObjectFromGlobalId("Excursion:"+Excursion.last.id.to_s)
+  end
+
   def self.getResourceCount
     getCount(["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"])
   end

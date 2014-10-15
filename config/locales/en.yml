@@ -910,6 +910,25 @@ en:
   workshop:
     actions:
         add: "Add Workshop"
+        add_activity_title: "Add Activity to the Workshop"
+        add_activity_button: "Add"
+    activities:
+        assignment:
+            title: "Assignment"
+            description: "Assignments allow participants to contribute to the workshop by uploading their own resources."
+        resource: 
+            title: "Resource"
+            description: "Insert any type of resource into the Workshop."
+        resource_gallery: 
+            title: "Resources Gallery"
+            description: "Add a gallery of resources."
+        contributions_gallery: 
+            title: "Contributions Gallery"
+            description: The Contributions Gallery displays the contributions sent to the workshop.
+        text: 
+            title: "Text"
+            description: "Include a paragraph of text."
+    confirm_delete: "Delete workshop?"
     new: "New Workshop"
     other: "Workshops"
   writing:

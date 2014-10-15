@@ -6,7 +6,7 @@ module Wa
     alias_method_chain :workshop_activity, :build
     
     if ActiveRecord::Base.connection.table_exists? "workshop_activities"
-      workshop_activity_attributes = WorkshopActivity.content_columns.map(&:name) #<-- gives access to all columns of WorkshopActivity
+      workshop_activity_attributes = (WorkshopActivity.content_columns.map(&:name) + ["workshop_id","workshop"]) #<-- gives access to all columns of WorkshopActivity
     else
       workshop_activity_attributes = []
     end
