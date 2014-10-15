@@ -80,7 +80,6 @@ class CategoriesController < ApplicationController
     # parse.Json params
     # for each in MovethingsOut
     # then deletes of all elemens in delete
-     binding.pry
 
     if params[:actions].present?
       begin
@@ -117,7 +116,7 @@ class CategoriesController < ApplicationController
         sort_order = []      
       end
     end
-    
+
 
     render :json => { :success => true }
   end
