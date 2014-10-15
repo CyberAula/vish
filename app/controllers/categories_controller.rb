@@ -80,7 +80,6 @@ class CategoriesController < ApplicationController
     # parse.Json params
     # for each in MovethingsOut
     # then deletes of all elemens in delete
-
     if params[:actions].present?
       begin
         actions = JSON.parse(params[:actions])
@@ -88,20 +87,22 @@ class CategoriesController < ApplicationController
         actions = []
       end
     end
-
     #First we put stuff into others and delete stuff from categories 
     actions.each do |n|
       dragged = ActivityObject.find(n[0].to_i)
-      receiver = ActivityObject.find(n[1].to_i)
+     
       #If throwed to the bin
       if n[1].to_i == -1
+        #if it is a category it gets destroyed
         if dragged.object_type == "Category"
          dragged.destroy
+         #if it is not just get deleted
         elsif receiver.property_objects.include?(dragged)
           receiver.property_objects.delete(dragged)
         end
-      #if dragged somewhere else
+      #if dragged into another category
       elsif [1] != -1
+        receiver = ActivityObject.find(n[1].to_i)
         if dragged != nil && receiver != nil && dragged != receiver
           receiver.property_objects << dragged
           receiver.property_objects.uniq!
@@ -117,6 +118,11 @@ class CategoriesController < ApplicationController
       end
     end
 
+    #hash_object = objects.each_with_object({}) do |obj, hash| 
+    #  hash[obj.object_id] = obj
+    #end
+
+    #[1, 2, 3, 4, 5].map { |index| hash_object[index] }
 
     render :json => { :success => true }
   end

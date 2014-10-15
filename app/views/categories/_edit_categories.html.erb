@@ -60,24 +60,31 @@ $(document).ready(function(){
 
 	//Complete button
 	$(".btn-for-categorize2").click(function(){
+		if (movements_array.length > 0){
+			$.ajax({
+	            url: '/categories/edit_categories',
+	            type: 'POST',
+	            dataType: "json",
+	            data: { actions: JSON.stringify(movements_array), sort_order: JSON.stringify(getidArray())},
+	              success: function(data){
+	                //Emulating alert with javascript
+	               
+	                            
+	                            movements_array = []
 
-		$.ajax({
-            url: '/categories/edit_categories',
-            type: 'POST',
-            dataType: "json",
-            data: { actions: movements_array, sort_order: getidArray()},
-              success: function(data){
-                //Emulating alert with javascript
-                $('#flash').hide(); 
-                $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Hecho</div>')
-                            .fadeIn()
-                            .delay(6000)
-                            .fadeOut(300, function(){
-                              $('#flash').html("");
-                            });
-                }
-    });
+	                            $('#flash').hide(); 
+	               			 	$("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Hecho</div>')
+	                            .fadeIn()
+	                            .delay(6000)
+	                            .fadeOut(300, function(){
+	                              $('#flash').html("");
 
+	                            });
+	                }
+	    	});
+		}else{
+			$("#categories_edition").fadeOut();
+		}
   });
 	//Cancel button
 	$(".btn-for-undo").click(function(){
