@@ -9,7 +9,7 @@
 %>
 
 <section id="excursions_tab_ready3" class="entities recent_entities">
-  <ul class="first_entities">
+  <ul class="items first_entities">
     <%= render partial: "home/add_new" %>
     <%= render partial: 'home_row', :locals => { :resources => resourcesRecent, :prefix_id=>"home" } %>
   </ul>
@@ -24,7 +24,7 @@
 </section>
  
 <section id="home_tab_ready" class="entities">
-  <ul class="">
+  <ul class="items">
     <h3> <%= t("home.populars")%> </h3>
     <%= render partial: 'home_popular', :locals => { :resources => resourcesPopular, :ids_to_avoid => ids_to_avoid, :prefix_id=>"home"} %>
   </ul>
