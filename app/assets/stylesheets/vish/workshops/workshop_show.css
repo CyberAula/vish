@@ -10,6 +10,14 @@ div.wa_activity_wrapper {
   border: 6px solid black;
 }
 
+div.wa_activity_wrapper_show {
+
+}
+
+div.wa_activity_wrapper_edit {
+
+}
+
 div.wa_add_activity_wrapper{
   text-align: center;
   background-color: black;

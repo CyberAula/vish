@@ -4,8 +4,17 @@
 
 <section id="show_items">
 
-  <!--recomended-->
-  <%= render :partial => 'recommender/sidebar', :locals  => { :resources => @resource_suggestions } %>
+  <div class="wa_activity_wrapper">
+    <div class="wa_activity_actions">
+      <ul>
+        <a href=<%=edit_details_path(@workshop)%>>Edit Details</a>
+      </ul>
+    </div>
+    <p>Title: <%=@workshop.title%></p>
+    <p>Description: <%=@workshop.description%></p>
+    <p>Avatar</p>
+    <p><img class="workshop_thumbnail applyBackstretch" src="<%=@workshop.thumbnail_url%>"></p>
+  </div>
 
   <!--owner-profile-->
   <div class="description-activity">
