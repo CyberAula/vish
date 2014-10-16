@@ -40,7 +40,7 @@ class WritingsController < ApplicationController
   private
 
   def allowed_params
-    [:plaintext, :fulltext, :language, :age_min, :age_max, :scope, :avatar]
+    [:plaintext, :fulltext, :language, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
   end
 
   def fill_create_params

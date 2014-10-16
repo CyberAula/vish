@@ -1,0 +1,12 @@
+<% 
+   workshops = subject_workshops(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"popularity"})
+ %>
+<% workshops.each do |workshop| %>
+	<%= render :partial => 'entities/entity', :locals => { :entity => workshop, :prefix_id => "profile" } %>
+<% end %> 
+
+<script>
+	$(document).ready(function(){	
+		update_pageless_state("workshops", <%=workshops.num_pages%>, <%=workshops.current_page%>);
+	});
+</script>

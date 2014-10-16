@@ -1,7 +1,9 @@
 class WaResource < ActiveRecord::Base
-	has_one :workshop_activity, as: :wa_activity 
-	belongs_to :activity_object
+	#Polymorphic
+	acts_as_wa
 	
+	belongs_to :activity_object
 
+	validates_presence_of :activity_object_id
 
 end

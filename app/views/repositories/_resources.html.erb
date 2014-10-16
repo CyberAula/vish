@@ -1,4 +1,3 @@
-
 <% all_resources = subject_resources(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"popularity"}) %>
 <% all_resources.each do |resource| %>
     <%= render :partial => 'repositories/resource', :locals => { :resource => resource.object } %>

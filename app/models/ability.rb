@@ -9,6 +9,7 @@ class Ability
 
     can :show_favorites, Category
     can :excursions, User
+    can :workshops, User
     can :resources, User
     can :events, User
     can :categories, User

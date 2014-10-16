@@ -2,8 +2,8 @@ Vish::Application.routes.draw do
 
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }
 
-
   match 'users/:id/excursions' => 'users#excursions'
+  match 'users/:id/workshops' => 'users#workshops'
   match 'users/:id/resources' => 'users#resources'
   match 'users/:id/events' => 'users#events'
   match 'users/:id/categories' => 'users#categories'
@@ -59,6 +59,17 @@ Vish::Application.routes.draw do
   match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
 
   resources :excursions
+
+  #Workshops
+  match '/workshops/:id/edit_details' => 'workshops#edit_details'
+  resources :workshops
+
+  #Workshops Activities
+  resources :wa_assignments
+  resources :wa_resources
+  resources :wa_resources_galleries
+  resource :wa_contributions_galleries
+  resource :wa_texts
 
 
   #Quiz Sessions

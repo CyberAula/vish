@@ -18,10 +18,17 @@ require 'builder'
 
 class Workshop < ActiveRecord::Base
   include SocialStream::Models::Object
-  has_many :workshop_actitities
+  has_many :workshop_activities
 
   define_index do
     activity_object_index
+    has draft
+  end
+
+  validates_inclusion_of :draft, :in => [true, false]
+
+  def thumbnail_url
+  	self.getAvatarUrl || "/assets/logos/original/excursion-00.png"
   end
 
 end

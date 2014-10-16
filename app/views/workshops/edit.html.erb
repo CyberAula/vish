@@ -1,0 +1,100 @@
+<% unless @workshop.draft %>
+  <p><a href="<%=workshop_path(@workshop)%>">Turn off editing mode</a></p>
+<%end%>
+
+<%= link_to "Delete Workshop",  @workshop, :method => :delete, :class => 'btn btn-primary', :confirm => t('workshop.confirm_delete') %>
+<%= form_for(@workshop) do |f| %>
+  <%= f.hidden_field :draft, :value => !@workshop.draft %>
+  <%= f.submit (@workshop.draft ? "Publicar" : "Retirar") %>
+<%end%>
+<br/>
+<br/>
+
+<p> Editing Workshop </p>
+
+<div class="wa_activity_wrapper wa_activity_wrapper_edit">
+  <div class="wa_activity_actions">
+    <ul>
+      <a href=<%=edit_details_path(@workshop)%>>Edit Details</a>
+    </ul>
+  </div>
+  <p>Title: <%=@workshop.title%></p>
+  <p>Description: <%=@workshop.description%></p>
+  <p>Avatar</p>
+  <p><img class="workshop_thumbnail applyBackstretch" src="<%=@workshop.thumbnail_url%>"></p>
+</div>
+
+<% @workshop.workshop_activities.each do |workshop_activity| %>
+  <div class="wa_activity_wrapper wa_activity_wrapper_edit">
+    <% entity = workshop_activity.object %>
+    <%className = entity.class.to_s%>
+    <%classNameUnderscore = className.underscore%>
+    <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
+               locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" }  %>
+  </div>
+<%end%>
+
+<div class="wa_add_activity_wrapper">
+  <a href="#WorkshopActivities" class="btn btn-primary" data-toggle="modal"><p>Add new Activity</p></a>
+</div>
+
+<div id="WorkshopActivities" class="modal hide fade" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <p><%=t('workshop.actions.add_activity_title')%></p>
+  </div>
+  <div class="modal-body tabbable tabs-below">
+    <div id="workshop_activities_column1">
+      <ul class="nav nav-tabs">
+        <li><a href="#tab_assignment" data-toggle="tab" activityId="assignment"><%=t('workshop.activities.assignment.title')%></a></li>
+        <li class="active"><a href="#tab_resource" data-toggle="tab" activityId="resource"><%=t('workshop.activities.resource.title')%></a></li>
+        <li><a href="#tab_resource_gallery" data-toggle="tab" activityId="resource_gallery"><%=t('workshop.activities.resource_gallery.title')%></a></li>
+        <li><a href="#tab_contributions_gallery" data-toggle="tab" activityId="contributions_gallery"><%=t('workshop.activities.contributions_gallery.title')%></a></li>
+        <li><a href="#tab_text" data-toggle="tab" activityId="text"><%=t('workshop.activities.text.title')%></a></li>
+      </ul>
+    </div>
+    <div id="workshop_activities_column2">
+      <div class="tab-content">
+        <div class="tab-pane" id="tab_assignment">
+          <p><%=t('workshop.activities.assignment.description')%></p>
+          <%= render partial: 'wa_assignments/new', :locals => { :workshop => @workshop } %>
+        </div>
+        <div class="tab-pane active" id="tab_resource">
+          <p><%=t('workshop.activities.resource.description')%></p>
+          <%= render partial: 'wa_resources/new', :locals => { :workshop => @workshop } %>
+        </div>
+        <div class="tab-pane" id="tab_resource_gallery">
+          <p><%=t('workshop.activities.resource_gallery.description')%></p>
+          <%= render partial: 'wa_resources_galleries/new', :locals => { :workshop => @workshop } %>
+        </div>
+        <div class="tab-pane" id="tab_contributions_gallery">
+          <p><%=t('workshop.activities.contributions_gallery.description')%></p>
+          <%= render partial: 'wa_contributions_galleries/new', :locals => { :workshop => @workshop } %>
+        </div>
+        <div class="tab-pane" id="tab_text">
+          <p><%=t('workshop.activities.text.description')%></p>
+          <%= render partial: 'wa_texts/new', :locals => { :workshop => @workshop } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <p><button class="btn btn-primary submitWorkshopActivityFake"><%=t('workshop.actions.add_activity_button')%></button></p>
+  </div>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+    <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => false } %>
+    $('#WorkshopActivities').on('shown', function(){
+    });
+    $('#WorkshopActivities').on('hidden', function(){
+    });
+    $(document).on( "click", "#WorkshopActivities .submitWorkshopActivityFake", function(){
+      var submitForm = $("#WorkshopActivities  div.tab-pane.active").find("form");
+      $(submitForm).submit();
+    });
+  });
+</script>
+

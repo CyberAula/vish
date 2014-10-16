@@ -27,6 +27,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def workshops
+    respond_to do |format|
+      format.html{        
+        render :partial => 'workshops/profile_workshops', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+      }
+    end
+  end
+
   def resources
     respond_to do |format|
       format.html{        

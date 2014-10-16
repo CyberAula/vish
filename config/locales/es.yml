@@ -907,9 +907,18 @@ es:
     name: "aplicación web"
     confirm_delete: "¿Borrar aplicación web?"
     view_full: "Pantalla completa"
+  workshop:
+    actions:
+        add: "Añadir Workshop"
+        add_activity_title: "Añadir Actividad al Workshop"
+        add_activity_button: "Añadir"
+    confirm_delete: "¿Borrar workshop?"
+    new: "Nuevo Workshop"
+    other: "Workshops"
   writing:
     actions:
       add: "Añadir texto"
+      delete: "Borrar"
     confirm_delete: "¿Borrar texto?"
     title3: "Escribe el texto a subir"
   yesterday: "Ayer"

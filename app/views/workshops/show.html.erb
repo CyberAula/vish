@@ -1,0 +1,56 @@
+<% if user_signed_in? and (can? :update, @workshop) %>
+  <p><a href="<%=edit_workshop_path(@workshop)%>">Turn on editing mode</a></p>
+<%end%>
+
+<section id="show_items">
+
+  <div class="wa_activity_wrapper wa_activity_wrapper_show">
+    <div class="wa_activity_actions">
+      <ul>
+        <a href=<%=edit_details_path(@workshop)%>>Edit Details</a>
+      </ul>
+    </div>
+    <p>Title: <%=@workshop.title%></p>
+    <p>Description: <%=@workshop.description%></p>
+    <p>Avatar</p>
+    <p><img class="workshop_thumbnail applyBackstretch" src="<%=@workshop.thumbnail_url%>"></p>
+  </div>
+
+  <!--owner-profile-->
+  <div class="description-activity">
+    <div class="box_description">
+      <!--tool-->
+      <div class="excursion_tool">
+        <% shortURL = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + workshop_path(@workshop) %>
+        <%= render :partial => 'workshops/workshop-tool-tab', :locals => { :shortURL => shortURL} %>
+      </div>   
+    </div>
+  </div>
+
+  <div class="box-show">
+    <div class="container-visor">
+      <!-- TODO -->
+      <br/>
+      <p> Contenido del Workshop </p>
+      <p> Actividades del Workshop </p>
+      <% @workshop.workshop_activities.each do |workshop_activity| %>
+        <div class="wa_activity_wrapper">
+          <% entity = workshop_activity.object %>
+          <%className = entity.class.to_s%>
+          <%classNameUnderscore = className.underscore%>
+          <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
+               locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" }  %>
+        </div>
+      <%end%>
+      <br/>
+    </div>
+  </div>
+    
+  <div class="description-activity">
+    <!--activity (comments) -->
+    <div class="activity-box">
+      <%= render :partial => 'workshops/evaluate-activity'%>
+    </div>
+  </div>
+
+</section>
