@@ -1,3 +1,15 @@
 <% resource = wa_resource.activity_object.object %>
-TODO: SHOW Wa resource view
-<p> Render the resource with title: <%=resource.title%></p>
+
+<%
+if [resource.class.name,resource.class.superclass.name].include? "Document"
+	folder = "common_documents"
+	classNameUnderscore = "document"
+else 
+	className = resource.class.to_s
+	classNameUnderscore = className.underscore
+	folder = className.tableize
+end
+%>
+
+<%= render partial: "#{ folder }/box_show",
+           locals:  { classNameUnderscore.to_sym => resource, :prefix_id => "wa_resource" }  %>

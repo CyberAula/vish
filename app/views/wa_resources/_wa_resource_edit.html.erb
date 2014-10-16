@@ -1,3 +1,1 @@
-<% resource = wa_resource.activity_object.object %>
-TODO: EDIT Wa resource view
-<p> Render the resource with title: <%=resource.title%></p>
+<%= render partial: "wa_resources/wa_resource", locals:  { :wa_resource => wa_resource }  %>
