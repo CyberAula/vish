@@ -67,16 +67,16 @@ class WorkshopMigration < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table "activity_objects_wa_galleries", id: false, :force => true do |t|
+    create_table "activity_objects_wa_resources_galleries", id: false, :force => true do |t|
       t.integer  "activity_object_id"
-      t.integer  "wa_gallery_id"
+      t.integer  "wa_resources_gallery_id"
       t.timestamps
     end
 
   end
 
   def down
-    drop_table :activity_objects_wa_galleries
+    drop_table :activity_objects_wa_resources_galleries
     drop_table :wa_resources_galleries
     drop_table :wa_assignments_wa_contributions_galleries
     drop_table :wa_contributions_galleries

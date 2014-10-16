@@ -98,11 +98,11 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
     t.decimal  "teachers_qscore",                    :precision => 12, :scale => 6
   end
 
-  create_table "activity_objects_wa_galleries", :id => false, :force => true do |t|
+  create_table "activity_objects_wa_resources_galleries", :id => false, :force => true do |t|
     t.integer  "activity_object_id"
-    t.integer  "wa_gallery_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.integer  "wa_resources_gallery_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "activity_verbs", :force => true do |t|

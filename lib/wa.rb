@@ -1,4 +1,7 @@
 module Wa
+  
+  # Methods for implement MTI (Multiple Table Inheritance) for Workshop Activities
+
   def acts_as_wa
     include InstanceMethods
     ############################ Class methods ################################
@@ -30,4 +33,5 @@ module Wa
       workshop_activity_without_build || build_workshop_activity
     end
   end
+
 end

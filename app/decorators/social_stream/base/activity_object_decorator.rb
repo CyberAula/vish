@@ -411,8 +411,23 @@ ActivityObject.class_eval do
   end
 
   def self.getObjectFromUrl(url)
-    #TODO
-    getObjectFromGlobalId("Excursion:"+Excursion.last.id.to_s)
+    return nil if url.blank?
+
+    urlregexp = /([ ]|^)(http[s]?:\/\/[^\/]+\/([a-zA-Z0-9]+)\/([0-9]+))([ ]|$)/
+    regexpResult = (url =~ urlregexp)
+
+    return nil if regexpResult.nil? or $3.nil? or $4.nil?
+
+    modelName = $3.singularize.capitalize
+    instanceId = $4
+
+    begin
+      resource = getObjectFromGlobalId(modelName + ":" + instanceId)
+    rescue
+      resource = nil
+    end
+
+    return resource
   end
 
   def self.getResourceCount

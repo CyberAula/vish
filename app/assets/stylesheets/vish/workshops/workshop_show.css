@@ -17,6 +17,31 @@ div.wa_activity_wrapper_edit {
   border: 6px dotted black;
 }
 
+div.wa_activity_edit_tools {
+  width: 100%;
+  text-align: right;
+  background: gray;
+}
+
+div.wa_activity_edit_tools ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+div.wa_activity_edit_tools ul li {
+  display: inline;
+}
+
+.workshop_activities_list_edit{
+  padding: 0px;
+  margin: 0px;
+}
+
+.sorthandler {
+  cursor: move;
+}
+
 div.wa_add_activity_wrapper{
   text-align: center;
   background-color: black;
