@@ -7,15 +7,14 @@ div.wa_activity_wrapper, wa_add_activity_wrapper{
 
 div.wa_activity_wrapper {
   background-color: #ccc;
-  border: 6px solid black;
 }
 
 div.wa_activity_wrapper_show {
-
+  border: 6px solid black;
 }
 
 div.wa_activity_wrapper_edit {
-
+  border: 6px dotted black;
 }
 
 div.wa_add_activity_wrapper{

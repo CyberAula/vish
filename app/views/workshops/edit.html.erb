@@ -1,4 +1,7 @@
-<p><a href="<%=workshop_path(@workshop)%>">Turn off editing mode</a></p>
+<% unless @workshop.draft %>
+  <p><a href="<%=workshop_path(@workshop)%>">Turn off editing mode</a></p>
+<%end%>
+
 <%= link_to "Delete Workshop",  @workshop, :method => :delete, :class => 'btn btn-primary', :confirm => t('workshop.confirm_delete') %>
 <%= form_for(@workshop) do |f| %>
   <%= f.hidden_field :draft, :value => !@workshop.draft %>
@@ -9,7 +12,7 @@
 
 <p> Editing Workshop </p>
 
-<div class="wa_activity_wrapper">
+<div class="wa_activity_wrapper wa_activity_wrapper_edit">
   <div class="wa_activity_actions">
     <ul>
       <a href=<%=edit_details_path(@workshop)%>>Edit Details</a>
@@ -22,7 +25,7 @@
 </div>
 
 <% @workshop.workshop_activities.each do |workshop_activity| %>
-  <div class="wa_activity_wrapper">
+  <div class="wa_activity_wrapper wa_activity_wrapper_edit">
     <% entity = workshop_activity.object %>
     <%className = entity.class.to_s%>
     <%classNameUnderscore = className.underscore%>

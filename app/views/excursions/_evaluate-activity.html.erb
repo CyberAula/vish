@@ -61,7 +61,7 @@
           <div class="recomended-items">
             <ul class="small-box clearfix">
               <% @resource_suggestions .each do |resource| %>
-                <%= render :partial => 'entities/entity', :locals => { :entity => resource} %>
+                <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "resource_suggestions"} %>
               <% end %>
             </ul>
           </div>
