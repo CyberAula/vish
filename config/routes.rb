@@ -67,7 +67,7 @@ Vish::Application.routes.draw do
   #Workshops Activities
   resources :wa_assignments
   resources :wa_resources
-  resources :wa_resource_galleries
+  resources :wa_resources_galleries
   resource :wa_contributions_galleries
   resource :wa_texts
 

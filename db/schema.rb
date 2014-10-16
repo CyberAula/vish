@@ -624,15 +624,15 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "wa_resource_galleries", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "wa_resources", :force => true do |t|
     t.integer  "activity_object_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "wa_resources_galleries", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "wa_texts", :force => true do |t|

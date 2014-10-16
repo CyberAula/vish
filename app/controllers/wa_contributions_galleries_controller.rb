@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
-class WaAssignmentsController < ApplicationController
+class WaContributionsGalleriesController < ApplicationController
 
   before_filter :authenticate_user!
   inherit_resources
@@ -50,7 +50,7 @@ class WaAssignmentsController < ApplicationController
   private
 
   def allowed_params
-    [:workshop_id, :fulltext, :open_date, :due_date]
+    [:workshop_id]
   end
 
 end

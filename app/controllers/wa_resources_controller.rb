@@ -35,7 +35,7 @@ class WaResourcesController < ApplicationController
     
     super do |format|
       format.html {
-        redirect_to workshop_path(resource.workshop)
+        redirect_to edit_workshop_path(resource.workshop)
       }
     end
   end
@@ -43,7 +43,7 @@ class WaResourcesController < ApplicationController
   def update
     super do |format|
       format.html {
-        redirect_to workshop_path(resource.workshop)
+        redirect_to edit_workshop_path(resource.workshop)
       }
     end
   end

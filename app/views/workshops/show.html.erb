@@ -24,6 +24,15 @@
       <br/>
       <p> Contenido del Workshop </p>
       <p> Actividades del Workshop </p>
+      <% @workshop.workshop_activities.each do |workshop_activity| %>
+        <div class="wa_activity_wrapper">
+          <% entity = workshop_activity.object %>
+          <%className = entity.class.to_s%>
+          <%classNameUnderscore = className.underscore%>
+          <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
+               locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" }  %>
+        </div>
+      <%end%>
       <br/>
     </div>
   </div>

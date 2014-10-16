@@ -63,7 +63,7 @@ class WorkshopMigration < ActiveRecord::Migration
     end
 
     # Resources Gallery
-    create_table "wa_resource_galleries", :force => true do |t|
+    create_table "wa_resources_galleries", :force => true do |t|
       t.timestamps
     end
 
@@ -77,10 +77,10 @@ class WorkshopMigration < ActiveRecord::Migration
 
   def down
     drop_table :activity_objects_wa_galleries
-    drop_table :wa_resource_galleries
+    drop_table :wa_resources_galleries
     drop_table :wa_assignments_wa_contributions_galleries
     drop_table :wa_contributions_galleries
-    drop_table :wa_text
+    drop_table :wa_texts
     drop_table :contributions
     drop_table :wa_assignments
     drop_table :wa_resources

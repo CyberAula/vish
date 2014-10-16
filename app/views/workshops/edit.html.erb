@@ -21,9 +21,13 @@
   <p><img class="workshop_thumbnail applyBackstretch" src="<%=@workshop.thumbnail_url%>"></p>
 </div>
 
-<% @workshop.workshop_activities.each do |wa| %>
+<% @workshop.workshop_activities.each do |workshop_activity| %>
   <div class="wa_activity_wrapper">
-    <%= render :partial => 'entities/entity', :locals => { :entity => wa.object, :prefix_id => "workshop" } %>
+    <% entity = workshop_activity.object %>
+    <%className = entity.class.to_s%>
+    <%classNameUnderscore = className.underscore%>
+    <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
+               locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" }  %>
   </div>
 <%end%>
 
@@ -58,21 +62,15 @@
         </div>
         <div class="tab-pane" id="tab_resource_gallery">
           <p><%=t('workshop.activities.resource_gallery.description')%></p>
-          <%= form_for WaResourceGallery.new, :remote => false do |f| %>
-            <%= f.hidden_field :workshop_id, :value => @workshop.id %>
-          <% end %>
+          <%= render partial: 'wa_resources_galleries/new', :locals => { :workshop => @workshop } %>
         </div>
         <div class="tab-pane" id="tab_contributions_gallery">
           <p><%=t('workshop.activities.contributions_gallery.description')%></p>
-          <%= form_for WaContributionsGallery.new, :remote => false do |f| %>
-            <%= f.hidden_field :workshop_id, :value => @workshop.id %>
-          <% end %>
+          <%= render partial: 'wa_contributions_galleries/new', :locals => { :workshop => @workshop } %>
         </div>
         <div class="tab-pane" id="tab_text">
           <p><%=t('workshop.activities.text.description')%></p>
-          <%= form_for WaText.new, :remote => false do |f| %>
-            <%= f.hidden_field :workshop_id, :value => @workshop.id %>
-          <% end %>
+          <%= render partial: 'wa_texts/new', :locals => { :workshop => @workshop } %>
         </div>
       </div>
     </div>
