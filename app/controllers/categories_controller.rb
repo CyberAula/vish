@@ -103,9 +103,14 @@ class CategoriesController < ApplicationController
       #if dragged into another category
       elsif [1] != -1
         receiver = ActivityObject.find(n[1].to_i)
-        if dragged != nil && receiver != nil && dragged != receiver
-          receiver.property_objects << dragged
-          receiver.property_objects.uniq!
+        if receiver.object_type == "Category"
+          if dragged != nil && receiver != nil && dragged != receiver
+            receiver.property_objects << dragged
+            receiver.property_objects.uniq!
+            #binding.pry
+            #dragged.is_root = false
+            #dragged.save
+          end
         end
       end
     end
@@ -117,11 +122,16 @@ class CategoriesController < ApplicationController
         sort_order = []      
       end
     end
+    
+    order_actor = Actor.find(current_subject)
+    order_actor.category_order = sort_order
+    order_actor.save
 
-    #hash_object = objects.each_with_object({}) do |obj, hash| 
+    # How to get ids back MYSQL problem
+    # categories = Actor.find(current_subject).category_order.tr('-','').tr(' ','').tr("'","").split("\n").map(&:to_i)
+    # hash_object = objects.each_with_object({}) do |obj, hash| 
     #  hash[obj.object_id] = obj
     #end
-
     #[1, 2, 3, 4, 5].map { |index| hash_object[index] }
 
     render :json => { :success => true }

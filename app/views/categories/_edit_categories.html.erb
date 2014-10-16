@@ -60,7 +60,7 @@ $(document).ready(function(){
 
 	//Complete button
 	$(".btn-for-categorize2").click(function(){
-		if (movements_array.length > 0){
+		if (movements_array.length > 0 || !beginIndex.equals(getidArray())){
 			$.ajax({
 	            url: '/categories/edit_categories',
 	            type: 'POST',
@@ -71,7 +71,7 @@ $(document).ready(function(){
 	               
 	                            
 	                            movements_array = []
-
+	                            $("#categories_edition").fadeOut();
 	                            $('#flash').hide(); 
 	               			 	$("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Hecho</div>')
 	                            .fadeIn()
