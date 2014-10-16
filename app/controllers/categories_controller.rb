@@ -20,6 +20,7 @@ class CategoriesController < ApplicationController
   end
 
   def categorize
+
     if params[:category_array].present?
       subject_categories = Category.authored_by(current_subject)
       subject_categories_ids = subject_categories.map{|c| c.id}
@@ -107,9 +108,9 @@ class CategoriesController < ApplicationController
           if dragged != nil && receiver != nil && dragged != receiver
             receiver.property_objects << dragged
             receiver.property_objects.uniq!
-            #binding.pry
-            #dragged.is_root = false
-            #dragged.save
+            dragged.category.is_root = false
+            dragged.category.save
+
           end
         end
       end
@@ -124,8 +125,10 @@ class CategoriesController < ApplicationController
     end
     
     order_actor = Actor.find(current_subject)
-    order_actor.category_order = sort_order
+    order_actor.category_order = sort_order.to_s
     order_actor.save
+    #order_actor.category_order = sort_order
+    #order_actor.save
 
     # How to get ids back MYSQL problem
     # categories = Actor.find(current_subject).category_order.tr('-','').tr(' ','').tr("'","").split("\n").map(&:to_i)

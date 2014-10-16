@@ -1,11 +1,16 @@
-<% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"updated_at"}) %>
-<% all_categories.each do |category| %>
+<% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}) %>
+<% all_categories.each do |cat| 
+		if !cat.is_root 
+				all_categories.reject!{|e| e == cat}
+		end
+ 	end
+ all_categories.each do |category| %>
     <%= render :partial => 'categories/category', :locals => { :category => category } %>
 <% end %> 
 
 <script>
   $(document).ready(function(){
-    update_pageless_state("categories", <%=all_categories.num_pages%>, <%=all_categories.current_page%>);
+   // update_pageless_state("categories", all_categories.num_pages, all_categories.current_page);
     
     $('a[href="#tab4"]').on('shown', function (e) {
       $(".category").fitText(0.4);

@@ -2,7 +2,8 @@ class Category < ActiveRecord::Base
   include SocialStream::Models::Object
 
   validates_presence_of :title
-  validate :title_not_duplicated
+  #Problem in categories controller
+  #validate :title_not_duplicated
 
   define_index do
     activity_object_index
