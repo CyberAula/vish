@@ -68,8 +68,8 @@ Vish::Application.routes.draw do
   resources :wa_assignments
   resources :wa_resources
   resources :wa_resources_galleries
-  resource :wa_contributions_galleries
-  resource :wa_texts
+  resources :wa_contributions_galleries
+  resources :wa_texts
 
 
   #Quiz Sessions

@@ -813,6 +813,7 @@ es:
     top: "paraMí"
     upload: "subir"
   save: "Salvar"
+  saving: "Salvando"
   scope:
     private: "Privado"
     public: "Público"
