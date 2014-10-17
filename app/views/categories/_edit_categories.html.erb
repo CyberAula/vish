@@ -63,10 +63,11 @@ $(document).ready(function(){
 	            dataType: "json",
 	            data: { actions: JSON.stringify(movements_array), sort_order: JSON.stringify(getidArray())<%if @category != nil%><%="," + "cat_id: " + @category.id.to_s %><%end%>},
 	              success: function(data){
+	              				
 	                            movements_array = []
 	                            $("#categories_edition").fadeOut();
 	                            $('#flash').hide(); 
-	               			 	$("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Successfully Categorized</div>')
+	               			 	$("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.success")%></div>')
 	                            .fadeIn()
 	                            .delay(6000)
 	                            .fadeOut(300, function(){
