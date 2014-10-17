@@ -103,7 +103,7 @@ class CategoriesController < ApplicationController
         end
 
       #if dragged into top level
-      elsif n[1].to_i == -2 && params[:sort_order].present?
+      #TODO: elsif n[1].to_i == -2 && params[:sort_order].present?
 
       #if dragged into another category   
       elsif n[1].to_i != -1
