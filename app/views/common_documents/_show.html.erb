@@ -10,7 +10,14 @@
   <%= div_for document do %>
     
     <!--visor-->
-    <%= render :partial => 'common_documents/box_show', :locals  => { :document => document } %>
+    <div class="box-show">
+      <div class="container-visor">
+        <div class="caja-elementos">
+          <%= render partial: "#{ document.class.to_s.tableize }/#{ document.class.to_s.underscore }_show",
+        locals: { document.class.to_s.underscore.to_sym => document } %>
+        </div>
+      </div>
+    </div>
 
     <!--recomended-->
     <!-- No option[:models] mean all resources -->
