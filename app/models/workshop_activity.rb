@@ -1,15 +1,30 @@
 class WorkshopActivity < ActiveRecord::Base
-	#Polymorphic
-	belongs_to  :wa, :polymorphic => true
+  #Polymorphic
+  belongs_to  :wa, :polymorphic => true
 
-	belongs_to :workshop
+  belongs_to :workshop
 
-	def object
-		wa
-	end
+  before_validation :fill_position
+  after_destroy :destroy_object
 
-	after_destroy :destroy_object
-	def destroy_object
-		wa.destroy unless wa.nil?
-	end
+  validates_presence_of :position
+
+
+  def object
+    wa
+  end
+
+
+  private
+
+  def fill_position
+    if self.position.nil?
+      self.position = self.workshop.workshop_activities.length + 1
+    end
+  end
+
+  def destroy_object
+    wa.destroy unless wa.nil?
+  end
+
 end

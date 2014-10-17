@@ -24,15 +24,26 @@
   <p><img class="workshop_thumbnail applyBackstretch" src="<%=@workshop.thumbnail_url%>"></p>
 </div>
 
-<% @workshop.workshop_activities.each do |workshop_activity| %>
-  <div class="wa_activity_wrapper wa_activity_wrapper_edit">
-    <% entity = workshop_activity.object %>
-    <%className = entity.class.to_s%>
-    <%classNameUnderscore = className.underscore%>
-    <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
-               locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" }  %>
-  </div>
-<%end%>
+<ul class="workshop_activities_list workshop_activities_list_edit">
+  <% @workshop_activities.each do |workshop_activity| %>
+    <li workshop_activity_id="<%=workshop_activity.id%>">
+      <div class="wa_activity_wrapper wa_activity_wrapper_edit">
+        <div class="wa_activity_edit_tools">
+          <ul>
+            <li class="sorthandler"><i class="icon-move"></i></li>
+            <li><i class="icon-edit-sign"></i></li>
+            <li><i class="icon-remove"></i></li>
+          </ul>
+        </div>
+        <% entity = workshop_activity.object %>
+        <%className = entity.class.to_s%>
+        <%classNameUnderscore = className.underscore%>
+        <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
+                   locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" }  %>
+      </div>
+    </li>
+  <%end%>
+</ul>
 
 <div class="wa_add_activity_wrapper">
   <a href="#WorkshopActivities" class="btn btn-primary" data-toggle="modal"><p>Add new Activity</p></a>
@@ -87,14 +98,59 @@
 <script>
   $(document).ready(function(){
     <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => false } %>
+
     $('#WorkshopActivities').on('shown', function(){
     });
     $('#WorkshopActivities').on('hidden', function(){
     });
+
     $(document).on( "click", "#WorkshopActivities .submitWorkshopActivityFake", function(){
       var submitForm = $("#WorkshopActivities  div.tab-pane.active").find("form");
       $(submitForm).submit();
     });
+
+    $("ul.workshop_activities_list_edit").sortable({
+      handle: ".sorthandler",
+      stop: function(event,ui){
+        _onDragWorkshopActivity();
+      }
+    });
+
+    var _lastActivitiesOrder;
+    var _onDragWorkshopActivity = function(){     
+      var activitiesOrder = _getCurrentWorkshopActivitiesOrder();
+      if(activitiesOrder!=_lastActivitiesOrder){
+        _lastActivitiesOrder = activitiesOrder;
+        _sendNewActivitiesOrder(activitiesOrder);
+      }
+    };
+
+    var _getCurrentWorkshopActivitiesOrder = function(){
+      var activitiesOrder = []; 
+      $("li[workshop_activity_id]").each(function(index,li){
+        activitiesOrder.push($(li).attr("workshop_activity_id"));
+      });
+      return activitiesOrder;
+    };
+
+    var _sendNewActivitiesOrder = function(activitiesOrder){
+      //Update workshop with the new activities order
+      $.ajax({
+        type: "PUT",
+        url: '<%=workshop_path(@workshop)%>',
+        dataType: 'json',
+        data: {
+          // "workshop_activities_order": JSON.stringify(activitiesOrder)
+          "workshop_activities_order": JSON.stringify(activitiesOrder)
+        },
+        success:function(response){
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+          _lastActivitiesOrder = undefined;
+        }
+      });
+    };
+
   });
 </script>
 

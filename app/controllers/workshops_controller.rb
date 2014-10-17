@@ -39,6 +39,7 @@ class WorkshopsController < ApplicationController
           redirect_to edit_workshop_path(@workshop)
         else
           # @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Workshop]})
+          @workshop_activities = @workshop.workshop_activities.sort_by{ |wa| wa.position }
           render
         end
       }
@@ -55,7 +56,10 @@ class WorkshopsController < ApplicationController
 
   def edit
     edit! do |format|
-      format.any
+      format.html {
+        @workshop_activities = @workshop.workshop_activities.sort_by{ |wa| wa.position }
+        render
+      }
     end
   end
 
@@ -81,6 +85,20 @@ class WorkshopsController < ApplicationController
   end
 
   def update
+    if params["workshop_activities_order"]
+      begin
+        wa_positions = JSON.parse(params["workshop_activities_order"]).map{|p| p.to_i}
+        wa_positions.each_with_index do |wa_id, index|
+          wa = resource.workshop_activities.find_by_id(wa_id)
+          unless wa.nil?
+            wa.update_column :position, index+1
+          end
+        end
+      rescue
+      end
+      params.delete "workshop_activities_order"
+    end
+
     super do |format|
       format.html {
         if resource.draft
@@ -88,6 +106,9 @@ class WorkshopsController < ApplicationController
         else
           redirect_to workshop_path(resource)
         end
+      }
+      format.json {
+        render :json => resource
       }
     end
   end
