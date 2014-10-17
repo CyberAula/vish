@@ -39,7 +39,10 @@ class WaResourcesController < ApplicationController
       format.html {
         unless resource.errors.blank?
           flash[:errors] = resource.errors.full_messages.to_sentence
+        else
+          discard_flash
         end
+        
         redirect_to edit_workshop_path(resource.workshop)
       }
     end
@@ -49,7 +52,9 @@ class WaResourcesController < ApplicationController
     super do |format|
       format.html {
         unless resource.errors.blank?
-          flash[:error] = resource.errors.full_messages.to_sentence
+          flash[:errors] = resource.errors.full_messages.to_sentence
+        else
+          discard_flash
         end
         redirect_to edit_workshop_path(resource.workshop)
       }
@@ -59,7 +64,7 @@ class WaResourcesController < ApplicationController
   def destroy
     destroy! do |format|
       format.all {
-        redirect_to user_path(current_subject) 
+        redirect_to edit_workshop_path(resource.workshop) 
       }
     end
   end

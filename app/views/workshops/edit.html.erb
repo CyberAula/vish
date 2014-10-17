@@ -32,7 +32,7 @@
           <ul>
             <li class="sorthandler"><i class="icon-move"></i></li>
             <li><i class="icon-edit-sign"></i></li>
-            <li><i class="icon-remove"></i></li>
+            <li><%= link_to raw('<i class="icon-remove"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %></li>
           </ul>
         </div>
         <% entity = workshop_activity.object %>

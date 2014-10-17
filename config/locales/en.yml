@@ -929,6 +929,8 @@ en:
         text: 
             title: "Text"
             description: "Include a paragraph of text."
+    activity:
+        confirm_delete: "Delete activity?"
     confirm_delete: "Delete workshop?"
     new: "New Workshop"
     other: "Workshops"
