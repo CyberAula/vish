@@ -31,7 +31,17 @@
         <div class="wa_activity_edit_tools">
           <ul>
             <li class="sorthandler"><i class="icon-move"></i></li>
-            <li><i class="icon-edit-sign"></i></li>
+            <% object = workshop_activity.object
+              className = object.class.to_s
+              classNameUnderscore = className.underscore
+              classNameTableize = className.tableize
+              hasEditPartial = lookup_context.template_exists?("#{classNameUnderscore}_edit", classNameTableize, true)
+            %>
+            <% if hasEditPartial %>
+              <li class="ui-state-default" data-target="#WorkshopActivity" data-toggle="modal" data-remote=<%="/#{classNameTableize}/#{object.id}/edit.partial"%>>
+                <i class="icon-edit-sign"></i>
+              </li>
+            <% end %>
             <li><%= link_to raw('<i class="icon-remove"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %></li>
           </ul>
         </div>
@@ -94,6 +104,19 @@
   </div>
 </div>
 
+<div id="WorkshopActivity" class="modal hide fade" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <p class="wa_title"></p>
+  </div>
+  <div class="modal-body tabbable tabs-below">
+      <!-- This body is replaced every time the modal is called -->
+  </div>
+  <div class="modal-footer">
+    <p><button class="btn btn-primary updateWorkshopActivityFake"><%=t('workshop.actions.edit_activity_button')%></button></p>
+  </div>
+</div>
+
 
 <script>
   $(document).ready(function(){
@@ -104,8 +127,17 @@
     $('#WorkshopActivities').on('hidden', function(){
     });
 
+    $('#WorkshopActivity').on('hidden', function(){
+      $(this).removeData('modal');
+    });
+
     $(document).on( "click", "#WorkshopActivities .submitWorkshopActivityFake", function(){
       var submitForm = $("#WorkshopActivities  div.tab-pane.active").find("form");
+      $(submitForm).submit();
+    });
+
+    $(document).on( "click", "#WorkshopActivity .updateWorkshopActivityFake", function(){
+      var submitForm = $("#WorkshopActivity").find("form");
       $(submitForm).submit();
     });
 

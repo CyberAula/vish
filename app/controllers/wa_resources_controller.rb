@@ -48,7 +48,23 @@ class WaResourcesController < ApplicationController
     end
   end
 
+  def edit
+    if params["format"]=="partial"
+      super do |format|
+        format.partial
+      end
+    end
+  end
+
   def update
+    params["wa_resource"] ||= {}
+    unless params["url"].blank?
+      the_resource = ActivityObject.getObjectFromUrl(params["url"])
+      unless the_resource.nil? or the_resource.activity_object.nil?
+        params["wa_resource"]["activity_object_id"] = the_resource.activity_object.id
+      end
+    end
+    
     super do |format|
       format.html {
         unless resource.errors.blank?
