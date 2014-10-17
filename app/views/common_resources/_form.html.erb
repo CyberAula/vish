@@ -50,6 +50,9 @@
     <% 
        initialTags = resource.tags.all.map{|e| e.name} || []
        tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue_categories).uniq!
+      if tags == nil
+        tags = []
+      end
     %>
  
     <!-- Tags -->

@@ -7,21 +7,22 @@
   <%= f.hidden_field :draft, :value => !@workshop.draft %>
   <%= f.submit (@workshop.draft ? "Publicar" : "Retirar") %>
 <%end%>
-<br/>
-<br/>
 
 <p> Editing Workshop </p>
 
 <div class="wa_activity_wrapper wa_activity_wrapper_edit">
   <div class="wa_activity_actions">
     <ul>
-      <a href=<%=edit_details_path(@workshop)%>>Edit Details</a>
+      <a href=<%=edit_details_path(@workshop)%>><i class="icon-edit"></i></a>
     </ul>
   </div>
-  <p>Title: <%=@workshop.title%></p>
-  <p>Description: <%=@workshop.description%></p>
-  <p>Avatar</p>
-  <p><img class="workshop_thumbnail applyBackstretch" src="<%=@workshop.thumbnail_url%>"></p>
+  <!--title-->
+  <h3 class="title_WS"><%=@workshop.title%></h3>
+  <!--avatar-->
+  <img class="workshop_thumbnail applyBackstretch" src="<%=@workshop.thumbnail_url%>">
+  <!--description-->
+  <p class="description_WS"><%=@workshop.description%></p>
+
 </div>
 
 <ul class="workshop_activities_list workshop_activities_list_edit">
