@@ -1,1 +1,30 @@
-TODO: EDIT Assignment view
+<div id="" class="">
+  <%= form_for wa_assignment, :html => { :id => "edit_wa_assignment_#{wa_assignment.id}" }, :remote => false do |f| %>
+    <%= f.label t('workshop.activities.assignment.open_date'), :class => "" %>
+    <%= f.date_select :open_date, :order => [:day, :month, :year] %>
+    <%= f.label t('workshop.activities.assignment.due_date'), :class => "" %>
+    <%= f.date_select :due_date, :order => [:day, :month, :year] %>
+    <%= f.label t('workshop.activities.assignment.content'), :class => "" %>
+    <%= f.text_area :fulltext, :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
+    
+    <%#= f.hidden_field :plaintext, :value => "", :id => "edit_wa_assignment_#{wa_assignment.id}_plaintext"%>
+    <%= f.submit t('save'), :class => "hide", :id => "edit_wa_assignment_#{wa_assignment.id}_submitbutton"%>
+  <% end %>
+  <input type="button" id="edit_wa_assignment_<%=wa_assignment.id%>_button" class="btn btn-primary" data-loading-text="<%= t('saving')%>" value="<%= t('save')%>"/>
+</div>
+
+
+<%=render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"} %>
+
+
+<script>
+	$(document).ready(function() {    
+	  //COMMON FIELDS
+	  var uploadButton = $("#edit_wa_assignment_<%=wa_assignment.id%>_button");
+	  
+	  $(uploadButton).click(function(event){
+	      //set_ckeditor_content_full_and_plaintext("edit_wa_assignment_<%=wa_assignment.id%>_fulltext","edit_wa_assignment_<%=wa_assignment.id%>_plaintext");
+	      $("#edit_wa_assignment_<%=wa_assignment.id%>_submitbutton").click();
+	  });
+	});
+</script>

@@ -1,1 +1,8 @@
-TODO: Assignment view
+<div id="" class="">
+	<span><%=t('workshop.activities.assignment.open_date')%></span><br/>
+	<%=wa_assignment.open_date%><br/>
+	<span><%=t('workshop.activities.assignment.due_date')%></span><br/>
+	<%=wa_assignment.due_date%><br/>
+	<span><%=t('workshop.activities.assignment.content')%></span>
+	<%=raw(wa_assignment.fulltext)%>
+</div>
