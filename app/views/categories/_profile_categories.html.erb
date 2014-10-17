@@ -4,12 +4,15 @@
  		<button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i>Place your categories</button>
  	</div>
  <% end %>
+  
   <% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}) %>
-  <% all_categories.reject!{|i| !i.is_root} %>
+  <% all_categories.reject!{|i| !i.is_root} %> 
   <% order = profile_or_current_subject.actor.category_order %>
-  <% if "--- []\n" != order %>
+  <% if "--- []\n" != order || order != nil%>
     <% order = JSON.parse(order).map {|l| l.to_i} %>
-    <% all_categories.sort_by!{|h| order.index(h.activity_object.id)} %>
+    <% if all_categories.length == order.length%>
+      <% all_categories.sort_by!{|h| order.index(h.activity_object.id)} %>
+    <% end %>
 
   <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
 	<% end	%>

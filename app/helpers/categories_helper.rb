@@ -5,11 +5,6 @@ module CategoriesHelper
 		categories_selection_array
 	end
 
-	def getRootOrderCategories(current)
-		n = Actor.find(current).category_order.tr('-','').tr(' ','').tr("'","").split("\n").map(&:to_i)
-		n
-	end
-
 	def category_thumbnail(category)
 		thumbs_array = []
 		category.property_objects.each do |item|

@@ -34,10 +34,8 @@
 	
 	<div class="layout_edit">
 		<ul class="categories edit_categories"> 
-		
-		<% all_categories.each do |category| %>
-		    <%= render :partial => 'categories/category', :locals => { :category => category, :obj_id => category.activity_object.id} %>
-		<% end %> 
+			<% @items ||= all_categories.map{|e| e.activity_object}%>
+			<%= render partial: 'categories/items', :locals => {:use_ids => true} %>
 		</ul>
 	</div>
 </div>
@@ -55,7 +53,7 @@ function getidArray(){
 $(document).ready(function(){
 	//Array where placed all actions
 	movements_array = [];
-
+	<%@category||=nil%>
 	//Complete button
 	$(".btn-for-categorize2").click(function(){
 		if (movements_array.length > 0 || !beginIndex.equals(getidArray())){
@@ -63,12 +61,12 @@ $(document).ready(function(){
 	            url: '/categories/edit_categories',
 	            type: 'POST',
 	            dataType: "json",
-	            data: { actions: JSON.stringify(movements_array), sort_order: JSON.stringify(getidArray())},
+	            data: { actions: JSON.stringify(movements_array), sort_order: JSON.stringify(getidArray())<%if @category != nil%><%="," + "cat_id: " + @category.id.to_s %><%end%>},
 	              success: function(data){
 	                            movements_array = []
 	                            $("#categories_edition").fadeOut();
 	                            $('#flash').hide(); 
-	               			 	$("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Hecho</div>')
+	               			 	$("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Successfully Categorized</div>')
 	                            .fadeIn()
 	                            .delay(6000)
 	                            .fadeOut(300, function(){
@@ -115,13 +113,16 @@ $(document).ready(function(){
   		
   		//if dragged onto another object
   		if (receiver.length != 0){
-  			var dragged_id = dragged.attr("edit-id");
-  			var receiver_id = receiver.attr("edit-id");
-  			
-  			movements_array.push([dragged_id,receiver_id]);
-  			dragged.fadeOut();
-  			dragged.remove();
+  			if (receiver.hasClass("categorie-item")){
+	  			var dragged_id = dragged.attr("edit-id");
+	  			var receiver_id = receiver.attr("edit-id");
+	  			if(dragged_id != receiver_id){
+		  			movements_array.push([dragged_id,receiver_id]);
+		  			dragged.fadeOut();
+		  			dragged.remove();
+	  			}
   			//ajax petition
+  			}
   		}
 
   		//if dragged into the bin

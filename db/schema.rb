@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141016132857) do
+ActiveRecord::Schema.define(:version => 20141017133303) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(:version => 20141016132857) do
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
     t.boolean  "is_root",            :default => true, :null => false
+    t.text     "category_order"
   end
 
   create_table "comments", :force => true do |t|

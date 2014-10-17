@@ -1,4 +1,4 @@
-<li class="box-item excursion-item">
+<li class="box-item excursion-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
   <!--medallas-->
   <%if excursion.is_mostvaluable? %>
   <div class="badge-excursion-active"></div>

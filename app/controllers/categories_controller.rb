@@ -76,7 +76,6 @@ class CategoriesController < ApplicationController
   end
 
   def edit_categories
-
     #if insertions array params presents
     # parse.Json params
     # for each in MovethingsOut
@@ -97,20 +96,32 @@ class CategoriesController < ApplicationController
         #if it is a category it gets destroyed
         if dragged.object_type == "Category"
          dragged.destroy
+
          #if it is not just get deleted
-        elsif receiver.property_objects.include?(dragged)
-          receiver.property_objects.delete(dragged)
+        elsif params[:sort_order].present? && Category.find(params[:cat_id]).property_objects.include?(dragged)
+          Category.find(params[:cat_id]).property_objects.delete(dragged)
         end
-      #if dragged into another category
-      elsif [1] != -1
+
+      #if dragged into top level
+      elsif n[1].to_i == -2 && params[:sort_order].present?
+
+      #if dragged into another category   
+      elsif n[1].to_i != -1
         receiver = ActivityObject.find(n[1].to_i)
+        #paranoid
         if receiver.object_type == "Category"
-          if dragged != nil && receiver != nil && dragged != receiver
+          if dragged != nil && receiver != nil && dragged != receiver 
             receiver.property_objects << dragged
             receiver.property_objects.uniq!
-            dragged.category.is_root = false
-            dragged.category.save
-
+            #if dragged is a category notify it is not root
+            if dragged.object_type == "Category"
+              dragged.category.is_root = false
+              dragged.category.save
+            end
+             #notify for leaving a category container
+            if params[:cat_id].present? && Category.find(params[:cat_id]).property_objects.include?(dragged)
+              Category.find(params[:cat_id].to_i).property_objects.delete(dragged)
+            end
           end
         end
       end
@@ -123,10 +134,16 @@ class CategoriesController < ApplicationController
         sort_order = []
       end
     end
-    
-    order_actor = Actor.find(current_subject)
-    order_actor.category_order = sort_order.to_json
-    order_actor.save
+     
+    if params[:cat_id].present?
+      order_category = Category.find(params[:cat_id].to_i)      
+      order_category.category_order = sort_order.to_json
+      order_category.save
+    else
+      order_actor = Actor.find(current_subject)
+      order_actor.category_order = sort_order.to_json
+      order_actor.save
+    end
 
     #In theory with this implementation JSON.parse() should be enough
     #order_actor.category_order = sort_order
@@ -161,16 +178,6 @@ class CategoriesController < ApplicationController
    end
 
   private
-  
-  def moveThingsInsideOut(primary, secondary)
-    #It would be nice to put a dot marking if that is a root category or not
-    #Cases -actual state is root goes to undercategory.
-    #      - actual state is not root and goes to root
-    #      - actual state is not root and goes to no root -> implemented
-      if ActivityObject.find(primary).object_type == "Category"
-          ActivityObject.find(primary).property_objects << secondary
-      end
-  end
 
   def allowed_params
     [:item_type, :item_id, :scope]
