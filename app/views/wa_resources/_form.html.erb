@@ -1,0 +1,12 @@
+<%
+wa_resource ||= WaResource.new
+unless wa_resource.workshop.nil? 
+  workshop = wa_resource.workshop
+end
+url = wa_resource.activity_object.nil? ? nil : wa_resource.activity_object.getUrl
+%>
+
+<%= form_for wa_resource, :remote => false do |f| %>
+  <%= f.hidden_field :workshop_id, :value => workshop.id %>
+  <input type="text" name="url" value="<%= url unless url.nil?%>"></input>
+<% end %>

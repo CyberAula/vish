@@ -913,6 +913,7 @@ en:
         add: "Add Workshop"
         add_activity_title: "Add Activity to the Workshop"
         add_activity_button: "Add"
+        edit_activity_button: "Save"
     activities:
         assignment:
             title: "Assignment"
