@@ -20,6 +20,8 @@ class WaResourcesController < ApplicationController
   before_filter :authenticate_user!
   inherit_resources
 
+  skip_after_filter :discard_flash, :only => [:create]
+
   #############
   # REST methods
   #############
@@ -28,13 +30,19 @@ class WaResourcesController < ApplicationController
     params["wa_resource"] ||= {}
     unless params["url"].blank?
       the_resource = ActivityObject.getObjectFromUrl(params["url"])
-      unless the_resource.nil? or the_resource.activity_object.nil? or !VishConfig.getAvailableAllResourceModels.include? the_resource.activity_object.object_type
+      unless the_resource.nil? or the_resource.activity_object.nil?
         params["wa_resource"]["activity_object_id"] = the_resource.activity_object.id
       end
-    end 
+    end
     
     super do |format|
       format.html {
+        unless resource.errors.blank?
+          flash[:errors] = resource.errors.full_messages.to_sentence
+        else
+          discard_flash
+        end
+        
         redirect_to edit_workshop_path(resource.workshop)
       }
     end
@@ -43,6 +51,11 @@ class WaResourcesController < ApplicationController
   def update
     super do |format|
       format.html {
+        unless resource.errors.blank?
+          flash[:errors] = resource.errors.full_messages.to_sentence
+        else
+          discard_flash
+        end
         redirect_to edit_workshop_path(resource.workshop)
       }
     end
@@ -50,7 +63,9 @@ class WaResourcesController < ApplicationController
 
   def destroy
     destroy! do |format|
-      format.all { redirect_to user_path(current_subject) }
+      format.all {
+        redirect_to edit_workshop_path(resource.workshop) 
+      }
     end
   end
 

@@ -33,8 +33,14 @@
 
 <!--div class="page-header"><%= @excursion.title %></div-->
 <section id="show_items">
+  
   <!-- Content -->
-  <%= render :partial => 'box_show', :locals  => { :excursion => @excursion } %>
+  <div class="box-show">
+    <div class="container-visor">
+      <div class="elemento-visor"></div>
+      <%= render :partial => 'excursion_show', :locals  => { :excursion => @excursion } %>
+    </div>
+  </div>
 
   <!--recomended-->
   <%= render :partial => 'recommender/sidebar', :locals  => { :resources => @resource_suggestions } %>

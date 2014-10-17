@@ -1,15 +1,12 @@
-<% resource = wa_resource.activity_object.object %>
-
-<%
-if [resource.class.name,resource.class.superclass.name].include? "Document"
-	folder = "common_documents"
-	classNameUnderscore = "document"
-else 
+<% resource = wa_resource.activity_object.object
 	className = resource.class.to_s
 	classNameUnderscore = className.underscore
-	folder = className.tableize
-end
+	classNameTableize = className.tableize
+	hasWorkshopPartial = lookup_context.template_exists?("#{classNameUnderscore}_workshop_show", classNameTableize, true)
 %>
 
-<%= render partial: "#{ folder }/box_show",
-           locals:  { classNameUnderscore.to_sym => resource, :prefix_id => "wa_resource" }  %>
+<% if hasWorkshopPartial %>
+	<%= render partial: "#{ classNameTableize }/#{classNameUnderscore}_workshop_show", locals:  { classNameUnderscore.to_sym => resource, :prefix_id => "wa_resource" }  %>
+<% else %>
+	<%= render partial: "#{ classNameTableize }/#{ classNameUnderscore }_show", locals:  { classNameUnderscore.to_sym => resource, :prefix_id => "wa_resource" }  %>
+<% end %>

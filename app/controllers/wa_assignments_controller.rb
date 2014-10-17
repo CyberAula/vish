@@ -20,13 +20,20 @@ class WaAssignmentsController < ApplicationController
   before_filter :authenticate_user!
   inherit_resources
 
+  skip_after_filter :discard_flash, :only => [:create]
+
   #############
   # REST methods
   #############
 
-  def create
+  def create   
     super do |format|
       format.html {
+         unless resource.errors.blank?
+          flash[:errors] = resource.errors.full_messages.to_sentence
+        else
+          discard_flash
+        end
         redirect_to edit_workshop_path(resource.workshop)
       }
     end
@@ -35,6 +42,11 @@ class WaAssignmentsController < ApplicationController
   def update
     super do |format|
       format.html {
+         unless resource.errors.blank?
+          flash[:errors] = resource.errors.full_messages.to_sentence
+        else
+          discard_flash
+        end
         redirect_to edit_workshop_path(resource.workshop)
       }
     end
@@ -42,7 +54,9 @@ class WaAssignmentsController < ApplicationController
 
   def destroy
     destroy! do |format|
-      format.all { redirect_to user_path(current_subject) }
+      format.all {
+        redirect_to edit_workshop_path(resource.workshop)
+      }
     end
   end
 

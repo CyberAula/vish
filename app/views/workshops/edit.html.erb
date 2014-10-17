@@ -32,7 +32,7 @@
           <ul>
             <li class="sorthandler"><i class="icon-move"></i></li>
             <li><i class="icon-edit-sign"></i></li>
-            <li><i class="icon-remove"></i></li>
+            <li><%= link_to raw('<i class="icon-remove"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %></li>
           </ul>
         </div>
         <% entity = workshop_activity.object %>
@@ -117,7 +117,7 @@
     });
 
     var _lastActivitiesOrder;
-    var _onDragWorkshopActivity = function(){     
+    var _onDragWorkshopActivity = function(){
       var activitiesOrder = _getCurrentWorkshopActivitiesOrder();
       if(activitiesOrder!=_lastActivitiesOrder){
         _lastActivitiesOrder = activitiesOrder;
@@ -140,7 +140,6 @@
         url: '<%=workshop_path(@workshop)%>',
         dataType: 'json',
         data: {
-          // "workshop_activities_order": JSON.stringify(activitiesOrder)
           "workshop_activities_order": JSON.stringify(activitiesOrder)
         },
         success:function(response){
