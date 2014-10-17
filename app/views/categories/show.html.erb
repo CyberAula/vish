@@ -63,8 +63,9 @@
 <%= render partial: 'categories/edit_categories', :locals => { :all_categories => @items} %>
 <% end %>
 
-
+<div class="main-categories-space">
 <%= render partial: 'categories/items' %>
+</div>
 
 <%= content_for :javascript do %>
   $(document).ready(function(){
@@ -118,19 +119,24 @@ Array.prototype.equals = function (array) {
 }
 
 var beginIndex;
+var beginObjects;
 //Let the overlay appear
 $(document).ready(function(){
   $(".btn-for-categorize").click(function(){
     $("#categories_edition").fadeIn();
     beginIndex = getidArray();
+    beginObjects = $(".edit_categories .box-item").clone();
     $("#categories_edition div[bs-img]").each(function(){
       $(this).backstretch($(this).attr("bs-img"));
     });
   });
 });
 
-function reorderMainView(ids){
-  
+function updateMainView(){
+  var actualState = $(".edit_categories .box-item").clone();
+  var s = $(".main-categories-space .box-item");
+  s.each(function( index ) {this.remove();});
+  actualState.appendTo(".main-categories-space");
 }
 
 </script>

@@ -63,8 +63,8 @@ $(document).ready(function(){
 	            dataType: "json",
 	            data: { actions: JSON.stringify(movements_array), sort_order: JSON.stringify(getidArray())<%if @category != nil%><%="," + "cat_id: " + @category.id.to_s %><%end%>},
 	              success: function(data){
-	              				
-	                            movements_array = []
+	              				updateMainView();
+	                            movements_array = [];
 	                            $("#categories_edition").fadeOut();
 	                            $('#flash').hide(); 
 	               			 	$("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.success")%></div>')
@@ -72,7 +72,6 @@ $(document).ready(function(){
 	                            .delay(6000)
 	                            .fadeOut(300, function(){
 	                              $('#flash').html("");
-
 	                            });
 	                }
 	    	});
@@ -83,8 +82,13 @@ $(document).ready(function(){
 
 	//Cancel button
 	$(".btn-for-undo").click(function(){
-		//TODO: sustitution to main elements
-		$("#categories_edition").fadeOut();
+
+		$("#categories_edition").fadeOut(function(){
+			movements_array = [];
+			$(".edit_categories .box-item").remove();
+			beginObjects.appendTo(".edit_categories");
+			$( ".edit_categories .box-item" ).mouseup(dragAndDrop);	
+		});
   });
 	
 
@@ -99,10 +103,9 @@ $(document).ready(function(){
 	}).disableSelection();
  
  //Handler Dropping
-	$( ".box-item" ).mouseup(function() {
+	$( ".edit_categories .box-item" ).mouseup(dragAndDrop);
 
-		//check out if sortable is activated before this
-
+	function dragAndDrop(){
 		//Get dragged object 
   		var dragged = document.elementFromPoint(event.clientX,event.clientY);
   		dragged = $(dragged).closest(".overlay .box-item");
@@ -133,11 +136,9 @@ $(document).ready(function(){
   			movements_array.push([dragged_id,"-1"]);
   			dragged.fadeOut();
   			dragged.remove();
-  		}
-  		
+  		}	
 
-	});
-
+	}
 });
 
 </script>

@@ -16,7 +16,7 @@
 
   <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
 	<% end	%>
-  <ul class="categories"> 	
+  <ul class="categories main-categories-space"> 	
     <% if profile_subject_is_current? %>
       <%= render partial: 'categories/category-add' %>
       <%= render partial: 'categories/category_fav' %>
@@ -55,13 +55,22 @@ Array.prototype.equals = function (array) {
 }
 
 var beginIndex;
+var beginObjects;
 //Let the overlay appear
 $(document).ready(function(){
 	$(".btn-for-categorize").click(function(){
 		$("#categories_edition").fadeIn();
     beginIndex = getidArray();
+    beginObjects = $(".edit_categories .box-item").clone();
   });
 });
 
+function updateMainView(){
+  var actualState = $(".edit_categories .box-item").clone();
+  var s = $(".main-categories-space .box-item");
+  s.splice(0,2);
+  s.each(function( index ) {this.remove();});
+  actualState.appendTo(".main-categories-space");
+}
 
 </script>
