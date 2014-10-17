@@ -1,32 +1,32 @@
 <div id="categories_edition" class="overlay container" >
 	<div class="editing_info">
-		<h3>Place your categories</h3>
+		<h3><%=t('categories.dragandrop.place')%></h3>
 		<div class="delete">
 			<i class="icon-trash"></i>
-			<p> Drag here to remove</p>
+			<p><%=t('categories.dragandrop.erase')%></p>
 		</div>
 		<ul>
 			<li>
 				<i class="icon-move"></i>
-				<h4>Drag and drop</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do consectetur adipiscing</p>
+				<h4><%=t('categories.dragandrop.dragt1')%></h4>
+				<p><%=t('categories.dragandrop.drag1')%></p>
 			</li>
 			<li>
 				<i class="icon-folder-open-alt"></i>
-				<h4>Order your categories</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do consectetur adipiscing</p>
+				<h4><%=t('categories.dragandrop.dragt2')%></h4>
+				<p><%=t('categories.dragandrop.drag2')%></p>
 			</li>
 			<li>
 				<i class="icon-archive"></i>
-				<h4>Group your knowledge</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do consectetur adipiscing</p>
+				<h4><%=t('categories.dragandrop.dragt3')%></h4>
+				<p><%=t('categories.dragandrop.drag3')%></p>
 			</li>
 		</ul>
 
 
 
 		<div class="actions">
-			<button type="button" class="btn btn-for-undo " data-toggle="button"><i class="icon-circle-arrow-left"></i>Cancel</button>
+			<button type="button" class="btn btn-for-undo " data-toggle="button"><i class="icon-circle-arrow-left"></i><%=t('cancel')%></button>
 			<button type="button" class="btn btn-primary btn-for-categorize2 " data-toggle="button"><i class="icon-ok-sign"></i>Complete</button>
 
 		</div>
@@ -34,14 +34,8 @@
 	
 	<div class="layout_edit">
 		<ul class="categories edit_categories"> 
-		<% new_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}) 
-
-		new_categories.each do |cat|
-			if !cat.is_root 
-				new_categories.reject!{|e| e == cat}
-			end
- 		end
-		 new_categories.each do |category| %>
+		
+		<% all_categories.each do |category| %>
 		    <%= render :partial => 'categories/category', :locals => { :category => category, :obj_id => category.activity_object.id} %>
 		<% end %> 
 		</ul>
@@ -49,9 +43,7 @@
 </div>
 
 <script>
-
-// I couldn't make the serialize work, this is suppose to do the work
-
+//Serialize function
 function getidArray(){
 	var s = [];
 	$(".overlay .edit_categories .box-item").each(function(key, value){
@@ -73,9 +65,6 @@ $(document).ready(function(){
 	            dataType: "json",
 	            data: { actions: JSON.stringify(movements_array), sort_order: JSON.stringify(getidArray())},
 	              success: function(data){
-	                //Emulating alert with javascript
-	               
-	                            
 	                            movements_array = []
 	                            $("#categories_edition").fadeOut();
 	                            $('#flash').hide(); 
@@ -92,8 +81,10 @@ $(document).ready(function(){
 			$("#categories_edition").fadeOut();
 		}
   });
+
 	//Cancel button
 	$(".btn-for-undo").click(function(){
+		//TODO: sustitution to main elements
 		$("#categories_edition").fadeOut();
   });
 	
@@ -104,18 +95,14 @@ $(document).ready(function(){
 			 //Reduces size
 			 $(ui.item).width($(ui.item).width()*0.8);
 			 $(ui.item).height($(ui.item).height()*0.8);
-			 
-			 //This is to fix cursor to middle position
-			// $(this).sortable("option", "cursorAt", {
-	   		//	 left: Math.floor(ui.helper.width()),
-	   		//	 top: Math.floor(ui.helper.height())
-	 		 //}); 
 		},
 		tolerance: "intersect"
 	}).disableSelection();
  
  //Handler Dropping
 	$( ".box-item" ).mouseup(function() {
+
+		//check out if sortable is activated before this
 
 		//Get dragged object 
   		var dragged = document.elementFromPoint(event.clientX,event.clientY);

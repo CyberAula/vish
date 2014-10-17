@@ -3,7 +3,15 @@
 	<div class="toolbar_nav-tab">
  		<button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i>Place your categories</button>
  	</div>
-  <%= render partial: 'categories/edit_categories', :locals => { :scope => scope} %>
+ <% end %>
+  <% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}) %>
+  <% all_categories.reject!{|i| !i.is_root} %>
+  <% order = profile_or_current_subject.actor.category_order %>
+  <% if "--- []\n" != order %>
+    <% order = JSON.parse(order).map {|l| l.to_i} %>
+    <% all_categories.sort_by!{|h| order.index(h.activity_object.id)} %>
+
+  <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
 	<% end	%>
   <ul class="categories"> 	
     <% if profile_subject_is_current? %>
@@ -11,7 +19,7 @@
       <%= render partial: 'categories/category_fav' %>
     <% end %>
     
-    <%= render partial: 'categories/categories', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> params[:sort_by]||"updated_at"} %>
+    <%= render partial: 'categories/categories', :locals => { :scope => scope, :all_categories => all_categories} %>
     
   </ul>
   

@@ -1,12 +1,6 @@
-<% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}) %>
-<% all_categories.each do |cat| 
-		if !cat.is_root 
-				all_categories.reject!{|e| e == cat}
-		end
- 	end
- all_categories.each do |category| %>
-    <%= render :partial => 'categories/category', :locals => { :category => category } %>
-<% end %> 
+ <% all_categories.each do |category| %>
+      <%= render :partial => 'categories/category', :locals => { :category => category } %>
+ <% end %> 
 
 <script>
   $(document).ready(function(){

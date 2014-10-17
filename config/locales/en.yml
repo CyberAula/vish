@@ -97,6 +97,15 @@ en:
       apply: "Apply"
       verb: "Categorize"
     description_input: "Description for this category"
+    dragandrop:
+        drag1: "Move and drop different resources into categories the way you want or even erase them."
+        drag2: "Order is always important, drag and sort."
+        drag3: "Knowledge can be grouped anyway, choose your way."
+        dragt1: "Drag and drop"
+        dragt2: "Order your categories"
+        dragt3: "Group your knowledge"
+        erase: "Drag here to remove"
+        place: "Place your categories"
     errors:
       duplicated: "You already have a category with this title. Please, give it another title."
     favorites:

@@ -120,13 +120,15 @@ class CategoriesController < ApplicationController
       begin
         sort_order = JSON.parse(params[:sort_order])
       rescue
-        sort_order = []      
+        sort_order = []
       end
     end
     
     order_actor = Actor.find(current_subject)
-    order_actor.category_order = sort_order.to_s
+    order_actor.category_order = sort_order.to_json
     order_actor.save
+
+    #In theory with this implementation JSON.parse() should be enough
     #order_actor.category_order = sort_order
     #order_actor.save
 
