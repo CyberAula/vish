@@ -95,7 +95,7 @@ class CategoriesController < ApplicationController
       if n[1].to_i == -1
         #if it is a category it gets destroyed
         if dragged.object_type == "Category"
-         dragged.destroy
+         dragged.object.destroy
 
          #if it is not just get deleted
         elsif params[:sort_order].present? && Category.find(params[:cat_id]).property_objects.include?(dragged)
