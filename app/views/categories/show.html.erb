@@ -25,7 +25,7 @@
       <!--editar-->
       <% if can?(:update, @category) %>
       <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %> 
-      <button type="button" class="btn btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></button>
+      <a class="btn btn-for-categorize"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></a>
       <% end %>
       <!--borrar-->
       <% if user_signed_in? and can?(:destroy, @category) %>
@@ -50,6 +50,7 @@
   </div>
 </section>
 
+<%#Ordering logic%>
 <% @items = @category.property_objects %>
   <% order = @category.category_order %>
   <% if "--- []\n" != order && order != nil%>
