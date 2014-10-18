@@ -98,9 +98,12 @@ $(document).ready(function(){
 			$(".edit_categories .box-item").remove();
 			beginObjects.appendTo(".edit_categories");
 			$( ".edit_categories .box-item" ).mouseup(dragAndDrop);	
+			$(".overlay .edit_categories .box-item").click(function(){return false;});
 		});
   });
 	
+$(".overlay .edit_categories .box-item").click(function(){return false;});
+
 
 	sortable_object = $(".edit_categories");
 	$(sortable_object).sortable({
