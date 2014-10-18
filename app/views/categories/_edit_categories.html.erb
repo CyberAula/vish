@@ -105,7 +105,7 @@ $(document).ready(function(){
  //Handler Dropping
 	$( ".edit_categories .box-item" ).mouseup(dragAndDrop);
 
-	function dragAndDrop(){
+	function dragAndDrop(event){
 		//Get dragged object 
   		var dragged = document.elementFromPoint(event.clientX,event.clientY);
   		dragged = $(dragged).closest(".overlay .box-item");
@@ -122,8 +122,12 @@ $(document).ready(function(){
 	  			var receiver_id = receiver.attr("edit-id");
 	  			if(dragged_id != receiver_id){
 		  			movements_array.push([dragged_id,receiver_id]);
-		  			dragged.fadeOut();
-		  			dragged.remove();
+		  			dragged.css("position", "absolute");
+		  			dragged.css("top", 300);
+		  			dragged.fadeOut(200,function(){
+		  				dragged.remove();
+		  			});
+		  			
 	  			}
   			//ajax petition
   			}
@@ -134,8 +138,10 @@ $(document).ready(function(){
   		if (receiver.length != 0){
   			var dragged_id = dragged.attr("edit-id");
   			movements_array.push([dragged_id,"-1"]);
-  			dragged.fadeOut();
-  			dragged.remove();
+
+  			dragged.fadeOut(200,function(){
+		  		dragged.remove();
+		  	});
   		}	
 
 	}
