@@ -73,7 +73,17 @@ $(document).ready(function(){
 	                            .fadeOut(300, function(){
 	                              $('#flash').html("");
 	                            });
-	                }
+	                },
+	                 error: function(){
+	                 	$("#categories_edition").fadeOut();
+	                            $('#flash').hide(); 
+	               			 	$("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.error")%></div>')
+	                            .fadeIn()
+	                            .delay(6000)
+	                            .fadeOut(300, function(){
+	                              $('#flash').html("");
+	                            });
+        		}
 	    	});
 		}else{
 			$("#categories_edition").fadeOut();

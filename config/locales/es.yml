@@ -84,6 +84,7 @@ es:
     cat_popular: "Tus categorías populares"
     categorized_like: "Categorizada como:"
     confirm_delete: "Borrar categoría?"
+    error: "Lo sentimos, el servidor esta experimentando ciertos problemas, intentaló de nuevo más tarde."
     modalLabel: "Añadir a mis categorías"
     success: "Categorizado con éxito"
     tagit_watermark_cat: "Añade una nueva categoría"

@@ -88,6 +88,7 @@ en:
     cat_popular: "Your popular categories"
     categorized_like: "Categorized as:"
     confirm_delete: "Delete category?"
+    error: "Sorry, the server must be having problems right now, try it later"
     modalLabel: "Add to my categories"
     success: "Succesfully categorized"
     tagit_watermark_cat: "Add a new category"
