@@ -3,7 +3,7 @@ class Category < ActiveRecord::Base
 
   validates_presence_of :title
   #Problem in categories controller
-  #validate :title_not_duplicated
+  validate :title_not_duplicated, on: :create
 
   define_index do
     activity_object_index

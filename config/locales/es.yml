@@ -94,14 +94,15 @@ es:
       verb: "Categorizar"
     description_input: "Descripción para esta categoría"
     dragandrop:
-        drag1: "Mueve y suelta los recursos dentro de categorías como quieras o incluso borrarlos."
-        drag2: "El orden siempre es importante, arrastra y ordena."
+        complete: "Completar"
+        drag1: "dentro de categorías, también puedes borrar en la esquina superior derecha."
+        drag2: "El orden se mantendrá a partir de ahora en las categorías."
         drag3: "El conocimiento puede estar reunido de la manera que quieras, elige la tuya."
         dragt1: "Arrastra y suelta"
         dragt2: "Ordena tus categorías"
         dragt3: "Agrupa tu conocimiento"
         erase: "Arrastra aquí para eliminar"
-        place: "Ubica tus categorías"
+        place: "Ordena tus categorías"
     errors:
       duplicated: "Ya tienes una categoría con ese título. Por favor, escribe uno diferente."
     favorites:

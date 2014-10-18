@@ -27,7 +27,7 @@
 
 		<div class="actions">
 			<button type="button" class="btn btn-for-undo " data-toggle="button"><i class="icon-circle-arrow-left"></i><%=t('cancel')%></button>
-			<button type="button" class="btn btn-primary btn-for-categorize2 " data-toggle="button"><i class="icon-ok-sign"></i>Complete</button>
+			<button type="button" class="btn btn-primary btn-for-categorize2 " data-toggle="button"><i class="icon-ok-sign"></i><%=t('categories.dragandrop.complete')%></button>
 
 		</div>
 	</div>
@@ -122,12 +122,8 @@ $(document).ready(function(){
 	  			var receiver_id = receiver.attr("edit-id");
 	  			if(dragged_id != receiver_id){
 		  			movements_array.push([dragged_id,receiver_id]);
-		  			dragged.css("position", "absolute");
-		  			dragged.css("top", 300);
-		  			dragged.fadeOut(200,function(){
-		  				dragged.remove();
-		  			});
-		  			
+		  			dragged.fadeOut();
+		  			dragged.remove();
 	  			}
   			//ajax petition
   			}
@@ -138,10 +134,8 @@ $(document).ready(function(){
   		if (receiver.length != 0){
   			var dragged_id = dragged.attr("edit-id");
   			movements_array.push([dragged_id,"-1"]);
-
-  			dragged.fadeOut(200,function(){
-		  		dragged.remove();
-		  	});
+  			dragged.fadeOut();
+  			dragged.remove();
   		}	
 
 	}

@@ -98,6 +98,7 @@ en:
       verb: "Categorize"
     description_input: "Description for this category"
     dragandrop:
+        complete: "Complete"
         drag1: "Move and drop different resources into categories the way you want or even erase them."
         drag2: "Order is always important, drag and sort."
         drag3: "Knowledge can be grouped anyway, choose your way."
