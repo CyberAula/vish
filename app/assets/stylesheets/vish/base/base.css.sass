@@ -23,3 +23,71 @@ textarea,input
 .entities
   ul
     margin: 0
+
+//toolbar_tabs
+.header-title_page
+  border-bottom: 1px solid #999
+
+//toolbar_tabs
+.toolbar_nav-tab
+  background-color: $white
+  @include border-bottom-radius($borderRadiusSmall)
+  width: 98%
+  height: 34px
+  margin: 0 auto
+  display: block
+  margin-top: -20px
+  margin-bottom: 20px
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22)
+  //border-bottom: 1px solid $grayLighter
+  //border-left: 1px solid $grayLighter
+  //border-right: 1px solid $grayLighter
+  .btn, input[type="submit"]
+    padding: 3px 12px
+    margin-top: 4px
+    margin-left: 6px
+    margin-right: 5px
+    float: left
+    background-color: #dfdfdf
+    background-image: none
+    border: none
+    color: $gray
+    text-shadow: none
+    box-shadow: none
+    &:hover
+      background-color: $gray
+      color: $white
+    i
+      padding-right: 10px
+      float: left
+      padding-top: 3px
+    i.icon-angle-down
+      float: right
+      padding-top: 0
+      padding-right: 5px
+      padding-left: 10px
+      font-size: 18px
+    span
+      display: block
+      float: left
+  input[type="submit"]
+    background-color: $firstColor
+    color: $white
+  span.order_by
+    float: left
+    display: block
+    padding-left: 10px
+    padding-top: 7px
+    font-family: $firstFontFamily
+  .dropdown-menu
+    left: 104px
+    margin-top: -1px
+    @include border-top-radius( 0px)
+    i,span,li,a
+      float: left
+      display: block
+
+    span
+      padding-top: 3px
+      padding-left: 0px !important
+      padding-right: 10px
