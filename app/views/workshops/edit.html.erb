@@ -19,7 +19,12 @@
   <!--title-->
   <h3 class="title_WS"><%=@workshop.title%></h3>
   <!--avatar-->
-  <img class="workshop_thumbnail applyBackstretch" src="<%=@workshop.thumbnail_url%>">
+  <div class="container-img_WS">
+    <div class="dummy"></div>
+    <div class="element resource-center">
+      <img class="workshop_thumbnail applyBackstretch" src="<%=@workshop.thumbnail_url%>">
+    </div>
+  </div>
   <!--description-->
   <p class="description_WS"><%=@workshop.description%></p>
 
