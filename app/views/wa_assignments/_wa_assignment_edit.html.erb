@@ -7,7 +7,7 @@
     <%= f.label t('workshop.activities.assignment.content'), :class => "" %>
     <%= f.text_area :fulltext, :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
     
-    <%#= f.hidden_field :plaintext, :value => "", :id => "edit_wa_assignment_#{wa_assignment.id}_plaintext"%>
+    <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_assignment_#{wa_assignment.id}_plaintext"%>
     <%= f.submit t('save'), :class => "hide", :id => "edit_wa_assignment_#{wa_assignment.id}_submitbutton"%>
   <% end %>
   <input type="button" id="edit_wa_assignment_<%=wa_assignment.id%>_button" class="btn btn-primary" data-loading-text="<%= t('saving')%>" value="<%= t('save')%>"/>
@@ -23,7 +23,7 @@
 	  var uploadButton = $("#edit_wa_assignment_<%=wa_assignment.id%>_button");
 	  
 	  $(uploadButton).click(function(event){
-	      //set_ckeditor_content_full_and_plaintext("edit_wa_assignment_<%=wa_assignment.id%>_fulltext","edit_wa_assignment_<%=wa_assignment.id%>_plaintext");
+	      set_ckeditor_content_full_and_plaintext("edit_wa_assignment_<%=wa_assignment.id%>_fulltext","edit_wa_assignment_<%=wa_assignment.id%>_plaintext");
 	      $("#edit_wa_assignment_<%=wa_assignment.id%>_submitbutton").click();
 	  });
 	});
