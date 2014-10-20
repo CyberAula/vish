@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
     t.boolean  "is_mve",                :default => false
     t.integer  "rankMve",               :default => 0
     t.boolean  "is_admin",              :default => false
-    t.integer  "category_order"
+    t.text     "category_order"
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
@@ -165,8 +165,10 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
 
   create_table "categories", :force => true do |t|
     t.integer  "activity_object_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.text     "category_order"
+    t.boolean  "is_root",            :default => true
   end
 
   create_table "comments", :force => true do |t|
@@ -607,6 +609,7 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
 
   create_table "wa_assignments", :force => true do |t|
     t.text     "fulltext"
+    t.text     "plaintext"
     t.datetime "open_date"
     t.datetime "due_date"
     t.datetime "created_at", :null => false

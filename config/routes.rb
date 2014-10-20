@@ -86,6 +86,7 @@ Vish::Application.routes.draw do
 
   #Categories
   match '/categories/categorize' => 'categories#categorize', :via => :post
+  match '/categories/edit_categories' => 'categories#edit_categories', :via => :post
   match '/categories/favorites' => 'categories#show_favorites'
 
   #Catalogue

@@ -52,4 +52,17 @@ Actor.class_eval do
     end
   end
 
+  #Return the array with the order of the categories of the user profile
+  def categories_order
+    order = self.category_order
+    unless order.nil?
+      begin
+        order = JSON.parse(order).map{|pos| pos.to_i}
+      rescue
+        order = nil
+      end
+    end
+    order
+  end
+
 end
