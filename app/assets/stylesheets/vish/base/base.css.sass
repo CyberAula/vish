@@ -25,15 +25,11 @@ textarea,input
     margin: 0
 
 //toolbar_tabs
-.header-title_page
-  border-bottom: 1px solid #999
-
-//toolbar_tabs
 .toolbar_nav-tab
-  background-color: $white
+  background-color: #d7d7d7
   @include border-bottom-radius($borderRadiusSmall)
   width: 98%
-  height: 34px
+  height: 42px
   margin: 0 auto
   display: block
   margin-top: -20px
@@ -42,13 +38,13 @@ textarea,input
   //border-bottom: 1px solid $grayLighter
   //border-left: 1px solid $grayLighter
   //border-right: 1px solid $grayLighter
-  .btn, input[type="submit"]
+  .btn
     padding: 3px 12px
-    margin-top: 4px
+    margin-top: 9px
     margin-left: 6px
     margin-right: 5px
     float: left
-    background-color: #dfdfdf
+    background-color: $white
     background-image: none
     border: none
     color: $gray
@@ -70,24 +66,22 @@ textarea,input
     span
       display: block
       float: left
-  input[type="submit"]
-    background-color: $firstColor
-    color: $white
   span.order_by
     float: left
     display: block
     padding-left: 10px
-    padding-top: 7px
+    padding-top: 12px
     font-family: $firstFontFamily
   .dropdown-menu
-    left: 104px
+    left: 84px
     margin-top: -1px
     @include border-top-radius( 0px)
-    i,span,li,a
-      float: left
-      display: block
 
     span
       padding-top: 3px
       padding-left: 0px !important
       padding-right: 10px
+
+
+
+
