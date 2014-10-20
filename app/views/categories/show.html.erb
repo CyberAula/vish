@@ -51,21 +51,21 @@
 </section>
 
 <%#Ordering logic%>
-<% @items = @category.property_objects %>
-  <% order = @category.category_order %>
-  <% if "--- []\n" != order && order != nil%>
-    <% order = JSON.parse(order).map {|l| l.to_i} %>
-    <% if @items.length == order.length%>
-      <% @items.sort_by!{|h| order.index(h.id)} %>
-    <% end %>
-  <%end%>
+<% 
+  @items = @category.property_objects
+  order = @category.categories_order
+  unless order.nil?
+    orderLength = order.length
+    @items.sort_by!{|h| order.index(h.id) || (orderLength+1)}
+  end
+%>
 
 <% if can?(:update, @category) %>
-<%= render partial: 'categories/edit_categories', :locals => { :all_categories => @items} %>
+  <%= render partial: 'categories/edit_categories', :locals => { :all_categories => @items} %>
 <% end %>
 
 <div class="main-categories-space">
-<%= render partial: 'categories/items' %>
+  <%= render partial: 'categories/items' %>
 </div>
 
 <%= content_for :javascript do %>
