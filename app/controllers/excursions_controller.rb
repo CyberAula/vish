@@ -26,7 +26,7 @@ class ExcursionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
   before_filter :fill_create_params, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
   skip_after_filter :discard_flash, :only => [:clone]
   
   # Enable CORS (http://www.tsheffler.com/blog/?p=428) for last_slide, and iframe_api methods
@@ -291,26 +291,13 @@ class ExcursionsController < ApplicationController
   ##################
   
   def evaluate
-    @excursion_evaluation = ExcursionEvaluation.new(:excursion => Excursion.find_by_id(params[:id]))
-    @excursion_evaluation.ip = request.remote_ip
-    6.times do |ind|
-      @excursion_evaluation.send("answer_#{ind}=", params[("excursion_evaluation_#{ind}").to_sym])
-    end
-    @excursion_evaluation.save!
-    respond_to do |format|   
-      format.js {render :text => "Thank you", :status => 200}
-    end
-  end
-
-  def learning_evaluate
-    @excursion_learning_evaluation = ExcursionLearningEvaluation.new(:excursion => Excursion.find_by_id(params[:id]))
-    @excursion_learning_evaluation.ip = request.remote_ip
-    6.times do |ind|
-      @excursion_learning_evaluation.send("answer_#{ind}=", params[("excursion_evaluation_#{ind}").to_sym])
-    end
-    @excursion_learning_evaluation.save!
-    respond_to do |format|   
-      format.js {render :text => "Thank you", :status => 200}
+    @excursion = Excursion.find(params["id"])
+    @evmethod = params["evmethod"] || "wbltses"
+    
+    respond_to do |format|
+      format.html {
+        render "learning_evaluation"
+      }
     end
   end
 
@@ -323,7 +310,9 @@ class ExcursionsController < ApplicationController
     #Prepare parameters to call the RecommenderSystem
 
     if params[:excursion_id]
-      current_excursion =  Excursion.find(params[:excursion_id]) rescue nil
+      current_excursion =  Excursion.find_by_id(params[:excursion_id])
+    else
+      current_excursion = nil
     end
 
     options = {:n => (params[:quantity] || 6).to_i, :models => [Excursion]}

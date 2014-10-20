@@ -110,7 +110,11 @@ module HomeHelper
         query = query.order('activity_objects.like_count DESC') 
       when "popularity"
         #Use ranking instead of popularity
-        query = query.order('activity_objects.ranking DESC')  
+        query = query.order('activity_objects.ranking DESC')
+      when "ranking"
+        query = query.order('activity_objects.ranking DESC')
+      when "quality"
+        query = query.order('activity_objects.qscore DESC')
     end
     
     query = query.offset(options[:offset]) if options[:offset] > 0

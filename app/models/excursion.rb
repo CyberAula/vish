@@ -901,14 +901,14 @@ class Excursion < ActiveRecord::Base
   #################### 
 
   def afterPublish
-    #If LOEP is enabled, upload the excursion to LOEP
-    if !Vish::Application.config.APP_CONFIG['loep'].nil?
-      VishLoep.registerExcursion(self) rescue nil
-    end
-
     #Try to infer the language of the excursion if it is not spcifiyed
     if (self.language.nil? or !self.language.is_a? String or self.language=="independent")
       self.inferLanguage
+    end
+
+    #If LOEP is enabled, upload the excursion to LOEP
+    unless Vish::Application.config.APP_CONFIG['loep'].nil?
+      VishLoep.registerActivityObject(self.activity_object) rescue nil
     end
   end
 
@@ -1011,77 +1011,6 @@ class Excursion < ActiveRecord::Base
 
   #See app/decorators/social_stream/base/activity_object_decorator.rb
   #Method calculate_qscore
-
-
-  #######################
-  ## Get Excursion subsets
-  ######################
-
-  def self.getPopular(n=20,options={})
-    random = (options[:random]!=false)
-
-    if random
-      nSubset = [80,4*n].max
-    else
-      nSubset = n
-    end
-
-    ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:actor])
-    excursions = Excursion.joins(:activity_object).where("excursions.draft=false and excursions.id not in (?)", ids_to_avoid).order("activity_objects.ranking DESC").first(nSubset)
-    
-    if random
-      excursions = excursions.sample(n)
-    end
-
-    return excursions
-  end
-
-  def self.getRecent(n = 20, options={})
-    nsize = [60,3*n].max
-    nHalf = (n/2.to_f).ceil
-    excursionsRecent = RecommenderSystem.search({:n=> nsize, :order => 'updated_at DESC', :models => [Excursion], :subjects_to_avoid => [options[:subject]], :ids_to_avoid => options[:ids_to_avoid], :page => options[:page]})
-    excursionsRecent.sort!{|b,a| a.ranking <=> b.ranking}
-    excursionsRecent = excursionsRecent.first(nsize/2).sample(nHalf)
-
-    ids_to_avoid = ((options[:ids_to_avoid] || []) + (excursionsRecent.map{|e| e.id})).uniq
-
-    excursionsPopulars = RecommenderSystem.search({:n=> nsize, :order => 'ranking DESC', :models => [Excursion], :subjects_to_avoid => [options[:subject]], :ids_to_avoid => ids_to_avoid, :page => options[:page]})
-    excursionsPopulars.sort!{|b,a| a.updated_at <=> b.updated_at}
-    excursionsPopulars = excursionsPopulars.first(nsize/2).sample(nHalf)
-    
-    excursions = excursionsRecent + excursionsPopulars
-  end
-
-  def self.getHome(n=20, type='Recent', options={})
-    if type == 'Recent'
-        excursions = getRecent(n,options)
-    elsif type == 'Recommended'
-        options[:models] = [Excursion]
-        excursions =  RecommenderSystem.resource_suggestions(options[:subject], nil, options)
-    else
-        excursions = RecommenderSystem.search(options)
-    end
-    
-    excursions
-  end
-
-
-
-  def self.getIdsToAvoid(ids_to_avoid=[],actor=nil)
-    ids_to_avoid = ids_to_avoid || []
-    
-    if !actor.nil?
-      ids_to_avoid.concat(Excursion.authored_by(actor).map{|e| e.id})
-      ids_to_avoid.uniq!
-    end
-
-    if !ids_to_avoid.is_a? Array or ids_to_avoid.empty?
-      #if ids=[] the queries may returns [], so we fill it with an invalid id (no excursion will ever have id=-1)
-      ids_to_avoid = [-1]
-    end
-
-    return ids_to_avoid
-  end
 
 
   private

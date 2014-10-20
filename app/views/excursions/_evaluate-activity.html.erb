@@ -1,70 +1,122 @@
+<!--activity-->
+<div class="activity">
+  <div class="tabbable">
+    <ul class="nav nav-tabs"> 
 
-    <!--activity-->
-    <div class="activity">
-      <div class="tabbable">
-        <ul class="nav nav-tabs"> 
+      <li class="active">
+        <a href="#coment1" data-toggle="tab">
+          <i class="icon-comment"></i>
+          <span class=" hidden-phone hidden-tablet"><%=t('comment.other')%></span>
+        </a>
+      </li>
 
-          <li class="active">
-            <a href="#coment1" data-toggle="tab">
-              <i class="icon-comment"></i>
-              <span class=" hidden-phone hidden-tablet"><%=t('comment.other')%></span>
-            </a>
-          </li>
+      <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
+        <!-- Disable evaluations if LOEP is not enabled -->
+        <li>
+          <a href="#evaluation1" data-toggle="tab">
+            <i class="icon-ok-sign"></i>
+            <span class="hidden-phone"><%=t('evaluation.tabtitle')%></span>
+          </a>
+        </li>
+      <%end%>
 
-          <li>
-            <a href="#evaluation1" data-toggle="tab">
-              <i class="icon-ok-sign"></i>
-              <span class=" hidden-phone "><%=t('evaluation.teaching')%></span>
-            </a>
-          </li>
+      <li class="suggestion_show hidden-desktop">
+        <a  href="#suggestion_show" data-toggle="tab">
+          <i class="icon-reorder"></i>
+          <span class=" hidden-phone"><%=t('recommended')%></span>
+        </a>
+      </li>
 
-
-          <li class="suggestion_show hidden-desktop">
-            <a  href="#suggestion_show" data-toggle="tab">
-              <i class="icon-reorder"></i>
-              <span class=" hidden-phone"><%=t('recommended')%></span>
-            </a>
-          </li>
-
-
-        </ul>
-        <div class="tab-content">
-          
-          <div class="tab-pane active" id="coment1">
-            <div id="comments" class="comments">
-              <div class="new-comments-box">
-                <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
-              </div>
-              <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
-            </div>
+    </ul>
+    <div class="tab-content">
+      
+      <div class="tab-pane active" id="coment1">
+        <div id="comments" class="comments">
+          <div class="new-comments-box">
+            <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
           </div>
-
-          <div class="tab-pane" id="evaluation1">              
-            <div class="btn-evalue">
-              <%= t('evaluation.contribute', :count => @numberOfEvaluations) %>
-                <!-- Button to trigger modal -->
-              <a id="evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
-            </div>
-            <div class="excursion-eval-results">
-              <canvas id="evalChart" width="600" height="600"></canvas>
-            </div>
-          </div>
-
-          <div class="tab-pane" id="suggestion_show">
-            <div class="recomended-mobile hidden-desktop" id="recomended_box">
-              <div class="recomended-items">
-                <ul class="small-box clearfix">
-                  <% @resource_suggestions .each do |excursion| %>
-                    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion} %>
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-          </div>
-
+          <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
         </div>
-      </div>    
+      </div>
+
+      <div class="tab-pane" id="evaluation1">              
+        <div class="btn-evalue">
+          <%= t('evaluation.contribute.student.title') %>
+            <!-- Button to trigger modal -->
+          <a id="learning-evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.student.evaluate') %></a>
+        </div>
+        <br/>
+        <div class="btn-evalue">
+          <%= t('evaluation.contribute.teacher.title') %>
+              <!-- Button to trigger modal -->
+            <a id="teaching-evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.teacher.evaluate') %></a>
+        </div>
+        <br/>
+        <div id="learning-eval-results" style="display:none"></div>
+        <div id="teaching-eval-results" style="display:none"></div>
+      </div>
+
+      <div class="tab-pane" id="suggestion_show">
+        <div class="recomended-mobile hidden-desktop" id="recomended_box">
+          <div class="recomended-items">
+            <ul class="small-box clearfix">
+              <% @resource_suggestions .each do |excursion| %>
+                <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion} %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <!-- Modal -->
+  </div>    
+</div>
+
+<%unless Vish::Application.config.APP_CONFIG['loep'].nil? %>
+  <script type="text/javascript">
+    var evaluationTagShown = false;
+    $('a[data-toggle="tab"][href="#evaluation1"]').on('shown', function(e){
+      if(evaluationTagShown===false){
+        evaluationTagShown = true;
+
+        var loepSettings = {};
+        loepSettings.action = "representation";
+        <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
+        loepSettings.domain = '<%=loepConfig["domain"]%>';
+        loepSettings.app = '<%=loepConfig["app_name"]%>';
+        loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
+        loepSettings.language = '<%=I18n.locale.to_s%>';
+        loepSettings.tokenURL = "/loep/session_token.json";
+        loepSettings.debug = false;
+          
+        <%unless @excursion.users_qscore.nil?%>
+          var learningLoepSettings = $.extend({}, loepSettings);
+          learningLoepSettings.evmethod = "wblts";
+          learningLoepSettings.containerDOM = $('#learning-eval-results');
+          learningLoepSettings.errorCallback = function(errorMsg){
+            $('#learning-eval-results').remove();
+          };
+          $('#learning-eval-results').show();
+          new LOEP.IframeAPI.instance(learningLoepSettings);
+        <%end%>
+
+        <%unless true or @excursion.teachers_qscore.nil?%>
+          //Currently not shown
+          var teachingLoepSettings = $.extend({}, loepSettings);
+          teachingLoepSettings.evmethod = "wbltt";
+          teachingLoepSettings.containerDOM = $('#teaching-eval-results');
+          teachingLoepSettings.errorCallback = function(errorMsg){
+            $('#teaching-eval-results').remove();
+          };
+          $('#teaching-eval-results').show();
+          new LOEP.IframeAPI.instance(teachingLoepSettings);
+        <%end%>
+      }
+    });
+  </script>
+<%end%>
+
+<%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
+  <!-- Evaluation Modals -->
   <%= render :partial => "excursions/excursion_evaluate" %>
-  <%#= render :partial => "excursions/excursion_learning_evaluate" %>
+<%end%>

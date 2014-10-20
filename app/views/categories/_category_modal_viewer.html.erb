@@ -4,11 +4,11 @@
     <%= render partial: 'help/help_categorize' %>
     <h3 id="myModalLabel"><i class="icon-th-large"></i><%= t("category.modalLabel")%></h3>
   </div>
-  <div class="modal-body">
+  <div class="modal-body categorize-modal-body">
+
     <% generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} %>
     <p class= "information"><%= t("category.cat_add_title")%></p> 
     
-    <!-- Juancar echalé un ojo-->
    <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
         <b><%= t("category.cat_add_select")%></b>
@@ -36,7 +36,6 @@
         <% end %>
         </ul>
      </div>
-
     <p class="information"><%= t("category.categorized_like")%></p>
     <%tagArray= generic_categories.map{|e| e.title}%>
     <script type="text/javascript">
@@ -84,7 +83,7 @@
 
   //When click to suggested they go to down part for being categorized
   $("#suggested_categories li").click(function(){
-    var value = $(this).val();
+    var value = $(this).html();
     var name = $(this).html();
 
     $("#myCategories").tagit("add", name, value);
@@ -92,7 +91,7 @@
 
   //TODO: Make it work
   $("#catDropdownSel li").click(function(){
-    var value = $(this).val();
+    var value = $(this).children().html();
     var name = $(this).children().html();
 
     $("#myCategories").tagit("add", name, value);
@@ -103,7 +102,6 @@
     var cat_done_array = [];
 
     $("#myCategories .tagit-choice").each(function(index,elem){
-      //comprobar primero los que tengan un attrvalue null para crearlos
         cat_done_array.push({title: $(elem).text()});
     });
 
@@ -113,10 +111,28 @@
             dataType: "json",
             data: { activity_object_id:"<%=item.activity_object.id
   .to_s%>", category_array: JSON.stringify(cat_done_array) },
-              success: function(data){    
+              success: function(data){
                 $("#categories_viewer_modal").modal('toggle');
-                alert("<%=t('category.success')%>");
-                location.reload();
+                //Emulating alert with javascript
+                $('#flash').hide(); 
+                $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.success")%></div>')
+                            .fadeIn()
+                            .delay(6000)
+                            .fadeOut(300, function(){
+                              $('#flash').html("");
+                            });
+
+                },
+                error: function(){
+                  $("#categories_viewer_modal").modal('toggle');
+                  //Emulating alert with javascript
+                  $('#flash').hide(); 
+                  $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Error</div>')
+                            .fadeIn()
+                            .delay(6000)
+                            .fadeOut(300, function(){
+                              $('#flash').html("");
+                            });
                 }
     });
   });

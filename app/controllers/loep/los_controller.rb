@@ -11,12 +11,12 @@ class Loep::LosController < Loep::BaseController
   end
 
   # PUT /loep/los/:id
-  def update  
+  def update
     #New information about this LO is available on LOEP (e.g. a new evaluation and/or metric)
-    excursion = Excursion.find(params[:id]) rescue nil
+    lo = ActivityObject.getObjectFromGlobalId(params[:id]) rescue nil
 
-    if excursion.nil?
-      #This excursion does not exist
+    if lo.nil?
+      #This lo does not exist
       return
     end
 
@@ -25,17 +25,17 @@ class Loep::LosController < Loep::BaseController
     # Interesting information
     # eEvData["Completed Evaluations with LORI v1.5"]
     # eEvData["Metric Score: LORI Arithmetic Mean"]
-    # eEvData["Metric Score: LORI Weighted Arithmetic Mean"]
+    # eEvData["Metric Score: LORI WAM CW"]
 
     # eEvData["LORI v1.5 item1"]
     # ...
     # eEvData["LORI v1.5 item9"]
 
-    VishLoep.fillExcursionMetrics(excursion,eEvData)
+    VishLoep.fillActivityObjectMetrics(lo.activity_object,eEvData)
 
     respond_to do |format|
         format.any { 
-          render json: "Ok"
+          render json: "Done"
         }
     end
   end

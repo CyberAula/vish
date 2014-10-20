@@ -1,0 +1,9 @@
+<% firstResources = resources.shift(6).shuffle %>
+<% resources = firstResources + resources %>
+
+<% resources.each do |resource| %>
+  <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id=> prefix_id } %>
+<% end %>
+
+
+

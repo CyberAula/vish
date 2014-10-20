@@ -1,8 +1,15 @@
-
 <section id="category">
   <div class="category_info">
+      <!-- corner -->
+    <div class="corner-item">
+      <div class="corner-item2">
+        <div class="corner-color"></div>
+        <i class="icon-th-large"></i>
+      </div>
+      <div class="corner-background"></div>
+    </div>
     <div class="icon-box">
-      <%=category_thumbnail(@category)%>
+      <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category} %>
     </div>  
     <div class="information">
       <!--ayuda-->
@@ -11,11 +18,14 @@
       <h2><%= @category.title %></h2>
       <!--descripcion-->
       <div class="description"><%= @category.description %></div>
+      <!--author-->
+      <div class="author"> <span class="by"><%=t('by')%></span> <%= link_to @category.author.name, @category.author.subject %></div>
     </div>
     <div class="btn-group">
       <!--editar-->
       <% if can?(:update, @category) %>
       <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %> 
+      <a class="btn btn-for-categorize"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></a>
       <% end %>
       <!--borrar-->
       <% if user_signed_in? and can?(:destroy, @category) %>
@@ -33,15 +43,30 @@
       <%= f.text_field :description %>
       <div class="actions">
         <%= f.submit t('categories.save'), :id => "saveCategory" %>
-        <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-primary"%>
+        <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn "%>
         <% end %>
       </div>
     </div>
   </div>
 </section>
 
+<%#Ordering logic%>
 <% @items = @category.property_objects %>
+  <% order = @category.category_order %>
+  <% if "--- []\n" != order && order != nil%>
+    <% order = JSON.parse(order).map {|l| l.to_i} %>
+    <% if @items.length == order.length%>
+      <% @items.sort_by!{|h| order.index(h.id)} %>
+    <% end %>
+  <%end%>
+
+<% if can?(:update, @category) %>
+<%= render partial: 'categories/edit_categories', :locals => { :all_categories => @items} %>
+<% end %>
+
+<div class="main-categories-space">
 <%= render partial: 'categories/items' %>
+</div>
 
 <%= content_for :javascript do %>
   $(document).ready(function(){
@@ -67,5 +92,53 @@
 $("div[bs-img]").each(function(){
   $(this).backstretch($(this).attr("bs-img"));
 });
+
+
+
+Array.prototype.equals = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+
+    // compare lengths - can save a lot of time 
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].equals(array[i]))
+                return false;       
+        }           
+        else if (this[i] != array[i]) { 
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;   
+        }           
+    }       
+    return true;
+}
+
+var beginIndex;
+var beginObjects;
+//Let the overlay appear
+$(document).ready(function(){
+  $(".btn-for-categorize").click(function(){
+    $("#categories_edition").fadeIn();
+    beginIndex = getidArray();
+    beginObjects = $(".edit_categories .box-item").clone();
+    $("#categories_edition div[bs-img]").each(function(){
+      $(this).backstretch($(this).attr("bs-img"));
+    });
+  });
+});
+
+function updateMainView(){
+  var actualState = $(".edit_categories .box-item").clone();
+  var s = $(".main-categories-space .box-item");
+  s.each(function( index ) {this.remove();});
+  actualState.appendTo(".main-categories-space");
+}
+
 </script>
 

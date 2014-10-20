@@ -8,10 +8,6 @@
 
 <script>
 	$(document).ready(function(){	
-		update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>);
-		re_apply_backstrech("excursions");
-		re_apply_pageless("excursions");
-		$("footer#footer").addClass("fixed-bottom");
-		$("#wrap").addClass("wrap-when-fixed-bottom");    
+		update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>); 
 	});
 </script>

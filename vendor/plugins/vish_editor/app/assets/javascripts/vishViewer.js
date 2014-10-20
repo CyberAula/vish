@@ -8346,6 +8346,154 @@ window.Modernizr = function(a, b, c) {
     e.call(f)
   }
 })(jQuery);
+var LOEP = LOEP || {};
+LOEP.IframeAPI = function(L, undefined) {
+  var instance = function(settings) {
+    var _settings;
+    this.init = function(settings) {
+      _settings = settings || {};
+      _settings.action = _settings.action || "form";
+      if(["form", "representation"].indexOf(_settings.action) === -1) {
+        return _onError("No valid action.")
+      }
+      if(typeof _settings.domain != "string") {
+        return _onError("No valid domain.")
+      }
+      try {
+        var isLocalFile = window.location.href.indexOf("file://") === 0
+      }catch(e) {
+        var isLocalFile = false
+      }
+      if(!isLocalFile) {
+        _settings.domain = _settings.domain.replace("http://", "").replace("https://", "").replace("//", "");
+        _settings.domain = "//" + _settings.domain
+      }else {
+        if(_settings.domain.indexOf("//") === 0) {
+          _settings.domain = _settings.domain.replace("//", "");
+          _settings.domain = "http://" + _settings.domain
+        }
+      }
+      window.addEventListener("message", _onLOEPMessage, false);
+      if(typeof _settings.token == "string") {
+        _initWithToken(_settings.token)
+      }else {
+        _requestLOEPToken(function(token) {
+          _initWithToken(token)
+        })
+      }
+    };
+    var _initWithToken = function(token) {
+      if(typeof token != "string") {
+        return _onError("No LOEP session token available")
+      }
+      var url = _buildEmbededFormURL(token);
+      if(typeof url != "string") {
+        return _onError("URL could not be built. Incorrect or missing params.")
+      }
+      var container = $(_settings.containerDOM)[0];
+      if(typeof container == "undefined") {
+        return _onError("Container not found.")
+      }
+      _insertIframe(container, url)
+    };
+    var _requestLOEPToken = function(callback) {
+      var urlToRequestToken;
+      if(typeof _settings.tokenURL == "string") {
+        urlToRequestToken = _settings.tokenURL
+      }else {
+        urlToRequestToken = "/loep/session_token.json"
+      }
+      $.ajax({type:"POST", url:urlToRequestToken, dataType:"json", success:function(response) {
+        if(typeof response == "string") {
+          callback(response)
+        }else {
+          if(typeof response == "object" && typeof response["auth_token"] == "string") {
+            callback(response["auth_token"])
+          }else {
+            callback()
+          }
+        }
+      }, error:function(xhr, ajaxOptions, thrownError) {
+        callback()
+      }})
+    };
+    var _buildEmbededFormURL = function(token) {
+      var url;
+      try {
+        url = _settings.domain;
+        switch(_settings.action) {
+          case "form":
+            url += "/evaluations/" + _settings.evmethod + "/embed?lo_id=" + _settings.loId;
+            break;
+          case "representation":
+            url += "/los/" + _settings.loId + "/representation?evmethods=" + _settings.evmethod;
+            break;
+          default:
+            return
+        }
+        url += "&app_name=" + _settings.app + "&session_token=" + token;
+        if(_settings.ajax !== false) {
+          url += "&ajax=true"
+        }
+        if(typeof _settings.language == "string") {
+          url += "&locale=" + _settings.language
+        }
+      }catch(e) {
+      }
+      return url
+    };
+    var _insertIframe = function(container, url) {
+      var iframe = $("<iframe/>", {style:"width:100%; height:100%; border:0;", iframeborder:"0", frameborder:"0", src:url, load:function(data) {
+        _print("Form loaded.");
+        if(typeof _settings.loadCallback == "function") {
+          _settings.loadCallback()
+        }
+      }, error:function() {
+      }});
+      if(_settings.action == "representation") {
+        $(iframe).attr("overflow", "hidden");
+        $(iframe).attr("scrolling", "no")
+      }
+      $(container).append(iframe)
+    };
+    var _onLOEPMessage = function(msg) {
+      if(msg && msg.data && msg.data.type == "LOEPMessage") {
+        _print("Message received.");
+        var LOEPdata = msg.data;
+        if(LOEPdata.success === true) {
+          _print("Form submited successfuly.");
+          if(typeof _settings.submitCallback == "function") {
+            _settings.submitCallback(LOEPdata)
+          }
+        }else {
+          if(LOEPdata.error === true) {
+            var errorCode = LOEPdata.error_code;
+            _onError(errorCode)
+          }
+        }
+      }
+    };
+    var _onError = function(msg) {
+      if(typeof msg != "string") {
+        msg = ""
+      }
+      errorMsg = "[Error] " + msg;
+      if(typeof _settings.errorCallback == "function") {
+        _settings.errorCallback(errorMsg)
+      }
+      return _print(errorMsg)
+    };
+    var _print = function(msg) {
+      if(_settings.debug === true && console && console.log) {
+        msg = "LOEP: " + msg.toString();
+        console.log(msg)
+      }
+      return msg
+    };
+    this.init(settings)
+  };
+  return{instance:instance}
+}(LOEP);
 var VISH = VISH || {};
 VISH.VERSION = "0.8.9";
 VISH.AUTHORS = "GING";
@@ -13611,10 +13759,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }
     }
     if(_showEval) {
-      $(".rec-first-row").show()
+      V.Recommendations.showEvaluations()
     }else {
-      $(".rec-first-row").hide();
-      $(".rec-second-row").css("margin-top", "10%")
+      V.Recommendations.hideEvaluations()
     }
     if(_closeButton) {
       $("button#closeButton").show()
@@ -17428,6 +17575,7 @@ VISH.Recommendations = function(V, $, undefined) {
   var _requesting;
   var _generated;
   var _isRecVisible;
+  var _isEvalVisible;
   var _showFancyboxTimer;
   var _recommendationAPIUrl;
   var user_id;
@@ -17471,15 +17619,47 @@ VISH.Recommendations = function(V, $, undefined) {
       V.Slides.triggerEnterEvent(V.Slides.getCurrentSlideNumber());
       _isRecVisible = false;
       V.ViewerAdapter.decideIfPageSwitcher()
+    }});
+    $("#fancyEvaluations").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":false, "width":"100%", "height":"100%", "padding":0, "overlayOpacity":0, "center":false, "onStart":function() {
+      $("#fancybox-outer").css("display", "none")
+    }, "onComplete":function(data) {
+      $("#fancybox-outer").css("background", "rgba(0,0,0,.7)");
+      $("#fancybox-wrap").css("margin-top", "0px");
+      _isRecVisible = true;
+      _isEvalVisible = true;
+      V.ViewerAdapter.updateFancyboxAfterSetupSize();
+      $("#fancybox-outer").css("display", "block");
+      V.ViewerAdapter.decideIfPageSwitcher();
+      var loepSettings = _getLOEPSettings();
+      loepSettings.language = V.Utils.getOptions()["lang"];
+      loepSettings.containerDOM = $("#fancy_evaluations");
+      loepSettings.loadCallback = function() {
+      };
+      loepSettings.submitCallback = function() {
+        $.fancybox.close()
+      };
+      loepSettings.errorCallback = function(errorMsg) {
+        hideEvaluations();
+        $.fancybox.close()
+      };
+      loepSettings.debug = V.Debugging.isDevelopping();
+      new LOEP.IframeAPI.instance(loepSettings)
+    }, "onClosed":function(data) {
+      $("#fancy_evaluations").html("");
+      $("#fancybox-outer").css("background", "white");
+      $("#fancybox-wrap").css("margin-top", "-14px");
+      V.Slides.triggerEnterEvent(V.Slides.getCurrentSlideNumber());
+      _isEvalVisible = false;
+      _isRecVisible = false;
+      V.ViewerAdapter.decideIfPageSwitcher()
     }})
   };
   var canShowRecommendations = function() {
     return true
   };
   var canShowEvaluateButton = function() {
-    var _showEvaluateButton = V.Status.getIsInVishSite() || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER && !V.Status.getIsScorm() && !V.Status.getIsEmbed();
+    var _showEvaluateButton = _hasLOEPSettings() || V.Status.getIsInVishSite() && V.Status.getIsInIframe();
     _showEvaluateButton = _showEvaluateButton && V.Status.getDevice().desktop;
-    _showEvaluateButton = _showEvaluateButton && V.Status.getIsInIframe();
     return _showEvaluateButton
   };
   var checkForRecommendations = function() {
@@ -17644,16 +17824,41 @@ VISH.Recommendations = function(V, $, undefined) {
   };
   var onClickEvaluateButton = function() {
     V.EventsNotifier.notifyEvent(V.Constant.Event.onEvaluate, {}, true);
-    if(V.Status.getIsInVishSite()) {
-      V.FullScreen.exitFromNativeFullScreen();
-      window.parent.document.getElementById("evaluation-button-id").click()
-    }else {
-      if(V.Debugging.isDevelopping()) {
-        window.alert("Evaluate!")
+    try {
+      if(V.Status.getIsInVishSite() && V.Status.getIsInIframe() && typeof window.parent.triggerEvaluation == "function") {
+        V.FullScreen.exitFromNativeFullScreen();
+        window.parent.triggerEvaluation();
+        return
       }
+    }catch(e) {
+    }
+    if(_hasLOEPSettings()) {
+      _showEvaluationsFancybox()
+    }else {
+      window.alert("Evaluate!")
     }
   };
-  return{init:init, canShowRecommendations:canShowRecommendations, canShowEvaluateButton:canShowEvaluateButton, checkForRecommendations:checkForRecommendations, showFancybox:showFancybox, hideFancybox:hideFancybox, isRecVisible:isRecVisible, isEnabled:isEnabled, getData:getData, onClickEvaluateButton:onClickEvaluateButton, aftersetupSize:aftersetupSize}
+  var _hasLOEPSettings = function() {
+    return typeof _getLOEPSettings() == "object"
+  };
+  var _getLOEPSettings = function() {
+    try {
+      return V.Utils.getOptions()["configuration"]["loepSettings"]
+    }catch(e) {
+      return undefined
+    }
+  };
+  var _showEvaluationsFancybox = function() {
+    $("#fancyEvaluations").trigger("click")
+  };
+  var showEvaluations = function() {
+    $(".rec-first-row").show()
+  };
+  var hideEvaluations = function() {
+    $(".rec-first-row").hide();
+    $(".rec-second-row").css("margin-top", "10%")
+  };
+  return{init:init, canShowRecommendations:canShowRecommendations, canShowEvaluateButton:canShowEvaluateButton, checkForRecommendations:checkForRecommendations, showFancybox:showFancybox, hideFancybox:hideFancybox, isRecVisible:isRecVisible, isEnabled:isEnabled, getData:getData, onClickEvaluateButton:onClickEvaluateButton, showEvaluations:showEvaluations, hideEvaluations:hideEvaluations, aftersetupSize:aftersetupSize}
 }(VISH, jQuery);
 VISH.Tour = function(V, $, undefined) {
   var startTourWithId = function(helpid, tipLocation) {

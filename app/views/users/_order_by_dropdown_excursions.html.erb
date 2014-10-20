@@ -2,48 +2,52 @@
 <% icon = profile_subject_is_current? ? "pencil" : "dashboard"%>
 
 <div class="dropdown order_by_selector" id="order_by_selector_excursions" li_selected="<%=default_sort_by%>">
-<span class="order_by"><%=t('order_by.title')%></span>  
-  <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy"  type="button" id="dropdownMenuOrdByExcursions" data-toggle="dropdown"><i class="icon-<%=icon%>"></i> <%=t('order_by.'+ default_sort_by)%>
-    <i class="icon-angle-down"></i>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-
-
-
-    <li>
-        <a href="#" onclick="excursions_dropdown_select('popularity');" sort-by-key='popularity'> 
-          <i class="icon-dashboard"></i>
-          <span><%=t('order_by.popularity')%> </span>
+  <div class="toolbar_nav-tab">
+    <span class="order_by"><%=t('order_by.title')%></span>  
+    <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy"  type="button" id="dropdownMenuOrdByExcursions" data-toggle="dropdown">
+      <i class="icon-<%=icon%>"></i> <span><%=t('order_by.'+ default_sort_by)%></span>
+      <i class="icon-angle-down"></i>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li>
+          <a href="#" onclick="excursions_dropdown_select('popularity');" sort-by-key='popularity'> 
+            <i class="icon-dashboard"></i>
+            <span><%=t('order_by.popularity')%> </span>
+          </a>
+      </li>
+      <li>
+        <a href="#" onclick="excursions_dropdown_select('updated_at');" sort-by-key='updated_at'>
+          <i class="icon-pencil"></i>
+          <span><%=t('order_by.updated_at')%> </span>
         </a>
-    </li>
-    <li>
-      <a href="#" onclick="excursions_dropdown_select('updated_at');" sort-by-key='updated_at'>
-        <i class="icon-pencil"></i>
-        <span><%=t('order_by.updated_at')%> </span>
-      </a>
-    </li>
-    <li>
-      <a href="#" onclick="excursions_dropdown_select('created_at');" sort-by-key='created_at'>
-        <i class="icon-bolt"></i>
-        <span><%=t('order_by.created_at')%> </span>
-      </a>
-    </li>
-    <li>
-        <a href="#" onclick="excursions_dropdown_select('visits');" sort-by-key='visits'>
-          <i class="icon-eye-open"></i> 
-          <span><%=t('order_by.visits')%> </span>
+      </li>
+      <li>
+        <a href="#" onclick="excursions_dropdown_select('created_at');" sort-by-key='created_at'>
+          <i class="icon-bolt"></i>
+          <span><%=t('order_by.created_at')%> </span>
         </a>
-    </li>
-    <li>
-        <a href="#" onclick="excursions_dropdown_select('favorites');" sort-by-key='favorites'>
-          <i class="icon-star"></i> 
-          <span><%=t('order_by.favorites')%> </span>
-        </a>
-    </li>
-  </ul>
-
+      </li>
+      <li>
+          <a href="#" onclick="excursions_dropdown_select('quality');" sort-by-key='quality'>
+            <i class="icon-ok-sign"></i> 
+            <span><%=t('order_by.quality')%> </span>
+          </a>
+      </li>
+      <li>
+          <a href="#" onclick="excursions_dropdown_select('visits');" sort-by-key='visits'>
+            <i class="icon-eye-open"></i> 
+            <span><%=t('order_by.visits')%> </span>
+          </a>
+      </li>
+      <li>
+          <a href="#" onclick="excursions_dropdown_select('favorites');" sort-by-key='favorites'>
+            <i class="icon-star"></i> 
+            <span><%=t('order_by.favorites')%> </span>
+          </a>
+      </li>
+    </ul>
+  </div>
 </div>
-
 
 <%= content_for :javascript do %>
  

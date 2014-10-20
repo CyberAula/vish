@@ -1,14 +1,16 @@
 <div class="front_info">
 	<div class="ch-grid text_1_info">
 		<li>
-			<div class="ch-item ch-img-1">				
-				<div class="ch-info-wrap">
-					<div class="ch-info">
-						<div class="ch-info-front ch-img-1"></div>
-						<div class="ch-info-back">
-							<i class="icon-pencil"></i>
-						</div>	
-					</div>
+			<div class="ch-item ch-img-1" >				
+				<div class="ch-info-wrap" >
+					<a href="/catalogue">
+						<div class="ch-info">
+							<div class="ch-info-front ch-img-1"></div>
+							<div class="ch-info-back">
+								<i class="icon-pencil"></i>
+							</div>	
+						</div>
+					</a>
 				</div>
 			</div>
 		</li>
@@ -18,13 +20,15 @@
 	<div class="ch-grid text_2_info">
 		<li>
 			<div class="ch-item ch-img-2">
-				<div class="ch-info-wrap">
-					<div class="ch-info">
-						<div class="ch-info-front ch-img-2"></div>
-						<div class="ch-info-back">
-							<i class="icon-group"></i>
+				<div class="ch-info-wrap"  >
+					<a href="<%=search_path(:type => "user", :browse=>"true", :sort_by => "popularity")%>">
+						<div class="ch-info">
+							<div class="ch-info-front ch-img-2"></div>
+							<div class="ch-info-back">
+								<i class="icon-group"></i>
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 		</li>
@@ -35,13 +39,14 @@
 		<li>
 			<div class="ch-item ch-img-3">
 				<div class="ch-info-wrap">
-					<div class="ch-info">
-						<div class="ch-info-front ch-img-3"></div>
-						<div class="ch-info-back">
-							<i class="icon-laptop"></i>
-							
+					<a href="<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "popularity")%>">
+						<div class="ch-info">
+							<div class="ch-info-front ch-img-3"></div>
+							<div class="ch-info-back">
+								<i class="icon-laptop"></i>
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 		</li>

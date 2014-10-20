@@ -96,3 +96,44 @@ section
 ul li.box-item .info .author span.by
   margin-right: 3px !important
   width: auto !important
+
+#myLearningModal,
+#myTeachingModal
+  width: 90%
+  height: 90%
+  margin-left: -45%
+  margin-top: -3%
+  margin-botttom: 3%
+  .modal-header
+    height: 50px
+  .modal-body
+    overflow: hidden
+    height: 100%
+    max-height: 90%
+    padding: 0px
+    .evaluation_modalerror_msg
+      height: auto
+      width: 100%
+      margin-top: 15%
+      text-align: center
+      font-size: 1.5em
+#myModalLabel
+  font-size: 1.2em
+
+@media (max-width: 767px)
+  #myLearningModal,
+  #myTeachingModal
+    margin-top: 2% !important
+    margin-left: 5% !important
+    left: 0px !important
+  #learningModalLabel,
+  #teachingModalLabel
+    font-size: 1.3em
+
+p.thank
+  color: $firstColor
+  i
+    color: $gray
+
+div.evaluation_body
+  height: 99%

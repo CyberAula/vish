@@ -14,11 +14,7 @@ class UsersController < ApplicationController
   def show
     show! do |format|
       format.html{
-        if !params[:page]
-          render "show"
-        else
-          render :partial => "excursions/excursions_profile", :locals => {:scope => :me, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
-        end
+        render "show"
       }
     end
   end

@@ -39,7 +39,7 @@ gem 'sanitize', '= 2.1.0'
 gem 'mailboxer', '= 0.10.3'
 gem 'hashie', '= 2.1.2'
 gem 'detect_language', '=1.0.5'
-gem 'faker', '=1.2.0'
+gem 'faker', '= 1.4.3'
 
 #Gems from Git repositories
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git', :ref => '2602bf1'
@@ -58,7 +58,7 @@ if ENV['FORCE_LOCAL_SS']
     gem 'social_stream-events'
   end
 else
-  git 'git://github.com/ging/social_stream.git', branch: "vish", ref: "3d150a753f4675639fd0023d483d84f917b0e290" do
+  git 'git://github.com/ging/social_stream.git', branch: "vish", ref: "ea51bed907e9404f384311f64d8263134f739097" do
     gem 'social_stream-base'
     gem 'social_stream-documents'
     gem 'social_stream-linkser'
@@ -81,7 +81,7 @@ group :development do
   # Use unicorn as the web server
   #Usage bundle exec unicorn -p 3000 -c config/unicorn.rb
   gem 'unicorn', '= 4.8.3'
-  gem 'capistrano', '= 2.15.5'
+  gem 'capistrano', '= 2.14.2'
   gem 'forgery', '= 0.6.0'
 end
 

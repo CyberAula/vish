@@ -13,7 +13,7 @@ es:
     verb:
       make-friend:
         User:
-          title: "%{subject} y %{contact} están siguiéndose"
+          title: "%{subject} y %{contact} están siguiéndose."
           message: "%{name} también te está siguiendo."
   activity2:
     one: "actividad"
@@ -84,6 +84,7 @@ es:
     cat_popular: "Tus categorías populares"
     categorized_like: "Categorizada como:"
     confirm_delete: "Borrar categoría?"
+    error: "Lo sentimos, el servidor esta experimentando ciertos problemas, intentaló de nuevo más tarde."
     modalLabel: "Añadir a mis categorías"
     success: "Categorizado con éxito"
     tagit_watermark_cat: "Añade una nueva categoría"
@@ -93,6 +94,16 @@ es:
       apply: "Aplicar"
       verb: "Categorizar"
     description_input: "Descripción para esta categoría"
+    dragandrop:
+        complete: "Completar"
+        drag1: "dentro de categorías, también puedes borrar en la esquina superior derecha."
+        drag2: "El orden se mantendrá a partir de ahora en las categorías."
+        drag3: "El conocimiento puede estar reunido de la manera que quieras, elige la tuya."
+        dragt1: "Arrastra y suelta"
+        dragt2: "Ordena tus categorías"
+        dragt3: "Agrupa tu conocimiento"
+        erase: "Arrastra aquí para eliminar"
+        place: "Ordena tus categorías"
     errors:
       duplicated: "Ya tienes una categoría con ese título. Por favor, escribe uno diferente."
     favorites:
@@ -447,50 +458,18 @@ es:
     name: "embed"
     title3: "Escribe el recurso a insertar"
   evaluation:
-    alert: "Por favor rellena todas las preguntas de evaluación. Gracias."
-    teaching: "Experiencia de enseñanza"
-    contribute: 
-      zero: "Nadie ha evaluado esta excursión todavía. ¿Quieres ser el primero?"
-      one: "1 persona ha valorado esta excursión. ¿Quieres contribuir?"
-      other: "%{count} personas han valorado esta excursión. ¿Quieres contribuir?"
-    evaluation: "evalúa"  
-    experience: "Tu experiencia de profesor con esta excursión"
-    phrase0: "Evalúa el contenido de esta excursión"
-    phrase1: "Evalúa el diseño de esta excursión"
-    phrase2: "¿Están los alumnos motivados con las actividades de la excursión?"
-    phrase3: "¿Contribuye la excursión a la participación de los estudiantes y a su aprendizaje?"
-    phrase4: "¿Incluye actividades interdisciplinarias y en caso afirmativo, fueron útiles?"
-    phrase5: "¿Recurrirías de nuevo a esta excursión para tus clases?"
-    question0: "búsqueda 0"
-    question1: "búsqueda 1"
-    question2: "búsqueda 2"
-    question3: "búsqueda 3"
-    question4: "búsqueda 4"
-    question5: "búsqueda 5"
-    label0: "Contenido"
-    label1: "Diseño"
-    label2: "Motivación"
-    label3: "Participación"
-    label4: "Interdisciplinario"
-    label5: "Reutilización"    
-    qlabel0: "etiqueta 0"
-    qlabel1: "etiqueta 1"
-    qlabel2: "etiqueta 2"
-    qlabel3: "etiqueta 3"
-    qlabel4: "etiqueta 4"
-    qlabel5: "etiqueta 5"
-    learning: "Experiencia de aprendizaje"
-    strong_disagree_b: "Muy en desacuerdo"
-    disagree_b: "En desacuerdo"
-    neutral_b: "Neutral"
-    agree_b: "Deacuerdo"
-    strong_agree_b: "Muy deacuerdo"    
-    strong_agree_a: "Muy bueno"
-    agree_a: "Bueno"
-    neutral_a: "Medio"
-    disagree_a: "Malo"
-    strong_disagree_a: "Muy malo"
-    success: "Tus respuestas se han guardado. Gracias por ayudar a evaluar esta excursión."
+    contribute:
+      student:
+        title: "¿Has utilizado este recurso educativo?"
+        evaluate: "Evalúalo"
+      teacher:
+        title: "¿Eres profesor y has usado este recurso educativo en clase?"
+        evaluate: "Evalúa tu experiencia de enseñanza"
+    error:
+        server: "Lo sentimos el servidor de evaluación no está operativo ahora mismo. Por favor, vuelva a intentarlo un poco más tarde."
+    modaltitle: "Evalúa tu experiencia con este recurso educativo"
+    tabtitle: "Evaluaciones"
+    verb: "Evaluar"
   event:
     actions:
       add: "Añadir evento"
@@ -705,8 +684,10 @@ es:
     fill_profile: "No tienes relleno tu perfil con tus <b>areas de interés</b> y tu <b>ocupación</b> en la sección de información personal. Con estos datos te podremos dar una mejor recomendación personalizada. Por favor rellena tu perfil <a href='%{url}'>aquí</a>."
   notification:
     config_html: "Si quieres modificar el servicio de notificaciones. Pulsa <a href='%{url}'>aquí</a>"
+    follow:
+      user: "%{sender} te está siguiendo."
     makefriend:
-      user: "%{sender} está siguiendo a %{who}."
+      user: "%{sender} te está siguiendo."
     unread: " sin leer"  
   offline:
     title: "Modo sin conexión"
@@ -728,6 +709,7 @@ es:
     created_at: "Creación"
     favorites: "Favoritos"
     popularity: "Popular"
+    quality: "Calidad"
     relevance: "Relevancia"
     title: "Ordenar por"
     updated_at: "Modificación"

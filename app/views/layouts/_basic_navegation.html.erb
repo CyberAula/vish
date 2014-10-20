@@ -1,9 +1,11 @@
-<nav class="headernav clearfix">
-  <%= link_to(raw("<i class=' icon-border" + (current_subject.unread_messages_count > 0 ? " icon-envelope notification" : " icon-envelope-alt") + "'></i> "), messages_path, :class => "btn-header tooltip-header clearfix", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :data => {:toggle=>"tooltip"}) %>
-  <%= link_to(raw("<i class='icon-globe icon-border'></i>"),
+<li class="navegation">
+  <%= link_to(raw("<i class= "+ (current_subject.unread_messages_count > 0 ? "icon-envelope notification" : "icon-envelope-alt") + "></i> "), messages_path, :class => "btn-header tooltip-header clearfix", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :data => {:toggle=>"tooltip"}) %>
+</li>
+<li class="navegation">  
+  <%= link_to(raw("<i class='icon-globe'></i>"),
                     activities_path,
                     :class => "btn-header tooltip-header clearfix",
                     :title => t('activity.other'),
                     :data => {:toggle=>"tooltip"}) %>
-</nav>
+</li>
 

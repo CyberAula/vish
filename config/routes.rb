@@ -49,7 +49,6 @@ Vish::Application.routes.draw do
   match 'excursions/:id/scormMetadata' => 'excursions#scormMetadata'
   match 'excursions/:id/clone' => 'excursions#clone'
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
-  match '/excursions/:id/learning_evaluate' => 'excursions#learning_evaluate'
   
   match '/excursions/:id.mashme' => 'excursions#show', :defaults => { :format => "gateway", :gateway => 'mashme' }
   match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full" }
@@ -75,6 +74,7 @@ Vish::Application.routes.draw do
 
   #Categories
   match '/categories/categorize' => 'categories#categorize', :via => :post
+  match '/categories/edit_categories' => 'categories#edit_categories', :via => :post
   match '/categories/favorites' => 'categories#show_favorites'
 
   #Catalogue
@@ -107,6 +107,7 @@ Vish::Application.routes.draw do
   #LOEP
   namespace :loep do
     resources :los
+    resources :session_token, :only => [:index, :create]
   end
 
   #Tracking System

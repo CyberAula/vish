@@ -12,6 +12,14 @@ ActivityObject.class_eval do
 
   validates_attachment_content_type :avatar, :content_type =>["image/jpeg", "image/png", "image/gif", "image/tiff", "image/x-ms-bmp"], :message => 'Avatar should be an image. Non supported format.'
 
+  scope :with_tag, lambda { |tag|
+    ActivityObject.tagged_with(tag).where("scope=0").order("ranking DESC")
+  }
+
+  scope :public_scope, lambda {
+    ActivityObject.where("scope=0")
+  }
+
   attr_accessor :score
   attr_accessor :score_tracking
   
@@ -36,26 +44,49 @@ ActivityObject.class_eval do
   def calculate_qscore
     #self.reviewers_qscore is the LORI score in a 0-10 scale
     #self.users_qscore is the WBLT-S score in a 0-10 scale
+    #self.teachers_qscore is the WBLT-T score in a 0-10 scale
     qscoreWeights = {}
-    qscoreWeights[:reviewers] = BigDecimal(0.9,6)
-    qscoreWeights[:users] = BigDecimal(0.1,6)
+    qscoreWeights[:reviewers] = BigDecimal(0.6,6)
+    qscoreWeights[:users] = BigDecimal(0.3,6)
+    qscoreWeights[:teachers] = BigDecimal(0.1,6)
 
-    if self.reviewers_qscore.nil?
-      #If nil, we consider it 5 in a [0,10] scale.
-      reviewerScore = BigDecimal(5.0,6)
+    unless (self.reviewers_qscore.nil? and self.users_qscore.nil? and self.teachers_qscore.nil?)
+      if self.reviewers_qscore.nil?
+        reviewersScore = 0
+        qscoreWeights[:reviewers] = 0
+      else
+        reviewersScore = self.reviewers_qscore
+      end
+
+      if self.users_qscore.nil?
+        usersScore = 0
+        qscoreWeights[:users] = 0
+      else
+        usersScore = self.users_qscore
+      end
+
+      if self.teachers_qscore.nil?
+        teachersScore = 0
+        qscoreWeights[:teachers] = 0
+      else
+        teachersScore = self.teachers_qscore
+      end
+
+      #Readjust weights to sum to 1
+      weightsSum = (qscoreWeights[:reviewers]+qscoreWeights[:users]+qscoreWeights[:teachers])
+
+      unless weightsSum===1
+        qscoreWeights[:reviewers] = qscoreWeights[:reviewers]/weightsSum
+        qscoreWeights[:users] = qscoreWeights[:users]/weightsSum
+        qscoreWeights[:teachers] = qscoreWeights[:teachers]/weightsSum
+      end
+
+      #overallQualityScore is in a  [0,10] scale
+      overallQualityScore = (qscoreWeights[:reviewers] * reviewersScore + qscoreWeights[:users] * usersScore + qscoreWeights[:teachers] * teachersScore)
     else
-      reviewerScore = self.reviewers_qscore
+      #This AO has no score
+      overallQualityScore = 5
     end
-
-    if self.users_qscore.nil?
-      #If nil, we consider it 5 in a [0,10] scale.
-      usersScore = BigDecimal(5.0,6)
-    else
-      usersScore = self.users_qscore
-    end
-
-    #overallQualityScore is in a  [0,10] scale
-    overallQualityScore = (qscoreWeights[:users] * usersScore + qscoreWeights[:reviewers] * reviewerScore)
 
     #Translate it to a scale of [0,1000000]
     overallQualityScore = overallQualityScore * 100000
@@ -180,11 +211,40 @@ ActivityObject.class_eval do
   end
 
   def getUniversalId
-    self.object.class.name + ":" + self.object.id.to_s + "@" + Vish::Application.config.APP_CONFIG["domain"]
+    getGlobalId + "@" + Vish::Application.config.APP_CONFIG["domain"]
+  end
+
+  def getGlobalId
+    self.object.class.name + ":" + self.object.id.to_s
   end
 
   def getType
     self.object.class.name
+  end
+
+  def getUrl
+    begin
+      if self.object.nil?
+        return nil
+      end
+
+      if self.object_type == "Document" and !self.object.type.nil?
+        helper_name = self.object.type.downcase
+      elsif self.object_type == "Actor" 
+        if self.object.subject_type.nil? or ["Site","RemoteSubject"].include? self.object.subject_type
+          return nil
+        end
+        helper_name = self.object.subject_type.downcase
+      else
+        helper_name = self.object_type.downcase
+      end
+
+      relativePath = Rails.application.routes.url_helpers.send(helper_name + "_path",self.object)
+      absolutePath = Vish::Application.config.full_domain + relativePath
+      
+    rescue
+      nil
+    end
   end
 
   def getFullUrl(controller)
@@ -272,11 +332,12 @@ ActivityObject.class_eval do
     end
 
     if options[:models].nil?
-      options[:models] = ["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"]
+      options[:models] = VishConfig.getAvailableAllResourceModels
     end
+    options[:models] = options[:models].map{|m| m.to_s }
 
     ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:actor])
-    aos = ActivityObject.joins(:activity_object_audiences).where("activity_objects.object_type in (?) and activity_objects.id not in (?) and activity_object_audiences.relation_id in (?)", options[:models], ids_to_avoid, Relation::Public.first.id).order("ranking DESC").first(nSubset)
+    aos = ActivityObject.where("object_type in (?) and id not in (?) and scope=0", options[:models], ids_to_avoid).order("ranking DESC").first(nSubset)
 
     if random
       aos = aos.sample(n)
@@ -285,7 +346,31 @@ ActivityObject.class_eval do
     return aos.map{|ao| ao.object}
   end
 
-   def self.getIdsToAvoid(ids_to_avoid=[],actor=nil)
+  def self.getRecent(n = 20, options={})
+    nsize = [60,3*n].max
+    nHalf = (n/2.to_f).ceil
+
+    if options[:models].nil?
+      options[:models] = VishConfig.getAvailableAllResourceModels
+    end
+    options[:models] = options[:models].map{|m| m.to_s }
+
+    ids_to_avoid = getIdsToAvoid(options[:ids_to_avoid],options[:subject])
+    allAOs = ActivityObject.where("object_type in (?) and id not in (?) and scope=0", options[:models], ids_to_avoid)
+
+    aosRecent = allAOs.order("updated_at DESC").first(nsize)
+    aosRecent.sort!{|b,a| a.ranking <=> b.ranking}
+    aosRecent = aosRecent.first(nsize/2).sample(nHalf)
+
+    ids_to_avoid = aosRecent.map{|ao| ao.id}
+    aosPopular = allAOs.where("id not in (?)", ids_to_avoid).order("ranking DESC").first(nsize)
+    aosPopular.sort!{|b,a| a.updated_at <=> b.updated_at}
+    aosPopular = aosPopular.first(nsize/2).sample(nHalf)
+    
+    (aosRecent + aosPopular).map{|ao| ao.object}
+  end
+
+  def self.getIdsToAvoid(ids_to_avoid=[],actor=nil)
     ids_to_avoid = ids_to_avoid || []
 
     if !actor.nil?
@@ -301,7 +386,7 @@ ActivityObject.class_eval do
     return ids_to_avoid
   end
 
-  def self.getActivityObjectFromUniversalId(id)
+  def self.getObjectFromUniversalId(id)
     #Universal id example: "Excursion:616@localhost:3000"
     begin
       fSplit = id.split("@")
@@ -317,6 +402,12 @@ ActivityObject.class_eval do
     end
   end
 
+  def self.getObjectFromGlobalId(id)
+    return nil if id.nil?
+    universalId = id.to_s + "@" + Vish::Application.config.APP_CONFIG["domain"]
+    getObjectFromUniversalId(universalId)
+  end
+
   def self.getResourceCount
     getCount(["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"])
   end
@@ -329,14 +420,24 @@ ActivityObject.class_eval do
   private
 
   def fill_relation_ids
-    unless self.object_type == "Actor" or self.object.nil?
-      unless self.object_type == "Excursion" and self.object.draft==true
-        #Always public except drafts
-        self.object.relation_ids = [Relation::Public.instance.id]
-        self.relation_ids = [Relation::Public.instance.id]
-      else
-        self.object.relation_ids = [Relation::Private.instance.id]
-        self.relation_ids = [Relation::Private.instance.id]
+    unless self.object.nil?
+      if self.object_type != "Actor"
+        #Resources
+        unless self.object_type == "Excursion" and self.object.draft==true
+          #Always public except drafts
+          self.object.relation_ids = [Relation::Public.instance.id]
+          self.relation_ids = [Relation::Public.instance.id]
+        else
+          self.object.relation_ids = [Relation::Private.instance.id]
+          self.relation_ids = [Relation::Private.instance.id]
+        end
+      elsif self.object_type == "Actor"
+        #Actors
+        if self.object.admin?
+          self.relation_ids = [Relation::Private.instance.id]
+        else
+          self.relation_ids = [Relation::Public.instance.id]
+        end
       end
     end
   end

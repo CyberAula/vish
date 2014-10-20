@@ -62,7 +62,7 @@ class RecommenderSystem
     #Models
     if options[:models].blank?
       #All resources by default
-      options[:models] = [Excursion, Document, Webapp, Scormfile, Link, Embed]
+      options[:models] = VishConfig.getAvailableAllResourceModels({:return_instances => true})
     end
 
     options[:model_names] = options[:models].map{|m| m.name}
@@ -75,8 +75,18 @@ class RecommenderSystem
     preSelection = []
 
     #Search resources using the search engine
+
+    #Filter resources by language
+    if !resource.nil?
+      #Recommending resources similar to other resource
+      options[:language] = resource.language unless [nil,"independent","ot"].include? resource.language
+    elsif !subject.nil?
+      #Recommending resources to a user
+      options[:language] = subject.language unless [nil,"independent","ot"].include? subject.language
+    end
+
     keywords = compose_keywords(subject,resource,options)
-    unless keywords.empty?
+    unless keywords.blank? and options[:language].blank?
       searchEngineResources = (RecommenderSystem.search search_options(keywords,subject,resource,options)).compact rescue []
       preSelection.concat(searchEngineResources)
     end
@@ -91,7 +101,7 @@ class RecommenderSystem
     end
 
     pSL = preSelection.length
-    
+
     if options[:random]
       #Random: fill to Nmax, and select 2/3Nmax randomly
       if pSL < options[:nMax]
@@ -136,9 +146,9 @@ class RecommenderSystem
     elsif calculateUSScore
       #Recommend resources for a user (or subject)
       weights[:cs_score] = 0.0
-      weights[:us_score] = 0.50
-      weights[:popularity_score] = 0.25
-      weights[:quality_score] = 0.25
+      weights[:us_score] = 0.80
+      weights[:popularity_score] = 0.10
+      weights[:quality_score] = 0.10
     else
       #Recommend resources for anonymous users
       weights[:cs_score] = 0.0
@@ -214,8 +224,8 @@ class RecommenderSystem
   #User profile Similarity Score (between 0 and 1)
   def self.userProfileSimilarityScore(subject,lo)
     weights = {}
-    weights[:language] = 0.6
-    weights[:keywords] = 0.4
+    weights[:language] = 0.75
+    weights[:keywords] = 0.25
 
     unless ["independent","ot"].include? lo.language
       languageD = RecommenderSystem.getSemanticDistance(subject.language,lo.language)
@@ -468,8 +478,11 @@ class RecommenderSystem
 
   def self.search_options(keywords,subject,resource,options={})
     opts = {}
-    opts[:keywords] = keywords
     opts[:n] = options[:nMax]
+
+    unless keywords.blank?
+      opts[:keywords] = keywords
+    end
 
     #Only search for desired models
     opts[:models] = options[:models]
@@ -482,6 +495,10 @@ class RecommenderSystem
       opts[:ao_ids_to_avoid] = [resource.activity_object.id]
     end
 
+    unless options[:language].nil?
+      opts[:language] = options[:language]
+    end
+
     return opts
   end
 
@@ -489,7 +506,16 @@ class RecommenderSystem
     resources = []
     nSubset = [80,4*n].max
     ids_to_avoid = getIdsToAvoid(preSelection,subject,resource,options)
-    resources = ActivityObject.where("scope=0 and object_type IN (?) and id not in (?)", options[:model_names], ids_to_avoid).order("ranking DESC").limit(nSubset).sample(n).map{|ao| ao.object}.compact
+    resources = ActivityObject.where("scope=0 and object_type IN (?) and id not in (?)", options[:model_names], ids_to_avoid)
+
+    unless options[:language].blank?
+      langResources = resources.where("language='" + options[:language] + "'")
+      if langResources.length >= n
+        resources = langResources
+      end
+    end
+
+    resources.order("ranking DESC").limit(nSubset).sample(n).map{|ao| ao.object}.compact
   end
 
   def self.getIdsToAvoid(preSelection,subject,resource,options)

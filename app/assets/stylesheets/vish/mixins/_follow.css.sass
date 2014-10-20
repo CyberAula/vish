@@ -25,7 +25,7 @@
     display: block
     background-color: $secondColor
     height: 20px
-    width: 87px
+    width: 105px
     @include border-radius($baseBorderRadius)
     color: $white
     font-family: $firstFontFamily
@@ -39,7 +39,7 @@
         @include center-block()
         height: 20px
         border: 0px none 
-        width: 87px
+        width: 105px
         display: block
         background-color: $gray
         @include border-radius($baseBorderRadius)
@@ -67,27 +67,23 @@
       margin-top: 0px
       padding: 0px
       font-family: $firstFontFamily
-
   .following-button
     @include center-block()
-
     display: block
     background-color: $secondColor
     height: 20px
-    width: 87px
+    width: 105px
     @include border-radius($baseBorderRadius)
     color: $white
     font-family: $firstFontFamily
-
   .unfollow-button
     form
       margin: 0px
       input
-
         @include center-block()
         height: 20px
         border: 0px none 
-        width: 87px
+        width: 105px
         display: block
         background-color: $gray
         @include border-radius($baseBorderRadius)
@@ -95,3 +91,70 @@
         margin-top: 0px
         padding: 0px
         font-family: $firstFontFamily
+
+
+
+
+
+
+
+
+
+
+
+
+
+@mixin follow-items-user
+  font-size: 20px
+  text-align: center
+  color: $firstColor
+  font-family: $secondFontFamily
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  form
+    margin: 0 auto
+    input
+      font-size: 16px
+      height: 30px
+      border: 0px none 
+      width: 100%
+      display: block
+      background-color: $firstColor
+      @include border-bottom-radius($baseBorderRadius)
+      @include border-top-radius(0)
+      color: $white
+      @include center-block()
+      margin: 0 auto
+      padding-top: 3px
+      font-family: $secondFontFamily
+
+  .following-button
+    font-size: 16px
+    @include center-block()
+    display: block
+    background-color: $secondColor
+    height: 26px
+    width: 100%
+    @include border-bottom-radius($baseBorderRadius)
+    @include border-top-radius(0)
+    color: $white
+    font-family: $secondFontFamily
+    margin: 0 auto
+    padding-top: 4px
+  .unfollow-button
+    font-size: 16px
+    form
+      margin: 0 auto
+      input
+        font-size: 16px
+        @include center-block()
+        height: 30px
+        border: 0px none 
+        width: 100%
+        display: block
+        background-color: $gray
+        @include border-bottom-radius($baseBorderRadius)
+        @include border-top-radius(0)
+        color: $white
+        padding-top: 3px
+        font-family: $secondFontFamily
+        margin: 0 auto

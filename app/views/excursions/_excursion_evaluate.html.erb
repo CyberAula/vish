@@ -1,78 +1,82 @@
-          <div id="myTeachingModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <%= content_for :javascript do%>
-              $('#myTeachingModal input.star').rating({
-                focus: function(value, link){
-                  var tip = $(this).siblings(".eval_tip");
-                  tip[0].data = tip[0].data || tip.html();
-                  tip.html(link.title || 'value: '+value);
-                },
-                blur: function(value, link){
-                  var tip = $(this).siblings(".eval_tip");
-                  $(tip).html(tip[0].data || '');
-                }
-              });
-            <%end%>
-            <%= javascript_tag do %>              
-              $(document).on("click","#myTeachingModal .evaluation_form_button",function() {
-                var is_ok = true;
-                //validate empty radio buttons
-                $(':radio.star').each(function() { // loop through each radio button
-                    nam = $(this).attr('name'); // get the name of its set
-                    if (!$(':radio.star[name="'+nam+'"]:checked').length) { 
-                        // see if any button in the set is checked
-                        alert('<%=t("evaluation.alert")%>');
-                        is_ok = false;
-                        return false; //equivalent to break each loop, not return the function!
-                    }
-                });
+<%= content_for :javascript do%>
 
-                if(is_ok){
-                  //everything ok, send via Ajax
-                  $.ajax({
-                    type: "post",
-                    url: "/excursions/<%=@excursion.id%>/evaluate",
-                    dataType: "text",
-                    data: $("#myTeachingModal .evaluation_form").serialize(), // serializes the form's elements.
-                    success: function(data){
-                      $(".btn-modal-footer").html("<h3><%=t('evaluation.success')%></h3>");
-                      setTimeout(function(){$(".modal-header button").click();},1000);                      
-                    }
-                  });
-                }
-                else{
-                  return;
-                }
-               });   
-            <%end%>
+  $('#myLearningModal').on('shown', function(){
+    <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
+      var loepSettings = {};
+      <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
+      loepSettings.domain = '<%=loepConfig["domain"]%>';
+      loepSettings.app = '<%=loepConfig["app_name"]%>';
+      loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
+      loepSettings.evmethod = "wbltses";
+      loepSettings.language = '<%=I18n.locale.to_s%>';
+      loepSettings.tokenURL = "/loep/session_token.json";
+      loepSettings.containerDOM = $('#myLearningModal').find(".modal-body");
+      loepSettings.loadCallback = function(){
+        //LOEP form loaded"
+      };
+      loepSettings.submitCallback = function(){
+        //"Sucesfully submitted"
+        $('#myLearningModal').modal('hide');
+      };
+      loepSettings.errorCallback = function(){
+        //"Error"
+        $('#myLearningModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
+      };
+      loepSettings.debug = false;
+      new LOEP.IframeAPI.instance(loepSettings);
+    <%end%>
+  });
 
-            <%= form_tag("/excursions/#{ @excursion.id }/evaluate", :class => 'evaluation_form') do %>
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  <h3 id="myModalLabel"><%= t('evaluation.experience') %></h3>
-                </div>
-                <div class="modal-body evaluation_body">
-                  <% 6.times do |ind| %>
-                    <%scale = (ind==0 || ind==1) ? "a" : "b" %>
-                    <div class="evaluate">
-                      <p>
-                        <a><%= (ind+1).to_s %></a>
-                        <%= t('evaluation.phrase'+ind.to_s) %>
-                      </p>
-                      <div class="escale">
-                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.strong_disagree_'+scale)%>" class="star" value="1" />
-                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.disagree_'+scale)%>" class="star" value="2"/>
-                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.neutral_'+scale)%>" class="star" value="3"/>
-                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.agree_'+scale)%>" class="star" value="4"/>
-                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.strong_agree_'+scale)%>" class="star" value="5"/>
-                        
-                        <span class="eval_tip" style="margin:0 0 0 20px;"></span>
-                      </div>
-                    </div>
-                  <% end %>
+  $('#myLearningModal').on('hidden', function(){
+    //Learning modal hidden
+    $(this).removeData('modal').find('.modal-body').html('');
+  });
 
-                </div>
-                <% end %>
-                <div class="evaluation_form_button_div btn-modal-footer">
-                  <button type="button" class="btn btn-primary evaluation_form_button"><%=t('save')%></button>
-                </div>            
-          </div>
+  $('#myTeachingModal').on('shown', function(){
+    <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
+      var loepSettings = {};
+      <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
+      loepSettings.domain = '<%=loepConfig["domain"]%>';
+      loepSettings.app = '<%=loepConfig["app_name"]%>';
+      loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
+      loepSettings.evmethod = "wbltts";
+      loepSettings.language = '<%=I18n.locale.to_s%>';
+      loepSettings.tokenURL = "/loep/session_token.json";
+      loepSettings.containerDOM = $('#myTeachingModal').find(".modal-body");
+      loepSettings.loadCallback = function(){
+        //LOEP form loaded"
+      };
+      loepSettings.submitCallback = function(){
+        //"Sucesfully submitted"
+        $('#myTeachingModal').modal('hide');
+      };
+      loepSettings.errorCallback = function(){
+        //"Error"
+        $('#myTeachingModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
+      };
+      loepSettings.debug = false;
+      new LOEP.IframeAPI.instance(loepSettings);
+    <%end%>
+  });
+
+  $('#myTeachingModal').on('hidden', function(){
+    //Teaching modal hidden
+    $(this).removeData('modal').find('.modal-body').html('');
+  });
+<%end%>
+
+<div id="myLearningModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="learningModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="learningModalLabel"><%= t('evaluation.modaltitle') %></h3>
+  </div>
+  <div class="modal-body"></div>
+</div>
+
+<div id="myTeachingModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="teachingModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="teachingModalLabel"><%= t('evaluation.modaltitle') %></h3>
+  </div>
+  <div class="modal-body"></div>
+</div>
