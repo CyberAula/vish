@@ -70,13 +70,13 @@
       alert("<%= t('embed.title3')%>");
     } else if (resource_type == "writing" && $("#<%=form_id%> textarea[name='"+resource_type+"[fulltext]']").val() == "") {
       alert("<%= t('writing.title3')%>");
-    } else if($("#<%=form_id%> .title").val() == "") {
+    } else if($("#<%=form_id%> input.title").val() == "") {
       alert("<%= t('document.title_alert')%>");
     } else {
       //TITLE
-      $("#<%=form_id%> input[name='"+resource_type+"[title]']").val($("#<%=form_id%> .title").val());
+      $("#<%=form_id%> input[name='"+resource_type+"[title]']").val($("#<%=form_id%> input.title").val());
       //DESCRIPTION
-      $("#<%=form_id%> input[name='"+resource_type+"[description]']").val($("#<%=form_id%> .description").val());
+      $("#<%=form_id%> input[name='"+resource_type+"[description]']").val($("#<%=form_id%> textarea.description").val());
       //TAGS
       var tagList = $("#<%=form_id%> .resourceTagList");
       $("#<%=form_id%> input[name='"+resource_type+"[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));

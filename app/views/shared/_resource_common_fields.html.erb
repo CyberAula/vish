@@ -1,33 +1,41 @@
 
     <div class="layoutform">
-      <p><%= t('document.body.title2')%></p>
+      <h3><%= t('document.body.title2')%></h3>
 
       <!--TITULO-->
-      <label><%= t('document.leyend.title')%></label>
-      <input type="text" class="title" placeholder="<%= t('document.title_input')%>">
-      
+      <section class="title">
+        <label><%= t('document.leyend.title')%></label>
+        <input type="text" class="title" placeholder="<%= t('document.title_input')%>">
+      </section>
+
       <!--DESCRIPCION-->
-      <label><%= t('document.leyend.description')%></label>
-      <textarea type="text" class="description" placeholder="<%= t('document.input')%>"></textarea>
+      <section class="description">
+        <label class="description_label"><%= t('document.leyend.description')%></label>
+        <textarea type="text" class="description" placeholder="<%= t('document.input')%>"></textarea>
+      </section>
 
       <!--TAGS-->
+      <section class="tags">
       <label><%= t('document.leyend.tags')%></label>
-
       <div class="tagBoxDocument">
          <ul class="resourceTagList"></ul>
       </div>
-
-      <div class="clearfloat"></div>
+      </section>
 
       <!--Avatar-->
+      <section class="avatar">
       <label class="new_file_avatar_label"><%= t('document.leyend.avatar')%></label>
       <input class="new_file_avatar" type="file" accept="image/*">
-      
+      </section>
+
       <!--LANGUAGE-->
+      <section class="language">
       <label><%= t('document.leyend.language')%></label>
       <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "language") %>
-      
+      </section>
+
       <!--AGE SLIDER-->
+      <section class="target_age">
       <label><%= t('document.leyend.recommended_age')%></label>
       <div class="limits">
         <div class="limit1">4</div>
@@ -35,7 +43,7 @@
       </div>
       <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
 
-      <br>
+     </section>
     </div>
 
     

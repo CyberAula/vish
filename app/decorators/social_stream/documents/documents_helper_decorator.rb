@@ -21,7 +21,7 @@ DocumentsHelper.module_eval do
       icon_name = case document.class.name
         when "Link" then "link"
         when "Embed" then "code"
-        when "Writing" then "writing"
+        when "Writing" then "file-text"
         when "Scormfile" then "scorm-new"
         when "Webapp" then "webapp-new"
         else "file" # SocialStream::Documents.icon_mime_types[:default]

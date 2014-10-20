@@ -1,4 +1,5 @@
 <article id="new_file">
+  <div class="layoutform">
 
   <%= form_for(resource) do |f| %>
     <%= f.hidden_field :owner_id %>
@@ -50,11 +51,13 @@
     <% 
        initialTags = resource.tags.all.map{|e| e.name} || []
        tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue_categories).uniq!
+
       if tags == nil
         tags = []
       end
+
     %>
- 
+ <!-- ##QUICK FIX -->
     <!-- Tags -->
     <script>
       var tagsSource = [
@@ -104,7 +107,9 @@
       </section>
     <% end%>
 
-    <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+    <div class="footer-form">
+      <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+    </div>
   <% end %>
 
 
@@ -176,4 +181,5 @@
       });
   <% end %>
 
+</div>
 </article>

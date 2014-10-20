@@ -45,7 +45,7 @@
               className = object.class.to_s
               classNameUnderscore = className.underscore
               classNameTableize = className.tableize
-              hasEditPartial = lookup_context.template_exists?("#{classNameUnderscore}_edit", classNameTableize, true)
+              hasEditPartial = lookup_context.template_exists?("edit", classNameTableize, true)
             %>
             <% if hasEditPartial %>
               <li class="ui-state-default" data-target="#WorkshopActivity" data-toggle="modal" data-remote=<%="/#{classNameTableize}/#{object.id}/edit.partial"%>>

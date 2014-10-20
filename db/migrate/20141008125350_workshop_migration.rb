@@ -32,6 +32,7 @@ class WorkshopMigration < ActiveRecord::Migration
     # Assignment
     create_table "wa_assignments", :force => true do |t|
       t.text     "fulltext"
+      t.text     "plaintext"
       t.datetime "open_date"
       t.datetime "due_date"
       t.timestamps

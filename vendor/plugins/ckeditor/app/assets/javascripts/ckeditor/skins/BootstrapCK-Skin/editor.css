@@ -1059,6 +1059,11 @@ background-position:0 -1281px;
 .cke_skin_BootstrapCK-Skin .cke_button_source .cke_label{
 display:inline;
 }
+.cke_skin_BootstrapCK-Skin .cke_button_MediaEmbed .cke_icon{
+	background-image: url(mediaembed.png);
+	background-position:0 0px;
+	background-size: contain;
+}
 .cke_skin_BootstrapCK-Skin .cke_styles_panel{
 width:150px;
 height:170px;

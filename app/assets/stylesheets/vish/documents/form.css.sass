@@ -1,19 +1,26 @@
-#document-edit 
-  #new_file
-    section.tags,
-    section.avatar,
-    section.language
-      margin-bottom: 13px
+//FORM BASE
 
+#document-edit,
+.AddResource
+  @include base-form
+
+//COLOR WHITE FOR FORM 2 COLUMNS ON NEW PAGE
+
+#AddWriting,
+.new_document
+  @include white-background-form
+
+//FORM 2 COLUMNS
+
+#AddWriting,
 #new_document
-  #new_file
-    section.upload,
-    section.avatar,
-      margin-bottom: 15px
-    section.target_age
-      margin-top: 20px
-      margin-bottom: 40px
+  @include two-columns-form
 
-#new_file
-  input[type='file']
-    padding: 0px !important
+//CKEDITOR STYLE
+
+#AddWriting,
+#document-edit,
+  span.cke_skin_BootstrapCK-Skin
+    width: 98%
+    padding: 1%
+    background-color: $grayLight

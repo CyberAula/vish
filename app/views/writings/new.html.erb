@@ -1,10 +1,3 @@
-<script>
-//CAMBIOS con respecto al formulario original. Toda la parte del ckeditor
-//quitado todo lo de accordion.
-//sitios donde pone XXX
-//sustituido AddWriting por AddWriting porque me daba conflicto con el del header los selectores, habría que hacer refactoring de todo si va bien
-</script>
-
 <%= render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "new_file_only_writing_fulltext"} %>
 
 
@@ -42,7 +35,7 @@
 
           <%= render :partial => "shared/resource_common_fields", :locals => {:d=> d} %>
 
-    <div class="modal-footer">
+    <div class="footer-form">
       <input type="button" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
     </div>
 
