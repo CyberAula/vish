@@ -103,7 +103,8 @@ es:
         dragt2: "Ordena tus categorías"
         dragt3: "Agrupa tu conocimiento"
         erase: "Arrastra aquí para eliminar"
-        place: "Ordena tus categorías"
+        place: "Ordenar"
+        place_long: "Ordenar categorias"
     errors:
       duplicated: "Ya tienes una categoría con ese título. Por favor, escribe uno diferente."
     favorites:

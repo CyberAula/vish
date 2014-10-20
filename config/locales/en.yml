@@ -104,10 +104,11 @@ en:
         drag2: "Order is always important, drag and sort."
         drag3: "Knowledge can be grouped anyway, choose your way."
         dragt1: "Drag and drop"
-        dragt2: "Order your categories"
+        dragt2: "Sort your categories"
         dragt3: "Group your knowledge"
         erase: "Drag here to remove"
-        place: "Place your categories"
+        place: "Sort"
+        place_long: "Sort categories"
     errors:
       duplicated: "You already have a category with this title. Please, give it another title."
     favorites:
