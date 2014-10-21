@@ -1,12 +1,13 @@
 .thumbnail
-  @include box-shadow (0 1px 4px 1px rgba(0, 0, 0, 0.1))
-  border: none
+  position: relative
+  overflow: inherit
+  float: left
+  background: transparent
   .avatar
-    margin: 20% auto 9%
-    width: 48%
     img
       @include border-top-radius ($border-radius-base)
       @include border-bottom-radius ($border-radius-base)
+      width: 100%
   a
     &:hover
       padding: 0
@@ -82,15 +83,23 @@
     text-decoration: none
 
 .thumbnail .caption 
-  padding: $padding-large-horizontal $padding-large-horizontal 0 $padding-large-horizontal
+  padding: 6px $padding-large-horizontal 0
   color: $gray-darker
-  min-height: 82px
+  border-top: 1px solid #E7E7E7
+  height: 75px
+  background-color: $white
+  margin-top: -4px
+  @include border-bottom-radius ($border-radius-base)
   h6
     font-family: $corporate-font-family-sans-serif-Medium
-    height: 28px
-    word-wrap: break-word
-    overflow: hidden
-    margin: 0px 0 0.3rem
+    @include text-overflow
+    margin: 0
+    height: 20px
+    line-height: 17px
+    font-size: 15px
+    text-decoration: none
+    cursor: pointer
+    width: 100%
     a
       color: $gray-darker
       &:hover
@@ -122,7 +131,7 @@
   img
     width: 100%
   hr 
-    margin: 3px 0 -1px
+    margin: 3px -8px -1px
 
   .like 
     display: inline
