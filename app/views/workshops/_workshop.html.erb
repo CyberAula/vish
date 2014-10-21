@@ -1,7 +1,7 @@
 <% if workshop.nil? or workshop.author.nil? %>
   <% return %>
 <% end %>
-<li class="box-item resource-item">
+<li class="box-item workshop-item">
   <!-- corner -->
   <div class="corner-item">
     <div class="corner-item2">
@@ -13,7 +13,7 @@
   <!-- image/icon -->
   <div class="container-img">
     <div class="dummy"></div>
-    <div class="element workshop-center">
+    <div class="element resource-center">
       <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
     </div>
   </div>
