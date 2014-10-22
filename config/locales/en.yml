@@ -511,6 +511,7 @@ en:
       embed: "embed"
       favorite: "favorite"
       my_room: "my room"
+      send_email: "Send Email:"
       show: "show"
       show_fewer: "Show fewer"
       show_meta: "Metadata"
