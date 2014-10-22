@@ -78,7 +78,7 @@
       content: function() {
       return $('.contentclone').html();
       },
-      container: "body"
+      container: ".actions_layout_show"
     });
 
     $('.clone').on('shown.bs.popover', function (){
@@ -96,7 +96,7 @@
       content: function() {
         return $('.contentdelete').html();
       },
-      container: "body"
+      container: ".actions_layout_show"
     });
 
     $('.delete').on('shown.bs.popover', function(){
@@ -122,7 +122,7 @@
 
 
 <!--BTN ACTIONS-->
-<div class="btn-group">
+<div class="btn-group actions_layout_show">
 
   <!-- Edit -->
   <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>

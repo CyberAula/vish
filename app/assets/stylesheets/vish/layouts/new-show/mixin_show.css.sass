@@ -217,7 +217,8 @@
   .contentShare,
   .contentclone,
   .contentscorm,
-  .contentReport
+  .contentReport,
+  .content_edit
     width: 95%
     padding: 5px 2.5% 10px
     display: block
@@ -307,7 +308,7 @@
       width: 100%
     form
       .radio
-        padding-left: 2.5%
+        padding-left: 5%
         textarea
           width: 90%
           padding-left: 2.5%
@@ -323,8 +324,12 @@
           display: block
       button.report
         float: right
-        
-  // btn group actions
+
+
+
+// BTN GROUP SHOW
+// --------------------------------------------------
+@mixin button-group-show
   .btn-group
     margin-top: 0px
     float: right
@@ -343,44 +348,13 @@
         .btn
           padding: 3px 12px
           @include border-radius($baseBorderRadius)
-
-
-// RESOURCES FORM
-// --------------------------------------------------
-@mixin resources-form-show
-  #new_file
-    form
-      display: block
-      margin: 0 auto
-      width: 90%
-      input,
-      textarea,
-        width: 96%
-        padding-left: 2%
-        padding-right: 2%
-      textarea
-        height: 50px
-      select
-        width: 100%
-      .select2-container-multi 
-        .select2-choices 
-          width: 97%
-          padding-left: 2%
-          padding-right: 2%
-      .slider.slider-horizontal
-        width: 100% !important
-      .target_age
-        //height: 80px
-      .btn-primary
-        float: right
-        width: auto
-        margin-top: 20px
-        margin-bottom: 20px
+    .btn + .btn
+      margin-left: 0px
 
 
 // DESCRIPTION DESPLEGABLE
 // --------------------------------------------------
-@mixin resources-form-show
+@mixin description-effect
   .toggler
     min-height: 50px
     position: relative
