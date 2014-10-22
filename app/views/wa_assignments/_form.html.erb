@@ -1,0 +1,42 @@
+<%
+wa_assignment ||= WaAssignment.new
+the_id = wa_assignment.id.nil? ? 0 : wa_assignment.id 
+final_id = "wa_assignment_checkbox_" + the_id.to_s
+unless wa_assignment.workshop.nil? 
+  workshop = wa_assignment.workshop
+end
+
+%>
+
+<%= form_for wa_assignment, :remote => false do |f| %>
+  <%= f.hidden_field :workshop_id, :value => workshop.id %>
+  
+  <%= f.label t('workshop.activities.assignment.with_dates'), :class => "" %>
+  <%= f.check_box :with_dates, :onclick => "checkbox_with_dates(this);", :id => final_id%>
+  <div class="assignment_dates">
+	  <%= f.label t('workshop.activities.assignment.open_date'), :class => "" %>
+	  <%= f.date_select :open_date, :order => [:day, :month, :year] %>
+	  <%= f.label t('workshop.activities.assignment.due_date'), :class => "" %>
+	  <%= f.date_select :due_date, :order => [:day, :month, :year] %>
+  </div>
+
+
+<% end %>
+
+
+<script>
+  function checkbox_with_dates(checkbox_field){
+  	console.log("entra2" + checkbox_field.checked)
+  	if(checkbox_field.checked){
+  		$(checkbox_field).siblings(".assignment_dates").show();
+  	} else {
+  		$(checkbox_field).siblings(".assignment_dates").hide();
+  	}
+  };
+
+  $(document).ready(function() {    
+  	checkbox_with_dates($("#<%=final_id%>")[0]); 
+
+  });
+
+</script>
