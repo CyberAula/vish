@@ -180,7 +180,7 @@ $(document).ready(function(){
       <div class="input-append url-input">
         <% shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + event_path(@event) ) %>
         <input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
-        <!--button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy "></i></button-->
+
       </div>
       <div class="social_toolbar_excursion">
         <div class="twitter_toolbar_excursion">
@@ -192,9 +192,10 @@ $(document).ready(function(){
         <div class="gplus_toolbar_excursion ">
           <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
         </div>
-        <button class="email_toolbar_excursion">
+        <div class="email_toolbar_excursion">
+          <p><%=t('excursion.actions.send_email') %></p>
           <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @event.title, :name => (user_signed_in? ? current_subject.name : '')} %>
-        </button>
+        </div>
       </div>
     </div>
   </div> 
