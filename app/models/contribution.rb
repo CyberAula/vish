@@ -16,16 +16,13 @@
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
 class Contribution < ActiveRecord::Base
-  	include SocialStream::Models::Object
+  	belongs_to :activity_object  #We don't add include SocialStream::Models::Object because a contribution is not an activity_object but HAS ONE activity object (type writing)
 
 	belongs_to :assignment
 	has_one :workshop, :through => "assignment"
  	
  	belongs_to  :parent, :class_name => 'Contribution'
   	has_many 	:children, :class_name => 'Contribution', :foreign_key => 'parent_id'
-  	
-  	define_index do
-    	activity_object_index
-  	end
+  	  	
 
 end
