@@ -30,15 +30,16 @@
 @mixin container-visor-recursos
   .caja-elementos
     display: block
-    text-align: center
-    font-size: 40px
+    min-height: 150px
+    font-size: 60px
     i
-      margin-top: 10px
-      margin-bottom: 10px
       display: block
+      float: none
+      margin: 50px auto 0
+      text-align: center
+      width: 50px
     .picture_show,
     .embed_show,
-    .writing_show
       max-width: 500px
       display: block
       margin: 10px auto
@@ -53,7 +54,12 @@
         height: 100% !important
       p
         text-align: left
-
+    .writing_show
+      font-size: 14px
+      width: 95%
+      float: none
+      display: block
+      margin: 0 auto
     i.icon-zip-new
       display: block
       width: 57px
