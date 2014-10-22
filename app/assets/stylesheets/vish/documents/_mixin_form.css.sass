@@ -1,18 +1,15 @@
 // IMG 
 @mixin base-form
-  .layoutform
+  .layoutform,
+  .edit_event
     display: inline-block
     width: 100%
     height: 100%
     min-height: 100%
-    .upload,
-    .title,
-    .description,
-    .tags,
-    .avatar,
-    .language,
-    .target_age,
-    .scope
+    section
+      display: block
+      float: left
+      width: 100%
       label
         width: 90%
         display: inline-block
@@ -20,7 +17,6 @@
         clear: left
         color: $firstColor
         margin-bottom: 5px
-
       input
         clear: left
         width: 98%
@@ -33,12 +29,15 @@
         margin-bottom: 10px
         padding-left: 0px !important
         padding-right: 0px !important
+      input[type="radio"]
+        width: 20px
+        height: auto
       textarea
         clear: left
         width: 98%
         display: inline-block
         float: left
-        height: 30px
+        height: 60px
         padding: 2px 0.8%  !important
       select
         clear: left
@@ -65,7 +64,44 @@
       display: block
       float: left
       height: 70px
-      width: 100%
+      width: 100% !important
+
+    //events
+    .event-type
+      .radio-button-event
+        display: block
+        float: left
+        width: 40%
+    .date-event
+      .input-append
+        width: 90%
+      .add-on
+        width: 8%
+        height: 26px
+        i
+          font-size: 16px
+          vertical-align: bottom
+    .time-start-event,
+    .time-end-event
+      width: 50%
+      .input-append
+        width: 90%
+      .add-on
+        height: 26px
+        i
+          font-size: 16px
+          vertical-align: bottom
+    #saveEvent
+      float: right
+      margin-right: 5px
+      margin-top: 10px
+
+
+
+
+
+
+
   .footer-form
     width: 100%
     float: right
@@ -79,6 +115,20 @@
 
       width: auto
 
+  @media (min-width: 0px) and (max-width: 600px)
+    .layoutform,
+    .edit_event
+      .time-start-event,
+      .time-end-event
+        width: 100% !important
+        .input-append
+          width: 90% !important
+        .add-on
+          width: 8% !important
+          height: 26px
+          i
+            font-size: 16px
+            vertical-align: bottom
 
 
 @mixin two-columns-form
