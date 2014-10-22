@@ -1,3 +1,1 @@
-<%= form_for WaAssignment.new, :remote => false do |f| %>
-  <%= f.hidden_field :workshop_id, :value => workshop.id %>
-<% end %>
+<%= render partial: "wa_assignments/form", locals:  { :workshop => workshop }  %>

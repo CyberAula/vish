@@ -1,9 +1,6 @@
 <div id="" class="">
   <%= form_for wa_assignment, :html => { :id => "edit_wa_assignment_#{wa_assignment.id}" }, :remote => false do |f| %>
-    <%= f.label t('workshop.activities.assignment.open_date'), :class => "" %>
-    <%= f.date_select :open_date, :order => [:day, :month, :year] %>
-    <%= f.label t('workshop.activities.assignment.due_date'), :class => "" %>
-    <%= f.date_select :due_date, :order => [:day, :month, :year] %>
+    
     <%= f.label t('workshop.activities.assignment.content'), :class => "" %>
     <%= f.text_area :fulltext, :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
     

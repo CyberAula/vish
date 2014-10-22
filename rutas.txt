@@ -8,18 +8,13 @@ SOCIAL CONFIG
                new_user_password GET      /users/password/new(.:format)                                        devise/passwords#new
               edit_user_password GET      /users/password/edit(.:format)                                       devise/passwords#edit
                                  PUT      /users/password(.:format)                                            devise/passwords#update
-        cancel_user_registration GET      /users/cancel(.:format)                                              registrations#cancel
-               user_registration POST     /users(.:format)                                                     registrations#create
-           new_user_registration GET      /users/sign_up(.:format)                                             registrations#new
-          edit_user_registration GET      /users/edit(.:format)                                                registrations#edit
-                                 PUT      /users(.:format)                                                     registrations#update
-                                 DELETE   /users(.:format)                                                     registrations#destroy
           accept_user_invitation GET      /users/invitation/accept(.:format)                                   devise_invitations#edit
           remove_user_invitation GET      /users/invitation/remove(.:format)                                   devise_invitations#destroy
                  user_invitation POST     /users/invitation(.:format)                                          devise_invitations#create
              new_user_invitation GET      /users/invitation/new(.:format)                                      devise_invitations#new
                                  PUT      /users/invitation(.:format)                                          devise_invitations#update
                                           /users/:id/excursions(.:format)                                      users#excursions
+                                          /users/:id/workshops(.:format)                                       users#workshops
                                           /users/:id/resources(.:format)                                       users#resources
                                           /users/:id/events(.:format)                                          users#events
                                           /users/:id/categories(.:format)                                      users#categories
@@ -66,6 +61,56 @@ SOCIAL CONFIG
                        excursion GET      /excursions/:id(.:format)                                            excursions#show
                                  PUT      /excursions/:id(.:format)                                            excursions#update
                                  DELETE   /excursions/:id(.:format)                                            excursions#destroy
+                                          /workshops/:id/edit_details(.:format)                                workshops#edit_details
+                       workshops GET      /workshops(.:format)                                                 workshops#index
+                                 POST     /workshops(.:format)                                                 workshops#create
+                    new_workshop GET      /workshops/new(.:format)                                             workshops#new
+                   edit_workshop GET      /workshops/:id/edit(.:format)                                        workshops#edit
+                        workshop GET      /workshops/:id(.:format)                                             workshops#show
+                                 PUT      /workshops/:id(.:format)                                             workshops#update
+                                 DELETE   /workshops/:id(.:format)                                             workshops#destroy
+                  wa_assignments GET      /wa_assignments(.:format)                                            wa_assignments#index
+                                 POST     /wa_assignments(.:format)                                            wa_assignments#create
+               new_wa_assignment GET      /wa_assignments/new(.:format)                                        wa_assignments#new
+              edit_wa_assignment GET      /wa_assignments/:id/edit(.:format)                                   wa_assignments#edit
+                   wa_assignment GET      /wa_assignments/:id(.:format)                                        wa_assignments#show
+                                 PUT      /wa_assignments/:id(.:format)                                        wa_assignments#update
+                                 DELETE   /wa_assignments/:id(.:format)                                        wa_assignments#destroy
+                    wa_resources GET      /wa_resources(.:format)                                              wa_resources#index
+                                 POST     /wa_resources(.:format)                                              wa_resources#create
+                 new_wa_resource GET      /wa_resources/new(.:format)                                          wa_resources#new
+                edit_wa_resource GET      /wa_resources/:id/edit(.:format)                                     wa_resources#edit
+                     wa_resource GET      /wa_resources/:id(.:format)                                          wa_resources#show
+                                 PUT      /wa_resources/:id(.:format)                                          wa_resources#update
+                                 DELETE   /wa_resources/:id(.:format)                                          wa_resources#destroy
+                   contributions GET      /contributions(.:format)                                             contributions#index
+                                 POST     /contributions(.:format)                                             contributions#create
+                new_contribution GET      /contributions/new(.:format)                                         contributions#new
+               edit_contribution GET      /contributions/:id/edit(.:format)                                    contributions#edit
+                    contribution GET      /contributions/:id(.:format)                                         contributions#show
+                                 PUT      /contributions/:id(.:format)                                         contributions#update
+                                 DELETE   /contributions/:id(.:format)                                         contributions#destroy
+          wa_resources_galleries GET      /wa_resources_galleries(.:format)                                    wa_resources_galleries#index
+                                 POST     /wa_resources_galleries(.:format)                                    wa_resources_galleries#create
+        new_wa_resources_gallery GET      /wa_resources_galleries/new(.:format)                                wa_resources_galleries#new
+       edit_wa_resources_gallery GET      /wa_resources_galleries/:id/edit(.:format)                           wa_resources_galleries#edit
+            wa_resources_gallery GET      /wa_resources_galleries/:id(.:format)                                wa_resources_galleries#show
+                                 PUT      /wa_resources_galleries/:id(.:format)                                wa_resources_galleries#update
+                                 DELETE   /wa_resources_galleries/:id(.:format)                                wa_resources_galleries#destroy
+      wa_contributions_galleries GET      /wa_contributions_galleries(.:format)                                wa_contributions_galleries#index
+                                 POST     /wa_contributions_galleries(.:format)                                wa_contributions_galleries#create
+    new_wa_contributions_gallery GET      /wa_contributions_galleries/new(.:format)                            wa_contributions_galleries#new
+   edit_wa_contributions_gallery GET      /wa_contributions_galleries/:id/edit(.:format)                       wa_contributions_galleries#edit
+        wa_contributions_gallery GET      /wa_contributions_galleries/:id(.:format)                            wa_contributions_galleries#show
+                                 PUT      /wa_contributions_galleries/:id(.:format)                            wa_contributions_galleries#update
+                                 DELETE   /wa_contributions_galleries/:id(.:format)                            wa_contributions_galleries#destroy
+                        wa_texts GET      /wa_texts(.:format)                                                  wa_texts#index
+                                 POST     /wa_texts(.:format)                                                  wa_texts#create
+                     new_wa_text GET      /wa_texts/new(.:format)                                              wa_texts#new
+                    edit_wa_text GET      /wa_texts/:id/edit(.:format)                                         wa_texts#edit
+                         wa_text GET      /wa_texts/:id(.:format)                                              wa_texts#show
+                                 PUT      /wa_texts/:id(.:format)                                              wa_texts#update
+                                 DELETE   /wa_texts/:id(.:format)                                              wa_texts#destroy
             results_quiz_session GET      /quiz_sessions/:id/results(.:format)                                 quiz_sessions#results
                    quiz_sessions GET      /quiz_sessions(.:format)                                             quiz_sessions#index
                                  POST     /quiz_sessions(.:format)                                             quiz_sessions#create
@@ -86,6 +131,7 @@ SOCIAL CONFIG
                                  PUT      /pdfexes/:id(.:format)                                               pdfexes#update
                                  DELETE   /pdfexes/:id(.:format)                                               pdfexes#destroy
            categories_categorize POST     /categories/categorize(.:format)                                     categories#categorize
+      categories_edit_categories POST     /categories/edit_categories(.:format)                                categories#edit_categories
             categories_favorites          /categories/favorites(.:format)                                      categories#show_favorites
                        catalogue          /catalogue(.:format)                                                 catalogue#index
                                           /catalogue/:category(.:format)                                       catalogue#show
@@ -153,7 +199,7 @@ SOCIAL CONFIG
                             room GET      /rooms/:id(.:format)                                                 rooms#show
                                  PUT      /rooms/:id(.:format)                                                 rooms#update
                                  DELETE   /rooms/:id(.:format)                                                 rooms#destroy
-                                          /.well-known/host-meta(.:format)                                     #<Proc:0x0000000a13b2f8@/var/lib/gems/1.9.1/gems/actionpack-3.2.14/lib/action_controller/metal.rb:245>
+                                          /.well-known/host-meta(.:format)                                     #<Proc:0x0000000aa5cc60@/var/lib/gems/1.9.1/gems/actionpack-3.2.14/lib/action_controller/metal.rb:245>
                        webfinger          /webfinger(.:format)                                                 webfinger#index
                             pshb          /pshb(.:format)                                                      pshb#index
                           salmon          /salmon/:slug(.:format)                                              salmon#index
@@ -416,6 +462,14 @@ download_remote_subject_document GET      /remote_subjects/:remote_subject_id/do
                       user_embed GET      /users/:user_id/embeds/:id(.:format)                                 embeds#show
                                  PUT      /users/:user_id/embeds/:id(.:format)                                 embeds#update
                                  DELETE   /users/:user_id/embeds/:id(.:format)                                 embeds#destroy
+            search_user_writings GET      /users/:user_id/writings/search(.:format)                            writings#search
+                   user_writings GET      /users/:user_id/writings(.:format)                                   writings#index
+                                 POST     /users/:user_id/writings(.:format)                                   writings#create
+                new_user_writing GET      /users/:user_id/writings/new(.:format)                               writings#new
+               edit_user_writing GET      /users/:user_id/writings/:id/edit(.:format)                          writings#edit
+                    user_writing GET      /users/:user_id/writings/:id(.:format)                               writings#show
+                                 PUT      /users/:user_id/writings/:id(.:format)                               writings#update
+                                 DELETE   /users/:user_id/writings/:id(.:format)                               writings#destroy
                 search_user_swfs GET      /users/:user_id/swfs/search(.:format)                                swfs#search
                        user_swfs GET      /users/:user_id/swfs(.:format)                                       swfs#index
                                  POST     /users/:user_id/swfs(.:format)                                       swfs#create
@@ -472,6 +526,14 @@ download_remote_subject_document GET      /remote_subjects/:remote_subject_id/do
                      user_webapp GET      /users/:user_id/webapps/:id(.:format)                                webapps#show
                                  PUT      /users/:user_id/webapps/:id(.:format)                                webapps#update
                                  DELETE   /users/:user_id/webapps/:id(.:format)                                webapps#destroy
+           search_user_workshops GET      /users/:user_id/workshops/search(.:format)                           workshops#search
+                  user_workshops GET      /users/:user_id/workshops(.:format)                                  workshops#index
+                                 POST     /users/:user_id/workshops(.:format)                                  workshops#create
+               new_user_workshop GET      /users/:user_id/workshops/new(.:format)                              workshops#new
+              edit_user_workshop GET      /users/:user_id/workshops/:id/edit(.:format)                         workshops#edit
+                   user_workshop GET      /users/:user_id/workshops/:id(.:format)                              workshops#show
+                                 PUT      /users/:user_id/workshops/:id(.:format)                              workshops#update
+                                 DELETE   /users/:user_id/workshops/:id(.:format)                              workshops#destroy
           search_user_repository GET      /users/:user_id/repository/search(.:format)                          repositories#search
                  user_repository POST     /users/:user_id/repository(.:format)                                 repositories#create
              new_user_repository GET      /users/:user_id/repository/new(.:format)                             repositories#new
@@ -560,6 +622,14 @@ download_remote_subject_document GET      /remote_subjects/:remote_subject_id/do
                      group_embed GET      /groups/:group_id/embeds/:id(.:format)                               embeds#show
                                  PUT      /groups/:group_id/embeds/:id(.:format)                               embeds#update
                                  DELETE   /groups/:group_id/embeds/:id(.:format)                               embeds#destroy
+           search_group_writings GET      /groups/:group_id/writings/search(.:format)                          writings#search
+                  group_writings GET      /groups/:group_id/writings(.:format)                                 writings#index
+                                 POST     /groups/:group_id/writings(.:format)                                 writings#create
+               new_group_writing GET      /groups/:group_id/writings/new(.:format)                             writings#new
+              edit_group_writing GET      /groups/:group_id/writings/:id/edit(.:format)                        writings#edit
+                   group_writing GET      /groups/:group_id/writings/:id(.:format)                             writings#show
+                                 PUT      /groups/:group_id/writings/:id(.:format)                             writings#update
+                                 DELETE   /groups/:group_id/writings/:id(.:format)                             writings#destroy
                search_group_swfs GET      /groups/:group_id/swfs/search(.:format)                              swfs#search
                       group_swfs GET      /groups/:group_id/swfs(.:format)                                     swfs#index
                                  POST     /groups/:group_id/swfs(.:format)                                     swfs#create
@@ -616,6 +686,14 @@ download_remote_subject_document GET      /remote_subjects/:remote_subject_id/do
                     group_webapp GET      /groups/:group_id/webapps/:id(.:format)                              webapps#show
                                  PUT      /groups/:group_id/webapps/:id(.:format)                              webapps#update
                                  DELETE   /groups/:group_id/webapps/:id(.:format)                              webapps#destroy
+          search_group_workshops GET      /groups/:group_id/workshops/search(.:format)                         workshops#search
+                 group_workshops GET      /groups/:group_id/workshops(.:format)                                workshops#index
+                                 POST     /groups/:group_id/workshops(.:format)                                workshops#create
+              new_group_workshop GET      /groups/:group_id/workshops/new(.:format)                            workshops#new
+             edit_group_workshop GET      /groups/:group_id/workshops/:id/edit(.:format)                       workshops#edit
+                  group_workshop GET      /groups/:group_id/workshops/:id(.:format)                            workshops#show
+                                 PUT      /groups/:group_id/workshops/:id(.:format)                            workshops#update
+                                 DELETE   /groups/:group_id/workshops/:id(.:format)                            workshops#destroy
          search_group_repository GET      /groups/:group_id/repository/search(.:format)                        repositories#search
                 group_repository POST     /groups/:group_id/repository(.:format)                               repositories#create
             new_group_repository GET      /groups/:group_id/repository/new(.:format)                           repositories#new
@@ -704,6 +782,14 @@ download_remote_subject_document GET      /remote_subjects/:remote_subject_id/do
               site_current_embed GET      /site/currents/:current_id/embeds/:id(.:format)                      site/embeds#show
                                  PUT      /site/currents/:current_id/embeds/:id(.:format)                      site/embeds#update
                                  DELETE   /site/currents/:current_id/embeds/:id(.:format)                      site/embeds#destroy
+    search_site_current_writings GET      /site/currents/:current_id/writings/search(.:format)                 site/writings#search
+           site_current_writings GET      /site/currents/:current_id/writings(.:format)                        site/writings#index
+                                 POST     /site/currents/:current_id/writings(.:format)                        site/writings#create
+        new_site_current_writing GET      /site/currents/:current_id/writings/new(.:format)                    site/writings#new
+       edit_site_current_writing GET      /site/currents/:current_id/writings/:id/edit(.:format)               site/writings#edit
+            site_current_writing GET      /site/currents/:current_id/writings/:id(.:format)                    site/writings#show
+                                 PUT      /site/currents/:current_id/writings/:id(.:format)                    site/writings#update
+                                 DELETE   /site/currents/:current_id/writings/:id(.:format)                    site/writings#destroy
         search_site_current_swfs GET      /site/currents/:current_id/swfs/search(.:format)                     site/swfs#search
                site_current_swfs GET      /site/currents/:current_id/swfs(.:format)                            site/swfs#index
                                  POST     /site/currents/:current_id/swfs(.:format)                            site/swfs#create
@@ -760,6 +846,14 @@ download_remote_subject_document GET      /remote_subjects/:remote_subject_id/do
              site_current_webapp GET      /site/currents/:current_id/webapps/:id(.:format)                     site/webapps#show
                                  PUT      /site/currents/:current_id/webapps/:id(.:format)                     site/webapps#update
                                  DELETE   /site/currents/:current_id/webapps/:id(.:format)                     site/webapps#destroy
+   search_site_current_workshops GET      /site/currents/:current_id/workshops/search(.:format)                site/workshops#search
+          site_current_workshops GET      /site/currents/:current_id/workshops(.:format)                       site/workshops#index
+                                 POST     /site/currents/:current_id/workshops(.:format)                       site/workshops#create
+       new_site_current_workshop GET      /site/currents/:current_id/workshops/new(.:format)                   site/workshops#new
+      edit_site_current_workshop GET      /site/currents/:current_id/workshops/:id/edit(.:format)              site/workshops#edit
+           site_current_workshop GET      /site/currents/:current_id/workshops/:id(.:format)                   site/workshops#show
+                                 PUT      /site/currents/:current_id/workshops/:id(.:format)                   site/workshops#update
+                                 DELETE   /site/currents/:current_id/workshops/:id(.:format)                   site/workshops#destroy
   search_site_current_repository GET      /site/currents/:current_id/repository/search(.:format)               site/repositories#search
          site_current_repository POST     /site/currents/:current_id/repository(.:format)                      site/repositories#create
      new_site_current_repository GET      /site/currents/:current_id/repository/new(.:format)                  site/repositories#new
@@ -848,6 +942,14 @@ search_remote_subject_excursions GET      /remote_subjects/:remote_subject_id/ex
             remote_subject_embed GET      /remote_subjects/:remote_subject_id/embeds/:id(.:format)             embeds#show
                                  PUT      /remote_subjects/:remote_subject_id/embeds/:id(.:format)             embeds#update
                                  DELETE   /remote_subjects/:remote_subject_id/embeds/:id(.:format)             embeds#destroy
+  search_remote_subject_writings GET      /remote_subjects/:remote_subject_id/writings/search(.:format)        writings#search
+         remote_subject_writings GET      /remote_subjects/:remote_subject_id/writings(.:format)               writings#index
+                                 POST     /remote_subjects/:remote_subject_id/writings(.:format)               writings#create
+      new_remote_subject_writing GET      /remote_subjects/:remote_subject_id/writings/new(.:format)           writings#new
+     edit_remote_subject_writing GET      /remote_subjects/:remote_subject_id/writings/:id/edit(.:format)      writings#edit
+          remote_subject_writing GET      /remote_subjects/:remote_subject_id/writings/:id(.:format)           writings#show
+                                 PUT      /remote_subjects/:remote_subject_id/writings/:id(.:format)           writings#update
+                                 DELETE   /remote_subjects/:remote_subject_id/writings/:id(.:format)           writings#destroy
       search_remote_subject_swfs GET      /remote_subjects/:remote_subject_id/swfs/search(.:format)            swfs#search
              remote_subject_swfs GET      /remote_subjects/:remote_subject_id/swfs(.:format)                   swfs#index
                                  POST     /remote_subjects/:remote_subject_id/swfs(.:format)                   swfs#create
@@ -904,6 +1006,14 @@ search_remote_subject_scormfiles GET      /remote_subjects/:remote_subject_id/sc
            remote_subject_webapp GET      /remote_subjects/:remote_subject_id/webapps/:id(.:format)            webapps#show
                                  PUT      /remote_subjects/:remote_subject_id/webapps/:id(.:format)            webapps#update
                                  DELETE   /remote_subjects/:remote_subject_id/webapps/:id(.:format)            webapps#destroy
+ search_remote_subject_workshops GET      /remote_subjects/:remote_subject_id/workshops/search(.:format)       workshops#search
+        remote_subject_workshops GET      /remote_subjects/:remote_subject_id/workshops(.:format)              workshops#index
+                                 POST     /remote_subjects/:remote_subject_id/workshops(.:format)              workshops#create
+     new_remote_subject_workshop GET      /remote_subjects/:remote_subject_id/workshops/new(.:format)          workshops#new
+    edit_remote_subject_workshop GET      /remote_subjects/:remote_subject_id/workshops/:id/edit(.:format)     workshops#edit
+         remote_subject_workshop GET      /remote_subjects/:remote_subject_id/workshops/:id(.:format)          workshops#show
+                                 PUT      /remote_subjects/:remote_subject_id/workshops/:id(.:format)          workshops#update
+                                 DELETE   /remote_subjects/:remote_subject_id/workshops/:id(.:format)          workshops#destroy
 search_remote_subject_repository GET      /remote_subjects/:remote_subject_id/repository/search(.:format)      repositories#search
        remote_subject_repository POST     /remote_subjects/:remote_subject_id/repository(.:format)             repositories#create
    new_remote_subject_repository GET      /remote_subjects/:remote_subject_id/repository/new(.:format)         repositories#new
@@ -969,6 +1079,14 @@ search_remote_subject_repository GET      /remote_subjects/:remote_subject_id/re
                            embed GET      /embeds/:id(.:format)                                                embeds#show
                                  PUT      /embeds/:id(.:format)                                                embeds#update
                                  DELETE   /embeds/:id(.:format)                                                embeds#destroy
+                 search_writings GET      /writings/search(.:format)                                           writings#search
+                        writings GET      /writings(.:format)                                                  writings#index
+                                 POST     /writings(.:format)                                                  writings#create
+                     new_writing GET      /writings/new(.:format)                                              writings#new
+                    edit_writing GET      /writings/:id/edit(.:format)                                         writings#edit
+                         writing GET      /writings/:id(.:format)                                              writings#show
+                                 PUT      /writings/:id(.:format)                                              writings#update
+                                 DELETE   /writings/:id(.:format)                                              writings#destroy
                      search_swfs GET      /swfs/search(.:format)                                               swfs#search
                             swfs GET      /swfs(.:format)                                                      swfs#index
                                  POST     /swfs(.:format)                                                      swfs#create
@@ -1025,6 +1143,14 @@ search_remote_subject_repository GET      /remote_subjects/:remote_subject_id/re
                           webapp GET      /webapps/:id(.:format)                                               webapps#show
                                  PUT      /webapps/:id(.:format)                                               webapps#update
                                  DELETE   /webapps/:id(.:format)                                               webapps#destroy
+                search_workshops GET      /workshops/search(.:format)                                          workshops#search
+                                 GET      /workshops(.:format)                                                 workshops#index
+                                 POST     /workshops(.:format)                                                 workshops#create
+                                 GET      /workshops/new(.:format)                                             workshops#new
+                                 GET      /workshops/:id/edit(.:format)                                        workshops#edit
+                                 GET      /workshops/:id(.:format)                                             workshops#show
+                                 PUT      /workshops/:id(.:format)                                             workshops#update
+                                 DELETE   /workshops/:id(.:format)                                             workshops#destroy
                                  GET      /comments(.:format)                                                  comments#index
                                  POST     /comments(.:format)                                                  comments#create
                                  GET      /comments/new(.:format)                                              comments#new

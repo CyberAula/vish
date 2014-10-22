@@ -33,6 +33,7 @@ class WorkshopMigration < ActiveRecord::Migration
     create_table "wa_assignments", :force => true do |t|
       t.text     "fulltext"
       t.text     "plaintext"
+      t.boolean  "with_dates", :default => false
       t.datetime "open_date"
       t.datetime "due_date"
       t.timestamps
@@ -40,8 +41,8 @@ class WorkshopMigration < ActiveRecord::Migration
 
     create_table "contributions", :force => true do |t|
       t.integer  "activity_object_id"
-      t.integer  "wa_assignment_id"
-      t.integer  "parent_id"
+      #t.integer  "wa_assignment_id"
+      #t.integer  "parent_id"
       t.timestamps
     end
 
