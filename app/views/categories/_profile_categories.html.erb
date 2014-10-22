@@ -1,12 +1,71 @@
-<div id="categories_tab_ready" class="categories">
-  <ul class="categories items">
+<div id="categories_tab_ready" class="categories cat_container_generic">
+  <% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).select{|i| i.is_root} %>
+  <% order = profile_or_current_subject.actor.categories_order %>
+  <% unless order.nil?
+    orderLength = order.length
+    all_categories.sort_by!{|h| order.index(h.activity_object.id) || (orderLength+1)}
+  end %>
+
+  <% if profile_subject_is_current? %>
+    <div class="toolbar_nav-tab">
+      <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></button>
+    </div>
+    <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
+  <% end %>
+  
+  <ul class="categories items main-categories-space"> 	
+
     <% if profile_subject_is_current? %>
       <%= render partial: 'categories/category-add' %>
       <%= render partial: 'categories/category_fav' %>
     <% end %>
-
-    <%= render partial: 'categories/categories', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> params[:sort_by]||"updated_at"} %>
-    
+    <%= render partial: 'categories/categories', :locals => { :scope => scope, :all_categories => all_categories} %>
   </ul>
-  
 </div>
+
+
+<script>
+  Array.prototype.equals = function (array){
+      // if the other array is a falsy value, return
+      if (!array)
+          return false;
+
+      // compare lengths - can save a lot of time 
+      if (this.length != array.length)
+          return false;
+
+      for (var i = 0, l=this.length; i < l; i++) {
+          // Check if we have nested arrays
+          if (this[i] instanceof Array && array[i] instanceof Array) {
+              // recurse into the nested arrays
+              if (!this[i].equals(array[i]))
+                  return false;       
+          }           
+          else if (this[i] != array[i]) { 
+              // Warning - two different object instances will never be equal: {x:20} != {x:20}
+              return false;   
+          }           
+      }       
+      return true;
+  };
+
+  var beginIndex;
+  var beginObjects;
+  //Let the overlay appear
+  $(document).ready(function(){
+  	$(".btn-for-categorize").click(function(){
+  		$("#categories_edition").fadeIn();
+      beginIndex = getidArray();
+      beginObjects = $(".edit_categories .box-item").clone();
+    });
+  });
+
+  function updateMainView(){
+    var actualState = $(".edit_categories .box-item").clone();
+    var s = $(".main-categories-space .box-item");
+    s.splice(0,2);
+    s.each(function( index ) {this.remove();});
+    actualState.appendTo(".main-categories-space");
+  };
+
+</script>

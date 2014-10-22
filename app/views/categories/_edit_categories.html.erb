@@ -1,0 +1,157 @@
+<div id="categories_edition" class="overlay container" >
+	<div class="editing_info">
+		<h3><%=t('categories.dragandrop.place')%></h3>
+		<div class="delete">
+			<i class="icon-trash"></i>
+			<p><%=t('categories.dragandrop.erase')%></p>
+		</div>
+		<ul>
+			<li>
+				<i class="icon-move"></i>
+				<h4><%=t('categories.dragandrop.dragt1')%></h4>
+				<p><%=t('categories.dragandrop.drag1')%></p>
+			</li>
+			<li>
+				<i class="icon-folder-open-alt"></i>
+				<h4><%=t('categories.dragandrop.dragt2')%></h4>
+				<p><%=t('categories.dragandrop.drag2')%></p>
+			</li>
+			<li>
+				<i class="icon-archive"></i>
+				<h4><%=t('categories.dragandrop.dragt3')%></h4>
+				<p><%=t('categories.dragandrop.drag3')%></p>
+			</li>
+		</ul>
+
+
+
+		<div class="actions">
+			<button type="button" class="btn btn-for-undo " data-toggle="button"><i class="icon-circle-arrow-left"></i><%=t('cancel')%></button>
+			<button type="button" class="btn btn-primary btn-for-categorize2 " data-toggle="button"><i class="icon-ok-sign"></i><%=t('categories.dragandrop.complete')%></button>
+
+		</div>
+	</div>
+	
+	<div class="layout_edit">
+		<ul class="categories edit_categories"> 
+			<% @items ||= all_categories.map{|e| e.activity_object}%>
+			<%= render partial: 'categories/items', :locals => {:use_ids => true} %>
+		</ul>
+	</div>
+</div>
+
+<script>
+//Serialize function
+function getidArray(){
+	var s = [];
+	$(".overlay .edit_categories .box-item").each(function(key, value){
+ 		s.push($(value).attr("edit-id"))
+	});
+	return s;
+}
+
+$(document).ready(function(){
+	//Array where placed all actions
+	movements_array = [];
+	<%@category||=nil%>
+	//Complete button
+	$(".btn-for-categorize2").click(function(){
+		if (movements_array.length > 0 || !beginIndex.equals(getidArray())){
+			$.ajax({
+	            url: '/categories/edit_categories',
+	            type: 'POST',
+	            dataType: "json",
+	            data: { actions: JSON.stringify(movements_array), sort_order: JSON.stringify(getidArray())<%if @category != nil%><%="," + "cat_id: " + @category.id.to_s %><%end%>},
+	              success: function(data){
+	              				updateMainView();
+	                            movements_array = [];
+	                            $("#categories_edition").fadeOut();
+	                            $('#flash').hide(); 
+	               			 	$("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.success")%></div>')
+	                            .fadeIn()
+	                            .delay(6000)
+	                            .fadeOut(300, function(){
+	                              $('#flash').html("");
+	                            });
+	                },
+	                 error: function(){
+	                 	$("#categories_edition").fadeOut();
+	                            $('#flash').hide(); 
+	               			 	$("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.error")%></div>')
+	                            .fadeIn()
+	                            .delay(6000)
+	                            .fadeOut(300, function(){
+	                              $('#flash').html("");
+	                            });
+        		}
+	    	});
+		}else{
+			$("#categories_edition").fadeOut();
+		}
+  });
+
+	//Cancel button
+	$(".btn-for-undo").click(function(){
+
+		$("#categories_edition").fadeOut(function(){
+			movements_array = [];
+			$(".edit_categories .box-item").remove();
+			beginObjects.appendTo(".edit_categories");
+			$( ".edit_categories .box-item" ).mouseup(dragAndDrop);	
+			$(".overlay .edit_categories .box-item").click(function(){return false;});
+		});
+  });
+	
+$(".overlay .edit_categories .box-item").click(function(){return false;});
+
+
+	sortable_object = $(".edit_categories");
+	$(sortable_object).sortable({
+		start:function(event,ui){
+			 //Reduces size
+			 $(ui.item).width($(ui.item).width()*0.8);
+			 $(ui.item).height($(ui.item).height()*0.8);
+		},
+		tolerance: "intersect"
+	}).disableSelection();
+ 
+ //Handler Dropping
+	$( ".edit_categories .box-item" ).mouseup(dragAndDrop);
+
+	function dragAndDrop(event){
+		//Get dragged object 
+  		var dragged = document.elementFromPoint(event.clientX,event.clientY);
+  		dragged = $(dragged).closest(".overlay .box-item");
+  		//Get whatever is behind
+  		dragged.hide();
+  		var pre_rec = document.elementFromPoint(event.clientX,event.clientY);
+  		dragged.show();
+  		var receiver = $(pre_rec).closest(".overlay .box-item");
+  		
+  		//if dragged onto another object
+  		if (receiver.length != 0){
+  			if (receiver.hasClass("categorie-item")){
+	  			var dragged_id = dragged.attr("edit-id");
+	  			var receiver_id = receiver.attr("edit-id");
+	  			if(dragged_id != receiver_id){
+		  			movements_array.push([dragged_id,receiver_id]);
+		  			dragged.fadeOut();
+		  			dragged.remove();
+	  			}
+  			//ajax petition
+  			}
+  		}
+
+  		//if dragged into the bin
+  		receiver = $(pre_rec).closest(".overlay .delete");
+  		if (receiver.length != 0){
+  			var dragged_id = dragged.attr("edit-id");
+  			movements_array.push([dragged_id,"-1"]);
+  			dragged.fadeOut();
+  			dragged.remove();
+  		}	
+
+	}
+});
+
+</script>

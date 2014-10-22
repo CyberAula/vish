@@ -88,6 +88,7 @@ en:
     cat_popular: "Your popular categories"
     categorized_like: "Categorized as:"
     confirm_delete: "Delete category?"
+    error: "Sorry, the server must be having problems right now, try it later"
     modalLabel: "Add to my categories"
     success: "Succesfully categorized"
     tagit_watermark_cat: "Add a new category"
@@ -97,6 +98,17 @@ en:
       apply: "Apply"
       verb: "Categorize"
     description_input: "Description for this category"
+    dragandrop:
+        complete: "Complete"
+        drag1: "Move and drop different resources into categories the way you want or even erase them."
+        drag2: "Order is always important, drag and sort."
+        drag3: "Knowledge can be grouped anyway, choose your way."
+        dragt1: "Drag and drop"
+        dragt2: "Sort your categories"
+        dragt3: "Group your knowledge"
+        erase: "Drag here to remove"
+        place: "Sort"
+        place_long: "Sort categories"
     errors:
       duplicated: "You already have a category with this title. Please, give it another title."
     favorites:
