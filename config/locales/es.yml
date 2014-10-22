@@ -925,6 +925,17 @@ es:
         add: "Añadir Workshop"
         add_activity_title: "Añadir Actividad al Workshop"
         add_activity_button: "Añadir"
+    activities:
+        assignment:
+            add_image: "Dibujo"
+            add_writing: "Texto"
+            content: "Contenido"
+            contribution_message: "Participa:"
+            description: "Las tareas permiten a los participantes contribuir al taller subiendo sus propios recursos."
+            due_date: "Fecha fin"
+            open_date: "Fecha comienzo"
+            title: "Tarea"
+            with_dates: "Especifica fecha de comienzo y fin"
     confirm_delete: "¿Borrar workshop?"
     new: "Nuevo Workshop"
     other: "Workshops"

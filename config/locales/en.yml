@@ -928,11 +928,15 @@ en:
         edit_activity_button: "Save"
     activities:
         assignment:
+            add_image: "Upload"
+            add_writing: "Writing"
             content: "Content"
+            contribution_message: "Participate:"
             description: "Assignments allow participants to contribute to the workshop by uploading their own resources."
             due_date: "Due date"
             open_date: "Open date"
             title: "Assignment"
+            with_dates: "Specify open and due date"
         resource: 
             title: "Resource"
             description: "Insert any type of resource into the Workshop."
