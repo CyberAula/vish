@@ -8,18 +8,26 @@
   width: 96%
   padding: 20px 2%
   position: relative
-  .wa_activity_actions
+  margin-top: 10px
+  margin-bottom: 10px
+
+  .wa_activity_actions,
+  .wa_activity_edit_tools
     display: block
     float: right
-    width: 10%
-    height: 50px
+    width: 150px
+    top: 10px
+    right: 10px
+    height: 40px
+    position: absolute
     ul
       margin: 0
       a,i
         font-size: 20px
         color: $gray
-
         float: right
+        margin-left: 20px
+
   h3.title_WS
     width: 90%
     float: left
@@ -70,7 +78,10 @@
       i
         padding-top: 36px 
         display: block
-
+  span.cke_skin_BootstrapCK-Skin
+    width: 98%
+    padding: 1%
+    background-color: $grayLight
 
 // edit layour style
 // --------------------------------------------------
@@ -150,13 +161,15 @@
       .tab-content 
         .active
           margin-top: 0
-
   .modal-footer
 
-
+// MODAL TAB CONTENT
+// --------------------------------------------------
 #workshop_activities_column2
   h4
     margin: 0 0 20px
+
+  //ADD ASSIGNMENTS
   #tab_assignment
     input[type="checkbox"]
       float: left
@@ -179,3 +192,8 @@
         margin-right: 3%
         display: block
         float: left
+
+
+ul.workshop_activities_list
+  margin: 20px 0 
+  
