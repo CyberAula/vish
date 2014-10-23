@@ -10,12 +10,15 @@ end
 
 <%= form_for wa_assignment, :remote => false do |f| %>
   <%= f.hidden_field :workshop_id, :value => workshop.id %>
-  
-  <%= f.label t('workshop.activities.assignment.with_dates'), :class => "" %>
+
   <%= f.check_box :with_dates, :onclick => "checkbox_with_dates(this);", :id => final_id%>
+  <p class="checkbox_add_time"><%=t('workshop.activities.assignment.with_dates')%></p>
+
+
   <div class="assignment_dates">
 	  <%= f.label t('workshop.activities.assignment.open_date'), :class => "" %>
 	  <%= f.date_select :open_date, :order => [:day, :month, :year] %>
+
 	  <%= f.label t('workshop.activities.assignment.due_date'), :class => "" %>
 	  <%= f.date_select :due_date, :order => [:day, :month, :year] %>
   </div>

@@ -87,23 +87,23 @@
     <div id="workshop_activities_column2">
       <div class="tab-content">
         <div class="tab-pane" id="tab_assignment">
-          <p><%=t('workshop.activities.assignment.description')%></p>
+          <h4><%=t('workshop.activities.assignment.description')%></h4>
           <%= render partial: 'wa_assignments/new', :locals => { :workshop => @workshop } %>
         </div>
         <div class="tab-pane active" id="tab_resource">
-          <p><%=t('workshop.activities.resource.description')%></p>
+          <h4><%=t('workshop.activities.resource.description')%></h4>
           <%= render partial: 'wa_resources/new', :locals => { :workshop => @workshop } %>
         </div>
         <div class="tab-pane" id="tab_resource_gallery">
-          <p><%=t('workshop.activities.resource_gallery.description')%></p>
+          <h4><%=t('workshop.activities.resource_gallery.description')%></h4>
           <%= render partial: 'wa_resources_galleries/new', :locals => { :workshop => @workshop } %>
         </div>
         <div class="tab-pane" id="tab_contributions_gallery">
-          <p><%=t('workshop.activities.contributions_gallery.description')%></p>
+          <h4><%=t('workshop.activities.contributions_gallery.description')%></h4>
           <%= render partial: 'wa_contributions_galleries/new', :locals => { :workshop => @workshop } %>
         </div>
         <div class="tab-pane" id="tab_text">
-          <p><%=t('workshop.activities.text.description')%></p>
+          <h4><%=t('workshop.activities.text.description')%></h4>
           <%= render partial: 'wa_texts/new', :locals => { :workshop => @workshop } %>
         </div>
       </div>
