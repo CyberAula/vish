@@ -133,6 +133,9 @@ es:
     follow: "Seguir"
     unfollow: "Dejar de seguir"
     following: "Siguiendo"
+  contribution:
+    content: "Contenido"
+    title: "Título"
   pending:
     other: "Te siguen"
   competitions:

@@ -137,6 +137,9 @@ en:
     follow: "Follow"
     unfollow: "Unfollow"
     following: "Following"
+  contribution:
+    content: "Content"
+    title: "Title"
   pending:
     other: "Following you"
   competitions:

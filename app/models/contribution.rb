@@ -18,11 +18,13 @@
 class Contribution < ActiveRecord::Base
   	belongs_to :activity_object  #We don't add include SocialStream::Models::Object because a contribution is not an activity_object but HAS ONE activity object (type writing)
 
-	belongs_to :assignment
-	has_one :workshop, :through => "assignment"
- 	
- 	belongs_to  :parent, :class_name => 'Contribution'
-  	has_many 	:children, :class_name => 'Contribution', :foreign_key => 'parent_id'
+	belongs_to :wa_assignment
+
+ 	#belongs_to  :parent, :class_name => 'Contribution'
+  	#has_many 	:children, :class_name => 'Contribution', :foreign_key => 'parent_id'
   	  	
+  	def workshop
+  		wa_assignment.workshop_activity.workshop
+  	end
 
 end
