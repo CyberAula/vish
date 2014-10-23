@@ -108,10 +108,11 @@
     <% end%>
 
     <div class="footer-form">
-      <%if controller_name == "workshops" && controller.action_name == 'edit_details'%>
-        <p><a href="<%=edit_workshop_path(@workshop)%>">Cancel and go to Workshop</a></p>
-      <%end%>
+
       <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+      <%if controller_name == "workshops" && controller.action_name == 'edit_details'%>
+        <button class="btn" href="<%=edit_workshop_path(@workshop)%>">Cancel and go to Workshop</button>
+      <%end%>
     </div>
   <% end %>
 

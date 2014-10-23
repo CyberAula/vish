@@ -18,14 +18,14 @@
   </div>  
 </div>
 
-<div id="effect" class="newClass ui-corner-all">
+<div class="info-workshop">
 
   <dl class="dl-horizontal">
 
     <% unless @workshop.description.blank? %>
       <!--description-->
-      <dt><%= t('info.description') %></dt>
-      <dd><%= truncate(@workshop.description, :length => 400) %></dd>
+      <!--dt><%= t('info.description') %></dt-->
+      <!--dd><%= truncate(@workshop.description, :length => 400) %></dd-->
       <% end %>
       <% unless @workshop.tag_list.blank? %>
       <!--tags-->
@@ -73,7 +73,7 @@
   </dl>
 </div>
 
-<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
+
 
 <script>
 $(function() {

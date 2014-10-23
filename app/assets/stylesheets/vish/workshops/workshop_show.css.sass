@@ -6,30 +6,39 @@
   display: block
   float: left
   width: 96%
-  padding: 20px 2%
+  padding: 30px 2%
   position: relative
-  margin-top: 10px
-  margin-bottom: 10px
+  margin-top: 3px
+  margin-bottom: 3px
 
   .wa_activity_actions,
   .wa_activity_edit_tools
     display: block
     float: right
-    width: 150px
+    width: 130px
     top: 10px
-    right: 10px
+    right: 20px
     height: 40px
     position: absolute
     ul
       margin: 0
+
       a,i
         font-size: 20px
         color: $gray
         float: right
         margin-left: 20px
+        cursor: pointer
+        width: 20px
+        text-align: center
+
+        &:hover
+          font-size: 25px
+          text-decoration: none
+          color: $grayDark
 
   h3.title_WS
-    width: 90%
+    width: 95%
     float: left
     display: inline-block
     margin:  0
@@ -82,6 +91,8 @@
     width: 98%
     padding: 1%
     background-color: $grayLight
+  .btn
+    float: right
 
 // edit layour style
 // --------------------------------------------------
@@ -197,3 +208,37 @@
 ul.workshop_activities_list
   margin: 20px 0 
   
+.workshop_show
+  .box-show,
+  .description-activity
+    width: 100% !important
+  .box-show
+    .delivery
+      margin-top: 20px
+      .delivery_time
+        width: 100%
+        display: block
+        margin-bottom: 15px
+        height: 20px
+        text-align: right
+        position: absolute
+        top: 10px
+        right: 10px
+
+        span
+          padding-right: 10px
+          font-family: $thirdFontFamily
+          font-size: 11px
+          display: inline
+          color: $grayDark
+        p
+          font-size: 14px
+          margin: 0
+          font-family: $firstFontFamily
+          margin-right: 30px
+          display: inline
+
+  .wa_activity_wrapper
+    border-bottom: 1px solid $grayLight
+    border-top: 1px solid $grayLight
+

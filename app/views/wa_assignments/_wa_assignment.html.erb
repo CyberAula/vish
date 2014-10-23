@@ -1,9 +1,11 @@
-<div id="" class="">
+<div id="" class="delivery">
 	<%if wa_assignment.with_dates%>
-		<span><%=t('workshop.activities.assignment.open_date')%></span><br/>
-		<%=wa_assignment.open_date%><br/>
-		<span><%=t('workshop.activities.assignment.due_date')%></span><br/>
-		<%=wa_assignment.due_date%><br/>
+		<div class="delivery_time">
+			<span><%=t('workshop.activities.assignment.open_date')%></span>
+			<p><%=wa_assignment.open_date%></p>
+			<span><%=t('workshop.activities.assignment.due_date')%></span>
+			<p><%=wa_assignment.due_date%></p>
+		</div>
 	<%end%>
 
 	<span><%=t('workshop.activities.assignment.content')%></span>
