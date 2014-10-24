@@ -49,7 +49,8 @@ $text-color:            $gray-dark !default;
 $link-color:            $brand-secundary !default;
 //** Link hover color set via `darken()` function.
 $link-hover-color:      darken($link-color, 10%) !default;
-
+//** General color for borders.
+$border-color:          $gray !default;
 
 //== Typography
 //
@@ -160,7 +161,7 @@ $table-bg-hover:                #f5f5f5 !default;
 $table-bg-active:               $table-bg-hover !default;
 
 //** Border color for table and cell borders.
-$table-border-color:            $gray-light !default;
+$table-border-color:            $border-color !default;
 
 
 //== Buttons
@@ -171,7 +172,7 @@ $btn-font-weight:                normal !default;
 
 $btn-default-color:              $gray !default;
 $btn-default-bg:                 $white !default;
-$btn-default-border:             $gray !default;
+$btn-default-border:             $border-color !default;
 
 $btn-primary-color:              $white !default;
 $btn-primary-bg:                 $brand-primary !default;
@@ -212,7 +213,7 @@ $input-bg-disabled:              $gray-lighter !default;
 //** Text color for `<input>`
 $input-color:                    $gray-dark !default;
 //** `<input>` border color
-$input-border:                   $gray !default;
+$input-border:                   $border-color !default;
 //** `<input>` border radius
 $input-border-radius:            $border-radius-base !default;
 //** Border color for inputs on focus
@@ -415,9 +416,9 @@ $nav-disabled-link-hover-color:             $gray-light !default;
 $nav-open-link-hover-color:                 $white !default;
 
 //== Tabs
-$nav-tabs-border-color:                     $gray !default;
+$nav-tabs-border-color:                     $border-color !default;
 
-$nav-tabs-link-hover-border-color:          $gray !default;
+$nav-tabs-link-hover-border-color:          $border-color !default;
 
 $nav-tabs-active-link-hover-bg:             darken($brand-primary, 5%) !default;
 $nav-tabs-active-link-hover-color:          $white !default;
@@ -438,7 +439,7 @@ $nav-pills-active-link-hover-color:         $brand-primary !default;
 
 $pagination-color:                     $gray-light !default;
 $pagination-bg:                        $white !default;
-$pagination-border:                    $gray !default;
+$pagination-border:                    $border-color !default;
 
 $pagination-hover-color:               $link-hover-color !default;
 $pagination-hover-bg:                  $gray-lighter !default;
@@ -528,7 +529,7 @@ $popover-bg:                          $gray-darker !default;
 //** Popover maximum width
 $popover-max-width:                   276px !default;
 //** Popover border color
-$popover-border-color:                $gray !default;
+$popover-border-color:                $border-color !default;
 //** Popover fallback border color
 $popover-fallback-border-color:       $gray-light !default;
 
@@ -595,7 +596,7 @@ $modal-backdrop-bg:           #000 !default;
 //** Modal backdrop opacity
 $modal-backdrop-opacity:      .5 !default;
 //** Modal header border color
-$modal-header-border-color:   $gray !default;
+$modal-header-border-color:   $border-color !default;
 //** Modal footer border color
 $modal-footer-border-color:   $modal-header-border-color !default;
 
@@ -657,7 +658,7 @@ $progress-bar-info-bg:        $brand-info !default;
 //** Background color on `.list-group-item`
 $list-group-bg:                 $white !default;
 //** `.list-group-item` border color
-$list-group-border:             $gray !default;
+$list-group-border:             $border-color !default;
 //** List group border radius
 $list-group-border-radius:      $border-radius-base !default;
 
@@ -684,7 +685,7 @@ $panel-body-padding:          15px !default;
 $panel-border-radius:         $border-radius-base !default;
 
 //** Border color for elements within panels
-$panel-inner-border:          $gray !default;
+$panel-inner-border:          $border-color !default;
 $panel-footer-bg:             $gray-lighter !default;
 
 $panel-default-text:          $gray-darker !default;
@@ -721,7 +722,7 @@ $thumbnail-padding:           0 !default;
 //** Thumbnail background color
 $thumbnail-bg:                $white !default;
 //** Thumbnail border color
-$thumbnail-border:            $gray !default;
+$thumbnail-border:            $border-color !default;
 //** Thumbnail border radius
 $thumbnail-border-radius:     5px !default;
 
@@ -839,7 +840,7 @@ $page-header-border-color:    $gray-lighter !default;
 //##
 
 //** Horizontal line color.
-$hr-border:                   $gray !default;
+$hr-border:                   $border-color !default;
 
 //** Horizontal offset for forms and lists.
 $component-offset-horizontal: 180px !default;
