@@ -42,7 +42,7 @@
   background: #fff;
   padding: 15px;
   position: relative;
-  border: 1px solid $gray-light;
+  border: 1px solid $timeline-panel-border;
   @include border-top-radius ($border-radius-base);
   @include border-bottom-radius ($border-radius-base);
   @include box-shadow (0 0px 4px 0px rgba(0, 0, 0, 0.04));

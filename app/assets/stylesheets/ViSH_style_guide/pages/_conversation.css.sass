@@ -70,9 +70,9 @@
       position: absolute
       right: 5px
       top: 0px
+      @include color-delete
       @media (max-width: $screen-sm-min)
         top: -30px
-      @include color-delete
       
     &:first-child
       @include border-top-radius ($border-radius-base)
@@ -129,12 +129,13 @@
   .cleditorMain
     @include border-top-radius ($border-radius-base)
     @include border-bottom-radius ($border-radius-base)
-    border: 1px solid $gray-light
+    border: 1px solid $border-color
     width: 100% !important
     padding: $zero
     .cleditorToolbar
       background: none
       background-color: $gray-light
+      border-bottom: 1px solid $border-color
       @include border-top-radius (4px)
     iframe
       height: 221px !important
@@ -174,7 +175,7 @@
 
   .message
     padding: 15px 0
-    border-bottom: 1px solid $gray-light
+    border-bottom: 1px solid $border-color
     background-color: $white
     .media
       margin-left: 20px
