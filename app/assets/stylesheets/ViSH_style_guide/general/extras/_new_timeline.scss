@@ -42,9 +42,11 @@
   background: #fff;
   padding: 15px;
   position: relative;
+  border: 1px solid $gray-light;
   @include border-top-radius ($border-radius-base);
   @include border-bottom-radius ($border-radius-base);
-  @include box-shadow (0 0px 4px 0px rgba(0, 0, 0, 0.11));
+  @include box-shadow (0 0px 4px 0px rgba(0, 0, 0, 0.04));
+
 }
 .tldate {
   display: block;
@@ -63,7 +65,7 @@
   right: -15px;
   display: inline-block;
   border-top: 15px solid transparent;
-  border-left: 15px solid transparent;
+  border-left: 15px solid $gray-light;
   border-right: 0 solid transparent;
   border-bottom: 15px solid transparent;
   content: " ";

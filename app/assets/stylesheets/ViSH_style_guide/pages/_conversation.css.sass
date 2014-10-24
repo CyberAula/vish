@@ -72,12 +72,8 @@
       top: 0px
       @media (max-width: $screen-sm-min)
         top: -30px
-      a
-        &:link
-          color: $gray
-        &:hover
-          color: $brand-danger
-          text-decoration: none
+      @include color-delete
+      
     &:first-child
       @include border-top-radius ($border-radius-base)
     &:last-child

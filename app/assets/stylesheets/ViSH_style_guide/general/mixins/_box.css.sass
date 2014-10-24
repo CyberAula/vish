@@ -94,33 +94,60 @@
 
 @mixin excursion-small
   width: 100%
+  .corner-item
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 2
+    @include border-top-left-radius ($border-radius-small)
+    overflow: hidden
+    width: 50px !important
+    height: 50px !important
+  .corner-item2
+    .corner-color
+      border-width: 50px 50px 0 0
+    i
+      width: 0
+      height: 0
+      border-width: 72px 72px 0 0
+      z-index: 5
+      font-size: 13px !important
+  .corner-background
+    border-width: 50px 50px 0 0
   .container-img
-    width: 31%
+    width: 40%
     float: left
-    margin-right: 1%
-    height: 71px
-     
-    @media (max-width: 480px)
-      height: 72px
-      .backstrech
-        height: 72px
-
+    display: inline-block
+    border-right: 1px solid #9B9B9B
+    height: 84px
     .dummy
       padding-top: 80px
-    .element
-      @include border-top-radius (0)
-      @include border-left-radius ($border-radius-base)
+    .element,
+    .backstretch
+      @include border-right-radius (0)
+      @include border-left-radius ($border-radius-small)
       i
         font-size: 44px
         padding-top: 14px
+    .container-img
+      width: 40%
+      float: left
+      border-right: 1px solid $gray
+      .dummy
+        padding-top: 80px
+      .element
+        @include border-right-radius (0)
+        @include border-left-radius ($border-radius-small)
+        i
+          font-size: 44px
+          color: #008FD1
+          padding-top: 14px
+
   .caption
+    border-top: none
+    margin-top: 0px !important
+    width: 60%
     float: left
-    min-height: 68px
-    width: 68%
-    h6
-      height: 17px
-      a
-        @include text-overflow
 
 @mixin comments
   width: 100%

@@ -5,8 +5,8 @@
   font-size: 0.8em
 
   form
-    margin: 0px
-    width: 100%
+    @include center-block
+    width: 105px
     input
       border: none
       background-color: $brand-primary
@@ -19,16 +19,19 @@
 
   .following-button
     background-color: $gray
-    width: 100%
+    width: 105px
+    margin: 0 auto
     color: $white
-    margin-top: 0px
     padding: 5px
     @include border-top-radius ($border-radius-base)
     @include border-bottom-radius ($border-radius-base)
 
   .unfollow-button
+    width: 105px
+    margin: 0 auto
     form
       margin: 0px
+      width: 105px
       input
         border: 0px none 
         width: 100%
@@ -102,3 +105,10 @@
   .loading
     z-index: 200
     position: relative
+
+@mixin color-delete
+  a
+    color: $gray-dark
+    &:hover
+      color: $brand-danger
+      text-decoration: none

@@ -2,28 +2,21 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <a class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></a>
+
+
+<div id="categories_viewer_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <%= render partial: 'help/help_categorize' %>
-        <h4 class="modal-title"><%= t("category.modalLabel")%></h4>
+        <h3 id="myModalLabel"><i class="icon-th-large"></i><%= t("category.modalLabel")%></h3>
       </div>
+      <div class="modal-body categorize-modal-body">
 
-      <div class="modal-body">
+        <% generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} %>
+        <p class= "information"><%= t("category.cat_add_title")%></p> 
         
-    <% generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} %>
-    <p class= "information"><%= t("category.cat_add_title")%></p> 
-    
-   <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        <b><%= t("category.cat_add_select")%></b>
-        <span class="caret"></span>
-      </button>
-        <ul id="catDropdownSel" class="dropdown-menu scroll-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <% generic_categories.each do |init| %> 
-
-        <li role="presentation" value="<%=init.id%>"><a role="menuitem" tabindex="-1" ><%=init.title%></a></li>
-
-        
-        <!-- Juancar echalé un ojo-->
        <div class="dropdown">
           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
             <b><%= t("category.cat_add_select")%></b>
@@ -43,13 +36,14 @@
          <div id="suggested_categories" class="tagBoxNew">
             <% rcCategories = generic_categories.reject{|e| get_initial_categories(item).include? e.id} %> 
             <%simple_gen = rcCategories.sort{|a,b| b.property_objects.length <=> a.property_objects.length}.first(7)%>
+            <ul id="suggestedCategories" class="tagit">
             <% simple_gen.each do |init| %> 
-              <ul id="suggestedCategories" class="tagit">
+              
                 <li class="tagit-choice" value="<%= init.id %>" ><%=init.title%></li>
-              </ul>
+              
             <% end %>
+            </ul>
          </div>
-
         <p class="information"><%= t("category.categorized_like")%></p>
         <%tagArray= generic_categories.map{|e| e.title}%>
         <script type="text/javascript">
@@ -63,39 +57,21 @@
               watermarkAllowMessage: "<%= t('category.tagit_watermark_cat')%>",
               tagSource: tagList
             });
-            <% resource_categories = get_initial_categories(item) %>
+            //Get categorized by this author
+            <% resource_categories = []
+            get_initial_categories(item).each do |e|
+            n = Category.find(e)
+              if generic_categories.include? n
+                resource_categories  += [n]
+             end
+            end
+             %>
               <% resource_categories.each do |cat| %>
                 <% ident = Category.find(cat) %>
                 $("#myCategories").tagit("add", "<%=ident.title %>", "<%=ident.id%>");
             <%end%> 
             //Save suggested categories state
 
-
-     <!--<p class= "information"><%= t("category.cat_popular")%></p>-->
-     <br>
-     <div id="suggested_categories" class="tagBoxNew">
-        <% rcCategories = generic_categories.reject{|e| get_initial_categories(item).include? e.id} %> 
-        <%simple_gen = rcCategories.sort{|a,b| b.property_objects.length <=> a.property_objects.length}.first(7)%>
-        <ul id="suggestedCategories" class="tagit">
-        <% simple_gen.each do |init| %> 
-          
-            <li class="tagit-choice" value="<%= init.id %>" ><%=init.title%></li>
-          
-        <% end %>
-        </ul>
-     </div>
-    <p class="information"><%= t("category.categorized_like")%></p>
-    <%tagArray= generic_categories.map{|e| e.title}%>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        var tagList= [
-          <%tagArray.each do |tags|%>
-            "<%=tags%>",
-          <%end%>
-        ];
-        $("#myCategories").tagit({
-          watermarkAllowMessage: "<%= t('category.tagit_watermark_cat')%>",
-          tagSource: tagList
         });
         </script>
         <div class="tagBoxNew">
@@ -107,11 +83,11 @@
 
       </div>
       <div class="modal-footer">
-        <button id="cancel_cat_button" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>
-        <button id="save_cat_button"><%= t('button.save')%></button>
+        <button id="cancel_cat_button" class="btn btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>
+        <button id="save_cat_button" class="btn btn-primary"><%= t('button.save')%></button>
       </div>
     </div>
-  </div> 
+  </div>
 </div>
 <script>
 
@@ -136,9 +112,7 @@
     var cat_done_array = [];
 
     $("#myCategories .tagit-choice").each(function(index,elem){
-
         cat_done_array.push({title: $(elem).text()});
-      }
     });
 
     $.ajax({
@@ -149,7 +123,6 @@
   .to_s%>", category_array: JSON.stringify(cat_done_array) },
               success: function(data){
                 $("#categories_viewer_modal").modal('toggle');
-
                 //Emulating alert with javascript
                 $('#flash').hide(); 
                 $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.success")%></div>')
@@ -171,7 +144,6 @@
                               $('#flash').html("");
                             });
                 }
-
     });
   });
 

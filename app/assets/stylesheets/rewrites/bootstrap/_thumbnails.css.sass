@@ -2,10 +2,9 @@
   position: relative
   overflow: inherit
   float: left
-  background: transparent
   .avatar
     img
-      @include border-top-radius ($border-radius-base)
+      @include border-top-radius (3px)
       @include border-bottom-radius ($border-radius-base)
       width: 100%
   a
@@ -14,7 +13,12 @@
     
     &:focus
       padding: 0 !important
-  
+  &:hover
+    .caption h6
+      font-family: $corporate-font-family-sans-serif-Medium 
+      a
+        color: $black
+        text-decoration: none 
 
   //BAGDE EXCURSION
   .badge-excursion-active
@@ -32,15 +36,13 @@
     position: relative
     width: 100%
     @media (max-width: 480px)
-      width: 31%
+      width: 40%
       float: left
-      margin-right: 15px
-      height: 68px
+      border-right: 1px solid $gray
+      height: 83px
 
     .dummy
       padding-top: 75% // 4:3 aspect ratio
-      @media (max-width: $screen-xs-max)
-        padding-top: 80px
 
     .element
       position: absolute
@@ -51,10 +53,10 @@
       overflow: hidden
       text-align: center
       width: 100%
-      @include border-top-radius ($border-radius-base)
+      @include border-top-radius ($border-radius-small)
       @media (max-width: 480px)
         @include border-top-radius (0)
-        @include border-left-radius ($border-radius-base)
+        @include border-left-radius ($border-radius-small)
 
       .img-box
         width: 100% !important
@@ -76,47 +78,67 @@
           font-size: 44px
           color: #008FD1
           padding-top: 14px
-
+      .icon-plus
+        color: $gray
 .add-item
-  background-image: url("items/malla.png") !important
-  a
-    text-decoration: none
+  border: none !important
+  background: transparent !important
+  .add_border
+    border: 2px dashed $gray
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+  .caption
+    border-top: none !important
+    height: 81px !important
+  .name
+    font-size: 18px
+    line-height: 22px
+    overflow: visible
+    color: $gray
+    font-family: $corporate-font-family-sans-serif-Bold
+    cursor: pointer
+    margin: 0
+    height: 37px
+    width: 100%
+    word-wrap: break-word
+    text-align: center
+    color: $gray !important
+    &:hover
+      color: $gray !important
+  hr
+    display: none
+
 
 .thumbnail .caption 
   padding: 6px $padding-large-horizontal 0
   color: $gray-darker
-  border-top: 1px solid #E7E7E7
-  height: 75px
-  background-color: $white
+  border-top: 1px solid $gray
+  height: 83px
   margin-top: -4px
-  @include border-bottom-radius ($border-radius-base)
   h6
-    font-family: $corporate-font-family-sans-serif-Medium
-    @include text-overflow
+    font-family: $corporate-font-family-sans-serif-Regular
     margin: 0
-    height: 20px
-    line-height: 17px
+    height: 37px
+    line-height: 18px
     font-size: 15px
     text-decoration: none
     cursor: pointer
     width: 100%
     a
-      color: $gray-darker
+      color: $black
       &:hover
-        color: $brand-primary
-        text-decoration: none
+        color: $black
 
-    @media (max-width: 480px)
-      @include text-overflow
-      height: 17px
+  @media (max-width: $screen-xs-max)
+    margin-top: 0
 
   .author 
     @include text-overflow
+    font-size: 12px
     a
       text-decoration: none
       color: $brand-primary-2
       cursor: pointer
-      font-family: $corporate-font-family-sans-serif-Light
   .name,
   .action
     display: block
@@ -144,3 +166,84 @@
     float: right
     text-align: right
     width: 55%
+.contact 
+  .corner-color
+    border-color: $white rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+  .caption
+    height: 83px !important
+    hr
+      display: none
+    .count-followers
+      font-size: 10px
+      margin: 0 auto
+      margin-top: 1px !important
+      display: block
+      text-align: center
+      i
+        color: $gray
+    h6
+      text-align: center
+      margin: 0 0 4px 0
+      height: 20px !important
+      font-family: $corporate-font-family-sans-serif-Regular
+      width: 100%
+      color: $black
+  &:hover
+    .caption h6
+      font-family: $corporate-font-family-sans-serif-Medium !important
+
+
+
+.resource
+  .corner-color
+    border-color: $brand-secundary rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+
+.add-resource
+  .add_border
+    border: 2px dashed $brand-secundary !important
+  .container-img 
+    .element i
+      color: $brand-secundary !important
+  .name
+    color: $brand-secundary !important
+    &:hover
+      color: $brand-secundary !important
+
+
+
+.categorie-item
+  .corner-color
+    border-color: $brand-primary rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+  .container-img 
+    .element i
+      color: $brand-primary !important
+.add-categorie
+  .add_border
+    border: 2px dashed $brand-primary !important
+  .container-img 
+    .element i
+      color: $brand-primary !important
+  .name
+    color: $brand-primary !important
+    &:hover
+      color: $brand-primary !important
+
+
+.event
+  .corner-color
+    border-color: $gray-dark rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+  .container-img 
+    .element i
+      color: $gray-dark !important
+
+.add-event
+  .add_border
+    border: 2px dashed $gray-dark !important
+  .container-img 
+    .element i
+      color: $gray-dark !important
+  .name
+    color: $gray-dark !important
+    &:hover
+      color: $gray-dark !important
+

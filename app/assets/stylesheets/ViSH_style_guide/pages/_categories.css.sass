@@ -111,9 +111,8 @@
     position: static
     overflow: hidden
     background: #007cc8
-    -webkit-border-radius: 5px
-    -moz-border-radius: 5px
-    border-radius: 5px
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
     img
       max-width: 100%
 
@@ -165,7 +164,8 @@
       background: -ms-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%)
       background: linear-gradient(to bottom, #b5bdc8 0%,#828c95 36%,#28343b 100%)
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 )
-      border-radius: 2px
+      @include border-top-radius (2px)
+      @include border-bottom-radius (2px)
       color: #FFFFFF
       cursor: pointer
       display: block
@@ -192,7 +192,7 @@
         overflow-y: auto
 
       button 
-        border-top-left-radius: $border-radius-base !important
+        @include border-left-radius ($border-radius-base)
         width: 100%
         float: right
         text-align: left
@@ -213,3 +213,124 @@
         cursor: pointer
         padding-left: 10px
         width: 100%
+
+#categories_edition
+  background-color: rgba(0,0,0,0.8)
+  position: fixed
+  width: 100%
+  height: 100%
+  top: 0px
+  left: 0px
+  z-index: 9999
+  overflow-y: auto
+  display: none
+  .editing_info
+    width: 90%
+    z-index: 1000
+    margin: 0
+    padding-right: 5%
+    padding-left: 5%
+    margin-top: -10px
+    background-color: rgba(240,240,240,0.95)
+    position: fixed
+    h3
+      width: 50%
+      color: $gray-dark
+
+    // Delete Zone
+    .delete
+      width: 14%
+      display: block
+      float: right
+      @include border-bottom-radius ($border-radius-base)
+      @include border-top-radius ($border-radius-base)
+      border: 2px dashed $gray-light
+      text-align: center
+      margin-top: -30px
+      height: auto
+      i
+        font-size: 50px
+        margin: 15px auto 5px
+        display: block
+        float: none
+        text-align: center
+        color: $gray-light
+      p
+        color: $gray-light
+        width: 95%
+        padding: 2.5%
+      &:hover
+        color: $gray
+        border: 2px dashed $gray-dark
+        i
+          color: $gray-dark
+        p
+          color: $gray-dark
+    // Info
+    ul
+      margin: 0
+      width: 85%
+      display: block
+      float: left
+      li
+        display: block
+        float: left
+        width: 33%
+        i
+          font-size: 27px
+          float: left
+          width: 15%
+        h4
+          margin: 0
+          float: left
+          display: block
+          clear: right
+          color: $gray-dark
+          margin-bottom: 3px
+          margin-top: 4px
+          width: 75%
+          margin-left: 5%
+        p
+          width: 70%
+          clear: both
+          float: left
+
+          margin-right: 5%
+          margin-left: 20%
+          display: block
+          font-size: 10px
+          margin-top: -2px
+    .actions
+      height: 35px
+      float: left
+      width: 83%
+      @include border-top-radius ($border-radius-base)
+      margin-top: 6px
+      .btn, .btn-primary
+        margin: 5px 5px 3px 0px
+        padding: 1px 12px
+      .btn-for-undo
+        background-color: $gray
+        background-image: none
+        color: $white
+        text-shadow: none
+      i
+        padding-right: 5px
+        font-size: 16px
+      .btn-for-undo
+      .btn-primary:active, 
+      .btn-primary.active
+        background-color: $brand-primary
+
+  // Excursions
+  .layout_edit
+    padding-top: 185px
+    padding-right: 5%
+    padding-left: 5%
+    max-width: 2000px
+    margin-left: auto
+    margin-right: auto
+    display: block
+    ul
+      margin: 0
+

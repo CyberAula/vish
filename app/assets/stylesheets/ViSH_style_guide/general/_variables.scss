@@ -23,7 +23,7 @@ $white:                  #FFFFFF;
 //$gray-medium:            #767676;
 //$gray-extra:           	 #DDDDDD;
 
-$brand-primary:          #FF2C72 !default;
+$brand-primary:          #E90055 !default;
 $brand-primary-2:        #008FD1 !default;
 
 $brand-secundary:        #008FD1 !default;
@@ -171,7 +171,7 @@ $btn-font-weight:                normal !default;
 
 $btn-default-color:              $gray !default;
 $btn-default-bg:                 $white !default;
-$btn-default-border:             $gray-light !default;
+$btn-default-border:             $gray !default;
 
 $btn-primary-color:              $white !default;
 $btn-primary-bg:                 $brand-primary !default;
@@ -212,7 +212,7 @@ $input-bg-disabled:              $gray-lighter !default;
 //** Text color for `<input>`
 $input-color:                    $gray-dark !default;
 //** `<input>` border color
-$input-border:                   $gray-light !default;
+$input-border:                   $gray !default;
 //** `<input>` border radius
 $input-border-radius:            $border-radius-base !default;
 //** Border color for inputs on focus
@@ -415,9 +415,9 @@ $nav-disabled-link-hover-color:             $gray-light !default;
 $nav-open-link-hover-color:                 $white !default;
 
 //== Tabs
-$nav-tabs-border-color:                     $gray-light !default;
+$nav-tabs-border-color:                     $gray !default;
 
-$nav-tabs-link-hover-border-color:          $gray-lighter !default;
+$nav-tabs-link-hover-border-color:          $gray !default;
 
 $nav-tabs-active-link-hover-bg:             darken($brand-primary, 5%) !default;
 $nav-tabs-active-link-hover-color:          $white !default;
@@ -438,7 +438,7 @@ $nav-pills-active-link-hover-color:         $brand-primary !default;
 
 $pagination-color:                     $gray-light !default;
 $pagination-bg:                        $white !default;
-$pagination-border:                    $gray-light !default;
+$pagination-border:                    $gray !default;
 
 $pagination-hover-color:               $link-hover-color !default;
 $pagination-hover-bg:                  $gray-lighter !default;
@@ -595,7 +595,7 @@ $modal-backdrop-bg:           #000 !default;
 //** Modal backdrop opacity
 $modal-backdrop-opacity:      .5 !default;
 //** Modal header border color
-$modal-header-border-color:   $gray-light !default;
+$modal-header-border-color:   $gray !default;
 //** Modal footer border color
 $modal-footer-border-color:   $modal-header-border-color !default;
 
@@ -657,7 +657,7 @@ $progress-bar-info-bg:        $brand-info !default;
 //** Background color on `.list-group-item`
 $list-group-bg:                 $white !default;
 //** `.list-group-item` border color
-$list-group-border:             $gray-light !default;
+$list-group-border:             $gray !default;
 //** List group border radius
 $list-group-border-radius:      $border-radius-base !default;
 
@@ -721,7 +721,7 @@ $thumbnail-padding:           0 !default;
 //** Thumbnail background color
 $thumbnail-bg:                $white !default;
 //** Thumbnail border color
-$thumbnail-border:            $gray-light !default;
+$thumbnail-border:            $gray !default;
 //** Thumbnail border radius
 $thumbnail-border-radius:     5px !default;
 
@@ -839,7 +839,7 @@ $page-header-border-color:    $gray-lighter !default;
 //##
 
 //** Horizontal line color.
-$hr-border:                   $gray-light !default;
+$hr-border:                   $gray !default;
 
 //** Horizontal offset for forms and lists.
 $component-offset-horizontal: 180px !default;

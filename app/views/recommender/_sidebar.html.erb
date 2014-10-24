@@ -1,7 +1,8 @@
 <!--recomended-->
-  <aside class="recomended">
-    <ul class="items clearfix">
-      <% popular_resources(16).each do |resource| %>
+<aside class="recomended" id="recomended_box">
+  <div class="recomended-items">
+    <ul class="items small-box clearfix">
+      <% resources.each do |resource| %>
         <% if resource.class == Excursion %>
           <%= render :partial => 'excursions/excursion', :locals => { :excursion => resource } %>
         <% else %>
@@ -9,7 +10,8 @@
         <% end %>
       <% end %>
     </ul>
-  </aside>
+  </div>
+</aside>
 
 
 <script type="text/javascript">

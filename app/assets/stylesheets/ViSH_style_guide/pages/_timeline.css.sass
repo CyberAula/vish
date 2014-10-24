@@ -80,15 +80,22 @@
 .timeline-panel
   .pull-left
     margin-right: 10px
+  .media-heading
+    clear: both
+    height: 19px
+    a
+      float: left
+    .x
+      float: right
+      @include color-delete
+
   .panel-group
     clear: both
     @include comments
 
   .panel-body
     margin-top: 10px
-
-      
-
+    
 
 .comments
   @include make-xs-column(12, $gutter: $grid-gutter-width)
