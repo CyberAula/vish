@@ -112,15 +112,20 @@
     });
 
 </script>
+
+
+ 
 <% availableModels = available_models %>
 <% availableServices = available_services %>
 <!-- carga de modales -->
           <% if availableModels.include? "Event" %>
             <%= render partial: 'events/form' %>
           <%end%>
+
           <% if availableModels.include? "Resource" %>
             <%= render partial: 'repositories/form' %>
           <%end%>
+          
           <% if availableModels.include? "Category" %>
             <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
-          <%end%>  
+          <%end%> 

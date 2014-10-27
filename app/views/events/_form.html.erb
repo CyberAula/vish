@@ -30,12 +30,18 @@
           
           <!--TYPE-->
           <label><%= t('event.leyend.type')%></label>
-          <%= f.radio_button :streaming, false, checked: true %> <%= t('event.type.videoconference') %>
-          <%= f.radio_button :streaming, true %> <%= t('event.type.streaming') %>
+            <div class="checkbox">
+             <label>
+               <%= f.radio_button :streaming, false, checked: true %> <span class="lbl padding-0"> <%= t('event.type.videoconference') %> </span>
+             </label>
+             <label>
+                <%= f.radio_button :streaming, true %> <span class="lbl padding-0"> <%= t('event.type.streaming') %> </span>
+             </label>
+            </div>
 
           <!--EMBED-->
           <label><%= t('document.options.embed')%></label>
-          <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
+          <%= f.text_area :embed, :class => "form-control", :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
           
 
           <script type="text/javascript">

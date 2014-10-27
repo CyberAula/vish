@@ -27,6 +27,7 @@
 //= require jquery.jplayer
 //= require social_stream-events
 //= require password
+//= require trmix.min.js
 //= require jquery.rating
 //= require bootstrap-datetimepicker.min
 //= require jquery.scrollUp.min

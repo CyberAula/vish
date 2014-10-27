@@ -1,4 +1,4 @@
-<ul class="entities_front">
+<ul class="items entities_front">
 	<% popular_entities(20,home_models).each do |resource| %>
 		<%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "frontpage" } %>
 	<% end %>

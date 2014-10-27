@@ -57,6 +57,35 @@
     <!--owner-profile-->
     <div class="description-activity">
       <div class="box_description">
+      <div class="tab-pane" id="tab2">
+      <div class="contentembed">
+        <textarea class="shortUrl" readonly="true" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='//<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0; webkitallowfullscreen mozallowfullscreen allowfullscreen &gt;&lt;/iframe&gt</textarea>
+        <button class="btn " id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+          <i class="icon-copy large"></i>
+        </button>
+      </div>
+    </div>
+
+
+          <div class="contentShare">
+        <div class="input-append url-input">
+          <input class="shortUrl" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+            <button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+              <i class="icon-copy "></i>
+            </button>
+        </div>
+
+          <div class="form-group">
+        <div class="input-group">
+        
+          <input class="form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+          <div class="input-group-addon">
+            <a id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+              <i class="fa fa-copy "></i>
+            </a>
+          </div>
+        </div>
+      </div>
         <!--tool-->
         <div class="excursion_tool">
           <%= render :partial => 'excursions/excursion-tool-tab', :locals => { :shortURL => shortURL} %>
