@@ -1,3 +1,5 @@
+<% availableModels = available_models %>
+  <% availableServices = available_services %>
 <nav class="navbar navbar-default navbar-fixed-top" id="top" role="navigation">
   <div class="container-fluid">
  <!-- Brand and toggle get grouped for better mobile display -->
@@ -22,39 +24,50 @@
         <!--navegation-->
         <%= render partial: 'layouts/header/basic_navegation' %>
         
+          
+
         <!--add-->
         <li class ="btn-group">
           <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-plus"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-right">
+            <% if availableModels.include? "Excursion" %>
             <li>
               <%= link_to new_excursion_path do %>
                 <i class="fa fa-list-alt"></i> 
                 <%= t('excursion.actions.add') %>
               <% end %>
             </li>
+            <%end%>
+            <% if availableModels.include? "Event" %>
             <li>
               <a href="#AddEvent" data-toggle="modal">
                 <i class="fa fa-video-camera"></i> 
                 <%=t('event.actions.add')%>
               </a>
             </li>
+            <%end%>
+            <% if availableModels.include? "Category" %>
             <li>
               <a href="#AddCategoryHeader" data-toggle="modal">
                 <i class="fa fa-th-large"></i> 
                 <%= t('categories.actions.add') %>
               </a>
             </li>
+            <%end%>
+            <% if availableModels.include? "Resource" %>
             <li>
               <a href="#AddResource" data-toggle="modal">
                 <i class="fa fa-file"></i> 
                 <%= t('resource.actions.add') %>
               </a>
             </li>
+            <%end%>
+
           </ul>
         </li>
-       
+        
 
         <!--user-->
         <li class ="btn-group user-menu">
@@ -116,19 +129,20 @@
             </li>
             </ul>      
           </li>
- 
+         
       </ul>
-
+        
       <!--search-->
       <%= render partial: 'layouts/header/uisearch_header' %>
 
 <!--________________________mobile/tablet-->
       <%= render partial: 'layouts/header/header_signed_in_mobile' %>
-    
+   
     </div>
-  </div>  
+  </div> 
+ 
 </nav>
-
+ 
   <script type="text/javascript">
     $(document).ready(function() {          
      $('.tooltip-header').tooltip({ placement: 'bottom'});

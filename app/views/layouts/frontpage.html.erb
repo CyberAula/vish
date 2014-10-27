@@ -42,8 +42,11 @@
     <%= render :partial => 'layouts/tools/google_analytics' %>
     <%= render :partial => 'layouts/tools/uservoice' %>
       
+
+    
   </head>
   <body>
+    
     <%= render partial: 'layouts/header/header_warning' %>
     <div id="wrap">
       <div id="fb-root"></div>
@@ -55,11 +58,9 @@
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
       </script>
-   
-      <%= render :partial => "layouts/header/header" %>
-      
-      <%= flashy %>
 
+      <%= render :partial => "layouts/header/header" %>      
+      <%= flashy %>
 
       <div class="ilustration">
           <%= render :partial => "frontpage/explanation" %>
@@ -76,3 +77,4 @@
     <%= render :partial => "layouts/tools/crazyegg" %>
   </body>
 </html>
+
