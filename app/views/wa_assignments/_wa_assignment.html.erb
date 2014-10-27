@@ -1,25 +1,22 @@
-<div id="" class="">
-	<%if wa_assignment.with_dates%>
-		<span><%=t('workshop.activities.assignment.open_date')%></span><br/>
-		<%=wa_assignment.open_date%><br/>
-		<span><%=t('workshop.activities.assignment.due_date')%></span><br/>
-		<%=wa_assignment.due_date%><br/>
-	<%end%>
+<div>
+  <%if wa_assignment.with_dates%>
+    <span><%=t('workshop.activities.assignment.open_date')%></span><br/>
+    <%=wa_assignment.open_date%><br/>
+    <span><%=t('workshop.activities.assignment.due_date')%></span><br/>
+    <%=wa_assignment.due_date%><br/>
+  <%end%>
 
-	<span><%=t('workshop.activities.assignment.content')%></span>
-	<%=raw(wa_assignment.fulltext)%>
+  <%=raw(wa_assignment.fulltext)%>
 
-	<div class="">
-		<span><%=t('workshop.activities.assignment.contribution_message')%></span>
-	
-    	<%= link_to t('workshop.activities.assignment.add_writing'),  new_contribution_path(:wa=>wa_assignment.id), :class => 'btn btn-primary' %>
+  <div>
+    <span><%=t('workshop.activities.assignment.contribution_message')%></span>
 
-		<%= form_for Contribution.new, :html => { :multipart => true }, :remote => false do |f| %>
-            <%= f.hidden_field :wa_assignment_id, :value => wa_assignment.id %>
-            <input id="contribution_picture_file" name="picture[file]" type="file">          
-            <%= f.submit t('button.save'), :id=>"" ,:class => "contribution"%>
-        <% end %>
+    <%= link_to t('workshop.activities.assignment.add_writing'),  new_contribution_path(:wa=>wa_assignment.id), :class => 'btn btn-primary' %>
 
-  	</div>
-
+    <%= form_for Contribution.new, :html => { :multipart => true }, :remote => false do |f| %>
+      <%= f.hidden_field :wa_assignment_id, :value => wa_assignment.id %>
+      <input id="contribution_picture_file" name="picture[file]" type="file">
+      <%= f.submit t('button.save'), :id=>"" ,:class => "contribution"%>
+    <% end %>
+  </div>
 </div>
