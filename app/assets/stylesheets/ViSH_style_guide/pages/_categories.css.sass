@@ -1,3 +1,7 @@
+#AddCategoryHeader
+  .btn-primary
+    @extend .btn
+    
 #category
   @include make-xs-column(12, $gutter: $grid-gutter-width)
   @include make-sm-column(12, $gutter: $grid-gutter-width)
@@ -214,6 +218,9 @@
         padding-left: 10px
         width: 100%
 
+  .modal-footer
+    @extend .btn-primary
+    
 #categories_edition
   background-color: rgba(0,0,0,0.8)
   position: fixed

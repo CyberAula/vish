@@ -13,9 +13,9 @@
             <%= render partial: 'repositories/form' %>
           <%end%>
           <% if availableModels.include? "Category" %>
-            <%#= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
+            <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
           <%end%>
-          <%#= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
+         
 <% else %>
   <%= render :partial => 'layouts/header/header_signed_out' %>
 <% end %>
