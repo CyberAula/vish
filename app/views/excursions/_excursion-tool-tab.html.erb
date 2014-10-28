@@ -170,7 +170,7 @@
 
     <!--Categorize-->
     <%if user_signed_in? %>
-      <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @excursion} %>
+      <%#= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @excursion} %>
       <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" >
         <i class="icon-th-large"></i>
       </button>
