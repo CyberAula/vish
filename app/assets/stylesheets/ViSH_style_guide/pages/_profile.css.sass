@@ -1,19 +1,20 @@
 .user
-  margin-bottom: 20px
   @include make-xs-column(12, $gutter: $grid-gutter-width)
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
+  margin-bottom: 20px
   
   #profile-info
+    @extend .well
+    @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+    position: relative
     margin-bottom: 20px
     float: left
     width: 100%
-    @extend .well
+    clear: both
     border: none
     padding: 0
-    @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
-    position: relative
     @media (max-width: $screen-xs-max)
       padding: 10px
     .avatar
@@ -26,13 +27,12 @@
       @media (max-width: $screen-xs-max)
         padding-right: 0
       img.avatar_img
-        width: 100%
         @include border-top-radius ($border-radius-base)
         @include border-bottom-radius ($border-radius-base)
         @include border-left-radius ($border-radius-base)
         @include border-right-radius ($border-radius-base )
-        
         @include img-responsive
+        width: 100%
         @media (max-width: $screen-xs-max)
           @include center-block
           width: 30%
@@ -47,7 +47,8 @@
         width: 75px
         pointer-events: none
 
-    
+    .items
+      min-height: 270px
     .information
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(10, $gutter: $grid-gutter-width)
@@ -257,4 +258,8 @@
     label 
       display: inline 
       span
-        color: $gray
+        color: $gray-dark
+
+.toolbar_nav-tab
+  margin-bottom: 11px
+  min-height: 34px

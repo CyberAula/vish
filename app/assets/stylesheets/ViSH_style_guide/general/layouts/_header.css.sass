@@ -11,10 +11,11 @@
       width: 100%
 
   .search-query 
+    width: 290px
     @media (max-width: $screen-xs-max)
       width: 95%
-      @include center-block
-
+      margin-right: auto !important
+      margin-left: auto
 .dropdown-log
   @include dropdown-log
 
@@ -32,6 +33,7 @@
       background-color: $gray-lighter-extra !important
     a
       color: $gray !important
+      text-transform: capitalize
       &:hover,
       &:focus
         background-color: $gray-lighter-extra

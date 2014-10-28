@@ -21,12 +21,18 @@
 
 
 .mat
-  margin-top: 8px
+  margin-top: 6px
   z-index: 10
   position: absolute
-  width: 219px
+  width: 290px
   background-color: rgba(85,85,85,0.97)
   @include border-bottom-radius ($border-radius-base)
+  @media (max-width: $screen-xs-max)
+    width: 87%
+    left: 0
+    right: 0
+    top: 87px
+    @include center-block
   .spinner
     margin: 35px auto 0 !important
     display: none
@@ -52,6 +58,8 @@
       float: none
       @include border-bottom-radius ($border-radius-base)
       @include center-block
+      .add-item
+        display: none
       li
         margin: 0 0 6px
       .more

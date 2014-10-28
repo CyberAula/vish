@@ -15,6 +15,10 @@
   @media (min-width: $screen-lg-min)
     min-height: 50px
 
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form
+  border-color: $border-color
+
 .navbar-header
   margin-top: 3px
 
@@ -43,7 +47,7 @@
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus 
   color: $brand-primary-2
 
-@media (max-width: 767px)
+@media (max-width: $screen-xs-max)
   .navbar-nav .open .dropdown-menu 
     background-color: rgba(0, 0, 0, 0.57)
 

@@ -1,4 +1,5 @@
 <% homeModels = VishConfig.getHomeModels({:return_instances => true}) %>
+
 <% resources = subject_content(profile_or_current_subject, homeModels, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by }) %>
 
 <% resources.each do |resource| %>
