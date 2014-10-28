@@ -232,17 +232,17 @@
   overflow-y: auto
   display: none
   .editing_info
-    width: 90%
+    width: 100%
     z-index: 1000
     margin: 0
-    padding-right: 5%
-    padding-left: 5%
-    margin-top: -10px
+    padding: 0px 15px 10px
     background-color: rgba(240,240,240,0.95)
     position: fixed
+    left: 0px
     h3
       width: 50%
       color: $gray-dark
+      margin-top: 10px
 
     // Delete Zone
     .delete
@@ -251,7 +251,7 @@
       float: right
       @include border-bottom-radius ($border-radius-base)
       @include border-top-radius ($border-radius-base)
-      border: 2px dashed $gray-light
+      border: 2px dashed $gray
       text-align: center
       margin-top: -30px
       height: auto
@@ -261,13 +261,13 @@
         display: block
         float: none
         text-align: center
-        color: $gray-light
+        color: $gray
       p
-        color: $gray-light
+        color: $gray
         width: 95%
         padding: 2.5%
       &:hover
-        color: $gray
+        color: $gray-dark
         border: 2px dashed $gray-dark
         i
           color: $gray-dark
