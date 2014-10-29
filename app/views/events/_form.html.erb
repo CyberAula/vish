@@ -13,7 +13,7 @@
         <h4 id="AddCategoryLabel"><%= t('event.main_title')%></h4>
       </div>
       
-      <div class="modal-body">
+      <div class="modal-body" style="overflow:hidden;">
         <%#= form_for Event.new(:owner_id => Actor.normalize_id(current_user)) do |f| %>
         <%= form_for Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
      

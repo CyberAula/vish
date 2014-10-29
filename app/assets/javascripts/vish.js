@@ -12,7 +12,9 @@ $("[rel=dropdown]").tooltip({ placement: 'bottom'});
 });
 
 $(document).ready(function(){
-$("select").select2();
+$("select").select2({
+    allowClear: true
+    });
 });
 
 $(document).ready(function(){
