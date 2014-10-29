@@ -5,7 +5,7 @@
     <li class="active">
       <a href="#coment1" data-toggle="tab">
         <i class="icon-comment"></i>
-        <span class=" hidden-phone hidden-tablet"><%=t('comment.other')%></span>
+        <span class=" hidden-xs"><%=t('comment.other')%></span>
       </a>
     </li>
 
@@ -14,15 +14,15 @@
       <li>
         <a href="#evaluation1" data-toggle="tab">
           <i class="icon-ok-sign"></i>
-          <span class="hidden-phone"><%=t('evaluation.tabtitle')%></span>
+          <span class="hidden-xs"><%=t('evaluation.tabtitle')%></span>
         </a>
       </li>
     <%end%>
 
-    <li class="suggestion_show hidden-desktop">
+    <li class="suggestion_show hidden-md hidden-lg">
       <a  href="#suggestion_show" data-toggle="tab">
         <i class="icon-reorder"></i>
-        <span class=" hidden-phone"><%=t('recommended')%></span>
+        <span class=" hidden-xs"><%=t('recommended')%></span>
       </a>
     </li>
 
@@ -69,9 +69,9 @@
 
 
     <div class="tab-pane" id="suggestion_show">
-      <div class="recomended-mobile hidden-desktop" id="recomended_box">
+      <div class="recomended-mobile hidden-md hidden-lg" id="recomended_box">
         <div class="recomended-items">
-          <ul class="small-box clearfix">
+          <ul class="items clearfix">
             <% @resource_suggestions .each do |excursion| %>
               <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion} %>
             <% end %>
