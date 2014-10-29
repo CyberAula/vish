@@ -23,10 +23,8 @@
             $('.loader_pagination').hide();      
             $("#excursions_tab_ready").append(html);        
             re_apply_pageless("excursions");
-            re_apply_backstrech("excursions");
           },
           error: function(){
-            //console.log("error loading excursions");
           }
         });
       } else{
@@ -46,10 +44,8 @@
             $('.loader_pagination').hide();      
             $("#resources_tab_ready").append(html);
             re_apply_pageless("resources");
-            re_apply_backstrech("resources");
           },
           error: function(){
-            console.log("error loading resources");
          }
         });
       } else {
@@ -69,10 +65,8 @@
             $('.loader_pagination').hide();
             $("#events_tab_ready").append(html);
             re_apply_pageless("events");
-            re_apply_backstrech("events");
           },
           error: function(){
-            //console.log("error loading events");
          }
         });
       } else {
@@ -94,7 +88,6 @@
             re_apply_pageless("categories");
           },
           error: function(){
-            //console.log("error loading categories");
          }
         });
       } else {
@@ -116,7 +109,6 @@
             re_apply_pageless("followers");
           },
           error: function(){
-            //console.log("error loading followers");
          }
         });
       } else {
@@ -138,7 +130,6 @@
             re_apply_pageless("followings");
           },
           error: function(){
-            //console.log("error loading followings");
          }
         });
       } else {
@@ -188,18 +179,14 @@
   };
 
   function re_apply_pageless(tab){
-    //first remove old pageless
-    $.pagelessStop();
+    $.pagelessStop(); //remove old pageless
     $("#" + tab + "_tab_ready ul").pageless({
       totalPages: pageless_state[tab].num_pages,
       url: get_url_with_sort_by(tab),
       currentPage: pageless_state[tab].current_page,
       loader: '.loader_pagination',
       end: function(){
-        
         $('.loader_pagination').hide();
-        //dirty FIX
-        if (tab == "categories") re_apply_backstrech("categories");
       }
     });
   };
@@ -214,14 +201,12 @@
 
   function re_apply_backstrech(tab){
     $("#" + tab + "_tab_ready"  + " div[bs-img]").each(function(){
-      if($(this).parents(".tab-pane").css('display')!="none"){        
-        $(this).backstretch( $(this).attr("bs-img") );   
-        if($(this).parents(".tab-pane").css('display')=="none"){
-          $(this).attr("fix-bs", "true");
-        }
+      if($(this).parents(".tab-pane").css('display')!="none"){
+        $(this).backstretch($(this).attr("bs-img"));
+        $(this).attr("fix-bs", "false");
       }else{
         $(this).attr("fix-bs", "true");
-      }   
+      }
     });
   };
 
@@ -233,19 +218,19 @@
     $(".tab-pane:hidden").each(function(){
       $(".tab-pane:hidden").find("div[bs-img]").attr("fix-bs","true");
     });
-  }
+  };
 
   $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function(e) {
     fix_backstretch($(e.target).attr("href").substring(1));
   });
 
   function fix_backstretch(tab){
-    $("#" + tab +" div[fix-bs]").each(function() {
-      if($(this).parents(".tab-pane").css('display')!="none"){        
-        $(this).backstretch( $(this).attr("bs-img") );
+    $("#" + tab +" div[fix-bs]").each(function(){
+      if($(this).parents(".tab-pane").css('display')!="none"){
+        $(this).backstretch($(this).attr("bs-img"));
         $(this).removeAttr("fix-bs");
-      }        
-    });     
+      }  
+    });
   };
 
   var canUseHistoryPushState = ((typeof history === "object")&&(typeof history.pushState == "function"));
@@ -435,9 +420,8 @@
 <script>
   $(document).ready(function(){
     <% if params[:tab]=="excursions" %>
-      excursions_tab_loaded = true;
+        excursions_tab_loaded = true;
         re_apply_pageless("excursions");
-        re_apply_backstrech("excursions");
     <% elsif params[:tab]=="events" %>
         events_tab_loaded = true;
         re_apply_pageless("events");

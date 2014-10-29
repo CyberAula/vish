@@ -12,7 +12,7 @@
     </div>
     <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
   <% end %>
-  
+
   <ul class="categories main-categories-space"> 	
     <% if profile_subject_is_current? %>
       <%= render partial: 'categories/category-add' %>

@@ -1,13 +1,15 @@
- <% 
-   excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"popularity"})
- %>
-  
+<% excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page, :sort_by=> params[:sort_by]||sort_by||"popularity"}) %>
 <% excursions.each do |excursion| %>
-	<%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :prefix_id => "profile" } %>
-<% end %> 
+  <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :prefix_id => "profile" } %>
+<% end %>
 
 <script>
-	$(document).ready(function(){	
-		update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>); 
-	});
+  $(document).ready(function(){
+    if(typeof update_pageless_state == "function"){
+      update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>);
+    }
+    if(typeof re_apply_backstrech == "function"){
+      re_apply_backstrech("excursions");
+    }
+  });
 </script>
