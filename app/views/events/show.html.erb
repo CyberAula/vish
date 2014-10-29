@@ -14,7 +14,7 @@
             <div class="icon-box" id="event-<%=@event.id%>">
               <% if @event.poster.new_record? %>
 
-                <i class="fa fa-video-camera"></i>
+                <!--<i class="fa fa-video-camera"></i>-->
                 <%= image_tag('items/rec2.jpg', :class=> "event-img") %>
               <% else %>
                 <%= image_tag(@event.poster.file) %>
@@ -22,9 +22,9 @@
                   $("#event-<%=@event.id%>").addClass("high")
                 </script>
               <% end %>
-              <% if (can?(:update, @event) && @event.poster.new_record?) %>
-                  <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
-              <% end %>
+              <%# if (can?(:update, @event) && @event.poster.new_record?) %>
+                  <%#= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
+              <%# end %>
           
             </div>  
          <% end %>
