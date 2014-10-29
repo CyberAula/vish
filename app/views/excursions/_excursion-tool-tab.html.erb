@@ -1,3 +1,4 @@
+<% availableModels ||= available_models %>
 <% editingToolbar = (@excursion.draft or controller.action_name == "edit") %>
 
 <script type="text/javascript">
@@ -170,7 +171,7 @@
     <%end%>
 
     <!--Categorize-->
-    <%if user_signed_in? %>
+    <%if user_signed_in? and availableModels.include? "Category" %>
       <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @excursion} %>
       <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" >
         <i class="icon-th-large"></i>

@@ -1,3 +1,4 @@
+<% availableModels ||= available_models %>
 <%canBeDownloaded = !document.getDownloadUrl(self).nil? %>
 <!-- Only documents with an embed partial can be embeded -->
 <%canBeEmbeded = lookup_context.template_exists?("embed", document.class.to_s.underscore.pluralize, true) %>
@@ -36,7 +37,6 @@
       });
     });
     </script>
-
 <%end%>
 
 
@@ -55,7 +55,7 @@
     <%= link_like(document.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
   <%end%>
 
-  <%if user_signed_in? %>
+  <%if user_signed_in? and availableModels.include? "Category" %>
     <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => resource} %>
     <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" ><i class="icon-th-large"></i></button>
   <%end%>
