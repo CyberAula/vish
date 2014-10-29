@@ -6,7 +6,7 @@
     all_categories.sort_by!{|h| order.index(h.activity_object.id) || (orderLength+1)}
   end %>
 
-  <% if profile_subject_is_current? %>
+  <% if profile_subject_is_current? or isAdmin? %>
     <div class="toolbar_nav-tab">
       <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></button>
     </div>
@@ -62,8 +62,10 @@
   function updateMainView(){
     var actualState = $(".edit_categories .box-item").clone();
     var s = $(".main-categories-space .box-item");
-    s.splice(0,2);
-    s.each(function( index ) {this.remove();});
+    <% if profile_subject_is_current? %>
+      s.splice(0,2);
+    <% end %>
+    s.each(function(index){this.remove();});
     actualState.appendTo(".main-categories-space");
   };
 
