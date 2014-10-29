@@ -10,6 +10,7 @@
     //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
     .dummy
       padding-top: 75% /* 4:3 aspect ratio */
+
     .element
       position: absolute
       top: 0
@@ -20,6 +21,7 @@
       text-align: center
       width: 100%
       @include border-top-radius($baseBorderRadius)
+
       .img-box
         width: 100%
         padding-bottom: 75%
@@ -381,10 +383,16 @@
     // IMG BOX
     .container-img
       border: 1px solid $grayLight
+      .dummy_user
+        padding-top: 75% !important/* 4:3 aspect ratio */
       .avatar
+        width: 60%
+        display: block
+        margin: 8% auto
         a
           img
             width: 100%
+            @include border-radius($baseBorderRadius)
     .info-user
       font-family: $secondFontFamily
       display: block
@@ -404,16 +412,14 @@
         height: 20px
         line-height: 18px
         overflow: hidden
-        font-family: $secondFontFamily
         font-size: 17px
         word-wrap: break-word
         text-decoration: none
         cursor: pointer
         width: 100%
-        padding-top: 3px
         a
           color: $grayDark
-          font-family: $secondFontFamily
+          font-family: $thirdFontFamily
           text-decoration: none
           &:hover
             color: $firstColor
