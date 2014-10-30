@@ -27,7 +27,13 @@
 
 <%= javascript_tag do %>
   $(function(){  
-    SocialStream.Timeline.show();  
+    SocialStream.Timeline.show(); 
+
+   $(".more .fa-circle-o-notch").hide();
+   $(".more a").click(function(e){
+         $(".more .fa-circle-o-notch").show().delay( 1000 ).fadeOut( 400 );
+    });
   });
+
 <% end %>
 

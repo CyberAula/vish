@@ -21,7 +21,7 @@
 
 <% @state % 2 == 0 ? position = "" : position = "timeline-inverted" %>
 <%= content_tag(:li, activity, class: position) do %>
-  <% @state += 1 %>
+<% @state += 1 %>
 <%#inverted algorithm ends here %>
 
   
@@ -44,20 +44,20 @@
           </div>
         <% end %>
       </h6>
-
+      
       <%= render partial: 'activity_objects/timeline', 
                  collection: activity.activity_objects,
                  as: :object %>
-      <div class="panel-group" id="accordion">
+      <div class="panel-group" id="accordion-<%=activity.id%>">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#comment-activity">
+              <a data-toggle="collapse" data-parent="#accordion-<%=activity.id%>" href="#comment-activity-<%=activity.id%>">
                 view comments
               </a>
             </h4>
           </div>
-          <div id="comment-activity" class="panel-collapse collapse">
+          <div id="comment-activity-<%=activity.id%>" class="panel-collapse collapse">
             <div class="panel-body">
               <%= render :partial => 'activities/comments',
                          :locals => { :activity => activity } %>
