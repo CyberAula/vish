@@ -3,7 +3,7 @@
 <div id="AddContribution">
     <div>
         <%= form_for resource, :remote => false do |f| %>
-          <%= f.hidden_field :wa_assignment_id, :value => resource.wa_assignment_id ? resource.wa_assignment_id : params[:wa] %>
+          <%= f.hidden_field :wa_assignment_id, :value => resource.wa_assignment_id ? resource.wa_assignment_id : params[:wa_assignment_id] %>
           <%= f.hidden_field :type, :value => "writing" %>
           <label for="contribution_title"><%=t("contribution.title")%></label>
           <input id="contribution_title" name="writing[title]" value="">

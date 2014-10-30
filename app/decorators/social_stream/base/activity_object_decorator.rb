@@ -40,7 +40,8 @@ ActivityObject.class_eval do
     self.scope == 1
   end
 
-  def workshop
+  #We can't call this method workshop, since its a reserved word
+  def contributionWorkshop
     self.contribution.workshop unless self.contribution.nil?
   end
 
@@ -432,7 +433,7 @@ ActivityObject.class_eval do
   end
 
   def self.getResourceCount
-    getCount(["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"])
+    getCount(["Workshop","Excursion", "Document", "Webapp", "Scormfile","Link","Embed"])
   end
 
   def self.getCount(models=[])
@@ -446,7 +447,7 @@ ActivityObject.class_eval do
     unless self.object.nil?
       if self.object_type != "Actor"
         #Resources
-        unless self.object_type == "Excursion" and self.object.draft==true
+        unless ["Excursion","Workshop"].include? self.object_type and self.object.draft==true
           #Always public except drafts
           self.object.relation_ids = [Relation::Public.instance.id]
           self.relation_ids = [Relation::Public.instance.id]

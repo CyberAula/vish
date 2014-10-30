@@ -13,7 +13,7 @@
   <div>
     <span><%=t('workshop.activities.assignment.contribution_message')%></span>
 
-    <%= link_to t('workshop.activities.assignment.add_writing'),  new_contribution_path(:wa=>wa_assignment.id), :class => 'btn btn-primary' %>
+    <%= link_to t('workshop.activities.assignment.add_writing'),  new_contribution_path(:type => "writing", :wa_assignment_id=>wa_assignment.id), :class => 'btn btn-primary' %>
 
     <%= form_for Contribution.new, :html => { :multipart => true }, :remote => false do |f| %>
       <%= f.hidden_field :wa_assignment_id, :value => wa_assignment.id %>

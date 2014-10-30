@@ -17,7 +17,7 @@
 
 class ContributionsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :fill_create_params, :only => [ :new, :create]
+  before_filter :fill_create_params, :only => [:create]
   inherit_resources
 
   #############
@@ -35,7 +35,11 @@ class ContributionsController < ApplicationController
   def new
     super do |format|
       format.html {
-        render "new"
+        if params[:type]
+          render "new_" + params[:type]
+        else
+          render "new"
+        end
       }
     end
   end
