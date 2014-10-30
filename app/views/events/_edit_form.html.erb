@@ -21,6 +21,7 @@
   <%= f.radio_button :streaming, true %> <%= t('event.type.streaming') %>
 
   <!--EMBED-->
+  </br>
   <label><%= t('document.options.embed')%></label>
   <%= f.text_area :embed, :rows => 5, :class => "form-control", :placeholder => t('embed.input'), :disabled => true %>
   <script type="text/javascript">
@@ -64,7 +65,7 @@
     <div id="edithourinit" class="input-group">
       <input class="form-control" data-format="hh:mm:ss" type="text" name="event_start_time">
       <span class="input-group-addon">
-        <i class="fa fa-calendar" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
+        <i class="fa fa-clock-o" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
       </span>
     </div>
   <!--HORA FINALIZACION-->
@@ -79,7 +80,7 @@
     <div id="edithourfinish" class="input-group">
       <input class="form-control" data-format="hh:mm:ss" type="text" name="event_end_time">
       <span class="input-group-addon">
-        <i class="fa fa-calendar" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
+        <i class="fa fa-clock-o" data-time-icon="fa-time" data-date-icon="fa-calendar"></i>
       </span>
     </div>
   <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>

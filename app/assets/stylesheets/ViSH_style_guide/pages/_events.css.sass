@@ -32,6 +32,21 @@
     .btn
       float: right
       margin-top: -26px
+#document-edit
+  .edit_event
+    input
+      &[type="radio"]
+        opacity: 1
+        position: unset
+        height: 0
+  .edit_picture
+    .btn
+      float: right
+    input
+      &[type="file"]
+        display: inline
+
+
 #AddEvent
   .checkbox
     margin-top: 0
@@ -65,3 +80,8 @@ input.age-slider
 
 .slider-track
   background-color: lighten($brand-primary, 30%)
+
+
+.new_comment
+  #comment_text
+    height: 40px

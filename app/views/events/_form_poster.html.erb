@@ -1,4 +1,6 @@
 <%= form_for @event.poster do |f| %>
+  <!--CARTEL/PORTADA-->
+  <label><%= t('event.leyend.poster')%></label>
   <% if f.object.new_record? %>
     <%= f.hidden_field :add_holder_event_id %>
   <% end %>

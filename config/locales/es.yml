@@ -484,6 +484,7 @@ es:
       start_time: "Hora de inicio"
       title: "Título"
       type: "Tipo"
+      poster: "Añade una portada/cartel"
     main_title: "Crea un nuevo evento"
     title_input: "Dale un nombre a tu evento"
     type:

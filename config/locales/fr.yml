@@ -526,6 +526,7 @@ fr:
       start_time: Start time
       title: Title
       type: Type
+      poster: "Ajouter une couverture"
     main_title: "Créer un nouvel événement"
     title_input: "Nom de cet événement"
     type:

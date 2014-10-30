@@ -531,6 +531,7 @@ hu:
       start_time: Elkezdési idő
       title: Cím
       type: Típus
+      poster: ""
     main_title: "Új esemény készítése"
     title_input: "Az esemény neve"
     type:
