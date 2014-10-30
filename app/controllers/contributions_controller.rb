@@ -17,11 +17,20 @@
 
 class ContributionsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :fill_create_params, :only => [ :new, :create]
   inherit_resources
 
   #############
   # REST methods
   #############
+
+  def show
+    super do |format|
+      format.html {
+        redirect_to url_for(resource.activity_object.object)
+      }
+    end
+  end
 
   def new
     super do |format|
@@ -32,45 +41,64 @@ class ContributionsController < ApplicationController
   end
 
   def create
-    params["contribution"] ||= {}
-
-    if params[:writing]
-      params["writing"].permit!
-      params["writing"]["scope"] ||= "0" #public
-      params["writing"]["owner_id"] = current_subject.actor_id
-      params["writing"]["author_id"] = current_subject.actor_id
-      params["writing"]["user_author_id"] = current_subject.actor_id
-      ao = Writing.new(params["writing"])
-      ao.save!
-    elsif params[:picture]
-        params["picture"].permit!
-        params["picture"]["scope"] ||= "0" #public
-        params["picture"]["owner_id"] = current_subject.actor_id
-        params["picture"]["author_id"] = current_subject.actor_id
-        params["picture"]["user_author_id"] = current_subject.actor_id
-        ao = Document.new(params["picture"])
-        ao.save!
+    if params["contribution"]["wa_assignment_id"].present?
+      wassignment = WaAssignment.find_by_id(params["contribution"]["wa_assignment_id"])
+      workshop = wassignment.workshop unless wassignment.nil?
     else
-      #no activity_object associated, throw error
-      #TODO
+      #Get resource from which the contribution is being created...
     end
 
-    params["contribution"]["activity_object_id"] = ao.activity_object_id
+    case params["contribution"]["type"]
+    when "document"
+      object = Document.new((params["document"].merge!(params["contribution"]["activity_object"])).permit!)
+    when "writing"
+      object = Writing.new((params["writing"].merge!(params["contribution"]["activity_object"])).permit!)
+    else
+      flash[:errors] = "Invalid contribution"
+      if !workshop.nil?
+        return redirect_to workshop_path(workshop)
+      else
+        return redirect_to "/"
+      end
+    end
+
+    object.valid?
+
+    if object.errors.blank? and object.save
+      ao = object.activity_object
+      discard_flash
+    else
+      flash[:errors] = object.errors.full_messages.to_sentence
+      if !workshop.nil?
+        return redirect_to workshop_path(workshop)
+      else
+        return redirect_to "/"
+      end
+    end
+    
+    params["contribution"].delete "activity_object"
+    params["contribution"].delete "type"
+    params["contribution"]["activity_object_id"] = ao.id
+
     super do |format|
       format.html {
         unless resource.errors.blank?
           flash[:errors] = resource.errors.full_messages.to_sentence
+          if !workshop.nil?
+            return redirect_to workshop_path(workshop)
+          else
+            return redirect_to "/"
+          end
         else
           discard_flash
+          return redirect_to contribution_path(resource)
         end
-        
-        redirect_to workshop_path(resource.workshop)
       }
     end
   end
 
   def edit
-    
+    super
   end
  
 
@@ -78,6 +106,17 @@ class ContributionsController < ApplicationController
 
   def allowed_params
     [:wa_assignment_id, :activity_object_id]
+  end
+
+  def fill_create_params
+    params["contribution"] ||= {}
+    params["contribution"]["activity_object"] ||= {}
+    params["contribution"]["activity_object"]["scope"] = "1" #private
+    unless current_subject.nil?
+      params["contribution"]["activity_object"]["owner_id"] = current_subject.actor_id
+      params["contribution"]["activity_object"]["author_id"] = current_subject.actor_id
+      params["contribution"]["activity_object"]["user_author_id"] = current_subject.actor_id
+    end
   end
 
 end
