@@ -1,10 +1,11 @@
 <% availableModels = available_models %>
+<% browse = params[:browse] || (!params[:q].nil? and params[:q].blank?) %>
 
 <section id="search" class="">
   <div class="search">
     <div class="tabbable">
       <ul class="nav nav-tabs">
-        <%if params[:browse]%>
+        <%if browse%>
           <%content_for :title do%>
             <%= t("site.current.browse")%>
           <%end%>
@@ -16,7 +17,7 @@
           <li><h1><i class="icon-search"></i><%= t("search.title")%></h1></li>
         <%end%>
           <li class="all_results <%= 'active' if params[:type].blank? %>">
-            <% unless params[:browse]%>
+            <% unless browse%>
               <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
             <% else %>
               <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'), search_path(:browse=>"true", :sort_by => "ranking") %>
@@ -25,7 +26,7 @@
 
           <% if availableModels.include? "Excursion" %>
             <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
-              <% unless params[:browse]%>
+              <% unless browse%>
                 <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), "#excursion",
                 :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
               <% else %>
@@ -35,7 +36,7 @@
           <%end%>
 
           <li class="user <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
-            <% unless params[:browse]%>
+            <% unless browse%>
               <%= link_to raw('<i class="icon-group"></i><span class=" hidden-phone hidden-tablet">'+t("user.title.other")+'</span>'), "#user",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
             <% else %>
@@ -45,7 +46,7 @@
 
           <% if availableModels.include? "Event" %>
             <li class="event <%= " active" if params[:type] == "event" %><%= " disabled" unless search_results?("event") %>">
-              <% unless params[:browse]%>
+              <% unless browse%>
                 <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), "#event",
                 :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
               <% else %>
@@ -56,7 +57,7 @@
 
           <% if availableModels.include? "Resource" %>
             <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("resource") %>">
-              <% unless params[:browse]%>
+              <% unless browse%>
                 <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), "#resource",
                 :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
               <% else %>
@@ -150,9 +151,7 @@
     });
 
     $("footer#footer").addClass("fixed-bottom");
-    <!-- $("#wrap").addClass("wrap-when-fixed-bottom"); -->
 
-    
       <%if params[:type]%>
         //if "popular" links used, the tabs are links to other "popular" searches
         $("#search .all_results").click(function(){
@@ -231,28 +230,17 @@
       });     
     }
 
-    
-
-
     <% end %>
   </div>
+    
+  <script>
+    $(function(){
+      $('.scroll-pane').jScrollPane();
+    });
+    $(document).ready(function(){
+     $(window).resize(re_apply_backstrech_on_search);
+     $(window).on('orientationchange', re_apply_backstrech_on_search);
+    });
+  </script>
 
-
-
-<!--scroll-->    
-<script>
-  $(function()
-  {
-    $('.scroll-pane').jScrollPane();
-  });
-
-  $( document ).ready(function() {
-   $(window).resize(re_apply_backstrech_on_search);
-   $(window).on('orientationchange', re_apply_backstrech_on_search);
-   });
-
-</script>
 </section>
-
-
-

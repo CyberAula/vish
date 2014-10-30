@@ -5,24 +5,11 @@
 
 <script>
   $(document).ready(function(){
-    update_pageless_state("resources", <%=all_resources.num_pages%>, <%=all_resources.current_page%>);
-
-    $('a[href="#tab3"]').on('shown', function (e) {
-      $(".resource").fitText(0.4);
-    });    
-  });
-	
-  function add_resources_backstrech(){
-    if(typeof backstrech_items != "undefined"){
-		  <% all_resources.each do |resource| %>
-    		<%if resource.object.respond_to?(:type) && resource.object.type =="Picture"%>
-            backstrech_items.resources["#document-<%=resource.object.id%>"] = "<%=resource.object.file%>?style=500";
-    		<%end%>
-  		<% end %> 
+    if(typeof update_pageless_state == "function"){
+      update_pageless_state("resources", <%=all_resources.num_pages%>, <%=all_resources.current_page%>);
     }
-	}
-
-  add_resources_backstrech(); 
-
+    if(typeof re_apply_backstrech == "function"){
+      re_apply_backstrech("resources");
+    }
+  });
 </script>
-

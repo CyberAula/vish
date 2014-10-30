@@ -307,18 +307,28 @@ namespace :db do
     end
 
     #Create demo user
-    user = User.all.select{|u| Excursion.authored_by(u).length>0 && u.follower_count>0}.sort{|ub,ua| ua.ranking<=>ub.ranking}.first
+    user = User.all.select{|u| !u.admin? && Excursion.authored_by(u).length>0 && u.follower_count>0}.sort{|ub,ua| ua.ranking<=>ub.ranking}.first
     if user.nil?
-      user = User.all.sample
+      user = User.all.reject{|u| u.admin?}.sample
     end
 
     unless user.nil?
-      user.name = Faker::Name.name[0,30]
       user.email = "demo@vishub.org"
       user.password = "demonstration"
-      user.slug = user.name.to_url
       user.save(:validate => false)
-      printTitle("Demo user created with email: 'demo@vishub.org' and password 'demonstration'.")
+      printTitle("Demo user created with email: '"+user.email+"' and password '"+user.password+"'.")
+    end
+
+    #Create admin user
+    admin_user = User.all.select{|u| u.admin?}.first
+    if admin_user.nil?
+      #Create admin
+      Rake::Task["db:populate:create:admin"].invoke
+    else
+      admin_user.email = 'admin@vishub.org'
+      admin_user.password = "demonstration"
+      admin_user.save(:validate => false)
+      printTitle("Admin user created with email: '"+admin_user.email+"' and password '"+admin_user.password+"'.")
     end
 
     #Removing private messages
