@@ -28,7 +28,7 @@ class Workshop < ActiveRecord::Base
   validates_inclusion_of :draft, :in => [true, false]
 
   def thumbnail_url
-  	self.getAvatarUrl || "/assets/logos/original/excursion-00.png"
+    self.getAvatarUrl || "/assets/logos/original/defaul_workshop.png"
   end
 
 end

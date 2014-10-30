@@ -1,0 +1,29 @@
+<%= render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "contribution_fulltext"} %>
+
+<div id="AddContribution">
+    <div>
+        <%= form_for resource, :remote => false do |f| %>
+          <%= f.hidden_field :wa_assignment_id, :value => resource.wa_assignment_id ? resource.wa_assignment_id : params[:wa_assignment_id] %>
+          <%= f.hidden_field :type, :value => "writing" %>
+          <label for="contribution_title"><%=t("contribution.title")%></label>
+          <input id="contribution_title" name="writing[title]" value="">
+          <label for="contribution_fulltext"><%=t("contribution.content")%></label>
+          <textarea cols="40" id="contribution_fulltext" name="writing[fulltext]" rows="20"></textarea>
+          <input id="contribution_plaintext" name="writing[plaintext]" type="hidden" value="">                           
+        <% end %>
+    </div>
+    <div class="footer-form">
+      <input type="button" id="addContributionButtonFake" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
+    </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    var uploadButtonFake = $("#addContributionButtonFake");
+    $(uploadButtonFake).click(function(event){
+        set_ckeditor_content_full_and_plaintext("contribution_fulltext","contribution_plaintext");
+        $(this).button('loading');
+        $("#AddContribution").find("form").submit();
+    });
+  });
+</script>

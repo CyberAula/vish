@@ -1,12 +1,11 @@
 ActivityObject.class_eval do
-
   has_many :spam_reports
-  has_and_belongs_to_many :wa_galleries
-
+  has_and_belongs_to_many :wa_resources_galleries
 
   before_save :fill_relation_ids
   before_save :fill_indexed_lengths
   after_destroy :destroy_spam_reports
+  after_destroy :destroy_contribution
 
   has_attached_file :avatar,
                   :url => '/:class/avatar/:id.:extension',
@@ -25,7 +24,6 @@ ActivityObject.class_eval do
   attr_accessor :score
   attr_accessor :score_tracking
   
-
   def public?
     !private? and self.relation_ids.include? Relation::Public.instance.id
   end
@@ -40,6 +38,11 @@ ActivityObject.class_eval do
 
   def private_scope?
     self.scope == 1
+  end
+
+  #We can't call this method workshop, since its a reserved word
+  def contributionWorkshop
+    self.contribution.workshop unless self.contribution.nil?
   end
 
   #Calculate quality score (in a 0-10 scale) 
@@ -302,7 +305,6 @@ ActivityObject.class_eval do
 
   def getAvatarUrl
     resource = self.object
-
     if resource.class.name=="User"
       relativePath = resource.logo.to_s
     elsif resource.class.name=="Excursion"
@@ -431,7 +433,7 @@ ActivityObject.class_eval do
   end
 
   def self.getResourceCount
-    getCount(["Excursion", "Document", "Webapp", "Scormfile","Link","Embed"])
+    getCount(["Workshop","Excursion", "Document", "Webapp", "Scormfile","Link","Embed"])
   end
 
   def self.getCount(models=[])
@@ -445,7 +447,7 @@ ActivityObject.class_eval do
     unless self.object.nil?
       if self.object_type != "Actor"
         #Resources
-        unless self.object_type == "Excursion" and self.object.draft==true
+        unless ["Excursion","Workshop"].include? self.object_type and self.object.draft==true
           #Always public except drafts
           self.object.relation_ids = [Relation::Public.instance.id]
           self.relation_ids = [Relation::Public.instance.id]
@@ -492,6 +494,12 @@ ActivityObject.class_eval do
   def destroy_spam_reports
     SpamReport.where(:activity_object_id => self.id).each do |spamReport|
       spamReport.destroy
+    end
+  end
+
+  def destroy_contribution
+    unless self.contribution.nil?
+      self.contribution.destroy
     end
   end
 

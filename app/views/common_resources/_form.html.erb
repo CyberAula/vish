@@ -1,189 +1,187 @@
 <article id="new_file">
   <div class="layoutform">
 
-  <%= form_for(resource) do |f| %>
-    <%= f.hidden_field :owner_id %>
+    <%= form_for(resource) do |f| %>
+      <%= f.hidden_field :owner_id %>
 
-    <div class="error">
-      <ul>
-        <h4>
-          <% resource.errors.full_messages.each do |msg| %>
-        </h4>
-        <li>
-          <h5>
-            <%= msg %>
-          </h5>
-        </li>
-        <% end %>
-      </ul>
-    </div>
-
-    <% isNewInstance = (controller.action_name == "create" or  controller.action_name == "new") %>
-
-    <% if [resource.class.name,resource.class.superclass.name].include? "Document" %>
-      <%=render :partial => "common_documents/common_edit", :locals => {:f => f, :isNewInstance => isNewInstance}%>
-    <% end %>
-
-    <% editPartial = lookup_context.template_exists?("common_edit", resource.class.to_s.underscore.pluralize, true) %>
-    <% if editPartial %>
-      <%= render partial: "#{ resource.class.to_s.tableize }/common_edit", locals: { :f => f, :isNewInstance => isNewInstance, resource.class.to_s.underscore.to_sym => resource } %>
-    <% end %>
-
-
-    <section class="title">
-      <%= f.label :title, t('document.info.title') %>
-      <%= f.text_field :title %>
-    </section>
-
-    <section class="description">
-      <%= f.label :description, t('document.info.description') %>
-      <%= f.text_area :description %>
-    </section>
-
-    <section class="tags">
-      <%= f.label :tag_list, t('document.info.tags') %>
-      <%= f.hidden_field :tag_list, :multiple => true %>
-      <div class="tagBoxDocument">
-         <ul class="resourceTagList"></ul>
+      <div class="error">
+        <ul>
+          <h4>
+            <% resource.errors.full_messages.each do |msg| %>
+          </h4>
+          <li>
+            <h5>
+              <%= msg %>
+            </h5>
+          </li>
+          <% end %>
+        </ul>
       </div>
-    </section>
 
-    <% 
-       initialTags = resource.tags.all.map{|e| e.name} || []
-       tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue_categories).uniq!
+      <% isNewInstance = (controller.action_name == "create" or  controller.action_name == "new") %>
 
-      if tags == nil
-        tags = []
-      end
+      <% if [resource.class.name,resource.class.superclass.name].include? "Document" %>
+        <%=render :partial => "common_documents/common_edit", :locals => {:f => f, :isNewInstance => isNewInstance}%>
+      <% end %>
 
-    %>
- <!-- ##QUICK FIX -->
-    <!-- Tags -->
-    <script>
-      var tagsSource = [
-            <% tags.each do |tag|%>
-              "<%=tag%>",
-            <%end%>
-            ];
+      <% editPartial = lookup_context.template_exists?("common_edit", resource.class.to_s.underscore.pluralize, true) %>
+      <% if editPartial %>
+        <%= render partial: "#{ resource.class.to_s.tableize }/common_edit", locals: { :f => f, :isNewInstance => isNewInstance, resource.class.to_s.underscore.to_sym => resource } %>
+      <% end %>
 
-      $("#new_file .resourceTagList").tagit({
-        watermarkAllowMessage:"",
-        tagSource: tagsSource
-      });
-
-      <% initialTags.each do |cnt| %>
-        $("#new_file ul.resourceTagList").tagit("add", "<%= cnt %>");
-      <%end%> 
-    </script>
-
-    <%unless resource.class.name=="Picture" %>
-      <section class="avatar">
-        <%= f.label :avatar, t('document.leyend.avatar') %>
-        <%= f.file_field :avatar %>
+      <section class="title">
+        <%= f.label :title, t('document.info.title') %>
+        <%= f.text_field :title %>
       </section>
-    <%end%>
 
-    <section class="language">
-      <%= f.label :language, t('document.leyend.language') %>
-      <%= f.select(:language, resource_language_options_for_select(resource.language)) %>
-    </section>
-
-    <section class="target_age">
-      <%= f.hidden_field :age_min %>
-      <%= f.hidden_field :age_max %>
-      <!--AGE SLIDER-->
-      <label><%= t('document.leyend.recommended_age')%></label>
-      <div class="limits">
-        <div class="limit1">4</div>
-        <div class="limit2">20</div>
-      </div>
-      <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[<%=resource.age_min%>,<%=resource.age_max%>]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
-    </section>
-
-    <% if !isNewInstance %>
-      <section class="scope">
-        <%= f.label :scope, t('document.leyend.scope') %>
-        <%= f.select(:scope, options_for_select([[t('scope.public'), 0], [t('scope.private'), 1]],resource.scope)) %>
+      <section class="description">
+        <%= f.label :description, t('document.info.description') %>
+        <%= f.text_area :description %>
       </section>
-    <% end%>
 
-    <div class="footer-form">
+      <section class="tags">
+        <%= f.label :tag_list, t('document.info.tags') %>
+        <%= f.hidden_field :tag_list, :multiple => true %>
+        <div class="tagBoxDocument">
+           <ul class="resourceTagList"></ul>
+        </div>
+      </section>
 
-      <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
-      <%if controller_name == "workshops" && controller.action_name == 'edit_details'%>
-        <button class="btn" href="<%=edit_workshop_path(@workshop)%>">Cancel and go to Workshop</button>
-      <%end%>
-    </div>
-  <% end %>
+      <% 
+         initialTags = resource.tags.all.map{|e| e.name} || []
+         tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue_categories).uniq!
 
+        if tags == nil
+          tags = []
+        end
 
-  <%= javascript_tag do %>
-    $("#new_file input[type='submit']").click(function(event){
-      //AGE
-      var resource_type = "<%=resource.class.name.downcase%>";
-      var value1 = $('#new_file .age-slider').data('slider').getValue()[0];
-      var value2 = $('#new_file .age-slider').data('slider').getValue()[1];
-      $('#new_file input[name="'+resource_type+'[age_min]"]').val(value1);
-      $('#new_file input[name="'+resource_type+'[age_max]"]').val(value2);
+      %>
 
-      <% beforeSubmitPartial = lookup_context.template_exists?("common_edit_before_submit", resource.class.to_s.underscore.pluralize, true) %>
-      <% if beforeSubmitPartial %>
-        <%= render partial: "#{ resource.class.to_s.tableize }/common_edit_before_submit", locals: { resource.class.to_s.underscore.to_sym => resource, :resourceType => resource.class.name.downcase } %>
+      <!-- Tags -->
+      <script>
+        var tagsSource = [
+              <% tags.each do |tag|%>
+                "<%=tag%>",
+              <%end%>
+              ];
+
+        $("#new_file .resourceTagList").tagit({
+          watermarkAllowMessage:"",
+          tagSource: tagsSource
+        });
+
+        <% initialTags.each do |cnt| %>
+          $("#new_file ul.resourceTagList").tagit("add", "<%= cnt %>");
+        <%end%> 
+      </script>
+
+      <%unless resource.class.name=="Picture" %>
+        <section class="avatar">
+          <%= f.label :avatar, t('document.leyend.avatar') %>
+          <%= f.file_field :avatar %>
+        </section>
       <%end%>
 
-      $(this).button('loading');
-    });
+      <section class="language">
+        <%= f.label :language, t('document.leyend.language') %>
+        <%= f.select(:language, resource_language_options_for_select(resource.language)) %>
+      </section>
 
-    //SLIDER
-    var min = 0;
-    var max = 30;
-    var step = 1;
-    var diff = max - min;
+      <section class="target_age">
+        <%= f.hidden_field :age_min %>
+        <%= f.hidden_field :age_max %>
+        <!--AGE SLIDER-->
+        <label><%= t('document.leyend.recommended_age')%></label>
+        <div class="limits">
+          <div class="limit1">4</div>
+          <div class="limit2">20</div>
+        </div>
+        <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[<%=resource.age_min%>,<%=resource.age_max%>]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+      </section>
 
-    var newFilePositionLimits = function(){
-      var value1 = $('#new_file .age-slider').data('slider').getValue()[0];
-      var value2 = $('#new_file .age-slider').data('slider').getValue()[1];
-      $('#new_file .limit1').text(value1);
-      $('#new_file .limit2').text(value2);
+      <% if !isNewInstance %>
+        <section class="scope">
+          <%= f.label :scope, t('document.leyend.scope') %>
+          <%= f.select(:scope, options_for_select([[t('scope.public'), 0], [t('scope.private'), 1]],resource.scope)) %>
+        </section>
+      <% end%>
 
-      var percentage =[
-        (value1-min)*100/diff,
-        (value2-min)*100/diff,
-        step*100/diff
-      ];
+      <div class="footer-form">
+        <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+        <%if controller_name == "workshops" && controller.action_name == 'edit_details'%>
+          <button class="btn" href="<%=edit_workshop_path(@workshop)%>">Cancel and go to Workshop</button>
+        <%end%>
+      </div>
+    <% end %>
 
-      $("#new_file .limit1").css("left", function(ev) {
-        return $('#new_file .slider').width() * percentage[0]/100 - $("#new_file .limit1").width()/2 + 'px';
+
+    <%= javascript_tag do %>
+      $("#new_file input[type='submit']").click(function(event){
+        //AGE
+        var resource_type = "<%=resource.class.name.downcase%>";
+        var value1 = $('#new_file .age-slider').data('slider').getValue()[0];
+        var value2 = $('#new_file .age-slider').data('slider').getValue()[1];
+        $('#new_file input[name="'+resource_type+'[age_min]"]').val(value1);
+        $('#new_file input[name="'+resource_type+'[age_max]"]').val(value2);
+
+        <% beforeSubmitPartial = lookup_context.template_exists?("common_edit_before_submit", resource.class.to_s.underscore.pluralize, true) %>
+        <% if beforeSubmitPartial %>
+          <%= render partial: "#{ resource.class.to_s.tableize }/common_edit_before_submit", locals: { resource.class.to_s.underscore.to_sym => resource, :resourceType => resource.class.name.downcase } %>
+        <%end%>
+
+        $(this).button('loading');
       });
-      $("#new_file .limit2").css("left", function(ev) {
-        return $('#new_file .slider').width() * percentage[1]/100 - $("#new_file .limit2").width()/2 + 'px';
+
+      //SLIDER
+      var min = 0;
+      var max = 30;
+      var step = 1;
+      var diff = max - min;
+
+      var newFilePositionLimits = function(){
+        var value1 = $('#new_file .age-slider').data('slider').getValue()[0];
+        var value2 = $('#new_file .age-slider').data('slider').getValue()[1];
+        $('#new_file .limit1').text(value1);
+        $('#new_file .limit2').text(value2);
+
+        var percentage =[
+          (value1-min)*100/diff,
+          (value2-min)*100/diff,
+          step*100/diff
+        ];
+
+        $("#new_file .limit1").css("left", function(ev) {
+          return $('#new_file .slider').width() * percentage[0]/100 - $("#new_file .limit1").width()/2 + 'px';
+        });
+        $("#new_file .limit2").css("left", function(ev) {
+          return $('#new_file .slider').width() * percentage[1]/100 - $("#new_file .limit2").width()/2 + 'px';
+        });
+      };
+
+      $("#new_file .age-slider").slider().on('slide', function(ev){
+        newFilePositionLimits();
       });
-    };
 
-    $("#new_file .age-slider").slider().on('slide', function(ev){
-      newFilePositionLimits();
-    });
+      $("#new_file .age-slider").before($("#new_file .limits"));
 
-    $("#new_file .age-slider").before($("#new_file .limits"));
+      $('a[href="#document-edit"]').on('shown', function(e){
+        newFilePositionLimits();
+      });
 
-    $('a[href="#document-edit"]').on('shown', function(e){
-      newFilePositionLimits();
-    });
+      $(document).ready(function(){
+        SocialStream.Document.edit();
+        newFilePositionLimits();
+      });
 
-    $(document).ready(function(){
-      SocialStream.Document.edit();
-      newFilePositionLimits();
-    });
-
-    $("#new_file .form-sender").click(function(){
-      var tagList=[]
-      $("#new_file .resourceTagList .tagit-choice").each(function(index,elem){
-        tagList.push($(elem).text());
+      $("#new_file .form-sender").click(function(){
+        var tagList=[]
+        $("#new_file .resourceTagList .tagit-choice").each(function(index,elem){
+          tagList.push($(elem).text());
         });
         $("#new_file .tags input").hide();
         $("#new_file .tags input").val(tagList);
       });
-  <% end %>
+    <% end %>
 
-</div>
+  </div>
 </article>

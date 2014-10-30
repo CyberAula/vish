@@ -1,5 +1,4 @@
 <div class="delivery">
-
   <%if wa_assignment.with_dates%>
     <div class="delivery_time">
       <span><%=t('workshop.activities.assignment.open_date')%></span>
@@ -14,11 +13,12 @@
   <div>
     <span><%=t('workshop.activities.assignment.contribution_message')%></span>
 
-    <%= link_to t('workshop.activities.assignment.add_writing'),  new_contribution_path(:wa=>wa_assignment.id), :class => 'btn btn-primary' %>
+    <%= link_to t('workshop.activities.assignment.add_writing'),  new_contribution_path(:type => "writing", :wa_assignment_id=>wa_assignment.id), :class => 'btn btn-primary' %>
 
     <%= form_for Contribution.new, :html => { :multipart => true }, :remote => false do |f| %>
       <%= f.hidden_field :wa_assignment_id, :value => wa_assignment.id %>
-      <input id="contribution_picture_file" name="picture[file]" type="file">
+      <%= f.hidden_field :type, :value => "document" %>
+      <input class="contribution_file_input" name="document[file]" type="file">
       <%= f.submit t('button.save'), :id=>"" ,:class => "contribution"%>
     <% end %>
   </div>
