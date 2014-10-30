@@ -7,38 +7,52 @@
   <%= f.hidden_field :start_at %>
   <%= f.hidden_field :end_at %>
   <%= f.hidden_field :all_day %>
+
   <!--TITULO-->
-  <legend><%= t('event.leyend.title')%></legend>
-  <%= f.text_field :title, :placeholder => t('event.title_input') %>
-  
+  <section class="title">
+    <label><%= t('event.leyend.title')%></label>
+    <%= f.text_field :title, :placeholder => t('event.title_input') %>
+  </section>
+
   <!--DESCRIPCION-->
-  <legend><%= t('event.leyend.description')%></legend>
-  <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
+  <section class="description">
+    <label><%= t('event.leyend.description')%></label>
+    <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
+  </section>
 
   <!--TYPE-->
-  <legend><%= t('event.leyend.type')%></legend>
-  <%= f.radio_button :streaming, false, checked: true %> <%= t('event.type.videoconference') %>
-  <%= f.radio_button :streaming, true %> <%= t('event.type.streaming') %>
+  <section class="event-type">
+  <label><%= t('event.leyend.type')%></label>
+  <div class="radio-button-event">
+    <%= f.radio_button :streaming, false, checked: true %> <p><%= t('event.type.videoconference') %></p>
+  </div>
+  <div class="radio-button-event">
+    <%= f.radio_button :streaming, true %><p> <%= t('event.type.streaming') %></p>
+  </div>
+  </section>
 
   <!--EMBED-->
-  <legend><%= t('document.options.embed')%></legend>
-  <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
-  <script type="text/javascript">
-    $("#document-edit #event_streaming_false").on("click", function() {
-      $("#document-edit #event_embed").attr("disabled", true);
-    });
-    $("#document-edit #event_streaming_true").on("click", function() {
-      $("#document-edit #event_embed").attr("disabled", false);
-    });
-    $(document).ready(function(){
-      if ($("#document-edit #event_streaming_true").is(':checked')) {
+  <section class="embed-event">
+    <label><%= t('document.options.embed')%></label>
+    <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
+    <script type="text/javascript">
+      $("#document-edit #event_streaming_false").on("click", function() {
+        $("#document-edit #event_embed").attr("disabled", true);
+      });
+      $("#document-edit #event_streaming_true").on("click", function() {
         $("#document-edit #event_embed").attr("disabled", false);
-      }
-    });
-  </script>
+      });
+      $(document).ready(function(){
+        if ($("#document-edit #event_streaming_true").is(':checked')) {
+          $("#document-edit #event_embed").attr("disabled", false);
+        }
+      });
+    </script>
+  </section>
 
   <!--DATE-->
-  <legend><%= t('event.leyend.date')%></legend>
+  <section class="date-event">
+    <label><%= t('event.leyend.date')%></label>
     <div id="editdate" class="input-append">
       <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
       <span class="add-on">
@@ -46,8 +60,11 @@
         </i>
       </span>
     </div>
+  </section>
+
   <!--HORA INICIO-->
-  <legend><%= t('event.leyend.start_time')%></legend>
+  <section class="time-start-event">
+    <label><%= t('event.leyend.start_time')%></label>
     <div id="edithourinit" class="input-append">
       <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
       <span class="add-on">
@@ -55,8 +72,11 @@
         </i>
       </span>
     </div>
+  </section>
+
   <!--HORA FINALIZACION-->
-  <legend><%= t('event.leyend.end_time')%></legend>
+  <section class="time-end-event">
+    <label><%= t('event.leyend.end_time')%></label>
     <div id="edithourfinish" class="input-append">
       <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
       <span class="add-on">
@@ -64,9 +84,11 @@
         </i>
       </span>
     </div>
-  <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
-  <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
+  </section>
 
+    <input type="button" class="btn btn-primary " value="<%= t('categories.save')%>"/>
+    <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
+  
   <script>
     $(document).ready(function(){
       $(function() {

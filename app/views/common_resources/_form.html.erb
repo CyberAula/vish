@@ -51,9 +51,11 @@
     <% 
        initialTags = resource.tags.all.map{|e| e.name} || []
        tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue_categories).uniq!
-       if tags == nil 
+
+      if tags == nil
         tags = []
-       end
+      end
+
     %>
  <!-- ##QUICK FIX -->
     <!-- Tags -->
@@ -106,7 +108,11 @@
     <% end%>
 
     <div class="footer-form">
+
       <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+      <%if controller_name == "workshops" && controller.action_name == 'edit_details'%>
+        <button class="btn" href="<%=edit_workshop_path(@workshop)%>">Cancel and go to Workshop</button>
+      <%end%>
     </div>
   <% end %>
 

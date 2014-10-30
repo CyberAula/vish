@@ -79,7 +79,7 @@
       content: function() {
       return $('.contentclone').html();
       },
-      container: "body"
+      container: ".actions_layout_show"
     });
 
     $('.clone').on('shown.bs.popover', function (){
@@ -97,7 +97,7 @@
       content: function() {
         return $('.contentdelete').html();
       },
-      container: "body"
+      container: ".actions_layout_show"
     });
 
     $('.delete').on('shown.bs.popover', function(){
@@ -123,7 +123,7 @@
 
 
 <!--BTN ACTIONS-->
-<div class="btn-group">
+<div class="btn-group actions_layout_show">
 
   <!-- Edit -->
   <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
@@ -275,6 +275,7 @@
             <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
           </div>
           <div class="email_toolbar_excursion">
+            <p><%=t('excursion.actions.send_email') %></p>
             <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
           </div>
         </div>
@@ -284,8 +285,8 @@
     <!-- tab4 / scorm -->
     <div class="tab-pane" id="tab4">
       <div class="contentscorm">
+        <p><%=t("excursion.download_scorm")%></p>
         <a class="btn btn-primary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a> 
-        <p><%=t("excursion.download_scorm")%></p><br/>
       </div> 
     </div> 
 
