@@ -1,6 +1,5 @@
-<% if resource.nil? or resource.author.nil? %>
-<% return %>
-<% end %>
+<% return if resource.nil? or resource.author.nil? %>
+
 <li class="box-item resource-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
   <!-- corner -->
   <div class="corner-item">

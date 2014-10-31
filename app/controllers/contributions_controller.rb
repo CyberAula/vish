@@ -27,7 +27,7 @@ class ContributionsController < ApplicationController
   def show
     super do |format|
       format.html {
-        redirect_to url_for(resource.activity_object.object)
+        redirect_to polymorphic_path(resource.activity_object.object, :contribution => true)
       }
     end
   end

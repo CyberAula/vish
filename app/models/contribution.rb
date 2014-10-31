@@ -23,7 +23,36 @@ class Contribution < ActiveRecord::Base
   #has_many 	:children, :class_name => 'Contribution', :foreign_key => 'parent_id'
   	
   def workshop
-    self.wa_assignment.workshop_activity.workshop
+    return workshop_parent unless workshop_parent.nil?
+
+    contribution = Contribution.find_by_id(self.parent_id)
+    contribution.workshop unless contribution.nil?
+  end
+
+  def workshop_parent
+    self.wa_assignment.workshop_activity.workshop unless self.wa_assignment.nil?
+  end
+
+  def parent
+    workshop_parent || Contribution.find_by_id(self.parent_id)
+  end
+
+  def parents_path(path=nil)
+    path ||= [self]
+    wp = self.parent
+
+    unless wp.nil?
+      path.unshift(wp)
+      if wp.class.name=="Contribution"
+        return wp.parents_path(path)
+      end
+    end
+
+    return path
+  end
+
+  def title
+    self.activity_object.title
   end
 
 end
