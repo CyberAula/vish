@@ -934,6 +934,10 @@ en:
         assignment:
             add_image: "Upload"
             add_writing: "Writing"
+            available_contributions:
+                document: "Document"
+                title: "Available contributions"
+                writing: "Writing"
             content: "Content"
             contribution_message: "Participate:"
             description: "Assignments allow participants to contribute to the workshop by uploading their own resources."

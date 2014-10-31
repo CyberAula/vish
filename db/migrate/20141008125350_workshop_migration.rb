@@ -36,6 +36,7 @@ class WorkshopMigration < ActiveRecord::Migration
       t.boolean  "with_dates", :default => false
       t.datetime "open_date"
       t.datetime "due_date"
+      t.text "available_contributions"
       t.timestamps
     end
 
