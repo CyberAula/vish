@@ -12,14 +12,9 @@
 
   <div>
     <span><%=t('workshop.activities.assignment.contribution_message')%></span>
-
-    <%= link_to t('workshop.activities.assignment.add_writing'),  new_contribution_path(:type => "writing", :wa_assignment_id=>wa_assignment.id), :class => 'btn btn-primary' %>
-
-    <%= form_for Contribution.new, :html => { :multipart => true }, :remote => false do |f| %>
-      <%= f.hidden_field :wa_assignment_id, :value => wa_assignment.id %>
-      <%= f.hidden_field :type, :value => "document" %>
-      <input class="contribution_file_input" name="document[file]" type="file">
-      <%= f.submit t('button.save'), :id=>"" ,:class => "contribution"%>
+    <% wa_assignment.available_contributions_array.each do |contribution_type| %>
+      <%= render partial: "contributions/wassignment_#{contribution_type}",
+               locals:  { :wa_assignment => wa_assignment }  %>
     <% end %>
   </div>
 </div>
