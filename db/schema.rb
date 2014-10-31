@@ -610,11 +610,12 @@ ActiveRecord::Schema.define(:version => 20141008125350) do
   create_table "wa_assignments", :force => true do |t|
     t.text     "fulltext"
     t.text     "plaintext"
-    t.boolean  "with_dates", :default => false
+    t.boolean  "with_dates",              :default => false
     t.datetime "open_date"
     t.datetime "due_date"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.text     "available_contributions"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "wa_assignments_wa_contributions_galleries", :id => false, :force => true do |t|

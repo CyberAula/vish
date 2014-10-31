@@ -20,7 +20,7 @@ class WaContributionsGalleriesController < ApplicationController
   before_filter :authenticate_user!
   inherit_resources
 
-  skip_after_filter :discard_flash, :only => [:create]
+  skip_after_filter :discard_flash, :only => [:create, :update]
 
   #############
   # REST methods

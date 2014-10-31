@@ -20,13 +20,13 @@ class WaAssignmentsController < ApplicationController
   before_filter :authenticate_user!
   inherit_resources
 
-  skip_after_filter :discard_flash, :only => [:create]
+  skip_after_filter :discard_flash, :only => [:create, :update]
 
   #############
   # REST methods
   #############
 
-  def create   
+  def create
     super do |format|
       format.html {
          unless resource.errors.blank?
@@ -42,7 +42,7 @@ class WaAssignmentsController < ApplicationController
   def update
     super do |format|
       format.html {
-         unless resource.errors.blank?
+        unless resource.errors.blank?
           flash[:errors] = resource.errors.full_messages.to_sentence
         else
           discard_flash
