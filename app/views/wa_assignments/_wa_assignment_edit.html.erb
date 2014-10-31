@@ -1,4 +1,4 @@
-<div id="" class="">
+<div>
   <%= form_for wa_assignment, :html => { :id => "edit_wa_assignment_#{wa_assignment.id}" }, :remote => false do |f| %>
     <%= f.text_area :fulltext, :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
     <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_assignment_#{wa_assignment.id}_plaintext"%>
@@ -18,3 +18,11 @@
     });
   });
 </script>
+
+<div>
+  <span><%=t('workshop.activities.assignment.contribution_message')%></span>
+  <% wa_assignment.available_contributions_array.each do |contribution_type| %>
+    <%= render partial: "contributions/wassignment_#{contribution_type}",
+             locals:  { :wa_assignment => wa_assignment, :editMode => true }  %>
+  <% end %>
+</div>
