@@ -3,14 +3,7 @@
 <section id="<%= document.class.to_s.underscore %> "class="layout_show">
 
   <%if @contribution%>
-    <p>
-      <% document.contribution.parents_path.each_with_index do |contributionParent,index| %>
-        <%unless index == 0%>
-          <span>></span>
-        <%end%>
-        <span><%= link_to contributionParent.title, polymorphic_path(contributionParent)%></span>
-      <% end %>
-    </p>
+    <%= render :partial => 'contributions/breadcrumb_path', :locals  => { :path => document.contribution.parents_path } %>
   <%end%>
 
   <% document_profile_subject ||= document.owner_subject %>
@@ -53,8 +46,9 @@
     <%if @contribution%>
       <div class="description-activity">
         <p> Contribute </p>
-        <%= render partial: "contributions/contributions", locals:  { :contribution => document.contribution } %>
-        <p> Contributions carrousel </p>
+        <%= render partial: "contributions/submit_contributions", locals:  { :contribution => document.contribution } %>
+        <p> Contributions Gallery </p>
+        <%= render partial: "contributions/contributions_gallery", locals:  { :contributions => document.contribution.contributions } %>
       </div>
     <%end%>
 

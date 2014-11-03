@@ -1,11 +1,12 @@
+<%resource = contribution.activity_object.object%>
 <% return if resource.nil? or resource.author.nil? %>
 
-<li class="box-item resource-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+<li class="box-item resource-item">
   <!-- corner -->
   <div class="corner-item">
     <div class="corner-item2">
       <div class="corner-color"></div>
-      <%= link_to raw(icon(resource)), resource, :title => resource.title %>
+      <%= link_to raw(icon(resource)), contribution, :title => resource.title %>
     </div>
     <div class="corner-background"></div>
   </div>
@@ -13,7 +14,7 @@
   <div class="container-img">
     <div class="dummy"></div>
     <div class="element resource-center">
-      <%= link_to raw(icon(resource)), resource, :title => resource.title %>
+      <%= link_to raw(icon(resource)), contribution, :title => resource.title %>
     </div>
   </div>
   <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
@@ -21,7 +22,7 @@
   <div class="info">
     <!-- Title -->
     <div class="name">
-      <%= link_to resource.title, resource %>
+      <%= link_to resource.title, contribution %>
     </div>
     <!-- Author -->
     <span class="author"> 
@@ -35,16 +36,8 @@
         <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
         <%= link_like(resource.post_activity)%>
       </div>
-      <!--views -->
+      <!--views (contributions may have private scope, so they do not include views at this time) -->
       <div class="views">
-        <%if resource.private_scope? %>
-          <div class="private-resource-mark">
-            <i class="icon-lock"></i>
-          </div>
-        <%else%>
-          <%=resource.visit_count.to_s%>
-          <i class="icon-eye-open"></i>
-        <%end%>
       </div>
     </div>
   </div>

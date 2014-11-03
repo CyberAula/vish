@@ -19,9 +19,10 @@ class Contribution < ActiveRecord::Base
   belongs_to :activity_object
   belongs_to :wa_assignment
 
-  #belongs_to  :parent, :class_name => 'Contribution'
-  #has_many 	:children, :class_name => 'Contribution', :foreign_key => 'parent_id'
-
+  #Children
+  has_many   :contributions, :foreign_key => 'parent_id'
+  #Parent is managed by the 'parent' method. A parent can be a Workshop or another Contribution
+  
   validate :has_parent
   def has_parent
     if self.parent.nil?
@@ -44,12 +45,12 @@ class Contribution < ActiveRecord::Base
 
   def parents_path(path=nil)
     path ||= [self]
-    wp = self.parent
+    cp = self.parent
 
-    unless wp.nil?
-      path.unshift(wp)
-      if wp.class.name=="Contribution"
-        return wp.parents_path(path)
+    unless cp.nil?
+      path.unshift(cp)
+      if cp.class.name=="Contribution"
+        return cp.parents_path(path)
       end
     end
 

@@ -15,6 +15,6 @@
 <div>
   <span><%=t('workshop.activities.assignment.contribution_message')%></span>
   <% available_contributions.each do |contribution_type| %>
-    <%= render partial: "contributions/contribution_#{contribution_type.downcase}", locals:  { :editMode => editMode, :wa_assignment => wa_assignment, :parent => contribution }  %>
+    <%= render partial: "contributions/submit_#{contribution_type.downcase}", locals:  { :editMode => editMode, :wa_assignment => wa_assignment, :parent => contribution }  %>
   <% end %>
 </div>
