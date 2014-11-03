@@ -1,13 +1,35 @@
- 
+
+
+
+ul.workshop_activities_list_edit
+  padding: 0px
+  margin: 0px
+  display: block
+  float: left
+  width: 100%
+
+
+
+// edit layour style
+// --------------------------------------------------
+
+.wa_activity_wrapper_edit
+  background-color: transparent
+  border: 2px dashed $grayLight
+  @include border-radius($radius)
+  
+
+.header_workshop
+  float: left
+
 
 // DESCRIPTION box
 // --------------------------------------------------
 .wa_activity_wrapper
   display: block
-  float: left
+  height: auto
   width: 96%
   padding: 30px 2%
-  position: relative
   margin-top: 3px
   margin-bottom: 3px
 
@@ -15,11 +37,11 @@
   .wa_activity_edit_tools
     display: block
     float: right
-    width: 130px
+    width: 95%
     top: 10px
-    right: 20px
+    right: 5%
     height: 40px
-    position: absolute
+    
     ul
       margin: 0
 
@@ -36,6 +58,9 @@
           font-size: 25px
           text-decoration: none
           color: $grayDark
+
+      .sorthandler 
+        cursor: move
 
   h3.title_WS
     width: 95%
@@ -93,14 +118,6 @@
     background-color: $grayLight
   .btn
     float: right
-
-// edit layour style
-// --------------------------------------------------
-
-.wa_activity_wrapper_edit
-  background-color: transparent
-  border: 2px dashed $grayLight
-  @include border-radius($radius)
 
 
 // ADD NEW ACTIVITY BTN
@@ -205,9 +222,10 @@
         float: left
 
 
-ul.workshop_activities_list
-  margin: 20px 0 
-  
+
+
+// SHOW
+// --------------------------------------------------
 .workshop_show
   .box-show,
   .description-activity
