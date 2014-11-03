@@ -1,4 +1,5 @@
-<div>
+<h3 class="title_WS">Assignment</h3>
+<div class="Assignment_edit_box">
   <%= form_for wa_assignment, :html => { :id => "edit_wa_assignment_#{wa_assignment.id}" }, :remote => false do |f| %>
     <%= f.text_area :fulltext, :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
     <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_assignment_#{wa_assignment.id}_plaintext"%>
@@ -19,7 +20,7 @@
   });
 </script>
 
-<div>
+<div class="workshop_contribute_footer">
   <span><%=t('workshop.activities.assignment.contribution_message')%></span>
   <% wa_assignment.available_contributions_array.each do |contribution_type| %>
     <%= render partial: "contributions/wassignment_#{contribution_type}",

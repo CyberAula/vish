@@ -1,10 +1,16 @@
 
+.header_workshop
+  float: left
+
+
 ul.workshop_activities_list_edit
   padding: 0px
-  margin: 0px
+  margin: 5px 0px
   display: block
   float: left
   width: 100%
+  li.workshop_element
+    margin: 10px 0
 
 
 
@@ -15,10 +21,25 @@ ul.workshop_activities_list_edit
   background-color: transparent
   border: 2px dashed $grayLight
   @include border-radius($radius)
-  
 
-.header_workshop
-  float: left
+  .Assignment_edit_box
+    width: 100%
+    position: relative
+    span.cke_skin_BootstrapCK-Skin
+      width: 98%
+      padding: 1%
+      background-color: $grayLight
+    .btn
+      right: 10px
+      top: 20px
+      position: absolute
+      
+
+  .workshop_contribute_footer
+    opacity: 0.5
+    width: 50%
+
+
 
 
 // DESCRIPTION box
@@ -27,52 +48,68 @@ ul.workshop_activities_list_edit
   display: block
   height: auto
   width: 96%
-  padding: 30px 2%
-  margin-top: 3px
-  margin-bottom: 3px
+  padding: 20px 2%
+  margin-top: 5px
+  margin-bottom: 5px
+  position: relative
 
+  //toolbar-actions
   .wa_activity_actions,
   .wa_activity_edit_tools
     display: block
     float: right
-    width: 95%
-    top: 10px
-    right: 5%
+    width: 150px
+    top: 0px
+    position: absolute
+    right: 0px
     height: 40px
     
     ul
       margin: 0
-
-      a,i
-        font-size: 20px
-        color: $gray
+      li
+        height: 40px
+        width: 40px
+        display: block
         float: right
-        margin-left: 20px
-        cursor: pointer
-        width: 20px
         text-align: center
+        a
+          margin-top: 0 
+        i
+          font-size: 20px
+          color: $gray
+          cursor: pointer
+          text-align: center
+          padding-top: 10px
+          margin: 0px auto 0
+          display: block
 
-        &:hover
-          font-size: 25px
-          text-decoration: none
-          color: $grayDark
+          &:hover
+            text-decoration: none
+            color: $black
 
       .sorthandler 
+        background-color: #ccc
         cursor: move
+        @include border-radius(2px 13px)
+        
 
+  //toolbar-actions
   h3.title_WS
     width: 95%
-    float: left
     display: inline-block
     margin:  0
     line-height: 30px
     margin-bottom: 10px
     margin-top: -10px
+    height: 40px
+    color: $gray
+
   p.description_WS
     margin-right: 2.5%
     margin-left: 2.5%
     width: 80%
     float: left
+
   .container-img_WS
     display: inline-block
     position: relative
@@ -80,7 +117,6 @@ ul.workshop_activities_list_edit
     float: left
     background-color: $grayLighter
     @include border-radius($baseBorderRadius)
-    //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
     .dummy
       padding-top: 100%
     .element
@@ -110,12 +146,7 @@ ul.workshop_activities_list_edit
       i
         padding-top: 36px 
         display: block
-  span.cke_skin_BootstrapCK-Skin
-    width: 98%
-    padding: 1%
-    background-color: $grayLight
-  .btn
-    float: right
+
 
 
 // ADD NEW ACTIVITY BTN
