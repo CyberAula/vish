@@ -52,7 +52,7 @@
                 <i class="icon-edit-sign"></i>
               </li>
             <% end %>
-            <li><%= link_to raw('<i class="icon-remove"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %></li>
+            <li><%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %></li>
           </ul>
         </div>
         <% entity = workshop_activity.object %>

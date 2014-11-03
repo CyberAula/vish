@@ -1,5 +1,6 @@
 
-
+.header_workshop
+  float: left
 
 ul.workshop_activities_list_edit
   padding: 0px
@@ -19,8 +20,7 @@ ul.workshop_activities_list_edit
   @include border-radius($radius)
   
 
-.header_workshop
-  float: left
+
 
 
 // DESCRIPTION box
@@ -29,38 +29,51 @@ ul.workshop_activities_list_edit
   display: block
   height: auto
   width: 96%
-  padding: 30px 2%
+  padding: 20px 2%
   margin-top: 3px
   margin-bottom: 3px
+  position: relative
 
   .wa_activity_actions,
   .wa_activity_edit_tools
     display: block
     float: right
-    width: 95%
-    top: 10px
-    right: 5%
+    width: 150px
+    top: 0px
+    position: absolute
+    right: 0px
     height: 40px
     
     ul
       margin: 0
-
-      a,i
-        font-size: 20px
-        color: $gray
+      li
+        height: 40px
+        width: 40px
+        display: block
         float: right
-        margin-left: 20px
-        cursor: pointer
-        width: 20px
         text-align: center
+        a
+          margin-top: 0 
+        i
+          font-size: 20px
+          color: $gray
+          cursor: pointer
+          text-align: center
+          padding-top: 10px
+          margin: 0px auto 0
+          display: block
 
-        &:hover
-          font-size: 25px
-          text-decoration: none
-          color: $grayDark
+          &:hover
+            text-decoration: none
+            color: $black
 
       .sorthandler 
+        background-color: #ccc
         cursor: move
+        @include border-radius(2px 13px)
+        i
+          color: $white
+
 
   h3.title_WS
     width: 95%
