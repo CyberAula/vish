@@ -3,8 +3,16 @@
 <div id="AddContribution">
     <div>
         <%= form_for resource, :remote => false do |f| %>
-          <%= f.hidden_field :wa_assignment_id, :value => resource.wa_assignment_id ? resource.wa_assignment_id : params[:wa_assignment_id] %>
-          <%= f.hidden_field :type, :value => "writing" %>
+          <% wa_assignment_id = (resource.wa_assignment_id ? resource.wa_assignment_id : params[:wa_assignment_id]) %>
+          <% if !wa_assignment_id.nil? %>
+            <%= f.hidden_field :wa_assignment_id, :value => wa_assignment_id %>
+          <% else %>
+            <% parent_id = (resource.parent_id ? resource.parent_id : params[:parent_id]) %>
+            <% if !parent_id.nil? %>
+              <%= f.hidden_field :parent_id, :value => parent_id %>
+            <%end%>
+          <% end %>
+          <%= f.hidden_field :type, :value => "Writing" %>
           <label for="contribution_title"><%=t("contribution.title")%></label>
           <input id="contribution_title" name="writing[title]" value="">
           <label for="contribution_fulltext"><%=t("contribution.content")%></label>

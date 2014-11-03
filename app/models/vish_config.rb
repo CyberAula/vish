@@ -26,6 +26,10 @@ class VishConfig
     getResourceModels + getModelsWhichActAsResources
   end
 
+  def self.getAllContributionTypes
+    ["Document","Writing","Excursion","Link"]
+  end
+
   def self.getAllServices
     ["ARS","Catalogue","Competitions2013"]
   end
@@ -104,6 +108,10 @@ class VishConfig
     end
   end
 
+  def self.getAvailableContributionTypes
+    getAllContributionTypes
+  end
+
   def self.processAlias(models=[])
     if models.include? "Resource"
       models.delete "Resource"
@@ -130,5 +138,7 @@ class VishConfig
       return (Vish::Application.config.APP_CONFIG["services"] & getAllServices)
     end
   end
+
+
 
 end

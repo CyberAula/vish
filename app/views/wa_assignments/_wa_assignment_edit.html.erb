@@ -1,29 +1,38 @@
 <h3 class="title_WS">Assignment</h3>
-<div class="Assignment_edit_box">
-  <%= form_for wa_assignment, :html => { :id => "edit_wa_assignment_#{wa_assignment.id}" }, :remote => false do |f| %>
-    <%= f.text_area :fulltext, :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
-    <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_assignment_#{wa_assignment.id}_plaintext"%>
-    <%= f.submit t('save'), :class => "hide", :id => "edit_wa_assignment_#{wa_assignment.id}_submitbutton"%>
-  <% end %>
-  <input type="button" id="edit_wa_assignment_<%=wa_assignment.id%>_button" class="btn btn-primary" data-loading-text="<%= t('saving')%>" value="<%= t('save')%>"/>
-</div>
 
-<%=render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"} %>
+<div class="delivery">
+  <%if wa_assignment.with_dates%>
+    <div class="delivery_time">
+      <span><%=t('workshop.activities.assignment.open_date')%></span>
+      <p><%=wa_assignment.open_date%></p>
+      <span><%=t('workshop.activities.assignment.due_date')%></span>
+      <p><%=wa_assignment.due_date%></p>
+    </div>
+  <%end%>
 
-<script>
-  $(document).ready(function(){
-    var uploadButton = $("#edit_wa_assignment_<%=wa_assignment.id%>_button");
-    $(uploadButton).click(function(event){
-      set_ckeditor_content_full_and_plaintext("edit_wa_assignment_<%=wa_assignment.id%>_fulltext","edit_wa_assignment_<%=wa_assignment.id%>_plaintext");
-      $("#edit_wa_assignment_<%=wa_assignment.id%>_submitbutton").click();
+  <div class="Assignment_edit_box">
+    <%= form_for wa_assignment, :html => { :id => "edit_wa_assignment_#{wa_assignment.id}" }, :remote => false do |f| %>
+      <%= f.text_area :fulltext, :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
+      <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_assignment_#{wa_assignment.id}_plaintext"%>
+      <%= f.submit t('save'), :class => "hide", :id => "edit_wa_assignment_#{wa_assignment.id}_submitbutton"%>
+    <% end %>
+    <input type="button" id="edit_wa_assignment_<%=wa_assignment.id%>_button" class="btn btn-primary" data-loading-text="<%= t('saving')%>" value="<%= t('save')%>"/>
+  </div>
+
+  <%=render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"} %>
+
+  <script>
+    $(document).ready(function(){
+      var uploadButton = $("#edit_wa_assignment_<%=wa_assignment.id%>_button");
+      $(uploadButton).click(function(event){
+        set_ckeditor_content_full_and_plaintext("edit_wa_assignment_<%=wa_assignment.id%>_fulltext","edit_wa_assignment_<%=wa_assignment.id%>_plaintext");
+        $("#edit_wa_assignment_<%=wa_assignment.id%>_submitbutton").click();
+      });
     });
-  });
-</script>
+  </script>
 
-<div class="workshop_contribute_footer">
-  <span><%=t('workshop.activities.assignment.contribution_message')%></span>
-  <% wa_assignment.available_contributions_array.each do |contribution_type| %>
-    <%= render partial: "contributions/wassignment_#{contribution_type}",
-             locals:  { :wa_assignment => wa_assignment, :editMode => true }  %>
-  <% end %>
+  <div class="workshop_contribute_footer">
+    <%= render partial: "contributions/submit_contributions", locals:  { :wa_assignment => wa_assignment, :editMode => true } %>
+  </div>
+  
 </div>

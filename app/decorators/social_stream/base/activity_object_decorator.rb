@@ -40,11 +40,6 @@ ActivityObject.class_eval do
     self.scope == 1
   end
 
-  #We can't call this method workshop, since its a reserved word
-  def contributionWorkshop
-    self.contribution.workshop unless self.contribution.nil?
-  end
-
   #Calculate quality score (in a 0-10 scale) 
   def calculate_qscore
     #self.reviewers_qscore is the LORI score in a 0-10 scale
