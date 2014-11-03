@@ -172,6 +172,7 @@ class CategoriesController < ApplicationController
   def update
     @category.title = params[:category][:title]
     @category.description = params[:category][:description]
+    @category.avatar = params[:category][:avatar]
     @category.update
     redirect_to @category
   end

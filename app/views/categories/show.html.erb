@@ -41,6 +41,9 @@
       <!--DESCRIPCION-->
       <label><%= t('categories.leyend.description')%></label>
       <%= f.text_field :description %>
+      <!--FORM FOR UPLOADING IMAGE-->
+      <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
+      <%= f.file_field :avatar %>
       <div class="actions">
         <%= f.submit t('categories.save'), :id => "saveCategory" %>
         <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn "%>
