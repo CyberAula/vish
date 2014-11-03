@@ -44,12 +44,7 @@
     </div>
 
     <%if @contribution%>
-      <div class="description-activity">
-        <p> Contribute </p>
-        <%= render partial: "contributions/submit_contributions", locals:  { :contribution => document.contribution } %>
-        <p> Contributions Gallery </p>
-        <%= render partial: "contributions/contributions_gallery", locals:  { :contributions => document.contribution.contributions } %>
-      </div>
+      <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => document.contribution } %>
     <%end%>
 
   <% end %>
