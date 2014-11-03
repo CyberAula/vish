@@ -53,6 +53,7 @@
     <%if @contribution%>
       <div class="description-activity">
         <p> Contribute </p>
+        <%= render partial: "contributions/contributions", locals:  { :contribution => document.contribution } %>
         <p> Contributions carrousel </p>
       </div>
     <%end%>

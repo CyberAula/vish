@@ -1,0 +1,20 @@
+<%wa_assignment ||= nil %>
+<%contribution ||= nil %>
+<%editMode ||= false %>
+
+<% 
+  if !wa_assignment.nil?
+    available_contributions = wa_assignment.available_contributions_array
+  elsif !contribution.nil?
+    available_contributions = contribution.available_contributions_array
+  else
+    available_contributions = []
+  end
+%>
+
+<div>
+  <span><%=t('workshop.activities.assignment.contribution_message')%></span>
+  <% available_contributions.each do |contribution_type| %>
+    <%= render partial: "contributions/contribution_#{contribution_type.downcase}", locals:  { :editMode => editMode, :wa_assignment => wa_assignment, :parent => contribution }  %>
+  <% end %>
+</div>

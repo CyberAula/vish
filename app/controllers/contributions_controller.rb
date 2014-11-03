@@ -48,22 +48,27 @@ class ContributionsController < ApplicationController
     if params["contribution"]["wa_assignment_id"].present?
       wassignment = WaAssignment.find_by_id(params["contribution"]["wa_assignment_id"])
       workshop = wassignment.workshop unless wassignment.nil?
+      if wassignment.nil? or workshop.nil?
+        flash[:errors] = "Invalid workshop or assignment"
+        return redirect_to "/"
+      end
     else
       #Get resource from which the contribution is being created...
+      parent = Contribution.find_by_id(params["contribution"]["parent_id"])
+      if parent.nil?
+        flash[:errors] = "Invalid parent"
+        return redirect_to "/"
+      end
     end
 
     case params["contribution"]["type"]
-    when "document"
+    when "Document"
       object = Document.new((params["document"].merge!(params["contribution"]["activity_object"])).permit!)
-    when "writing"
+    when "Writing"
       object = Writing.new((params["writing"].merge!(params["contribution"]["activity_object"])).permit!)
     else
       flash[:errors] = "Invalid contribution"
-      if !workshop.nil?
-        return redirect_to workshop_path(workshop)
-      else
-        return redirect_to "/"
-      end
+      return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
     end
 
     object.valid?
@@ -73,11 +78,7 @@ class ContributionsController < ApplicationController
       discard_flash
     else
       flash[:errors] = object.errors.full_messages.to_sentence
-      if !workshop.nil?
-        return redirect_to workshop_path(workshop)
-      else
-        return redirect_to "/"
-      end
+      return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
     end
     
     params["contribution"].delete "activity_object"
@@ -88,11 +89,7 @@ class ContributionsController < ApplicationController
       format.html {
         unless resource.errors.blank?
           flash[:errors] = resource.errors.full_messages.to_sentence
-          if !workshop.nil?
-            return redirect_to workshop_path(workshop)
-          else
-            return redirect_to "/"
-          end
+          return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
         else
           discard_flash
           return redirect_to contribution_path(resource)
