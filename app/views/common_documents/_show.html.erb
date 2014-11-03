@@ -1,6 +1,12 @@
-<section id="<%= document.class.to_s.underscore %> "class="layout_show">
-  <% document_profile_subject ||= document.owner_subject %>
+<% @contribution = (params["contribution"]=="true") %>
 
+<section id="<%= document.class.to_s.underscore %> "class="layout_show">
+
+  <%if @contribution%>
+    <%= render :partial => 'contributions/breadcrumb_path', :locals  => { :path => document.contribution.parents_path } %>
+  <%end%>
+
+  <% document_profile_subject ||= document.owner_subject %>
   <%= render :partial => 'objects/show', :locals  => { :object => document } %>
   
   <% content_for :title do %>
@@ -36,6 +42,10 @@
         <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
       </div>
     </div>
+
+    <%if @contribution%>
+      <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => document.contribution } %>
+    <%end%>
 
   <% end %>
 

@@ -10,7 +10,7 @@ class WaAssignment < ActiveRecord::Base
 
   validate :has_available_contributions
   def has_available_contributions
-    all_available_contributions = ["document","writing","excursion","link"]
+    all_available_contributions = VishConfig.getAvailableContributionTypes()
     if self.available_contributions.nil? or (self.available_contributions_array & all_available_contributions).blank?
       errors.add(:contribution, "Invalid available contributions")
     else

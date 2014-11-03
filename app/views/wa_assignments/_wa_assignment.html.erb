@@ -10,11 +10,6 @@
 
   <%=raw(wa_assignment.fulltext)%>
 
-  <div>
-    <span><%=t('workshop.activities.assignment.contribution_message')%></span>
-    <% wa_assignment.available_contributions_array.each do |contribution_type| %>
-      <%= render partial: "contributions/wassignment_#{contribution_type}",
-               locals:  { :wa_assignment => wa_assignment }  %>
-    <% end %>
-  </div>
+  <%= render partial: "contributions/submit_contributions", locals:  { :wa_assignment => wa_assignment } %>
+
 </div>

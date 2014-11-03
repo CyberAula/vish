@@ -1,0 +1,8 @@
+<p>
+  <% path.each_with_index do |contributionParent,index| %>
+    <%unless index == 0%>
+      <span>></span>
+    <%end%>
+    <span><%= link_to contributionParent.title, polymorphic_path(contributionParent)%></span>
+  <% end %>
+</p>
