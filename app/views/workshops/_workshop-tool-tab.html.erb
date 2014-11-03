@@ -69,16 +69,6 @@
 <!--BTN ACTIONS-->
 <div class="btn-group">
 
-  <!-- Edit -->
-  <% if user_signed_in? and (can? :update, @workshop) %>
-    <button class="with_tooltip btn hidden-phone" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_workshop_path(@workshop)%>'"><i class="icon-edit"></i></button>
-  <%end%>
-
-  <!--Remove-->
-  <% if user_signed_in? and can?(:destroy, @workshop) %>
-    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
-  <%end%>
-
   <div class="contentdelete" style="display: none">
     <p class="delete_p"><i class="icon-trash"></i>  <%=t('excursion.confirm_delete')%></p>
     <div class="actions">
@@ -107,10 +97,10 @@
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active">
-      <a href="#tab1" tabTitle='description' data-toggle="tab">
+      <a href="#tab1" tabTitle='details' data-toggle="tab">
         <i class="icon-align-left"></i> 
         <span class="  hidden-phone">
-          <%=t('excursion.description')%>
+          <%=t('excursion.detail')%>
         </span>
       </a>
     </li>
@@ -130,15 +120,12 @@
         </span>
       </a>
     </li>
-    <%#= render partial: 'help/help_show_workshop' %>
   </ul>
 </div>
 
-<!--h2><%= @workshop.title %></h2-->
-
 <div class="tab-content excursion-social">
 
-  <!-- tab1 / description -->
+  <!-- tab1 / details -->
   <div class="tab-pane active" id="tab1">
     <div class="toggler">
       <!--description-->

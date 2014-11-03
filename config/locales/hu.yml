@@ -232,6 +232,7 @@ hu:
     contributors:
       name: "Együttműködők"
     created: "létrehozva"
+    detail: "Részletek"
     favorites: "Kedvenc"    
     how: "Hogy lehet virtuális sétát készíteni"
     invite:
@@ -273,6 +274,8 @@ hu:
   go:
     repository: "menj a tárházhoz"
   help: "súgó"
+  info:
+    author: "szerző"
   lang:
     independent: "Nyelv független"
     changed: "Nyelv változtatása %{lang}-ra"

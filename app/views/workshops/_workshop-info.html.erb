@@ -1,27 +1,12 @@
 <div class="left-info">
   <!--author-->
-  <%= render :partial => 'workshops/items-owner-profile' %>
-  <!--tittle-->
-  <div class="viewsAndConunt">        
-    <div class="views">
-      <%=@workshop.visit_count.to_s%> 
-      <span>
-        <%=t('follow.views')%>
-      </span>   
-    </div>
-    <%unless @workshop.post_activity.nil?%>
-      <div class="like">    
-        <div class="count"><%=@workshop.post_activity.likes.count.to_s%></div>
-        <%= link_like(@workshop.post_activity)%>
-      </div>
-    <%end%>
-  </div>  
-</div>
-
-<div class="info-workshop">
-
   <dl class="dl-horizontal">
-
+      <dt><%= t('info.author') %></dt>
+      <dd>
+      <%= link_to @workshop.author.subject do %>
+        <p><%= truncate_name(@workshop.author.name, :length => 50) %></p>
+      <%end%>
+      </dd>
     <% unless @workshop.description.blank? %>
       <!--description-->
       <!--dt><%= t('info.description') %></dt-->
@@ -40,38 +25,11 @@
         </ul>
       </dd>
     <% end %>
-    <% unless @workshop.language.blank? %>
-      <!--language-->
-      <dt><%= t('lang.title').capitalize %></dt>
-      <dd>
-        <%= case @workshop.language
-        when '';
-          t('lang.independent')
-        when 'de';
-          'Deutsch'
-        when 'en';
-          'English'
-        when 'es';
-          'Español'
-        when 'fr';
-          'Français'
-        when 'it';
-          'Italiano'
-        when 'pt';
-          'Português'
-        when 'ru';
-          'Русский'
-        else
-          ; t('lang.others')
-          end %>
-        </dd>
-      <% end %>
-      
-    <!--date-upload-->
-    <dt><%= t('document.info.date.updated_at') %></dt>
-    <dd><%= I18n.localize @workshop.updated_at, :format => :long %></dd>
+    
   </dl>
 </div>
+
+
 
 
 

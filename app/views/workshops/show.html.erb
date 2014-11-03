@@ -1,11 +1,11 @@
 
 
 <section id="show_items" class="layout_show workshop_show">
-  
+  <div class="description-activity" id="wk_description"> 
   <div class="wa_activity_wrapper wa_activity_wrapper_show">
-    <div class="description-activity"> 
+    
       <% if user_signed_in? and (can? :update, @workshop) %>
-        <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-primary">Turn on editing mode</a></p>
+        <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-primary" id="edit_workshop">Turn on editing mode</a></p>
       <%end%>
       <!--title-->
       <h3 class="title_WS"><%=@workshop.title%></h3>

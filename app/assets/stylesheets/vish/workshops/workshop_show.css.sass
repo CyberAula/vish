@@ -1,19 +1,15 @@
-
-
-
 // ADD NEW ACTIVITY BTN
-
 // SHOW
-
 // --------------------------------------------------
+
 .workshop_show
-  .wa_activity_wrapper    
-    .description-activity
-      height: auto
-      padding: 20px
+  #wk_description
+    padding-bottom: 25px
+    .wa_activity_wrapper   
+      padding: 25px 
+      height: 100%
       width: auto
-      margin-left: -20px
-      margin-bottom: 5px
+
       .title_WS
         font-weight: 600
         color: $gray
@@ -23,34 +19,43 @@
     width: 100% !important
     border-radius: 0px
     height: 100%
-    padding-bottom: 5px
-    
-    
-  .box-show
-    .delivery
-      margin-top: 20px
-      .delivery_time
-        width: 100%
-        display: block
-        margin-bottom: 15px
-        height: 20px
-        text-align: right
-        position: absolute
-        top: 10px
-        right: 10px
+    .box_description
+      padding-bottom: 10px  
+      .btn-group > .btn:last-child
+        border-radius: 0 
+      
+     
 
-        span
-          padding-right: 10px
-          font-family: $thirdFontFamily
-          font-size: 11px
-          display: inline
-          color: $grayDark
-        p
-          font-size: 14px
-          margin: 0
-          font-family: $firstFontFamily
-          margin-right: 30px
-          display: inline
 
+.box-show
+  .delivery
+    margin-top: 20px
+    .delivery_time
+      width: 100%
+      display: block
+      margin-bottom: 15px
+      height: 20px
+      text-align: right
+      position: absolute
+      top: 10px
+      right: 10px
+
+      span
+        padding-right: 10px
+        font-family: $thirdFontFamily
+        font-size: 11px
+        display: inline
+        color: $grayDark
+      p
+        font-size: 14px
+        margin: 0
+        font-family: $firstFontFamily
+        margin-right: 30px
+        display: inline
+
+#edit_workshop
+  float: right
   
 
+.dl-horizontal dt
+  width: 70 !important

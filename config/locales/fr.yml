@@ -93,6 +93,7 @@ fr:
     contributors:
       name: "Avec du contenu de"
     created: "créée"
+    detail: "Détail"
     favorites: "Favoris"    
     how: "Comment créer une excursion"
     invite:
@@ -134,6 +135,8 @@ fr:
   go:
     repository: "accéder à la bibliothèque"
   help: "aide"
+  info:
+    author: "Auteur"
   lang:
     independent: "Indépendant de la langue"
     changed: "Afficher le site en %{lang}"

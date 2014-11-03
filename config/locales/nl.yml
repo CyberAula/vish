@@ -93,6 +93,7 @@ nl:
     contributors:
       name: "Met inhoud van"
     created: "gecreëerd"
+    detail: "Details"
     favorites: "Favorieten"    
     how: "Hoe kunt u een presentatie maken"
     invite:
@@ -134,6 +135,8 @@ nl:
   go:
     repository: "ga naar de leermiddelenbank"
   help: "hulp"
+  info:
+    author: "Auteur"
   lang:
     independent: "Taalonafhankelijk"
     changed: "Taal gewijzigd in %{lang}"
