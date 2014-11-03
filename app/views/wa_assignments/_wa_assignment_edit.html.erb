@@ -1,3 +1,5 @@
+<h3 class="title_WS">Assignment</h3>
+
 <div class="delivery">
   <%if wa_assignment.with_dates%>
     <div class="delivery_time">
@@ -8,7 +10,7 @@
     </div>
   <%end%>
 
-  <div>
+  <div class="Assignment_edit_box">
     <%= form_for wa_assignment, :html => { :id => "edit_wa_assignment_#{wa_assignment.id}" }, :remote => false do |f| %>
       <%= f.text_area :fulltext, :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
       <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_assignment_#{wa_assignment.id}_plaintext"%>
@@ -29,6 +31,8 @@
     });
   </script>
 
-  <%= render partial: "contributions/submit_contributions", locals:  { :wa_assignment => wa_assignment, :editMode => true } %>
-
+  <div class="workshop_contribute_footer">
+    <%= render partial: "contributions/submit_contributions", locals:  { :wa_assignment => wa_assignment, :editMode => true } %>
+  </div>
+  
 </div>

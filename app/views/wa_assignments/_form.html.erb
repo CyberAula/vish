@@ -8,7 +8,7 @@
 
 <%= form_for wa_assignment, :remote => false, :html => { :id => identifier } do |f| %>
   <%= f.hidden_field :workshop_id, :value => workshop.id %>
-  <%= f.hidden_field :available_contributions %>
+  <%= f.hidden_field :available_contributions, :value => (wa_assignment.new_record? ? "Document" : wa_assignment.available_contributions) %>
 
   <%= f.check_box :with_dates, :onclick => "wa_assignment_onClickDatesCheckbox(this);" %>
   <p class="checkbox_add_time"><%=t('workshop.activities.assignment.with_dates')%></p>
@@ -24,9 +24,9 @@
   <div>
     <br/>
     <p><%=t('workshop.activities.assignment.available_contributions.title')%></p>
-    <%= check_box_tag :available_contribution_document, "document", (wa_assignment.new_record? ? true : false), :contribution => "document", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
+    <%= check_box_tag :available_contribution_document, "Document", false, :contribution => "Document", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
     <p><%=t('workshop.activities.assignment.available_contributions.document')%></p>
-    <%= check_box_tag :available_contribution_writing, "writing", false, :contribution => "writing", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
+    <%= check_box_tag :available_contribution_writing, "Writing", false, :contribution => "Writing", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
     <p><%=t('workshop.activities.assignment.available_contributions.writing')%></p>
   </div>
 

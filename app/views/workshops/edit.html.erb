@@ -14,10 +14,12 @@
 </div>
 
 
-<div class="wa_activity_wrapper wa_activity_wrapper_edit">
+<div class="wa_activity_wrapper wa_activity_wrapper_edit header_workshop">
   <div class="wa_activity_actions">
     <ul>
+      <li>
       <a href=<%=edit_details_path(@workshop)%>><i class="icon-edit"></i></a>
+    </li>
     </ul>
   </div>
   <!--title-->
@@ -36,7 +38,7 @@
 
 <ul class="workshop_activities_list workshop_activities_list_edit">
   <% @workshop_activities.each do |workshop_activity| %>
-    <li workshop_activity_id="<%=workshop_activity.id%>">
+    <li workshop_activity_id="<%=workshop_activity.id%>" class="workshop_element">
       <div class="wa_activity_wrapper wa_activity_wrapper_edit">
         <div class="wa_activity_edit_tools">
           <ul>
@@ -49,10 +51,10 @@
             %>
             <% if hasEditPartial %>
               <li class="ui-state-default" data-target="#WorkshopActivity" data-toggle="modal" data-remote=<%="/#{classNameTableize}/#{object.id}/edit.partial"%>>
-                <i class="icon-edit-sign"></i>
+                <i class="icon-edit"></i>
               </li>
             <% end %>
-            <li><%= link_to raw('<i class="icon-remove"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %></li>
+            <li><%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %></li>
           </ul>
         </div>
         <% entity = workshop_activity.object %>
