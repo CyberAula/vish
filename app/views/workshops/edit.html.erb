@@ -17,7 +17,9 @@
 <div class="wa_activity_wrapper wa_activity_wrapper_edit header_workshop">
   <div class="wa_activity_actions">
     <ul>
+      <li>
       <a href=<%=edit_details_path(@workshop)%>><i class="icon-edit"></i></a>
+    </li>
     </ul>
   </div>
   <!--title-->
@@ -49,7 +51,7 @@
             %>
             <% if hasEditPartial %>
               <li class="ui-state-default" data-target="#WorkshopActivity" data-toggle="modal" data-remote=<%="/#{classNameTableize}/#{object.id}/edit.partial"%>>
-                <i class="icon-edit-sign"></i>
+                <i class="icon-edit"></i>
               </li>
             <% end %>
             <li><%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %></li>
