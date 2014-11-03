@@ -1,5 +1,5 @@
 <%editMode ||= false %>
-<button class="btn btn-primary btn_show_upload">Resource</button>
+
 <%= form_for Contribution.new, :html => { :multipart => true }, :remote => false do |f| %>
   <%= f.hidden_field :wa_assignment_id, :value => wa_assignment.id %>
   <%= f.hidden_field :type, :value => "document" %>
@@ -7,10 +7,5 @@
   <%= f.submit t('button.save'), :id=>"" ,:class => "contribution", :disabled => editMode%>
 <% end %>
 
-<script>
-	$( ".btn_show_upload" ).click(function() {
-		$( "#new_contribution" ).show( "slow" );
-		$( ".btn_show_upload" ).addClass( "hidden" );
-	});
-</script>
+
 
