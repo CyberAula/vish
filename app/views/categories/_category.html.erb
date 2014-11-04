@@ -16,14 +16,14 @@
         <!--IMG categories-->
         <%= link_to(category) do %>
         <div class="category">
-          <%= render :partial => 'categories/thumbnail', :locals =>{ :category => category} %>            
+          <%= render :partial => 'categories/thumbnail', :locals =>{ :category => category} %>
         </div>
 
         <% end %>
       </div>
     </div>
   </div>
-    
+
 <!--INFO excursuion-->
   <div class="caption">
 <!--Title -->
@@ -39,7 +39,7 @@
     <!--____________________ -->
     <div class="info-bottom">
       <!--like -->
-      <div class="categories_inside">  
+      <div class="categories_inside">
         <%=category.property_objects.count.to_s%>
         <%=t('categories.item_inside')%>
       </div>

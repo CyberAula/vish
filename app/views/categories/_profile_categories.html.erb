@@ -54,6 +54,11 @@
   $(document).ready(function(){
   	$(".btn-for-categorize").click(function(){
   		$("#categories_edition").fadeIn();
+
+      $("div[bs-img]").each(function(){
+       $(this).backstretch($(this).attr("bs-img"));
+      });
+      
       beginIndex = getidArray();
       beginObjects = $(".edit_categories .box-item").clone();
     });
