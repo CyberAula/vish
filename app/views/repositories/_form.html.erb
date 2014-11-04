@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div id="AddResource" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AddResourceLabel" aria-hidden="true">
-  
+
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <%= render partial: 'help/help_resource_new' %>
@@ -19,7 +19,7 @@
       </ul>
 
       <p><%= t('document.body.title1')%></p>
-      
+
       <div class="accordion" id="accordion2">
         <div class="accordion-group">
           <div class="accordion-heading">
@@ -49,7 +49,7 @@
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#link">
-              <i class="icon-link"></i> <%= t('document.options.links')%> 
+              <i class="icon-link"></i> <%= t('document.options.links')%>
             </a>
           </div>
           <div id="link" class="accordion-body collapse">
@@ -76,7 +76,7 @@
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#embed">
-              <i class="icon-code"></i> <%= t('document.options.embed')%> 
+              <i class="icon-code"></i> <%= t('document.options.embed')%>
             </a>
           </div>
           <div id="embed" class="accordion-body collapse">
@@ -100,14 +100,14 @@
       </div>
       <br>
     </div>
-    
+
     <div class="layoutform">
       <p><%= t('document.body.title2')%></p>
 
       <!--TITULO-->
       <label><%= t('document.leyend.title')%></label>
       <input type="text" class="title" placeholder="<%= t('document.title_input')%>">
-      
+
       <!--DESCRIPCION-->
       <label><%= t('document.leyend.description')%></label>
       <textarea type="text" class="description" placeholder="<%= t('document.input')%>"></textarea>
@@ -117,7 +117,6 @@
 
       <div class="tagBoxDocument">
          <ul class="resourceTagList"></ul>
-         <!--Mira aquí Berto -->
       </div>
 
       <div class="clearfloat"></div>
@@ -125,11 +124,11 @@
       <!--Avatar-->
       <label class="new_file_avatar_label"><%= t('document.leyend.avatar')%></label>
       <input class="new_file_avatar" type="file" accept="image/*">
-      
+
       <!--LANGUAGE-->
       <label><%= t('document.leyend.language')%></label>
       <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "language") %>
-      
+
       <!--AGE SLIDER-->
       <label><%= t('document.leyend.recommended_age')%></label>
       <div class="limits">
@@ -153,7 +152,7 @@
 <script>
 
   $(document).ready(function(){
-    $('.helpResources').popover({ 
+    $('.helpResources').popover({
       html : true,
       content: function() {
         return $('.contentHelpResources').html();
@@ -200,7 +199,7 @@
 
   //COMMON FIELDS
   var uploadButton = $("#AddResource input[value=<%= t('document.upload')%>][type='button'][class='btn btn-primary']");
-  
+
   $(uploadButton).click(function(event){
      var resource_type = $("#AddResource .accordion-body.collapse.in").attr('id');
 
@@ -243,14 +242,14 @@
   //Tags
   var resourceTagList = $("#AddResource .resourceTagList");
   var resourceTags = [];
-  
+
   //Load tags
   $.each($("#AddResource #resourcePreloadTagList li"), function(index, element) {
      resourceTags.push($(element).html());
   });
-          
+
   if ($(resourceTagList).children().length == 0){
-    $(resourceTagList).tagit({tagSource:resourceTags, sortable:true, maxLength:15, maxTags:8 , 
+    $(resourceTagList).tagit({tagSource:resourceTags, sortable:true, maxLength:15, maxTags:8 ,
       watermarkAllowMessage: '<%=t('document.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' });
   }
 
@@ -287,4 +286,3 @@
   };
 
 </script>
-

@@ -10,7 +10,7 @@
   var followings_tab_loaded = false;
 
   $(document).ready(function(){
-    
+
     $("#excursions_tab").click(function(){
       updateWindowTopUrl($(this).attr("id"));
       if(excursions_tab_loaded === false){
@@ -20,8 +20,8 @@
           type : "GET",
           url : "<%=user_url(profile_subject)%>/excursions",
           success : function(html) {
-            $('.loader_pagination').hide();      
-            $("#excursions_tab_ready").append(html);        
+            $('.loader_pagination').hide();
+            $("#excursions_tab_ready").append(html);
             re_apply_pageless("excursions");
           },
           error: function(){
@@ -41,7 +41,7 @@
           type : "GET",
           url : "<%=user_url(profile_subject)%>/resources",
           success : function(html) {
-            $('.loader_pagination').hide();      
+            $('.loader_pagination').hide();
             $("#resources_tab_ready").append(html);
             re_apply_pageless("resources");
           },
@@ -82,7 +82,7 @@
         $.ajax({
           type : "GET",
           url : "<%=user_url(profile_subject)%>/categories",
-          success : function(html) {      
+          success : function(html) {
             $('.loader_pagination').hide();
             $("#categories_tab_ready").append(html);
             re_apply_pageless("categories");
@@ -125,7 +125,7 @@
           type : "GET",
           url : "<%= user_url(profile_subject) %>/followings",
           success : function(html) {
-            $('.loader_pagination').hide();   
+            $('.loader_pagination').hide();
             $("#followings_ul").prepend(html);
             re_apply_pageless("followings");
           },
@@ -212,7 +212,7 @@
 
   $(window).on('resize.backstretch', set_fix_bs_on_hidden_tabs);
   $(window).on('orientationchange.backstretch', set_fix_bs_on_hidden_tabs);
-    
+
 
   function set_fix_bs_on_hidden_tabs(){
     $(".tab-pane:hidden").each(function(){
@@ -229,7 +229,7 @@
       if($(this).parents(".tab-pane").css('display')!="none"){
         $(this).backstretch($(this).attr("bs-img"));
         $(this).removeAttr("fix-bs");
-      }  
+      }
     });
   };
 
@@ -260,7 +260,7 @@
       <%end%>
 
       <% if availableModels.include? "Resource" %>
-        <!--resources-->      
+        <!--resources-->
         <li class="<%= params[:tab]=='resources' ? 'active':''%>">
           <a id="resources_tab" href="#tab3" data-toggle="tab">
             <i class="icon-file"></i>
@@ -288,7 +288,7 @@
           </a>
         </li>
       <%end%>
-      
+
       <!--followers-->
       <li class="follow-tab <%= params[:tab]=='followers' ? 'active':''%>">
         <a id="followers_tab" href="#tab5" data-toggle="tab">
@@ -311,8 +311,8 @@
 
 
     <div class="tab-content">
-        
-      <% if availableModels.include? "Excursion" %> 
+
+      <% if availableModels.include? "Excursion" %>
         <div class="tab-pane <%=params[:tab]=='excursions' ? 'active':''%>" id="tab1">
           <%= render partial: 'users/order_by_dropdown_excursions' %>
           <% if params[:tab]== 'excursions' %>
@@ -332,7 +332,7 @@
         </div>
       <%end%>
 
-      <% if availableModels.include? "Event" %> 
+      <% if availableModels.include? "Event" %>
         <div class="tab-pane <%= params[:tab]== 'events' ? 'active':''%>" id="tab2">
           <%= render partial: 'users/order_by_dropdown_events' %>
           <%if params[:tab]== 'events'%>
@@ -352,7 +352,7 @@
         </div>
       <%end%>
 
-      <% if availableModels.include? "Resource" %> 
+      <% if availableModels.include? "Resource" %>
         <div class="tab-pane <%=params[:tab]=='resources' ? 'active':''%>" id="tab3">
           <%= render partial: 'users/order_by_dropdown_resources' %>
           <% if params[:tab] == 'resources'%>
@@ -371,7 +371,7 @@
         </div>
       <%end%>
 
-      <% if availableModels.include? "Category" %> 
+      <% if availableModels.include? "Category" %>
         <div class="tab-pane <%=params[:tab]=='categories' ? 'active':''%>" id="tab4">
           <%if params[:tab] == 'categories'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
@@ -412,7 +412,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 </section>
@@ -438,4 +438,3 @@
     <%end%>
   });
 </script>
-

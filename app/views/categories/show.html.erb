@@ -9,8 +9,9 @@
       <div class="corner-background"></div>
     </div>
     <div class="icon-box">
-      <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category} %>
-    </div>  
+      <!--Está roto si lleva un avatar JuanCar-->
+       <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category} %>
+    </div>
     <div class="information">
       <!--ayuda-->
       <%= render partial: 'help/help_categories' %>
@@ -24,7 +25,7 @@
     <div class="btn-group">
       <!--editar-->
       <% if can?(:update, @category) %>
-      <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %> 
+      <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %>
       <a class="btn btn-for-categorize"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></a>
       <% end %>
       <!--borrar-->
@@ -54,14 +55,12 @@
 </section>
 
 <%#Ordering logic%>
-<% 
-  @items = @category.property_objects
-  order = @category.categories_order
-  unless order.nil?
-    orderLength = order.length
-    @items.sort_by!{|h| order.index(h.id) || (orderLength+1)}
-  end
-%>
+<%  @items = @category.property_objects
+    order = @category.categories_order
+    unless order.nil?
+      orderLength = order.length
+      @items.sort_by!{|h| order.index(h.id) || (orderLength+1)}
+    end %>
 
 <% if can?(:update, @category) %>
   <%= render partial: 'categories/edit_categories', :locals => { :all_categories => @items} %>
@@ -101,7 +100,7 @@ Array.prototype.equals = function (array) {
     if (!array)
         return false;
 
-    // compare lengths - can save a lot of time 
+    // compare lengths - can save a lot of time
     if (this.length != array.length)
         return false;
 
@@ -110,13 +109,13 @@ Array.prototype.equals = function (array) {
         if (this[i] instanceof Array && array[i] instanceof Array) {
             // recurse into the nested arrays
             if (!this[i].equals(array[i]))
-                return false;       
-        }           
-        else if (this[i] != array[i]) { 
+                return false;
+        }
+        else if (this[i] != array[i]) {
             // Warning - two different object instances will never be equal: {x:20} != {x:20}
-            return false;   
-        }           
-    }       
+            return false;
+        }
+    }
     return true;
 }
 
@@ -142,4 +141,3 @@ function updateMainView(){
 }
 
 </script>
-

@@ -3,7 +3,9 @@ class CategoriesController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:show]
   skip_load_and_authorize_resource :only => [:categorize, :edit_categories]
-  
+  skip_after_filter :discard_flash, :only => [:update]
+
+
   def index
     redirect_to url_for(current_subject) + "?tab=categories"
   end
@@ -14,7 +16,7 @@ class CategoriesController < ApplicationController
 
   def create
     create! do |success, failure|
-      success.json { render :json => {"title"=>@category.title, "id"=>@category.id}, :status => 200 }
+      success.json { render :json => {"title"=>@category.title, "id"=>@category.id,"avatar" => @category.avatar}, :status => 200 }
       failure.json { render :json => {"errors" => @category.errors.full_messages.to_sentence}, :status => 400}
     end
   end
@@ -60,7 +62,7 @@ class CategoriesController < ApplicationController
 
       object_id = ActivityObject.find(params[:activity_object_id])
       subject_categories = Category.authored_by(current_subject)
-      
+
       subject_categories.each do |category|
         authorize! :update, category
         category.property_objects.delete(object_id)
@@ -101,13 +103,13 @@ class CategoriesController < ApplicationController
       authorize! :update, the_category
     end
 
-    #First we put stuff into others and delete stuff from categories 
+    #First we put stuff into others and delete stuff from categories
     actions.each do |n|
       next if n.nil? or n.length<2
 
       dragged = ActivityObject.find_by_id(n[0].to_i)
       next if dragged.nil?
-     
+
       case n[1].to_i
       when -1
         #Throwed to the bin
@@ -170,11 +172,17 @@ class CategoriesController < ApplicationController
 
 
   def update
-    @category.title = params[:category][:title]
-    @category.description = params[:category][:description]
-    @category.avatar = params[:category][:avatar]
-    @category.update
-    redirect_to @category
+    super do |format|
+      format.html {
+        unless resource.errors.blank?
+          flash[:errors] = resource.errors.full_messages.to_sentence
+        else
+          discard_flash
+        end
+
+        redirect_to url_for(resource)
+       }
+    end
   end
 
   def destroy
@@ -190,7 +198,7 @@ class CategoriesController < ApplicationController
   private
 
   def allowed_params
-    [:item_type, :item_id, :scope]
+    [:item_type, :item_id, :scope, :avatar]
   end
 
 end
