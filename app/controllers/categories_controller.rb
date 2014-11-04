@@ -15,10 +15,15 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    create! do |success, failure|
-      success.json { render :json => {"title"=>@category.title, "id"=>@category.id,"avatar" => @category.avatar}, :status => 200 }
-      failure.json { render :json => {"errors" => @category.errors.full_messages.to_sentence}, :status => 400}
-    end
+    @indexOf = params[:category][:is_root].to_i
+    if( @indexOf == -1) then @category.is_root = true else @category.is_root = false end
+
+      create! do |success, failure|
+        success.json {
+          Category.find(@indexOf).property_objects << @category.activity_object
+          render :json => {"title"=>@category.title, "id"=>@category.id,"avatar" => @category.avatar, "is_root" => true}, :status => 200 }
+        failure.json { render :json => {"errors" => @category.errors.full_messages.to_sentence}, :status => 400}
+      end      
   end
 
   def categorize
@@ -198,7 +203,7 @@ class CategoriesController < ApplicationController
   private
 
   def allowed_params
-    [:item_type, :item_id, :scope, :avatar]
+    [:item_type, :item_id, :scope, :avatar, :is_root]
   end
 
 end
