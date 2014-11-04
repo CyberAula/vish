@@ -42,7 +42,9 @@
       <div class="wa_activity_wrapper wa_activity_wrapper_edit">
         <div class="wa_activity_edit_tools">
           <ul>
-            <li class="sorthandler"><i class="icon-move"></i></li>
+            <li class="sorthandler">
+              <i class="icon-move"></i>
+            </li>
             <% object = workshop_activity.object
               className = object.class.to_s
               classNameUnderscore = className.underscore
@@ -54,14 +56,16 @@
                 <i class="icon-edit"></i>
               </li>
             <% end %>
-            <li><%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %></li>
+            <li>
+              <%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %>
+            </li>
           </ul>
         </div>
         <% entity = workshop_activity.object %>
         <%className = entity.class.to_s%>
         <%classNameUnderscore = className.underscore%>
         <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
-                   locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" }  %>
+                   locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop_activity_"+workshop_activity.id.to_s } %>
       </div>
     </li>
   <%end%>
