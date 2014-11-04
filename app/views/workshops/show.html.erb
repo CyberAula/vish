@@ -1,7 +1,6 @@
 
 
 <section id="show_items" class="layout_show workshop_show">
-  <div class="description-activity" id="wk_description"> 
   <div class="wa_activity_wrapper wa_activity_wrapper_show">
     
       <% if user_signed_in? and (can? :update, @workshop) %>
@@ -17,9 +16,7 @@
         </div>
       </div>
       <!--description-->
-      <p class="description_WS"><%=@workshop.description%></p>
-
-    </div>
+      <p class="description_WS"><%=@workshop.description%></p>    
   </div>
   
   <!--owner-profile-->
@@ -33,6 +30,7 @@
     </div>
   </div>
 
+  
   <div class="box-show">
     <div class="container-visor">
       <% @workshop_activities.each do |workshop_activity| %>
@@ -47,7 +45,7 @@
       <br/>
     </div>
   </div>
-    
+  
   <div class="description-activity">
     <!--activity (comments) -->
     <div class="activity-box">
