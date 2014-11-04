@@ -13,7 +13,6 @@ ul.workshop_activities_list_edit
     margin: 10px 0
 
 
-
 // edit layour style
 // --------------------------------------------------
 
@@ -21,49 +20,6 @@ ul.workshop_activities_list_edit
   background-color: transparent
   border: 2px dashed $grayLight
   @include border-radius($radius)
-
-  .Assignment_edit_box
-    width: 100%
-    position: relative
-    span.cke_skin_BootstrapCK-Skin
-      width: 98%
-      padding: 1%
-      background-color: $grayLight
-    .btn
-      right: 10px
-      top: 20px
-      position: absolute
-  .workshop_contribute_footer
-    opacity: 0.5
-    width: 100%
-    height: 35px
-    span
-      float: right
-      padding-top: 5px
-      margin-right: 10px
-
-    .btn
-      float: right
-      margin-left: 10px
-    #new_contribution
-
-      float: right
-      select, input[type="file"] 
-
-
-
-
-// DESCRIPTION box
-// --------------------------------------------------
-.wa_activity_wrapper
-  display: block
-  height: auto
-  width: 96%
-  padding: 20px 2%
-  margin-top: 5px
-  margin-bottom: 5px
-  position: relative
-
   //toolbar-actions
   .wa_activity_actions,
   .wa_activity_edit_tools
@@ -93,73 +49,42 @@ ul.workshop_activities_list_edit
           padding-top: 10px
           margin: 0px auto 0
           display: block
-
           &:hover
             text-decoration: none
             color: $black
-
       .sorthandler 
         background-color: #ccc
         cursor: move
         @include border-radius(2px 13px)
         i
           cursor: move
-        
-
-  //toolbar-actions
-  h3.title_WS
-    width: 95%
-    display: inline-block
-    margin:  0
-    line-height: 30px
-    margin-bottom: 10px
-    margin-top: -10px
-    height: 40px
-    color: $gray
-
-  p.description_WS
-    margin-right: 2.5%
-    margin-left: 2.5%
-    width: 80%
-    float: left
-
-  .container-img_WS
-    display: inline-block
+  .Assignment_edit_box
+    width: 100%
     position: relative
-    width: 15%
-    float: left
-    background-color: $grayLighter
-    @include border-radius($baseBorderRadius)
-    .dummy
-      padding-top: 100%
-    .element
+    span.cke_skin_BootstrapCK-Skin
+      width: 98%
+      padding: 1%
+      background-color: $grayLight
+    .btn
+      right: 10px
+      top: 20px
       position: absolute
-      top: 0
-      bottom: 0
-      left: 0
-      right: 0
-      overflow: hidden
-      text-align: center
-      width: 100%
-      @include border-radius($baseBorderRadius)
-      .img-box
-        width: 100%
-        padding-bottom: 100%
-        float: left
-        img
-          float: left
-          width: 100%
-          height: 100%
-      i
-        font-size: 70px
-        color: $secondColor
-        &:hover
-          text-decoration: none
-    .resource-center
-      i
-        padding-top: 36px 
-        display: block
+  .workshop_contribute_footer
+    opacity: 0.5
+    width: 100%
+    height: 35px
+    span
+      float: right
+      padding-top: 5px
+      margin-right: 10px
 
+    .btn
+      float: right
+      margin-left: 10px
+    #new_contribution
+
+      float: right
+      select, input[type="file"] 
 
 
 // ADD NEW ACTIVITY BTN
