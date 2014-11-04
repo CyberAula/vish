@@ -31,4 +31,8 @@ class Workshop < ActiveRecord::Base
     self.getAvatarUrl || "/assets/logos/original/defaul_workshop.png"
   end
 
+  def contributions
+    self.workshop_activities.select{|workshop_activity| workshop_activity.wa_type=="WaAssignment"}.map{|workshop_activity| workshop_activity.object.contributions}.flatten.uniq
+  end
+
 end

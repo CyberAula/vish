@@ -26,10 +26,29 @@ class WaContributionsGalleriesController < ApplicationController
   # REST methods
   #############
 
-  def create   
+  def create
+    params[:wa_contributions_gallery] ||= {}
+    params[:wa_contributions_gallery][:wa_assignment_ids] ||= []
+
+    if params[:wa_contributions_gallery][:wa_assignment_ids].is_a? String
+      begin
+        params[:wa_contributions_gallery][:wa_assignment_ids] = JSON.parse(params[:wa_contributions_gallery][:wa_assignment_ids])
+      rescue
+        params[:wa_contributions_gallery][:wa_assignment_ids] = []
+      end
+    end
+
+    if params[:wa_contributions_gallery][:wa_assignment_ids].blank? and !params[:wa_contributions_gallery][:workshop_id].blank?
+      workshop = Workshop.find_by_id(params[:wa_contributions_gallery][:workshop_id])
+      unless workshop.nil?
+        authorize! :update, workshop
+        params[:wa_contributions_gallery][:wa_assignment_ids] = workshop.workshop_activities.select{|workshop_activity| workshop_activity.wa_type=="WaAssignment"}.map{|workshop_activity| workshop_activity.object.id }
+      end
+    end
+
     super do |format|
       format.html {
-         unless resource.errors.blank?
+        unless resource.errors.blank?
           flash[:errors] = resource.errors.full_messages.to_sentence
         else
           discard_flash
@@ -64,7 +83,7 @@ class WaContributionsGalleriesController < ApplicationController
   private
 
   def allowed_params
-    [:workshop_id]
+    [:workshop_id, :wa_assignment_ids=>[]]
   end
 
 end
