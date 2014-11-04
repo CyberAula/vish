@@ -3,7 +3,7 @@ class WaAssignment < ActiveRecord::Base
   acts_as_wa
 
   has_many :contributions
-  has_and_belongs_to_many :wa_contributions_gallery
+  has_and_belongs_to_many :wa_contributions_galleries
 
   #Save available_contributions as array
   serialize   :available_contributions

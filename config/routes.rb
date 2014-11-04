@@ -68,10 +68,10 @@ Vish::Application.routes.draw do
   resources :wa_assignments
   resources :wa_resources
   resources :contributions
+  match '/wa_resources_galleries/:id/add_resource' => 'wa_resources_galleries#add_resource'
   resources :wa_resources_galleries
   resources :wa_contributions_galleries
   resources :wa_texts
-
 
   #Quiz Sessions
   resources :quiz_sessions do

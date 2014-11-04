@@ -1,1 +1,11 @@
-TODO: EDIT Wa resources gallery
+<% wa_resources_gallery.activity_objects.map{|ao| ao.object}.each do |resource| %>
+  <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "wa_resource_gallery_"+wa_resources_gallery.id.to_s } %>
+<% end %>
+
+<%= render :partial => 'wa_resources_galleries/add_new', :locals => { :wa_resources_gallery => wa_resources_gallery } %>
+
+<script>
+  $("div[bs-img]").each(function(){
+    $(this).backstretch($(this).attr("bs-img"));
+  });
+</script>

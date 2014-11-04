@@ -26,7 +26,7 @@ class WaResourcesGalleriesController < ApplicationController
   # REST methods
   #############
 
-  def create   
+  def create
     super do |format|
       format.html {
          unless resource.errors.blank?
@@ -40,6 +40,24 @@ class WaResourcesGalleriesController < ApplicationController
   end
 
   def update
+    params["wa_resources_gallery"] ||= {}
+    ao_ids = resource.activity_object_ids
+
+    unless params["url"].blank?
+      the_resource = ActivityObject.getObjectFromUrl(params["url"])
+      unless the_resource.nil? or the_resource.activity_object.nil?
+        ao_ids << the_resource.activity_object.id
+      end
+      params.delete "url"
+    end
+
+    unless params["remove_activity_object_id"].blank?
+      ao_ids.reject!{|id| id.to_s==params["remove_activity_object_id"]}
+    end
+
+    ao_ids.uniq!
+    params["wa_resources_gallery"]["activity_object_ids"] = ao_ids
+
     super do |format|
       format.html {
          unless resource.errors.blank?
@@ -48,6 +66,15 @@ class WaResourcesGalleriesController < ApplicationController
           discard_flash
         end
         redirect_to edit_workshop_path(resource.workshop)
+      }
+    end
+  end
+
+  def add_resource
+    resource = WaResourcesGallery.find(params[:id])
+    respond_to do |format|
+      format.html {
+        render :form_add_resource, :layout => false
       }
     end
   end
@@ -64,7 +91,7 @@ class WaResourcesGalleriesController < ApplicationController
   private
 
   def allowed_params
-    [:workshop_id]
+    [:workshop_id, :activity_object_ids=>[]]
   end
 
 end

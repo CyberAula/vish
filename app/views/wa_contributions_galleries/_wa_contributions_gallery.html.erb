@@ -1,1 +1,2 @@
-TODO: SHOW Wa contributions gallery
+<p> Contributions Gallery </p>
+<%= render partial: "contributions/contributions_gallery", locals:  { :contributions => wa_contributions_gallery.contributions.shuffle.first(10) } %>

@@ -62,7 +62,6 @@ class WorkshopMigration < ActiveRecord::Migration
     create_table "wa_assignments_wa_contributions_galleries", id: false, :force => true do |t|
       t.integer  "wa_assignment_id"
       t.integer  "wa_contributions_gallery_id"
-      t.timestamps
     end
 
     # Resources Gallery
@@ -73,7 +72,6 @@ class WorkshopMigration < ActiveRecord::Migration
     create_table "activity_objects_wa_resources_galleries", id: false, :force => true do |t|
       t.integer  "activity_object_id"
       t.integer  "wa_resources_gallery_id"
-      t.timestamps
     end
 
   end
