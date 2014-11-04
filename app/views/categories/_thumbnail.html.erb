@@ -1,10 +1,11 @@
+<% show_avatar ||= false%>
+<%if !category.getAvatarUrl.nil? and !show_avatar%>
+    <div class="img-box img-box-categorie" bs-img="<%=category.getAvatarUrl%>"></div>
 
-<%thumbs_array = new_category_thumbnail(category)%>
-<%if !category.getAvatarUrl.nil?%>
-    <div class="img-box img-box-categorie" bs-img="<%=category.getAvatarUrl%>"></div>    
+<%elsif !category.getAvatarUrl.nil? and show_avatar%>
+    <div class="avatar"><img src="<%=category.getAvatarUrl%>"/></div>
 <%else%>
-
-
+  <%thumbs_array = new_category_thumbnail(category)%>
   <div class="container-img-categorie_0">
       <div class="dummy-categorie"></div>
       <div class="element-categorie">

@@ -10,7 +10,7 @@
     </div>
     <div class="icon-box">
       <!--Está roto si lleva un avatar JuanCar-->
-       <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category} %>
+       <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category, :show_avatar => true} %>
     </div>
     <div class="information">
       <!--ayuda-->
@@ -123,6 +123,9 @@ var beginIndex;
 var beginObjects;
 //Let the overlay appear
 $(document).ready(function(){
+  $("div[bs-img]").each(function(){
+       $(this).backstretch($(this).attr("bs-img"));
+  });
   $(".btn-for-categorize").click(function(){
     $("#categories_edition").fadeIn();
     beginIndex = getidArray();
