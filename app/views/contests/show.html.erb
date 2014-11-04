@@ -50,7 +50,7 @@
       <div class="podiuminside1">
         <div class="entities">
           <ul>
-            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } %>
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } unless Excursion.find_by_id(560).nil? %>
           </ul>
         </div>
         <div class="podiumart">
@@ -62,7 +62,7 @@
       <div class="podiuminside2">
         <div class="entities">
           <ul>
-            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } %>
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } unless Excursion.find_by_id(515).nil? %>
           </ul>
         </div>
         <div class="podiumart">
@@ -74,7 +74,7 @@
       <div class="podiuminside3">
         <div class="entities">
           <ul>
-            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } %>
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } unless Excursion.find_by_id(659).nil? %>
           </ul>
         </div>
         <div class="podiumart">
@@ -87,7 +87,6 @@
   </div>
 
   <div class="tabexcursions">
-
     <h3><b class="caret caret1"></b><%=t('contest.winnersbycategory')%><b class="caret caret2"></b></h3>
   </div>
 
@@ -99,15 +98,13 @@
         <div class="badimg">
           <img class="bd1" src="assets/competition/bd1.png"/>
         </div>
-
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(564) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(564) } unless Excursion.find_by_id(564).nil?  %>
             </li>
           </ul>
         </div>
-
       </section>
       <section id="show_items">
         <div class="badimg">
@@ -116,13 +113,12 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(675) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(675) } unless Excursion.find_by_id(675).nil? %>
             </li>
           </ul>
         </div>
       </section>
     </div>
-
 
     <div class="subrow2">
       <h3><%=t('contest.Physics')%></h3>
@@ -130,25 +126,22 @@
         <div class="badimg">
           <img class="bd1" src="assets/competition/bd1.png"/>
         </div>
-
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } unless Excursion.find_by_id(560).nil? %>
             </li>
           </ul>
         </div>
-
       </section>
       <section id="show_items">
         <div class="badimg">
           <img class="bd2" src="assets/competition/bd2.png"/>
         </div>
-
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(613) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(613) } unless Excursion.find_by_id(613).nil? %>
             </li>
           </ul>
         </div>
@@ -164,7 +157,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(620) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(620) } unless Excursion.find_by_id(620).nil? %>
             </li>
           </ul>
         </div>
@@ -176,7 +169,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(465) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(465) } unless Excursion.find_by_id(465).nil? %>
             </li>
           </ul>
         </div>
@@ -192,7 +185,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(450) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(450) } unless Excursion.find_by_id(450).nil? %>
             </li>
           </ul>
         </div>
@@ -204,7 +197,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(634) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(634) } unless Excursion.find_by_id(634).nil? %>
             </li>
           </ul>
         </div>
@@ -217,11 +210,10 @@
         <div class="badimg">
           <img class="bd1" src="assets/competition/bd1.png"/>
         </div>
-
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(656) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(656) } unless Excursion.find_by_id(656).nil? %>
             </li>
           </ul>
         </div>
@@ -230,11 +222,10 @@
         <div class="badimg">
           <img class="bd2" src="assets/competition/bd2.png"/>
         </div>
-
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(646) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(646) } unless Excursion.find_by_id(646).nil? %>
             </li>
           </ul>
         </div>
@@ -247,23 +238,23 @@
         <div class="badimg">
           <img class="bd1" src="assets/competition/bd1.png"/>
         </div>
-
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } unless Excursion.find_by_id(515).nil? %>
             </li>
           </ul>
         </div>
+
       </section>
       <section id="show_items">
         <div class="badimg">
           <img class="bd2" src="assets/competition/bd2.png"/>
         </div>
         <div class="recomended">
-             <ul class="items">
+            <ul class="items">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } %>
+                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
               </li>
             </ul>
         </div>
@@ -279,7 +270,7 @@
         <div class="recomended">
              <ul class="items">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(592) } %>
+                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(592) } unless Excursion.find_by_id(592).nil? %>
               </li>
             </ul>
         </div>
@@ -288,14 +279,12 @@
         <div class="badimg">
           <img class="bd2" src="assets/competition/bd2.png"/>
         </div>
-
         <div class="recomended">
-             <ul class="items">
-              <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(474) } %>
-              </li>
-            </ul>
-        </div>
+            <ul class="items">
+              <li> 
+                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(474) } unless Excursion.find_by_id(474).nil? %>
+          </li>
+        </ul>
       </section>
     </div>
 
@@ -308,7 +297,7 @@
         <div class="recomended">
              <ul class="items">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(632) } %>
+                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(632) } unless Excursion.find_by_id(632).nil? %>
               </li>
             </ul>
         </div>
@@ -318,11 +307,11 @@
           <img class="bd2" src="assets/competition/bd2.png"/>
         </div>
         <div class="recomended">
-             <ul class="items">
-              <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(520) } %>
-              </li>
-            </ul>
+          <ul class="items">
+            <li>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(520) } unless Excursion.find_by_id(520).nil? %>
+            </li>
+          </ul>
         </div>
       </section>
     </div>
@@ -334,9 +323,9 @@
           <img class="bd1" src="assets/competition/bd1.png"/>
         </div>
         <div class="recomended">
-             <ul class="items">
+            <ul class="items">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(667) } %>
+                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(667) } unless Excursion.find_by_id(667).nil? %>
               </li>
             </ul>
         </div>
@@ -345,16 +334,17 @@
         <div class="badimg">
           <img class="bd2" src="assets/competition/bd2.png"/>
         </div>
+
         <div class="recomended">
           <div class="recomended-items">
              <ul class="items">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(669) } %>
+                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(669) } unless Excursion.find_by_id(669).nil? %>
               </li>
             </ul>
-
-      </section>
-    </div>
+          </div>
+        </div>
+    </section>
     <div class="subrow2">
       <h3><%=t('contest.ComputerScience')%></h3>
       <section id="show_items">
@@ -364,7 +354,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } unless Excursion.find_by_id(659).nil? %>
             </li>
           </ul>
         </div>
@@ -373,11 +363,10 @@
         <div class="badimg">
           <img class="bd2" src="assets/competition/bd2.png"/>
         </div>
-
         <div class="recomended">
           <ul class="items">
             <li>
-                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(522) } %>
+                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(522) } unless Excursion.find_by_id(522).nil? %>
             </li>
           </ul>
         </div>
@@ -397,11 +386,8 @@
 
  <script type="text/javascript">
   $(document).ready(function(){
-    
     $("#winners div[bs-img]").each(function() {       
         $(this).backstretch( $(this).attr("bs-img") );      
     });
-    
   });
-
 </script>

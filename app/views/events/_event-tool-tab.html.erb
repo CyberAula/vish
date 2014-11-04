@@ -1,4 +1,6 @@
-<%= content_for :javascript do %> 
+<% availableModels ||= available_models %>
+
+<%= content_for :javascript do %>
 //to close the popovers
 $(':not(#anything_not_present)').on('click', function (e) {
   $('.popover-link').each(function () {
@@ -68,11 +70,10 @@ $('.delete').popover({
 <%end%>
 
 
-
 <script type="text/javascript">
-$(document).ready(function(){
-  $(".with_tooltip").tooltip({ placement: 'bottom'});
-});
+  $(document).ready(function(){
+    $(".with_tooltip").tooltip({ placement: 'bottom'});
+  });
 </script>
 
 <div class="btn-group">
@@ -96,12 +97,10 @@ $(document).ready(function(){
   <% end %>
 <!--categoriess-->
 
-  <%if user_signed_in? %>
-        <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @event} %>
-        <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" ><i class="icon-th-large"></i></button>
-        
-      <%end%>
-
+  <%if user_signed_in? and availableModels.include? "Category" %>
+    <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @event} %>
+     <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" ><i class="icon-th-large"></i></button>
+  <%end%>
 
 </div>
 

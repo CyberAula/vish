@@ -53,12 +53,9 @@ class UsersController < ApplicationController
 
   def categories
     respond_to do |format|
-      format.html{  
-        if !params[:page] || params[:tab] == "categories" || (params[:page] && (params[:page] == 1 || params[:page]==0))
-          render :partial => 'categories/profile_categories', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
-        else
-          render :partial => 'categories/categories', :locals => {:scope => :me, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
-        end
+      format.html{
+        #Categories do not have pageless
+        render :partial => 'categories/profile_categories', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
       }
     end
   end

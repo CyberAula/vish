@@ -21,9 +21,3 @@
   <% @items = subject_content current_subject, [Excursion, Document, Scormfile, Webapp, Embed, Link, Event, Category], {:scope => :like, :limit=>0} %>
   <%= render partial: 'categories/items' %>
 </section>
-
-<%= content_for :javascript do %>
-  $(document).ready(function() {
-    $(".resource").fitText(0.4);
-  });
-<% end %>

@@ -282,7 +282,7 @@ ActivityObject.class_eval do
 
     resource = self.object
 
-    if resource.class.superclass.name=="Document"
+    if [resource.class.name,resource.class.superclass.name].include? "Document"
       relativePath = resource.file.url
     elsif ["Scormfile","Webapp"].include? resource.class.name
       absolutePath = resource.zipurl

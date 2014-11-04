@@ -1,30 +1,42 @@
 <% availableModels = available_models %>
+<% browse = params[:browse] || (!params[:q].nil? and params[:q].blank?) %>
 
 <section id="search" class="">
   <div class="search">
-    <ul class="nav nav-tabs">
-      <li class="all_results <%= 'active' if params[:type].blank? %>">
-
-        <% unless params[:browse]%>
-          <%= link_to raw('<i class="fa fa-asterisk"></i><span class="hidden-xs hidden-sm">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
-        <% else %>
-          <%= link_to raw('<i class="fa fa-asterisk"></i><span class="hidden-xs hidden-sm">'+t('search.show_all')+'</span>'), search_path(:browse=>"true", :sort_by => "ranking") %>
-        <% end %>
-      </li>
-
-      <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
-        <% unless params[:browse]%>
-          <%= link_to raw('<i class="fa fa-list-alt"></i><span class="hidden-xs hidden-sm">'+t("excursion.other")+'</span>'), "#excursion",
-
-          :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
-        <% else %>
-          <%= link_to raw('<i class="fa fa-list-alt"></i><span class="hidden-xs hidden-sm">'+t("excursion.other")+'</span>'), search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking") %>
+      <ul class="nav nav-tabs">
+        <%if browse%>
+          <%content_for :title do%>
+            <%= t("site.current.browse")%>
+          <%end%>
+          <li><h1><i class="icon-folder-open"></i><%= t("browse.title")%></h1></li>          
+        <%else%>
+          <%content_for :title do%>
+            <%= t("site.current.search")%>
+          <%end%>
+          <li><h1><i class="icon-search"></i><%= t("search.title")%></h1></li>
         <%end%>
+          <li class="all_results <%= 'active' if params[:type].blank? %>">
+            <% unless browse%>
+              <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
+            <% else %>
+              <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'), search_path(:browse=>"true", :sort_by => "ranking") %>
+            <% end %>
+          </li>
 
-          <li class="users <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
-            <% unless params[:browse]%>
-              <%= link_to raw('<i class="fa fa-group"></i><span class="hidden-xs hidden-sm">'+t("user.title.other")+'</span>'), "#user",
-              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
+          <% if availableModels.include? "Excursion" %>
+            <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
+              <% unless browse%>
+                <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), "#excursion",
+                :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
+              <% else %>
+                <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking") %>
+              <%end%>
+            </li>
+          <%end%>
+
+          <li class="user <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
+            <% unless browse%>
+              <%= link_to raw('<i class="icon-group"></i><span class=" hidden-phone hidden-tablet">'+t("user.title.other")+'</span>'), "#user", :data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
             <% else %>
               <%= link_to raw('<i class="fa fa-group"></i><span class="hidden-xs hidden-sm">'+t("user.title.other")+'</span>'), search_path(:type => "user", :browse=>"true", :sort_by => "ranking") %>
             <% end %>
@@ -33,9 +45,9 @@
 
           <% if availableModels.include? "Event" %>
             <li class="event <%= " active" if params[:type] == "event" %><%= " disabled" unless search_results?("event") %>">
-              <% unless params[:browse]%>
-                <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-xs hidden-sm">'+t("event.title.other")+'</span>'), "#event",
-                :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
+
+              <% unless browse%>
+                <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), "#event", :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
               <% else %>
                 <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-xs hidden-sm">'+t("event.title.other")+'</span>'), search_path(:type => "event", :browse=>"true", :sort_by => "ranking") %>
               <% end %>
@@ -44,8 +56,9 @@
 
           <% if availableModels.include? "Resource" %>
             <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("resource") %>">
-              <% unless params[:browse]%>
-                <%= link_to raw('<i class="icon-file"></i><span class="hidden-xs hidden-sm">'+t("resource.title.other")+'</span>'), "#resource",
+
+              <% unless browse%>
+                <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), "#resource",
                 :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
               <% else %>
                 <%= link_to raw('<i class="icon-file"></i><span class="hidden-xs hidden-sm">'+t("resource.title.other")+'</span>'), search_path(:type => "resource", :browse=>"true", :sort_by => "ranking") %>
@@ -136,10 +149,8 @@
                         }
       });
 
-      $("footer#footer").addClass("fixed-bottom");
-      <!-- $("#wrap").addClass("wrap-when-fixed-bottom"); -->
 
-    
+    $("footer#footer").addClass("fixed-bottom");
       <%if params[:type]%>
         //if "popular" links used, the tabs are links to other "popular" searches
         $("#search .all_results").click(function(){
@@ -209,29 +220,26 @@
       });
 
 
-      function fix_backstretch(){
-        $("#search-all div[fix-bs]").each(function() {
-          if($(this).css('display')!="none"){        
-            $(this).backstretch( $(this).attr("bs-img") );
-            $(this).removeAttr("fix-bs");
-          }        
-        });     
-      }
+    function fix_backstretch(){
+      $("#search-all div[fix-bs]").each(function() {
+        if($(this).css('display')!="none"){        
+          $(this).backstretch( $(this).attr("bs-img") );
+          $(this).removeAttr("fix-bs");
+        }        
+      });     
+    }
+
     <% end %>
   </div>
+    
+  <script>
+    $(function(){
+      $('.scroll-pane').jScrollPane();
+    });
+    $(document).ready(function(){
+     $(window).resize(re_apply_backstrech_on_search);
+     $(window).on('orientationchange', re_apply_backstrech_on_search);
+    });
+  </script>
+
 </section>
-
-<!--scroll-->
-<script>
-  $(function()
-  {
-    $('.scroll-pane').jScrollPane();
-  });
-
-  $( document ).ready(function() {
-   $(window).resize(re_apply_backstrech_on_search);
-   $(window).on('orientationchange', re_apply_backstrech_on_search);
-   });
-
-</script>
-
