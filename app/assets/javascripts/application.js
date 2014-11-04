@@ -33,5 +33,7 @@
 //= require jquery.scrollUp.min
 //= require jquery.easing.min
 //= require bootstrap-slider/bootstrap-slider
+//= require jquery.zclip.min
+
 //= require_tree .
 

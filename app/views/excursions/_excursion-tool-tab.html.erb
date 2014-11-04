@@ -27,7 +27,7 @@
         case "embed": 
           if(!embedEvents){
             embedEvents = true;
-            $('button#btn_copy_embed').zclip({
+            $('a#btn_copy_embed').zclip({
               path:'/assets/ZeroClipboard.swf',
               copy:function(){
                 return $('#textarea_for_iframe').text();
@@ -49,7 +49,7 @@
         case "share": 
           if(!shareEvents){
             shareEvents = true;
-            $('button#btn_copy_share').zclip({
+            $('a#btn_copy_share').zclip({
               path:'/assets/ZeroClipboard.swf',
               copy:function(){
                 return $('#input_with_shorturl').val();
