@@ -2,6 +2,9 @@
 // SHOW
 // --------------------------------------------------
 .workshop_show  
+  .toolbar_nav-tab
+    margin: inherit
+    width: 100% 
   .wa_activity_wrapper_show   
     background-color: $white
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
@@ -17,7 +20,7 @@
     height: 100%
     margin-top: -5px
     margin-bottom: 10px
-    @include border-bottom-radius($baseBorderRadius) 
+    @include border-radius($baseBorderRadius) 
     .btn-group > .btn:last-child
       @include border-radius(0)
     .dl-horizontal 
@@ -25,8 +28,10 @@
         width: 70px !important
       dd
         margin-left: 100px !important
- 
   
+  .workshop-comments
+    margin-top: 10px
+    
       
   
 
