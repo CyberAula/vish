@@ -8,3 +8,11 @@
   <input class="contribution_file_input" name="document[file]" type="file">
   <%= f.submit t('button.save'), :id=>"" ,:class => "contribution", :disabled => editMode %>
 <% end %>
+
+<button class="btn btn-primary btn_show_upload">Resource</button>
+<script>
+	$( ".btn_show_upload" ).click(function() {
+	$( "#new_contribution" ).show( "slow" );
+	$( ".btn_show_upload" ).addClass( "hidden" );
+	});
+</script>
