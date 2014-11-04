@@ -1,11 +1,14 @@
 
 
 <section id="show_items" class="layout_show workshop_show">
-  <div class="wa_activity_wrapper wa_activity_wrapper_show">
-    
-      <% if user_signed_in? and (can? :update, @workshop) %>
-        <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-primary" id="edit_workshop">Turn on editing mode</a></p>
-      <%end%>
+  <div class="toolbar_nav-tab">
+    <% if user_signed_in? and (can? :update, @workshop) %>
+      <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-primary" id="edit_workshop">Turn on editing mode</a></p>
+    <%end%>
+  </div>
+
+   
+  <div class="wa_activity_wrapper wa_activity_wrapper_show header_workshop">    
       <!--title-->
       <h3 class="title_WS"><%=@workshop.title%></h3>
       <!--avatar-->
@@ -31,20 +34,18 @@
   </div>
 
   
-  <div class="box-show">
-    <div class="container-visor">
-      <% @workshop_activities.each do |workshop_activity| %>
-        <div class="wa_activity_wrapper">
-          <% entity = workshop_activity.object %>
-          <%className = entity.class.to_s%>
-          <%classNameUnderscore = className.underscore%>
-          <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
-               locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" }  %>
-        </div>
-      <%end%>
-      <br/>
+  
+  <% @workshop_activities.each do |workshop_activity| %>
+    <div class="wa_activity_wrapper wa_activity_wrapper_show">
+      <% entity = workshop_activity.object %>
+      <%className = entity.class.to_s%>
+      <%classNameUnderscore = className.underscore%>
+      <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
+           locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" }  %>
     </div>
-  </div>
+  <%end%>
+     
+ 
   
   <div class="description-activity">
     <!--activity (comments) -->

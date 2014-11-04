@@ -1,65 +1,35 @@
 // ADD NEW ACTIVITY BTN
 // SHOW
 // --------------------------------------------------
-
 .workshop_show  
-  .wa_activity_wrapper   
-    padding: 25px 
-    height: 100%
-    width: auto
+  .wa_activity_wrapper_show   
+    background-color: $white
+    @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+    position: relative
+    @include border-radius($baseBorderRadius)  
+    float: left
+  .header_workshop
+    @include border-bottom-radius(0)      
 
-    .title_WS
-      font-weight: 600
-      color: $gray
-      margin-bottom: 20px
-      
-  .box-show,
   .description-activity
     width: 100% !important
     border-radius: 0px
     height: 100%
-    .box_description
-      padding-bottom: 10px  
-      .btn-group > .btn:last-child
-        border-radius: 0 
-      .dl-horizontal 
-        dt
-          width: 70px !important
-        dd
-          margin-left: 100px !important
-    .container-visor
-      background-color: $white
+    margin-top: -5px
+    margin-bottom: 10px
+    @include border-bottom-radius($baseBorderRadius) 
+    .btn-group > .btn:last-child
+      @include border-radius(0)
+    .dl-horizontal 
+      dt
+        width: 70px !important
+      dd
+        margin-left: 100px !important
+ 
+  
+      
+  
 
-
-
-.box-show
-  .delivery
-    margin-top: 20px
-    .delivery_time
-      width: 100%
-      display: block
-      margin-bottom: 15px
-      height: 20px
-      text-align: right
-      position: absolute
-      top: 10px
-      right: 10px
-
-      span
-        padding-right: 10px
-        font-family: $thirdFontFamily
-        font-size: 11px
-        display: inline
-        color: $grayDark
-      p
-        font-size: 14px
-        margin: 0
-        font-family: $firstFontFamily
-        margin-right: 30px
-        display: inline
-
-#edit_workshop
-  float: right
   
 
 

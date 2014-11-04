@@ -1,10 +1,11 @@
 <div class="delivery">
+  <h3 class="title_WS"><%=t('workshop.activities.assignment.title')%></h3>  
   <%if wa_assignment.with_dates%>
     <div class="delivery_time">
       <span><%=t('workshop.activities.assignment.open_date')%></span>
-      <p><%=wa_assignment.open_date%></p>
+      <p><%=wa_assignment.open_date.strftime("%d %B %Y")%></p>
       <span><%=t('workshop.activities.assignment.due_date')%></span>
-      <p><%=wa_assignment.due_date%></p>
+      <p><%=wa_assignment.due_date.strftime("%d %B %Y")%></p>
     </div>
   <%end%>
 
