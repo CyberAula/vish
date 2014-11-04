@@ -46,7 +46,8 @@
   @include border-top-radius ($border-radius-base);
   @include border-bottom-radius ($border-radius-base);
   @include box-shadow (0 0px 4px 0px rgba(0, 0, 0, 0.04));
-
+  margin-bottom: -30px;
+  margin-top: -30px;
 }
 .tldate {
   display: block;
@@ -92,6 +93,7 @@
 
 .timeline li.timeline-inverted .timeline-panel {
   float: right;
+  margin-top: -75px;
 }
 
 .timeline li.timeline-inverted .timeline-panel:before {
@@ -125,8 +127,12 @@
   @include border-top-radius (50%);
   @include border-bottom-radius (50%);
   z-index: 90;
+  margin-top: -30px;
 }
 
+.timeline li.timeline-inverted .tl-circ {
+  margin-top: -75px;
+}
 
 
 /** media queries **/
@@ -160,12 +166,20 @@
     width: calc(100% - 90px);
     width: -moz-calc(100% - 90px);
     width: -webkit-calc(100% - 90px);
+    margin-top: 0;
   }
-
+  .timeline li.timeline-inverted .timeline-panel {
+    margin-top: 0px;
+  }
+  .timeline li .timeline-panel {
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
   ul.timeline li .tl-circ {
     top: 35px;
     left: 22px;
     margin-left: 0;
+    margin-top: 0 !important;
 
   }
   ul.timeline > li > .tldate {
@@ -189,6 +203,13 @@
     border-right-width: 14px;
     left: -14px;
     right: auto;
+  }
+  .mobile-time-ago{
+    margin-left: 10px;
+    display: inline-block;
+    span{
+      color: $gray;
+    }
   }
 }
 

@@ -37,6 +37,10 @@
     <div class="media-body">
       <h6 class="media-heading"><%= activity.title(self) %>
         <% if activity.direct_object && !activity.direct_object.acts_as_actor? && can?(:destroy, activity.direct_object) %>
+          <div class="mobile-time-ago hidden-sm hidden-md hidden-lg">
+            <%= render :partial => 'activities/time_ago',
+              :locals => { :activity => activity } %>
+          </div>
           <div class="x"> 
             <%= link_to raw("<i class='fa fa-trash-o'></i>"), activity.direct_object , :confirm => t('confirm_delete', 
                         :scope => activity.direct_object.class.to_s.underscore), :method => :delete,  
