@@ -26,6 +26,7 @@ class CategoriesController < ApplicationController
      @indexOf ||= -1
       create! do |success, failure|
         success.json {
+          binding.pry
           if @indexOf != -1
             Category.find(@indexOf).property_objects << @category.activity_object
           end
@@ -199,6 +200,8 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    main = Category.find(params[:id])
+    destroyContainedCategories main
     super do |format|
       format.html {
         redirect_to url_for(current_subject)
@@ -214,4 +217,22 @@ class CategoriesController < ApplicationController
     [:item_type, :item_id, :scope, :avatar, :is_root]
   end
 
+  #probar
+  def destroyContainedCategories category
+    categoriesInside = []
+    category.property_objects.each do |cat|
+      if cat.class == "Category"
+        categoriesInside.push cat
+      end
+    end
+    if categoriesInside.empty?
+      category.destroy
+    else
+      categoriesInside.each do |destroying|
+        destroyContainedCategories destroying
+      end
+    end
+  end
+
 end
+
