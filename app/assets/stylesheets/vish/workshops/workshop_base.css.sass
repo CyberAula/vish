@@ -12,15 +12,16 @@
       
   //description-workshop
   h3.title_WS
-    width: 95%
-    display: inline-block
+    width: 100%
+    display: block
     margin:  0
     line-height: 30px
     margin-bottom: 10px
-    margin-top: -10px
-    height: 40px
+    margin-top: 0px
+    height: auto
     color: $gray
     font-weight: 600
+    clear: both
 
   p.description_WS
     margin-right: 2.5%
@@ -66,15 +67,18 @@
         display: block
 
   .delivery
+    display: block
+    float: right
+    height: 30px
+    position: absolute
+    right: 3%
+    top: 39px
+    width: 70%
     .delivery_time
       width: 100%
       display: block
-      margin-bottom: 15px
       height: 20px
-      text-align: right
-      position: absolute
-      top: 30px
-      right: 3%     
+      text-align: right   
 
       span
         padding-right: 10px
@@ -82,11 +86,13 @@
         font-size: 11px
         display: inline
         color: $grayDark
+        padding-left: 20px
+
       p
         font-size: 14px
         margin: 0
         font-family: $firstFontFamily
-        margin-right: 30px
+        margin-right: 0px
         display: inline
   
   //contribute footer   
