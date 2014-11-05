@@ -3,7 +3,20 @@
     <div class="img-box img-box-categorie" bs-img="<%=category.getAvatarUrl%>"></div>
 
 <%elsif !category.getAvatarUrl.nil? and show_avatar%>
-    <div class="avatar"><img src="<%=category.getAvatarUrl%>"/></div>
+
+
+
+
+  <div class="container-img">
+    <div class="dummy"></div>
+    <div class="element">
+      <div class="img-box">
+<img src="<%=category.getAvatarUrl%>"/>
+      </div>
+    </div>
+  </div>
+
+    
 <%else%>
   <%thumbs_array = new_category_thumbnail(category)%>
   <div class="container-img-categorie_0">
