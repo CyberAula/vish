@@ -15,20 +15,20 @@
         <!--IMG categories-->
         <%= link_to(category) do %>
         <div class="category">
-          <%= render :partial => 'categories/thumbnail', :locals =>{ :category => category} %>            
+          <%= render :partial => 'categories/thumbnail', :locals =>{ :category => category} %>
         </div>
         <% end %>
       </div>
     </div>
   </div>
-  <!--INFO excursuion-->
+  <!--INFO excursion-->
   <div class="info">
     <!--Title -->
     <div class="name">
       <%= link_to category.title, category %>
     </div>
     <!--Autor -->
-    <div class="author"> 
+    <div class="author">
       <span class="by"><%=t('by')%></span>
       <%= link_to category.author.name, category.author.subject %>
     </div>
@@ -36,10 +36,11 @@
     <div class="info-bottom">
       <hr class="soften">
       <!--like -->
-      <div class="categories_inside">  
+      <div class="categories_inside">
         <%=category.property_objects.count.to_s%>
         <%=t('categories.item_inside')%>
       </div>
     </div>
   </div>
+
 </li>

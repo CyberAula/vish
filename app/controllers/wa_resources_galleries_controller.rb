@@ -20,6 +20,7 @@ class WaResourcesGalleriesController < ApplicationController
   before_filter :authenticate_user!
   inherit_resources
 
+  load_and_authorize_resource
   skip_after_filter :discard_flash, :only => [:create, :update]
 
   #############
@@ -40,7 +41,6 @@ class WaResourcesGalleriesController < ApplicationController
   end
 
   def update
-    params["wa_resources_gallery"] ||= {}
     ao_ids = resource.activity_object_ids
 
     unless params["url"].blank?
@@ -48,7 +48,6 @@ class WaResourcesGalleriesController < ApplicationController
       unless the_resource.nil? or the_resource.activity_object.nil?
         ao_ids << the_resource.activity_object.id
       end
-      params.delete "url"
     end
 
     unless params["remove_activity_object_id"].blank?
@@ -56,7 +55,7 @@ class WaResourcesGalleriesController < ApplicationController
     end
 
     ao_ids.uniq!
-    params["wa_resources_gallery"]["activity_object_ids"] = ao_ids
+    resource.activity_object_ids = ao_ids
 
     super do |format|
       format.html {

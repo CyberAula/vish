@@ -20,6 +20,8 @@ class WaResourcesController < ApplicationController
   before_filter :authenticate_user!
   inherit_resources
 
+  before_filter :fill_create_params, :only => [:create, :update]
+  load_and_authorize_resource
   skip_after_filter :discard_flash, :only => [:create, :update]
 
   #############
@@ -27,14 +29,6 @@ class WaResourcesController < ApplicationController
   #############
 
   def create
-    params["wa_resource"] ||= {}
-    unless params["url"].blank?
-      the_resource = ActivityObject.getObjectFromUrl(params["url"])
-      unless the_resource.nil? or the_resource.activity_object.nil?
-        params["wa_resource"]["activity_object_id"] = the_resource.activity_object.id
-      end
-    end
-    
     super do |format|
       format.html {
         unless resource.errors.blank?
@@ -56,15 +50,7 @@ class WaResourcesController < ApplicationController
     end
   end
 
-  def update
-    params["wa_resource"] ||= {}
-    unless params["url"].blank?
-      the_resource = ActivityObject.getObjectFromUrl(params["url"])
-      unless the_resource.nil? or the_resource.activity_object.nil?
-        params["wa_resource"]["activity_object_id"] = the_resource.activity_object.id
-      end
-    end
-    
+  def update   
     super do |format|
       format.html {
         unless resource.errors.blank?
@@ -90,6 +76,16 @@ class WaResourcesController < ApplicationController
 
   def allowed_params
     [:workshop_id, :activity_object_id]
+  end
+
+  def fill_create_params
+    params["wa_resource"] ||= {}
+    unless params["url"].blank?
+      the_resource = ActivityObject.getObjectFromUrl(params["url"])
+      unless the_resource.nil? or the_resource.activity_object.nil?
+        params["wa_resource"]["activity_object_id"] = the_resource.activity_object.id
+      end
+    end
   end
 
 end
