@@ -20,6 +20,7 @@ class WaContributionsGalleriesController < ApplicationController
   before_filter :authenticate_user!
   inherit_resources
 
+  load_and_authorize_resource
   skip_after_filter :discard_flash, :only => [:create, :update]
 
   #############
