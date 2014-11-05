@@ -1,4 +1,4 @@
-<!-- Button to trigger modal --> 
+<!-- Button to trigger modal -->
 <!-- Modal Categories-->
 <div id="<%=div_id%>" class="modal hide fade category_form_wrapper" tabindex="-1" role="dialog" aria-labelledby="<%=div_id%>AddCategoryLabel" aria-hidden="true">
 
@@ -17,16 +17,30 @@
       <!--Title-->
       <label><%= t('categories.leyend.title')%></label>
       <%= f.text_field :title, :id => div_id+"_category_title", :placeholder => t('categories.title_input') %>
-      
+
       <!--Description-->
       <label><%= t('categories.leyend.description')%></label>
       <%= f.text_field :description, :id => div_id+"_category_description", :placeholder => t('categories.description_input') %>
+
+      <label><%= f.label :rootCategory, "Belogs to" %></label>
+      <%  generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} 
+          generic = []
+          generic << ["","-1"]
+          generic_categories.each do |init|
+            generic << [init.title, init.id]
+          end %>
+          
+      <%= f.select(:is_root, options_for_select(generic)) %>
+
+      <!--Avatar-->
+      <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
+      <%= f.file_field :avatar %>
 
       <%= f.submit t('categories.save'), :class => "hidden" %>
     <% end %>
   </div>
 
-    <div class="modal-footer">      
+    <div class="modal-footer">
       <input type="button" class="btn-primary" value="<%= t('categories.save') %>"/>
     </div>
 </div>
@@ -42,7 +56,7 @@
         opt = $('<option />', {
           value: data.id,
           text: data.title
-        });               
+        });
         opt.appendTo($("#category_id"));
         $("#category_id").multiselect("refresh");
         $("#category_id").multiselect("open");
@@ -51,7 +65,7 @@
 
     $('#<%=div_id%> .new_category').bind('ajax:error', function(evt, data, status, xhr){
       $("#<%=div_id%> .errors").remove();
-      
+
       if(data.responseJSON!=undefined){
         var errors = data.responseJSON.errors;
       } else {
@@ -77,4 +91,3 @@
     });
 
 </script>
-
