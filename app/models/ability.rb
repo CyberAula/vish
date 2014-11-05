@@ -27,7 +27,12 @@ class Ability
     end
 
     can [:manage], [WaContributionsGallery] do |waObject|
-      can?(:update, waObject.workshop_activity)
+      can?(:update, waObject.workshop_activity) and can?(:update, waObject.wa_assignments)
+    end
+
+    #Helpers
+    can :update, Array do |arr|
+      arr.all? { |el| can?(:update, el) }
     end
 
     super
