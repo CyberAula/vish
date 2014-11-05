@@ -1,0 +1,16 @@
+
+<h3 class="title_WS">Resource</h3>
+
+<%= div_for picture, :class => 'object_WS' do %>
+	<div class="picture_show">
+	<%= link_to thumb_for(picture, 500),
+	download_document_path(picture),
+	:id => dom_id(picture) + "_a",
+	:type => picture.type,
+	:title => picture.file_file_name,
+	:path => document_path(picture) %>
+	</div>
+<% end %>
+
+<%= link_to picture.title, picture %>
+<%= render partial: "common_documents/info", locals: { document: picture } %>
