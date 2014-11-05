@@ -70,20 +70,17 @@ ul.workshop_activities_list_edit
       top: 20px
       position: absolute
   .workshop_contribute_footer
-    opacity: 0.5
-    width: 100%
-    height: 35px
-    span
-      float: right
-      padding-top: 5px
-      margin-right: 10px
-
-    .btn
-      float: right
+    opacity: 0.4 !important
+    .btn, .disabled
+      float: left
       margin-left: 10px
-    #new_contribution
-      display: none
-      float: right
+      background-color: $grayLight
+      color: $gray !important
+      text-shadow: none
+      opacity: 1
+      a
+        color: $gray
+
 
 
 
@@ -102,6 +99,7 @@ ul.workshop_activities_list_edit
     height: 30px
     color: $black
     margin-top: 6px
+
     p
       margin: 0
       margin-top: 5px
