@@ -1,5 +1,5 @@
+<h3 class="title_WS"><%=t('workshop.activities.assignment.title')%></h3>  
 <div class="delivery">
-  <h3 class="title_WS"><%=t('workshop.activities.assignment.title')%></h3>  
   <%if wa_assignment.with_dates%>
     <div class="delivery_time">
       <span><%=t('workshop.activities.assignment.open_date')%></span>
@@ -8,10 +8,9 @@
       <p><%=wa_assignment.due_date.strftime("%d %B %Y")%></p>
     </div>
   <%end%>
-
-  <%=raw(wa_assignment.fulltext)%>
-  <div class="workshop_contribute_footer">
-    <%= render partial: "contributions/submit_contributions", locals:  { :wa_assignment => wa_assignment } %>
-  </div>
-
 </div>
+<%=raw(wa_assignment.fulltext)%>
+<div class="workshop_contribute_footer">
+  <%= render partial: "contributions/submit_contributions", locals:  { :wa_assignment => wa_assignment } %>
+</div>
+

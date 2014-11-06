@@ -10,9 +10,17 @@
 <% end %>
 
 <button class="btn btn-primary btn_show_upload">Resource</button>
+<button class="btn btn_hidden_upload"><i class="icon-chevron-left"></i></button>
 <script>
 	$( ".btn_show_upload" ).click(function() {
-	$( "#new_contribution" ).show( "slow" );
-	$( ".btn_show_upload" ).addClass( "hidden" );
+  	$( "#new_contribution" ).show( "slow" );
+  	$( ".btn_show_upload" ).hide( "slow" );
+    $( ".btn_hidden_upload" ).show( "slow" );
 	});
+
+  $( ".btn_hidden_upload" ).click(function() {
+    $( "#new_contribution" ).hide( "slow" );
+    $( ".btn_hidden_upload" ).hide( "slow" );
+    $( ".btn_show_upload" ).show( "slow" );
+  });
 </script>

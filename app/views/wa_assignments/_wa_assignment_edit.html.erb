@@ -1,15 +1,15 @@
-<h3 class="title_WS"><%=t('workshop.activities.assignment.title')%></h3>
+<h3 class="title_WS assignment_edit_title"><%=t('workshop.activities.assignment.title')%></h3>
 
 <div class="delivery">
   <%if wa_assignment.with_dates%>
     <div class="delivery_time">
       <span><%=t('workshop.activities.assignment.open_date')%></span>
-      <p><%=wa_assignment.open_date%></p>
+      <p><%=wa_assignment.open_date.strftime("%d %B %Y")%></p>
       <span><%=t('workshop.activities.assignment.due_date')%></span>
-      <p><%=wa_assignment.due_date%></p>
+      <p><%=wa_assignment.due_date.strftime("%d %B %Y")%></p>
     </div>
   <%end%>
-
+</div>
   <div class="Assignment_edit_box">
     <%= form_for wa_assignment, :html => { :id => "edit_wa_assignment_#{wa_assignment.id}" }, :remote => false do |f| %>
       <%= f.text_area :fulltext, :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
