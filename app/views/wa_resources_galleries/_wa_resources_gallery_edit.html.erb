@@ -1,6 +1,6 @@
 <% aos = wa_resources_gallery.activity_objects %>
 
-<ul>
+<ul class="ws_gallery">
   <% aos.map{|ao| ao.object}.each do |resource| %>
     <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "wa_resource_gallery_"+wa_resources_gallery.id.to_s } %>
   <% end %>
