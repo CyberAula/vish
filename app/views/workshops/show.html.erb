@@ -37,6 +37,7 @@
   
   <% @workshop_activities.each do |workshop_activity| %>
     <div class="wa_activity_wrapper wa_activity_wrapper_show">
+   
       <% entity = workshop_activity.object %>
       <%className = entity.class.to_s%>
       <%classNameUnderscore = className.underscore%>
