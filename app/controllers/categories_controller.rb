@@ -26,7 +26,6 @@ class CategoriesController < ApplicationController
      @indexOf ||= -1
       create! do |success, failure|
         success.json {
-          binding.pry
           if @indexOf != -1
             Category.find(@indexOf).property_objects << @category.activity_object
           end
@@ -130,6 +129,7 @@ class CategoriesController < ApplicationController
         if dragged.object_type == "Category"
           #if it is a category, destroy it
           authorize! :destroy, dragged.object
+          destroyContainedCategories dragged.object
           dragged.object.destroy
         elsif params[:sort_order].present? && !the_category.nil? and the_category.property_objects.include?(dragged)
           #if it is not just get deleted
@@ -220,18 +220,35 @@ class CategoriesController < ApplicationController
   #probar
   def destroyContainedCategories category
     categoriesInside = []
+    categoriesChecked = []
+
     category.property_objects.each do |cat|
-      if cat.class == "Category"
-        categoriesInside.push cat
+      if cat.object.class == Category
+        categoriesInside << cat.object
       end
     end
-    if categoriesInside.empty?
-      category.destroy
-    else
-      categoriesInside.each do |destroying|
-        destroyContainedCategories destroying
+
+    if categoriesInside.empty? then notcheckedeverything = false else notcheckedeverything = true end
+    
+    while notcheckedeverything do
+      checking = categoriesInside.pop
+
+      checking.property_objects.each do |cat|
+        if cat.object.class == Category
+          categoriesChecked << cat.object
+        end
+      end
+      categoriesChecked << checking
+
+      if categoriesInside.empty?
+        notcheckedeverything = false
       end
     end
+
+    categoriesChecked.each do |e|
+      e.destroy
+    end
+   
   end
 
 end
