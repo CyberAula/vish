@@ -17,18 +17,15 @@ class CategoriesController < ApplicationController
   def create
     unless params[:category][:is_root].blank?
       @indexOf = params[:category][:is_root].to_i
-      if @indexOf == -1 then 
-        @category.is_root = true 
-      else 
-        @category.is_root = false 
-      end
+      if @indexOf == -1 then @category.is_root = true else @category.is_root = false end
     end
      @indexOf ||= -1
       create! do |success, failure|
+      #TODO: Refactor add to parent
+        if @indexOf != -1 and !@category.id.nil?
+          Category.find(@indexOf).property_objects << @category.activity_object end
+      #Todo!
         success.json {
-          if @indexOf != -1
-            Category.find(@indexOf).property_objects << @category.activity_object
-          end
           render :json => {"title"=>@category.title, "id"=>@category.id,"avatar" => @category.avatar, "is_root" => @category.is_root}, :status => 200 }
         failure.json { render :json => {"errors" => @category.errors.full_messages.to_sentence}, :status => 400}
       end      
