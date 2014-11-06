@@ -1,9 +1,25 @@
 class Category < ActiveRecord::Base
   include SocialStream::Models::Object
 
+  #Parent
+  belongs_to :parent, :class_name => 'Category', :foreign_key => 'parent_id'
+  has_many :children, :class_name => 'Category', :foreign_key => 'parent_id'
+
   validates_presence_of :title
-  #Problem in categories controller
   validate :title_not_duplicated, on: :create
+
+  validate :has_valid_parent
+  def has_valid_parent
+    if (!self.parent_id.nil? and self.parent.nil?) or (!self.parent.nil? and (self.parent==self or self.all_category_children.include? self.parent))
+      errors.add(:category, "Invalid parent")
+    else
+      true
+    end
+  end
+
+  before_save :check_property_objects
+  after_save :check_parent_property_objects
+  after_destroy :remove_children
 
   define_index do
     activity_object_index
@@ -22,8 +38,87 @@ class Category < ActiveRecord::Base
     order
   end
 
+  def isRoot?
+    self.parent.nil?
+  end
+
+  def all_category_children
+    all_children = []
+    direct_children = children
+    all_children += direct_children
+
+    direct_children.each do |dchildren|
+      all_children += dchildren.all_category_children
+    end
+
+    all_children
+  end
+
+  def parents_path(path=nil)
+    path ||= [self]
+    cp = self.parent
+
+    unless cp.nil?
+      path.unshift(cp)
+      return cp.parents_path(path)
+    end
+
+    return path
+  end
+
+  def insertPropertyObject(object)
+    if !object.nil? and object.class.name=="ActivityObject" and !self.property_objects.include? object
+      self.property_objects << object
+    end
+  end
+
+  def deletePropertyObject(object)
+    if !object.nil? and self.property_objects.include? object
+      self.property_objects.delete(object)
+    end
+  end
+
+  def setPropertyObjects(property_objects=nil)
+    property_objects ||= self.property_objects.clone
+    property_objects = property_objects.uniq
+    self.property_objects = []
+    self.property_objects = property_objects
+  end
+
+  def self.category_parents_options_for_select(current_subject,category=nil)
+    allCategories = Category.authored_by(current_subject)
+    unless category.nil?
+      categoryChildren = category.all_category_children
+      allCategories.reject!{|c| categoryChildren.include? c or c==category}
+    end
+    ([["",nil]] + allCategories.sort_by!{|e| e.title.downcase}.map{|c| [c.title, c.id]}).uniq
+  end
+
+
   private
+
   def title_not_duplicated
     errors.add(:title, "duplicated") unless Category.all.map{ |category| category.id if(category.owner_id == self.owner_id && category.title == self.title) }.compact.blank?
   end
+
+  def check_property_objects
+    array = self.property_objects
+    hasDuplicates = !array.detect {|e| array.rindex(e) != array.index(e)}.nil?
+    if hasDuplicates
+      self.setPropertyObjects
+    end
+  end
+
+  def check_parent_property_objects
+    unless self.parent.nil?
+      self.parent.insertPropertyObject(self.activity_object)
+    end
+  end
+
+  def remove_children
+    self.children.each do |children|
+      children.destroy
+    end
+  end
+
 end

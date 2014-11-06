@@ -22,15 +22,8 @@
       <label><%= t('categories.leyend.description')%></label>
       <%= f.text_field :description, :id => div_id+"_category_description", :placeholder => t('categories.description_input') %>
 
-      <label><%= f.label :rootCategory, "Belogs to" %></label>
-      <%  generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} 
-          generic = []
-          generic << ["","-1"]
-          generic_categories.each do |init|
-            generic << [init.title, init.id]
-          end %>
-          
-      <%= f.select(:is_root, options_for_select(generic)) %>
+      <label><%= f.label :parentCategory, "Belongs to" %></label>
+      <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject))) %>
 
       <!--Avatar-->
       <label><%= f.label :avatar, t('document.leyend.avatar') %></label>

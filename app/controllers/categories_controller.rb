@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   include SocialStream::Controllers::Objects
 
   before_filter :authenticate_user!, :except => [:show]
+  before_filter :fill_create_params, :only => [:create, :update]
   skip_load_and_authorize_resource :only => [:categorize, :edit_categories]
   skip_after_filter :discard_flash, :only => [:update]
 
@@ -15,20 +16,55 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    unless params[:category][:is_root].blank?
-      @indexOf = params[:category][:is_root].to_i
-      if @indexOf == -1 then @category.is_root = true else @category.is_root = false end
+    unless params[:category][:parent_id].blank?
+      parentCategory = Category.find_by_id(params[:category][:parent_id])
+      authorize! :update, parentCategory unless parentCategory.nil?
     end
-     @indexOf ||= -1
-      create! do |success, failure|
-      #TODO: Refactor add to parent
-        if @indexOf != -1 and !@category.id.nil?
-          Category.find(@indexOf).property_objects << @category.activity_object end
-      #Todo!
-        success.json {
-          render :json => {"title"=>@category.title, "id"=>@category.id,"avatar" => @category.avatar, "is_root" => @category.is_root}, :status => 200 }
-        failure.json { render :json => {"errors" => @category.errors.full_messages.to_sentence}, :status => 400}
-      end      
+
+    create! do |success, failure|
+      success.json {
+        render :json => @category, :status => 200
+      }
+      failure.json {
+        render :json => {"errors" => @category.errors.full_messages.to_sentence}, :status => 400
+      }
+    end   
+  end
+
+  def update
+    originalParentCategory = @category.parent
+
+    unless params[:category][:parent_id].blank?
+      parentCategory = Category.find_by_id(params[:category][:parent_id])
+      unless parentCategory.nil?
+        authorize! :update, parentCategory
+        @category.parent_id = parentCategory.id
+      else
+        params[:category].delete "parent_id"
+      end
+    else
+      @category.parent_id = nil
+    end
+
+    super do |format|
+      format.html {
+        unless resource.errors.blank?
+          flash[:errors] = resource.errors.full_messages.to_sentence
+        else
+          discard_flash
+
+          #On success
+          if (originalParentCategory != @category.parent)
+            unless originalParentCategory.nil?
+              #Remove category from old parent
+              originalParentCategory.deletePropertyObject(@category.activity_object)
+            end
+          end
+        end
+
+        redirect_to url_for(resource)
+       }
+    end
   end
 
   def categorize
@@ -56,10 +92,10 @@ class CategoriesController < ApplicationController
 
       unless new_categories_titles.blank?
         #Create new categories and store their ids in existing_categories_ids
+        actorId = Actor.normalize_id(current_subject)
         new_categories_titles.each do |cTitle|
           c = Category.new
           c.title = cTitle
-          actorId = Actor.normalize_id(current_subject)
           c.author_id = actorId
           c.owner_id = actorId
           authorize! :create, c
@@ -70,19 +106,18 @@ class CategoriesController < ApplicationController
 
       existing_categories_ids.uniq!
 
-      object_id = ActivityObject.find(params[:activity_object_id])
-      subject_categories = Category.authored_by(current_subject)
+      object_to_categorize = ActivityObject.find_by_id(params[:activity_object_id])
 
-      subject_categories.each do |category|
-        authorize! :update, category
-        category.property_objects.delete(object_id)
-      end
+      unless object_to_categorize.nil?
+        subject_categories.each do |category|
+          authorize! :update, category
+          category.deletePropertyObject(object_to_categorize)
+        end
 
-      categories_to_categorize = Category.find(existing_categories_ids)
-      categories_to_categorize.each do |categoryToCategorize|
-        authorize! :update, categoryToCategorize
-        categoryToCategorize.property_objects << object_id
-        categoryToCategorize.property_objects.uniq!
+        Category.find(existing_categories_ids).each do |categoryToCategorize|
+          authorize! :update, categoryToCategorize
+          categoryToCategorize.insertPropertyObject(object_to_categorize)
+        end
       end
     end
 
@@ -126,35 +161,37 @@ class CategoriesController < ApplicationController
         if dragged.object_type == "Category"
           #if it is a category, destroy it
           authorize! :destroy, dragged.object
-          destroyContainedCategories dragged.object
           dragged.object.destroy
         elsif params[:sort_order].present? && !the_category.nil? and the_category.property_objects.include?(dragged)
           #if it is not just get deleted
-          the_category.property_objects.delete(dragged)
+          the_category.deletePropertyObject(dragged)
         end
       when -2
         #Dragged into top level
-        # if params[:sort_order].present?
       else
-        # Drag into another category
+        #Dragged into another category
         receiver = ActivityObject.find_by_id(n[1].to_i)
         next if receiver.nil?
 
         if receiver.object_type == "Category"
-          if !dragged.nil? && !receiver.nil? && dragged != receiver
+          if !dragged.nil? && !receiver.nil? && dragged!=receiver
             authorize! :update, receiver.object
-            receiver.property_objects << dragged
-            receiver.property_objects.uniq!
-            #if dragged is a category notify it is not root
+            validMove = true
+
+            #if dragged is a category update its parent
             if dragged.object_type == "Category"
               authorize! :update, dragged.object
-              dragged.category.is_root = false
-              dragged.category.save
+              dragged.object.parent_id = receiver.object.id
+              validMove = dragged.object.save
             end
-             #notify for leaving a category container
-            if !the_category.nil? and the_category.property_objects.include?(dragged)
-              the_category.property_objects.delete(dragged)
+
+            if validMove
+              #notify for leaving a category container
+              if !the_category.nil? and the_category.property_objects.include?(dragged)
+                the_category.deletePropertyObject(dragged)
+              end
             end
+           
           end
         end
       end
@@ -181,71 +218,27 @@ class CategoriesController < ApplicationController
     render :json => { :success => true }
   end
 
-
-  def update
-    super do |format|
-      format.html {
-        unless resource.errors.blank?
-          flash[:errors] = resource.errors.full_messages.to_sentence
-        else
-          discard_flash
-        end
-
-        redirect_to url_for(resource)
-       }
-    end
-  end
-
   def destroy
-    main = Category.find(params[:id])
-    destroyContainedCategories main
     super do |format|
       format.html {
         redirect_to url_for(current_subject)
        }
-
       format.js
     end
-   end
+  end
+
 
   private
 
   def allowed_params
-    [:item_type, :item_id, :scope, :avatar, :is_root]
+    [:item_type, :item_id, :scope, :avatar, :parent_id]
   end
 
-  #probar
-  def destroyContainedCategories category
-    categoriesInside = []
-    categoriesChecked = []
-
-    category.property_objects.each do |cat|
-      if cat.object.class == Category
-        categoriesInside << cat.object
-      end
+  def fill_create_params
+    params["category"] ||= {}
+    if params["category"]["parent_id"].blank?
+      params["category"]["parent_id"] = nil
     end
-
-    if categoriesInside.empty? then notcheckedeverything = false else notcheckedeverything = true end
-    
-    while notcheckedeverything do
-      checking = categoriesInside.pop
-
-      checking.property_objects.each do |cat|
-        if cat.object.class == Category
-          categoriesChecked << cat.object
-        end
-      end
-      categoriesChecked << checking
-
-      if categoriesInside.empty?
-        notcheckedeverything = false
-      end
-    end
-
-    categoriesChecked.each do |e|
-      e.destroy
-    end
-   
   end
 
 end
