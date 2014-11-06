@@ -184,9 +184,9 @@ $('.delete').popover({
       <% shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + event_path(@event) ) %>
       <input class="form-control" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
       <!-- <div class="input-group-addon">
-        <a id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+        <button id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
           <i class="fa fa-copy"></i>
-        </a>
+        </button>
       </div> -->
     </div>
     <div class="social_toolbar_excursion">

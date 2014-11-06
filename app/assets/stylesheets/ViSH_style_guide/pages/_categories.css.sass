@@ -70,11 +70,6 @@
           word-wrap: break-word
           margin-bottom: 5px
           font-size: 13px
-        .btn-group
-          .action
-            &:hover
-              background-color: $brand-primary
-              color: $white
 
 
 
@@ -102,7 +97,7 @@
         a
           float: right
           margin-right: 10px
-          background-color: $brand-primary
+          background-color: $gray
           color: $white
           &:hover
             color: $white
@@ -259,7 +254,7 @@
     p
       width: 100%
       padding: 3px 0
-    p.information
+    div.information
       width: 25%
       display: inline-block
 
@@ -296,6 +291,8 @@
       display: inline-block
       float: right
       width: 75%
+      i
+        float: right
       ul
         width: 99%
         opacity: 0.9
@@ -303,11 +300,13 @@
         overflow-y: auto
 
       button 
-        @include border-left-radius ($border-radius-base)
+        @extend .btn-default
         width: 100%
         float: right
         text-align: left
         padding: 3px 12px !important
+        border: 1px solid $gray
+
       span
         float: right
         display: inline
@@ -315,18 +314,18 @@
         display: inline
         color: $gray-light
         float: left
-      li
-        width: 95%
-        padding: 0px 2% !important
       a
         font-size: 14px
         color: $white
         cursor: pointer
         padding-left: 10px
-        width: 100%
 
   .modal-footer
-    @extend .btn-primary
+    #save_cat_button
+      @extend .btn-primary
+
+.excursion_tool .modal .btn-group .btn-default
+  @extend .btn-default
     
 #categories_edition
   background-color: rgba(0,0,0,0.8)
@@ -408,7 +407,6 @@
           width: 70%
           clear: both
           float: left
-
           margin-right: 5%
           margin-left: 20%
           display: block
@@ -447,4 +445,5 @@
     display: block
     ul
       margin: 0
+      margin: 20px 0 0
 

@@ -40,29 +40,29 @@
         </div>
       </div>
 
-      <div class="update" style="display:none">
-        <%= form_for(@category, :url => [@category]) do |f| %>
-        <%= f.hidden_field :owner_id %>
-        <!--TITULO-->
-        <label><%= t('categories.leyend.title')%></label>
-        <%= f.text_field :title %>
-        <!--DESCRIPCION-->
-        <label><%= t('categories.leyend.description')%></label>
-        <%= f.text_field :description %>
-        <!--FORM FOR UPLOADING IMAGE-->
-        <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
-        <%= f.file_field :avatar %>
-        <div class="actions">
-          <%= f.submit t('categories.save'), :id => "saveCategory" %>
-          <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn "%>
-          <% end %>
-        </div>
-
-        <!--Está roto si lleva un avatar JuanCar-->
-        <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category, :show_avatar => true} %>
+    <div class="update" style="display:none">
+      <%= form_for(@category, :url => [@category]) do |f| %>
+      <%= f.hidden_field :owner_id %>
+      <!--TITULO-->
+      <label><%= t('categories.leyend.title')%></label>
+      <%= f.text_field :title, :class => "form-control" %>
+      <!--DESCRIPCION-->
+      <label><%= t('categories.leyend.description')%></label>
+      <%= f.text_field :description, :class => "form-control" %>
+      <!--FORM FOR UPLOADING IMAGE-->
+      <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
+      <%= f.file_field :avatar %>
+      <div class="actions">
+        <%= f.submit t('categories.save'), :id => "saveCategory", :class=>"btn btn-primary" %>
+        <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-defaul" %>
+        <% end %>
       </div>
+
+      <!--Está roto si lleva un avatar JuanCar-->
+      <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category, :show_avatar => true} %>
     </div>
   </div>
+      </div>
 </section>
 
 <%#Ordering logic%>
@@ -87,13 +87,13 @@
     $(".edit_icon").on("click", function(){
       $(".update").show("slow");
       $(".btn-group").hide("slow");
-      $(".information").hide("slow");
+      $(".briefing").hide("slow");
     });
 
     $("#hide_category_form").on("click", function(){
       $(".update").hide("slow");
       $(".btn-group").show("slow");
-      $(".information").show("slow");
+      $(".briefing").show("slow");
     });
 
   });

@@ -1,4 +1,4 @@
-  <ul class="items">
+
 	<%use_ids ||= false%>
 	<% @items.each do |item| %>
 	<% case item.object.class.to_s %>
@@ -13,4 +13,4 @@
 			<%= render :partial => 'repositories/resource', :locals => { :resource => item.object, :obj_id => use_ids ? item.id : "" } %>
 		<% end %>
 	<% end %>
-  </ul>
+

@@ -3,7 +3,6 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-
     //to close the popovers
     $(':not(#anything_not_present)').on('click', function (e) {
       $('.popover-link').each(function () {
@@ -27,7 +26,7 @@
         case "embed": 
           if(!embedEvents){
             embedEvents = true;
-            $('a#btn_copy_embed').zclip({
+            $('button#btn_copy_embed').zclip({
               path:'/assets/ZeroClipboard.swf',
               copy:function(){
                 return $('#textarea_for_iframe').text();
@@ -49,7 +48,7 @@
         case "share": 
           if(!shareEvents){
             shareEvents = true;
-            $('a#btn_copy_share').zclip({
+            $('button#btn_copy_share').zclip({
               path:'/assets/ZeroClipboard.swf',
               copy:function(){
                 return $('#input_with_shorturl').val();
@@ -212,7 +211,7 @@
       <li>
         <a href="#tab4" tabTitle='download' data-toggle="tab">
           <i class="fa fa-download"></i> 
-          <span class="  hidden-xs">
+          <span class="hidden-xs">
             <%=t('document.actions.download')%>
           </span>
         </a>
@@ -221,7 +220,7 @@
         <a href="#tab5" tabTitle='flag' data-toggle="tab">
           <i class="fa fa-flag"></i> 
           <span class=" hidden-xs spam-name ">
-          <%=t('excursion.actions.spam')%>
+            <%=t('excursion.actions.spam')%>
           </span>
           <!--span class=" hidden-tablethidden-xs">
             <%#=t('excursion.actions.scorm')%>
@@ -250,9 +249,9 @@
             &lt;iframe id='presentation_iframe' src='//<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0; webkitallowfullscreen mozallowfullscreen allowfullscreen &gt;&lt;/iframe&gt
           </textarea>
           <div class="input-group-addon">
-            <a id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+            <button class="btn" id="btn_copy_embed" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
               <i class="fa fa-copy "></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>           
@@ -265,9 +264,9 @@
         
           <input class="form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
           <div class="input-group-addon">
-            <a id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+            <button class="btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
               <i class="fa fa-copy "></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>
