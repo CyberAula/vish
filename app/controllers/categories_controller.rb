@@ -15,13 +15,18 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @indexOf = params[:category][:is_root].to_i
-    if( @indexOf == -1) then @category.is_root = true else @category.is_root = false end
-
+    unless params[:category][:is_root].blank?
+      @indexOf = params[:category][:is_root].to_i
+      if @indexOf == -1 then @category.is_root = true else @category.is_root = false end
+    end
+     @indexOf ||= -1
       create! do |success, failure|
+      #TODO: Refactor add to parent
+        if @indexOf != -1 and !@category.id.nil?
+          Category.find(@indexOf).property_objects << @category.activity_object end
+      #Todo!
         success.json {
-          Category.find(@indexOf).property_objects << @category.activity_object
-          render :json => {"title"=>@category.title, "id"=>@category.id,"avatar" => @category.avatar, "is_root" => true}, :status => 200 }
+          render :json => {"title"=>@category.title, "id"=>@category.id,"avatar" => @category.avatar, "is_root" => @category.is_root}, :status => 200 }
         failure.json { render :json => {"errors" => @category.errors.full_messages.to_sentence}, :status => 400}
       end      
   end
@@ -121,6 +126,7 @@ class CategoriesController < ApplicationController
         if dragged.object_type == "Category"
           #if it is a category, destroy it
           authorize! :destroy, dragged.object
+          destroyContainedCategories dragged.object
           dragged.object.destroy
         elsif params[:sort_order].present? && !the_category.nil? and the_category.property_objects.include?(dragged)
           #if it is not just get deleted
@@ -191,6 +197,8 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    main = Category.find(params[:id])
+    destroyContainedCategories main
     super do |format|
       format.html {
         redirect_to url_for(current_subject)
@@ -206,4 +214,39 @@ class CategoriesController < ApplicationController
     [:item_type, :item_id, :scope, :avatar, :is_root]
   end
 
+  #probar
+  def destroyContainedCategories category
+    categoriesInside = []
+    categoriesChecked = []
+
+    category.property_objects.each do |cat|
+      if cat.object.class == Category
+        categoriesInside << cat.object
+      end
+    end
+
+    if categoriesInside.empty? then notcheckedeverything = false else notcheckedeverything = true end
+    
+    while notcheckedeverything do
+      checking = categoriesInside.pop
+
+      checking.property_objects.each do |cat|
+        if cat.object.class == Category
+          categoriesChecked << cat.object
+        end
+      end
+      categoriesChecked << checking
+
+      if categoriesInside.empty?
+        notcheckedeverything = false
+      end
+    end
+
+    categoriesChecked.each do |e|
+      e.destroy
+    end
+   
+  end
+
 end
+
