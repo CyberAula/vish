@@ -30,7 +30,6 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-
   revision: 831c7e4b047130872e8c7f9ebc3fa4b4aaa68467
   branch: vish-b3
   specs:
