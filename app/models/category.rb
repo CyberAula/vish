@@ -8,8 +8,20 @@ class Category < ActiveRecord::Base
   validates_presence_of :title
   validate :title_not_duplicated
   def title_not_duplicated
-    # errors.add(:title, "duplicated") unless Category.all.map{ |category| category.id if(category.owner_id == self.owner_id && category.title == self.title) }.compact.blank?
-    true
+    if self.isRoot?
+      owner = Actor.find_by_id(self.owner_id)
+      return false if owner.nil?
+      categories = Category.authored_by(owner).select{|c| c.isRoot?}
+    else
+      categories = self.parent.children
+    end
+    categories = categories.reject{|c| c==self}
+
+    if categories.select{|c| c.title==self.title}.length > 0
+      errors[:base] << "There is another category with the same title"
+    else
+      true
+    end
   end
 
   validate :has_valid_parent
