@@ -641,11 +641,21 @@ es:
     foryou: "Para ti"
     populars: "Populares"
   lang:
-    independent: "No depende del lenguaje"
-    changed: "Se cambia el idioma a %{lang}"
+    changed: "Se cambió el idioma a %{lang}"
     error: "El idioma \"%{lang}\" no está disponible"
-    title: "idioma"    
-    others: Otros
+    title: "idioma"
+    languages:
+      independent: "Idependiente del idioma"
+      others: Otros
+      en: "Inglés"
+      de: "Alemán"
+      es: "Español"
+      fr: "Francés"
+      it: "Italiano"
+      pt: "Portugués"
+      ru: "Ruso"
+      hu: "Húngaro"
+      nl: "Holandés"
   link:
     one: "enlace"
     other: "enlaces"

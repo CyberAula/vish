@@ -23,8 +23,7 @@ pt:
   help: "ajuda"
   lang:
     title: "idioma"
-    changed: "idioma:  %{lang}"
-    error: "%{lang}"
+    changed: "idioma: %{lang}"
   mailboxer:
     new_message_for: "Nova mensagem para"
     delete_confirm: "Você quer mover '%{csubject}' para o lixo?"

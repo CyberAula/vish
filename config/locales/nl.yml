@@ -135,11 +135,12 @@ nl:
     repository: "ga naar de leermiddelenbank"
   help: "hulp"
   lang:
-    independent: "Taalonafhankelijk"
     changed: "Taal gewijzigd in %{lang}"
     error: "Taal \"%{lang}\" niet beschikbaar"
-    title: "taal"   
-    others: Overige 
+    title: "taal"
+    languages:
+      independent: "Taalonafhankelijk"
+      others: "Overige"
   link:
     one: "link"
     other: "links"

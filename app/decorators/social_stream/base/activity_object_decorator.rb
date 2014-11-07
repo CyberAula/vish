@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 ActivityObject.class_eval do
 
   has_many :spam_reports
@@ -316,6 +318,11 @@ ActivityObject.class_eval do
     end
 
     return absolutePath
+  end
+
+  def readable_language
+    return nil if self.language.nil?
+    I18n.t('lang.languages.' + self.language.to_s, :default => I18n.t('lang.languages.others'))
   end
 
 

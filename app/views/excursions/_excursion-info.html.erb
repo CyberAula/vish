@@ -17,34 +17,23 @@
     <%end%>
   </div>  
 </div>
- <div id="effect" class="newClass ui-corner-all">
 
-    <%= javascript_tag do %>
-    <%#= modal_for(@excursion.author.subject) %>
-    <% @excursion.contributors.each do |c| %>
-    <%#= modal_for(c.subject) %>
-    <% end%>
-    <% end %>
-    <dl class="dl-horizontal">
+<div id="effect" class="newClass ui-corner-all">
+  <dl class="dl-horizontal">
+    <% unless @excursion.contributors.blank? %>
+      <!--contributors-->
+      <dt><%= t('excursion.contributors.name').capitalize %></dt>
+      <dd>
+        <% @excursion.contributors.uniq.each_with_index do |c,index| %>
+          <% unless index==0 %>
+            ,
+          <% end %>
+          <%= link_to c.name, c.subject %>
+        <%end%>
+      </dd>
+    <%end%>
 
-      <% unless @excursion.contributors.blank? %>
-        <!--contributors-->
-        <dt><%= t('excursion.contributors.name').capitalize %></dt>
-        <dd>
-          <% isFirst = true %>
-          <% @excursion.contributors.uniq.each do |c| %>
-            <% if !isFirst %>
-              ,
-            <% else %>
-              <%isFirst = false%>
-            <% end %>
-            <%= link_to c.name, c.subject %>            
-            </a> 
-          <%end%>
-        </dd>
-      <%end%>
-
-      <% unless @excursion.description.blank? %>
+    <% unless @excursion.description.blank? %>
       <!--description-->
       <dt><%= t('info.description') %></dt>
       <dd><%= truncate(@excursion.description, :length => 400) %></dd>
@@ -61,54 +50,38 @@
           <% end %>
         </ul>
       </dd>
-      <% end %>
-      <% unless @excursion.language.blank? %>
+    <% end %>
+
+    <% unless @excursion.readable_language.blank? %>
       <!--language-->
       <dt><%= t('lang.title').capitalize %></dt>
-      <dd>
-        <%= case @excursion.language
-        when '';
-          t('lang.independent')
-        when 'de';
-          'Deutsch'
-        when 'en';
-          'English'
-        when 'es';
-          'Español'
-        when 'fr';
-          'Français'
-        when 'it';
-          'Italiano'
-        when 'pt';
-          'Português'
-        when 'ru';
-          'Русский'
-        else
-          ; t('lang.others')
-          end %>
-        </dd>
-        <% end %>
-        
-<!--date-create
-      <div class="tittle-notebook">
-      <%= t('document.info.date.created_at') %>
-      </div>
-      <div class="text-notebook">
-      <%= I18n.localize @excursion.created_at, :format => :long %>
-      </div>
+      <dd><%= @excursion.readable_language %></dd>
+    <% end %>
+      
+    <!--date-create
+    <div class="tittle-notebook">
+    <%= t('document.info.date.created_at') %>
+    </div>
+    <div class="text-notebook">
+    <%= I18n.localize @excursion.created_at, :format => :long %>
+    </div>
     -->
+
     <!--date-upload-->
     <dt><%= t('document.info.date.updated_at') %></dt>
     <dd><%= I18n.localize @excursion.updated_at, :format => :long %></dd>
     <dt></dt>
-    <dd><button href="#MetadataModal" id="showMeta" data-toggle="modal" class="ui-state-default ui-corner-all">
-      <%=t('excursion.actions.show_meta')%></button></dd>
+    <dd>
+      <button href="#MetadataModal" id="showMeta" data-toggle="modal" class="ui-state-default ui-corner-all">
+      <%=t('excursion.actions.show_meta')%></button>
+    </dd>
+
   </dl>
 </div>
 
-
-<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
-
+<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all">
+  <a><%=t('excursion.actions.show_more')%></a>
+</button>
 
 <div id="MetadataModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myMetadataLabel" aria-hidden="true">
   <div class="modal-header">
