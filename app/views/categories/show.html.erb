@@ -66,6 +66,8 @@
   <%= render partial: 'categories/edit_categories', :locals => { :all_categories => @items} %>
 <% end %>
 
+<%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path } %>
+
 <div class="main-categories-space">
   <%= render partial: 'categories/items' %>
 </div>

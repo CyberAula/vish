@@ -25,6 +25,8 @@ class Category < ActiveRecord::Base
     activity_object_index
   end
 
+  #Model Methods
+
   #Return the array with the order of the items of the category
   def categories_order
     order = self.category_order
@@ -112,6 +114,12 @@ class Category < ActiveRecord::Base
   def check_parent_property_objects
     unless self.parent.nil?
       self.parent.insertPropertyObject(self.activity_object)
+    end
+    unless self.parent_id_was.nil?
+      old_parent = Category.find_by_id(self.parent_id_was)
+      unless old_parent.nil? or old_parent == self.parent
+        old_parent.deletePropertyObject(self.activity_object)
+      end
     end
   end
 
