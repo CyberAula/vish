@@ -32,7 +32,7 @@ module ApplicationHelper
 	end
 
 	def resource_language_options_for_select(selected="")
-		options_for_select([[I18n.t('lang.languages.independent'), "independent"], [I18n.t('lang.languages.de'), "de"], [I18n.t('lang.languages.en'), "en"], [I18n.t('lang.languages.es'), "es"], [I18n.t('lang.languages.fr'), "fr"], [I18n.t('lang.languages.it'), "it"], [I18n.t('lang.languages.hu'), "hu"], [I18n.t('lang.languages.nl'), "nl"], [I18n.t('lang.languages.pt'), "pt"], [I18n.t('lang.languages.ru'), "ru"], [I18n.t('lang.languages.others'), "ot"]],selected)
+		options_for_select([[I18n.t('lang.languages.independent'), "independent"], [I18n.t('lang.languages.de'), "de"], [I18n.t('lang.languages.en'), "en"], [I18n.t('lang.languages.es'), "es"], [I18n.t('lang.languages.fr'), "fr"], [I18n.t('lang.languages.it'), "it"], [I18n.t('lang.languages.hu'), "hu"], [I18n.t('lang.languages.nl'), "nl"], [I18n.t('lang.languages.pt'), "pt"], [I18n.t('lang.languages.ru'), "ru"], [I18n.t('lang.languages.other'), "ot"]],selected)
 	end
 
 	#Configuration

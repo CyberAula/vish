@@ -140,7 +140,7 @@ nl:
     title: "taal"
     languages:
       independent: "Taalonafhankelijk"
-      others: "Overige"
+      other: "Overige"
   link:
     one: "link"
     other: "links"

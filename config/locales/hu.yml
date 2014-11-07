@@ -279,7 +279,7 @@ hu:
     title: "nyelv"   
     languages:
       independent: "Nyelv független"
-      others: "Others"
+      other: "Others"
   link:
     one: "link"
     other: "linkek"

@@ -90,11 +90,13 @@
   </div>
   <div class="modal-body">
     <ul class="metadatalist">
-    <% metadata(@excursion).each do |key, value| %>
-      <li>
-        <span class="metadatalistkey"><%=key%>:</span>
-        <span class="metadatalistkey2"><%=value%></span>
-      </li>
+    <% @excursion.metadata.each do |key, value| %>
+      <%unless value.blank?%>
+        <li>
+          <span class="metadatalistkey"><%=key%>:</span>
+          <span class="metadatalistkey2"><%=value%></span>
+        </li>
+      <%end%>
     <%end%>
     <li>
       <span class="metadatalistkey"><%=t("metadata.access_lom")%>:</span>
@@ -105,19 +107,19 @@
 </div>
 
 <script>
-$(function() {
-  $("#showMore").click(function(){
-    $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
-    $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
-    if($("#showMore").attr("status")=== "showMore"){
-      $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
-      $("#showMore").attr("status", "showFewer");
-    }
-    else{
-      $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
-      $("#showMore").attr("status", "showMore");
-    }
-    return false;
+  $(function() {
+    $("#showMore").click(function(){
+      $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
+      $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
+      if($("#showMore").attr("status")=== "showMore"){
+        $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
+        $("#showMore").attr("status", "showFewer");
+      }
+      else{
+        $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
+        $("#showMore").attr("status", "showMore");
+      }
+      return false;
+    });
   });
-});
 </script>

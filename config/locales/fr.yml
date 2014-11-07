@@ -140,7 +140,7 @@ fr:
     title: "langue"
     languages:
       independent: "Indépendant de la langue"
-      others: Others
+      other: Others
   link:
     one: "lien"
     other: "liens"

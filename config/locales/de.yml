@@ -296,7 +296,7 @@ de:
     title: "Sprache"
     languages:
       independent: "Sprachunabhängig"
-      others: "Andere"
+      other: "Andere"
   link:
     one: "Link"
     other: "Links"

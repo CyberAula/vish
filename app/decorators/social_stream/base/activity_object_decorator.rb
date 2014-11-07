@@ -321,8 +321,81 @@ ActivityObject.class_eval do
   end
 
   def readable_language
-    return nil if self.language.nil?
-    I18n.t('lang.languages.' + self.language.to_s, :default => I18n.t('lang.languages.others'))
+    readable_from_list('lang.languages',self.language)
+  end
+
+  def readable_context(context)
+    readable_from_list('activity_object.context_choices',context)
+  end
+
+  def readable_difficulty(difficulty)
+    readable_from_list('activity_object.difficulty_choices',difficulty)
+  end
+
+  def readable_subject(subject)
+    readable_from_list('activity_object.subjects_choices',subject)
+  end
+
+  def readable_from_list(list,word)
+    return nil if list.nil? or word.nil?
+    wordKey = word.to_s.gsub(" ","_").downcase
+    default = I18n.t(list + '.other', :default => word)
+    I18n.t(list + '.' + wordKey, :default =>default)
+  end
+
+  def metadata
+    metadata = {}
+
+    unless self.title.nil?
+      metadata[I18n.t("activity_object.title")] = self.title
+    end
+
+    unless self.description.nil?
+      metadata[I18n.t("activity_object.description")] = self.description
+    end
+
+    if !self.tag_list.nil? and self.tag_list.is_a? Array
+      metadata[I18n.t("activity_object.keywords")] = self.tag_list.join(", ")
+    end
+
+    unless self.readable_language.nil?
+      metadata[I18n.t("activity_object.language")] = self.readable_language
+    end
+
+    unless self.age_min.blank? or self.age_max.blank?
+      metadata[I18n.t("activity_object.age_range")] = self.age_min.to_s + " - " + self.age_max.to_s
+    end
+
+    if self.object_type == "Excursion"
+      #Excursions have some extra metadata fields in the json
+      parsed_json = JSON(self.object.json)
+
+      if parsed_json["context"] and parsed_json["context"]!="Unspecified"
+        metadata[I18n.t("activity_object.context")] = self.readable_context(parsed_json["context"])
+      end
+
+      if parsed_json["difficulty"]
+        metadata[I18n.t("activity_object.difficulty")] = self.readable_difficulty(parsed_json["difficulty"])
+      end
+
+      if parsed_json["TLT"]
+        metadata[I18n.t("activity_object.tlt")] = parsed_json["TLT"].sub("PT","") #remove the PT at the beginning
+      end
+
+      if parsed_json["subject"] and parsed_json["subject"].class.name=="Array"
+        parsed_json["subject"].delete("Unspecified")
+        unless parsed_json["subject"].blank?
+          subjects = parsed_json["subject"].map{|subject| self.readable_subject(subject) }
+          metadata[I18n.t("activity_object.subjects")] = subjects.join(",")
+        end
+      end
+
+      if parsed_json["educational_objectives"]
+        metadata[I18n.t("activity_object.educational_objectives")] = parsed_json["educational_objectives"]
+      end
+    end
+
+    return metadata
   end
 
 
