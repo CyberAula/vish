@@ -7,10 +7,10 @@
     <%end%>
   </div>
 
-   
-  <div class="wa_activity_wrapper wa_activity_wrapper_show header_workshop">    
+
+  <div class="wa_activity_wrapper wa_activity_wrapper_show header_workshop">
       <!--title-->
-      <h3 class="title_WS"><%=@workshop.title%></h3>
+      <h3 class="title_WS main_title_WS"><%=@workshop.title%></h3>
       <!--avatar-->
       <div class="container-img_WS">
         <div class="dummy"></div>
@@ -19,9 +19,9 @@
         </div>
       </div>
       <!--description-->
-      <p class="description_WS"><%=@workshop.description%></p>    
+      <p class="description_WS"><%=@workshop.description%></p>
   </div>
-  
+
   <!--owner-profile-->
   <div class="description-activity">
     <div class="box_description">
@@ -29,15 +29,16 @@
       <div class="excursion_tool">
         <% shortURL = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + workshop_path(@workshop) %>
         <%= render :partial => 'workshops/workshop-tool-tab', :locals => { :shortURL => shortURL} %>
-      </div>   
+      </div>
     </div>
   </div>
 
-  
-  
+
+
   <% @workshop_activities.each do |workshop_activity| %>
+
     <div class="wa_activity_wrapper wa_activity_wrapper_show">
-   
+
       <% entity = workshop_activity.object %>
       <%className = entity.class.to_s%>
       <%classNameUnderscore = className.underscore%>
@@ -45,9 +46,9 @@
            locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" }  %>
     </div>
   <%end%>
-     
- 
-  
+
+
+
   <div class="description-activity workshop-comments">
     <!--activity (comments) -->
     <div class="activity-box">

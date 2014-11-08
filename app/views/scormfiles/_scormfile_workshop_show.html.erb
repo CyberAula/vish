@@ -1,0 +1,28 @@
+
+<!-- corner -->
+<div class="corner-item">
+  <div class="corner-item2">
+    <div class="corner-color"></div>
+    <i class="icon-scorm-new"></i>
+  </div>
+  <div class="corner-background"></div>
+</div>
+
+<h3 class="title_WS resource_title_WS"><%=t('workshop.activities.resource.title')%> <span class="blue"> Scorm</span></h3>
+<button href="#showmore2" id="showMore2" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
+
+<%= div_for scormfile, :class => 'object_WS' do %>
+  <div class="scormpackage_show">
+    <iframe width=<%=scormfile.width%> height="<%=scormfile.height%>" class="scormpackage_wrapper" style="border: none; max-width: 100%" src="<%=scormfile.lourl%>"></iframe>
+  </div>
+<% end %>
+
+<div class="resource_ws_info">
+
+  <%= render partial: "common_documents/info_workshop", locals: { document: scormfile } %>
+  <div class="actions">
+    <button href="#" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.download')%></a></button>
+    <button href="#" class="ui-state-default ui-corner-all"><a href="<%=scormfile_path(scormfile, :format => :full)%>" target="_blank"><i class="icon-fullscreen"></i><%= t("scormfile.view_full") %></a></button>
+</div>
+</div>
+
