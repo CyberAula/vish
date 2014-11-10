@@ -1,4 +1,3 @@
-<div id="effect" class="oculto">
 <!-- corner -->
 
 <div class="corner-item">
@@ -11,7 +10,6 @@
 
 <h3 class="title_WS resource_title_WS"><%=t('workshop.activities.resource.title')%> <span class="blue"> Imagen</span></h3>
 <button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
-
 <%= div_for picture, :class => 'object_WS' do %>
 	<div class="picture_show">
 	<%= link_to thumb_for(picture, 500),
@@ -23,32 +21,12 @@
 	</div>
 <% end %>
 
-
 <div class="resource_ws_info">
-
   <%= render partial: "common_documents/info_workshop", locals: { document: picture } %>
   <div class="actions">
   	<button href="#" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.download')%></a></button>
     <button href="#" class="ui-state-default ui-corner-all"><a href="<%=picture_path(picture, :format => :full)%>" target="_blank"><i class="icon-fullscreen"></i><%= t("picture.view_full") %></a></button>
-</div>
-</div>
-
+  </div>
 </div>
 
- <script>
-  $(function() {
-    $("#showMore").click(function(){
-      $(".oculto").switchClass( "oculto", "desplegado", 1000 );
-      $(".desplegado").switchClass( "desplegado", "oculto", 1000 );
-      if($("#showMore").attr("status")=== "showMore"){
-        $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
-        $("#showMore").attr("status", "showFewer");
-      }
-      else{
-        $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
-        $("#showMore").attr("status", "showMore");
-      }
-      return false;
-    });
-  });
-  </script>
+

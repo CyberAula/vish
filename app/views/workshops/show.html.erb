@@ -1,5 +1,3 @@
-
-
 <section id="show_items" class="layout_show workshop_show">
   <div class="toolbar_nav-tab">
     <% if user_signed_in? and (can? :update, @workshop) %>
@@ -33,21 +31,25 @@
     </div>
   </div>
 
-
-
   <% @workshop_activities.each do |workshop_activity| %>
 
     <div class="wa_activity_wrapper wa_activity_wrapper_show">
+      <% if workshop_activity.wa_type!="WaAssignment"  %>
+        <div id="effect<%=workshop_activity.id%>" class="oculto">
+
+      <%end%>
 
       <% entity = workshop_activity.object %>
       <%className = entity.class.to_s%>
       <%classNameUnderscore = className.underscore%>
       <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
            locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" }  %>
+
+      <% if workshop_activity.wa_type!="WaAssignment"  %>
+        </div>
+      <%end%>
     </div>
   <%end%>
-
-
 
   <div class="description-activity workshop-comments">
     <!--activity (comments) -->
@@ -55,5 +57,27 @@
       <%= render :partial => 'workshops/evaluate-activity'%>
     </div>
   </div>
-
 </section>
+
+<script>
+  $(function() {
+    $("#showMore").click(function(){
+      $(".oculto").switchClass( "oculto", "desplegado", 1000);
+      $(".desplegado").switchClass( "desplegado", "oculto", 1000);
+      if($("#showMore").attr("status")=== "showMore"){
+        $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
+        $("#showMore").attr("status", "showFewer");
+
+      }
+      else{
+        $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
+        $("#showMore").attr("status", "showMore");
+
+      }
+      return false;
+    });
+  });
+</script>
+
+
+
