@@ -1,0 +1,26 @@
+<!-- corner -->
+
+<div class="corner-item">
+  <div class="corner-item2">
+    <div class="corner-color"></div>
+    <i class="icon-file-text"></i>
+  </div>
+  <div class="corner-background"></div>
+</div>
+
+<h3 class="title_WS resource_title_WS"><%=t('workshop.activities.resource.title')%> <span class="blue"> Texto</span></h3>
+<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
+
+<%= div_for writing, :class => 'object_WS' do %>
+  <div class="writing_show">
+    <div style="width: auto; overflow: hidden;"><%= raw writing.fulltext %></div>    
+  </div>
+<% end %>
+
+<div class="resource_ws_info">
+  <%= render partial: "common_documents/info_workshop", locals: { document: writing } %>
+  <div class="actions">
+  	<button href="#" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.download')%></a></button>
+    <button href="#" class="ui-state-default ui-corner-all"><a href="<%=writing_path(writing, :format => :full)%>" target="_blank"><i class="icon-fullscreen"></i><%= t("writing.view_full") %></a></button>
+  </div>
+</div>
