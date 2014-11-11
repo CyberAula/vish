@@ -275,11 +275,12 @@ hu:
     repository: "menj a tárházhoz"
   help: "súgó"
   lang:
-    independent: "Nyelv független"
     changed: "Nyelv változtatása %{lang}-ra"
     error: "A \"%{lang}\" nyelv nem elérhető "
     title: "nyelv"   
-    others: Others 
+    languages:
+      independent: "Nyelv független"
+      other: "Others"
   link:
     one: "link"
     other: "linkek"

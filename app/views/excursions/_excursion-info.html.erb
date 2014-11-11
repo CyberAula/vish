@@ -2,24 +2,23 @@
   <!--author-->
   <%= render :partial => 'excursions/items-owner-profile' %>
   <!--tittle-->
-  <div class="viewsAndConunt">        
+  <div class="viewsAndConunt">
     <div class="views">
-      <%=@excursion.visit_count.to_s%> 
+      <%=@excursion.visit_count.to_s%>
       <span>
         <%=t('follow.views')%>
-      </span>   
+      </span>
     </div>
     <%unless @excursion.post_activity.nil?%>
-      <div class="like">    
+      <div class="like">
         <%=@excursion.post_activity.likes.count.to_s%>
         <span>
           <%= link_like(@excursion.post_activity)%>
         </span>
       </div>
     <%end%>
-  </div>  
+  </div>
 </div>
-
 
 <div class="panel-group" id="accordion">
   <div class="panel">
@@ -37,15 +36,12 @@
             <!--contributors-->
             <td><%= t('excursion.contributors.name').capitalize %></td>
             <td>
-              <% isFirst = true %>
-              <% @excursion.contributors.uniq.each do |c| %>
-                <% if !isFirst %>
+              <% @excursion.contributors.uniq.each do |c,index| %>
+                <% unless index==0 %>
                   ,
-                <% else %>
-                  <%isFirst = false%>
                 <% end %>
-                <%= link_to c.name, c.subject %>            
-                </a> 
+                <%= link_to c.name, c.subject %>
+                </a>
               <%end%>
             </td>
           <%end%>
@@ -57,7 +53,7 @@
           <td><%= t('info.description') %></td>
           <td><%= truncate(@excursion.description, :length => 400) %></td>
           <% end %>
-        </tr>  
+        </tr>
       </table>
     </header>
     <div id="collapseInfo" class="panel-collapse collapse">
@@ -79,41 +75,36 @@
             </td>
             <% end %>
           </tr>
+          <% unless @excursion.readable_language.blank? %>
+            <!--language-->
+            <dt><%= t('lang.title').capitalize %></dt>
+            <dd><%= @excursion.readable_language %></dd>
+          <% end %>
+
           <tr>
-            <% unless @excursion.language.blank? %>
+            <% unless @excursion.readable_language.blank? %>
             <!--language-->
             <td><span><%= t('lang.title').capitalize %></span></td>
             <td>
-              <%= case @excursion.language
-              when '';
-                t('lang.independent')
-              when 'de';
-                'Deutsch'
-              when 'en';
-                'English'
-              when 'es';
-                'Español'
-              when 'fr';
-                'Français'
-              when 'it';
-                'Italiano'
-              when 'pt';
-                'Português'
-              when 'ru';
-                'Русский'
-              else
-                ; t('lang.others')
-                end %>
+              <%= @excursion.readable_language %><
             </td>
             <% end %>
           </tr>
-          <tr>    
+          <!--date-create
+          <div class="tittle-notebook">
+          <%= t('document.info.date.created_at') %>
+          </div>
+          <div class="text-notebook">
+          <%= I18n.localize @excursion.created_at, :format => :long %>
+          </div>
+          -->
+          <tr>
             <!--date-upload-->
             <td><span><%= t('document.info.date.updated_at') %></span></td>
             <td><%= I18n.localize @excursion.updated_at, :format => :long %></td>
-           
+
           </tr>
-         
+
         </table>
       </div>
    </div>
@@ -131,8 +122,8 @@
             </div>
             <div class="modal-body">
               <table class="table table-striped">
-                <tbody>
-                  <% metadata(@excursion).each do |key, value| %>
+                <% @excursion.metadata.each do |key, value| %>
+                  <%unless value.blank?%>
                     <tr>
                       <td><%=key%>:</td>
                       <td><%=value%></td>
@@ -141,18 +132,18 @@
                   <tr>
                     <td><%=t("metadata.access_lom")%>:</td>
                     <td><a href="<%=excursion_metadata_path(@excursion)%>"><%=Vish::Application.config.full_domain + excursion_metadata_path(@excursion)%></a></td>
-                  </tr>               
+                  </tr>
                 </tbody>
               </table>
             </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
-      
- 
+
+
   <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
-  
-   
+
+
     <span id="showingMore" class="showMore accordion-toggle btn btn-default" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" title=<%=t("excursion.actions.show_more")%>>
     <%=t('excursion.actions.show_more')%>
     </span>
@@ -161,6 +152,7 @@
                 <%=t('excursion.actions.show_meta')%>
 </button>
 </div>
+
 
 <script language="javascript" type="text/javascript" >
 
@@ -174,5 +166,4 @@
       $("#showingMore").attr("title", "showMore");
     }
   });
-
 </script>

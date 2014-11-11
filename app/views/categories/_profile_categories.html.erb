@@ -1,5 +1,5 @@
 <div id="categories_tab_ready" class="categories cat_container_generic">
-  <% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).select{|i| i.is_root} %>
+  <% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).select{|i| i.isRoot?} %>
   <% order = profile_or_current_subject.actor.categories_order %>
   <% unless order.nil?
     orderLength = order.length
