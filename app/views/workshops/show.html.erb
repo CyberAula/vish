@@ -1,10 +1,14 @@
 <section id="show_items" class="layout_show workshop_show">
+
+<!--++++++++++++++++toolbar+++++++++++++++++++++++-->
+
   <div class="toolbar_nav-tab">
     <% if user_signed_in? and (can? :update, @workshop) %>
       <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-primary" id="edit_workshop">Turn on editing mode</a></p>
     <%end%>
   </div>
 
+<!--++++++++++++++++header+++++++++++++++++++++++-->
 
   <div class="wa_activity_wrapper wa_activity_wrapper_show header_workshop">
       <!--title-->
@@ -20,7 +24,8 @@
       <p class="description_WS"><%=@workshop.description%></p>
   </div>
 
-  <!--owner-profile-->
+<!--++++++++++++++++header/toolbar+++++++++++++++++++++++-->
+
   <div class="description-activity">
     <div class="box_description">
       <!--tool-->
@@ -31,12 +36,19 @@
     </div>
   </div>
 
+
+
+<!--++++++++++++++++item+++++++++++++++++++++++-->
+
   <% @workshop_activities.each do |workshop_activity| %>
 
     <div class="wa_activity_wrapper wa_activity_wrapper_show">
+    
       <% if workshop_activity.wa_type!="WaAssignment"  %>
         <div id="effect<%=workshop_activity.id%>" class="oculto">
+
           <button href="#" status="showMore" class="ui-state-default ui-corner-all showMore"><a><%=t('excursion.actions.show_more')%></a></button>
+
       <%end%>
 
 
@@ -52,6 +64,10 @@
     </div>
   <%end%>
 
+
+
+<!--++++++++++++++++comments+++++++++++++++++++++++-->
+
   <div class="description-activity workshop-comments">
     <!--activity (comments) -->
     <div class="activity-box">
@@ -59,6 +75,8 @@
     </div>
   </div>
 </section>
+
+
 
 <script>
   $(function() {

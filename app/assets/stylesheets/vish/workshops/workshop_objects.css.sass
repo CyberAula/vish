@@ -2,72 +2,99 @@
 // RESOURCES
 //-------------------------
 
+
+.wa_activity_wrapper
+  .resources_workshop
+  
+    .show_object_WS
+      display: none
+
+
+    .thumbnail_object_WS
+      @include img-item-box
+      width: 150px
+      display: inline-block
+      @include resource-box-corner
+    h3
+      width: auto
+      display: inline-block
+
+
+
+
+
+
+
+
 // VISOR
 .object_WS
-	width: 60%
-	background-color: $grayLighter
-	min-height: 300px
-	float: left
-	margin-top: 10px
+  width: 60%
+  background-color: $grayLighter
+  min-height: 300px
+  float: left
+  margin-top: 10px
 
-	// links
-	.link_show
-		min-height: 300px
-		width: 100%
-		border: 1px solid $grayLighter
-	// swf
-	embed
-		min-height: 500px
-		width: 100%
+  // links
+  .link_show
+    min-height: 300px
+    width: 100%
+    border: 1px solid $grayLighter
+  // swf
+  embed
+    min-height: 500px
+    width: 100%
 
-	//embed
-	iframe
-		min-height: 300px
-		width: 100%
-		border: 1px solid $grayLighter
+  //embed
+  iframe
+    min-height: 300px
+    width: 100%
+    border: 1px solid $grayLighter
 
-	//writing
-	.writing_show
-		padding: 20px
+  //writing
+  .writing_show
+    padding: 20px
+
+
+
+
+
+
 
 // INFO
 .resource_ws_info
-	float: left
-	width: 36%
-	padding: 0 0 0 2%
-	margin-top: 10px
+  float: left
+  width: 36%
+  padding: 0 0 0 2%
+  margin-top: 10px
+  dl.dl-horizontal
+    dt
+      text-align: left
+      width: 110px
+      margin-top: 10px
+    dd
+      margin-left: 110px
+      margin-top: 10px
 
-	#effect
-		min-height: 350px
-		dl.dl-horizontal
-			dt
-				text-align: left
-				width: 110px
-				margin-top: 10px
-			dd
-				margin-left: 110px
-				margin-top: 10px
+      ul.tagit-suggestions
+        list-style: none
+        margin: 0
+        li.tagit-choice
+          float: left
+          background-color: lighten($secondColor, 10%)
+          color: $white
+          padding: 2px 4px 3px 4px
+          margin-bottom: 5px
+          margin-right: 5px
+          display: block
+          @include border-radius($baseBorderRadius)
+          &:hover
+            background-color: lighten($secondColor, 20%)
+            border-color: #6d95e0
+          a,
+          a:hover
+            color: $white
 
-				ul.tagit-suggestions
-					list-style: none
-					margin: 0
-					li.tagit-choice
-						float: left
-						background-color: lighten($secondColor, 10%)
-						color: $white
-						padding: 2px 4px 3px 4px
-						margin-bottom: 5px
-						margin-right: 5px
-						display: block
-						@include border-radius($baseBorderRadius)
-						&:hover
-							background-color: lighten($secondColor, 20%)
-							border-color: #6d95e0
-						a,
-						a:hover
-							color: $white
-
-	.actions
-		text-align: right
-		a [class^="icon-"], a [class*=" icon-"]
-			margin-right: 5px
+  .actions
+    text-align: right
+    a [class^="icon-"], a [class*=" icon-"]
+      margin-right: 5px

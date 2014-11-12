@@ -1,10 +1,4 @@
-<% @contribution = (params["contribution"]=="true") %>
-
-<section id="<%= document.class.to_s.underscore %> "class="layout_show">
-
-  <%if @contribution%>
-    <%= render :partial => 'contributions/breadcrumb_path', :locals  => { :path => document.contribution.parents_path } %>
-  <%end%>
+<section id="<%= document.class.to_s.underscore %> "class="layout_workshop_show">
 
   <% document_profile_subject ||= document.owner_subject %>
   <%= render :partial => 'objects/show', :locals  => { :object => document } %>
@@ -24,13 +18,8 @@
         </div>
       </div>
     </div>
-    <div class="description-activity">
-      <!-- Tool tab -->
-      <div class="box_description">
-        <div class="excursion_tool">
-          <%= render :partial => 'workshops/ws_objects/info_resource', :locals => { :document => document } %>
-        </div>     
-      </div>
+    <div class="resource_ws_info">
+      <%= render :partial => 'workshops/ws_objects/info_resource', :locals => { :document => document } %>
     </div>
   <% end %>
 </section>
