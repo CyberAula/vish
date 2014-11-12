@@ -1,0 +1,41 @@
+<% @contribution = (params["contribution"]=="true") %>
+
+<section id="<%= document.class.to_s.underscore %> "class="layout_show">
+
+  <%if @contribution%>
+    <%= render :partial => 'contributions/breadcrumb_path', :locals  => { :path => document.contribution.parents_path } %>
+  <%end%>
+
+  <% document_profile_subject ||= document.owner_subject %>
+  <%= render :partial => 'objects/show', :locals  => { :object => document } %>
+  
+  <% content_for :title do %>
+    <%= document_profile_subject.name + ": " + t('repository.title') %>
+  <% end %>
+
+  <%= div_for document do %>
+    
+    <!--visor-->
+    <div class="box-show">
+      <div class="container-visor">
+        <div class="caja-elementos">
+          <%= render partial: "#{ document.class.to_s.tableize }/#{ document.class.to_s.underscore }_show",
+        locals: { document.class.to_s.underscore.to_sym => document } %>
+        </div>
+      </div>
+    </div>
+    <div class="description-activity">
+      <!-- Tool tab -->
+      <div class="box_description">
+        <div class="excursion_tool">
+          <%= render :partial => 'workshops/ws_objects/info_resource', :locals => { :document => document } %>
+        </div>     
+      </div>
+    </div>
+  <% end %>
+</section>
+
+
+
+
+

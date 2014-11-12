@@ -40,20 +40,3 @@
 
 
 
-  <script>
-  $(function() {
-    $("#showMore").click(function(){
-      $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
-      $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
-      if($("#showMore").attr("status")=== "showMore"){
-        $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
-        $("#showMore").attr("status", "showFewer");
-      }
-      else{
-        $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
-        $("#showMore").attr("status", "showMore");
-      }
-      return false;
-    });
-  });
-  </script>
