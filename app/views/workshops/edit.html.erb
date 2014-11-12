@@ -16,7 +16,7 @@
 
 <!--++++++++++++++++header+++++++++++++++++++++++-->
 
-<div class="wa_activity_wrapper wa_activity_wrapper_edit header_workshop">
+<div class="wa_activity_wrapper wa_activity_wrapper_edit header_workshop ">
   <div class="wa_activity_actions">
     <ul>
       <li>
@@ -24,17 +24,19 @@
     </li>
     </ul>
   </div>
-  <!--title-->
-  <h3 class="title_WS main_title_WS"><%=@workshop.title%></h3>
-  <!--avatar-->
-  <div class="container-img_WS">
-    <div class="dummy"></div>
-    <div class="element resource-center">
-      <img class="workshop_thumbnail applyBackstretch" src="<%=@workshop.thumbnail_url%>">
+  <div class="layout_workshop">
+    <!--title-->
+    <h3 class="title_WS main_title_WS"><%=@workshop.title%></h3>
+    <!--avatar-->
+    <div class="container-img_WS">
+      <div class="dummy"></div>
+      <div class="element resource-center">
+        <img class="workshop_thumbnail applyBackstretch" src="<%=@workshop.thumbnail_url%>">
+      </div>
     </div>
+    <!--description-->
+    <p class="description_WS"><%=@workshop.description%></p>
   </div>
-  <!--description-->
-  <p class="description_WS"><%=@workshop.description%></p>
 </div>
 
 <!--++++++++++++++++item+++++++++++++++++++++++-->
@@ -70,18 +72,18 @@
         <!--content-->
 
         <% if workshop_activity.wa_type!="WaAssignment"  %>
-          <div class="resources_workshop"> <!--only for resources-->
-            <div id="effect<%=workshop_activity.id%>" class="" >
-       <%end%>
+            <div id="effect<%=workshop_activity.id%>" class="resources_WS" > <!--only for resources-->
+        <%end%>
 
-        <% entity = workshop_activity.object %>
-        <%className = entity.class.to_s%>
-        <%classNameUnderscore = className.underscore%>
-        <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
-                   locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop_activity_"+workshop_activity.id.to_s } %>
+          <div class="layout_workshop">
+            <% entity = workshop_activity.object %>
+            <%className = entity.class.to_s%>
+            <%classNameUnderscore = className.underscore%>
+            <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
+                       locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop_activity_"+workshop_activity.id.to_s } %>
+          </div>
 
         <% if workshop_activity.wa_type!="WaAssignment"  %>
-            </div>
           </div>
         <%end%>
 
@@ -268,14 +270,19 @@
        var mainDiv = $(this).parent();
 
       if($(this).attr("status")=== "showMore"){
-        $('.container-img').hide('slow');
-        $('.show_object_WS').show('slow');
+        mainDiv.switchClass( "oculto", "desplegado", 3000);
+
+        $( '.container-img' ).hide( "drop", { options: "easeInOutBounce"}, { direction: "left" }, 6000 );
+        $( '.show_object_WS' ).show( "drop", { direction: "left" }, 3000 );
+
+
         $(this).html('<a><%=t("excursion.actions.show_fewer")%></a>');
         $(this).attr("status", "showFewer");
       }
       else{
-        $('.container-img').show('slow');
-        $('.show_object_WS').hide('slow');
+        mainDiv.switchClass( "desplegado", "oculto", 3000);
+        $( '.show_object_WS' ).hide( "drop", "easeOutQuart", { direction: "left" }, 3000 );
+        $( '.container-img' ).show( "drop", { direction: "left" }, 3000 );
         $(this).html('<a><%=t("excursion.actions.show_more")%></a>');
         $(this).attr("status", "showMore");
 

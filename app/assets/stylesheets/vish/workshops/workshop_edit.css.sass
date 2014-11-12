@@ -22,16 +22,15 @@ ul.workshop_activities_list_edit
   @include border-radius($baseBorderRadius)
   display: inline-block
 
-
   //toolbar-actions
   .wa_activity_actions,
   .wa_activity_edit_tools
     display: block
-    float: right
+    right: 10px
+    top: 10px
     width: auto
-    margin: -15px -2% -5px 0
+    position: absolute
     height: 35px
-    
     ul
       margin: 0
       li
@@ -59,6 +58,7 @@ ul.workshop_activities_list_edit
         @include border-radius(50px)
         i
           cursor: move
+
 
   .assignment_edit_title
     width: 150px !important

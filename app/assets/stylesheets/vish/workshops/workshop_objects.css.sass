@@ -4,20 +4,40 @@
 
 
 .wa_activity_wrapper
-  .resources_workshop
-  
-    .show_object_WS
-      display: none
-
-
-    .thumbnail_object_WS
-      @include img-item-box
-      width: 150px
+  .resources_WS
+    .layout_workshop
+      width: 100%
+      padding: 0
+      margin: 0
       display: inline-block
-      @include resource-box-corner
-    h3
-      width: auto
-      display: inline-block
+      .show_object_WS
+        display: none
+        clear: both
+        float: left
+      .thumbnail_object_WS
+        float: left
+        width: 150px
+        display: inline-block
+        @include resource-box-corner
+        @include img-item-box
+        overflow: hidden
+        .container-img
+          @include border-left-radius($baseBorderRadius !important) 
+          @include border-right-radius(0 !important)
+          .element 
+            @include border-left-radius($baseBorderRadius !important) 
+            @include border-right-radius(0 !important)
+      h3
+        width: auto
+        padding-top: 40px
+        padding-left: 4%
+        float: left
+        display: inline-block
+  .actions
+    float: right
+    display: inline-block
+    width: 100px
+    margin-top: 50px
 
 
 
