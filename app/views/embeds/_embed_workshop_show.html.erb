@@ -1,27 +1,21 @@
-<!-- corner -->
+<!--corner-->
+<%= render partial: 'workshops/ws_objects/corner_resource', locals: { resource: embed} %>
 
-<div class="corner-item">
-  <div class="corner-item2">
-    <div class="corner-color"></div>
-    <i class="icon-code"></i>
-  </div>
-  <div class="corner-background"></div>
+<!--thumbnail-->
+<div class="thumbnail_object_WS">
+  <%= render partial: 'workshops/ws_objects/thumbnail_resource', locals: { resource: embed} %>
 </div>
 
+<!--title resource-->
 <h3 class="title_WS resource_title_WS"><%=t('workshop.activities.resource.title')%> <span class="blue"> Embed</span></h3>
-<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
 
-<%= div_for embed, :class => 'object_WS' do %>
-  <div class="embed_show">
-    <div style="width: auto; overflow: hidden;"><%= raw embed.fulltext %></div>
-  </div>
-<% end %>
+<!--actions-->
+<div class="actions">
 
-<div class="resource_ws_info">
 
-  <%= render partial: "common_documents/info_workshop", locals: { document: embed} %>
-  <div class="actions">
-    <button href="#" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.download')%></a></button>
-    <button href="#" class="ui-state-default ui-corner-all"><a href="<%=embed_path(embed, :format => :full)%>" target="_blank"><i class="icon-fullscreen"></i><%= t("embed.view_full") %></a></button>
 </div>
+
+<!--visor-->
+<div class="show_object_WS">
+  <%= render :partial => 'workshops/ws_objects/show_resource', :locals => {:document => embed}%>  
 </div>
