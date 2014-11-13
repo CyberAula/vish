@@ -1,27 +1,21 @@
-<!-- corner -->
-<div class="corner-item">
-  <div class="corner-item2">
-    <div class="corner-color"></div>
-    <i class="icon-swf-new"></i>
-  </div>
-  <div class="corner-background"></div>
+<!--corner-->
+<%= render partial: 'workshops/ws_objects/corner_resource', locals: { resource: swf} %>
+
+<!--thumbnail-->
+<div class="thumbnail_object_WS">
+  <%= render partial: 'workshops/ws_objects/thumbnail_resource', locals: { resource: swf} %>
 </div>
 
+<!--title resource-->
 <h3 class="title_WS resource_title_WS"><%=t('workshop.activities.resource.title')%> <span class="blue"> Swf</span></h3>
-<button href="#showmore2" id="showMore2" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
 
-<%= div_for swf, :class => 'object_WS' do %>
-  <div class="swf_show">
-    <embed src="<%= swf.file %>" width="auto" height="auto"></embed>
-  </div>
-<% end %>
+<!--actions-->
+<div class="actions">
 
-<div class="resource_ws_info">
 
-  <%= render partial: "common_documents/info_workshop", locals: { document: swf } %>
-  <div class="actions">
-    <button href="#" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.download')%></a></button>
-    <button href="#" class="ui-state-default ui-corner-all"><a href="<%=swf_path(swf, :format => :full)%>" target="_blank"><i class="icon-fullscreen"></i><%= t("swf.view_full") %></a></button>
-</div>
 </div>
 
+<!--visor-->
+<div class="show_object_WS">
+  <%= render :partial => 'workshops/ws_objects/show_resource', :locals => {:document => swf}%>  
+</div>

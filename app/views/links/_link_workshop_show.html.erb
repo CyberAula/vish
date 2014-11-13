@@ -1,34 +1,26 @@
-<!-- corner -->
+<!--corner-->
+<%= render partial: 'workshops/ws_objects/corner_resource', locals: { resource: link} %>
 
-<div class="corner-item">
-  <div class="corner-item2">
-    <div class="corner-color"></div>
-    <i class="icon-link"></i>
-  </div>
-  <div class="corner-background"></div>
+<!--thumbnail-->
+<div class="thumbnail_object_WS">
+  <%= render partial: 'workshops/ws_objects/thumbnail_resource', locals: { resource: link} %>
 </div>
 
+<!--title resource-->
 <h3 class="title_WS resource_title_WS"><%=t('workshop.activities.resource.title')%> <span class="blue"> Link</span></h3>
-<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
 
-<%the_url = link.url.start_with?('http') ? link.url : "http://"+link.url%>
-
-<%= div_for link, :class => 'object_WS' do %>
-  <iframe class="link_show" src="<%= the_url %>"></iframe>
-
-  <div class="link_address">
-  <%= link_to raw("<i class='icon-link'></i>") + the_url, the_url,:target => "_blank" %>
-
-  </div>
+<!--actions-->
+<div class="actions">
 
 
-<% end %>
-
-<div class="resource_ws_info">
-
-  <%= render partial: "common_documents/info_workshop", locals: { document: link } %>
-  <div class="actions">
-    <button href="#" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.download')%></a></button>
-    <button href="#" class="ui-state-default ui-corner-all"><a href="<%=link_path(link, :format => :full)%>" target="_blank"><i class="icon-fullscreen"></i><%= t("link.view_full") %></a></button>
 </div>
+
+<!--visor-->
+<div class="show_object_WS">
+  <%= render :partial => 'workshops/ws_objects/show_resource', :locals => {:document => link}%>  
 </div>
+
+
+
+
+
