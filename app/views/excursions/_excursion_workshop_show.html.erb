@@ -1,18 +1,16 @@
 <!--corner-->
 <%#= render partial: 'workshops/ws_objects/corner_resource', locals: { resource: webapp} %>
 
-<!--thumbnail-->
-<div class="thumbnail_object_WS">
+<div class="thumbnail_object_WS" >
 	<div class=" excursion-item">
-	  <!-- image/icon -->
-	  <div class="container-img">
-	    <div class="dummy"></div>
-	    <div class="element">
+		<div class="container-img">
+			<div class="dummy"></div>
+			<div class="element">
 	          <%= link_to(excursion) do %>
 	      <%= excursion_thumb_for(excursion) %>
 	    <% end %>
-	    </div>
-	  </div>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -25,17 +23,20 @@
 </div>
 
 <!--visor-->
-<section class="layout_workshop_show">
-  <div class="box-show">
-    <div class="container-visor">
-      <div class="elemento-visor"></div>
-			<div class="excursion_viewer_wrapper">
-  			<iframe class="vishEditorIframe" src="<%=excursion_path(excursion, :format => :full)%>" width="100%" height="100%" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
-			</div>
-    </div>
-  </div>
+<!--visor-->
+<div class="show_object_WS">
+	<section class="layout_workshop_show">
+	  <div class="box-show">
+	    <div class="container-visor">
+	      <div class="elemento-visor"></div>
+				<div class="excursion_viewer_wrapper">
+	  			<iframe class="vishEditorIframe" src="<%=excursion_path(excursion, :format => :full)%>" width="100%" height="100%" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+				</div>
+	    </div>
+	  </div>
 
-  <div class="resource_ws_info">
-      <%#= render :partial => 'workshops/ws_objects/info_excursion', :locals => { :excursion => excursion } %>
-  </div>
-</section>
+	  <div class="resource_ws_info">
+	      <%#= render :partial => 'workshops/ws_objects/info_excursion', :locals => { :excursion => excursion } %>
+	  </div>
+	</section>
+</div>
