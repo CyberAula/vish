@@ -3,24 +3,23 @@
 //-------------------------
 
 
-.wa_activity_wrapper
-  .resources_WS
+.wa_activity_wrapper 
+  .resources_WS 
     .layout_workshop
       width: 100%
       padding: 0
       margin: 0
       display: inline-block
+      @include resource-box-corner
+      overflow: hidden
       .show_object_WS
         display: none
         clear: both
-        float: left
       .thumbnail_object_WS
         float: left
         width: 150px
         display: inline-block
-        @include resource-box-corner
         @include img-item-box
-        overflow: hidden
         .container-img
           @include border-left-radius($baseBorderRadius !important) 
           @include border-right-radius(0 !important)
@@ -33,51 +32,44 @@
         padding-left: 4%
         float: left
         display: inline-block
-  .actions
-    float: right
-    display: inline-block
-    width: 100px
-    margin-top: 50px
+
+      .box-show
+        width: 60%
+          display: block
+          float: left
+        .container-visor
+          display: inline-block
+          position: relative
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
+          background-color: $grayLighter
+          .elemento-visor
+            padding-top: 79%
+            width: 100%
+          
+          // EXCURSIONS
+          // --------------------------------------------------
+          @include container-visor-excursiones
+
+          // RESOURCES
+          // --------------------------------------------------
+          @include container-visor-recursos
 
 
+    .showMore
+      position: absolute
+      bottom: 0
+      right: 0
 
-
-
-
-
-
-// VISOR
-.object_WS
-  width: 60%
-  background-color: $grayLighter
-  min-height: 300px
-  float: left
-  margin-top: 10px
-
-  // links
-  .link_show
-    min-height: 300px
-    width: 100%
-    border: 1px solid $grayLighter
-  // swf
-  embed
-    min-height: 500px
-    width: 100%
-
-  //embed
-  iframe
-    min-height: 300px
-    width: 100%
-    border: 1px solid $grayLighter
-
-  //writing
-  .writing_show
-    padding: 20px
-
-
-
-
-
+  .oculto
+    height: 114px
+    overflow: hidden
+  .desplegado
+    height: auto
+    .layout_workshop
+      .show_object_WS
+        display: block
+        clear: both
 
 
 // INFO
@@ -94,6 +86,8 @@
     dd
       margin-left: 110px
       margin-top: 10px
+      p
+        margin: 0
 
       ul.tagit-suggestions
         list-style: none

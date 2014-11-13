@@ -72,7 +72,9 @@
         <!--content-->
 
         <% if workshop_activity.wa_type!="WaAssignment"  %>
-            <div id="effect<%=workshop_activity.id%>" class="resources_WS" > <!--only for resources-->
+            <div id="effect<%=workshop_activity.id%>" class="resources_WS oculto" > <!--only for resources-->
+              <button href="#" status="showMore" class="ui-state-default ui-corner-all showMore"><a><%=t('excursion.actions.show_more')%></a></button>
+
         <%end%>
 
           <div class="layout_workshop">
@@ -271,21 +273,19 @@
 
       if($(this).attr("status")=== "showMore"){
         mainDiv.switchClass( "oculto", "desplegado", 3000);
-
-        $( '.container-img' ).hide( "drop", { options: "easeInOutBounce"}, { direction: "left" }, 6000 );
-        $( '.show_object_WS' ).show( "drop", { direction: "left" }, 3000 );
-
-
+        $( ".thumbnail_object_WS" ).hide( "slow", function() {
+          $( '.show_object_WS' ).show( "drop", { options: "easeInOutBounce"}, { direction: "left" }, 3000 );
+        });
         $(this).html('<a><%=t("excursion.actions.show_fewer")%></a>');
         $(this).attr("status", "showFewer");
       }
       else{
-        mainDiv.switchClass( "desplegado", "oculto", 3000);
-        $( '.show_object_WS' ).hide( "drop", "easeOutQuart", { direction: "left" }, 3000 );
-        $( '.container-img' ).show( "drop", { direction: "left" }, 3000 );
+        mainDiv.switchClass( "desplegado", "oculto", 1000);
+        $( '.show_object_WS' ).hide( "drop", { direction: "left" }, 1000, function() {
+          $( '.thumbnail_object_WS' ).show( "drop", { direction: "left" }, 1000 );
+        });
         $(this).html('<a><%=t("excursion.actions.show_more")%></a>');
         $(this).attr("status", "showMore");
-
       }
       return false;
     });
