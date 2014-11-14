@@ -74,7 +74,7 @@
         <!--content-->
         <% if workshop_activity.wa_type!="WaAssignment"  %>
             <div id="effect<%=workshop_activity.id%>" class="resources_WS oculto" > <!--only for resources-->
-              <button href="#" status="showMore" class="ui-state-default ui-corner-all showMore"><a><%=t('excursion.actions.show_more')%></a></button>
+
         <%end%>
           <div class="layout_workshop">
             <% entity = workshop_activity.object %>
@@ -256,7 +256,7 @@
 <script>
   $(function() {
     $(".showMore").click(function(){
-       var mainDiv = $(this).parent();
+       var mainDiv = $(this).parent().parent().parent();
 
       if($(this).attr("status")=== "showMore"){
         mainDiv.switchClass( "oculto", "desplegado", 3000);
