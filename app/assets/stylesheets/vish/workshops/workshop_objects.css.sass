@@ -30,9 +30,19 @@
           .element 
             @include border-left-radius($baseBorderRadius !important) 
             @include border-right-radius(0 !important)
-          .resource-center i
-            padding-top: 28px
-            font-size: 50px
+          .resource-center 
+            i
+              padding-top: 28px
+              font-size: 50px
+            .resource-center
+            .icon-scorm-new,
+            .icon-pdf-new,
+            .icon-swf-new,
+            .icon-zip-new,
+            .icon-webapp-new
+              background-size: 100% !important
+              width: 45px !important
+
       h3
         width: auto
         padding-top: 40px
@@ -62,12 +72,18 @@
           // --------------------------------------------------
           @include container-visor-recursos
 
-
       .actions
         float: right
         display: inline-block
         margin-top: 41px
         margin-right: 40px
+        .btn
+          margin-left: 10px
+          color: $grayDark
+          i,a
+            color: $grayDark
+          i
+            margin-right: 5px
 
 
   .oculto
