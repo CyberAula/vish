@@ -18,17 +18,21 @@
         clear: both
       .thumbnail_object_WS
         float: left
-        width: 130px
+        width: 140px
         display: inline-block
         @include img-item-box
         .container-img
           @include border-left-radius($baseBorderRadius !important) 
           @include border-right-radius(0 !important)
+          border-left: none
+          border-top: none
+          border-bottom: none
           .element 
             @include border-left-radius($baseBorderRadius !important) 
             @include border-right-radius(0 !important)
           .resource-center i
-            padding-top: 20px
+            padding-top: 28px
+            font-size: 50px
       h3
         width: auto
         padding-top: 40px
@@ -59,13 +63,15 @@
           @include container-visor-recursos
 
 
-    .showMore
-      position: absolute
-      bottom: 0
-      right: 0
+      .actions
+        float: right
+        display: inline-block
+        margin-top: 41px
+        margin-right: 40px
+
 
   .oculto
-    height: 120px
+    height: 105px
     overflow: hidden
   .desplegado
     height: auto
@@ -114,7 +120,3 @@
           a:hover
             color: $white
 
-  .actions
-    text-align: right
-    a [class^="icon-"], a [class*=" icon-"]
-      margin-right: 5px

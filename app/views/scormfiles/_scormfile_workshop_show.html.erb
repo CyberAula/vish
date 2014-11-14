@@ -11,10 +11,12 @@
 
 <!--actions-->
 <div class="actions">
-  <button href="#" status="showMore" class="ui-state-default ui-corner-all showMore"><a><%=t('excursion.actions.show_more')%></a></button>
+
+	<a class="btn download_object" href="<%=scormfile.getDownloadUrl(@controller)%>"><i class='icon-download'></i><span class=''><%= t('document.actions.download') %></span></a>
+
+ 	<button href="#" status="showMore" class=" btn ui-state-default ui-corner-all showMore"><a><i class="icon-chevron-down"></i><%=t('excursion.actions.show_more')%></a></button>
 
 </div>
-
 <!--visor-->
 <div class="show_object_WS">
   <%= render :partial => 'workshops/ws_objects/show_resource', :locals => {:document => scormfile}%>  
