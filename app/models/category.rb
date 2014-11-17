@@ -6,7 +6,23 @@ class Category < ActiveRecord::Base
   has_many :children, :class_name => 'Category', :foreign_key => 'parent_id'
 
   validates_presence_of :title
-  validate :title_not_duplicated, on: :create
+  validate :title_not_duplicated
+  def title_not_duplicated
+    if self.isRoot?
+      owner = Actor.find_by_id(self.owner_id)
+      return false if owner.nil?
+      categories = Category.authored_by(owner).select{|c| c.isRoot?}
+    else
+      categories = self.parent.children
+    end
+    categories = categories.reject{|c| c==self}
+
+    if categories.select{|c| c.title==self.title}.length > 0
+      errors[:base] << "There is another category with the same title"
+    else
+      true
+    end
+  end
 
   validate :has_valid_parent
   def has_valid_parent
@@ -24,6 +40,8 @@ class Category < ActiveRecord::Base
   define_index do
     activity_object_index
   end
+
+  #Model Methods
 
   #Return the array with the order of the items of the category
   def categories_order
@@ -66,6 +84,10 @@ class Category < ActiveRecord::Base
     return path
   end
 
+  def valid_property_objects
+    self.property_objects.reject{|ao| ao.object_type=="Category" and ao.object.parent_id!=self.id}.uniq
+  end
+
   def insertPropertyObject(object)
     if !object.nil? and object.class.name=="ActivityObject" and !self.property_objects.include? object
       self.property_objects << object
@@ -97,21 +119,22 @@ class Category < ActiveRecord::Base
 
   private
 
-  def title_not_duplicated
-    errors.add(:title, "duplicated") unless Category.all.map{ |category| category.id if(category.owner_id == self.owner_id && category.title == self.title) }.compact.blank?
-  end
-
   def check_property_objects
-    array = self.property_objects
-    hasDuplicates = !array.detect {|e| array.rindex(e) != array.index(e)}.nil?
-    if hasDuplicates
-      self.setPropertyObjects
+    hasInvalidPropertyObjects = (self.property_objects != self.valid_property_objects)
+    if hasInvalidPropertyObjects
+      self.setPropertyObjects(self.valid_property_objects.clone)
     end
   end
 
   def check_parent_property_objects
     unless self.parent.nil?
       self.parent.insertPropertyObject(self.activity_object)
+    end
+    unless self.parent_id_was.nil?
+      old_parent = Category.find_by_id(self.parent_id_was)
+      unless old_parent.nil? or old_parent == self.parent
+        old_parent.deletePropertyObject(self.activity_object)
+      end
     end
   end
 

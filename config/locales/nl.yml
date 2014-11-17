@@ -138,11 +138,12 @@ nl:
   info:
     author: "Auteur"
   lang:
-    independent: "Taalonafhankelijk"
     changed: "Taal gewijzigd in %{lang}"
     error: "Taal \"%{lang}\" niet beschikbaar"
-    title: "taal"   
-    others: Overige 
+    title: "taal"
+    languages:
+      independent: "Taalonafhankelijk"
+      other: "Overige"
   link:
     one: "link"
     other: "links"

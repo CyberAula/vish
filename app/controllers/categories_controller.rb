@@ -28,12 +28,10 @@ class CategoriesController < ApplicationController
       failure.json {
         render :json => {"errors" => @category.errors.full_messages.to_sentence}, :status => 400
       }
-    end   
+    end
   end
 
   def update
-    originalParentCategory = @category.parent
-
     unless params[:category][:parent_id].blank?
       parentCategory = Category.find_by_id(params[:category][:parent_id])
       unless parentCategory.nil?
@@ -52,14 +50,6 @@ class CategoriesController < ApplicationController
           flash[:errors] = resource.errors.full_messages.to_sentence
         else
           discard_flash
-
-          #On success
-          if (originalParentCategory != @category.parent)
-            unless originalParentCategory.nil?
-              #Remove category from old parent
-              originalParentCategory.deletePropertyObject(@category.activity_object)
-            end
-          end
         end
 
         redirect_to url_for(resource)
@@ -176,26 +166,23 @@ class CategoriesController < ApplicationController
         if receiver.object_type == "Category"
           if !dragged.nil? && !receiver.nil? && dragged!=receiver
             authorize! :update, receiver.object
-            validMove = true
 
             #if dragged is a category update its parent
             if dragged.object_type == "Category"
               authorize! :update, dragged.object
               dragged.object.parent_id = receiver.object.id
-              validMove = dragged.object.save
-            end
-
-            if validMove
+              dragged.object.save!
+            else
               #notify for leaving a category container
-              if !the_category.nil? and the_category.property_objects.include?(dragged)
+              unless the_category.nil?
                 the_category.deletePropertyObject(dragged)
               end
             end
-           
+
           end
         end
-      end
 
+      end
     end
 
     unless sort_order.blank?
