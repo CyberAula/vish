@@ -1,0 +1,24 @@
+<!--corner-->
+<%= render partial: 'workshops/ws_objects/corner_resource', locals: { resource: document} %>
+
+<!--thumbnail-->
+<div class="thumbnail_object_WS">
+  <%= render partial: 'workshops/ws_objects/thumbnail_resource', locals: { resource: document} %>
+</div>
+
+<!--title resource-->
+<h3 class="title_WS resource_title_WS"><%=t('workshop.activities.resource.title')%> <span class="blue"> Document</span></h3>
+
+<!--actions-->
+<div class="actions">
+
+	<a class="btn download_object" href="<%=document.getDownloadUrl(@controller)%>"><i class='icon-download'></i><span class=''><%= t('document.actions.download') %></span></a>
+
+ 	<button href="#" status="showMore" class=" btn ui-state-default ui-corner-all showMore"><a><i class="icon-chevron-down"></i><%=t('excursion.actions.show_more')%></a></button>
+
+</div>
+
+<!--visor-->
+<div class="show_object_WS">
+	<%= render :partial => 'workshops/ws_objects/show_resource', :locals => {:document => document}%>	
+</div>

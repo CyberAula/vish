@@ -19,34 +19,34 @@ ul.workshop_activities_list_edit
 .wa_activity_wrapper_edit
   background-color: transparent
   border: 2px dashed $grayLight
-  @include border-radius($radius)
-
+  @include border-radius($baseBorderRadius)
+  display: inline-block
 
   //toolbar-actions
   .wa_activity_actions,
   .wa_activity_edit_tools
     display: block
-    float: right
+    right: 5px
+    top: 5px
     width: auto
-    margin: -15px -2% -5px 0
-    height: 35px
-    
+    position: absolute
+    height: 30px
     ul
       margin: 0
       li
-        height: 35px
-        width: 35px
+        height: 30px
+        width: 30px
         display: block
         float: right
         text-align: center
         a
           margin-top: 0 
         i
-          font-size: 20px
+          font-size: 18px
           color: $gray
           cursor: pointer
           text-align: center
-          padding-top: 7px
+          padding-top: 5px
           margin: 0px auto 0
           display: block
           &:hover
@@ -58,6 +58,7 @@ ul.workshop_activities_list_edit
         @include border-radius(50px)
         i
           cursor: move
+
 
   .assignment_edit_title
     width: 150px !important
@@ -73,17 +74,10 @@ ul.workshop_activities_list_edit
       top: 20px
       position: absolute
 
-  .delivery
-    top: 54px
-
   .contributions_WS_gallery
     width: 100%
     display: block
     height: auto
-    ul
-      margin: 0
-      li.box-item
-        float: none
 
 
 

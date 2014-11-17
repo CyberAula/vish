@@ -1,10 +1,10 @@
-<div class="contributions_WS_gallery">
-  <ul>
+
+  <ul class="contributions_WS_gallery">
     <% contributions.each do |contribution| %>
       <%=render :partial=> "entities/entity", :locals => { :entity => contribution, :prefix_id =>"contribution" } %>
     <% end %>
   </ul>
-</div>
+
 
 <script>
   $("div[bs-img]").each(function() {

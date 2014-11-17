@@ -1,0 +1,138 @@
+//-------------------------
+// RESOURCES
+//-------------------------
+
+
+.wa_activity_wrapper 
+  .resources_WS,
+  .excursion-item
+    .layout_workshop
+      width: 100%
+      padding: 0
+      margin: 0
+      display: inline-block
+      @include resource-box-corner
+      overflow: hidden
+      .show_object_WS
+        display: none
+        clear: both
+      .thumbnail_object_WS
+        float: left
+        width: 140px
+        display: inline-block
+        @include img-item-box
+        .container-img
+          @include border-left-radius($baseBorderRadius !important) 
+          @include border-right-radius(0 !important)
+          border-left: none
+          border-top: none
+          border-bottom: none
+          .element 
+            @include border-left-radius($baseBorderRadius !important) 
+            @include border-right-radius(0 !important)
+          .resource-center 
+            i
+              padding-top: 28px
+              font-size: 50px
+            .resource-center
+            .icon-scorm-new,
+            .icon-pdf-new,
+            .icon-swf-new,
+            .icon-zip-new,
+            .icon-webapp-new
+              background-size: 100% !important
+              width: 45px !important
+
+      h3
+        width: auto
+        padding-top: 40px
+        padding-left: 4%
+        float: left
+        display: inline-block
+
+      .box-show
+        width: 60%
+          display: block
+          float: left
+        .container-visor
+          display: inline-block
+          position: relative
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
+          background-color: $grayLighter
+          .elemento-visor
+            padding-top: 79%
+            width: 100%
+          
+          // EXCURSIONS
+          // --------------------------------------------------
+          @include container-visor-excursiones
+
+          // RESOURCES
+          // --------------------------------------------------
+          @include container-visor-recursos
+
+      .actions
+        float: right
+        display: inline-block
+        margin-top: 41px
+        margin-right: 40px
+        .btn
+          margin-left: 10px
+          color: $grayDark
+          i,a
+            color: $grayDark
+          i
+            margin-right: 5px
+
+
+  .oculto
+    height: 105px
+    overflow: hidden
+  .desplegado
+    height: auto
+    .layout_workshop
+      .show_object_WS
+        clear: both
+        display: inline-block !important
+        height: auto
+        width: 92%
+        padding: 5px 4% 40px
+
+
+// INFO
+.resource_ws_info
+  float: left
+  width: 36%
+  padding: 0 0 0 2%
+  margin-top: 10px
+  dl.dl-horizontal
+    dt
+      text-align: left
+      width: 110px
+      margin-top: 10px
+    dd
+      margin-left: 110px
+      margin-top: 10px
+      p
+        margin: 0
+
+      ul.tagit-suggestions
+        list-style: none
+        margin: 0
+        li.tagit-choice
+          float: left
+          background-color: lighten($secondColor, 10%)
+          color: $white
+          padding: 2px 4px 3px 4px
+          margin-bottom: 5px
+          margin-right: 5px
+          display: block
+          @include border-radius($baseBorderRadius)
+          &:hover
+            background-color: lighten($secondColor, 20%)
+            border-color: #6d95e0
+          a,
+          a:hover
+            color: $white
+

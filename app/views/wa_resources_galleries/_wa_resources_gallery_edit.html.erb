@@ -1,11 +1,11 @@
 <% aos = wa_resources_gallery.activity_objects %>
-
+<h3 class="title_WS">Resource Gallery</h3>
 <ul class="ws_gallery">
-  <%= render :partial => 'wa_resources_galleries/add_new', :locals => { :wa_resources_gallery => wa_resources_gallery } %>
+    <%= render :partial => 'wa_resources_galleries/add_new', :locals => { :wa_resources_gallery => wa_resources_gallery } %>
   <% aos.map{|ao| ao.object}.each do |resource| %>
     <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "wa_resource_gallery_"+wa_resources_gallery.id.to_s } %>
   <% end %>
-  
+
 </ul>
 
 <script>
@@ -16,7 +16,7 @@
   var workshopActivityBox = $("li.workshop_element[workshop_activity_id='<%=wa_resources_gallery.workshop_activity.id.to_s%>']");
   var resourceBoxes = $(workshopActivityBox).find("li.box-item:not('.add-item')");
   <% aos.each_with_index do |ao,index| %>
-    $(resourceBoxes['<%=index%>']).append('<%= link_to raw('<i class="icon-trash"></i>'), wa_resources_gallery_path(wa_resources_gallery, :remove_activity_object_id => ao.id), :method => :put, :class => 'btn_delete_item' %>');
+    $(resourceBoxes['<%=index%>']).append('<%= link_to raw('<i class="icon-trash"></i>'), wa_resources_gallery_path(wa_resources_gallery, :remove_activity_object_id => ao.id), :method => :put, :class => 'btn btn_delete_item' %>');
   <% end %>
 </script>
 

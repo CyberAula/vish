@@ -1,16 +1,24 @@
+<!--corner-->
+<%= render partial: 'workshops/ws_objects/corner_resource', locals: { resource: picture} %>
 
-<h3 class="title_WS">Resource</h3>
+<!--thumbnail-->
+<div class="thumbnail_object_WS">
+  <%= render partial: 'workshops/ws_objects/thumbnail_resource', locals: { resource: picture} %>
+</div>
 
-<%= div_for picture, :class => 'object_WS' do %>
-	<div class="picture_show">
-	<%= link_to thumb_for(picture, 500),
-	download_document_path(picture),
-	:id => dom_id(picture) + "_a",
-	:type => picture.type,
-	:title => picture.file_file_name,
-	:path => document_path(picture) %>
-	</div>
-<% end %>
+<!--title resource-->
+<h3 class="title_WS resource_title_WS"><%=t('workshop.activities.resource.title')%> <span class="blue"> Picture</span></h3>
 
-<%= link_to picture.title, picture %>
-<%= render partial: "common_documents/info", locals: { document: picture } %>
+<!--actions-->
+<div class="actions">
+
+	<a class="btn download_object" href="<%=picture.getDownloadUrl(@controller)%>"><i class='icon-download'></i><span class=''><%= t('document.actions.download') %></span></a>
+
+ 	<button href="#" status="showMore" class=" btn ui-state-default ui-corner-all showMore"><a><i class="icon-chevron-down"></i><%=t('excursion.actions.show_more')%></a></button>
+
+</div>
+
+<!--visor-->
+<div class="show_object_WS">
+	<%= render :partial => 'workshops/ws_objects/show_resource', :locals => {:document => picture}%>	
+</div>
