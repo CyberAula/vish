@@ -72,10 +72,9 @@
         </div>
 
         <!--content-->
-
-
-        <% if workshop_activity.wa_type!="WaAssignment"  %>
+        <% if workshop_activity.wa_type =="WaResource"%>
             <div id="effect<%=workshop_activity.id%>" class="resources_WS oculto" > <!--only for resources-->
+       
         <%end%>
           <div class="layout_workshop">
             <% entity = workshop_activity.object %>
@@ -84,7 +83,7 @@
             <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
                        locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop_activity_"+workshop_activity.id.to_s } %>
           </div>
-        <% if workshop_activity.wa_type!="WaAssignment"  %>
+        <% if workshop_activity.wa_type=="WaResource"%>
           </div>
         <%end%>
 
