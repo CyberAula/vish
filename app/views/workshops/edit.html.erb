@@ -72,9 +72,10 @@
         </div>
 
         <!--content-->
+
+
         <% if workshop_activity.wa_type!="WaAssignment"  %>
             <div id="effect<%=workshop_activity.id%>" class="resources_WS oculto" > <!--only for resources-->
-
         <%end%>
           <div class="layout_workshop">
             <% entity = workshop_activity.object %>
@@ -93,7 +94,7 @@
 
 
 
-<script>
+<!--script>
   $(function() {
     $(".showMore").click(function(){
        var mainDiv = $(this).parent().parent().parent();
@@ -117,13 +118,13 @@
       return false;
     });
   });
-</script>
+</script-->
 
 
 
 
 
-<script>
+<!--script>
   $(function() {
     $(".showMore").click(function(){
        var mainDiv = $(this).parent().parent().parent();
@@ -147,7 +148,7 @@
       return false;
     });
   });
-</script>
+</script-->
 
 
 

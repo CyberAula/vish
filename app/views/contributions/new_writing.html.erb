@@ -1,7 +1,7 @@
 <%= render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "contribution_fulltext"} %>
 
 <div id="AddContribution">
-    <div>
+    <div class="layoutform">
         <%= form_for resource, :remote => false do |f| %>
           <% wa_assignment_id = (resource.wa_assignment_id ? resource.wa_assignment_id : params[:wa_assignment_id]) %>
           <% if !wa_assignment_id.nil? %>
@@ -13,11 +13,15 @@
             <%end%>
           <% end %>
           <%= f.hidden_field :type, :value => "Writing" %>
-          <label for="contribution_title"><%=t("contribution.title")%></label>
-          <input id="contribution_title" name="writing[title]" value="">
-          <label for="contribution_fulltext"><%=t("contribution.content")%></label>
-          <textarea cols="40" id="contribution_fulltext" name="writing[fulltext]" rows="20"></textarea>
-          <input id="contribution_plaintext" name="writing[plaintext]" type="hidden" value="">                           
+          <section class="title">
+            <label for="contribution_title"><%=t("contribution.title")%></label>
+            <input id="contribution_title" name="writing[title]" value="">
+          </section>
+          <section class="contribution_Writing">
+            <label for="contribution_fulltext"><%=t("contribution.content")%></label>
+            <textarea cols="40" id="contribution_fulltext" name="writing[fulltext]" rows="20"></textarea>
+            <input id="contribution_plaintext" name="writing[plaintext]" type="hidden" value=""> 
+          </section>                          
         <% end %>
     </div>
     <div class="footer-form">
