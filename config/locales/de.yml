@@ -291,11 +291,12 @@ de:
     repository: "Zur Ablage"
   help: "Hilfe"
   lang:
-    independent: "Sprachunabhängig"
     changed: "Sprache ändern auf %{lang}"
     error: "Sprache \"%{lang}\" ist nicht möglich"
-    title: "Sprache"   
-    others: Andere 
+    title: "Sprache"
+    languages:
+      independent: "Sprachunabhängig"
+      other: "Andere"
   link:
     one: "Link"
     other: "Links"

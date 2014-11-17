@@ -13,48 +13,48 @@
        <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category, :show_avatar => true} %>
     </div>
     <div class="information">
-      <!--ayuda-->
+      <!--help-->
       <%= render partial: 'help/help_categories' %>
-      <!--titulo-->
+      <!--title-->
       <h2><%= @category.title %></h2>
-      <!--descripcion-->
+      <!--description-->
       <div class="description"><%= @category.description %></div>
       <!--author-->
       <div class="author"> <span class="by"><%=t('by')%></span> <%= link_to @category.author.name, @category.author.subject %></div>
     </div>
     <div class="btn-group">
-      <!--editar-->
+      <!--edit-->
       <% if can?(:update, @category) %>
-      <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %>
-      <a class="btn btn-for-categorize"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></a>
+        <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %>
+        <a class="btn btn-for-categorize"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></a>
       <% end %>
-      <!--borrar-->
-      <% if user_signed_in? and can?(:destroy, @category) %>
-      <%= link_to(raw("<i class='icon-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
+        <!--remove-->
+      <% if can?(:destroy, @category) %>
+        <%= link_to(raw("<i class='icon-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
       <% end %>
     </div>
-    <div class="update" style="display:none">
-      <%= form_for(@category, :url => [@category]) do |f| %>
-      <%= f.hidden_field :owner_id %>
-      <!--TITULO-->
-      <label><%= t('categories.leyend.title')%></label>
-      <%= f.text_field :title %>
-      <!--DESCRIPCION-->
-      <label><%= t('categories.leyend.description')%></label>
-      <%= f.text_field :description %>
-      <!--FORM FOR UPLOADING IMAGE-->
-      <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
-      <%= f.file_field :avatar %>
-      <div class="actions">
-        <%= f.submit t('categories.save'), :id => "saveCategory" %>
-        <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn "%>
+    <% if can?(:update, @category) %>
+      <div class="update" style="display:none">
+        <%= form_for(@category, :url => [@category]) do |f| %>
+          <%= f.hidden_field :owner_id %>
+          <label><%= t('categories.leyend.title')%></label>
+          <%= f.text_field :title %>
+          <label><%= t('categories.leyend.description')%></label>
+          <%= f.text_field :description %>
+          <label><%= f.label :parentCategory, "Belongs to" %></label>
+          <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject,@category), @category.parent.nil? ? nil : @category.parent.id)) %>
+          <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
+          <%= f.file_field :avatar %>
+          <div class="actions">
+            <%= f.submit t('categories.save'), :id => "saveCategory" %>
+            <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn "%>
+          </div>
         <% end %>
       </div>
-    </div>
+    <%end%>
   </div>
 </section>
 
-<%#Ordering logic%>
 <%  @items = @category.property_objects
     order = @category.categories_order
     unless order.nil?
@@ -65,6 +65,8 @@
 <% if can?(:update, @category) %>
   <%= render partial: 'categories/edit_categories', :locals => { :all_categories => @items} %>
 <% end %>
+
+<%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path } %>
 
 <div class="main-categories-space">
   <%= render partial: 'categories/items' %>
@@ -88,59 +90,57 @@
 <% end %>
 
 <script>
-//BACKSTRETCH
-$("div[bs-img]").each(function(){
-  $(this).backstretch($(this).attr("bs-img"));
-});
-
-
-
-Array.prototype.equals = function (array) {
-    // if the other array is a falsy value, return
-    if (!array)
-        return false;
-
-    // compare lengths - can save a lot of time
-    if (this.length != array.length)
-        return false;
-
-    for (var i = 0, l=this.length; i < l; i++) {
-        // Check if we have nested arrays
-        if (this[i] instanceof Array && array[i] instanceof Array) {
-            // recurse into the nested arrays
-            if (!this[i].equals(array[i]))
-                return false;
-        }
-        else if (this[i] != array[i]) {
-            // Warning - two different object instances will never be equal: {x:20} != {x:20}
-            return false;
-        }
-    }
-    return true;
-}
-
-var beginIndex;
-var beginObjects;
-//Let the overlay appear
-$(document).ready(function(){
+  //BACKSTRETCH
   $("div[bs-img]").each(function(){
-       $(this).backstretch($(this).attr("bs-img"));
+    $(this).backstretch($(this).attr("bs-img"));
   });
-  $(".btn-for-categorize").click(function(){
-    $("#categories_edition").fadeIn();
-    beginIndex = getidArray();
-    beginObjects = $(".edit_categories .box-item").clone();
-    $("#categories_edition div[bs-img]").each(function(){
-      $(this).backstretch($(this).attr("bs-img"));
+
+  Array.prototype.equals = function (array) {
+      // if the other array is a falsy value, return
+      if (!array)
+          return false;
+
+      // compare lengths - can save a lot of time
+      if (this.length != array.length)
+          return false;
+
+      for (var i = 0, l=this.length; i < l; i++) {
+          // Check if we have nested arrays
+          if (this[i] instanceof Array && array[i] instanceof Array) {
+              // recurse into the nested arrays
+              if (!this[i].equals(array[i]))
+                  return false;
+          }
+          else if (this[i] != array[i]) {
+              // Warning - two different object instances will never be equal: {x:20} != {x:20}
+              return false;
+          }
+      }
+      return true;
+  };
+
+  var beginIndex;
+  var beginObjects;
+  //Let the overlay appear
+  $(document).ready(function(){
+    $("div[bs-img]").each(function(){
+         $(this).backstretch($(this).attr("bs-img"));
+    });
+    $(".btn-for-categorize").click(function(){
+      $("#categories_edition").fadeIn();
+      beginIndex = getidArray();
+      beginObjects = $(".edit_categories .box-item").clone();
+      $("#categories_edition div[bs-img]").each(function(){
+        $(this).backstretch($(this).attr("bs-img"));
+      });
     });
   });
-});
 
-function updateMainView(){
-  var actualState = $(".edit_categories .box-item").clone();
-  var s = $(".main-categories-space .box-item");
-  s.each(function( index ) {this.remove();});
-  actualState.appendTo(".main-categories-space");
-}
+  function updateMainView(){
+    var actualState = $(".edit_categories .box-item").clone();
+    var s = $(".main-categories-space .box-item");
+    s.each(function( index ) {this.remove();});
+    actualState.appendTo(".main-categories-space");
+  };
 
 </script>

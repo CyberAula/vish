@@ -138,11 +138,12 @@ fr:
   info:
     author: "Auteur"
   lang:
-    independent: "Indépendant de la langue"
     changed: "Afficher le site en %{lang}"
     error: "Langue \"%{lang}\" non disponible"
-    title: "langue"   
-    others: Others 
+    title: "langue"
+    languages:
+      independent: "Indépendant de la langue"
+      other: Others
   link:
     one: "lien"
     other: "liens"
