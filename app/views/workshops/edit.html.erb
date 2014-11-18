@@ -14,6 +14,13 @@
     <%= f.hidden_field :draft, :value => !@workshop.draft %>
     <%= f.submit (@workshop.draft ? "Publicar" : "Retirar") %>
   <%end%>
+
+  <!-- expandir/contraer todos los recursos-->
+  <% if @workshop_activities.count { |wa| wa.wa_type=="WaResource" } > 0 %>
+    <button href="#" id="ws_expand_all" class=" btn ui-state-default ui-corner-all"><a><i class="icon-chevron-down"></i><%=t('workshop.actions.expand_all')%></a></button>
+    <button href="#" id="ws_collapse_all" class=" btn ui-state-default ui-corner-all"><a><i class="icon-chevron-down"></i><%=t('workshop.actions.collapse_all')%></a></button>
+  <%end%>
+
 </div>
 
 <!--++++++++++++++++header+++++++++++++++++++++++-->
@@ -115,6 +122,19 @@
           }
           return false;
         });
+
+        $("#ws_expand_all").click(function(){
+          $(".resources_WS.oculto").each(function( index ) {
+            $(this).find(".showMore").click();
+          });
+        });
+
+        $("#ws_collapse_all").click(function(){
+          $(".resources_WS.desplegado").each(function( index ) {
+            $(this).find(".showMore").click();
+          });
+        }); 
+
       });
     </script>
 

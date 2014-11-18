@@ -1003,7 +1003,9 @@ en:
         add: "Add Workshop"
         add_activity_title: "Add Activity to the Workshop"
         add_activity_button: "Add"
+        collapse_all: "Collapse all"
         edit_activity_button: "Save"
+        expand_all: "Expand all"
     activities:
         assignment:
             add_image: "Upload"
