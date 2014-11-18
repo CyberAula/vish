@@ -1,4 +1,4 @@
-<% @contribution = (params["contribution"]=="true") %>
+<% @contribution = (params["contribution"]=="true" and !document.contribution.nil?) %>
 
 <section id="<%= document.class.to_s.underscore %> "class="layout_show">
 

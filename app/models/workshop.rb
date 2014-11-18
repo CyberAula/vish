@@ -20,6 +20,8 @@ class Workshop < ActiveRecord::Base
   include SocialStream::Models::Object
   has_many :workshop_activities
 
+  after_destroy :destroy_workshop_activities
+
   define_index do
     activity_object_index
     has draft
@@ -33,6 +35,15 @@ class Workshop < ActiveRecord::Base
 
   def contributions
     self.workshop_activities.select{|workshop_activity| workshop_activity.wa_type=="WaAssignment"}.map{|workshop_activity| workshop_activity.object.contributions}.flatten.uniq
+  end
+
+
+  private
+
+  def destroy_workshop_activities
+    self.workshop_activities.each do |wactivity|
+      wactivity.destroy
+    end
   end
 
 end

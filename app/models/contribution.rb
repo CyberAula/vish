@@ -23,6 +23,8 @@ class Contribution < ActiveRecord::Base
   has_many   :contributions, :foreign_key => 'parent_id'
   #Parent is managed by the 'parent' method. A parent can be a Workshop or another Contribution
   
+  after_destroy :destroy_children_contributions
+
   validate :has_valid_parent
   def has_valid_parent
     if self.parent.nil? or self.parent==self or self.all_contributions.include? self.parent or (!workshop_parent.nil? and !self.parent_id.nil?)
@@ -111,6 +113,15 @@ class Contribution < ActiveRecord::Base
 
   def title
     self.activity_object.title
+  end
+
+
+  private
+
+  def destroy_children_contributions
+    self.contributions.each do |contribution|
+      contribution.destroy
+    end
   end
 
 end
