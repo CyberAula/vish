@@ -93,64 +93,34 @@
 
 
 
-<!--script>
+<script>
   $(function() {
     $(".showMore").click(function(){
-       var mainDiv = $(this).parent().parent().parent();
+       var effect = $( "#effect<%=workshop_activity.id%>" );// etiqueta con id propio
+       var mainDiv = $(this).parent().parent().parent();//boton que apunta al padre de la caja
 
-      if($(this).attr("status")=== "showMore"){
-        mainDiv.switchClass( "oculto", "desplegado", 3000);
-        $( '.thumbnail_object_WS' ).hide( "slow", function() {
-          $( '.show_object_WS' ).show( "drop", { direction: "left" }, 3000 );
-        });
-        $(this).html('<a><i class="icon-chevron-up"></i><%=t("excursion.actions.show_fewer")%></a>');
+      if(buttonshow.attr("status")=== "showMore"){
+        mainDiv.switchClass( "desplegado" , "oculto", 3000);
+        $( ".thumbnail_object_WS" ).hide( "slow", function() {
+        $( ".show_object_WS" ).show( "drop", { direction: "left" }, 3000 );
+        
+        $(this).html('<a><i class="icon-chevron-down"></i><%=t("excursion.actions.show_more")%></a>');
         $(this).attr("status", "showFewer");
+
       }
       else{
-        mainDiv.switchClass( "desplegado", "oculto", 1000);
-        $( '.show_object_WS' ).hide( "drop", { direction: "left" }, 1000, function() {
-          $( '.thumbnail_object_WS' ).show( "drop", { direction: "left" }, 1000 );
-        });
-        $(this).html('<a><i class="icon-chevron-down"></i><%=t("excursion.actions.show_more")%></a>');
+        mainDiv.switchClass( "oculto","desplegado", 1000);
+        $( ".show_object_WS" ).hide( "drop", { direction: "left" }, 1000, function() {
+        $( ".thumbnail_object_WS" ).show( "drop", { direction: "left" }, 1000 );
+        
+        $(this).html('<a><i class="icon-chevron-up"></i><%=t("excursion.actions.show_fewer")%></a>');
         $(this).attr("status", "showMore");
+
       }
       return false;
     });
   });
-</script-->
-
-
-
-
-
-<!--script>
-  $(function() {
-    $(".showMore").click(function(){
-       var mainDiv = $(this).parent().parent().parent();
-
-      if($(this).attr("status")=== "showMore"){
-        mainDiv.switchClass( "oculto", "desplegado", 3000);
-        $( "#effect<%=workshop_activity.id%>" ).hide( "slow", function() {
-          $( '.show_object_WS' ).show( "drop", { direction: "left" }, 3000 );
-        });
-        $(this).html('<a><i class="icon-chevron-up"></i><%=t("excursion.actions.show_fewer")%></a>');
-        $(this).attr("status", "showFewer");
-      }
-      else{
-        mainDiv.switchClass( "desplegado", "oculto", 1000);
-        $( '.show_object_WS' ).hide( "drop", { direction: "left" }, 1000, function() {
-          $( '.thumbnail_object_WS' ).show( "drop", { direction: "left" }, 1000 );
-        });
-        $(this).html('<a><i class="icon-chevron-down"></i><%=t("excursion.actions.show_more")%></a>');
-        $(this).attr("status", "showMore");
-      }
-      return false;
-    });
-  });
-</script-->
-
-
-
+</script>
 
 
 
