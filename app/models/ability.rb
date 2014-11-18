@@ -30,6 +30,10 @@ class Ability
       can?(:update, waObject.workshop_activity) and can?(:update, waObject.wa_assignments)
     end
 
+    unless subject.nil?
+      can :create, Contribution
+    end
+
     #Helpers
     can :update, Array do |arr|
       arr.all? { |el| can?(:update, el) }

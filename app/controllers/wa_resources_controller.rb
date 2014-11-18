@@ -18,9 +18,9 @@
 class WaResourcesController < ApplicationController
 
   before_filter :authenticate_user!
+  before_filter :fill_create_params, :only => [:create, :update]
   inherit_resources
 
-  before_filter :fill_create_params, :only => [:create, :update]
   load_and_authorize_resource
   skip_after_filter :discard_flash, :only => [:create, :update]
 

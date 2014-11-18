@@ -16,9 +16,13 @@
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
 class ContributionsController < ApplicationController
+  
   before_filter :authenticate_user!
   before_filter :fill_create_params, :only => [:create]
   inherit_resources
+
+  skip_after_filter :discard_flash, :only => [:create]
+
 
   #############
   # REST methods
@@ -63,13 +67,23 @@ class ContributionsController < ApplicationController
 
     case params["contribution"]["type"]
     when "Document"
+      unless params["document"].present?
+        flash[:errors] = "missing document"
+        return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
+      end
       object = Document.new((params["document"].merge!(params["contribution"]["activity_object"])).permit!)
     when "Writing"
+      unless params["writing"].present?
+        flash[:errors] = "missing params"
+        return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
+      end
       object = Writing.new((params["writing"].merge!(params["contribution"]["activity_object"])).permit!)
     else
       flash[:errors] = "Invalid contribution"
       return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
     end
+
+    authorize! :create, object
 
     object.valid?
 
@@ -85,6 +99,8 @@ class ContributionsController < ApplicationController
     params["contribution"].delete "type"
     params["contribution"]["activity_object_id"] = ao.id
 
+    authorize! :create, Contribution.new(params["contribution"])
+
     super do |format|
       format.html {
         unless resource.errors.blank?
@@ -96,10 +112,6 @@ class ContributionsController < ApplicationController
         end
       }
     end
-  end
-
-  def edit
-    super
   end
  
 
