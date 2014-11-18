@@ -18,7 +18,7 @@
         </ul>
       </div>
 
-      <% isNewInstance = (controller.action_name == "create" or  controller.action_name == "new") %>
+      <% isNewInstance = resource.new_record? %>
 
       <% if [resource.class.name,resource.class.superclass.name].include? "Document" %>
         <%=render :partial => "common_documents/common_edit", :locals => {:f => f, :isNewInstance => isNewInstance}%>
@@ -48,13 +48,11 @@
       </section>
 
       <% 
-         initialTags = resource.tags.all.map{|e| e.name} || []
-         tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue_categories).uniq!
-
-        if tags == nil
+        initialTags = resource.tags.all.map{|e| e.name} || []
+        tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue_categories).uniq!
+        if tags.nil?
           tags = []
         end
-
       %>
 
       <!-- Tags -->
@@ -99,7 +97,7 @@
         <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[<%=resource.age_min%>,<%=resource.age_max%>]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
       </section>
 
-      <% if !isNewInstance %>
+      <% if !isNewInstance and !resource.respond_to? "draft" %>
         <section class="scope">
           <%= f.label :scope, t('document.leyend.scope') %>
           <%= f.select(:scope, options_for_select([[t('scope.public'), 0], [t('scope.private'), 1]],resource.scope)) %>
@@ -108,7 +106,7 @@
 
       <div class="footer-form">
         <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
-        <%if controller_name == "workshops" && controller.action_name == 'edit_details'%>
+        <% if resource.class.name=="Workshop" && !isNewInstance %>
           <button class="btn" href="<%=edit_workshop_path(@workshop)%>">Cancel and go to Workshop</button>
         <%end%>
       </div>
