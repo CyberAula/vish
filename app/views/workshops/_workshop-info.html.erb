@@ -1,19 +1,15 @@
 <div class="left-info">
-  <!--author-->
   <dl class="dl-horizontal">
-      <dt><%= t('info.author') %></dt>
-      <dd>
+    <!--author-->
+    <dt><%= t('info.author') %></dt>
+    <dd>
       <%= link_to @workshop.author.subject do %>
         <p><%= truncate_name(@workshop.author.name, :length => 50) %></p>
       <%end%>
-      </dd>
-    <% unless @workshop.description.blank? %>
-      <!--description-->
-      <!--dt><%= t('info.description') %></dt-->
-      <!--dd><%= truncate(@workshop.description, :length => 400) %></dd-->
-      <% end %>
-      <% unless @workshop.tag_list.blank? %>
-      <!--tags-->
+    </dd>
+
+    <!--tags-->
+    <% unless @workshop.tag_list.blank? %>
       <dt><%= t('info.tags') %></dt>
       <dd>
         <ul class="tagit-suggestions">
@@ -25,28 +21,5 @@
         </ul>
       </dd>
     <% end %>
-    
   </dl>
 </div>
-
-
-
-
-
-<script>
-$(function() {
-  $("#showMore").click(function(){
-    $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
-    $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
-    if($("#showMore").attr("status")=== "showMore"){
-      $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
-      $("#showMore").attr("status", "showFewer");
-    }
-    else{
-      $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
-      $("#showMore").attr("status", "showMore");
-    }
-    return false;
-  });
-});
-</script>

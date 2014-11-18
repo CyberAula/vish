@@ -1,29 +1,9 @@
 <h2 class="header-title_page">Editing Workshop</h2>
 
-<!--++++++++++++++++toolbar+++++++++++++++++++++++-->
+<%= render partial: 'edit_toolbar' %>
 
-<div class="toolbar_nav-tab">
-  <!--draft-->
-  <% unless @workshop.draft %>
-    <a class ="btn" href="<%=workshop_path(@workshop)%>">Turn off editing mode</a>
-  <%end%>
-  <!--delete-->
-  <%= link_to "Delete Workshop",  @workshop, :method => :delete, :class => 'btn btn-primary', :confirm => t('workshop.confirm_delete') %>
-  <!--publicar-->
-  <%= form_for(@workshop) do |f| %>
-    <%= f.hidden_field :draft, :value => !@workshop.draft %>
-    <%= f.submit (@workshop.draft ? "Publicar" : "Retirar") %>
-  <%end%>
 
-  <!-- expandir/contraer todos los recursos-->
-  <% if @workshop_activities.count { |wa| wa.wa_type=="WaResource" } > 0 %>
-    <button href="#" id="ws_expand_all" class=" btn ui-state-default ui-corner-all"><a><i class="icon-chevron-down"></i><%=t('workshop.actions.expand_all')%></a></button>
-    <button href="#" id="ws_collapse_all" class=" btn ui-state-default ui-corner-all"><a><i class="icon-chevron-down"></i><%=t('workshop.actions.collapse_all')%></a></button>
-  <%end%>
-
-</div>
-
-<!--++++++++++++++++header+++++++++++++++++++++++-->
+<!-- Header -->
 
 <div class="wa_activity_wrapper wa_activity_wrapper_edit header_workshop ">
   <div class="wa_activity_actions">
@@ -48,14 +28,13 @@
   </div>
 </div>
 
-<!--++++++++++++++++item+++++++++++++++++++++++-->
+
+<!-- Workshop Activities -->
 
 <ul class="workshop_activities_list workshop_activities_list_edit">
   <% @workshop_activities.each do |workshop_activity| %>
     <li workshop_activity_id="<%=workshop_activity.id%>" class="workshop_element">
       <div class="wa_activity_wrapper wa_activity_wrapper_edit">
-
-      <!--tool-ITEM-->
         <div class="wa_activity_edit_tools">
           <ul>
             <li class="sorthandler">
@@ -75,85 +54,46 @@
             <li>
               <%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %>
             </li>
+            <% if className == "WaResource" %>
+              <li class="toggleWorkshopActivity">
+                <i class="icon-fullscreen"></i>
+              </li>
+            <%end%>
           </ul>
         </div>
-
-        <!--content-->
-        <% if workshop_activity.wa_type =="WaResource"%>
-            <div id="effect<%=workshop_activity.id%>" class="resources_WS desplegado" > <!--only for resources-->
-       
-        <%end%>
-          <div class="layout_workshop">
-            <% entity = workshop_activity.object %>
-            <%className = entity.class.to_s%>
-            <%classNameUnderscore = className.underscore%>
-            <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
-                       locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop_activity_"+workshop_activity.id.to_s } %>
-          </div>
-        <% if workshop_activity.wa_type=="WaResource"%>
-          </div>
-        <%end%>
-
+        <div class="layout_workshop">
+          <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
+                     locals:  { classNameUnderscore.to_sym => object, :prefix_id => "workshop_activity_"+workshop_activity.id.to_s } %>
+        </div>
       </div>
     </li>
-
-
-    <script>
-      $(function() {
-        $(".showMore").click(function(){
-           var mainDiv = $(this).parents(".resources_WS");
-
-          if( mainDiv.hasClass("oculto") ){
-            //KIKE: según mis pruebas, este primer timeout tiene que ser superior al segundo, 4000>3000
-            //si no hace un parpadeo
-            mainDiv.switchClass( "oculto", "desplegado", 4000);
-            mainDiv.find(".thumbnail_object_WS").hide( "slow", function() {
-              mainDiv.find('.show_object_WS').show( "drop", { direction: "left" }, 3000 );
-            });
-            $(this).html('<a><i class="icon-chevron-up"></i><%=t("excursion.actions.show_fewer")%></a>');
-            $(this).attr("status", "showFewer");
-          }
-          else{
-            mainDiv.switchClass( "desplegado", "oculto", 1000);
-            mainDiv.find('.show_object_WS').hide( "drop", { direction: "left" }, 1000, function() {
-              mainDiv.find(".thumbnail_object_WS").show( "drop", { direction: "left" }, 1000 );
-            });
-            $(this).html('<a><i class="icon-chevron-down"></i><%=t("excursion.actions.show_more")%></a>');
-            $(this).attr("status", "showMore");
-          }
-          return false;
-        });
-
-        $("#ws_expand_all").click(function(){
-          $(".resources_WS.oculto").each(function( index ) {
-            $(this).find(".showMore").click();
-          });
-        });
-
-        $("#ws_collapse_all").click(function(){
-          $(".resources_WS.desplegado").each(function( index ) {
-            $(this).find(".showMore").click();
-          });
-        }); 
-
-      });
-    </script>
-
-
   <%end%>
 </ul>
 
+<script>
+  $(function(){
+    $("li.toggleWorkshopActivity").click(function(e){
+      var mainDiv = $(e.target).parents(".wa_activity_wrapper_edit").find(".wa_resource_wrapper")[0];
+      if($(mainDiv).hasClass("wa_activity_closed")){
+        $(mainDiv).removeClass("wa_activity_closed").addClass("wa_activity_open");
+        $(mainDiv).show();
+      } else {
+        $(mainDiv).removeClass("wa_activity_open").addClass("wa_activity_closed");
+        $(mainDiv).hide();
+      }
+      e.stopPropagation();
+      return false;
+    });
+  });
+</script>
 
-
-
-<!--++++++++++++++++ADD ACTIVITY+++++++++++++++++++++++-->
+<!-- Add Workshop Activity -->
 
 <div class="wa_add_activity_wrapper">
   <a href="#WorkshopActivities" class="btn btn-primary" data-toggle="modal"><p>Add new Activity</p></a>
 </div>
 
-<!--++++++++++++++++ MODAL ADD++++++++++++++++++++++-->
-
+<!-- Add Workshop Activity Modal -->
 
 <div id="WorkshopActivities" class="modal hide fade" aria-hidden="true">
   <div class="modal-header">
@@ -200,7 +140,7 @@
   </div>
 </div>
 
-<!--++++++++++++++++  MODAL EDIT+++++++++++++++++++++++-->
+<!-- Model Workshop Activity Edit-->
 
 <div id="WorkshopActivity" class="modal hide fade" aria-hidden="true">
   <div class="modal-header">
@@ -230,7 +170,6 @@
     });
 
     $(document).on( "click", "#WorkshopActivities .submitWorkshopActivityFake", function(){
-      //disable the button and change the value to "Adding..."
       $(this).html($(this).attr("data-loading-text"));
       $(this).attr("disabled", "disabled");
       $(this).addClass("disabled");
@@ -287,28 +226,4 @@
 
   });
 </script>
-
-
-
-
-<!--script>
-  $(function() {
-    $(".showMore").click(function(){
-       var mainDiv = $(this).parent();
-
-      if($(this).attr("status")=== "showMore"){
-        mainDiv.switchClass( "oculto", "desplegado", 1000);
-        $(this).html('<a><%#=t("excursion.actions.show_fewer")%></a>');
-        $(this).attr("status", "showFewer");
-      }
-      else{
-        mainDiv.switchClass( "desplegado", "oculto", 1000);
-        $(this).html('<a><%#=t("excursion.actions.show_more")%></a>');
-        $(this).attr("status", "showMore");
-
-      }
-      return false;
-    });
-  });
-</script-->
 

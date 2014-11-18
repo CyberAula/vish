@@ -23,10 +23,12 @@ class Contribution < ActiveRecord::Base
   has_many   :contributions, :foreign_key => 'parent_id'
   #Parent is managed by the 'parent' method. A parent can be a Workshop or another Contribution
   
-  validate :has_parent
-  def has_parent
-    if self.parent.nil?
-      errors.add(:contribution, "Contribution without parent")
+  after_destroy :destroy_children_contributions
+
+  validate :has_valid_parent
+  def has_valid_parent
+    if self.parent.nil? or self.parent==self or self.all_contributions.include? self.parent or (!workshop_parent.nil? and !self.parent_id.nil?)
+      errors.add(:contribution, "with invalid parent")
     else
       true
     end
@@ -34,13 +36,24 @@ class Contribution < ActiveRecord::Base
 
 
   #Methods
-
   def parent
     workshop_parent || Contribution.find_by_id(self.parent_id)
   end
 
   def workshop_parent
     self.wa_assignment.workshop_activity.workshop unless self.wa_assignment.nil?
+  end
+
+  def all_contributions
+    all_contributions = []
+    direct_contributions = contributions
+    all_contributions += direct_contributions
+
+    direct_contributions.each do |dcontribution|
+      all_contributions += dcontribution.all_contributions
+    end
+
+    all_contributions
   end
 
   def parents_path(path=nil)
@@ -100,6 +113,15 @@ class Contribution < ActiveRecord::Base
 
   def title
     self.activity_object.title
+  end
+
+
+  private
+
+  def destroy_children_contributions
+    self.contributions.each do |contribution|
+      contribution.destroy
+    end
   end
 
 end

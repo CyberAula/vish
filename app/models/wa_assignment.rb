@@ -5,8 +5,10 @@ class WaAssignment < ActiveRecord::Base
   has_many :contributions
   has_and_belongs_to_many :wa_contributions_galleries
 
+  after_destroy :destroy_contributions
+
   #Save available_contributions as array
-  serialize   :available_contributions
+  serialize :available_contributions
 
   validate :has_available_contributions
   def has_available_contributions
@@ -23,6 +25,15 @@ class WaAssignment < ActiveRecord::Base
 
   def available_contributions_array
     self.available_contributions.split(",") unless self.available_contributions.nil?
+  end
+
+
+  private
+
+  def destroy_contributions
+    self.contributions.each do |contribution|
+      contribution.destroy
+    end
   end
   
 end
