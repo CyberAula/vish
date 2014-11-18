@@ -1,13 +1,45 @@
-<div class="quick_search">
-  <div class="photo">
- <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
+<li class="box-item contact" id="<%= dom_id user %>">
+  <!-- corner -->
+  <div class="corner-item">
+    <div class="corner-item2">
+      <div class="corner-color"></div>
+      <i class="fa fa-user"></i>
+    </div>
+    <div class="corner-background"></div>
   </div>
-  <div class="data">
-    <div class="name">
+  <%if user.is_mve %>
+    <div class="badge-teacher-active"></div>
+  <%end%>
+  
+  <div class="container-img">
+      <div class="dummy dummy_user"></div>
+      <div class="element">
+      <div class="avatar">
+        <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
+      </div>
+      </div>
+  </div>
+
+<!--INFO user-->
+  <div class="caption">
+<!--Autor -->
+    <h6>
       <%= link_to(truncate_name(user.name), user.subject)%>
+    </h6>
+
+    <div class="count-followers">
+      <i class="icon-group "></i>
+      <span class="count"><%=user.followers.count.to_s%></span>
+      <span class=""><%= t('follow.followers') %></span>
     </div>
-    <div class="author"> 
-      <%= contact_count(user) %>
+
+      <div class="add">
+        <%= contact_button(user) %>
+      </div> 
+
+    <div class="info-bottom">
+      <hr class="soften">
     </div>
   </div>
-</div>
+  
+</li>

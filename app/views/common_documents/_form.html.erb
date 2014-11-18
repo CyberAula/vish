@@ -17,7 +17,7 @@
       </ul>
     </div>
 
-    <%isNewInstance = (controller.action_name == "create" or  controller.action_name == "new") %>
+    <% isNewInstance = (controller.action_name == "create" or  controller.action_name == "new") %>
 
     <% if isNewInstance %>
       <section class="upload">
@@ -62,28 +62,27 @@
     %>
  
     <script>
-    var tagArchive= [
-          <% tags2.each do |tag|%>
-            "<%=tag%>",
-          <%end%>
-          ];
+      var tagArchive= [
+            <% tags2.each do |tag|%>
+              "<%=tag%>",
+            <%end%>
+            ];
 
-    $(".resourceTagList").tagit({
-     watermarkAllowMessage:"",
-     tagSource: tagArchive
-    });
+      $(".resourceTagList").tagit({
+       watermarkAllowMessage:"",
+       tagSource: tagArchive
+      });
 
-    <% initialTags.each do |cnt| %>
-      $(".partial-doc").tagit("add", "<%= cnt %>");
-    <%end%> 
-
+      <% initialTags.each do |cnt| %>
+        $(".partial-doc").tagit("add", "<%= cnt %>");
+      <% end %> 
     </script>
-    <%unless resource.class.name=="Picture" %>
+    <% unless resource.class.name=="Picture" %>
       <section class="avatar">
         <%= f.label :avatar, t('document.leyend.avatar') %>
         <%= f.file_field :avatar %>
       </section>
-    <%end%>
+    <% end %>
 
     <section class="language">
       <%= f.label :language, t('document.leyend.language') %>
@@ -107,7 +106,7 @@
         <%= f.label :scope, t('document.leyend.scope') %>
         <%= f.select(:scope, options_for_select([[t('scope.public'), 0], [t('scope.private'), 1]],resource.scope)) %>
       </section>
-    <% end%>
+    <% end %>
 
     <%= f.submit :class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
   <% end %>

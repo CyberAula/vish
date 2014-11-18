@@ -4,7 +4,8 @@
     @include logo-img
 
 .search-nav
-  display: inline
+  margin-right: 10px
+  float: right
   .input-group 
     @media (max-width: $screen-xs-max)
       margin-left: 0px !important
@@ -12,6 +13,7 @@
 
   .search-query 
     width: 290px
+    display: inline
     @media (max-width: $screen-xs-max)
       width: 95%
       margin-right: auto !important
@@ -151,6 +153,11 @@ form.navbar-form-search
 #new_user
   padding: 7px
 
+.results
+  ul
+    @extend .items
+    li
+      @include excursion-small
 
 #warning_cookie_bar
   display: none

@@ -4,17 +4,7 @@
 <section id="search" class="">
   <div class="search">
       <ul class="nav nav-tabs">
-        <%if browse%>
-          <%content_for :title do%>
-            <%= t("site.current.browse")%>
-          <%end%>
-          <li><h1><i class="icon-folder-open"></i><%= t("browse.title")%></h1></li>          
-        <%else%>
-          <%content_for :title do%>
-            <%= t("site.current.search")%>
-          <%end%>
-          <li><h1><i class="icon-search"></i><%= t("search.title")%></h1></li>
-        <%end%>
+
           <li class="all_results <%= 'active' if params[:type].blank? %>">
             <% unless browse%>
               <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
