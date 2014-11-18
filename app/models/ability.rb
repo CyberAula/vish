@@ -31,7 +31,13 @@ class Ability
     end
 
     unless subject.nil?
-      can :create, Contribution
+      can :create, Contribution do |contribution|
+        unless contribution.activity_object.nil?
+          can?(:update, contribution.activity_object.object)
+        else
+          true
+        end
+      end
     end
 
     #Helpers
