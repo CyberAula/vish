@@ -1,5 +1,5 @@
 <div class="breadcrumb_wrapper">
-  <p>
+  <p><a href="<%=user_url(path.first.owner.user)%>/categories">..</a> >
     <% path.each_with_index do |objectParent,index| %>
       <%unless index == 0%>
         <span>></span>

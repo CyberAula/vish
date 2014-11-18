@@ -19,6 +19,7 @@
       <h2><%= @category.title %></h2>
       <!--description-->
       <div class="description"><%= @category.description %></div>
+      <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path } %>
       <!--author-->
       <div class="author"> <span class="by"><%=t('by')%></span> <%= link_to @category.author.name, @category.author.subject %></div>
     </div>
@@ -66,9 +67,10 @@
   <%= render partial: 'categories/edit_categories', :locals => { :all_categories => @items} %>
 <% end %>
 
-<%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path } %>
+
 
 <div class="main-categories-space">
+  <%= render partial: 'categories/category-add' %>
   <%= render partial: 'categories/items' %>
 </div>
 
@@ -139,6 +141,9 @@
   function updateMainView(){
     var actualState = $(".edit_categories .box-item").clone();
     var s = $(".main-categories-space .box-item");
+    <% if @category.owner.user == current_subject %>
+      s.splice(0,1);
+    <% end %>
     s.each(function( index ) {this.remove();});
     actualState.appendTo(".main-categories-space");
   };
