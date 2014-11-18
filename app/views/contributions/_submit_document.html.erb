@@ -6,10 +6,10 @@
   <% end %>
   <%= f.hidden_field :type, :value => "Document" %>
   <input class="contribution_file_input" name="document[file]" type="file">
-  <%= f.submit t('button.save'), :id=>"" ,:class => "contribution", :disabled => editMode %>
+  <%= f.submit t('button.upload'), :id=>"" ,:class => "contribution", :disabled => editMode %>
 <% end %>
 
-<button class="btn btn-primary btn_show_upload">Resource</button>
+<button class="btn btn-primary btn_show_upload"><%= t('resource.one')%></button>
 <button class="btn btn_hidden_upload"><i class="icon-chevron-left"></i></button>
 <script>
 	$( ".btn_show_upload" ).click(function() {

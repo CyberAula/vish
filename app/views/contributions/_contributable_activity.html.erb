@@ -1,10 +1,12 @@
-<div class="description-activity">
-  <p> Contribute </p>
-  <%= render partial: "contributions/submit_contributions", locals:  { :contribution => contribution } %>
+<div class="contributions_actions">
+	<div class="contributions_content">
+	  <p> Contribute </p>
+	  <%= render partial: "contributions/submit_contributions", locals:  { :contribution => contribution } %>
 
-  <% contributionsGallery = contribution.contributions %>
-  <% unless contributionsGallery.blank? %>
-    <p> Contributions Gallery </p>
-    <%= render partial: "contributions/contributions_gallery", locals:  { :contributions => contributionsGallery } %>
-  <% end %>
+	  <% contributionsGallery = contribution.contributions %>
+	  <% unless contributionsGallery.blank? %>
+	    <p> Contributions Gallery </p>
+	    <%= render partial: "contributions/contributions_gallery", locals:  { :contributions => contributionsGallery } %>
+	  <% end %>
+	</div>
 </div>
