@@ -77,56 +77,43 @@
 
 
 
-<!--script>
-  $(function() {
-    $(".showMore").click(function(){
-       var mainDiv = $(this).parent();
-      if($(this).attr("status")=== "showMore"){
-        mainDiv.switchClass( "oculto", "desplegado", 1000);
-        $(this).html('<a><%#=t("excursion.actions.show_fewer")%></a>');
-        $(this).attr("status", "showFewer");
-      }
-      else{
-        mainDiv.switchClass( "desplegado", "oculto", 1000);
-        $(this).html('<a><%#=t("excursion.actions.show_more")%></a>');
-        $(this).attr("status", "showMore");
-
-      }
-      return false;
-    });
-  });
-</script-->
-
-
-
 <script>
-  $(function() {
-    $(".showMore").click(function(){
-       var mainDiv = $(this).parent();
+      $(function() {
+        $(".showMore").click(function(){
+           var mainDiv = $(this).parents(".resources_WS");
 
-      if($(this).attr("status")=== "showMore"){
-        mainDiv.switchClass( "oculto", "desplegado", 3000);
-
-
-        $( ".thumbnail_object_WS" ).hide( "slow", function() {
-          $( '.show_object_WS' ).show( "drop", { options: "easeInOutBounce"}, { direction: "left" }, 3000 );
+          if( mainDiv.hasClass("oculto") ){
+            //KIKE: según mis pruebas, este primer timeout tiene que ser superior al segundo, 4000>3000
+            //si no hace un parpadeo
+            mainDiv.switchClass( "oculto", "desplegado", 4000);
+            mainDiv.find(".thumbnail_object_WS").hide( "slow", function() {
+              mainDiv.find('.show_object_WS').show( "drop", { direction: "left" }, 3000 );
+            });
+            $(this).html('<a><i class="icon-chevron-up"></i><%=t("excursion.actions.show_fewer")%></a>');
+            $(this).attr("status", "showFewer");
+          }
+          else{
+            mainDiv.switchClass( "desplegado", "oculto", 1000);
+            mainDiv.find('.show_object_WS').hide( "drop", { direction: "left" }, 1000, function() {
+              mainDiv.find(".thumbnail_object_WS").show( "drop", { direction: "left" }, 1000 );
+            });
+            $(this).html('<a><i class="icon-chevron-down"></i><%=t("excursion.actions.show_more")%></a>');
+            $(this).attr("status", "showMore");
+          }
+          return false;
         });
 
-        $(this).html('<a><%=t("excursion.actions.show_fewer")%></a>');
-        $(this).attr("status", "showFewer");
-      }
-      else{
-        mainDiv.switchClass( "desplegado", "oculto", 1000);
-
-        $( '.show_object_WS' ).hide( "drop", { direction: "left" }, 1000, function() {
-          $( '.thumbnail_object_WS' ).show( "drop", { direction: "left" }, 1000 );
+        $("#ws_expand_all").click(function(){
+          $(".resources_WS.oculto").each(function( index ) {
+            $(this).find(".showMore").click();
+          });
         });
 
-        $(this).html('<a><%=t("excursion.actions.show_more")%></a>');
-        $(this).attr("status", "showMore");
+        $("#ws_collapse_all").click(function(){
+          $(".resources_WS.desplegado").each(function( index ) {
+            $(this).find(".showMore").click();
+          });
+        }); 
 
-      }
-      return false;
-    });
-  });
-</script>
+      });
+    </script>
