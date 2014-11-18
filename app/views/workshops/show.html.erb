@@ -77,61 +77,34 @@
 
 
 
-<!--script>
-  $(function() {
-    $(".showMore").click(function(){
-       var mainDiv = $(this).parent();
-      if($(this).attr("status")=== "showMore"){
-        mainDiv.switchClass( "oculto", "desplegado", 1000);
-        $(this).html('<a><%#=t("excursion.actions.show_fewer")%></a>');
-        $(this).attr("status", "showFewer");
-      }
-      else{
-        mainDiv.switchClass( "desplegado", "oculto", 1000);
-        $(this).html('<a><%#=t("excursion.actions.show_more")%></a>');
-        $(this).attr("status", "showMore");
-
-      }
-      return false;
-    });
-  });
-</script-->
 
 <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
 
+
 <script>
-  $(function() {
-    $(".showMore").click(function(){
-       var mainDiv = $(this).parent();
-
-      if($(this).attr("status")=== "showMore"){
-        mainDiv.switchClass( "oculto", "desplegado", 3000);
-
-
-        $( ".thumbnail_object_WS" ).hide( "slow", function() {
-          $( '.show_object_WS' ).show( "drop", { options: "easeInOutBounce"}, { direction: "left" }, 3000 );
-        });
-
-        $(this).html('<a><%=t("excursion.actions.show_fewer")%></a>');
-        $(this).attr("status", "showFewer");
-      }
-      else{
-        mainDiv.switchClass( "desplegado", "oculto", 1000);
-
-        $( '.show_object_WS' ).hide( "drop", { direction: "left" }, 1000, function() {
-          $( '.thumbnail_object_WS' ).show( "drop", { direction: "left" }, 1000 );
-        });
-
-        $(this).html('<a><%=t("excursion.actions.show_more")%></a>');
-        $(this).attr("status", "showMore");
-
-      }
-      return false;
+$(function() {
+  $(".showMore").click(function(){
+    var mainDiv = $(this).parent();
+    if($(this).attr("status")=== "showMore"){
+      mainDiv.switchClass( "oculto", "desplegado", 3000);
+      $( ".thumbnail_object_WS" ).hide( "slow", function() {
+        $( '.show_object_WS' ).show( "drop", { options: "easeInOutBounce"}, { direction: "left" }, 3000 );
+      });
+      $(this).html('<a><%=t("excursion.actions.show_fewer")%></a>');
+      $(this).attr("status", "showFewer");
+    }
+    else{
+      mainDiv.switchClass( "desplegado", "oculto", 1000);
+      $( '.show_object_WS' ).hide( "drop", { direction: "left" }, 1000, function() {
+        $( '.thumbnail_object_WS' ).show( "drop", { direction: "left" }, 1000 );
+      });
+      $(this).html('<a><%=t("excursion.actions.show_more")%></a>');
+      $(this).attr("status", "showMore");
+    }
+    return false;
     });
   });
-
   $(document).ready(function(){
-    <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => false } %>
+  <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => false } %>
   });
-
 </script>
