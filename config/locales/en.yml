@@ -1003,6 +1003,7 @@ en:
         add: "Add Workshop"
         add_activity_title: "Add Activity to the Workshop"
         add_activity_button: "Add"
+        adding_activity_button: "Adding..."
         collapse_all: "Collapse all"
         edit_activity_button: "Save"
         expand_all: "Expand all"

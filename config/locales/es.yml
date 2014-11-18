@@ -1004,6 +1004,7 @@ es:
         add: "Añadir Workshop"
         add_activity_title: "Añadir Actividad al Workshop"
         add_activity_button: "Añadir"
+        adding_activity_button: "Añadiendo..."
     activities:
         assignment:
             add_image: "Dibujo"

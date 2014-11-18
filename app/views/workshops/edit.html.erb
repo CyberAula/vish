@@ -196,7 +196,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <p><button class="btn btn-primary submitWorkshopActivityFake"><%=t('workshop.actions.add_activity_button')%></button></p>
+    <p><button class="btn btn-primary submitWorkshopActivityFake" data-loading-text="<%= t('workshop.actions.adding_activity_button')%>"><%=t('workshop.actions.add_activity_button')%></button></p>
   </div>
 </div>
 
@@ -230,6 +230,11 @@
     });
 
     $(document).on( "click", "#WorkshopActivities .submitWorkshopActivityFake", function(){
+      //disable the button and change the value to "Adding..."
+      $(this).html($(this).attr("data-loading-text"));
+      $(this).attr("disabled", "disabled");
+      $(this).addClass("disabled");
+
       var submitForm = $("#WorkshopActivities  div.tab-pane.active").find("form");
       $(submitForm).submit();
     });
