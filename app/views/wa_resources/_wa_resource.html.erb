@@ -6,7 +6,10 @@
 %>
 
 <div class="wa_resource_wrapper wa_activity_open">
-	<%= render partial: 'wa_resources/corner_resource', locals: { resource: resource} %>
+
+	<% unless className == "Excursion" %>
+		<%= render partial: 'wa_resources/corner_resource', locals: { resource: resource} %>
+	<% end %>
 
 	<% if hasWorkshopPartial %>
 		<%= render partial: "#{ classNameTableize }/#{classNameUnderscore}_workshop_show", locals:  { classNameUnderscore.to_sym => resource, :prefix_id => "wa_resource" }  %>
