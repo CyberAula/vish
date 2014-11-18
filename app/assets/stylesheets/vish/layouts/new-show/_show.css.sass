@@ -22,7 +22,7 @@
 
   // DESCRIPTION
   // --------------------------------------------------
-  .description-activity,
+  .description-activity
     @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
     @include border-bottom-radius(5px)
     background-color: $white
@@ -67,6 +67,10 @@
         // --------------------------------------------------
         @include info-workshop
 
+
+
+    @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+
   // RECOMENDED
   // --------------------------------------------------
   .recomended
@@ -99,6 +103,12 @@
               width: 100%
               height: 535px !important
 
+  // CONTRIBUTIONS
+  // --------------------------------------------------
+  .contributions_actions
+    @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    @include border-bottom-radius(5px)
+    background-color: $white
 
 
 
