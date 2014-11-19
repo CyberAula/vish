@@ -33,7 +33,7 @@
 
 <ul class="workshop_activities_list workshop_activities_list_edit">
   <% @workshop_activities.each do |workshop_activity| %>
-    <li workshop_activity_id="<%=workshop_activity.id%>" class="workshop_element">
+    <li workshop_activity_id="<%=workshop_activity.id%>" class="workshop_element" type="<%=workshop_activity.wa_type%>">
       <div class="wa_activity_wrapper wa_activity_wrapper_edit">
         <div class="wa_activity_edit_tools">
           <ul>
@@ -185,13 +185,36 @@
 
     $("ul.workshop_activities_list_edit").sortable({
       handle: ".sorthandler",
-      stop: function(event,ui){
-        _onDragWorkshopActivity();
+      start: function(event, ui){
+        _onStartDragWorkshopActivity(event, ui);
+      },
+      stop: function(event, ui){
+        _onStopDragWorkshopActivity(event, ui);
       }
     });
 
+    var ck_editor_initial_data;
+    var _onStartDragWorkshopActivity = function(event, ui){
+      //save the ckeditor iframe, because when moving the iframe in the DOM the iframe is restored
+      //only if the workshop_activity is paragraph of text or assignment (i.e. has ckeditor)
+      console.log("dragkike start");
+      if($(ui.item).attr("type")==="WaText" || $(ui.item).attr("type")==="WaAssignment"){
+        var theid = $(ui.item).find("textarea").attr("id");
+        var instance = CKEDITOR.instances[theid];
+        ck_editor_initial_data = CKEDITOR.instances[theid].getData();
+      }
+    };
+
     var _lastActivitiesOrder;
-    var _onDragWorkshopActivity = function(){
+    var _onStopDragWorkshopActivity = function(event, ui){
+      //restore the iframe of the ckeditor
+      if($(ui.item).attr("type")==="WaText" || $(ui.item).attr("type")==="WaAssignment"){
+        console.log("dragkike stop");
+        var theid = $(ui.item).find("textarea").attr("id");
+        var instance = CKEDITOR.instances[theid];
+        CKEDITOR.instances[theid].setData(ck_editor_initial_data);
+      }
+      //get activitiesOrder and send them
       var activitiesOrder = _getCurrentWorkshopActivitiesOrder();
       if(activitiesOrder!=_lastActivitiesOrder){
         _lastActivitiesOrder = activitiesOrder;
