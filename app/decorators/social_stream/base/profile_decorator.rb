@@ -8,5 +8,4 @@ Profile.class_eval do
 
   delegate :occupation_t, :occupation?,:occupation, :occupation=,
   to: :user
-
 end

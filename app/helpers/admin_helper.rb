@@ -1,4 +1,5 @@
 module AdminHelper 
+
 	def admin_path
 		"/admin"
 	end
@@ -30,4 +31,5 @@ module AdminHelper
 	def degrade_user_path(subject)
 		user_path(subject) + "/degrade"
 	end
+
 end
