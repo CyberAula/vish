@@ -7,20 +7,17 @@
   <%= f.hidden_field :start_at %>
   <%= f.hidden_field :end_at %>
   <%= f.hidden_field :all_day %>
-  <!--TITULO-->
+
   <legend><%= t('event.leyend.title')%></legend>
   <%= f.text_field :title, :placeholder => t('event.title_input') %>
   
-  <!--DESCRIPCION-->
   <legend><%= t('event.leyend.description')%></legend>
   <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
 
-  <!--TYPE-->
   <legend><%= t('event.leyend.type')%></legend>
   <%= f.radio_button :streaming, false, checked: true %> <%= t('event.type.videoconference') %>
   <%= f.radio_button :streaming, true %> <%= t('event.type.streaming') %>
 
-  <!--EMBED-->
   <legend><%= t('document.options.embed')%></legend>
   <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
   <script type="text/javascript">
@@ -37,33 +34,32 @@
     });
   </script>
 
-  <!--DATE-->
   <legend><%= t('event.leyend.date')%></legend>
-    <div id="editdate" class="input-append">
-      <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
-      <span class="add-on">
-        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-        </i>
-      </span>
-    </div>
-  <!--HORA INICIO-->
+  <div id="editdate" class="input-append">
+    <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+
   <legend><%= t('event.leyend.start_time')%></legend>
-    <div id="edithourinit" class="input-append">
-      <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
-      <span class="add-on">
-        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-        </i>
-      </span>
-    </div>
-  <!--HORA FINALIZACION-->
+  <div id="edithourinit" class="input-append">
+    <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+
   <legend><%= t('event.leyend.end_time')%></legend>
-    <div id="edithourfinish" class="input-append">
-      <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
-      <span class="add-on">
-        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-        </i>
-      </span>
-    </div>
+  <div id="edithourfinish" class="input-append">
+    <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
   <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
   <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
 
@@ -113,7 +109,6 @@
         }
       });
     });
-
   </script>
   
 <% end %>

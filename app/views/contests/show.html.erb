@@ -7,19 +7,19 @@
     <%end%>
   </div>
 
-<div class="info_competition">
-      <div class="info_competition_element">
+  <div class="info_competition">
+    <div class="info_competition_element">
       <a id="congratulations-button" href="#CongratModal" class="sign_up btn" role="button" data-toggle="modal"><h4><i class="icon-trophy"></i> <%=t('contest.prizes')%></h4></a>
     </div>
-</div>
-
-<div id="CongratModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myCongratLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myCongratLabel"><%= t('contest.prizes') %></h3>
   </div>
-  <div class="modal-body">
-    <p><%=t('contest.prizes2')%>
+
+  <div id="CongratModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myCongratLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myCongratLabel"><%= t('contest.prizes') %></h3>
+    </div>
+    <div class="modal-body">
+      <p><%=t('contest.prizes2')%>
         </br><%=t('contest.prizes_first_a')%>
         </br><%=t('contest.prizes_second_a')%>
         </br>
@@ -32,9 +32,8 @@
         </br></br>
         <strong><%=t('contest.amazon')%></strong><%=t('contest.prizes5')%>
       </p>
+    </div>
   </div>
-</div>
-
 
   <div id="podium">
     <div class="podiuminside">
@@ -333,11 +332,10 @@
 </div>
 
 
-
- <script type="text/javascript">
+<script type="text/javascript">
   $(document).ready(function(){
-    $("#winners div[bs-img]").each(function() {       
-        $(this).backstretch( $(this).attr("bs-img") );      
+    $("#winners div[bs-img]").each(function(){    
+        $(this).backstretch($(this).attr("bs-img"));  
     });
   });
 </script>
