@@ -23,14 +23,13 @@
   <script>
   $("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
   </script>    
-  <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
-  <!--INFO excursuion-->
+  <!-- Info -->
   <div class="info">
-    <!--Title -->
+    <!-- Title -->
     <div class="name">
       <%= link_to event.title, event %>
     </div>
-    <!--Autor -->
+    <!-- Autor -->
     <div class="author"> 
       <span class="by"><%=t('by')%></span>
       <%= link_to event.author.name, event.author.subject %>

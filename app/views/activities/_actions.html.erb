@@ -1,6 +1,6 @@
 <article class="actions">
   <%= render :partial => 'activities/time_ago',
-             :locals => { :activity => activity } %>   
+             :locals => { :activity => activity } %>
 
   <% if activity.direct_object.present? %>
 
@@ -9,13 +9,6 @@
 
     <%= render :partial => 'activities/comment',
                :locals => { :activity => activity } %>
-
-
- 
-
-
-
-   
 
   <% end %>
 

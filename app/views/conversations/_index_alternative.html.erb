@@ -1,15 +1,14 @@
 <div class="conversations">
 
   <% if @box=="sentbox" %>
-  	<!-- Filter conversations -->
-  	<% @conversations = @conversations.select { |conversation| conversation.originator == current_subject.actor } %>
+    <!-- Filter conversations -->
+    <% @conversations = @conversations.select { |conversation| conversation.originator == current_subject.actor } %>
   <% elsif @box=="inbox" %>
     <!-- Untrashed conversations -->
     <% @conversations = current_subject.mailbox.conversations.reject { |conversation| conversation.is_trashed?(current_subject.actor)} %>
     <!-- Remove messages from the sentbox -->
     <% @conversations = @conversations.reject { |conversation| conversation.originator == current_subject.actor && conversation.participants.length == 1} %>
   <% end %>
-
 
   <%= render @conversations %>
 

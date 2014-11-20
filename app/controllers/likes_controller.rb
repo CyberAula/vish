@@ -38,4 +38,5 @@ class LikesController < ApplicationController
      @indirect_id = Group.find_by_slug!(params[:group_id])
     end
   end
+  
 end

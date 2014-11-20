@@ -5,8 +5,8 @@
 <div class="conversations">
 
   <% if @box=="sentbox" %>
-  	<!-- Filter conversations -->
-  	<% @conversations = @conversations.select { |conversation| conversation.originator == current_subject.actor } %>
+    <!-- Filter conversations -->
+    <% @conversations = @conversations.select { |conversation| conversation.originator == current_subject.actor } %>
   <% end %>
 
   <%= render @conversations %>

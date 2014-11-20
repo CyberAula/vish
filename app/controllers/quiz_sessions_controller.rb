@@ -171,7 +171,8 @@ class QuizSessionsController < ApplicationController
   def show
     @quiz_session = QuizSession.find(params[:id])
     if @quiz_session.active
-      render :template => 'excursions/show', :formats => [:full], :layout => 'iframe'
+      @title = "ViSH Quiz"
+      render :template => 'excursions/show', :formats => [:full], :layout => 'veditor'
     else
       # Quiz is closed!!!
       render 'quiz_sessions/closed'
