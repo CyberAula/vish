@@ -13,7 +13,7 @@
 			<a href="#overview7"><li style="list-style: initial"><%= t('overview.list7') %></li></a>
 		</ul>
 		<hr>
-		<button type="button" class="btn btn-default btn-md"><%= t('overview.downloadpdf') %></button>
+		<a href="/user_manual"><button type="button" class="btn btn-default btn-md"><%= t('overview.downloadpdf') %></button></a>
 		</div>
 		<div class="overviewmiddle visible-desktop">
 		</div>
@@ -154,10 +154,10 @@
 </section>
 
 <script>
-$('a').click(function(){
-    $('html, body').animate({
-        scrollTop: $( $.attr(this, 'href') ).offset().top
-    }, 500);
-    return false;
-});
+  $('a').click(function(){
+      $('html, body').animate({
+          scrollTop: $( $.attr(this, 'href') ).offset().top
+      }, 500);
+      return false;
+  });
 </script>
