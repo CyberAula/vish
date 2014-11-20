@@ -7,8 +7,6 @@ require File.expand_path('../application', __FILE__)
 # Initialize the rails application
 Vish::Application.initialize!
 
-
-
 #finally the OAI initialization code
 OaiRepository.setup do |config|
   config.repository_name = 'VIRTUAL SCIENCE HUB'
