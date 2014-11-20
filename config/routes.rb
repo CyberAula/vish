@@ -83,9 +83,8 @@ Vish::Application.routes.draw do
   match '/catalogue/:category' => 'catalogue#show'
 
   #Competitions
-  resources :competitions
-  resource :contest
-  resources :contest_all
+  match 'contest' => 'static#contest'
+  match 'contest_all' => 'static#contest_all'
 
   #Administration panel
   match 'admin' => 'admin#index'
