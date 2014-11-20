@@ -22,7 +22,6 @@ class ExcursionsController < ApplicationController
   require 'fileutils'
   include SearchHelpMethods
 
-  # Quick hack for bypassing social stream's auth
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
   before_filter :fill_create_params, :only => [ :new, :create]
@@ -32,7 +31,6 @@ class ExcursionsController < ApplicationController
   # Enable CORS (http://www.tsheffler.com/blog/?p=428) for last_slide, and iframe_api methods
   before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api]
   after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api]
-  
   
   include SocialStream::Controllers::Objects
 
@@ -69,32 +67,29 @@ class ExcursionsController < ApplicationController
   def show 
     show! do |format|
       format.html {
-        if @excursion.draft and (can? :edit, @excursion)
-          redirect_to edit_excursion_path(@excursion)
+        if @excursion.draft 
+          if (can? :edit, @excursion)
+            redirect_to edit_excursion_path(@excursion)
+          else
+            redirect_to "/"
+          end
         else
-          @evaluations = @excursion.averageEvaluation
-          @numberOfEvaluations = @excursion.numberOfEvaluations
-          @learningEvaluations = @excursion.averageLearningEvaluation
-          @numberOfLearningEvaluations = @excursion.numberOfLearningEvaluations
-
           @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})
-          
           render
         end
       }
       format.full {
         @orgUrl = params[:orgUrl]
-        render :layout => 'iframe'
+        @title = @excursion.title
+        render :layout => 'veditor'
       }
-      format.mobile { 
-        render :layout => 'iframe' 
-      }
-      format.json { 
+      format.json {
         render :json => resource 
       }
       format.gateway {
         @gateway = params[:gateway]
-        render :layout => 'iframe.full'
+        @title = @excursion.title
+        render :layout => 'veditor.full'
       }
       format.scorm {
         @excursion.to_scorm(self)
@@ -114,13 +109,13 @@ class ExcursionsController < ApplicationController
 
   def new
     new! do |format|
-      format.full { render :layout => 'iframe' }
+      format.full { render :layout => 'veditor' }
     end
   end
 
   def edit
     edit! do |format|
-      format.full { render :layout => 'iframe' }
+      format.full { render :layout => 'veditor' }
     end
   end
 
@@ -203,7 +198,7 @@ class ExcursionsController < ApplicationController
 
   def preview
     respond_to do |format|
-      format.all { render "show.full.erb", :layout => 'iframe.full' }
+      format.all { render "show.full.erb", :layout => 'veditor.full' }
     end
   end
 

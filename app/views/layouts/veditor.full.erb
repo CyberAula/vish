@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%if @title%>
+      <title><%=@title%></title>
+    <% end %>
+
+    <%= favicon_link_tag "icons/favicon.ico" %>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    
+    <%if controller.action_name == "show" %>
+      <%js_file = "vishViewer"%>
+    <%else%>
+      <%js_file = "vishEditor"%>
+      <script type="text/javascript">
+        var CKEDITOR_BASEPATH = '/assets/ckeditor/';
+      </script>
+      <%= javascript_include_tag "ckeditor/ckeditor" %>
+    <%end%>
+
+    <% if Rails.env == "production" and not request.host == "vishub-test.dit.upm.es" %>
+      <%= javascript_include_tag js_file + ".min" %>
+    <% else %>
+      <%= javascript_include_tag js_file %>
+    <% end %>
+
+    <%= stylesheet_link_tag "vish_editor" %>
+
+    <%= yield :headers %>
+  </head>
+
+  <body onload="start()" style="display: none" class="loaded">
+    <%= yield %>
+    <%= render :partial => "layouts/crazyegg.html.erb" %>
+  </body>
+
+</html>

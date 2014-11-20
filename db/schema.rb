@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141106093658) do
+ActiveRecord::Schema.define(:version => 20141120095200) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -264,32 +264,6 @@ ActiveRecord::Schema.define(:version => 20141106093658) do
   create_table "excursion_contributors", :force => true do |t|
     t.integer "excursion_id"
     t.integer "contributor_id"
-  end
-
-  create_table "excursion_evaluations", :force => true do |t|
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "excursion_id"
-    t.string   "ip"
-    t.integer  "answer_0"
-    t.integer  "answer_1"
-    t.integer  "answer_2"
-    t.integer  "answer_3"
-    t.integer  "answer_4"
-    t.integer  "answer_5"
-  end
-
-  create_table "excursion_learning_evaluations", :force => true do |t|
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "excursion_id"
-    t.string   "ip"
-    t.integer  "answer_0"
-    t.integer  "answer_1"
-    t.integer  "answer_2"
-    t.integer  "answer_3"
-    t.integer  "answer_4"
-    t.integer  "answer_5"
   end
 
   create_table "excursions", :force => true do |t|
