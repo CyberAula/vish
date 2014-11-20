@@ -9,7 +9,6 @@ ul.workshop_activities_list_edit
 
 // edit layour style
 // --------------------------------------------------
-
 .wa_activity_wrapper_edit
   background-color: transparent
   border: 2px dashed $grayLight
@@ -53,9 +52,11 @@ ul.workshop_activities_list_edit
         i
           cursor: move
 
-
+  //toolbar-actions
   .assignment_edit_title
     width: 150px !important
+
+  //Assignment text box
   .Assignment_edit_box
     width: 100%
     position: relative
@@ -68,14 +69,13 @@ ul.workshop_activities_list_edit
       top: 20px
       position: absolute
 
+  //contributions
   .contributions_WS_gallery
     width: 100%
     display: block
     height: auto
 
-
-
-
+  //contributions actions
   .workshop_contribute_footer
     opacity: 0.4 !important
     .btn, .disabled
@@ -212,3 +212,11 @@ form.edit_wa_assignment
       margin-right: 3%
       display: block
       float: left
+
+// MODAL add resource gallery
+// --------------------------------------------------      
+#AddResourceToWaResourcesGalleryModal
+  input[type="submit"]
+    float: right
+  .modal-footer
+    display: none
