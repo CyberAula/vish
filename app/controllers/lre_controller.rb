@@ -4,28 +4,9 @@ class LreController < ApplicationController
 	LRE_SEARCH_URL = "http://lresearch.eun.org/"
 	LRE_DATA_URL = "http://lredata.eun.org/"
 
-    # Enable CORS for last_slide method (http://www.tsheffler.com/blog/?p=428)
-	  before_filter :cors_preflight_check, :only => [ :search_lre]
-	  after_filter :cors_set_access_control_headers, :only => [ :search_lre]
+	# Enable CORS
+	ApplicationController.enable_cors([:search_lre])
 
-	  def cors_set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-    headers['Access-Control-Max-Age'] = "1728000"
-  end
-
-  # If this is a preflight OPTIONS request, then short-circuit the
-  # request, return only the necessary headers and return an empty
-  # text/plain.
-  def cors_preflight_check
-    if request.method == :options
-      headers['Access-Control-Allow-Origin'] = '*'
-      headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-      headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
-      headers['Access-Control-Max-Age'] = '1728000'
-      render :text => '', :content_type => 'text/plain'
-    end
-  end
 
 	#this method will do like a proxy to the LRE
 	#params received "q" with the query to search, for example ((content[nature]))((lrt[image]))
@@ -52,12 +33,12 @@ class LreController < ApplicationController
 			end
 		end		
 		
-        if error
-          render :json => {"error"=> error}
-        else
-          #answers with the json in LRE format
-          render :json => {"results" => final_json}
-        end	   
+		if error
+			render :json => {"error"=> error}
+		else
+			#answers with the json in LRE format
+			render :json => {"results" => final_json}
+		end
   	end
 
 

@@ -28,33 +28,10 @@ class ExcursionsController < ApplicationController
   skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
   skip_after_filter :discard_flash, :only => [:clone]
   
-  # Enable CORS (http://www.tsheffler.com/blog/?p=428) for last_slide, and iframe_api methods
-  before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api]
-  after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api]
+  # Enable CORS for last_slide, and iframe_api methods
+  ApplicationController.enable_cors([:last_slide,:iframe_api])
   
   include SocialStream::Controllers::Objects
-
-  #############
-  # CORS
-  #############
-  def cors_set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-    headers['Access-Control-Max-Age'] = "1728000"
-  end
-
-  # If this is a preflight OPTIONS request, then short-circuit the
-  # request, return only the necessary headers and return an empty
-  # text/plain.
-  def cors_preflight_check
-    if request.method == :options
-      headers['Access-Control-Allow-Origin'] = '*'
-      headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-      headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
-      headers['Access-Control-Max-Age'] = '1728000'
-      render :text => '', :content_type => 'text/plain'
-    end
-  end
 
 
   #############
