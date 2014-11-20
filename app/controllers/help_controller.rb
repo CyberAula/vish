@@ -5,4 +5,5 @@ class HelpController < ApplicationController
 		Stats.increment("user_manual_download_count", 1)
 		send_file "#{Rails.root}/public/vish_user_manual.pdf", :type => 'application/pdf'
 	end
+
 end

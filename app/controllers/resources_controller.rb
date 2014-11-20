@@ -1,3 +1,5 @@
+# CONTROLLER DEPRECATED
+
 # Copyright 2011-2012 Universidad Politécnica de Madrid and Agora Systems S.A.
 #
 # This file is part of ViSH (Virtual Science Hub).

@@ -33,13 +33,12 @@ class SessionLocalesController < ActionController::Base
       flash[:success] = t('lang.changed', :lang => t(:language_name, :locale => params[:new_locale]), locale: new_locale)
 
     else
-    
+
       flash[:error] = t('lang.error', :lang => params[:new_locale])
-    
+      
     end
   
     redirect_to request.referer
-    
   end
   
 end

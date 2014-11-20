@@ -17,11 +17,11 @@ class LreController < ApplicationController
 			error = t("lre.search_error", :code => response.code)
 		else
 			begin
-		      parsed_json = JSON(response.body)
-		    rescue
-		      logger.fatal "There was an error with the json returned. The json was: " + response.body
-		      error = t("lre.json_error")
-		    end
+				parsed_json = JSON(response.body)
+			rescue
+				# logger.fatal "There was an error with the json returned. The json was: " + response.body
+				error = t("lre.json_error")
+			end
 			if parsed_json && parsed_json["error"]
 				error = parsed_json["error"]
 			else
@@ -39,43 +39,43 @@ class LreController < ApplicationController
 			#answers with the json in LRE format
 			render :json => {"results" => final_json}
 		end
-  	end
+ 	end
 
 
-  	#method to get the data for the ids, this calls to LRE_DATA_URL to ask for the metadata
-  	#it will return a json object to return it to the ViSH editor
-  	def getJSONForIds(ids)
-  		ids_alone = extend_ids(ids)
-  		logger.info "We are going to request the LRE for these ids: " + ids_alone
-  		if ids_alone == ""
-  			return []
-  		end
-  		response = RestClient.get LRE_DATA_URL, {:params => {:ids => ids_alone, :format => "json"}}  		
-  		if response.code != 200
+	#method to get the data for the ids, this calls to LRE_DATA_URL to ask for the metadata
+	#it will return a json object to return it to the ViSH editor
+	def getJSONForIds(ids)
+		ids_alone = extend_ids(ids)
+		# logger.info "We are going to request the LRE for these ids: " + ids_alone
+		if ids_alone == ""
+			return []
+		end
+		response = RestClient.get LRE_DATA_URL, {:params => {:ids => ids_alone, :format => "json"}}
+		if response.code != 200
 			return {"error"=> t("lre.data_error", :code => response.code)}
 		else
-	  		begin
-		      parsed_json = JSON(response.body)
-		    rescue
-			  logger.fatal "There was an error with the json returned. The json was: " + response.body		      
-		      return {"error"=> t("lre.json_error")}
-		    end
-		    logger.info "We got " + parsed_json.length.to_s + " objects as a response"
-		    
-	  		return parsed_json #lre returns an array with the contents
-		end	
-  	end
+			begin
+				parsed_json = JSON(response.body)
+			rescue
+				# logger.fatal "There was an error with the json returned. The json was: " + response.body
+				return {"error"=> t("lre.json_error")}
+			end
+			# logger.info "We got " + parsed_json.length.to_s + " objects as a response"
 
-  	#method to prepare the ids to send them to the lredata
-  	#example {593,619}[709,711]{719,868,882} should return "593,619,709,710,711,719,868,882"
-  	#other possibilities:
-  	#   [709,711]{719,868,882}
-  	#   {459,311}{719,868,882}  sometimes it introduces extra brackets
-  	#[this_is_a_interval]
-  	def extend_ids(ids)
-  		if(ids.index("["))  			
-  			#unflat the interval
-  			interval = ids[ids.index("[")+1..ids.index("]")-1]
+			return parsed_json #lre returns an array with the contents
+		end
+	end
+
+	#method to prepare the ids to send them to the lredata
+	#example {593,619}[709,711]{719,868,882} should return "593,619,709,710,711,719,868,882"
+	#other possibilities:
+	#   [709,711]{719,868,882}
+	#   {459,311}{719,868,882}  sometimes it introduces extra brackets
+	#[this_is_a_interval]
+	def extend_ids(ids)
+		if(ids.index("["))
+			#unflat the interval
+			interval = ids[ids.index("[")+1..ids.index("]")-1]
 			first_number = interval[0..interval.index(",")-1]
 			second_number = interval[interval.index(",")+1..-1]
 			flat_interval = first_number.to_i.upto(second_number.to_i).to_a.join(",")
@@ -85,12 +85,12 @@ class LreController < ApplicationController
 			elsif(final_ids[-1]==",")
 				final_ids[-1]=""
 			end
-			puts final_ids
-  		else
-  			final_ids = ids
-  		end
-  		final_ids.sub!("}{", ",")
-  		final_ids.delete "{}"
-  	end
+			# puts final_ids
+		else
+			final_ids = ids
+		end
+		final_ids.sub!("}{", ",")
+		final_ids.delete "{}"
+	end
 
 end
