@@ -197,21 +197,17 @@
     var _onStartDragWorkshopActivity = function(event, ui){
       //save the ckeditor iframe, because when moving the iframe in the DOM the iframe is restored
       //only if the workshop_activity is paragraph of text or assignment (i.e. has ckeditor)
-      console.log("dragkike start");
       if($(ui.item).attr("type")==="WaText" || $(ui.item).attr("type")==="WaAssignment"){
         var theid = $(ui.item).find("textarea").attr("id");
-        var instance = CKEDITOR.instances[theid];
         ck_editor_initial_data = CKEDITOR.instances[theid].getData();
       }
     };
 
     var _lastActivitiesOrder;
-    var _onStopDragWorkshopActivity = function(event, ui){
+    var _onStopDragWorkshopActivity = function(event, ui){     
       //restore the iframe of the ckeditor
       if($(ui.item).attr("type")==="WaText" || $(ui.item).attr("type")==="WaAssignment"){
-        console.log("dragkike stop");
         var theid = $(ui.item).find("textarea").attr("id");
-        var instance = CKEDITOR.instances[theid];
         CKEDITOR.instances[theid].setData(ck_editor_initial_data);
       }
       //get activitiesOrder and send them

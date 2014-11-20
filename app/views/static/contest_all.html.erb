@@ -4,7 +4,7 @@
     <h3><%=t('contest.ex_part')%></h3>
 
     <div class="filter">
-    <!--filtro por categoria -->
+
     <%=t('contest.filter')%>
       <select id="tags_selector" name="tags">
         <option value="All"> <%=t('contest.All')%> </option>
@@ -22,7 +22,11 @@
     </div>
   </div>
   <div class="entities contest_excursions">
-    <%= render partial: 'contest_all/excursions' %>
+    <ul>
+      <% entities_tagged_with(["Excursion"],"ViSHCompetition2013").each do |excursion| %>
+        <%= render :partial => 'entities/entity', :locals => { :entity => excursion, :prefix_id => "contest" } %>
+      <% end %>
+    </ul>
   </div>
 
 </section>
@@ -39,4 +43,12 @@
     }
   });
 
+  $("div[bs-img]").each(function(index,div){
+    $(div).removeClass("applyBackstretch");
+    var imgUrl = $(div).attr("bs-img");
+    if (typeof imgUrl != "undefined"){
+      $(div).attr("bs-img");
+      $(div).backstretch(imgUrl); 
+    }
+  });
 </script>

@@ -1,24 +1,24 @@
 <li class="box-item category-favorit">
 
-<!--IMG categories-->
+  <!--Image -->
   <div class="category">
     <%= link_to "<i class='icon-start'></i>".html_safe, category, :title => category.title %>
   </div>
-<!--INFO categories-->
+  <!-- Info -->
   <div class="info">
-<!--Title -->
+  <!-- Title -->
     <div class="name">
             <%= t('excursion.actions.favorite') %>
     </div>
-<!--____________________ -->
+    <!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
-<!--like -->
+      <!--like -->
       <div class="like">    
         <div class="count"><%=category.post_activity.likes.count.to_s%></div>
         <%= link_like(category.post_activity)%>
       </div>
-<!--views -->
+      <!--views -->
       <div class="views">
         <%=category.visit_count.to_s%>
         <%=t('follow.views')%>

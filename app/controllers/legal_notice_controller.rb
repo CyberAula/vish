@@ -1,2 +1,0 @@
-class LegalNoticeController < ApplicationController
-end

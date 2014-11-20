@@ -75,66 +75,6 @@ namespace :stats do
       writeInStats(accumulativeExcursions)
     end
 
-    # Evaluations
-    evaluations = [];
-    6.times do |index|
-      evaluations.push(ExcursionEvaluation.average("answer_"+index.to_s).to_f.round(2));
-    end
-    evaluationsAverage = getAverage(evaluations)
- 
-    writeInStats("")
-    writeInStats("Evaluations: Average")
-    writeInStats("Content")
-    writeInStats("Design")
-    writeInStats("Motivation")
-    writeInStats("Engagement")
-    writeInStats("Interdisciplinary")
-    writeInStats("Use again")
-    writeInStats("All")
-
-    evaluations.each do |evaluation|
-      writeInStats(evaluation);
-    end
-    writeInStats(evaluationsAverage);
-
-
-    # Evaluations evolution
-    writeInStats("")
-    writeInStats("Evaluations: Evolution")
-    writeInStats("[Content,Design,Motivation,Engagement,Interdisciplinary,Use again]")
-
-    averageEvalsList = [];
-    allCreatedExcursions.each do |createdExcursions|
-      accumulativeEval = [0,0,0,0,0,0];
-      evaluationsCount = 0;
-      createdExcursions.each do |excursion|
-        if excursion.evaluations.length > 0
-          evaluations = excursion.averageEvaluation
-          for i in 0..accumulativeEval.count-1
-            accumulativeEval[i] = accumulativeEval[i] + evaluations[i];
-          end
-          evaluationsCount = evaluationsCount+1
-        end
-      end
-      averageEval = [0,0,0,0,0,0];
-      for i in 0..accumulativeEval.count-1
-        if evaluationsCount > 0
-          averageEval[i] = (accumulativeEval[i]/evaluationsCount.to_f).round(2);
-        else
-          averageEval[i] = nil
-        end
-      end
-      averageEvalsList.push(averageEval);
-      writeInStats(averageEval)
-    end
-
-    writeInStats("")
-    writeInStats("Average of all evaluations")
-    averageEvalsList.each do |averageEvals|
-      averageEval = getAverage(averageEvals);
-      writeInStats(averageEval);
-    end
-
   end
 
   task :resources, [:prepare] => :environment do |t,args|
