@@ -1,11 +1,11 @@
 <div class="contributions_actions">
 	<div class="contributions_content">
-	  <p> Contribute </p>
+	  <h4> Contribute </h4>
 	  <%= render partial: "contributions/submit_contributions", locals:  { :contribution => contribution } %>
 
 	  <% contributionsGallery = contribution.contributions %>
 	  <% unless contributionsGallery.blank? %>
-	    <p> Contributions Gallery </p>
+	    <h4> Contributions Gallery </h4>
 	    <%= render partial: "contributions/contributions_gallery", locals:  { :contributions => contributionsGallery } %>
 	  <% end %>
 	</div>

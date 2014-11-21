@@ -403,6 +403,9 @@ en:
     how: "How to share a resource"
     info:
       age: "Age"
+      description: "Description"
+      size: "Size"
+      tags: "Tags"
     input: "Add a description here"
     language:
       option1: "(Not depends on the language)"

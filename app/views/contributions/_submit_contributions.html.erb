@@ -15,7 +15,7 @@
   end
 %>
 
-<div>
+<div class="actions_contributions_show_object">
   <span><%=t('workshop.activities.assignment.contribution_message')%></span>
   <% available_contributions.each_with_index do |contribution_type,index| %>
     <% form_id += "_" + (index+1).to_s %>

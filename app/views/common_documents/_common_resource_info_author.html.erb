@@ -1,0 +1,42 @@
+<div class="left-info">
+
+  <!--Author-->
+  <%unless resource.author.nil? %>
+    <div class="author">
+      <div class="avatar">
+        <%= link_to resource.author.subject do %>
+          <%= image_tag resource.author.logo.url(:small) %>
+        <% end %>
+      </div>
+
+      <div class="right-name">
+        <%= link_to resource.author.subject do %>
+          <p><%= truncate_name(resource.author.name, :length => 50) %></p>
+        <%end%>
+        <div class="add">
+          <% if user_signed_in?%>
+            <%= contact_button(current_subject.contact_to!(resource.author)) %>
+          <%else%>
+            <%= contact_button(resource.author) %>
+          <%end%>
+        </div>
+      </div>
+
+    </div>
+  <%end%>
+
+  <!--Views and Likes-->
+  <div class="viewsAndCount">        
+    <div class="views">
+      <%=resource.visit_count.to_s%>
+      <span><%=t('follow.views')%></span>   
+    </div>
+    <%unless resource.post_activity.nil?%>
+      <div class="like">    
+        <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
+        <%= link_like(resource.post_activity)%>
+      </div>
+    <%end%>
+  </div>
+
+</div>
