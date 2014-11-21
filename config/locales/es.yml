@@ -390,6 +390,9 @@ es:
     how: "Cómo compartir un recurso"
     info:
       age: "Edad"
+      description: "Descripción"
+      size: "Tamaño"
+      tags: "Etiquetas"
     input: "Descripción del recurso"
     language:
       option1: "(No depende del lenguaje)"
