@@ -1,0 +1,119 @@
+<div id="effect" class="newClass ui-corner-all">
+  <dl class="dl-horizontal">
+
+    <!--contributors-->
+    <% if resource.respond_to?("contributors") and !resource.contributors.blank? %>
+      <dt><%= t('excursion.contributors.name').capitalize %></dt>
+      <dd>
+        <% resource.contributors.uniq.each_with_index do |c,index| %>
+          <% unless index==0 %>
+            ,
+          <% end %>
+          <%= link_to c.name, c.subject %>
+        <%end%>
+      </dd>
+    <%end%>
+
+    <!--description-->
+    <% unless resource.description.blank? %>
+      <dt><%= t('document.info.description') %></dt>
+      <dd><%= truncate(resource.description, :length => 400) %></dd>
+    <% end %>
+
+    <!--tags-->
+    <% unless resource.tag_list.blank? %>
+      <dt><%= t('document.info.tags') %></dt>
+      <dd>
+        <ul class="tagit-suggestions">
+          <% resource.tag_list.each do |tag| %>
+          <li class="tagit-choice">
+            <%= link_to tag, search_path(:q => tag) %>
+          </li>
+          <% end %>
+        </ul>
+      </dd>
+    <% end %>
+
+    <!--language-->
+    <% unless resource.readable_language.blank? %>
+      <dt><%= t('lang.title').capitalize %></dt>
+      <dd><%= resource.readable_language %></dd>
+    <% end %>
+
+    <!--date-created-->
+    <dt><%= t('document.info.date.created_at') %></dt>
+    <dd><%= I18n.localize resource.created_at, :format => :long %></dd>
+    <dt></dt>
+
+    <!--date-upload-->
+    <dt><%= t('document.info.date.updated_at') %></dt>
+    <dd><%= I18n.localize resource.updated_at, :format => :long %></dd>
+    <dt></dt>
+
+    <!--size-->
+    <% if resource.respond_to?("file") and !resource.file.nil? and resource.respond_to?("file_file_size") and !resource.file_file_size.blank? %>
+      <dt><%= t('document.info.size') %></dt>
+      <dd><%= number_to_human_size resource.file_file_size %></dd>
+    <%end%>
+
+    <!--metadata-->
+    <% displayMetadata = resource.respond_to?("metadata") %>
+    <% if displayMetadata %>
+      <dd>
+        <button href="#MetadataModal" id="showMeta" data-toggle="modal" class="ui-state-default ui-corner-all">
+          <%=t('excursion.actions.show_meta')%>
+        </button>
+      </dd>
+    <%end%>
+
+  </dl>
+</div>
+
+<% if displayMetadata %>
+  <div id="MetadataModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myMetadataLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myMetadataLabel"><%= t('excursion.modal.metadata_title') %></h3>
+    </div>
+    <div class="modal-body">
+      <ul class="metadatalist">
+      <%resource.metadata.each do |key, value| %>
+        <%unless value.blank?%>
+          <li>
+            <span class="metadatalistkey"><%=key%>:</span>
+            <span class="metadatalistkey2"><%=value%></span>
+          </li>
+        <%end%>
+      <%end%>
+      <%if resource.class.name == "Excursion" %>
+        <li>
+          <span class="metadatalistkey"><%=t("metadata.access_lom")%>:</span>
+          <span class="metadatalistkey2"><a target="_blank" href="<%=ao_object_metadata_path(resource)%>"><%=Vish::Application.config.full_domain + ao_object_metadata_path(resource)%></a></span>
+        </li>
+      <%end%>
+    </ul>
+    </div>
+  </div>
+<% end %>
+
+<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all">
+  <a><%=t('excursion.actions.show_more')%></a>
+</button>
+
+<script>
+  $(function() {
+    $("#showMore").click(function(){
+      $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
+      $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
+      if($("#showMore").attr("status")=== "showMore"){
+        $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
+        $("#showMore").attr("status", "showFewer");
+      }
+      else{
+        $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
+        $("#showMore").attr("status", "showMore");
+      }
+      return false;
+    });
+  });
+</script>
