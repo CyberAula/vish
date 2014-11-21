@@ -208,7 +208,8 @@
       //restore the iframe of the ckeditor
       if($(ui.item).attr("type")==="WaText" || $(ui.item).attr("type")==="WaAssignment"){
         var theid = $(ui.item).find("textarea").attr("id");
-        CKEDITOR.instances[theid].setData(ck_editor_initial_data);
+        setTimeout(function(){CKEDITOR.instances[theid].setData(ck_editor_initial_data);}, 0);
+        //CKEDITOR.instances[theid].setData(ck_editor_initial_data);
       }
       //get activitiesOrder and send them
       var activitiesOrder = _getCurrentWorkshopActivitiesOrder();
