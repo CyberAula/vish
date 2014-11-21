@@ -261,8 +261,11 @@
 			});
 
 			$("#addInstanceButton").bind('click', function(e){
-				var el = $('<li><input type="checkbox"><span>'+$("#addInstanceInput").val()+'</span><span class="deleteEntity" title="delete">[X]</span></li>');
-				$("#ViSHinstances").find("ul").append(el);
+				var newInstance = $("#addInstanceInput").val();
+				if(newInstance!=""){
+					var el = $('<li><input type="checkbox"><span>'+$("#addInstanceInput").val()+'</span><span class="deleteEntity" title="delete">[X]</span></li>');
+					$("#ViSHinstances").find("ul").append(el);
+				}
 			});
 
 			$(document).on('click','span.deleteEntity', function(e){

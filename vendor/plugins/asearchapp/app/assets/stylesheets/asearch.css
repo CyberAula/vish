@@ -1,0 +1,212 @@
+#asearch_header{
+	display: block;
+	height: 10%;
+	width: 100%;
+}
+#asearch_results{
+	display: block;
+	float: right;
+	height: 90%;
+	width:100%;
+	background: #f2f2f2;
+	display: inline-block;
+	overflow-y: auto;
+}
+#asearch_settings{
+	display: none;
+	height: 370px;
+	width: 87%;
+	padding: 1%;
+	overflow-y: auto;
+	position: absolute;
+	top: 18%;
+	background-color: #404040;
+	color: #f2f2f2;
+}
+div.search {
+	display: block;
+	height: 80%;
+	width: 80%;
+	margin: 0% 10% 0% 10%;
+	position: relative;
+	top: 0%;
+	overflow: hidden;
+	min-height: 60px;
+	text-align: center;
+	z-index: 2;
+}
+input.search_input {
+	width: 486px;
+	background-color: #fff;
+	border: 1px solid rgba(0,0,0,0.15);
+	border-top: 1px solid rgba(0,0,0,0.25);
+	height: 25px;
+	padding-left: 4px;
+	margin-top: 15px;
+}
+input.search_input:hover {
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+	border: 1px solid #4d90fe;
+}
+button.toolbar_button {
+	background: #4d90fe !important;
+	background-color: #3079ed !important;
+	background-image: -webkit-linear-gradient(top, #4d90fe,#4787ed) !important;
+	width: 44px;
+	height: 30px;
+	position: relative;
+}
+#asearch_header button.search_button {
+	top: 4px;
+}
+button.settings_button {
+	top: 5px;
+}
+img.search_button_img {
+	border: 0;
+}
+img.settings_button_img {
+	border: 0;
+	width: 19px;
+	padding: 3px 0px 0px 1px;
+}
+div.result{
+	width: 200px;
+	height: 245px;
+	background: white;
+	float: left;
+	overflow: hidden;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.16);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin: 10px;
+}
+div.result a{
+	text-decoration: none;
+}
+div.resultImageWrapper{
+	width: 200px;
+	height: 170px;
+	text-align: center;
+}
+div.resultImageWrapper img{
+	width: 90%;
+	height: 90%;
+	margin-top: 4%;
+}
+div.resultTitle{
+	width: 190px;
+	height: 31px;
+	margin-bottom: 5px;
+	font-size: 15px;
+	word-wrap: break-word;
+	padding: 0px 5px 0px 5px;
+	overflow: hidden;
+}
+div.resultTitle a{
+	color: #555 !important;
+}
+div.resultAuthor{
+	width: 190px;
+	height: 20px;
+	font-size: 12px;
+	padding: 0px 5px 0px 5px;
+	overflow: hidden;
+}
+div.resultAuthor a{
+	color: #004d7c !important;
+}
+div.resultBottom{
+	width: 190px;
+	height: 20px;
+	padding: 0px 5px 0px 5px;
+	display: inline-block;
+	font-size: 14px;
+	overflow: hidden;
+}
+div.likes{
+	display: inline-block;
+}
+div.views{
+	display: inline-block;
+	float: right;
+}
+img.inlineIcon{
+	height: 15px;
+	position: relative;
+	top: 2px;
+}
+.waiting{
+	cursor: wait !important;
+}
+div.settingsColumn{
+	text-align: center;
+	height: 100%;
+	width: 33%;
+	display: inline-block;
+	float: left;
+}
+div.settingsColumn p.settingsTitle {
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+div.settingsColumn p.settingsTitleSec {
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+div.settingsColumn p.settingsField {
+	text-align: left;
+	margin-bottom: 8px;
+	margin-top: 20px;
+}
+select {
+	width: auto;
+	min-width: 80%;
+	padding: 5px;
+}
+select#entity_types{
+	height: 80%;
+}
+#dateWrapper{
+	display: inline-block;
+}
+#dateWrapper div{
+	width: 50%;
+	float: left;
+	display: block;
+}
+#dateWrapper p{
+	margin-top: 0px;
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+#ViSHinstances{
+	overflow-y: auto;
+}
+#ViSHinstances ul{
+	list-style-type: none;
+	text-align: left;
+	height: 140px;
+}
+#ViSHinstances ul li{
+	margin-top: 5px;
+}
+
+#addInstanceButton{
+	margin-left: 15px;
+	font-size: 13px;
+	cursor: pointer;		
+}
+span.deleteEntity{
+	margin-left: 20px;
+	font-size: 13px;
+	cursor: pointer;
+}
+span#closeASearchSettings{
+	float: right;
+	cursor: pointer;
+	font-size: 10px;
+}
