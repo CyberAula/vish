@@ -3,7 +3,7 @@
 
 <div id="asearch_header">
 	<div class="search">
-		<input class="search_box search_input" type="text" placeholder="Search educational resources" autocomplete="off">
+		<input class="asearch_box search_input" type="text" placeholder="Search educational resources" autocomplete="off">
 		<button class="toolbar_button search_button">
 			<img class="search_button_img" src="/assets/asearch/search.png">
 		</button>
@@ -19,7 +19,7 @@
 <div id="asearch_settings">
 	<div class="settingsColumn">
 		<p class="settingsTitle">Select Entities to search</p>
-		<select multiple id="entity_types">
+		<select multiple class="entity_types">
 			<option selected="selected" value="Resource">Resources</option>
 			<option value="Excursion">Excursions</option>
 			<option value="Link">Links</option>
@@ -40,7 +40,7 @@
 
 	<div class="settingsColumn">
 		<p class="settingsTitle">Sorting</p>
-		<select id="sort_by">
+		<select asparam="sort_by">
 			<option selected="selected" value="Relevance">Relevance</option>
 			<option value="ranking">Ranking</option>
 			<option value="popularity">Popularity</option>
@@ -52,18 +52,18 @@
 		</select>
 		<p class="settingsTitleSec">Filters</p>
 		<p class="settingsField" style="margin-top: 9px !important;">Date</p>
-		<div id="dateWrapper">
+		<div class="dateWrapper">
 			<div>
 				<p>Start Date</p>
-				<input type="date" id="startDate" name="startDate">
+				<input type="date" asparam="startDate" name="startDate">
 			</div>
 			<div>
 				<p>End Date</p>
-				<input type="date" id="endDate" name="endDate">
+				<input type="date" asparam="endDate" name="endDate">
 			</div>
 		</div>
 		<p class="settingsField">Language</p>
-		<select id="language">
+		<select asparam="language">
 			<option selected="selected" value="">Select a language</option>
 			<option value="en">English</option>
 			<option value="es">Spanish</option>
@@ -72,15 +72,15 @@
 			<option value="it">Italian</option>
 			<option value="pt">Português</option>
 		</select>
-		<p class="settingsField" style="margin-top: 23px !important;"><span>Quality Threshold (0-10): &nbsp;</span><span id="rangeValue">5.0</span></p>
-		<input id="qualityThreshold" type="range" min="0" max="10" step="0.1" value="5" onchange="updateRange(this.value)"/>
+		<p class="settingsField" style="margin-top: 23px !important;"><span>Quality Threshold (0-10): &nbsp;</span><span asparam="rangeValue">5.0</span></p>
+		<input asparam="qualityThreshold" type="range" min="0" max="10" step="0.1" value="5" onchange="updateRange(this.value)"/>
 	</div>
 
 	<div class="settingsColumn">
-		<p class="settingsTitle">ViSH Intances <span id="closeASearchSettings">close</span></p>
+		<p class="settingsTitle">ViSH Instances <span class="closeASearchSettings">close</span></p>
 
 		<p class="settingsField">Results per instance</p>
-		<select id="n">
+		<select asparam="n">
 			<option value="1">1</option>
 			<option value="5">5</option>
 			<option value="10">10</option>
@@ -89,15 +89,15 @@
 			<option value="100">100</option>
 		</select>
 
-		<p class="settingsField">ViSH Intances</p>
-		<div id="ViSHinstances">
-			<input type="text" id="addInstanceInput" placeholder="Add Instance"><span id="addInstanceButton" title="add">[Add]</span>
+		<p class="settingsField">ViSH Instances</p>
+		<div class="ViSHinstances">
+			<div class="addInstanceInputWrapper" style="display:none !important">
+				<input type="text" class="addInstanceInput" placeholder="Add Instance"><span class="addInstanceButton" title="add">[Add]</span>
+			</div>
 			<ul>
 				<li>
-					<input type="checkbox" checked="checked"></input><span>http://vishub.org</span>
-				</li>
-				<li>
-					<input type="checkbox"></input><span>http://localhost:3000</span><span class="deleteEntity" title="delete">[X]</span>
+					<input type="checkbox" checked="checked"></input>&nbsp;
+					<span>http://vishub.org</span>
 				</li>
 			</ul>
 		</div>

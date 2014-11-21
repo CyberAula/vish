@@ -22,11 +22,12 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#addInstanceButton").bind('click', function(e){
-		var newInstance = $("#addInstanceInput").val();
+	$("#asearch_settings .addInstanceButton").bind('click', function(e){
+		var instanceInput = $("#asearch_settings .addInstanceInput");
+		var newInstance = $(instanceInput).val();
 		if(newInstance!=""){
-			var el = $('<li><input type="checkbox"><span>'+$("#addInstanceInput").val()+'</span><span class="deleteEntity" title="delete">[X]</span></li>');
-			$("#ViSHinstances").find("ul").append(el);
+			var el = $('<li><input type="checkbox"><span>'+$(instanceInput).val()+'</span><span class="deleteEntity" title="delete">[X]</span></li>');
+			$("#asearch_settings .ViSHinstances").find("ul").append(el);
 		}
 	});
 
@@ -34,7 +35,7 @@ $(document).ready(function(){
 		$(this).parent().remove();
 	});
 
-	$("#asearch_header, #asearch_results, #closeASearchSettings").bind('click', function(e){
+	$("#asearch_header, #asearch_results, #asearch_settings span.closeASearchSettings").bind('click', function(e){
 		if($(e.target).hasClass("settings_button_img") || $(e.target).hasClass("settings_button")){
 			//Allow
 		} else {
@@ -76,7 +77,7 @@ var cleanResults = function(){
 };
 
 var updateRange = function(val){
-	$("#rangeValue").html(val);
+	$("#asearch_settings [asparam='rangeValue']").html(val);
 };
 
 
@@ -108,7 +109,7 @@ var onSearch = function(){
 	sessionSearchs[searchId] = {};
 
 	if(instancesL>0){
-		$("*").addClass("waiting");
+		$("*").addClass("asearch_waiting");
 
 		for(var i=0; i<instancesL; i++){
 			sessionSearchs[searchId][instances[i]] = {completed: false};
@@ -138,46 +139,48 @@ var onFinishSearch = function(results){
 	$(results).each(function(index,result){
 		drawResultInDOM(result);
 	});
-	$("*").removeClass("waiting");
+	$("*").removeClass("asearch_waiting");
 };
 
 var getInstances = function(){
-	return $("#ViSHinstances").find("ul li input[type='checkbox']:checked").map(function(index,input){ return $(input).parent().find("span").html();});
+	return $("#asearch_settings .ViSHinstances").find("ul li input[type='checkbox']:checked").map(function(index,input){ return $(input).parent().find("span").html();});
 };
 
 var getSettings = function(){
 	var settings = {};
 
-	settings.n = $("#n").val();
+	settings.n = $("#asearch_settings [asparam='n']").val();
 
 	//Entities to search
-	settings.entities_type = $("#entity_types").val().join(",");
-	settings.sort_by = $("#sort_by").val();
+	settings.entities_type = $("#asearch_settings select.entity_types").val().join(",");
+	settings.sort_by = $("#asearch_settings [asparam='sort_by']").val();
 	if(settings.sort_by=="Relevance"){
 		delete settings.sort_by;
 	}
 	
-	var startDate = $("#startDate").val().split("-").reverse().join("-");
+	var startDate = $("#asearch_settings [asparam='startDate']").val().split("-").reverse().join("-");
 	if(startDate.trim()!=""){
 		settings.startDate = startDate;
 	}
-	var endDate = $("#endDate").val().split("-").reverse().join("-");
+	var endDate = $("#asearch_settings [asparam='endDate']").val().split("-").reverse().join("-");
 	if(endDate.trim()!=""){
 		settings.endDate = endDate;
 	}
 
-	var language = $("#language").val();
+	var language = $("#asearch_settings [asparam='language']").val();
 	if(language.trim()!=""){
 		settings.language = language;
 	}
 
-	settings.qualityThreshold = $("#qualityThreshold").val();
+	settings.qualityThreshold = $("#asearch_settings [asparam='qualityThreshold']").val();
 
 	return settings;
 };
 
 var buildQuery = function(searchTerms,settings){
-	var query = "/apis/search?n="+settings.n+"&q="+searchTerms+"&type="+settings.entities_type
+	searchTerms = (typeof searchTerms == "string" ? searchTerms : "");
+
+	var query = "/apis/search?n="+settings.n+"&q="+searchTerms+"&type="+settings.entities_type;
 
 	if(settings.sort_by){
 		query += "&sort_by="+settings.sort_by;
@@ -195,7 +198,9 @@ var buildQuery = function(searchTerms,settings){
 		query += "&language="+settings.language;
 	}
 
-	query += "&qualityThreshold="+settings.qualityThreshold;
+	if(settings.qualityThreshold){
+		query += "&qualityThreshold="+settings.qualityThreshold;
+	}
 
 	return query;
 };
