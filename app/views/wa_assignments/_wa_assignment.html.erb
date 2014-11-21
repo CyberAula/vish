@@ -9,7 +9,9 @@
     </div>
   <%end%>
 </div>
-<%=raw(wa_assignment.fulltext)%>
+<div class="css_reset">
+	<%=raw(wa_assignment.fulltext)%>
+</div>
 <div class="workshop_contribute_footer">
   <%= render partial: "contributions/submit_contributions", locals:  { :wa_assignment => wa_assignment } %>
 </div>

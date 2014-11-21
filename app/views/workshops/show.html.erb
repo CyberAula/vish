@@ -50,16 +50,18 @@
         <div id="effect<%=workshop_activity.id%>" class="resources_WS desplegado" > <!--only for resources-->
       <%end%>
 
-      <div class="layout_workshop">
-        <% entity = workshop_activity.object %>
-        <%className = entity.class.to_s%>
-        <%classNameUnderscore = className.underscore%>
-        <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
-             locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" } %>
-      </div>
+        <div class="layout_workshop">
+          <% entity = workshop_activity.object %>
+          <%className = entity.class.to_s%>
+          <%classNameUnderscore = className.underscore%>
+          <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
+               locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" } %>
+        </div>
+
       <% if workshop_activity.wa_type=="WaResource"  %>
         </div>
       <%end%>
+      
     </div>
   <%end%>
 
