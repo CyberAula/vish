@@ -9,8 +9,4 @@ module ExcursionsHelper
     excursion.thumbnail_url || "/assets/logos/original/excursion-00.png"
   end
 
-  def excursion_metadata_path(excursion)
-    return excursion_path(excursion) + "/metadata.xml"
-  end
-
 end
