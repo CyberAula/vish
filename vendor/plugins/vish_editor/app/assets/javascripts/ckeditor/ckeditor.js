@@ -1664,6 +1664,11 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
                     return;
                 do {
                     var n = m.$.clientWidth && m.$.clientWidth < m.$.scrollWidth || m.$.clientHeight && m.$.clientHeight < m.$.scrollHeight;
+                    if ( m.is( 'body' ) )
+                    {
+                        n = false;
+                    }
+
                     if (n)
                         this.scrollIntoParent(m, l, 1);
                     if (m.is('html')) {
@@ -15994,3 +15999,4 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 })();
 
 /*ALDO AND KIKE: WARNING: XXX: we have added the extra check in line 153 "&&v.document.getWindow().$" because sometimes $ does not exist and is undefined and crashes */
+/*ALDO AND KIKE: WARNING: XXX: we have added the if in line 1667, to avoid scrolling when intro following: http://dev.ckeditor.com/ticket/9136#comment:10 */
