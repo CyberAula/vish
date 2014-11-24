@@ -216,6 +216,11 @@
 	font-size: 14px;
 }
 
+#asearch_settings .dateWrapper input{
+	max-width: 90%;
+	margin-right: 5px;
+}
+
 #asearch_settings .ViSHinstances{
 	overflow-y: auto;
 }
