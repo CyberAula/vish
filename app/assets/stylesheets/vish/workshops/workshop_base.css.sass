@@ -175,33 +175,31 @@ ul#breadcrumb
   display: inline-block
   margin: 0px 0px 20px
   width: 100%
-  .icon
-    font-size: 14px
   li 
     float: left
     a 
       color: #FFF
       display: block
-      background: darken($secondColor, 5%)
+      background: $grayLight
       text-decoration: none
       position: relative
-      height: 40px
-      line-height: 40px
-      padding: 0 10px 0 5px
+      height: 28px
+      line-height: 30px
+      padding: 0 10px 
       text-align: center
       margin-right: 23px
       max-width: 300px
       text-overflow: ellipsis
-      margin-top: 5px
+      font-size: 12px
 
     &:nth-child(even) 
       a 
-        background-color: $secondColor
+        background-color: lighten($grayLight, 5%)
         &:before 
-          border-color: $secondColor
+          border-color: lighten($grayLight, 5%)
           border-left-color: transparent
         &:after 
-          border-left-color: $secondColor
+          border-left-color: lighten($grayLight, 5%)
 
     &:first-child 
       a 
@@ -221,6 +219,7 @@ ul#breadcrumb
         border-color: $firstColor
         background-color: $firstColor
         font-weight: bold
+        font-size: 14px
         &:after 
           border: none
 
@@ -233,8 +232,8 @@ ul#breadcrumb
     content: ""
     position: absolute
     top: 0
-    border: 0 solid darken($secondColor, 5%)
-    border-width: 20px 10px
+    border: 0 solid $grayLight
+    border-width: 14px 10px
     width: 0
     height: 0
 
@@ -245,17 +244,17 @@ ul#breadcrumb
   li a:after 
     left: 100%
     border-color: transparent
-    border-left-color: darken($secondColor, 5%)
+    border-left-color: $grayLight
 
   li a:hover 
-    background-color: darken($secondColor, 15%)
+    background-color: $gray
 
   li a:hover:before 
-    border-color: darken($secondColor, 15%)
+    border-color: $gray
     border-left-color: transparent
 
   li a:hover:after 
-    border-left-color: darken($secondColor, 15%)
+    border-left-color: $gray
 
   li a:active 
     background-color: #16a085
@@ -266,6 +265,56 @@ ul#breadcrumb
 
   li a:active:after 
     border-left-color: #16a085
+
+
+
+//-------------------------
+// toolbar
+//-------------------------
+
+.toolbar_nav-tab_workshop
+  width: 100%
+  height: auto
+  display: inline-block
+  float: left
+  padding: 7px 0
+  background-color: $white
+  @include box-shadow(0 -1px 5px rgba(50,51,51,0.35))
+  position: relative
+  @include border-radius($baseBorderRadius)
+  form
+    margin: 0
+    display: inline-block
+    float: right
+  .btn, input[type="submit"] 
+    padding: 2px 12px
+    margin-right: 7px
+    float: right
+    background-image: none
+    i
+      padding-right: 10px
+      float: left
+      padding-top: 3px
+  h4.edit-workshop-title
+    width: auto
+    float: left
+    display: inline-block
+    line-height: 20px
+    margin: 0
+    font-size: 20px
+    padding-top: 2px
+    margin-left: 7px
+  .btn-delete-workshop
+    &:hover
+      background-image: none
+      background-color: $firstColor
+      color: white
+
+
+
+
+
+
 
 .css_reset
   display: block

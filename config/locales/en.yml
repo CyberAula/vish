@@ -878,6 +878,8 @@ en:
         edit_mode_btOn: "Turn on editing mode"
         edit_mode_btOff: "Turn off editing mode"
         expand_all: "Expand all"
+        publish: "Publish"
+        unpublish: "Unpublish"
     activities:
         actions:
             add_new_activity: "Add new activity"
