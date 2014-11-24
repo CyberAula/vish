@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
-    t.string   "email",                 :default => "",    :null => false
+    t.string   "email",                 :default => "",         :null => false
     t.string   "slug"
     t.string   "subject_type"
     t.boolean  "notify_by_email",       :default => true
@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
     t.boolean  "is_mve",                :default => false
     t.integer  "rankMve",               :default => 0
     t.boolean  "is_admin",              :default => false
-    t.text     "category_order"
+    t.text     "category_order",        :default => "--- []\n", :null => false
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"

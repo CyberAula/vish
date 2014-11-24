@@ -9,7 +9,6 @@
       <div class="corner-background"></div>
     </div>
     <div class="icon-box">
-      <!--Está roto si lleva un avatar JuanCar-->
        <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category, :show_avatar => true} %>
     </div>
     <div class="information">
@@ -70,7 +69,9 @@
 
 
 <div class="main-categories-space">
+  <% if can?(:update, @category) %>
   <%= render partial: 'categories/category-add' %>
+  <% end %>
   <%= render partial: 'categories/items' %>
 </div>
 
@@ -147,5 +148,8 @@
     s.each(function( index ) {this.remove();});
     actualState.appendTo(".main-categories-space");
   };
+
+  //Apply authomatically the initial category to be created as the one you are at
+  $("#category_parent_id").val(<%=@category.id%>); 
 
 </script>
