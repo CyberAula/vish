@@ -16,7 +16,7 @@
 %>
 
 <div class="actions_contributions_show_object">
-  <span><%=t('workshop.activities.assignment.contribution_message')%></span>
+  <span class="contribution_message"><%=t('workshop.activities.assignment.contribution_message')%></span>
   <% available_contributions.each_with_index do |contribution_type,index| %>
     <% form_id += "_" + (index+1).to_s %>
     <%= render partial: "contributions/submit_#{contribution_type.downcase}", locals:  { :editMode => editMode, :wa_assignment => wa_assignment, :parent => contribution, :form_id => form_id }  %>
