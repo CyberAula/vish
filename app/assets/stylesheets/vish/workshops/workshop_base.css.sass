@@ -267,6 +267,58 @@ ul#breadcrumb
   li a:active:after 
     border-left-color: #16a085
 
+
+
+//-------------------------
+// toolbar
+//-------------------------
+
+.toolbar_nav-tab_workshop
+  width: 100%
+  height: auto
+  display: inline-block
+  float: left
+  padding: 7px
+  background-color: $white
+  @include box-shadow(0 -1px 5px rgba(50,51,51,0.35))
+  position: relative
+  @include border-radius($baseBorderRadius)
+  form
+    margin: 0
+    display: inline-block
+    float: right
+  .btn, input[type="submit"] 
+    padding: 2px 12px
+    margin-right: 5px
+
+    float: right
+    background-image: none
+    i
+      padding-right: 10px
+      float: left
+      padding-top: 3px
+  
+  h4.edit-workshop-title
+    width: auto
+    float: left
+    display: inline-block
+    line-height: 20px
+    margin: 0
+    font-size: 20px
+    padding-top: 2px
+    margin-left: 10px
+  .btn-delete-workshop
+    &:hover
+      background-image: none
+      background-color: $firstColor
+      color: white
+
+
+
+
+
+
+
 .css_reset
   display: block
   margin: 8px

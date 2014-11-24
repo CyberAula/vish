@@ -1,9 +1,10 @@
-<div class="toolbar_nav-tab">
+<div class="toolbar_nav-tab_workshop">
+  <h4 class="edit-workshop-title">Editing Workshop</h4>
   <% unless @workshop.draft %>
     <a class ="btn" href="<%=workshop_path(@workshop)%>"><i class="icon-check"></i>Turn off editing mode</a>
   <%end%>
 
-  <%= link_to raw('<i class="icon-trash"></i>'+t('excursion.delete')),  @workshop, :method => :delete, :class => 'btn', :confirm => t('workshop.confirm_delete') %>
+  <%= link_to raw('<i class="icon-trash"></i>'+t('excursion.delete')),  @workshop, :method => :delete, :class => 'btn btn-delete-workshop', :confirm => t('workshop.confirm_delete') %>
  
   <%= form_for(@workshop) do |f| %>
     <%= f.hidden_field :draft, :value => !@workshop.draft %>

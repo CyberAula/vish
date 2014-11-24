@@ -2,9 +2,9 @@
 
 <!--++++++++++++++++toolbar+++++++++++++++++++++++-->
 
-  <div class="toolbar_nav-tab">
+  <div class="toolbar_nav-tab_workshop">
     <% if user_signed_in? and (can? :update, @workshop) %>
-      <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-primary" id="edit_workshop"><i class="icon-edit"></i>Turn on editing mode</a></p>
+      <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn " id="edit_workshop"><i class="icon-edit"></i>Turn on editing mode</a></p>
     <%end%>
   </div>
 
