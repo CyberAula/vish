@@ -1,4 +1,4 @@
-<h2 class="header-title_page">Editing Workshop</h2>
+<h2 class="header-title_page"><%=t('workshop.titles.editing_main')%></h2>
 
 <%= render partial: 'edit_toolbar' %>
 
@@ -90,7 +90,7 @@
 <!-- Add Workshop Activity -->
 
 <div class="wa_add_activity_wrapper">
-  <a href="#WorkshopActivities" class="btn btn-primary" data-toggle="modal"><p>Add new Activity</p></a>
+  <a href="#WorkshopActivities" class="btn btn-primary" data-toggle="modal"><p><%=t('workshop.activities.actions.add_new_activity')%></p></a>
 </div>
 
 <!-- Add Workshop Activity Modal -->
@@ -204,7 +204,7 @@
     };
 
     var _lastActivitiesOrder;
-    var _onStopDragWorkshopActivity = function(event, ui){     
+    var _onStopDragWorkshopActivity = function(event, ui){
       //restore the iframe of the ckeditor
       if($(ui.item).attr("type")==="WaText" || $(ui.item).attr("type")==="WaAssignment"){
         var theid = $(ui.item).find("textarea").attr("id");
@@ -220,7 +220,7 @@
     };
 
     var _getCurrentWorkshopActivitiesOrder = function(){
-      var activitiesOrder = []; 
+      var activitiesOrder = [];
       $("li[workshop_activity_id]").each(function(index,li){
         activitiesOrder.push($(li).attr("workshop_activity_id"));
       });
@@ -246,4 +246,3 @@
 
   });
 </script>
-

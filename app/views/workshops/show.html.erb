@@ -4,7 +4,7 @@
 
   <div class="toolbar_nav-tab">
     <% if user_signed_in? and (can? :update, @workshop) %>
-      <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-primary" id="edit_workshop">Turn on editing mode</a></p>
+      <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-primary" id="edit_workshop"><%=t('workshop.actions.edit_mode_btOn')%></a></p>
     <%end%>
   </div>
 
@@ -45,7 +45,7 @@
   <% @workshop_activities.each do |workshop_activity| %>
 
     <div class="wa_activity_wrapper wa_activity_wrapper_show">
-    
+
       <% if workshop_activity.wa_type=="WaResource"  %>
         <div id="effect<%=workshop_activity.id%>" class="resources_WS desplegado" > <!--only for resources-->
       <%end%>
@@ -61,7 +61,7 @@
       <% if workshop_activity.wa_type=="WaResource"  %>
         </div>
       <%end%>
-      
+
     </div>
   <%end%>
 
