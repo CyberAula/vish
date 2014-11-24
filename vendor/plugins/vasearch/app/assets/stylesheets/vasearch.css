@@ -159,7 +159,7 @@
 #asearch_results img.inlineIcon{
 	height: 15px;
 	position: relative;
-	top: 2px;
+	top: -1px;
 }
 
 .asearch_waiting{
@@ -214,6 +214,11 @@
 	margin-top: 0px;
 	margin-bottom: 5px;
 	font-size: 14px;
+}
+
+#asearch_settings .dateWrapper input{
+	max-width: 90%;
+	margin-right: 5px;
 }
 
 #asearch_settings .ViSHinstances{
