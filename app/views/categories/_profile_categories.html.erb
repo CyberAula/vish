@@ -9,6 +9,11 @@
   <% if profile_subject_is_current? or isAdmin? %>
     <div class="toolbar_nav-tab">
       <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></button>
+      <!--TODO:applycss and fix icons-->
+      <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
+        <button type="button" class="btn btn-primary"><i class="icon-th icon-border"></i></button>
+        <button type="button" class="btn btn-primary"><i class="icon-align-justify icon-border"></i></span></button>
+      </div>
     </div>
     <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
   <% end %>
