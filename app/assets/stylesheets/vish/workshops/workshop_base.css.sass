@@ -175,33 +175,31 @@ ul#breadcrumb
   display: inline-block
   margin: 0px 0px 20px
   width: 100%
-  .icon
-    font-size: 14px
   li 
     float: left
     a 
       color: #FFF
       display: block
-      background: darken($secondColor, 5%)
+      background: $grayLight
       text-decoration: none
       position: relative
-      height: 40px
-      line-height: 40px
-      padding: 0 10px 0 5px
+      height: 28px
+      line-height: 30px
+      padding: 0 10px 
       text-align: center
       margin-right: 23px
       max-width: 300px
       text-overflow: ellipsis
-      margin-top: 5px
+      font-size: 12px
 
     &:nth-child(even) 
       a 
-        background-color: $secondColor
+        background-color: lighten($grayLight, 5%)
         &:before 
-          border-color: $secondColor
+          border-color: lighten($grayLight, 5%)
           border-left-color: transparent
         &:after 
-          border-left-color: $secondColor
+          border-left-color: lighten($grayLight, 5%)
 
     &:first-child 
       a 
@@ -221,6 +219,7 @@ ul#breadcrumb
         border-color: $firstColor
         background-color: $firstColor
         font-weight: bold
+        font-size: 14px
         &:after 
           border: none
 
@@ -233,8 +232,8 @@ ul#breadcrumb
     content: ""
     position: absolute
     top: 0
-    border: 0 solid darken($secondColor, 5%)
-    border-width: 20px 10px
+    border: 0 solid $grayLight
+    border-width: 14px 10px
     width: 0
     height: 0
 
@@ -245,17 +244,17 @@ ul#breadcrumb
   li a:after 
     left: 100%
     border-color: transparent
-    border-left-color: darken($secondColor, 5%)
+    border-left-color: $grayLight
 
   li a:hover 
-    background-color: darken($secondColor, 15%)
+    background-color: $gray
 
   li a:hover:before 
-    border-color: darken($secondColor, 15%)
+    border-color: $gray
     border-left-color: transparent
 
   li a:hover:after 
-    border-left-color: darken($secondColor, 15%)
+    border-left-color: $gray
 
   li a:active 
     background-color: #16a085
