@@ -1,6 +1,6 @@
 <div class="toolbar_nav-tab">
   <% unless @workshop.draft %>
-    <a class ="btn" href="<%=workshop_path(@workshop)%>">Turn off editing mode</a>
+    <a class ="btn" href="<%=workshop_path(@workshop)%>"><i class="icon-check"></i>Turn off editing mode</a>
   <%end%>
 
   <%= link_to raw('<i class="icon-trash"></i>'+t('excursion.delete')),  @workshop, :method => :delete, :class => 'btn', :confirm => t('workshop.confirm_delete') %>
@@ -8,7 +8,7 @@
   <%= form_for(@workshop) do |f| %>
     <%= f.hidden_field :draft, :value => !@workshop.draft %>
     <%= button_tag(type: "submit", class: "btn btn-default") do %>
-      <%=@workshop.draft ? raw('<i class="icon-trash"></i>'+t('workshop.actions.publish')) : raw('<i class="icon-trash"></i>'+t('workshop.actions.unpublish')) %>
+      <%=@workshop.draft ? raw('<i class="icon-ok-circle"></i>'+t('workshop.actions.publish')) : raw('<i class="icon-eye-close"></i>'+t('workshop.actions.unpublish')) %>
     <% end %>
   <%end%>
 
