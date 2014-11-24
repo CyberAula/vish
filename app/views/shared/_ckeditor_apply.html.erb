@@ -120,9 +120,9 @@
             var ckeditor = CKEDITOR.replace(id, config);
 
             ckeditor.on("instanceReady", function(event){
-                console.log("instanceReady: ");
                 var newHeight = $(event.editor.document.$).height();
                 event.editor.resize("100%", newHeight, true);
+                _fixCKEDITORBug(event.editor);
             });
 
         };
@@ -133,6 +133,18 @@
 
             $("#"+id_plaintext).val(plaintext);
             $("#"+id_fulltext).val(fulltext);
+        };
+
+        /*
+         * Fix oficial WebKit bug: http://ckeditor.com/forums/CKEditor-3.x/Minimum-Editor-Width-Safari#comment-48574
+         */
+        var _fixCKEDITORBug = function(editor){
+            //webkit not redraw iframe correctly when editor's width is < 310px (300px iframe + 10px paddings)
+            if (CKEDITOR.env.webkit) {
+                var iframe = $(document.getElementById('cke_contents_' + editor.name)).find("iframe")[0];
+                iframe.style.display = 'none';
+                iframe.style.display = 'block';
+            }
         };
 
         apply_ckeditor("<%=the_id%>");
