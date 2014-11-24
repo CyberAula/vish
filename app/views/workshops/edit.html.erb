@@ -54,7 +54,7 @@
               </li>
             <% end %>
             <li>
-              <%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activity.confirm_delete') %>
+              <%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activities.actions.confirm_delete') %>
             </li>
             <% if className == "WaResource" %>
               <li class="toggleWorkshopActivity">
@@ -147,7 +147,7 @@
 <div id="WorkshopActivity" class="modal hide fade" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3>Edit</h3>
+    <h3><%=t('workshop.activities.assignment.modal_title')%></h3>
   </div>
   <div class="modal-body tabbable tabs-below">
       <!-- This body is replaced every time the modal is called -->

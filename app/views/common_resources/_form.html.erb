@@ -47,7 +47,7 @@
         </div>
       </section>
 
-      <% 
+      <%
         initialTags = resource.tags.all.map{|e| e.name} || []
         tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue_categories).uniq!
         if tags.nil?
@@ -70,7 +70,7 @@
 
         <% initialTags.each do |cnt| %>
           $("#new_file ul.resourceTagList").tagit("add", "<%= cnt %>");
-        <%end%> 
+        <%end%>
       </script>
 
       <%unless resource.class.name=="Picture" %>
@@ -107,7 +107,7 @@
       <div class="footer-form">
         <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
         <% if resource.class.name=="Workshop" && !isNewInstance %>
-          <button class="btn" href="<%=edit_workshop_path(@workshop)%>">Cancel and go to Workshop</button>
+          <button class="btn" href="<%=edit_workshop_path(@workshop)%>"><%=t('workshop.actions.cancel_&_go')%></button>
         <%end%>
       </div>
     <% end %>

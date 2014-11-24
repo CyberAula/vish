@@ -3,7 +3,7 @@
 <!--++++++++++++++++toolbar+++++++++++++++++++++++-->
 
   <div class="toolbar_nav-tab_workshop">
-    <h4 class="edit-workshop-title">Show Workshop</h4>
+    <h4 class="edit-workshop-title"><%=t('workshop.titles.show_main')%></h4>
     <% if user_signed_in? and (can? :update, @workshop) %>
       <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn " id="edit_workshop"><i class="icon-edit"></i><%=t('workshop.actions.edit_mode_btOn')%></a></p>
     <%end%>

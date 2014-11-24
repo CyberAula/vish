@@ -871,6 +871,7 @@ en:
         add_activity_title: "Add Activity to the Workshop"
         add_activity_button: "Add"
         adding_activity_button: "Adding..."
+        cancel_&_go: "Cancel and go to Workshop"
         collapse_all: "Collapse all"
         confirm_delete: "Delete workshop?"
         delete: "Delete workshop"
@@ -883,6 +884,7 @@ en:
     activities:
         actions:
             add_new_activity: "Add new activity"
+            confirm_delete: "Delete activity?"
         assignment:
             add_image: "Upload"
             add_writing: "Writing"
@@ -894,6 +896,7 @@ en:
             contribution_message: "Participate:"
             description: "Assignments allow participants to contribute to the workshop by uploading their own resources."
             due_date: "Due date"
+            modal_title: "Edit assignment"
             open_date: "Open date"
             title: "Assignment"
             with_dates: "Specify open and due date"
@@ -909,13 +912,13 @@ en:
         text:
             title: "Text"
             description: "Include a paragraph of text."
-    activity:
-        confirm_delete: "Delete activity?"
 
     new: "New Workshop"
     other: "Workshops"
     titles:
+        editing_details: "Editando detalles workshop"
         editing_main: "Editing Workshop"
+        show_main: "Show workshop"
   writing:
     actions:
       add: "Add text"
