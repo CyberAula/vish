@@ -1,6 +1,4 @@
-<h3>
-  <%= conversation.subject %>
-</h3>
+<h3><%= conversation.subject %></h3>
 
 <div class="action">
     <% unless @box.eql?'trash' %>
@@ -13,6 +11,7 @@
 
 
 <div class="participants">
+
 <h6>
   <%= t("message.participants") %>:
 </h6>
@@ -55,21 +54,21 @@
 </div>
 
 <%= javascript_tag do %>
-$(document).ready(function(){  
-  $(".message .body img").each(function(){
-    var link = '<a href=\"' + $(this).attr('src') + '\" class=\"img_link\"><img src=\"' + $(this).attr('src') + '\"></a>';
-    $(this).after(link);
-    $(this).remove();
-    $(".message .body img").aeImageResize({ height: 490, width: 490 });
-    $(".message .body a.img_link").lightBox({
-      maxHeight: 920,
-      maxWidth: 920,
-      imageLoading: '../assets/lightbox-ico-loading.gif',
-      imageBtnClose: '../assets/lightbox-btn-close.gif',
-      imageBtnPrev: '../assets/lightbox-btn-prev.gif',
-      imageBtnNext: '../assets/lightbox-btn-next.gif',
-      imageBlank: '../assets/lightbox-blank.gif'
-    });
-  })  
-});
+  $(document).ready(function(){
+    $(".message .body img").each(function(){
+      var link = '<a href=\"' + $(this).attr('src') + '\" class=\"img_link\"><img src=\"' + $(this).attr('src') + '\"></a>';
+      $(this).after(link);
+      $(this).remove();
+      $(".message .body img").aeImageResize({ height: 490, width: 490 });
+      $(".message .body a.img_link").lightBox({
+        maxHeight: 920,
+        maxWidth: 920,
+        imageLoading: '../assets/lightbox-ico-loading.gif',
+        imageBtnClose: '../assets/lightbox-btn-close.gif',
+        imageBtnPrev: '../assets/lightbox-btn-prev.gif',
+        imageBtnNext: '../assets/lightbox-btn-next.gif',
+        imageBlank: '../assets/lightbox-blank.gif'
+      });
+    })  
+  });
 <% end %>

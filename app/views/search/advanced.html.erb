@@ -1,0 +1,106 @@
+<%= stylesheet_link_tag "asearch" %>
+<%= javascript_include_tag "asearch" %>
+
+<div id="asearch_header">
+	<div class="search">
+		<input class="asearch_box search_input" type="text" placeholder="Search educational resources" autocomplete="off">
+		<button class="toolbar_button search_button">
+			<img class="search_button_img" src="/assets/asearch/search.png">
+		</button>
+		<button class="toolbar_button settings_button">
+			<img class="settings_button_img" src="/assets/asearch/settings.png">
+		</button>
+	</div>
+</div>
+
+<div id="asearch_results">
+</div>
+
+<div id="asearch_settings">
+	<div class="settingsColumn">
+		<p class="settingsTitle">Select Entities to search</p>
+		<select multiple class="entity_types">
+			<option selected="selected" value="Resource">Resources</option>
+			<option value="Excursion">Excursions</option>
+			<option value="Link">Links</option>
+			<option value="Embed">Embeds</option>
+			<option value="Scormfile">SCORM Packages</option>
+			<option value="Webapp">Web Applications</option>
+			<option value="Picture">Pictures</option>
+			<option value="Video">Videos</option>
+			<option value="Audio">Audios</option>
+			<option value="Officedoc">Office documents</option>
+			<option value="Swf">Flash Objects</option>
+			<option value="Zipfile">ZIP files</option>
+			<option value="User">User</option>
+			<option value="Event">Event</option>
+			<option value="Category">Category</option>
+		</select>
+	</div>
+
+	<div class="settingsColumn">
+		<p class="settingsTitle">Sorting</p>
+		<select asparam="sort_by">
+			<option selected="selected" value="Relevance">Relevance</option>
+			<option value="ranking">Ranking</option>
+			<option value="popularity">Popularity</option>
+			<option value="modification">Modification</option>
+			<option value="creation">Creation</option>
+			<option value="visits">Visits</option>
+			<option value="favorites">Favorites</option>
+			<option value="quality">Quality</option>
+		</select>
+		<p class="settingsTitleSec">Filters</p>
+		<p class="settingsField" style="margin-top: 9px !important;">Date</p>
+		<div class="dateWrapper">
+			<div>
+				<p>Start Date</p>
+				<input type="date" asparam="startDate" name="startDate">
+			</div>
+			<div>
+				<p>End Date</p>
+				<input type="date" asparam="endDate" name="endDate">
+			</div>
+		</div>
+		<p class="settingsField">Language</p>
+		<select asparam="language">
+			<option selected="selected" value="">Select a language</option>
+			<option value="en">English</option>
+			<option value="es">Spanish</option>
+			<option value="de">German</option>
+			<option value="fr">Français</option>
+			<option value="it">Italian</option>
+			<option value="pt">Português</option>
+		</select>
+		<p class="settingsField" style="margin-top: 23px !important;"><span>Quality Threshold (0-10): &nbsp;</span><span asparam="rangeValue">5.0</span></p>
+		<input asparam="qualityThreshold" type="range" min="0" max="10" step="0.1" value="5" onchange="updateRange(this.value)"/>
+	</div>
+
+	<div class="settingsColumn">
+		<p class="settingsTitle">ViSH Instances <span class="closeASearchSettings">close</span></p>
+
+		<p class="settingsField">Results per instance</p>
+		<select asparam="n">
+			<option value="1">1</option>
+			<option value="5">5</option>
+			<option value="10">10</option>
+			<option selected="selected" value="20">20</option>
+			<option value="50">50</option>
+			<option value="100">100</option>
+		</select>
+
+		<p class="settingsField">ViSH Instances</p>
+		<div class="ViSHinstances">
+			<div class="addInstanceInputWrapper" style="display:none !important">
+				<input type="text" class="addInstanceInput" placeholder="Add Instance"><span class="addInstanceButton" title="add">[Add]</span>
+			</div>
+			<ul>
+				<li>
+					<input type="checkbox" checked="checked"></input>&nbsp;
+					<span>http://vishub.org</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</div>

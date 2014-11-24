@@ -14,8 +14,10 @@ class ScormfilesController < ApplicationController
       format.json {
         render :json => resource.as_json
       }
-      format.full{
+      format.full {
         @scormfile = resource
+        @title = @scormfile.title
+        render :layout => 'iframe'
       }
       format.all {
         super

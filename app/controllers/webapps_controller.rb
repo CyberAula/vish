@@ -10,8 +10,10 @@ class WebappsController < ApplicationController
       format.json {
         render :json => resource.as_json
       }
-      format.full{
+      format.full {
         @webapp = resource
+        @title = @webapp.title
+        render :layout => 'iframe'
       }
       format.all {
         super

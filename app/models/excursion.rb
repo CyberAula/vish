@@ -1,19 +1,3 @@
-# Copyright 2011-2012 Universidad Politécnica de Madrid and Agora Systems S.A.
-#
-# This file is part of ViSH (Virtual Science Hub).
-#
-# ViSH is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# ViSH is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 require 'builder'
 
 class Excursion < ActiveRecord::Base
@@ -847,54 +831,6 @@ class Excursion < ActiveRecord::Base
       FileUtils.rm_rf("#{Rails.root}/public/pdf/excursions/#{self.id}") 
     end
   end
-
-
-
-  ####################
-  ## Evaluations
-  #################### 
-
-  def evaluations
-    ExcursionEvaluation.where(:excursion_id => self.id)
-  end
-
-  def averageEvaluation
-    evaluations_array = []
-    if self.evaluations.length > 0
-      6.times do |ind|
-        evaluations_array.push(ExcursionEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
-      end
-    else
-      evaluations_array = [0,0,0,0,0,0]
-    end
-    evaluations_array
-  end
-
-  def numberOfEvaluations
-    ExcursionEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
-  end
-
-  def learningEvaluations
-    ExcursionLearningEvaluation.where(:excursion_id => self.id)
-  end
-
-  def averageLearningEvaluation
-    evaluations_array = []
-    if self.learningEvaluations.length > 0
-      6.times do |ind|
-        evaluations_array.push(ExcursionLearningEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
-      end
-    else
-      evaluations_array = [0,0,0,0,0,0]
-    end
-    evaluations_array
-  end
-
-  def numberOfLearningEvaluations
-    ExcursionLearningEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
-  end
-
-
 
   ####################
   ## Other Methods

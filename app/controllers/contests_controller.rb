@@ -1,2 +1,0 @@
-class ContestsController < ApplicationController
-end
