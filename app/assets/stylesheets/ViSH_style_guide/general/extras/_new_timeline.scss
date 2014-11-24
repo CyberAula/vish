@@ -5,9 +5,10 @@
 }
 .timeline > .more{
   clear: both;
-  margin: 0 auto;
+  margin: 11px auto 0px;
   width: 120px;
   text-align: center;
+  padding: 10px 0 0 0;
 }
 .timeline:before {
   top: 29px;
@@ -51,13 +52,16 @@
 }
 .tldate {
   display: block;
-  width: 200px;
+  width: 72px;
   color: $gray;
   background: $body-bg url(bg-texture.jpg) center repeat;
-  margin: 16px auto;
   padding: 2px 0 3px;
   font-weight: bold;
   text-align: center;
+  margin: 0 auto;
+}
+.separator{
+  margin: 0px auto 46px;
 }
 /** panel arrows **/
 .timeline li .timeline-panel:before {

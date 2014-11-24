@@ -3,7 +3,7 @@
 <% modifDate = activity.created_at.strftime("%b") + " " + activity.created_at.strftime("%Y")  %>
 <% if @lastMonth != activity.created_at.month
     @lastMonth = activity.created_at.month%>
-    <li><div class="tldate"> <%= modifDate %> </div></li>
+    <li class="separator"><div class="tldate"> <%= modifDate %> </div></li>
 <%end%> 
 <%#Ends here%>
 <script>
@@ -26,7 +26,7 @@
 
   
  
-  <div type="button" class="tl-circ" data-toggle="tooltip" data-placement="right" rel="tooltip" title="date of publication"></div>
+  <div type="button" class="tl-circ"></div>
 
   <div class="timeline-panel">
     <div class="pull-left">
@@ -37,7 +37,7 @@
     <div class="media-body">
       <h6 class="media-heading"><%= activity.title(self) %>
         <% if activity.direct_object && !activity.direct_object.acts_as_actor? && can?(:destroy, activity.direct_object) %>
-          <div class="mobile-time-ago hidden-sm hidden-md hidden-lg">
+          <div class="mobile-time-ago">
             <%= render :partial => 'activities/time_ago',
               :locals => { :activity => activity } %>
           </div>
