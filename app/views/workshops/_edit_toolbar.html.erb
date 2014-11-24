@@ -7,7 +7,9 @@
  
   <%= form_for(@workshop) do |f| %>
     <%= f.hidden_field :draft, :value => !@workshop.draft %>
-    <%= f.submit (@workshop.draft ? "Publicar" : "Retirar") %>
+    <%= button_tag(type: "submit", class: "btn btn-default") do %>
+      <%=@workshop.draft ? raw('<i class="icon-trash"></i>'+t('workshop.actions.publish')) : raw('<i class="icon-trash"></i>'+t('workshop.actions.unpublish')) %>
+    <% end %>
   <%end%>
 
 <!-- EFFECT EXPAND

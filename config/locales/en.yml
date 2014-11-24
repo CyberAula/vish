@@ -874,6 +874,8 @@ en:
         collapse_all: "Collapse all"
         edit_activity_button: "Save"
         expand_all: "Expand all"
+        publish: "Publish"
+        unpublish: "Unpublish"
     activities:
         assignment:
             add_image: "Upload"
