@@ -142,7 +142,7 @@
 //contribute footer
 .workshop_contribute_footer,
 .contributions_actions
-  span
+  span.contribution_message
     float: left
     padding-top: 5px
     font-family: $thirdFontFamily
@@ -185,7 +185,7 @@ ul#breadcrumb
       position: relative
       height: 28px
       line-height: 30px
-      padding: 0 10px
+      padding: 0 5px 0 10px
       text-align: center
       margin-right: 23px
       max-width: 300px
@@ -278,7 +278,7 @@ ul#breadcrumb
   display: inline-block
   float: left
   padding: 7px 0
-  background-color: $white
+  background-color: rgba(85, 85, 85, 0.97)
   @include box-shadow(0 -1px 5px rgba(50,51,51,0.35))
   position: relative
   @include border-radius($baseBorderRadius)
@@ -303,7 +303,12 @@ ul#breadcrumb
     margin: 0
     font-size: 20px
     padding-top: 2px
+<<<<<<< HEAD
     margin-left: 15px
+=======
+    margin-left: 4%
+    color: $white
+>>>>>>> 51e8741b2b9923b0880d0fefee5852a8a9ddb2b9
   .btn-delete-workshop
     &:hover
       background-image: none
