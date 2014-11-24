@@ -67,28 +67,7 @@
 </div>
   <!-- Button to trigger modal --> 
 
-  <!-- Modal -->
 
-<div id="new_messages_profile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"><%=t('message.new')%></h4>
-      </div>
-      <div class="modal-body">
-        <section id="new_message_profile">
-          <%= render :partial => 'messages/new', :locals => {:@recipient => Actor.find_by_slug(profile_subject.slug)} %>
-        </section>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <input type="button" class="btn btn-primary" value="<%=t('mailboxer.send')%>"/>
-      </div>
-    </div>
-  </div>
-</div>
-
- 
 <script>
   $(function() {
     $("#showingMore").click(function(e){

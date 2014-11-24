@@ -203,3 +203,19 @@
   padding-left: 0
   .select2-input
     width: 100% !important
+
+.modal_message
+  .modal-backdrop
+    z-index: 1252
+  .modal-backdrop.fade.in
+    background: transparent
+  #conversation
+    float: none
+    padding: 0
+  .select2-container
+    border: 1px solid $gray
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+  button.btn
+    background: $gray
+    color: $white
