@@ -96,14 +96,16 @@
 
     <p class="settingsField">ViSH Instances</p>
     <div class="ViSHinstances">
-      <div class="addInstanceInputWrapper" style="display:none !important">
+      <div class="addInstanceInputWrapper">
         <input type="text" class="addInstanceInput" placeholder="Add Instance"><span class="addInstanceButton" title="add">[Add]</span>
       </div>
       <ul>
-        <li>
-          <input type="checkbox" checked="checked"></input>&nbsp;
-          <span>http://vishub.org</span>
-        </li>
+        <% VishConfig.getViSHInstances.each do |instance| %>
+          <li>
+            <input type="checkbox" checked="checked"></input>&nbsp;
+              <span><%=instance%></span>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

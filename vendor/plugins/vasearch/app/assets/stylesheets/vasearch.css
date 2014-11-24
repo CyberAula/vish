@@ -159,7 +159,7 @@
 #asearch_results img.inlineIcon{
 	height: 15px;
 	position: relative;
-	top: 2px;
+	top: -1px;
 }
 
 .asearch_waiting{
