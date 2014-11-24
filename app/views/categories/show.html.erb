@@ -13,7 +13,6 @@
     </div>
 
     <div class="information">
-<<<<<<< HEAD
       <div class="briefing">
         <header>
           <div class="icontitle">
@@ -22,6 +21,7 @@
             <!--titulo-->
             <h2><%= @category.title %></h2>
             <div class="description"><%= @category.description %></div>
+            <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path } %>
             <div class="author"> <span class="by"><%=t('by')%></span> <%= link_to @category.author.name, @category.author.subject %></div>
           </div>
         </header>
@@ -40,29 +40,7 @@
           </div>
         </div>
       </div>
-=======
-      <!--help-->
-      <%= render partial: 'help/help_categories' %>
-      <!--title-->
-      <h2><%= @category.title %></h2>
-      <!--description-->
-      <div class="description"><%= @category.description %></div>
-      <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path } %>
-      <!--author-->
-      <div class="author"> <span class="by"><%=t('by')%></span> <%= link_to @category.author.name, @category.author.subject %></div>
-    </div>
-    <div class="btn-group">
-      <!--edit-->
-      <% if can?(:update, @category) %>
-        <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %>
-        <a class="btn btn-for-categorize"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></a>
-      <% end %>
-        <!--remove-->
-      <% if can?(:destroy, @category) %>
-        <%= link_to(raw("<i class='icon-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
-      <% end %>
-    </div>
->>>>>>> 450de914a3a28fb2e5dad0894ee32cde8f170260
+
     <% if can?(:update, @category) %>
       <div class="update" style="display:none">
         <%= form_for(@category, :url => [@category]) do |f| %>
