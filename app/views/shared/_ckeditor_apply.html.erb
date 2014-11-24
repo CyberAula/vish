@@ -119,6 +119,12 @@
             //Add ckeditor wysiwyg instance
             var ckeditor = CKEDITOR.replace(id, config);
 
+            ckeditor.on("instanceReady", function(event){
+                console.log("instanceReady: ");
+                var newHeight = $(event.editor.document.$).height();
+                event.editor.resize("100%", newHeight, true);
+            });
+
         };
 
         set_ckeditor_content_full_and_plaintext = function(id_fulltext, id_plaintext){
