@@ -108,7 +108,7 @@ VASearch.UI = (function(V,undefined){
   };
 
   var getSearchTermsFromUI = function(){
-    $("#asearch_header .asearch_box").val();
+    return $("#asearch_header .asearch_box").val();
   };
 
   var getSettingsFromUI = function(){

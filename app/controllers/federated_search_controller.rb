@@ -49,7 +49,12 @@ class FederatedSearchController < ApplicationController
         response["page"] = searchEngineResults.current_page
         response["results_per_page"] = searchEngineResults.per_page
       end
-      response["results"] = searchEngineResults.map{|r| r.search_json(self)}
+      matchWeights = searchEngineResults.results[:matches].map{|m| m[:weight]}
+      response["results"] = searchEngineResults.map.with_index{|r,i|
+        json = r.search_json(self)
+        json[:relevance_weight] = matchWeights[i]
+        json
+      }
     end
 
     respond_to do |format|
