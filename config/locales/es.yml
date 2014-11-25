@@ -98,7 +98,7 @@ es:
     title: "Panel de Administración de ViSH"
     users: "Administración de Usuarios"
   all: "todos"
-  announce: 
+  announce:
     title: "Noticia"
     body: "Durante febrero, el proyecto GLOBAL excursion va a organizar dos sesiones online con científicos. Más información y registro en"
   are_you_sure: "Are you sure?"
@@ -176,10 +176,10 @@ es:
       title: "Título"
       description: "Descripción"
       items: "Elementos en esta categoría"
-    main_title: "Crea nuevas categorías y organiza tus recursos"  
+    main_title: "Crea nuevas categorías y organiza tus recursos"
     other: "categorías"
     title_input: "Dale un nombre a tu categoría"
-    save: "Guardar"    
+    save: "Guardar"
     selected: "categorias"
     success: "Las categorías se han salvado con éxito"
   close: "Cerrar"
@@ -399,7 +399,7 @@ es:
       inv2_html: "2. Después, haz click en <b>Enviar una invitación</b>"
       overview_html: "<a href='/overview'><i class='icon-info-sign btn-mini'></i>¿Qué es ViSH?</a>"
     helpquiz:
-      info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>" 
+      info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>"
     how: "Cómo compartir un recurso"
     info:
       age: "Edad"
@@ -478,7 +478,7 @@ es:
   excursion:
     actions:
       add: "Añadir excursion"
-      bookmark: "marcardor"      
+      bookmark: "marcardor"
       clone: "clonar"
       delete: "Borrar"
       download: "Descargar"
@@ -532,7 +532,7 @@ es:
     network: "excursiones de mi red"
     network2: "mi red"
     new: "Crear Nueva Excursión"
-    newmy_html: "Aún no has creado ninguna excursión. Puedes crear una nueva haciendo click en el botón añadir o en este "        
+    newmy_html: "Aún no has creado ninguna excursión. Puedes crear una nueva haciendo click en el botón añadir o en este "
     newnet_html: "Aquí podrás ver las excursiones creadas por la gente a quien sigues. Encuentra otros usuarios a seguir en <a href='/search?type=user'>este enlace</a>."
     newfav_html: "Aún no tienes ninguna excursión favorita. Para marcar una excursión como favorita, haz click en la estrella <img src='/assets/icons/star-off.png'>"
     one: "excursión"
@@ -575,7 +575,7 @@ es:
   go:
     repository: "ir a repositorio"
   header:
-    tooltip: 
+    tooltip:
       add_button: "Crea excursiones, recursos, etc."
   help: "ayuda"
   help_page: "AYUDA DE ViSH"
@@ -626,7 +626,7 @@ es:
     access_lom: "Metadatos LOM"
   more: "mas"
   mashme:
-    header_html: "Ver en <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
+    header_html: "Ver en <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>"
     invite_header: "Invita a tus contactos"
     invitesubject: "Invitación para ver una excursión en MashMeTV"
     invitebody_html: "Haz click aquí para unirte a la videoconferencia: <a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
@@ -645,7 +645,7 @@ es:
       user: "%{sender} te está siguiendo."
     makefriend:
       user: "%{sender} te está siguiendo."
-    unread: " sin leer"  
+    unread: " sin leer"
   offline:
     title: "Modo sin conexión"
   officedoc:
@@ -697,7 +697,7 @@ es:
     tags:
       default: "VisHub, virtual, excursión"
       other: "Áreas de interés"
-  project: "Excursión Global"      
+  project: "Excursión Global"
   published: "Publicados"
   quiz:
     actions:
@@ -753,11 +753,11 @@ es:
     other: "repositorios"
     title: "Recursos"
   resource:
-    actions: 
+    actions:
       add: "Añadir recurso"
-    empty: "No"    
+    empty: "No"
     network: "recursos de mi red"
-    newmy_html: "Aún no has creado ningún recurso. Puedes crear uno nuevo haciendo click en el botón subir o en este "    
+    newmy_html: "Aún no has creado ningún recurso. Puedes crear uno nuevo haciendo click en el botón subir o en este "
     newnet_html: "Aquí podrás ver los recursos subidos por la gente a quien sigues. Encuentra otros usuarios a seguir en <a href='/search?type=user'>este enlace</a>."
     newfav_html: "Aún no tienes ningún recurso favorito. Para marcar una recurso como favorito, haz click en la estrella <img src='/assets/icons/star-off.png'>"
     my: "mis"
@@ -813,7 +813,7 @@ es:
     type: "tipo"
     video: "vídeos"
   send:
-    send: "Enviar"    
+    send: "Enviar"
   share: "Enviar"
   sharing:
     email: "Compartir por email"
@@ -826,7 +826,7 @@ es:
       user: "El código y la imagen no coinciden"
     error: "Hay un error con el código captcha. Por favor vuelve a introducir el código."
     subtitle: "Introduce el valor de la imagen"
-    title: "Captcha"   
+    title: "Captcha"
   site:
     current:
       description: "Un punto de encuentro para científicos y profesores basado en la idea de excursiones virtuales"
@@ -859,7 +859,7 @@ es:
     pagination:
       next: "»"
       previous: "«"
-      truncate: "..."            
+      truncate: "..."
   view_all: "ver todos"
   webapp:
     name: "aplicación web"
@@ -871,23 +871,62 @@ es:
         add_activity_title: "Añadir Actividad al Workshop"
         add_activity_button: "Añadir"
         adding_activity_button: "Añadiendo..."
+        cancel_&_go: "Cancelar e ir a workshop"
+        collapse_all: "Reducir todo"
+        confirm_delete: "¿Borrar workshop?"
+        delete: "Borrar workshop"
+        edit_activity_button: "Guardar"
+        edit_mode_btOn: "Activar modo edición"
+        edit_mode_btOff: "Desactivar modo edición"
+        expand_all: "Expandir todo"
+        publish: "Publicar"
+        unpublish: "Ocultar publicación"
     activities:
+        actions:
+            add_new_activity: "Añadir nueva actividad"
+            confirm_delete: "¿Borrar actividad?"
         assignment:
             add_image: "Dibujo"
             add_writing: "Texto"
+            available_contributions:
+                document: "Documento"
+                title: "Contribuciones disponibles"
+                writing: "Texto editable"
             content: "Contenido"
             contribution_message: "Participa:"
             description: "Las tareas permiten a los participantes contribuir al taller subiendo sus propios recursos."
             due_date: "Fecha fin"
+            modal_title: "Editar tarea"
             open_date: "Fecha comienzo"
             title: "Tarea"
             with_dates: "Especifica fecha de comienzo y fin"
-        resource: 
+        resource:
             title: "Recurso"
             description: "Inserta cualquier tipo de recurso en el workshop"
+            text: "Podrás añadir a este workshop todos los recursos que haya disponibles en Vish. Para añadirlos, abre el recurso en Vish, copia su URL de la barra del navegador y pégala en el siguiente cuadro de texto."
+        resource_gallery:
+            title: "Galería recursos"
+            description: "Añade una galería de recursos"
+            text: "Las galerías de recursos son un componente del workshop que te permiten incluir varios recursos de Vish de cualquier tipo y tenerlos agrupados para facilitarte su visionado. Inserta este componente en tu workshop y añade recursos de la forma más fácil e intuitiva."
+        contributions_gallery:
+            title: "Galería contribuciones"
+            description: "La galería de contribuciones muestra las contribuciones enviadas al workshop"
+            text: "Los usuarios pueden contribuir a las tareas definidas en un workshop añadiendo recursos o bloques de texto. Con el componente Galería de contribuciones podrás ver de forma agrupada los recursos y/o los textos con los que otros usuarios han contribuido."
+        text:
+            title: "Texto"
+            description: "Incluye un párrafo de texto"
+            text: "Además de la descripción del workshop y las tareas definidas en él, en ocasiones necesitarás la posibilidad de insertar un bloque de texto con otra finalidad, como podría ser una bibliografía u otros datos de interés para el workshop. Con este componente puedes añadir un texto completamente personalizado y editable a tu workshop."
+
     confirm_delete: "¿Borrar workshop?"
     new: "Nuevo Workshop"
+
+
     other: "Workshops"
+    titles:
+        editing_details: "Editando detalles workshop"
+        editing_main: "Editando workshop"
+        show_main: "Workshop"
+
   writing:
     actions:
       add: "Añadir texto"
@@ -898,4 +937,3 @@ es:
   zipfile:
     name: "fichero ZIP"
     confirm_delete: "¿Borrar fichero ZIP?"
-

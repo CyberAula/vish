@@ -98,7 +98,7 @@ en:
     title: "ViSH Administration Panel"
     users: "Users Administration"
   all: "all"
-  announce: 
+  announce:
     title: "Announcement"
     body: "In the course of February, the GLOBAL excursion project is organizing two live online sessions with scientists. More information and registration under"
   are_you_sure: "¿Estás seguro?"
@@ -106,7 +106,7 @@ en:
   browse:
     title: "browse"
     popular: "popular content"
-  button: 
+  button:
     sending: "Sending..."
   by: "by"
   cancel: "Cancel"
@@ -188,7 +188,7 @@ en:
     success: "Categories saved succesfully"
   close: "Close"
   conditions:
-    check_message: "By clicking Accept, you agree to our "  
+    check_message: "By clicking Accept, you agree to our "
     check_message_1: "Terms and Conditions."
     other: "terms of use"
   contact:
@@ -399,7 +399,7 @@ en:
       inv2_html: "2. Then, click on <b>Send an invitation</b>"
       overview_html: "<a href='/overview'><i class='icon-info-sign btn-mini'></i>ViSH Overview</a>"
     helpquiz:
-      info1_html: "1. Help test 1 for the quiz<br>"  
+      info1_html: "1. Help test 1 for the quiz<br>"
     how: "How to share a resource"
     info:
       age: "Age"
@@ -482,7 +482,7 @@ en:
       bookmark: "bookmark"
       clone: "clone"
       delete: "delete"
-      download: "download"            
+      download: "download"
       edit: "edit"
       embed: "embed"
       favorite: "favorite"
@@ -511,7 +511,7 @@ en:
       name: "With content from"
     created: "created"
     draft: "Draft"
-    favorites: "Favorites"    
+    favorites: "Favorites"
     how: "How to create an excursion"
     invite:
       email:
@@ -519,7 +519,7 @@ en:
         link: "e-mail"
         subject: "Check%20out%20this%20excursion%20at%20http://vishub.org%20:%20%{title}"
     is_draft: "[DRAFT]"
-    modal: 
+    modal:
       title: "Congratulations"
       metadata_title: "Metadata"
       normal_body: "Congratulations. You have succesfully created this excursion."
@@ -531,7 +531,7 @@ en:
     network: "my network excursions"
     network2: "my network"
     new: "Create New Excursion"
-    newmy_html: "You have not created any excursions yet. You can add a new one by clicking on the add button or on this "    
+    newmy_html: "You have not created any excursions yet. You can add a new one by clicking on the add button or on this "
     newnet_html: "Here you will see the excursions created by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
     newfav_html: "You have no favorite excursions yet. Mark any excursion as favorite by clicking the star icon <img src='/assets/icons/star-off.png'>"
     one: "excursion"
@@ -574,7 +574,7 @@ en:
   go:
     repository: "go to repository"
   header:
-    tooltip: 
+    tooltip:
       add_button: "Create excursions, resources, etc."
   help: "help"
   help_page: "ViSH HELP"
@@ -626,7 +626,7 @@ en:
     access_lom: "LOM Metadata"
   more: "more"
   mashme:
-    header_html: "View in <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
+    header_html: "View in <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>"
     invite_header: "Invite your contacts"
     invitesubject: "Join me watching this excursion at MashMeTV!"
     invitebody_html: "Click here to watch: <a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
@@ -643,7 +643,7 @@ en:
     config_html: "If you want to modify the notification service. Click <a href='%{url}'>here</a>"
     makefriend:
       user: "%{sender} is following %{who}."
-    unread: " unread"  
+    unread: " unread"
   officedoc:
     confirm_delete: "Delete document?"
     download: "download"
@@ -684,7 +684,7 @@ en:
     edit: "Edit profile"
     profile: "profile"
     promote: "Promote to admin"
-    occupation: 
+    occupation:
       label: "Occupational field"
       options:
         select: "Select"
@@ -696,7 +696,7 @@ en:
     tags:
       default: "VisHub, virtual, excursion"
       other: "Areas of interest"
-  project: "Global Excursion"      
+  project: "Global Excursion"
   published: "Published"
   quiz:
     actions:
@@ -755,9 +755,9 @@ en:
   resource:
     actions:
       add: "Add resource"
-    empty: "You"    
+    empty: "You"
     network: "my network resources"
-    newmy_html: "You have not uploaded any resources yet. You can add a new one by clicking on the upload button or on this "    
+    newmy_html: "You have not uploaded any resources yet. You can add a new one by clicking on the upload button or on this "
     newnet_html: "Here you will see the resources uploaded by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
     newfav_html: "You have no favorite resources yet. Mark any resource as favorite by clicking the star icon <img src='/assets/icons/star-off.png'>"
     my: "my"
@@ -824,7 +824,7 @@ en:
     message:
       default: "Secret Code did not match with the Image"
       user: "The secret Image and code were different"
-    error: "There was an error with the captcha code below. Please re-enter the code."   
+    error: "There was an error with the captcha code below. Please re-enter the code."
     subtitle: "Enter the code in the box:"
     title: "Captcha"
   site:
@@ -853,12 +853,12 @@ en:
     other: "users"
   username: "username"
   vish:
-    about: "About ViSH"   
+    about: "About ViSH"
     starterguide: "Starter Guide"
   views:
     pagination:
       next: "»"
-      previous: "«"            
+      previous: "«"
       truncate: "..."
   view_all: "view all"
   webapp:
@@ -871,12 +871,20 @@ en:
         add_activity_title: "Add Activity to the Workshop"
         add_activity_button: "Add"
         adding_activity_button: "Adding..."
+        cancel_&_go: "Cancel and go to Workshop"
         collapse_all: "Collapse all"
+        confirm_delete: "Delete workshop?"
+        delete: "Delete workshop"
         edit_activity_button: "Save"
+        edit_mode_btOn: "Turn on editing mode"
+        edit_mode_btOff: "Turn off editing mode"
         expand_all: "Expand all"
         publish: "Publish"
         unpublish: "Unpublish"
     activities:
+        actions:
+            add_new_activity: "Add new activity"
+            confirm_delete: "Delete activity?"
         assignment:
             add_image: "Upload"
             add_writing: "Writing"
@@ -888,30 +896,37 @@ en:
             contribution_message: "Participate:"
             description: "Assignments allow participants to contribute to the workshop by uploading their own resources."
             due_date: "Due date"
+            modal_title: "Edit assignment"
             open_date: "Open date"
             title: "Assignment"
             with_dates: "Specify open and due date"
-        resource: 
+        resource:
             title: "Resource"
             description: "Insert any type of resource into the Workshop."
-        resource_gallery: 
+            text: "You can add to this workshop all the resources that are available in Vish. To add them, open the resource in Vish, copy its URL from the browser toolbar and paste in the following text box."
+        resource_gallery:
             title: "Resources Gallery"
             description: "Add a gallery of resources."
-        contributions_gallery: 
+            text: "Resource galleries are a component of the workshop that allow you to include several resources of any type Vish and have them grouped together to facilitate viewing. Insert this component into your workshop and added resources in the most easy and intuitive way."
+        contributions_gallery:
             title: "Contributions Gallery"
             description: The Contributions Gallery displays the contributions sent to the workshop.
-        text: 
+            text: "Users can contribute to the tasks defined in a workshop by adding resources or text blocks. With the component Gallery of contributions can see grouped shape resources and/or texts with which other users have contributed."
+        text:
             title: "Text"
             description: "Include a paragraph of text."
-    activity:
-        confirm_delete: "Delete activity?"
-    confirm_delete: "Delete workshop?"
+            text: "In addition to the description of the workshop and the tasks defined in it, sometimes you will need the ability to insert a block of text with other purpose, such as a bibliography or other data of interest for the workshop. With this component you can add a completely personalized and editable text to your workshop."
+
     new: "New Workshop"
     other: "Workshops"
+    titles:
+        editing_details: "Editing workshop details"
+        editing_main: "Editing Workshop"
+        show_main: "Show workshop"
   writing:
     actions:
       add: "Add text"
-    confirm_delete: "¿Delete writing?"
+    confirm_delete: "Delete writing?"
     title3: "Write the text you want to add"
   yesterday: "Yesterday"
   zipfile:

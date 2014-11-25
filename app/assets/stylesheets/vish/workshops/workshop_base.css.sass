@@ -3,6 +3,8 @@
 
 .header_workshop
   float: left
+  margin-top: 30px 
+  display: block
   .layout_workshop
     h3.title_WS
       font-size: 20px
@@ -67,6 +69,23 @@
         i
           padding-top: 36px
           display: block
+    @media (min-width: 0) and (max-width: 399px)
+      h3.main_title_WS
+        font-size: 20px !important
+        width: 95% !important
+        line-height: 26
+
+      p.description_WS
+        width: 100%
+        float: none
+        clear: both
+
+      .container-img_WS
+        display: block
+        width: 60%
+        margin: 0 auto
+        float: none
+        margin-bottom: 20px
 
 // LAYOUT
 // --------------------------------------------------
@@ -78,14 +97,14 @@
   margin-top: 10px
   margin-bottom: 10px
   position: relative
-  
+
   .layout_workshop
     display: inline-block
     height: auto
     width: 92%
     padding: 40px 4%
     @include resource-box-corner
-    
+
     //title
     h3.title_WS
       font-size: 20px
@@ -98,17 +117,18 @@
       height: auto
       color: $gray
       font-weight: 600
-    
+
     //time asigment
     .delivery
       display: block
-      height: 30px
+      height: auto
       position: relative
       width: 100%
+      margin-bottom: 10px
       .delivery_time
         width: 100%
         display: block
-        height: 20px
+        height: auto
         text-align: left
         span
           padding-right: 10px
@@ -123,7 +143,19 @@
           margin-right: 10px
           display: inline
 
+  @media (min-width: 400px) and (max-width: 767px)
+    .layout_workshop
+      display: inline-block
+      height: auto
+      width: 82%
+      padding: 40px 8%
 
+  @media (min-width: 0px) and (max-width: 399px)
+    .layout_workshop
+      display: inline-block
+      height: auto
+      width: 90%
+      padding: 40px 5%
 
 
 
@@ -142,7 +174,7 @@
 //contribute footer
 .workshop_contribute_footer,
 .contributions_actions
-  span
+  span.contribution_message
     float: left
     padding-top: 5px
     font-family: $thirdFontFamily
@@ -170,50 +202,48 @@
 //-------------------------
 // breadcrumb
 //-------------------------
-ul#breadcrumb 
+ul#breadcrumb
   list-style: none
   display: inline-block
   margin: 0px 0px 20px
   width: 100%
-  .icon
-    font-size: 14px
-  li 
+  li
     float: left
-    a 
+    a
       color: #FFF
       display: block
-      background: darken($secondColor, 5%)
+      background: $grayLight
       text-decoration: none
       position: relative
-      height: 40px
-      line-height: 40px
-      padding: 0 10px 0 5px
+      height: 28px
+      line-height: 30px
+      padding: 0 5px 0 10px
       text-align: center
       margin-right: 23px
       max-width: 300px
       text-overflow: ellipsis
-      margin-top: 5px
+      font-size: 12px
 
-    &:nth-child(even) 
-      a 
-        background-color: $secondColor
-        &:before 
-          border-color: $secondColor
+    &:nth-child(even)
+      a
+        background-color: lighten($grayLight, 5%)
+        &:before
+          border-color: lighten($grayLight, 5%)
           border-left-color: transparent
-        &:after 
-          border-left-color: $secondColor
+        &:after
+          border-left-color: lighten($grayLight, 5%)
 
-    &:first-child 
-      a 
+    &:first-child
+      a
         padding-left: 15px
         -moz-border-radius: 4px 0 0 4px
         -webkit-border-radius: 4px
         border-radius: 4px 0 0 4px
-        &:before 
+        &:before
           border: none
 
-    &:last-child 
-      a 
+    &:last-child
+      a
         padding-right: 15px
         -moz-border-radius: 0 4px 4px 0
         -webkit-border-radius: 0
@@ -221,51 +251,146 @@ ul#breadcrumb
         border-color: $firstColor
         background-color: $firstColor
         font-weight: bold
-        &:after 
+        font-size: 14px
+        &:after
           border: none
 
     &:last-child a:before
       border-color: $firstColor
       border-left-color: transparent
 
-  li a:before, 
-  li a:after 
+  li a:before,
+  li a:after
     content: ""
     position: absolute
     top: 0
-    border: 0 solid darken($secondColor, 5%)
-    border-width: 20px 10px
+    border: 0 solid $grayLight
+    border-width: 14px 10px
     width: 0
     height: 0
 
-  li a:before 
+  li a:before
     left: -20px
     border-left-color: transparent
 
-  li a:after 
+  li a:after
     left: 100%
     border-color: transparent
-    border-left-color: darken($secondColor, 5%)
+    border-left-color: $grayLight
 
-  li a:hover 
-    background-color: darken($secondColor, 15%)
+  li a:hover
+    background-color: $gray
 
-  li a:hover:before 
-    border-color: darken($secondColor, 15%)
+  li a:hover:before
+    border-color: $gray
     border-left-color: transparent
 
-  li a:hover:after 
-    border-left-color: darken($secondColor, 15%)
+  li a:hover:after
+    border-left-color: $gray
 
-  li a:active 
+  li a:active
     background-color: #16a085
 
-  li a:active:before 
+  li a:active:before
     border-color: #16a085
     border-left-color: transparent
 
-  li a:active:after 
+  li a:active:after
     border-left-color: #16a085
+
+
+
+//-------------------------
+// toolbar
+//-------------------------
+
+.toolbar_nav-tab_workshop
+  width: 100%
+  height: auto
+  display: inline-block
+  padding: 7px 0
+  position: fixed
+  top: 50px
+  left: 0
+  right: 0
+  z-index: 1000
+  background-color: rgba(85, 85, 85, 0.97)
+  @include box-shadow(0 -1px 5px rgba(50,51,51,0.35))
+  .container
+    padding-left: 5% !important
+    padding-right: 5% !important
+    max-width: 2000px !important
+    width: auto !important
+
+    form
+      margin: 0
+      display: inline-block
+      float: right
+    .btn, input[type="submit"]
+      padding: 2px 12px
+      margin-right: 7px
+      float: right
+      background-image: none
+      display: block
+      max-width: 200px
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+      text-align: left
+      i
+        padding-right: 10px
+        float: left
+        padding-top: 3px
+    h4.edit-workshop-title
+      width: auto
+      float: left
+      display: inline-block
+      line-height: 20px
+      margin: 0
+      font-size: 20px
+      padding-top: 2px
+      margin-left: 15px
+      color: $white
+      font-weight: 800
+    //.btn-delete-workshop
+      //&:hover
+        //background-image: none
+        //background-color: $firstColor
+        //color: white
+
+  @media (min-width: 0) and (max-width: 767px)
+    position: relative
+    top: -10px
+    @include border-radius($baseBorderRadius)
+    .container
+      h4.edit-workshop-title
+        width: 100%
+        margin: 15px auto
+        text-align: center
+
+      .btn
+        width: 96%
+        margin: 5px auto 5px
+        display: block
+        clear: both
+        float: none
+        padding: 5px 0
+        i
+          float: none
+      input[type="submit"]
+        width: 96%
+        margin: 5px auto 5px
+        display: block
+        clear: both
+        float: none
+        padding: 5px 0
+        i
+          float: none
+      form
+        display: block
+        float: none
+        clear: both
+        width: 100%
 
 .css_reset
   display: block
@@ -546,7 +671,7 @@ ul#breadcrumb
       margin-bottom: 0
     li
       list-style: decimal
-      
+
   dir
     ul, ol, dir, menu, dl
       margin-top: 0
@@ -605,14 +730,14 @@ ul#breadcrumb
     color: blue
 
   frameset
-    display: block 
+    display: block
     overflow: -moz-hidden-unscrollable
-    position: static 
-    float: none 
-    border: none 
+    position: static
+    float: none
+    border: none
 
   frame
-    border: none 
+    border: none
 
   iframe
     border: 2px inset
@@ -621,8 +746,8 @@ ul#breadcrumb
     display: none
 
   spacer
-    position: static 
-    float: none 
+    position: static
+    float: none
 
   canvas
     -moz-user-select: none

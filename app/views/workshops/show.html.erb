@@ -2,11 +2,15 @@
 
 <!--++++++++++++++++toolbar+++++++++++++++++++++++-->
 
-  <div class="toolbar_nav-tab">
-    <% if user_signed_in? and (can? :update, @workshop) %>
-      <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-primary" id="edit_workshop"><i class="icon-edit"></i>Turn on editing mode</a></p>
-    <%end%>
+  <div class="toolbar_nav-tab_workshop">
+    <div class="container">
+      <h4 class="edit-workshop-title"><%=t('workshop.titles.show_main')%></h4>
+      <% if user_signed_in? and (can? :update, @workshop) %>
+        <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn " id="edit_workshop"><i class="icon-edit"></i><%=t('workshop.actions.edit_mode_btOn')%></a></p>
+      <%end%>
+    </div>
   </div>
+
 
 <!--++++++++++++++++header+++++++++++++++++++++++-->
 
@@ -45,7 +49,7 @@
   <% @workshop_activities.each do |workshop_activity| %>
 
     <div class="wa_activity_wrapper wa_activity_wrapper_show">
-    
+
       <% if workshop_activity.wa_type=="WaResource"  %>
         <div id="effect<%=workshop_activity.id%>" class="resources_WS desplegado" > <!--only for resources-->
       <%end%>
@@ -61,7 +65,7 @@
       <% if workshop_activity.wa_type=="WaResource"  %>
         </div>
       <%end%>
-      
+
     </div>
   <%end%>
 
