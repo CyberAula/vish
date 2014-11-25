@@ -1,6 +1,7 @@
 <div class="toolbar_nav-tab_workshop">
   <div class="container">
   <h4 class="edit-workshop-title"><%=t('workshop.titles.editing_main')%></h4>
+  <a href="#WorkshopActivities" class="btn " data-toggle="modal"><i class="icon-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></a>
   <% unless @workshop.draft %>
     <a class ="btn" href="<%=workshop_path(@workshop)%>"><i class="icon-check"></i><%=t('workshop.actions.edit_mode_btOff')%></a>
   <%end%>
@@ -14,6 +15,7 @@
     <% end %>
   <%end%>
 
+  
 <!-- EFFECT EXPAND
 
   <%# if @workshop_activities.count { |wa| wa.wa_type=="WaResource" } > 0 %>

@@ -3,7 +3,8 @@
 
 .header_workshop
   float: left
-  margin-top: 20px
+  margin-top: 30px 
+  display: block
   .layout_workshop
     h3.title_WS
       font-size: 20px
@@ -312,13 +313,14 @@ ul#breadcrumb
   top: 50px
   left: 0
   right: 0
-  z-index: 99999999
+  z-index: 1000
   background-color: rgba(85, 85, 85, 0.97)
   @include box-shadow(0 -1px 5px rgba(50,51,51,0.35))
   .container
-    padding-left: 5%
-    padding-right: 5%
+    padding-left: 5% !important
+    padding-right: 5% !important
     max-width: 2000px !important
+    width: auto !important
 
     form
       margin: 0
@@ -329,6 +331,12 @@ ul#breadcrumb
       margin-right: 7px
       float: right
       background-image: none
+      display: block
+      max-width: 200px
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+      text-align: left
       i
         padding-right: 10px
         float: left
