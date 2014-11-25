@@ -22,13 +22,13 @@ nl:
     follow: "+ Volgen"
     unfollow: "Ontvolgen"
   all: "alle"
-  announce: 
+  announce:
     title: "Mededeling"
   author: "auteur"
   cancel: "Annuleren"
   close: "Sluiten"
   conditions:
-    check_message: "Door op Accepteren te klikken stemt u in met onze "  
+    check_message: "Door op Accepteren te klikken stemt u in met onze "
     check_message_1: "Algemene Voorwaarden."
     other: "voorwaarden"
   contact:
@@ -78,7 +78,7 @@ nl:
       bookmark: "bookmarken"
       clone: "kopiëren"
       delete: "verwijderen"
-      download: "downloaden"            
+      download: "downloaden"
       edit: "bewerken"
       show: "tonen"
       share: "delen"
@@ -94,7 +94,7 @@ nl:
       name: "Met inhoud van"
     created: "gecreëerd"
     detail: "Details"
-    favorites: "Favorieten"    
+    favorites: "Favorieten"
     how: "Hoe kunt u een presentatie maken"
     invite:
       email:
@@ -107,7 +107,7 @@ nl:
     net: "netwerk"
     network: "mijn netwerkpresentaties"
     network2: "mijn netwerk"
-    newmy_html: "U hebt nog geen presentaties gemaakt. U kunt een nieuwe toevoegen door te klikken op de knop toevoegen of op deze"    
+    newmy_html: "U hebt nog geen presentaties gemaakt. U kunt een nieuwe toevoegen door te klikken op de knop toevoegen of op deze"
     newnet_html: "Hier ziet u de presentaties die gemaakt zijn door gebruikers die u volgt. Zoek <a href='/search?type=user'>hier</a> een aantal gebruikers om te volgen."
     newfav_html: "U hebt nog geen favoriete presentaties. Markeer iedere presentatie die u wilt als favoriet door op het ster-icoontje te klikken <img src='/assets/icons/star-off.png'>"
     one: "presentatie"
@@ -160,7 +160,7 @@ nl:
     unread: " ongelezen"
   more: "meer"
   mashme:
-    header_html: "Bekijk op <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
+    header_html: "Bekijk op <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>"
     invite_header: "Nodig uw contacten uit"
     invitesubject: "Kijk samen met mij naar deze presentatie op MashMeTV!"
     invitebody_html: "Klik hier om te kijken: <a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
@@ -173,7 +173,7 @@ nl:
     config_html: "Als u de berichtendienst wilt wijzigen. Klik <a href='%{url}'>hier</a>"
     makefriend:
       user: "%{sender} volgt %{who}."
-    unread: " ongelezen"  
+    unread: " ongelezen"
   officedoc:
     confirm_delete: "Document verwijderen?"
     title: "Office Documenten"
@@ -200,7 +200,7 @@ nl:
     input: "Deel uw gedachten, links, video’s en nog meer, hier!"
     search_name: "status update"
   profile:
-    occupation: 
+    occupation:
       label: "Beroep"
       other: "Overig"
       scientist: "Wetenschapper"
@@ -209,7 +209,7 @@ nl:
     tags:
       default: "VisHub, virtueel, presentatie"
       other: "Aandachtsvelden"
-  project: "Mondiale Presentatie"      
+  project: "Mondiale Presentatie"
   published: "Gepubliceerd"
   quiz:
     answer:
@@ -232,9 +232,9 @@ nl:
     other: "leermiddelenbanken"
     title: "Leermiddelen"
   resource:
-    empty: "U"    
+    empty: "U"
     network: "mijn netwerkleermiddelen"
-    newmy_html: "U hebt nog geen leermiddelen geüpload. U kunt een nieuw toevoegen door te klikken op de upload knop of op deze "    
+    newmy_html: "U hebt nog geen leermiddelen geüpload. U kunt een nieuw toevoegen door te klikken op de upload knop of op deze "
     newnet_html: "Hier ziet u de leermiddelen die geüpload zijn door gebruikers die u volgt. Zoek <a href='/search?type=user'>hier</a> een aantal gebruikers om te volgen."
     newfav_html: "U hebt nog geen favoriete leermiddelen. Markeer ieder leermiddel dat u wilt als favoriet door te klikken op het ster-icoontje <img src='/assets/icons/star-off.png'>"
     my: "mijn"
@@ -294,11 +294,11 @@ nl:
   user:
     one: "gebruiker"
     other: "gebruikers"
-  username: "gebruikersnaam"   
+  username: "gebruikersnaam"
   views:
     pagination:
       next: "Â»"
-      previous: "Â«"            
+      previous: "Â«"
       truncate: "..."
   view_all: "bekijk alle"
   yesterday: "Gisteren"
@@ -545,3 +545,66 @@ nl:
     pagination:
       truncate: "..."
 
+  workshop:
+    actions:
+        add: "Workshop toevoegen"
+        add_activity_title: "Activiteit toevoegen aan de Workshop"
+        add_activity_button: "Toevoegen"
+        adding_activity_button: "Toe te voegen..."
+        cancel_&_go: "Annuleren en ga naar Workshop"
+        collapse_all: "Alles samenvouwen"
+        confirm_delete: "Workshop verwijderen?"
+        delete: "Workshop verwijderen"
+        edit_activity_button: "Opslaan"
+        edit_mode_btOn: "Bewerkingsmogelijkheden modus inschakelen"
+        edit_mode_btOff: "Uitschakelen bewerkingsmodus"
+        expand_all: "Alles uitvouwen"
+        publish: "Publiceren"
+        unpublish: "Publicatie ongedaan maken"
+    activities:
+        actions:
+            add_new_activity: "Nieuwe activiteit toevoegen"
+            confirm_delete: "Activiteit verwijderen?"
+        assignment:
+            add_image: "Upload"
+            add_writing: "Schrijven"
+            available_contributions:
+                document: "Document"
+                title: "Beschikbare bijdragen"
+                writing: "Schrijven"
+            content: "Inhoud"
+            contribution_message: "Deelnemen:"
+            description: "Toewijzingen mogelijk deelnemers bij te dragen tot de workshop door het uploaden van hun eigen middelen."
+            due_date: "Vervaldatum"
+            modal_title: "Toewijzing bewerken"
+            open_date: "Open datum"
+            title: "Toewijzing"
+            with_dates: "Opgeven van open en vervaldatums datum"
+        resource:
+            title: "Resource"
+            description: "Elk type resource invoegen de Workshop."
+        resource_gallery:
+            title: "Bronnengalerij"
+            description: "Een galerij van bronnen toevoegen."
+        contributions_gallery:
+            title: "Bijdragen galerij"
+            description: "De galerie van de bijdragen worden weergegeven de bijdragen die de workshop."
+        text:
+            title: "Tekst"
+            description: "Opnemen van een alinea met tekst."
+
+    new: "Nieuwe Workshop"
+    other: "Workshops"
+    titles:
+        editing_details: "Workshop details bewerken"
+        editing_main: "Workshop bewerken"
+        show_main: "Toon workshop"
+  writing:
+    actions:
+      add: "Tekst toevoegen"
+    confirm_delete: "Verwijder schrijven?"
+    title3: "Schrijf de tekst die u wilt toevoegen"
+  yesterday: "Gisteren"
+  zipfile:
+    name: "Zipbestand"
+    confirm_delete: "Verwijder zipbestand?"
