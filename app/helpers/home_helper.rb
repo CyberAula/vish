@@ -33,7 +33,7 @@ module HomeHelper
   end
 
   def subject_resources(subject, options = {})
-    subject_content subject, [Document, Embed, Link, Scormfile, Webapp], options
+    subject_content subject, VishConfig.getAvailableNotMainResourceModels, options
   end
 
   def current_subject_categories(options = {})

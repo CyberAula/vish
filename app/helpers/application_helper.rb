@@ -8,7 +8,7 @@ module ApplicationHelper
 	end
 
 	def entities_tagged_with(models,tag)
-		models = VishConfig.getAvailableAllResourceModels if models.nil?
+		models = VishConfig.getAvailableResourceModels if models.nil?
 		ActivityObject.where("object_type in (?)", models).with_tag(tag).map{|ao| ao.object}
 	end
 	

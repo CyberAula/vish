@@ -412,7 +412,7 @@ ActivityObject.class_eval do
     end
 
     if options[:models].nil?
-      options[:models] = VishConfig.getAvailableAllResourceModels
+      options[:models] = VishConfig.getAvailableResourceModels
     end
     options[:models] = options[:models].map{|m| m.to_s }
 
@@ -431,7 +431,7 @@ ActivityObject.class_eval do
     nHalf = (n/2.to_f).ceil
 
     if options[:models].nil?
-      options[:models] = VishConfig.getAvailableAllResourceModels
+      options[:models] = VishConfig.getAvailableResourceModels
     end
     options[:models] = options[:models].map{|m| m.to_s }
 

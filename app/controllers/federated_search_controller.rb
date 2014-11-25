@@ -60,36 +60,35 @@ class FederatedSearchController < ApplicationController
   end
 
   def processTypeParam(type)
-    # Possible models
-    # ["User", "Category", "Event", "Excursion", "Document", "Link", "Embed", "Webapp", "Scormfile"]
-    # and the document subclasses also ["Picture","Audio","Video",...]
-
     models = []
     subtypes = []
 
-    unless type.nil?
-      acceptedSubtypes = {
-        "Resource" => [Excursion,Document,Link,Embed,Webapp,Scormfile]
-      }
+    unless type.blank?
+      allAvailableModels = VishConfig.getAllAvailableAndFixedModels
+      # Available Types: all available models and the alias 'Resource'
+      allAvailableTypes = allAvailableModels + ["Resource"]
 
-      type.split(",").each do |type|
-        if acceptedSubtypes[type].nil?
-          #Find model
-          model = type.singularize.classify.constantize rescue nil
-          unless model.nil?
-            models.push(model)
-          end
-        else
-          #Is a subtype
-          models.concat(acceptedSubtypes[type])
-          subtypes.push(type)
+      types = type.split(",") & allAvailableTypes
+
+      if types.include? ["Resource"]
+        types.concat(VishConfig.getAvailableResourceModels)
+      end
+
+      types = types & allAvailableModels
+      types.uniq!
+
+      types.each do |type|
+        #Find model
+        model = type.singularize.classify.constantize rescue nil
+        unless model.nil?
+          models.push(model)
         end
       end
     end
 
     if models.empty?
       #Default models
-      models = [Excursion,Document,Link,Embed,Webapp,Scormfile]
+      models = VishConfig.getAvailableResourceModels({:return_instances => true})
       subtypes = []
     end
 

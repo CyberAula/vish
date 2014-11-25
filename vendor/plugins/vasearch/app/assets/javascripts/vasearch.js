@@ -285,7 +285,7 @@ VASearch.Core = (function(V,undefined){
           sessionSearchs[searchId][domain].completed = true;
           callback({success:false, searchId:searchId});
         }
-        debug("Error connecting with the ViSH API of " + domain,true);
+        VASearch.Utils.debug("Error connecting with the ViSH API of " + domain,true);
       }
     });
 
@@ -322,7 +322,7 @@ VASearch.Utils = (function(V,undefined){
 
   var debug = function(msg,isError){
     if(console){
-      if(error){
+      if(isError){
         console.error(msg);
       } else {
         console.info(msg);
