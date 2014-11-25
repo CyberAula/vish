@@ -916,13 +916,13 @@ en:
     new: "New Workshop"
     other: "Workshops"
     titles:
-        editing_details: "Editando detalles workshop"
+        editing_details: "Editing workshop details"
         editing_main: "Editing Workshop"
         show_main: "Show workshop"
   writing:
     actions:
       add: "Add text"
-    confirm_delete: "¿Delete writing?"
+    confirm_delete: "Delete writing?"
     title3: "Write the text you want to add"
   yesterday: "Yesterday"
   zipfile:
