@@ -1,4 +1,5 @@
 <div class="toolbar_nav-tab_workshop">
+  <div class="container">
   <h4 class="edit-workshop-title"><%=t('workshop.titles.editing_main')%></h4>
   <% unless @workshop.draft %>
     <a class ="btn" href="<%=workshop_path(@workshop)%>"><i class="icon-check"></i><%=t('workshop.actions.edit_mode_btOff')%></a>
@@ -21,6 +22,7 @@
   <%#end%>
 -->
 </div>
+</div>
 
 
 <!--script>
@@ -34,3 +36,4 @@
     });
   });
 </script-->
+

@@ -3,6 +3,7 @@
 
 .header_workshop
   float: left
+  margin-top: 20px
   .layout_workshop
     h3.title_WS
       font-size: 20px
@@ -67,6 +68,23 @@
         i
           padding-top: 36px
           display: block
+    @media (min-width: 0) and (max-width: 399px)
+      h3.main_title_WS
+        font-size: 20px !important
+        width: 95% !important
+        line-height: 26
+
+      p.description_WS
+        width: 100%
+        float: none
+        clear: both
+
+      .container-img_WS
+        display: block
+        width: 60%
+        margin: 0 auto
+        float: none
+        margin-bottom: 20px
 
 // LAYOUT
 // --------------------------------------------------
@@ -102,13 +120,14 @@
     //time asigment
     .delivery
       display: block
-      height: 30px
+      height: auto
       position: relative
       width: 100%
+      margin-bottom: 10px
       .delivery_time
         width: 100%
         display: block
-        height: 20px
+        height: auto
         text-align: left
         span
           padding-right: 10px
@@ -123,14 +142,19 @@
           margin-right: 10px
           display: inline
 
-  @media (min-width: 0) and (max-width: 767px)
-  .layout_workshop
-    display: inline-block
-    height: auto
-    width: 82%
-    padding: 40px 8%
+  @media (min-width: 400px) and (max-width: 767px)
+    .layout_workshop
+      display: inline-block
+      height: auto
+      width: 82%
+      padding: 40px 8%
 
-
+  @media (min-width: 0px) and (max-width: 399px)
+    .layout_workshop
+      display: inline-block
+      height: auto
+      width: 90%
+      padding: 40px 5%
 
 
 
@@ -283,80 +307,82 @@ ul#breadcrumb
   width: 100%
   height: auto
   display: inline-block
-  float: left
   padding: 7px 0
+  position: fixed
+  top: 50px
+  left: 0
+  right: 0
+  z-index: 99999999
   background-color: rgba(85, 85, 85, 0.97)
   @include box-shadow(0 -1px 5px rgba(50,51,51,0.35))
-  position: relative
-  @include border-radius($baseBorderRadius)
-  form
-    margin: 0
-    display: inline-block
-    float: right
-  .btn, input[type="submit"]
-    padding: 2px 12px
-    margin-right: 7px
-    float: right
-    background-image: none
-    i
-      padding-right: 10px
-      float: left
-      padding-top: 3px
-  h4.edit-workshop-title
-    width: auto
-    float: left
-    display: inline-block
-    line-height: 20px
-    margin: 0
-    font-size: 20px
-    padding-top: 2px
-    margin-left: 15px
-    color: $white
-    font-weight: 800
-  //.btn-delete-workshop
-    //&:hover
-      //background-image: none
-      //background-color: $firstColor
-      //color: white
-
-  @media (min-width: 0) and (max-width: 767px)
-    h4.edit-workshop-title
-      width: 100%
-      margin: 10px auto
-      text-align: center
-
-    .btn
-      width: 96%
-      margin: 5px auto 5px
-      display: block
-      clear: both
-      float: none
-      padding: 5px 0
-      i
-        float: none
-    input[type="submit"]
-      width: 96%
-      margin: 5px auto 5px
-      display: block
-      clear: both
-      float: none
-      padding: 5px 0
-      i
-        float: none
-
-    
-
+  .container
+    padding-left: 5%
+    padding-right: 5%
+    max-width: 2000px !important
 
     form
-      display: block
-      float: none
-      clear: both
-      width: 100%
+      margin: 0
+      display: inline-block
+      float: right
+    .btn, input[type="submit"]
+      padding: 2px 12px
+      margin-right: 7px
+      float: right
+      background-image: none
+      i
+        padding-right: 10px
+        float: left
+        padding-top: 3px
+    h4.edit-workshop-title
+      width: auto
+      float: left
+      display: inline-block
+      line-height: 20px
+      margin: 0
+      font-size: 20px
+      padding-top: 2px
+      margin-left: 15px
+      color: $white
+      font-weight: 800
+    //.btn-delete-workshop
+      //&:hover
+        //background-image: none
+        //background-color: $firstColor
+        //color: white
 
+  @media (min-width: 0) and (max-width: 767px)
+    position: relative
+    top: -10px
+    @include border-radius($baseBorderRadius)
+    .container
+      h4.edit-workshop-title
+        width: 100%
+        margin: 15px auto
+        text-align: center
 
-
-
-
+      .btn
+        width: 96%
+        margin: 5px auto 5px
+        display: block
+        clear: both
+        float: none
+        padding: 5px 0
+        i
+          float: none
+      input[type="submit"]
+        width: 96%
+        margin: 5px auto 5px
+        display: block
+        clear: both
+        float: none
+        padding: 5px 0
+        i
+          float: none
+      form
+        display: block
+        float: none
+        clear: both
+        width: 100%
 
 .css_reset
   display: block
