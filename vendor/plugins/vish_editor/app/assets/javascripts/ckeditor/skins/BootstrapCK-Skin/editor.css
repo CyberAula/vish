@@ -439,7 +439,7 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale');
 .cke_skin_BootstrapCK-Skin .cke_browser_ie .cke_rtl .cke_button .cke_icon{
 filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale');
 }
-.cke_skin_BootstrapCK-Skin .cke_browser_ie6 .cke_button .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie6 .cke_rtl .cke_button .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie .cke_button.cke_noalphafix .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie .cke_rtl .cke_button.cke_noalphafix .cke_icon{filter:;}.cke_skin_BootstrapCK-Skin .cke_button .cke_label{
+.cke_skin_BootstrapCK-Skin .cke_browser_ie6 .cke_button .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie6 .cke_rtl .cke_button .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie .cke_button.cke_noalphafix .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie .cke_rtl .cke_button.cke_noalphafix .cke_icon.cke_skin_BootstrapCK-Skin .cke_button .cke_label{
 cursor:default;
 display:none;
 padding-left:3px;
