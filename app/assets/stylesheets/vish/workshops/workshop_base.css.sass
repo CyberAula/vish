@@ -123,6 +123,13 @@
           margin-right: 10px
           display: inline
 
+  @media (min-width: 0) and (max-width: 767px)
+  .layout_workshop
+    display: inline-block
+    height: auto
+    width: 82%
+    padding: 40px 8%
+
 
 
 
@@ -306,14 +313,45 @@ ul#breadcrumb
     margin-left: 15px
     color: $white
     font-weight: 800
+  //.btn-delete-workshop
+    //&:hover
+      //background-image: none
+      //background-color: $firstColor
+      //color: white
+
+  @media (min-width: 0) and (max-width: 767px)
+    h4.edit-workshop-title
+      width: 100%
+      margin: 10px auto
+      text-align: center
+
+    .btn
+      width: 96%
+      margin: 5px auto 5px
+      display: block
+      clear: both
+      float: none
+      padding: 5px 0
+      i
+        float: none
+    input[type="submit"]
+      width: 96%
+      margin: 5px auto 5px
+      display: block
+      clear: both
+      float: none
+      padding: 5px 0
+      i
+        float: none
+
+    
 
 
-  .btn-delete-workshop
-    &:hover
-      background-image: none
-      background-color: $firstColor
-      color: white
-
+    form
+      display: block
+      float: none
+      clear: both
+      width: 100%
 
 
 
