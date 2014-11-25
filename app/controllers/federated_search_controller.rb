@@ -52,7 +52,28 @@ class FederatedSearchController < ApplicationController
       matchWeights = searchEngineResults.results[:matches].map{|m| m[:weight]}
       response["results"] = searchEngineResults.map.with_index{|r,i|
         json = r.search_json(self)
-        json[:relevance_weight] = matchWeights[i]
+        json[:weights] = {}
+        json[:weights][:relevance_weight] = matchWeights[i]
+
+        case params[:sort_by]
+        when 'ranking'
+          json[:weights][:sorting_weight] = r.ranking
+        when 'popularity'
+          json[:weights][:sorting_weight] = r.popularity
+        when 'modification'
+          json[:weights][:sorting_weight] = r.updated_at.utc.to_i
+        when 'creation'
+          json[:weights][:sorting_weight] = r.created_at.utc.to_i
+        when 'visits'
+          json[:weights][:sorting_weight] = r.visit_count
+        when 'favorites'
+          json[:weights][:sorting_weight] = r.like_count
+        when 'quality'
+          json[:weights][:sorting_weight] = r.qscore
+        else
+          json[:weights][:sorting_weight] = json[:weights][:relevance_weight]
+        end
+
         json
       }
     end
