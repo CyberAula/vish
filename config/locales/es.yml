@@ -903,8 +903,24 @@ es:
         resource:
             title: "Recurso"
             description: "Inserta cualquier tipo de recurso en el workshop"
+            text: "Podrás añadir a este workshop todos los recursos que haya disponibles en Vish. Para añadirlos, abre el recurso en Vish, copia su URL de la barra del navegador y pégala en el siguiente cuadro de texto."
+        resource_gallery:
+            title: "Galería recursos"
+            description: "Añade una galería de recursos"
+            text: "Las galerías de recursos son un componente del workshop que te permiten incluir varios recursos de Vish de cualquier tipo y tenerlos agrupados para facilitarte su visionado. Inserta este componente en tu workshop y añade recursos de la forma más fácil e intuitiva."
+        contributions_gallery:
+            title: "Galería contribuciones"
+            description: "La galería de contribuciones muestra las contribuciones enviadas al workshop"
+            text: "Los usuarios pueden contribuir a las tareas definidas en un workshop añadiendo recursos o bloques de texto. Con el componente Galería de contribuciones podrás ver de forma agrupada los recursos y/o los textos con los que otros usuarios han contribuido."
+        text:
+            title: "Texto"
+            description: "Incluye un párrafo de texto"
+            text: "Además de la descripción del workshop y las tareas definidas en él, en ocasiones necesitarás la posibilidad de insertar un bloque de texto con otra finalidad, como podría ser una bibliografía u otros datos de interés para el workshop. Con este componente puedes añadir un texto completamente personalizado y editable a tu workshop."
+
     confirm_delete: "¿Borrar workshop?"
     new: "Nuevo Workshop"
+
+
     other: "Workshops"
     titles:
         editing_details: "Editando detalles workshop"

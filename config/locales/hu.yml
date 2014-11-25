@@ -607,16 +607,22 @@ hu:
         resource:
             title: "Erőforrás"
             description: "Bármilyen típusú erőforrás beszúrása a Workshop."
+            text: "Ez a workshop minden a rendelkezésre álló erőforrások a Enikő adhat. Felvenni őket, nyissa meg az erőforrás Ilona Ilike Iluska, másolja az URL-címet a böngésző eszköztárán, és illessze be a következő szöveggel mezőbe."
         resource_gallery:
             title: "Erőforrások Galéria"
             description: "A Galéria az erőforrások hozzáadása."
+            text: "Erőforrás egyik összetevője a workshop, amely lehetővé teszi, hogy több erőforrások, bármilyen típusú Ilona Ilike Iluska, és azokat megkönnyítésére megtekintése csoportosítani áll. A workshop és a hozzáadott erőforrások ezt az összetevőt a leg--bb könnyen és intuitív módon helyezze be."
         contributions_gallery:
             title: "Hozzájárulások Galéria"
             description: "A hozzájárulások Galéria elküldött a műhely jeleníti meg."
+            text: "Használók tud hozzájárulni erőforrások vagy szöveg hozzáadásával egy workshop meghatározott feladatok. Galéria járulékok látható komponens csoportosított alakzatot erőforrások andor szövegek, amelyeket más felhasználók hozzájárultak."
         text:
             title: "Szöveg"
             description: "Tartalmaz egy bekezdés-szöveg."
-
+            text: "Amellett, hogy a workshop és a benne meghatározott feladatok leírása néha szüksége lesz arra, hogy helyezze be egy fatuskó-ból szöveg-val más célra, mint irodalomjegyzék vagy más adatokhoz a műhely. Ez a komponens egy teljesen személyre szabott és szerkeszthető szöveg adható hozzá a workshop."
+    add_activity_modal:
+      resource:
+        description: "Ez a workshop minden a rendelkezésre álló erőforrások a Enikő adhat. Felvenni őket, nyissa meg az erőforrás Ilona Ilike Iluska, másolja az URL-címet a böngésző eszköztárán, és illessze be az alábbi mezőbe."
     new: "Új Workshop"
     other: "Workshops"
     titles:

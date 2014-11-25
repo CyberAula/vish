@@ -56,7 +56,7 @@
                 <i class="icon-edit"></i>
               </li>
             <% end %>
-            
+
 
             <li title="<%=t('excursion.actions.delete')%>" class ="actions_tooltip " data-placement="bottom" data-toggle="tooltip">
               <%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activities.actions.confirm_delete') %>
@@ -112,11 +112,11 @@
   <div class="modal-body tabbable tabs-below">
     <div id="workshop_activities_column1">
       <ul class="nav nav-tabs">
-        <li><a href="#tab_assignment" data-toggle="tab" activityId="assignment"><%=t('workshop.activities.assignment.title')%></a></li>
-        <li class="active"><a href="#tab_resource" data-toggle="tab" activityId="resource"><%=t('workshop.activities.resource.title')%></a></li>
-        <li><a href="#tab_resource_gallery" data-toggle="tab" activityId="resource_gallery"><%=t('workshop.activities.resource_gallery.title')%></a></li>
-        <li><a href="#tab_contributions_gallery" data-toggle="tab" activityId="contributions_gallery"><%=t('workshop.activities.contributions_gallery.title')%></a></li>
-        <li><a href="#tab_text" data-toggle="tab" activityId="text"><%=t('workshop.activities.text.title')%></a></li>
+        <li><a href="#tab_assignment" data-toggle="tab" activityId="assignment"><i class="icon-list-ol"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.assignment.title')%></span></a></li>
+        <li class="active"><a href="#tab_resource" data-toggle="tab" activityId="resource"><i class="icon-file"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.resource.title')%></span></a></li>
+        <li><a href="#tab_resource_gallery" data-toggle="tab" activityId="resource_gallery"><i class="icon-th-large"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.resource_gallery.title')%></span></a></li>
+        <li><a href="#tab_contributions_gallery" data-toggle="tab" activityId="contributions_gallery"><i class="icon-th"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.contributions_gallery.title')%></span></a></li>
+        <li><a href="#tab_text" data-toggle="tab" activityId="text"><i class="icon-align-left"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.text.title')%></span></a></li>
       </ul>
     </div>
     <div id="workshop_activities_column2">
@@ -127,18 +127,22 @@
         </div>
         <div class="tab-pane active" id="tab_resource">
           <h4><%=t('workshop.activities.resource.description')%></h4>
+          <p><%=t('workshop.activities.resource.text')%> </p>
           <%= render partial: 'wa_resources/new', :locals => { :workshop => @workshop } %>
         </div>
         <div class="tab-pane" id="tab_resource_gallery">
           <h4><%=t('workshop.activities.resource_gallery.description')%></h4>
+          <p><%=t('workshop.activities.resource_gallery.text')%> </p>
           <%= render partial: 'wa_resources_galleries/new', :locals => { :workshop => @workshop } %>
         </div>
         <div class="tab-pane" id="tab_contributions_gallery">
           <h4><%=t('workshop.activities.contributions_gallery.description')%></h4>
+          <p><%=t('workshop.activities.contributions_gallery.text')%> </p>
           <%= render partial: 'wa_contributions_galleries/new', :locals => { :workshop => @workshop } %>
         </div>
         <div class="tab-pane" id="tab_text">
           <h4><%=t('workshop.activities.text.description')%></h4>
+          <p><%=t('workshop.activities.text.text')%> </p>
           <%= render partial: 'wa_texts/new', :locals => { :workshop => @workshop } %>
         </div>
       </div>

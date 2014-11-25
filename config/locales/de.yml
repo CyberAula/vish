@@ -657,16 +657,22 @@ de:
         resource:
             title: "Ressource"
             description: "Legen Sie jede Art von Ressource in der Workshop"
+            text: "Sie können zu diesem Workshop alle Ressourcen hinzufügen, die in Vish verfügbar sind. Um sie hinzuzufügen, öffnen Sie die Ressource in Vish, kopieren Sie die URL aus der Browser-Symbolleiste, und fügen Sie in das folgende Textfeld ein."
         resource_gallery:
             title: "Ressourcen-Galerie"
             description: "Fügen Sie eine Galerie von Ressourcen."
+            text: "Ressource-Galerien sind Bestandteil des Workshops, mit denen Sie beinhalten mehrere Ressourcen eines beliebigen Typs Vish und sie zusammen gruppiert, um die Anzeige zu erleichtern. Legen Sie diese Komponente in Ihre Werkstatt und zusätzlichen Ressourcen, auf die einfache und intuitive Weise."
         contributions_gallery:
             title: "Beiträge-Galerie"
             description: "Die Beiträge-Galerie zeigt die Beiträge zum workshop."
+            text: "Benutzer können dazu beitragen, die Aufgaben, die in einer Werkstatt durch Hinzufügen von Ressourcen oder Textblöcke definiert. Mit die Komponente, die Galerie der Beiträge sehen kann gruppiert Form Ressourcen Andor Texte mit denen andere Benutzer beigetragen haben."
         text:
             title: "Text"
             description: "Enthalten Sie einen Textabsatz."
-
+            text: "Neben der Beschreibung des Workshops und die darin definierten Aufgaben benötigen manchmal Sie die Möglichkeit, einen Text mit anderen Zweck, wie eine Bibliographie oder andere Daten von Interesse für die Workshop-Block einzufügen. Mit dieser Komponente können Sie Ihre Werkstatt einen vollständig personalisierten und bearbeitbaren Text hinzufügen."
+    add_activity_modal:
+      resource:
+        description: "Sie können zu diesem Workshop alle Ressourcen hinzufügen, die in Vish verfügbar sind. Um sie hinzuzufügen, öffnen Sie die Ressource in Vish, kopieren Sie die URL aus der Browser-Symbolleiste und fügen Sie in das folgende Textfeld ein."
     new: "Neue Workshop"
     other: "Workshops"
     titles:

@@ -36,7 +36,7 @@ ul.workshop_activities_list_edit
         float: right
         text-align: center
         a
-          margin-top: 0 
+          margin-top: 0
         i
           font-size: 18px
           color: $gray
@@ -50,7 +50,7 @@ ul.workshop_activities_list_edit
             color: $black
       .toggleWorkshopActivity
         display: none //expand class
-      .sorthandler 
+      .sorthandler
         background-color: #ccc
         cursor: move
         @include border-radius(50px)
@@ -92,7 +92,7 @@ ul.workshop_activities_list_edit
       opacity: 1
       a
         color: $gray
-        
+
 // ADD NEW ACTIVITY BTN
 // --------------------------------------------------
 .wa_add_activity_wrapper
@@ -121,6 +121,10 @@ ul.workshop_activities_list_edit
   top: 10%
   left: 10%
   .modal-header
+    h3
+      color: $gray
+      font-weight: 600
+      font-size: 1.5em
   .modal-body
     #workshop_activities_column1
       width: 20%
@@ -136,39 +140,56 @@ ul.workshop_activities_list_edit
           width: 100%
           a
             border: none
-            color: $gray
             border-radius: 0 !important
-            font-size: 16px
             margin-right: 0
             padding-top: 20px
             padding-bottom: 20px
+            padding-right: 20px
+            display: flex
             &:hover,
             &:focus
               background-color: none !important
               border: none
-              border-right: 3px solid $secondColor 
+              border-right: 3px solid $secondColor
+            span,i
+              font-size: 16px
+              color: $grayLight
+              line-height: 1.3em
+              margin-right: 20px
         li.active
           a
             border-right: 3px solid $firstColor
             border-radius: 0 !important
-            color: $grayDark
-            font-family: $thirdFontFamily
             margin-right: 0
+            font-family: $thirdFontFamily
+            span,i
+              color: $grayDark
+
     #workshop_activities_column2
       width: 77%
       margin-left: 3%
       display: block
       float: left
-      .tab-content 
+      .tab-content
         .active
           margin-top: 0
+      form
+        margin: 0 !important
+        input[type="text"]
+          width: 80% !important
   .modal-footer
 
 // MODAL TAB CONTENT
 // --------------------------------------------------
 #workshop_activities_column2
   h4
-    margin: 0 0 20px
+    margin: 20px 0 20px
+    font-weight: 800
+    color: $firstColor
+    font-size: 1.1em
+  p
+    width: 80%
+    margin: 20px 0
   //ADD ASSIGNMENTS
   #tab_assignment
     input[type="checkbox"]
@@ -219,7 +240,7 @@ form.edit_wa_assignment
       float: left
 
 // MODAL add resource gallery
-// --------------------------------------------------      
+// --------------------------------------------------
 #AddResourceToWaResourcesGalleryModal
   input[type="submit"]
     float: right
