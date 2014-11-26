@@ -196,8 +196,12 @@
 	padding: 5px;
 }
 
+#asearch_settings select[asparam="language"]{
+	height: 33px;
+}
+
 #asearch_settings select.entity_types{
-	height: 80%;
+	height: 90%;
 }
 
 #asearch_settings .dateWrapper{

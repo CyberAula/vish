@@ -13,6 +13,8 @@ development:
     catalogue: ["Excursion"]
   services: ["ARS","Catalogue","Competitions2013"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
+  advanced_search:
+    instances: ["http://vishub.org"]
 
 production:
   domain: "vishub.org"
@@ -28,6 +30,8 @@ production:
     catalogue: ["Excursion"]
   services: ["ARS","Catalogue","Competitions2013"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
+  advanced_search:
+    instances: ["http://vishub.org"]
 
 #Other configuration options
 

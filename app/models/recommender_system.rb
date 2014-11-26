@@ -60,7 +60,7 @@ class RecommenderSystem
     #Models
     if options[:models].blank?
       #All resources by default
-      options[:models] = VishConfig.getAvailableAllResourceModels({:return_instances => true})
+      options[:models] = VishConfig.getAvailableResourceModels({:return_instances => true})
     end
 
     options[:model_names] = options[:models].map{|m| m.name}

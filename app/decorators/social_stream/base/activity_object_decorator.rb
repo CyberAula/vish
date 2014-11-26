@@ -131,6 +131,7 @@ ActivityObject.class_eval do
       :id => self.getUniversalId(),
       :type => self.getType(),
       :created_at => self.created_at.strftime("%d-%m-%Y"),
+      :updated_at => self.updated_at.strftime("%d-%m-%Y"),
       :title => title,
       :description => resource.description || "",
       :tags => resource.tag_list,
@@ -182,6 +183,10 @@ ActivityObject.class_eval do
 
     unless resource.users_qscore.nil?
       searchJson[:users_qscore] = resource.users_qscore.to_f
+    end
+
+    unless resource.teachers_qscore.nil?
+      searchJson[:teachers_qscore] = resource.teachers_qscore.to_f
     end
 
     if resource.class.name == "Event"
@@ -412,7 +417,7 @@ ActivityObject.class_eval do
     end
 
     if options[:models].nil?
-      options[:models] = VishConfig.getAvailableAllResourceModels
+      options[:models] = VishConfig.getAvailableResourceModels
     end
     options[:models] = options[:models].map{|m| m.to_s }
 
@@ -431,7 +436,7 @@ ActivityObject.class_eval do
     nHalf = (n/2.to_f).ceil
 
     if options[:models].nil?
-      options[:models] = VishConfig.getAvailableAllResourceModels
+      options[:models] = VishConfig.getAvailableResourceModels
     end
     options[:models] = options[:models].map{|m| m.to_s }
 

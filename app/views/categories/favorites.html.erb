@@ -17,7 +17,6 @@
     </div>
   </div>
 
-
-  <% @items = subject_content current_subject, [Excursion, Document, Scormfile, Webapp, Embed, Link, Event, Category], {:scope => :like, :limit=>0} %>
+  <% @items = subject_content current_subject, VishConfig.getAvailableLikableModels({:return_instances => true}), {:scope => :like, :limit=>0} %>
   <%= render partial: 'categories/items' %>
 </section>
