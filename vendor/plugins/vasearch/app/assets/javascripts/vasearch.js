@@ -122,6 +122,10 @@ VASearch.UI = (function(V,undefined){
     $("#asearch_results").append(scaffold);
   };
 
+  var drawNoResults = function(){
+    $("#asearch_results").append("<p>No results</p>");
+  };
+
   var cleanResults = function(){
     $("#asearch_results").html("");
   };
@@ -181,6 +185,7 @@ VASearch.UI = (function(V,undefined){
     onStartSearch: onStartSearch,
     onFinishSearch: onFinishSearch,
     drawResult : drawResult,
+    drawNoResults : drawNoResults,
     cleanResults : cleanResults
   };
 
@@ -267,10 +272,14 @@ VASearch.Core = (function(V,undefined){
   var _onFinishSearch = function(results){
     V.UI.cleanResults();
 
-    $(results).each(function(index,result){
-      result.avatar_url = (typeof result.avatar_url == "string" ? result.avatar_url : "/assets/asearch/lo.png");
-      V.UI.drawResult(result);
-    });
+    if(results.length === 0){
+      V.UI.drawNoResults();
+    } else {
+      $(results).each(function(index,result){
+        result.avatar_url = (typeof result.avatar_url == "string" ? result.avatar_url : "/assets/asearch/lo.png");
+        V.UI.drawResult(result);
+      });
+    }
 
     V.UI.onFinishSearch();
   };

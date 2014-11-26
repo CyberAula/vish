@@ -26,7 +26,7 @@
     <p class="settingsTitle"><%=t("asearch.models.select_entities")%></p>
     <select multiple class="entity_types">
       <option selected="selected" value="Resource"><%=t("asearch.models.all_resources")%></option>
-      <% VishConfig.getAllModelsIncludingFixedModels.sort.each do |model| %>
+      <% VishConfig.getAllModelsIncludingFixedModels(:include_subtypes => true).sort.each do |model| %>
         <option value="<%=model%>"><%=t("asearch.models.#{model.downcase}")%></option>
       <% end %>
     </select>

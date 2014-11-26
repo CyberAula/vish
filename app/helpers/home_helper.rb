@@ -33,7 +33,7 @@ module HomeHelper
   end
 
   def subject_resources(subject, options = {})
-    subject_content subject, VishConfig.getAvailableNotMainResourceModels, options
+    subject_content subject, VishConfig.getAvailableNotMainResourceModels({:return_instances => true}), options
   end
 
   def current_subject_categories(options = {})
