@@ -5,14 +5,28 @@
 
 VASearch = (function(){
 
+  var _settings;
+
   var init = function(options){
-    VASearch.Utils.init(options);
-    VASearch.Core.init(options);
-    VASearch.UI.init(options);
+    _setSettings(options);
+
+    VASearch.Utils.init(_settings);
+    VASearch.Core.init(_settings);
+    VASearch.UI.init(_settings);
+  };
+
+  var _setSettings = function(options){
+    options = options || {};
+    _settings = options;
+  };
+
+  var getSettings = function(){
+    return _settings;
   };
 
   return {
-      init : init
+      init : init,
+      getSettings: getSettings
   };
 
 })();
@@ -32,13 +46,13 @@ VASearch.UI = (function(V,undefined){
     $("#asearch_header .asearch_box").bind('keypress', function(e){
       var code = e.keyCode || e.which;
       if(code == 13) { //Enter keycode
-        VASearch.Core.onSearch();
+        V.Core.onSearch();
       }
     });
 
     //Search on click magnifying glass
     $("#asearch_header button.search_button").bind('click', function(e){
-      VASearch.Core.onSearch();
+      V.Core.onSearch();
     });
 
     //On click settings
@@ -85,19 +99,21 @@ VASearch.UI = (function(V,undefined){
     $("#asearch_settings [asparam='rangeValue']").html(val);
   };
 
-  var drawResult = function(avatarURL,resourceURL,resourceTitle,authorURL,authorName,nFavorites,nViews){
-    var scaffold = $('<div class="result" id="vasearchbox_'+VASearch.Utils.getId()+'"></div>');
-    if(avatarURL){
-      $(scaffold).append('<div class="resultImageWrapper"><img class="resultImage" src="'+avatarURL+'"></div>');
+  var drawResult = function(result){
+    var targetAttr = (typeof result.instance != "undefined" && result.instance == V.getSettings().current_instance) ? "_self" : "_blank";
+    
+    var scaffold = $('<div class="result" id="vasearchbox_'+V.Utils.getId()+'"></div>');
+    if((result.avatar_url)&&(result.url)){
+      $(scaffold).append('<div class="resultImageWrapper"><a target="'+targetAttr+'" href="'+result.url+'"><img class="resultImage" src="'+result.avatar_url+'"></a></div>');
     }
-    if((resourceTitle)&&(resourceURL)){
-      $(scaffold).append('<div class="resultTitle"><a target="_blank" href="'+resourceURL+'">'+resourceTitle+'</a></div>');
+    if((result.title)&&(result.url)){
+      $(scaffold).append('<div class="resultTitle"><a target="'+targetAttr+'" href="'+result.url+'">'+result.title+'</a></div>');
     }
-    if((authorName)&&(authorURL)){
-      $(scaffold).append('<div class="resultAuthor"><span class="by">by</span> <a target="_blank" href="'+authorURL+'">'+authorName+'</a></div>');
+    if((result.author)&&(result.author_profile_url)){
+      $(scaffold).append('<div class="resultAuthor"><span class="by">by</span> <a target="'+targetAttr+'" href="'+result.author_profile_url+'">'+result.author+'</a><br/>in <a target="'+targetAttr+'" href="'+result.instance+'">' + result.instance + '</a></div>');
     };
-    if((nFavorites)&&(nViews)){
-      $(scaffold).append('<div class="resultBottom"><div class="likes"><span>'+nFavorites+'</span> <img class="inlineIcon" src="/assets/asearch/star.png"></div><div class="views"><span>'+nViews+'</span> <img class="inlineIcon" src="/assets/asearch/eye.png"></div></div>');
+    if((result.like_count)&&(result.visit_count)&&(result.url)){
+      $(scaffold).append('<div class="resultBottom"><div class="likes"><span>'+result.like_count+'</span> <a target="'+targetAttr+'" href="'+result.url+'"><img class="inlineIcon" src="/assets/asearch/star.png"></a></div><div class="views"><span>'+result.visit_count+'</span> <img class="inlineIcon" src="/assets/asearch/eye.png"></div></div>');
     };
     
     $("#asearch_results").append(scaffold);
@@ -188,40 +204,56 @@ VASearch.Core = (function(V,undefined){
 
   var onSearch = function(){
     $("#asearch_settings").hide();
-    VASearch.UI.cleanResults();
+    V.UI.cleanResults();
 
     //1. Build Query
-    var searchTerms = VASearch.UI.getSearchTermsFromUI();
-    var settings = VASearch.UI.getSettingsFromUI();
+    var searchTerms = V.UI.getSearchTermsFromUI();
+    var settings = V.UI.getSettingsFromUI();
     var query = _buildQuery(searchTerms,settings);
 
     //2. Peform the search in the instances
-    var instances = VASearch.UI.getInstancesFromUI();
+    var instances = V.UI.getInstancesFromUI();
     var instancesL = instances.length;
 
     queriesCounter = 0;
     queriesData = [];
-    searchId = VASearch.Utils.getId();
+    searchId = V.Utils.getId();
     sessionSearchs[searchId] = {};
 
     if(instancesL>0){
-      VASearch.UI.onStartSearch();
+      V.UI.onStartSearch();
 
       for(var i=0; i<instancesL; i++){
-        sessionSearchs[searchId][instances[i]] = {completed: false};
-        searchInViSHInstance(searchId,instances[i],query,function(data){
+        var instanceDomain = instances[i];
+        sessionSearchs[searchId][instanceDomain] = {completed: false};
+        searchInViSHInstance(searchId,instanceDomain,query,function(data){
           if((typeof data.searchId == "undefined")||(data.searchId != searchId)){
             //Result of an old search
             return;
           }
 
           queriesCounter += 1;
-          if((data.success===true)&&(typeof data.response != "undefined")&&(typeof data.response.results != "undefined")){
-            queriesData = queriesData.concat(data.response.results)
+          if((data.success===true)&&(typeof data.response != "undefined")&&(typeof data.response.results != "undefined")&&(typeof data.instanceDomain != "undefined")){
+            queryResults = [];
+            $(data.response.results).each(function(index,result){
+              result.instance = data.instanceDomain;
+              result.sorting_weight = (typeof result.weights != "undefined" && typeof result.weights.sorting_weight == "number") ? result.weights.sorting_weight : 0;
+              queryResults.push(result);
+            });
+            queriesData = queriesData.concat(queryResults);
           }
 
           if(queriesCounter===instancesL){
             //All searches finished
+
+            //Sort the results from different instances
+            if(instancesL>1){
+              queriesData = queriesData.sort(function(a,b){
+                return b.sorting_weight-a.sorting_weight;
+              });
+            }
+            
+            //Notify UI and redraw
             _onFinishSearch(queriesData);
           }
         });
@@ -230,14 +262,14 @@ VASearch.Core = (function(V,undefined){
   };
 
   var _onFinishSearch = function(results){
-    VASearch.UI.cleanResults();
+    V.UI.cleanResults();
 
     $(results).each(function(index,result){
       result.avatar_url = (typeof result.avatar_url == "string" ? result.avatar_url : "/assets/asearch/lo.png");
-      VASearch.UI.drawResult(result.avatar_url,result.url,result.title,result.author_profile_url,result.author,result.like_count,result.visit_count);
+      V.UI.drawResult(result);
     });
 
-    VASearch.UI.onFinishSearch();
+    V.UI.onFinishSearch();
   };
 
   var _buildQuery = function(searchTerms,settings){
@@ -270,6 +302,7 @@ VASearch.Core = (function(V,undefined){
 
   var searchInViSHInstance = function(searchId,domain,query,callback){
     var ViSHSearchAPIURL = domain + query;
+    ViSHSearchAPIURL = ViSHSearchAPIURL.replace("//apis","/apis");
 
     $.ajax({
       type    : 'GET',
@@ -277,15 +310,15 @@ VASearch.Core = (function(V,undefined){
       success : function(data) {
         if(sessionSearchs[searchId][domain].completed == false){
           sessionSearchs[searchId][domain].completed = true;
-          callback({success:true, response: data, searchId:searchId});
+          callback({success:true, searchId:searchId, instanceDomain:domain, response:data});
         }
       },
       error: function(error){
         if(sessionSearchs[searchId][domain].completed == false){
           sessionSearchs[searchId][domain].completed = true;
-          callback({success:false, searchId:searchId});
+          callback({success:false, searchId:searchId, instanceDomain:domain});
         }
-        VASearch.Utils.debug("Error connecting with the ViSH API of " + domain,true);
+        V.Utils.debug("Error connecting with the ViSH API of " + domain,true);
       }
     });
 

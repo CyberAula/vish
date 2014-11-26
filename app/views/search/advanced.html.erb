@@ -2,7 +2,7 @@
 <%= javascript_include_tag "vasearch" %>
 <script type="text/javascript">
   $(document).ready(function(){
-    VASearch.init();
+    VASearch.init({current_instance: '<%=Vish::Application.config.full_domain%>'});
   });
 </script>
 
@@ -68,7 +68,7 @@
   </div>
 
   <div class="settingsColumn">
-    <p class="settingsTitle"><%=t("asearch.instances.title")%> <span class="closeASearchSettings"><%=t("asearch.instances.close")%></span></p>
+    <p class="settingsTitle"><%=t("asearch.instances.title")%> <span class="closeASearchSettings"><%=t("asearch.close")%></span></p>
 
     <p class="settingsField"><%=t("asearch.instances.results")%></p>
     <select asparam="n">

@@ -137,7 +137,7 @@ es:
       title: "Instancias de ViSH"
       results: "Resultados por instancia"
     sorting:
-      sort_title: "Sorting"
+      sort_title: "Ordenar"
       relevance: "Relevance"
       ranking: "Ranking"
       popularity: "Popularity"
