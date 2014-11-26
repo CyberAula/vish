@@ -10,15 +10,10 @@ SocialStream.setup do |config|
   # :confirmable, :lockable, :timeoutable, :validatable
   config.devise_modules = [:database_authenticatable,
                             :recoverable, :rememberable, :trackable,
-                            :omniauthable, :token_authenticatable]
+                            :omniauthable, :token_authenticatable, :registerable]
 
-  if Vish::Application.config.APP_CONFIG["register_policy"] == "INVITATION_ONLY"
-    config.devise_modules << :invitable
-  elsif Vish::Application.config.APP_CONFIG["register_policy"] == "REGISTER_ONLY"
-    config.devise_modules << :registerable 
-  else
-    config.devise_modules << :invitable
-    config.devise_modules << :registerable
+  if Vish::Application.config.APP_CONFIG["register_policy"] == "INVITATION_ONLY" || Vish::Application.config.APP_CONFIG["register_policy"] == "HYBRID"
+    config.devise_modules << :invitable  
   end
 
   # Type of activities managed by actors

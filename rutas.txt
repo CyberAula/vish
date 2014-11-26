@@ -13,6 +13,8 @@ SOCIAL CONFIG
                  user_invitation POST     /users/invitation(.:format)                                          devise_invitations#create
              new_user_invitation GET      /users/invitation/new(.:format)                                      devise_invitations#new
                                  PUT      /users/invitation(.:format)                                          devise_invitations#update
+          edit_user_registration GET      /users/edit(.:format)                                                devise/registrations#edit
+               user_registration PUT      /users(.:format)                                                     devise/registrations#update
                                           /users/:id/excursions(.:format)                                      users#excursions
                                           /users/:id/workshops(.:format)                                       users#workshops
                                           /users/:id/resources(.:format)                                       users#resources
@@ -31,11 +33,11 @@ SOCIAL CONFIG
                                  DELETE   /session_locale(.:format)                                            session_locales#destroy
                       excursions          /excursions(.:format)                                                home#index {:format=>"html"}
                                           /home.json(.:format)                                                 home#index {:format=>:json}
-                            help          /help(.:format)                                                      help#index
-                             faq          /faq(.:format)                                                       faq#index
-                    legal_notice          /legal_notice(.:format)                                              legal_notice#index
-                        overview          /overview(.:format)                                                  overview#index
-                     user_manual          /user_manual(.:format)                                               help#download_user_manual
+                        overview          /overview(.:format)                                                  static#overview
+                             faq          /faq(.:format)                                                       static#overview
+                            help          /help(.:format)                                                      static#overview
+                    legal_notice          /legal_notice(.:format)                                              static#legal_notice
+                     user_manual          /user_manual(.:format)                                               static#download_user_manual
                      apis_search          /apis/search(.:format)                                               federated_search#search
                  apis_iframe_api          /apis/iframe_api(.:format)                                           excursions#iframe_api
                 apis_recommender          /apis/recommender(.:format)                                          recommender#api_resource_suggestions
@@ -90,6 +92,7 @@ SOCIAL CONFIG
                     contribution GET      /contributions/:id(.:format)                                         contributions#show
                                  PUT      /contributions/:id(.:format)                                         contributions#update
                                  DELETE   /contributions/:id(.:format)                                         contributions#destroy
+                                          /wa_resources_galleries/:id/add_resource(.:format)                   wa_resources_galleries#add_resource
           wa_resources_galleries GET      /wa_resources_galleries(.:format)                                    wa_resources_galleries#index
                                  POST     /wa_resources_galleries(.:format)                                    wa_resources_galleries#create
         new_wa_resources_gallery GET      /wa_resources_galleries/new(.:format)                                wa_resources_galleries#new
@@ -135,33 +138,8 @@ SOCIAL CONFIG
             categories_favorites          /categories/favorites(.:format)                                      categories#show_favorites
                        catalogue          /catalogue(.:format)                                                 catalogue#index
                                           /catalogue/:category(.:format)                                       catalogue#show
-                    competitions GET      /competitions(.:format)                                              competitions#index
-                                 POST     /competitions(.:format)                                              competitions#create
-                 new_competition GET      /competitions/new(.:format)                                          competitions#new
-                edit_competition GET      /competitions/:id/edit(.:format)                                     competitions#edit
-                     competition GET      /competitions/:id(.:format)                                          competitions#show
-                                 PUT      /competitions/:id(.:format)                                          competitions#update
-                                 DELETE   /competitions/:id(.:format)                                          competitions#destroy
-                         contest POST     /contest(.:format)                                                   contests#create
-                     new_contest GET      /contest/new(.:format)                                               contests#new
-                    edit_contest GET      /contest/edit(.:format)                                              contests#edit
-                                 GET      /contest(.:format)                                                   contests#show
-                                 PUT      /contest(.:format)                                                   contests#update
-                                 DELETE   /contest(.:format)                                                   contests#destroy
-               contest_all_index GET      /contest_all(.:format)                                               contest_all#index
-                                 POST     /contest_all(.:format)                                               contest_all#create
-                 new_contest_all GET      /contest_all/new(.:format)                                           contest_all#new
-                edit_contest_all GET      /contest_all/:id/edit(.:format)                                      contest_all#edit
-                     contest_all GET      /contest_all/:id(.:format)                                           contest_all#show
-                                 PUT      /contest_all/:id(.:format)                                           contest_all#update
-                                 DELETE   /contest_all/:id(.:format)                                           contest_all#destroy
-                     about_index GET      /about(.:format)                                                     about#index
-                                 POST     /about(.:format)                                                     about#create
-                       new_about GET      /about/new(.:format)                                                 about#new
-                      edit_about GET      /about/:id/edit(.:format)                                            about#edit
-                           about GET      /about/:id(.:format)                                                 about#show
-                                 PUT      /about/:id(.:format)                                                 about#update
-                                 DELETE   /about/:id(.:format)                                                 about#destroy
+                         contest          /contest(.:format)                                                   static#contest
+                     contest_all          /contest_all(.:format)                                               static#contest_all
                            admin          /admin(.:format)                                                     admin#index
             admin_closed_reports          /admin/closed_reports(.:format)                                      admin#closed_reports
                      admin_users          /admin/users(.:format)                                               admin#users
@@ -199,7 +177,7 @@ SOCIAL CONFIG
                             room GET      /rooms/:id(.:format)                                                 rooms#show
                                  PUT      /rooms/:id(.:format)                                                 rooms#update
                                  DELETE   /rooms/:id(.:format)                                                 rooms#destroy
-                                          /.well-known/host-meta(.:format)                                     #<Proc:0x0000000aa5cc60@/var/lib/gems/1.9.1/gems/actionpack-3.2.14/lib/action_controller/metal.rb:245>
+                                          /.well-known/host-meta(.:format)                                     #<Proc:0x000000085e4978@/var/lib/gems/1.9.1/gems/actionpack-3.2.14/lib/action_controller/metal.rb:245>
                        webfinger          /webfinger(.:format)                                                 webfinger#index
                             pshb          /pshb(.:format)                                                      pshb#index
                           salmon          /salmon/:slug(.:format)                                              salmon#index

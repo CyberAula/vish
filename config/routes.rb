@@ -1,6 +1,14 @@
 Vish::Application.routes.draw do
 
-  devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }
+  if Vish::Application.config.APP_CONFIG["register_policy"] == "INVITATION_ONLY"
+    devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }, :skip => [:registrations] 
+      as :user do
+        get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
+        put 'users' => 'devise/registrations#update', :as => 'user_registration'
+      end
+  else
+    devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }
+  end
 
   match 'users/:id/excursions' => 'users#excursions'
   match 'users/:id/workshops' => 'users#workshops'
