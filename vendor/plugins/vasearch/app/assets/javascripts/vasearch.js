@@ -18,6 +18,9 @@ VASearch = (function(){
   var _setSettings = function(options){
     options = options || {};
     _settings = options;
+    if(typeof _settings.locale == "undefined"){
+      _settings.locale = "default";
+    }
   };
 
   var getSettings = function(){
@@ -110,7 +113,7 @@ VASearch.UI = (function(V,undefined){
       $(scaffold).append('<div class="resultTitle"><a target="'+targetAttr+'" href="'+result.url+'">'+result.title+'</a></div>');
     }
     if((result.author)&&(result.author_profile_url)){
-      $(scaffold).append('<div class="resultAuthor"><span class="by">by</span> <a target="'+targetAttr+'" href="'+result.author_profile_url+'">'+result.author+'</a><br/>in <a target="'+targetAttr+'" href="'+result.instance+'">' + result.instance + '</a></div>');
+      $(scaffold).append('<div class="resultAuthor"><span class="by">'+V.Utils.getTrans("i.by")+'</span> <a target="'+targetAttr+'" href="'+result.author_profile_url+'">'+result.author+'</a><br/>' + V.Utils.getTrans("i.in") +' <a target="'+targetAttr+'" href="'+result.instance+'">' + result.instance + '</a></div>');
     };
     if((result.like_count)&&(result.visit_count)&&(result.url)){
       $(scaffold).append('<div class="resultBottom"><div class="likes"><span>'+result.like_count+'</span> <a target="'+targetAttr+'" href="'+result.url+'"><img class="inlineIcon" src="/assets/asearch/star.png"></a></div><div class="views"><span>'+result.visit_count+'</span> <img class="inlineIcon" src="/assets/asearch/eye.png"></div></div>');
@@ -344,8 +347,24 @@ VASearch.Utils = (function(V,undefined){
 
   //Constants
   var _id = 0;
+  var _translations;
+  var ALL_TRANSLATIONS = {
+      "default":
+        //English
+        {
+          "i.by"            : "by",
+          "i.in"            : "in"
+        },
+      "es":
+        {
+          "i.by"            : "por",
+          "i.in"            : "en"
+        }
+  };
 
   var init = function(){
+    var locale = V.getSettings().locale;
+    _translations = ALL_TRANSLATIONS[locale];
   };
 
   var getId = function(){
@@ -363,10 +382,58 @@ VASearch.Utils = (function(V,undefined){
     }
   };
 
+  /*
+   * I18n
+   */
+  var getTrans = function(s,params){
+    if(typeof(_translations)!= 'undefined' && _translations[s]){
+      return _getTrans(_translations[s],params);
+    }
+
+    //Search in default language
+    var dtrans = ALL_TRANSLATIONS["default"][s];
+    if(dtrans){
+      return _getTrans(dtrans,params);
+    }
+
+    //Don't return s if s is a key.
+    var key_pattern =/^i\./g;
+    if(key_pattern.exec(s)!=null){
+      return null;
+    } else {
+      return s;
+    }
+  };
+
+  /*
+   * Replace params (if they are provided) in the translations keys. Example:
+   * // "i.dtest" : "by #{author} in Instance",
+   * // V.Utils.getTrans("i.dtest", {author: "Aldo"}) -> "by Aldo in Instance"
+   */
+  var _getTrans = function(trans, params){
+    if(typeof params != "object"){
+      return trans;
+    }
+
+    for(var key in params){
+      var stringToReplace = "#{" + key + "}";
+      if(trans.indexOf(stringToReplace)!=-1){
+        trans = _replaceAll(trans,stringToReplace,params[key]);
+      }
+    };
+
+    return trans;
+  };
+
+  var _replaceAll = function(string,find,replace){
+    return string.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
+  };
+
   return {
       init : init,
       getId: getId,
-      debug: debug    
+      getTrans: getTrans,
+      debug: debug
   };
 
 }) (VASearch);

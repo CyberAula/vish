@@ -2,7 +2,7 @@
 <%= javascript_include_tag "vasearch" %>
 <script type="text/javascript">
   $(document).ready(function(){
-    VASearch.init({current_instance: '<%=Vish::Application.config.full_domain%>'});
+    VASearch.init({locale: '<%=I18n.locale%>', current_instance: '<%=Vish::Application.config.full_domain%>'});
   });
 </script>
 
