@@ -101,6 +101,17 @@
 	text-decoration: none;
 }
 
+#asearch_results div.noResults{
+	padding: 50px 5px 50px 5px;
+	font-family: Arial, sans-serif;
+	font-size: 23px;
+	line-height: 18px;
+	font-weight: normal;
+	word-wrap: break-word;
+	text-align: center;
+	margin-top: 50px;
+}
+
 #asearch_results div.resultImageWrapper{
 	width: 200px;
 	height: 170px;

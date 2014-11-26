@@ -123,7 +123,7 @@ VASearch.UI = (function(V,undefined){
   };
 
   var drawNoResults = function(){
-    $("#asearch_results").append("<p>No results</p>");
+    $("#asearch_results").append("<div class='noResults'>"+V.Utils.getTrans("i.noResults")+"</div>");
   };
 
   var cleanResults = function(){
@@ -362,12 +362,14 @@ VASearch.Utils = (function(V,undefined){
         //English
         {
           "i.by"            : "by",
-          "i.in"            : "in"
+          "i.in"            : "in",
+          "i.noResults"     : "No results were found. Try with other search criteria"
         },
       "es":
         {
           "i.by"            : "por",
-          "i.in"            : "en"
+          "i.in"            : "en",
+          "i.noResults"     : "No se encontraron resultados. Prueba con otros criterios de búsqueda"
         }
   };
 
