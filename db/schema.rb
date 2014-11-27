@@ -57,9 +57,6 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
     t.datetime "updated_at",         :null => false
   end
 
-  add_index "activity_object_audiences", ["activity_object_id"], :name => "activity_object_audiences_on_activity_object_id"
-  add_index "activity_object_audiences", ["relation_id"], :name => "activity_object_audiences_on_relation_id"
-
   create_table "activity_object_properties", :force => true do |t|
     t.integer "activity_object_id"
     t.integer "property_id"
@@ -101,6 +98,13 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
     t.decimal  "teachers_qscore",                    :precision => 12, :scale => 6
   end
 
+  create_table "activity_objects_wa_resources_galleries", :id => false, :force => true do |t|
+    t.integer  "activity_object_id"
+    t.integer  "wa_resources_gallery_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
   create_table "activity_verbs", :force => true do |t|
     t.string   "name",       :limit => 45
     t.datetime "created_at"
@@ -118,7 +122,7 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
-    t.string   "email",                 :default => "",         :null => false
+    t.string   "email",                 :default => "",    :null => false
     t.string   "slug"
     t.string   "subject_type"
     t.boolean  "notify_by_email",       :default => true
@@ -188,6 +192,14 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
   add_index "contacts", ["receiver_id"], :name => "index_contacts_on_receiver_id"
   add_index "contacts", ["sender_id"], :name => "index_contacts_on_sender_id"
 
+  create_table "contributions", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.integer  "wa_assignment_id"
+    t.integer  "parent_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
     t.datetime "created_at",                 :null => false
@@ -235,7 +247,6 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
     t.text     "embed"
   end
 
-  add_index "events", ["activity_object_id"], :name => "events_on_activity_object_id"
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
   create_table "exclude_auth_mves", :force => true do |t|
@@ -265,7 +276,7 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
     t.integer  "slide_count",        :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",              :default => false
-    t.text     "offline_manifest"
+    t.text     "offline_manifest",   :default => ""
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
     t.integer  "mve",                :default => 0
@@ -538,29 +549,78 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "encrypted_password",     :limit => 128, :default => "",     :null => false
+    t.string   "encrypted_password",     :default => ""
     t.string   "password_salt"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
-    t.datetime "created_at",                                                :null => false
-    t.datetime "updated_at",                                                :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.integer  "actor_id"
     t.string   "language"
-    t.boolean  "connected",                             :default => false
-    t.string   "status",                                :default => "chat"
-    t.boolean  "chat_enabled",                          :default => true
+    t.boolean  "connected",              :default => false
+    t.string   "status",                 :default => "chat"
+    t.boolean  "chat_enabled",           :default => true
     t.integer  "occupation"
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
   end
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"
+  add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "wa_assignments", :force => true do |t|
+    t.text     "fulltext"
+    t.text     "plaintext"
+    t.boolean  "with_dates",              :default => false
+    t.datetime "open_date"
+    t.datetime "due_date"
+    t.text     "available_contributions"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
+
+  create_table "wa_assignments_wa_contributions_galleries", :id => false, :force => true do |t|
+    t.integer  "wa_assignment_id"
+    t.integer  "wa_contributions_gallery_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "wa_contributions_galleries", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "wa_resources", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "wa_resources_galleries", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "wa_texts", :force => true do |t|
+    t.text     "fulltext"
+    t.text     "plaintext"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "webapps", :force => true do |t|
     t.integer  "activity_object_id"
@@ -576,6 +636,32 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+  end
+
+  create_table "workshop_activities", :force => true do |t|
+    t.integer  "workshop_id"
+    t.integer  "wa_id"
+    t.string   "wa_type"
+    t.integer  "position"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "workshops", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.boolean  "draft",              :default => true
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
+
+  create_table "writings", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "fulltext"
+    t.text     "plaintext"
   end
 
   add_foreign_key "activities", "activity_verbs", :name => "index_activities_on_activity_verb_id"

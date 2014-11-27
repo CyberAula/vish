@@ -1,10 +1,10 @@
 <!--activity-->
 <div class="activity">
-  <ul class="nav nav-tabs"> 
+  <ul class="nav nav-tabs">
 
     <li class="active">
       <a href="#coment1" data-toggle="tab">
-        <i class="icon-comment"></i>
+        <i class="fa fa-comment-o"></i>
         <span class=" hidden-xs"><%=t('comment.other')%></span>
       </a>
     </li>
@@ -13,7 +13,7 @@
       <!-- Disable evaluations if LOEP is not enabled -->
       <li>
         <a href="#evaluation1" data-toggle="tab">
-          <i class="icon-ok-sign"></i>
+          <i class="fa fa-check-square"></i>
           <span class="hidden-xs"><%=t('evaluation.tabtitle')%></span>
         </a>
       </li>
@@ -21,7 +21,7 @@
 
     <li class="suggestion_show hidden-md hidden-lg">
       <a  href="#suggestion_show" data-toggle="tab">
-        <i class="icon-reorder"></i>
+        <i class="fa fa-bars"></i>
         <span class=" hidden-xs"><%=t('recommended')%></span>
       </a>
     </li>
@@ -37,20 +37,20 @@
                 view comments
               </a>
             </h4>
-            
+
 
           </div>
           <div id="comment-activity" class="panel-collapse collapse">
             <div class="panel-body">
               <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
             </div>
-          </div>  
+          </div>
         </div>
       </div>
       <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
     </div>
 
-    <div class="tab-pane" id="evaluation1">              
+    <div class="tab-pane" id="evaluation1">
       <div class="btn-evalue">
         <%= t('evaluation.contribute.student.title') %>
           <!-- Button to trigger modal -->
@@ -79,7 +79,7 @@
         </div>
       </div>
     </div>
-  </div>    
+  </div>
 </div>
 
 <%unless Vish::Application.config.APP_CONFIG['loep'].nil? %>
@@ -98,7 +98,7 @@
         loepSettings.language = '<%=I18n.locale.to_s%>';
         loepSettings.tokenURL = "/loep/session_token.json";
         loepSettings.debug = false;
-          
+
         <%unless @excursion.users_qscore.nil?%>
           var learningLoepSettings = $.extend({}, loepSettings);
           learningLoepSettings.evmethod = "wblts";

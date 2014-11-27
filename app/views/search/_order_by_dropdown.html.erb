@@ -1,33 +1,33 @@
 <div class="dropdown order_by_selector" id="">
 
 <div class="toolbar_nav-tab">
-    
+
     <button class="btn btn-default dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="" data-toggle="dropdown">
-      <i class="icon-eye-open"></i>
+      <i class="fa fa-eye"></i>
       <span><%=t('order_by.relevance')%></span><i class="icon-angle-down"></i>
     </button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
      <li>
           <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type])%>" sort-by-key='relevance'>
-            <i class="icon-eye-open"></i>
+            <i class="fa fa-eye"></i>
             <span><%=t('order_by.relevance')%> </span>
           </a>
       </li>
      <li>
           <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"popularity")%>" sort-by-key='popularity'>
-            <i class="icon-dashboard"></i>
+            <i class="fa fa-tachometer"></i>
             <span><%=t('order_by.popularity')%> </span>
           </a>
       </li>
       <li>
           <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"updated_at")%>" sort-by-key='updated_at'>
-          <i class="icon-pencil"></i>
+          <i class="fa fa-pencil"></i>
           <span><%=t('order_by.updated_at')%> </span>
         </a>
       </li>
       <li>
-          <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type], :sort_by=>"created_at")%>" sort-by-key='created_at'>        
-            <i class="icon-bolt"></i>
+          <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type], :sort_by=>"created_at")%>" sort-by-key='created_at'>
+            <i class="fa fa-bolt"></i>
             <span><%=t('order_by.created_at')%> </span>
 
         </a>
@@ -35,8 +35,8 @@
 
       <%if params[:type]=="excursion"%>
         <li>
-            <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"quality")%>" sort-by-key='quality'>          
-              <i class="icon-ok-sign"></i> 
+            <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"quality")%>" sort-by-key='quality'>
+              <i class="fa fa-check-circle"></i>
               <span><%=t('order_by.quality')%> </span>
             </a>
         </li>
@@ -44,14 +44,14 @@
 
       <%unless params[:type]=="user"%>
         <li>
-            <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"visits")%>" sort-by-key='visits'>          
-              <i class="icon-eye-open"></i> 
+            <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"visits")%>" sort-by-key='visits'>
+              <i class="fa fa-eye"></i>
               <span><%=t('order_by.visits')%> </span>
             </a>
         </li>
         <li>
-            <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"favorites")%>" sort-by-key='favorites'>          
-              <i class="icon-star"></i> 
+            <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"favorites")%>" sort-by-key='favorites'>
+              <i class="fa fa-star"></i>
               <span><%=t('order_by.favorites')%> </span>
             </a>
         </li>

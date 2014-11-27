@@ -4,16 +4,20 @@
   <!--tittle-->
   <div class="viewsAndCount">
     <div class="views">
-      <%=@excursion.visit_count.to_s%>
+      <%#= @excursion.visit_count.to_s%>
+      <%=resource.visit_count.to_s%>
       <span>
         <%=t('follow.views')%>
       </span>
     </div>
-    <%unless @excursion.post_activity.nil?%>
+    <%#unless @excursion.post_activity.nil?%>
+    <%unless resource.post_activity.nil?%>
       <div class="like">
-        <%=@excursion.post_activity.likes.count.to_s%>
+        <%#= @excursion.post_activity.likes.count.to_s%>
+        <%=resource.post_activity.likes.count.to_s%>
         <span>
-          <%= link_like(@excursion.post_activity)%>
+          <%#= link_like(@excursion.post_activity)%>
+          <%= link_like(resource.post_activity)%>
         </span>
       </div>
     <%end%>
@@ -25,26 +29,24 @@
     <header>
       <table class="table table-hover">
         <%= javascript_tag do %>
-          <%#= modal_for(@excursion.author.subject) %>
-          <% @excursion.contributors.each do |c| %>
-          <%#= modal_for(c.subject) %>
-          <% end%>
+          <%# @excursion.contributors.each do |c| %>
+          <%# end%>
         <% end %>
 
         <tr>
-          <% unless @excursion.contributors.blank? %>
+          <%# unless @excursion.contributors.blank? %>
             <!--contributors-->
             <td><%= t('excursion.contributors.name').capitalize %></td>
             <td>
-              <% @excursion.contributors.uniq.each do |c,index| %>
-                <% unless index==0 %>
+              <%# @excursion.contributors.uniq.each_with_index do |c,index| %>
+                <%# unless index==0 %>
                   ,
-                <% end %>
+                <%# end %>
                 <%= link_to c.name, c.subject %>
                 </a>
-              <%end%>
+              <%#end%>
             </td>
-          <%end%>
+          <%#end%>
         </tr>
 
         <tr>
@@ -90,14 +92,7 @@
             </td>
             <% end %>
           </tr>
-          <!--date-create
-          <div class="tittle-notebook">
-          <%= t('document.info.date.created_at') %>
-          </div>
-          <div class="text-notebook">
-          <%= I18n.localize @excursion.created_at, :format => :long %>
-          </div>
-          -->
+
           <tr>
             <!--date-upload-->
             <td><span><%= t('document.info.date.updated_at') %></span></td>

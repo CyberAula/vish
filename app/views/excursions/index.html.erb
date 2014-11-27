@@ -1,7 +1,7 @@
 <section id="home">
   <div class="home">
 <script>
-  $(document).ready(function(){  
+  $(document).ready(function(){
 
     var net_tab_loaded = false;
 
@@ -13,7 +13,7 @@
             type : "GET",
             url : "<%= home_path(:tab=>'net', :page =>1) %>",
             success : function(html) {
-              $('#loader_pagination_net').hide();      
+              $('#loader_pagination_net').hide();
               $("#net_tab_ready").append(html);
               re_apply_backstretch("net");
             },
@@ -25,7 +25,7 @@
         re_apply_pageless("net");
       }
     });
-    
+
     var catalogue_tab_loaded = false;
 
     $("#catalogue_tab").click(function(){
@@ -40,7 +40,7 @@
       }
     });
   //Catalogue behaviour
- 
+
 
     var home_tab_loaded = false;
     $("#home_tab").click(function(){
@@ -51,7 +51,7 @@
             type : "GET",
             url : "<%= home_path(:tab=>'home', :page =>1) %>",
             success : function(html) {
-              $('#loader_pagination_home').hide();      
+              $('#loader_pagination_home').hide();
               $("#first_page_home_tab_ready").append(html);
               re_apply_backstretch("home");
             },
@@ -61,7 +61,7 @@
           });
       } else {
         re_apply_pageless("home");
-      }   
+      }
     });
 
 
@@ -77,7 +77,7 @@
       re_apply_backstretch("catforhome");
     <%end%>
   });
-  
+
   var pageless_state = {
       "home":{
         "url": "<%= home_path(:tab=>'home', :sort_by=>'popularity') %>",
@@ -90,7 +90,7 @@
         "current_page":0
       }
     };
-    
+
   var catalogue_charge = {}
 
   function catalogue_state(next_state){
@@ -99,7 +99,7 @@
             type : "GET",
             url : next_state,
             success : function(html) {
-              $('.loader_pagination').hide();      
+              $('.loader_pagination').hide();
               $("#catalogue_tab_ready").append(html);
               //We add charged states to variable
               re_apply_backstretch("catforhome");
@@ -122,7 +122,7 @@
 
   function update_pageless_state(tab, num_pages, current_page){
       pageless_state[tab].num_pages = num_pages;
-      pageless_state[tab].current_page = current_page;  
+      pageless_state[tab].current_page = current_page;
   }
 
 
@@ -130,15 +130,15 @@
 
     function re_apply_pageless(tab){
     //first remove old pageless
-      $.pagelessStop();      
-     
-      $("#" + tab + "_tab_ready ul").pageless({ 
+      $.pagelessStop();
+
+      $("#" + tab + "_tab_ready ul").pageless({
                       totalPages: pageless_state[tab].num_pages ,
                       url: get_url_with_sort_by(tab),
                       currentPage: pageless_state[tab].current_page,
                       loader: '.loader_pagination',
                       complete: function(){
-                
+
                       },  //remake the updating | For 17
                       end: function(){
                         $('.loader_pagination').hide();
@@ -154,15 +154,15 @@
       return the_url;
     }
 
-    
-    function re_apply_backstretch(tab){ 
+
+    function re_apply_backstretch(tab){
       $("#" + tab + " div[bs-img]").each(function() {
-        if($(this).parents(".tab-pane").css('display')!="none"){   
-          $(this).backstretch( $(this).attr("bs-img") ); 
+        if($(this).parents(".tab-pane").css('display')!="none"){
+          $(this).backstretch( $(this).attr("bs-img") );
         }
         else{
           $(this).attr("fix-bs", "true");
-        }   
+        }
       });
     }
 
@@ -172,16 +172,16 @@
 
     function fix_backstretch(tab){
       $("#" + tab + " div[fix-bs]").each(function() {
-        if($(this).parents(".tab-pane").css('display')!="none"){ 
+        if($(this).parents(".tab-pane").css('display')!="none"){
           $(this).backstretch( $(this).attr("bs-img") );
           $(this).removeAttr("fix-bs");
-        }        
-      });     
+        }
+      });
     }
 
     $(window).on('resize.backstretch', set_fix_bs_on_hidden_tabs)
              .on('orientationchange.backstretch', set_fix_bs_on_hidden_tabs);
-    
+
 
     function set_fix_bs_on_hidden_tabs(){
       $(".tab-pane:hidden").each(function(){
@@ -212,9 +212,9 @@
       </a></li>
       <%= render partial: 'help/help_home' %>
     </ul>
-  
 
-   
+
+
 
 
 
@@ -236,7 +236,7 @@
       </div>
     </div>
 
-    <div class="tab-pane <%= params[:tab]=='net' ? 'active':''%>" id="net"> 
+    <div class="tab-pane <%= params[:tab]=='net' ? 'active':''%>" id="net">
       <%= render partial: 'excursions/order_by_net' %>
       <div id="net_tab_ready">
         <%if params[:tab]=="net"%>
@@ -251,10 +251,10 @@
           <%= render :partial => "layouts/loading" %>
         </div>
       </div>
-    </div>   
+    </div>
 
 
-    <div class="tab-pane <%= params[:tab]=='catalogue' ? 'active':''%>" id="catforhome"> 
+    <div class="tab-pane <%= params[:tab]=='catalogue' ? 'active':''%>" id="catforhome">
       <%= render :partial => "catalogue/tags"%>
       <div id="catalogue_tab_ready"><% if params[:tab] == 'catalogue'%>
       <%= render :partial => "excursions/home/catalogue_main" %>

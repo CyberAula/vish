@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-    
+
     <%if controller.action_name == "show" %>
       <%js_file = "vishViewer"%>
     <%else%>
@@ -33,7 +33,7 @@
 
   <body onload="start()" style="display: none" class="loaded">
     <%= yield %>
-    <%= render :partial => "layouts/crazyegg.html.erb" %>
+    <%= render :partial => "layouts/tools/crazyegg.html.erb" %>
   </body>
 
 </html>

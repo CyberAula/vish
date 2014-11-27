@@ -114,7 +114,7 @@
           <!--TITULO-->
           <label><%= t('document.leyend.title')%></label>
           <input type="text" class="form-control title" placeholder="<%= t('document.title_input')%>">
-          
+
           <!--DESCRIPCION-->
           <label><%= t('document.leyend.description')%></label>
           <textarea type="text" class="form-control description" placeholder="<%= t('document.input')%>"></textarea>
@@ -145,7 +145,7 @@
           <!--LANGUAGE-->
           <label><%= t('document.leyend.language')%></label>
           <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "language") %>
-          
+
           <!--AGE SLIDER-->
           <label><%= t('document.leyend.recommended_age')%></label>
           <div class="limits">
@@ -217,7 +217,7 @@
   var uploadButton = $("#AddResource input[value=<%= t('document.upload')%>][type='button'][class='btn btn-primary']");
 
   $(uploadButton).click(function(event){
-     var resource_type = $("#AddResource .accordion-body.collapse.in").attr('id');
+     var resource_type = $("#AddResource .panel.collapse.in").attr('id');
 
     if(resource_type == "document" && $("#AddResource input[name='"+resource_type+"[file]']").val() == ""){
       alert("<%= t('document.body.title3')%>");
@@ -251,6 +251,7 @@
 
       $(this).button('loading');
       //SUBMIT
+
       $("#AddResource input[value=<%= t('button.save') %>][type='submit'][name='commit'][class='"+resource_type+" hide']").click();
     }
   });

@@ -1,3 +1,4 @@
+
 <div id="MetadataModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -18,30 +19,27 @@
                 <td><%=value%></td>
               </tr>
             <% end %>
+          <% end %>
             <tr>
               <td><%=t("metadata.access_lom")%>:</td>
-              <td><a href="<%=excursion_metadata_path(@excursion)%>"><%=Vish::Application.config.full_domain + excursion_metadata_path(@excursion)%></a></td>
+              <td><a href="<%=ao_object_metadata_path(resource)%>"><%=Vish::Application.config.full_domain + ao_object_metadata_path(resource)%></a></td>
             </tr>
           </tbody>
         </table>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
 
 
   <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
-
-
     <span id="showingMore" class="showMore accordion-toggle btn btn-default" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" title=<%=t("excursion.actions.show_more")%>>
     <%=t('excursion.actions.show_more')%>
     </span>
   </a>
   <button href="#MetadataModal" data-toggle="modal" class="btn btn-default">
-                  <%=t('excursion.actions.show_meta')%>
+    <%=t('excursion.actions.show_meta')%>
   </button>
-
-
 
 <script language="javascript" type="text/javascript" >
 
@@ -55,5 +53,5 @@
       $("#showingMore").attr("title", "showMore");
     }
   });
-  
+
 </script>

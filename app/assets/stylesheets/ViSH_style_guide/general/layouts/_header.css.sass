@@ -6,12 +6,17 @@
 .search-nav
   margin-right: 10px
   float: right
-  .input-group 
+  form
+    .form-control
+      height: 37px
+    .search_button_class
+      vertical-align: none !important
+  .input-group
     @media (max-width: $screen-xs-max)
       margin-left: 0px !important
       width: 100%
 
-  .search-query 
+  .search-query
     width: 290px
     display: inline
     @media (max-width: $screen-xs-max)
@@ -54,7 +59,7 @@
       form
         padding: 0 7px 7px !important
   li.language
-    ul li 
+    ul li
       padding: 0 9px
       &:hover
         background-color: $white !important
@@ -64,7 +69,7 @@
       a
       padding: 0 9px
 
- 
+
   .user
     margin-bottom: 0
     padding-left: 0
@@ -109,7 +114,7 @@
       @media (max-width: $screen-sm-max)
         width: 34px
       @media (min-width: 779px) and (max-width: 877px)
-        width: 33px       
+        width: 33px
 
   .dropdown-toggle:hover
     border: 1px solid $brand-primary
@@ -132,7 +137,7 @@ form.navbar-form-search
 #search_button
   @include hidden-xs
 
-.navbar-collapse 
+.navbar-collapse
   overflow-x: visible
   padding-right: 0
   padding-left: 0
@@ -183,4 +188,3 @@ form.navbar-form-search
     a
       color: $white
       font-family: $corporate-font-family-sans-serif-Bold
-
