@@ -177,6 +177,50 @@
 	left: -1px;
 }
 
+/* Resutls in table */
+
+#asearch_results table.asearch_results_table{
+	margin: 10px 0px 20px 0px;
+	padding:0px;
+	width:100%;
+	border:1px solid #000000;
+	border-radius: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#asearch_results table td {
+	vertical-align: middle;
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	border-width: 0px 1px 1px 0px;
+	text-align: left;
+	padding: 8px;
+	font-size: 16px;
+	font-family: Arial;
+	font-weight: normal;
+	color: #000000;
+}
+
+#asearch_results table  tr:first-child td{
+	background-color:#21160b;
+	border:0px solid #000000;
+	text-align:center;
+	border-width: 0px 0px 1px 1px;
+	font-size: 18px;
+	font-family: Arial;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+#asearch_results table tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}
+
+#asearch_results table tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}
+
 .asearch_waiting{
 	cursor: wait !important;
 }
@@ -247,7 +291,8 @@
 #asearch_settings .ViSHinstances ul{
 	list-style-type: none;
 	text-align: left;
-	height: 140px;
+	height: auto;
+	max-height: 90px;
 }
 
 #asearch_settings .ViSHinstances ul li{

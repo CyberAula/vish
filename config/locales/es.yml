@@ -132,10 +132,14 @@ es:
       webapp: "Aplicaciones Web"
       zipfile: "Ficheros ZIP"
     instances:
-      add_instace: "Añadir Instancia"
+      add_instance: "Añadir Instancia"
       add: "Añadir"
       title: "Instancias de ViSH"
       results: "Resultados por instancia"
+    rendering:
+      title: "Opciones de visualización"
+      boxes: "Ver como avatares"
+      table: "Ver como tabla"
     sorting:
       sort_title: "Ordenar"
       relevance: "Relevancia"

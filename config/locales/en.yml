@@ -132,10 +132,14 @@ en:
       webapp: "Web Applications"
       zipfile: "ZIP files"
     instances:
-      add_instace: "Add Instance"
+      add_instance: "Add Instance"
       add: "Add"
       title: "ViSH Instances"
       results: "Results per instance"
+    rendering:
+      title: "Visualization options"
+      boxes: "View as avatars"
+      table: "View as table"
     sorting:
       sort_title: "Sorting"
       relevance: "Relevance"

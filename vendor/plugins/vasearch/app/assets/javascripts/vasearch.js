@@ -8,18 +8,24 @@ VASearch = (function(){
   var _settings;
 
   var init = function(options){
-    _setSettings(options);
+    setSettings(options);
 
     VASearch.Utils.init(_settings);
     VASearch.Core.init(_settings);
     VASearch.UI.init(_settings);
   };
 
-  var _setSettings = function(options){
+  var setSettings = function(options){
     options = options || {};
     _settings = options;
     if(typeof _settings.locale == "undefined"){
       _settings.locale = "default";
+    }
+    if(typeof _settings.draw == "undefined"){
+      _settings.draw = "boxes";
+    }
+    if(typeof _settings.allowAddInstance != "boolean"){
+      _settings.allowAddInstance = false;
     }
   };
 
@@ -29,7 +35,8 @@ VASearch = (function(){
 
   return {
       init : init,
-      getSettings: getSettings
+      getSettings : getSettings,
+      setSettings : setSettings
   };
 
 })();
@@ -40,11 +47,15 @@ VASearch = (function(){
  */
 VASearch.UI = (function(V,undefined){
 
-  var init = function(){
-    _loadUIEvents();
+  var init = function(settings){
+    _loadUIEvents(settings);
+
+    if(settings.allowAddInstance){
+      $("#asearch_settings").find("div.addInstanceInputWrapper").css("display","block");
+    }
   };
 
-  var _loadUIEvents = function(){
+  var _loadUIEvents = function(settings){
     //Search on press enter
     $("#asearch_header .asearch_box").bind('keypress', function(e){
       var code = e.keyCode || e.which;
@@ -73,7 +84,7 @@ VASearch.UI = (function(V,undefined){
       var instanceInput = $("#asearch_settings .addInstanceInput");
       var newInstance = $(instanceInput).val();
       if(newInstance!=""){
-        var el = $('<li><input type="checkbox"><span>'+$(instanceInput).val()+'</span><span class="deleteEntity" title="delete">[X]</span></li>');
+        var el = $('<li><input type="checkbox"><span>'+'  '+$(instanceInput).val()+'</span><span class="deleteEntity" title="delete">[X]</span></li>');
         $("#asearch_settings .ViSHinstances").find("ul").append(el);
       }
     });
@@ -96,13 +107,43 @@ VASearch.UI = (function(V,undefined){
       _updateRange(this.value);
     });
 
+    $("#asearch_settings [asparam='visualization']").on("change", function(e){
+      //Change settings
+      var current_settings = V.getSettings();
+      current_settings.draw = this.value;
+      V.setSettings(current_settings);
+    });
+
   };
 
   var _updateRange = function(val){
     $("#asearch_settings [asparam='rangeValue']").html(val);
   };
 
-  var drawResult = function(result){
+  var drawResults = function(results){
+    cleanResults();
+    if(results.length === 0){
+      _drawNoResults();
+    } else {
+      switch(V.getSettings().draw){
+        case "table":
+          $("#asearch_results").append("<table class='asearch_results_table'>");
+          var table = $("#asearch_results").find("table");
+          _drawResultWithTable({title: "Title", instance: "Instance", author: "Author"},table,true);
+          $(results).each(function(index,result){
+            _drawResultWithTable(result,table);
+          });
+          $("#asearch_results").append("</table>");
+          break;
+        default:
+          $(results).each(function(index,result){
+            _drawResultWithBox(result);
+          });
+      }
+    }
+  };
+
+  var _drawResultWithBox = function(result){
     var targetAttr = (typeof result.instance != "undefined" && result.instance == V.getSettings().current_instance) ? "_self" : "_blank";
     
     var scaffold = $('<div class="result" id="vasearchbox_'+V.Utils.getId()+'"></div>');
@@ -112,7 +153,7 @@ VASearch.UI = (function(V,undefined){
     if((result.title)&&(result.url)){
       $(scaffold).append('<div class="resultTitle"><a target="'+targetAttr+'" href="'+result.url+'">'+result.title+'</a></div>');
     }
-    if((result.author)&&(result.author_profile_url)){
+    if((result.author)&&(result.author_profile_url)&&(result.instance)){
       $(scaffold).append('<div class="resultAuthor"><span class="by">'+V.Utils.getTrans("i.by")+'</span> <a target="'+targetAttr+'" href="'+result.author_profile_url+'">'+result.author+'</a><br/>' + V.Utils.getTrans("i.in") +' <a target="'+targetAttr+'" href="'+result.instance+'">' + result.instance + '</a></div>');
     };
     if((result.like_count)&&(result.visit_count)&&(result.url)){
@@ -122,7 +163,48 @@ VASearch.UI = (function(V,undefined){
     $("#asearch_results").append(scaffold);
   };
 
-  var drawNoResults = function(){
+  var _drawResultWithTable = function(result,table,header){
+    var targetAttr = (typeof result.instance != "undefined" && result.instance == V.getSettings().current_instance) ? "_self" : "_blank";
+  
+    var row = $('<tr></tr>');
+
+    //Title
+    if(result.title){
+      if(result.url){
+        $(row).append('<td><a target="'+targetAttr+'" href="'+result.url+'">'+result.title+'</a></td>');
+      } else {
+        $(row).append('<td>'+result.title+'</td>');
+      }
+    } else {
+      $(row).append('<td></td>');
+    }
+
+    //Instance
+    if(result.instance){
+      if(header){
+        $(row).append('<td>'+result.instance+'</td>');
+      } else {
+        $(row).append('<td><a target="'+targetAttr+'" href="'+result.instance+'">'+result.instance+'</a></td>');
+      }
+    } else {
+      $(row).append('<td></td>');
+    }
+
+    //Author
+    if(result.author){
+      if(result.author_profile_url){
+        $(row).append('<td><a target="'+targetAttr+'" href="'+result.author_profile_url+'">'+result.author+'</a></td>');
+      } else {
+        $(row).append('<td>'+result.author+'</td>');
+      }
+    } else {
+      $(row).append('<td></td>');
+    }
+
+    $(table).append(row);
+  };
+
+  var _drawNoResults = function(){
     $("#asearch_results").append("<div class='noResults'>"+V.Utils.getTrans("i.noResults")+"</div>");
   };
 
@@ -184,8 +266,7 @@ VASearch.UI = (function(V,undefined){
     getInstancesFromUI : getInstancesFromUI,
     onStartSearch: onStartSearch,
     onFinishSearch: onFinishSearch,
-    drawResult : drawResult,
-    drawNoResults : drawNoResults,
+    drawResults : drawResults,
     cleanResults : cleanResults
   };
 
@@ -245,6 +326,7 @@ VASearch.Core = (function(V,undefined){
             queryResults = [];
             $(data.response.results).each(function(index,result){
               result.instance = data.instanceDomain;
+              result.avatar_url = (typeof result.avatar_url == "string" ? result.avatar_url : "/assets/asearch/lo.png");
               result.sorting_weight = (typeof result.weights != "undefined" && typeof result.weights.sorting_weight == "number") ? result.weights.sorting_weight : 0;
               queryResults.push(result);
             });
@@ -270,17 +352,7 @@ VASearch.Core = (function(V,undefined){
   };
 
   var _onFinishSearch = function(results){
-    V.UI.cleanResults();
-
-    if(results.length === 0){
-      V.UI.drawNoResults();
-    } else {
-      $(results).each(function(index,result){
-        result.avatar_url = (typeof result.avatar_url == "string" ? result.avatar_url : "/assets/asearch/lo.png");
-        V.UI.drawResult(result);
-      });
-    }
-
+    V.UI.drawResults(results);
     V.UI.onFinishSearch();
   };
 

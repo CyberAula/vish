@@ -2,7 +2,7 @@
 <%= javascript_include_tag "vasearch" %>
 <script type="text/javascript">
   $(document).ready(function(){
-    VASearch.init({locale: '<%=I18n.locale%>', current_instance: '<%=Vish::Application.config.full_domain%>'});
+    VASearch.init({locale: '<%=I18n.locale%>', current_instance: '<%=Vish::Application.config.full_domain%>', draw: "boxes", allowAddInstance:false});
   });
 </script>
 
@@ -44,6 +44,7 @@
       <option value="favorites"><%=t("asearch.sorting.favorites")%></option>
       <option value="quality"><%=t("asearch.sorting.quality")%></option>
     </select>
+
     <p class="settingsTitleSec"><%=t("asearch.filters.filter_title")%></p>
     <p class="settingsField" style="margin-top: 9px !important;"><%=t("asearch.filters.date")%></p>
     <div class="dateWrapper">
@@ -83,7 +84,7 @@
     <p class="settingsField"><%=t("asearch.instances.title")%></p>
     <div class="ViSHinstances">
       <div class="addInstanceInputWrapper" style="display:none">
-        <input type="text" class="addInstanceInput" placeholder="<%=t("asearch.instances.add_instance")%>">
+        <input type="text" class="addInstanceInput" placeholder="<%=t('asearch.instances.add_instance')%>"/>
         <span class="addInstanceButton" title="add">[<%=t("asearch.instances.add")%>]</span>
       </div>
       <ul>
@@ -95,6 +96,11 @@
         <% end %>
       </ul>
     </div>
+    <p class="settingsTitleSec"><%=t("asearch.rendering.title")%></p>
+    <select style="margin-top: 9px !important;" asparam="visualization">
+      <option value="boxes"><%=t("asearch.rendering.boxes")%></option>
+      <option value="table"><%=t("asearch.rendering.table")%></option>
+    </select>
   </div>
 
 </div>
