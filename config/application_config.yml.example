@@ -11,7 +11,7 @@ development:
     resources: ["Document","Webapp","Scormfile","Link","Embed"]
     home: ["Excursion"]
     catalogue: ["Excursion"]
-  services: ["ARS","Catalogue","Competitions2013"]
+  services: ["ARS","Catalogue","Competitions2013","ASearch"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   advanced_search:
     instances: ["http://vishub.org"]
@@ -28,7 +28,7 @@ production:
     resources: ["Document","Webapp","Scormfile","Link","Embed"]
     home: ["Excursion"]
     catalogue: ["Excursion"]
-  services: ["ARS","Catalogue","Competitions2013"]
+  services: ["ARS","Catalogue","Competitions2013","ASearch"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   advanced_search:
     instances: ["http://vishub.org"]

@@ -10,12 +10,14 @@
   </div>
 
   <ul class="dropdown-menu">
+    
     <li>
       <a tabindex="-1" href="<%=search_path(:browse=>"true", :sort_by => "popularity")%>">
         <i class="icon-dashboard"></i> 
         <%=t('browse.all')%>
       </a>
     </li>
+
     <li class="divider"></li>
 
     <% if availableModels.include? "Excursion" %>
@@ -43,8 +45,9 @@
       </li>
     <%end%>
 
+    <li class="divider"></li>
+
     <% if availableServices.include? "Catalogue" %>
-      <li class="divider"></li>
       <li>
         <a tabindex="-1" href="/catalogue">
           <i class="icon-tags"></i>
@@ -53,7 +56,17 @@
       </li>
     <%end%>
 
+    <% if availableServices.include? "ASearch" %>
+      <li>
+        <a tabindex="-1" href="/search/advanced">
+          <i class="icon-search"></i>
+          <%=t('asearch.title')%>
+        </a>
+      </li>
+    <%end%>
+
     <% if availableServices.include? "Competitions2013" %>
+      <li class="divider"></li>
       <li>
         <a tabindex="-1" href="/contest">
           <i class="icon-trophy"></i>
