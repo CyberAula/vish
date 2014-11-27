@@ -157,7 +157,7 @@ VASearch.UI = (function(V,undefined){
       $(scaffold).append('<div class="resultAuthor"><span class="by">'+V.Utils.getTrans("i.by")+'</span> <a target="'+targetAttr+'" href="'+result.author_profile_url+'">'+result.author+'</a><br/>' + V.Utils.getTrans("i.in") +' <a target="'+targetAttr+'" href="'+result.instance+'">' + result.instance + '</a></div>');
     };
     if((result.like_count)&&(result.visit_count)&&(result.url)){
-      $(scaffold).append('<div class="resultBottom"><div class="likes"><span>'+result.like_count+'</span> <a target="'+targetAttr+'" href="'+result.url+'"><img class="inlineIcon" src="/assets/asearch/star.png"></a></div><div class="views"><span>'+result.visit_count+'</span> <img class="inlineIcon" src="/assets/asearch/eye.png"></div></div>');
+      $(scaffold).append('<div class="resultBottom"><div class="likes"><span>'+result.like_count+'</span> <a target="'+targetAttr+'" href="'+result.url+'"><img class="inlineIcon" src="star.png"></a></div><div class="views"><span>'+result.visit_count+'</span> <img class="inlineIcon" src="eye.png"></div></div>');
     };
     
     $("#asearch_results").append(scaffold);
@@ -326,7 +326,7 @@ VASearch.Core = (function(V,undefined){
             queryResults = [];
             $(data.response.results).each(function(index,result){
               result.instance = data.instanceDomain;
-              result.avatar_url = (typeof result.avatar_url == "string" ? result.avatar_url : "/assets/asearch/lo.png");
+              result.avatar_url = (typeof result.avatar_url == "string" ? result.avatar_url : "lo.png");
               result.sorting_weight = (typeof result.weights != "undefined" && typeof result.weights.sorting_weight == "number") ? result.weights.sorting_weight : 0;
               queryResults.push(result);
             });
