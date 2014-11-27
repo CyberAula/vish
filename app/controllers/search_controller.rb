@@ -40,6 +40,15 @@ class SearchController < ApplicationController
     end
   end
 
+  def advanced
+    respond_to do |format|
+      format.html {
+        render
+      }
+    end
+  end
+
+
   private
 
   def search mode

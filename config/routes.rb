@@ -40,7 +40,9 @@ Vish::Application.routes.draw do
   match '/apis/iframe_api' => 'excursions#iframe_api'
   match '/apis/recommender' => 'recommender#api_resource_suggestions'
 
-  #Search APIs used by VE
+  #Search
+  match '/search/advanced' => 'search#advanced'
+  #Search APIs used by VE (deprecated)
   match 'resources/search' => 'resources#search'
   #LRE proxy
   match 'lre/search' => 'lre#search_lre'
