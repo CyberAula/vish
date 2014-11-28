@@ -1,6 +1,6 @@
-<li class="helpheader_modal">   
-<i class="icon-question-sign helpCategorize" data-placement='bottom' aria-hidden="true" data-original-title="<%= t('categories.actions.verb')%>" href='#' value="" ></i>
-<div class="contentCategorize" style="display: none">
+<li class="helpheader_modal helpbutton">   
+<i class="icon-question-sign helpCategorize helppopover" id="helpcategorizeid" data-placement='bottom' aria-hidden="true" data-original-title="<%= t('categories.actions.verb')%>" href='#' value="" ></i>
+<div class="contentCategorize" id="contenthelpcategorizeid" style="display: none">
   <div>
   <%= t('document.help.categorize_html')%>
   </div>
@@ -9,23 +9,11 @@
 </li>
 <script>
 $(document).ready(function(){
-  $('.helpCategorize').popover({ 
+  $('#helpcategorizeid').popover({ 
     html : true,
     content: function() {
-      return $('.contentCategorize').html();
+      return $('#contenthelpcategorizeid').html();
     }
   });
-});
-</script>
-
-<script>
-$('body').on('click', function (e) {
-    $('.helpCategorize').each(function () {
-        //the 'is' for buttons that trigger popups
-        //the 'has' for icons within a button that triggers a popup
-        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-            $(this).popover('hide');
-        }
-    });
 });
 </script>

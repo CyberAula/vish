@@ -1,0 +1,13 @@
+<% wlink_id ||= ("writing_link_" + (wa_assignment.nil? ? "0" : wa_assignment.id.to_s)) %>
+
+<%= link_to t('workshop.activities.assignment.add_writing'),  new_contribution_path(:type => "writing", :wa_assignment_id=> (wa_assignment.nil? ? nil : wa_assignment.id), :parent_id=> (parent.nil? ? nil : parent.id)), :class => 'btn btn-primary', :id => wlink_id %>
+
+<%if editMode%>
+  <script type="text/javascript">
+    $('#<%=wlink_id%>').addClass("disabled");
+    $('#<%=wlink_id%>').click(function(e){
+      e.preventDefault();
+    });
+  </script>
+<%end%>
+

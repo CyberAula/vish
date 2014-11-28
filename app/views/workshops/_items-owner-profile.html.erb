@@ -1,0 +1,21 @@
+<%unless @workshop.author.nil? %>
+  <div class="author">
+    <div class="avatar">
+      <%= link_to @workshop.author.subject do %>
+        <%= image_tag @workshop.author.logo.url(:small) %>
+      <% end %>
+    </div>
+    <div class="right-name">
+      <%= link_to @workshop.author.subject do %>
+        <p><%= truncate_name(@workshop.author.name, :length => 50) %></p>
+      <%end%>
+      <div class="add">
+        <% if user_signed_in?%>
+          <%= contact_button(current_subject.contact_to!(@workshop.author)) %>
+        <%else%>
+          <%= contact_button(@workshop.author) %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+<%end%>

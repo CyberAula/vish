@@ -3,7 +3,7 @@
 class VishConfig
 
   def self.getMainModels
-    ["Excursion","Event","Category","Resource"]
+    ["Excursion","Event","Category","Resource","Workshop"]
   end
 
   def self.getFixedMainModels
@@ -11,11 +11,11 @@ class VishConfig
   end
 
   def self.getResourceModels
-    ["Document","Webapp","Scormfile","Link","Embed"] + getMainModelsWhichActAsResources
+    ["Document","Webapp","Scormfile","Link","Embed","Writing"] + getMainModelsWhichActAsResources
   end
 
   def self.getMainModelsWhichActAsResources
-    ["Excursion"]
+    ["Excursion","Workshop"]
   end
 
   def self.getAllModels(options={})
@@ -24,6 +24,10 @@ class VishConfig
 
   def self.getAllPossibleModelValues
     (getMainModels + getResourceModels).uniq
+  end
+
+  def self.getAllContributionTypes
+    ["Document","Writing","Excursion","Link"]
   end
 
   def self.getAllServices
@@ -141,6 +145,10 @@ class VishConfig
 
   def self.getAllModelsIncludingFixedModels(options={})
     (processAlias(getMainModels,options) + getFixedMainModels).uniq
+  end
+
+  def self.getAvailableContributionTypes
+    getAllContributionTypes
   end
 
   def self.processAlias(models=[],options={})

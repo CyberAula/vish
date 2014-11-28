@@ -22,13 +22,13 @@ fr:
     follow: "+ Suivre"
     unfollow: "Arreter de suivre"
   all: "toutes"
-  announce: 
+  announce:
     title: "Annonce"
   author: "auteur"
   cancel: "Annuler"
   close: "Fermer"
   conditions:
-    check_message: "En cliquant sur le bouton Accepter, vous vous engagez à respecter nos "  
+    check_message: "En cliquant sur le bouton Accepter, vous vous engagez à respecter nos "
     check_message_1: "conditions générales."
     other: "conditions"
   contact:
@@ -78,7 +78,7 @@ fr:
       bookmark: "signet"
       clone: "cloner"
       delete: "supprimer"
-      download: "télécharger"            
+      download: "télécharger"
       edit: "éditer"
       show: "afficher"
       share: "partager"
@@ -93,7 +93,8 @@ fr:
     contributors:
       name: "Avec du contenu de"
     created: "créée"
-    favorites: "Favoris"    
+    detail: "Détail"
+    favorites: "Favoris"
     how: "Comment créer une excursion"
     invite:
       email:
@@ -106,7 +107,7 @@ fr:
     net: "réseau"
     network: "mes excursions de mon réseau de contacts"
     network2: "mon réseau"
-    newmy_html: "Vous n'avez pas encore créé d'excursions. Vous pouvez ajouter une nouvelle excursion en cliquant ici sur le bouton ajouter "    
+    newmy_html: "Vous n'avez pas encore créé d'excursions. Vous pouvez ajouter une nouvelle excursion en cliquant ici sur le bouton ajouter "
     newnet_html: "Ici vous pourrez consulter les excursions créées par les utilisateurs que vous suivez. Recherchez <a href='/search?type=user'>ici</a> quelques utilisateurs à suivre."
     newfav_html: "Vous n'avez pas encore d'excursions favorites. Marquez n'importe quelle excursion comme favorite en cliquant sur l'icône de l'étoile<img src='/assets/icons/star-off.png'>"
     one: "excursion"
@@ -134,6 +135,8 @@ fr:
   go:
     repository: "accéder à la bibliothèque"
   help: "aide"
+  info:
+    author: "Auteur"
   lang:
     changed: "Afficher le site en %{lang}"
     error: "Langue \"%{lang}\" non disponible"
@@ -157,7 +160,7 @@ fr:
     unread: " non lus"
   more: "plus"
   mashme:
-    header_html: "Regarder sur <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
+    header_html: "Regarder sur <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>"
     invite_header: "Invitez vos contacts"
     invitesubject: "Regardez cette excursion avec moi sur MashMeTV !"
     invitebody_html: "Cliquez ici pour la regarder : <a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
@@ -170,7 +173,7 @@ fr:
     config_html: "Si vous souhaitez modifier le service de notification, cliquez <a href='%{url}'>ici</a>"
     makefriend:
       user: "%{sender} suit %{who}."
-    unread: " non lus"  
+    unread: " non lus"
   officedoc:
     confirm_delete: "Supprimer le document ?"
     title: "Documents Office"
@@ -197,7 +200,7 @@ fr:
     input: "Partagez vos points de vue, vos liens, vos vidéos et bien plus encore ici !"
     search_name: "mise à jour du statut"
   profile:
-    occupation: 
+    occupation:
       label: "Profession"
       other: "Autre"
       scientist: "Scientifique"
@@ -206,7 +209,7 @@ fr:
     tags:
       default: "VisHub, virtuel, excursion"
       other: "Centres d'intérêt"
-  project: "Global Excursion"      
+  project: "Global Excursion"
   published: "Publiée"
   quiz:
     answer:
@@ -229,9 +232,9 @@ fr:
     other: "bibliothèques"
     title: "Ressources"
   resource:
-    empty: "Vous"    
+    empty: "Vous"
     network: "mes ressources réseau"
-    newmy_html: "Vous n'avez pas encore publié de ressources. Vous pouvez en ajouter une en cliquant ici ou sur le bouton de téléchargement "    
+    newmy_html: "Vous n'avez pas encore publié de ressources. Vous pouvez en ajouter une en cliquant ici ou sur le bouton de téléchargement "
     newnet_html: "Ici vous pourrez consulter les ressources publiées par les utilisateurs que vous suivez. Recherchez <a href='/search?type=user'>ici</a> quelques utilisateurs à suivre."
     newfav_html: "Vous n'avez pas encore de ressources favorites. Marquez la ressource de votre choix comme favorite en cliquant sur l'icône de l'étoile<img src='/assets/icons/star-off.png'>"
     my: "Ma/mes"
@@ -295,7 +298,7 @@ fr:
   views:
     pagination:
       next: "Â»"
-      previous: "Â«"            
+      previous: "Â«"
       truncate: "..."
   view_all: "tout afficher"
   yesterday: "Hier"
@@ -531,4 +534,72 @@ fr:
     pagination:
       truncate: "..."
 
-
+  workshop:
+    actions:
+        add: "Ajouter Workshop"
+        add_activity_title: "Ajouter l'activité de la Workshop"
+        add_activity_button: "Ajouter"
+        adding_activity_button: "Ajouter..."
+        cancel_&_go: "Annuler et aller à Workshop"
+        collapse_all: "Effondrement de toutes"
+        confirm_delete: "Supprimer workshop?"
+        delete: "Supprimer workshop"
+        edit_activity_button: "Enregistrer"
+        edit_mode_btOn: "Allumez le mode d'édition"
+        edit_mode_btOff: "Désactiver le mode d'édition"
+        expand_all: "Développer tout"
+        publish: "Publier"
+        unpublish: "Annulation de la publication"
+    activities:
+        actions:
+            add_new_activity: "Ajouter une nouvelle activité"
+            confirm_delete: "Supprimer l'activité?"
+        assignment:
+            add_image: "Télécharger"
+            add_writing: "Écriture"
+            available_contributions:
+                document: "Document"
+                title: "Contributions disponibles"
+                writing: "Écriture"
+            content: "Contenu"
+            contribution_message: "Participer:"
+            description: "Affectations aux participants de contribuer à l'atelier en téléchargeant leurs propres ressources."
+            due_date: "Date d'échéance"
+            modal_title: "Modifier l'affectation"
+            open_date: "Ouvrir date"
+            title: "Affectation"
+            with_dates: "Spécifiez ouverte et due date"
+        resource:
+            title: "Ressource"
+            description: "Insérer n'importe quel type de ressource dans le workshop."
+            text: "Vous pouvez ajouter à cet workshop toutes les ressources qui sont disponibles dans Vish. Pour les ajouter, ouvrir la ressource à Vish, copier son URL dans la barre d'outils du navigateur et coller dans la zone de texte suivante."
+        resource_gallery:
+            title: "Galerie de ressources"
+            description: "Ajouter une galerie de ressources."
+            text: "Galeries de ressource sont une composante de le workshop qui vous permettent d'inclure plusieurs ressources de n'importe quel type de Vish et ont eux regroupés pour faciliter Regarde un. Insérer cet élément dans votre workshop et les ressources supplémentaires dans le moyen le plus simple et intuitif."
+        contributions_gallery:
+            title: "Galerie des contributions"
+            description: "La Galerie de Contributions affiche les contributions envoyées à l'atelier."
+            text: "Les utilisateurs peuvent contribuer à des missions définies dans un workshop en ajoutant des ressources ou des blocs de texte. Avec le composant que Galerie des contributions peut voir regroupés textes d'andor ressources forme avec lequel les autres utilisateurs ont contribué."
+        text:
+            title: "Texte"
+            description: "Inclure un paragraphe de texte."
+            text: "Outre la description de le workshop et des missions définies à elle, vous devrez parfois la possibilité d'insérer un bloc de texte avec un autre but, comme une bibliographie ou d'autres données d'intérêt pour le workshop. Avec ce composant, vous pouvez ajouter un texte complètement personnalisé et modifiable à votre workshop."
+    add_activity_modal:
+      resource:
+        description: "Vous pouvez ajouter à cet workshop toutes les ressources qui sont disponibles dans Vish. Pour les ajouter, ouvrir la ressource à Vish, copier son URL dans la barre d'outils du navigateur et coller dans la zone de texte suivante."
+    new: "Nouveau Workshop"
+    other: "Workshops"
+    titles:
+        editing_details: "Montage workshop détails"
+        editing_main: "Montage Workshop"
+        show_main: "Voir le workshop"
+  writing:
+    actions:
+      add: "Ajouter du texte"
+    confirm_delete: "Supprimer l'écriture?"
+    title3: "Écrire le texte à ajouter"
+  yesterday: "Hier"
+  zipfile:
+    name: "Fichier Zip"
+    confirm_delete: "Supprimer le fichier Zip?"

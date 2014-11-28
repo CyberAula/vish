@@ -1,6 +1,6 @@
-<li class="helpheader">   
-<i class="icon-question-sign helphome" data-placement='left' aria-hidden="true" data-original-title="help" href='#' value="" ></i>
-<div class="contenthome" style="display: none">
+<li class="helpheader helpbutton help-fix-position-popover">   
+<i class="icon-question-sign helphome helppopover" id="helphomeid" data-placement='left' aria-hidden="true" data-original-title="help" href='#' value="" ></i>
+<div class="contenthome" id="contenthomeid" style="display: none">
   <div>
     <%= t('document.help.home1_html', :profile=> url_for(current_subject))%>
   </div>
@@ -9,23 +9,12 @@
 </li>
 <script>
 $(document).ready(function(){
-  $('.helphome').popover({ 
+  $('#helphomeid').popover({ 
     html : true,
     content: function() {
-      return $('.contenthome').html();
+      return $('#contenthomeid').html();
     }
   });
 });
 </script>
 
-<script>
-$('body').on('click', function (e) {
-    $('.helphome').each(function () {
-        //the 'is' for buttons that trigger popups
-        //the 'has' for icons within a button that triggers a popup
-        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-            $(this).popover('hide');
-        }
-    });
-});
-</script>

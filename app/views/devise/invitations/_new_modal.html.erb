@@ -1,0 +1,56 @@
+<div id="CreateInvitationModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="CreateInvitationLabel" aria-hidden="true">
+
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <%= render partial: 'help/help_create_invitation' %>
+    <h4 id="CreateInvitationLabel"><%= t('devise.invitations.modal_title')%></h4>
+  </div>
+
+  <div class="modal-body">
+  </div>
+</div>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      //$(document).on('shown.bs.modal', '#CreateInvitationModal', function () {
+	  //  $('.modal-body #user_email').focus();
+	  //});
+
+	
+     //When click on the button send the email to the server via Ajax
+	  $(document).on( "click", "#save_inv_button", function() {	    
+	    $.ajax({
+	            url: "<%=user_invitation_path%>",
+	            type: 'POST',
+	            data: { user: {email: $(".modal-body #user_email").val()} },
+	              success: function(data){
+	                $("#CreateInvitationModal").modal('toggle');
+	                //Emulating alert with javascript
+	                $('#flash').hide(); 
+	                $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("devise.invitations.success")%></div>')
+	                            .fadeIn()
+	                            .delay(6000)
+	                            .fadeOut(300, function(){
+	                              $('#flash').html("");
+	                            });
+
+	                },
+	                error: function(jqXHR, exception) {
+	                	console.log("ERROR " + exception)
+	                  $("#CreateInvitationModal").modal('toggle');
+	                  //Emulating alert with javascript
+	                  $('#flash').hide(); 
+	                  $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Error</div>')
+	                            .fadeIn()
+	                            .delay(6000)
+	                            .fadeOut(300, function(){
+	                              $('#flash').html("");
+	                            });
+	                }
+	    });
+	  });
+   });
+  </script>

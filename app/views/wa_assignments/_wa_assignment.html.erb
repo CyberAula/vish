@@ -1,0 +1,18 @@
+<h3 class="title_WS"><%=t('workshop.activities.assignment.title')%></h3>  
+<div class="delivery">
+  <%if wa_assignment.with_dates%>
+    <div class="delivery_time">
+      <span><%=t('workshop.activities.assignment.open_date')%></span>
+      <p><%=wa_assignment.open_date.strftime("%d %B %Y")%></p>
+      <span><%=t('workshop.activities.assignment.due_date')%></span>
+      <p><%=wa_assignment.due_date.strftime("%d %B %Y")%></p>
+    </div>
+  <%end%>
+</div>
+<div class="css_reset">
+	<%=raw(wa_assignment.fulltext)%>
+</div>
+<div class="workshop_contribute_footer">
+  <%= render partial: "contributions/submit_contributions", locals:  { :wa_assignment => wa_assignment } %>
+</div>
+
