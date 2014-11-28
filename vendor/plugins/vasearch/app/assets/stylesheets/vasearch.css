@@ -12,6 +12,7 @@
 	background: #f2f2f2;
 	display: inline-block;
 	overflow-y: auto;
+	margin-bottom: 5px;
 }
 
 #asearch_settings{

@@ -174,10 +174,11 @@ class VishConfig
   end
 
   def self.getViSHInstances
+    instances = [Vish::Application.config.full_domain]
     if Vish::Application.config.APP_CONFIG["advanced_search"].nil? or Vish::Application.config.APP_CONFIG["advanced_search"]["instances"].nil?
-      []
+      instances
     else
-      ([Vish::Application.config.full_domain] + Vish::Application.config.APP_CONFIG["advanced_search"]["instances"]).uniq
+      (instances + Vish::Application.config.APP_CONFIG["advanced_search"]["instances"]).uniq
     end
   end
 
