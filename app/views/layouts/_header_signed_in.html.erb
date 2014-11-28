@@ -1,5 +1,6 @@
 <% availableModels = available_models %>
 <% availableServices = available_services %>
+<% availableResources = available_resource_types %>
 
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -29,7 +30,7 @@
 
           <!--navegation-->
           <%= render partial: 'layouts/basic_navegation' %>
-          
+          <!-- modal with partial for invitation after header in this same file -->
 
           <!--add-->
           <li class="add_nav toggler dropdown">
@@ -38,20 +39,23 @@
             </div>
             <ul class="dropdown-menu">
               <!-- dropdown menu links -->
-              <% if availableModels.include? "Excursion" %>
-                <li><%= link_to new_excursion_path do %><i class="icon-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
-              <%end%>
-              <% if availableModels.include? "Event" %>
-                <li><a href="#AddEvent" data-toggle="modal"><i class="icon-facetime-video"></i> <%=t('event.actions.add')%></a></li>
-              <%end%>
-              <% if availableModels.include? "Category" %>
-                <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
-              <%end%>
-              <% if availableModels.include? "Resource" %>
-                <li><a href="#AddResource" data-toggle="modal"><i class="icon-file"></i> <%=t('resource.actions.add')%></a></li>
-              <%end%>
+              <% availableModels.each do |modelName| %>
+                <% if modelName == "Excursion" %>
+                  <li><%= link_to new_excursion_path do %><i class="icon-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
+                <% elsif modelName == "Workshop" %>
+                  <li><%= link_to new_workshop_path do %><i class="icon-list-alt"></i> <%= t('workshop.actions.add') %><% end %></li>
+                <% elsif modelName == "Resource" %>
+                  <li><a href="#AddResource" data-toggle="modal"><i class="icon-file"></i> <%=t('resource.actions.add')%></a></li>
+                  <% if availableResources.include? "Writing" %>
+                    <li><%= link_to new_writing_path do %><i class="icon-edit-sign"></i> <%= t('writing.actions.add') %><% end %></li>
+                  <%end%>
+                <% elsif modelName == "Category" %>
+                  <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
+                <% elsif modelName == "Event" %>
+                  <li><a href="#AddEvent" data-toggle="modal"><i class="icon-facetime-video"></i> <%=t('event.actions.add')%></a></li>
+                <%end%>
+              <% end %>
             </ul>
-
           </li>
 
           <!--user-->
@@ -138,6 +142,12 @@
     </div>
   </div>
 </header>
+
+<%if ["INVITATION_ONLY","HYBRID"].include? Vish::Application.config.APP_CONFIG["register_policy"] %>
+  <!-- modal with partial for invitation, filled by ajax-->
+  <%= render partial: 'devise/invitations/new_modal' %>
+<%end%>
+
 
   
   <script type="text/javascript">

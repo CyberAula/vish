@@ -1,8 +1,17 @@
 Vish::Application.routes.draw do
 
-  devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations'}
+  if Vish::Application.config.APP_CONFIG["register_policy"] == "INVITATION_ONLY"
+    devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }, :skip => [:registrations] 
+      as :user do
+        get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
+        put 'users' => 'devise/registrations#update', :as => 'user_registration'
+      end
+  else
+    devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }
+  end
 
   match 'users/:id/excursions' => 'users#excursions'
+  match 'users/:id/workshops' => 'users#workshops'
   match 'users/:id/resources' => 'users#resources'
   match 'users/:id/events' => 'users#events'
   match 'users/:id/categories' => 'users#categories'
@@ -62,6 +71,18 @@ Vish::Application.routes.draw do
 
   resources :excursions
 
+  #Workshops
+  match '/workshops/:id/edit_details' => 'workshops#edit_details'
+  resources :workshops
+
+  #Workshops Activities
+  resources :wa_assignments
+  resources :wa_resources
+  resources :contributions
+  match '/wa_resources_galleries/:id/add_resource' => 'wa_resources_galleries#add_resource'
+  resources :wa_resources_galleries
+  resources :wa_contributions_galleries
+  resources :wa_texts
 
   #Quiz Sessions
   resources :quiz_sessions do

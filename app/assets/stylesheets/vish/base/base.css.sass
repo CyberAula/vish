@@ -11,6 +11,11 @@
 .nav-tabs > .active > a:focus
   background-color: transparent
 
+i
+  &:active,
+  &:focus
+    text-decoration: none
+    
 textarea,input
   resize: none
 .dropdown, .dropup
@@ -23,6 +28,13 @@ textarea,input
 .entities
   ul
     margin: 0
+
+
+//toolbar_tabs
+.header-title_page
+  border-bottom: 1px solid #999
+
+
 
 //toolbar_tabs
 .toolbar_nav-tab
@@ -38,7 +50,7 @@ textarea,input
   //border-bottom: 1px solid $grayLighter
   //border-left: 1px solid $grayLighter
   //border-right: 1px solid $grayLighter
-  .btn
+  .btn, input[type="submit"] 
     padding: 3px 12px
     margin-top: 9px
     margin-left: 6px

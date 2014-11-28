@@ -7,12 +7,15 @@ development:
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
   models:
-    available: ["Excursion","Resource","Event","Category"]
-    resources: ["Document","Webapp","Scormfile","Link","Embed"]
+    available: ["Excursion","Resource","Category","Event","Workshop"]
+    resources: ["Document","Webapp","Scormfile","Link","Embed", "Writing"]
     home: ["Excursion"]
     catalogue: ["Excursion"]
-  services: ["ARS","Catalogue","Competitions2013"]
+  services: ["ARS","Catalogue","Competitions2013","ASearch"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
+  register_policy: "REGISTER_ONLY"   #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'
+  advanced_search:
+    instances: ["http://vishub.org"]
 
 production:
   domain: "vishub.org"
@@ -22,12 +25,15 @@ production:
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
   models:
-    available: ["Excursion","Resource","Event","Category"]
-    resources: ["Document","Webapp","Scormfile","Link","Embed"]
+    available: ["Excursion","Resource","Category","Event","Workshop"]
+    resources: ["Document","Webapp","Scormfile","Link","Embed", "Writing"]
     home: ["Excursion"]
     catalogue: ["Excursion"]
-  services: ["ARS","Catalogue","Competitions2013"]
+  services: ["ARS","Catalogue","Competitions2013","ASearch"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
+  register_policy: "REGISTER_ONLY"
+  advanced_search:
+    instances: ["http://vishub.org"]
 
 #Other configuration options
 

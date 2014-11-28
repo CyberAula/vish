@@ -68,6 +68,9 @@ else
   end
 end
 
+#for INVITATION ONLY
+gem 'devise_invitable', '~> 1.1.8'
+
 # $ export FORCE_LOCAL_SCORM=scormGemPath
 if ENV['FORCE_LOCAL_SCORM']
   gem "scorm", :path => ENV['FORCE_LOCAL_SCORM'], :branch => "master"

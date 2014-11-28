@@ -20,7 +20,7 @@
 /*++++++++++ICONS*/
 
 @import "font-awesome/scss/font-awesome"
-@import "font-awesome/scss/font-awesome"
+
 
 /*++++++++++DATETIMEPICKER*/
 
@@ -212,6 +212,7 @@
 
 /*DOCUMENTS*/
 
+@import "vish/documents/mixin_form"
 @import "vish/documents/form"
 
 
@@ -239,11 +240,12 @@
 
 /*++++++++++SHOW*/
 
-@import "vish/layouts/show/show"
+@import "vish/layouts/new-show/mixin_show"
+@import "vish/layouts/new-show/show"
 
-@import "vish/layouts/show/responsive/responsive-768px-979px"
-@import "vish/layouts/show/responsive/responsive-1200px-min"
-@import "vish/layouts/show/responsive/responsive-767px-max"
+@import "vish/layouts/new-show/responsive/responsive-768px-979px"
+@import "vish/layouts/new-show/responsive/responsive-1200px-min"
+@import "vish/layouts/new-show/responsive/responsive-767px-max"
 
 
 
@@ -309,10 +311,17 @@
 
 //base
 @import "vish/base/base"
-@import "vish/base/document"
+//@import "vish/base/document"
 //base
 @import "vish/base/order_by"
 /* MASHME.TV */
 @import "mashme-buttons"
 /* MASHME.TV */
 @import "jquery.jscrollpane"
+
+/* Workshops */
+@import "vish/workshops/workshop_base"
+@import "vish/workshops/workshop_edit"
+@import "vish/workshops/workshop_show"
+@import "vish/workshops/workshop_objects"
+@import "vish/workshops/workshop_gallery"

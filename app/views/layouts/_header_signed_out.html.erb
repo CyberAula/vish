@@ -45,12 +45,14 @@
             <% end %>
           </ul>
         </li>
-<!--sign_up-->
+
+        <%if Vish::Application.config.APP_CONFIG["register_policy"] == "REGISTER_ONLY" || Vish::Application.config.APP_CONFIG["register_policy"] == "HYBRID"%>
+        <!--sign_up-->
         <a class=" sign_up btn" href="<%=new_user_registration_path%>">
-
-            <%=t("sign_up")%>
-
+        <%=t("sign_up")%>
         </a>
+        <%end%>
+        
 <!--search-->
         <li class="search-ui ">
           <%= render partial: 'layouts/uisearch_header' %>

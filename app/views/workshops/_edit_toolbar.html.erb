@@ -1,0 +1,41 @@
+<div class="toolbar_nav-tab_workshop">
+  <div class="container">
+  <h4 class="edit-workshop-title"><%=t('workshop.titles.editing_main')%></h4>
+  <a href="#WorkshopActivities" class="btn " data-toggle="modal"><i class="icon-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></a>
+  <% unless @workshop.draft %>
+    <a class ="btn" href="<%=workshop_path(@workshop)%>"><i class="icon-check"></i><%=t('workshop.actions.edit_mode_btOff')%></a>
+  <%end%>
+
+  <%= link_to raw('<i class="icon-trash"></i>'+t('workshop.actions.delete')),  @workshop, :method => :delete, :class => 'btn btn-delete-workshop', :confirm => t('workshop.actions.confirm_delete') %>
+
+  <%= form_for(@workshop) do |f| %>
+    <%= f.hidden_field :draft, :value => !@workshop.draft %>
+    <%= button_tag(type: "submit", class: "btn btn-default") do %>
+      <%=@workshop.draft ? raw('<i class="icon-ok-circle"></i>'+t('workshop.actions.publish')) : raw('<i class="icon-eye-close"></i>'+t('workshop.actions.unpublish')) %>
+    <% end %>
+  <%end%>
+
+  
+<!-- EFFECT EXPAND
+
+  <%# if @workshop_activities.count { |wa| wa.wa_type=="WaResource" } > 0 %>
+    <button href="#" id="ws_expand_all" class=" btn ui-state-default ui-corner-all"><a><i class="icon-chevron-down"></i><%=t('workshop.actions.expand_all')%></a></button>
+    <button href="#" id="ws_collapse_all" class=" btn ui-state-default ui-corner-all"><a><i class="icon-chevron-down"></i><%=t('workshop.actions.collapse_all')%></a></button>
+  <%#end%>
+-->
+</div>
+</div>
+
+
+<!--script>
+  $(function(){
+    $("#ws_expand_all").click(function(){
+      $(".wa_resource_wrapper.wa_activity_closed").parents(".wa_activity_wrapper_edit").find("li.toggleWorkshopActivity").click();
+    });
+
+    $("#ws_collapse_all").click(function(){
+      $(".wa_resource_wrapper.wa_activity_open").parents(".wa_activity_wrapper_edit").find("li.toggleWorkshopActivity").click();
+    });
+  });
+</script-->
+

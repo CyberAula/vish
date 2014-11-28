@@ -24,14 +24,14 @@ de:
     follow: "+ Follow"
     unfollow: "UnFollow"
   all: "Alle"
-  announce: 
+  announce:
     title: "Ankündigung"
     body: ""
   author: "Author"
   cancel: "Cancel"
   close: "Schließen"
   conditions:
-    check_message: "Duch anklicken von Aktzeptieren, stimmt du zu "  
+    check_message: "Duch anklicken von Aktzeptieren, stimmt du zu "
     check_message_1: "Bedingungen."
     other: "Konditionen"
   contact:
@@ -140,7 +140,7 @@ de:
       bookmark: "Lesezeichen"
       clone: "Klonen"
       delete: "Löschen"
-      download: "Download"            
+      download: "Download"
       edit: "Bearbeiten"
       show: "Anzeigen"
       share: "Teilen"
@@ -155,7 +155,7 @@ de:
     contributors:
       name: "Mit Inhalten von"
     created: "Erstellt"
-    favorites: "Favoriten"    
+    favorites: "Favoriten"
     how: "Wie man eine Exkursion erstellt"
     invite:
       email:
@@ -168,7 +168,7 @@ de:
     net: "Netzwerk"
     network: "Exkursionen meines Netzwerks"
     network2: "Mein Netzwerk"
-    newmy_html: "Du hast noch keine Exkursion erstellt. Du kannst eine neue Exkursion hinzuufügen indem du auf Hinzufügen klickst oder hier "    
+    newmy_html: "Du hast noch keine Exkursion erstellt. Du kannst eine neue Exkursion hinzuufügen indem du auf Hinzufügen klickst oder hier "
     newnet_html: "Hier siehts du die Exkursionen von Benutzern, denen du folgst. Finde Benutzer, denen du folgen willst <a href='/search?type=user'>here</a>."
     newfav_html: "Du hast noch keine Favoriten bei den Exkursionen. Du kannst zu deinen favorite erklären indem du auf den Stern klickst <img src='/assets/icons/star-off.png'>"
     one: "ExKursion"
@@ -221,7 +221,7 @@ de:
     unread: " ungelesen"
   more: "mehr"
   mashme:
-    header_html: "In <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a> ansehen" 
+    header_html: "In <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a> ansehen"
     invite_header: "Kontakte einladen"
     invitesubject: "Sieh dir auch diese Exkursion auf MashMeTV an!"
     invitebody_html: "Zum Ansehen hier klicken: <a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
@@ -234,7 +234,7 @@ de:
     config_html: "Möchtest du den Benachrichtigungsservice ändern? Dann klicke <a href='%{url}'>here</a>"
     makefriend:
       user: "%{sender} folgt %{who}."
-    unread: " ungelesen"  
+    unread: " ungelesen"
   officedoc:
     confirm_delete: "Dokument löschen?"
     title: "Office Dokumente"
@@ -261,7 +261,7 @@ de:
     input: "Teile deine Ideen, Links, Videos, und mehr, hier!"
     search_name: "Status Update"
   profile:
-    occupation: 
+    occupation:
       label: "Beruf"
       other: "Andere"
       scientist: "Wissenschafter"
@@ -270,7 +270,7 @@ de:
     tags:
       default: "VisHub, Virtuelle Exkursion"
       other: "Interessensgebiete"
-  project: "Global Excursion"      
+  project: "Global Excursion"
   published: "Publiziert"
   quiz:
     answer:
@@ -293,9 +293,9 @@ de:
     other: "Ablagen"
     title: "Ressourcen"
   resource:
-    empty: "Du"    
+    empty: "Du"
     network: "Ressourcen meines Netzwerks"
-    newmy_html: "DU hast noch keine Ressources hochgeladen. Du kannst eine neue Ressource hinzufügen indem du auf Upload klickst oder hier "    
+    newmy_html: "DU hast noch keine Ressources hochgeladen. Du kannst eine neue Ressource hinzufügen indem du auf Upload klickst oder hier "
     newnet_html: "Hier siehst du Ressourcen, die von den Benutzern, denen du folgst, hochgeladen wurden. Find Benutzer, denen du folgen willst <a href='/search?type=user'>here</a>."
     newfav_html: "Du hast noch keine Ressourcen als Favoriten. Kennzeichne Ressourcen als Favoriten indem du auf den Stern klickst <img src='/assets/icons/star-off.png'>"
     my: "Meine"
@@ -355,11 +355,11 @@ de:
   user:
     one: "Benutzer"
     other: "Benutzer"
-  username: "Benutzername"  
+  username: "Benutzername"
   views:
     pagination:
       next: "Â»"
-      previous: "Â«"            
+      previous: "Â«"
       truncate: "..."
   view_all: "Alle ansehen"
   yesterday: "Gestern"
@@ -619,3 +619,72 @@ de:
     pagination:
       truncate: "..."
 
+  workshop:
+    actions:
+        add: "Workshop hinzufügen"
+        add_activity_title: "Der Workshop Aktivität hinzugefügt"
+        add_activity_button: "Hinzufügen"
+        adding_activity_button: "Hinzufügen..."
+        cancel_&_go: "Abbrechen und gehen in die Workshop"
+        collapse_all: "Alle ausblenden"
+        confirm_delete: "Löschen Workshop zu?"
+        delete: "Workshop zu löschen"
+        edit_activity_button: "Speichern"
+        edit_mode_btOn: "Edit-Modus aktivieren"
+        edit_mode_btOff: "Edit-Modus deaktivieren"
+        expand_all: "Erweitern Sie alle"
+        publish: "Veröffentlichen"
+        unpublish: "Abbrechen Publishing"
+    activities:
+        actions:
+            add_new_activity: "Neue Aktivität hinzufügen"
+            confirm_delete: "Löschen Aktivität?"
+        assignment:
+            add_image: "Upload"
+            add_writing: "Schreiben"
+            available_contributions:
+                document: "Dokument"
+                title: "Verfügbare Beiträge"
+                writing: "Schreiben"
+            content: "Inhalt"
+            contribution_message: "Teilnehmen:"
+            description: "Zuordnungen können Teilnehmer zum Workshop beizutragen, indem Sie ihre eigenen Ressourcen hochladen."
+            due_date: "Fälligkeitsdatum"
+            modal_title: "Zuordnung bearbeiten"
+            open_date: "Offenem Ende"
+            title: "Zuordnung"
+            with_dates: "Geben Sie offene und fällige Datum"
+        resource:
+            title: "Ressource"
+            description: "Legen Sie jede Art von Ressource in der Workshop"
+            text: "Sie können zu diesem Workshop alle Ressourcen hinzufügen, die in Vish verfügbar sind. Um sie hinzuzufügen, öffnen Sie die Ressource in Vish, kopieren Sie die URL aus der Browser-Symbolleiste, und fügen Sie in das folgende Textfeld ein."
+        resource_gallery:
+            title: "Ressourcen-Galerie"
+            description: "Fügen Sie eine Galerie von Ressourcen."
+            text: "Ressource-Galerien sind Bestandteil des Workshops, mit denen Sie beinhalten mehrere Ressourcen eines beliebigen Typs Vish und sie zusammen gruppiert, um die Anzeige zu erleichtern. Legen Sie diese Komponente in Ihre Werkstatt und zusätzlichen Ressourcen, auf die einfache und intuitive Weise."
+        contributions_gallery:
+            title: "Beiträge-Galerie"
+            description: "Die Beiträge-Galerie zeigt die Beiträge zum workshop."
+            text: "Benutzer können dazu beitragen, die Aufgaben, die in einer Werkstatt durch Hinzufügen von Ressourcen oder Textblöcke definiert. Mit die Komponente, die Galerie der Beiträge sehen kann gruppiert Form Ressourcen Andor Texte mit denen andere Benutzer beigetragen haben."
+        text:
+            title: "Text"
+            description: "Enthalten Sie einen Textabsatz."
+            text: "Neben der Beschreibung des Workshops und die darin definierten Aufgaben benötigen manchmal Sie die Möglichkeit, einen Text mit anderen Zweck, wie eine Bibliographie oder andere Daten von Interesse für die Workshop-Block einzufügen. Mit dieser Komponente können Sie Ihre Werkstatt einen vollständig personalisierten und bearbeitbaren Text hinzufügen."
+    add_activity_modal:
+      resource:
+        description: "Sie können zu diesem Workshop alle Ressourcen hinzufügen, die in Vish verfügbar sind. Um sie hinzuzufügen, öffnen Sie die Ressource in Vish, kopieren Sie die URL aus der Browser-Symbolleiste und fügen Sie in das folgende Textfeld ein."
+    new: "Neue Workshop"
+    other: "Workshops"
+    titles:
+        editing_details: "Editing Workshop Details"
+        editing_main: "Editing Workshop"
+        show_main: "Workshop zu zeigen"
+  writing:
+    actions:
+      add: "Hinzufügen von text"
+    confirm_delete: "Löschen Sie schreiben?"
+    title3: "Schreiben Sie den Text, die Sie hinzufügen möchten"
+  yesterday: "Gestern"
+  zipfile:
+    name: "ZIP-datei"
+    confirm_delete: "Löschen Zip-Datei?"

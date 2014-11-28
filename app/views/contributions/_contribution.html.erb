@@ -1,0 +1,44 @@
+<%resource = contribution.activity_object.object%>
+<% return if resource.nil? or resource.author.nil? %>
+
+<li class="box-item resource-item">
+  <!-- corner -->
+  <div class="corner-item">
+    <div class="corner-item2">
+      <div class="corner-color"></div>
+      <%= link_to raw(icon(resource)), contribution, :title => resource.title %>
+    </div>
+    <div class="corner-background"></div>
+  </div>
+  <!-- image/icon -->
+  <div class="container-img">
+    <div class="dummy"></div>
+    <div class="element resource-center">
+      <%= link_to raw(icon(resource)), contribution, :title => resource.title %>
+    </div>
+  </div>
+  <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
+  <!-- INFO -->
+  <div class="info">
+    <!-- Title -->
+    <div class="name">
+      <%= link_to resource.title, contribution %>
+    </div>
+    <!-- Author -->
+    <span class="author"> 
+      <span class="by"><%=t('by')%></span>
+      <%= link_to truncate_name(resource.author.name, length: 25), resource.author.subject %>
+    </span>
+    <div class="info-bottom">
+      <hr class="soften">
+      <!--like -->
+      <div class="like">    
+        <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
+        <%= link_like(resource.post_activity)%>
+      </div>
+      <!--views (contributions may have private scope, so they do not include views at this time) -->
+      <div class="views">
+      </div>
+    </div>
+  </div>
+</li>

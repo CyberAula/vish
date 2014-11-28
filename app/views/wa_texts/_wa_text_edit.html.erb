@@ -1,0 +1,25 @@
+<h3 class="title_WS">Text</h3>
+<div id="" class="Assignment_edit_box">
+  <%= form_for wa_text, :html => { :id => "edit_wa_text_#{wa_text.id}" }, :remote => false do |f| %>
+    <%= f.text_area :fulltext, :id=> "edit_wa_text_#{wa_text.id}_fulltext"%>
+    <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_text_#{wa_text.id}_plaintext"%>
+    <%= f.submit t('save'), :class => "hide", :id => "edit_wa_text_#{wa_text.id}_submitbutton"%>
+  <% end %>
+  <input type="button" id="edit_wa_text_<%=wa_text.id%>_button" class="btn btn-primary" data-loading-text="<%= t('saving')%>" value="<%= t('save')%>"/>
+</div>
+
+
+<%=render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "edit_wa_text_#{wa_text.id}_fulltext"} %>
+
+
+<script>
+	$(document).ready(function() {    
+	  //COMMON FIELDS
+	  var uploadButton = $("#edit_wa_text_<%=wa_text.id%>_button");
+	  
+	  $(uploadButton).click(function(event){
+	      set_ckeditor_content_full_and_plaintext("edit_wa_text_<%=wa_text.id%>_fulltext","edit_wa_text_<%=wa_text.id%>_plaintext");
+	      $("#edit_wa_text_<%=wa_text.id%>_submitbutton").click();
+	  });
+	});
+</script>

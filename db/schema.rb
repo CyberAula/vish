@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
-    t.string   "email",                 :default => "",         :null => false
+    t.string   "email",                 :default => "",    :null => false
     t.string   "slug"
     t.string   "subject_type"
     t.boolean  "notify_by_email",       :default => true

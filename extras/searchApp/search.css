@@ -1,0 +1,338 @@
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body{
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: 100%;
+	height: 100%;
+	font-family: arial, sans-serif;
+	line-height: 15px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#asearch_header{
+	display: block;
+	height: 65px;
+	width: 100%;
+}
+
+#asearch_results{
+	display: block;
+	float: right;
+	height: auto;
+	width: 98%;
+	background: #f2f2f2;
+	display: inline-block;
+	overflow-y: auto;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+#asearch_settings{
+	display: none;
+	height: 370px;
+	width: 88%;
+	top: 65px;
+	padding: 1%;
+	overflow-y: auto;
+	position: absolute;
+	background-color: #404040;
+	color: #f2f2f2;
+	left: 5%;
+	margin-right: auto;
+}
+
+#asearch_header div.search {
+	display: block;
+	height: 80%;
+	width: 80%;
+	margin: 0% 10% 0% 10%;
+	position: relative;
+	top: 0%;
+	overflow: hidden;
+	min-height: 60px;
+	text-align: center;
+	z-index: 2;
+}
+
+#asearch_header input.search_input {
+	width: 486px;
+	background-color: #fff;
+	border: 1px solid rgba(0,0,0,0.15);
+	border-top: 1px solid rgba(0,0,0,0.25);
+	height: 25px;
+	padding-left: 4px;
+	margin-top: 15px;
+}
+
+#asearch_header input.search_input:hover {
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+	border: 1px solid #4d90fe;
+}
+
+#asearch_header button.toolbar_button {
+	background: #4d90fe !important;
+	background-color: #3079ed !important;
+	background-image: -webkit-linear-gradient(top, #4d90fe,#4787ed) !important;
+	width: 44px;
+	height: 30px;
+	position: relative;
+}
+
+#asearch_header button.search_button {
+	top: 5px;
+}
+
+#asearch_header button.settings_button {
+	top: 3px;
+}
+
+#asearch_header img.search_button_img {
+	border: 0;
+	padding: 0px 0px 1px 0px;
+}
+
+#asearch_header img.settings_button_img {
+	border: 0;
+	width: 19px;
+	padding: 1px 0px 0px 1px
+}
+
+#asearch_results div.result{
+	width: 200px;
+	height: 272px;
+	background: white;
+	float: left;
+	overflow: hidden;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.16);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin: 10px;
+}
+
+#asearch_results div.result a{
+	text-decoration: none;
+}
+
+#asearch_results div.noResults{
+	padding: 50px 5px 50px 5px;
+	font-family: Arial, sans-serif;
+	font-size: 23px;
+	line-height: 18px;
+	font-weight: normal;
+	word-wrap: break-word;
+	text-align: center;
+}
+
+#asearch_results div.resultImageWrapper{
+	width: 200px;
+	height: 170px;
+	text-align: center;
+}
+
+#asearch_results div.resultImageWrapper img{
+	width: 90%;
+	height: 90%;
+	margin-top: 4%;
+}
+
+#asearch_results div.resultTitle{
+	width: 190px;
+	height: 37px;
+	margin-bottom: 5px;
+	padding: 0px 5px 0px 5px;
+	overflow: hidden;
+	font-family: Arial, sans-serif;
+	line-height: 18px;
+	font-weight: normal;
+	word-wrap: break-word;
+}
+
+#asearch_results div.resultTitle a{
+	color: #555 !important;
+}
+
+#asearch_results div.resultAuthor{
+	width: 190px;
+	height: 40px;
+	font-size: 12px;
+	padding: 0px 5px 0px 5px;
+	overflow: hidden;
+}
+
+#asearch_results div.resultAuthor a{
+	color: #004d7c !important;
+}
+
+#asearch_results div.resultBottom{
+	width: 190px;
+	height: 20px;
+	padding: 0px 5px 0px 5px;
+	display: inline-block;
+	font-size: 14px;
+	overflow: hidden;
+}
+
+#asearch_results div.likes{
+	display: inline-block;
+}
+
+#asearch_results div.views{
+	display: inline-block;
+	float: right;
+}
+
+#asearch_results img.inlineIcon{
+	height: 15px;
+	position: relative;
+	top: -1px;
+	left: -1px;
+}
+
+/* Resutls in table */
+
+#asearch_results table.asearch_results_table{
+	margin: 10px 0px 20px 0px;
+	padding:0px;
+	width:100%;
+	border:1px solid #000000;
+	border-radius: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#asearch_results table td {
+	vertical-align: middle;
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	border-width: 0px 1px 1px 0px;
+	text-align: left;
+	padding: 8px;
+	font-size: 16px;
+	font-family: Arial;
+	font-weight: normal;
+	color: #000000;
+}
+
+#asearch_results table  tr:first-child td{
+	background-color:#21160b;
+	border:0px solid #000000;
+	text-align:center;
+	border-width: 0px 0px 1px 1px;
+	font-size: 18px;
+	font-family: Arial;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+#asearch_results table tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}
+
+#asearch_results table tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}
+
+.asearch_waiting{
+	cursor: wait !important;
+}
+
+#asearch_settings div.settingsColumn{
+	text-align: center;
+	height: 100%;
+	width: 33%;
+	display: inline-block;
+	float: left;
+}
+
+#asearch_settings div.settingsColumn p.settingsTitle {
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+#asearch_settings div.settingsColumn p.settingsTitleSec {
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+
+#asearch_settings div.settingsColumn p.settingsField {
+	text-align: left;
+	margin-bottom: 8px;
+	margin-top: 20px;
+}
+
+#asearch_settings select {
+	width: auto;
+	min-width: 80%;
+	padding: 5px;
+	min-height: 32px;
+}
+
+#asearch_settings select[asparam="language"]{
+	height: 33px;
+}
+
+#asearch_settings select.entity_types{
+	height: 90%;
+}
+
+#asearch_settings .dateWrapper{
+	display: inline-block;
+}
+
+#asearch_settings .dateWrapper div{
+	width: 50%;
+	float: left;
+	display: block;
+}
+
+#asearch_settings .dateWrapper p{
+	margin-top: 0px;
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+
+#asearch_settings .dateWrapper input{
+	max-width: 90%;
+	margin-right: 5px;
+}
+
+#asearch_settings .ViSHinstances{
+	overflow-y: auto;
+}
+
+#asearch_settings .ViSHinstances ul{
+	list-style-type: none;
+	text-align: left;
+	height: auto;
+	max-height: 90px;
+}
+
+#asearch_settings .ViSHinstances ul li{
+	margin-top: 5px;
+}
+
+#asearch_settings .addInstanceButton{
+	margin-left: 15px;
+	font-size: 13px;
+	cursor: pointer;		
+}
+
+#asearch_settings span.deleteEntity{
+	margin-left: 20px;
+	font-size: 13px;
+	cursor: pointer;
+}
+
+#asearch_settings span.closeASearchSettings{
+	float: right;
+	cursor: pointer;
+	font-size: 10px;
+}

@@ -49,7 +49,33 @@ class FederatedSearchController < ApplicationController
         response["page"] = searchEngineResults.current_page
         response["results_per_page"] = searchEngineResults.per_page
       end
-      response["results"] = searchEngineResults.map{|r| r.search_json(self)}
+      matchWeights = searchEngineResults.results[:matches].map{|m| m[:weight]}
+      response["results"] = searchEngineResults.map.with_index{|r,i|
+        json = r.search_json(self)
+        json[:weights] = {}
+        json[:weights][:relevance_weight] = matchWeights[i]
+
+        case params[:sort_by]
+        when 'ranking'
+          json[:weights][:sorting_weight] = r.ranking
+        when 'popularity'
+          json[:weights][:sorting_weight] = r.popularity
+        when 'modification'
+          json[:weights][:sorting_weight] = r.updated_at.utc.to_i
+        when 'creation'
+          json[:weights][:sorting_weight] = r.created_at.utc.to_i
+        when 'visits'
+          json[:weights][:sorting_weight] = r.visit_count
+        when 'favorites'
+          json[:weights][:sorting_weight] = r.like_count
+        when 'quality'
+          json[:weights][:sorting_weight] = r.qscore
+        else
+          json[:weights][:sorting_weight] = json[:weights][:relevance_weight]
+        end
+
+        json
+      }
     end
 
     respond_to do |format|
@@ -60,36 +86,35 @@ class FederatedSearchController < ApplicationController
   end
 
   def processTypeParam(type)
-    # Possible models
-    # ["User", "Category", "Event", "Excursion", "Document", "Link", "Embed", "Webapp", "Scormfile"]
-    # and the document subclasses also ["Picture","Audio","Video",...]
-
     models = []
     subtypes = []
 
-    unless type.nil?
-      acceptedSubtypes = {
-        "Resource" => [Excursion,Document,Link,Embed,Webapp,Scormfile]
-      }
+    unless type.blank?
+      allAvailableModels = VishConfig.getAllAvailableAndFixedModels(:include_subtypes => true)
+      # Available Types: all available models and the alias 'Resource'
+      allAvailableTypes = allAvailableModels + ["Resource"]
 
-      type.split(",").each do |type|
-        if acceptedSubtypes[type].nil?
-          #Find model
-          model = type.singularize.classify.constantize rescue nil
-          unless model.nil?
-            models.push(model)
-          end
-        else
-          #Is a subtype
-          models.concat(acceptedSubtypes[type])
-          subtypes.push(type)
+      types = type.split(",") & allAvailableTypes
+
+      if types.include? ["Resource"]
+        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes))
+      end
+
+      types = types & allAvailableModels
+      types.uniq!
+
+      types.each do |type|
+        #Find model
+        model = type.singularize.classify.constantize rescue nil
+        unless model.nil?
+          models.push(model)
         end
       end
     end
 
     if models.empty?
       #Default models
-      models = [Excursion,Document,Link,Embed,Webapp,Scormfile]
+      models = VishConfig.getAvailableResourceModels({:return_instances => true})
       subtypes = []
     end
 

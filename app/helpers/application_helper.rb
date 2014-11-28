@@ -8,7 +8,7 @@ module ApplicationHelper
 	end
 
 	def entities_tagged_with(models,tag)
-		models = VishConfig.getAvailableAllResourceModels if models.nil?
+		models = VishConfig.getAvailableResourceModels if models.nil?
 		ActivityObject.where("object_type in (?)", models).with_tag(tag).map{|ao| ao.object}
 	end
 	
@@ -32,12 +32,22 @@ module ApplicationHelper
 	end
 
 	def resource_language_options_for_select(selected="")
-		options_for_select([[I18n.t('lang.languages.independent'), "independent"], [I18n.t('lang.languages.de'), "de"], [I18n.t('lang.languages.en'), "en"], [I18n.t('lang.languages.es'), "es"], [I18n.t('lang.languages.fr'), "fr"], [I18n.t('lang.languages.it'), "it"], [I18n.t('lang.languages.hu'), "hu"], [I18n.t('lang.languages.nl'), "nl"], [I18n.t('lang.languages.pt'), "pt"], [I18n.t('lang.languages.ru'), "ru"], [I18n.t('lang.languages.other'), "ot"]],selected)
+		options_for_select(resource_languages,selected)
+	end
+
+	def resource_languages
+		[[I18n.t('lang.languages.independent'), "independent"]] +
+		[[I18n.t('lang.languages.de'), "de"], [I18n.t('lang.languages.en'), "en"], [I18n.t('lang.languages.es'), "es"], [I18n.t('lang.languages.fr'), "fr"], [I18n.t('lang.languages.it'), "it"], [I18n.t('lang.languages.hu'), "hu"], [I18n.t('lang.languages.nl'), "nl"], [I18n.t('lang.languages.pt'), "pt"], [I18n.t('lang.languages.ru'), "ru"]].sort_by{|l| l[0]} +
+		[[I18n.t('lang.languages.other'), "ot"]]
 	end
 
 	#Configuration
 	def available_models
 		VishConfig.getAvailableMainModels
+	end
+
+	def available_resource_types
+		VishConfig.getAvailableResourceModels
 	end
 
 	def home_models
