@@ -11,20 +11,34 @@
       <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></button>
       <!--TODO:applycss and fix icons-->
       <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
-        <button type="button" class="btn btn-primary"><i class="icon-th icon-border"></i></button>
-        <button type="button" class="btn btn-primary"><i class="icon-align-justify icon-border"></i></span></button>
+        <button id="normal-view" type="button" class="btn btn-primary"><i class="icon-th icon-border"></i></button>
+        <button id="list-view" type="button" class="btn btn-primary"><i class="icon-align-justify icon-border"></i></span></button>
       </div>
     </div>
     <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
   <% end %>
-
-  <ul class="categories main-categories-space"> 	
-    <% if profile_subject_is_current? %>
-      <%= render partial: 'categories/category-add' %>
-      <%= render partial: 'categories/category_fav' %>
-    <% end %>
-    <%= render partial: 'categories/categories', :locals => { :scope => scope, :all_categories => all_categories} %>
-  </ul>
+  <div id="normal-instance">
+    <ul class="categories main-categories-space">
+      <% if profile_subject_is_current? %>
+        <%= render partial: 'categories/category-add' %>
+        <%= render partial: 'categories/category_fav' %>
+      <% end %>
+      <%= render partial: 'categories/categories', :locals => { :scope => scope, :all_categories => all_categories} %>
+    </ul>
+  </div>
+    <!--TODO:fix styles -->
+    <div id="list-instance" style="display:none" >
+  <%all_categories[0..4].each do |category|%>
+    <h2 style="clear:both;float:left;"><%= category.title %></h2>
+    <ul style="clear:both;" class="categories main-categories-space">
+        <%category.property_objects[0..6].each do |resource| %>
+          <%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
+        <%end%>
+        <!-- TODO: normalize in css-->
+    </ul>
+    <button style="clear:both;float:right;" onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue" name="<%=category.title%>"><%=t('view_all')%></button>
+    <%end%>
+  </div>
 </div>
 
 
@@ -34,7 +48,7 @@
       if (!array)
           return false;
 
-      // compare lengths - can save a lot of time 
+      // compare lengths - can save a lot of time
       if (this.length != array.length)
           return false;
 
@@ -43,13 +57,13 @@
           if (this[i] instanceof Array && array[i] instanceof Array) {
               // recurse into the nested arrays
               if (!this[i].equals(array[i]))
-                  return false;       
-          }           
-          else if (this[i] != array[i]) { 
+                  return false;
+          }
+          else if (this[i] != array[i]) {
               // Warning - two different object instances will never be equal: {x:20} != {x:20}
-              return false;   
-          }           
-      }       
+              return false;
+          }
+      }
       return true;
   };
 
@@ -60,13 +74,25 @@
   	$(".btn-for-categorize").click(function(){
   		$("#categories_edition").fadeIn();
 
-      $("div[bs-img]").each(function(){
-       $(this).backstretch($(this).attr("bs-img"));
-      });
-      
+      backstretch_fix();
+
       beginIndex = getidArray();
       beginObjects = $(".edit_categories .box-item").clone();
     });
+
+    $("#normal-view").click(function(){
+        $("#list-instance").fadeOut(200,function(){
+          $("#normal-instance").fadeIn(200);
+        });
+    });
+
+    $("#list-view").click(function(){
+      $("#normal-instance").fadeOut(200,function(){
+        $("#list-instance").fadeIn(200);
+        backstretch_fix();
+      });
+    });
+
   });
 
   function updateMainView(){
@@ -78,5 +104,11 @@
     s.each(function(index){this.remove();});
     actualState.appendTo(".main-categories-space");
   };
+
+function backstretch_fix(){
+  $("div[bs-img]").each(function(){
+   $(this).backstretch($(this).attr("bs-img"));
+  });
+}
 
 </script>
