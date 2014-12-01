@@ -13983,6 +13983,11 @@ VISH.Editor.Image = function(V, $, undefined) {
           $("#" + uploadDivId + " input[name='document[description]']").val(description);
           $("#" + uploadDivId + " input[name='document[owner_id]']").val(V.User.getId());
           $("#" + uploadDivId + " input[name='authenticity_token']").val(V.User.getToken());
+          if(contentAddMode == V.Constant.THUMBNAIL) {
+            $("#" + uploadDivId + " input[name='preferred_conversion']").val("avatar")
+          }else {
+            $("#" + uploadDivId + " input[name='preferred_conversion']").val("")
+          }
           $("#" + uploadDivId + " .documentsForm").attr("action", V.UploadImagePath);
           var tagList = $("#" + uploadDivId + " .tagList");
           $("#" + uploadDivId + " input[name='document[tag_list]']").val(V.Editor.Utils.convertToTagsArray($(tagList).tagit("tags")));
@@ -14005,9 +14010,6 @@ VISH.Editor.Image = function(V, $, undefined) {
           processResponse('{"src":"/images/excursion_thumbnails/excursion-01.png"}');
           break;
         case V.Constant.VISH:
-          processResponse(xhr.responseText);
-          break;
-        case V.Constant.STANDALONE:
           processResponse(xhr.responseText);
           break
       }
@@ -14143,6 +14145,8 @@ VISH.Editor.Image = function(V, $, undefined) {
     V.Editor.Utils.hideNonDefaultTabs();
     switch(mode) {
       case V.Constant.THUMBNAIL:
+        $("#picture_fancybox div.fancy_tabs a.fancy_tab").hide();
+        $("#tab_pic_upload").show();
         $("#tab_pic_thumbnails").show();
         break;
       case V.Constant.NONE:
@@ -19869,26 +19873,14 @@ VISH.Configuration = function(V, $, undefined) {
     V.SearchLREPath = configuration["SearchLREPath"]
   };
   var applyConfiguration = function() {
-    if(configuration["presentationSettings"]) {
-      if(!configuration["presentationTags"]) {
-        $(".tagBoxUpload").css("display", "none");
-        $("#tagBoxIntro").css("display", "none")
-      }
-      if(!configuration["presentationThumbnails"]) {
-        $("#thumbnails_in_excursion_details").css("display", "none")
-      }
-    }
-    if(!configuration["VishLives"]) {
-      $(".addLive").css("display", "none")
-    }
-    if(!configuration["VishRepo"]) {
-      $("#tab_pic_repo").css("display", "none");
-      $("#tab_object_repo").css("display", "none");
-      $("#tab_video_repo").css("display", "none")
-    }
     if(!configuration["Upload"]) {
       $("#tab_pic_upload").css("display", "none");
       $("#tab_object_upload").css("display", "none")
+    }
+    if(!configuration["ViSH"]) {
+      $("#tab_pic_repo").css("display", "none");
+      $("#tab_object_repo").css("display", "none");
+      $("#tab_video_repo").css("display", "none")
     }
     if(!configuration["Youtube"]) {
       $("#tab_video_youtube").css("display", "none")
@@ -22971,7 +22963,7 @@ VISH.Editor.Events = function(V, $, undefined) {
       }});
       $("#hidden_button_to_uploadThumbnail").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
         V.Editor.Image.setAddContentMode(V.Constant.THUMBNAIL);
-        V.Editor.Utils.loadTab("tab_pic_thumbnails")
+        V.Editor.Utils.loadTab("tab_pic_upload")
       }, "onClosed":function(data) {
         if(V.Editor.Image.getAddContentMode() === V.Constant.THUMBNAIL) {
           setTimeout(function() {
@@ -23119,11 +23111,6 @@ VISH.Editor.Events = function(V, $, undefined) {
       var clickedZoneId = $(data).attr("zone");
       V.Editor.setCurrentArea($("#" + clickedZoneId));
       V.Editor.Utils.loadTab("tab_quizzes")
-    }});
-    $(container).find("a.addLive").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
-      var clickedZoneId = $(data).attr("zone");
-      V.Editor.setCurrentArea($("#" + clickedZoneId));
-      V.Editor.Utils.loadTab("tab_live_resource")
     }})
   };
   var handleBodyKeyDown = function(event) {
@@ -26211,7 +26198,7 @@ VISH.Editor.Settings = function(V, $, undefined) {
     }});
     $("#difficulty_range").attr("difficulty", V.Constant.DIFFICULTY);
     $("#difficulty_range").val(LOM_Difficulty[V.Constant.DIFFICULTY].text);
-    if(V.Configuration.getConfiguration()["presentationTags"] && !tagsLoaded) {
+    if(!tagsLoaded) {
       $("#tagBoxIntro").attr("HTMLcontent", $("#tagBoxIntro").html());
       V.Utils.Loader.startLoadingInContainer($("#tagBoxIntro"), {style:"loading_tags"});
       V.Editor.API.requestTags(_onInitialTagsReceived)
