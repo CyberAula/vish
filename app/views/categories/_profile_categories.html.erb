@@ -31,7 +31,7 @@
   <div id="list-instance" style="display:none" >
   <%all_categories[0..4].each do |category|%>
     <h2 ><%= category.title %></h2>
-    <ul class="categories main-categories-space">
+    <ul class="categories main-list-categories-space">
         <%category.property_objects[0..6].each do |resource| %>
           <%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
         <%end%>
@@ -82,12 +82,14 @@
     });
 
     $("#normal-view").click(function(){
-        $("#list-instance").fadeOut(200,function(){
+      $(".btn-for-categorize").show(200);
+        $("#list-instance").fadeOut(200,function(){          
           $("#normal-instance").fadeIn(200);
         });
     });
 
     $("#list-view").click(function(){
+      $(".btn-for-categorize").hide(200);
       $("#normal-instance").fadeOut(200,function(){
         $("#list-instance").fadeIn(200);
         backstretch_fix();
