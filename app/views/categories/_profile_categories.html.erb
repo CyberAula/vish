@@ -11,8 +11,8 @@
       <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></button>
       <!--TODO:applycss and fix icons-->
       <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
-        <button id="normal-view" type="button" class="btn btn-primary"><i class="icon-th icon-border"></i></button>
-        <button id="list-view" type="button" class="btn btn-primary"><i class="icon-align-justify icon-border"></i></span></button>
+        <button id="normal-view" type="button" class="btn btn-primary"><i class="icon-th "></i></button>
+        <button id="list-view" type="button" class="btn btn-primary"><i class="icon-align-justify "></i></span></button>
       </div>
     </div>
     <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
@@ -26,17 +26,18 @@
       <%= render partial: 'categories/categories', :locals => { :scope => scope, :all_categories => all_categories} %>
     </ul>
   </div>
-    <!--TODO:fix styles -->
-    <div id="list-instance" style="display:none" >
+
+  <!--TODO:fix styles -->
+  <div id="list-instance" style="display:none" >
   <%all_categories[0..4].each do |category|%>
-    <h2 style="clear:both;float:left;"><%= category.title %></h2>
-    <ul style="clear:both;" class="categories main-categories-space">
+    <h2 ><%= category.title %></h2>
+    <ul class="categories main-categories-space">
         <%category.property_objects[0..6].each do |resource| %>
           <%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
         <%end%>
         <!-- TODO: normalize in css-->
     </ul>
-    <button style="clear:both;float:right;" onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue" name="<%=category.title%>"><%=t('view_all')%></button>
+    <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue" name="<%=category.title%>"><%=t('view_all')%></button>
     <%end%>
   </div>
 </div>
