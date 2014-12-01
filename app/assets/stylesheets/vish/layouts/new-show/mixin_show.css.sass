@@ -8,7 +8,7 @@
     left: 0
     right: 0
     width: 100%
-    iframe 
+    iframe
       position: absolute
       top: 0
       left: 0
@@ -40,9 +40,12 @@
       width: 50px
     .picture_show,
     .embed_show,
+    .swf_show
       max-width: 500px
       display: block
-      margin: 10px auto
+      margin: 20px auto
+      embed
+        min-height: 225px
       iframe
         width: 100% !important
         z-index: 1
@@ -68,7 +71,7 @@
       display: block
       width: 57px
       height: 62px
-      margin: 10px auto 
+      margin: 10px auto
     iframe.link_show
       width: 100%
       height: 500px
@@ -128,10 +131,10 @@
     margin-top: 0px
     height: 50px
     ul.nav,
-    ul.nav-tabs 
+    ul.nav-tabs
       border-bottom: 1px solid $grayLight
       @include tab_title
-      li     
+      li
         a
           border-left: none
           border-right: none
@@ -143,9 +146,9 @@
           &:focus
             background-color: none !important
             border: none
-            border-bottom: 3px solid $secondColor 
+            border-bottom: 3px solid $secondColor
           i
-            margin-right: 2px         
+            margin-right: 2px
             font-size: 12px
           span
             font-size: 11px
@@ -177,12 +180,12 @@
 // --------------------------------------------------
 @mixin excursion-help
   .helpheader
-    .popover            
+    .popover
       width: 500px!important
       max-width: 500px !important
       .arrow
         top: 100% !important
-        &:after 
+        &:after
           border-left-color: transparent !important
       .popoverfix
         color: #969595
@@ -197,7 +200,7 @@
         width: 503px
         a
           margin-left: 10px
-    .arrow:after 
+    .arrow:after
       border-left-color: #FFFFFF
 
 
@@ -350,7 +353,7 @@
       border-top-left-radius: 0px
     .btn
       padding: 8px 12px
-    .popover 
+    .popover
       width: 180px
       outline: none
       z-index: 20
@@ -380,12 +383,12 @@
 
     //author mixin
     @include author-tab-content
-    
+
     //views mixin
     @include viewsAndConunt-tab-content
 
-    
-    
+
+
   #effect
     position: relative
     min-height: 64px
@@ -502,7 +505,7 @@
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         img
           @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          @include border-radius($baseBorderRadius)     
+          @include border-radius($baseBorderRadius)
     .right-name
       display: block
       float: left
@@ -539,7 +542,7 @@
   .viewsandconunt
     width: 90%
     margin-left: 0
-    float: left 
+    float: left
     display: block
     margin-top: 5px
     .like
@@ -552,7 +555,7 @@
         display: inline-block
       a
         display: inline-block
-        .icon-star-empty, 
+        .icon-star-empty,
         .icon-star
           font-size: 12px
           color: $gray
@@ -570,5 +573,3 @@
       span
         font-size: 10px
         font-family: $firstFontFamily
-
-
