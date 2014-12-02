@@ -2,9 +2,10 @@ DocumentsController.class_eval do
 
   before_filter :fill_create_params, :only => [:new, :create]
 
-
   def create
     super do |format|
+      
+      #Check if the Zipfile contains a Web Application or a SCORM Package to create the new resource and redirect to it.
       if resource.is_a? Zipfile
         newResource = resource.getResourceAfterSave(self)
         if newResource.is_a? String
@@ -22,9 +23,17 @@ DocumentsController.class_eval do
       end
       
       format.json {
-        render :json => resource.to_json(helper: self), status: :created 
+        jsonResult = resource.to_json(helper: self)
+        if params["preferred_conversion"]=="avatar" and resource.is_a? Picture
+          parsedJsonResult = JSON(jsonResult)
+          parsedJsonResult["src"] += "?style=500"
+          jsonResult = parsedJsonResult.to_json
+        end
+        render :json => jsonResult, status: :created
       }
+
       format.js
+
       format.all {
         if resource.new_record?
           render action: :new
