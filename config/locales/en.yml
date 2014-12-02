@@ -95,6 +95,7 @@ en:
     pending_reports: "Pending reports"
     reporter: "Reporter"
     reports: "Reports"
+    resque: "Resque"
     title: "ViSH Administration Panel"
     users: "Users Administration"
   all: "all"

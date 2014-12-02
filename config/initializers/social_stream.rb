@@ -44,6 +44,10 @@ SocialStream.setup do |config|
   config.quick_search_models = [:excursion, :user, :picture, :video, :audio, :swf, :officedoc, :document, :embed, :writing, :link, :event, :zipfile, :scormfile, :webapp, :workshop]
   config.extended_search_models = [:excursion, :user, :event, :workshop, { :resource => [ :picture, :video, :audio, :swf, :officedoc, :document, :embed, :writing, :link, :zipfile, :scormfile, :webapp ] } ]
 
+  # Expose resque interface to manage background tasks at /resque
+  #
+  #config.resque_access = false
+
   # Cleditor controls. It is used in new message editor, for example
   # config.cleditor_controls = "bold italic underline strikethrough subscript superscript | size style | bullets | image link unlink"
 end

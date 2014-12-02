@@ -451,7 +451,6 @@ ActivityObject.class_eval do
     aosPopular = allAOs.where("id not in (?)", ids_to_avoid).order("ranking DESC").first(nsize)
     aosPopular.sort!{|b,a| a.updated_at <=> b.updated_at}
     aosPopular = aosPopular.first(nsize/2).sample(nHalf)
-    
     (aosRecent + aosPopular).map{|ao| ao.object}
   end
 
