@@ -7,8 +7,13 @@ Vish::Application.routes.draw do
         put 'users' => 'devise/registrations#update', :as => 'user_registration'
       end
   else
-    devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }
+    devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }  
   end
+
+  #authenticate :user do
+  #    mount Resque::Server.new, :at => "/resque"
+  #end
+
 
   match 'users/:id/excursions' => 'users#excursions'
   match 'users/:id/workshops' => 'users#workshops'
@@ -133,6 +138,7 @@ Vish::Application.routes.draw do
   end
 
   #Tracking System
-  resources :tracking_system_entries
+  resources :tracking_system_entries  
   
+
 end
