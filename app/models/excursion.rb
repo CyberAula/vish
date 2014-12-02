@@ -832,6 +832,7 @@ class Excursion < ActiveRecord::Base
     end
   end
 
+
   ####################
   ## Other Methods
   #################### 

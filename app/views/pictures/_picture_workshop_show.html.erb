@@ -1,0 +1,5 @@
+<%= div_for picture do %>
+	<div class="picture_show">
+		<%= image_tag(thumb_file_for(picture, 500), :title => picture.file_file_name) %>
+	</div>
+<% end %>

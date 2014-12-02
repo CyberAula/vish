@@ -21,6 +21,10 @@
   <%= favicon_link_tag "icons/favicon.ico" %>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
+  <script type="text/javascript">
+    var CKEDITOR_BASEPATH = '/assets/ckeditor/';
+  </script>
+  <%= javascript_include_tag "ckeditor/ckeditor" %>
 
   <% if protect_against_forgery? %>
   <%= csrf_meta_tag %>
@@ -36,7 +40,13 @@
   <script type="text/javascript">
     $(document).ready(function() {  
       //setTimeout(function(){ $("#flash .alert").hide("slow") }, 5000);
-      
+      //code to hide the help popovers when clicking outside
+      $('body').on('click', function (e) {
+              if ($(".popover").is(":visible") && !$(e.target).parents(".helpbutton").size()>0) {
+                  $(".helppopover").popover('hide');
+              }
+      });
+
       <%= yield :javascript%>
     });
   </script>

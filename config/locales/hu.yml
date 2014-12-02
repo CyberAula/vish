@@ -24,13 +24,13 @@ hu:
     follow: "+ Követés"
     unfollow: "Követés megszüntetése"
   all: "all"
-  announce: 
+  announce:
     title: "Közlemény"
   author: "szerző"
   cancel: "Mégse"
   close: "Bezár"
   conditions:
-    check_message: "Az Elfogadásra kattintva, egyetértesz a "  
+    check_message: "Az Elfogadásra kattintva, egyetértesz a "
     check_message_1: "Felhasználási feltételekkel"
     check_message_2: ""
     other: "feltételek"
@@ -56,7 +56,7 @@ hu:
     timeline2: " A verseny elindul"
     timeline3: " Beadási határidõ"
     timeline4: " Az értékelési folyamat lezárul, kihirdetjük a nyerteseket"
-    timeline_date: "2013 október 20."    
+    timeline_date: "2013 október 20."
     timeline_date2: "2013 December 16."
     timeline_date3: "2012 December 23."
     criteria: "Választási szempontok"
@@ -129,7 +129,7 @@ hu:
       bookmark: "könyvjelző"
       clone: "másol"
       delete: "töröl"
-      download: "letölt"            
+      download: "letölt"
       edit: "szerkeszt"
       show: "megmutat"
       share: "megoszt"
@@ -144,7 +144,8 @@ hu:
     contributors:
       name: "Együttműködők"
     created: "létrehozva"
-    favorites: "Kedvenc"    
+    detail: "Részletek"
+    favorites: "Kedvenc"
     how: "Hogy lehet virtuális sétát készíteni"
     invite:
       email:
@@ -157,7 +158,7 @@ hu:
     net: "kapcsolataim"
     network: "a kapcsolataim virtuális sétái"
     network2: "a kapcsolataim"
-    newmy_html: "Még nem hoztál létre saját virtuális sétát. Hozzáadhatsz egyet a hozzáadás gomb megnyomásával vagy ha ide kattintasz."    
+    newmy_html: "Még nem hoztál létre saját virtuális sétát. Hozzáadhatsz egyet a hozzáadás gomb megnyomásával vagy ha ide kattintasz."
     newnet_html: "Itt találod az általad követett felhasználók virtuális sétáit. Keress felhasználót <a href='/search?type=user'> itt</a>."
     newfav_html: "Még nincs kedvenc virtuális sétád. Jelöld ki bármelyiket a csillag ikonra kattintva.<img src='/assets/icons/star-off.png'>"
     one: "virtuális séta"
@@ -185,10 +186,12 @@ hu:
   go:
     repository: "menj a tárházhoz"
   help: "súgó"
+  info:
+    author: "szerző"
   lang:
     changed: "Nyelv változtatása %{lang}-ra"
     error: "A \"%{lang}\" nyelv nem elérhető "
-    title: "nyelv"   
+    title: "nyelv"
     languages:
       independent: "Nyelv független"
       other: "Others"
@@ -205,7 +208,7 @@ hu:
     unread: " olvasatlan"
   more: "még"
   mashme:
-    header_html: "Nézd a <a href='http://mashme.tv/' target='_blank'>MashMe.TV-t</a>" 
+    header_html: "Nézd a <a href='http://mashme.tv/' target='_blank'>MashMe.TV-t</a>"
     invite_header: "Hívd meg kapcsolataidat"
     invitesubject: "Csatlakozz hozzánk és nézd a MashMeTV-n a következő virtuális sétát!"
     invitebody_html: "Kattints ide hogy megnézd:<a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
@@ -218,7 +221,7 @@ hu:
     config_html: "Ha módosítani akarod az értesítési szolgáltatást, kattints <a href='%{url}'>ide</a>"
     makefriend:
       user: "%{sender} a követője %{who}-nek."
-    unread: " olvasatlan"  
+    unread: " olvasatlan"
   officedoc:
     confirm_delete: "Törlöd a dokumentumot?"
     title: "Irodai dokumentumok"
@@ -245,7 +248,7 @@ hu:
     input: "Oszd meg gondolataidat, linkjeidet, videóidat itt!"
     search_name: "státusz fissítése"
   profile:
-    occupation: 
+    occupation:
       label: "Munkaterület"
       other: "Egyéb"
       scientist: "Kutató"
@@ -254,7 +257,7 @@ hu:
     tags:
       default: "ViSHub, virtuális, séta"
       other: "Érdeklődési körök"
-  project: "Global Excursion"      
+  project: "Global Excursion"
   published: "Publikálva"
   quiz:
     answer:
@@ -277,9 +280,9 @@ hu:
     other: "tárak"
     title: "Források"
   resource:
-    empty: "Te"    
+    empty: "Te"
     network: "saját hálózati forrásaim"
-    newmy_html: "Még nem töltöttél fel forrást. Hozzáadhatod az upload gomb megnyomásával, vagy ha ide kattintasz"    
+    newmy_html: "Még nem töltöttél fel forrást. Hozzáadhatod az upload gomb megnyomásával, vagy ha ide kattintasz"
     newnet_html: "Itt láthatod az általatt követett felhasználók feltöltött forrásait. Keress felhasználót <a href='/search?type=user'>itt</a>."
     newfav_html: "Nincs még kedvenc forrásod? Kijelölheted a csillag ikonra kattintva <img src='/assets/icons/star-off.png'>"
     my: "saját"
@@ -339,11 +342,11 @@ hu:
   user:
     one: "felhasználó"
     other: "felhasználók"
-  username: "felhasználónév"   
+  username: "felhasználónév"
   views:
     pagination:
       next: "Â»"
-      previous: "Â«"            
+      previous: "Â«"
       truncate: "..."
   view_all: "mindent mutat"
   yesterday: "Tegnap"
@@ -568,3 +571,72 @@ hu:
     pagination:
       truncate: "..."
 
+  workshop:
+    actions:
+        add: "Add hozzá Workshop"
+        add_activity_title: "Tevékenység hozzáadása a Workshop"
+        add_activity_button: "Add hozzá"
+        adding_activity_button: "Hozzáadása..."
+        cancel_&_go: "Törölni és megy Workshop"
+        collapse_all: "Összes összecsukása"
+        confirm_delete: "Törli workshop?"
+        delete: "Törlése workshop"
+        edit_activity_button: "Mentés"
+        edit_mode_btOn: "A szerkesztési mód bekapcsolása"
+        edit_mode_btOff: "Szerkesztési üzemmód kikapcsolása"
+        expand_all: "Mindent kinagyít"
+        publish: "Közzététele"
+        unpublish: "Közzétételének visszavonása"
+    activities:
+        actions:
+            add_new_activity: "Új tevékenység hozzáadása"
+            confirm_delete: "Törli a tevékenységet?"
+        assignment:
+            add_image: "Feltöltés"
+            add_writing: "Írás"
+            available_contributions:
+                document: "Dokumentumt"
+                title: "Rendelkezésre álló hozzájárulások"
+                writing: "Írás"
+            content: "Tartalom"
+            contribution_message: "Részt vesz:"
+            description: "Hozzárendelések lehetővé teszi a résztvevők hozzájárulni ahhoz, hogy a műhely által a saját források feltöltése."
+            due_date: "Esedékesség"
+            modal_title: "Hozzárendelés szerkesztése"
+            open_date: "Megnyitás dátuma"
+            title: "Hozzárendelés"
+            with_dates: "Adja meg a nyitott és kellő dátuma"
+        resource:
+            title: "Erőforrás"
+            description: "Bármilyen típusú erőforrás beszúrása a Workshop."
+            text: "Ez a workshop minden a rendelkezésre álló erőforrások a Enikő adhat. Felvenni őket, nyissa meg az erőforrás Ilona Ilike Iluska, másolja az URL-címet a böngésző eszköztárán, és illessze be a következő szöveggel mezőbe."
+        resource_gallery:
+            title: "Erőforrások Galéria"
+            description: "A Galéria az erőforrások hozzáadása."
+            text: "Erőforrás egyik összetevője a workshop, amely lehetővé teszi, hogy több erőforrások, bármilyen típusú Ilona Ilike Iluska, és azokat megkönnyítésére megtekintése csoportosítani áll. A workshop és a hozzáadott erőforrások ezt az összetevőt a leg--bb könnyen és intuitív módon helyezze be."
+        contributions_gallery:
+            title: "Hozzájárulások Galéria"
+            description: "A hozzájárulások Galéria elküldött a műhely jeleníti meg."
+            text: "Használók tud hozzájárulni erőforrások vagy szöveg hozzáadásával egy workshop meghatározott feladatok. Galéria járulékok látható komponens csoportosított alakzatot erőforrások andor szövegek, amelyeket más felhasználók hozzájárultak."
+        text:
+            title: "Szöveg"
+            description: "Tartalmaz egy bekezdés-szöveg."
+            text: "Amellett, hogy a workshop és a benne meghatározott feladatok leírása néha szüksége lesz arra, hogy helyezze be egy fatuskó-ból szöveg-val más célra, mint irodalomjegyzék vagy más adatokhoz a műhely. Ez a komponens egy teljesen személyre szabott és szerkeszthető szöveg adható hozzá a workshop."
+    add_activity_modal:
+      resource:
+        description: "Ez a workshop minden a rendelkezésre álló erőforrások a Enikő adhat. Felvenni őket, nyissa meg az erőforrás Ilona Ilike Iluska, másolja az URL-címet a böngésző eszköztárán, és illessze be az alábbi mezőbe."
+    new: "Új Workshop"
+    other: "Workshops"
+    titles:
+        editing_details: "Szerkesztés workshop részletek"
+        editing_main: "Workshop szerkesztése"
+        show_main: "Workshop térkép"
+  writing:
+    actions:
+      add: "Szöveg hozzáadása"
+    confirm_delete: "Törli az írás?"
+    title3: "Írni a szöveget szeretne hozzáadni"
+  yesterday: "Tegnap"
+  zipfile:
+    name: "Zip-fájl"
+    confirm_delete: "Törli a Zip-fájlt?"

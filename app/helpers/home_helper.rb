@@ -12,6 +12,10 @@ module HomeHelper
     subject_content subject, Excursion, options
   end
 
+  def subject_workshops(subject, options = {})
+    subject_content subject, Workshop, options
+  end
+
   def current_subject_documents(options = {})
     subject_documents current_subject, options
   end
@@ -33,7 +37,7 @@ module HomeHelper
   end
 
   def subject_resources(subject, options = {})
-    subject_content subject, VishConfig.getAvailableNotMainResourceModels, options
+    subject_content subject, VishConfig.getAvailableNotMainResourceModels({:return_instances => true}), options
   end
 
   def current_subject_categories(options = {})

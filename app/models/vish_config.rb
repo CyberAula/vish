@@ -3,7 +3,7 @@
 class VishConfig
 
   def self.getMainModels
-    ["Excursion","Event","Category","Resource"]
+    ["Excursion","Event","Category","Resource","Workshop"]
   end
 
   def self.getFixedMainModels
@@ -11,23 +11,27 @@ class VishConfig
   end
 
   def self.getResourceModels
-    ["Document","Webapp","Scormfile","Link","Embed"] + getMainModelsWhichActAsResources
+    ["Document","Webapp","Scormfile","Link","Embed","Writing"] + getMainModelsWhichActAsResources
   end
 
   def self.getMainModelsWhichActAsResources
-    ["Excursion"]
+    ["Excursion","Workshop"]
   end
 
-  def self.getAllModels
-    processAlias(getMainModels)
+  def self.getAllModels(options={})
+    processAlias(getMainModels,options)
   end
 
   def self.getAllPossibleModelValues
     (getMainModels + getResourceModels).uniq
   end
 
+  def self.getAllContributionTypes
+    ["Document","Writing","Excursion","Link"]
+  end
+
   def self.getAllServices
-    ["ARS","Catalogue","Competitions2013"]
+    ["ARS","Catalogue","Competitions2013","ASearch"]
   end
 
   def self.getAvailableMainModels(options={})
@@ -39,7 +43,7 @@ class VishConfig
     end
 
     if options[:return_instances]
-      getInstances(processAlias(availableModels))
+      getInstances(processAlias(availableModels,options))
     else
       availableModels
     end
@@ -49,7 +53,7 @@ class VishConfig
     aMainModelsWhichActAsResources = getAvailableMainModels & getMainModelsWhichActAsResources
 
     if options[:return_instances]
-      getInstances(processAlias(aMainModelsWhichActAsResources))
+      getInstances(processAlias(aMainModelsWhichActAsResources,options))
     else
       aMainModelsWhichActAsResources
     end
@@ -63,7 +67,7 @@ class VishConfig
       homeModels = (Vish::Application.config.APP_CONFIG["models"]["home"] & getAllPossibleModelValues)
     end
 
-    homeModels = processAlias(homeModels)
+    homeModels = processAlias(homeModels,options)
 
     if options[:return_instances]
       getInstances(homeModels)
@@ -80,7 +84,7 @@ class VishConfig
       catalogueModels = (Vish::Application.config.APP_CONFIG["models"]["catalogue"] & getResourceModels)
     end
 
-    catalogueModels = processAlias(catalogueModels)
+    catalogueModels = processAlias(catalogueModels,options)
 
     if options[:return_instances]
       getInstances(catalogueModels)
@@ -109,7 +113,7 @@ class VishConfig
       availableResourceModels = availableResourceModels.reject{|m| mainModelsWhichActAsResources.include? m}
     end
 
-    availableResourceModels = processAlias(availableResourceModels)
+    availableResourceModels = processAlias(availableResourceModels,options)
 
     if options[:return_instances]
       getInstances(availableResourceModels)
@@ -127,11 +131,11 @@ class VishConfig
   end
 
   def self.getAllAvailableModels(options={})
-     processAlias(getAvailableMainModels(options))
+     processAlias(getAvailableMainModels(options),options)
   end
 
   def self.getAllAvailableAndFixedModels(options={})
-    allAvailableAndFixedModels = processAlias(getAvailableMainModels) + getFixedMainModels
+    allAvailableAndFixedModels = processAlias(getAvailableMainModels,options) + getFixedMainModels
     if options[:return_instances]
       getInstances(allAvailableAndFixedModels)
     else
@@ -140,15 +144,19 @@ class VishConfig
   end
 
   def self.getAllModelsIncludingFixedModels(options={})
-    (processAlias(getMainModels) + getFixedMainModels).uniq
+    (processAlias(getMainModels,options) + getFixedMainModels).uniq
   end
 
-  def self.processAlias(models=[])
+  def self.getAvailableContributionTypes
+    getAllContributionTypes
+  end
+
+  def self.processAlias(models=[],options={})
     if models.include? "Resource"
       models.delete "Resource"
       models += getAvailableResourceModels
     end
-    if models.include? "Document"
+    if options[:include_subtypes] and models.include? "Document"
       models += Document.subclasses.map{|s| s.name}
     end
     models.uniq!
@@ -174,10 +182,11 @@ class VishConfig
   end
 
   def self.getViSHInstances
+    instances = [Vish::Application.config.full_domain]
     if Vish::Application.config.APP_CONFIG["advanced_search"].nil? or Vish::Application.config.APP_CONFIG["advanced_search"]["instances"].nil?
-      []
+      instances
     else
-      ([Vish::Application.config.full_domain] + Vish::Application.config.APP_CONFIG["advanced_search"]["instances"]).uniq
+      (instances + Vish::Application.config.APP_CONFIG["advanced_search"]["instances"]).uniq
     end
   end
 

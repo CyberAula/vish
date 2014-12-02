@@ -15,7 +15,7 @@ EventsController.class_eval do
       :room_id,
       :streaming,
       :embed,
-      :scope
+      :language, :age_min, :age_max, :scope, :avatar, :tag_list=>[]
     ]
   end
 

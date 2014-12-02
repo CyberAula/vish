@@ -1,0 +1,19 @@
+<% resource = wa_resource.activity_object.object
+	className = resource.class.to_s
+	classNameUnderscore = className.underscore
+	classNameTableize = className.tableize
+	hasWorkshopPartial = lookup_context.template_exists?("#{classNameUnderscore}_workshop_show", classNameTableize, true)
+%>
+
+<div class="wa_resource_wrapper wa_activity_open">
+
+	<% unless className == "Excursion" %>
+		<%= render partial: 'wa_resources/corner_resource', locals: { resource: resource} %>
+	<% end %>
+
+	<% if hasWorkshopPartial %>
+		<%= render partial: "#{ classNameTableize }/#{classNameUnderscore}_workshop_show", locals:  { classNameUnderscore.to_sym => resource, :prefix_id => "wa_resource" }  %>
+	<% else %>
+		<%= render partial: "#{ classNameTableize }/#{ classNameUnderscore }_show", locals:  { classNameUnderscore.to_sym => resource, :prefix_id => "wa_resource" }  %>
+	<% end %>
+</div>

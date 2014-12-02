@@ -1,13 +1,12 @@
-<% if resource.nil? or resource.author.nil? %>
-<% return %>
-<% end %>
+<% return if resource.nil? or resource.author.nil? %>
 
 <li class="resource" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+
   <!-- corner -->
   <div class="corner-item">
     <div class="corner-item2">
       <div class="corner-color"></div>
-      <%= link_to raw(icon(resource)) %>
+      <%= link_to raw(icon(resource)), resource, :title => resource.title %>
     </div>
     <div class="corner-background"></div>
   </div>
@@ -18,7 +17,7 @@
       <%= link_to raw(icon(resource)), resource, :title => resource.title %>
     </div>
   </div>
-  <%= render partial: "application/applyBackstretch" %>
+  <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
   <!-- INFO -->
 
   <div class="caption">

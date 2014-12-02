@@ -78,7 +78,7 @@
       content: function() {
       return $('.contentclone').html();
       },
-      container: "body"
+      container: ".actions_layout_show"
     });
 
     $('.clone').on('shown.bs.popover', function (){
@@ -96,7 +96,7 @@
       content: function() {
         return $('.contentdelete').html();
       },
-      container: "body"
+      container: ".actions_layout_show"
     });
 
     $('.delete').on('shown.bs.popover', function(){
@@ -122,7 +122,7 @@
 
 
 <!--BTN ACTIONS-->
-<div class="btn-group">
+<div class="btn-group actions_layout_show">
 
   <!-- Edit -->
   <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
@@ -156,7 +156,6 @@
   </div>
   <!--favorite-->
   <% unless editingToolbar %>
-
     <% unless @excursion.post_activity.nil? %>
       <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
     <%end%>
@@ -177,6 +176,17 @@
       </button>
     <%end%>
   <%end%>
+
+  <% unless params[:animate].nil? or editingToolbar %>
+    <script type="text/javascript">
+      var toggleAnimation = function(){
+        animationEnabled = (!animationEnabled);
+      };
+    </script>
+    <button onclick="toggleAnimation()" class="btn with_tooltip">
+        <i class="icon-time"></i>
+    </button>
+  <% end %>
 
 </div>
 
@@ -267,6 +277,20 @@
             <button class="btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
               <i class="fa fa-copy "></i>
             </button>
+        </div>
+        <div class="social_toolbar_excursion">
+          <div class="twitter_toolbar_excursion">
+            <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
+          </div>
+          <div class="facebook_toolbar_excursion">
+            <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
+          </div>
+          <div class="gplus_toolbar_excursion ">
+            <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
+          </div>
+          <div class="email_toolbar_excursion">
+            <p><%=t('excursion.actions.send_email') %></p>
+            <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
           </div>
         </div>
       </div>
@@ -293,7 +317,6 @@
 
       <a class="btn btn-default" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a> 
       <p><%=t("excursion.download_scorm")%></p>
-
     </div> 
 
     <!-- tab5 / spam -->

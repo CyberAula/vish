@@ -46,6 +46,10 @@ module ApplicationHelper
 		VishConfig.getAvailableMainModels
 	end
 
+	def available_resource_types
+		VishConfig.getAvailableResourceModels
+	end
+
 	def home_models
 		VishConfig.getHomeModels
 	end

@@ -124,8 +124,12 @@
 .icon-book,
 .icon-comment,
 .icon-ok-sign,
-.icon-reorder
+.icon-reorder,
   @extend .fa
+
+[class^="icon-"]:before, 
+[class*=" icon-"]:before
+  font-family: 'FontAwesome' !important
 
 .icontitle
   font-family: "opensans-regular", Arial, sans-serif

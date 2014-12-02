@@ -1,33 +1,22 @@
 <span class="helpheader">  
   <a> 
-    <i class="fa fa-question-circle helphome" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.resources1_html')%>" href='#' value="" ></i>
+    <i class="fa fa-question-circle helphome" id="helpresourceid"  data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.resources1_html')%>" href='#' value="" ></i>
   </a>
-  <div class="contenthome" style="display: none">
+  <div class="contenthome" id="helpshowresourceid" style="display: none">
     <div class="popover-body">
       <p> <%= t('document.help.resources2_html')%> </p>
     </div>
     <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
 </span>
-<script>
-$(document).ready(function(){
-  $('.helphome').popover({ 
-    html : true,
-    content: function() {
-      return $('.contenthome').html();
-    }
-  });
-});
-</script>
 
 <script>
-$('body').on('click', function (e) {
-    $('.helphome').each(function () {
-        //the 'is' for buttons that trigger popups
-        //the 'has' for icons within a button that triggers a popup
-        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-            $(this).popover('hide');
-        }
-    });
+$(document).ready(function(){
+  $('#helpshowresourceid').popover({ 
+    html : true,
+    content: function() {
+      return $('#contenthelpshowresourceid').html();
+    }
+  });
 });
 </script>

@@ -1,0 +1,21 @@
+<li class="helpheader helpbutton">   
+  <i class="icon-question-sign helpInvitations helppopover" id="helpinvitationsid" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.inv')%>" href='#' value="" ></i>
+  <div class="contenthelpInvitations" id="contenthelpinvitationsid" style="display: none">
+    <div>
+       <%= t('document.help.inv1_html')%>
+       <br/>
+       <%= t('document.help.inv2_html')%>
+    </div>
+    <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
+  </div>
+</li>
+<script>
+  $('#helpinvitationsid').popover({ 
+    html : true,
+    content: function() {
+      return $('#contenthelpinvitationsid').html();
+    }
+  });
+
+</script>
+

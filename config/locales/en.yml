@@ -98,7 +98,7 @@ en:
     title: "ViSH Administration Panel"
     users: "Users Administration"
   all: "all"
-  announce: 
+  announce:
     title: "Announcement"
     body: "In the course of February, the GLOBAL excursion project is organizing two live online sessions with scientists. More information and registration under"
   are_you_sure: "¿Estás seguro?"
@@ -132,10 +132,14 @@ en:
       webapp: "Web Applications"
       zipfile: "ZIP files"
     instances:
-      add_instace: "Add Instance"
+      add_instance: "Add Instance"
       add: "Add"
       title: "ViSH Instances"
       results: "Results per instance"
+    rendering:
+      title: "Visualization options"
+      boxes: "View as avatars"
+      table: "View as table"
     sorting:
       sort_title: "Sorting"
       relevance: "Relevance"
@@ -146,11 +150,12 @@ en:
       visits: "Visits"
       favorites: "Favorites"
       quality: "Quality"
+    title: "Advanced Search"
   author: "author"
   browse:
     title: "browse"
     popular: "popular content"
-  button: 
+  button:
     sending: "Sending..."
   by: "by"
   cancel: "Cancel"
@@ -241,6 +246,9 @@ en:
     follow: "Follow"
     unfollow: "Unfollow"
     following: "Following"
+  contribution:
+    content: "Content"
+    title: "Title"
   pending:
     other: "Following you"
   contest:
@@ -379,6 +387,13 @@ en:
   date_name: "date"
   description: "description"
   devise:
+    invitations:
+      button: Invite anyone to join the community
+      edit:
+        header: You have been invited to join StoryRobin Community
+      modal_title: Send an invitation
+      submit_button: Send an invitation
+      success: Invitation sent succesfully
     invalid_login: "Please enter your email and password to continue."
     tags: "tags"
   disjunction:
@@ -429,9 +444,12 @@ en:
       resources2_html : "This section shows the resource in which you have entered. On the right zone, recommended resources will be shown, under the resource you have the information of it, as well as easy ways to share it, download it, mark it as spam, make it as favorite, or put it into one of your categories. You can also comment the resource from the bottom."
       favourite1_html : "Favourites"
       favourite2_html : "This section displays your favorite resources on items that really have made favorites."
+      inv: "Create a new invitation"
+      inv1_html: "1. Type the <b> email </b> of the person that you want to invite to join the community"
+      inv2_html: "2. Then, click on <b>Send an invitation</b>"
       overview_html: "<a href='/overview'><i class='fa fa-info-circle btn-xs'></i>ViSH Overview</a>"
     helpquiz:
-      info1_html: "1. Help test 1 for the quiz<br>"  
+      info1_html: "1. Help test 1 for the quiz<br>"
     how: "How to share a resource"
     info:
       age: "Age"
@@ -455,6 +473,7 @@ en:
       embed: "Embed (HTML code)"
       links: "Links (URLs)"
       browse: "Browse"
+      writing: "Text"
     recommended_age_detail: "From %{min} to %{max} years"
     screencast: "VISH's screencast"
     tags:
@@ -514,20 +533,23 @@ en:
       bookmark: "bookmark"
       clone: "clone"
       delete: "delete"
-      download: "download"            
+      download: "download"
       edit: "edit"
       embed: "embed"
       favorite: "favorite"
       my_room: "my room"
+      send_email: "Send Email:"
       show: "show"
       show_fewer: "Show fewer"
       show_meta: "Metadata"
       show_more: "Show more"
+      show_resource: "Show resource"
       share: "share"
       scorm: "scorm"
       spam: "spam"
     all: "all"
     description: "description"
+    detail: "Details"
     download_scorm: "A SCORM package is a collection of files which are packaged according to an agreed standard for learning objects. SCORM packages are zip files that can be integrated in any LMS (Learning Management System) that supports the standard (Moodle, Blackboard, …) and that can be used for presenting multimedia content and as assessment tools. Thus, you can integrate your Virtual Excursion in Moodle and other LMSs by downloading it as SCORM."
     clone:
       confirm: "This will clone this excursion to your own repository and will open it for editing"
@@ -540,7 +562,7 @@ en:
       name: "With content from"
     created: "created"
     draft: "Draft"
-    favorites: "Favorites"    
+    favorites: "Favorites"
     how: "How to create an excursion"
     invite:
       email:
@@ -548,7 +570,7 @@ en:
         link: "e-mail"
         subject: "Check%20out%20this%20excursion%20at%20http://vishub.org%20:%20%{title}"
     is_draft: "[DRAFT]"
-    modal: 
+    modal:
       title: "Congratulations"
       metadata_title: "Metadata"
       normal_body: "Congratulations. You have succesfully created this excursion."
@@ -560,7 +582,7 @@ en:
     network: "my network excursions"
     network2: "my network"
     new: "Create New Excursion"
-    newmy_html: "You have not created any excursions yet. You can add a new one by clicking on the add button or on this "    
+    newmy_html: "You have not created any excursions yet. You can add a new one by clicking on the add button or on this "
     newnet_html: "Here you will see the excursions created by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
     newfav_html: "You have no favorite excursions yet. Mark any excursion as favorite by clicking the star icon <img src='/assets/icons/star-off.png'>"
     one: "excursion"
@@ -603,7 +625,7 @@ en:
   go:
     repository: "go to repository"
   header:
-    tooltip: 
+    tooltip:
       add_button: "Create excursions, resources, etc."
   help: "help"
   help_page: "ViSH HELP"
@@ -612,6 +634,9 @@ en:
   home:
     foryou: "For you"
     populars: "Populars"
+  info:
+    author: "Author"
+
   lang:
     changed: "Language changed to %{lang}"
     error: "Language \"%{lang}\" not available"
@@ -652,7 +677,7 @@ en:
     access_lom: "LOM Metadata"
   more: "more"
   mashme:
-    header_html: "View in <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
+    header_html: "View in <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>"
     invite_header: "Invite your contacts"
     invitesubject: "Join me watching this excursion at MashMeTV!"
     invitebody_html: "Click here to watch: <a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
@@ -669,7 +694,7 @@ en:
     config_html: "If you want to modify the notification service. Click <a href='%{url}'>here</a>"
     makefriend:
       user: "%{sender} is following %{who}."
-    unread: " unread"  
+    unread: " unread"
   officedoc:
     confirm_delete: "Delete document?"
     download: "download"
@@ -710,7 +735,7 @@ en:
     edit: "Edit profile"
     profile: "profile"
     promote: "Promote to admin"
-    occupation: 
+    occupation:
       label: "Occupational field"
       options:
         select: "Select"
@@ -722,7 +747,7 @@ en:
     tags:
       default: "VisHub, virtual, excursion"
       other: "Areas of interest"
-  project: "Global Excursion"      
+  project: "Global Excursion"
   published: "Published"
   quiz:
     actions:
@@ -781,9 +806,9 @@ en:
   resource:
     actions:
       add: "Add resource"
-    empty: "You"    
+    empty: "You"
     network: "my network resources"
-    newmy_html: "You have not uploaded any resources yet. You can add a new one by clicking on the upload button or on this "    
+    newmy_html: "You have not uploaded any resources yet. You can add a new one by clicking on the upload button or on this "
     newnet_html: "Here you will see the resources uploaded by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
     newfav_html: "You have no favorite resources yet. Mark any resource as favorite by clicking the star icon <img src='/assets/icons/star-off.png'>"
     my: "my"
@@ -796,6 +821,7 @@ en:
     top: "forMe"
     upload: "upload"
   save: "Save"
+  saving: "Saving"
   scope:
     private: "Private"
     public: "Public"
@@ -849,7 +875,7 @@ en:
     message:
       default: "Secret Code did not match with the Image"
       user: "The secret Image and code were different"
-    error: "There was an error with the captcha code below. Please re-enter the code."   
+    error: "There was an error with the captcha code below. Please re-enter the code."
     subtitle: "Enter the code in the box:"
     title: "Captcha"
   site:
@@ -878,18 +904,81 @@ en:
     other: "users"
   username: "username"
   vish:
-    about: "About ViSH"   
+    about: "About ViSH"
     starterguide: "Starter Guide"
   views:
     pagination:
       next: "»"
-      previous: "«"            
+      previous: "«"
       truncate: "..."
   view_all: "view all"
   webapp:
     name: "Web Application"
     confirm_delete: "Delete Web application?"
     view_full: "View full"
+  workshop:
+    actions:
+        add: "Add Workshop"
+        add_activity_title: "Add Activity to the Workshop"
+        add_activity_button: "Add"
+        adding_activity_button: "Adding..."
+        cancel_&_go: "Cancel and go to Workshop"
+        collapse_all: "Collapse all"
+        confirm_delete: "Delete workshop?"
+        delete: "Delete workshop"
+        edit_activity_button: "Save"
+        edit_mode_btOn: "Turn on editing mode"
+        edit_mode_btOff: "Turn off editing mode"
+        expand_all: "Expand all"
+        publish: "Publish"
+        unpublish: "Unpublish"
+    activities:
+        actions:
+            add_new_activity: "Add new activity"
+            confirm_delete: "Delete activity?"
+        assignment:
+            add_image: "Upload"
+            add_writing: "Writing"
+            available_contributions:
+                document: "Document"
+                title: "Available contributions"
+                writing: "Writing"
+            content: "Content"
+            contribution_message: "Participate:"
+            description: "Assignments allow participants to contribute to the workshop by uploading their own resources."
+            due_date: "Due date"
+            modal_title: "Edit assignment"
+            open_date: "Open date"
+            title: "Assignment"
+            with_dates: "Specify open and due date"
+        resource:
+            title: "Resource"
+            description: "Insert any type of resource into the Workshop."
+            text: "You can add to this workshop all the resources that are available in Vish. To add them, open the resource in Vish, copy its URL from the browser toolbar and paste in the following text box."
+        resource_gallery:
+            title: "Resources Gallery"
+            description: "Add a gallery of resources."
+            text: "Resource galleries are a component of the workshop that allow you to include several resources of any type Vish and have them grouped together to facilitate viewing. Insert this component into your workshop and added resources in the most easy and intuitive way."
+        contributions_gallery:
+            title: "Contributions Gallery"
+            description: The Contributions Gallery displays the contributions sent to the workshop.
+            text: "Users can contribute to the tasks defined in a workshop by adding resources or text blocks. With the component Gallery of contributions can see grouped shape resources and/or texts with which other users have contributed."
+        text:
+            title: "Text"
+            description: "Include a paragraph of text."
+            text: "In addition to the description of the workshop and the tasks defined in it, sometimes you will need the ability to insert a block of text with other purpose, such as a bibliography or other data of interest for the workshop. With this component you can add a completely personalized and editable text to your workshop."
+
+    new: "New Workshop"
+    other: "Workshops"
+    titles:
+        editing_details: "Editing workshop details"
+        editing_main: "Editing Workshop"
+        show_main: "Show workshop"
+  writing:
+    actions:
+      add: "Add text"
+    confirm_delete: "Delete writing?"
+    title3: "Write the text you want to add"
   yesterday: "Yesterday"
   zipfile:
     name: "ZIP file"

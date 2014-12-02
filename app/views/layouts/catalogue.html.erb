@@ -35,7 +35,13 @@
     $(document).ready(function() {  
       $(".box-search input.search-query").val("<%=params[:q]%>");
       setTimeout(function(){ $("#flash .alert").hide("slow") }, 5000);
-
+      //code to hide the help popovers when clicking outside
+      $('body').on('click', function (e) {
+              if ($(".popover").is(":visible") && !$(e.target).parents(".helpbutton").size()>0) {
+                  $(".helppopover").popover('hide');
+              }
+      });
+      
       <%= yield :javascript%>
     });
   </script>

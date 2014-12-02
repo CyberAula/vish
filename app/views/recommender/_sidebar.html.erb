@@ -3,11 +3,7 @@
   <div class="recomended-items">
     <ul class="items small-box clearfix">
       <% resources.each do |resource| %>
-        <% if resource.class == Excursion %>
-          <%= render :partial => 'excursions/excursion', :locals => { :excursion => resource } %>
-        <% else %>
-          <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
-        <% end %>
+        <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "recommended_sidebar"} %>
       <% end %>
     </ul>
   </div>
@@ -16,8 +12,8 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#recomended_box div[bs-img]").each(function() {       
-        $(this).backstretch( $(this).attr("bs-img") );      
+    $("#recomended_box div[bs-img]").each(function(){
+        $(this).backstretch($(this).attr("bs-img"));    
     });
   });
 </script>

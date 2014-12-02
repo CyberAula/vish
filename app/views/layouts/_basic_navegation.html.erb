@@ -1,3 +1,8 @@
+<%if ["INVITATION_ONLY","HYBRID"].include? Vish::Application.config.APP_CONFIG["register_policy"] %>
+	<li class="navegation">
+	  <%= link_to(raw("<i class='icon-user'></i> "), new_user_invitation_path, :class => "btn-header tooltip-header clearfix", :title => t("devise.invitations.button"), :data => {:toggle=>"modal", :remote=> new_user_invitation_path, :target=>"#CreateInvitationModal"}) %>
+	</li>
+<%end%>
 <li class="navegation">
   <%= link_to(raw("<i class= "+ (current_subject.unread_messages_count > 0 ? "icon-envelope notification" : "icon-envelope-alt") + "></i> "), messages_path, :class => "btn-header tooltip-header clearfix", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :data => {:toggle=>"tooltip"}) %>
 </li>

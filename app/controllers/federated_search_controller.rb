@@ -90,14 +90,14 @@ class FederatedSearchController < ApplicationController
     subtypes = []
 
     unless type.blank?
-      allAvailableModels = VishConfig.getAllAvailableAndFixedModels
+      allAvailableModels = VishConfig.getAllAvailableAndFixedModels(:include_subtypes => true)
       # Available Types: all available models and the alias 'Resource'
       allAvailableTypes = allAvailableModels + ["Resource"]
 
       types = type.split(",") & allAvailableTypes
 
       if types.include? ["Resource"]
-        types.concat(VishConfig.getAvailableResourceModels)
+        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes))
       end
 
       types = types & allAvailableModels

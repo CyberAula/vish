@@ -1,4 +1,4 @@
-<section id="event">
+<section id="event" class="layout_show">
   <div class="event">
     <!--recomended-->
     <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@event,{:n=>12, :models => [Event]})} %>

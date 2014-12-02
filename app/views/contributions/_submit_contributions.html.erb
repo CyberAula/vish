@@ -1,0 +1,24 @@
+<%wa_assignment ||= nil %>
+<%contribution ||= nil %>
+<%editMode ||= false %>
+
+<% 
+  if !wa_assignment.nil?
+    available_contributions = wa_assignment.available_contributions_array
+    form_id = "contribution_new_" + wa_assignment.id.to_s
+  elsif !contribution.nil?
+    available_contributions = contribution.available_contributions_array
+    form_id = "contribution_new_" + contribution.id.to_s
+  else
+    available_contributions = []
+    form_id = "contribution_new"
+  end
+%>
+
+<div class="actions_contributions_show_object">
+  <span class="contribution_message"><%=t('workshop.activities.assignment.contribution_message')%></span>
+  <% available_contributions.each_with_index do |contribution_type,index| %>
+    <% form_id += "_" + (index+1).to_s %>
+    <%= render partial: "contributions/submit_#{contribution_type.downcase}", locals:  { :editMode => editMode, :wa_assignment => wa_assignment, :parent => contribution, :form_id => form_id }  %>
+  <% end %>
+</div>

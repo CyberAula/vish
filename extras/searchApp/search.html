@@ -1,591 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ViSH Search API</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<style>
-		html {
-			width: 100%;
-			height: 100%;
-		}
-		body{
-			overflow: hidden;
-			width: 100%;
-			height: 100%;
-			font-family: arial, sans-serif;
-			line-height: 15px;
-			padding: 0px;
-			margin: 0px;
-		}
-		#header{
-			display: block;
-			height: 10%;
-			width: 100%;
-		}
-		#results{
-			display: block;
-			float: right;
-			height: 90%;
-			width:100%;
-			background: #f2f2f2;
-			display: inline-block;
-			overflow-y: auto;
-		}
-		#settings{
-			display: none;
-			height: 325px;
-			width: 98%;
-			padding: 1%;
-			overflow-y: auto;
-			position: absolute;
-			top: 10%;
-			background-color: #404040;
-			color: #f2f2f2;
-		}
-		div.search {
-			display: block;
-			height: 80%;
-			width: 80%;
-			margin: 0% 10% 0% 10%;
-			position: relative;
-			top: 0%;
-			overflow: hidden;
-			min-height: 60px;
-			text-align: center;
-			z-index: 2;
-		}
-		input.search_input {
-			width: 486px;
-			background-color: #fff;
-			border: 1px solid rgba(0,0,0,0.15);
-			border-top: 1px solid rgba(0,0,0,0.25);
-			height: 25px;
-			padding-left: 4px;
-			margin-top: 15px;
-		}
-		input.search_input:hover {
-			-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
-			-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
-			box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
-			border: 1px solid #4d90fe;
-		}
-		button.toolbar_button {
-			background: #4d90fe !important;
-			background-color: #3079ed !important;
-			background-image: -webkit-linear-gradient(top, #4d90fe,#4787ed) !important;
-			width: 44px;
-			height: 30px;
-			position: relative;
-		}
-		button.search_button {
-			top: 4px;
-		}
-		button.settings_button {
-			top: 5px;
-		}
-		img.search_button_img {
-			border: 0;
-		}
-		img.settings_button_img {
-			border: 0;
-			width: 19px;
-			padding: 3px 0px 0px 1px;
-		}
-		div.result{
-			width: 200px;
-			height: 245px;
-			background: white;
-			float: left;
-			overflow: hidden;
-			box-shadow: 0 2px 5px rgba(0,0,0,0.16);
-			-webkit-border-radius: 5px;
-			-moz-border-radius: 5px;
-			border-radius: 5px;
-			margin: 10px;
-		}
-		div.result a{
-			text-decoration: none;
-		}
-		div.resultImageWrapper{
-			width: 200px;
-			height: 170px;
-			text-align: center;
-		}
-		div.resultImageWrapper img{
-			width: 90%;
-			height: 90%;
-			margin-top: 4%;
-		}
-		div.resultTitle{
-			width: 190px;
-			height: 31px;
-			margin-bottom: 5px;
-			font-size: 15px;
-			word-wrap: break-word;
-			padding: 0px 5px 0px 5px;
-			overflow: hidden;
-		}
-		div.resultTitle a{
-			color: #555 !important;
-		}
-		div.resultAuthor{
-			width: 190px;
-			height: 20px;
-			font-size: 12px;
-			padding: 0px 5px 0px 5px;
-			overflow: hidden;
-		}
-		div.resultAuthor a{
-			color: #004d7c !important;
-		}
-		div.resultBottom{
-			width: 190px;
-			height: 20px;
-			padding: 0px 5px 0px 5px;
-			display: inline-block;
-			font-size: 14px;
-			overflow: hidden;
-		}
-		div.likes{
-			display: inline-block;
-		}
-		div.views{
-			display: inline-block;
-			float: right;
-		}
-		img.inlineIcon{
-			height: 15px;
-			position: relative;
-			top: 2px;
-		}
-		.waiting{
-			cursor: wait !important;
-		}
-		div.settingsColumn{
-			text-align: center;
-			height: 100%;
-			width: 33%;
-			display: inline-block;
-			float: left;
-		}
-		div.settingsColumn p.settingsTitle {
-			margin-top: 0px;
-			margin-bottom: 10px;
-		}
-		div.settingsColumn p.settingsTitleSec {
-			margin-top: 15px;
-			margin-bottom: 0px;
-		}
-		div.settingsColumn p.settingsField {
-			text-align: left;
-			margin-bottom: 8px;
-			margin-top: 20px;
-		}
-		select {
-			width: auto;
-			min-width: 80%;
-			padding: 5px;
-		}
-		select#entity_types{
-			height: 80%;
-		}
-		#dateWrapper{
-			display: inline-block;
-		}
-		#dateWrapper div{
-			width: 50%;
-			float: left;
-			display: block;
-		}
-		#dateWrapper p{
-			margin-top: 0px;
-			margin-bottom: 5px;
-			font-size: 14px;
-		}
-		#ViSHinstances{
-			overflow-y: auto;
-		}
-		#ViSHinstances ul{
-			list-style-type: none;
-			text-align: left;
-			height: 140px;
-		}
-		#ViSHinstances ul li{
-			margin-top: 5px;
-		}
-
-		#addInstanceButton{
-			margin-left: 15px;
-			font-size: 13px;
-			cursor: pointer;		
-		}
-		span.deleteEntity{
-			margin-left: 20px;
-			font-size: 13px;
-			cursor: pointer;
-		}
-		span#closeSettings{
-			float: right;
-			cursor: pointer;
-			font-size: 10px;
-		}
-	</style>
+  <title>ViSH Search API</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="search.js"></script>
+  <link rel="stylesheet" type="text/css" href="search.css"/>
 </head>
-
-
 <body>
-	<script>
-		var QUERY_TIMEOUT = 6000;
 
-		$(document).ready(function(){
-			//Set events
-			$("#search_box").bind('keypress', function(e){
-				var code = e.keyCode || e.which;
-				if(code == 13) { //Enter keycode
-					onSearch();
-				}
-			});
+  <script type="text/javascript">
+    $(document).ready(function(){
+      VASearch.init({locale: 'en', draw: "boxes", allowAddInstance:true});
+    });
+  </script>
 
-			$("#search_button").bind('click', function(e){
-				onSearch();
-			});
+  <div id="asearch_header">
+    <div class="search">
+      <input class="asearch_box search_input" type="text" placeholder="Search educational resources" autocomplete="off">
+      <button class="toolbar_button search_button">
+        <img class="search_button_img" src="search.png">
+      </button>
+      <button class="toolbar_button settings_button">
+        <img class="settings_button_img" src="settings.png">
+      </button>
+    </div>
+  </div>
 
-			$("#settings_button").bind('click', function(e){
-				var isSettignsOpen = $("#settings").is(":visible");
-				if(isSettignsOpen){
-					$("#settings").fadeOut();
-				} else {
-					$("#settings").fadeIn();
-				}
-			});
+  <div id="asearch_results">
+  </div>
 
-			$("#addInstanceButton").bind('click', function(e){
-				var newInstance = $("#addInstanceInput").val();
-				if(newInstance!=""){
-					var el = $('<li><input type="checkbox"><span>'+$("#addInstanceInput").val()+'</span><span class="deleteEntity" title="delete">[X]</span></li>');
-					$("#ViSHinstances").find("ul").append(el);
-				}
-			});
+  <div id="asearch_settings">
+    <div class="settingsColumn">
+      <p class="settingsTitle">Select Entities to search</p>
+      <select multiple="" class="entity_types">
+        <option selected="selected" value="Resource">All Resources</option>
+          <option value="Audio">Audios</option>
+          <option value="Category">Categories</option>
+          <option value="Document">Documents</option>
+          <option value="Embed">Embeds</option>
+          <option value="Event">Events</option>
+          <option value="Excursion">Excursions</option>
+          <option value="Link">Links</option>
+          <option value="Officedoc">Office documents</option>
+          <option value="Picture">Pictures</option>
+          <option value="Scormfile">SCORM Packages</option>
+          <option value="Swf">Flash Objects</option>
+          <option value="User">Users</option>
+          <option value="Video">Videos</option>
+          <option value="Webapp">Web Applications</option>
+          <option value="Zipfile">ZIP files</option>
+      </select>
+    </div>
 
-			$(document).on('click','span.deleteEntity', function(e){
-				$(this).parent().remove();
-			});
+    <div class="settingsColumn">
+      <p class="settingsTitle">Sorting</p>
+      <select asparam="sort_by">
+        <option selected="selected" value="Relevance">Relevance</option>
+        <option value="ranking">Ranking</option>
+        <option value="popularity">Popularity</option>
+        <option value="modification">Modification</option>
+        <option value="creation">Creation</option>
+        <option value="visits">Visits</option>
+        <option value="favorites">Favorites</option>
+        <option value="quality">Quality</option>
+      </select>
 
-			$("#header, #results, #closeSettings").bind('click', function(e){
-				if($(e.target).hasClass("settings_button_img") || $(e.target).hasClass("settings_button")){
-					//Allow
-				} else {
-					$("#settings").hide();
-				}
-			});
-	
-		});
+      <p class="settingsTitleSec">Filters</p>
+      <p class="settingsField" style="margin-top: 9px !important;">Date Range</p>
+      <div class="dateWrapper">
+        <div>
+          <p>Start Date</p>
+          <input type="date" asparam="startDate" name="startDate">
+        </div>
+        <div>
+          <p>End Date</p>
+          <input type="date" asparam="endDate" name="endDate">
+        </div>
+      </div>
+      <p class="settingsField">Language</p>
+      <select asparam="language">
+        <option selected="selected" value="">Any</option>
+          <option value="independent">Language independent</option>
+          <option value="nl">Dutch</option>
+          <option value="en">English</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="hu">Hungarian</option>
+          <option value="it">Italian</option>
+          <option value="pt">Portuguese</option>
+          <option value="ru">Russian</option>
+          <option value="es">Spanish</option>
+          <option value="ot">Others</option>
+      </select>
+      <p class="settingsField" style="margin-top: 20px !important;"><span>Quality Threshold (0-10): &nbsp;</span><span asparam="rangeValue">5.0</span></p>
+      <input asparam="qualityThreshold" type="range" min="0" max="10" step="0.1" value="5">
+    </div>
 
+    <div class="settingsColumn">
+      <p class="settingsTitle">ViSH Instances <span class="closeASearchSettings">close</span></p>
 
-		///////////
-		// UI Methods
-		///////////
-		var drawResultInDOM = function(JSONresult){
-			var avatarURL = (typeof JSONresult.avatar_url == "string" ? JSONresult.avatar_url : "lo.png");
-			_drawResultInDOM(avatarURL, JSONresult.url,JSONresult.title,JSONresult.author_profile_url,JSONresult.author,JSONresult.like_count,JSONresult.visit_count);
-		};
+      <p class="settingsField">Results per instance</p>
+      <select asparam="n">
+        <option value="1">1</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option selected="selected" value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
 
-		var _drawResultInDOM = function(avatarURL,resourceURL,resourceTitle,authorURL,authorName,nFavorites,nViews){
-			var scaffold = $('<div class="result" id="box'+getId()+'"></div>');
-			if(avatarURL){
-				$(scaffold).append('<div class="resultImageWrapper"><img class="resultImage" src="'+avatarURL+'"></div>');
-			}
-			if((resourceTitle)&&(resourceURL)){
-				$(scaffold).append('<div class="resultTitle"><a target="_blank" href="'+resourceURL+'">'+resourceTitle+'</a></div>');
-			}
-			if((authorName)&&(authorURL)){
-				$(scaffold).append('<div class="resultAuthor"><span class="by">by</span> <a target="_blank" href="'+authorURL+'">'+authorName+'</a></div>');
-			};
-			if((nFavorites)&&(nViews)){
-				$(scaffold).append('<div class="resultBottom"><div class="likes"><span>'+nFavorites+'</span> <img class="inlineIcon" src="star.png"></div><div class="views"><span>'+nViews+'</span> <img class="inlineIcon" src="eye.png"></div></div>');
-			};
-			
-			$("#results").append(scaffold);
-		};
+      <p class="settingsField">ViSH Instances</p>
+      <div class="ViSHinstances">
+        <div class="addInstanceInputWrapper" style="display:none">
+          <input type="text" class="addInstanceInput" placeholder="Add Instance">
+          <span class="addInstanceButton" title="add">[Add]</span>
+        </div>
+        <ul>
+            <li>
+              <input type="checkbox" checked="">&nbsp;
+              <span>http://localhost:3000</span>
+            </li>
+            <li>
+              <input type="checkbox" checked="">&nbsp;
+              <span>http://vishub.org</span>
+            </li>
+        </ul>
+      </div>
+      <p class="settingsTitleSec">Visualization options</p>
+      <select style="margin-top: 9px !important;" asparam="visualization">
+        <option value="boxes">View as avatars</option>
+        <option value="table">View as table</option>
+      </select>
+    </div>
+  </div>
 
-		var cleanResults = function(){
-			$("#results").html("");
-		};
-
-		var updateRange = function(val){
-			$("#rangeValue").html(val);
-		};
-
-
-		///////////
-		// Search Methods
-		///////////
-
-		var queriesCounter = 0;
-		var queriesData = [];
-		var searchId = -1;
-		var sessionSearchs = {};
-
-		var onSearch = function(){
-			$("#settings").hide();
-			cleanResults();
-
-			//1. Build Query
-			var searchTerms = $("#search_box").val();
-			var settings = getSettings();
-			var query = buildQuery(searchTerms,settings);
-
-			//2. Peform the search in the instances
-			var instances = getInstances();
-			var instancesL = instances.length;
-
-			queriesCounter = 0;
-			queriesData = [];
-			searchId = getId();
-			sessionSearchs[searchId] = {};
-
-			if(instancesL>0){
-				$("*").addClass("waiting");
-
-				for(var i=0; i<instancesL; i++){
-					sessionSearchs[searchId][instances[i]] = {completed: false};
-					searchInViSHInstance(searchId,instances[i],query,function(data){
-						if((typeof data.searchId == "undefined")||(data.searchId != searchId)){
-							//Result of an old search
-							return;
-						}
-
-						queriesCounter += 1;
-						if((data.success===true)&&(typeof data.response != "undefined")&&(typeof data.response.results != "undefined")){
-							queriesData = queriesData.concat(data.response.results)
-						}
-
-						if(queriesCounter===instancesL){
-							//All searches finished
-							onFinishSearch(queriesData);
-						}
-					});
-				}
-			}
-		};
-
-		var onFinishSearch = function(results){
-			cleanResults();
-
-			$(results).each(function(index,result){
-				drawResultInDOM(result);
-			});
-			$("*").removeClass("waiting");
-		};
-
-		var getInstances = function(){
-			return $("#ViSHinstances").find("ul li input[type='checkbox']:checked'").map(function(index,input){ return $(input).parent().find("span").html();});
-		};
-
-		var getSettings = function(){
-			var settings = {};
-
-			settings.n = $("#n").val();
-
-			//Entities to search
-			settings.entities_type = $("#entity_types").val().join(",");
-			settings.sort_by = $("#sort_by").val();
-			if(settings.sort_by=="Relevance"){
-				delete settings.sort_by
-			}
-			
-			var startDate = $("#startDate").val().split("-").reverse().join("-");
-			if(startDate.trim()!=""){
-				settings.startDate = startDate;
-			}
-			var endDate = $("#endDate").val().split("-").reverse().join("-");
-			if(endDate.trim()!=""){
-				settings.endDate = endDate;
-			}
-
-			var language = $("#language").val();
-			if(language.trim()!=""){
-				settings.language = language;
-			}
-
-			settings.qualityThreshold = $("#qualityThreshold").val();
-
-			return settings;
-		};
-
-		var buildQuery = function(searchTerms,settings){
-			var query = "/apis/search?n="+settings.n+"&q="+searchTerms+"&type="+settings.entities_type
-
-			if(settings.sort_by){
-				query += "&sort_by="+settings.sort_by;
-			}
-
-			if(settings.startDate){
-				query += "&startDate="+settings.startDate;
-			}
-
-			if(settings.endDate){
-				query += "&endDate="+settings.endDate;
-			}
-
-			if(settings.language){
-				query += "&language="+settings.language;
-			}
-
-			query += "&qualityThreshold="+settings.qualityThreshold;
-
-			return query;
-		};
-
-		var searchInViSHInstance = function(searchId,domain,query,callback){
-			var ViSHSearchAPIURL = domain + query
-
-			$.ajax({
-				type    : 'GET',
-				url     : ViSHSearchAPIURL,
-				success : function(data) {
-					if(sessionSearchs[searchId][domain].completed == false){
-						sessionSearchs[searchId][domain].completed = true;
-						callback({success:true, response: data, searchId:searchId});
-					}
-				},
-				error: function(error){
-					if(sessionSearchs[searchId][domain].completed == false){
-						sessionSearchs[searchId][domain].completed = true;
-						callback({success:false, searchId:searchId});
-					}
-					debug("Error connecting with the ViSH API of " + domain,true);
-				}
-			});
-
-			setTimeout(function(){
-				if(sessionSearchs[searchId][domain].completed == false){
-					sessionSearchs[searchId][domain].completed = true;
-					callback({success:false, searchId:searchId});
-				}
-			},QUERY_TIMEOUT);
-		};
-
-		///////////
-		// Utils
-		///////////
-
-		var _id = 0;
-		var getId = function(){
-			_id += 1;
-			return _id;
-		};
-
-		var debug = function(msg,isError){
-			if(console){
-				if(error){
-					console.error(msg);
-				} else {
-					console.info(msg);
-				}
-			}
-		};
-	</script>
-
-	<div id="header">
-		<div class="search">
-			<input id="search_box" class="search_input" type="text" placeholder="Search educational resources" autocomplete="off">
-			<button id="search_button" class="toolbar_button search_button">
-				<img class="search_button_img" src="search.png">
-			</button>
-			<button id="settings_button" class="toolbar_button settings_button">
-				<img class="settings_button_img" src="settings.png">
-			</button>
-		</div>
-	</div>
-	<div id="results">
-	</div>
-	<div id="settings">
-		<div id="settingsRow1" class="settingsColumn">
-			<p class="settingsTitle">Select Entities to search</p>
-			<select multiple id="entity_types">
-				<option selected="selected" value="Resource">Resources</option>
-				<option value="Excursion">Excursions</option>
-				<option value="Link">Links</option>
-				<option value="Embed">Embeds</option>
-				<option value="Scormfile">SCORM Packages</option>
-				<option value="Webapp">Web Applications</option>
-				<option value="Picture">Pictures</option>
-				<option value="Video">Videos</option>
-				<option value="Audio">Audios</option>
-				<option value="Officedoc">Office documents</option>
-				<option value="Swf">Flash Objects</option>
-				<option value="Zipfile">ZIP files</option>
-				<option value="User">User</option>
-				<option value="Event">Event</option>
-				<option value="Category">Category</option>
-			</select>
-		</div>
-		<div id="settingsRow2" class="settingsColumn">
-			<p class="settingsTitle">Sorting</p>
-			<select id="sort_by">
-				<option selected="selected" value="Relevance">Relevance</option>
-				<option value="ranking">Ranking</option>
-				<option value="popularity">Popularity</option>
-				<option value="modification">Modification</option>
-				<option value="creation">Creation</option>
-				<option value="visits">Visits</option>
-				<option value="favorites">Favorites</option>
-				<option value="quality">Quality</option>
-			</select>
-			<p class="settingsTitleSec">Filters</p>
-			<p class="settingsField" style="margin-top: 9px !important;">Date</p>
-			<div id="dateWrapper">
-				<div>
-					<p>Start Date</p>
-					<input type="date" id="startDate" name="startDate">
-				</div>
-				<div>
-					<p>End Date</p>
-					<input type="date" id="endDate" name="endDate">
-				</div>
-			</div>
-			<p class="settingsField">Language</p>
-			<select id="language">
-				<option selected="selected" value="">Select a language</option>
-				<option value="en">English</option>
-				<option value="es">Spanish</option>
-				<option value="de">German</option>
-				<option value="fr">Français</option>
-				<option value="it">Italian</option>
-				<option value="pt">Português</option>
-			</select>
-			<p class="settingsField" style="margin-top: 23px !important;"><span>Quality Threshold (0-10): &nbsp;</span><span id="rangeValue">5.0</span></p>
-			<input id="qualityThreshold" type="range" min="0" max="10" step="0.1" value="5" onchange="updateRange(this.value)"/>
-		</div>
-		<div id="settingsRow3" class="settingsColumn">
-			<p class="settingsTitle">ViSh Instances <span id="closeSettings">close</span></p>
-
-			<p class="settingsField">Results per instance</p>
-			<select id="n">
-				<option value="1">1</option>
-				<option value="5">5</option>
-				<option value="10">10</option>
-				<option selected="selected" value="20">20</option>
-				<option value="50">50</option>
-				<option value="100">100</option>
-			</select>
-
-			<p class="settingsField">ViSh Instances</p>
-			<div id="ViSHinstances">
-				<input type="text" id="addInstanceInput" placeholder="Add Instance"><span id="addInstanceButton" title="add">[Add]</span>
-				<ul>
-					<li>
-						<input type="checkbox" checked="checked"></input><span>http://vishub.org</span>
-					</li>
-					<li>
-						<input type="checkbox"></input><span>http://localhost:3000</span><span class="deleteEntity" title="delete">[X]</span>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
 </body>
-
 </html>

@@ -2,7 +2,6 @@
 <%= content_for :description do %><%= @excursion.description %><% end %>
 <%= content_for :keywords do %><%= @excursion.tag_list %><% end %>
 <%= content_for :og_type do %>website<% end %>
-<% #shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) ) %>
 <% shortURL = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) %>
 <%= content_for :og_url do %><%= shortURL %><% end %>
 <%= content_for :og_image do %>
@@ -13,26 +12,69 @@
 <%=javascript_include_tag "jquery.rating" %>
 <%=javascript_include_tag "jquery.zclip.min" %>
 <%=javascript_include_tag "loep" %>
+<%=javascript_include_tag "VISH.IframeAPI" %>
 
 <script type="text/javascript">
-    var triggerEvaluation = function(){
-      $("#learning-evaluation-button-id").trigger("click");
-    };
+  var triggerEvaluation = function(){
+    $("#learning-evaluation-button-id").trigger("click");
+  };
+
+  //VE extra vars
+  var options = {};
+  options["readHashFromParent"] = true;
+
+  <% unless params[:recent].nil? %>
+    $(document).ready(function(){
+        $("#congratulations-button").click();
+    });
+  <% end %>
 </script>
 
-<%= content_for :javascript do %> 
-    if(window.location.search.indexOf("recent") !=-1){
-      $("#congratulations-button").click();
-    }
-<%end%>
+<% unless params[:animate].nil? %>
+  <script type="text/javascript">
+    //Global vars
+    var animationEnabled = true;
 
+    $(document).ready(function(){
+        //Animate excursion
+        VISH.IframeAPI.init({callback: function(){
+          //OnConnect
+          var nSlides = parseInt('<%=@excursion.slide_count%>');
+          var animateTime = parseInt('<%=params[:animate]%>');
+          if(typeof animateTime != "number" || isNaN(animateTime)){
+            animateTime = 4;
+          }
+          animateTime *= 1000;
+          var cSlide = 1;
+          setInterval(function(){
+            if(animationEnabled){
+              cSlide++;
+              if(cSlide > nSlides){
+                cSlide = 1;
+              }
+              VISH.IframeAPI.goToSlide(cSlide);
+            }
+          },animateTime);
+        }});
+    });
+  </script>
+<% end %>
 
 <% unless @excursion.author.nil? %>
   <%= render :partial => 'objects/show', :locals  => { :object => @excursion } %>
 <% end %>
 
 <!--div class="page-header"><%= @excursion.title %></div-->
-<section id="show_items">
+
+<section id="show_items " class="layout_show">
+  
+  <!-- Content -->
+  <div class="box-show">
+    <div class="container-visor">
+      <div class="elemento-visor"></div>
+      <%= render :partial => 'excursion_show', :locals  => { :excursion => @excursion } %>
+    </div>
+  </div>
 
   <!--recomended-->
   <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})} %>
@@ -87,15 +129,4 @@
       </div>
     </div>
   </div>
-
-<script type="text/javascript">
-  //VE extra vars
-  var options = {};
-  options["readHashFromParent"] = true;
-  function re_apply_backstrech_on_recommended(){
-    $("div[bs-img]").each(function() {
-      $(this).backstretch( $(this).attr("bs-img") );
-    });
-  };
-  re_apply_backstrech_on_recommended();
-</script>
+</div>
