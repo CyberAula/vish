@@ -482,14 +482,19 @@ namespace :fix do
   end
 
   def downloadAvatar(pictureURL,owner,index)
-    pictureURI = URI.parse(pictureURL)
-    fileName = index.to_s + "_" + File.basename(pictureURI.path)
-    filePath = "tmp/externalAvatars/" + fileName
-    pictureURL = URI.encode(pictureURL)
-    command = "wget " + pictureURL + " --output-document='" + filePath + "'"
-    system(command)
-
-    if !File.exist?(filePath) or File.zero?(filePath)
+    begin
+      pictureURI = URI.parse(pictureURL)
+      fileName = index.to_s + "_" + File.basename(pictureURI.path)
+      filePath = "tmp/externalAvatars/" + fileName
+      pictureURL = URI.encode(pictureURL)
+      command = "wget " + pictureURL + " --output-document='" + filePath + "'"
+      system(command)
+    rescue => e
+      filePath = nil
+      fileName = index.to_s + "_default"
+    end
+    
+    if filePath.nil? or !File.exist?(filePath) or File.zero?(filePath)
       filePath = Rails.root.to_s + '/app/assets/images/logos/original/ao-default.png'
     end
 
@@ -500,7 +505,15 @@ namespace :fix do
     pic.user_author_id = owner.id
     pic.scope = 1
     pic.file = File.open(filePath, "r")
-    pic.save!
+
+    begin
+      pic.save!
+    rescue => e
+      #Corrupted (but downloaded) images
+      filePath = Rails.root.to_s + '/app/assets/images/logos/original/ao-default.png'
+      pic.file = File.open(filePath, "r")
+      pic.save!
+    end
 
     return pic.getAvatarUrl
   end
