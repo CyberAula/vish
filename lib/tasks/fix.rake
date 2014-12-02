@@ -436,7 +436,74 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
-  
+  #Usage
+  #Development:   bundle exec rake fix:downloadExternalAvatars
+  #In production: bundle exec rake fix:downloadExternalAvatars RAILS_ENV=production
+  task :downloadExternalAvatars => :environment do
+    printTitle("Downloading external avatars")
+
+    system("rm -rf tmp/externalAvatars")
+    system("mkdir -p tmp/externalAvatars")
+
+    Excursion.record_timestamps=false
+    ActivityObject.record_timestamps=false
+
+    excursionsToFix = Excursion.all
+
+    excursionsToFix.each_with_index do |e,index|
+      oldAvatarURL = e.thumbnail_url
+      next if oldAvatarURL.blank?
+
+      #Check if the avatar is from vish or is external
+      if oldAvatarURL.include?(Vish::Application.config.full_domain)
+        #is from vish
+        if oldAvatarURL.include?(Vish::Application.config.full_domain + "/pictures/")
+          newAvatarURL = oldAvatarURL.split("?")[0] + "?style=500"
+        else
+          newAvatarURL = oldAvatarURL
+        end
+      else
+        #download the avatar
+        newAvatarURL = downloadAvatar(oldAvatarURL,e.owner,index);
+      end
+      
+      eJson = JSON(e.json)
+      eJson["avatar"] = newAvatarURL
+      e.update_column :json, eJson.to_json
+      e.update_column :thumbnail_url, newAvatarURL
+    end
+
+    Excursion.record_timestamps=true
+    ActivityObject.record_timestamps=true
+
+    # system("rm -rf tmp/externalAvatars")
+
+    printTitle("Task Finished")
+  end
+
+  def downloadAvatar(pictureURL,owner,index)
+    pictureURI = URI.parse(pictureURL)
+    fileName = index.to_s + "_" + File.basename(pictureURI.path)
+    filePath = "tmp/externalAvatars/" + fileName
+    pictureURL = URI.encode(pictureURL)
+    command = "wget " + pictureURL + " --output-document='" + filePath + "'"
+    system(command)
+
+    if !File.exist?(filePath) or File.zero?(filePath)
+      filePath = Rails.root.to_s + '/app/assets/images/logos/original/ao-default.png'
+    end
+
+    pic = Picture.new
+    pic.title = fileName
+    pic.owner_id = owner.id
+    pic.author_id = owner.id
+    pic.user_author_id = owner.id
+    pic.scope = 1
+    pic.file = File.open(filePath, "r")
+    pic.save!
+
+    return pic.getAvatarUrl
+  end
 
   ####################
   #Task Utils
@@ -457,54 +524,3 @@ namespace :fix do
   end
 
 end
-
-
-####################
-## Some manual fixes
-####################
-
-# * Set PDFEX permanent = true
-# Pdfex.all.map { |pdfex| pdfex.update_column :permanent, true }
-# * PDFEx Update pdf page count
-# Pdfex.all.map { |pdfex| pdfex.updatePageCount }
-
-# * Actualizar IDs de excursiones en el JSON, poner su id de verdad en vez del activity object, y meterlo en vish metadata
-# Excursion.all.map { |ex| ejson = JSON(ex.json); ejson["vishMetadata"]={}; ejson["vishMetadata"]["id"] = ex.id.to_s; ejson.delete("id"); ex.update_column :json, ejson.to_json}
-
-# * Poner scorm_timestamp a nil en todas las ex
-# Excursion.all.map { |ex| ex.scorm_timestamp = nil; ex.update_column :scorm_timestamp, nil}
-
-
-# Avatares defectuosos:
-
-# Caso A: Thumbnails: "/assets/logos/original/excursion-XX.png"
-
-# excursions = Excursion.all.select { |ex| 
-# !ex.thumbnail_url.nil? and ex.thumbnail_url.include?("/assets/logos/original/excursion-") and !ex.thumbnail_url.include?("vishub") and !ex.thumbnail_url.include?("http://") and !ex.thumbnail_url.include?("https://")
-# }
-
-# Excursion.all.map { |ex| 
-# if (!ex.thumbnail_url.nil? and ex.thumbnail_url.include?("/assets/logos/original/excursion-") and !ex.thumbnail_url.include?("vishub") and !ex.thumbnail_url.include?("http://") and !ex.thumbnail_url.include?("https://"))
-#   newThumbnailUrl = Vish::Application.config.full_domain + ex.thumbnail_url;
-# ex.update_column :thumbnail_url, newThumbnailUrl;
-# ejson = JSON(ex.json); 
-# ejson["avatar"]=newThumbnailUrl;
-# ex.update_column :json, ejson.to_json;
-# end
-# }
-
-# Caso B: ViSH Pictures: "/pictures/308.jpg"
-
-# excursions = Excursion.all.select { |ex| 
-# !ex.thumbnail_url.nil? and ex.thumbnail_url.include?("/pictures/") and !ex.thumbnail_url.include?("vishub") and !ex.thumbnail_url.include?("http://") and !ex.thumbnail_url.include?("https://")
-# }
-
-# Excursion.all.map { |ex| 
-# if (!ex.thumbnail_url.nil? and ex.thumbnail_url.include?("/pictures/") and !ex.thumbnail_url.include?("vishub") and !ex.thumbnail_url.include?("http://") and !ex.thumbnail_url.include?("https://"))
-#   newThumbnailUrl = Vish::Application.config.full_domain + ex.thumbnail_url;
-# ex.update_column :thumbnail_url, newThumbnailUrl;
-# ejson = JSON(ex.json); 
-# ejson["avatar"]=newThumbnailUrl;
-# ex.update_column :json, ejson.to_json;
-# end
-# }
