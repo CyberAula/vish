@@ -11,8 +11,9 @@ ActivityObject.class_eval do
   after_destroy :destroy_contribution
 
   has_attached_file :avatar,
-                  :url => '/:class/avatar/:id.:extension',
-                  :path => ':rails_root/documents/:class/avatar/:id_partition/:filename.:extension'
+    :url => '/:class/avatar/:id.:content_type_extension?style=:style',
+    :path => ':rails_root/documents/:class/avatar/:id_partition/:style',
+    :styles => SocialStream::Documents.picture_styles
 
   validates_attachment_content_type :avatar, :content_type =>["image/jpeg", "image/png", "image/gif", "image/tiff", "image/x-ms-bmp"], :message => 'Avatar should be an image. Non supported format.'
 
@@ -309,13 +310,13 @@ ActivityObject.class_eval do
   def getAvatarUrl
     resource = self.object
     if resource.class.name=="User"
-      relativePath = resource.logo.to_s
+      relativePath = resource.logo.url(:medium)
     elsif resource.class.name=="Excursion"
       absolutePath = resource.thumbnail_url
     elsif resource.class.name=="Picture"
-      relativePath = document.file.url
+      relativePath = document.file.url + "?style=500"
     elsif resource.avatar.exists?
-      relativePath = resource.avatar.url
+      relativePath = resource.avatar.url("500",{:timestamp => false})
     end
 
     if absolutePath.nil? and !relativePath.nil?

@@ -53,7 +53,7 @@ Vish::Application.routes.draw do
   match 'lre/search' => 'lre#search_lre'
 
   #AO avatars
-  match 'activity_objects/avatar/:id' => 'activity_object#avatar'
+  match 'activity_objects/avatar/:id' => 'activity_object#show_avatar'
 
   #Excursions. Match the filter before the excursions resources
   match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
