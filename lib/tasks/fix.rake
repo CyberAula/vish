@@ -445,6 +445,9 @@ namespace :fix do
     system("rm -rf tmp/externalAvatars")
     system("mkdir -p tmp/externalAvatars")
 
+    #Set a specific owner
+    owner = User.find_by_email("virtual.science.hub+1@gmail.com")
+
     Excursion.record_timestamps=false
     ActivityObject.record_timestamps=false
 
@@ -464,7 +467,8 @@ namespace :fix do
         end
       else
         #download the avatar
-        newAvatarURL = downloadAvatar(oldAvatarURL,e.owner,index);
+        owner = owner || e.owner
+        newAvatarURL = downloadAvatar(oldAvatarURL,owner,index);
       end
       
       eJson = JSON(e.json)
