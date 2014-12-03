@@ -27,7 +27,6 @@
     </ul>
   </div>
 
-  <!--TODO:fix styles -->
   <div id="list-instance" style="display:none" >
   <%all_categories[0..4].each do |category|%>
     <h2 ><%= category.title %></h2>
@@ -35,7 +34,6 @@
         <%category.property_objects[0..6].each do |resource| %>
           <%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
         <%end%>
-        <!-- TODO: normalize in css-->
     </ul>
     <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue" name="<%=category.title%>"><%=t('view_all')%></button>
     <%end%>

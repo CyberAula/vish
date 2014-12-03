@@ -15,6 +15,10 @@ class CategoriesController < ApplicationController
     render "favorites"
   end
 
+  def list_categories
+    render :partial => "entities/entity", :locals => {}
+  end
+
   def create
     unless params[:category][:parent_id].blank?
       parentCategory = Category.find_by_id(params[:category][:parent_id])
