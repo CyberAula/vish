@@ -480,7 +480,7 @@ namespace :fix do
     Excursion.record_timestamps=true
     ActivityObject.record_timestamps=true
 
-    # system("rm -rf tmp/externalAvatars")
+    system("rm -rf tmp/externalAvatars")
 
     printTitle("Task Finished")
   end
