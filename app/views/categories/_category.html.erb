@@ -1,5 +1,6 @@
 <li class="box-item categorie-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
   <!-- corner -->
+  <%= link_to(category) do %>
   <div class="corner-item">
     <div class="corner-item2">
       <div class="corner-color"></div>
@@ -13,14 +14,15 @@
     <div class="element">
       <div class="img-box">
         <!--IMG categories-->
-        <%= link_to(category) do %>
+        
         <div class="category">
           <%= render :partial => 'categories/thumbnail', :locals =>{ :category => category} %>
         </div>
-        <% end %>
+        
       </div>
     </div>
   </div>
+  <% end %>
   <!--INFO excursion-->
   <div class="info">
     <!--Title -->
