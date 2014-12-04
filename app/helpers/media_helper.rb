@@ -30,9 +30,9 @@ module MediaHelper
 	#method to print all sources in the audio tag
 	def getAllAudioSources(media)
 		all_sources_url = ""
-		all_sources_url += printSourceIfPresent(media, :webma) + " "
-		all_sources_url += printSourceIfPresent(media, :mp3) + " "
-		all_sources_url += printSourceIfPresent(media, :wav) + " "
+		all_sources_url += printSourceIfPresent(media, :webma) + "\n "
+		all_sources_url += printSourceIfPresent(media, :mp3) + "\n "
+		all_sources_url += printSourceIfPresent(media, :wav) + "\n "
 	end
 
 	#method to print data-url-webm in the media player

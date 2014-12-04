@@ -67,7 +67,7 @@ SocialStream::Documents.setup do |config|
 
   config.subtype_classes_mime_types[:audio] = [:wav, :ogg, :webma, :mp3, :m4a]
   if Vish::Application.config.APP_CONFIG["services"].include? "MediaConversion"
-    config.subtype_classes_mime_types[:audio].push(:aac, :gppa, :gpa)
+    config.subtype_classes_mime_types[:audio].push(:aac, :aac2, :gppa, :gpa)
   end
 
   config.subtype_classes_mime_types[:swf] = [:swf]
