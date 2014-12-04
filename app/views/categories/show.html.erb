@@ -1,15 +1,18 @@
 <section id="category">
   <div class="category_info">
-      <!-- corner -->
-    <div class="corner-item">
-      <div class="corner-item2">
-        <div class="corner-color"></div>
-        <i class="icon-th-large"></i>
+    <div class="left_info">
+        <!-- corner -->
+      <div class="corner-item">
+        <div class="corner-item2">
+          <div class="corner-color"></div>
+          <i class="icon-th-large"></i>
+        </div>
+        <div class="corner-background"></div>
       </div>
-      <div class="corner-background"></div>
-    </div>
-    <div class="icon-box">
-       <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category, :show_avatar => true} %>
+    
+      <div class="icon-box ">
+         <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category, :show_avatar => true} %>
+      </div>
     </div>
     <div class="information">
       <!--help-->
@@ -54,6 +57,8 @@
     <%end%>
   </div>
 </section>
+
+
 
 <%  @items = @category.property_objects
     order = @category.categories_order
