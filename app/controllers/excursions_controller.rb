@@ -306,14 +306,11 @@ class ExcursionsController < ApplicationController
       format.json {
         results = Hash.new
 
-        if params["json"] == nil
-          render :json => results
-          return
+        unless params["json"].present?
+          return render :json => results
         else
           json = params["json"]
         end
-        response = params["responseFormat"]
-
 
         responseFormat = "json" #Default
         if params["responseFormat"].is_a? String
@@ -331,7 +328,6 @@ class ExcursionsController < ApplicationController
         count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
         Site.current.config["tmpCounter"] = count + 1
         Site.current.save!
-
 
         if responseFormat == "json"
           #Generate JSON file

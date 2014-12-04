@@ -247,7 +247,7 @@ GEM
       railties (>= 3.1.0)
     jruby-pageant (1.1.1)
     json (1.7.4)
-    jwt (1.0.0)
+    jwt (1.2.0)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)

@@ -91,7 +91,7 @@
  
 
     <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
-      <span id="showingMore" class="showMore accordion-toggle btn btn-default collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo" title="showFewer">Reducir</span>
+      <span id="showingMore" class="showMore accordion-toggle btn btn-default collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo" title="showFewer">Expandir</span>
     </a>
 
     <!--metadata-->
@@ -144,11 +144,11 @@
 
   $("#showingMore").click(function(e){
     if($("#showingMore").attr("title")==="showMore"){
-      $(".showMore").html('Reducir');
+      $(".showMore").html('Expandir');
       $("#showingMore").attr("title", "showFewer");
     }
     else{
-      $(".showMore").html('Expandir');
+      $(".showMore").html('Reducir');
       $("#showingMore").attr("title", "showMore");
     }
   });

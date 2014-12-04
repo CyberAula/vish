@@ -1,1 +1,4 @@
-&lt;video preload="metadata" controls="controls" poster="<%=video_url(video, :format => :png, :style => '170x127#')%>"&gt;&lt;source src="<%= video_url(video, :format => :webm) %>" type="video/webm"&gt;&lt;source src="<%= video_url(video, :format => :mp4) %>" type="video/mp4"&gt;&lt;source src="<%= video_url(video, :format => :flv) %>" type="video/x-flv"&gt;&lt;p&gt;Your browser does not support HTML5 video.&lt;/p&gt;&lt;/video&gt;
+&lt;video preload='metadata' controls='controls' <%=printSourcePosterIfPresent(video, :png, '170x127#')%>&gt;
+			<%=getAllVideoSources(video)%>
+			Your browser does not support HTML5 video.
+&lt;/video&gt;

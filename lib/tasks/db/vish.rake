@@ -263,12 +263,12 @@ namespace :db do
 
     User.all.each do |u|
       u.name = Faker::Name.name[0,30]
-      u.email = "noreply" + u.id.to_s + "@example.com" #(Include u.id to create a uniq email)
       u.password = "demonstration"
       u.slug = u.name.to_url #Create slug using stringex gem
       unless User.find_by_slug(u.slug).nil?
         u.slug = u.slug + "-" + u.id.to_s
       end
+      u.email = u.slug + "@vishub.org"
       u.current_sign_in_ip = nil
       u.last_sign_in_ip = nil
       u.logo = nil

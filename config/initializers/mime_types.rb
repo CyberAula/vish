@@ -8,6 +8,8 @@ Mime::Type.register "application/vnd.ms-fontobject", :eot
 Mime::Type.register "application/x-font-woff", :woff
 Mime::Type.register "application/x-shockwave-flash", :swf
 Mime::Type.register "application/zip", :zipfile
+Mime::Type.register "audio/x-hx-aac-adts", :aac2
+Mime::Type.register "audio/mp4", :m4a
 
 Mime::Type.register_alias "application/zip", :scorm
 Mime::Type.register_alias "text/html", :full

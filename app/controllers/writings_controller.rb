@@ -4,9 +4,7 @@ class WritingsController < ApplicationController
   include SocialStream::Controllers::Objects
 
   def new
-
   end
-
 
   def create
     super do |format|
