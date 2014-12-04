@@ -6,11 +6,19 @@
 .search-nav
   margin-right: 10px
   float: right
+  @media (max-width: $screen-xs-max)
+    float: none
+    margin-right: 0
   form
     .form-control
       height: 37px
     .search_button_class
       vertical-align: none !important
+      @media (max-width: $screen-xs-max)
+        width: 14%
+        margin-left: 0
+        height: 36px
+        margin-top: -1px
   .input-group
     @media (max-width: $screen-xs-max)
       margin-left: 0px !important
@@ -20,7 +28,7 @@
     width: 290px
     display: inline
     @media (max-width: $screen-xs-max)
-      width: 95%
+      width: 85%
       margin-right: auto !important
       margin-left: auto
 .dropdown-log

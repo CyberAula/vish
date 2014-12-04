@@ -198,12 +198,33 @@
 
 @mixin creator
   clear: both
-  padding-top: 10px
+  text-align: right
   .views
     display: inline
     margin-right: 8px
+    font-family: $corporate-font-family-sans-serif-Medium
+    span
+      font-family: $corporate-font-family-sans-serif-Light
   .like
+    font-family: $corporate-font-family-sans-serif-Medium
     display: inline-block
+    margin-left: 8px
+    i
+      .fa-star,
+      .fa-star-o
+        color: $brand-primary
+
+    a
+      .fa-star
+        color: $brand-primary
+      .fa-star-o
+        color: $gray                       
+    &:active
+      outline: none
+      outline: 0
+    .count
+      display: inline
+
 
 
 @mixin table-striped

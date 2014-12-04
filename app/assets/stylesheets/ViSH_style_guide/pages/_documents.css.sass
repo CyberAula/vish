@@ -60,33 +60,6 @@ aside.recomended
       @include make-md-column(4, $gutter: $grid-gutter-width)
       @include make-lg-column(4, $gutter: $grid-gutter-width)
       padding: 0
-      .viewsAndCount
-        clear: both
-        padding-top: 2px
-        .views
-          display: inline
-          font-family: $corporate-font-family-sans-serif-Medium
-          span
-            font-family: $corporate-font-family-sans-serif-Light
-        .like
-          font-family: $corporate-font-family-sans-serif-Medium
-          display: inline-block
-          margin-left: 8px
-          i
-            .fa-star,
-            .fa-star-o
-              color: $brand-primary
-
-          a
-            .fa-star
-              color: $brand-primary
-            .fa-star-o
-              color: $gray                       
-          &:active
-            outline: none
-            outline: 0
-          .count
-            display: inline
       
       
     .avatar img
@@ -122,6 +95,7 @@ aside.recomended
   .comments,
   .child
     width: 100%
+
 
 #comments-show
   .panel-group

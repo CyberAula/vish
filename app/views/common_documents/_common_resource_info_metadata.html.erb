@@ -1,55 +1,154 @@
-
-<div id="MetadataModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-        </button>
-        <h3 id="myMetadataLabel">
-          <%= t('excursion.modal.metadata_title') %>
-        </h3>
+<div class="panel-group" id="accordion">
+  <div class="panel">
+    <header>
+      <!--Views and Likes-->
+  <div class="viewsAndCount">        
+    <div class="views">
+      <%=resource.visit_count.to_s%>
+      <span><%=t('follow.views')%></span>   
+    </div>
+    <%unless resource.post_activity.nil?%>
+      <div class="like">    
+        <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
+        <%= link_like(resource.post_activity)%>
       </div>
-      <div class="modal-body">
-        <table class="table table-striped">
-          <% @excursion.metadata.each do |key, value| %>
-            <%unless value.blank?%>
-              <tr>
-                <td><%=key%>:</td>
-                <td><%=value%></td>
-              </tr>
+    <%end%>
+  </div>
+      <table class="table table-hover">
+        <tr>
+            <!--date-created-->
+            <td><span><%= t('document.info.date.created_at') %></span></td>
+            <td><%= I18n.localize resource.created_at, :format => :long %></td>
+          </tr>
+      </table>
+    </header>
+    <div id="collapseInfo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <table class="table table-hover">
+          <tr>
+            <!--contributors-->
+            <% if resource.respond_to?("contributors") and !resource.contributors.blank? %>
+              <td></span><%= t('document.contributors.name').capitalize %></span></td>
+              <td>
+                <% resource.contributors.uniq.each_with_index do |c,index| %>
+                  <% unless index==0 %>
+                    ,
+                  <% end %>
+                  <%= link_to c.name, c.subject %>
+                <%end%>
+              </td>
+            <%end%>
+          </tr>
+          <tr>            
+            <!--description-->
+            <% unless resource.description.blank? %>
+              <td><span><%= t('document.info.description') %></span></td>
+              <td><%= truncate(resource.description, :length => 400) %></td>
             <% end %>
-          <% end %>
-            <tr>
-              <td><%=t("metadata.access_lom")%>:</td>
-              <td><a href="<%=ao_object_metadata_path(resource)%>"><%=Vish::Application.config.full_domain + ao_object_metadata_path(resource)%></a></td>
-            </tr>
-          </tbody>
+          </tr>
+          <tr>          
+            <!--tags-->
+            <% unless resource.tag_list.blank? %>
+              <td><span><%= t('document.info.tags') %></span></td>
+              <td>
+                <ul class="tagit-suggestions">
+                  <% resource.tag_list.each do |tag| %>
+                  <li class="tagit-choice">
+                    <%= link_to tag, search_path(:q => tag) %>
+                  </li>
+                  <% end %>
+                </ul>
+              </td>
+            <% end %>
+          </tr>
+          <tr>
+            <!--language-->
+            <% unless resource.readable_language.blank? %>
+              <td><span><%= t('lang.title').capitalize %></span></td>
+              <td><%= resource.readable_language %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <!--date-created-->
+            <td><span><%= t('document.info.date.created_at') %></span></td>
+            <td><%= I18n.localize resource.created_at, :format => :long %></td>
+          </tr>
+          <tr>      
+            <!--date-upload-->
+            <td><span><%= t('document.info.date.updated_at') %></span></td>
+            <td><%= I18n.localize resource.updated_at, :format => :long %></td>
+          </tr>
+          <tr>
+            <!--size-->
+            <% if resource.respond_to?("file") and !resource.file.nil? and resource.respond_to?("file_file_size") and !resource.file_file_size.blank? %>
+              <td><span><%= t('document.info.size') %></span></td>
+              <td><%= number_to_human_size resource.file_file_size %></td>
+            <%end%>
+          </tr>
         </table>
       </div>
     </div>
+ 
+
+    <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
+      <span id="showingMore" class="showMore accordion-toggle btn btn-default collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo" title="showFewer">Reducir</span>
+    </a>
+
+    <!--metadata-->
+    <% displayMetadata = resource.respond_to?("metadata") %>
+    <% if displayMetadata %>
+      <button href="#MetadataModal" id="showMeta" data-toggle="modal" class="btn btn-default">
+        <%=t('excursion.actions.show_meta')%>
+      </button>
+    <%end%>
   </div>
 </div>
 
+<% if displayMetadata %>
+  <div id="MetadataModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h3 id="myMetadataLabel">
+            <%= t('excursion.modal.metadata_title') %>
+          </h3>
+        </div>
 
-  <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
-    <span id="showingMore" class="showMore accordion-toggle btn btn-default" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" title=<%=t("excursion.actions.show_more")%>>
-    <%=t('excursion.actions.show_more')%>
-    </span>
-  </a>
-  <button href="#MetadataModal" data-toggle="modal" class="btn btn-default">
-    <%=t('excursion.actions.show_meta')%>
-  </button>
+        <div class="modal-body">
+          <ul class="metadatalist">
+            <%resource.metadata.each do |key, value| %>
+              <%unless value.blank?%>
+                <li>
+                  <span class="metadatalistkey"><%=key%>:</span>
+                  <span class="metadatalistkey2"><%=value%></span>
+                </li>
+              <%end%>
+            <%end%>
+            <%if resource.class.name == "Excursion" %>
+              <li>
+                <span class="metadatalistkey"><%=t("metadata.access_lom")%>:</span>
+                <span class="metadatalistkey2"><a target="_blank" href="<%=ao_object_metadata_path(resource)%>"><%=Vish::Application.config.full_domain + ao_object_metadata_path(resource)%></a></span>
+              </li>
+            <%end%>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
 
-<script language="javascript" type="text/javascript" >
+<script language="javascript" type="text/javascript">
 
   $("#showingMore").click(function(e){
     if($("#showingMore").attr("title")==="showMore"){
-      $("#showingMore").html('<%=t("excursion.actions.show_more")%>');
+      $(".showMore").html('Reducir');
       $("#showingMore").attr("title", "showFewer");
     }
     else{
-      $(".showMore").html('<%=t("excursion.actions.show_fewer")%>');
+      $(".showMore").html('Expandir');
       $("#showingMore").attr("title", "showMore");
     }
   });

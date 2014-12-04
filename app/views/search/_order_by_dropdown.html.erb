@@ -4,31 +4,32 @@
 
     <button class="btn btn-default dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="" data-toggle="dropdown">
       <i class="fa fa-eye"></i>
-      <span><%=t('order_by.relevance')%></span><i class="icon-angle-down"></i>
+      <%=t('order_by.relevance')%>
+      <i class="icon-angle-down"></i>
     </button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
      <li>
           <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type])%>" sort-by-key='relevance'>
             <i class="fa fa-eye"></i>
-            <span><%=t('order_by.relevance')%> </span>
+            <%=t('order_by.relevance')%>
           </a>
       </li>
      <li>
           <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"popularity")%>" sort-by-key='popularity'>
             <i class="fa fa-tachometer"></i>
-            <span><%=t('order_by.popularity')%> </span>
+            <%=t('order_by.popularity')%>
           </a>
       </li>
       <li>
           <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"updated_at")%>" sort-by-key='updated_at'>
           <i class="fa fa-pencil"></i>
-          <span><%=t('order_by.updated_at')%> </span>
+          <%=t('order_by.updated_at')%> 
         </a>
       </li>
       <li>
           <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type], :sort_by=>"created_at")%>" sort-by-key='created_at'>
             <i class="fa fa-bolt"></i>
-            <span><%=t('order_by.created_at')%> </span>
+            <%=t('order_by.created_at')%>
 
         </a>
       </li>
@@ -37,7 +38,7 @@
         <li>
             <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"quality")%>" sort-by-key='quality'>
               <i class="fa fa-check-circle"></i>
-              <span><%=t('order_by.quality')%> </span>
+              <%=t('order_by.quality')%> 
             </a>
         </li>
       <%end%>
@@ -46,13 +47,13 @@
         <li>
             <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"visits")%>" sort-by-key='visits'>
               <i class="fa fa-eye"></i>
-              <span><%=t('order_by.visits')%> </span>
+              <%=t('order_by.visits')%>
             </a>
         </li>
         <li>
             <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type],:sort_by=>"favorites")%>" sort-by-key='favorites'>
               <i class="fa fa-star"></i>
-              <span><%=t('order_by.favorites')%> </span>
+              <%=t('order_by.favorites')%>
             </a>
         </li>
       <%end%>
