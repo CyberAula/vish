@@ -11,7 +11,7 @@ development:
     resources: ["Document","Webapp","Scormfile","Link","Embed", "Writing"]
     home: ["Excursion"]
     catalogue: ["Excursion"]
-  services: ["ARS","Catalogue","Competitions2013","ASearch"]
+  services: ["ARS","Catalogue","Competitions2013","ASearch", "MediaConversion"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   register_policy: "REGISTER_ONLY"   #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'
   advanced_search:

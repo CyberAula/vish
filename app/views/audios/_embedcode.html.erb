@@ -1,6 +1,4 @@
 &lt;audio controls&gt;
-           &lt;source src="<%= audio_url(audio, :format => :mp3) %>" type="audio/mpeg"&gt;
-           &lt;source src="<%= audio_url(audio, :format => :wav) %>" type="audio/wav"&gt;
-           &lt;source src="<%= audio_url(audio, :format => :webm) %>" type="audio/webm"&gt;
+		   <%=getAllAudioSources(audio)%>
            Your browser does not support the audio tag.
 &lt;/audio&gt;
