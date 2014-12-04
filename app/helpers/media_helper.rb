@@ -14,9 +14,9 @@ module MediaHelper
 	#method to print all sources in the video tag
 	def getAllVideoSources(media)
 		all_sources_url = ""
-		all_sources_url += printSourceIfPresent(media, :webm) + "\n "
-		all_sources_url += printSourceIfPresent(media, :flv) + "\n "
-		all_sources_url += printSourceIfPresent(media, :mp4) + "\n "
+		all_sources_url += printSourceIfPresent(media, :webm)
+		all_sources_url += printSourceIfPresent(media, :flv)
+		all_sources_url += printSourceIfPresent(media, :mp4)
 	end
 
 	#method to print all data-url-xxx in the media player
@@ -30,9 +30,9 @@ module MediaHelper
 	#method to print all sources in the audio tag
 	def getAllAudioSources(media)
 		all_sources_url = ""
-		all_sources_url += printSourceIfPresent(media, :webma) + "\n "
-		all_sources_url += printSourceIfPresent(media, :mp3) + "\n "
-		all_sources_url += printSourceIfPresent(media, :wav) + "\n "
+		all_sources_url += printSourceIfPresent(media, :webma)
+		all_sources_url += printSourceIfPresent(media, :mp3)
+		all_sources_url += printSourceIfPresent(media, :wav)
 	end
 
 	#method to print data-url-webm in the media player
@@ -67,7 +67,7 @@ module MediaHelper
 		if Vish::Application.config.APP_CONFIG["services"].include?("MediaConversion") || media.format == format
 			string = "<source src="
 			string += "'" + polymorphic_path(media, :format => format) + "'"
-			string += " type='"+Mime::Type.lookup_by_extension(format).to_s+"'>"
+			string += " type='"+Mime::Type.lookup_by_extension(format).to_s+"'>\n "
 			return raw string
 		else
 			return ""
