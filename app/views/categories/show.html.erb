@@ -1,3 +1,4 @@
+<%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path, :categorycrumb => true } %>
 <section id="category">
   <div class="category_info">
       <!-- corner -->
@@ -18,7 +19,7 @@
       <h2><%= @category.title %></h2>
       <!--description-->
       <div class="description"><%= @category.description %></div>
-      <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path } %>
+      
       <!--author-->
       <div class="author"> <span class="by"><%=t('by')%></span> <%= link_to @category.author.name, @category.author.subject %></div>
     </div>
