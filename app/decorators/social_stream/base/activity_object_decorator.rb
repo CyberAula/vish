@@ -317,6 +317,8 @@ ActivityObject.class_eval do
       relativePath = document.file.url + "?style=500"
     elsif resource.avatar.exists?
       relativePath = resource.avatar.url("500",{:timestamp => false})
+    elsif resource.class.name=="Video" and VishConfig.getAvailableServices.include? "MediaConversion"
+      relativePath = Rails.application.routes.url_helpers.video_path(resource, :format => "png", :style => "170x127#")
     end
 
     if absolutePath.nil? and !relativePath.nil?

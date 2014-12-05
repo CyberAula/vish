@@ -10,7 +10,7 @@ SocialStream::Documents.setup do |config|
   config.audio_styles = { }
   config.audio_processors = []
   
-  if Vish::Application.config.APP_CONFIG["services"].include? "MediaConversion"
+  if VishConfig.getAvailableServices.include? "MediaConversion"
     #Configure audio thumbnails
     config.audio_processors = [:ffmpeg]
     config.audio_styles[:webma] = {format: 'webm', processors: [:ffmpeg] }
@@ -23,7 +23,7 @@ SocialStream::Documents.setup do |config|
   config.video_styles = { }
   config.video_processors = []
 
-  if Vish::Application.config.APP_CONFIG["services"].include? "MediaConversion"
+  if VishConfig.getAvailableServices.include? "MediaConversion"
       config.video_processors = [:ffmpeg, :qtfaststart]
       config.video_styles[:"170x127#"] = {  :geometry => "170x127#", :format => 'png', :time => 4 }
       config.video_styles[:webm] = {  :format => 'webm' }
@@ -61,12 +61,12 @@ SocialStream::Documents.setup do |config|
   }
 
   config.subtype_classes_mime_types[:video] = [:flv, :webm, :mp4, :ogv]
-  if Vish::Application.config.APP_CONFIG["services"].include? "MediaConversion"
+  if VishConfig.getAvailableServices.include? "MediaConversion"
     config.subtype_classes_mime_types[:video].push(:mpeg, :mov, :wmv, :m4v, :gpp, :gpp2)
   end
 
   config.subtype_classes_mime_types[:audio] = [:wav, :ogg, :webma, :mp3, :m4a]
-  if Vish::Application.config.APP_CONFIG["services"].include? "MediaConversion"
+  if VishConfig.getAvailableServices.include? "MediaConversion"
     config.subtype_classes_mime_types[:audio].push(:aac, :aac2, :gppa, :gpa)
   end
 
