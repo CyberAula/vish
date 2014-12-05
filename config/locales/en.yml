@@ -208,7 +208,9 @@ en:
       belongs_to: "Belongs to"
     description_input: "Description for this category"
     dragandrop:
+        back: "Back"
         complete: "Complete"
+        discard_changes: "Discard changes"
         drag1: "Move and drop different resources into categories the way you want or even erase them."
         drag2: "Order is always important, drag and sort."
         drag3: "Knowledge can be grouped anyway, choose your way."
@@ -216,10 +218,10 @@ en:
         dragt2: "Sort your categories"
         dragt3: "Group your knowledge"
         erase: "Drag here to remove"
-        place: "Sort"
-        place_uncategorize: "Short & uncategorize"
         gallery: "Gallery"
         list: "List"
+        place: "Sort"
+        place_uncategorize: "Short & uncategorize"
         place_long: "Sort categories"
     errors:
       duplicated: "You already have a category with this title. Please, give it another title."
