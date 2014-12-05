@@ -182,6 +182,7 @@ es:
         music: "Música"
         naturalScience: "Ciencias Naturales"
         physics: "Física"
+        science: "Ciencia"
         technology: "Tecnología"
     extras:
         learning: "aprendizaje"

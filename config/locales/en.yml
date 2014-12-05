@@ -184,6 +184,7 @@ en:
         music: "Music"
         naturalScience: "Natural Sciences"
         physics: "Physics"
+        science: "Science"
         technology: "Technology"
     extras:
         eLearning: "e-Learning"
