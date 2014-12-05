@@ -36,27 +36,29 @@
         &:hover
           text-decoration: none
     .resource-center
-      a
-        width: 100%
-        height: 100%
-        i
-          padding-top: 36px 
-          display: block
-        i.icon-scorm-new,
-        i.icon-pdf-new,
-        i.icon-swf-new,
-        i.icon-zip-new,
-        i.icon-webapp-new
-          display: block
-          width: 57px
-          height: 62px
-          margin: 21.5% auto 0
-        i.icon-star
-          color: $firstColor
-        i.icon-facetime-video
-          color: $gray
-        i.icon-lightbulb
-          color: $grayDark
+      i
+        padding-top: 36px 
+        display: block
+        &:hover,
+        &:focus,
+        &:active
+          text-decoration: none
+        
+      i.icon-scorm-new,
+      i.icon-pdf-new,
+      i.icon-swf-new,
+      i.icon-zip-new,
+      i.icon-webapp-new
+        display: block
+        width: 57px
+        height: 62px
+        margin: 21.5% auto 0
+      i.icon-star
+        color: $firstColor
+      i.icon-facetime-video
+        color: $gray
+      i.icon-lightbulb
+        color: $grayDark
 
 // corner left
 @mixin item-corner
@@ -98,7 +100,10 @@
       z-index: 6
       height: 26px
       width: 26px
-
+      &:hover,
+      &:focus,
+      &:active
+        text-decoration: none
     i.icon-user
       color: $gray
     .icon-scorm-new
@@ -318,8 +323,7 @@
     text-align: center
     overflow: hidden
     margin-bottom: -2px !important
-    &:hover
-      text-decoration: none
+
     .add_border
       border: 2px dashed 
       @include border-radius($baseBorderRadius)
@@ -343,8 +347,12 @@
         font-size: 18px !important
         line-height: 22px !important 
         overflow: visible !important
-        &:hover
-          text-decoration: none
+    a
+      &:hover,
+      &:focus,
+      &:active
+        text-decoration: none !important
+
   .add-excursion
     .add_border
       border-color: $grayLight !important

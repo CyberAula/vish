@@ -27,120 +27,149 @@
       .icon-question-sign 
         i
           color: $gray
-    .icon-box
-      display: block
-      float: left
-      padding: 0px
-      margin-right: 10px
-      @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      background-color: $white
-      .container-img-categorie_0
-        width: 49%
-        float: left
-      .container-img-categorie_1
-        width: 49%
-        float: right
-      .container-img-categorie_2
-        width: 49%
-        float: left
-        margin-top: 2%
-      .container-img-categorie_3
-        width: 49%
-        float: right
-        margin-top: 2%
-      .container-img-categorie_0,
-      .container-img-categorie_1,
-      .container-img-categorie_2,
-      .container-img-categorie_3,
-        display: inline-block
-        position: relative
-        border-radius: none
-        background-color: #C4C4C4
-        .dummy-categorie
-          padding-top: 75% /* 4:3 aspect ratio */
-        .element-categorie
-          position: absolute
-          top: 0
-          bottom: 0
-          left: 0
-          right: 0
-          overflow: hidden
-          text-align: center
-          width: 100%
-          .img-box-categorie
-            width: 100%
-            padding-bottom: 75%
-            float: left
-            img
-              float: left
-              width: 100%
-              height: 100%
-      .container-img-categorie
-        padding-bottom: 0.3%
-        display: inline-block
-        position: relative
-        width: 100%
-        padding: 10%
-        background-color: #007cc8
-        .info
-          height: 75px
-        i
-          color: #fff !important
-          font-size: 2.3em
-          margin-left: -21% 
-      // IMG BOX
-      @include img-item-box
-    .corner-item
+
+
+
+    .left_info
+      background-color: #d6d6d6
       position: absolute
       top: 0
       left: 0
-      width: 88px
-      height: 88px
-      z-index: 2
-      .corner-item2
+      bottom: 0
+      width: 15%
+      @include border-left-radius($baseBorderRadius)
+      overflow: hidden
+      .icon-box
+        display: block
+        float: left
+        padding: 0px
+        margin: 0
+        width: 100%
+        background-color: $white
+        @include border-left-radius($baseBorderRadius)
+        @include border-bottom-radius(0)
+        overflow: hidden
+
+        .container-img-categorie_0
+          width: 49%
+          float: left
+        .container-img-categorie_1
+          width: 49%
+          float: right
+        .container-img-categorie_2
+          width: 49%
+          float: left
+          margin-top: 2%
+        .container-img-categorie_3
+          width: 49%
+          float: right
+          margin-top: 2%
+        .container-img-categorie_0,
+        .container-img-categorie_1,
+        .container-img-categorie_2,
+        .container-img-categorie_3,
+          display: inline-block
+          position: relative
+          border-radius: none
+          background-color: #C4C4C4
+          .dummy-categorie
+            padding-top: 75% /* 4:3 aspect ratio */
+          .element-categorie
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            overflow: hidden
+            text-align: center
+            width: 100%
+            .img-box-categorie
+              width: 100%
+              padding-bottom: 75%
+              float: left
+              img
+                float: left
+                width: 100%
+                height: 100%
+        .container-img-categorie
+          padding-bottom: 0.3%
+          display: inline-block
+          position: relative
+          width: 100%
+          padding: 10%
+          background-color: #007cc8
+          .info
+            height: 75px
+          i
+            color: #fff !important
+            font-size: 2.3em
+            margin-left: -21% 
+        // IMG BOX
+        @include img-item-box
+        // corner
+      .corner-item
         position: absolute
-        height: 72px
-        width: 72px
-        left: 3px
-        top: 3px
-        z-index: 4
+        width: 88px
+        height: 88px
+        z-index: 2
         -webkit-border-top-left-radius: 5px
         -moz-border-radius-topleft: 5px
         border-top-left-radius: 5px
         overflow: hidden
+        .corner-item2
+          position: absolute
+          height: 72px
+          width: 72px
+          left: 0px
+          top: 0px
+          z-index: 4
+          -webkit-border-top-left-radius: 5px
+          -moz-border-radius-topleft: 5px
+          border-top-left-radius: 5px
+          overflow: hidden
 
-        -webkit-box-shadow: -2px -2px 2px  rgba(0,0,0,0.20)
-        -moz-box-shadow: -2px -2px 2px  rgba(0,0,0,0.20)
-        box-shadow: -2px -2px 2px  rgba(0,0,0,0.20)
-        .corner-color
+          .corner-color
+            position: absolute
+            width: 0
+            height: 0
+            border-style: solid
+            border-width: 72px 72px 0 0
+            z-index: 5
+          i
+            position: absolute
+            top: 9px
+            left: 9px
+            color: $white
+            font-size: 22px
+            z-index: 6
+            height: 26px
+            width: 26px
+            &:hover,
+            &:focus,
+            &:active
+              text-decoration: none
+
+        .corner-background
           position: absolute
           width: 0
           height: 0
           border-style: solid
-          border-width: 72px 72px 0 0
-          z-index: 5
+          border-width: 73px 73px 0 0
+          border-color: $grayLight transparent transparent transparent
+          z-index: 3
+          top: 0px
+          left: 0px
+        .info
+          background-color: $white
+        .corner-color
           border-color: $firstColor transparent transparent transparent
-        i
-          position: absolute
-          top: 9px
-          left: 9px
-          color: $white
-          font-size: 22px
-          z-index: 6
-          height: 26px
-          width: 26px
-      .corner-background
-        position: absolute
-        width: 0
-        height: 0
-        border-style: solid
-        border-width: 88px 88px 0 0
-        border-color: $background transparent transparent transparent
-        z-index: 3
-        top: -5px
-        left: -5px
+
+
+
     .information
-      @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      margin-left: 17%
+      width: 80%
+      display: block
       float: left
       h2
         @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -191,9 +220,10 @@
       .icon-question-sign
         color: $gray
     .update
-      @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      float: left
+      margin-left: 17%
+      width: 80%
       margin-top: 15px
+      float: left
       label
         font-size: 12px
         font-family: $secondFontFamily
@@ -211,6 +241,11 @@
         float: left
         width: 96%
         padding: 4px 2%
+      select
+        display: block
+        float: left
+        width: 100%
+        padding: 4px 0%
       .actions
         display: block
         float: left
@@ -226,9 +261,10 @@
     .btn-group
       display: block
       float: left
-      width: 82%
+      width: 80%
+      margin-left: 17%
       padding-top: 5px
-      padding-left: 10px
+
       border-top: 1px solid $grayLight
       padding-bottom: 5px
       i

@@ -2,21 +2,23 @@
 
 <li class="box-item resource-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
   <!-- corner -->
-  <div class="corner-item">
-    <div class="corner-item2">
-      <div class="corner-color"></div>
-      <%= link_to raw(icon(resource)), resource, :title => resource.title %>
+  <%= link_to(resource) do %>
+    <div class="corner-item">
+      <div class="corner-item2">
+        <div class="corner-color"></div>
+        <%= link_to raw(icon(resource)), resource, :title => resource.title %>
+      </div>
+      <div class="corner-background"></div>
     </div>
-    <div class="corner-background"></div>
-  </div>
-  <!-- image/icon -->
-  <div class="container-img">
-    <div class="dummy"></div>
-    <div class="element resource-center">
-      <%= link_to raw(icon(resource)), resource, :title => resource.title %>
+    <!-- image/icon -->
+    <div class="container-img">
+      <div class="dummy"></div>
+      <div class="element resource-center">
+        <%= link_to raw(icon(resource)), resource, :title => resource.title %>
+      </div>
     </div>
-  </div>
-  <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
+    <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
+  <%end%>
   <!-- INFO -->
   <div class="info">
     <!-- Title -->
