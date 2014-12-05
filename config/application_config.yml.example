@@ -53,7 +53,7 @@ production:
 # trackingSystemAPIKEY: "secret_key"
 # trackingSystemAPIURL: "http://#{ViSH domain}/tracking_system_entries"
 
-# Enable SoundCloud in the ViSH Editor
+# Enable SoundCloud in the ViSH Editor. Get the API key from https://developers.soundcloud.com/
 # soundCloudAPIKEY: "secret_key"
 
 # Set a quality threshold to automatically generate reports when a resource is judged below the threshold.
