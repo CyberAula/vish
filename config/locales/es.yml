@@ -201,6 +201,7 @@ es:
       add: "Crear categoría"
       apply: "Aplicar"
       verb: "Categorizar"
+      belongs_to: "Pertenece a"
     description_input: "Descripción para esta categoría"
     dragandrop:
         complete: "Completar"
