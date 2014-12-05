@@ -16,6 +16,16 @@ development:
   register_policy: "REGISTER_ONLY"   #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'
   advanced_search:
     instances: ["http://vishub.org"]
+  mail:
+    type: "SMTP"
+    credentials:
+      address: "smtp.mandrillapp.com"
+      port: 587
+      domain: "your_domain.com"
+      authentication: "login" #or can use "plain"
+      username: "your_username"
+      password: "your_password"
+      enable_starttls_auto: true
 
 production:
   domain: "vishub.org"
@@ -34,7 +44,16 @@ production:
   register_policy: "REGISTER_ONLY"
   advanced_search:
     instances: ["http://vishub.org"]
-
+  mail:
+    type: "SMTP"
+    credentials:
+      address: "smtp.mandrillapp.com"
+      port: 587
+      domain: "your_domain.com"
+      authentication: "login" #or can use "plain"
+      username: "your_username"
+      password: "your_password"
+      enable_starttls_auto: true
 #Other configuration options
 
 # LOEP configuration. Allow to evaluate the quality of the ViSH resources in a systematic way (See http://loep.global.dit.upm.es for more info).
