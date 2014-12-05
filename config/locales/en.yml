@@ -217,6 +217,9 @@ en:
         dragt3: "Group your knowledge"
         erase: "Drag here to remove"
         place: "Sort"
+        place_uncategorize: "Short & uncategorize"
+        gallery: "Gallery"
+        list: "List"
         place_long: "Sort categories"
     errors:
       duplicated: "You already have a category with this title. Please, give it another title."

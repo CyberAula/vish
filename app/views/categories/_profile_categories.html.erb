@@ -8,11 +8,17 @@
 
   <% if profile_subject_is_current? or isAdmin? %>
     <div class="toolbar_nav-tab">
-      <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></button>
+      <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
       <!--TODO:applycss and fix icons-->
       <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
-        <button id="normal-view" type="button" class="btn btn-primary"><i class="icon-th "></i></button>
-        <button id="list-view" type="button" class="btn btn-primary"><i class="icon-align-justify "></i></span></button>
+        <button id="normal-view" type="button" class="btn btn-primary">
+          <i class="icon-th "></i>
+          <%=t('categories.dragandrop.gallery')%>
+        </button>
+        <button id="list-view" type="button" class="btn btn-primary">
+          <i class="icon-align-justify "></i>
+          <%=t('categories.dragandrop.list')%>
+        </button>
       </div>
     </div>
     <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
