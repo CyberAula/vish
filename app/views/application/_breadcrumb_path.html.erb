@@ -1,5 +1,8 @@
 <div class="breadcrumb_wrapper">
-  <p><a href="<%=user_url(path.first.owner.user)%>?tab=categories">..</a> >
+	<% categorycrumb |= false%> 
+	<% if categorycrumb %>
+  <p><a href="<%=user_url(path.first.owner.user)%>?tab=categories"><%=t('document.help.categories1_html')%></a> >
+    <% end %>
     <% path.each_with_index do |objectParent,index| %>
       <%unless index == 0%>
         <span>></span>

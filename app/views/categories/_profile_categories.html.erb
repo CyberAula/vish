@@ -6,9 +6,15 @@
     all_categories.sort_by!{|h| order.index(h.activity_object.id) || (orderLength+1)}
   end %>
 
-  <% if profile_subject_is_current? or isAdmin? %>
+ 
     <div class="toolbar_nav-tab">
+<<<<<<< HEAD
+       <% if profile_subject_is_current? or isAdmin? %>
+      <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></button>
+        <% end %>
+=======
       <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
+>>>>>>> 73c6c7d55e7c413f0ef2a26ad2f2dfa95a2903d0
       <!--TODO:applycss and fix icons-->
       <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
         <button id="normal-view" type="button" class="btn btn-primary">
@@ -21,6 +27,7 @@
         </button>
       </div>
     </div>
+  <% if profile_subject_is_current? or isAdmin? %>
     <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
   <% end %>
   <div id="normal-instance">
@@ -34,14 +41,25 @@
   </div>
 
   <div id="list-instance" style="display:none" >
-  <%all_categories[0..4].each do |category|%>
+  <%all_categories.each do |category|%>
+  <%if !category.property_objects.empty? %>
     <h2 ><%= category.title %></h2>
     <ul class="categories main-list-categories-space">
+<<<<<<< HEAD
+       
+          <%category.property_objects.each do |resource| %>
+              <%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
+          <%end%>
+          <!-- TODO: normalize in css-->
+        
+=======
         <%category.property_objects[0..6].each do |resource| %>
           <%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
         <%end%>
+>>>>>>> 73c6c7d55e7c413f0ef2a26ad2f2dfa95a2903d0
     </ul>
     <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue" name="<%=category.title%>"><%=t('view_all')%></button>
+      <%end%>
     <%end%>
   </div>
 </div>
