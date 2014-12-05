@@ -106,18 +106,18 @@ $('.delete').popover({
 
   <ul class="nav nav-tabs tooltab">
     <li class="<%= document_details_tab_class document, :info %>">
-      <%= link_to (raw("<i class='fa fa-align-left'></i> <span class='hidden-sx hidden-sm'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
+      <%= link_to (raw("<i class='fa fa-align-left'></i> <span class='hidden-sx'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
     </li> 
 <!--edit info-->
      <% if user_signed_in? and (can? :update, @event) %>
       <li class="<%= document_details_tab_class document, :edit %>">
-        <%= link_to (raw("<i class='fa fa-edit'></i> <span class='hidden-xs hidden-sm'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
+        <%= link_to (raw("<i class='fa fa-edit'></i> <span class='hidden-xs'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
       </li>
     <% end %>
     <li>
       <a href="#tab3" data-toggle="tab">
         <i class="fa fa-share"></i>
-        <span class=" hidden-xs hidden-sm">
+        <span class=" hidden-xs">
           <%=t('excursion.actions.share')%>
         </span>
       </a>
@@ -125,7 +125,7 @@ $('.delete').popover({
     <li>
       <a href="#tab5" data-toggle="tab">
                   <i class="fa fa-flag"></i> 
-          <span class=" hidden-sm hidden-xs">
+          <span class=" hidden-xs">
             <%=t('excursion.actions.spam')%>
           </span>
 

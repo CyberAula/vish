@@ -65,33 +65,33 @@
 
   <ul class="nav nav-tabs">
     <li class="<%= document_details_tab_class document, :info %>">
-      <%= link_to (raw("<i class='fa fa-align-left'></i> <span class='hidden-sm hidden-xs'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
+      <%= link_to (raw("<i class='fa fa-align-left'></i> <span class='hidden-xs'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
     </li>
 
     <% if can? :update, document %>
 
       <li class="<%= document_details_tab_class document, :edit %>">
-        <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-sm hidden-xs'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
+        <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-xs'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
       </li>
 
     <% end %>
 
     <% if canBeEmbeded %>
       <li class="<%= document_details_tab_class document, :embed %>">
-          <%= link_to (raw("<i class='fa fa-code'></i> <span class='hidden-sm hidden-xs'>")) + t('excursion.actions.embed')+ raw("</span>"), '#document-embed', 'data-toggle' => 'tab' %>
+          <%= link_to (raw("<i class='fa fa-code'></i> <span class='hidden-xs'>")) + t('excursion.actions.embed')+ raw("</span>"), '#document-embed', 'data-toggle' => 'tab' %>
       </li>
     <%end%>
 
     <%if canBeDownloaded %>
       <li class="<%= document_details_tab_class document, :download %>">
-          <%= link_to (raw("<i class='fa fa-download'></i> <span class='hidden-sm hidden-xs'>")) + t('document.actions.download')+ raw("</span>"), '#document-download', 'data-toggle' => 'tab' %>
+          <%= link_to (raw("<i class='fa fa-download'></i> <span class='hidden-xs'>")) + t('document.actions.download')+ raw("</span>"), '#document-download', 'data-toggle' => 'tab' %>
       </li>
     <% end %>
 
     <li>
       <a href="#tab3" data-toggle="tab">
         <i class="fa fa-flag"></i> 
-          <span class="hidden-sm hidden-xs">
+          <span class="hidden-xs">
             <%=t('excursion.actions.spam')%>
           </span>
       </a>
