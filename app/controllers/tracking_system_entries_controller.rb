@@ -5,7 +5,8 @@ class TrackingSystemEntriesController < ApplicationController
   skip_load_and_authorize_resource :only => [ :create ]
 
   # Enable CORS
-  ApplicationController.enable_cors([:create])
+  before_filter :cors_preflight_check, :only => [:create]
+  after_filter :cors_set_access_control_headers, :only => [:create]
 
 
   # GET /tracking_system_entries

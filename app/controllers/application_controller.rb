@@ -29,16 +29,6 @@ class ApplicationController < ActionController::Base
   # Methods to enable CORS (http://www.tsheffler.com/blog/?p=428)
   #############
 
-  def self.enable_cors(params=[])
-    unless params.blank?
-      before_filter :cors_preflight_check, :only => params
-      after_filter :cors_set_access_control_headers, :only => params
-    else
-      before_filter :cors_preflight_check
-      after_filter :cors_set_access_control_headers
-    end
-  end
-
   def cors_set_access_control_headers
     headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
@@ -49,7 +39,7 @@ class ApplicationController < ActionController::Base
   # request, return only the necessary headers and return an empty
   # text/plain.
   def cors_preflight_check
-    if request.method == :options
+    if request.method.downcase.to_sym == :options
       headers['Access-Control-Allow-Origin'] = '*'
       headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
       headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
