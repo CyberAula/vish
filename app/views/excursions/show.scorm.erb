@@ -28,10 +28,17 @@
 		options = {};
 
 		var configuration = {};
-		configuration["ImagesPath"] = "images/";
-		configuration["StylesheetsPath"] = "stylesheets/";
+
 		configuration["mode"] = "vish";
 
+		configuration["ImagesPath"] = "images/";
+		configuration["StylesheetsPath"] = "stylesheets/";
+
+		// Recommendations API
+		configuration["recommendationsAPI"] = {
+			rootURL: "<%=Vish::Application.config.full_domain%>" + "/excursions/last_slide.json"
+		};
+		
 		//Tracking System
 		<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? %>
 			configuration["TrackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";
@@ -55,13 +62,10 @@
 
 		options["configuration"] = configuration;
 
-		options["developping"] = false;
-		options["scorm"] = true;
 
-		//URL to access to the Recommendation API
-		options["recommendationsAPI"] = {
-			rootURL: "<%=Vish::Application.config.full_domain%>" + "/excursions/last_slide.json"
-		};
+		options["developping"] = false;
+		
+		options["scorm"] = true;
 
 		<% if excursion %>
 			options["watermarkURL"] = "<%=excursion_url(excursion)%>";

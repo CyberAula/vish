@@ -8504,7 +8504,6 @@ VISH.Constant.Viewer = "Viewer";
 VISH.Constant.AnyMode = "Both";
 VISH.Constant.NOSERVER = "noserver";
 VISH.Constant.VISH = "vish";
-VISH.Constant.STANDALONE = "node";
 VISH.Constant.UA_IE = "Microsoft Internet Explorer";
 VISH.Constant.UA_NETSCAPE = "Netscape";
 VISH.Constant.IE = "Internet Explorer";
@@ -8628,11 +8627,13 @@ VISH.Configuration = function(V, $, undefined) {
   var _initPaths = function() {
     V.ImagesPath = configuration["ImagesPath"];
     V.StylesheetsPath = configuration["StylesheetsPath"];
+    V.RootPath = configuration["rootPath"];
     V.UploadImagePath = configuration["uploadImagePath"];
     V.UploadObjectPath = configuration["uploadObjectPath"];
     V.UploadPresentationPath = configuration["uploadPresentationPath"];
     V.UploadPDF2PPath = configuration["uploadPDF2PPath"];
-    V.SearchLREPath = configuration["SearchLREPath"]
+    V.LREPath = configuration["LRE_path"];
+    V.ViSHInstances = configuration["ViSH_instances"]
   };
   var applyConfiguration = function() {
     if(!configuration["Upload"]) {
@@ -9392,48 +9393,15 @@ VISH.I18n = function(V, $, undefined) {
   var defaultTranslations;
   var language;
   var init = function(lang) {
-    switch(V.Configuration.getConfiguration().mode) {
-      case V.Constant.NOSERVER:
-        if(typeof i18n["vish"]["default"] != "undefined") {
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.VISH:
-        if(typeof i18n["vish"]["default"] != "undefined") {
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.STANDALONE:
-        if(typeof i18n["standalone"]["default"] != "undefined") {
-          defaultTranslations = i18n["standalone"]["default"]
-        }
-        break
-    }
+    defaultTranslations = i18n["vish"]["default"];
     if(typeof lang != "undefined") {
       language = lang
     }else {
       return
     }
-    switch(V.Configuration.getConfiguration().mode) {
-      case V.Constant.NOSERVER:
-        if(typeof i18n["vish"][language] != "undefined") {
-          translations = i18n["vish"][language]
-        }
-        break;
-      case V.Constant.VISH:
-        if(typeof i18n["vish"][language] != "undefined") {
-          translations = i18n["vish"][language];
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.STANDALONE:
-        if(typeof i18n["standalone"][language] != "undefined") {
-          translations = i18n["standalone"][language];
-          defaultTranslations = i18n["standalone"]["default"]
-        }
-        break
-    }
-    if(typeof translations == "undefined") {
+    if(typeof i18n["vish"][language] != "undefined") {
+      translations = i18n["vish"][language]
+    }else {
       return
     }
     $("[i18n-key]").each(function(index, elem) {
@@ -16016,7 +15984,7 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var init = function() {
     $("#quizSessionNameInput").vewatermark(V.I18n.getTrans("i.QuizSessionName"));
-    V.Quiz.API.init(V.Utils.getOptions().quizSessionAPI);
+    V.Quiz.API.init(V.Configuration.getConfiguration().ARS_API);
     V.Quiz.MC.init();
     V.Quiz.TF.init();
     V.Quiz.Sorting.init();
@@ -16064,7 +16032,7 @@ VISH.Quiz = function(V, $, undefined) {
       }
     }
     var quizButtons = $("<div class='quizButtons'></div>");
-    if(quizMode === V.Constant.QZ_MODE.SELFA && ARSEnabled == true && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
+    if(quizMode === V.Constant.QZ_MODE.SELFA && ARSEnabled == true && V.User.isLogged() && !V.Utils.getOptions().preview) {
       var startButton = $("<input type='button' class='buttonQuiz quizStartButton' value='" + V.I18n.getTrans("i.QuizLaunch") + "'/>");
       $(quizButtons).append(startButton)
     }
@@ -17189,18 +17157,18 @@ VISH.Quiz.Open = function(V, $, undefined) {
   return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz}
 }(VISH, jQuery);
 VISH.Quiz.API = function(V, $, undefined) {
-  var quizSessionAPIrootURL;
+  var ARS_API_RootURL;
   var getResultsCount = 0;
-  var init = function(quizSessionAPI) {
-    if(typeof quizSessionAPI == "object" && typeof quizSessionAPI.rootURL == "string") {
-      quizSessionAPIrootURL = quizSessionAPI.rootURL
+  var init = function(ARS_API) {
+    if(typeof ARS_API == "object" && typeof ARS_API.rootURL == "string") {
+      ARS_API_RootURL = ARS_API.rootURL
     }
   };
   var startQuizSession = function(quizDOM, quizJSON, successCallback, failCallback) {
     if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
       var send_type = "POST";
       var params = {"quiz":JSON.stringify(quizJSON), "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:quizSessionAPIrootURL, data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL, data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(quizDOM, data)
         }
@@ -17212,7 +17180,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
         var quizSessionId = Math.ceil(1E4 * (1 + Math.random())).toString();
-        var url = quizSessionAPIrootURL + quizSessionId;
+        var url = ARS_API_RootURL + quizSessionId;
         var quiz_session = {id:quizSessionId, url:url};
         if(typeof successCallback == "function" && typeof failCallback == "function") {
           setTimeout(function() {
@@ -17229,7 +17197,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(typeof name == "string" && name.trim() != "") {
         params["name"] = name
       }
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/close", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/close", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -17253,7 +17221,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH) {
       var send_type = "GET";
       var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/delete", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/delete", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -17280,7 +17248,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(V.User.isLogged()) {
         params["authenticity_token"] = V.User.getToken()
       }
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/results.json", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/results.json", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -17317,7 +17285,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(V.User.isLogged()) {
         params["authenticity_token"] = V.User.getToken()
       }
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/answer", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/answer", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -17576,8 +17544,8 @@ VISH.Recommendations = function(V, $, undefined) {
     _requesting = false;
     _generated = false;
     var options = V.Utils.getOptions();
-    if(options && !options.preview && typeof options["recommendationsAPI"] != "undefined" && typeof options["recommendationsAPI"]["rootURL"] == "string") {
-      _recommendationAPIUrl = options["recommendationsAPI"]["rootURL"];
+    if(options && !options.preview && typeof options["configuration"]["recommendationsAPI"] != "undefined" && typeof options["configuration"]["recommendationsAPI"]["rootURL"] == "string") {
+      _recommendationAPIUrl = options["configuration"]["recommendationsAPI"]["rootURL"];
       _enabled = true
     }else {
       return
@@ -17665,31 +17633,23 @@ VISH.Recommendations = function(V, $, undefined) {
   var _requestRecommendations = function() {
     if(_enabled && typeof _recommendationAPIUrl != "undefined" && !_generated && _requesting != true) {
       _requesting = true;
-      if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
-        var params = {};
-        params["quantity"] = 6;
-        if(_searchTerms) {
-          params["q"] = _searchTerms
-        }
-        if(user_id) {
-          params["user_id"] = user_id
-        }
-        if(vishub_pres_id) {
-          params["excursion_id"] = vishub_pres_id
-        }
-        $.ajax({type:"GET", url:_recommendationAPIUrl, data:params, success:function(data) {
-          _fillFancyboxWithData(data)
-        }, error:function(error) {
-          _enabled = false;
-          _requesting = false
-        }})
-      }else {
-        if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-          setTimeout(function() {
-            _fillFancyboxWithData(V.Samples.API.recommendationList)
-          }, 1E3)
-        }
+      var params = {};
+      params["quantity"] = 6;
+      if(_searchTerms) {
+        params["q"] = _searchTerms
       }
+      if(user_id) {
+        params["user_id"] = user_id
+      }
+      if(vishub_pres_id) {
+        params["excursion_id"] = vishub_pres_id
+      }
+      $.ajax({type:"GET", url:_recommendationAPIUrl, data:params, success:function(data) {
+        _fillFancyboxWithData(data)
+      }, error:function(error) {
+        _enabled = false;
+        _requesting = false
+      }})
     }
   };
   var _fillFancyboxWithData = function(data) {

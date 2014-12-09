@@ -12,9 +12,9 @@ class ExcursionsController < ApplicationController
   skip_before_filter :store_location, :if => :format_full?
   skip_after_filter :discard_flash, :only => [:clone]
   
-  # Enable CORS for last_slide, and iframe_api methods
-  before_filter :cors_preflight_check, :only => [:last_slide,:iframe_api]
-  after_filter :cors_set_access_control_headers, :only => [:last_slide,:iframe_api]
+  # Enable CORS
+  before_filter :cors_preflight_check, :only => [:excursion_thumbnails,:last_slide,:iframe_api]
+  after_filter :cors_set_access_control_headers, :only => [:excursion_thumbnails,:last_slide,:iframe_api]
   
   include SocialStream::Controllers::Objects
 

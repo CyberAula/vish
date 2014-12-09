@@ -191,7 +191,6 @@ VISH.Constant.Viewer = "Viewer";
 VISH.Constant.AnyMode = "Both";
 VISH.Constant.NOSERVER = "noserver";
 VISH.Constant.VISH = "vish";
-VISH.Constant.STANDALONE = "node";
 VISH.Constant.UA_IE = "Microsoft Internet Explorer";
 VISH.Constant.UA_NETSCAPE = "Netscape";
 VISH.Constant.IE = "Internet Explorer";
@@ -12516,6 +12515,7 @@ VISH.Editor = function(V, $, undefined) {
     V.I18n.init(options.lang);
     V.Utils.Loader.loadLanguageCSS();
     V.Editor.Dummies.init();
+    V.Editor.API.init();
     V.EventsNotifier.init();
     V.Editor.Animations.init();
     V.Editor.Themes.init();
@@ -12837,21 +12837,15 @@ VISH.Editor = function(V, $, undefined) {
     return presentation
   };
   var _saveLORData = function(presentation) {
-    switch(V.Configuration.getConfiguration().mode) {
-      case V.Constant.VISH:
-      ;
-      case V.Constant.NOSERVER:
-        var LORPresentation = getDraftPresentation();
-        var LORMetadata;
-        if(LORPresentation && LORPresentation["vishMetadata"]) {
-          LORMetadata = LORPresentation["vishMetadata"]
-        }else {
-          LORMetadata = {}
-        }
-        LORMetadata["draft"] = isPresentationDraft().toString();
-        presentation["vishMetadata"] = LORMetadata;
-        break
+    var LORPresentation = getDraftPresentation();
+    var LORMetadata;
+    if(LORPresentation && LORPresentation["vishMetadata"]) {
+      LORMetadata = LORPresentation["vishMetadata"]
+    }else {
+      LORMetadata = {}
     }
+    LORMetadata["draft"] = isPresentationDraft().toString();
+    presentation["vishMetadata"] = LORMetadata;
     return presentation
   };
   var _saveStandardSlide = function(slideDOM, presentation, isSubslide) {
@@ -13058,22 +13052,17 @@ VISH.Editor = function(V, $, undefined) {
         }});
         break;
       case V.Constant.NOSERVER:
-        if(V.Debugging && V.Debugging.isDevelopping()) {
-          if(order != "unpublish") {
-            lastStoredPresentationStringify = JSON.stringify(presentation);
-            if(order == "publish") {
-              _isDraft = false
-            }
-          }else {
-            _isDraft = true
+        if(order != "unpublish") {
+          lastStoredPresentationStringify = JSON.stringify(presentation);
+          if(order == "publish") {
+            _isDraft = false
           }
-          setTimeout(function() {
-            successCallback()
-          }, 5E3)
+        }else {
+          _isDraft = true
         }
-        break;
-      case V.Constant.STANDALONE:
-        _uploadPresentationWithNode(presentation);
+        setTimeout(function() {
+          successCallback()
+        }, 5E3);
         break
     }
   };
@@ -14006,11 +13995,11 @@ VISH.Editor.Image = function(V, $, undefined) {
       percent.html(percentVal)
     }, complete:function(xhr) {
       switch(V.Configuration.getConfiguration()["mode"]) {
-        case V.Constant.NOSERVER:
-          processResponse('{"src":"/images/excursion_thumbnails/excursion-01.png"}');
-          break;
         case V.Constant.VISH:
           processResponse(xhr.responseText);
+          break;
+        case V.Constant.NOSERVER:
+          processResponse('{"src":"/images/excursion_thumbnails/excursion-01.png"}');
           break
       }
       var percentVal = "100%";
@@ -14218,14 +14207,11 @@ VISH.Editor.Object = function(V, $, undefined) {
       percent.html(percentVal)
     }, complete:function(xhr) {
       switch(V.Configuration.getConfiguration()["mode"]) {
-        case V.Constant.NOSERVER:
-          processResponse('{"src":"/images/excursion_thumbnails/excursion-01.png"}');
-          break;
         case V.Constant.VISH:
           processResponse(xhr.responseText);
           break;
-        case V.Constant.STANDALONE:
-          processResponse(xhr.responseText);
+        case V.Constant.NOSERVER:
+          processResponse('{"src":"/images/excursion_thumbnails/excursion-01.png"}');
           break
       }
       var percentVal = "100%";
@@ -14731,8 +14717,8 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
     });
     previewButton = $("#" + previewDivId).find("button.okButton2");
     $(previewButton).click(function() {
-      if(selectedPres) {
-        V.Editor.Presentation.previewPresentation(selectedPres)
+      if(selectedPres && selectedPres["loModel"]) {
+        V.Editor.Presentation.previewPresentation(selectedPres["loModel"])
       }
     })
   };
@@ -14743,7 +14729,7 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
   };
   var _requestData = function(text) {
     _prepareRequest();
-    V.Editor.API.requestExcursions(text, _onDataReceived, _onAPIError)
+    V.Editor.API.requestPresentations(text, _onDataReceived, _onAPIError)
   };
   var _prepareRequest = function() {
     _cleanCarrousel();
@@ -14767,24 +14753,22 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || !data.excursions || data.excursions.length == 0) {
+    if(!data || data.length == 0) {
       _onSearchFinished();
       _drawData(true);
       return
     }
     var carrouselImages = [];
-    currentExcursions = new Array;
-    $.each(data.excursions, function(index, pres) {
+    currentPresentations = new Array;
+    $.each(data, function(index, pres) {
       if(typeof pres != "undefined") {
-        if(typeof pres.id == "undefined") {
-          pres.id = V.Utils.getId("tmp")
+        var presId = "presentationCarrousel_" + index;
+        if(typeof pres.avatar_url == "undefined") {
+          pres.avatar_url = V.ImagesPath + "icons/defaultAvatar.png"
         }
-        if(typeof pres.avatar == "undefined") {
-          pres.avatar = V.ImagesPath + "icons/defaultAvatar.png"
-        }
-        var myImg = $("<img excursionId ='" + pres.id + "'' src=" + pres.avatar + " />");
+        var myImg = $("<img presentationId ='" + presId + "'' src=" + pres.avatar_url + " />");
         carrouselImages.push(myImg);
-        currentExcursions[pres.id] = pres
+        currentPresentations[presId] = pres
       }
     });
     var options = {};
@@ -14837,11 +14821,11 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
     }
   };
   var _onClickCarrouselElement = function(event) {
-    var excursionId = $(event.target).attr("excursionId");
-    if(excursionId) {
+    var presentationId = $(event.target).attr("presentationId");
+    if(presentationId) {
       $(".excursionSelectedInCarrousel").removeClass("excursionSelectedInCarrousel");
       $(event.target).addClass("excursionSelectedInCarrousel");
-      selectedPres = currentExcursions[excursionId];
+      selectedPres = currentPresentations[presentationId];
       _renderObjectMetadata(selectedPres)
     }
   };
@@ -15840,117 +15824,6 @@ VISH.Samples = function(V, undefined) {
   var Webappexample = {"author":"Aldo", "description":"Uploaded by Aldo via ViSH Editor", "id":52, "src":"/examples/contents/webappcode/11/index.html", "title":"HelloWorld.zip", "type":"webapp"};
   return{basic_samples:basic_samples, full_samples:full_samples, fc_sample:fc_sample, vt_sample:vt_sample, evideo_sample:evideo_sample, quiz_samples:quiz_samples, text_samples:text_samples, VE01_samples:VE01_samples, mooc_samples:mooc_samples, SCORMexample:SCORMexample, Webappexample:Webappexample}
 }(VISH);
-VISH.Samples.API = function(V, undefined) {
-  var recommendationList = [{"id":515, "url":"http://vishub.org/excursions/515", "title":"Identificaci\u00f3n de Minerales", "author":"2\u00ba Bac IES David Buj\u00e1n", "description":"Identificaremos minerales en el laboratorio gracias a c\u00f3digos QR.\nHemos escogido los minerales m\u00e1s habituales y as\u00ed, cada profesor podr\u00e1 adaptar nuestra idea a su laboratorio.", "image":"http://vishub.org/pictures/1730.jpeg", "views":5908, "favourites":73, "number_of_slides":36, "recommender_data":'{"cs_score":0,"ups_score":0,"popularity_score":1.0,"quality_score":1.0,"overall_score":1.0,"rec":"ViSHRecommenderSystem"}'}, 
-  {"id":161, "url":"http://vishub.org/excursions/161", "title":"Crowdsourcing Cells", "author":"Fermin", "description":"Check the images and help researchers to determine what is going on in the lab", "image":"http://vishub.org/assets/logos/original/excursion-01.png", "views":29999, "favourites":7, "number_of_slides":6, "recommender_data":'{"cs_score":0,"ups_score":0,"popularity_score":0.9090726203479781,"quality_score":0.8711386696730552,"overall_score":0.8901056450105167,"rec":"ViSHRecommenderSystem"}'}, 
-  {"id":632, "url":"http://vishub.org/excursions/632", "title":"Las villas romanas.", "author":"Juan Antonio Alvarado Quintana", "description":"Recorrido hist\u00f3rico sobre el periodo de la historia de Occidente en el que comienza a expandirse sobre el Bajo Imperio Romano el modelo de h\u00e1bitat rural en villa, en torno al siglo IV de nuestra era.", "image":"http://vishub.org/pictures/2651.jpeg", "views":311, "favourites":5, "number_of_slides":11, "recommender_data":'{"cs_score":0,"ups_score":0,"popularity_score":0.046287520418673116,"quality_score":0.9381059751972942,"overall_score":0.49219674780798367,"rec":"ViSHRecommenderSystem"}'}, 
-  {"id":589, "url":"http://vishub.org/excursions/589", "title":"Evaluaci\u00f3n de Usabilidad y Experiencia de Usuario", "author":"Aldo", "description":"Evaluaci\u00f3n de Usabilidad y Experiencia de Usuario", "image":"http://vishub.org//system/pdfexes/attaches/000/000/163/original/Usability_and_UX-0.jpg", "views":128, "favourites":2, "number_of_slides":42, "recommender_data":'{"cs_score":0,"ups_score":0,"popularity_score":0.018125689772175067,"quality_score":0.9310033821871477,"overall_score":0.4745645359796614,"rec":"ViSHRecommenderSystem"}'}, 
-  {"id":667, "url":"http://vishub.org/excursions/667", "title":"Water cycle", "author":"FRANCISCO GONZ\u00c1LEZ", "description":"Explanation and a simulation about water cycle", "image":"http://scienceprojectideasforkids.com/wp-content/uploads/2011/11/sublimation-dry-ice.jpg", "views":116, "favourites":6, "number_of_slides":8, "recommender_data":'{"cs_score":0,"ups_score":0,"popularity_score":0.03953678477974751,"quality_score":0.9005636978579481,"overall_score":0.4700502413188478,"rec":"ViSHRecommenderSystem"}'}, 
-  {"id":613, "url":"http://vishub.org/excursions/613", "title":"Agujeros Negros", "author":"L. Chicote", "description":"Los agujeros negros.", "image":"http://vishub.org/pictures/2507.jpeg", "views":268, "favourites":6, "number_of_slides":18, "recommender_data":'{"cs_score":0,"ups_score":0,"popularity_score":0.05119225216724824,"quality_score":0.8792559188275084,"overall_score":0.4652240854973783,"rec":"ViSHRecommenderSystem"}'}];
-  var excursionList = {"excursions":[VISH.Samples.full_samples, VISH.Samples.quiz_samples, VISH.Samples.magnetic_gifs, VISH.Samples.basic_samples, VISH.Samples.fc_sample, VISH.Samples.samples_vtour, VISH.Samples.samplesv01, VISH.Samples.test]};
-  var excursionListLittle = {"excursions":[VISH.Samples.full_samples, VISH.Samples.quiz_samples, VISH.Samples.magnetic_gifs]};
-  var excursionListDummy = {"excursions":[]};
-  var flashcardList = {"flashcards":[{"id":"1120", "VEVersion":"0.2", "type":"flashcard", "author":"", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://4.bp.blogspot.com/-fsV8poJXoJc/ULe8nkVbaVI/AAAAAAAAA-M/Q2vW16z6Ivc/s1600/Imagen16.png)", "pois":[{"id":"article4_poi1", "x":"36.875", "y":"67.33333333333333", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"55.375", "y":"68.16666666666667", "slide_id":"article4_article2"}, {"id":"article4_poi3", "x":"45.875", "y":"5.5", 
-  "slide_id":"article4_article3"}], "slides":[{"id":"article4_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", "type":"image", "areaid":"left", "body":"http://1.bp.blogspot.com/_KaMLeO20q1Q/TGk8gfWkp7I/AAAAAAAAAHI/80bTifiIk6M/s1600/24+Do%C3%B1ana.JPG", "style":"position: relative; width:110.31518624641834%; height:97.1590909090909%; top:2.0833333333333335%; left:-1.146131805157593%;"}]}, {"id":"article4_article2", "type":"standard", "template":"t2", "elements":[{"id":"article4_article2_zone1", 
-  "type":"image", "areaid":"left", "body":"http://farm9.staticflickr.com/8504/8367119464_f8ff09456d.jpg", "style":"position: relative; width:103.15186246418338%; height:90.53030303030303%; top:3.0303030303030303%; left:-0.5730659025787965%;"}]}, {"id":"article4_article3", "type":"standard", "template":"t2", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"left", "body":"http://cabeceras.eldiariomontanes.es/imagenes-municipios/galerias/5348/mf01z4411811x1492-452.jpg", "style":"position: relative; width:119.05444126074498%; height:129.54545454545453%; top:-2.6515151515151514%; left:-3.5816618911174785%;"}]}]}]}, 
-  {"id":"1115", "VEVersion":"0.2", "type":"flashcard", "author":"", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://www.exploringnature.org/graphics/endangered_species/endangered_animals200.jpg)", "pois":[{"id":"article4_poi1", "x":"15.625", "y":"8.5", "slide_id":"article4_article3"}, {"id":"article4_poi2", "x":"77.75", "y":"11.5", "slide_id":"article4_article1"}, {"id":"article4_poi3", "x":"17.125", "y":"58.833333333333336", "slide_id":"article4_article2"}], "slides":[{"id":"article4_article3", 
-  "type":"standard", "template":"t10", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"center", "body":"http://d30mmglg94tqnw.cloudfront.net/wp-content/plugins/magic-gallery/uploads/12/komodo-dragon_6771_600x450.jpg", "style":"position: relative; width:49.62406015037594%; height:66.22073578595318%; top:15.719063545150501%; left:24.18546365914787%;"}]}, {"id":"article4_article1", "type":"standard", "template":"t10", "elements":[{"id":"article4_article1_zone1", "type":"image", 
-  "areaid":"center", "body":"http://www.golden-gate-park.com/wp-content/uploads/2011/03/bison_bufflo_in_golden_gate_park.jpg", "style":"position: relative; width:60.526315789473685%; height:67.3913043478261%; top:15.719063545150501%; left:20.17543859649123%;"}]}, {"id":"article4_article2", "type":"standard", "template":"t10", "elements":[{"id":"article4_article2_zone1", "type":"image", "areaid":"center", "body":"http://wfiles.brothersoft.com/e/elephant_88059-1600x1200.jpg", "style":"position: relative; width:115.91478696741855%; height:116.05351170568562%; top:-2.842809364548495%; left:-0.7518796992481203%;"}]}]}]}, 
-  {"id":"111", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by ViSH Editor.", "avatar":"/images/excursion_thumbnails/excursion-10.png", "author":"John Doe", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
-  "slides":[{"id":"article1", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"article1_poi1", "x":"11", "y":"4.5", "slide_id":"article1_article1"}, {"id":"article1_poi2", "x":"47", "y":"34", "slide_id":"article1_article2"}, {"id":"article1_poi3", "x":"84", "y":"81", "slide_id":"article1_article3"}], "slides":[{"id":"article1_article1", "template":"t1", "elements":[{"id":"article1_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
-  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article1_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"article1_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article1_article2", "template":"t2", "elements":[{"id":"article1_article2_zone1", "type":"text", 
-  "areaid":"header", "body":"Experimento virtual1"}, {"id":"article1_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article1_article3", "template":"t6", "elements":[{"id":"article1_article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"article1_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article1_article3_zone3", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"article1_article3_zone4", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
-  {"id":"222", "title":"Curiosity", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by ViSH Editor.", "avatar":"/images/excursion_thumbnails/excursion-12.png", "author":"Comepiedras volador", "type":"flashcard", "tags":["Samples", "Test", "Development"], "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"Known the comepiedras volador", "adquired_competencies":"pupils will be smarter", 
-  "slides":[{"id":"article1", "type":"flashcard", "background":"url(http://images.freshnessmag.com/wp-content/uploads//2012/08/nasa-NASA-curiosity-mars-rover-00.jpg)", "pois":[{"id":"article1_poi1", "x":"11", "y":"4.5", "slide_id":"article1_article1"}, {"id":"article1_poi2", "x":"47", "y":"34", "slide_id":"article1_article2"}, {"id":"article1_poi3", "x":"84", "y":"81", "slide_id":"article1_article3"}], "slides":[{"id":"article1_article1", "template":"t1", "elements":[{"id":"article1_article1_zone1", 
-  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article1_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"article1_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article1_article2", "template":"t2", "elements":[{"id":"article1_article2_zone1", "type":"text", 
-  "areaid":"header", "body":"Experimento virtual1"}, {"id":"article1_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article1_article3", "template":"t6", "elements":[{"id":"article1_article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"article1_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article1_article3_zone3", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"article1_article3_zone4", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}]};
-  var smartcardList = {"excursions":[flashcardList.flashcards[0], flashcardList.flashcards[1], flashcardList.flashcards[2], flashcardList.flashcards[3], flashcardList.flashcards[3], flashcardList.flashcards[3], VISH.Samples.fc_sample, VISH.Samples.samples_vtour, VISH.Samples.test]};
-  var imageList = {"pictures":[{"id":54, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.dan-dare.org/dan%20simpsons/TheSimpsonsEveryoneEver800.jpg"}, {"id":55, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://3.bp.blogspot.com/--H0o8mc28bA/TxrsnMAFMDI/AAAAAAAAARs/eOCVIXKlm9I/s1600/sala-cine.jpg"}, {"id":56, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}, 
-  {"id":57, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.granadablogs.com/pateandoelmundo/wp-content/uploads/2009/10/_061.jpg"}, {"id":58, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.revistaintime.com/wp-content/uploads/2012/03/el-padrino-2.jpg"}, {"id":59, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://cinealdesnudo.files.wordpress.com/2011/12/el-indomable-will-hunting.jpg"}, {"id":60, 
-  "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://politicamenteconservador.blogia.com/upload/20060818041914-el-senor-de-los-anillos2.jpg"}, {"id":61, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://despertando.me/wp-content/uploads/2012/04/el-se%C3%B1or-de-los-anillos.jpg"}, {"id":62, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://4.bp.blogspot.com/-Fh_v8PYbVg0/TyGdKEiYmKI/AAAAAAAAAPI/MKdfZ224aEQ/s1600/el_senor_de_los_anillos_la_batalla_por_la_tierra_media_2_the_rise_of_the_witchking-181035.jpg"}, 
-  {"id":63, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://1.bp.blogspot.com/_9PpLM82o3g0/S8uPONu3kaI/AAAAAAAAC9A/thHNALuFxdE/s1600/Gandalf-vs-El-Balrog-gandalf-7018563-1280-960.jpg"}, {"id":64, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"NOVAACARGAR"}, {"id":65, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}, {"id":66, "title":"ClintEastwood.jpg", 
-  "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}, {"id":67, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}, {"id":68, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}, {"id":69, "title":"ClintEastwoooood.jpg", "description":"this is clint", 
-  "author":"Demo", "src":"http://upload.wikimedia.org/wikipedia/en/4/47/Simpsons_on_Tracey_Ullman.png"}]};
-  var imageListLittle = {"pictures":[{"id":54, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.dan-dare.org/dan%20simpsons/TheSimpsonsEveryoneEver800.jpg"}, {"id":55, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://3.bp.blogspot.com/--H0o8mc28bA/TxrsnMAFMDI/AAAAAAAAARs/eOCVIXKlm9I/s1600/sala-cine.jpg"}, {"id":56, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}]};
-  var imageListDummy = {"pictures":[]};
-  var video = {"id":"1534", "title":"Midnight Sun", "description":"Awesome HTML5 video example", "author":"John Doe", "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"};
-  var videoListOld = {"videos":[{"id":"1534", "title":"HTML5 Demo", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML. HTML5 especifica dos variantes de sintaxis para HTML: un clasico HTML (text/html), la variante conocida como HTML5 y una variante XHTML conocida como sintaxis XHTML5 que debera ser servida como XML (XHTML) (application/xhtml+xml).1 2 Esta es la primera vez que HTML y XHTML se han desarrollado en paralelo.", 
-  "author":"Awesome Videos", "poster":"http://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Sasso_lungo_da_passo_pordoi.jpg/250px-Sasso_lungo_da_passo_pordoi.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1535", "title":"Paisaje bonito", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", 
-  "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1536", "title":"Otro paisaje bonito", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://1.bp.blogspot.com/-DFj9INluj80/TfiNl7q3DbI/AAAAAAAAAws/hVJu13VbKEY/s1600/paisaje.jpg", 
-  "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1537", "title":"Verde", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://www.forodefotos.com/attachments/naturaleza/12983d1281113830-fotos-de-paisaje-fotos-de-paisaje.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + 
-  '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1538", "title":"Noche", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://ro18.blogspot.es/img/paisaje.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1539", 
-  "title":"Puesta de sol", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://walpaper.es/images/wallpapers/Paisaje-fotografia-HDR-656343.jpeg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1540", "title":"Cayuco", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", 
-  "poster":"http://3.bp.blogspot.com/-a-WrZZf0WJo/TsEBPXjUQXI/AAAAAAAAFBg/kh0aS9Kemag/s1600/PAISAJE+JUANMA.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1541", "title":"Aves", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://images.artelista.com/artelista/obras/fichas/8/3/3/8619208014133041.JPG", 
-  "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1542", "title":"Delfines", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://4.bp.blogspot.com/-CfZKEdXcXtg/TijG57sIFWI/AAAAAAAAARQ/O8FP1OQ0a0w/s1600/delfines-saltando.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + 
-  '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1543", "title":"Gato", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://www.10puntos.com/wp-content/uploads/2010/09/gato-lindo.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + 
-  "]"}, {"id":"1544", "title":"Otro gato", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://neko.koiora.net/files/2011/06/Gato17.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1545", "title":"Gato ninja", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", 
-  "poster":"http://www.sarda.es/fotos/gato_volador/gato_volador.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}]};
-  var videoList = {"videos":[{"id":1342, "title":"Windmill Formato Nuevo", "description":"", "author":"Luis Vaquerizo", "poster":"http://vishub.org/videos/1342.png?style=170x127%23", "sources":[{"type":"video/webm", "src":"http://vishub.org/videos/1342.webm"}, {"type":"video/mp4", "src":"http://vishub.org/videos/1342.mp4"}, {"type":"video/x-flv", "src":"http://vishub.org/videos/1342.flv"}]}, {"id":1342, "title":"Windmill Formato Antiguo", "description":"", "author":"Luis Vaquerizo", "poster":"http://vishub.org/videos/1342.png?style=170x127%23", 
-  "sources":"[" + '{ "type": "video/webm", "src": "http://vishub.org/videos/1342.webm"},' + '{ "type": "video/mp4",  "src": "http://vishub.org/videos/1342.mp4" }' + "]"}]};
-  var videoListLittle = {"videos":[{"id":"1534", "title":"HTML5 Demo", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML. HTML5 especifica dos variantes de sintaxis para HTML: un clasico HTML (text/html), la variante conocida como HTML5 y una variante XHTML conocida como sintaxis XHTML5 que debera ser servida como XML (XHTML) (application/xhtml+xml).1 2 Esta es la primera vez que HTML y XHTML se han desarrollado en paralelo.", 
-  "author":"Awesome Videos", "poster":"http://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Sasso_lungo_da_passo_pordoi.jpg/250px-Sasso_lungo_da_passo_pordoi.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1535", "title":"Paisaje bonito", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", 
-  "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1536", "title":"Otro paisaje bonito", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://1.bp.blogspot.com/-DFj9INluj80/TfiNl7q3DbI/AAAAAAAAAws/hVJu13VbKEY/s1600/paisaje.jpg", 
-  "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}]};
-  var videoListDummy = {"videos":[]};
-  var liveList = [{"id":"1534", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1535", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1536", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, 
-  {"id":"1537", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1538", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1539", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, 
-  {"id":"1540", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1541", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1542", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, 
-  {"id":"1543", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1544", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1545", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, 
-  {"id":"1546", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1547", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1548", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}];
-  var liveListLittle = [{"id":"1534", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1535", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1548", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}];
-  var liveListDummy = [];
-  var objectList = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"123131533", "title":"Link", "description":"Link al marca", "author":"Marca.com", "object":"www.marca.com"}, {"id":"123131534", "title":"Horse Audio", "description":"Fichero MP3", "author":"W3C", "object":"examples/contents/audio/horse.mp3"}, {"id":"123131535", "title":"Horse Audio Tag", "description":"Fichero MP3", "author":"W3C", 
-  "object":'<audio controls><source src="http://vishub.org/audios/3665.mp3" type="audio/mpeg"><source src="http://vishub.org/audios/3665.wav" type="audio/wav"><source src="http://vishub.org/audios/3665.webm" type="audio/webm">Your browser does not support the audio tag.</audio>'}, {"id":"123131536", "title":"HTML5 Video", "description":"Fichero Webm", "author":"Unknown", "object":"http://vishub.org/videos/325.webm"}, {"id":"123131537", "title":"HTML5 Video Tag", "description":"Video Tag", "author":"Unknown", 
-  "object":'<video preload="metadata" poster="http://vishub.org/videos/325.png?style=170x127%23"><source src="http://vishub.org/videos/325.webm" type="video/webm"><source src="http://vishub.org/videos/325.mp4" type="video/mp4"><source src="http://vishub.org/videos/325.flv" type="video/x-flv"><p>Your browser does not support HTML5 video.</p></video>'}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, 
-  {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, {"id":"1538", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "object":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}, 
-  {"id":"1539", "title":"Image", "description":"Image Embed", "author":"Globedia", "object":'<embed width="100%" src="http://globedia.com/imagenes/noticias/2011/2/10/encuentran-octava-maravilla-mundo-destruida-125-anos_2_585286.jpg"></embed>'}, {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, 
-  {"id":"5432115", "title":"Medieval Armor", "description":"Description of the SCORM Package", "author":"Aldo", "object":"http://localhost:3000/scorm/packages/41/vishubcode_scorm_wrapper.html", "type":"scormpackage"}, {"id":"9512332115", "title":"My First Web App", "description":"", "author":"Aldo", "object":"http://localhost:3000/webappscode/9/index.html", "type":"webapp"}];
-  var objectListLittle = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
-  "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}];
-  var objectListDummy = [];
-  var tagsList = {"tags":["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"]};
-  var thumbnailsList = {"pictures":[{"title":"Thumbnail 1", "description":"Sample excursion thumbnail 1", "src":"/images/excursion_thumbnails/excursion-01.png"}, {"title":"Thumbnail 2", "description":"Sample excursion thumbnail 2", "src":"/images/excursion_thumbnails/excursion-02.png"}, {"title":"Thumbnail 3", "description":"Sample excursion thumbnail 3", "src":"/images/excursion_thumbnails/excursion-03.png"}, {"title":"Thumbnail 4", "description":"Sample excursion thumbnail 4", "src":"/images/excursion_thumbnails/excursion-04.png"}, 
-  {"title":"Thumbnail 5", "description":"Sample excursion thumbnail 5", "src":"/images/excursion_thumbnails/excursion-05.png"}, {"title":"Thumbnail 6", "description":"Sample excursion thumbnail 6", "src":"/images/excursion_thumbnails/excursion-06.png"}, {"title":"Thumbnail 7", "description":"Sample excursion thumbnail 7", "src":"/images/excursion_thumbnails/excursion-07.png"}, {"title":"Thumbnail 8", "description":"Sample excursion thumbnail 8", "src":"/images/excursion_thumbnails/excursion-08.png"}, 
-  {"title":"Thumbnail 9", "description":"Sample excursion thumbnail 9", "src":"/images/excursion_thumbnails/excursion-09.png"}, {"title":"Thumbnail 10", "description":"Sample excursion thumbnail 10", "src":"/images/excursion_thumbnails/excursion-10.png"}, {"title":"Thumbnail 11", "description":"Sample excursion thumbnail 11", "src":"/images/excursion_thumbnails/excursion-11.png"}, {"title":"Thumbnail 12", "description":"Sample excursion thumbnail 12", "src":"/images/excursion_thumbnails/excursion-12.png"}, 
-  {"title":"Thumbnail 13", "description":"Sample excursion thumbnail 13", "src":"/images/excursion_thumbnails/excursion-13.png"}, {"title":"Thumbnail 14", "description":"Sample excursion thumbnail 14", "src":"/images/excursion_thumbnails/excursion-14.png"}, {"title":"Thumbnail 15", "description":"Sample excursion thumbnail 15", "src":"/images/excursion_thumbnails/excursion-15.png"}, {"title":"Thumbnail 16", "description":"Sample excursion thumbnail 16", "src":"/images/excursion_thumbnails/excursion-16.png"}, 
-  {"title":"Thumbnail 17", "description":"Sample excursion thumbnail 17", "src":"/images/excursion_thumbnails/excursion-17.png"}, {"title":"Thumbnail 18", "description":"Sample excursion thumbnail 18", "src":"/images/excursion_thumbnails/excursion-18.png"}, {"title":"Thumbnail 19", "description":"Sample excursion thumbnail 19", "src":"/images/excursion_thumbnails/excursion-19.png"}, {"title":"Thumbnail 20", "description":"Sample excursion thumbnail 20", "src":"/images/excursion_thumbnails/excursion-20.png"}, 
-  {"title":"Thumbnail 21", "description":"Sample excursion thumbnail 21", "src":"/images/excursion_thumbnails/excursion-21.png"}, {"title":"Thumbnail 22", "description":"Sample excursion thumbnail 22", "src":"/images/excursion_thumbnails/excursion-22.png"}, {"title":"Thumbnail 23", "description":"Sample excursion thumbnail 23", "src":"/images/excursion_thumbnails/excursion-23.png"}, {"title":"Thumbnail 24", "description":"Sample excursion thumbnail 24", "src":"/images/excursion_thumbnails/excursion-24.png"}, 
-  {"title":"Thumbnail 25", "description":"Sample excursion thumbnail 25", "src":"/images/excursion_thumbnails/excursion-25.png"}, {"title":"Thumbnail 26", "description":"Sample excursion thumbnail 26", "src":"/images/excursion_thumbnails/excursion-26.png"}, {"title":"Thumbnail 27", "description":"Sample excursion thumbnail 27", "src":"/images/excursion_thumbnails/excursion-27.png"}, {"title":"Thumbnail 28", "description":"Sample excursion thumbnail 28", "src":"/images/excursion_thumbnails/excursion-28.png"}, 
-  {"title":"Thumbnail 29", "description":"Sample excursion thumbnail 29", "src":"/images/excursion_thumbnails/excursion-29.png"}, {"title":"Thumbnail 30", "description":"Sample excursion thumbnail 30", "src":"/images/excursion_thumbnails/excursion-30.png"}]};
-  var LREImageList = {"results":[{"meta":{"id":157132, "provider":"ILBE", "langBlocks":[{"language":"x-mt-it", "title":"Fauna e Floara dell'Israele", "description":"Questa risorsa ha le fotografie, le descrizioni di alcuna della flora e fauna dell'Israele"}, {"language":"x-mt-fr", "title":"Faune et Floara de l'Israel", "description":"Cette ressource a des photographies, des descriptions d'une partie de la flore et la faune de l'Israel"}, {"language":"x-mt-de", "title":"Fauna und Floara von Israel", 
-  "description":"Dieses Hilfsmittel hat Fotographien, Beschreibungen von etwas von der Flora und Fauna von Israel"}, {"language":"x-mt-es", "title":"Fauna y Floara de Israel", "description":"Este recurso tiene las fotograf\u00edas, las descripciones de algo de la flora y fauna de Israel"}, {"language":"en", "title":"Fauna and Floara of Israel", "description":"This resource has photographs, descriptions of some of the flora and Fauna of Israel"}, {"language":"x-mt-pt", "title":"Fauna e Floara de Israel", 
-  "description":"Este recurso tem fotografias, descri\u00e7\u00f5es de algum do flora e fauna de Israel"}, {"language":"x-mt-el", "title":"\u03a0\u03b1\u03bd\u03af\u03b4\u03b1 \u03ba\u03b1\u03b9 Floara \u03c4\u03bf\u03c5 \u0399\u03c3\u03c1\u03b1\u03ae\u03bb", "description":"\u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03bf \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03c6\u03bf\u03c1\u03ac\u03c2 \u03ad\u03c7\u03b5\u03b9 \u03c4\u03b9\u03c2 \u03c6\u03c9\u03c4\u03bf\u03b3\u03c1\u03b1\u03c6\u03af\u03b5\u03c2, \u03c0\u03b5\u03c1\u03b9\u03b3\u03c1\u03b1\u03c6\u03ad\u03c2 \u03bc\u03b5\u03c1\u03b9\u03ba\u03ad\u03c2 \u03b1\u03c0\u03cc \u03c4\u03b7 \u03c7\u03bb\u03c9\u03c1\u03af\u03b4\u03b1 \u03ba\u03b1\u03b9 \u03c4\u03b7\u03bd \u03c0\u03b1\u03bd\u03af\u03b4\u03b1 \u03c4\u03bf\u03c5 \u0399\u03c3\u03c1\u03b1\u03ae\u03bb"}], 
-  "rights":{"cc":false, "url":"", "by":false, "nc":false, "nd":false, "sa":false}, "expressions":[{"language":"en", "manifestations":[{"player":"webBrowser", "urls":["http://oer.eun.org/VWClc0HZLsQohR_gIPB3Tm41jgwk"]}]}]}, "para":{"commentsInfo":{"count":0}, "favouritesInfo":{"count":0}, "idsTuple":{"expressionID":0, "globalLREID":157132, "manifestationID":0, "socialID":"157132/0/0"}, "opinionsInfo":{"downCount":0, "upCount":0}, "ratingsInfo":{"average":0, "count":0, "sum":0}, "tagsInfo":{"labels":[]}}}, 
-  {"meta":{"id":249838, "provider":"TD", "langBlocks":[{"language":"en", "title":"Design Inspired by Nature", "description":"In this stills collage produced for Teachers' Domain, see several examples of everyday inventions that were either inspired by nature or are similar in form and function to plants or animals."}], "rights":{"cc":false, "url":"http://www.teachersdomain.org/terms_of_use.html", "by":false, "nc":false, "nd":false, "sa":false}, "expressions":[{"language":"en", "manifestations":[{"player":"landingPage", 
-  "urls":["http://oer.eun.org/VWClc0LSLsIrhB_gIPJ4Rgn51X81"]}, {"player":"webBrowser", "urls":["http://oer.eun.org/VWClc0LSLsIrhR_gIPJ4RgU23uqf"]}]}]}, "para":{"commentsInfo":{"count":0}, "favouritesInfo":{"count":0}, "idsTuple":{"expressionID":0, "globalLREID":249838, "manifestationID":0, "socialID":"249838/0/0"}, "opinionsInfo":{"downCount":0, "upCount":0}, "ratingsInfo":{"average":0, "count":0, "sum":0}, "tagsInfo":{"labels":[]}}}, {"meta":{"id":253883, "provider":"NASAPHOTOJOURNAL", "langBlocks":[{"language":"x-mt-it", 
-  "title":"Hamersley ': Non abbastanza Come 'Il Cratere Dell'Aquila '", "description":'Questo mosaico approssimativo di immagine di allineare-colore dalla macchina fotografica panoramica sull\'occasione del vagabondo di esplorazione del Marte mostra l\'obiettivo nicknamed "Hamersley" all\'interno "del cratere di Fram." La natura del materiale dell\'affioramento visto in questa posizione si interrompe visibilmente. Alcune zone egualmente hanno fare uno strato di che pu\u00f2 essere distintivo da che cosa gli scienziati hanno visto precedentemente in "cratere dell\'aquila." L\'occasione sta viaggiando verso "una resistenza dubbed grande cratere." Pu\u00f2 ritornare a Fram per ulteriore analisi delle relativi roccie e terrenise permessi di tempo. Le immagini in questo mosaico sono state prese sul solenoide 87 con le macchine fotografiche panoramica 480 -, 530- ed i filtri 600-nanometer.'}, 
-  {"language":"x-mt-de", "title":"Hamersley ': Nicht Durchaus Wie ' Adler-Krater '", "description":'Dieses ungef\u00e4hre Zutreffendfarbe Bildmosaik von der panoramischen Kamera auf der Mars Erforschung-Vagabund-Gelegenheit zeigt das Ziel, das nicknamed ist "Hamersley" innerhalb "des Fram Kraters." Die Natur des Zutageliegenmaterials, das in diesen Standort gesehen wird, wird sichtbar gest\u00f6rt. Etwas Bereiche haben auch das \u00dcberlagern, das sein kann unterscheidend von, was Wissenschaftler sahen vorher in "Adler-Krater." Gelegenheit reist in Richtung zu einer gro\u00dfer Krater betitelten "Ausdauer." Sie kann zu Fram f\u00fcr weitere Analyse seiner Felsen und Bodens zur\u00fcckgehen wenn Zeiterlaubnis. Die Bilder in diesem Mosaik wurden auf Solenoid 87 mit der panoramischen Kamera 480 -, 530- und Filter 600-nanometer genommen.'}, 
-  {"language":"x-mt-fr", "title":"Hamersley ': Pas tout \u00e0 fait Comme Le 'Crat\u00e8re d'Aigle '", "description":"Cette mosa\u00efque approximative d'image de vrai-couleur de l'appareil-photo panoramique sur l'occasion de vagabond d'exploration de Mars montre la cible surnomm\u00e9e \"Hamersley\" dans le \"crat\u00e8re de Fram.\" La nature du mat\u00e9riel d'affleurement vu dans cet emplacement est visiblement perturb\u00e9e. Quelques zones ont \u00e9galement poser qui peut \u00eatre distinctif dece que les scientifiques ont vu pr\u00e9c\u00e9demment en \"crat\u00e8re d'aigle.\" L'occasion voyage vers une \"r\u00e9sistance doubl\u00e9e grand par crat\u00e8re.\" Elle peut retourner \u00e0 Fram pour davantage d'analyse de ses roches et sols si des laisux de temps. Les images dans cette mosa\u00efque ont \u00e9t\u00e9 prises sur le sol\u00e9no\u00efde 87 avec l'appareil-photo panoramique 480 -, 530- et filtres 600-nanometer."}, 
-  {"language":"x-mt-es", "title":"Hamersley ': No absolutamente Como El ' Cr\u00e1ter Del \u00c1guila '", "description":'Este mosaico aproximado de la imagen del verdadero-color de la c\u00e1mara fotogr\u00e1fica panor\u00e1mica en la oportunidad del rover de la exploraci\u00f3n de Marte muestra la blanco apodada "Hamersley" dentro del "cr\u00e1ter de Fram." La naturaleza del material del afloramiento considerado en esta localizaci\u00f3n se interrumpe visiblemente. Algunas \u00e1reas tambi\u00e9n tienen acodar que pueda ser distintivo de lo que vieron los cient\u00edficos previamenteen "cr\u00e1ter del \u00e1guila." La oportunidad est\u00e1 viajando hacia una "resistencia doblada cr\u00e1ter grande." Puede volver a Fram para el an\u00e1lisis adicional de sus rocas y suelos si los permisos del tiempo. Las im\u00e1genes en este mosaico fueron adquiridas el solenoide 87 con la c\u00e1mara fotogr\u00e1fica panor\u00e1mica 480 -, 530- y filtros 600-nanometer.'}, 
-  {"language":"en", "title":"Hamersley' : Not Quite Like 'Eagle Crater'", "description":'This approximate true-color image mosaic from the panoramic camera on the Mars Exploration Rover Opportunity shows the target nicknamed "Hamersley" within "Fram Crater." The nature of the outcrop material seen in this location is visibly disrupted. Some areas also have layering that may be distinctive from what scientists saw previously in "Eagle Crater." Opportunity is traveling toward a large crater dubbed "Endurance." It may return to Fram for further analysis of its rocks and soils if time permits. The images in this mosaic were taken on sol 87 with the panoramic camera\'s 480-, 530- and 600-nanometer filters.'}, 
-  {"language":"x-mt-pt", "title":"Hamersley ': N\u00e3o completamente Como ' A Cratera Da \u00c1guia '", "description":'Este mosaic aproximado da imagem da verdadeiro-cor da c\u00e2mera panoramic na oportunidade do vagabundo da explora\u00e7\u00e3o de Marte mostra o alvo nicknamed "Hamersley" dentro de "da cratera Fram." A natureza do material do outcrop visto nestaposi\u00e7\u00e3o disrupted visivelmente. Algumas \u00e1reas t\u00eam tamb\u00e9m mergulhar que pode ser distintivo de o que os cientistas viram previamente da "na cratera \u00e1guia." A oportunidade est\u00e1 viajando para cratera grande uma "resist\u00eancia dubbed." Pode retornar a Fram para uma an\u00e1lise mais adicional de seus rochas e solos se licen\u00e7as do tempo. As imagens neste mosaic foram feitas exame no solen\u00f3ide 87 com a c\u00e2mera panoramic 480 -, 530- e filtros 600-nanometer.'}], 
-  "rights":{"cc":false, "url":"http://creativecommons.org/publicdomain/mark/1.0/", "by":false, "nc":false, "nd":false, "sa":false}, "expressions":[{"language":"en", "manifestations":[{"player":"landingPage", "urls":["http://oer.eun.org/VWClc0HbKM4qhR_gIPB5TFHGMCw1"]}]}]}, "para":{"commentsInfo":{"count":0}, "favouritesInfo":{"count":0}, "idsTuple":{"expressionID":0, "globalLREID":253883, "manifestationID":0, "socialID":"253883/0/0"}, "opinionsInfo":{"downCount":0, "upCount":0}, "ratingsInfo":{"average":0, 
-  "count":0, "sum":0}, "tagsInfo":{"labels":[]}}}, {"meta":{"id":253896, "provider":"NASAPHOTOJOURNAL", "langBlocks":[{"language":"x-mt-it", "title":"Roccie Sedimentarie Di Schiaparelli", "description":"Versione no. MOC2-403, il 26 di MGS MOC giugno 2003 alcuni dei risultati di formazione immagine di alta risoluzione pi\u00f9 importanti del centro globale di esperimento della macchina fotografica del orbiter del Marte dell'ispettore del Marte (MGS) (MOC)sulle scoperte circa la presenza e la natura del record sedimentario della roccia su Marte. Questo vecchio cratere di effetto del meteor in bacino nordoccidentale di Schiaparelli esibisce una vista spettacolare della roccia fatta uno strato di e sedimentaria. Ilcratere (1.4 miglio) largo 2.3 chilometri pu\u00f2 completamente essere riempito una volta di sedimento; il materiale pi\u00f9 successivamente \u00e8 stato corroso alla relativa forma attuale. Ledozzine degli strati di spessore simile e le propriet\u00e0 fisiche ora sono espresse nelle nozze raggrum-come la pila nel mezzo del cratere. La luce solare che illumina la scena dalla parte di sinistra indica che il cerchio, o la parte superiore di MESA, alla met\u00e0 del cratere si leva in piedi pi\u00f9 superiore agli altri strati scala-fatti un passo. Le propriet\u00e0 fisiche dell'uniforme e l'assestamento di questi strati potrebbero indicare che originalmente sono state depositate in un lago (\u00e8 possibile che il cratere era allaparte inferiore di lago molto pi\u00f9 grande, di un bacino riempientesi di Schiaparelli); alternativamente, gli strati sono stati depositati sistemandosi dell'atmosfera in un ambiente asciutto. Questa immagine \u00e8 stata acquistata il 3 giugno 2003 ed \u00e8 situata vicino a 0.9S, 346.2W."}, 
-  {"language":"en", "title":"Schiaparelli Sedimentary Rocks", "description":"MGS MOC Release No. MOC2-403, 26 June 2003 Some of the most important high resolution imaging results of the Mars Global Surveyor (MGS) Mars Orbiter Camera (MOC) experiment center on discoveries about the presence and nature of the sedimentary rock record on Mars. This old meteor impact crater in northwestern Schiaparelli Basin exhibits a spectacular view of layered, sedimentary rock. The 2.3 kilometer (1.4 miles) wide crater may have once been completely filled with sediment; the material was later eroded to its present form. Dozens of layers of similar thickness and physical properties are now expressed in a wedding cake-like stack in the middle of the crater. Sunlight illuminating the scene from the left shows that the circle, or mesa top, at the middle of the crater stands higher than the other stair-stepped layers. The uniform physical properties and bedding of these layers might indicate that they were originally deposited in a lake (it is possible that the crater was at the bottom of a much larger lake, filling Schiaparelli Basin); alternatively, the layers were deposited by settling out of the atmosphere in a dry environment. This picture was acquired on June 3, 2003, and is located near 0.9S, 346.2W."}, 
-  {"language":"x-mt-pt", "title":"Rochas Sedimentary De Schiaparelli", "description":"Libera\u00e7\u00e3o no. MOC2-403 de MGS MOC, 26 junho 2003alguns dos resultados de alta resolu\u00e7\u00e3o os mais importantes da imagem latente do centro global da experi\u00eancia da c\u00e2mera do orbiter de Marte do surveyor de Marte (MGS) (MOC) em descobertas sobre a presen\u00e7a e a natureza do registro sedimentary da rocha em Marte. Esta cratera velha do impacto do meteoro na bacia do noroeste deSchiaparelli exibe uma vista espectacular da rocha mergulhada, sedimentary. A cratera de 2.3 quil\u00f4metros (1.4 milha) de largura pode uma vez completamente ter sido enchida com o sedimento; o material foi corro\u00eddo mais tarde a seu formul\u00e1rio atual. As d\u00fazias das camadas de espessura similar e as propriedades f\u00edsicas s\u00e3o expressadas agora em um casamento endure\u00e7-como a pilha no meio da cratera. A luz solar que ilumina a cena da esquerda mostra que o c\u00edrculo, ou o alto do mesa, no meio da cratera est\u00e3o mais altamente do que as outras camadas escada-pisadas. As propriedades f\u00edsicas e o fundamento uniformes destas camadas puderam indicar que estiveram depositadas originalmente em um lago (\u00e9 poss\u00edvel que a cratera estava no fundo de um lago muito maior, de umabacia de enchimento de Schiaparelli); alternativamente, as camadas foram depositadas estabelecindo-se fora da atmosfera em um ambiente seco. Este retrato foi adquirido junho em 3, 2003, e \u00e9ficado situado perto de 0.9S, 346.2W."}], 
-  "rights":{"cc":false, "url":"http://creativecommons.org/publicdomain/mark/1.0/", "by":false, "nc":false, "nd":false, "sa":false}, "expressions":[{"language":"en", "manifestations":[{"player":"landingPage", "urls":["http://oer.eun.org/VWClc0HbKMcpgh_gIPB5TLh4hjKH"]}]}]}, "para":{"commentsInfo":{"count":0}, "favouritesInfo":{"count":0}, "idsTuple":{"expressionID":0, "globalLREID":253896, "manifestationID":0, "socialID":"253896/0/0"}, "opinionsInfo":{"downCount":0, "upCount":0}, "ratingsInfo":{"average":0, 
-  "count":0, "sum":0}, "tagsInfo":{"labels":[]}}}, {"meta":{"id":253900, "provider":"NASAPHOTOJOURNAL", "langBlocks":[{"language":"x-mt-it", "title":"Banda del radar de 28 ottobre 2005, flyby di Titan", "description":"Questo programma della luna Titan del Saturno mostra la posizione tracciata con il rilevamento del radar di Cassini usando il relativo modo sintetico di formazione immagine del radar dell'apertura durante 28 ottobre 2005, flyby. La banda del radar\u00e8 sovrapposta su un'immagine di falso-colore fatta dalle osservazionidal telescopio dello spazio del Hubble della NASA. La posizione del luogo di atterraggio di Huygens \u00e8 contrassegnata nel colore rossoall'estrema destra. La sovrapposizione fra i dati di Huygens e la volont\u00e0 di dati del radar d\u00e0 i nuovi indizii alla natura della superficie vista dalla sonda di Huygens, che ha atterrato su Titan nelmese di gennaio del 2005. Del 28 la banda ottobre \u00e8 di lunghezza circa 6.150 chilometri (3.821 miglio), estendendosi del nordda 7 gradi fino 18 gradi di latitudine del sud ed ad ovest da 179 gradi fino 320 gradi di longitudine ad ovest. La risoluzione spaziale delle immagini del radar varia da circa 300 tester (980 piedi) per il pixel a circa 1.5 chilometro (0.93 miglia) per il pixel.Quattro passaggi del radar del Cassini hanno rivelato una variet\u00e0 di caratteristiche geologiche, compreso i crateri di effetto,di depositi vento-saltati, di scanalature e di caratteristiche cryovolcanic. La missione di Cassini-Huygens \u00e8 un progetto cooperativo della NASA, dell'Ente Spaziale Europeo e dell'agenzia italiana dello spazio. Il laboratorio di propulsione del getto, una divisione della California Institute of Technology A Pasadena, gestisce la missione per la direzione di missione di scienza della NASA, Washington, D.C. The Cassini che il orbiter \u00e8 stato progettato,sviluppato e montato a JPL. Lo strumento del radar \u00e8 stato costruito da JPL e l'agenzia italiana dello spazio, funzionante con i membri della squadra dal unito Dichiara e parecchi paesi europei. Per le pi\u00f9 informazioni sulla chiamata di missione di Cassini-Huygens"}, 
-  {"language":"x-mt-de", "title":"Radar-Schwade von Okt. 28, 2005, Titan Flyby", "description":"Diese Karte von Mond Titan Saturns zeigt den Standort, der mit dem Cassini Radarkartographen mit seinem synthetischen Blenden\u00f6ffnung Radar-Belichtung Modus w\u00e4hrend des Okt.28, 2005, Flyby abgebildet wird. Die RadarSchwade wird auf einem Falschfarbe Bild gelegt, das von den Beobachtungen durch Platz-Teleskop Hubble NASAs gebildet wird. Der Standort der Huygens Landungsites wird im Rot auf dem weit rechten gekennzeichnet. Die Deckung zwischen den Huygens Daten und dem Radardatenwillen geben neue Anhaltspunkte zur Natur der Oberfl\u00e4che, die durch die Huygens Pr\u00fcfspitze gesehen wird, die auf Titan im Januar 2005 landete. Die Okt. 28 Schwade ist ungef\u00e4hr 6.150 Kilometer (3.821 Meilen) lang und dehnt sich von 7 Grad Nord auf 18 Grad S\u00fcdbreite und von 179 Grad West auf 320 Grad Westl\u00e4nge aus. Die r\u00e4umliche Zerlegung der Radarbilder reicht von ungef\u00e4hr 300 Metern (980 Fu\u00df) pro Pixel bis zu ungef\u00e4hr 1.5 Kilometern (0.93 Meilen) pro Pixel. Cassinis deckten vier Radardurchl\u00e4ufe eine Vielzahl der geologischen Merkmale, einschlie\u00dflich Auswirkung Krater,der Wind-durchgebrannten Ablagerungen, der F\u00fchrungen und der cryovolcanic Merkmale auf. Die Cassini-Huygens Mission ist ein kooperatives Projekt der NASAS, der Europ\u00e4ischen Weltraumorganisationund der italienischen Platz-Agentur. Das Strahl Antrieb-Labor, eine Abteilung der California Institutes of Technology in Pasadena, handhat die Mission f\u00fcr Direktorat Mission Wissenschaft der NASAS, Washington, D.C. The Cassini, das Orbiter konzipiert war, sich entwickelt und an JPL zusammengebaut. Das Radarinstrument wurde durch JPL und die italienische Platz-Agentur aufgebaut und arbeitete mit Teambauteilen von den Vereinigten Staaten und von einigen europ\u00e4ischen L\u00e4ndern. Zu mehr Information \u00fcber den Cassini-Huygens Mission Besuch"}, 
-  {"language":"x-mt-fr", "title":"Bandage de radar oct. de 28, 2005, flyby de Titan", "description":"Cette carte du Titan de la lune de Saturne montre l'emplacement trac\u00e9 avec le cartographe de radar de Cassini enutilisant son mode synth\u00e9tique de formation image de radar d'ouverture pendant oct. 28, 2005, flyby. Le bandage de radar est superpos\u00e9 \u00e0 une image de faux-couleur faite \u00e0 partir des observations par le t\u00e9lescope de l'espace de Hubble de NASA's. L'emplacement du site d'atterrissage de Huygens est marqu\u00e9 dansle rouge sur loin le droit. La superposition entre les donn\u00e9es de Huygens et la volont\u00e9 de donn\u00e9es de radar donnent de nouveaux indices \u00e0 la nature de la surface vue par la sonde de Huygens, qui a d\u00e9barqu\u00e9 sur le Titan en janvier 2005. Le bandage oct. de 28 est d'environ 6.150 kilom\u00e8tres de long (3.821 milles), s'\u00e9tendant de 7 degr\u00e9s de du nord \u00e0 18 degr\u00e9s de latitude du sud et de 179 degr\u00e9s d'occidental \u00e0 320 degr\u00e9s de longitude occidentale. La r\u00e9solution spatiale des images de radar s'\u00e9tend d'environ 300 m\u00e8tres (980 pieds) par Pixel \u00e0 environ 1.5 kilom\u00e8tre (0.93 mille) par Pixel. Quatre passages du radar de Cassini ont indiqu\u00e9 une vari\u00e9t\u00e9 de dispositifs g\u00e9ologiques, y compris des crat\u00e8res d'impact, de d\u00e9p\u00f4ts vent-souffl\u00e9s, de canaux et de dispositifs cryovolcanic. La mission de Cassini-Huygens est un projet coop\u00e9ratif de la NASA, de l'Agence europ\u00e9enne de l'espace et de l'agence italienne de l'espace. Le laboratoire depropulsion de Voyager en jet, une division de la California Institute of Technology \u00c0 Pasadena, contr\u00f4le la mission pour la direction de mission de la Science de la NASA, Washington, D.C. The Cassini que la navette spatiale a \u00e9t\u00e9 con\u00e7ue, d\u00e9velopp\u00e9 et r\u00e9uni \u00e0 JPL. L'instrument de radar a \u00e9t\u00e9 construit par JPL et l'agence italienne de l'espace, fonctionnant avec des membres d'\u00e9quipe des Etats-Unis et plusieurs pays europ\u00e9ens. Pour plus d'informations sur la visite de mission de Cassini-Huygens"}, 
-  {"language":"x-mt-es", "title":"Andana del radar del de oct. 28 de 2005, flyby delTit\u00e1n", "description":"Esta correspondencia del Tit\u00e1n de la luna de Saturno muestra la localizaci\u00f3n asociada con el mapper del radar de Cassini usando su modo sintetizado de la proyecci\u00f3n de imagen del radar de la abertura durante de oct. el 28 de 2005, flyby. La andana del radar se sobrepone en una imagen del falso-color hecha de observaciones por el telescopio del espacio de Hubble de NAS\u00c1s. La localizaci\u00f3n del sitio del aterrizaje de Huygens est\u00e1 marcada en rojo en el lejos derecho. El traslapo entre los datosde Huygens y la voluntad de los datos del radar da nuevas pistas a la naturaleza de la superficie considerada por la punta de prueba de Huygens, que aterriz\u00f3 en Tit\u00e1n en enero de 2005. La andanade oct. del 28 tiene cerca de 6.150 kil\u00f3metros de largo (3.821 millas), extendiendo a partir de 7 grados de del norte a 18 grados de latitud del sur y de 179 grados de del oeste a 320 grados de longitud del oeste. La resoluci\u00f3n espacial de las im\u00e1genes del radar seextiende de cerca de 300 contadores (980 pies) por el pixel a cerca de1.5 kil\u00f3metros (0.93 milla) por el pixel. Cuatro pasos del radar de Cassini revelaron una variedad de caracter\u00edsticas geol\u00f3gicas, incluyendo los cr\u00e1teres del impacto, de dep\u00f3sitos viento-soplados, de canales y de caracter\u00edsticas cryovolcanic. La misi\u00f3n de Cassini-Huygens es un proyecto cooperativo de la NASA, de la Agencia Espacial Europea y de la agencia italiana del espacio. El laboratorio de la propulsi\u00f3n del jet, divisi\u00f3n de la California Institute of Technology En Pasadena, maneja la misi\u00f3n para la direcci\u00f3n de la misi\u00f3n de la ciencia de la NASA, Washington,D.C. The Cassini que el orbiter fue dise\u00f1ado, convertido y ensambladoen JPL. El instrumento del radar fue construido por JPL y la agencia italiana del espacio, trabajando con los miembros del equipo de los Estados Unidos y de varios pa\u00edses europeos. Para m\u00e1s informaci\u00f3n sobre la visita de la misi\u00f3n de Cassini-Huygens"}, 
-  {"language":"en", "title":"Radar Swath of Oct. 28, 2005, Titan Flyby", "description":"This map of Saturn's moon Titan shows the location mapped with the Cassini radar mapper using its synthetic aperture radar imaging mode during the Oct. 28, 2005, flyby. The radar swath is superimposed on a false-color image made from observations by NASA's Hubble Space Telescope. The location of the Huygens landing site is marked in red on the far right. The overlap between the Huygens data and the radar data will give new clues to the nature of the surface seen by the Huygens probe, which landed on Titan in January 2005. The Oct. 28 swath is about 6,150 kilometers long (3,821 miles), extending from 7 degrees north to 18 degrees south latitude and 179 degrees west to 320 degrees west longitude. The spatial resolution of the radar images ranges from about 300 meters (980 feet) per pixel to about 1.5 kilometers (0.93 miles) per pixel. Cassini's four radar passes revealed a variety of geologic features, including impact craters, wind-blown deposits, channels and cryovolcanic features. The Cassini-Huygens mission is a cooperative project of NASA, the European Space Agency and the Italian Space Agency. The Jet Propulsion Laboratory, a division of the California Institute of Technology in Pasadena, manages the mission for NASA's Science Mission Directorate, Washington, D.C. The Cassini orbiter was designed, developed and assembled at JPL. The radar instrument was built by JPL and the Italian Space Agency, working with team members from the United States and several European countries. For more information about the Cassini-Huygens mission visit"}, 
-  {"language":"x-mt-pt", "title":"Swath do radar outubro de 28, 2005, demostra\u00e7\u00e3o a\u00e9rea de Titan", "description":"Este mapa da lua Titan de Saturno mostra a posi\u00e7\u00e3o tra\u00e7ada com o cart\u00f3grafo do radar de Cassini usando sua modalidade sint\u00e9tica da imagem latente do radar da abertura durante outubro o 28, 2005, demostra\u00e7\u00e3o a\u00e9rea. O swath do radar \u00e9 sobreposto em uma imagem da falso-cor feita das observa\u00e7\u00f5es pelo telesc\u00f3pio do espa\u00e7o de Hubble de NASA. A posi\u00e7\u00e3o do local da aterragem de Huygens \u00e9 marcada no vermelho no distante direito. A sobreposi\u00e7\u00e3o entre os dados de Huygens e a vontade dos dadosdo radar d\u00e1 ind\u00edcios novos \u00e0 natureza da superf\u00edcie vista pela ponta de prova de Huygens, que aterrou em Titan em janeiro 2005. O swath outubro de 28 tem aproximadamente 6.150 quil\u00f4metros de comprimento (3.821 milhas), estendendo de 7 graus norte a 18 graus de latitude sul e de 179 graus ocidental a 320 graus de longitude ocidental. A defini\u00e7\u00e3o spatial das imagens do radar varia de aproximadamente 300 medidores (980 p\u00e9s) por o pixel a aproximadamente1.5 quil\u00f4metro (0.93 milha) por o pixel. Passagens do radar de Cassini quatro revelaram uma variedade de caracter\u00edsticas geologic, including crateras do impacto, de dep\u00f3sitos vento-fundidos, de canaletas e de caracter\u00edsticas cryovolcanic. A miss\u00e3o de Cassini-Huygens \u00e9 um projeto cooperativo da NASA, da ag\u00eancia de espa\u00e7o europ\u00e9ia e da ag\u00eancia italiana do espa\u00e7o. O laborat\u00f3rio da propuls\u00e3o do jato, uma divis\u00e3o da California Institute of Technology Em Pasadena, controla a miss\u00e3o para o directorate da miss\u00e3o da ci\u00eancia da NASA, Washington, C.C.  Cassini que o orbiter foi projetado, tornado e montado em JPL. O instrumento do radar foi constru\u00eddo por JPL e pela ag\u00eancia italiana do espa\u00e7o, trabalhando com membros da equipe dos estados unidos e de diversos pa\u00edses europeus. Para mais informa\u00e7\u00e3o sobre a visitada miss\u00e3o de Cassini-Huygens"}], 
-  "rights":{"cc":false, "url":"http://creativecommons.org/publicdomain/mark/1.0/", "by":false, "nc":false, "nd":false, "sa":false}, "expressions":[{"language":"en", "manifestations":[{"player":"landingPage", "urls":["http://oer.eun.org/VWClc0LSJcMhih_gIPJ5TpiQpQej"]}]}]}, "para":{"commentsInfo":{"count":0}, "favouritesInfo":{"count":0}, "idsTuple":{"expressionID":0, "globalLREID":253900, "manifestationID":0, "socialID":"253900/0/0"}, "opinionsInfo":{"downCount":0, "upCount":0}, "ratingsInfo":{"average":0, 
-  "count":0, "sum":0}, "tagsInfo":{"labels":[]}}}]};
-  return{recommendationList:recommendationList, imageList:imageList, imageListLittle:imageListLittle, imageListDummy:imageListDummy, videoList:videoList, videoListLittle:videoListLittle, videoListDummy:videoListDummy, objectList:objectList, objectListLittle:objectListLittle, objectListDummy:objectListDummy, liveList:liveList, liveListLittle:liveListLittle, liveListDummy:liveListDummy, excursionList:excursionList, excursionListLittle:excursionListLittle, excursionListDummy:excursionListDummy, smartcardList:smartcardList, 
-  tagsList:tagsList, thumbnailsList:thumbnailsList, LREImageList:LREImageList}
-}(VISH);
 VISH.Slides = function(V, $, undefined) {
   var slideEls;
   var curSlideIndex;
@@ -16610,7 +16483,7 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var init = function() {
     $("#quizSessionNameInput").vewatermark(V.I18n.getTrans("i.QuizSessionName"));
-    V.Quiz.API.init(V.Utils.getOptions().quizSessionAPI);
+    V.Quiz.API.init(V.Configuration.getConfiguration().ARS_API);
     V.Quiz.MC.init();
     V.Quiz.TF.init();
     V.Quiz.Sorting.init();
@@ -16658,7 +16531,7 @@ VISH.Quiz = function(V, $, undefined) {
       }
     }
     var quizButtons = $("<div class='quizButtons'></div>");
-    if(quizMode === V.Constant.QZ_MODE.SELFA && ARSEnabled == true && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
+    if(quizMode === V.Constant.QZ_MODE.SELFA && ARSEnabled == true && V.User.isLogged() && !V.Utils.getOptions().preview) {
       var startButton = $("<input type='button' class='buttonQuiz quizStartButton' value='" + V.I18n.getTrans("i.QuizLaunch") + "'/>");
       $(quizButtons).append(startButton)
     }
@@ -19866,11 +19739,13 @@ VISH.Configuration = function(V, $, undefined) {
   var _initPaths = function() {
     V.ImagesPath = configuration["ImagesPath"];
     V.StylesheetsPath = configuration["StylesheetsPath"];
+    V.RootPath = configuration["rootPath"];
     V.UploadImagePath = configuration["uploadImagePath"];
     V.UploadObjectPath = configuration["uploadObjectPath"];
     V.UploadPresentationPath = configuration["uploadPresentationPath"];
     V.UploadPDF2PPath = configuration["uploadPDF2PPath"];
-    V.SearchLREPath = configuration["SearchLREPath"]
+    V.LREPath = configuration["LRE_path"];
+    V.ViSHInstances = configuration["ViSH_instances"]
   };
   var applyConfiguration = function() {
     if(!configuration["Upload"]) {
@@ -20782,272 +20657,119 @@ VISH.EVideo = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Editor.API = function(V, $, undefined) {
   var init = function() {
+    queriesCounter = 0;
+    queriesData = [];
+    searchId = -1;
+    sessionSearchs = {}
   };
-  var requestImages = function(text, successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      var result = jQuery.extend({}, V.Samples.API.imageList);
-      switch(text) {
-        case "dummy":
-          result["pictures"] = V.Samples.API.imageListDummy["pictures"];
-          break;
-        case "little":
-          result["pictures"] = V.Debugging.shuffleJson(V.Samples.API.imageListLittle["pictures"]);
-          break;
-        case "server error":
-          result = undefined;
-          break;
-        default:
-          result["pictures"] = V.Debugging.shuffleJson(V.Samples.API.imageList["pictures"])
-      }
-      setTimeout(function() {
-        if(typeof result == "undefined" && typeof failCallback == "function") {
-          failCallback()
-        }else {
+  var QUERY_TIMEOUT = 2E4;
+  var queriesCounter;
+  var queriesData;
+  var searchId;
+  var sessionSearchs;
+  var _search = function(types, searchTerms, successCallback, failCallback) {
+    var settings = {};
+    settings.n = 20;
+    settings.entities_type = types;
+    settings.qualityThreshold = 5;
+    var query = _buildQuery(searchTerms, settings);
+    var instances = V.ViSHInstances;
+    var instancesL = instances.length;
+    searchId = _getSearchId();
+    sessionSearchs[searchId] = {};
+    queriesCounter = 0;
+    queriesData = [];
+    for(var i = 0;i < instancesL;i++) {
+      var instanceDomain = instances[i];
+      sessionSearchs[searchId][instanceDomain] = {completed:false};
+      _searchInViSHInstance(searchId, instanceDomain, query, function(data) {
+        if(typeof data.searchId == "undefined" || data.searchId != searchId) {
+          return
+        }
+        queriesCounter += 1;
+        if(data.success === true && typeof data.response != "undefined" && typeof data.response.results != "undefined" && typeof data.instanceDomain != "undefined") {
+          queryResults = [];
+          $(data.response.results).each(function(index, result) {
+            result.instance = data.instanceDomain;
+            result.sorting_weight = typeof result.weights != "undefined" && typeof result.weights.sorting_weight == "number" ? result.weights.sorting_weight : 0;
+            queryResults.push(result)
+          });
+          queriesData = queriesData.concat(queryResults)
+        }
+        if(queriesCounter === instancesL) {
+          if(instancesL > 1) {
+            queriesData = queriesData.sort(function(a, b) {
+              return b.sorting_weight - a.sorting_weight
+            })
+          }
           if(typeof successCallback == "function") {
-            successCallback(result)
+            successCallback(queriesData)
           }
         }
-      }, 2E3);
-      return
+      })
     }
-    _requestByType("picture", text, successCallback, failCallback)
   };
-  var requestRecomendedImages = function(successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        var result = V.Samples.API.imageList;
-        result["pictures"] = V.Debugging.shuffleJson(V.Samples.API.imageList["pictures"]);
-        setTimeout(function() {
-          successCallback(result)
-        }, 2E3)
-      }
-      return
+  var _buildQuery = function(searchTerms, settings) {
+    searchTerms = typeof searchTerms == "string" ? searchTerms : "";
+    var query = "/apis/search?n=" + settings.n + "&q=" + searchTerms + "&type=" + settings.entities_type;
+    if(settings.sort_by) {
+      query += "&sort_by=" + settings.sort_by
     }
-    _requestByType("picture", "", successCallback, failCallback)
-  };
-  var requestVideos = function(text, successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      var result = jQuery.extend({}, V.Samples.API.videoList);
-      switch(text) {
-        case "dummy":
-          result["videos"] = V.Samples.API.videoListDummy["videos"];
-          break;
-        case "little":
-          result["videos"] = V.Debugging.shuffleJson(V.Samples.API.videoListLittle["videos"]);
-          break;
-        case "server error":
-          result = undefined;
-          break;
-        default:
-          result["videos"] = V.Debugging.shuffleJson(V.Samples.API.videoList["videos"])
-      }
-      setTimeout(function() {
-        if(typeof result == "undefined" && typeof failCallback == "function") {
-          failCallback()
-        }else {
-          if(typeof successCallback == "function") {
-            successCallback(result)
-          }
-        }
-      }, 2E3);
-      return
+    if(settings.startDate) {
+      query += "&startDate=" + settings.startDate
     }
-    _requestByType("video", text, successCallback, failCallback)
-  };
-  var requestRecomendedVideos = function(successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        var result = V.Samples.API.videoList;
-        result["videos"] = V.Debugging.shuffleJson(V.Samples.API.videoList["videos"]);
-        setTimeout(function() {
-          successCallback(result)
-        }, 2E3)
-      }
-      return
+    if(settings.endDate) {
+      query += "&endDate=" + settings.endDate
     }
-    _requestByType("video", "", successCallback, failCallback)
-  };
-  var requestObjects = function(text, successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      var result = jQuery.extend({}, V.Samples.API.objectList);
-      switch(text) {
-        case "dummy":
-          result = V.Samples.API.objectListDummy;
-          break;
-        case "little":
-          result = V.Debugging.shuffleJson(V.Samples.API.objectListLittle);
-          break;
-        case "server error":
-          result = undefined;
-          break;
-        default:
-          result = V.Debugging.shuffleJson(V.Samples.API.objectList)
-      }
-      setTimeout(function() {
-        if(typeof result == "undefined" && typeof failCallback == "function") {
-          failCallback()
-        }else {
-          if(typeof successCallback == "function") {
-            successCallback(result)
-          }
-        }
-      }, 2E3);
-      return
+    if(settings.language) {
+      query += "&language=" + settings.language
     }
-    _requestByType("object", text, successCallback, failCallback)
-  };
-  var requestRecomendedObjects = function(successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        var result = V.Debugging.shuffleJson(V.Samples.API.objectList);
-        setTimeout(function() {
-          successCallback(result)
-        }, 2E3)
-      }
-      return
+    if(settings.qualityThreshold) {
+      query += "&qualityThreshold=" + settings.qualityThreshold
     }
-    _requestByType("object", "", successCallback, failCallback)
+    return query
   };
-  var requestLives = function(text, successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      var result = jQuery.extend({}, V.Samples.API.liveList);
-      switch(text) {
-        case "dummy":
-          result = V.Samples.API.liveListDummy;
-          break;
-        case "little":
-          result = V.Debugging.shuffleJson(V.Samples.API.liveListLittle);
-          break;
-        case "server error":
-          result = undefined;
-          break;
-        default:
-          result = V.Debugging.shuffleJson(V.Samples.API.liveList)
+  var _searchInViSHInstance = function(searchId, domain, query, callback) {
+    var ViSHSearchAPIURL = domain + query;
+    ViSHSearchAPIURL = ViSHSearchAPIURL.replace("//apis", "/apis");
+    $.ajax({type:"GET", url:ViSHSearchAPIURL, success:function(data) {
+      if(sessionSearchs[searchId][domain].completed == false) {
+        sessionSearchs[searchId][domain].completed = true;
+        callback({success:true, searchId:searchId, instanceDomain:domain, response:data})
       }
-      setTimeout(function() {
-        if(typeof result == "undefined" && typeof failCallback == "function") {
-          failCallback()
-        }else {
-          if(typeof successCallback == "function") {
-            successCallback(result)
-          }
-        }
-      }, 2E3);
-      return
-    }
-    _requestByType("live", text, successCallback, failCallback)
+    }, error:function(error) {
+      if(sessionSearchs[searchId][domain].completed == false) {
+        sessionSearchs[searchId][domain].completed = true;
+        callback({success:false, searchId:searchId, instanceDomain:domain})
+      }
+      V.Debugging.log("Error connecting with the ViSH API of " + domain)
+    }});
+    setTimeout(function() {
+      if(sessionSearchs[searchId][domain].completed == false) {
+        sessionSearchs[searchId][domain].completed = true;
+        callback({success:false, searchId:searchId})
+      }
+    }, QUERY_TIMEOUT)
   };
-  var requestRecomendedLives = function(successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        var result = V.Debugging.shuffleJson(V.Samples.API.liveList);
-        setTimeout(function() {
-          successCallback(result)
-        }, 2E3)
-      }
-      return
-    }
-    _requestByType("live", "", successCallback, failCallback)
+  var _searchId = 0;
+  var _getSearchId = function() {
+    _searchId += 1;
+    return _searchId
   };
-  var requestExcursions = function(text, successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      var result = V.Samples.API.excursionList;
-      switch(text) {
-        case "dummy":
-          result = V.Samples.API.excursionListDummy;
-          break;
-        case "little":
-          result = V.Debugging.shuffleJson(V.Samples.API.excursionListLittle);
-          break;
-        case "server error":
-          result = undefined;
-          break;
-        default:
-          result = V.Debugging.shuffleJson(V.Samples.API.excursionList)
-      }
-      setTimeout(function() {
-        if(typeof result == "undefined" && typeof failCallback == "function") {
-          failCallback()
-        }else {
-          if(typeof successCallback == "function") {
-            successCallback(result)
-          }
-        }
-      }, 2E3);
-      return
-    }
-    _requestByType("excursion", text, successCallback, failCallback)
+  var requestImages = function(searchTerms, successCallback, failCallback) {
+    _search(["Picture"], searchTerms, successCallback, failCallback)
   };
-  var requestRecomendedExcursions = function(successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        var result = V.Samples.API.excursionList;
-        setTimeout(function() {
-          successCallback(result)
-        }, 2E3)
-      }
-      return
-    }
-    _requestByType("excursion", "", successCallback, failCallback)
+  var requestVideos = function(searchTerms, successCallback, failCallback) {
+    _search(["Video"], searchTerms, successCallback, failCallback)
   };
-  var _requestByType = function(type, query, successCallback, failCallback) {
-    if(type === "live" || type === "object") {
-      _requestResourceType(type, query, successCallback, failCallback);
-      return
-    }else {
-      if(type === "excursion") {
-        _requestExcursionType(type, query, successCallback, failCallback);
-        return
-      }
-    }
-    $.ajax({type:"GET", url:"/search.json?type=" + type + "&q=" + query, dataType:"html", success:function(response) {
-      if(typeof successCallback == "function") {
-        var resp = JSON.parse(response);
-        successCallback(resp)
-      }
-    }, error:function(xhr, ajaxOptions, thrownError) {
-      if(typeof failCallback == "function") {
-        failCallback()
-      }
-    }})
+  var requestObjects = function(searchTerms, successCallback, failCallback) {
+    _search(["Link", "Scormfile", "Webapp", "Video", "Audio", "Swf"], searchTerms, successCallback, failCallback)
   };
-  var _requestResourceType = function(type, query, successCallback, failCallback) {
-    $.ajax({type:"GET", url:"/resources/search.json?" + type + "=1&q=" + query, dataType:"html", success:function(response) {
-      if(typeof successCallback == "function") {
-        var resp = JSON.parse(response);
-        successCallback(resp)
-      }
-    }, error:function(xhr, ajaxOptions, thrownError) {
-      if(typeof failCallback == "function") {
-        failCallback()
-      }
-    }})
-  };
-  var _requestExcursionType = function(type, query, successCallback, failCallback) {
-    if(type === "excursion") {
-      type = ""
-    }
-    $.ajax({type:"GET", url:"/excursions/search.json?type=" + type + "&q=" + query, dataType:"html", success:function(response) {
-      if(typeof successCallback == "function") {
-        var resp = JSON.parse(response);
-        successCallback(resp)
-      }
-    }, error:function(xhr, ajaxOptions, thrownError) {
-      if(typeof failCallback == "function") {
-        failCallback()
-      }
-    }})
+  var requestPresentations = function(searchTerms, successCallback, failCallback) {
+    _search(["Excursion"], searchTerms, successCallback, failCallback)
   };
   var requestTags = function(successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        setTimeout(function() {
-          successCallback(V.Samples.API.tagsList["tags"])
-        }, 2E3)
-      }
-      return
-    }
-    $.ajax({type:"GET", url:"/tags.json?mode=popular&limit=100", dataType:"html", success:function(response) {
+    $.ajax({type:"GET", url:V.RootPath + "/tags.json?mode=popular&limit=100", dataType:"html", success:function(response) {
       if(typeof successCallback == "function") {
         var tagsJSON = JSON.parse(response);
         var tags = [];
@@ -21065,15 +20787,7 @@ VISH.Editor.API = function(V, $, undefined) {
     }})
   };
   var requestThumbnails = function(successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        setTimeout(function() {
-          successCallback(V.Samples.API.thumbnailsList)
-        }, 1E3)
-      }
-      return
-    }
-    $.ajax({type:"GET", url:"/excursion_thumbnails.json", dataType:"json", success:function(data) {
+    $.ajax({type:"GET", url:V.RootPath + "/thumbnails.json", dataType:"json", success:function(data) {
       if(typeof successCallback == "function") {
         successCallback(data)
       }
@@ -21085,15 +20799,7 @@ VISH.Editor.API = function(V, $, undefined) {
   };
   var uploadTmpJSON = function(json, responseFormat, successCallback, failCallback) {
     responseFormat = typeof responseFormat == "string" ? responseFormat : "json";
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof failCallback == "function") {
-        setTimeout(function() {
-          failCallback()
-        }, 100)
-      }
-      return
-    }
-    $.ajax({type:"POST", url:"/excursions/tmpJson.json", dataType:"json", data:{"authenticity_token":V.User.getToken(), "json":JSON.stringify(json), "responseFormat":responseFormat}, success:function(data) {
+    $.ajax({type:"POST", url:V.RootPath + "/excursions/tmpJson.json", dataType:"json", data:{"authenticity_token":V.User.getToken(), "json":JSON.stringify(json), "responseFormat":responseFormat}, success:function(data) {
       if(data && data.url) {
         _downloadFile(data.url);
         if(typeof successCallback == "function") {
@@ -21114,7 +20820,7 @@ VISH.Editor.API = function(V, $, undefined) {
     var iframe = $("#hiddenIframeForAjaxDownloads");
     $(iframe).attr("src", fileURL)
   };
-  return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails, uploadTmpJSON:uploadTmpJSON}
+  return{init:init, requestPresentations:requestPresentations, requestVideos:requestVideos, requestImages:requestImages, requestObjects:requestObjects, requestTags:requestTags, requestThumbnails:requestThumbnails, uploadTmpJSON:uploadTmpJSON}
 }(VISH, jQuery);
 VISH.Editor.Animations = function(V, $, undefined) {
   var initialized = false;
@@ -21865,13 +21571,10 @@ VISH.Editor.EPackage = function(V, $, undefined) {
       percent.html(percentVal)
     }, complete:function(xhr) {
       switch(V.Configuration.getConfiguration()["mode"]) {
-        case V.Constant.NOSERVER:
-          break;
         case V.Constant.VISH:
           _processResponse(xhr.responseText);
           break;
-        case V.Constant.STANDALONE:
-          _processResponse(xhr.responseText);
+        default:
           break
       }
       var percentVal = "100%";
@@ -23863,14 +23566,14 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || !data.pictures || data.pictures.length == 0) {
+    if(!data || data.length == 0) {
       _onSearchFinished();
       _drawData(true);
       return
     }
     var carrouselImages = [];
-    $.each(data.pictures, function(index, image) {
-      var myImg = $("<img src='" + image.src + "' title='" + image.title + "' >");
+    $.each(data, function(index, image) {
+      var myImg = $("<img src='" + image.url_full + "' title='" + image.title + "' >");
       carrouselImages.push(myImg)
     });
     var options = {};
@@ -24047,7 +23750,7 @@ VISH.Editor.LRE = function(V, $, undefined) {
   var DEFAULT_LANGUAGE = "en";
   var PROVIDERS_TO_REMOVE = ["KHAN", "OPENLEARN"];
   var init = function(lang) {
-    VISH_LRE_URL = V.SearchLREPath;
+    VISH_LRE_URL = V.LREPath;
     if(lang != "en") {
       DEFAULT_LANGUAGE = "x-mt-" + lang
     }else {
@@ -24674,50 +24377,59 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
     var carrouselImages = [];
     var carrouselImagesTitles = [];
     $.each(data, function(index, objectItem) {
-      if(typeof objectItem.object == "string") {
-        objectItem.object = V.Editor.Utils.autocompleteUrls(objectItem.object)
-      }
-      var objectInfo = V.Object.getObjectInfo(objectItem.object);
-      var objectType = typeof objectItem.type != "undefined" ? objectItem.type : objectInfo.type;
-      var imageSource = null;
-      switch(objectType) {
-        case V.Constant.MEDIA.IMAGE:
+      var objectType;
+      var imageSource = undefined;
+      switch(objectItem.type) {
+        case "Picture":
+          objectType = V.Constant.MEDIA.IMAGE;
           imageSource = V.ImagesPath + "carrousel/image.png";
           break;
-        case V.Constant.MEDIA.WEB:
-          if(objectInfo.wrapper == "IFRAME") {
-            imageSource = V.ImagesPath + "carrousel/iframe.png"
-          }else {
-            imageSource = V.ImagesPath + "carrousel/object.png"
-          }
+        case "Link":
+          objectType = V.Constant.MEDIA.WEB;
+          imageSource = V.ImagesPath + "carrousel/iframe.png";
           break;
-        case V.Constant.MEDIA.HTML5_VIDEO:
-        ;
-        case V.Constant.MEDIA.YOUTUBE_VIDEO:
+        case "Video":
+          objectType = V.Constant.MEDIA.HTML5_VIDEO;
           imageSource = V.ImagesPath + "carrousel/video.png";
+          objectItem.objectToDraw = V.Video.HTML5.renderVideoFromJSON(objectItem, {loadSources:true, id:V.Utils.getId(), extraClasses:["preview_video"]});
           break;
-        case V.Constant.MEDIA.HTML5_AUDIO:
+        case "Audio":
+          objectType = V.Constant.MEDIA.HTML5_AUDIO;
           imageSource = V.ImagesPath + "carrousel/audio.png";
+          objectItem.objectToDraw = V.Audio.HTML5.renderAudioFromJSON(objectItem, {loadSources:true, id:V.Utils.getId()});
           break;
-        case V.Constant.MEDIA.FLASH:
+        case "Swf":
+          objectType = V.Constant.MEDIA.FLASH;
           imageSource = V.ImagesPath + "carrousel/swf.png";
           break;
-        case V.Constant.MEDIA.SCORM_PACKAGE:
+        case "Scormfile":
+          objectType = V.Constant.MEDIA.SCORM_PACKAGE;
           imageSource = V.ImagesPath + "carrousel/scorm.png";
           break;
-        case V.Constant.MEDIA.WEB_APP:
+        case "Webapp":
+          objectType = V.Constant.MEDIA.WEB_APP;
           imageSource = V.ImagesPath + "carrousel/webapp.png";
           break;
-        case V.Constant.MEDIA.IMS_QTI_QUIZ:
+        case "IMS_QTI_QUIZ":
+          objectType = V.Constant.MEDIA.IMS_QTI_QUIZ;
           imageSource = V.ImagesPath + "carrousel/quizxml.png";
           break;
         default:
+          objectType = V.Object.getObjectInfo(objectItem.url_full).type;
           imageSource = V.ImagesPath + "carrousel/object.png"
       }
-      var myImg = $("<img src='" + imageSource + "' objectId='" + objectItem.id + "' title='" + objectItem.title + "' objectType='" + objectType + "'>");
+      objectItem.vetype = objectType;
+      if(typeof objectItem.objectToDraw == "undefined") {
+        objectItem.objectToDraw = objectItem.url_full
+      }
+      if(typeof objectItem.avatar_url != "undefined") {
+        imageSource = objectItem.avatar_url
+      }
+      var objectId = "objectCarrousel_" + index;
+      var myImg = $("<img src='" + imageSource + "' objectId='" + objectId + "' title='" + objectItem.title + "' objectType='" + objectType + "'>");
       carrouselImages.push(myImg);
       carrouselImagesTitles.push(objectItem.title);
-      currentObject[objectItem.id] = objectItem
+      currentObject[objectId] = objectItem
     });
     var options = {};
     options.titleArray = carrouselImagesTitles;
@@ -24772,10 +24484,10 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
     var objectId = $(event.target).attr("objectid");
     if(typeof objectId != "undefined") {
       var options = {};
-      if(typeof currentObject[objectId].type != "undefined") {
-        options.forceType = currentObject[objectId].type
+      if(typeof currentObject[objectId].vetype != "undefined") {
+        options.forceType = currentObject[objectId].vetype
       }
-      var renderedObject = V.Editor.Object.renderObjectPreview(currentObject[objectId].object, options);
+      renderedObject = V.Editor.Object.renderObjectPreview(currentObject[objectId].objectToDraw, options);
       _renderObjectPreview(renderedObject, currentObject[objectId]);
       selectedObject = currentObject[objectId]
     }
@@ -24800,8 +24512,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
       $(objectArea).append(renderedObject);
       var objectTagName = $(renderedObject)[0].tagName;
       if(objectTagName === "AUDIO" || objectTagName === "VIDEO") {
-        var objectInfo = V.Object.getObjectInfo(object.object);
-        var sources = typeof objectInfo.source == "object" ? objectInfo.source : [{src:objectInfo.source}];
+        var sources = object.sources;
         if(objectTagName == "VIDEO") {
           V.Video.HTML5.addSourcesToVideoTag(sources, renderedObject, {timestamp:true})
         }else {
@@ -24825,12 +24536,43 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
   var addSelectedObject = function() {
     if(selectedObject != null) {
       var options = {};
-      if(typeof selectedObject.type != "undefined") {
-        options.forceType = selectedObject.type
+      if(typeof selectedObject.vetype != "undefined") {
+        options.forceType = selectedObject.vetype
       }
-      V.Editor.Object.drawObject(selectedObject.object, options);
+      V.Editor.Object.drawObject(selectedObject.objectToDraw, options);
       $.fancybox.close()
     }
+  };
+  var _translateViSHEntityType = function(vishObjectType) {
+    switch(vishObjectType) {
+      case "Picture":
+        objectType = V.Constant.MEDIA.IMAGE;
+        break;
+      case "Link":
+        objectType = V.Constant.MEDIA.WEB;
+        break;
+      case "Video":
+        objectType = V.Constant.MEDIA.HTML5_VIDEO;
+        break;
+      case "Audio":
+        objectType = V.Constant.MEDIA.HTML5_AUDIO;
+        break;
+      case "Swf":
+        objectType = V.Constant.MEDIA.FLASH;
+        break;
+      case "Scormfile":
+        objectType = V.Constant.MEDIA.SCORM_PACKAGE;
+        break;
+      case "Webapp":
+        objectType = V.Constant.MEDIA.WEB_APP;
+        break;
+      case "IMS_QTI_QUIZ":
+        objectType = V.Constant.MEDIA.IMS_QTI_QUIZ;
+        break;
+      default:
+        objectType = V.Object.getObjectInfo(objectItem.url_full).type
+    }
+    return objectType
   };
   return{init:init, beforeLoadTab:beforeLoadTab, onLoadTab:onLoadTab, addSelectedObject:addSelectedObject}
 }(VISH, jQuery);
@@ -25072,9 +24814,6 @@ VISH.Editor.PDFex = function(V, $, undefined) {
         case V.Constant.VISH:
           processResponse(responseText);
           break;
-        case V.Constant.STANDALONE:
-          processResponse(responseText);
-          break;
         default:
           break
       }
@@ -25083,6 +24822,8 @@ VISH.Editor.PDFex = function(V, $, undefined) {
       percent.html(percentVal)
     }, complete:function(xhr) {
       switch(V.Configuration.getConfiguration()["mode"]) {
+        case V.Constant.VISH:
+          break;
         case V.Constant.NOSERVER:
           setTimeout(function() {
             var responseTest = {};
@@ -25094,10 +24835,6 @@ VISH.Editor.PDFex = function(V, $, undefined) {
             processResponse(responseTest)
           }, 1E4);
           break;
-        case V.Constant.VISH:
-        ;
-        case V.Constant.STANDALONE:
-        ;
         default:
           break
       }
@@ -25303,9 +25040,6 @@ VISH.Editor.Preview = function(V, $, undefined) {
     }else {
       if(V.Configuration.getConfiguration().mode == V.Constant.NOSERVER) {
         $("#preview_action").attr("href", "/viewer.html#" + slideNumberToPreview)
-      }else {
-        if(V.Configuration.getConfiguration().mode == V.Constant.STANDALONE) {
-        }
       }
     }
     if(!options || !options["presentationJSON"] || typeof options["presentationJSON"] != "object") {
@@ -26611,11 +26345,9 @@ VISH.Editor.Settings = function(V, $, undefined) {
       if(V.User.getName()) {
         author.name = V.User.getName()
       }
-      if(V.Configuration.getConfiguration().mode == V.Constant.VISH || V.Configuration.getConfiguration().mode == V.Constant.NOSERVER) {
-        author.vishMetadata = {};
-        if(V.User.getId()) {
-          author.vishMetadata.id = V.User.getId()
-        }
+      author.vishMetadata = {};
+      if(V.User.getId()) {
+        author.vishMetadata.id = V.User.getId()
       }
     }
     return author
@@ -27414,8 +27146,6 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
           case V.Constant.NOSERVER:
             V.Editor.Preview.preview();
             V.Editor.Tools.changePublishButtonStatus("unpublish");
-            break;
-          case V.Constant.STANDALONE:
             break
         }
       }, function() {
@@ -27852,18 +27582,20 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
     if(!_isValidResult()) {
       return
     }
-    if(!data || !data.videos || data.videos.length == 0) {
+    if(!data || data.length == 0) {
       _onSearchFinished();
       _drawData(true);
       return
     }
     var carrouselImages = [];
     currentVideos = new Array;
-    $.each(data.videos, function(index, video) {
+    $.each(data, function(index, video) {
       if(video) {
-        var myImg = $("<img src='" + video.poster + "' videoId='" + video.id + "' title='" + video.title + "'/>");
+        var videoPoster = typeof video.avatar_url == "string" ? video.avatar_url : V.ImagesPath + "icons/example_poster_image.jpg";
+        var videoId = "videoCarrousel_" + index;
+        var myImg = $("<img src='" + videoPoster + "' videoId='" + videoId + "' title='" + video.title + "'/>");
         carrouselImages.push(myImg);
-        currentVideos[video.id] = video
+        currentVideos[videoId] = video
       }
     });
     var options = {};
@@ -28624,48 +28356,15 @@ VISH.I18n = function(V, $, undefined) {
   var defaultTranslations;
   var language;
   var init = function(lang) {
-    switch(V.Configuration.getConfiguration().mode) {
-      case V.Constant.NOSERVER:
-        if(typeof i18n["vish"]["default"] != "undefined") {
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.VISH:
-        if(typeof i18n["vish"]["default"] != "undefined") {
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.STANDALONE:
-        if(typeof i18n["standalone"]["default"] != "undefined") {
-          defaultTranslations = i18n["standalone"]["default"]
-        }
-        break
-    }
+    defaultTranslations = i18n["vish"]["default"];
     if(typeof lang != "undefined") {
       language = lang
     }else {
       return
     }
-    switch(V.Configuration.getConfiguration().mode) {
-      case V.Constant.NOSERVER:
-        if(typeof i18n["vish"][language] != "undefined") {
-          translations = i18n["vish"][language]
-        }
-        break;
-      case V.Constant.VISH:
-        if(typeof i18n["vish"][language] != "undefined") {
-          translations = i18n["vish"][language];
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.STANDALONE:
-        if(typeof i18n["standalone"][language] != "undefined") {
-          translations = i18n["standalone"][language];
-          defaultTranslations = i18n["standalone"]["default"]
-        }
-        break
-    }
-    if(typeof translations == "undefined") {
+    if(typeof i18n["vish"][language] != "undefined") {
+      translations = i18n["vish"][language]
+    }else {
       return
     }
     $("[i18n-key]").each(function(index, elem) {
@@ -29333,18 +29032,18 @@ VISH.Presentation = function(V, undefined) {
   return{init:init}
 }(VISH);
 VISH.Quiz.API = function(V, $, undefined) {
-  var quizSessionAPIrootURL;
+  var ARS_API_RootURL;
   var getResultsCount = 0;
-  var init = function(quizSessionAPI) {
-    if(typeof quizSessionAPI == "object" && typeof quizSessionAPI.rootURL == "string") {
-      quizSessionAPIrootURL = quizSessionAPI.rootURL
+  var init = function(ARS_API) {
+    if(typeof ARS_API == "object" && typeof ARS_API.rootURL == "string") {
+      ARS_API_RootURL = ARS_API.rootURL
     }
   };
   var startQuizSession = function(quizDOM, quizJSON, successCallback, failCallback) {
     if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
       var send_type = "POST";
       var params = {"quiz":JSON.stringify(quizJSON), "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:quizSessionAPIrootURL, data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL, data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(quizDOM, data)
         }
@@ -29356,7 +29055,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
         var quizSessionId = Math.ceil(1E4 * (1 + Math.random())).toString();
-        var url = quizSessionAPIrootURL + quizSessionId;
+        var url = ARS_API_RootURL + quizSessionId;
         var quiz_session = {id:quizSessionId, url:url};
         if(typeof successCallback == "function" && typeof failCallback == "function") {
           setTimeout(function() {
@@ -29373,7 +29072,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(typeof name == "string" && name.trim() != "") {
         params["name"] = name
       }
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/close", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/close", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -29397,7 +29096,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH) {
       var send_type = "GET";
       var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/delete", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/delete", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -29424,7 +29123,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(V.User.isLogged()) {
         params["authenticity_token"] = V.User.getToken()
       }
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/results.json", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/results.json", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -29461,7 +29160,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(V.User.isLogged()) {
         params["authenticity_token"] = V.User.getToken()
       }
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/answer", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/answer", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -30463,8 +30162,8 @@ VISH.Recommendations = function(V, $, undefined) {
     _requesting = false;
     _generated = false;
     var options = V.Utils.getOptions();
-    if(options && !options.preview && typeof options["recommendationsAPI"] != "undefined" && typeof options["recommendationsAPI"]["rootURL"] == "string") {
-      _recommendationAPIUrl = options["recommendationsAPI"]["rootURL"];
+    if(options && !options.preview && typeof options["configuration"]["recommendationsAPI"] != "undefined" && typeof options["configuration"]["recommendationsAPI"]["rootURL"] == "string") {
+      _recommendationAPIUrl = options["configuration"]["recommendationsAPI"]["rootURL"];
       _enabled = true
     }else {
       return
@@ -30552,31 +30251,23 @@ VISH.Recommendations = function(V, $, undefined) {
   var _requestRecommendations = function() {
     if(_enabled && typeof _recommendationAPIUrl != "undefined" && !_generated && _requesting != true) {
       _requesting = true;
-      if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
-        var params = {};
-        params["quantity"] = 6;
-        if(_searchTerms) {
-          params["q"] = _searchTerms
-        }
-        if(user_id) {
-          params["user_id"] = user_id
-        }
-        if(vishub_pres_id) {
-          params["excursion_id"] = vishub_pres_id
-        }
-        $.ajax({type:"GET", url:_recommendationAPIUrl, data:params, success:function(data) {
-          _fillFancyboxWithData(data)
-        }, error:function(error) {
-          _enabled = false;
-          _requesting = false
-        }})
-      }else {
-        if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-          setTimeout(function() {
-            _fillFancyboxWithData(V.Samples.API.recommendationList)
-          }, 1E3)
-        }
+      var params = {};
+      params["quantity"] = 6;
+      if(_searchTerms) {
+        params["q"] = _searchTerms
       }
+      if(user_id) {
+        params["user_id"] = user_id
+      }
+      if(vishub_pres_id) {
+        params["excursion_id"] = vishub_pres_id
+      }
+      $.ajax({type:"GET", url:_recommendationAPIUrl, data:params, success:function(data) {
+        _fillFancyboxWithData(data)
+      }, error:function(error) {
+        _enabled = false;
+        _requesting = false
+      }})
     }
   };
   var _fillFancyboxWithData = function(data) {

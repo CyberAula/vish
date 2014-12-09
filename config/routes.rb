@@ -42,17 +42,14 @@ Vish::Application.routes.draw do
 
   #Search
   match '/search/advanced' => 'search#advanced'
-  #Search APIs used by VE (deprecated)
-  match 'resources/search' => 'resources#search'
   #LRE proxy
   match 'lre/search' => 'lre#search_lre'
 
   #AO avatars
   match 'activity_objects/avatar/:id' => 'activity_object#show_avatar'
 
-  #Excursions. Match the filter before the excursions resources
-  match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
-  match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
+  #Thumbnails
+  match '/thumbnails' => 'excursions#excursion_thumbnails'
 
   match 'excursions/last_slide' => 'excursions#last_slide'
   match 'excursions/preview' => 'excursions#preview'
@@ -133,7 +130,6 @@ Vish::Application.routes.draw do
   end
 
   #Tracking System
-  resources :tracking_system_entries  
-  
+  resources :tracking_system_entries
 
 end
