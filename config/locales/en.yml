@@ -240,6 +240,7 @@ en:
     title_input: "Name for this category"
     save: "Save"
     selected: "categories"
+    scope: "We don't recommend to tick this checkbox, do it exclusively if you don't want search engine to index it"
     success: "Categories saved succesfully"
   close: "Close"
   conditions:

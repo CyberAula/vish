@@ -236,6 +236,7 @@ es:
     title_input: "Dale un nombre a tu categoría"
     save: "Guardar"
     selected: "categorias"
+    scope: "No recomendamos marcar esta casilla, marcar exclusivamente si no quieres que el buscador pueda ver tus categorías"
     success: "Las categorías se han salvado con éxito"
   close: "Cerrar"
   conditions:

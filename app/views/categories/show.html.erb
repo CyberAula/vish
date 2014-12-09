@@ -49,6 +49,10 @@
           <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject,@category), @category.parent.nil? ? nil : @category.parent.id)) %>
           <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
           <%= f.file_field :avatar %>
+            <label><%= f.label :scope, "Scope"%></label>
+            <%= f.check_box :scope, {checked: false}, "false", "true"%>
+            <span><%=t('categories.scope')%></span>
+            <!--Fix styles-->
           <div class="actions">
             <%= f.submit t('categories.save'), :id => "saveCategory" %>
             <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn "%>
