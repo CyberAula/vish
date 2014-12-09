@@ -1,6 +1,7 @@
 #registration,
 #new_session,
-#forgot-pass
+#forgot-pass,
+#login
   @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
   margin-left: auto
   margin-right: auto
@@ -9,7 +10,8 @@
   z-index: 2
   .registration,
   #sign_in,
-  .forgot
+  .forgot,
+  .change
     @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
     @include center-block()
     h3
@@ -36,6 +38,10 @@
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       float: left
 
+    .password
+      display: block
+      width: 100%
+      float: left
     /*CAPTCHA*/
     .simple_captcha
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -126,4 +132,7 @@
       display: block
       float: left
       clear: left
-    .tagBoxNew
+  .change
+    width: 90%
+    margin: 15px 5%
+    display: inline-block
