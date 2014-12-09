@@ -1,5 +1,7 @@
 class TagsController < ApplicationController
-  before_filter :authenticate_user!
+  
+  #before_filter :authenticate_user!
+  skip_load_and_authorize_resource :only => [:index]
   
   # Enable CORS
   before_filter :cors_preflight_check, :only => [:index]
@@ -12,7 +14,7 @@ class TagsController < ApplicationController
       @tags = match_tag
     end
 
-    items_per_page = params[:limit].present? ? params[:limit] : 25
+    items_per_page = [params[:limit].present? ? params[:limit].to_i : 25, 5000].min
     @tags = @tags.page(params[:page]).per(items_per_page)
 
     if @tags.blank? && params[:q].present?
