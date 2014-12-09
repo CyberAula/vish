@@ -1,19 +1,14 @@
 Vish::Application.routes.draw do
 
   if Vish::Application.config.APP_CONFIG["register_policy"] == "INVITATION_ONLY"
-    devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }, :skip => [:registrations] 
+    devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks", registrations: "registrations", :sessions => "sessions", :passwords => "passwords", :invitations => "devise_invitations" }, :skip => [:registrations] 
       as :user do
         get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
         put 'users' => 'devise/registrations#update', :as => 'user_registration'
       end
   else
-    devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }  
+    devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks", registrations: "registrations", :sessions => "sessions", :passwords => "passwords", :invitations => "devise_invitations" }  
   end
-
-  #authenticate :user do
-  #    mount Resque::Server.new, :at => "/resque"
-  #end
-
 
   match 'users/:id/excursions' => 'users#excursions'
   match 'users/:id/workshops' => 'users#workshops'
