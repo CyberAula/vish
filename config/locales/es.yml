@@ -398,6 +398,7 @@ es:
     passwordconfirmation: "Confirmar contraseña"
     invalid_login: "Por favor introduce tu email y contraseña para continuar"
     tags: "etiquetas"
+    password_forgot_instructions: "Escribe abajo tu dirección de correo y recibirás un email con instrucciones para reestablecer tu contraseña en unos minutos."
   disjunction:
     or: "o"
   document:

@@ -399,6 +399,7 @@ en:
       success: Invitation sent succesfully
     invalid_login: "Please enter your email and password to continue."
     tags: "tags"
+    password_forgot_instructions: "Write down the email address you associated to your account and you will receive an email with instructions about how to reset your password in a few minutes."
   disjunction:
     or: "or"
   document:
