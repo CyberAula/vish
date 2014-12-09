@@ -62,7 +62,7 @@ SocialStream::Documents.setup do |config|
 
   config.subtype_classes_mime_types[:video] = [:flv, :webm, :mp4, :ogv]
   if VishConfig.getAvailableServices.include? "MediaConversion"
-    config.subtype_classes_mime_types[:video].push(:mpeg, :mov, :wmv, :m4v, :gpp, :gpp2)
+    config.subtype_classes_mime_types[:video].push(:avi, :mpeg, :mov, :wmv, :m4v, :gpp, :gpp2)
   end
 
   config.subtype_classes_mime_types[:audio] = [:wav, :ogg, :webma, :mp3, :m4a]
