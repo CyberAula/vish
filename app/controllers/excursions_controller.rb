@@ -9,10 +9,12 @@ class ExcursionsController < ApplicationController
   before_filter :profile_subject!, :only => :index
   before_filter :fill_create_params, :only => [ :new, :create]
   skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
+  skip_before_filter :store_location, :if => :format_full?
   skip_after_filter :discard_flash, :only => [:clone]
   
-  # Enable CORS for last_slide, and iframe_api methods
-  ApplicationController.enable_cors([:last_slide,:iframe_api])
+  # Enable CORS
+  before_filter :cors_preflight_check, :only => [:excursion_thumbnails,:last_slide,:iframe_api]
+  after_filter :cors_set_access_control_headers, :only => [:excursion_thumbnails,:last_slide,:iframe_api]
   
   include SocialStream::Controllers::Objects
 
@@ -306,14 +308,11 @@ class ExcursionsController < ApplicationController
       format.json {
         results = Hash.new
 
-        if params["json"] == nil
-          render :json => results
-          return
+        unless params["json"].present?
+          return render :json => results
         else
           json = params["json"]
         end
-        response = params["responseFormat"]
-
 
         responseFormat = "json" #Default
         if params["responseFormat"].is_a? String
@@ -331,7 +330,6 @@ class ExcursionsController < ApplicationController
         count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
         Site.current.config["tmpCounter"] = count + 1
         Site.current.save!
-
 
         if responseFormat == "json"
           #Generate JSON file

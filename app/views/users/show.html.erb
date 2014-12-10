@@ -74,7 +74,8 @@
             <!--__Website -->
             <div class="website">
               <h3><%= t('profile.website') %></h3>
-              <span><%= link_to @user.profile.website,  @user.profile.website, :target=>'_blank' %></span>
+              <% websiteURL = @user.profile.website.nil? ? user_url(@user) : @user.profile.website %>
+              <span><%= link_to websiteURL, websiteURL, :target=>'_blank' %></span>
             </div>
 
             <!--__birthday -->
@@ -113,7 +114,7 @@
 <%= javascript_tag do %>
 $(function() {
   SocialStream.Profile.show({
-  section: "<%= params[:section ] %>"
+    section: "<%= params[:section ] %>"
   });
 });
 

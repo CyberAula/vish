@@ -12,32 +12,31 @@ class ApplicationController < ActionController::Base
     request.env['omniauth.origin'] || session[:user_return_to] || root_path
   end
   
+  # Store last url. This filter is used for post-login redirect to whatever the user last visited.
   def store_location
-    urls_to_avoid_redirect = ["/users/sign_in","/users/sign_up","/users/sign_out","/users/password","/users/password/new","/users","/legal_notice"]
-
-    # store last url - this is needed for post-login redirect to whatever the user last visited.
-    if ((!urls_to_avoid_redirect.include? request.fullpath) &&
-    request.format == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
-    !request.fullpath.end_with?(".full") &&   #do not save .full because we have saved the vish excursion page instead
-    !request.xhr?) # don't store ajax calls
+    if (
+      request.get? && #only store get requests
+      request.format == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
+      !request.xhr? # don't store ajax calls
+    )
       session[:user_return_to] = request.fullpath
     end
+  end
+
+  def discard_location
+    session[:user_return_to] = root_path
+  end
+
+  #Method used for skip store_location in the corresponding controllers.
+  #Prevent .full urls to be saved as valid locations to return after sign in.
+  def format_full?
+    request.fullpath.end_with?(".full")
   end
 
   #############
   # CORS
   # Methods to enable CORS (http://www.tsheffler.com/blog/?p=428)
   #############
-
-  def self.enable_cors(params=[])
-    unless params.blank?
-      before_filter :cors_preflight_check, :only => params
-      after_filter :cors_set_access_control_headers, :only => params
-    else
-      before_filter :cors_preflight_check
-      after_filter :cors_set_access_control_headers
-    end
-  end
 
   def cors_set_access_control_headers
     headers['Access-Control-Allow-Origin'] = '*'
@@ -49,7 +48,7 @@ class ApplicationController < ActionController::Base
   # request, return only the necessary headers and return an empty
   # text/plain.
   def cors_preflight_check
-    if request.method == :options
+    if request.method.downcase.to_sym == :options
       headers['Access-Control-Allow-Origin'] = '*'
       headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
       headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'

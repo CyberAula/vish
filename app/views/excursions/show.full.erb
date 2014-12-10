@@ -4,9 +4,21 @@
 	options = {};
 	var configuration = {};
 
+	configuration["mode"] = "vish";
+
 	configuration["ImagesPath"] = "/assets/";
 	configuration["StylesheetsPath"] = "/assets/";
-	configuration["mode"] = "vish";
+
+	// Recommendations API
+	configuration["recommendationsAPI"] = {
+		rootURL: "<%=Vish::Application.config.full_domain%>" + "/excursions/last_slide.json"
+	};
+
+	//Quiz Sessions API (Audience Response System)
+	configuration["ARS_API"] = {
+		rootURL: '<%=QuizSession.root_url%>'
+	};
+
 	//Tracking System
 	<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? %>
 		configuration["TrackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";
@@ -14,6 +26,7 @@
 			configuration["TrackingSystemAPIURL"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'] %>";
 		<%end%>
 	<%end%>
+
 	//LOEP configuration
 	<%unless Vish::Application.config.APP_CONFIG['loep'].nil? or @excursion.nil? or @excursion.activity_object.nil?%>
 		<%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
@@ -26,6 +39,7 @@
 			evmethod: "wbltses"
 		};
 	<%end%>
+
 	options["configuration"] = configuration;
 	options["developping"] = false;
 
@@ -64,19 +78,9 @@
 	  <% end %>
 	<% end %>
 
-	//URL to access to the Quiz Session API
-	options["quizSessionAPI"] = {
-		rootURL: '<%=QuizSession.root_url%>'
-	};
-
 	<% if @quiz_session %>
 		options["quizSessionId"] = "<%= @quiz_session.id %>";
 	<% end %>
-
-	//URL to access to the Recommendation API
-	options["recommendationsAPI"] = {
-		rootURL: "<%=Vish::Application.config.full_domain%>" + "/excursions/last_slide.json"
-	};
 	
 	//Extra options from parent
 	try {
