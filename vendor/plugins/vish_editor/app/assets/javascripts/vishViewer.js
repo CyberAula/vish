@@ -3844,18 +3844,9 @@ window.Chart = function(context, options) {
     var xPosition = 0;
     var yPosition = 0;
     while(e) {
-      xPosition += e.offsetLeft + e.clientLeft;
-      yPosition += e.offsetTop + e.clientTop;
+      xPosition += e.offsetLeft - e.scrollLeft + e.clientLeft;
+      yPosition += e.offsetTop - e.scrollTop + e.clientTop;
       e = e.offsetParent
-    }
-    if(window.pageXOffset > 0 || window.pageYOffset > 0) {
-      xPosition -= window.pageXOffset;
-      yPosition -= window.pageYOffset
-    }else {
-      if(document.body.scrollLeft > 0 || document.body.scrollTop > 0) {
-        xPosition -= document.body.scrollLeft;
-        yPosition -= document.body.scrollTop
-      }
     }
     return{x:xPosition, y:yPosition}
   }
@@ -8504,7 +8495,6 @@ VISH.Constant.Viewer = "Viewer";
 VISH.Constant.AnyMode = "Both";
 VISH.Constant.NOSERVER = "noserver";
 VISH.Constant.VISH = "vish";
-VISH.Constant.STANDALONE = "node";
 VISH.Constant.UA_IE = "Microsoft Internet Explorer";
 VISH.Constant.UA_NETSCAPE = "Netscape";
 VISH.Constant.IE = "Internet Explorer";
@@ -8628,11 +8618,13 @@ VISH.Configuration = function(V, $, undefined) {
   var _initPaths = function() {
     V.ImagesPath = configuration["ImagesPath"];
     V.StylesheetsPath = configuration["StylesheetsPath"];
+    V.RootPath = configuration["rootPath"];
     V.UploadImagePath = configuration["uploadImagePath"];
     V.UploadObjectPath = configuration["uploadObjectPath"];
     V.UploadPresentationPath = configuration["uploadPresentationPath"];
     V.UploadPDF2PPath = configuration["uploadPDF2PPath"];
-    V.SearchLREPath = configuration["SearchLREPath"]
+    V.LREPath = configuration["LRE_path"];
+    V.ViSHInstances = configuration["ViSH_instances"]
   };
   var applyConfiguration = function() {
     if(!configuration["Upload"]) {
@@ -9392,48 +9384,15 @@ VISH.I18n = function(V, $, undefined) {
   var defaultTranslations;
   var language;
   var init = function(lang) {
-    switch(V.Configuration.getConfiguration().mode) {
-      case V.Constant.NOSERVER:
-        if(typeof i18n["vish"]["default"] != "undefined") {
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.VISH:
-        if(typeof i18n["vish"]["default"] != "undefined") {
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.STANDALONE:
-        if(typeof i18n["standalone"]["default"] != "undefined") {
-          defaultTranslations = i18n["standalone"]["default"]
-        }
-        break
-    }
+    defaultTranslations = i18n["vish"]["default"];
     if(typeof lang != "undefined") {
       language = lang
     }else {
       return
     }
-    switch(V.Configuration.getConfiguration().mode) {
-      case V.Constant.NOSERVER:
-        if(typeof i18n["vish"][language] != "undefined") {
-          translations = i18n["vish"][language]
-        }
-        break;
-      case V.Constant.VISH:
-        if(typeof i18n["vish"][language] != "undefined") {
-          translations = i18n["vish"][language];
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.STANDALONE:
-        if(typeof i18n["standalone"][language] != "undefined") {
-          translations = i18n["standalone"][language];
-          defaultTranslations = i18n["standalone"]["default"]
-        }
-        break
-    }
-    if(typeof translations == "undefined") {
+    if(typeof i18n["vish"][language] != "undefined") {
+      translations = i18n["vish"][language]
+    }else {
       return
     }
     $("[i18n-key]").each(function(index, elem) {
@@ -16016,7 +15975,7 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var init = function() {
     $("#quizSessionNameInput").vewatermark(V.I18n.getTrans("i.QuizSessionName"));
-    V.Quiz.API.init(V.Utils.getOptions().quizSessionAPI);
+    V.Quiz.API.init(V.Configuration.getConfiguration().ARS_API);
     V.Quiz.MC.init();
     V.Quiz.TF.init();
     V.Quiz.Sorting.init();
@@ -16064,7 +16023,7 @@ VISH.Quiz = function(V, $, undefined) {
       }
     }
     var quizButtons = $("<div class='quizButtons'></div>");
-    if(quizMode === V.Constant.QZ_MODE.SELFA && ARSEnabled == true && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
+    if(quizMode === V.Constant.QZ_MODE.SELFA && ARSEnabled == true && V.User.isLogged() && !V.Utils.getOptions().preview) {
       var startButton = $("<input type='button' class='buttonQuiz quizStartButton' value='" + V.I18n.getTrans("i.QuizLaunch") + "'/>");
       $(quizButtons).append(startButton)
     }
@@ -17189,18 +17148,18 @@ VISH.Quiz.Open = function(V, $, undefined) {
   return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz}
 }(VISH, jQuery);
 VISH.Quiz.API = function(V, $, undefined) {
-  var quizSessionAPIrootURL;
+  var ARS_API_RootURL;
   var getResultsCount = 0;
-  var init = function(quizSessionAPI) {
-    if(typeof quizSessionAPI == "object" && typeof quizSessionAPI.rootURL == "string") {
-      quizSessionAPIrootURL = quizSessionAPI.rootURL
+  var init = function(ARS_API) {
+    if(typeof ARS_API == "object" && typeof ARS_API.rootURL == "string") {
+      ARS_API_RootURL = ARS_API.rootURL
     }
   };
   var startQuizSession = function(quizDOM, quizJSON, successCallback, failCallback) {
     if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
       var send_type = "POST";
       var params = {"quiz":JSON.stringify(quizJSON), "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:quizSessionAPIrootURL, data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL, data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(quizDOM, data)
         }
@@ -17212,7 +17171,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
         var quizSessionId = Math.ceil(1E4 * (1 + Math.random())).toString();
-        var url = quizSessionAPIrootURL + quizSessionId;
+        var url = ARS_API_RootURL + quizSessionId;
         var quiz_session = {id:quizSessionId, url:url};
         if(typeof successCallback == "function" && typeof failCallback == "function") {
           setTimeout(function() {
@@ -17229,7 +17188,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(typeof name == "string" && name.trim() != "") {
         params["name"] = name
       }
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/close", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/close", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -17253,7 +17212,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH) {
       var send_type = "GET";
       var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/delete", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/delete", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -17280,7 +17239,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(V.User.isLogged()) {
         params["authenticity_token"] = V.User.getToken()
       }
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/results.json", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/results.json", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -17291,14 +17250,22 @@ VISH.Quiz.API = function(V, $, undefined) {
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
+        var mc_data = [{"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-28T13:24:14Z", "id":62, "quiz_session_id":50}, {"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-28T13:24:22Z", "id":63, "quiz_session_id":50}, {"answer":'[{"choiceId":"3","answer":"true"}]', "created_at":"2013-11-28T13:25:13Z", "id":64, "quiz_session_id":50}];
+        var mc_one_data = [{"answer":'[{"choiceId":"3","answer":"true"}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}];
+        var mcm_data = [{"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"true"},{"choiceId":"3","answer":"true"}]', "created_at":"2013-11-22T17:51:20Z", "id":37, "quiz_session_id":27}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"true"},{"choiceId":"3","answer":"true"}]', "created_at":"2013-11-22T17:51:29Z", "id":38, "quiz_session_id":27}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"true"}]', "created_at":"2013-11-22T17:51:35Z", 
+        "id":39, "quiz_session_id":27}];
+        var tf_data = [{"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"false"},{"choiceId":"3","answer":"true"},{"choiceId":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:23Z", "id":30, "quiz_session_id":19}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"false"},{"choiceId":"3","answer":"false"},{"choiceId":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:37Z", "id":31, "quiz_session_id":19}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"true"},{"choiceId":"3","answer":"false"},{"choiceId":"4","answer":"false"}]', 
+        "created_at":"2013-05-13T13:10:52Z", "id":32, "quiz_session_id":19}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"false"},{"choiceId":"3","answer":"true"},{"choiceId":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:09Z", "id":33, "quiz_session_id":19}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"false"},{"choiceId":"3","answer":"true"},{"choiceId":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:41Z", "id":34, "quiz_session_id":19}];
+        var s_data = [{"answer":'[{"choiceId":"2","answer":2},{"choiceId":"1","answer":1},{"choiceId":"3","answer":3},{"selfAssessment":{"result":true}}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}, {"answer":'[{"choiceId":"2","answer":1},{"choiceId":"1","answer":2},{"choiceId":"3","answer":3},{"selfAssessment":{"result":false}}]', "created_at":"2013-11-26T12:49:34Z", "id":48, "quiz_session_id":31}];
+        var o_data = [{"answer":'[{"answer":"Lorem ipsum dolor si amet one."}]', "created_at":"2013-11-28T13:24:14Z", "id":62, "quiz_session_id":50}, {"answer":'[{"answer":"Proin in blandit odio. Mauris placerat sollicitudin urna, at malesuada odio rhoncus eget."}]', "created_at":"2013-11-28T13:24:14Z", "id":63, "quiz_session_id":50}, {"answer":'[{"answer":"Aenean imperdiet tortor arcu, at congue sapien aliquam a."}]', "created_at":"2013-11-28T13:24:14Z", "id":64, "quiz_session_id":50}];
         var data;
         if(getResultsCount < 1) {
           data = []
         }else {
           if(getResultsCount < 3) {
-            data = [{"answer":'[{"answer":"Lorem ipsum dolor si amet one."}]', "created_at":"2013-11-28T13:24:14Z", "id":62, "quiz_session_id":50}]
+            data = mc_data
           }else {
-            data = [{"answer":'[{"answer":"Lorem ipsum dolor si amet one."}]', "created_at":"2013-11-28T13:24:14Z", "id":62, "quiz_session_id":50}, {"answer":'[{"answer":"Proin in blandit odio. Mauris placerat sollicitudin urna, at malesuada odio rhoncus eget."}]', "created_at":"2013-11-28T13:24:14Z", "id":63, "quiz_session_id":50}, {"answer":'[{"answer":"Aenean imperdiet tortor arcu, at congue sapien aliquam a."}]', "created_at":"2013-11-28T13:24:14Z", "id":64, "quiz_session_id":50}]
+            data = mc_data
           }
         }
         getResultsCount++;
@@ -17317,7 +17284,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(V.User.isLogged()) {
         params["authenticity_token"] = V.User.getToken()
       }
-      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/answer", data:params, success:function(data) {
+      $.ajax({type:send_type, url:ARS_API_RootURL + quizSessionId + "/answer", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -17576,8 +17543,8 @@ VISH.Recommendations = function(V, $, undefined) {
     _requesting = false;
     _generated = false;
     var options = V.Utils.getOptions();
-    if(options && !options.preview && typeof options["recommendationsAPI"] != "undefined" && typeof options["recommendationsAPI"]["rootURL"] == "string") {
-      _recommendationAPIUrl = options["recommendationsAPI"]["rootURL"];
+    if(options && !options.preview && typeof options["configuration"]["recommendationsAPI"] != "undefined" && typeof options["configuration"]["recommendationsAPI"]["rootURL"] == "string") {
+      _recommendationAPIUrl = options["configuration"]["recommendationsAPI"]["rootURL"];
       _enabled = true
     }else {
       return
@@ -17665,31 +17632,23 @@ VISH.Recommendations = function(V, $, undefined) {
   var _requestRecommendations = function() {
     if(_enabled && typeof _recommendationAPIUrl != "undefined" && !_generated && _requesting != true) {
       _requesting = true;
-      if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
-        var params = {};
-        params["quantity"] = 6;
-        if(_searchTerms) {
-          params["q"] = _searchTerms
-        }
-        if(user_id) {
-          params["user_id"] = user_id
-        }
-        if(vishub_pres_id) {
-          params["excursion_id"] = vishub_pres_id
-        }
-        $.ajax({type:"GET", url:_recommendationAPIUrl, data:params, success:function(data) {
-          _fillFancyboxWithData(data)
-        }, error:function(error) {
-          _enabled = false;
-          _requesting = false
-        }})
-      }else {
-        if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-          setTimeout(function() {
-            _fillFancyboxWithData(V.Samples.API.recommendationList)
-          }, 1E3)
-        }
+      var params = {};
+      params["quantity"] = 6;
+      if(_searchTerms) {
+        params["q"] = _searchTerms
       }
+      if(user_id) {
+        params["user_id"] = user_id
+      }
+      if(vishub_pres_id) {
+        params["excursion_id"] = vishub_pres_id
+      }
+      $.ajax({type:"GET", url:_recommendationAPIUrl, data:params, success:function(data) {
+        _fillFancyboxWithData(data)
+      }, error:function(error) {
+        _enabled = false;
+        _requesting = false
+      }})
     }
   };
   var _fillFancyboxWithData = function(data) {

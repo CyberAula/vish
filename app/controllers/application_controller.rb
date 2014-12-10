@@ -12,16 +12,25 @@ class ApplicationController < ActionController::Base
     request.env['omniauth.origin'] || session[:user_return_to] || root_path
   end
   
+  # Store last url. This filter is used for post-login redirect to whatever the user last visited.
   def store_location
-    urls_to_avoid_redirect = ["/users/sign_in","/users/sign_up","/users/sign_out","/users/password","/users/password/new","/users","/legal_notice"]
-
-    # store last url - this is needed for post-login redirect to whatever the user last visited.
-    if ((!urls_to_avoid_redirect.include? request.fullpath) &&
-    request.format == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
-    !request.fullpath.end_with?(".full") &&   #do not save .full because we have saved the vish excursion page instead
-    !request.xhr?) # don't store ajax calls
+    if (
+      request.get? && #only store get requests
+      request.format == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
+      !request.xhr? # don't store ajax calls
+    )
       session[:user_return_to] = request.fullpath
     end
+  end
+
+  def discard_location
+    session[:user_return_to] = root_path
+  end
+
+  #Method used for skip store_location in the corresponding controllers.
+  #Prevent .full urls to be saved as valid locations to return after sign in.
+  def format_full?
+    request.fullpath.end_with?(".full")
   end
 
   #############

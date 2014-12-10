@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141120095200) do
+ActiveRecord::Schema.define(:version => 20141210085747) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -365,7 +365,7 @@ ActiveRecord::Schema.define(:version => 20141120095200) do
     t.string   "province",     :limit => 45
     t.string   "country",      :limit => 45
     t.integer  "prefix_key"
-    t.string   "description"
+    t.text     "description"
     t.string   "experience"
     t.string   "website"
     t.string   "skype",        :limit => 45

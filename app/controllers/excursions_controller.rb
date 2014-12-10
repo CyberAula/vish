@@ -9,11 +9,12 @@ class ExcursionsController < ApplicationController
   before_filter :profile_subject!, :only => :index
   before_filter :fill_create_params, :only => [ :new, :create]
   skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
+  skip_before_filter :store_location, :if => :format_full?
   skip_after_filter :discard_flash, :only => [:clone]
   
-  # Enable CORS for last_slide, and iframe_api methods
-  before_filter :cors_preflight_check, :only => [:last_slide,:iframe_api]
-  after_filter :cors_set_access_control_headers, :only => [:last_slide,:iframe_api]
+  # Enable CORS
+  before_filter :cors_preflight_check, :only => [:excursion_thumbnails,:last_slide,:iframe_api]
+  after_filter :cors_set_access_control_headers, :only => [:excursion_thumbnails,:last_slide,:iframe_api]
   
   include SocialStream::Controllers::Objects
 
