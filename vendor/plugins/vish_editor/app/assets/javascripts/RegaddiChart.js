@@ -303,22 +303,38 @@ window.Chart = function(context, options){
 
 	this.savedState = null;
 
+
+	//Original function replaced by new function based on https://github.com/Regaddi/Chart.js/issues/27
+	//Allow to fix tooltip scrolling bug
+	// function getPosition(e) {
+	// 	var xPosition = 0;
+	// 	var yPosition = 0;
+
+	// 	while(e) {
+	// 		xPosition += (e.offsetLeft + e.clientLeft);
+	// 		yPosition += (e.offsetTop + e.clientTop);
+	// 		e = e.offsetParent;
+	// 	}
+	// 	if(window.pageXOffset > 0 || window.pageYOffset > 0) {
+	// 		xPosition -= window.pageXOffset;
+	// 		yPosition -= window.pageYOffset;
+	// 	} else if(document.body.scrollLeft > 0 || document.body.scrollTop > 0) {
+	// 		xPosition -= document.body.scrollLeft;
+	// 		yPosition -= document.body.scrollTop;
+	// 	}
+	// 	return { x: xPosition, y: yPosition };
+	// }
+
 	function getPosition(e) {
 		var xPosition = 0;
 		var yPosition = 0;
 
 		while(e) {
-			xPosition += (e.offsetLeft + e.clientLeft);
-			yPosition += (e.offsetTop + e.clientTop);
+			xPosition += (e.offsetLeft - e.scrollLeft + e.clientLeft);
+			yPosition += (e.offsetTop - e.scrollTop + e.clientTop);
 			e = e.offsetParent;
 		}
-		if(window.pageXOffset > 0 || window.pageYOffset > 0) {
-			xPosition -= window.pageXOffset;
-			yPosition -= window.pageYOffset;
-		} else if(document.body.scrollLeft > 0 || document.body.scrollTop > 0) {
-			xPosition -= document.body.scrollLeft;
-			yPosition -= document.body.scrollTop;
-		}
+
 		return { x: xPosition, y: yPosition };
 	}
 	

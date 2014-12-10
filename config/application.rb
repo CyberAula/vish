@@ -72,6 +72,8 @@ module Vish
       end
       
       ActsAsTaggableOn.strict_case_match = true
+
+      config.available_thumbnail_styles = SocialStream::Documents.picture_styles.keys.map{|k| k.to_s}
     end
 
   end

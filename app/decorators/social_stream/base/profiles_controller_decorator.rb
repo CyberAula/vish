@@ -6,8 +6,7 @@ ProfilesController.class_eval do
 		params.
 			require(:profile).
 			permit(:name, :organization, :birthday, :city, :country, :description,
-				:phone, :mobile, :fax, :email, :address, :website,
-				:experience,
+				:phone, :mobile, :fax, :email, :address, :website, :experience,
 				:tag_list, :occupation)
 	end
 

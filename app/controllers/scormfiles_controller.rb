@@ -1,5 +1,6 @@
 class ScormfilesController < ApplicationController
   include SocialStream::Controllers::Objects
+  skip_before_filter :store_location, :if => :format_full?
 
   def show
     respond_to do |format|

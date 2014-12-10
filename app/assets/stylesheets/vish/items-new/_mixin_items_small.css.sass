@@ -69,28 +69,42 @@
     margin-left: -1px
     margin-right: 0
     padding: 0 
-    padding-left: 2%
     @include border-right-radius($baseBorderRadius !important) 
     @include border-left-radius(0 !important)
     //margin-top: 3px
     margin-top: 0px
     .name
       font-size: 15px
-      margin-top: 4px !important
+      padding: 5px 3% 3px
+      width: 90%
       word-wrap: break-word
       text-decoration: none
       cursor: pointer
-      margin: 0
-      //height: 34px
-      height: 40px
       line-height: 18px
       overflow: hidden
-      width: 100%
+      display: block
+      height: 33px !important
+    .author
+      padding: 2px 3%
+      width: 90%
+
+
 
 // FOOTER item 
 @mixin footer-item-small
   .info-bottom
-    padding-right: 5px
+    hr
+      width: 100% !important
+      display: block !important
+      margin: 0 !important
+      padding: 0 !important
+    .like,
+    .views
+      width: 40%
+      padding: 0 3%
+      font-size: 12px
+
+
 //ADD new
 @mixin add-item-small
 

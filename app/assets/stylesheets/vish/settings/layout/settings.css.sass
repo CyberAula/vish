@@ -37,19 +37,24 @@
 
       .form_label,
       label
-        display: inline
-        width: auto
+        display: block
+        width: 100%
+        clear: both
       .form_field 
-        display: inline-block
-        
-        #user_password
-          width: 271px
-        #user_password_confirmation
-          width: 221px
-        #user_current_password
-          width: 273px
+        display: block
+        width: 100%
+        clear: both
+        margin-top: 10px
+        #user_password,
+        #user_password_confirmation,
+        #user_current_password,
         #user_email
-          width: 353px
+          width: 96%
+          padding: 5px 3% 5px
+          margin: 0
+          display: block
+        
+
 
       #password_form,
       #email_form

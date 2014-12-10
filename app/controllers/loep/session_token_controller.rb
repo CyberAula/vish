@@ -6,7 +6,8 @@ class Loep::SessionTokenController < ApplicationController
   # before_filter :authenticate_user! #Allow anonymous evaluations
   
   # Enable CORS for all methods
-  ApplicationController.enable_cors
+  before_filter :cors_preflight_check
+  after_filter :cors_set_access_control_headers
 
   ###########
   # API REST for Create Session Tokens

@@ -8,5 +8,8 @@
 		<li <%=!@users.nil? ? "class=active" : ""%>>
 			<a href="<%=admin_users_path%>"><%=t('admin.users')%></a>
 		</li>
+		<li>
+			<a href="/resque" target="_blank"><%=t('admin.resque')%></a>
+		</li>
 	</ul>
 </div>
