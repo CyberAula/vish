@@ -4,7 +4,8 @@ class FederatedSearchController < ApplicationController
   skip_load_and_authorize_resource :only => [:search]
 
   # Enable CORS
-  ApplicationController.enable_cors([:search])
+  before_filter :cors_preflight_check, :only => [:search]
+  after_filter :cors_set_access_control_headers, :only => [:search]
 
 
   #############

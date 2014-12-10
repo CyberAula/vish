@@ -8,7 +8,7 @@ class WaResourcesGallery < ActiveRecord::Base
   def valid_activity_objects
     valid = true
 
-    availableResources = VishConfig.getAvailableAllResourceModels
+    availableResources = VishConfig.getAvailableResourceModels
     self.activity_objects.each do |ao|
       unless availableResources.include? ao.object_type
         valid = false

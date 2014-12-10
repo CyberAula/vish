@@ -157,7 +157,6 @@
   </div>
 
   <% unless editingToolbar %>
-
     <!--Favorite-->
     <% unless @excursion.post_activity.nil? %>
       <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
@@ -178,6 +177,17 @@
       </button>
     <%end%>
   <%end%>
+
+  <% unless params[:animate].nil? or editingToolbar %>
+    <script type="text/javascript">
+      var toggleAnimation = function(){
+        animationEnabled = (!animationEnabled);
+      };
+    </script>
+    <button onclick="toggleAnimation()" class="btn with_tooltip">
+        <i class="icon-time"></i>
+    </button>
+  <% end %>
 
 </div>
 

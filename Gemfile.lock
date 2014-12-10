@@ -30,8 +30,8 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: dfd1c230fe41241564a89dfc00f7578cd184fd47
-  ref: dfd1c230fe41241564a89dfc00f7578cd184fd47
+  revision: 33c1b805d1bfd7cf0b85392de73be1f416dba099
+  ref: 33c1b805d1bfd7cf0b85392de73be1f416dba099
   branch: vish
   specs:
     social_stream-base (2.2.2)
@@ -248,7 +248,7 @@ GEM
       railties (>= 3.1.0)
     jruby-pageant (1.1.1)
     json (1.7.4)
-    jwt (1.0.0)
+    jwt (1.2.0)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)

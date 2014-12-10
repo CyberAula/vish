@@ -722,9 +722,6 @@
 			<a class="addQuiz uniq large" href="#quiz_fancybox" id="add_quiz_thumb">
 				<div class='thumbicon quizthumb' i18n-key="i.Quiz" title="Quiz"></div>
 			</a>
-<!-- 			<a class="addLive medium large" href="#live_fancybox">
-				<div class='thumbicon livethumb' i18n-key="i.LiveResources" title="Live"></div>
-			</a> -->
 		</div>
 	</div>
   
@@ -793,9 +790,9 @@
 		<div id="picture_fancybox" class="outer_box">
 			<div class="fancy_tabs" id="images_fancy_tabs_id">	   
 				<ul>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_thumbnails'); return false;" id="tab_pic_thumbnails" class="fancy_tab tabbable venondefaulttab" style="display:none" i18n-key="i.thumbnails">thumbnails</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_from_url'); return false;" id="tab_pic_from_url" class="fancy_tab tabbable" i18n-key="i.url">url</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload'); return false;" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_thumbnails'); return false;" id="tab_pic_thumbnails" class="fancy_tab tabbable venondefaulttab" style="display:none" i18n-key="i.thumbnails">thumbnails</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo'); return false;" id="tab_pic_repo" class="fancy_tab">vish</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_flikr'); return false;" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_lre'); return false;" id="tab_pic_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
@@ -838,14 +835,15 @@
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
 
 					<form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-						<input type="file" name="document[file]" class="upload_file_input">
-						<input type="hidden" name="document[scope]" value="1">
-						<input type="hidden" name="document[title]">
-						<input type="hidden" name="document[description]">
-						<input type="hidden" name="document[owner_id]">
-						<input type="hidden" name="authenticity_token">
-						<input type="hidden" name="document[tag_list]">
-						<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+						<input type="file" name="document[file]" class="upload_file_input"/>
+						<input type="hidden" name="document[scope]" value="1"/>
+						<input type="hidden" name="document[title]"/>
+						<input type="hidden" name="document[description]"/>
+						<input type="hidden" name="document[owner_id]"/>
+						<input type="hidden" name="document[tag_list]"/>
+						<input type="hidden" name="authenticity_token"/>
+						<input type="hidden" name="preferred_conversion"/>
+						<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload"/>
 					</form>
 
 					<div class="upload_progress_bar_wrapper">

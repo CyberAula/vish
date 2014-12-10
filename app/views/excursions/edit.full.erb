@@ -4,33 +4,37 @@
 	options = {};
 	var configuration = {};
 
+	configuration["mode"] = "vish";
+
 	configuration["ImagesPath"] = "/assets/";
 	configuration["StylesheetsPath"] = "/assets/";
+
+	configuration["rootPath"] = "<%= Vish::Application.config.full_domain %>";
+
+	configuration["Upload"] = true;
 	configuration["uploadImagePath"] = "<%= documents_path :format=> "json"%>";
 	configuration["uploadObjectPath"] = "<%= documents_path :format=> "json"%>";
 	configuration["uploadPresentationPath"] = "<%= excursion_path @excursion, :format=> "json" %>";
 	configuration["uploadPDF2PPath"] = "<%= pdfexes_path :format=> "json"%>";
-	configuration["SearchLREPath"] = "/lre/search";
 
-	configuration["presentationSettings"] = true;
-	configuration["presentationTags"] = true;
-	configuration["presentationThumbnails"] = true;
-
-	configuration["VishLives"] = true;
-	configuration["VishRepo"] = true;
-
+	// Sources enabled
+	configuration["ViSH"] = true;
+	configuration["ViSH_instances"] = ["<%= Vish::Application.config.full_domain %>"];
 	configuration["Flickr"] = true;
 	configuration["Youtube"] = true;
 	configuration["Vimeo"] = false;
 	configuration["LRE"] = true;
+	configuration["LRE_path"] = "/lre/search";
 	<%unless Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'].nil? %>
 		configuration["SoundCloud"] = true;
 		configuration["SoundCloudAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'] %>";
 	<%end%>
-	configuration["Upload"] = true;
-	configuration["mode"] = "vish";
+
+	configuration["presentationSettings"] = true;
+
 	options["configuration"] = configuration;
 	
+
 	options["developping"] = false;
 
 	<% unless current_subject.admin? %>

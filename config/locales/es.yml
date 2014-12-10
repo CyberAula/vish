@@ -130,6 +130,8 @@ es:
       user: "Usuarios"
       video: "Videos"
       webapp: "Aplicaciones Web"
+      workshop: "Talleres"
+      writing: "Textos"
       zipfile: "Ficheros ZIP"
     instances:
       add_instance: "Añadir Instancia"
@@ -180,6 +182,7 @@ es:
         music: "Música"
         naturalScience: "Ciencias Naturales"
         physics: "Física"
+        science: "Ciencia"
         technology: "Tecnología"
     extras:
         learning: "aprendizaje"
@@ -206,6 +209,7 @@ es:
     dragandrop:
         back: "Volver"
         complete: "Completar"
+        confirm: "¿Estás seguro de que quieres hacer esto?"
         discard_changes: "Descartar cambios"
         drag1: "dentro de categorías, también puedes borrar en la esquina superior derecha."
         drag2: "El orden se mantendrá a partir de ahora en las categorías."
@@ -219,6 +223,8 @@ es:
         list: "Lista"
         place_uncategorize: "Ordenar y descategoriza"
         place_long: "Ordenar categorias"
+        trash: "Arrastra aquí"
+        uncategorize: "Arrastra aquí para descategorizar"
     errors:
       duplicated: "Ya tienes una categoría con ese título. Por favor, escribe uno diferente."
     favorites:
@@ -402,6 +408,7 @@ es:
     passwordconfirmation: "Confirmar contraseña"
     invalid_login: "Por favor introduce tu email y contraseña para continuar"
     tags: "etiquetas"
+    password_forgot_instructions: "Escribe abajo tu dirección de correo y recibirás un email con instrucciones para reestablecer tu contraseña en unos minutos."
   disjunction:
     or: "o"
   document:

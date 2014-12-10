@@ -95,6 +95,7 @@ en:
     pending_reports: "Pending reports"
     reporter: "Reporter"
     reports: "Reports"
+    resque: "Resque"
     title: "ViSH Administration Panel"
     users: "Users Administration"
   all: "all"
@@ -130,6 +131,8 @@ en:
       user: "Users"
       video: "Videos"
       webapp: "Web Applications"
+      workshop: "Workshops"
+      writing: "Writings"
       zipfile: "ZIP files"
     instances:
       add_instance: "Add Instance"
@@ -181,6 +184,7 @@ en:
         music: "Music"
         naturalScience: "Natural Sciences"
         physics: "Physics"
+        science: "Science"
         technology: "Technology"
     extras:
         eLearning: "e-Learning"
@@ -210,6 +214,7 @@ en:
     dragandrop:
         back: "Back"
         complete: "Complete"
+        confirm: "Are you sure you want to do this?"
         discard_changes: "Discard changes"
         drag1: "Move and drop different resources into categories the way you want or even erase them."
         drag2: "Order is always important, drag and sort."
@@ -223,6 +228,8 @@ en:
         place: "Sort"
         place_uncategorize: "Short & uncategorize"
         place_long: "Sort categories"
+        trash: "Drag here"
+        uncategorize: "Drag here to uncategorize"
     errors:
       duplicated: "You already have a category with this title. Please, give it another title."
     favorites:
@@ -402,6 +409,7 @@ en:
       success: Invitation sent succesfully
     invalid_login: "Please enter your email and password to continue."
     tags: "tags"
+    password_forgot_instructions: "Write down the email address you associated to your account and you will receive an email with instructions about how to reset your password in a few minutes."
   disjunction:
     or: "or"
   document:
