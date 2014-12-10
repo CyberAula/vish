@@ -210,6 +210,7 @@ en:
     dragandrop:
         back: "Back"
         complete: "Complete"
+        confirm: "Are you sure you want to do this?"
         discard_changes: "Discard changes"
         drag1: "Move and drop different resources into categories the way you want or even erase them."
         drag2: "Order is always important, drag and sort."
@@ -223,6 +224,8 @@ en:
         place: "Sort"
         place_uncategorize: "Short & uncategorize"
         place_long: "Sort categories"
+        trash: "Drag here"
+        uncategorize: "Drag here to uncategorize"
     errors:
       duplicated: "You already have a category with this title. Please, give it another title."
     favorites:

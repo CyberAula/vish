@@ -3,7 +3,7 @@
 		<h3><%=t('categories.dragandrop.place')%></h3>
 		<div class="delete">
 			<i class="icon-trash"></i>
-			<p><%=t('categories.dragandrop.erase')%></p>
+			<p><%=t('categories.dragandrop.trash')%></p>
 		</div>
 		<ul>
 			<li>
@@ -112,8 +112,15 @@
 		$(".edit_categories").sortable({
 			start:function(event,ui){
 				 //Reduces size
+				 if ($(ui.item).hasClass("categorie-item")){
+				 	$(".delete p").text("<%=t('categories.dragandrop.erase')%>");
+				 }
+				 else{
+				 	$(".delete p").text("<%=t('categories.dragandrop.uncategorize')%>");
+				 }
 				 $(ui.item).width($(ui.item).width()*0.8);
 				 $(ui.item).height($(ui.item).height()*0.8);
+
 			},
 			tolerance: "intersect"
 		}).disableSelection();
@@ -149,11 +156,18 @@
 			//if dragged into the bin
 			receiver = $(pre_rec).closest(".overlay .delete");
 			if (receiver.length != 0){
-				var dragged_id = dragged.attr("edit-id");
-				movements_array.push([dragged_id,"-1"]);
-				dragged.fadeOut();
-				dragged.remove();
-			}	
+				//checkbox to confirm erasing
+				var conf_erased = confirm("<%=t('categories.dragandrop.confirm')%>");
+				if(conf_erased){
+					var dragged_id = dragged.attr("edit-id");
+					movements_array.push([dragged_id,"-1"]);
+					dragged.fadeOut();
+					dragged.remove();
+				}//do nothing if not confirmed
+				else{return;}
+
+			}
+			$(".delete p").text("<%=t('categories.dragandrop.trash')%>");	
 		};
 		
 	});
