@@ -32,3 +32,104 @@ body
   margin-bottom: 20px
   margin-top: 20px
 
+//-------------------------
+// breadcrumb
+//-------------------------
+ul#breadcrumb
+  list-style: none
+  display: inline-block
+  margin: 0px 0px 20px
+  width: 100%
+  li
+    float: left
+    i
+      margin-right: 10px
+    a
+      color: #FFF
+      display: block
+      background: $grayLight
+      text-decoration: none
+      position: relative
+      height: 28px
+      line-height: 30px
+      padding: 0 5px 0 10px
+      text-align: center
+      margin-right: 23px
+      max-width: 300px
+      text-overflow: ellipsis
+      font-size: 14px
+      font-weight: bold
+
+    &:nth-child(even)
+      a
+        background-color: lighten($grayLight, 5%)
+        &:before
+          border-color: lighten($grayLight, 5%)
+          border-left-color: transparent
+        &:after
+          border-left-color: lighten($grayLight, 5%)
+
+    &:first-child
+      a
+        padding-left: 15px
+        -moz-border-radius: 4px 0 0 4px
+        -webkit-border-radius: 4px
+        border-radius: 4px 0 0 4px
+        &:before
+          border: none
+
+    &:last-child
+      a
+        padding-right: 15px
+        -moz-border-radius: 0 4px 4px 0
+        -webkit-border-radius: 0
+        border-radius: 0 4px 4px 0
+        border-color: $firstColor
+        background-color: $firstColor
+        font-weight: bold
+        font-size: 14px
+        &:after
+          border: none
+
+    &:last-child a:before
+      border-color: $firstColor
+      border-left-color: transparent
+
+  li a:before,
+  li a:after
+    content: ""
+    position: absolute
+    top: 0
+    border: 0 solid $grayLight
+    border-width: 14px 10px
+    width: 0
+    height: 0
+
+  li a:before
+    left: -20px
+    border-left-color: transparent
+
+  li a:after
+    left: 100%
+    border-color: transparent
+    border-left-color: $grayLight
+
+  li a:hover
+    background-color: $gray
+
+  li a:hover:before
+    border-color: $gray
+    border-left-color: transparent
+
+  li a:hover:after
+    border-left-color: $gray
+
+  li a:active
+    background-color: #16a085
+
+  li a:active:before
+    border-color: #16a085
+    border-left-color: transparent
+
+  li a:active:after
+    border-left-color: #16a085

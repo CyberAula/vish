@@ -1,7 +1,7 @@
 <ul id="breadcrumb">
 	<% categorycrumb |= false%> 
 	<% if categorycrumb %>
-    <li><a href="<%=user_url(path.first.owner.user)%>?tab=categories"><%=t('document.help.categories1_html')%></a> </li>
+    <li><a href="<%=user_url(path.first.owner.user)%>?tab=categories"><i class="icon-th-large"></i><%=t('document.help.categories1_html')%></a> </li>
   <% end %>
 
     <% path.each_with_index do |objectParent,index| %>

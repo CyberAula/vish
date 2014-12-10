@@ -25,8 +25,8 @@
       <div>
         <label><%= f.label :scope, "Scope"%></label>
 
-        <%= f.check_box :scope, {checked: false}, "false", "true"%>
-        <p><%=t('categories.scope')%></p>
+        
+       <%= f.check_box :scope, {checked: false}, "false", "true"%><%=t('categories.scope')%>
       </div>
 
       <label><%= f.label :parentCategory, "Belongs to" %></label>
