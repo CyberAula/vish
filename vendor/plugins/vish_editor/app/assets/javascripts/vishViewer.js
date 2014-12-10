@@ -3844,18 +3844,9 @@ window.Chart = function(context, options) {
     var xPosition = 0;
     var yPosition = 0;
     while(e) {
-      xPosition += e.offsetLeft + e.clientLeft;
-      yPosition += e.offsetTop + e.clientTop;
+      xPosition += e.offsetLeft - e.scrollLeft + e.clientLeft;
+      yPosition += e.offsetTop - e.scrollTop + e.clientTop;
       e = e.offsetParent
-    }
-    if(window.pageXOffset > 0 || window.pageYOffset > 0) {
-      xPosition -= window.pageXOffset;
-      yPosition -= window.pageYOffset
-    }else {
-      if(document.body.scrollLeft > 0 || document.body.scrollTop > 0) {
-        xPosition -= document.body.scrollLeft;
-        yPosition -= document.body.scrollTop
-      }
     }
     return{x:xPosition, y:yPosition}
   }
@@ -17259,14 +17250,22 @@ VISH.Quiz.API = function(V, $, undefined) {
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
+        var mc_data = [{"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-28T13:24:14Z", "id":62, "quiz_session_id":50}, {"answer":'[{"choiceId":"1","answer":"true"}]', "created_at":"2013-11-28T13:24:22Z", "id":63, "quiz_session_id":50}, {"answer":'[{"choiceId":"3","answer":"true"}]', "created_at":"2013-11-28T13:25:13Z", "id":64, "quiz_session_id":50}];
+        var mc_one_data = [{"answer":'[{"choiceId":"3","answer":"true"}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}];
+        var mcm_data = [{"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"true"},{"choiceId":"3","answer":"true"}]', "created_at":"2013-11-22T17:51:20Z", "id":37, "quiz_session_id":27}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"true"},{"choiceId":"3","answer":"true"}]', "created_at":"2013-11-22T17:51:29Z", "id":38, "quiz_session_id":27}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"true"}]', "created_at":"2013-11-22T17:51:35Z", 
+        "id":39, "quiz_session_id":27}];
+        var tf_data = [{"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"false"},{"choiceId":"3","answer":"true"},{"choiceId":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:23Z", "id":30, "quiz_session_id":19}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"false"},{"choiceId":"3","answer":"false"},{"choiceId":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:37Z", "id":31, "quiz_session_id":19}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"true"},{"choiceId":"3","answer":"false"},{"choiceId":"4","answer":"false"}]', 
+        "created_at":"2013-05-13T13:10:52Z", "id":32, "quiz_session_id":19}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"false"},{"choiceId":"3","answer":"true"},{"choiceId":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:09Z", "id":33, "quiz_session_id":19}, {"answer":'[{"choiceId":"1","answer":"true"},{"choiceId":"2","answer":"false"},{"choiceId":"3","answer":"true"},{"choiceId":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:41Z", "id":34, "quiz_session_id":19}];
+        var s_data = [{"answer":'[{"choiceId":"2","answer":2},{"choiceId":"1","answer":1},{"choiceId":"3","answer":3},{"selfAssessment":{"result":true}}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}, {"answer":'[{"choiceId":"2","answer":1},{"choiceId":"1","answer":2},{"choiceId":"3","answer":3},{"selfAssessment":{"result":false}}]', "created_at":"2013-11-26T12:49:34Z", "id":48, "quiz_session_id":31}];
+        var o_data = [{"answer":'[{"answer":"Lorem ipsum dolor si amet one."}]', "created_at":"2013-11-28T13:24:14Z", "id":62, "quiz_session_id":50}, {"answer":'[{"answer":"Proin in blandit odio. Mauris placerat sollicitudin urna, at malesuada odio rhoncus eget."}]', "created_at":"2013-11-28T13:24:14Z", "id":63, "quiz_session_id":50}, {"answer":'[{"answer":"Aenean imperdiet tortor arcu, at congue sapien aliquam a."}]', "created_at":"2013-11-28T13:24:14Z", "id":64, "quiz_session_id":50}];
         var data;
         if(getResultsCount < 1) {
           data = []
         }else {
           if(getResultsCount < 3) {
-            data = [{"answer":'[{"answer":"Lorem ipsum dolor si amet one."}]', "created_at":"2013-11-28T13:24:14Z", "id":62, "quiz_session_id":50}]
+            data = mc_data
           }else {
-            data = [{"answer":'[{"answer":"Lorem ipsum dolor si amet one."}]', "created_at":"2013-11-28T13:24:14Z", "id":62, "quiz_session_id":50}, {"answer":'[{"answer":"Proin in blandit odio. Mauris placerat sollicitudin urna, at malesuada odio rhoncus eget."}]', "created_at":"2013-11-28T13:24:14Z", "id":63, "quiz_session_id":50}, {"answer":'[{"answer":"Aenean imperdiet tortor arcu, at congue sapien aliquam a."}]', "created_at":"2013-11-28T13:24:14Z", "id":64, "quiz_session_id":50}]
+            data = mc_data
           }
         }
         getResultsCount++;
