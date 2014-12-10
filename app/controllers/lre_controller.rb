@@ -5,7 +5,8 @@ class LreController < ApplicationController
 	LRE_DATA_URL = "http://lredata.eun.org/"
 
 	# Enable CORS
-	ApplicationController.enable_cors([:search_lre])
+	before_filter :cors_preflight_check, :only => [:search_lre]
+  	after_filter :cors_set_access_control_headers, :only => [:search_lre]
 
 
 	#this method will do like a proxy to the LRE

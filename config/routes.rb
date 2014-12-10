@@ -1,19 +1,14 @@
 Vish::Application.routes.draw do
 
   if Vish::Application.config.APP_CONFIG["register_policy"] == "INVITATION_ONLY"
-    devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }, :skip => [:registrations] 
+    devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks", registrations: "registrations", :sessions => "sessions", :passwords => "passwords", :invitations => "devise_invitations" }, :skip => [:registrations] 
       as :user do
         get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
         put 'users' => 'devise/registrations#update', :as => 'user_registration'
       end
   else
-    devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations', :invitations => 'devise_invitations' }  
+    devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks", registrations: "registrations", :sessions => "sessions", :passwords => "passwords", :invitations => "devise_invitations" }  
   end
-
-  #authenticate :user do
-  #    mount Resque::Server.new, :at => "/resque"
-  #end
-
 
   match 'users/:id/excursions' => 'users#excursions'
   match 'users/:id/workshops' => 'users#workshops'
@@ -47,17 +42,14 @@ Vish::Application.routes.draw do
 
   #Search
   match '/search/advanced' => 'search#advanced'
-  #Search APIs used by VE (deprecated)
-  match 'resources/search' => 'resources#search'
   #LRE proxy
   match 'lre/search' => 'lre#search_lre'
 
   #AO avatars
   match 'activity_objects/avatar/:id' => 'activity_object#show_avatar'
 
-  #Excursions. Match the filter before the excursions resources
-  match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
-  match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
+  #Thumbnails
+  match '/thumbnails' => 'excursions#excursion_thumbnails'
 
   match 'excursions/last_slide' => 'excursions#last_slide'
   match 'excursions/preview' => 'excursions#preview'
@@ -138,7 +130,6 @@ Vish::Application.routes.draw do
   end
 
   #Tracking System
-  resources :tracking_system_entries  
-  
+  resources :tracking_system_entries
 
 end

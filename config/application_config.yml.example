@@ -17,6 +17,7 @@ development:
   advanced_search:
     instances: ["http://vishub.org"]
 
+
 production:
   domain: "vishub.org"
   test_domain: false
@@ -29,12 +30,21 @@ production:
     resources: ["Document","Webapp","Scormfile","Link","Embed", "Writing"]
     home: ["Excursion"]
     catalogue: ["Excursion"]
-  services: ["ARS","Catalogue","Competitions2013","ASearch"]
+  services: ["ARS","Catalogue","Competitions2013","ASearch","MediaConversion"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   register_policy: "REGISTER_ONLY"
   advanced_search:
     instances: ["http://vishub.org"]
-
+  mail:
+    type: "SMTP"
+    credentials:
+      address: "smtp.mandrillapp.com"
+      port: 587
+      domain: "your_domain.com"
+      authentication: "login" #or can use "plain"
+      username: "your_username"
+      password: "your_password"
+      enable_starttls_auto: true
 #Other configuration options
 
 # LOEP configuration. Allow to evaluate the quality of the ViSH resources in a systematic way (See http://loep.global.dit.upm.es for more info).
@@ -53,7 +63,7 @@ production:
 # trackingSystemAPIKEY: "secret_key"
 # trackingSystemAPIURL: "http://#{ViSH domain}/tracking_system_entries"
 
-# Enable SoundCloud in the ViSH Editor
+# Enable SoundCloud in the ViSH Editor. Get the API key from https://developers.soundcloud.com/
 # soundCloudAPIKEY: "secret_key"
 
 # Set a quality threshold to automatically generate reports when a resource is judged below the threshold.

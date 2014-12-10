@@ -3,7 +3,8 @@ class RecommenderController < ApplicationController
   skip_load_and_authorize_resource :only => [:api_resource_suggestions]
 
   # Enable CORS
-  ApplicationController.enable_cors([:api_resource_suggestions])
+  before_filter :cors_preflight_check, :only => [:api_resource_suggestions]
+  after_filter :cors_set_access_control_headers, :only => [:api_resource_suggestions]
 
 
   ##################

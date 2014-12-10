@@ -130,6 +130,8 @@ es:
       user: "Usuarios"
       video: "Videos"
       webapp: "Aplicaciones Web"
+      workshop: "Talleres"
+      writing: "Textos"
       zipfile: "Ficheros ZIP"
     instances:
       add_instance: "Añadir Instancia"
@@ -180,6 +182,7 @@ es:
         music: "Música"
         naturalScience: "Ciencias Naturales"
         physics: "Física"
+        science: "Ciencia"
         technology: "Tecnología"
     extras:
         learning: "aprendizaje"
@@ -396,6 +399,7 @@ es:
     passwordconfirmation: "Confirmar contraseña"
     invalid_login: "Por favor introduce tu email y contraseña para continuar"
     tags: "etiquetas"
+    password_forgot_instructions: "Escribe abajo tu dirección de correo y recibirás un email con instrucciones para reestablecer tu contraseña en unos minutos."
   disjunction:
     or: "o"
   document:

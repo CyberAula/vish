@@ -38,7 +38,7 @@ module MediaHelper
 	#method to print data-url-webm in the media player
 	#only if the media has been converted or it is webm format
 	def printDataUrlIfPresent(media, format)
-		if Vish::Application.config.APP_CONFIG["services"].include?("MediaConversion") || media.format == format
+		if available_services.include?("MediaConversion") || media.format == format
 			string = "data-url-"+format.to_s+"="
 			string += polymorphic_path(media, :format => format)
 			return raw string
@@ -51,7 +51,7 @@ module MediaHelper
 	#method to print data-url-webm in the media player
 	#only if the media has been converted or it is webm format
 	def printDataUrlPosterIfPresent(media, format, style)
-		if Vish::Application.config.APP_CONFIG["services"].include?("MediaConversion")
+		if available_services.include?("MediaConversion")
 			string = "data-url-poster="
 			string += polymorphic_path(media, :format => format, :style => style)
 			return raw string
@@ -64,7 +64,7 @@ module MediaHelper
 	#method to print source in the media tag
 	#only if the media has been converted or it is webm format
 	def printSourceIfPresent(media, format)
-		if Vish::Application.config.APP_CONFIG["services"].include?("MediaConversion") || media.format == format
+		if available_services.include?("MediaConversion") || media.format == format
 			string = "<source src="
 			string += "'" + polymorphic_path(media, :format => format) + "'"
 			string += " type='"+Mime::Type.lookup_by_extension(format).to_s+"'>\n "
@@ -78,7 +78,7 @@ module MediaHelper
 	#method to print data-url-webm in the media player
 	#only if the media has been converted or it is webm format
 	def printSourcePosterIfPresent(media, format, style)
-		if Vish::Application.config.APP_CONFIG["services"].include?("MediaConversion")
+		if available_services.include?("MediaConversion")
 			string = "poster="
 			string += "'" + polymorphic_path(media, :format => format, :style => style) + "'"
 			return raw string
