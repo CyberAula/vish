@@ -58,8 +58,8 @@
       <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags') %>
 
       <div class="actions">
-        <%= f.submit t('button.update'), "data-loading-text" => t('button.sending') %>
-        <%=link_to t('hide'), "#", :id=>"hide_profile_form", :class=>"btn btn-primary"%>
+        <%= f.submit t('button.update'), :class=>"btn btn-primary", "data-loading-text" => t('button.sending') %>
+        <%=link_to t('hide'), "#", :id=>"hide_profile_form", :class=>"btn btn-default"%>
       </div>
     <% end %>
 
