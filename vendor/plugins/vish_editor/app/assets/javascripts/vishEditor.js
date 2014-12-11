@@ -14657,11 +14657,12 @@ VISH.Editor.Presentation = function(V, $, undefined) {
   };
   var _generateSlideScaffold = function(index, element, options) {
     var slide = {};
+    var element = element || {};
     slide.id = "article" + index;
     slide.type = V.Constant.STANDARD;
     var defaultTemplate = "t10";
     if(element.template) {
-      slide.template = options.template
+      slide.template = element.template
     }else {
       if(options && options.template) {
         slide.template = options.template
@@ -14669,8 +14670,10 @@ VISH.Editor.Presentation = function(V, $, undefined) {
         slide.template = defaultTemplate
       }
     }
+    if(element.type = V.Constant.QUIZ) {
+      slide.containsQuiz = true
+    }
     slide.elements = [];
-    var element = element || {};
     element.id = slide.id + "_zone1";
     switch(slide.template) {
       case "t2":
@@ -15458,7 +15461,9 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     $("#subslides_list").find("div.draggable_sc_div").show()
   };
   var unloadSlideset = function(fc) {
-    _savePoisToDom(fc);
+    if(!V.Editor.Renderer.isRendering()) {
+      _savePoisToDom(fc)
+    }
     $("#subslides_list").find("div.draggable_sc_div[ddend='background']").hide()
   };
   var beforeCreateSlidesetThumbnails = function(fc) {
@@ -22928,7 +22933,7 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
   var init = function() {
   };
   var isCompliantXMLFile = function(fileXML) {
-    var contains;
+    var isCompliant;
     var schema;
     var xmlDoc = $.parseXML(fileXML);
     var xml = $(xmlDoc);
@@ -22953,30 +22958,30 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
     }
     if(checkQuizType(fileXML) == "multipleCA") {
       if(itemBody.length == 0 || simpleChoice.length == 0 || correctResponse.length == 0 || schema == false) {
-        contains = false
+        isCompliant = false
       }else {
-        contains = true
+        isCompliant = true
       }
     }else {
       if(checkQuizType(fileXML) == "order") {
         if(itemBody.length == 0 || orderInteraction.length == 0 || correctResponse.length == 0 || schema == false) {
-          contains = false
+          isCompliant = false
         }else {
-          contains = true
+          isCompliant = true
         }
       }else {
         if(checkQuizType(fileXML) == "openshortAnswer" || checkQuizType(fileXML) == "fillInTheBlankText") {
           if(itemBody.length == 0 || correctResponse.length == 0 || schema == false) {
-            contains = false
+            isCompliant = false
           }else {
-            contains = true
+            isCompliant = true
           }
         }else {
-          contains = false
+          isCompliant = false
         }
       }
     }
-    return contains
+    return isCompliant
   };
   var checkAnswer = function(answer, correctArray) {
     var answerBoolean;
@@ -25721,8 +25726,9 @@ VISH.Editor.Quiz.TF = function(V, $, undefined) {
   return{init:init, add:add, save:save, draw:draw, isSelfAssessment:isSelfAssessment}
 }(VISH, jQuery);
 VISH.Editor.Renderer = function(V, $, undefined) {
-  var slides = null;
+  var _isRendering;
   var init = function(presentation) {
+    _isRendering = false;
     V.Editor.Animations.setCurrentAnimation(presentation.animation);
     if(presentation.type === V.Constant.PRESENTATION) {
       renderPresentation(presentation)
@@ -25734,7 +25740,8 @@ VISH.Editor.Renderer = function(V, $, undefined) {
     }
   };
   var renderPresentation = function(presentation) {
-    slides = presentation.slides;
+    _isRendering = true;
+    var slides = presentation.slides;
     for(var i = 0;i < slides.length;i++) {
       var slideNumber = V.Slides.getSlidesQuantity() + 1;
       var type = slides[i].type;
@@ -25747,6 +25754,7 @@ VISH.Editor.Renderer = function(V, $, undefined) {
         }
       }
     }
+    _isRendering = false
   };
   var _renderSlide = function(slide, renderOptions) {
     var options = {};
@@ -25843,7 +25851,10 @@ VISH.Editor.Renderer = function(V, $, undefined) {
       slidesetCreator.draw(slidesetJSON, scaffoldDOM)
     }
   };
-  return{init:init, renderPresentation:renderPresentation}
+  var isRendering = function() {
+    return _isRendering
+  };
+  return{init:init, renderPresentation:renderPresentation, isRendering:isRendering}
 }(VISH, jQuery);
 VISH.Editor.Scrollbar = function(V, $, undefined) {
   var createScrollbar = function(containerId, options) {
@@ -29468,7 +29479,7 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
     })
   };
   var _applySortable = function(tableTbody) {
-    $(tableTbody).sortable({cursor:"move", start:function(event, ui) {
+    $(tableTbody).sortable({cursor:"move", scroll:false, start:function(event, ui) {
     }, stop:function(event, ui) {
       var trOption = ui.item;
       _refreshChoicesIndex(trOption)

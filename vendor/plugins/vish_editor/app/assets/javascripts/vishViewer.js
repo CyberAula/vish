@@ -16878,7 +16878,7 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
     })
   };
   var _applySortable = function(tableTbody) {
-    $(tableTbody).sortable({cursor:"move", start:function(event, ui) {
+    $(tableTbody).sortable({cursor:"move", scroll:false, start:function(event, ui) {
     }, stop:function(event, ui) {
       var trOption = ui.item;
       _refreshChoicesIndex(trOption)
