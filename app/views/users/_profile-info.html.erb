@@ -282,7 +282,7 @@
         <% if modelName == "Excursion" %>
           <!--excursions-->
           <li class="<%= params[:tab]=='excursions' ? 'active':''%>">
-            <a id="excursions_tab" href="#tabExcursion" data-toggle="tab">
+            <a id="excursions_tab" href="#tabExcursions" data-toggle="tab">
               <i class="icon-book"></i>
               <span class=" hidden-xs"><%=t('excursion.other')%></span>
             </a>
@@ -297,14 +297,14 @@
         <% elsif modelName == "Resource" %>
           <!--resources-->
           <li class="<%= params[:tab]=='resources' ? 'active':''%>">
-            <a id="resources_tab" href="#tabResource" data-toggle="tab">
+            <a id="resources_tab" href="#tabResources" data-toggle="tab">
               <i class="icon-file"></i>
               <span class=" hidden-xs"><%=t('resource.other')%></span>
             </a>
           </li>
         <% elsif modelName == "Category" %>
           <li class="<%= params[:tab]=='categories' ? 'active':''%>">
-            <a id="categories_tab" href="#tabCategory" data-toggle="tab">
+            <a id="categories_tab" href="#tabCategories" data-toggle="tab">
               <i class="icon-th-large"></i>
               <span class=" hidden-xs"><%=t('categories.other')%></span>
             </a>
@@ -363,7 +363,7 @@
 
 
       <% if availableModels.include? "Event" %> 
-        <div class="tab-pane <%= params[:tab]== 'events' ? 'active':''%>" id="tab2 tabEvents">
+        <div class="tab-pane <%= params[:tab]== 'events' ? 'active':''%>" id="tabEvents">
 
           <%= render partial: 'users/order_by_dropdown_events' %>
           <%if params[:tab]== 'events'%>
