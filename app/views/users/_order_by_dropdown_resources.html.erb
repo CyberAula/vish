@@ -1,9 +1,9 @@
 <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
 <% icon = profile_subject_is_current? ? "pencil" : "dashboard"%>
 
-<div class="dropdown" li_selected="<%=default_sort_by%>" id="order_by_selector_resources">
-  <div class="toolbar_nav-tab">
-    <button class="btn btn-default dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="dropdownMenuOrdByresources" data-toggle="dropdown"><i class="icon-<%=icon%>"></i> <span><%=t('order_by.' + default_sort_by)%></span>
+<div class="toolbar_nav-tab">
+  <div class="dropdown" li_selected="<%=default_sort_by%>" id="order_by_selector_resources">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuOrdByresources" data-toggle="dropdown"><i class="icon-<%=icon%>"></i> <span><%=t('order_by.' + default_sort_by)%></span>
       <i class="fa fa-angle-down"></i>
     </button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
