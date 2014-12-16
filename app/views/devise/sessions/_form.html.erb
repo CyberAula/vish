@@ -13,7 +13,7 @@
       <%= f.label :password %>
 
       <%= f.password_field :password, :class => "form-control" %>
-
+      <hr class="soften">
       <% if devise_mapping.rememberable? -%>
         <div class="checkbox">
           <label>
@@ -25,16 +25,10 @@
         </div>
       <% end %>
 
-      <%= f.submit t('sign_in'), :class =>"btn" %>
-      
-
-
       <%= link_to t('devise.links.forgot_password'), new_password_path(resource_name),  :class=> "forgot-link remember_password" %>
-
-      <hr class="soften">
-
-      <%= render :partial => "devise/shared/links" %>  
-
+      
+      <%= f.submit t('sign_in'), :class =>"btn btn-primary" %>
+      
     </article>
   <% end %>
 </section>
