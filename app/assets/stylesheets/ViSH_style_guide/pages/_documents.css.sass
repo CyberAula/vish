@@ -306,7 +306,8 @@ input.new_file_avatar
   margin-bottom: 10px
 
 
-#new_document-up
+#new_document-up,
+#new_event-up
   @include make-xs-column(12, $gutter: $grid-gutter-width)
   @include make-sm-column(7, $gutter: $grid-gutter-width)
   @include make-md-column(6, $gutter: $grid-gutter-width)
@@ -320,7 +321,12 @@ input.new_file_avatar
       @extend .form-control
   textarea
     @extend .form-control
-
+  .checkbox label
+    margin-top: 0
+    display: inline-block
+    width: auto
+    &:first-child
+      margin-left: 0
   .modal-footer
-    background: #CCC
+    background: $gray-light
 
