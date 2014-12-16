@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20141210085747) do
 
-
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
     t.datetime "created_at"
