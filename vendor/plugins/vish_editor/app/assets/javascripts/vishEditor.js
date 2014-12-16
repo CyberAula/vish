@@ -182,7 +182,7 @@ var i18n = {"vish":{"default":{"i.About2":"Code available at", "i.About3":"visit
 "i.University":"Universit\u00e4t", "i.UnselectAll":"Gesamte Auswahl r\u00fcckg\u00e4ngig machen", "i.UnselectSlide":"Auswahl der Folie r\u00fcckg\u00e4ngig machen", "i.unspecified":"Nicht spezifiziert", "i.Unspecified":"Nicht spezifiziert", "i.unpublishing":"aufheben", "i.Unpublishing":"Aufheben", "i.upload":"Hochladen", "i.Upload":"Hochladen", "i.Version":"Version", "i.verydifficult":"Sehr schwierig", "i.veryeasy":"Sehr einfach", "i.Vertical":"Vertikal", "i.VESurvey1":"Hilf uns, den ViSH Editor zu verbessern", 
 "i.VESurvey2":"Bitte ausf\u00fcllen", "i.VESurvey3":"diese Umfrage", "i.VESurvey4":"Danke f\u00fcr deinen Beitrag", "i.video":"Video", "i.videos":"Videos", "i.VirtualTour":"Virtuelle Tour", "i.yes":"Ja", "i.Yes":"Ja", "i.ZoneTooltip":"Hier klicken um Inhalte hinzuzuf\u00fcgen", "i.tooltip.QSInput":"Einen Namen f\u00fcr das live Quizz eingeben"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
-VISH.VERSION = "0.8.9";
+VISH.VERSION = "0.9.0";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -10824,6 +10824,9 @@ VISH.Renderer = function(V, $, undefined) {
       case V.Constant.MEDIA.WEB_APP:
         return V.Object.Webapp.renderWebappFromJSON(element, {extraClasses:"" + template + "_" + element["areaid"]});
         break;
+      case V.Constant.MEDIA.PDF:
+        return V.Object.PDF.renderPDFFromJSON(element, {extraClasses:"" + template + "_" + element["areaid"], source:objectInfo.source});
+        break;
       default:
         var style = element["style"] ? element["style"] : "";
         var body = element["body"];
@@ -12325,6 +12328,8 @@ VISH.Utils = function(V, undefined) {
 }(VISH);
 VISH.Object = function(V, $, undefined) {
   var init = function() {
+    V.Object.PDF.init();
+    V.Object.GoogleDOC.init();
     V.Object.Webapp.init()
   };
   function objectInfo(wrapper, source, sourceType) {
@@ -12379,30 +12384,41 @@ VISH.Object = function(V, $, undefined) {
     return new objectInfo(wrapper, source, type)
   };
   var _getSourceFromObject = function(object, wrapper) {
+    var source = null;
     switch(wrapper) {
       case null:
-        return object;
+        source = object;
+        break;
       case V.Constant.WRAPPER.EMBED:
-        return $(object).attr("src");
+        source = $(object).attr("src");
+        break;
       case V.Constant.WRAPPER.OBJECT:
         if(typeof $(object).attr("src") != "undefined") {
-          return $(object).attr("src")
+          source = $(object).attr("src")
+        }else {
+          if(typeof $(object).attr("data") != "undefined") {
+            source = $(object).attr("data")
+          }
         }
-        if(typeof $(object).attr("data") != "undefined") {
-          return $(object).attr("data")
-        }
-        return"source not founded";
+        break;
       case V.Constant.WRAPPER.IFRAME:
-        return $(object).attr("src");
+        source = $(object).attr("src");
+        break;
       case V.Constant.WRAPPER.VIDEO:
         return V.Video.HTML5.getSources(object);
       case V.Constant.WRAPPER.AUDIO:
         return V.Audio.HTML5.getSources(object);
       default:
         V.Debugging.log("Unrecognized object wrapper: " + wrapper);
-        return null;
         break
     }
+    if(wrapper == null || wrapper == V.Constant.WRAPPER.IFRAME) {
+      var googledoc_pattern = /(^http:\/\/docs.google.com\/viewer\?url=)/g;
+      if(source.match(googledoc_pattern) != null) {
+        source = source.replace("http://docs.google.com/viewer?url=", "").replace("&embedded=true", "")
+      }
+    }
+    return source
   };
   var _getTypeFromSource = function(source) {
     if(typeof source == "object" && typeof source.length == "number" && source.length > 0) {
@@ -12440,7 +12456,7 @@ VISH.Object = function(V, $, undefined) {
     if(extension == "json") {
       return V.Constant.MEDIA.JSON
     }
-    if(extension == "doc") {
+    if(extension == "doc" || extension == "docx") {
       return V.Constant.MEDIA.DOC
     }
     if(extension == "ppt" || extension == "pptx") {
@@ -12505,6 +12521,8 @@ VISH.Editor = function(V, $, undefined) {
     V.Utils.Loader.loadDeviceCSS();
     V.I18n.init(options.lang);
     V.Utils.Loader.loadLanguageCSS();
+    V.Object.init();
+    V.Editor.IMSQTI.init();
     V.Editor.Dummies.init();
     V.Editor.API.init();
     V.EventsNotifier.init();
@@ -14149,6 +14167,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     V.Editor.Object.Live.init();
     V.Editor.Object.Web.init();
     V.Editor.Object.GoogleDOC.init();
+    V.Editor.Object.PDF.init();
     V.Editor.Object.Snapshot.init();
     V.Editor.Object.Scorm.init();
     V.Editor.Object.Webapp.init();
@@ -14380,7 +14399,8 @@ VISH.Editor.Object = function(V, $, undefined) {
             return"<embed class='objectPreview' src='" + object + "'></embed>";
             break;
           case V.Constant.MEDIA.PDF:
-          ;
+            return V.Editor.Object.PDF.generatePreviewWrapper(object);
+            break;
           case V.Constant.MEDIA.DOC:
           ;
           case V.Constant.MEDIA.PPT:
@@ -14452,6 +14472,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     if(!V.Police.validateObject(object)[0]) {
       return
     }
+    options = typeof options == "undefined" ? {} : options;
     var objectInfo = V.Object.getObjectInfo(object);
     var current_area = V.Editor.getCurrentArea();
     var object_style = "";
@@ -14481,15 +14502,14 @@ VISH.Editor.Object = function(V, $, undefined) {
             V.Editor.Object.Flash.drawFlashObjectWithSource(object, object_style);
             break;
           case V.Constant.MEDIA.PDF:
-          ;
+            options.wrapperGenerated = true;
+            return drawObject(V.Editor.Object.PDF.generateWrapper(objectInfo.source), options);
           case V.Constant.MEDIA.DOC:
           ;
           case V.Constant.MEDIA.PPT:
-            V.Editor.Object.drawObject(V.Editor.Object.GoogleDOC.generateWrapper(object));
-            break;
+            return drawObject(V.Editor.Object.GoogleDOC.generateWrapper(object), options);
           case V.Constant.MEDIA.YOUTUBE_VIDEO:
-            V.Editor.Object.drawObject(V.Editor.Video.Youtube.generateWrapperForYoutubeVideoUrl(object));
-            break;
+            return drawObject(V.Editor.Video.Youtube.generateWrapperForYoutubeVideoUrl(object), options);
           case V.Constant.MEDIA.HTML5_VIDEO:
             V.Editor.Video.HTML5.drawVideoWithUrl(object);
             break;
@@ -14497,26 +14517,24 @@ VISH.Editor.Object = function(V, $, undefined) {
             V.Editor.Audio.HTML5.drawAudioWithUrl(object);
             break;
           case V.Constant.MEDIA.WEB:
-            V.Editor.Object.drawObject(V.Editor.Object.Web.generateWrapperForWeb(object));
-            break;
+            return drawObject(V.Editor.Object.Web.generateWrapperForWeb(object), options);
           case V.Constant.MEDIA.SCORM_PACKAGE:
-            V.Editor.Object.drawObject(V.Editor.Object.Scorm.generateWrapperForScorm(object));
-            break;
+            return drawObject(V.Editor.Object.Scorm.generateWrapperForScorm(object), options);
           case V.Constant.MEDIA.WEB_APP:
-            V.Editor.Object.drawObject(V.Editor.Object.Webapp.generateWrapper(object));
-            break;
+            return drawObject(V.Editor.Object.Webapp.generateWrapper(object), options);
           default:
             V.Debugging.log("Unrecognized object source type: " + objectInfo.type);
             break
         }
         break;
       case V.Constant.WRAPPER.EMBED:
-        drawObjectWithWrapper(object, current_area, object_style);
-        break;
+      ;
       case V.Constant.WRAPPER.OBJECT:
-        drawObjectWithWrapper(object, current_area, object_style);
-        break;
+      ;
       case V.Constant.WRAPPER.IFRAME:
+        if([V.Constant.MEDIA.PDF].indexOf(objectInfo.type) != -1 && !options.wrapperGenerated) {
+          return drawObject(objectInfo.source, options)
+        }
         drawObjectWithWrapper(object, current_area, object_style, zoomInStyle);
         break;
       case V.Constant.WRAPPER.VIDEO:
@@ -14657,11 +14675,12 @@ VISH.Editor.Presentation = function(V, $, undefined) {
   };
   var _generateSlideScaffold = function(index, element, options) {
     var slide = {};
+    var element = element || {};
     slide.id = "article" + index;
     slide.type = V.Constant.STANDARD;
     var defaultTemplate = "t10";
     if(element.template) {
-      slide.template = options.template
+      slide.template = element.template
     }else {
       if(options && options.template) {
         slide.template = options.template
@@ -14669,8 +14688,10 @@ VISH.Editor.Presentation = function(V, $, undefined) {
         slide.template = defaultTemplate
       }
     }
+    if(element.type = V.Constant.QUIZ) {
+      slide.containsQuiz = true
+    }
     slide.elements = [];
-    var element = element || {};
     element.id = slide.id + "_zone1";
     switch(slide.template) {
       case "t2":
@@ -15458,7 +15479,9 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     $("#subslides_list").find("div.draggable_sc_div").show()
   };
   var unloadSlideset = function(fc) {
-    _savePoisToDom(fc);
+    if(!V.Editor.Renderer.isRendering()) {
+      _savePoisToDom(fc)
+    }
     $("#subslides_list").find("div.draggable_sc_div[ddend='background']").hide()
   };
   var beforeCreateSlidesetThumbnails = function(fc) {
@@ -22928,7 +22951,7 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
   var init = function() {
   };
   var isCompliantXMLFile = function(fileXML) {
-    var contains;
+    var isCompliant;
     var schema;
     var xmlDoc = $.parseXML(fileXML);
     var xml = $(xmlDoc);
@@ -22953,30 +22976,30 @@ VISH.Editor.IMSQTI = function(V, $, undefined) {
     }
     if(checkQuizType(fileXML) == "multipleCA") {
       if(itemBody.length == 0 || simpleChoice.length == 0 || correctResponse.length == 0 || schema == false) {
-        contains = false
+        isCompliant = false
       }else {
-        contains = true
+        isCompliant = true
       }
     }else {
       if(checkQuizType(fileXML) == "order") {
         if(itemBody.length == 0 || orderInteraction.length == 0 || correctResponse.length == 0 || schema == false) {
-          contains = false
+          isCompliant = false
         }else {
-          contains = true
+          isCompliant = true
         }
       }else {
         if(checkQuizType(fileXML) == "openshortAnswer" || checkQuizType(fileXML) == "fillInTheBlankText") {
           if(itemBody.length == 0 || correctResponse.length == 0 || schema == false) {
-            contains = false
+            isCompliant = false
           }else {
-            contains = true
+            isCompliant = true
           }
         }else {
-          contains = false
+          isCompliant = false
         }
       }
     }
-    return contains
+    return isCompliant
   };
   var checkAnswer = function(answer, correctArray) {
     var answerBoolean;
@@ -23968,10 +23991,13 @@ VISH.Editor.Object.GoogleDOC = function(V, $, undefined) {
   var init = function() {
   };
   var generateWrapper = function(url) {
-    return"<iframe src='http://docs.google.com/viewer?url=" + url + "&embedded=true'></iframe>"
+    return V.Object.GoogleDOC.generateWrapper(url)
   };
   var generatePreviewWrapper = function(url) {
-    return"<iframe class='objectPreview' src='http://docs.google.com/viewer?url=" + url + "&embedded=true'></iframe>"
+    var objectWrapper = V.Object.GoogleDOC.generateWrapper(url);
+    previewWrapper = $(objectWrapper);
+    $(previewWrapper).addClass("objectPreview");
+    return V.Utils.getOuterHTML(previewWrapper)
   };
   return{init:init, generatePreviewWrapper:generatePreviewWrapper, generateWrapper:generateWrapper}
 }(VISH, jQuery);
@@ -24308,6 +24334,20 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
     }
   };
   return{init:init, beforeLoadTab:beforeLoadTab, onLoadTab:onLoadTab, addSelectedObject:addSelectedObject}
+}(VISH, jQuery);
+VISH.Editor.Object.PDF = function(V, $, undefined) {
+  var init = function() {
+  };
+  var generateWrapper = function(url) {
+    return V.Object.PDF.generateWrapper(url)
+  };
+  var generatePreviewWrapper = function(url) {
+    var objectWrapper = V.Object.PDF.generateWrapper(url);
+    previewWrapper = $(objectWrapper);
+    $(previewWrapper).addClass("objectPreview");
+    return V.Utils.getOuterHTML(previewWrapper)
+  };
+  return{init:init, generateWrapper:generateWrapper, generatePreviewWrapper:generatePreviewWrapper}
 }(VISH, jQuery);
 VISH.Editor.Object.Repository = function(V, $, undefined) {
   var containerDivId = "tab_object_repo_content";
@@ -25721,8 +25761,9 @@ VISH.Editor.Quiz.TF = function(V, $, undefined) {
   return{init:init, add:add, save:save, draw:draw, isSelfAssessment:isSelfAssessment}
 }(VISH, jQuery);
 VISH.Editor.Renderer = function(V, $, undefined) {
-  var slides = null;
+  var _isRendering;
   var init = function(presentation) {
+    _isRendering = false;
     V.Editor.Animations.setCurrentAnimation(presentation.animation);
     if(presentation.type === V.Constant.PRESENTATION) {
       renderPresentation(presentation)
@@ -25734,7 +25775,8 @@ VISH.Editor.Renderer = function(V, $, undefined) {
     }
   };
   var renderPresentation = function(presentation) {
-    slides = presentation.slides;
+    _isRendering = true;
+    var slides = presentation.slides;
     for(var i = 0;i < slides.length;i++) {
       var slideNumber = V.Slides.getSlidesQuantity() + 1;
       var type = slides[i].type;
@@ -25747,6 +25789,7 @@ VISH.Editor.Renderer = function(V, $, undefined) {
         }
       }
     }
+    _isRendering = false
   };
   var _renderSlide = function(slide, renderOptions) {
     var options = {};
@@ -25843,7 +25886,10 @@ VISH.Editor.Renderer = function(V, $, undefined) {
       slidesetCreator.draw(slidesetJSON, scaffoldDOM)
     }
   };
-  return{init:init, renderPresentation:renderPresentation}
+  var isRendering = function() {
+    return _isRendering
+  };
+  return{init:init, renderPresentation:renderPresentation, isRendering:isRendering}
 }(VISH, jQuery);
 VISH.Editor.Scrollbar = function(V, $, undefined) {
   var createScrollbar = function(containerId, options) {
@@ -28887,6 +28933,41 @@ VISH.Messenger.Helper = function(V, undefined) {
   };
   return{createMessage:createMessage, processVEMessage:processVEMessage, validateVEMessage:validateVEMessage}
 }(VISH, jQuery);
+VISH.Object.GoogleDOC = function(V, $, undefined) {
+  var init = function() {
+  };
+  var generateWrapper = function(url) {
+    return"<iframe src='http://docs.google.com/viewer?url=" + url + "&embedded=true'></iframe>"
+  };
+  return{init:init, generateWrapper:generateWrapper}
+}(VISH, jQuery);
+VISH.Object.PDF = function(V, $, undefined) {
+  var _pdfSupport = false;
+  var init = function() {
+    _pdfSupport = V.Status.getDevice().features.pdfReader
+  };
+  var generateWrapper = function(url) {
+    if(_pdfSupport) {
+      return"<iframe src='" + url + "'></iframe>"
+    }else {
+      return V.Object.GoogleDOC.generateWrapper(url)
+    }
+  };
+  var renderPDFFromJSON = function(pdfJSON, options) {
+    if(typeof options != "object" || typeof options.source != "string") {
+      return""
+    }
+    var style = pdfJSON["style"] ? pdfJSON["style"] : "";
+    var pdfBody = generateWrapper(options.source);
+    var zoomInStyle = pdfJSON["zoomInStyle"] ? pdfJSON["zoomInStyle"] : "";
+    var classes = "objectelement";
+    if(options.extraClasses) {
+      classes = classes + " " + options.extraClasses
+    }
+    return"<div id='" + pdfJSON["id"] + "' class='" + classes + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper=\"" + pdfBody + '"></div>'
+  };
+  return{init:init, generateWrapper:generateWrapper, renderPDFFromJSON:renderPDFFromJSON}
+}(VISH, jQuery);
 VISH.Object.Webapp = function(V, $, undefined) {
   var init = function() {
   };
@@ -29468,7 +29549,7 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
     })
   };
   var _applySortable = function(tableTbody) {
-    $(tableTbody).sortable({cursor:"move", start:function(event, ui) {
+    $(tableTbody).sortable({cursor:"move", scroll:false, start:function(event, ui) {
     }, stop:function(event, ui) {
       var trOption = ui.item;
       _refreshChoicesIndex(trOption)
@@ -30863,6 +30944,10 @@ VISH.Status.Device.Features = function(V, $, undefined) {
       features.reader = false
     }
     features.sandbox = "sandbox" in document.createElement("iframe");
+    features.pdfReader = false;
+    if(typeof navigator.mimeTypes == "object" && "application/pdf" in navigator.mimeTypes) {
+      features.pdfReader = true
+    }
     return features
   };
   return{init:init, fillFeatures:fillFeatures}
@@ -32295,6 +32380,7 @@ VISH.Viewer = function(V, $, undefined) {
   };
   var _initAferStatusLoaded = function(options, presentation) {
     V.EventsNotifier.init();
+    V.Object.init();
     V.Slideset.init();
     V.Quiz.initBeforeRender(presentation);
     V.Slides.init();

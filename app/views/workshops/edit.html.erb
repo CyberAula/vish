@@ -62,12 +62,9 @@
               <%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activities.actions.confirm_delete') %>
             </li>
 
-
-            <% if className == "WaResource" %>
               <li class="toggleWorkshopActivity">
                 <i class="icon-fullscreen"></i>
               </li>
-            <%end%>
           </ul>
         </div>
         <div class="layout_workshop">

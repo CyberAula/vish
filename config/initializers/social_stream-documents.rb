@@ -71,6 +71,6 @@ SocialStream::Documents.setup do |config|
   end
 
   config.subtype_classes_mime_types[:swf] = [:swf]
-  config.subtype_classes_mime_types[:zipfile] = [:zipfile]
+  config.subtype_classes_mime_types[:zipfile] = [:zip]
   config.subtype_classes_mime_types[:officedoc]= [:odt, :odp, :ods, :doc, :ppt, :xls, :rtf, :pdf]
 end

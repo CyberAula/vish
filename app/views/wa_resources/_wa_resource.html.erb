@@ -3,6 +3,7 @@
 	classNameUnderscore = className.underscore
 	classNameTableize = className.tableize
 	hasWorkshopPartial = lookup_context.template_exists?("#{classNameUnderscore}_workshop_show", classNameTableize, true)
+	hasMinifiedPartial = lookup_context.template_exists?("#{classNameUnderscore}_workshop_mini_show", classNameTableize, true)
 %>
 
 <div class="wa_resource_wrapper wa_activity_open">
@@ -10,6 +11,14 @@
 	<% unless className == "Excursion" %>
 		<%= render partial: 'wa_resources/corner_resource', locals: { resource: resource} %>
 	<% end %>
+
+	<div class="resource_mini_description">
+		<% if hasMinifiedPartial %>
+			<%= render partial: "#{ classNameTableize }/#{classNameUnderscore}_workshop_mini_show", locals:  { classNameUnderscore.to_sym => resource, :prefix_id => "wa_resource" }  %>
+		<% else %>
+			<%= resource.title %>
+		<%end%>
+	</div>
 
 	<% if hasWorkshopPartial %>
 		<%= render partial: "#{ classNameTableize }/#{classNameUnderscore}_workshop_show", locals:  { classNameUnderscore.to_sym => resource, :prefix_id => "wa_resource" }  %>

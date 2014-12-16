@@ -1,7 +1,29 @@
 <%= div_for officedoc, :class => 'content_size' do %>
-
   <div class="officedoc_show">
-    <iframe src="http://docs.google.com/viewer?url=<%= Vish::Application.config.full_domain + officedoc.file.url %>&embedded=true" width="100%" height="500" style="border: none;"></iframe>
+    <iframe id="iframe_officedoc_<%=officedoc.id%>" width="100%" height="500" style="border: none;"></iframe>
   </div>
-
 <% end %>
+
+<script type="text/javascript">
+	var isPDFSupported = function(){
+		var pdfReaderSupport = false;
+		if((typeof navigator.mimeTypes == "object")&&("application/pdf" in navigator.mimeTypes)){
+			pdfReaderSupport = true;
+		}
+		return pdfReaderSupport;
+	};
+
+	$(document).ready(function(){
+		var iframeDOM = $("#iframe_officedoc_<%=officedoc.id%>");
+		var iframeSrc = '<%=raw officedoc.google_doc_url%>';
+
+		if('<%=officedoc.file_content_type%>'=="application/pdf"){
+			//Check PDF native reader support
+			if(isPDFSupported()){
+				iframeSrc = '<%=raw officedoc.source_full_url%>';
+			}
+		}
+
+		$(iframeDOM).attr("src",iframeSrc);
+	});
+</script>

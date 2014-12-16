@@ -8486,7 +8486,7 @@ LOEP.IframeAPI = function(L, undefined) {
   return{instance:instance}
 }(LOEP);
 var VISH = VISH || {};
-VISH.VERSION = "0.8.9";
+VISH.VERSION = "0.9.0";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -9491,6 +9491,8 @@ VISH.I18n = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Object = function(V, $, undefined) {
   var init = function() {
+    V.Object.PDF.init();
+    V.Object.GoogleDOC.init();
     V.Object.Webapp.init()
   };
   function objectInfo(wrapper, source, sourceType) {
@@ -9545,30 +9547,41 @@ VISH.Object = function(V, $, undefined) {
     return new objectInfo(wrapper, source, type)
   };
   var _getSourceFromObject = function(object, wrapper) {
+    var source = null;
     switch(wrapper) {
       case null:
-        return object;
+        source = object;
+        break;
       case V.Constant.WRAPPER.EMBED:
-        return $(object).attr("src");
+        source = $(object).attr("src");
+        break;
       case V.Constant.WRAPPER.OBJECT:
         if(typeof $(object).attr("src") != "undefined") {
-          return $(object).attr("src")
+          source = $(object).attr("src")
+        }else {
+          if(typeof $(object).attr("data") != "undefined") {
+            source = $(object).attr("data")
+          }
         }
-        if(typeof $(object).attr("data") != "undefined") {
-          return $(object).attr("data")
-        }
-        return"source not founded";
+        break;
       case V.Constant.WRAPPER.IFRAME:
-        return $(object).attr("src");
+        source = $(object).attr("src");
+        break;
       case V.Constant.WRAPPER.VIDEO:
         return V.Video.HTML5.getSources(object);
       case V.Constant.WRAPPER.AUDIO:
         return V.Audio.HTML5.getSources(object);
       default:
         V.Debugging.log("Unrecognized object wrapper: " + wrapper);
-        return null;
         break
     }
+    if(wrapper == null || wrapper == V.Constant.WRAPPER.IFRAME) {
+      var googledoc_pattern = /(^http:\/\/docs.google.com\/viewer\?url=)/g;
+      if(source.match(googledoc_pattern) != null) {
+        source = source.replace("http://docs.google.com/viewer?url=", "").replace("&embedded=true", "")
+      }
+    }
+    return source
   };
   var _getTypeFromSource = function(source) {
     if(typeof source == "object" && typeof source.length == "number" && source.length > 0) {
@@ -9606,7 +9619,7 @@ VISH.Object = function(V, $, undefined) {
     if(extension == "json") {
       return V.Constant.MEDIA.JSON
     }
-    if(extension == "doc") {
+    if(extension == "doc" || extension == "docx") {
       return V.Constant.MEDIA.DOC
     }
     if(extension == "ppt" || extension == "pptx") {
@@ -9624,6 +9637,41 @@ VISH.Object = function(V, $, undefined) {
     return source.split(".").pop().split("&")[0].toLowerCase()
   };
   return{init:init, getExtensionFromSrc:getExtensionFromSrc, getObjectInfo:getObjectInfo}
+}(VISH, jQuery);
+VISH.Object.PDF = function(V, $, undefined) {
+  var _pdfSupport = false;
+  var init = function() {
+    _pdfSupport = V.Status.getDevice().features.pdfReader
+  };
+  var generateWrapper = function(url) {
+    if(_pdfSupport) {
+      return"<iframe src='" + url + "'></iframe>"
+    }else {
+      return V.Object.GoogleDOC.generateWrapper(url)
+    }
+  };
+  var renderPDFFromJSON = function(pdfJSON, options) {
+    if(typeof options != "object" || typeof options.source != "string") {
+      return""
+    }
+    var style = pdfJSON["style"] ? pdfJSON["style"] : "";
+    var pdfBody = generateWrapper(options.source);
+    var zoomInStyle = pdfJSON["zoomInStyle"] ? pdfJSON["zoomInStyle"] : "";
+    var classes = "objectelement";
+    if(options.extraClasses) {
+      classes = classes + " " + options.extraClasses
+    }
+    return"<div id='" + pdfJSON["id"] + "' class='" + classes + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper=\"" + pdfBody + '"></div>'
+  };
+  return{init:init, generateWrapper:generateWrapper, renderPDFFromJSON:renderPDFFromJSON}
+}(VISH, jQuery);
+VISH.Object.GoogleDOC = function(V, $, undefined) {
+  var init = function() {
+  };
+  var generateWrapper = function(url) {
+    return"<iframe src='http://docs.google.com/viewer?url=" + url + "&embedded=true'></iframe>"
+  };
+  return{init:init, generateWrapper:generateWrapper}
 }(VISH, jQuery);
 VISH.Object.Webapp = function(V, $, undefined) {
   var init = function() {
@@ -9785,6 +9833,9 @@ VISH.Renderer = function(V, $, undefined) {
         break;
       case V.Constant.MEDIA.WEB_APP:
         return V.Object.Webapp.renderWebappFromJSON(element, {extraClasses:"" + template + "_" + element["areaid"]});
+        break;
+      case V.Constant.MEDIA.PDF:
+        return V.Object.PDF.renderPDFFromJSON(element, {extraClasses:"" + template + "_" + element["areaid"], source:objectInfo.source});
         break;
       default:
         var style = element["style"] ? element["style"] : "";
@@ -11670,6 +11721,7 @@ VISH.Viewer = function(V, $, undefined) {
   };
   var _initAferStatusLoaded = function(options, presentation) {
     V.EventsNotifier.init();
+    V.Object.init();
     V.Slideset.init();
     V.Quiz.initBeforeRender(presentation);
     V.Slides.init();
@@ -13638,6 +13690,10 @@ VISH.Status.Device.Features = function(V, $, undefined) {
       features.reader = false
     }
     features.sandbox = "sandbox" in document.createElement("iframe");
+    features.pdfReader = false;
+    if(typeof navigator.mimeTypes == "object" && "application/pdf" in navigator.mimeTypes) {
+      features.pdfReader = true
+    }
     return features
   };
   return{init:init, fillFeatures:fillFeatures}
@@ -16878,7 +16934,7 @@ VISH.Quiz.Sorting = function(V, $, undefined) {
     })
   };
   var _applySortable = function(tableTbody) {
-    $(tableTbody).sortable({cursor:"move", start:function(event, ui) {
+    $(tableTbody).sortable({cursor:"move", scroll:false, start:function(event, ui) {
     }, stop:function(event, ui) {
       var trOption = ui.item;
       _refreshChoicesIndex(trOption)
