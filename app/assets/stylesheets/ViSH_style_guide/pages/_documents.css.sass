@@ -304,3 +304,23 @@ input.age-slider
 
 input.new_file_avatar
   margin-bottom: 10px
+
+
+#new_document-up
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(7, $gutter: $grid-gutter-width)
+  @include make-md-column(6, $gutter: $grid-gutter-width)
+  @include make-lg-column(6, $gutter: $grid-gutter-width)
+  @extend .well
+  padding: 0
+  margin: 0 0 40px 25%
+  
+  input
+    &[type="text"]
+      @extend .form-control
+  textarea
+    @extend .form-control
+
+  .modal-footer
+    background: #CCC
+

@@ -1,0 +1,7 @@
+<% content_for :title do %>
+  <%= "#{ current_subject.name }: #{ t('document.new.title') }" %>
+<% end %>
+
+<section id="new_document-up">
+  <%= render partial: 'repositories/nomodal-form' %>
+</section>

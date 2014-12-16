@@ -6,7 +6,7 @@
       <%=t('order_by.relevance')%>
       <i class="icon-angle-down"></i>
     </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+    <ul class="dropdown-menu dropdownMenuOrdBy" role="menu" aria-labelledby="dLabel">
      <li>
           <a href="<%=search_path(:q=>params[:q], :browse => params[:browse], :type=> params[:type])%>" sort-by-key='relevance'>
             <i class="icon-eye-open"></i>
