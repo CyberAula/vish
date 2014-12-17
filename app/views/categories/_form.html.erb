@@ -22,12 +22,6 @@
       <label><%= t('categories.leyend.description')%></label>
       <%= f.text_field :description, :id => div_id+"_category_description", :placeholder => t('categories.description_input') %>
 
-      <div>
-        <label><%= f.label :scope, "Scope"%></label>
-
-        
-       <%= f.check_box :scope, {checked: 1}, 1, 0%><%=t('categories.scope')%>
-      </div>
 
       <label><%= f.label :parentCategory, "Belongs to" %></label>
       <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject))) %>
