@@ -1,5 +1,6 @@
 header.navbar,
 .navbar-fixed-top
+  //z-index: 20 //maximum zindex
   .navbar-inner
     padding-left: 5%
     padding-right: 5%
@@ -31,7 +32,9 @@ header.navbar,
           max-width: 135px
           clear: both
           width: 100%
-
+          opacity: 0.7
+          &:hover
+            opacity: 1
         .vish-name
           display: block
           margin-left: auto
@@ -44,30 +47,27 @@ header.navbar,
         float: right
 
       .browse
-        margin-right: 7px
+        margin-left: 2%
         float: left
+        border-left: 1px solid rgb(214, 214, 214)
         cursor: pointer
 
         .browse_btn
-          border: 1px solid $gray1
-          color: $gray1
+          border: 1px solid #EEEEEE
           border-radius: 3px
-          float: right
-          height: 35px
+          float: left
+          height: 39px
           margin-left: 5px
-          margin-top: 6px
+          margin-top: 5px
           position: relative
-          font-family: $thirdFontFamily
-
           &:hover
             border: 1px solid $firstColor
-            color: $firstColor
           .browse_name
-            padding: 7px 15px
+            padding: 11px
 
       .search-ui
-        float: right
-
+        float: right  
+        
       .user-tool
         float: right
         .add_nav
@@ -75,88 +75,85 @@ header.navbar,
           margin-right: 5px
           .dropdown-menu
             margin-top: -2px
+          .btn-primary
 
           .btn
-            margin-top: 6px
-            padding: 8px 10px 7px
-            background-color: $gray1
+            padding: 0px
+            height: 38px
+            width: 38px
+            background-color: $white
             background-image: none
             box-shadow: none
-            border: none !important
-            border-radius: 3px
-            &:hover
-              background-color: $firstColor
+            border: 1px solid #EEEEEE
+            border-radius: 3px 
+
             i
               display: block
-              color: $white
+              margin-top: 10px
+              margin-left: 11px
+              color: #c8c8c8
               font-size: 20px
               text-decoration: none
               display: block
               float: left
             &:hover
               text-decoration: none
-
-            .icon-border
-              border: solid 1px $gray1
-
+              border-color: $firstColor
+              i
+                color: $firstColor
         .photo_user
           padding: 0px
           height: 39px
           width: 39px
-          outline: none
+          outline: none  
           float: left
-          margin-left: 2px
-          margin-top: 6px
+          margin-left: 5px
+          margin-top: 5px
           img
-            @include border-left-radius( 3px)
-            height: 35px
-            width: 35px
+            @include border-radius( 3px)
+            height: 39px
+            width: 39px
             float: left
-            border: 1px solid $gray1
-            border-right: 0
+            border: 1px solid #EEEEEE
             &:hover
               border: 1px solid $firstColor
-              border-right: 0
           a
             padding: 0
 
         .user-settings
           float: right
           width: 135px
-          @include border-right-radius( 3px)
-          height: 35px
+          @include border-radius( 3px)
+          height: 39px
           float: left
-          border: 1px solid $gray1
-          margin-left: -3px
-          margin-top: 6px
-          border-left: 0
+          border: 1px solid #EEEEEE
+          margin-left: 5px
+          margin-top: 5px
           position: relative
           cursor: pointer
 
           &:hover
-            border: 1px  solid $firstColor
-            border-left: 0
-            color: $firstColor
-            .name_user
-              color: $firstColor
+            border: 1px solid $firstColor
 
           .name_user
-            margin: 8px
+            margin-left: 5px
             text-overflow: ellipsis
             float: left
             overflow: hidden
-            width: 90px
-            color: $gray1
-            font-family: $thirdFontFamily
+            height: 30px
+            width: 110px
+            margin-top: 10px
+            color: $gray
             &:hover
-              color: $firstColor
-              text-decoration: none
+              color: $black
+              text-decoration: none 
+              font-family: $thirdFontFamily
 
           .icon-angle-down
-            float: left
+            float: right
             margin-right: 3px
             margin-left: 5px
-            margin-top: 12px
+            margin-top: 15px
           .dropdown
             list-style: none
             margin-left: 20px
@@ -166,11 +163,44 @@ header.navbar,
           .dropdown-menu
             top: 95%
 
+
+        .navegation
+          float: left
+          margin-right: 7px
+          border: solid 1px #EEE
+          border-radius: 3px
+          padding: 1px
+          margin-top: 5px  
+          a
+            padding: 8px
+            i
+              color: #c8c8c8
+              font-size: 20px
+              text-decoration: none
+              padding: 0
+              margin: 0
+              display: block
+              float: left
+
+            i:hover
+              color: $firstColor
+              text-decoration: none
+              border-color: $firstColor
+            .notification
+              color: $secondColor
+            .btnhomefix    
+              margin-left: 4px
+          &:hover
+            border-color: $firstColor
+            a i 
+              color: $firstColor
         .search-ui
           float: left
 
       .log
         float: right
+        
+
         .caret
           color: $white
           border-top: 4px solid $white
@@ -185,8 +215,8 @@ header.navbar,
           color: $white
         a
           &:hover,&:active,&:focus
-            text-decoration: none
-            outline: none
+            text-decoration: none 
+            outline: none     
         ul.dropdown-menu
           margin: 7px 40px 0 -148px
           padding: 6px 7px
@@ -200,17 +230,17 @@ header.navbar,
             float: left
             display: inline-block
             margin-top: 10px
-          a
+          a 
             padding-top: 10px
             padding-left: 0px
             float: left
             display: block
-            color: lighten($secondColor, 60%)
+            color: lighten($secondColor, 60%) 
             &:hover
               text-decoration: none
-      a
+      a 
         &:hover,&:active,&:focus
-          text-decoration: none
+          text-decoration: none  
       .sign_up
         float: right
         margin-top: 10px
@@ -222,59 +252,24 @@ header.navbar,
         margin-right: 10px
         background-image: none
         margin-left: 10px
-        a
+        a 
           color: $white
           &:hover,&:active,&:focus
-            text-decoration: none
-            outline: none
+            text-decoration: none 
+            outline: none    
         &:hover
-          background-color: lighten($secondColor, 10%)
-
-//BUTTONS
-.navegation
-  float: left
-  margin-right: 7px
-  border-radius: 3px
-  padding: 1px 0
-  margin-top: 5px
-  a
-    padding: 0px !important
-    i
-      color: $gray1
-      display: block
-      float: left
-      font-size: 20px
-      padding: 7px 7px 6px
-      text-decoration: none
-      &:hover
-        color: $firstColor
-        text-decoration: none
-        border-color: $firstColor
-    .icon-border
-      border: solid 1px $gray1
-
-    .notification
-      color: $secondColor
-    .btnhomefix
-      margin-left: 4px
-  &:hover
-    border-color: $firstColor
-    a i
-      color: $firstColor
-
-
-
-
-
-.clearfix:after
+          background-color: lighten($secondColor, 10%) 
+          
+          
+.clearfix:after 
   content: "."
   display: block
   clear: both
   visibility: hidden
   line-height: 0
   height: 0
-
-.clearfix
+ 
+.clearfix 
   display: inline-block
 
 #warning_cookie_bar

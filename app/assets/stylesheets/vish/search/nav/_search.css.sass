@@ -1,32 +1,25 @@
 header
   .navbar-search
     position: inherit
-    margin-top: 6px
   .search-nav
-
-    input.search-query
-      @include border-radius (3px)
-      line-height: 2
-      padding: 7px 14px 8px
-      border: solid 1px $gray1
-      //height: 30px
+    input.search-query 
+      @include border-radius (5px)
+      height: 30px
     button
       display: inline-block
       background: $white
       border: none
-      margin: 0 7px 0 4px
-      padding: 0
+      margin: 0
+      padding-top: 0
+
 
       i
-        color: $gray1
+        color: #C8C8C8
         display: block
         float: left
         font-size: 20px
-        padding: 7px 7px 6px
+        padding: 9px
         text-decoration: none
-      .icon-border
-        border: solid 1px $gray1
-
     button:hover
       i
         color: $firstColor
@@ -116,7 +109,7 @@ header
                 img
                   border: 0px solid $white
                 a
-
+                  
                   font-size: 45px
                   i
                     padding-top: 10px
