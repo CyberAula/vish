@@ -221,7 +221,7 @@ es:
         place: "Ordenar"
         gallery: "Galeria"
         list: "Lista"
-        place_uncategorize: "Ordenar y descategoriza"
+        place_uncategorize: "Ordenar"
         place_long: "Ordenar categorias"
         trash: "Arrastra aquí"
         uncategorize: "Arrastra aquí para descategorizar"
