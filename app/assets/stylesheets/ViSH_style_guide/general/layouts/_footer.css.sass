@@ -1,52 +1,27 @@
-footer#footer:before
-  width: 40px
-  height: 20px
-  background-color: rgba(211, 211, 211, 0.85)
-  position: relative
-  content: "up"
-  margin: -41px auto 16px
-  @include border-top-radius ($border-radius-base)
-  padding: 2px 0px
-  cursor: pointer
-
 footer#footer
   @extend .container-fluid
-  height: 161px
-  padding-top: 18px
-  background-color: rgba(211, 211, 211, 0.85)
+  height: 36px
+  padding-top: 2px
+  background-color: rgba(211, 211, 211, 0.92)
   border-top: 1px solid $gray-lighter
-  bottom: -157px
   position: fixed
   width: 100%
   z-index: $zindex-footer-fixed
-  font-size: 0.9rem
-  text-align: center 
-  @media (max-width: 500px) 
-    height: 283px
-    bottom: -274px
+  bottom: 0
+  text-align: center
+  @media (max-width: $screen-xs-max)
+    display: none 
   &:hover
     bottom: 0px
     background-color: rgba(211, 211, 211, 0.98)
-    @include transition (all 0.8s ease-out 0.2s)
+    @include transition (all 0.3s ease-out 0.3s)
   .social
-    clear: both
-    margin-top: -9px
-    color: $gray-dark
-    h6
-      margin: 0 auto 10px
-      width: 70px
-      background: rgba(211, 211, 211, 0.98)
-      height: 17px
-      font-family: $corporate-font-family-sans-serif-Regular
-      &:last-child
-        background: transparent
-        width: 150px
-        margin: 10px auto 0
     a
       padding: 3px
       i
         font-size: 1.3rem
         color: $gray
+        margin-top: 5px
         &:hover
           color: $gray-dark
       .fa-facebook
@@ -54,19 +29,14 @@ footer#footer
 
 
   ul
-    &:first-child
-      margin: 0 auto
-      padding: 0
-      height: 63px
-      width: 528px
-      text-align: center
-      border-bottom: 2px solid #C7C7C7
-      padding-bottom: 21px
-      @media (max-width: 500px) 
-        height: 198px
-        width: 100%
-      @media (min-width: 1130px) 
-        width: 550px
+    margin: 0 auto
+    padding: 0
+    height: 63px
+    width: 640px
+    text-align: center
+    border-bottom: 2px solid #C7C7C7
+    padding-bottom: 21px
+
   
   .open
     .btn

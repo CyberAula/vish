@@ -61,27 +61,26 @@
             <% end %>
           </ul>
       </li>
-<!-- contact-->
-      <li>
-         <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript, :class=> "btn btn-default") %>
-      </li>
-
-
 <!-- global-->
       <li class="global">
         <%= link_to image_tag("footer/global.png",  :class=> "btn btn-default" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
       </li>
-    </ul>
 
-          <div class="social">
-          <h6>Síguenos</h6>
-          <a href="https://www.facebook.com/VirtualScienceHub" target="_blank"><i alt="Facebook-logo" class="social-img fa fa-facebook"></i>
-          </a>
-          <a href="https://twitter.com/ViSH_portal" target="_blank"><i alt="Twitter-logo" class="social-img fa fa-twitter"></i>
-          </a>
-          <h6>Vish Hub © 2014</h6>
-        </div>
-        </nav>
+      <li class="social">  
+        <a href="https://www.facebook.com/VirtualScienceHub" target="_blank" class="btn btn-default"><i alt="Facebook-logo" class="social-img fa fa-facebook"></i>
+        </a>
+      </li>
+
+      <li class="social"> 
+        <a href="https://twitter.com/ViSH_portal" target="_blank"  class="btn btn-default"><i alt="Twitter-logo" class="social-img fa fa-twitter"></i>
+        </a>
+      </li>
+<!-- contact-->
+      <li>
+         <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript, :class=> "btn btn-default") %>
+      </li>
+    </ul>
+  </nav>
 </footer>
 <script>
     // scrollUp full options
@@ -103,13 +102,3 @@
       });
     });
     </script>
-<script language="javascript" type="text/javascript" >
-
-
-  $(function() {
-    $("#footer").hover(function() {
-      $( "#scrollUp" ).addClass( "hover-scroll");
-    });
-  });
-
-</script>
