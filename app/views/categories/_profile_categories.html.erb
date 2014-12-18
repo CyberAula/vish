@@ -9,20 +9,65 @@
  
     <div class="toolbar_nav-tab">
        <% if profile_subject_is_current? or isAdmin? %>
-      <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
+          <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
         <% end %>
+
+    <!-- Button to options modal -->
+      <a href="#options-modal" type="button" class="btn btn-primary " role="button" data-toggle="modal" ><i class="icon-cogs"></i><%=t('categories.dragandrop.edit')%></a>
+
+
       <!--TODO:applycss and fix icons-->
       <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
         <button id="normal-view" type="button" class="btn btn-primary">
-          <i class="icon-th "></i>
+          <!--i class="icon-th "></i-->
           <%=t('categories.dragandrop.gallery')%>
         </button>
         <button id="list-view" type="button" class="btn btn-primary">
-          <i class="icon-align-justify "></i>
+          <!--i class="icon-align-justify "></i-->
           <%=t('categories.dragandrop.list')%>
         </button>
       </div>
     </div>
+
+
+
+     
+    <!-- Modal -->
+    <div id="options-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel"><%=t('categories.dragandrop.edit')%></h3>
+      </div>
+      <div class="modal-body">
+        <p>default view in profile categories</p>
+        <div class="radio">
+          <label><input type="radio" name="optradio">          
+            <i class="icon-th "></i>
+            <%=t('categories.dragandrop.gallery')%>
+          </label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="optradio">
+            <i class="icon-align-justify "></i>
+            <%=t('categories.dragandrop.list')%>
+          </label>
+        </div>
+
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true"><%=t('close')%></button>
+        <button class="btn btn-primary"><%=t('save')%></button>
+      </div>
+    </div>
+
+
+
+
   <% if profile_subject_is_current? or isAdmin? %>
     <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
   <% end %>
