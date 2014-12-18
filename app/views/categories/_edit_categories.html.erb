@@ -35,8 +35,8 @@
 		</div>
 	</div>
 	
-	<div class="layout_edit">
-		<ul class="items categories edit_categories"> 
+	<div class="layout_edit items">
+		<ul class="categories edit_categories"> 
 			<% @items ||= all_categories.map{|e| e.activity_object}%>
 			<%= render partial: 'categories/items', :locals => {:use_ids => true} %>
 		</ul>
@@ -44,7 +44,6 @@
 </div>
 
 <script>
-
 	//Serialize function
 	function getidArray(){
 		var s = [];
@@ -110,7 +109,7 @@
 		$(".overlay .edit_categories .box-item").click(function(){return false;});
 
 		$(".edit_categories").sortable({
-			//start:function(event,ui){
+			start:function(event,ui){
 				 //Reduces size
 
 				 if ($(ui.item).hasClass("categorie-item")){
@@ -119,8 +118,8 @@
 				 else{
 				 	$(".delete p").text("<%=t('categories.dragandrop.uncategorize')%>");
 				 }
-				 $(ui.item).width($(ui.item).width()*0.8);
-				 $(ui.item).height($(ui.item).height()*0.8);
+				 $(ui.item).width($(ui.item).width()*0.9);
+				 $(ui.item).height($(ui.item).height()*0.9);
 
 			},
 			tolerance: "intersect"

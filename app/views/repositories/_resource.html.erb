@@ -1,6 +1,6 @@
 <% return if resource.nil? or resource.author.nil? %>
 
-<li class="resource" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+<li class="resource box-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
 
   <!-- corner -->
   <%= link_to(resource) do %>
