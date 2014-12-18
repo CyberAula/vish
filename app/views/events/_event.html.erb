@@ -1,12 +1,13 @@
-<li class="event" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
-  <div class="corner-item">
-    <div class="corner-item2">
-      <div class="corner-color"></div>
-      <i class='icon-facetime-video'></i>
-    </div>
-    <div class="corner-background"></div>
-  </div>
+<li class="event event-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+  <!-- corner -->
   <%= link_to(event) do %>
+    <div class="corner-item">
+      <div class="corner-item2">
+        <div class="corner-color"></div>
+        <i class='icon-facetime-video'></i>
+      </div>
+      <div class="corner-background"></div>
+    </div>
     <div class="container-img">
       <div class="dummy"></div>
       <div class="element resource-center">

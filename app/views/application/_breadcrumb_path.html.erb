@@ -1,10 +1,12 @@
-<div class="breadcrumb_wrapper">
-  <p><a href="<%=user_url(path.first.owner.user)%>?tab=categories">..</a> 
-    <% path.each_with_index do |objectParent,index| %>
-      <%unless index == 0%>
-        <span></span>
-      <%end%>
-      <span><%= link_to objectParent.title, polymorphic_path(objectParent) %></span>
-    <% end %>
-  </p>
-</div>
+<% categorycrumb ||= false %> 
+
+<ul id="breadcrumb" class="breadcrumb_wrapper">
+  <% if categorycrumb %>
+    <li><a href="<%=user_url(path.first.owner.user)%>?tab=categories"><i class="icon-th-large"></i><%=t('document.help.categories1_html')%></a></li>
+  <% end %>
+
+  <% path.each_with_index do |objectParent,index| %>
+    <li><%= link_to (truncate_name(objectParent.title, length: 40)), polymorphic_path(objectParent) %></li>
+  <% end %>
+
+</ul>

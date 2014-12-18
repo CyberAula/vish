@@ -3,7 +3,7 @@
 <section id="<%= document.class.to_s.underscore %> "class="layout_show">
 
   <%if @contribution%>
-    <%= render :partial => 'contributions/breadcrumb_path', :locals  => { :path => document.contribution.parents_path } %>
+    <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => document.contribution.parents_path } %>
   <%end%>
 
   <% document_profile_subject ||= document.owner_subject %>

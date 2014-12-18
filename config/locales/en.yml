@@ -209,9 +209,13 @@ en:
       add: "Create category"
       apply: "Apply"
       verb: "Categorize"
+      belongs_to: "Belongs to"
     description_input: "Description for this category"
     dragandrop:
+        back: "Back"
         complete: "Complete"
+        confirm: "Are you sure you want to do this?"
+        discard_changes: "Discard changes"
         drag1: "Move and drop different resources into categories the way you want or even erase them."
         drag2: "Order is always important, drag and sort."
         drag3: "Knowledge can be grouped anyway, choose your way."
@@ -219,8 +223,13 @@ en:
         dragt2: "Sort your categories"
         dragt3: "Group your knowledge"
         erase: "Drag here to remove"
+        gallery: "Gallery"
+        list: "List"
         place: "Sort"
+        place_uncategorize: "Sort"
         place_long: "Sort categories"
+        trash: "Drag here"
+        uncategorize: "Drag here to uncategorize"
     errors:
       duplicated: "You already have a category with this title. Please, give it another title."
     favorites:
@@ -238,6 +247,7 @@ en:
     title_input: "Name for this category"
     save: "Save"
     selected: "categories"
+    scope: "We don't recommend to tick this checkbox, do it exclusively if you don't want search engine to index it"
     success: "Categories saved succesfully"
   close: "Close"
   conditions:

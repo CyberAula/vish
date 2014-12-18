@@ -1,5 +1,7 @@
+<%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path, :categorycrumb => true } %>
 <section id="category">
   <div class="category_info">
+
     <!-- corner -->
     <div class="corner-item">
       <div class="corner-item2">
@@ -41,34 +43,35 @@
         </div>
       </div>
 
-    <% if can?(:update, @category) %>
-      <div class="update" style="display:none">
-        <%= form_for(@category, :url => [@category]) do |f| %>
-        <%= f.hidden_field :owner_id %>
-        <!--TITULO-->
-        <label><%= t('categories.leyend.title')%></label>
-        <%= f.text_field :title, :class => "form-control" %>
-        <!--DESCRIPCION-->
-        <label><%= t('categories.leyend.description')%></label>
-        <%= f.text_field :description, :class => "form-control" %>
+      <% if can?(:update, @category) %>
+        <div class="update" style="display:none">
+          <%= form_for(@category, :url => [@category]) do |f| %>
+          <%= f.hidden_field :owner_id %>
+          <!--TITULO-->
+          <label><%= t('categories.leyend.title')%></label>
+          <%= f.text_field :title, :class => "form-control" %>
+          <!--DESCRIPCION-->
+          <label><%= t('categories.leyend.description')%></label>
+          <%= f.text_field :description, :class => "form-control" %>
 
-        <label><%= f.label :parentCategory, "Belongs to" %></label>
-        <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject,@category), @category.parent.nil? ? nil : @category.parent.id)) %>
-
-        <!--FORM FOR UPLOADING IMAGE-->
-        <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
-        <%= f.file_field :avatar %>
-        <div class="actions">
-          <%= f.submit t('categories.save'), :id => "saveCategory", :class=>"btn btn-primary" %>
-          <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-defaul" %>
-          <% end %>
-        </div>
-      <%end%>
-
+          <label><%= f.label :parentCategory, t('categories.actions.belongs_to') %></label>
+          <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject,@category), @category.parent.nil? ? nil : @category.parent.id)) %>
+          <%= f.label :scope, t('document.leyend.scope') %>
+          <%= f.select(:scope, options_for_select([[t('scope.public'), 0], [t('scope.private'), 1]],@category.scope)) %>
+          <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
+          <%= f.file_field :avatar %>
+            <!--Fix styles-->
+          <div class="actions">
+            <%= f.submit t('categories.save'), :id => "saveCategory" %>
+            <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn "%>
+          </div>
+        <%end%>
+      </div>
     </div>
   </div>
-      </div>
 </section>
+
+
 
 <%  @items = @category.property_objects
     order = @category.categories_order
