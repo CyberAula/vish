@@ -1,17 +1,19 @@
 <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path, :categorycrumb => true } %>
 <section id="category">
   <div class="category_info">
-
-    <!-- corner -->
-    <div class="corner-item">
-      <div class="corner-item2">
-        <div class="corner-color"></div>
-        <i class="icon-th-large"></i>
+    <div class="left_info">
+        <!-- corner -->
+      <div class="corner-item">
+        <div class="corner-item2">
+          <div class="corner-color"></div>
+          <i class="icon-th-large"></i>
+        </div>
+        <div class="corner-background"></div>
       </div>
-      <div class="corner-background"></div>
-    </div>
-    <div class="icon-box">
-      <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category, :show_avatar => true} %>
+    
+      <div class="icon-box ">
+         <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category, :show_avatar => true} %>
+      </div>
     </div>
 
     <div class="information">
@@ -23,11 +25,10 @@
             <!--titulo-->
             <h2><%= @category.title %></h2>
             <div class="description"><%= @category.description %></div>
-            <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path } %>
+            
             <div class="author"> <span class="by"><%=t('by')%></span> <%= link_to @category.author.name, @category.author.subject %></div>
           </div>
         </header>
-
         <div class="toolbar-profile">
           <div class="btn-group">
             <!--editar-->
@@ -42,18 +43,15 @@
           </div>
         </div>
       </div>
-
-      <% if can?(:update, @category) %>
-        <div class="update" style="display:none">
-          <%= form_for(@category, :url => [@category]) do |f| %>
+    </div>
+    <% if can?(:update, @category) %>
+      <div class="update" style="display:none">
+        <%= form_for(@category, :url => [@category]) do |f| %>
           <%= f.hidden_field :owner_id %>
-          <!--TITULO-->
           <label><%= t('categories.leyend.title')%></label>
-          <%= f.text_field :title, :class => "form-control" %>
-          <!--DESCRIPCION-->
+          <%= f.text_field :title, :class => "form-control"  %>
           <label><%= t('categories.leyend.description')%></label>
-          <%= f.text_field :description, :class => "form-control" %>
-
+          <%= f.text_field :description, :class => "form-control"  %>
           <label><%= f.label :parentCategory, t('categories.actions.belongs_to') %></label>
           <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject,@category), @category.parent.nil? ? nil : @category.parent.id)) %>
           <%= f.label :scope, t('document.leyend.scope') %>
@@ -62,11 +60,11 @@
           <%= f.file_field :avatar %>
             <!--Fix styles-->
           <div class="actions">
-            <%= f.submit t('categories.save'), :id => "saveCategory" %>
-            <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn "%>
+            <%= f.submit t('categories.save'), :id => "saveCategory", :class=>"btn btn-primary" %>
+            <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-default" %>
           </div>
-        <%end%>
-      </div>
+        <% end %>
+      <%end%>
     </div>
   </div>
 </section>
@@ -95,17 +93,16 @@
 
 <%= content_for :javascript do %>
   $(document).ready(function(){
-
     $(".edit_icon").on("click", function(){
       $(".update").show("slow");
       $(".btn-group").hide("slow");
-      $(".briefing").hide("slow");
+      $(".information").hide("slow");
     });
 
     $("#hide_category_form").on("click", function(){
       $(".update").hide("slow");
       $(".btn-group").show("slow");
-      $(".briefing").show("slow");
+      $(".information").show("slow");
     });
 
   });
@@ -116,16 +113,13 @@
   $("div[bs-img]").each(function(){
     $(this).backstretch($(this).attr("bs-img"));
   });
-
   Array.prototype.equals = function (array) {
       // if the other array is a falsy value, return
       if (!array)
           return false;
-
       // compare lengths - can save a lot of time
       if (this.length != array.length)
           return false;
-
       for (var i = 0, l=this.length; i < l; i++) {
           // Check if we have nested arrays
           if (this[i] instanceof Array && array[i] instanceof Array) {
@@ -140,7 +134,6 @@
       }
       return true;
   };
-
   var beginIndex;
   var beginObjects;
   //Let the overlay appear
@@ -157,7 +150,6 @@
       });
     });
   });
-
   function updateMainView(){
     var actualState = $(".edit_categories .box-item").clone();
     var s = $(".main-categories-space .box-item");
@@ -167,8 +159,6 @@
     s.each(function( index ) {this.remove();});
     actualState.appendTo(".main-categories-space");
   };
-
   //Apply authomatically the initial category to be created as the one you are at
   $("#category_parent_id").val(<%=@category.id%>); 
-
 </script>

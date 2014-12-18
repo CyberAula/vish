@@ -1,6 +1,6 @@
 <% categorycrumb ||= false %> 
 
-<ul id="breadcrumb" class="breadcrumb_wrapper">
+<ul id="breadcrumb" class="breadcrumb breadcrumb_wrapper">
   <% if categorycrumb %>
     <li><a href="<%=user_url(path.first.owner.user)%>?tab=categories"><i class="icon-th-large"></i><%=t('document.help.categories1_html')%></a></li>
   <% end %>
