@@ -9,15 +9,15 @@
  
     <div class="toolbar_nav-tab">
        <% if profile_subject_is_current? or isAdmin? %>
-      <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
+      <button type="button" class="btn btn-default btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
         <% end %>
       <!--TODO:applycss and fix icons-->
       <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
-        <button id="normal-view" type="button" class="btn btn-primary">
+        <button id="normal-view" type="button" class="btn btn-default">
           <i class="icon-th "></i>
           <%=t('categories.dragandrop.gallery')%>
         </button>
-        <button id="list-view" type="button" class="btn btn-primary">
+        <button id="list-view" type="button" class="btn btn-default">
           <i class="icon-align-justify "></i>
           <%=t('categories.dragandrop.list')%>
         </button>
@@ -37,7 +37,7 @@
     </ul>
   </div>
 
-  <div id="list-instance" style="display:none" >
+  <div id="list-instance" class="items" style="display:none" >
   <%all_categories.each do |category|%>
   <%if !category.property_objects.empty? %>
     <h2 ><%= category.title %></h2>
@@ -47,7 +47,7 @@
           <%end%>
           <!-- TODO: normalize in css-->
     </ul>
-    <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue" name="<%=category.title%>"><%=t('view_all')%></button>
+    <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue btn btn-default" name="<%=category.title%>"><%=t('view_all')%></button>
       <%end%>
     <%end%>
   </div>
