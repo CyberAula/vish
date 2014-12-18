@@ -61,11 +61,12 @@
             <% end %>
           </ul>
       </li>
-<!-- global-->
-      <li class="global">
-        <%= link_to image_tag("footer/global.png",  :class=> "btn btn-default" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
+<!-- contact-->
+      <li>
+         <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript, :class=> "btn btn-default") %>
       </li>
 
+<!-- social-->
       <li class="social">  
         <a href="https://www.facebook.com/VirtualScienceHub" target="_blank" class="btn btn-default"><i alt="Facebook-logo" class="social-img fa fa-facebook"></i>
         </a>
@@ -75,9 +76,9 @@
         <a href="https://twitter.com/ViSH_portal" target="_blank"  class="btn btn-default"><i alt="Twitter-logo" class="social-img fa fa-twitter"></i>
         </a>
       </li>
-<!-- contact-->
-      <li>
-         <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript, :class=> "btn btn-default") %>
+<!-- global-->
+      <li class="global">
+        <%= link_to image_tag("footer/global.png",  :class=> "btn btn-default" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
       </li>
     </ul>
   </nav>

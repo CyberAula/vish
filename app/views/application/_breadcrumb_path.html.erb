@@ -1,8 +1,8 @@
 <div class="breadcrumb_wrapper">
-  <p><a href="<%=user_url(path.first.owner.user)%>?tab=categories">..</a> >
+  <p><a href="<%=user_url(path.first.owner.user)%>?tab=categories">..</a> 
     <% path.each_with_index do |objectParent,index| %>
       <%unless index == 0%>
-        <span>></span>
+        <span></span>
       <%end%>
       <span><%= link_to objectParent.title, polymorphic_path(objectParent) %></span>
     <% end %>

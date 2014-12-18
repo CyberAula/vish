@@ -5,7 +5,7 @@
 	<div class="icontitle">
         <%=t("catalogue.categories." + @category, :default => "Category")%>
     </div>
-	<ul>
+	<ul class="items">
 		<%for resource in @resources%>
 			<%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
 		<%end%>

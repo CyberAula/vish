@@ -35,7 +35,7 @@
             <% end %>
             <!--remove-->
           <% if can?(:destroy, @category) %>
-            <%= link_to(raw("<i class='icon-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
+            <%= link_to(raw("<i class='icon-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn btn-default" )%>
           <% end %>
           </div>
         </div>
@@ -83,7 +83,7 @@
 
 
 
-<div class="main-categories-space">
+<div class="main-categories-space items">
   <% if can?(:update, @category) %>
   <%= render partial: 'categories/category-add' %>
   <% end %>
