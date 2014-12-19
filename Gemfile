@@ -1,3 +1,4 @@
+ruby '2.1.4'
 source 'http://rubygems.org'
 
 gem 'rails', '= 3.2.14'
@@ -26,7 +27,7 @@ gem 'rspec-rails', '= 2.9.0'
 gem 'net-ssh', '= 2.4.0'
 gem 'shortener', '= 0.3.0'
 gem 'rubyzip', '= 0.9.9'
-gem 'pry-debugger', '= 0.2.2'
+gem 'pry'
 gem 'rest-client', '= 1.6.7'
 gem 'pdf-reader', '= 1.3.3'
 gem 'avatars_for_rails', '= 1.1.4'
