@@ -102,66 +102,74 @@
 <!-- Add Workshop Activity Modal -->
 
 <div id="WorkshopActivities" class="modal hide fade" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3><%=t('workshop.actions.add_activity_title')%></h3>
-  </div>
-  <div class="modal-body tabbable tabs-below">
-    <div id="workshop_activities_column1">
-      <ul class="nav nav-tabs">
-        <li><a href="#tab_assignment" data-toggle="tab" activityId="assignment"><i class="icon-list-ol"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.assignment.title')%></span></a></li>
-        <li class="active"><a href="#tab_resource" data-toggle="tab" activityId="resource"><i class="icon-file"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.resource.title')%></span></a></li>
-        <li><a href="#tab_resource_gallery" data-toggle="tab" activityId="resource_gallery"><i class="icon-th-large"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.resource_gallery.title')%></span></a></li>
-        <li><a href="#tab_contributions_gallery" data-toggle="tab" activityId="contributions_gallery"><i class="icon-th"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.contributions_gallery.title')%></span></a></li>
-        <li><a href="#tab_text" data-toggle="tab" activityId="text"><i class="icon-align-left"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.text.title')%></span></a></li>
-      </ul>
-    </div>
-    <div id="workshop_activities_column2">
-      <div class="tab-content">
-        <div class="tab-pane" id="tab_assignment">
-          <h4><%=t('workshop.activities.assignment.description')%></h4>
-          <%= render partial: 'wa_assignments/new', :locals => { :workshop => @workshop } %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3><%=t('workshop.actions.add_activity_title')%></h3>
+      </div>
+      <div class="modal-body tabbable tabs-below">
+        <div id="workshop_activities_column1">
+          <ul class="nav nav-tabs">
+            <li><a href="#tab_assignment" data-toggle="tab" activityId="assignment"><i class="icon-list-ol"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.assignment.title')%></span></a></li>
+            <li class="active"><a href="#tab_resource" data-toggle="tab" activityId="resource"><i class="icon-file"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.resource.title')%></span></a></li>
+            <li><a href="#tab_resource_gallery" data-toggle="tab" activityId="resource_gallery"><i class="icon-th-large"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.resource_gallery.title')%></span></a></li>
+            <li><a href="#tab_contributions_gallery" data-toggle="tab" activityId="contributions_gallery"><i class="icon-th"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.contributions_gallery.title')%></span></a></li>
+            <li><a href="#tab_text" data-toggle="tab" activityId="text"><i class="icon-align-left"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.text.title')%></span></a></li>
+          </ul>
         </div>
-        <div class="tab-pane active" id="tab_resource">
-          <h4><%=t('workshop.activities.resource.description')%></h4>
-          <p><%=t('workshop.activities.resource.text')%> </p>
-          <%= render partial: 'wa_resources/new', :locals => { :workshop => @workshop } %>
-        </div>
-        <div class="tab-pane" id="tab_resource_gallery">
-          <h4><%=t('workshop.activities.resource_gallery.description')%></h4>
-          <p><%=t('workshop.activities.resource_gallery.text')%> </p>
-          <%= render partial: 'wa_resources_galleries/new', :locals => { :workshop => @workshop } %>
-        </div>
-        <div class="tab-pane" id="tab_contributions_gallery">
-          <h4><%=t('workshop.activities.contributions_gallery.description')%></h4>
-          <p><%=t('workshop.activities.contributions_gallery.text')%> </p>
-          <%= render partial: 'wa_contributions_galleries/new', :locals => { :workshop => @workshop } %>
-        </div>
-        <div class="tab-pane" id="tab_text">
-          <h4><%=t('workshop.activities.text.description')%></h4>
-          <p><%=t('workshop.activities.text.text')%> </p>
-          <%= render partial: 'wa_texts/new', :locals => { :workshop => @workshop } %>
+        <div id="workshop_activities_column2">
+          <div class="tab-content">
+            <div class="tab-pane" id="tab_assignment">
+              <h4><%=t('workshop.activities.assignment.description')%></h4>
+              <%= render partial: 'wa_assignments/new', :locals => { :workshop => @workshop } %>
+            </div>
+            <div class="tab-pane active" id="tab_resource">
+              <h4><%=t('workshop.activities.resource.description')%></h4>
+              <p><%=t('workshop.activities.resource.text')%> </p>
+              <%= render partial: 'wa_resources/new', :locals => { :workshop => @workshop } %>
+            </div>
+            <div class="tab-pane" id="tab_resource_gallery">
+              <h4><%=t('workshop.activities.resource_gallery.description')%></h4>
+              <p><%=t('workshop.activities.resource_gallery.text')%> </p>
+              <%= render partial: 'wa_resources_galleries/new', :locals => { :workshop => @workshop } %>
+            </div>
+            <div class="tab-pane" id="tab_contributions_gallery">
+              <h4><%=t('workshop.activities.contributions_gallery.description')%></h4>
+              <p><%=t('workshop.activities.contributions_gallery.text')%> </p>
+              <%= render partial: 'wa_contributions_galleries/new', :locals => { :workshop => @workshop } %>
+            </div>
+            <div class="tab-pane" id="tab_text">
+              <h4><%=t('workshop.activities.text.description')%></h4>
+              <p><%=t('workshop.activities.text.text')%> </p>
+              <%= render partial: 'wa_texts/new', :locals => { :workshop => @workshop } %>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <p><button class="btn btn-primary submitWorkshopActivityFake" data-loading-text="<%= t('workshop.actions.adding_activity_button')%>"><%=t('workshop.actions.add_activity_button')%></button></p>
+      </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <p><button class="btn btn-primary submitWorkshopActivityFake" data-loading-text="<%= t('workshop.actions.adding_activity_button')%>"><%=t('workshop.actions.add_activity_button')%></button></p>
   </div>
 </div>
 
 <!-- Model Workshop Activity Edit-->
 
 <div id="WorkshopActivity" class="modal hide fade" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3><%=t('workshop.activities.assignment.modal_title')%></h3>
-  </div>
-  <div class="modal-body tabbable tabs-below">
-      <!-- This body is replaced every time the modal is called -->
-  </div>
-  <div class="modal-footer">
-    <p><button class="btn btn-primary updateWorkshopActivityFake"><%=t('workshop.actions.edit_activity_button')%></button></p>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3><%=t('workshop.activities.assignment.modal_title')%></h3>
+      </div>
+      <div class="modal-body tabbable tabs-below">
+          <!-- This body is replaced every time the modal is called -->
+      </div>
+      <div class="modal-footer">
+        <p><button class="btn btn-primary updateWorkshopActivityFake"><%=t('workshop.actions.edit_activity_button')%></button></p>
+      </div>
+    </div>
   </div>
 </div>
 

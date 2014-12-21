@@ -50,7 +50,7 @@ $link-color:            $brand-secundary !default;
 //** Link hover color set via `darken()` function.
 $link-hover-color:      darken($link-color, 10%) !default;
 //** General color for borders.
-$border-color:          $gray !default;
+$border-color:          $text-color !default;
 
 $timeline-panel-border:  lighten($border-color, 16%) !default;
 //== Typography

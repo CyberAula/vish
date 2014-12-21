@@ -1,4 +1,4 @@
-
+<%= stylesheet_link_tag "vasearch" %>
 <%= javascript_include_tag "vasearch" %>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -24,9 +24,11 @@
   </div>
 </nav>
 
+<div class="container-av">
 <div id="asearch_results">
-</div>
 
+</div>
+</div>
 <div id="asearch_settings">
   <div class="settingsColumn">
     <p class="settingsTitle"><%=t("asearch.models.select_entities")%></p>
@@ -75,7 +77,7 @@
   </div>
 
   <div class="settingsColumn">
-    <p class="settingsTitle"><%=t("asearch.instances.title")%> <span class="closeASearchSettings"><%=t("asearch.close")%></span></p>
+    <p class="settingsTitle"><%=t("asearch.instances.title")%></p>
 
     <p class="settingsField"><%=t("asearch.instances.results")%></p>
     <select asparam="n">
@@ -108,5 +110,6 @@
       <option value="table"><%=t("asearch.rendering.table")%></option>
     </select>
   </div>
+  <span class="closeASearchSettings"><%=t("asearch.close")%></span>
 
 </div>

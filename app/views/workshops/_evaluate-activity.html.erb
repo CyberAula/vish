@@ -1,12 +1,11 @@
 <!--activity-->
 <div class="activity">
-  <div class="tabbable">
-    
+
     <ul class="nav nav-tabs"> 
       <li class="active">
         <a href="#commentsTab" data-toggle="tab">
           <i class="icon-comment"></i>
-          <span class=" hidden-phone hidden-tablet"><%=t('comment.other')%></span>
+          <span class=" hidden-xs"><%=t('comment.other')%></span>
         </a>
       </li>
     </ul>
@@ -20,7 +19,5 @@
           <%= render :partial => 'activities/comments', :locals => { :activity => @workshop.post_activity } %>
         </div>
       </div>
-    </div>
-
-  </div>    
+    </div>   
 </div>

@@ -20,17 +20,17 @@
   </div>
   <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
   <!-- INFO -->
-  <div class="info">
+  <div class="caption">
     <!-- Title -->
-    <div class="name">
+    <h6>
       <%= link_to workshop.title, workshop %>
-    </div>
+    </h6>
     <!-- Author -->
     <span class="author"> 
       <span class="by"><%=t('by')%></span>
       <%= link_to truncate_name(workshop.author.name, length: 25), workshop.author.subject %>
     </span>
-    <div class="info-bottom">
+    <div class="caption">
       <hr class="soften">
       <!--like -->
       <div class="like">    
