@@ -31,12 +31,12 @@
 
       <section class="title">
         <%= f.label :title, t('document.info.title') %>
-        <%= f.text_field :title %>
+        <%= f.text_field :title, :class => "form-control" %>
       </section>
 
       <section class="description">
         <%= f.label :description, t('document.info.description') %>
-        <%= f.text_area :description %>
+        <%= f.text_area :description, :class => "form-control" %>
       </section>
 
       <section class="tags">
@@ -105,7 +105,7 @@
       <% end%>
 
       <div class="footer-form">
-        <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+        <%= f.submit :class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
         <% if resource.class.name=="Workshop" && !isNewInstance %>
           <button class="btn" href="<%=edit_workshop_path(@workshop)%>"><%=t('workshop.actions.cancel_&_go')%></button>
         <%end%>
