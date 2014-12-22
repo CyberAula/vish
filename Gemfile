@@ -8,7 +8,7 @@ gem 'pg', '= 0.17.1'
 gem 'mysql2', '= 0.3.16'
 
 gem 'sass-rails', '= 3.2.6'
-gem 'bootstrap-sass', '>= 3.2.0.1'
+gem 'bootstrap-sass', '= 3.1.1.0'
 
 gem 'coffee-rails', '= 3.2.2'
 gem 'uglifier', '= 1.2.3'
@@ -60,7 +60,7 @@ if ENV['FORCE_LOCAL_SS']
     gem 'social_stream-events'
   end
 else
-  git 'git://github.com/ging/social_stream.git', branch: "vish-b3", ref: "209bd845936d3636dd0745d2975fd326bc6981c3"  do
+  git 'git://github.com/ging/social_stream.git', branch: "vish-b3", ref: "27bbb27890020fb4a88b9f03e806c377cbb2e660"  do
     gem 'social_stream-base'
     gem 'social_stream-documents'
     gem 'social_stream-linkser'
