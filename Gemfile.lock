@@ -30,8 +30,8 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: b5c16bd057bb032ba89b78f67ca72173ec5aa979
-  ref: b5c16bd057bb032ba89b78f67ca72173ec5aa979
+  revision: 209bd845936d3636dd0745d2975fd326bc6981c3
+  ref: 209bd845936d3636dd0745d2975fd326bc6981c3
   branch: vish-b3
   specs:
     social_stream-base (2.2.2)
@@ -179,13 +179,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    columnize (0.8.9)
-    debugger (1.6.8)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.3.5)
-    debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.3.5)
     deep_merge (1.0.1)
     deface (0.9.1)
       nokogiri (~> 1.5.0)
@@ -333,9 +326,6 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry-debugger (0.2.2)
-      debugger (~> 1.3)
-      pry (~> 0.9.10)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -498,7 +488,7 @@ DEPENDENCIES
   paperclip-ffmpeg!
   pdf-reader (= 1.3.3)
   pg (= 0.17.1)
-  pry-debugger (= 0.2.2)
+  pry
   rails (= 3.2.14)
   redis (= 3.0.7)
   resque (= 1.23.1)

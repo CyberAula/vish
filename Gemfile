@@ -27,7 +27,7 @@ gem 'rspec-rails', '= 2.9.0'
 gem 'net-ssh', '= 2.4.0'
 gem 'shortener', '= 0.3.0'
 gem 'rubyzip', '= 0.9.9'
-gem 'pry-debugger', '= 0.2.2'
+gem 'pry'
 gem 'rest-client', '= 1.6.7'
 gem 'pdf-reader', '= 1.3.3'
 gem 'avatars_for_rails', '= 1.1.4'
@@ -60,7 +60,7 @@ if ENV['FORCE_LOCAL_SS']
     gem 'social_stream-events'
   end
 else
-  git 'git://github.com/ging/social_stream.git', branch: "vish-b3", ref: "b5c16bd057bb032ba89b78f67ca72173ec5aa979"  do
+  git 'git://github.com/ging/social_stream.git', branch: "vish-b3", ref: "209bd845936d3636dd0745d2975fd326bc6981c3"  do
     gem 'social_stream-base'
     gem 'social_stream-documents'
     gem 'social_stream-linkser'
