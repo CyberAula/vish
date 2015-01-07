@@ -3,10 +3,12 @@
 <!--++++++++++++++++toolbar+++++++++++++++++++++++-->
 
   <div class="toolbar_nav-tab_workshop">
-    <div class="container">
-      <h4 class="edit-workshop-title"><%=t('workshop.titles.show_main')%></h4>
+    <div class="container-fluid">
+      <h4 class="edit-workshop-title">
+        <%=t('workshop.titles.show_main')%>
+      </h4>
       <% if user_signed_in? and (can? :update, @workshop) %>
-        <p><a href="<%=edit_workshop_path(@workshop)%>" class="btn " id="edit_workshop"><i class="icon-edit"></i><%=t('workshop.actions.edit_mode_btOn')%></a></p>
+        <a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-default pull-right" id="edit_workshop"><i class="icon-edit"></i><%=t('workshop.actions.edit_mode_btOn')%></a>
       <%end%>
     </div>
   </div>
@@ -16,8 +18,6 @@
 
   <div class="wa_activity_wrapper wa_activity_wrapper_show header_workshop">
     <div class="layout_workshop">
-      <!--title-->
-      <h3 class="title_WS main_title_WS"><%=@workshop.title%></h3>
       <!--avatar-->
       <div class="container-img_WS">
         <div class="dummy"></div>
@@ -25,8 +25,16 @@
           <div bs-img="<%=@workshop.thumbnail_url%>" class="applyBackstretch img-box workshop_thumbnail" id=""></div>
         </div>
       </div>
-      <!--description-->
-      <p class="description_WS"><%=@workshop.description%></p>
+      <section class="information">
+        <div class="briefing">
+          <!--title-->
+          <div class="name">
+            <h2 class="title_WS main_title_WS"><%=@workshop.title%></h2>
+          </div>
+          <!--description-->
+          <div class="description"><%=@workshop.description%></div>
+        </div>
+      </section>
     </div>
   </div>
 

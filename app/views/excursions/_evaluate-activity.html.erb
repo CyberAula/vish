@@ -33,13 +33,13 @@
         <div class="timeline-panel">
           <div class="panel-group" id="accordion">
             <div class="panel">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#comment-excursion-activity">
-                  view comments
-                </a>
-              </h4>
-
-
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#comment-excursion-activity">
+                    view comments
+                  </a>
+                </h4>
+              </div>
               <div id="comment-excursion-activity" class="panel-collapse collapse">
                 <div class="panel-body">
                   <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>

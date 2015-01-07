@@ -1,13 +1,14 @@
 <% if workshop.nil? or workshop.author.nil? %>
   <% return %>
 <% end %>
-<li class="box-item workshop-item">
+<li class="box-item workshop">
   <!-- corner -->
-  <%= link_to raw(icon(workshop)) %>
+  <%= link_to(workshop) do %>
+
   <div class="corner-item">
     <div class="corner-item2">
       <div class="corner-color"></div>
-      
+      <i class='icon-lightbulb'></i>
     </div>
     <div class="corner-background"></div>
   </div>
@@ -26,12 +27,12 @@
       <%= link_to workshop.title, workshop %>
     </h6>
     <!-- Author -->
-    <span class="author"> 
+    <div class="author"> 
       <span class="by"><%=t('by')%></span>
       <%= link_to truncate_name(workshop.author.name, length: 25), workshop.author.subject %>
-    </span>
-    <div class="caption">
-      <hr class="soften">
+    </div>
+    <hr>
+    <div class="info-bottom">
       <!--like -->
       <div class="like">    
         <div class="count"><%=workshop.post_activity.likes.count.to_s%></div>
@@ -48,6 +49,7 @@
           <i class="icon-eye-open"></i>
         <%end%>
       </div>
+      <%end%>
     </div>
   </div>
 </li>

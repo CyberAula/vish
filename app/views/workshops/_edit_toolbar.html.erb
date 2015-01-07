@@ -1,16 +1,16 @@
 <div class="toolbar_nav-tab_workshop">
-  <div class="container">
+  <div class="container-fluid">
   <h4 class="edit-workshop-title"><%=t('workshop.titles.editing_main')%></h4>
-  <a href="#WorkshopActivities" class="btn " data-toggle="modal"><i class="icon-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></a>
+  <a href="#WorkshopActivities" class="btn btn-sm btn-default pull-right" data-toggle="modal"><i class="icon-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></a>
   <% unless @workshop.draft %>
-    <a class ="btn" href="<%=workshop_path(@workshop)%>"><i class="icon-check"></i><%=t('workshop.actions.edit_mode_btOff')%></a>
+    <a class ="btn btn-sm btn-default pull-right" href="<%=workshop_path(@workshop)%>"><i class="fa fa-check"></i><%=t('workshop.actions.edit_mode_btOff')%></a>
   <%end%>
 
-  <%= link_to raw('<i class="icon-trash"></i>'+t('workshop.actions.delete')),  @workshop, :method => :delete, :class => 'btn btn-delete-workshop', :confirm => t('workshop.actions.confirm_delete') %>
+  <%= link_to raw('<i class="icon-trash"></i>'+t('workshop.actions.delete')),  @workshop, :method => :delete, :class => 'btn btn-default pull-right btn-delete-workshop', :confirm => t('workshop.actions.confirm_delete') %>
 
   <%= form_for(@workshop) do |f| %>
     <%= f.hidden_field :draft, :value => !@workshop.draft %>
-    <%= button_tag(type: "submit", class: "btn btn-default") do %>
+    <%= button_tag(type: "submit", class: "btn btn-sm btn-default pull-right") do %>
       <%=@workshop.draft ? raw('<i class="icon-ok-circle"></i>'+t('workshop.actions.publish')) : raw('<i class="icon-eye-close"></i>'+t('workshop.actions.unpublish')) %>
     <% end %>
   <%end%>

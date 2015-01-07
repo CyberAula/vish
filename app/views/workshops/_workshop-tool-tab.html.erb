@@ -98,7 +98,7 @@
     <li class="active">
       <a href="#tab1" tabTitle='details' data-toggle="tab">
         <i class="icon-align-left"></i> 
-        <span class="  hidden-phone">
+        <span class="hidden-xs">
           <%=t('excursion.detail')%>
         </span>
       </a>
@@ -106,7 +106,7 @@
     <li>
       <a href="#tab3" tabTitle='share' data-toggle="tab">
         <i class="icon-share"></i>
-        <span class=" hidden-phone">
+        <span class="hidden-xs">
           <%=t('excursion.actions.share')%>
         </span>
       </a>
@@ -114,7 +114,7 @@
     <li>
       <a href="#tab5" tabTitle='flag' data-toggle="tab">
         <i class="icon-flag"></i> 
-        <span class=" hidden-phone spam-name ">
+        <span class=" hidden-xs">
         <%=t('excursion.actions.spam')%>
         </span>
       </a>
@@ -133,27 +133,32 @@
   </div>
 
   <!-- tab3 / share -->
-  <div class="tab-pane" id="tab3">
-    <div class="contentShare">
-      <div class="input-append url-input">
-        <input class="shortUrl" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+  <div class="tab-pane contentShare" id="tab3">
+
+    <div class="form-group">
+      <div class="input-group">
+        <input class="shortUrl form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+        <div class="input-group-addon">
           <button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-            <i class="icon-copy "></i>
+              <i class="icon-copy "></i>
           </button>
+        </div>
       </div>
-      <div class="social_toolbar_excursion">
-        <div class="twitter_toolbar_excursion">
+    </div>
+
+
+    <div class="social_toolbar_excursion">
+      <div class="social">
           <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + workshop_path(@workshop) )} %>
-        </div>
-        <div class="facebook_toolbar_excursion">
+      </div>
+      <div class="social">
           <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
-        </div>
-        <div class="gplus_toolbar_excursion ">
+      </div>
+      <div class="social">
           <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
-        </div>
-        <div class="email_toolbar_excursion">
+      </div>
+      <div class="social">
           <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @workshop.title, :name => (user_signed_in? ? current_subject.name : '')} %>
-        </div>
       </div>
     </div>
   </div> 

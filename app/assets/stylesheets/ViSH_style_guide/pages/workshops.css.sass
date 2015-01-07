@@ -1,5 +1,83 @@
+.workshop_show
+  margin-top: 20px
+  .header_workshop
+    @extend .well
+    margin-bottom: 0
+    .container-img_WS
+      display: inline-block
+      position: relative
+      width: 15%
+      float: left
+      background-color: #EEE
+      @include border-top-radius ($border-radius-base)
+      @include border-bottom-radius ($border-radius-base)
+    .information
+      .description
+        margin-right: 2.5%
+        margin-left: 2.5%
+  .description-activity
+    &:last-child
+      @include border-top-radius ($border-radius-base)
+    &:first-child
+      border-bottom: 1px solid $border-color
+    .box_description
+      border: 1px solid transparent
+    table
+      tr
+        &:first-child
+          td
+            border: 1px solid transparent
+.workshop-edit
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+.wa_activity_actions
+  float: right
+.toolbar_nav-tab_workshop
+  width: 100%
+  height: auto
+  display: inline-block
+  padding: 7px 0
+  position: fixed
+  top: 50px
+  left: 0
+  right: 0
+  z-index: 1000
+  background-color: rgba(85, 85, 85, 0.97)
+  -webkit-box-shadow: 0 -1px 5px rgba(50, 51, 51, 0.35)
+  -moz-box-shadow: 0 -1px 5px rgba(50,51,51,0.35)
+  box-shadow: 0 -1px 5px rgba(50, 51, 51, 0.35)
+  h4.edit-workshop-title
+    width: auto
+    float: left
+    display: inline-block
+    line-height: 20px
+    margin: 0
+    font-size: 20px
+    padding-top: 2px
+    color: $white
+    font-weight: normal
+  a.btn,
+  button.btn
+    padding: 1px 7px 2px
+    font-size: 13px !important
+    margin-left: 5px
+
 .layout_form_WS
   padding: 0 1%
   .footer-form 
     @extend .modal-footer
     margin: 0 -1%
+
+.wa_activity_wrapper,
+.wa_add_activity_wrapper
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  margin-top: 38px
+  border: 2px dashed #999
+  @include border-top-radius ($border-radius-base)
+  @include border-bottom-radius ($border-radius-base)
+  display: inline-block
