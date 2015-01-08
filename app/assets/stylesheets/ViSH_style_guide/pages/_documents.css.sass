@@ -31,7 +31,7 @@ aside.recomended
 
 .description-activity
   @include box-shadow(0 1px 4px 1px rgba(0, 0, 0, 0.1))
-  @extend .well
+  @include well
   @include border-top-radius (0)
   background-color: $white
   padding: 0
@@ -132,17 +132,7 @@ aside.recomended
       background: transparent
       &:hover
         border: none
-    .modal-footer
-      #save_cat_button,
-      #cancel_cat_button
-        @extend .btn
-        color: $white
-        &:hover
-          color: $white
-      #save_cat_button
-        @extend .btn-primary
-      #cancel_cat_button
-        background-color: #9B9B9B
+
 
     
   ul.nav-tabs
@@ -291,7 +281,7 @@ input.age-slider
 
 #repository
   a.btn
-    @extend .btn-primary
+    @include btn-primary
 
 #new_file
   section
@@ -317,7 +307,7 @@ input.new_file_avatar
   @include make-sm-column(7, $gutter: $grid-gutter-width)
   @include make-md-column(6, $gutter: $grid-gutter-width)
   @include make-lg-column(6, $gutter: $grid-gutter-width)
-  @extend .well
+  @include well
   padding: 0
   margin: 0 0 40px 25%
   

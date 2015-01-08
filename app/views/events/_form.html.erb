@@ -106,7 +106,7 @@
           <script>
             $(document).ready(function(){
               var saveEventButton = $("#AddEvent input[type='submit']");
-              var eventButton = $("#AddEvent input[value=<%= t('categories.save')%>][type='button'][class='btn-primary']");
+              var eventButton = $("#AddEvent input[value=<%= t('categories.save')%>][type='button'][class='btn btn-primary']");
               $(eventButton).click(function(event) {
                 if ($("#AddEvent input[name='event[title]']").val() == "") {
                   $("#AddEvent .errors").remove();
@@ -135,7 +135,7 @@
       </div><!-- /BODY-->
       
       <div class="modal-footer">
-        <input type="button" class="btn-primary" value="<%= t('categories.save')%>"/>
+        <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
       </div><!-- /FOOTER -->
     </div><!-- /MODAL-CONTENT -->
   </div><!-- /MODAL-DIALOG -->

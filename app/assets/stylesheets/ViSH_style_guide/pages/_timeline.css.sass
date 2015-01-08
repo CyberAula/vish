@@ -51,7 +51,7 @@
         .new_document
           padding: 7px
           background-image: none
-          @extend .btn-default
+          @include btn-default
       .input-group-btn
         width: 1%
         white-space: nowrap
@@ -69,8 +69,6 @@
 
   .more 
     a
-      @extend .btn
-      @extend .btn-default
       position: relative
       margin-top: 30px
 
@@ -146,8 +144,7 @@ div.new_comment
     input
       &[type="submit"]
         margin: 10px 0px 
-        float: right
-        @extend .btn-primary     
+        float: right    
         @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
 
 .comments   

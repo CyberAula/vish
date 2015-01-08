@@ -6,7 +6,7 @@
   margin-bottom: 20px
   
   #profile-info
-    @extend .well
+    @include well
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
     position: relative
     margin-bottom: 20px
@@ -199,6 +199,7 @@
       textarea
         display: block
         width: 100%
+        clear: both
     
       .avatar-edit
         display: block

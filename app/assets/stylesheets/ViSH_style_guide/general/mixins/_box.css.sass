@@ -67,7 +67,7 @@
   p
     margin: 10px 0
   label
-    @extend .caption
+    @include caption
     margin-bottom: 0px
     width: 100%
   input
@@ -224,15 +224,4 @@
       outline: 0
     .count
       display: inline
-
-
-
-@mixin table-striped
-  td
-    border: none
-    &:first-child
-      color: $brand-primary
-      font-size: 0.9em
-      padding-top: 0.75em
-      width: 92px
   

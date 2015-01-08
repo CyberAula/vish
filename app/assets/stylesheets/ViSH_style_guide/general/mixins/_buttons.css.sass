@@ -3,7 +3,6 @@
   color: $brand-primary
   font-family: $corporate-font-family-sans-serif-Regular
   font-size: 0.8em
-
   form
     @include center-block
     width: 105px
@@ -41,6 +40,8 @@
         padding: 5px
         @include border-top-radius ($border-radius-base)
         @include border-bottom-radius ($border-radius-base)
+
+
 
 @mixin follow-o
   text-align: center
@@ -80,13 +81,14 @@
         padding: 5px 5px 5px 0
 
 
+
 @mixin see-more
   margin-top: 2% !important
   margin-bottom: 2% !important
   display: block
   width: 160px
-  @extend .btn
-  @extend .btn-primary
+  @include btn
+  @include btn-primary
   @include border-top-radius (0)
   height: 33px
   margin: 0 auto

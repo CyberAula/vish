@@ -9,7 +9,7 @@
        <%=t('settings.api_key.explanation') %>: <span id="api_token"><%= current_subject.authentication_token.blank? ? t('settings.api_key.empty') : current_subject.authentication_token %></span>
     </div>
     <div class="form_sub_row">
-        <%= link_to t('settings.api_key.regenerate'), api_keygen_path(:api_settings => true), :confirm => t('settings.api_key.confirm'), :remote => true  %>
+        <%= link_to t('settings.api_key.regenerate'), api_keygen_path(:api_settings => true), :confirm => t('settings.api_key.confirm'), :remote => true, :class => "btn btn-primary" %>
     </div>
   </div>
 </div>

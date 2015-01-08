@@ -1,4 +1,4 @@
-<div class="worshop-edit">
+<div class="workshop-edit">
 
 
 
@@ -96,12 +96,12 @@
 <!-- Add Workshop Activity -->
 
 <div class="wa_add_activity_wrapper">
-  <a href="#WorkshopActivities" class="btn btn-primary" data-toggle="modal"><p><i class="icon-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></p></a>
+  <a href="#WorkshopActivities" class="" data-toggle="modal"><p><i class="icon-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></p></a>
 </div>
 
 <!-- Add Workshop Activity Modal -->
 
-<div id="WorkshopActivities" class="modal hide fade" aria-hidden="true">
+<div id="WorkshopActivities" class="modal fade" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -111,11 +111,11 @@
       <div class="modal-body tabbable tabs-below">
         <div id="workshop_activities_column1">
           <ul class="nav nav-tabs">
-            <li><a href="#tab_assignment" data-toggle="tab" activityId="assignment"><i class="icon-list-ol"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.assignment.title')%></span></a></li>
-            <li class="active"><a href="#tab_resource" data-toggle="tab" activityId="resource"><i class="icon-file"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.resource.title')%></span></a></li>
-            <li><a href="#tab_resource_gallery" data-toggle="tab" activityId="resource_gallery"><i class="icon-th-large"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.resource_gallery.title')%></span></a></li>
-            <li><a href="#tab_contributions_gallery" data-toggle="tab" activityId="contributions_gallery"><i class="icon-th"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.contributions_gallery.title')%></span></a></li>
-            <li><a href="#tab_text" data-toggle="tab" activityId="text"><i class="icon-align-left"></i><span class='hidden-tablet hidden-phone'><%=t('workshop.activities.text.title')%></span></a></li>
+            <li><a href="#tab_assignment" data-toggle="tab" activityId="assignment"><i class="icon-list-ol"></i><span class='hidden-xs'><%=t('workshop.activities.assignment.title')%></span></a></li>
+            <li class="active"><a href="#tab_resource" data-toggle="tab" activityId="resource"><i class="icon-file"></i><span class='hidden-xs'><%=t('workshop.activities.resource.title')%></span></a></li>
+            <li><a href="#tab_resource_gallery" data-toggle="tab" activityId="resource_gallery"><i class="icon-th-large"></i><span class='hidden-xs'><%=t('workshop.activities.resource_gallery.title')%></span></a></li>
+            <li><a href="#tab_contributions_gallery" data-toggle="tab" activityId="contributions_gallery"><i class="icon-th"></i><span class='hidden-xs'><%=t('workshop.activities.contributions_gallery.title')%></span></a></li>
+            <li><a href="#tab_text" data-toggle="tab" activityId="text"><i class="icon-align-left"></i><span class='hidden-xs'><%=t('workshop.activities.text.title')%></span></a></li>
           </ul>
         </div>
         <div id="workshop_activities_column2">
@@ -156,7 +156,7 @@
 
 <!-- Model Workshop Activity Edit-->
 
-<div id="WorkshopActivity" class="modal hide fade" aria-hidden="true">
+<div id="WorkshopActivity" class="modal fade" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

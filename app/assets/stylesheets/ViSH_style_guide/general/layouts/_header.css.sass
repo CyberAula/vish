@@ -25,7 +25,7 @@
       width: 100%
 
   .search-query
-    width: 290px
+    width: 265px
     display: inline
     @media (max-width: $screen-xs-max)
       width: 85%
@@ -95,8 +95,6 @@
     margin-bottom: 6px
 
 .desktop-nav
-  @include hidden-xs
-  @extend .pull-right
   margin-bottom: 0
   li
     a
@@ -168,7 +166,7 @@ form.navbar-form-search
 
 .results
   ul
-    @extend .items
+    @include items
     li
       @include excursion-small
 

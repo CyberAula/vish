@@ -1,44 +1,21 @@
 .btn
-  -moz-transition-property: background-color, color
-  -moz-transition-duration: .2s
-  -moz-transition-timing-function: ease-out
-  -webkit-transition-property: background-color, color
-  -webkit-transition-duration: .2s
-  -o-transition-property: background-color, color
-  -o-transition-duration: .2s
-  padding: 6px
-
-.btn:hover, .btn a
-  text-decoration: none
-  -moz-transition-property: background-color, color
-  -moz-transition-duration: .2s
-  -moz-transition-timing-function: ease-out
-  -webkit-transition-property: background-color, color
-  -webkit-transition-duration: .2s
-  -o-transition-property: background-color, color
-  -o-transition-duration: .2s
+  @include btn
+.btn-default
+  @include btn-default
+.btn-primary
+  @include btn-primary
+.btn-secundary
+  @include btn-secundary
 
 
-.btn:focus
-  outline: none
-.btn-default, #time-line .activities .wall_input .input-group-addon .new_document, .timeline .more a
+.wall_input .input-group-addon .new_document, 
+.timeline .more a
   color: $gray
-  
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .btn-default.disabled, .btn-default[disabled]
-  background-color: $white
-  color: $brand-primary
-  border: 1px solid $brand-primary
+
 
 .open .btn-default.dropdown-toggle
   background-color: rgba(85, 85, 85, 0.97) !important
 
-.btn-secundary
-  background-color: $btn-secundary-bg
-  color: $btn-secundary-color
-
-.btn-secundary:hover, .btn-secundary:focus, .btn-secundary:active, .btn-secundary.active, .btn-secundary.disabled, .btn-secundary[disabled] 
-  background-color: darken($btn-secundary-bg, 10%)
-  color: $btn-secundary-color
 
 .btn-group.open .btn-secundary.dropdown-toggle
   background-color: darken($btn-secundary-bg, 10%)

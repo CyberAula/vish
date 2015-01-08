@@ -23,7 +23,11 @@
 .timeline li {
   position: relative;
 }
-
+.timeline li .timeline-panel li {
+  @include excursion-small;
+  margin-left: 3%;
+  width: 94% !important;
+}
 .timeline li:before, .timeline li:after {
   content: " ";
   display: table;
