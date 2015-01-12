@@ -134,7 +134,7 @@
 </article>
 
 <script type="text/javascript">
- $(document).ready(function(){
+ document.addEventListener("DOMContentLoaded", function(){
  	<% if @quiz_session.name && !@quiz_session.name.empty? %>
  		var qName = '<%=@quiz_session.name%>';
  	<% else %>

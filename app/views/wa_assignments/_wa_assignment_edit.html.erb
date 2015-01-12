@@ -23,15 +23,13 @@
 
   <%=render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"} %>
 
-  <script>
-    $(document).ready(function(){
+<%content_for :javascript do%>
       var uploadButton = $("#edit_wa_assignment_<%=wa_assignment.id%>_button");
       $(uploadButton).click(function(event){
         set_ckeditor_content_full_and_plaintext("edit_wa_assignment_<%=wa_assignment.id%>_fulltext","edit_wa_assignment_<%=wa_assignment.id%>_plaintext");
         $("#edit_wa_assignment_<%=wa_assignment.id%>_submitbutton").click();
       });
-    });
-  </script>
+<%end%>
 
 
 <div class="workshop_contribute_footer">

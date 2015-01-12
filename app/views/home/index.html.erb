@@ -82,9 +82,25 @@
   </div>
 </div>
 
-<script>
 
-  $(document).ready(function(){
+<script>
+  var pageless_state = {
+      "home":{
+        "url": "<%= home_path(:tab=>'home', :sort_by=>'popularity') %>",
+        "num_pages":0,
+        "current_page":0
+      },
+      "net":{
+        "url": "<%= home_path(:tab=>'net') %>",
+        "num_pages":0,
+        "current_page":0
+      }
+  };
+
+</script>
+
+<%content_for :javascript do%>
+
 
     ///////////////
     // My Network
@@ -165,20 +181,6 @@
       re_apply_backstretch("catalogue_tabpane");
     <%end%>
 
-  });
-  
-  var pageless_state = {
-      "home":{
-        "url": "<%= home_path(:tab=>'home', :sort_by=>'popularity') %>",
-        "num_pages":0,
-        "current_page":0
-      },
-      "net":{
-        "url": "<%= home_path(:tab=>'net') %>",
-        "num_pages":0,
-        "current_page":0
-      }
-  };
 
   ///////////////
   // Pageless Ajax Handlers
@@ -248,7 +250,36 @@
     });
   }; 
 
-</script>
+  ///////////////
+  // Catalogue Ajax Handlers
+  ///////////////
+  var catalogue_charge = catalogue_charge || {};
 
-<%= render :partial => "catalogue/js_common"%>
+  function catalogue_state(next_state){
+    if (typeof catalogue_charge[next_state] == "undefined"){
+      $.ajax({
+        type : "GET",
+        url : next_state,
+        success : function(html){
+          $('.loader_pagination').hide(); 
+          $("#catalogue_tab_ready").append(html);
+          //We add charged states to variable
+          re_apply_backstretch("catalogue_tabpane");
+          //We change actual state
+          catalogue_charge[next_state] = html;
+        },
+        error: function(){
+        }
+      });
+    }
+    else {
+      $('.loader_pagination').hide();
+      $("#catalogue_tab_ready").empty();
+      $("#catalogue_tab_ready").append(catalogue_charge[next_state]);
+      re_apply_backstretch("catalogue_tabpane");
+    }
+  };
+
+<%end%>
+
 

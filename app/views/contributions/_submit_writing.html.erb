@@ -2,12 +2,13 @@
 
 <%= link_to t('workshop.activities.assignment.add_writing'),  new_contribution_path(:type => "writing", :wa_assignment_id=> (wa_assignment.nil? ? nil : wa_assignment.id), :parent_id=> (parent.nil? ? nil : parent.id)), :class => 'btn btn-primary', :id => wlink_id %>
 
+
 <%if editMode%>
-  <script type="text/javascript">
-    $('#<%=wlink_id%>').addClass("disabled");
-    $('#<%=wlink_id%>').click(function(e){
-      e.preventDefault();
-    });
-  </script>
+	<%content_for :javascript do%>	  
+	    $('#<%=wlink_id%>').addClass("disabled");
+	    $('#<%=wlink_id%>').click(function(e){
+	      e.preventDefault();
+	    });
+  	<%end%>
 <%end%>
 

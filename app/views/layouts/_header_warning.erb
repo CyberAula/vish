@@ -41,7 +41,7 @@
 		$("#warning_cookie_bar").fadeOut();
 	};
 
-	$(document).ready(function(){
+	document.addEventListener("DOMContentLoaded", function(){
 		try {
 			if((geoplugin_countryCode() === "ES")&&(getCookie('cookie_warning') != "1")){
 				$("#warning_cookie_bar").fadeIn();

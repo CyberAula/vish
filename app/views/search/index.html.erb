@@ -233,14 +233,11 @@
     <% end %>
   </div>
     
-  <script>
-    $(function(){
-      $('.scroll-pane').jScrollPane();
-    });
-    $(document).ready(function(){
-     $(window).resize(re_apply_backstrech_on_search);
-     $(window).on('orientationchange', re_apply_backstrech_on_search);
-    });
-  </script>
+  <%content_for :javascript do%>
+    $('.scroll-pane').jScrollPane();
+
+    $(window).resize(re_apply_backstrech_on_search);
+    $(window).on('orientationchange', re_apply_backstrech_on_search);
+  <%end%>
 
 </section>

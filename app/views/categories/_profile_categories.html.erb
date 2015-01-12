@@ -78,12 +78,33 @@
       return true;
   };
 
+
+  function updateMainView(){
+    var actualState = $(".edit_categories .box-item").clone();
+    var s = $(".main-categories-space .box-item");
+    <% if profile_subject_is_current? %>
+      s.splice(0,2);
+    <% end %>
+    s.each(function(index){this.remove();});
+    actualState.appendTo(".main-categories-space");
+  };
+
+function backstretch_fix(){
+  $("div[bs-img]").each(function(){
+   $(this).backstretch($(this).attr("bs-img"));
+  });
+}
+
+</script>
+
+<%content_for :javascript do%>
   var beginIndex;
   var beginObjects;
+
   //Let the overlay appear
-  $(document).ready(function(){
-  	$(".btn-for-categorize").click(function(){
-  		$("#categories_edition").fadeIn();
+
+    $(".btn-for-categorize").click(function(){
+      $("#categories_edition").fadeIn();
 
       backstretch_fix();
 
@@ -105,23 +126,4 @@
         backstretch_fix();
       });
     });
-
-  });
-
-  function updateMainView(){
-    var actualState = $(".edit_categories .box-item").clone();
-    var s = $(".main-categories-space .box-item");
-    <% if profile_subject_is_current? %>
-      s.splice(0,2);
-    <% end %>
-    s.each(function(index){this.remove();});
-    actualState.appendTo(".main-categories-space");
-  };
-
-function backstretch_fix(){
-  $("div[bs-img]").each(function(){
-   $(this).backstretch($(this).attr("bs-img"));
-  });
-}
-
-</script>
+<%end%>

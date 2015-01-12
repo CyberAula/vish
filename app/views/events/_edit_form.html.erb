@@ -20,19 +20,19 @@
 
   <legend><%= t('document.options.embed')%></legend>
   <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
-  <script type="text/javascript">
+
+  <%content_for :javascript do%>
     $("#document-edit #event_streaming_false").on("click", function() {
       $("#document-edit #event_embed").attr("disabled", true);
     });
     $("#document-edit #event_streaming_true").on("click", function() {
       $("#document-edit #event_embed").attr("disabled", false);
     });
-    $(document).ready(function(){
-      if ($("#document-edit #event_streaming_true").is(':checked')) {
-        $("#document-edit #event_embed").attr("disabled", false);
-      }
-    });
-  </script>
+
+    if ($("#document-edit #event_streaming_true").is(':checked')) {
+      $("#document-edit #event_embed").attr("disabled", false);
+    }
+  <%end%>
 
   <legend><%= t('event.leyend.date')%></legend>
   <div id="editdate" class="input-append">
@@ -64,7 +64,7 @@
   <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
 
   <script>
-    $(document).ready(function(){
+    document.addEventListener("DOMContentLoaded", function(){
       $(function() {
         $('#edithourinit').datetimepicker({
           pickDate: false

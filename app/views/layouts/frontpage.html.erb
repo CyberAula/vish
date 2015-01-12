@@ -18,13 +18,46 @@
     <meta property="fb:app_id" content="629612437058744" /> 
     
     <%= favicon_link_tag "icons/favicon.ico" %>
-    <%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag "application" %>    
 
     <% if protect_against_forgery? %>
       <%= csrf_meta_tag %>
     <% end %>
+    
+    <%= yield :headers %>    
+      
+  </head>
+  <body>
+  <%= render partial: 'layouts/header_warning' %>
+    <div id="wrap">
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=629612437058744";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+      
+      <%= render :partial => "layouts/header" %>
+      <%= flashy %>
 
+      <div class="ilustration">
+          <%= render :partial => "frontpage/explanation" %>
+      </div>
+          
+      <div class="wrapper container-fluid">
+        <%= yield %>
+  
+      </div>  
+    </div>
+    <div id="footer">
+      <%= render :partial => "layouts/footer" %>
+    </div>
+  </body>
+
+    <%= javascript_include_tag "application" %>
     <script type="text/javascript">
       I18n.defaultLocale = "<%= I18n.default_locale %>";
       I18n.locale = "<%= I18n.locale %>";
@@ -43,39 +76,6 @@
         <%= yield :javascript%>
       });
     </script>
-    <%= yield :headers %>
     <%= render :partial => 'layouts/google_analytics' %>
     <%= render :partial => 'layouts/uservoice' %>
-      
-  </head>
-  <body>
-  <%= render partial: 'layouts/header_warning' %>
-    <div id="wrap">
-      <div id="fb-root"></div>
-      <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=629612437058744";
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-      </script>
-   
-      <%= render :partial => "layouts/header" %>
-      <%= flashy %>
-
-      <div class="ilustration">
-          <%= render :partial => "frontpage/explanation" %>
-      </div>
-          
-      <div class="wrapper container-fluid">
-        <%= yield %>
-  
-      </div>  
-    </div>
-    <div id="footer">
-      <%= render :partial => "layouts/footer" %>
-    </div>
-    <%= render :partial => "layouts/crazyegg" %>
-  </body>
 </html>

@@ -5,8 +5,7 @@
     var category_shown = null;
   <%end%>
 
-  $(document).ready(function(){
-    $(".catalogue_category_link").click(function(event){
+  document.addEventListener("DOMContentLoaded", function(){    $(".catalogue_category_link").click(function(event){
       event.preventDefault();
 
       var categoryId = $(this).attr("categoryId");
@@ -35,8 +34,7 @@
 </section>
 <button href="#" id="showMore_tags" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
 
-<script>
-  $(function(){
+<%content_for :javascript do%>
     $("#showMore_tags").click(function(){
       $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
       $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
@@ -50,5 +48,4 @@
       }
       return false;
     });
-  });
-</script>
+<%end%>

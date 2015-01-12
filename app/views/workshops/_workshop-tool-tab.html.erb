@@ -1,6 +1,4 @@
-<script type="text/javascript">
-  $(document).ready(function(){
-
+<%content_for :javascript do%>
     //to close the popovers
     $(':not(#anything_not_present)').on('click', function (e) {
       $('.popover-link').each(function () {
@@ -62,8 +60,7 @@
     });
 
     $(".with_tooltip").tooltip({ placement: 'bottom'});
-  });
-</script>
+<%end%>
 
 
 <!--BTN ACTIONS-->

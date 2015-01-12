@@ -23,15 +23,14 @@
           </label>
           <%= link_to t('devise.links.forgot_password'), new_password_path(:user), :class => ' forgot' %>
       <% end %>
-      <%= javascript_tag do %>
-      $(function() {
-      if ("placeholder" in document.createElement("input")) {
-      $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
-      } else {
-      $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
-      }
-      $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
-      });
+      <%content_for :javascript do%>
+            if ("placeholder" in document.createElement("input")) {
+              $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+              $("#password").attr('placeholder', I18n.t('activerecord.attributes.user.password'));
+            } else {
+              $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+              $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+            }
       <% end %>
     </ul>
   </li>

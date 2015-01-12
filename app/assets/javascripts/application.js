@@ -27,6 +27,7 @@
 //= require tagit
 //= require jquery.multiselect
 //= require jquery.jplayer
+//= require jquery.zclip.min
 //= require social_stream-events
 //= require bootstrap-dropdown
 //= require bootstrap-datetimepicker.min

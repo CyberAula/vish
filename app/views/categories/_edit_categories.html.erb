@@ -43,7 +43,7 @@
 	</div>
 </div>
 
-<script>
+<%content_for :javascript do%>
 
 	//Serialize function
 	function getidArray(){
@@ -53,8 +53,6 @@
 		});
 		return s;
 	}
-
-	$(document).ready(function(){
 
 		//Array where placed all actions
 		movements_array = [];
@@ -170,6 +168,4 @@
 			$(".delete p").text("<%=t('categories.dragandrop.trash')%>");	
 		};
 		
-	});
-
-</script>
+<%end%>

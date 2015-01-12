@@ -49,7 +49,7 @@
 </section>
 
 <script type="text/javascript">
-  $(document).ready(function(){
+  document.addEventListener("DOMContentLoaded", function(){
     $("#recomended_box div[bs-img]").each(function(){
       $(this).backstretch($(this).attr("bs-img"));      
     });

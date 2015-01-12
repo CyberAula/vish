@@ -8,7 +8,7 @@
 
 </ul>
 
-<script>
+<%= content_for :javascript do %>
   $("div[bs-img]").each(function(){
     $(this).backstretch($(this).attr("bs-img"));
   });
@@ -18,7 +18,7 @@
   <% aos.each_with_index do |ao,index| %>
     $(resourceBoxes['<%=index%>']).append('<%= link_to raw('<i class="icon-trash"></i>'), wa_resources_gallery_path(wa_resources_gallery, :remove_activity_object_id => ao.id), :method => :put, :class => 'btn btn_delete_item' %>');
   <% end %>
-</script>
+<%end%>
 
 
 

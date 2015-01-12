@@ -82,13 +82,7 @@
 </section>
 
 
-
-
-<%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
-
-
-<script>
-$(function() {
+  <%content_for :javascript do%>
   $(".showMore").click(function(){
     var mainDiv = $(this).parent();
     if($(this).attr("status")=== "showMore"){
@@ -108,9 +102,8 @@ $(function() {
       $(this).attr("status", "showMore");
     }
     return false;
-    });
   });
-  $(document).ready(function(){
+
   <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => false } %>
-  });
-</script>
+  
+  <%end%>

@@ -21,9 +21,11 @@
     </div>
   </div>
   <% end %>
-  <script>
+
+<%content_for :javascript do%>
   $("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
-  </script>    
+<%end%>
+  
   <!-- Info -->
   <div class="info">
     <!-- Title -->

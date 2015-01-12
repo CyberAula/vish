@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<script>
+<%content_for :javascript do%>
 
     $('#<%=div_id%> .new_category').bind('ajax:success', function(evt, data, status, xhr){
       $('#<%=div_id%>').modal('hide');
@@ -84,4 +84,4 @@
       }
     });
 
-</script>
+<%end%>

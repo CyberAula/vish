@@ -332,10 +332,8 @@
 </div>
 
 
-<script type="text/javascript">
-  $(document).ready(function(){
+<%content_for :javascript do%>
     $("#winners div[bs-img]").each(function(){    
         $(this).backstretch($(this).attr("bs-img"));  
     });
-  });
-</script>
+<%end%>

@@ -29,10 +29,20 @@ GIT
     simple_captcha (0.1.6)
 
 GIT
-  remote: git://github.com/ging/social_stream.git
-  revision: 4a744f26549041726a7c0177d351504554be6837
-  ref: 4a744f26549041726a7c0177d351504554be6837
-  branch: vish
+  remote: git://github.com/mojombo/god.git
+  revision: 70e51ae832c23a7a3e5d9d2c648604ca6cf428ba
+  specs:
+    god (0.13.4)
+
+GIT
+  remote: git://github.com/pahanix/delegates_attributes_to.git
+  revision: 69704cb6268c521e0e48ccb8d8b78930d1e7da67
+  ref: 69704cb
+  specs:
+    delegates_attributes_to (0.0.1)
+
+PATH
+  remote: /home/ebarra/trabajo/social_stream
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.4.1)
@@ -79,19 +89,6 @@ GIT
       nokogiri (> 1.4.4)
       proudhon (>= 0.3.6)
       social_stream-base (~> 2.2.2)
-
-GIT
-  remote: git://github.com/mojombo/god.git
-  revision: 70e51ae832c23a7a3e5d9d2c648604ca6cf428ba
-  specs:
-    god (0.13.4)
-
-GIT
-  remote: git://github.com/pahanix/delegates_attributes_to.git
-  revision: 69704cb6268c521e0e48ccb8d8b78930d1e7da67
-  ref: 69704cb
-  specs:
-    delegates_attributes_to (0.0.1)
 
 GEM
   remote: http://rubygems.org/
@@ -280,6 +277,7 @@ GEM
       jruby-pageant (>= 1.0.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
+    newrelic_rpm (3.9.8.273)
     nokogiri (1.5.11)
     oai (0.3.1)
       builder (>= 2.0.0)
@@ -488,6 +486,7 @@ DEPENDENCIES
   mailboxer (= 0.10.3)
   mysql2 (= 0.3.16)
   net-ssh (= 2.4.0)
+  newrelic_rpm
   oai_repository!
   paperclip (= 3.5.1)
   paperclip-ffmpeg!

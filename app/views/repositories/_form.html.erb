@@ -148,17 +148,14 @@
 
 </div>
 
+<%content_for :javascript do%>
 
-<script>
-
-  $(document).ready(function(){
     $('.helpResources').popover({
       html : true,
       content: function() {
         return $('.contentHelpResources').html();
       }
     });
-  });
 
 
   $("#AddResource").on('shown', function(){
@@ -285,4 +282,4 @@
     }
   };
 
-</script>
+<%end%>
