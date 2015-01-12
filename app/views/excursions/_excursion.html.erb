@@ -14,18 +14,19 @@
   <%= link_to(excursion) do %>
     <!-- image/icon -->
     <div class="container-img">
-      <div class="dummy"></div>
-      <div class="element">
-        <div class="img-box" id="<%=generated_id%>"></div>        
-        <%if excursion.draft%>
-          <div class="excursion-draft">
-            <h2 class="draftstyle">
-              <i class="icon-edit"></i>
-              <%=t('excursion.draft')%>
-            </h2>
-          </div>
-        <%end%>
-      </div>
+
+
+      <div class="img-box" id="<%=generated_id%>"></div>        
+      <%if excursion.draft%>
+        <div class="excursion-draft">
+          <h2 class="draftstyle">
+            <i class="icon-edit"></i>
+            <%=t('excursion.draft')%>
+          </h2>
+        </div>
+      <%end%>
+
+
     </div> 
   <% end %>
 
