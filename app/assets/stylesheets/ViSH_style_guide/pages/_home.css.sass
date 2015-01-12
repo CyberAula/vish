@@ -11,15 +11,129 @@
         &:first-child
           margin: 0 5px 0 0
     .items
-      float: left
+      //float: left
     
   .catalogue
     padding: 0
 #networking_tab_ready
   margin-top: 10px
 
-ul.first_excursions
-  display: block
-  float: left
+
+.first_excursions,
+.foryou_entities
+  display: inline-block
   width: 100%
-  clear: both
+  clear: both 
+  .items
+    clear: both 
+  h3
+    clear: both
+    width: 100%
+    display: block
+
+
+/*  RECENT EXCURSIONS*/
+/*8*/
+@media (min-width: 1751px)
+  .recent_entities,
+  .foryou_entities
+    ul
+      .box-item  
+        display: none
+      .box-item:nth-of-type(-n+8) 
+        display: block
+
+
+/*7*/
+@media (min-width: 1500px) and (max-width: 1750px)
+  .recent_entities,
+  .foryou_entities
+    ul
+      .box-item  
+        display: none
+      .box-item:nth-of-type(-n+7) 
+        display: block
+
+
+/*6*/
+@media (min-width: 1250px) and (max-width: 1500px)
+  .recent_entities,
+  .foryou_entities
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+6) 
+      display: block
+
+/*5*/
+@media (min-width: 991px) and (max-width: 1250px)
+  .recent_entities,
+  .foryou_entities
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+5) 
+      display: block
+
+
+
+/*4*/
+@media (min-width: 767px) and (max-width: 990px)
+  .recent_entities
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+4) 
+      display: block
+
+  .foryou_entities
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+4) 
+      display: block
+
+
+
+/*3*/
+@media (min-width: 500px) and (max-width: 766px)
+  .recent_entities
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+3) 
+      display: block
+
+  .foryou_entities
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+3) 
+      display: block
+
+
+
+/*2*/
+@media (min-width: 320px) and (max-width: 500px)
+  .recent_entities
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+2) 
+      display: block
+
+  .foryou_entities
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+2) 
+      display: block
+
+
+
+/*1*/
+@media (max-width: 320px)
+  .recent_entities
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+1) 
+      display: block
+
+  .foryou_entities
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+1) 
+      display: block
+
