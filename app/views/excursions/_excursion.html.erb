@@ -4,17 +4,19 @@
   <%if excursion.is_mostvaluable? %>
     <div class="badge-excursion-active"></div>
   <%end%>
+  <%if defined?(prefix_id) %>
+    <%generated_id= prefix_id + "-excursion-" + excursion.id.to_s%>
+  <%else%>
+    <%generated_id= "excursion-" + excursion.id.to_s%>
+  <%end%>
+
 
   <%= link_to(excursion) do %>
     <!-- image/icon -->
     <div class="container-img">
       <div class="dummy"></div>
       <div class="element">
-        <%if defined?(prefix_id) %>
-          <div bs-img="<%=excursion_raw_thumbail(excursion)%>" class="img-box" id="<%=prefix_id%>-excursion-<%=excursion.id%>"></div>
-        <%else%>
-          <div bs-img="<%=excursion_raw_thumbail(excursion)%>" class="img-box" id="excursion-<%=excursion.id%>"></div>
-        <%end%>
+        <div class="img-box" id="<%=generated_id%>"></div>        
         <%if excursion.draft%>
           <div class="excursion-draft">
             <h2 class="draftstyle">
@@ -26,6 +28,10 @@
       </div>
     </div> 
   <% end %>
+
+  <script>
+      document.getElementById("<%=generated_id%>").style.backgroundImage = "url('<%=excursion_raw_thumbail(excursion)%>')";
+  </script>
 
   <!-- Info -->
   <div class="info">
