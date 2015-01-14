@@ -1,9 +1,6 @@
-require 'search_help_methods'
-
 class ExcursionsController < ApplicationController
 
   require 'fileutils'
-  include SearchHelpMethods
 
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
