@@ -1,22 +1,33 @@
-<% if @quiz_session.name %>
-	<%qName = @quiz_session.name%>
-<% else %>
-	<%qName = t("quiz.untitled")%>
-<% end %>
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h4>Edit Quiz</h4>
+</div>
 
-<article class="quiz_sessions">
-	<%= form_for @quiz_session, :class => "form-group", do |f| %>
-	  <legend><%= t('quiz.legend.name')%></legend>
-  	  <%= f.text_field :name, :class => "form-group", :placeholder => t('quiz.untitled') %>
-  	  <% status = [[t('quiz.opened'), 'true'], [t('quiz.closed'), 'false']] %>
-  	  <%= f.select :active, :class => "form-group", status %>
-  	  <%= f.submit t('save'), :class => "updateQuizButton" %>
-	<% end %>
-</article>
+<div class="modal-body">
+	<article class="quiz_sessions">
+		<%= form_for @quiz_session, :class => "form-group" do |f| %>
+		  <label><%= t('quiz.legend.name')%></label>
+	  	  <%= f.text_field :name, :class => "form-group", :placeholder => t('quiz.untitled') %>
+	  	  <% status = [[t('quiz.opened'), 'true'], [t('quiz.closed'), 'false']] %>
+	  	  <%#= f.select :active, :class => "form-group", status %>
+				<%= f.submit t('save'), :class => "btn btn-primary updateQuizButton" %>
+				<% end %>
+	</article>
+</div>
+
+<div class="modal-footer">
+
+</div>
 
 <script type="text/javascript">
+
  $(document).ready(function(){
- 	var qName = '<%=qName%>';
+	<% if @quiz_session.name && !@quiz_session.name.empty? %>
+	var qName = '<%=@quiz_session.name%>';
+	<% else %>
+	var qName = '<%=t("quiz.untitled")%>';
+	<% end %>
+
  	$('#QuizEdit').find(".modal-header").find("p").html(qName);
  });
 </script>
