@@ -86,7 +86,7 @@
 <%unless Vish::Application.config.APP_CONFIG['loep'].nil? %>
   <script type="text/javascript">
     var evaluationTagShown = false;
-    $('a[data-toggle="tab"][href="#evaluation1"]').on('shown', function(e){
+    $('a[data-toggle="tab"][href="#evaluation1"]').on('shown.bs.tab', function(e){
       if(evaluationTagShown===false){
         evaluationTagShown = true;
 

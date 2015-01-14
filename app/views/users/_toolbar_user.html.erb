@@ -89,13 +89,13 @@
         $(sendMessage).click();
       });
       var SSMInitiated = false;
-      $('#new_messages_profile').on('shown', function () {
+      $('#new_messages_profile').on('shown.bs.modal', function () {
         if(!SSMInitiated){
          SocialStream.Message.new_();
          SSMInitiated = true;
        }
      })
-      $('#new_messages_profile').on('hidden', function () {
+      $('#new_messages_profile').on('hidden.bs.modal', function () {
         $("#mesage-profile").removeAttr("href");
         $("#mesage-profile").removeAttr("data-toggle");
         $("#mesage-profile").removeAttr("data-remote");

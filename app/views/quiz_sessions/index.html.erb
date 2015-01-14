@@ -125,11 +125,11 @@
 
 
 <%= content_for :javascript do %>
-  $('#QuizAnalitycs').on('hidden', function(){
+  $('#QuizAnalitycs').on('hidden.bs.modal', function(){
     $(this).removeData('modal');
   });
 
-  $('#QuizEdit').on('hidden', function(){
+  $('#QuizEdit').on('hidden.bs.modal', function(){
     $(this).removeData('modal');
   });
 
