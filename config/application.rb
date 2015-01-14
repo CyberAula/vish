@@ -76,5 +76,11 @@ module Vish
       config.available_thumbnail_styles = SocialStream::Documents.picture_styles.keys.map{|k| k.to_s}
     end
 
+    #Load ViSH Editor plugin
+    config.before_configuration do
+      $:.unshift File.expand_path("#{__FILE__}/../../lib/plugins/vish_editor/lib")
+      require 'vish_editor'
+    end
+
   end
 end
