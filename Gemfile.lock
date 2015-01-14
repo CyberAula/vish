@@ -29,14 +29,10 @@ GIT
     simple_captcha (0.1.6)
 
 GIT
-  remote: git://github.com/pahanix/delegates_attributes_to.git
-  revision: 69704cb6268c521e0e48ccb8d8b78930d1e7da67
-  ref: 69704cb
-  specs:
-    delegates_attributes_to (0.0.1)
-
-PATH
-  remote: /home/ebarra/trabajo/social_stream
+  remote: git://github.com/ging/social_stream.git
+  revision: 7910484dabc5616f15d2bc3430152f5f64efc78a
+  ref: 7910484dabc5616f15d2bc3430152f5f64efc78a
+  branch: vish-b3
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.4.1)
@@ -83,6 +79,13 @@ PATH
       nokogiri (> 1.4.4)
       proudhon (>= 0.3.6)
       social_stream-base (~> 2.2.2)
+
+GIT
+  remote: git://github.com/pahanix/delegates_attributes_to.git
+  revision: 69704cb6268c521e0e48ccb8d8b78930d1e7da67
+  ref: 69704cb
+  specs:
+    delegates_attributes_to (0.0.1)
 
 GEM
   remote: http://rubygems.org/
