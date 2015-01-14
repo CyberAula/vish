@@ -162,7 +162,7 @@
 
       $("#new_file .age-slider").before($("#new_file .limits"));
 
-      $('a[href="#document-edit"]').on('shown', function(e){
+      $('a[href="#document-edit"]').on('shown.bs.tab', function(e){
         newFilePositionLimits();
       });
 

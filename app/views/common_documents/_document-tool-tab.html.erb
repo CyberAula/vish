@@ -4,13 +4,11 @@
 <%canBeEmbeded = lookup_context.template_exists?("embedcode", document.class.to_s.underscore.pluralize, true) %>
 
 <% if canBeEmbeded %>
-  <%=javascript_include_tag "jquery.zclip.min" %>
-
   <script type="text/javascript">
     $(document).ready(function(){
       var embedEvents = false;
       
-      $('a[data-toggle="tab"]').on('shown', function(e){
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
             if(!embedEvents){
               embedEvents = true;
 

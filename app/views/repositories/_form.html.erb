@@ -178,7 +178,6 @@
 
 
   $("#AddResource").on('shown.bs.modal', function(){      
-    console.log("entra")
     $("#AddResource .age-slider").slider().on('slide', function(ev){
       positionLimits();
     });
@@ -189,7 +188,6 @@
 
 
   var positionLimits = function(){
-      console.log("positionLimits");
       //SLIDER
       var min = 0;
       var max = 30;
