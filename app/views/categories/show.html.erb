@@ -101,11 +101,7 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function(){
-    //BACKSTRETCH
-    $("div[bs-img]").each(function(){
-      $(this).backstretch($(this).attr("bs-img"));
-    });
-
+    
     Array.prototype.equals = function (array) {
         // if the other array is a falsy value, return
         if (!array)
@@ -150,17 +146,11 @@
     var beginIndex;
     var beginObjects;
     //Let the overlay appear
-
-      $("div[bs-img]").each(function(){
-           $(this).backstretch($(this).attr("bs-img"));
-      });
+      
       $(".btn-for-categorize").click(function(){
         $("#categories_edition").fadeIn();
         beginIndex = getidArray();
-        beginObjects = $(".edit_categories .box-item").clone();
-        $("#categories_edition div[bs-img]").each(function(){
-          $(this).backstretch($(this).attr("bs-img"));
-        });
+        beginObjects = $(".edit_categories .box-item").clone();        
       });
 
 <%end%>

@@ -225,16 +225,7 @@
       settings.finishedAddingHiddenElem(hidden_elem);
     }
     else{
-      hidden_elem.fadeIn();
-      var array_matches = hidden_elem.find('div[bs-img]');
-      if(array_matches.length>0){ //we have backstretch
-        if($(hidden_elem).parents(".tab-pane").css('display')!="none"){        
-          $(array_matches[0]).backstretch($(array_matches[0]).attr("bs-img"));        
-        }
-        else{
-          $(array_matches[0]).attr("fix-bs", "true");
-        } 
-      }     
+      hidden_elem.fadeIn();           
     }
     
     if(arr.length>0){

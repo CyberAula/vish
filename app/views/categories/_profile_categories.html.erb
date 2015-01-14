@@ -89,12 +89,6 @@
     actualState.appendTo(".main-categories-space");
   };
 
-function backstretch_fix(){
-  $("div[bs-img]").each(function(){
-   $(this).backstretch($(this).attr("bs-img"));
-  });
-}
-
 </script>
 
 <%content_for :javascript do%>
@@ -105,8 +99,6 @@ function backstretch_fix(){
 
     $(".btn-for-categorize").click(function(){
       $("#categories_edition").fadeIn();
-
-      backstretch_fix();
 
       beginIndex = getidArray();
       beginObjects = $(".edit_categories .box-item").clone();
@@ -123,7 +115,6 @@ function backstretch_fix(){
       $(".btn-for-categorize").hide(200);
       $("#normal-instance").fadeOut(200,function(){
         $("#list-instance").fadeIn(200);
-        backstretch_fix();
       });
     });
 <%end%>

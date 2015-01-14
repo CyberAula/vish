@@ -116,7 +116,6 @@
           success : function(html){
             $('#loader_pagination_net').hide();      
             $("#net_tab_ready").append(html);
-            re_apply_backstretch("net");
           },
           error: function(){
             // console.log("error loading net tab");
@@ -157,7 +156,6 @@
             success : function(html) {
               $('#loader_pagination_home').hide();      
               $("#first_page_home_tab_ready").append(html);
-              re_apply_backstretch("home");
             },
             error: function(){
               // console.log("error loading home tab");
@@ -167,19 +165,6 @@
         re_apply_pageless("home");
       }   
     });
-
-    //Reapply backstrech depending on the tab loaded
-    <%if !params[:tab] || params[:tab]=="home"%>
-      home_tab_loaded = true;
-      re_apply_backstretch("home");
-    <%elsif params[:tab]=="net"%>
-      net_tab_loaded = true;
-      re_apply_backstretch("net");
-    <%else%>
-      $("#catalogue_tab").click();
-      catalogue_tab_loaded = true;
-      re_apply_backstretch("catalogue_tabpane");
-    <%end%>
 
 
   ///////////////
@@ -215,41 +200,7 @@
     return the_url;
   };
 
-  ///////////////
-  // Backstretch Handlers
-  ///////////////
-
-  function re_apply_backstretch(tab){
-    $("#" + tab + " div[bs-img]").each(function() {
-      if($(this).parents(".tab-pane").css('display')!="none"){   
-        $(this).backstretch( $(this).attr("bs-img") ); 
-      } else {
-        $(this).attr("fix-bs", "true");
-      }
-    });
-  };
-
-  $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
-    fix_backstretch($(e.target).attr("href").substring(1));
-  });
-
-  function fix_backstretch(tab){
-    $("#" + tab + " div[fix-bs]").each(function(){
-      if($(this).parents(".tab-pane").css('display')!="none"){
-        $(this).backstretch( $(this).attr("bs-img") );
-        $(this).removeAttr("fix-bs");
-      }        
-    });     
-  };
-
-  $(window).on('resize.backstretch', set_fix_bs_on_hidden_tabs).on('orientationchange.backstretch', set_fix_bs_on_hidden_tabs);
-    
-  function set_fix_bs_on_hidden_tabs(){
-    $(".tab-pane:hidden").each(function(){
-      $(".tab-pane:hidden").find("div[bs-img]").attr("fix-bs","true");
-    });
-  }; 
-
+  
   ///////////////
   // Catalogue Ajax Handlers
   ///////////////
@@ -264,7 +215,6 @@
           $('.loader_pagination').hide(); 
           $("#catalogue_tab_ready").append(html);
           //We add charged states to variable
-          re_apply_backstretch("catalogue_tabpane");
           //We change actual state
           catalogue_charge[next_state] = html;
         },
@@ -276,7 +226,6 @@
       $('.loader_pagination').hide();
       $("#catalogue_tab_ready").empty();
       $("#catalogue_tab_ready").append(catalogue_charge[next_state]);
-      re_apply_backstretch("catalogue_tabpane");
     }
   };
 

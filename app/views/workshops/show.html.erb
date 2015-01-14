@@ -22,7 +22,7 @@
       <div class="container-img_WS">
         <div class="dummy"></div>
         <div class="element resource-center">
-          <div bs-img="<%=@workshop.thumbnail_url%>" class="applyBackstretch img-box workshop_thumbnail" id=""></div>
+          <div style='background-image: url(<%=@workshop.thumbnail_url%>)' class="img-box workshop_thumbnail" id=""></div>
         </div>
       </div>
       <!--description-->
@@ -103,7 +103,5 @@
     }
     return false;
   });
-
-  <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => false } %>
   
   <%end%>

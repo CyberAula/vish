@@ -64,33 +64,7 @@
       the_url = the_url + "?sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
     }
     return the_url;
-  };
-
-  function re_apply_backstrech(tab){
-    $("#" + tab + "_tab_ready"  + " div[bs-img]").each(function(){
-      if($(this).parents(".tab-pane").css('display')!="none"){
-        $(this).backstretch($(this).attr("bs-img"));
-        $(this).attr("fix-bs", "false");
-      }else{
-        $(this).attr("fix-bs", "true");
-      }
-    });
-  };
-
-  function set_fix_bs_on_hidden_tabs(){
-    $(".tab-pane:hidden").each(function(){
-      $(".tab-pane:hidden").find("div[bs-img]").attr("fix-bs","true");
-    });
-  };
-
-  function fix_backstretch(tab){
-    $("#" + tab +" div[fix-bs]").each(function(){
-      if($(this).parents(".tab-pane").css('display')!="none"){
-        $(this).backstretch($(this).attr("bs-img"));
-        $(this).removeAttr("fix-bs");
-      }
-    });
-  };
+  }; 
 
 </script>
 
@@ -260,13 +234,6 @@
     }
   };
 
-
-  $(window).on('resize.backstretch', set_fix_bs_on_hidden_tabs);
-  $(window).on('orientationchange.backstretch', set_fix_bs_on_hidden_tabs);
-
- $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function(e) {
-    fix_backstretch($(e.target).attr("href").substring(1));
-  });
 <%end%>
 
 
