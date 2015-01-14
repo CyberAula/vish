@@ -18,7 +18,7 @@
     var embedEvents = false;
     var shareEvents = false;
 
-    $('a[data-toggle="tab"]').on('shown', function (e) {
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       // e.target // activated tab
       // e.relatedTarget // previous tab
       var loadedTab = $(e.target).attr("tabTitle");

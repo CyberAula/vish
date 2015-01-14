@@ -1,6 +1,6 @@
 <%= content_for :javascript do%>
 
-  $('#myLearningModal').on('shown', function(){
+  $('#myLearningModal').on('shown.bs.modal', function(){
     <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
       var loepSettings = {};
       <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
@@ -27,12 +27,12 @@
     <%end%>
   });
 
-  $('#myLearningModal').on('hidden', function(){
+  $('#myLearningModal').on('hidden.bs.modal', function(){
     //Learning modal hidden
     $(this).removeData('modal').find('.modal-body').html('');
   });
 
-  $('#myTeachingModal').on('shown', function(){
+  $('#myTeachingModal').on('shown.bs.modal', function(){
     <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
       var loepSettings = {};
       <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
@@ -59,7 +59,7 @@
     <%end%>
   });
 
-  $('#myTeachingModal').on('hidden', function(){
+  $('#myTeachingModal').on('hidden.bs.modal', function(){
     //Teaching modal hidden
     $(this).removeData('modal').find('.modal-body').html('');
   });
