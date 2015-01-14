@@ -17,14 +17,14 @@
                   <%=t('quiz.untitled')%>
                 <% end %>
               </p>
-              <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
+              <button class="with_tooltip delete btn btn-default popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
                 <i class="fa fa-trash-o"></i>
               </button>
-              <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
+              <button class="with_tooltip btn btn-default" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
                 <i class="fa fa-edit"></i>
               </button>
-              <button class="with_tooltip closeqb btn popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-container="body" title="<%=t('quiz.actions.close')%>" aria-hidden="true">
-                x
+              <button class="with_tooltip closeqb btn btn-default popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-container="body" title="<%=t('quiz.actions.close')%>" aria-hidden="true">
+                <i class="fa fa-power-off"></i>
               </button>
               <p class="creation_date">
                 <%=t('quiz.createdAt')%> <%= q.created_at.strftime("%d-%m-%Y %H:%M UTC") %>
@@ -33,10 +33,11 @@
           <% end %>
         </ul>
         <% else %>
-          <p><%=t('quiz.noOpenQuizzes')%>.</p>
+          <p><i class="fa fa-hand-o-up"></i>
+            <%=t('quiz.noOpenQuizzes')%></p>
         <% end %>
-    </div> 
-    <div class="textrow"> 
+    </div>
+    <div class="textrow">
       <h4><%=t('quiz.closedL')%></h4>
       <% if @quiz_inactive_sessions.length > 0 %>
         <ul id="sortable2" class="connectedSortable">
@@ -63,10 +64,10 @@
               </p>
             </li>
           <% end %>
-        </ul>   
+        </ul>
       <% else %>
-        <p><%=t('quiz.noClosedQuizzes')%>.</p>
-      <% end %>   
+        <p><i class="fa fa-hand-o-left"></i> <%=t('quiz.noClosedQuizzes')%></p>
+      <% end %>
     </div>
   </div>
 
