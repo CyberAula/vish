@@ -1,7 +1,7 @@
 #ruby '2.2.0'
 source 'http://rubygems.org'
 
-gem 'rails', '= 3.2.14'
+gem 'rails', '= 3.2.21'
 
 #Database Adapters
 gem 'sqlite3', '= 1.3.9'
