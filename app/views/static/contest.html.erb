@@ -8,18 +8,26 @@
   </div>
 
 
-  <div class="info_competition">
-    <div class="info_competition_element">
-      <a id="congratulations-button" href="#CongratModal" class="sign_up btn btn-primary" role="button" data-toggle="modal"><h4><i class="icon-trophy"></i> <%=t('contest.prizes')%></h4></a>
-    </div>
-  </div>
 
-  <div id="CongratModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myCongratLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myCongratLabel"><%= t('contest.prizes') %></h3>
-    </div>
-    <div class="modal-body">
+
+
+<!-- Button trigger modal -->
+<div class="info_competition">
+<button type="button" class="btn btn-primary btn-lg ModalPrizes" data-toggle="modal" data-target="#ModalPrizes">
+  <h4><i class="icon-trophy"></i> <%=t('contest.prizes')%></h4>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalPrizes" tabindex="-1" role="dialog" aria-labelledby="ModalPrizesLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        <h4 class="modal-title" id="ModalPrizesLabel"><%= t('contest.prizes') %></h4>
+      </div>
+      <div class="modal-body">
       <p><%=t('contest.prizes2')%>
         </br><%=t('contest.prizes_first_a')%>
         </br><%=t('contest.prizes_second_a')%>
@@ -33,15 +41,30 @@
         </br></br>
         <strong><%=t('contest.amazon')%></strong><%=t('contest.prizes5')%>
       </p>
+      </div>
+
     </div>
   </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 
   <div id="podium">
     <div class="podiuminside">
       <div class="podiuminside1">
         <div class="entities">
           <ul>
-            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } unless Excursion.find_by_id(560).nil? %>
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
           </ul>
         </div>
         <div class="podiumart">
@@ -53,24 +76,24 @@
       <div class="podiuminside2">
         <div class="entities">
           <ul>
-            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } unless Excursion.find_by_id(515).nil? %>
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
           </ul>
         </div>
         <div class="podiumart">
           <div class="podcircle">
-            <h1>1</h1>
+            <h2>1</h2>
           </div>
         </div>
       </div>
       <div class="podiuminside3">
         <div class="entities">
           <ul>
-            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } unless Excursion.find_by_id(659).nil? %>
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
           </ul>
         </div>
         <div class="podiumart">
           <div class="podcircle">
-            <h3>3</h3>
+            <h2>3</h2>
           </div>
         </div>
       </div>
@@ -81,7 +104,11 @@
     <h3><b class="caret caret1"></b><%=t('contest.winnersbycategory')%><b class="caret caret2"></b></h3>
   </div>
 
+
+
   <div id="subjectwinners">
+
+    <!---->
 
     <div class="subrow">
       <h3><%=t('contest.Maths')%></h3>
@@ -92,7 +119,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(564) } unless Excursion.find_by_id(564).nil?  %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil?  %>
             </li>
           </ul>
         </div>
@@ -104,12 +131,14 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(675) } unless Excursion.find_by_id(675).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
       </section>
     </div>
+
+    <!---->
 
     <div class="subrow2">
       <h3><%=t('contest.Physics')%></h3>
@@ -120,7 +149,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } unless Excursion.find_by_id(560).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
@@ -132,12 +161,14 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(613) } unless Excursion.find_by_id(613).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
       </section>
     </div>
+
+    <!---->
 
     <div class="subrow">
       <h3><%=t('contest.Chemistry')%></h3>
@@ -148,7 +179,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(620) } unless Excursion.find_by_id(620).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
@@ -160,12 +191,14 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(465) } unless Excursion.find_by_id(465).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
       </section>
     </div>
+
+    <!---->
 
     <div class="subrow2">
       <h3><%=t('contest.Biology')%></h3>
@@ -176,7 +209,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(450) } unless Excursion.find_by_id(450).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
@@ -188,12 +221,14 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(634) } unless Excursion.find_by_id(634).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
       </section>
     </div>
+
+    <!---->
 
     <div class="subrow">
       <h3><%=t('contest.Geography')%></h3>
@@ -204,7 +239,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(656) } unless Excursion.find_by_id(656).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
@@ -216,12 +251,14 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(646) } unless Excursion.find_by_id(646).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
       </section>
     </div>
+
+    <!---->
 
     <div class="subrow2">
       <h3><%=t('contest.EnvironmentalStudies')%></h3>
@@ -232,7 +269,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } unless Excursion.find_by_id(515).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
@@ -243,14 +280,16 @@
           <img class="bd2" src="assets/competition/bd2.png"/>
         </div>
         <div class="recomended">
-            <ul class="items">
-              <li>
-                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
-              </li>
-            </ul>
+          <ul class="items">
+            <li>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
+            </li>
+          </ul>
         </div>
       </section>
     </div>
+
+    <!---->
 
     <div class="subrow">
       <h3><%=t('contest.Engineering')%></h3>
@@ -259,11 +298,11 @@
           <img class="bd1" src="assets/competition/bd1.png"/>
         </div>
         <div class="recomended">
-             <ul class="items">
-              <li>
-                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(592) } unless Excursion.find_by_id(592).nil? %>
-              </li>
-            </ul>
+          <ul class="items">
+            <li>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
+            </li>
+          </ul>
         </div>
       </section>
       <section id="show_items">
@@ -271,13 +310,16 @@
           <img class="bd2" src="assets/competition/bd2.png"/>
         </div>
         <div class="recomended">
-            <ul class="items">
-              <li> 
-                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(474) } unless Excursion.find_by_id(474).nil? %>
-          </li>
-        </ul>
-      </section>
-    </div>
+          <ul class="items">
+            <li> 
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+
+    <!---->
 
     <div class="subrow2">
       <h3><%=t('contest.Humanities')%></h3>
@@ -286,11 +328,11 @@
           <img class="bd1" src="assets/competition/bd1.png"/>
         </div>
         <div class="recomended">
-             <ul class="items">
-              <li>
-                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(632) } unless Excursion.find_by_id(632).nil? %>
-              </li>
-            </ul>
+          <ul class="items">
+            <li>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
+            </li>
+          </ul>
         </div>
       </section>
       <section id="show_items">
@@ -300,12 +342,14 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(520) } unless Excursion.find_by_id(520).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
       </section>
     </div>
+
+    <!---->
 
     <div class="subrow">
       <h3><%=t('contest.NaturalScience')%></h3>
@@ -314,11 +358,11 @@
           <img class="bd1" src="assets/competition/bd1.png"/>
         </div>
         <div class="recomended">
-            <ul class="items">
-              <li>
-                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(667) } unless Excursion.find_by_id(667).nil? %>
-              </li>
-            </ul>
+          <ul class="items">
+            <li>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
+            </li>
+          </ul>
         </div>
       </section>
       <section id="show_items">
@@ -328,14 +372,18 @@
 
         <div class="recomended">
           <div class="recomended-items">
-             <ul class="items">
+            <ul class="items">
               <li>
-                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(669) } unless Excursion.find_by_id(669).nil? %>
+                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
               </li>
             </ul>
           </div>
         </div>
-    </section>
+      </section>
+    </div>
+
+    <!---->
+
     <div class="subrow2">
       <h3><%=t('contest.ComputerScience')%></h3>
       <section id="show_items">
@@ -345,7 +393,7 @@
         <div class="recomended">
           <ul class="items">
             <li>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } unless Excursion.find_by_id(659).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
@@ -357,27 +405,28 @@
         <div class="recomended">
           <ul class="items">
             <li>
-                <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(522) } unless Excursion.find_by_id(522).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
             </li>
           </ul>
         </div>
       </section>
     </div>
-  </div>
 
-  <div id="participants">
+    <!---->
+
+    <div id="participants">
       <div class="tabexcursions">
-          <a class="sign_up btn" href="/contest_all"><%=t('contest.viewalltag')%></a>
-     </div>
-  </div>
+        <a class="sign_up btn" href="/contest_all"><%=t('contest.viewalltag')%></a>
+      </div>
+    </div>
 
+  </div>
 </div>
 
-
 <script type="text/javascript">
-  $(document).ready(function(){
-    $("#winners div[bs-img]").each(function(){    
-        $(this).backstretch($(this).attr("bs-img"));  
-    });
+$(document).ready(function(){
+  $("#winners div[bs-img]").each(function(){    
+    $(this).backstretch($(this).attr("bs-img"));  
   });
+});
 </script>
