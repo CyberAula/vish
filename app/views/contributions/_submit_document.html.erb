@@ -14,8 +14,8 @@
   <button class="btn btn-primary btn_show_upload"><%= t('resource.one')%></button>
   <button class="btn btn_hidden_upload"><i class="icon-chevron-left"></i></button>
 
+<%content_for :javascript do%>
   <% unless editMode %>
-    <script>
       $("#"+'<%=form_id%>').parent().find(".btn_show_upload").click(function(){
         $("#" + '<%=form_id%>').show("slow");
         $(this).hide("slow");
@@ -36,7 +36,6 @@
           $(submitButton).attr("disabled","disabled");
         }
       });
-    </script>
   <%end%>
-
+<%end%>
 </div>
