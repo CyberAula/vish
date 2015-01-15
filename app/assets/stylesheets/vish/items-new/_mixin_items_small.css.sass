@@ -1,18 +1,38 @@
 
 // IMG 
 @mixin img-item-box-small
+
   .container-img
     width: 40%
     @include border-left-radius($baseBorderRadius !important) 
     @include border-right-radius(0 !important)
     float: left
     display: inline-block
-    .dummy
-      height: 85px
-      padding-top: 0
-    .element 
+    &:before
+      content: ""
+      display: block
+      padding-top: 85px
+    .img-box
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      overflow: hidden
+      text-align: center
+      width: 100%
       @include border-left-radius($baseBorderRadius !important) 
       @include border-right-radius(0 !important)
+      background-repeat: no-repeat
+      background-position: center center
+      background-attachment: scroll
+      background-size: cover
+      border: none
+
+
+
+
+
       i
         font-size: 42px
     .resource-center
