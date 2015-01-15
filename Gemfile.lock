@@ -30,9 +30,8 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 4a744f26549041726a7c0177d351504554be6837
-  ref: 4a744f26549041726a7c0177d351504554be6837
-  branch: vish
+  revision: 199cf10f1def3a01fa7d2bc5cee7335978bc48ae
+  branch: ruby2
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.4.1)
