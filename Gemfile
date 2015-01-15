@@ -2,6 +2,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '= 3.2.21'
+gem 'test-unit'
 
 #Database Adapters
 gem 'sqlite3', '= 1.3.9'
