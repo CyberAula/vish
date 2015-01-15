@@ -78,7 +78,6 @@
       return true;
   };
 
-
   function updateMainView(){
     var actualState = $(".edit_categories .box-item").clone();
     var s = $(".main-categories-space .box-item");
@@ -88,6 +87,7 @@
     s.each(function(index){this.remove();});
     actualState.appendTo(".main-categories-space");
   };
+
 
 </script>
 

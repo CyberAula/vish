@@ -100,8 +100,6 @@
 <% end %>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function(){
-    
     Array.prototype.equals = function (array) {
         // if the other array is a falsy value, return
         if (!array)
@@ -126,8 +124,7 @@
         return true;
     };
 
-    
-    function updateMainView(){
+  function updateMainView(){
       var actualState = $(".edit_categories .box-item").clone();
       var s = $(".main-categories-space .box-item");
       <% if @category.owner.user == current_subject %>
@@ -135,11 +132,8 @@
       <% end %>
       s.each(function( index ) {this.remove();});
       actualState.appendTo(".main-categories-space");
-    };
+  };
 
-    //Apply authomatically the initial category to be created as the one you are at
-    $("#category_parent_id").val(<%=@category.id%>); 
-  });
 </script>
 
 <%content_for :javascript do%>
@@ -147,10 +141,13 @@
     var beginObjects;
     //Let the overlay appear
       
-      $(".btn-for-categorize").click(function(){
-        $("#categories_edition").fadeIn();
-        beginIndex = getidArray();
-        beginObjects = $(".edit_categories .box-item").clone();        
-      });
+    $(".btn-for-categorize").click(function(){
+      $("#categories_edition").fadeIn();
+      beginIndex = getidArray();
+      beginObjects = $(".edit_categories .box-item").clone();        
+    });
+
+    //Apply authomatically the initial category to be created as the one you are at
+    $("#category_parent_id").val(<%=@category.id%>); 
 
 <%end%>
