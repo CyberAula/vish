@@ -12,9 +12,11 @@
 		<p>
 			<%=t('quiz.createdAt')%> <%=@quiz_session.created_at%>
 			<%if @processedQS["presentationName"] %>
-				(<%=t('quiz.launchIn')%> "<%= @processedQS["presentationName"]%>")
+				<br>
+				(<%=t('quiz.launchIn')%>"<%= @processedQS["presentationName"]%>")
 			<% end %>
 			<% if !@quiz_session.active %>
+				<br>
 				<%=t('quiz.closedAtS')%> <%=@quiz_session.closed_at%>
 			<% end %>
 			.
@@ -128,7 +130,6 @@
 				<p class="quizWithoutAnswers"><%=t('quiz.noAnswers')%></p>
 			<% else %>
 				<canvas id="quiz_chart"></canvas>
-				<%= link_to t('downloadxlsx'), "/quiz_sessions/#{@quiz_session.id}/results.xlsx", :class => "quizDownloadAsXLSX" %>
 			<% end %>
 
 		<% else %>
@@ -140,6 +141,11 @@
 
 </div>
 <div class="modal-footer">
+	<% if @processedQS["question"] %>
+		<% if answersLength != 0%>
+			<%= link_to t('downloadxlsx'), "/quiz_sessions/#{@quiz_session.id}/results.xlsx", :class => "quizDownloadAsXLSX btn btn-primary" %>
+		<% end %>
+	<% end %>
 </div>
 
 <script type="text/javascript">

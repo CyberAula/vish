@@ -53,10 +53,10 @@
                   <%=t('quiz.untitled')%>
                 <% end %>
               </p>
-              <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
+              <button class="with_tooltip delete btn btn-default popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
                 <i class="fa fa-trash-o"></i>
               </button>
-              <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
+              <button class="with_tooltip btn btn-default" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
                 <i class="fa fa-edit"></i>
               </button>
               <p class="creation_date">

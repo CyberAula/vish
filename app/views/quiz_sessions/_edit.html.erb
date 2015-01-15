@@ -9,7 +9,7 @@
 		  <label><%= t('quiz.legend.name')%></label>
 	  	  <%= f.text_field :name, :class => "form-group", :placeholder => t('quiz.untitled') %>
 	  	  <% status = [[t('quiz.opened'), 'true'], [t('quiz.closed'), 'false']] %>
-	  	  <%#= f.select :active, :class => "form-group", status %>
+	  	  <%#= f.select :class => "form-group", status %>
 				<%= f.submit t('save'), :class => "btn btn-primary updateQuizButton" %>
 				<% end %>
 	</article>
