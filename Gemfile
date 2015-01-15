@@ -1,7 +1,7 @@
 #ruby '2.2.0'
 source 'http://rubygems.org'
 
-gem 'rails', '= 3.2.14'
+gem 'rails', '= 3.2.21'
 
 #Database Adapters
 gem 'sqlite3', '= 1.3.9'
@@ -60,7 +60,7 @@ if ENV['FORCE_LOCAL_SS']
     gem 'social_stream-events'
   end
 else
-  git 'git://github.com/ging/social_stream.git', branch: "vish", ref: "4a744f26549041726a7c0177d351504554be6837" do
+  git 'git://github.com/ging/social_stream.git', branch: "ruby2" do
     gem 'social_stream-base'
     gem 'social_stream-documents'
     gem 'social_stream-linkser'
