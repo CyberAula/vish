@@ -1,7 +1,7 @@
 #ruby '2.2.0'
 source 'http://rubygems.org'
 
-gem 'rails', '= 3.2.21'
+gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => "3-2-stable"
 gem 'test-unit'
 
 #Database Adapters
