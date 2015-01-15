@@ -7,8 +7,7 @@
     <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
 </li>
-<script>
-document.addEventListener("DOMContentLoaded", function(){
+<%content_for :javascript do%>
   $('#helpshowresourceid').popover({ 
     html : true,
     content: function() {
@@ -16,4 +15,4 @@ document.addEventListener("DOMContentLoaded", function(){
     }
   });
 });
-</script>
+<%end%>

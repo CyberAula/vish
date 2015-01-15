@@ -8,9 +8,7 @@
   </div>
 </li>
 
-<script>
-
-  document.addEventListener("DOMContentLoaded", function(){
+<%content_for :javascript do%>
     $('#helpsearchid').popover({ 
       html : true,
       content: function() {
@@ -18,4 +16,4 @@
       }
     });
   });
-  </script>
+<%end%>
