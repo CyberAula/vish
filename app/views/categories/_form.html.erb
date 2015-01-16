@@ -28,7 +28,7 @@
 
       <!--Avatar-->
       <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
-      <%= f.file_field :avatar %>
+      <%= f.file_field :avatar,:id => div_id+"category_avatar"  %>
       
       <%= f.submit t('categories.save'), :class => "hidden" %>
     <% end %>

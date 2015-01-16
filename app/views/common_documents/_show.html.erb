@@ -13,9 +13,8 @@
     <%= document_profile_subject.name + ": " + t('repository.title') %>
   <% end %>
 
-  <%= div_for document do %>
-    
-    <!--visor-->
+  
+  <!--visor-->
     <div class="box-show">
       <div class="container-visor">
         <div class="caja-elementos">
@@ -46,8 +45,6 @@
     <%if @contribution%>
       <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => document.contribution } %>
     <%end%>
-
-  <% end %>
 
 </section>
 
