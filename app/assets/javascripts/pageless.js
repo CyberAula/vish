@@ -116,7 +116,7 @@
 
   var loaderHtml = function () {
     return settings.loaderHtml ||
-      '<div id="pageless-loader" style="display:none;text-align:center;width:100%;">' +
+      '<div class="pageless-loader" style="display:none;text-align:center;width:100%;">' +
       '<div class="msg" style="color:#e9e9e9;font-size:2em"></div>' +
       '<img src="' + settings.loaderImage + '" alt="loading more results" style="margin:10px auto" />' +
       '</div>';
@@ -165,7 +165,7 @@
       $el.append(loader);
       // if we use the default loader, set the message
       if (!opts.loaderHtml) {
-        $('#pageless-loader .msg').html(opts.loaderMsg).css(opts.msgStyles || {});
+        $('.pageless-loader .msg').html(opts.loaderMsg).css(opts.msgStyles || {});
       }
     }
   };

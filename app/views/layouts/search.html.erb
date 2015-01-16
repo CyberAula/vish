@@ -62,6 +62,12 @@
 
   <script type="text/javascript">
     $(document).ready(function() {  
+      $('[id]').each(function(){
+        var ids = $('[id="'+this.id+'"]');
+        if(ids.length>1 && ids[0]==this){
+          console.warn('Multiple IDs #'+this.id);
+        }
+      });
       $("#q").val("<%=params[:q]%>");
       $("#qmobile").val("<%=params[:q]%>");
       setTimeout(function(){ $("#flash .alert").hide("slow") }, 5000);
