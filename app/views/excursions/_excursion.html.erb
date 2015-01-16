@@ -5,7 +5,9 @@
     <div class="badge-excursion-active"></div>
   <%end%>
 
-  <%= link_to(excursion) do %>
+  <%excursion_url = (defined?(rec) and rec==true) ? excursion_url(excursion,{:rec => rec}) : excursion_url(excursion)%>
+
+  <%= link_to(excursion_url) do %>
     <!-- image/icon -->
     <div class="container-img">
       <div class="dummy"></div>
@@ -31,7 +33,7 @@
   <div class="info">
     <!--Title -->
     <div class="name">
-      <%= link_to excursion.title, excursion %>
+      <%= link_to excursion.title, excursion_url %>
     </div>
     <!--Author -->
     <div class="author"> 
