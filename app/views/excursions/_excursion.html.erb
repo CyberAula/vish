@@ -11,6 +11,9 @@
     <%generated_id= "excursion-" + excursion.id.to_s%>
   <%end%>
 
+  <%if defined?(obj_id)%>
+    <%generated_id = "cat-" + obj_id.to_s + "-" + generated_id %>
+  <%end%>
 
   <%= link_to(excursion) do %>
     <!-- image/icon -->
