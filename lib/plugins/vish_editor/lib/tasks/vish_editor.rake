@@ -6,7 +6,7 @@
 #
 
 #PATHS
-VISH_EDITOR_PLUGIN_PATH = "vendor/plugins/vish_editor";
+VISH_EDITOR_PLUGIN_PATH = "lib/plugins/vish_editor";
 VISH_EDITOR_PATH = "../vish_editor";
 
 # Vish Editor and Vish Viewer files and dirs :
@@ -15,13 +15,13 @@ JS_FILES_AND_DIRS = ['app/assets/js_to_compile/lang','app/assets/js_to_compile/V
 CSS_FILES_AND_DIRS = ['app/assets/css_to_compile/libs','app/assets/css_to_compile']
 
 # Vish Editor css first files
-CSS_EDITOR = ['vendor/plugins/vish_editor/app/assets/css_to_compile/all/editor.css']
+CSS_EDITOR = ['lib/plugins/vish_editor/app/assets/css_to_compile/all/editor.css']
 
 # Vish Viewer files and dirs
 JS_VIEWER = ['lang/translations.js', 'libs/jquery-1.7.2.min.js', 'libs/jquery.watermark.min.js', 'libs/RegaddiChart.js', 'libs/jquery-ui-1.9.2.custom.min.js', 'libs/jquery.fancybox-1.3.4.js', 'libs/jquery.qrcode.min.js', 'libs/jquery.joyride-1.0.5.js', 'libs/jquery.cookie.js', 'libs/modernizr.mq.js', 'libs/modernizr.foundation.js', 'libs/jquery.ui.touch-punch.0.2.2.min.js', 'libs/loep.js', 'VISH.js', 'VISH.Constant.js', 'VISH.Configuration.js', 'VISH.QuizCharts.js', 'VISH.IframeAPI.js', 'VISH.User.js', 'VISH.I18n.js', 'VISH.Object.js', 'VISH.Object.PDF.js', 'VISH.Object.GoogleDOC.js', 'VISH.Object.Webapp.js', 'VISH.Renderer.js', 'VISH.Renderer.Filter.js', 'VISH.Debugging.js', 'VISH.Presentation.js', 'VISH.Slideset.js', 'VISH.SlidesSelector.js', 'VISH.Text.js', 'VISH.Video.js', 'VISH.Video.CustomPlayer.js', 'VISH.Video.HTML5.js', 'VISH.Video.Youtube.js', 'VISH.Audio.js', 'VISH.Audio.HTML5.js', 'VISH.ObjectPlayer.js', 'VISH.SnapshotPlayer.js', 'VISH.AppletPlayer.js', 'VISH.Viewer.js', 'VISH.Utils.js', 'VISH.Utils.Loader.js', 'VISH.Status.js', 'VISH.Status.Device.js', 'VISH.Status.Device.Browser.js', 'VISH.Status.Device.Features.js', 'VISH.ViewerAdapter.js', 'VISH.Flashcard.js',  'VISH.VirtualTour.js', 'VISH.EVideo.js', 'VISH.Themes.js', 'VISH.Animations.js', 'VISH.Messenger.js', 'VISH.Messenger.Helper.js', 'VISH.Addons.js', 'VISH.Addons.IframeMessenger.js', 'VISH.Storage.js', 'VISH.Slides.js', 'VISH.Events.js', 'VISH.EventsNotifier.js', 'VISH.Quiz.js', 'VISH.Quiz.MC.js', 'VISH.Quiz.TF.js', 'VISH.Quiz.Sorting.js', 'VISH.Quiz.Open.js', 'VISH.Quiz.API.js', 'VISH.Events.Mobile.js', 'VISH.Recommendations.js', 'VISH.Tour.js', 'VISH.FullScreen.js', 'VISH.TrackingSystem.js', 'VISH.ProgressTracking.js', 'VISH.SCORM.js', 'VISH.SCORM.API.js']
 CSS_VIEWER = ['customPlayer.css','pack1templates.css','quiz.css','styles.css'];
 
-COMPILER_JAR_PATH = "lib/tasks/compile"
+COMPILER_JAR_PATH = "lib/plugins/vish_editor/extras/compile"
 JSCOMPILER_JAR_FILE = COMPILER_JAR_PATH + "/compiler.jar"
 CSSCOMPILER_JAR_FILE = COMPILER_JAR_PATH + "/yuicompressor-2.4.2.jar"
 # JSCOMPILER_DOWNLOAD_URI = 'http://closure-compiler.googlecode.com/files/compiler-latest.zip'
@@ -95,12 +95,12 @@ namespace :vish_editor do
    
     #Combine css files
     puts "Creating vishViewer.css"
-    CSS_VIEWER.collect! {|x| "vendor/plugins/vish_editor/app/assets/css_to_compile/all/" + x }
+    CSS_VIEWER.collect! {|x| "lib/plugins/vish_editor/app/assets/css_to_compile/all/" + x }
     system "cat " + CSS_VIEWER.join(' ') + " > vishViewer.css"
     puts "vishViewer.css created"
 
     puts "Creating vishEditor.css"
-    CSS_EDITOR.concat(Dir[ File.join("vendor/plugins/vish_editor/app/assets/css_to_compile/all/", "*.css") ].sort)
+    CSS_EDITOR.concat(Dir[ File.join("lib/plugins/vish_editor/app/assets/css_to_compile/all/", "*.css") ].sort)
     CSS_EDITOR.uniq!
     CSS_EDITOR.each do |file|
         puts "#{file}"
@@ -108,9 +108,9 @@ namespace :vish_editor do
     system "cat " + CSS_EDITOR.join(' ') + " > vishEditor.css"
     puts "vishEditor.css created"
 
-    system "rm vendor/plugins/vish_editor/app/assets/css_to_compile/all/*.css"
-    system "mv vishViewer.css vendor/plugins/vish_editor/app/assets/css_to_compile/all/vishViewer.css"
-    system "mv vishEditor.css vendor/plugins/vish_editor/app/assets/css_to_compile/all/vishEditor.css"
+    system "rm lib/plugins/vish_editor/app/assets/css_to_compile/all/*.css"
+    system "mv vishViewer.css lib/plugins/vish_editor/app/assets/css_to_compile/all/vishViewer.css"
+    system "mv vishEditor.css lib/plugins/vish_editor/app/assets/css_to_compile/all/vishEditor.css"
 
     puts ""
     puts "Compiling CSS"
@@ -234,7 +234,7 @@ namespace :vish_editor do
     puts ""
 
     puts "and now ViSH Viewer..."
-    JS_VIEWER.collect! {|x| "vendor/plugins/vish_editor/app/assets/js_to_compile/" + x }
+    JS_VIEWER.collect! {|x| "lib/plugins/vish_editor/app/assets/js_to_compile/" + x }
     compiler_options['--js'] = JS_VIEWER.join(' ')
     compiler_options['--js_output_file'] = "vishViewer.min.js"
     compiler_options2['--js'] = JS_VIEWER.join(' ')

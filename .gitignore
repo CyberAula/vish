@@ -74,7 +74,7 @@ app/views/layouts/_grid.html.erb
 carrierwave/
 
 #Ignore vish editor compile
-lib/tasks/compile
+lib/plugins/vish_editor/extras/compile
 
 #Ignore RVM personal config
 .rvmrc
