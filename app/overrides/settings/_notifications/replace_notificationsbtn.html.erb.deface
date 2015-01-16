@@ -17,7 +17,7 @@
         </div>
     <% end %>
 
-    <%= hidden_field_tag :settings_section, :notifications %>
+    <%= hidden_field_tag :settings_section, :notifications, id: "settings_section_notifications" %>
     <%= submit_tag "Update Settings", :class => "btn btn-primary", "data-loading-text" => t('button.sending')  %>
     <% end %>
 
