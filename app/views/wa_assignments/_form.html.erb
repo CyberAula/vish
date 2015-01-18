@@ -9,10 +9,14 @@
 <%= form_for wa_assignment, :remote => false, :html => { :id => identifier } do |f| %>
   <%= f.hidden_field :workshop_id, :value => workshop.id %>
   <%= f.hidden_field :available_contributions, :value => (wa_assignment.new_record? ? "Document" : wa_assignment.available_contributions) %>
-
-  <%= f.check_box :with_dates, :onclick => "wa_assignment_onClickDatesCheckbox(this);" %>
-  <p class="checkbox_add_time"><%=t('workshop.activities.assignment.with_dates')%></p>
-
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :with_dates, :onclick => "wa_assignment_onClickDatesCheckbox(this);" %>
+      <span class="lbl padding-0 checkbox_add_time">
+        <%=t('workshop.activities.assignment.with_dates')%>
+      </span>
+    </label>
+  </div>
   <div class="assignment_dates" style="display:none">
     <%= f.label t('workshop.activities.assignment.open_date'), :class => "" %>
     <%= f.date_select :open_date, :order => [:day, :month, :year] %>
@@ -24,12 +28,21 @@
   <div>
     <br/>
     <p><%=t('workshop.activities.assignment.available_contributions.title')%></p>
-    <%= check_box_tag :available_contribution_document, "Document", false, :contribution => "Document", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
-    <p><%=t('workshop.activities.assignment.available_contributions.document')%></p>
-    <%= check_box_tag :available_contribution_writing, "Writing", false, :contribution => "Writing", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
-    <p><%=t('workshop.activities.assignment.available_contributions.writing')%></p>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag :available_contribution_document, "Document", false, :contribution => "Document", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
+            <span class="lbl padding-0">
+              <%=t('workshop.activities.assignment.available_contributions.document')%>
+            </span>
+        </label>
+        <label>
+          <%= check_box_tag :available_contribution_writing, "Writing", false, :contribution => "Writing", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
+          <span class="lbl padding-0">
+            <%=t('workshop.activities.assignment.available_contributions.writing')%>
+          </span>
+        </label>
+    </div>
   </div>
-
 <% end %>
 
 

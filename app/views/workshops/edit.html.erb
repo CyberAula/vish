@@ -10,16 +10,14 @@
 <!-- Header -->
 
 <div class="wa_activity_wrapper wa_activity_wrapper_edit header_workshop ">
-  <div class="wa_activity_actions">
-    <ul>
-      <li>
-      <a title="<%=t('excursion.actions.edit')%>" class ="actions_tooltip" data-placement="bottom" data-toggle="tooltip" href=<%=edit_details_path(@workshop)%>><i class="icon-edit"></i></a>
-    </li>
-    </ul>
-  </div>
   <div class="layout_workshop">
-    <!--title-->
-    <h3 class="title_WS main_title_WS"><%=@workshop.title%></h3>
+    <div class="wa_activity_actions">
+      <ul>
+        <li>
+        <a title="<%=t('excursion.actions.edit')%>" class ="actions_tooltip" data-placement="bottom" data-toggle="tooltip" href=<%=edit_details_path(@workshop)%>><i class="icon-edit"></i></a>
+      </li>
+      </ul>
+    </div>
     <!--avatar-->
     <div class="container-img_WS">
       <div class="dummy"></div>
@@ -27,8 +25,18 @@
           <div bs-img="<%=@workshop.thumbnail_url%>" class="applyBackstretch img-box workshop_thumbnail" id=""></div>
       </div>
     </div>
+    <section class="information">
+    <!--title-->
+    <div class="name">
+      <h2 class="title_WS main_title_WS">
+        <%=@workshop.title%>
+      </h2>
+    </div>
     <!--description-->
-    <p class="description_WS"><%=@workshop.description%></p>
+    <p class="description description_WS">
+      <%=@workshop.description%>
+    </p>
+    </section>
   </div>
 </div>
 
