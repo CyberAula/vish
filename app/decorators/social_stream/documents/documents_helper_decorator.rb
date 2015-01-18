@@ -22,8 +22,8 @@ DocumentsHelper.module_eval do
         when "Link" then "link"
         when "Embed" then "code"
         when "Writing" then "file-text"
-        when "Scormfile" then "icon-scorm"
-        when "Webapp" then "icon-webapp"
+        when "Scormfile" then "o-scorm"
+        when "Webapp" then "o-webapp"
         when "Workshop" then "lightbulb"
         else "file" # SocialStream::Documents.icon_mime_types[:default]
       end

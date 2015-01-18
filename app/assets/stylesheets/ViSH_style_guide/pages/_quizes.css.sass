@@ -13,18 +13,12 @@ li.events-item,
 li.categories-item,
 li.repositories-item
 
-  
+
 #help,
 #legal_notice
 
 
-
-
 #QuizEdit
-  width: 60%
-  height: 60%
-  margin-left: -31%
-  margin-top: 2%
   .modal-header
     height: 6%
     max-height: 6%
@@ -34,44 +28,58 @@ li.repositories-item
   .modal-body
     height: 83%
     max-height: 83%
-  .modal-footer
-    display: none !important
-  .updateQuizButton
-    margin-top: 20px
+    .quiz_sessions
+      label
+        margin-bottom: 8px
+      .select_options
+        margin: 8px 0
+        width: 40%
 
 #QuizAnalitycs
-  width: 80%
-  height: 90%
-  margin-left: -40%
-  margin-top: -4%
   .modal-header
     height: 4%
     max-height: 4%
     p
       font-size: 16px !important
       margin-top: 1px
+
   .modal-body
     height: 87%
     max-height: 87%
+    .quiz_sessions
+      p
+        color: $gray
+      .quizAnswerURLTitle a
+        font-weight: bold
+        color: $brand-primary
+      .quizQuestionTitle
+        font-weight: 400
+        color: black
+      .quizResultsTable
+        border: none
+        color: $gray
+        .tdaRight
+          text-align: right
+        .trLast td
+          padding: 10px 10px !important
+
+        .tdTFPercentage
+          text-align: left
+          padding-left: 0px !important
+        .tdbeforeTFPercentage
+          padding-right: 5px !important
+          padding-left: 5px !important
+      .quizResultsTable td
+        padding: 5px 10px
+
   .modal-footer
     height: 2%
     max-height: 2%
-  .quizResultsTable
-    border: none
-    .tdaRight
-      text-align: right
-    .trLast td
-      padding-top: 4px
-    .tdTFPercentage
-      text-align: left
-      padding-left: 0px !important
-    .tdbeforeTFPercentage
-      padding-right: 5px !important
-      padding-left: 5px !important
-  .quizResultsTable td
-    padding: 0px 20px 0px 20px
+
 
 #quiz_chart
+  height: 200px !important
+  width: 400px !important
   max-width: 100%
   max-height: 100%
   margin-top: 30px
@@ -82,7 +90,7 @@ li.repositories-item
   text-align: center
   font-size: 28px
 
-.quizDownloadAsXLSX
+//.quizDownloadAsXLSX
   display: block
   margin-top: 1%
   text-align: right
@@ -117,32 +125,36 @@ div.openQuizAnswerLeft
     @include border-bottom-radius ($border-radius-base)
     width: 90%
   .textrow
-    margin: 5px 
+    margin: 5px
     padding: 0 0 2.5em
-    float: left 
-    margin-right: 10px     
+    float: left
+    margin-right: 10px
     width: 46%
     min-height: 300px
     h4
+      margin-left: 20px
       margin-bottom: 20px
       color: $brand-secundary
       font-size: 14px
-  .connectedSortable  
+    p
+      margin-left: 20px
+      color: gray
+  .connectedSortable
     list-style-type: none
     margin: 0 20px 10px -5px
   .connectedSortable li
-    cursor: pointer
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
     @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
-    margin: 0 5px 5px 5px  
-    font-size: 1.1em 
+    cursor: pointer
+    margin: 0 5px 5px 5px
+    font-size: 1.1em
     color: $black
     font-family: $corporate-font-family-sans-serif-Light
     border-width: 1px
-    border-color: $brand-primary
+    border-color: $gray
     border-style: solid
-    height: 41px
-    @include border-top-radius ($border-radius-base)
-    @include border-bottom-radius ($border-radius-base)
+    height: 58px
     padding: 10px
     background-color: $white
     .quiz_session_action
@@ -153,27 +165,31 @@ div.openQuizAnswerLeft
       white-space: nowrap
       overflow: hidden
       float: left
+      margin: -4px 0 0 0
     .creation_date
       white-space: nowrap
       overflow: hidden
       font-size: 0.8em
       color: $gray-light
       float: left
+      margin: 0
     button
       font-family: $corporate-font-family-sans-serif-Medium
       float: right
       display: block
-      margin-top: 4px
       margin-left: 2px
+      width: 30px
     &:hover
-      background-color: $brand-primary
+      background-color: $gray-light
       .creation_date
         color: $white
+      .qs_name
+        color: $gray-dark
 
 
 #overview
   .overviewindex
-    @include hidden-xs 
+    @include hidden-xs
     @include make-sm-column(3, $gutter: $grid-gutter-width)
     @include make-md-column(3, $gutter: $grid-gutter-width)
     @include make-lg-column(3, $gutter: $grid-gutter-width)
@@ -183,7 +199,7 @@ div.openQuizAnswerLeft
         list-style: normal
         a
           &:active
-            color: $gray-light  
+            color: $gray-light
 
   .overviewcontent
     @include make-xs-column(12, $gutter: $grid-gutter-width)

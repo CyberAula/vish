@@ -150,7 +150,7 @@
   });
 
     var appliedTags = [];
-    $('#categories_viewer_modal').on('shown', function() {
+    $('#categories_viewer_modal').on('shown.bs.modal', function() {
       $("#myCategories .tagit-choice").each(function(index,elem){
         appliedTags.push($(elem).text());
        });

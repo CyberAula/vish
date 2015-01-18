@@ -186,12 +186,12 @@
   $(document).ready(function(){
     <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => false } %>
 
-    $('#WorkshopActivities').on('shown', function(){
+    $('#WorkshopActivities').on('shown.bs.modal', function(){
     });
-    $('#WorkshopActivities').on('hidden', function(){
+    $('#WorkshopActivities').on('hidden.bs.modal', function(){
     });
 
-    $('#WorkshopActivity').on('hidden', function(){
+    $('#WorkshopActivity').on('hidden.bs.modal', function(){
       $(this).removeData('modal');
     });
 

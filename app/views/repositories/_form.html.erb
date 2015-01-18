@@ -177,14 +177,22 @@
   });
 
 
-  $("#AddResource").on('shown', function(){
-    //SLIDER
-    var min = 0;
-    var max = 30;
-    var step = 1;
-    var diff = max - min;
+  $("#AddResource").on('shown.bs.modal', function(){      
+    $("#AddResource .age-slider").slider().on('slide', function(ev){
+      positionLimits();
+    });
 
-    var positionLimits = function(){
+    $("#AddResource .age-slider").before($("#AddResource .limits"));
+    positionLimits();
+  });
+
+
+  var positionLimits = function(){
+      //SLIDER
+      var min = 0;
+      var max = 30;
+      var step = 1;
+      var diff = max - min;  
       var value1 = $('#AddResource .age-slider').data('slider').getValue()[0];
       var value2 = $('#AddResource .age-slider').data('slider').getValue()[1];
       $('#AddResource .limit1').text(value1);
@@ -203,15 +211,6 @@
         return $('#AddResource .slider').width() * percentage[1]/100 - $("#AddResource .limit2").width()/2 + 'px';
       });
     };
-
-    $("#AddResource .age-slider").slider().on('slide', function(ev){
-      positionLimits();
-    });
-
-    $("#AddResource .age-slider").before($("#AddResource .limits"));
-    positionLimits();
-  });
-
 
   //COMMON FIELDS
   var uploadButton = $("#AddResource input[value=<%= t('document.upload')%>][type='button'][class='btn btn-primary']");
