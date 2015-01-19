@@ -154,6 +154,7 @@ es:
       quality: "Calidad"
     title: "Búsqueda Avanzada"
   author: "autor"
+  blog_news_title: "novedades"
   browse:
     title: "explorar"
     popular: "contenido popular"

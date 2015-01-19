@@ -155,6 +155,7 @@ en:
       quality: "Quality"
     title: "Advanced Search"
   author: "author"
+  blog_news_title: "news"
   browse:
     title: "browse"
     popular: "popular content"
