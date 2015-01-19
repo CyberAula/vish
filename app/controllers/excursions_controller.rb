@@ -1,9 +1,6 @@
-require 'search_help_methods'
-
 class ExcursionsController < ApplicationController
 
   require 'fileutils'
-  include SearchHelpMethods
 
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
@@ -36,6 +33,7 @@ class ExcursionsController < ApplicationController
             redirect_to "/"
           end
         else
+          TrackingSystemEntry.trackRLOsInExcursions(params["rec"],@excursion,request,current_subject)
           @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})
           render
         end

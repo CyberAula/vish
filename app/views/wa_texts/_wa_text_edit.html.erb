@@ -1,9 +1,9 @@
 <h3 class="title_WS">Text</h3>
 <div id="" class="Assignment_edit_box">
   <%= form_for wa_text, :html => { :id => "edit_wa_text_#{wa_text.id}" }, :remote => false do |f| %>
-    <%= f.text_area :fulltext, :id=> "edit_wa_text_#{wa_text.id}_fulltext"%>
+    <%= f.text_area :fulltext, :class => "form-control", :id=> "edit_wa_text_#{wa_text.id}_fulltext"%>
     <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_text_#{wa_text.id}_plaintext"%>
-    <%= f.submit t('save'), :class => "hide", :id => "edit_wa_text_#{wa_text.id}_submitbutton"%>
+    <%= f.submit t('save'), :class => "hide btn btn-primary", :id => "edit_wa_text_#{wa_text.id}_submitbutton"%>
   <% end %>
   <input type="button" id="edit_wa_text_<%=wa_text.id%>_button" class="btn btn-primary" data-loading-text="<%= t('saving')%>" value="<%= t('save')%>"/>
 </div>

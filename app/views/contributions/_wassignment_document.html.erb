@@ -4,7 +4,7 @@
   <%= f.hidden_field :wa_assignment_id, :value => wa_assignment.id %>
   <%= f.hidden_field :type, :value => "document" %>
   <input class="contribution_file_input" name="document[file]" type="file">
-  <%= f.submit t('button.save'), :id=>"" ,:class => "contribution", :disabled => editMode%>
+  <%= f.submit t('button.save'), :id=>"" ,:class => "btn btn-primary contribution", :disabled => editMode%>
 <% end %>
 
 

@@ -14,7 +14,7 @@
 
   <div class="Assignment_edit_box">
     <%= form_for wa_assignment, :html => { :id => "edit_wa_assignment_#{wa_assignment.id}" }, :remote => false do |f| %>
-      <%= f.text_area :fulltext, :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
+      <%= f.text_area :fulltext, :class => "form-control", :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
       <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_assignment_#{wa_assignment.id}_plaintext"%>
       <%= f.submit t('save'), :class => "hide", :id => "edit_wa_assignment_#{wa_assignment.id}_submitbutton"%>
     <% end %>

@@ -1,5 +1,5 @@
 
-  <ul class="contributions_WS_gallery">
+  <ul class="items contributions_WS_gallery">
     <% contributions.each do |contribution| %>
       <%=render :partial=> "entities/entity", :locals => { :entity => contribution, :prefix_id =>"contribution" } %>
     <% end %>

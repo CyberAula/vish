@@ -1,7 +1,7 @@
 <%resource = contribution.activity_object.object%>
 <% return if resource.nil? or resource.author.nil? %>
 
-<li class="box-item resource-item">
+<li class="box-item resource">
   <!-- corner -->
   <div class="corner-item">
     <div class="corner-item2">
@@ -19,11 +19,11 @@
   </div>
   <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
   <!-- INFO -->
-  <div class="info">
+  <div class="caption">
     <!-- Title -->
-    <div class="name">
+    <h6>
       <%= link_to resource.title, contribution %>
-    </div>
+    </h6>
     <!-- Author -->
     <span class="author"> 
       <span class="by"><%=t('by')%></span>
