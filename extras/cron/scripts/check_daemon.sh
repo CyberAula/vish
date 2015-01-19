@@ -6,10 +6,10 @@ echo "[Start] ViSH check daemons script"
 : ${RAILS_ROOT="/u/apps/vish/current"}
 : ${SPHINX_PID_FILE="$RAILS_ROOT/log/searchd.$RAILS_ENV.pid"} 
 : ${GOD_PID_FILE="/var/run/god/resque-worker-0.pid"}
+: ${CAP_USER="capistrano"}
 
 check_sphinx=false
 check_god=false
-cap_user="isabel"
 
 if [ $# -eq 0 ]; then
 	check_sphinx=true
@@ -47,7 +47,7 @@ if $check_sphinx; then
 	if $run_sphinx; then
 		echo "Let's run sphinx!"
 		cd $RAILS_ROOT
-		SPHINX_COMMAND="-u $cap_user -H bundle exec rake ts:rebuild RAILS_ENV=$RAILS_ENV"
+		SPHINX_COMMAND="-u $CAP_USER -H bundle exec rake ts:rebuild RAILS_ENV=$RAILS_ENV"
 		if $rvm_installed; then
 			SPHINX_COMMAND="rvmsudo $SPHINX_COMMAND"
 		else
@@ -57,7 +57,7 @@ if $check_sphinx; then
 
 		#fix sphinx pid file permissions
 		/bin/chmod 777 $RAILS_ROOT/log/searchd*
-		/bin/chown $cap_user:www-data $RAILS_ROOT/log/searchd*
+		/bin/chown $CAP_USER:www-data $RAILS_ROOT/log/searchd*
 	else
 		echo "Sphinx already running"
 	fi
