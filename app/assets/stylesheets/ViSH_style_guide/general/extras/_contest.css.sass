@@ -1,10 +1,16 @@
 #winners
-  width: 100%
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
   .tabexcursions
     padding-top: 1%
     padding-bottom: 1%
     position: relative
-    width: 100%
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(12, $gutter: $grid-gutter-width)
+    @include make-md-column(12, $gutter: $grid-gutter-width)
+    @include make-lg-column(12, $gutter: $grid-gutter-width)
     display: block
     float: left
     margin-bottom: 3%
@@ -23,13 +29,19 @@
   #banner
     float: left
     position: relative
-    width: 100%
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(12, $gutter: $grid-gutter-width)
+    @include make-md-column(12, $gutter: $grid-gutter-width)
+    @include make-lg-column(12, $gutter: $grid-gutter-width)
 
     img
       width: 100%
   .info_competition
     display: block
-    width: 100%
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(12, $gutter: $grid-gutter-width)
+    @include make-md-column(12, $gutter: $grid-gutter-width)
+    @include make-lg-column(12, $gutter: $grid-gutter-width)
     margin: 20px auto 40px
     button.ModalPrizes
       width: auto
@@ -42,10 +54,17 @@
   #podium
     display: block
     position: relative
-    width: 80%
+    float: none !important
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(12, $gutter: $grid-gutter-width)
+    @include make-md-column(10, $gutter: $grid-gutter-width)
+    @include make-lg-column(10, $gutter: $grid-gutter-width)
     margin: 0 auto
     .podiuminside
-      width: 100%
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(12, $gutter: $grid-gutter-width)
+      @include make-md-column(12, $gutter: $grid-gutter-width)
+      @include make-lg-column(12, $gutter: $grid-gutter-width)
 
       .podiuminside1
         margin-top: 25px
@@ -132,11 +151,6 @@
             display: block
             font-family: $corporate-font-family-sans-serif-Light
 
-
-
-
-
-
   #subjectwinners
     float: none
     width: 90%
@@ -188,9 +202,7 @@
         .box-item
           width: 100%
 
-
   #participants
-
     float: left
     position: relative
     @include make-xs-column(12, $gutter: $grid-gutter-width)
@@ -219,12 +231,67 @@
 #contest
   .tabexcursions
     position: relative
-    width: 100%
     display: block
-    float: left
+    width: auto
     margin-bottom: 3%
     border-bottom: 1px solid $gray-light
     border-top: 1px solid $gray-light
+    h3
+      width: auto
+      margin-left: 5px
+      display: inline-block
     .filter
+      width: auto
+      margin-right: 5px
+      margin-top: 13px
       float: right
-      margin-top: -3%
+      display: inline-block
+
+  .contest_excursions
+    width: 100%
+    display: inline-block
+    float: left
+    ul 
+      width: 100%
+      
+  .entities
+    ul
+      @include items
+
+
+@media (max-width: 768px)
+  #subjectwinners
+
+    width: 100% !important
+    .subrow
+      width: 95% !important
+      margin: 2.5% auto !important
+      display: inline-block !important
+      float: left !important
+  .podiuminside1,
+  .podiuminside2,
+  .podiuminside3
+    width: 100% !important
+    clear: both
+    display: block !important
+    margin-bottom: 30px
+    .entities
+      width: 80% !important
+      display: block
+      margin: 0 auto
+      float: none
+      ul
+        width: 50% !important
+
+
+@media (max-width: 480px)
+  #subjectwinners
+    .subrow
+      section
+        width: 95% !important
+    .podiuminside1,
+    .podiuminside2,
+    .podiuminside3
+      .entities
+        ul
+          width: 80% !important
