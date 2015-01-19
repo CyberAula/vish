@@ -49,8 +49,7 @@ if $check_sphinx; then
 		cd $RAILS_ROOT
 		bundle exec rake ts:rebuild RAILS_ENV=$RAILS_ENV
 		#fix sphinx pid file permissions
-		/bin/chmod g+rw $RAILS_ROOT/log/searchd*
-		/bin/chgrp www-data $RAILS_ROOT/log/searchd*
+		/bin/chmod 777 $RAILS_ROOT/log/searchd*
 	else
 		echo "Sphinx already running"
 	fi
