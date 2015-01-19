@@ -1,4 +1,4 @@
-<footer id="footer" class="container-fluid">
+<footer id="footer" class="container-fluid hidden-sm">
 <nav>
   <ul>
 <!-- legal notice-->
@@ -6,7 +6,6 @@
         <%= link_to t('conditions.other'), '/legal_notice', :class => "btn btn-default" %>
       </li>
 <!-- legal notice-->
-
       <li class="btn-group dropup">
         <a type="button" class="btn dropdown-toggle" data-toggle="dropdown">
           <span class="idioma"><%= t('help') %></span>
@@ -19,7 +18,7 @@
               <span><%= t('overview_title') %></span>
             </a>
           </li>
-          <li class="">
+          <li>
             <a target="_blank" href="https://www.youtube.com/channel/UCo-73n6eZBWNBs2gvKLyBhQ">
               <i class="fa fa-youtube"> </i>
               <span><%= t('youtube') %></span>
@@ -31,7 +30,7 @@
               <span><%=t('faq.title')%></span>
             <% end %>
           </li>-->
-          <li class="">
+          <li>
             <%= link_to user_manual_path do %>
               <i class='fa fa-download'> </i> 
               <span><%= t('help_manual')%>   </span>    
@@ -50,7 +49,7 @@
       <li class="btn-group dropup">
         <div data-toggle="dropdown" class="btn dropdown-toggle">
           <% the_locale = I18n.locale.to_s %>
-          <span class="idioma"><%=image_tag("flags/" + the_locale + ".png", :title=>the_locale, :class=> "")%><%= t('lang.title') %></span>
+          <span class="idioma"><%=image_tag("flags/" + the_locale + ".png", :title=>the_locale, :class=> "")%><%=t('lang.title')%></span>
           <i class="icon-angle-up"></i>
         </div>  
           <ul class="dropdown-menu">
@@ -61,11 +60,15 @@
             <% end %>
           </ul>
       </li>
+      
 <!-- contact-->
       <li>
          <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript, :class=> "btn btn-default") %>
       </li>
-
+<!-- news -->
+      <li>
+        <a class="btn btn-default" target="_blank" href="http://vishub.wordpress.com"><%= t('blog_news_title') %></a>
+      </li>
 <!-- social-->
       <li class="social">  
         <a href="https://www.facebook.com/VirtualScienceHub" target="_blank" class="btn btn-default"><i alt="Facebook-logo" class="social-img fa fa-facebook"></i>
@@ -102,4 +105,4 @@
             zIndex: 2147483647 // Z-Index for the overlay
       });
     });
-    </script>
+</script>
