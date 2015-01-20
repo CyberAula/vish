@@ -123,17 +123,17 @@ class Excursion < ActiveRecord::Base
     end
 
     #Copy SCORM assets (image, javascript and css files)
-    dir = "#{Rails.root}/vendor/plugins/vish_editor/app/scorm"
+    dir = "#{Rails.root}/lib/plugins/vish_editor/app/scorm"
     zip_folder(t.path,dir)
 
     #Add theme
-    themesPath = "#{Rails.root}/vendor/plugins/vish_editor/app/assets/images/themes/"
+    themesPath = "#{Rails.root}/lib/plugins/vish_editor/app/assets/images/themes/"
     theme = "theme1" #Default theme
     if json["theme"] and File.exists?(themesPath + json["theme"])
       theme = json["theme"]
     end
     #Copy excursion theme
-    zip_folder(t.path,"#{Rails.root}/vendor/plugins/vish_editor/app/assets",themesPath + theme)
+    zip_folder(t.path,"#{Rails.root}/lib/plugins/vish_editor/app/assets",themesPath + theme)
 
     t.close
   end

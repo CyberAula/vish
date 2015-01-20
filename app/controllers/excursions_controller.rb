@@ -213,7 +213,7 @@ class ExcursionsController < ApplicationController
   def iframe_api
     respond_to do |format|
       format.js {
-        render :file => "#{Rails.root}/vendor/plugins/vish_editor/app/assets/javascripts/VISH.IframeAPI.js",
+        render :file => "#{Rails.root}/lib/plugins/vish_editor/app/assets/javascripts/VISH.IframeAPI.js",
           :content_type => 'application/javascript',
           :layout => false
       }

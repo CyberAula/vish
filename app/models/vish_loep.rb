@@ -72,7 +72,7 @@ class VishLoep
       lo["technology"] = "html"
 
       exJSON = JSON(ao.object.json)
-      elemTypes = VishEditor.getElementTypes(exJSON)
+      elemTypes = VishEditorUtils.getElementTypes(exJSON)
       lo["hasText"] = elemTypes.include?("text") ? "1" : "0"
       lo["hasImages"] = elemTypes.include?("image") ? "1" : "0"
       lo["hasVideos"] = elemTypes.include?("video") ? "1" : "0"
