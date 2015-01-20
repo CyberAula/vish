@@ -54,18 +54,6 @@
     <div class="container-fluid">
       <div class="row">
 
-        <div class="podiuminside2">
-          <div class="entities">
-            <ul>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
-            </ul>
-          </div>
-          <div class="podiumart">
-            <div class="podcircle">
-              <h2>1</h2>
-            </div>
-          </div>
-        </div>
 
         <div class="podiuminside1">
           <div class="entities">
@@ -74,11 +62,26 @@
             </ul>
           </div>
           <div class="podiumart">
-            <div class="podcircle">
+            <div class="podcircle1">
+              <h2>1</h2>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="podiuminside2">
+          <div class="entities">
+            <ul>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
+            </ul>
+          </div>
+          <div class="podiumart">
+            <div class="podcircle2">
               <h2>2</h2>
             </div>
           </div>
         </div>
+
 
         <div class="podiuminside3">
           <div class="entities">
@@ -87,11 +90,12 @@
             </ul>
           </div>
           <div class="podiumart">
-            <div class="podcircle">
+            <div class="podcircle3">
               <h2>3</h2>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -99,6 +103,48 @@
 
 
 
+<div id="podium-small">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="podiuminside1">
+            <div class="podcircle1">
+              <h2>1</h2>
+            </div>
+          <div class="entities">
+            <ul>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
+            </ul>
+          </div>
+        </div>
+
+        <div class="podiuminside2">
+            <div class="podcircle2">
+              <h2>2</h2>
+            </div>
+          <div class="entities">
+            <ul>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="podiuminside3">
+          <div class="podcircle3">
+            <h2>3</h2>
+          </div>
+          <div class="entities">
+            <ul>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+</div>
 
 
 
