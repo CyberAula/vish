@@ -67,35 +67,22 @@
       @include make-lg-column(12, $gutter: $grid-gutter-width)
 
       .podiuminside1
-        margin-top: 25px
+        
         .podiumart
-          border-top: 1px solid silver
-          height: 75px
-          margin-top: 20px
-          
-          h2
-            color: silver
-            border: 1px solid silver
-            margin-top: 22px
-
-      .podiuminside2
-        .podiumart
-          border-top: 1px solid gold
           height: 100px
           margin-top: 20px
-          h2
-            color: gold
-            border: 1px solid gold
-            margin-top: 34px
+
+      .podiuminside2
+        margin-top: 25px
+        .podiumart
+          height: 75px
+          margin-top: 20px
+
       .podiuminside3
         margin-top: 50px
         .podiumart
-          border-top: 1px solid #ac5f18
           height: 50px
           margin-top: 20px
-          h2
-            color: #ac5f18
-            border: 1px solid #ac5f18
       //podium 2
       .podiuminside1,
       .podiuminside2,
@@ -133,23 +120,130 @@
           background: url(competition/noisy.png) -19px top repeat, -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
           background: url(competition/noisy.png) -19px top repeat, linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%)
           filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 )
-          h2
-            //font-family: Garamond, serif
-            //line-height: 20px
-            //color: #fff
-            //font-weight: bold
-            //font-size: 20px
-            //text-shadow: 0px 0px 0 rgb(231,231,231),1px 1px 0 rgb(217,217,217),2px 2px 0 rgb(203,203,203),3px 3px 0 rgb(189,189,189),4px 4px 0 rgb(175,175,175), 5px 5px 0 rgb(161,161,161),6px 6px 5px rgba(0,0,0,0.9),6px 6px 1px rgba(0,0,0,0.5),0px 0px 5px rgba(0,0,0,.2)
-            margin-top: 10px
-            border-radius: 50%
-            background-color: $white
-            font-weight: lighter
-            width: 30px
-            height: 30px
-            margin: 10px auto 0
-            float: none
-            display: block
-            font-family: $corporate-font-family-sans-serif-Light
+          .podcircle1,
+          .podcircle2,
+          .podcircle3
+            h2
+              //font-family: Garamond, serif
+              //line-height: 20px
+              //color: #fff
+              //font-weight: bold
+              //font-size: 20px
+              //text-shadow: 0px 0px 0 rgb(231,231,231),1px 1px 0 rgb(217,217,217),2px 2px 0 rgb(203,203,203),3px 3px 0 rgb(189,189,189),4px 4px 0 rgb(175,175,175), 5px 5px 0 rgb(161,161,161),6px 6px 5px rgba(0,0,0,0.9),6px 6px 1px rgba(0,0,0,0.5),0px 0px 5px rgba(0,0,0,.2)
+              margin-top: 10px
+              border-radius: 50%
+              background-color: $white
+              font-weight: lighter
+              width: 30px
+              height: 30px
+              margin: 10px auto 0
+              float: none
+              display: block
+              font-family: $corporate-font-family-sans-serif-Medium
+              color: $white
+              font-size: 25px
+          .podcircle3
+            h2
+              background-color: #CD7F32
+          
+          .podcircle2
+            h2
+              background-color: silver
+
+          .podcircle1
+            h2
+              background-color: gold
+
+
+
+
+
+
+  #podium-small
+    display: block
+    position: relative
+    float: left
+    width: 100%
+    margin: 20px auto
+
+    .podiuminside1
+      border: 2px solid gold
+    .podiuminside2
+      border: 2px solid silver
+    .podiuminside3
+      border: 2px solid #CD7F32
+
+    .podiuminside1,
+    .podiuminside2,
+    .podiuminside3
+      display: block
+      position: relative
+      float: left
+      width: 100%
+      margin: 20px auto
+      background: url(competition/noisy.png) -19px top repeat
+      background: url(competition/noisy.png) -19px top repeat, -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%)
+      background: url(competition/noisy.png) -19px top repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5))
+      background: url(competition/noisy.png) -19px top repeat, -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
+      background: url(competition/noisy.png) -19px top repeat, -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
+      background: url(competition/noisy.png) -19px top repeat, -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
+      background: url(competition/noisy.png) -19px top repeat, linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 )
+      @include border-top-radius ($border-radius-base)
+      @include border-bottom-radius ($border-radius-base)
+      .podcircle1,
+      .podcircle2,
+      .podcircle3
+        position: absolute
+        left: 20px
+        top: 20px
+        h2
+          //font-family: Garamond, serif
+          //line-height: 20px
+          //color: #fff
+          //font-weight: bold
+          //font-size: 20px
+          //text-shadow: 0px 0px 0 rgb(231,231,231),1px 1px 0 rgb(217,217,217),2px 2px 0 rgb(203,203,203),3px 3px 0 rgb(189,189,189),4px 4px 0 rgb(175,175,175), 5px 5px 0 rgb(161,161,161),6px 6px 5px rgba(0,0,0,0.9),6px 6px 1px rgba(0,0,0,0.5),0px 0px 5px rgba(0,0,0,.2)
+          border-radius: 50%
+          background-color: $white
+          font-weight: lighter
+          width: 50px
+          height: 50px
+          float: left
+          display: block
+          font-family: $corporate-font-family-sans-serif-Medium
+          color: $white
+          font-size: 40px
+          text-align: center
+          margin: 0
+      .podcircle3
+        h2
+          background-color: #CD7F32
+      
+      .podcircle2
+        h2
+          background-color: silver
+
+      .podcircle1
+        h2
+          background-color: gold
+
+      .entities
+        width: 50%
+        display: block
+        float: none
+        margin: 20px auto
+
+        ul
+          margin: 0 auto !important
+          display: block
+          float: none !important
+          width: 100% !important
+          @include item
+
+
+
+
 
   #subjectwinners
     float: none
@@ -258,6 +352,9 @@
     ul
       @include items
 
+@media (min-width: 769px)
+  #podium-small
+    display: none !important
 
 @media (max-width: 768px)
   #subjectwinners
@@ -268,20 +365,10 @@
       margin: 2.5% auto !important
       display: inline-block !important
       float: left !important
-  .podiuminside1,
-  .podiuminside2,
-  .podiuminside3
-    width: 100% !important
-    clear: both
+  #podium
+    display: none !important
+  #podium-small
     display: block !important
-    margin-bottom: 30px
-    .entities
-      width: 80% !important
-      display: block
-      margin: 0 auto
-      float: none
-      ul
-        width: 50% !important
 
 
 @media (max-width: 480px)
@@ -289,9 +376,16 @@
     .subrow
       section
         width: 95% !important
-    .podiuminside1,
-    .podiuminside2,
-    .podiuminside3
-      .entities
-        ul
-          width: 80% !important
+  #podium-small
+    .entities
+      width: 90% !important
+
+      ul
+        display: inline-block !important
+    .podcircle1,
+    .podcircle2,
+    .podcircle3
+      display: none !important
+
+
+
