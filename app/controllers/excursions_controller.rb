@@ -33,6 +33,7 @@ class ExcursionsController < ApplicationController
             redirect_to "/"
           end
         else
+          TrackingSystemEntry.trackRLOsInExcursions(params["rec"],@excursion,request,current_subject)
           @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})
           render
         end

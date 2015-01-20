@@ -2,4 +2,4 @@
 <%classNameUnderscore = className.underscore%>
 
 <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
-               locals:  { classNameUnderscore.to_sym => entity, :prefix_id => prefix_id } %>
+               locals:  { classNameUnderscore.to_sym => entity, :prefix_id => prefix_id, :rec => (defined?(rec) ? rec : false) } %>
