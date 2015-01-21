@@ -276,17 +276,23 @@ class ExcursionsController < ApplicationController
     end
 
     # Uncomment this block to activate the A/B testing
-    # A/B Testing: 50% of the requests will be attended by the RS, the other 50% will be attended by a random algorithm
-    if rand < 0.5
-      excursions = Excursion.where(:draft=>false).sample(options[:n])
-      excursions.map{ |e|
-        e.score_tracking = {
-          :rec => "Random"
-        }.to_json
-      }
+    # A/B Testing: some % of the requests will be attended by the full RS, the other % will be attended by other algorithms
+    rnd = rand
+    if rnd < 0.10
+      #Random
+      options[:recEngine] = "Random"
+    elsif rnd < 0.5
+      #Full RS without quality metrics
+      options[:recEngine] = "ViSHRS-Quality"
+    elsif rnd < 0.9
+      #Full RS without quality and popularity metrics
+      options[:recEngine] = "ViSHRS-Quality-Popularity"
     else
-      excursions = RecommenderSystem.resource_suggestions(current_subject,current_excursion,options)
+      #Full RS
+      options[:recEngine] = "ViSHRecommenderSystem"
     end
+
+    excursions = RecommenderSystem.resource_suggestions(current_subject,current_excursion,options)
 
     respond_to do |format|
       format.json {
