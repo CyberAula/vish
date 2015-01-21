@@ -150,12 +150,9 @@ namespace :trsystem do
             #When accepted, and RS is ViSHRecommender, store accepted and denied items
             if rsItemTrackingData["rec"] == "ViSHRecommenderSystem"
               acceptedItem = recData["tdata"].values.select{|item| item["id"]==recData["accepted"]}[0]
-              acceptedItemData = JSON(acceptedItem["recommender_data"])
-              recTSD["ViSHRecommenderSystem"]["accepted"].push(acceptedItemData)
-
-              deniedItemsLength = recData["tdata"].values.select{|item| item["id"]!=recData["accepted"]}
-              deniedItemsLengthData = deniedItemsLength.map{|item| JSON(item["recommender_data"])}
-              recTSD["ViSHRecommenderSystem"]["denied"] += deniedItemsLengthData
+              recTSD["ViSHRecommenderSystem"]["accepted"].push(acceptedItem)
+              deniedItems = recData["tdata"].values.select{|item| item["id"]!=recData["accepted"]}
+              recTSD["ViSHRecommenderSystem"]["denied"] += deniedItems
             end
           end
         end
@@ -164,7 +161,7 @@ namespace :trsystem do
 
 
     ###############
-    # ViSH Recommender System vs Random
+    # ViSH Recommender System vs Random vs Other recommender approaches
     ###############
 
     if recTSD["Random"]["timeToAccept"].length > 0
@@ -209,20 +206,76 @@ namespace :trsystem do
     acceptedItemsLength = [1,recTSD["ViSHRecommenderSystem"]["accepted"].length].max
     deniedItemsLength = [1,recTSD["ViSHRecommenderSystem"]["denied"].length].max
 
-    accceptedAverageOverallScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["overall_score"]}.sum/acceptedItemsLength.to_f).round(4)
-    deniedAverageOverallScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["overall_score"]}.sum/deniedItemsLength.to_f).round(4)
+    accceptedQualityScores = recTSD["ViSHRecommenderSystem"]["accepted"].map{ |i| 
+      qscore = nil
+      recData = JSON(i["recommender_data"]) rescue {}
+      unless recData["qscore"].nil?
+        qscore = recData["qscore"]
+      else
+        excursion = Excursion.find_by_id(i["id"])
+        unless excursion.nil?
+          qscore = excursion.qscore
+        end
+      end
+      qscore
+    }.compact
 
-    accceptedAverageCSScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["cs_score"]}.sum/acceptedItemsLength.to_f).round(4)
-    deniedAverageCSScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["cs_score"]}.sum/deniedItemsLength.to_f).round(4)
+    deniedQualityScores = recTSD["ViSHRecommenderSystem"]["denied"].map{ |i| 
+      qscore = nil
+      recData = JSON(i["recommender_data"]) rescue {}
+      unless recData["qscore"].nil?
+        qscore = recData["qscore"]
+      else
+        excursion = Excursion.find_by_id(i["id"])
+        unless excursion.nil?
+          qscore = excursion.qscore
+        end
+      end
+      qscore
+    }.compact
 
-    accceptedAverageUSScore = (recTSD["ViSHRecommenderSystem"]["accepted"].reject{|i| i["us_score"].nil?}.map{|i| i["us_score"]}.sum/acceptedItemsLength.to_f).round(4)
-    deniedAverageUSScore = (recTSD["ViSHRecommenderSystem"]["denied"].reject{|i| i["us_score"].nil?}.map{|i| i["us_score"]}.sum/deniedItemsLength.to_f).round(4)
+    accceptedPopularityScores = recTSD["ViSHRecommenderSystem"]["accepted"].map{ |i| 
+      popularity = nil
+      recData = JSON(i["recommender_data"]) rescue {}
+      unless recData["popularity"].nil?
+        popularity = recData["popularity"]
+      else
+        excursion = Excursion.find_by_id(i["id"])
+        unless excursion.nil?
+          popularity = excursion.popularity
+        end
+      end
+      popularity
+    }.compact
 
-    accceptedAveragePopularityScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["popularity_score"]}.sum/acceptedItemsLength.to_f).round(4)
-    deniedAveragePopularityScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["popularity_score"]}.sum/deniedItemsLength.to_f).round(4)
+    deniedPopularityScores = recTSD["ViSHRecommenderSystem"]["denied"].map{ |i| 
+      popularity = nil
+      recData = JSON(i["recommender_data"]) rescue {}
+      unless recData["popularity"].nil?
+        popularity = recData["popularity"]
+      else
+        excursion = Excursion.find_by_id(i["id"])
+        unless excursion.nil?
+          popularity = excursion.popularity
+        end
+      end
+      popularity
+    }.compact
 
-    accceptedAverageQualityScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["quality_score"]}.sum/acceptedItemsLength.to_f).round(4)
-    deniedAverageQualityScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["quality_score"]}.sum/deniedItemsLength.to_f).round(4)
+    accceptedAverageOverallScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| JSON(i["recommender_data"])["overall_score"]}.sum/acceptedItemsLength.to_f).round(4)
+    deniedAverageOverallScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| JSON(i["recommender_data"])["overall_score"]}.sum/deniedItemsLength.to_f).round(4)
+
+    accceptedAverageCSScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| JSON(i["recommender_data"])["cs_score"]}.sum/acceptedItemsLength.to_f).round(4)
+    deniedAverageCSScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| JSON(i["recommender_data"])["cs_score"]}.sum/deniedItemsLength.to_f).round(4)
+
+    accceptedAverageUSScore = (recTSD["ViSHRecommenderSystem"]["accepted"].reject{|i| JSON(i["recommender_data"])["us_score"].nil?}.map{|i| JSON(i["recommender_data"])["us_score"]}.sum/acceptedItemsLength.to_f).round(4)
+    deniedAverageUSScore = (recTSD["ViSHRecommenderSystem"]["denied"].reject{|i| JSON(i["recommender_data"])["us_score"].nil?}.map{|i| JSON(i["recommender_data"])["us_score"]}.sum/deniedItemsLength.to_f).round(4)
+
+    accceptedAveragePopularityScore = ((accceptedPopularityScores.sum/([1,accceptedPopularityScores.length].max)).to_f).round(0)
+    deniedAveragePopularityScore = ((deniedPopularityScores.sum/([1,deniedPopularityScores.length].max)).to_f).round(0)
+
+    accceptedAverageQualityScore = ((accceptedQualityScores.sum/([1,accceptedQualityScores.length].max)).to_f).round(0)
+    deniedAverageQualityScore = ((deniedQualityScores.sum/([1,deniedQualityScores.length].max)).to_f).round(0)
 
     writeInTRS("")
     writeInTRS("Group of accepted LOs")
