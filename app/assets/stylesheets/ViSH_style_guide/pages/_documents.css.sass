@@ -9,6 +9,7 @@ aside.recomended
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(8, $gutter: $grid-gutter-width)
   @include make-lg-column(8, $gutter: $grid-gutter-width)
+  padding: 0 !important
 
 
 .description-activity
@@ -149,6 +150,33 @@ aside.recomended
   @include box-shadow (0 1px 4px 1px rgba(0, 0, 0, 0.1))
   .container-visor
     width: 100%
+    iframe
+      width: 100% !important
+.link_address
+  width: auto
+  float: right
+  margin-top: 3px
+  margin-right: 7px
+  a
+    font-size: 14px !important
+    color: $gray
+    float: none !important
+    i,p
+      font-size: 14px !important
+      color: $gray
+      float: left !important
+      display: inline-block
+      text-align: left !important
+      width: auto !important
+    i
+      margin-right: 7px
+      margin-top: 3px
+    p
+      margin: 0 !important
+.link_address:hover
+  a,i,p
+    color: $gray-dark
+
 
 aside.recomended
   float: right !important
