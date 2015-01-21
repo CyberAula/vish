@@ -10,6 +10,7 @@ namespace :trsystem do
     Rake::Task["trsystem:prepare"].invoke
     Rake::Task["trsystem:usage"].invoke(false)
     Rake::Task["trsystem:rs"].invoke(false)
+    Rake::Task["trsystem:rsViSH"].invoke(false)
   end
 
   task :prepare do
@@ -37,25 +38,36 @@ namespace :trsystem do
     # startDate = endDate.advance(:months => -3)
     # vvEntries = vvEntries.where(:created_at => startDate..endDate)
 
+    totalSamples = 0
     totalSlides = 0
     totalDuration = 0
 
     vvEntries.each do |e|
       # begin
         d = JSON(e["data"]) rescue {}
-        # chronologyEntries = d["chronology"].values
-        nSlides = d["chronology"].values.map{|c| c["slideNumber"]}.uniq.length
-        # tDuration = chronologyEntries.map{|c| c["duration"].to_f}.sum
-        tDuration = d["duration"].to_f
 
-        if nSlides.is_a? Integer and tDuration.is_a? Float
-          totalSlides = totalSlides + nSlides
-          totalDuration = totalDuration + tDuration
+        unless d["chronology"].nil? or d["duration"].nil?
+          # chronologyEntries = d["chronology"].values
+          nSlides = d["chronology"].values.map{|c| c["slideNumber"]}.uniq.length
+          # tDuration = chronologyEntries.map{|c| c["duration"].to_f}.sum
+          tDuration = d["duration"].to_f
+
+          #Filter extremely long and short durations
+          MAX_DURATION = 1.5*60*60 #1.5 hours
+          MIN_DURATION = 10 #10 secs
+
+          if nSlides.is_a? Integer and tDuration.is_a? Float and nSlides>0 and tDuration>MIN_DURATION and tDuration<MAX_DURATION
+            totalSlides += nSlides
+            totalDuration += tDuration
+            totalSamples += 1
+          end
         end
       # rescue
       # end
     end
 
+    writeInTRS("Total samples")
+    writeInTRS(totalSamples)
     writeInTRS("Average time per slide:")
     if totalDuration > 0
       writeInTRS((totalDuration/totalSlides.to_f).round(2).to_s + " (s)")
@@ -76,7 +88,7 @@ namespace :trsystem do
     end
 
     writeInTRS("")
-    writeInTRS("Recommender System Report")
+    writeInTRS("Recommender System Report. ViSH Viewer data")
     writeInTRS("")
 
     vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer")
@@ -138,12 +150,9 @@ namespace :trsystem do
             #When accepted, and RS is ViSHRecommender, store accepted and denied items
             if rsItemTrackingData["rec"] == "ViSHRecommenderSystem"
               acceptedItem = recData["tdata"].values.select{|item| item["id"]==recData["accepted"]}[0]
-              acceptedItemData = JSON(acceptedItem["recommender_data"])
-              recTSD["ViSHRecommenderSystem"]["accepted"].push(acceptedItemData)
-
-              deniedItemsLength = recData["tdata"].values.select{|item| item["id"]!=recData["accepted"]}
-              deniedItemsLengthData = deniedItemsLength.map{|item| JSON(item["recommender_data"])}
-              recTSD["ViSHRecommenderSystem"]["denied"] += deniedItemsLengthData
+              recTSD["ViSHRecommenderSystem"]["accepted"].push(acceptedItem)
+              deniedItems = recData["tdata"].values.select{|item| item["id"]!=recData["accepted"]}
+              recTSD["ViSHRecommenderSystem"]["denied"] += deniedItems
             end
           end
         end
@@ -152,7 +161,7 @@ namespace :trsystem do
 
 
     ###############
-    # ViSH Recommender System vs Random
+    # ViSH Recommender System vs Random vs Other recommender approaches
     ###############
 
     if recTSD["Random"]["timeToAccept"].length > 0
@@ -197,20 +206,76 @@ namespace :trsystem do
     acceptedItemsLength = [1,recTSD["ViSHRecommenderSystem"]["accepted"].length].max
     deniedItemsLength = [1,recTSD["ViSHRecommenderSystem"]["denied"].length].max
 
-    accceptedAverageOverallScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["overall_score"]}.sum/acceptedItemsLength.to_f).round(4)
-    deniedAverageOverallScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["overall_score"]}.sum/deniedItemsLength.to_f).round(4)
+    accceptedQualityScores = recTSD["ViSHRecommenderSystem"]["accepted"].map{ |i| 
+      qscore = nil
+      recData = JSON(i["recommender_data"]) rescue {}
+      unless recData["qscore"].nil?
+        qscore = recData["qscore"]
+      else
+        excursion = Excursion.find_by_id(i["id"])
+        unless excursion.nil?
+          qscore = excursion.qscore
+        end
+      end
+      qscore
+    }.compact
 
-    accceptedAverageCSScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["cs_score"]}.sum/acceptedItemsLength.to_f).round(4)
-    deniedAverageCSScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["cs_score"]}.sum/deniedItemsLength.to_f).round(4)
+    deniedQualityScores = recTSD["ViSHRecommenderSystem"]["denied"].map{ |i| 
+      qscore = nil
+      recData = JSON(i["recommender_data"]) rescue {}
+      unless recData["qscore"].nil?
+        qscore = recData["qscore"]
+      else
+        excursion = Excursion.find_by_id(i["id"])
+        unless excursion.nil?
+          qscore = excursion.qscore
+        end
+      end
+      qscore
+    }.compact
 
-    accceptedAverageUSScore = (recTSD["ViSHRecommenderSystem"]["accepted"].reject{|i| i["us_score"].nil?}.map{|i| i["us_score"]}.sum/acceptedItemsLength.to_f).round(4)
-    deniedAverageUSScore = (recTSD["ViSHRecommenderSystem"]["denied"].reject{|i| i["us_score"].nil?}.map{|i| i["us_score"]}.sum/deniedItemsLength.to_f).round(4)
+    accceptedPopularityScores = recTSD["ViSHRecommenderSystem"]["accepted"].map{ |i| 
+      popularity = nil
+      recData = JSON(i["recommender_data"]) rescue {}
+      unless recData["popularity"].nil?
+        popularity = recData["popularity"]
+      else
+        excursion = Excursion.find_by_id(i["id"])
+        unless excursion.nil?
+          popularity = excursion.popularity
+        end
+      end
+      popularity
+    }.compact
 
-    accceptedAveragePopularityScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["popularity_score"]}.sum/acceptedItemsLength.to_f).round(4)
-    deniedAveragePopularityScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["popularity_score"]}.sum/deniedItemsLength.to_f).round(4)
+    deniedPopularityScores = recTSD["ViSHRecommenderSystem"]["denied"].map{ |i| 
+      popularity = nil
+      recData = JSON(i["recommender_data"]) rescue {}
+      unless recData["popularity"].nil?
+        popularity = recData["popularity"]
+      else
+        excursion = Excursion.find_by_id(i["id"])
+        unless excursion.nil?
+          popularity = excursion.popularity
+        end
+      end
+      popularity
+    }.compact
 
-    accceptedAverageQualityScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| i["quality_score"]}.sum/acceptedItemsLength.to_f).round(4)
-    deniedAverageQualityScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| i["quality_score"]}.sum/deniedItemsLength.to_f).round(4)
+    accceptedAverageOverallScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| JSON(i["recommender_data"])["overall_score"]}.sum/acceptedItemsLength.to_f).round(4)
+    deniedAverageOverallScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| JSON(i["recommender_data"])["overall_score"]}.sum/deniedItemsLength.to_f).round(4)
+
+    accceptedAverageCSScore = (recTSD["ViSHRecommenderSystem"]["accepted"].map{|i| JSON(i["recommender_data"])["cs_score"]}.sum/acceptedItemsLength.to_f).round(4)
+    deniedAverageCSScore = (recTSD["ViSHRecommenderSystem"]["denied"].map{|i| JSON(i["recommender_data"])["cs_score"]}.sum/deniedItemsLength.to_f).round(4)
+
+    accceptedAverageUSScore = (recTSD["ViSHRecommenderSystem"]["accepted"].reject{|i| JSON(i["recommender_data"])["us_score"].nil?}.map{|i| JSON(i["recommender_data"])["us_score"]}.sum/acceptedItemsLength.to_f).round(4)
+    deniedAverageUSScore = (recTSD["ViSHRecommenderSystem"]["denied"].reject{|i| JSON(i["recommender_data"])["us_score"].nil?}.map{|i| JSON(i["recommender_data"])["us_score"]}.sum/deniedItemsLength.to_f).round(4)
+
+    accceptedAveragePopularityScore = ((accceptedPopularityScores.sum/([1,accceptedPopularityScores.length].max)).to_f).round(0)
+    deniedAveragePopularityScore = ((deniedPopularityScores.sum/([1,deniedPopularityScores.length].max)).to_f).round(0)
+
+    accceptedAverageQualityScore = ((accceptedQualityScores.sum/([1,accceptedQualityScores.length].max)).to_f).round(0)
+    deniedAverageQualityScore = ((deniedQualityScores.sum/([1,deniedQualityScores.length].max)).to_f).round(0)
 
     writeInTRS("")
     writeInTRS("Group of accepted LOs")
@@ -237,6 +302,147 @@ namespace :trsystem do
     writeInTRS(deniedAveragePopularityScore)
     writeInTRS("Quality score:")
     writeInTRS(deniedAverageQualityScore)
+  end
+
+  #Usage
+  #Development:   bundle exec rake trsystem:rsViSH
+  #In production: bundle exec rake trsystem:rsViSH RAILS_ENV=production
+  task :rsViSH, [:prepare] => :environment do |t,args|
+    args.with_defaults(:prepare => true)
+
+    if args.prepare
+      Rake::Task["trsystem:prepare"].invoke
+    end
+
+    writeInTRS("")
+    writeInTRS("Recommender System Report. ViSH data")
+    writeInTRS("")
+
+    vEntries = TrackingSystemEntry.where(:app_id=>"ViSH RLOsInExcursions")
+
+    results = {}
+    results["samples"] = 0
+    results["rec"] = 0
+    results["norec"] = 0
+
+    vEntries.each do |e|
+      d = JSON(e["data"]) rescue {}
+      unless d.nil? or d["rec"].nil?
+        results["samples"] += 1
+        if d["rec"]==false or d["rec"]=="false"
+          results["norec"] += 1
+        else
+          results["rec"] += 1
+        end
+      end
+    end
+
+    #Integrate data from the VV tracker
+    if vEntries.length > 0
+      VVacceptedRecomendations = 0
+      VVacceptedRecomendationsLoggedUsers = 0
+      VVacceptedRecomendationsNonLoggedUsers = 0
+      startDate = vEntries.minimum(:created_at)
+      endDate = vEntries.maximum(:created_at)
+      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :created_at => startDate..endDate)
+      vvEntries.each do |e|
+        d = JSON(e["data"]) rescue {}
+        userData = d["user"]
+        recData = d["rs"]
+        unless recData.nil? or !recData["tdata"].is_a? Hash
+          firstItem = recData["tdata"].values.first
+          rsItemTrackingData = JSON(firstItem["recommender_data"]) rescue nil
+          unless rsItemTrackingData.nil?
+            if recData["accepted"] == "false" or recData["accepted"]==false or recData["accepted"] == "undefined"
+              #Do nothing
+            elsif recData["accepted"].is_a? String
+              if userData.nil?
+                VVacceptedRecomendationsNonLoggedUsers += 1
+              else
+                VVacceptedRecomendationsLoggedUsers += 1
+              end
+              VVacceptedRecomendations += 1
+            end
+          end
+        end
+      end
+
+      if VVacceptedRecomendations>0
+        results["norec"] -= VVacceptedRecomendations
+        results["rec"] += VVacceptedRecomendations
+      end
+    end
+
+    writeInTRS("")
+    writeInTRS("Total samples")
+    writeInTRS(results["samples"])
+    writeInTRS("Access by recommendation")
+    writeInTRS(results["rec"])
+    writeInTRS("Other access")
+    writeInTRS(results["norec"])
+
+    ###############
+    # Logged vs Non Loggued users
+    ###############
+
+    results["logged"] = {}
+    results["logged"]["samples"] = 0
+    results["logged"]["rec"] = 0
+    results["logged"]["norec"] = 0
+
+    results["nonlogged"] = {}
+    results["nonlogged"]["samples"] = 0
+    results["nonlogged"]["rec"] = 0
+    results["nonlogged"]["norec"] = 0
+
+    vEntries.each do |e|
+      d = JSON(e["data"]) rescue {}
+      unless d.nil? or d["rec"].nil? or !d["current_subject"].is_a? String
+        if d["current_subject"] == "anonymous"
+          results["nonlogged"]["samples"] += 1
+          if d["rec"]==false or d["rec"]=="false"
+            results["nonlogged"]["norec"] += 1
+          else
+            results["nonlogged"]["rec"] += 1
+          end
+        else
+          results["logged"]["samples"] += 1
+          if d["rec"]==false or d["rec"]=="false"
+            results["logged"]["norec"] += 1
+          else
+            results["logged"]["rec"] += 1
+          end
+        end
+      end
+    end
+
+    if VVacceptedRecomendationsLoggedUsers>0
+      results["logged"]["norec"] -= VVacceptedRecomendationsLoggedUsers
+      results["logged"]["rec"] += VVacceptedRecomendationsLoggedUsers
+    end
+
+    if VVacceptedRecomendationsNonLoggedUsers>0
+      results["nonlogged"]["norec"] -= VVacceptedRecomendationsNonLoggedUsers
+      results["nonlogged"]["rec"] += VVacceptedRecomendationsNonLoggedUsers
+    end
+
+    writeInTRS("")
+    writeInTRS("Loggued users")
+    writeInTRS("Total samples")
+    writeInTRS(results["logged"]["samples"])
+    writeInTRS("Access by recommendation")
+    writeInTRS(results["logged"]["rec"])
+    writeInTRS("Other access")
+    writeInTRS(results["logged"]["norec"])
+    writeInTRS("")
+    writeInTRS("Non loggued users")
+    writeInTRS("Total samples")
+    writeInTRS(results["nonlogged"]["samples"])
+    writeInTRS("Access by recommendation")
+    writeInTRS(results["nonlogged"]["rec"])
+    writeInTRS("Other access")
+    writeInTRS(results["nonlogged"]["norec"])
+
   end
 
   def writeInTRS(line)
