@@ -34,7 +34,9 @@ class ExcursionsController < ApplicationController
           end
         else
           TrackingSystemEntry.trackRLOsInExcursions(params["rec"],@excursion,request,current_subject)
-          @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})
+          rsEngine = TrackingSystemEntry.getRandomRSEngine
+          @rec = TrackingSystemEntry.getRSCode(rsEngine)
+          @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion], :recEngine => rsEngine})
           render
         end
       }
