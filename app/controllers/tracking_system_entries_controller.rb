@@ -20,11 +20,14 @@ class TrackingSystemEntriesController < ApplicationController
   def create
     tsentry = TrackingSystemEntry.new
     tsentry.app_id = params[:app_id]
-    unless params[:data].nil?
+    unless params[:data].blank?
       params[:data] = fillUserData(params[:data])
     end
     tsentry.data = params[:data].to_json
-    
+    unless params[:tracking_system_entry_id].blank?
+      tsentry.tracking_system_entry_id = params[:tracking_system_entry_id]
+    end
+
     if tsentry.save
       render :json => tsentry.to_json
     else
