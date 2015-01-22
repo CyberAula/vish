@@ -62,13 +62,7 @@
   </script>
 
   <script type="text/javascript">
-    $(document).ready(function() {  
-      $('[id]').each(function(){
-        var ids = $('[id="'+this.id+'"]');
-        if(ids.length>1 && ids[0]==this){
-          console.warn('Multiple IDs #'+this.id);
-        }
-      });
+    $(document).ready(function() {        
       $(".box-search input.search-query").val("<%=params[:q]%>");
       setTimeout(function(){ $("#flash .alert").hide("slow") }, 5000);
       //code to hide the help popovers when clicking outside
