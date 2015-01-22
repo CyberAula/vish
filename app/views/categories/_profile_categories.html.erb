@@ -14,11 +14,11 @@
       <!--TODO:applycss and fix icons-->
       <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
         <button id="normal-view" type="button" class="btn btn-default">
-          <i class="icon-th "></i>
+          <i class="fa fa-th"></i>
           <%=t('categories.dragandrop.gallery')%>
         </button>
         <button id="list-view" type="button" class="btn btn-default">
-          <i class="icon-align-justify "></i>
+          <i class="fa fa-th-list"></i>
           <%=t('categories.dragandrop.list')%>
         </button>
       </div>
@@ -47,7 +47,9 @@
           <%end%>
           <!-- TODO: normalize in css-->
     </ul>
+
     <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue btn btn-default" name="<%=category.title%>"><%=t('view_all')%></button>
+    <hr class="divider-cat">
       <%end%>
     <%end%>
   </div>
