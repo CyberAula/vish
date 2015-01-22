@@ -9,6 +9,7 @@ aside.recomended
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(8, $gutter: $grid-gutter-width)
   @include make-lg-column(8, $gutter: $grid-gutter-width)
+  padding: 0 !important
 
 
 .description-activity
@@ -64,8 +65,8 @@ aside.recomended
       @include make-md-column(4, $gutter: $grid-gutter-width)
       @include make-lg-column(4, $gutter: $grid-gutter-width)
       padding: 0
-      
-      
+
+
     .avatar img
 
     .right-name
@@ -88,7 +89,7 @@ aside.recomended
       .panel
         @include box-shadow(0 0 0 transparent)
         .panel-body
-          padding: 0 
+          padding: 0
       .table
         border-collapse: none
         span
@@ -104,7 +105,7 @@ aside.recomended
 
 #comments-show
   .panel-group
-    @include comments 
+    @include comments
 
 .btn-group
   a
@@ -134,7 +135,7 @@ aside.recomended
         border: none
 
 
-    
+
   ul.nav-tabs
     clear: none
 
@@ -149,6 +150,33 @@ aside.recomended
   @include box-shadow (0 1px 4px 1px rgba(0, 0, 0, 0.1))
   .container-visor
     width: 100%
+    iframe
+      width: 100% !important
+.link_address
+  width: auto
+  float: right
+  margin-top: 3px
+  margin-right: 7px
+  a
+    font-size: 14px !important
+    color: $gray
+    float: none !important
+    i,p
+      font-size: 14px !important
+      color: $gray
+      float: left !important
+      display: inline-block
+      text-align: left !important
+      width: auto !important
+    i
+      margin-right: 7px
+      margin-top: 3px
+    p
+      margin: 0 !important
+.link_address:hover
+  a,i,p
+    color: $gray-dark
+
 
 aside.recomended
   float: right !important
@@ -199,22 +227,9 @@ aside.recomended,
       margin-bottom: 15px
   p
     overflow: hidden
-    font-size: 0.9em 
+    font-size: 0.9em
     zoom: 1
 
-
-//.contentReport
-//  .btn-group-vertical,
-//  .captcha
-//    @include make-xs-column(12, $gutter: $grid-gutter-width)
-//    @include make-sm-column(12, $gutter: $grid-gutter-width)
-//    @include make-md-column(6, $gutter: $grid-gutter-width)
-//    @include make-lg-column(6, $gutter: $grid-gutter-width)
-//  .simple_captcha,
-//  .simple_captcha_image
-//    float: none !important
-//  .btn  
-//    float: right
 
 .contentReport
   min-height: 90px
@@ -225,7 +240,7 @@ aside.recomended,
     padding-right: 1%
     border-right: 1px solid $gray-lighter
     border-bottom: none
- 
+
     li.active a
       &:hover
         background-color: $white
@@ -267,7 +282,7 @@ aside.recomended,
 
 input.age-slider
   border: none !important
-  color: $white   
+  color: $white
 
 .modal
   select.language
@@ -288,11 +303,11 @@ input.age-slider
     clear: both
     label
       width: 100%
-  .btn 
+  .btn
     float: right
     margin-top: 15px
 
-.new_file_avatar_label 
+.new_file_avatar_label
 .disabled
   color: $gray-light !important
 
@@ -310,7 +325,7 @@ input.new_file_avatar
   @include well
   padding: 0
   margin: 0 0 40px 25%
-  
+
   .checkbox label
     margin-top: 0
     display: inline-block
@@ -319,4 +334,3 @@ input.new_file_avatar
       margin-left: 0
   .modal-footer
     background: $gray-light
-

@@ -1,5 +1,5 @@
 <!-- Button to trigger modal -->
-<!-- Modal Categories-->
+<!-- Modal Categories -->
 <div id="<%=div_id%>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="<%=div_id%>AddCategoryLabel" aria-hidden="true">
   <!--<div id="<%=div_id%>" class="modal fade">-->
   <div class="modal-dialog">
@@ -33,12 +33,13 @@
           <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
           <%= f.file_field :avatar %>
 
-          <%= f.submit t('categories.save'), :class => "hidden" %>
-          <% end %>
+
       </div>
 
       <div class="modal-footer">
-        <input type="button" class="btn btn-primary" value="<%= t('categories.save') %>"/>
+        <!--<input type="button" class="btn btn-primary" value="<%= t('categories.save') %>"/>-->
+        <%= f.submit t('categories.save'), :class => "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   </div>

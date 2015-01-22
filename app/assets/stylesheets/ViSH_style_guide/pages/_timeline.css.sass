@@ -4,6 +4,7 @@
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   @include center-block
+  padding: 0 !important
   .icontitle
     margin-top: 0
   .activities
@@ -67,7 +68,7 @@
     width: 92%
     margin: 0 4%
 
-  .more 
+  .more
     a
       position: relative
       margin-top: 30px
@@ -91,14 +92,14 @@
   .panel-body
     margin-top: 5px
     padding: 0px
-    
+
 
 .comments
   @include make-xs-column(12, $gutter: $grid-gutter-width)
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
-  display: block 
+  display: block
   padding: 0px
   clear: both
   .activity
@@ -107,15 +108,15 @@
     padding: 15px 0
     &:first-child
       border-top: none
-      padding: 0
+      padding: 5px 0
     &:last-child
-      padding: 2px 0 0 0
+      //padding: 2px 0 0 0
 
 .post_time_ago
   margin-left: 10px
   display: inline-block
   color: $gray !important
-       
+
 
 div.new_comment
   width: 100%
@@ -137,16 +138,16 @@ div.new_comment
       background: none
       img
         width: 43px
-        @include border-left-radius ($border-radius-base)    
+        @include border-left-radius ($border-radius-base)
     .form-control
       @include border-right-radius ($border-radius-base)
     input
       &[type="submit"]
-        margin: 10px 0px 
-        float: right    
+        margin: 10px 0px
+        float: right
         @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
 
-.comments   
+.comments
   .child
     .media-body
       .objects
@@ -163,7 +164,3 @@ div.new_comment
   text-align: center
   padding-top: 10px
   display: block
-
-
-
-

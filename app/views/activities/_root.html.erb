@@ -4,7 +4,7 @@
 <% if @lastMonth != activity.created_at.month
     @lastMonth = activity.created_at.month%>
     <li class="separator"><div class="tldate"> <%= modifDate %> </div></li>
-<%end%> 
+<%end%>
 <%#Ends here%>
 <script>
   var numberMonths = numberMonths || 0;
@@ -13,7 +13,7 @@
       if ($(dates[n]).text() == $(dates[n+1]).text())
         $(dates[n+1]).remove();
     }
-  
+
 </script>
 <%# To get if inverted or not inverted %>
 <% @state = @state || 0%>
@@ -24,8 +24,8 @@
 <% @state += 1 %>
 <%#inverted algorithm ends here %>
 
-  
- 
+
+
   <div type="button" class="tl-circ"></div>
 
   <div class="timeline-panel">
@@ -41,37 +41,24 @@
             <%= render :partial => 'activities/time_ago',
               :locals => { :activity => activity } %>
           </div>
-          <div class="x"> 
-            <%= link_to raw("<i class='fa fa-trash-o'></i>"), activity.direct_object , :confirm => t('confirm_delete', 
-                        :scope => activity.direct_object.class.to_s.underscore), :method => :delete,  
-                        :remote => true %> 
+          <div class="x">
+            <%= link_to raw("<i class='fa fa-trash-o'></i>"), activity.direct_object , :confirm => t('confirm_delete',
+                        :scope => activity.direct_object.class.to_s.underscore), :method => :delete,
+                        :remote => true %>
           </div>
         <% end %>
       </h6>
-      
-      <%= render partial: 'activity_objects/timeline', 
+
+      <%= render partial: 'activity_objects/timeline',
                  collection: activity.activity_objects,
                  as: :object %>
-      <div class="panel-group" id="accordion-<%=activity.id%>">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion-<%=activity.id%>" href="#comment-activity-<%=activity.id%>">
-                view comments
-              </a>
-            </h4>
-          </div>
-          <div id="comment-activity-<%=activity.id%>" class="panel-collapse collapse">
-            <div class="panel-body">
+          
+          <div id="comment-activity-<%=activity.id%>" class="">
               <%= render :partial => 'activities/comments',
                          :locals => { :activity => activity } %>
-            </div>
-          </div>  
-        </div>
-      </div>
+          </div>
       <%= render :partial => 'comments/new',
                  :locals => { :activity => activity } %>
     </div>
   </div>
 <% end %>
-

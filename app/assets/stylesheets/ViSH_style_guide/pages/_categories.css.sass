@@ -3,6 +3,7 @@
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
+  padding: 0 !important
   margin-bottom: 20px
   .category_info
     margin-bottom: 20px
@@ -32,7 +33,7 @@
         width: 200px
         float: none
 
-      
+
     .my_favorites
       width: 100% !important
 
@@ -83,7 +84,7 @@
       display: block
       clear: both
       margin-top: 12px
-    input 
+    input
       &[type="text"]
         display: block
         width: 100%
@@ -113,7 +114,7 @@
       @include make-xs-column(2, $gutter: $grid-gutter-width)
       @include make-sm-column(2, $gutter: $grid-gutter-width)
       @include make-md-column(2, $gutter: $grid-gutter-width)
-      @include make-lg-column(2, $gutter: $grid-gutter-width) 
+      @include make-lg-column(2, $gutter: $grid-gutter-width)
       background-color: $white
       padding: 0px !important
       display: block
@@ -172,28 +173,25 @@
         i
           color: #fff !important
           font-size: 2.3em
-          margin-left: -21% 
+          margin-left: -21%
     .corner-item
       position: absolute
       top: 0
       left: 0
-      width: 88px
-      height: 88px
+      width: 72px
+      height: 72px
       z-index: 2
       .corner-item2
         position: absolute
         height: 72px
         width: 72px
-        left: 3px
-        top: 3px
+        left: 0px
+        top: 0px
         z-index: 4
         -webkit-border-top-left-radius: 5px
         -moz-border-radius-topleft: 5px
         border-top-left-radius: 5px
         overflow: hidden
-        -webkit-box-shadow: -2px -2px 2px  rgba(0,0,0,0.20)
-        -moz-box-shadow: -2px -2px 2px  rgba(0,0,0,0.20)
-        box-shadow: -2px -2px 2px  rgba(0,0,0,0.20)
         .corner-color
           position: absolute
           width: 0
@@ -216,7 +214,7 @@
         width: 0
         height: 0
         border-style: solid
-        border-width: 88px 88px 0 0
+        border-width: 72px 72px 0 0
         border-color: $body-bg transparent transparent transparent
         z-index: 3
         top: -5px
@@ -224,8 +222,8 @@
 #categories_viewer_modal
   .modal-header
     i
-      padding-right: 10px
-    //help
+      padding: 0
+
     .helpheader_modal
       float: right
       margin-top: 3px
@@ -234,12 +232,10 @@
         cursor: pointer
         font-size: 20px
         color: $gray
+
       .popover
         font-size: 14px
         width: 300px !important
-      .modal-footer
-        a
-          color: $gray
       .popoverfix
         width: 248px
         margin-left: -15px
@@ -255,23 +251,15 @@
       height: 30px
       overflow: hidden
     li.tagit-choice
-      background: #b5bdc8
-      background: -moz-linear-gradient(top, #b5bdc8 0%, #828c95 36%, #28343b 100%)
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b5bdc8), color-stop(36%,#828c95), color-stop(100%,#28343b))
-      background: -webkit-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%)
-      background: -o-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%)
-      background: -ms-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%)
-      background: linear-gradient(to bottom, #b5bdc8 0%,#828c95 36%,#28343b 100%)
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 )
-      @include border-top-radius (2px)
-      @include border-bottom-radius (2px)
+      background: gray
+      @include border-top-radius (3px)
+      @include border-bottom-radius (3px)
       color: #FFFFFF
       cursor: pointer
       display: block
       float: left
-      margin-bottom: 5px
       margin-right: 5px
-      padding: 3px 10px
+      padding: 8px 10px
       position: relative
       a
         display: block
@@ -280,21 +268,20 @@
         font-size: 14px
         font-weight: lighter
     .dropdown
-      display: inline-block
-      float: right
       width: 75%
       i
         float: right
       ul
-        width: 99%
+        width: 100%
         opacity: 0.9
         height: 100px
         overflow-y: auto
+        margin-top: 35px
+
       button
         width: 100%
         float: right
         text-align: left
-        padding: 3px 12px !important
         border: 1px solid $gray
       span
         float: right
@@ -308,8 +295,11 @@
         color: $white
         cursor: pointer
         padding-left: 10px
+  .modal-footer
+    button
+      color: white
+      background-color: $brand-primary
 
-    
 #categories_edition
   background-color: rgba(0,0,0,0.8)
   position: fixed
@@ -412,7 +402,7 @@
         padding-right: 5px
         font-size: 16px
       .btn-for-undo
-      .btn-primary:active, 
+      .btn-primary:active,
       .btn-primary.active
         background-color: $brand-primary
   // Excursions
@@ -427,3 +417,84 @@
     ul
       margin: 0
       margin: 20px 0 0
+
+#list-instance
+  h2
+    width: 100%
+    clear: both
+    display: inline-block
+    margin: 20px 0
+
+  ul
+    width: 100%
+    clear: both
+    display: inline-block
+    padding: 0 !important
+  hr.divider-cat
+    display: block
+    float: left
+    width: 100%
+
+
+
+/*6*/
+@media (min-width: 1501px) and (max-width: 1750px)
+  .main-list-categories-space
+
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+7) 
+      display: block
+
+/*5*/
+@media (min-width: 1200px) and (max-width: 1500px)
+  .main-list-categories-space
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+5) 
+      display: block
+
+/*4*/
+@media (min-width: 992px) and (max-width: 1199px)
+  .main-list-categories-space
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+5) 
+      display: block
+
+
+
+/*3*/
+@media (min-width: 768px) and (max-width: 991px)
+  .main-list-categories-space
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+4) 
+      display: block
+
+
+
+/*2*/
+ @media (min-width: 481px) and (max-width: 767px)
+  .main-list-categories-space
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+3) 
+      display: block
+
+
+/*1*/
+@media (max-width: 480px)
+  .main-list-categories-space
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+1) 
+      display: block
+
+
+li.box-item 
+  .info-bottom 
+    .categories_inside
+      cursor: default
+      width: 100%
+      float: left

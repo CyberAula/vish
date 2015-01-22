@@ -4,23 +4,23 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <%= render partial: 'help/help_categorize' %>
-        <h3 id="myModalLabel"><i class="icon-th-large"></i><%= t("category.modalLabel")%></h3>
+        <h4 id="AddCategoryLabel"><%= t("category.modalLabel")%></h4>
       </div>
       <div class="modal-body categorize-modal-body">
 
         <% generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} %>
-        <p class= "information"><%= t("category.cat_add_title")%></p> 
-        
-       <div class="dropdown">
+        <p class= "information"><%= t("category.cat_add_title")%></p>
+
+        <div class="dropdown">
           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-            <b><%= t("category.cat_add_select")%></b>
+            <%= t("category.cat_add_select")%>
             <i class="fa fa-chevron-down"></i>
           </button>
             <ul id="catDropdownSel" class="dropdown-menu scroll-menu" role="menu" aria-labelledby="dropdownMenu1">
-            <% generic_categories.each do |init| %> 
+            <% generic_categories.each do |init| %>
 
             <li role="presentation" value="<%=init.id%>"><a role="menuitem" tabindex="-1" ><%=init.title%></a></li>
-            
+
             <% end %>
           </ul>
         </div>
@@ -28,17 +28,17 @@
          <!--<p class= "information"><%= t("category.cat_popular")%></p>-->
          <br>
          <div id="suggested_categories" class="tagBoxNew">
-            <% rcCategories = generic_categories.reject{|e| get_initial_categories(item).include? e.id} %> 
+            <% rcCategories = generic_categories.reject{|e| get_initial_categories(item).include? e.id} %>
             <%simple_gen = rcCategories.sort{|a,b| b.property_objects.length <=> a.property_objects.length}.first(7)%>
             <ul id="suggestedCategories" class="tagit">
-            <% simple_gen.each do |init| %> 
-              
+            <% simple_gen.each do |init| %>
+
                 <li class="tagit-choice" value="<%= init.id %>" ><%=init.title%></li>
-              
+
             <% end %>
             </ul>
          </div>
-        <div class="information"><%= t("category.categorized_like")%></div>
+        <p class="information"><%= t("category.categorized_like")%></p>
         <%tagArray= generic_categories.map{|e| e.title}%>
         <script type="text/javascript">
         $(document).ready(function() {
@@ -63,7 +63,7 @@
               <% resource_categories.each do |cat| %>
                 <% ident = Category.find(cat) %>
                 $("#myCategories").tagit("add", "<%=ident.title %>", "<%=ident.id%>");
-            <%end%> 
+            <%end%>
             //Save suggested categories state
 
         });
@@ -71,13 +71,13 @@
         <div class="tagBoxNew">
           <ul id="myCategories">
         <!-- Existing list items will be pre-added to the tags -->
-            
+
           </ul>
         </div>
 
       </div>
       <div class="modal-footer">
-        <button id="cancel_cat_button" class="btn btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>
+        <!--<button id="cancel_cat_button" class="btn btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>-->
         <button id="save_cat_button" class="btn btn-primary"><%= t('button.save')%></button>
       </div>
     </div>
@@ -118,7 +118,7 @@
               success: function(data){
                 $("#categories_viewer_modal").modal('toggle');
                 //Emulating alert with javascript
-                $('#flash').hide(); 
+                $('#flash').hide();
                 $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.success")%></div>')
                             .fadeIn()
                             .delay(6000)
@@ -130,7 +130,7 @@
                 error: function(){
                   $("#categories_viewer_modal").modal('toggle');
                   //Emulating alert with javascript
-                  $('#flash').hide(); 
+                  $('#flash').hide();
                   $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Error</div>')
                             .fadeIn()
                             .delay(6000)

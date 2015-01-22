@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'json'
 
-class VishEditor
+class VishEditorUtils
   
   def self.getElementTypes(loJSON)
     types = []

@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(:version => 20141210085747) do
     t.boolean  "is_mve",                :default => false
     t.integer  "rankMve",               :default => 0
     t.boolean  "is_admin",              :default => false
-    t.text     "category_order",                           :null => false
+    t.text     "category_order"
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
