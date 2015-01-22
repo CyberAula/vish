@@ -9,7 +9,9 @@
     <%= f.hidden_field :_activity_parent_id %>
 
     <%= f.text_area :text, :rows => 1, :class => "form-control", :placeholder => t('comment.input')  %>
+    <div class="input-group-addon">
+      <%= f.submit t('activity.to_comment'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
+    </div>
+  </div>
 
-    <%= f.submit t('activity.to_comment'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
-  </div>      
 <% end %>

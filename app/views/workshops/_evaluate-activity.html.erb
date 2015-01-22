@@ -1,7 +1,7 @@
 <!--activity-->
 <div class="activity">
 
-  <ul class="nav nav-tabs"> 
+  <ul class="nav nav-tabs">
     <li class="active">
       <a href="#commentsTab" data-toggle="tab">
         <i class="icon-comment"></i>
@@ -13,26 +13,9 @@
   <div class="tab-content">
     <div class="tab-pane active" id="commentsTab">
       <div id="comments" class="comments">
-        <div class="timeline-panel">
-          <div class="panel-group">
-            <div class="panel">
-              <dic class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#comment-excursion-activity">
-                    view comments
-                  </a>
-                </h4>
-              </div>
-              <div id="comment-excursion-activity" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <%= render :partial => 'activities/comments', :locals => { :activity => @workshop.post_activity } %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <%= render :partial => 'activities/comments', :locals => { :activity => @workshop.post_activity } %>
+        <%= render :partial => 'comments/new', :locals => { :activity => @workshop.post_activity } %>
       </div>
-      <%= render :partial => 'comments/new', :locals => { :activity => @workshop.post_activity } %>
     </div>
-  </div>   
+  </div>
 </div>
