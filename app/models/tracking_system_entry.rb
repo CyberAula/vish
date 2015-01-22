@@ -12,7 +12,7 @@ class TrackingSystemEntry < ActiveRecord::Base
   def self.isBot?(request)
     user_agent = request.env["HTTP_USER_AGENT"]
     matches = nil
-    matches = user_agent.match(/(msnbot|spbot|facebook|postrank|voyager|twitterbot|googlebot|slurp|butterfly|pycurl|tweetmemebot|metauri|evrinid|reddit|digg)/mi) if user_agent
+    matches = user_agent.match(/(YandexBot|Baiduspider|AhrefsBot|OrangeBot|msnbot|spbot|facebook|postrank|voyager|twitterbot|googlebot|slurp|butterfly|pycurl|tweetmemebot|metauri|evrinid|reddit|digg)/mi) if user_agent
     return (user_agent.nil? or !matches.nil?)
   end
 
