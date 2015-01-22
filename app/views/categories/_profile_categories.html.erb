@@ -78,36 +78,6 @@
       return true;
   };
 
-  var beginIndex;
-  var beginObjects;
-  //Let the overlay appear
-  $(document).ready(function(){
-  	$(".btn-for-categorize").click(function(){
-  		$("#categories_edition").fadeIn();
-
-      backstretch_fix();
-
-      beginIndex = getidArray();
-      beginObjects = $(".edit_categories .box-item").clone();
-    });
-
-    $("#normal-view").click(function(){
-      $(".btn-for-categorize").show(200);
-        $("#list-instance").fadeOut(200,function(){          
-          $("#normal-instance").fadeIn(200);
-        });
-    });
-
-    $("#list-view").click(function(){
-      $(".btn-for-categorize").hide(200);
-      $("#normal-instance").fadeOut(200,function(){
-        $("#list-instance").fadeIn(200);
-        backstretch_fix();
-      });
-    });
-
-  });
-
   function updateMainView(){
     var actualState = $(".edit_categories .box-item").clone();
     var s = $(".main-categories-space .box-item");
@@ -118,10 +88,39 @@
     actualState.appendTo(".main-categories-space");
   };
 
-function backstretch_fix(){
-  $("div[bs-img]").each(function(){
-   $(this).backstretch($(this).attr("bs-img"));
-  });
-}
+  var beginIndex;
+  var beginObjects;
+
+  function add_onclicks_to_categories(){
+      //Let the overlay appear
+      $(".btn-for-categorize").click(function(){
+        $("#categories_edition").fadeIn();
+
+        beginIndex = getidArray();
+        beginObjects = $(".edit_categories .box-item").clone();
+      });
+
+      $("#normal-view").click(function(){
+        $(".btn-for-categorize").show(200);
+          $("#list-instance").fadeOut(200,function(){          
+            $("#normal-instance").fadeIn(200);
+          });
+      });
+
+      $("#list-view").click(function(){
+        $(".btn-for-categorize").hide(200);
+        $("#normal-instance").fadeOut(200,function(){
+          $("#list-instance").fadeIn(200);
+        });
+      });
+  };
+
+  <%if request.xhr?%>
+    add_onclicks_to_categories();
+  <%else%>
+    document.addEventListener("DOMContentLoaded", function(){  
+      add_onclicks_to_categories();
+    });
+  <%end%>
 
 </script>

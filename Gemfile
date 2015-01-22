@@ -1,6 +1,8 @@
+#ruby '2.2.0'
 source 'http://rubygems.org'
 
-gem 'rails', '= 3.2.14'
+gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => "3-2-stable"
+gem 'test-unit'
 
 #Database Adapters
 gem 'sqlite3', '= 1.3.9'
@@ -13,10 +15,10 @@ gem 'coffee-rails', '= 3.2.2'
 gem 'uglifier', '= 1.2.3'
 gem 'jquery-rails', '= 3.1.0'
 gem 'jquery-ui-rails', '= 4.1.2'
-gem 'json', '= 1.7.4'
+gem 'json', '=1.8.1'
 gem 'sinatra', '= 1.3.2'
 gem 'selenium-webdriver', '= 2.30.0'
-gem 'god', '= 0.13.4'
+gem 'god', :git => 'git://github.com/mojombo/god.git'
 gem 'redis', '= 3.0.7'
 gem 'resque', '= 1.23.1'
 gem 'rmagick', '=2.13.2'
@@ -26,7 +28,7 @@ gem 'rspec-rails', '= 2.9.0'
 gem 'net-ssh', '= 2.4.0'
 gem 'shortener', '= 0.3.0'
 gem 'rubyzip', '= 0.9.9'
-gem 'pry-debugger', '= 0.2.2'
+gem 'pry'
 gem 'rest-client', '= 1.6.7'
 gem 'pdf-reader', '= 1.3.3'
 gem 'avatars_for_rails', '= 1.1.4'
@@ -59,7 +61,7 @@ if ENV['FORCE_LOCAL_SS']
     gem 'social_stream-events'
   end
 else
-  git 'git://github.com/ging/social_stream.git', branch: "vish", ref: "4a744f26549041726a7c0177d351504554be6837" do
+  git 'git://github.com/ging/social_stream.git', branch: "ruby2" do
     gem 'social_stream-base'
     gem 'social_stream-documents'
     gem 'social_stream-linkser'
@@ -94,5 +96,6 @@ group :test do
   gem 'factory_girl', '= 2.6'
   gem 'capybara', '= 2.3.0'
 end
+
 
 gem 'newrelic_rpm'

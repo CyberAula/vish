@@ -4,7 +4,7 @@
 			<h2><%=t("catalogue.categories." + name, :default => "Category")%></h2>
 			<ul id="container_<%=name%>" class="items">
 				<%for resource in resources%>
-					<%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
+					<%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue_"+name+"_" } %>
 				<%end%>
 			</ul>
 			<button class="show_more_catalogue" name="<%=name%>"><%=t('view_all')%></button>
@@ -12,25 +12,25 @@
 	<%end%>
 </div>
 
-<script type="text/javascript">
+<script>  
+  <%if is_home%>
+  	add_show_more_click();
+  <%else%>
+    document.addEventListener("DOMContentLoaded", function(){
+    	add_show_more_click();
+    });    
+  <%end%>
 
-	//Show More buttons
-	$(".show_more_catalogue").click(function(event) {
-		var name = $(this).attr("name");
-		<%if is_home%>
-			window.location = "/catalogue/" + name + "?back_home=true";      
-		<%else%>
-			window.location = "/catalogue/" + name;	  
-		<%end%>
-	});
-
-	$(document).ready(function(){
-		function re_apply_backstrech_on_catalogue(){
-			$("#resources_catalogue div[bs-img]").each(function(){
-				$(this).backstretch( $(this).attr("bs-img") );
-			});
-		};
-		re_apply_backstrech_on_catalogue();
-	});
+  function add_show_more_click(){
+		//Show More buttons
+		$(".show_more_catalogue").click(function(event) {
+			var name = $(this).attr("name");
+			<%if is_home%>
+				window.location = "/catalogue/" + name + "?back_home=true";      
+			<%else%>
+				window.location = "/catalogue/" + name;	  
+			<%end%>
+		});
+	}
 
 </script>

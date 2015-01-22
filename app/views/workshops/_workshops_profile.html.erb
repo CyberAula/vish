@@ -4,13 +4,8 @@
 	<%= render :partial => 'entities/entity', :locals => { :entity => workshop, :prefix_id => "profile" } %>
 <% end %> 
 
-<script>
-  $(document).ready(function(){
+<%content_for :javascript do%>
     if(typeof update_pageless_state == "function"){
       update_pageless_state("workshops", <%=workshops.num_pages%>, <%=workshops.current_page%>);
     }
-    if(typeof re_apply_backstrech == "function"){
-      re_apply_backstrech("workshops");
-    }
-  });
-</script>
+<%end%>

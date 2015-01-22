@@ -14,13 +14,11 @@
   <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
 </div>
 </li>
-<script>
-$(document).ready(function(){
+<%content_for :javascript do%>
   $('#helpresourceid').popover({ 
     html : true,
     content: function() {
       return $('#contenthelpresourceid').html();
     }
   });
-});
-</script>
+<%end%>

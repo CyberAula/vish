@@ -1,5 +1,4 @@
-<script type="text/javascript">
-    $(document).ready(function() {  
+<%content_for :javascript do%> 
         $(".Tags_list_as2 input[type='checkbox']").change(function(){
             $(".Tags_list_as2 input[type='checkbox']:checked");
 
@@ -11,9 +10,8 @@
 
             window.location = "/search?q=" + tags;
         });
-    });
+<%end%>
 
-</script>
   <section class="Tags_list_as2 scroll-pane">
     <h4>Tags :</h4>
     <li href="#"><input id="chk1" type="checkbox" name="Art"/><label for="chk1"><span></span>Art</label></li>

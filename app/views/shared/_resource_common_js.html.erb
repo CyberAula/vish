@@ -1,14 +1,13 @@
 
-<script>
+<%content_for :javascript do%>
 
-  $(document).ready(function(){
-    $('.helpResources').popover({ 
-      html : true,
-      content: function() {
-        return $('.contentHelpResources').html();
-      }
-    });
+  $('.helpResources').popover({ 
+    html : true,
+    content: function() {
+      return $('.contentHelpResources').html();
+    }
   });
+
 
   <%if form_id == "AddResource"%>
     $("#<%=form_id%>").on('shown', function(){
@@ -146,4 +145,4 @@
     }
   };
 
-</script>
+<%end%>

@@ -7,13 +7,11 @@
   <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
 </div>
 </li>
-<script>
-$(document).ready(function(){
+<%content_for :javascript do%>
   $('#helpcategoriesid').popover({ 
     html : true,
     content: function() {
       return $('#contentcategoriesid').html();
     }
   });
-});
-</script>
+<%end%>

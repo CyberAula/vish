@@ -4,10 +4,7 @@
 <%canBeEmbeded = lookup_context.template_exists?("embedcode", document.class.to_s.underscore.pluralize, true) %>
 
 <% if canBeEmbeded %>
-  <%=javascript_include_tag "jquery.zclip.min" %>
-
-  <script type="text/javascript">
-    $(document).ready(function(){
+  <%content_for :javascript do%> 
       var embedEvents = false;
       
       $('a[data-toggle="tab"]').on('shown', function(e){
@@ -34,8 +31,7 @@
               });
             }
       });
-    });
-    </script>
+  <%end%>
 <%end%>
 
 

@@ -24,11 +24,11 @@
 
 
       <label><%= f.label :parentCategory, "Belongs to" %></label>
-      <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject))) %>
+      <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject)),{}, :id => div_id+"category_parent_id") %>
 
       <!--Avatar-->
       <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
-      <%= f.file_field :avatar %>
+      <%= f.file_field :avatar,:id => div_id+"category_avatar"  %>
       
       <%= f.submit t('categories.save'), :class => "hidden" %>
     <% end %>
@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<script>
+<%content_for :javascript do%>
 
     $('#<%=div_id%> .new_category').bind('ajax:success', function(evt, data, status, xhr){
       $('#<%=div_id%>').modal('hide');
@@ -84,4 +84,4 @@
       }
     });
 
-</script>
+<%end%>

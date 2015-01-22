@@ -10,7 +10,7 @@
 	<canvas id="quiz_chart" width="500" height="500"></canvas>
 
 	<script type="text/javascript">
-	 $(document).ready(function(){
+	 document.addEventListener("DOMContentLoaded", function(){
 	 	var canvas = $("#quiz_chart");
 	 	var quizParams = VISH.QuizCharts.getQuizParams(<%= quiz %>);
 	 	var quizType = quizParams.quizType;

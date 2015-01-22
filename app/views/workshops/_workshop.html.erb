@@ -2,23 +2,28 @@
   <% return %>
 <% end %>
 <li class="box-item workshop-item">
+  <%= link_to(workshop) do %>
   <!-- corner -->
-  <%= link_to raw(icon(workshop)) %>
-  <div class="corner-item">
-    <div class="corner-item2">
-      <div class="corner-color"></div>
-      
+
+    <div class="corner-item">
+      <div class="corner-item2">
+        <div class="corner-color"></div>
+        <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
+      </div>
+      <div class="corner-background"></div>
     </div>
-    <div class="corner-background"></div>
-  </div>
-  <!-- image/icon -->
-  <div class="container-img">
-    <div class="dummy"></div>
-    <div class="element resource-center">
-      <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
-    </div>
-  </div>
-  <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
+    <!-- image/icon -->
+    <div class="container-img">
+      <div class="img-box resource-center">        
+
+        <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
+
+      </div>
+    </div> 
+
+
+
+<%end%>
   <!-- INFO -->
   <div class="info">
     <!-- Title -->

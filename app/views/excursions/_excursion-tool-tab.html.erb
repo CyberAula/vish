@@ -2,7 +2,7 @@
 <% editingToolbar = (@excursion.draft or controller.action_name == "edit") %>
 
 <script type="text/javascript">
-  $(document).ready(function(){
+  document.addEventListener("DOMContentLoaded", function(){
 
     //to close the popovers
     $(':not(#anything_not_present)').on('click', function (e) {

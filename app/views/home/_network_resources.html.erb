@@ -6,7 +6,7 @@
 <% end %>
 
 <script>
-	$(document).ready(function(){		
+	document.addEventListener("DOMContentLoaded", function(){		
 		update_pageless_state("net", <%=resources.num_pages%>, <%=resources.current_page%>);
 		re_apply_pageless("net");
 		$("footer#footer").addClass("fixed-bottom");

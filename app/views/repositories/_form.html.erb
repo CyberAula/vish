@@ -127,7 +127,7 @@
 
       <!--LANGUAGE-->
       <label><%= t('document.leyend.language')%></label>
-      <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "language") %>
+      <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "language", :id=>"resource_language") %>
 
       <!--AGE SLIDER-->
       <label><%= t('document.leyend.recommended_age')%></label>
@@ -148,17 +148,14 @@
 
 </div>
 
+<%content_for :javascript do%>
 
-<script>
-
-  $(document).ready(function(){
     $('.helpResources').popover({
       html : true,
       content: function() {
         return $('.contentHelpResources').html();
       }
     });
-  });
 
 
   $("#AddResource").on('shown', function(){
@@ -285,4 +282,4 @@
     }
   };
 
-</script>
+<%end%>

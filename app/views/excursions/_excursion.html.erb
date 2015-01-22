@@ -5,29 +5,37 @@
     <div class="badge-excursion-active"></div>
   <%end%>
 
+
+  <%if defined?(prefix_id) %>
+    <%generated_id= prefix_id + "-excursion-" + excursion.id.to_s%>
+  <%else%>
+    <%generated_id= "excursion-" + excursion.id.to_s%>
+  <%end%>
+
+  <%if defined?(obj_id)%>
+    <%generated_id = "cat-" + obj_id.to_s + "-" + generated_id %>
+  <%end%>
+
   <%excursion_url = (defined?(rec) and rec.is_a? String) ? excursion_url(excursion,{:rec => rec}) : excursion_url(excursion)%>
 
   <%= link_to(excursion_url) do %>
     <!-- image/icon -->
     <div class="container-img">
-      <div class="dummy"></div>
-      <div class="element">
-        <%if defined?(prefix_id) %>
-          <div bs-img="<%=excursion_raw_thumbail(excursion)%>" class="img-box" id="<%=prefix_id%>-excursion-<%=excursion.id%>"></div>
-        <%else%>
-          <div bs-img="<%=excursion_raw_thumbail(excursion)%>" class="img-box" id="excursion-<%=excursion.id%>"></div>
-        <%end%>
-        <%if excursion.draft%>
-          <div class="excursion-draft">
-            <h2 class="draftstyle">
-              <i class="icon-edit"></i>
-              <%=t('excursion.draft')%>
-            </h2>
-          </div>
-        <%end%>
-      </div>
+      <div class="img-box" id="<%=generated_id%>"></div>        
+      <%if excursion.draft%>
+        <div class="excursion-draft">
+          <h2 class="draftstyle">
+            <i class="icon-edit"></i>
+            <%=t('excursion.draft')%>
+          </h2>
+        </div>
+      <%end%>
     </div> 
   <% end %>
+
+  <script>
+      document.getElementById("<%=generated_id%>").style.backgroundImage = "url('<%=excursion_raw_thumbail(excursion)%>')";
+  </script>
 
   <!-- Info -->
   <div class="info">

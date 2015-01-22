@@ -17,16 +17,14 @@
 //= require social_stream-base
 //= require social_stream-linkser
 //= require social_stream-documents
-//= require jquery.backstretch
 //= require pageless
-//= require modernizr.custom
 //= require jquery.jscrollpane.min
 //= require jquery.mousewheel
-//= require classie
 //= require bootstrap-slider/bootstrap-slider
 //= require tagit
 //= require jquery.multiselect
 //= require jquery.jplayer
+//= require jquery.zclip.min
 //= require social_stream-events
 //= require bootstrap-dropdown
 //= require bootstrap-datetimepicker.min

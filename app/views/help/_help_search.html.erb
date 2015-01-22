@@ -8,14 +8,11 @@
   </div>
 </li>
 
-<script>
-
-  $(document).ready(function(){
+<%content_for :javascript do%>
     $('#helpsearchid').popover({ 
       html : true,
       content: function() {
         return $('#contenthelpsearchid').html();
       }
     });
-  });
-  </script>
+<%end%>
