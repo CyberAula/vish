@@ -16,6 +16,11 @@ class RecommenderSystem
     #Step 2: Scoring
     rankedLOs = orderByScore(preSelectionLOs,subject,resource,options)
 
+    #Track recommendation if requested
+    if options[:track]===true
+      TrackingSystemEntry.trackUIRecommendations(options)
+    end
+
     #Step 3
     return rankedLOs.first(options[:n])
   end
@@ -54,6 +59,10 @@ class RecommenderSystem
 
     unless options[:recEngine].is_a? String
       options[:recEngine] = "ViSHRecommenderSystem"
+    end
+
+    if options[:track].blank?
+      options[:track] = false
     end
 
     options

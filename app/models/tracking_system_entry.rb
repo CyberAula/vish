@@ -6,6 +6,18 @@ class TrackingSystemEntry < ActiveRecord::Base
   validates :data,
   :presence => true
 
+  def self.trackUIRecommendations(options)
+    return if options.blank? or !options[:recEngine].is_a? String
+    tsentry = TrackingSystemEntry.new
+    tsentry.app_id = "ViSHUIRecommenderSystem"
+    data = {}
+    data["rsEngine"] = options[:recEngine]
+    data["models"] = options[:model_names]
+    data["quantity"] = options[:n]
+    tsentry.data = data.to_json
+    tsentry.save
+  end
+
   def self.trackRLOsInExcursions(rec,excursion,request,current_subject)
     return if request.format == "full"
 
