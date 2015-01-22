@@ -9,14 +9,16 @@ class TrackingSystemEntry < ActiveRecord::Base
   validates :data,
   :presence => true
 
-  def self.isBoot(request)
-    user_agent = request.user_agent.downcase
-    return [ 'msnbot', 'yahoo! slurp','googlebot' ].detect { |bot| user_agent.include? bot }
+  def self.isBot?(request)
+    user_agent = request.env["HTTP_USER_AGENT"]
+    matches = nil
+    matches = user_agent.match(/(msnbot|spbot|facebook|postrank|voyager|twitterbot|googlebot|slurp|butterfly|pycurl|tweetmemebot|metauri|evrinid|reddit|digg)/mi) if user_agent
+    return (user_agent.nil? or !matches.nil?)
   end
 
   def self.trackUIRecommendations(options,request,current_subject)
     return if options.blank? or !options[:recEngine].is_a? String
-    return if isBoot(request)
+    return if isBot?(request)
 
     tsentry = TrackingSystemEntry.new
     tsentry.app_id = "ViSHUIRecommenderSystem"
@@ -33,7 +35,7 @@ class TrackingSystemEntry < ActiveRecord::Base
 
   def self.trackRLOsInExcursions(rec,excursion,request,current_subject)
     return if request.format == "full"
-    return if isBoot(request)
+    return if isBot?(request)
 
     if rec.is_a? String
       rsEngine = getRSName(rec)
