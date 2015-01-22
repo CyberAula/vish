@@ -78,6 +78,7 @@
   margin-top: 38px
 
 .wa_activity_wrapper 
+  padding-bottom: 15px
   .resource_mini_description
     margin-top: 9px
     padding-bottom: 10px
@@ -326,18 +327,34 @@ ul.workshop_activities_list_edit
     text-align: left
     span
       padding-right: 10px
-      //font-family: $thirdFontFamily
+      font-family: $corporate-font-family-sans-serif-Light
       //font-size: 11px
       display: inline
       //color: $gray
     p
       font-size: 14px
       margin: 0
-      font-family: $corporate-font-family-sans-serif-Regular
-      margin-right: 10px
+      margin-right: 20px
       display: inline
 
+#AddContribution
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  @include border-top-radius ($border-radius-base)
+  @include border-bottom-radius ($border-radius-base)
+  @include well
+  .contribution_Writing
+    margin-top: 15px
+  .footer-form
+    padding-top: 10px
+    input
+      &[type="button"]
+        float: right
 
+.contributions_actions
+  @include well 
 // MODAL ADD NEW ACTIVITY
 // --------------------------------------------------
 #WorkshopActivities

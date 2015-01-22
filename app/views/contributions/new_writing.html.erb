@@ -15,7 +15,7 @@
           <%= f.hidden_field :type, :value => "Writing" %>
           <section class="title">
             <label for="contribution_title"><%=t("contribution.title")%></label>
-            <input id="contribution_title" name="writing[title]" value="">
+            <input type="text" class="form-control" id="contribution_title" name="writing[title]" value="">
           </section>
           <section class="contribution_Writing">
             <label for="contribution_fulltext"><%=t("contribution.content")%></label>
