@@ -20,11 +20,12 @@
 	};
 
 	//Tracking System
-	<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? %>
+	<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? or Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'].nil? %>
 		configuration["TrackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";
-		<% unless Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'].nil? %>
-			configuration["TrackingSystemAPIURL"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'] %>";
-		<%end%>
+		configuration["TrackingSystemAPIURL"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'] %>";
+		<% unless params["trseid"].blank? %>
+			options["TrackingSystemRelatedEntryId"] = "<%= params['trseid'] %>";
+		<% end %>
 	<%end%>
 
 	//LOEP configuration

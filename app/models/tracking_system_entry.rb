@@ -1,10 +1,17 @@
 class TrackingSystemEntry < ActiveRecord::Base
 
+  belongs_to :tracking_system_entry
+  has_many :tracking_system_entries
+
   validates :app_id,
   :presence => true
 
   validates :data,
   :presence => true
+
+  def tre
+    self.trancking_system_entries.first
+  end
 
   def self.trackUIRecommendations(options)
     return if options.blank? or !options[:recEngine].is_a? String
@@ -41,7 +48,11 @@ class TrackingSystemEntry < ActiveRecord::Base
     data["popularity"] = excursion.popularity
     data["current_subject"] = (current_subject.nil? ? "anonymous" : current_subject.name)
     tsentry.data = data.to_json
-    tsentry.save
+    if tsentry.save
+      tsentry
+    else
+      nil
+    end
   end
 
   def self.getRandomRSEngine
