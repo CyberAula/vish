@@ -9,24 +9,31 @@ class TrackingSystemEntry < ActiveRecord::Base
   validates :data,
   :presence => true
 
-  def tre
-    self.trancking_system_entries.first
+  def self.isBoot(request)
+    user_agent = request.user_agent.downcase
+    return [ 'msnbot', 'yahoo! slurp','googlebot' ].detect { |bot| user_agent.include? bot }
   end
 
-  def self.trackUIRecommendations(options)
+  def self.trackUIRecommendations(options,request,current_subject)
     return if options.blank? or !options[:recEngine].is_a? String
+    return if isBoot(request)
+
     tsentry = TrackingSystemEntry.new
     tsentry.app_id = "ViSHUIRecommenderSystem"
     data = {}
     data["rsEngine"] = options[:recEngine]
     data["models"] = options[:model_names]
     data["quantity"] = options[:n]
+    data["current_subject"] = (current_subject.nil? ? "anonymous" : current_subject.name)
+    data["referrer"] = request.referrer
+    data["user_agent"] = request.user_agent
     tsentry.data = data.to_json
     tsentry.save
   end
 
   def self.trackRLOsInExcursions(rec,excursion,request,current_subject)
     return if request.format == "full"
+    return if isBoot(request)
 
     if rec.is_a? String
       rsEngine = getRSName(rec)
@@ -42,11 +49,12 @@ class TrackingSystemEntry < ActiveRecord::Base
     data = {}
     data["rec"] = rec
     data["rsEngine"] = rsEngine
-    data["referrer"] = request.referrer
     data["excursionId"] = excursion.id
     data["qscore"] = excursion.qscore
     data["popularity"] = excursion.popularity
     data["current_subject"] = (current_subject.nil? ? "anonymous" : current_subject.name)
+    data["referrer"] = request.referrer
+    data["user_agent"] = request.user_agent
     tsentry.data = data.to_json
     if tsentry.save
       tsentry

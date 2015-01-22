@@ -18,7 +18,7 @@ class RecommenderSystem
 
     #Track recommendation if requested
     if options[:track]===true
-      TrackingSystemEntry.trackUIRecommendations(options)
+      TrackingSystemEntry.trackUIRecommendations(options,options[:request],subject)
     end
 
     #Step 3

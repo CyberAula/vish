@@ -1,7 +1,7 @@
 <%
   homeModels = VishConfig.getHomeModels({:return_instances => true})
   rsEngine = TrackingSystemEntry.getRandomRSEngine
-  resourcesRecommended = RecommenderSystem.resource_suggestions(current_subject, nil, {:n => 15, :models => homeModels, :recEngine => rsEngine, :track => true})
+  resourcesRecommended = RecommenderSystem.resource_suggestions(current_subject, nil, {:n => 15, :models => homeModels, :recEngine => rsEngine, :track => true, :request => request})
   ids_to_avoid = resourcesRecommended.map{|r| r.activity_object.id}
   resourcesRecent = ActivityObject.getRecent(15,{:subject => current_subject, :ids_to_avoid => ids_to_avoid, :models => homeModels})
   ids_to_avoid += resourcesRecent.map{|r| r.activity_object.id}

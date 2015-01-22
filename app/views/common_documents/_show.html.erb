@@ -29,7 +29,7 @@
     <!-- No option[:models] mean all resources -->
     <% rsEngine = TrackingSystemEntry.getRandomRSEngine
        rec = TrackingSystemEntry.getRSCode(rsEngine)
-       resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion], :recEngine => rsEngine, :track => true})
+       resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion], :recEngine => rsEngine, :track => true, :request => request})
     %>
     <%= render :partial => 'recommender/sidebar', :locals  => { :resources => resource_suggestions, :rec => rec  } %>
 
