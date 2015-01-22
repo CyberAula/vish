@@ -5,6 +5,7 @@
     <div class="badge-excursion-active"></div>
   <%end%>
 
+
   <%if defined?(prefix_id) %>
     <%generated_id= prefix_id + "-excursion-" + excursion.id.to_s%>
   <%else%>
@@ -15,7 +16,7 @@
     <%generated_id = "cat-" + obj_id.to_s + "-" + generated_id %>
   <%end%>
 
-  <%excursion_url = (defined?(rec) and rec==true) ? excursion_url(excursion,{:rec => rec}) : excursion_url(excursion)%>
+  <%excursion_url = (defined?(rec) and rec.is_a? String) ? excursion_url(excursion,{:rec => rec}) : excursion_url(excursion)%>
 
   <%= link_to(excursion_url) do %>
     <!-- image/icon -->

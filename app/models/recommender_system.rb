@@ -16,6 +16,11 @@ class RecommenderSystem
     #Step 2: Scoring
     rankedLOs = orderByScore(preSelectionLOs,subject,resource,options)
 
+    #Track recommendation if requested
+    if options[:track]===true
+      TrackingSystemEntry.trackUIRecommendations(options)
+    end
+
     #Step 3
     return rankedLOs.first(options[:n])
   end
@@ -52,12 +57,24 @@ class RecommenderSystem
 
     options[:model_names] = options[:models].map{|m| m.name}
 
+    unless options[:recEngine].is_a? String
+      options[:recEngine] = "ViSHRecommenderSystem"
+    end
+
+    if options[:track].blank?
+      options[:track] = false
+    end
+
     options
   end
 
   #Step 1: Preselection
   def self.getPreselection(subject,resource,options={})
     preSelection = []
+
+    if options[:recEngine] == "Random"
+      return Excursion.where(:draft=>false).sample(options[:n])
+    end
 
     #Search resources using the search engine
 
@@ -169,6 +186,12 @@ class RecommenderSystem
 
       lo.score = weights[:cs_score] * cs_score + weights[:us_score] * us_score + weights[:popularity_score] * popularity_score + weights[:quality_score] * quality_score
       
+      if options[:recEngine] == "ViSHRS-Quality"
+        lo.score -= weights[:quality_score] * quality_score
+      elsif options[:recEngine] == "ViSHRS-Quality-Popularity"
+        lo.score -= weights[:quality_score] * quality_score + weights[:popularity_score] * popularity_score
+      end
+
       unless options[:test]
         lo.score_tracking = {
           :cs_score => cs_score,
@@ -177,11 +200,18 @@ class RecommenderSystem
           :quality_score => quality_score,
           :weights => weights,
           :overall_score => lo.score,
+          :object_id => lo.id,
           :object_type => lo.object_type,
-          :rec => "ViSHRecommenderSystem"
+          :qscore => lo.qscore,
+          :popularity => lo.popularity,
+          :rec => options[:recEngine]
         }.to_json
       end
     }
+
+    if options[:recEngine] == "Random"
+      return preSelectionLOs
+    end
 
     preSelectionLOs.sort! { |a,b|  b.score <=> a.score }
   end

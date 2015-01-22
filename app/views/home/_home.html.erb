@@ -1,6 +1,7 @@
 <%
   homeModels = VishConfig.getHomeModels({:return_instances => true})
-  resourcesRecommended = RecommenderSystem.resource_suggestions(current_subject, nil, {:n => 15, :models => homeModels})
+  rsEngine = TrackingSystemEntry.getRandomRSEngine
+  resourcesRecommended = RecommenderSystem.resource_suggestions(current_subject, nil, {:n => 15, :models => homeModels, :recEngine => rsEngine, :track => true})
   ids_to_avoid = resourcesRecommended.map{|r| r.activity_object.id}
   resourcesRecent = ActivityObject.getRecent(15,{:subject => current_subject, :ids_to_avoid => ids_to_avoid, :models => homeModels})
   ids_to_avoid += resourcesRecent.map{|r| r.activity_object.id}
@@ -19,7 +20,7 @@
 <section id="excursions_tab_ready2" class="entities foryou_entities">
   <ul class="items">
     <h3> <%= t("home.foryou")%> </h3>
-    <%= render partial: 'home_row', :locals => { :resources => resourcesRecommended, :prefix_id=>"home", :rec => true} %>
+    <%= render partial: 'home_row', :locals => { :resources => resourcesRecommended, :prefix_id=>"home", :rec => TrackingSystemEntry.getRSCode(rsEngine)} %>
   </ul>
 </section>
  
