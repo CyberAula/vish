@@ -38,21 +38,29 @@ class TrackingSystemEntry < ActiveRecord::Base
 
   def self.getRSCode(str)
     case str
+    when "Random"
+      "0"
     when "ViSHRecommenderSystem"
        "1"
      when "ViSHRS-Quality"
        "2"
-     else
+    when "ViSHRS-Quality-Popularity"
+      "3"
+    else
       nil
     end
   end
 
   def self.getRSName(str)
     case str
+    when "0"
+      "Random"
     when "1"
       "ViSHRecommenderSystem"
     when "2"
       "ViSHRS-Quality"
+    when "3"
+      "ViSHRS-Quality-Popularity"
     else
       nil
     end

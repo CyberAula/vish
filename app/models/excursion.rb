@@ -927,8 +927,12 @@ class Excursion < ActiveRecord::Base
         :number_of_slides => slide_count
       }
       
-      if !self.score_tracking.nil?
+      unless self.score_tracking.nil?
         rjson[:recommender_data] = self.score_tracking
+        rsEngineCode = TrackingSystemEntry.getRSCode(JSON(rjson[:recommender_data])["rec"])
+        unless rsEngineCode.nil?
+          rjson[:url] = controller.excursion_url(:id => self.id, :rec => rsEngineCode)
+        end
       end
 
       rjson
