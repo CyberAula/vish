@@ -97,6 +97,68 @@
       }
   };
 
+  ///////////////
+  // Pageless Ajax Handlers
+  ///////////////
+  function update_pageless_state(tab, num_pages, current_page){
+      pageless_state[tab].num_pages = num_pages;
+      pageless_state[tab].current_page = current_page;  
+  };
+
+  function re_apply_pageless(tab){
+    //first remove old pageless
+    $.pagelessStop();      
+     
+    $("#" + tab + "_tab_ready ul").pageless({
+      totalPages: pageless_state[tab].num_pages,
+      url: get_url_with_sort_by(tab),
+      currentPage: pageless_state[tab].current_page,
+      loader: '.loader_pagination',
+      complete: function(){
+      },
+      end: function(){
+        $('.loader_pagination').hide();
+      }
+    });
+  };
+
+  function get_url_with_sort_by(tab){
+    var the_url = pageless_state[tab].url;
+    if(tab == "net"){
+      the_url = the_url + "&sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
+    }
+    return the_url;
+  };
+
+  
+  ///////////////
+  // Catalogue Ajax Handlers
+  ///////////////
+  var catalogue_charge = catalogue_charge || {};
+
+  function catalogue_state(next_state){
+    if (typeof catalogue_charge[next_state] == "undefined"){
+      $.ajax({
+        type : "GET",
+        url : next_state,
+        success : function(html){
+          $('.loader_pagination').hide(); 
+          $("#catalogue_tab_ready").append(html);
+          //We add charged states to variable
+          //We change actual state
+          catalogue_charge[next_state] = html;
+        },
+        error: function(){
+        }
+      });
+    }
+    else {
+      $('.loader_pagination').hide();
+      $("#catalogue_tab_ready").empty();
+      $("#catalogue_tab_ready").append(catalogue_charge[next_state]);
+    }
+  };
+
 </script>
 
 <%content_for :javascript do%>
@@ -165,69 +227,6 @@
         re_apply_pageless("home");
       }   
     });
-
-
-  ///////////////
-  // Pageless Ajax Handlers
-  ///////////////
-  function update_pageless_state(tab, num_pages, current_page){
-      pageless_state[tab].num_pages = num_pages;
-      pageless_state[tab].current_page = current_page;  
-  };
-
-  function re_apply_pageless(tab){
-    //first remove old pageless
-    $.pagelessStop();      
-     
-    $("#" + tab + "_tab_ready ul").pageless({
-      totalPages: pageless_state[tab].num_pages,
-      url: get_url_with_sort_by(tab),
-      currentPage: pageless_state[tab].current_page,
-      loader: '.loader_pagination',
-      complete: function(){
-      },
-      end: function(){
-        $('.loader_pagination').hide();
-      }
-    });
-  };
-
-  function get_url_with_sort_by(tab){
-    var the_url = pageless_state[tab].url;
-    if(tab == "net"){
-      the_url = the_url + "&sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
-    }
-    return the_url;
-  };
-
-  
-  ///////////////
-  // Catalogue Ajax Handlers
-  ///////////////
-  var catalogue_charge = catalogue_charge || {};
-
-  function catalogue_state(next_state){
-    if (typeof catalogue_charge[next_state] == "undefined"){
-      $.ajax({
-        type : "GET",
-        url : next_state,
-        success : function(html){
-          $('.loader_pagination').hide(); 
-          $("#catalogue_tab_ready").append(html);
-          //We add charged states to variable
-          //We change actual state
-          catalogue_charge[next_state] = html;
-        },
-        error: function(){
-        }
-      });
-    }
-    else {
-      $('.loader_pagination').hide();
-      $("#catalogue_tab_ready").empty();
-      $("#catalogue_tab_ready").append(catalogue_charge[next_state]);
-    }
-  };
 
 <%end%>
 

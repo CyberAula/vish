@@ -181,17 +181,17 @@
             return;
           }
 
-          if (theElement.hasClass('open')) return;
+          if (theElement && theElement.hasClass('open')) return;
           window.clearTimeout(theTimer);
           theTimer = window.setTimeout(function () {
-            theElement.addClass('open');
+            if (theElement) theElement.addClass('open');
           }, delay);
         })
         .on('mouseleave', function (inEvent) {
           window.clearTimeout(theTimer);
           theElement = $(this);
           theTimer = window.setTimeout(function () {
-            theElement.removeClass('open');
+            if (theElement) theElement.removeClass('open');
           }, delay);
         });
     })(jQuery, window, 0); // 200 is the delay in milliseconds

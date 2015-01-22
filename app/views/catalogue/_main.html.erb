@@ -12,17 +12,25 @@
 	<%end%>
 </div>
 
-<%content_for :javascript do%>
-	//Show More buttons
-	$(".show_more_catalogue").click(function(event) {
-		var name = $(this).attr("name");
-		<%if is_home%>
-			window.location = "/catalogue/" + name + "?back_home=true";      
-		<%else%>
-			window.location = "/catalogue/" + name;	  
-		<%end%>
-	});
+<script>  
+  <%if is_home%>
+  	add_show_more_click();
+  <%else%>
+    document.addEventListener("DOMContentLoaded", function(){
+    	add_show_more_click();
+    });    
+  <%end%>
 
-	
+  function add_show_more_click(){
+		//Show More buttons
+		$(".show_more_catalogue").click(function(event) {
+			var name = $(this).attr("name");
+			<%if is_home%>
+				window.location = "/catalogue/" + name + "?back_home=true";      
+			<%else%>
+				window.location = "/catalogue/" + name;	  
+			<%end%>
+		});
+	}
 
-<%end%>
+</script>

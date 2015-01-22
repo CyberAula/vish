@@ -88,33 +88,39 @@
     actualState.appendTo(".main-categories-space");
   };
 
-
-</script>
-
-<%content_for :javascript do%>
   var beginIndex;
   var beginObjects;
 
-  //Let the overlay appear
+  function add_onclicks_to_categories(){
+      //Let the overlay appear
+      $(".btn-for-categorize").click(function(){
+        $("#categories_edition").fadeIn();
 
-    $(".btn-for-categorize").click(function(){
-      $("#categories_edition").fadeIn();
-
-      beginIndex = getidArray();
-      beginObjects = $(".edit_categories .box-item").clone();
-    });
-
-    $("#normal-view").click(function(){
-      $(".btn-for-categorize").show(200);
-        $("#list-instance").fadeOut(200,function(){          
-          $("#normal-instance").fadeIn(200);
-        });
-    });
-
-    $("#list-view").click(function(){
-      $(".btn-for-categorize").hide(200);
-      $("#normal-instance").fadeOut(200,function(){
-        $("#list-instance").fadeIn(200);
+        beginIndex = getidArray();
+        beginObjects = $(".edit_categories .box-item").clone();
       });
+
+      $("#normal-view").click(function(){
+        $(".btn-for-categorize").show(200);
+          $("#list-instance").fadeOut(200,function(){          
+            $("#normal-instance").fadeIn(200);
+          });
+      });
+
+      $("#list-view").click(function(){
+        $(".btn-for-categorize").hide(200);
+        $("#normal-instance").fadeOut(200,function(){
+          $("#list-instance").fadeIn(200);
+        });
+      });
+  };
+
+  <%if request.xhr?%>
+    add_onclicks_to_categories();
+  <%else%>
+    document.addEventListener("DOMContentLoaded", function(){  
+      add_onclicks_to_categories();
     });
-<%end%>
+  <%end%>
+
+</script>
