@@ -560,12 +560,12 @@ ActiveRecord::Schema.define(:version => 20150123095038) do
   create_table "tracking_system_entries", :force => true do |t|
     t.string   "app_id"
     t.text     "data"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.integer  "tracking_system_entry_id"
     t.text     "user_agent"
     t.text     "referrer"
-    t.integer  "actor_id"
+    t.boolean  "user_logged",              :default => false
   end
 
   create_table "users", :force => true do |t|

@@ -39,7 +39,7 @@ class TrackingSystemEntry < ActiveRecord::Base
     tsentry.app_id = "ViSHUIRecommenderSystem"
     tsentry.user_agent = request.user_agent
     tsentry.referrer = request.referrer
-    tsentry.actor_id = (current_subject.nil? ? nil : Actor.normalize_id(current_subject))
+    tsentry.user_logged = (current_subject.nil? ? false : true)
 
     data = {}
     data["rsEngine"] = options[:recEngine]
@@ -67,7 +67,7 @@ class TrackingSystemEntry < ActiveRecord::Base
     tsentry.app_id = "ViSH RLOsInExcursions"
     tsentry.user_agent = request.user_agent
     tsentry.referrer = request.referrer
-    tsentry.actor_id = (current_subject.nil? ? nil : Actor.normalize_id(current_subject))
+    tsentry.user_logged = (current_subject.nil? ? false : true)
 
     data = {}
     data["rec"] = rec

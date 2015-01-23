@@ -29,7 +29,7 @@ class TrackingSystemEntriesController < ApplicationController
     end
 
     unless params[:actor_id].blank?
-      tsentry.actor_id = params[:actor_id]
+      tsentry.user_logged = true
       unless params[:data].blank?
         params[:data] = fillActorData(params[:data],params[:actor_id])
       end
