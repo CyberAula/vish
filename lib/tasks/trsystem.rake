@@ -485,6 +485,7 @@ namespace :trsystem do
   #Usage
   #Development:   bundle exec rake trsystem:removeBotEntries
   #In production: bundle exec rake trsystem:removeBotEntries RAILS_ENV=production
+  #Manual check: TrackingSystemEntry.all.select{|e| TrackingSystemEntry.isUserAgentBot?(e.user_agent)}.length
   task :removeBotEntries, [:prepare] => :environment do |t,args|
     printTitle("Removing bot entries")
 
