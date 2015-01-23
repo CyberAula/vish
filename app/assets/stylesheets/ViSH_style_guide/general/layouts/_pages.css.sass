@@ -1,6 +1,30 @@
 .items
   @include items
 
+a.btn.btn_delete_item
+  position: absolute
+  top: 0
+  right: 0
+  background: #F5F5F5
+  color: $text-color
+  @include border-top-left-radius(0)
+  @include border-top-right-radius(3px)
+  @include border-bottom-right-radius(0)
+  @include border-bottom-left-radius(3px)
+  &:hover
+    padding: 6px
+    color: $brand-danger
+  @media (max-width: $screen-xs-max)
+    bottom: 21px
+    padding: 2px 9px 2px
+    font-size: 12px
+    top: auto
+    @include border-top-left-radius(3px)
+    @include border-top-right-radius(3px)
+    @include border-bottom-left-radius(0px)
+    &:hover
+      padding: 2px 9px 2px
+
 .contact
   background-color: white
   .caption

@@ -89,10 +89,14 @@
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
+  padding: 0
 
 .workshop-edit
   section.information
     float: left
+    h2
+      @media (max-width: $screen-xs-max)
+        margin-top: 1px
   .wa_activity_wrapper,
   .wa_add_activity_wrapper
     border: 2px dashed #999
@@ -189,6 +193,18 @@
   @include border-top-radius ($border-radius-base)
   @include border-bottom-radius ($border-radius-base)
   display: inline-block
+
+.ws_gallery
+  .corner-item2 
+    i
+      top: 5px !important
+      left: 5px !important
+      font-size: 20px
+    i.icon-o-scorm,
+    i.icon-o-webapp
+      top: 0px !important
+      left: 0px !important
+      font-size: 20px !important
 
 .wa_activity_wrapper
   float: none

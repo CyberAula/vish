@@ -84,12 +84,6 @@
           width: 100% !important
           height: 100%
           left: 0 !important
-      i.icon-o-scorm,
-      i.icon-o-webapp
-        display: inline-block !important
-        font-size: 80px !important
-        padding-top: 16px
-
       i
         font-size: 70px
         color: $brand-primary-2
@@ -103,6 +97,15 @@
           padding-top: 14px
       .icon-plus
         color: $gray
+      i.icon-o-scorm,
+      i.icon-o-webapp
+        display: inline-block
+        font-size: 77px
+        padding-top: 16px
+        @media (max-width: 480px)
+          font-size: 49px
+          margin-top: -13px
+          padding-top: 0
 
   // Image captions
   .caption

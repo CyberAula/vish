@@ -165,8 +165,10 @@
    
   <!-- tab5 / spam -->
   <div class="tab-pane" id="tab5">
-    <%@activity_object = @workshop.activity_object%>
-    <%= render '/spam_report/form' %>
+    <div>
+      <%@activity_object = @workshop.activity_object%>
+      <%= render '/spam_report/form' %>
+    </div>
   </div>
 
 </div>
