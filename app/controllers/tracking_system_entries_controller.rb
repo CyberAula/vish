@@ -18,20 +18,33 @@ class TrackingSystemEntriesController < ApplicationController
 
   # POST /tracking_system_entries 
   def create
+    render :json => ["Invalid user agent"] if TrackingSystemEntry.isUserAgentBot?(params[:user_agent])
+
     tsentry = TrackingSystemEntry.new
     tsentry.app_id = params[:app_id]
-    unless params[:data].blank?
-      params[:data] = fillUserData(params[:data])
+    tsentry.user_agent = params[:user_agent]
+
+    unless params[:referrer].blank?
+      tsentry.referrer = params[:referrer]
     end
-    tsentry.data = params[:data].to_json
+
+    unless params[:actor_id].blank?
+      tsentry.actor_id = params[:actor_id]
+      unless params[:data].blank?
+        params[:data] = fillActorData(params[:data],params[:actor_id])
+      end
+    end
+
     unless params[:tracking_system_entry_id].blank?
       tsentry.tracking_system_entry_id = params[:tracking_system_entry_id]
     end
 
+    tsentry.data = params[:data].to_json
+
     if tsentry.save
       render :json => tsentry.to_json
     else
-      render :json => ["Tracking System Error"]
+      render :json => ["Generic Tracking System Error"]
     end
   end
 
@@ -46,17 +59,16 @@ class TrackingSystemEntriesController < ApplicationController
     end
   end
 
-  def fillUserData(data)
-    if !data[:user].nil? and !data[:user][:id].nil?
-      user = User.find(data[:user][:id]) rescue nil
-      if !user.nil?
-        data[:user][:age] = user.profile.age
-        data[:user][:country] = user.profile.country
-        data[:user][:city] = user.profile.city
-        data[:user][:tags] = user.tag_list
-        data[:user][:language] = user.language
-        data[:user][:popularity] = user.popularity
-      end
+  def fillActorData(data,actor_id)
+    actor = Actor.find_by_id(actor_id)
+    unless actor.nil?
+      data[:user] = (data[:user] || {})
+      data[:user][:age] = actor.profile.age
+      data[:user][:country] = actor.profile.country
+      data[:user][:city] = actor.profile.city
+      data[:user][:tags] = actor.tag_list
+      data[:user][:language] = actor.language
+      data[:user][:popularity] = actor.popularity
     end
     return data
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150122114742) do
+ActiveRecord::Schema.define(:version => 20150123095038) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -142,6 +142,14 @@ ActiveRecord::Schema.define(:version => 20150122114742) do
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
   add_index "actors", ["email"], :name => "index_actors_on_email"
   add_index "actors", ["slug"], :name => "index_actors_on_slug", :unique => true
+
+  create_table "announcements", :force => true do |t|
+    t.text     "message"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "audiences", :force => true do |t|
     t.integer "relation_id"
@@ -322,6 +330,16 @@ ActiveRecord::Schema.define(:version => 20150122114742) do
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
+
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.string   "permalink"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "pages", ["permalink"], :name => "index_pages_on_permalink"
 
   create_table "pdfexes", :force => true do |t|
     t.datetime "created_at",                             :null => false
@@ -545,6 +563,9 @@ ActiveRecord::Schema.define(:version => 20150122114742) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.integer  "tracking_system_entry_id"
+    t.text     "user_agent"
+    t.text     "referrer"
+    t.integer  "actor_id"
   end
 
   create_table "users", :force => true do |t|
