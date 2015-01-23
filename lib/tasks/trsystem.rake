@@ -77,6 +77,7 @@ namespace :trsystem do
 
   end
 
+  #Recommender System Analytics. ViSH Viewer data.
   #Usage
   #Development:   bundle exec rake trsystem:rs
   #In production: bundle exec rake trsystem:rs RAILS_ENV=production
@@ -304,6 +305,7 @@ namespace :trsystem do
     writeInTRS(deniedAverageQualityScore)
   end
 
+  #Recommender System Analytics. ViSH data (complemented with ViSH Viewer data).
   #Usage
   #Development:   bundle exec rake trsystem:rsViSH
   #In production: bundle exec rake trsystem:rsViSH RAILS_ENV=production
@@ -447,6 +449,90 @@ namespace :trsystem do
 
   def writeInTRS(line)
     write(line,TRS_FILE_PATH)
+  end
+
+
+  ####################
+  #Fix and filtering tasks
+  ####################
+
+  #Move user agent and user profile data from the json object to the db fields of the trackerSystemEntry entity.
+  #Usage
+  #Development:   bundle exec rake trsystem:addUserAgentAndUserToVVData
+  #In production: bundle exec rake trsystem:addUserAgentAndUserToVVData RAILS_ENV=production
+  task :addUserAgentAndUserToVVData, [:prepare] => :environment do |t,args|
+    printTitle("Fixing VVData entries in the TrackingSystem")
+
+    vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer")
+    vvEntries.each do |e|
+      d = JSON(e["data"]) rescue {}
+      user_agent = d["device"]["userAgent"] rescue nil
+      user_data = d["user"] rescue nil
+      user_logged = !user_data.nil?
+
+      e.update_column :user_agent, user_agent
+      e.update_column :user_logged, user_logged
+    end
+
+    printTitle("Task finished")
+  end
+
+  # Some manual tests
+  # This should be 0:
+  # TrackingSystemEntry.all.select{|e| e.user_logged and TrackingSystemEntry.isUserAgentBot?(e.user_agent)}.length
+
+  #Remove entries from bots.
+  #Usage
+  #Development:   bundle exec rake trsystem:removeBotEntries
+  #In production: bundle exec rake trsystem:removeBotEntries RAILS_ENV=production
+  task :removeBotEntries, [:prepare] => :environment do |t,args|
+    printTitle("Removing bot entries")
+
+    entriesDestroyed = 0
+
+    vvEntries = TrackingSystemEntry.all
+    vvEntries.each do |e|
+      isBot = TrackingSystemEntry.isUserAgentBot?(e.user_agent)
+      if isBot
+        e.destroy
+        entriesDestroyed += 1
+      end
+    end
+
+    printTitle(entriesDestroyed.to_s + " entries destroyed")
+    printTitle("Task finished")
+  end
+
+  #List user agents.
+  #Usage
+  #Development:   bundle exec rake trsystem:listUAs
+  #In production: bundle exec rake trsystem:listUAs RAILS_ENV=production
+  task :listUAs, [:prepare] => :environment do |t,args|
+    printTitle("Listing user agents")
+
+    uaList = []
+
+    user_agents = TrackingSystemEntry.all.map{|t| t.user_agent }
+    excluded_uas = []
+    user_agents = user_agents.reject{|ua| ua.blank? or excluded_uas.include? ua }
+    uniq_user_agents = user_agents.uniq
+
+    uniq_user_agents.each do |ua|
+      ocurrences = user_agents.count(ua)
+      uaList.push([ua,ocurrences])
+    end
+
+    uaList.sort! { |a,b|  b[1] <=> a[1] }
+
+    TRS_FILE_PATH = "reports/uas.txt";
+    Rake::Task["trsystem:prepare"].invoke
+    writeInTRS("User Agents Report")
+
+    uaList.each do |uaEl|
+      writeInTRS("Occurences: " + uaEl[1].to_s  + ".  UserAgent: " + uaEl[0])
+    end
+
+    printTitle("Task finished")
   end
 
 end

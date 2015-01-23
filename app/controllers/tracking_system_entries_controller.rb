@@ -40,7 +40,7 @@ class TrackingSystemEntriesController < ApplicationController
     end
 
     tsentry.data = params[:data].to_json
-
+    
     if tsentry.save
       render :json => tsentry.to_json
     else

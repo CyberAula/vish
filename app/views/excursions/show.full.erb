@@ -79,6 +79,10 @@
 	  <% end %>
 	<% end %>
 
+	<% unless params["oreferrer"].blank? %>
+		options["referrer"] = "<%=params['oreferrer']%>";
+	<% end %>
+
 	<% if @quiz_session %>
 		options["quizSessionId"] = "<%= @quiz_session.id %>";
 	<% end %>
