@@ -18,7 +18,7 @@ class TrackingSystemEntriesController < ApplicationController
 
   # POST /tracking_system_entries 
   def create
-    render :json => ["Invalid user agent"] if TrackingSystemEntry.isUserAgentBot?(params[:user_agent])
+    return render :json => ["Invalid user agent"] if TrackingSystemEntry.isUserAgentBot?(params[:user_agent])
 
     tsentry = TrackingSystemEntry.new
     tsentry.app_id = params[:app_id]
