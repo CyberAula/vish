@@ -4,7 +4,7 @@
     <div class="badge-excursion-active"></div>
   <%end%>
 
-  <%excursion_url = (defined?(rec) and rec==true) ? excursion_url(excursion,{:rec => rec}) : excursion_url(excursion)%>
+  <%excursion_url = (defined?(rec) and rec.is_a? String) ? excursion_url(excursion,{:rec => rec}) : excursion_url(excursion)%>
 
   <%= link_to(excursion_url) do %>
     <!-- image/icon -->

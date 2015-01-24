@@ -72,6 +72,9 @@
     a
       position: relative
       margin-top: 30px
+      color: white
+      margin: 5px
+      margin: 30px 0 15px 0
 
 .timeline-panel
   .pull-left
@@ -84,7 +87,10 @@
     .x
       float: right
       @include color-delete
-
+    .post_time_ago
+      display: inline-block
+      color: $gray !important
+      margin-left: 5px
   .panel-group
     clear: both
     @include comments
@@ -94,28 +100,49 @@
     padding: 0px
 
 
+
+
 .comments
   @include make-xs-column(12, $gutter: $grid-gutter-width)
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   display: block
-  padding: 0px
+  padding: 5px
   clear: both
+  .hidden_comments
+    margin: 15px 0 10px 0
+    a
+      font-size: 0.9em !important
+      font-weight: 100
   .activity
     clear: both
-    border-top: 2px solid #FFF
+    border-bottom: 1px solid $gray-light
     padding: 15px 0
+    margin: 0
     &:first-child
-      border-top: none
-      padding: 5px 0
+      //padding: 10px 0 15px 0
     &:last-child
-      //padding: 2px 0 0 0
+      border-bottom: none
+    .pull-left
+      margin-right: 10px
+    .media-body
+      .media-heading
+        clear: both
+        height: 15px
+        a
+          float: left
+        .x
+          float: right
+          @include color-delete
+      .post_time_ago
+        display: inline-block
+        color: $gray !important
+        float: left
+      .to_like
+        float: left
+        margin-left: 5px
 
-.post_time_ago
-  margin-left: 10px
-  display: inline-block
-  color: $gray !important
 
 
 div.new_comment
@@ -143,7 +170,9 @@ div.new_comment
       @include border-right-radius ($border-radius-base)
     input
       &[type="submit"]
-        margin-left: 10px
+        @include border-left-radius (0)
+        @include border-right-radius ($border-radius-base)
+        height: 41px
 
 .comments
   .child

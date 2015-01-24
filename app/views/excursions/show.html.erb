@@ -66,10 +66,11 @@
 <!--div class="page-header"><%= @excursion.title %></div-->
 
 <section id="show_items " class="layout_show">
-    <!--recomended-->
-  <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})} %>
+    <!--recomended ant-->
+  <%#= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})} %>
 
-
+  <!--recomended-->
+  <%= render :partial => 'recommender/sidebar', :locals  => { :resources => @resource_suggestions, :rec => @rec } %>
 
   <div class="doc-show">
     <div class="box-show">

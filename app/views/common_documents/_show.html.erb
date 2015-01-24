@@ -8,7 +8,7 @@
 
   <% document_profile_subject ||= document.owner_subject %>
   <%= render :partial => 'objects/show', :locals  => { :object => document } %>
-  
+
   <% content_for :title do %>
     <%= document_profile_subject.name + ": " + t('repository.title') %>
   <% end %>
@@ -30,15 +30,24 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!--recomended-->
+    <!-- No option[:models] mean all resources -->
+    <% rsEngine = TrackingSystemEntry.getRandomRSEngine
+       rec = TrackingSystemEntry.getRSCode(rsEngine)
+       resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion], :recEngine => rsEngine, :track => true, :request => request})
+    %>
+    <%= render :partial => 'recommender/sidebar', :locals  => { :resources => resource_suggestions, :rec => rec  } %>
 
       <div class="description-activity">
         <!--tool tab-->
-        <div class="box_description">   
+        <div class="box_description">
           <div class="excursion_tool">
             <%= render :partial => 'common_documents/document-tool-tab', :locals => { :document => document } %>
-          </div>     
+          </div>
         </div>
-          
+
         <!--activity-->
         <div class="activity-box">
           <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
@@ -53,9 +62,3 @@
   <% end %>
 
 </section>
-
-
-
-
-
-

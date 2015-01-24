@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141210085747) do
+ActiveRecord::Schema.define(:version => 20150123095038) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -546,8 +546,12 @@ ActiveRecord::Schema.define(:version => 20141210085747) do
   create_table "tracking_system_entries", :force => true do |t|
     t.string   "app_id"
     t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "tracking_system_entry_id"
+    t.text     "user_agent"
+    t.text     "referrer"
+    t.boolean  "user_logged",              :default => false
   end
 
   create_table "users", :force => true do |t|
