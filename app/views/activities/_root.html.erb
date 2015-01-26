@@ -6,15 +6,15 @@
     <li class="separator"><div class="tldate"> <%= modifDate %> </div></li>
 <%end%>
 <%#Ends here%>
-<script>
-  var numberMonths = numberMonths || 0;
-  var dates= $(".tldate");
-    for(var n = 0; n<dates.lenght - 1; n++){
-      if ($(dates[n]).text() == $(dates[n+1]).text())
-        $(dates[n+1]).remove();
-    }
+  <%= content_for :javascript do %>
+    var numberMonths = numberMonths || 0;
+    var dates= $(".tldate");
+      for(var n = 0; n<dates.lenght - 1; n++){
+        if ($(dates[n]).text() == $(dates[n+1]).text())
+          $(dates[n+1]).remove();
+      }
+  <%end%>
 
-</script>
 <%# To get if inverted or not inverted %>
 <% @state = @state || 0%>
 <% position = "" %>

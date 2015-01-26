@@ -7,8 +7,7 @@
   <%end%>
 
   <% document_profile_subject ||= document.owner_subject %>
-  <%= render :partial => 'objects/show', :locals  => { :object => document } %>
-
+  
   <% content_for :title do %>
     <%= document_profile_subject.name + ": " + t('repository.title') %>
   <% end %>

@@ -99,7 +99,7 @@ namespace :mve do
 		
 		while (@mveRank.length != 0) do
 			ranking_excursion = Excursion.find(@mveRank.max_by(&:mve).id)
-			ranking_excursion.update_column :rankMve, rank_counter
+			ranking_excursion.update_column :rank_mve, rank_counter
 			@mveRank.delete(@mveRank.max_by(&:mve))
 			rank_counter+=1
 		end
@@ -152,7 +152,7 @@ namespace :mve do
 		
 		while (@mveRank.length != 0)
 			ranking_actor = Actor.find(@mveRank.max_by(&:mve).id) #find looks for primary key
-			ranking_actor.update_column :rankMve, rank_counter
+			ranking_actor.update_column :rank_mve, rank_counter
 			@mveRank.delete(@mveRank.max_by(&:mve))
 			rank_counter+=1
 		end
