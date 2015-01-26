@@ -5,7 +5,7 @@
       <%= t('sign_up').capitalize %>
     </h4>
 
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :id=>"new_user_devise_form"}) do |f| %>
       <%= devise_error_messages! %>
       <div class="form-group reg-labels">
         <%= f.label :name %>
@@ -15,7 +15,8 @@
         <%= f.text_field :email, :class =>"form-control", :autocomplete => "off" %>
         
         <%= f.label :password %>
-        <%= f.password_field :password, :class =>"form-control", :id => "password", :autocomplete => "off" %>
+
+        <%= f.password_field :password, :class =>"form-control", :id => "devise_password", :autocomplete => "off" %>
 
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, :class =>"form-control", :autocomplete => "off" %>
@@ -71,7 +72,6 @@
 
 <%= content_for :javascript do %>
 
-  $(document).ready(function() {
     var tagList = $(".tagList");
     var tags = [];
 
@@ -115,5 +115,4 @@
        return true;
      });
 
-  });
 <% end %>

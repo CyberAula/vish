@@ -13,6 +13,7 @@
     <%= document_profile_subject.name + ": " + t('repository.title') %>
   <% end %>
 
+
   <%= div_for document do %>
     <!--recomended-->
     <!-- No option[:models] mean all resources -->
@@ -35,6 +36,7 @@
         </div>
       </div>
 
+
       <div class="description-activity">
         <!--tool tab-->
         <div class="box_description">
@@ -48,16 +50,14 @@
         </div>
       </div>
 
+
     </div>
 
 
-
-    <!--</div>-->
 
     <%if @contribution%>
       <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => document.contribution } %>
     <%end%>
 
   <% end %>
-
 </section>

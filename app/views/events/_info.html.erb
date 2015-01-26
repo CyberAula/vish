@@ -93,5 +93,11 @@
 </script>
 
 
+      <%= content_for :javascript do %>
+        $("#start").text(new Date(Date.parse("<%=@event.start_at.iso8601%>")).toLocaleString());
+        $("#end").text(new Date(Date.parse("<%=@event.end_at.iso8601%>")).toLocaleString());
+      <%end%>
+
+
 
 

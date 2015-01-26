@@ -6,6 +6,7 @@
         <%= render partial: 'help/help_categorize' %>
         <h4 id="AddCategoryLabel"><%= t("category.modalLabel")%></h4>
       </div>
+
       <div class="modal-body categorize-modal-body">
 
         <% generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} %>
@@ -39,35 +40,35 @@
             </ul>
          </div>
         <p class="information"><%= t("category.categorized_like")%></p>
-        <%tagArray= generic_categories.map{|e| e.title}%>
-        <script type="text/javascript">
-        $(document).ready(function() {
-            var tagList= [
-              <%tagArray.each do |tags|%>
-                "<%=tags%>",
-              <%end%>
-            ];
-            $("#myCategories").tagit({
-              watermarkAllowMessage: "<%= t('category.tagit_watermark_cat')%>",
-              tagSource: tagList
-            });
-            //Get categorized by this author
-            <% resource_categories = []
-            get_initial_categories(item).each do |e|
-            n = Category.find(e)
-              if generic_categories.include? n
-                resource_categories  += [n]
-             end
-            end
-             %>
-              <% resource_categories.each do |cat| %>
-                <% ident = Category.find(cat) %>
-                $("#myCategories").tagit("add", "<%=ident.title %>", "<%=ident.id%>");
-            <%end%>
-            //Save suggested categories state
 
-        });
-        </script>
+        <%tagArray= generic_categories.map{|e| e.title}%>
+        <%content_for :javascript do%>
+                var tagList= [
+                  <%tagArray.each do |tags|%>
+                    "<%=tags%>",
+                  <%end%>
+                ];
+                $("#myCategories").tagit({
+                  watermarkAllowMessage: "<%= t('category.tagit_watermark_cat')%>",
+                  tagSource: tagList
+                });
+                //Get categorized by this author
+                <% resource_categories = []
+                get_initial_categories(item).each do |e|
+                n = Category.find(e)
+                  if generic_categories.include? n
+                    resource_categories  += [n]
+                 end
+                end
+                 %>
+                  <% resource_categories.each do |cat| %>
+                    <% ident = Category.find(cat) %>
+                    $("#myCategories").tagit("add", "<%=ident.title %>", "<%=ident.id%>");
+                <%end%> 
+                //Save suggested categories state
+
+        <%end%>
+
         <div class="tagBoxNew">
           <ul id="myCategories">
         <!-- Existing list items will be pre-added to the tags -->
@@ -83,7 +84,8 @@
     </div>
   </div>
 </div>
-<script>
+
+<%content_for :javascript do%>
 
   //When click to suggested they go to down part for being categorized
   $("#suggested_categories li").click(function(){
@@ -156,4 +158,4 @@
        });
       });
 
-</script>
+<%end%>

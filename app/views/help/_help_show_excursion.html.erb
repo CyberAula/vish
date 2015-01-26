@@ -9,13 +9,11 @@
   </div>
 </span>
 
-<script>
-$(document).ready(function(){
+<%content_for :javascript do%>
   $('#helpexcursionid').popover({ 
     html : true,
     content: function() {
       return $('#contenthelpexcursionid').html();
     }
   });
-});
-</script>
+<%end%>

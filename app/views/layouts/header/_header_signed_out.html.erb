@@ -77,15 +77,11 @@
   </div>
 </nav>
 
-<script type="text/javascript">
-    $(document).ready(function() {          
-     
-     $('.dropdown-toggle').dropdown();
-   });
-  </script>
 
-<!-- SCRIPT FOR AUTOMATIC BOOTSTRAP-DROPDOWN HOVER -->
-  <script type="text/javascript">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    $('.dropdown-toggle').dropdown();
+
     (function ($, window, delay) {
     var theTimer = 0;
     var theElement = null;
@@ -136,5 +132,9 @@
         $('#methods').click(function() {
             $('#password').password('toggle');
         });
-    });
-  </script>
+    });  
+
+});
+</script>
+
+  

@@ -116,17 +116,17 @@
 
   <%= render partial: 'users/profile-info' %>
 
-<%= javascript_tag do %>
-  $(function() {
-    SocialStream.Profile.show({
-    section: "<%= params[:section ] %>"
-    });
-  });
 
-  $("#select_occupation_link").click(function(){
-    $("#edit_icon_link").click();
-  });
-<% end %>
+  <%content_for :javascript do%>
+    SocialStream.Profile.show({
+      section: "<%= params[:section ] %>"
+    });
+
+    $("#select_occupation_link").click(function(){
+      $("#edit_icon_link").click();
+    });
+
+  <% end %>
 
 
 </section>

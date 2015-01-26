@@ -1,5 +1,5 @@
 <h3 class="title_WS">Text</h3>
-<div id="" class="Assignment_edit_box">
+<div class="Assignment_edit_box">
   <%= form_for wa_text, :html => { :id => "edit_wa_text_#{wa_text.id}" }, :remote => false do |f| %>
     <%= f.text_area :fulltext, :class => "form-control", :id=> "edit_wa_text_#{wa_text.id}_fulltext"%>
     <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_text_#{wa_text.id}_plaintext"%>
@@ -12,8 +12,7 @@
 <%=render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "edit_wa_text_#{wa_text.id}_fulltext"} %>
 
 
-<script>
-	$(document).ready(function() {    
+<%content_for :javascript do%>  
 	  //COMMON FIELDS
 	  var uploadButton = $("#edit_wa_text_<%=wa_text.id%>_button");
 	  
@@ -21,5 +20,4 @@
 	      set_ckeditor_content_full_and_plaintext("edit_wa_text_<%=wa_text.id%>_fulltext","edit_wa_text_<%=wa_text.id%>_plaintext");
 	      $("#edit_wa_text_<%=wa_text.id%>_submitbutton").click();
 	  });
-	});
-</script>
+<%end%>

@@ -7,13 +7,12 @@
     <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
 </span>
-<script>
-$(document).ready(function(){
+
+<%content_for :javascript do%>
   $('#helpcategorizeid').popover({ 
     html : true,
     content: function() {
       return $('#contenthelpcategorizeid').html();
     }
   });
-});
-</script>
+<%end%>

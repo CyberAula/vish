@@ -68,8 +68,8 @@
   <!-- Button to trigger modal --> 
 
 
-<script>
-  $(function() {
+  <%content_for :javascript do%>
+
     $("#showingMore").click(function(e){
       if($("#showingMore").attr("title")==="showMore"){
         $("#showingMore").html('<i class="fa fa-plus-square-o"></i> <%=t("excursion.actions.show_more")%>');
@@ -81,7 +81,6 @@
       }
     });
 
-    $(function() {
       var sendMessage = $("input[name='send_message']");
       var send = $("input[type='button'][value='<%=t('mailboxer.send')%>']");
       $(sendMessage).addClass("hidden");
@@ -100,6 +99,5 @@
         $("#mesage-profile").removeAttr("data-toggle");
         $("#mesage-profile").removeAttr("data-remote");
       })
-    });
-  });
-</script>
+
+  <%end%>

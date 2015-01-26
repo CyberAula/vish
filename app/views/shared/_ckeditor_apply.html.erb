@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<%content_for :javascript do%>
 
     //instructions to add ckeditor to a textarea
     //render this file anywhere with:
@@ -7,7 +7,6 @@
     //set_ckeditor_content_full_and_plaintext("fulltext_id","plaintext_id");
 
 
-    $(document).ready(function() {    
 
         function apply_ckeditor(id){
             CKEDITOR.on( 'dialogDefinition', function(ev){
@@ -149,6 +148,5 @@
 
         apply_ckeditor("<%=the_id%>");
 
-    });
-</script>
+<%end%>
 
