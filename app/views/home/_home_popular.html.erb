@@ -2,14 +2,12 @@
   <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id=> prefix_id } %>
 <% end %>
 
-<script>
-  $(document).ready(function(){
+<%content_for :javascript do%>
     pageless_state.home.url = "/home?tab=home&ids_to_avoid=<%=ids_to_avoid.join(',')%>";
     update_pageless_state("home", <%=resources.num_pages%>, <%=resources.current_page%>);
     re_apply_pageless("home");
 
     $("footer#footer").addClass("fixed-bottom");
     $("#wrap").addClass("wrap-when-fixed-bottom");
-  });
-</script>
+<%end%>
 

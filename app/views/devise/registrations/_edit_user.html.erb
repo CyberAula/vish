@@ -44,7 +44,7 @@
       <%= f.email_field :email, :class => "required form-control" %>
     
       <%= f.label :current_password %>
-      <%= f.password_field :current_password, :class => "required form-control" %>
+      <%= f.password_field :current_password, :class => "required form-control", :id=>"user_current_password2" %>
   
       <%= f.submit t('button.update'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
     <% end%>

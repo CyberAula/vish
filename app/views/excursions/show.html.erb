@@ -9,7 +9,6 @@
 <% end %>
 
 <%=javascript_include_tag "RegaddiChart" %>
-<%=javascript_include_tag "jquery.zclip.min" %>
 <%=javascript_include_tag "loep" %>
 <%=javascript_include_tag "VISH.IframeAPI" %>
 
@@ -23,7 +22,7 @@
   options["readHashFromParent"] = true;
 
   <% unless params[:recent].nil? %>
-    $(document).ready(function(){
+    document.addEventListener("DOMContentLoaded", function(){
         $("#congratulations-button").click();
     });
   <% end %>
@@ -34,7 +33,7 @@
     //Global vars
     var animationEnabled = true;
 
-    $(document).ready(function(){
+    document.addEventListener("DOMContentLoaded", function(){
         //Animate excursion
         VISH.IframeAPI.init({callback: function(){
           //OnConnect

@@ -33,16 +33,16 @@
               </label>
               <%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
             <% end %>
-            <%= javascript_tag do %>
-            $(function() {
+
+          <%content_for :javascript do%>
             if ("placeholder" in document.createElement("input")) {
-            $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+              $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+              $("#password").attr('placeholder', I18n.t('activerecord.attributes.user.password'));
             } else {
-            $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+              $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+              $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
             }
-            $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
-            });
-            <% end %>
+          <% end %>
           </ul>
         </li>
 
@@ -72,7 +72,8 @@
 </header>
 
 <!-- SCRIPT FOR AUTOMATIC BOOTSTRAP-DROPDOWN HOVER -->
-  <script type="text/javascript">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
     (function ($, window, delay) {
     var theTimer = 0;
     var theElement = null;
@@ -111,4 +112,5 @@
       }, delay);
     });
   })(jQuery, window, 0); // 200 is the delay in milliseconds
-  </script>
+});
+</script>

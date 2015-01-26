@@ -20,10 +20,9 @@
     <div class="layout_workshop">
       <!--avatar-->
       <div class="container-img_WS">
-        <div class="dummy"></div>
-        <div class="element resource-center">
-          <div bs-img="<%=@workshop.thumbnail_url%>" class="applyBackstretch img-box workshop_thumbnail" id=""></div>
-        </div>
+
+      <div style='background-image: url(<%=@workshop.thumbnail_url%>)' class="img-box workshop_thumbnail" ></div>
+
       </div>
       <section class="information">
         <div class="briefing">
@@ -90,13 +89,7 @@
 </section>
 
 
-
-
-<%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
-
-
-<script>
-$(function() {
+  <%content_for :javascript do%>
   $(".showMore").click(function(){
     var mainDiv = $(this).parent();
     if($(this).attr("status")=== "showMore"){
@@ -116,9 +109,6 @@ $(function() {
       $(this).attr("status", "showMore");
     }
     return false;
-    });
   });
-  $(document).ready(function(){
-  <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => false } %>
-  });
-</script>
+  
+  <%end%>

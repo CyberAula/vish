@@ -29,10 +29,68 @@ GIT
     simple_captcha (0.1.6)
 
 GIT
-  remote: git://github.com/ging/social_stream.git
-  revision: 7910484dabc5616f15d2bc3430152f5f64efc78a
-  ref: 7910484dabc5616f15d2bc3430152f5f64efc78a
-  branch: vish-b3
+  remote: git://github.com/mojombo/god.git
+  revision: a0602dda2e767f2b711e37bf2d4199c0614af480
+  specs:
+    god (0.13.5)
+
+GIT
+  remote: git://github.com/pahanix/delegates_attributes_to.git
+  revision: 69704cb6268c521e0e48ccb8d8b78930d1e7da67
+  ref: 69704cb
+  specs:
+    delegates_attributes_to (0.0.1)
+
+GIT
+  remote: git://github.com/rails/rails.git
+  revision: 37f2defa9922e915ac021f303d1b0e3bcbafcd79
+  branch: 3-2-stable
+  specs:
+    actionmailer (3.2.21)
+      actionpack (= 3.2.21)
+      mail (~> 2.5.4)
+    actionpack (3.2.21)
+      activemodel (= 3.2.21)
+      activesupport (= 3.2.21)
+      builder (~> 3.0.0)
+      erubis (~> 2.7.0)
+      journey (~> 1.0.4)
+      rack (~> 1.4.5)
+      rack-cache (~> 1.2)
+      rack-test (~> 0.6.1)
+      sprockets (~> 2.2.1)
+    activemodel (3.2.21)
+      activesupport (= 3.2.21)
+      builder (~> 3.0.0)
+    activerecord (3.2.21)
+      activemodel (= 3.2.21)
+      activesupport (= 3.2.21)
+      arel (~> 3.0.2)
+      tzinfo (~> 0.3.29)
+    activeresource (3.2.21)
+      activemodel (= 3.2.21)
+      activesupport (= 3.2.21)
+    activesupport (3.2.21)
+      i18n (~> 0.6, >= 0.6.4)
+      multi_json (~> 1.0)
+    rails (3.2.21)
+      actionmailer (= 3.2.21)
+      actionpack (= 3.2.21)
+      activerecord (= 3.2.21)
+      activeresource (= 3.2.21)
+      activesupport (= 3.2.21)
+      bundler (~> 1.0)
+      railties (= 3.2.21)
+    railties (3.2.21)
+      actionpack (= 3.2.21)
+      activesupport (= 3.2.21)
+      rack-ssl (~> 1.3.2)
+      rake (>= 0.8.7)
+      rdoc (~> 3.4)
+      thor (>= 0.14.6, < 2.0)
+
+PATH
+  remote: /home/ebarra/trabajo/social_stream
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.4.1)
@@ -51,7 +109,7 @@ GIT
       jquery-ui-rails (>= 4.0.3)
       kaminari (~> 0.13.0)
       mailboxer (~> 0.10.3)
-      modernizr-rails (~> 2.0.6)
+      modernizr-rails (~> 2.7.1)
       omniauth-facebook (~> 1.4.1)
       omniauth-linkedin (~> 0.0.6)
       omniauth-socialstream (~> 0.1.2)
@@ -80,44 +138,10 @@ GIT
       proudhon (>= 0.3.6)
       social_stream-base (~> 2.2.2)
 
-GIT
-  remote: git://github.com/pahanix/delegates_attributes_to.git
-  revision: 69704cb6268c521e0e48ccb8d8b78930d1e7da67
-  ref: 69704cb
-  specs:
-    delegates_attributes_to (0.0.1)
-
 GEM
   remote: http://rubygems.org/
   specs:
     Ascii85 (1.0.2)
-    actionmailer (3.2.14)
-      actionpack (= 3.2.14)
-      mail (~> 2.5.4)
-    actionpack (3.2.14)
-      activemodel (= 3.2.14)
-      activesupport (= 3.2.14)
-      builder (~> 3.0.0)
-      erubis (~> 2.7.0)
-      journey (~> 1.0.4)
-      rack (~> 1.4.5)
-      rack-cache (~> 1.2)
-      rack-test (~> 0.6.1)
-      sprockets (~> 2.2.1)
-    activemodel (3.2.14)
-      activesupport (= 3.2.14)
-      builder (~> 3.0.0)
-    activerecord (3.2.14)
-      activemodel (= 3.2.14)
-      activesupport (= 3.2.14)
-      arel (~> 3.0.2)
-      tzinfo (~> 0.3.29)
-    activeresource (3.2.14)
-      activemodel (= 3.2.14)
-      activesupport (= 3.2.14)
-    activesupport (3.2.14)
-      i18n (~> 0.6, >= 0.6.4)
-      multi_json (~> 1.0)
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
     acts_as_xlsx (1.0.6)
@@ -218,7 +242,6 @@ GEM
       hashie
       nokogiri (>= 1.4.0)
       rest-client (~> 1.6.0)
-    god (0.13.4)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -240,8 +263,8 @@ GEM
     jquery-ui-rails (4.1.2)
       railties (>= 3.1.0)
     jruby-pageant (1.1.1)
-    json (1.7.4)
-    jwt (1.2.0)
+    json (1.8.1)
+    jwt (1.2.1)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -262,7 +285,7 @@ GEM
       rails (> 3.0.0)
     method_source (0.8.2)
     mime-types (1.25.1)
-    modernizr-rails (2.0.6)
+    modernizr-rails (2.7.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -275,7 +298,6 @@ GEM
       jruby-pageant (>= 1.0.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    newrelic_rpm (3.9.9.275)
     nokogiri (1.5.11)
     oai (0.3.1)
       builder (>= 2.0.0)
@@ -319,6 +341,7 @@ GEM
       ttfunk
     pg (0.17.1)
     polyglot (0.3.5)
+    power_assert (0.2.2)
     proudhon (0.3.7)
       json
       nokogiri
@@ -336,14 +359,6 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.14)
-      actionmailer (= 3.2.14)
-      actionpack (= 3.2.14)
-      activerecord (= 3.2.14)
-      activeresource (= 3.2.14)
-      activesupport (= 3.2.14)
-      bundler (~> 1.0)
-      railties (= 3.2.14)
     rails-scheduler (0.1.3)
       rails (>= 3.1.0)
       recurrence (~> 1.2.0)
@@ -351,15 +366,8 @@ GEM
       rails (~> 3.1)
     rails_engine_decorators (1.0.0)
       railties (>= 3.2.8)
-    railties (3.2.14)
-      actionpack (= 3.2.14)
-      activesupport (= 3.2.14)
-      rack-ssl (~> 1.3.2)
-      rake (>= 0.8.7)
-      rdoc (~> 3.4)
-      thor (>= 0.14.6, < 2.0)
     raindrops (0.13.0)
-    rake (10.3.2)
+    rake (10.4.2)
     rdoc (3.12.2)
       json (~> 1.4)
     recurrence (1.2.0)
@@ -429,6 +437,8 @@ GEM
       activemodel (~> 3.0)
       activesupport (~> 3.0)
       railties (~> 3.0)
+    test-unit (3.0.9)
+      power_assert
     thinking-sphinx (2.0.14)
       activerecord (>= 3.0.3)
       builder (>= 2.1.2)
@@ -476,22 +486,21 @@ DEPENDENCIES
   factory_girl (= 2.6)
   faker (= 1.4.3)
   forgery (= 0.6.0)
-  god (= 0.13.4)
+  god!
   hashie (= 2.1.2)
   jquery-rails (= 3.1.0)
   jquery-ui-rails (= 4.1.2)
-  json (= 1.7.4)
+  json (= 1.8.1)
   mailboxer (= 0.10.3)
   mysql2 (= 0.3.16)
   net-ssh (= 2.4.0)
-  newrelic_rpm
   oai_repository!
   paperclip (= 3.5.1)
   paperclip-ffmpeg!
   pdf-reader (= 1.3.3)
   pg (= 0.17.1)
   pry
-  rails (= 3.2.14)
+  rails!
   redis (= 3.0.7)
   resque (= 1.23.1)
   rest-client (= 1.6.7)
@@ -511,6 +520,7 @@ DEPENDENCIES
   social_stream-linkser!
   social_stream-ostatus!
   sqlite3 (= 1.3.9)
+  test-unit
   thinking-sphinx (= 2.0.14)
   uglifier (= 1.2.3)
   unicorn (= 4.8.3)

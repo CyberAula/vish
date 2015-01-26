@@ -22,13 +22,11 @@
     </div>
   </div>
 
-  <%= javascript_tag do %>
-    $(function() {
+  <%= content_for :javascript do %>
       SocialStream.SearchHeader.show();
       $("#search_button_desktop").on("click", function(){
         document.location= "/search?q=" + $("#q").val();
       });
-    });
   <% end %>
 
 </section>

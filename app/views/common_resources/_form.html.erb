@@ -62,6 +62,9 @@
                 "<%=tag%>",
               <%end%>
               ];
+      </script>
+
+      <%content_for :javascript do%>      
 
         $("#new_file .resourceTagList").tagit({
           watermarkAllowMessage:"",
@@ -71,7 +74,7 @@
         <% initialTags.each do |cnt| %>
           $("#new_file ul.resourceTagList").tagit("add", "<%= cnt %>");
         <%end%>
-      </script>
+      <%end%>
 
       <%unless resource.class.name=="Picture" %>
         <section class="avatar">
@@ -113,7 +116,7 @@
     <% end %>
 
 
-    <%= javascript_tag do %>
+    <%content_for :javascript do%>
       $("#new_file input[type='submit']").click(function(event){
         //AGE
         var resource_type = "<%=resource.class.name.downcase%>";
@@ -166,7 +169,7 @@
         newFilePositionLimits();
       });
 
-      $(document).ready(function(){
+      document.addEventListener("DOMContentLoaded", function(){
         SocialStream.Document.edit();
         newFilePositionLimits();
       });

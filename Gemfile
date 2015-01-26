@@ -1,6 +1,8 @@
+#ruby '2.2.0'
 source 'http://rubygems.org'
 
-gem 'rails', '= 3.2.14'
+gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => "3-2-stable"
+gem 'test-unit'
 
 #Database Adapters
 gem 'sqlite3', '= 1.3.9'
@@ -14,10 +16,10 @@ gem 'coffee-rails', '= 3.2.2'
 gem 'uglifier', '= 1.2.3'
 gem 'jquery-rails', '= 3.1.0'
 gem 'jquery-ui-rails', '= 4.1.2'
-gem 'json', '= 1.7.4'
+gem 'json', '=1.8.1'
 gem 'sinatra', '= 1.3.2'
 gem 'selenium-webdriver', '= 2.30.0'
-gem 'god', '= 0.13.4'
+gem 'god', :git => 'git://github.com/mojombo/god.git'
 gem 'redis', '= 3.0.7'
 gem 'resque', '= 1.23.1'
 gem 'rmagick', '=2.13.2'
@@ -96,4 +98,5 @@ group :test do
   gem 'capybara', '= 2.3.0'
 end
 
-gem 'newrelic_rpm'
+
+#gem 'newrelic_rpm'

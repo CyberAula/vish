@@ -13,7 +13,7 @@
 		return pdfReaderSupport;
 	};
 
-	$(document).ready(function(){
+	document.addEventListener("DOMContentLoaded", function(){
 		var iframeDOM = $("#iframe_officedoc_<%=officedoc.id%>");
 		var iframeSrc = '<%=raw officedoc.google_doc_url%>';
 

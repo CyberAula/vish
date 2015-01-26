@@ -86,7 +86,8 @@
     </ul>
   </nav>
 </footer>
-<script>
+
+<%content_for :javascript do%>
     // scrollUp full options
     $(function () {
       $.scrollUp({
@@ -105,4 +106,4 @@
             zIndex: 2147483647 // Z-Index for the overlay
       });
     });
-</script>
+<%end%>
