@@ -1,16 +1,16 @@
-= ViSH
+# ViSH
 
 ViSH is an open source e-Learning platform focused on the creation, sharing and distribution of learning resources and educational activities. It provides a collection of tools and services for facilitating the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems.  
   
 ViSH is a customizable Ruby on Rails application. The current version supports Rails 3.2 and Ruby 2.0.  
-The last releases can be seen {here}[http://github.com/ging/vish/releases], and the future features and ongoing developments are shown on this page[http://github.com/ging/vish/milestones].  
+The last releases can be seen [here](http://github.com/ging/vish/releases), and the future features and ongoing developments are shown on this [page](http://github.com/ging/vish/milestones).  
   
   
-= Features and components
+# Features and components
   
-ViSH includes mainly:  
-* A Social Network via {Social Stream}[http://github.com/ging/social_stream] gem.  
-* An e-Learning authoring tool called {ViSH Editor}[http://github.com/ging/vish_editor], which allows to create interactive presentations.  
+ViSH includes mainly:
+* A Social Network via [Social Stream](http://github.com/ging/social_stream) gem.  
+* An e-Learning authoring tool called [ViSH Editor](http://github.com/ging/vish_editor), which allows to create interactive presentations.  
 * A document management system supporting the following types of resources:  
   * Text  
   * Pictures  
@@ -28,10 +28,9 @@ ViSH includes mainly:
 * Catalogue of resources.  
 * Search service based on Sphinx to look for educational resources. Support federated search.  
 * Educational resources recommender system.  
-* A {Learning Object Evaluation Platform}[http://github.com/agordillo/LOEP].  
+* A [Learning Object Evaluation Platform](http://github.com/agordillo/LOEP).  
 * Support for ranking, relevance, similarity, popularity and quality metrics for educational resources.  
 * Tools for maximizing technology enhanced learning (e.g. Audience Response System).  
-  
   
 The following e-Learning standards are supported in ViSH:  
 * SCORM (1.2 and 2004)  
@@ -39,7 +38,6 @@ The following e-Learning standards are supported in ViSH:
 * OAI-PMH   
 * IMS QTI 2.1 
 * Moodle XML  
-  
   
 Internacionalization support:  
 * Spanish  
@@ -49,21 +47,20 @@ Internacionalization support:
 * Hungarian  
 * French  
 
-See a real instance of ViSH in action at http://vishub.org. It's free to register and enter in the community.
+See a real instance of ViSH in action at [http://vishub.org](http://vishub.org).  
+It's free to register and enter in the community.  
 
 
-
-= Discussion and contribution
+# Discussion and contribution
   
-Feel free to raise an issue or send us a message at github[http://github.com/ging/vish/issues].    
-
-Email address: {virtual.science.hub@gmail.com}[virtual.science.hub@gmail.com]    
+Feel free to raise an issue or send us a message at [github](http://github.com/ging/vish/issues).  
+Email address: [virtual.science.hub@gmail.com](virtual.science.hub@gmail.com])
 
 
 
 = News
 
-Follow the ViSH news on our {blog}[http://vishub.wordpress.com].  
+Follow the ViSH news on our [blog](http://vishub.wordpress.com).  
 
 
 = Installation and documentation
@@ -76,7 +73,7 @@ Are you looking to contribute to this open source project?
 
 Are you interested in learning how to use the ViSH APIs or how to set up a ViSH instance?  
 
-Visit our {wiki}[http://github.com/ging/vish/wiki] to see all the available documentation of the ViSH platform.  
+Visit our [wiki](http://github.com/ging/vish/wiki) to see all the available documentation of the ViSH platform.  
 
 
 
@@ -88,5 +85,5 @@ ViSH is free software: you can redistribute it and/or modify it under the terms 
 
 ViSH is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.
 
-You should have received a copy of the GNU Affero General Public License along with ViSH. If not, see http://www.gnu.org/licenses.
+You should have received a copy of the GNU Affero General Public License along with ViSH. If not, see [http://www.gnu.org/licenses](http://www.gnu.org/licenses).
 
