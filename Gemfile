@@ -98,4 +98,4 @@ group :test do
 end
 
 
-gem 'newrelic_rpm'
+#gem 'newrelic_rpm'
