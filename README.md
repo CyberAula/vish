@@ -2,8 +2,7 @@
 
 ViSH is an open source e-Learning platform focused on the creation, sharing and distribution of learning resources and educational activities. It provides a collection of tools and services for facilitating the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems.  
   
-ViSH is a customizable Ruby on Rails application. The current version supports Rails 3.2 and Ruby 2.0.  
-The last releases can be seen [here](http://github.com/ging/vish/releases), and the future features and ongoing developments are shown on this [page](http://github.com/ging/vish/milestones).  
+ViSH is a customizable Ruby on Rails application. The current version supports Rails 3.2 and Ruby 2.0. The last releases can be seen [here](http://github.com/ging/vish/releases), and the future features and ongoing developments are shown on this [page](http://github.com/ging/vish/milestones).  
   
   
 # Features and components
@@ -54,7 +53,7 @@ It's free to register and enter in the community.
 # Discussion and contribution
   
 Feel free to raise an issue or send us a message at [github](http://github.com/ging/vish/issues).  
-Email address: [virtual.science.hub@gmail.com](virtual.science.hub@gmail.com])
+Email address: <virtual.science.hub@gmail.com>
 
 
 
@@ -65,13 +64,10 @@ Follow the ViSH news on our [blog](http://vishub.wordpress.com).
 
 # Installation and documentation
 
-Do you want to install ViSH for development purposes?   
-
-Do you want to deploy your own ViSH instance?   
-
-Are you looking to contribute to this open source project?   
-
-Are you interested in learning how to use the ViSH APIs or how to set up a ViSH instance?  
+Do you want to install ViSH for development purposes? <br/>
+Do you want to deploy your own ViSH instance? <br/>
+Are you looking to contribute to this open source project?  <br/>
+Are you interested in learning how to use the ViSH APIs or how to set up a ViSH instance? <br/>
 
 Visit our [wiki](http://github.com/ging/vish/wiki) to see all the available documentation of the ViSH platform.  
 
