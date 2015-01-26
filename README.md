@@ -58,12 +58,12 @@ Email address: [virtual.science.hub@gmail.com](virtual.science.hub@gmail.com])
 
 
 
-= News
+# News
 
 Follow the ViSH news on our [blog](http://vishub.wordpress.com).  
 
 
-= Installation and documentation
+# Installation and documentation
 
 Do you want to install ViSH for development purposes?   
 
@@ -77,7 +77,7 @@ Visit our [wiki](http://github.com/ging/vish/wiki) to see all the available docu
 
 
 
-= Copyright
+# Copyright
 
 Copyright 2011-2015 Universidad Politécnica de Madrid and Agora Systems S.A.
 
