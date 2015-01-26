@@ -178,6 +178,7 @@ class CategoriesController < ApplicationController
               dragged.object.save!
             else
               #notify for leaving a category container
+              receiver.object.insertPropertyObject(dragged)
               unless the_category.nil?
                 the_category.deletePropertyObject(dragged)
               end

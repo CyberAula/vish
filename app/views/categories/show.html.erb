@@ -100,6 +100,8 @@
 <% end %>
 
 <script>
+    var beginIndex;
+    var beginObjects;
     Array.prototype.equals = function (array) {
         // if the other array is a falsy value, return
         if (!array)
@@ -137,8 +139,7 @@
 </script>
 
 <%content_for :javascript do%>
-    var beginIndex;
-    var beginObjects;
+    
     //Let the overlay appear
       
     $(".btn-for-categorize").click(function(){
