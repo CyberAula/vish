@@ -58,10 +58,6 @@
   </script>
 <% end %>
 
-<% unless @excursion.author.nil? %>
-  <%= render :partial => 'objects/show', :locals  => { :object => @excursion } %>
-<% end %>
-
 <!--div class="page-header"><%= @excursion.title %></div-->
 
 <section id="show_items " class="layout_show">
