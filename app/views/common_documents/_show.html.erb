@@ -14,31 +14,26 @@
   <% end %>
 
   <%= div_for document do %>
-      <!--recomended-->
+    <!--recomended-->
+    <!-- No option[:models] mean all resources -->
+    <%#= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,document,{:n=>16})} %>
+    <% rsEngine = TrackingSystemEntry.getRandomRSEngine
+    rec = TrackingSystemEntry.getRSCode(rsEngine)
+    resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion], :recEngine => rsEngine, :track => true, :request => request})
+    %>
 
-      <!-- No option[:models] mean all resources -->
-      <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,document,{:n=>16})} %>
-
+    <%= render :partial => 'recommender/sidebar', :locals  => { :resources => resource_suggestions, :rec => rec  } %>
     <!--visor-->
     <div class="doc-show">
+
       <div class="box-show">
         <div class="container-visor">
           <div class="caja-elementos">
-
             <%= render partial: "#{ document.class.to_s.tableize }/#{ document.class.to_s.underscore }_show",
               locals: { document.class.to_s.underscore.to_sym => document } %>
           </div>
         </div>
       </div>
-    </div>
-
-    <!--recomended-->
-    <!-- No option[:models] mean all resources -->
-    <% rsEngine = TrackingSystemEntry.getRandomRSEngine
-       rec = TrackingSystemEntry.getRSCode(rsEngine)
-       resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion], :recEngine => rsEngine, :track => true, :request => request})
-    %>
-    <%= render :partial => 'recommender/sidebar', :locals  => { :resources => resource_suggestions, :rec => rec  } %>
 
       <div class="description-activity">
         <!--tool tab-->
@@ -47,13 +42,17 @@
             <%= render :partial => 'common_documents/document-tool-tab', :locals => { :document => document } %>
           </div>
         </div>
-
         <!--activity-->
         <div class="activity-box">
           <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
         </div>
       </div>
+
     </div>
+
+
+
+    <!--</div>-->
 
     <%if @contribution%>
       <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => document.contribution } %>

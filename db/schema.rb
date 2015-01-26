@@ -166,10 +166,11 @@ ActiveRecord::Schema.define(:version => 20150123095038) do
 
   create_table "categories", :force => true do |t|
     t.integer  "activity_object_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.text     "category_order"
     t.integer  "parent_id"
+    t.boolean  "scope",              :default => true
   end
 
   create_table "comments", :force => true do |t|
