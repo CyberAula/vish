@@ -1,13 +1,13 @@
 = ViSH
 
 ViSH is an open source e-Learning platform focused on the creation, sharing and distribution of learning resources and educational activities. It provides a collection of tools and services for facilitating the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems.  
-
+  
 ViSH is a customizable Ruby on Rails application. The current version supports Rails 3.2 and Ruby 2.0.  
 The last releases can be seen {here}[http://github.com/ging/vish/releases], and the future features and ongoing developments are shown on this page[http://github.com/ging/vish/milestones].  
-
-
+  
+  
 = Features and components
-
+  
 ViSH includes mainly:  
 * A Social Network via {Social Stream}[http://github.com/ging/social_stream] gem.  
 * An e-Learning authoring tool called {ViSH Editor}[http://github.com/ging/vish_editor], which allows to create interactive presentations.  
@@ -31,16 +31,16 @@ ViSH includes mainly:
 * A {Learning Object Evaluation Platform}[http://github.com/agordillo/LOEP].  
 * Support for ranking, relevance, similarity, popularity and quality metrics for educational resources.  
 * Tools for maximizing technology enhanced learning (e.g. Audience Response System).  
-
-
+  
+  
 The following e-Learning standards are supported in ViSH:  
 * SCORM (1.2 and 2004)  
 * IEEE LOM metadata  
 * OAI-PMH   
 * IMS QTI 2.1 
 * Moodle XML  
-
-
+  
+  
 Internacionalization support:  
 * Spanish  
 * English  
@@ -49,9 +49,8 @@ Internacionalization support:
 * Hungarian  
 * French  
 
-See a real instance of ViSH in action at http://vishub.org.   
+See a real instance of ViSH in action at http://vishub.org. It's free to register and enter in the community.
 
-It's free to register and enter in the community.   
 
 
 = Discussion and contribution
@@ -59,6 +58,7 @@ It's free to register and enter in the community.
 Feel free to raise an issue or send us a message at github[http://github.com/ging/vish/issues].    
 
 Email address: {virtual.science.hub@gmail.com}[virtual.science.hub@gmail.com]    
+
 
 
 = News
