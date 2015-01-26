@@ -108,7 +108,7 @@
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   display: block
-  padding: 5px
+  padding: 0
   clear: both
   .hidden_comments
     margin: 15px 0 10px 0
@@ -149,30 +149,36 @@ div.new_comment
   width: 100%
   display: block
   clear: both
-  form#new_comment
+  margin-top: 15px
+  form.form-group
     height: 38px
     display: block
     clear: none
     margin: 0 auto
     .input-group
       float: left
-    .input-group-addon
-      padding: 0
-      max-height: 38px
-      height: 41px !important
-      vertical-align: top
-      border: none
-      background: none
-      img
-        width: 43px
-        @include border-left-radius ($border-radius-base)
+      .input-group-addon
+        padding: 0
+        max-height: 38px
+        height: 35px !important
+        vertical-align: top
+        border: none
+        background: none
+        img
+          width: 35px
+          @include border-left-radius ($border-radius-base)
+        input
+          &[type="submit"]
+            @include border-left-radius (0)
+            @include border-right-radius ($border-radius-base)
+            height: 35px
+      textarea
+        width: 100%
+        height: 35px
+        padding: 5px
     .form-control
       @include border-right-radius ($border-radius-base)
-    input
-      &[type="submit"]
-        @include border-left-radius (0)
-        @include border-right-radius ($border-radius-base)
-        height: 41px
+
 
 .comments
   .child
