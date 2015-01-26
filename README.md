@@ -7,10 +7,9 @@ ViSH is a customizable Ruby on Rails application. The current version supports R
   
 # Features and components
   
-ViSH includes mainly:
-* A Social Network via [Social Stream](http://github.com/ging/social_stream) gem.  
-* An e-Learning authoring tool called [ViSH Editor](http://github.com/ging/vish_editor), which allows to create interactive presentations.  
-* A document management system supporting the following types of resources:  
+* Social Network via [Social Stream](http://github.com/ging/social_stream) gem.  
+* [ViSH Editor](http://github.com/ging/vish_editor) e-Learning authoring tool, which allows to create interactive presentations.  
+* Document management system supporting the following types of resources:  
   * Text  
   * Pictures  
   * Audio and Video files (converted automatically to HTML5 formats if necessary)  
@@ -22,29 +21,33 @@ ViSH includes mainly:
   * Office documents (doc, ppt, odt, odp, etc.)  
   * ZIP files  
   * Generic files for non-recognized formats   
-* An integrated tool for creating educational workshops.  
+* Integrated tool for creating educational workshops.  
 * Categories to organize the resources.  
 * Catalogue of resources.  
 * Search service based on Sphinx to look for educational resources. Support federated search.  
 * Educational resources recommender system.  
 * A [Learning Object Evaluation Platform](http://github.com/agordillo/LOEP).  
 * Support for ranking, relevance, similarity, popularity and quality metrics for educational resources.  
-* Tools for maximizing technology enhanced learning (e.g. Audience Response System).  
-  
-The following e-Learning standards are supported in ViSH:  
-* SCORM (1.2 and 2004)  
-* IEEE LOM metadata  
-* OAI-PMH   
-* IMS QTI 2.1 
-* Moodle XML  
-  
-Internacionalization support:  
-* Spanish  
-* English  
-* German  
-* Dutch  
-* Hungarian  
-* French  
+* Tools for maximizing technology enhanced learning (e.g. Audience Response System).   
+
+<br/>  
+
+* The following e-Learning standards are supported in ViSH:
+  * SCORM (1.2 and 2004)
+  * IEEE LOM metadata
+  * OAI-PMH
+  * IMS QTI 2.1
+  * Moodle XML   
+
+<br/>  
+
+* Internacionalization support:
+  * Spanish
+  * English  
+  * German  
+  * Dutch  
+  * Hungarian  
+  * French  
 
 See a real instance of ViSH in action at [http://vishub.org](http://vishub.org).  
 It's free to register and enter in the community.  
