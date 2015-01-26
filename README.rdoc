@@ -32,12 +32,14 @@ ViSH includes mainly:
 * Support for ranking, relevance, similarity, popularity and quality metrics for educational resources.  
 * Tools for maximizing technology enhanced learning (e.g. Audience Response System).  
 
+
 The following e-Learning standards are supported in ViSH:  
 * SCORM (1.2 and 2004)  
 * IEEE LOM metadata  
 * OAI-PMH   
 * IMS QTI 2.1 
 * Moodle XML  
+
 
 Internacionalization support:  
 * Spanish  
@@ -48,13 +50,15 @@ Internacionalization support:
 * French  
 
 See a real instance of ViSH in action at http://vishub.org.   
+
 It's free to register and enter in the community.   
 
 
 = Discussion and contribution
+  
+Feel free to raise an issue or send us a message at github[http://github.com/ging/vish/issues].    
 
-Feel free to raise an issue or send us a message at github[http://github.com/ging/vish/issues].   
-Email address: {virtual.science.hub@gmail.com}[virtual.science.hub@gmail.com]   
+Email address: {virtual.science.hub@gmail.com}[virtual.science.hub@gmail.com]    
 
 
 = News
@@ -65,9 +69,13 @@ Follow the ViSH news on our {blog}[http://vishub.wordpress.com].
 = Installation and documentation
 
 Do you want to install ViSH for development purposes?   
+
 Do you want to deploy your own ViSH instance?   
+
 Are you looking to contribute to this open source project?   
+
 Are you interested in learning how to use the ViSH APIs or how to set up a ViSH instance?  
+
 Visit our {wiki}[http://github.com/ging/vish/wiki] to see all the available documentation of the ViSH platform.  
 
 
