@@ -42,8 +42,48 @@
                 <%= f.radio_button :streaming, true %> <span class="lbl padding-0"> <%= t('event.type.streaming') %> </span>
              </label>
           </div>
-            
-          <%content_for :javascript do%>
+          
+            <!--DATE-->
+            <label><%= t('event.leyend.fecha')%></label>
+              <div id="date" class="input-append">
+                <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
+                <span class="add-on">
+                  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                  </i>
+                </span>
+              </div>
+            <!--HORA INICIO-->
+            <label><%= t('event.leyend.Hora de Inicio')%></label>
+              <div id="hourinit" class="input-append">
+                <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
+                <span class="add-on">
+                  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                  </i>
+                </span>
+              </div>
+            <!--HORA FINALIZACION-->
+            <label><%= t('event.leyend.Hora de Finalizacion')%></label>
+              <div id="hourfinish" class="input-append">
+                <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
+                <span class="add-on">
+                  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                  </i>
+                </span>
+              </div>
+
+        <%content_for :javascript do%>
+          $('#hourinit').datetimepicker({
+            pickDate: false
+          });
+        
+          $('#hourfinish').datetimepicker({
+            pickDate: false
+          });
+        
+          $('#date').datetimepicker({
+            pickTime: false
+          });
+
             $("#event_streaming_false").on("click", function() {
               $("#event_embed").attr("disabled", true);
             });
@@ -55,17 +95,6 @@
               $("#event_embed").attr("disabled", false);
             }   
 
-            $('#hourinit').datetimepicker({
-              pickDate: false
-            });
-          
-            $('#hourfinish').datetimepicker({
-              pickDate: false
-            });
-          
-            $('#date').datetimepicker({
-              pickTime: false
-            });
           <%end%>
 
           <script>
