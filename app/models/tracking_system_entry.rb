@@ -9,26 +9,43 @@ class TrackingSystemEntry < ActiveRecord::Base
   validates :data,
   :presence => true
 
+  validate :valid_user_agent
+  def valid_user_agent
+    if TrackingSystemEntry.isUserAgentBot?(self.user_agent)
+      errors[:base] << "Invalid user agent"
+    else
+      true
+    end
+  end
+
+  def self.isUserAgentBot?(user_agent)
+    matches = nil
+    unless user_agent.blank?
+      matches = user_agent.match(/(eSobiSubscriber|startmebot|Mail.RU_Bot|SeznamBot|360Spider|bingbot|MJ12bot|web spider|YandexBot|Baiduspider|AhrefsBot|OrangeBot|msnbot|spbot|facebook|postrank|voyager|twitterbot|googlebot|slurp|butterfly|pycurl|tweetmemebot|metauri|evrinid|reddit|digg)/mi)
+    end
+    return (user_agent.blank? or !matches.nil?)
+  end
+
   def self.isBot?(request)
     user_agent = request.env["HTTP_USER_AGENT"]
-    matches = nil
-    matches = user_agent.match(/(YandexBot|Baiduspider|AhrefsBot|OrangeBot|msnbot|spbot|facebook|postrank|voyager|twitterbot|googlebot|slurp|butterfly|pycurl|tweetmemebot|metauri|evrinid|reddit|digg)/mi) if user_agent
-    return (user_agent.nil? or !matches.nil?)
+    return isUserAgentBot?(user_agent)
   end
 
   def self.trackUIRecommendations(options,request,current_subject)
-    return if options.blank? or !options[:recEngine].is_a? String
     return if isBot?(request)
-
+    return if options.blank? or !options[:recEngine].is_a? String
+    
     tsentry = TrackingSystemEntry.new
     tsentry.app_id = "ViSHUIRecommenderSystem"
+    tsentry.user_agent = request.user_agent
+    tsentry.referrer = request.referrer
+    tsentry.user_logged = (current_subject.nil? ? false : true)
+
     data = {}
     data["rsEngine"] = options[:recEngine]
     data["models"] = options[:model_names]
     data["quantity"] = options[:n]
-    data["current_subject"] = (current_subject.nil? ? "anonymous" : current_subject.name)
-    data["referrer"] = request.referrer
-    data["user_agent"] = request.user_agent
+
     tsentry.data = data.to_json
     tsentry.save
   end
@@ -48,16 +65,18 @@ class TrackingSystemEntry < ActiveRecord::Base
 
     tsentry = TrackingSystemEntry.new
     tsentry.app_id = "ViSH RLOsInExcursions"
+    tsentry.user_agent = request.user_agent
+    tsentry.referrer = request.referrer
+    tsentry.user_logged = (current_subject.nil? ? false : true)
+
     data = {}
     data["rec"] = rec
     data["rsEngine"] = rsEngine
     data["excursionId"] = excursion.id
     data["qscore"] = excursion.qscore
     data["popularity"] = excursion.popularity
-    data["current_subject"] = (current_subject.nil? ? "anonymous" : current_subject.name)
-    data["referrer"] = request.referrer
-    data["user_agent"] = request.user_agent
     tsentry.data = data.to_json
+
     if tsentry.save
       tsentry
     else

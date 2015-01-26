@@ -16,3 +16,11 @@ def write(line,filePath)
     f.puts  line.to_s + "\n"
   end
 end
+
+def printTitle(title)
+  if !title.nil?
+    puts "#####################################"
+    puts title
+    puts "#####################################"
+  end
+end

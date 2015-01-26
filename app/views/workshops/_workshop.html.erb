@@ -2,28 +2,23 @@
   <% return %>
 <% end %>
 <li class="box-item workshop-item">
-  <%= link_to(workshop) do %>
   <!-- corner -->
-
-    <div class="corner-item">
-      <div class="corner-item2">
-        <div class="corner-color"></div>
-        <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
-      </div>
-      <div class="corner-background"></div>
+  
+  <div class="corner-item">
+    <div class="corner-item2">
+      <div class="corner-color"></div>
+      <%= link_to raw(icon(workshop)) %>
     </div>
-    <!-- image/icon -->
-    <div class="container-img">
-      <div class="img-box resource-center">        
+    <div class="corner-background"></div>
+  </div>
+  <!-- image/icon -->
+  <div class="container-img">
+    <div class="dummy"></div>
+    <div class="element resource-center">
+      <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
+    </div>
+  </div>
 
-        <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
-
-      </div>
-    </div> 
-
-
-
-<%end%>
   <!-- INFO -->
   <div class="info">
     <!-- Title -->
