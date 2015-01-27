@@ -9,10 +9,13 @@
     border: 2px dashed $gray
     @include border-top-radius ($border-radius-base)
     @include border-bottom-radius ($border-radius-base)
+    .container-img
+      background-color: transparent !important
     @media (max-width: 480px)
       min-height: 86px
       .container-img
         border-right: 2px dashed $gray
+        background-color: #ffffff transparent !important
         .element i
           padding-top: 19px
       .caption
@@ -72,7 +75,7 @@
   .add_border
     border: 2px dashed $brand-secundary !important
   .container-img 
-    .element i
+    i
       color: $brand-secundary !important
   .name
     color: $brand-secundary !important
@@ -85,13 +88,13 @@
   .corner-color
     border-color: $brand-primary rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
   .container-img 
-    .element i
+    i
       color: $brand-primary !important
 .add-categorie
   .add_border
     border: 2px dashed $brand-primary !important
   .container-img 
-    .element i
+    i
       color: $brand-primary !important
   .name
     color: $brand-primary !important
@@ -103,14 +106,14 @@
   .corner-color
     border-color: $gray-dark rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
   .container-img 
-    .element i
+    i
       color: $gray-dark !important
 
 .add-event
   .add_border
     border: 2px dashed $gray-dark !important
   .container-img 
-    .element i
+    i
       color: $gray-dark !important
   .name
     color: $gray-dark !important
@@ -121,14 +124,14 @@
   .corner-color
     border-color: $gray-darker-extra rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
   .container-img 
-    .element i
+    i
       color: $gray-darker-extra !important
 
 .add-workshop
   .add_border
     border: 2px dashed $gray-darker-extra !important
   .container-img 
-    .element i
+    i
       color: $gray-darker-extra !important
   .name
     color: $gray-darker-extra !important
