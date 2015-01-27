@@ -4,7 +4,7 @@
 <div id="AddEvent" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      
+
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -23,7 +23,7 @@
           <!--TITULO-->
           <label><%= t('event.leyend.title')%></label>
           <%= f.text_field :title, :class => "form-control", :placeholder => t('event.title_input') %>
-          
+
           <!--DESCRIPCION-->
           <label><%= t('event.leyend.description')%></label>
           <%= f.text_area :description, :class => "form-control", :rows => 4, :placeholder => t('event.description_input') %>
@@ -42,44 +42,41 @@
                 <%= f.radio_button :streaming, true %> <span class="lbl padding-0"> <%= t('event.type.streaming') %> </span>
              </label>
           </div>
-          
-            <!--DATE-->
-            <label><%= t('event.leyend.fecha')%></label>
-              <div id="date" class="input-append">
-                <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
-                <span class="add-on">
-                  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                  </i>
-                </span>
-              </div>
-            <!--HORA INICIO-->
-            <label><%= t('event.leyend.Hora de Inicio')%></label>
-              <div id="hourinit" class="input-append">
-                <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
-                <span class="add-on">
-                  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                  </i>
-                </span>
-              </div>
-            <!--HORA FINALIZACION-->
-            <label><%= t('event.leyend.Hora de Finalizacion')%></label>
-              <div id="hourfinish" class="input-append">
-                <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
-                <span class="add-on">
-                  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                  </i>
-                </span>
-              </div>
+
+          <!--DATE-->
+          <label><%= t('event.leyend.fecha')%></label>
+          <div id="date" class="input-group">
+            <input class="form-control" data-format="yyyy-MM-dd" type="text" name="event_day">
+            <span class="input-group-addon">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="fa fa-calendar" ></i>
+            </span>
+          </div>
+          <!--HORA INICIO-->
+          <label><%= t('event.leyend.Hora de Inicio')%></label>
+          <div id="hourinit" class="input-group">
+            <input class="form-control" data-format="hh:mm:ss" type="text" name="event_start_time">
+            <span class="input-group-addon">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="fa fa-clock-o"></i>
+            </span>
+          </div>
+          <!--HORA FINALIZACION-->
+          <label><%= t('event.leyend.Hora de Finalizacion')%></label>
+          <div id="hourfinish" class="input-group">
+            <input class="form-control" data-format="hh:mm:ss" type="text" name="event_end_time">
+            <span class="input-group-addon">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="fa fa-clock-o"></i>
+            </span>
+          </div>
 
         <%content_for :javascript do%>
           $('#hourinit').datetimepicker({
             pickDate: false
           });
-        
+
           $('#hourfinish').datetimepicker({
             pickDate: false
           });
-        
+
           $('#date').datetimepicker({
             pickTime: false
           });
@@ -90,10 +87,10 @@
             $("#event_streaming_true").on("click", function() {
               $("#event_embed").attr("disabled", false);
             });
-              
+
             if ($("#event_streaming_true").is(':checked')) {
               $("#event_embed").attr("disabled", false);
-            }   
+            }
 
           <%end%>
 
@@ -108,7 +105,7 @@
                 } else {
                   // $("#AddEvent input[name='event[start_at]']").val($("#AddEvent input[name='event_day']").val() + " " + $("#AddEvent input[name='event_start_time']").val());
                   $("#AddEvent input[name='event[start_at]']").val(new Date(Date.parse($("#AddEvent input[name='event_day']").val().replace(/-/g,"/") + " " + $("#AddEvent input[name='event_start_time']").val())));
-                  
+
                   if ($("#AddEvent input[name='event_end_time']").val() < $("#AddEvent input[name='event_start_time']").val()) {
                     var d = new Date($("#AddEvent input[name='event_day']").val());
                     d.setDate(d.getDate()+1);
