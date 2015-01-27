@@ -31,26 +31,13 @@
               
             <% end %>
       <%content_for :javascript do%>
-        $(function() {
-          if ("placeholder" in document.createElement("input")) {
-          $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
-          } else {
-          $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
-          }
-          $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
-          });
-          $(function() {
-            $('#password').password().on('show.bs.password', function(e) {
-                $('#eventLog').text('On show event');
-                $('#methods').prop('checked', true);
-            }).on('hide.bs.password', function(e) {
-                        $('#eventLog').text('On hide event');
-                        $('#methods').prop('checked', false);
-                    });
-            $('#methods').click(function() {
-                $('#password').password('toggle');
-            });
-        });
+            if ("placeholder" in document.createElement("input")) {
+              $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+              $("#password").attr('placeholder', I18n.t('activerecord.attributes.user.password'));
+            } else {
+              $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+              $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+            }
       <% end %>
     </ul>
   </li>
