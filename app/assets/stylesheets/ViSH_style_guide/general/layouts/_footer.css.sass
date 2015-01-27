@@ -9,7 +9,7 @@ footer#footer
   bottom: 0
   text-align: center
   @media (max-width: $screen-xs-max)
-    display: none 
+    display: none
   &:hover
     bottom: 0px
     background-color: rgba(211, 211, 211, 0.98)
@@ -33,20 +33,24 @@ footer#footer
     height: 63px
     width: 640px
     text-align: center
-    border-bottom: 2px solid #C7C7C7
-    padding-bottom: 21px
+    //border-bottom: 2px solid #C7C7C7
+    //padding-bottom: 21px
 
-  
+
   .open
     .btn
       &:hover
         border: 1px solid transparent
-      
+
   li
     float: left
     padding-left: 1%
     padding-right: 1%
     color: $gray-dark
+    a
+      img
+        margin-right: 5px
+        vertical-align: sub
     .btn
       background-color: transparent
       border: 1px solid transparent
@@ -54,9 +58,10 @@ footer#footer
       img
         padding-top: 5px
         margin-right: 5px
+        vertical-align: baseline
         width: 15px
-        
-      
+
+
       &:hover,
       &:focus
         border: 1px solid transparent
@@ -65,17 +70,18 @@ footer#footer
 
     .dropdown-menu
       width: auto
-    @media (max-width: 500px)  
+      height: auto
+    @media (max-width: 500px)
       float: none
       .dropdown-toggle
         width: 100%
-  
+
   li.btn-group
-    @media (max-width: 500px) 
+    @media (max-width: 500px)
       display: block
       min-height: 34px
 
-  li.global    
+  li.global
     img
       width: 116px
       padding-top: 8px

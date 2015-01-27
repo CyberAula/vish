@@ -4,7 +4,7 @@
     margin-left: 5px
 
 .dropdown-menu > .disabled > a:hover,
-.dropdown-menu > .disabled > a:focus 
+.dropdown-menu > .disabled > a:focus
   text-decoration: none
   cursor: default
   background-color: transparent
@@ -12,7 +12,8 @@
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false)
 
 .dropdown-menu > li > a
-  padding: 3px 20px
+  padding: 6px 12px
+  text-align: left
   @include border-top-radius ($border-radius-base)
   @include border-bottom-radius ($border-radius-base)
   text-transform: capitalize
@@ -20,7 +21,8 @@
   &:hover
     text-decoration: none
     color: $gray-lighter-extra
-    background-color: #E60054 !important
+    //background-color: #E60054 !important
+    background-color: $gray-darker !important
   i
     margin-right: 6px
     color: $white
