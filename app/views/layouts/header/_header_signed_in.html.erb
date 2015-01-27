@@ -1,5 +1,7 @@
 <% availableModels = available_models %>
-  <% availableServices = available_services %>
+<% availableServices = available_services %>
+<% availableResources = available_resource_types %>
+
 <nav class="navbar navbar-default navbar-fixed-top" id="top" role="navigation">
   <div class="container-fluid">
  <!-- Brand and toggle get grouped for better mobile display -->
@@ -24,110 +26,91 @@
         <!--navegation-->
         <%= render partial: 'layouts/header/basic_navegation' %>
         
-          
-
         <!--add-->
         <li class ="btn-group">
           <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-plus"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-right">
-            <% if availableModels.include? "Excursion" %>
-            <li>
-              <%= link_to new_excursion_path do %>
-                <i class="fa fa-list-alt"></i> 
-                <%= t('excursion.actions.add') %>
-              <% end %>
-            </li>
-            <%end%>
-            <% if availableModels.include? "Event" %>
-            <li>
-              <a href="#AddEvent" data-toggle="modal">
-                <i class="fa fa-video-camera"></i> 
-                <%=t('event.actions.add')%>
-              </a>
-            </li>
-            <%end%>
-            <% if availableModels.include? "Category" %>
-            <li>
-              <a href="#AddCategoryHeader" data-toggle="modal">
-                <i class="fa fa-th-large"></i> 
-                <%= t('categories.actions.add') %>
-              </a>
-            </li>
-            <%end%>
-            <% if availableModels.include? "Resource" %>
-            <li>
-              <a href="#AddResource" data-toggle="modal">
-                <i class="fa fa-file"></i> 
-                <%= t('resource.actions.add') %>
-              </a>
-            </li>
-            <%end%>
-
+            <% availableModels.each do |modelName| %>
+                <% if modelName == "Excursion" %>
+                  <li><%= link_to new_excursion_path do %><i class="fa fa-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
+                <% elsif modelName == "Workshop" %>
+                  <li><%= link_to new_workshop_path do %><i class="fa fa-list-alt"></i> <%= t('workshop.actions.add') %><% end %></li>
+                <% elsif modelName == "Resource" %>
+                  <li><a href="#AddResource" data-toggle="modal"><i class="fa fa-file"></i> <%=t('resource.actions.add')%></a></li>
+                <% elsif modelName == "Writing" %>
+                  <li><%= link_to new_writing_path do %><i class="fa fa-edit-sign"></i> <%= t('writing.actions.add') %><% end %></li>
+                <% elsif modelName == "Category" %>
+                  <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="fa fa-th-large"></i> <%=t('categories.actions.add')%></a></li>
+                <% elsif modelName == "Event" %>
+                  <li><a href="#AddEvent" data-toggle="modal"><i class="fa fa-video-camera"></i> <%=t('event.actions.add')%></a></li>
+                <%end%>
+            <% end %>
           </ul>
         </li>
         
 
-        <!--user-->
-        <li class ="btn-group user-menu">
-            <%= link_to current_subject, :class => "btn btn-default photo-user" do %>              
-              <%= image_tag current_subject.logo.url(:small) %>
-            <% end %>
-        
+          <!--user-->
+          <li class ="btn-group user-menu">
+                <%= link_to current_subject, {:class => "btn btn-default photo-user tooltip-header", :'data-original-title'=>t('profile.profile')} do %>              
+                  <%= image_tag current_subject.logo.url(:small) %>
+                <% end %>
 
-              <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <%= truncate_name(current_subject.name, length: 15) %>
-                <i class="fa fa-angle-down"></i>
-             </a>
-          
-            <ul class="dropdown-menu dropdown-menu-right">
-             <li class="settings-menu">
-               <%= link_to home_path do %>
-               <i class="fa fa-home"></i>
-               <%= t('navigation.home') %>
-               <% end %>
-             </li>
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <%= truncate_name(current_subject.name, length: 15) %>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+              
+                <ul class="dropdown-menu dropdown-menu-right">
+                   <li class="settings-menu">
+                     <%= link_to home_path do %>
+                     <i class="fa fa-home"></i>
+                     <%= t('navigation.home') %>
+                     <% end %>
+                   </li>
 
-             <%if isAdmin? %>
-                <li class="settings-menu">
-                  <%= link_to admin_path do %>
-                    <i class="fa fa-wrench"></i>
-                    <span><%= 'Admin Panel' %></span>
-                  <% end %>
-                </li>
-              <%end%>
+                   <%if isAdmin? %>
+                      <li class="settings-menu">
+                        <%= link_to admin_path do %>
+                          <i class="fa fa-wrench"></i>
+                          <span><%= 'Admin Panel' %></span>
+                        <% end %>
+                      </li>
+                    <%end%>
 
-             <li class="settings-menu">
-              <%= link_to current_subject do %>
-              <i class="fa fa-user"></i>
-              <%= t('profile.one') %>
-              <% end %>
-            </li>
-           
-            <li class="settings-menu">
-              <%= link_to settings_path do %>
-              <i class="fa fa-cog"></i>
-              <%= t('dropdown.settings') %>
-              <% end %>
-            </li>
+                   <li class="settings-menu">
+                    <%= link_to current_subject do %>
+                    <i class="fa fa-user"></i>
+                    <%= t('profile.one') %>
+                    <% end %>
+                  </li>
+                 
+                  <li class="settings-menu">
+                    <%= link_to settings_path do %>
+                    <i class="fa fa-cog"></i>
+                    <%= t('dropdown.settings') %>
+                    <% end %>
+                  </li>            
 
-            <li class="settings-menu">
-              <%= link_to quiz_sessions_path do %>
-              <i class="fa fa-check-square-o"></i>
-              <%= t('quiz.live') %>
-              <% end %>
-            </li>
+                  <% if availableModels.include? "Excursion" and availableServices.include? "ARS" %>
+                      <li class="settings-menu">
+                        <%= link_to quiz_sessions_path do %>
+                          <i class="fa fa-check-square-o"></i>
+                          <%= t('quiz.live') %>
+                        <% end %>
+                      </li>
+                  <%end%>
 
-            <li class="divider"></li>
-            <li>
+                  <li class="divider"></li>
+                  <li>
 
-              <%= link_to destroy_user_session_path, :method => :delete do %>
-              <i class="fa fa-sign-out"></i>
-              <%= t('sign_out') %>
-              <% end %>
-            </li>
-            </ul>      
+                    <%= link_to destroy_user_session_path, :method => :delete do %>
+                    <i class="fa fa-sign-out"></i>
+                    <%= t('sign_out') %>
+                    <% end %>
+                  </li>
+                </ul>      
           </li>
          
       </ul>
