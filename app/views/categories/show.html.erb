@@ -63,7 +63,6 @@
 </section>
 
 
-
 <%  @items = @category.property_objects
     order = @category.categories_order
     unless order.nil?
@@ -76,12 +75,13 @@
 <% end %>
 
 
-
 <div class="main-categories-space">
-  <% if can?(:update, @category) %>
-  <%= render partial: 'categories/category-add' %>
-  <% end %>
-  <%= render partial: 'categories/items' %>
+  <ul>
+    <% if can?(:update, @category) %>
+      <%= render partial: 'categories/category-add' %>
+    <% end %>
+      <%= render partial: 'categories/items' %>
+  </ul>
 </div>
 
 <%= content_for :javascript do %>
