@@ -24,10 +24,10 @@
     <%= f.date_select :due_date, :order => [:day, :month, :year] %>
   </div>
 
-  <br/>
-  <div>
-    <br/>
-    <p><%=t('workshop.activities.assignment.available_contributions.title')%></p>
+
+  <div class="available_contributions">
+
+    <label><%=t('workshop.activities.assignment.available_contributions.title')%></label>
       <div class="checkbox">
         <label>
           <%= check_box_tag :available_contribution_document, "Document", false, :contribution => "Document", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
@@ -48,10 +48,13 @@
 
 <script>
   function wa_assignment_onClickDatesCheckbox(checkbox_field){
+
     if(checkbox_field.checked){
-      $(checkbox_field).siblings(".assignment_dates").show();
+      //$(checkbox_field).siblings(".assignment_dates").show();
+      $(".assignment_dates").show();
     } else {
-      $(checkbox_field).siblings(".assignment_dates").hide();
+      //$(checkbox_field).siblings(".assignment_dates").hide();
+      $(".assignment_dates").hide();
     }
   };
 
@@ -85,7 +88,7 @@
     var availableContributionsDOM = $("#<%=identifier%>").find("input[name='wa_assignment[available_contributions]']");
     $(availableContributionsDOM).val(contributionsArray.join(","));
   };
- 
+
 </script>
 
 <%content_for :javascript do%>
