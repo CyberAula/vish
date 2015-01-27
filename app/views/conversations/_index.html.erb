@@ -4,6 +4,9 @@
 
 <div class="conversations">
 
+  <!-- Filter conversions for non existing users -->
+  <% @conversations = @conversations.reject { |conversation| conversation.originator.nil? } %>
+
   <% if @box=="sentbox" %>
     <!-- Filter conversations -->
     <% @conversations = @conversations.select { |conversation| conversation.originator == current_subject.actor } %>
