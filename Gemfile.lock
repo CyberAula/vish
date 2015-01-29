@@ -30,8 +30,8 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 80ec6d40a453ad89a9517fdb49bacd21ca9940a1
-  ref: 80ec6d40a453ad89a9517fdb49bacd21ca9940a1
+  revision: c945c699936e4e9389802978ba11ee3b7e7d9a97
+  ref: c945c699936e4e9389802978ba11ee3b7e7d9a97
   branch: vish
   specs:
     social_stream-base (2.2.2)

@@ -200,20 +200,8 @@ ActivityObject.class_eval do
       end
     end
 
-    if ["Video","Audio"].include? resource.class.name
-      if resource.class.name == "Video"
-        searchJson[:sources] = [
-          { type: Mime::WEBM.to_s, src: controller.video_url(resource, :format => :webm) },
-          { type: Mime::MP4.to_s,  src: controller.video_url(resource, :format => :mp4) },
-          { type: Mime::FLV.to_s,  src: controller.video_url(resource, :format => :flv) }
-        ]
-      elsif resource.class.name == "Audio"
-        searchJson[:sources] = [
-          { type: Mime::MP3.to_s, src: controller.audio_url(resource, :format => :mp3) },
-          { type: Mime::WAV.to_s,  src: controller.audio_url(resource, :format => :wav) },
-          { type: Mime::WEBMA.to_s,  src: controller.audio_url(resource, :format => :webma) }
-        ]
-      end
+    if ["Video","Audio"].include? resource.class.name and resource.respond_to? "sources"
+        searchJson[:sources] = resource.sources
     end
 
     return searchJson
@@ -317,8 +305,8 @@ ActivityObject.class_eval do
       relativePath = document.file.url + "?style=500"
     elsif resource.avatar.exists?
       relativePath = resource.avatar.url("500",{:timestamp => false})
-    elsif resource.class.name=="Video" and VishConfig.getAvailableServices.include? "MediaConversion"
-      relativePath = Rails.application.routes.url_helpers.video_path(resource, :format => "png", :style => "170x127#")
+    elsif resource.class.name=="Video" and !resource.poster_url.nil?
+      absolutePath = resource.poster_url(true)
     end
 
     if absolutePath.nil? and !relativePath.nil?
