@@ -7,13 +7,13 @@
     <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
 </span>
-<script>
-$(document).ready(function(){
+
+<%content_for :javascript do%>
   $('.fa-question-circle').popover({ 
     html : true,
     content: function() {
       return $('.contenthome').html();
     }
   });
-});
-</script>
+<%end%>
+

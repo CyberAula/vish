@@ -67,9 +67,9 @@
   p
     margin: 10px 0
   label
-    @include caption
     margin-bottom: 0px
     width: 100%
+    padding: 10px 0 0px
   input
     &[type="text"],
     &[type="email"],
@@ -115,33 +115,20 @@
   .corner-background
     border-width: 50px 50px 0 0
   .container-img
-    width: 40%
+    width: 40% !important
     float: left
     display: inline-block
     border-right: 1px solid $border-color
     height: 85px
-    .dummy
-      padding-top: 80px
-    .element,
-    .backstretch
+    @include border-right-radius (0)
+    @include border-left-radius ($border-radius-small)
+    .img-box
       @include border-right-radius (0)
       @include border-left-radius ($border-radius-small)
       i
         font-size: 44px
         padding-top: 14px
-    .container-img
-      width: 40%
-      float: left
-      border-right: 1px solid $gray
-      .dummy
-        padding-top: 80px
-      .element
-        @include border-right-radius (0)
-        @include border-left-radius ($border-radius-small)
-        i
-          font-size: 44px
-          color: #008FD1
-          padding-top: 14px
+
 
   .caption
     border-top: none

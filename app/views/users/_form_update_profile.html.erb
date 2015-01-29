@@ -64,7 +64,6 @@
     <% end %>
 
     <%= content_for :javascript do %>
-      $(document).ready(function() {
         var tagList = $(".tagList");
         var tags = [];
 
@@ -118,7 +117,6 @@
             $(".briefing").show("slow");
          });
 
-      });
     <% end %>
 
   <% end %>        

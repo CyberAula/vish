@@ -8,10 +8,10 @@
       </div>
       <div class="corner-background"></div>
     </div>
+
     <div class="container-img">
-      <div class="dummy"></div>
       <div class="element resource-center">
-        <div class="img-box resource-center" id="event-<%=event.id%>" bs-img="<%=event_raw_thumbail(event)%>" >
+        <div class="img-box resource-center" id="event-<%=event.id%>">
           <div class="event">
             <i class='fa fa-video-camera'></i>
           </div>
@@ -19,9 +19,11 @@
       </div>
     </div>
   <% end %>
+
   <script>
-  $("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
-  </script>    
+    document.getElementById("event-<%=event.id%>").style.backgroundImage = "url('<%=event_raw_thumbail(event)%>')";
+  </script>
+
 <!--INFO excursuion-->
   <div class="caption">
 <!--Title -->

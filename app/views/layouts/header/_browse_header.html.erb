@@ -13,15 +13,18 @@
         <%=t('browse.all')%>
       </a>
     </li>
+
     <li class="divider"></li>
+
     <% if availableModels.include? "Excursion" %>
-    <li>
-      <a tabindex="-1" href="<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "popularity")%>">
-        <i class="fa fa-list-alt"></i> 
-        <%=t('excursion.other')%>
-      </a>
-    </li>
+      <li>
+        <a tabindex="-1" href="<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "popularity")%>">
+          <i class="fa fa-book"></i> 
+          <%=t('excursion.other')%>
+        </a>
+      </li>
     <%end%>
+
     <li>
       <a tabindex="-1" href="<%=search_path(:type => "user", :browse=>"true", :sort_by => "popularity")%>">
         <i class="fa fa-group"></i>
@@ -30,28 +33,43 @@
     </li>
 
     <% if availableModels.include? "Resource" %>
-    <li>
-      <a tabindex="-1" href="<%=search_path(:type => "resource", :browse=>"true", :sort_by => "popularity")%>">
-        <i class="fa fa-file"></i>
-        <%=t('resource.other')%>
-      </a>
-    </li>
+      <li>
+        <a tabindex="-1" href="<%=search_path(:type => "resource", :browse=>"true", :sort_by => "popularity")%>">
+          <i class="fa fa-file"></i>
+          <%=t('resource.other')%>
+        </a>
+      </li>
     <%end%>
+
     <li class="divider"></li>
-    
-    <li>
-      <a tabindex="-1" href="/catalogue">
-        <i class="fa fa-tags"></i>
-        <%=t('catalogue.title')%>
-      </a>
-    </li>
-    
-    <li>
-      <a tabindex="-1" href="/contest">
-        <i class="fa fa-trophy"></i>
-        <%=t('contest.#ViSHCompetition2013')%>
-      </a>
-    </li>
+
+    <% if availableServices.include? "Catalogue" %>
+      <li>
+        <a tabindex="-1" href="/catalogue">
+          <i class="fa fa-tags"></i>
+          <%=t('catalogue.title')%>
+        </a>
+      </li>
+    <%end%>
+
+    <% if availableServices.include? "ASearch" %>
+      <li>
+        <a tabindex="-1" href="/search/advanced">
+          <i class="fa fa-search"></i>
+          <%=t('asearch.title')%>
+        </a>
+      </li>
+    <%end%>
+
+    <% if availableServices.include? "Competitions2013" %>
+      <li class="divider"></li>
+      <li>
+        <a tabindex="-1" href="/contest">
+          <i class="fa fa-trophy"></i>
+          <%=t('contest.#ViSHCompetition2013')%>
+        </a>
+      </li>
+    <%end%>
 
   </ul>
 </div>

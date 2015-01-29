@@ -5,12 +5,9 @@
 <% end %>
 
 <script>
-  $(document).ready(function(){
+  document.addEventListener("DOMContentLoaded", function(){
     if(typeof update_pageless_state == "function"){
       update_pageless_state("excursions", <%=excursions.num_pages%>, <%=excursions.current_page%>);
-    }
-    if(typeof re_apply_backstrech == "function"){
-      re_apply_backstrech("excursions");
-    }
+    }    
   });
 </script>

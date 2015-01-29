@@ -1,11 +1,20 @@
-<%= form_for resource, :as => resource_name, :url => user_invitation_path(), :html => {:method => :post} do |f| %>
-  <%= devise_error_messages! %>
 
-	<% resource.class.invite_key_fields.each do |field| -%>
-	  <p><%= f.label field %><br />
-	  <%= f.text_field field %></p>
-	<% end -%>
-	  
-<% end %>
-<p><button id="save_inv_button" class="btn btn-primary"><%=  t("devise.invitations.submit_button")%></button></p>
 
+	<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <%= render partial: 'help/help_create_invitation' %>
+        <h4 id="CreateInvitationLabel"><%= t('devise.invitations.modal_title')%></h4>
+    </div>
+
+      <div class="modal-body" style="overflow:hidden;">
+		<%= form_for resource, :as => resource_name, :url => user_invitation_path(), :html => {:method => :post} do |f| %>
+		  <%= devise_error_messages! %>
+			<% resource.class.invite_key_fields.each do |field| -%>
+			  <p><%= f.label field %><br />
+			  <%= f.text_field field %></p>
+			<% end -%>			  
+		<% end %>
+		<p><button id="save_inv_button" class="btn btn-primary"><%=  t("devise.invitations.submit_button")%></button></p>
+	  </div><!-- CIERRA BODY-->

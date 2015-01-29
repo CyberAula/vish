@@ -6,15 +6,19 @@
   <%= render :partial => 'layouts/header/header_signed_in' %>
       
    <!-- load modals -->
-          <% if availableModels.include? "Event" %>
-            <%= render partial: 'events/form' %>
-          <%end%>
-          <% if availableModels.include? "Resource" %>
-            <%= render partial: 'repositories/form' %>
-          <%end%>
-          <% if availableModels.include? "Category" %>
-            <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
-          <%end%>
+    <% if availableModels.include? "Event" %>
+      <%= render partial: 'events/form' %>
+    <%end%>
+    <% if availableModels.include? "Resource" %>
+      <%= render partial: 'repositories/form' %>
+    <%end%>
+    <% if availableModels.include? "Category" %>
+      <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
+    <%end%>
+    <%if ["INVITATION_ONLY","HYBRID"].include? Vish::Application.config.APP_CONFIG["register_policy"] %>
+      <!-- modal with partial for invitation, filled by ajax-->
+      <%= render partial: 'devise/invitations/new_modal' %>
+    <%end%>
          
 <% else %>
   <%= render :partial => 'layouts/header/header_signed_out' %>

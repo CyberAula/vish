@@ -6,7 +6,10 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">x</button>
+        <!--<button type="button" class="close" data-dismiss="modal">x</button>-->
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
         <%= render partial: 'help/help_categorie_new' %>
         <h4 id="<%=div_id%>AddCategoryLabel"><%= t('categories.main_title')%></h4>
       </div>
@@ -27,12 +30,11 @@
 
 
         <label><%= f.label :parentCategory, "Belongs to" %></label>
-        <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject))) %>
+        <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject)),{}, :id => div_id+"category_parent_id") %>
 
           <!--Avatar-->
           <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
-          <%= f.file_field :avatar %>
-
+          <%= f.file_field :avatar,:id => div_id+"category_avatar"  %>
 
       </div>
 
@@ -45,8 +47,7 @@
   </div>
 </div>
 
-
-<script>
+<%content_for :javascript do%>
     $('#<%=div_id%> .new_category').bind('ajax:success', function(evt, data, status, xhr){
       $('#<%=div_id%>').modal('hide');
       <% if div_id == "AddCategoryHeader" %>
@@ -90,4 +91,4 @@
       }
     });
 
-</script>
+<%end%>

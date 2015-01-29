@@ -10,8 +10,8 @@
         <a type="button" class="btn dropdown-toggle" data-toggle="dropdown">
           <span class="idioma"><%= t('help') %></span>
           <i class="fa fa-angle-up"></i>
-        </a>  
-        <ul class="dropdown-menu">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-left">
           <li class="">
             <a href="/overview">
               <i class="fa fa-question"> </i>
@@ -26,19 +26,19 @@
           </li>
           <!--<li class="">
             <%= link_to faq_path do %>
-              <i class="fa fa-question"> </i> 
+              <i class="fa fa-question"> </i>
               <span><%=t('faq.title')%></span>
             <% end %>
           </li>-->
           <li>
             <%= link_to user_manual_path do %>
-              <i class='fa fa-download'> </i> 
-              <span><%= t('help_manual')%>   </span>    
+              <i class='fa fa-download'> </i>
+              <span><%= t('help_manual')%>   </span>
             <% end %>
           </li>
           <!--<li class="">
             <%= link_to help_path do %>
-              <i class="fa fa-question"> </i> 
+              <i class="fa fa-question"> </i>
               <span><%=t('help_page')%></span>
             <% end %>
           </li>-->
@@ -51,16 +51,16 @@
           <% the_locale = I18n.locale.to_s %>
           <span class="idioma"><%=image_tag("flags/" + the_locale + ".png", :title=>the_locale, :class=> "")%><%=t('lang.title')%></span>
           <i class="icon-angle-up"></i>
-        </div>  
-          <ul class="dropdown-menu">
-            <% for locale in (I18n.available_locales.map{|i| i.to_s}) -%> 
+        </div>
+          <ul class="dropdown-menu dropdown-menu-left">
+            <% for locale in (I18n.available_locales.map{|i| i.to_s}) -%>
              <li class="">
                 <%= link_to image_tag("flags/" + locale + ".png", :title=>locale, :class=> "") + " " + t(:language_name, :locale => locale), session_locale_path(:new_locale => locale), :method => :post, :remote => false %>
               </li>
             <% end %>
           </ul>
       </li>
-      
+
 <!-- contact-->
       <li>
          <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript, :class=> "btn btn-default") %>
@@ -70,12 +70,12 @@
         <a class="btn btn-default" target="_blank" href="http://vishub.wordpress.com"><%= t('blog_news_title') %></a>
       </li>
 <!-- social-->
-      <li class="social">  
+      <li class="social">
         <a href="https://www.facebook.com/VirtualScienceHub" target="_blank" class="btn btn-default"><i alt="Facebook-logo" class="social-img fa fa-facebook"></i>
         </a>
       </li>
 
-      <li class="social"> 
+      <li class="social">
         <a href="https://twitter.com/ViSH_portal" target="_blank"  class="btn btn-default"><i alt="Twitter-logo" class="social-img fa fa-twitter"></i>
         </a>
       </li>
@@ -86,7 +86,8 @@
     </ul>
   </nav>
 </footer>
-<script>
+
+<%content_for :javascript do%>
     // scrollUp full options
     $(function () {
       $.scrollUp({
@@ -105,4 +106,4 @@
             zIndex: 2147483647 // Z-Index for the overlay
       });
     });
-</script>
+<%end%>

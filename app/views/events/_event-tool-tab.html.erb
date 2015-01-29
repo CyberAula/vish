@@ -71,7 +71,7 @@ $('.delete').popover({
 
 
 <script type="text/javascript">
-  $(document).ready(function(){
+  document.addEventListener("DOMContentLoaded", function(){
     $(".with_tooltip").tooltip({ placement: 'bottom'});
   });
 </script>
@@ -152,30 +152,32 @@ $('.delete').popover({
   <%= @event.title %>
 </h2>
 
-<div class="tab-content">
-  <div class="tab-pane <%= document_details_tab_class document, :info %>" id="document-info">
-    <div class="toggler">
-      <%= render partial: "events/info", locals: { document: document } %>
+  <div class="tab-content">
+    <div class="tab-pane <%= document_details_tab_class document, :info %>" id="document-info">
+      <div class="toggler">
+        <%= render partial: "events/info", locals: { document: document } %>
+      </div>
     </div>
+
+
+    <!-- tab2 / editar -->
+    <% if can? :update, @event %>
+      <div class="tab-pane <%= document_details_tab_class document, :edit %>" id="document-edit">
+        <div class="content_edit">
+          <%= render partial: 'events/edit_form', locals: { event: @event } %>
+        </div>
+      </div>
+
+    
+      <%= content_for :javascript do %>
+        $('a[href="#document-edit"]').on('shown', function (e) {
+          $('#editdate').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at.iso8601%>")));
+          $('#edithourinit').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at.iso8601%>")));
+          $('#edithourfinish').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.end_at.iso8601%>")));
+        });
+      <%end%>
+    <% end %>
   </div>
-
-
-  <!-- tab2 / editar -->
-  <% if can? :update, @event %>
-  <div class="tab-pane <%= document_details_tab_class document, :edit %>" id="document-edit">
-    <div class="content_edit">
-      <%= render partial: 'events/edit_form', locals: { event: @event } %>
-    </div>
-  </div>
-  <script>
-    $('a[href="#document-edit"]').on('shown.bs.tab', function (e) {
-      $('#editdate').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at.iso8601%>")));
-      $('#edithourinit').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at.iso8601%>")));
-      $('#edithourfinish').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.end_at.iso8601%>")));
-    });
-  </script>
-  <% end %>
-
 
   <!-- tab3 / share -->
   <div class="tab-pane contentShare" id="tab3">

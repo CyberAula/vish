@@ -1,7 +1,7 @@
 var Vish = Vish || {};
 
 //tooltip function
-$(document).ready(function(){
+document.addEventListener("DOMContentLoaded", function(){
   $("[rel=tooltip]").tooltip({ placement: 'bottom'});
 });
 

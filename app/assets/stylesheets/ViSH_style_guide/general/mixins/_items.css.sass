@@ -55,12 +55,7 @@
       &.focus
         padding: 0 !important
 
-        
-  .backstretch
-    width: 100% !important
-    @include border-top-radius ($border-radius-small)
-    @media (max-width: 480px)
-      @include border-top-right-radius (0) 
+
 // corner left
 @mixin item-corner
   position: absolute
@@ -105,34 +100,15 @@
         border-width: 72px 72px 0 0
         z-index: 5
         font-size: 13px
+    i.icon-o-scorm,
+    i.icon-o-webapp
+      @media (max-width: 480px)
+        top: 6px
+        left: 5px
 
     i.fa-user
       color: $gray
-    .icon-scorm-new
-      background-repeat: no-repeat !important
-      background-image: url("icons/resource/scorm-small.png") !important
-      background-size: 100%
-
-
-    .icon-webapp-new
-      background-repeat: no-repeat !important
-      background-image: url("icons/resource/app-small.png") !important
-      background-size: 100%
-
-    .icon-pdf-new
-      background-repeat: no-repeat !important
-      background-image: url("icons/resource/pdf-small.png") !important
-      background-size: 100%
-
-    .icon-zip-new
-      background-repeat: no-repeat !important
-      background-image: url("icons/resource/zip-small.png") !important
-      background-size: 100%
-
-    .icon-swf-new
-      background-repeat: no-repeat !important
-      background-image: url("icons/resource/swf-small.png") !important
-      background-size: 100%
+ 
   .corner-background
     position: absolute
     width: 0

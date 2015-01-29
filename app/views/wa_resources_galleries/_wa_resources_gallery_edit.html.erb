@@ -8,17 +8,14 @@
 
 </ul>
 
-<script>
-  $("div[bs-img]").each(function(){
-    $(this).backstretch($(this).attr("bs-img"));
-  });
-
+<%= content_for :javascript do %>
+  
   var workshopActivityBox = $("li.workshop_element[workshop_activity_id='<%=wa_resources_gallery.workshop_activity.id.to_s%>']");
   var resourceBoxes = $(workshopActivityBox).find("li.box-item:not('.add-item')");
   <% aos.each_with_index do |ao,index| %>
     $(resourceBoxes['<%=index%>']).append('<%= link_to raw('<i class="icon-trash"></i>'), wa_resources_gallery_path(wa_resources_gallery, :remove_activity_object_id => ao.id), :method => :put, :class => 'btn btn_delete_item' %>');
   <% end %>
-</script>
+<%end%>
 
 
 

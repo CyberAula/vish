@@ -1,16 +1,5 @@
 <% section ||= nil %>
 
-<script>
-/*
-  var numberMonths = numberMonths || 0;
-  var dates= $(".tldate");
-    for(var n = 0; n<dates.lenght - 1; n++){
-      if ($(dates[n]).text() == $(dates[n+1]).text())
-        $(dates[n+1]).remove();
-    }
-  */
-</script>
-
 <ul class="timeline" id="timeline-main">
   <%= render partial: 'activities/timeline_modal' %>
 
@@ -25,7 +14,7 @@
              } %>
 </ul>
 
-<%= javascript_tag do %>
+<%= content_for :javascript do %>
   $(function(){  
     SocialStream.Timeline.show(); 
 

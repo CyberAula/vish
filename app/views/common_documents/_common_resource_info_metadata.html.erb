@@ -140,9 +140,9 @@
   </div>
 <% end %>
 
-<script language="javascript" type="text/javascript">
 
-  $("#showingMore").click(function(e){
+<%content_for :javascript do%>
+    $("#showingMore").click(function(e){
     if($("#showingMore").attr("title")==="showMore"){
       $(".showMore").html('Expandir');
       $("#showingMore").attr("title", "showFewer");
@@ -152,5 +152,4 @@
       $("#showingMore").attr("title", "showMore");
     }
   });
-
-</script>
+<%end%>

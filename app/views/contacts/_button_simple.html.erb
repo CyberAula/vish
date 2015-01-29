@@ -12,7 +12,7 @@
     </div>
   <% else %>
     <%= form_for contact, remote: true do |f| %>
-      <%= f.hidden_field :relation_ids, value: contact.options_for_select.first.last %>
+      <%= f.hidden_field :relation_ids, value: contact.options_for_select.first.last, id: "contact_relation_ids" + contact.id.to_s %>
       <%= f.submit t('contact.follow') %>
     <% end %>
   <% end %>

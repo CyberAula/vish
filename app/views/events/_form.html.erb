@@ -4,6 +4,7 @@
 <div id="AddEvent" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
+
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -12,11 +13,10 @@
         <h4 id="AddCategoryLabel"><%= t('event.main_title')%></h4>
       </div>
 
-      <div class="modal-body" style="overflow:hidden;">
-        <%#= form_for Event.new(:owner_id => Actor.normalize_id(current_user)) do |f| %>
-        <%= form_for Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
 
-          <%= f.hidden_field :owner_id  %>
+      <div class="modal-body" style="overflow:hidden;">
+        <%= form_for Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
+          <%= f.hidden_field :owner_id %>
           <%= f.hidden_field :start_at %>
           <%= f.hidden_field :end_at %>
           <%= f.hidden_field :all_day %>
@@ -28,36 +28,20 @@
           <label><%= t('event.leyend.description')%></label>
           <%= f.text_area :description, :class => "form-control", :rows => 4, :placeholder => t('event.description_input') %>
 
+          <!--EMBED-->
+          <label><%= t('document.options.embed')%></label>
+          <%= f.text_area :embed, :class => "form-control", :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
+
           <!--TYPE-->
           <label><%= t('event.leyend.type')%></label>
-            <div class="checkbox">
+          <div class="checkbox">
              <label>
                <%= f.radio_button :streaming, false, checked: true %> <span class="lbl padding-0"> <%= t('event.type.videoconference') %> </span>
              </label>
              <label>
                 <%= f.radio_button :streaming, true %> <span class="lbl padding-0"> <%= t('event.type.streaming') %> </span>
              </label>
-            </div>
-
-          <!--EMBED-->
-          <label><%= t('document.options.embed')%></label>
-          <%= f.text_area :embed, :class => "form-control", :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
-
-
-          <script type="text/javascript">
-            $("#event_streaming_false").on("click", function() {
-              $("#event_embed").attr("disabled", true);
-            });
-            $("#event_streaming_true").on("click", function() {
-              $("#event_embed").attr("disabled", false);
-            });
-            $(document).ready(function(){
-              if ($("#event_streaming_true").is(':checked')) {
-                $("#event_embed").attr("disabled", false);
-              }
-            });
-          </script>
-
+          </div>
 
           <!--DATE-->
           <label><%= t('event.leyend.fecha')%></label>
@@ -84,26 +68,34 @@
             </span>
           </div>
 
-          <script type="text/javascript">
-            $(function() {
-              $('#hourinit').datetimepicker({
-                pickDate: false
-              });
+        <%content_for :javascript do%>
+          $('#hourinit').datetimepicker({
+            pickDate: false
+          });
+
+          $('#hourfinish').datetimepicker({
+            pickDate: false
+          });
+
+          $('#date').datetimepicker({
+            pickTime: false
+          });
+
+            $("#event_streaming_false").on("click", function() {
+              $("#event_embed").attr("disabled", true);
             });
-            $(function() {
-              $('#hourfinish').datetimepicker({
-                pickDate: false
-              });
+            $("#event_streaming_true").on("click", function() {
+              $("#event_embed").attr("disabled", false);
             });
-            $(function() {
-              $('#date').datetimepicker({
-                pickTime: false
-              });
-            });
-          </script>
+
+            if ($("#event_streaming_true").is(':checked')) {
+              $("#event_embed").attr("disabled", false);
+            }
+
+          <%end%>
 
           <script>
-            $(document).ready(function(){
+            document.addEventListener("DOMContentLoaded", function(){
               var saveEventButton = $("#AddEvent input[type='submit']");
               var eventButton = $("#AddEvent input[value=<%= t('categories.save')%>][type='button'][class='btn btn-primary']");
               $(eventButton).click(function(event) {
@@ -127,12 +119,13 @@
                 }
               });
             });
-
           </script>
-        <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
-        <% end %>
-      </div><!-- /BODY-->
 
+          <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
+        <% end %>
+    </div><!-- CIERRA BODY-->
+
+      <!-- FOOTER -->
       <div class="modal-footer">
         <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
       </div><!-- /FOOTER -->

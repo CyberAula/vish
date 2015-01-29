@@ -20,10 +20,10 @@
     </div>
     <!--avatar-->
     <div class="container-img_WS">
-      <div class="dummy"></div>
-      <div class="element resource-center">
-          <div bs-img="<%=@workshop.thumbnail_url%>" class="applyBackstretch img-box workshop_thumbnail" id=""></div>
-      </div>
+
+          <div style='background-image: url(<%=@workshop.thumbnail_url%>)'
+            class="img-box resource-center workshop_thumbnail"></div>
+
     </div>
     <section class="information">
     <!--title-->
@@ -84,8 +84,7 @@
   <%end%>
 </ul>
 
-<script>
-  $(function(){
+<%content_for :javascript do%>
     $("li.toggleWorkshopActivity").click(function(e){
       var mainDiv = $(e.target).parents(".wa_activity_wrapper_edit").find(".wa_resource_wrapper")[0];
       if($(mainDiv).hasClass("wa_activity_closed")){
@@ -98,8 +97,7 @@
       e.stopPropagation();
       return false;
     });
-  });
-</script>
+<%end%>
 
 <!-- Add Workshop Activity -->
 
@@ -113,7 +111,10 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>-->
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
         <h3><%=t('workshop.actions.add_activity_title')%></h3>
       </div>
       <div class="modal-body tabbable tabs-below">
@@ -182,9 +183,7 @@
 </div>
 </div>
 
-<script>
-  $(document).ready(function(){
-    <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => false } %>
+  <%content_for :javascript do%>
 
     $('#WorkshopActivities').on('shown.bs.modal', function(){
     });
@@ -270,10 +269,6 @@
       });
     };
 
-  });
-</script>
+    $(".actions_tooltip").tooltip({ placement: 'bottom'});
 
-
-<script>
-  $(".actions_tooltip").tooltip({ placement: 'bottom'});
-</script>
+<%end%>

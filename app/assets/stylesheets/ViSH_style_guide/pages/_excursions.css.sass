@@ -86,6 +86,21 @@ header.home
     max-height: 600px
     table
       @include table-striped
+    .metadatalist
+      padding: 10px
+      li
+        width: 100%
+        margin-bottom: 10px
+        display: block
+        .metadatalistkey
+          color: $brand-primary
+          float: left
+          display: block
+          width: 100%
+        .metadatalistkey2
+          a
+            width: 100%
+            word-wrap: break-word
 
 ul li.box-item .info .author span.by
   margin-right: 3px !important
@@ -93,17 +108,19 @@ ul li.box-item .info .author span.by
 
 #myLearningModal,
 #myTeachingModal
-  .modal-body
-    overflow: hidden
-    height: 100%
-    max-height: 90%
-    padding: 0px
-    .evaluation_modalerror_msg
-      height: auto
-      width: 100%
-      padding: 20px
-      text-align: center
-      font-size: 1.1em
+  .modal-dialog
+    width: 75%
+    .modal-body
+      overflow: hidden
+      height: 500px
+      max-height: 90%
+      padding: 0px
+      .evaluation_modalerror_msg
+        height: auto
+        width: 100%
+        padding: 20px
+        text-align: center
+        font-size: 1.1em
 #myModalLabel
   font-size: 1.2em
 

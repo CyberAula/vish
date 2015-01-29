@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,16 +53,15 @@
               
               
             <% end %>
-            <%= javascript_tag do %>
-              $(function() {
-                if ("placeholder" in document.createElement("input")) {
-                  $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
-                } else {
-                  $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
-                }
-                  $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
-                });
-              <% end %>
+            <%content_for :javascript do%>
+              if ("placeholder" in document.createElement("input")) {
+                $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+                $("#password").attr('placeholder', I18n.t('activerecord.attributes.user.password'));
+              } else {
+                $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+                $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+              }
+            <% end %>
           </ul>
         </li>
       </ul>
@@ -77,15 +75,10 @@
   </div>
 </nav>
 
-<script type="text/javascript">
-    $(document).ready(function() {          
-     
-     $('.dropdown-toggle').dropdown();
-   });
-  </script>
 
 <!-- SCRIPT FOR AUTOMATIC BOOTSTRAP-DROPDOWN HOVER -->
-  <script type="text/javascript">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
     (function ($, window, delay) {
     var theTimer = 0;
     var theElement = null;
@@ -124,17 +117,6 @@
       }, delay);
     });
   })(jQuery, window, 0); // 200 is the delay in milliseconds
+});
+</script>
 
-  $(function() {
-        $('#password').password().on('show.bs.password', function(e) {
-            $('#eventLog').text('On show event');
-            $('#methods').prop('checked', true);
-        }).on('hide.bs.password', function(e) {
-                    $('#eventLog').text('On hide event');
-                    $('#methods').prop('checked', false);
-                });
-        $('#methods').click(function() {
-            $('#password').password('toggle');
-        });
-    });
-  </script>

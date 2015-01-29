@@ -3,23 +3,25 @@
 <% end %>
 <li class="box-item workshop">
   <!-- corner -->
-  <%= link_to(workshop) do %>
+
+  <%#= link_to(workshop) do %>
 
   <div class="corner-item">
     <div class="corner-item2">
       <div class="corner-color"></div>
       <i class='icon-lightbulb'></i>
+      <!-- master code
+      <%#= link_to raw(icon(workshop)) %>-->
     </div>
     <div class="corner-background"></div>
   </div>
   <!-- image/icon -->
   <div class="container-img">
-    <div class="dummy"></div>
-    <div class="element resource-center">
+    <div class="img-box">
       <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
     </div>
   </div>
-  <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
+
   <!-- INFO -->
   <div class="caption">
     <!-- Title -->
@@ -27,14 +29,14 @@
       <%= link_to workshop.title, workshop %>
     </h6>
     <!-- Author -->
-    <div class="author"> 
+    <div class="author">
       <span class="by"><%=t('by')%></span>
       <%= link_to truncate_name(workshop.author.name, length: 25), workshop.author.subject %>
     </div>
     <hr>
     <div class="info-bottom">
       <!--like -->
-      <div class="like">    
+      <div class="like">
         <div class="count"><%=workshop.post_activity.likes.count.to_s%></div>
         <%= link_like(workshop.post_activity)%>
       </div>
@@ -49,7 +51,6 @@
           <i class="icon-eye-open"></i>
         <%end%>
       </div>
-      <%end%>
     </div>
   </div>
 </li>

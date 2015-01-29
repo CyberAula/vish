@@ -13,9 +13,9 @@
     </a>
     <ul class="dropdown-menu">
 
-      <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
-        <%= f.email_field :email, :id => "username" %>
-        <%= f.password_field :password, :id => "password"  %>
+      <%= form_for User.new, :as => :user, :url => user_session_path, :html => { :id => "new_user_mobile"} do |f| %>
+        <%= f.email_field :email, :id => "username_mobile" %>
+        <%= f.password_field :password, :id => "password_mobile"  %>
         <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
 
           <label class="checkbox">
@@ -23,15 +23,14 @@
           </label>
           <%= link_to t('devise.links.forgot_password'), new_password_path(:user), :class => ' forgot' %>
       <% end %>
-      <%= javascript_tag do %>
-      $(function() {
-      if ("placeholder" in document.createElement("input")) {
-      $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
-      } else {
-      $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
-      }
-      $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
-      });
+      <%content_for :javascript do%>
+            if ("placeholder" in document.createElement("input")) {
+              $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+              $("#password").attr('placeholder', I18n.t('activerecord.attributes.user.password'));
+            } else {
+              $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+              $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+            }
       <% end %>
     </ul>
   </li>
@@ -51,7 +50,7 @@
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
       <i class="icon-flag-checkered"></i>
       <%= t('lang.title') %>
-      <b class="caret"></b>
+      <i class="fa fa-chevron-down"></i>
     </a>
     <ul class="dropdown-menu">
       <% for locale in (I18n.available_locales) -%> 
