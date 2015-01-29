@@ -4,34 +4,46 @@ module MediaHelper
 	#only if the media has been converted or it is xxx format
 	def getAllVideoDataUrl(media)
 		all_data_url = ""
-		all_data_url += printDataUrlIfPresent(media, :webm) + " "
-		all_data_url += printDataUrlIfPresent(media, :flv) + " "
-		all_data_url += printDataUrlIfPresent(media, :mp4) + " "
-		all_data_url += printDataUrlPosterIfPresent(media, :png, '170x127#') + " "
+		video_formats = SocialStream::Documents.video_styles.map{|k,v| k}
+		video_formats.each do |format_symbol|
+			if format_symbol == :"170x127#"
+				all_data_url += printDataUrlPosterIfPresent(media, :png, '170x127#') + " "
+			else
+				all_data_url += printDataUrlIfPresent(media, format_symbol) + " "
+			end
+		end
+		all_data_url
 	end
 
 	#method to print all sources in the video tag
 	def getAllVideoSources(media)
 		all_sources_url = ""
-		all_sources_url += printSourceIfPresent(media, :webm)
-		all_sources_url += printSourceIfPresent(media, :flv)
-		all_sources_url += printSourceIfPresent(media, :mp4)
+		video_formats = SocialStream::Documents.video_styles.map{|k,v| k}.reject{|k| k==:"170x127#"}
+		video_formats.each do |format_symbol|
+			all_sources_url += printSourceIfPresent(media, format_symbol)
+		end
+		all_sources_url
 	end
 
 	#method to print all data-url-xxx in the media player
 	#only if the media has been converted or it is xxx format
 	def getAllAudioDataUrl(media)
 		all_data_url = ""
-		all_data_url += printDataUrlIfPresent(media, :webma) + " "
-		all_data_url += printDataUrlIfPresent(media, :mp3) + " "
+		audio_formats = SocialStream::Documents.audio_styles.map{|k,v| k}
+		audio_formats.each do |format_symbol|
+			all_data_url += printDataUrlIfPresent(media, format_symbol) + " "
+		end
+		all_data_url
 	end
 
 	#method to print all sources in the audio tag
 	def getAllAudioSources(media)
 		all_sources_url = ""
-		all_sources_url += printSourceIfPresent(media, :webma)
-		all_sources_url += printSourceIfPresent(media, :mp3)
-		all_sources_url += printSourceIfPresent(media, :wav)
+		audio_formats = SocialStream::Documents.audio_styles.map{|k,v| k}
+		audio_formats.each do |format_symbol|
+			all_sources_url += printSourceIfPresent(media, format_symbol)
+		end
+		all_sources_url
 	end
 
 	#method to print data-url-webm in the media player
