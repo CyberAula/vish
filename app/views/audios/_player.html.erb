@@ -1,4 +1,4 @@
-<div id="full_audio_<%= dom_id audio %>" class="audio-container jp-audio" <%=getAllAudioDataUrl(audio)%> data-url-swfplayer="<%= asset_path('Jplayer.swf') %>">
+<div id="full_audio_<%= dom_id audio %>" class="audio-container jp-audio" <%=getAllMediaDataUrl(audio)%> data-url-swfplayer="<%= asset_path('Jplayer.swf') %>">
   <div id="jpId<%= dom_id audio %>" class="jpId_size0 jp-jplayer">
   </div>
   <div class="jp-audio">
@@ -6,7 +6,7 @@
       <div id="jp_interface_<%= dom_id audio %>" class="jp-interface">
         <div class="jp-progress">
           <div class="jp-seek-bar">
-            <%= image_tag document_path(audio, format: :png, style: :waveform), class: 'waveform' %>
+            <%#= image_tag document_path(audio, format: :png, style: :waveform), class: 'waveform' %>
             <div class="jp-play-bar"></div>
           </div>
         </div>
