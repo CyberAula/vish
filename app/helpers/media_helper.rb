@@ -46,7 +46,7 @@ module MediaHelper
 		all_sources_url
 	end
 
-	#method to print data-url-webm in the media player
+	#method to print data-url-format in the media player
 	#only if the media has been converted or it is the format
 	def printDataUrlIfPresent(media, format)
 		if available_services.include?("MediaConversion") || media.format == format
@@ -57,7 +57,7 @@ module MediaHelper
 		end
 	end
 
-	#method to print data-url-webm in the media player
+	#method to print data-url-format in the media player
 	#only if the media has been converted or it is the format
 	def printDataUrlPosterIfPresent(media, format, style)
 		if available_services.include?("MediaConversion")
