@@ -58,9 +58,19 @@ class Video < Document
     (sources+[source]).uniq
   end
 
-  def poster_url
+  def poster_url(includeDefault=false)
     if Vish::Application.config.APP_CONFIG["services"].include? "MediaConversion"
-      Vish::Application.config.full_domain +  Rails.application.routes.url_helpers.video_path(self, :format => :png, :style => '170x127#')
+      #Check if the file actually exists
+      # attachment_path = self.file.path.gsub("original","")
+      # output = (system "ls #{attachment_path} | grep 170x127#")
+      # if output===true
+      # end
+      return Vish::Application.config.full_domain + Rails.application.routes.url_helpers.video_path(self, :format => :png, :style => '170x127#')
+    end
+    
+    if includeDefault
+      #Return default poster
+      return Vish::Application.config.full_domain + "/assets/videos/default_poster_image.jpg"
     else
       nil
     end

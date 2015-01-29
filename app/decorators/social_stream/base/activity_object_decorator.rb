@@ -306,7 +306,7 @@ ActivityObject.class_eval do
     elsif resource.avatar.exists?
       relativePath = resource.avatar.url("500",{:timestamp => false})
     elsif resource.class.name=="Video" and !resource.poster_url.nil?
-      absolutePath = resource.poster_url
+      absolutePath = resource.poster_url(true)
     end
 
     if absolutePath.nil? and !relativePath.nil?
