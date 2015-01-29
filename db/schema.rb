@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(:version => 20150126095038) do
     t.datetime "updated_at",         :null => false
   end
 
+  add_index "activity_object_audiences", ["activity_object_id"], :name => "activity_object_audiences_on_activity_object_id"
+  add_index "activity_object_audiences", ["relation_id"], :name => "activity_object_audiences_on_relation_id"
+
   create_table "activity_object_properties", :force => true do |t|
     t.integer "activity_object_id"
     t.integer "property_id"
@@ -96,11 +99,6 @@ ActiveRecord::Schema.define(:version => 20150126095038) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.decimal  "teachers_qscore",                    :precision => 12, :scale => 6
-  end
-
-  create_table "activity_objects_wa_resources_galleries", :id => false, :force => true do |t|
-    t.integer "activity_object_id"
-    t.integer "wa_resources_gallery_id"
   end
 
   create_table "activity_verbs", :force => true do |t|
@@ -245,6 +243,7 @@ ActiveRecord::Schema.define(:version => 20150126095038) do
     t.text     "embed"
   end
 
+  add_index "events", ["activity_object_id"], :name => "events_on_activity_object_id"
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
   create_table "exclude_auth_mves", :force => true do |t|
@@ -274,7 +273,7 @@ ActiveRecord::Schema.define(:version => 20150126095038) do
     t.integer  "slide_count",        :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",              :default => false
-    t.text     "offline_manifest",   :default => ""
+    t.text     "offline_manifest"
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
     t.integer  "mve",                :default => 0
@@ -585,18 +584,10 @@ ActiveRecord::Schema.define(:version => 20150126095038) do
 
   create_table "wa_assignments", :force => true do |t|
     t.text     "fulltext"
-    t.text     "plaintext"
-    t.boolean  "with_dates",              :default => false
     t.datetime "open_date"
     t.datetime "due_date"
-    t.text     "available_contributions"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-  end
-
-  create_table "wa_assignments_wa_contributions_galleries", :id => false, :force => true do |t|
-    t.integer "wa_assignment_id"
-    t.integer "wa_contributions_gallery_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "wa_contributions_galleries", :force => true do |t|
@@ -604,22 +595,29 @@ ActiveRecord::Schema.define(:version => 20150126095038) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "wa_resources", :force => true do |t|
+  create_table "wa_contributions_gallery_wa_assignments", :id => false, :force => true do |t|
+    t.integer  "wa_contributions_gallery_id"
+    t.integer  "wa_assignment_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "wa_galleries", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "wa_gallery_activity_objects", :id => false, :force => true do |t|
+    t.integer  "wa_gallery_id"
     t.integer  "activity_object_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
 
-  create_table "wa_resources_galleries", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "wa_texts", :force => true do |t|
-    t.text     "fulltext"
-    t.text     "plaintext"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "wa_resources", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "webapps", :force => true do |t|
@@ -640,20 +638,18 @@ ActiveRecord::Schema.define(:version => 20150126095038) do
 
   create_table "workshop_activities", :force => true do |t|
     t.integer  "workshop_id"
-    t.integer  "wa_id"
-    t.string   "wa_type"
+    t.string   "wa_activity_type"
     t.integer  "position"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "workshops", :force => true do |t|
     t.integer  "activity_object_id"
-    t.boolean  "draft",              :default => true
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "writings", :force => true do |t|

@@ -70,7 +70,6 @@
 </section>
 
 
-
 <%  @items = @category.property_objects
     order = @category.categories_order
     unless order.nil?
@@ -83,12 +82,13 @@
 <% end %>
 
 
-
-<div class="main-categories-space items">
-  <% if can?(:update, @category) %>
-  <%= render partial: 'categories/category-add' %>
-  <% end %>
-  <%= render partial: 'categories/items' %>
+<div class="main-categories-space">
+  <ul>
+    <% if can?(:update, @category) %>
+      <%= render partial: 'categories/category-add' %>
+    <% end %>
+      <%= render partial: 'categories/items' %>
+  </ul>
 </div>
 
 <%= content_for :javascript do %>
@@ -107,6 +107,8 @@
 <% end %>
 
 <script>
+    var beginIndex;
+    var beginObjects;
     Array.prototype.equals = function (array) {
         // if the other array is a falsy value, return
         if (!array)
@@ -144,8 +146,7 @@
 </script>
 
 <%content_for :javascript do%>
-    var beginIndex;
-    var beginObjects;
+    
     //Let the overlay appear
       
     $(".btn-for-categorize").click(function(){

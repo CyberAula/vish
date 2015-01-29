@@ -1,90 +1,58 @@
 module MediaHelper
 	
 	#method to print all data-url-xxx in the media player
-	#only if the media has been converted or it is xxx format
-	def getAllVideoDataUrl(media)
+	def getAllMediaDataUrl(media)
 		all_data_url = ""
-		all_data_url += printDataUrlIfPresent(media, :webm) + " "
-		all_data_url += printDataUrlIfPresent(media, :flv) + " "
-		all_data_url += printDataUrlIfPresent(media, :mp4) + " "
-		all_data_url += printDataUrlIfPresent(media, :webm) + " "
-		all_data_url += printDataUrlPosterIfPresent(media, :png, '170x127#') + " "
+
+		if media.respond_to? "poster_url"
+			poster_url = media.poster_url
+			all_data_url += printDataUrlPoster(poster_url) + " " unless poster_url.nil?
+		end
+
+		media.sources.each do |source|
+			all_data_url += printDataUrl(source[:format], source[:src]) + " "
+		end
+
+		all_data_url
 	end
 
 	#method to print all sources in the video tag
-	def getAllVideoSources(media)
+	def getAllMediaSources(media)
 		all_sources_url = ""
-		all_sources_url += printSourceIfPresent(media, :webm)
-		all_sources_url += printSourceIfPresent(media, :flv)
-		all_sources_url += printSourceIfPresent(media, :mp4)
+
+		media.sources.each do |source|
+			all_sources_url += printSourceInTag(source[:format], source[:src])
+		end
+
+		all_sources_url
 	end
 
-	#method to print all data-url-xxx in the media player
-	#only if the media has been converted or it is xxx format
-	def getAllAudioDataUrl(media)
-		all_data_url = ""
-		all_data_url += printDataUrlIfPresent(media, :webma) + " "
-		all_data_url += printDataUrlIfPresent(media, :mp3) + " "
+	#method to print data-url-format in the media player for the poster
+	def printDataUrlPoster(url)
+		raw string = "data-url-poster=" + url
 	end
 
-	#method to print all sources in the audio tag
-	def getAllAudioSources(media)
-		all_sources_url = ""
-		all_sources_url += printSourceIfPresent(media, :webma)
-		all_sources_url += printSourceIfPresent(media, :mp3)
-		all_sources_url += printSourceIfPresent(media, :wav)
+	#method to print data-url-format in the media player
+	def printDataUrl(format,url)
+		raw "data-url-" + format.to_s + "=" + url
 	end
-
-	#method to print data-url-webm in the media player
-	#only if the media has been converted or it is webm format
-	def printDataUrlIfPresent(media, format)
-		if available_services.include?("MediaConversion") || media.format == format
-			string = "data-url-"+format.to_s+"="
-			string += polymorphic_path(media, :format => format)
-			return raw string
-		else
-			return ""
-		end	
-	end
-
-
-	#method to print data-url-webm in the media player
-	#only if the media has been converted or it is webm format
-	def printDataUrlPosterIfPresent(media, format, style)
-		if available_services.include?("MediaConversion")
-			string = "data-url-poster="
-			string += polymorphic_path(media, :format => format, :style => style)
-			return raw string
-		else
-			return ""
-		end	
-	end
-
 
 	#method to print source in the media tag
-	#only if the media has been converted or it is webm format
-	def printSourceIfPresent(media, format)
-		if available_services.include?("MediaConversion") || media.format == format
-			string = "<source src="
-			string += "'" + polymorphic_path(media, :format => format) + "'"
-			string += " type='"+Mime::Type.lookup_by_extension(format).to_s+"'>\n "
-			return raw string
-		else
-			return ""
-		end	
+	def printSourceInTag(format,url)
+		string = "    " + "<source src="
+		string += "'" + url + "'"
+		string += " type='" + Mime::Type.lookup_by_extension(format).to_s + "'>\n "
+		return raw string
 	end
 
-
-	#method to print data-url-webm in the media player
-	#only if the media has been converted or it is webm format
-	def printSourcePosterIfPresent(media, format, style)
-		if available_services.include?("MediaConversion")
-			string = "poster="
-			string += "'" + polymorphic_path(media, :format => format, :style => style) + "'"
-			return raw string
+	#method to print the poster in the embed code
+	def printSourcePosterIfPresent(media)
+		if media.respond_to? "poster_url"
+			poster_url = media.poster_url
+			return "poster='" + poster_url + "'" unless poster_url.nil?
 		else
 			return ""
-		end	
+		end
 	end
 
 end
