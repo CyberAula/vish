@@ -110,64 +110,32 @@
 #category
   .category_info
     position: relative
-    .icon-box
-      @include make-xs-column(2, $gutter: $grid-gutter-width)
-      @include make-sm-column(2, $gutter: $grid-gutter-width)
-      @include make-md-column(2, $gutter: $grid-gutter-width)
-      @include make-lg-column(2, $gutter: $grid-gutter-width)
-      background-color: $white
-      padding: 0px !important
-      display: block
-      @media (max-width: $screen-xs-max)
-        display: none
-      .container-img-categorie_0
-        width: 49%
-        float: left
-      .container-img-categorie_1
-        width: 49%
-        float: right
-      .container-img-categorie_2
-        width: 49%
-        float: left
-        margin-top: 2%
-      .container-img-categorie_3
-        width: 49%
-        float: right
-        margin-top: 2%
+    .left_info
+      width: 16%
+      height: 150px
+      float: left
       .container-img-categorie_0,
       .container-img-categorie_1,
       .container-img-categorie_2,
-      .container-img-categorie_3,
+      .container-img-categorie_3
+        float: left
         display: inline-block
         position: relative
         border-radius: none
         background-color: #C4C4C4
-        .dummy-categorie
-          padding-top: 75% /* 4:3 aspect ratio */
-        .element-categorie
-          position: absolute
-          top: 0
-          bottom: 0
-          left: 0
-          right: 0
-          overflow: hidden
-          text-align: center
-          width: 100%
-          .img-box-categorie
-            width: 100%
-            padding-bottom: 75%
-            float: left
-            img
-              float: left
-              width: 100%
-              height: 100%
-      .container-img
-        padding-bottom: 0.3%
-        display: inline-block
-        position: relative
+        width: 48%
+        height: 61px
+        margin: 1%
+      .category_thumb_0,
+      .category_thumb_1,
+      .category_thumb_2,
+      .category_thumb_3
+        background-size: 131px
         width: 100%
-        padding: 10%
-        background-color: #007cc8
+        height: 60px
+
+
+      .container-img
         .info
           height: 75px
         i
