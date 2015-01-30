@@ -16,16 +16,6 @@
   </div>
       <table class="table table-hover">
         <tr>
-            <!--date-created-->
-            <td><span><%= t('document.info.date.created_at') %></span></td>
-            <td><%= I18n.localize resource.created_at, :format => :long %></td>
-          </tr>
-      </table>
-    </header>
-    <div id="collapseInfo" class="panel-collapse collapse">
-      <div class="panel-body">
-        <table class="table table-hover">
-          <tr>
             <!--contributors-->
             <% if resource.respond_to?("contributors") and !resource.contributors.blank? %>
               <td></span><%= t('document.contributors.name').capitalize %></span></td>
@@ -61,7 +51,11 @@
               </td>
             <% end %>
           </tr>
-          <tr>
+      </table>
+    </header>
+    <div id="collapseInfo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <table class="table table-hover">
             <!--language-->
             <% unless resource.readable_language.blank? %>
               <td><span><%= t('lang.title').capitalize %></span></td>
