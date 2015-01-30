@@ -32,7 +32,8 @@ $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFu
 });
 
 function scale_editor(){
-	var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
+    console.log("scale!!");
+	var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen || document.msFullscreenElement;
     var event = state ? 'FullscreenOn' : 'FullscreenOff';
 
     // Now do something interesting
