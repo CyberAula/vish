@@ -310,6 +310,7 @@ es:
     Humanities: "Humanidades"
     NaturalScience: "Ciencias Naturales"
     ComputerScience: "Informática"
+    ViSHCompetition13: "#ViSHCompetition2013" 
   thevish: "ViSH"
   youtube: "Canal ViSH en Youtube"
   overview_title: "¿Qué es ViSH?"
@@ -993,8 +994,6 @@ es:
         editing_details: "Editando detalles workshop"
         editing_main: "Editando workshop"
         show_main: "Workshop"
-  ViSHCompetition13:
-    title: "#ViSHCompetition2013"
   writing:
     actions:
       add: "Añadir texto"

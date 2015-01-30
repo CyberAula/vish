@@ -389,6 +389,7 @@ nl:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
+    ViSHCompetition13: "#ViSHCompetition2013" 
   copy_to_clip: "Naar klembord kopiëren"
   devise:
     tags: "tags"
@@ -607,8 +608,6 @@ nl:
         editing_details: "Workshop details bewerken"
         editing_main: "Workshop bewerken"
         show_main: "Toon workshop"
-  ViSHCompetition13:
-    title: "#ViSHCompetition2013"
   writing:
     actions:
       add: "Tekst toevoegen"

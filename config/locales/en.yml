@@ -315,6 +315,7 @@ en:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
+    ViSHCompetition13: "#ViSHCompetition2013" 
   thevish: "The Vish"
   youtube: "ViSH Youtube Channel"
   overview_title: "ViSH overview"
@@ -989,9 +990,7 @@ en:
     titles:
         editing_details: "Editing workshop details"
         editing_main: "Editing Workshop"
-        show_main: "Show workshop"
-  ViSHCompetition13:
-    title: "#ViSHCompetition2013"  
+        show_main: "Show workshop"  
   writing:
     actions:
       add: "Add text"

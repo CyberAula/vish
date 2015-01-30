@@ -85,6 +85,7 @@ hu:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
+    ViSHCompetition13: "#ViSHCompetition2013" 
   devise:
     invalid_login: "Kérjük, hogy a folyatáshoz írd be az email címedet és a jelszavadat."
   disjunction:
@@ -631,8 +632,6 @@ hu:
         editing_details: "Szerkesztés workshop részletek"
         editing_main: "Workshop szerkesztése"
         show_main: "Workshop térkép"
-  ViSHCompetition13:
-    title: "#ViSHCompetition2013"
   writing:
     actions:
       add: "Szöveg hozzáadása"

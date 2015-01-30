@@ -83,6 +83,7 @@ de:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
+    ViSHCompetition13: "#ViSHCompetition2013" 
   devise:
     invalid_login: "Gib bitte deine Email und Passwort ein, um fortzufahren."
   disjunction:
@@ -678,9 +679,7 @@ de:
     titles:
         editing_details: "Editing Workshop Details"
         editing_main: "Editing Workshop"
-        show_main: "Workshop zu zeigen"
-  ViSHCompetition13:
-    title: "#ViSHCompetition2013"  
+        show_main: "Workshop zu zeigen" 
   writing:
     actions:
       add: "Hinzufügen von text"
