@@ -149,7 +149,6 @@
 </div>
 
 <script type="text/javascript">
- document.addEventListener("DOMContentLoaded", function(){
  	<% if @quiz_session.name && !@quiz_session.name.empty? %>
  		var qName = '<%=@quiz_session.name%>';
  	<% else %>
@@ -169,5 +168,4 @@
 	 	}
 	 	VISH.QuizCharts.drawQuizChart(canvas,quizJSON,answersList,options);
  	<% end %>
- });
 </script>
