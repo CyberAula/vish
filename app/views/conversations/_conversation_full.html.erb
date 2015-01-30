@@ -52,7 +52,7 @@
 </div>
 
 <%= javascript_tag do %>
-  $(document).ready(function(){
+  document.addEventListener("DOMContentLoaded", function(){
     $(".message .body img").each(function(){
       var link = '<a href=\"' + $(this).attr('src') + '\" class=\"img_link\"><img src=\"' + $(this).attr('src') + '\"></a>';
       $(this).after(link);

@@ -116,7 +116,7 @@
 
   var loaderHtml = function () {
     return settings.loaderHtml ||
-      '<div id="pageless-loader" style="display:none;text-align:center;width:100%;">' +
+      '<div class="pageless-loader" style="display:none;text-align:center;width:100%;">' +
       '<div class="msg" style="color:#e9e9e9;font-size:2em"></div>' +
       '<img src="' + settings.loaderImage + '" alt="loading more results" style="margin:10px auto" />' +
       '</div>';
@@ -165,7 +165,7 @@
       $el.append(loader);
       // if we use the default loader, set the message
       if (!opts.loaderHtml) {
-        $('#pageless-loader .msg').html(opts.loaderMsg).css(opts.msgStyles || {});
+        $('.pageless-loader .msg').html(opts.loaderMsg).css(opts.msgStyles || {});
       }
     }
   };
@@ -225,16 +225,7 @@
       settings.finishedAddingHiddenElem(hidden_elem);
     }
     else{
-      hidden_elem.fadeIn();
-      var array_matches = hidden_elem.find('div[bs-img]');
-      if(array_matches.length>0){ //we have backstretch
-        if($(hidden_elem).parents(".tab-pane").css('display')!="none"){        
-          $(array_matches[0]).backstretch($(array_matches[0]).attr("bs-img"));        
-        }
-        else{
-          $(array_matches[0]).attr("fix-bs", "true");
-        } 
-      }     
+      hidden_elem.fadeIn();           
     }
     
     if(arr.length>0){

@@ -82,18 +82,11 @@
                     <%= render partial: "#{ r.class.to_s.tableize }/search_result",
                                locals:  { r.class.to_s.underscore.to_sym => r, :prefix_id => "search" }  %>
                   <% end %>
-              <% end %>
-              <script>
-                function re_apply_backstrech_on_search(){
-                  $("div[bs-img]").each(function() {
-                    $(this).backstretch( $(this).attr("bs-img") );
-                  });
-                }
-              </script>
+              <% end %>              
             </ul>
           </div>
           <div class="loader_pagination">
-            <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="pageless-loader" style="text-align:center;width:100%;">
               <div class="msg" style="font-size:2em">
                 <%=t('search.loading')%>
               </div>
@@ -136,12 +129,7 @@
                             }
                             else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
                               hidden_elem.fadeIn();
-                            }
-
-                            var array_matches = hidden_elem.find('div[bs-img]');
-                            if(array_matches.length>0){ 
-                              $(array_matches[0]).backstretch($(array_matches[0]).attr("bs-img"));
-                            }
+                            }                            
                         },
                         complete: function(){
                           //when we complete one page and there is no scroll, there cannot be another call
@@ -200,47 +188,13 @@
           $('#search-all ul').trigger("scroll.pageless");
         });
 
-      <%end%>
-
-      re_apply_backstrech_on_search();
-      
-      $(".search .all_results").click(function(){
-        fix_backstretch();
-      });
-      $(".search .excursion").click(function(){
-        fix_backstretch();
-      });
-      $(".search .user").click(function(){
-        fix_backstretch();
-      });
-      $(".search .resource").click(function(){
-        fix_backstretch();
-      });
-      $(".search .event").click(function(){
-        fix_backstretch();
-      });
-
-
-    function fix_backstretch(){
-      $("#search-all div[fix-bs]").each(function() {
-        if($(this).css('display')!="none"){        
-          $(this).backstretch( $(this).attr("bs-img") );
-          $(this).removeAttr("fix-bs");
-        }        
-      });     
-    }
+      <%end%>      
 
     <% end %>
   </div>
     
-  <script>
-    $(function(){
-      $('.scroll-pane').jScrollPane();
-    });
-    $(document).ready(function(){
-     $(window).resize(re_apply_backstrech_on_search);
-     $(window).on('orientationchange', re_apply_backstrech_on_search);
-    });
-  </script>
+  <%content_for :javascript do%>
+    $('.scroll-pane').jScrollPane();
+  <%end%>
 
 </section>

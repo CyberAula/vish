@@ -1,6 +1,74 @@
 <% availableModels ||= available_models %>
 
-<script type="text/javascript">
+
+<script>
+  var pageless_state = {
+    "excursions":{
+      "url": "<%=user_url(profile_subject)%>/excursions",
+      "num_pages":0,
+      "current_page":0
+    },
+    "workshops":{
+      "url": "<%=user_url(profile_subject)%>/workshops",
+      "num_pages":0,
+      "current_page":0
+    },
+    "resources":{
+      "url": "<%= user_url(profile_subject) %>/resources",
+      "num_pages":0,
+      "current_page":0
+    },
+    "categories":{
+      "url": "<%= user_url(profile_subject) %>/categories",
+      "num_pages":0,
+      "current_page":0
+    },
+    "events":{
+      "url": "<%= user_url(profile_subject) %>/events",
+      "num_pages":0,
+      "current_page":0
+    },
+    "followers":{
+      "url": "<%= user_url(profile_subject) %>/followers",
+      "num_pages":0,
+      "current_page":0
+    },
+    "followings":{
+      "url": "<%= user_url(profile_subject) %>/followings",
+      "num_pages":0,
+      "current_page":0
+    }
+  };
+
+  function update_pageless_state(tab, num_pages, current_page){
+    pageless_state[tab].num_pages = num_pages;
+    pageless_state[tab].current_page = current_page;
+  };
+
+  function re_apply_pageless(tab){
+    $.pagelessStop(); //remove old pageless
+    $("#" + tab + "_tab_ready ul").pageless({
+      totalPages: pageless_state[tab].num_pages,
+      url: get_url_with_sort_by(tab),
+      currentPage: pageless_state[tab].current_page,
+      loader: '.loader_pagination',
+      end: function(){
+        $('.loader_pagination').hide();
+      }
+    });
+  };
+
+  function get_url_with_sort_by(tab){
+    var the_url = pageless_state[tab].url;
+    if (tab != "categories"){
+      the_url = the_url + "?sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
+    }
+    return the_url;
+  }; 
+
+</script>
+
+<%content_for :javascript do%>
 
   var excursions_tab_loaded = false;
   var workshops_tab_loaded = false;
@@ -9,8 +77,6 @@
   var categories_tab_loaded = false;
   var followers_tab_loaded = false;
   var followings_tab_loaded = false;
-
-  $(document).ready(function(){
 
     $("#excursions_tab").click(function(){
       updateWindowTopUrl($(this).attr("id"));
@@ -158,108 +224,8 @@
         re_apply_pageless("followings");
       }
     });
-   });
-</script>
 
-<script>
-  var pageless_state = {
-    "excursions":{
-      "url": "<%=user_url(profile_subject)%>/excursions",
-      "num_pages":0,
-      "current_page":0
-    },
-    "workshops":{
-      "url": "<%=user_url(profile_subject)%>/workshops",
-      "num_pages":0,
-      "current_page":0
-    },
-    "resources":{
-      "url": "<%= user_url(profile_subject) %>/resources",
-      "num_pages":0,
-      "current_page":0
-    },
-    "categories":{
-      "url": "<%= user_url(profile_subject) %>/categories",
-      "num_pages":0,
-      "current_page":0
-    },
-    "events":{
-      "url": "<%= user_url(profile_subject) %>/events",
-      "num_pages":0,
-      "current_page":0
-    },
-    "followers":{
-      "url": "<%= user_url(profile_subject) %>/followers",
-      "num_pages":0,
-      "current_page":0
-    },
-    "followings":{
-      "url": "<%= user_url(profile_subject) %>/followings",
-      "num_pages":0,
-      "current_page":0
-    }
-  };
-
-  function update_pageless_state(tab, num_pages, current_page){
-    pageless_state[tab].num_pages = num_pages;
-    pageless_state[tab].current_page = current_page;
-  };
-
-  function re_apply_pageless(tab){
-    $.pagelessStop(); //remove old pageless
-    $("#" + tab + "_tab_ready ul").pageless({
-      totalPages: pageless_state[tab].num_pages,
-      url: get_url_with_sort_by(tab),
-      currentPage: pageless_state[tab].current_page,
-      loader: '.loader_pagination',
-      end: function(){
-        $('.loader_pagination').hide();
-      }
-    });
-  };
-
-  function get_url_with_sort_by(tab){
-    var the_url = pageless_state[tab].url;
-    if (tab != "categories"){
-      the_url = the_url + "?sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
-    }
-    return the_url;
-  };
-
-  function re_apply_backstrech(tab){
-    $("#" + tab + "_tab_ready"  + " div[bs-img]").each(function(){
-      if($(this).parents(".tab-pane").css('display')!="none"){
-        $(this).backstretch($(this).attr("bs-img"));
-        $(this).attr("fix-bs", "false");
-      }else{
-        $(this).attr("fix-bs", "true");
-      }
-    });
-  };
-
-  $(window).on('resize.backstretch', set_fix_bs_on_hidden_tabs);
-  $(window).on('orientationchange.backstretch', set_fix_bs_on_hidden_tabs);
-
-
-  function set_fix_bs_on_hidden_tabs(){
-    $(".tab-pane:hidden").each(function(){
-      $(".tab-pane:hidden").find("div[bs-img]").attr("fix-bs","true");
-    });
-  };
-
-  $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function(e) {
-    fix_backstretch($(e.target).attr("href").substring(1));
-  });
-
-  function fix_backstretch(tab){
-    $("#" + tab +" div[fix-bs]").each(function(){
-      if($(this).parents(".tab-pane").css('display')!="none"){
-        $(this).backstretch($(this).attr("bs-img"));
-        $(this).removeAttr("fix-bs");
-      }
-    });
-  };
-
+  
   var canUseHistoryPushState = ((typeof history === "object")&&(typeof history.pushState == "function"));
   function updateWindowTopUrl(tabName){
     if(canUseHistoryPushState){
@@ -267,7 +233,8 @@
       window.history.pushState(undefined, undefined, newURL);
     }
   };
-</script>
+
+<%end%>
 
 
 <section class="info-profile">
@@ -342,11 +309,12 @@
           <% if params[:tab]== 'excursions' %>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'excursions/profile_excursions', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>
+          <%else%>
+            <div id="excursions_tab_ready"></div>
           <%end%>
 
-          <div id="excursions_tab_ready"></div>
           <div class="loader_pagination" style="display:none">
-            <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="pageless-loader" style="text-align:center;width:100%;">
               <div class="msg" style="font-size:2em">
                 <%=t('search.loading')%>
               </div>
@@ -362,11 +330,12 @@
           <%if params[:tab]== 'events'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'events/profile_events', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by] || default_sort_by }%>
+          <%else%>
+            <div id="events_tab_ready"></div>
           <%end%>
-
-          <div id="events_tab_ready"></div>
+          
           <div class="loader_pagination" style="display:none">
-            <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="pageless-loader" style="text-align:center;width:100%;">
               <div class="msg" style="font-size:2em">
                 <%=t('search.loading')%>
               </div>
@@ -378,14 +347,15 @@
 
       <% if availableModels.include? "Workshop" %> 
         <div class="tab-pane <%=params[:tab]=='workshops' ? 'active':''%>" id="tabWorkshops">
-          <%= render partial: 'users/order_by_dropdown_resources' %>
+          <%= render partial: 'users/order_by_dropdown_workshops' %>
           <% if params[:tab] == 'workshops'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'workshops/profile_workshops', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>
-          <%end%>
-          <div id="workshops_tab_ready"></div>
+          <%else%>
+            <div id="workshops_tab_ready"></div>
+          <%end%>          
           <div class="loader_pagination" style="display:none">
-            <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="pageless-loader" style="text-align:center;width:100%;">
               <div class="msg" style="font-size:2em">
                 <%=t('search.loading')%>
               </div>
@@ -401,10 +371,12 @@
           <% if params[:tab] == 'resources'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'repositories/profile_resources', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>
+          <%else%>
+            <div id="resources_tab_ready"></div>
           <%end%>
-          <div id="resources_tab_ready"></div>
+          
           <div class="loader_pagination" style="display:none">
-            <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="pageless-loader" style="text-align:center;width:100%;">
               <div class="msg" style="font-size:2em">
                 <%=t('search.loading')%>
               </div>
@@ -419,10 +391,12 @@
           <%if params[:tab] == 'categories'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'categories/profile_categories', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>
+          <%else%>
+            <div id="categories_tab_ready"></div>
           <%end%>
-          <div id="categories_tab_ready"></div>
+          
           <div class="loader_pagination" style="display:none">
-            <div id="pageless-loader" style="text-align:center;width:100%;">
+            <div class="pageless-loader" style="text-align:center;width:100%;">
               <div class="msg" style="font-size:2em">
                 <%=t('search.loading')%>
               </div>
@@ -435,7 +409,7 @@
       <div class="tab-pane <%=params[:tab]=='followers' ? 'active':''%>" id="tab5">
         <ul id="followers_ul"></ul>
         <div class="loader_pagination" style="display:none">
-          <div id="pageless-loader" style="text-align:center;width:100%;">
+          <div class="pageless-loader" style="text-align:center;width:100%;">
             <div class="msg" style="font-size:2em">
               <%=t('search.loading')%>
             </div>
@@ -447,7 +421,7 @@
       <div class="tab-pane <%=params[:tab]=='followings' ? 'active':''%>" id="tab6">
         <ul id="followings_ul"></ul>
         <div class="loader_pagination" style="display:none">
-          <div id="pageless-loader" style="text-align:center;width:100%;">
+          <div class="pageless-loader" style="text-align:center;width:100%;">
             <div class="msg" style="font-size:2em">
               <%=t('search.loading')%>
             </div>
@@ -460,8 +434,7 @@
   </div>
 </section>
 
-<script>
-  $(document).ready(function(){
+<%content_for :javascript do%>
     <% if params[:tab]=="excursions" %>
         excursions_tab_loaded = true;
         re_apply_pageless("excursions");
@@ -482,5 +455,4 @@
     <% elsif params[:tab] == "followers" %>
         $("#followers_tab").trigger("click");
     <%end%>
-  });
-</script>
+<%end%>

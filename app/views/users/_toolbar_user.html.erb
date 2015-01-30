@@ -76,8 +76,7 @@
   </div>
 </div>
 
-<script>
-  $(function() {
+  <%content_for :javascript do%>
     $("#showMore").click(function(){
       $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
       $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
@@ -92,7 +91,7 @@
       return false;
     });
 
-    $(function() {
+
       var sendMessage = $("input[name='send_message']");
       var send = $("input[type='button'][value='<%=t('mailboxer.send')%>']");
       $(sendMessage).addClass("hidden");
@@ -111,6 +110,5 @@
         $("#mesage-profile").removeAttr("data-toggle");
         $("#mesage-profile").removeAttr("data-remote");
       })
-    });
-  });
-</script>
+
+  <%end%>

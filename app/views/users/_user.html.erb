@@ -13,14 +13,18 @@
     <div class="badge-teacher-active"></div>
   <%end%>
   
-  <div class="container-img">
-      <div class="dummy dummy_user"></div>
-      <div class="element">
-      <div class="avatar">
-        <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
+
+    <!-- image/icon -->
+    <div class="container-img">
+      <div class="img-box resource-center">        
+      	<div class="avatar">
+       <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
+       </div>
       </div>
-      </div>
-  </div>
+    </div> 
+
+
+
 
   <div class="info-user">
     <div class="name-user">

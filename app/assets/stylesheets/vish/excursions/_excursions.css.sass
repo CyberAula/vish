@@ -43,6 +43,8 @@ section
     height: 100%
     opacity: 0.8
     background-image: url("items/malla2.png") !important
+    position: absolute
+    top: 0
     .draftstyle
       color: #666666
       position: absolute
@@ -57,11 +59,13 @@ section
 
 #editor_wrapper
   width: 100%
+  height: 100%
+  /*XXX TODO with fullscreen the next line breaks some cases when scaling*/
   text-align: center
   position: relative
   margin: auto
   display: block
-  padding-bottom: 15px
+  -webkit-transform-style: preserve-3d
   .popover-content
     p
       color: $gray
@@ -71,6 +75,7 @@ section
   text-align: right
 #presentation_editor_iframe
   margin: auto
+  -webkit-transform-style: preserve-3d
 
 #MetadataModal
   .modal-body

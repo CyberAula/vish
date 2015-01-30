@@ -7,13 +7,11 @@
     <% end %>
   </div>
   
-  <%= javascript_tag do %>
-    $(function() {
+  <%= content_for :javascript do %>
       SocialStream.SearchHeader.show();
       $("#search_button_mobile").on("click", function(){
         document.location= "/search?q=" + $("#qmobile").val();
       });
-    });
   <% end %>
 
 </section>

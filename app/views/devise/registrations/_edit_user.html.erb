@@ -43,7 +43,7 @@
 
   <div class="content settings_content collapse" id="email_form_content">
 
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :id=>"edit_email_form"} ) do |f| %>
       <div class="form_label">
         <%= f.label :email %>
       </div>
@@ -57,7 +57,7 @@
       </div>
 
       <div class="form_field">
-        <%= f.password_field :current_password, :class => "required form_tag" %>
+        <%= f.password_field :current_password, :class => "required form_tag", :id=>"user_current_password2" %>
       </div>
 
       <%= f.submit t('button.update'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>

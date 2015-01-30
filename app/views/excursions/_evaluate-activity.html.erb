@@ -57,7 +57,7 @@
       </div>
 
       <div class="tab-pane" id="suggestion_show">
-        <div class="recomended-mobile hidden-desktop" id="recomended_box">
+        <div class="recomended-mobile hidden-desktop" id="recomended_box_for_mobile">
           <div class="recomended-items">
             <ul class="small-box clearfix">
               <% @resource_suggestions .each do |resource| %>
@@ -73,47 +73,47 @@
 </div>
 
 <%unless Vish::Application.config.APP_CONFIG['loep'].nil? %>
-  <script type="text/javascript">
-    var evaluationTagShown = false;
-    $('a[data-toggle="tab"][href="#evaluation1"]').on('shown', function(e){
-      if(evaluationTagShown===false){
-        evaluationTagShown = true;
+  <%content_for :javascript do%>
+      var evaluationTagShown = false;
+      $('a[data-toggle="tab"][href="#evaluation1"]').on('shown', function(e){
+        if(evaluationTagShown===false){
+          evaluationTagShown = true;
 
-        var loepSettings = {};
-        loepSettings.action = "representation";
-        <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
-        loepSettings.domain = '<%=loepConfig["domain"]%>';
-        loepSettings.app = '<%=loepConfig["app_name"]%>';
-        loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
-        loepSettings.language = '<%=I18n.locale.to_s%>';
-        loepSettings.tokenURL = "/loep/session_token.json";
-        loepSettings.debug = false;
-          
-        <%unless @excursion.users_qscore.nil?%>
-          var learningLoepSettings = $.extend({}, loepSettings);
-          learningLoepSettings.evmethod = "wblts";
-          learningLoepSettings.containerDOM = $('#learning-eval-results');
-          learningLoepSettings.errorCallback = function(errorMsg){
-            $('#learning-eval-results').remove();
-          };
-          $('#learning-eval-results').show();
-          new LOEP.IframeAPI.instance(learningLoepSettings);
-        <%end%>
+          var loepSettings = {};
+          loepSettings.action = "representation";
+          <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
+          loepSettings.domain = '<%=loepConfig["domain"]%>';
+          loepSettings.app = '<%=loepConfig["app_name"]%>';
+          loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
+          loepSettings.language = '<%=I18n.locale.to_s%>';
+          loepSettings.tokenURL = "/loep/session_token.json";
+          loepSettings.debug = false;
+            
+          <%unless @excursion.users_qscore.nil?%>
+            var learningLoepSettings = $.extend({}, loepSettings);
+            learningLoepSettings.evmethod = "wblts";
+            learningLoepSettings.containerDOM = $('#learning-eval-results');
+            learningLoepSettings.errorCallback = function(errorMsg){
+              $('#learning-eval-results').remove();
+            };
+            $('#learning-eval-results').show();
+            new LOEP.IframeAPI.instance(learningLoepSettings);
+          <%end%>
 
-        <%unless true or @excursion.teachers_qscore.nil?%>
-          //Currently not shown
-          var teachingLoepSettings = $.extend({}, loepSettings);
-          teachingLoepSettings.evmethod = "wbltt";
-          teachingLoepSettings.containerDOM = $('#teaching-eval-results');
-          teachingLoepSettings.errorCallback = function(errorMsg){
-            $('#teaching-eval-results').remove();
-          };
-          $('#teaching-eval-results').show();
-          new LOEP.IframeAPI.instance(teachingLoepSettings);
-        <%end%>
-      }
-    });
-  </script>
+          <%unless true or @excursion.teachers_qscore.nil?%>
+            //Currently not shown
+            var teachingLoepSettings = $.extend({}, loepSettings);
+            teachingLoepSettings.evmethod = "wbltt";
+            teachingLoepSettings.containerDOM = $('#teaching-eval-results');
+            teachingLoepSettings.errorCallback = function(errorMsg){
+              $('#teaching-eval-results').remove();
+            };
+            $('#teaching-eval-results').show();
+            new LOEP.IframeAPI.instance(teachingLoepSettings);
+          <%end%>
+        }
+      });
+  <%end%>
 <%end%>
 
 <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>

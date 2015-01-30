@@ -1,29 +1,26 @@
 <li class="box-item event-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
   <!-- corner -->
   <%= link_to(event) do %>
-  <div class="corner-item">
-    <div class="corner-item2">
-      <div class="corner-color"></div>
-      <i class='icon-facetime-video'></i>
-    </div>
-    <div class="corner-background"></div>
-  </div>
-  
-  <!-- image/icon -->
-  <div class="container-img">
-    <div class="dummy"></div>
-    <div class="element resource-center">
-      <div class="img-box resource-center" id="event-<%=event.id%>" bs-img="<%=event_raw_thumbail(event)%>" >
-        <div class="event">
-          <i class='icon-facetime-video'></i>
-        </div>
+    <div class="corner-item">
+      <div class="corner-item2">
+        <div class="corner-color"></div>
+        <i class='icon-facetime-video'></i>
       </div>
+      <div class="corner-background"></div>
     </div>
-  </div>
+    
+    <!-- image/icon -->
+    <div class="container-img">
+        <div class="img-box resource-center" id="event-<%=event.id%>" >
+            <i class='icon-facetime-video'></i>
+        </div>
+    </div>
   <% end %>
+
   <script>
-  $("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
-  </script>    
+      document.getElementById("event-<%=event.id%>").style.backgroundImage = "url('<%=event_raw_thumbail(event)%>')";
+  </script>
+  
   <!-- Info -->
   <div class="info">
     <!-- Title -->

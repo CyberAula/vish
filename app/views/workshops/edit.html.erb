@@ -22,10 +22,10 @@
     <h3 class="title_WS main_title_WS"><%=@workshop.title%></h3>
     <!--avatar-->
     <div class="container-img_WS">
-      <div class="dummy"></div>
-      <div class="element resource-center">
-          <div bs-img="<%=@workshop.thumbnail_url%>" class="applyBackstretch img-box workshop_thumbnail" id=""></div>
-      </div>
+
+          <div style='background-image: url(<%=@workshop.thumbnail_url%>)' 
+            class="img-box resource-center workshop_thumbnail"></div>
+
     </div>
     <!--description-->
     <p class="description_WS"><%=@workshop.description%></p>
@@ -76,8 +76,7 @@
   <%end%>
 </ul>
 
-<script>
-  $(function(){
+<%content_for :javascript do%>
     $("li.toggleWorkshopActivity").click(function(e){
       var mainDiv = $(e.target).parents(".wa_activity_wrapper_edit").find(".wa_resource_wrapper")[0];
       if($(mainDiv).hasClass("wa_activity_closed")){
@@ -90,8 +89,7 @@
       e.stopPropagation();
       return false;
     });
-  });
-</script>
+<%end%>
 
 <!-- Add Workshop Activity -->
 
@@ -166,9 +164,7 @@
 </div>
 
 
-<script>
-  $(document).ready(function(){
-    <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => false } %>
+  <%content_for :javascript do%>
 
     $('#WorkshopActivities').on('shown', function(){
     });
@@ -254,10 +250,7 @@
       });
     };
 
-  });
-</script>
+    $(".actions_tooltip").tooltip({ placement: 'bottom'});
 
+<%end%>
 
-<script>
-  $(".actions_tooltip").tooltip({ placement: 'bottom'});
-</script>

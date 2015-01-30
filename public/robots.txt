@@ -5,6 +5,7 @@
 # Disallow: /
 
 User-agent: *
+Crawl-Delay: 50
 Disallow: /search
 Disallow: /excursions/new
 Disallow: /*/*/profile
@@ -16,6 +17,7 @@ Disallow: /users/*/categories
 Disallow: /spam_reports
 
 user-agent: AhrefsBot
+Crawl-Delay: 50
 Disallow: /search
 Disallow: /excursions/new
 Disallow: /*/*/profile

@@ -13,9 +13,8 @@
     <%= document_profile_subject.name + ": " + t('repository.title') %>
   <% end %>
 
-  <%= div_for document do %>
-    
-    <!--visor-->
+  
+  <!--visor-->
     <div class="box-show">
       <div class="container-visor">
         <div class="caja-elementos">
@@ -25,9 +24,13 @@
       </div>
     </div>
 
-    <!--recomended-->
-    <!-- No option[:models] mean all resources -->
-    <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,document,{:n=>16})} %>
+    <!-- Recommendations -->
+    <!-- No option[:models] on RecommenderSystem.resource_suggestions mean all resources -->
+    <% rsEngine = TrackingSystemEntry.getRandomRSEngine
+       rec = TrackingSystemEntry.getRSCode(rsEngine)
+       resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,document,{:n=>16, :recEngine => rsEngine, :track => true, :request => request})
+    %>
+    <%= render :partial => 'recommender/sidebar', :locals  => { :resources => resource_suggestions, :rec => rec  } %>
 
     <div class="description-activity">
       <!-- Tool tab -->
@@ -46,8 +49,6 @@
     <%if @contribution%>
       <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => document.contribution } %>
     <%end%>
-
-  <% end %>
 
 </section>
 

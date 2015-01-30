@@ -123,17 +123,17 @@ class Excursion < ActiveRecord::Base
     end
 
     #Copy SCORM assets (image, javascript and css files)
-    dir = "#{Rails.root}/vendor/plugins/vish_editor/app/scorm"
+    dir = "#{Rails.root}/lib/plugins/vish_editor/app/scorm"
     zip_folder(t.path,dir)
 
     #Add theme
-    themesPath = "#{Rails.root}/vendor/plugins/vish_editor/app/assets/images/themes/"
+    themesPath = "#{Rails.root}/lib/plugins/vish_editor/app/assets/images/themes/"
     theme = "theme1" #Default theme
     if json["theme"] and File.exists?(themesPath + json["theme"])
       theme = json["theme"]
     end
     #Copy excursion theme
-    zip_folder(t.path,"#{Rails.root}/vendor/plugins/vish_editor/app/assets",themesPath + theme)
+    zip_folder(t.path,"#{Rails.root}/lib/plugins/vish_editor/app/assets",themesPath + theme)
 
     t.close
   end
@@ -838,6 +838,17 @@ class Excursion < ActiveRecord::Base
   #################### 
 
   def afterPublish
+    
+    #Check if post_activity is public. If not, make it public and update the created_at param.
+    post_activity = self.post_activity
+    unless post_activity.nil? or post_activity.public?
+      #Update the created_at param.
+      post_activity.created_at = Time.now
+      #Make it public
+      post_activity.relation_ids = [Relation::Public.instance.id]
+      post_activity.save!
+    end
+
     #Try to infer the language of the excursion if it is not spcifiyed
     if (self.language.nil? or !self.language.is_a? String or self.language=="independent")
       self.inferLanguage
@@ -927,8 +938,12 @@ class Excursion < ActiveRecord::Base
         :number_of_slides => slide_count
       }
       
-      if !self.score_tracking.nil?
+      unless self.score_tracking.nil?
         rjson[:recommender_data] = self.score_tracking
+        rsEngineCode = TrackingSystemEntry.getRSCode(JSON(rjson[:recommender_data])["rec"])
+        unless rsEngineCode.nil?
+          rjson[:url] = controller.excursion_url(:id => self.id, :rec => rsEngineCode)
+        end
       end
 
       rjson

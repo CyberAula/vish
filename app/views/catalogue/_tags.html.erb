@@ -1,24 +1,40 @@
-<script type="text/javascript">
-  <%if @category%>
-    var category_shown = "<%=@category%>";
+<script>  
+  <%if is_home%>     
+    add_catalogue_clicks(); 
   <%else%>
-    var category_shown = null;
+    document.addEventListener("DOMContentLoaded", function(){  
+      add_catalogue_clicks();
+    });
   <%end%>
 
-  $(document).ready(function(){
-    $(".catalogue_category_link").click(function(event){
-      event.preventDefault();
+  function add_catalogue_clicks(){
+      $(".catalogue_category_link").click(function(event){
+        event.preventDefault();
 
-      var categoryId = $(this).attr("categoryId");
-      <%if is_home%>
-        window.location = "/catalogue/" + categoryId + "?back_home=true";      
-      <%else%>
-        window.location = "/catalogue/" + categoryId;      
-      <%end%>
-    });
-  });
+        var categoryId = $(this).attr("categoryId");
+        <%if is_home%>
+          window.location = "/catalogue/" + categoryId + "?back_home=true";      
+        <%else%>
+          window.location = "/catalogue/" + categoryId;      
+        <%end%>
+      });
+
+      $("#showMore_tags").click(function(){
+        $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
+        $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
+        if($("#showMore_tags").attr("status")=== "showMore"){
+          $("#showMore_tags").html('<a><%=t("excursion.actions.show_fewer")%></a>');
+          $("#showMore_tags").attr("status", "showFewer");
+        }
+        else{
+          $("#showMore_tags").html('<a><%=t("excursion.actions.show_more")%></a>');
+          $("#showMore_tags").attr("status", "showMore");
+        }
+        return false;
+      });
+    };
+
 </script>
-
 
 
 <section id="catalogue">
@@ -34,21 +50,3 @@
   </ul>
 </section>
 <button href="#" id="showMore_tags" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
-
-<script>
-  $(function(){
-    $("#showMore_tags").click(function(){
-      $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
-      $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
-      if($("#showMore_tags").attr("status")=== "showMore"){
-        $("#showMore_tags").html('<a><%=t("excursion.actions.show_fewer")%></a>');
-        $("#showMore_tags").attr("status", "showFewer");
-      }
-      else{
-        $("#showMore_tags").html('<a><%=t("excursion.actions.show_more")%></a>');
-        $("#showMore_tags").attr("status", "showMore");
-      }
-      return false;
-    });
-  });
-</script>

@@ -2,7 +2,7 @@
   
   <span class="order_by"><%=t('order_by.title')%></span>
   
-  <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="" data-toggle="dropdown">
+  <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy" type="button" data-toggle="dropdown">
     <i class="icon-dashboard"> </i>
     <%=t('order_by.popularity')%>
     <i class="icon-angle-down"></i>
@@ -45,7 +45,7 @@
 
 
 <script>
-  $(document).ready(function(){ 
+  document.addEventListener("DOMContentLoaded", function(){ 
     var param = "<%=params[:sort_by]%>";
 
     if(param && param!=""){
