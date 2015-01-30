@@ -39,7 +39,6 @@
     .container-img_WS
       display: inline-block
       position: relative
-      width: 15%
       float: left
       background-color: #EEE
       @include border-top-radius ($border-radius-base)
@@ -284,6 +283,7 @@
 
 ul.workshop_activities_list_edit
   padding-left: 0
+
 //toolbar-actions
 .wa_activity_actions,
 .wa_activity_edit_tools
@@ -369,8 +369,10 @@ ul.workshop_activities_list_edit
       &[type="button"]
         float: right
 
-.contributions_actions
+.contributions_actions > .contributions_content
   @include well
+
+
 // MODAL ADD NEW ACTIVITY
 // --------------------------------------------------
 #WorkshopActivities
@@ -604,8 +606,21 @@ form.edit_wa_assignment
   .contributions_content
     display: block
     float: left
-    padding: 5px 2.5% 10px
-    width: 95%
+    width: 100%
+    @include border-top-radius (0px)
+    border-top: 1px solid $border-color
+    .actions_contributions_show_object
+      margin-top: 15px
 .workshop_contribute_footer
   width: 100%
   height: 35px
+
+
+.header_workshop
+  .container-img_WS
+    width: 150px
+    height: 150px
+    div.workshop_thumbnail
+      background-size: 150px 150px
+      width: 150px
+      height: 150px
