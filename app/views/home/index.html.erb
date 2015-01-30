@@ -97,6 +97,10 @@
       }
   };
 
+  var net_tab_loaded = false;
+  var catalogue_tab_loaded = false;
+  var home_tab_loaded = false;
+
   ///////////////
   // Pageless Ajax Handlers
   ///////////////
@@ -163,11 +167,9 @@
 
 <%content_for :javascript do%>
 
-
     ///////////////
     // My Network
     ///////////////
-    var net_tab_loaded = false;
     $("#net_tab").click(function(){
       if(net_tab_loaded===false){
         $('#loader_pagination_net').show();
@@ -191,7 +193,6 @@
     ///////////////
     // Catalogue
     ///////////////
-    var catalogue_tab_loaded = false;
     $("#catalogue_tab").click(function(){
       $.pagelessStop();
       if(catalogue_tab_loaded===false){
@@ -207,7 +208,6 @@
     ///////////////
     // Home
     ///////////////
-    var home_tab_loaded = false;
     $("#home_tab").click(function(){
       if(home_tab_loaded===false){
         $('#loader_pagination_home').show();
@@ -228,6 +228,15 @@
       }   
     });
 
+    //Reapply backstrech depending on the tab loaded
+    <%if !params[:tab] || params[:tab]=="home"%>
+      home_tab_loaded = true;
+    <%elsif params[:tab]=="net"%>
+      net_tab_loaded = true;
+    <%else%>
+      $("#catalogue_tab").click();
+      catalogue_tab_loaded = true;
+    <%end%>
 <%end%>
 
 
