@@ -35,6 +35,7 @@
           
         <% end %>
         </ul>
+
      </div>
     <p class="information"><%= t("category.categorized_like")%></p>
     <%tagArray= generic_categories.map{|e| e.title}%>
@@ -71,6 +72,9 @@
       </ul>
     </div>
 
+<div id="divrandom">
+
+</div>
   </div>
   <div class="modal-footer">
     <button id="cancel_cat_button" class="btn btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>
@@ -149,5 +153,11 @@
         appliedTags.push($(elem).text());
        });
       });
+
+$(document).ready( function() {
+    $('#divrandom').fileTree({ root: '/some/folder/' }, function(file) {
+        alert(file);
+    });
+});
 
 <%end%>

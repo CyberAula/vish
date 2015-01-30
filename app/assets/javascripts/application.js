@@ -28,5 +28,6 @@
 //= require social_stream-events
 //= require bootstrap-dropdown
 //= require bootstrap-datetimepicker.min
+//= require jqueryfiletree
 //= require_tree .
 
