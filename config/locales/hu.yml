@@ -631,6 +631,8 @@ hu:
         editing_details: "Szerkesztés workshop részletek"
         editing_main: "Workshop szerkesztése"
         show_main: "Workshop térkép"
+  ViSHCompetition13:
+    title: "#ViSHCompetition2013"
   writing:
     actions:
       add: "Szöveg hozzáadása"

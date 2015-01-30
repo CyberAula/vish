@@ -1,47 +1,24 @@
 #winners
-  @include make-xs-column(12, $gutter: $grid-gutter-width)
-  @include make-sm-column(12, $gutter: $grid-gutter-width)
-  @include make-md-column(12, $gutter: $grid-gutter-width)
-  @include make-lg-column(12, $gutter: $grid-gutter-width)
   .tabexcursions
-    padding-top: 1%
-    padding-bottom: 1%
-    position: relative
-    @include make-xs-column(12, $gutter: $grid-gutter-width)
-    @include make-sm-column(12, $gutter: $grid-gutter-width)
-    @include make-md-column(12, $gutter: $grid-gutter-width)
-    @include make-lg-column(12, $gutter: $grid-gutter-width)
-    display: block
-    float: left
     margin-bottom: 3%
     margin-top: 0
     border-bottom: 1px solid $gray-light
     border-top: 1px solid $gray-light
     text-align: center
+    clear: both
     .caret1
-      margin-top: 1.5%
-      margin-right: 2%
+      margin-top: 3px
+      margin-right: 4px
       border-top: 4px solid $gray-darker
     .caret2
-      margin-top: 1.5%
-      margin-left: 2%
+      margin-top: 3px
+      margin-left: 4px
       border-top: 4px solid $gray-darker
   #banner
-    float: left
-    position: relative
-    @include make-xs-column(12, $gutter: $grid-gutter-width)
-    @include make-sm-column(12, $gutter: $grid-gutter-width)
-    @include make-md-column(12, $gutter: $grid-gutter-width)
-    @include make-lg-column(12, $gutter: $grid-gutter-width)
-
     img
-      width: 100%
+      @include img-responsive
   .info_competition
     display: block
-    @include make-xs-column(12, $gutter: $grid-gutter-width)
-    @include make-sm-column(12, $gutter: $grid-gutter-width)
-    @include make-md-column(12, $gutter: $grid-gutter-width)
-    @include make-lg-column(12, $gutter: $grid-gutter-width)
     margin: 20px auto 40px
     button.ModalPrizes
       width: auto
@@ -53,13 +30,9 @@
   //podium   
   #podium
     display: block
-    position: relative
-    float: none !important
-    @include make-xs-column(12, $gutter: $grid-gutter-width)
-    @include make-sm-column(12, $gutter: $grid-gutter-width)
-    @include make-md-column(10, $gutter: $grid-gutter-width)
-    @include make-lg-column(10, $gutter: $grid-gutter-width)
-    margin: 0 auto
+    clear: both
+    width: 96%
+    @include center-block
     .podiuminside
       @include make-xs-column(12, $gutter: $grid-gutter-width)
       @include make-sm-column(12, $gutter: $grid-gutter-width)
@@ -90,6 +63,8 @@
         width: 33.3%
         height: 100%
         float: left
+        @media (max-width: $screen-sm)
+          width: 100%
 
         .entities
           width: 100%
@@ -100,7 +75,11 @@
             display: block
             float: none !important
             width: 70% !important
-            @include item
+            @include items
+            li
+              width: 100%
+            
+
 
 
         .podiumart
@@ -156,104 +135,10 @@
 
 
 
-
-
-
-  #podium-small
-    display: block
-    position: relative
-    float: left
-    width: 100%
-    margin: 20px auto
-
-    .podiuminside1
-      border: 2px solid gold
-    .podiuminside2
-      border: 2px solid silver
-    .podiuminside3
-      border: 2px solid #CD7F32
-
-    .podiuminside1,
-    .podiuminside2,
-    .podiuminside3
-      display: block
-      position: relative
-      float: left
-      width: 100%
-      margin: 20px auto
-      background: url(competition/noisy.png) -19px top repeat
-      background: url(competition/noisy.png) -19px top repeat, -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%)
-      background: url(competition/noisy.png) -19px top repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5))
-      background: url(competition/noisy.png) -19px top repeat, -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
-      background: url(competition/noisy.png) -19px top repeat, -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
-      background: url(competition/noisy.png) -19px top repeat, -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
-      background: url(competition/noisy.png) -19px top repeat, linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%)
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 )
-      @include border-top-radius ($border-radius-base)
-      @include border-bottom-radius ($border-radius-base)
-      .podcircle1,
-      .podcircle2,
-      .podcircle3
-        position: absolute
-        left: 20px
-        top: 20px
-        h2
-          //font-family: Garamond, serif
-          //line-height: 20px
-          //color: #fff
-          //font-weight: bold
-          //font-size: 20px
-          //text-shadow: 0px 0px 0 rgb(231,231,231),1px 1px 0 rgb(217,217,217),2px 2px 0 rgb(203,203,203),3px 3px 0 rgb(189,189,189),4px 4px 0 rgb(175,175,175), 5px 5px 0 rgb(161,161,161),6px 6px 5px rgba(0,0,0,0.9),6px 6px 1px rgba(0,0,0,0.5),0px 0px 5px rgba(0,0,0,.2)
-          border-radius: 50%
-          background-color: $white
-          font-weight: lighter
-          width: 50px
-          height: 50px
-          float: left
-          display: block
-          font-family: $corporate-font-family-sans-serif-Medium
-          color: $white
-          font-size: 40px
-          text-align: center
-          margin: 0
-      .podcircle3
-        h2
-          background-color: #CD7F32
-      
-      .podcircle2
-        h2
-          background-color: silver
-
-      .podcircle1
-        h2
-          background-color: gold
-
-      .entities
-        width: 50%
-        display: block
-        float: none
-        margin: 20px auto
-
-        ul
-          margin: 0 auto !important
-          display: block
-          float: none !important
-          width: 100% !important
-          @include item
-
-
-
-
-
   #subjectwinners
-    float: none
-    width: 90%
-    position: relative
-    display: block
-    margin: 0 auto
+    float: left
     padding-bottom: 4%
     .subrow
-      
       width: 45%
       margin: 2.5%
       display: inline-block
@@ -282,7 +167,7 @@
       section
         display: block
         width: 45%
-        margin: 2.5%
+        margin: 0 2.5%
         float: left
         position: relative
         .badimg
@@ -297,31 +182,36 @@
           width: 100%
 
   #participants
-    float: left
-    position: relative
-    @include make-xs-column(12, $gutter: $grid-gutter-width)
-    @include make-sm-column(12, $gutter: $grid-gutter-width)
-    @include make-md-column(12, $gutter: $grid-gutter-width)
-    @include make-lg-column(12, $gutter: $grid-gutter-width)
+    clear: both
     .sign_up
-      font-family: $corporate-font-family-sans-serif-Regular
-      font-size: 17px !important
-      padding: 1% !important
-      border: 1px solid $gray-lighter-extra
-      @include border-top-radius ($border-radius-base)
-      @include border-bottom-radius ($border-radius-base)
-      background-color: $brand-secundary
-      margin-right: 10px
-      background-image: none
-      margin-left: 10px
-      color: $white
-      a 
-        color: $white
-        &:hover,&:active,&:focus
-          text-decoration: none 
-          outline: none    
-      &:hover
-        background-color: lighten($brand-secundary, 10%) 
+      margin: 0 auto
+      &:hover 
+        color: $white  
+  
+#show_items
+  .recomended
+    float: left
+    width: 100%
+    ul.items
+      margin-top: 0px
+      margin-bottom: 0px
+  &:hover
+    .badimg  
+      @include transition(border .2s ease-in-out)
+      @include box-shadow (0 2px 8px 0px rgba(0, 0, 0, 0.03))
+      @include transition (all 0.2s ease 0s)
+      transform: scale(1.05)
+      -ms-transform: scale(1.05)
+      -webkit-transform: scale(1.05) 
+  .badimg 
+    &:hover
+    .recomended 
+      @include transition(border .2s ease-in-out)
+      @include box-shadow (0 2px 8px 0px rgba(0, 0, 0, 0.03))
+      @include transition (all 0.2s ease 0s)
+      transform: scale(1.05)
+      -ms-transform: scale(1.05)
+      -webkit-transform: scale(1.05) 
 #contest
   .tabexcursions
     position: relative
@@ -352,23 +242,15 @@
     ul
       @include items
 
-@media (min-width: 769px)
-  #podium-small
-    display: none !important
 
 @media (max-width: 768px)
   #subjectwinners
-
     width: 100% !important
     .subrow
-      width: 95% !important
+      width: 100% !important
       margin: 2.5% auto !important
       display: inline-block !important
       float: left !important
-  #podium
-    display: none !important
-  #podium-small
-    display: block !important
 
 
 @media (max-width: 480px)
@@ -376,7 +258,7 @@
     .subrow
       section
         width: 95% !important
-  #podium-small
+  #podium
     .entities
       width: 90% !important
 

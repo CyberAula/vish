@@ -57,7 +57,7 @@
 
         <div class="podiuminside1">
           <div class="entities">
-            <ul>
+            <ul class="items">
               <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } unless Excursion.find_by_id(560).nil? %>
             </ul>
           </div>
@@ -71,7 +71,7 @@
 
         <div class="podiuminside2">
           <div class="entities">
-            <ul>
+            <ul class="items">
               <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } unless Excursion.find_by_id(515).nil? %>
             </ul>
           </div>
@@ -85,7 +85,7 @@
 
         <div class="podiuminside3">
           <div class="entities">
-            <ul>
+            <ul class="items">
               <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } unless Excursion.find_by_id(659).nil? %>
             </ul>
           </div>
@@ -100,55 +100,6 @@
     </div>
   </div>
 </div>
-
-
-
-<div id="podium-small">
-    <div class="container-fluid">
-      <div class="row">
-
-        <div class="podiuminside1">
-            <div class="podcircle1">
-              <h2>1</h2>
-            </div>
-          <div class="entities">
-            <ul>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } unless Excursion.find_by_id(560).nil? %>
-            </ul>
-          </div>
-        </div>
-
-        <div class="podiuminside2">
-            <div class="podcircle2">
-              <h2>2</h2>
-            </div>
-          <div class="entities">
-            <ul>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } unless Excursion.find_by_id(515).nil? %>
-            </ul>
-          </div>
-
-        </div>
-
-        <div class="podiuminside3">
-          <div class="podcircle3">
-            <h2>3</h2>
-          </div>
-          <div class="entities">
-            <ul>
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } unless Excursion.find_by_id(659).nil? %>
-            </ul>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-</div>
-
-
-
-
 
 
 
@@ -495,7 +446,7 @@
 </div>
 <div id="participants">
   <div class="tabexcursions">
-    <a class="sign_up btn" href="/contest_all"><%=t('contest.viewalltag')%></a>
+    <a class="sign_up btn btn-info" href="/contest_all"><%=t('contest.viewalltag')%></a>
   </div>
 </div>
 </div>

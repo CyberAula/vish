@@ -30,18 +30,15 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-
   revision: 7910484dabc5616f15d2bc3430152f5f64efc78a
   ref: 7910484dabc5616f15d2bc3430152f5f64efc78a
   branch: vish-b3
-
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.4.1)
       ancestry (~> 1.2.3)
       avatars_for_rails (~> 1.1.4)
       bootstrap-sass (= 3.1.1.0)
-
       cancan (~> 1.6.7)
       deep_merge
       deface (~> 0.9.1)

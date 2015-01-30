@@ -679,6 +679,8 @@ de:
         editing_details: "Editing Workshop Details"
         editing_main: "Editing Workshop"
         show_main: "Workshop zu zeigen"
+  ViSHCompetition13:
+    title: "#ViSHCompetition2013"  
   writing:
     actions:
       add: "Hinzufügen von text"

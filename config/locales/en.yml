@@ -990,6 +990,8 @@ en:
         editing_details: "Editing workshop details"
         editing_main: "Editing Workshop"
         show_main: "Show workshop"
+  ViSHCompetition13:
+    title: "#ViSHCompetition2013"  
   writing:
     actions:
       add: "Add text"

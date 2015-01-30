@@ -607,6 +607,8 @@ nl:
         editing_details: "Workshop details bewerken"
         editing_main: "Workshop bewerken"
         show_main: "Toon workshop"
+  ViSHCompetition13:
+    title: "#ViSHCompetition2013"
   writing:
     actions:
       add: "Tekst toevoegen"

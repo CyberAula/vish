@@ -598,6 +598,8 @@ fr:
         editing_details: "Montage workshop détails"
         editing_main: "Montage Workshop"
         show_main: "Voir le workshop"
+  ViSHCompetition13:
+    title: "#ViSHCompetition2013"  
   writing:
     actions:
       add: "Ajouter du texte"

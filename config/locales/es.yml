@@ -993,7 +993,8 @@ es:
         editing_details: "Editando detalles workshop"
         editing_main: "Editando workshop"
         show_main: "Workshop"
-
+  ViSHCompetition13:
+    title: "#ViSHCompetition2013"
   writing:
     actions:
       add: "Añadir texto"

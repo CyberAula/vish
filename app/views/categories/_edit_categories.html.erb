@@ -25,7 +25,7 @@
 
 		<div class="actions">
 			<button type="button" class="btn btn-for-undo " data-toggle="button">
-				<i class="icon-remove-sign"></i>
+				<i class="fa fa-remove"></i>
 				<%=t('cancel')%>
 			</button>
 			<button type="button" class="btn btn-primary btn-for-categorize2 " data-toggle="button">
@@ -140,8 +140,8 @@
 				 	$(".delete p").text("<%=t('categories.dragandrop.uncategorize')%>");
 				 }
 
-				 $(ui.item).width($(ui.item).width()*0.8);
-				 $(ui.item).height($(ui.item).height()*0.8);
+				 $(ui.item).width($(ui.item).width()*1);
+				 $(ui.item).height($(ui.item).height()*1);
 			},
 			stop:function(event, ui){
 				$(".delete p").text("<%=t('categories.dragandrop.trash')%>");
