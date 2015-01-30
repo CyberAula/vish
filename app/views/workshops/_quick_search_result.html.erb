@@ -1,15 +1,1 @@
-<div class="quick_search">
-  <div class="photo">
-    <%= link_to(workshop) do %>
-      <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
-    <% end %>
-  </div>
-  <div class="data">
-    <div class="name">
-      <%= link_to workshop.title, workshop %>
-    </div>
-    <div class="author"> 
-      <%= link_to workshop.author.name, workshop.author.subject %>
-    </div>
-  </div>
-</div>
+<%= render partial: "workshops/workshop", locals: { workshop: workshop, :prefix_id => prefix_id} %>
