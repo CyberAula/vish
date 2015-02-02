@@ -1,0 +1,85 @@
+<% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
+<% icon = profile_subject_is_current? ? "pencil" : "dashboard"%>
+
+<div class="dropdown order_by_selector" li_selected="<%=default_sort_by%>" id="order_by_selector_workshops">
+  <div class="toolbar_nav-tab">
+    <span class="order_by"><%=t('order_by.title')%></span>
+    
+    <button class="btn dropdown-toggle sr-only dropdownMenuOrdBy" type="button" id="dropdownMenuOrdByworkshops" data-toggle="dropdown"><i class="icon-<%=icon%>"></i> <span><%=t('order_by.' + default_sort_by)%></span>
+      <i class="icon-angle-down"></i>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+
+
+
+      <li>
+          <a href="#" onclick="workshops_dropdown_select('popularity');" sort-by-key='popularity'> 
+            <i class="icon-dashboard"></i>
+            <span><%=t('order_by.popularity')%> </span>
+          </a>
+      </li>
+      <li>
+        <a href="#" onclick="workshops_dropdown_select('updated_at');" sort-by-key='updated_at'>
+          <i class="icon-pencil"></i>
+          <span><%=t('order_by.updated_at')%> </span>
+        </a>
+      </li>
+      <li>
+        <a href="#" onclick="workshops_dropdown_select('created_at');" sort-by-key='created_at'>
+          <i class="icon-bolt"></i>
+          <span><%=t('order_by.created_at')%> </span>
+        </a>
+      </li>
+      <li>
+          <a href="#" onclick="workshops_dropdown_select('visits');" sort-by-key='visits'>
+            <i class="icon-eye-open"></i> 
+            <span><%=t('order_by.visits')%> </span>
+          </a>
+      </li>
+      <li>
+          <a href="#" onclick="workshops_dropdown_select('favorites');" sort-by-key='favorites'>
+            <i class="icon-star"></i> 
+            <span><%=t('order_by.favorites')%> </span>
+          </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<%= content_for :javascript do %>
+ 
+  var param = "<%=params[:sort_by]%>";
+
+  if(param && param!=""){
+    if(param=="ranking"){
+      param = "popularity";
+    }
+    var value = $("#order_by_selector_workshops .dropdown-menu [sort-by-key="+param+"]").html();
+    $("#dropdownMenuOrdByworkshops").html(value + '<i class="icon-angle-down"></i>'); 
+  }
+  
+<%end%>
+
+<script>
+var workshops_dropdown_select = function(option) {
+  $("#workshops_tab_ready").html("");
+  $('.loader_pagination').show();
+  $.ajax({
+      type : "GET",
+      url : "<%= user_url(profile_subject) %>/workshops?sort_by=" + option,
+      success : function(html) {
+        $("#order_by_selector_workshops").attr("li_selected", option);
+        var value = $("#order_by_selector_workshops .dropdown-menu [sort-by-key="+option+"]").html();
+        $("#dropdownMenuOrdByworkshops").html(value + '<i class="icon-angle-down"></i>');
+        $('.loader_pagination').hide();      
+        $("#workshops_tab_ready").replaceWith(html);
+        re_apply_pageless("workshops");
+      },
+      error: function(){
+        //console.log("error loading workshops");
+     }
+    });
+}
+
+</script>

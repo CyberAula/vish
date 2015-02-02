@@ -6,11 +6,19 @@
 <% end %>
 
 <script>
-	$(document).ready(function(){		
+  <%if request.xhr?%>
+    force_update_pageless();
+  <%else%>
+    document.addEventListener("DOMContentLoaded", function(){  
+      force_update_pageless();
+    });
+  <%end%>
+
+	function force_update_pageless(){
 		update_pageless_state("net", <%=resources.num_pages%>, <%=resources.current_page%>);
 		re_apply_pageless("net");
 		$("footer#footer").addClass("fixed-bottom");
 		$("#wrap").addClass("wrap-when-fixed-bottom");
-	});
+	};
 </script>
 

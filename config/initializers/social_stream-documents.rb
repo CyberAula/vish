@@ -7,7 +7,7 @@ SocialStream::Documents.setup do |config|
     :"500" => ["500>"]
   }
 
-  config.audio_styles = { }
+  config.audio_styles = {}
   config.audio_processors = []
   
   if VishConfig.getAvailableServices.include? "MediaConversion"
@@ -20,7 +20,7 @@ SocialStream::Documents.setup do |config|
   end
 
   #Configure video thumbnails
-  config.video_styles = { }
+  config.video_styles = {}
   config.video_processors = []
 
   if VishConfig.getAvailableServices.include? "MediaConversion"
@@ -33,22 +33,6 @@ SocialStream::Documents.setup do |config|
 
 
   #  List of mime types that have an icon defined
-
-  # config.icon_mime_types  = {
-  #    default: :default,
-  #    types: [
-  #      :text, :image, :audio, :video
-  #    ],
-  #    subtypes: [
-  #      :txt, :ps, :pdf, :sla, 
-  #      :odt, :odp, :ods, :doc, :ppt, :xls, :rtf,
-  #      :rar, :zip,
-  #      :jpeg, :gif, :png, :bmp, :xcf,
-  #      :wav, :ogg, :webma, :mpeg,
-  #      :flv, :webm, :mp4
-  #    ]
-  #  }
-
   config.icon_mime_types  = {
     default: :default,
     types: [

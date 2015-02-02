@@ -1,7 +1,7 @@
 <!-- insert_after 'code[erb-loud]:contains("form_for")' -->
 
 <script>
-  $(document).ready(function(){
+  document.addEventListener("DOMContentLoaded", function(){
     $("#edit_picture_<%=@event.poster.id%> input[name='commit']").addClass("hidden");
   });
 

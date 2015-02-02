@@ -9,11 +9,9 @@
 </head>
 <body>
 
-  <script type="text/javascript">
-    $(document).ready(function(){
+  <%content_for :javascript do%>
       VASearch.init({locale: 'en', draw: "boxes", allowAddInstance:true});
-    });
-  </script>
+  <%end%>
 
   <div id="asearch_header">
     <div class="search">

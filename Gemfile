@@ -1,6 +1,7 @@
+#ruby '2.2.0'
 source 'http://rubygems.org'
 
-gem 'rails', '= 3.2.14'
+gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => "3-2-stable"
 
 #Database Adapters
 gem 'sqlite3', '= 1.3.9'
@@ -13,10 +14,10 @@ gem 'coffee-rails', '= 3.2.2'
 gem 'uglifier', '= 1.2.3'
 gem 'jquery-rails', '= 3.1.0'
 gem 'jquery-ui-rails', '= 4.1.2'
-gem 'json', '= 1.7.4'
+gem 'json', '= 1.8.1'
 gem 'sinatra', '= 1.3.2'
 gem 'selenium-webdriver', '= 2.30.0'
-gem 'god', '= 0.13.4'
+gem 'god', :git => 'git://github.com/mojombo/god.git', :ref => 'a0602dda2e767f2b711e37bf2d4199c0614af480'
 gem 'redis', '= 3.0.7'
 gem 'resque', '= 1.23.1'
 gem 'rmagick', '=2.13.2'
@@ -26,7 +27,7 @@ gem 'rspec-rails', '= 2.9.0'
 gem 'net-ssh', '= 2.4.0'
 gem 'shortener', '= 0.3.0'
 gem 'rubyzip', '= 0.9.9'
-gem 'pry-debugger', '= 0.2.2'
+gem 'pry', '= 0.9.12.6'
 gem 'rest-client', '= 1.6.7'
 gem 'pdf-reader', '= 1.3.3'
 gem 'avatars_for_rails', '= 1.1.4'
@@ -41,6 +42,7 @@ gem 'hashie', '= 2.1.2'
 gem 'detect_language', '=1.0.5'
 gem 'faker', '= 1.4.3'
 gem 'acts-as-taggable-on', '= 2.4.1'
+gem 'test-unit', '= 3.0.9'
 
 #Gems from Git repositories
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git', :ref => '2602bf1'
@@ -59,7 +61,7 @@ if ENV['FORCE_LOCAL_SS']
     gem 'social_stream-events'
   end
 else
-  git 'git://github.com/ging/social_stream.git', branch: "vish", ref: "4a744f26549041726a7c0177d351504554be6837" do
+  git 'git://github.com/ging/social_stream.git', branch: "vish", ref: "c945c699936e4e9389802978ba11ee3b7e7d9a97" do
     gem 'social_stream-base'
     gem 'social_stream-documents'
     gem 'social_stream-linkser'
@@ -69,7 +71,7 @@ else
 end
 
 #for INVITATION ONLY
-gem 'devise_invitable', '~> 1.1.8'
+gem 'devise_invitable', '= 1.1.8'
 
 # $ export FORCE_LOCAL_SCORM=scormGemPath
 if ENV['FORCE_LOCAL_SCORM']
@@ -94,3 +96,6 @@ group :test do
   gem 'factory_girl', '= 2.6'
   gem 'capybara', '= 2.3.0'
 end
+
+
+#gem 'newrelic_rpm'

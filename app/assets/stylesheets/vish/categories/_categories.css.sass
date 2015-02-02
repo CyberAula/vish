@@ -1,3 +1,17 @@
+#options-modal
+  i
+    color: $grayLight
+    margin-right: 10px
+  .radio, .checkbox
+    margin-left: 20px
+    min-height: 20px
+    padding-left: 20px
+  label
+    color: $gray
+
+
+
+
 #category
   .category_info
     margin-bottom: 20px
@@ -50,6 +64,8 @@
         @include border-bottom-radius(0)
         overflow: hidden
 
+        .category_thumb
+          display: none /* old thumbail */
         .container-img-categorie_0
           width: 49%
           float: left
@@ -68,13 +84,13 @@
         .container-img-categorie_1,
         .container-img-categorie_2,
         .container-img-categorie_3,
-          display: inline-block
           position: relative
-          border-radius: none
-          background-color: #C4C4C4
-          .dummy-categorie
-            padding-top: 75% /* 4:3 aspect ratio */
-          .element-categorie
+          background-color: $grayLighter
+          &:before
+            content: ""
+            display: block
+            padding-top: 75%
+          .img-box-categorie
             position: absolute
             top: 0
             bottom: 0
@@ -83,14 +99,18 @@
             overflow: hidden
             text-align: center
             width: 100%
-            .img-box-categorie
-              width: 100%
-              padding-bottom: 75%
-              float: left
-              img
-                float: left
-                width: 100%
-                height: 100%
+            background-repeat: no-repeat
+            background-position: center center
+            background-attachment: scroll
+            background-size: cover
+            border: none
+            i
+              font-size: 20px
+              color: $secondColor
+              &:hover
+                text-decoration: none
+
+            
         .container-img-categorie
           padding-bottom: 0.3%
           display: inline-block
@@ -395,3 +415,7 @@ div.category_form_wrapper
       font-size: 14px
       float: left
       clear: both
+
+.main-categories-space
+  ul
+    margin-left: 0px !important

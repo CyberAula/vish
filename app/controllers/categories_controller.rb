@@ -177,6 +177,9 @@ class CategoriesController < ApplicationController
               dragged.object.parent_id = receiver.object.id
               dragged.object.save!
             else
+              #Dragged is not a category, add it to receiver.
+              receiver.object.insertPropertyObject(dragged)
+              
               #notify for leaving a category container
               unless the_category.nil?
                 the_category.deletePropertyObject(dragged)

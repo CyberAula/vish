@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20150126095038) do
+=======
+ActiveRecord::Schema.define(:version => 20150123095038) do
+>>>>>>> 2e26e6ee4e711cc9cbaa308a250ada0efb060a18
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -120,7 +124,7 @@ ActiveRecord::Schema.define(:version => 20150126095038) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
-    t.string   "email",                 :default => "",         :null => false
+    t.string   "email",                 :default => "",    :null => false
     t.string   "slug"
     t.string   "subject_type"
     t.boolean  "notify_by_email",       :default => true
@@ -136,7 +140,7 @@ ActiveRecord::Schema.define(:version => 20150126095038) do
     t.boolean  "is_mve",                :default => false
     t.integer  "rank_mve",              :default => 0
     t.boolean  "is_admin",              :default => false
-    t.text     "category_order",        :default => "--- []\n", :null => false
+    t.text     "category_order",                           :null => false
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"

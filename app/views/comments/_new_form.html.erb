@@ -1,10 +1,10 @@
-<%= form_for Comment.new(:owner_id => owner_id, :_activity_parent_id => _activity_parent_id),:remote => true do |f| %>
+<%= form_for Comment.new(:owner_id => owner_id, :_activity_parent_id => _activity_parent_id),:remote => true, :html => { :id => "new_comment_on_#{_activity_parent_id}" } do |f| %>
 	
-  <%= f.hidden_field :owner_id %>
+  <%= f.hidden_field :owner_id, :id => "comment_owner_id_" +  _activity_parent_id.to_s %>
   
-  <%= f.hidden_field :_activity_parent_id %>
+  <%= f.hidden_field :_activity_parent_id, :id => "comment__activity_parent_id_" +  _activity_parent_id.to_s %>
     
-  <%= f.text_area :text, :rows => 1, :placeholder => t('comment.input')  %>
+  <%= f.text_area :text, :rows => 1, :placeholder => t('comment.input'), :id => "comment_text_" +  _activity_parent_id.to_s %>
 
   <%= f.submit t('activity.to_comment'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
 

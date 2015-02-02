@@ -1,9 +1,6 @@
-require 'search_help_methods'
-
 class ExcursionsController < ApplicationController
 
   require 'fileutils'
-  include SearchHelpMethods
 
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
@@ -36,7 +33,12 @@ class ExcursionsController < ApplicationController
             redirect_to "/"
           end
         else
-          @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})
+          tr = TrackingSystemEntry.trackRLOsInExcursions(params["rec"],@excursion,request,current_subject)
+          @tracking_system_entry_id = tr.id unless tr.nil?
+          
+          rsEngine = TrackingSystemEntry.getRandomRSEngine
+          @rec = TrackingSystemEntry.getRSCode(rsEngine)
+          @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion], :recEngine => rsEngine, :track => true, :request => request})
           render
         end
       }
@@ -215,7 +217,7 @@ class ExcursionsController < ApplicationController
   def iframe_api
     respond_to do |format|
       format.js {
-        render :file => "#{Rails.root}/vendor/plugins/vish_editor/app/assets/javascripts/VISH.IframeAPI.js",
+        render :file => "#{Rails.root}/lib/plugins/vish_editor/app/assets/javascripts/VISH.IframeAPI.js",
           :content_type => 'application/javascript',
           :layout => false
       }
@@ -278,17 +280,23 @@ class ExcursionsController < ApplicationController
     end
 
     # Uncomment this block to activate the A/B testing
-    # A/B Testing: 50% of the requests will be attended by the RS, the other 50% will be attended by a random algorithm
-    if rand < 0.5
-      excursions = Excursion.where(:draft=>false).sample(options[:n])
-      excursions.map{ |e|
-        e.score_tracking = {
-          :rec => "Random"
-        }.to_json
-      }
+    # A/B Testing: some % of the requests will be attended by the full RS, the other % will be attended by other algorithms
+    rnd = rand
+    if rnd < 0.10
+      #Random
+      options[:recEngine] = "Random"
+    elsif rnd < 0.5
+      #Full RS without quality metrics
+      options[:recEngine] = "ViSHRS-Quality"
+    elsif rnd < 0.9
+      #Full RS without quality and popularity metrics
+      options[:recEngine] = "ViSHRS-Quality-Popularity"
     else
-      excursions = RecommenderSystem.resource_suggestions(current_subject,current_excursion,options)
+      #Full RS
+      options[:recEngine] = "ViSHRecommenderSystem"
     end
+
+    excursions = RecommenderSystem.resource_suggestions(current_subject,current_excursion,options)
 
     respond_to do |format|
       format.json {

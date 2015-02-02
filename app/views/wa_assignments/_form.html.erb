@@ -72,9 +72,11 @@
     var availableContributionsDOM = $("#<%=identifier%>").find("input[name='wa_assignment[available_contributions]']");
     $(availableContributionsDOM).val(contributionsArray.join(","));
   };
+ 
+</script>
 
-  $(document).ready(function(){
-    wa_assignment_onClickDatesCheckbox($("#<%=identifier%>").find("input[type='checkbox'][name='wa_assignment[with_dates]']")[0]);
+<%content_for :javascript do%>
+   wa_assignment_onClickDatesCheckbox($("#<%=identifier%>").find("input[type='checkbox'][name='wa_assignment[with_dates]']")[0]);
 
     //Load available contributions
     var availableContributions = getAvailableContributions();
@@ -83,5 +85,4 @@
       var contributionCheckbox = $("#<%=identifier%>").find("input[contribution='"+availableContributions[i]+"']");
       $(contributionCheckbox).prop('checked', true);
     }
-  });
-</script>
+<%end%>

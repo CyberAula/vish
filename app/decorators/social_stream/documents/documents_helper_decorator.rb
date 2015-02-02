@@ -37,7 +37,7 @@ DocumentsHelper.module_eval do
     end
 
     unless customAvatar.nil?
-      return "<div class='img-box applyBackstretch resource_avatar resource_avatar_for_#{ icon_name }' bs-img='"+customAvatar+"'></div><i class=\"icon-#{ icon_name } icon-#{ icon_name }_decorator\"></i>".html_safe
+      return "<div class='img-box resource_avatar resource_avatar_for_#{ icon_name }' style='background-image: url("+customAvatar+")'></div><i class=\"icon-#{ icon_name } icon-#{ icon_name }_decorator\"></i>"
     else
       return "<i class=\"icon-#{ icon_name }\"></i>".html_safe
     end

@@ -35,11 +35,11 @@
           
         <% end %>
         </ul>
+
      </div>
     <p class="information"><%= t("category.categorized_like")%></p>
     <%tagArray= generic_categories.map{|e| e.title}%>
-    <script type="text/javascript">
-    $(document).ready(function() {
+<%content_for :javascript do%>
         var tagList= [
           <%tagArray.each do |tags|%>
             "<%=tags%>",
@@ -64,8 +64,7 @@
         <%end%> 
         //Save suggested categories state
 
-    });
-    </script>
+<%end%>
     <div class="tagBoxNew">
       <ul id="myCategories">
     <!-- Existing list items will be pre-added to the tags -->
@@ -73,13 +72,16 @@
       </ul>
     </div>
 
+<div id="divrandom">
+
+</div>
   </div>
   <div class="modal-footer">
     <button id="cancel_cat_button" class="btn btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>
     <button id="save_cat_button" class="btn btn-primary"><%= t('button.save')%></button>
   </div>
 </div>
-<script>
+<%content_for :javascript do%>
 
   //When click to suggested they go to down part for being categorized
   $("#suggested_categories li").click(function(){ 
@@ -152,4 +154,10 @@
        });
       });
 
-</script>
+$(document).ready( function() {
+    $('#divrandom').fileTree({ root: '/some/folder/' }, function(file) {
+        alert(file);
+    });
+});
+
+<%end%>

@@ -1,3 +1,77 @@
 <div id="editor_wrapper">
 	<iframe id="presentation_editor_iframe" src="<%=new_excursion_path(:format => :full)%>" width="1200" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;></iframe>
 </div>
+
+<!--
+<div>
+	<input type="button" class="btn btn-primary" id="request_fullscreen" data-loading-text="" value="Fullscreen">
+</div>
+
+<%#content_for :javascript do%>
+if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+	document.getElementById("request_fullscreen").addEventListener("click", function(){
+		var i = document.getElementById("editor_wrapper");
+ 
+		// go full-screen
+		if (i.requestFullscreen) {
+		    i.requestFullscreen();
+		} else if (i.webkitRequestFullscreen) {
+		    i.webkitRequestFullscreen();
+		} else if (i.mozRequestFullScreen) {
+		    i.mozRequestFullScreen();
+		} else if (i.msRequestFullscreen) {
+		    i.msRequestFullscreen();
+		}
+	});	
+}
+
+// Entering fullscreen mode
+$(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', function(e) {
+    setTimeout(scale_editor, 300);
+
+});
+
+function scale_editor(){
+    console.log("scale!!");
+	var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen || document.msFullscreenElement;
+    var event = state ? 'FullscreenOn' : 'FullscreenOff';
+
+    // Now do something interesting
+    console.log('Event: ' + event); 
+    if(event == 'FullscreenOn'){
+    	var fs_width = $("#editor_wrapper").width();
+    	var fs_height = $("#editor_wrapper").height();
+    	var w_height = $(window).height();
+    	console.log("width: " + fs_width + " and height: " + fs_height + ". Window.height(): " + w_height);
+    	var fs_factor = fs_width/fs_height;
+    	var original_width = 1200;
+    	var original_height = 750;
+    	var original_factor = original_width/original_height; //from the fixed iframe
+    	var scale = 1;
+
+    	if(fs_factor>original_factor){
+    		//fullscreen is wider -> adapt height
+    		scale = fs_height/original_height;
+    	} else {
+    		//fullscreen is higher -> adapt width
+    		scale = fs_width/original_width;
+    	}
+    	add_scale_prop_to_elem($("#presentation_editor_iframe"),scale);    	
+
+    } else {
+    	add_scale_prop_to_elem($("#presentation_editor_iframe"),1); 
+    }	
+};
+
+function add_scale_prop_to_elem(elem, scale_factor){
+	$(elem).css("transform-origin","0 0");
+	$(elem).css("-ms-transform-origin","0 0");
+	$(elem).css("-webkit-transform-origin","0 0");
+	
+	$(elem).css("transform","scale3d("+scale_factor+","+scale_factor+",1)");
+	$(elem).css("-ms-transform","scale3d("+scale_factor+","+scale_factor+",1)");
+	$(elem).css("-webkit-transform","scale3d("+scale_factor+","+scale_factor+",1)");
+};
+
+<%#end%>
+-->

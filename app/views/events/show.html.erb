@@ -14,9 +14,9 @@
                 <%= image_tag('items/rec2.jpg', :class=> "event-img") %>
               <% else %>
                 <%= image_tag(@event.poster.file) %>
-                <script>
+                <%= content_for :javascript do %>
                   $("#event-<%=@event.id%>").addClass("high")
-                </script>
+                <%end%>
               <% end %>
               <% if (can?(:update, @event) && @event.poster.new_record?) %>
                   <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
@@ -48,10 +48,3 @@
 
 </section>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("#recomended_box div[bs-img]").each(function(){
-      $(this).backstretch($(this).attr("bs-img"));      
-    });
-  });
-</script>

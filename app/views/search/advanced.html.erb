@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag "vasearch" %>
 <%= javascript_include_tag "vasearch" %>
 <script type="text/javascript">
-  $(document).ready(function(){
+  document.addEventListener("DOMContentLoaded", function(){
     VASearch.init({locale: '<%=I18n.locale%>', current_instance: '<%=Vish::Application.config.full_domain%>', draw: "boxes", allowAddInstance:false});
   });
 </script>

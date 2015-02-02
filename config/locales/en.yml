@@ -155,6 +155,7 @@ en:
       quality: "Quality"
     title: "Advanced Search"
   author: "author"
+  blog_news_title: "news"
   browse:
     title: "browse"
     popular: "popular content"
@@ -222,11 +223,12 @@ en:
         dragt1: "Drag and drop"
         dragt2: "Sort your categories"
         dragt3: "Group your knowledge"
+        edit: "Edit"
         erase: "Drag here to remove"
         gallery: "Gallery"
         list: "List"
         place: "Sort"
-        place_uncategorize: "Short & uncategorize"
+        place_uncategorize: "Sort"
         place_long: "Sort categories"
         trash: "Drag here"
         uncategorize: "Drag here to uncategorize"
@@ -630,7 +632,7 @@ en:
         description: "ViSH is a community for teachers and educational professionals who want to meet new educators, create, share and discover novel educational resources, and get access to tools for maximizing technology enhanced learning."
     elearning:
         title: "e-Learning"
-        description: "ViSH provides a collection of tools and services for facilitates the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems."
+        description: "ViSH provides a collection of tools and services for facilitating the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems."
     community_stats:
         title: "Our community grows every day"
         subtitle: "Share your knowledge in our community and help us to grow"

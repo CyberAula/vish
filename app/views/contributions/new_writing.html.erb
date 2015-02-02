@@ -29,13 +29,12 @@
     </div>
 </div>
 
-<script>
-  $(document).ready(function(){
+<%content_for :javascript do%>
+
     var uploadButtonFake = $("#addContributionButtonFake");
     $(uploadButtonFake).click(function(event){
         set_ckeditor_content_full_and_plaintext("contribution_fulltext","contribution_plaintext");
         $(this).button('loading');
         $("#AddContribution").find("form").submit();
     });
-  });
-</script>
+<%end%>

@@ -9,7 +9,7 @@
     <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
 </li>
-<script>
+<%content_for :javascript do%>
   $('#helpcategorienewid').popover({ 
     html : true,
     content: function() {
@@ -17,6 +17,6 @@
     }
   });
 
-</script>
+<%end%>
 
 

@@ -3,36 +3,36 @@
 <% end %>
 
 <%= form_for @event || Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
-  <%= f.hidden_field :owner_id  %>
-  <%= f.hidden_field :start_at %>
-  <%= f.hidden_field :end_at %>
-  <%= f.hidden_field :all_day %>
+  <%= f.hidden_field :owner_id, :id=>"edit_event_owner_id"  %>
+  <%= f.hidden_field :start_at, :id=>"edit_event_start_at" %>
+  <%= f.hidden_field :end_at, :id=>"edit_event_end_at" %>
+  <%= f.hidden_field :all_day, :id=>"edit_event_all_day" %>
 
   <legend><%= t('event.leyend.title')%></legend>
-  <%= f.text_field :title, :placeholder => t('event.title_input') %>
+  <%= f.text_field :title, :placeholder => t('event.title_input'), :id=>"edit_event_title" %>
   
   <legend><%= t('event.leyend.description')%></legend>
-  <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
+  <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input'), :id=>"edit_event_description" %>
 
   <legend><%= t('event.leyend.type')%></legend>
-  <%= f.radio_button :streaming, false, checked: true %> <%= t('event.type.videoconference') %>
-  <%= f.radio_button :streaming, true %> <%= t('event.type.streaming') %>
+  <%= f.radio_button :streaming, false, checked: true, :id=>"edit_event_streaming_false" %> <%= t('event.type.videoconference') %>
+  <%= f.radio_button :streaming, true, :id=>"edit_event_streaming_true" %> <%= t('event.type.streaming') %>
 
   <legend><%= t('document.options.embed')%></legend>
-  <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
-  <script type="text/javascript">
-    $("#document-edit #event_streaming_false").on("click", function() {
-      $("#document-edit #event_embed").attr("disabled", true);
+  <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true, :id=>"edit_event_embed" %>
+
+  <%content_for :javascript do%>
+    $("#document-edit #edit_event_streaming_false").on("click", function() {
+      $("#document-edit #edit_event_embed").attr("disabled", true);
     });
-    $("#document-edit #event_streaming_true").on("click", function() {
-      $("#document-edit #event_embed").attr("disabled", false);
+    $("#document-edit #edit_event_streaming_true").on("click", function() {
+      $("#document-edit #edit_event_embed").attr("disabled", false);
     });
-    $(document).ready(function(){
-      if ($("#document-edit #event_streaming_true").is(':checked')) {
-        $("#document-edit #event_embed").attr("disabled", false);
-      }
-    });
-  </script>
+
+    if ($("#document-edit #edit_event_streaming_true").is(':checked')) {
+      $("#document-edit #edit_event_embed").attr("disabled", false);
+    }
+  <%end%>
 
   <legend><%= t('event.leyend.date')%></legend>
   <div id="editdate" class="input-append">
@@ -61,10 +61,10 @@
     </span>
   </div>
   <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
-  <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
+  <%= f.submit t('categories.save'), :id => "edit_saveEvent", :class => "hidden" %>
 
   <script>
-    $(document).ready(function(){
+    document.addEventListener("DOMContentLoaded", function(){
       $(function() {
         $('#edithourinit').datetimepicker({
           pickDate: false

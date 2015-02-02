@@ -10,7 +10,7 @@
 
   <div class="modal-body">
     <%= form_for Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
-      <%= f.hidden_field :owner_id  %>
+      <%= f.hidden_field :owner_id %>
       <%= f.hidden_field :start_at %>
       <%= f.hidden_field :end_at %>
       <%= f.hidden_field :all_day %>
@@ -30,19 +30,19 @@
       <!--EMBED-->
       <label><%= t('document.options.embed')%></label>
       <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
-      <script type="text/javascript">
+
+      <%content_for :javascript do%>
         $("#event_streaming_false").on("click", function() {
           $("#event_embed").attr("disabled", true);
         });
         $("#event_streaming_true").on("click", function() {
           $("#event_embed").attr("disabled", false);
         });
-        $(document).ready(function(){
-          if ($("#event_streaming_true").is(':checked')) {
-            $("#event_embed").attr("disabled", false);
-          }
-        });
-      </script>
+          
+        if ($("#event_streaming_true").is(':checked')) {
+          $("#event_embed").attr("disabled", false);
+        }
+      <%end%>
 
       <!--DATE-->
       <label><%= t('event.leyend.fecha')%></label>
@@ -72,26 +72,22 @@
           </span>
         </div>
 
-      <script type="text/javascript">
-        $(function() {
+  <%content_for :javascript do%>
           $('#hourinit').datetimepicker({
             pickDate: false
           });
-        });
-        $(function() {
+        
           $('#hourfinish').datetimepicker({
             pickDate: false
           });
-        });
-        $(function() {
+        
           $('#date').datetimepicker({
             pickTime: false
           });
-        });
-      </script>
+  <%end%>
 
       <script>
-        $(document).ready(function(){
+        document.addEventListener("DOMContentLoaded", function(){
           var saveEventButton = $("#AddEvent input[type='submit']");
           var eventButton = $("#AddEvent input[value=<%= t('categories.save')%>][type='button'][class='btn-primary']");
           $(eventButton).click(function(event) {

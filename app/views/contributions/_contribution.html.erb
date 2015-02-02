@@ -11,13 +11,12 @@
     <div class="corner-background"></div>
   </div>
   <!-- image/icon -->
-  <div class="container-img">
-    <div class="dummy"></div>
-    <div class="element resource-center">
-      <%= link_to raw(icon(resource)), contribution, :title => resource.title %>
-    </div>
-  </div>
-  <%= render partial: "application/applyBackstretch", locals: { :includeScriptTag => true } %>
+    <div class="container-img">
+      <div class="img-box resource-center">        
+        <%= link_to raw(icon(resource)), contribution, :title => resource.title %>
+      </div>
+    </div> 
+
   <!-- INFO -->
   <div class="info">
     <!-- Title -->

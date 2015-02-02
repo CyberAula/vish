@@ -36,7 +36,7 @@
           <%end%>
         </div>
         <div class="loader_pagination" id="loader_pagination_home" style="display:none">
-          <div id="pageless-loader" style="text-align:center;width:100%;">
+          <div class="pageless-loader" style="text-align:center;width:100%;">
             <div class="msg" style="font-size:2em">
               <%=t('search.loading')%>
             </div>
@@ -53,7 +53,7 @@
           <%end%>
         </div>
         <div class="loader_pagination" id="loader_pagination_net" style="display:none">
-          <div id="pageless-loader" style="text-align:center;width:100%;">
+          <div class="pageless-loader" style="text-align:center;width:100%;">
             <div class="msg" style="font-size:2em">
               <%=t('search.loading')%>
             </div>
@@ -69,7 +69,7 @@
           <%end%>
         </div>
         <div class="loader_pagination" id="loader_pagination_catalogue" style="display:none">
-          <div id="pageless-loader" style="text-align:center;width:100%; margin-top:50px">
+          <div class="pageless-loader" style="text-align:center;width:100%; margin-top:50px">
             <div class="msg" style="font-size:2em">
               <%=t('search.loading')%>
             </div>
@@ -82,91 +82,8 @@
   </div>
 </div>
 
+
 <script>
-
-  $(document).ready(function(){
-
-    ///////////////
-    // My Network
-    ///////////////
-    var net_tab_loaded = false;
-    $("#net_tab").click(function(){
-      if(net_tab_loaded===false){
-        $('#loader_pagination_net').show();
-        net_tab_loaded = true;
-        $.ajax({
-          type : "GET",
-          url : "<%= home_path(:tab=>'net', :page =>1) %>",
-          success : function(html){
-            $('#loader_pagination_net').hide();      
-            $("#net_tab_ready").append(html);
-            re_apply_backstretch("net");
-          },
-          error: function(){
-            // console.log("error loading net tab");
-         }
-        });
-      } else {
-        re_apply_pageless("net");
-      }
-    });
-      
-    ///////////////
-    // Catalogue
-    ///////////////
-    var catalogue_tab_loaded = false;
-    $("#catalogue_tab").click(function(){
-      $.pagelessStop();
-      if(catalogue_tab_loaded===false){
-        $('.loader_pagination').show();
-        catalogue_tab_loaded = true;
-        var next = "<%= catalogue_path(:is_home=> true) %>";
-        catalogue_state(next);
-      } else {
-        $('.loader_pagination').hide();        
-      }
-    });
-    
-    ///////////////
-    // Home
-    ///////////////
-    var home_tab_loaded = false;
-    $("#home_tab").click(function(){
-      if(home_tab_loaded===false){
-        $('#loader_pagination_home').show();
-        home_tab_loaded = true;
-        $.ajax({
-            type : "GET",
-            url : "<%= home_path(:tab=>'home', :page =>1) %>",
-            success : function(html) {
-              $('#loader_pagination_home').hide();      
-              $("#first_page_home_tab_ready").append(html);
-              re_apply_backstretch("home");
-            },
-            error: function(){
-              // console.log("error loading home tab");
-           }
-          });
-      } else {
-        re_apply_pageless("home");
-      }   
-    });
-
-    //Reapply backstrech depending on the tab loaded
-    <%if !params[:tab] || params[:tab]=="home"%>
-      home_tab_loaded = true;
-      re_apply_backstretch("home");
-    <%elsif params[:tab]=="net"%>
-      net_tab_loaded = true;
-      re_apply_backstretch("net");
-    <%else%>
-      $("#catalogue_tab").click();
-      catalogue_tab_loaded = true;
-      re_apply_backstretch("catalogue_tabpane");
-    <%end%>
-
-  });
-  
   var pageless_state = {
       "home":{
         "url": "<%= home_path(:tab=>'home', :sort_by=>'popularity') %>",
@@ -179,6 +96,10 @@
         "current_page":0
       }
   };
+
+  var net_tab_loaded = false;
+  var catalogue_tab_loaded = false;
+  var home_tab_loaded = false;
 
   ///////////////
   // Pageless Ajax Handlers
@@ -213,42 +134,109 @@
     return the_url;
   };
 
+  
   ///////////////
-  // Backstretch Handlers
+  // Catalogue Ajax Handlers
   ///////////////
+  var catalogue_charge = catalogue_charge || {};
 
-  function re_apply_backstretch(tab){
-    $("#" + tab + " div[bs-img]").each(function() {
-      if($(this).parents(".tab-pane").css('display')!="none"){   
-        $(this).backstretch( $(this).attr("bs-img") ); 
-      } else {
-        $(this).attr("fix-bs", "true");
-      }
-    });
+  function catalogue_state(next_state){
+    if (typeof catalogue_charge[next_state] == "undefined"){
+      $.ajax({
+        type : "GET",
+        url : next_state,
+        success : function(html){
+          $('.loader_pagination').hide(); 
+          $("#catalogue_tab_ready").append(html);
+          //We add charged states to variable
+          //We change actual state
+          catalogue_charge[next_state] = html;
+        },
+        error: function(){
+        }
+      });
+    }
+    else {
+      $('.loader_pagination').hide();
+      $("#catalogue_tab_ready").empty();
+      $("#catalogue_tab_ready").append(catalogue_charge[next_state]);
+    }
   };
-
-  $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
-    fix_backstretch($(e.target).attr("href").substring(1));
-  });
-
-  function fix_backstretch(tab){
-    $("#" + tab + " div[fix-bs]").each(function(){
-      if($(this).parents(".tab-pane").css('display')!="none"){
-        $(this).backstretch( $(this).attr("bs-img") );
-        $(this).removeAttr("fix-bs");
-      }        
-    });     
-  };
-
-  $(window).on('resize.backstretch', set_fix_bs_on_hidden_tabs).on('orientationchange.backstretch', set_fix_bs_on_hidden_tabs);
-    
-  function set_fix_bs_on_hidden_tabs(){
-    $(".tab-pane:hidden").each(function(){
-      $(".tab-pane:hidden").find("div[bs-img]").attr("fix-bs","true");
-    });
-  }; 
 
 </script>
 
-<%= render :partial => "catalogue/js_common"%>
+<%content_for :javascript do%>
+
+    ///////////////
+    // My Network
+    ///////////////
+    $("#net_tab").click(function(){
+      if(net_tab_loaded===false){
+        $('#loader_pagination_net').show();
+        net_tab_loaded = true;
+        $.ajax({
+          type : "GET",
+          url : "<%= home_path(:tab=>'net', :page =>1) %>",
+          success : function(html){
+            $('#loader_pagination_net').hide();      
+            $("#net_tab_ready").append(html);
+          },
+          error: function(){
+            // console.log("error loading net tab");
+         }
+        });
+      } else {
+        re_apply_pageless("net");
+      }
+    });
+      
+    ///////////////
+    // Catalogue
+    ///////////////
+    $("#catalogue_tab").click(function(){
+      $.pagelessStop();
+      if(catalogue_tab_loaded===false){
+        $('.loader_pagination').show();
+        catalogue_tab_loaded = true;
+        var next = "<%= catalogue_path(:is_home=> true) %>";
+        catalogue_state(next);
+      } else {
+        $('.loader_pagination').hide();        
+      }
+    });
+    
+    ///////////////
+    // Home
+    ///////////////
+    $("#home_tab").click(function(){
+      if(home_tab_loaded===false){
+        $('#loader_pagination_home').show();
+        home_tab_loaded = true;
+        $.ajax({
+            type : "GET",
+            url : "<%= home_path(:tab=>'home', :page =>1) %>",
+            success : function(html) {
+              $('#loader_pagination_home').hide();      
+              $("#first_page_home_tab_ready").append(html);
+            },
+            error: function(){
+              // console.log("error loading home tab");
+           }
+          });
+      } else {
+        re_apply_pageless("home");
+      }   
+    });
+
+    //Reapply backstrech depending on the tab loaded
+    <%if !params[:tab] || params[:tab]=="home"%>
+      home_tab_loaded = true;
+    <%elsif params[:tab]=="net"%>
+      net_tab_loaded = true;
+    <%else%>
+      $("#catalogue_tab").click();
+      catalogue_tab_loaded = true;
+    <%end%>
+<%end%>
+
 
