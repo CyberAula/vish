@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141210085747) do
+ActiveRecord::Schema.define(:version => 20150126095038) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -56,9 +56,6 @@ ActiveRecord::Schema.define(:version => 20141210085747) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
-
-  add_index "activity_object_audiences", ["activity_object_id"], :name => "activity_object_audiences_on_activity_object_id"
-  add_index "activity_object_audiences", ["relation_id"], :name => "activity_object_audiences_on_relation_id"
 
   create_table "activity_object_properties", :force => true do |t|
     t.integer "activity_object_id"
@@ -137,7 +134,7 @@ ActiveRecord::Schema.define(:version => 20141210085747) do
     t.string   "notification_settings"
     t.integer  "mve",                   :default => 0
     t.boolean  "is_mve",                :default => false
-    t.integer  "rankMve",               :default => 0
+    t.integer  "rank_mve",              :default => 0
     t.boolean  "is_admin",              :default => false
     t.text     "category_order",        :default => "--- []\n", :null => false
   end
@@ -248,7 +245,6 @@ ActiveRecord::Schema.define(:version => 20141210085747) do
     t.text     "embed"
   end
 
-  add_index "events", ["activity_object_id"], :name => "events_on_activity_object_id"
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
   create_table "exclude_auth_mves", :force => true do |t|
@@ -278,12 +274,12 @@ ActiveRecord::Schema.define(:version => 20141210085747) do
     t.integer  "slide_count",        :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",              :default => false
-    t.text     "offline_manifest"
+    t.text     "offline_manifest",   :default => ""
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
     t.integer  "mve",                :default => 0
     t.boolean  "is_mve",             :default => false
-    t.integer  "rankMve",            :default => 0
+    t.integer  "rank_mve",           :default => 0
   end
 
   create_table "groups", :force => true do |t|
@@ -546,8 +542,12 @@ ActiveRecord::Schema.define(:version => 20141210085747) do
   create_table "tracking_system_entries", :force => true do |t|
     t.string   "app_id"
     t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "tracking_system_entry_id"
+    t.text     "user_agent"
+    t.text     "referrer"
+    t.boolean  "user_logged",              :default => false
   end
 
   create_table "users", :force => true do |t|
