@@ -1,5 +1,5 @@
 # Copy this file to application_config.yml
-# Configure here all the variables of your Virtual Science Hub instance.
+# Configure here all the variables of your ViSH instance.
 
 development:
   domain: "localhost:3000"
@@ -11,7 +11,7 @@ development:
     resources: ["Document","Webapp","Scormfile","Link","Embed", "Writing"]
     home: ["Excursion"]
     catalogue: ["Excursion"]
-  services: ["ARS","Catalogue","Competitions2013","ASearch", "MediaConversion"]
+  services: ["ARS","Catalogue","ASearch"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   register_policy: "REGISTER_ONLY"   #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'
   advanced_search:
@@ -36,16 +36,32 @@ production:
   advanced_search:
     instances: ["http://vishub.org"]
   mail:
-    type: "SMTP"
-    credentials:
-      address: "smtp.mandrillapp.com"
-      port: 587
-      domain: "your_domain.com"
-      authentication: "login" #or can use "plain"
-      username: "your_username"
-      password: "your_password"
-      enable_starttls_auto: true
+    type: "SMTP" #this can be SMTP or SENDMAIL
+    # Check http://api.rubyonrails.org/classes/ActionMailer/Base.html for details.
+    #    
+    #    #Settings for SMTP
+    #    address: "localhost"
+    #    port: 25
+    #    domain: "" #specify a HELO domain
+    #    authentication: "" #authentication type
+    #    credentials:
+    #      username: "your_username"
+    #      password: "your_password"
+    #    enable_starttls_auto: false
+    #    openssl_verify_mode: 'none'
+    #
+    #    #Settings for SENDMAIL
+    #    location: "/usr/sbin/sendmail"
+    #    arguments: "-i -t"
+
+
 #Other configuration options
+
+# Automatically detect resources language using the service provided by http://detectlanguage.com
+# languageDetectionAPIKEY: "API Key from http://detectlanguage.com to allow automatic language detection."
+
+# Enable SoundCloud in the ViSH Editor. Get the API key from https://developers.soundcloud.com/
+# soundCloudAPIKEY: "secret_key"
 
 # LOEP configuration. Allow to evaluate the quality of the ViSH resources in a systematic way (See http://loep.global.dit.upm.es for more info).
 #  loep:
@@ -56,16 +72,10 @@ production:
 #    auth_token: "secret_loep_token"
 #    repository_name: "ViSH"
 
-# Automatically detect resources language using the service provided by http://detectlanguage.com
-# languageDetectionAPIKEY: "API Key from http://detectlanguage.com to allow automatic language detection."
+# Set a quality threshold to automatically generate reports when a resource is judged below the threshold.
+# qualityThreshold:
+#   create_report: "3"
 
 # Enable tracking system to record all user actions while viewing resources.
 # trackingSystemAPIKEY: "secret_key"
 # trackingSystemAPIURL: "http://#{ViSH domain}/tracking_system_entries"
-
-# Enable SoundCloud in the ViSH Editor. Get the API key from https://developers.soundcloud.com/
-# soundCloudAPIKEY: "secret_key"
-
-# Set a quality threshold to automatically generate reports when a resource is judged below the threshold.
-# qualityThreshold:
-#   create_report: "3"
