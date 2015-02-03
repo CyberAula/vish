@@ -1,4 +1,4 @@
-<%= form_tag messages_path, :method => :post , :class => "form-group new_message" do %>
+<%= form_tag messages_path, :method => :post , :class => "new_message" do %>
   <% if @receipt and @receipt.errors.any? %>
     <div class="error">
       <h2>
@@ -20,15 +20,14 @@
 
   <%= label_tag t('mailboxer.form.subject') %>
 
-  <%= text_field_tag :subject,nil, :class => "form-control" %>
+  <%= text_field_tag :subject,nil %>
 
   <%= label_tag t('mailboxer.form.body') %>
 
-  <div id="ck_editor" class="cont_conversation" >
+  <div id="ck_editor" >
     <%= text_area_tag :body, nil,:rows =>6, :cols=> 53, :maxlength => 5000 %>
-    <div class="actions">
-      <%= submit_tag t('mailboxer.send'), :name => :send_message, :class => "btn btn-primary" %>
-    </div>
   </div>
+
+  <%= submit_tag t('mailboxer.send'), :name => :send_message, :class => "btn btn-primary pull-right" %>
 
 <% end %>

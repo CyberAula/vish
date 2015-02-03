@@ -44,10 +44,14 @@
 #catalogue
   .btn-default
     clear: both
+    position: relative
     a
       color: $gray
     &:hover
       color: $brand-primary
+      #effect
+        border-bottom: 1px solid $brand-primary
+
   .btn-default:active,
   .btn-default:focus
     a
@@ -94,6 +98,7 @@
       float: left
       padding: 5px 0
       width: 100%
+      border-bottom: 1px solid $border-color
       li
         text-align: center
         label
