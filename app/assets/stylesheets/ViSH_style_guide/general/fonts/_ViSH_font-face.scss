@@ -118,10 +118,11 @@
 // ---------------------resources
 @font-face{
   font-family:"vish-icono-resource";
-  src: url(ViSH_style_guide/general/fonts/ViSH/icons/vish.ttf);
-  src: url('ViSH_style_guide/general/fonts/ViSH/icons/vish.eot?#iefix') format('embedded-opentype'),
-       url('ViSH_style_guide/general/fonts/ViSH/icons/vish.woff') format('woff'),
-       url('ViSH_style_guide/general/fonts/ViSH/icons/vish.svg') format('svg');
+  src: url(ViSH_style_guide/general/fonts/ViSH/icons/vish.ttf?55069572);
+  src: url('ViSH_style_guide/general/fonts/ViSH/icons/vish.eot?55069572#iefix') format('embedded-opentype'),
+       url('ViSH_style_guide/general/fonts/ViSH/icons/vish.woff?55069572') format('woff'),
+       url(ViSH_style_guide/general/fonts/ViSH/icons/vish.ttf?55069572),
+       url('ViSH_style_guide/general/fonts/ViSH/icons/vish.svg?55069572#vish') format('svg');
   font-style: normal;
   font-weight: normal;
 }
@@ -140,7 +141,12 @@
   }
 }
 */
- [class^="icon-o-"]:before, [class*=" icon-o-"]:before {
+ [class^="icon-o-webapp"]:before, 
+ [class*="icon-o-scorm"]:before,
+ [class^="icon-swf-new"]:before,
+ [class*="icon-o-webapp"]:before, 
+ [class^="icon-o-scorm"]:before,
+ [class*="icon-swf-new"]:before {
   font-family: "vish-icono-resource" !important;
   font-style: normal;
   font-weight: normal;
@@ -182,10 +188,12 @@
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; 
 }
- 
-.icon-scorm-o { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe800;&nbsp;'); }
-.icon-webapp-o { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe801;&nbsp;'); }
+.icon-file-swf-new { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe800;&nbsp;'); }
+.icon-scorm-new { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe800;&nbsp;'); }
+.icon-webapp-new { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe801;&nbsp;'); }
   /* IE7 codes*/
-.icon-o-scorm:before { content: '\e800'; } /* '' */
-.icon-o-webapp:before { content: '\e801'; } /* '' */
+
+.icon-o-webapp:before { content: '\e800'; } /* '' */
+.icon-o-scorm:before { content: '\e801'; } /* '' */
+.icon-swf-new:before { content: '\e802'; } /* '' */
 

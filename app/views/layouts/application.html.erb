@@ -30,6 +30,7 @@
 </head>
 <body>
   <%= render partial: 'layouts/header/header_warning' %>
+
   <div id="wrap">
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -87,6 +88,12 @@
       <%= yield :javascript%>
     });
   </script>
+<<<<<<< HEAD
   <%= render :partial => 'layouts/tools/google_analytics' %>
   <%= render :partial => 'layouts/tools/uservoice' %>
+=======
+  <%= render partial: 'layouts/header_warning' %>
+  <%= render :partial => 'layouts/google_analytics' %>
+  <%= render :partial => 'layouts/uservoice' %>
+>>>>>>> 6785c9526e2805bd589204a950d109d05a79f63b
 </html>

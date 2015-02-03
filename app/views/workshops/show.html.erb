@@ -8,7 +8,7 @@
         <%=t('workshop.titles.show_main')%>
       </h4>
       <% if user_signed_in? and (can? :update, @workshop) %>
-        <a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-default pull-right" id="edit_workshop"><i class="icon-edit"></i><%=t('workshop.actions.edit_mode_btOn')%></a>
+        <a href="<%=edit_workshop_path(@workshop)%>" class="btn btn-default pull-right" id="edit_workshop"><i class="fa fa-edit"></i><%=t('workshop.actions.edit_mode_btOn')%></a>
       <%end%>
     </div>
   </div>

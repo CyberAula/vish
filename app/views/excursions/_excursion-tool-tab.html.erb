@@ -165,7 +165,7 @@
     <!--Evaluate-->
     <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
       <button onclick="triggerEvaluation()" class="btn with_tooltip" title="<%=t('evaluation.verb')%>">
-        <i class="icon-ok-sign"></i>
+        <i class="fa fa-check-square"></i>
       </button>
     <%end%>
 
@@ -174,7 +174,7 @@
     <%if user_signed_in? and availableModels.include? "Category" %>
       <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @excursion} %>
       <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" >
-        <i class="icon-th-large"></i>
+        <i class="fa fa-th-large"></i>
       </button>
     <%end%>
   <%end%>
@@ -186,7 +186,7 @@
       };
     </script>
     <button onclick="toggleAnimation()" class="btn with_tooltip">
-        <i class="icon-time"></i>
+        <i class="fa fa-time"></i>
     </button>
   <% end %>
 

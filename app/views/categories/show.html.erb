@@ -6,7 +6,7 @@
       <div class="corner-item">
         <div class="corner-item2">
           <div class="corner-color"></div>
-          <i class="icon-th-large"></i>
+          <i class="fa fa-th-large"></i>
         </div>
         <div class="corner-background"></div>
       </div>
@@ -33,12 +33,12 @@
           <div class="btn-group">
             <!--editar-->
             <% if can?(:update, @category) %>
-            <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn btn-default edit_icon") %>
-            <a class="btn btn-default btn-for-categorize"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></a>
+            <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn btn-default edit_icon") %>
+            <a class="btn btn-default btn-for-categorize"><i class="fa fa-move"></i><%=t('categories.dragandrop.place')%></a>
             <% end %>
             <!--remove-->
           <% if can?(:destroy, @category) %>
-            <%= link_to(raw("<i class='icon-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn btn-default" )%>
+            <%= link_to(raw("<i class='fa fa-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn btn-default" )%>
           <% end %>
           </div>
         </div>

@@ -53,7 +53,7 @@
 
           <!--user-->
           <li class ="btn-group user-menu">
-                <%= link_to current_subject, {:class => "btn btn-default photo-user tooltip-header", :'data-original-title'=>t('profile.profile')} do %>              
+                <%= link_to current_subject, {:class => "btn btn-default photo-user tooltip-header", :data => {:toggle=>"tooltip"}, :'data-original-title'=>t('profile.profile')} do %>              
                   <%= image_tag current_subject.logo.url(:small) %>
                 <% end %>
 
@@ -128,7 +128,7 @@
  
  <script>
    document.addEventListener('DOMContentLoaded', function() {
-      $('.tooltip-header').tooltip({ placement: 'bottom'});
+      $('.tooltip-header').tooltip({ placement: 'bottom', container: 'body'});
       $('.dropdown-toggle').dropdown();
     
       (function ($, window, delay) {

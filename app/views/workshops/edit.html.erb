@@ -14,7 +14,7 @@
     <div class="wa_activity_actions">
       <ul>
         <li>
-        <a title="<%=t('excursion.actions.edit')%>" class ="actions_tooltip" data-placement="bottom" data-toggle="tooltip" href=<%=edit_details_path(@workshop)%>><i class="icon-edit"></i></a>
+        <a title="<%=t('excursion.actions.edit')%>" class ="actions_tooltip" data-placement="bottom" data-toggle="tooltip" href=<%=edit_details_path(@workshop)%>><i class="fa fa-edit"></i></a>
       </li>
       </ul>
     </div>
@@ -51,7 +51,7 @@
         <div class="wa_activity_edit_tools">
           <ul>
             <li title="<%=t('categories.dragandrop.dragt1')%>" class ="actions_tooltip sorthandler" data-placement="bottom" data-toggle="tooltip">
-              <i class="icon-move"></i>
+              <i class="fa fa-move"></i>
             </li>
             <% object = workshop_activity.object
               className = object.class.to_s
@@ -61,17 +61,17 @@
             %>
             <% if hasEditPartial %>
               <li title="<%=t('excursion.actions.edit')%>" class ="actions_tooltip ui-state-default" data-placement="bottom" data-target="#WorkshopActivity" data-toggle="modal" data-remote=<%="/#{classNameTableize}/#{object.id}/edit.partial"%>>
-                <i class="icon-edit"></i>
+                <i class="fa fa-edit"></i>
               </li>
             <% end %>
 
 
             <li title="<%=t('excursion.actions.delete')%>" class ="actions_tooltip " data-placement="bottom" data-toggle="tooltip">
-              <%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activities.actions.confirm_delete') %>
+              <%= link_to raw('<i class="fa fa-trash-o"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activities.actions.confirm_delete') %>
             </li>
 
               <li class="toggleWorkshopActivity">
-                <i class="icon-fullscreen"></i>
+                <i class="fa fa-fullscreen"></i>
               </li>
           </ul>
         </div>
@@ -102,7 +102,7 @@
 <!-- Add Workshop Activity -->
 
 <div class="wa_add_activity_wrapper">
-  <a href="#WorkshopActivities" class="" data-toggle="modal"><p><i class="icon-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></p></a>
+  <a href="#WorkshopActivities" class="" data-toggle="modal"><p><i class="fa fa-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></p></a>
 </div>
 
 <!-- Add Workshop Activity Modal -->
@@ -120,11 +120,11 @@
       <div class="modal-body tabbable tabs-below">
         <div id="workshop_activities_column1">
           <ul class="nav nav-tabs nav-stacked">
-            <li><a href="#tab_assignment" data-toggle="tab" activityId="assignment"><i class="icon-list-ol"></i><span class='hidden-xs'><%=t('workshop.activities.assignment.title')%></span></a></li>
-            <li class="active"><a href="#tab_resource" data-toggle="tab" activityId="resource"><i class="icon-file"></i><span class='hidden-xs'><%=t('workshop.activities.resource.title')%></span></a></li>
-            <li><a href="#tab_resource_gallery" data-toggle="tab" activityId="resource_gallery"><i class="icon-th-large"></i><span class='hidden-xs'><%=t('workshop.activities.resource_gallery.title')%></span></a></li>
-            <li><a href="#tab_contributions_gallery" data-toggle="tab" activityId="contributions_gallery"><i class="icon-th"></i><span class='hidden-xs'><%=t('workshop.activities.contributions_gallery.title')%></span></a></li>
-            <li><a href="#tab_text" data-toggle="tab" activityId="text"><i class="icon-align-left"></i><span class='hidden-xs'><%=t('workshop.activities.text.title')%></span></a></li>
+            <li><a href="#tab_assignment" data-toggle="tab" activityId="assignment"><i class="fa fa-list-ol"></i><span class='hidden-xs'><%=t('workshop.activities.assignment.title')%></span></a></li>
+            <li class="active"><a href="#tab_resource" data-toggle="tab" activityId="resource"><i class="fa fa-file"></i><span class='hidden-xs'><%=t('workshop.activities.resource.title')%></span></a></li>
+            <li><a href="#tab_resource_gallery" data-toggle="tab" activityId="resource_gallery"><i class="fa fa-th-large"></i><span class='hidden-xs'><%=t('workshop.activities.resource_gallery.title')%></span></a></li>
+            <li><a href="#tab_contributions_gallery" data-toggle="tab" activityId="contributions_gallery"><i class="fa fa-th"></i><span class='hidden-xs'><%=t('workshop.activities.contributions_gallery.title')%></span></a></li>
+            <li><a href="#tab_text" data-toggle="tab" activityId="text"><i class="fa fa-align-left"></i><span class='hidden-xs'><%=t('workshop.activities.text.title')%></span></a></li>
           </ul>
         </div>
         <div id="workshop_activities_column2">

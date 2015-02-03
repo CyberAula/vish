@@ -9,7 +9,7 @@
   <div class="corner-item">
     <div class="corner-item2">
       <div class="corner-color"></div>
-      <i class='icon-lightbulb'></i>
+      <i class='fa fa-lightbulb'></i>
       <!-- master code
       <%#= link_to raw(icon(workshop)) %>-->
     </div>
@@ -44,11 +44,11 @@
       <div class="views">
         <%if workshop.private_scope? %>
           <div class="private-workshop-mark">
-            <i class="icon-lock"></i>
+            <i class="fa fa-lock"></i>
           </div>
         <%else%>
           <%=workshop.visit_count.to_s%>
-          <i class="icon-eye-open"></i>
+          <i class="fa fa-eye"></i>
         <%end%>
       </div>
     </div>
