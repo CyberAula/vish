@@ -13,7 +13,9 @@ input[type=checkbox]:active+.lbl::before,input[type=radio]:active+.lbl::before,i
 input[type=checkbox]:disabled+.lbl::before,input[type=radio]:disabled+.lbl::before,input[type=checkbox][disabled]+.lbl::before,input[type=radio][disabled]+.lbl::before,input[type=checkbox].disabled+.lbl::before,input[type=radio].disabled+.lbl::before{background-color:#DDD !important;border-color:#CCC !important;box-shadow:none !important;color:#BBB;}
 input[type=radio]+.lbl::before{border-radius:32px;font-family:Arial,Helvetica,sans-serif;font-size:36px;}
 input[type=radio]:checked+.lbl::before{content:"\2022";}
-input[type="checkbox"]:checked + .lbl:before, input[type="radio"]:checked + .lbl:before { padding-top: 2px;}
+input[type="checkbox"]:checked + .lbl:before, input[type="radio"]:checked + .lbl:before { padding-top: 0px;}
+
+
 
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #FFF0F5 inset !important;
