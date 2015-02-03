@@ -24,11 +24,15 @@
 //= require tagit
 //= require jquery.multiselect
 //= require jquery.jplayer
-//= require jstree.min
 //= require jquery.zclip.min
 //= require social_stream-events
 //= require bootstrap-dropdown
 //= require bootstrap-datetimepicker.min
-//= require jqueryfiletree
+//= require jqxbuttons
+//= require jqxcore
+//= require jqxdropdownbutton
+//= require jqxpanel
+//= require jqxscrollbar
+//= require jqxtree
 //= require_tree .
 
