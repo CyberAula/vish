@@ -118,12 +118,14 @@
 
 
 <%= content_for :javascript do %>
+
+
   $('#QuizAnalitycs').on('hidden.bs.modal', function(){
-    $(this).removeData('modal');
+    $(this).removeData('bs.modal');
   });
 
   $('#QuizEdit').on('hidden.bs.modal', function(){
-    $(this).removeData('modal');
+    $(this).removeData('bs.modal');
   });
 
   $(".ui-state-default").click(function(event){
