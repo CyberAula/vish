@@ -16,15 +16,15 @@
   <meta property="og:image" content="<%= yield(:og_image) %>">
   <meta property="og:description" content="<%= yield(:description) %>">
   <meta property="fb:admins" content="824343515" />
-  <meta property="fb:app_id" content="629612437058744" /> 
+  <meta property="fb:app_id" content="629612437058744" />
 
   <%= favicon_link_tag "icons/favicon.ico" %>
   <%= stylesheet_link_tag "application" %>
-  
+
   <% if protect_against_forgery? %>
   <%= csrf_meta_tag %>
   <% end %>
-  
+
   <%= yield :headers %>
 
 </head>
@@ -42,11 +42,11 @@
     }(document, 'script', 'facebook-jssdk'));</script>
 
     <%= render :partial => "layouts/header/header" %>
-    
-    <div class="container-fluid container-content">      
+
+    <div class="container-fluid container-content">
       <%= flashy %>
       <%= yield %>
-    </div>  
+    </div>
 
   </div>
   <%= render :partial => "layouts/footer" %>
@@ -63,8 +63,8 @@
   </script>
 
   <script type="text/javascript">
-    $(document).ready(function() {  
-      
+    $(document).ready(function() {
+
       //setTimeout(function(){ $("#flash .alert").hide("slow") }, 5000);
       //code to hide the help popovers when clicking outside
       $('body').on('click', function (e) {
@@ -88,12 +88,9 @@
       <%= yield :javascript%>
     });
   </script>
-<<<<<<< HEAD
+
+  <%= render partial: 'layouts/header/header_warning' %>
   <%= render :partial => 'layouts/tools/google_analytics' %>
   <%= render :partial => 'layouts/tools/uservoice' %>
-=======
-  <%= render partial: 'layouts/header_warning' %>
-  <%= render :partial => 'layouts/google_analytics' %>
-  <%= render :partial => 'layouts/uservoice' %>
 >>>>>>> 6785c9526e2805bd589204a950d109d05a79f63b
 </html>

@@ -20,7 +20,7 @@
 .mat
   z-index: 10
   position: absolute
-  width: 290px
+  width: 265px
   background-color: rgba(85,85,85,0.97)
   @include border-bottom-radius ($border-radius-base)
   @media (max-width: $screen-xs-max)
@@ -48,8 +48,8 @@
     margin-top: 2px
 
   .results
-    height: 378px
-    overflow: scroll
+    height: 395px
+    overflow: auto
     ul
       width: 95%
       padding-left: 0
@@ -59,15 +59,20 @@
       .add-item
         display: none
       li
-        margin: 0 0 6px
-        @include excursion-small
+        margin: 3px 7px
+        width: 95%
+        border: none
+        //margin: 0 0 6px
+        //@include excursion-small
       .more
         display: block
         clear: both
         text-align: center
         height: auto
-        padding-bottom: 3px
-        padding-top: 2px
+        margin: 7px 7px 10px
+        padding: 5px
+        //padding-bottom: 3px
+        //padding-top: 2px
         a
           color: $gray-darker
           font-family: $corporate-font-family-sans-serif-Medium
@@ -80,7 +85,3 @@
               background-color: $gray-darker-extra !important
       .img-box
         padding-bottom: 0
-
-
-  
-        
