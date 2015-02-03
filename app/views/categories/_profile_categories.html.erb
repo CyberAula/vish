@@ -5,25 +5,6 @@
     orderLength = order.length
     all_categories.sort_by!{|h| order.index(h.activity_object.id) || (orderLength+1)}
   end %>
-       <!-- FILE TREE -->
-      <div id="filetree_id">
-        
-      </div>
-    <script>
-    $(function() {
-  $('#filetree_id').jstree({
-    'core' : {
-      'data' : [
-        { "text" : "Root node", "children" : [
-            { "text" : "Child node 1" },
-            { "text" : "Child node 2" }
-          ]
-        }
-      ]
-    }
-  });
-});
-  </script>
   <br>
     <div class="toolbar_nav-tab">
        <% if profile_subject_is_current? or isAdmin? %>
