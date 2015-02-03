@@ -49,9 +49,6 @@ Vish::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( vish_editor.css )
 
-  # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
-
   # Enable threaded mode
   # config.threadsafe!
 
@@ -61,29 +58,6 @@ Vish::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-
-  if !Vish::Application.config.APP_CONFIG["mail"].nil?
-    # ActionMailer Config
-    # Setup for production - deliveries, no errors raised
-    config.action_mailer.perform_deliveries = true
-    config.action_mailer.raise_delivery_errors = false
-    config.action_mailer.default :charset => "utf-8"
-    delivery_method_sym = Vish::Application.config.APP_CONFIG["mail"]["type"].downcase.to_sym
-
-    config.action_mailer.delivery_method = delivery_method_sym
-
-    if delivery_method_sym == :smtp
-      config.action_mailer.smtp_settings = {
-        :address   => Vish::Application.config.APP_CONFIG["mail"]["credentials"]["address"],
-        :port      => Vish::Application.config.APP_CONFIG["mail"]["credentials"]["port"],
-        :user_name => Vish::Application.config.APP_CONFIG["mail"]["credentials"]["username"],
-        :password  => Vish::Application.config.APP_CONFIG["mail"]["credentials"]["password"],
-        :domain => Vish::Application.config.APP_CONFIG["mail"]["credentials"]["domain"],
-        :authentication => Vish::Application.config.APP_CONFIG["mail"]["credentials"]["authentication"].to_sym,
-        :enable_starttls_auto => Vish::Application.config.APP_CONFIG["mail"]["credentials"]["enable_starttls_auto"]
-      }
-    end
-  end
 
   #default host for routes
   Rails.application.routes.default_url_options[:host] = config.APP_CONFIG['domain']
