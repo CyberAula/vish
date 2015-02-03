@@ -16,7 +16,17 @@
   .user
     width: auto !important
 
-
+.search-nav 
+  margin-left: -3px
+  .input-group-addon
+    width: 26px
+    border: 1px solid $border-color
+    padding-right: 21px
+    margin-top: -2px
+    @include border-bottom-left-radius ($border-radius-base)
+    @include border-top-left-radius ($border-radius-base)
+    @media (max-width: $screen-md-max)
+      padding-right: 18px
 .mat
   z-index: 10
   position: absolute
