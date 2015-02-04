@@ -725,70 +725,108 @@ class Excursion < ActiveRecord::Base
   ## Excursion to PDF Management
   ####################
 
-  def to_pdf(controller)
+  def to_pdf
     if self.pdf_needs_generate and !Vish::Application.config.APP_CONFIG["selenium"].nil?
-      thumbnails = generate_thumbnails(controller)
+      
+      remote = (!Vish::Application.config.APP_CONFIG["selenium"]["remote"].blank? and !Vish::Application.config.APP_CONFIG["selenium"]["remoteFolder"].blank?)
+      
+      vishPdfFolder = "#{Rails.root}/public/pdf/excursions/#{self.id}"
+      Dir.mkdir(vishPdfFolder) unless File.exists?(vishPdfFolder) #Create folder if not exists
+
+      if remote
+        pdfFolder = Vish::Application.config.APP_CONFIG["selenium"]["remoteFolder"] + "/#{self.id}"
+        Dir.mkdir(pdfFolder) unless File.exists?(pdfFolder)
+      else
+        pdfFolder = vishPdfFolder
+      end
+
+      #Selenium save the screenshots in the pdfFolder
+      thumbnails = generate_thumbnails(remote,pdfFolder)
+
       unless thumbnails.nil? or thumbnails.length < 1
-        pdfFolder = "#{Rails.root}/public/pdf/excursions/#{self.id}"
+        
+        ##Generate PDF using RMagick
+        # require 'RMagick'
+        # pdf = File.open(pdfFolder+"/#{self.id}.pdf", 'w')
+        # images = []
+        # thumbnails.each do |thumbnail|
+        #   images.push(pdfFolder + "/#{thumbnail}")
+        # end
+        # pdf_image_list = ::Magick::ImageList.new
+        # pdf_image_list.read(*images)
+        # pdf_image_list.write(pdfFolder + "/#{self.id}.pdf")
+        # pdf.close
 
-        #Generate PDF
-        pdf = File.open(pdfFolder+"/#{self.id}.pdf", 'w')
-
-        require 'RMagick'
-        images = []
-        thumbnails.each do |thumbnail|
-          images.push(pdfFolder + "/#{thumbnail}")
+        ##Generate PDF using ImageMagick
+        #Imagemagick command example: convert 785_1.png  785_1_1.png 785_1_2.png 785_1_3.png 984c.pdf
+        pdf_file_name = "#{self.id}.pdf"
+        image_list = thumbnails.join(" ")
+        
+        if remote
+          system "cd #{pdfFolder}; convert #{image_list} #{pdf_file_name}"
+          #Copy file from SeleniumServer to ViSH Server
+          system "cp #{pdfFolder}/#{pdf_file_name} #{vishPdfFolder}/#{pdf_file_name}"
+        else
+          system "cd #{pdfFolder}; convert #{image_list} #{pdf_file_name}"
         end
-        pdf_image_list = ::Magick::ImageList.new
-        pdf_image_list.read(*images)
-        pdf_image_list.write(pdfFolder + "/#{self.id}.pdf")
-        pdf.close
 
         self.update_column(:pdf_timestamp, Time.now)
       end
     end
   end
 
-  def generate_thumbnails(controller)
+  def generate_thumbnails(remote,pdfFolder)
     thumbnails = []
 
-    begin
-      #Create folder if not exists
-      pdfFolder = "#{Rails.root}/public/pdf/excursions/#{self.id}"
-      Dir.mkdir(pdfFolder) unless File.exists?(pdfFolder)
+    return thumbnails if Vish::Application.config.APP_CONFIG["selenium"].nil? or Vish::Application.config.APP_CONFIG["selenium"]["browser"].blank?
 
+    begin
       require 'selenium-webdriver'
 
       #Set selenium browser and driver
       seleniumBrowser = Vish::Application.config.APP_CONFIG["selenium"]["browser"].downcase.to_sym
       profile = nil
       
-      unless Vish::Application.config.APP_CONFIG["selenium"]["driver_path"].blank?
-        if seleniumBrowser == :chrome
-          Selenium::WebDriver::Chrome.path = Vish::Application.config.APP_CONFIG["selenium"]["driver_path"]
-        elsif seleniumBrowser == :firefox
-          Selenium::WebDriver::Firefox.path = Vish::Application.config.APP_CONFIG["selenium"]["driver_path"]
-          profile = Selenium::WebDriver::Firefox::Profile.from_name "default"
-        end
-      end
-
       unless Vish::Application.config.APP_CONFIG["selenium"]["profile"].blank?
         #Load a specific profile (https://code.google.com/p/selenium/wiki/RubyBindings#Tweaking_profile_preferences)
-        # if seleniumBrowser == :chrome
-        #   profile = Selenium::WebDriver::Chrome::Profile.new
-        # elsif seleniumBrowser == :firefox
-        #   profile = Selenium::WebDriver::Firefox::Profile.new
-        # end
-
         profile = Vish::Application.config.APP_CONFIG["selenium"]["profile"]
       end
 
-      #Get the driver
-      unless profile.nil?
-        driver = Selenium::WebDriver.for seleniumBrowser, :profile => profile
+      unless remote
+        #Local
+        unless Vish::Application.config.APP_CONFIG["selenium"]["driver_path"].blank?
+          if seleniumBrowser == :chrome
+            Selenium::WebDriver::Chrome.path = Vish::Application.config.APP_CONFIG["selenium"]["driver_path"]
+          elsif seleniumBrowser == :firefox
+            Selenium::WebDriver::Firefox.path = Vish::Application.config.APP_CONFIG["selenium"]["driver_path"]
+            profile = Selenium::WebDriver::Firefox::Profile.from_name "default"
+          end
+        end
+        unless profile.nil?
+          driver = Selenium::WebDriver.for seleniumBrowser, :profile => profile
+        else
+          driver = Selenium::WebDriver.for seleniumBrowser
+        end
       else
-        driver = Selenium::WebDriver.for seleniumBrowser
+        #Remote
+        if seleniumBrowser == :chrome
+          capabilities = Selenium::WebDriver::Remote::Capabilities.chrome()
+          #Possible capabilities: https://sites.google.com/a/chromium.org/chromedriver/capabilities
+          unless Vish::Application.config.APP_CONFIG["selenium"]["driver_path"].blank?
+            capabilities[:binary] = Vish::Application.config.APP_CONFIG["selenium"]["driver_path"]
+          end
+        elsif seleniumBrowser == :firefox
+          capabilities = Selenium::WebDriver::Remote::Capabilities.firefox(:firefox_profile => profile)
+          unless Vish::Application.config.APP_CONFIG["selenium"]["driver_path"].blank?
+            capabilities[:binary] = Vish::Application.config.APP_CONFIG["selenium"]["driver_path"]
+          end
+        end
+
+        driver = Selenium::WebDriver.for(:remote, :url => Vish::Application.config.APP_CONFIG["selenium"]["remote"], :desired_capabilities => capabilities)
       end
+
+
+      #Interact with the driver
 
       excursion_url = self.getUrl + ".full"
 
@@ -835,6 +873,7 @@ class Excursion < ActiveRecord::Base
         driver.switch_to.alert.accept rescue Selenium::WebDriver::Error::NoAlertOpenError
 
         driver.save_screenshot(pdfFolder + "/#{self.id}_#{num+1}.png")
+
         thumbnails.push("#{self.id}_#{num+1}.png");
 
         isSlideset = driver.execute_script %Q{ 

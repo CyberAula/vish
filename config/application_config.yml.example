@@ -85,3 +85,5 @@ production:
   #   browser: "Firefox" #Can be Firefox or Chrome
   #   driver_path: "/usr/bin/chromedriver" #You optionally can provide the driver path here.
   #   profile: "seleniumprofile" #Name of the profile to be used by Selenium
+  #   remote: "http://localhost:4444/wd/hub" #To connect remotely to a Selenium server. No remote means local.
+  #   remoteFolder: "/tmp/pdf" #Folder on which the remote selenium server store the pdf files.
