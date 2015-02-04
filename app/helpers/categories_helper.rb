@@ -5,6 +5,21 @@ module CategoriesHelper
 		categories_selection_array
 	end
 
+	def recursive_tree(root, html)
+		html << ''
+		if root.children.blank?
+		  html << "<li category_id="+root.id.to_s+">#{root.title}</li>"
+		  return html.html_safe
+		else
+		  html << "<li item-expanded='true' category_id="+root.id.to_s+">#{root.title}</li>" # Explanation 2
+		  for template_child in root.children
+		    temp_html = '' # Explanation 1
+		    html << "<ul>#{recursive_tree(template_child, temp_html)}</ul>"
+		  end
+		end
+		return html.html_safe
+		end
+
 	def category_thumbnail(category)
 		thumbs_array = []
 		category.property_objects.each do |item|

@@ -1,3 +1,4 @@
+
 <div id="categories_viewer_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -7,21 +8,39 @@
   <div class="modal-body categorize-modal-body">
 
     <% generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} %>
-    <p class= "information"><%= t("category.cat_add_title")%></p> 
-    
-   <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        <b><%= t("category.cat_add_select")%></b>
-        <span class="caret"></span>
-      </button>
-        <ul id="catDropdownSel" class="dropdown-menu scroll-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <% generic_categories.each do |init| %> 
 
-        <li role="presentation" value="<%=init.id%>"><a role="menuitem" tabindex="-1" ><%=init.title%></a></li>
-        
-        <% end %>
-      </ul>
-    </div>
+    <p class= "information"><%= t("category.cat_add_title")%></p> 
+    <%#binding.pry%>
+    <% root_categories = generic_categories.reject{|n| n.parent_id != nil} %>
+    <div id='jqxWidget'>
+        <div id="dropDownButton">
+          <div style="border: none;" id='jqxTree'>
+                <ul>
+                  <%#binding.pry%>
+                  <li>Categorías</li>
+                  <%root_categories.each do |root_template| %>
+                   <% html = '' %>
+                  <ul>
+                      <%= recursive_tree(root_template, html) %>
+                  </ul>
+                  <%end%>
+                </ul>
+            </div>
+         </div>
+        </div>
+
+        <%content_for :javascript do%>
+        $(document).ready(function () {
+            $("#dropDownButton").jqxDropDownButton({ width: 400, height: 25});
+            $('#jqxTree').on('select', function (event) {
+                var args = event.args;
+                var item = $('#jqxTree').jqxTree('getItem', args.element);
+                var dropDownContent = '<div style="position: relative; margin-left: 3px; margin-top: 5px;">' + item.label + '</div>';
+                $("#dropDownButton").jqxDropDownButton('setContent', dropDownContent);
+            });
+            $("#jqxTree").jqxTree({ width: 400, height: 220});
+        });
+    <%end%>
 
      <!--<p class= "information"><%= t("category.cat_popular")%></p>-->
      <br>
@@ -72,9 +91,6 @@
       </ul>
     </div>
 
-<div id="divrandom">
-
-</div>
   </div>
   <div class="modal-footer">
     <button id="cancel_cat_button" class="btn btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>
@@ -153,11 +169,5 @@
         appliedTags.push($(elem).text());
        });
       });
-
-$(document).ready( function() {
-    $('#divrandom').fileTree({ root: '/some/folder/' }, function(file) {
-        alert(file);
-    });
-});
 
 <%end%>
