@@ -36,9 +36,9 @@
         float: left
         h5
           margin-top: $zero
-          margin-bottom: $zero 
+          margin-bottom: $zero
           a
-            @include text-overflow 
+            @include text-overflow
         .date
           color: $gray
           font-size: 11px
@@ -74,15 +74,15 @@
       @include color-delete
       @media (max-width: $screen-sm-min)
         top: -30px
-      
+
     &:first-child
       @include border-top-radius ($border-radius-base)
     &:last-child
       @include border-bottom-radius ($border-radius-base)
   .unread
     background-color: $white
-    @include transition (background-color 1sec) 
-    border: 1px solid transparent  
+    @include transition (background-color 1sec)
+    border: 1px solid transparent
 
 
 
@@ -108,8 +108,10 @@
           @extend .form-control
       #subject
         margin-bottom: 10px
-          
-    
+      .cleditorMain
+        width: 100% !important
+        margin-bottom: 10px
+        border-radius: $border-radius-base
 
 #content
   .read_all

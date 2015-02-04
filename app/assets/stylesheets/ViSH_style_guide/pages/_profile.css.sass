@@ -5,7 +5,7 @@
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   padding: 0 !important
   margin-bottom: 20px
-  
+
   #profile-info
     @include well
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
@@ -37,7 +37,7 @@
         @media (max-width: $screen-xs-max)
           @include center-block
           width: 30%
-        
+
       .badge-teacher-active
         background-image: url(" badges/teacherofthemonth.png" )
         position: absolute
@@ -55,14 +55,14 @@
       @include make-sm-column(10, $gutter: $grid-gutter-width)
       @include make-md-column(10, $gutter: $grid-gutter-width)
       @include make-lg-column(10, $gutter: $grid-gutter-width)
-      
+
       .briefing
         padding-top: 15px
         .helpheader
           @include hidden-xs
           .popover
             margin-top: -8px
-        .name 
+        .name
           width: 80%
           float: left
           h2
@@ -83,17 +83,17 @@
             padding-right: 0px
         .tags-profile
           float: right
-          display: none     
+          display: none
           margin-top: 3px
 
         .panel
-          @include box-shadow (0 0 0 transparent) 
+          @include box-shadow (0 0 0 transparent)
           .ocupation
             margin-bottom: -4px
           @media (max-width: $screen-xs-max)
             margin: $zero
 
-        .panel-group 
+        .panel-group
           margin-bottom: $zero
           margin-top: 10px
           table
@@ -124,8 +124,8 @@
         @media (max-width: $screen-xs-max)
           .name,
           .description
-            text-align: center 
-            width: 100%              
+            text-align: center
+            width: 100%
 
         .toolbar-profile
           position: relative
@@ -171,7 +171,7 @@
               width: 80%
               @include center-block
 
-  .collapse, 
+  .collapse,
   .panel-body
     margin: $zero !important
 
@@ -201,7 +201,7 @@
         display: block
         width: 100%
         clear: both
-    
+
       .avatar-edit
         display: block
         margin-bottom: 10px
@@ -238,7 +238,6 @@
             display: block
             float: left
             margin-right: 10px
-  
 
         .actions
           margin-top: 12px
@@ -248,16 +247,12 @@
             float: right
           a
             float: right
-            margin-right: 10px
-            background-color: $gray
-            color: $white
-            &:hover
-              color: $white
+            margin-right: 5px
 
       ul.tagList
         padding-left: 0
-  .name-required  
-    label 
-      display: inline 
+  .name-required
+    label
+      display: inline
       span
         color: $gray-dark

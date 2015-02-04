@@ -28,10 +28,10 @@
       <%= f.text_field :city, :class => "input_settings form-control" %>
 
       <%= f.label t('profile.country'), :class => "text" %>
-      <%= f.text_field :country, :class => "input_settings" %>
-       
+      <%= f.text_field :country, :class => "input_settings form-control" %>
+
       <%= f.label :description, t("profile.#{ profile_subject.class.to_s.downcase }.about") %>
-      <%= f.text_area :description, :maxlength => 500, :rows => 2, :value => profile_subject.description %>
+      <%= f.text_area :description, :maxlength => 500, :rows => 2, :value => profile_subject.description, :class => "form-control" %>
 
       <!-- Tags preloaded -->
       <% @tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
@@ -76,9 +76,9 @@
           $.each($("#preloadUserTagList li"), function(index, element) {
             $(tagList).append("<li>" + $(element).html() + "</li>")
           });
-        } 
-        
-        $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
+        }
+
+        $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 ,
           watermarkAllowMessage: '<%=t('document.tags.areasOfInterestMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' ,
           tagsChanged:function (tag, action) {
             //Check if the element popped is a suggestion
@@ -89,7 +89,7 @@
                 }
               });
             }
-          } 
+          }
         });
 
         //Allow suggestions
@@ -119,5 +119,5 @@
 
     <% end %>
 
-  <% end %>        
+  <% end %>
 </div>
