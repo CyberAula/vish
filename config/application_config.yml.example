@@ -79,3 +79,9 @@ production:
 # Enable tracking system to record all user actions while viewing resources.
 # trackingSystemAPIKEY: "secret_key"
 # trackingSystemAPIURL: "http://#{ViSH domain}/tracking_system_entries"
+
+#Configure Selenium Webdriver (http://docs.seleniumhq.org/docs/03_webdriver.jsp)
+  # selenium:
+  #   browser: "Firefox" #Can be Firefox or Chrome
+  #   driver_path: "/usr/bin/chromedriver" #You optionally can provide the driver path here.
+  #   profile: "seleniumprofile" #Name of the profile to be used by Selenium

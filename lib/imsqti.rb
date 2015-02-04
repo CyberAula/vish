@@ -7,13 +7,12 @@ require 'builder'
 class IMSQTI
 
   def self.createQTI(filePath,fileName,qjson)
-    require 'zip/zip'
-    require 'zip/zipfilesystem'
+    require 'zip'
 
     t = File.open("#{filePath}#{fileName}.zip", 'w')
 
     #Add manifest, main HTML file and additional files
-    Zip::ZipOutputStream.open(t.path) do |zos|
+    Zip::OutputStream.open(t.path) do |zos|
       case qjson["quiztype"]
       when "truefalse"
         for i in 0..((qjson["choices"].size)-1)
@@ -54,7 +53,7 @@ class IMSQTI
     xsdFiles = ["imscp_v1p1.xsd","imsmd_v1p2p4.xsd"]
 
     #Add required xsd files
-    Zip::ZipFile.open(t.path, Zip::ZipFile::CREATE) { |zipfile|
+    Zip::File.open(t.path, Zip::File::CREATE) { |zipfile|
       xsdFiles.each do |xsdFileName|
         zipfile.add(xsdFileName,xsdFileDir+"/"+xsdFileName)
       end
