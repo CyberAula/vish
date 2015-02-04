@@ -21,12 +21,14 @@
       font-family: $font-family-sans-serif
     .select2-search-choice
       padding: 7px 9px 6px 18px
+      background-color: inactivecaption
+      margin: 7px 3px
 
 
-.select2-dropdown-open  
+.select2-dropdown-open
   .facebook-auto
     margin-top: -10px
-    .default 
+    .default
       font-family: $font-family-sans-serif
       font-size: 12px
     ul
@@ -48,14 +50,19 @@
     float: right
     margin: 10px 61px $zero $zero
 
-.select2-results 
+.select2-results
   padding: 0
   margin: 5px 0 3px 0
   @include box-shadow ($zero $zero $zero rgba(0, 0, 0, 0))
   .select2-highlighted
-    background: $gray-lighter
+    background: $white
     color: $gray-darker-extra
 
+.select2-drop
+  margin: 1px 5px
+  width: 70% !important
+  li:hover
+    background-color: $gray-lighter
 .select2-drop-active
   border: 1px solid $border-color
 
@@ -75,8 +82,9 @@
   padding: $zero !important
   margin: $zero !important
   border: none !important
-  background: rgba(0, 0, 0, 0) 
-  background-image: none !important 
+  background: rgba(0, 0, 0, 0)
+  background-image: none !important
+  box-shadow: none !important
 
 .select2-search-field
   width: 100%
@@ -96,11 +104,11 @@
 .select2-drop.select2-drop-above.select2-drop-active
   border-top: 1px solid $border-color
 
-.select2-dropdown-open.select2-drop-above 
+.select2-dropdown-open.select2-drop-above
   .select2-choice,
   .select2-choices
     border: 1px solid $border-color !important
-.select2-dropdown-open 
+.select2-dropdown-open
   .select2-choice
     background-image: none
 .select2-search
@@ -108,4 +116,3 @@
   @include border-top-radius ($border-radius-base)
   @include border-bottom-radius ($border-radius-base)
   display: none
-
