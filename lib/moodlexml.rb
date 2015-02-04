@@ -7,12 +7,11 @@ require 'builder'
 class MOODLEQUIZXML
 
   def self.createMoodleQUIZXML(filePath,fileName,qjson)
-    require 'zip/zip'
-    require 'zip/zipfilesystem'
+    require 'zip'
 
     t = File.open("#{filePath}#{fileName}.zip", 'w')
 
-    Zip::ZipOutputStream.open(t.path) do |zos|
+    Zip::OutputStream.open(t.path) do |zos|
       case qjson["quiztype"]
 
       when "multiplechoice"

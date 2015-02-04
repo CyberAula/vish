@@ -45,7 +45,7 @@ class Webapp < ActiveRecord::Base
       require "fileutils"
       FileUtils.mkdir_p(loDirectoryPath)
 
-      Zip::ZipFile.open(zipfile.file.path) { |zip_file|
+      Zip::File.open(zipfile.file.path) { |zip_file|
         unless zip_file.entries.map{|e| e.name}.include? "index.html"
           raise "#Invalid ZIP file for creating Web App"
         end

@@ -18,7 +18,7 @@ class Zipfile < Document
 
     isScorm = false
     isWebapp = false
-    Zip::ZipFile.open(self.file.path) do |zip|
+    Zip::File.open(self.file.path) do |zip|
       isScorm = zip.entries.map{|e| e.name}.include? "imsmanifest.xml"
       unless isScorm
         isWebapp = zip.entries.map{|e| e.name}.include? "index.html"
