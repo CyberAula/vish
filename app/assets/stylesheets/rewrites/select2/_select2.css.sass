@@ -51,16 +51,23 @@
     margin: 10px 61px $zero $zero
 
 .select2-results
+  border-radius: 5px
+  margin: 0 !important
   padding: 0
   margin: 5px 0 3px 0
   @include box-shadow ($zero $zero $zero rgba(0, 0, 0, 0))
-  .select2-highlighted
+  .select2-result-selectable
     background: $white
     color: $gray-darker-extra
-
+    .select2-result-label
+      padding: 5px !important
+      img
+        border-radius: $border-radius-base !important
+        margin-right: 5px !important
+  .select2-highlighted
+    background: $gray-lighter
 .select2-drop
-  margin: 1px 5px
-  width: 70% !important
+  border-radius: $border-radius-base !important
   li:hover
     background-color: $gray-lighter
 .select2-drop-active
