@@ -11,11 +11,12 @@ module CategoriesHelper
 		  html << "<li category_id="+root.id.to_s+">#{root.title}</li>"
 		  return html.html_safe
 		else
-		  html << "<li item-expanded='true' category_id="+root.id.to_s+">#{root.title}</li>" # Explanation 2
+		  html << "<li item-expanded='true' category_id="+root.id.to_s+">#{root.title}" # Explanation 2
 		  for template_child in root.children
 		    temp_html = '' # Explanation 1
 		    html << "<ul>#{recursive_tree(template_child, temp_html)}</ul>"
 		  end
+		  html << "</li>"
 		end
 		return html.html_safe
 		end

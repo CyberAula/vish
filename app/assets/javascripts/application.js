@@ -29,10 +29,10 @@
 //= require bootstrap-dropdown
 //= require bootstrap-datetimepicker.min
 //= require jqxcore
-//= require jqxbuttons
 //= require jqxdropdownbutton
-//= require jqxpanel
 //= require jqxscrollbar
+//= require jqxbuttons
 //= require jqxtree
+//= require jqxpanel
 //= require_tree .
 
