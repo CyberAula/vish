@@ -1,12 +1,10 @@
 <div class="btn-group">
   
   <!--BTN ADD-->
-  <% if !profile_subject_is_current? %>
-
-    <button class="btn btn-follow">
+ <% if !profile_subject_is_current? %>
+    <div class="btn btn-follow">
       <%= contact_button(profile_subject) %>
-     </button>
-
+    </div>
   <% end %>
   <!-- Edit your profile -->
   <% @profile = profile_or_current_subject.profile %>
