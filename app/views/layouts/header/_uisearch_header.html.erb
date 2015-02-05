@@ -1,9 +1,9 @@
 <section class="quick-search">
-  
+
   <div class="search-nav ">
     <%= form_tag search_path, method: 'get', class: "navbar-search form-group" do %>
       <%= text_field_tag :q, nil, autocomplete: :off, class: 'search-query form-control', placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
-      <button type="button" id="search_button_desktop" class="input-group-addon search_button_class btn btn-default"><i class="fa fa-search mini-search"></i></button>
+      <button type="button" id="search_button_desktop" class="search_button_class btn btn-default"><i class="fa fa-search mini-search"></i></button>
     <% end %>
 
     <div class="mat">
