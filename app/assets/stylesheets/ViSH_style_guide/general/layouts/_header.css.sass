@@ -10,10 +10,7 @@
     float: none
     margin-right: 0
   form
-    .form-control
-      height: 37px
     .search_button_class
-      vertical-align: none !important
       @media (max-width: $screen-xs-max)
         width: 13%
         margin-left: 0
@@ -31,6 +28,8 @@
       width: 85%
       margin-right: auto !important
       margin-left: auto
+    @media (min-width: 1132px)
+      padding-top: 4px
 .dropdown-log
   @include dropdown-log
 
@@ -122,11 +121,8 @@
     padding: 0px !important
     img
       @include border-left-radius ($border-radius-small)
-      width: 35px
-      @media (max-width: $screen-sm-max)
-        width: 34px
-      @media (min-width: 779px) and (max-width: 877px)
-        width: 33px
+      @include fix-img-addon
+
 
   .dropdown-toggle:hover
     border: 1px solid $brand-primary
