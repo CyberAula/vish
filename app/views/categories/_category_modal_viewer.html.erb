@@ -93,14 +93,6 @@
     $("#myCategories").tagit("add", name, value);
   });
 
-  //TODO: Make it work
-  $("#catDropdownSel li").click(function(){
-    var value = $(this).children().html();
-    var name = $(this).children().html();
-
-    $("#myCategories").tagit("add", name, value);
-  });
-
   //When saving gathering all tags and sending to server
   $("#save_cat_button").click(function() {
     var cat_done_array = [];
@@ -156,11 +148,12 @@
        });
       });
 
+      // INITIALIZE TREE
       $("#dropDownButton").jqxDropDownButton({ width: 400, height: 25});
       $("#jqxTree").jqxTree({ width: 400, height: 220});
-      //TODO: internationalize text
-      $("#dropDownButton").jqxDropDownButton('setContent', '<div style="position: relative; margin-left: 3px; margin-top: 5px;">Categorías</div>');
-      
+      $("#dropDownButton").jqxDropDownButton('setContent', '<div style="position: relative; margin-left: 3px; margin-top: 5px;"><%=t('document.help.categories1_html')%></div>');
+
+      // DROPDOWN TREE CATEGORIES LOGIC
       $('#jqxTree').on('select', function (event) {
                 var args = event.args.element;
                 if (args.getAttribute("category_id") != null){
@@ -170,6 +163,7 @@
                
                 $("#myCategories").tagit("add", name, value);
                 }
+
                 $('#dropDownButton').jqxDropDownButton('close');
      });
             
