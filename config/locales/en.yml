@@ -195,6 +195,7 @@ en:
         teaching: "teaching"
     title: "Catalogue"
   category:
+    belongs_to: "Belongs to"
     cat_add_select: "Select your categories"
     cat_add_title: "My categories"
     cat_create: "Create new categories"

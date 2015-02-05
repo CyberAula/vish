@@ -190,6 +190,7 @@ es:
         teaching: "enseñanza"
     title: "Catálogo"
   category:
+    belongs_to: "Pertenece a"
     cat_add_select: "Selecciona entre tus categorías"
     cat_add_title: "Mis categorías"
     cat_create: "Crear nuevas categorías"

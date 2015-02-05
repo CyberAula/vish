@@ -23,7 +23,7 @@
       <%= f.text_field :description, :id => div_id+"_category_description", :placeholder => t('categories.description_input') %>
 
 
-      <label><%= f.label :parentCategory, "Belongs to" %></label>
+      <label><%= f.label :parentCategory, t('category.belongs_to')%></label>
       <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject)),{}, :id => div_id+"category_parent_id") %>
 
       <!--Avatar-->
