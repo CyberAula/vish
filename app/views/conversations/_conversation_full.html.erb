@@ -43,11 +43,13 @@
     </div>
   <% end %>
 
+
   <div class="editor">
-    <%= text_area_tag :body, nil,:rows =>6, :cols=> 53, :class => "required form_tag" %>
-  </div>
-  <div class="actions">
-    <%= submit_tag t('mailboxer.reply'), :name => :reply_all,:class => "btn btn-primary" %>
+    <%= text_area_tag :body, nil,:rows =>3, :cols=> 53, :class => "required form-control" %>
+  
+    <div class="actions">
+      <%= submit_tag t('mailboxer.reply'), :name => :reply_all,:class => "btn btn-primary" %>
+    </div>
   </div>
   <% end %>
   <%end %>
