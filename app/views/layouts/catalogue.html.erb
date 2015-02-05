@@ -21,28 +21,15 @@
   <%= favicon_link_tag "icons/favicon.ico" %>
   <%= stylesheet_link_tag "application" %>
   
-
   <% if protect_against_forgery? %>
   <%= csrf_meta_tag %>
   <% end %>
 
-  
   <%= yield :headers %>
 
 </head>
 <body>
   <div id="wrap">
-      
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=629612437058744";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-
     <%= render :partial => "layouts/header/header" %>
     <div class="container-fluid container-content">
       <%= flashy %>
