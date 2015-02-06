@@ -30,8 +30,8 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 7910484dabc5616f15d2bc3430152f5f64efc78a
-  ref: 7910484dabc5616f15d2bc3430152f5f64efc78a
+  revision: dec854dbcf1efe4b3cdd9a25612e2b6154d278da
+  ref: dec854dbcf1efe4b3cdd9a25612e2b6154d278da
   branch: vish-b3
   specs:
     social_stream-base (2.2.2)
@@ -289,7 +289,7 @@ GEM
       rails (> 3.0.0)
     method_source (0.8.2)
     mime-types (1.25.1)
-    modernizr-rails (2.0.6)
+    modernizr-rails (2.7.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
