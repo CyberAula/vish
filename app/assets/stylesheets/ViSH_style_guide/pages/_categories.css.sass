@@ -38,9 +38,11 @@
       width: 100% !important
 
     .information
-      width: 80%
+      width: 84%
       float: left
       padding: 10px 15px
+      @media (max-width: $screen-xs-max)
+        width: 80%
       .description
         clear: both
         color: $gray-dark
@@ -106,9 +108,22 @@
   .category_info
     position: relative
     .left_info
-      width: 20%
+      width: 16%
       height: 150px
       float: left
+      @media (max-width: $screen-xs-max)
+        width: 20%
+      .container-img
+        position: relative
+        width: 100%
+        overflow: hidden
+        height: 122px
+        .img-box
+          overflow: hidden
+          text-align: center
+          position: absolute
+          top: 0
+          left: 0
       .container-img-categorie_0,
       .container-img-categorie_1,
       .container-img-categorie_2,
@@ -137,6 +152,10 @@
           color: #fff !important
           font-size: 2.3em
           margin-left: -21%
+        .img-box
+          img
+            width: 100%
+
     .corner-item
       position: absolute
       top: 0
