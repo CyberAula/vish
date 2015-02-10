@@ -38,14 +38,9 @@
       width: 100% !important
 
     .information
-      @include make-xs-column(12, $gutter: $grid-gutter-width)
-      @include make-sm-column(10, $gutter: $grid-gutter-width)
-      @include make-md-column(10, $gutter: $grid-gutter-width)
-      @include make-lg-column(10, $gutter: $grid-gutter-width)
-      padding-top: 10px
-      padding-bottom: 10px
-      @media (max-width: $screen-xs-max)
-        margin-top: 30px
+      width: 80%
+      float: left
+      padding: 10px 15px
       .description
         clear: both
         color: $gray-dark
@@ -111,7 +106,7 @@
   .category_info
     position: relative
     .left_info
-      width: 16%
+      width: 20%
       height: 150px
       float: left
       .container-img-categorie_0,
