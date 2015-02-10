@@ -6,14 +6,14 @@ DocumentsHelper.module_eval do
     unless document.class.superclass.name != "Document"
       #For documents (based on SS documents)
       icon_name = case icon_mime_type document
-        when :default then "file-o"
-        when :text then "file-text-o"
+        when :default then "file"
+        when :text then "file-text"
         when :image then "image"
         when :audio then "music"
         when :video then "video-camera"
-        when :pdf then "file-pdf-o"
-        when :swf then "file-swf-o"
-        when :zipfile then "file-zip-o"
+        when :pdf then "file-pdf"
+        when :swf then "file-swf"
+        when :zipfile then "file-zip"
         else "file" #icon_mime_type document
       end
     else
@@ -21,9 +21,9 @@ DocumentsHelper.module_eval do
       icon_name = case document.class.name
         when "Link" then "link"
         when "Embed" then "code"
-        when "Writing" then "file-text-o"
-        when "Scormfile" then "scorm-o"
-        when "Webapp" then "webapp-o"
+        when "Writing" then "file-text"
+        when "Scormfile" then "scorm"
+        when "Webapp" then "webapp"
         when "Workshop" then "lightbulb-o"
         else "file" # SocialStream::Documents.icon_mime_types[:default]
       end
