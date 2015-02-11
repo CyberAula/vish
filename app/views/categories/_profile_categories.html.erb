@@ -30,8 +30,6 @@
     </div>
 
 
-
-     
     <!-- Modal -->
     <div id="options-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
@@ -39,25 +37,22 @@
         <h3 id="myModalLabel"><%=t('categories.dragandrop.edit')%></h3>
       </div>
       <div class="modal-body">
-        <p>default view in profile categories</p>
+        <p>Vista por defecto</p>
+        <%# form_tag() do |f| %>
         <div class="radio">
-          <label><input type="radio" name="optradio">          
+          
+          <label><%#= f.radio_button :default_view, false%>
             <i class="icon-th "></i>
             <%=t('categories.dragandrop.gallery')%>
           </label>
         </div>
         <div class="radio">
-          <label><input type="radio" name="optradio">
+          <label><%#= f.radio_button :default_view_cat, true%>
             <i class="icon-align-justify "></i>
             <%=t('categories.dragandrop.list')%>
           </label>
         </div>
-
-
-
-
-
-
+        <%# end %>
       </div>
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true"><%=t('close')%></button>
