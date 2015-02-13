@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150126095038) do
+ActiveRecord::Schema.define(:version => 20150213122232) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -577,6 +577,7 @@ ActiveRecord::Schema.define(:version => 20150126095038) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.boolean  "order_list_in_cat"
   end
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"
