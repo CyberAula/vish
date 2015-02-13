@@ -29,6 +29,11 @@
       </div>
     </div>
 
+    <% is_category_list = current_subject.order_list_in_cat
+      if is_category_list.nil?
+        is_category_list = true
+      end%>
+
 
     <!-- Modal -->
     <div id="options-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -37,27 +42,29 @@
         <h3 id="myModalLabel"><%=t('categories.dragandrop.edit')%></h3>
       </div>
       <div class="modal-body">
-        <p>Vista por defecto</p>
-        <%# form_tag() do |f| %>
+        <p><%=t('categories.dragandrop.default_view')%></p>
+       <%= form_tag(categories_default_view_path) do %>
+       
         <div class="radio">
           
-          <label><%#= f.radio_button :default_view, false%>
+          <label><%= radio_button_tag :default_view, true, is_category_list %>
             <i class="icon-th "></i>
             <%=t('categories.dragandrop.gallery')%>
           </label>
         </div>
         <div class="radio">
-          <label><%#= f.radio_button :default_view_cat, true%>
+          <label><%= radio_button_tag :default_view,false, !is_category_list %>
             <i class="icon-align-justify "></i>
             <%=t('categories.dragandrop.list')%>
           </label>
         </div>
-        <%# end %>
+       
       </div>
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true"><%=t('close')%></button>
-        <button class="btn btn-primary"><%=t('save')%></button>
+        <%= submit_tag t('save'), :class => 'btn btn-primary' %>
       </div>
+        <% end -%>
     </div>
 
 
@@ -131,6 +138,7 @@
   var beginIndex;
   var beginObjects;
 
+
   function add_onclicks_to_categories(){
       //Let the overlay appear
       $(".btn-for-categorize").click(function(){
@@ -164,3 +172,13 @@
   <%end%>
 
 </script>
+
+<%= content_for :javascript do %>
+ if(<%=!is_category_list%>){
+    $(".btn-for-categorize").hide(0);
+        $("#normal-instance").fadeOut(0,function(){
+          $("#list-instance").fadeIn(0);
+        });
+  }
+
+<%end%>

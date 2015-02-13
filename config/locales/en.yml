@@ -217,6 +217,7 @@ en:
         back: "Back"
         complete: "Complete"
         confirm: "Are you sure you want to do this?"
+        default_view: "Which default view you prefer?"
         discard_changes: "Discard changes"
         drag1: "Move and drop different resources into categories the way you want or even erase them."
         drag2: "Order is always important, drag and sort."

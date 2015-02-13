@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:show]
   before_filter :fill_create_params, :only => [:create, :update]
-  skip_load_and_authorize_resource :only => [:categorize, :edit_categories]
+  skip_load_and_authorize_resource :only => [:categorize, :edit_categories, :default_view]
   skip_after_filter :discard_flash, :only => [:update]
 
 
@@ -219,6 +219,17 @@ class CategoriesController < ApplicationController
        }
       format.js
     end
+  end
+
+  def default_view
+
+    unless params[:default_view] == nil
+        the_user =  current_subject
+        the_user.order_list_in_cat =  params[:default_view]
+        authorize! :update, the_user
+        the_user.save
+    end
+    redirect_to url_for(current_subject) + "?tab=categories"
   end
 
 
