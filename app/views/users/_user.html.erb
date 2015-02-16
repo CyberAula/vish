@@ -9,22 +9,13 @@
     <div class="corner-background"></div>
   </div>
 
-  <%if user.is_mve %>
-    <div class="badge-teacher-active"></div>
-  <%end%>
-  
-
-    <!-- image/icon -->
-    <div class="container-img">
-      <div class="img-box resource-center">        
-      	<div class="avatar">
-       <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
-       </div>
-      </div>
-    </div> 
-
-
-
+  <div class="container-img">
+    <div class="img-box resource-center">        
+    	<div class="avatar">
+     <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
+     </div>
+    </div>
+  </div> 
 
   <div class="info-user">
     <div class="name-user">
