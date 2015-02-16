@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:show]
   before_filter :fill_create_params, :only => [:create, :update]
-  skip_load_and_authorize_resource :only => [:categorize, :edit_categories, :default_view]
+  skip_load_and_authorize_resource :only => [:categorize, :edit_categories, :settings]
   skip_after_filter :discard_flash, :only => [:update]
 
 
@@ -221,7 +221,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def default_view
+  def settings
     authorize! :update, current_subject
 
     unless params[:categories_view].blank? or !params[:categories_view].is_a? String
