@@ -214,8 +214,8 @@
       //DESCRIPTION
       $("#AddResource input[name='"+resource_type+"[description]']").val($(".description").val());
       //TAGS
-      var tagList = $("#AddResource .resourceTagList");
-      $("#AddResource input[name='"+resource_type+"[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+      var resourceTagList = $("#AddResource .resourceTagList");
+      $("#AddResource input[name='"+resource_type+"[tag_list][]']").val(Vish.Utils.convertToTagsArray($(resourceTagList).tagit("tags")));
       //Avatar
       var avatarFileInput = $("#AddResource .new_file_avatar");
       $(avatarFileInput).attr("name",resource_type+"[avatar]");
@@ -246,8 +246,14 @@
   });
 
   if ($(resourceTagList).children().length == 0){
-    $(resourceTagList).tagit({tagSource:resourceTags, sortable:true, maxLength:15, maxTags:8 ,
-      watermarkAllowMessage: '<%=t('document.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' });
+    $(resourceTagList).tagit({
+      tagSource:resourceTags,
+      sortable:true,
+      maxLength:15,
+      maxTags:8,
+      watermarkAllowMessage: '<%=t('document.tags.addMessage')%>',
+      watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>'
+    });
   }
 
   //File chooser listener

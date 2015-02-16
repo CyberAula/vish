@@ -33,7 +33,7 @@
 
       <!-- Tags preloaded -->
       <% @tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
-      <ul id="preloadTagList" style="display:none">
+      <ul id="userPreloadTagList" style="display:none">
         <%@tags.each do |tag| %>
           <li>
             <%=tag.name%>
@@ -51,9 +51,9 @@
 
       <%= f.label t('activerecord.attributes.user.tag') %>
       <div class="tagBoxNew">
-        <ul class="tagList"></ul>
+        <ul class="userTagList"></ul>
       </div>
-      <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags') %>
+      <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_user_tag_list", :placeholder => t('devise.tags') %>
 
       <div class="actions">
         <%= f.submit t('button.update'), "data-loading-text" => t('button.sending') %>
@@ -62,22 +62,27 @@
     <% end %>
 
     <%= content_for :javascript do %>
-        var tagList = $(".tagList");
-        var tags = [];
+        var userTagList = $(".userTagList");
+        var userTagsSource = [];
 
         //Load tags
-        $.each($("#preloadTagList li"), function(index, element) {
-           tags.push($(element).html());
+        $.each($("#userPreloadTagList li"), function(index, element) {
+           userTagsSource.push($(element).html());
         });
 
-        if ($(tagList).children().length == 0){
+        if ($(userTagList).children().length == 0){
           $.each($("#preloadUserTagList li"), function(index, element) {
-            $(tagList).append("<li>" + $(element).html() + "</li>")
+            $(userTagList).append("<li>" + $(element).html() + "</li>");
           });
-        } 
+        }
         
-        $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
-          watermarkAllowMessage: '<%=t('document.tags.areasOfInterestMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' ,
+        $(userTagList).tagit({
+          tagSource: userTagsSource,
+          sortable: true,
+          maxLength: 15,
+          maxTags: 8,
+          watermarkAllowMessage: '<%=t('document.tags.areasOfInterestMessage')%>', 
+          watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>',
           tagsChanged:function (tag, action) {
             //Check if the element popped is a suggestion
             if(action=="popped"){
@@ -87,7 +92,7 @@
                 }
               });
             }
-          } 
+          }
         });
 
         //Allow suggestions
@@ -99,21 +104,20 @@
         });
 
         //Fill tag_list hidden input before send
-         var button = $("input[type='submit'][name='commit']");
-          $(button).click(function(event) {
-
+        var userUpdateProfileButton = $("input[type='submit'][name='commit']");
+        $(userUpdateProfileButton).click(function(event) {
            $(this).button('loading');
            $("#hide_profile_form").hide();
 
-           var tagList = $(".tagList")[1];
-           $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+           var userTagList = $(".userTagList");
+           $("#input_user_tag_list").val(Vish.Utils.convertToTagsArray($(userTagList).tagit("tags")));
            return true;
-         });
+        });
 
-         $("#hide_profile_form").click(function(){
-            $(".update").hide("slow");
-            $(".briefing").show("slow");
-         });
+        $("#hide_profile_form").click(function(){
+          $(".update").hide("slow");
+          $(".briefing").show("slow");
+        });
 
     <% end %>
 
