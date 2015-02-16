@@ -16,11 +16,11 @@
 
   <div class="toolbar_nav-tab">
     <% if canEditProfile %>
-      <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
-    
       <a href="#options-modal" type="button" class="btn btn-primary " role="button" data-toggle="modal" >
         <i class="icon-cogs"></i><%=t('categories.dragandrop.edit')%>
       </a>
+
+      <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
     <% end %>
 
     <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
@@ -82,9 +82,11 @@
   <%all_categories.each do |category|%>
   <%if !category.property_objects.empty? %>
     <h2 ><%= category.title %></h2>
-    <ul class="categories main-list-categories-space">
+    <ul id="container_<%=category.id.to_s%>" class="categories main-list-categories-space">
           <%category.property_objects.each do |resource| %>
-              <%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
+           
+            <%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id => category.id.to_s + "_" } %>
+          
           <%end%>
     </ul>
     <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue" name="<%=category.title%>"><%=t('view_all')%></button>

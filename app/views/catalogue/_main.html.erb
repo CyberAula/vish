@@ -4,7 +4,7 @@
 			<h2><%=t("catalogue.categories." + name, :default => "Category")%></h2>
 			<ul id="container_<%=name%>" class="items">
 				<%for resource in resources%>
-					<%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue_"+name+"_" } %>
+					<%= render :partial => "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue_"+name+"_" } %>
 				<%end%>
 			</ul>
 			<button class="show_more_catalogue" name="<%=name%>"><%=t('view_all')%></button>
