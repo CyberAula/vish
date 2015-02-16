@@ -1,78 +1,73 @@
 <div id="categories_tab_ready" class="categories cat_container_generic">
-  <% all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).select{|i| i.isRoot?} %>
-  <% order = profile_or_current_subject.actor.categories_order %>
-  <% unless order.nil?
-    orderLength = order.length
-    all_categories.sort_by!{|h| order.index(h.activity_object.id) || (orderLength+1)}
-  end %>
+
+  <% 
+    all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).select{|i| i.isRoot?}
+    order = profile_or_current_subject.categories_order
+    unless order.nil?
+      orderLength = order.length
+      all_categories.sort_by!{|h| order.index(h.activity_object.id) || (orderLength+1)}
+    end
+    categoryView = profile_or_current_subject.categories_view
+
+    canEditProfile = profile_subject_is_current? or isAdmin?
+  %>
+
   <br>
 
-    <div class="toolbar_nav-tab">
-       <% if profile_subject_is_current? or isAdmin? %>
-          <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
-        <% end %>
+  <div class="toolbar_nav-tab">
+    <% if canEditProfile %>
+      <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
+    
+      <a href="#options-modal" type="button" class="btn btn-primary " role="button" data-toggle="modal" >
+        <i class="icon-cogs"></i><%=t('categories.dragandrop.edit')%>
+      </a>
+    <% end %>
 
-    <!-- Button to options modal -->
-      <a href="#options-modal" type="button" class="btn btn-primary " role="button" data-toggle="modal" ><i class="icon-cogs"></i><%=t('categories.dragandrop.edit')%></a>
-
-
-      <!--TODO:applycss and fix icons-->
-      <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
-        <button id="normal-view" type="button" class="btn btn-primary">
-          <!--i class="icon-th "></i-->
-          <%=t('categories.dragandrop.gallery')%>
-        </button>
-        <button id="list-view" type="button" class="btn btn-primary">
-          <!--i class="icon-align-justify "></i-->
-          <%=t('categories.dragandrop.list')%>
-        </button>
-      </div>
+    <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
+      <button id="normal-view" type="button" class="btn btn-primary">
+        <%=t('categories.dragandrop.gallery')%>
+      </button>
+      <button id="list-view" type="button" class="btn btn-primary">
+        <%=t('categories.dragandrop.list')%>
+      </button>
     </div>
+  </div>
 
-    <% is_category_list = current_subject.order_list_in_cat
-      if is_category_list.nil?
-        is_category_list = true
-      end%>
-
-
-    <!-- Modal -->
-    <div id="options-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <!-- Modal -->
+  <div id="options-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <%= form_tag(categories_default_view_path) do %>   
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myModalLabel"><%=t('categories.dragandrop.edit')%></h3>
       </div>
       <div class="modal-body">
         <p><%=t('categories.dragandrop.default_view')%></p>
-       <%= form_tag(categories_default_view_path) do %>
-       
         <div class="radio">
-          
-          <label><%= radio_button_tag :default_view, true, is_category_list %>
+          <label>
+            <%= radio_button_tag :categories_view, "gallery", (categoryView=="gallery") %>
             <i class="icon-th "></i>
             <%=t('categories.dragandrop.gallery')%>
           </label>
         </div>
         <div class="radio">
-          <label><%= radio_button_tag :default_view,false, !is_category_list %>
+          <label>
+            <%= radio_button_tag :categories_view, "list", (categoryView=="list") %>
             <i class="icon-align-justify "></i>
             <%=t('categories.dragandrop.list')%>
           </label>
         </div>
-       
       </div>
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true"><%=t('close')%></button>
         <%= submit_tag t('save'), :class => 'btn btn-primary' %>
       </div>
-        <% end -%>
-    </div>
-
-
-
+    <% end %>
+  </div>
 
   <% if profile_subject_is_current? or isAdmin? %>
     <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
   <% end %>
+
   <div id="normal-instance">
     <ul class="categories main-categories-space">
       <% if profile_subject_is_current? %>
@@ -91,7 +86,6 @@
           <%category.property_objects.each do |resource| %>
               <%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id =>"catalogue" } %>
           <%end%>
-          <!-- TODO: normalize in css-->
     </ul>
     <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue" name="<%=category.title%>"><%=t('view_all')%></button>
       <%end%>
@@ -174,11 +168,10 @@
 </script>
 
 <%= content_for :javascript do %>
- if(<%=!is_category_list%>){
+ if(<%=(categoryView!="gallery")%>){
     $(".btn-for-categorize").hide(0);
         $("#normal-instance").fadeOut(0,function(){
           $("#list-instance").fadeIn(0);
         });
   }
-
 <%end%>

@@ -222,13 +222,12 @@ class CategoriesController < ApplicationController
   end
 
   def default_view
+    authorize! :update, current_subject
 
-    unless params[:default_view] == nil
-        the_user =  current_subject
-        the_user.order_list_in_cat =  params[:default_view]
-        authorize! :update, the_user
-        the_user.save
+    unless params[:categories_view].blank? or !params[:categories_view].is_a? String
+        current_subject.actor.update_column :categories_view, params[:categories_view]
     end
+
     redirect_to url_for(current_subject) + "?tab=categories"
   end
 

@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20150213122232) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
-    t.string   "email",                 :default => "",         :null => false
+    t.string   "email",                 :default => "",    :null => false
     t.string   "slug"
     t.string   "subject_type"
     t.boolean  "notify_by_email",       :default => true
@@ -134,14 +134,23 @@ ActiveRecord::Schema.define(:version => 20150213122232) do
     t.string   "notification_settings"
     t.integer  "mve",                   :default => 0
     t.boolean  "is_mve",                :default => false
-    t.integer  "rank_mve",              :default => 0
+    t.integer  "rankMve",               :default => 0
     t.boolean  "is_admin",              :default => false
-    t.text     "category_order",        :default => "--- []\n", :null => false
+    t.text     "category_order"
+    t.string   "categories_view"
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
   add_index "actors", ["email"], :name => "index_actors_on_email"
   add_index "actors", ["slug"], :name => "index_actors_on_slug", :unique => true
+
+  create_table "announcements", :force => true do |t|
+    t.text     "message"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "audiences", :force => true do |t|
     t.integer "relation_id"
@@ -279,7 +288,7 @@ ActiveRecord::Schema.define(:version => 20150213122232) do
     t.datetime "pdf_timestamp"
     t.integer  "mve",                :default => 0
     t.boolean  "is_mve",             :default => false
-    t.integer  "rank_mve",           :default => 0
+    t.integer  "rankMve",            :default => 0
   end
 
   create_table "groups", :force => true do |t|
@@ -322,6 +331,16 @@ ActiveRecord::Schema.define(:version => 20150213122232) do
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
+
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.string   "permalink"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "pages", ["permalink"], :name => "index_pages_on_permalink"
 
   create_table "pdfexes", :force => true do |t|
     t.datetime "created_at",                             :null => false
@@ -577,7 +596,6 @@ ActiveRecord::Schema.define(:version => 20150213122232) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
-    t.boolean  "order_list_in_cat"
   end
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"
