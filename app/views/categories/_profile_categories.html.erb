@@ -83,10 +83,9 @@
   <%if !category.property_objects.empty? %>
     <h2 ><%= category.title %></h2>
     <ul id="container_<%=category.id.to_s%>" class="categories main-list-categories-space">
-          <%category.property_objects.each do |resource| %>
-           
-            <%=render :partial=> "entities/entity", :locals => { :entity => resource, :prefix_id => category.id.to_s + "_" } %>
-          
+          <%category.property_objects.each do |resource| %>           
+
+            <%=render :partial => "entities/entity", :locals => { :entity => resource.object, :prefix_id => category.id.to_s + "_" } %>
           <%end%>
     </ul>
     <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue" name="<%=category.title%>"><%=t('view_all')%></button>
