@@ -145,14 +145,19 @@
 
       $("#normal-view").click(function(){
         $(".btn-for-categorize").show(200);
-          $("#list-instance").fadeOut(200,function(){          
+          $("#list-instance").fadeOut(200,function(){  
+            $("#normal-view").addClass("active");
+            $("#list-view").removeClass("active");        
             $("#normal-instance").fadeIn(200);
+
           });
       });
 
       $("#list-view").click(function(){
         $(".btn-for-categorize").hide(200);
         $("#normal-instance").fadeOut(200,function(){
+          $("#list-view").addClass("active");
+          $("#normal-view").removeClass("active");
           $("#list-instance").fadeIn(200);
         });
       });
@@ -174,5 +179,11 @@
         $("#normal-instance").fadeOut(0,function(){
           $("#list-instance").fadeIn(0);
         });
+    $("#list-view").addClass("active");
   }
+  else{
+    $("#normal-view").addClass("active");
+  }
+
+
 <%end%>
