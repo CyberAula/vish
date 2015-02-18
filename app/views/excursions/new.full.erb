@@ -51,6 +51,10 @@
 		options["exitURL"]  = "<%= url_for(current_subject) %>";
 	<% end %>
 
+	<%if default_tag%>
+		options["default_tag"] = "<%=default_tag %>";
+	<%end%>
+
 	options.addons = [];
 	var addon = new Object();
 	addon.target = "Both";
