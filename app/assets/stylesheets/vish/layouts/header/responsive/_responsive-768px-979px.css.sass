@@ -6,7 +6,7 @@
 @media (min-width: 0px) and (max-width: 979px)
   .nav-collapse
     @include border-radius($baseBorderRadius)
-    border: 1px solid #F2F2F2
+    /*border: 1px solid #F2F2F2*/
     background-color: $white
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.20))
     z-index: 99
@@ -55,8 +55,12 @@
 
   .navbar-fixed-top, 
   .navbar-fixed-bottom, 
-  .navbar-static-top 
+  .navbar-static-top
+    position: fixed
     margin-left: 0px
     margin-right: 0px
+    margin-bottom: 0px
+    .navbar-inner
+      padding: 0px
   .toggler
     min-height: auto !important
