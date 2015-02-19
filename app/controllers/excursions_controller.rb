@@ -73,7 +73,7 @@ class ExcursionsController < ApplicationController
 
   def new
     new! do |format|
-      format.full { render :layout => 'veditor' }
+      format.full { render :layout => 'veditor', :locals => {:default_tag=> params[:default_tag]}}
     end
   end
 
