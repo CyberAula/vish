@@ -195,6 +195,7 @@ en:
         teaching: "teaching"
     title: "Catalogue"
   category:
+    belongs_to: "Belongs to"
     cat_add_select: "Select your categories"
     cat_add_title: "My categories"
     cat_create: "Create new categories"
@@ -216,6 +217,7 @@ en:
         back: "Back"
         complete: "Complete"
         confirm: "Are you sure you want to do this?"
+        default_view: "Which view you prefer to be seen by default?"
         discard_changes: "Discard changes"
         drag1: "Move and drop different resources into categories the way you want or even erase them."
         drag2: "Order is always important, drag and sort."
@@ -223,9 +225,10 @@ en:
         dragt1: "Drag and drop"
         dragt2: "Sort your categories"
         dragt3: "Group your knowledge"
+        edit: "Edit"
         erase: "Drag here to remove"
         gallery: "Gallery"
-        list: "List"
+        list: "Catalogue View"
         place: "Sort"
         place_uncategorize: "Sort"
         place_long: "Sort categories"
@@ -406,7 +409,7 @@ en:
     invitations:
       button: Invite anyone to join the community
       edit:
-        header: You have been invited to join StoryRobin Community
+        header: "You have been invited to join %{community_name} Community"
       modal_title: Send an invitation
       submit_button: Send an invitation
       success: Invitation sent succesfully
@@ -653,7 +656,6 @@ en:
     populars: "Populars"
   info:
     author: "Author"
-
   lang:
     changed: "Language changed to %{lang}"
     error: "Language \"%{lang}\" not available"
@@ -885,6 +887,8 @@ en:
   share: "Post"
   sharing:
     email: "Share by email"
+    twitter:
+      message: "Check out this resource at %{url}"
   sign_up: "Register"
   simple_captcha:
     placeholder: "Enter the image value"

@@ -27,10 +27,13 @@
 //= require password
 //= require trmix.min.js
 //= require bootstrap-datetimepicker.min
-//= require jquery.scrollUp.min
-//= require jquery.easing.min
 //= require bootstrap-slider/bootstrap-slider
 //= require jquery.zclip.min
-
+//= require jqxcore
+//= require jqxdropdownbutton
+//= require jqxscrollbar
+//= require jqxbuttons
+//= require jqxtree
+//= require jqxpanel
 //= require_tree .
 

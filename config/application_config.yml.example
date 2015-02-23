@@ -64,13 +64,13 @@ production:
 # soundCloudAPIKEY: "secret_key"
 
 # LOEP configuration. Allow to evaluate the quality of the ViSH resources in a systematic way (See http://loep.global.dit.upm.es for more info).
-#  loep:
-#    domain: "http://loep.global.dit.upm.es"
-#    # domain: "http://localhost:8080"
-#    api_version: "v1"
-#    app_name: "ViSH"
-#    auth_token: "secret_loep_token"
-#    repository_name: "ViSH"
+# loep:
+#   domain: "http://loep.global.dit.upm.es"
+#   # domain: "http://localhost:8080"
+#   api_version: "v1"
+#   app_name: "ViSH"
+#   auth_token: "secret_loep_token"
+#   repository_name: "ViSH"
 
 # Set a quality threshold to automatically generate reports when a resource is judged below the threshold.
 # qualityThreshold:
@@ -80,10 +80,34 @@ production:
 # trackingSystemAPIKEY: "secret_key"
 # trackingSystemAPIURL: "http://#{ViSH domain}/tracking_system_entries"
 
-#Configure Selenium Webdriver (http://docs.seleniumhq.org/docs/03_webdriver.jsp)
-  # selenium:
-  #   browser: "Firefox" #Can be Firefox or Chrome
-  #   driver_path: "/usr/bin/chromedriver" #You optionally can provide the driver path here.
-  #   profile: "seleniumprofile" #Name of the profile to be used by Selenium
-  #   remote: "http://localhost:4444/wd/hub" #To connect remotely to a Selenium server. No remote means local.
-  #   remoteFolder: "/tmp/pdf" #Folder on which the remote selenium server store the pdf files.
+# Configure Selenium Webdriver (http://docs.seleniumhq.org/docs/03_webdriver.jsp)
+# selenium:
+#   browser: "Firefox" #Can be Firefox or Chrome
+#   driver_path: "/usr/bin/chromedriver" #You optionally can provide the driver path here.
+#   profile: "seleniumprofile" #Name of the profile to be used by Selenium
+#   remote: "http://localhost:4444/wd/hub" #To connect remotely to a Selenium server. No remote means local.
+#   remoteFolder: "/tmp/pdf" #Folder on which the remote selenium server store the pdf files.
+
+# Uservoice (http://www.uservoice.com)
+# uservoice:
+#   scriptURL: "//widget.uservoice.com/uservoiceKey.js"
+
+# Google Analytics (http://www.google.es/intl/es/analytics)
+# ganalytics:
+#   trackingID: "Google Analytics Tracking Identifier"
+
+# Facebook (http://facebook.com)
+# facebook:
+#   appID: "facebook application identifier"
+
+# Twitter (http://twitter.com)
+# twitter:
+#   enable: true
+
+# Google Plus (http://plus.google.com/)
+# gplus:
+#   enable: true
+
+
+
+

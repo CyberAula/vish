@@ -98,6 +98,3 @@ group :test do
   gem 'factory_girl', '= 2.6'
   gem 'capybara', '= 2.3.0'
 end
-
-
-#gem 'newrelic_rpm'

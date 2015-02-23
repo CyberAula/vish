@@ -1,9 +1,4 @@
-<li class="box-item excursion" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
-  <!--badges-->
-  <%if excursion.is_mostvaluable? %>
-    <div class="badge-excursion-active"></div>
-  <%end%>
-
+<li class="box-item excursion-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
 
   <%if defined?(prefix_id) %>
     <%generated_id= prefix_id + "-excursion-" + excursion.id.to_s%>

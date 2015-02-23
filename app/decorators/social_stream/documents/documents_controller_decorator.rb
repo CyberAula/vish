@@ -2,6 +2,10 @@ DocumentsController.class_eval do
 
   before_filter :fill_create_params, :only => [:new, :create]
 
+  # Enable CORS
+  before_filter :cors_preflight_check, :only => [:show]
+  after_filter :cors_set_access_control_headers, :only => [:show]
+
   def create
     super do |format|
       

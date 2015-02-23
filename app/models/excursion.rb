@@ -1054,9 +1054,7 @@ class Excursion < ActiveRecord::Base
     self.activity_object.increment_download_count
   end
 
-  def is_mostvaluable?
-    is_mve
-  end
+
 
   ####################
   ## Quality Metrics

@@ -16,6 +16,8 @@ module Vish
     # -- all .rb files in that directory are automatically loaded.  
     config.APP_CONFIG = YAML.load_file("config/application_config.yml")[ENV["RAILS_ENV"] || "development"]
     
+    config.name = (config.APP_CONFIG['name'].nil? ? "ViSH" : config.APP_CONFIG['name'])
+
     config.full_domain = "http://" + config.APP_CONFIG['domain']
     config.full_code_domain = "http://" + (config.APP_CONFIG['code_domain'] || config.APP_CONFIG['domain'])
 
@@ -81,6 +83,13 @@ module Vish
       $:.unshift File.expand_path("#{__FILE__}/../../lib/plugins/vish_editor/lib")
       require 'vish_editor'
     end
+
+    #External services settings
+    config.uservoice = (!config.APP_CONFIG['uservoice'].nil? and !config.APP_CONFIG['uservoice']["scriptURL"].nil?)
+    config.ganalytics = (!config.APP_CONFIG['ganalytics'].nil? and !config.APP_CONFIG['ganalytics']["trackingID"].nil?)
+    config.facebook = (!config.APP_CONFIG['facebook'].nil? and !config.APP_CONFIG['facebook']["appID"].nil?)
+    config.twitter = (!config.APP_CONFIG['twitter'].nil? and config.APP_CONFIG['twitter']["enable"]===true)
+    config.gplus = (!config.APP_CONFIG['gplus'].nil? and config.APP_CONFIG['gplus']["enable"]===true)
 
   end
 end

@@ -1,0 +1,84 @@
+<%content_for :javascript do%>
+
+function scale_editor(){
+    var HEADER_HEIGHT = 51;
+    var FOOTER_HEIGHT = 30;
+    var DISTANCE_TO_HEADER = 15;
+    var DISTANCE_TO_FOOTER = <%=is_edit ? "40":"15"%>;
+    var MAXIMUM_SCALE_FACTOR_TO_APPLY_SCALE = 0.90;
+    var WRAPPER_PADDING_LEFT = 10;
+    var WRAPPER_PADDING_RIGHT = 10;
+    var DEFAULT_EDITOR_HEIGHT = 750;
+    var DEFAULT_EDITOR_WIDTH = 1200;
+    var available_height = $(window).height() - HEADER_HEIGHT - FOOTER_HEIGHT - DISTANCE_TO_HEADER - DISTANCE_TO_FOOTER;
+    var available_width = $(window).width() - WRAPPER_PADDING_LEFT - WRAPPER_PADDING_RIGHT;    
+    var scale;
+
+
+    var scale_width = available_width/DEFAULT_EDITOR_WIDTH; 
+    var scale_height = available_height/DEFAULT_EDITOR_HEIGHT;
+    if(scale_width < MAXIMUM_SCALE_FACTOR_TO_APPLY_SCALE && scale_height < MAXIMUM_SCALE_FACTOR_TO_APPLY_SCALE ){
+        //both width and height should be scaled, we use the minimum
+        if(scale_width > scale_height){
+            scale = scale_height;
+        } else {
+            scale = scale_width;
+        }
+    } else if(scale_width < MAXIMUM_SCALE_FACTOR_TO_APPLY_SCALE ) {
+        scale = scale_width;
+    } else if (scale_height < MAXIMUM_SCALE_FACTOR_TO_APPLY_SCALE) {
+        scale = scale_height;
+    } else {
+        scale = 1;
+    }
+    
+    add_scale_prop_to_elem($("#presentation_editor_iframe"),scale);
+    if(scale!=1){
+        $("html").css("overflow", "hidden");
+    } else {
+        $("html").css("overflow", "visible");
+    }
+    setTimeout(function(){
+        console.log("timeout")
+        $("#editor_wrapper").width(DEFAULT_EDITOR_WIDTH*scale + "px");
+        $("#editor_wrapper").height(DEFAULT_EDITOR_HEIGHT*scale + "px");
+        $(".wrapper").css("padding-top", (HEADER_HEIGHT + DISTANCE_TO_HEADER*scale) + "px");
+        $(".wrapper").css("padding-right", WRAPPER_PADDING_RIGHT + "PX");
+        $(".wrapper").css("padding-left", WRAPPER_PADDING_LEFT + "px");
+        $(".wrapper").css("padding-bottom", DISTANCE_TO_FOOTER*scale + "px");
+        <%if is_edit%>
+            var margin_top = DEFAULT_EDITOR_HEIGHT - DEFAULT_EDITOR_HEIGHT*scale;
+            $("#editor_tools_wrapper").css("margin-top", "-" + margin_top + "px");
+        <%end%>
+    }, 600);
+        
+    
+};
+
+function add_scale_prop_to_elem(elem, scale_factor){
+    if(scale_factor != 1){
+        $(elem).css("transform-origin","0 0 0");
+        $(elem).css("-ms-transform-origin","0 0 0");
+        $(elem).css("-webkit-transform-origin","0 0 0");
+        
+        $(elem).css("transform","scale3d("+scale_factor+","+scale_factor+",1)");
+        $(elem).css("-ms-transform","scale3d("+scale_factor+","+scale_factor+",1)");
+        $(elem).css("-webkit-transform","scale3d("+scale_factor+","+scale_factor+",1)");
+    } else {
+        $(elem).css("transform-origin","50% 50% 0");
+        $(elem).css("-ms-transform-origin","50% 50% 0");
+        $(elem).css("-webkit-transform-origin","50% 50% 0");
+        
+        $(elem).css("transform","none");
+        $(elem).css("-ms-transform","none");
+        $(elem).css("-webkit-transform","none");
+    }
+};
+
+$( window ).resize(function() {
+  scale_editor();
+});
+
+scale_editor();
+
+<%end%>

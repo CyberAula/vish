@@ -1,45 +1,53 @@
 <%= render :partial => 'modal_message' %>
+
 <section class="user">
-  <div id="profile-info">
 
-    <!--avatar-->
-    <section class="avatar">
-      <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
-      <%if @user.is_mve %>
-        <div class="badge-teacher-active"></div>
-      <%end%>
-    </section>
+  <!--box info-->
+    <div id="profile-info">
 
-    <!--box personal info-->
-    <section class="information">
+      <!--avatar-->
+      <div class="avatar">
+        <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
+      </div>
 
-      <div class="briefing">
-        <!--__help-->
-        <%= render :partial => 'help/help_profile' %>
+      <!--box personal info-->
+      <section class="information">
 
-        <!-- Tags 
-        <div class="tags-profile">
-          <ul class="tagList">
-            <%= @user.profile.subject.tag_list%>
-          </ul>
-        </div> -->
+        <div class="briefing">
 
-        <!--name-->
-        <div class="name">
-          <h2><%= @user.name %></h2>
-        </div>
-        
-        <!--description-->
-        <div class="description">
-          <% if @user.profile.description? %>
-            <%= @user.profile.description%>
-          <% else %>
-            <%= "#{ @user.name } #{ t('profile.is_on') } #{ t('site.name') }" %>
-          <% end %>
-        </div>
-        
-        <!--__Email (only for admins) -->
-        <% if isAdmin? %>
+          <!-- Tags -->
+          <div class="tags-profile">
+            <ul class="tagList">
+              <%= @user.profile.subject.tag_list%>
+            </ul>
+          </div>
+
+          <!--name-->
+          <div class="name">
+            <h2><%= @user.name %></h2>
+          </div>
+
+          <!--help-->         
+          <%= render :partial => 'help/help_profile' %>
+
+          <!--description-->
+          <div class="description">
+            <% if @user.profile.description? %>
+              <%= @user.profile.description%>
+            <% else %>
+              <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
+            <% end %>
+          </div>
+
+          <!--__Email (only for admins) -->
+          <% if isAdmin? %>
+            <div class="ocupation">
+                <h3 class="name-roll">Email</h3>
+                  <span><%= profile_subject.email %></span>
+            </div>
+          <%end%>
+
+          <!--__Occupation -->
           <div class="ocupation">
               <h4 class="name-roll">Email</h4>
                 <span><%= profile_subject.email %></span>

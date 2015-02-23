@@ -4,9 +4,7 @@
 <% end %> 
 
 <script>
-  document.addEventListener("DOMContentLoaded", function(){
     if(typeof update_pageless_state == "function"){
       update_pageless_state("resources", <%=all_resources.num_pages%>, <%=all_resources.current_page%>);
     }    
-  });
 </script>

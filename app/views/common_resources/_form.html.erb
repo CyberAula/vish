@@ -66,7 +66,7 @@
 
       <%content_for :javascript do%>      
 
-        $("#new_file .resourceTagList").tagit({
+        $("#new_file ul.resourceTagList").tagit({
           watermarkAllowMessage:"",
           tagSource: tagsSource
         });
@@ -175,12 +175,12 @@
       });
 
       $("#new_file .form-sender").click(function(){
-        var tagList=[]
-        $("#new_file .resourceTagList .tagit-choice").each(function(index,elem){
-          tagList.push($(elem).text());
+        var resourceTagList=[];
+        $("#new_file ul.resourceTagList .tagit-choice").each(function(index,elem){
+          resourceTagList.push($(elem).text());
         });
         $("#new_file .tags input").hide();
-        $("#new_file .tags input").val(tagList);
+        $("#new_file .tags input").val(resourceTagList);
       });
     <% end %>
 

@@ -1,7 +1,9 @@
-<p id="notice"><%= notice %></p>
+<%if notice%>
+  <p id="notice"><%= notice %></p>
+<%end%>
 
 <div id="editor_wrapper">
-    <iframe class="vishEditorIframe" id="presentation_editor_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="1200" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder=0;></iframe>
+    <iframe class="vishEditorIframe" id="presentation_editor_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="1200" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder=0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
     <div id="editor_tools_wrapper">
       <%= render :partial => 'excursions/excursion-tool-tab' %>
     </div>
@@ -19,6 +21,7 @@
     setFavicon();
 <%end%>
 
+<%= render :partial => 'excursions/scale_excursion_js', :locals => {:is_edit => true}%>
 
 <script type="text/javascript">
   var VEconnected = false;

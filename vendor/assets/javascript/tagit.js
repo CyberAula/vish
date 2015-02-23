@@ -39,14 +39,13 @@
             highlightOnExistColor:'#0F0',
             //empty search on focus
             emptySearch:true,
-						watermarkAllowMessage: "Add tags",
-						watermarkDenyMessage: "Tags limit reached",
+			watermarkAllowMessage: "Add tags",
+			watermarkDenyMessage: "Tags limit reached",
 						
             //callback function for when tags are changed
-                //tagValue: value of tag that was changed
-                //action e.g. removed, added, sorted
+            //tagValue: value of tag that was changed
+            //action e.g. removed, added, sorted
             tagsChanged:function (tagValue, action, element) {
-                ;
             }
         },
 
@@ -67,10 +66,12 @@
 
         //initialization function
         _create:function () {
-
             var self = this;
             this.tagsArray = [];
             this.timer = null;
+
+            //Always reset initial tags
+            self.options.initialTags = [];
 
             //add class "tagit" for theming
             this.element.addClass("tagit");
@@ -96,10 +97,10 @@
 
             this.input = this.element.find(".tagit-input");
 						
-						//Add watermark
-						if(typeof $().watermark == "function"){
-							this.input.watermark(this.options.watermarkAllowMessage)
-						}					
+			//Add watermark
+			if(typeof $().watermark == "function"){
+				this.input.watermark(this.options.watermarkAllowMessage)
+			}				
 
             //setup click handler
             $(this.element).click(function (e) {
@@ -341,14 +342,14 @@
             return true;
         },
 				
-				_removeTagWithValue:function (label,value) {
-					//var index = $(".tagit-choice[tagvalue='" + value + "']").index()
-					var index = this._exists(label, value);
-					if(index!=false){
-						var tag = this.tagsArray[index];
-            tag.element.remove();
-            this._popTag(tag);
-					}
+		_removeTagWithValue:function (label,value) {
+            //var index = $(".tagit-choice[tagvalue='" + value + "']").index()
+            var index = this._exists(label, value);
+            if(index!=false){
+                var tag = this.tagsArray[index];
+                tag.element.remove();
+                this._popTag(tag);
+            }
         },
 
         _exists:function (label, value) {
@@ -497,9 +498,9 @@
                 return this._addTag(label, value);
         },
 				
-				remove:function(value){
-					this._removeTagWithValue(value,value);
-				},
+		remove:function(value){
+			this._removeTagWithValue(value,value);
+		},
 
         tag:function (label, value, element) {
             var self = this;

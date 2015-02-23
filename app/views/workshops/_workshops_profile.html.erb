@@ -4,8 +4,8 @@
 	<%= render :partial => 'entities/entity', :locals => { :entity => workshop, :prefix_id => "profile" } %>
 <% end %> 
 
-<%content_for :javascript do%>
+<script>
     if(typeof update_pageless_state == "function"){
       update_pageless_state("workshops", <%=workshops.num_pages%>, <%=workshops.current_page%>);
     }
-<%end%>
+</script>

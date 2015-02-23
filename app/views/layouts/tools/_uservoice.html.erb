@@ -1,9 +1,14 @@
-<script type="text/javascript">
-  var uvOptions = {};
-  (function() {
-    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/3czn5eWvYWEBstY0cQgHg.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-  })();
-</script>
+<% if Vish::Application.config.uservoice %>
+  <script type="text/javascript">
+    var uvOptions = {};
+    (function(){
+      var uv = document.createElement('script');
+      uv.type = 'text/javascript';
+      uv.async = true;
+      uv.src = '<%=Vish::Application.config.APP_CONFIG["uservoice"]["scriptURL"]%>';
+      var s = document.getElementsByTagName('head')[0]; 
+      s.appendChild(uv);
+    })();
+  </script>
+<% end %>
 
