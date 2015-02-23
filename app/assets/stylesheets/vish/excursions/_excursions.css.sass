@@ -52,7 +52,7 @@ section
       text-align: right !important
       top: 50%
       right: 5%
-      i 
+      i
         color: #666 !important
         font-size: 43px !important
 
@@ -142,3 +142,19 @@ p.thank
 
 div.evaluation_body
   height: 99%
+
+
+//----------------------------------------
+//recomended_items (new code for adjust)
+//----------------------------------------
+
+
+/*13*/
+@media (min-height: 200px) and (max-height: 900px)
+
+  .recomended-items
+    ul
+      .box-item
+        display: none
+      .box-item:nth-of-type(-n+13)
+        display: block

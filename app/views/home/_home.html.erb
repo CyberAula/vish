@@ -18,14 +18,14 @@
 </section>
 
 <section id="excursions_tab_ready2" class="entities foryou_entities">
-  <ul class="items">
+  <ul class="items items_band">
     <h3> <%= t("home.foryou")%> </h3>
     <%= render partial: 'home_row', :locals => { :resources => resourcesRecommended, :prefix_id=>"home", :rec => TrackingSystemEntry.getRSCode(rsEngine)} %>
   </ul>
 </section>
- 
+
 <section id="home_tab_ready" class="entities">
-  <ul class="">
+  <ul class="items_band">
     <h3> <%= t("home.populars")%> </h3>
     <%= render partial: 'home_popular', :locals => { :resources => resourcesPopular, :ids_to_avoid => ids_to_avoid, :prefix_id=>"home"} %>
   </ul>
