@@ -88,9 +88,13 @@ production:
 #   remote: "http://localhost:4444/wd/hub" #To connect remotely to a Selenium server. No remote means local.
 #   remoteFolder: "/tmp/pdf" #Folder on which the remote selenium server store the pdf files.
 
-# Uservoice
+# Uservoice (http://www.uservoice.com)
 # uservoice:
 #   scriptURL: "//widget.uservoice.com/uservoiceKey.js"
+
+# Google Analytics (http://www.google.es/intl/es/analytics)
+#   ganalytics:
+#    trackingID: "Google Analytics Tracking Identifier"
 
 
 

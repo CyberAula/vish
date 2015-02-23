@@ -1,13 +1,16 @@
-<script type="text/javascript">
+<% if Vish::Application.config.ganalytics %>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '<%=Vish::Application.config.APP_CONFIG["ganalytics"]["trackingID"]%>']);
+    _gaq.push(['_trackPageview']);
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-30990245-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
+    (function() {
+      var ga = document.createElement('script'); 
+      ga.type = 'text/javascript'; 
+      ga.async = true;
+      ga.src = '//stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('head')[0]; 
+      s.appendChild(ga);
+    })();
+  </script>
+<% end %>
