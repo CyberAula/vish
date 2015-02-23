@@ -402,7 +402,7 @@ es:
     invitations:
       button: Invita a alguien a unirse a la comunidad
       edit:
-        header: Has sido invitado a unirte a la comunidad StoryRobin
+        header: "Has sido invitado a unirte a la comunidad %{community_name}"
       modal_title: Enviar una invitación
       submit_button: Enviar una invitación
       success: Invitación enviada exitosamente

@@ -16,6 +16,8 @@ module Vish
     # -- all .rb files in that directory are automatically loaded.  
     config.APP_CONFIG = YAML.load_file("config/application_config.yml")[ENV["RAILS_ENV"] || "development"]
     
+    config.name = (config.APP_CONFIG['name'].nil? ? "ViSH" : config.APP_CONFIG['name'])
+
     config.full_domain = "http://" + config.APP_CONFIG['domain']
     config.full_code_domain = "http://" + (config.APP_CONFIG['code_domain'] || config.APP_CONFIG['domain'])
 

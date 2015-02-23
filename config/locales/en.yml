@@ -407,7 +407,7 @@ en:
     invitations:
       button: Invite anyone to join the community
       edit:
-        header: You have been invited to join StoryRobin Community
+        header: "You have been invited to join %{community_name} Community"
       modal_title: Send an invitation
       submit_button: Send an invitation
       success: Invitation sent succesfully

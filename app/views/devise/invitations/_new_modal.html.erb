@@ -11,46 +11,47 @@
 </div>
 
 
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function(){
 
+   //When click on the button send the email to the server via Ajax
+    $(document).on( "click", "#save_inv_button", function(){
+      $.ajax({
+        url: "<%=user_invitation_path%>",
+        type: 'POST',
+        data: { user: {email: $(".modal-body #user_email").val()} },
+          success: function(data){
+            $("#CreateInvitationModal").modal('toggle');
+            $("#CreateInvitationModal").find("input#user_email").val("");
+            //Emulating alert with javascript
+            $('#flash').hide(); 
+            $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("devise.invitations.success")%></div>')
+                .fadeIn()
+                .delay(6000)
+                .fadeOut(300, function(){
+                  $('#flash').html("");
+                });
+            },
+            error: function(jqXHR, exception){
+            	// console.log("ERROR " + exception);
+              $("#CreateInvitationModal").modal('toggle');
+              //Emulating alert with javascript
+              $('#flash').hide(); 
+              $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Error</div>')
+                .fadeIn()
+                .delay(6000)
+                .fadeOut(300, function(){
+                  $('#flash').html("");
+                });
+            }
+      });
+    });
 
-  <script type="text/javascript">
-	document.addEventListener("DOMContentLoaded", function(){
-      //$(document).on('shown.bs.modal', '#CreateInvitationModal', function () {
-	  //  $('.modal-body #user_email').focus();
-	  //});
+    /*
+      $("#CreateInvitationModal").on('shown.bs.modal', function(event){
+        //on show modal
+      });
+    */
 
-	
-     //When click on the button send the email to the server via Ajax
-	  $(document).on( "click", "#save_inv_button", function() {	    
-	    $.ajax({
-	            url: "<%=user_invitation_path%>",
-	            type: 'POST',
-	            data: { user: {email: $(".modal-body #user_email").val()} },
-	              success: function(data){
-	                $("#CreateInvitationModal").modal('toggle');
-	                //Emulating alert with javascript
-	                $('#flash').hide(); 
-	                $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("devise.invitations.success")%></div>')
-	                            .fadeIn()
-	                            .delay(6000)
-	                            .fadeOut(300, function(){
-	                              $('#flash').html("");
-	                            });
-
-	                },
-	                error: function(jqXHR, exception) {
-	                	console.log("ERROR " + exception)
-	                  $("#CreateInvitationModal").modal('toggle');
-	                  //Emulating alert with javascript
-	                  $('#flash').hide(); 
-	                  $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Error</div>')
-	                            .fadeIn()
-	                            .delay(6000)
-	                            .fadeOut(300, function(){
-	                              $('#flash').html("");
-	                            });
-	                }
-	    });
-	  });
-   });
-  </script>
+  });
+</script>
