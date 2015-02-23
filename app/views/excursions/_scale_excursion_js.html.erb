@@ -1,17 +1,17 @@
 <%content_for :javascript do%>
 
 function scale_editor(){
-    var HEADER_HEIGHT = 51;
-    var FOOTER_HEIGHT = 30;
+    var HEADER_HEIGHT = $("#wrap header.navbar").height();
+    var FOOTER_HEIGHT = $("footer#footer").is(':visible') ? $("footer#footer").height():0;  //0 if not visible
     var DISTANCE_TO_HEADER = 15;
-    var DISTANCE_TO_FOOTER = <%=is_edit ? "40":"15"%>;
+    var DISTANCE_TO_FOOTER = <%=is_edit ? "40":"15"%>;  //when editing we have an extra button to delete the excursion
     var MAXIMUM_SCALE_FACTOR_TO_APPLY_SCALE = 0.90;
     var WRAPPER_PADDING_LEFT = 10;
     var WRAPPER_PADDING_RIGHT = 10;
     var DEFAULT_EDITOR_HEIGHT = 750;
     var DEFAULT_EDITOR_WIDTH = 1200;
-    var available_height = $(window).height() - HEADER_HEIGHT - FOOTER_HEIGHT - DISTANCE_TO_HEADER - DISTANCE_TO_FOOTER;
-    var available_width = $(window).width() - WRAPPER_PADDING_LEFT - WRAPPER_PADDING_RIGHT;    
+    var available_height = window.innerHeight - HEADER_HEIGHT - FOOTER_HEIGHT - DISTANCE_TO_HEADER - DISTANCE_TO_FOOTER;
+    var available_width = window.innerWidth - WRAPPER_PADDING_LEFT - WRAPPER_PADDING_RIGHT;    
     var scale;
 
 
@@ -39,7 +39,6 @@ function scale_editor(){
         $("html").css("overflow", "visible");
     }
     setTimeout(function(){
-        console.log("timeout")
         $("#editor_wrapper").width(DEFAULT_EDITOR_WIDTH*scale + "px");
         $("#editor_wrapper").height(DEFAULT_EDITOR_HEIGHT*scale + "px");
         $(".wrapper").css("padding-top", (HEADER_HEIGHT + DISTANCE_TO_HEADER*scale) + "px");
