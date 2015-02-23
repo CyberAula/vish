@@ -653,7 +653,6 @@ en:
     populars: "Populars"
   info:
     author: "Author"
-
   lang:
     changed: "Language changed to %{lang}"
     error: "Language \"%{lang}\" not available"
@@ -885,6 +884,8 @@ en:
   share: "Post"
   sharing:
     email: "Share by email"
+    twitter:
+      message: "Check out this resource at %{url}"
   sign_up: "Register"
   simple_captcha:
     placeholder: "Enter the image value"

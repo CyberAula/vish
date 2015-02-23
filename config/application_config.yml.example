@@ -100,5 +100,11 @@ production:
 # facebook:
 #   appID: "facebook application identifier"
 
+# Twitter (http://twitter.com)
+# twitter:
+#   enable: true
+
+
+
 
 

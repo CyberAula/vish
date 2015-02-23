@@ -884,6 +884,8 @@ es:
   share: "Enviar"
   sharing:
     email: "Compartir por email"
+    twitter:
+      message: "Echa un vistazo a este recurso en %{url}"
   sign_up: "Registrar"
   simple_captcha:
     placeholder: "Introduce el valor de la imagen"
