@@ -1,11 +1,19 @@
-<div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=629612437058744";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    </script>
-    
-<div class="fb-like" data-href="<%= url %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+<% if Vish::Application.config.facebook %>
+
+  <div id="fb-root"></div>
+
+  <script>(function(){
+      if(document.getElementById('facebook-jssdk')){
+        return;
+      } 
+      var facebook_js = document.createElement('script'); 
+      facebook_js.id = 'facebook-jssdk';
+      facebook_js.src = ("//connect.facebook.net/en_GB/all.js#xfbml=1&appId=" + "<%=Vish::Application.config.APP_CONFIG['facebook']['appID']%>");
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(facebook_js);
+    }());
+  </script>
+      
+  <div class="fb-like" data-href="<%= url %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+
+<% end %>

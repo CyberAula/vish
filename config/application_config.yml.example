@@ -93,8 +93,12 @@ production:
 #   scriptURL: "//widget.uservoice.com/uservoiceKey.js"
 
 # Google Analytics (http://www.google.es/intl/es/analytics)
-#   ganalytics:
-#    trackingID: "Google Analytics Tracking Identifier"
+# ganalytics:
+#   trackingID: "Google Analytics Tracking Identifier"
+
+# Facebook (http://facebook.com)
+# facebook:
+#   appID: "facebook application identifier"
 
 
 
