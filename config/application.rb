@@ -84,5 +84,8 @@ module Vish
       require 'vish_editor'
     end
 
+    #External services settings
+    config.uservoice = (!config.APP_CONFIG['uservoice'].nil? and !config.APP_CONFIG['uservoice']["scriptURL"].nil?)
+
   end
 end
