@@ -1,9 +1,16 @@
-<div class="g-plusone" data-size="medium" data-href="<%= url %>"></div>
+<% if Vish::Application.config.gplus %>
 
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
+  <div class="g-plusone" data-size="medium" data-href="<%= url %>"></div>
+
+  <script type="text/javascript">
+    (function(){
+      var gplus_js = document.createElement('script');
+      gplus_js.type = 'text/javascript';
+      gplus_js.async = true;
+      gplus_js.src = '//apis.google.com/js/plusone.js';
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(gplus_js);
+    })();
+  </script>
+
+<% end %>

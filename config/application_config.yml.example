@@ -104,6 +104,9 @@ production:
 # twitter:
 #   enable: true
 
+# Google Plus (http://plus.google.com/)
+# gplus:
+#   enable: true
 
 
 
