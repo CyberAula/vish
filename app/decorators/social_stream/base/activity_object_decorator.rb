@@ -486,15 +486,14 @@ ActivityObject.class_eval do
   def self.getObjectFromUrl(url)
     return nil if url.blank?
 
-    urlregexp = /([ ]|^)(http[s]?:\/\/[^\/]+\/([a-zA-Z0-9]+)\/([0-9]+))([ ]|$)/
+    urlregexp = /([ ]|^)(http[s]?:\/\/([^\/]+)\/([a-zA-Z0-9]+)\/([0-9]+))([? ]|$)/
     regexpResult = (url =~ urlregexp)
 
-    return nil if regexpResult.nil? or $3.nil? or $4.nil?
-
-    modelName = $3.singularize.capitalize
-    instanceId = $4
+    return nil if regexpResult.nil? or $3.nil? or ($3 != Vish::Application.config.APP_CONFIG["domain"]) or $4.nil? or $5.nil?
 
     begin
+      modelName = $4.singularize.capitalize
+      instanceId = $5
       resource = getObjectFromGlobalId(modelName + ":" + instanceId)
     rescue
       resource = nil

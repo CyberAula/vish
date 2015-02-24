@@ -10,7 +10,6 @@
     <% generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} %>
 
     <p class= "information"><%= t("category.cat_add_title")%></p> 
-    <%#binding.pry%>
     <% root_categories = generic_categories.reject{|n| n.parent_id != nil} %>
 
         <div id='jqxWidget'>
