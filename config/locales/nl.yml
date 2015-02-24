@@ -583,11 +583,11 @@ nl:
         resource:
             title: "Resource"
             description: "Elk type resource invoegen de Workshop."
-            text: "U kunt toevoegen aan deze workshop alle bronnen die beschikbaar in Vish zijn. Te voegen, open de resource in Vish, de URL van de browser werkbalken te kopiëren en plakken in het volgende tekstvak."
+            text: "U kunt toevoegen aan deze workshop alle bronnen die beschikbaar in ViSH zijn. Te voegen, open de resource in ViSH, de URL van de browser werkbalken te kopiëren en plakken in het volgende tekstvak."
         resource_gallery:
             title: "Bronnengalerij"
             description: "Een galerij van bronnen toevoegen."
-            text: "Resource galerijen zijn een onderdeel van de workshop die u toestaan om verschillende resources van een willekeurig type Vish zijn opgenomen en hebben ze gegroepeerd om bekijken. Voegen dit onderdeel in uw werkplaats en toegevoegde middelen op de meest eenvoudige en intuïtieve manier."
+            text: "Resource galerijen zijn een onderdeel van de workshop die u toestaan om verschillende resources van een willekeurig type ViSH zijn opgenomen en hebben ze gegroepeerd om bekijken. Voegen dit onderdeel in uw werkplaats en toegevoegde middelen op de meest eenvoudige en intuïtieve manier."
         contributions_gallery:
             title: "Bijdragen galerij"
             description: "De galerie van de bijdragen worden weergegeven de bijdragen die de workshop."
@@ -598,7 +598,7 @@ nl:
             text: "Naast de beschrijving van de workshop en de daarin omschreven taken, moet u soms de mogelijkheid om in te voegen een blok van tekst met andere doeleinden, zoals een bibliografie of andere gegevens van belang zijn voor de workshop. Met deze component kunt u een volledig gepersonaliseerde en bewerkbare tekst toevoegen aan uw workshop."
     add_activity_modal:
       resource:
-        description: "U kunt toevoegen aan deze workshop alle bronnen die beschikbaar in Vish zijn. Wilt toevoegen, opent u de resource in Vish, de URL uit de browserwerkbalk kopiëren en plakken in het volgende tekstvak."
+        description: "U kunt toevoegen aan deze workshop alle bronnen die beschikbaar in ViSH zijn. Wilt toevoegen, opent u de resource in ViSH, de URL uit de browserwerkbalk kopiëren en plakken in het volgende tekstvak."
 
     new: "Nieuwe Workshop"
     other: "Workshops"

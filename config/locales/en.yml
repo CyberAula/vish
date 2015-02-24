@@ -317,7 +317,7 @@ en:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
-  thevish: "The Vish"
+  thevish: "The ViSH"
   youtube: "ViSH Youtube Channel"
   overview_title: "ViSH overview"
   overview:
@@ -972,11 +972,11 @@ en:
         resource:
             title: "Resource"
             description: "Insert any type of resource into the Workshop."
-            text: "You can add to this workshop all the resources that are available in Vish. To add them, open the resource in Vish, copy its URL from the browser toolbar and paste in the following text box."
+            text: "You can add to this workshop all the resources that are available in ViSH. To add them, open the resource in ViSH, copy its URL from the browser toolbar and paste in the following text box."
         resource_gallery:
             title: "Resources Gallery"
             description: "Add a gallery of resources."
-            text: "Resource galleries are a component of the workshop that allow you to include several resources of any type Vish and have them grouped together to facilitate viewing. Insert this component into your workshop and added resources in the most easy and intuitive way."
+            text: "Resource galleries are a component of the workshop that allow you to include several resources of any type ViSH and have them grouped together to facilitate viewing. Insert this component into your workshop and added resources in the most easy and intuitive way."
         contributions_gallery:
             title: "Contributions Gallery"
             description: The Contributions Gallery displays the contributions sent to the workshop.
