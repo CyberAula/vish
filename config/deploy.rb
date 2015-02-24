@@ -1,55 +1,61 @@
+require 'yaml'
+require "bundler/capistrano"
+
 begin
-  require "rvm/capistrano"
-  #to deploy in production
-  set :rvm_type, :system
-  #to deploy in test
-  #set :rvm_type, :user
-rescue LoadError
-  puts 'WARNING: RVM not found in your machine, falling back to hardcoded paths'
-  set :default_environment, {
-    'PATH' => "/usr/share/ruby-rvm/gems/ruby-1.9.3-p125/bin:/usr/share/ruby-rvm/gems/ruby-1.9.3-p125@global/bin:/usr/share/ruby-rvm/rubies/ruby-1.9.3-p125/bin:/usr/share/ruby-rvm/bin:$PATH",
-    'RUBY_VERSION' => 'ruby-1.9.3-p429',
-    'GEM_HOME'     => '/usr/share/ruby-rvm/gems/ruby-1.9.3-p125',
-    'GEM_PATH'     => '/usr/share/ruby-rvm/gems/ruby-1.9.3-p125:/usr/share/ruby-rvm/gems/ruby-1.9.3-p125@global',
-    'BUNDLE_PATH'  => '/usr/share/ruby-rvm/gems/ruby-1.9.3-p125:/usr/share/ruby-rvm/gems/ruby-1.9.3-p125@global'  # If you are using bundler.
-  }
+  config = YAML::load_file(File.join(__dir__, 'deploy/' + ENV['DEPLOY'] + '.yml'))
+  puts config["message"]
+  repository = config["repository"]
+  server_url = config["server_url"]
+  username = config["username"]
+  keys = config["keys"]
+  branch = config["branch"] || "master"
+  with_workers = config["with_workers"]
+rescue
+  puts "Sorry, the file config/deploy/" + ENV['DEPLOY'] + '.yml does not exist. Create it to migrate'
+  exit
 end
 
-require "bundler/capistrano"
+set :default_environment, {
+      'PATH' => '/home/'+username+'/.rvm/gems/ruby-2.2.0/bin:/home/'+username+'/.rvm/gems/ruby-2.2.0@global/bin:/home/'+username+'/.rvm/rubies/ruby-2.2.0/bin:/home/'+username+'/.rvm/bin:/home/'+username+'/.rbenv/plugins/ruby-build/bin:/home/'+username+'/.rbenv/shims:/home/'+username+'/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+      'RUBY_VERSION' => 'ruby-2.2.0p0',
+      'GEM_HOME'     => '/home/'+username+'/.rvm/gems/ruby-2.2.0',
+      'GEM_PATH'     => '/home/'+username+'/.rvm/gems/ruby-2.2.0:/home/'+username+'/.rvm/gems/ruby-2.2.0@global',
+      'BUNDLE_PATH'  => '/home/'+username+'/.rvm/gems/ruby-2.2.0:/home/'+username+'/.rvm/gems/ruby-2.2.0@global'  # If you are using bundler.
+    }
 
 # Where we get the app from and all...
 set :scm, :git
-set :repository,  "git@github.com:ging/vish.git"
+set :repository, repository
+
+puts "USING BRANCH " + branch
+set :branch, fetch(:branch, branch)
+
 
 # Some options
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+if keys
+  ssh_options[:keys] = keys
+end
 
 # Servers to deploy to
 set :application, "vish"
-set :user, "isabel"
+set :user, username
 
-if ENV['DEPLOY'] == 'production'
-  puts "WARNING: Deploying to production!!!"
-  role :web, "vishub.global.dit.upm.es" # Your HTTP server, Apache/etc
-  role :app, "vishub.global.dit.upm.es" # This may be the same as your `Web` server
-  role :db,  "vishub.global.dit.upm.es", :primary => true # This is where Rails migrations will run
-else
-  role :web, "vishub-test.dit.upm.es" # Your HTTP server, Apache/etc
-  role :app, "vishub-test.dit.upm.es" # This may be the same as your `Web` server
-  role :db,  "vishub-test.dit.upm.es", :primary => true # This is where Rails migrations will run
-end
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+role :web, server_url # Your HTTP server, Apache/etc
+role :app, server_url # This may be the same as your `Web` server
+role :db,  server_url, :primary => true # This is where Rails migrations will run
 
 after 'deploy:update_code', 'deploy:fix_file_permissions'
 #after 'deploy:update_code', 'deploy:link_files'
 before 'deploy:assets:precompile', 'deploy:link_files'
 before 'deploy:restart', 'deploy:start_sphinx'
 after  'deploy:start_sphinx', 'deploy:fix_sphinx_file_permissions'
-#after 'deploy:restart', 'deploy:stop_workers'
+if with_workers
+  after 'deploy:restart', 'deploy:stop_workers'
+end
 after 'deploy:update_code', 'rvm:trust_rvmrc'
+
 
 namespace(:deploy) do
   # Tasks for passenger mod_rails
@@ -65,7 +71,7 @@ namespace(:deploy) do
     run "#{try_sudo} touch #{ release_path }/log/production.log"
     run "#{try_sudo} /bin/chmod 666 #{ release_path }/log/production.log"
 
-  # TMP
+   # TMP
     run "/bin/chmod -R g+w #{ release_path }/tmp"
     sudo "/bin/chgrp -R www-data #{ release_path }/tmp"
     run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/json"
@@ -73,12 +79,13 @@ namespace(:deploy) do
     run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/qti"
     run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/moodlequizxml"
     run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/simple_captcha"
-    
+
     # config.ru
     sudo "/bin/chown www-data #{ release_path }/config.ru"
 
     #scorm
     run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/scorm"
+
   end
 
   task :link_files do
@@ -100,7 +107,8 @@ namespace(:deploy) do
   end
 
   task :stop_workers do
-    run "cd #{current_path} && bundle exec \"rake workers:stop RAILS_ENV=production\""
+    sudo_command = "rvmsudo"    
+    run "cd #{current_path} && #{sudo_command} bundle exec \"rake workers:killall RAILS_ENV=production\""
   end
 
 end

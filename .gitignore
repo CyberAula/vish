@@ -14,7 +14,6 @@
 
 # Ignore config files with sensible information.
 config/database.yml
-config/deploy.rb
 config/initializers/exception_notification.rb
 config/initializers/social_stream-ostatus.rb
 config/development.sphinx.conf
