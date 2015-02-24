@@ -169,11 +169,6 @@
         newFilePositionLimits();
       });
 
-      document.addEventListener("DOMContentLoaded", function(){
-        SocialStream.Document.edit();
-        newFilePositionLimits();
-      });
-
       $("#new_file .form-sender").click(function(){
         var resourceTagList=[];
         $("#new_file ul.resourceTagList .tagit-choice").each(function(index,elem){
@@ -182,6 +177,11 @@
         $("#new_file .tags input").hide();
         $("#new_file .tags input").val(resourceTagList);
       });
+
+      // onDocumentReady
+      // document.addEventListener("DOMContentLoaded", function(){});
+      SocialStream.Document.edit();
+      newFilePositionLimits();
     <% end %>
 
   </div>
