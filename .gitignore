@@ -21,6 +21,8 @@ config/initializers/loep_token.rb
 config/application_config.yml
 config/deploy/*
 
+!config/deploy/example.yml
+
 # Ignore all logfiles and tempfiles.
 /log
 /tmp
