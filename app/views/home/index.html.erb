@@ -134,6 +134,12 @@
     return the_url;
   };
 
+  function force_update_pageless(tab, num_pages, current_page){
+    update_pageless_state(tab, num_pages, current_page);
+    re_apply_pageless(tab);
+    $("footer#footer").addClass("fixed-bottom");
+    $("#wrap").addClass("wrap-when-fixed-bottom");
+  }
   
   ///////////////
   // Catalogue Ajax Handlers
@@ -228,7 +234,6 @@
       }   
     });
 
-    //Reapply backstrech depending on the tab loaded
     <%if !params[:tab] || params[:tab]=="home"%>
       home_tab_loaded = true;
     <%elsif params[:tab]=="net"%>
