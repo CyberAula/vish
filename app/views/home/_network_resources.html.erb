@@ -7,18 +7,11 @@
 
 <script>
   <%if request.xhr?%>
-    force_update_pageless();
+    force_update_pageless("net", <%=resources.num_pages%>, <%=resources.current_page%>);
   <%else%>
     document.addEventListener("DOMContentLoaded", function(){  
-      force_update_pageless();
+      force_update_pageless("net", <%=resources.num_pages%>, <%=resources.current_page%>);
     });
   <%end%>
-
-	function force_update_pageless(){
-		update_pageless_state("net", <%=resources.num_pages%>, <%=resources.current_page%>);
-		re_apply_pageless("net");
-		$("footer#footer").addClass("fixed-bottom");
-		$("#wrap").addClass("wrap-when-fixed-bottom");
-	};
 </script>
 
