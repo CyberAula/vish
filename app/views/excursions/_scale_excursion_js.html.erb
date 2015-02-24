@@ -5,7 +5,7 @@ function scale_editor(){
     var FOOTER_HEIGHT = $("footer#footer").is(':visible') ? $("footer#footer").height():0;  //0 if not visible
     var DISTANCE_TO_HEADER = 15;
     var DISTANCE_TO_FOOTER = <%=is_edit ? "40":"15"%>;  //when editing we have an extra button to delete the excursion
-    var MAXIMUM_SCALE_FACTOR_TO_APPLY_SCALE = 0.90;
+    var MAXIMUM_SCALE_FACTOR_TO_APPLY_SCALE = 1;
     var WRAPPER_PADDING_LEFT = 10;
     var WRAPPER_PADDING_RIGHT = 10;
     var DEFAULT_EDITOR_HEIGHT = 750;
