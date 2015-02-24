@@ -130,7 +130,7 @@ es:
       user: "Usuarios"
       video: "Videos"
       webapp: "Aplicaciones Web"
-      workshop: "Talleres"
+      workshop: "Workshops"
       writing: "Textos"
       zipfile: "Ficheros ZIP"
     instances:
@@ -949,7 +949,7 @@ es:
         edit_mode_btOff: "Desactivar modo edición"
         expand_all: "Expandir todo"
         publish: "Publicar"
-        unpublish: "Ocultar publicación"
+        unpublish: "Retirar publicación"
     activities:
         actions:
             add_new_activity: "Añadir nueva actividad"
@@ -960,7 +960,7 @@ es:
             available_contributions:
                 document: "Documento"
                 title: "Contribuciones disponibles"
-                writing: "Texto editable"
+                writing: "Texto"
             content: "Contenido"
             contribution_message: "Participa:"
             description: "Las tareas permiten a los participantes contribuir al taller subiendo sus propios recursos."
@@ -974,28 +974,24 @@ es:
             description: "Inserta cualquier tipo de recurso en el workshop"
             text: "Podrás añadir a este workshop todos los recursos que haya disponibles en ViSH. Para añadirlos, abre el recurso en ViSH, copia su URL de la barra del navegador y pégala en el siguiente cuadro de texto."
         resource_gallery:
-            title: "Galería recursos"
+            title: "Galería de recursos"
             description: "Añade una galería de recursos"
-            text: "Las galerías de recursos son un componente del workshop que te permiten incluir varios recursos de ViSH de cualquier tipo y tenerlos agrupados para facilitarte su visionado. Inserta este componente en tu workshop y añade recursos de la forma más fácil e intuitiva."
+            text: "Las galerías de recursos son un componente del workshop que te permite incluir múltiples recursos del ViSH de cualquier tipo y de forma agrupada para facilitarte su visionado."
         contributions_gallery:
-            title: "Galería contribuciones"
+            title: "Galería de contribuciones"
             description: "La galería de contribuciones muestra las contribuciones enviadas al workshop"
-            text: "Los usuarios pueden contribuir a las tareas definidas en un workshop añadiendo recursos o bloques de texto. Con el componente Galería de contribuciones podrás ver de forma agrupada los recursos y/o los textos con los que otros usuarios han contribuido."
+            text: "La galería de contribuciones muestra los recursos enviados por los usuarios a través de las diferentes tareas definidas en el workshop. Añadiendo este componente los usuarios podrán ver de forma agrupada las contribuciones del resto de usuarios."
         text:
             title: "Texto"
             description: "Incluye un párrafo de texto"
-            text: "Además de la descripción del workshop y las tareas definidas en él, en ocasiones necesitarás la posibilidad de insertar un bloque de texto con otra finalidad, como podría ser una bibliografía u otros datos de interés para el workshop. Con este componente puedes añadir un texto completamente personalizado y editable a tu workshop."
-
+            text: "Esta actividad te permite insertar un bloque de texto completamente personalizable en tu workshop."
     confirm_delete: "¿Borrar workshop?"
     new: "Nuevo Workshop"
-
-
     other: "Workshops"
     titles:
         editing_details: "Editando detalles workshop"
         editing_main: "Editando workshop"
         show_main: "Workshop"
-
   writing:
     actions:
       add: "Añadir texto"

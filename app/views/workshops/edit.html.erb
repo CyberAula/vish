@@ -1,20 +1,13 @@
-
-
-
-
 <!-- toolbar edit-->
-
 <%= render partial: 'edit_toolbar' %>
 
-
 <!-- Header -->
-
 <div class="wa_activity_wrapper wa_activity_wrapper_edit header_workshop ">
   <div class="wa_activity_actions">
     <ul>
       <li>
-      <a title="<%=t('excursion.actions.edit')%>" class ="actions_tooltip" data-placement="bottom" data-toggle="tooltip" href=<%=edit_details_path(@workshop)%>><i class="icon-edit"></i></a>
-    </li>
+        <a title="<%=t('excursion.actions.edit')%>" class ="actions_tooltip" data-placement="bottom" data-toggle="tooltip" href=<%=edit_details_path(@workshop)%>><i class="icon-edit"></i></a>
+      </li>
     </ul>
   </div>
   <div class="layout_workshop">
@@ -22,10 +15,7 @@
     <h3 class="title_WS main_title_WS"><%=@workshop.title%></h3>
     <!--avatar-->
     <div class="container-img_WS">
-
-          <div style='background-image: url(<%=@workshop.thumbnail_url%>)' 
-            class="img-box resource-center workshop_thumbnail"></div>
-
+        <div style='background-image: url(<%=@workshop.thumbnail_url%>)' class="img-box resource-center workshop_thumbnail"></div>
     </div>
     <!--description-->
     <p class="description_WS"><%=@workshop.description%></p>
@@ -33,38 +23,41 @@
 </div>
 
 
-
 <!-- Workshop Activities -->
-
 <ul class="workshop_activities_list workshop_activities_list_edit">
   <% @workshop_activities.each do |workshop_activity| %>
+    <% 
+      object = workshop_activity.object
+      className = object.class.to_s
+      classNameUnderscore = className.underscore
+      classNameTableize = className.tableize
+      hasEditPartial = lookup_context.template_exists?("edit", classNameTableize, true)
+      hasMinifiedPartial = lookup_context.template_exists?("#{classNameUnderscore}_workshop_mini_show", classNameTableize, true)
+    %>
     <li workshop_activity_id="<%=workshop_activity.id%>" class="workshop_element" type="<%=workshop_activity.wa_type%>">
       <div class="wa_activity_wrapper wa_activity_wrapper_edit">
+        <div class="wa_activity_edit_minified">
+          <%= workshop_activity.titleToPrint %>
+        </div>
         <div class="wa_activity_edit_tools">
           <ul>
             <li title="<%=t('categories.dragandrop.dragt1')%>" class ="actions_tooltip sorthandler" data-placement="bottom" data-toggle="tooltip">
               <i class="icon-move"></i>
             </li>
-            <% object = workshop_activity.object
-              className = object.class.to_s
-              classNameUnderscore = className.underscore
-              classNameTableize = className.tableize
-              hasEditPartial = lookup_context.template_exists?("edit", classNameTableize, true)
-            %>
             <% if hasEditPartial %>
               <li title="<%=t('excursion.actions.edit')%>" class ="actions_tooltip ui-state-default" data-placement="bottom" data-target="#WorkshopActivity" data-toggle="modal" data-remote=<%="/#{classNameTableize}/#{object.id}/edit.partial"%>>
                 <i class="icon-edit"></i>
               </li>
             <% end %>
 
-
             <li title="<%=t('excursion.actions.delete')%>" class ="actions_tooltip " data-placement="bottom" data-toggle="tooltip">
-              <%= link_to raw('<i class="icon-trash"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activities.actions.confirm_delete') %>
+              <%= link_to raw('<i class="icon-trash"></i>'),  object, :method => :delete, :confirm => t('workshop.activities.actions.confirm_delete') %>
             </li>
 
-              <li class="toggleWorkshopActivity">
-                <i class="icon-fullscreen"></i>
-              </li>
+            <li class="toggleWorkshopActivity">
+              <i class="icon-fullscreen"></i>
+            </li>
+
           </ul>
         </div>
         <div class="layout_workshop">
@@ -78,27 +71,30 @@
 
 <%content_for :javascript do%>
     $("li.toggleWorkshopActivity").click(function(e){
-      var mainDiv = $(e.target).parents(".wa_activity_wrapper_edit").find(".wa_resource_wrapper")[0];
-      if($(mainDiv).hasClass("wa_activity_closed")){
-        $(mainDiv).removeClass("wa_activity_closed").addClass("wa_activity_open");
-        $(mainDiv).show();
+      var contentDiv = $(e.target).parents(".wa_activity_wrapper_edit").find(".layout_workshop");
+      var minifiedDiv = $(e.target).parents(".wa_activity_wrapper_edit").find(".wa_activity_edit_minified");
+      
+      if($(contentDiv).hasClass("wa_activity_closed")){
+        $(contentDiv).removeClass("wa_activity_closed").addClass("wa_activity_open");
+        $(contentDiv).show();
+        $(minifiedDiv).css("display","none");
       } else {
-        $(mainDiv).removeClass("wa_activity_open").addClass("wa_activity_closed");
-        $(mainDiv).hide();
+        $(contentDiv).removeClass("wa_activity_open").addClass("wa_activity_closed");
+        $(contentDiv).hide();
+        $(minifiedDiv).css("display","inline-block");
       }
       e.stopPropagation();
       return false;
     });
 <%end%>
 
-<!-- Add Workshop Activity -->
 
+<!-- Add Workshop Activity -->
 <div class="wa_add_activity_wrapper">
   <a href="#WorkshopActivities" class="btn btn-primary" data-toggle="modal"><p><i class="icon-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></p></a>
 </div>
 
 <!-- Add Workshop Activity Modal -->
-
 <div id="WorkshopActivities" class="modal hide fade" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -148,8 +144,8 @@
   </div>
 </div>
 
-<!-- Model Workshop Activity Edit-->
 
+<!-- Model Workshop Activity Edit-->
 <div id="WorkshopActivity" class="modal hide fade" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -164,93 +160,93 @@
 </div>
 
 
-  <%content_for :javascript do%>
+<%content_for :javascript do%>
 
-    $('#WorkshopActivities').on('shown', function(){
+  $('#WorkshopActivities').on('shown', function(){
+  });
+
+  $('#WorkshopActivities').on('hidden', function(){
+  });
+
+  $('#WorkshopActivity').on('hidden', function(){
+    $(this).removeData('modal');
+  });
+
+  $(document).on( "click", "#WorkshopActivities .submitWorkshopActivityFake", function(){
+    $(this).html($(this).attr("data-loading-text"));
+    $(this).attr("disabled", "disabled");
+    $(this).addClass("disabled");
+
+    var submitForm = $("#WorkshopActivities  div.tab-pane.active").find("form");
+    $(submitForm).submit();
+  });
+
+  $(document).on( "click", "#WorkshopActivity .updateWorkshopActivityFake", function(){
+    var submitForm = $("#WorkshopActivity").find("form");
+    $(submitForm).submit();
+  });
+
+  $("ul.workshop_activities_list_edit").sortable({
+    handle: ".sorthandler",
+    start: function(event, ui){
+      _onStartDragWorkshopActivity(event, ui);
+    },
+    stop: function(event, ui){
+      _onStopDragWorkshopActivity(event, ui);
+    }
+  });
+
+  var ck_editor_initial_data;
+  var _onStartDragWorkshopActivity = function(event, ui){
+    //save the ckeditor iframe, because when moving the iframe in the DOM the iframe is restored
+    //only if the workshop_activity is paragraph of text or assignment (i.e. has ckeditor)
+    if($(ui.item).attr("type")==="WaText" || $(ui.item).attr("type")==="WaAssignment"){
+      var theid = $(ui.item).find("textarea").attr("id");
+      ck_editor_initial_data = CKEDITOR.instances[theid].getData();
+    }
+  };
+
+  var _lastActivitiesOrder;
+  var _onStopDragWorkshopActivity = function(event, ui){
+    //restore the iframe of the ckeditor
+    if($(ui.item).attr("type")==="WaText" || $(ui.item).attr("type")==="WaAssignment"){
+      var theid = $(ui.item).find("textarea").attr("id");
+      setTimeout(function(){CKEDITOR.instances[theid].setData(ck_editor_initial_data);}, 0);
+      //CKEDITOR.instances[theid].setData(ck_editor_initial_data);
+    }
+    //get activitiesOrder and send them
+    var activitiesOrder = _getCurrentWorkshopActivitiesOrder();
+    if(activitiesOrder!=_lastActivitiesOrder){
+      _lastActivitiesOrder = activitiesOrder;
+      _sendNewActivitiesOrder(activitiesOrder);
+    }
+  };
+
+  var _getCurrentWorkshopActivitiesOrder = function(){
+    var activitiesOrder = [];
+    $("li[workshop_activity_id]").each(function(index,li){
+      activitiesOrder.push($(li).attr("workshop_activity_id"));
     });
-    $('#WorkshopActivities').on('hidden', function(){
-    });
+    return activitiesOrder;
+  };
 
-    $('#WorkshopActivity').on('hidden', function(){
-      $(this).removeData('modal');
-    });
-
-    $(document).on( "click", "#WorkshopActivities .submitWorkshopActivityFake", function(){
-      $(this).html($(this).attr("data-loading-text"));
-      $(this).attr("disabled", "disabled");
-      $(this).addClass("disabled");
-
-      var submitForm = $("#WorkshopActivities  div.tab-pane.active").find("form");
-      $(submitForm).submit();
-    });
-
-    $(document).on( "click", "#WorkshopActivity .updateWorkshopActivityFake", function(){
-      var submitForm = $("#WorkshopActivity").find("form");
-      $(submitForm).submit();
-    });
-
-    $("ul.workshop_activities_list_edit").sortable({
-      handle: ".sorthandler",
-      start: function(event, ui){
-        _onStartDragWorkshopActivity(event, ui);
+  var _sendNewActivitiesOrder = function(activitiesOrder){
+    //Update workshop with the new activities order
+    $.ajax({
+      type: "PUT",
+      url: '<%=workshop_path(@workshop)%>',
+      dataType: 'json',
+      data: {
+        "workshop_activities_order": JSON.stringify(activitiesOrder)
       },
-      stop: function(event, ui){
-        _onStopDragWorkshopActivity(event, ui);
+      success:function(response){
+      },
+      error:function (xhr, ajaxOptions, thrownError){
+        _lastActivitiesOrder = undefined;
       }
     });
+  };
 
-    var ck_editor_initial_data;
-    var _onStartDragWorkshopActivity = function(event, ui){
-      //save the ckeditor iframe, because when moving the iframe in the DOM the iframe is restored
-      //only if the workshop_activity is paragraph of text or assignment (i.e. has ckeditor)
-      if($(ui.item).attr("type")==="WaText" || $(ui.item).attr("type")==="WaAssignment"){
-        var theid = $(ui.item).find("textarea").attr("id");
-        ck_editor_initial_data = CKEDITOR.instances[theid].getData();
-      }
-    };
-
-    var _lastActivitiesOrder;
-    var _onStopDragWorkshopActivity = function(event, ui){
-      //restore the iframe of the ckeditor
-      if($(ui.item).attr("type")==="WaText" || $(ui.item).attr("type")==="WaAssignment"){
-        var theid = $(ui.item).find("textarea").attr("id");
-        setTimeout(function(){CKEDITOR.instances[theid].setData(ck_editor_initial_data);}, 0);
-        //CKEDITOR.instances[theid].setData(ck_editor_initial_data);
-      }
-      //get activitiesOrder and send them
-      var activitiesOrder = _getCurrentWorkshopActivitiesOrder();
-      if(activitiesOrder!=_lastActivitiesOrder){
-        _lastActivitiesOrder = activitiesOrder;
-        _sendNewActivitiesOrder(activitiesOrder);
-      }
-    };
-
-    var _getCurrentWorkshopActivitiesOrder = function(){
-      var activitiesOrder = [];
-      $("li[workshop_activity_id]").each(function(index,li){
-        activitiesOrder.push($(li).attr("workshop_activity_id"));
-      });
-      return activitiesOrder;
-    };
-
-    var _sendNewActivitiesOrder = function(activitiesOrder){
-      //Update workshop with the new activities order
-      $.ajax({
-        type: "PUT",
-        url: '<%=workshop_path(@workshop)%>',
-        dataType: 'json',
-        data: {
-          "workshop_activities_order": JSON.stringify(activitiesOrder)
-        },
-        success:function(response){
-        },
-        error:function (xhr, ajaxOptions, thrownError){
-          _lastActivitiesOrder = undefined;
-        }
-      });
-    };
-
-    $(".actions_tooltip").tooltip({ placement: 'bottom'});
+  $(".actions_tooltip").tooltip({ placement: 'bottom'});
 
 <%end%>
-

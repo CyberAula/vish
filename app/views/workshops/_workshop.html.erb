@@ -1,8 +1,6 @@
-<% if workshop.nil? or workshop.author.nil? %>
-  <% return %>
-<% end %>
+<% return if workshop.nil? or workshop.author.nil? %>
+
 <li class="box-item workshop-item">
-  <!-- corner -->
   
   <div class="corner-item">
     <div class="corner-item2">
@@ -11,15 +9,12 @@
     </div>
     <div class="corner-background"></div>
   </div>
-  <!-- image/icon -->
- <div class="container-img">
-      <div class="img-box resource-center">        
 
-        <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
-
-      </div>
-    </div> 
-
+  <div class="container-img">
+    <div class="img-box resource-center">        
+      <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
+    </div>
+  </div> 
 
   <!-- INFO -->
   <div class="info">

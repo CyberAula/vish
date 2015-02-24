@@ -14,6 +14,28 @@ class WorkshopActivity < ActiveRecord::Base
     wa
   end
 
+  def titleToPrint
+    return self.title unless self.title.nil?
+    return nil if self.object.nil?
+
+    case self.object.class.name
+    when "WaResource"
+      return self.object.activity_object.title unless self.object.activity_object.nil?
+      return I18n.t("workshop.activities.resource.title")
+    when "WaResourcesGallery"
+      return I18n.t("workshop.activities.resource_gallery.title")
+    when "WaContributionsGallery"
+      return I18n.t("workshop.activities.contributions_gallery.title")
+    when "WaText"
+      return I18n.t("workshop.activities.text.title")
+    when "WaAssignment"
+      return I18n.t("workshop.activities.assignment.title")
+    else
+    end
+ 
+    return nil
+  end
+
 
   private
 
