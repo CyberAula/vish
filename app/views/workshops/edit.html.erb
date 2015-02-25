@@ -249,4 +249,21 @@
 
   $(".actions_tooltip").tooltip({ placement: 'bottom'});
 
+  //Move scroll to the last created activity
+  <% unless params[:activity].blank? %>
+    var workshop_activity_anchor = "<%=params[:activity]%>";
+    setTimeout(function(){
+      var vishHeader = $("#wrap > header.navbar.navbar-fixed-top");
+      var workshopHeader = $("#wrap div.toolbar_nav-tab_workshop");
+      var scrollMargin = 25;
+      var headersHeight = $(vishHeader).height() + $(workshopHeader).height() + scrollMargin;
+      $("li[workshop_activity_id=" + workshop_activity_anchor + "]")[0].scrollIntoView(true);
+      if(window.scrollY){
+        if((headersHeight > 0)&&(window.scrollY - headersHeight > 0)){
+          window.scroll(0, window.scrollY - headersHeight);
+        }
+      }
+    },1500);
+  <% end %>
+
 <%end%>
