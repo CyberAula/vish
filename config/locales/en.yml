@@ -921,6 +921,11 @@ en:
     one: "user"
     other: "users"
   username: "username"
+  validation:
+    invalid_resource: "Resource not valid"
+    invalid_contributions_gallery: "A contributions gallery should include at least one assignment"
+    invalid_available_contributions: "Invalid available contributions"
+    invalid_resources_gallery: "This resources gallery include invalid entities"
   vish:
     about: "About ViSH"
     starterguide: "Starter Guide"

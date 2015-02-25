@@ -4,6 +4,7 @@ class WorkshopsController < ApplicationController
   before_filter :fill_create_params, :only => [:new, :create]
   before_filter :fill_draft, :only => [:new, :create, :edit, :update]
   skip_load_and_authorize_resource :only => [ :edit_details]
+  skip_after_filter :discard_flash, :only => [:edit]
 
   include SocialStream::Controllers::Objects
 

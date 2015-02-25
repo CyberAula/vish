@@ -921,6 +921,10 @@ es:
     one: "usuario"
     other: "usuarios"
   username: "usuario"
+  validation:
+    invalid_resource: "Recurso no válido"
+    invalid_contributions_gallery: "Una galería de contribuciones debe incluir al menos una tarea"
+    invalid_resources_gallery: "Esta galería de recursos incluye entidades inválidas"
   vish:
     about: "Acerca de ViSH"
     starterguide: "Guía del principiante"
