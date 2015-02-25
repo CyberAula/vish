@@ -1,2 +1,2 @@
-<h3 class="title_WS">Contributions Gallery</h3>
+<h3 class="title_WS"><%=t("workshop.activities.contributions_gallery.title")%></h3>
 <%= render partial: "contributions/contributions_gallery", locals:  { :contributions => wa_contributions_gallery.contributions.shuffle.first(10) } %>
