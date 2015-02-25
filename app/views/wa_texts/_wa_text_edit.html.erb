@@ -1,5 +1,5 @@
 <div class="Assignment_edit_box">
-  <%= form_for wa_text, :html => { :id => "edit_wa_text_#{wa_text.id}" }, :remote => false do |f| %>
+  <%= form_for wa_text, :html => { :id => "edit_wa_text_#{wa_text.id}" }, :remote => true do |f| %>
     <%= f.text_area :fulltext, :id=> "edit_wa_text_#{wa_text.id}_fulltext"%>
     <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_text_#{wa_text.id}_plaintext"%>
     <%= f.submit t('save'), :class => "hide", :id => "edit_wa_text_#{wa_text.id}_submitbutton"%>
@@ -7,16 +7,30 @@
   <input type="button" id="edit_wa_text_<%=wa_text.id%>_button" class="btn btn-primary" data-loading-text="<%= t('saving')%>" value="<%= t('save')%>"/>
 </div>
 
-
 <%=render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "edit_wa_text_#{wa_text.id}_fulltext"} %>
 
-
 <%content_for :javascript do%>  
-	  //COMMON FIELDS
-	  var uploadButton = $("#edit_wa_text_<%=wa_text.id%>_button");
-	  
-	  $(uploadButton).click(function(event){
-	      set_ckeditor_content_full_and_plaintext("edit_wa_text_<%=wa_text.id%>_fulltext","edit_wa_text_<%=wa_text.id%>_plaintext");
-	      $("#edit_wa_text_<%=wa_text.id%>_submitbutton").click();
-	  });
+  $("#edit_wa_text_<%=wa_text.id%>_button").click(function(event){
+    set_ckeditor_content_full_and_plaintext("edit_wa_text_<%=wa_text.id%>_fulltext","edit_wa_text_<%=wa_text.id%>_plaintext");
+    $(this).button("loading");
+    $("#edit_wa_text_<%=wa_text.id%>_submitbutton").click();
+  });
+
+  $("#edit_wa_text_<%=wa_text.id%>").on("ajax:success", function(event, data, status, xhr){
+    var parsedData = {};
+    try {
+      var parsedData = JSON.parse(data);
+    } catch (e){}
+
+    if((parsedData.errors instanceof Array)&&(parsedData.errors.length === 0)){
+      //Success
+    } else {
+      //Error
+    }
+  }).on("ajax:error", function(event, data, status, xhr){
+      //Error
+  }).on("ajax:complete", function(event, data, status, xhr){
+      //on completed
+      $("#edit_wa_text_<%=wa_text.id%>_button").button("reset");
+  });
 <%end%>

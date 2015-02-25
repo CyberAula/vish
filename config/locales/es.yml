@@ -962,7 +962,7 @@ es:
                 title: "Contribuciones disponibles"
                 writing: "Texto"
             content: "Contenido"
-            contribution_message: "Participa:"
+            contribution_message: "Subir:"
             description: "Las tareas permiten a los participantes contribuir al taller subiendo sus propios recursos."
             due_date: "Fecha fin"
             modal_title: "Editar tarea"

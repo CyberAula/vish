@@ -6,9 +6,9 @@
     //if you have a hidden field to save the plain text (without html tags), when you are saving the form call the function:
     //set_ckeditor_content_full_and_plaintext("fulltext_id","plaintext_id");
 
+    if(typeof apply_ckeditor != "function"){
 
-
-        function apply_ckeditor(id){
+        var apply_ckeditor = function(id){
             CKEDITOR.on( 'dialogDefinition', function(ev){
                 // Take the dialog name and its definition from the event data.
                 var dialogName = ev.data.name;
@@ -123,16 +123,12 @@
                 event.editor.resize("100%", newHeight, true);
                 _fixCKEDITORBug(event.editor);
             });
-
         };
 
-        set_ckeditor_content_full_and_plaintext = function(id_fulltext, id_plaintext){
-            var plaintext = CKEDITOR.instances[id_fulltext].document.getBody().getText();
-            var fulltext = CKEDITOR.instances[id_fulltext].getData();
+    };
 
-            $("#"+id_plaintext).val(plaintext);
-            $("#"+id_fulltext).val(fulltext);
-        };
+
+    if(typeof _fixCKEDITORBug != "function"){
 
         /*
          * Fix oficial WebKit bug: http://ckeditor.com/forums/CKEditor-3.x/Minimum-Editor-Width-Safari#comment-48574
@@ -146,7 +142,22 @@
             }
         };
 
-        apply_ckeditor("<%=the_id%>");
+    };
+
+       
+    if(typeof set_ckeditor_content_full_and_plaintext != "function"){
+
+        var set_ckeditor_content_full_and_plaintext = function(id_fulltext, id_plaintext){
+            var plaintext = CKEDITOR.instances[id_fulltext].document.getBody().getText();
+            var fulltext = CKEDITOR.instances[id_fulltext].getData();
+
+            $("#"+id_plaintext).val(plaintext);
+            $("#"+id_fulltext).val(fulltext);
+        };
+
+    };
+     
+    apply_ckeditor("<%=the_id%>");
 
 <%end%>
 

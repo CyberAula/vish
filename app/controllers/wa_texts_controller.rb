@@ -10,7 +10,7 @@ class WaTextsController < ApplicationController
   # REST methods
   #############
 
-  def create   
+  def create
     super do |format|
       format.html {
          unless resource.errors.blank?
@@ -26,12 +26,21 @@ class WaTextsController < ApplicationController
   def update
     super do |format|
       format.html {
-         unless resource.errors.blank?
-          flash[:errors] = resource.errors.full_messages.to_sentence
+        if request.xhr?
+          #Ajax call
+          unless resource.errors.blank?
+            render :json => {errors: [resource.errors.full_messages.to_sentence]}
+          else
+            render :json => {errors: []}
+          end
         else
-          discard_flash
+          unless resource.errors.blank?
+            flash[:errors] = resource.errors.full_messages.to_sentence
+          else
+            discard_flash
+          end
+          redirect_to edit_workshop_path(resource.workshop)
         end
-        redirect_to edit_workshop_path(resource.workshop)
       }
     end
   end

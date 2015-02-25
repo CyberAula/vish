@@ -962,7 +962,7 @@ en:
                 title: "Available contributions"
                 writing: "Writing"
             content: "Content"
-            contribution_message: "Participate:"
+            contribution_message: "Upload:"
             description: "Assignments allow participants to contribute to the workshop by uploading their own resources."
             due_date: "Due date"
             modal_title: "Edit assignment"
