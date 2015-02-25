@@ -28,11 +28,13 @@
 			//Check PDF native reader support
 			if(isPDFSupported()){
 				iframeSrc = '<%=raw officedoc.source_full_url%>';
-
 			}
 			else{
-				$(".link_address").remove();
+				$(".link_address a").attr('href', iframeSrc);
 			}
+		}
+		else{
+				$(".link_address").remove();
 		}
 
 		$(iframeDOM).attr("src",iframeSrc);
