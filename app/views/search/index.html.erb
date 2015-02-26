@@ -17,7 +17,7 @@
           <li><h1><i class="icon-search"></i><%= t("search.title")%></h1></li>
         <%end%>
           <li class="all_results <%= 'active' if params[:type].blank? %>">
-            <% unless browse%>
+            <% unless browse %>
               <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
             <% else %>
               <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'), search_path(:browse=>"true", :sort_by => "ranking") %>
@@ -26,7 +26,7 @@
 
           <% if availableModels.include? "Excursion" %>
             <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
-              <% unless browse%>
+              <% unless browse %>
                 <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), "#excursion",
                 :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
               <% else %>
@@ -36,7 +36,7 @@
           <%end%>
 
           <li class="user <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
-            <% unless browse%>
+            <% unless browse %>
               <%= link_to raw('<i class="icon-group"></i><span class=" hidden-phone hidden-tablet">'+t("user.title.other")+'</span>'), "#user",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
             <% else %>
@@ -46,7 +46,7 @@
 
           <% if availableModels.include? "Event" %>
             <li class="event <%= " active" if params[:type] == "event" %><%= " disabled" unless search_results?("event") %>">
-              <% unless browse%>
+              <% unless browse %>
                 <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), "#event",
                 :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
               <% else %>
@@ -57,7 +57,7 @@
 
           <% if availableModels.include? "Resource" %>
             <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("resource") %>">
-              <% unless browse%>
+              <% unless browse %>
                 <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), "#resource",
                 :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
               <% else %>
@@ -66,14 +66,23 @@
             </li>
           <%end%>
 
+          <% if availableModels.include? "Workshop" %>
+            <li class="workshop <%= " active" if params[:type] == "workshop" %><%= " disabled" unless search_results?("workshop") %>">
+              <% unless browse %>
+                <%= link_to raw('<i class="icon-lightbulb"></i><span class=" hidden-phone hidden-tablet">'+t("workshop.other")+'</span>'), "#workshop",
+                :data => {:toggle=>"tab#{ ' disabled' unless search_results?("workshop") }"} %>
+              <% else %>
+                <%= link_to raw('<i class="icon-lightbulb"></i><span class=" hidden-phone hidden-tablet">'+t("workshop.other")+'</span>'), search_path(:type => "workshop", :browse=>"true", :sort_by => "ranking") %>
+              <% end%>
+            </li>
+          <%end%>
+
           <%= render partial: 'help/help_search' %>
       </ul>
+
       <%= render partial: 'search/order_by_dropdown' %> 
-      <!--form style="display:none" action="<%=search_path%>" method="get" id="main_search_form" class="search_box">
-        <%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
-      </form-->
+
       <div class="tab-content">
-        <%#= render partial: 'layouts/loading' %>
         <div class="tab-pane active" id="tab1 ">
           <div id="search-all">
             <ul>  
@@ -95,106 +104,111 @@
           </div>
           <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
         </div>
-        
       </div>
+
     </div>
-
-   <%= content_for :javascript do %>
-    SocialStream.Repository.show();
-    
-    $('#search-all ul').pageless({ 
-                        totalPages: <%=@search_result.num_pages%>,
-                        url: window.location.href,
-                        currentPage: <%=@search_result.current_page%>,
-                        loader: '.loader_pagination',
-                        end: function(){
-                          $('.loader_pagination').hide();
-                          $("#last_content_shown").show();
-                        },
-                        finishedAddingHiddenElem: function(hidden_elem){
-                            var active_tab = $("#search ul.nav li.active");
-                        
-                            //we check this each time because it can change. We show the elem if the tab is active or if it is "all" tab
-                            if(active_tab.hasClass("all_results")){
-                              hidden_elem.fadeIn();
-                            }
-                            else if (active_tab.hasClass("excursion") && hidden_elem.hasClass("excursion-item")){
-                              hidden_elem.fadeIn();
-                            }
-                            else if (active_tab.hasClass("resource") && hidden_elem.hasClass("resource-item")){
-                              hidden_elem.fadeIn();
-                            }
-                            else if (active_tab.hasClass("event") && hidden_elem.hasClass("event-item")){
-                              hidden_elem.fadeIn();
-                            }
-                            else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
-                              hidden_elem.fadeIn();
-                            }                            
-                        },
-                        complete: function(){
-                          //when we complete one page and there is no scroll, there cannot be another call
-                          //so we do a manual watch to bring all pages needed until we have a scroll
-                          $.pageless.watch();
-                        }
-    });
-
-    $("footer#footer").addClass("fixed-bottom");
-
-      <%if params[:type]%>
-        //if "popular" links used, the tabs are links to other "popular" searches
-        $("#search .all_results").click(function(){
-          window.location.href = '<%=search_path(:browse=>"true", :sort_by => "ranking")%>';
-        });
-        $("#search .excursion").click(function(){
-          window.location.href = '<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking")%>';
-        });
-        $("#search .user").click(function(){
-          window.location.href = '<%=search_path(:type => "user", :browse=>"true", :sort_by => "ranking")%>';
-        });
-        $("#search .event").click(function(){
-          window.location.href = '<%=search_path(:type => "event", :browse=>"true", :sort_by => "ranking")%>';
-        });
-        $("#search .resource").click(function(){
-          window.location.href = '<%=search_path(:type => "resource", :browse=>"true", :sort_by => "ranking")%>';
-        });
-      <%else%>
-        //if search is manual, the tabs are like filters, so done with js
-        //tab filtering, show only excursions, users, resources, etc.
-        $("#search .all_results").click(function(){
-          $("#search-all > ul").children().show();
-        });
-        $("#search .excursion").not(".disabled").click(function(){
-          $("#search-all > ul").children(".excursion-item").show();
-          $("#search-all > ul").children().not(".excursion-item").hide();
-          //call for more results
-          $('#search-all ul').trigger("scroll.pageless");
-        });
-        $("#search .event").not(".disabled").click(function(){
-          $("#search-all > ul").children(".event-item").show();
-          $("#search-all > ul").children().not(".event-item").hide();
-          //call for more results
-          $('#search-all ul').trigger("scroll.pageless");
-        });
-        $("#search .user").not(".disabled").click(function(){
-          $("#search-all > ul").children(".contact").show();
-          $("#search-all > ul").children().not(".contact").hide();
-          //call for more results
-          //$('#search-all ul').trigger("scroll.pageless");
-        });
-        $("#search .resource").not(".disabled").click(function(){
-          $("#search-all > ul").children(".resource-item").show();
-          $("#search-all > ul").children().not(".resource-item").hide();
-          //call for more results
-          $('#search-all ul').trigger("scroll.pageless");
-        });
-
-      <%end%>      
-
-    <% end %>
   </div>
-    
-  <%content_for :javascript do%>
-    $('.scroll-pane').jScrollPane();
+</section>
+
+<%= content_for :javascript do %>
+  SocialStream.Repository.show();
+
+  $('#search-all ul').pageless({ 
+                      totalPages: <%=@search_result.num_pages%>,
+                      url: window.location.href,
+                      currentPage: <%=@search_result.current_page%>,
+                      loader: '.loader_pagination',
+                      end: function(){
+                        $('.loader_pagination').hide();
+                        $("#last_content_shown").show();
+                      },
+                      finishedAddingHiddenElem: function(hidden_elem){
+                          var active_tab = $("#search ul.nav li.active");
+                      
+                          //we check this each time because it can change. We show the elem if the tab is active or if it is "all" tab
+                          if(active_tab.hasClass("all_results")){
+                            hidden_elem.fadeIn();
+                          }
+                          else if (active_tab.hasClass("excursion") && hidden_elem.hasClass("excursion-item")){
+                            hidden_elem.fadeIn();
+                          }
+                          else if (active_tab.hasClass("resource") && hidden_elem.hasClass("resource-item")){
+                            hidden_elem.fadeIn();
+                          }
+                          else if (active_tab.hasClass("event") && hidden_elem.hasClass("event-item")){
+                            hidden_elem.fadeIn();
+                          }
+                          else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
+                            hidden_elem.fadeIn();
+                          }                            
+                      },
+                      complete: function(){
+                        //when we complete one page and there is no scroll, there cannot be another call
+                        //so we do a manual watch to bring all pages needed until we have a scroll
+                        $.pageless.watch();
+                      }
+  });
+
+  $("footer#footer").addClass("fixed-bottom");
+
+  <% if params[:type] %>
+    //if "popular" links used, the tabs are links to other "popular" searches
+    $("#search .all_results").click(function(){
+      window.location.href = '<%=search_path(:browse=>"true", :sort_by => "ranking")%>';
+    });
+    $("#search .excursion").click(function(){
+      window.location.href = '<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking")%>';
+    });
+    $("#search .user").click(function(){
+      window.location.href = '<%=search_path(:type => "user", :browse=>"true", :sort_by => "ranking")%>';
+    });
+    $("#search .event").click(function(){
+      window.location.href = '<%=search_path(:type => "event", :browse=>"true", :sort_by => "ranking")%>';
+    });
+    $("#search .resource").click(function(){
+      window.location.href = '<%=search_path(:type => "resource", :browse=>"true", :sort_by => "ranking")%>';
+    });
+    $("#search .workshop").click(function(){
+      window.location.href = '<%=search_path(:type => "workshop", :browse=>"true", :sort_by => "ranking")%>';
+    });
+  <% elsif browse === false %>
+    //if search is manual, the tabs are like filters, so done with js
+    //tab filtering, show only excursions, users, resources, etc.
+    $("#search .all_results").click(function(){
+      $("#search-all > ul").children().show();
+    });
+    $("#search .excursion").not(".disabled").click(function(){
+      $("#search-all > ul").children(".excursion-item").show();
+      $("#search-all > ul").children().not(".excursion-item").hide();
+      //call for more results
+      $('#search-all ul').trigger("scroll.pageless");
+    });
+    $("#search .event").not(".disabled").click(function(){
+      $("#search-all > ul").children(".event-item").show();
+      $("#search-all > ul").children().not(".event-item").hide();
+      //call for more results
+      $('#search-all ul').trigger("scroll.pageless");
+    });
+    $("#search .user").not(".disabled").click(function(){
+      $("#search-all > ul").children(".contact").show();
+      $("#search-all > ul").children().not(".contact").hide();
+      //call for more results
+      //$('#search-all ul').trigger("scroll.pageless");
+    });
+    $("#search .resource").not(".disabled").click(function(){
+      $("#search-all > ul").children(".resource-item").show();
+      $("#search-all > ul").children().not(".resource-item").hide();
+      //call for more results
+      $('#search-all ul').trigger("scroll.pageless");
+    });
+    $("#search .workshop").not(".disabled").click(function(){
+      $("#search-all > ul").children(".workshop-item").show();
+      $("#search-all > ul").children().not(".workshop-item").hide();
+      //call for more results
+      $('#search-all ul').trigger("scroll.pageless");
+    });
   <%end%>
 
-</section>
+  $('.scroll-pane').jScrollPane();
+
+<% end %>

@@ -994,10 +994,11 @@ es:
     confirm_delete: "¿Borrar workshop?"
     new: "Nuevo Workshop"
     other: "Workshops"
+    title: "Workshop"
     titles:
-        editing_details: "Editando detalles workshop"
-        editing_main: "Editando workshop"
-        show_main: "Workshop"
+      editing_details: "Editando detalles workshop"
+      editing_main: "Editando workshop"
+      show_main: "Workshop"
   writing:
     actions:
       add: "Añadir texto"
