@@ -1,15 +1,42 @@
+<% 
+  @wa_assignment = nil
+  @workshop = nil
+  @parent = nil
+  @breadcrumpath = nil
+
+  if !resource.wa_assignment.nil?
+    @wa_assignment = resource.wa_assignment
+  elsif params[:wa_assignment_id].present?
+    @wa_assignment = WaAssignment.find_by_id(params[:wa_assignment_id]) 
+  end
+
+  unless @wa_assignment.nil?
+    @workshop = @wa_assignment.workshop
+    @breadcrumpath = [@workshop]
+  end
+
+  if !resource.parent.nil?
+    @parent = resource.parent
+  elsif params[:parent_id].present?
+    @parent = Contribution.find_by_id(params[:parent_id])
+    @breadcrumpath = @parent.parents_path unless @parent.nil?
+  end
+%>
+
+<% unless @breadcrumpath.nil? %>
+  <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @breadcrumpath } %>
+<% end %>
+
 <%= render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "contribution_fulltext"} %>
 
 <div id="AddContribution">
     <div class="layoutform">
         <%= form_for resource, :remote => false do |f| %>
-          <% wa_assignment_id = (resource.wa_assignment_id ? resource.wa_assignment_id : params[:wa_assignment_id]) %>
-          <% if !wa_assignment_id.nil? %>
-            <%= f.hidden_field :wa_assignment_id, :value => wa_assignment_id %>
+          <% unless @wa_assignment.nil? %>
+            <%= f.hidden_field :wa_assignment_id, :value => @wa_assignment.id %>
           <% else %>
-            <% parent_id = (resource.parent_id ? resource.parent_id : params[:parent_id]) %>
-            <% if !parent_id.nil? %>
-              <%= f.hidden_field :parent_id, :value => parent_id %>
+            <% unless @parent.nil? %>
+              <%= f.hidden_field :parent_id, :value => @parent.id %>
             <%end%>
           <% end %>
           <%= f.hidden_field :type, :value => "Writing" %>
@@ -30,11 +57,9 @@
 </div>
 
 <%content_for :javascript do%>
-
-    var uploadButtonFake = $("#addContributionButtonFake");
-    $(uploadButtonFake).click(function(event){
-        set_ckeditor_content_full_and_plaintext("contribution_fulltext","contribution_plaintext");
-        $(this).button('loading');
-        $("#AddContribution").find("form").submit();
-    });
+  $("#addContributionButtonFake").click(function(event){
+      set_ckeditor_content_full_and_plaintext("contribution_fulltext","contribution_plaintext");
+      $(this).button('loading');
+      $("#AddContribution").find("form").submit();
+  });
 <%end%>

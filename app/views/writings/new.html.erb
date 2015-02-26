@@ -1,44 +1,40 @@
 <%= render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "new_file_only_writing_fulltext"} %>
 
-
-
 <div id="AddWriting" resource-type="writing" class="">
 
-      <!-- Tags preloaded -->
-      <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
-      <ul id="resourcePreloadTagList" style="display:none">
-        <%@tags.each do |tag| %>
-          <li><%=tag.name%></li>
-        <%end%>
-      </ul>
+  <!-- Tags preloaded -->
+  <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+  <ul id="resourcePreloadTagList" style="display:none">
+    <%@tags.each do |tag| %>
+      <li><%=tag.name%></li>
+    <%end%>
+  </ul>
 
-
-          <div id="writing" class="">
-            <div class="">
-              <% d = Writing.new %>
-              <% d.owner_id = Actor.normalize_id(current_subject) %>
-              <%= form_for d, :namespace => 'new_file_only', :html => { :multipart => true }, :remote => false do |f| %>
-                <%= f.hidden_field :owner_id %>
-                <%= f.hidden_field :title%>
-                <%= f.hidden_field :description%>
-                <%= f.text_area :fulltext %>
-                <%= f.hidden_field :plaintext, :value => "" %>
-                <%= f.hidden_field :tag_list, :multiple => true %>
-                <%= f.hidden_field :language, :value => "" %>
-                <%= f.hidden_field :age_min, :value => "4" %>
-                <%= f.hidden_field :age_max, :value => "20" %>
-                <%= f.submit t('button.save'), :class => "writing hide"%>
-              <% end %>
-            </div>
-          </div>
-
-
-          <%= render :partial => "shared/resource_common_fields", :locals => {:d=> d} %>
-
-    <div class="footer-form">
-      <input type="button" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
+  <div id="writing">
+    <div class="">
+      <% d = Writing.new %>
+      <% d.owner_id = Actor.normalize_id(current_subject) %>
+      <%= form_for d, :namespace => 'new_file_only', :html => { :multipart => true }, :remote => false do |f| %>
+        <%= f.hidden_field :owner_id %>
+        <%= f.hidden_field :title%>
+        <%= f.hidden_field :description%>
+        <%= f.text_area :fulltext %>
+        <%= f.hidden_field :plaintext, :value => "" %>
+        <%= f.hidden_field :tag_list, :multiple => true %>
+        <%= f.hidden_field :language, :value => "" %>
+        <%= f.hidden_field :age_min, :value => "4" %>
+        <%= f.hidden_field :age_max, :value => "20" %>
+        <%= f.submit t('button.save'), :class => "writing hide"%>
+      <% end %>
     </div>
+  </div>
+
+  <%= render :partial => "shared/resource_common_fields", :locals => {:d=> d} %>
+
+  <div class="footer-form">
+    <input type="button" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
+  </div>
 
 </div>
 
-  <%= render :partial => "shared/resource_common_js", :locals => {:form_id=> "AddWriting"} %>
+<%= render :partial => "shared/resource_common_js", :locals => {:form_id=> "AddWriting"} %>

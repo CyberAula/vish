@@ -4,6 +4,7 @@
   unless wa_assignment.workshop.nil?
     workshop = wa_assignment.workshop
   end
+  available_contributions_array = (wa_assignment.available_contributions_array || [])
 %>
 
 <%= form_for wa_assignment, :remote => false, :html => { :id => identifier } do |f| %>
@@ -21,20 +22,22 @@
   </div>
 
   <br/>
+
   <div>
     <br/>
     <p><%=t('workshop.activities.assignment.available_contributions.title')%></p>
-    <%= check_box_tag :available_contribution_document, "Document", false, :contribution => "Document", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
-    <p><%=t('workshop.activities.assignment.available_contributions.document')%></p>
-    <%= check_box_tag :available_contribution_writing, "Writing", false, :contribution => "Writing", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
-    <p><%=t('workshop.activities.assignment.available_contributions.writing')%></p>
+
+    <% VishConfig.getAllContributionTypes.each do |contribution| %>
+      <%= check_box_tag :available_contribution_document, contribution, (available_contributions_array.include? contribution), :contribution => contribution, :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
+      <p><%=t('workshop.activities.assignment.available_contributions.' + contribution.downcase)%></p>
+    <% end %>
   </div>
 
 <% end %>
 
 
 <script>
-  function wa_assignment_onClickDatesCheckbox(checkbox_field){
+  var wa_assignment_onClickDatesCheckbox = function(checkbox_field){
     if(checkbox_field.checked){
       $(checkbox_field).siblings(".assignment_dates").show();
     } else {
@@ -42,7 +45,7 @@
     }
   };
 
-  function wa_assignment_onClickAvailableContributionCheckbox(checkbox_field){
+  var wa_assignment_onClickAvailableContributionCheckbox = function(checkbox_field){
     var availableContributions = getAvailableContributions();
     var contribution = $(checkbox_field).attr("value");
     var indexOf = availableContributions.indexOf(contribution);
@@ -59,7 +62,7 @@
     setAvailableContributions(availableContributions);
   };
 
-  function getAvailableContributions(){
+  var getAvailableContributions = function(){
     var availableContributions = $("#<%=identifier%>").find("input[name='wa_assignment[available_contributions]']").val().split(",");
     var indexOfBlank = availableContributions.indexOf("");
     if(indexOfBlank!=-1){
@@ -68,7 +71,7 @@
     return availableContributions;
   };
 
-  function setAvailableContributions(contributionsArray){
+  var setAvailableContributions = function(contributionsArray){
     var availableContributionsDOM = $("#<%=identifier%>").find("input[name='wa_assignment[available_contributions]']");
     $(availableContributionsDOM).val(contributionsArray.join(","));
   };
@@ -76,13 +79,13 @@
 </script>
 
 <%content_for :javascript do%>
-   wa_assignment_onClickDatesCheckbox($("#<%=identifier%>").find("input[type='checkbox'][name='wa_assignment[with_dates]']")[0]);
+  wa_assignment_onClickDatesCheckbox($("#<%=identifier%>").find("input[type='checkbox'][name='wa_assignment[with_dates]']")[0]);
 
-    //Load available contributions
-    var availableContributions = getAvailableContributions();
-    var aCLength = availableContributions.length;
-    for(var i=0; i<aCLength; i++){
-      var contributionCheckbox = $("#<%=identifier%>").find("input[contribution='"+availableContributions[i]+"']");
-      $(contributionCheckbox).prop('checked', true);
-    }
+  //Load available contributions
+  var availableContributions = getAvailableContributions();
+  var aCLength = availableContributions.length;
+  for(var i=0; i<aCLength; i++){
+    var contributionCheckbox = $("#<%=identifier%>").find("input[contribution='"+availableContributions[i]+"']");
+    $(contributionCheckbox).prop('checked', true);
+  }
 <%end%>

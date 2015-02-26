@@ -1,9 +1,15 @@
-<% @contribution = (params["contribution"]=="true" and !document.contribution.nil?) %>
+<% 
+  if params["contribution"].blank?
+    @contribution = nil
+  else
+    @contribution = Contribution.find_by_id(params["contribution"])
+  end
+%>
 
 <section id="<%= document.class.to_s.underscore %> "class="layout_show">
 
   <%if @contribution%>
-    <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => document.contribution.parents_path } %>
+    <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @contribution.parents_path } %>
   <%end%>
 
   <% document_profile_subject ||= document.owner_subject %>
@@ -46,9 +52,9 @@
       </div>
     </div>
 
-    <%if @contribution%>
-      <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => document.contribution } %>
-    <%end%>
+    <% if @contribution %>
+      <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => @contribution } %>
+    <% end %>
 
 </section>
 

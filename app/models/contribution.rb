@@ -25,10 +25,30 @@ class Contribution < ActiveRecord::Base
   
   after_destroy :destroy_children_contributions
 
+
+  validate :has_valid_ao
+  def has_valid_ao
+    if self.activity_object.nil?
+      errors[:base] << "Invalid activity object"
+    else
+      true
+    end
+  end
+
   validate :has_valid_parent
   def has_valid_parent
     if self.parent.nil? or self.parent==self or self.all_contributions.include? self.parent or (!workshop_parent.nil? and !self.parent_id.nil?)
-      errors.add(:contribution, "with invalid parent")
+      errors[:base] << "Invalid parent"
+    else
+      true
+    end
+  end
+
+  validate :is_valid_child
+  def is_valid_child
+    if !workshop_parent.nil? and workshop_parent.contributions.map{|c| c.activity_object}.include? self.activity_object
+      #Duplicated child
+      errors[:base] << "Invalid child"
     else
       true
     end

@@ -8,6 +8,14 @@
   <%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %>
 <% end %>
 
+<% 
+  if params["contribution"].blank?
+    @contribution = nil
+  else
+    @contribution = Contribution.find_by_id(params["contribution"])
+  end
+%>
+
 <%=javascript_include_tag "RegaddiChart" %>
 <%=javascript_include_tag "loep" %>
 <%=javascript_include_tag "VISH.IframeAPI" %>
@@ -58,11 +66,14 @@
   </script>
 <% end %>
 
+<%if @contribution%>
+  <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @contribution.parents_path } %>
+<%end%>
+
 <% unless @excursion.author.nil? %>
   <%= render :partial => 'objects/show', :locals  => { :object => @excursion } %>
 <% end %>
 
-<!--div class="page-header"><%= @excursion.title %></div-->
 <section id="show_items " class="layout_show">
   
   <!-- Content -->
@@ -90,6 +101,11 @@
       <%= render :partial => 'excursions/evaluate-activity'%>
     </div>
   </div>
+
+  <% if @contribution %>
+    <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => @contribution } %>
+  <% end %>
+  
 </section>
 
 <a id="congratulations-button" href="#CongratModal" role="button" class="" style="display:none" data-toggle="modal"></a>

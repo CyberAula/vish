@@ -8,34 +8,35 @@
     <% end %>
     <%= f.hidden_field :type, :value => "Document" %>
     <input class="contribution_file_input" name="document[file]" type="file">
-    <%= f.submit t('document.upload'), :id=>"" ,:class => "contribution", :disabled => true %>
+    <%= f.submit t('workshop.activities.assignment.add_document'), :id=>"" ,:class => "contribution", :disabled => true %>
   <% end %>
 
-  <button class="btn btn-primary btn_show_upload"><%= t('resource.one')%></button>
+  <button class="btn btn-primary btn_show_upload"><%= t('workshop.activities.assignment.available_contributions.document') %></button>
   <button class="btn btn_hidden_upload"><i class="icon-chevron-left"></i></button>
 
-<%content_for :javascript do%>
-  <% unless editMode %>
-      $("#"+'<%=form_id%>').parent().find(".btn_show_upload").click(function(){
-        $("#" + '<%=form_id%>').show("slow");
-        $(this).hide("slow");
-        $(this).parent().find(".btn_hidden_upload").show("slow");
-      });
+  <%content_for :javascript do%>
+    <% unless editMode %>
+        $("#"+'<%=form_id%>').parent().find(".btn_show_upload").click(function(){
+          $("#" + '<%=form_id%>').show("slow");
+          $(this).hide("slow");
+          $(this).parent().find(".btn_hidden_upload").show("slow");
+        });
 
-      $("#"+'<%=form_id%>').parent().find(".btn_hidden_upload").click(function(){
-        $("#" + '<%=form_id%>').hide("slow");
-        $(this).hide("slow");
-        $(this).parent().find(".btn_show_upload").show("slow");
-      });
+        $("#"+'<%=form_id%>').parent().find(".btn_hidden_upload").click(function(){
+          $("#" + '<%=form_id%>').hide("slow");
+          $(this).hide("slow");
+          $(this).parent().find(".btn_show_upload").show("slow");
+        });
 
-      $("#"+'<%=form_id%>').parent().find(".contribution_file_input").change(function(){
-        var submitButton = $(this).parent().find("input[type='submit']");
-        if($(this).val()!=""){
-          $(submitButton).removeAttr("disabled");
-        } else {
-          $(submitButton).attr("disabled","disabled");
-        }
-      });
+        $("#"+'<%=form_id%>').parent().find(".contribution_file_input").change(function(){
+          var submitButton = $(this).parent().find("input[type='submit']");
+          if($(this).val()!=""){
+            $(submitButton).removeAttr("disabled");
+          } else {
+            $(submitButton).attr("disabled","disabled");
+          }
+        });
+    <%end%>
   <%end%>
-<%end%>
+
 </div>

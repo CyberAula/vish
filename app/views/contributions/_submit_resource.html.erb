@@ -1,0 +1,37 @@
+<div class="new_contribution_form_wrapper">
+
+  <div id="<%=form_id%>_resource_contribution" class="modal hide fade submit_contribution_modal" aria-hidden="true">
+    <%= form_for Contribution.new, :html => { :multipart => true, :id => form_id }, :remote => false do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3><%=t('workshop.activities.assignment.add_resource')%></h3>
+        <p></p>
+      </div>
+      <div class="modal-body">
+        <% if !wa_assignment.nil?%>
+          <%= f.hidden_field :wa_assignment_id, :value => wa_assignment.id %>
+        <% elsif !parent.nil? %>
+          <%= f.hidden_field :parent_id, :value => parent.id %>
+        <% end %>
+        <%= f.hidden_field :type, :value => "Resource" %>
+        <p><%=t('workshop.activities.assignment.add_resource_message')%></p>
+        <p><input type="text" name="url" value=""></input></p>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit t('workshop.activities.assignment.add_resource'), :class => "contribution" %>
+      </div>
+    <% end %>
+  </div>
+
+  <button class="btn btn-primary btn_show_upload"><%= t('workshop.activities.assignment.available_contributions.resource') %></button>
+
+  <%content_for :javascript do%>
+    <% unless editMode %>
+        $("#"+'<%=form_id%>').parents(".new_contribution_form_wrapper").find(".btn_show_upload").click(function(){
+          //Show modal
+          $('#<%=form_id%>_resource_contribution').modal({ show: true});
+        });
+    <%end%>
+  <%end%>
+  
+</div>

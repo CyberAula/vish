@@ -590,8 +590,6 @@ hu:
             add_new_activity: "Új tevékenység hozzáadása"
             confirm_delete: "Törli a tevékenységet?"
         assignment:
-            add_image: "Feltöltés"
-            add_writing: "Írás"
             available_contributions:
                 document: "Dokumentumt"
                 title: "Rendelkezésre álló hozzájárulások"

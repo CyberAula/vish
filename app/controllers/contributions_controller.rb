@@ -31,7 +31,7 @@ class ContributionsController < ApplicationController
   def show
     super do |format|
       format.html {
-        redirect_to polymorphic_path(resource.activity_object.object, :contribution => true)
+        redirect_to polymorphic_path(resource.activity_object.object, :contribution => resource.id)
       }
     end
   end
@@ -78,23 +78,42 @@ class ContributionsController < ApplicationController
         return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
       end
       object = Writing.new((params["writing"].merge!(params["contribution"]["activity_object"])).permit!)
+    when "Resource"
+      unless params["url"].present?
+        flash[:errors] = "missing resource url"
+        return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
+      end
+      object = ActivityObject.getObjectFromUrl(params["url"])
     else
       flash[:errors] = "Invalid contribution"
       return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
     end
 
-    authorize! :create, object
 
-    object.valid?
+    object_errors = nil
 
-    if object.errors.blank? and object.save
+    if object.new_record?
+      authorize! :create, object
+      object.valid?
+      if !object.errors.blank? or !object.save
+        object_errors = object.errors.full_messages.to_sentence
+      end
+    else
+      authorize! :update, object
+      if object.nil? or object.activity_object.nil?
+        object_errors = "Invalid object"
+      end
+    end
+
+    if object_errors.nil?
       ao = object.activity_object
       discard_flash
     else
-      flash[:errors] = object.errors.full_messages.to_sentence
+      flash[:errors] = object_errors
       return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
     end
     
+
     params["contribution"].delete "activity_object"
     params["contribution"].delete "type"
     params["contribution"]["activity_object_id"] = ao.id

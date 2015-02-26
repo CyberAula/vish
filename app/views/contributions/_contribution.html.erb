@@ -2,20 +2,24 @@
 <% return if resource.nil? or resource.author.nil? %>
 
 <li class="box-item resource-item">
-  <!-- corner -->
-  <div class="corner-item">
-    <div class="corner-item2">
-      <div class="corner-color"></div>
-      <%= link_to raw(icon(resource)), contribution, :title => resource.title %>
-    </div>
-    <div class="corner-background"></div>
-  </div>
-  <!-- image/icon -->
-    <div class="container-img">
-      <div class="img-box resource-center">        
+  
+  <% unless resource.class.name == "Excursion"%>
+    <!-- corner -->
+    <div class="corner-item">
+      <div class="corner-item2">
+        <div class="corner-color"></div>
         <%= link_to raw(icon(resource)), contribution, :title => resource.title %>
       </div>
-    </div> 
+      <div class="corner-background"></div>
+    </div>
+  <% end %>
+
+  <!-- image/icon -->
+  <div class="container-img">
+    <div class="img-box resource-center">        
+      <%= link_to raw(icon(resource)), contribution, :title => resource.title %>
+    </div>
+  </div>
 
   <!-- INFO -->
   <div class="info">

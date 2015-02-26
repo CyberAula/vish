@@ -8,6 +8,5 @@
 
 <%= form_for wa_resource, :remote => false do |f| %>
   <%= f.hidden_field :workshop_id, :value => workshop.id %>
-  
   <input type="text" name="url" value="<%= url unless url.nil?%>"></input>
 <% end %>

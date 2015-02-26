@@ -640,8 +640,6 @@ de:
             add_new_activity: "Neue Aktivität hinzufügen"
             confirm_delete: "Löschen Aktivität?"
         assignment:
-            add_image: "Upload"
-            add_writing: "Schreiben"
             available_contributions:
                 document: "Dokument"
                 title: "Verfügbare Beiträge"
