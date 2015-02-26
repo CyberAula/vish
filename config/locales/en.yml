@@ -266,6 +266,7 @@ en:
   contribution:
     content: "Content"
     title: "Title"
+    action: "Contribute"
   pending:
     other: "Following you"
   contest:
@@ -948,16 +949,17 @@ en:
         cancel_&_go: "Cancel and go to Workshop"
         collapse_all: "Collapse all"
         confirm_delete: "Delete workshop?"
-        delete: "Delete workshop"
+        delete: "Delete"
         edit_activity_button: "Save"
         edit_mode_btOn: "Turn on editing mode"
         edit_mode_btOff: "Turn off editing mode"
         expand_all: "Expand all"
         publish: "Publish"
+        show_contributions: "Contributions"
         unpublish: "Unpublish"
     activities:
         actions:
-            add_new_activity: "Add new activity"
+            add_new_activity: "Add activity"
             confirm_delete: "Delete activity?"
         assignment:
             add_image: "Upload"
@@ -992,6 +994,7 @@ en:
             text: "In addition to the description of the workshop and the tasks defined in it, sometimes you will need the ability to insert a block of text with other purpose, such as a bibliography or other data of interest for the workshop. With this component you can add a completely personalized and editable text to your workshop."
     new: "New Workshop"
     other: "Workshops"
+    title: "Workshop"
     titles:
         editing_details: "Editing workshop details"
         editing_main: "Editing Workshop"

@@ -1,0 +1,3 @@
+<%= render :partial => 'application/breadcrumb_path', :locals  => { :path => [@workshop] } %>
+<h3 class="title_WS"><%=t("workshop.activities.contributions_gallery.title")%></h3>
+<%= render partial: "contributions/contributions_gallery", locals:  { :contributions => @contributions } %>

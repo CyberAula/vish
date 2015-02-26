@@ -261,6 +261,7 @@ es:
   contribution:
     content: "Contenido"
     title: "Título"
+    action: "Contribuir"
   pending:
     other: "Te siguen"
   contest:
@@ -947,16 +948,17 @@ es:
         cancel_&_go: "Cancelar e ir a workshop"
         collapse_all: "Reducir todo"
         confirm_delete: "¿Borrar workshop?"
-        delete: "Borrar workshop"
+        delete: "Borrar"
         edit_activity_button: "Guardar"
         edit_mode_btOn: "Activar modo edición"
         edit_mode_btOff: "Desactivar modo edición"
         expand_all: "Expandir todo"
         publish: "Publicar"
+        show_contributions: "Contribuciones"
         unpublish: "Retirar publicación"
     activities:
         actions:
-            add_new_activity: "Añadir nueva actividad"
+            add_new_activity: "Añadir actividad"
             confirm_delete: "¿Borrar actividad?"
         assignment:
             add_image: "Dibujo"
@@ -992,10 +994,11 @@ es:
     confirm_delete: "¿Borrar workshop?"
     new: "Nuevo Workshop"
     other: "Workshops"
+    title: "Workshop"
     titles:
-        editing_details: "Editando detalles workshop"
-        editing_main: "Editando workshop"
-        show_main: "Workshop"
+      editing_details: "Editando detalles workshop"
+      editing_main: "Editando workshop"
+      show_main: "Workshop"
   writing:
     actions:
       add: "Añadir texto"

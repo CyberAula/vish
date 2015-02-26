@@ -1,7 +1,13 @@
 <div class="toolbar_nav-tab_workshop">
   <div class="container">
     <h4 class="edit-workshop-title"><%=t('workshop.titles.editing_main')%></h4>
+    
     <a href="#WorkshopActivities" class="btn " data-toggle="modal"><i class="icon-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></a>
+    
+    <% if @workshop.hasAssignments %>
+      <a class ="btn" href="<%=workshop_contributions_path(@workshop)%>"><i class="icon-eye-open"></i><%=t('workshop.actions.show_contributions')%></a>
+    <% end %>
+
     <% unless @workshop.draft %>
       <a class ="btn" href="<%=workshop_path(@workshop)%>"><i class="icon-check"></i><%=t('workshop.actions.edit_mode_btOff')%></a>
     <%end%>
@@ -14,14 +20,6 @@
         <%=@workshop.draft ? raw('<i class="icon-ok-circle"></i>'+t('workshop.actions.publish')) : raw('<i class="icon-eye-close"></i>'+t('workshop.actions.unpublish')) %>
       <% end %>
     <%end%>
-   
-  <!-- EFFECT EXPAND
-
-    <%# if @workshop_activities.count { |wa| wa.wa_type=="WaResource" } > 0 %>
-      <button href="#" id="ws_expand_all" class=" btn ui-state-default ui-corner-all"><a><i class="icon-chevron-down"></i><%=t('workshop.actions.expand_all')%></a></button>
-      <button href="#" id="ws_collapse_all" class=" btn ui-state-default ui-corner-all"><a><i class="icon-chevron-down"></i><%=t('workshop.actions.collapse_all')%></a></button>
-    <%#end%>
-  -->
 
   </div>
 </div>

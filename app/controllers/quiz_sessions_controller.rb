@@ -138,8 +138,7 @@ class QuizSessionsController < ApplicationController
     @quiz_session = QuizSession.find(params[:id])
 
     if !verify_owner(@quiz_session)
-      render :text => "You are not the owner of this quiz"
-      return;
+      return render :text => "You are not the owner of this quiz"
     end
 
     @results = @quiz_session.results
