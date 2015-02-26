@@ -1,3 +1,7 @@
+# Call this script with the following syntax:
+# bundle exec cap deploy DEPLOY=myEnvironment
+# Where myEnvironment is the name of the xml file (config/deploy/myEnvironment.xml) which defines the deployment.
+
 require 'yaml'
 require "bundler/capistrano"
 
@@ -17,20 +21,19 @@ rescue Exception => e
 end
 
 set :default_environment, {
-      'PATH' => '/home/'+username+'/.rvm/gems/ruby-2.2.0/bin:/home/'+username+'/.rvm/gems/ruby-2.2.0@global/bin:/home/'+username+'/.rvm/rubies/ruby-2.2.0/bin:/home/'+username+'/.rvm/bin:/home/'+username+'/.rbenv/plugins/ruby-build/bin:/home/'+username+'/.rbenv/shims:/home/'+username+'/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
-      'RUBY_VERSION' => 'ruby-2.2.0p0',
-      'GEM_HOME'     => '/home/'+username+'/.rvm/gems/ruby-2.2.0',
-      'GEM_PATH'     => '/home/'+username+'/.rvm/gems/ruby-2.2.0:/home/'+username+'/.rvm/gems/ruby-2.2.0@global',
-      'BUNDLE_PATH'  => '/home/'+username+'/.rvm/gems/ruby-2.2.0:/home/'+username+'/.rvm/gems/ruby-2.2.0@global'  # If you are using bundler.
-    }
+  'PATH' => '/home/'+username+'/.rvm/gems/ruby-2.2.0/bin:/home/'+username+'/.rvm/gems/ruby-2.2.0@global/bin:/home/'+username+'/.rvm/rubies/ruby-2.2.0/bin:/home/'+username+'/.rvm/bin:/home/'+username+'/.rbenv/plugins/ruby-build/bin:/home/'+username+'/.rbenv/shims:/home/'+username+'/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+  'RUBY_VERSION' => 'ruby-2.2.0p0',
+  'GEM_HOME'     => '/home/'+username+'/.rvm/gems/ruby-2.2.0',
+  'GEM_PATH'     => '/home/'+username+'/.rvm/gems/ruby-2.2.0:/home/'+username+'/.rvm/gems/ruby-2.2.0@global',
+  'BUNDLE_PATH'  => '/home/'+username+'/.rvm/gems/ruby-2.2.0:/home/'+username+'/.rvm/gems/ruby-2.2.0@global'
+}
 
 # Where we get the app from and all...
 set :scm, :git
 set :repository, repository
 
-puts "USING BRANCH " + branch
+puts "Using branch: '" + branch + "'"
 set :branch, fetch(:branch, branch)
-
 
 # Some options
 default_run_options[:pty] = true
@@ -86,7 +89,6 @@ namespace(:deploy) do
 
     #scorm
     run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/scorm"
-
   end
 
   task :link_files do
