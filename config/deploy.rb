@@ -2,7 +2,7 @@ require 'yaml'
 require "bundler/capistrano"
 
 begin
-  config = YAML::load_file(File.join(__dir__, 'deploy/' + ENV['DEPLOY'] + '.yml'))
+  config = YAML.load_file(File.expand_path('../deploy/' + ENV['DEPLOY'] + '.yml', __FILE__))
   puts config["message"]
   repository = config["repository"]
   server_url = config["server_url"]
@@ -10,8 +10,9 @@ begin
   keys = config["keys"]
   branch = config["branch"] || "master"
   with_workers = config["with_workers"]
-rescue
-  puts "Sorry, the file config/deploy/" + ENV['DEPLOY'] + '.yml does not exist. Create it to migrate'
+rescue Exception => e
+  #puts e.message
+  puts "Sorry, the file config/deploy/" + ENV['DEPLOY'] + '.yml does not exist.'
   exit
 end
 
