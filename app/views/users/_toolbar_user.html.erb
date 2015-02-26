@@ -99,16 +99,15 @@
         $(sendMessage).click();
       });
       var SSMInitiated = false;
+
       $('#new_messages_profile').on('shown', function () {
         if(!SSMInitiated){
          SocialStream.Message.new_();
          SSMInitiated = true;
+         
        }
-     })
-      $('#new_messages_profile').on('hidden', function () {
-        $("#mesage-profile").removeAttr("href");
-        $("#mesage-profile").removeAttr("data-toggle");
-        $("#mesage-profile").removeAttr("data-remote");
-      })
+       //Fix for random behaviour opening and closing modals with CKEDITOR
+       $(window).trigger("resize");
+     });
 
   <%end%>
