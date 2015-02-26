@@ -29,7 +29,7 @@
 		}
 
 		$(iframeDOM).attr("src",iframeSrc);
-		$(".link_address a").attr('href', iframeSrc);
+		$(iframeDOM).parents(".officedoc_show").find(".link_address > a").attr('href', iframeSrc);
 	});
 
 </script>
