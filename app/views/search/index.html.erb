@@ -4,7 +4,6 @@
 <section id="search" class="">
   <div class="search">
       <ul class="nav nav-tabs">
-
           <li class="all_results <%= 'active' if params[:type].blank? %>">
             <% unless browse%>
               <%= link_to raw('<i class="fa fa-asterisk"></i><span class=" hidden-xs">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
@@ -24,7 +23,7 @@
             </li>
           <%end%>
 
-          <li class="user-tab <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
+          <li class="user <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
             <% unless browse%>
               <%= link_to raw('<i class="fa fa-group"></i><span class=" hidden-xs">'+t("user.title.other")+'</span>'), "#user", :data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
             <% else %>
@@ -90,6 +89,7 @@
    
 
       <%= content_for :javascript do %>
+
         SocialStream.Repository.show();
         $('#search-all ul').pageless({
                         totalPages: <%=@search_result.num_pages%>,
@@ -110,10 +110,10 @@
                             else if (active_tab.hasClass("excursion") && hidden_elem.hasClass("excursion-item")){
                               hidden_elem.fadeIn();
                             }
-                            else if (active_tab.hasClass("resource") && hidden_elem.hasClass("resource-item")){
+                            else if (active_tab.hasClass("resource") && hidden_elem.hasClass("resource")){
                               hidden_elem.fadeIn();
                             }
-                            else if (active_tab.hasClass("event") && hidden_elem.hasClass("event-item")){
+                            else if (active_tab.hasClass("event") && hidden_elem.hasClass("event")){
                               hidden_elem.fadeIn();
                             }
                             else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){

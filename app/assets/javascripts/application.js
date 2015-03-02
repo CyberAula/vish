@@ -29,6 +29,7 @@
 //= require bootstrap-datetimepicker.min
 //= require bootstrap-slider/bootstrap-slider
 //= require jquery.zclip.min
+//= require jquery.scrollUp.min
 //= require jqxcore
 //= require jqxdropdownbutton
 //= require jqxscrollbar
