@@ -175,43 +175,6 @@
     });
   });
 
-
-  $("#AddResources").on('shown.bs.modal', function(){
-    //SLIDER
-    var min = 0;
-    var max = 30;
-    var step = 1;
-    var diff = max - min;
-
-    var positionLimits = function(){
-      var value1 = $('#AddResources .age-slider').data('slider').getValue()[0];
-      var value2 = $('#AddResources .age-slider').data('slider').getValue()[1];
-      $('#AddResources .limit1').text(value1);
-      $('#AddResources .limit2').text(value2);
-
-      var percentage =[
-        (value1-min)*100/diff,
-        (value2-min)*100/diff,
-        step*100/diff
-      ];
-
-      $("#AddResources .limit1").css("left", function(ev) {
-        return $('#AddResources .slider').width() * percentage[0]/100 - $("#AddResources .limit1").width()/2 + 'px';
-      });
-      $("#AddResources .limit2").css("left", function(ev) {
-        return $('#AddResources .slider').width() * percentage[1]/100 - $("#AddResources .limit2").width()/2 + 'px';
-      });
-    };
-
-    $("#AddResources .age-slider").slider().on('slide', function(ev){
-      positionLimits();
-    });
-
-    $("#AddResources .age-slider").before($("#AddResources .limits"));
-    positionLimits();
-  });
-
-
   //COMMON FIELDS
   var uploadButton = $("#AddResources input[value=<%= t('document.upload')%>][type='button'][class='btn btn-primary']");
 
@@ -302,3 +265,71 @@
   };
 
 </script>
+
+    <%content_for :javascript do%>
+      $("#AddResources input[type='submit']").click(function(event){
+        //AGE
+        var resource_type = "<%=resource.class.name.downcase%>";
+        var value1 = $('#AddResources .age-slider').data('slider').getValue()[0];
+        var value2 = $('#AddResources .age-slider').data('slider').getValue()[1];
+        $('#AddResources input[name="'+resource_type+'[age_min]"]').val(value1);
+        $('#AddResources input[name="'+resource_type+'[age_max]"]').val(value2);
+
+        <% beforeSubmitPartial = lookup_context.template_exists?("common_edit_before_submit", resource.class.to_s.underscore.pluralize, true) %>
+        <% if beforeSubmitPartial %>
+          <%= render partial: "#{ resource.class.to_s.tableize }/common_edit_before_submit", locals: { resource.class.to_s.underscore.to_sym => resource, :resourceType => resource.class.name.downcase } %>
+        <%end%>
+
+        $(this).button('loading');
+      });
+
+      //SLIDER
+      var min = 0;
+      var max = 30;
+      var step = 1;
+      var diff = max - min;
+
+      var newFilePositionLimits = function(){
+        var value1 = $('#AddResources .age-slider').data('slider').getValue()[0];
+        var value2 = $('#AddResources .age-slider').data('slider').getValue()[1];
+        $('#AddResources .limit1').text(value1);
+        $('#AddResources .limit2').text(value2);
+
+        var percentage =[
+          (value1-min)*100/diff,
+          (value2-min)*100/diff,
+          step*100/diff
+        ];
+
+        $("#AddResources .limit1").css("left", function(ev) {
+          return $('#AddResources .slider').width() * percentage[0]/100 - $("#AddResources .limit1").width()/2 + 'px';
+        });
+        $("#AddResources .limit2").css("left", function(ev) {
+          return $('#AddResources .slider').width() * percentage[1]/100 - $("#AddResources .limit2").width()/2 + 'px';
+        });
+      };
+
+      $("#AddResources .age-slider").slider().on('slide', function(ev){
+        newFilePositionLimits();
+      });
+
+      $("#AddResources .age-slider").before($("#AddResources .limits"));
+
+      $('a[href="#document-edit"]').on('shown.bs.tab', function(e){
+        newFilePositionLimits();
+      });
+
+      document.addEventListener("DOMContentLoaded", function(){
+        SocialStream.Document.edit();
+        newFilePositionLimits();
+      });
+
+      $("#AddResources .form-sender").click(function(){
+        var tagList=[]
+        $("#AddResources .resourceTagList .tagit-choice").each(function(index,elem){
+          tagList.push($(elem).text());
+        });
+        $("#AddResources .tags input").hide();
+        $("#AddResources .tags input").val(tagList);
+      });
+    <% end %>

@@ -18,6 +18,8 @@
 
 .search-nav
   margin-left: -3px
+  @media (max-width: $screen-xs-max)
+    margin-left: 0
   .search_button_class
     margin-top: -2px
   //.input-group-addon
@@ -71,6 +73,7 @@
       .add-item
         display: none
       li
+        @include excursion-small
         margin: 3px 7px
         width: 95%
         border: none

@@ -345,6 +345,9 @@ input.new_file_avatar
   @include well
   padding: 0
   margin: 0 0 40px 25%
+  @media (max-width: $screen-xs-max)
+    margin: 0
+
 
   .checkbox label
     margin-top: 0
@@ -352,5 +355,4 @@ input.new_file_avatar
     width: auto
     &:first-child
       margin-left: 0
-  .modal-footer
-    background: $gray-light
+
