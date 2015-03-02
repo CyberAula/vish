@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20150216105625) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
-    t.string   "email",                 :default => "",    :null => false
+    t.string   "email",                 :default => "",        :null => false
     t.string   "slug"
     t.string   "subject_type"
     t.boolean  "notify_by_email",       :default => true
@@ -134,20 +134,12 @@ ActiveRecord::Schema.define(:version => 20150216105625) do
     t.string   "notification_settings"
     t.boolean  "is_admin",              :default => false
     t.text     "category_order"
-    t.string   "categories_view"
+    t.string   "categories_view",       :default => "gallery"
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
   add_index "actors", ["email"], :name => "index_actors_on_email"
   add_index "actors", ["slug"], :name => "index_actors_on_slug", :unique => true
-
-  create_table "announcements", :force => true do |t|
-    t.text     "message"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "audiences", :force => true do |t|
     t.integer "relation_id"
@@ -311,16 +303,6 @@ ActiveRecord::Schema.define(:version => 20150216105625) do
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
-
-  create_table "pages", :force => true do |t|
-    t.string   "name"
-    t.string   "permalink"
-    t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "pages", ["permalink"], :name => "index_pages_on_permalink"
 
   create_table "pdfexes", :force => true do |t|
     t.datetime "created_at",                             :null => false
