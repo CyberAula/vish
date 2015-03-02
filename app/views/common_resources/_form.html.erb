@@ -107,7 +107,7 @@
         </section>
       <% end%>
 
-      <div class="footer-form">
+      <div class="footer-form clearfix">
         <%= f.submit :class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
         <% if resource.class.name=="Workshop" && !isNewInstance %>
           <button class="btn btn-default" href="<%=edit_workshop_path(@workshop)%>"><%=t('workshop.actions.cancel_&_go')%></button>
