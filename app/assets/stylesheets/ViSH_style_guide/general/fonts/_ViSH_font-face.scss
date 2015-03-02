@@ -118,11 +118,11 @@
 // ---------------------resources
 @font-face{
   font-family:"vish-icono-resource";
-  src: url(ViSH_style_guide/general/fonts/ViSH/icons/vish.ttf?27057445);
-  src: url('ViSH_style_guide/general/fonts/ViSH/icons/vish.eot?27057445#iefix') format('embedded-opentype'),
-       url('ViSH_style_guide/general/fonts/ViSH/icons/vish.woff?27057445') format('woff'),
-       url(ViSH_style_guide/general/fonts/ViSH/icons/vish.ttf?27057445),
-       url('ViSH_style_guide/general/fonts/ViSH/icons/vish.svg?27057445#vish') format('svg');
+  src: url(ViSH_style_guide/general/fonts/ViSH/icons/vish.ttf?40235109);
+  src: url('ViSH_style_guide/general/fonts/ViSH/icons/vish.eot?40235109#iefix') format('embedded-opentype'),
+       url('ViSH_style_guide/general/fonts/ViSH/icons/vish.woff?40235109') format('woff'),
+       url(ViSH_style_guide/general/fonts/ViSH/icons/vish.ttf?40235109),
+       url('ViSH_style_guide/general/fonts/ViSH/icons/vish.svg?40235109#vish') format('svg');
   font-style: normal;
   font-weight: normal;
 }
@@ -137,22 +137,33 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'vish';
-    src: url('../font/vish.svg?27057445#vish') format('svg');
+    src: url('../font/vish.svg?40235109#vish') format('svg');
   }
 }
 */
  [class^="fa-webapp"], 
  [class*="fa-scorm"],
  [class^="fa-file-swf"],
+ [class^="fa-file-pdf"],
+ [class*="fa-file-zip"],
+
  [class*="fa-webapp"], 
  [class^="fa-scorm"],
  [class*="fa-file-swf"],
+ [class*="fa-file-pdf"],
+ [class^="fa-file-zip"],
+
  [class^="fa-webapp-o"], 
  [class*="fa-scorm-o"],
  [class^="fa-file-swf-o"],
+ [class^="fa-file-pdf"],
+ [class*="fa-file-zip"],
+
  [class*="fa-webapp-o"], 
  [class^="fa-scorm-o"],
- [class*="fa-file-swf-o"] {
+ [class*="fa-file-swf-o"],
+ [class*="fa-file-pdf"],
+ [class^="fa-file-zip"] {
   font-family: "vish-icono-resource" !important;
   font-style: normal;
   font-weight: normal;
@@ -188,3 +199,5 @@
 .fa-file-swf:before { content: '\e803'; } /* '' */
 .fa-scorm-o:before { content: '\e804'; } /* '' */
 .fa-webapp-o:before { content: '\e805'; } /* '' */
+.fa-file-zip:before { content: '\e806'; } /* '' */
+.fa-file-pdf:before { content: '\e807'; } /* '' */
