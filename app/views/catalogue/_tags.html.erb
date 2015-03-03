@@ -40,7 +40,7 @@
 <section id="catalogue">
   <ul class="Tags_list_as ">
     <div class="info_catalogue_bottom"></div>
-    <div id="effect" class="newClass ui-corner-all">
+    <div id="effect" class="anotherNewClass ui-corner-all">
       <% Vish::Application.config.catalogue_categories.each do |categoryId| %>
         <li class="catalogue_category_link" categoryId="<%=categoryId%>" href="#">
           <label><%=t('catalogue.categories.' + categoryId)%></label>
@@ -49,4 +49,4 @@
     </div>
   </ul>
 </section>
-<button href="#" id="showMore_tags" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
+
