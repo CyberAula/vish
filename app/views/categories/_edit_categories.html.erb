@@ -125,7 +125,6 @@
 		});
 		
 		$(".overlay .edit_categories .box-item").click(function(){
-			console.log("click en overlay");
 			return false;
 		});
 
@@ -140,11 +139,13 @@
 				 	$(".delete p").text("<%=t('categories.dragandrop.uncategorize')%>");
 				 }
 
-				 $(ui.item).width($(ui.item).width()*1);
-				 $(ui.item).height($(ui.item).height()*1);
+				 $(ui.item).width($(ui.item).width()*0.6);
+				 $(ui.item).height($(ui.item).height()*0.6);
+				 $(ui.item).children("div").hide();
 			},
 			stop:function(event, ui){
 				$(".delete p").text("<%=t('categories.dragandrop.trash')%>");
+				$(ui.item).children("div").show();
 			},
 			refreshPositions: true,
 			tolerance: "intersect"
