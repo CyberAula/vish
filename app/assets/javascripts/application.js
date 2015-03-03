@@ -24,7 +24,6 @@
 //= require jquery.jplayer
 //= require jquery.zclip.min
 //= require social_stream-events
-//= require password
 //= require trmix.min.js
 //= require bootstrap-datetimepicker.min
 //= require bootstrap-slider/bootstrap-slider

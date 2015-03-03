@@ -3,18 +3,3 @@
 <% end %>
 
 <%= render partial: 'settings/index' %>
-
-<script>
-  $(function() {
-        $('#user_password, #user_password_confirmation, #user_current_password').password().on('show.bs.password', function(e) {
-            $('#eventLog').text('On show event');
-            $('#methods').prop('checked', true);
-        }).on('hide.bs.password', function(e) {
-                    $('#eventLog').text('On hide event');
-                    $('#methods').prop('checked', false);
-                });
-        $('#methods').click(function() {
-            $('#user_password, #user_password_confirmation, #user_current_password').password('toggle');
-        });
-    });
-  </script>

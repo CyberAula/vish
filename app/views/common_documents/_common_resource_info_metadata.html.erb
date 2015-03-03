@@ -1,19 +1,6 @@
 <div class="panel-group" id="accordion">
   <div class="panel">
     <header>
-      <!--Views and Likes-->
-  <div class="viewsAndCount">        
-    <div class="views">
-      <%=resource.visit_count.to_s%>
-      <span><%=t('follow.views')%></span>   
-    </div>
-    <%unless resource.post_activity.nil?%>
-      <div class="like">    
-        <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
-        <%= link_like(resource.post_activity)%>
-      </div>
-    <%end%>
-  </div>
       <table class="table table-hover">
         <tr>
             <!--contributors-->
@@ -53,8 +40,8 @@
           </tr>
       </table>
     </header>
-    <div id="collapseInfo" class="panel-collapse collapse">
-      <div class="panel-body">
+    <div class="panel-body">
+      <div id="collapseInfo" class="panel-collapse collapse">
         <table class="table table-hover">
             <!--language-->
             <% unless resource.readable_language.blank? %>
@@ -82,22 +69,36 @@
         </table>
       </div>
     </div>
- 
+    <div class="panel-footer">
 
-    <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
-      <span id="showingMore" class="showMore accordion-toggle btn btn-default collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo" title="showFewer">Expandir</span>
-    </a>
+      <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
+        <span id="showingMore" class="showMore accordion-toggle btn btn-default collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo" title="showFewer">Expandir</span>
+      </a>
 
-    <!--metadata-->
-    <% displayMetadata = resource.respond_to?("metadata") %>
-    <% if displayMetadata %>
-      <button href="#MetadataModal" id="showMeta" data-toggle="modal" class="btn btn-default">
-        <%=t('excursion.actions.show_meta')%>
-      </button>
-    <%end%>
+      <!--metadata-->
+      <% displayMetadata = resource.respond_to?("metadata") %>
+      <% if displayMetadata %>
+        <button href="#MetadataModal" id="showMeta" data-toggle="modal" class="btn btn-default">
+          <%=t('excursion.actions.show_meta')%>
+        </button>
+      <%end%>
+
+            <!--Views and Likes-->
+      <div class="viewsAndCount">        
+        <div class="views">
+          <%=resource.visit_count.to_s%>
+          <span><%=t('follow.views')%></span>   
+        </div>
+        <%unless resource.post_activity.nil?%>
+          <div class="like">    
+            <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
+            <%= link_like(resource.post_activity)%>
+          </div>
+        <%end%>
+      </div>
+    </div>
   </div>
 </div>
-
 <% if displayMetadata %>
   <div id="MetadataModal" class="modal fade">
     <div class="modal-dialog">
