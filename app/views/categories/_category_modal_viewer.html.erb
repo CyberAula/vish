@@ -10,8 +10,8 @@
 
         <% generic_categories = Category.authored_by(current_subject).sort_by!{|e| e.title.downcase} %>
 
-        <p class= "information"><%= t("category.cat_add_title")%></p> 
-        <%#binding.pry%>
+        <p class= "information"><%= t("category.cat_add_title")%></p>
+
         <% root_categories = generic_categories.reject{|n| n.parent_id != nil} %>
 
             <div id='jqxWidget'>
@@ -29,16 +29,15 @@
              </div>
             </div>
 
-         <!--<p class= "information"><%= t("category.cat_popular")%></p>-->
          <br>
          <div id="suggested_categories" class="tagBoxNew">
-            <% rcCategories = generic_categories.reject{|e| get_initial_categories(item).include? e.id} %> 
+            <% rcCategories = generic_categories.reject{|e| get_initial_categories(item).include? e.id} %>
             <%simple_gen = rcCategories.sort{|a,b| b.property_objects.length <=> a.property_objects.length}.first(7)%>
             <ul id="suggestedCategories" class="tagit">
-            <% simple_gen.each do |init| %> 
-              
+            <% simple_gen.each do |init| %>
+
                 <li class="tagit-choice" value="<%= init.id %>" ><%=init.title%></li>
-              
+
             <% end %>
             </ul>
 
@@ -67,20 +66,20 @@
               <% resource_categories.each do |cat| %>
                 <% ident = Category.find(cat) %>
                 $("#myCategories").tagit("add", "<%=ident.title %>", "<%=ident.id%>");
-            <%end%> 
+            <%end%>
             //Save suggested categories state
 
     <%end%>
         <div class="tagBoxNew">
           <ul id="myCategories">
         <!-- Existing list items will be pre-added to the tags -->
-            
+
           </ul>
         </div>
 
       </div>
       <div class="modal-footer">
-        <button id="cancel_cat_button" class="btn btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>
+        <!--<button id="cancel_cat_button" class="btn btn-default btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>-->
         <button id="save_cat_button" class="btn btn-primary"><%= t('button.save')%></button>
       </div>
     </div>
@@ -89,7 +88,7 @@
 <%content_for :javascript do%>
 
   //When click to suggested they go to down part for being categorized
-  $("#suggested_categories li").click(function(){ 
+  $("#suggested_categories li").click(function(){
     var value = $(this).html();
     var name = $(this).html();
 
@@ -113,7 +112,7 @@
               success: function(data){
                 $("#categories_viewer_modal").modal('toggle');
                 //Emulating alert with javascript
-                $('#flash').hide(); 
+                $('#flash').hide();
                 $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.success")%></div>')
                             .fadeIn()
                             .delay(6000)
@@ -125,7 +124,7 @@
                 error: function(){
                   $("#categories_viewer_modal").modal('toggle');
                   //Emulating alert with javascript
-                  $('#flash').hide(); 
+                  $('#flash').hide();
                   $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Error</div>')
                             .fadeIn()
                             .delay(6000)
@@ -161,15 +160,15 @@
       $('#jqxTree').on('select', function (event) {
                 var args = event.args.element;
                 if (args.getAttribute("category_id") != null){
-                
+
                 var value = args.getAttribute("category_id");
                 var name = $('#jqxTree').jqxTree('getItem', args).label;
-               
+
                 $("#myCategories").tagit("add", name, value);
                 }
 
                 $('#dropDownButton').jqxDropDownButton('close');
      });
-            
+
 
 <%end%>

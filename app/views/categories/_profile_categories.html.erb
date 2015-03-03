@@ -12,22 +12,20 @@
 
 <div id="categories_tab_ready" class="categories cat_container_generic">
 
-  <br/>
-
   <div class="toolbar_nav-tab">
     <% if canEditProfile %>
-      <a href="#options-modal" type="button" class="btn btn-primary " role="button" data-toggle="modal" >
-        <i class="icon-cogs"></i><%=t('categories.dragandrop.edit')%>
+      <a href="#options-modal" type="button" class="btn btn-default" role="button" data-toggle="modal" >
+        <i class="fa fa-cogs"></i><%=t('categories.dragandrop.edit')%>
       </a>
 
-      <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
+      <button type="button" class="btn btn-default btn-for-categorize" data-toggle="button"><i class="fa fa-arrows"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
     <% end %>
 
     <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
-      <button id="normal-view" type="button" class="btn btn-primary">
+      <button id="normal-view" type="button" class="btn btn-default">
         <%=t('categories.dragandrop.gallery')%>
       </button>
-      <button id="list-view" type="button" class="btn btn-primary">
+      <button id="list-view" type="button" class="btn btn-default">
         <%=t('categories.dragandrop.list')%>
       </button>
     </div>
@@ -35,6 +33,8 @@
 
   <!-- Modal -->
   <div id="options-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
     <%= form_tag(categories_settings_path) do %>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -42,26 +42,32 @@
       </div>
       <div class="modal-body">
         <p><%=t('categories.dragandrop.default_view')%></p>
+
         <div class="radio">
           <label>
             <%= radio_button_tag :categories_view, "gallery", (categoryView=="gallery") %>
-            <i class="icon-th "></i>
+            <span class="lbl padding-0">
+            <i class="fa fa-th "></i>
             <%=t('categories.dragandrop.gallery')%>
+             </span>
           </label>
         </div>
         <div class="radio">
           <label>
             <%= radio_button_tag :categories_view, "list", (categoryView=="list") %>
-            <i class="icon-align-justify "></i>
+            <span class="lbl padding-0">
+            <i class="fa fa-align-justify "></i>
             <%=t('categories.dragandrop.list')%>
+            </span>
           </label>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true"><%=t('close')%></button>
+        <button class="btn  btn-default" data-dismiss="modal" aria-hidden="true"><%=t('close')%></button>
         <%= submit_tag t('save'), :class => 'btn btn-primary' %>
       </div>
     <% end %>
+    </div></div>
   </div>
 
   <% if profile_subject_is_current? or isAdmin? %>

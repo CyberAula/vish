@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20150216105625) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "notification_settings"
+    t.integer  "rank_mve",              :default => 0
     t.boolean  "is_admin",              :default => false
     t.text     "category_order"
     t.string   "categories_view",       :default => "gallery"
@@ -261,6 +262,7 @@ ActiveRecord::Schema.define(:version => 20150216105625) do
     t.text     "offline_manifest",   :default => ""
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
+    t.integer  "rank_mve",           :default => 0
   end
 
   create_table "groups", :force => true do |t|
