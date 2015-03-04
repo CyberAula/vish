@@ -25,6 +25,7 @@ DocumentsHelper.module_eval do
         when "Scormfile" then "scorm-new"
         when "Webapp" then "webapp-new"
         when "Workshop" then "lightbulb"
+        when "Excursion" then "webapp-new"
         else "file" # SocialStream::Documents.icon_mime_types[:default]
       end
     end
