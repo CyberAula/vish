@@ -16,7 +16,11 @@ development:
   register_policy: "REGISTER_ONLY"   #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'
   advanced_search:
     instances: ["http://vishub.org"]
-
+  tagsSettings:
+    maxLength: 40
+    maxTags: 8
+    triggerKeys: ['enter', 'comma', 'tab']
+    
 
 production:
   domain: "vishub.org"
@@ -35,6 +39,10 @@ production:
   register_policy: "REGISTER_ONLY"
   advanced_search:
     instances: ["http://vishub.org"]
+  tagsSettings:
+    maxLength: 40
+    maxTags: 8
+    triggerKeys: ['enter', 'comma', 'tab']
   mail:
     type: "SMTP" #this can be SMTP or SENDMAIL
     # Check http://api.rubyonrails.org/classes/ActionMailer/Base.html for details.

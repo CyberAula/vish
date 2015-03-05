@@ -60,7 +60,7 @@
         <%=link_to t('hide'), "#", :id=>"hide_profile_form", :class=>"btn btn-primary"%>
       </div>
     <% end %>
-
+   
     <%= content_for :javascript do %>
         var userTagList = $(".userTagList");
         var userTagsSource = [];
@@ -75,12 +75,17 @@
             $(userTagList).append("<li>" + $(element).html() + "</li>");
           });
         }
-        
+
         $(userTagList).tagit({
           tagSource: userTagsSource,
           sortable: true,
-          maxLength: 15,
-          maxTags: 8,
+          <%if !Vish::Application.config.APP_CONFIG["tagsSettings"].nil? %>
+            <%=Vish::Application.config.APP_CONFIG["tagsSettings"]["maxLength"].nil? ? "" : "maxLength: #{Vish::Application.config.APP_CONFIG["tagsSettings"]["maxLength"]}," %>
+            <%=Vish::Application.config.APP_CONFIG["tagsSettings"]["maxTags"].nil? ? "" : "maxTags: #{Vish::Application.config.APP_CONFIG["tagsSettings"]["maxTags"]}," %>
+            <%if !Vish::Application.config.APP_CONFIG["tagsSettings"]["triggerKeys"].nil?%>
+              triggerKeys: <%=raw(Vish::Application.config.APP_CONFIG["tagsSettings"]["triggerKeys"].to_json)%>,
+            <%end%>            
+          <%end%>
           watermarkAllowMessage: '<%=t('document.tags.areasOfInterestMessage')%>', 
           watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>',
           tagsChanged:function (tag, action) {

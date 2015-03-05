@@ -67,6 +67,13 @@
       <%content_for :javascript do%>      
 
         $("#new_file ul.resourceTagList").tagit({
+          <%if !Vish::Application.config.APP_CONFIG["tagsSettings"].nil? %>
+            <%=Vish::Application.config.APP_CONFIG["tagsSettings"]["maxLength"].nil? ? "" : "maxLength: #{Vish::Application.config.APP_CONFIG["tagsSettings"]["maxLength"]}," %>
+            <%=Vish::Application.config.APP_CONFIG["tagsSettings"]["maxTags"].nil? ? "" : "maxTags: #{Vish::Application.config.APP_CONFIG["tagsSettings"]["maxTags"]}," %>
+            <%if !Vish::Application.config.APP_CONFIG["tagsSettings"]["triggerKeys"].nil?%>
+              triggerKeys: <%=raw(Vish::Application.config.APP_CONFIG["tagsSettings"]["triggerKeys"].to_json)%>,
+            <%end%>            
+          <%end%>
           watermarkAllowMessage:"",
           tagSource: tagsSource
         });
