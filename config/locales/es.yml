@@ -887,7 +887,8 @@ es:
     email: "Compartir por email"
     twitter:
       message: "Echa un vistazo a este recurso en %{url}"
-  sign_up: "Registrar"
+  sign_up: "Regístrate"
+  sign_in: "Ingresa"
   simple_captcha:
     placeholder: "Introduce el valor de la imagen"
     label: "Introduce el código en la caja:"
