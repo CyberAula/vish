@@ -27,7 +27,7 @@ describe ExcursionsController do
   def valid_attributes
     {}
   end
-
+  
   describe "GET index" do
     it "assigns all excursions as @excursions" do
       excursion = Excursion.create! valid_attributes

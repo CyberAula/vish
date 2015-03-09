@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe PostsController do
@@ -150,3 +151,4 @@ describe PostsController do
 
   end
 end
+=end
