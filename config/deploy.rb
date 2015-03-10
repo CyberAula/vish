@@ -72,41 +72,42 @@ namespace(:deploy) do
   # Other tasks
   task :fix_file_permissions do
     # LOG
-    run "#{try_sudo} touch #{ release_path }/log/production.log"
-    run "#{try_sudo} /bin/chmod 666 #{ release_path }/log/production.log"
+    run "#{try_sudo} touch #{release_path}/log/production.log"
+    run "#{try_sudo} /bin/chmod 666 #{release_path}/log/production.log"
 
-   # TMP
-    run "/bin/chmod -R g+w #{ release_path }/tmp"
-    sudo "/bin/chgrp -R www-data #{ release_path }/tmp"
-    run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/json"
-    run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/scorm"
-    run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/qti"
-    run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/moodlequizxml"
-    run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/simple_captcha"
+    # TMP
+    run "/bin/chmod -R g+w #{release_path}/tmp"
+    sudo "/bin/chgrp -R www-data #{release_path}/tmp"
+    run "#{try_sudo} /bin/chmod -R 777 #{release_path}/public/tmp/json"
+    run "#{try_sudo} /bin/chmod -R 777 #{release_path}/public/tmp/scorm"
+    run "#{try_sudo} /bin/chmod -R 777 #{release_path}/public/tmp/qti"
+    run "#{try_sudo} /bin/chmod -R 777 #{release_path}/public/tmp/moodlequizxml"
+    run "#{try_sudo} /bin/chmod -R 777 #{release_path}/public/tmp/simple_captcha"
 
     # config.ru
-    sudo "/bin/chown www-data #{ release_path }/config.ru"
+    sudo "/bin/chown www-data #{release_path}/config.ru"
 
     #scorm
-    run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/scorm"
+    run "#{try_sudo} /bin/chmod -R 777 #{release_path}/public/scorm"
   end
 
   task :link_files do
-    run "ln -s #{ shared_path}/documents #{ release_path }/"
-    run "ln -s #{ shared_path}/database.yml #{ release_path }/config"
-    run "ln -s #{ shared_path}/application_config.yml #{ release_path }/config"
-    run "ln -s #{ shared_path}/exception_notification.rb #{ release_path }/config/initializers"
-    run "ln -s #{ shared_path}/social_stream-ostatus.rb #{ release_path }/config/initializers"
+    run "ln -s #{shared_path}/documents #{release_path}/"
+    run "ln -s #{shared_path}/scormpackages #{release_path}/public/scorm/packages"
+    run "ln -s #{shared_path}/database.yml #{release_path}/config"
+    run "ln -s #{shared_path}/application_config.yml #{release_path}/config"
+    run "ln -s #{shared_path}/exception_notification.rb #{release_path}/config/initializers"
+    run "ln -s #{shared_path}/social_stream-ostatus.rb #{release_path}/config/initializers"
   end
 
   task :start_sphinx do
-    run "cd #{ current_path } && kill -9 `cat log/searchd.production.pid` || true"
-    run "cd #{ release_path } && bundle exec \"rake ts:rebuild RAILS_ENV=production\""
+    run "cd #{current_path} && kill -9 `cat log/searchd.production.pid` || true"
+    run "cd #{release_path} && bundle exec \"rake ts:rebuild RAILS_ENV=production\""
   end
 
   task :fix_sphinx_file_permissions do
-    run "/bin/chmod g+rw #{ release_path }/log/searchd*"
-    sudo "/bin/chgrp www-data #{ release_path }/log/searchd*"
+    run "/bin/chmod g+rw #{release_path}/log/searchd*"
+    sudo "/bin/chgrp www-data #{release_path}/log/searchd*"
   end
 
   task :stop_workers do
