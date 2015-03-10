@@ -93,6 +93,7 @@ namespace(:deploy) do
 
   task :link_files do
     run "ln -s #{shared_path}/documents #{release_path}/"
+    run "ln -s #{shared_path}/webappscode #{release_path}/public/webappscode"
     run "ln -s #{shared_path}/scormpackages #{release_path}/public/scorm/packages"
     run "ln -s #{shared_path}/database.yml #{release_path}/config"
     run "ln -s #{shared_path}/application_config.yml #{release_path}/config"
