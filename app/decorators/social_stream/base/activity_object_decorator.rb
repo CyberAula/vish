@@ -168,6 +168,9 @@ ActivityObject.class_eval do
       searchJson[:visit_count] = self.visit_count
       searchJson[:like_count] = self.like_count
       searchJson[:download_count] = self.download_count
+      unless self.age_min.blank? or self.age_max.blank?
+        searchJson[:age_range] = self.age_min.to_s + "-" + self.age_max.to_s
+      end
     else
       unless resource.occupation.nil?
         searchJson[:occupation] = resource.occupation_t

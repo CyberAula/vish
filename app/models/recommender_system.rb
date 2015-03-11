@@ -377,6 +377,28 @@ class RecommenderSystem
       opts[:with_all][:tag_ids] = options[:tag_ids].split(",")
     end
 
+    #Filter by age range
+    if options[:age_min] or options[:age_max]
+
+      unless options[:age_min].blank?
+        ageMin = options[:age_min].to_i rescue 0
+      else
+        ageMin = 0
+      end
+
+      unless options[:age_max].blank?
+        ageMax = options[:age_max].to_i rescue 100
+      else
+        ageMax = 100
+      end
+
+      ageMax = [[100,ageMax].min,0].max
+      ageMin = [ageMin,ageMax].min
+
+      opts[:with][:age_min] = 0..ageMax
+      opts[:with][:age_max] = ageMin..100
+    end
+
     opts[:without] = {}
     if options[:subjects_to_avoid].is_a? Array
       options[:subjects_to_avoid] = options[:subjects_to_avoid].compact
