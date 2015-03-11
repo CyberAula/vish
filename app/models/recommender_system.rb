@@ -331,6 +331,7 @@ class RecommenderSystem
     end
 
     opts[:with] = {}
+    opts[:with_all] = {}
     
     unless !options[:subject].nil? and options[:subject].admin?
       #Only 'Public' objects, drafts and other private objects are not searched.
@@ -367,6 +368,14 @@ class RecommenderSystem
       opts[:with][:qscore] = qualityThreshold..1000000
     end
 
+    #Filter by tags
+    if options[:tags]
+      tag_ids = ActsAsTaggableOn::Tag.find_all_by_name(options[:tags].split(",")).map{|t| t.id}
+      tag_ids = [-1] if tag_ids.blank?
+      opts[:with_all][:tag_ids] = tag_ids
+    elsif options[:tag_ids]
+      opts[:with_all][:tag_ids] = options[:tag_ids].split(",")
+    end
 
     opts[:without] = {}
     if options[:subjects_to_avoid].is_a? Array

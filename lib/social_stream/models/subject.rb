@@ -91,6 +91,7 @@ module SocialStream
           has activity_object.desc_length, :as => :desc_length, :type => :integer, :sortable => true
           has activity_object.tags_length, :as => :tags_length, :type => :integer, :sortable => true
 
+          has activity_object.tags(:id), :as => :tag_ids
         end
 
       end
