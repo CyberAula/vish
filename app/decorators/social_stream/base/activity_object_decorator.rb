@@ -361,7 +361,7 @@ ActivityObject.class_eval do
       metadata[I18n.t("activity_object.language")] = self.readable_language
     end
 
-    unless self.age_min.blank? or self.age_max.blank?
+    unless self.age_range.blank?
       metadata[I18n.t("activity_object.age_range")] = self.age_min.to_s + " - " + self.age_max.to_s
     end
 

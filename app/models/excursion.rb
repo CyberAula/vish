@@ -1073,17 +1073,22 @@ class Excursion < ActiveRecord::Base
     activity_object.description = parsed_json["description"] 
     activity_object.tag_list = parsed_json["tags"]
     activity_object.language = parsed_json["language"]
-    begin
-      ageRange = parsed_json["age_range"]
-      activity_object.age_min = ageRange.split("-")[0].delete(' ')
-      activity_object.age_max = ageRange.split("-")[1].delete(' ')
-    rescue
+
+    unless parsed_json["age_range"].blank?
+      begin
+        ageRange = parsed_json["age_range"]
+        activity_object.age_min = ageRange.split("-")[0].delete(' ')
+        activity_object.age_max = ageRange.split("-")[1].delete(' ')
+      rescue
+      end
     end
+
     if self.draft
       activity_object.scope = 1 #private
     else
       activity_object.scope = 0 #public
     end
+    
     original_updated_at = self.updated_at
     activity_object.save!
 
@@ -1092,7 +1097,7 @@ class Excursion < ActiveRecord::Base
     self.update_column :updated_at, original_updated_at
     activity_object.update_column :updated_at, original_updated_at
 
-    if !parsed_json["vishMetadata"]
+    unless parsed_json["vishMetadata"]
       parsed_json["vishMetadata"] = {}
     end
     parsed_json["vishMetadata"]["id"] = self.id.to_s
