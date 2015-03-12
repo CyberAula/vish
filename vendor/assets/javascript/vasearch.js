@@ -79,6 +79,21 @@ VASearch.UI = (function(V,undefined){
       }
     });
 
+    //Age Range slider (Bootstrap slider)
+    $("#asearch_settings input.asearch-age-slider").slider().on('slide', function(ev){
+      var ageMin = $(this).data('slider').getValue()[0];
+      var ageMax = $(this).data('slider').getValue()[1];
+
+      $("#asearch_settings [asparam='ageMin']").val(ageMin);
+      $("#asearch_settings [asparam='ageMax']").val(ageMax);
+
+      if(ageMax>=$(this).data('slider').max){
+        ageMax = ageMax.toString() + "+"
+      }
+
+      $("#asearch_settings [asparam='ageRangeValue']").html(ageMin.toString() + "-" + ageMax.toString());
+    });
+
     //Add and remove instances
     $("#asearch_settings .addInstanceButton").bind('click', function(e){
       var instanceInput = $("#asearch_settings .addInstanceInput");
@@ -244,6 +259,13 @@ VASearch.UI = (function(V,undefined){
 
     settings.qualityThreshold = $("#asearch_settings [asparam='qualityThreshold']").val();
 
+    var ageMin = $("#asearch_settings [asparam='ageMin']").val();
+    var ageMax = $("#asearch_settings [asparam='ageMax']").val();
+    if((ageMin!="0")||(ageMax!="30")){
+      settings.age_min = ageMin;
+      settings.age_max = ageMax;
+    }
+
     return settings;
   };
 
@@ -379,6 +401,14 @@ VASearch.Core = (function(V,undefined){
 
     if(settings.qualityThreshold){
       query += "&qualityThreshold="+settings.qualityThreshold;
+    }
+
+    if(settings.age_min){
+      query += "&age_min="+settings.age_min;
+    }
+
+    if(settings.age_max){
+      query += "&age_max="+settings.age_max;
     }
 
     return query;

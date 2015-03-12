@@ -113,6 +113,7 @@ es:
       end_date: "Fecha final"
       language: "Idioma"
       quality_threshold: "Umbral de Calidad"
+      age_range: "Rango de Edad"
     models:
       select_entities: "Selecciona entidades a buscar"
       all_resources: "Todos los Recursos"

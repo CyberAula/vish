@@ -43,6 +43,7 @@
     });
 
     $("#<%=form_id%> .age-slider").before($("#<%=form_id%> .limits"));
+    $("#<%=form_id%> .age-slider").data('slider').setValue([0,0]);
     positionLimits();
 
   <%if form_id == "AddResource"%>
@@ -86,7 +87,7 @@
       $(avatarFileInput).css("display","none");
       $(avatarFileInput).appendTo(myForm);
       //LANGUAGE
-      $("#<%=form_id%> input[name='"+resource_type+"[language]']").val($("#<%=form_id%> .language").val());
+      $("#<%=form_id%> input[name='"+resource_type+"[language]']").val($("#<%=form_id%> select.language").val());
       //AGE
       var value1 = $('#<%=form_id%> .age-slider').data('slider').getValue()[0];
       var value2 = $('#<%=form_id%> .age-slider').data('slider').getValue()[1];
