@@ -110,5 +110,16 @@ module Vish
         config.tagsSettings["triggerKeys"] = ['enter', 'comma', 'tab']
     end
 
+    #Catalogue mode
+    if config.APP_CONFIG['catalogue'].blank?
+        config.catalogue = {} 
+    else
+        config.catalogue = config.APP_CONFIG['catalogue']
+    end
+
+    if config.catalogue['mode'].blank?
+        config.catalogue['mode'] = "matchany"
+    end
+
   end
 end

@@ -370,11 +370,23 @@ class RecommenderSystem
 
     #Filter by tags
     if options[:tags]
-      tag_ids = ActsAsTaggableOn::Tag.find_all_by_name(options[:tags].split(",")).map{|t| t.id}
-      tag_ids = [-1] if tag_ids.blank?
-      opts[:with_all][:tag_ids] = tag_ids
+      if options[:tags].is_a? String
+        options[:tags] = options[:tags].split(",")
+      end
+
+      if options[:tags].is_a? Array
+        tag_ids = ActsAsTaggableOn::Tag.find_all_by_name(options[:tags]).map{|t| t.id}
+        tag_ids = [-1] if tag_ids.blank?
+        opts[:with_all][:tag_ids] = tag_ids
+      end
     elsif options[:tag_ids]
-      opts[:with_all][:tag_ids] = options[:tag_ids].split(",")
+      if options[:tag_ids].is_a? String
+        options[:tag_ids] = options[:tag_ids].split(",")
+      end
+
+      if options[:tag_ids].is_a? Array
+        opts[:with_all][:tag_ids] = [options[:tag_ids]]
+      end
     end
 
     #Filter by age range
@@ -397,6 +409,11 @@ class RecommenderSystem
 
       opts[:with][:age_min] = 0..ageMax
       opts[:with][:age_max] = ageMin..100
+    end
+
+    #Filter by category
+    if options[:category_tag_ids]
+      opts[:with][:tag_ids] = options[:category_tag_ids]
     end
 
     opts[:without] = {}

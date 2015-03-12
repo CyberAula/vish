@@ -49,7 +49,7 @@
 
       <%
         initialTags = resource.tags.all.map{|e| e.name} || []
-        tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue_categories).uniq!
+        tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue["keywords"]).uniq!
         if tags.nil?
           tags = []
         end

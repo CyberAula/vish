@@ -16,6 +16,8 @@ development:
   register_policy: "REGISTER_ONLY"   #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'
   advanced_search:
     instances: ["http://vishub.org"]
+  catalogue:
+    mode: "matchany" #matchany or matchtag
     
 
 production:
