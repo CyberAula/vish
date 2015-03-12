@@ -32,6 +32,9 @@ require File.join(base_spec_path, 'support/mock.rb')
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+require 'factory_girl'
+Dir[Rails.root.join("spec/factories/*.rb")].each {|f| require f}
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
