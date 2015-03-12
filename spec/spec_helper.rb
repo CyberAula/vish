@@ -2,8 +2,9 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+
 require 'rspec/autorun'
-require "rspec/rails"
+
 
 ActionMailer::Base.delivery_method = :test
 ActionMailer::Base.perform_deliveries = true
@@ -12,7 +13,8 @@ ActionMailer::Base.default_url_options[:host] = "test.com"
 Rails.backtrace_cleaner.remove_silencers!
 
 # Configure capybara for integration testing
-require "capybara/rails"
+require 'capybara/rspec'
+require 'capybara/rails'
 Capybara.default_driver   = :rack_test
 Capybara.default_selector = :css
 
