@@ -38,8 +38,8 @@
                 <%= f.hidden_field :description%>
                 <%= f.hidden_field :tag_list, :multiple => true %>
                 <%= f.hidden_field :language, :value => "" %>
-                <%= f.hidden_field :age_min, :value => "4" %>
-                <%= f.hidden_field :age_max, :value => "20" %>
+                <%= f.hidden_field :age_min, :value => "0" %>
+                <%= f.hidden_field :age_max, :value => "0" %>
                 <%= f.submit t('button.save'), :class => "document hide"%>
               <% end %>
             </div>
@@ -65,8 +65,8 @@
                 <%= f.hidden_field :description%>
                 <%= f.hidden_field :tag_list, :multiple => true %>
                 <%= f.hidden_field :language, :value => "" %>
-                <%= f.hidden_field :age_min, :value => "4" %>
-                <%= f.hidden_field :age_max, :value => "20" %>
+                <%= f.hidden_field :age_min, :value => "0" %>
+                <%= f.hidden_field :age_max, :value => "0" %>
                 <%= f.submit t('button.save'), :class => "link hide"%>
               <% end %>
             </div>
@@ -90,8 +90,8 @@
                 <%= f.hidden_field :description%>
                 <%= f.hidden_field :tag_list, :multiple => true %>
                 <%= f.hidden_field :language, :value => "" %>
-                <%= f.hidden_field :age_min, :value => "4" %>
-                <%= f.hidden_field :age_max, :value => "20" %>
+                <%= f.hidden_field :age_min, :value => "0" %>
+                <%= f.hidden_field :age_max, :value => "0" %>
                 <%= f.submit t('button.save'), :class => "embed hide"%>
               <% end %>
             </div>
@@ -132,10 +132,10 @@
       <!--AGE SLIDER-->
       <label><%= t('document.leyend.recommended_age')%></label>
       <div class="limits">
-        <div class="limit1">4</div>
-        <div class="limit2">20</div>
+        <div class="limit1">0</div>
+        <div class="limit2">0</div>
       </div>
-      <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+      <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,1]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
 
       <br>
     </div>
@@ -190,6 +190,7 @@
     });
 
     $("#AddResource .age-slider").before($("#AddResource .limits"));
+    $('#AddResource .age-slider').data('slider').setValue([0,0]);
     positionLimits();
   });
 

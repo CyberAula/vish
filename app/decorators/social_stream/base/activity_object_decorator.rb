@@ -397,6 +397,13 @@ ActivityObject.class_eval do
     return metadata
   end
 
+  def age_range
+    if self.age_min!=0 or self.age_max!=0
+      [self.age_min,self.age_max]
+    else
+      nil
+    end
+  end
 
   ##############
   ## Class Methods
