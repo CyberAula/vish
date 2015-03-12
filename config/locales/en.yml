@@ -114,6 +114,7 @@ en:
       end_date: "End Date"
       language: "Language"
       quality_threshold: "Quality Threshold"
+      age_range: "Age Range"
     models:
       select_entities: "Select Entities to search"
       all_resources: "All Resources"

@@ -17,7 +17,7 @@
 
 #asearch_settings{
 	display: none;
-	height: 370px;
+	height: 445px;
 	width: 87%;
 	top: 145px;
 	padding: 1%;
@@ -284,6 +284,14 @@
 #asearch_settings .dateWrapper input{
 	max-width: 90%;
 	margin-right: 5px;
+}
+
+#asearch_settings .asearch_slider_wrapper .slider-track {
+  background-color: #ccc;
+}
+
+#asearch_settings .asearch_slider_wrapper .slider .slider-selection, #asearch_settings .asearch_slider_wrapper .slider-handle.round {
+	background: #6C6C6C;
 }
 
 #asearch_settings .ViSHinstances{

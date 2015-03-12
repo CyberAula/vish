@@ -66,6 +66,13 @@
     </select>
     <p class="settingsField" style="margin-top: 20px !important;"><span><%=t("asearch.filters.quality_threshold")%> (0-10): &nbsp;</span><span asparam="rangeValue">5.0</span></p>
     <input asparam="qualityThreshold" type="range" min="0" max="10" step="0.1" value="5"/>
+   
+    <p class="settingsField" style="margin-top: 20px !important;"><span><%=t("asearch.filters.age_range")%> (0-30+): &nbsp;</span><span asparam="ageRangeValue">0-30+</span></p>
+    <input type="hidden" asparam="ageMin" value="0"/>
+    <input type="hidden" asparam="ageMax" value="30"/>
+    <div class="asearch_slider_wrapper">
+      <input type="text" class="asearch-age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,30]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+    </div>
   </div>
 
   <div class="settingsColumn">
