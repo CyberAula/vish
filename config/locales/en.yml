@@ -1,4 +1,13 @@
 en:
+  i18n:
+    transliterate:
+      rule:
+        ª: "ª"
+        º: "º"
+        ´: "´"
+        ?: "?"
+        ¿: "¿"
+        ¡: "¡"
   about: 
     blog: "News"
     contact: "Contact"
