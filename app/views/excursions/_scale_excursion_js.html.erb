@@ -38,11 +38,13 @@ function scale_editor(){
     }
     
     add_scale_prop_to_elem($("#presentation_editor_iframe"),scale);
+    /*
     if(scale!=1){
         $("html").css("overflow", "hidden");
     } else {
         $("html").css("overflow", "visible");
     }
+    */
     setTimeout(function(){
         $("#editor_wrapper").width(DEFAULT_EDITOR_WIDTH*scale + "px");
         $("#editor_wrapper").height(DEFAULT_EDITOR_HEIGHT*scale + "px");
