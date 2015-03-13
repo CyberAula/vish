@@ -1,4 +1,10 @@
 es:
+  about: 
+    blog: "Novedades"
+    contact: "Contacto"
+    code: "Código fuente"
+    survey: "Encuesta del ViSH"
+    title: "about"
   activerecord:
     attributes:
       user:
@@ -155,7 +161,6 @@ es:
       quality: "Calidad"
     title: "Búsqueda Avanzada"
   author: "autor"
-  blog_news_title: "novedades"
   browse:
     title: "explorar"
     popular: "contenido popular"
@@ -255,7 +260,6 @@ es:
     check_message_1: "Condiciones de Uso"
     other: "términos de uso"
   contact:
-    footer: "contacto"
     follow: "Seguir"
     unfollow: "Dejar de seguir"
     following: "Siguiendo"

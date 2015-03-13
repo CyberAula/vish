@@ -1,4 +1,10 @@
 en:
+  about: 
+    blog: "News"
+    contact: "Contact"
+    code: "Source code"
+    survey: "ViSH survey"
+    title: "about"
   activerecord:
     attributes:
       user:
@@ -156,7 +162,6 @@ en:
       quality: "Quality"
     title: "Advanced Search"
   author: "author"
-  blog_news_title: "news"
   browse:
     title: "browse"
     popular: "popular content"
@@ -260,7 +265,6 @@ en:
     check_message_1: "Terms and Conditions."
     other: "terms of use"
   contact:
-    footer: "contact"
     follow: "Follow"
     unfollow: "Unfollow"
     following: "Following"
