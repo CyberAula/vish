@@ -554,6 +554,26 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:updateTagsPlainNames
+  #In production: bundle exec rake fix:updateTagsPlainNames RAILS_ENV=production
+  task :updateTagsPlainNames => :environment do
+
+    printTitle("Updating the plain names of the tags")
+
+    ActsAsTaggableOn::Tag.all.each do |tag|
+      plain_name = I18n.transliterate(tag.name, :locale => "en", :replacement => "¿missingtranslation?").downcase rescue tag.name
+
+      if !plain_name.is_a? String or plain_name.blank? or plain_name.include? "¿missingtranslation?"
+        plain_name = tag.name
+      end
+
+      tag.update_column :plain_name, plain_name
+    end
+
+    printTitle("Task Finished")
+  end
+
   ####################
   #Task Utils
   ####################
