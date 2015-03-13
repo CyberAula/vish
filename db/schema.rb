@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150312101009) do
+ActiveRecord::Schema.define(:version => 20150313110458) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -508,6 +508,7 @@ ActiveRecord::Schema.define(:version => 20150312101009) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+    t.string "plain_name"
   end
 
   create_table "ties", :force => true do |t|

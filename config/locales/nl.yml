@@ -1,4 +1,6 @@
 nl:
+  about:
+    contact: "Contact opnemen"
   activerecord:
     attributes:
       user:
@@ -336,8 +338,6 @@ nl:
     save: "Opslaan"
     selected: "categorieën"
     success: "Categorieën met succes opgeslagen"
-  contact:
-    footer: "contact opnemen"
   pending:
     other: "Volgt u"
   contest:

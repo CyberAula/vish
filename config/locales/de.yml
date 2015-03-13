@@ -1,4 +1,6 @@
 de:
+  about: 
+    contact: "Kontakt"
   activerecord:
     attributes:
       user:
@@ -408,8 +410,6 @@ de:
     save: "Speichern"
     selected: "Kategorien"
     success: "Kategorien erfolgreich gespeichert"
-  contact:
-    footer: "Kontakt"
   pending:
     other: "Folgt dir"
   copy_to_clip: "Auf Clipboard kopieren"
