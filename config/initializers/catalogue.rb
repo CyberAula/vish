@@ -18,7 +18,7 @@ Vish::Application.configure do
     
     #Combine categories and add extra terms
     combinedCategories = {"biology" => ["naturalScience","EnvironmentalStudies"], "engineering"=>["computerScience"], "generalCulture" => ["humanities","history","literature"], "humanities"=>["history","literature"], "naturalScience" => ["EnvironmentalStudies"], "technology"=>["engineering","computerScience"]}
-    extraTerms = {"education"=>["eLearning","learning","teaching"],"foreignLanguages"=>["listening"],"maths"=>["math"]}
+    extraTerms = {"education"=>["eLearning","learning","teaching"],"foreignLanguages"=>["listening"],"maths"=>["math","maths"], "computerScience"=>["computerScience_extra1"], "naturalScience"=>["naturalScience_extra1"], "EnvironmentalStudies" => ["environmentalStudies_extra1"]}
 
     #Build catalogue search terms
     
@@ -57,7 +57,8 @@ Vish::Application.configure do
         config.catalogue["keywords"].concat(config.catalogue["category_keywords"][c1])
 
         if config.catalogue['mode'] == "matchtag"
-            config.catalogue["category_tag_ids"][c1] = ActsAsTaggableOn::Tag.find_all_by_name(config.catalogue["category_keywords"][c1]).map{|t| t.id}
+            allActsAsTaggableOnTags = ActsAsTaggableOn::Tag.where("plain_name IN (?)", config.catalogue["category_keywords"][c1].map{|tag| ActsAsTaggableOn::Tag.getPlainName(tag)})
+            config.catalogue["category_tag_ids"][c1] = allActsAsTaggableOnTags.map{|t| t.id}
         end
     end
 

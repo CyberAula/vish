@@ -562,13 +562,7 @@ namespace :fix do
     printTitle("Updating the plain names of the tags")
 
     ActsAsTaggableOn::Tag.all.each do |tag|
-      plain_name = I18n.transliterate(tag.name, :locale => "en", :replacement => "¿missingtranslation?").downcase rescue tag.name
-
-      if !plain_name.is_a? String or plain_name.blank? or plain_name.include? "¿missingtranslation?"
-        plain_name = tag.name
-      end
-
-      tag.update_column :plain_name, plain_name
+      tag.update_column :plain_name, ActsAsTaggableOn::Tag.getPlainName(tag.name)
     end
 
     printTitle("Task Finished")

@@ -203,10 +203,14 @@ en:
         science: "Science"
         technology: "Technology"
     extras:
+        computerScience_extra1: "ComputerScience"
+        naturalScience_extra1: "NaturalScience"
+        environmentalStudies_extra1: "EnvironmentalStudies"
         eLearning: "e-Learning"
         learning: "learning"
         listening: "listening"
         math: "Math"
+        maths: "Maths"
         teaching: "teaching"
     title: "Catalogue"
   category:
