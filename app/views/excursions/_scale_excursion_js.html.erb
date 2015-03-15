@@ -38,11 +38,21 @@ function scale_editor(){
     }
     
     add_scale_prop_to_elem($("#presentation_editor_iframe"),scale);
-    if(scale!=1){
-        $("html").css("overflow", "hidden");
-    } else {
-        $("html").css("overflow", "visible");
-    }
+    
+    /* commented as this is experimental to avoid scroll when scalling
+        if(scale!=1){
+            $("html").css("overflow", "hidden");
+            window.onscroll = function () {            
+                window.scrollTo(0, 0); 
+            };
+        } else {
+            $("html").css("overflow", "visible");
+            window.onscroll = function () {
+                //do nothing, so enable scroll again
+            };
+        }
+    */
+    
     setTimeout(function(){
         $("#editor_wrapper").width(DEFAULT_EDITOR_WIDTH*scale + "px");
         $("#editor_wrapper").height(DEFAULT_EDITOR_HEIGHT*scale + "px");

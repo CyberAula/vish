@@ -2,15 +2,28 @@ Vish::Application.configure do
   
   #Init Catalogue
   config.after_initialize do
-    config.catalogue_categories = ["art","biology","chemistry","citizenship","computerScience","economics","education","engineering","foreignLanguages","generalCulture","geography","geology","history","humanities","literature","maths","music","naturalScience","physics","technology"]
-    config.default_categories = ["maths","physics","biology","technology"]
+
+    #Specify the categories of the catalogue
+    config.catalogue["categories"] = ["art","biology","chemistry","citizenship","computerScience","economics","education","engineering","foreignLanguages","generalCulture","geography","geology","history","humanities","literature","maths","music","naturalScience","physics","technology"]
+    config.catalogue["default_categories"] = ["maths","physics","biology","technology"]
+    
+    #Category_keywords is a hash with the keywords of each category
+    config.catalogue["category_keywords"] = Hash.new
+    if config.catalogue['mode'] == "matchtag"
+        #Category_tag_ids is a hash with the ids of the tags of each category
+        config.catalogue["category_tag_ids"] = Hash.new
+    end
+    #Keywords is an array with all the existing keywords/tags
+    config.catalogue["keywords"] = []
+    
+    #Combine categories and add extra terms
     combinedCategories = {"biology" => ["naturalScience","EnvironmentalStudies"], "engineering"=>["computerScience"], "generalCulture" => ["humanities","history","literature"], "humanities"=>["history","literature"], "naturalScience" => ["EnvironmentalStudies"], "technology"=>["engineering","computerScience"]}
-    extraTerms = {"education"=>["eLearning","learning","teaching"],"foreignLanguages"=>["listening"],"maths"=>["math"]}
+    extraTerms = {"education"=>["eLearning","learning","teaching"],"foreignLanguages"=>["listening"],"maths"=>["math","maths"], "computerScience"=>["computerScience_extra1"], "naturalScience"=>["naturalScience_extra1"], "EnvironmentalStudies" => ["environmentalStudies_extra1"]}
 
     #Build catalogue search terms
-    config.catalogue = Hash.new
-    config.catalogue_categories.each do |c1|
-        config.catalogue[c1] = []
+    
+    config.catalogue["categories"].each do |c1|
+        config.catalogue["category_keywords"][c1] = []
 
         allCategories = [c1]
         unless combinedCategories[c1].nil?
@@ -19,9 +32,8 @@ Vish::Application.configure do
         end
 
         allCategories.each do |c2|
-            config.catalogue[c1].push(c2)
             I18n.available_locales.each do |lang|
-                config.catalogue[c1].push(I18n.t("catalogue.categories." + c2, :locale => lang))
+                config.catalogue["category_keywords"][c1].push(I18n.t("catalogue.categories." + c2, :locale => lang, :default => "translationMissing"))
             end
         end
 
@@ -35,19 +47,23 @@ Vish::Application.configure do
 
         allExtraTerms.each do |c4|
             I18n.available_locales.each do |lang|
-                if I18n.t("catalogue.extras." + c4, :locale => lang, :default => "translationMissing") != "translationMissing"
-                    config.catalogue[c1].push(I18n.t("catalogue.extras." + c4, :locale => lang))
-                end
+                config.catalogue["category_keywords"][c1].push(I18n.t("catalogue.extras." + c4, :locale => lang, :default => "translationMissing"))
             end
         end
 
-        config.catalogue[c1].uniq!
+        config.catalogue["category_keywords"][c1].reject!{|c| c=="translationMissing"}
+        config.catalogue["category_keywords"][c1].uniq!
 
-        #Remove whitespaces
-        config.catalogue[c1].map!{ |c5|
-            c5.delete(' ')
-        }
+        config.catalogue["keywords"].concat(config.catalogue["category_keywords"][c1])
+
+        if config.catalogue['mode'] == "matchtag"
+            allActsAsTaggableOnTags = ActsAsTaggableOn::Tag.where("plain_name IN (?)", config.catalogue["category_keywords"][c1].map{|tag| ActsAsTaggableOn::Tag.getPlainName(tag)})
+            config.catalogue["category_tag_ids"][c1] = allActsAsTaggableOnTags.map{|t| t.id}
+        end
     end
+
+    config.catalogue["keywords"].uniq!
+
   end
 
 end

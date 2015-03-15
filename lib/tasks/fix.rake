@@ -554,6 +554,20 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:updateTagsPlainNames
+  #In production: bundle exec rake fix:updateTagsPlainNames RAILS_ENV=production
+  task :updateTagsPlainNames => :environment do
+
+    printTitle("Updating the plain names of the tags")
+
+    ActsAsTaggableOn::Tag.all.each do |tag|
+      tag.update_column :plain_name, ActsAsTaggableOn::Tag.getPlainName(tag.name)
+    end
+
+    printTitle("Task Finished")
+  end
+
   ####################
   #Task Utils
   ####################

@@ -1,4 +1,6 @@
 de:
+  about: 
+    contact: "Kontakt"
   activerecord:
     attributes:
       user:
@@ -385,6 +387,9 @@ de:
     popular: "beliebte Inhalte"
   by: "by"
   cancel: "Löschen"
+  catalogue:
+    categories:
+        maths: "Mathematik"
   category:
     confirm_delete: "Kategorie löschen?"
   categories:
@@ -408,8 +413,6 @@ de:
     save: "Speichern"
     selected: "Kategorien"
     success: "Kategorien erfolgreich gespeichert"
-  contact:
-    footer: "Kontakt"
   pending:
     other: "Folgt dir"
   copy_to_clip: "Auf Clipboard kopieren"

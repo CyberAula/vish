@@ -144,7 +144,7 @@ VASearch.UI = (function(V,undefined){
         case "table":
           $("#asearch_results").append("<table class='asearch_results_table'>");
           var table = $("#asearch_results").find("table");
-          _drawResultWithTable({title: "Title", instance: "Instance", author: "Author"},table,true);
+          _drawResultWithTable({title: V.Utils.getTrans("i.title"), instance: V.Utils.getTrans("i.instance"), author: V.Utils.getTrans("i.author")},table,true);
           $(results).each(function(index,result){
             _drawResultWithTable(result,table);
           });
@@ -463,15 +463,21 @@ VASearch.Utils = (function(V,undefined){
       "default":
         //English
         {
+          "i.author"        : "Author",
           "i.by"            : "by",
           "i.in"            : "in",
-          "i.noResults"     : "No results were found. Try with other search criteria"
+          "i.instance"      : "Instance",
+          "i.noResults"     : "No results were found. Try with other search criteria",
+          "i.title"         : "Title"
         },
       "es":
         {
+          "i.author"        : "Autor",
           "i.by"            : "por",
           "i.in"            : "en",
-          "i.noResults"     : "No se encontraron resultados. Prueba con otros criterios de búsqueda"
+          "i.instance"      : "Instancia",
+          "i.noResults"     : "No se encontraron resultados. Prueba con otros criterios de búsqueda",
+          "i.title"         : "Título"
         }
   };
 

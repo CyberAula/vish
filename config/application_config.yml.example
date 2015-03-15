@@ -16,10 +16,8 @@ development:
   register_policy: "REGISTER_ONLY"   #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'
   advanced_search:
     instances: ["http://vishub.org"]
-  tagsSettings:
-    maxLength: 40
-    maxTags: 8
-    triggerKeys: ['enter', 'comma', 'tab']
+  catalogue:
+    mode: "matchany" #matchany or matchtag
     
 
 production:
@@ -39,10 +37,6 @@ production:
   register_policy: "REGISTER_ONLY"
   advanced_search:
     instances: ["http://vishub.org"]
-  tagsSettings:
-    maxLength: 40
-    maxTags: 8
-    triggerKeys: ['enter', 'comma', 'tab']
   mail:
     type: "SMTP" #this can be SMTP or SENDMAIL
     # Check http://api.rubyonrails.org/classes/ActionMailer/Base.html for details.
@@ -63,7 +57,13 @@ production:
     #    arguments: "-i -t"
 
 
-#Other configuration options
+# Other configuration options
+
+# Specify settings for tags
+#  tagsSettings:
+#    maxLength: 40
+#    maxTags: 8
+#    triggerKeys: ['enter', 'comma', 'tab']
 
 # Automatically detect resources language using the service provided by http://detectlanguage.com
 # languageDetectionAPIKEY: "API Key from http://detectlanguage.com to allow automatic language detection."

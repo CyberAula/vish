@@ -69,18 +69,15 @@
     $.each($("#preloadTagList li"), function(index, element) {
        tags.push($(element).html());
     });
-    
+
     $(tagList).tagit({
       tagSource:tags, 
       sortable:true, 
-      <%if !Vish::Application.config.APP_CONFIG["tagsSettings"].nil? %>
-        <%=Vish::Application.config.APP_CONFIG["tagsSettings"]["maxLength"].nil? ? "" : "maxLength: #{Vish::Application.config.APP_CONFIG["tagsSettings"]["maxLength"]}," %>
-        <%=Vish::Application.config.APP_CONFIG["tagsSettings"]["maxTags"].nil? ? "" : "maxTags: #{Vish::Application.config.APP_CONFIG["tagsSettings"]["maxTags"]}," %>
-        <%if !Vish::Application.config.APP_CONFIG["tagsSettings"]["triggerKeys"].nil?%>
-          triggerKeys: <%=raw(Vish::Application.config.APP_CONFIG["tagsSettings"]["triggerKeys"].to_json)%>,
-        <%end%>            
-      <%end%>
-      watermarkAllowMessage: '<%=t('document.tags.areasOfInterestMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' ,
+      maxLength: '<%=Vish::Application.config.tagsSettings["maxLength"]%>',
+      maxTags: '<%=Vish::Application.config.tagsSettings["maxTags"]%>',
+      triggerKeys: <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>,
+      watermarkAllowMessage: '<%=t('document.tags.areasOfInterestMessage')%>',
+      watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>',
       initialTags: <%=(params[:user] && params[:user][:tag_list]) ? raw(params[:user][:tag_list].split(",")) : "[]" %>,
       tagsChanged:function (tag, action) {
         //Check if the element popped is a suggestion

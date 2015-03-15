@@ -2,15 +2,15 @@
   <nav class="footercontent">
     <ul class="ul-content">
 
-    <!-- terms of use -->
+      <!-- terms of use -->
       <li class="item_footer">
         <a class="style_link_footer" href="/legal_notice"><%= t('conditions.other') %></a>     
       </li>
 
-      <!-- language -->
+      <!-- help -->
       <li class="dropup">
         <div data-toggle="dropdown" class="btn dropdown-toggle">
-          <span class="idioma"><%= t('help') %></span>
+          <span class="ddfootertitle"><%= t('help') %></span>
           <i class="icon-angle-up"></i>
         </div>  
 
@@ -36,12 +36,11 @@
         </ul>
       </li>
 
-      <!-- lang-->
+      <!-- language -->
       <li class="dropup">
-
         <div data-toggle="dropdown" class="btn dropdown-toggle">
           <% the_locale = I18n.locale.to_s %>
-          <span class="idioma"><%=image_tag("flags/" + the_locale + ".png", :title=>the_locale, :class=> "")%><%=t('lang.title')%></span>
+          <span class="ddfootertitle"><%=image_tag("flags/" + the_locale + ".png", :title=>the_locale, :class=> "")%><%=t('lang.title')%></span>
           <i class="icon-angle-up"></i>
         </div>  
           <ul class="dropdown-menu">
@@ -52,15 +51,40 @@
             <% end %>
           </ul>
       </li>
-      
-      <!-- contact-->
-      <li>
-         <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript, :class=> "style_link_footer") %>
-      </li>
 
-      <!-- news -->
-      <li class="item_footer">
-        <a class="style_link_footer" target="_blank" href="http://vishub.wordpress.com"><%= t('blog_news_title') %></a>
+      <!-- about -->
+      <li class="dropup">
+        <div data-toggle="dropdown" class="btn dropdown-toggle">
+          <span class="ddfootertitle"><%= t('about.title') %></span>
+          <i class="icon-angle-up"></i>
+        </div>  
+
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+          <li>
+            <a href="mailto:virtual.science.hub@gmail.com">
+              <i class="icon-envelope-alt"> </i>
+              <span><%= t('about.contact') %></span>
+            </a>
+          </li>
+          <li>
+            <a href="http://vishub.wordpress.com" target="_blank">
+              <i class="icon-microphone"> </i>
+              <span><%= t('about.blog') %></span>
+            </a>
+          </li>
+          <li>
+            <a href="http://github.com/ging/vish" target="_blank">
+              <i class="icon-archive"> </i>
+              <span><%= t('about.code') %></span>
+            </a>
+          </li>
+          <li>
+            <a href="<%= (I18n.locale.to_s=="es") ? 'https://docs.google.com/forms/d/1AO5MN_r3n-hsGQuok6HKWhUSPjMnFQvYxuOB88S32yA/viewform' : 'https://docs.google.com/forms/d/1uEQI1BzPtEOyh-QuOaw9WzqHcYZtlMqkIceybrP40YQ/viewform'%>" target="_blank">
+              <i class="icon-smile"> </i>
+              <span><%= t('about.survey') %></span>
+            </a>
+          </li>
+        </ul>
       </li>
 
       <!-- social-->
@@ -69,7 +93,7 @@
         <%= link_to image_tag("footer/twitter-logo.png",  :class=> "social-img " ), "https://twitter.com/ViSH_portal", :target=> "_blank" %>
       </li>
 
-      <!-- global-->
+      <!-- global excursion -->
       <li>
         <%= link_to image_tag("footer/global.png",  :class=> "imgnoradio" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
       </li>

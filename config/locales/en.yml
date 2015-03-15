@@ -1,4 +1,19 @@
 en:
+  i18n:
+    transliterate:
+      rule:
+        ª: "ª"
+        º: "º"
+        ´: "´"
+        ?: "?"
+        ¿: "¿"
+        ¡: "¡"
+  about:
+    blog: "News"
+    contact: "Contact"
+    code: "Source code"
+    survey: "ViSH survey"
+    title: "about"
   activerecord:
     attributes:
       user:
@@ -156,7 +171,6 @@ en:
       quality: "Quality"
     title: "Advanced Search"
   author: "author"
-  blog_news_title: "news"
   browse:
     title: "browse"
     popular: "popular content"
@@ -189,10 +203,14 @@ en:
         science: "Science"
         technology: "Technology"
     extras:
+        computerScience_extra1: "ComputerScience"
+        naturalScience_extra1: "NaturalScience"
+        environmentalStudies_extra1: "EnvironmentalStudies"
         eLearning: "e-Learning"
         learning: "learning"
         listening: "listening"
         math: "Math"
+        maths: "Maths"
         teaching: "teaching"
     title: "Catalogue"
   category:
@@ -260,7 +278,6 @@ en:
     check_message_1: "Terms and Conditions."
     other: "terms of use"
   contact:
-    footer: "contact"
     follow: "Follow"
     unfollow: "Unfollow"
     following: "Following"
@@ -434,7 +451,7 @@ en:
       info1_html: "1. Click on <b>documents</b> or <b>links</b> / <b>embed</b> option.<br>"
       info2_html: "2. If you want to upload a document, click on <b>browse</b> to choose a file from your computer. If your resource is a link or embed, you can <b>paste</b> it into the text box.<br>"
       info3_html: "3. Type a <b>title</b> and <b>description</b>.<br>"
-      info4_html: "4. Add related <b>tags</b> to your resource. Your areas of interest have been assigned by default. However, you can delete them or add new tags.<br>"
+      info4_html: "4. Add <b>tags</b> related to your resource.<br>"
       info5_html: "5. Choose a required <b>language</b>, if necessary.<br>"
       info6_html: "6. Select an <b>age </b>range. This information will be used for recommendation purposes.<br>"
       info7_html: "7. If you want to embed a live streaming video, click on <b>Live</b> option.<br>"

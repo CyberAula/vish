@@ -33,20 +33,11 @@
 	configuration["presentationSettings"] = true;
 	
 	var tagsSettings = new Object();
-	  <%if !Vish::Application.config.APP_CONFIG["tagsSettings"].nil? %>
-	    tagsSettings.maxLength = <%=Vish::Application.config.APP_CONFIG["tagsSettings"]["maxLength"].nil? ? "20" : Vish::Application.config.APP_CONFIG["tagsSettings"]["maxLength"]%>;
-	    tagsSettings.maxTags = <%=Vish::Application.config.APP_CONFIG["tagsSettings"]["maxTags"].nil? ? "8" : Vish::Application.config.APP_CONFIG["tagsSettings"]["maxTags"] %>;
-	    <%if !Vish::Application.config.APP_CONFIG["tagsSettings"]["triggerKeys"].nil?%>
-	       tagsSettings.triggerKeys = <%=raw(Vish::Application.config.APP_CONFIG["tagsSettings"]["triggerKeys"].to_json)%>;
-	    <%end%>
-	  <%else%>
-	  	tagsSettings.maxLength = 20;
-		tagsSettings.maxTags = 8;
-		tagsSettings.triggerKeys = ['enter', 'space', 'comma', 'tab'];       
-	  <%end%>
+	tagsSettings.maxLength = '<%=Vish::Application.config.tagsSettings["maxLength"]%>';
+	tagsSettings.maxTags = '<%=Vish::Application.config.tagsSettings["maxTags"]%>';
+	tagsSettings.triggerKeys = <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>; 
 	configuration["tagsSettings"] = tagsSettings;
 
-	
 	options["configuration"] = configuration;
 	
 

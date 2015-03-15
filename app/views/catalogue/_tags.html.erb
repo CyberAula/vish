@@ -41,7 +41,7 @@
   <ul class="Tags_list_as ">
     <div class="info_catalogue_bottom"></div>
     <div id="effect" class="anotherNewClass ui-corner-all">
-      <% Vish::Application.config.catalogue_categories.each do |categoryId| %>
+      <% Vish::Application.config.catalogue["categories"].each do |categoryId| %>
         <li class="catalogue_category_link" categoryId="<%=categoryId%>" href="#">
           <label><%=t('catalogue.categories.' + categoryId)%></label>
         </li>

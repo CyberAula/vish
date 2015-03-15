@@ -1,4 +1,6 @@
 hu:
+  about:
+    contact: "Kapcsolat"
   activerecord:
     attributes:
       user:
@@ -390,8 +392,6 @@ hu:
     save: "Mentés"
     selected: "kategóriák"
     success: "Sikeresen elmentettük a kategóriákat"
-  contact:
-    footer: "kapcsolat"
   pending:
     other: "Követők"
   copy_to_clip: "Másolás vágólapra"
