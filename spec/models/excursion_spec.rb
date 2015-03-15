@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Excursion do
 	before do
 		@user = Factory(:user_vish)
-		pending("Create excursion")
 	end
   #pending "add some examples to (or delete) #{__FILE__}"
   it "#ExcursionModel?"
@@ -11,6 +10,7 @@ describe Excursion do
 
   it "bye Pratchett" do
   	death_is_coming = true
+    #this is to honor him
   	death_is_coming
   end
 
