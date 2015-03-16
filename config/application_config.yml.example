@@ -64,9 +64,9 @@ production:
 
 # Specify settings for tags
 #  tagsSettings:
-#    maxLength: 40
+#    maxLength: 20
 #    maxTags: 8
-#    triggerKeys: ['enter', 'comma', 'tab']
+#    triggerKeys: ['enter', 'comma', 'tab', 'space']
 
 # Automatically detect resources language using the service provided by http://detectlanguage.com
 # languageDetectionAPIKEY: "API Key from http://detectlanguage.com to allow automatic language detection."
