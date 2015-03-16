@@ -69,13 +69,15 @@
     $.each($("#preloadTagList li"), function(index, element) {
        tags.push($(element).html());
     });
-    
+
     $(tagList).tagit({
       tagSource:tags, 
       sortable:true, 
-      maxLength:15, 
-      maxTags:8,
-      watermarkAllowMessage: '<%=t('document.tags.areasOfInterestMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' ,
+      maxLength: '<%=Vish::Application.config.tagsSettings["maxLength"]%>',
+      maxTags: '<%=Vish::Application.config.tagsSettings["maxTags"]%>',
+      triggerKeys: <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>,
+      watermarkAllowMessage: '<%=t('document.tags.areasOfInterestMessage')%>',
+      watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>',
       initialTags: <%=(params[:user] && params[:user][:tag_list]) ? raw(params[:user][:tag_list].split(",")) : "[]" %>,
       tagsChanged:function (tag, action) {
         //Check if the element popped is a suggestion

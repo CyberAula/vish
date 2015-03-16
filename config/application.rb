@@ -91,5 +91,41 @@ module Vish
     config.twitter = (!config.APP_CONFIG['twitter'].nil? and config.APP_CONFIG['twitter']["enable"]===true)
     config.gplus = (!config.APP_CONFIG['gplus'].nil? and config.APP_CONFIG['gplus']["enable"]===true)
 
+    #Tags settings
+    if config.APP_CONFIG['tagsSettings'].blank?
+        config.tagsSettings = {}
+    else
+        config.tagsSettings = config.APP_CONFIG['tagsSettings']
+    end
+
+    if config.tagsSettings["maxLength"].blank?
+        config.tagsSettings["maxLength"] = 20
+    end
+
+    if config.tagsSettings["maxTags"].blank?
+        config.tagsSettings["maxTags"] = 8
+    end
+
+    if config.tagsSettings["triggerKeys"].blank?
+        config.tagsSettings["triggerKeys"] = ['enter', 'comma', 'tab', 'space']
+    end
+
+    #Catalogue
+    if config.APP_CONFIG['catalogue'].blank?
+        config.catalogue = {} 
+    else
+        config.catalogue = config.APP_CONFIG['catalogue']
+    end
+
+    #Catalogue: Mode
+    if config.catalogue['mode'].blank?
+        config.catalogue['mode'] = "matchany"
+    end
+
+    #Catalogue: Quality threshold
+    unless config.catalogue["qualityThreshold"].is_a? Numeric
+        config.catalogue["qualityThreshold"] = nil
+    end
+
   end
 end

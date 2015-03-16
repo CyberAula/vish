@@ -49,7 +49,7 @@
 
       <%
         initialTags = resource.tags.all.map{|e| e.name} || []
-        tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue_categories).uniq!
+        tags = (ActivityObject.tag_counts.all.map{|e| e.name} + initialTags + Vish::Application.config.catalogue["keywords"]).uniq!
         if tags.nil?
           tags = []
         end
@@ -67,7 +67,11 @@
       <%content_for :javascript do%>      
 
         $("#new_file ul.resourceTagList").tagit({
-          watermarkAllowMessage:"",
+          maxLength: '<%=Vish::Application.config.tagsSettings["maxLength"]%>',
+          maxTags: '<%=Vish::Application.config.tagsSettings["maxTags"]%>',
+          triggerKeys: <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>,
+          watermarkAllowMessage: '<%=t('document.tags.addMessage')%>',
+          watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>',
           tagSource: tagsSource
         });
 
@@ -94,10 +98,17 @@
         <!--AGE SLIDER-->
         <label><%= t('document.leyend.recommended_age')%></label>
         <div class="limits">
-          <div class="limit1">4</div>
-          <div class="limit2">20</div>
+          <div class="limit1">0</div>
+          <div class="limit2">0</div>
         </div>
-        <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[<%=resource.age_min%>,<%=resource.age_max%>]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+        <%
+          if resource.age_range.nil?
+            sliderAgeMax = 1
+          else
+            sliderAgeMax = resource.age_max
+          end
+        %>
+        <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[<%=resource.age_min%>,<%=sliderAgeMax%>]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
       </section>
 
       <% if !isNewInstance and !resource.respond_to? "draft" %>
@@ -182,7 +193,12 @@
         $("#new_file .tags input").hide();
         $("#new_file .tags input").val(resourceTagList);
       });
-
+      // onDocumentReady
+      // document.addEventListener("DOMContentLoaded", function(){});
+      SocialStream.Document.edit();
+      <% if resource.age_range.nil? %>
+        $('#new_file .age-slider').data('slider').setValue([0,0]);
+      <% end %>
       newFilePositionLimits();
     <% end %>
 

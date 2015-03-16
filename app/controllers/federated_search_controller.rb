@@ -40,7 +40,7 @@ class FederatedSearchController < ApplicationController
 
       type = processTypeParam(params[:type])
 
-      searchEngineResults = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page => params[:page], :order => order, :models => type[:models], :subtypes => type[:subtypes], :startDate => params[:startDate], :endDate => params[:endDate], :language => params[:language], :qualityThreshold => params[:qualityThreshold]})
+      searchEngineResults = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page => params[:page], :order => order, :models => type[:models], :subtypes => type[:subtypes], :startDate => params[:startDate], :endDate => params[:endDate], :language => params[:language], :qualityThreshold => params[:qualityThreshold], :tags => params[:tags], :tag_ids => params[:tag_ids], :age_min => params[:age_min], :age_max => params[:age_max] })
 
       response = Hash.new
       response["total_results"] = [searchEngineResults.total_entries,5000].min

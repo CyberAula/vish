@@ -1,4 +1,6 @@
 fr:
+  about: 
+    contact: "Contacter"
   activerecord:
     attributes:
       user:
@@ -335,8 +337,6 @@ fr:
     save: "Enregistrer"
     selected: "catégories"
     success: "Enregistrement des catégories réussi"
-  contact:
-    footer: "contacter"
   pending:
     other: "Abonnés"
   contest:

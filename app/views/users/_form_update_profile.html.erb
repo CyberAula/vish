@@ -62,7 +62,7 @@
         <%=link_to t('hide'), "#", :id=>"hide_profile_form", :class=>"btn btn-default"%>
       </div>
     <% end %>
-
+   
     <%= content_for :javascript do %>
         var userTagList = $(".userTagList");
         var userTagsSource = [];
@@ -77,12 +77,13 @@
             $(userTagList).append("<li>" + $(element).html() + "</li>");
           });
         }
-        
+
         $(userTagList).tagit({
           tagSource: userTagsSource,
           sortable: true,
-          maxLength: 15,
-          maxTags: 8,
+          maxLength: '<%=Vish::Application.config.tagsSettings["maxLength"]%>',
+          maxTags: '<%=Vish::Application.config.tagsSettings["maxTags"]%>',
+          triggerKeys: <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>,
           watermarkAllowMessage: '<%=t('document.tags.areasOfInterestMessage')%>', 
           watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>',
           tagsChanged:function (tag, action) {

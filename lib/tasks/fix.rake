@@ -522,6 +522,52 @@ namespace :fix do
     return pic.getAvatarUrl
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:updateDefaultAgeRanges
+  #In production: bundle exec rake fix:updateDefaultAgeRanges RAILS_ENV=production
+  task :updateDefaultAgeRanges => :environment do
+
+    printTitle("Updating default age ranges")
+
+    aos = ActivityObject.all
+
+    aos.map { |ao|
+      if ((ao.age_min === 4) && ((ao.age_max === 20)||(ao.age_max === 30)))
+        #Default age range detected
+        ao.update_column :age_min, 0
+        ao.update_column :age_max, 0
+
+        if ao.object_type=="Excursion"
+          #Update json
+          excursion = ao.object
+          unless excursion.nil?
+            eJson = JSON(excursion.json)
+            unless eJson["age_range"].blank?
+              eJson.delete("age_range")
+              excursion.update_column :json, eJson.to_json
+            end
+          end
+        end
+      end
+    }
+
+    printTitle("Task Finished")
+  end
+
+  #Usage
+  #Development:   bundle exec rake fix:updateTagsPlainNames
+  #In production: bundle exec rake fix:updateTagsPlainNames RAILS_ENV=production
+  task :updateTagsPlainNames => :environment do
+
+    printTitle("Updating the plain names of the tags")
+
+    ActsAsTaggableOn::Tag.all.each do |tag|
+      tag.update_column :plain_name, ActsAsTaggableOn::Tag.getPlainName(tag.name)
+    end
+
+    printTitle("Task Finished")
+  end
+
   ####################
   #Task Utils
   ####################

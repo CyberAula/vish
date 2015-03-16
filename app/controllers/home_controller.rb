@@ -28,7 +28,7 @@ class HomeController < ApplicationController
         else
           #Non-Ajax call
           if params[:tab]=="catalogue"
-            @default_categories = view_context.getDefaultCategories
+            @default_categories = Catalogue.getDefaultCategories
           end
           render "index"
         end

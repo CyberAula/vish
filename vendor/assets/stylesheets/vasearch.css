@@ -16,16 +16,15 @@
 }
 
 #asearch_settings{
-  display: none;
-  height: 395px;
-  width: 87%;
-  top: 125px;
-  left: 6.5%;
-  padding: 1%;
-  overflow-y: auto;
-  position: absolute;
-  background-color: rgba(85, 85, 85, 0.97);
-  color: #E0E0E0;
+	display: none;
+	height: 445px;
+	width: 87%;
+	top: 145px;
+	padding: 1%;
+	overflow-y: auto;
+	position: absolute;
+	background-color: #404040;
+	color: #f2f2f2;
 }
 
 #asearch_header div.search {
@@ -294,6 +293,14 @@
 #asearch_settings .dateWrapper input{
   max-width: 90%;
   margin-right: 5px;
+}
+
+#asearch_settings .asearch_slider_wrapper .slider-track {
+  background-color: #ccc;
+}
+
+#asearch_settings .asearch_slider_wrapper .slider .slider-selection, #asearch_settings .asearch_slider_wrapper .slider-handle.round {
+	background: #6C6C6C;
 }
 
 #asearch_settings .ViSHinstances{

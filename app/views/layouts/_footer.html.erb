@@ -49,7 +49,7 @@
       <li class="btn-group dropup">
         <div data-toggle="dropdown" class="btn dropdown-toggle">
           <% the_locale = I18n.locale.to_s %>
-          <span class="idioma"><%=image_tag("flags/" + the_locale + ".png", :title=>the_locale, :class=> "")%><%=t('lang.title')%></span>
+          <span class="ddfootertitle"><%=image_tag("flags/" + the_locale + ".png", :title=>the_locale, :class=> "")%><%=t('lang.title')%></span>
           <i class="fa fa-angle-up"></i>
         </div>
           <ul class="dropdown-menu dropdown-menu-left">
@@ -61,13 +61,39 @@
           </ul>
       </li>
 
-<!-- contact-->
-      <li>
-         <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript, :class=> "btn btn-default") %>
-      </li>
-<!-- news -->
-      <li>
-        <a class="btn btn-default" target="_blank" href="http://vishub.wordpress.com"><%= t('blog_news_title') %></a>
+      <!-- about -->
+      <li class="btn-group dropup">
+        <div data-toggle="dropdown" class="btn dropdown-toggle">
+          <span class="ddfootertitle"><%= t('about.title') %></span>
+          <i class="fa fa-angle-up"></i>
+        </div>  
+
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+          <li>
+            <a href="mailto:virtual.science.hub@gmail.com">
+              <i class="fa fa-envelope-o"> </i>
+              <span><%= t('about.contact') %></span>
+            </a>
+          </li>
+          <li>
+            <a href="http://vishub.wordpress.com" target="_blank">
+              <i class="fa fa-microphone"> </i>
+              <span><%= t('about.blog') %></span>
+            </a>
+          </li>
+          <li>
+            <a href="http://github.com/ging/vish" target="_blank">
+              <i class="fa fa-archive"> </i>
+              <span><%= t('about.code') %></span>
+            </a>
+          </li>
+          <li>
+            <a href="<%= (I18n.locale.to_s=="es") ? 'https://docs.google.com/forms/d/1AO5MN_r3n-hsGQuok6HKWhUSPjMnFQvYxuOB88S32yA/viewform' : 'https://docs.google.com/forms/d/1uEQI1BzPtEOyh-QuOaw9WzqHcYZtlMqkIceybrP40YQ/viewform'%>" target="_blank">
+              <i class="fa fa-smile"> </i>
+              <span><%= t('about.survey') %></span>
+            </a>
+          </li>
+        </ul>
       </li>
 <!-- social-->
       <li class="social">
