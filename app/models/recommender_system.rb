@@ -412,8 +412,8 @@ class RecommenderSystem
     end
 
     #Filter by category
-    if options[:category_tag_ids]
-      opts[:with][:tag_ids] = options[:category_tag_ids]
+    if options[:category_id] and Vish::Application.config.catalogue["category_tag_ids"][options[:category_id]].is_a? Array
+      opts[:with][:tag_ids] = Vish::Application.config.catalogue["category_tag_ids"][options[:category_id]]
     end
 
     opts[:without] = {}
