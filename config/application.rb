@@ -99,7 +99,7 @@ module Vish
     end
 
     if config.tagsSettings["maxLength"].blank?
-        config.tagsSettings["maxLength"] = 40
+        config.tagsSettings["maxLength"] = 20
     end
 
     if config.tagsSettings["maxTags"].blank?
@@ -107,7 +107,7 @@ module Vish
     end
 
     if config.tagsSettings["triggerKeys"].blank?
-        config.tagsSettings["triggerKeys"] = ['enter', 'comma', 'tab']
+        config.tagsSettings["triggerKeys"] = ['enter', 'comma', 'tab', 'space']
     end
 
     #Catalogue
