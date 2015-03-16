@@ -9,11 +9,11 @@ class Catalogue
   def self.getCategoryResources(category,limit=100)
     if Vish::Application.config.catalogue['mode'] == "matchtag"
       #Mode matchtag
-      RecommenderSystem.search({:category_id=>category, :n=>limit, :models => VishConfig.getCatalogueModels({:return_instances => true}), :order => 'ranking DESC', :qualityThreshold=>5})
+      RecommenderSystem.search({:category_id=>category, :n=>limit, :models => VishConfig.getCatalogueModels({:return_instances => true}), :order => 'ranking DESC', :qualityThreshold => Vish::Application.config.catalogue["qualityThreshold"]})
     else
       #Mode matchany
       keywords = Vish::Application.config.catalogue["category_keywords"][category]
-      RecommenderSystem.search({:keywords=>keywords, :n=>limit, :models => VishConfig.getCatalogueModels({:return_instances => true}), :order => 'ranking DESC', :qualityThreshold=>5})
+      RecommenderSystem.search({:keywords=>keywords, :n=>limit, :models => VishConfig.getCatalogueModels({:return_instances => true}), :order => 'ranking DESC', :qualityThreshold => Vish::Application.config.catalogue["qualityThreshold"]})
     end
   end
 

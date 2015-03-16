@@ -363,7 +363,7 @@ class RecommenderSystem
 
     #Filter by quality score
     if options[:qualityThreshold]
-      qualityThreshold = [[0,options[:qualityThreshold].to_i].max,10].min rescue 0
+      qualityThreshold = [[0,options[:qualityThreshold].to_f].max,10].min rescue 0
       qualityThreshold = qualityThreshold*100000
       opts[:with][:qscore] = qualityThreshold..1000000
     end

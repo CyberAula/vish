@@ -17,8 +17,8 @@ development:
   advanced_search:
     instances: ["http://vishub.org"]
   catalogue:
-    mode: "matchany" #matchany or matchtag
-    
+    mode: "matchtag" #matchany or matchtag
+    qualityThreshold: 5
 
 production:
   domain: "vishub.org"
@@ -37,6 +37,9 @@ production:
   register_policy: "REGISTER_ONLY"
   advanced_search:
     instances: ["http://vishub.org"]
+  catalogue:
+    mode: "matchtag" #matchany or matchtag
+    qualityThreshold: 5
   mail:
     type: "SMTP" #this can be SMTP or SENDMAIL
     # Check http://api.rubyonrails.org/classes/ActionMailer/Base.html for details.
