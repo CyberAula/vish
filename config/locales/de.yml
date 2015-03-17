@@ -387,6 +387,9 @@ de:
     popular: "beliebte Inhalte"
   by: "by"
   cancel: "Löschen"
+  catalogue:
+    categories:
+        maths: "Mathematik"
   category:
     confirm_delete: "Kategorie löschen?"
   categories:

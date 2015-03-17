@@ -363,7 +363,7 @@ class RecommenderSystem
 
     #Filter by quality score
     if options[:qualityThreshold]
-      qualityThreshold = [[0,options[:qualityThreshold].to_i].max,10].min rescue 0
+      qualityThreshold = [[0,options[:qualityThreshold].to_f].max,10].min rescue 0
       qualityThreshold = qualityThreshold*100000
       opts[:with][:qscore] = qualityThreshold..1000000
     end
@@ -412,8 +412,8 @@ class RecommenderSystem
     end
 
     #Filter by category
-    if options[:category_tag_ids]
-      opts[:with][:tag_ids] = options[:category_tag_ids]
+    if options[:category_id] and Vish::Application.config.catalogue["category_tag_ids"][options[:category_id]].is_a? Array
+      opts[:with][:tag_ids] = Vish::Application.config.catalogue["category_tag_ids"][options[:category_id]]
     end
 
     opts[:without] = {}
