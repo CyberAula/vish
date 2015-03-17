@@ -866,6 +866,7 @@ es:
       learning_object: "objeto de aprendizaje"
       resource: "tipo de recurso"
       tag: "etiquetas"
+      type: "tipo"
     type: "tipo"
   send:
     send: "Enviar"

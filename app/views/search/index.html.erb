@@ -18,13 +18,13 @@
           <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.type")%></b></span>         
           <hr class="separator">
           <ul>
-            <li filter="all_type"><%=t("search.models.all")%></li>
-            <li filter="user_type"><%=t("search.models.user")%></li>
-            <li filter="learning_object_type"><%=t("search.models.learning_object")%></li>            
+            <li filter="all_type" exclusive default><%=t("search.models.all")%></li>
+            <li filter="user_type" exclusive><%=t("search.models.user")%></li>
+            <li filter="learning_object_type" exclusive><%=t("search.models.learning_object")%></li>            
           </ul>
         </div>
 
-        <div>
+        <div opens_with="learning_object_type" style="display:none">
           <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.learning_object")%></b></span>         
           <hr class="separator">
           <ul>
@@ -34,7 +34,7 @@
           </ul>
         </div>
 
-        <div id="resource_type" style="display:none">
+        <div id="resource_type" opens_with="resource" style="display:none">
           <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.resource")%></b></span>         
           <hr class="separator">
           <ul>                

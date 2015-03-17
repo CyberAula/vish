@@ -875,6 +875,7 @@ en:
       learning_object: "learning object"
       resource: "resource type"      
       tag: "tag"
+      type: "type"
     type: "type"
   send:
     send: "Send"
