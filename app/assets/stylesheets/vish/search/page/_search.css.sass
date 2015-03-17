@@ -13,27 +13,27 @@
   overflow: hidden
   position: relative
   background: $secondColor
-  ul 
+  ul
     display: block
     color: #fff
     width: 16%
     float: left
-    border-left: 1px solid darken($secondColor, 10%) 
+    border-left: 1px solid darken($secondColor, 10%)
     height: 225px
     margin: 0
 
-    li 
+    li
       display: block
       color: #fff
       font-size: 12px
       font-weight: 300
       cursor: pointer
-      &:hover 
+      &:hover
         background: $secondColor
       &:active
         background: $secondColor
         color: #47a3da
-  h4 
+  h4
     margin: 10px 0px 5px 10px
     color: $white
 
@@ -60,7 +60,7 @@
   overflow: hidden
 .anotherNewClass-as
   width: 100%
-  background: lighten($secondColor, 5%) 
+  background: lighten($secondColor, 5%)
   height: 225px
   overflow: hidden
 
@@ -73,7 +73,7 @@
   color: white
   height: 225px
   float: left
-  border-left: 1px solid darken($secondColor, 10%) 
+  border-left: 1px solid darken($secondColor, 10%)
   label
     margin-bottom: 0px
     font-size: 12px
@@ -94,7 +94,7 @@
   padding-left: 10%
   font-size: 12px
 
-.Language_as 
+.Language_as
   img
     width: 22px
     height: 17px
@@ -102,7 +102,7 @@
 
 .info_as
   font-weight: lighter
-  background: darken($secondColor, 10%) 
+  background: darken($secondColor, 10%)
   i
     font-size: 50px
     width: 100%
@@ -120,7 +120,7 @@
     margin: 0 auto
     display: block
     font-family: #017CC8
-    color: lighten($secondColor, 5%) 
+    color: lighten($secondColor, 5%)
     margin-top: 10px
 
 .all_as
@@ -135,11 +135,9 @@
     margin-left: 5%
     font-size: 12px
 
-
-
 /* check tags */
 .Tags_list_as
-  input[type="checkbox"] 
+  input[type="checkbox"]
     display: none
 
   input[type="checkbox"] + label span
@@ -147,27 +145,74 @@
     font-family: Arial, sans-serif
     font-size: 14px
 
-  input[type="checkbox"] + label span 
+  input[type="checkbox"] + label span
     display: none
-    //width: 19px !important
-    //height: 19px !important
-    //margin: -1px 4px 0 0
-    //vertical-align: middle
-    //background: url(icons/check_radio_sheet.png) left top no-repeat
-    //cursor: pointer
 
-  input[type="checkbox"]:checked + label span 
-    //background: url(icons/check_radio_sheet.png) -19px top no-repeat
 
-/*XXX KIKE's CSS, remove when design is applyed*/
+
+
+/* New styles for new search view */
 .separator
-  margin: 0
+  margin: 8px 0
+  border-color: gray -moz-use-text-color #FFF
 
 .search-sidebar-selected
   font-weight: bold
 
 #search-sidebar li
   cursor: pointer
+  font-family: $firstFontFamily
+
+.search
+  .search-filterbar
+    background-color: white
+    padding: 20px
+    border-radius: 5px
+    .filter_set
+      margin: 0 0 20px 0
+      .filter_title
+        font-family: $firstFontFamily
+      ul
+        margin: 10px
+  .filter-results
+    h3
+      color: $gray
+      i
+        margin: 10px
+
+    .filters-applied
+      background-color: white
+      min-height: 70px
+      border-radius: 5px
+      padding: 15px
+      .helpheader
+        margin: 0
+        i
+          font-size: 1.2em
+      .n_results
+        color: $firstColor
+
+      .title_applied_filters
+        font-family: $firstFontFamily
+
+      .dropdown_order_by
+        outline: none
+        float: right
+        .btn
+          text-shadow: none
+          background-image: none
+          box-shadow: none
+        button
+          outline: none
+        .dropdown-menu
+          left: unset
+          top: unset
+    .searched-items
+      margin-top: 20px
+      ul
+        margin: 0
+
+
 
 .filter_ball
   background: red

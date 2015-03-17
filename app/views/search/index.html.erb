@@ -7,45 +7,45 @@
   <%else%>
     <%= t("site.current.search")%>
   <%end%>
-<%end%>       
+<%end%>
 
 
 <section id="search" class="">
   <div class="search">
     <div class="row-fluid">
-      <div id="search-sidebar" class="span2">
+      <div id="search-sidebar" class="span3 search-filterbar">
         <div related="applied_type" class="filter_set">
-          <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.type")%></b></span>         
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <b><%=t("search.titles.type")%></b></span>
           <hr class="separator">
           <ul>
             <li filter="all_type" exclusive default><%=t("search.models.all")%></li>
             <li filter="user_type" exclusive><%=t("search.models.user")%></li>
-            <li filter="learning_object_type" exclusive><%=t("search.models.learning_object")%></li>            
+            <li filter="learning_object_type" exclusive><%=t("search.models.learning_object")%></li>
           </ul>
         </div>
 
         <div related="applied_learning_object" opens_with="learning_object_type" style="display:none" class="filter_set">
-          <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.learning_object")%></b></span>         
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <b><%=t("search.titles.learning_object")%></b></span>
           <hr class="separator">
           <ul>
-            <% VishConfig.getSearchModels().each do |model| %>            
-              <li filter="<%=model.downcase%>"><%=t("search.models.#{model.downcase}")%></li>              
+            <% VishConfig.getSearchModels().each do |model| %>
+              <li filter="<%=model.downcase%>"><%=t("search.models.#{model.downcase}")%></li>
             <% end %>
           </ul>
         </div>
 
         <div related="applied_resouce" id="resource_type" opens_with="resource" style="display:none" class="filter_set">
-          <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.resource")%></b></span>         
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <b><%=t("search.titles.resource")%></b></span>
           <hr class="separator">
-          <ul>                
+          <ul>
             <% VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).each do |res| %>
               <li filter="<%=res.downcase%>"><%=t("search.models.#{res.downcase}")%></li>
-            <%end%>  
+            <%end%>
           </ul>
         </div>
 
         <div related="applied_language" class="filter_set">
-          <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.lang")%></b></span>         
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <b><%=t("search.titles.lang")%></b></span>
           <hr class="separator">
           <ul>
             <% resource_languages.each do |lang| %>
@@ -54,10 +54,10 @@
           </ul>
         </div>
 
-        <div related="applied_tag" class="filter_set">
-          <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.tag")%></b></span>         
+        <div related="applied_tag" class="filter_set"> 
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <b><%=t("search.titles.tag")%></b></span>
           <hr class="separator">
-          <ul>            
+          <ul>
             <li filter="proteccion">Protección</li>
             <li filter="seguridad">Seguridad</li>
             <li filter="internet">Internet</li>
@@ -67,28 +67,78 @@
 
       </div>
 
-      <div class="span10">
-        <%if browse%>          
-          <li><h1><i class="icon-folder-open"></i><%= t("browse.title")%></h1></li>          
-        <%else%>          
-          <li><h1><i class="icon-search"></i><%= t("search.title")%></h1></li>
+      <div class="span9 filter-results">
+        <%if browse%>
+          <li><h3><i class="icon-folder-open"></i><%= t("browse.title")%></h3></li>
+        <%else%>
+          <li><h3><i class="icon-search"></i><%= t("search.title")%></h3></li>
         <%end%>
-        <div class="search_filters">
+        <div class="search_filters filters-applied">
           <%= render partial: 'help/help_search' %>
-          <%= render partial: 'search/order_by_dropdown' %> 
-          <div>598 resultados</div>
-          <div>FILTROS APLICADOS</div>
-          <div id="applied_filters"></div>
-        </div> 
+          <div><span class="n_results">598</span> resultados</div>
+          <div class="title_applied_filters">FILTROS APLICADOS</div>
 
-          <div id="search-all">
-            <ul>  
+          <%#= render partial: 'search/order_by_dropdown' %>
+          <div class="dropdown_order_by">
+
+            <button class="btn" type="button" data-toggle="dropdown">
+              <i class="icon-eye-open"></i>
+              <span>Relevancia</span><i class="icon-angle-down"></i>
+            </button>
+
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li>
+                <a href="/search?q=" sort-by-key="relevance">
+                  <i class="icon-eye-open"></i>
+                  <span>Relevancia </span>
+                </a>
+              </li>
+             <li>
+                <a href="/search?q=&amp;sort_by=popularity" sort-by-key="popularity">
+                  <i class="icon-dashboard"></i>
+                  <span>Popular </span>
+                </a>
+              </li>
+              <li>
+                <a href="/search?q=&amp;sort_by=updated_at" sort-by-key="updated_at">
+                  <i class="icon-pencil"></i>
+                  <span>Modificación </span>
+                </a>
+              </li>
+              <li>
+                <a href="/search?q=&amp;sort_by=created_at" sort-by-key="created_at">
+                  <i class="icon-bolt"></i>
+                  <span>Creación </span>
+                </a>
+              </li>
+
+
+                <li>
+                  <a href="/search?q=&amp;sort_by=visits" sort-by-key="visits">
+                    <i class="icon-eye-open"></i>
+                    <span>Visitas </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/search?q=&amp;sort_by=favorites" sort-by-key="favorites">
+                    <i class="icon-star"></i>
+                    <span>Favoritos </span>
+                  </a>
+                </li>
+            </ul>
+          </div>
+
+          <div id="applied_filters"></div>
+        </div>
+
+          <div id="search-all" class="searched-items">
+            <ul>
               <% @search_result.each do |r| %>
-                  <% unless r.nil? %>              
+                  <% unless r.nil? %>
                     <%= render partial: "#{ r.class.to_s.tableize }/search_result",
                                locals:  { r.class.to_s.underscore.to_sym => r, :prefix_id => "search" }  %>
                   <% end %>
-              <% end %>              
+              <% end %>
             </ul>
           </div>
 
@@ -100,7 +150,7 @@
               <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
             </div>
           </div>
-          <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>     
+          <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
 
       </div>
     </div>
@@ -115,7 +165,7 @@
   Vish.Search.init({"object_subtypes": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).map!(&:downcase)%>});
   SocialStream.Repository.show();
 
-  $('#search-all ul').pageless({ 
+  $('#search-all ul').pageless({
                       totalPages: <%=@search_result.num_pages%>,
                       url: window.location.href,
                       currentPage: <%=@search_result.current_page%>,
@@ -126,7 +176,7 @@
                       },
                       finishedAddingHiddenElem: function(hidden_elem){
                           var active_tab = $("#search ul.nav li.active");
-                      
+
                           //we check this each time because it can change. We show the elem if the tab is active or if it is "all" tab
                           if(active_tab.hasClass("all_results")){
                             hidden_elem.fadeIn();
@@ -142,7 +192,7 @@
                           }
                           else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
                             hidden_elem.fadeIn();
-                          }                            
+                          }
                       },
                       complete: function(){
                         //when we complete one page and there is no scroll, there cannot be another call
