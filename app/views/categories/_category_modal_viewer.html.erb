@@ -50,9 +50,9 @@
         ];
 
         $("#myCategories").tagit({
-          maxLength: '<%=Vish::Application.config.tagsSettings["maxLength"]%>',
-          maxTags: '<%=Vish::Application.config.tagsSettings["maxTags"]%>',
-          triggerKeys: <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>,
+          maxLength: 50,
+          maxTags: 100000,
+          triggerKeys: ['enter', 'tab'],
           watermarkAllowMessage: "<%= t('category.tagit_watermark_cat')%>",
           watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>',
           tagSource: tagList

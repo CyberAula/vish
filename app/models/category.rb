@@ -7,6 +7,9 @@ class Category < ActiveRecord::Base
 
   validates_presence_of :title
   validate :title_not_duplicated
+  validate :title_length
+  validate :has_valid_parent
+  
   def title_not_duplicated
     if self.isRoot?
       owner = Actor.find_by_id(self.owner_id)
@@ -24,7 +27,14 @@ class Category < ActiveRecord::Base
     end
   end
 
-  validate :has_valid_parent
+  def title_length
+    if self.title.length > 50
+      errors[:base] << "Title is too long."
+    else
+      true
+    end
+  end
+
   def has_valid_parent
     if (!self.parent_id.nil? and self.parent.nil?) or (!self.parent.nil? and (self.parent==self or self.all_category_children.include? self.parent))
       errors.add(:category, "Invalid parent")
