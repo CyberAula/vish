@@ -14,7 +14,7 @@
   <div class="search">
     <div class="row-fluid">
       <div id="search-sidebar" class="span2">
-        <div>
+        <div related="applied_type" class="filter_set">
           <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.type")%></b></span>         
           <hr class="separator">
           <ul>
@@ -24,7 +24,7 @@
           </ul>
         </div>
 
-        <div opens_with="learning_object_type" style="display:none">
+        <div related="applied_learning_object" opens_with="learning_object_type" style="display:none" class="filter_set">
           <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.learning_object")%></b></span>         
           <hr class="separator">
           <ul>
@@ -34,7 +34,7 @@
           </ul>
         </div>
 
-        <div id="resource_type" opens_with="resource" style="display:none">
+        <div related="applied_resouce" id="resource_type" opens_with="resource" style="display:none" class="filter_set">
           <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.resource")%></b></span>         
           <hr class="separator">
           <ul>                
@@ -44,7 +44,7 @@
           </ul>
         </div>
 
-        <div>
+        <div related="applied_language" class="filter_set">
           <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.lang")%></b></span>         
           <hr class="separator">
           <ul>
@@ -54,7 +54,7 @@
           </ul>
         </div>
 
-        <div>
+        <div related="applied_tag" class="filter_set">
           <span><%=t("search.titles.filter_by")%> <b><%=t("search.titles.tag")%></b></span>         
           <hr class="separator">
           <ul>            
@@ -78,7 +78,7 @@
           <%= render partial: 'search/order_by_dropdown' %> 
           <div>598 resultados</div>
           <div>FILTROS APLICADOS</div>
-          <div><span>Recursos</span> <span>Documento</span></div>
+          <div id="applied_filters"></div>
         </div> 
 
           <div id="search-all">

@@ -13,7 +13,6 @@ Vish.Search = (function(V,undefined){
     //take the params from the URL and mark them in the sidebar
     var params = _getUrlParameters(document.location.toString());
     //default type, array with only one value, all_entities
-    params["type"] = params["type"] ? params["type"]:[""];
     _fillSidebarWithParams(options, params);
     _loadUIEvents();
   };
@@ -24,11 +23,14 @@ Vish.Search = (function(V,undefined){
     $("#search-sidebar ul li").on('click', function(e){
       _clickFilter($(this));
     });
+    $(".filter_x").on('click', function(e){
+      _clickFilter($(this).attr("filter"));
+    });
   };
 
 
-  var _clickFilter = function(filter_obj){
-    _toggleFilter(filter_obj);
+  var _clickFilter = function(filter){
+    _toggleFilter(filter);
   };
    
 
@@ -39,7 +41,7 @@ Vish.Search = (function(V,undefined){
   var _fillSidebarWithParams = function(options, params){
     var object_subtypes;
     //remove all previous filters
-    $("#search-sidebar ul li").removeClass("search-sidebar-selected"); 
+    //$("#search-sidebar ul li").removeClass("search-sidebar-selected"); 
 
     //first the top level filter, type (all, user or learning object)
     if(!params["type"] || params["type"].indexOf("") > -1){
@@ -64,6 +66,9 @@ Vish.Search = (function(V,undefined){
     });
 
     $.each( params, function(name, value_array){
+        if(name === 'q' || value_array.length===0 || value_array[0] === "") {
+          return true;//next iteration, q is the query so not a filter, or maybe the param is present but not filled
+        }
         value_array.forEach(function(item) {
           _toggleFilter(item); 
         });
@@ -78,6 +83,7 @@ Vish.Search = (function(V,undefined){
     } else {
       filter_obj = filter;
     }
+
     if(filter_obj.hasClass("search-sidebar-selected")) {
       _deactivateFilter(filter_obj);
     } else {
@@ -90,6 +96,7 @@ Vish.Search = (function(V,undefined){
       var filter_name = filter_obj.attr("filter");
 
       filter_obj.removeClass("search-sidebar-selected"); 
+      $("#applied_filters span[filter='"+filter_name+"']").parent().remove();
 
       //hide the related filters
       $("#search-sidebar div[opens_with='"+filter_name+"'] li").each(function(){ 
@@ -105,12 +112,17 @@ Vish.Search = (function(V,undefined){
   var _activateFilter = function(filter_obj, follow_stack){
       follow_stack = typeof follow_stack !== 'undefined' ? follow_stack : true;  //set default value
       var filter_name = filter_obj.attr("filter");
+      var filter_content = filter_obj.html();
 
       filter_obj.addClass("search-sidebar-selected");
+      if(filter_name!="all_type"){
+        var extra_class = filter_obj.closest("div.filter_set").attr("related");
+        $("#applied_filters").append("<span class='filter_ball "+extra_class+"'>"+filter_content+"<span class='filter_x' filter='"+filter_name+"'>x</span></span>");
+      }
 
       //show the related filters
       $("#search-sidebar div[opens_with='"+filter_name+"']").show();
-      
+
       //finally see what happens with exclusivity, check if the li has the attribute "exclusive"
       if(follow_stack && filter_obj.attr("exclusive")==""){
         filter_obj.siblings().each(function() {
