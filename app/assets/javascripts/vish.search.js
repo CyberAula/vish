@@ -20,10 +20,10 @@ Vish.Search = (function(V,undefined){
 
   var _loadUIEvents = function(settings){    
     //click on any filter
-    $("#search-sidebar ul li").on('click', function(e){
+    $(document).on('click', "#search-sidebar ul li", function(e){
       _clickFilter($(this));
     });
-    $(".filter_x").on('click', function(e){
+    $(document).on('click', ".filter_x", function(e){
       _clickFilter($(this).attr("filter"));
     });
   };
