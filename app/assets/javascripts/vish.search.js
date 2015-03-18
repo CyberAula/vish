@@ -2,10 +2,10 @@
  * ViSH Search Module
  */
 Vish.Search = (function(V,undefined){
-  
+
   /* options is an object with:
       { object_subtypes: ["Document", "Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"],
-        
+
       }  */
   var init = function(options){
     options = options || {};
@@ -18,7 +18,7 @@ Vish.Search = (function(V,undefined){
   };
 
 
-  var _loadUIEvents = function(settings){    
+  var _loadUIEvents = function(settings){
     //click on any filter
     $(document).on('click', "#search-sidebar ul li", function(e){
       _clickFilter($(this));
@@ -32,7 +32,7 @@ Vish.Search = (function(V,undefined){
   var _clickFilter = function(filter){
     _toggleFilter(filter);
   };
-   
+
 
   var _buildQuery = function(){
 
@@ -41,13 +41,13 @@ Vish.Search = (function(V,undefined){
   var _fillSidebarWithParams = function(options, params){
     var object_subtypes;
     //remove all previous filters
-    //$("#search-sidebar ul li").removeClass("search-sidebar-selected"); 
+    //$("#search-sidebar ul li").removeClass("search-sidebar-selected");
 
     //first the top level filter, type (all, user or learning object)
     if(!params["type"] || params["type"].indexOf("") > -1){
-      _toggleFilter("all_type");      
-    }else if(params["type"] == "user"){      
-      _toggleFilter("user_type");  
+      _toggleFilter("all_type");
+    }else if(params["type"] == "user"){
+      _toggleFilter("user_type");
     } else {
       _toggleFilter("learning_object_type");
     }
@@ -70,7 +70,7 @@ Vish.Search = (function(V,undefined){
           return true;//next iteration, q is the query so not a filter, or maybe the param is present but not filled
         }
         value_array.forEach(function(item) {
-          _toggleFilter(item); 
+          _toggleFilter(item);
         });
     });
   };
@@ -88,18 +88,18 @@ Vish.Search = (function(V,undefined){
       _deactivateFilter(filter_obj);
     } else {
       _activateFilter(filter_obj);
-    }    
+    }
   };
 
   var _deactivateFilter = function(filter_obj, follow_stack){
       follow_stack = typeof follow_stack !== 'undefined' ? follow_stack : true;  //set default value
       var filter_name = filter_obj.attr("filter");
 
-      filter_obj.removeClass("search-sidebar-selected"); 
+      filter_obj.removeClass("search-sidebar-selected");
       $("#applied_filters span[filter='"+filter_name+"']").parent().remove();
 
       //hide the related filters
-      $("#search-sidebar div[opens_with='"+filter_name+"'] li").each(function(){ 
+      $("#search-sidebar div[opens_with='"+filter_name+"'] li").each(function(){
           _deactivateFilter($(this));
       });
       $("#search-sidebar div[opens_with='"+filter_name+"']").hide();
@@ -117,7 +117,7 @@ Vish.Search = (function(V,undefined){
       filter_obj.addClass("search-sidebar-selected");
       if(filter_name!="all_type"){
         var extra_class = filter_obj.closest("div.filter_set").attr("related");
-        $("#applied_filters").append("<span class='filter_ball "+extra_class+"'>"+filter_content+"<span class='filter_x' filter='"+filter_name+"'>x</span></span>");
+        $("#applied_filters").append("<div class='filter_box'><span class='filter_ball "+extra_class+"'>"+filter_content+"<div class='filter_box_x' filter='"+filter_name+"'>x</div></span></div>");
       }
 
       //show the related filters
@@ -126,7 +126,7 @@ Vish.Search = (function(V,undefined){
       //finally see what happens with exclusivity, check if the li has the attribute "exclusive"
       if(follow_stack && filter_obj.attr("exclusive")==""){
         filter_obj.siblings().each(function() {
-          _deactivateFilter($(this), false); 
+          _deactivateFilter($(this), false);
         });
       }
   };
@@ -144,17 +144,17 @@ Vish.Search = (function(V,undefined){
       var sPageURL = the_url.substring(searchIndex +1);
       var sURLVariables = sPageURL.split('&');
       for (var i = 0; i < sURLVariables.length; i++)
-      {       
-          var sParameterName = sURLVariables[i].split('=');      
+      {
+          var sParameterName = sURLVariables[i].split('=');
           result[sParameterName[0]] = sParameterName[1].split(",");
-      }      
+      }
       return result;
   };
 
   return {
     init : init,
 
-          
+
   };
 
 }) (Vish);

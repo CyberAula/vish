@@ -15,7 +15,7 @@
     <div class="row-fluid">
       <div id="search-sidebar" class="span3 search-filterbar">
         <div related="applied_type" class="filter_set">
-          <span class="filter_title"><%=t("search.titles.filter_by")%> <b><%=t("search.titles.type")%></b></span>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.type")%></span></span>
           <hr class="separator">
           <ul>
             <li filter="all_type" exclusive default><%=t("search.models.all")%></li>
@@ -25,7 +25,7 @@
         </div>
 
         <div related="applied_learning_object" opens_with="learning_object_type" style="display:none" class="filter_set">
-          <span class="filter_title"><%=t("search.titles.filter_by")%> <b><%=t("search.titles.learning_object")%></b></span>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.learning_object")%></span></span>
           <hr class="separator">
           <ul>
             <% VishConfig.getSearchModels().each do |model| %>
@@ -35,7 +35,7 @@
         </div>
 
         <div related="applied_resouce" id="resource_type" opens_with="resource" style="display:none" class="filter_set">
-          <span class="filter_title"><%=t("search.titles.filter_by")%> <b><%=t("search.titles.resource")%></b></span>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.resource")%></span></span>
           <hr class="separator">
           <ul>
             <% VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).each do |res| %>
@@ -45,7 +45,7 @@
         </div>
 
         <div related="applied_language" class="filter_set">
-          <span class="filter_title"><%=t("search.titles.filter_by")%> <b><%=t("search.titles.lang")%></b></span>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.lang")%></span></span>
           <hr class="separator">
           <ul>
             <% resource_languages.each do |lang| %>
@@ -54,8 +54,8 @@
           </ul>
         </div>
 
-        <div related="applied_tag" class="filter_set"> 
-          <span class="filter_title"><%=t("search.titles.filter_by")%> <b><%=t("search.titles.tag")%></b></span>
+        <div related="applied_tag" class="filter_set">
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.tag")%></span></span>
           <hr class="separator">
           <ul>
             <li filter="proteccion">Protección</li>

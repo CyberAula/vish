@@ -150,14 +150,17 @@
 
 
 
+/* Styles for new search view */
+/* -------------------------- */
 
-/* New styles for new search view */
 .separator
   margin: 8px 0
   border-color: gray -moz-use-text-color #FFF
 
 .search-sidebar-selected
   font-weight: bold
+  font-family: $secondFontFamily !important
+  margin-left: 5px
 
 #search-sidebar li
   cursor: pointer
@@ -165,6 +168,7 @@
 
 .search
   .search-filterbar
+    @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
     background-color: white
     padding: 20px
     border-radius: 5px
@@ -172,6 +176,9 @@
       margin: 0 0 20px 0
       .filter_title
         font-family: $firstFontFamily
+      .filter_title_bold
+        font-family: $secondFontFamily
+        color: $firstColor
       ul
         margin: 10px
   .filter-results
@@ -181,6 +188,7 @@
         margin: 10px
 
     .filters-applied
+      @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
       background-color: white
       min-height: 70px
       border-radius: 5px
@@ -232,6 +240,6 @@
 .applied_tag
   background: #8A8AB8
 
-.filter_x
+.filter_box_x
   background: red
   cursor: pointer
