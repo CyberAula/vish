@@ -84,11 +84,16 @@ Vish.Search = (function(V,undefined){
       filter_obj = filter;
     }
 
-    if(filter_obj.hasClass("search-sidebar-selected")) {
-      _deactivateFilter(filter_obj);
-    } else {
-      _activateFilter(filter_obj);
-    }
+    
+      if(filter_obj.hasClass("search-sidebar-selected")) {
+        if(filter_obj.attr("filter") != "all_type"){
+          //do not allow to deactivate the "all_type" filter
+          _deactivateFilter(filter_obj);
+        }
+      } else {
+        _activateFilter(filter_obj);
+      }
+    
   };
 
   var _deactivateFilter = function(filter_obj, follow_stack){
