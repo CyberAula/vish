@@ -23,7 +23,7 @@ Vish.Search = (function(V,undefined){
     $(document).on('click', "#search-sidebar ul li", function(e){
       _clickFilter($(this));
     });
-    $(document).on('click', ".filter_x", function(e){
+    $(document).on('click', ".filter_box_x", function(e){
       _clickFilter($(this).attr("filter"));
     });
   };
@@ -96,7 +96,7 @@ Vish.Search = (function(V,undefined){
       var filter_name = filter_obj.attr("filter");
 
       filter_obj.removeClass("search-sidebar-selected");
-      $("#applied_filters span[filter='"+filter_name+"']").parent().remove();
+      $("#applied_filters div[filter='"+filter_name+"']").parent().remove();
 
       //hide the related filters
       $("#search-sidebar div[opens_with='"+filter_name+"'] li").each(function(){
