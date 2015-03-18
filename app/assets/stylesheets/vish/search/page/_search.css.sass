@@ -215,31 +215,45 @@
         .dropdown-menu
           left: unset
           top: unset
+      .filter_boxes
+        padding: 10px 0
+        .filter_box
+          float: left
+          margin: 0 7px 12px 0
+          .filter_ball,.applied_type,.applied_learning_object,
+          .applied_resouce,.applied_language,.applied_tag
+            padding: 7px 10px 6px
+            color: white
+            font-size: 0.9em
+            border-radius: 5px
+            //border-radius: 5px 0 0 5px
+          .applied_type
+            background: $firstColor
+          .applied_learning_object
+            background: #ae0040
+          .applied_resouce
+            background: $secondColor
+          .applied_language
+            background: gray
+          .applied_tag
+            background: #555
+        .filter_box_x
+          cursor: pointer
+          float: right
+          border-radius: 0 5px 5px 0
+          padding: 5px 4px 5px 9px
+          margin: -5px 0 0 -5px
+          font-size: 0.8em
+          font-family: "OpenSansBold", sans-serif
+          color: white
+          background: $grayDark
+          &:hover
+            color: $grayLighter
+
     .searched-items
       margin-top: 20px
       ul
         margin: 0
 
-
-
-.filter_ball
-  background: red
-
-.applied_type
-  background: #DEA5A4
-
-.applied_learning_object
-  background: #DDDEA4
-
-.applied_resouce
-  background: #A5A4DE
-
-.applied_language
-  background: #8B8C4C
-
-.applied_tag
-  background: #8A8AB8
-
-.filter_box_x
-  background: red
-  cursor: pointer
+.clear
+  clear: both
