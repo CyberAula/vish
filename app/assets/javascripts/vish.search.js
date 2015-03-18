@@ -59,7 +59,7 @@ Vish.Search = (function(V,undefined){
       object_subtypes = ["Document", "Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"];
     }
     object_subtypes.forEach(function(item) {
-      if(params["type"].indexOf(item)>-1){
+      if(params["type"] && params["type"].indexOf(item)>-1){
         $("#resource_type").show();
         _toggleFilter("resource");
       }
