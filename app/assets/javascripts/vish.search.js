@@ -117,7 +117,7 @@ Vish.Search = (function(V,undefined){
       filter_obj.addClass("search-sidebar-selected");
       if(filter_name!="all_type"){
         var extra_class = filter_obj.closest("div.filter_set").attr("related");
-        $("#applied_filters").append("<div class='filter_box'><span class='filter_ball "+extra_class+"'>"+filter_content+"<div class='filter_box_x' filter='"+filter_name+"'>x</div></span></div>");
+        $("#applied_filters").append("<div class='filter_box'><span class='filter_ball "+extra_class+"'>"+filter_content+"</span><div class='filter_box_x' filter='"+filter_name+"'>x</div></div>");
       }
 
       //show the related filters
