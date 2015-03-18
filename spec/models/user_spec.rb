@@ -20,7 +20,6 @@ end
 context "creating excursion" do
 	before do
 			@user2 = Factory(:user_vish)
-			@excursion = Factory(:excursion, user: @user2)
 		end
 	it "can create excursion" do		
 		#binding.pry

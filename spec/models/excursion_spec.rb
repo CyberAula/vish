@@ -2,10 +2,12 @@ require 'spec_helper'
 
 describe Excursion do
 	before do
-		@user = Factory(:user_vish)
+		@excursion = Factory(:excursion)
 	end
   #pending "add some examples to (or delete) #{__FILE__}"
-  it "#ExcursionModel?"
+  it "#ExcursionModel?" do
+  	@excursion.class == "Excursion"
+  end
   it "#created?"
 
   it "has name"
