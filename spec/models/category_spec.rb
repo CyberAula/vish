@@ -5,7 +5,7 @@ describe Category do
     @category = Factory(:category)
   end
 
-end
+
 it "is created"
 it "user can categorize"
 
