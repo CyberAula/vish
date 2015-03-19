@@ -8,10 +8,15 @@ describe Excursion do
   it "#ExcursionModel?" do
   	@excursion.class == "Excursion"
   end
-  it "#created?"
 
-  it "has name"
+  it "has name" do
+    !@excursion.title.nil?
+  end
+
   it "can be published"
-  it "has an author"
+
+  it "has an author" do
+    !@excursion.author.nil? && @excursion.author.class == "Actor"
+  end
   
 end
