@@ -99,7 +99,7 @@ module Vish
     end
 
     if config.tagsSettings["maxLength"].blank?
-        config.tagsSettings["maxLength"] = 40
+        config.tagsSettings["maxLength"] = 20
     end
 
     if config.tagsSettings["maxTags"].blank?
@@ -107,18 +107,24 @@ module Vish
     end
 
     if config.tagsSettings["triggerKeys"].blank?
-        config.tagsSettings["triggerKeys"] = ['enter', 'comma', 'tab']
+        config.tagsSettings["triggerKeys"] = ['enter', 'comma', 'tab', 'space']
     end
 
-    #Catalogue mode
+    #Catalogue
     if config.APP_CONFIG['catalogue'].blank?
         config.catalogue = {} 
     else
         config.catalogue = config.APP_CONFIG['catalogue']
     end
 
+    #Catalogue: Mode
     if config.catalogue['mode'].blank?
         config.catalogue['mode'] = "matchany"
+    end
+
+    #Catalogue: Quality threshold
+    unless config.catalogue["qualityThreshold"].is_a? Numeric
+        config.catalogue["qualityThreshold"] = nil
     end
 
   end
