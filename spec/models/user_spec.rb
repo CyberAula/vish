@@ -21,7 +21,7 @@ describe User do
 	it "can follow other user" do
 		@user.followers << @user2.actor
 		@user.followers == 1
-	end
+	end	
 
 	it "can be followed by other user" do
 		@user.followings << @user2.activity_object
