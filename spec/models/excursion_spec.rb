@@ -13,7 +13,9 @@ describe Excursion do
     !@excursion.title.nil?
   end
 
-  it "can be published"
+  it "is published" do
+    !@excursion.draft
+  end
 
   it "has an author" do
     !@excursion.author.nil? && @excursion.author.class == "Actor"
