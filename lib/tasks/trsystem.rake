@@ -1,5 +1,5 @@
 # encoding: utf-8
-TRS_FILE_PATH = "reports/trsystem.txt";
+TRS_FILE_PATH = "reports/trsystem.txt"
 
 namespace :trsystem do
 
@@ -525,7 +525,7 @@ namespace :trsystem do
 
     uaList.sort! { |a,b|  b[1] <=> a[1] }
 
-    TRS_FILE_PATH = "reports/uas.txt";
+    TRS_FILE_PATH = "reports/uas.txt"
     Rake::Task["trsystem:prepare"].invoke
     writeInTRS("User Agents Report")
 
@@ -534,6 +534,196 @@ namespace :trsystem do
     end
 
     printTitle("Task finished")
+  end
+
+  #Add index in TRSystemEntry model to quickly find entries related to specific excursions.
+  #Usage
+  #Development:   bundle exec rake trsystem:populateRelatedExcursions
+  #In production: bundle exec rake trsystem:populateRelatedExcursions RAILS_ENV=production
+  task :populateRelatedExcursions, [:prepare] => :environment do |t,args|
+    args.with_defaults(:prepare => true)
+
+    if args.prepare
+      Rake::Task["trsystem:prepare"].invoke
+    end
+
+    writeInTRS("")
+    writeInTRS("Populating related excursions")
+    writeInTRS("")
+
+    vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil)
+
+    vvEntries.each do |e|
+      begin
+        d = JSON(e["data"]) rescue {}
+        unless d.blank? or d["lo"].nil? or d["lo"]["id"].nil?
+          entityId = (d["lo"]["id"]).to_i rescue nil
+          unless entityId.nil?
+            e.update_column :related_entity_id, entityId
+          end
+        end
+      rescue Exception => e
+        puts "Exception: " + e.message
+      end
+    end
+
+    #Remove bad entries
+    vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil)
+    vvEntries.each do |e|
+      e.destroy
+    end
+
+    writeInTRS("Task finished")
+  end
+
+  #Get interaction values for Excursions
+  #Usage
+  #Development:   bundle exec rake trsystem:calculateInteractionValues
+  #In production: bundle exec rake trsystem:calculateInteractionValues RAILS_ENV=production
+  task :calculateInteractionValues, [:prepare] => :environment do |t,args|
+    args.with_defaults(:prepare => true)
+
+    if args.prepare
+      Rake::Task["trsystem:prepare"].invoke
+    end
+
+    Rake::Task["trsystem:populateRelatedExcursions"].invoke
+
+    writeInTRS("")
+    writeInTRS("Calculating interaction values")
+    writeInTRS("")
+
+    # excursions = Excursion.where("draft='false'")
+    excursions = [Excursion.find(785)]
+    # [[588, 1299], [628, 16426], [618, 4426]]
+
+    vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id is NOT NULL")
+
+    excursions.each do |ex|
+      unless ex.activity_object.nil?
+        exEntries = vvEntries.find_all_by_related_entity_id(ex.id)
+        loInteraction = LoInteraction.find_by_activity_object_id(ex.activity_object.id)
+        if loInteraction.nil?
+          loInteraction = LoInteraction.new
+          loInteraction.activity_object_id = ex.activity_object.id
+        end
+
+        loInteraction.nsamples = 0
+        
+        loInteraction.tlo = 0
+        loInteraction.tloslide = 0
+        loInteraction.viewedslidesrate = 0
+        loInteraction.acceptancerate = 0
+        loInteraction.nclicks = 0
+        loInteraction.nkeys = 0
+        loInteraction.naq = 0
+        loInteraction.nsq = 0
+        loInteraction.neq = 0
+        loInteraction.nrmo = 0
+        loInteraction.npmo = 0
+        loInteraction.nvisits = ex.visit_count
+        loInteraction.favrate = 0
+        loInteraction.repeatrate = 0
+
+        #Aux vars
+        user_ids = []
+        users_accept = 0
+        users_reject = 0
+
+        exEntries.each do |e|
+          begin
+            d = JSON(e["data"])
+            if LoInteraction.isValidInteraction?(d)
+
+              #Aux vars
+              totalDuration = d["duration"].to_i
+              actions = d["chronology"].values.map{|v| v["actions"].values}.flatten
+
+              if LoInteraction.isSignificativeInteraction?(d)
+                loInteraction.nsamples += 1
+
+                #Aux vars
+                nSlides = d["lo"]["content"]["slides"].values.length
+
+                loInteraction.tlo += totalDuration
+
+                tloslide = totalDuration/nSlides
+                loInteraction.tloslide += tloslide
+
+                viewedslidesrate = ((d["chronology"].values.map{|v| v["slideNumber"]}.uniq.length)/nSlides.to_f * 100).ceil.to_i
+                loInteraction.viewedslidesrate += viewedslidesrate
+
+                clickActions = actions.select{|a| a["id"]==="click"}
+                totalClicks = clickActions.length
+                loInteraction.nclicks += totalClicks
+
+                keyActions = actions.select{|a| a["id"]==="keydown"}
+                totalKeys = keyActions.length
+                loInteraction.nkeys += totalKeys
+
+                answerQuizActions = actions.select{|a| a["id"]=="onAnswerQuiz"}
+                answeredQuizzes = answerQuizActions.length
+                #Quiz types
+                multiplechoiceQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="multiplechoice"}
+                truefalseQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="truefalse"}
+                sortingQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="sorting"}
+                oanswerQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="openAnswer" and !a["params"]["correct"].blank?}
+                
+                #Statements
+                correctStatements = multiplechoiceQuizzes.map{|q| q["params"]["correct"]==="true" ? 1 : 0}.sum + truefalseQuizzes.map{|q| q["params"]["correctStatements"].to_i}.sum + sortingQuizzes.map{|q| q["params"]["correct"]==="true" ? 1 : 0}.sum + oanswerQuizzes.map{|q| q["params"]["correct"]==="true" ? 1 : 0}.sum
+                incorrectStatements = multiplechoiceQuizzes.map{|q| q["params"]["correct"]==="false" ? 1 : 0}.sum + truefalseQuizzes.map{|q| q["params"]["incorrectStatements"].to_i}.sum + sortingQuizzes.map{|q| q["params"]["correct"]==="false" ? 1 : 0}.sum + oanswerQuizzes.map{|q| q["params"]["correct"]==="false" ? 1 : 0}.sum
+                # totalStatements = (correctStatements + incorrectStatements)
+
+                loInteraction.naq += answeredQuizzes
+                loInteraction.nsq += correctStatements
+                loInteraction.neq += incorrectStatements
+              end
+
+              if totalDuration > 30
+                users_accept += 1
+              else
+                users_reject += 1
+              end
+
+              if e.user_logged
+                user_ids.push(d["user"]["id"])
+              end
+
+            end
+          rescue Exception => e
+            puts "Exception: " + e.message
+          end
+        end
+
+        #Aux vars
+        uniqUsers = user_ids.uniq.length
+
+        #Normalize and get final results
+        unless loInteraction.nsamples<1
+          loInteraction.tlo /= loInteraction.nsamples
+          loInteraction.tloslide /= loInteraction.nsamples
+
+          loInteraction.viewedslidesrate /= loInteraction.nsamples
+          loInteraction.acceptancerate = (users_accept/(users_accept+users_reject).to_f * 100).ceil.to_i
+
+          loInteraction.nclicks = (loInteraction.nclicks * 100)/loInteraction.nsamples
+          loInteraction.nkeys = (loInteraction.nkeys * 100)/loInteraction.nsamples
+          loInteraction.naq = (loInteraction.naq * 100)/loInteraction.nsamples
+          loInteraction.nsq = (loInteraction.nsq * 100)/loInteraction.nsamples
+          loInteraction.neq = (loInteraction.neq * 100)/loInteraction.nsamples
+
+          loInteraction.favrate = (ex.like_count/uniqUsers.to_f * 100).ceil.to_i
+          loInteraction.repeatrate = (user_ids.group_by{|g| g}.select{|key,value| value.length>1}.length/uniqUsers.to_f * 100).ceil.to_i
+        end
+
+        loInteraction.save!
+      end
+    end
+
+    # d = JSON.parse(TrackingSystemEntry.where("app_id='ViSH Viewer'").last.data)
+    # actions = d["chronology"].values.map{|v| v["actions"].values}.flatten
+
+    writeInTRS("Task finished")
   end
 
 end

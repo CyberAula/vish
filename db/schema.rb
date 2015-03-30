@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150313110458) do
+ActiveRecord::Schema.define(:version => 20150330095940) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -284,6 +284,27 @@ ActiveRecord::Schema.define(:version => 20150313110458) do
 
   add_index "links", ["activity_object_id"], :name => "index_links_on_activity_object_id"
 
+  create_table "lo_interactions", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "nsamples"
+    t.integer  "tlo"
+    t.integer  "tloslide"
+    t.integer  "viewedslidesrate"
+    t.integer  "acceptancerate"
+    t.integer  "nclicks"
+    t.integer  "nkeys"
+    t.integer  "naq"
+    t.integer  "nsq"
+    t.integer  "neq"
+    t.integer  "nrmo"
+    t.integer  "npmo"
+    t.integer  "nvisits"
+    t.integer  "favrate"
+    t.integer  "repeatrate"
+  end
+
   create_table "notifications", :force => true do |t|
     t.string   "type"
     t.text     "body"
@@ -303,6 +324,77 @@ ActiveRecord::Schema.define(:version => 20150313110458) do
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
+
+  create_table "open_badges_alignments", :force => true do |t|
+    t.string   "url"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "open_badges_assertions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "badge_id"
+    t.string   "evidence"
+    t.datetime "expires"
+    t.text     "identity"
+    t.string   "identity_type"
+    t.boolean  "identity_hashed"
+    t.string   "identity_salt"
+    t.string   "verification_type"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "open_badges_badge_alignments", :force => true do |t|
+    t.integer  "badge_id"
+    t.integer  "alignment_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "open_badges_badge_tags", :force => true do |t|
+    t.integer  "badge_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "open_badges_badges", :force => true do |t|
+    t.string   "name"
+    t.string   "criteria"
+    t.text     "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "open_badges_organizations", :force => true do |t|
+    t.string   "url"
+    t.string   "name"
+    t.string   "email"
+    t.string   "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "open_badges_tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "pdfexes", :force => true do |t|
     t.datetime "created_at",                             :null => false
@@ -530,6 +622,7 @@ ActiveRecord::Schema.define(:version => 20150313110458) do
     t.text     "user_agent"
     t.text     "referrer"
     t.boolean  "user_logged",              :default => false
+    t.integer  "related_entity_id"
   end
 
   create_table "users", :force => true do |t|
