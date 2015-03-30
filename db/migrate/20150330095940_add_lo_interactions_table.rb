@@ -16,8 +16,6 @@ class AddLoInteractionsTable < ActiveRecord::Migration
       t.integer "naq"
       t.integer "nsq"
       t.integer "neq"
-      t.integer "nrmo"
-      t.integer "npmo"
       t.integer "nvisits"
       t.integer "favrate"
       t.integer "repeatrate"

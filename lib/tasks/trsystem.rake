@@ -619,8 +619,6 @@ namespace :trsystem do
         loInteraction.naq = 0
         loInteraction.nsq = 0
         loInteraction.neq = 0
-        loInteraction.nrmo = 0
-        loInteraction.npmo = 0
         loInteraction.nvisits = ex.visit_count
         loInteraction.favrate = 0
         loInteraction.repeatrate = 0
