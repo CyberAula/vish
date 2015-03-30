@@ -34,7 +34,7 @@ class LoInteraction < ActiveRecord::Base
       return false
     end
 
-    nActions = tsdata["chronology"].values.map{|v| v["actions"].values}.flatten.length
+    nActions = tsdata["chronology"].values.map{|v| v["actions"]}.compact.map{|v| v.values}.flatten.length
     nSlides = tsdata["lo"]["content"]["slides"].values.length
 
     if nActions < 1

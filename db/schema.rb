@@ -289,20 +289,21 @@ ActiveRecord::Schema.define(:version => 20150330095940) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "nsamples"
+    t.integer  "nvalidsamples"
     t.integer  "tlo"
     t.integer  "tloslide"
+    t.integer  "tloslide_min"
+    t.integer  "tloslide_max"
     t.integer  "viewedslidesrate"
-    t.integer  "acceptancerate"
+    t.integer  "nvisits"
     t.integer  "nclicks"
     t.integer  "nkeys"
     t.integer  "naq"
     t.integer  "nsq"
     t.integer  "neq"
-    t.integer  "nrmo"
-    t.integer  "npmo"
-    t.integer  "nvisits"
-    t.integer  "favrate"
+    t.integer  "acceptancerate"
     t.integer  "repeatrate"
+    t.integer  "favrate"
   end
 
   create_table "notifications", :force => true do |t|

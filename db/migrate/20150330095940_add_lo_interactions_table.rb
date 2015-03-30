@@ -6,19 +6,23 @@ class AddLoInteractionsTable < ActiveRecord::Migration
       t.datetime "updated_at",  :null => false
 
       t.integer "nsamples"
-
+      t.integer "nvalidsamples"
+      
       t.integer "tlo"
       t.integer "tloslide"
+      t.integer "tloslide_min"
+      t.integer "tloslide_max"
       t.integer "viewedslidesrate"
-      t.integer "acceptancerate"
+      t.integer "nvisits"
       t.integer "nclicks"
       t.integer "nkeys"
       t.integer "naq"
       t.integer "nsq"
       t.integer "neq"
-      t.integer "nvisits"
-      t.integer "favrate"
+      t.integer "acceptancerate"
       t.integer "repeatrate"
+      t.integer "favrate"
+      
     end
   end
 end

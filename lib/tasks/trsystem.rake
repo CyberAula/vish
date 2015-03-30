@@ -593,9 +593,8 @@ namespace :trsystem do
     writeInTRS("Calculating interaction values")
     writeInTRS("")
 
-    # excursions = Excursion.where("draft='false'")
-    excursions = [Excursion.find(785)]
-    # [[588, 1299], [628, 16426], [618, 4426]]
+    excursions = Excursion.where("draft='false'")
+    # excursions = [Excursion.find(785),Excursion.find(543)]
 
     vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id is NOT NULL")
 
@@ -609,46 +608,72 @@ namespace :trsystem do
         end
 
         loInteraction.nsamples = 0
+        loInteraction.nvalidsamples = 0
         
         loInteraction.tlo = 0
         loInteraction.tloslide = 0
+        loInteraction.tloslide_min = 0
+        loInteraction.tloslide_max = 0
         loInteraction.viewedslidesrate = 0
-        loInteraction.acceptancerate = 0
+        loInteraction.nvisits = ex.visit_count
         loInteraction.nclicks = 0
         loInteraction.nkeys = 0
         loInteraction.naq = 0
         loInteraction.nsq = 0
         loInteraction.neq = 0
-        loInteraction.nvisits = ex.visit_count
-        loInteraction.favrate = 0
+        loInteraction.acceptancerate = 0
         loInteraction.repeatrate = 0
-
+        loInteraction.favrate = 0
+        
         #Aux vars
         user_ids = []
         users_accept = 0
         users_reject = 0
 
-        exEntries.each do |e|
+        exEntries.each do |tsentry|
           begin
-            d = JSON(e["data"])
+            d = JSON(tsentry["data"])
             if LoInteraction.isValidInteraction?(d)
+              loInteraction.nvalidsamples += 1
 
               #Aux vars
               totalDuration = d["duration"].to_i
-              actions = d["chronology"].values.map{|v| v["actions"].values}.flatten
 
               if LoInteraction.isSignificativeInteraction?(d)
                 loInteraction.nsamples += 1
 
                 #Aux vars
+                actions = d["chronology"].values.map{|v| v["actions"]}.compact.map{|v| v.values}.flatten
                 nSlides = d["lo"]["content"]["slides"].values.length
+                cValues = d["chronology"].map{|k,v| v}
+                viewedSlides = []
+
 
                 loInteraction.tlo += totalDuration
 
                 tloslide = totalDuration/nSlides
                 loInteraction.tloslide += tloslide
 
-                viewedslidesrate = ((d["chronology"].values.map{|v| v["slideNumber"]}.uniq.length)/nSlides.to_f * 100).ceil.to_i
+                tloslide_min = totalDuration + 1
+                tloslide_max = 0
+                nSlides.times do |i|
+                  tSlide = cValues.select{|v| v["slideNumber"]===(i+1).to_s}.map{|v| v["duration"].to_f}.sum.round.to_i
+                  if tSlide < tloslide_min
+                    tloslide_min = tSlide
+                  end
+                  if tSlide > tloslide_max
+                    tloslide_max = tSlide
+                  end
+                  if tSlide > 5
+                    viewedSlides.push(i+1)
+                  end
+                end
+                tloslide_min = [tloslide_min,totalDuration].min
+                tloslide_max = [tloslide_max,totalDuration].min
+                loInteraction.tloslide_min += tloslide_min
+                loInteraction.tloslide_max += tloslide_max
+
+                viewedslidesrate = (viewedSlides.length/nSlides.to_f * 100).ceil.to_i
                 loInteraction.viewedslidesrate += viewedslidesrate
 
                 clickActions = actions.select{|a| a["id"]==="click"}
@@ -683,7 +708,7 @@ namespace :trsystem do
                 users_reject += 1
               end
 
-              if e.user_logged
+              if tsentry.user_logged
                 user_ids.push(d["user"]["id"])
               end
 
@@ -700,9 +725,10 @@ namespace :trsystem do
         unless loInteraction.nsamples<1
           loInteraction.tlo /= loInteraction.nsamples
           loInteraction.tloslide /= loInteraction.nsamples
+          loInteraction.tloslide_min /= loInteraction.nsamples
+          loInteraction.tloslide_max /= loInteraction.nsamples
 
           loInteraction.viewedslidesrate /= loInteraction.nsamples
-          loInteraction.acceptancerate = (users_accept/(users_accept+users_reject).to_f * 100).ceil.to_i
 
           loInteraction.nclicks = (loInteraction.nclicks * 100)/loInteraction.nsamples
           loInteraction.nkeys = (loInteraction.nkeys * 100)/loInteraction.nsamples
@@ -710,8 +736,12 @@ namespace :trsystem do
           loInteraction.nsq = (loInteraction.nsq * 100)/loInteraction.nsamples
           loInteraction.neq = (loInteraction.neq * 100)/loInteraction.nsamples
 
-          loInteraction.favrate = (ex.like_count/uniqUsers.to_f * 100).ceil.to_i
-          loInteraction.repeatrate = (user_ids.group_by{|g| g}.select{|key,value| value.length>1}.length/uniqUsers.to_f * 100).ceil.to_i
+          loInteraction.repeatrate = (user_ids.group_by{|g| g}.select{|key,value| value.length>1}.length/uniqUsers.to_f * 100).ceil.to_i rescue 0
+          loInteraction.favrate = (ex.like_count/uniqUsers.to_f * 100).ceil.to_i rescue 0
+        end
+
+        unless loInteraction.nvalidsamples<1
+          loInteraction.acceptancerate = (users_accept/(users_accept+users_reject).to_f * 100).ceil.to_i rescue 0
         end
 
         loInteraction.save!
