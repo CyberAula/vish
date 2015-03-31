@@ -495,10 +495,8 @@ namespace :trsystem do
     entriesDestroyed = 0
 
     ActiveRecord::Base.uncached do
-      tsEntries = TrackingSystemEntry.all
-      tsEntries.find_each batch_size: 1000 do |e|
-        isBot = TrackingSystemEntry.isUserAgentBot?(e.user_agent)
-        if isBot
+      TrackingSystemEntry.find_each batch_size: 1000 do |e|
+        if TrackingSystemEntry.isUserAgentBot?(e.user_agent)
           e.destroy
           entriesDestroyed += 1
         end
@@ -516,26 +514,32 @@ namespace :trsystem do
   task :listUAs, [:prepare] => :environment do |t,args|
     printTitle("Listing user agents")
 
-    uaList = []
+    uaList = Hash.new
+    # uaList["userAgent"] = ocurrences;
 
-    user_agents = TrackingSystemEntry.all.map{|t| t.user_agent }
     excluded_uas = []
-    user_agents = user_agents.reject{|ua| ua.blank? or excluded_uas.include? ua }
-    uniq_user_agents = user_agents.uniq
 
-    uniq_user_agents.each do |ua|
-      ocurrences = user_agents.count(ua)
-      uaList.push([ua,ocurrences])
+    ActiveRecord::Base.uncached do
+      TrackingSystemEntry.find_each batch_size: 1000 do |e|
+        userAgent = e.user_agent
+        unless userAgent.blank? or excluded_uas.include? userAgent
+          if uaList[userAgent].nil?
+            uaList[userAgent] = 1
+          else
+            uaList[userAgent] += 1
+          end
+        end
+      end
     end
 
-    uaList.sort! { |a,b|  b[1] <=> a[1] }
+    uaList = Hash[uaList.sort_by{|k,v| -v}]
 
     TRS_FILE_PATH = "reports/uas.txt"
     Rake::Task["trsystem:prepare"].invoke
     writeInTRS("User Agents Report")
 
-    uaList.each do |uaEl|
-      writeInTRS("Occurences: " + uaEl[1].to_s  + ".  UserAgent: " + uaEl[0])
+    uaList.each do |userAgent,ocurrences|
+      writeInTRS("Occurences: " + ocurrences.to_s  + ".  UserAgent: " + userAgent)
     end
 
     printTitle("Task finished")
@@ -642,7 +646,7 @@ namespace :trsystem do
 
       excursions.find_each batch_size: 1000 do |ex|
         unless ex.activity_object.nil?
-          exEntries = vvEntries.find_all_by_related_entity_id(ex.id)
+          exEntries = vvEntries.where("related_entity_id='"+ex.id.to_s+"'")
           loInteraction = LoInteraction.find_by_activity_object_id(ex.activity_object.id)
           if loInteraction.nil?
             loInteraction = LoInteraction.new
@@ -752,6 +756,7 @@ namespace :trsystem do
 
                 if tsentry.user_logged
                   user_ids.push(d["user"]["id"])
+                  user_ids = user_ids.uniq
                 end
 
               end
