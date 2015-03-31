@@ -704,7 +704,7 @@ namespace :trsystem do
                   tloslide_min = totalDuration + 1
                   tloslide_max = 0
                   nSlides.times do |i|
-                    tSlide = cValues.select{|v| v["slideNumber"]===(i+1).to_s}.map{|v| v["duration"].to_f}.sum.round.to_i
+                    tSlide = cValues.select{|v| v["slideNumber"]===(i+1).to_s}.map{|v| v["duration"].to_f}.sum.ceil.to_i
                     if tSlide < tloslide_min
                       tloslide_min = tSlide
                     end
