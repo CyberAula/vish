@@ -28,7 +28,9 @@ class Excursion < ActiveRecord::Base
     json
   end
 
-
+  def interaction_attributes
+    self.attributes
+  end
 
   ####################
   ## OAI-PMH Management

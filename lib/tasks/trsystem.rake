@@ -453,7 +453,7 @@ namespace :trsystem do
 
 
   ####################
-  #Fix and filtering tasks
+  # Fix and filtering tasks
   ####################
 
   #Move user agent and user profile data from the json object to the db fields of the trackerSystemEntry entity.
@@ -463,15 +463,18 @@ namespace :trsystem do
   task :addUserAgentAndUserToVVData, [:prepare] => :environment do |t,args|
     printTitle("Fixing VVData entries in the TrackingSystem")
 
-    vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer")
-    vvEntries.each do |e|
-      d = JSON(e["data"]) rescue {}
-      user_agent = d["device"]["userAgent"] rescue nil
-      user_data = d["user"] rescue nil
-      user_logged = !user_data.nil?
+    ActiveRecord::Base.uncached do
+      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer")
+      vvEntries.find_each batch_size: 1000 do |e|
+        # puts "Id: " + e.id.to_s
+        d = JSON(e["data"]) rescue {}
+        user_agent = d["device"]["userAgent"] rescue nil
+        user_data = d["user"] rescue nil
+        user_logged = !user_data.nil?
 
-      e.update_column :user_agent, user_agent
-      e.update_column :user_logged, user_logged
+        e.update_column :user_agent, user_agent
+        e.update_column :user_logged, user_logged
+      end
     end
 
     printTitle("Task finished")
@@ -491,12 +494,14 @@ namespace :trsystem do
 
     entriesDestroyed = 0
 
-    vvEntries = TrackingSystemEntry.all
-    vvEntries.each do |e|
-      isBot = TrackingSystemEntry.isUserAgentBot?(e.user_agent)
-      if isBot
-        e.destroy
-        entriesDestroyed += 1
+    ActiveRecord::Base.uncached do
+      tsEntries = TrackingSystemEntry.all
+      tsEntries.find_each batch_size: 1000 do |e|
+        isBot = TrackingSystemEntry.isUserAgentBot?(e.user_agent)
+        if isBot
+          e.destroy
+          entriesDestroyed += 1
+        end
       end
     end
 
@@ -536,10 +541,14 @@ namespace :trsystem do
     printTitle("Task finished")
   end
 
+
+  ####################
+  # LO Interactions
+  ####################
+
   #Add index in TRSystemEntry model to quickly find entries related to specific excursions.
   #Usage
   #Development:   bundle exec rake trsystem:populateRelatedExcursions
-  #In production: bundle exec rake trsystem:populateRelatedExcursions RAILS_ENV=production
   task :populateRelatedExcursions, [:prepare] => :environment do |t,args|
     args.with_defaults(:prepare => true)
 
@@ -551,26 +560,58 @@ namespace :trsystem do
     writeInTRS("Populating related excursions")
     writeInTRS("")
 
-    vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil)
-
-    vvEntries.each do |e|
-      begin
-        d = JSON(e["data"]) rescue {}
-        unless d.blank? or d["lo"].nil? or d["lo"]["id"].nil?
-          entityId = (d["lo"]["id"]).to_i rescue nil
-          unless entityId.nil?
-            e.update_column :related_entity_id, entityId
+    ActiveRecord::Base.uncached do
+      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil)
+      vvEntries.find_each batch_size: 1000 do |e|
+        begin
+          d = JSON(e["data"]) rescue {}
+          unless d.blank? or d["lo"].nil? or d["lo"]["id"].nil?
+            entityId = (d["lo"]["id"]).to_i rescue nil
+            unless entityId.nil?
+              e.update_column :related_entity_id, entityId
+            end
           end
+        rescue Exception => e
+          puts "Exception: " + e.message
         end
-      rescue Exception => e
-        puts "Exception: " + e.message
+      end
+
+      #Remove bad entries
+      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil)
+      vvEntries.find_each batch_size: 1000 do |e|
+        e.destroy
       end
     end
 
-    #Remove bad entries
-    vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil)
-    vvEntries.each do |e|
-      e.destroy
+    writeInTRS("Task finished")
+  end
+
+  #Delete non useful tracking system entries for LO interactions
+  #Usage
+  #Development:   bundle exec rake trsystem:deletetsentriesForLoInteractions
+  task :deletetsentriesForLoInteractions, [:prepare] => :environment do |t,args|
+    args.with_defaults(:prepare => true)
+
+    if args.prepare
+      Rake::Task["trsystem:prepare"].invoke
+    end
+
+    writeInTRS("")
+    writeInTRS("Deleting non useful tracking system entries for LO interactions")
+    writeInTRS("")
+
+    ActiveRecord::Base.uncached do
+      nonVVEntries = TrackingSystemEntry.where("app_id!='ViSH Viewer'")
+      nonVVEntries.find_each batch_size: 1000 do |e|
+        e.destroy
+      end
+      
+      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer")
+      vvEntries.find_each batch_size: 1000 do |e|
+        unless LoInteraction.isValidTSEntry?(e)
+          e.destroy
+        end
+      end
     end
 
     writeInTRS("Task finished")
@@ -593,158 +634,160 @@ namespace :trsystem do
     writeInTRS("Calculating interaction values")
     writeInTRS("")
 
-    excursions = Excursion.where("draft='false'")
-    # excursions = [Excursion.find(785),Excursion.find(543)]
+    ActiveRecord::Base.uncached do
+      excursions = Excursion.where("draft='false'")
+      # excursions = [Excursion.find(785),Excursion.find(543)]
 
-    vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id is NOT NULL")
+      vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id is NOT NULL")
 
-    excursions.each do |ex|
-      unless ex.activity_object.nil?
-        exEntries = vvEntries.find_all_by_related_entity_id(ex.id)
-        loInteraction = LoInteraction.find_by_activity_object_id(ex.activity_object.id)
-        if loInteraction.nil?
-          loInteraction = LoInteraction.new
-          loInteraction.activity_object_id = ex.activity_object.id
-        end
+      excursions.find_each batch_size: 1000 do |ex|
+        unless ex.activity_object.nil?
+          exEntries = vvEntries.find_all_by_related_entity_id(ex.id)
+          loInteraction = LoInteraction.find_by_activity_object_id(ex.activity_object.id)
+          if loInteraction.nil?
+            loInteraction = LoInteraction.new
+            loInteraction.activity_object_id = ex.activity_object.id
+          end
 
-        loInteraction.nsamples = 0
-        loInteraction.nvalidsamples = 0
-        
-        loInteraction.tlo = 0
-        loInteraction.tloslide = 0
-        loInteraction.tloslide_min = 0
-        loInteraction.tloslide_max = 0
-        loInteraction.viewedslidesrate = 0
-        loInteraction.nvisits = ex.visit_count
-        loInteraction.nclicks = 0
-        loInteraction.nkeys = 0
-        loInteraction.naq = 0
-        loInteraction.nsq = 0
-        loInteraction.neq = 0
-        loInteraction.acceptancerate = 0
-        loInteraction.repeatrate = 0
-        loInteraction.favrate = 0
-        
-        #Aux vars
-        user_ids = []
-        users_accept = 0
-        users_reject = 0
+          loInteraction.nsamples = 0
+          loInteraction.nvalidsamples = 0
+          
+          loInteraction.tlo = 0
+          loInteraction.tloslide = 0
+          loInteraction.tloslide_min = 0
+          loInteraction.tloslide_max = 0
+          loInteraction.viewedslidesrate = 0
+          loInteraction.nvisits = ex.visit_count
+          loInteraction.nclicks = 0
+          loInteraction.nkeys = 0
+          loInteraction.naq = 0
+          loInteraction.nsq = 0
+          loInteraction.neq = 0
+          loInteraction.acceptancerate = 0
+          loInteraction.repeatrate = 0
+          loInteraction.favrate = 0
+          
+          #Aux vars
+          user_ids = []
+          users_accept = 0
+          users_reject = 0
 
-        exEntries.each do |tsentry|
-          begin
-            d = JSON(tsentry["data"])
-            if LoInteraction.isValidInteraction?(d)
-              loInteraction.nvalidsamples += 1
-
-              #Aux vars
-              totalDuration = d["duration"].to_i
-
-              if LoInteraction.isSignificativeInteraction?(d)
-                loInteraction.nsamples += 1
+          exEntries.find_each batch_size: 1000 do |tsentry|
+            begin
+              d = JSON(tsentry["data"])
+              if LoInteraction.isValidInteraction?(d)
+                loInteraction.nvalidsamples += 1
 
                 #Aux vars
-                actions = d["chronology"].values.map{|v| v["actions"]}.compact.map{|v| v.values}.flatten
-                nSlides = d["lo"]["content"]["slides"].values.length
-                cValues = d["chronology"].map{|k,v| v}
-                viewedSlides = []
+                totalDuration = d["duration"].to_i
+
+                if LoInteraction.isSignificativeInteraction?(d)
+                  loInteraction.nsamples += 1
+
+                  #Aux vars
+                  actions = d["chronology"].values.map{|v| v["actions"]}.compact.map{|v| v.values}.flatten
+                  nSlides = d["lo"]["content"]["slides"].values.length
+                  cValues = d["chronology"].map{|k,v| v}
+                  viewedSlides = []
 
 
-                loInteraction.tlo += totalDuration
+                  loInteraction.tlo += totalDuration
 
-                tloslide = totalDuration/nSlides
-                loInteraction.tloslide += tloslide
+                  tloslide = totalDuration/nSlides
+                  loInteraction.tloslide += tloslide
 
-                tloslide_min = totalDuration + 1
-                tloslide_max = 0
-                nSlides.times do |i|
-                  tSlide = cValues.select{|v| v["slideNumber"]===(i+1).to_s}.map{|v| v["duration"].to_f}.sum.round.to_i
-                  if tSlide < tloslide_min
-                    tloslide_min = tSlide
+                  tloslide_min = totalDuration + 1
+                  tloslide_max = 0
+                  nSlides.times do |i|
+                    tSlide = cValues.select{|v| v["slideNumber"]===(i+1).to_s}.map{|v| v["duration"].to_f}.sum.round.to_i
+                    if tSlide < tloslide_min
+                      tloslide_min = tSlide
+                    end
+                    if tSlide > tloslide_max
+                      tloslide_max = tSlide
+                    end
+                    if tSlide > 5
+                      viewedSlides.push(i+1)
+                    end
                   end
-                  if tSlide > tloslide_max
-                    tloslide_max = tSlide
-                  end
-                  if tSlide > 5
-                    viewedSlides.push(i+1)
-                  end
+                  tloslide_min = [tloslide_min,totalDuration].min
+                  tloslide_max = [tloslide_max,totalDuration].min
+                  loInteraction.tloslide_min += tloslide_min
+                  loInteraction.tloslide_max += tloslide_max
+
+                  viewedslidesrate = (viewedSlides.length/nSlides.to_f * 100).ceil.to_i
+                  loInteraction.viewedslidesrate += viewedslidesrate
+
+                  clickActions = actions.select{|a| a["id"]==="click"}
+                  totalClicks = clickActions.length
+                  loInteraction.nclicks += totalClicks
+
+                  keyActions = actions.select{|a| a["id"]==="keydown"}
+                  totalKeys = keyActions.length
+                  loInteraction.nkeys += totalKeys
+
+                  answerQuizActions = actions.select{|a| a["id"]=="onAnswerQuiz"}
+                  answeredQuizzes = answerQuizActions.length
+                  #Quiz types
+                  multiplechoiceQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="multiplechoice"}
+                  truefalseQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="truefalse"}
+                  sortingQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="sorting"}
+                  oanswerQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="openAnswer" and !a["params"]["correct"].blank?}
+                  
+                  #Statements
+                  correctStatements = multiplechoiceQuizzes.map{|q| q["params"]["correct"]==="true" ? 1 : 0}.sum + truefalseQuizzes.map{|q| q["params"]["correctStatements"].to_i}.sum + sortingQuizzes.map{|q| q["params"]["correct"]==="true" ? 1 : 0}.sum + oanswerQuizzes.map{|q| q["params"]["correct"]==="true" ? 1 : 0}.sum
+                  incorrectStatements = multiplechoiceQuizzes.map{|q| q["params"]["correct"]==="false" ? 1 : 0}.sum + truefalseQuizzes.map{|q| q["params"]["incorrectStatements"].to_i}.sum + sortingQuizzes.map{|q| q["params"]["correct"]==="false" ? 1 : 0}.sum + oanswerQuizzes.map{|q| q["params"]["correct"]==="false" ? 1 : 0}.sum
+                  # totalStatements = (correctStatements + incorrectStatements)
+
+                  loInteraction.naq += answeredQuizzes
+                  loInteraction.nsq += correctStatements
+                  loInteraction.neq += incorrectStatements
                 end
-                tloslide_min = [tloslide_min,totalDuration].min
-                tloslide_max = [tloslide_max,totalDuration].min
-                loInteraction.tloslide_min += tloslide_min
-                loInteraction.tloslide_max += tloslide_max
 
-                viewedslidesrate = (viewedSlides.length/nSlides.to_f * 100).ceil.to_i
-                loInteraction.viewedslidesrate += viewedslidesrate
+                if totalDuration > 30
+                  users_accept += 1
+                else
+                  users_reject += 1
+                end
 
-                clickActions = actions.select{|a| a["id"]==="click"}
-                totalClicks = clickActions.length
-                loInteraction.nclicks += totalClicks
+                if tsentry.user_logged
+                  user_ids.push(d["user"]["id"])
+                end
 
-                keyActions = actions.select{|a| a["id"]==="keydown"}
-                totalKeys = keyActions.length
-                loInteraction.nkeys += totalKeys
-
-                answerQuizActions = actions.select{|a| a["id"]=="onAnswerQuiz"}
-                answeredQuizzes = answerQuizActions.length
-                #Quiz types
-                multiplechoiceQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="multiplechoice"}
-                truefalseQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="truefalse"}
-                sortingQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="sorting"}
-                oanswerQuizzes = answerQuizActions.select{|a| a["params"]["type"]==="openAnswer" and !a["params"]["correct"].blank?}
-                
-                #Statements
-                correctStatements = multiplechoiceQuizzes.map{|q| q["params"]["correct"]==="true" ? 1 : 0}.sum + truefalseQuizzes.map{|q| q["params"]["correctStatements"].to_i}.sum + sortingQuizzes.map{|q| q["params"]["correct"]==="true" ? 1 : 0}.sum + oanswerQuizzes.map{|q| q["params"]["correct"]==="true" ? 1 : 0}.sum
-                incorrectStatements = multiplechoiceQuizzes.map{|q| q["params"]["correct"]==="false" ? 1 : 0}.sum + truefalseQuizzes.map{|q| q["params"]["incorrectStatements"].to_i}.sum + sortingQuizzes.map{|q| q["params"]["correct"]==="false" ? 1 : 0}.sum + oanswerQuizzes.map{|q| q["params"]["correct"]==="false" ? 1 : 0}.sum
-                # totalStatements = (correctStatements + incorrectStatements)
-
-                loInteraction.naq += answeredQuizzes
-                loInteraction.nsq += correctStatements
-                loInteraction.neq += incorrectStatements
               end
-
-              if totalDuration > 30
-                users_accept += 1
-              else
-                users_reject += 1
-              end
-
-              if tsentry.user_logged
-                user_ids.push(d["user"]["id"])
-              end
-
+            rescue Exception => e
+              puts "Exception: " + e.message
             end
-          rescue Exception => e
-            puts "Exception: " + e.message
           end
+
+          #Aux vars
+          uniqUsers = user_ids.uniq.length
+
+          #Normalize and get final results
+          unless loInteraction.nsamples<1
+            loInteraction.tlo /= loInteraction.nsamples
+            loInteraction.tloslide /= loInteraction.nsamples
+            loInteraction.tloslide_min /= loInteraction.nsamples
+            loInteraction.tloslide_max /= loInteraction.nsamples
+
+            loInteraction.viewedslidesrate /= loInteraction.nsamples
+
+            loInteraction.nclicks = (loInteraction.nclicks * 100)/loInteraction.nsamples
+            loInteraction.nkeys = (loInteraction.nkeys * 100)/loInteraction.nsamples
+            loInteraction.naq = (loInteraction.naq * 100)/loInteraction.nsamples
+            loInteraction.nsq = (loInteraction.nsq * 100)/loInteraction.nsamples
+            loInteraction.neq = (loInteraction.neq * 100)/loInteraction.nsamples
+
+            loInteraction.repeatrate = (user_ids.group_by{|g| g}.select{|key,value| value.length>1}.length/uniqUsers.to_f * 100).ceil.to_i rescue 0
+            loInteraction.favrate = (ex.like_count/uniqUsers.to_f * 100).ceil.to_i rescue 0
+          end
+
+          unless loInteraction.nvalidsamples<1
+            loInteraction.acceptancerate = (users_accept/(users_accept+users_reject).to_f * 100).ceil.to_i rescue 0
+          end
+
+          loInteraction.save!
         end
-
-        #Aux vars
-        uniqUsers = user_ids.uniq.length
-
-        #Normalize and get final results
-        unless loInteraction.nsamples<1
-          loInteraction.tlo /= loInteraction.nsamples
-          loInteraction.tloslide /= loInteraction.nsamples
-          loInteraction.tloslide_min /= loInteraction.nsamples
-          loInteraction.tloslide_max /= loInteraction.nsamples
-
-          loInteraction.viewedslidesrate /= loInteraction.nsamples
-
-          loInteraction.nclicks = (loInteraction.nclicks * 100)/loInteraction.nsamples
-          loInteraction.nkeys = (loInteraction.nkeys * 100)/loInteraction.nsamples
-          loInteraction.naq = (loInteraction.naq * 100)/loInteraction.nsamples
-          loInteraction.nsq = (loInteraction.nsq * 100)/loInteraction.nsamples
-          loInteraction.neq = (loInteraction.neq * 100)/loInteraction.nsamples
-
-          loInteraction.repeatrate = (user_ids.group_by{|g| g}.select{|key,value| value.length>1}.length/uniqUsers.to_f * 100).ceil.to_i rescue 0
-          loInteraction.favrate = (ex.like_count/uniqUsers.to_f * 100).ceil.to_i rescue 0
-        end
-
-        unless loInteraction.nvalidsamples<1
-          loInteraction.acceptancerate = (users_accept/(users_accept+users_reject).to_f * 100).ceil.to_i rescue 0
-        end
-
-        loInteraction.save!
       end
     end
 
