@@ -245,9 +245,10 @@ class ExcursionsController < ApplicationController
   end
 
   def interactions
-    validInteractions = LoInteraction.all.select{|it| it.nvalidsamples >= 5 and it.nsamples > 3 and !it.activity_object.nil? and !it.activity_object.object.nil? and !it.activity_object.object.reviewers_qscore.nil?}
-    validInteractions = validInteractions.sort_by{|it| -it.nsamples}
+    validInteractions = LoInteraction.all.select{|it| it.nvalidsamples >= 5 and it.nsamples > 0 and !it.activity_object.nil? and !it.activity_object.object.nil? and !it.activity_object.object.reviewers_qscore.nil?}
+    # validInteractions = validInteractions.sort_by{|it| -it.nsamples}
     @excursions = validInteractions.map{|it| it.activity_object.object}
+    @excursions = @excursions.sort_by{|e| -e.reviewers_qscore}
     respond_to do |format|
       format.xlsx {
         render :xlsx => "interactions", :filename => "LoInteractions.xlsx", :type => "application/vnd.openxmlformates-officedocument.spreadsheetml.sheet"

@@ -686,7 +686,8 @@ namespace :trsystem do
                 #Aux vars
                 totalDuration = d["duration"].to_i
 
-                if LoInteraction.isSignificativeInteraction?(d)
+                isSignificativeInteraction = LoInteraction.isSignificativeInteraction?(d)
+                if isSignificativeInteraction
                   loInteraction.nsamples += 1
 
                   #Aux vars
@@ -760,8 +761,10 @@ namespace :trsystem do
                   unless user_ids.include? userId
                     user_ids.push(userId)
                   else
-                    unless users_repeat_ids.include? userId
-                      users_repeat_ids.push(userId)
+                    if isSignificativeInteraction
+                      unless users_repeat_ids.include? userId
+                        users_repeat_ids.push(userId)
+                      end
                     end
                   end
                 end
@@ -810,6 +813,56 @@ namespace :trsystem do
     # d = JSON.parse(TrackingSystemEntry.where("app_id='ViSH Viewer'").last.data)
     # actions = d["chronology"].values.map{|v| v["actions"].values}.flatten
 
+    writeInTRS("Task finished")
+  end
+
+  #Delete tracking system entries with LO interactions with invalid values
+  #Usage
+  #Development:   bundle exec rake trsystem:filtertsentriesForLoInteractions
+  task :filtertsentriesForLoInteractions, [:prepare] => :environment do |t,args|
+    args.with_defaults(:prepare => true)
+
+    if args.prepare
+      Rake::Task["trsystem:prepare"].invoke
+    end
+
+    writeInTRS("")
+    writeInTRS("Filtering tracking system entries for LO interactions")
+    writeInTRS("")
+
+    destroyEntities = false #set true to remove the entities. false for tests.
+    iterationsToFilter = 0
+
+    validInteractions = LoInteraction.all.select{|it| it.nvalidsamples >= 1 and !it.activity_object.nil? and !it.activity_object.object.nil? and !it.activity_object.object.reviewers_qscore.nil?}
+    # validInteractions = [Excursion.find(628).lo_interaction]
+    los = validInteractions.map{|it| it.activity_object.object}
+
+    ActiveRecord::Base.uncached do
+      los.each do |lo|
+        interaction = lo.lo_interaction
+        vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id='"+lo.id.to_s+"'")
+        vvEntries.find_each batch_size: 1000 do |e|
+          #Extremely high tlo values
+          d = JSON(e["data"])
+          actions = actions = d["chronology"].values.map{|v| v["actions"]}.compact.map{|v| v.values}.flatten
+          nActions = actions.length
+          actionsPer10Minutes = (nActions*10/([1,d["duration"].to_i/60].max).to_f).ceil
+          if (d["duration"].to_i > (4*interaction.tlo)) and (actionsPer10Minutes<2)
+            iterationsToFilter += 1
+            if destroyEntities
+              e.destroy
+            end
+          end
+        end
+      end
+    end
+
+    if destroyEntities
+      writeInTRS(iterationsToFilter.to_s + " iterations were deleted")
+    else
+      writeInTRS(iterationsToFilter.to_s + " iterations to filter were identified")
+    end
+    
     writeInTRS("Task finished")
   end
 
