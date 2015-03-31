@@ -640,7 +640,7 @@ namespace :trsystem do
 
     ActiveRecord::Base.uncached do
       excursions = Excursion.where("draft='false'")
-      # excursions = [Excursion.find(785),Excursion.find(543)]
+      # excursions = Excursion.where("id='1143'")
 
       vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id is NOT NULL")
 
@@ -673,9 +673,10 @@ namespace :trsystem do
           
           #Aux vars
           user_ids = []
+          users_repeat_ids = []
           users_accept = 0
           users_reject = 0
-
+          
           exEntries.find_each batch_size: 1000 do |tsentry|
             begin
               d = JSON(tsentry["data"])
@@ -755,8 +756,14 @@ namespace :trsystem do
                 end
 
                 if tsentry.user_logged
-                  user_ids.push(d["user"]["id"])
-                  user_ids = user_ids.uniq
+                  userId = d["user"]["id"]
+                  unless user_ids.include? userId
+                    user_ids.push(userId)
+                  else
+                    unless users_repeat_ids.include? userId
+                      users_repeat_ids.push(userId)
+                    end
+                  end
                 end
 
               end
@@ -767,6 +774,7 @@ namespace :trsystem do
 
           #Aux vars
           uniqUsers = user_ids.uniq.length
+          users_repeat = users_repeat_ids.length
 
           #Normalize and get final results
           unless loInteraction.nsamples<1
@@ -783,8 +791,11 @@ namespace :trsystem do
             loInteraction.nsq = (loInteraction.nsq * 100)/loInteraction.nsamples
             loInteraction.neq = (loInteraction.neq * 100)/loInteraction.nsamples
 
-            loInteraction.repeatrate = (user_ids.group_by{|g| g}.select{|key,value| value.length>1}.length/uniqUsers.to_f * 100).ceil.to_i rescue 0
-            loInteraction.favrate = (ex.like_count/uniqUsers.to_f * 100).ceil.to_i rescue 0
+            loInteraction.repeatrate = (users_repeat/uniqUsers.to_f * 100).ceil.to_i rescue 0
+
+            loFavorites = (ex.activities.select{|a| a.activity_verb.name==="like" and a.created_at > DateTime.new(2014, 12, 1, 00, 00, 0)}.length) rescue 0
+            #do not use 'ex.like_count' as loFavorites, since not all favorites have been tracked
+            loInteraction.favrate = (loFavorites/uniqUsers.to_f * 100).ceil.to_i rescue 0
           end
 
           unless loInteraction.nvalidsamples<1
