@@ -1,9 +1,9 @@
 include ActionDispatch::TestProcess
 
-Factory.define :workshop do |u|
+Factory.define :scormfile do |u|
 	u.sequence(:title) { |n| "name#{ n }" }
  	u.sequence(:description) { |n| "desc#{ n }" }
  	u.author {|author| author.association(:user_vish, :name => 'Writely') }
  	u.owner {|author| author.association(:user_vish, :name => 'Writely') }
- 	u.draft false
+ 	u.file { fixture_file_upload 'spec/assets/test_scorm.zip', 'file/zip' }
 end
