@@ -24,13 +24,16 @@ Vish.Search = (function(V,undefined){
       _clickFilter($(this));
     });
     $(document).on('click', ".filter_box_x", function(e){
-      _clickFilter($(this).attr("filter"));
+      _toggleFilterKike($(this).attr("filter_type"), $(this).attr("filter"));
     });
   };
 
 
   var _clickFilter = function(filter){
-    _toggleFilter(filter);
+    var filter_type = filter.closest("div.filter_set").attr("filter_type");
+    var filter_name = filter.attr("filter");
+
+    _toggleFilterKike(filter_type, filter_name);
   };
 
 
@@ -45,11 +48,11 @@ Vish.Search = (function(V,undefined){
 
     //first the top level filter, type (all, user or learning object)
     if(!params["type"] || params["type"].indexOf("") > -1){
-      _toggleFilter("all_type");
+      _toggleFilterKike("type", "all_type");
     }else if(params["type"] == "user"){
-      _toggleFilter("user_type");
+      _toggleFilterKike("type", "user_type");
     } else {
-      _toggleFilter("learning_object_type");
+      _toggleFilterKike("type", "learning_object_type");
     }
 
     //now if params["type"] has any kind of learning object, mark the option
@@ -61,7 +64,7 @@ Vish.Search = (function(V,undefined){
     object_subtypes.forEach(function(item) {
       if(params["type"] && params["type"].indexOf(item)>-1){
         $("#resource_type").show();
-        _toggleFilter("resource");
+        _toggleFilterKike("lo_type", "resource");
       }
     });
 
@@ -70,21 +73,20 @@ Vish.Search = (function(V,undefined){
           return true;//next iteration, q is the query so not a filter, or maybe the param is present but not filled
         }
         value_array.forEach(function(item) {
-          _toggleFilter(item);
+          _toggleFilterKike(name, item);
         });
     });
   };
 
-  /*filter can be a jquery object with the filter or a string*/
-  var _toggleFilter = function(filter) {
+  var _toggleFilterKike = function(filter_type, filter_name) {
     var filter_obj;
-    if(typeof filter === "string"){
-      filter_obj = $("#search-sidebar ul li[filter='"+filter+"']");
+    if(typeof filter_name === "string"){
+      filter_obj = $("#search-sidebar div[filter_type='"+filter_type+"'] ul li[filter='"+filter_name+"']");
     } else {
       filter_obj = filter;
     }
 
-    
+    if(filter_obj.length>0){
       if(filter_obj.hasClass("search-sidebar-selected")) {
         if(filter_obj.attr("filter") != "all_type"){
           //do not allow to deactivate the "all_type" filter
@@ -93,6 +95,7 @@ Vish.Search = (function(V,undefined){
       } else {
         _activateFilter(filter_obj);
       }
+    }
     
   };
 
@@ -117,12 +120,13 @@ Vish.Search = (function(V,undefined){
   var _activateFilter = function(filter_obj, follow_stack){
       follow_stack = typeof follow_stack !== 'undefined' ? follow_stack : true;  //set default value
       var filter_name = filter_obj.attr("filter");
+      var filter_type = filter_obj.closest("div.filter_set").attr("filter_type");
       var filter_content = filter_obj.html();
 
       filter_obj.addClass("search-sidebar-selected");
       if(filter_name!="all_type"){
-        var extra_class = filter_obj.closest("div.filter_set").attr("related");
-        $("#applied_filters").append("<div class='filter_box'><span class='filter_ball "+extra_class+"'>"+filter_content+"</span><div class='filter_box_x' filter='"+filter_name+"'>x</div></div>");
+        var extra_class = "filter_box_" + filter_obj.closest("div.filter_set").attr("filter_type");
+        $("#applied_filters").append("<div class='filter_box'><span class='filter_ball "+extra_class+"'>"+filter_content+"</span><div class='filter_box_x' filter_type='"+filter_type+"' filter='"+filter_name+"'>x</div></div>");
       }
 
       //show the related filters
@@ -134,6 +138,7 @@ Vish.Search = (function(V,undefined){
           _deactivateFilter($(this), false);
         });
       }
+      //window.history.pushState("kikestring", "kike", "/new-url");
   };
 
 
