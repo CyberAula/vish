@@ -144,18 +144,23 @@
               //width: 100px
               margin: -1px
               padding: $zero
-              min-height: 35px
               div
                 .following-button
                   padding: 9px
                 .following-button,
                 .unfollow-button
                   @include border-right-radius (0)
+                  min-height: 34px
+                  max-height: 34px
                 input
                   &[type="submit"]
                     padding: 9px
                     @include border-right-radius (0)
+                    min-height: 34px
+                    max-height: 34px
             .btn
+              min-height: 34px
+              max-height: 34px
               a
                 color: $gray
               @media (max-width: $screen-xs-max)
