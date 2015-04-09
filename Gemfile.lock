@@ -30,9 +30,15 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
+<<<<<<< HEAD
   revision: dec854dbcf1efe4b3cdd9a25612e2b6154d278da
   ref: dec854dbcf1efe4b3cdd9a25612e2b6154d278da
   branch: vish-b3
+=======
+  revision: 1177d131568b3d7b3cb5e1abf54c934487dd2685
+  ref: 1177d131568b3d7b3cb5e1abf54c934487dd2685
+  branch: vish
+>>>>>>> 4513b99a73828db05b0567c44c78c907559afb4c
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.4.1)
@@ -246,7 +252,7 @@ GEM
       hashie
       nokogiri (>= 1.4.0)
       rest-client (~> 1.6.0)
-    has_scope (0.6.0.rc)
+    has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashery (2.1.1)
@@ -268,7 +274,7 @@ GEM
       railties (>= 3.1.0)
     jruby-pageant (1.1.1)
     json (1.8.1)
-    jwt (1.2.1)
+    jwt (1.4.1)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
