@@ -1,17 +1,21 @@
 require 'spec_helper'
 
-describe Quiz do
+describe QuizSession do
 
 	before do
 		@quiz = Factory(:quiz_session)
 	end
 
-	it 'file_type?' do
-		@pdfex.attach_content_type == "application/pdf"
+	it 'title?' do
+		!@quiz.title.blank?
 	end
 
-	it 'file?' do 
-		@pdfex.attach_file_name == "test_pdf.pdf"
+	it 'description?' do
+		!@quiz.description.blank?
+	end
+
+	it 'activity_object?' do 
+		!@quiz.activity_object.nil?
 	end
 
 end
