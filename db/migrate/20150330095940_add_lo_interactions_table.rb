@@ -22,7 +22,6 @@ class AddLoInteractionsTable < ActiveRecord::Migration
       t.integer "acceptancerate"
       t.integer "repeatrate"
       t.integer "favrate"
-      
     end
   end
 end

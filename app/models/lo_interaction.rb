@@ -48,4 +48,23 @@ class LoInteraction < ActiveRecord::Base
     return true
   end
 
+  def qscore
+    tlo_weight = 0.3
+    cpm_weight = 0.3
+    acceptance_weight = 0.4
+
+    tlo_threshold = 524
+    cpm_threshold = 3.7
+    acceptance_threshold = 73.2
+
+    tlo_score = (self.tlo/tlo_threshold.to_f)
+    cpm_score = 0
+    if tlo_score > 0
+      cpm_score = ((self.nclicks/(self.tlo/60.to_f))/(cpm_threshold*100).to_f)
+    end
+    acceptance_score = (self.acceptancerate/acceptance_threshold.to_f)
+
+    return 10 * ([tlo_score,1].min * tlo_weight + [cpm_score,1].min * cpm_weight + [acceptance_score,1].min * acceptance_weight)
+  end
+
 end
