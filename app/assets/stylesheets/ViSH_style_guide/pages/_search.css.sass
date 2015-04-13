@@ -55,7 +55,7 @@
     margin-top: 2px
 
   .results
-    height: 395px
+    height: 431px
     overflow: auto
     ul
       width: 95%
@@ -70,8 +70,27 @@
         margin: 3px 7px
         width: 95%
         border: none
-        //margin: 0 0 6px
-        //@include excursion-small
+        max-height: 43px
+        .container-img
+          width: 27% !important
+          .avatar img
+            margin-top: -7px
+          .img-box
+            i
+              font-size: 35px
+              padding-top: 4px
+        .caption
+          padding-top: 2px
+          width: 73%
+          h6
+            height: 20px
+          h6, .count-followers
+            text-align: left
+        .corner-item, .add, .info-bottom, hr
+          display: none
+      li, .container-img, .caption
+        max-height: 43px
+
       .more
         display: block
         clear: both

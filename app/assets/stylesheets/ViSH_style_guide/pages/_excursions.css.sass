@@ -117,7 +117,7 @@ ul li.box-item .info .author span.by
 #myLearningModal,
 #myTeachingModal
   .modal-dialog
-    width: 75%
+    @extend .modal-lg
     .modal-body
       overflow: hidden
       height: 500px
@@ -129,18 +129,13 @@ ul li.box-item .info .author span.by
         padding: 20px
         text-align: center
         font-size: 1.1em
+  @media (max-width: 767px)
+    #learningModalLabel,
+    #teachingModalLabel
+      font-size: 1.3em
 #myModalLabel
   font-size: 1.2em
 
-@media (max-width: 767px)
-  #myLearningModal,
-  #myTeachingModal
-    margin-top: 2% !important
-    margin-left: 5% !important
-    left: 0px !important
-  #learningModalLabel,
-  #teachingModalLabel
-    font-size: 1.3em
 
 p.thank
   color: $brand-primary

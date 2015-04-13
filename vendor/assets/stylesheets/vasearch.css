@@ -17,9 +17,10 @@
 
 #asearch_settings{
 	display: none;
-	height: 445px;
-	width: 87%;
-	top: 145px;
+	margin: 0 2%;
+  height: 445px;
+  width: 91%;
+  top: 126px;
 	padding: 1%;
 	overflow-y: auto;
 	position: absolute;
@@ -312,7 +313,13 @@
   text-align: left;
   height: auto;
   max-height: 90px;
+  padding-left: 0px;
 }
+
+input[type=checkbox] + .lbl{
+  color: #FFF;
+}
+
 
 #asearch_settings .ViSHinstances ul li{
   margin-top: 5px;

@@ -105,8 +105,12 @@
       <ul>
         <% VishConfig.getViSHInstances.each_with_index do |instance,index| %>
           <li>
-            <input type="checkbox" <%= checked="checked"%>></input>&nbsp;
-            <span><%=instance%></span>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" <%= checked="checked"%>></input>
+                <span class="lbl padding-0"> <%=instance%> </span>
+              </label>
+            </div>
           </li>
         <% end %>
       </ul>
