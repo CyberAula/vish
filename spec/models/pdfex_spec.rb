@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Pdfex do
+describe Pdfex, models:true do
 
 	before do
 		@pdfex = Factory(:pdfex)

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Writing do
+describe Writing, models:true do
 	before do
 		@writing = Factory(:writing)
 	end

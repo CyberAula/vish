@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Officedoc do
+describe Officedoc, models:true do
 
 	before do
 		@Odoc = Factory(:officedoc)

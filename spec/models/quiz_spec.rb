@@ -1,21 +1,37 @@
 require 'spec_helper'
 
-describe QuizSession do
+describe QuizSession, models:true do
 
 	before do
-		@quiz = Factory(:quiz_session)
+		@quiz = Factory(:quizSession)
 	end
 
 	it 'title?' do
-		!@quiz.title.blank?
+		!@quiz.name.blank?
 	end
 
 	it 'description?' do
-		!@quiz.description.blank?
+		!@quiz.quiz.blank?
 	end
 
-	it 'activity_object?' do 
-		!@quiz.activity_object.nil?
+	it 'url?' do 
+		!@quiz.url.nil?
+	end
+
+end
+
+describe QuizAnswer, models:true do
+
+	before do
+		@quizanswer = Factory(:quizAnswer)
+	end
+
+	it 'answer?' do
+		!@quizanswer.answer.blank?
+	end
+
+	it 'belongs2?' do
+		!@quizanswer.quiz_session.blank?
 	end
 
 end

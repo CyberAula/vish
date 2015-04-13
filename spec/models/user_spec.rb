@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe User, models:true do
 	before do
 		@user = Factory(:user_vish)
 		@user2 = Factory(:user_vish)
