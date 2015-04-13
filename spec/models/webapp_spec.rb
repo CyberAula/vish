@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Webapp do
+describe Webapp, models:true do
 
 	before do
 		@webapp = Factory(:webapp)
