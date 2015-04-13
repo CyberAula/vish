@@ -1,9 +1,11 @@
-=begin
+
 require 'spec_helper'
 
-describe PostsController do
+describe PostsController, controllers: true do
+end
+=begin
   include SocialStream::TestHelpers
-  include SocialStream::TestHelpers::Controllers
+  include SocialStream::TestHelpers::Controller, controllers: trues
 
   render_views
 
