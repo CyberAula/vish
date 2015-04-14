@@ -17,13 +17,13 @@
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.type")%></span></span>
           <hr class="separator">
           <ul>
-            <li filter_key="type" filter="all_type" exclusive default><%=t("search.models.all")%></li>
-            <li filter_key="type" filter="user_type" exclusive><%=t("search.models.user")%></li>
-            <li filter_key="type" filter="learning_object_type" exclusive><%=t("search.models.learning_object")%></li>
+            <li filter_key="type" filter="all" exclusive default><%=t("search.models.all")%></li>
+            <li filter_key="type" filter="user" exclusive><%=t("search.models.user")%></li>
+            <li filter_key="type" filter="resource,event,workshop" exclusive><%=t("search.models.learning_object")%></li>
           </ul>
         </div>
 
-        <div filter_type="lo_type" opens_with="learning_object_type" style="display:none" class="filter_set">
+        <div filter_type="lo_type" opens_with="resource,event,workshop" style="display:none" class="filter_set">
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.learning_object")%></span></span>
           <hr class="separator">
           <ul>

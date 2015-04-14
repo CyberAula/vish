@@ -52,11 +52,11 @@ Vish.Search = (function(V,undefined){
 
     //first the top level filter, type (all, user or learning object)
     if(!_parsed_url["type"] || _parsed_url["type"].indexOf("") > -1){
-      _toggleFilter("type", "all_type");
+      _toggleFilter("type", "all");
     }else if(_parsed_url["type"] == "user"){
-      _toggleFilter("type", "user_type");
+      _toggleFilter("type", "user");
     } else {
-      _toggleFilter("type", "learning_object_type");
+      _toggleFilter("type", "resource,event,workshop");
       //in this case "type" can be, "excursion", "event", "workshop", i.e. anything in _options.object_types
       _options.object_types.forEach(function(item_type) {
         if(_parsed_url["type"].indexOf(item_type)>-1){
@@ -91,8 +91,8 @@ Vish.Search = (function(V,undefined){
     
     if(filter_obj.length>0){
       if(filter_obj.hasClass("search-sidebar-selected")) {
-        if(filter_obj.attr("filter") != "all_type"){
-          //do not allow to deactivate the "all_type" filter
+        if(filter_obj.attr("filter") != "all"){
+          //do not allow to deactivate the "all" filter
           _deactivateFilter(filter_obj, update_url);          
         }
       } else {
@@ -112,7 +112,7 @@ Vish.Search = (function(V,undefined){
       $("#applied_filters div[filter='"+filter_name+"']").parent().remove();
 
       //hide the related filters
-      $("#search-sidebar div[opens_with='"+filter_name+"'] li").each(function(){
+      $("#search-sidebar div[opens_with='"+filter_name+"'] li.search-sidebar-selected").each(function(){
           _deactivateFilter($(this), update_url);
       });
       $("#search-sidebar div[opens_with='"+filter_name+"']").hide();
@@ -135,7 +135,7 @@ Vish.Search = (function(V,undefined){
       var filter_content = filter_obj.html();
 
       filter_obj.addClass("search-sidebar-selected");
-      if(filter_name!="all_type"){
+      if(filter_name!="all"){
         var extra_class = "filter_box_" + filter_obj.closest("div.filter_set").attr("filter_type");
         $("#applied_filters").append("<div class='filter_box'><span class='filter_ball "+extra_class+"'>"+filter_content+"</span><div class='filter_box_x' filter_key='"+filter_key+"' filter='"+filter_name+"'>x</div></div>");
       }
@@ -144,24 +144,37 @@ Vish.Search = (function(V,undefined){
       $("#search-sidebar div[opens_with='"+filter_name+"']").show();
       
       if(update_url){
-          _addUrlParameter(filter_key, filter_name);
+        _addUrlParameter(filter_key, filter_name);
       }
 
       //finally see what happens with exclusivity, check if the li has the attribute "exclusive"
       if(follow_stack && filter_obj.attr("exclusive")==""){
-        filter_obj.siblings().each(function() {
+        filter_obj.siblings(".search-sidebar-selected").each(function() {
           _deactivateFilter($(this), update_url, false);
         });
       }
   };
 
 
-  /*adds the parameter to the url*/
-  var _addUrlParameter = function(key, value){
-    if(_parsed_url[key] == undefined){
-      _parsed_url[key] = [];
-    } 
-    _parsed_url[key].push(value);
+  /*adds the parameter to the url
+    also removes other params intelligently if needed
+    for example when clicking on event we have to search for event and remove
+    "resource,event,workshop"*/
+  var _addUrlParameter = function(filter_key, filter_name){
+    if(_parsed_url[filter_key] == undefined){
+      _parsed_url[filter_key] = [];
+    }
+    
+    var filter_obj = $("#search-sidebar ul li[filter_key='"+filter_key+"'][filter='"+filter_name+"']");
+    var opens_with_value = filter_obj.closest("div.filter_set").attr("opens_with");
+    if(opens_with_value !=undefined && opens_with_value!=""){ 
+      //remove that value from the url
+      var index = _parsed_url[filter_key].indexOf(opens_with_value);
+      if (index > -1) {
+        _parsed_url[filter_key].splice(index, 1);
+      }
+    }
+    _parsed_url[filter_key].push(filter_name);
     var final_url = {};
     $.each( _parsed_url, function(key, value){ 
       final_url[key] = value.join();
@@ -171,15 +184,26 @@ Vish.Search = (function(V,undefined){
   };
 
 
-  /*removes the parameter from the url*/
-  var _removeUrlParameter = function(key, value){
-    if(_parsed_url[key] != undefined){
-      //_parsed_url[key] is an array that should contain "value" and we have to remove it
-      var index = _parsed_url[key].indexOf(value);
+  /*removes the parameter from the url
+    also adds other params intelligently if needed*/
+  var _removeUrlParameter = function(filter_key, filter_name){
+    if(_parsed_url[filter_key] != undefined){
+      //_parsed_url[filter_key] is an array that should contain "filter_name" and we have to remove it
+      var index = _parsed_url[filter_key].indexOf(filter_name);
       if (index > -1) {
-        _parsed_url[key].splice(index, 1);
+        _parsed_url[filter_key].splice(index, 1);
       }   
     }  
+
+    //if this filter is the last one we have to add the param "opens_with" to the array
+    var filter_obj = $("#search-sidebar ul li[filter_key='"+filter_key+"'][filter='"+filter_name+"']");
+    var selected_siblings = filter_obj.siblings(".search-sidebar-selected").length;
+    var opens_with_value = filter_obj.closest("div.filter_set").attr("opens_with");
+    if(selected_siblings==0 && opens_with_value !=undefined && opens_with_value!=""){ 
+      //add that value to the url
+      _parsed_url[filter_key].push(opens_with_value);    
+    }
+
     var final_url = {};
     $.each( _parsed_url, function(key, value){ 
       final_url[key] = value.join();
