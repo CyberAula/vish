@@ -13,13 +13,13 @@
   <div class="search">
     <div class="row-fluid">
       <div id="search-sidebar" class="span3 search-filterbar">
-        <div filter_type="type" class="filter_set">
+        <div filter_type="super_type" class="filter_set">
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.type")%></span></span>
           <hr class="separator">
           <ul>
-            <li filter="all_type" exclusive default><%=t("search.models.all")%></li>
-            <li filter="user_type" exclusive><%=t("search.models.user")%></li>
-            <li filter="learning_object_type" exclusive><%=t("search.models.learning_object")%></li>
+            <li filter_key="type" filter="all_type" exclusive default><%=t("search.models.all")%></li>
+            <li filter_key="type" filter="user_type" exclusive><%=t("search.models.user")%></li>
+            <li filter_key="type" filter="learning_object_type" exclusive><%=t("search.models.learning_object")%></li>
           </ul>
         </div>
 
@@ -28,7 +28,7 @@
           <hr class="separator">
           <ul>
             <% VishConfig.getSearchModels().each do |model| %>
-              <li filter="<%=model.downcase%>"><%=t("search.models.#{model.downcase}")%></li>
+              <li filter_key="type" filter="<%=model.downcase%>"><%=t("search.models.#{model.downcase}")%></li>
             <% end %>
           </ul>
         </div>
@@ -38,7 +38,7 @@
           <hr class="separator">
           <ul>
             <% VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).each do |res| %>
-              <li filter="<%=res.downcase%>"><%=t("search.models.#{res.downcase}")%></li>
+              <li filter_key="type" filter="<%=res.downcase%>"><%=t("search.models.#{res.downcase}")%></li>
             <%end%>
           </ul>
         </div>
@@ -48,7 +48,7 @@
           <hr class="separator">
           <ul>
             <% resource_languages.each do |lang| %>
-              <li filter="<%=lang[1]%>"><%=lang[0]%></li>
+              <li filter_key="language" filter="<%=lang[1]%>"><%=lang[0]%></li>
             <% end %>
           </ul>
         </div>
@@ -57,10 +57,10 @@
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.tag")%></span></span>
           <hr class="separator">
           <ul>
-            <li filter="proteccion">Protección</li>
-            <li filter="seguridad">Seguridad</li>
-            <li filter="internet">Internet</li>
-            <li filter="sexting">Sexting</li>
+            <li filter_key="tag" filter="proteccion">Protección</li>
+            <li filter_key="tag" filter="seguridad">Seguridad</li>
+            <li filter_key="tag" filter="internet">Internet</li>
+            <li filter_key="tag" filter="sexting">Sexting</li>
           </ul>
         </div>
 
@@ -164,7 +164,9 @@
 <%= content_for :javascript do %>
 
 
-  Vish.Search.init({"object_subtypes": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).map!(&:downcase)%>});
+  Vish.Search.init({"object_types": <%=raw VishConfig.getSearchModels().map!(&:downcase)%>, 
+                     "resource_types": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).map!(&:downcase)%>});
+
   SocialStream.Repository.show();
 
   $('#search-all ul').pageless({
