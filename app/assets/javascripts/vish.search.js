@@ -46,10 +46,6 @@ Vish.Search = (function(V,undefined){
   };
 
 
-  var _buildQuery = function(){
-
-  };
-
   var _fillSidebarWithParams = function(){
     //remove all previous filters
     //$("#search-sidebar ul li").removeClass("search-sidebar-selected");
@@ -88,6 +84,7 @@ Vish.Search = (function(V,undefined){
     });
   };
 
+
   var _toggleFilter = function(filter_key, filter_name, update_url) {
     update_url = typeof update_url !== 'undefined' ? update_url : false;  //set default value
     var filter_obj = $("#search-sidebar ul li[filter_key='"+filter_key+"'][filter='"+filter_name+"']");
@@ -96,39 +93,42 @@ Vish.Search = (function(V,undefined){
       if(filter_obj.hasClass("search-sidebar-selected")) {
         if(filter_obj.attr("filter") != "all_type"){
           //do not allow to deactivate the "all_type" filter
-          _deactivateFilter(filter_obj);
-          if(update_url){
-            _removeUrlParameter(filter_key, filter_name);
-          }
+          _deactivateFilter(filter_obj, update_url);          
         }
       } else {
-        _activateFilter(filter_obj);
-        if(update_url){
-          _addUrlParameter(filter_key, filter_name);
-        }
+        _activateFilter(filter_obj, update_url);
+        
       }
     }    
   };
 
-  var _deactivateFilter = function(filter_obj, follow_stack){
+
+  var _deactivateFilter = function(filter_obj, update_url, follow_stack){
       follow_stack = typeof follow_stack !== 'undefined' ? follow_stack : true;  //set default value
       var filter_name = filter_obj.attr("filter");
+      var filter_key = filter_obj.attr("filter_key");
 
       filter_obj.removeClass("search-sidebar-selected");
       $("#applied_filters div[filter='"+filter_name+"']").parent().remove();
 
       //hide the related filters
       $("#search-sidebar div[opens_with='"+filter_name+"'] li").each(function(){
-          _deactivateFilter($(this));
+          _deactivateFilter($(this), update_url);
       });
       $("#search-sidebar div[opens_with='"+filter_name+"']").hide();
-      //finally see what happens with exclusivity, check that the li has the attribute "exclusive"
+      if(update_url){
+        _removeUrlParameter(filter_key, filter_name);
+      }
+
+      //finally see what happens with exclusivity, 
+      //if the li has the attribute "exclusive" and we are deactivating it we have to activate the default
       if(follow_stack && filter_obj.attr("exclusive")==""){
-        _activateFilter(filter_obj.siblings("[default]"));
+        _activateFilter(filter_obj.siblings("[default]"), update_url);
       }
   };
 
-  var _activateFilter = function(filter_obj, follow_stack){
+
+  var _activateFilter = function(filter_obj, update_url, follow_stack){
       follow_stack = typeof follow_stack !== 'undefined' ? follow_stack : true;  //set default value
       var filter_name = filter_obj.attr("filter");
       var filter_key = filter_obj.attr("filter_key");
@@ -142,15 +142,18 @@ Vish.Search = (function(V,undefined){
 
       //show the related filters
       $("#search-sidebar div[opens_with='"+filter_name+"']").show();
+      
+      if(update_url){
+          _addUrlParameter(filter_key, filter_name);
+      }
 
       //finally see what happens with exclusivity, check if the li has the attribute "exclusive"
       if(follow_stack && filter_obj.attr("exclusive")==""){
         filter_obj.siblings().each(function() {
-          _deactivateFilter($(this), false);
+          _deactivateFilter($(this), update_url, false);
         });
       }
   };
-
 
 
   /*adds the parameter to the url*/
@@ -163,8 +166,10 @@ Vish.Search = (function(V,undefined){
     $.each( _parsed_url, function(key, value){ 
       final_url[key] = value.join();
     });
-    window.history.pushState("", "", "search?" + queryString.stringify(final_url));
+    var new_url = "search?" + queryString.stringify(final_url);
+    window.history.pushState("", "", new_url);
   };
+
 
   /*removes the parameter from the url*/
   var _removeUrlParameter = function(key, value){
@@ -179,8 +184,10 @@ Vish.Search = (function(V,undefined){
     $.each( _parsed_url, function(key, value){ 
       final_url[key] = value.join();
     });   
-    window.history.pushState("", "", "search?" + queryString.stringify(final_url));
+    var new_url = "search?" + queryString.stringify(final_url);
+    window.history.pushState("", "", new_url);
   };
+
 
   /*Returns an object with the URL parameters as arrays
     EXAMPLE: result = { type: ["Excursion", "Resource"], language:["es", "en"]}*/
@@ -195,6 +202,7 @@ Vish.Search = (function(V,undefined){
       //console.log(parsed);
       return parsed;
   };
+
 
   return {
     init : init
