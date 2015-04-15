@@ -28,16 +28,20 @@
           <hr class="separator">
           <ul>
             <% VishConfig.getSearchModels().each do |model| %>
-              <li filter_key="type" filter="<%=model.downcase%>"><%=t("search.models.#{model.downcase}")%></li>
+                <%if model.downcase=="resource"%>
+                  <li filter_key="type" filter="document,embed,link"><%=t("search.models.#{model.downcase}")%></li>
+                <%else%>
+                  <li filter_key="type" filter="<%=model.downcase%>"><%=t("search.models.#{model.downcase}")%></li>
+                <%end%>
             <% end %>
           </ul>
         </div>
 
-        <div filter_type="resouce_type" id="resource_type" opens_with="resource" style="display:none" class="filter_set">
+        <div filter_type="resouce_type" id="resource_type" opens_with="document,embed,link" style="display:none" class="filter_set">
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.resource")%></span></span>
           <hr class="separator">
           <ul>
-            <% VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).each do |res| %>
+            <% VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }.each do |res| %>
               <li filter_key="type" filter="<%=res.downcase%>"><%=t("search.models.#{res.downcase}")%></li>
             <%end%>
           </ul>
@@ -164,8 +168,8 @@
 <%= content_for :javascript do %>
 
 
-  Vish.Search.init({"object_types": <%=raw VishConfig.getSearchModels().map!(&:downcase)%>, 
-                     "resource_types": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).map!(&:downcase)%>});
+  Vish.Search.init({"object_types": <%=raw VishConfig.getSearchModels().map! { |elem| elem == "Resource" ? "document,embed,link" : elem.downcase }%>, 
+                     "resource_types": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }.map!(&:downcase)%>});
 
   SocialStream.Repository.show();
 

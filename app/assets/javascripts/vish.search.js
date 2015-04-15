@@ -9,17 +9,17 @@ Vish.Search = (function(V,undefined){
 
   /* options is an object like this:
       { object_types: ["Excursion", "Resource", "Event", "Workshop"],
-        resource_types: ["Document", "Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"],
+        resource_types: [Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"],
       }  
   */
   var init = function(options){
     _options = options || {};
     
     if(!_options.object_types){      
-      _options.object_types = ["Excursion", "Resource", "Event", "Workshop"];
+      _options.object_types = ["Excursion", "document,embed,link", "Event", "Workshop"];
     }
     if(!_options.resource_types){      
-      _options.resource_types = ["Document", "Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"];
+      _options.resource_types = ["Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"];
     }
 
     //take the params from the URL and mark them in the sidebar
@@ -67,7 +67,7 @@ Vish.Search = (function(V,undefined){
       //finally if _parsed_url["type"] can be anything in _options.resource_types, so we would have to mark the lo_type to "resource"
       _options.resource_types.forEach(function(item_subtype) {
         if(_parsed_url["type"].indexOf(item_subtype)>-1){          
-          _toggleFilter("type", "resource");
+          _toggleFilter("type", "document,embed,link");
           $("#resource_type").show();
           _toggleFilter("type", item_subtype);
         }
@@ -160,7 +160,7 @@ Vish.Search = (function(V,undefined){
     also removes other params intelligently if needed
     for example when clicking on event we have to search for event and remove
     "resource,event,workshop"*/
-  var _addUrlParameter = function(filter_key, filter_name){
+  var _addUrlParameter = function(filter_key, filter_name){    
     if(_parsed_url[filter_key] == undefined){
       _parsed_url[filter_key] = [];
     }
@@ -177,7 +177,14 @@ Vish.Search = (function(V,undefined){
     _parsed_url[filter_key].push(filter_name);
     var final_url = {};
     $.each( _parsed_url, function(key, value){ 
-      final_url[key] = value.join();
+      //remove empty strings
+      value = value.filter(function(e) { return e; });
+      if(key==="type" && value.length==1 && value[0]==="all"){
+        final_url[key] = "";
+      } else {
+        //remove empty strings and join
+        final_url[key] = value.join();
+      }
     });
     var new_url = "search?" + queryString.stringify(final_url);
     window.history.pushState("", "", new_url);
@@ -187,6 +194,7 @@ Vish.Search = (function(V,undefined){
   /*removes the parameter from the url
     also adds other params intelligently if needed*/
   var _removeUrlParameter = function(filter_key, filter_name){
+    
     if(_parsed_url[filter_key] != undefined){
       //_parsed_url[filter_key] is an array that should contain "filter_name" and we have to remove it
       var index = _parsed_url[filter_key].indexOf(filter_name);
@@ -206,7 +214,13 @@ Vish.Search = (function(V,undefined){
 
     var final_url = {};
     $.each( _parsed_url, function(key, value){ 
-      final_url[key] = value.join();
+      //remove empty strings
+      value = value.filter(function(e) { return e; });
+      if(key==="type" && value.length==1 && value[0]==="all"){
+        final_url[key] = "";
+      } else {
+        final_url[key] = value.join();
+      }
     });   
     var new_url = "search?" + queryString.stringify(final_url);
     window.history.pushState("", "", new_url);
