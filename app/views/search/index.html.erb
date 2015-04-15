@@ -168,6 +168,7 @@
                      "resource_types": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }%>});
 
   SocialStream.Repository.show();
+  $('#search-all ul').trigger("scroll.pageless");
 
   $('#search-all ul').pageless({
                       totalPages: <%=@search_result.num_pages%>,
@@ -205,65 +206,32 @@
                       }
   });
 
-  $("footer#footer").addClass("fixed-bottom");
+  function re_apply_pageless(tab){
+    //first remove old pageless
+    $.pagelessStop();      
+     
+    $("#" + tab + "_tab_ready ul").pageless({
+      totalPages: pageless_state[tab].num_pages,
+      url: get_url_with_sort_by(tab),
+      currentPage: pageless_state[tab].current_page,
+      loader: '.loader_pagination',
+      complete: function(){
+      },
+      end: function(){
+        $('.loader_pagination').hide();
+      }
+    });
+  };
 
-  <% if params[:type] %>
-    //if "popular" links used, the tabs are links to other "popular" searches
-    $("#search .all_results").click(function(){
-      window.location.href = '<%=search_path(:browse=>"true", :sort_by => "ranking")%>';
-    });
-    $("#search .excursion").click(function(){
-      window.location.href = '<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking")%>';
-    });
-    $("#search .user").click(function(){
-      window.location.href = '<%=search_path(:type => "user", :browse=>"true", :sort_by => "ranking")%>';
-    });
-    $("#search .event").click(function(){
-      window.location.href = '<%=search_path(:type => "event", :browse=>"true", :sort_by => "ranking")%>';
-    });
-    $("#search .resource").click(function(){
-      window.location.href = '<%=search_path(:type => "resource", :browse=>"true", :sort_by => "ranking")%>';
-    });
-    $("#search .workshop").click(function(){
-      window.location.href = '<%=search_path(:type => "workshop", :browse=>"true", :sort_by => "ranking")%>';
-    });
-  <% elsif browse === false %>
-    //if search is manual, the tabs are like filters, so done with js
-    //tab filtering, show only excursions, users, resources, etc.
-    $("#search .all_results").click(function(){
-      $("#search-all > ul").children().show();
-    });
-    $("#search .excursion").not(".disabled").click(function(){
-      $("#search-all > ul").children(".excursion-item").show();
-      $("#search-all > ul").children().not(".excursion-item").hide();
-      //call for more results
-      $('#search-all ul').trigger("scroll.pageless");
-    });
-    $("#search .event").not(".disabled").click(function(){
-      $("#search-all > ul").children(".event-item").show();
-      $("#search-all > ul").children().not(".event-item").hide();
-      //call for more results
-      $('#search-all ul').trigger("scroll.pageless");
-    });
-    $("#search .user").not(".disabled").click(function(){
-      $("#search-all > ul").children(".contact").show();
-      $("#search-all > ul").children().not(".contact").hide();
-      //call for more results
-      //$('#search-all ul').trigger("scroll.pageless");
-    });
-    $("#search .resource").not(".disabled").click(function(){
-      $("#search-all > ul").children(".resource-item").show();
-      $("#search-all > ul").children().not(".resource-item").hide();
-      //call for more results
-      $('#search-all ul').trigger("scroll.pageless");
-    });
-    $("#search .workshop").not(".disabled").click(function(){
-      $("#search-all > ul").children(".workshop-item").show();
-      $("#search-all > ul").children().not(".workshop-item").hide();
-      //call for more results
-      $('#search-all ul').trigger("scroll.pageless");
-    });
-  <%end%>
+  function get_url_with_sort_by(tab){
+    var the_url = pageless_state[tab].url;
+    if(tab == "net"){
+      the_url = the_url + "&sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
+    }
+    return the_url;
+  };
+
+  $("footer#footer").addClass("fixed-bottom");
 
   $('.scroll-pane').jScrollPane();
 
