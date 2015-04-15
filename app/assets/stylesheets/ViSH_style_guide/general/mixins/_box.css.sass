@@ -123,9 +123,13 @@
     height: 85px
     @include border-right-radius (0)
     @include border-left-radius ($border-radius-small)
+    -moz-border-top-right-radius: 0
+    -webkit-border-top-right-radius: 0
+    border-top-right-radius: 0 !important
     .img-box
       @include border-right-radius (0)
       @include border-left-radius ($border-radius-small)
+      @include border-top-right-radius (0)
       i
         font-size: 44px
         padding-top: 14px
@@ -136,6 +140,8 @@
     margin-top: 0px !important
     width: 60%
     float: left
+    .info-bottom
+      padding-top: 3px
 
 @mixin comments
   width: 100%

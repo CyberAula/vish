@@ -91,14 +91,23 @@
 }
 
 #asearch_results div.noResults{
-  padding: 50px 5px 50px 5px;
-  font-family: Arial, sans-serif;
+  font-family: Arial,sans-serif;
   font-size: 23px;
-  line-height: 18px;
   font-weight: normal;
-  word-wrap: break-word;
-  text-align: center;
+  left: 5%;
+  border-radius: 0 0 5px 5px;
+  right: 5%;
+  line-height: 18px;
   margin-top: 50px;
+  padding: 50px 5px;
+  position: relative;
+  text-align: center;
+  top: 0;
+  width: 90%;
+  word-wrap: break-word;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
 }
 
 #asearch_results div.resultImageWrapper{

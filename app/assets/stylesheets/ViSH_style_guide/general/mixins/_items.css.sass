@@ -2,6 +2,8 @@
   @include thumbnail
   .corner-item
     @include item-corner
+  .info-bottom
+    padding-top: 4px
   //1
   @media (max-width: 480px)
     width: 100%
@@ -67,6 +69,7 @@
   height: 88px
   z-index: 2
   overflow: hidden
+  @include border-top-left-radius(4px)
   .corner-item2
     position: absolute
     color: transparent
