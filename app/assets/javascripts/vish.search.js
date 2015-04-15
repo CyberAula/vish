@@ -16,7 +16,7 @@ Vish.Search = (function(V,undefined){
     _options = options || {};
     
     if(!_options.object_types){      
-      _options.object_types = ["Excursion", "document,embed,link", "Event", "Workshop"];
+      _options.object_types = ["Excursion", "Resource", "Event", "Workshop"];
     }
     if(!_options.resource_types){      
       _options.resource_types = ["Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"];
@@ -50,13 +50,13 @@ Vish.Search = (function(V,undefined){
     //remove all previous filters
     //$("#search-sidebar ul li").removeClass("search-sidebar-selected");
 
-    //first the top level filter, type (all, user or learning object)
+    //first the top level filter, type (All, user or learning object)
     if(!_parsed_url["type"] || _parsed_url["type"].indexOf("") > -1){
-      _toggleFilter("type", "all");
-    }else if(_parsed_url["type"] == "user"){
-      _toggleFilter("type", "user");
+      _toggleFilter("type", "All");
+    }else if(_parsed_url["type"] == "User"){
+      _toggleFilter("type", "User");
     } else {
-      _toggleFilter("type", "resource,event,workshop");
+      _toggleFilter("type", "Learning_object");
       //in this case "type" can be, "excursion", "event", "workshop", i.e. anything in _options.object_types
       _options.object_types.forEach(function(item_type) {
         if(_parsed_url["type"].indexOf(item_type)>-1){
@@ -67,7 +67,7 @@ Vish.Search = (function(V,undefined){
       //finally if _parsed_url["type"] can be anything in _options.resource_types, so we would have to mark the lo_type to "resource"
       _options.resource_types.forEach(function(item_subtype) {
         if(_parsed_url["type"].indexOf(item_subtype)>-1){          
-          _toggleFilter("type", "document,embed,link");
+          _toggleFilter("type", "Resource");
           $("#resource_type").show();
           _toggleFilter("type", item_subtype);
         }
@@ -91,8 +91,8 @@ Vish.Search = (function(V,undefined){
     
     if(filter_obj.length>0){
       if(filter_obj.hasClass("search-sidebar-selected")) {
-        if(filter_obj.attr("filter") != "all"){
-          //do not allow to deactivate the "all" filter
+        if(filter_obj.attr("filter") != "All"){
+          //do not allow to deactivate the "All" filter
           _deactivateFilter(filter_obj, update_url);          
         }
       } else {
@@ -120,7 +120,7 @@ Vish.Search = (function(V,undefined){
         _removeUrlParameter(filter_key, filter_name);
       }
 
-      //finally see what happens with exclusivity, 
+      //finAlly see what happens with exclusivity, 
       //if the li has the attribute "exclusive" and we are deactivating it we have to activate the default
       if(follow_stack && filter_obj.attr("exclusive")==""){
         _activateFilter(filter_obj.siblings("[default]"), update_url);
@@ -135,7 +135,7 @@ Vish.Search = (function(V,undefined){
       var filter_content = filter_obj.html();
 
       filter_obj.addClass("search-sidebar-selected");
-      if(filter_name!="all"){
+      if(filter_name!="All"){
         var extra_class = "filter_box_" + filter_obj.closest("div.filter_set").attr("filter_type");
         $("#applied_filters").append("<div class='filter_box'><span class='filter_ball "+extra_class+"'>"+filter_content+"</span><div class='filter_box_x' filter_key='"+filter_key+"' filter='"+filter_name+"'>x</div></div>");
       }
@@ -159,7 +159,7 @@ Vish.Search = (function(V,undefined){
   /*adds the parameter to the url
     also removes other params intelligently if needed
     for example when clicking on event we have to search for event and remove
-    "resource,event,workshop"*/
+    "learning_object"*/
   var _addUrlParameter = function(filter_key, filter_name){    
     if(_parsed_url[filter_key] == undefined){
       _parsed_url[filter_key] = [];
@@ -179,7 +179,7 @@ Vish.Search = (function(V,undefined){
     $.each( _parsed_url, function(key, value){ 
       //remove empty strings
       value = value.filter(function(e) { return e; });
-      if(key==="type" && value.length==1 && value[0]==="all"){
+      if(key==="type" && value.length==1 && value[0]==="All"){
         final_url[key] = "";
       } else {
         //remove empty strings and join
@@ -216,7 +216,7 @@ Vish.Search = (function(V,undefined){
     $.each( _parsed_url, function(key, value){ 
       //remove empty strings
       value = value.filter(function(e) { return e; });
-      if(key==="type" && value.length==1 && value[0]==="all"){
+      if(key==="type" && value.length==1 && value[0]==="All"){
         final_url[key] = "";
       } else {
         final_url[key] = value.join();

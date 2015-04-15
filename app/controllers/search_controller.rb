@@ -81,11 +81,45 @@ class SearchController < ApplicationController
       params[:ids_to_avoid] = params[:ids_to_avoid].split(",")
     end
 
-    models = SocialStream::Search.models(mode, params[:type])
+    models =  ( mode == :quick ? SocialStream::Search.models(mode, params[:type]) : processTypeParam(params[:type]) )
 
     RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page=>page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid], :subject => current_subject})
   end
 
+  def processTypeParam(type)
+    models = []    
+    #binding.pry
+    unless type.blank?
+      allAvailableModels = VishConfig.getAllAvailableAndFixedModels(:include_subtypes => true)
+      # Available Types: all available models and the alias 'Resource' and 'learning_object'
+      allAvailableTypes = allAvailableModels + ["Resource", "Learning_object"]
+
+      types = type.split(",") & allAvailableTypes
+
+      if types.include? ["Resource"]
+        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes))
+      end
+
+      types = types & allAvailableModels
+      types.uniq!
+
+      types.each do |type|
+        #Find model
+        model = type.singularize.classify.constantize rescue nil
+        unless model.nil?
+          models.push(model)
+        end
+      end
+    end
+
+    if models.empty?
+      #Default models
+      models = VishConfig.getAvailableResourceModels({:return_instances => true})
+    end
+
+    models.uniq!
+    return models
+  end
 end
 
           
