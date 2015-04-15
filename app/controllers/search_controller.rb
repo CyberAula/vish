@@ -88,7 +88,7 @@ class SearchController < ApplicationController
 
   def processTypeParam(type)
     models = []    
-    #binding.pry
+    
     unless type.blank?
       allAvailableModels = VishConfig.getAllAvailableAndFixedModels(:include_subtypes => true)
       # Available Types: all available models and the alias 'Resource' and 'learning_object'
@@ -96,6 +96,11 @@ class SearchController < ApplicationController
 
       types = type.split(",") & allAvailableTypes
 
+      if types.include? ["Learning_object"]
+        types.concat(["Excursion", "Resource", "Event", "Workshop"])
+      end
+
+      #TODO XXX KIKE check if this works, because with binding.pry this fails.
       if types.include? ["Resource"]
         types.concat(VishConfig.getAvailableResourceModels(:include_subtypes))
       end
