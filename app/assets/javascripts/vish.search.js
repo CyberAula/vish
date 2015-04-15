@@ -67,7 +67,8 @@ Vish.Search = (function(V,undefined){
       //finally if _parsed_url["type"] can be anything in _options.resource_types, so we would have to mark the lo_type to "resource"
       _options.resource_types.forEach(function(item_subtype) {
         if(_parsed_url["type"].indexOf(item_subtype)>-1){          
-          _toggleFilter("type", "Resource");
+          var filter_resource_obj = $("#search-sidebar ul li[filter_key='type'][filter='Resource']");
+          _activateFilter(filter_resource_obj, false, false);
           $("#resource_type").show();
           _toggleFilter("type", item_subtype);
         }
@@ -104,55 +105,59 @@ Vish.Search = (function(V,undefined){
 
 
   var _deactivateFilter = function(filter_obj, update_url, follow_stack){
-      follow_stack = typeof follow_stack !== 'undefined' ? follow_stack : true;  //set default value
-      var filter_name = filter_obj.attr("filter");
-      var filter_key = filter_obj.attr("filter_key");
+      if(filter_obj.hasClass("search-sidebar-selected")){
+        follow_stack = typeof follow_stack !== 'undefined' ? follow_stack : true;  //set default value
+        var filter_name = filter_obj.attr("filter");
+        var filter_key = filter_obj.attr("filter_key");
 
-      filter_obj.removeClass("search-sidebar-selected");
-      $("#applied_filters div[filter='"+filter_name+"']").parent().remove();
+        filter_obj.removeClass("search-sidebar-selected");
+        $("#applied_filters div[filter='"+filter_name+"']").parent().remove();
 
-      //hide the related filters
-      $("#search-sidebar div[opens_with='"+filter_name+"'] li.search-sidebar-selected").each(function(){
-          _deactivateFilter($(this), update_url);
-      });
-      $("#search-sidebar div[opens_with='"+filter_name+"']").hide();
-      if(update_url){
-        _removeUrlParameter(filter_key, filter_name);
-      }
+        //hide the related filters
+        $("#search-sidebar div[opens_with='"+filter_name+"'] li.search-sidebar-selected").each(function(){
+            _deactivateFilter($(this), update_url);
+        });
+        $("#search-sidebar div[opens_with='"+filter_name+"']").hide();
+        if(update_url){
+          _removeUrlParameter(filter_key, filter_name);
+        }
 
-      //finAlly see what happens with exclusivity, 
-      //if the li has the attribute "exclusive" and we are deactivating it we have to activate the default
-      if(follow_stack && filter_obj.attr("exclusive")==""){
-        _activateFilter(filter_obj.siblings("[default]"), update_url);
+        //finAlly see what happens with exclusivity, 
+        //if the li has the attribute "exclusive" and we are deactivating it we have to activate the default
+        if(follow_stack && filter_obj.attr("exclusive")==""){
+          _activateFilter(filter_obj.siblings("[default]"), update_url);
+        }
       }
   };
 
 
   var _activateFilter = function(filter_obj, update_url, follow_stack){
-      follow_stack = typeof follow_stack !== 'undefined' ? follow_stack : true;  //set default value
-      var filter_name = filter_obj.attr("filter");
-      var filter_key = filter_obj.attr("filter_key");
-      var filter_content = filter_obj.html();
+      if(!filter_obj.hasClass("search-sidebar-selected")){
+        follow_stack = typeof follow_stack !== 'undefined' ? follow_stack : true;  //set default value
+        var filter_name = filter_obj.attr("filter");
+        var filter_key = filter_obj.attr("filter_key");
+        var filter_content = filter_obj.html();
 
-      filter_obj.addClass("search-sidebar-selected");
-      if(filter_name!="All"){
-        var extra_class = "filter_box_" + filter_obj.closest("div.filter_set").attr("filter_type");
-        $("#applied_filters").append("<div class='filter_box'><span class='filter_ball "+extra_class+"'>"+filter_content+"</span><div class='filter_box_x' filter_key='"+filter_key+"' filter='"+filter_name+"'>x</div></div>");
-      }
+        filter_obj.addClass("search-sidebar-selected");
+        if(filter_name!="All"){
+          var extra_class = "filter_box_" + filter_obj.closest("div.filter_set").attr("filter_type");
+          $("#applied_filters").append("<div class='filter_box'><span class='filter_ball "+extra_class+"'>"+filter_content+"</span><div class='filter_box_x' filter_key='"+filter_key+"' filter='"+filter_name+"'>x</div></div>");
+        }
 
-      //show the related filters
-      $("#search-sidebar div[opens_with='"+filter_name+"']").show();
-      
-      if(update_url){
-        _addUrlParameter(filter_key, filter_name);
-      }
+        //show the related filters
+        $("#search-sidebar div[opens_with='"+filter_name+"']").show();
+        
+        if(update_url){
+          _addUrlParameter(filter_key, filter_name);
+        }
 
-      //finally see what happens with exclusivity, check if the li has the attribute "exclusive"
-      if(follow_stack && filter_obj.attr("exclusive")==""){
-        filter_obj.siblings(".search-sidebar-selected").each(function() {
-          _deactivateFilter($(this), update_url, false);
-        });
-      }
+        //finally see what happens with exclusivity, check if the li has the attribute "exclusive"
+        if(follow_stack && filter_obj.attr("exclusive")==""){
+          filter_obj.siblings(".search-sidebar-selected").each(function() {
+            _deactivateFilter($(this), update_url, false);
+          });
+        }
+      }      
   };
 
 
