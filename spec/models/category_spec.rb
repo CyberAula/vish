@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Category do
+describe Category, models:true do
   before do
     @category = Factory(:category)
   end

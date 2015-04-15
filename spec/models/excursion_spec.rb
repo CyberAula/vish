@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Excursion do
+describe Excursion, models: true do
 	before do
 		@excursion = Factory(:excursion)
 	end

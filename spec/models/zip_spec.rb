@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Zip do
+describe Zip, models:true do
 
 	before do
 		@zipfile = Factory(:zipfile)
