@@ -1,6 +1,6 @@
 Vish.Utils = (function(V,undefined){
   
-    var init = function(){ }
+    var init = function(){ };
 
     var convertToTagsArray = function(tags){
       var tagsArray = [];
@@ -14,7 +14,7 @@ Vish.Utils = (function(V,undefined){
       });
       
       return tagsArray;
-    }
+    };
 
 
     var validateInput = function(inputId){
@@ -23,12 +23,10 @@ Vish.Utils = (function(V,undefined){
         return false;
       }
       
-      if($("#" + inputId).val().trim()==""){
-           return false;
-      }
+      return $("#" + inputId).val().trim() != "";
       
-      return true;
-    }
+
+    };
 
     return {
       init : init,
