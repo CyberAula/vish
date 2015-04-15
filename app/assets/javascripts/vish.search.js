@@ -75,8 +75,15 @@ Vish.Search = (function(V,undefined){
       });
     }    
 
+    //sort_by attribute
+    if(_parsed_url["sort_by"]){
+      var value = $("#order_by_selector_search .dropdown-menu [sort-by-key="+_parsed_url["sort_by"]+"]").html();
+      $("#order_by_selector_search button").html(value + '<i class="icon-angle-down"></i>'); 
+    }
+
+    //the rest of the filters
     $.each( _parsed_url, function(name, value_array){
-        if(name === 'q' || name === 'type' || value_array.length===0 || value_array[0] === "") {
+        if(name === 'q' || name === 'type' || name === 'sort_by' ||value_array.length===0 || value_array[0] === "") {
           return true;//next iteration, q is the query so not a filter, "type" has already been manually treated, or maybe the param is present but not filled
         }
         value_array.forEach(function(item) {
@@ -180,19 +187,8 @@ Vish.Search = (function(V,undefined){
       }
     }
     _parsed_url[filter_key].push(filter_name);
-    var final_url = {};
-    $.each( _parsed_url, function(key, value){ 
-      //remove empty strings
-      value = value.filter(function(e) { return e; });
-      if(key==="type" && value.length==1 && value[0]==="All"){
-        final_url[key] = "";
-      } else {
-        //remove empty strings and join
-        final_url[key] = value.join();
-      }
-    });
-    var new_url = "search?" + queryString.stringify(final_url);
-    window.history.pushState("", "", new_url);
+    
+    _composeFinalUrlAndCallServer();
   };
 
 
@@ -217,6 +213,10 @@ Vish.Search = (function(V,undefined){
       _parsed_url[filter_key].push(opens_with_value);    
     }
 
+    _composeFinalUrlAndCallServer();    
+  };
+
+  var _composeFinalUrlAndCallServer = function(sort_by){
     var final_url = {};
     $.each( _parsed_url, function(key, value){ 
       //remove empty strings
@@ -229,6 +229,27 @@ Vish.Search = (function(V,undefined){
     });   
     var new_url = "search?" + queryString.stringify(final_url);
     window.history.pushState("", "", new_url);
+    _manageQuery(new_url, sort_by);
+  };
+
+  /*query is the URL to call the server
+    sort_by_key is the key to stablish the sort_by drop down value when success
+  */
+  var _manageQuery = function(query, sort_by_key){
+    $.ajax({
+          type : "GET",
+          url : query,
+          success : function(html_code) {
+            if(sort_by_key){
+              var value = $("#order_by_selector_search .dropdown-menu [sort-by-key="+sort_by_key+"]").html();
+              $("#order_by_selector_search button").html(value + '<i class="icon-angle-down"></i>');
+            }
+            $("#search-all ul").html(html_code);
+          },
+          error: function(error){
+            $("#search-all ul").html(error);
+         }
+        });
   };
 
 
@@ -246,9 +267,15 @@ Vish.Search = (function(V,undefined){
       return parsed;
   };
 
+  var launch_search_with_sort_by = function(sort_by){
+    _parsed_url["sort_by"] = [sort_by];
+    _composeFinalUrlAndCallServer(sort_by);
+
+  }
 
   return {
-    init : init
+    init : init,
+    launch_search_with_sort_by: launch_search_with_sort_by
   };
 
 }) (Vish);

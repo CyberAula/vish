@@ -80,50 +80,50 @@
           <div id="applied_filters" class="filter_boxes"></div>
           <div class="clear"></div>
           <%#= render partial: 'search/order_by_dropdown' %>
-          <div class="dropdown_order_by">
+          <div class="dropdown_order_by" id="order_by_selector_search">
 
             <button class="btn" type="button" data-toggle="dropdown">
               <i class="icon-eye-open"></i>
-              <span>Relevancia</span><i class="icon-angle-down"></i>
+              <span><%=t('order_by.relevance')%></span><i class="icon-angle-down"></i>
             </button>
 
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
               <li>
-                <a href="/search?q=" sort-by-key="relevance">
+                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('relevance')" sort-by-key="relevance">
                   <i class="icon-eye-open"></i>
-                  <span>Relevancia </span>
+                  <span><%=t('order_by.relevance')%> </span>
                 </a>
               </li>
              <li>
-                <a href="/search?q=&amp;sort_by=popularity" sort-by-key="popularity">
+                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('popularity')" sort-by-key="popularity">
                   <i class="icon-dashboard"></i>
-                  <span>Popular </span>
+                  <span><%=t('order_by.popularity')%> </span>
                 </a>
               </li>
               <li>
-                <a href="/search?q=&amp;sort_by=updated_at" sort-by-key="updated_at">
+                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('updated_at')" sort-by-key="updated_at">
                   <i class="icon-pencil"></i>
-                  <span>Modificación </span>
+                  <span><%=t('order_by.updated_at')%> </span>
                 </a>
               </li>
               <li>
-                <a href="/search?q=&amp;sort_by=created_at" sort-by-key="created_at">
+                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('created_at')" sort-by-key="created_at">
                   <i class="icon-bolt"></i>
-                  <span>Creación </span>
+                  <span><%=t('order_by.created_at')%> </span>
                 </a>
               </li>
 
 
                 <li>
-                  <a href="/search?q=&amp;sort_by=visits" sort-by-key="visits">
+                  <a href="#" onclick="Vish.Search.launch_search_with_sort_by('visits')" sort-by-key="visits">
                     <i class="icon-eye-open"></i>
-                    <span>Visitas </span>
+                    <span><%=t('order_by.visits')%> </span>
                   </a>
                 </li>
                 <li>
-                  <a href="/search?q=&amp;sort_by=favorites" sort-by-key="favorites">
+                  <a href="#" onclick="Vish.Search.launch_search_with_sort_by('favorites')" sort-by-key="favorites">
                     <i class="icon-star"></i>
-                    <span>Favoritos </span>
+                    <span><%=t('order_by.favorites')%> </span>
                   </a>
                 </li>
             </ul>
