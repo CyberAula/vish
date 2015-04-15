@@ -48,13 +48,13 @@
 			name: "<%= current_subject.name %>",
 			id: "<%= Actor.normalize_id(current_subject) %>",
 			token: "<%= form_authenticity_token %>"
-		}
+		};
 	<% else %>
 		options["user"] = {
 			name: "<%= @excursion.owner.name %>",
 			id: "<%= Actor.normalize_id(@excursion.owner) %>",
 			token: "<%= form_authenticity_token %>"
-		}
+		};
 	<% end %>
 
 	options["draft"] = <%= @excursion.draft.to_s %>;

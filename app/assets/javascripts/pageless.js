@@ -111,8 +111,7 @@
       settings.inited = false;
       stopListener();
     }
-    
-  }
+  };
 
   var loaderHtml = function () {
     return settings.loaderHtml ||

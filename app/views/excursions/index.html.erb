@@ -91,7 +91,7 @@
       }
     };
 
-  var catalogue_charge = {}
+  var catalogue_charge = {};
 
   function catalogue_state(next_state){
     if (catalogue_charge[next_state] == null){
@@ -114,7 +114,7 @@
     }
     else {
       $('.loader_pagination').hide();
-      $("#catalogue_tab_ready").empty()
+      $("#catalogue_tab_ready").empty();
       $("#catalogue_tab_ready").append(catalogue_charge[next_state]);
       re_apply_backstretch("catforhome");
     }
