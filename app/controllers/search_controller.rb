@@ -81,7 +81,7 @@ class SearchController < ApplicationController
       params[:ids_to_avoid] = params[:ids_to_avoid].split(",")
     end
 
-    models =  ( mode == :quick ? SocialStream::Search.models(mode, params[:type]) : processTypeParam(params[:type]) )
+    models = ( mode == :quick ? SocialStream::Search.models(mode, params[:type]) : processTypeParam(params[:type]) )
 
     RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page=>page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid], :subject => current_subject})
   end

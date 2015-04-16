@@ -56,11 +56,7 @@
         <div filter_type="tag" class="filter_set">
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.tag")%></span></span>
           <hr class="separator">
-          <ul>
-            <li filter_key="tag" filter="proteccion">Protección</li>
-            <li filter_key="tag" filter="seguridad">Seguridad</li>
-            <li filter_key="tag" filter="internet">Internet</li>
-            <li filter_key="tag" filter="sexting">Sexting</li>
+          <ul id="tags_ul">
           </ul>
         </div>
 
@@ -165,74 +161,14 @@
 
 
   Vish.Search.init({"object_types": <%=raw VishConfig.getSearchModels()%>, 
-                     "resource_types": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }%>});
+                    "resource_types": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }%>,
+                    "num_pages": <%=@search_result.num_pages%>,
+                    "url": window.location.href,
+                    "tags": "<%=extract_tags(@search_result)%>"
+                     });
 
   SocialStream.Repository.show();
-  $('#search-all ul').trigger("scroll.pageless");
-
-  $('#search-all ul').pageless({
-                      totalPages: <%=@search_result.num_pages%>,
-                      url: window.location.href,
-                      currentPage: <%=@search_result.current_page%>,
-                      loader: '.loader_pagination',
-                      end: function(){
-                        $('.loader_pagination').hide();
-                        $("#last_content_shown").show();
-                      },
-                      finishedAddingHiddenElem: function(hidden_elem){
-                          var active_tab = $("#search ul.nav li.active");
-
-                          //we check this each time because it can change. We show the elem if the tab is active or if it is "all" tab
-                          if(active_tab.hasClass("all_results")){
-                            hidden_elem.fadeIn();
-                          }
-                          else if (active_tab.hasClass("excursion") && hidden_elem.hasClass("excursion-item")){
-                            hidden_elem.fadeIn();
-                          }
-                          else if (active_tab.hasClass("resource") && hidden_elem.hasClass("resource-item")){
-                            hidden_elem.fadeIn();
-                          }
-                          else if (active_tab.hasClass("event") && hidden_elem.hasClass("event-item")){
-                            hidden_elem.fadeIn();
-                          }
-                          else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
-                            hidden_elem.fadeIn();
-                          }
-                      },
-                      complete: function(){
-                        //when we complete one page and there is no scroll, there cannot be another call
-                        //so we do a manual watch to bring all pages needed until we have a scroll
-                        $.pageless.watch();
-                      }
-  });
-
-  function re_apply_pageless(tab){
-    //first remove old pageless
-    $.pagelessStop();      
-     
-    $("#" + tab + "_tab_ready ul").pageless({
-      totalPages: pageless_state[tab].num_pages,
-      url: get_url_with_sort_by(tab),
-      currentPage: pageless_state[tab].current_page,
-      loader: '.loader_pagination',
-      complete: function(){
-      },
-      end: function(){
-        $('.loader_pagination').hide();
-      }
-    });
-  };
-
-  function get_url_with_sort_by(tab){
-    var the_url = pageless_state[tab].url;
-    if(tab == "net"){
-      the_url = the_url + "&sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
-    }
-    return the_url;
-  };
 
   $("footer#footer").addClass("fixed-bottom");
-
-  $('.scroll-pane').jScrollPane();
 
 <% end %>

@@ -5,16 +5,20 @@ Vish.Search = (function(V,undefined){
 
   var _options;
   var _parsed_url;
-
+  var _all_tags; //js object like this: { tag1: occurrences_number, tag2: occurrences_number, ...}
+  var NUMBER_OF_TAGS_TO_SHOW = 8;
 
   /* options is an object like this:
       { object_types: ["Excursion", "Resource", "Event", "Workshop"],
         resource_types: [Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"],
+        num_pages: 8,
+        url: http://vishub.org/search?type=Webapp%2CScormfile&sort_by=updated_at,
+        tags: "tag1,tag2,my_tag" 
       }  
   */
   var init = function(options){
     _options = options || {};
-    
+
     if(!_options.object_types){      
       _options.object_types = ["Excursion", "Resource", "Event", "Workshop"];
     }
@@ -26,11 +30,12 @@ Vish.Search = (function(V,undefined){
     _parsed_url = _getUrlParameters();
     //default type, array with only one value, all_entities
     _fillSidebarWithParams();
-    _loadUIEvents();
+    _recalculateTags(_options.tags, true);
+    _loadUIEvents(_options);
   };
 
 
-  var _loadUIEvents = function(settings){
+  var _loadUIEvents = function(options){
     //click on any filter
     $(document).on('click', "#search-sidebar ul li", function(e){
       _clickFilter($(this));
@@ -38,11 +43,79 @@ Vish.Search = (function(V,undefined){
     $(document).on('click', ".filter_box_x", function(e){
       _clickFilter($(this));
     });
+    //for pageless
+    $('#search-all ul').trigger("scroll.pageless");
+
+    _applyPageless(options, false);    
+  };
+
+
+  var _applyPageless = function(options, stop_first){
+    //console.log("reapplying pageless with url: " + options.url + " and num_pages: " + options.num_pages);
+    //stop_first = typeof stop_first !== 'undefined' ? stop_first : false; //default value 
+    if(stop_first){
+      $.pagelessStop();
+    }
+    $('#search-all ul').pageless({
+        totalPages: options.num_pages,
+        url: options.url,
+        currentPage: 1,
+        loader: '.loader_pagination',
+        end: function(){
+          $('.loader_pagination').hide();
+          $("#last_content_shown").show();
+        },
+        scrape: function(data){
+          var parsed_html_return = $('<div></div>').html(data);
+          //Recalculate the tags in the search sidebar
+          var the_tags = parsed_html_return.find(".the_tags").val();
+          _recalculateTags(the_tags, false);
+          return data;
+        },    
+        complete: function(){
+          //when we complete one page and there is no scroll, there cannot be another call
+          //so we do a manual watch to bring all pages needed until we have a scroll
+          $.pageless.watch();
+        }
+    });
   };
 
 
   var _clickFilter = function(filter_obj){    
     _toggleFilter(filter_obj.attr("filter_key"), filter_obj.attr("filter"), true);    
+  };
+
+
+  /*function that updates the tags shown in the sidebar
+  initialize_tags indicates if we have to clean them*/
+  var _recalculateTags = function(tags, initialize_tags){
+    if(initialize_tags){
+      _all_tags = {};
+    }
+    var array = tags.split(',');
+    array.forEach(function(tag_item) {
+        if(_all_tags[tag_item]){
+          _all_tags[tag_item] = _all_tags[tag_item] + 1;
+        } else {
+          _all_tags[tag_item] = 1;
+        }
+      });
+    console.log(_all_tags);
+    var sortable = [];
+    for (var t in _all_tags){
+      sortable.push([t, _all_tags[t]])
+    }
+    sortable.sort(function(a, b) {return  b[1] - a[1]});
+    $("#tags_ul").html(""); //reset the content because we are going to add a new content
+    var num = 0;
+    for (var i = 0; i < sortable.length; i++) {
+      if(num>NUMBER_OF_TAGS_TO_SHOW){
+        break;
+      }
+      var tag_array = sortable[i];
+      num +=1;
+      $("#tags_ul").append('<li filter_key="tag" filter="'+tag_array[0]+'">'+tag_array[0]+ ' ' +tag_array[1] +'</li>');
+    }    
   };
 
 
@@ -216,6 +289,7 @@ Vish.Search = (function(V,undefined){
     _composeFinalUrlAndCallServer();    
   };
 
+
   var _composeFinalUrlAndCallServer = function(sort_by){
     var final_url = {};
     $.each( _parsed_url, function(key, value){ 
@@ -232,6 +306,7 @@ Vish.Search = (function(V,undefined){
     _manageQuery(new_url, sort_by);
   };
 
+
   /*query is the URL to call the server
     sort_by_key is the key to stablish the sort_by drop down value when success
   */
@@ -240,10 +315,21 @@ Vish.Search = (function(V,undefined){
           type : "GET",
           url : query,
           success : function(html_code) {
-            if(sort_by_key){
+            //show the sort_by value that the user selected, if any
+            if(sort_by_key){              
               var value = $("#order_by_selector_search .dropdown-menu [sort-by-key="+sort_by_key+"]").html();
               $("#order_by_selector_search button").html(value + '<i class="icon-angle-down"></i>');
             }
+            //reapply pageless
+            var options = {};
+            var parsed_html_return = $('<div></div>').html(html_code);
+            options.num_pages = parsed_html_return.find('.num_pages').val();
+            options.url = query;
+            _applyPageless(options, true);
+            //Recalculate the tags in the search sidebar
+            var the_tags = parsed_html_return.find(".the_tags").val();
+            _recalculateTags(the_tags, true);
+            //enter the results in the designated area
             $("#search-all ul").html(html_code);
           },
           error: function(error){
@@ -267,11 +353,13 @@ Vish.Search = (function(V,undefined){
       return parsed;
   };
 
+
+  /*Function called when sort_by dropdown changes*/
   var launch_search_with_sort_by = function(sort_by){
     _parsed_url["sort_by"] = [sort_by];
     _composeFinalUrlAndCallServer(sort_by);
-
   }
+
 
   return {
     init : init,
