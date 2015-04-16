@@ -5,8 +5,15 @@ Vish.Search = (function(V,undefined){
 
   var _options;
   var _parsed_url;
-  var _all_tags; //js object like this: { tag1: occurrences_number, tag2: occurrences_number, ...}
+  //js object like this: { tag1: occurrences_number, tag2: occurrences_number, ...}
+  var _all_tags; 
   var NUMBER_OF_TAGS_TO_SHOW = 8;
+  //js objects like this:
+  //{ query1: datetime, query2: datetime, ...]
+  var _queries_sent;
+  var _queries_queue;
+  var TIME_BETWEEN_QUERIES = 500; //in ms
+  var TIME_LAST_QUERY_SENT = 0;
 
   /* options is an object like this:
       { object_types: ["Excursion", "Resource", "Event", "Workshop"],
@@ -18,6 +25,8 @@ Vish.Search = (function(V,undefined){
   */
   var init = function(options){
     _options = options || {};
+    _queries_sent = {};
+    _queries_queue = {};
 
     if(!_options.object_types){      
       _options.object_types = ["Excursion", "Resource", "Event", "Workshop"];
@@ -261,7 +270,7 @@ Vish.Search = (function(V,undefined){
     }
     _parsed_url[filter_key].push(filter_name);
     
-    _composeFinalUrlAndCallServer();
+    _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);
   };
 
 
@@ -286,7 +295,7 @@ Vish.Search = (function(V,undefined){
       _parsed_url[filter_key].push(opens_with_value);    
     }
 
-    _composeFinalUrlAndCallServer();    
+    _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);    
   };
 
 
@@ -311,6 +320,10 @@ Vish.Search = (function(V,undefined){
     sort_by_key is the key to stablish the sort_by drop down value when success
   */
   var _manageQuery = function(query, sort_by_key){
+    _queries_sent[query] = Date.now();
+    //cuando llega un success quito todas las queries que pedí antes? -> si. Y si llega un success y no está en _queries_sent no lo pinto.
+    //puedo apuntar en una variable el tiempo de cuando pedi la última query y si llega otra y no ha pasado X tiempo a la cola
+    //timeouts para ver la cola
     $.ajax({
           type : "GET",
           url : query,
