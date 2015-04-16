@@ -77,58 +77,7 @@
           </ul>
         </div>
 
-    <!--<p class= "information"><%= t("category.cat_popular")%></p>-->
-    <br>
-    <div id="suggested_categories" class="tagBoxNew">
-      <% rcCategories = generic_categories.reject{|e| get_initial_categories(item).include? e.id} %> 
-      <% simple_gen = rcCategories.sort{|a,b| b.property_objects.length <=> a.property_objects.length}.first(7) %>
-      <ul id="suggestedCategories" class="tagit">
-        <% simple_gen.each do |init| %> 
-          <li class="tagit-choice" value="<%= init.id %>" ><%=init.title%></li>
-        <% end %>
-      </ul>
-     </div>
-
-      <p class="information"><%= t("category.categorized_like")%></p>
-      <%tagArray= generic_categories.map{|e| e.title}%>
-      <%content_for :javascript do%>
-        var tagList= [
-          <%tagArray.each do |tags|%>
-            "<%=tags%>",
-          <%end%>
-        ];
-
-        $("#myCategories").tagit({
-          maxLength: 50,
-          maxTags: 100000,
-          triggerKeys: ['enter', 'tab'],
-          watermarkAllowMessage: "<%= t('category.tagit_watermark_cat')%>",
-          watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>',
-          tagSource: tagList
-        });
-
-        //Get categorized by this author
-        <% resource_categories = []
-          get_initial_categories(item).each do |e|
-          n = Category.find(e)
-            if generic_categories.include? n
-              resource_categories  += [n]
-           end
-          end
-        %>
-        <% resource_categories.each do |cat| %>
-            <% ident = Category.find(cat) %>
-            $("#myCategories").tagit("add", "<%=ident.title %>", "<%=ident.id%>");
-        <%end%> 
-        //Save suggested categories state
-      <%end%>
-
-      <div class="tagBoxNew">
-        <ul id="myCategories">
-          <!-- Existing list items will be pre-added to the tags -->
-        </ul>
-      </div>
-
+   
     </div>
     <div class="modal-footer">
       <!--<button id="cancel_cat_button" class="btn btn-default btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>-->

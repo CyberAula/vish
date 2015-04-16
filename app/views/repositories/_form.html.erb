@@ -166,22 +166,14 @@
     });
 
 
-  $("#AddResource").on('shown.bs.modal', function(){      
-    $("#AddResource .age-slider").slider().on('slide', function(ev){
-      positionLimits();
-    });
+   $("#AddResource").on('shown.bs.modal', function(){
+    //SLIDER
+    var min = 0;
+    var max = 30;
+    var step = 1;
+    var diff = max - min;
 
-    $("#AddResource .age-slider").before($("#AddResource .limits"));
-    positionLimits();
-  });
-
-
-  var positionLimits = function(){
-      //SLIDER
-      var min = 0;
-      var max = 30;
-      var step = 1;
-      var diff = max - min;  
+    var positionLimits = function(){
       var value1 = $('#AddResource .age-slider').data('slider').getValue()[0];
       var value2 = $('#AddResource .age-slider').data('slider').getValue()[1];
       $('#AddResource .limit1').text(value1);
@@ -305,6 +297,4 @@
       $(input).hide();
     }
   };
-
-
 <%end%>
