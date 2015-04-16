@@ -2,7 +2,6 @@
   text-align: center
   color: $brand-primary
   font-family: $corporate-font-family-sans-serif-Regular
-  font-size: 0.8em
   form
     @include center-block
     width: 105px
@@ -12,16 +11,22 @@
       color: $white
       width: 100%
       margin-top: 0px
-      padding: 5px      
-      @include border-top-radius ($border-radius-base)
-      @include border-bottom-radius ($border-radius-base)
-
+      padding: 6px 9px  
+      max-height: 34px
+      min-height: 34px
+      @include border-top-left-radius($border-radius-base)
+      @include border-top-right-radius(0)
+      @include border-bottom-right-radius(0)
+      @include border-bottom-left-radius($border-radius-base)
+      @media (max-width: $screen-sm-min)
+        @include border-top-radius ($border-radius-base)
+        @include border-bottom-radius ($border-radius-base)
   .following-button
     background-color: $gray
     width: 105px
     margin: 0 auto
     color: $white
-    padding: 5px
+    padding: 6px 9px
     @include border-top-radius ($border-radius-base)
     @include border-bottom-radius ($border-radius-base)
 
@@ -37,7 +42,7 @@
         background-color: $brand-secundary
         color: $white
         margin-top: 0px
-        padding: 5px
+        padding: 6px 9px
         @include border-top-radius ($border-radius-base)
         @include border-bottom-radius ($border-radius-base)
 

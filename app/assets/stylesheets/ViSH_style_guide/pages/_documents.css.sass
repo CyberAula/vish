@@ -18,6 +18,9 @@ aside.recomended
   .box_description
     min-height: 171px
     margin-bottom: 15px
+    .excursion_tool
+      .verb_like
+        padding-top: 5px
   .activity-box
     clear: both
     padding-bottom: 25px
@@ -92,6 +95,11 @@ aside.recomended
         @include box-shadow(0 0 0 transparent)
         .panel-body
           padding: 0
+        .panel-footer
+          background-color: $white
+          border-top: 1px solid $border-color
+          padding-left: 0
+          padding-right: 0 
       .table
         border-collapse: none
         span
@@ -147,7 +155,7 @@ aside.recomended
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   background-color: rgba(216, 216, 216, 0.9)
-  padding: 11px 0
+  padding: 0
   @include border-top-radius ($border-radius-base)
   @include box-shadow (0 1px 4px 1px rgba(0, 0, 0, 0.1))
   .container-visor
