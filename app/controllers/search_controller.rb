@@ -96,13 +96,12 @@ class SearchController < ApplicationController
 
       types = type.split(",") & allAvailableTypes
 
-      if types.include? ["Learning_object"]
+      if types.include? "Learning_object"
         types.concat(["Excursion", "Resource", "Event", "Workshop"])
       end
 
-      #TODO XXX KIKE check if this works, because with binding.pry this fails.
-      if types.include? ["Resource"]
-        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes))
+      if types.include? "Resource"
+        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes => true).reject!{|e| e=="Excursion" || e=="Workshop" })
       end
 
       types = types & allAvailableModels

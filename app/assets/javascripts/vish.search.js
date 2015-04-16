@@ -333,7 +333,7 @@ Vish.Search = (function(V,undefined){
             $("#search-all ul").html(html_code);
           },
           error: function(error){
-            $("#search-all ul").html(error);
+            $("#search-all ul").html("SERVER error");
          }
         });
   };

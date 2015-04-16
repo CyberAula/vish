@@ -1,6 +1,6 @@
 <input type="hidden" name="num_pages" class="num_pages" value="<%= @search_result.num_pages%>">
 
-<input type="hidden" name="the_tags" class="the_tags" value="<%= extract_tags(@search_results)%>">
+<input type="hidden" name="the_tags" class="the_tags" value="<%= extract_tags(@search_result)%>">
 
 
 <% @search_result.each do |r| %>
