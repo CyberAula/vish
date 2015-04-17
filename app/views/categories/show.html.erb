@@ -145,7 +145,7 @@
 
 </script>
 
-<%content_for :javascript do%>
+<% content_for :javascript do %>
     
     //Let the overlay appear
       
@@ -158,4 +158,4 @@
     //Apply authomatically the initial category to be created as the one you are at
     $("#AddCategoryHeadercategory_parent_id").val(<%=@category.id%>); 
 
-<%end%>
+<% end %>
