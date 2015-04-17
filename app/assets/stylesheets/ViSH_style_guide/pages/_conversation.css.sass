@@ -33,12 +33,16 @@
         img
           width: 32px
       header
-        float: left
         h5
           margin-top: $zero
           margin-bottom: $zero
-          a
-            @include text-overflow
+        a
+          @include text-overflow
+          float: left
+          @media (max-width: $screen-md-min)
+            width: 66%
+          @media (max-width: $screen-xs-min)
+            width: auto
         .date
           color: $gray
           font-size: 11px
