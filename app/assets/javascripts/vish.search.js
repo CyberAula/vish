@@ -14,6 +14,7 @@ Vish.Search = (function(V,undefined){
   var _queries_queue;
   var TIME_BETWEEN_QUERIES = 500; //in ms
   var TIME_LAST_QUERY_SENT = 0;
+  var NUMBER_OF_CALLS = 0;
 
   /* options is an object like this:
       { object_types: ["Excursion", "Resource", "Event", "Workshop"],
@@ -37,9 +38,8 @@ Vish.Search = (function(V,undefined){
 
     //take the params from the URL and mark them in the sidebar
     _parsed_url = _getUrlParameters();
-    //default type, array with only one value, all_entities
-    _fillSidebarWithParams();
     _recalculateTags(_options.tags, true);
+    _fillSidebarWithParams();
     _loadUIEvents(_options);
   };
 
@@ -101,6 +101,9 @@ Vish.Search = (function(V,undefined){
     if(initialize_tags){
       _all_tags = {};
     }
+    if(tags==""){
+      return;
+    }
     var array = tags.split(',');
     array.forEach(function(tag_item) {
         if(_all_tags[tag_item]){
@@ -110,9 +113,13 @@ Vish.Search = (function(V,undefined){
         }
       });
     console.log(_all_tags);
+    //create a sortable array and remove the tags that are already selected
     var sortable = [];
     for (var t in _all_tags){
-      sortable.push([t, _all_tags[t]])
+      if($("#selected_tags_ul").children("[filter='"+t+"']").length == 0){
+        //the tag is not present in the selected_tags_ul
+        sortable.push([t, _all_tags[t]]);
+      }      
     }
     sortable.sort(function(a, b) {return  b[1] - a[1]});
     $("#tags_ul").html(""); //reset the content because we are going to add a new content
@@ -123,7 +130,7 @@ Vish.Search = (function(V,undefined){
       }
       var tag_array = sortable[i];
       num +=1;
-      $("#tags_ul").append('<li filter_key="tag" filter="'+tag_array[0]+'">'+tag_array[0]+ ' ' +tag_array[1] +'</li>');
+      $("#tags_ul").append('<li filter_key="tags" filter="'+tag_array[0]+'">'+tag_array[0]+ ' ' +tag_array[1] +'</li>');
     }    
   };
 
@@ -192,7 +199,11 @@ Vish.Search = (function(V,undefined){
     }    
   };
 
-
+  /*function to deactivate a sidebar filter in the search
+    filter_obj is the jquery object of the clicked filter
+    update_url is to update or not the url, it is not updated when filling in the sidebar (because the url is already as is)
+    follow_stack is to follow activating other filters in case of exclusivity (this happens with "all", "users", "learning_objects"), also used to call or not call the server, because if follow_stack the filters are applied automatically and not by user clicks
+    */
   var _deactivateFilter = function(filter_obj, update_url, follow_stack){
       if(filter_obj.hasClass("search-sidebar-selected")){
         follow_stack = typeof follow_stack !== 'undefined' ? follow_stack : true;  //set default value
@@ -204,17 +215,23 @@ Vish.Search = (function(V,undefined){
 
         //hide the related filters
         $("#search-sidebar div[opens_with='"+filter_name+"'] li.search-sidebar-selected").each(function(){
-            _deactivateFilter($(this), update_url);
+            _deactivateFilter($(this), update_url, false);
         });
         $("#search-sidebar div[opens_with='"+filter_name+"']").hide();
-        if(update_url){
-          _removeUrlParameter(filter_key, filter_name);
+        
+        //if it is a tag, we remove it from the ul selected_tags_ul
+        if(filter_key==="tags"){
+          filter_obj.remove();          
         }
 
-        //finAlly see what happens with exclusivity, 
+        //see what happens with exclusivity, 
         //if the li has the attribute "exclusive" and we are deactivating it we have to activate the default
         if(follow_stack && filter_obj.attr("exclusive")==""){
-          _activateFilter(filter_obj.siblings("[default]"), update_url);
+          _activateFilter(filter_obj.siblings("[default]"), update_url, false);
+        }
+
+        if(update_url){
+          _removeUrlParameter(filter_key, filter_name, follow_stack);
         }
       }
   };
@@ -234,17 +251,23 @@ Vish.Search = (function(V,undefined){
         }
 
         //show the related filters
-        $("#search-sidebar div[opens_with='"+filter_name+"']").show();
-        
-        if(update_url){
-          _addUrlParameter(filter_key, filter_name);
+        $("#search-sidebar div[opens_with='"+filter_name+"']").show();    
+
+        //if it is a tag, we move it to the ul selected_tags_ul
+        if(filter_key==="tags"){
+          var tag_to_move = filter_obj.detach();
+          $("#selected_tags_ul").append(tag_to_move);
         }
 
-        //finally see what happens with exclusivity, check if the li has the attribute "exclusive"
+        //see what happens with exclusivity, check if the li has the attribute "exclusive"
         if(follow_stack && filter_obj.attr("exclusive")==""){
           filter_obj.siblings(".search-sidebar-selected").each(function() {
             _deactivateFilter($(this), update_url, false);
           });
+        }
+
+        if(update_url){
+          _addUrlParameter(filter_key, filter_name, follow_stack);
         }
       }      
   };
@@ -254,7 +277,7 @@ Vish.Search = (function(V,undefined){
     also removes other params intelligently if needed
     for example when clicking on event we have to search for event and remove
     "learning_object"*/
-  var _addUrlParameter = function(filter_key, filter_name){    
+  var _addUrlParameter = function(filter_key, filter_name, call_server){    
     if(_parsed_url[filter_key] == undefined){
       _parsed_url[filter_key] = [];
     }
@@ -269,14 +292,16 @@ Vish.Search = (function(V,undefined){
       }
     }
     _parsed_url[filter_key].push(filter_name);
-    
-    _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);
+
+    if(call_server){
+      _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);
+    }
   };
 
 
   /*removes the parameter from the url
     also adds other params intelligently if needed*/
-  var _removeUrlParameter = function(filter_key, filter_name){
+  var _removeUrlParameter = function(filter_key, filter_name, call_server){
     
     if(_parsed_url[filter_key] != undefined){
       //_parsed_url[filter_key] is an array that should contain "filter_name" and we have to remove it
@@ -294,8 +319,9 @@ Vish.Search = (function(V,undefined){
       //add that value to the url
       _parsed_url[filter_key].push(opens_with_value);    
     }
-
-    _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);    
+    if(call_server){
+      _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);    
+    }
   };
 
 
@@ -324,6 +350,8 @@ Vish.Search = (function(V,undefined){
     //cuando llega un success quito todas las queries que pedí antes? -> si. Y si llega un success y no está en _queries_sent no lo pinto.
     //puedo apuntar en una variable el tiempo de cuando pedi la última query y si llega otra y no ha pasado X tiempo a la cola
     //timeouts para ver la cola
+    NUMBER_OF_CALLS +=1;
+    console.log("LLAMANDO AL SERVIDOR " + NUMBER_OF_CALLS);
     $.ajax({
           type : "GET",
           url : query,
@@ -345,8 +373,9 @@ Vish.Search = (function(V,undefined){
             //enter the results in the designated area
             $("#search-all ul").html(html_code);
           },
-          error: function(error){
-            $("#search-all ul").html("SERVER error");
+          error: function(xhr, status, error) {
+            $("#search-all ul").html("SERVER error with the query: " + query);
+            $("#search-all ul").append(xhr.responseText);
          }
         });
   };
