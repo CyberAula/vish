@@ -168,6 +168,9 @@ ActivityObject.class_eval do
       searchJson[:visit_count] = self.visit_count
       searchJson[:like_count] = self.like_count
       searchJson[:download_count] = self.download_count
+      unless self.age_min.blank? or self.age_max.blank?
+        searchJson[:age_range] = self.age_min.to_s + "-" + self.age_max.to_s
+      end
     else
       unless resource.occupation.nil?
         searchJson[:occupation] = resource.occupation_t
@@ -358,7 +361,7 @@ ActivityObject.class_eval do
       metadata[I18n.t("activity_object.language")] = self.readable_language
     end
 
-    unless self.age_min.blank? or self.age_max.blank?
+    unless self.age_range.blank?
       metadata[I18n.t("activity_object.age_range")] = self.age_min.to_s + " - " + self.age_max.to_s
     end
 
@@ -394,6 +397,13 @@ ActivityObject.class_eval do
     return metadata
   end
 
+  def age_range
+    if self.age_min!=0 or self.age_max!=0
+      [self.age_min,self.age_max]
+    else
+      nil
+    end
+  end
 
   ##############
   ## Class Methods

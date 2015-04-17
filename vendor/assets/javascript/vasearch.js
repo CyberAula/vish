@@ -79,6 +79,21 @@ VASearch.UI = (function(V,undefined){
       }
     });
 
+    //Age Range slider (Bootstrap slider)
+    $("#asearch_settings input.asearch-age-slider").slider().on('slide', function(ev){
+      var ageMin = $(this).data('slider').getValue()[0];
+      var ageMax = $(this).data('slider').getValue()[1];
+
+      $("#asearch_settings [asparam='ageMin']").val(ageMin);
+      $("#asearch_settings [asparam='ageMax']").val(ageMax);
+
+      if(ageMax>=$(this).data('slider').max){
+        ageMax = ageMax.toString() + "+"
+      }
+
+      $("#asearch_settings [asparam='ageRangeValue']").html(ageMin.toString() + "-" + ageMax.toString());
+    });
+
     //Add and remove instances
     $("#asearch_settings .addInstanceButton").bind('click', function(e){
       var instanceInput = $("#asearch_settings .addInstanceInput");
@@ -129,7 +144,7 @@ VASearch.UI = (function(V,undefined){
         case "table":
           $("#asearch_results").append("<table class='asearch_results_table'>");
           var table = $("#asearch_results").find("table");
-          _drawResultWithTable({title: "Title", instance: "Instance", author: "Author"},table,true);
+          _drawResultWithTable({title: V.Utils.getTrans("i.title"), instance: V.Utils.getTrans("i.instance"), author: V.Utils.getTrans("i.author")},table,true);
           $(results).each(function(index,result){
             _drawResultWithTable(result,table);
           });
@@ -243,6 +258,13 @@ VASearch.UI = (function(V,undefined){
     }
 
     settings.qualityThreshold = $("#asearch_settings [asparam='qualityThreshold']").val();
+
+    var ageMin = $("#asearch_settings [asparam='ageMin']").val();
+    var ageMax = $("#asearch_settings [asparam='ageMax']").val();
+    if((ageMin!="0")||(ageMax!="30")){
+      settings.age_min = ageMin;
+      settings.age_max = ageMax;
+    }
 
     return settings;
   };
@@ -381,6 +403,14 @@ VASearch.Core = (function(V,undefined){
       query += "&qualityThreshold="+settings.qualityThreshold;
     }
 
+    if(settings.age_min){
+      query += "&age_min="+settings.age_min;
+    }
+
+    if(settings.age_max){
+      query += "&age_max="+settings.age_max;
+    }
+
     return query;
   };
 
@@ -433,15 +463,21 @@ VASearch.Utils = (function(V,undefined){
       "default":
         //English
         {
+          "i.author"        : "Author",
           "i.by"            : "by",
           "i.in"            : "in",
-          "i.noResults"     : "No results were found. Try with other search criteria"
+          "i.instance"      : "Instance",
+          "i.noResults"     : "No results were found. Try with other search criteria",
+          "i.title"         : "Title"
         },
       "es":
         {
+          "i.author"        : "Autor",
           "i.by"            : "por",
           "i.in"            : "en",
-          "i.noResults"     : "No se encontraron resultados. Prueba con otros criterios de búsqueda"
+          "i.instance"      : "Instancia",
+          "i.noResults"     : "No se encontraron resultados. Prueba con otros criterios de búsqueda",
+          "i.title"         : "Título"
         }
   };
 

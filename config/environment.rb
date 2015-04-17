@@ -4,6 +4,8 @@ RMAGICK_BYPASS_VERSION_TEST = true
 # Load the rails application
 require File.expand_path('../application', __FILE__)
 
+require 'acts_as_taggable_on/vish'
+
 # Initialize the rails application
 Vish::Application.initialize!
 

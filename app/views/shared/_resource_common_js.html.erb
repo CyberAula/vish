@@ -43,6 +43,7 @@
     });
 
     $("#<%=form_id%> .age-slider").before($("#<%=form_id%> .limits"));
+    $("#<%=form_id%> .age-slider").data('slider').setValue([0,0]);
     positionLimits();
 
   <%if form_id == "AddResource"%>
@@ -86,7 +87,7 @@
       $(avatarFileInput).css("display","none");
       $(avatarFileInput).appendTo(myForm);
       //LANGUAGE
-      $("#<%=form_id%> input[name='"+resource_type+"[language]']").val($("#<%=form_id%> .language").val());
+      $("#<%=form_id%> input[name='"+resource_type+"[language]']").val($("#<%=form_id%> select.language").val());
       //AGE
       var value1 = $('#<%=form_id%> .age-slider').data('slider').getValue()[0];
       var value2 = $('#<%=form_id%> .age-slider').data('slider').getValue()[1];
@@ -107,10 +108,17 @@
   $.each($("#<%=form_id%> #resourcePreloadTagList li"), function(index, element) {
      resourceTags.push($(element).html());
   });
-          
+   
   if ($(resourceTagList).children().length == 0){
-    $(resourceTagList).tagit({tagSource:resourceTags, sortable:true, maxLength:15, maxTags:8 , 
-      watermarkAllowMessage: '<%=t('document.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' });
+    $(resourceTagList).tagit({
+      tagSource:resourceTags,
+      sortable:true,
+      maxLength: '<%=Vish::Application.config.tagsSettings["maxLength"]%>',
+      maxTags: '<%=Vish::Application.config.tagsSettings["maxTags"]%>',
+      triggerKeys: <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>,
+      watermarkAllowMessage: '<%=t('document.tags.addMessage')%>',
+      watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>'
+    });
   }
 
   //File chooser listener

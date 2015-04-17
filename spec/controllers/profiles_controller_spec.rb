@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProfilesController do
+describe ProfilesController, controllers: true do
   include SocialStream::TestHelpers
   render_views
 

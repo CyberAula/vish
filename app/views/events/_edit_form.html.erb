@@ -1,4 +1,4 @@
-<% if (can? :update, @event) %>
+<% if can? :update, @event %>
   <%= render(:partial => 'events/form_poster', :locals => { :event => @event }) %>
 <% end %>
 

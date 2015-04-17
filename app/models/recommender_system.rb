@@ -344,6 +344,7 @@ class RecommenderSystem
     end
 
     opts[:with] = {}
+    opts[:with_all] = {}
     
     unless !options[:subject].nil? and options[:subject].admin?
       #Only 'Public' objects, drafts and other private objects are not searched.
@@ -375,11 +376,58 @@ class RecommenderSystem
 
     #Filter by quality score
     if options[:qualityThreshold]
-      qualityThreshold = [[0,options[:qualityThreshold].to_i].max,10].min rescue 0
+      qualityThreshold = [[0,options[:qualityThreshold].to_f].max,10].min rescue 0
       qualityThreshold = qualityThreshold*100000
       opts[:with][:qscore] = qualityThreshold..1000000
     end
 
+    #Filter by tags
+    if options[:tags]
+      if options[:tags].is_a? String
+        options[:tags] = options[:tags].split(",")
+      end
+
+      if options[:tags].is_a? Array
+        tag_ids = ActsAsTaggableOn::Tag.find_all_by_name(options[:tags]).map{|t| t.id}
+        tag_ids = [-1] if tag_ids.blank?
+        opts[:with_all][:tag_ids] = tag_ids
+      end
+    elsif options[:tag_ids]
+      if options[:tag_ids].is_a? String
+        options[:tag_ids] = options[:tag_ids].split(",")
+      end
+
+      if options[:tag_ids].is_a? Array
+        opts[:with_all][:tag_ids] = [options[:tag_ids]]
+      end
+    end
+
+    #Filter by age range
+    if options[:age_min] or options[:age_max]
+
+      unless options[:age_min].blank?
+        ageMin = options[:age_min].to_i rescue 0
+      else
+        ageMin = 0
+      end
+
+      unless options[:age_max].blank?
+        ageMax = options[:age_max].to_i rescue 100
+      else
+        ageMax = 100
+      end
+
+      ageMax = [[100,ageMax].min,0].max
+      ageMin = [ageMin,ageMax].min
+
+      opts[:with][:age_min] = 0..ageMax
+      opts[:with][:age_max] = ageMin..100
+    end
+
+    #Filter by category
+    if options[:category_id] and Vish::Application.config.catalogue["category_tag_ids"][options[:category_id]].is_a? Array
+      opts[:with][:tag_ids] = Vish::Application.config.catalogue["category_tag_ids"][options[:category_id]]
+    end
 
     opts[:without] = {}
     if options[:subjects_to_avoid].is_a? Array

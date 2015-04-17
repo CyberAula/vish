@@ -33,21 +33,20 @@
                 <div class="panel-body">
                   <% d = Document.new %>
                   <% d.owner_id = Actor.normalize_id(current_subject) %>
-                  <%= form_for d, :class= => "form-group", :namespace => 'new_file_only', :html => { :multipart => true }, :remote => false do |f| %>
+                  <%= form_for d, :namespace => 'new_file_only', :html => { :multipart => true }, :remote => false do |f| %>
                     <%= f.hidden_field :owner_id %>
                     <%= f.file_field :file %>
                     <%= f.hidden_field :title%>
                     <%= f.hidden_field :description%>
                     <%= f.hidden_field :tag_list, :multiple => true %>
                     <%= f.hidden_field :language, :value => "" %>
-                    <%= f.hidden_field :age_min, :value => "4" %>
-                    <%= f.hidden_field :age_max, :value => "20" %>
+                    <%= f.hidden_field :age_min, :value => "0" %>
+                    <%= f.hidden_field :age_max, :value => "0" %>
                     <%= f.submit t('button.save'), :class => "document hide"%>
                   <% end %>
                 </div>
               </div>
             </div>
-
 
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -71,8 +70,8 @@
                     <%= f.hidden_field :description%>
                     <%= f.hidden_field :tag_list, :multiple => true %>
                     <%= f.hidden_field :language, :value => "" %>
-                    <%= f.hidden_field :age_min, :value => "4" %>
-                    <%= f.hidden_field :age_max, :value => "20" %>
+                    <%= f.hidden_field :age_min, :value => "0" %>
+                    <%= f.hidden_field :age_max, :value => "0" %>
                     <%= f.submit t('button.save'), :class => "link hide"%>
                   <% end %>
                 </div>
@@ -97,8 +96,8 @@
                     <%= f.hidden_field :description%>
                     <%= f.hidden_field :tag_list, :multiple => true %>
                     <%= f.hidden_field :language, :value => "" %>
-                    <%= f.hidden_field :age_min, :value => "4" %>
-                    <%= f.hidden_field :age_max, :value => "20" %>
+                    <%= f.hidden_field :age_min, :value => "0" %>
+                    <%= f.hidden_field :age_max, :value => "0" %>
                     <%= f.submit t('button.save'), :class => "embed hide"%>
                   <% end %>
                 </div>
@@ -140,17 +139,16 @@
           <!--AGE SLIDER-->
           <label><%= t('document.leyend.recommended_age')%></label>
           <div class="limits">
-            <div class="limit1">4</div>
-            <div class="limit2">20</div>
+            <div class="limit1">0</div>
+            <div class="limit2">0</div>
           </div>
-          <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+          <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,1]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
 
           <br>
         </div>
       </div>
       <!-- FOOTER -->
       <div class="modal-footer">
-
         <input type="button" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
       </div>
     </div>
@@ -168,22 +166,14 @@
     });
 
 
-  $("#AddResource").on('shown.bs.modal', function(){      
-    $("#AddResource .age-slider").slider().on('slide', function(ev){
-      positionLimits();
-    });
+   $("#AddResource").on('shown.bs.modal', function(){
+    //SLIDER
+    var min = 0;
+    var max = 30;
+    var step = 1;
+    var diff = max - min;
 
-    $("#AddResource .age-slider").before($("#AddResource .limits"));
-    positionLimits();
-  });
-
-
-  var positionLimits = function(){
-      //SLIDER
-      var min = 0;
-      var max = 30;
-      var step = 1;
-      var diff = max - min;  
+    var positionLimits = function(){
       var value1 = $('#AddResource .age-slider').data('slider').getValue()[0];
       var value2 = $('#AddResource .age-slider').data('slider').getValue()[1];
       $('#AddResource .limit1').text(value1);
@@ -202,6 +192,15 @@
         return $('#AddResource .slider').width() * percentage[1]/100 - $("#AddResource .limit2").width()/2 + 'px';
       });
     };
+
+    $("#AddResource .age-slider").slider().on('slide', function(ev){
+      positionLimits();
+    });
+
+    $("#AddResource .age-slider").before($("#AddResource .limits"));
+    $('#AddResource .age-slider').data('slider').setValue([0,0]);
+    positionLimits();
+  });
 
   //COMMON FIELDS
   var uploadButton = $("#AddResource input[value=<%= t('document.upload')%>][type='button'][class='btn btn-primary']");
@@ -257,10 +256,11 @@
 
   if ($(resourceTagList).children().length == 0){
     $(resourceTagList).tagit({
-      tagSource:resourceTags,
-      sortable:true,
-      maxLength:15,
-      maxTags:8,
+      tagSource: resourceTags,
+      sortable: false,
+      maxLength: '<%=Vish::Application.config.tagsSettings["maxLength"]%>',
+      maxTags: '<%=Vish::Application.config.tagsSettings["maxTags"]%>',
+      triggerKeys: <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>,
       watermarkAllowMessage: '<%=t('document.tags.addMessage')%>',
       watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>'
     });
@@ -297,6 +297,4 @@
       $(input).hide();
     }
   };
-
-
 <%end%>

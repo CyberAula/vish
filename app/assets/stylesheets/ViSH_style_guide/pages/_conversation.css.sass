@@ -45,9 +45,9 @@
     .content_right
       display: inline-block
       @include make-xs-column(12, $gutter: $grid-gutter-width)
-      @include make-sm-column(8, $gutter: $grid-gutter-width)
-      @include make-md-column(8, $gutter: $grid-gutter-width)
-      @include make-lg-column(8, $gutter: $grid-gutter-width)
+      @include make-sm-column(9, $gutter: $grid-gutter-width)
+      @include make-md-column(9, $gutter: $grid-gutter-width)
+      @include make-lg-column(9, $gutter: $grid-gutter-width)
       color: $gray
       @media (max-width: $screen-sm-min)
         margin: 10px 0 0
@@ -75,6 +75,7 @@
       i
         @extend .btn
         @extend .btn-default
+        width: 30px
       @media (max-width: $screen-sm-min)
         top: -30px
 
@@ -184,6 +185,7 @@
     i
       @extend .btn
       @extend .btn-default
+      width: 30px
 
   .message
     padding: 15px 0

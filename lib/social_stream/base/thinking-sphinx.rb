@@ -32,6 +32,11 @@ module SocialStream
             has activity_object.qscore, :as => :qscore, :sortable => true
             has activity_object.ranking, :as => :ranking, :sortable => true
 
+            has activity_object.tags(:id), :as => :tag_ids
+
+            has activity_object.age_min, :type => :integer, :sortable => true
+            has activity_object.age_max, :type => :integer, :sortable => true
+
             #Thinking Sphinx cannot filter by 'string' attributes (like language).
             #So, we will use the CRC32 codification of the string, which is an integer. This way, we have to search for crc32 code instead of the string itself. To search for the language "en", we have to search for "en".to_crc32.
             #This is done in a different way according to the database (MySQL or PostgreSQL). See http://www.coderexception.com/CNuH6z16USXyQSUy/using-crc32-tweak-on-hasmany-relations-in-thinking-sphinx for mroe info.

@@ -46,7 +46,8 @@
   </div>
 </div>
 
-<%content_for :javascript do%>
+<% content_for :javascript do %>
+
     $('#<%=div_id%> .new_category').bind('ajax:success', function(evt, data, status, xhr){
       $('#<%=div_id%>').modal('hide');
       <% if div_id == "AddCategoryHeader" %>
@@ -81,13 +82,13 @@
 
     //Category button event
     $("#<%=div_id%> input[value=<%= t('categories.save')%>][type='button'][class='btn-primary']").click(function(event) {
+      
       if ($("#<%=div_id%> input[name='category[title]']").val() == "") {
         $("#<%=div_id%> .errors").remove();
         $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.title_input')%></div>");
       } else {
         //SaveCategoryButton click
         $("#<%=div_id%> input[type='submit']").click();
-      }
-    });
+      }});
 
 <%end%>

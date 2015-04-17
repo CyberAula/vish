@@ -1,7 +1,7 @@
 <% availableModels ||= available_models %>
 <% editingToolbar = (@excursion.draft or controller.action_name == "edit") %>
 
-<script type="text/javascript">
+<script>
 
   document.addEventListener("DOMContentLoaded", function(){
 
@@ -12,7 +12,6 @@
       //the 'has' for icons and other elements within a button that triggers a popup
       if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
         $(this).popover('hide');
-        return;
       }
       });
     });
@@ -72,7 +71,7 @@
         default:
           break;
       }
-    })
+    });
     
 
     $('.clone').popover({ 
@@ -192,7 +191,6 @@
 
 </div>
 
-
 <% unless editingToolbar %>
   <!--TABS-->
     <ul class="nav nav-tabs tooltab">
@@ -272,7 +270,7 @@
       <div class="form-group">
         <div class="input-group">
         
-          <input class="form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+          <input class="form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"/>
           <div class="input-group-addon">
             <button class="btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
               <i class="fa fa-copy "></i>

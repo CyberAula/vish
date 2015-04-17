@@ -20,11 +20,13 @@
             //Maps directly to the jQuery-ui Autocomplete option
             tagSource:[],
             //What keys should trigger the completion of a tag
-            triggerKeys:['enter', 'comma', 'tab'],
+            triggerKeys:['enter', 'space', 'comma', 'tab'],
             //array method for setting initial tags
             initialTags:[],
             //minimum length of tags
             minLength:1,
+            maxLength: 20,
+            maxTags: 8,
             //should an html select be rendered to allow for normal form submission
             select:false,
             //if false only tags from `tagSource` are able to be entered
