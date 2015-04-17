@@ -30,7 +30,7 @@
           </div>
         </header>
         <div class="toolbar-profile">
-          <div class="btn-group">
+          <div class="btn-group js_update_profile_info">
             <!--editar-->
             <% if can?(:update, @category) %>
             <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn btn-default edit_icon") %>
@@ -45,7 +45,7 @@
       </div>
     </div>
     <% if can?(:update, @category) %>
-      <div class="update" style="display:none">
+      <div class="update js_update_profile_info" style="display:none">
         <%= form_for(@category, :url => [@category]) do |f| %>
           <%= f.hidden_field :owner_id %>
           <label><%= t('categories.leyend.title')%></label>
@@ -94,13 +94,13 @@
 <%= content_for :javascript do %>
     $(".edit_icon").on("click", function(){
       $(".update").show("slow");
-      $(".btn-group").hide("slow");
+      $(".btn-group js_update_profile_info").hide("slow");
       $(".information").hide("slow");
     });
 
     $("#hide_category_form").on("click", function(){
       $(".update").hide("slow");
-      $(".btn-group").show("slow");
+      $(".btn-group js_update_profile_info").show("slow");
       $(".information").show("slow");
     });
 
