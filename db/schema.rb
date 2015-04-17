@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150216105625) do
+ActiveRecord::Schema.define(:version => 20150313110458) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(:version => 20150216105625) do
     t.integer  "follower_count",                                                    :default => 0
     t.integer  "visit_count",                                                       :default => 0
     t.string   "language"
-    t.integer  "age_min",                                                           :default => 4
-    t.integer  "age_max",                                                           :default => 30
+    t.integer  "age_min",                                                           :default => 0
+    t.integer  "age_max",                                                           :default => 0
     t.boolean  "notified_after_draft",                                              :default => false
     t.integer  "comment_count",                                                     :default => 0
     t.integer  "popularity",                                                        :default => 0
@@ -508,6 +508,7 @@ ActiveRecord::Schema.define(:version => 20150216105625) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+    t.string "plain_name"
   end
 
   create_table "ties", :force => true do |t|
