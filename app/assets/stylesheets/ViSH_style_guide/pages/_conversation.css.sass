@@ -104,7 +104,7 @@
       @include border-bottom-radius ($border-radius-base)
       margin: $zero !important
       float: none !important
-      padding: 15px 15px 58px
+      padding: 15px 15px 52px
       background: $white
       @extend .form-group
       label
@@ -135,6 +135,7 @@
 
 .cont_conversation
   margin-top: 18px
+  padding: 0px 15px 49px
   .answer
     color: $gray
   textarea
@@ -192,31 +193,35 @@
       width: 30px
 
   .message
-    padding: 15px 0
+    padding: 25px 0 15px
     border-bottom: 1px solid $border-color
     background-color: $white
     .media
-      margin-left: 20px
-      .media-body
-        margin-top: 4px
-      .name
-        display: inline
+      margin-left: 15px
+      @include conversations
+      .media-body 
+        .post_time_ago
+          float: none
+          margin-left: 10px
+        p.info_action
+          clear: both
+          margin-top: 14px
+              
       .pull-left
         img
+          width: 50px
           @include border-top-radius ($border-radius-base)
           @include border-bottom-radius ($border-radius-base)
-      .date
-        color: #999
-        display: inline-block
-        font-size: 0.9em
+      
     &:last-child
       border-bottom: none
 
-.messages
-  margin: 0px auto !important
-  float: none !important
-  padding: 5px 15px 49px
-  background: $white
+  .messages
+    margin: 0px auto !important
+    float: none !important
+    background: $white
+#ck_editor
+  margin-bottom: 15px
 
 .select2-choices
   padding-left: 0
