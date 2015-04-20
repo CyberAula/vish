@@ -44,7 +44,7 @@
          </div>
         <p class="information"><%= t("category.categorized_like")%></p>
         <% tagArray= generic_categories.map{|e| e.title} %>
-    <% content_for :javascript do %>
+        <% content_for :javascript do %>
             var tagList= [
               <% tagArray.each do |tags| %>
                 "<%= tags %>",
@@ -169,7 +169,6 @@
 
                 $('#dropDownButton').jqxDropDownButton('close');
      });
-
 
 <%end%>
 </div>
