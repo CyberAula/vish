@@ -12,31 +12,30 @@
   <% end %>
 
   <button class="btn btn-primary btn_show_upload"><%= t('resource.one')%></button>
-  <button class="btn btn-default btn_hidden_upload"><i class="fa fa-chevron-left"></i>
-</button>
+  <button class="btn btn-default btn_hidden_upload"><i class="fa fa-chevron-left"></i></button>
 
-<% content_for :javascript do %>
-  <% unless editMode %>
-      $("#"+'<%=form_id%>').parent().find(".btn_show_upload").click(function(){
-        $("#" + '<%=form_id%>').show("slow");
-        $(this).hide("slow");
-        $(this).parent().find(".btn_hidden_upload").show("slow");
-      });
+  <% content_for :javascript do %>
+    <% unless editMode %>
+        $("#"+'<%=form_id%>').parent().find(".btn_show_upload").click(function(){
+          $("#" + '<%=form_id%>').show("slow");
+          $(this).hide("slow");
+          $(this).parent().find(".btn_hidden_upload").show("slow");
+        });
 
-      $("#"+'<%=form_id%>').parent().find(".btn_hidden_upload").click(function(){
-        $("#" + '<%=form_id%>').hide("slow");
-        $(this).hide("slow");
-        $(this).parent().find(".btn_show_upload").show("slow");
-      });
+        $("#"+'<%=form_id%>').parent().find(".btn_hidden_upload").click(function(){
+          $("#" + '<%=form_id%>').hide("slow");
+          $(this).hide("slow");
+          $(this).parent().find(".btn_show_upload").show("slow");
+        });
 
-      $("#"+'<%=form_id%>').parent().find(".contribution_file_input").change(function(){
-        var submitButton = $(this).parent().find("input[type='submit']");
-        if($(this).val()!=""){
-          $(submitButton).removeAttr("disabled");
-        } else {
-          $(submitButton).attr("disabled","disabled");
-        }
-      });
+        $("#"+'<%=form_id%>').parent().find(".contribution_file_input").change(function(){
+          var submitButton = $(this).parent().find("input[type='submit']");
+          if($(this).val()!=""){
+            $(submitButton).removeAttr("disabled");
+          } else {
+            $(submitButton).attr("disabled","disabled");
+          }
+        });
+    <% end %>
   <% end %>
-<% end %>
 </div>
