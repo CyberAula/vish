@@ -144,6 +144,9 @@
               //width: 100px
               margin: -1px
               padding: $zero
+              @media (max-width: $screen-xs-max)
+                form
+                  width: 100%
               div
                 .following-button
                   padding: 6px 9px
@@ -158,6 +161,8 @@
                     @include border-right-radius (0)
                     min-height: 34px
                     max-height: 34px
+                    @media (max-width: $screen-xs-max)
+                      @include border-right-radius ($border-radius-base)
             .btn
               min-height: 34px
               max-height: 34px
