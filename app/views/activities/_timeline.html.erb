@@ -23,6 +23,9 @@
          $(".more .fa-circle-o-notch").show().delay( 1000 ).fadeOut( 400 );
     });
   });
+  
+  $('.new_comment .form-group').bind('ajax:complete', function() {
+      $(this).children('.input-group').children('textarea').val('');
+    });    
 
 <% end %>
-
