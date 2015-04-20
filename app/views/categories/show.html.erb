@@ -26,7 +26,7 @@
             <h2><%= @category.title %></h2>
             <div class="description"><%= @category.description %></div>
             
-            <div class="author"> <span class="by"><%=t('by')%></span> <%= link_to @category.author.name, @category.author.subject %></div>
+            <div class="author"> <span class="by"><%= t('by') %></span> <%= link_to @category.author.name, @category.author.subject %></div>
           </div>
         </header>
         <div class="toolbar-profile">
@@ -64,7 +64,7 @@
             <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-default" %>
           </div>
         <% end %>
-      <%end%>
+      <% end %>
     </div>
   </div>
 </section>

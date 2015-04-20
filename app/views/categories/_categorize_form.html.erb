@@ -4,14 +4,14 @@
 </span>
 
 <p class="info">
-  <%=t('categories.info')%>
+  <%= t('categories.info') %>
 </p>
 
 <div class="actions-clone">
   <% categories = subject_categories(current_subject, {:scope => :me, :limit => 0}) %>
 
   <% if categories.empty? %>
-    <a class="btn btn-primary" href="#AddCategory" data-toggle="modal"><%=t('categories.actions.add')%></a>
+    <a class="btn btn-primary" href="#AddCategory" data-toggle="modal"><%= t('categories.actions.add') %></a>
   <% else %>
     <% categories_array = categories.map { |category| [category.title, category.id] } %>
     
@@ -22,7 +22,7 @@
     <%= form_for categories.first, :remote => true, :class => "form-group", do |f| %>
       <%= f.hidden_field :item_type, :value => item.class.to_s %>
       <%= f.hidden_field :item_id, :value => item.id %>
-      <a class="btn btn_cancel"><%=t('cancel')%></a>
+      <a class="btn btn_cancel"><%=t('cancel') %></a>
       <%= f.submit t('button.save')%>
     <% end %>
 
