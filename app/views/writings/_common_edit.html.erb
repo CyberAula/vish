@@ -2,7 +2,7 @@
 <%= render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "writing_fulltext"} %>
 
 <section class="fulltext">
-      <%= f.text_area :fulltext %>
+      <%= f.text_area :fulltext, :class => "form-control", :rows => 5 %>
       <%= f.hidden_field :plaintext %>
 </section>
 
