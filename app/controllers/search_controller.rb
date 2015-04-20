@@ -81,11 +81,54 @@ class SearchController < ApplicationController
       params[:ids_to_avoid] = params[:ids_to_avoid].split(",")
     end
 
-    models = SocialStream::Search.models(mode, params[:type])
+    #remove empty params    
+    params.delete_if { |k, v| v == "" }
 
-    RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page=>page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid], :subject => current_subject})
+    models = ( mode == :quick ? SocialStream::Search.models(mode, params[:type]) : processTypeParam(params[:type]) )
+    #binding.pry
+    RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page => page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid], :startDate => params[:startDate], :endDate => params[:endDate], :language => params[:language], :qualityThreshold => params[:qualityThreshold], :tags => params[:tags], :tag_ids => params[:tag_ids], :age_min => params[:age_min], :age_max => params[:age_max] })
+
   end
 
+  def processTypeParam(type)
+    models = []    
+    
+    unless type.blank?
+      allAvailableModels = VishConfig.getAllAvailableAndFixedModels(:include_subtypes => true).reject!{|m| m=="Category"}
+      # Available Types: all available models and the alias 'Resource' and 'learning_object'
+      allAvailableTypes = allAvailableModels + ["Resource", "Learning_object"]
+
+      types = type.split(",") & allAvailableTypes
+
+      if types.include? "Learning_object"
+        types.concat(["Excursion", "Resource", "Event", "Workshop"])
+      end
+
+      if types.include? "Resource"
+        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes => true).reject!{|e| e=="Excursion" || e=="Workshop" })
+      end
+
+      types = types & allAvailableModels
+      types.uniq!
+
+      types.each do |type|
+        #Find model
+        model = type.singularize.classify.constantize rescue nil
+        unless model.nil?
+          models.push(model)
+        end
+      end
+    end
+
+    if models.empty?
+      #Default models, all
+      models = VishConfig.getAllAvailableAndFixedModels({:return_instances => true, :include_subtypes => true}).reject!{|m| m==Category}
+    end
+
+    models.uniq!
+
+    return models
+  end
 end
 
           

@@ -97,8 +97,8 @@ class FederatedSearchController < ApplicationController
 
       types = type.split(",") & allAvailableTypes
 
-      if types.include? ["Resource"]
-        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes))
+      if types.include? "Resource"
+        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes => true))
       end
 
       types = types & allAvailableModels

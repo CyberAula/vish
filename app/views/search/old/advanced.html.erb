@@ -1,0 +1,113 @@
+<%= stylesheet_link_tag "vasearch" %>
+<%= javascript_include_tag "vasearch" %>
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function(){
+    VASearch.init({locale: '<%=I18n.locale%>', current_instance: '<%=Vish::Application.config.full_domain%>', draw: "boxes", allowAddInstance:false});
+  });
+</script>
+
+<div id="asearch_header">
+  <div class="search">
+    <input class="asearch_box search_input" type="text" placeholder="<%=t("asearch.search_input_placeholder")%>" autocomplete="off">
+    <button class="toolbar_button search_button">
+      <img class="search_button_img" src="/assets/asearch/search.png">
+    </button>
+    <button class="toolbar_button settings_button">
+      <img class="settings_button_img" src="/assets/asearch/settings.png">
+    </button>
+  </div>
+</div>
+
+<div id="asearch_results">
+</div>
+
+<div id="asearch_settings">
+  <div class="settingsColumn">
+    <p class="settingsTitle"><%=t("asearch.models.select_entities")%></p>
+    <select multiple class="entity_types">
+      <option selected="selected" value="Resource"><%=t("asearch.models.all_resources")%></option>
+      <% VishConfig.getAllModelsIncludingFixedModels(:include_subtypes => true).sort.each do |model| %>
+        <option value="<%=model%>"><%=t("asearch.models.#{model.downcase}")%></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="settingsColumn">
+    <p class="settingsTitle"><%=t("asearch.sorting.sort_title")%></p>
+    <select asparam="sort_by">
+      <option selected="selected" value="Relevance"><%=t("asearch.sorting.relevance")%></option>
+      <option value="ranking"><%=t("asearch.sorting.ranking")%></option>
+      <option value="popularity"><%=t("asearch.sorting.popularity")%></option>
+      <option value="modification"><%=t("asearch.sorting.modification")%></option>
+      <option value="creation"><%=t("asearch.sorting.creation")%></option>
+      <option value="visits"><%=t("asearch.sorting.visits")%></option>
+      <option value="favorites"><%=t("asearch.sorting.favorites")%></option>
+      <option value="quality"><%=t("asearch.sorting.quality")%></option>
+    </select>
+
+    <p class="settingsTitleSec"><%=t("asearch.filters.filter_title")%></p>
+    <p class="settingsField" style="margin-top: 9px !important;"><%=t("asearch.filters.date")%></p>
+    <div class="dateWrapper">
+      <div>
+        <p><%=t("asearch.filters.start_date")%></p>
+        <input type="date" asparam="startDate" name="startDate">
+      </div>
+      <div>
+        <p><%=t("asearch.filters.end_date")%></p>
+        <input type="date" asparam="endDate" name="endDate">
+      </div>
+    </div>
+    <p class="settingsField"><%=t("asearch.filters.language")%></p>
+    <select asparam="language">
+      <option selected="selected" value=""><%=t("asearch.any").capitalize%></option>
+      <% resource_languages.each do |lang| %>
+        <option value="<%=lang[1]%>"><%=lang[0]%></option>
+      <% end %>
+    </select>
+    <p class="settingsField" style="margin-top: 20px !important;"><span><%=t("asearch.filters.quality_threshold")%> (0-10): &nbsp;</span><span asparam="rangeValue">5.0</span></p>
+    <input asparam="qualityThreshold" type="range" min="0" max="10" step="0.1" value="5"/>
+   
+    <p class="settingsField" style="margin-top: 20px !important;"><span><%=t("asearch.filters.age_range")%> (0-30+): &nbsp;</span><span asparam="ageRangeValue">0-30+</span></p>
+    <input type="hidden" asparam="ageMin" value="0"/>
+    <input type="hidden" asparam="ageMax" value="30"/>
+    <div class="asearch_slider_wrapper">
+      <input type="text" class="asearch-age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,30]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+    </div>
+  </div>
+
+  <div class="settingsColumn">
+    <p class="settingsTitle"><%=t("asearch.instances.title")%> <span class="closeASearchSettings"><%=t("asearch.close")%></span></p>
+
+    <p class="settingsField"><%=t("asearch.instances.results")%></p>
+    <select asparam="n">
+      <option value="1">1</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option selected="selected" value="20">20</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+
+    <p class="settingsField"><%=t("asearch.instances.title")%></p>
+    <div class="ViSHinstances">
+      <div class="addInstanceInputWrapper" style="display:none">
+        <input type="text" class="addInstanceInput" placeholder="<%=t('search.instances.add_instance')%>"/>
+        <span class="addInstanceButton" title="add">[<%=t("search.instances.add")%>]</span>
+      </div>
+      <ul>
+        <% VishConfig.getViSHInstances.each_with_index do |instance,index| %>
+          <li>
+            <input type="checkbox" <%= checked="checked"%>></input>&nbsp;
+            <span><%=instance%></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <p class="settingsTitleSec"><%=t("search.rendering.title")%></p>
+    <select style="margin-top: 9px !important;" asparam="visualization">
+      <option value="boxes"><%=t("asearch.rendering.boxes")%></option>
+      <option value="table"><%=t("asearch.rendering.table")%></option>
+    </select>
+  </div>
+
+</div>
