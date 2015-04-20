@@ -57,9 +57,6 @@ ActiveRecord::Schema.define(:version => 20150313110458) do
     t.datetime "updated_at",         :null => false
   end
 
-  add_index "activity_object_audiences", ["activity_object_id"], :name => "activity_object_audiences_on_activity_object_id"
-  add_index "activity_object_audiences", ["relation_id"], :name => "activity_object_audiences_on_relation_id"
-
   create_table "activity_object_properties", :force => true do |t|
     t.integer "activity_object_id"
     t.integer "property_id"
@@ -135,9 +132,8 @@ ActiveRecord::Schema.define(:version => 20150313110458) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "notification_settings"
-    t.integer  "rank_mve",              :default => 0
     t.boolean  "is_admin",              :default => false
-    t.text     "category_order",                               :null => false
+    t.text     "category_order"
     t.string   "categories_view",       :default => "gallery"
   end
 
@@ -247,7 +243,6 @@ ActiveRecord::Schema.define(:version => 20150313110458) do
     t.text     "embed"
   end
 
-  add_index "events", ["activity_object_id"], :name => "events_on_activity_object_id"
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
   create_table "excursion_contributors", :force => true do |t|
@@ -263,10 +258,9 @@ ActiveRecord::Schema.define(:version => 20150313110458) do
     t.integer  "slide_count",        :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",              :default => false
-    t.text     "offline_manifest"
+    t.text     "offline_manifest",   :default => ""
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
-    t.integer  "rank_mve",           :default => 0
   end
 
   create_table "groups", :force => true do |t|
