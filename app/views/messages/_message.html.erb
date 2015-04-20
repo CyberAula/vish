@@ -8,19 +8,17 @@
 
     </div>
 
-    <div class="media-heading name">
-      <div class="name">
+  <div class="media-body"> 
+    <h6 class="media-heading">
       <%= link_to truncate_name(message.sender.name), message.sender.subject %>
-      </div>
-      <div class="date">
+      <div class="post_time_ago small">
         <%= t('time.ago', :time => time_ago_in_words(message.updated_at)) %>
       </div>
-    </div>
-
-  <div class="media-body">        
-    <div class="word-break pre-message">
+    </h6>       
+    <p class="info_action word-break pre-message">
       <%= raw(message.body) %>
-    </div>
+    </p>
   </div>
 </div>
 <% end %>
+

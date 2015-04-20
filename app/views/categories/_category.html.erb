@@ -1,4 +1,4 @@
-<li class="box-item categorie-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+<li class="box-item categorie-item" <% if defined?(obj_id)%>edit-id="<%=obj_id%>"<% end %>>
   <!-- corner -->
   <%= link_to(category) do %>
   <div class="corner-item">
@@ -39,8 +39,8 @@
     <div class="info-bottom">
       <!--like -->
       <div class="categories_inside">
-        <%=category.property_objects.count.to_s%>
-        <%=t('categories.item_inside')%>
+        <%= category.property_objects.count.to_s %>
+        <%= t('categories.item_inside') %>
       </div>
     </div>
   </div>

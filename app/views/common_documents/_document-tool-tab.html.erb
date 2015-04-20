@@ -35,6 +35,12 @@
 <%end%>
 
 
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function(){
+    $(".with_tooltip").tooltip({ placement: 'bottom'});
+  });
+</script>
+
 
 <div class="btn-group">
   <% if can? :destroy, document %>
@@ -43,8 +49,9 @@
     title: t('document.actions.delete'),
     method: :delete,
     rel: "tooltip",
-    class: "btn" %>
+    class: "btn with_tooltip" %>
   <% end %>
+
 
 
   <!--Favorite-->
@@ -153,4 +160,5 @@
 
 
 </div>
+
 

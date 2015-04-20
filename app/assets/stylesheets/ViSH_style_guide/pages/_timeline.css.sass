@@ -78,18 +78,8 @@
 .timeline-panel
   .pull-left
     margin-right: 10px
-  .media-heading
-    clear: both
-    height: 19px
-    a
-      float: left
-    .x
-      float: right
-      @include color-delete
-    .post_time_ago
-      display: inline-block
-      color: $gray !important
-      margin-left: 5px
+  @include conversations
+
   .panel-group
     clear: both
     @include comments
@@ -127,20 +117,12 @@
       margin-right: 10px
     .media-body
       .media-heading
-        clear: both
-        height: 15px
         a
           float: left
         .x
           float: right
           @include color-delete
-      .post_time_ago
-        display: inline-block
-        color: $gray !important
-        float: left
-      .to_like
-        float: left
-        margin-left: 5px
+
 
 
 
@@ -184,6 +166,7 @@ div.new_comment
     .media-body
       .objects
         clear: both
+        margin-top: 30px
 
 #last_content_shown
   clear: both

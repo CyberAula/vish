@@ -18,15 +18,15 @@
         <i class="fa fa-cogs"></i>
       </a>
 
-      <button type="button" class="btn btn-default btn-for-categorize" data-toggle="button"><i class="fa fa-arrows"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
+      <button type="button" class="btn btn-default btn-for-categorize" data-toggle="button"><i class="fa fa-arrows"></i><%= t('categories.dragandrop.place_uncategorize') %></button>
     <% end %>
 
     <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
       <button id="normal-view" type="button" class="btn btn-default">
-        <%=t('categories.dragandrop.gallery')%>
+        <%= t('categories.dragandrop.gallery') %>
       </button>
       <button id="list-view" type="button" class="btn btn-default">
-        <%=t('categories.dragandrop.list')%>
+        <%= t('categories.dragandrop.list') %>
       </button>
     </div>
   </div>
@@ -38,17 +38,17 @@
     <%= form_tag(categories_settings_path) do %>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel"><%=t('categories.dragandrop.edit')%></h3>
+        <h3 id="myModalLabel"><%= t('categories.dragandrop.edit') %></h3>
       </div>
       <div class="modal-body">
-        <p><%=t('categories.dragandrop.default_view')%></p>
+        <p><%= t('categories.dragandrop.default_view') %></p>
 
         <div class="radio">
           <label>
             <%= radio_button_tag :categories_view, "gallery", (categoryView=="gallery") %>
             <span class="lbl padding-0">
             <i class="fa fa-th "></i>
-            <%=t('categories.dragandrop.gallery')%>
+            <%= t('categories.dragandrop.gallery') %>
              </span>
           </label>
         </div>
@@ -57,13 +57,13 @@
             <%= radio_button_tag :categories_view, "list", (categoryView=="list") %>
             <span class="lbl padding-0">
             <i class="fa fa-align-justify "></i>
-            <%=t('categories.dragandrop.list')%>
+            <%= t('categories.dragandrop.list') %>
             </span>
           </label>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn  btn-default" data-dismiss="modal" aria-hidden="true"><%=t('close')%></button>
+        <button class="btn  btn-default" data-dismiss="modal" aria-hidden="true"><%= t('close') %></button>
         <%= submit_tag t('save'), :class => 'btn btn-primary' %>
       </div>
     <% end %>
@@ -85,17 +85,17 @@
   </div>
 
   <div id="list-instance" class="items" style="display:none" >
-  <%all_categories.each do |category|%>
-  <%if !category.property_objects.empty? %>
+  <% all_categories.each do |category| %>
+  <% if !category.property_objects.empty? %>
     <h2 ><%= category.title %></h2>
     <ul id="container_<%=category.id.to_s%>" class="categories main-list-categories-space">
-          <%category.property_objects.each do |resource| %>           
+          <% category.property_objects.each do |resource| %>           
 
-            <%=render :partial => "entities/entity", :locals => { :entity => resource.object, :prefix_id => category.id.to_s + "_" } %>
+            <%= render :partial => "entities/entity", :locals => { :entity => resource.object, :prefix_id => category.id.to_s + "_" } %>
           <%end%>
     </ul>
 
-    <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue btn btn-default" name="<%=category.title%>"><%=t('view_all')%></button>
+    <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue btn btn-default" name="<%=category.title%>"><%= t('view_all') %></button>
     <hr class="divider-cat">
       <%end%>
     <%end%>

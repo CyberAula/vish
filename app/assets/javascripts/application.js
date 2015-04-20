@@ -35,5 +35,6 @@
 //= require jqxbuttons
 //= require jqxtree
 //= require jqxpanel
+//= require query-string
 //= require_tree .
 

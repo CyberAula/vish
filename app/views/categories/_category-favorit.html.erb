@@ -15,24 +15,14 @@
       <hr class="soften">
       <!--like -->
       <div class="like">    
-        <div class="count"><%=category.post_activity.likes.count.to_s%></div>
-        <%= link_like(category.post_activity)%>
+        <div class="count"> <%= category.post_activity.likes.count.to_s %> </div>
+        <%= link_like(category.post_activity) %>
       </div>
       <!--views -->
       <div class="views">
-        <%=category.visit_count.to_s%>
-        <%=t('follow.views')%>
+        <%= category.visit_count.to_s %>
+        <%= t('follow.views') %>
       </div>
     </div>
   </div>
 </li>
-
-
-
-
-
-
-
-
-
-
