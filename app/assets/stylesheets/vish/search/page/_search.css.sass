@@ -227,11 +227,12 @@
           margin: 0 7px 12px 0
           .filter_ball,.filter_box_super_type,.filter_box_lo_type,
           .filter_box_resouce_type,.filter_box_language,.filter_box_tags
-            padding: 7px 10px 6px
+            padding: 7px
             color: white
             font-size: 0.9em
             border-radius: 5px
-            //border-radius: 5px 0 0 5px
+            float: left
+            padding: 5px 10px
           .filter_box_super_type
             background: $firstColor
           .filter_box_lo_type
@@ -245,15 +246,21 @@
         .filter_box_x
           cursor: pointer
           float: right
-          border-radius: 0 5px 5px 0
-          padding: 6px 4px 5px 9px
-          margin: -6px 0 0 -5px
-          font-size: 0.8em
+          border-radius: 15px
+          //padding: 6px 5px 5px 9px
+          //margin: -5px 0 0 -5px
+          margin: -6px 0px 0px -10px
+          padding: 0px 5px 1px
+          font-size: 0.7em
           font-family: "OpenSansBold", sans-serif
           color: white
           background: $grayDark
+          line-height: 1.5em
+          float: left
+          opacity: 0.7
           &:hover
             color: $grayLighter
+            opacity: 1 
 
     .searched-items
       margin-top: 20px
