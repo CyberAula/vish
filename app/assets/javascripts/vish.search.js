@@ -75,31 +75,22 @@ Vish.Search = (function(V,undefined){
           $("#last_content_shown").show();
         },
         scrape: function(data){
-          var parsed_html_return = $('<div></div>').html(data);
-          
-          console.log("parsed_url: " + _parsed_url["language"]);
+          var parsed_html_return = $('<div></div>').html(data);          
           //check that the params or query that generated this request is the same that the page that is shown (except for the param[:page] that changes)
           var params_type = parsed_html_return.find(".params_type").val();
           var params_language = parsed_html_return.find(".params_language").val();
-          console.log("params_language received: " + params_language);
           var params_tags = parsed_html_return.find(".params_tags").val();
           var params_sort_by = parsed_html_return.find(".params_sort_by").val();
           var showed_type = _parsed_url["type"] ? _parsed_url["type"].join(",") : "";
           var showed_language = _parsed_url["language"] ? _parsed_url["language"].join(",") : "";
-          if(showed_language==""){
-            console.log("showed_language: " + showed_language);
-          }
           var showed_tags = _parsed_url["tags"] ? _parsed_url["tags"].join(",") : "";
           var showed_sort_by = _parsed_url["sort_by"] ? _parsed_url["sort_by"].join(",") : "";
-          console.log(params_language, showed_language);
           
           if(showed_type==params_type && showed_tags==params_tags && showed_language==params_language && showed_sort_by==params_sort_by){
-          
             //Recalculate the tags in the search sidebar
             var the_tags = parsed_html_return.find(".the_tags").val();
             _recalculateTags(the_tags, false);
-            return data;
-            
+            return data;            
           } else {
             console.log("DESCARTAMOS PÁGINA: " + params_type + " " + params_language + " " + params_tags + " " + params_sort_by);
             return "";
@@ -281,7 +272,6 @@ Vish.Search = (function(V,undefined){
         }
 
         if(update_url){
-          console.log("AÑADIMOS A LA URL: " + filter_key + " " + filter_name);
           _addUrlParameter(filter_key, filter_name, follow_stack);
         }
       }      
@@ -307,7 +297,6 @@ Vish.Search = (function(V,undefined){
       }
     }
     _parsed_url[filter_key].push(filter_name);
-console.log("AÑADIDO");
     if(call_server){
       _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);
     }
