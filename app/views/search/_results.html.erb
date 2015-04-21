@@ -2,6 +2,12 @@
 
 <input type="hidden" name="the_tags" class="the_tags" value="<%= extract_tags(@search_result)%>">
 
+<input type="hidden" name="n_results" class="n_results" value="<%= @search_result.total_entries%>">
+
+<input type="hidden" class="params_type" value="<%= params[:type]%>">
+<input type="hidden" class="params_language" value="<%= params[:language]%>">
+<input type="hidden" class="params_tags" value="<%= params[:tags]%>">
+<input type="hidden" class="params_sort_by" value="<%= params[:sort_by]%>">
 
 <% @search_result.each do |r| %>
   <% unless r.nil? %>

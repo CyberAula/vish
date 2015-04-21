@@ -806,6 +806,7 @@ es:
     view_full: "Pantalla completa"
   search:
     any: "cualquiera"
+    applied_filters: "FILTROS APLICADOS"
     close: "cerrar"
     end: "No hay más resultados. Intenta con otros términos de búsqueda"
     filters:
@@ -850,6 +851,7 @@ es:
       title: "Opciones de visualización"
       boxes: "Ver como avatares"
       table: "Ver como tabla"
+    results: "Resultados"
     search_input_placeholder: "Buscar recursos educativos"
     show_all: "Todos"
     sorting:

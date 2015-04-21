@@ -294,7 +294,7 @@
   .search-filterbar
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
     background-color: white
-    padding: 20px
+    padding: 17px 20px 20px
     border-radius: 5px
     .filter_set
       margin: 0 0 20px 0
@@ -308,6 +308,8 @@
   .filter-results
     h3
       color: $gray-dark
+      margin-top: 7px
+      margin-bottom: 2px
       i
         margin: 10px
 
@@ -380,3 +382,49 @@
 
 .clear
   clear: both
+
+
+
+// 4---------------------
+
+@media (min-width: 501px) and (max-width: 1000px)
+  #search-all
+    li.box-item
+      width: 31.333333333%
+      margin: 0 1% 15px  
+
+
+// 5---------------------
+
+@media (min-width: 1001px) and (max-width: 1250px)
+  #search-all
+    li.box-item
+      width: 23%
+      margin: 0 1% 20px  
+
+
+// 6---------------------
+
+@media (min-width: 1251px) and (max-width: 1500px)
+  #search-all
+    li.box-item
+      width: 18.4%
+      margin: 0 0.8% 20px 
+
+
+// 7---------------------
+
+@media (min-width: 1501px) and (max-width: 1750px)
+  #search-all
+    li.box-item
+      width: 15.266666667%
+      margin: 0 0.7% 20px 
+
+
+// 8---------------------
+
+@media (min-width: 1751px)
+  #search-all
+    li.box-item
+      width: 13.085714286%
+      margin: 0 0.6% 20px 

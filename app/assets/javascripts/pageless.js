@@ -79,6 +79,8 @@
   };
   var container;
   var $container;
+  var reset = false; //new param used to reset the appending of elements when starting a new pageless.
+                    //init sets it to true and animateSlowAppendAndFinishLoading sets it to false after reseting everything
 
   //changed by KIKE XXX it was a function before
   //now we can access watch function
@@ -141,6 +143,8 @@
     if (settings.pagination) {
       $(settings.pagination).remove();
     }
+
+    reset = true;
 
     // start the listener
     startListener();
@@ -216,27 +220,38 @@
    * xxx
    */
   function animateSlowAppendAndFinishLoading(my_element, arr){ 
-    var tmp_elem = arr.pop();
-   
-    var hidden_elem = $(tmp_elem).hide().appendTo($(my_element));
-    
-    if ($.isFunction(settings.finishedAddingHiddenElem)) {
-      settings.finishedAddingHiddenElem(hidden_elem);
-    }
-    else{
-      hidden_elem.fadeIn();           
-    }
-    
-    if(arr.length>0){
-      window.setTimeout(function(){animateSlowAppendAndFinishLoading(my_element, arr)}, 10);
-    }
-    else{
+    if(reset){
+      reset = false;
+      arr = []
       loading(false);
       // if there is a complete callback we call it
       if (settings.complete) {
         settings.complete.call();
       }
+    }else{
+      var tmp_elem = arr.pop();
+   
+      var hidden_elem = $(tmp_elem).hide().appendTo($(my_element));
+      
+      if ($.isFunction(settings.finishedAddingHiddenElem)) {
+        settings.finishedAddingHiddenElem(hidden_elem);
+      }
+      else{
+        hidden_elem.fadeIn();           
+      }
+      
+      if(arr.length>0){
+        window.setTimeout(function(){animateSlowAppendAndFinishLoading(my_element, arr)}, 10);
+      }
+      else{
+        loading(false);
+        // if there is a complete callback we call it
+        if (settings.complete) {
+          settings.complete.call();
+        }
+      }
     }
+    
   }
 
   function watch() {

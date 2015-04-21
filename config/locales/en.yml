@@ -819,6 +819,7 @@ en:
     view_full: "View full"
   search:
     any: "any"
+    applied_filters: "APPLIED FILTERS"
     close: "close"    
     end: "No more search results. Try another search terms"
     filters:
@@ -863,6 +864,7 @@ en:
       title: "Visualization options"
       boxes: "View as avatars"
       table: "View as table"
+    results: "Results"
     search_input_placeholder: "Search educational resources"
     show_all: "All"
     sorting:
