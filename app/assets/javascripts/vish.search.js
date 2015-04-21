@@ -258,8 +258,17 @@ Vish.Search = (function(V,undefined){
         //show the related filters
         $("#search-sidebar div[opens_with='"+filter_name+"']").show();    
 
-        //if it is a tag, we move it to the ul selected_tags_ul
-        if(filter_key==="tags"){
+        //special actions depending on filter_key
+        if(filter_key==="type"){
+          //change the sort_by dropdown
+          if(filter_name==="Learning_object"){
+            $("li.disable_for_user").removeClass("hidden");
+          } else {
+            //user or all
+            $("li.disable_for_user").addClass("hidden");
+          }
+        } else if(filter_key==="tags"){
+          //if it is a tag, we move it to the ul selected_tags_ul
           var tag_to_move = filter_obj.detach();
           $("#selected_tags_ul").append(tag_to_move);
         }
@@ -297,6 +306,12 @@ Vish.Search = (function(V,undefined){
       }
     }
     _parsed_url[filter_key].push(filter_name);
+    if(filter_key==="type" && filter_name!="Learning_object"){
+      //check sort_by param and if it is favorites or visits change it to relevance because those do not work for users
+      if(_parsed_url["sort_by"] && (_parsed_url["sort_by"][0]==="favorites" || _parsed_url["sort_by"][0]==="visits") ){
+        _parsed_url["sort_by"]=["relevance"];
+      }
+    }
     if(call_server){
       _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);
     }

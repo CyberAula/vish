@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(:version => 20150313110458) do
     t.datetime "logo_updated_at"
     t.string   "notification_settings"
     t.boolean  "is_admin",              :default => false
-    t.text     "category_order"
+    t.text     "category_order",        :default =>""
     t.string   "categories_view",       :default => "gallery"
   end
 

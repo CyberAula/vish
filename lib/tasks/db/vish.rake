@@ -64,14 +64,30 @@ namespace :db do
         @slide_id=0
         @available_actors = Actor.all
 
-        # Some sample science images in the public domain
+        # Got Random images from lorempixel.com for development porpuses
+        @sample_images_variant = %w{
+          http://lorempixel.com/1024/768/
+          http://lorempixel.com/1440/900/abstract/
+          http://lorempixel.com/1024/768/nature/
+          http://lorempixel.com/1440/900/animals/
+          http://lorempixel.com/1024/768/transport/
+          http://lorempixel.com/1440/900/cats/
+          http://lorempixel.com/1024/768/fashion/
+          http://lorempixel.com/1024/768/technics/
+          http://lorempixel.com/1440/900/business/
+          http://lorempixel.com/1024/768/sports/
+          http://lorempixel.com/1024/768/city/
+        }
+
+
+        # Some sample science images in the public domain. Used Google Images option to public domain
         @sample_images = %w{
-          http://s0.geograph.org.uk/geophotos/01/74/36/1743675_513c1a7a.jpg
-          http://i.images.cdn.fotopedia.com/flickr-119671566-hd/Endangered_Species/Least_Concern/Gray_Wolf/Gray_Wolf_Canis_lupus.jpg
-          http://lucaskrech.com/blog/wp-content/uploads/2010/07/Screen-shot-2010-07-15-at-9.05.45-PM.png
-          http://images.cdn.fotopedia.com/flickr-3417427945-hd.jpg
-          http://2.bp.blogspot.com/_QEWhOURarSU/SMesG6Wt0iI/AAAAAAAACZY/3LBoehU1SpQ/s320/lhc.jpg
-          http://images.cdn.fotopedia.com/flickr-3507973704-hd.jpg
+          http://libreshot.com/wp-content/uploads/2015/01/sad-puppy.jpg
+          http://upload.wikimedia.org/wikipedia/commons/2/27/Wolf_Yawns_(5302403718).jpg
+          https://farm1.staticflickr.com/210/464791157_452d6fef46_o.jpg
+          http://res.freestockphotos.biz/pictures/17/17615-a-beautiful-sunset-pv.jpg
+          https://farm6.staticflickr.com/5497/9170132090_09ecd3c087_z.jpg
+          http://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Beautiful_red_apple.jpg/800px-Beautiful_red_apple.jpg
         }
 
         def generate_slide
