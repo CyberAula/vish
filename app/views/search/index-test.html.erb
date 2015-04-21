@@ -124,6 +124,16 @@
           </ul>
         </div>
         <%= render :partial => "layouts/loading" %>
+        <div id="search-all" class="searched-items">
+          <ul class="items">
+            <% @search_result.each do |r| %>
+            <% unless r.nil? %>
+            <%= render partial: "#{ r.class.to_s.tableize }/search_result",
+            locals:  { r.class.to_s.underscore.to_sym => r, :prefix_id => "search" }  %>
+            <% end %>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
     <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
