@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(:version => 20150313110458) do
     t.string   "notification_settings"
     t.integer  "rank_mve",              :default => 0
     t.boolean  "is_admin",              :default => false
-    t.text     "category_order",                               :null => false
+    t.text     "category_order",        :default =>""
     t.string   "categories_view",       :default => "gallery"
   end
 
