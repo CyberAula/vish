@@ -112,7 +112,6 @@ Vish.Search = (function(V,undefined){
           _all_tags[tag_item] = 1;
         }
       });
-    console.log(_all_tags);
     //create a sortable array and remove the tags that are already selected
     var sortable = [];
     for (var t in _all_tags){
@@ -130,7 +129,7 @@ Vish.Search = (function(V,undefined){
       }
       var tag_array = sortable[i];
       num +=1;
-      $("#tags_ul").append('<li filter_key="tags" filter="'+tag_array[0]+'">'+tag_array[0]+ ' ' +tag_array[1] +'</li>');
+      $("#tags_ul").append('<li filter_key="tags" filter="'+tag_array[0]+'">'+tag_array[0]+ '</li>');
     }    
   };
 
@@ -351,7 +350,7 @@ Vish.Search = (function(V,undefined){
     //puedo apuntar en una variable el tiempo de cuando pedi la última query y si llega otra y no ha pasado X tiempo a la cola
     //timeouts para ver la cola
     NUMBER_OF_CALLS +=1;
-    console.log("LLAMANDO AL SERVIDOR " + NUMBER_OF_CALLS);
+    //console.log("LLAMANDO AL SERVIDOR " + NUMBER_OF_CALLS);
     $.ajax({
           type : "GET",
           url : query,
@@ -370,6 +369,9 @@ Vish.Search = (function(V,undefined){
             //Recalculate the tags in the search sidebar
             var the_tags = parsed_html_return.find(".the_tags").val();
             _recalculateTags(the_tags, true);
+            var n_results = parsed_html_return.find(".n_results").val();
+            $("#n_results").html(n_results);
+
             //enter the results in the designated area
             $("#search-all ul").html(html_code);
           },

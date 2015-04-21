@@ -72,8 +72,8 @@
         <%end%>
         <div class="search_filters filters-applied">
           <%= render partial: 'help/help_search' %>
-          <div><span class="n_results">598</span> resultados</div>
-          <div class="title_applied_filters">FILTROS APLICADOS</div>
+          <div><span class="n_results" id="n_results"><%=@search_result.total_entries%></span> <%= t("search.results")%></div>
+          <div class="title_applied_filters"><%= t("search.applied_filters")%></div>
 
           <div id="applied_filters" class="filter_boxes"></div>
           <div class="clear"></div>
