@@ -5,7 +5,7 @@
         <tr>
             <!--contributors-->
             <% if resource.respond_to?("contributors") and !resource.contributors.blank? %>
-              <td></span><%= t('document.contributors.name').capitalize %></span></td>
+              <td><span><%= t('document.contributors.name').capitalize %></span></td>
               <td>
                 <% resource.contributors.uniq.each_with_index do |c,index| %>
                   <% unless index==0 %>
