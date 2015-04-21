@@ -27,7 +27,7 @@
       margin-top: -23px
 
 #nav-collapse-out
-  .btn-group a
+  .dropdown a
     color: $white
 .registration
   hr
@@ -132,7 +132,9 @@
     margin-bottom: 40px
   
   .decoration
-    margin-bottom: 20px
+    margin-bottom: 25px
+    @media (max-width: $screen-xs-max)
+      margin-bottom: 36px
     hr
       border-bottom: 2px solid $gray-light
       width: 100%
@@ -151,7 +153,8 @@
 #presentation
   margin-bottom: 10px
   float: left
-
+  @media (max-width: $screen-xs-max)
+    margin: 25px 0
 .front_info
   .ch-grid
     margin: 0
