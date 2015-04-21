@@ -65,9 +65,9 @@
 
   <div class="filter-results">
     <%if browse%>
-      <li><h3><i class="icon-folder-open"></i><%= t("browse.title")%></h3></li>
+      <li><h3><i class="fa fa-folder-open-o"></i><%= t("browse.title")%></h3></li>
     <%else%>
-      <li><h3><i class="icon-search"></i><%= t("search.title")%></h3></li>
+      <li><h3><i class="fa fa-search"></i><%= t("search.title")%></h3></li>
     <%end%>
     <div class="search_filters filters-applied">
       <%= render partial: 'help/help_search' %>
@@ -160,7 +160,7 @@
 <%= content_for :javascript do %>
 
 
-  Vish.Search.init({"object_types": <%=raw VishConfig.getSearchModels()%>, 
+  Vish.Search.init({"object_types": <%=raw VishConfig.getSearchModels()%>,
                     "resource_types": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }%>,
                     "num_pages": <%=@search_result.num_pages%>,
                     "url": window.location.href,
