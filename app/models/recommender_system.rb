@@ -411,11 +411,21 @@ class RecommenderSystem
       opts[:with][:age_max] = ageMin..100
     end
 
-    #Filter by category
-    if options[:category_id] and Vish::Application.config.catalogue["category_tag_ids"][options[:category_id]].is_a? Array
-      opts[:with][:tag_ids] = Vish::Application.config.catalogue["category_tag_ids"][options[:category_id]]
+    #Filter by categories
+    if options[:category_ids].is_a? String
+      options[:category_ids] = options[:category_ids].split(",")
     end
 
+    if options[:category_ids].is_a? Array
+      opts[:with][:tag_ids] = []
+      options[:category_ids].each do |category|
+        if Vish::Application.config.catalogue["category_tag_ids"][category].is_a? Array
+          opts[:with][:tag_ids].push(Vish::Application.config.catalogue["category_tag_ids"][category])
+        end
+      end
+      opts[:with][:tag_ids] = opts[:with][:tag_ids].flatten.uniq
+    end
+    
     opts[:without] = {}
     if options[:subjects_to_avoid].is_a? Array
       options[:subjects_to_avoid] = options[:subjects_to_avoid].compact
