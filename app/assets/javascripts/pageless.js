@@ -91,29 +91,16 @@
   };
 
   $.pagelessReset = function () {
-    settings = {
-      container: window,
-      currentPage: 1,
-      distance: 100,
-      pagination: '.pagination',
-      params: {},
-      url: location.href,
-      loaderImage: "/assets/load.gif",
-      method: 'get'
-    };
-    stopListener();
-      // if there is a afterStopListener callback we call it
-    if (settings.end) {
-      settings.end.call();
-    }
+    reset = true;
+     $.pagelessStop();
   };
 
   $.pagelessStop = function () {
     if(settings.inited===true){
       settings.inited = false;
       stopListener();
-    }
-  };
+    }    
+  }
 
   var loaderHtml = function () {
     return settings.loaderHtml ||
@@ -142,9 +129,7 @@
     // but since we have javascript enabled we remove pagination links
     if (settings.pagination) {
       $(settings.pagination).remove();
-    }
-
-    reset = true;
+    }   
 
     // start the listener
     startListener();
@@ -228,7 +213,7 @@
       if (settings.complete) {
         settings.complete.call();
       }
-    }else{
+    } else {
       var tmp_elem = arr.pop();
    
       var hidden_elem = $(tmp_elem).hide().appendTo($(my_element));
