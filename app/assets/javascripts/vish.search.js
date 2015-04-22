@@ -81,26 +81,10 @@ Vish.Search = (function(V,undefined){
         },
         scrape: function(data){
           var parsed_html_return = $('<div></div>').html(data);          
-          //check that the params or query that generated this request is the same that the page that is shown (except for the param[:page] that changes)
-          var params_type = parsed_html_return.find(".params_type").val();
-          var params_language = parsed_html_return.find(".params_language").val();
-          var params_tags = parsed_html_return.find(".params_tags").val();
-          var params_sort_by = parsed_html_return.find(".params_sort_by").val();
-          var showed_type = _parsed_url["type"] ? _parsed_url["type"].join(",") : "";
-          var showed_language = _parsed_url["language"] ? _parsed_url["language"].join(",") : "";
-          var showed_tags = _parsed_url["tags"] ? _parsed_url["tags"].join(",") : "";
-          var showed_sort_by = _parsed_url["sort_by"] ? _parsed_url["sort_by"].join(",") : "";
-          
-          if(showed_type==params_type && showed_tags==params_tags && showed_language==params_language && showed_sort_by==params_sort_by){
-            //Recalculate the tags in the search sidebar
-            var the_tags = parsed_html_return.find(".the_tags").val();
-            _recalculateTags(the_tags, false);
-            return data;            
-          } else {
-            console.log("DESCARTAMOS PÁGINA: " + params_type + " " + params_language + " " + params_tags + " " + params_sort_by);
-            return "";
-          }
-          
+          //Recalculate the tags in the search sidebar
+          var the_tags = parsed_html_return.find(".the_tags").val();
+          _recalculateTags(the_tags, false);
+          return data;          
         },    
         complete: function(){
           //when we complete one page and there is no scroll, there cannot be another call
@@ -360,11 +344,7 @@ Vish.Search = (function(V,undefined){
       }
     });    
     var new_url = "search?" + queryString.stringify(final_url);
-    window.history.pushState("", "", new_url);
-    if(final_url["catalogue"]){
-      final_url["type"] = "Excursion";
-    }
-    new_url = "search?" + queryString.stringify(final_url);
+    window.history.pushState("", "", new_url);    
     _manageQuery(new_url, sort_by);
   };
 
@@ -429,7 +409,7 @@ Vish.Search = (function(V,undefined){
   /*Function called when sort_by dropdown changes*/
   var launch_search_with_sort_by = function(sort_by){
     //favorites, visits and modified only work with Learning_objects
-    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") & _parsed_url["type"] != "Learning_object"){
+    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"]){
       return;
     } else {
       _parsed_url["sort_by"] = [sort_by];

@@ -84,6 +84,11 @@ class SearchController < ApplicationController
     #remove empty params   
     params.delete_if { |k, v| v == "" }
 
+    if params[:catalogue] && !params[:type]
+      #default models for catalogue without type filter applied
+      params[:type] = VishConfig.getCatalogueModels().join(",")
+    end
+
     models = ( mode == :quick ? SocialStream::Search.models(mode, params[:type]) : processTypeParam(params[:type]) )
 
     keywords = params[:q]

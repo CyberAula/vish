@@ -92,7 +92,7 @@
 
   $.pagelessReset = function () {
     reset = true;
-     $.pagelessStop();
+    $.pagelessStop();
   };
 
   $.pagelessStop = function () {
@@ -117,6 +117,7 @@
     }
 
     settings.inited = true;
+    reset = false;
 
     if (opts) {
       $.extend(settings, opts);
