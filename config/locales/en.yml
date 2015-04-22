@@ -882,8 +882,10 @@ en:
       filter_by: "Filter by"
       lang: "language"
       learning_object: "learning object"
-      resource: "resource type"      
+      resource: "resource type" 
+      subject: "subject"     
       tag: "tag"
+      tooltip: "Option only available for learning objects"
       type: "type"
     type: "type"
   send:

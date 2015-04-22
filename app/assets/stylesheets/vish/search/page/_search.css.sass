@@ -160,7 +160,6 @@
 .search-sidebar-selected
   font-weight: bold
   font-family: $secondFontFamily !important
-  margin-left: 5px
 
 #search-sidebar li
   cursor: pointer
@@ -182,10 +181,19 @@
         color: $firstColor
       ul
         margin: 10px
+        .filter_item
+          border-bottom: 0.5px dashed #ddd
+          padding: 3px 0
+          font-size: 0.9em
+        .filter_item:last-child
+          border-bottom: 0
+
+
       .ul_selected_tags
         margin-bottom: 0
       .ul_tags
         margin-top: 0
+
   .filter-results
     h3
       color: $gray
@@ -226,7 +234,7 @@
           float: left
           margin: 0 7px 12px 0
           .filter_ball,.filter_box_super_type,.filter_box_lo_type,
-          .filter_box_resouce_type,.filter_box_language,.filter_box_tags
+          .filter_box_resouce_type,.filter_box_language,.filter_box_tags,.filter_box_category_ids
             padding: 7px
             color: white
             font-size: 0.9em
@@ -243,6 +251,8 @@
             background: gray
           .filter_box_tags
             background: #555
+          .filter_box_category_ids
+            background: $firstColor
         .filter_box_x
           cursor: pointer
           float: right
@@ -260,7 +270,7 @@
           opacity: 0.7
           &:hover
             color: $grayLighter
-            opacity: 1 
+            opacity: 1
 
     .searched-items
       margin-top: 20px

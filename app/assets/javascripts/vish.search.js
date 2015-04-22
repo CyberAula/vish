@@ -21,7 +21,8 @@ Vish.Search = (function(V,undefined){
         resource_types: [Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"],
         num_pages: 8,
         url: http://vishub.org/search?type=Webapp%2CScormfile&sort_by=updated_at,
-        tags: "tag1,tag2,my_tag" 
+        tags: "tag1,tag2,my_tag",
+        sort_by_disable_tooltip: "Option only available for learning objects"
       }  
   */
   var init = function(options){
@@ -38,6 +39,10 @@ Vish.Search = (function(V,undefined){
 
     //take the params from the URL and mark them in the sidebar
     _parsed_url = _getUrlParameters();
+    if(_parsed_url["catalogue"]){
+      $("li.disable_for_user").removeClass("disabled");
+      $("li.disable_for_user").attr("title", "");
+    }
     _recalculateTags(_options.tags, true);
     _fillSidebarWithParams();
     _loadUIEvents(_options);
@@ -76,26 +81,10 @@ Vish.Search = (function(V,undefined){
         },
         scrape: function(data){
           var parsed_html_return = $('<div></div>').html(data);          
-          //check that the params or query that generated this request is the same that the page that is shown (except for the param[:page] that changes)
-          var params_type = parsed_html_return.find(".params_type").val();
-          var params_language = parsed_html_return.find(".params_language").val();
-          var params_tags = parsed_html_return.find(".params_tags").val();
-          var params_sort_by = parsed_html_return.find(".params_sort_by").val();
-          var showed_type = _parsed_url["type"] ? _parsed_url["type"].join(",") : "";
-          var showed_language = _parsed_url["language"] ? _parsed_url["language"].join(",") : "";
-          var showed_tags = _parsed_url["tags"] ? _parsed_url["tags"].join(",") : "";
-          var showed_sort_by = _parsed_url["sort_by"] ? _parsed_url["sort_by"].join(",") : "";
-          
-          if(showed_type==params_type && showed_tags==params_tags && showed_language==params_language && showed_sort_by==params_sort_by){
-            //Recalculate the tags in the search sidebar
-            var the_tags = parsed_html_return.find(".the_tags").val();
-            _recalculateTags(the_tags, false);
-            return data;            
-          } else {
-            console.log("DESCARTAMOS PÁGINA: " + params_type + " " + params_language + " " + params_tags + " " + params_sort_by);
-            return "";
-          }
-          
+          //Recalculate the tags in the search sidebar
+          var the_tags = parsed_html_return.find(".the_tags").val();
+          _recalculateTags(the_tags, false);
+          return data;          
         },    
         complete: function(){
           //when we complete one page and there is no scroll, there cannot be another call
@@ -260,12 +249,13 @@ Vish.Search = (function(V,undefined){
 
         //special actions depending on filter_key
         if(filter_key==="type"){
-          //change the sort_by dropdown
           if(filter_name==="Learning_object"){
-            $("li.disable_for_user").removeClass("hidden");
+            $("li.disable_for_user").removeClass("disabled");
+            $("li.disable_for_user").attr("title", "");
           } else {
             //user or all
-            $("li.disable_for_user").addClass("hidden");
+            $("li.disable_for_user").addClass("disabled");
+            $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);
           }
         } else if(filter_key==="tags"){
           //if it is a tag, we move it to the ul selected_tags_ul
@@ -349,10 +339,12 @@ Vish.Search = (function(V,undefined){
     $.each( _parsed_url, function(key, value){ 
       //remove empty strings
       value = value.filter(function(e) { return e; });      
-      final_url[key] = value.join();
-    });   
+      if(value.length>0){
+        final_url[key] = value.join();
+      }
+    });    
     var new_url = "search?" + queryString.stringify(final_url);
-    window.history.pushState("", "", new_url);
+    window.history.pushState("", "", new_url);    
     _manageQuery(new_url, sort_by);
   };
 
@@ -416,8 +408,13 @@ Vish.Search = (function(V,undefined){
 
   /*Function called when sort_by dropdown changes*/
   var launch_search_with_sort_by = function(sort_by){
-    _parsed_url["sort_by"] = [sort_by];
-    _composeFinalUrlAndCallServer(sort_by);
+    //favorites, visits and modified only work with Learning_objects
+    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"]){
+      return;
+    } else {
+      _parsed_url["sort_by"] = [sort_by];
+      _composeFinalUrlAndCallServer(sort_by);
+    }
   }
 
 

@@ -41,6 +41,15 @@
       </li>
     <%end%>
 
+    <% if availableModels.include? "Workshop" %>
+      <li>
+        <a tabindex="-1" href="<%=search_path(:type => "Workshop", :browse=>"true", :sort_by => "popularity")%>">
+          <i class="fa fa-lightbulb"></i>
+          <%=t('workshop.other')%>
+        </a>
+      </li>
+    <%end%>
+
     <li class="divider"></li>
 
     <% if availableServices.include? "Catalogue" %>
