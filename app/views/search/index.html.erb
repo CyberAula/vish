@@ -19,9 +19,9 @@
           <div filter_type="category_ids" class="filter_set">
             <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.subject")%></span></span>
             <hr class="separator">
-            <ul>              
+            <ul>
               <% Vish::Application.config.catalogue["categories"].each do |categoryId| %>
-                <li filter_key="category_ids" categoryId="<%=categoryId%>" filter="<%=categoryId%>"><%=t('catalogue.categories.' + categoryId)%></li>
+                <li class="filter_item" filter_key="category_ids" categoryId="<%=categoryId%>" filter="<%=categoryId%>"><%=t('catalogue.categories.' + categoryId)%></li>
               <% end %>
             </ul>
           </div>
@@ -32,8 +32,8 @@
             <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.type")%></span></span>
             <hr class="separator">
             <ul>
-              <li filter_key="type" filter="User" exclusive><%=t("search.models.user")%></li>
-              <li filter_key="type" filter="Learning_object" exclusive><%=t("search.models.learning_object")%></li>
+              <li class="filter_item" filter_key="type" filter="User" exclusive><%=t("search.models.user")%></li>
+              <li class="filter_item" filter_key="type" filter="Learning_object" exclusive><%=t("search.models.learning_object")%></li>
             </ul>
           </div>
 
@@ -42,7 +42,7 @@
             <hr class="separator">
             <ul>
               <% VishConfig.getSearchModels().each do |model| %>
-                <li filter_key="type" filter="<%=model%>"><%=t("search.models.#{model.downcase}")%></li>
+                <li class="filter_item" filter_key="type" filter="<%=model%>"><%=t("search.models.#{model.downcase}")%></li>
               <% end %>
             </ul>
           </div>
@@ -52,21 +52,21 @@
             <hr class="separator">
             <ul>
               <% VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }.each do |res| %>
-                <li filter_key="type" filter="<%=res%>"><%=t("search.models.#{res.downcase}")%></li>
+                <li class="filter_item" filter_key="type" filter="<%=res%>"><%=t("search.models.#{res.downcase}")%></li>
               <%end%>
             </ul>
           </div>
 
         <%end%>
 
-        
+
 
         <div filter_type="language" class="filter_set">
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.lang")%></span></span>
           <hr class="separator">
           <ul>
             <% resource_languages.each do |lang| %>
-              <li filter_key="language" filter="<%=lang[1]%>"><%=lang[0]%></li>
+              <li class="filter_item" filter_key="language" filter="<%=lang[1]%>"><%=lang[0]%></li>
             <% end %>
           </ul>
         </div>
@@ -118,7 +118,7 @@
                   <span><%=t('order_by.popularity')%> </span>
                 </a>
               </li>
-              
+
               <li role="presentation">
                 <a href="#" onclick="Vish.Search.launch_search_with_sort_by('created_at')" sort-by-key="created_at">
                   <i class="icon-bolt"></i>
