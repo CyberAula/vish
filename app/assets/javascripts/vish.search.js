@@ -260,12 +260,11 @@ Vish.Search = (function(V,undefined){
 
         //special actions depending on filter_key
         if(filter_key==="type"){
-          //change the sort_by dropdown
           if(filter_name==="Learning_object"){
-            $("li.disable_for_user").removeClass("hidden");
+            $("li.disable_for_user").removeClass("disabled");
           } else {
             //user or all
-            $("li.disable_for_user").addClass("hidden");
+            $("li.disable_for_user").addClass("disabled");
           }
         } else if(filter_key==="tags"){
           //if it is a tag, we move it to the ul selected_tags_ul
@@ -416,8 +415,13 @@ Vish.Search = (function(V,undefined){
 
   /*Function called when sort_by dropdown changes*/
   var launch_search_with_sort_by = function(sort_by){
-    _parsed_url["sort_by"] = [sort_by];
-    _composeFinalUrlAndCallServer(sort_by);
+    //favorites, visits and modified only work with Learning_objects
+    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") & _parsed_url["type"] != "Learning_object"){
+      return;
+    } else {
+      _parsed_url["sort_by"] = [sort_by];
+      _composeFinalUrlAndCallServer(sort_by);
+    }
   }
 
 
