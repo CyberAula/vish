@@ -63,7 +63,7 @@ Vish.Search = (function(V,undefined){
     //console.log("reapplying pageless with url: " + options.url + " and num_pages: " + options.num_pages);
     //stop_first = typeof stop_first !== 'undefined' ? stop_first : false; //default value 
     if(stop_first){
-      $.pagelessStop();
+      $.pagelessReset();
     }
     $('#search-all ul').pageless({
         totalPages: options.num_pages,
