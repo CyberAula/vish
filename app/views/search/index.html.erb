@@ -42,7 +42,16 @@
         </ul>
       </div>
 
-
+      <div filter_type="language" class="filter_set">
+        <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.lang")%></span></span>
+        <hr class="separator">
+        <ul>
+          <% resource_languages.each do |lang| %>
+            <li filter_key="language" filter="<%=lang[1]%>"><%=lang[0]%></li>
+          <% end %>
+        </ul>
+      </div>
+      
       <div filter_type="tags" class="filter_set">
         <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.tag")%></span></span>
         <hr class="separator">
@@ -52,14 +61,6 @@
         </ul>
       </div>
 
-      <div filter_type="tags" class="filter_set">
-        <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.tag")%></span></span>
-        <hr class="separator">
-        <ul id="selected_tags_ul">
-        </ul>
-        <ul id="tags_ul">
-        </ul>
-      </div>
     </div>
     <div class="filter-results">
       <%if browse%>
