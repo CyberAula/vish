@@ -867,7 +867,9 @@ es:
       lang: "idioma"
       learning_object: "objeto de aprendizaje"
       resource: "tipo de recurso"
+      subject: "tema"
       tag: "etiquetas"
+      tooltip: "Opción sólo disponible para objetos de aprendizaje"
       type: "tipo"
     type: "tipo"
   send:

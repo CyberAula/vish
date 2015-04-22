@@ -21,7 +21,8 @@ Vish.Search = (function(V,undefined){
         resource_types: [Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"],
         num_pages: 8,
         url: http://vishub.org/search?type=Webapp%2CScormfile&sort_by=updated_at,
-        tags: "tag1,tag2,my_tag" 
+        tags: "tag1,tag2,my_tag",
+        sort_by_disable_tooltip: "Option only available for learning objects"
       }  
   */
   var init = function(options){
@@ -38,6 +39,10 @@ Vish.Search = (function(V,undefined){
 
     //take the params from the URL and mark them in the sidebar
     _parsed_url = _getUrlParameters();
+    if(_parsed_url["catalogue"]){
+      $("li.disable_for_user").removeClass("disabled");
+      $("li.disable_for_user").attr("title", "");
+    }
     _recalculateTags(_options.tags, true);
     _fillSidebarWithParams();
     _loadUIEvents(_options);
@@ -262,9 +267,11 @@ Vish.Search = (function(V,undefined){
         if(filter_key==="type"){
           if(filter_name==="Learning_object"){
             $("li.disable_for_user").removeClass("disabled");
+            $("li.disable_for_user").attr("title", "");
           } else {
             //user or all
             $("li.disable_for_user").addClass("disabled");
+            $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);
           }
         } else if(filter_key==="tags"){
           //if it is a tag, we move it to the ul selected_tags_ul
@@ -348,10 +355,16 @@ Vish.Search = (function(V,undefined){
     $.each( _parsed_url, function(key, value){ 
       //remove empty strings
       value = value.filter(function(e) { return e; });      
-      final_url[key] = value.join();
-    });   
+      if(value.length>0){
+        final_url[key] = value.join();
+      }
+    });    
     var new_url = "search?" + queryString.stringify(final_url);
     window.history.pushState("", "", new_url);
+    if(final_url["catalogue"]){
+      final_url["type"] = "Excursion";
+    }
+    new_url = "search?" + queryString.stringify(final_url);
     _manageQuery(new_url, sort_by);
   };
 

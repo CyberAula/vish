@@ -58,7 +58,7 @@
 
     <% if availableServices.include? "Catalogue" %>
       <li>
-        <a tabindex="-1" href="/catalogue">
+        <a tabindex="-1" href="<%=search_path(:catalogue=>"true")%>">
           <i class="icon-tags"></i>
           <%=t('catalogue.title')%>
         </a>

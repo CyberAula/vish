@@ -100,7 +100,7 @@ class SearchController < ApplicationController
         params[:category_ids].split(",").each do |category|
           keywords.push(Vish::Application.config.catalogue["category_keywords"][category])
         end
-        keywords.uniq!
+        keywords = keywords.flatten.uniq
       end
     end
 
