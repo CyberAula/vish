@@ -11,7 +11,7 @@
 
   <div class="search form-group">
     <div class="input-group">
-      <input class="asearch_box search_input form-control" type="text" placeholder="<%=t("asearch.search_input_placeholder")%>" autocomplete="off">
+      <input class="asearch_box search_input form-control" type="text" placeholder=<%= t("asearch.title") %> autocomplete="off">
       <div class="input-group-addon">  
         <button class="toolbar_button search_button btn btn-primary">
           <i class="fa fa-search search_button_img"></i>
@@ -88,7 +88,6 @@
 
     <p class="settingsTitle"> 
       <%= t("asearch.instances.title") %> 
-      <span class="closeASearchSettings"> <%= t("search.close") %> </span>
     </p>
 
     <p class="settingsField">
