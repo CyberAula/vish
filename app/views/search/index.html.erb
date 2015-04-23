@@ -29,18 +29,24 @@
         <%else%>
 
           <div filter_type="super_type" class="filter_set">
+            <button href="#" status="showMore" class="showMoreButton btn-openclose">
+              <a>-</a>
+            </button>
             <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.type")%></span></span>
             <hr class="separator">
-            <ul>
+            <ul class="opened_filter">
               <li class="filter_item" filter_key="type" filter="User" exclusive><%=t("search.models.user")%></li>
               <li class="filter_item" filter_key="type" filter="Learning_object" exclusive><%=t("search.models.learning_object")%></li>
             </ul>
           </div>
 
           <div filter_type="lo_type" opens_with="Learning_object" style="display:none" class="filter_set">
+            <button href="#" status="showMore" class="showMoreButton btn-openclose">
+              <a>-</a>
+            </button>
             <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.learning_object")%></span></span>
             <hr class="separator">
-            <ul>
+            <ul class="opened_filter">
               <% VishConfig.getSearchModels().each do |model| %>
                 <li class="filter_item" filter_key="type" filter="<%=model%>"><%=t("search.models.#{model.downcase}")%></li>
               <% end %>
@@ -48,9 +54,12 @@
           </div>
 
           <div filter_type="resouce_type" id="resource_type" opens_with="Resource" style="display:none" class="filter_set">
+            <button href="#" status="showMore" class="showMoreButton btn-openclose">
+              <a>-</a>
+            </button>
             <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.resource")%></span></span>
             <hr class="separator">
-            <ul>
+            <ul class="opened_filter">
               <% VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }.each do |res| %>
                 <li class="filter_item" filter_key="type" filter="<%=res%>"><%=t("search.models.#{res.downcase}")%></li>
               <%end%>
@@ -60,11 +69,13 @@
         <%end%>
 
 
-
         <div filter_type="language" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose">
+            <a>-</a>
+          </button>
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.lang")%></span></span>
           <hr class="separator">
-          <ul>
+          <ul class="opened_filter">
             <% resource_languages.each do |lang| %>
               <li class="filter_item" filter_key="language" filter="<%=lang[1]%>"><%=lang[0]%></li>
             <% end %>
@@ -72,11 +83,14 @@
         </div>
 
         <div filter_type="tags" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose">
+            <a>-</a>
+          </button>
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.tag")%></span></span>
           <hr class="separator">
-          <ul class="ul_selected_tags" id="selected_tags_ul">
+          <ul class="opened_filter ul_selected_tags" id="selected_tags_ul">
           </ul>
-          <ul class="ul_tags" id="tags_ul">
+          <ul class="opened_filter ul_tags" id="tags_ul">
           </ul>
         </div>
 
@@ -191,6 +205,19 @@
                      });
 
   SocialStream.Repository.show();
+
+  $(".showMoreButton").click(function(){
+
+    var the_ul = $(this).siblings("ul");
+    if(the_ul.hasClass("opened_filter")){
+      the_ul.switchClass( "opened_filter", "closed_filter", 100 );
+      $(this).html('<a>+</a>');
+    } else {
+      the_ul.switchClass( "closed_filter", "opened_filter", 100 );
+      $(this).html('<a>-</a>');
+    }
+    return false;
+  });
 
   $("footer#footer").addClass("fixed-bottom");
 
