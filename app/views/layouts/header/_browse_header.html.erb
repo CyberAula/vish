@@ -18,7 +18,7 @@
 
     <% if availableModels.include? "Excursion" %>
       <li>
-        <a tabindex="-1" href="<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "popularity")%>">
+        <a tabindex="-1" href="<%=search_path(:type => "Excursion", :browse=>"true", :sort_by => "popularity")%>">
           <i class="fa fa-book"></i> 
           <%=t('excursion.other')%>
         </a>
@@ -26,7 +26,7 @@
     <%end%>
 
     <li>
-      <a tabindex="-1" href="<%=search_path(:type => "user", :browse=>"true", :sort_by => "popularity")%>">
+      <a tabindex="-1" href="<%=search_path(:type => "User", :browse=>"true", :sort_by => "popularity")%>">
         <i class="fa fa-group"></i>
         <%=t('user.other')%>
       </a>
@@ -34,7 +34,7 @@
 
     <% if availableModels.include? "Resource" %>
       <li>
-        <a tabindex="-1" href="<%=search_path(:type => "resource", :browse=>"true", :sort_by => "popularity")%>">
+        <a tabindex="-1" href="<%=search_path(:type => "Resource", :browse=>"true", :sort_by => "popularity")%>">
           <i class="fa fa-file"></i>
           <%=t('resource.other')%>
         </a>
