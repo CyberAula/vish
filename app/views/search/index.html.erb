@@ -13,7 +13,7 @@
 
 <section id="search" class="">
   <div class="row">
-    <div id="search-sidebar" class="span3 search-filterbar">
+    <div id="search-sidebar" class="search-filterbar">
       <%if catalogue%>
         <div filter_type="category_ids" class="filter_set">
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.subject")%></span></span>
@@ -104,9 +104,10 @@
         <div id="applied_filters" class="filter_boxes"></div>
         <div class="clear"></div>
         <%#= render partial: 'search/order_by_dropdown' %>
-        <div class="dropdown_order_by" id="order_by_selector_search">
 
-          <button class="btn btn-default" type="button" data-toggle="dropdown">
+        <div class="dropdown_order_by btn-group" id="order_by_selector_search">
+
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-eye"></i>
             <span><%=t('order_by.relevance')%></span><i class="fa fa-angle-down"></i>
           </button>
