@@ -170,10 +170,20 @@
   .search-filterbar
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
     background-color: white
-    padding: 20px
+    //padding: 20px
     border-radius: 5px
+    margin-bottom: 20px
+
+    h3
+      color: $white
+      margin: 0px 0px 20px
+      background-color: gray
+      border-radius: 5px 5px 0px 0px
+      padding: 10px 20px
+      i
+        margin: 0 10px 0 0
     .filter_set
-      margin: 0 0 20px 0
+      margin: 0px 20px 20px
       .btn-openclose
         border-radius: 5px
         padding: 0px 5px
@@ -223,10 +233,7 @@
         margin-top: 0
 
   .filter-results
-    h3
-      color: $gray
-      i
-        margin: 10px
+
 
     .filters-applied
       @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
