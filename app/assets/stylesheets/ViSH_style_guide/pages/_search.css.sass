@@ -30,12 +30,18 @@
   width: 265px
   background-color: rgba(85,85,85,0.97)
   @include border-bottom-radius ($border-radius-base)
-  @media (max-width: $screen-xs-max)
-    width: 87%
-    left: 0
-    right: 0
+  @media (max-width: 768px)
+    width: 80.5%
+    left: 15px
     top: 87px
-    @include center-block
+  @media (max-width: 635px)
+    width: 80%
+  @media (max-width: 560px)
+    width: 79.2%
+  @media (max-width: 485px)
+    width: 78%
+  @media (max-width: 430px)
+    width: 77%
   .spinner
     margin: 35px auto 0 !important
     display: none
