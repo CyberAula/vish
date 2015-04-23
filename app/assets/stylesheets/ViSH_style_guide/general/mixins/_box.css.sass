@@ -126,6 +126,9 @@
     -moz-border-top-right-radius: 0
     -webkit-border-top-right-radius: 0
     border-top-right-radius: 0 !important
+    @media (min-width: 1076px)
+      width: 30% !important
+
     .img-box
       @include border-right-radius (0)
       @include border-left-radius ($border-radius-small)
@@ -141,6 +144,8 @@
     width: 60%
     float: left
     height: 89px
+    @media (min-width: 1076px)
+      width: 70%
     .info-bottom
       padding-top: 2px
 
