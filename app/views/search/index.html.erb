@@ -17,9 +17,12 @@
       <div id="search-sidebar" class="span3 search-filterbar">
         <%if catalogue%>
           <div filter_type="category_ids" class="filter_set">
+            <button href="#" status="showMore" class="showMoreButton btn-openclose">
+              <a>-</a>
+            </button>
             <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.subject")%></span></span>
             <hr class="separator">
-            <ul>
+            <ul class="opened_filter">
               <% Vish::Application.config.catalogue["categories"].each do |categoryId| %>
                 <li class="filter_item" filter_key="category_ids" categoryId="<%=categoryId%>" filter="<%=categoryId%>"><%=t('catalogue.categories.' + categoryId)%></li>
               <% end %>
