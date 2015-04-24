@@ -276,9 +276,10 @@
   border-color: gray -moz-use-text-color #FFF
 
 .search-sidebar-selected
-  font-weight: bold
+  //font-weight: bold
   font-family: $corporate-font-family-sans-serif-Bold !important
-  margin-left: 5px
+  //margin-left: 5px
+  color: $gray-dark
 
 #search-sidebar li
   cursor: pointer
@@ -300,28 +301,63 @@
   .search-filterbar
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
     background-color: white
-    padding: 17px 20px 20px
+    padding: 0
     border-radius: 5px
+    margin-bottom: 20px
+    h3
+      color: $white
+      margin: 0px 0px 20px
+      background-color: gray
+      border-radius: 5px 5px 0px 0px
+      padding: 10px 20px
+      i
+        margin: 0 10px 0 0
     .filter_set
-      margin: 0 0 20px 0
-
+      margin: 0px 20px 20px
+      .btn-openclose
+        border-radius: 5px
+        padding: 0px 5px
+        border: 1px solid #ccc
+        background: #eee
+        width: 20px
+        outline: none
+        margin-right: 5px
+        font-size: 0.9em
+        &:hover
+          border-color: $brand-primary
+          background-color: white
+          a
+            color: $brand-primary
+        a
+          color: gray
+          text-decoration: none
       .filter_title_bold
         font-family: $corporate-font-family-sans-serif-Bold
         color: $brand-primary
       ul
         margin: 10px
         padding: 0
+        transition: all 500ms ease-in-out
+        -webkit-transition: height 500ms ease-in-out
+        -moz-transition: height 500ms ease-in-out
+        -o-transition: height 500ms ease-in-out
+        .filter_item
+          border-bottom: 1px dashed #ddd
+          padding: 3px 0
+          font-size: 0.9em
+        .filter_item:last-child
+          border-bottom: 0
+      .opened_filter
+        overflow: auto
+        height: auto
+      .closed_filter
+        overflow: hidden !important
+        height: 0 !important
       .ul_selected_tags
         margin-bottom: 0
       .ul_tags
         margin-top: 0
   .filter-results
-    h3
-      color: $gray-dark
-      margin-top: 7px
-      margin-bottom: 2px
-      i
-        margin: 10px
 
     .filters-applied
       @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
@@ -338,7 +374,7 @@
 
       .dropdown_order_by
         float: right
-        button span 
+        button span
           margin-right: 4px
       .filter_boxes
         padding: 10px 0

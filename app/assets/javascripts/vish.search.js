@@ -134,7 +134,7 @@ Vish.Search = (function(V,undefined){
       }
       var tag_array = sortable[i];
       num +=1;
-      $("#tags_ul").append('<li filter_key="tags" filter="'+tag_array[0]+'">'+tag_array[0]+ '</li>');
+      $("#tags_ul").append('<li filter_key="tags" class="filter_item" filter="'+tag_array[0]+'">'+tag_array[0]+ '</li>');
     }    
   };
 
