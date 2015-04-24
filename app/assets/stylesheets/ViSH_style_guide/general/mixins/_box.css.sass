@@ -1,9 +1,9 @@
-@mixin dropdown-log 
+@mixin dropdown-log
   padding: 5px 6px
-  @include log 
+  @include log
 
 
-@mixin log 
+@mixin log
   .form-group
     margin-bottom: 10px
     min-height: 76px
@@ -17,7 +17,7 @@
       margin: 0 0 10px
     &[type="password"]
       margin: 0
-  
+
   .checkbox
     float: left
     margin-top: 0
@@ -30,11 +30,11 @@
     margin: 0px
     clear: both
     border: 1px solid transparent
-  a, 
+  a,
   label
     color: $white
     padding-left: 0
-  
+
   .new_user
     .remember_password
       clear: both
@@ -46,7 +46,7 @@
           text-decoration: none
           color: $white
 
-    
+
 @mixin devise-box
   @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
   @include border-top-radius ($border-radius-base)
@@ -76,7 +76,7 @@
     &[type="email"],
     &[type="password"]
       width: 100%
-      
+
   hr
     border: 1px solid #E7E7E7
   #remember
@@ -85,7 +85,7 @@
     color: $gray
     input
       float: none
-      margin: 0    
+      margin: 0
   .action
     clear: both
     min-height: 40px
@@ -135,7 +135,7 @@
       @include border-top-right-radius (0)
       i
         font-size: 44px
-        padding-top: 14px
+        padding-top: 23px
 
 
   .caption
@@ -176,7 +176,7 @@
           color: $gray-dark
           &:hover
             color: $brand-primary
-  .panel-collapse 
+  .panel-collapse
     margin-bottom: 15px
     .panel-body
       border-top-color: transparent !important
@@ -220,10 +220,9 @@
       .fa-star
         color: $brand-primary
       .fa-star-o
-        color: $gray                       
+        color: $gray
     &:active
       outline: none
       outline: 0
     .count
       display: inline
-  
