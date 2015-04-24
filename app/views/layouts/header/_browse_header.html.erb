@@ -9,7 +9,7 @@
   <ul class="dropdown-menu">
     <li>
       <a tabindex="-1" href="<%=search_path(:browse=>"true", :sort_by => "popularity")%>">
-        <i class="fa fa-dashboard"></i> 
+        <i class="fa fa-dashboard"></i>
         <%=t('browse.all')%>
       </a>
     </li>
@@ -19,7 +19,7 @@
     <% if availableModels.include? "Excursion" %>
       <li>
         <a tabindex="-1" href="<%=search_path(:type => "Excursion", :browse=>"true", :sort_by => "popularity")%>">
-          <i class="fa fa-book"></i> 
+          <i class="fa fa-book"></i>
           <%=t('excursion.other')%>
         </a>
       </li>
@@ -54,7 +54,7 @@
 
     <% if availableServices.include? "Catalogue" %>
       <li>
-        <a tabindex="-1" href="/catalogue">
+        <a tabindex="-1" href="<%=search_path(:catalogue => "true", :sort_by => "popularity")%>">
           <i class="fa fa-tags"></i>
           <%=t('catalogue.title')%>
         </a>
@@ -82,4 +82,3 @@
 
   </ul>
 </div>
-
