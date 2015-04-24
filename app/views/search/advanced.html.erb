@@ -11,7 +11,7 @@
 
   <div class="search form-group">
     <div class="input-group">
-      <input class="asearch_box search_input form-control" type="text" placeholder="<%=t("asearch.search_input_placeholder")%>" autocomplete="off">
+      <input class="asearch_box search_input form-control" type="text" placeholder="<%=t("search.search_input_placeholder")%>" autocomplete="off">
       <div class="input-group-addon">  
         <button class="toolbar_button search_button btn btn-primary">
           <i class="fa fa-search search_button_img"></i>
@@ -29,6 +29,7 @@
 
 </div>
 </div>
+
 <div id="asearch_settings">
   <div class="settingsColumn">
     <p class="settingsTitle"><%=t("search.models.select_entities")%></p>
@@ -56,14 +57,13 @@
     <p class="settingsTitleSec"><%=t("search.filters.filter_title")%></p>
     <p class="settingsField" style="margin-top: 9px !important;"><%=t("search.filters.date")%></p>
     <div class="dateWrapper">
-
-      <div class="form-group">
-        <p><%=t("asearch.filters.start_date")%></p>
-        <input class="form-control" type="date" asparam="startDate" name="startDate">
+      <div>
+        <p><%=t("search.filters.start_date")%></p>
+        <input type="date" asparam="startDate" name="startDate">
       </div>
-      <div class="form-group">
-        <p><%=t("asearch.filters.end_date")%></p>
-        <input class="form-control" type="date" asparam="endDate" name="endDate">
+      <div>
+        <p><%=t("search.filters.end_date")%></p>
+        <input type="date" asparam="endDate" name="endDate">
       </div>
     </div>
     <p class="settingsField"><%=t("search.filters.language")%></p>
@@ -85,16 +85,9 @@
   </div>
 
   <div class="settingsColumn">
+    <p class="settingsTitle"><%=t("search.instances.title")%> </p>
 
-    <p class="settingsTitle"> 
-      <%= t("asearch.instances.title") %> 
-      <span class="closeASearchSettings"> <%= t("search.close") %> </span>
-    </p>
-
-    <p class="settingsField">
-      <%= t("search.instances.results") %>
-    </p>
-
+    <p class="settingsField"><%=t("search.instances.results")%></p>
     <select asparam="n">
       <option value="1">1</option>
       <option value="5">5</option>
@@ -107,18 +100,14 @@
     <p class="settingsField"><%=t("search.instances.title")%></p>
     <div class="ViSHinstances">
       <div class="addInstanceInputWrapper" style="display:none">
-        <input type="text" class="form-control addInstanceInput" placeholder="<%= t('asearch.instances.add_instance') %>"/>
-        <span class="addInstanceButton" title="add">[<%=t("asearch.instances.add")%>]</span>
+        <input type="text" class="addInstanceInput" placeholder="<%=t('search.instances.add_instance')%>"/>
+        <span class="addInstanceButton" title="add">[<%=t("search.instances.add")%>]</span>
       </div>
       <ul>
         <% VishConfig.getViSHInstances.each_with_index do |instance,index| %>
           <li>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" <%= checked="checked"%>/>
-                <span class="lbl padding-0"> <%=instance%> </span>
-              </label>
-            </div>
+            <input type="checkbox" <%= checked="checked"%>></input>&nbsp;
+            <span><%=instance%></span>
           </li>
         <% end %>
       </ul>
@@ -129,6 +118,5 @@
       <option value="table"><%=t("search.rendering.table")%></option>
     </select>
   </div>
-  <span class="closeASearchSettings"><%=t("asearch.close")%></span>
-
+  <span class="closeASearchSettings">x <%=t("search.close")%></span>
 </div>
