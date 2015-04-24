@@ -5,7 +5,9 @@
       <%= text_field_tag :q, nil, autocomplete: :off, class: 'search-query form-control', placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
       <button type="button" id="search_button_desktop" class="search_button_class btn btn-default"><i class="fa fa-search mini-search"></i></button>
     <% end %>
-
+    <script>
+        $(".mat").show()
+    </script>
     <div class="mat">
       <%= render partial: 'layouts/loading' %>
 
