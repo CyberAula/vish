@@ -5,7 +5,8 @@ aside.recomended
   @include make-lg-column(4, $gutter: $grid-gutter-width)
 
 .doc-show,
-.exc-show
+.exc-show,
+.eve-show
   @include make-sm-column(12, $gutter: $grid-gutter-width)
   @include make-md-column(8, $gutter: $grid-gutter-width)
   @include make-lg-column(8, $gutter: $grid-gutter-width)
@@ -164,6 +165,14 @@ aside.recomended
     width: 100%
     iframe
       width: 100% !important
+.writing_show
+  max-width: 95%
+  display: block
+  margin: 20px auto
+  background: rgba(255, 255, 255, 0.75)
+  padding: 10px
+  border-radius: 5px
+
 .link_address
   width: auto
   float: right
@@ -204,8 +213,9 @@ aside.recomended,
   i,
   img
     text-align: center
-    width: 100%
-    float: left
+    width: auto
+    display: block
+    margin: 20px auto
     font-size: 44px
   .elemento-visor
     padding-top: 79%
@@ -255,6 +265,11 @@ aside.recomended,
     font-size: 0.9em
     zoom: 1
 
+.caja-elementos 
+  .picture_show, .embed_show, .swf_show
+    max-width: 500px
+    display: block
+    margin: 20px auto
 
 .contentReport
   min-height: 90px

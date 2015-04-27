@@ -4,15 +4,17 @@
   @include make-lg-column(8, $gutter: $grid-gutter-width)
   padding: 0 !important
   .icon-box
-    background: $white
+    background: rgba(216, 216, 216, 0.9)
+    padding: 20px 0
     .fa-video-camera
       position: absolute
       font-size: 94px
       margin-top: 141px
-    .event-img,
-    .btn,
-    .fa-video-camera
-      width: 100%
+    .event-img
+      max-width: 366px
+      display: block
+      margin: 0px auto
+      background: #FFF
     .btn,
     .fa-video-camera
       text-align: center
