@@ -1,5 +1,15 @@
 <%= form_for resource, :remote => false do |f| %>
-  <%= f.hidden_field :workshop_id, :value => resource.workshop.id %>
-  <input type="text" class="form-control" name="url"/>
-  <%= f.submit t('save'), :class => "btn btn-default" %>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3>Add</h3>
+    </div>
+
+	<div class="modal-body">
+	  <%= f.hidden_field :workshop_id, :value => resource.workshop.id %>
+	  <input type="text" class="form-control" name="url"/>
+	</div>
+
+    <div class="modal-footer">
+       <%= f.submit t('save'), :class => "btn btn-primary" %>
+   </div>
 <% end %>

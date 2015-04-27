@@ -2,101 +2,101 @@
 
 
 
-<!-- toolbar edit-->
+  <!-- toolbar edit-->
 
-<%= render partial: 'edit_toolbar' %>
+  <%= render partial: 'edit_toolbar' %>
 
 
-<!-- Header -->
+  <!-- Header -->
 
-<div class="wa_activity_wrapper wa_activity_wrapper_edit header_workshop ">
-  <div class="layout_workshop">
-    <div class="wa_activity_actions">
-      <ul>
-        <li>
-        <a title="<%=t('excursion.actions.edit')%>" class ="actions_tooltip" data-placement="bottom" data-toggle="tooltip" href=<%=edit_details_path(@workshop)%>><i class="fa fa-edit"></i></a>
-      </li>
-      </ul>
+  <div class="wa_activity_wrapper wa_activity_wrapper_edit header_workshop ">
+    <div class="layout_workshop">
+      <div class="wa_activity_actions">
+        <ul>
+          <li>
+            <a title="<%=t('excursion.actions.edit')%>" class ="actions_tooltip" data-placement="bottom" data-toggle="tooltip" href=<%=edit_details_path(@workshop)%>><i class="fa fa-edit"></i></a>
+          </li>
+        </ul>
+      </div>
+      <!--avatar-->
+      <div class="container-img_WS">
+
+        <div style='background-image: url(<%=@workshop.thumbnail_url%>)'
+          class="img-box resource-center workshop_thumbnail"></div>
+
+        </div>
+        <section class="information">
+          <!--title-->
+          <div class="name">
+            <h2 class="title_WS main_title_WS">
+              <%=@workshop.title%>
+            </h2>
+          </div>
+          <!--description-->
+          <p class="description description_WS">
+            <%=@workshop.description%>
+          </p>
+        </section>
+      </div>
     </div>
-    <!--avatar-->
-    <div class="container-img_WS">
-
-          <div style='background-image: url(<%=@workshop.thumbnail_url%>)'
-            class="img-box resource-center workshop_thumbnail"></div>
-
-    </div>
-    <section class="information">
-    <!--title-->
-    <div class="name">
-      <h2 class="title_WS main_title_WS">
-        <%=@workshop.title%>
-      </h2>
-    </div>
-    <!--description-->
-    <p class="description description_WS">
-      <%=@workshop.description%>
-    </p>
-    </section>
-  </div>
-</div>
 
 
 
-<!-- Workshop Activities -->
+    <!-- Workshop Activities -->
 
-<ul class="workshop_activities_list workshop_activities_list_edit">
-  <% @workshop_activities.each do |workshop_activity| %>
-    <li workshop_activity_id="<%=workshop_activity.id%>" class="workshop_element" type="<%=workshop_activity.wa_type%>">
-      <div class="wa_activity_wrapper wa_activity_wrapper_edit">
-        <div class="wa_activity_edit_tools">
-          <ul>
-            <li title="<%=t('categories.dragandrop.dragt1')%>" class ="actions_tooltip sorthandler" data-placement="bottom" data-toggle="tooltip">
-              <i class="fa fa-arrows"></i>
-            </li>
-            <% object = workshop_activity.object
+    <ul class="workshop_activities_list workshop_activities_list_edit">
+      <% @workshop_activities.each do |workshop_activity| %>
+      <li workshop_activity_id="<%=workshop_activity.id%>" class="workshop_element" type="<%=workshop_activity.wa_type%>">
+        <div class="wa_activity_wrapper wa_activity_wrapper_edit">
+          <div class="wa_activity_edit_tools">
+            <ul>
+              <li title="<%=t('categories.dragandrop.dragt1')%>" class ="actions_tooltip sorthandler" data-placement="bottom" data-toggle="tooltip">
+                <i class="fa fa-arrows"></i>
+              </li>
+              <% object = workshop_activity.object
               className = object.class.to_s
               classNameUnderscore = className.underscore
               classNameTableize = className.tableize
               hasEditPartial = lookup_context.template_exists?("edit", classNameTableize, true)
-            %>
-            <% if hasEditPartial %>
+              %>
+              <% if hasEditPartial %>
               <li title="<%=t('excursion.actions.edit')%>" class ="actions_tooltip ui-state-default" data-placement="bottom" data-target="#WorkshopActivity" data-toggle="modal" data-remote=<%="/#{classNameTableize}/#{object.id}/edit.partial"%>>
                 <i class="fa fa-edit"></i>
               </li>
-            <% end %>
+              <% end %>
 
 
-            <li title="<%=t('excursion.actions.delete')%>" class ="actions_tooltip " data-placement="bottom" data-toggle="tooltip">
-              <%= link_to raw('<i class="fa fa-trash-o"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activities.actions.confirm_delete') %>
-            </li>
+              <li title="<%=t('excursion.actions.delete')%>" class ="actions_tooltip " data-placement="bottom" data-toggle="tooltip">
+                <%= link_to raw('<i class="fa fa-trash-o"></i>'),  workshop_activity.object, :method => :delete, :confirm => t('workshop.activities.actions.confirm_delete') %>
+              </li>
 
               <li class="toggleWorkshopActivity">
                 <i class="fa fa-fullscreen"></i>
               </li>
-          </ul>
+            </ul>
+          </div>
+          <div class="layout_workshop">
+            <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
+            locals:  { classNameUnderscore.to_sym => object, :prefix_id => "workshop_activity_"+workshop_activity.id.to_s } %>
+          </div>
         </div>
-        <div class="layout_workshop">
-          <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit",
-                     locals:  { classNameUnderscore.to_sym => object, :prefix_id => "workshop_activity_"+workshop_activity.id.to_s } %>
-        </div>
-      </div>
-    </li>
-  <%end%>
-</ul>
+      </li>
+      <%end%>
+    </ul>
 
-<%content_for :javascript do%>
+    <%content_for :javascript do%>
     $("li.toggleWorkshopActivity").click(function(e){
-      var mainDiv = $(e.target).parents(".wa_activity_wrapper_edit").find(".wa_resource_wrapper")[0];
-      if($(mainDiv).hasClass("wa_activity_closed")){
-        $(mainDiv).removeClass("wa_activity_closed").addClass("wa_activity_open");
-        $(mainDiv).show();
-      } else {
-        $(mainDiv).removeClass("wa_activity_open").addClass("wa_activity_closed");
-        $(mainDiv).hide();
-      }
-      e.stopPropagation();
-      return false;
-    });
+    var mainDiv = $(e.target).parents(".wa_activity_wrapper_edit").find(".wa_resource_wrapper")[0];
+    if($(mainDiv).hasClass("wa_activity_closed")){
+    $(mainDiv).removeClass("wa_activity_closed").addClass("wa_activity_open");
+    $(mainDiv).show();
+  } else {
+  $(mainDiv).removeClass("wa_activity_open").addClass("wa_activity_closed");
+  $(mainDiv).hide();
+}
+e.stopPropagation();
+return false;
+});
 <%end%>
 
 <!-- Add Workshop Activity -->
@@ -168,45 +168,13 @@
 <div id="WorkshopActivity" class="modal fade" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-        <h3><%=t('workshop.activities.assignment.modal_title')%></h3>
-      </div>
-      <div class="modal-body tabbable tabs-below">
-          <!-- This body is replaced every time the modal is called -->
-      </div>
-      <div class="modal-footer">
-        <p><button class="btn btn-primary updateWorkshopActivityFake"><%=t('workshop.actions.edit_activity_button')%></button></p>
-      </div>
+      <!-- This body is replaced every time the modal is called -->
     </div>
   </div>
 </div>
-</div>
+
 
   <%content_for :javascript do%>
-
-    $('#WorkshopActivities').on('shown.bs.modal', function(){
-    });
-    $('#WorkshopActivities').on('hidden.bs.modal', function(){
-    });
-
-    $('#WorkshopActivity').on('hidden.bs.modal', function(){
-      $(this).removeData('bs.modal');
-    });
-
-    $(document).on( "click", "#WorkshopActivities .submitWorkshopActivityFake", function(){
-      $(this).html($(this).attr("data-loading-text"));
-      $(this).attr("disabled", "disabled");
-      $(this).addClass("disabled");
-
-      var submitForm = $("#WorkshopActivities  div.tab-pane.active").find("form");
-      $(submitForm).submit();
-    });
-
-    $(document).on( "click", "#WorkshopActivity .updateWorkshopActivityFake", function(){
-      var submitForm = $("#WorkshopActivity").find("form");
-      $(submitForm).submit();
-    });
 
     $("ul.workshop_activities_list_edit").sortable({
       handle: ".sorthandler",
