@@ -11,7 +11,7 @@
   <%= form_for(@workshop) do |f| %>
     <%= f.hidden_field :draft, :value => !@workshop.draft %>
     <%= button_tag(type: "submit", class: "btn btn-sm btn-default pull-right") do %>
-      <%=@workshop.draft ? raw('<i class="fa fa-ok-circle"></i>'+t('workshop.actions.publish')) : raw('<i class="fa fa-eye-slash"></i>'+t('workshop.actions.unpublish')) %>
+      <%=@workshop.draft ? raw('<i class="fa fa-check-circle"></i>'+t('workshop.actions.publish')) : raw('<i class="fa fa-eye-slash"></i>'+t('workshop.actions.unpublish')) %>
     <% end %>
   <%end%>
 
