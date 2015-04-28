@@ -168,6 +168,16 @@ return false;
 <div id="WorkshopActivity" class="modal fade" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h3><%=t('workshop.activities.assignment.modal_title')%></h3>
+          </div>
+        <div class="modal-body tabbable tabs-below">
+            <!-- This body is replaced every time the modal is called -->
+        </div>
+        <div class="modal-footer">
+          <p><button class="btn btn-primary updateWorkshopActivityFake"><%=t('workshop.actions.edit_activity_button')%></button></p>
+        </div>
       <!-- This body is replaced every time the modal is called -->
     </div>
   </div>
@@ -175,8 +185,30 @@ return false;
 
 
   <%content_for :javascript do%>
+      $('#WorkshopActivities').on('shown.bs.modal', function(){
+      });
+      $('#WorkshopActivities').on('hidden.bs.modal', function(){
+      });
 
-    $("ul.workshop_activities_list_edit").sortable({
+      $('#WorkshopActivity').on('hidden.bs.modal', function(){
+        $(this).removeData('bs.modal');
+      });
+
+      $(document).on( "click", "#WorkshopActivities .submitWorkshopActivityFake", function(){
+        $(this).html($(this).attr("data-loading-text"));
+        $(this).attr("disabled", "disabled");
+        $(this).addClass("disabled");
+
+        var submitForm = $("#WorkshopActivities  div.tab-pane.active").find("form");
+        $(submitForm).submit();
+      });
+
+      $(document).on( "click", "#WorkshopActivity .updateWorkshopActivityFake", function(){
+        var submitForm = $("#WorkshopActivity").find("form");
+        $(submitForm).submit();
+      });
+
+      $("ul.workshop_activities_list_edit").sortable({
       handle: ".sorthandler",
       start: function(event, ui){
         _onStartDragWorkshopActivity(event, ui);
