@@ -35,7 +35,7 @@ Vish.Search = (function(V,undefined){
     }
     if(!_options.resource_types){      
       _options.resource_types = ["Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"];
-    }
+    }  
 
     //take the params from the URL and mark them in the sidebar
     _parsed_url = _getUrlParameters();
@@ -45,7 +45,11 @@ Vish.Search = (function(V,undefined){
     }
     _recalculateTags(_options.tags, true);
     _fillSidebarWithParams();
-    _loadUIEvents(_options);
+    _loadUIEvents(_options);   
+    //important that these lines go in the end of the init because they need the UI events
+    if ($(window).width() < 767) {
+      _closeFilterSets();
+    } 
   };
 
 
@@ -54,13 +58,57 @@ Vish.Search = (function(V,undefined){
     $(document).on('click', "#search-sidebar ul li", function(e){
       _clickFilter($(this));
     });
+
     $(document).on('click', ".filter_box_x", function(e){
       _clickFilter($(this));
     });
+
+    $(".showMoreButton").click(function(){
+      var the_ul = $(this).siblings("ul");
+      if(the_ul.hasClass("opened_filter")){
+        the_ul.switchClass( "opened_filter", "closed_filter", 100 );
+        $(this).switchClass( "opened_button", "closed_button", 0 );
+        $(this).html('<a>+</a>');
+      } else {
+        the_ul.switchClass( "closed_filter", "opened_filter", 100 );
+        $(this).switchClass( "closed_button", "opened_button", 100 );
+        $(this).html('<a>-</a>');
+      }
+      return false;
+    });
+
+    $(window).resize(function() {
+      if ($(this).width() > 767) {
+        _openFilterSets();
+      } else {
+        _closeFilterSets();
+      }
+    });
+
     //for pageless
     $('#search-all ul').trigger("scroll.pageless");
 
     _applyPageless(options, false);    
+  };
+
+
+  /*function to open the filter sets when entering in mobile view*/
+  var _openFilterSets = function(){
+    $(".showMoreButton").each(function(index){
+      if($(this).hasClass("closed_button")){
+        $(this).click();
+      }
+    });      
+  };
+
+
+  /*function to close the filter sets when entering in mobile view*/
+  var _closeFilterSets = function(){
+    $(".showMoreButton").each(function(index){
+      if($(this).hasClass("opened_button")){
+        $(this).click();
+      }
+    });      
   };
 
 
