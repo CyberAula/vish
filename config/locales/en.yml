@@ -979,6 +979,7 @@ en:
             title: "Assignment"
             with_dates: "Specify open and due date"
         resource:
+            modal_title: "Edit resource"
             title: "Resource"
             description: "Insert any type of resource into the Workshop."
             text: "You can add to this workshop all the resources that are available in Vish. To add them, open the resource in Vish, copy its URL from the browser toolbar and paste in the following text box."

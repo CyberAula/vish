@@ -967,6 +967,7 @@ es:
             title: "Tarea"
             with_dates: "Especifica fecha de comienzo y fin"
         resource:
+            modal_title: "Editar Recurso"
             title: "Recurso"
             description: "Inserta cualquier tipo de recurso en el workshop"
             text: "Podrás añadir a este workshop todos los recursos que haya disponibles en Vish. Para añadirlos, abre el recurso en Vish, copia su URL de la barra del navegador y pégala en el siguiente cuadro de texto."
