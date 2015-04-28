@@ -12,6 +12,7 @@
 <%end%>
 
 <section id="search" class="">
+
   <div class="row">
     <div id="search-sidebar" class="search-filterbar">
       <%if browse%>
@@ -24,7 +25,49 @@
 
       <%if catalogue%>
         <div filter_type="category_ids" class="filter_set">
-          <button href="#" status="showMore" class="showMoreButton btn-openclose">
+
+            <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+              <a>-</a>
+            </button>
+            <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.subject")%></span></span>
+            <hr class="separator">
+            <ul class="opened_filter">
+              <% Vish::Application.config.catalogue["categories"].each do |categoryId| %>
+                <li class="filter_item" filter_key="category_ids" categoryId="<%=categoryId%>" filter="<%=categoryId%>"><%=t('catalogue.categories.' + categoryId)%></li>
+              <% end %>
+            </ul>
+          </div>
+
+        <%else%>
+
+          <div filter_type="super_type" class="filter_set">
+            <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+              <a>-</a>
+            </button>
+            <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.type")%></span></span>
+            <hr class="separator">
+            <ul class="opened_filter">
+              <li class="filter_item" filter_key="type" filter="User" exclusive><%=t("search.models.user")%></li>
+              <li class="filter_item" filter_key="type" filter="Learning_object" exclusive><%=t("search.models.learning_object")%></li>
+            </ul>
+          </div>
+
+          <div filter_type="lo_type" opens_with="Learning_object" style="display:none" class="filter_set">
+            <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+              <a>-</a>
+            </button>
+            <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.learning_object")%></span></span>
+            <hr class="separator">
+            <ul class="opened_filter">
+              <% VishConfig.getSearchModels().each do |model| %>
+                <li class="filter_item" filter_key="type" filter="<%=model%>"><%=t("search.models.#{model.downcase}")%></li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div filter_type="resouce_type" id="resource_type" opens_with="Resource" style="display:none" class="filter_set">
+            <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+
               <a>-</a>
             </button>
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.subject")%></span></span>
@@ -50,8 +93,9 @@
           </ul>
         </div>
 
-        <div filter_type="lo_type" opens_with="Learning_object" style="display:none" class="filter_set">
-          <button href="#" status="showMore" class="showMoreButton btn-openclose">
+
+        <div filter_type="language" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.learning_object")%></span></span>
@@ -63,8 +107,8 @@
           </ul>
         </div>
 
-        <div filter_type="resouce_type" id="resource_type" opens_with="Resource" style="display:none" class="filter_set">
-          <button href="#" status="showMore" class="showMoreButton btn-openclose">
+        <div filter_type="tags" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.resource")%></span></span>
@@ -210,18 +254,7 @@
 
   SocialStream.Repository.show();
 
-  $(".showMoreButton").click(function(){
-
-    var the_ul = $(this).siblings("ul");
-    if(the_ul.hasClass("opened_filter")){
-      the_ul.switchClass( "opened_filter", "closed_filter", 100 );
-      $(this).html('<a>+</a>');
-    } else {
-      the_ul.switchClass( "closed_filter", "opened_filter", 100 );
-      $(this).html('<a>-</a>');
-    }
-    return false;
-  });
+  
 
   $("footer#footer").addClass("fixed-bottom");
 
