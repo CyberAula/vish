@@ -81,11 +81,76 @@ class SearchController < ApplicationController
       params[:ids_to_avoid] = params[:ids_to_avoid].split(",")
     end
 
-    models = SocialStream::Search.models(mode, params[:type])
+    #remove empty params   
+    params.delete_if { |k, v| v == "" }
 
-    RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page=>page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid], :subject => current_subject})
+    if params[:catalogue] && !params[:type]
+      #default models for catalogue without type filter applied
+      params[:type] = VishConfig.getCatalogueModels().join(",")
+    end
+
+    models = ( mode == :quick ? SocialStream::Search.models(mode, params[:type]) : processTypeParam(params[:type]) )
+
+    keywords = params[:q]
+
+    #Check catalogue category
+    categories = nil
+    if params[:category_ids].is_a? String
+      if Vish::Application.config.catalogue['mode'] == "matchtag"
+          #Mode matchtag
+          categories = params[:category_ids]
+      else
+        #Mode matchany
+        keywords = []
+        params[:category_ids].split(",").each do |category|
+          keywords.push(Vish::Application.config.catalogue["category_keywords"][category])
+        end
+        keywords = keywords.flatten.uniq
+      end
+    end
+
+    RecommenderSystem.search({:category_ids => categories, :keywords=>keywords, :n=>limit, :page => page, :order => order, :models => models, :ids_to_avoid=>params[:ids_to_avoid], :startDate => params[:startDate], :endDate => params[:endDate], :language => params[:language], :qualityThreshold => params[:qualityThreshold], :tags => params[:tags], :tag_ids => params[:tag_ids], :age_min => params[:age_min], :age_max => params[:age_max] })
   end
 
+  def processTypeParam(type)
+    models = []    
+    
+    unless type.blank?
+      allAvailableModels = VishConfig.getAllAvailableAndFixedModels(:include_subtypes => true).reject!{|m| m=="Category"}
+      # Available Types: all available models and the alias 'Resource' and 'learning_object'
+      allAvailableTypes = allAvailableModels + ["Resource", "Learning_object"]
+
+      types = type.split(",") & allAvailableTypes
+
+      if types.include? "Learning_object"
+        types.concat(["Excursion", "Resource", "Event", "Workshop"])
+      end
+
+      if types.include? "Resource"
+        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes => true).reject!{|e| e=="Excursion" || e=="Workshop" })
+      end
+
+      types = types & allAvailableModels
+      types.uniq!
+
+      types.each do |type|
+        #Find model
+        model = type.singularize.classify.constantize rescue nil
+        unless model.nil?
+          models.push(model)
+        end
+      end
+    end
+
+    if models.empty?
+      #Default models, all
+      models = VishConfig.getAllAvailableAndFixedModels({:return_instances => true, :include_subtypes => true}).reject!{|m| m==Category}
+    end
+
+    models.uniq!
+
+    return models
+  end
 end
 
           

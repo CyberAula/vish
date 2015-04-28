@@ -40,7 +40,7 @@ class FederatedSearchController < ApplicationController
 
       type = processTypeParam(params[:type])
 
-      searchEngineResults = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page => params[:page], :order => order, :models => type[:models], :subtypes => type[:subtypes], :startDate => params[:startDate], :endDate => params[:endDate], :language => params[:language], :qualityThreshold => params[:qualityThreshold], :tags => params[:tags], :tag_ids => params[:tag_ids], :age_min => params[:age_min], :age_max => params[:age_max] })
+      searchEngineResults = RecommenderSystem.search({:keywords=>params[:q], :n=>limit, :page => params[:page], :order => order, :models => type[:models], :subtypes => type[:subtypes], :startDate => params[:startDate], :endDate => params[:endDate], :language => params[:language], :qualityThreshold => params[:qualityThreshold], :tags => params[:tags], :tag_ids => params[:tag_ids], :age_min => params[:age_min], :age_max => params[:age_max], :category_ids => params[:category_ids] })
 
       response = Hash.new
       response["total_results"] = [searchEngineResults.total_entries,5000].min
@@ -97,8 +97,8 @@ class FederatedSearchController < ApplicationController
 
       types = type.split(",") & allAvailableTypes
 
-      if types.include? ["Resource"]
-        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes))
+      if types.include? "Resource"
+        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes => true))
       end
 
       types = types & allAvailableModels

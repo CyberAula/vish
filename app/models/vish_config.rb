@@ -49,6 +49,12 @@ class VishConfig
     end
   end
 
+  def self.getSearchModels(options={})
+    searchModels = getAvailableMainModels()
+    searchModels.delete("Category")
+    searchModels
+  end
+
   def self.getAvailableMainModelsWhichActAsResources(options={})
     aMainModelsWhichActAsResources = getAvailableMainModels & getMainModelsWhichActAsResources
 

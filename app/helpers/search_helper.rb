@@ -34,4 +34,18 @@ module SearchHelper
     end
   end
 
+
+  #returns the tags separated by commas
+  def extract_tags(search_results)
+    arr = []
+    search_results.map { |r| 
+      arr.push(r.tags.map{|t| t.name}) 
+    }
+    if arr.length > 0
+      arr.flatten!.join(",")
+    else
+      ""
+    end
+  end
+
 end

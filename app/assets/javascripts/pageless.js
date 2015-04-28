@@ -79,6 +79,8 @@
   };
   var container;
   var $container;
+  var reset = false; //new param used to reset the appending of elements when starting a new pageless.
+                    //init sets it to true and animateSlowAppendAndFinishLoading sets it to false after reseting everything
 
   //changed by KIKE XXX it was a function before
   //now we can access watch function
@@ -89,29 +91,15 @@
   };
 
   $.pagelessReset = function () {
-    settings = {
-      container: window,
-      currentPage: 1,
-      distance: 100,
-      pagination: '.pagination',
-      params: {},
-      url: location.href,
-      loaderImage: "/assets/load.gif",
-      method: 'get'
-    };
-    stopListener();
-      // if there is a afterStopListener callback we call it
-    if (settings.end) {
-      settings.end.call();
-    }
+    reset = true;
+    $.pagelessStop();
   };
 
   $.pagelessStop = function () {
     if(settings.inited===true){
       settings.inited = false;
       stopListener();
-    }
-    
+    }    
   }
 
   var loaderHtml = function () {
@@ -129,6 +117,7 @@
     }
 
     settings.inited = true;
+    reset = false;
 
     if (opts) {
       $.extend(settings, opts);
@@ -141,7 +130,7 @@
     // but since we have javascript enabled we remove pagination links
     if (settings.pagination) {
       $(settings.pagination).remove();
-    }
+    }   
 
     // start the listener
     startListener();
@@ -217,27 +206,38 @@
    * xxx
    */
   function animateSlowAppendAndFinishLoading(my_element, arr){ 
-    var tmp_elem = arr.pop();
-   
-    var hidden_elem = $(tmp_elem).hide().appendTo($(my_element));
-    
-    if ($.isFunction(settings.finishedAddingHiddenElem)) {
-      settings.finishedAddingHiddenElem(hidden_elem);
-    }
-    else{
-      hidden_elem.fadeIn();           
-    }
-    
-    if(arr.length>0){
-      window.setTimeout(function(){animateSlowAppendAndFinishLoading(my_element, arr)}, 10);
-    }
-    else{
+    if(reset){
+      reset = false;
+      arr = []
       loading(false);
       // if there is a complete callback we call it
       if (settings.complete) {
         settings.complete.call();
       }
+    } else {
+      var tmp_elem = arr.pop();
+   
+      var hidden_elem = $(tmp_elem).hide().appendTo($(my_element));
+      
+      if ($.isFunction(settings.finishedAddingHiddenElem)) {
+        settings.finishedAddingHiddenElem(hidden_elem);
+      }
+      else{
+        hidden_elem.fadeIn();           
+      }
+      
+      if(arr.length>0){
+        window.setTimeout(function(){animateSlowAppendAndFinishLoading(my_element, arr)}, 10);
+      }
+      else{
+        loading(false);
+        // if there is a complete callback we call it
+        if (settings.complete) {
+          settings.complete.call();
+        }
+      }
     }
+    
   }
 
   function watch() {

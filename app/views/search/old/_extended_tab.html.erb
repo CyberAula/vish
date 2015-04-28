@@ -1,0 +1,5 @@
+<li class="<%= key %><%= " active" if params[:type] == key.to_s %><%= " disabled" unless search_results?(key) %>">
+  <%= link_to t("#{ key }.title.other").downcase,
+    "##{ key }",
+    :data => {:toggle=>"tab#{ ' disabled' unless search_results?(key) }"} %>
+</li>

@@ -22,7 +22,7 @@
 
     <% if availableModels.include? "Excursion" %>
       <li>
-        <a tabindex="-1" href="<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "popularity")%>">
+        <a tabindex="-1" href="<%=search_path(:type => "Excursion", :browse=>"true", :sort_by => "popularity")%>">
           <i class="icon-book"></i> 
           <%=t('excursion.other')%>
         </a>
@@ -30,7 +30,7 @@
     <%end%>
 
     <li>
-      <a tabindex="-1" href="<%=search_path(:type => "user", :browse=>"true", :sort_by => "popularity")%>">
+      <a tabindex="-1" href="<%=search_path(:type => "User", :browse=>"true", :sort_by => "popularity")%>">
         <i class="icon-group"></i>
         <%=t('user.other')%>
       </a>
@@ -38,7 +38,7 @@
 
     <% if availableModels.include? "Resource" %>
       <li>
-        <a tabindex="-1" href="<%=search_path(:type => "resource", :browse=>"true", :sort_by => "popularity")%>">
+        <a tabindex="-1" href="<%=search_path(:type => "Resource", :browse=>"true", :sort_by => "popularity")%>">
           <i class="icon-file"></i>
           <%=t('resource.other')%>
         </a>
@@ -47,7 +47,7 @@
 
     <% if availableModels.include? "Workshop" %>
       <li>
-        <a tabindex="-1" href="<%=search_path(:type => "workshop", :browse=>"true", :sort_by => "popularity")%>">
+        <a tabindex="-1" href="<%=search_path(:type => "Workshop", :browse=>"true", :sort_by => "popularity")%>">
           <i class="icon-lightbulb"></i>
           <%=t('workshop.other')%>
         </a>
@@ -58,7 +58,7 @@
 
     <% if availableServices.include? "Catalogue" %>
       <li>
-        <a tabindex="-1" href="/catalogue">
+        <a tabindex="-1" href="<%=search_path(:catalogue=>"true")%>">
           <i class="icon-tags"></i>
           <%=t('catalogue.title')%>
         </a>
