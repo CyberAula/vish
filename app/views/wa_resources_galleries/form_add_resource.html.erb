@@ -6,7 +6,7 @@
   <%= form_for resource, :remote => false do |f| %>
       <%= f.hidden_field :workshop_id, :value => resource.workshop.id %>
       <input type="text" class="form-control" name="url"/>
-      <%= f.submit t('save'), :class => "btn btn-default" %>
+      <%= f.submit t('save') %>
   <% end %>
 </div>
 <div class="modal-footer">

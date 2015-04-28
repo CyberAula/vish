@@ -3,7 +3,7 @@
   <h3><%= t('workshop.activities.resource.modal_title') %></h3>
 </div>
 <div class="modal-body tabbable tabs-below">
-  <%= render partial: "wa_resources/form", locals:  { :wa_resource => wa_resource }  %>
+  <%= render partial: "wa_resources/form", locals:  { :wa_resource => wa_resource }, :formats => [:html]  %>
 </div>
 <div class="modal-footer">
   <p>

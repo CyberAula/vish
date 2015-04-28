@@ -3,7 +3,7 @@
   <h3><%= t('workshop.activities.assignment.modal_title') %></h3>
 </div>
 <div class="modal-body tabbable tabs-below">
-  <%= render partial: "wa_assignments/form", locals: {:wa_assignment => wa_assignment} %>
+  <%= render partial: "wa_assignments/form", locals:  { :wa_assignment => wa_assignment }, :formats => [:html]  %>
 </div>
 <div class="modal-footer">
   <p>
