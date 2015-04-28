@@ -2,12 +2,15 @@
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
   <h3><%= t('workshop.activities.resource_gallery.add') %></h3>
 </div>
-<div class="modal-body tabbable tabs-below">
-  <%= form_for resource, :remote => false do |f| %>
+
+<%= form_for resource, :remote => false do |f| %>
+  <div class="modal-body tabbable tabs-below">
       <%= f.hidden_field :workshop_id, :value => resource.workshop.id %>
       <input type="text" class="form-control" name="url"/>
-      <%= f.submit t('save') %>
-  <% end %>
+      <%= f.submit t('save'), :class => "hidden"  %>
+
 </div>
 <div class="modal-footer">
+<%= f.submit t('save'), :class => "btn btn-primary" %>
 </div>
+<% end %>
