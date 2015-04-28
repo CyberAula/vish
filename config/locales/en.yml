@@ -983,6 +983,7 @@ en:
             description: "Insert any type of resource into the Workshop."
             text: "You can add to this workshop all the resources that are available in Vish. To add them, open the resource in Vish, copy its URL from the browser toolbar and paste in the following text box."
         resource_gallery:
+            add: "Add"
             title: "Resources Gallery"
             description: "Add a gallery of resources."
             text: "Resource galleries are a component of the workshop that allow you to include several resources of any type Vish and have them grouped together to facilitate viewing. Insert this component into your workshop and added resources in the most easy and intuitive way."

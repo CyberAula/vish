@@ -971,6 +971,7 @@ es:
             description: "Inserta cualquier tipo de recurso en el workshop"
             text: "Podrás añadir a este workshop todos los recursos que haya disponibles en Vish. Para añadirlos, abre el recurso en Vish, copia su URL de la barra del navegador y pégala en el siguiente cuadro de texto."
         resource_gallery:
+            add: "Añadir"
             title: "Galería recursos"
             description: "Añade una galería de recursos"
             text: "Las galerías de recursos son un componente del workshop que te permiten incluir varios recursos de Vish de cualquier tipo y tenerlos agrupados para facilitarte su visionado. Inserta este componente en tu workshop y añade recursos de la forma más fácil e intuitiva."
