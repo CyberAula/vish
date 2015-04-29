@@ -981,6 +981,7 @@ es:
             title: "Galería contribuciones"
             description: "La galería de contribuciones muestra las contribuciones enviadas al workshop"
             text: "Los usuarios pueden contribuir a las tareas definidas en un workshop añadiendo recursos o bloques de texto. Con el componente Galería de contribuciones podrás ver de forma agrupada los recursos y/o los textos con los que otros usuarios han contribuido."
+            error: "A contributions gallery should include at least 1 assignment"
         text:
             title: "Texto"
             description: "Incluye un párrafo de texto"

@@ -993,6 +993,7 @@ en:
             title: "Contributions Gallery"
             description: The Contributions Gallery displays the contributions sent to the workshop.
             text: "Users can contribute to the tasks defined in a workshop by adding resources or text blocks. With the component Gallery of contributions can see grouped shape resources and/or texts with which other users have contributed."
+            error: "A contributions gallery should include at least 1 assignment"
         text:
             title: "Text"
             description: "Include a paragraph of text."
