@@ -50,12 +50,8 @@ class LoInteraction < ActiveRecord::Base
     return true
   end
 
-  # Public methods 
-
-  def qscore
-    self.fill_scores_and_vars
-    return self.interaction_qscore
-  end
+  # Public methods
+  
 
   # Private methods
   private
@@ -82,7 +78,7 @@ class LoInteraction < ActiveRecord::Base
 
     self.interaction_qscore = 10 * (self.x1n * tlo_weight + self.x2n * acceptance_weight + self.x3n * cpm_weight)
     #Translate it to a scale of [0,1000000]
-    self.qscore = self.interaction_qscore * 100000 
+    self.qscore = [self.interaction_qscore * 100000, 999999].min
   end
 
 end

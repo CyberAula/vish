@@ -94,7 +94,7 @@ ActivityObject.class_eval do
     end
 
     #Translate it to a scale of [0,1000000]
-    overallQualityScore = overallQualityScore * 100000
+    overallQualityScore = [overallQualityScore * 100000, 999999].min
 
     self.update_column :qscore, overallQualityScore
 
