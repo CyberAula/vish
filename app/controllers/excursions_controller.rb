@@ -245,16 +245,20 @@ class ExcursionsController < ApplicationController
   end
 
   def interactions
+    unless user_signed_in? and current_user.admin?
+      return render :text => "Unauthorized"
+    end
+
     validInteractions = LoInteraction.all.select{|it| it.nvalidsamples >= 5 and it.nsamples > 0 and !it.activity_object.nil? and !it.activity_object.object.nil? and !it.activity_object.object.reviewers_qscore.nil?}
     # validInteractions = validInteractions.sort_by{|it| -it.nsamples}
     @excursions = validInteractions.map{|it| it.activity_object.object}
     @excursions = @excursions.sort_by{|e| -e.reviewers_qscore}
     respond_to do |format|
-      format.xlsx {
-        render :xlsx => "interactions", :filename => "LoInteractions.xlsx", :type => "application/vnd.openxmlformates-officedocument.spreadsheetml.sheet"
-      }
       format.json {
         render json: @excursions.map{ |excursion| excursion.interaction_attributes }, :filename => "LoInteractions.json", :type => "application/json"
+      }
+      format.any {
+        render :xlsx => "interactions", :filename => "LoInteractions.xlsx", :type => "application/vnd.openxmlformates-officedocument.spreadsheetml.sheet"
       }
     end
   end

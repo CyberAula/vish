@@ -592,8 +592,8 @@ namespace :trsystem do
 
   #Delete non useful tracking system entries for LO interactions
   #Usage
-  #Development:   bundle exec rake trsystem:deletetsentriesForLoInteractions
-  task :deletetsentriesForLoInteractions, [:prepare] => :environment do |t,args|
+  #Development:   bundle exec rake trsystem:deleteNonValidEntriesForLoInteractions
+  task :deleteNonValidEntriesForLoInteractions, [:prepare] => :environment do |t,args|
     args.with_defaults(:prepare => true)
 
     if args.prepare
@@ -605,10 +605,10 @@ namespace :trsystem do
     writeInTRS("")
 
     ActiveRecord::Base.uncached do
-      nonVVEntries = TrackingSystemEntry.where("app_id!='ViSH Viewer'")
-      nonVVEntries.find_each batch_size: 1000 do |e|
-        e.destroy
-      end
+      # nonVVEntries = TrackingSystemEntry.where("app_id!='ViSH Viewer'")
+      # nonVVEntries.find_each batch_size: 1000 do |e|
+      #   e.destroy
+      # end
       
       vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer")
       vvEntries.find_each batch_size: 1000 do |e|
@@ -843,11 +843,12 @@ namespace :trsystem do
         vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id='"+lo.id.to_s+"'")
         vvEntries.find_each batch_size: 1000 do |e|
           #Extremely high tlo values
+          durationI = d["duration"].to_i
           d = JSON(e["data"])
           actions = actions = d["chronology"].values.map{|v| v["actions"]}.compact.map{|v| v.values}.flatten
           nActions = actions.length
-          actionsPer10Minutes = (nActions*10/([1,d["duration"].to_i/60].max).to_f).ceil
-          if (d["duration"].to_i > (4*interaction.tlo)) and (actionsPer10Minutes<2)
+          actionsPer10Minutes = (nActions*10/([1,durationI/60].max).to_f).ceil
+          if (durationI > (4*interaction.tlo)) and (durationI > 600) and (actionsPer10Minutes<2)
             iterationsToFilter += 1
             if destroyEntities
               e.destroy

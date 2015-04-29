@@ -3,8 +3,10 @@ class LoInteraction < ActiveRecord::Base
   belongs_to :activity_object
 
   validates :activity_object_id, :presence => true
-
   validates :tlo, :presence => true
+  before_save :fill_scores_and_vars
+
+  # Class methods
 
   def self.isValidTSEntry?(tsentry)
     isValidInteraction?(JSON(tsentry["data"])) rescue false
@@ -48,23 +50,39 @@ class LoInteraction < ActiveRecord::Base
     return true
   end
 
+  # Public methods 
+
   def qscore
-    tlo_weight = 0.3
-    cpm_weight = 0.3
-    acceptance_weight = 0.4
+    self.fill_scores_and_vars
+    return self.interaction_qscore
+  end
 
-    tlo_threshold = 524
-    cpm_threshold = 3.7
-    acceptance_threshold = 73.2
+  # Private methods
+  private
 
+  def fill_scores_and_vars
+    tlo_weight = 0.303
+    acceptance_weight = 0.435
+    cpm_weight = 0.262
+
+    tlo_threshold = 504
+    acceptance_threshold = 72
+    cpm_threshold = 3.6
+    
     tlo_score = (self.tlo/tlo_threshold.to_f)
+    acceptance_score = (self.acceptancerate/acceptance_threshold.to_f)
     cpm_score = 0
-    if tlo_score > 0
+    if self.tlo > 0 and self.nclicks > 0
       cpm_score = ((self.nclicks/(self.tlo/60.to_f))/(cpm_threshold*100).to_f)
     end
-    acceptance_score = (self.acceptancerate/acceptance_threshold.to_f)
+    
+    self.x1n = [tlo_score,1].min
+    self.x2n = [acceptance_score,1].min
+    self.x3n = [cpm_score,1].min
 
-    return 10 * ([tlo_score,1].min * tlo_weight + [cpm_score,1].min * cpm_weight + [acceptance_score,1].min * acceptance_weight)
+    self.interaction_qscore = 10 * (self.x1n * tlo_weight + self.x2n * acceptance_weight + self.x3n * cpm_weight)
+    #Translate it to a scale of [0,1000000]
+    self.qscore = self.interaction_qscore * 100000 
   end
 
 end

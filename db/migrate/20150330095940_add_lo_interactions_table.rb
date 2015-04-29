@@ -22,6 +22,13 @@ class AddLoInteractionsTable < ActiveRecord::Migration
       t.integer "acceptancerate"
       t.integer "repeatrate"
       t.integer "favrate"
+
+      t.decimal "x1n", :precision => 12, :scale => 6, :default => 0
+      t.decimal "x2n", :precision => 12, :scale => 6, :default => 0
+      t.decimal "x3n", :precision => 12, :scale => 6, :default => 0
+
+      t.decimal "interaction_qscore", :precision => 12, :scale => 6, :default => 0
+      t.decimal "qscore", :precision => 12, :scale => 6, :default => 0
     end
   end
 end
