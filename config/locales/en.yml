@@ -130,6 +130,12 @@ en:
   by: "by"
   cancel: "Cancel"
   catalogue:
+    actions:
+      add_excursion:  "Add excursion"
+      add_resource: "Add resource"
+    help:
+      add_excursion: "Here you can add an excursion directly to this category in the subject catalogue"
+      add_resource: "Here you can add a resource directly to this category in the resources catalogue"
     categories:
         art: "Art"
         biology: "Biology"
@@ -164,6 +170,7 @@ en:
         maths: "Maths"
         teaching: "teaching"
     title: "Catalogue"
+    title_directory: "Resources"
   category:
     belongs_to: "Belongs to"
     cat_add_select: "Select your categories"
@@ -916,16 +923,6 @@ en:
   swf:
     confirm_delete: "Delete SWF?"
     name: "flash object"
-  temateca_recursoteca:
-    name:
-      recursoteca: "Resources"
-      temateca: "Subjects"
-    actions:
-      add_excursion:  "Add excursion"
-      add_resource: "Add resource"
-    help:
-      add_excursion: "Here you can add an excursion directly to this category in the subject catalogue"
-      add_resource: "Here you can add a resource directly to this category in the resources catalogue"
   today: "Today"
   top10: "Top 10"
   unknown: "Unknown"

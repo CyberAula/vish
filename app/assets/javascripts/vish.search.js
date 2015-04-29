@@ -40,11 +40,16 @@ Vish.Search = (function(V,undefined){
     //take the params from the URL and mark them in the sidebar
     _parsed_url = _getUrlParameters();
     if(_parsed_url["catalogue"]){
+      $("div.filter_set[catalogue_filter=true]").show();
       $("li.disable_for_user").removeClass("disabled");
       $("li.disable_for_user").attr("title", "");
     }
-    if(_parsed_url["recursoteca"]){
-      $("#resource_type").show();
+    else if(_parsed_url["directory"]){
+      $("div.filter_set[directory_filter=true]").show();
+      $("li.disable_for_user").removeClass("disabled");
+      $("li.disable_for_user").attr("title", "");
+    } else {
+      $("div.filter_set[search_filter=true]").show();
     }
     _recalculateTags(_options.tags, true);
     _fillSidebarWithParams();
@@ -213,13 +218,14 @@ Vish.Search = (function(V,undefined){
         }
       });
 
-      //finally if _parsed_url["type"] can be anything in _options.resource_types, so we would have to mark the lo_type to "resource" if not in recursoteca
+      //finally if _parsed_url["type"] can be anything in _options.resource_types, 
+      //so we would have to mark the lo_type to "resource" if not in catalogue
       _options.resource_types.forEach(function(item_subtype) {
         if(_parsed_url["type"].indexOf(item_subtype)>-1){          
-          if(!_parsed_url["recursoteca"]){
+          if(!_parsed_url["catalogue"] && !_parsed_url["directory"]){
             var filter_resource_obj = $("#search-sidebar ul li[filter_key='type'][filter='Resource']");
             _activateFilter(filter_resource_obj, false, false);
-          }          
+          }
           $("#resource_type").show();
           _toggleFilter("type", item_subtype);
         }
@@ -464,7 +470,7 @@ Vish.Search = (function(V,undefined){
   /*Function called when sort_by dropdown changes*/
   var launch_search_with_sort_by = function(sort_by){
     //favorites, visits and modified only work with Learning_objects
-    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"] && !_parsed_url["recursoteca"] && !_parsed_url["temateca"]){
+    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"] && !_parsed_url["directory"]){
       return;
     } else {
       _parsed_url["sort_by"] = [sort_by];

@@ -1,13 +1,10 @@
-<% browse = params[:browse] || (!params[:q].nil? and params[:q].blank?) %>
-
-
 <%content_for :title do%>
-  <%if browse%>
+  <%if params[:browse]%>
     <%= t("site.current.browse")%>
   <%elsif params[:catalogue]%>
-    <%=t('temateca_recursoteca.name.temateca')%>
+    <%=t('catalogue.title')%>
   <%elsif params[:directory]%>
-    <%=t('temateca_recursoteca.name.recursoteca')%>
+    <%=t('catalogue.title_directory')%>
   <%else%>
     <%= t("site.current.search")%>
   <%end%>
@@ -19,33 +16,31 @@
 
       <div id="search-sidebar" class="span3 search-filterbar">
 
-        <%if browse%>
+        <%if params[:browse]%>
           <li><h3><i class="icon-folder-open"></i><%= t("browse.title")%></h3></li>
         <%elsif params[:catalogue]%>
-          <li><h3><i class="icon-tags"></i><%=t('temateca_recursoteca.name.temateca')%></h3></li>
+          <li><h3><i class="icon-tags"></i><%=t('catalogue.title')%></h3></li>
         <%elsif params[:directory]%>
-          <li><h3><i class="icon-tags"></i><%=t('temateca_recursoteca.name.recursoteca')%></h3></li>
+          <li><h3><i class="icon-tags"></i><%=t('catalogue.title_directory')%></h3></li>
         <%else%>
           <li><h3><i class="icon-search"></i><%= t("search.title")%></h3></li>
         <%end%>
 
 
-        <%if params[:catalogue] || params[:directory]%>
-          <div filter_type="category_ids" class="filter_set">
-            <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
-              <a>-</a>
-            </button>
-            <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.subject")%></span></span>
-            <hr class="separator">
-            <ul class="opened_filter">
-              <% Vish::Application.config.catalogue["categories"].each do |categoryId| %>
-                <li class="filter_item" filter_key="category_ids" categoryId="<%=categoryId%>" filter="<%=categoryId%>"><%=t('catalogue.categories.' + categoryId)%></li>
-              <% end %>
-            </ul>
-          </div>
-        <%end%>
+        <div filter_type="category_ids" directory_filter="true" catalogue_filter="true" style="display:none"  class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.subject")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter">
+            <% Vish::Application.config.catalogue["categories"].each do |categoryId| %>
+              <li class="filter_item" filter_key="category_ids" categoryId="<%=categoryId%>" filter="<%=categoryId%>"><%=t('catalogue.categories.' + categoryId)%></li>
+            <% end %>
+          </ul>
+        </div>
 
-        <div filter_type="super_type" class="filter_set">
+        <div filter_type="super_type" search_filter="true" style="display:none" class="filter_set">
           <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
@@ -70,7 +65,7 @@
           </ul>
         </div>
 
-        <div filter_type="resouce_type" id="resource_type" opens_with="Resource" style="display:none" class="filter_set">
+        <div filter_type="resouce_type" id="resource_type" directory_filter="true" opens_with="Resource" style="display:none" class="filter_set">
             <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
               <a>-</a>
             </button>
@@ -83,7 +78,7 @@
             </ul>
         </div>
 
-        <div filter_type="language" class="filter_set">
+        <div filter_type="language" search_filter="true" directory_filter="true" catalogue_filter="true" class="filter_set">
           <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
@@ -96,7 +91,7 @@
           </ul>
         </div>
 
-        <div filter_type="tags" class="filter_set">
+        <div filter_type="tags" search_filter="true" directory_filter="true" catalogue_filter="true" class="filter_set">
           <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
