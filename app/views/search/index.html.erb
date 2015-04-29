@@ -4,8 +4,10 @@
 <%content_for :title do%>
   <%if browse%>
     <%= t("site.current.browse")%>
-  <%elsif catalogue%>
-    <%=t('catalogue.title')%>
+  <%elsif params[:temateca]%>
+    <%=t('temateca_recursoteca.name.temateca')%>
+  <%elsif params[:recursoteca]%>
+    <%=t('temateca_recursoteca.name.recursoteca')%>
   <%else%>
     <%= t("site.current.search")%>
   <%end%>
@@ -16,13 +18,18 @@
     <div class="row-fluid">
 
       <div id="search-sidebar" class="span3 search-filterbar">
+
         <%if browse%>
           <li><h3><i class="icon-folder-open"></i><%= t("browse.title")%></h3></li>
-        <%elsif catalogue%>
-          <li><h3><i class="icon-tags"></i><%=t('catalogue.title')%></h3></li>
+        <%elsif params[:temateca]%>
+          <li><h3><i class="icon-tags"></i><%=t('temateca_recursoteca.name.temateca')%></h3></li>
+        <%elsif params[:recursoteca]%>
+          <li><h3><i class="icon-tags"></i><%=t('temateca_recursoteca.name.recursoteca')%></h3></li>
         <%else%>
           <li><h3><i class="icon-search"></i><%= t("search.title")%></h3></li>
         <%end%>
+
+
         <%if catalogue%>
           <div filter_type="category_ids" class="filter_set">
             <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
@@ -63,8 +70,10 @@
               <% end %>
             </ul>
           </div>
+          
+        <%end%>
 
-          <div filter_type="resouce_type" id="resource_type" opens_with="Resource" style="display:none" class="filter_set">
+        <div filter_type="resouce_type" id="resource_type" opens_with="Resource" style="display:none" class="filter_set">
             <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
               <a>-</a>
             </button>
@@ -75,10 +84,7 @@
                 <li class="filter_item" filter_key="type" filter="<%=res%>"><%=t("search.models.#{res.downcase}")%></li>
               <%end%>
             </ul>
-          </div>
-
-        <%end%>
-
+        </div>
 
         <div filter_type="language" class="filter_set">
           <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
@@ -116,7 +122,7 @@
 
           <div id="applied_filters" class="filter_boxes"></div>
           <div class="clear"></div>
-          <%#= render partial: 'search/order_by_dropdown' %>
+      
           <div class="dropdown_order_by" id="order_by_selector_search">
 
             <button class="btn" type="button" data-toggle="dropdown">

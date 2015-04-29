@@ -903,6 +903,16 @@ es:
   swf:
     confirm_delete: "¿Borrar SWF?"
     name: "objecto flash"
+  temateca_recursoteca:
+    name:
+      recursoteca: "Recursoteca"
+      temateca: "Temateca"
+    actions:
+      add_excursion:  "Añadir excursión"
+      add_resource: "Añadir recurso"
+    help:
+      add_excursion: "Aquí puedes añadir una excursión directamente a esta categoría de la temateca"
+      add_resource: "Aquí puedes añadir un recurso directamente a esta categoría de la recursoteca"
   today: "Hoy"
   top10: "Mejores 10"
   unknown: "Desconocido"
