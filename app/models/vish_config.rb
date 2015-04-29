@@ -99,6 +99,23 @@ class VishConfig
     end
   end
 
+  def self.getDirectoryModels(options={})
+    directoryModels = []
+    if Vish::Application.config.APP_CONFIG["models"].nil? or Vish::Application.config.APP_CONFIG["models"]["directory"].nil?
+      directoryModels = getResourceModels
+    else
+      directoryModels = (Vish::Application.config.APP_CONFIG["models"]["directory"] & getResourceModels)
+    end
+
+    directoryModels = processAlias(directoryModels,options)
+
+    if options[:return_instances]
+      getInstances(directoryModels)
+    else
+      directoryModels
+    end
+  end
+
   def self.getAvailableResourceModels(options={},filterMainModels=false)
     unless getAvailableMainModels.include? "Resource"
       return []

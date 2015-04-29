@@ -80,12 +80,17 @@ Vish.Search = (function(V,undefined){
       return false;
     });
 
+    //this var and the timeout are done to avoid the firing of the resize event twice that some browsers do
+    var resize_event;
     $(window).resize(function() {
-      if ($(this).width() > 767) {
-        _openFilterSets();
-      } else {
-        _closeFilterSets();
-      }
+      if (resize_event){clearTimeout(resize_event)};
+      resize_event = setTimeout(function(){
+        if ($(this).width() > 767) {
+          _openFilterSets();
+        } else {
+          _closeFilterSets();
+        }
+      },100);      
     });
 
     //for pageless
@@ -116,7 +121,6 @@ Vish.Search = (function(V,undefined){
 
 
   var _applyPageless = function(options, stop_first){
-    //console.log("reapplying pageless with url: " + options.url + " and num_pages: " + options.num_pages);
     //stop_first = typeof stop_first !== 'undefined' ? stop_first : false; //default value 
     if(stop_first){
       $.pagelessReset();
@@ -411,7 +415,6 @@ Vish.Search = (function(V,undefined){
     //puedo apuntar en una variable el tiempo de cuando pedi la última query y si llega otra y no ha pasado X tiempo a la cola
     //timeouts para ver la cola
     NUMBER_OF_CALLS +=1;
-    //console.log("LLAMANDO AL SERVIDOR " + NUMBER_OF_CALLS);
     $.ajax({
           type : "GET",
           url : query,
@@ -454,7 +457,6 @@ Vish.Search = (function(V,undefined){
         //we also remove empty strings
         parsed[key] = value.split(",").filter(function(e) { return e; });        
       });
-      //console.log(parsed);
       return parsed;
   };
 
@@ -462,7 +464,7 @@ Vish.Search = (function(V,undefined){
   /*Function called when sort_by dropdown changes*/
   var launch_search_with_sort_by = function(sort_by){
     //favorites, visits and modified only work with Learning_objects
-    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"]){
+    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"] && !_parsed_url["recursoteca"] && !_parsed_url["temateca"]){
       return;
     } else {
       _parsed_url["sort_by"] = [sort_by];
