@@ -5,7 +5,7 @@ class ExcursionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
   before_filter :fill_create_params, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :interactions]
   skip_before_filter :store_location, :if => :format_full?
   skip_after_filter :discard_flash, :only => [:clone]
   
@@ -242,6 +242,25 @@ class ExcursionsController < ApplicationController
     end
 
     render :json => thumbnails
+  end
+
+  def interactions
+    unless user_signed_in? and current_user.admin?
+      return render :text => "Unauthorized"
+    end
+
+    validInteractions = LoInteraction.all.select{|it| it.nvalidsamples >= 5 and it.nsamples > 0 and !it.activity_object.nil? and !it.activity_object.object.nil? and !it.activity_object.object.reviewers_qscore.nil?}
+    # validInteractions = validInteractions.sort_by{|it| -it.nsamples}
+    @excursions = validInteractions.map{|it| it.activity_object.object}
+    @excursions = @excursions.sort_by{|e| -e.reviewers_qscore}
+    respond_to do |format|
+      format.json {
+        render json: @excursions.map{ |excursion| excursion.interaction_attributes }, :filename => "LoInteractions.json", :type => "application/json"
+      }
+      format.any {
+        render :xlsx => "interactions", :filename => "LoInteractions.xlsx", :type => "application/vnd.openxmlformates-officedocument.spreadsheetml.sheet"
+      }
+    end
   end
 
 
