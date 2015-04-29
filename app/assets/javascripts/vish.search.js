@@ -43,6 +43,9 @@ Vish.Search = (function(V,undefined){
       $("li.disable_for_user").removeClass("disabled");
       $("li.disable_for_user").attr("title", "");
     }
+    if(_parsed_url["recursoteca"]){
+      $("#resource_type").show();
+    }
     _recalculateTags(_options.tags, true);
     _fillSidebarWithParams();
     _loadUIEvents(_options);   
@@ -206,11 +209,13 @@ Vish.Search = (function(V,undefined){
         }
       });
 
-      //finally if _parsed_url["type"] can be anything in _options.resource_types, so we would have to mark the lo_type to "resource"
+      //finally if _parsed_url["type"] can be anything in _options.resource_types, so we would have to mark the lo_type to "resource" if not in recursoteca
       _options.resource_types.forEach(function(item_subtype) {
         if(_parsed_url["type"].indexOf(item_subtype)>-1){          
-          var filter_resource_obj = $("#search-sidebar ul li[filter_key='type'][filter='Resource']");
-          _activateFilter(filter_resource_obj, false, false);
+          if(!_parsed_url["recursoteca"]){
+            var filter_resource_obj = $("#search-sidebar ul li[filter_key='type'][filter='Resource']");
+            _activateFilter(filter_resource_obj, false, false);
+          }          
           $("#resource_type").show();
           _toggleFilter("type", item_subtype);
         }

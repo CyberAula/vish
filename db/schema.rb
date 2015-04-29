@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150313110458) do
+ActiveRecord::Schema.define(:version => 20150330095940) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -284,6 +284,33 @@ ActiveRecord::Schema.define(:version => 20150313110458) do
 
   add_index "links", ["activity_object_id"], :name => "index_links_on_activity_object_id"
 
+  create_table "lo_interactions", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
+    t.integer  "nsamples"
+    t.integer  "nvalidsamples"
+    t.integer  "tlo"
+    t.integer  "tloslide"
+    t.integer  "tloslide_min"
+    t.integer  "tloslide_max"
+    t.integer  "viewedslidesrate"
+    t.integer  "nvisits"
+    t.integer  "nclicks"
+    t.integer  "nkeys"
+    t.integer  "naq"
+    t.integer  "nsq"
+    t.integer  "neq"
+    t.integer  "acceptancerate"
+    t.integer  "repeatrate"
+    t.integer  "favrate"
+    t.decimal  "x1n",                :precision => 12, :scale => 6, :default => 0.0
+    t.decimal  "x2n",                :precision => 12, :scale => 6, :default => 0.0
+    t.decimal  "x3n",                :precision => 12, :scale => 6, :default => 0.0
+    t.decimal  "interaction_qscore", :precision => 12, :scale => 6, :default => 0.0
+    t.decimal  "qscore",             :precision => 12, :scale => 6, :default => 0.0
+  end
+
   create_table "notifications", :force => true do |t|
     t.string   "type"
     t.text     "body"
@@ -530,6 +557,7 @@ ActiveRecord::Schema.define(:version => 20150313110458) do
     t.text     "user_agent"
     t.text     "referrer"
     t.boolean  "user_logged",              :default => false
+    t.integer  "related_entity_id"
   end
 
   create_table "users", :force => true do |t|

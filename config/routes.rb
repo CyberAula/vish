@@ -53,6 +53,7 @@ Vish::Application.routes.draw do
 
   match 'excursions/last_slide' => 'excursions#last_slide'
   match 'excursions/preview' => 'excursions#preview'
+  match 'excursions/interactions' => 'excursions#interactions'
  
   match 'excursions/:id/metadata' => 'excursions#metadata'
   match 'excursions/:id/scormMetadata' => 'excursions#scormMetadata'

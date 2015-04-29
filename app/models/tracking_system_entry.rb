@@ -21,7 +21,7 @@ class TrackingSystemEntry < ActiveRecord::Base
   def self.isUserAgentBot?(user_agent)
     matches = nil
     unless user_agent.blank?
-      matches = user_agent.match(/(eSobiSubscriber|startmebot|Mail.RU_Bot|SeznamBot|360Spider|bingbot|MJ12bot|web spider|YandexBot|Baiduspider|AhrefsBot|OrangeBot|msnbot|spbot|facebook|postrank|voyager|twitterbot|googlebot|slurp|butterfly|pycurl|tweetmemebot|metauri|evrinid|reddit|digg)/mi)
+      matches = user_agent.match(/(BingPreview|eSobiSubscriber|startmebot|Mail.RU_Bot|SeznamBot|360Spider|bingbot|MJ12bot|web spider|YandexBot|Baiduspider|AhrefsBot|OrangeBot|msnbot|spbot|facebook|postrank|voyager|twitterbot|googlebot|slurp|butterfly|pycurl|tweetmemebot|metauri|evrinid|reddit|digg)/mi)
     end
     return (user_agent.blank? or !matches.nil?)
   end

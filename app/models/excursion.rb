@@ -28,7 +28,20 @@ class Excursion < ActiveRecord::Base
     json
   end
 
-
+  def interaction_attributes
+    interaction_attributes = Hash.new
+    interaction_attributes["id"] = self.id
+    interaction_attributes["title"] = self.title
+    interaction_attributes["LORIscore"] = self.reviewers_qscore.to_f
+    i = self.lo_interaction
+    unless i.nil?
+      interaction_attributes = interaction_attributes.merge(i.attributes)
+      interaction_attributes.delete "created_at"
+      interaction_attributes.delete "updated_at"
+      interaction_attributes.delete "activity_object_id"
+    end
+    interaction_attributes
+  end
 
   ####################
   ## OAI-PMH Management
