@@ -4,6 +4,7 @@
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   margin: $zero
+
   padding: 0 !important
   .search
     .helpheader i
@@ -299,7 +300,9 @@
   @include make-lg-column(9, $gutter: $grid-gutter-width)
 
 #search
-  margin-top: 0
+  margin-top: 15px
+  .row
+    margin-left: 0
   .search-filterbar
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
     background-color: white
