@@ -988,6 +988,7 @@ en:
             title: "Resources Gallery"
             description: "Add a gallery of resources."
             text: "Resource galleries are a component of the workshop that allow you to include several resources of any type Vish and have them grouped together to facilitate viewing. Insert this component into your workshop and added resources in the most easy and intuitive way."
+            new_resource: "Add"
         contributions_gallery:
             title: "Contributions Gallery"
             description: The Contributions Gallery displays the contributions sent to the workshop.

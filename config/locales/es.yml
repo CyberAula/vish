@@ -976,6 +976,7 @@ es:
             title: "Galería recursos"
             description: "Añade una galería de recursos"
             text: "Las galerías de recursos son un componente del workshop que te permiten incluir varios recursos de Vish de cualquier tipo y tenerlos agrupados para facilitarte su visionado. Inserta este componente en tu workshop y añade recursos de la forma más fácil e intuitiva."
+            new_resource: "Añadir"
         contributions_gallery:
             title: "Galería contribuciones"
             description: "La galería de contribuciones muestra las contribuciones enviadas al workshop"
