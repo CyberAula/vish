@@ -843,8 +843,8 @@ namespace :trsystem do
         vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id='"+lo.id.to_s+"'")
         vvEntries.find_each batch_size: 1000 do |e|
           #Extremely high tlo values
-          durationI = d["duration"].to_i
           d = JSON(e["data"])
+          durationI = d["duration"].to_i
           actions = actions = d["chronology"].values.map{|v| v["actions"]}.compact.map{|v| v.values}.flatten
           nActions = actions.length
           actionsPer10Minutes = (nActions*10/([1,durationI/60].max).to_f).ceil
