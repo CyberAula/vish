@@ -86,7 +86,7 @@
           <hr class="separator">
           <ul class="opened_filter">
             <% resource_languages.each do |lang| %>
-              <li class="filter_item" filter_key="language" filter="<%=lang[1]%>"><%=lang[0]%></li>
+              <li class="filter_item" filter_key="language" filter="<%=lang[1]%>" exclusive><%=lang[0]%></li>
             <% end %>
           </ul>
         </div>
