@@ -1017,22 +1017,25 @@ class Excursion < ActiveRecord::Base
 
   def clone_for sbj
     return nil if sbj.blank?
+
+    contributors = self.contributors || []
+    contributors.push(self.author)
+    contributors.uniq!
+    contributors.delete(sbj)
+
     e=Excursion.new
     e.author=sbj
     e.owner=sbj
     e.user_author=sbj.user.actor
 
     eJson = JSON(self.json)
-    eJson["author"] = {name: sbj.name, vishMetadata:{ id: sbj.id}}
-    if eJson["contributors"].nil?
-      eJson["contributors"] = []
+    eJson["author"] = {name: sbj.name, vishMetadata:{ id: sbj.id }}
+    unless contributors.blank?
+      eJson["contributors"] = contributors.map{|c| {name: c.name, vishMetadata:{ id: c.id}}}
     end
-    eJson["contributors"].push({name: self.author.name, vishMetadata:{ id: self.author.id}})
     e.json = eJson.to_json
 
-    e.contributors=self.contributors.push(self.author)
-    e.contributors.uniq!
-    e.contributors.delete(sbj)
+    e.contributors=contributors
     e.draft=true
     e.save!
     e
