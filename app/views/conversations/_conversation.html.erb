@@ -1,12 +1,14 @@
 <%= div_for(conversation, :class =>"#{ 'unread ' if conversation.is_unread?(@actor) }") do %>
 
+  <% conversation_link_to = conversation_path(conversation.id,:box => @box,:page => params[:page]) %>
+
   <div class="content_left">
     
     <div class="avatar">
       <%= link_to image_tag(conversation.originator.logo.url(:small),
         :title => conversation.originator.name,
         :alt => conversation.originator.name),
-        conversation.originator.subject %>
+        conversation_link_to %>
     </div>
 
     <header>
@@ -16,14 +18,14 @@
         <% else %>
           <% addMsgCount = "" %>
         <% end %>
-        <%= link_to truncate_name(conversation.originator.name) + addMsgCount, conversation.originator.subject %>
+        <%= link_to truncate_name(conversation.originator.name) + addMsgCount, conversation_link_to %>
       </a>
     </header>
   </div>
 
   <div class="content_right">
     <div class="subject">
-      <%= link_to(truncate(conversation.subject, :length => 55), conversation_path(conversation.id,:box => @box,:page => params[:page])) %>
+      <%= link_to(truncate(conversation.subject, :length => 55), conversation_link_to) %>
     </div>
     <div class="briefing">
       <%= raw(truncate(strip_tags(conversation.original_message.body), :length => 50)) %>

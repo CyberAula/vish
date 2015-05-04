@@ -36,7 +36,7 @@ namespace :fix do
       if jsonChange
         puts "Excursion ID"
         puts excursion.id
-        #excursion.update_column :json, eJson.to_json;
+        #excursion.update_column :json, eJson.to_json
       end
       rescue Exception => e
         puts "Exception with excursion id:"
@@ -105,14 +105,14 @@ namespace :fix do
       end
 
       if ex.contributors and ex.contributors.length > 0
-        eJson["contributors"] = [];
+        eJson["contributors"] = []
       end
 
       ex.contributors.each do |contributor|
-        eJson["contributors"].push({name: contributor.name, vishMetadata:{ id: contributor.id}});
+        eJson["contributors"].push({name: contributor.name, vishMetadata:{ id: contributor.id}})
       end
 
-      ex.update_column :json, eJson.to_json;
+      ex.update_column :json, eJson.to_json
     }
 
     printTitle("Task Finished")
@@ -468,7 +468,7 @@ namespace :fix do
       else
         #download the avatar
         owner = owner || e.owner
-        newAvatarURL = downloadAvatar(oldAvatarURL,owner,index);
+        newAvatarURL = downloadAvatar(oldAvatarURL,owner,index)
       end
       
       eJson = JSON(e.json)
