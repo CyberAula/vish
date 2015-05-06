@@ -20,16 +20,17 @@
 
           <p><%= t('document.body.title1')%></p>
 
-          <div class="panel-group" id="accordion1">
+
+          <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
-              <div class="panel-heading">
+              <div class="panel-heading" role="tab" id="headingOne">
                 <h4 class="panel-title">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#document">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#document" aria-expanded="true" aria-controls="document">
                     <i class="fa fa-folder-open"></i> <%= t('document.options.documents')%>
                   </a>
                 </h4>
               </div>
-              <div id="document" class="panel collapse">
+              <div id="document" class="panel panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
                   <% d = Document.new %>
                   <% d.owner_id = Actor.normalize_id(current_subject) %>
@@ -49,14 +50,14 @@
             </div>
 
             <div class="panel panel-default">
-              <div class="panel-heading">
+              <div class="panel-heading" role="tab" id="headingTwo">
                 <h4 class="panel-title">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#link">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#link" aria-expanded="false" aria-controls="link">
                     <i class="fa fa-link"></i> <%= t('document.options.links')%>
                   </a>
                 </h4>
               </div>
-              <div id="link" class="panel collapse">
+              <div id="link" class="panel panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body">
 
                   <% d = Link.new %>
@@ -78,14 +79,14 @@
               </div>
             </div>
             <div class="panel panel-default">
-              <div class="panel-heading">
+              <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#embed">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#embed" aria-expanded="false" aria-controls="embed">
                     <i class="fa fa-code"></i> <%= t('document.options.embed') %>
                   </a>
                 </h4>
               </div>
-              <div id="embed" class="panel collapse">
+              <div id="embed" class="panel panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
                   <% d = Embed.new %>
                   <% d.owner_id = Actor.normalize_id(current_subject) %>
@@ -131,7 +132,7 @@
           <!--Avatar-->
           <label class="new_file_avatar_label"><%= t('document.leyend.avatar')%></label>
           <input class="new_file_avatar" type="file" accept="image/*">
-          
+
           <!--LANGUAGE-->
           <label><%= t('document.leyend.language')%></label>
           <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "language", :id=>"resource_language") %>
