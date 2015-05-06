@@ -85,7 +85,7 @@
           <hr class="separator">
           <ul class="opened_filter">
             <% resource_languages.each do |lang| %>
-              <li class="filter_item" filter_key="language" filter="<%=lang[1]%>"><%=lang[0]%></li>
+              <li class="filter_item" filter_key="language" filter="<%=lang[1]%>" exclusive><%=lang[0]%></li>
             <% end %>
           </ul>
         </div>
@@ -146,20 +146,20 @@
                 <span><%=t('order_by.created_at')%> </span>
               </a>
             </li>
-            <li role="presentation" class="disable_for_user" title="<%=t('search.titles.tooltip')%>">
+            <li role="presentation" class="disable_for_user" title="">
               <a href="#" onclick="Vish.Search.launch_search_with_sort_by('updated_at')" sort-by-key="updated_at">
                 <i class="fa fa-pencil"></i>
                 <span><%=t('order_by.updated_at')%> </span>
               </a>
             </li>
 
-              <li role="presentation" class="disable_for_user" title="<%=t('search.titles.tooltip')%>">
+              <li role="presentation" class="disable_for_user" title="">
                 <a href="#" onclick="Vish.Search.launch_search_with_sort_by('visits')" sort-by-key="visits">
                   <i class="fa fa-eye"></i>
                   <span><%=t('order_by.visits')%> </span>
                 </a>
               </li>
-              <li role="presentation" class="disable_for_user" title="<%=t('search.titles.tooltip')%>">
+              <li role="presentation" class="disable_for_user" title="">
                 <a href="#" onclick="Vish.Search.launch_search_with_sort_by('favorites')" sort-by-key="favorites">
                   <i class="fa fa-star"></i>
                   <span><%=t('order_by.favorites')%> </span>
