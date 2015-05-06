@@ -1,5 +1,5 @@
 <%if ["INVITATION_ONLY","HYBRID"].include? Vish::Application.config.APP_CONFIG["register_policy"] %>
-	<li class="navegation">
+	<li>
 	  <%= link_to(raw("<i class='fa fa-user'></i> "), new_user_invitation_path, :class => "btn-header tooltip-header clearfix", :title => t("devise.invitations.button"), :data => {:toggle=>"modal", :remote=> new_user_invitation_path, :target=>"#CreateInvitationModal"}) %>
 	</li>
 <%end%>
