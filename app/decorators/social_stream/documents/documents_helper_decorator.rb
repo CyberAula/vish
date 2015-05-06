@@ -10,7 +10,7 @@ DocumentsHelper.module_eval do
         when :text then "file-text"
         when :image then "image"
         when :audio then "music"
-        when :video then "play-circle"
+        when :video then "film"
         when :pdf then "file-pdf"
         when :swf then "file-swf"
         when :zipfile then "file-zip"
