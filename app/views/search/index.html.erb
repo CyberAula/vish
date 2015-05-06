@@ -1,209 +1,197 @@
-<% browse = params[:browse] || (!params[:q].nil? and params[:q].blank?) %>
-<% catalogue = params[:catalogue] ? params[:catalogue] : false %>
-
-<% content_for :title do %>
-  <% if browse %>
-    <%= t("site.current.browse") %>
-    <% elsif params[:temateca]%>
-      <%= t('temateca_recursoteca.name.temateca') %>
-    <% elsif params[:recursoteca] %>
-      <%= t('temateca_recursoteca.name.recursoteca') %>
-    <% else %>
-      <%= t("site.current.search") %>
-  <% end %>
-<% end %>
+<%content_for :title do%>
+  <%if params[:browse]%>
+    <%= t("site.current.browse")%>
+  <%elsif params[:catalogue]%>
+    <%=t('catalogue.title')%>
+  <%elsif params[:directory]%>
+    <%=t('catalogue.title_directory')%>
+  <%else%>
+    <%= t("site.current.search")%>
+  <%end%>
+<%end%>
 
 <section id="search" class="">
+  <div class="search">
+    <div class="row-fluid">
 
-  <div class="row">
-    <div id="search-sidebar" class="search-filterbar">
-      <div class="srch-panel">
-        <%if browse%>
+      <div id="search-sidebar" class="span3 search-filterbar">
+
+        <%if params[:browse]%>
           <li><h3><i class="icon-folder-open"></i><%= t("browse.title")%></h3></li>
-        <%elsif params[:temateca]%>
-          <li><h3><i class="icon-tags"></i><%=t('temateca_recursoteca.name.temateca')%></h3></li>
-        <%elsif params[:recursoteca]%>
-          <li><h3><i class="icon-tags"></i><%=t('temateca_recursoteca.name.recursoteca')%></h3></li>
+        <%elsif params[:catalogue]%>
+          <li><h3><i class="icon-tags"></i><%=t('catalogue.title')%></h3></li>
+        <%elsif params[:directory]%>
+          <li><h3><i class="icon-tags"></i><%=t('catalogue.title_directory')%></h3></li>
         <%else%>
           <li><h3><i class="icon-search"></i><%= t("search.title")%></h3></li>
         <%end%>
 
-          <%if catalogue%>
-            <div filter_type="category_ids" class="filter_set">
-              <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
-                <a>-</a>
-              </button>
-              <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.subject")%></span></span>
-              <hr class="separator">
-              <ul class="opened_filter">
-                <% Vish::Application.config.catalogue["categories"].each do |categoryId| %>
-                  <li class="filter_item" filter_key="category_ids" categoryId="<%=categoryId%>" filter="<%=categoryId%>"><%=t('catalogue.categories.' + categoryId)%></li>
-                <% end %>
-              </ul>
-            </div>
 
-          <%else%>
+        <div filter_type="category_ids" directory_filter="true" catalogue_filter="true" style="display:none"  class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.subject")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter">
+            <% Vish::Application.config.catalogue["categories"].each do |categoryId| %>
+              <li class="filter_item" filter_key="category_ids" categoryId="<%=categoryId%>" filter="<%=categoryId%>"><%=t('catalogue.categories.' + categoryId)%></li>
+            <% end %>
+          </ul>
+        </div>
 
-            <div filter_type="super_type" class="filter_set">
-              <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
-                <a>-</a>
-              </button>
-              <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.type")%></span></span>
-              <hr class="separator">
-              <ul class="opened_filter">
-                <li class="filter_item" filter_key="type" filter="User" exclusive><%=t("search.models.user")%></li>
-                <li class="filter_item" filter_key="type" filter="Learning_object" exclusive><%=t("search.models.learning_object")%></li>
-              </ul>
-            </div>
+        <div filter_type="super_type" search_filter="true" style="display:none" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.type")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter">
+            <li class="filter_item" filter_key="type" filter="User" exclusive><%=t("search.models.user")%></li>
+            <li class="filter_item" filter_key="type" filter="Learning_object" exclusive><%=t("search.models.learning_object")%></li>
+          </ul>
+        </div>
 
-            <div filter_type="lo_type" opens_with="Learning_object" style="display:none" class="filter_set">
-              <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
-                <a>-</a>
-              </button>
-              <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.learning_object")%></span></span>
-              <hr class="separator">
-              <ul class="opened_filter">
-                <% VishConfig.getSearchModels().each do |model| %>
-                  <li class="filter_item" filter_key="type" filter="<%=model%>"><%=t("search.models.#{model.downcase}")%></li>
-                <% end %>
-              </ul>
-            </div>
-            
-          <%end%>
+        <div filter_type="lo_type" opens_with="Learning_object" style="display:none" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.learning_object")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter">
+            <% VishConfig.getSearchModels().each do |model| %>
+              <li class="filter_item" filter_key="type" filter="<%=model%>"><%=t("search.models.#{model.downcase}")%></li>
+            <% end %>
+          </ul>
+        </div>
 
-          <div filter_type="resouce_type" id="resource_type" opens_with="Resource" style="display:none" class="filter_set">
-              <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
-                <a>-</a>
-              </button>
-              <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.resource")%></span></span>
-              <hr class="separator">
-              <ul class="opened_filter">
-                <% VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }.each do |res| %>
-                  <li class="filter_item" filter_key="type" filter="<%=res%>"><%=t("search.models.#{res.downcase}")%></li>
-                <%end%>
-              </ul>
-          </div>
-
-          <div filter_type="language" class="filter_set">
+        <div filter_type="resouce_type" id="resource_type" directory_filter="true" opens_with="Resource" style="display:none" class="filter_set">
             <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
               <a>-</a>
             </button>
-            <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.lang")%></span></span>
+            <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.resource")%></span></span>
             <hr class="separator">
             <ul class="opened_filter">
-              <% resource_languages.each do |lang| %>
-                <li class="filter_item" filter_key="language" filter="<%=lang[1]%>"><%=lang[0]%></li>
-              <% end %>
+              <% VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }.each do |res| %>
+                <li class="filter_item" filter_key="type" filter="<%=res%>"><%=t("search.models.#{res.downcase}")%></li>
+              <%end%>
             </ul>
-          </div>
-
-          <div filter_type="tags" class="filter_set">
-            <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
-              <a>-</a>
-            </button>
-            <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.tag")%></span></span>
-            <hr class="separator">
-            <ul class="opened_filter ul_selected_tags" id="selected_tags_ul">
-            </ul>
-            <ul class="opened_filter ul_tags" id="tags_ul">
-            </ul>
-          </div>
-
         </div>
+
+        <div filter_type="language" search_filter="true" directory_filter="true" catalogue_filter="true" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.lang")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter">
+            <% resource_languages.each do |lang| %>
+              <li class="filter_item" filter_key="language" filter="<%=lang[1]%>" exclusive><%=lang[0]%></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div filter_type="tags" search_filter="true" directory_filter="true" catalogue_filter="true" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.tag")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter ul_selected_tags" id="selected_tags_ul">
+          </ul>
+          <ul class="opened_filter ul_tags" id="tags_ul">
+          </ul>
+        </div>
+
       </div>
 
-    <div class="filter-results">
+      <div class="span9 filter-results">
 
-      <div class="search_filters filters-applied">
-        <%= render partial: 'help/help_search' %>
-        <div><span class="n_results" id="n_results"><%=@search_result.total_entries%></span> <%= t("search.results")%></div>
-        <div class="title_applied_filters"><%= t("search.applied_filters")%></div>
-
+        <div class="search_filters filters-applied">
+          <%= render partial: 'help/help_search' %>
+          <div><span class="n_results" id="n_results"><%=@search_result.total_entries%></span> <%= t("search.results")%></div>
+          <div class="title_applied_filters"><%= t("search.applied_filters")%></div>
 
           <div id="applied_filters" class="filter_boxes"></div>
           <div class="clear"></div>
       
           <div class="dropdown_order_by" id="order_by_selector_search">
 
+            <button class="btn" type="button" data-toggle="dropdown">
+              <i class="icon-eye-open"></i>
+              <span><%=t('order_by.relevance')%></span><i class="icon-angle-down"></i>
+            </button>
 
-        <div class="dropdown_order_by btn-group" id="order_by_selector_search">
-
-          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-eye"></i>
-            <span><%=t('order_by.relevance')%></span><i class="fa fa-angle-down"></i>
-          </button>
-
-          <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
-            <li role="presentation">
-              <a href="#" onclick="Vish.Search.launch_search_with_sort_by('relevance')" sort-by-key="relevance">
-                <i class="fa fa-eye"></i>
-                <span><%=t('order_by.relevance')%> </span>
-              </a>
-            </li>
-           <li role="presentation">
-              <a href="#" onclick="Vish.Search.launch_search_with_sort_by('popularity')" sort-by-key="popularity">
-                <i class="fa fa-dashboard"></i>
-                <span><%=t('order_by.popularity')%> </span>
-              </a>
-            </li>
-
-            <li role="presentation">
-              <a href="#" onclick="Vish.Search.launch_search_with_sort_by('created_at')" sort-by-key="created_at">
-                <i class="fa fa-bolt"></i>
-                <span><%=t('order_by.created_at')%> </span>
-              </a>
-            </li>
-            <li role="presentation" class="disable_for_user disabled" title="<%=t('search.titles.tooltip')%>">
-              <a href="#" onclick="Vish.Search.launch_search_with_sort_by('updated_at')" sort-by-key="updated_at">
-                <i class="fa fa-pencil"></i>
-                <span><%=t('order_by.updated_at')%> </span>
-              </a>
-            </li>
-
-              <li role="presentation" class="disable_for_user disabled" title="<%=t('search.titles.tooltip')%>">
-                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('visits')" sort-by-key="visits">
-                  <i class="fa fa-eye"></i>
-                  <span><%=t('order_by.visits')%> </span>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li role="presentation">
+                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('relevance')" sort-by-key="relevance">
+                  <i class="icon-eye-open"></i>
+                  <span><%=t('order_by.relevance')%> </span>
                 </a>
               </li>
-              <li role="presentation" class="disable_for_user disabled" title="<%=t('search.titles.tooltip')%>">
-                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('favorites')" sort-by-key="favorites">
-                  <i class="fa fa-star"></i>
-                  <span><%=t('order_by.favorites')%> </span>
+             <li role="presentation">
+                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('popularity')" sort-by-key="popularity">
+                  <i class="icon-dashboard"></i>
+                  <span><%=t('order_by.popularity')%> </span>
                 </a>
               </li>
-          </ul>
-        </div>
-        <div class="clear"></div>
 
+              <li role="presentation">
+                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('created_at')" sort-by-key="created_at">
+                  <i class="icon-bolt"></i>
+                  <span><%=t('order_by.created_at')%> </span>
+                </a>
+              </li>
+              <li role="presentation" class="disable_for_user" title="">
+                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('updated_at')" sort-by-key="updated_at">
+                  <i class="icon-pencil"></i>
+                  <span><%=t('order_by.updated_at')%> </span>
+                </a>
+              </li>
 
-      </div>
-      </div>
-
-      <div id="search-all" class="searched-items">
-        <ul class="items">
-          <% @search_result.each do |r| %>
-              <% unless r.nil? %>
-                <%= render partial: "#{ r.class.to_s.tableize }/search_result",
-                           locals:  { r.class.to_s.underscore.to_sym => r, :prefix_id => "search" }  %>
-              <% end %>
-          <% end %>
-        </ul>
-      </div>
-
-      <div class="loader_pagination">
-        <div class="pageless-loader" style="text-align:center;width:100%;">
-          <div class="msg" style="font-size:2em">
-            <%=t('search.loading')%>
+                <li role="presentation" class="disable_for_user" title="">
+                  <a href="#" onclick="Vish.Search.launch_search_with_sort_by('visits')" sort-by-key="visits">
+                    <i class="icon-eye-open"></i>
+                    <span><%=t('order_by.visits')%> </span>
+                  </a>
+                </li>
+                <li role="presentation" class="disable_for_user" title="">
+                  <a href="#" onclick="Vish.Search.launch_search_with_sort_by('favorites')" sort-by-key="favorites">
+                    <i class="icon-star"></i>
+                    <span><%=t('order_by.favorites')%> </span>
+                  </a>
+                </li>
+            </ul>
           </div>
-          <%= render :partial => 'layouts/loading'%>
-        </div>
-      </div>
-      <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
+          <div class="clear"></div>
 
+
+        </div>
+
+          <div id="search-all" class="searched-items">
+            <ul>
+              <% @search_result.each do |r| %>
+                  <% unless r.nil? %>
+                    <%= render partial: "#{ r.class.to_s.tableize }/search_result",
+                               locals:  { r.class.to_s.underscore.to_sym => r, :prefix_id => "search" }  %>
+                  <% end %>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="loader_pagination">
+            <div class="pageless-loader" style="text-align:center;width:100%;">
+              <div class="msg" style="font-size:2em">
+                <%=t('search.loading')%>
+              </div>
+              <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
+            </div>
+          </div>
+          <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
+
+      </div>
     </div>
   </div>
-
 </section>
 
 
@@ -220,8 +208,6 @@
                      });
 
   SocialStream.Repository.show();
-
-  
 
   $("footer#footer").addClass("fixed-bottom");
 

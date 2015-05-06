@@ -1,8 +1,7 @@
-
-
 <div id="password_form" class="panel panel-default">
+  
   <header class="panel-heading">
-
+    <%=  devise_error_messages!  rescue ""%>
     <h5>
       <%= link_to t("settings.password_change.briefing"),  "javascript:void(0);", class: 'accordion-toggle', "data-toggle" => 'collapse', "data-parent" => "#settings-accordion", "data-target" => "#password_form_content" %>
     </h5>

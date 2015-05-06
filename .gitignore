@@ -14,12 +14,14 @@
 
 # Ignore config files with sensible information.
 config/database.yml
-config/deploy.rb
 config/initializers/exception_notification.rb
 config/initializers/social_stream-ostatus.rb
 config/development.sphinx.conf
 config/initializers/loep_token.rb
 config/application_config.yml
+config/deploy/*
+
+!config/deploy/example.yml
 
 # Ignore all logfiles and tempfiles.
 /log

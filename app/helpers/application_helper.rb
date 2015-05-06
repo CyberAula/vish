@@ -58,6 +58,10 @@ module ApplicationHelper
 		VishConfig.getCatalogueModels
 	end
 
+	def directory_models
+		VishConfig.getDirectoryModels
+	end
+
 	def available_services
 		VishConfig.getAvailableServices
 	end

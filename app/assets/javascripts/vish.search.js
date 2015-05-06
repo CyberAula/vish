@@ -40,11 +40,17 @@ Vish.Search = (function(V,undefined){
     //take the params from the URL and mark them in the sidebar
     _parsed_url = _getUrlParameters();
     if(_parsed_url["catalogue"]){
-      $("li.disable_for_user").removeClass("disabled");
-      $("li.disable_for_user").attr("title", "");
+      $("div.filter_set[catalogue_filter=true]").show();
     }
-    if(_parsed_url["recursoteca"]){
-      $("#resource_type").show();
+    else if(_parsed_url["directory"]){
+      $("div.filter_set[directory_filter=true]").show();      
+    } else {
+      $("div.filter_set[search_filter=true]").show();
+      if(!_parsed_url["type"]){
+        //disable sort_by options
+        $("li.disable_for_user").addClass("disabled");
+        $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);        
+      }
     }
     _recalculateTags(_options.tags, true);
     _fillSidebarWithParams();
@@ -80,12 +86,17 @@ Vish.Search = (function(V,undefined){
       return false;
     });
 
+    //this var and the timeout are done to avoid the firing of the resize event twice that some browsers do
+    var resize_event;
     $(window).resize(function() {
-      if ($(this).width() > 767) {
-        _openFilterSets();
-      } else {
-        _closeFilterSets();
-      }
+      if (resize_event){clearTimeout(resize_event)};
+      resize_event = setTimeout(function(){
+        if ($(this).width() > 767) {
+          _openFilterSets();
+        } else {
+          _closeFilterSets();
+        }
+      },100);      
     });
 
     //for pageless
@@ -116,9 +127,9 @@ Vish.Search = (function(V,undefined){
 
 
   var _applyPageless = function(options, stop_first){
-    //console.log("reapplying pageless with url: " + options.url + " and num_pages: " + options.num_pages);
     //stop_first = typeof stop_first !== 'undefined' ? stop_first : false; //default value 
     if(stop_first){
+      $("#last_content_shown").hide();
       $.pagelessReset();
     }
     $('#search-all ul').pageless({
@@ -209,13 +220,14 @@ Vish.Search = (function(V,undefined){
         }
       });
 
-      //finally if _parsed_url["type"] can be anything in _options.resource_types, so we would have to mark the lo_type to "resource" if not in recursoteca
+      //finally if _parsed_url["type"] can be anything in _options.resource_types, 
+      //so we would have to mark the lo_type to "resource"
       _options.resource_types.forEach(function(item_subtype) {
         if(_parsed_url["type"].indexOf(item_subtype)>-1){          
-          if(!_parsed_url["recursoteca"]){
+          if(!_parsed_url["catalogue"] && !_parsed_url["directory"]){
             var filter_resource_obj = $("#search-sidebar ul li[filter_key='type'][filter='Resource']");
             _activateFilter(filter_resource_obj, false, false);
-          }          
+          }
           $("#resource_type").show();
           _toggleFilter("type", item_subtype);
         }
@@ -245,12 +257,14 @@ Vish.Search = (function(V,undefined){
     var filter_obj = $("#search-sidebar ul li[filter_key='"+filter_key+"'][filter='"+filter_name+"']");
     
     if(filter_obj.length>0){
-      if(filter_obj.hasClass("search-sidebar-selected")) {        
-          _deactivateFilter(filter_obj, update_url);          
-      } else {
-        _activateFilter(filter_obj, update_url);
-        
-      }
+      //check catalogue, directory or neither of them
+      if((_parsed_url["catalogue"] && filter_obj.parents(".filter_set").attr("catalogue_filter")) || (_parsed_url["directory"] && filter_obj.parents(".filter_set").attr("directory_filter")) || (!_parsed_url["catalogue"] && !_parsed_url["directory"]) ){
+        if(filter_obj.hasClass("search-sidebar-selected")) {        
+            _deactivateFilter(filter_obj, update_url);          
+        } else {
+          _activateFilter(filter_obj, update_url);        
+        }
+      }      
     }    
   };
 
@@ -282,6 +296,11 @@ Vish.Search = (function(V,undefined){
         if(update_url){
           _removeUrlParameter(filter_key, filter_name, follow_stack);
         }
+        if(!_parsed_url["catalogue"] && !_parsed_url["directory"] && !_parsed_url["type"]){
+          //not any filter and we are in search so remove sort_by options
+          $("li.disable_for_user").addClass("disabled");
+          $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip); 
+        }
       }
   };
 
@@ -302,13 +321,13 @@ Vish.Search = (function(V,undefined){
 
         //special actions depending on filter_key
         if(filter_key==="type"){
-          if(filter_name==="Learning_object"){
+          if(filter_name==="User"){
+            //user filter
+            $("li.disable_for_user").addClass("disabled");
+            $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);            
+          } else {
             $("li.disable_for_user").removeClass("disabled");
             $("li.disable_for_user").attr("title", "");
-          } else {
-            //user or all
-            $("li.disable_for_user").addClass("disabled");
-            $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);
           }
         } else if(filter_key==="tags"){
           //if it is a tag, we move it to the ul selected_tags_ul
@@ -381,6 +400,10 @@ Vish.Search = (function(V,undefined){
       //add that value to the url
       _parsed_url[filter_key].push(opens_with_value);    
     }
+    //if empty array, clean and delete the property
+    if(_parsed_url[filter_key] && _parsed_url[filter_key].length==0){
+      delete _parsed_url[filter_key];
+    }
     if(call_server){
       _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);    
     }
@@ -411,7 +434,6 @@ Vish.Search = (function(V,undefined){
     //puedo apuntar en una variable el tiempo de cuando pedi la última query y si llega otra y no ha pasado X tiempo a la cola
     //timeouts para ver la cola
     NUMBER_OF_CALLS +=1;
-    //console.log("LLAMANDO AL SERVIDOR " + NUMBER_OF_CALLS);
     $.ajax({
           type : "GET",
           url : query,
@@ -454,7 +476,6 @@ Vish.Search = (function(V,undefined){
         //we also remove empty strings
         parsed[key] = value.split(",").filter(function(e) { return e; });        
       });
-      //console.log(parsed);
       return parsed;
   };
 
@@ -462,7 +483,7 @@ Vish.Search = (function(V,undefined){
   /*Function called when sort_by dropdown changes*/
   var launch_search_with_sort_by = function(sort_by){
     //favorites, visits and modified only work with Learning_objects
-    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"]){
+    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"] && !_parsed_url["directory"]){
       return;
     } else {
       _parsed_url["sort_by"] = [sort_by];

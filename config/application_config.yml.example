@@ -11,6 +11,7 @@ development:
     resources: ["Document","Webapp","Scormfile","Link","Embed", "Writing"]
     home: ["Excursion"]
     catalogue: ["Excursion"]
+    directory: ["Document","Webapp","Scormfile","Link","Embed"]
   services: ["ARS","Catalogue","ASearch"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   register_policy: "REGISTER_ONLY"   #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'
@@ -32,6 +33,7 @@ production:
     resources: ["Document","Webapp","Scormfile","Link","Embed", "Writing"]
     home: ["Excursion"]
     catalogue: ["Excursion"]
+    directory: ["Document","Webapp","Scormfile","Link","Embed"]
   services: ["ARS","Catalogue","Competitions2013","ASearch","MediaConversion"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   register_policy: "REGISTER_ONLY"
@@ -69,6 +71,7 @@ test:
     resources: ["Document","Webapp","Scormfile","Link","Embed", "Writing"]
     home: ["Excursion"]
     catalogue: ["Excursion"]
+    directory: ["Document","Webapp","Scormfile","Link","Embed"]
   services: ["ARS","Catalogue","ASearch"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   register_policy: "REGISTER_ONLY"   #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'

@@ -119,6 +119,12 @@ es:
   by: "por"
   cancel: "Cancelar"
   catalogue:
+    actions:
+      add_excursion:  "Añadir excursión"
+      add_resource: "Añadir recurso"
+    help:
+      add_excursion: "Aquí puedes añadir una excursión directamente a esta categoría de la temateca"
+      add_resource: "Aquí puedes añadir un recurso directamente a esta categoría de la recursoteca"
     categories:
         art: "Arte"
         biology: "Biología"
@@ -145,6 +151,7 @@ es:
         learning: "aprendizaje"
         teaching: "enseñanza"
     title: "Catálogo"
+    title_directory: "Recursoteca"
   category:
     belongs_to: "Pertenece a"
     cat_add_select: "Selecciona entre tus categorías"
@@ -370,6 +377,8 @@ es:
     invalid_login: "Por favor introduce tu email y contraseña para continuar"
     tags: "etiquetas"
     password_forgot_instructions: "Escribe abajo tu dirección de correo y recibirás un email con instrucciones para reestablecer tu contraseña en unos minutos."
+  directory:
+    title: ""
   disjunction:
     or: "o"
   document:
@@ -906,16 +915,6 @@ es:
   swf:
     confirm_delete: "¿Borrar SWF?"
     name: "objecto flash"
-  temateca_recursoteca:
-    name:
-      recursoteca: "Recursoteca"
-      temateca: "Temateca"
-    actions:
-      add_excursion:  "Añadir excursión"
-      add_resource: "Añadir recurso"
-    help:
-      add_excursion: "Aquí puedes añadir una excursión directamente a esta categoría de la temateca"
-      add_resource: "Aquí puedes añadir un recurso directamente a esta categoría de la recursoteca"
   today: "Hoy"
   top10: "Mejores 10"
   unknown: "Desconocido"
