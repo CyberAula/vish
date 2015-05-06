@@ -32,11 +32,9 @@
 
   // [converter] extracted a&:hover, a&:focus, a&.active to a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active
   &:hover
-    .caption h6
-      font-family: $corporate-font-family-sans-serif-Medium 
-      a
-        color: $black
-        text-decoration: none
+    a
+      color: $black
+      text-decoration: none
   //BAGDE EXCURSION
   .badge-excursion-active
     position: absolute
@@ -103,10 +101,10 @@
     @include caption
     @media (max-width: $screen-xs-max)
       margin-top: 0
-
     .author 
       @include text-overflow
       font-size: 12px
+      margin-top: 1px
       a
         text-decoration: none
         color: $brand-primary-2
@@ -126,7 +124,6 @@
       width: 100%
     hr 
       margin: 5px -8px -1px
-
     .like 
       display: inline
       .count
@@ -138,8 +135,6 @@
       float: right
       text-align: right
       width: 55%
-
-
 
 
 // Add a hover state for linked versions only
