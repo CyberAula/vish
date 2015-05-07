@@ -489,7 +489,8 @@ ul.workshop_activities_list_edit
 // --------------------------------------------------
 
 #WorkshopActivity .modal-body
-  min-height: 183px
+  height: 100%
+  overflow: auto
 form.edit_wa_assignment
   input[type="checkbox"]
     float: left
@@ -508,6 +509,8 @@ form.edit_wa_assignment
     color: $brand-primary
   .assignment_dates
     width: 100%
+    padding: 0px 20px
+    overflow: auto
     select
       width: 30%
       margin-right: 3%
