@@ -17,7 +17,7 @@
               <span class=" hidden-phone hidden-tablet"><%=t("navigation.mynetwork") %></span>
             </a>
           </li>
-          <li class="<%= params[:tab]=='catalogue' ? 'active':''%>">
+          <li class="">
             <a id="catalogue_tab" href="#catalogue_tabpane" data-toggle="tab" >
               <i class="icon-tags"></i>
               <span class=" hidden-phone hidden-tablet"><%=t("navigation.catalogue") %></span>
@@ -62,21 +62,7 @@
         </div>
       </div>   
 
-      <div class="tab-pane <%= params[:tab]=='catalogue' ? 'active':''%>" id="catalogue_tabpane"> 
-        <div id="catalogue_tab_ready">
-          <% if params[:tab] == 'catalogue'%>
-            <%= render :partial => "catalogue/index"%>
-          <%end%>
-        </div>
-        <div class="loader_pagination" id="loader_pagination_catalogue" style="display:none">
-          <div class="pageless-loader" style="text-align:center;width:100%; margin-top:50px">
-            <div class="msg" style="font-size:2em">
-              <%=t('search.loading')%>
-            </div>
-            <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
-          </div>
-        </div>
-      </div>
+      
     </div>
 
   </div>
@@ -98,7 +84,6 @@
   };
 
   var net_tab_loaded = false;
-  var catalogue_tab_loaded = false;
   var home_tab_loaded = false;
 
   ///////////////
@@ -140,34 +125,7 @@
     $("footer#footer").addClass("fixed-bottom");
     $("#wrap").addClass("wrap-when-fixed-bottom");
   }
-  
-  ///////////////
-  // Catalogue Ajax Handlers
-  ///////////////
-  var catalogue_charge = catalogue_charge || {};
-
-  function catalogue_state(next_state){
-    if (typeof catalogue_charge[next_state] == "undefined"){
-      $.ajax({
-        type : "GET",
-        url : next_state,
-        success : function(html){
-          $('.loader_pagination').hide(); 
-          $("#catalogue_tab_ready").append(html);
-          //We add charged states to variable
-          //We change actual state
-          catalogue_charge[next_state] = html;
-        },
-        error: function(){
-        }
-      });
-    }
-    else {
-      $('.loader_pagination').hide();
-      $("#catalogue_tab_ready").empty();
-      $("#catalogue_tab_ready").append(catalogue_charge[next_state]);
-    }
-  };
+    
 
 </script>
 
@@ -200,15 +158,7 @@
     // Catalogue
     ///////////////
     $("#catalogue_tab").click(function(){
-      $.pagelessStop();
-      if(catalogue_tab_loaded===false){
-        $('.loader_pagination').show();
-        catalogue_tab_loaded = true;
-        var next = "<%= catalogue_path(:is_home=> true) %>";
-        catalogue_state(next);
-      } else {
-        $('.loader_pagination').hide();        
-      }
+        document.location = "<%= search_path(:catalogue=>"true") %>";        
     });
     
     ///////////////
@@ -236,11 +186,8 @@
 
     <%if !params[:tab] || params[:tab]=="home"%>
       home_tab_loaded = true;
-    <%elsif params[:tab]=="net"%>
-      net_tab_loaded = true;
     <%else%>
-      $("#catalogue_tab").click();
-      catalogue_tab_loaded = true;
+      net_tab_loaded = true;    
     <%end%>
 <%end%>
 
