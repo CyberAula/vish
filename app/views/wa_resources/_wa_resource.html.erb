@@ -10,14 +10,6 @@
 
 	<%= render partial: 'wa_resources/corner_resource', locals: { resource: resource } %>
 
-	<div class="resource_mini_description">
-		<% if hasMinifiedPartial %>
-			<%= render partial: "#{ classNameTableize }/#{classNameUnderscore}_workshop_mini_show", locals:  { classNameUnderscore.to_sym => resource, :prefix_id => "wa_resource" }  %>
-		<% else %>
-			<%= resource.title %>
-		<%end%>
-	</div>
-
 	<% if hasWorkshopPartial %>
 		<%= render partial: "#{ classNameTableize }/#{classNameUnderscore}_workshop_show", locals:  { classNameUnderscore.to_sym => resource, :prefix_id => "wa_resource" }  %>
 	<% else %>
