@@ -99,6 +99,16 @@ Vish.Search = (function(V,undefined){
       },100);      
     });
 
+    $(document).on('click', "#order_by_selector_search ul[role='menu'] li a", function(e){
+      var isDisabled = $(this).parent("li").hasClass("disabled");
+      if (isDisabled){
+        e.preventDefault();
+        e.stopPropagation();
+      } else {
+        launch_search_with_sort_by($(this).attr("sort-by-key"));
+      }
+    });
+
     //for pageless
     $('#search-all ul').trigger("scroll.pageless");
 
@@ -489,7 +499,7 @@ Vish.Search = (function(V,undefined){
       _parsed_url["sort_by"] = [sort_by];
       _composeFinalUrlAndCallServer(sort_by);
     }
-  }
+  };
 
 
   return {
