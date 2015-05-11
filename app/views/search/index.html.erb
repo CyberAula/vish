@@ -85,7 +85,7 @@
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.lang")%></span></span>
           <hr class="separator">
           <ul class="opened_filter">
-            <% resource_languages.each do |lang| %>
+            <% search_resource_languages.each do |lang| %>
               <li class="filter_item" filter_key="language" filter="<%=lang[1]%>" exclusive><%=lang[0]%></li>
             <% end %>
           </ul>
@@ -143,12 +143,17 @@
                 </a>
               </li>
               <li role="presentation" class="disable_for_user" title="">
+                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('quality')" sort-by-key="quality">
+                  <i class="icon-pencil"></i>
+                  <span><%=t('order_by.quality')%> </span>
+                </a>
+              </li>              
+              <li role="presentation" class="disable_for_user" title="">
                 <a href="#" onclick="Vish.Search.launch_search_with_sort_by('updated_at')" sort-by-key="updated_at">
                   <i class="icon-pencil"></i>
                   <span><%=t('order_by.updated_at')%> </span>
                 </a>
               </li>
-
                 <li role="presentation" class="disable_for_user" title="">
                   <a href="#" onclick="Vish.Search.launch_search_with_sort_by('visits')" sort-by-key="visits">
                     <i class="icon-eye-open"></i>
