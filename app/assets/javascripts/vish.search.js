@@ -370,7 +370,7 @@ Vish.Search = (function(V,undefined){
     _parsed_url[filter_key].push(filter_name);
     if(filter_key==="type" && filter_name!="Learning_object"){
       //check sort_by param and if it is favorites or visits change it to relevance because those do not work for users
-      if(_parsed_url["sort_by"] && (_parsed_url["sort_by"][0]==="favorites" || _parsed_url["sort_by"][0]==="visits") ){
+      if(_parsed_url["sort_by"] && (_parsed_url["sort_by"][0]==="favorites" || _parsed_url["sort_by"][0]==="visits" || _parsed_url["sort_by"][0]==="updated_at" || _parsed_url["sort_by"][0]==="quality") ){
         _parsed_url["sort_by"]=["relevance"];
       }
     }
@@ -483,7 +483,7 @@ Vish.Search = (function(V,undefined){
   /*Function called when sort_by dropdown changes*/
   var launch_search_with_sort_by = function(sort_by){
     //favorites, visits and modified only work with Learning_objects
-    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"] && !_parsed_url["directory"]){
+    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at" || sort_by ==="quality") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"] && !_parsed_url["directory"]){
       return;
     } else {
       _parsed_url["sort_by"] = [sort_by];
