@@ -311,6 +311,7 @@ Vish.Search = (function(V,undefined){
         if(update_url){
           _removeUrlParameter(filter_key, filter_name, follow_stack);
         }
+
         if(!_parsed_url["catalogue"] && !_parsed_url["directory"] && !_parsed_url["type"]){
           //not any filter and we are in search so remove sort_by options
           $("li.disable_for_user").addClass("disabled");
@@ -350,15 +351,15 @@ Vish.Search = (function(V,undefined){
           $("#selected_tags_ul").append(tag_to_move);
         }
 
-        if(update_url){
-          _addUrlParameter(filter_key, filter_name, follow_stack);
-        }
-
         //see what happens with exclusivity, check if the li has the attribute "exclusive"
         if(follow_stack && filter_obj.attr("exclusive")==""){
           filter_obj.siblings(".search-sidebar-selected").each(function() {
             _deactivateFilter($(this), update_url, false);
           });
+        }
+
+        if(update_url){
+          _addUrlParameter(filter_key, filter_name, follow_stack);
         }
 
       }      
