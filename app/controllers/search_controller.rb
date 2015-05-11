@@ -55,7 +55,7 @@ class SearchController < ApplicationController
     page =  ( mode == :quick ? 1 : params[:page] )
     limit = ( mode == :quick ? 7 : RESULTS_SEARCH_PER_PAGE )
 
-    if params[:catalogue] || params[:directory]
+    if (params[:catalogue] || params[:directory]) && !params[:sort_by]
       params[:sort_by] = "quality"
     end
 

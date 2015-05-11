@@ -286,7 +286,7 @@ Vish.Search = (function(V,undefined){
   /*function to deactivate a sidebar filter in the search
     filter_obj is the jquery object of the clicked filter
     update_url is to update or not the url, it is not updated when filling in the sidebar (because the url is already as is)
-    follow_stack is to follow activating other filters in case of exclusivity (this happens with "all", "users", "learning_objects"), also used to call or not call the server, because if follow_stack the filters are applied automatically and not by user clicks
+    follow_stack is to follow activating other filters in case of exclusivity (this happens with "users", "learning_objects"), also used to call or not call the server, because if follow_stack the filters are applied automatically and not by user clicks
     */
   var _deactivateFilter = function(filter_obj, update_url, follow_stack){
       if(filter_obj.hasClass("search-sidebar-selected")){
@@ -385,10 +385,16 @@ Vish.Search = (function(V,undefined){
     }
     _parsed_url[filter_key].push(filter_name);
     if(filter_key==="type" && filter_name!="Learning_object"){
-      //check sort_by param and if it is favorites or visits change it to relevance because those do not work for users
+      //check sort_by param and if it is favorites or visits change it to default because those do not work for users
       if(_parsed_url["sort_by"] && (_parsed_url["sort_by"][0]==="favorites" || _parsed_url["sort_by"][0]==="visits" || _parsed_url["sort_by"][0]==="updated_at" || _parsed_url["sort_by"][0]==="quality") ){
-        _parsed_url["sort_by"]=["relevance"];
-      }
+        if(_parsed_url["browse"]){
+          _parsed_url["sort_by"]=["popularity"]; 
+        } else if(_parsed_url["catalogue"] || _parsed_url["directory"]){
+          _parsed_url["sort_by"]=["quality"]; 
+        } else{
+          _parsed_url["sort_by"]=["relevance"]; 
+        }
+      } 
     }
     if(call_server){
       _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);

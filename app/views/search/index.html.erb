@@ -119,7 +119,10 @@
 
             <button class="btn" type="button" data-toggle="dropdown">              
               <span>
-                <%if params[:browse] || params[:catalogue] || params[:directory] %>
+                <%if params[:browse] %>
+                  <i class="icon-dashboard"></i>
+                  <%=t('order_by.popularity')%>
+                <%elsif params[:catalogue] || params[:directory] %>
                   <i class="icon-ok-sign"></i>
                   <%=t('order_by.quality')%>
                 <% else %>
