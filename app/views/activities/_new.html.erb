@@ -27,5 +27,20 @@
     $(function(){  
       SocialStream.Wall.show();  
     });
+    
+    //This code swaps position of timeline activities in timeline
+    $(".timeline").bind("DOMSubtreeModified",function(){
+      if( !$($(".timeline-panel")[1]).parent().hasClass("timeline-inverted") && !$($(".timeline-panel")[0]).parent().hasClass("timeline-inverted") ){
+        $($(".timeline-panel")).slice(1).parent().each(function(i){
+        if (!$(this).hasClass("timeline-inverted")){
+          $(this).addClass("timeline-inverted");
+        } else {
+          $(this).removeClass("timeline-inverted");
+        }
+        });
+      }
+    });
   <% end %>
+
+
 <% end %>
