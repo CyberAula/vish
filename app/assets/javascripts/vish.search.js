@@ -43,7 +43,7 @@ Vish.Search = (function(V,undefined){
       $("div.filter_set[catalogue_filter=true]").show();
     }
     else if(_parsed_url["directory"]){
-      $("div.filter_set[directory_filter=true]").show();      
+      $("div.filter_set[directory_filter=true]").show();           
     } else {
       $("div.filter_set[search_filter=true]").show();
       if(!_parsed_url["type"]){
@@ -52,6 +52,11 @@ Vish.Search = (function(V,undefined){
         $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);        
       }
     }
+
+    if(_parsed_url["catalogue"] || _parsed_url["directory"] || _parsed_url["browse"]){
+      $("li a[sort-by-key='relevance']").parent("li").hide(); 
+    }
+
     _recalculateTags(_options.tags, true);
     _fillSidebarWithParams();
     _loadUIEvents(_options);   
@@ -105,7 +110,7 @@ Vish.Search = (function(V,undefined){
         e.preventDefault();
         e.stopPropagation();
       } else {
-        launch_search_with_sort_by($(this).attr("sort-by-key"));
+        _launch_search_with_sort_by($(this).attr("sort-by-key"));
       }
     });
 
@@ -245,7 +250,7 @@ Vish.Search = (function(V,undefined){
     }    
 
     //sort_by attribute
-    if(_parsed_url["sort_by"]){
+    if(_parsed_url["sort_by"] && _parsed_url["sort_by"].length > 0){
       var value = $("#order_by_selector_search .dropdown-menu [sort-by-key="+_parsed_url["sort_by"]+"]").html();
       $("#order_by_selector_search button").html(value + '<i class="icon-angle-down"></i>'); 
     }
@@ -345,6 +350,10 @@ Vish.Search = (function(V,undefined){
           $("#selected_tags_ul").append(tag_to_move);
         }
 
+        if(update_url){
+          _addUrlParameter(filter_key, filter_name, follow_stack);
+        }
+
         //see what happens with exclusivity, check if the li has the attribute "exclusive"
         if(follow_stack && filter_obj.attr("exclusive")==""){
           filter_obj.siblings(".search-sidebar-selected").each(function() {
@@ -352,9 +361,6 @@ Vish.Search = (function(V,undefined){
           });
         }
 
-        if(update_url){
-          _addUrlParameter(filter_key, filter_name, follow_stack);
-        }
       }      
   };
 
@@ -491,9 +497,9 @@ Vish.Search = (function(V,undefined){
 
 
   /*Function called when sort_by dropdown changes*/
-  var launch_search_with_sort_by = function(sort_by){
+  var _launch_search_with_sort_by = function(sort_by){
     //favorites, visits and modified only work with Learning_objects
-    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at" || sort_by ==="quality") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"] && !_parsed_url["directory"]){
+    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at" || sort_by ==="quality") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"] && !_parsed_url["directory"] && !_parsed_url["browse"]){
       return;
     } else {
       _parsed_url["sort_by"] = [sort_by];
@@ -503,8 +509,7 @@ Vish.Search = (function(V,undefined){
 
 
   return {
-    init : init,
-    launch_search_with_sort_by: launch_search_with_sort_by
+    init : init
   };
 
 }) (Vish);
