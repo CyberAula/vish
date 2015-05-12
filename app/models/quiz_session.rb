@@ -9,7 +9,7 @@ class QuizSession < ActiveRecord::Base
   scope :owned_by, lambda { |subject|
     QuizSession.authored_by(subject)
   }
-
+  #TODO: avoid to execute when MIGRATING
   acts_as_xlsx
 
   def quizJSON(options=nil)
