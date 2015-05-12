@@ -60,9 +60,9 @@
                 <i class="fa fa-edit"></i>
               </button>
               <p class="creation_date">
-                <%=t('quiz.openPeriod')%> <%= q.created_at.strftime("%d-%m-%Y %H:%M UTC") %>
+                <%=t('quiz.openPeriod')%> <%= q.created_at.strftime("%d-%m-%Y %H:%M") %>
                 <%if q.closed_at%>
-                 - <%= q.closed_at.strftime("%d-%m-%Y %H:%M UTC") %>
+                 - <%= q.closed_at.strftime("%d-%m-%Y %H:%M") %>
                 <% end %>
               </p>
             </li>
