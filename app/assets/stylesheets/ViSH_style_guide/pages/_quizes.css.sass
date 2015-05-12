@@ -79,8 +79,6 @@ li.repositories-item
 
 
 #quiz_chart
-  //height: 200px !important
-  //width: 400px !important
   max-width: 100%
   max-height: 100%
   margin-top: 30px
@@ -91,11 +89,6 @@ li.repositories-item
   text-align: center
   font-size: 28px
 
-//.quizDownloadAsXLSX
-  display: block
-  margin-top: 1%
-  text-align: right
-  margin-right: 1%
 
 p.quizQuestionChoice
   margin-left: 5%
@@ -111,7 +104,6 @@ ul.openQuizAnswersList
 
 div.openQuizAnswerLeft
   background-image: url('/assets/vicons/userAnswer.png') !important
-
 
 #quiz,
 #help,
@@ -137,6 +129,7 @@ div.openQuizAnswerLeft
       margin-bottom: 20px
       color: $brand-secundary
       font-size: 14px
+      min-height: 30px
     p
       margin-left: 20px
       color: gray
@@ -169,13 +162,25 @@ div.openQuizAnswerLeft
       overflow: hidden
       float: left
       margin: -4px 0 0 0
+      @media (max-width: $screen-md-max)
+        width: 55%
+      @media (max-width: $screen-sm-max)
+        width: 45%
     .creation_date
-      white-space: nowrap
+      //white-space: nowrap
+      word-wrap: break-word
       overflow: hidden
       font-size: 0.8em
       color: $gray-light
       float: left
       margin: 0
+      width: 70%
+      @media (max-width: $screen-xs-max)
+        display: none
+      @media (max-width: $screen-md-max)
+        width: 55%
+      @media (max-width: $screen-sm-max)
+        width: 45%
     button
       font-family: $corporate-font-family-sans-serif-Medium
       float: right
