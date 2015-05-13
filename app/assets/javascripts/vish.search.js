@@ -46,7 +46,7 @@ Vish.Search = (function(V,undefined){
       $("div.filter_set[directory_filter=true]").show();           
     } else {
       $("div.filter_set[search_filter=true]").show();
-      if(!_parsed_url["type"]){
+      if(!_parsed_url["type"] || _parsed_url["type"]=="User"){
         //disable sort_by options
         $("li.disable_for_user").addClass("disabled");
         $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);        
@@ -446,7 +446,7 @@ Vish.Search = (function(V,undefined){
         //in catalogue and directory, always enable options, because there is no users
         $("li.disable_for_user").removeClass("disabled");
         $("li.disable_for_user").attr("title", "");
-      } else if(!query_array["type"] || (query_array["type"] && (query_array["type"]==="User" || query_array["type"]==="")) ){
+      } else if(!query_array["type"] || (query_array["type"] && (query_array["type"]=="User" || query_array["type"]=="")) ){
         //If there is type and it is user or empty, disable some options
         $("li.disable_for_user").addClass("disabled");
         $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);  
