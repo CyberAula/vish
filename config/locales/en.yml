@@ -891,6 +891,7 @@ en:
       subject: "subject"     
       tag: "tag"
       tooltip: "Option only available for learning objects"
+      tooltip2: "Option only available for excursions"
       type: "type"
     type: "type"
   send:

@@ -23,6 +23,7 @@ Vish.Search = (function(V,undefined){
         url: http://vishub.org/search?type=Webapp%2CScormfile&sort_by=updated_at,
         tags: "tag1,tag2,my_tag",
         sort_by_disable_tooltip: "Option only available for learning objects"
+        only_for_excursion_tooltip: "Option only available for excursions"
       }  
   */
   var init = function(options){
@@ -51,6 +52,12 @@ Vish.Search = (function(V,undefined){
         $("li.disable_for_user").addClass("disabled");
         $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);        
       }
+    }
+
+    //TODO sacar las cosas del sort_by al método que hay que parsea el sort_by after ajax request
+    if(_parsed_url["type"]!="Excursion" && !_parsed_url["catalogue"]){
+      $("li.only_for_excursion").addClass("disabled");
+      $("li.only_for_excursion").attr("title", _options.only_for_excursion_tooltip);  
     }
 
     if(_parsed_url["catalogue"] || _parsed_url["directory"] || _parsed_url["browse"]){
@@ -384,6 +391,10 @@ Vish.Search = (function(V,undefined){
       } 
     }
 
+    if(filter_key==="type" && filter_name!="Excursion" && _parsed_url["sort_by"][0]==="quality"){
+      _parsed_url["sort_by"]=["popularity"]; 
+    }
+
     if(call_server){
       _composeFinalUrlAndCallServer();
     }
@@ -453,6 +464,14 @@ Vish.Search = (function(V,undefined){
       } else {
         $("li.disable_for_user").removeClass("disabled");
         $("li.disable_for_user").attr("title", "");
+      }
+
+      if(query_array["catalogue"] || (query_array["type"] && (query_array["type"]=="Excursion"))){
+        $("li.only_for_excursion").removeClass("disabled");
+        $("li.only_for_excursion").attr("title", "");
+      } else {
+        $("li.only_for_excursion").addClass("disabled");
+        $("li.only_for_excursion").attr("title", _options.only_for_excursion_tooltip); 
       }
   };
 

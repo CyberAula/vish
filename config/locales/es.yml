@@ -879,6 +879,7 @@ es:
       subject: "tema"
       tag: "etiquetas"
       tooltip: "Opción sólo disponible para objetos de aprendizaje"
+      tooltip2: "Opción sólo disponible para excursiones"
       type: "tipo"
     type: "tipo"
   send:
