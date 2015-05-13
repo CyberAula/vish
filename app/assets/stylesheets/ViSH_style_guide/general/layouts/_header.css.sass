@@ -1,7 +1,3 @@
-#top
-  padding: 0% 5%
-  padding-top: 3px
-
 nav.navbar-fixed-top
   .container-fluid
     margin-top: 3px
@@ -14,11 +10,14 @@ nav.navbar-fixed-top
   @media (max-width: $screen-xs-max)
     margin-top: 9px
 .search-nav
-  margin-right: 6px
+  margin-right: 10px
   float: right
   @media (max-width: $screen-xs-max)
     float: none
     margin-right: 0
+  .search-query
+    @media (max-width: $screen-sm-max)
+      width: 180px !important
   form
     .search_button_class
       @media (max-width: $screen-xs-max)
@@ -26,6 +25,7 @@ nav.navbar-fixed-top
         margin-left: 0
         height: 36px
         margin-top: -1px
+
 
   .input-group
     @media (max-width: $screen-xs-max)
@@ -108,25 +108,15 @@ nav.navbar-fixed-top
   @include hidden-xs
   margin-bottom: 0
   li
-    min-width: 39px
-    min-height: 40px
-    .divider
-      min-width: 0px
-      min-height: 0px
+    min-width: 30px
     a
       color: $gray
       border-color: $border-color
-      padding: 5px 7px
-      height: 37px
-      i
-        font-size: 1.2rem
-        vertical-align: middle
     &:hover
       background-color: $white
   li.btn-group
     a
-      min-width: 39px
-      height: 37px
+      min-width: 30px
   ul li
     &:hover
       background-color: transparent
@@ -134,15 +124,6 @@ nav.navbar-fixed-top
     a
       @include border-top-radius ($border-radius-base)
       color: $gray-light !important
-
-.navbar-header
-  div.btn-group
-    a
-      min-width: 39px
-      height: 37px
-      padding: 6px 10px 6px 10px
-      i
-        margin-left: 1px
 
 .user-menu
   margin-left: 12px !important
@@ -157,7 +138,7 @@ nav.navbar-fixed-top
       @include border-left-radius ($border-radius-small)
       @include fix-img-addon
   a.dropdown-toggle
-    width: 130px
+    width: 120px
     text-align: left
     i
       float: right
