@@ -43,7 +43,7 @@ Vish.Search = (function(V,undefined){
       $("div.filter_set[catalogue_filter=true]").show();
     }
     else if(_parsed_url["directory"]){
-      $("div.filter_set[directory_filter=true]").show();      
+      $("div.filter_set[directory_filter=true]").show();           
     } else {
       $("div.filter_set[search_filter=true]").show();
       if(!_parsed_url["type"]){
@@ -52,6 +52,11 @@ Vish.Search = (function(V,undefined){
         $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);        
       }
     }
+
+    if(_parsed_url["catalogue"] || _parsed_url["directory"] || _parsed_url["browse"]){
+      $("li a[sort-by-key='relevance']").parent("li").hide(); 
+    }
+
     _recalculateTags(_options.tags, true);
     _fillSidebarWithParams();
     _loadUIEvents(_options);   
@@ -97,6 +102,16 @@ Vish.Search = (function(V,undefined){
           _closeFilterSets();
         }
       },100);      
+    });
+
+    $(document).on('click', "#order_by_selector_search ul[role='menu'] li a", function(e){
+      var isDisabled = $(this).parent("li").hasClass("disabled");
+      if (isDisabled){
+        e.preventDefault();
+        e.stopPropagation();
+      } else {
+        _launch_search_with_sort_by($(this).attr("sort-by-key"));
+      }
     });
 
     //for pageless
@@ -235,7 +250,7 @@ Vish.Search = (function(V,undefined){
     }    
 
     //sort_by attribute
-    if(_parsed_url["sort_by"]){
+    if(_parsed_url["sort_by"] && _parsed_url["sort_by"].length > 0){
       var value = $("#order_by_selector_search .dropdown-menu [sort-by-key="+_parsed_url["sort_by"]+"]").html();
       $("#order_by_selector_search button").html(value + '<i class="icon-angle-down"></i>'); 
     }
@@ -271,7 +286,7 @@ Vish.Search = (function(V,undefined){
   /*function to deactivate a sidebar filter in the search
     filter_obj is the jquery object of the clicked filter
     update_url is to update or not the url, it is not updated when filling in the sidebar (because the url is already as is)
-    follow_stack is to follow activating other filters in case of exclusivity (this happens with "all", "users", "learning_objects"), also used to call or not call the server, because if follow_stack the filters are applied automatically and not by user clicks
+    follow_stack is to follow activating other filters in case of exclusivity (this happens with "users", "learning_objects"), also used to call or not call the server, because if follow_stack the filters are applied automatically and not by user clicks
     */
   var _deactivateFilter = function(filter_obj, update_url, follow_stack){
       if(filter_obj.hasClass("search-sidebar-selected")){
@@ -296,11 +311,7 @@ Vish.Search = (function(V,undefined){
         if(update_url){
           _removeUrlParameter(filter_key, filter_name, follow_stack);
         }
-        if(!_parsed_url["catalogue"] && !_parsed_url["directory"] && !_parsed_url["type"]){
-          //not any filter and we are in search so remove sort_by options
-          $("li.disable_for_user").addClass("disabled");
-          $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip); 
-        }
+        
       }
   };
 
@@ -319,17 +330,7 @@ Vish.Search = (function(V,undefined){
         //show the related filters
         $("#search-sidebar div[opens_with='"+filter_name+"']").show();    
 
-        //special actions depending on filter_key
-        if(filter_key==="type"){
-          if(filter_name==="User"){
-            //user filter
-            $("li.disable_for_user").addClass("disabled");
-            $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);            
-          } else {
-            $("li.disable_for_user").removeClass("disabled");
-            $("li.disable_for_user").attr("title", "");
-          }
-        } else if(filter_key==="tags"){
+        if(filter_key==="tags"){
           //if it is a tag, we move it to the ul selected_tags_ul
           var tag_to_move = filter_obj.detach();
           $("#selected_tags_ul").append(tag_to_move);
@@ -345,6 +346,7 @@ Vish.Search = (function(V,undefined){
         if(update_url){
           _addUrlParameter(filter_key, filter_name, follow_stack);
         }
+
       }      
   };
 
@@ -368,14 +370,22 @@ Vish.Search = (function(V,undefined){
       }
     }
     _parsed_url[filter_key].push(filter_name);
-    if(filter_key==="type" && filter_name!="Learning_object"){
-      //check sort_by param and if it is favorites or visits change it to relevance because those do not work for users
-      if(_parsed_url["sort_by"] && (_parsed_url["sort_by"][0]==="favorites" || _parsed_url["sort_by"][0]==="visits") ){
-        _parsed_url["sort_by"]=["relevance"];
-      }
+
+    if(filter_key==="type" && filter_name==="Users"){
+      //check sort_by param and if it is favorites or visits change it to default because those do not work for users
+      if(_parsed_url["sort_by"] && (_parsed_url["sort_by"][0]==="favorites" || _parsed_url["sort_by"][0]==="visits" || _parsed_url["sort_by"][0]==="updated_at" || _parsed_url["sort_by"][0]==="quality") ){
+        if(_parsed_url["browse"]){
+          _parsed_url["sort_by"]=["popularity"]; 
+        } else if(_parsed_url["catalogue"] || _parsed_url["directory"]){
+          _parsed_url["sort_by"]=["quality"]; 
+        } else{
+          _parsed_url["sort_by"]=["relevance"]; 
+        }
+      } 
     }
+
     if(call_server){
-      _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);
+      _composeFinalUrlAndCallServer();
     }
   };
 
@@ -404,13 +414,50 @@ Vish.Search = (function(V,undefined){
     if(_parsed_url[filter_key] && _parsed_url[filter_key].length==0){
       delete _parsed_url[filter_key];
     }
+
+    if(filter_key==="type" && filter_name==="Learning_object"){
+      //check sort_by param and if it is favorites or visits change it to default because those do not work for users
+      if(_parsed_url["sort_by"] && (_parsed_url["sort_by"][0]==="favorites" || _parsed_url["sort_by"][0]==="visits" || _parsed_url["sort_by"][0]==="updated_at" || _parsed_url["sort_by"][0]==="quality") ){
+        if(_parsed_url["browse"]){
+          _parsed_url["sort_by"]=["popularity"]; 
+        } else if(_parsed_url["catalogue"] || _parsed_url["directory"]){
+          _parsed_url["sort_by"]=["quality"]; 
+        } else{
+          _parsed_url["sort_by"]=["relevance"]; 
+        }
+      } 
+    }
+
     if(call_server){
-      _composeFinalUrlAndCallServer(_parsed_url["sort_by"]);    
+      _composeFinalUrlAndCallServer();    
     }
   };
 
+  /*function called after ajax success call to the server. It updates the sort_by dropdown
+    depending on the sort_by_key sent, and in the rest of the params
+    for example if type is user or there is no type several fields from the drop down are disabled*/
+  var _updateSortByKey = function(query_array){
+      if(query_array["sort_by"]){              
+        var value = $("#order_by_selector_search .dropdown-menu [sort-by-key="+query_array["sort_by"]+"]").html();
+        $("#order_by_selector_search button").html(value + '<i class="icon-angle-down"></i>');
+      }
 
-  var _composeFinalUrlAndCallServer = function(sort_by){
+      if(query_array["catalogue"] || query_array["directory"]){
+        //in catalogue and directory, always enable options, because there is no users
+        $("li.disable_for_user").removeClass("disabled");
+        $("li.disable_for_user").attr("title", "");
+      } else if(!query_array["type"] || (query_array["type"] && (query_array["type"]==="User" || query_array["type"]==="")) ){
+        //If there is type and it is user or empty, disable some options
+        $("li.disable_for_user").addClass("disabled");
+        $("li.disable_for_user").attr("title", _options.sort_by_disable_tooltip);  
+      } else {
+        $("li.disable_for_user").removeClass("disabled");
+        $("li.disable_for_user").attr("title", "");
+      }
+  };
+
+
+  var _composeFinalUrlAndCallServer = function(){
     var final_url = {};
     $.each( _parsed_url, function(key, value){ 
       //remove empty strings
@@ -421,14 +468,13 @@ Vish.Search = (function(V,undefined){
     });    
     var new_url = "search?" + queryString.stringify(final_url);
     window.history.pushState("", "", new_url);    
-    _manageQuery(new_url, sort_by);
+    _manageQuery(new_url);
   };
 
 
   /*query is the URL to call the server
-    sort_by_key is the key to stablish the sort_by drop down value when success
   */
-  var _manageQuery = function(query, sort_by_key){
+  var _manageQuery = function(query){
     _queries_sent[query] = Date.now();
     //cuando llega un success quito todas las queries que pedí antes? -> si. Y si llega un success y no está en _queries_sent no lo pinto.
     //puedo apuntar en una variable el tiempo de cuando pedi la última query y si llega otra y no ha pasado X tiempo a la cola
@@ -439,10 +485,9 @@ Vish.Search = (function(V,undefined){
           url : query,
           success : function(html_code) {
             //show the sort_by value that the user selected, if any
-            if(sort_by_key){              
-              var value = $("#order_by_selector_search .dropdown-menu [sort-by-key="+sort_by_key+"]").html();
-              $("#order_by_selector_search button").html(value + '<i class="icon-angle-down"></i>');
-            }
+            var query_array = queryString.parse(query.substring(query.indexOf("?")+1));
+            _updateSortByKey(query_array);
+            
             //reapply pageless
             var options = {};
             var parsed_html_return = $('<div></div>').html(html_code);
@@ -481,20 +526,14 @@ Vish.Search = (function(V,undefined){
 
 
   /*Function called when sort_by dropdown changes*/
-  var launch_search_with_sort_by = function(sort_by){
-    //favorites, visits and modified only work with Learning_objects
-    if((sort_by==="favorites" || sort_by ==="visits" || sort_by ==="updated_at") && _parsed_url["type"] != "Learning_object" && !_parsed_url["catalogue"] && !_parsed_url["directory"]){
-      return;
-    } else {
+  var _launch_search_with_sort_by = function(sort_by){
       _parsed_url["sort_by"] = [sort_by];
-      _composeFinalUrlAndCallServer(sort_by);
-    }
-  }
+      _composeFinalUrlAndCallServer();
+  };
 
 
   return {
-    init : init,
-    launch_search_with_sort_by: launch_search_with_sort_by
+    init : init
   };
 
 }) (Vish);

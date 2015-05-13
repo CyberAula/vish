@@ -161,10 +161,11 @@ aside.recomended
   padding: 0
   @include border-top-radius ($border-radius-base)
   @include box-shadow (0 1px 4px 1px rgba(0, 0, 0, 0.1))
-  .container-visor
+  text-align: center
+  .viewerContainer
     width: 100%
     iframe
-      width: 100% !important
+      border: none
 .writing_show
   max-width: 95%
   display: block
@@ -175,17 +176,17 @@ aside.recomended
 
 .link_address
   width: auto
-  float: right
   margin-top: 3px
   margin-right: 7px
   a
-    font-size: 14px !important
-    color: $gray
+    text-align: center
+    font-size: 15px !important
+    color: $gray-dark
     float: none !important
+    margin: 10px 0px 0px 0px !important
     i,p
-      font-size: 14px !important
-      color: $gray
-      float: left !important
+      font-size: 15px !important
+      color: $gray-dark
       display: inline-block
       text-align: left !important
       width: auto !important
@@ -217,7 +218,7 @@ aside.recomended,
     display: block
     margin: 20px auto
     font-size: 44px
-  .elemento-visor
+  .viewerElement
     padding-top: 79%
     width: 100%
   .excursion_viewer_wrapper
@@ -233,13 +234,6 @@ aside.recomended,
       left: 0
       width: 100%
       height: 100%
-  .caja-visor
-    position: absolute
-    top: 0
-    bottom: 0
-    left: 0
-    right: 0
-    width: 100%
 
 .social_toolbar_excursion
   div.social
@@ -265,7 +259,7 @@ aside.recomended,
     font-size: 0.9em
     zoom: 1
 
-.caja-elementos 
+.elementsBox 
   .picture_show, .embed_show, .swf_show
     max-width: 500px
     display: block

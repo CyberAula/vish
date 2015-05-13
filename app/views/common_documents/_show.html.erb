@@ -25,8 +25,8 @@
     <div class="doc-show">
 
       <div class="box-show">
-        <div class="container-visor">
-          <div class="caja-elementos">
+        <div class="viewerContainer">
+          <div class="elementsBox">
             <%= render partial: "#{ document.class.to_s.tableize }/#{ document.class.to_s.underscore }_show",
               locals: { document.class.to_s.underscore.to_sym => document } %>
           </div>

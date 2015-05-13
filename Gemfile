@@ -35,6 +35,8 @@ gem 'avatars_for_rails', '= 1.1.4'
 gem 'axlsx', '= 2.0.1' #xlsx generation
 gem 'axlsx_rails', '= 0.1.5'
 gem 'acts_as_xlsx', '= 1.0.6'
+# 130515: Permission denied (publickey). fatal: Could not read from remote repository.
+# gem 'acts_as_xlsx', :git => 'git@github.com:randym/acts_as_xlsx.git', :ref => '919817e590b1cf8e27632e630469603c78a50402'
 gem "paperclip", '= 3.5.1'
 gem "delayed_paperclip", "= 2.7.0"
 gem 'sanitize', '= 2.1.0'

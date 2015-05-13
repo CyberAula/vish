@@ -84,7 +84,7 @@
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.lang")%></span></span>
           <hr class="separator">
           <ul class="opened_filter">
-            <% resource_languages.each do |lang| %>
+            <% search_resource_languages.each do |lang| %>
               <li class="filter_item" filter_key="language" filter="<%=lang[1]%>" exclusive><%=lang[0]%></li>
             <% end %>
           </ul>
@@ -108,6 +108,7 @@
     <div class="filter-results">
 
       <div class="search_filters filters-applied">
+      
         <%= render partial: 'help/help_search' %>
         <div><span class="n_results" id="n_results"><%=@search_result.total_entries%></span> <%= t("search.results")%></div>
         <div class="title_applied_filters"><%= t("search.applied_filters")%></div>
@@ -118,59 +119,70 @@
       
           <div class="dropdown_order_by" id="order_by_selector_search">
 
+            <button class="btn" type="button" data-toggle="dropdown">              
+              <span>
+                <%if params[:browse] %>
+                  <i class="icon-dashboard"></i>
+                  <%=t('order_by.popularity')%>
+                <%elsif params[:catalogue] || params[:directory] %>
+                  <i class="icon-ok-sign"></i>
+                  <%=t('order_by.quality')%>
+                <% else %>
+                  <i class="icon-eye-open"></i>
+                  <%=t('order_by.relevance')%>
+                <%end%>
+              </span><i class="icon-angle-down"></i>
+            </button>
 
-        <div class="dropdown_order_by btn-group" id="order_by_selector_search">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li role="presentation">
+                <a href="#" sort-by-key="relevance">
+                  <i class="icon-eye-open"></i>
+                  <span><%=t('order_by.relevance')%> </span>
+                </a>
+              </li>
+             <li role="presentation">
+                <a href="#" sort-by-key="popularity">
+                  <i class="icon-dashboard"></i>
+                  <span><%=t('order_by.popularity')%> </span>
+                </a>
+              </li>
 
-          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-eye"></i>
-            <span><%=t('order_by.relevance')%></span><i class="fa fa-angle-down"></i>
-          </button>
-
-          <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
-            <li role="presentation">
-              <a href="#" onclick="Vish.Search.launch_search_with_sort_by('relevance')" sort-by-key="relevance">
-                <i class="fa fa-eye"></i>
-                <span><%=t('order_by.relevance')%> </span>
-              </a>
-            </li>
-           <li role="presentation">
-              <a href="#" onclick="Vish.Search.launch_search_with_sort_by('popularity')" sort-by-key="popularity">
-                <i class="fa fa-dashboard"></i>
-                <span><%=t('order_by.popularity')%> </span>
-              </a>
-            </li>
-
-            <li role="presentation">
-              <a href="#" onclick="Vish.Search.launch_search_with_sort_by('created_at')" sort-by-key="created_at">
-                <i class="fa fa-bolt"></i>
-                <span><%=t('order_by.created_at')%> </span>
-              </a>
-            </li>
-            <li role="presentation" class="disable_for_user" title="">
-              <a href="#" onclick="Vish.Search.launch_search_with_sort_by('updated_at')" sort-by-key="updated_at">
-                <i class="fa fa-pencil"></i>
-                <span><%=t('order_by.updated_at')%> </span>
-              </a>
-            </li>
-
-              <li role="presentation" class="disable_for_user" title="">
-                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('visits')" sort-by-key="visits">
-                  <i class="fa fa-eye"></i>
-                  <span><%=t('order_by.visits')%> </span>
+              <li role="presentation">
+                <a href="#"  sort-by-key="created_at">
+                  <i class="icon-bolt"></i>
+                  <span><%=t('order_by.created_at')%> </span>
                 </a>
               </li>
               <li role="presentation" class="disable_for_user" title="">
-                <a href="#" onclick="Vish.Search.launch_search_with_sort_by('favorites')" sort-by-key="favorites">
-                  <i class="fa fa-star"></i>
-                  <span><%=t('order_by.favorites')%> </span>
+                <a href="#" sort-by-key="quality">
+                  <i class="icon-pencil"></i>
+                  <span><%=t('order_by.quality')%> </span>
+                </a>
+              </li>              
+              <li role="presentation" class="disable_for_user" title="">
+                <a href="#" sort-by-key="updated_at">
+                  <i class="icon-pencil"></i>
+                  <span><%=t('order_by.updated_at')%> </span>
                 </a>
               </li>
-          </ul>
+                <li role="presentation" class="disable_for_user" title="">
+                  <a href="#" sort-by-key="visits">
+                    <i class="icon-eye-open"></i>
+                    <span><%=t('order_by.visits')%> </span>
+                  </a>
+                </li>
+                <li role="presentation" class="disable_for_user" title="">
+                  <a href="#" sort-by-key="favorites">
+                    <i class="icon-star"></i>
+                    <span><%=t('order_by.favorites')%> </span>
+                  </a>
+                </li>
+            </ul>
+          </div>
+          <div class="clear"></div>
+
         </div>
-        <div class="clear"></div>
-
-
-      </div>
       </div>
 
       <div id="search-all" class="searched-items">
