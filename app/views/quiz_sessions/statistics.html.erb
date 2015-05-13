@@ -1,0 +1,27 @@
+<%= javascript_include_tag "RegaddiChart" %>
+<%= javascript_include_tag "VISH.QuizCharts" %>
+
+<%= quiz = (raw @quiz) %>
+<%= quizJSON = JSON(quiz) %>
+<%= quizTitle = quizJSON["title"] || t('quiz.untitled') %>
+
+<legend><%= quizTitle %></legend>
+
+<article class="quiz_sessions">
+  <canvas id="quiz_chart" width="500" height="500"></canvas>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          var canvas = $("#quiz_chart");
+          var quizParams = VISH.QuizCharts.getQuizParams(<%= quiz %>);
+          var quizType = quizParams.quizType;
+          var nAnswers = quizParams.nAnswers;
+
+          var answersList = <%= raw @results %>;
+          var options = {
+              "first": true
+          };
+          VISH.QuizCharts.drawQuizChart(canvas, quizType, nAnswers, answersList, options);
+      })
+  </script>
+</article>

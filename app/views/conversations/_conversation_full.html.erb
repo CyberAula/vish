@@ -55,7 +55,7 @@
   <%end %>
 </div>
 
-<%= javascript_tag do %>
+<%= content_for :javascript do %>
   document.addEventListener("DOMContentLoaded", function(){
     $(".message .body img").each(function(){
       var link = '<a href=\"' + $(this).attr('src') + '\" class=\"img_link\"><img src=\"' + $(this).attr('src') + '\"></a>';

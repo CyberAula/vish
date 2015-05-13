@@ -1,20 +1,21 @@
-<li class ="toggler user-settings dropdown">
-  <a  href="<%=user_path(current_subject)%>" class="without-data-toggle logo-small "></a>
-    <span class="name hidden-xs"><%= truncate_name(current_subject.name, length: 15) %><i class="fa fa-angle-down"></i></span>
+<li class="toggler user-settings dropdown">
+  <a href="<%= user_path(current_subject) %>" class="without-data-toggle logo-small "></a>
+  <span class="name hidden-xs"><%= truncate_name(current_subject.name, length: 15) %>
+    <i class="fa fa-angle-down"></i></span>
   </a>
   <ul class="dropdown-menu dropdown-ie-fix">
-    
+
     <!-- dropdown menu links -->
-     <li class="settings-menu">
-       <%= link_to home_path do %>
-       <i class="fa fa-home"></i>
-       <span><%= t('navigation.home') %></span>
-       <% end %>
-     </li>
+    <li class="settings-menu">
+      <%= link_to home_path do %>
+          <i class="fa fa-home"></i>
+          <span><%= t('navigation.home') %></span>
+      <% end %>
+    </li>
     <li class="settings-menu">
       <%= link_to current_subject do %>
-        <i class="fa fa-user"></i>
-        <span><%= t('profile.one') %></span>
+          <i class="fa fa-user"></i>
+          <span><%= t('profile.one') %></span>
       <% end %>
     </li>
     <!--<li class="settings-menu">
@@ -25,31 +26,24 @@
     </li>-->
     <li class="settings-menu">
       <%= link_to settings_path do %>
-      <i class="fa fa-cog"></i>
-      <span><%= t('dropdown.settings') %></span>
+          <i class="fa fa-cog"></i>
+          <span><%= t('dropdown.settings') %></span>
       <% end %>
     </li>
     <li class="settings-menu">
       <%= link_to quiz_sessions_path do %>
-      <i class="fa fa-check-square-o"></i>
-      <span><%= t('quiz.live') %></span>
+          <i class="fa fa-check-square-o"></i>
+          <span><%= t('quiz.live') %></span>
       <% end %>
     </li>
     <li class="divider"></li>
     <li>
       <%= link_to destroy_user_session_path, :method => :delete do %>
-      <i class="fa fa-sign-out"></i>
-      <span><%= t('sign_out') %></span>
+          <i class="fa fa-sign-out"></i>
+          <span><%= t('sign_out') %></span>
       <% end %>
     </li>
   </ul>
-  <% end %>
 </li>
-
-
-
-
-    </ul>
-  </li>
 
 
