@@ -42,7 +42,7 @@
         </td>
         <td class="admin-type">
           <!-- report.issueType -->
-          <span><%=report.issueIcon=%></span>
+          <span><%=report.issueIcon%></span>
         </td>
         <td class="admin-user">
           <%unless report.actor.nil? %>
@@ -79,7 +79,7 @@
           </span>
         </td>
         <td class="admin-date">
-          <span><%=report.created_at=%></span>
+          <span><%=report.created_at%></span>
         </td>
         <td class="admin-icontrash">
             <%= link_to(raw("<i class='fa fa-trash-o'></i> "), spam_report_path(report), :confirm => 'Are you sure?', :method => "delete")%>

@@ -19,7 +19,7 @@
     
     <%= select_tag(:category_id, options_for_select(categories_array) + more_options)%>
 
-    <%= form_for categories.first, :remote => true, :class => "form-group", do |f| %>
+    <%= form_for categories.first, :remote => true, :class => "form-group" do |f| %>
       <%= f.hidden_field :item_type, :value => item.class.to_s %>
       <%= f.hidden_field :item_id, :value => item.id %>
       <a class="btn btn_cancel"><%=t('cancel') %></a>
