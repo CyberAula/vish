@@ -139,10 +139,12 @@ nav.navbar-fixed-top
       @include fix-img-addon
   a.dropdown-toggle
     width: 120px
-    text-align: left
+    .user_text
+      float: left
     i
       float: right
-      clear: both
+      margin: 3px 0 0 0
+
   .dropdown-toggle:hover
     border: 1px solid $brand-primary
   .dropdown-menu
