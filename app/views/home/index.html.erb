@@ -87,13 +87,19 @@
   // Pageless Ajax Handlers
   ///////////////
   function update_pageless_state(tab, num_pages, current_page){
+    if(typeof pageless_state[tab] == "object"){
       pageless_state[tab].num_pages = num_pages;
-      pageless_state[tab].current_page = current_page;  
+      pageless_state[tab].current_page = current_page;
+    }
   };
 
   function re_apply_pageless(tab){
     //first remove old pageless
-    $.pagelessStop();      
+    $.pagelessStop();
+
+    if(typeof pageless_state[tab] != "object"){
+      return;
+    }
      
     $("#" + tab + "_tab_ready ul").pageless({
       totalPages: pageless_state[tab].num_pages,
