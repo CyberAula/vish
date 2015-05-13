@@ -1,4 +1,4 @@
-<h3 class="title_WS"><%=t('workshop.activities.text.title')%>></h3>
+<h3 class="title_WS"><%=t('workshop.activities.text.title')%></h3>
 <div class="Assignment_edit_box">
   <%= form_for wa_text, :html => { :id => "edit_wa_text_#{wa_text.id}" }, :remote => true do |f| %>
     <%= f.text_area :fulltext, :class => "form-control", :id=> "edit_wa_text_#{wa_text.id}_fulltext"%>
