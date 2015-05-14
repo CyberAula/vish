@@ -55,8 +55,12 @@ class SearchController < ApplicationController
     page =  ( mode == :quick ? 1 : params[:page] )
     limit = ( mode == :quick ? 7 : RESULTS_SEARCH_PER_PAGE )
 
-    if (params[:catalogue] || params[:directory]) && !params[:sort_by]
-      params[:sort_by] = "quality"
+    if !params[:sort_by] && (params[:catalogue] || params[:directory])
+      if (params[:catalogue] && VishConfig.getCatalogueModels() === ["Excursion"]) || (params[:directory] && VishConfig.getDirectoryModels() === ["Excursion"])
+        params[:sort_by] = "quality"
+      else
+        params[:sort_by] = "popularity"
+      end
     end
 
     case params[:sort_by]
@@ -88,7 +92,7 @@ class SearchController < ApplicationController
     #remove empty params   
     params.delete_if { |k, v| v == "" }
 
-    if !params[:type]
+    unless params[:type]
       if params[:catalogue]
         #default models for catalogue without "type" filter applied
         params[:type] = VishConfig.getCatalogueModels().join(",")

@@ -125,8 +125,13 @@
                   <i class="icon-dashboard"></i>
                   <%=t('order_by.popularity')%>
                 <%elsif params[:catalogue] || params[:directory] %>
-                  <i class="icon-ok-sign"></i>
-                  <%=t('order_by.quality')%>
+                  <% if (params[:catalogue] && VishConfig.getCatalogueModels() === ["Excursion"]) || (params[:directory] && VishConfig.getDirectoryModels() === ["Excursion"]) %>
+                    <i class="icon-dashboard"></i>
+                    <%=t('order_by.quality')%>
+                  <% else %>
+                    <i class="icon-dashboard"></i>
+                    <%=t('order_by.popularity')%>
+                  <% end %>
                 <% else %>
                   <i class="icon-eye-open"></i>
                   <%=t('order_by.relevance')%>
@@ -154,7 +159,7 @@
                   <span><%=t('order_by.created_at')%> </span>
                 </a>
               </li>
-              <li role="presentation" class="disable_for_user" title="">
+              <li role="presentation" class="only_for_excursion" title="">
                 <a href="#" sort-by-key="quality">
                   <i class="icon-pencil"></i>
                   <span><%=t('order_by.quality')%> </span>
@@ -221,7 +226,8 @@
                     "num_pages": <%=@search_result.num_pages%>,
                     "url": window.location.href,
                     "tags": "<%=extract_tags(@search_result)%>",
-                    "sort_by_disable_tooltip": "<%=t('search.titles.tooltip')%>"
+                    "sort_by_disable_tooltip": "<%=t('search.titles.tooltip')%>",
+                    "only_for_excursion_tooltip": "<%=t('search.titles.tooltip2')%>"
                      });
 
   SocialStream.Repository.show();
