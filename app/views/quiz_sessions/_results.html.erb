@@ -13,11 +13,9 @@
 		<p>
 			<%=t('quiz.createdAt')%> <%=@quiz_session.created_at%>
 			<%if @processedQS["presentationName"] %>
-				<br>
 				(<%=t('quiz.launchIn')%>"<%= @processedQS["presentationName"]%>")
 			<% end %>
 			<% if !@quiz_session.active %>
-				<br>
 				<%=t('quiz.closedAtS')%> <%=@quiz_session.closed_at%>
 			<% end %>
 			.
