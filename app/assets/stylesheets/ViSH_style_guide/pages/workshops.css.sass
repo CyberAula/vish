@@ -23,18 +23,30 @@
     .corner-color,
     .corner-background
       border-width: 50px 50px 0 0 !important
-  .link_show
-    width: 100%
-    height: 500px
   .link_address
     text-align: center
-  .swf_show embed,
-  .webapp_show iframe
+  .swf_show
+    text-align: center
+    embed
+      width: 100%
+      min-height: 700px
+  .webapp_show,
+  .scormpackage_show,
+  .link_show,
+  .embed_show
+    text-align: center
+    iframe
+      width: 100%
+      min-height: 700px
+  iframe.link_show
     width: 100%
+    min-height: 700px
+  .excursion_viewer_wrapper
+    iframe
+      width: 100%
+      min-height: 700px
+  
 
-.excursion_viewer_wrapper
-  iframe
-    min-height: 500px
 .workshop_show
   margin-bottom: 60px
   .header_workshop
@@ -645,7 +657,7 @@ form.edit_wa_assignment
     @extend .disabled
 
 
-.wa_activity_wrapper_edit .wa_resource_wrapper
+.wa_resource_wrapper .workshop_downloadable_resource
   background-color: #DADADA
   border: 1px solid #E4E4E4
   margin-top: 40px

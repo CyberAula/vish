@@ -39,8 +39,9 @@
                   <li><%= link_to new_workshop_path do %><i class="fa fa-list-alt"></i> <%= t('workshop.actions.add') %><% end %></li>
                 <% elsif modelName == "Resource" %>
                   <li><a href="#AddResource" data-toggle="modal"><i class="fa fa-file"></i> <%=t('resource.actions.add')%></a></li>
-                <% elsif modelName == "Writing" %>
-                  <li><%= link_to new_writing_path do %><i class="fa fa-edit-sign"></i> <%= t('writing.actions.add') %><% end %></li>
+                  <% if availableResources.include? "Writing" %>
+                    <li><%= link_to new_writing_path do %><i class="fa fa-edit"></i> <%= t('writing.actions.add') %><% end %></li>
+                  <% end %>
                 <% elsif modelName == "Category" %>
                   <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="fa fa-th-large"></i> <%=t('categories.actions.add')%></a></li>
                 <% elsif modelName == "Event" %>
