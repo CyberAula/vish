@@ -133,7 +133,7 @@
                     <%=t('order_by.popularity')%>
                   <% end %>
                 <% else %>
-                  <i class="fa fa-eye"></i>
+                  <i class="fa fa-sort-amount-desc"></i>
                   <%=t('order_by.relevance')%>
                 <%end%>
               </span><i class="fa fa-angle-down"></i>
@@ -142,7 +142,7 @@
             <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="order_by_selector_search">
               <li role="presentation">
                 <a href="#" sort-by-key="relevance">
-                  <i class="fa fa-eye"></i>
+                  <i class="fa fa-sort-amount-desc"></i>
                   <span><%=t('order_by.relevance')%> </span>
                 </a>
               </li>
@@ -161,7 +161,7 @@
               </li>
               <li role="presentation" class="only_for_excursion" title="">
                 <a href="#" sort-by-key="quality">
-                  <i class="fa fa-pencil"></i>
+                  <i class="fa fa-check-circle"></i>
                   <span><%=t('order_by.quality')%> </span>
                 </a>
               </li>
@@ -198,19 +198,20 @@
             <% end %>
           </ul>
         </div>
-      </div>
-
-
-
-      <div class="loader_pagination">
-        <div class="pageless-loader" style="text-align:center;width:100%;">
-          <div class="msg" style="font-size:2em">
-            <%=t('search.loading')%>
+        <div class="loader_pagination">
+          <div class="pageless-loader" style="text-align:center;width:100%;">
+            <div class="msg" style="font-size:2em">
+              <%=t('search.loading')%>
+            </div>
+            <%= render :partial => 'layouts/loading'%>
           </div>
-          <%= render :partial => 'layouts/loading'%>
         </div>
+        <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
       </div>
-      <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
+
+
+
+
 
     </div>
   </div>

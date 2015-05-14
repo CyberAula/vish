@@ -11,6 +11,16 @@
   background-image: none
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false)
 
+.dropdown-menu
+  .disabled
+    i, a
+      color: $gray-darker
+      &:hover
+        background-color: transparent !important
+        color: $gray-darker
+    &:hover
+      background-color: transparent !important
+
 .dropdown-menu > li > a
   padding: 6px 12px
   text-align: left
