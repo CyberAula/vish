@@ -48,10 +48,16 @@
                 "<%= tags %>",
               <%end%>
             ];
+            
             $("#myCategories").tagit({
+              maxLength: 50,
+              maxTags: 100000,
+              triggerKeys: ['enter', 'tab'],
               watermarkAllowMessage: "<%= t('category.tagit_watermark_cat') %>",
+              watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>',
               tagSource: tagList
             });
+
             //Get categorized by this author
             <% resource_categories = []
             get_initial_categories(item).each do |e|
