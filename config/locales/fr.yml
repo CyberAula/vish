@@ -1,5 +1,5 @@
 fr:
-  about: 
+  about:
     contact: "Contacter"
   activerecord:
     attributes:
@@ -30,7 +30,7 @@ fr:
   cancel: "Annuler"
   close: "Fermer"
   conditions:
-    check_message: "J'accepte les "  
+    check_message: "J'accepte les "
     check_message_1: "conditions générales"
     check_message_2: " de ViSH."
     other: "conditions"
@@ -387,7 +387,7 @@ fr:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
-    ViSHCompetition13: "#ViSHCompetition2013" 
+    ViSHCompetition13: "#ViSHCompetition2013"
   copy_to_clip: "Copier dans le Presse-papiers"
   devise:
     tags: "mots-clés"
@@ -598,11 +598,12 @@ fr:
     titles:
         editing_details: "Montage workshop détails"
         editing_main: "Montage Workshop"
-        show_main: "Voir le workshop" 
+        show_main: "Voir le workshop"
   writing:
     actions:
-      add: "Ajouter du texte"
+      add: "Ajouter du Texte"
     confirm_delete: "Supprimer l'écriture?"
+    new: "Nouveau texte"
     title3: "Écrire le texte à ajouter"
   yesterday: "Hier"
   zipfile:

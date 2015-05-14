@@ -1,5 +1,5 @@
 es:
-  about: 
+  about:
     blog: "Novedades"
     contact: "Contacto"
     code: "Código fuente"
@@ -108,7 +108,7 @@ es:
     title: "Noticia"
     body: "Durante febrero, el proyecto GLOBAL excursion va a organizar dos sesiones online con científicos. Más información y registro en"
   are_you_sure: "Are you sure?"
-  asearch:   
+  asearch:
     title: "Búsqueda Avanzada"
   author: "autor"
   browse:
@@ -275,7 +275,7 @@ es:
     Humanities: "Humanidades"
     NaturalScience: "Ciencias Naturales"
     ComputerScience: "Informática"
-    ViSHCompetition13: "#ViSHCompetition2013" 
+    ViSHCompetition13: "#ViSHCompetition2013"
   thevish: "ViSH"
   youtube: "Canal ViSH en Youtube"
   overview_title: "¿Qué es ViSH?"
@@ -832,12 +832,12 @@ es:
       title: "Instancias de ViSH"
       results: "Resultados por instancia"
     loading: "Cargando información"
-    models:      
+    models:
       all: "Todos"
       all_resources: "Todos los Recursos"
       audio: "Audios"
       category: "Categorías"
-      document: "Documentos"      
+      document: "Documentos"
       embed: "Embeds"
       event: "Eventos"
       excursion: "Excursiones"
@@ -854,7 +854,7 @@ es:
       webapp: "Aplicaciones Web"
       workshop: "Workshops"
       writing: "Textos"
-      zipfile: "Ficheros ZIP"    
+      zipfile: "Ficheros ZIP"
     name: "Buscar"
     rendering:
       title: "Opciones de visualización"
@@ -1011,6 +1011,7 @@ es:
       add: "Añadir texto"
       delete: "Borrar"
     confirm_delete: "¿Borrar texto?"
+    new: "Nuevo Texto"
     title3: "Escribe el texto a subir"
   yesterday: "Ayer"
   zipfile:

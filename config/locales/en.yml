@@ -119,7 +119,7 @@ en:
     title: "Announcement"
     body: "In the course of February, the GLOBAL excursion project is organizing two live online sessions with scientists. More information and registration under"
   are_you_sure: "¿Estás seguro?"
-  asearch:    
+  asearch:
     title: "Advanced Search"
   author: "author"
   browse:
@@ -232,7 +232,7 @@ en:
     success: "Categories saved succesfully"
   close: "Close"
   conditions:
-    check_message: "I Accept ViSH "  
+    check_message: "I Accept ViSH "
     check_message_1: "Terms and Conditions."
     check_message_2: ""
     other: "terms of use"
@@ -294,7 +294,7 @@ en:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
-    ViSHCompetition13: "#ViSHCompetition2013" 
+    ViSHCompetition13: "#ViSHCompetition2013"
   thevish: "The Vish"
   youtube: "ViSH Youtube Channel"
   overview_title: "ViSH overview"
@@ -827,7 +827,7 @@ en:
   search:
     any: "any"
     applied_filters: "APPLIED FILTERS"
-    close: "close"    
+    close: "close"
     end: "No more search results. Try another search terms"
     filters:
       filter_title: "Filters"
@@ -838,7 +838,7 @@ en:
       quality_threshold: "Quality Threshold"
       age_range: "Age Range"
     loading: "Loading information"
-    models:      
+    models:
       all: "All"
       all_resources: "All Resources"
       audio: "Audios"
@@ -889,8 +889,8 @@ en:
       filter_by: "Filter by"
       lang: "language"
       learning_object: "learning object"
-      resource: "resource type" 
-      subject: "subject"     
+      resource: "resource type"
+      subject: "subject"
       tag: "tag"
       tooltip: "Option only available for learning objects"
       tooltip2: "Option only available for excursions"
@@ -1012,11 +1012,12 @@ en:
     titles:
         editing_details: "Editing workshop details"
         editing_main: "Editing Workshop"
-        show_main: "Show workshop"  
+        show_main: "Show workshop"
   writing:
     actions:
       add: "Add text"
     confirm_delete: "Delete writing?"
+    new: "New Writing"
     title3: "Write the text you want to add"
   yesterday: "Yesterday"
   zipfile:

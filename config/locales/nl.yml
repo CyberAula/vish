@@ -30,7 +30,7 @@ nl:
   cancel: "Annuleren"
   close: "Sluiten"
   conditions:
-    check_message: "IK ga akkoord met de "  
+    check_message: "IK ga akkoord met de "
     check_message_1: "Algemene Voorwaarden"
     check_message_2: " van ViSH."
     other: "voorwaarden"
@@ -389,7 +389,7 @@ nl:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
-    ViSHCompetition13: "#ViSHCompetition2013" 
+    ViSHCompetition13: "#ViSHCompetition2013"
   copy_to_clip: "Naar klembord kopiëren"
   devise:
     tags: "tags"
@@ -612,6 +612,7 @@ nl:
     actions:
       add: "Tekst toevoegen"
     confirm_delete: "Verwijder schrijven?"
+    new: "Nieuwe Tekst"
     title3: "Schrijf de tekst die u wilt toevoegen"
   yesterday: "Gisteren"
   zipfile:
