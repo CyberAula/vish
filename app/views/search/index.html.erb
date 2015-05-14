@@ -123,8 +123,13 @@
                   <i class="icon-dashboard"></i>
                   <%=t('order_by.popularity')%>
                 <%elsif params[:catalogue] || params[:directory] %>
-                  <i class="icon-dashboard"></i>
-                  <%=t('order_by.popularity')%>
+                  <% if (params[:catalogue] && VishConfig.getCatalogueModels() === ["Excursion"]) || (params[:directory] && VishConfig.getDirectoryModels() === ["Excursion"]) %>
+                    <i class="icon-dashboard"></i>
+                    <%=t('order_by.quality')%>
+                  <% else %>
+                    <i class="icon-dashboard"></i>
+                    <%=t('order_by.popularity')%>
+                  <% end %>
                 <% else %>
                   <i class="icon-eye-open"></i>
                   <%=t('order_by.relevance')%>
