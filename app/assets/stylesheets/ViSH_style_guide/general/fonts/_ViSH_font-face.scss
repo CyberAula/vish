@@ -82,7 +82,7 @@
 
 @font-face{
   font-family:"opensans-boldItalic";
-  src: url(ViSH_style_guide/general/fonts/ViSH/opensans/bold/opensans-bolditalic-webfont.ttf);
+  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/bold/opensans-bolditalic-webfont.ttf');
   src: url('ViSH_style_guide/general/fonts/ViSH/opensans/bold/opensans-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
   url('ViSH_style_guide/general/fonts/ViSH/opensans/bold/opensans-bolditalic-webfont.woff') format('woff'),
   url('ViSH_style_guide/general/fonts/ViSH/opensans/bold/opensans-bolditalic-webfont.svg') format('svg');
@@ -95,7 +95,7 @@
 // ---------------------extra bold
 @font-face{
   font-family:"opensans-extrabold";
-  src: url(ViSH_style_guide/general/fonts/ViSH/opensans/extrabold/opensans-extrabold-webfont.ttf);
+  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/extrabold/opensans-extrabold-webfont.ttf');
   src: url('ViSH_style_guide/general/fonts/ViSH/opensans/extrabold/opensans-extrabold-webfont.eot?#iefix') format('embedded-opentype'),
   url('ViSH_style_guide/general/fonts/ViSH/opensans/extrabold/opensans-extrabold-webfont.woff') format('woff'),
   url('ViSH_style_guide/general/fonts/ViSH/opensans/extrabold/opensans-extrabold-webfont.svg') format('svg');
@@ -105,7 +105,7 @@
 
 @font-face{
   font-family:"opensans-extraboldItalic";
-  src: url(ViSH_style_guide/general/fonts/ViSH/opensans/extrabold/opensans-extrabolddItalic-webfont.ttf);
+  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/extrabold/opensans-extrabolddItalic-webfont.ttf');
   src: url('ViSH_style_guide/general/fonts/ViSH/opensans/extrabold/opensans-extraboldItalic-webfont.eot?#iefix') format('embedded-opentype'),
   url('ViSH_style_guide/general/fonts/ViSH/opensans/extrabold/opensans-extraboldItalic-webfont.woff') format('woff'),
   url('ViSH_style_guide/general/fonts/ViSH/opensans/extrabold/opensans-extrabolddItalic-webfont.svg') format('svg');
@@ -118,10 +118,10 @@
 // ---------------------resources
 @font-face{
   font-family:"vish-icono-resource";
-  src: url(ViSH_style_guide/general/fonts/ViSH/icons/vish.ttf?82811397);
+  src: url('ViSH_style_guide/general/fonts/ViSH/icons/vish.ttf?82811397');
   src: url('ViSH_style_guide/general/fonts/ViSH/icons/vish.eot?82811397#iefix') format('embedded-opentype'),
   url('ViSH_style_guide/general/fonts/ViSH/icons/vish.woff?82811397') format('woff'),
-  url(ViSH_style_guide/general/fonts/ViSH/icons/vish.ttf?82811397),
+  url('ViSH_style_guide/general/fonts/ViSH/icons/vish.ttf?82811397'),
   url('ViSH_style_guide/general/fonts/ViSH/icons/vish.svg?82811397#vish') format('svg');
   font-style: normal;
   font-weight: normal;
