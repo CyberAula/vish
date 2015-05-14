@@ -35,9 +35,7 @@
             <% simple_gen = rcCategories.sort{|a,b| b.property_objects.length <=> a.property_objects.length}.first(7)%>
             <ul id="suggestedCategories" class="tagit">
             <% simple_gen.each do |init| %>
-
                 <li class="tagit-choice" value="<%= init.id %>" ><%= init.title %></li>
-
             <% end %>
             </ul>
 
@@ -68,107 +66,106 @@
                 $("#myCategories").tagit("add", "<%= ident.title %>", "<%= ident.id %>");
             <% end %>
             //Save suggested categories state
+        <%end%>
 
-    <%end%>
         <div class="tagBoxNew">
           <ul id="myCategories">
-        <!-- Existing list items will be pre-added to the tags -->
-
+            <!-- Existing list items will be pre-added to the tags -->
           </ul>
         </div>
 
-   
-    </div>
-    <div class="modal-footer">
-      <!--<button id="cancel_cat_button" class="btn btn-default btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>-->
-      <button id="save_cat_button" class="btn btn-primary"><%= t('button.save')%></button>
+      </div>
+      <div class="modal-footer">
+        <!--<button id="cancel_cat_button" class="btn btn-default btn_cancel" data-dismiss="modal" aria-hidden="true"><%=t('cancel')%></button>-->
+        <button id="save_cat_button" class="btn btn-primary"><%= t('button.save')%></button>
+      </div>
     </div>
   </div>
-</div>
-<% content_for :javascript do %>
 
-  //When click to suggested they go to down part for being categorized
-  $("#suggested_categories li").click(function(){
-    var value = $(this).html();
-    var name = $(this).html();
+  <% content_for :javascript do %>
 
-    $("#myCategories").tagit("add", name, value);
-  });
-
-  //When saving gathering all tags and sending to server
-  $("#save_cat_button").click(function() {
-    var cat_done_array = [];
-
-    $("#myCategories .tagit-choice").each(function(index,elem){
-        cat_done_array.push({title: $(elem).text()});
+    //When click to suggested they go to down part for being categorized
+    $("#suggested_categories li").click(function(){
+      var value = $(this).html();
+      var name = $(this).html();
+      $("#myCategories").tagit("add", name, value);
     });
 
-    $.ajax({
-            url: '/categories/categorize',
-            type: 'POST',
-            dataType: "json",
-            data: { activity_object_id:"<%=item.activity_object.id
-  .to_s%>", category_array: JSON.stringify(cat_done_array) },
-              success: function(data){
-                $("#categories_viewer_modal").modal('toggle');
-                //Emulating alert with javascript
-                $('#flash').hide();
-                $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.success")%></div>')
-                            .fadeIn()
-                            .delay(6000)
-                            .fadeOut(300, function(){
-                              $('#flash').html("");
-                            });
+    //When saving gathering all tags and sending to server
+    $("#save_cat_button").click(function() {
+      var cat_done_array = [];
 
-                },
-                error: function(){
+      $("#myCategories .tagit-choice").each(function(index,elem){
+          cat_done_array.push({title: $(elem).text()});
+      });
+
+      $.ajax({
+              url: '/categories/categorize',
+              type: 'POST',
+              dataType: "json",
+              data: { activity_object_id:"<%=item.activity_object.id
+    .to_s%>", category_array: JSON.stringify(cat_done_array) },
+                success: function(data){
                   $("#categories_viewer_modal").modal('toggle');
                   //Emulating alert with javascript
                   $('#flash').hide();
-                  $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Error</div>')
-                            .fadeIn()
-                            .delay(6000)
-                            .fadeOut(300, function(){
-                              $('#flash').html("");
-                            });
-                }
-    });
-  });
+                  $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("category.success")%></div>')
+                              .fadeIn()
+                              .delay(6000)
+                              .fadeOut(300, function(){
+                                $('#flash').html("");
+                              });
 
-  $("#cancel_cat_button").click(function() {
-    $("#myCategories").tagit("reset");
-    for (key in appliedTags){
-      $("#myCategories").tagit("add",appliedTags[key]);
-    }
-    $("#categories_viewer_modal").modal('toggle');
-  });
-
-    var appliedTags = [];
-    $('#categories_viewer_modal').on('shown', function() {
-      $("#myCategories .tagit-choice").each(function(index,elem){
-        appliedTags.push($(elem).text());
-       });
+                  },
+                  error: function(){
+                    $("#categories_viewer_modal").modal('toggle');
+                    //Emulating alert with javascript
+                    $('#flash').hide();
+                    $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Error</div>')
+                              .fadeIn()
+                              .delay(6000)
+                              .fadeOut(300, function(){
+                                $('#flash').html("");
+                              });
+                  }
       });
+    });
 
-      // INITIALIZE TREE
-      $("#dropDownButton").jqxDropDownButton({ width: 400, height: 25});
-      $("#jqxTree").jqxTree({ width: 400, height: 220});
-      $('#jqxTree').jqxTree('collapseAll');
-      $("#dropDownButton").jqxDropDownButton('setContent', '<div style="position: relative; margin-left: 3px; margin-top: 5px;"><%= t('document.help.categories1_html') %></div>');
+    $("#cancel_cat_button").click(function() {
+      $("#myCategories").tagit("reset");
+      for (key in appliedTags){
+        $("#myCategories").tagit("add",appliedTags[key]);
+      }
+      $("#categories_viewer_modal").modal('toggle');
+    });
 
-      // DROPDOWN TREE CATEGORIES LOGIC
-      $('#jqxTree').on('select', function (event) {
-                var args = event.args.element;
-                if (args.getAttribute("category_id") != null){
+      var appliedTags = [];
+      $('#categories_viewer_modal').on('shown', function() {
+        $("#myCategories .tagit-choice").each(function(index,elem){
+          appliedTags.push($(elem).text());
+         });
+        });
 
-                var value = args.getAttribute("category_id");
-                var name = $('#jqxTree').jqxTree('getItem', args).label;
+        // INITIALIZE TREE
+        $("#dropDownButton").jqxDropDownButton({ width: 400, height: 25});
+        $("#jqxTree").jqxTree({ width: 400, height: 220});
+        $('#jqxTree').jqxTree('collapseAll');
+        $("#dropDownButton").jqxDropDownButton('setContent', '<div style="position: relative; margin-left: 3px; margin-top: 5px;"><%= t('document.help.categories1_html') %></div>');
 
-                $("#myCategories").tagit("add", name, value);
-                }
+        // DROPDOWN TREE CATEGORIES LOGIC
+        $('#jqxTree').on('select', function (event) {
+                  var args = event.args.element;
+                  if (args.getAttribute("category_id") != null){
 
-                $('#dropDownButton').jqxDropDownButton('close');
-     });
+                  var value = args.getAttribute("category_id");
+                  var name = $('#jqxTree').jqxTree('getItem', args).label;
 
-<%end%>
+                  $("#myCategories").tagit("add", name, value);
+                  }
+
+                  $('#dropDownButton').jqxDropDownButton('close');
+       });
+
+  <%end%>
+
 </div>
