@@ -85,6 +85,19 @@ class SearchController < ApplicationController
       order = nil
     end
 
+    #age ranges. range1 is from 0 to 10. range2 10 to 14 and range 3 from 14 up
+    case params[:age]
+    when 'range1'
+      params[:age_min] = 0
+      params[:age_max] = 10
+    when 'range2'
+      params[:age_min] = 10
+      params[:age_max] = 14
+    when 'range3'
+      params[:age_min] = 14
+      params[:age_max] = 100
+    end
+
     unless params[:ids_to_avoid].nil?
       params[:ids_to_avoid] = params[:ids_to_avoid].split(",")
     end
