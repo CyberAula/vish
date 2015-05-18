@@ -816,6 +816,9 @@ es:
     close: "cerrar"
     end: "No hay más resultados. Intenta con otros términos de búsqueda"
     filters:
+      age_range_1: "De 0 a 10 años"
+      age_range_2: "De 10 a 14 años"
+      age_range_3: "Más de 14 años"
       filter_title: "Filtros"
       date: "Rango de Fechas"
       start_date: "Fecha inicial"
@@ -872,6 +875,7 @@ es:
       quality: "Calidad"
     title: "buscar"
     titles:
+      age: "edad"
       filter_by: "Filtrar por"
       lang: "idioma"
       learning_object: "objeto de aprendizaje"

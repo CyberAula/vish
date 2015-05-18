@@ -414,14 +414,17 @@ Vish.Search = (function(V,undefined){
         _parsed_url[filter_key].splice(index, 1);
       }   
     }  
-
-    //if this filter is the last one we have to add the param "opens_with" to the array
-    var filter_obj = $("#search-sidebar ul li[filter_key='"+filter_key+"'][filter='"+filter_name+"']");
-    var selected_siblings = filter_obj.siblings(".search-sidebar-selected").length;
-    var opens_with_value = filter_obj.closest("div.filter_set").attr("opens_with");
-    if(selected_siblings==0 && opens_with_value !=undefined && opens_with_value!=""){ 
-      //add that value to the url
-      _parsed_url[filter_key].push(opens_with_value);    
+  
+    //if not catalogue or directory and filter_key is "type" we have to add the param "opens_with" to the array
+    if(_parsed_url["catalogue"]==undefined && _parsed_url["directory"]==undefined && filter_key=="type"){ 
+      var filter_obj = $("#search-sidebar ul li[filter_key='"+filter_key+"'][filter='"+filter_name+"']");
+      var selected_siblings = filter_obj.siblings(".search-sidebar-selected").length;
+      var opens_with_value = filter_obj.closest("div.filter_set").attr("opens_with");    
+      
+      if(selected_siblings==0 && opens_with_value !=undefined ){ 
+        //add that value to the url, if is not included already
+        _parsed_url[filter_key].push(opens_with_value);    
+      }
     }
     //if empty array, clean and delete the property
     if(_parsed_url[filter_key] && _parsed_url[filter_key].length==0){
