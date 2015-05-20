@@ -92,6 +92,9 @@ test:
 # Automatically detect resources language using the service provided by http://detectlanguage.com
 # languageDetectionAPIKEY: "API Key from http://detectlanguage.com to allow automatic language detection."
 
+# Enable YouTube in the ViSH Editor. Get the API key from https://developers.google.com/youtube/v3/getting-started
+# YouTubeAPIKEY: "secret_key"
+
 # Enable SoundCloud in the ViSH Editor. Get the API key from https://developers.soundcloud.com/
 # soundCloudAPIKEY: "secret_key"
 
