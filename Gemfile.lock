@@ -30,9 +30,9 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: dec854dbcf1efe4b3cdd9a25612e2b6154d278da
-  ref: dec854dbcf1efe4b3cdd9a25612e2b6154d278da
-  branch: vish-b3
+  revision: 9912071175009fbe53f90b43b5871a4fef37d50c
+  ref: 9912071175009fbe53f90b43b5871a4fef37d50c
+  branch: vish
   specs:
     social_stream-base (2.2.2)
       acts-as-taggable-on (~> 2.4.1)
@@ -274,7 +274,7 @@ GEM
       railties (>= 3.1.0)
     jruby-pageant (1.1.1)
     json (1.8.1)
-    jwt (1.4.1)
+    jwt (1.5.0)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -327,7 +327,7 @@ GEM
       omniauth-oauth2 (~> 1.1.0)
     omniauth-linkedin (0.0.8)
       omniauth-oauth (~> 1.0)
-    omniauth-oauth (1.0.1)
+    omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
     omniauth-oauth2 (1.1.2)

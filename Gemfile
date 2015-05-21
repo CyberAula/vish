@@ -62,7 +62,7 @@ if ENV['FORCE_LOCAL_SS']
     gem 'social_stream-events'
   end
 else
-  git 'git://github.com/ging/social_stream.git', branch: "vish-b3", ref: "dec854dbcf1efe4b3cdd9a25612e2b6154d278da"  do
+  git 'git://github.com/ging/social_stream.git', branch: "vish", ref: "9912071175009fbe53f90b43b5871a4fef37d50c"  do
     gem 'social_stream-base'
     gem 'social_stream-documents'
     gem 'social_stream-linkser'
