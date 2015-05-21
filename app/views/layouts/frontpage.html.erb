@@ -24,11 +24,10 @@
       <%= csrf_meta_tag %>
     <% end %>
     
-    <%= yield :headers %>    
-      
+    <%= yield :headers %>
+    
   </head>
   <body>
-  
     <div id="warning_cookie_bar">
       <h3>Uso de cookies</h3>
       <p>
@@ -37,18 +36,19 @@
       </p>
     </div>
     <div id="wrap">
-      <%= render :partial => "layouts/header" %>
+      <%= render :partial => "layouts/header/header" %>
       <%= flashy %>
 
       <div class="ilustration">
           <%= render :partial => "frontpage/explanation" %>
       </div>
           
-      <div class="wrapper container-fluid">
+      <div class="container-fluid">
+
         <%= yield %>
-  
       </div>  
     </div>
+
     <div id="vish_footer">
       <%= render :partial => "layouts/footer" %>
     </div>
@@ -74,7 +74,9 @@
         <%= yield :javascript%>
       });
     </script>
-    <%= render partial: 'layouts/header_warning' %>
-    <%= render :partial => 'layouts/google_analytics' %>
-    <%= render :partial => 'layouts/uservoice' %>
+  <%= render :partial => 'layouts/tools/google_analytics' %>
+  <%= render :partial => 'layouts/tools/uservoice' %>
+  <%= render partial: 'layouts/header/header_warning' %>
+
 </html>
+

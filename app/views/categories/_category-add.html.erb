@@ -1,16 +1,18 @@
-<li class="box-item add-item add-categorie hidden-phone hidden-tablet" href="#AddCategoryHeader" data-toggle="modal">
+<li data-toggle="modal" href="#AddCategoryHeader" class="box-item add-item add-categorie hidden-xs hidden-sm">
   <div class="add_border">
-    <%= link_to new_category_path do %>
+    <%#= link_to new_category_path do %>
     <div class="container-img">
+      <div class="element">
         <div class="img-box">
-          <i class="icon-plus"></i>
+          <i class="fa fa-plus"></i>
         </div>
+      </div>
     </div>
     <!-- Info -->
-    <div class="info">
+    <div class="caption">
       <!-- Title -->
       <div class="name">
-        <%=t('categories.actions.add')%>  
+        <%= t('categories.actions.add') %>  
       </div>
       <!-- Autor -->
       <div class="author"> 
@@ -21,6 +23,6 @@
         <hr class="soften">
       </div>
     </div>
-    <% end %>
+    <%# end %>
   </div>
 </li>

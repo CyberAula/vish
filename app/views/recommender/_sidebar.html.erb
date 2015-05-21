@@ -1,10 +1,11 @@
 <!--recomended-->
-<div class="recomended" id="recomended_box">
+<aside class="recomended" id="recomended_box">
   <div class="recomended-items">
-    <ul class="small-box clearfix">
-      <% resources.each do |resource| %>
+    <ul class="items small-box clearfix">
+      <% resources[0..9].each do |resource| %>
         <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "recommended_sidebar", :rec => (defined?(rec) ? rec : false)} %>
       <% end %>
     </ul>
   </div>
-</div>
+
+</aside>

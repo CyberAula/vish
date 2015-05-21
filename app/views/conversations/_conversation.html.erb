@@ -23,6 +23,7 @@
     </header>
   </div>
 
+
   <div class="content_right">
     <div class="subject">
       <%= link_to(truncate(conversation.subject, :length => 55), conversation_link_to) %>
@@ -31,22 +32,19 @@
       <%= raw(truncate(strip_tags(conversation.original_message.body), :length => 50)) %>
     </div>
     
-    <% unless @box.eql?'trash' %>
-      <div class="action">
-        <%= link_to(raw("<i class='icon-trash'></i> "),
-          conversation_path(conversation, :location => @box, :box => @box, :page => params[:page]),
-          :alt => t('mailboxer.delete'), 
-          :title => t('mailboxer.delete'),
-          :confirm => t('mailboxer.delete_confirm', :csubject => conversation.subject),
-          :method => :delete,
-          :remote => true) %>
-      </div>
-    <% end %>
-
-    <div class="date">
-      <%= t('time.ago', :time => time_ago_in_words(conversation.updated_at)) %>
+  <% unless @box.eql?'trash' %>
+    <div class="action"> 
+      <%= link_to(raw("<i class='fa fa-trash-o'></i> "),
+        conversation_path(conversation, :location => @box, :box => @box, :page => params[:page]),
+        :alt => t('mailboxer.delete'), 
+        :title => t('mailboxer.delete'),
+        :confirm => t('mailboxer.delete_confirm', :csubject => conversation.subject),
+        :method => :delete,
+        :remote => true) %>
+      
     </div>
-
+  <% end %>
+   
   </div>
 
 <% end %>

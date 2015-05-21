@@ -1,0 +1,16 @@
+<% excursions = Excursion.getHome(30,'Popular',{ :ids_to_avoid => ids_to_avoid, :page => params[:page] || "1", :models=> [Excursion]}) %>
+  
+  <% excursions.each do |excursion| %>
+    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion, :prefix_id=> prefix_id } %>
+  <% end %> 
+
+<script>
+	$(document).ready(function(){
+    pageless_state.home.url = "/home?tab=home&sort_by=popularity&ids_to_avoid=<%=ids_to_avoid.join(',')%>";
+    update_pageless_state("home", <%=excursions.num_pages%>, <%=excursions.current_page%>);
+    re_apply_pageless("home");    
+
+    $("#wrap").addClass("wrap-when-fixed-bottom");
+	});
+</script>
+

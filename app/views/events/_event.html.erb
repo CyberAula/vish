@@ -1,40 +1,42 @@
-<li class="box-item event-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+<li class="event event-item box-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
   <!-- corner -->
   <%= link_to(event) do %>
     <div class="corner-item">
       <div class="corner-item2">
         <div class="corner-color"></div>
-        <i class='icon-facetime-video'></i>
+        <i class='fa fa-video-camera'></i>
       </div>
       <div class="corner-background"></div>
     </div>
-    
-    <!-- image/icon -->
+
     <div class="container-img">
-        <div class="img-box resource-center" id="event-<%=event.id%>" >
-            <i class='icon-facetime-video'></i>
+      <div class="element resource-center">
+        <div class="img-box resource-center" id="event-<%=event.id%>">
+          <div class="event">
+            <i class='fa fa-video-camera'></i>
+          </div>
         </div>
+      </div>
     </div>
   <% end %>
 
   <script>
-      document.getElementById("event-<%=event.id%>").style.backgroundImage = "url('<%=event_raw_thumbail(event)%>')";
+    document.getElementById("event-<%=event.id%>").style.backgroundImage = "url('<%=event_raw_thumbail(event)%>')";
   </script>
-  
-  <!-- Info -->
-  <div class="info">
-    <!-- Title -->
-    <div class="name">
+
+<!--INFO excursuion-->
+  <div class="caption">
+<!--Title -->
+    <h6>
       <%= link_to event.title, event %>
-    </div>
-    <!-- Autor -->
+    </h6>
+<!--Autor -->
     <div class="author"> 
       <span class="by"><%=t('by')%></span>
       <%= link_to event.author.name, event.author.subject %>
     </div>
-    <!--____________________ -->
-    <div class="info-bottom">
-      <hr class="soften">
+    <hr>
+    <div class="info-bottom">  
       <!--like -->
       <div class="like">  
         <% if event.post_activity%>
@@ -47,7 +49,7 @@
       <!--views -->
       <div class="views">
         <%=event.visit_count.to_s%>
-        <i class="icon-eye-open"></i>
+        <i class="fa fa-eye"></i>
         <%#=t('follow.views')%>
       </div>
     </div>

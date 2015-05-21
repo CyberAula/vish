@@ -1,16 +1,15 @@
 <%use_ids ||= false%>
-<% @items.each do |item| %>
-<% case item.object.class.to_s %>
-	<% when "Excursion" %>
-		<%= render :partial => "excursions/excursion", :locals => { :excursion => item.object, :obj_id => use_ids ? item.id : ""} %>
-	<% when "Category"%>
-		<%# TODO: Take out this elsif and be able to render with hasOwnPartial %>
-		<%= render :partial => 'categories/category', :locals => { :category => item.object, :obj_id => use_ids ? item.id : "" } %>
-	<% when "Event" %>
-		<%= render :partial => 'events/event', :locals => { :event => item.object, :obj_id => use_ids ? item.id : "" } %>
-	<% else %>
-		<%= render :partial => 'repositories/resource', :locals => { :resource => item.object, :obj_id => use_ids ? item.id : "" } %>
+	<% @items.each do |item| %>
+		<% case item.object.class.to_s %>
+		<% when "Excursion" %>
+			<%= render :partial => "excursions/excursion", :locals => { :excursion => item.object, :obj_id => use_ids ? item.id : ""} %>
+		<% when "Category"%>
+			<%# TODO: Take out this elsif and be able to render with hasOwnPartial %>
+			<%= render :partial => 'categories/category', :locals => { :category => item.object, :obj_id => use_ids ? item.id : "" } %>
+		<% when "Event" %>
+			<%= render :partial => 'events/event', :locals => { :event => item.object, :obj_id => use_ids ? item.id : "" } %>
+		<% else %>
+			<%= render :partial => 'repositories/resource', :locals => { :resource => item.object, :obj_id => use_ids ? item.id : "" } %>
+		<% end %>
 	<% end %>
-<% end %>
-
 

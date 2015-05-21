@@ -1,6 +1,7 @@
 <% return if resource.nil? or resource.author.nil? %>
 
-<li class="box-item resource-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+<li class="resource box-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+
   <!-- corner -->
   <%= link_to(resource) do %>
     <div class="corner-item">
@@ -21,18 +22,25 @@
   
   <%end%>
   <!-- INFO -->
-  <div class="info">
+
+  <div class="caption">
     <!-- Title -->
-    <div class="name">
+    <h6>
       <%= link_to resource.title, resource %>
-    </div>
+    </h6>
+
     <!-- Author -->
     <span class="author"> 
+
       <span class="by"><%=t('by')%></span>
+
       <%= link_to truncate_name(resource.author.name, length: 25), resource.author.subject %>
+
     </span>
+
+    <hr>
     <div class="info-bottom">
-      <hr class="soften">
+
       <!--like -->
       <div class="like">    
         <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
@@ -42,11 +50,11 @@
       <div class="views">
         <%if resource.private_scope? %>
           <div class="private-resource-mark">
-            <i class="icon-lock"></i>
+            <i class="fa fa-eye"></i>
           </div>
         <%else%>
           <%=resource.visit_count.to_s%>
-          <i class="icon-eye-open"></i>
+          <i class="fa fa-eye"></i>
         <%end%>
       </div>
     </div>

@@ -1,0 +1,14 @@
+<ul class="excursions_front items">
+	<% popular_excursions(20).each do |excursion| %>
+
+		<%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+	<% end %>
+</ul>
+
+<script>
+$("div[bs-img]").each(function() {
+	        $(this).backstretch( $(this).attr("bs-img") );
+	      });
+</script>
+
+

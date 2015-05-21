@@ -1,14 +1,10 @@
 <%= div_for officedoc, :class => 'content_size' do %>
   <div class="officedoc_show">
     <iframe id="iframe_officedoc_<%=officedoc.id%>" width="100%" height="500" style="border: none;" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
-	<div class="link_address">
-		<a target="_blank"><i class="icon-fullscreen"></i> <%= t("webapp.view_full") %></a>
-	</div>
   </div>
 <% end %>
 
 <script type="text/javascript">
-
 	var isPDFSupported = function(){
 		var pdfReaderSupport = false;
 		if((typeof navigator.mimeTypes == "object")&&("application/pdf" in navigator.mimeTypes)){
@@ -29,7 +25,5 @@
 		}
 
 		$(iframeDOM).attr("src",iframeSrc);
-		$(iframeDOM).parents(".officedoc_show").find(".link_address > a").attr('href', iframeSrc);
 	});
-
 </script>

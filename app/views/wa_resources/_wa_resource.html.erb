@@ -3,6 +3,7 @@
 	classNameUnderscore = className.underscore
 	classNameTableize = className.tableize
 	hasWorkshopPartial = lookup_context.template_exists?("#{classNameUnderscore}_workshop_show", classNameTableize, true)
+	hasMinifiedPartial = lookup_context.template_exists?("#{classNameUnderscore}_workshop_mini_show", classNameTableize, true)
 %>
 
 <div class="wa_resource_wrapper wa_activity_open">

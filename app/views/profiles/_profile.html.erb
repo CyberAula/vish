@@ -1,0 +1,32 @@
+<div id="profile-info">
+  <h2>
+    <%= t('profile.one') %>
+  </h2>
+  <% if can?(:update, @profile) || @profile.tags_present? %>
+    <%= render partial: "tags" %>
+  <% end %>
+
+  <% if can?(:update, @profile) || @profile.personal_present? %>
+    <%= render partial: "personal" %>
+  <% end %>
+
+  <% if can?(:update, @profile) || @profile.contact_present? %>
+    <%= render :partial => "comunication-info" %>
+  <% end %>
+
+  <% if can?(:update, @profile) || @profile.experience? %>
+    <%= render :partial => "experience" %>
+  <% end %>
+
+  <% if can?(:update, @profile) || @profile.personal_present? %>
+    <%= render :partial => "avatar" %>
+  <% end %>
+
+  <%= javascript_tag do %>
+    $(function() {
+      SocialStream.Profile.show({
+        section: "<%= params[:section ] %>"
+      });
+    });
+  <% end %>
+</div>

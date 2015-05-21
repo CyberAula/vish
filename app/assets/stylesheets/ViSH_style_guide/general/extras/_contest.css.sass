@@ -1,0 +1,272 @@
+#winners
+  #banner
+    img
+      @include img-responsive
+  .info_competition
+    display: block
+    margin: 20px auto 40px
+    button.ModalPrizes
+      width: auto
+      display: block
+      clear: both
+      float: none
+      margin: 0 auto
+
+  .tabexcursions
+    margin-bottom: 15px
+    margin-top: 23px
+    border-bottom: 1px solid $gray-light
+    border-top: 1px solid $gray-light
+    text-align: center
+    clear: both
+    padding: 11px 0
+    float: left
+    width: 100%
+
+    .caret1
+      margin-top: 3px
+      margin-right: 4px
+      border-top: 4px solid $gray-darker
+    .caret2
+      margin-top: 3px
+      margin-left: 4px
+      border-top: 4px solid $gray-darker
+
+  #participants
+    clear: both
+    .sign_up
+      margin: 0 auto
+      &:hover 
+        color: $white 
+      @media (max-width: $screen-xs)
+        width: 100%
+        white-space: pre-line
+
+#podium
+  display: block
+  clear: both
+  width: 96%
+  @include center-block
+  margin-bottom: 30px
+  @media (max-width: $screen-xs)
+    width: 100%
+  .podiuminside
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(12, $gutter: $grid-gutter-width)
+    @include make-md-column(12, $gutter: $grid-gutter-width)
+    @include make-lg-column(12, $gutter: $grid-gutter-width)
+    .podiuminside1
+      .podiumart
+        height: 100px
+        margin-top: 20px
+      @media (max-width: $screen-sm)
+        margin-top: 0px !important
+    .podiuminside2
+      margin-top: 25px
+      .podiumart
+        height: 75px
+        margin-top: 20px
+    .podiuminside3
+      margin-top: 50px
+      .podiumart
+        height: 50px
+        margin-top: 20px
+    //podium 2
+    .podiuminside1,
+    .podiuminside2,
+    .podiuminside3
+      width: 33.3%
+      height: 100%
+      float: left
+      @media (max-width: $screen-sm)
+        width: 100%
+        margin-top: 0
+        height: 132px
+
+      .entities
+        width: 100%
+        display: block
+        @media (max-width: $screen-sm)
+          position: relative
+          z-index: 9
+          top: 15px
+        @media (max-width: $screen-xs)
+          width: 90% 
+          @include center-block
+
+        ul
+          @include center-block
+          display: block
+          float: none !important
+          width: 70% !important
+          @include items
+          @media (max-width: $screen-xs)
+            width: 100% !important
+          li
+            width: 100%
+            @media (max-width: $screen-sm)
+              @include excursion-small
+          
+      .podiumart
+        text-align: center
+        z-index: 1
+        -webkit-box-shadow: 0px -1px 5px rgba(50, 50, 50, 0.14)
+        -moz-box-shadow:    0px -1px 5px rgba(50, 50, 50, 0.14)
+        box-shadow:         0px -1px 5px rgba(50, 50, 50, 0.14)
+        width: 100%
+        display: block
+        float: left
+        position: inherit
+        background: url(competition/noisy.png) -19px top repeat
+        background: url(competition/noisy.png) -19px top repeat, -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%)
+        background: url(competition/noisy.png) -19px top repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5))
+        background: url(competition/noisy.png) -19px top repeat, -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
+        background: url(competition/noisy.png) -19px top repeat, -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
+        background: url(competition/noisy.png) -19px top repeat, -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
+        background: url(competition/noisy.png) -19px top repeat, linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%)
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 )
+        @media (max-width: $screen-sm)
+          position: absolute
+          margin-top: 0
+          height: 115px
+        .podcircle1,
+        .podcircle2,
+        .podcircle3
+          h2
+            margin-top: 10px
+            border-radius: 50%
+            background-color: $white
+            font-weight: lighter
+            width: 30px
+            height: 30px
+            margin: 10px auto 0
+            float: none
+            display: block
+            font-family: $corporate-font-family-sans-serif-Medium
+            color: $white
+            font-size: 25px
+            @media (max-width: $screen-sm)
+              margin: 15px 0 0 14px
+          @media (max-width: $screen-xs)
+            display: none !important
+        .podcircle3
+          h2
+            background-color: #CD7F32
+        .podcircle2
+          h2
+            background-color: silver
+        .podcircle1
+          h2
+            background-color: gold
+      @media (max-width: $screen-sm)
+        .p1
+          background: url(competition/noisy.png) -19px top repeat
+          background: url(competition/noisy.png) -19px top repeat, -moz-linear-gradient(top, #ffffff 0%, #FFD700 100%)
+          background: url(competition/noisy.png) -19px top repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#FFD700))
+          background: url(competition/noisy.png) -19px top repeat, -webkit-linear-gradient(top, #ffffff 0%,#FFD700 100%)
+          background: url(competition/noisy.png) -19px top repeat, -o-linear-gradient(top, #ffffff 0%,#FFD700 100%)
+          background: url(competition/noisy.png) -19px top repeat, -ms-linear-gradient(top, #ffffff 0%,#FFD700 100%)
+          background: url(competition/noisy.png) -19px top repeat, linear-gradient(to bottom, #ffffff 0%,#FFD700 100%)
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#FFD700',GradientType=0 )
+        .p2
+          background: url(competition/noisy.png) -19px top repeat
+          background: url(competition/noisy.png) -19px top repeat, -moz-linear-gradient(top, #ffffff 0%, #C0C0C0 100%)
+          background: url(competition/noisy.png) -19px top repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#C0C0C0))
+          background: url(competition/noisy.png) -19px top repeat, -webkit-linear-gradient(top, #ffffff 0%,#C0C0C0 100%)
+          background: url(competition/noisy.png) -19px top repeat, -o-linear-gradient(top, #ffffff 0%,#C0C0C0 100%)
+          background: url(competition/noisy.png) -19px top repeat, -ms-linear-gradient(top, #ffffff 0%,#C0C0C0 100%)
+          background: url(competition/noisy.png) -19px top repeat, linear-gradient(to bottom, #ffffff 0%,#C0C0C0 100%)
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#C0C0C0',GradientType=0 )
+        .p3
+          background: url(competition/noisy.png) -19px top repeat
+          background: url(competition/noisy.png) -19px top repeat, -moz-linear-gradient(top, #ffffff 0%, #CD7F32 100%)
+          background: url(competition/noisy.png) -19px top repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#CD7F32))
+          background: url(competition/noisy.png) -19px top repeat, -webkit-linear-gradient(top, #ffffff 0%,#CD7F32 100%)
+          background: url(competition/noisy.png) -19px top repeat, -o-linear-gradient(top, #ffffff 0%,#CD7F32 100%)
+          background: url(competition/noisy.png) -19px top repeat, -ms-linear-gradient(top, #ffffff 0%,#CD7F32 100%)
+          background: url(competition/noisy.png) -19px top repeat, linear-gradient(to bottom, #ffffff 0%,#CD7F32 100%)
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#CD7F32',GradientType=0 )
+
+
+#subjectwinners
+  float: left
+  padding-bottom: 4%
+  @media (max-width: $screen-sm)
+    width: 100% !important
+  .subrow
+    width: 45%
+    margin: 2.5%
+    display: inline-block
+    float: left
+    -webkit-box-shadow: 0px -1px 5px rgba(50, 50, 50, 0.14)
+    -moz-box-shadow:    0px -1px 5px rgba(50, 50, 50, 0.14)
+    box-shadow:         0px -1px 5px rgba(50, 50, 50, 0.14)
+    border: 1px solid $gray-light
+    background: url(competition/noisy.png) -19px top repeat
+    background: url(competition/noisy.png) -19px top repeat, -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%)
+    background: url(competition/noisy.png) -19px top repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5))
+    background: url(competition/noisy.png) -19px top repeat, -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
+    background: url(competition/noisy.png) -19px top repeat, -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
+    background: url(competition/noisy.png) -19px top repeat, -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%)
+    background: url(competition/noisy.png) -19px top repeat, linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 )
+    -webkit-border-radius: 5px
+    -moz-border-radius: 5px
+    border-radius: 5px
+    @media (max-width: $screen-sm)
+      width: 100% !important
+      margin: 2.5% auto !important
+      display: inline-block !important
+      float: left !important
+    h3
+      border-bottom: 1px solid #D8D8D8
+      padding-bottom: 10px
+      width: 100% 
+      text-align: center
+      font-family: $corporate-font-family-sans-serif-Light
+    section
+      display: block
+      width: 45%
+      margin: 0 2.5%
+      float: left
+      position: relative
+      @media (max-width: $screen-xs)
+        width: 95% !important
+      .badimg
+        position: absolute
+        left: 0
+        right: 0
+        width: 50px
+        height: 50px
+        img
+          width: 50px
+      .box-item
+        width: 100%
+
+ 
+
+#show_items
+  .recomended
+    float: left
+    width: 100%
+    ul.items
+      margin-top: 0px
+      margin-bottom: 0px
+  &:hover
+    .badimg  
+      @include transition(border .2s ease-in-out)
+      @include box-shadow (0 2px 8px 0px rgba(0, 0, 0, 0.03))
+      @include transition (all 0.2s ease 0s)
+      transform: scale(1.05)
+      -ms-transform: scale(1.05)
+      -webkit-transform: scale(1.05) 
+  .badimg 
+    &:hover
+    .recomended 
+      @include transition(border .2s ease-in-out)
+      @include box-shadow (0 2px 8px 0px rgba(0, 0, 0, 0.03))
+      @include transition (all 0.2s ease 0s)
+      transform: scale(1.05)
+      -ms-transform: scale(1.05)
+      -webkit-transform: scale(1.05) 
+

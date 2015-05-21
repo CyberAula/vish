@@ -1,6 +1,6 @@
 <%= content_for :javascript do%>
 
-  $('#myLearningModal').on('shown', function(){
+  $('#myLearningModal').on('shown.bs.modal', function(){
     <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
       var loepSettings = {};
       <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
@@ -27,12 +27,12 @@
     <%end%>
   });
 
-  $('#myLearningModal').on('hidden', function(){
+  $('#myLearningModal').on('hidden.bs.modal', function(){
     //Learning modal hidden
     $(this).removeData('modal').find('.modal-body').html('');
   });
 
-  $('#myTeachingModal').on('shown', function(){
+  $('#myTeachingModal').on('shown.bs.modal', function(){
     <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
       var loepSettings = {};
       <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
@@ -59,24 +59,31 @@
     <%end%>
   });
 
-  $('#myTeachingModal').on('hidden', function(){
+  $('#myTeachingModal').on('hidden.bs.modal', function(){
     //Teaching modal hidden
     $(this).removeData('modal').find('.modal-body').html('');
   });
 <%end%>
 
-<div id="myLearningModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="learningModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="learningModalLabel"><%= t('evaluation.modaltitle') %></h3>
+<div id="myLearningModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="learningModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 id="learningModalLabel"><%= t('evaluation.modaltitle') %></h4>
+      </div>
+      <div class="modal-body evaluation_body"></div>
+    </div>
   </div>
-  <div class="modal-body"></div>
 </div>
-
-<div id="myTeachingModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="teachingModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="teachingModalLabel"><%= t('evaluation.modaltitle') %></h3>
+<div id="myTeachingModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="teachingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 id="teachingModalLabel"><%= t('evaluation.modaltitle') %></h4>
+      </div>
+      <div class="modal-body evaluation_body"></div>
+    </div>
   </div>
-  <div class="modal-body"></div>
 </div>

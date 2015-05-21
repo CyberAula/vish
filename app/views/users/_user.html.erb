@@ -1,10 +1,9 @@
 <li class="box-item contact" id="<%= dom_id user %>">
-
   <!-- corner -->
   <div class="corner-item">
     <div class="corner-item2">
       <div class="corner-color"></div>
-      <i class="icon-user"></i>
+      <i class="fa fa-user"></i>
     </div>
     <div class="corner-background"></div>
   </div>
@@ -17,20 +16,22 @@
     </div>
   </div> 
 
-  <div class="info-user">
-    <div class="name-user">
+<!--INFO user-->
+  <div class="caption">
+<!--Autor -->
+    <h6>
       <%= link_to(truncate_name(user.name), user.subject)%>
-    </div>
+    </h6>
 
     <div class="count-followers">
-      <i class="icon-group "></i>
+      <i class="fa fa-group "></i>
       <span class="count"><%=user.followers.count.to_s%></span>
       <span class=""><%= t('follow.followers') %></span>
     </div>
 
-    <div class="add">
-      <%= contact_button(user) %>
-    </div>
+      <div class="add">
+        <%= contact_button(user) %>
+      </div> 
 
     <div class="info-bottom">
       <hr class="soften">

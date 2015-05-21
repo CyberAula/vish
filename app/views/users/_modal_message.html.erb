@@ -1,0 +1,22 @@
+<!-- Modal new_messages_profile-->
+<div class="modal_message">
+  <div id="new_messages_profile" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title"><%=t('message.new')%></h4>
+        </div>
+        <div id="new_message_profile" class="modal-body">
+          <%= render :partial => 'messages/new', :locals => {:@recipient => Actor.find_by_slug(profile_subject.slug)} %>
+        </div>
+        <div class="modal-footer">
+          <!--<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>-->
+          <input type="button" class="btn btn-primary" value="<%=t('mailboxer.send')%>"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

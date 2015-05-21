@@ -1,4 +1,6 @@
 <div class="layout_form_WS">
-  <h3><%=t("workshop.new")%></h3>
+  <div class="modal-header">
+  <h4><%=t('workshop.new')%></h4>
+  </div>
   <%= render :partial => "common_resources/form" , :locals => {:resource => @workshop }%>
 </div>

@@ -21,25 +21,20 @@
   <%= favicon_link_tag "icons/favicon.ico" %>
   <%= stylesheet_link_tag "application" %>
   
-
   <% if protect_against_forgery? %>
   <%= csrf_meta_tag %>
   <% end %>
 
-  
   <%= yield :headers %>
-  
 
 </head>
 <body>
   <div id="wrap">
-    <%= render :partial => "layouts/header" %>
-    <div class="wrapper">
-
+    <%= render :partial => "layouts/header/header" %>
+    <div class="container-fluid container-content">
       <%= flashy %>
       <%= yield %>
-    </div>  
-    <div class="push">  </div>   
+    </div>    
   </div>
   <%= render :partial => "layouts/footer" %>
 
@@ -65,6 +60,6 @@
       <%= yield :javascript%>
     });
   </script>
-  <%= render :partial => 'layouts/google_analytics' %>
-  <%= render :partial => 'layouts/uservoice' %>
+  <%= render :partial => 'layouts/tools/google_analytics' %>
+  <%= render :partial => 'layouts/tools/uservoice' %>
 </html>

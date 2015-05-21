@@ -71,7 +71,6 @@ Vish::Application.routes.draw do
 
   #Workshops
   match '/workshops/:id/edit_details' => 'workshops#edit_details'
-  match '/workshops/:id/contributions' => 'workshops#contributions'
   resources :workshops
 
   #Workshops Activities

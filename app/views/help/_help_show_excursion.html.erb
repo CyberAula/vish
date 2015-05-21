@@ -1,12 +1,14 @@
-<li class="helpheader helpbutton">   
-<i class="icon-question-sign helphome helppopover" id="helpexcursionid" data-placement='top' aria-hidden="true" data-original-title="<%= t('document.help.excursions1_html')%>" href='#' value="" ></i>
-<div class="contenthome" id="contenthelpexcursionid" style="display: none">
-  <div>
-  <%= t('document.help.excursions2_html')%>
+<span class="helpheader"> 
+  <a>  
+    <i class="fa fa-question-circle helphome" id="helpexcursionid" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.excursions1_html')%>" href='#' value="" ></i>
+  </a>
+  <div class="contenthome" id="contenthelpexcursionid" style="display: none">
+    <div class="popover-body">
+      <p> <%= t('document.help.excursions2_html')%> </p>
+    </div>
   </div>
-  <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
-</div>
-</li>
+</span>
+
 <%content_for :javascript do%>
   $('#helpexcursionid').popover({ 
     html : true,

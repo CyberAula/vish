@@ -8,13 +8,13 @@
     <% end %>
     <%= f.hidden_field :type, :value => "Document" %>
     <input class="contribution_file_input" name="document[file]" type="file">
-    <%= f.submit t('workshop.activities.assignment.add_document'), :id=>"" ,:class => "contribution", :disabled => true %>
+    <%= f.submit t('document.upload'), :id=>"" ,:class => "contribution", :disabled => true %>
   <% end %>
 
-  <button class="btn btn-primary btn_show_upload"><%= t('workshop.activities.assignment.available_contributions.document') %></button>
-  <button class="btn btn_hidden_upload"><i class="icon-chevron-left"></i></button>
+  <button class="btn btn-primary btn_show_upload"><%= t('resource.one')%></button>
+  <button class="btn btn-default btn_hidden_upload"><i class="fa fa-chevron-left"></i></button>
 
-  <%content_for :javascript do%>
+  <% content_for :javascript do %>
     <% unless editMode %>
         $("#"+'<%=form_id%>').parent().find(".btn_show_upload").click(function(){
           $("#" + '<%=form_id%>').show("slow");
@@ -36,7 +36,6 @@
             $(submitButton).attr("disabled","disabled");
           }
         });
-    <%end%>
-  <%end%>
-
+    <% end %>
+  <% end %>
 </div>

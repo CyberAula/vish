@@ -1,0 +1,182 @@
+#adminPanel
+  margin-top: 20px
+#admin
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  padding: 0 !important
+.adminPanel-header
+  h1
+    width: 100%
+    text-align: left
+    margin-top: 2px !important
+    margin-bottom: 2px !important
+    i
+      color: #BEBEBE
+      font-size: 26px
+      margin-right: 5px
+  hr
+    border-bottom-color: $gray
+    margin: 0 0 10px 0
+  .nav-pills > li > a
+    background-color: $white
+    margin-right: 10px
+    border: 1px solid $brand-primary
+    &:hover
+      background-color: lighten($brand-primary, 10%) 
+      color: $white
+  .nav-pills > li.active > a
+    background-color: $brand-primary
+    border: 1px solid $brand-primary
+
+
+
+
+
+#spam_table,
+#user_table
+  thead
+    tr
+      height: 30px
+      border-bottom: 1px solid $gray-light
+      th
+
+        font-family: $corporate-font-family-sans-serif-Medium
+        font-size: 14px
+        color: $black
+        text-align: left
+  tbody
+    tr
+      margin-top: 5px
+      vertical-align: text-bottom
+      border-bottom: 1px solid $gray-lighter-extra
+      cursor: pointer
+      &:hover
+        background: $white
+      td
+        background: transparent
+
+      .admin-resource
+        span
+          font-family: $corporate-font-family-sans-serif-Bold
+          font-size: 14px
+          color: $gray
+      .admin-type
+        i
+          color: $brand-primary
+          font-size: 25px
+          opacity: 0.5
+          vertical-align: text-top
+
+      .admin-user,
+      .admin-user-user,
+      .admin-reporter
+        a
+          span
+            font-family: $corporate-font-family-sans-serif-Regular
+            color: $gray-light
+            &:hover
+              color: $brand-secundary
+          &:hover
+            text-decoration: none
+          address
+            font-size: 10px
+      .admin-description
+        span
+          font-family: $corporate-font-family-sans-serif-Light
+          font-size: 12px
+          color: $gray
+          height: 20px
+          overflow-y: hidden
+          &:hover
+            height: auto
+            overflow-y: auto
+      .admin-email
+        a
+          font-family: $corporate-font-family-sans-serif-Regular
+          font-size: 14px
+          color: $brand-secundary
+      .admin-date
+        span
+          font-family: $corporate-font-family-sans-serif-Light
+          font-size: 14px
+          color: $gray
+      .admin-icontrash
+        i
+          &:hover
+            color: $brand-primary
+      .admin-icontrash,
+      .admin-iconlock
+        text-align: center
+        i
+          vertical-align: middle
+        a
+          color: $gray
+
+
+
+#spam_table,
+#user_table
+  .admin-checkbox
+    width: 0%
+  .admin-resource
+    width: 20%
+  .admin-type
+    width: 5%
+  .admin-user
+    width: 15%
+  .admin-reporter
+    width: 10%
+  .admin-description
+    width: 30%
+  .admin-date
+    width: 10%
+  .admin-icontrash
+    width: 5%
+  .admin-iconlock
+    width: 5%
+
+
+  .admin-user-user
+    width: 30%
+  .admin-date-user
+    width: 20%
+    font-size: 1rem
+  .admin-email
+    width: 40%
+
+
+#user_table
+  width: 100%
+  tbody
+    tr
+      .admin-icontrash
+        font-size: 15px !important
+
+table.vish_admin_table
+  td
+    padding: 5px
+
+div.admin_header
+  ul.nav
+    margin-top: 12px
+  span.admin_header_text_title
+    font-size: 25px
+
+.reports_type_legend
+  width: 100%
+  background-color: $white
+  border-top: 1px solid $gray-light
+  border-bottom: 1px solid $gray-light
+  ul
+    margin: 5px
+    li
+      display: inline
+      padding: 10px
+      i,
+      span
+        font-size: 12px
+        color: $gray-light
+      i
+        margin-right: 5px

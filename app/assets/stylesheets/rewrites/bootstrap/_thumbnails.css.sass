@@ -1,0 +1,139 @@
+.thumbnail
+  @include thumbnail
+
+
+.add-item
+  border: none !important
+  background: transparent !important
+  .add_border
+    border: 2px dashed $gray
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+    .container-img
+      background-color: transparent !important
+    @media (max-width: 480px)
+      min-height: 86px
+      .container-img
+        border-right: 2px dashed $gray
+        background-color: #ffffff transparent !important
+        .element i
+          padding-top: 19px
+      .caption
+        padding-top: 29px !important
+
+  .name
+    font-size: 18px
+    line-height: 22px
+    overflow: visible
+    color: $gray
+    font-family: $corporate-font-family-sans-serif-Bold
+    cursor: pointer
+    margin: 0
+    height: 37px
+    width: 100%
+    word-wrap: break-word
+    text-align: center
+    color: $gray !important
+    &:hover
+      color: $gray !important
+  hr
+    display: none
+
+
+.contact 
+  .corner-color
+    border-color: $white rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+  .caption
+    hr
+      display: none
+    .count-followers
+      font-size: 10px
+      margin: 0 auto
+      margin-top: 1px !important
+      display: block
+      text-align: center
+      i
+        color: $gray
+    h6
+      text-align: center
+      margin: 0 0 4px 0
+      height: 20px !important
+      font-family: $corporate-font-family-sans-serif-Bold
+      font-size: 15px
+      word-wrap: break-word
+      width: 100%
+      color: $black
+
+
+.resource
+  .corner-color
+    border-color: $brand-secundary rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+
+.add-resource
+  .add_border
+    border: 2px dashed $brand-secundary !important
+  .container-img 
+    i
+      color: $brand-secundary !important
+  .name
+    color: $brand-secundary !important
+    &:hover
+      color: $brand-secundary !important
+
+
+
+.categorie-item
+  .corner-color
+    border-color: $brand-primary rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+  .container-img 
+    i
+      color: $brand-primary !important
+.add-categorie
+  cursor: pointer
+  .add_border
+    border: 2px dashed $brand-primary !important
+  .container-img 
+    i
+      color: $brand-primary !important
+  .name
+    color: $brand-primary !important
+    &:hover
+      color: $brand-primary !important
+
+
+.event
+  .corner-color
+    border-color: $gray-dark rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+  .container-img 
+    i
+      color: $gray-dark !important
+
+.add-event
+  .add_border
+    border: 2px dashed $gray-dark !important
+  .container-img 
+    i
+      color: $gray-dark !important
+  .name
+    color: $gray-dark !important
+    &:hover
+      color: $gray-dark !important
+
+.workshop
+  .corner-color
+    border-color: $gray-darker-extra rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+  .container-img 
+    i
+      color: $gray-darker-extra !important
+
+.add-workshop
+  .add_border
+    border: 2px dashed $gray-darker-extra !important
+  .container-img 
+    i
+      color: $gray-darker-extra !important
+  .name
+    color: $gray-darker-extra !important
+    &:hover
+      color: $gray-darker-extra !important
+

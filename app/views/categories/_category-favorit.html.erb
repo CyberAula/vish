@@ -2,37 +2,27 @@
 
   <!--Image -->
   <div class="category">
-    <%= link_to "<i class='icon-start'></i>".html_safe, category, :title => category.title %>
+    <%= link_to "<i class='fa fa-star'></i>".html_safe, category, :title => category.title %>
   </div>
-  <!-- Info -->
-  <div class="info">
-  <!-- Title -->
-    <div class="name">
-            <%= t('excursion.actions.favorite') %>
-    </div>
-    <!--____________________ -->
+<!--INFO categories-->
+  <div class="caption">
+<!--Title -->
+    <h6>
+      <%= t('excursion.actions.favorite') %>
+    </h6>
+<!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
       <!--like -->
       <div class="like">    
-        <div class="count"><%=category.post_activity.likes.count.to_s%></div>
-        <%= link_like(category.post_activity)%>
+        <div class="count"> <%= category.post_activity.likes.count.to_s %> </div>
+        <%= link_like(category.post_activity) %>
       </div>
       <!--views -->
       <div class="views">
-        <%=category.visit_count.to_s%>
-        <%=t('follow.views')%>
+        <%= category.visit_count.to_s %>
+        <%= t('follow.views') %>
       </div>
     </div>
   </div>
 </li>
-
-
-
-
-
-
-
-
-
-

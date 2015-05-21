@@ -1,0 +1,21 @@
+@mixin conversations
+  .media-heading
+    clear: both
+    height: 19px
+    a
+      float: left
+    .x
+      float: right
+      @include color-delete
+  .media-body
+    .post_time_ago
+      display: inline-block
+      color: $gray !important
+      float: left
+    .to_like
+      float: left
+      margin-left: 5px
+      font-size: 0.85em
+    p.info_action
+      clear: both
+      margin-top: 24px

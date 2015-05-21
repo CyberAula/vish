@@ -1,17 +1,18 @@
-<li class="helpheader helpbutton help-fix-position-popover">   
-<i class="icon-question-sign helpactivity helppopover" data-placement='left' aria-hidden="true" data-original-title="<%=t('document.help.activity1_html')%>" href='#' value="" ></i>
-<div class="contentactivity" style="display: none">
-  <div>
-    <%= t('document.help.activity2_html')%>
+<span class="helpheader">   
+  <i class="fa fa-question-circle" data-placement='left' aria-hidden="true" data-original-title="<%=t('document.help.activity1_html')%>" href='#' value="" ></i>
+  <div class="contenthome" style="display: none">
+    <div class="popover-body">
+      <p> <%= t('document.help.activity2_html')%> </p>
+    </div>
+    <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
-  <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
-</div>
-</li>
+</span>
+
 <%content_for :javascript do%>
-  $('.helpactivity').popover({ 
+  $('.fa-question-circle').popover({ 
     html : true,
     content: function() {
-      return $('.contentactivity').html();
+      return $('.contenthome').html();
     }
   });
 <%end%>

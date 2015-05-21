@@ -1,12 +1,15 @@
-<li class="helpheader helpbutton">   
-  <i class="icon-question-sign helphome helppopover" id="helpshowresourceid" data-placement='top' aria-hidden="true" data-original-title="<%= t('document.help.resources1_html')%>" href='#'></i>
+<span class="helpheader">  
+  <a> 
+    <i class="fa fa-question-circle helphome" id="helpshowresourceid"  data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.resources1_html')%>" href='#' value="" ></i>
+  </a>
   <div class="contenthome" id="contenthelpshowresourceid" style="display: none">
-    <div>
-      <%= t('document.help.resources2_html')%>
+    <div class="popover-body">
+      <p> <%= t('document.help.resources2_html')%> </p>
     </div>
-    <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
+    <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
-</li>
+</span>
+
 <%content_for :javascript do%>
   $('#helpshowresourceid').popover({ 
     html : true,

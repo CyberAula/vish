@@ -1,0 +1,120 @@
+@mixin follow-profile
+  text-align: center
+  color: $brand-primary
+  font-family: $corporate-font-family-sans-serif-Regular
+  form
+    @include center-block
+    width: 120px
+    input
+      border: none
+      background-color: $brand-primary
+      color: $white
+      width: 100%
+      margin-top: 0px
+      padding: 6px 9px
+      max-height: 34px
+      min-height: 34px
+      @include border-top-left-radius($border-radius-base)
+      @include border-top-right-radius(0)
+      @include border-bottom-right-radius(0)
+      @include border-bottom-left-radius($border-radius-base)
+      @media (max-width: $screen-sm-min)
+        @include border-top-radius ($border-radius-base)
+        @include border-bottom-radius ($border-radius-base)
+  .following-button
+    background-color: $gray
+    width: 120px
+    margin: 0 auto
+    color: $white
+    padding: 6px 9px
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+
+  .unfollow-button
+    width: 120px
+    margin: 0 auto
+    form
+      margin: 0px
+      width: 120px
+      input
+        border: 0px none
+        width: 100%
+        background-color: $brand-secundary
+        color: $white
+        margin-top: 0px
+        padding: 6px 9px
+        @include border-top-radius ($border-radius-base)
+        @include border-bottom-radius ($border-radius-base)
+
+
+
+@mixin follow-o
+  text-align: center
+  color: $brand-primary
+  font-family: $corporate-font-family-sans-serif-Regular
+  font-size: 0.8em
+  form
+    margin: 0px
+    width: 100%
+    input
+      border: none
+      background-color: transparent
+      color: $brand-primary
+      text-align: left
+      width: 100%
+      margin-top: 0px
+      padding: 5px 5px 5px 0
+
+  .following-button
+    background-color: transparent
+    color: $gray
+    text-align: left
+    width: 100%
+    margin-top: 0px
+    padding: 5px 5px 5px 0
+
+  .unfollow-button
+    form
+      margin: 0px
+      input
+        background-color: transparent
+        text-align: left
+        border: 0px none
+        width: 100%
+        color: $brand-secundary
+        margin-top: 0px
+        padding: 5px 5px 5px 0
+
+
+@mixin see-more
+  margin-top: 2% !important
+  margin-bottom: 2% !important
+  display: block
+  width: 160px
+  @include btn
+  @include btn-primary
+  @include border-top-radius (0)
+  height: 33px
+  margin: 0 auto
+  float: none
+  clear: both
+  a
+    color: $white
+    &:hover
+      text-decoration: none
+
+  &.disabled,
+  &[disabled]
+    cursor: default
+    @include opacity(65)
+
+  .loading
+    z-index: 200
+    position: relative
+
+@mixin color-delete
+  a
+    color: $gray-dark
+    &:hover
+      color: $brand-danger
+      text-decoration: none

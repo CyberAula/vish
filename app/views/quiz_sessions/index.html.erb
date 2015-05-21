@@ -1,12 +1,15 @@
 <section id="quiz">
-  <div class="quizwhiteframe">
-    <legend><%=t('quiz.live')%></legend>
+  <div class="icontitle">
+    <i class="fa fa-check-square-o"></i>
+    <%=t('quiz.live')%>
+  </div>
+  <div class="whiteframe">
     <div class="textrow">
       <h4><%=t('quiz.openedL')%></h4>
       <% if @quiz_active_sessions.length > 0 %>
         <ul id="sortable1" class="connectedSortable">
           <% @quiz_active_sessions.each do |q| %>
-            <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.partial"%>>
+            <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote="<%="/quiz_sessions/#{q.id}/results.partial"%>">
               <p class="qs_name">
                 <% if q.name && !q.name.empty? %>
                   <%= q.name %>
@@ -14,26 +17,30 @@
                   <%=t('quiz.untitled')%>
                 <% end %>
               </p>
-              <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
-                <i class="icon-trash"></i>
+
+              <button type="button" class="with_tooltip delete btn btn-default popover-link" urlToRemoveQuiz="<%="#{q.delete_url}"%>" data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
+                <i class="fa fa-trash-o"></i>
               </button>
-              <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
-                <i class="icon-edit"></i>
+              <button class="with_tooltip btn btn-default" data-target="#QuizEdit" data-toggle="modal" data-remote="<%="/quiz_sessions/#{q.id}/edit.partial"%>" title="<%=t('quiz.actions.edit')%>">
+                <i class="fa fa-edit"></i>
               </button>
-              <button class="with_tooltip closeqb btn popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-container="body" title="<%=t('quiz.actions.close')%>" aria-hidden="true">
-                x
+              <button class="with_tooltip closeqb btn btn-default popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-container="body" title="<%=t('quiz.actions.close')%>" aria-hidden="true">
+                <i class="fa fa-power-off"></i>
               </button>
               <p class="creation_date">
-                <%=t('quiz.createdAt')%> <%= q.created_at.strftime("%d-%m-%Y %H:%M UTC") %>
+                <%=t('quiz.createdAt')%> <%= q.created_at.strftime("%d-%m-%Y %H:%M") %> - Click to show details
               </p>
             </li>
+
+
           <% end %>
         </ul>
         <% else %>
-          <p><%=t('quiz.noOpenQuizzes')%>.</p>
+          <p><i class="fa fa-hand-o-up"></i>
+            <%=t('quiz.noOpenQuizzes')%></p>
         <% end %>
-    </div> 
-    <div class="textrow"> 
+    </div>
+    <div class="textrow">
       <h4><%=t('quiz.closedL')%></h4>
       <% if @quiz_inactive_sessions.length > 0 %>
         <ul id="sortable2" class="connectedSortable">
@@ -46,24 +53,24 @@
                   <%=t('quiz.untitled')%>
                 <% end %>
               </p>
-              <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
-                <i class="icon-trash"></i>
+              <button class="with_tooltip delete btn btn-default popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
+                <i class="fa fa-trash-o"></i>
               </button>
-              <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
-                <i class="icon-edit"></i>
+              <button class="with_tooltip btn btn-default" title="<%=t('quiz.actions.edit')%>" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%>>
+                <i class="fa fa-edit"></i>
               </button>
               <p class="creation_date">
-                <%=t('quiz.openPeriod')%> <%= q.created_at.strftime("%d-%m-%Y %H:%M UTC") %>
+                <%=t('quiz.openPeriod')%> <%= q.created_at.strftime("%d-%m-%Y %H:%M") %>
                 <%if q.closed_at%>
-                 - <%= q.closed_at.strftime("%d-%m-%Y %H:%M UTC") %>
+                 - <%= q.closed_at.strftime("%d-%m-%Y %H:%M") %>
                 <% end %>
               </p>
             </li>
           <% end %>
-        </ul>   
+        </ul>
       <% else %>
-        <p><%=t('quiz.noClosedQuizzes')%>.</p>
-      <% end %>   
+        <p><i class="fa fa-hand-o-left"></i> <%=t('quiz.noClosedQuizzes')%></p>
+      <% end %>
     </div>
   </div>
 
@@ -79,7 +86,7 @@
 
   <!-- Quiz session delete confirmation-->
   <div class="contentdelete" style="display: none">
-    <p class="delete_p"><i class="icon-trash"></i>  <%=t('quiz.confirm_delete')%></p>
+    <p class="delete_p"><i class="fa fa-trash-o"></i>  <%=t('quiz.confirm_delete')%></p>
     <div class="actions">
       <a class="btn btn_cancel"><%=t('cancel')%></a>
       <a class="btn btn-primary quiz_actions_delete"><%=t('quiz.actions.delete')%></a>
@@ -88,36 +95,37 @@
 
 </section>
 
-<div id="QuizAnalitycs" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <p></p>
-  </div>
-  <div class="modal-body">
-    <!-- This body is replaced with show_results.html.erb every time the modal is called -->
-  </div>
-  <div class="modal-footer"> </div>
-</div>
+<div id="QuizAnalitycs" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
 
-<div id="QuizEdit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <p></p>
-  </div>
-  <div class="modal-body">
-    <!-- This body is replaced with edit.html.erb every time the modal is called -->
-  </div>
-  <div class="modal-footer"> </div>
-</div>
+        <!-- This body is replaced with show_results.html.erb every time the modal is called -->
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="QuizEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- This body is replaced with edit.html.erb every time the modal is called -->
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 
 <%= content_for :javascript do %>
-  $('#QuizAnalitycs').on('hidden', function(){
-    $(this).removeData('modal');
+
+
+  $('#QuizAnalitycs').on('hidden.bs.modal', function(){
+    $(this).removeData('bs.modal');
   });
 
-  $('#QuizEdit').on('hidden', function(){
-    $(this).removeData('modal');
+  $('#QuizEdit').on('hidden.bs.modal', function(){
+    $(this).removeData('bs.modal');
   });
 
   $(".ui-state-default").click(function(event){

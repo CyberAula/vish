@@ -1,0 +1,488 @@
+#search
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  margin: $zero
+
+  padding: 0 !important
+  .search
+    .helpheader i
+      padding-top: 12px
+    .popover-footer i
+      padding-top: 0px
+  ul.nav-tabs
+    li a i
+      margin: 0 4px 0 0
+  .user
+    width: auto !important
+
+.search-nav
+  margin-left: -3px
+  @media (max-width: $screen-xs-max)
+    margin-left: 0
+  .search_button_class
+    min-width: 30px
+    vertical-align: top
+
+.mat
+  z-index: 10
+  display: none
+  position: absolute
+  width: 265px
+  background-color: rgba(85,85,85,0.97)
+  @include border-bottom-radius ($border-radius-base)
+  @media (max-width: 768px)
+    width: 80.5%
+    left: 15px
+    top: 87px
+  @media (max-width: 635px)
+    width: 80%
+  @media (max-width: 560px)
+    width: 79.2%
+  @media (max-width: 485px)
+    width: 78%
+  @media (max-width: 430px)
+    width: 77%
+  .spinner
+    margin: 35px auto 0 !important
+    display: none
+  .query_too_short
+    @include border-bottom-radius ($border-radius-base)
+    color: $white
+    text-align: center
+    padding: 3px
+    margin-top: 2px
+  .no_results
+    display: block
+    @include border-bottom-radius ($border-radius-base)
+    color: $white
+    background-color: $brand-primary
+    text-align: center
+    padding: 3px
+    margin-top: 2px
+
+  .results
+    max-height: 431px
+    overflow: auto
+    height: auto
+    ul
+      width: 95%
+      padding-left: 0
+      float: none
+      @include border-bottom-radius ($border-radius-base)
+      @include center-block
+      .add-item
+        display: none
+      li
+        @include excursion-small
+        margin: 3px 7px
+        width: 95%
+        border: none
+        max-height: 43px
+        .container-img
+          width: 27% !important
+          .avatar img
+            margin-top: -7px
+          .img-box
+            i
+              font-size: 35px
+              padding-top: 4px
+        .caption
+          padding-top: 2px
+          width: 73%
+          h6
+            height: 20px
+          h6, .count-followers
+            text-align: left
+        .corner-item, .add, .info-bottom, hr
+          display: none
+      li, .container-img, .caption
+        max-height: 43px
+
+      .more
+        display: block
+        clear: both
+        text-align: center
+        height: auto
+        margin: 7px 7px 10px
+        padding: 5px
+        //padding-bottom: 3px
+        //padding-top: 2px
+        a
+          color: $gray-darker
+          font-family: $corporate-font-family-sans-serif-Medium
+          text-decoration: none
+        &:hover
+          background: $gray-darker-extra
+          a
+            color: $white
+            &:hover
+              background-color: $gray-darker-extra !important
+      .img-box
+        padding-bottom: 0
+
+
+
+/* menus */
+
+.toggler-as
+  width: 100%
+  top: 50px
+  left: 0
+  z-index: 1000
+  overflow: hidden
+  position: relative
+  background: $brand-secundary
+  ul
+    display: block
+    color: #fff
+    width: 16%
+    float: left
+    border-left: 1px solid darken($brand-secundary, 10%)
+    height: 225px
+    margin: 0
+
+    li
+      display: block
+      color: #fff
+      font-size: 12px
+      font-weight: 300
+      cursor: pointer
+      &:hover
+        background: $brand-secundary
+      &:active
+        background: $brand-secundary
+        color: #47a3da
+  h4
+    margin: 10px 0px 5px 10px
+    color: $white
+
+#button-as
+  text-decoration: none
+  float: right
+  margin-top: 50px
+  background-color: $brand-secundary
+  height: 20px
+  @include border-bottom-radius(3px)
+  margin-right: 5%
+  color: $white
+  padding: 3px
+  padding-left: 6px
+  padding-right: 6px
+
+#effect-as
+  position: relative
+
+.newClass-as
+  width: 100%
+  background: darken($brand-secundary, 10%)
+  height: 0px
+  overflow: hidden
+.anotherNewClass-as
+  width: 100%
+  background: lighten($brand-secundary, 5%)
+  height: 225px
+  overflow: hidden
+
+/* menus */
+
+.Tags_list_as
+  overflow: auto
+  display: block
+  width: 16%
+  color: white
+  height: 225px
+  float: left
+  border-left: 1px solid darken($brand-secundary, 10%)
+  label
+    margin-bottom: 0px
+    font-size: 12px
+    cursor: pointer
+
+.Tags_list_as li ,
+.Language_as li
+  width: 95%
+  padding-left: 5%
+  font-size: 12px
+  color: $white
+  cursor: pointer
+
+.order_as li,
+.creation_as li,
+.all_as li
+  width: 90%
+  padding-left: 10%
+  font-size: 12px
+
+.Language_as
+  img
+    width: 22px
+    height: 17px
+    margin-right: 5px
+
+.info_as
+  font-weight: lighter
+  background: darken($brand-secundary, 10%)
+  i
+    font-size: 50px
+    width: 100%
+    text-align: center
+    margin-top: 50px
+    width: 50px
+    display: block
+    float: none
+    margin-left: auto
+    margin-right: auto
+    color: lighten($brand-secundary, 5%)
+  h2
+    text-align: center
+    width: 60%
+    margin: 0 auto
+    display: block
+    font-family: #017CC8
+    color: lighten($brand-secundary, 5%)
+    margin-top: 10px
+
+.all_as
+  li > label
+    width: 95%
+    padding-left: 5%
+    font-size: 12px
+    color: $white
+    cursor: pointer
+  select
+    width: 95%
+    margin-left: 5%
+    font-size: 12px
+
+/* check tags */
+.Tags_list_as
+  input[type="checkbox"]
+    display: none
+
+  input[type="checkbox"] + label span
+    color: #f2f2f2
+    font-family: Arial, sans-serif
+    font-size: 14px
+
+  input[type="checkbox"] + label span
+    display: none
+
+
+
+/* Styles for new search view */
+/* -------------------------- */
+
+.separator
+  margin: 8px 0
+  border-color: gray -moz-use-text-color #FFF
+
+.search-sidebar-selected
+  //font-weight: bold
+  font-family: $corporate-font-family-sans-serif-Bold !important
+  //margin-left: 5px
+  color: $gray-dark
+
+#search-sidebar li
+  cursor: pointer
+
+#search-sidebar
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(3, $gutter: $grid-gutter-width)
+  @include make-md-column(3, $gutter: $grid-gutter-width)
+  @include make-lg-column(3, $gutter: $grid-gutter-width)
+  .srch-panel
+    background-color: $white
+    border-radius: 5px
+    padding-bottom: 20px !important
+    margin-bottom: 20px
+.filter-results
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(9, $gutter: $grid-gutter-width)
+  @include make-md-column(9, $gutter: $grid-gutter-width)
+  @include make-lg-column(9, $gutter: $grid-gutter-width)
+
+#search
+  margin-top: 15px
+  .row
+  .search-filterbar
+    border-radius: 5px
+    padding: 0 15px
+    h3
+      color: $white
+      margin: 0px 0px 20px
+      background-color: $gray
+      border-radius: 5px 5px 0px 0px
+      padding: 10px 20px
+      i
+        margin: 0 10px 0 0
+    .filter_set
+      margin: 0px 20px 20px
+      .btn-openclose
+        border-radius: 5px
+        padding: 0px 5px
+        border: 1px solid #ccc
+        background: #eee
+        width: 20px
+        outline: none
+        margin-right: 5px
+        font-size: 0.9em
+        &:hover
+          border-color: $brand-primary
+          background-color: white
+          a
+            color: $brand-primary
+        a
+          color: gray
+          text-decoration: none
+      .filter_title_bold
+        font-family: $corporate-font-family-sans-serif-Bold
+        color: $brand-primary
+      ul
+        margin: 10px
+        padding: 0
+        transition: all 500ms ease-in-out
+        -webkit-transition: height 500ms ease-in-out
+        -moz-transition: height 500ms ease-in-out
+        -o-transition: height 500ms ease-in-out
+        .filter_item
+          border-bottom: 1px dashed #ddd
+          padding: 3px 0
+          font-size: 0.9em
+        .filter_item:last-child
+          border-bottom: 0
+      .opened_filter
+        overflow: auto
+        height: auto
+      .closed_filter
+        overflow: hidden !important
+        height: 0 !important
+      .ul_selected_tags
+        margin-bottom: 0
+      .ul_tags
+        margin-top: 0
+  .filter-results
+    @media (min-width: 769px)
+      padding-left: 0
+
+    .filters-applied
+      @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+      background-color: $white
+      min-height: 70px
+      border-radius: 5px
+      padding: 15px
+      float: left
+      width: 100%
+      margin-bottom: 20px
+      .helpheader
+        margin: 0
+        i
+          font-size: 1.2em
+      .n_results
+        color: $brand-primary
+
+      .dropdown_order_by
+        float: right
+        button span
+          margin-right: 4px
+      .filter_boxes
+        padding: 10px 0
+        .filter_box
+          display: inline-block
+          margin: 0 7px 12px 0
+          cursor: default
+          .filter_ball,.filter_box_super_type,.filter_box_lo_type,
+          .filter_box_resouce_type,.filter_box_language,.filter_box_tags.filter_box_category_ids
+            padding: 7px
+            color: white
+            font-size: 0.9em
+            border-radius: 5px
+            float: left
+            padding: 5px 10px
+
+          .filter_box_super_type
+            background: $brand-primary
+          .filter_box_lo_type
+            background: #ae0040
+          .filter_box_resouce_type
+            background: $brand-secundary
+          .filter_box_language
+            background: gray
+          .filter_box_tags
+            background: #05b0ff
+          .filter_box_category_ids
+            background: $brand-primary
+          .filter_box_age_type
+            background: $gray-dark
+            
+        .filter_box_x
+          cursor: pointer
+          float: right
+          border-radius: 15px
+          margin: -6px 0px 0px -10px
+          padding: 0px 5px 1px
+          font-size: 0.7em
+          font-family: "OpenSansBold", sans-serif
+          color: white
+          background: $gray-dark
+          line-height: 1.5em
+          float: left
+          opacity: 0.7
+          &:hover
+            color: $gray-lighter
+            opacity: 1
+
+    .searched-items
+      margin-top: 20px
+      ul
+        margin: 0
+
+.clear
+  clear: both
+
+
+
+// 4---------------------
+
+@media (min-width: 501px) and (max-width: 1000px)
+  #search-all
+    li.box-item
+      width: 31.333333333%
+      margin: 0 1% 15px
+
+
+// 5---------------------
+
+@media (min-width: 1001px) and (max-width: 1250px)
+  #search-all
+    li.box-item
+      width: 23%
+      margin: 0 1% 20px
+
+
+// 6---------------------
+
+@media (min-width: 1251px) and (max-width: 1500px)
+  #search-all
+    li.box-item
+      width: 18.4%
+      margin: 0 0.8% 20px
+
+
+// 7---------------------
+
+@media (min-width: 1501px) and (max-width: 1750px)
+  #search-all
+    li.box-item
+      width: 15.266666667%
+      margin: 0 0.7% 20px
+
+
+// 8---------------------
+
+@media (min-width: 1751px)
+  #search-all
+    li.box-item
+      width: 13.085714286%
+      margin: 0 0.6% 20px

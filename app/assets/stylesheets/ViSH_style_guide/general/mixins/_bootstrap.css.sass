@@ -1,0 +1,45 @@
+@mixin caption 
+  padding: 6px $padding-large-horizontal 0
+  color: $gray-darker
+  border-top: 1px solid $border-color
+  height: 92px
+  //margin-top: -5px
+  h6
+    font-family: $corporate-font-family-sans-serif-Medium
+    font-size: 15px
+    word-wrap: break-word
+    margin: 0
+    height: 37px
+    line-height: 18px
+    text-decoration: none
+    cursor: pointer
+    width: 100%
+    overflow: hidden
+    a
+      color: $black
+      &:hover
+        color: #e90055
+
+@mixin pull-left
+  float: left
+
+@mixin pull-right
+  float: right
+
+@mixin table-striped
+  td
+    border: none
+    &:first-child
+      color: $brand-primary
+      font-size: 0.9em
+      padding-top: 0.75em
+      width: 116px
+
+
+@mixin well
+  background-color: #ffffff
+  border-radius: 5px
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset
+  margin-bottom: 20px
+  min-height: 20px
+  padding: 19px

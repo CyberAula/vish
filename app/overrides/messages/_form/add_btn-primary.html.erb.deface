@@ -1,3 +1,0 @@
-<!-- replace "code[erb-loud]:contains('btn')" -->
-
-<%= submit_tag t('mailboxer.send'), :name => :send_message, :class => "btn btn-primary" %>

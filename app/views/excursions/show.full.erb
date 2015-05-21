@@ -50,7 +50,7 @@
 			name: "<%= current_subject.name %>",
 			id: "<%= Actor.normalize_id(current_subject) %>",
 			token: "<%= form_authenticity_token %>"
-		}
+		};
 	<% end %>
 
 	options["lang"] = "<%= I18n.locale.to_s%>";
@@ -66,7 +66,7 @@
 			enterFullscreenURL: "<%=excursion_path(@excursion, :format => :full)%>"
 		};
 		<% if @orgUrl %>
-			options["fullScreenFallback"].exitFullscreenURL = "<%=@orgUrl%>"
+			options["fullScreenFallback"].exitFullscreenURL = "<%=@orgUrl%>";
 		<% end %>
 	<% end %>
 

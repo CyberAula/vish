@@ -1,5 +1,5 @@
 es:
-  about: 
+  about:
     blog: "Novedades"
     contact: "Contacto"
     code: "Código fuente"
@@ -108,7 +108,7 @@ es:
     title: "Noticia"
     body: "Durante febrero, el proyecto GLOBAL excursion va a organizar dos sesiones online con científicos. Más información y registro en"
   are_you_sure: "Are you sure?"
-  asearch:    
+  asearch:
     title: "Búsqueda Avanzada"
   author: "autor"
   browse:
@@ -213,8 +213,9 @@ es:
     success: "Las categorías se han salvado con éxito"
   close: "Cerrar"
   conditions:
-    check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "
+    check_message: "Acepto las "
     check_message_1: "Condiciones de Uso"
+    check_message_2: " de ViSH."
     other: "términos de uso"
   contact:
     follow: "Seguir"
@@ -223,7 +224,6 @@ es:
   contribution:
     content: "Contenido"
     title: "Título"
-    action: "Contribuir"
   pending:
     other: "Te siguen"
   contest:
@@ -275,6 +275,7 @@ es:
     Humanities: "Humanidades"
     NaturalScience: "Ciencias Naturales"
     ComputerScience: "Informática"
+    ViSHCompetition13: "#ViSHCompetition2013"
   thevish: "ViSH"
   youtube: "Canal ViSH en Youtube"
   overview_title: "¿Qué es ViSH?"
@@ -426,6 +427,7 @@ es:
       resources2_html : "En esta sección se muestra el recurso en el que ha entrado. En la zona de la derecha, tendrás recursos recomendadas, bajo el recurso se muestra la información de la misma, así como las maneras sencillas de compartirla , descargarlo, marcarla como spam, hacerlo favorita, o etiquetarlo dentro de una de sus categorías. También puedes comentar el recurso desde la parte inferior."
       favourite1_html : "Favoritos"
       favourite2_html : "Esta sección muestra tus recursos favoritos, en el veras los elementos que has hecho favoritos."
+
       inv: "Enviar una nueva invitación"
       inv1_html: "1. Escribe el <b> email </b> de la persona a la que quieras invitar a la comunidad"
       inv2_html: "2. Después, haz click en <b>Enviar una invitación</b>"
@@ -502,6 +504,7 @@ es:
       start_time: "Hora de inicio"
       title: "Título"
       type: "Tipo"
+      poster: "Añade una portada/cartel"
     main_title: "Crea un nuevo evento"
     title_input: "Dale un nombre a tu evento"
     type:
@@ -832,12 +835,12 @@ es:
       title: "Instancias de ViSH"
       results: "Resultados por instancia"
     loading: "Cargando información"
-    models:      
+    models:
       all: "Todos"
       all_resources: "Todos los Recursos"
       audio: "Audios"
       category: "Categorías"
-      document: "Documentos"      
+      document: "Documentos"
       embed: "Embeds"
       event: "Eventos"
       excursion: "Excursiones"
@@ -854,7 +857,7 @@ es:
       webapp: "Aplicaciones Web"
       workshop: "Workshops"
       writing: "Textos"
-      zipfile: "Ficheros ZIP"    
+      zipfile: "Ficheros ZIP"
     name: "Buscar"
     rendering:
       title: "Opciones de visualización"
@@ -929,10 +932,6 @@ es:
     one: "usuario"
     other: "usuarios"
   username: "usuario"
-  validation:
-    invalid_resource: "Recurso no válido"
-    invalid_contributions_gallery: "Una galería de contribuciones debe incluir al menos una tarea"
-    invalid_resources_gallery: "Esta galería de recursos incluye entidades inválidas"
   vish:
     about: "Acerca de ViSH"
     starterguide: "Guía del principiante"
@@ -955,29 +954,26 @@ es:
         cancel_&_go: "Cancelar e ir a workshop"
         collapse_all: "Reducir todo"
         confirm_delete: "¿Borrar workshop?"
-        delete: "Borrar"
+        delete: "Borrar workshop"
         edit_activity_button: "Guardar"
         edit_mode_btOn: "Activar modo edición"
         edit_mode_btOff: "Desactivar modo edición"
         expand_all: "Expandir todo"
         publish: "Publicar"
-        show_contributions: "Contribuciones"
-        unpublish: "Retirar publicación"
+        unpublish: "Ocultar publicación"
     activities:
         actions:
-            add_new_activity: "Añadir actividad"
+            add_new_activity: "Añadir nueva actividad"
             confirm_delete: "¿Borrar actividad?"
         assignment:
-            add_document: "Subir"
-            add_resource: "Añadir recurso"
-            add_resource_message: "Aqui puedes enviar a la tarea cualquiera de tus recursos del ViSH. Para ello, escribe la URL de tu recurso y pulsa sobre el botón."
+            add_image: "Dibujo"
+            add_writing: "Texto"
             available_contributions:
-                title: "Contribuciones disponibles"
                 document: "Documento"
-                resource: "Recurso"
-                writing: "Texto"
+                title: "Contribuciones disponibles"
+                writing: "Texto editable"
             content: "Contenido"
-            contribution_message: "Subir:"
+            contribution_message: "Participa:"
             description: "Las tareas permiten a los participantes contribuir al taller subiendo sus propios recursos."
             due_date: "Fecha fin"
             modal_title: "Editar tarea"
@@ -985,34 +981,41 @@ es:
             title: "Tarea"
             with_dates: "Especifica fecha de comienzo y fin"
         resource:
+            modal_title: "Editar Recurso"
             title: "Recurso"
             description: "Inserta cualquier tipo de recurso en el workshop"
-            text: "Podrás añadir a este workshop todos los recursos que haya disponibles en ViSH. Para añadirlos, abre el recurso en ViSH, copia su URL de la barra del navegador y pégala en el siguiente cuadro de texto."
+            text: "Podrás añadir a este workshop todos los recursos que haya disponibles en Vish. Para añadirlos, abre el recurso en Vish, copia su URL de la barra del navegador y pégala en el siguiente cuadro de texto."
         resource_gallery:
-            title: "Galería de recursos"
+            add: "Añadir"
+            title: "Galería recursos"
             description: "Añade una galería de recursos"
-            text: "Las galerías de recursos son un componente del workshop que te permite incluir múltiples recursos del ViSH de cualquier tipo y de forma agrupada para facilitarte su visionado."
+            text: "Las galerías de recursos son un componente del workshop que te permiten incluir varios recursos de Vish de cualquier tipo y tenerlos agrupados para facilitarte su visionado. Inserta este componente en tu workshop y añade recursos de la forma más fácil e intuitiva."
+            new_resource: "Añadir"
         contributions_gallery:
-            title: "Galería de contribuciones"
+            title: "Galería contribuciones"
             description: "La galería de contribuciones muestra las contribuciones enviadas al workshop"
-            text: "La galería de contribuciones muestra los recursos enviados por los usuarios a través de las diferentes tareas definidas en el workshop. Añadiendo este componente los usuarios podrán ver de forma agrupada las contribuciones del resto de usuarios."
+            text: "Los usuarios pueden contribuir a las tareas definidas en un workshop añadiendo recursos o bloques de texto. Con el componente Galería de contribuciones podrás ver de forma agrupada los recursos y/o los textos con los que otros usuarios han contribuido."
+            error: "A contributions gallery should include at least 1 assignment"
         text:
             title: "Texto"
             description: "Incluye un párrafo de texto"
-            text: "Esta actividad te permite insertar un bloque de texto completamente personalizable en tu workshop."
+            text: "Además de la descripción del workshop y las tareas definidas en él, en ocasiones necesitarás la posibilidad de insertar un bloque de texto con otra finalidad, como podría ser una bibliografía u otros datos de interés para el workshop. Con este componente puedes añadir un texto completamente personalizado y editable a tu workshop."
+
     confirm_delete: "¿Borrar workshop?"
     new: "Nuevo Workshop"
+
+
     other: "Workshops"
-    title: "Workshop"
     titles:
-      editing_details: "Editando detalles workshop"
-      editing_main: "Editando workshop"
-      show_main: "Workshop"
+        editing_details: "Editando detalles workshop"
+        editing_main: "Editando workshop"
+        show_main: "Workshop"
   writing:
     actions:
       add: "Añadir texto"
       delete: "Borrar"
     confirm_delete: "¿Borrar texto?"
+    new: "Nuevo Texto"
     title3: "Escribe el texto a subir"
   yesterday: "Ayer"
   zipfile:

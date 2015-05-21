@@ -30,8 +30,9 @@ nl:
   cancel: "Annuleren"
   close: "Sluiten"
   conditions:
-    check_message: "Door op Accepteren te klikken stemt u in met onze "
-    check_message_1: "Algemene Voorwaarden."
+    check_message: "IK ga akkoord met de "
+    check_message_1: "Algemene Voorwaarden"
+    check_message_2: " van ViSH."
     other: "voorwaarden"
   contact:
     pending:
@@ -388,6 +389,7 @@ nl:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
+    ViSHCompetition13: "#ViSHCompetition2013"
   copy_to_clip: "Naar klembord kopiëren"
   devise:
     tags: "tags"
@@ -566,6 +568,8 @@ nl:
             add_new_activity: "Nieuwe activiteit toevoegen"
             confirm_delete: "Activiteit verwijderen?"
         assignment:
+            add_image: "Upload"
+            add_writing: "Schrijven"
             available_contributions:
                 document: "Document"
                 title: "Beschikbare bijdragen"
@@ -581,11 +585,11 @@ nl:
         resource:
             title: "Resource"
             description: "Elk type resource invoegen de Workshop."
-            text: "U kunt toevoegen aan deze workshop alle bronnen die beschikbaar in ViSH zijn. Te voegen, open de resource in ViSH, de URL van de browser werkbalken te kopiëren en plakken in het volgende tekstvak."
+            text: "U kunt toevoegen aan deze workshop alle bronnen die beschikbaar in Vish zijn. Te voegen, open de resource in Vish, de URL van de browser werkbalken te kopiëren en plakken in het volgende tekstvak."
         resource_gallery:
             title: "Bronnengalerij"
             description: "Een galerij van bronnen toevoegen."
-            text: "Resource galerijen zijn een onderdeel van de workshop die u toestaan om verschillende resources van een willekeurig type ViSH zijn opgenomen en hebben ze gegroepeerd om bekijken. Voegen dit onderdeel in uw werkplaats en toegevoegde middelen op de meest eenvoudige en intuïtieve manier."
+            text: "Resource galerijen zijn een onderdeel van de workshop die u toestaan om verschillende resources van een willekeurig type Vish zijn opgenomen en hebben ze gegroepeerd om bekijken. Voegen dit onderdeel in uw werkplaats en toegevoegde middelen op de meest eenvoudige en intuïtieve manier."
         contributions_gallery:
             title: "Bijdragen galerij"
             description: "De galerie van de bijdragen worden weergegeven de bijdragen die de workshop."
@@ -596,7 +600,7 @@ nl:
             text: "Naast de beschrijving van de workshop en de daarin omschreven taken, moet u soms de mogelijkheid om in te voegen een blok van tekst met andere doeleinden, zoals een bibliografie of andere gegevens van belang zijn voor de workshop. Met deze component kunt u een volledig gepersonaliseerde en bewerkbare tekst toevoegen aan uw workshop."
     add_activity_modal:
       resource:
-        description: "U kunt toevoegen aan deze workshop alle bronnen die beschikbaar in ViSH zijn. Wilt toevoegen, opent u de resource in ViSH, de URL uit de browserwerkbalk kopiëren en plakken in het volgende tekstvak."
+        description: "U kunt toevoegen aan deze workshop alle bronnen die beschikbaar in Vish zijn. Wilt toevoegen, opent u de resource in Vish, de URL uit de browserwerkbalk kopiëren en plakken in het volgende tekstvak."
 
     new: "Nieuwe Workshop"
     other: "Workshops"
@@ -608,6 +612,7 @@ nl:
     actions:
       add: "Tekst toevoegen"
     confirm_delete: "Verwijder schrijven?"
+    new: "Nieuwe Tekst"
     title3: "Schrijf de tekst die u wilt toevoegen"
   yesterday: "Gisteren"
   zipfile:

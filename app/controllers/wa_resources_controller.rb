@@ -20,7 +20,7 @@ class WaResourcesController < ApplicationController
           discard_flash
         end
         
-        redirect_to edit_workshop_path(resource.workshop, {:activity => resource.workshop_activity.id})
+        redirect_to edit_workshop_path(resource.workshop)
       }
     end
   end
@@ -41,7 +41,7 @@ class WaResourcesController < ApplicationController
         else
           discard_flash
         end
-        redirect_to edit_workshop_path(resource.workshop, {:activity => resource.workshop_activity.id})
+        redirect_to edit_workshop_path(resource.workshop)
       }
     end
   end
@@ -63,8 +63,6 @@ class WaResourcesController < ApplicationController
 
   def fill_create_params
     params["wa_resource"] ||= {}
-    params["wa_resource"]["activity_object_id"] = -1
-    
     unless params["url"].blank?
       the_resource = ActivityObject.getObjectFromUrl(params["url"])
       unless the_resource.nil? or the_resource.activity_object.nil?

@@ -21,22 +21,6 @@
           <%end%>
         </div>
       </div>
-
     </div>
   <%end%>
-
-  <!--Views and Likes-->
-  <div class="viewsandconunt">        
-    <div class="views">
-      <%=resource.visit_count.to_s%>
-      <span><%=t('follow.views')%></span>   
-    </div>
-    <%unless resource.post_activity.nil?%>
-      <div class="like">    
-        <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
-        <%= link_like(resource.post_activity)%>
-      </div>
-    <%end%>
-  </div>
-
 </div>

@@ -1,5 +1,5 @@
 de:
-  about: 
+  about:
     contact: "Kontakt"
   activerecord:
     attributes:
@@ -85,6 +85,7 @@ de:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
+    ViSHCompetition13: "#ViSHCompetition2013"
   devise:
     invalid_login: "Gib bitte deine Email und Passwort ein, um fortzufahren."
   disjunction:
@@ -643,6 +644,8 @@ de:
             add_new_activity: "Neue Aktivität hinzufügen"
             confirm_delete: "Löschen Aktivität?"
         assignment:
+            add_image: "Upload"
+            add_writing: "Schreiben"
             available_contributions:
                 document: "Dokument"
                 title: "Verfügbare Beiträge"
@@ -684,6 +687,7 @@ de:
     actions:
       add: "Hinzufügen von text"
     confirm_delete: "Löschen Sie schreiben?"
+    new: "Neue text"
     title3: "Schreiben Sie den Text, die Sie hinzufügen möchten"
   yesterday: "Gestern"
   zipfile:

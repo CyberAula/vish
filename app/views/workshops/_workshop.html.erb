@@ -1,36 +1,42 @@
-<% return if workshop.nil? or workshop.author.nil? %>
+<% if workshop.nil? or workshop.author.nil? %>
+  <% return %>
+<% end %>
+<li class="box-item workshop">
+  <!-- corner -->
 
-<li class="box-item workshop-item">
-  
+  <%#= link_to(workshop) do %>
+
   <div class="corner-item">
     <div class="corner-item2">
       <div class="corner-color"></div>
-      <%= link_to raw(icon(workshop)) %>
+      <i class='fa fa-lightbulb-o'></i>
+      <!-- master code
+      <%#= link_to raw(icon(workshop)) %>-->
     </div>
     <div class="corner-background"></div>
   </div>
-
+  <!-- image/icon -->
   <div class="container-img">
-    <div class="img-box resource-center">        
+    <div class="img-box">
       <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
     </div>
-  </div> 
+  </div>
 
   <!-- INFO -->
-  <div class="info">
+  <div class="caption">
     <!-- Title -->
-    <div class="name">
+    <h6>
       <%= link_to workshop.title, workshop %>
-    </div>
+    </h6>
     <!-- Author -->
-    <span class="author"> 
+    <div class="author">
       <span class="by"><%=t('by')%></span>
       <%= link_to truncate_name(workshop.author.name, length: 25), workshop.author.subject %>
-    </span>
+    </div>
+    <hr>
     <div class="info-bottom">
-      <hr class="soften">
       <!--like -->
-      <div class="like">    
+      <div class="like">
         <div class="count"><%=workshop.post_activity.likes.count.to_s%></div>
         <%= link_like(workshop.post_activity)%>
       </div>
@@ -38,11 +44,11 @@
       <div class="views">
         <%if workshop.private_scope? %>
           <div class="private-workshop-mark">
-            <i class="icon-lock"></i>
+            <i class="fa fa-lock"></i>
           </div>
         <%else%>
           <%=workshop.visit_count.to_s%>
-          <i class="icon-eye-open"></i>
+          <i class="fa fa-eye"></i>
         <%end%>
       </div>
     </div>

@@ -8,7 +8,7 @@ class WaContributionsGallery < ActiveRecord::Base
   validate :has_wa_assignments
   def has_wa_assignments
     if self.wa_assignments.blank?
-      errors[:base] << I18n.t("validation.invalid_contributions_gallery")
+      errors.add(:contributions_gallery, I18n.t('workshop.activities.contributions_gallery.error'))
     else
       true
     end

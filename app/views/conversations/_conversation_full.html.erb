@@ -2,7 +2,7 @@
 
 <div class="action">
     <% unless @box.eql?'trash' %>
-      <%= link_to(raw("<i class='icon-trash'></i>"),
+      <%= link_to(raw("<i class='fa fa-trash-o'></i>"),
       conversation_path(conversation, :location => 'conversation', :box => @box),
       :confirm => t('mailboxer.delete_confirm', :csubject => conversation.subject),
       :method => :delete, :remote => true) %>
@@ -11,13 +11,14 @@
 
 
 <div class="participants">
-  <h4><%= t("message.participants") %>:</h4>
-    <% conversation.recipients.each do |recp| %>
-      <%= link_to image_tag(recp.logo.url(:small), :title=>recp.name, :alt => recp.name), recp.subject %>
-    <% end %>
-</div>
 
-<hr class="soften">
+<h6>
+  <%= t("message.participants") %>:
+</h6>
+  <% conversation.recipients.each do |recp| %>
+    <%= link_to image_tag(recp.logo.url(:small), :title=>recp.name, :alt => recp.name), recp.subject %>
+  <% end %>
+</div>
 
 <div class="messages">
   <% @receipts.each do |receipt| %>
@@ -25,33 +26,36 @@
   <% end %>
 
   <% unless @box.eql?'trash' %>
-    <br>
-    <%= form_tag conversation_path(conversation), :method => :put, :class => "cont_conversation" do %>
-      <% if @receipt and @receipt.errors.any? %>
-        <div class="error">
-          <h2>
-            <%= pluralize(@receipt.errors.count, "error") %> prohibited this message from being sent:
-          </h2>
-          <ul>
-            <% @receipt.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
 
-      <div class="editor">
-        <%= text_area_tag :body, nil,:rows =>6, :cols=> 53, :class => "required form_tag" %>
-      </div>
+  <%= form_tag conversation_path(conversation), :method => :put, :class => "cont_conversation" do %>
+  <% if @receipt and @receipt.errors.any? %>
+    <div class="error">
+      <h2>
+        <%= pluralize(@receipt.errors.count, "error") %> prohibited this message from being sent:
+      </h2>
+      <ul>
+        <% @receipt.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-      <div class="actions">
-        <%= submit_tag t('mailboxer.reply'), :name => :reply_all,:class => "" %>
-      </div>
-    <% end %>
+
+  <div class="editor">
+    <%= text_area_tag :body, nil,:rows =>3, :cols=> 53, :class => "required form-control" %>
+  
+    <div class="actions">
+      <%= submit_tag t('mailboxer.reply'), :name => :reply_all,:class => "btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
   <%end %>
 </div>
 
-<%= javascript_tag do %>
+<%= content_for :javascript do %>
   document.addEventListener("DOMContentLoaded", function(){
     $(".message .body img").each(function(){
       var link = '<a href=\"' + $(this).attr('src') + '\" class=\"img_link\"><img src=\"' + $(this).attr('src') + '\"></a>';

@@ -25,24 +25,21 @@
   <% if protect_against_forgery? %>
   <%= csrf_meta_tag %>
   <% end %>
-
   
   <%= yield :headers %>
-  
 
 </head>
 <body>
   <div id="wrap">
-    <%= render :partial => "layouts/header" %>
+
+    <%= render :partial => "layouts/header/header" %>
     <%#= render partial: 'search/toolbar-search' %>
-    <div class="wrapper">      
+    <div class="container-fluid container-content">      
       <%= flashy %>
       <%= yield %>
-    </div>  
-    <div class="push">  </div>   
+    </div>    
   </div>
   <%= render :partial => "layouts/footer" %>
-
 </body>
 
 <%= javascript_include_tag "application" %>
@@ -68,6 +65,6 @@
       <%= yield :javascript%>
     });
   </script>
-  <%= render :partial => 'layouts/google_analytics' %>
-  <%= render :partial => 'layouts/uservoice' %>
+  <%= render :partial => 'layouts/tools/google_analytics' %>
+  <%= render :partial => 'layouts/tools/uservoice' %>
 </html>

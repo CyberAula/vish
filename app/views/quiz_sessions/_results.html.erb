@@ -2,136 +2,150 @@
 <%=javascript_include_tag "VISH.QuizCharts" %>
 
 <% answersLength = JSON(@answers).length %>
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h4>Quiz Details</h4>
+</div>
 
-<article class="quiz_sessions">
-	<p>
-		<%=t('quiz.createdAt')%> <%=@quiz_session.created_at%>
-		<%if @processedQS["presentationName"] %>
-			(<%=t('quiz.launchIn')%> "<%= @processedQS["presentationName"]%>") 
+<div class="modal-body">
+
+	<article class="quiz_sessions">
+		<p>
+			<%=t('quiz.createdAt')%> <%=@quiz_session.created_at%>
+			<%if @processedQS["presentationName"] %>
+				(<%=t('quiz.launchIn')%>"<%= @processedQS["presentationName"]%>")
+			<% end %>
+			<% if !@quiz_session.active %>
+				<%=t('quiz.closedAtS')%> <%=@quiz_session.closed_at%>
+			<% end %>
+			.
+		</p>
+
+		<% if @quiz_session.active %>
+			<%quizURL=@quiz_session.answer_url%>
+			<p class="quizAnswerURLTitle"><%=t('quiz.answer_url')%>: <a href='<%=quizURL%>' target="_blank"> <%=quizURL%> </a></p>
 		<% end %>
-		<% if !@quiz_session.active %>
-			<%=t('quiz.closedAtS')%> <%=@quiz_session.closed_at%>
-		<% end %>
-		.
-	</p>
 
-	<% if @quiz_session.active %>
-		<%quizURL=@quiz_session.answer_url%>
-		<p class="quizAnswerURLTitle"><%=t('quiz.answer_url')%>: <a href='<%=quizURL%>' target="_blank"> <%=quizURL%> </a></p>
-	<% end %>
+		<br/>
 
-	<br/>
+		<% if @processedQS["question"] %>
+			<p class="quizQuestionTitle"><%=@processedQS["question"]%></p>
 
-	<% if @processedQS["question"] %>
-		<p class="quizQuestionTitle"><%=@processedQS["question"]%></p>
-
-		<% case @processedQS["quizType"] %>
-		<% when "multiplechoice" %>
-			<% if @processedQS["choices"] %>
+			<% case @processedQS["quizType"] %>
+			<% when "multiplechoice" %>
+				<% if @processedQS["choices"] %>
+					<table class="quizResultsTable" border="0">
+					<% @processedQS["choices"].each_with_index do |choice,index|%>
+						<% if choice["value"] %>
+							<tr>
+							<td><%=(index+97).chr%>)</td>
+							<td><%=choice["value"]%></td>
+							<% if @processedQS["processedResults"] %>
+								<td class="tdaRight"><%=@processedQS["processedResults"][index]["n"]%></td>
+								<% if !(@processedQS["extras"] && @processedQS["extras"]["multipleAnswer"]==true) %>
+									<td class="tdaRight"><%=@processedQS["processedResults"][index]["percentage"]%> %</td>
+								<% end %>
+							<% end %>
+							</tr>
+						<% end %>
+					<% end %>
+					<% if @processedQS["totalAnswers"] && !(@processedQS["extras"] && @processedQS["extras"]["multipleAnswer"]==true) %>
+					<tr class="trLast">
+						<td colspan="2"><%=t('quiz.total')%></td>
+						<td><%=@processedQS["totalAnswers"]%></td>
+					</tr>
+					<% end %>
+					</table>
+				<% end %>
+			<% when  "truefalse" %>
 				<table class="quizResultsTable" border="0">
+				<% if @processedQS["processedResults"] %>
+					<tr>
+						<td></td><td></td><td colspan="2"></i><%=t('quiz.trueC')%></td><td colspan="2"><%=t('quiz.falseC')%></td>
+					</tr>
+				<% end %>
 				<% @processedQS["choices"].each_with_index do |choice,index|%>
 					<% if choice["value"] %>
 						<tr>
 						<td><%=(index+97).chr%>)</td>
 						<td><%=choice["value"]%></td>
 						<% if @processedQS["processedResults"] %>
-							<td class="tdaRight"><%=@processedQS["processedResults"][index]["n"]%></td>
-							<% if !(@processedQS["extras"] && @processedQS["extras"]["multipleAnswer"]==true) %>
-								<td class="tdaRight"><%=@processedQS["processedResults"][index]["percentage"]%> %</td>
-							<% end %>
+							<td class="tdaRight tdbeforeTFPercentage"><%=@processedQS["processedResults"][index]["T"]%></td>
+							<td class="tdTFPercentage">(<%=@processedQS["processedResults"][index]["Tpercentage"]%>%)</td>
+							<td class="tdaRight tdbeforeTFPercentage"><%=@processedQS["processedResults"][index]["F"]%></td>
+							<td class="tdTFPercentage">(<%=@processedQS["processedResults"][index]["Fpercentage"]%>%)</td>
 						<% end %>
 						</tr>
 					<% end %>
 				<% end %>
-				<% if @processedQS["totalAnswers"] && !(@processedQS["extras"] && @processedQS["extras"]["multipleAnswer"]==true) %>
-				<tr class="trLast">
-					<td colspan="2"><%=t('quiz.total')%></td>
-					<td><%=@processedQS["totalAnswers"]%></td>
-				</tr>
-				<% end %>
 				</table>
-			<% end %>
-		<% when  "truefalse" %>
-			<table class="quizResultsTable" border="0">
-			<% if @processedQS["processedResults"] %>
-				<tr>
-					<td></td><td></td><td colspan="2"></i><%=t('quiz.trueC')%></td><td colspan="2"><%=t('quiz.falseC')%></td>
-				</tr>
-			<% end %>
-			<% @processedQS["choices"].each_with_index do |choice,index|%>
-				<% if choice["value"] %>
-					<tr>
-					<td><%=(index+97).chr%>)</td>
-					<td><%=choice["value"]%></td>
-					<% if @processedQS["processedResults"] %>
-						<td class="tdaRight tdbeforeTFPercentage"><%=@processedQS["processedResults"][index]["T"]%></td>
-						<td class="tdTFPercentage">(<%=@processedQS["processedResults"][index]["Tpercentage"]%>%)</td>
-						<td class="tdaRight tdbeforeTFPercentage"><%=@processedQS["processedResults"][index]["F"]%></td>
-						<td class="tdTFPercentage">(<%=@processedQS["processedResults"][index]["Fpercentage"]%>%)</td>
+			<% when "sorting" %>
+				<% if @processedQS["choices"] %>
+					<% @processedQS["choices"].each_with_index do |choice,index|%>
+						<p class="quizQuestionChoice"><%=choice["value"]%></p>
 					<% end %>
-					</tr>
-				<% end %>
-			<% end %>
-			</table>
-		<% when "sorting" %>
-			<% if @processedQS["choices"] %>
-				<% @processedQS["choices"].each_with_index do |choice,index|%>
-					<p class="quizQuestionChoice"><%=choice["value"]%></p>
-				<% end %>
-				<br/>
+					<br/>
 
-				<table class="quizResultsTable" border="0">
-				<tr>
-					<td><%=t('quiz.correctResponses')%></td>
-					<td>
-						<% if @processedQS["processedResults"] and @processedQS["processedResults"][0] %>
-							<%=@processedQS["processedResults"][0]%>
-						<% end %>
-					<td>
-					<td>
-						<% if @processedQS["processedResults"] and @processedQS["processedResults"][2] %>
-							<%=@processedQS["processedResults"][2]%>%
-						<% end %>
-					<td>
-				</tr>
-				<tr>
-					<td><%=t('quiz.incorrectResponses')%></td>
-					<td>
-						<% if @processedQS["processedResults"] and @processedQS["processedResults"][1] %>
-							<%=@processedQS["processedResults"][1]%>
-						<% end %>
-					<td>
-					<td>
-						<% if @processedQS["processedResults"] and @processedQS["processedResults"][3] %>
-							<%=@processedQS["processedResults"][3]%>%
-						<% end %>
-					<td>
-				</tr>
-				<% if @processedQS["totalAnswers"] %>
-					<tr class="trLast">
-						<td><%=t('quiz.total')%></td>
-						<td><%=@processedQS["totalAnswers"]%></td>
+					<table class="quizResultsTable" border="0">
+					<tr>
+						<td><%=t('quiz.correctResponses')%></td>
+						<td>
+							<% if @processedQS["processedResults"] and @processedQS["processedResults"][0] %>
+								<%=@processedQS["processedResults"][0]%>
+							<% end %>
+						<td>
+						<td>
+							<% if @processedQS["processedResults"] and @processedQS["processedResults"][2] %>
+								<%=@processedQS["processedResults"][2]%>%
+							<% end %>
+						<td>
 					</tr>
+					<tr>
+						<td><%=t('quiz.incorrectResponses')%></td>
+						<td>
+							<% if @processedQS["processedResults"] and @processedQS["processedResults"][1] %>
+								<%=@processedQS["processedResults"][1]%>
+							<% end %>
+						<td>
+						<td>
+							<% if @processedQS["processedResults"] and @processedQS["processedResults"][3] %>
+								<%=@processedQS["processedResults"][3]%>%
+							<% end %>
+						<td>
+					</tr>
+					<% if @processedQS["totalAnswers"] %>
+						<tr class="trLast">
+							<td><%=t('quiz.total')%></td>
+							<td><%=@processedQS["totalAnswers"]%></td>
+						</tr>
+					<% end %>
+					</table>
 				<% end %>
-				</table>
+			<% when "openAnswer" %>
+			<% else %>
 			<% end %>
-		<% when "openAnswer" %>
+
+			<% if answersLength == 0%>
+				<p class="quizWithoutAnswers"><%=t('quiz.noAnswers')%></p>
+			<% else %>
+				<canvas id="quiz_chart" width="700" height="400"></canvas>
+			<% end %>
+
 		<% else %>
+			<!-- No processable quiz -->
+			<p class="quizWithoutAnswers"><%=t('quiz.error')%></p>
 		<% end %>
 
-		<% if answersLength == 0%>
-			<p class="quizWithoutAnswers"><%=t('quiz.noAnswers')%></p>
-		<% else %>
-			<canvas id="quiz_chart" width="700" height="400"></canvas>
-			<%= link_to t('downloadxlsx'), "/quiz_sessions/#{@quiz_session.id}/results.xlsx", :class => "quizDownloadAsXLSX" %>
-		<% end %>
+	</article>
 
-	<% else %>
-		<!-- No processable quiz -->
-		<p class="quizWithoutAnswers"><%=t('quiz.error')%></p>
+</div>
+<div class="modal-footer">
+	<% if @processedQS["question"] %>
+		<% if answersLength != 0%>
+			<%= link_to t('downloadxlsx'), "/quiz_sessions/#{@quiz_session.id}/results.xlsx", :class => "quizDownloadAsXLSX btn btn-primary" %>
+		<% end %>
 	<% end %>
-
-</article>
+</div>
 
 <script type="text/javascript">
  	<% if @quiz_session.name && !@quiz_session.name.empty? %>
@@ -139,7 +153,7 @@
  	<% else %>
  		var qName = '<%=t("quiz.untitled")%>';
  	<% end %>
- 	
+
  	$('#QuizAnalitycs').find(".modal-header").find("p").html(qName);
 
  	<% if answersLength > 0 %>
@@ -149,9 +163,8 @@
 		var quizJSON = <%= raw @quiz_session.quizJSON %>;
 	 	var answersList = <%= raw @answers %>;
 	 	var options = {
-	 		"animation": true,
-	 	}
+	 		"animation": true
+	 	};
 	 	VISH.QuizCharts.drawQuizChart(canvas,quizJSON,answersList,options);
  	<% end %>
-
 </script>

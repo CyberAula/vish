@@ -1,67 +1,73 @@
+<% 
+  all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).select{|i| i.isRoot?}
+  order = profile_or_current_subject.categories_order
+  unless order.nil?
+    orderLength = order.length
+    all_categories.sort_by!{|h| order.index(h.activity_object.id) || (orderLength+1)}
+  end
+  categoryView = profile_or_current_subject.categories_view
+
+  canEditProfile = profile_subject_is_current? or isAdmin?
+%>
+
 <div id="categories_tab_ready" class="categories cat_container_generic">
-
-  <% 
-    all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).select{|i| i.isRoot?}
-    order = profile_or_current_subject.categories_order
-    unless order.nil?
-      orderLength = order.length
-      all_categories.sort_by!{|h| order.index(h.activity_object.id) || (orderLength+1)}
-    end
-    categoryView = profile_or_current_subject.categories_view
-
-    canEditProfile = profile_subject_is_current? or isAdmin?
-  %>
-
-  <br>
 
   <div class="toolbar_nav-tab">
     <% if canEditProfile %>
-      <a href="#options-modal" type="button" class="btn btn-primary " role="button" data-toggle="modal" >
-        <i class="icon-cogs"></i><%=t('categories.dragandrop.edit')%>
+      <a href="#options-modal" type="button" class="btn btn-default" role="button" data-toggle="modal" >
+        <i class="fa fa-cogs"></i>
       </a>
 
-      <button type="button" class="btn btn-primary btn-for-categorize" data-toggle="button"><i class="icon-move"></i><%=t('categories.dragandrop.place_uncategorize')%></button>
+      <button type="button" class="btn btn-default btn-for-categorize" data-toggle="button"><i class="fa fa-arrows"></i><%= t('categories.dragandrop.place_uncategorize') %></button>
     <% end %>
 
     <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
-      <button id="normal-view" type="button" class="btn btn-primary">
-        <%=t('categories.dragandrop.gallery')%>
+      <button id="normal-view" type="button" class="btn btn-default">
+        <%= t('categories.dragandrop.gallery') %>
       </button>
-      <button id="list-view" type="button" class="btn btn-primary">
-        <%=t('categories.dragandrop.list')%>
+      <button id="list-view" type="button" class="btn btn-default">
+        <%= t('categories.dragandrop.list') %>
       </button>
     </div>
   </div>
 
   <!-- Modal -->
-  <div id="options-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="options-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
     <%= form_tag(categories_settings_path) do %>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel"><%=t('categories.dragandrop.edit')%></h3>
+        <h3 id="myModalLabel"><%= t('categories.dragandrop.edit') %></h3>
       </div>
       <div class="modal-body">
-        <p><%=t('categories.dragandrop.default_view')%></p>
+        <p><%= t('categories.dragandrop.default_view') %></p>
+
         <div class="radio">
           <label>
             <%= radio_button_tag :categories_view, "gallery", (categoryView=="gallery") %>
-            <i class="icon-th "></i>
-            <%=t('categories.dragandrop.gallery')%>
+            <span class="lbl padding-0">
+            <i class="fa fa-th "></i>
+            <%= t('categories.dragandrop.gallery') %>
+             </span>
           </label>
         </div>
         <div class="radio">
           <label>
             <%= radio_button_tag :categories_view, "list", (categoryView=="list") %>
-            <i class="icon-align-justify "></i>
-            <%=t('categories.dragandrop.list')%>
+            <span class="lbl padding-0">
+            <i class="fa fa-align-justify "></i>
+            <%= t('categories.dragandrop.list') %>
+            </span>
           </label>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true"><%=t('close')%></button>
+        <button class="btn  btn-default" data-dismiss="modal" aria-hidden="true"><%= t('close') %></button>
         <%= submit_tag t('save'), :class => 'btn btn-primary' %>
       </div>
     <% end %>
+    </div></div>
   </div>
 
   <% if profile_subject_is_current? or isAdmin? %>
@@ -69,7 +75,7 @@
   <% end %>
 
   <div id="normal-instance">
-    <ul class="categories main-categories-space">
+    <ul class="categories main-categories-space items">
       <% if profile_subject_is_current? %>
         <%= render partial: 'categories/category-add' %>
         <%= render partial: 'categories/category_fav' %>
@@ -78,17 +84,19 @@
     </ul>
   </div>
 
-  <div id="list-instance" style="display:none" >
-  <%all_categories.each do |category|%>
-  <%if !category.property_objects.empty? %>
+  <div id="list-instance" class="items" style="display:none" >
+  <% all_categories.each do |category| %>
+  <% if !category.property_objects.empty? %>
     <h2 ><%= category.title %></h2>
     <ul id="container_<%=category.id.to_s%>" class="categories main-list-categories-space">
-          <%category.property_objects.each do |resource| %>           
+          <% category.property_objects.each do |resource| %>           
 
-            <%=render :partial => "entities/entity", :locals => { :entity => resource.object, :prefix_id => category.id.to_s + "_" } %>
+            <%= render :partial => "entities/entity", :locals => { :entity => resource.object, :prefix_id => category.id.to_s + "_" } %>
           <%end%>
     </ul>
-    <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue" name="<%=category.title%>"><%=t('view_all')%></button>
+
+    <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue btn btn-default" name="<%=category.title%>"><%= t('view_all') %></button>
+    <hr class="divider-cat">
       <%end%>
     <%end%>
   </div>

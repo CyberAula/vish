@@ -1,12 +1,13 @@
-<li class="helpheader helpbutton help-fix-position-popover">   
-<i class="icon-question-sign helphome helppopover" id="helphomeid" data-placement='left' aria-hidden="true" data-original-title="help" href='#' value="" ></i>
-<div class="contenthome" id="contenthomeid" style="display: none">
-  <div>
-    <%= t('document.help.home1_html', :profile=> url_for(current_subject))%>
+<span class="helpheader">   
+  <i class="fa fa-question-sign helphome" id="helphomeid" data-placement='left' aria-hidden="true" data-original-title="help" href='#' value="" ></i>
+
+  <div class="contenthome" id="contenthomeid" style="display: none">
+    <div class="popover-body">
+      <p> <%= t('document.help.home1_html', :profile=> url_for(current_subject))%> </p>
+    </div>
+    <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
-  <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
-</div>
-</li>
+</span>
 <%content_for :javascript do%>
   $('#helphomeid').popover({ 
     html : true,

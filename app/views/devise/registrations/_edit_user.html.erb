@@ -1,67 +1,50 @@
-<%=  devise_error_messages!  rescue ""%>
-
-<div id="password_form" class="accordion-group">
-  <header class="accordion-heading">
+<div id="password_form" class="panel panel-default">
+  
+  <header class="panel-heading">
+    <%=  devise_error_messages!  rescue ""%>
     <h5>
       <%= link_to t("settings.password_change.briefing"),  "javascript:void(0);", class: 'accordion-toggle', "data-toggle" => 'collapse', "data-parent" => "#settings-accordion", "data-target" => "#password_form_content" %>
     </h5>
   </header>
 
-  <div class="content settings_content collapse" id="password_form_content">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <div class="panel-body collapse" id="password_form_content">
+    <%= form_for(resource, :class => "form-group", :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
 
-      <div class="form_label">
-        <%= f.label t('account.password.new') %>
-      </div>
-      <div class="form_field">
-        <%= f.password_field :password, :class => "form_tag" %>
-      </div>
+      <%= f.label t('account.password.new') %>
+      <%= f.password_field :password, :class => "form-control" %>
 
-      <div class="form_label">
-        <%= f.label t('account.password.retype') %>
-      </div>
-      <div class="form_field">
-        <%= f.password_field :password_confirmation, :class => "form_tag" %>
-      </div>
+      <%= f.label t('account.password.retype') %>
+      <%= f.password_field :password_confirmation, :class => "form-control" %>
 
-      <div class="form_label">
-        <%= f.label t('account.password.current') %>
-      </div>
-      <div class="form_field">
-        <%= f.password_field :current_password, :class => "form_tag" %>
-      </div>
+      <%= f.label t('account.password.current') %>
+      <%= f.password_field :current_password, :class => "form-control" %>
+
 
       <%= f.submit t('button.update'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
+
     <% end%>
   </div>
 </div>
 
-<div id="email_form" class="accordion-group">
-  <header class="accordion-heading">
+
+<div id="email_form" class="panel panel-default">
+  <header class="panel-heading">
     <h5>
       <%= link_to t("settings.email_change.briefing"),  "javascript:void(0);", class: 'accordion-toggle', "data-toggle" => "collapse", "data-parent" => "#settings-accordion", 'data-target' => '#email_form_content' %>
     </h5>
   </header>
 
-  <div class="content settings_content collapse" id="email_form_content">
 
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :id=>"edit_email_form"} ) do |f| %>
-      <div class="form_label">
-        <%= f.label :email %>
-      </div>
+  <div class="panel-body content settings_content collapse" id="email_form_content">
 
-      <div class="form_field">
-        <%= f.email_field :email, :class => "required form_tag" %>
-      </div>
-
-      <div class="form_label">
-        <%= f.label :current_password %>
-      </div>
-
-      <div class="form_field">
-        <%= f.password_field :current_password, :class => "required form_tag", :id=>"user_current_password2" %>
-      </div>
-
+    <%= form_for(resource, :class => "form-group", :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+   
+      <%= f.label :email %>
+      <%= f.email_field :email, :class => "required form-control" %>
+    
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password, :class => "required form-control", :id=>"user_current_password2" %>
+  
       <%= f.submit t('button.update'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
     <% end%>
   </div>

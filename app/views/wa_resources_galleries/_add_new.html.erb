@@ -2,12 +2,12 @@
   <div class="add_border">
     <div class="container-img">
 
-        <div class="img-box"><i class="icon-plus"></i></div>
+        <div class="img-box"><i class="fa fa-plus"></i></div>
 
     </div>
-    <div class="info">
+    <div class="caption">
       <div class="name">
-        <%=t('resource.new')%>
+        <%=t('workshop.activities.resource_gallery.new_resource')%>
       </div>
       <div class="author"> 
         <span class="by"></span>  
@@ -19,14 +19,18 @@
   </div>
 </li>
 
-<div id="AddResourceToWaResourcesGalleryModal" class="modal hide fade" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3>Add</h3>
-  </div>
-  <div class="modal-body tabbable tabs-below">
-      <!-- This body is replaced every time the modal is called -->
-  </div>
-  <div class="modal-footer">
+<div id="AddResourceToWaResourcesGalleryModal" class="modal fade" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h3><%=t('workshop.activities.resource_gallery.add')%></h3>
+          </div>
+        <div class="modal-body tabs-below">
+          <!-- This body is replaced every time the modal is called -->
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
   </div>
 </div>

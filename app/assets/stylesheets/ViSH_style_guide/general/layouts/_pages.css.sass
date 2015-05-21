@@ -1,0 +1,93 @@
+.container-content
+  padding: 0 5%
+  padding-top: 5px
+  @media (max-width: $screen-xs-max)
+    padding: 0 15px
+.items
+  @include items
+
+a.btn.btn_delete_item
+  position: absolute
+  top: 0
+  right: 0
+  background: #F5F5F5
+  color: $text-color
+  @include border-top-left-radius(0)
+  @include border-top-right-radius(3px)
+  @include border-bottom-right-radius(0)
+  @include border-bottom-left-radius(3px)
+  &:hover
+    padding: 6px
+    color: $brand-danger
+  &:focus
+    padding: 6px !important
+  @media (max-width: $screen-xs-max)
+    bottom: 26px
+    padding: 1px 9px
+    font-size: 12px
+    top: auto
+    @include border-top-left-radius(3px)
+    @include border-top-right-radius(3px)
+    @include border-bottom-left-radius(0px)
+    &:hover
+      padding: 1px 9px
+
+
+.avatar
+  img
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+
+.viewsAndCount
+  @include creator
+
+.tab-content
+  label
+    margin-top: 10px
+
+.new-comments-box
+  form#new_comment
+    height: 77px !important
+    margin-top: 10px !important
+
+
+div.icontitle
+  border-bottom: 1px solid $border-color
+  margin-top: 40px
+  margin-bottom: 10px
+  padding-bottom: 4px
+  button
+    padding: 3px
+
+.input-group-addon
+  #btn_copy_share,
+  #btn_copy_embed
+    background-color: rgba(0, 0, 0, 0)
+    border: none
+
+.left-info
+  .add
+    form 
+      input
+        min-height: 19px !important
+      .following-button
+        padding: 1px 0
+
+#sign_in        
+  padding-bottom: 0px !important  
+  @include log 
+  a,
+  label
+    color: inherit    
+
+.registration,
+.forgot,
+#sign_in
+  h4
+    padding-bottom: 4px
+  form
+    border-top: 1px solid $gray-lighter-extra
+
+.cke_skin_BootstrapCK-Skin 
+  .cke_contents
+    height: auto !important

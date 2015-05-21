@@ -1,5 +1,5 @@
 fr:
-  about: 
+  about:
     contact: "Contacter"
   activerecord:
     attributes:
@@ -30,8 +30,9 @@ fr:
   cancel: "Annuler"
   close: "Fermer"
   conditions:
-    check_message: "En cliquant sur le bouton Accepter, vous vous engagez à respecter nos "
-    check_message_1: "conditions générales."
+    check_message: "J'accepte les "
+    check_message_1: "conditions générales"
+    check_message_2: " de ViSH."
     other: "conditions"
   contact:
     pending:
@@ -83,6 +84,8 @@ fr:
       download: "télécharger"
       edit: "éditer"
       show: "afficher"
+      show_more: "Déployer"
+      show_fewer: "Réduire"
       share: "partager"
       scorm: "scorm"
     clone:
@@ -384,6 +387,7 @@ fr:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
+    ViSHCompetition13: "#ViSHCompetition2013"
   copy_to_clip: "Copier dans le Presse-papiers"
   devise:
     tags: "mots-clés"
@@ -436,6 +440,7 @@ fr:
       start_time: Start time
       title: Title
       type: Type
+      poster: "Ajouter une couverture"
     main_title: "Créer un nouvel événement"
     title_input: "Nom de cet événement"
     type:
@@ -555,6 +560,8 @@ fr:
             add_new_activity: "Ajouter une nouvelle activité"
             confirm_delete: "Supprimer l'activité?"
         assignment:
+            add_image: "Télécharger"
+            add_writing: "Écriture"
             available_contributions:
                 document: "Document"
                 title: "Contributions disponibles"
@@ -570,11 +577,11 @@ fr:
         resource:
             title: "Ressource"
             description: "Insérer n'importe quel type de ressource dans le workshop."
-            text: "Vous pouvez ajouter à cet workshop toutes les ressources qui sont disponibles dans ViSH. Pour les ajouter, ouvrir la ressource à ViSH, copier son URL dans la barre d'outils du navigateur et coller dans la zone de texte suivante."
+            text: "Vous pouvez ajouter à cet workshop toutes les ressources qui sont disponibles dans Vish. Pour les ajouter, ouvrir la ressource à Vish, copier son URL dans la barre d'outils du navigateur et coller dans la zone de texte suivante."
         resource_gallery:
             title: "Galerie de ressources"
             description: "Ajouter une galerie de ressources."
-            text: "Galeries de ressource sont une composante de le workshop qui vous permettent d'inclure plusieurs ressources de n'importe quel type de ViSH et ont eux regroupés pour faciliter Regarde un. Insérer cet élément dans votre workshop et les ressources supplémentaires dans le moyen le plus simple et intuitif."
+            text: "Galeries de ressource sont une composante de le workshop qui vous permettent d'inclure plusieurs ressources de n'importe quel type de Vish et ont eux regroupés pour faciliter Regarde un. Insérer cet élément dans votre workshop et les ressources supplémentaires dans le moyen le plus simple et intuitif."
         contributions_gallery:
             title: "Galerie des contributions"
             description: "La Galerie de Contributions affiche les contributions envoyées à l'atelier."
@@ -585,7 +592,7 @@ fr:
             text: "Outre la description de le workshop et des missions définies à elle, vous devrez parfois la possibilité d'insérer un bloc de texte avec un autre but, comme une bibliographie ou d'autres données d'intérêt pour le workshop. Avec ce composant, vous pouvez ajouter un texte complètement personnalisé et modifiable à votre workshop."
     add_activity_modal:
       resource:
-        description: "Vous pouvez ajouter à cet workshop toutes les ressources qui sont disponibles dans ViSH. Pour les ajouter, ouvrir la ressource à ViSH, copier son URL dans la barre d'outils du navigateur et coller dans la zone de texte suivante."
+        description: "Vous pouvez ajouter à cet workshop toutes les ressources qui sont disponibles dans Vish. Pour les ajouter, ouvrir la ressource à Vish, copier son URL dans la barre d'outils du navigateur et coller dans la zone de texte suivante."
     new: "Nouveau Workshop"
     other: "Workshops"
     titles:
@@ -594,8 +601,9 @@ fr:
         show_main: "Voir le workshop"
   writing:
     actions:
-      add: "Ajouter du texte"
+      add: "Ajouter du Texte"
     confirm_delete: "Supprimer l'écriture?"
+    new: "Nouveau texte"
     title3: "Écrire le texte à ajouter"
   yesterday: "Hier"
   zipfile:

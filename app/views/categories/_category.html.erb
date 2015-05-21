@@ -1,43 +1,47 @@
-<li class="box-item categorie-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+<li class="box-item categorie-item" <% if defined?(obj_id)%>edit-id="<%=obj_id%>"<% end %>>
   <!-- corner -->
   <%= link_to(category) do %>
   <div class="corner-item">
     <div class="corner-item2">
       <div class="corner-color"></div>
-      <i class="icon-th-large"></i>
+      <i class="fa fa-th-large"></i>
     </div>
     <div class="corner-background"></div>
   </div>
   <!-- image/icon -->
+
   <div class="container-img">
-    <div class="img-box">
-      <!--IMG categories-->
-      <div class="category">
-        <%= render :partial => 'categories/thumbnail', :locals =>{ :category => category} %>
-      </div>
-    </div>
-  </div>
-  <% end %>
-  <!--INFO excursion-->
-  <div class="info">
-    <!--Title -->
-    <div class="name">
-      <%= link_to category.title, category %>
-    </div>
-    <!--Autor -->
-    <div class="author">
-      <span class="by"><%=t('by')%></span>
-      <%= link_to category.author.name, category.author.subject %>
-    </div>
-    <!--____________________ -->
-    <div class="info-bottom">
-      <hr class="soften">
-      <!--like -->
-      <div class="categories_inside">
-        <%=category.property_objects.count.to_s%>
-        <%=t('categories.item_inside')%>
+    <div class="element">
+      <div class="img-box">
+        <!--IMG categories-->
+        
+        <div class="category">
+          <%= render :partial => 'categories/thumbnail', :locals =>{ :category => category} %>
+        </div>
+        <% end %>
       </div>
     </div>
   </div>
 
+<!--INFO excursuion-->
+  <div class="caption">
+<!--Title -->
+    <h6>
+      <%= link_to category.title, category %>
+    </h6>
+<!--Autor -->
+    <div class="author"> 
+      <span class="by"><%=t('by')%></span>
+      <%= link_to category.author.name, category.author.subject %>
+    </div>
+    <hr>
+    <!--____________________ -->
+    <div class="info-bottom">
+      <!--like -->
+      <div class="categories_inside">
+        <%= category.property_objects.count.to_s %>
+        <%= t('categories.item_inside') %>
+      </div>
+    </div>
+  </div>
 </li>

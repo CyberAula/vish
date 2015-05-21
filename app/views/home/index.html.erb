@@ -2,33 +2,31 @@
 
 <div id="home_wrapper">
   <div class="home">
-    <div class="home_style" id="search">
-      <div class="tabbable" >
-        <ul class="nav nav-tabs">
-          <li class="<%= params[:tab]=='home' ? 'active':''%>">
-            <a id="home_tab" href="#home" data-toggle="tab">
-              <i class="icon-home"></i>
-              <span class=" hidden-phone hidden-tablet"><%= t("navigation.home")%></span>
-            </a>
-          </li>
-          <li class="<%= params[:tab]=='net' ? 'active':''%>">
-            <a id="net_tab" href="#net" data-toggle="tab" >
-              <i class="icon-group"></i>
-              <span class=" hidden-phone hidden-tablet"><%=t("navigation.mynetwork") %></span>
-            </a>
-          </li>
-          <li class="">
-            <a id="catalogue_tab" href="#catalogue_tabpane" data-toggle="tab" >
-              <i class="icon-tags"></i>
-              <span class=" hidden-phone hidden-tablet"><%=t("navigation.catalogue") %></span>
-            </a>
-          </li>
-          <%= render partial: 'help/help_home' %>
-        </ul>
-      </div>
-    </div>
+
+    <ul class="nav nav-tabs">
+      <li class="<%=!params[:tab] || params[:tab]=='home' ? 'active':''%>">
+        <a id="home_tab" href="#home" data-toggle="tab">
+          <i class="fa fa-home"></i>
+          <span class="hidden-xs hidden-sm"><%= t("navigation.home")%></span>
+        </a>
+      </li>
+      <li class="<%= params[:tab]=='net' ? 'active':''%>">
+        <a id="net_tab" href="#net" data-toggle="tab" >
+          <i class="fa fa-group"></i>
+          <span class="hidden-xs hidden-sm"><%=t("navigation.mynetwork") %></span>
+        </a>
+      </li>
+      <li class="<%= params[:tab]=='catalogue' ? 'active':''%>">
+        <a id="catalogue_tab" href="#catalogue_tabpane" data-toggle="tab" >
+          <i class="fa fa-tags"></i>
+          <span class="hidden-xs hidden-sm"><%=t("navigation.catalogue") %></span>
+        </a>
+      </li>
+      <%= render partial: 'help/help_home' %>
+    </ul>
      
     <div class="tab-content">
+      
       <div class="tab-pane <%=params[:tab]=='home' ? 'active':''%>" id="home">
         <div id="first_page_home_tab_ready">
           <%if params[:tab]=="home"%>
@@ -40,7 +38,7 @@
             <div class="msg" style="font-size:2em">
               <%=t('search.loading')%>
             </div>
-            <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+            <%= render :partial => "layouts/loading" %>
           </div>
         </div>
       </div>
@@ -57,12 +55,11 @@
             <div class="msg" style="font-size:2em">
               <%=t('search.loading')%>
             </div>
-            <img src="/assets/load.gif" alt="loading more results" style="margin:10px auto" />
+            <%= render :partial => "layouts/loading" %>
           </div>
         </div>
-      </div>   
+      </div>
 
-      
     </div>
 
   </div>
@@ -90,13 +87,19 @@
   // Pageless Ajax Handlers
   ///////////////
   function update_pageless_state(tab, num_pages, current_page){
+    if(typeof pageless_state[tab] == "object"){
       pageless_state[tab].num_pages = num_pages;
-      pageless_state[tab].current_page = current_page;  
+      pageless_state[tab].current_page = current_page;
+    }
   };
 
   function re_apply_pageless(tab){
     //first remove old pageless
-    $.pagelessStop();      
+    $.pagelessStop();
+
+    if(typeof pageless_state[tab] != "object"){
+      return;
+    }
      
     $("#" + tab + "_tab_ready ul").pageless({
       totalPages: pageless_state[tab].num_pages,
@@ -119,13 +122,13 @@
     return the_url;
   };
 
+
   function force_update_pageless(tab, num_pages, current_page){
     update_pageless_state(tab, num_pages, current_page);
     re_apply_pageless(tab);
     $("footer#footer").addClass("fixed-bottom");
     $("#wrap").addClass("wrap-when-fixed-bottom");
   }
-    
 
 </script>
 
@@ -184,11 +187,10 @@
       }   
     });
 
+    //Reapply backstrech depending on the tab loaded
     <%if !params[:tab] || params[:tab]=="home"%>
       home_tab_loaded = true;
     <%else%>
       net_tab_loaded = true;    
     <%end%>
 <%end%>
-
-

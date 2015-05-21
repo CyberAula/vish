@@ -1,0 +1,33 @@
+<% @done={} %>
+<section id="excursions_tab_ready3 " class="excursions recent_excursions">
+  <ul class="items first_excursions">
+    <%= render partial: 'excursions/excursion-add' %>
+    <%
+      if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
+        scope = :more
+      else
+        scope = :net
+      end%>
+     <% excursionsRecent = Excursion.getHome( 30 , 'Recent')
+        excursionsRecommended = Excursion.getHome( 30 ,'Recommended',{:subject => current_subject})%>
+
+    <%= render partial: 'min_others', :locals => { :excursions => excursionsRecent, :limit => 9, :prefix_id=>"home" } %>
+  </ul>
+  <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
+</section>
+
+<section id="excursions_tab_ready2 " class="excursions foryou_excursions">
+  <ul class="items">
+    <div class="icontitle"> <%= t("home.foryou")%> </div>
+  <%= render partial: 'min_others', :locals => {:excursions => excursionsRecommended, :limit => 10, :prefix_id=>"home"} %>
+  </ul>
+</section>
+ 
+
+ <section id="home_tab_ready" class="excursions">
+  <ul class="items">
+    <div class="icontitle"> <%= t("home.populars")%> </div> 
+    <% excursionsDone = @done.map{|e| e.id} %>
+    <%= render partial: 'min', :locals => {:ids_to_avoid => excursionsDone,  :page => "1", :prefix_id=>"home"} %>
+  </ul>
+</section>

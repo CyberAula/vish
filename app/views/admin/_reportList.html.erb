@@ -3,17 +3,23 @@
   <%= render '/layouts/emptytable', :fullmessage => t('admin.noreports') %>
 <% else %>
 
-  <table id="spam_table" cellspacing='0' class="vish_admin_table">
+  <table id="spam_table" cellspacing='0' class="table table-striped">
     <thead>
       <tr>
-        <th class="admin-checkbox"><input type="checkbox" class="checkallresources" autocomplete="off" value="all" style="display:none" /></th>
+        <th class="admin-checkbox">
+        <label>
+          <input type="checkbox" class="checkallresources" autocomplete="off" value="all" style="display:none" />
+          <span class="lbl padding-0">
+          </span>
+        </label>
+        </th>
         <th class="admin-resource"><%=t('resource.title.one').capitalize%></th>
         <th class="admin-type"><%=t('search.type').capitalize%></th>
         <th class="admin-user"><%=t('user.one').capitalize%></th>
         <th class="admin-reporter"><%=t('admin.reporter').capitalize%></th>
         <th class="admin-description"><%=t('description').capitalize%></th>
         <th class="admin-date"><%=t('date_name').capitalize%></th>
-        <th class="admin-icontrash"></th>
+        <th class="admin-icon-trash"></th>
         <th class="admin-iconlock"></th>
       </tr>
     </thead>
@@ -21,7 +27,11 @@
     <% @reports.each do |report| %>
       <tr>
         <td class="admin-checkbox">
-          <input type="checkbox" autocomplete="off" value="<%=report.id%>" style="display:none" />
+          <label>
+            <input type="checkbox" autocomplete="off" value="<%=report.id%>" style="display:none" />
+            <span class="lbl padding-0">
+            </span>
+          </label>
         </td>
          <td class="admin-resource">
           <%unless report.activity_object.nil?%>
@@ -32,7 +42,7 @@
         </td>
         <td class="admin-type">
           <!-- report.issueType -->
-          <span><%=report.issueIcon=%></span>
+          <span><%=report.issueIcon%></span>
         </td>
         <td class="admin-user">
           <%unless report.actor.nil? %>
@@ -69,16 +79,16 @@
           </span>
         </td>
         <td class="admin-date">
-          <span><%=report.created_at=%></span>
+          <span><%=report.created_at%></span>
         </td>
         <td class="admin-icontrash">
-            <%= link_to(raw("<i class='icon-trash'></i> "), spam_report_path(report), :confirm => 'Are you sure?', :method => "delete")%>
+            <%= link_to(raw("<i class='fa fa-trash-o'></i> "), spam_report_path(report), :confirm => 'Are you sure?', :method => "delete")%>
         </td>
         <td class="admin-iconlock">
             <%if report.pending %>
-              <%= link_to(raw("<i title='"+t('admin.close_report')+"' class='icon-lock'></i> "), close_spam_report(report), :method => "get")%>
+              <%= link_to(raw("<i title='"+t('admin.close_report')+"' class='fa fa-lock'></i> "), close_spam_report(report), :method => "get")%>
             <%else%>
-              <%= link_to(raw("<i title='"+t('admin.open_report')+"' class='icon-unlock'></i> "), open_spam_report(report), :method => "get")%>
+              <%= link_to(raw("<i title='"+t('admin.open_report')+"' class='fa fa-unlock'></i> "), open_spam_report(report), :method => "get")%>
             <%end%>
         </td>
       </tr>
@@ -89,13 +99,13 @@
   <div class="reports_type_legend">
     <ul>
       <li>
-        <i class="icon-flag"></i><span><%=t("report.spam_content")%></span>
+        <i class="fa fa-flag"></i><span><%=t("report.spam_content")%></span>
       </li>
       <li>
-        <i class="icon-warning-sign"></i><span><%=t("report.error_content_resource")%></span>
+        <i class="fa fa-warning"></i><span><%=t("report.error_content_resource")%></span>
       </li>
       <li>
-        <i class="icon-remove"></i><span><%=t("report.low_content_quality")%></span>
+        <i class="fa fa-times"></i><span><%=t("report.low_content_quality")%></span>
       </li>
     </ul>
   </div>

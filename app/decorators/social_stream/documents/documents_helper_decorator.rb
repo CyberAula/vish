@@ -8,12 +8,12 @@ DocumentsHelper.module_eval do
       icon_name = case icon_mime_type document
         when :default then "file"
         when :text then "file-text"
-        when :image then "picture"
+        when :image then "image"
         when :audio then "music"
         when :video then "film"
-        when :pdf then "pdf-new"
-        when :swf then "swf-new"
-        when :zipfile then "zip-new"
+        when :pdf then "file-pdf"
+        when :swf then "file-swf"
+        when :zipfile then "file-zip"
         else "file" #icon_mime_type document
       end
     else
@@ -22,10 +22,10 @@ DocumentsHelper.module_eval do
         when "Link" then "link"
         when "Embed" then "code"
         when "Writing" then "file-text"
-        when "Scormfile" then "scorm-new"
-        when "Webapp" then "webapp-new"
-        when "Workshop" then "lightbulb"
-        when "Excursion" then "webapp-new"
+        when "Scormfile" then "scorm"
+        when "Webapp" then "webapp"
+        when "Workshop" then "lightbulb-o"
+        when "Excursion" then "webapp"
         else "file" # SocialStream::Documents.icon_mime_types[:default]
       end
     end
@@ -38,9 +38,9 @@ DocumentsHelper.module_eval do
     end
 
     unless customAvatar.nil?
-      return "<div class='img-box resource_avatar resource_avatar_for_#{ icon_name }' style='background-image: url("+customAvatar+")'></div><i class=\"icon-#{ icon_name } icon-#{ icon_name }_decorator\"></i>"
+      return "<div class='img-box resource_avatar resource_avatar_for_#{ icon_name }' style='background-image: url("+customAvatar+")'></div><i class=\"fa fa-#{ icon_name } fa-#{ icon_name }_decorator\"></i>"
     else
-      return "<i class=\"icon-#{ icon_name }\"></i>".html_safe
+      return "<i class=\"fa fa-#{ icon_name }\"></i>".html_safe
     end
   end
 
@@ -54,5 +54,6 @@ DocumentsHelper.module_eval do
       "file" # SocialStream::Documents.icon_mime_types[:default]
     end
   end
+
 
 end

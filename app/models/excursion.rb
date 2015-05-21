@@ -1080,6 +1080,7 @@ class Excursion < ActiveRecord::Base
   #Method calculate_qscore
 
 
+
   private
 
   def parse_for_meta

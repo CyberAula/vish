@@ -1,0 +1,194 @@
+#time-line
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  @include center-block
+  padding: 0 !important
+  .icontitle
+    margin-top: 0
+  .activities
+    header
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(8, $gutter: $grid-gutter-width)
+      @include make-sm-column-offset(2)
+      @include make-md-column(8, $gutter: $grid-gutter-width)
+      @include make-md-column-offset(2)
+      @include make-lg-column(8, $gutter: $grid-gutter-width)
+      @include make-lg-column-offset(2)
+      padding: 0
+      .icontitle
+        .helpheader i
+          padding-top: 0px
+    .wall_input
+      position: relative
+      padding: 0
+      margin-bottom: 20px
+      float: none !important
+      clear: both
+      form
+        display: block
+        @include center-block
+        textarea
+          width: 100%
+          background-color: $white
+          margin: 0
+          height: auto
+          float: none
+          @include border-left-radius ($border-radius-base)
+          @include border-right-radius ($border-radius-base)
+      input
+        &[type="submit"]
+          display: inline-block
+          margin: 0px
+      .input-group
+        label
+          display: none !important
+        textarea
+          height: 35px !important
+      .input-group-addon
+        background: rgba(0, 0, 0, 0)
+        border: none
+        margin: 0
+        padding: 0 0 0 6px !important
+        vertical-align: top
+        .new_document
+          background-image: none
+          @include btn-default
+      .input-group-btn
+        width: 1%
+        white-space: nowrap
+        vertical-align: top
+
+.timeline
+  clear: both
+  padding-left: 0px
+  .panel
+    @include comments
+  .thumbnail
+    @include excursion-small
+    width: 92%
+    margin: 0 4%
+
+  .more
+    a
+      position: relative
+      margin-top: 30px
+      color: white
+      margin: 5px
+      margin: 30px 0 15px 0
+
+.timeline li .timeline-panel li
+  .container-img
+    width: 40%
+    @media (min-width: 1076px)
+      width: 30% !important
+  .caption
+    width: 60%
+    @media (min-width: 1076px)
+      width: 70% !important
+
+.timeline-panel
+  .pull-left
+    margin-right: 10px
+  @include conversations
+
+  .panel-group
+    clear: both
+    @include comments
+
+  .panel-body
+    margin-top: 5px
+    padding: 0px
+
+
+
+
+.comments
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  display: block
+  padding: 0
+  clear: both
+  .hidden_comments
+    margin: 15px 0 10px 0
+    a
+      font-size: 0.9em !important
+      font-weight: 100
+  .activity
+    clear: both
+    border-bottom: 1px solid $gray-light
+    padding: 15px 0
+    margin: 0
+    &:first-child
+      //padding: 10px 0 15px 0
+    &:last-child
+      border-bottom: none
+    .pull-left
+      margin-right: 10px
+    .media-body
+      .media-heading
+        a
+          float: left
+        .x
+          float: right
+          @include color-delete
+
+
+
+
+div.new_comment
+  width: 100%
+  display: block
+  clear: both
+  margin-top: 15px
+  form.form-group
+    height: 38px
+    display: block
+    clear: none
+    margin: 0 auto
+    .input-group
+      float: left
+      .input-group-addon
+        padding: 0
+        max-height: 38px
+        height: 35px !important
+        vertical-align: top
+        border: none
+        background: none
+        img
+          width: 35px
+          @include border-left-radius ($border-radius-base)
+        input
+          &[type="submit"]
+            @include border-left-radius (0)
+            @include border-right-radius ($border-radius-base)
+            height: 35px
+      textarea
+        width: 100%
+        height: 35px
+        padding: 5px
+    .form-control
+      @include border-right-radius ($border-radius-base)
+
+
+.comments
+  .child
+    .media-body
+      .objects
+        clear: both
+        margin-top: 30px
+
+#last_content_shown
+  clear: both
+  height: 50px
+  width: 100% !important
+  background-color: #555
+  @include opacity(0.7)
+  @include border-bottom-radius($border-radius-base)
+  color: $white
+  text-align: center
+  padding-top: 10px
+  display: block

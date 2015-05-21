@@ -123,4 +123,3 @@ namespace :rvm do
     run "rvm rvmrc trust #{release_path} < /dev/null"
   end
 end
-

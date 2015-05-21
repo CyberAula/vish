@@ -1,0 +1,31 @@
+<% section ||= nil %>
+
+<ul class="timeline" id="timeline-main">
+  <%= render partial: 'activities/timeline_modal' %>
+
+  <%= render activities = Activity.timeline(section, current_subject).page(params[:page]) %>
+
+  <%= render partial: 'layouts/more',
+             locals: {
+               path: polymorphic_path([ section, Activity.new ]),
+               per_page: Activity.default_per_page,
+               total: activities.total_count,
+               month: @lastMonth
+             } %>
+</ul>
+
+<%= content_for :javascript do %>
+  $(function(){  
+    SocialStream.Timeline.show(); 
+
+   $(".more .fa-circle-o-notch").hide();
+   $(".more a").click(function(e){
+         $(".more .fa-circle-o-notch").show().delay( 1000 ).fadeOut( 400 );
+    });
+  });
+  
+  $('.new_comment .form-group').bind('ajax:complete', function() {
+      $(this).children('.input-group').children('textarea').val('');
+    });    
+
+<% end %>

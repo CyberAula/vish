@@ -1,26 +1,25 @@
 <section id="login">
   <section class="change">
-      <h3><%= t('devise.passwords.update') %></h3>
+      <h4><%= t('devise.passwords.update') %></h4>
 
       <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
         <%= devise_error_messages! %>
         
         <%= f.hidden_field :reset_password_token %>
       
-        <div class="password">
+        <div class="password form-group">
           <%= f.label :password %>
 
-          <%= f.password_field :password, :class =>"field_x" %>
+          <%= f.password_field :password, :class =>"field_x form-control" %>
 
           <%= f.label :password_confirmation %>
 
-          <%= f.password_field :password_confirmation, :class =>"field_x" %>
+          <%= f.password_field :password_confirmation, :class =>"field_x form-control" %>
 
-          <%= f.submit "Change my password", :class =>"btn" %>
+          <%= f.submit "Change my password", :class =>"btn btn-primary" %>
         </div>
 
     <% end %>
-    
   </section>
 </section>  
 

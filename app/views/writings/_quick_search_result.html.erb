@@ -1,13 +1,1 @@
-<div class="quick_search">
-  <div class="photo">
-    <%= link_to icon(writing,false), writing, :title => writing.title %>
-  </div>
-  <div class="data">
-    <div class="name">
-      <%= link_to writing.title, writing %>
-    </div>
-    <div class="author"> 
-      <%= link_to truncate_name(writing.author.name, length: 25), writing.author.subject %>
-    </div>
-  </div>
-</div>
+<%= render partial: 'repositories/resource', locals: { resource: writing} %>

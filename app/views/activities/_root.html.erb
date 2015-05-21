@@ -1,42 +1,60 @@
-<%= div_for activity, :class => 'root media' do %>
-  <div class="avatar ">
-    <div class="media-object">
+<%#Render month title%>
+ <% @lastMonth = @lastMonth || params[:month]|| 0 %>
+<% modifDate = activity.created_at.strftime("%b") + " " + activity.created_at.strftime("%Y")  %>
+<% if @lastMonth != activity.created_at.month
+    @lastMonth = activity.created_at.month%>
+    <li class="separator"><div class="tldate"> <%= modifDate %> </div></li>
+<%end%>
+<%#Ends here%>
+  <%= content_for :javascript do %>
+    var numberMonths = numberMonths || 0;
+    var dates= $(".tldate");
+      for(var n = 0; n<dates.lenght - 1; n++){
+        if ($(dates[n]).text() == $(dates[n+1]).text())
+          $(dates[n+1]).remove();
+      }
+  <%end%>
+
+<%# To get if inverted or not inverted %>
+<% @state = @state || 0%>
+<% position = "" %>
+
+<% @state % 2 == 0 ? position = "" : position = "timeline-inverted" %>
+<%= content_tag(:li, activity, class: position) do %>
+<% @state += 1 %>
+<%#inverted algorithm ends here %>
+
+  <div type="button" class="tl-circ"></div>
+
+  <div class="timeline-panel">
+    <div class="pull-left">
       <%= link_to image_tag(activity.sender_subject.logo.url('small'),
-        :alt => activity.sender_subject.name), activity.sender_subject %>
+        :alt => activity.sender_subject.name), activity.sender_subject, :class => "media-object avatar" %>
     </div>
-  </div>
-  <header class="media-heading">
-    <h3><%= activity.title(self) %></h3>
 
-    <% if activity.direct_object && !activity.direct_object.acts_as_actor? && can?(:destroy, activity.direct_object) %>
-    <div class="x"> 
-      <%= link_to raw("<i class='icon-trash'></i>"), activity.direct_object , :confirm => t('confirm_delete', 
-                    :scope => activity.direct_object.class.to_s.underscore), :method => :delete,  
-                    :remote => true %> 
-    </div>
-    <% end %>
-  </header>
-  
-  <div class="media-body">
-
-    <section class="objects">
-      <%= render partial: 'activity_objects/timeline', 
+    <div class="media-body">
+      <h6 class="media-heading"><%= activity.title(self) %>
+        <% if activity.direct_object && !activity.direct_object.acts_as_actor? && can?(:destroy, activity.direct_object) %>
+          <div class="x">
+            <%= link_to raw("<i class='fa fa-trash-o'></i>"), activity.direct_object , :confirm => t('confirm_delete',
+                        :scope => activity.direct_object.class.to_s.underscore), :method => :delete,
+                        :remote => true %>
+          </div>
+        <% end %>
+      </h6>
+      <%= render :partial => 'activities/actions',
+                     :locals => { :activity => activity } %>
+      
+      <%= render partial: 'activity_objects/timeline',
                  collection: activity.activity_objects,
                  as: :object %>
-    </section>
-
-    <%= render :partial => 'activities/actions',
-               :locals => { :activity => activity } %>
-   
-    <%= render :partial => 'activities/likes',
-               :locals => { :activity => activity } %>
-    <hr>
-
-    <%= render :partial => 'comments/new',
-               :locals => { :activity => activity } %>
-
-    <%= render :partial => 'activities/comments',
-               :locals => { :activity => activity } %>
-
+          
+          <div id="comment-activity-<%=activity.id%>" class="">
+              <%= render :partial => 'activities/comments',
+                         :locals => { :activity => activity } %>
+          </div>
+      <%= render :partial => 'comments/new',
+                 :locals => { :activity => activity } %>
+    </div>
   </div>
 <% end %>

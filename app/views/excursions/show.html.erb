@@ -8,14 +8,6 @@
   <%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %>
 <% end %>
 
-<% 
-  if params["contribution"].blank?
-    @contribution = nil
-  else
-    @contribution = Contribution.find_by_id(params["contribution"])
-  end
-%>
-
 <%=javascript_include_tag "RegaddiChart" %>
 <%=javascript_include_tag "loep" %>
 <%=javascript_include_tag "VISH.IframeAPI" %>
@@ -66,57 +58,62 @@
   </script>
 <% end %>
 
-<%if @contribution%>
-  <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @contribution.parents_path } %>
-<%end%>
-
-<% unless @excursion.author.nil? %>
-  <%= render :partial => 'objects/show', :locals  => { :object => @excursion } %>
-<% end %>
+<!--div class="page-header"><%= @excursion.title %></div-->
 
 <section id="show_items " class="layout_show">
-  
-  <!-- Content -->
-  <div class="box-show">
-    <div class="container-visor">
-      <div class="elemento-visor"></div>
-      <%= render :partial => 'excursion_show', :locals  => { :excursion => @excursion } %>
-    </div>
-  </div>
+    <!--recomended ant-->
+  <%#= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})} %>
 
   <!--recomended-->
   <%= render :partial => 'recommender/sidebar', :locals  => { :resources => @resource_suggestions, :rec => @rec } %>
 
-  <!--owner-profile-->
-  <div class="description-activity">
-    <div class="box_description">
-      <!--tool-->
-      <div class="excursion_tool">
-        <%= render :partial => 'excursions/excursion-tool-tab', :locals => { :shortURL => shortURL} %>
-      </div>     
+  <div class="doc-show">
+    <div class="box-show">
+      <div class="viewerContainer">
+        <div class="viewerElement"></div>
+        <%= render :partial => 'excursion_show', :locals  => { :excursion => @excursion } %>
+
+      </div>
     </div>
-    
-    <!--activity-->
-    <div class="activity-box">
-      <%= render :partial => 'excursions/evaluate-activity'%>
+
+    <!--owner-profile-->
+    <div class="description-activity">
+      <div class="box_description">
+        <!--tool-->
+        <div class="excursion_tool">
+          <%= render :partial => 'excursions/excursion-tool-tab', :locals => { :shortURL => shortURL} %>
+        </div>
+      </div>
+
+      <!--activity-->
+      <div class="activity-box">
+        <%= render :partial => 'excursions/evaluate-activity'%>
+      </div>
     </div>
   </div>
-
-  <% if @contribution %>
-    <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => @contribution } %>
-  <% end %>
-  
 </section>
 
-<a id="congratulations-button" href="#CongratModal" role="button" class="" style="display:none" data-toggle="modal"></a>
-<div id="CongratModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myCongratLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myCongratLabel"><%= t('excursion.modal.title') %></h3>
-  </div>
-  <div class="modal-body">
-    <p><i class="icon-ok"></i>  <%=t("excursion.modal.normal_body")%></p>
-    <p><%=raw t("excursion.modal.survey")%></p>
-    <p class="thank"><i class="icon-smile"></i>  <%=raw t("excursion.modal.thank")%></p>
+
+
+<!-- Button trigger modal -->
+<button id="congratulations-button" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#CongratModal" style="visibility:hidden">
+
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="CongratModal" tabindex="-1" role="dialog" aria-labelledby="CongratModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myCongratLabel"><%= t('excursion.modal.title') %></h3>
+      </div>
+      <div class="modal-body">
+        <p><i class="fa fa-ok"></i>  <%=t("excursion.modal.normal_body")%></p>
+        <p><%=raw t("excursion.modal.survey")%></p>
+        <p class="thank"><i class="fa fa-smile"></i>  <%=raw t("excursion.modal.thank")%></p>
+      </div>
+
+    </div>
   </div>
 </div>

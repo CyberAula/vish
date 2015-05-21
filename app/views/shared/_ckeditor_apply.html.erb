@@ -1,165 +1,173 @@
 <%content_for :javascript do%>
 
+    /**
+    * Created by pmverdugo on 20/04/15.
+    */
     //instructions to add ckeditor to a textarea
     //render this file anywhere with:
-    //render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "writing_fulltext"} 
+    //render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "writing_fulltext"}
     //if you have a hidden field to save the plain text (without html tags), when you are saving the form call the function:
     //set_ckeditor_content_full_and_plaintext("fulltext_id","plaintext_id");
 
-    if(typeof apply_ckeditor !== "function"){
+    if (typeof apply_ckeditor !== "function") {
 
-        var apply_ckeditor = function(id){
+    var apply_ckeditor = function (id) {
 
-            if(CKEDITOR.globalEventsLoaded !== true){
+    if (CKEDITOR.globalEventsLoaded !== true) {
 
-                //CKEditor global events (for all instances)
-                CKEDITOR.globalEventsLoaded = true;
+    //CKEditor global events (for all instances)
+    CKEDITOR.globalEventsLoaded = true;
 
-                CKEDITOR.on( 'dialogDefinition', function(ev){
-                    // Take the dialog name and its definition from the event data.
-                    var dialogName = ev.data.name;
-                    var dialogDefinition = ev.data.definition;
+    CKEDITOR.on('dialogDefinition', function (ev) {
+    // Take the dialog name and its definition from the event data.
+    var dialogName = ev.data.name;
+    var dialogDefinition = ev.data.definition;
 
-                    switch(dialogName){
-                        case 'link':
-                            //Customize Link window
-                            // Remove unused link type options
-                            // var linkType = dialogDefinition.getContents('info').get("linkType");
-                            // linkType.items.splice(2,1);
-                            // linkType.items.splice(1,1);
+    switch (dialogName) {
+    case 'link':
+    //Customize Link window
+    // Remove unused link type options
+    // var linkType = dialogDefinition.getContents('info').get("linkType");
+    // linkType.items.splice(2,1);
+    // linkType.items.splice(1,1);
 
-                            //Remove LinkType
-                            dialogDefinition.getContents('info').remove("linkType");
-                            //Remove unuseful protocols
-                            var protocols = dialogDefinition.getContents('info').get("protocol").items;
-                            protocols.splice(3,1);
-                            protocols.splice(2,1);
+    //Remove LinkType
+    dialogDefinition.getContents('info').remove("linkType");
+    //Remove unuseful protocols
+    var protocols = dialogDefinition.getContents('info').get("protocol").items;
+    protocols.splice(3, 1);
+    protocols.splice(2, 1);
 
-                            //Remove advanced options
-                            dialogDefinition.removeContents('advanced');
+    //Remove advanced options
+    dialogDefinition.removeContents('advanced');
 
-                            //Customize target window
-                            var targetTab = dialogDefinition.getContents('target');
-                            var targetField = targetTab.get('linkTargetType');
-                            targetField['default'] ='_blank';
-                            targetField.items.splice(6,1);
-                            targetField.items.splice(4,1);
-                            targetField.items.splice(1,1);
-                            targetField.items.splice(0,1);
+    //Customize target window
+    var targetTab = dialogDefinition.getContents('target');
+    var targetField = targetTab.get('linkTargetType');
+    targetField['default'] = '_blank';
+    targetField.items.splice(6, 1);
+    targetField.items.splice(4, 1);
+    targetField.items.splice(1, 1);
+    targetField.items.splice(0, 1);
 
-                            break;
-                        case 'table':
-                            dialogDefinition.removeContents('advanced');
-                            var info = dialogDefinition.getContents('info');
-                            //Set center as default alignment
-                            var alignment = info.get("cmbAlign");
-                            alignment.items.splice(0,1);
-                            //Keep ["default"] to prevent Google closure compiler errors
-                            alignment["default"] = "center";
-                            //Remove self-headers
-                            info.remove("selHeaders");
+    break;
+    case 'table':
+    dialogDefinition.removeContents('advanced');
+    var info = dialogDefinition.getContents('info');
+    //Set center as default alignment
+    var alignment = info.get("cmbAlign");
+    alignment.items.splice(0, 1);
+    //Keep ["default"] to prevent Google closure compiler errors
+    alignment["default"] = "center";
+    //Remove self-headers
+    info.remove("selHeaders");
 
-                            break;
-                        case 'image':
-                            //Remove advanced options
-                            dialogDefinition.removeContents('advanced');
+    break;
+    case 'image':
+    //Remove advanced options
+    dialogDefinition.removeContents('advanced');
 
-                            //Customize target window
-                            var linkTab = dialogDefinition.getContents('Link');
-                            var targetField = linkTab.get("cmbTarget");
-                            targetField['default'] ='_blank';
-                            targetField.items.splice(4,1);
-                            targetField.items.splice(2,1);
-                            targetField.items.splice(0,1);
+    //Customize target window
+    var linkTab = dialogDefinition.getContents('Link');
+    var targetField = linkTab.get("cmbTarget");
+    targetField['default'] = '_blank';
+    targetField.items.splice(4, 1);
+    targetField.items.splice(2, 1);
+    targetField.items.splice(0, 1);
 
-                            break;
-                        case 'MediaEmbedDialog':
-                            break;
-                    }
-                });
-            }
-
-
-            //Specified CKEditor configuration
-            var config = {};
-
-            //Select the features of the toolbar
-            config.toolbar = 'Full';
-            config.toolbar_Full =
-            [
-              { name: 'first', items : ['Bold','Italic','Underline','-','Subscript','Superscript','Font','FontSize','TextColor','BGColor'] },
-              '/',
-              { name: 'lists', items : ['NumberedList','BulletedList','Table'] },
-              { name: 'alignment', items : ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'] },
-              { name: 'link', items : ['Link'] },
-              { name: 'Objects', items : ['Image','MediaEmbed'] },
-              { name: 'symbols', items : ['SpecialChar'] }
-            ];
-
-            //Disable toolbar expansion
-            config.toolbarCanCollapse = false;
-            //Disable resizing
-            config.resize_enabled = false;
-            //Disable bottom tags
-            config.removePlugins = 'elementspath';
-            //Enable table resize and autogrow
-            config.extraPlugins = 'tableresize,autogrow,specialchar,mediaembed';
-
-            config.autoGrow_minHeight = 34;
-            config.autoGrow_maxHeight = 800;
-
-            //Fit the current area
-            config.width = '98%';
-            //The height value defines the height of CKEditor editing area and can be given in pixels or em. Percent values are not supported. 
-            //http://docs.cksource.com/CKEditor_3.x/Howto/Editor_Size_On_The_Fly
-            config.height = "auto";
-
-            //Toolbar defaults
-            config.fontSize_defaultLabel = '12';
+    break;
+    case 'MediaEmbedDialog':
+    break;
+    }
+    });
+    }
 
 
-            //Apply vEditor skin
-            //var ckeditorBasePath = CKEDITOR.basePath.substr(0, CKEDITOR.basePath.indexOf("editor/"));
-            config.skin = 'BootstrapCK-Skin,' + CKEDITOR.basePath + 'skins/BootstrapCK-Skin/';
+    //Specified CKEditor configuration
+    var config = {};
 
-            //Add ckeditor wysiwyg instance
-            var ckeditor = CKEDITOR.replace(id, config);
+    //Select the features of the toolbar
+    config.toolbar = 'Full';
+    config.toolbar_Full =
+    [
+    {
+    name: 'first',
+    items: ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', 'Font', 'FontSize', 'TextColor', 'BGColor']
+    },
+    '/',
+    {name: 'lists', items: ['NumberedList', 'BulletedList', 'Table']},
+    {name: 'alignment', items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+    {name: 'link', items: ['Link']},
+    {name: 'Objects', items: ['Image', 'MediaEmbed']},
+    {name: 'symbols', items: ['SpecialChar']}
+    ];
 
-            ckeditor.on("instanceReady", function(event){
-                var newHeight = $(event.editor.document.$).height();
-                event.editor.resize("100%", newHeight, true);
-                _fixCKEDITORBug(event.editor);
-            });
-        };
+    //Disable toolbar expansion
+    config.toolbarCanCollapse = false;
+    //Disable resizing
+    config.resize_enabled = false;
+    //Disable bottom tags
+    config.removePlugins = 'elementspath';
+    //Enable table resize and autogrow
+    config.extraPlugins = 'tableresize,autogrow,specialchar,mediaembed';
 
+    config.autoGrow_minHeight = 34;
+    config.autoGrow_maxHeight = 800;
+
+    //Fit the current area
+    config.width = '98%';
+    //The height value defines the height of CKEditor editing area and can be given in pixels or em. Percent values are not supported.
+    //http://docs.cksource.com/CKEditor_3.x/Howto/Editor_Size_On_The_Fly
+    config.height = "auto";
+
+    //Toolbar defaults
+    config.fontSize_defaultLabel = '12';
+
+
+    //Apply vEditor skin
+    //var ckeditorBasePath = CKEDITOR.basePath.substr(0, CKEDITOR.basePath.indexOf("editor/"));
+    config.skin = 'BootstrapCK-Skin,' + CKEDITOR.basePath + 'skins/BootstrapCK-Skin/';
+
+    //Add ckeditor wysiwyg instance
+    var ckeditor = CKEDITOR.replace(id, config);
+
+    ckeditor.on("instanceReady", function (event) {
+    var newHeight = $(event.editor.document.$).height();
+    event.editor.resize("100%", newHeight, true);
+    _fixCKEDITORBug(event.editor);
+    });
     };
 
+    }
 
-    if(typeof _fixCKEDITORBug !== "function"){
-        /*
-         * Fix oficial WebKit bug: http://ckeditor.com/forums/CKEditor-3.x/Minimum-Editor-Width-Safari#comment-48574
-         */
-        var _fixCKEDITORBug = function(editor){
-            //webkit not redraw iframe correctly when editor's width is < 310px (300px iframe + 10px paddings)
-            if (CKEDITOR.env.webkit) {
-                var iframe = $(document.getElementById('cke_contents_' + editor.name)).find("iframe")[0];
-                iframe.style.display = 'none';
-                iframe.style.display = 'block';
-            }
-        };
+
+
+    if (typeof _fixCKEDITORBug !== "function") {
+    /*
+    * Fix oficial WebKit bug: http://ckeditor.com/forums/CKEditor-3.x/Minimum-Editor-Width-Safari#comment-48574
+    */
+    var _fixCKEDITORBug = function (editor) {
+    //webkit not redraw iframe correctly when editor's width is < 310px (300px iframe + 10px paddings)
+    if (CKEDITOR.env.webkit) {
+    var iframe = $(document.getElementById('cke_contents_' + editor.name)).find("iframe")[0];
+    iframe.style.display = 'none';
+    iframe.style.display = 'block';
+    }
     };
+    }
 
 
-    if(typeof set_ckeditor_content_full_and_plaintext != "function"){
-        var set_ckeditor_content_full_and_plaintext = function(id_fulltext, id_plaintext){
-            var plaintext = CKEDITOR.instances[id_fulltext].document.getBody().getText();
-            var fulltext = CKEDITOR.instances[id_fulltext].getData();
-            $("#"+id_plaintext).val(plaintext);
-            $("#"+id_fulltext).val(fulltext);
-        };
+
+    if (typeof set_ckeditor_content_full_and_plaintext != "function") {
+    var set_ckeditor_content_full_and_plaintext = function (id_fulltext, id_plaintext) {
+    var plaintext = CKEDITOR.instances[id_fulltext].document.getBody().getText();
+    var fulltext = CKEDITOR.instances[id_fulltext].getData();
+    $("#" + id_plaintext).val(plaintext);
+    $("#" + id_fulltext).val(fulltext);
     };
-     
+    }
+
+
     apply_ckeditor("<%=the_id%>");
-
 <%end%>
 

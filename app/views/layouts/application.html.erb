@@ -1,6 +1,6 @@
 <!-- HTML5 DOCTYPE -->
 <!DOCTYPE html>
-<html lang="<%= I18n.locale.to_s %>">
+<html lang="<%= I18n.locale.to_s %>" class="tr-coretext tr-aa-subpixel">
 <head>
   <meta charset="utf-8">
   <title><%= yield(:title).empty? ? t('site.current.title') : yield(:title) %></title>
@@ -16,36 +16,32 @@
   <meta property="og:image" content="<%= yield(:og_image) %>">
   <meta property="og:description" content="<%= yield(:description) %>">
   <meta property="fb:admins" content="824343515" />
-  <meta property="fb:app_id" content="629612437058744" /> 
+  <meta property="fb:app_id" content="629612437058744" />
 
   <%= favicon_link_tag "icons/favicon.ico" %>
   <%= stylesheet_link_tag "application" %>
-  
+
   <% if protect_against_forgery? %>
   <%= csrf_meta_tag %>
   <% end %>
-  
+
   <%= yield :headers %>
 
 </head>
 <body>
-  <div id="warning_cookie_bar">
-    <h3>Uso de cookies</h3>
-    <p>
-      Usamos cookies propias y de terceros para facilitar el uso de esta web y obtener estadísticas destinadas a la investigación. Si continua navegando consideramos que acepta el uso de cookies.
-      <a href="javascript:void(0);" onclick="setCookieOn();">OK</a>
-    </p>
-  </div>
+  <%= render partial: 'layouts/header/header_warning' %>
+
   <div id="wrap">
-    <%= render :partial => "layouts/header" %>
-    <div class="wrapper">      
+  
+    <%= render :partial => "layouts/header/header" %>
+
+    <div class="container-fluid container-content">
       <%= flashy %>
       <%= yield %>
-    </div>  
-    <div class="push">  </div>   
+    </div>
+
   </div>
   <%= render :partial => "layouts/footer" %>
-
 </body>
 
 <%= javascript_include_tag "application" %>
@@ -59,8 +55,8 @@
   </script>
 
   <script type="text/javascript">
-    $(document).ready(function() {  
-      
+    $(document).ready(function() {
+
       //setTimeout(function(){ $("#flash .alert").hide("slow") }, 5000);
       //code to hide the help popovers when clicking outside
       $('body').on('click', function (e) {
@@ -72,7 +68,9 @@
       <%= yield :javascript%>
     });
   </script>
-  <%= render partial: 'layouts/header_warning' %>
-  <%= render :partial => 'layouts/google_analytics' %>
-  <%= render :partial => 'layouts/uservoice' %>
+
+  <%= render partial: 'layouts/header/header_warning' %>
+  <%= render :partial => 'layouts/tools/google_analytics' %>
+  <%= render :partial => 'layouts/tools/uservoice' %>
+
 </html>

@@ -11,23 +11,22 @@
 <%end%>
 
 <section id="search" class="">
-  <div class="search">
-    <div class="row-fluid">
+  <div class="row">
+    <div id="search-sidebar" class="search-filterbar">
 
-      <div id="search-sidebar" class="span3 search-filterbar">
+      <div class="srch-panel">
 
         <%if params[:browse]%>
-          <li><h3><i class="icon-folder-open"></i><%= t("browse.title")%></h3></li>
+          <li><h3><i class="fa fa-folder-open-o"></i><%= t("browse.title")%></h3></li>
         <%elsif params[:catalogue]%>
-          <li><h3><i class="icon-tags"></i><%=t('catalogue.title')%></h3></li>
+          <li><h3><i class="fa fa-tags"></i><%=t('catalogue.title')%></h3></li>
         <%elsif params[:directory]%>
-          <li><h3><i class="icon-tags"></i><%=t('catalogue.title_directory')%></h3></li>
+          <li><h3><i class="fa fa-tags"></i><%=t('catalogue.title_directory')%></h3></li>
         <%else%>
-          <li><h3><i class="icon-search"></i><%= t("search.title")%></h3></li>
+          <li><h3><i class="fa fa-search"></i><%= t("search.title")%></h3></li>
         <%end%>
 
-
-        <div filter_type="category_ids" directory_filter="true" catalogue_filter="true" style="display:none"  class="filter_set">
+        <div filter_type="category_ids" directory_filter="true" catalogue_filter="true" style="display:none" class="filter_set">
           <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
@@ -93,7 +92,7 @@
             </ul>
         </div>
 
-        <div filter_type="language" search_filter="true" directory_filter="true" catalogue_filter="true" class="filter_set">
+        <div filter_type="language" style="display:none" search_filter="true" directory_filter="true" catalogue_filter="true" class="filter_set">
           <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
@@ -106,7 +105,7 @@
           </ul>
         </div>
 
-        <div filter_type="tags" search_filter="true" directory_filter="true" catalogue_filter="true" class="filter_set">
+        <div filter_type="tags" search_filter="true" directory_filter="true" catalogue_filter="true" style="display:none" class="filter_set">
           <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
@@ -118,81 +117,84 @@
           </ul>
         </div>
 
+        </div>
       </div>
 
-      <div class="span9 filter-results">
+    <div class="filter-results">
 
-        <div class="search_filters filters-applied">
-          <%= render partial: 'help/help_search' %>
-          <div><span class="n_results" id="n_results"><%=@search_result.total_entries%></span> <%= t("search.results")%></div>
-          <div class="title_applied_filters"><%= t("search.applied_filters")%></div>
+      <div class="search_filters filters-applied">
+
+        <%= render partial: 'help/help_search' %>
+        <div><span class="n_results" id="n_results"><%=@search_result.total_entries%></span> <%= t("search.results")%></div>
+        <div class="title_applied_filters"><%= t("search.applied_filters")%></div>
+
 
           <div id="applied_filters" class="filter_boxes"></div>
           <div class="clear"></div>
-      
-          <div class="dropdown_order_by" id="order_by_selector_search">
 
-            <button class="btn" type="button" data-toggle="dropdown">              
+          <div class="dropdown dropdown_order_by" id="order_by_selector_search">
+
+            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
               <span>
                 <%if params[:browse] %>
-                  <i class="icon-dashboard"></i>
+                  <i class="fa fa-tachometer"></i>
                   <%=t('order_by.popularity')%>
                 <%elsif params[:catalogue] || params[:directory] %>
                   <% if (params[:catalogue] && VishConfig.getCatalogueModels() === ["Excursion"]) || (params[:directory] && VishConfig.getDirectoryModels() === ["Excursion"]) %>
-                    <i class="icon-dashboard"></i>
+                    <i class="fa fa-tachometer"></i>
                     <%=t('order_by.quality')%>
                   <% else %>
-                    <i class="icon-dashboard"></i>
+                    <i class="fa fa-tachometer"></i>
                     <%=t('order_by.popularity')%>
                   <% end %>
                 <% else %>
-                  <i class="icon-eye-open"></i>
+                  <i class="fa fa-sort-amount-desc"></i>
                   <%=t('order_by.relevance')%>
                 <%end%>
-              </span><i class="icon-angle-down"></i>
+              </span><i class="fa fa-angle-down"></i>
             </button>
 
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="order_by_selector_search">
               <li role="presentation">
                 <a href="#" sort-by-key="relevance">
-                  <i class="icon-eye-open"></i>
+                  <i class="fa fa-sort-amount-desc"></i>
                   <span><%=t('order_by.relevance')%> </span>
                 </a>
               </li>
              <li role="presentation">
                 <a href="#" sort-by-key="popularity">
-                  <i class="icon-dashboard"></i>
+                  <i class="fa fa-tachometer"></i>
                   <span><%=t('order_by.popularity')%> </span>
                 </a>
               </li>
 
               <li role="presentation">
                 <a href="#"  sort-by-key="created_at">
-                  <i class="icon-bolt"></i>
+                  <i class="fa fa-bolt"></i>
                   <span><%=t('order_by.created_at')%> </span>
                 </a>
               </li>
               <li role="presentation" class="only_for_excursion disabled" title="<%=t('search.titles.tooltip2')%>">
                 <a href="#" sort-by-key="quality">
-                  <i class="icon-pencil"></i>
+                  <i class="fa fa-check-circle"></i>
                   <span><%=t('order_by.quality')%> </span>
                 </a>
-              </li>              
+              </li>
               <li role="presentation" class="disable_for_user" title="">
                 <a href="#" sort-by-key="updated_at">
-                  <i class="icon-pencil"></i>
+                  <i class="fa fa-pencil"></i>
                   <span><%=t('order_by.updated_at')%> </span>
                 </a>
               </li>
                 <li role="presentation" class="disable_for_user" title="">
                   <a href="#" sort-by-key="visits">
-                    <i class="icon-eye-open"></i>
+                    <i class="fa fa-eye"></i>
                     <span><%=t('order_by.visits')%> </span>
                   </a>
                 </li>
                 <li role="presentation" class="disable_for_user" title="">
                   <a href="#" sort-by-key="favorites">
-                    <i class="icon-star"></i>
+                    <i class="fa fa-star"></i>
                     <span><%=t('order_by.favorites')%> </span>
                   </a>
                 </li>
@@ -200,33 +202,35 @@
           </div>
           <div class="clear"></div>
 
-
         </div>
-
-          <div id="search-all" class="searched-items">
-            <ul>
-              <% @search_result.each do |r| %>
-                  <% unless r.nil? %>
-                    <%= render partial: "#{ r.class.to_s.tableize }/search_result",
-                               locals:  { r.class.to_s.underscore.to_sym => r, :prefix_id => "search" }  %>
-                  <% end %>
-              <% end %>
-            </ul>
-          </div>
-
-          <div class="loader_pagination">
-            <div class="pageless-loader" style="text-align:center;width:100%;">
-              <div class="msg" style="font-size:2em">
-                <%=t('search.loading')%>
-              </div>
-              <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
+        <div id="search-all" class="searched-items">
+          <ul class="items">
+            <% @search_result.each do |r| %>
+                <% unless r.nil? %>
+                  <%= render partial: "#{ r.class.to_s.tableize }/search_result",
+                             locals:  { r.class.to_s.underscore.to_sym => r, :prefix_id => "search" }  %>
+                <% end %>
+            <% end %>
+          </ul>
+        </div>
+        <div class="loader_pagination">
+          <div class="pageless-loader" style="text-align:center;width:100%;">
+            <div class="msg" style="font-size:2em">
+              <%=t('search.loading')%>
             </div>
+            <%= render :partial => 'layouts/loading'%>
           </div>
-          <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
-
+        </div>
+        <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
       </div>
+
+
+
+
+
     </div>
   </div>
+
 </section>
 
 
@@ -245,6 +249,8 @@
                      });
 
   SocialStream.Repository.show();
+
+
 
   $("footer#footer").addClass("fixed-bottom");
 

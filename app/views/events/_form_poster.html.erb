@@ -1,0 +1,32 @@
+<%= form_for @event.poster do |f| %>
+  <!--CARTEL/PORTADA-->
+  <label><%= t('event.leyend.poster')%></label>
+  <% if f.object.new_record? %>
+    <%= f.hidden_field :add_holder_event_id %>
+  <% end %>
+
+  <%= f.hidden_field :owner_id %>
+
+  <%= f.file_field :file, onchange: 'showButton()' %>
+  
+  <%= f.submit t('event.poster.button'), :class => "btn btn-default", :id => "btn_poster" %>
+  
+<% end %>
+
+<script>
+  $(document).ready(function(){    
+      //$("#edit_picture_<%=@event.poster.id%> input[name='commit']").addClass("hidden");
+      $("#btn_poster").addClass("hidden");
+  });
+
+  function showButton() {
+    if ($("#picture_file").val() != "") {
+
+      //$("#edit_picture_<%=@event.poster.id%> input[name='commit']").removeClass("hidden");
+      $("#btn_poster").removeClass("hidden");
+    } else {
+      //$("#edit_picture_<%=@event.poster.id%> input[name='commit']").addClass("hidden");
+      $("#btn_poster").addClass("hidden");
+    }
+  }
+</script>

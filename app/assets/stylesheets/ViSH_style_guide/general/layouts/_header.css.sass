@@ -1,0 +1,227 @@
+
+nav.navbar-fixed-top
+  .container-fluid
+    margin-top: 3px
+    max-width: 1970px
+  .navbar-header
+    .btn-group
+      a.dropdown-toggle
+        span
+          margin-right: 2px !important
+
+.logo-header
+  display: inline
+  a
+    @include logo-img
+.quick-search
+  @media (max-width: $screen-xs-max)
+    margin-top: 9px
+.search-nav
+  margin-right: 10px
+  float: right
+  @media (max-width: $screen-xs-max)
+    float: none
+    margin-right: 0
+  .search-query
+    @media (max-width: $screen-sm-max)
+      width: 180px !important
+  form
+    .search_button_class
+      @media (max-width: $screen-xs-max)
+        width: 13%
+        margin-left: 0
+        height: 36px
+        margin-top: -1px
+
+  .input-group
+    @media (max-width: $screen-xs-max)
+      margin-left: 0px !important
+      width: 100%
+
+  .search-query
+    width: 265px
+    display: inline
+    @media (max-width: $screen-xs-max)
+      width: 85%
+      margin-right: auto !important
+      margin-left: auto
+    @media (min-width: 1132px)
+      padding-top: 4px
+.dropdown-log
+  @include dropdown-log
+
+#dropdownMenuLog
+  @include border-right-radius ($border-radius-small)
+
+.mobile-nav
+  @include hidden-sm
+  @include hidden-md
+  @include hidden-lg
+  li
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+    &:hover
+      background-color: $gray-lighter-extra !important
+    a
+      color: $gray !important
+      text-transform: capitalize
+      &:hover,
+      &:focus
+        background-color: $gray-lighter-extra
+  li.open
+    a
+      @include border-top-radius ($border-radius-base)
+      color: $gray-light !important
+      &:hover
+        @include border-top-radius ($border-radius-base)
+        @include border-bottom-radius (0)
+    .dropdown-menu
+      @include dropdown-log
+      background-color: $dropdown-bg
+      &:hover
+        background-color: $dropdown-bg
+      form
+        padding: 0 7px 7px !important
+  li.language
+    ul li
+      padding: 0 9px
+      &:hover
+        background-color: $white !important
+        a
+          color: $text-color !important
+          background-color: $white !important
+      a
+      padding: 0 9px
+
+
+  .user
+    margin-bottom: 0
+    padding-left: 0
+    padding-right: 0
+    float: none
+    img
+      width: 18px
+      @include border-top-radius ($border-radius-small)
+      @include border-bottom-radius ($border-radius-small)
+
+  hr
+    margin-top: 6px
+    margin-bottom: 5px
+  li.sign-out
+    margin-bottom: 6px
+
+.desktop-nav
+  @include hidden-xs
+  margin-bottom: 0
+  li
+    min-width: 30px
+    a
+      color: $gray
+      border-color: $border-color
+    &:hover
+      background-color: $white
+  li.btn-group
+    a
+      min-width: 30px
+  ul li
+    &:hover
+      background-color: transparent
+  li.open
+    a
+      @include border-top-radius ($border-radius-base)
+      color: $gray-light !important
+  .user-menu .photo-user
+    background: #007CC8
+
+.user-menu
+  margin-left: 12px !important
+  .tooltip
+    left: 0 !important
+    padding: 0px !important
+    margin: 0 !important
+    position: absolute
+  a.photo-user
+    padding: 0px !important
+    img
+      @include border-left-radius ($border-radius-small)
+      @include fix-img-addon
+  a.dropdown-toggle
+    width: 120px
+    .user_text
+      float: left
+    i
+      float: right
+      margin: 3px 0 0 0
+
+  .dropdown-toggle:hover
+    border: 1px solid $brand-primary
+  .dropdown-menu
+    li
+      &:hover
+        background: transparent
+
+.headernav
+  a
+    display: inline-block
+    &:first-child
+      margin-right: 2px
+
+form.navbar-form-search
+  margin-right: 12px
+  @media (max-width: $screen-xs-max)
+    margin-right: 0
+
+#search_button
+  @include hidden-xs
+
+.navbar-collapse
+  overflow-x: visible
+  padding-right: 0
+  padding-left: 0
+  border-top: none
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1)
+  -webkit-overflow-scrolling: touch
+
+
+#new_user
+  padding: 7px
+
+.results
+  ul
+    @include items
+    li
+      @include excursion-small
+
+#nav-collapse-out
+  .desktop-nav
+    float: right
+    padding-left: 0
+
+#warning_cookie_bar
+  display: none
+  text-align: center
+  color: $white
+  background-color: rgba(0, 0, 0, 0.7)
+  height: auto
+  width: 100%
+  z-index: 999
+  position: fixed
+  top: 50px
+  h3
+    display: block
+    margin: 0
+  p
+    border-radius: 0 0 10px 10px
+    color: $white
+    margin: 0 auto
+    font-family: $corporate-font-family-sans-serif-Bold
+    width: 80%
+    a
+      color: $white
+      font-family: $corporate-font-family-sans-serif-Bold
+
+nav.navbar
+  .navbar-collapse
+    ul.nav-pills
+      li
+        text-align: center

@@ -1,0 +1,243 @@
+#quiz,
+#help,
+#legal_notice,
+#overview
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  padding: 0 !important
+  .icontitle
+    margin-top: 0
+
+li.events-item,
+li.categories-item,
+li.repositories-item
+
+
+#legal_notice
+  li
+    margin: 10px 0
+
+#QuizEdit
+  .modal-header
+    height: 6%
+    max-height: 6%
+    padding-top: 5px 
+    padding-bottom: 5px
+    p
+      font-size: 16px !important
+      margin-top: 1px
+  .modal-body
+    height: 83%
+    max-height: 83%
+    .quiz_sessions
+      label
+        margin-bottom: 8px
+      .select_options
+        margin: 8px 0
+        width: 40%
+
+#QuizAnalitycs
+  .modal-header
+    height: 4%
+    max-height: 4%
+    p, h4
+      font-size: 16px !important
+      margin-top: 1px
+      margin-bottom: 1px
+  .close
+    margin-top: -2px !important
+  .modal-body
+    height: 87%
+    max-height: 87%
+    .quiz_sessions
+      p
+        color: $gray
+      .quizAnswerURLTitle a
+        font-weight: bold
+        color: $brand-primary
+      .quizQuestionTitle
+        font-weight: 400
+        color: black
+      .quizResultsTable
+        border: none
+        color: $gray
+        .tdaRight
+          text-align: right
+        .trLast td
+          padding: 10px 10px !important
+        .tdTFPercentage
+          text-align: left
+          padding-left: 0px !important
+        .tdbeforeTFPercentage
+          padding-right: 5px !important
+          padding-left: 5px !important
+      .quizResultsTable td
+        padding: 1px 10px
+
+  .modal-footer
+    height: 2%
+    max-height: 2%
+
+
+#quiz_chart
+  max-width: 100%
+  max-height: 100%
+  margin-top: 30px
+
+.quizWithoutAnswers
+  width: 100%
+  margin-top: 7%
+  text-align: center
+  font-size: 28px
+
+
+p.quizQuestionChoice
+  margin: 3px 0px 0px 5%
+
+.openQuizAnswersListWrapper
+  width: 100% !important
+
+ul.openQuizAnswersList
+  li
+    font-size: 1rem !important
+  li:first-child
+    font-size: 1.3rem !important
+
+div.openQuizAnswerLeft
+  background-image: url('/assets/vicons/userAnswer.png') !important
+
+#quiz,
+#help,
+#legal_notice
+  .quizwhiteframe
+    padding-top: 3%
+    padding-right: 5%
+    padding-left: 5%
+    padding-bottom: 70%
+    background-color: $white
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+    width: 90%
+  .textrow
+    margin: 5px
+    padding: 0 0 2.5em
+    float: left
+    margin-right: 10px
+    width: 46%
+    @media (max-width: $screen-xs-max)
+      width: 100%
+    h4
+      margin-left: 20px
+      margin-bottom: 20px
+      color: $brand-secundary
+      font-size: 14px
+      min-height: 30px
+    p
+      margin-left: 20px
+      color: gray
+  .connectedSortable
+    list-style-type: none
+    margin: 0 20px 0px -5px
+    padding: 0px 0px 0px 18px
+
+  .connectedSortable li
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+    @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+    cursor: pointer
+    margin: 0 5px 5px 5px
+    font-size: 1.1em
+    color: $black
+    font-family: $corporate-font-family-sans-serif-Light
+    border-width: 1px
+    border-color: $gray
+    border-style: solid
+    height: 58px
+    padding: 10px
+    background-color: $white
+    @media (max-width: $screen-md-max)
+      height: 70px
+    @media (max-width: $screen-sm-max)
+      height: 90px
+    @media (max-width: $screen-xs-max)
+      height: 70px
+    .quiz_session_action
+      float: right
+      margin-left: 1%
+    .qs_name
+      width: 73%
+      white-space: nowrap
+      overflow: hidden
+      float: left
+      margin: -4px 0 0 0
+      @media (max-width: $screen-md-max)
+        width: 65%
+      @media (max-width: $screen-sm-max)
+        width: 55%
+      @media (max-width: $screen-xs-max)
+        width: 45%
+    .creation_date
+      word-wrap: break-word
+      overflow: hidden
+      font-size: 0.8em
+      color: $gray-light
+      float: left
+      margin: 0
+      width: 73%
+      @media (max-width: $screen-md-max)
+        width: 65%
+      @media (max-width: $screen-sm-max)
+        width: 55%
+    button
+      font-family: $corporate-font-family-sans-serif-Medium
+      float: right
+      display: block
+      margin-left: 2px
+      width: 30px
+    &:hover
+      background-color: $gray-light
+      .creation_date
+        color: $white
+      .qs_name
+        color: $gray-dark
+
+
+#overview
+  .overviewindex
+    @include hidden-xs
+    @include make-sm-column(3, $gutter: $grid-gutter-width)
+    @include make-md-column(3, $gutter: $grid-gutter-width)
+    @include make-lg-column(3, $gutter: $grid-gutter-width)
+    position: fixed
+    ul
+      li
+        list-style: normal
+        a
+          &:active
+            color: $gray-light
+
+  .overviewcontent
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(8, $gutter: $grid-gutter-width)
+    @include make-md-column(8, $gutter: $grid-gutter-width)
+    @include make-lg-column(8, $gutter: $grid-gutter-width)
+    @include make-xs-column-offset(0)
+    @include make-sm-column-offset(4)
+    @include make-md-column-offset(4)
+    @include make-lg-column-offset(4)
+
+
+#help,
+#quiz,
+#legal_notice,
+#overview
+  .whiteframe
+    padding: 5% !important
+    min-height: 350px
+    @include well
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(12, $gutter: $grid-gutter-width)
+    @include make-md-column(12, $gutter: $grid-gutter-width)
+    @include make-lg-column(12, $gutter: $grid-gutter-width)

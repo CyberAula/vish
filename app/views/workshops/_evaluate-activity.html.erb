@@ -1,26 +1,21 @@
 <!--activity-->
 <div class="activity">
-  <div class="tabbable">
-    
-    <ul class="nav nav-tabs"> 
-      <li class="active">
-        <a href="#commentsTab" data-toggle="tab">
-          <i class="icon-comment"></i>
-          <span class=" hidden-phone hidden-tablet"><%=t('comment.other')%></span>
-        </a>
-      </li>
-    </ul>
 
-    <div class="tab-content">
-      <div class="tab-pane active" id="commentsTab">
-        <div id="comments" class="comments">
-          <div class="new-comments-box">
-            <%= render :partial => 'comments/new', :locals => { :activity => @workshop.post_activity } %>
-          </div>
-          <%= render :partial => 'activities/comments', :locals => { :activity => @workshop.post_activity } %>
-        </div>
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#commentsTab" data-toggle="tab">
+        <i class="fa fa-comment"></i>
+        <span class=" hidden-xs"><%=t('comment.other')%></span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="commentsTab">
+      <div id="comments" class="comments">
+        <%= render :partial => 'activities/comments', :locals => { :activity => @workshop.post_activity } %>
+        <%= render :partial => 'comments/new', :locals => { :activity => @workshop.post_activity } %>
       </div>
     </div>
-
-  </div>    
+  </div>
 </div>

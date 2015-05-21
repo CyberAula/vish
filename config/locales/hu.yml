@@ -34,6 +34,7 @@ hu:
   conditions:
     check_message: "Az Elfogadásra kattintva, egyetértesz a "
     check_message_1: "Felhasználási feltételekkel"
+    check_message_2: ""
     other: "feltételek"
   contact:
     pending:
@@ -86,6 +87,7 @@ hu:
     Humanities: "Humanities"
     NaturalScience: "NaturalScience"
     ComputerScience: "ComputerScience"
+    ViSHCompetition13: "#ViSHCompetition2013"
   devise:
     invalid_login: "Kérjük, hogy a folyatáshoz írd be az email címedet és a jelszavadat."
   disjunction:
@@ -443,6 +445,7 @@ hu:
       start_time: Elkezdési idő
       title: Cím
       type: Típus
+      poster: ""
     main_title: "Új esemény készítése"
     title_input: "Az esemény neve"
     type:
@@ -590,6 +593,8 @@ hu:
             add_new_activity: "Új tevékenység hozzáadása"
             confirm_delete: "Törli a tevékenységet?"
         assignment:
+            add_image: "Feltöltés"
+            add_writing: "Írás"
             available_contributions:
                 document: "Dokumentumt"
                 title: "Rendelkezésre álló hozzájárulások"
@@ -631,6 +636,7 @@ hu:
     actions:
       add: "Szöveg hozzáadása"
     confirm_delete: "Törli az írás?"
+    new: "Új szöveg"
     title3: "Írni a szöveget szeretne hozzáadni"
   yesterday: "Tegnap"
   zipfile:

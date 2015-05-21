@@ -1,12 +1,13 @@
-<li class="helpheader_modal helpbutton">   
-<i class="icon-question-sign helpCategorize helppopover" id="helpcategorizeid" data-placement='bottom' aria-hidden="true" data-original-title="<%= t('categories.actions.verb')%>" href='#' value="" ></i>
-<div class="contentCategorize" id="contenthelpcategorizeid" style="display: none">
-  <div>
-  <%= t('document.help.categorize_html')%>
+<span class="helpheader">   
+  <i class="fa fa-question-circle helpCategorize" id="helpcategorizeid" data-placement='left' aria-hidden="true" data-original-title="<%= t('categories.actions.verb')%>" href='#' value="" ></i>
+  <div class="contenthelpCategorize" id="contenthelpcategorizeid" style="display: none">
+    <div class="popover-body">
+      <p> <%= t('document.help.categorize_html')%> </p>
+    </div>
+    <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
-  <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
-</div>
-</li>
+</span>
+
 <%content_for :javascript do%>
   $('#helpcategorizeid').popover({ 
     html : true,

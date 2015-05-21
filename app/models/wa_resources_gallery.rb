@@ -16,7 +16,7 @@ class WaResourcesGallery < ActiveRecord::Base
     end
 
     unless valid
-      errors[:base] << I18n.t("validation.invalid_resources_gallery")
+      errors.add(:resources_gallery, "This resources gallery include invalid entities.")
     else
       true
     end

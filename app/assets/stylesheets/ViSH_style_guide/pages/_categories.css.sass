@@ -1,0 +1,480 @@
+#category
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  padding: 0 !important
+  margin-bottom: 20px
+  .category_info
+    margin-bottom: 20px
+    float: left
+    background-color: $white
+    display: block
+    width: 100%
+    @include well
+    border: none
+    padding: 0
+    @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+    position: relative
+    @media (max-width: $screen-xs-max)
+      padding: 10px
+    .icontitle
+      margin-top: 0
+      margin-bottom: 8px
+    .fa-box
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(3, $gutter: $grid-gutter-width)
+      @include make-md-column(2, $gutter: $grid-gutter-width)
+      @include make-lg-column(2, $gutter: $grid-gutter-width)
+      padding-left: 0
+      @media (max-width: $screen-xs-max)
+        padding-right: 0
+        @include center-block
+        width: 200px
+        float: none
+
+
+    .my_favorites
+      width: 100% !important
+
+    .information
+      width: 84%
+      float: left
+      padding: 10px 15px
+      @media (max-width: $screen-xs-max)
+        width: 80%
+      .description
+        clear: both
+        color: $gray-dark
+        font-family: $corporate-font-family-sans-serif-Light
+      .briefing
+        .helpheader
+          @include hidden-xs
+          i
+            padding-top: 0
+        h2
+          margin-top: 0
+          margin-bottom: 4px
+          color: $gray-dark
+          font-family: $corporate-font-family-sans-serif-Medium
+
+        .description
+          color: $gray
+          font-family: $corporate-font-family-sans-serif-Light
+          word-wrap: break-word
+          margin-bottom: 5px
+          font-size: 13px
+
+
+
+  //FORMULARIO
+
+  .update
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(10, $gutter: $grid-gutter-width)
+    @include make-md-column(10, $gutter: $grid-gutter-width)
+    @include make-lg-column(10, $gutter: $grid-gutter-width)
+    label
+      font-size: 12px
+      font-family: $corporate-font-family-sans-serif-Light
+      color: $brand-primary
+      display: block
+      clear: both
+      margin-top: 12px
+    input
+      &[type="text"]
+        display: block
+        width: 100%
+        padding: 4px 2%
+    .actions
+      margin: 8px 0 15px
+      display: block
+      height: 34px
+      clear: both
+      input
+        width: auto
+        float: right
+      a
+        float: right
+        margin-right: 10px
+
+
+
+
+#category
+  .category_info
+    position: relative
+    .left_info
+      width: 16%
+      height: 150px
+      float: left
+      @media (max-width: $screen-xs-max)
+        width: 20%
+      .container-img
+        position: relative
+        width: 100%
+        overflow: hidden
+        height: 122px
+        .img-box
+          overflow: hidden
+          text-align: center
+          position: absolute
+          top: 0
+          left: 0
+      .container-img-categorie_0,
+      .container-img-categorie_1,
+      .container-img-categorie_2,
+      .container-img-categorie_3
+        float: left
+        display: inline-block
+        position: relative
+        border-radius: none
+        background-color: #C4C4C4
+        width: 48%
+        height: 61px
+        margin: 1%
+      .category_thumb_0,
+      .category_thumb_1,
+      .category_thumb_2,
+      .category_thumb_3
+        background-size: 131px
+        width: 100%
+        height: 60px
+
+
+      .container-img
+        .info
+          height: 75px
+        i
+          color: #fff !important
+          font-size: 2.3em
+          margin-left: -21%
+        .img-box
+          img
+            width: 100%
+
+    .corner-item
+      position: absolute
+      top: 0
+      left: 0
+      width: 72px
+      height: 72px
+      z-index: 2
+      .corner-item2
+        position: absolute
+        height: 72px
+        width: 72px
+        left: 0px
+        top: 0px
+        z-index: 4
+        -webkit-border-top-left-radius: 5px
+        -moz-border-radius-topleft: 5px
+        border-top-left-radius: 5px
+        overflow: hidden
+        .corner-color
+          position: absolute
+          width: 0
+          height: 0
+          border-style: solid
+          border-width: 72px 72px 0 0
+          z-index: 5
+          border-color: $brand-primary transparent transparent transparent
+        i
+          position: absolute
+          top: 9px
+          left: 9px
+          color: $white
+          font-size: 22px
+          z-index: 6
+          height: 26px
+          width: 26px
+      .corner-background
+        position: absolute
+        width: 0
+        height: 0
+        border-style: solid
+        border-width: 72px 72px 0 0
+        border-color: $body-bg transparent transparent transparent
+        z-index: 3
+        top: -5px
+        left: -5px
+#categories_viewer_modal
+  .modal-header
+    i
+      padding: 0
+
+    .helpheader_modal
+      float: right
+      margin-top: 3px
+      position: relative
+      i
+        cursor: pointer
+        font-size: 20px
+        color: $gray
+
+      .popover
+        font-size: 14px
+        width: 300px !important
+      .popoverfix
+        width: 248px
+        margin-left: -15px
+        margin-bottom: -15px
+  .modal-body
+    p
+      width: 100%
+      padding: 3px 0
+    div.information
+      width: 25%
+      display: inline-block
+    #suggestedCategories
+      height: 30px
+      overflow: hidden
+      margin-bottom: 10px
+    li.tagit-choice
+      background: gray
+      @include border-top-radius (3px)
+      @include border-bottom-radius (3px)
+      color: #FFFFFF
+      cursor: pointer
+      display: block
+      float: left
+      margin-right: 5px
+      padding: 4px 8px
+      position: relative
+      a
+        display: block
+        float: left
+        color: $white
+        font-size: 14px
+        font-weight: lighter
+    .dropdown
+      width: 75%
+      i
+        float: right
+      ul
+        width: 100%
+        opacity: 0.9
+        height: 100px
+        overflow-y: auto
+        margin-top: 35px
+
+      button
+        width: 100%
+        float: right
+        text-align: left
+        border: 1px solid $gray
+      span
+        float: right
+        display: inline
+      b
+        display: inline
+        color: $gray-light
+        float: left
+      a
+        font-size: 14px
+        color: $white
+        cursor: pointer
+        padding-left: 10px
+  .modal-footer
+    button
+      color: white
+      background-color: $brand-primary
+
+#categories_edition
+  background-color: rgba(0,0,0,0.8)
+  position: fixed
+  width: 100%
+  height: 100%
+  top: 0px
+  left: 0px
+  z-index: 9999
+  overflow-y: auto
+  display: none
+  .editing_info
+    width: 100%
+    z-index: 1000
+    margin: 0
+    padding: 0px 15px 10px
+    background-color: rgba(240,240,240,0.95)
+    position: fixed
+    left: 0px
+    h3
+      width: 50%
+      color: $gray-dark
+      margin-top: 10px
+    // Delete Zone
+    .delete
+      width: 14%
+      display: block
+      float: right
+      @include border-bottom-radius ($border-radius-base)
+      @include border-top-radius ($border-radius-base)
+      border: 2px dashed $gray
+      text-align: center
+      margin-top: -30px
+      height: auto
+      i
+        font-size: 50px
+        margin: 15px auto 5px
+        display: block
+        float: none
+        text-align: center
+        color: $gray
+      p
+        color: $gray
+        width: 95%
+        padding: 2.5%
+      &:hover
+        color: $gray-dark
+        border: 2px dashed $gray-dark
+        i
+          color: $gray-dark
+        p
+          color: $gray-dark
+    // Info
+    ul
+      margin: 0
+      width: 85%
+      display: block
+      float: left
+      li
+        display: block
+        float: left
+        width: 33%
+        i
+          font-size: 27px
+          float: left
+          width: 15%
+        h4
+          margin: 0
+          float: left
+          display: block
+          clear: right
+          color: $gray-dark
+          margin-bottom: 3px
+          margin-top: 4px
+          width: 75%
+          margin-left: 5%
+        p
+          width: 70%
+          clear: both
+          float: left
+          margin-right: 5%
+          margin-left: 20%
+          display: block
+          font-size: 10px
+          margin-top: -2px
+    .actions
+      height: 35px
+      float: left
+      width: 83%
+      @include border-top-radius ($border-radius-base)
+      margin-top: 6px
+      .btn, .btn-primary
+        margin: 5px 5px 3px 0px
+        padding: 1px 12px
+      .btn-for-undo
+        background-color: $gray
+        background-image: none
+        color: $white
+        text-shadow: none
+      i
+        padding-right: 5px
+        font-size: 16px
+      .btn-for-undo
+      .btn-primary:active,
+      .btn-primary.active
+        background-color: $brand-primary
+  // Excursions
+  .layout_edit
+    padding-top: 185px
+    padding-right: 5%
+    padding-left: 5%
+    max-width: 2000px
+    margin-left: auto
+    margin-right: auto
+    display: block
+    ul
+      margin: 0
+      margin: 20px 0 0
+
+#list-instance
+  h2
+    width: 100%
+    clear: both
+    display: inline-block
+    margin: 20px 0
+
+  ul
+    width: 100%
+    clear: both
+    display: inline-block
+    padding: 0 !important
+  hr.divider-cat
+    display: block
+    float: left
+    width: 100%
+
+
+
+/*6*/
+@media (min-width: 1501px) and (max-width: 1750px)
+  .main-list-categories-space
+
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+7)
+      display: block
+
+/*5*/
+@media (min-width: 1200px) and (max-width: 1500px)
+  .main-list-categories-space
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+5)
+      display: block
+
+/*4*/
+@media (min-width: 992px) and (max-width: 1199px)
+  .main-list-categories-space
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+5)
+      display: block
+
+
+
+/*3*/
+@media (min-width: 768px) and (max-width: 991px)
+  .main-list-categories-space
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+4)
+      display: block
+
+
+
+/*2*/
+ @media (min-width: 481px) and (max-width: 767px)
+  .main-list-categories-space
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+3)
+      display: block
+
+
+/*1*/
+@media (max-width: 480px)
+  .main-list-categories-space
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+1)
+      display: block
+
+
+li.box-item
+  .info-bottom
+    .categories_inside
+      cursor: default
+      width: 100%
+      float: left

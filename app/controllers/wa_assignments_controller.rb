@@ -18,7 +18,7 @@ class WaAssignmentsController < ApplicationController
         else
           discard_flash
         end
-        redirect_to edit_workshop_path(resource.workshop, {:activity => resource.workshop_activity.id})
+        redirect_to edit_workshop_path(resource.workshop)
       }
     end
   end
@@ -26,21 +26,12 @@ class WaAssignmentsController < ApplicationController
   def update
     super do |format|
       format.html {
-        if request.xhr?
-          #Ajax call
-          unless resource.errors.blank?
-            render :json => {errors: [resource.errors.full_messages.to_sentence]}
-          else
-            render :json => {errors: []}
-          end
+        unless resource.errors.blank?
+          flash[:errors] = resource.errors.full_messages.to_sentence
         else
-          unless resource.errors.blank?
-            flash[:errors] = resource.errors.full_messages.to_sentence
-          else
-            discard_flash
-          end
-          redirect_to edit_workshop_path(resource.workshop, {:activity => resource.workshop_activity.id})
+          discard_flash
         end
+        redirect_to edit_workshop_path(resource.workshop)
       }
     end
   end

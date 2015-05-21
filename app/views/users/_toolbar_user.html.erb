@@ -1,25 +1,26 @@
 <div class="btn-group">
   
   <!--BTN ADD-->
-  <% if !profile_subject_is_current? %>
-    <div class="btn contact_Toolbar">
+ <% if !profile_subject_is_current? %>
+    <div class="btn btn-follow">
       <%= contact_button(profile_subject) %>
     </div>
   <% end %>
-
   <!-- Edit your profile -->
   <% @profile = profile_or_current_subject.profile %>
   <% if can?(:update, @profile) %>
-    <div class="edit_icon btn">
-      <%= link_to(raw("<i class='icon-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %> 
+    <div class="edit_icon btn btn-default">
+      <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %>
     </div>
+   
+
   <% end %>
 
   <!-- Remove user (only for admins) -->
   <% if isAdmin? %>
     <% if can?(:destroy, @profile) and !profile_subject.admin? and current_subject!=profile_subject %>
-      <div class="edit_icon btn">
-        <%= link_to(raw("<i class='icon-trash '></i>")+ t('profile.remove'), user_path(profile_subject), :confirm => t('are_you_sure'), :method => "delete")%>
+      <div class="edit_icon btn btn-default">
+        <%= link_to(raw("<i class='fa fa-trash '></i>")+ t('profile.remove'), user_path(profile_subject), :confirm => t('are_you_sure'), :method => "delete")%>
       </div>
     <% end %>
   <% end %>
@@ -28,12 +29,12 @@
   <% if isAdmin? %>
     <% if can?(:make_admin, @profile) and current_subject!=profile_subject %>
       <% unless profile_subject.admin? %>
-      <div class="edit_icon btn">
-        <%= link_to(raw("<i class=' icon-thumbs-up '></i>")+ t('profile.promote'), promote_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
+      <div class="edit_icon btn btn-default">
+        <%= link_to(raw("<i class='fa fa-thumbs-up'></i>")+ t('profile.promote'), promote_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
       </div>
       <% else %>
-      <div class="edit_icon btn">
-        <%= link_to(raw("<i class=' icon-thumbs-down '></i>")+ t('profile.degrade'), degrade_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
+      <div class="edit_icon btn btn-default">
+        <%= link_to(raw("<i class='fa fa-thumbs-down'></i>")+ t('profile.degrade'), degrade_user_path(profile_subject), :confirm => t('are_you_sure'), :method => "post")%>
       </div>
       <% end %>
     <% end %>
@@ -41,56 +42,42 @@
 
   <!--BTN MESSAGE-->
   <% if !profile_subject_is_current? && user_signed_in?%>
-    <button href="#new_messages_profile" id="mesage-profile" role="button" class="btn" data-toggle="modal" data-remote="false">
+    <button href="#new_messages_profile" id="mesage-profile" role="button" class="btn btn-default" data-toggle="modal" data-remote="false">
       <%= link_to new_message_path(receiver: profile_subject.slug) do %>
-        <i class="icon-envelope-alt"></i>
-        <%= t 'mailboxer.send' %>
+      <i class="fa fa-envelope-o"></i>
+      <%= t 'mailboxer.send' %>
       <% end %>
     </button>
   <% end %>
+  <!--BTN show-more-->
 
-  <button href="#" id="showMore" class="btn" status="showMore" class="ui-state-default ui-corner-all">
-    <i class="icon-plus"></i>
-    <%=t('excursion.actions.show_more')%>
-  </button>
+
+
+ <a class="expand btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
+  
+   
+    <span id="showingMore" class="showMore accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" title=<%=t("excursion.actions.show_more")%>>
+    <i class="fa fa-plus-square-o"></i><%=t('excursion.actions.show_more')%>
+    </span>
+</a>
+
 
 </div>
+  <!-- Button to trigger modal --> 
 
-<!-- Button to trigger modal --> 
-<!-- Modal -->
-<div id="new_messages_profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-  <div class="modal-header">
-    <h4><%=t('message.new')%></h4>
-  </div>
-
-  <div class="modal-body">
-    <section id="new_message_profile">
-      <%= render :partial => 'messages/new', :locals => {:@recipient => Actor.find_by_slug(profile_subject.slug)} %>
-    </section>
-  </div>
-
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <input type="button" class="btn btn-primary" value="<%=t('mailboxer.send')%>"/>
-  </div>
-</div>
 
   <%content_for :javascript do%>
-    $("#showMore").click(function(){
-      $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
-      $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
-      if($("#showMore").attr("status")=== "showMore"){
-        $("#showMore").html('<i class="icon-minus"></i><%=t("excursion.actions.show_fewer")%>');
-        $("#showMore").attr("status", "showFewer");
+
+    $("#showingMore").click(function(e){
+      if($("#showingMore").attr("title")==="showMore"){
+        $("#showingMore").html('<i class="fa fa-plus-square-o"></i> <%=t("excursion.actions.show_more")%>');
+        $("#showingMore").attr("title", "showFewer");
       }
       else{
-        $("#showMore").html('<i class="icon-plus"></i><%=t("excursion.actions.show_more")%>');
-        $("#showMore").attr("status", "showMore");
+        $(".showMore").html('<i class="fa fa-minus-square-o"></i><%=t("excursion.actions.show_fewer")%>');
+        $("#showingMore").attr("title", "showMore");
       }
-      return false;
     });
-
 
       var sendMessage = $("input[name='send_message']");
       var send = $("input[type='button'][value='<%=t('mailboxer.send')%>']");
@@ -99,15 +86,16 @@
         $(sendMessage).click();
       });
       var SSMInitiated = false;
-
-      $('#new_messages_profile').on('shown', function () {
+      $('#new_messages_profile').on('shown.bs.modal', function () {
         if(!SSMInitiated){
          SocialStream.Message.new_();
          SSMInitiated = true;
-         
        }
-       //Fix for random behaviour opening and closing modals with CKEDITOR
-       $(window).trigger("resize");
-     });
+     })
+      $('#new_messages_profile').on('hidden.bs.modal', function () {
+        $("#mesage-profile").removeAttr("href");
+        $("#mesage-profile").removeAttr("data-toggle");
+        $("#mesage-profile").removeAttr("data-remote");
+      })
 
   <%end%>

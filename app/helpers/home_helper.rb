@@ -121,6 +121,7 @@ module HomeHelper
         query = query.order('activity_objects.qscore DESC')
     end
     
+
     query = query.offset(options[:offset]) if options[:offset] > 0
 
     # pagination, 0 means without pagination
@@ -131,7 +132,6 @@ module HomeHelper
       items = options[:limit] if options[:limit] > 0
       query = query.page(options[:page]).per(items)
     end
-
     #Optimization code
     #(Old version) return query.map{|ao| ao.object} if klass.is_a?(Array)
     unless options[:scope] == :like

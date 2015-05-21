@@ -1,35 +1,33 @@
 <section id="sign_in">
-  <h3><%= t('sign_in') %></h3>
+  <h4><%= t('sign_in') %></h4>
 
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <%= devise_error_messages! if controller.controller_name == 'sessions' %>
 
-    <article class="login_data">
+    <article class="form-group login_data">
 
       <%= f.label :email %>
 
-      <%= f.email_field :email %>
+      <%= f.email_field :email, :class => "form-control" %>
 
       <%= f.label :password %>
 
-      <%= f.password_field :password %>
-
+      <%= f.password_field :password, :class => "form-control" %>
+      <hr class="soften">
       <% if devise_mapping.rememberable? -%>
-        <div id="remember">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> 
+            <span class="lbl padding-0">
+              <%=t("activerecord.attributes.user.remember_me")%>
+            </span>
+          </label>
         </div>
       <% end %>
 
-      <%= f.submit t('sign_in'), :class =>"btn" %>
-      <a class="sign_up btn" href="<%=new_user_registration_path%>"><%=t("sign_up")%></a>
-
-      <%= link_to t('devise.links.forgot_password'), new_password_path(resource_name),  :class=> "forgot-link" %>
-
-      <hr class="soften">
-
-      <%= render :partial => "devise/shared/links" %>
-
+      <%= link_to t('devise.links.forgot_password'), new_password_path(resource_name),  :class=> "forgot-link remember_password" %>
+      
+      <%= f.submit t('sign_in'), :class =>"btn btn-primary" %>
     </article>
   <% end %>
 </section>

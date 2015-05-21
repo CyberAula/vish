@@ -1,5 +1,1 @@
-<% if officedoc.file_content_type === "application/pdf" %>
-	<%= render partial: 'officedocs/officedoc_show', locals: { officedoc: officedoc } %>
-<% else %>
-	<%= render partial: 'common_resources/workshop_show_downloadable', locals: { resource: officedoc } %>
-<% end %>
+<%= render partial: 'common_resources/workshop_show_downloadable', locals: { resource: officedoc} %>

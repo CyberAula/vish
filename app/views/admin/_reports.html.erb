@@ -1,20 +1,19 @@
 <section class="admin">
-  <div class="tabbable">
-    <ul class="nav nav-tabs">
-      <li <%=@pending ? "class=active" : ""%>>
-        <a href="<%=admin_open_reports_path%>">
-          <i class="icon-exclamation-sign"></i>
-          <span class=""><%=t("admin.pending_reports")%> (<%=@pending_reports_quantity=%>)</span>
-        </a>
-      </li>   
-      <li <%=!@pending ? "class=active" : ""%>>
-        <a href="<%=admin_closed_reports_path%>">
-          <i class='icon-lock'></i>
-          <span class=""><%=t("admin.closed_reports")%> (<%=@closed_reports_quantity=%>)</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+  <ul class="nav nav-tabs">
+    <li <%=@pending ? "class=active" : ""%>>
+      <a href="<%=admin_open_reports_path%>">
+        <i class="fa fa-exclamation-sign"></i>
+        <span class=""><%=t("admin.pending_reports")%> (<%=@pending_reports_quantity%>)</span>
+      </a>
+    </li>   
+    <li <%=!@pending ? "class=active" : ""%>>
+      <a href="<%=admin_closed_reports_path%>">
+        <i class='fa fa-lock'></i>
+        <span class=""><%=t("admin.closed_reports")%> (<%=@closed_reports_quantity%>)</span>
+      </a>
+    </li>
+  </ul>
+
 </section>
 
  <%= render '/admin/reportList' %>

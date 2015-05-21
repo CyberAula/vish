@@ -1,5 +1,6 @@
+<%= render :partial => 'modal_message' %>
+
 <section class="user">
-  <header>
 
   <!--box info-->
     <div id="profile-info">
@@ -26,7 +27,7 @@
             <h2><%= @user.name %></h2>
           </div>
 
-          <!--help-->         
+          <!--help-->
           <%= render :partial => 'help/help_profile' %>
 
           <!--description-->
@@ -44,69 +45,86 @@
                 <h3 class="name-roll">Email</h3>
                   <span><%= profile_subject.email %></span>
             </div>
-          <%end%>
+
 
           <!--__Occupation -->
           <div class="ocupation">
-            <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>          
-              <h3 class="select">
-                <%= link_to t('profile.occupation.select'), '#', :id => "select_occupation_link" %> 
-              </h3>
-              <% elsif profile_subject.occupation_sym != :select %>
-              <h3 class="name-roll">
-                <%= t('profile.occupation.label') %></h3>
-                <span><%= profile_subject.occupation_t %></span>
-              
-            <% end %>
+              <h4 class="name-roll">Email</h4>
+                <span><%= profile_subject.email %></span>
           </div>
 
-          <div id="effect" class="newClass ui-corner-all">
+          <%end%>
+          <div class="panel-group" id="accordion">
+            <div class="panel">
+              <!--__Occupation -->
+              <table class="table table-striped">
+                <tbody>
+                  <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>
+                  <tr class="ocupation">
+                    <td class="select">
+                      <%= link_to t('profile.occupation.select'), '#', :id => "select_occupation_link" %>
+                    </td>
+                    <% elsif profile_subject.occupation_sym != :select %>
+                    <td class="name-roll">
+                      <%= t('profile.occupation.label') %></td>
+                      <td><%= profile_subject.occupation_t %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
 
-            <!--__Organization -->
-            <div class="organization">
-              <h3><%= t('profile.organization') %></h3>
-              <span><%= @user.profile.organization %></span>
+              <div id="collapseInfo" class="panel-collapse collapse">
+
+                  <table class="table table-striped">
+                    <tbody>
+                      <!--__Organization -->
+                      <tr class="organization">
+                        <td><%= t('profile.organization') %></td>
+                        <td><%= @user.profile.organization %></td>
+                      </tr>
+
+                      <!--__Website -->
+                      <tr class="website">
+                        <td><%= t('profile.website') %></td>
+                        <td><%= link_to @user.profile.website,  @user.profile.website, :target=>'_blank' %></td>
+                      </tr>
+
+                      <!--__birthday -->
+                      <tr class="birthday">
+                        <td><%= t('profile.' + current_subject.class.to_s.downcase + '.birthday') %></td>
+                        <td><%= @user.profile.birthday %></td>
+                      </tr>
+
+                      <!--__city -->
+                      <tr class="city">
+                      <td><%= t('profile.city') %></td>
+                      <td><%= @user.profile.city %></td>
+                      </tr>
+
+                      <!--__Country -->
+                      <tr class="county">
+                        <td><%= t('profile.country') %></td>
+                        <td><%= @user.profile.country %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
             </div>
-
-            <!--__Website -->
-            <div class="website">
-              <h3><%= t('profile.website') %></h3>
-              <% websiteURL = @user.profile.website.nil? ? user_url(@user) : @user.profile.website %>
-              <span><%= link_to websiteURL, websiteURL, :target=>'_blank' %></span>
-            </div>
-
-            <!--__birthday -->
-            <div class="birthday">
-              <h3><%= t('profile.' + current_subject.class.to_s.downcase + '.birthday') %></h3>
-              <span><%= @user.profile.birthday %></span>
-            </div>
-
-            <!--__city -->
-            <div class="city">
-            <h3><%= t('profile.city') %></h3>
-            <span><%= @user.profile.city %></span>
-            </div>
-
-            <!--__Country -->
-            <div class="county">
-              <h3><%= t('profile.country') %></h3>
-              <span><%= @user.profile.country %></span>
-            </div>
-
           </div>
 
-          <div class="toolbar-profile">
-            <%= render :partial => 'users/toolbar_user' %>
-          </div>
-
+        <div class="toolbar-profile">
+          <%= render :partial => 'users/toolbar_user' %>
         </div>
 
-        <%= render :partial => 'users/form_update_profile' %>
-      </section>
-    </div>
-  </header>
+      </div>
 
-<%= render partial: 'users/profile-info' %>
+      <%= render :partial => 'users/form_update_profile' %>
+
+    </section>
+  </div>
+
+  <%= render partial: 'users/profile-info' %>
+
 
   <%content_for :javascript do%>
     SocialStream.Profile.show({
@@ -118,5 +136,6 @@
     });
 
   <% end %>
+
 
 </section>

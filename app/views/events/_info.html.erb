@@ -6,8 +6,8 @@
       <% end %>
     </div>
     <div class="right-name">
-        <%= link_to document.author.subject do %>
-          <p><%= truncate_name(@event.author.name, :length => 50) %></p>
+      <%= link_to document.author.subject do %>
+      <p><%= truncate_name(@event.author.name, :length => 50) %></p>
         <% end %>
       <div class="add">
         <% if user_signed_in?%>
@@ -16,46 +16,88 @@
           <%= contact_button(@event.author) %>
         <%end%>
       </div>
-    </div>
+
+    </div>  
   </div>
 </div>
+<div class="panel-group" id="accordion">
+  <div class="panel">
+    <header>
+      <table class="table table-hover">  
+        <tr>
+          <td><span>Empieza el: </span></td>
+          <td id="start"><%= @event.start_at %></td>
+        </tr>
+        <tr>
+          <td><span>Termina el: </span></td>
+          <td id="end"><%= @event.end_at %></td>
+        </tr>
+      </table>
+    </header>
 
-<div id="effect" class="anotherNewClass ui-corner-all">
-  <dl class="dl-horizontal">
-    <% unless @event.description.blank? %>
-      <dt><%= t 'document.info.description' %></dt>
-      <dd><%= @event.description %></dd>
-    <% end%>
+    <div id="collapseInfo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <table class="table table-hover">
+          <tr>
+            <% unless @event.description.blank? %>
+              <td><span><%= t 'document.info.description' %></span></td>
+              <td><%= @event.description %></td>
+            <% end%>
+          </tr>
+          <script>
+            $("#start").text(new Date(Date.parse("<%=@event.start_at.iso8601%>")).toLocaleString());
+            $("#end").text(new Date(Date.parse("<%=@event.end_at.iso8601%>")).toLocaleString());
+          </script>
 
-      <dt>Empieza el: </dt>
-      <dd id="start"><%= @event.start_at %></dd>
+          <!--div class="day">
+            <%= @event.start_at.day %>
+          </div>
+          <div class="month">
+            <%#= l @event.start_at, :format => "%B" %>
+          </div>
+          <div class="hour">
+            <%#= l @event.start_at, :format => "%H:%M" %>
+          </div>
+          <div class="hour">
+            <%#= l @event.end_at, :format => "%H:%M" %>
+          </div-->
+          <%# unless document.tag_list.blank? %>
+          <!--td><%#= t 'document.info.tags' %></td>
+            <td><%#= tag_list document %></td-->
+          <%#end%>
+        </table>
+      </div>
+    </div>
+  </div>
+  <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
+    <span id="showingMore2" class="showMore accordion-toggle btn btn-default" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" title=<%=t("excursion.actions.show_fewer")%>>
+    <%=t('excursion.actions.show_fewer')%>
+    </span>
+  </a>
+</div>
 
-      <dt>Termina el: </dt>
-      <dd id="end"><%= @event.end_at %></dd>
+
+<script language="javascript" type="text/javascript" >
+
+  $("#showingMore2").click(function(e){
+    if($("#showingMore2").attr("title")==="showMore"){
+      $(".showMore").html('<%=t("excursion.actions.show_fewer")%>');
+      $("#showingMore2").attr("title", "showFewer");
+    }
+    else{
+      $(".showMore").html('<%=t("excursion.actions.show_more")%>');
+      $("#showingMore2").attr("title", "showMore");
+    }
+  });
+
+</script>
+
 
       <%= content_for :javascript do %>
         $("#start").text(new Date(Date.parse("<%=@event.start_at.iso8601%>")).toLocaleString());
         $("#end").text(new Date(Date.parse("<%=@event.end_at.iso8601%>")).toLocaleString());
       <%end%>
 
-      <!--div class="day">
-        <%= @event.start_at.day %>
-      </div>
-      <div class="month">
-        <%#= l @event.start_at, :format => "%B" %>
-      </div>
-      <div class="hour">
-        <%#= l @event.start_at, :format => "%H:%M" %>
-      </div>
-      <div class="hour">
-        <%#= l @event.end_at, :format => "%H:%M" %>
-      </div-->
-    <%# unless document.tag_list.blank? %>
-      <!--dt><%#= t 'document.info.tags' %></dt>
-     <dd><%#= tag_list document %></dd-->
-    <%#end%>
 
-  </dl>
-</div>
 
 

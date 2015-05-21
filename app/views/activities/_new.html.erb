@@ -1,0 +1,46 @@
+<% if can? :create, new_post(receiver) %>
+  <article class="wall_input">
+    <%= form_for Post.new(owner_id: Actor.normalize_id(receiver)), :class => "form-goup", remote: true do |f| %>
+      <%= f.hidden_field :owner_id %>
+
+        <div class="input-group">
+    
+          <%= f.text_area :text, rows: 1, :class => "form-control", placeholder: t('post.input') %>
+
+          <div class="input-group-addon">
+  
+            <% SocialStream.activity_forms.each do |element| %>
+              <%= render partial: "#{ element.to_s.pluralize }/new_activity",
+                         locals: { f: f, receiver: receiver } %>
+            <% end %>
+
+            <%= f.submit t('activity.share'), class: "btn btn-primary", 'data-loading-text' => t('activity.share_loading') %>
+
+          </div>
+        </div>
+
+      <% end %>
+  </article>
+ 
+
+  <%= content_for :javascript do %>
+    $(function(){  
+      SocialStream.Wall.show();  
+    });
+    
+    //This code swaps position of timeline activities in timeline
+    $(".timeline").bind("DOMSubtreeModified",function(){
+      if( !$($(".timeline-panel")[1]).parent().hasClass("timeline-inverted") && !$($(".timeline-panel")[0]).parent().hasClass("timeline-inverted") ){
+        $($(".timeline-panel")).slice(1).parent().each(function(i){
+        if (!$(this).hasClass("timeline-inverted")){
+          $(this).addClass("timeline-inverted");
+        } else {
+          $(this).removeClass("timeline-inverted");
+        }
+        });
+      }
+    });
+  <% end %>
+
+
+<% end %>

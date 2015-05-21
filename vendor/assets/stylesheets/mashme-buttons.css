@@ -8,7 +8,7 @@
 }
 .mashme-button {
   margin: 0px;
-  background-color: #009bc7;
+  background-color: #009bc7 !important;
   background-image: -moz-linear-gradient(top, #00afc3, #007dcc);
   background-image: -ms-linear-gradient(top, #00afc3, #007dcc);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00afc3), to(#007dcc));
@@ -20,7 +20,7 @@
   border: solid 1px #007dcc;
   cursor: pointer;
   position: relative;
-  height: 38px;
+  height: 34px;
   padding: 0;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;

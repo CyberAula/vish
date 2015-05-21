@@ -31,12 +31,12 @@
 
       <section class="title">
         <%= f.label :title, t('document.info.title') %>
-        <%= f.text_field :title %>
+        <%= f.text_field :title, :class => "form-control" %>
       </section>
 
       <section class="description">
         <%= f.label :description, t('document.info.description') %>
-        <%= f.text_area :description %>
+        <%= f.text_area :description, :rows => "6", :class => "form-control" %>
       </section>
 
       <section class="tags">
@@ -118,10 +118,10 @@
         </section>
       <% end%>
 
-      <div class="footer-form">
-        <%= f.submit :class => "btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+      <div class="footer-form clearfix">
+        <%= f.submit :class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
         <% if resource.class.name=="Workshop" && !isNewInstance %>
-          <button class="btn" href="<%=edit_workshop_path(@workshop)%>"><%=t('workshop.actions.cancel_&_go')%></button>
+          <button class="btn btn-default" href="<%=edit_workshop_path(@workshop)%>"><%=t('workshop.actions.cancel_&_go')%></button>
         <%end%>
       </div>
     <% end %>
@@ -176,7 +176,12 @@
 
       $("#new_file .age-slider").before($("#new_file .limits"));
 
-      $('a[href="#document-edit"]').on('shown', function(e){
+      $('a[href="#document-edit"]').on('shown.bs.tab', function(e){
+        newFilePositionLimits();
+      });
+
+      document.addEventListener("DOMContentLoaded", function(){
+        SocialStream.Document.edit();
         newFilePositionLimits();
       });
 
@@ -188,7 +193,6 @@
         $("#new_file .tags input").hide();
         $("#new_file .tags input").val(resourceTagList);
       });
-
       // onDocumentReady
       // document.addEventListener("DOMContentLoaded", function(){});
       SocialStream.Document.edit();

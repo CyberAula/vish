@@ -8,6 +8,8 @@ pt:
     other: "condições"
   document:
     input: "Descrição do recurso"
+  contest:
+    ViSHCompetition13: "#ViSHCompetition2013" 
   excursion:
     detail: "Detalhes"
     one: "excursão"

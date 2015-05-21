@@ -1,0 +1,21 @@
+
+<div id="open_catalogue" >
+	<a class="back_catalogue"><i class="fa fa-circle-arrow-left" ></i></a>
+	<h2><%=params[:category]%></h2>
+	<ul class="items">
+		<%for excursion in @excursions%>
+			<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion , :prefix_id => "catalogue"} %>
+		<%end%>
+	</ul>
+</div>
+
+<script>	
+	$(document).ready(function(){  
+		$(".back_catalogue").click(function(event) {
+			$("#catalogue_tab_ready").empty();
+			$('.loader_pagination').show();
+			var next = "<%= home_path(:tab =>'catalogue')%>";
+				catalogue_state(next);
+			});
+		});
+</script>

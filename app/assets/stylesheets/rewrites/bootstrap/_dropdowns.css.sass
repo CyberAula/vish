@@ -1,0 +1,45 @@
+.dropdown-menu
+  padding: 0
+  i.fa-bolt
+    margin-left: 5px
+
+.dropdown-menu > .disabled > a:hover,
+.dropdown-menu > .disabled > a:focus
+  text-decoration: none
+  cursor: default
+  background-color: transparent
+  background-image: none
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false)
+
+.dropdown-menu
+  .disabled
+    i, a
+      color: $gray-darker
+      &:hover
+        background-color: transparent !important
+        color: $gray-darker
+    &:hover
+      background-color: transparent !important
+
+.dropdown-menu > li > a
+  padding: 6px 12px
+  text-align: left
+  @include border-top-radius ($border-radius-base)
+  @include border-bottom-radius ($border-radius-base)
+  text-transform: capitalize
+  color: $gray-lighter
+  &:hover
+    text-decoration: none
+    color: $gray-lighter-extra
+    //background-color: #E60054 !important
+    background-color: $gray-darker !important
+  i
+    margin-right: 6px
+    color: $white
+
+
+.open .btn-default.dropdown-toggle
+  color: $gray-light
+
+.dropdown-menu .divider
+  margin: 2px 0

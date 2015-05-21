@@ -1,0 +1,11 @@
+@mixin animation ($duration, $delay, $animation)
+  -webkit-animation: ($duration, $delay, $animation)
+  -moz-animation: ($duration, $delay, $animation)
+  -o-animation: ($duration, $delay, $animation)
+
+@mixin transitioncolor ($kind, $duration, $mode)
+  -webkit-transition: ($kind, $duration, $mode)
+  -moz-transition: ($kind, $duration, $mode)
+  -ms-transition: ($kind, $duration, $mode)
+  -o-transition: ($kind, $duration, $mode)
+  transition: ($kind, $duration, $mode)

@@ -6,19 +6,28 @@
   });
 </script>
 
-<div id="asearch_header">
-  <div class="search">
-    <input class="asearch_box search_input" type="text" placeholder="<%=t("search.search_input_placeholder")%>" autocomplete="off">
-    <button class="toolbar_button search_button">
-      <img class="search_button_img" src="/assets/asearch/search.png">
-    </button>
-    <button class="toolbar_button settings_button">
-      <img class="settings_button_img" src="/assets/asearch/settings.png">
-    </button>
-  </div>
-</div>
+<nav id="asearch_header">
 
+
+  <div class="search form-group">
+    <div class="input-group">
+      <input class="asearch_box search_input form-control" type="text" placeholder="<%=t("search.search_input_placeholder")%>" autocomplete="off">
+      <div class="input-group-addon">  
+        <button class="toolbar_button search_button btn btn-primary">
+          <i class="fa fa-search search_button_img"></i>
+        </button>
+        <button class="toolbar_button settings_button btn btn-default">
+          <i class="fa fa-cog settings_button_img"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container-av">
 <div id="asearch_results">
+
+</div>
 </div>
 
 <div id="asearch_settings">
@@ -76,7 +85,7 @@
   </div>
 
   <div class="settingsColumn">
-    <p class="settingsTitle"><%=t("search.instances.title")%> <span class="closeASearchSettings"><%=t("search.close")%></span></p>
+    <p class="settingsTitle"><%=t("search.instances.title")%> </p>
 
     <p class="settingsField"><%=t("search.instances.results")%></p>
     <select asparam="n">
@@ -97,7 +106,7 @@
       <ul>
         <% VishConfig.getViSHInstances.each_with_index do |instance,index| %>
           <li>
-            <input type="checkbox" <%= checked="checked"%>></input>&nbsp;
+            <input type="checkbox" <%= checked="checked"%>/>&nbsp;
             <span><%=instance%></span>
           </li>
         <% end %>
@@ -109,5 +118,5 @@
       <option value="table"><%=t("search.rendering.table")%></option>
     </select>
   </div>
-
+  <span class="closeASearchSettings">x <%=t("search.close")%></span>
 </div>

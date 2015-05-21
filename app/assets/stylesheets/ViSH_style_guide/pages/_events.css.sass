@@ -1,0 +1,92 @@
+.eve-show
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(8, $gutter: $grid-gutter-width)
+  @include make-lg-column(8, $gutter: $grid-gutter-width)
+  padding: 0 !important
+  .icon-box
+    background: rgba(216, 216, 216, 0.9)
+    padding: 20px 0
+    .fa-video-camera
+      position: absolute
+      font-size: 94px
+      margin-top: 141px
+    .event-img
+      max-width: 366px
+      display: block
+      margin: 0px auto
+      background: #FFF
+    .btn,
+    .fa-video-camera
+      text-align: center
+  .high
+    img
+      width: 100%
+
+.edit_event,
+.edit_picture
+  label
+    margin-top: 10px
+  .btn-primary
+    float: right
+    margin: 20px 0 30px
+
+.edit_event
+  .edit_picture
+    .btn
+      float: right
+      margin-top: -26px
+#document-edit
+  .edit_picture
+    .btn
+      float: right
+    input
+      &[type="file"]
+        display: inline
+
+#AddEvent
+  .new_event
+    #date, #hourinit, #hourfinish
+      width: 50%
+    #event_embed
+      height: 70px
+    .checkbox
+      margin-top: 0
+      margin-bottom: 0
+      padding-left: 10px
+      label
+        float: left
+        width: auto
+        margin: 0 10px
+        //&:first-child
+          padding-left: 0
+
+.limits
+  position: relative
+  .limit1, .limit2
+    position: absolute
+    left: 0px
+    top: 22px
+
+.slider
+  .slider-selection
+    background: $brand-secundary
+  .slider-handle
+    background-color: $brand-secundary
+
+input.age-slider
+  border: none !important
+  color: $white
+
+
+.slider-track
+  background-color: lighten($brand-primary, 30%)
+
+
+.new_comment
+  #comment_text
+    height: 40px
+
+
+#new_event-up.alert
+  padding: 20px 10px
+  text-align: center

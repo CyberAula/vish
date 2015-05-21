@@ -1,0 +1,395 @@
+aside.recomended
+  @include hidden-xs
+  @include hidden-sm
+  @include make-md-column(4, $gutter: $grid-gutter-width)
+  @include make-lg-column(4, $gutter: $grid-gutter-width)
+
+.doc-show,
+.exc-show,
+.eve-show
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(8, $gutter: $grid-gutter-width)
+  @include make-lg-column(8, $gutter: $grid-gutter-width)
+  padding: 0 !important
+  .link_show
+    width: 100%
+    height: 500px
+
+.description-activity
+  .box_description
+    min-height: 171px
+    margin-bottom: 15px
+    .excursion_tool
+      .verb_like
+        padding-top: 5px
+  .activity-box
+    clear: both
+    padding-bottom: 25px
+    .activity
+      width: 100%
+      float: none
+      div.comments,
+      .child
+        float: none
+        .panel-group
+          width: 100%
+          .panel-body
+            padding: 8px 10px
+      .tab-content
+        @include conversations
+
+.description-activity
+  @include box-shadow(0 1px 4px 1px rgba(0, 0, 0, 0.1))
+  @include well
+  @include border-top-radius (0)
+  background-color: $white
+  padding: 0
+  border: none
+  clear: both
+  margin-bottom: 0
+  h2,
+  .tab-content
+    width: 95%
+    @include center-block
+  h2
+    //font-family: $corporate-font-family-sans-serif-Regular
+    color: $gray-dark
+    min-height: 38px
+  .tab-content
+    .newClass,
+    .avatar,
+    #effect,
+    .right-name
+      float: left
+      a p
+        color: $gray
+      .add
+        @include follow-profile
+        width: 100%
+        height: 20px
+
+    .left-info
+      @include make-sm-column(4, $gutter: $grid-gutter-width)
+      @include make-md-column(4, $gutter: $grid-gutter-width)
+      @include make-lg-column(4, $gutter: $grid-gutter-width)
+      padding: 0
+
+
+    .avatar img
+
+    .right-name
+      @include make-sm-column(8, $gutter: $grid-gutter-width)
+      @include make-md-column(8, $gutter: $grid-gutter-width)
+      @include make-lg-column(8, $gutter: $grid-gutter-width)
+      p
+        margin-bottom: 7px
+        margin-top: 3px
+      .add
+        @include follow-o
+        text-align: left
+        .unfollow-button
+          margin: 0
+    .panel-group
+      @include make-sm-column(8, $gutter: $grid-gutter-width)
+      @include make-md-column(8, $gutter: $grid-gutter-width)
+      @include make-lg-column(8, $gutter: $grid-gutter-width)
+      padding-right: 0
+      .panel
+        @include box-shadow(0 0 0 transparent)
+        .panel-body
+          padding: 0
+        .panel-footer
+          background-color: $white
+          border-top: 1px solid $border-color
+          padding-left: 0
+          padding-right: 0
+      .table
+        border-collapse: none
+        span
+          font-family: $corporate-font-family-sans-serif-Medium
+      @media (max-width: $screen-xs-max)
+        clear: both
+        padding-left: 0
+
+  .comments,
+  .child
+    width: 100%
+
+
+#comments-show
+  .panel-group
+    @include comments
+
+.btn-group
+  a
+    color: $gray
+.excursion_tool
+  .helpheader i
+    padding-top: 9px
+    padding-right: 7px
+
+  .btn-group
+    right: 0
+    float: right
+    display: inline-block
+    button
+    .btn
+      color: $gray
+      &:hover
+        color: $brand-primary
+    .btn:first-child:not(:last-child):not(.dropdown-toggle)
+      margin-left: 0
+    .btn + .btn
+      margin-left: 0
+    button
+      border: none
+      background: transparent
+      &:hover
+        border: none
+
+
+
+  ul.nav-tabs
+    clear: none
+
+.box-show
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  background-color: rgba(216, 216, 216, 0.9)
+  padding: 0
+  @include border-top-radius ($border-radius-base)
+  @include box-shadow (0 1px 4px 1px rgba(0, 0, 0, 0.1))
+  text-align: center
+  .viewerContainer
+    width: 100%
+    iframe
+      border: none
+.writing_show
+  max-width: 95%
+  display: block
+  margin: 20px auto
+  background: rgba(255, 255, 255, 0.75)
+  padding: 10px
+  border-radius: 5px
+
+.link_address
+  width: auto
+  margin-top: 3px
+  margin-right: 7px
+  a
+    text-align: center
+    font-size: 15px !important
+    color: $gray-dark
+    float: none !important
+    margin: 10px 0px 0px 0px !important
+    i,p
+      font-size: 15px !important
+      color: $gray-dark
+      display: inline-block
+      text-align: left !important
+      width: auto !important
+    i
+      margin-right: 7px
+      margin-top: 3px
+    p
+      margin: 0 !important
+.link_address:hover
+  a,i,p
+    color: $gray-dark
+
+
+aside.recomended
+  float: right !important
+aside.recomended,
+.mat
+  .items
+    padding: 0
+    li
+      @include excursion-small
+
+.box-show
+  a,
+  i,
+  img
+    text-align: center
+    width: auto
+    display: block
+    margin: 20px auto
+    font-size: 44px
+  .viewerElement
+    padding-top: 79%
+    width: 100%
+  .excursion_viewer_wrapper
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    width: 100%
+    iframe
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+
+.social_toolbar_excursion
+  div.social
+    display: inline-block
+    vertical-align: top
+    p
+      display: inline
+    .btn
+      padding: 0
+  &:first-child
+    display: inline
+
+.contentscorm
+  a
+    float: left
+    margin-right: 15px
+
+    @media (max-width: $screen-xs-max)
+      float: none
+      margin-bottom: 15px
+  p
+    overflow: hidden
+    font-size: 0.9em
+    zoom: 1
+
+.elementsBox
+  .picture_show, .embed_show, .swf_show
+    max-width: 500px
+    display: block
+    margin: 20px auto
+
+.contentReport
+  min-height: 90px
+  .nav-stacked
+    width: 40%
+    float: left
+    margin-right: 1%
+    padding-right: 1%
+    border-right: 1px solid $gray-lighter
+    border-bottom: none
+
+    li.active a
+      &:hover
+        background-color: $white
+        color: $brand-primary
+        border: 1px solid $brand-primary
+  .tab-content
+    float: left
+    width: 59%
+    .simple_captcha_image
+      width: 30%
+    .simple_captcha_field
+      width: 66%
+      margin-left: 0
+      float: right
+  .tab-pane
+    h6 span
+      color: $gray
+      font-family: $corporate-font-family-sans-serif-Regular
+  .tab-pane.active
+    min-height: 193px
+  textarea.report
+    margin-bottom: 15px
+  .actions
+    clear: both
+    display: block
+    min-height: 34px
+    button.report
+      float: right
+
+
+
+.limits
+  position: relative
+  .limit1, .limit2
+    position: absolute
+    left: 0px
+    top: 22px
+
+.slider
+  .slider-selection
+    background: $brand-secundary
+  .slider-handle
+    background-color: $brand-secundary
+
+input.age-slider
+  border: none !important
+  color: $white
+
+.modal
+  select.language
+    width: 100%
+
+
+.slider-track
+  background-color: lighten($brand-primary, 30%)
+
+
+
+#repository
+  a.btn
+    @include btn-primary
+
+#new_file
+  section
+    clear: both
+    label
+      width: 100%
+  section.target_age
+    margin-bottom: 15px
+  .btn
+    float: right
+    margin-top: 15px
+
+#new_document
+  .modal-body
+    padding-top: 0
+    margin-top: -6px
+    .target_age
+      min-height: 80px
+  .footer-form
+    margin: 15px -20px 0
+    padding: 0px 20px 0px
+    border-top: 1px solid $border-color
+
+.new_file_avatar_label
+.disabled
+  color: $gray-light !important
+
+input.new_file_avatar
+  margin-bottom: 10px
+
+
+#new_document-up,
+#new_event-up,
+.layout_form_WS
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(7, $gutter: $grid-gutter-width)
+  @include make-md-column(6, $gutter: $grid-gutter-width)
+  @include make-lg-column(6, $gutter: $grid-gutter-width)
+  @include well
+  padding: 0
+  margin: 0 0 40px 25%
+  @media (max-width: $screen-xs-max)
+    margin: 0
+
+  .checkbox label
+    margin-top: 0
+    display: inline-block
+    width: auto
+    &:first-child
+      margin-left: 0
+
+.layout_form_WS
+  padding: 0 2%
+  .writing_editor
+    margin: 20px 0
+  section.target_age
+    margin-bottom: 30px

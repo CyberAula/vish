@@ -1,0 +1,83 @@
+<ul class="nav navbar-nav mobile-nav">
+  <!--login-->
+  <li class="sign_in_mobile dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="fa fa-signin"></i>
+      <%=t("sign_in")%>
+      <i class="fa fa-angle-down"></i>
+    </a>
+    <ul class="dropdown-menu">
+
+                  <%= form_for User.new, :as => :user, :class => "form-horizontal", :url => user_session_path do |f| %>
+              <div class="form-group">
+                <%= f.email_field :email, :id => "username", :class => "form-control" %>
+                <%= f.password_field :password, :id => "password", :class => "form-control"  %>
+                
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> 
+                    <span class="lbl padding-0">
+                      <%=t("activerecord.attributes.user.remember_me")%>
+                    </span>
+                </label>
+
+              </div>
+              <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
+              <div class="remember_password"><%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
+              </div>
+              
+              
+              
+            <% end %>
+      <%content_for :javascript do%>
+            if ("placeholder" in document.createElement("input")) {
+              $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+              $("#password").attr('placeholder', I18n.t('activerecord.attributes.user.password'));
+            } else {
+              $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+              $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+            }
+      <% end %>
+    </ul>
+  </li>
+
+  <!--sign_up-->
+  <li class="sign_up_mobile">
+    <a href="<%=new_user_registration_path%>"class="signin">
+      <i class="fa fa-edit-sign"></i>
+      <%=t("sign_up")%>
+    </a>
+  </li>
+
+<!--lang-->
+  <li class="dropdown language">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="fa fa-flag-checkered"></i>
+      <%= t('lang.title') %>
+      <i class="fa fa-angle-down"></i>
+    </a>
+    <ul class="dropdown-menu">
+      <% for locale in (I18n.available_locales) -%> 
+       <li class="">
+          <%= link_to image_tag("flags/" + locale.to_s + ".png", :title=>locale.to_s, :class=> "") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+  
+  <!--legal_notice-->
+  <li>
+    <a href="/legal_notice">
+      <i class="fa fa-legal"></i>
+      <%= t('conditions.other') %>
+    </a>     
+  </li>
+  
+  <!--manual-->
+  <li>
+    <%= link_to help_path do %>
+      <i class="fa fa-question-circle"> </i> <%=t('help_page')%>
+    <% end %>
+  </li>
+</ul>

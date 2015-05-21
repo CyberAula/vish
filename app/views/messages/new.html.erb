@@ -1,0 +1,16 @@
+<% content_for :title do %>
+  <%=t('message.other')%>
+<% end %>
+
+<section id="new_message">
+
+  <%= render partial: 'toolbar/messages' %>
+
+  <%= render :partial => 'new' %>
+
+  <%content_for :javascript do%>
+    $(function() {
+      SocialStream.Message.new_();
+    });
+  <% end %>
+</section>

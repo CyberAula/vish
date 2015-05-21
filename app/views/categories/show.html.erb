@@ -6,45 +6,52 @@
       <div class="corner-item">
         <div class="corner-item2">
           <div class="corner-color"></div>
-          <i class="icon-th-large"></i>
+          <i class="fa fa-th-large"></i>
         </div>
         <div class="corner-background"></div>
       </div>
     
-      <div class="icon-box ">
+      <div class="container-img">
          <%= render :partial => 'categories/thumbnail', :locals =>{:category => @category, :show_avatar => true} %>
       </div>
     </div>
+
     <div class="information">
-      <!--help-->
-      <%= render partial: 'help/help_categories' %>
-      <!--title-->
-      <h2><%= @category.title %></h2>
-      <!--description-->
-      <div class="description"><%= @category.description %></div>
-      
-      <!--author-->
-      <div class="author"> <span class="by"><%=t('by')%></span> <%= link_to @category.author.name, @category.author.subject %></div>
-    </div>
-    <div class="btn-group">
-      <!--edit-->
-      <% if can?(:update, @category) %>
-        <%= link_to(raw("<i class='icon-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn edit_icon") %>
-        <a class="btn btn-for-categorize"><i class="icon-move"></i><%=t('categories.dragandrop.place')%></a>
-      <% end %>
-        <!--remove-->
-      <% if can?(:destroy, @category) %>
-        <%= link_to(raw("<i class='icon-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
-      <% end %>
+      <div class="briefing">
+        <header>
+          <div class="icontitle">
+            <!--ayuda-->
+            <%= render partial: 'help/help_categories' %>
+            <!--titulo-->
+            <h2><%= @category.title %></h2>
+            <div class="description"><%= @category.description %></div>
+            
+            <div class="author"> <span class="by"><%= t('by') %></span> <%= link_to @category.author.name, @category.author.subject %></div>
+          </div>
+        </header>
+        <div class="toolbar-profile">
+          <div class="btn-group js_update_profile_info">
+            <!--editar-->
+            <% if can?(:update, @category) %>
+            <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn btn-default edit_icon") %>
+            <a class="btn btn-default btn-for-categorize"><i class="fa fa-arrows"></i><%=t('categories.dragandrop.place')%></a>
+            <% end %>
+            <!--remove-->
+          <% if can?(:destroy, @category) %>
+            <%= link_to(raw("<i class='fa fa-trash'></i>") + t('excursion.actions.delete') , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn btn-default" )%>
+          <% end %>
+          </div>
+        </div>
+      </div>
     </div>
     <% if can?(:update, @category) %>
-      <div class="update" style="display:none">
+      <div class="update js_update_profile_info" style="display:none">
         <%= form_for(@category, :url => [@category]) do |f| %>
           <%= f.hidden_field :owner_id %>
           <label><%= t('categories.leyend.title')%></label>
-          <%= f.text_field :title %>
+          <%= f.text_field :title, :class => "form-control"  %>
           <label><%= t('categories.leyend.description')%></label>
-          <%= f.text_field :description %>
+          <%= f.text_field :description, :class => "form-control"  %>
           <label><%= f.label :parentCategory, t('categories.actions.belongs_to') %></label>
           <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject,@category), @category.parent.nil? ? nil : @category.parent.id)) %>
           <%= f.label :scope, t('document.leyend.scope') %>
@@ -53,12 +60,12 @@
           <%= f.file_field :avatar %>
             <!--Fix styles-->
           <div class="actions">
-            <%= f.submit t('categories.save'), :id => "saveCategory" %>
-            <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn "%>
+            <%= f.submit t('categories.save'), :id => "saveCategory", :class=>"btn btn-primary" %>
+            <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-default" %>
           </div>
         <% end %>
-      </div>
-    <%end%>
+      <% end %>
+    </div>
   </div>
 </section>
 
@@ -76,7 +83,7 @@
 
 
 <div class="main-categories-space">
-  <ul>
+  <ul class="items">
     <% if can?(:update, @category) %>
       <%= render partial: 'categories/category-add' %>
     <% end %>
@@ -87,13 +94,13 @@
 <%= content_for :javascript do %>
     $(".edit_icon").on("click", function(){
       $(".update").show("slow");
-      $(".btn-group").hide("slow");
+      $(".btn-group js_update_profile_info").hide("slow");
       $(".information").hide("slow");
     });
 
     $("#hide_category_form").on("click", function(){
       $(".update").hide("slow");
-      $(".btn-group").show("slow");
+      $(".btn-group js_update_profile_info").show("slow");
       $(".information").show("slow");
     });
 
@@ -133,12 +140,12 @@
         s.splice(0,1);
       <% end %>
       s.each(function( index ) {this.remove();});
-      actualState.appendTo(".main-categories-space");
+      actualState.appendTo(".main-categories-space ul");
   };
 
 </script>
 
-<%content_for :javascript do%>
+<% content_for :javascript do %>
     
     //Let the overlay appear
       
@@ -151,4 +158,4 @@
     //Apply authomatically the initial category to be created as the one you are at
     $("#AddCategoryHeadercategory_parent_id").val(<%=@category.id%>); 
 
-<%end%>
+<% end %>

@@ -1,0 +1,672 @@
+.wa_activity_wrapper_show
+  @extend .description-activity
+  margin-top: 38px
+
+.workshop_element,
+.wa_resource_wrapper
+  .corner-item
+    @include item-corner
+    @include border-top-left-radius ($border-radius-base)
+    top: 0
+    left: 0
+    width: 50px
+    height: 50px
+    .corner-item2
+      width: 50px
+      height: 50px
+      i
+        top: 7px
+        left: 7px
+        font-size: 15px
+        height: 20px
+        width: 20px
+    .corner-color,
+    .corner-background
+      border-width: 50px 50px 0 0 !important
+  .link_address
+    text-align: center
+  .swf_show
+    text-align: center
+    embed
+      width: 100%
+      min-height: 700px
+  .webapp_show,
+  .scormpackage_show,
+  .link_show,
+  .embed_show
+    text-align: center
+    iframe
+      width: 100%
+      min-height: 700px
+  iframe.link_show
+    width: 100%
+    min-height: 700px
+  .excursion_viewer_wrapper
+    iframe
+      width: 100%
+      min-height: 700px
+
+
+.workshop_show
+  margin-bottom: 60px
+  .header_workshop
+    @include well
+    margin-bottom: 0
+    .container-img_WS
+      display: inline-block
+      position: relative
+      float: left
+      background-color: #EEE
+      @include border-top-radius ($border-radius-base)
+      @include border-bottom-radius ($border-radius-base)
+      @media (max-width: $screen-xs-max)
+        width: 25%
+    .information
+      h2
+        font-family: $corporate-font-family-sans-serif-Medium
+        min-height: 0
+      .description
+        margin-right: 2.5%
+        margin-left: 2.5%
+  .description-activity
+    &:last-child
+      @include border-top-radius ($border-radius-base)
+      margin-top: 38px
+    &:first-child
+      border-bottom: 1px solid $border-color
+    .box_description
+      border: 1px solid transparent
+    table
+      tr
+        &:first-child
+          td
+            border: 1px solid transparent
+  .workshop-comments
+    .tab-content
+      min-height: 100px
+    .panel-group
+      @include comments
+
+.wa_activity_wrapper_edit
+  padding-bottom: 15px
+  padding-top: 15px
+  margin-top: 38px
+
+.wa_activity_wrapper
+  padding-bottom: 15px
+  .resource_mini_description
+    margin-top: 9px
+    padding-bottom: 10px
+    margin-left: 34px
+.workshop-edit,
+#show_items
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  padding: 0
+
+.workshop-edit
+  section.information
+    float: left
+    h2
+      @media (max-width: $screen-xs-max)
+        margin-top: 1px
+  .wa_activity_wrapper,
+  .wa_add_activity_wrapper
+    border: 2px dashed #999
+
+.wa_activity_actions
+  float: right
+
+.resource_mini_description
+  margin-top: 30px
+  padding-bottom: 10px
+
+.toolbar_nav-tab_workshop
+  width: 100%
+  height: auto
+  display: inline-block
+  padding: 7px 0
+  position: fixed
+  top: 47px
+  left: 0
+  right: 0
+  z-index: 1000
+  background-color: rgba(85, 85, 85, 0.97)
+  -webkit-box-shadow: 0 -1px 5px rgba(50, 51, 51, 0.35)
+  -moz-box-shadow: 0 -1px 5px rgba(50,51,51,0.35)
+  box-shadow: 0 -1px 5px rgba(50, 51, 51, 0.35)
+  @media (max-width: $screen-xs-max)
+    top: 0
+    position: relative
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+  h4.edit-workshop-title
+    width: auto
+    float: left
+    display: inline-block
+    line-height: 20px
+    margin: 0
+    font-size: 20px
+    padding-top: 2px
+    color: $white
+    font-weight: normal
+    @media (max-width: $screen-xs-max)
+      float: none
+      text-align: center
+      width: 100%
+      margin-bottom: 10px
+  a.btn,
+  button.btn
+    padding: 1px 7px 2px
+    font-size: 13px !important
+    margin-left: 5px
+    @media (max-width: $screen-xs-max)
+      margin-left: 0
+      display: block
+      float: none !important
+      width: 100%
+      padding: 7px
+      margin-bottom: 2px
+    &:first-child
+      @media (max-width: $screen-xs-max)
+        margin-top: 31px
+    i
+      margin-right: 6px
+      margin-left: 1px
+
+.layout_form_WS
+  padding: 0 2%
+  section
+    margin-bottom: 15px
+  section.target_age
+    margin-bottom: 30px
+  .footer-form
+    @extend .modal-footer
+    background-color: $white
+    margin: 0 -1%
+    button.btn-default
+      margin-top: 0 !important
+      margin-right: 10px
+    .form-sender
+      margin-top: 0 !important
+
+.Assignment_edit_box
+  .btn
+    float: right
+    margin: 15px 0 0
+
+.workshop_contribute_footer
+  margin-top: 15px
+
+.wa_activity_wrapper,
+.wa_add_activity_wrapper
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  @include border-top-radius ($border-radius-base)
+  @include border-bottom-radius ($border-radius-base)
+  display: inline-block
+
+.ws_gallery
+  .corner-item2
+    i
+      top: 5px !important
+      left: 5px !important
+      font-size: 20px
+
+.wa_activity_wrapper
+  float: none
+
+.wa_add_activity_wrapper
+  margin-bottom: 20px
+  height: 40px
+  color: $gray
+  margin-top: 38px
+  a
+    color: $gray
+  p
+    margin: 0
+    vertical-align: baseline
+    font-size: 18px
+    line-height: 37px
+    text-align: center
+    i
+      padding: 7px
+
+.container-img_WS
+  display: inline-block
+  position: relative
+  width: 15%
+  float: left
+  margin-right: 15px
+  background-color: $gray-lighter
+  @include border-top-radius ($border-radius-base)
+  @include border-bottom-radius ($border-radius-base)
+  .dummy
+    padding-top: 100%
+  .element
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    overflow: hidden
+    text-align: center
+    width: 100%
+    @include border-top-radius ($border-radius-base)
+    @include border-bottom-radius ($border-radius-base)
+    .img-box
+      width: 100%
+      padding-bottom: 100%
+      float: left
+      img
+        float: left
+        width: 100%
+        height: 100%
+    i
+      font-size: 70px
+      color: $brand-secundary
+      &:hover
+        text-decoration: none
+  .resource-center
+    i
+      padding-top: 36px
+      display: block
+@media (min-width: 0) and (max-width: 399px)
+  h3.main_title_WS
+    font-size: 20px !important
+    width: 95% !important
+    line-height: 26
+
+  p.description_WS
+    width: 100%
+    float: none
+    clear: both
+
+  .container-img_WS
+    display: block
+    width: 60%
+    margin: 0 auto
+    float: none
+    margin-bottom: 20px
+
+ul.workshop_activities_list_edit
+  padding-left: 0
+
+//toolbar-actions
+.wa_activity_actions,
+.wa_activity_edit_tools
+  display: block
+  right: 5px
+  top: 5px
+  width: auto
+  float: right
+  height: 30px
+  ul
+    margin: 0
+    li
+      height: 30px
+      width: 30px
+      display: block
+      float: right
+      text-align: center
+      a
+        margin-top: 0
+      i
+        font-size: 18px
+        color: $gray
+        cursor: pointer
+        text-align: center
+        padding-top: 5px
+        margin: 0px auto 0
+        display: block
+        &:hover
+          text-decoration: none
+          color: $black
+    .toggleWorkshopActivity
+    .sorthandler
+      background-color: #ccc
+      cursor: move
+      @include border-top-radius (50px)
+      @include border-bottom-radius (50px)
+      i
+        cursor: move
+#edit_wa_text_1_button
+  float: right
+  margin: 15px 0 0
+.cke_skin_BootstrapCK-Skin
+  width: 100% !important
+
+
+//time asigment
+.delivery
+  display: block
+  height: auto
+  position: relative
+  width: 100%
+  margin-bottom: 10px
+  .delivery_time
+    width: 100%
+    display: block
+    height: auto
+    text-align: left
+    span
+      padding-right: 10px
+      font-family: $corporate-font-family-sans-serif-Light
+      //font-size: 11px
+      display: inline
+      //color: $gray
+    p
+      font-size: 14px
+      margin: 0
+      margin-right: 20px
+      display: inline
+
+#AddContribution
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  @include border-top-radius ($border-radius-base)
+  @include border-bottom-radius ($border-radius-base)
+  @include well
+  .contribution_Writing
+    margin-top: 15px
+  .footer-form
+    padding-top: 10px
+    input
+      &[type="button"]
+        float: right
+
+.contributions_actions > .contributions_content
+  @include well
+
+
+// MODAL ADD NEW ACTIVITY
+// --------------------------------------------------
+#WorkshopActivities
+  #new_wa_resource
+    input
+      &[type="text"]
+        @extend .form-control
+  .modal-dialog
+    width: 80%
+    margin: 50px 10%
+    @media (max-width: $screen-xs-max)
+      width: auto
+      margin: 10px
+  .modal-body
+    #workshop_activities_column1
+      width: 26%
+      display: block
+      float: left
+      @media (max-width: $screen-xs-max)
+        width: 19%
+      ul.nav-tabs
+        border-bottom: none
+        border-right: 1px solid #ddd
+        margin-bottom: 0
+        li
+          border-bottom: 1px solid transparent
+          a
+            border-radius: 0 !important
+            padding-top: 20px
+            padding-bottom: 20px
+            display: flex
+            &:hover,
+            &:focus
+              background-color: none !important
+              border-bottom: 1px solid transparent
+              border-right: 3px solid $brand-secundary
+            span,i
+              font-size: 16px
+              color: $gray-light
+              line-height: 1.3em
+              margin-right: 20px
+            i
+              margin-top: 0
+              &:hover
+                margin-top: 0
+        li.active
+          a
+            border-right: 3px solid $brand-primary
+            border-radius: 0 !important
+            span,i
+              color: $gray-dark
+
+    #workshop_activities_column2
+      width: 71%
+      margin-left: 3%
+      display: block
+      float: left
+      @media (max-width: $screen-xs-max)
+        width: 78%
+      .tab-content
+        h4
+          font-weight: normal
+        .active
+          margin-top: 0
+      form
+        margin: 0 !important
+        input[type="text"]
+          width: 80% !important
+  .modal-footer
+    clear: both
+
+// MODAL TAB CONTENT
+// --------------------------------------------------
+#workshop_activities_column2
+  h4
+    margin: 20px 0 20px
+    font-weight: 800
+    color: $brand-primary
+    font-size: 1.1em
+  p
+    width: 80%
+    margin: 20px 0
+  //ADD ASSIGNMENTS
+  #tab_assignment
+    input[type="checkbox"]
+      float: left
+      display: block
+      margin-right: 10px
+    p.checkbox_add_time
+      display: inline-block
+      float: left
+      width: auto
+      margin: 0
+    label
+      display: block
+      float: left
+      width: 100%
+      margin-top: 10px
+    .assignment_dates
+      width: 70%
+      margin: 0px 20px
+      display: inline-block
+      select
+        width: 30%
+        margin-right: 3%
+        display: block
+        float: left
+    .available_contributions
+      margin: 21px 0
+      display: inline-block
+      width: 100%
+
+// MODAL EDIT ELEMENT
+// --------------------------------------------------
+
+#WorkshopActivity .modal-body
+  height: 100%
+  overflow: auto
+form.edit_wa_assignment
+  input[type="checkbox"]
+    float: left
+    display: block
+    margin-right: 10px
+  p.checkbox_add_time
+    display: inline-block
+    float: left
+    width: auto
+    margin: 0
+  label
+    display: block
+    float: left
+    width: 100%
+    margin-top: 10px
+    color: $brand-primary
+  .assignment_dates
+    width: 100%
+    padding: 0px 20px
+    overflow: auto
+    select
+      width: 30%
+      margin-right: 3%
+      display: block
+      float: left
+
+// MODAL add resource gallery
+// --------------------------------------------------
+#AddResourceToWaResourcesGalleryModal
+  .modal-footer .btn
+    float: right
+
+.css_reset
+  display: block
+  text-align: left
+  margin: 8px
+  font-family: Arial, Verdana, sans-serif
+  font-size: 12px
+  color: #222
+  max-height: 100%
+  height: 100%
+  line-height: normal
+
+  [dir="rtl"]
+    direction: rtl
+    unicode-bidi: embed
+
+  [dir="ltr"]
+    direction: ltr
+    unicode-bidi: embed
+
+  bdo[dir]
+    unicode-bidi: bidi-override
+
+
+.contributions_content
+  ul.contributions_WS_gallery
+    margin: 0
+    margin-top: 10px
+    width: 100%
+    display: inline-block
+    li.box-item
+      display: block
+      float: left
+
+  // 2---------------------
+  @media (min-width: 501px) and (max-width: 650px)
+    li.box-item
+      width: 46% !important
+      margin: 0 2% 15px !important
+
+  // 3---------------------
+  @media (min-width: 651px) and (max-width: 1200px)
+    li.box-item
+      width: 31.333333333% !important
+      margin: 0 1% 15px !important
+
+  // 4---------------------
+  @media (min-width: 1201px) and (max-width: 1500px)
+    li.box-item
+      width: 23% !important
+      margin: 0 1% 20px !important
+
+
+  // 5---------------------
+  @media (min-width: 1501px) and (max-width: 1919px)
+    li.box-item
+      width: 18.4% !important
+      margin: 0 0.8% 20px !important
+
+  // 6---------------------
+
+  @media (min-width: 1920px)
+    li.box-item
+      width: 15.266666667% !important
+      margin: 0 0.7% 20px !important
+
+
+
+//contribute footer
+.workshop_contribute_footer,
+.contributions_actions
+  span.contribution_message
+    float: left
+    padding-top: 5px
+
+  .btn
+    float: left
+    margin-left: 10px
+  .new_contribution
+    display: none
+    float: left
+    margin-left: 10px
+  .btn_hidden_upload
+    display: none
+    float: left
+    margin-left: 10px
+  .contributions_content
+    display: block
+    float: left
+    width: 100%
+    @include border-top-radius (0px)
+    border-top: 1px solid $border-color
+    .actions_contributions_show_object
+      margin-top: 15px
+.workshop_contribute_footer
+  width: 100%
+  height: 35px
+
+
+.header_workshop
+  .container-img_WS
+    width: 150px
+    height: 150px
+    div.workshop_thumbnail
+      background-size: 150px 150px
+      width: 150px
+      height: 150px
+
+
+.alert-errors
+  background-color: #FCF8E3
+  border-color: #FAEBCC
+  color: #8A6D3B
+  margin-top: 31px
+
+.cke_contents iframe
+  height: auto !important
+
+.workshop-edit
+  .btn_show_upload
+    @extend .disabled
+
+
+.wa_resource_wrapper .workshop_downloadable_resource
+  background-color: #DADADA
+  border: 1px solid #E4E4E4
+  margin-top: 40px
+  padding: 15px
+  h3
+    display: inline-block
+    margin: 6px
+    font-style: normal
+    font-family: $corporate-font-family-sans-serif-Medium
+  .actions
+    display: inline-block
+    float: right

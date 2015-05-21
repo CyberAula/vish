@@ -1,25 +1,28 @@
 <div class="left-info">
-  <dl class="dl-horizontal">
+  <table class="table table-hover">
+    <tr>
     <!--author-->
-    <dt><%= t('info.author') %></dt>
-    <dd>
-      <%= link_to @workshop.author.subject do %>
-        <p><%= truncate_name(@workshop.author.name, :length => 50) %></p>
-      <%end%>
-    </dd>
-
-    <!--tags-->
-    <% unless @workshop.tag_list.blank? %>
-      <dt><%= t('document.info.tags') %></dt>
-      <dd>
-        <ul class="tagit-suggestions">
-          <% @workshop.tag_list.each do |tag| %>
-          <li class="tagit-choice">
-            <%= link_to tag, search_path(:q => tag) %>
-          </li>
-          <% end %>
-        </ul>
-      </dd>
-    <% end %>
-  </dl>
+      <td><%= t('info.author') %></td>
+      <td>
+        <%= link_to @workshop.author.subject do %>
+          <p><%= truncate_name(@workshop.author.name, :length => 50) %></p>
+        <%end%>
+      </td>
+    </tr>
+    <tr>
+      <!--tags-->
+      <% unless @workshop.tag_list.blank? %>
+        <td><%= t('document.info.tags') %></td>
+        <td>
+          <ul class="tagit-suggestions">
+            <% @workshop.tag_list.each do |tag| %>
+            <li class="tagit-choice">
+              <%= link_to tag, search_path(:q => tag) %>
+            </li>
+            <% end %>
+          </ul>
+        </td>
+      <% end %>
+    </tr>
+  </table>
 </div>

@@ -70,13 +70,13 @@ class SpamReport < ActiveRecord::Base
     case self.report_value
     when 0
       #Spam or inappropriate content
-     ('<i class="icon-flag"></i>').html_safe
+     ('<i class="fa fa-flag"></i>').html_safe
     when 1
       #Error in the resource
-      ('<i class="icon-warning-sign"></i>').html_safe
+      ('<i class="fa fa-warning"></i>').html_safe
     when 2
       #Low quality resource
-      ('<i class="icon-remove"></i>').html_safe
+      ('<i class="fa fa-times"></i>').html_safe
     else
       ''
     end

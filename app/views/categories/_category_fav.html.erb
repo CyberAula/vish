@@ -1,29 +1,26 @@
 <li class="box-item categorie-item">
   <%= link_to "/categories/favorites" do %>
-<div class="corner-item">
-  <div class="corner-item2">
-    <div class="corner-color"></div>
-    <i class="icon-star "></i>
-  </div>
-<div class="corner-background"></div>
+    <div class="corner-item">
+      <div class="corner-item2">
+        <div class="corner-color"></div>
+        <i class="fa fa-star "></i>
+      </div>
+    <div class="corner-background"></div>
 
-</div>
-  <div class="container-img">
-    <div class="img-box resource-center">
-      <i class="icon-star "></i>
     </div>
-  </div>
-
-    <% end %>
-  <!-- Info -->
-  <div class="info">
-    <!-- Title -->
-    <div class="name">
+      <div class="container-img">
+        <div class="img-box"><i class="fa fa-star"></i></div>
+      </div>
+  <%end%>
+<!--INFO excursuion-->
+  <div class="caption">
+<!--Title -->
+    <h6>
       <%= link_to t('categories.favorites.title'), "/categories/favorites" %>
-    </div>
-    <!-- Autor -->
+    </h6>
+<!--Autor -->
     <span class="author"> 
-      <span class="by"><%=t('by')%></span>
+      <span class="by"><%= t('by') %></span>
       <%= link_to current_subject.name, current_subject.subject %>
     </span>
 
@@ -38,6 +35,6 @@
 
       </div>
     </div>
-
   </div>
+
 </li>

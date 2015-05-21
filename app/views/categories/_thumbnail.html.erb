@@ -1,40 +1,40 @@
 <% show_avatar ||= false%>
-<%if !category.getAvatarUrl.nil? and !show_avatar%>
+<% if !category.getAvatarUrl.nil? and !show_avatar %>
   
   <div class="img-box img-box-categorie" style='background-image: url(<%=category.getAvatarUrl%>)'></div>
 
-<%elsif !category.getAvatarUrl.nil? and show_avatar%>
+<% elsif !category.getAvatarUrl.nil? and show_avatar %>
   
-    <div class="container-img">
+
       <div class="img-box resource-center">        
 
         <img src="<%=category.getAvatarUrl%>"/>
       </div>
-    </div>
 
-<%else%>
 
-<%thumbs_array = new_category_thumbnail(category)%>
+<% else %>
+
+<% thumbs_array = new_category_thumbnail(category) %>
 <div class="container-img-categorie_0">
-  <div class="img-box-categorie category_thumb_0" <%if thumbs_array[0]%> style='background-image: url(<%=thumbs_array[0]%>)'<%end%>></div>
+  <div class="img-box-categorie category_thumb_0" <% if thumbs_array[0] %> style='background-image: url(<%=thumbs_array[0]%>)'<% end %>></div>
 </div>
 
 <div class="container-img-categorie_1">
-  <div class="img-box-categorie category_thumb_1" <%if thumbs_array[1]%> style='background-image: url(<%=thumbs_array[1]%>)'<%end%>></div>
+  <div class="img-box-categorie category_thumb_1" <% if thumbs_array[1] %> style='background-image: url(<%=thumbs_array[1]%>)'<% end %>></div>
 
 </div>
 
 <div class="container-img-categorie_2">
 
-      <div class="img-box-categorie category_thumb_2" <%if thumbs_array[2]%> style='background-image: url(<%=thumbs_array[2]%>)'<%end%> ></div>
+      <div class="img-box-categorie category_thumb_2" <% if thumbs_array[2] %> style='background-image: url(<%=thumbs_array[2]%>)'<% end %> ></div>
 
 </div>
 
 <div class="container-img-categorie_3">
-  <div class="img-box-categorie category_thumb_3" <%if thumbs_array[3]%> style='background-image: url(<%=thumbs_array[3]%>)'<%end%> ></div>
+  <div class="img-box-categorie category_thumb_3" <% if thumbs_array[3] %> style='background-image: url(<%=thumbs_array[3]%>)'<% end %> ></div>
 
 </div>
-<%end%>
+<% end %>
 
 
 

@@ -1,45 +1,52 @@
 <!-- Button to trigger modal -->
-<!-- Modal Categories-->
-<div id="<%=div_id%>" class="modal hide fade category_form_wrapper" tabindex="-1" role="dialog" aria-labelledby="<%=div_id%>AddCategoryLabel" aria-hidden="true">
+<!-- Modal Categories -->
+<div id="<%=div_id%>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="<%=div_id%>AddCategoryLabel" aria-hidden="true">
+  <!--<div id="<%=div_id%>" class="modal fade">-->
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <%= render partial: 'help/help_categorie_new' %>
-    <h4 id="<%=div_id%>AddCategoryLabel"><%= t('categories.main_title')%></h4>
-  </div>
+      <div class="modal-header">
+        <!--<button type="button" class="close" data-dismiss="modal">x</button>-->
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <%= render partial: 'help/help_categorie_new' %>
+        <h4 id="<%=div_id%>AddCategoryLabel"><%= t('categories.main_title')%></h4>
+      </div>
 
-  <div class="modal-body">
-    <%= form_for Category.new(:owner_id => Actor.normalize_id(current_subject)), :html => {:id => div_id+"_form", :'data-type' => :json}, :remote => remote do |f| %>
+      <div class="modal-body">
+        <%= form_for Category.new(:owner_id => Actor.normalize_id(current_subject)), :html => {:id => div_id+"_form", :'data-type' => :json}, :remote => remote do |f| %>
 
-      <!-- Owner -->
-      <%= f.hidden_field :owner_id, :id => div_id+"_owner_id" %>
+        <!-- Owner -->
+        <%= f.hidden_field :owner_id, :id => div_id+"_owner_id" %>
 
-      <!--Title-->
-      <label><%= t('categories.leyend.title')%></label>
-      <%= f.text_field :title, :id => div_id+"_category_title", :placeholder => t('categories.title_input') %>
-      
-      <!--Description-->
-      <label><%= t('categories.leyend.description')%></label>
-      <%= f.text_field :description, :id => div_id+"_category_description", :placeholder => t('categories.description_input') %>
+        <!--Title-->
+        <label><%= t('categories.leyend.title')%></label>
+        <%= f.text_field :title, :class => "form-control", :id => div_id+"_category_title", :placeholder => t('categories.title_input') %>
 
+        <!--Description-->
+        <label><%= t('categories.leyend.description')%></label>
+        <%= f.text_field :description, :class => "form-control", :id => div_id+"_category_description", :placeholder => t('categories.description_input') %>
 
-      <label><%= f.label :parentCategory, t('category.belongs_to')%></label>
-      <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject)),{}, :id => div_id+"category_parent_id") %>
+        <label><%= f.label :parentCategory, t('category.belongs_to')%></label>
+        <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject)),{}, :id => div_id+"category_parent_id") %>
 
-      <!--Avatar-->
-      <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
-      <%= f.file_field :avatar,:id => div_id+"category_avatar"  %>
-      
-      <%= f.submit t('categories.save'), :class => "hidden" %>
-    <% end %>
-  </div>
+        <!--Avatar-->
+        <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
+        <%= f.file_field :avatar,:id => div_id+"category_avatar"  %>
 
-    <div class="modal-footer">
-      <input type="button" class="btn-primary" value="<%= t('categories.save') %>"/>
+      </div>
+
+      <div class="modal-footer">
+        <!--<input type="button" class="btn btn-primary" value="<%= t('categories.save') %>"/>-->
+        <%= f.submit t('categories.save'), :class => "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
+  </div>
 </div>
 
-<%content_for :javascript do%>
+<% content_for :javascript do %>
 
     $('#<%=div_id%> .new_category').bind('ajax:success', function(evt, data, status, xhr){
       $('#<%=div_id%>').modal('hide');
@@ -75,13 +82,13 @@
 
     //Category button event
     $("#<%=div_id%> input[value=<%= t('categories.save')%>][type='button'][class='btn-primary']").click(function(event) {
+      
       if ($("#<%=div_id%> input[name='category[title]']").val() == "") {
         $("#<%=div_id%> .errors").remove();
         $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.title_input')%></div>");
       } else {
         //SaveCategoryButton click
         $("#<%=div_id%> input[type='submit']").click();
-      }
-    });
+      }});
 
 <%end%>

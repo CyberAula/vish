@@ -1,0 +1,153 @@
+section
+  .competitions_ad
+    p
+      display: block
+      clear: both
+      text-align: center
+      font-size: 14px
+      line-height: 28px
+      color: $gray-dark
+      text-shadow: 0 0 1px $white
+      margin: 3px 0px 25px 0px
+      font-family: arial, verdana
+      outline: none
+      padding: 14px 30px
+      position: relative
+      text-transform: uppercase
+      &:after
+        content: ''
+        height: 0
+        position: absolute
+        top: 100%
+        left: 0
+        z-index: -1
+      /*Some cool multi-background - we will use a combination of 4 backgrounds to create a cool effect*/
+      background-image: linear-gradient(transparent 8%, rgba(0, 0, 0, 0.1) 8%, rgba(0, 0, 0, 0.1) 14%, transparent 14%, transparent 86%, rgba(0, 0, 0, 0.1) 86%, rgba(0, 0, 0, 0.1) 92%, transparent 92%), linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0)), linear-gradient(45deg, transparent 40%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.1) 60%, transparent 60%), linear-gradient(white, white)
+      background-size: cover, cover, 4px 4px, cover
+      /*base white*/
+      &:before
+        /*Some cool multi-background - we will use a combination of 4 backgrounds to create a cool effect*/
+        background-image: linear-gradient(transparent 8%, rgba(0, 0, 0, 0.1) 8%, rgba(0, 0, 0, 0.1) 14%, transparent 14%, transparent 86%, rgba(0, 0, 0, 0.1) 86%, rgba(0, 0, 0, 0.1) 92%, transparent 92%), linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0)), linear-gradient(45deg, transparent 40%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.1) 60%, transparent 60%), linear-gradient(white, white)
+        background-size: cover, cover, 4px 4px, cover
+        /*base white*/
+        box-sizing: border-box
+        /*Fix to make the borders appear on the ribbon ends also*/
+        background-origin: border-box
+      box-sizing: border-box
+      /*Fix to make the borders appear on the ribbon ends also*/
+      background-origin: border-box
+  .excursion-draft
+    z-index: 2
+    background-color: rgb(248, 248, 248)
+    width: 100%
+    height: 100%
+    opacity: 0.8
+    background-image: url("items/malla2.png") !important
+    position: absolute
+    top: 0
+    .draftstyle
+      color: $gray-dark
+      position: absolute
+      right: 0%
+      left: 0%
+      text-align: center
+      i
+        color: $gray-dark !important
+        font-size: 43px !important
+        padding-top: 10px !important
+        display: block
+        text-align: center
+header.home
+  position: relative
+  margin-bottom: 10px
+  h1
+    font-size: 1.4em
+    font-family: $corporate-font-family-sans-serif-Medium
+    color: $gray
+    i
+      margin-right: 5px
+#editor_wrapper
+  position: absolute
+  left: 0
+  //top: 50px
+  width: 100% !important
+  height: 100%
+  /*XXX TODO with fullscreen the next line breaks some cases when scaling*/
+  text-align: center
+  position: relative
+  margin: auto
+  display: block
+  -webkit-transform-style: preserve-3d
+  .popover-content
+    p
+      color: $gray
+#editor_tools_wrapper
+  width: 100%
+  margin: auto
+  text-align: right
+#presentation_editor_iframe
+  margin: auto
+  -webkit-transform-style: preserve-3d
+
+#MetadataModal
+  .modal-body
+    max-height: 600px
+    table
+      @include table-striped
+    .metadatalist
+      padding: 10px
+      li
+        width: 100%
+        margin-bottom: 10px
+        display: block
+        .metadatalistkey
+          color: $brand-primary
+          float: left
+          display: block
+          width: 100%
+        .metadatalistkey2
+          a
+            width: 100%
+            word-wrap: break-word
+
+ul li.box-item .info .author span.by
+  margin-right: 3px !important
+  width: auto !important
+
+#myLearningModal,
+#myTeachingModal
+  .modal-dialog
+    @extend .modal-lg
+    .modal-body
+      overflow: hidden
+      height: 500px
+      max-height: 90%
+      padding: 0px
+      .evaluation_modalerror_msg
+        height: auto
+        width: 100%
+        padding: 20px
+        text-align: center
+        font-size: 1.1em
+  @media (max-width: 767px)
+    #learningModalLabel,
+    #teachingModalLabel
+      font-size: 1.3em
+#myModalLabel
+  font-size: 1.2em
+
+
+p.thank
+  color: $brand-primary
+  i
+    color: $gray
+
+div.evaluation_body
+  height: 99%
+
+.evaluate-show
+  margin-top: 15px
+.btn-evalue
+  text-align: center
+  p
+    display: inline

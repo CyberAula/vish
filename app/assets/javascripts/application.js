@@ -13,21 +13,22 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.fittext
 //= require social_stream-base
 //= require social_stream-linkser
 //= require social_stream-documents
 //= require pageless
 //= require jquery.jscrollpane.min
 //= require jquery.mousewheel
-//= require bootstrap-slider/bootstrap-slider
 //= require tagit
 //= require jquery.multiselect
 //= require jquery.jplayer
 //= require jquery.zclip.min
 //= require social_stream-events
-//= require bootstrap-dropdown
+//= require trmix.min.js
 //= require bootstrap-datetimepicker.min
+//= require bootstrap-slider/bootstrap-slider
+//= require jquery.zclip.min
+//= require jquery.scrollUp.min
 //= require jqxcore
 //= require jqxdropdownbutton
 //= require jqxscrollbar

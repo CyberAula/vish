@@ -1,43 +1,43 @@
 <div id="categories_edition" class="overlay container" >
 	<div class="editing_info">
-		<h3><%=t('categories.dragandrop.place')%></h3>
+		<h3><%= t('categories.dragandrop.place') %></h3>
 		<div class="delete">
-			<i class="icon-trash"></i>
-			<p><%=t('categories.dragandrop.trash')%></p>
+			<i class="fa fa-trash-o"></i>
+			<p><%= t('categories.dragandrop.trash') %></p>
 		</div>
 		<ul>
 			<li>
-				<i class="icon-move"></i>
-				<h4><%=t('categories.dragandrop.dragt1')%></h4>
-				<p><%=t('categories.dragandrop.drag1')%></p>
+				<i class="fa fa-arrows"></i>
+				<h4><%= t('categories.dragandrop.dragt1') %></h4>
+				<p><%= t('categories.dragandrop.drag1') %></p>
 			</li>
 			<li>
-				<i class="icon-folder-open-alt"></i>
-				<h4><%=t('categories.dragandrop.dragt2')%></h4>
-				<p><%=t('categories.dragandrop.drag2')%></p>
+				<i class="fa fa-folder-open-o"></i>
+				<h4><%= t('categories.dragandrop.dragt2') %></h4>
+				<p><%= t('categories.dragandrop.drag2') %></p>
 			</li>
 			<li>
-				<i class="icon-archive"></i>
-				<h4><%=t('categories.dragandrop.dragt3')%></h4>
-				<p><%=t('categories.dragandrop.drag3')%></p>
+				<i class="fa fa-archive"></i>
+				<h4><%= t('categories.dragandrop.dragt3') %></h4>
+				<p><%= t('categories.dragandrop.drag3') %></p>
 			</li>
 		</ul>
 
 		<div class="actions">
 			<button type="button" class="btn btn-for-undo " data-toggle="button">
-				<i class="icon-remove-sign"></i>
-				<%=t('cancel')%>
+				<i class="fa fa-remove"></i>
+				<%= t('cancel') %>
 			</button>
 			<button type="button" class="btn btn-primary btn-for-categorize2 " data-toggle="button">
-				<i class="icon-ok-sign"></i>
-				<%=t('categories.save')%>
+				<i class="fa fa-check-square"></i>
+				<%= t('categories.save') %>
 			</button>
 		</div>
 	</div>
 	
-	<div class="layout_edit">
+	<div class="layout_edit items">
 		<ul class="categories edit_categories"> 
-			<% @items ||= all_categories.map{|e| e.activity_object}%>
+			<% @items ||= all_categories.map{|e| e.activity_object} %>
 			<%= render partial: 'categories/items', :locals => {:use_ids => true} %>
 		</ul>
 	</div>
@@ -60,7 +60,7 @@
 		        var dragged = ui.draggable;
 		        var dragged_id = dragged.attr("edit-id");
 				var receiver_id = $(this).attr("edit-id");
-				//console.log("receiver_id: " + receiver_id + " y drageed_id: " + dragged_id);				
+				console.log("receiver_id: " + receiver_id + " y drageed_id: " + dragged_id);				
 				if(dragged_id != receiver_id){
 					movements_array.push([dragged_id,receiver_id]);
 					dragged.fadeOut();
@@ -125,24 +125,27 @@
 		});
 		
 		$(".overlay .edit_categories .box-item").click(function(){
-			//console.log("click en overlay");
 			return false;
 		});
 
 		$(".edit_categories").sortable({
 			start:function(event,ui){
 				 //Reduces size
+
 				 if ($(ui.item).hasClass("categorie-item")){
 				 	$(".delete p").text("<%=t('categories.dragandrop.erase')%>");
 				 }
 				 else{
 				 	$(".delete p").text("<%=t('categories.dragandrop.uncategorize')%>");
 				 }
-				 $(ui.item).width($(ui.item).width()*0.8);
-				 $(ui.item).height($(ui.item).height()*0.8);
+
+				 $(ui.item).width($(ui.item).width()*0.6);
+				 $(ui.item).height($(ui.item).height()*0.6);
+				 $(ui.item).children("div").hide();
 			},
 			stop:function(event, ui){
 				$(".delete p").text("<%=t('categories.dragandrop.trash')%>");
+				$(ui.item).children("div").show();
 			},
 			refreshPositions: true,
 			tolerance: "intersect"
@@ -160,9 +163,9 @@
 					dragged.fadeOut();
 					dragged.remove();
 				}//do nothing if not confirmed
-				else{return;}
+				else{}
 		    },
-		    activeClass: "delete_active",
+		    activeClass: "delete_active"
 		});
 
 

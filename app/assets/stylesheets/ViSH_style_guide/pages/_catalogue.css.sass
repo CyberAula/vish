@@ -1,0 +1,261 @@
+.catalogue
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  padding: 0 !important
+.catalogue-layout
+  height: 39px
+#resources_catalogue,
+#open_catalogue
+  display: block
+  float: left
+  height: auto
+  width: 100%
+  padding-bottom: 65px
+
+  .back_catalogue
+    display: inline-block
+    float: left
+    margin-right: 7px
+    margin-top: 2px
+    &:hover
+      text-decoration: none
+    i
+      color: $brand-secundary
+      cursor: pointer
+      font-size: 1.8em
+  .icontitle
+    margin-top: 0
+  ul
+    clear: both
+    width: 100%
+  .show_more_catalogue
+    display: block
+    float: right
+    clear: left
+    font-size: 0.9rem
+#showMore_tags
+  display: block
+  margin: 0 auto
+  @include border-top-radius (0)
+
+#catalogue
+  .btn-default
+    clear: both
+    position: relative
+    a
+      color: $gray
+    &:hover
+      color: $brand-primary
+      #effect
+        border-bottom: 1px solid $brand-primary
+
+  .btn-default:active,
+  .btn-default:focus
+    a
+      color: $brand-primary !important
+
+
+.catalogue
+  .icontitle
+    margin-top: 0
+    margin-bottom: 0
+#catalogue_tab_ready
+  .icontitle
+    display: none
+
+.show_more_catalogue
+  clear: left
+  float: right
+  display: block
+
+#catalogue
+  margin-bottom: 20px
+  ul.Tags_list_as
+    @include well
+    width: 100%
+    height: auto
+    float: left
+    display: block
+    margin: 0 0 -1px 0
+    padding: 0
+    position: relative
+    border-left: none
+    .info_catalogue
+      width: 10%
+      height: 100%
+      float: left
+      display: block
+      font-weight: lighter
+      background: darken($brand-secundary, 10%)
+      margin: 0
+      position: absolute
+      i
+        margin: 0
+    #effect
+      display: block
+      float: left
+      padding: 5px 0
+      width: 100%
+      border-bottom: 1px solid $border-color
+      li
+        text-align: center
+        label
+          color: $gray
+          font-weight: 500
+          text-shadow: none
+          position: relative
+          width: 100%
+          height: auto
+          margin-top: 0
+          cursor: pointer
+        label:hover
+          color: darken($gray, 20%)
+          font-weight: 600
+    .newClass
+      li
+        display: none
+      li:nth-of-type(-n+10)
+        display: block
+        margin-top: 5px
+        width: 20%
+        display: block
+        float: left
+        padding-left: 0
+        word-wrap: ellipsis
+    .anotherNewClass
+      li
+        display: none
+      li:nth-of-type(-n+50)
+        display: block
+        margin-top: 5px
+        width: 20%
+        display: block
+        padding-left: 0
+        float: left
+        word-wrap: ellipsis
+
+@media (min-width: 900px) and (max-width: 1060px)
+  #catalogue
+    ul.Tags_list_as
+
+      #effect
+        li
+          width: 24%
+
+
+@media (min-width: 650px) and (max-width: 899px)
+
+  #catalogue
+    ul.Tags_list_as
+      #effect
+        li
+          width: 32%
+
+
+@media (min-width: 450px) and (max-width: 649px)
+  #showMore
+    width: 15%
+  #catalogue
+    ul.Tags_list_as
+      #effect
+        width: 100%
+        li
+          width: 48%
+
+
+@media (min-width: 0px) and (max-width: 449px)
+  #showMore
+    width: 20%
+  #catalogue
+    ul.Tags_list_as
+      #effect
+        width: 100%
+
+        li
+          width: 99%
+  #showMore_tags
+    width: 20%
+
+
+
+
+
+
+
+/*8*/
+@media (min-width: 1751px)
+  #resources_catalogue
+    ul
+      .box-item
+        display: none
+      .box-item:nth-of-type(-n+8)
+        display: block
+
+
+/*7*/
+@media (min-width: 1500px) and (max-width: 1750px)
+  #resources_catalogue
+    ul
+      .box-item
+        display: none
+      .box-item:nth-of-type(-n+7)
+        display: block
+
+
+/*6*/
+@media (min-width: 1250px) and (max-width: 1500px)
+  #resources_catalogue
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+6)
+      display: block
+
+/*5*/
+@media (min-width: 1000px) and (max-width: 1250px)
+  #resources_catalogue
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+5)
+      display: block
+
+
+
+/*4*/
+@media (min-width: 750px) and (max-width: 1000px)
+  #resources_catalogue
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+4)
+      display: block
+
+
+
+/*3*/
+@media (min-width: 500px) and (max-width: 750px)
+  #resources_catalogue
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+3)
+      display: block
+
+
+
+/*2*/
+@media (min-width: 320px) and (max-width: 500px)
+  #resources_catalogue
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+2)
+      display: block
+
+
+
+/*1*/
+@media (max-width: 320px)
+  #resources_catalogue
+    .box-item
+      display: none
+    .box-item:nth-of-type(-n+1)
+      display: block

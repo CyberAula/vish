@@ -13,7 +13,7 @@
 
     var shareEvents = false;
 
-    $('a[data-toggle="tab"]').on('shown', function (e) {
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       // e.target // activated tab
       // e.relatedTarget // previous tab
       var loadedTab = $(e.target).attr("tabTitle");
@@ -67,7 +67,7 @@
 <div class="btn-group">
 
   <div class="contentdelete" style="display: none">
-    <p class="delete_p"><i class="icon-trash"></i>  <%=t('excursion.confirm_delete')%></p>
+    <p class="delete_p"><i class="fa fa-trash-o"></i>  <%=t('excursion.confirm_delete')%></p>
     <div class="actions">
       <a class="btn btn_cancel"><%=t('cancel')%></a>
       <%= link_to t('excursion.actions.delete'),  @workshop, :method => :delete, :class => 'btn btn-primary' %>
@@ -83,7 +83,7 @@
   <%if user_signed_in? %>
     <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @workshop} %>
     <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" >
-      <i class="icon-th-large"></i>
+      <i class="fa fa-th-large"></i>
     </button>
   <%end%>
 
@@ -91,34 +91,33 @@
 
 
 <!--TABS-->
-<div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active">
       <a href="#tab1" tabTitle='details' data-toggle="tab">
-        <i class="icon-align-left"></i> 
-        <span class="  hidden-phone">
+        <i class="fa fa-align-left"></i> 
+        <span class="hidden-xs">
           <%=t('excursion.detail')%>
         </span>
       </a>
     </li>
     <li>
       <a href="#tab3" tabTitle='share' data-toggle="tab">
-        <i class="icon-share"></i>
-        <span class=" hidden-phone">
+        <i class="fa fa-share"></i>
+        <span class="hidden-xs">
           <%=t('excursion.actions.share')%>
         </span>
       </a>
     </li> 
     <li>
       <a href="#tab5" tabTitle='flag' data-toggle="tab">
-        <i class="icon-flag"></i> 
-        <span class=" hidden-phone spam-name ">
+        <i class="fa fa-flag"></i> 
+        <span class=" hidden-xs">
         <%=t('excursion.actions.spam')%>
         </span>
       </a>
     </li>
   </ul>
-</div>
+
 
 <div class="tab-content excursion-social">
 
@@ -131,35 +130,42 @@
   </div>
 
   <!-- tab3 / share -->
-  <div class="tab-pane" id="tab3">
-    <div class="contentShare">
-      <div class="input-append url-input">
-        <input class="shortUrl" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+  <div class="tab-pane contentShare" id="tab3">
+
+    <div class="form-group">
+      <div class="input-group">
+        <input class="shortUrl form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"/>
+        <div class="input-group-addon">
           <button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-            <i class="icon-copy "></i>
+              <i class="fa fa-copy "></i>
           </button>
+        </div>
       </div>
-      <div class="social_toolbar_excursion">
-        <div class="twitter_toolbar_excursion">
+    </div>
+
+
+    <div class="social_toolbar_excursion">
+      <div class="social">
           <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + workshop_path(@workshop) )} %>
-        </div>
-        <div class="facebook_toolbar_excursion">
+      </div>
+      <div class="social">
           <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
-        </div>
-        <div class="gplus_toolbar_excursion ">
+      </div>
+      <div class="social">
           <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
-        </div>
-        <div class="email_toolbar_excursion">
+      </div>
+      <div class="social">
           <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @workshop.title, :name => (user_signed_in? ? current_subject.name : '')} %>
-        </div>
       </div>
     </div>
   </div> 
    
   <!-- tab5 / spam -->
   <div class="tab-pane" id="tab5">
-    <%@activity_object = @workshop.activity_object%>
-    <%= render '/spam_report/form' %>
+    <div>
+      <%@activity_object = @workshop.activity_object%>
+      <%= render '/spam_report/form' %>
+    </div>
   </div>
 
 </div>

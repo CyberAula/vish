@@ -1,0 +1,81 @@
+#settings  
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  padding: 0 !important
+
+  .settings
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(6, $gutter: $grid-gutter-width)
+    @include make-md-column(6, $gutter: $grid-gutter-width)
+    @include make-lg-column(6, $gutter: $grid-gutter-width)
+    @include make-sm-column-offset(3)
+    @include make-md-column-offset(3)
+    @include make-lg-column-offset(3) 
+    form 
+      margin-top: -4px
+      label
+        color: $gray-dark
+        margin: 8px 0 4px
+        font-size: 0.9rem
+        &:first-child
+          margin: 0px
+  .icontitle
+    margin-top: 0
+.settings
+  header hr
+    padding-top: 7px
+  .panel-group
+    margin-bottom: 20px
+    background: #FFF
+    padding: 0 15px
+    border-radius: 5px
+  .panel
+    border-left-color: rgba(0, 0, 0, 0)
+    border-right-color: rgba(0, 0, 0, 0)
+    border-bottom-color: rgba(0, 0, 0, 0)
+    @include border-top-radius (0)
+    @include border-bottom-radius (0)
+    &:first-child
+      border-top-color: rgba(0, 0, 0, 0)
+  .panel + .panel
+    margin-top: 0
+  .panel-heading
+    padding: 4px 0px
+    a
+      outline: 0px
+      font-family: $corporate-font-family-sans-serif-Light
+      &:hover,&:focus
+        color: $brand-primary
+        text-decoration: none  
+    
+  .panel-body
+    padding: 0 0 15px
+    .accordion-toggle
+      @include text-overflow
+    input
+      &[type="submit"]
+        @include pull-right
+        margin-top: 15px
+
+
+
+  #cancel_account
+    &:hover
+      border-top-color: $brand-primary !important
+      text-decoration: none
+      a
+        color: $brand-primary !important
+  #cancel_account_content
+    a
+      color: $brand-primary-2 !important
+      &:hover
+        text-decoration: none
+
+
+#notifications_settings_content
+  span
+    font-family: $corporate-font-family-sans-serif-Light
+  .options
+    margin-bottom: 10px

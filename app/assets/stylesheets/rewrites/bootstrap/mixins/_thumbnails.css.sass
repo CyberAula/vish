@@ -1,0 +1,191 @@
+@mixin thumbnail
+  position: relative
+  overflow: inherit
+  float: left
+  display: block
+  padding: $thumbnail-padding
+  margin-bottom: $line-height-computed
+  line-height: $line-height-base
+  background-color: $thumbnail-bg
+  border: 1px solid $thumbnail-border
+  border-radius: $thumbnail-border-radius
+  @include transition(border .2s ease-in-out)
+  @media (max-width: 480px)
+    @include excursion-small
+  > img,
+  a > img
+    @include img-responsive
+    margin-left: auto
+    margin-right: auto
+
+  .avatar
+    img
+      @include border-top-radius (3px)
+      @include border-bottom-radius ($border-radius-base)
+      width: 100%
+  a
+    &:hover
+      padding: 0
+    
+    &:focus
+      padding: 0 !important
+
+  // [converter] extracted a&:hover, a&:focus, a&.active to a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active
+  &:hover
+    a
+      color: $black
+      text-decoration: none
+  //BAGDE EXCURSION
+  .badge-excursion-active
+    position: absolute
+    top: 15px
+    left: -15px
+    z-index: 10
+    background-image: url("badges/excursionofthemonth.png" )
+    height: 110px
+    width: 75px
+    pointer-events: none
+  // IMG BOX
+
+
+
+  .container-img
+    position: relative
+    width: 100%
+    @include border-top-radius($border-radius-base)
+    background-color: $white
+    overflow: hidden
+    &:before
+      content: ""
+      display: block
+      padding-top: 75%
+    .img-box
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      overflow: hidden
+      text-align: center
+      width: 101%
+      @include border-top-radius($border-radius-base)
+      background-repeat: no-repeat
+      background-position: center center
+      background-attachment: scroll
+      background-size: cover
+      border: none
+
+      i
+        font-size: 70px
+        color: $brand-secundary
+        padding-top: 39px
+        
+        &:hover
+          text-decoration: none
+        
+        @media (max-width: 480px)
+          font-size: 44px
+          color: #008FD1
+          padding-top: 14px
+      i.fa-plus
+        color: $gray
+      i.fa-webapp-o,
+      i.fa-scorm-o,
+      i.fa-swf-new
+        padding-top: 35px !important
+
+  // Image captions
+  .caption
+    padding: $thumbnail-caption-padding
+    color: $thumbnail-caption-color
+    @include caption
+    @media (max-width: $screen-xs-max)
+      margin-top: 0
+    .author 
+      @include text-overflow
+      font-size: 12px
+      margin-top: 1px
+      a
+        text-decoration: none
+        color: $brand-primary-2
+        cursor: pointer
+    .name,
+    .action
+      display: block
+      text-align: center
+      color: $gray-dark
+      &:hover
+        color: $brand-primary
+    .action
+      font-family: $corporate-font-family-sans-serif-Medium
+    button
+      @include center-block
+    img
+      width: 100%
+    hr 
+      margin: 5px -8px -1px
+    .like 
+      display: inline
+      .count
+        display: inline
+      a
+        outline: 0
+        padding: 0
+    .views 
+      float: right
+      text-align: right
+      width: 55%
+
+
+// Add a hover state for linked versions only
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active
+  border-color: $link-color
+
+.category
+  .category_thumb
+    display: none /* old thumbail */
+  .container-img-categorie_0
+    width: 49%
+    float: left
+  .container-img-categorie_1
+    width: 49%
+    float: right
+  .container-img-categorie_2
+    width: 49%
+    float: left
+    margin-top: 2%
+  .container-img-categorie_3
+    width: 49%
+    float: right
+    margin-top: 2%
+  .container-img-categorie_0,
+  .container-img-categorie_1,
+  .container-img-categorie_2,
+  .container-img-categorie_3,
+    position: relative
+    background-color: $gray-lighter
+    &:before
+      content: ""
+      display: block
+      padding-top: 75%
+    .img-box-categorie
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      overflow: hidden
+      text-align: center
+      width: 100%
+      background-repeat: no-repeat
+      background-position: center center
+      background-attachment: scroll
+      background-size: cover
+      border: none
+      i
+        font-size: 20px
+        color: $brand-secundary
+        &:hover
+          text-decoration: none

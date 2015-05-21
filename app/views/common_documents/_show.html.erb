@@ -1,34 +1,17 @@
-<% 
-  if params["contribution"].blank?
-    @contribution = nil
-  else
-    @contribution = Contribution.find_by_id(params["contribution"])
-  end
-%>
+<% @contribution = (params["contribution"]=="true" and !document.contribution.nil?) %>
 
 <section id="<%= document.class.to_s.underscore %> "class="layout_show">
 
   <%if @contribution%>
-    <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @contribution.parents_path } %>
+    <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => document.contribution.parents_path } %>
   <%end%>
 
   <% document_profile_subject ||= document.owner_subject %>
-  <%= render :partial => 'objects/show', :locals  => { :object => document } %>
   
   <% content_for :title do %>
     <%= document_profile_subject.name + ": " + t('repository.title') %>
   <% end %>
 
-  
-  <!--visor-->
-    <div class="box-show">
-      <div class="container-visor">
-        <div class="caja-elementos">
-          <%= render partial: "#{ document.class.to_s.tableize }/#{ document.class.to_s.underscore }_show",
-        locals: { document.class.to_s.underscore.to_sym => document } %>
-        </div>
-      </div>
-    </div>
 
     <!-- Recommendations -->
     <!-- No option[:models] on RecommenderSystem.resource_suggestions mean all resources -->
@@ -36,29 +19,42 @@
        rec = TrackingSystemEntry.getRSCode(rsEngine)
        resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,document,{:n=>16, :recEngine => rsEngine, :track => true, :request => request})
     %>
-    <%= render :partial => 'recommender/sidebar', :locals  => { :resources => resource_suggestions, :rec => rec  } %>
 
-    <div class="description-activity">
-      <!-- Tool tab -->
-      <div class="box_description">
-        <div class="excursion_tool">
-          <%= render :partial => 'common_documents/document-tool-tab', :locals => { :document => document } %>
-        </div>     
+    <%= render :partial => 'recommender/sidebar', :locals  => { :resources => resource_suggestions, :rec => rec  } %>
+    <!--visor-->
+    <div class="doc-show">
+
+      <div class="box-show">
+        <div class="viewerContainer">
+          <div class="elementsBox">
+            <%= render partial: "#{ document.class.to_s.tableize }/#{ document.class.to_s.underscore }_show",
+              locals: { document.class.to_s.underscore.to_sym => document } %>
+          </div>
+        </div>
       </div>
-      
-      <!--activity (comments, ...) -->
-      <div class="activity-box">
-        <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
+
+
+      <div class="description-activity">
+        <!--tool tab-->
+        <div class="box_description">
+          <div class="excursion_tool">
+            <%= render :partial => 'common_documents/document-tool-tab', :locals => { :document => document } %>
+          </div>
+        </div>
+        <!--activity-->
+        <div class="activity-box">
+          <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
+        </div>
       </div>
+
+
     </div>
 
-    <% if @contribution %>
-      <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => @contribution } %>
-    <% end %>
+
+
+    <%if @contribution%>
+      <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => document.contribution } %>
+    <%end%>
+
 
 </section>
-
-
-
-
-

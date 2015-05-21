@@ -1,0 +1,120 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse-out">
+        <i class="fa fa-angle-down"></i>
+      </a>
+
+      <!--logo-->
+      <div class="logo-header">
+        <%= link_to(image_tag('logo/brand.svg', :alt => t('site.name')), '/', :class => "logo"); %>
+      </div>
+
+      <!--browse-->
+      <%= render partial: 'layouts/header/browse_header'%>
+    </div>
+    <!--collapse-->
+    <div class="collapse navbar-collapse" id="nav-collapse-out">
+
+<!--______________________________desktop-->
+      <ul class="btn-toolbar desktop-nav">
+        <li class="btn-group">
+          <a type="button" class="btn btn-default" href="<%=new_user_registration_path%>">
+            <%=t("sign_up")%>
+          </a>
+        </li>
+        <li class="btn-group dropdown">
+          <a href="#" id="drop3" role="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <%=t("sign_in")%>
+            <i class="fa fa-angle-down"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right dropdown-log" role="menu" aria-labelledby="drop3">
+
+            <%= form_for User.new, :as => :user, :class => "form-horizontal", :url => user_session_path do |f| %>
+              <div class="form-group">
+                <%= f.email_field :email, :id => "username", :class => "form-control" %>
+                <%= f.password_field :password, :id => "password", :class => "form-control"  %>              
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                    <span class="lbl padding-0">
+                      <%=t("activerecord.attributes.user.remember_me")%>
+                    </span>
+                </label>
+
+              </div>
+              <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
+              <div class="remember_password"><%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
+              </div>
+
+
+
+            <% end %>
+            <%content_for :javascript do%>
+              if ("placeholder" in document.createElement("input")) {
+                $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+                $("#password").attr('placeholder', I18n.t('activerecord.attributes.user.password'));
+              } else {
+                $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+                $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+              }
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+
+      <!--search-->
+      <%= render partial: 'layouts/header/uisearch_header' %>
+
+<!--________________________mobile/tablet-->
+      <%= render partial: 'layouts/header/header_signed_out_mobile' %>
+    </div>
+  </div>
+</nav>
+
+
+<!-- SCRIPT FOR AUTOMATIC BOOTSTRAP-DROPDOWN HOVER -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    (function ($, window, delay) {
+    var theTimer = 0;
+    var theElement = null;
+      var theLastPosition = {x:0,y:0};
+    $('.toggler .without-data-toggle')
+      .closest('li')
+      .on('mouseenter', function (inEvent) {
+      if (theElement) theElement.removeClass('open');
+      window.clearTimeout(theTimer);
+      theElement = $(this);
+
+      theTimer = window.setTimeout(function () {
+        theElement.addClass('open');
+      }, delay);
+    })
+      .on('mousemove', function (inEvent) {
+          if(Math.abs(theLastPosition.x - inEvent.ScreenX) > 4 ||
+             Math.abs(theLastPosition.y - inEvent.ScreenY) > 4)
+          {
+              theLastPosition.x = inEvent.ScreenX;
+              theLastPosition.y = inEvent.ScreenY;
+              return;
+          }
+
+      if (theElement.hasClass('open')) return;
+      window.clearTimeout(theTimer);
+      theTimer = window.setTimeout(function () {
+        theElement.addClass('open');
+      }, delay);
+    })
+      .on('mouseleave', function (inEvent) {
+      window.clearTimeout(theTimer);
+      theElement = $(this);
+      theTimer = window.setTimeout(function () {
+        theElement.removeClass('open');
+      }, delay);
+    });
+  })(jQuery, window, 0); // 200 is the delay in milliseconds
+});
+</script>

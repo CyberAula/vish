@@ -1,0 +1,283 @@
+.user
+  @include make-xs-column(12, $gutter: $grid-gutter-width)
+  @include make-sm-column(12, $gutter: $grid-gutter-width)
+  @include make-md-column(12, $gutter: $grid-gutter-width)
+  @include make-lg-column(12, $gutter: $grid-gutter-width)
+  padding: 0 !important
+  margin-bottom: 20px
+
+  #profile-info
+    @include well
+    @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+    position: relative
+    margin-bottom: 20px
+    float: left
+    width: 100%
+    clear: both
+    border: none
+    padding: 0
+    @media (max-width: $screen-xs-max)
+      padding: 10px
+    .avatar
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(2, $gutter: $grid-gutter-width)
+      @include make-md-column(2, $gutter: $grid-gutter-width)
+      @include make-lg-column(2, $gutter: $grid-gutter-width)
+      padding-left: 0
+      padding-right: 0
+      @media (max-width: $screen-xs-max)
+        padding-right: 0
+      img.avatar_img
+        @include border-top-radius ($border-radius-base)
+        @include border-bottom-radius ($border-radius-base)
+        @include border-left-radius ($border-radius-base)
+        @include border-right-radius ($border-radius-base )
+        @include img-responsive
+        width: 100%
+        @media (max-width: $screen-xs-max)
+          @include center-block
+          width: 30%
+
+      .badge-teacher-active
+        background-image: url(" badges/teacherofthemonth.png" )
+        position: absolute
+        top: 15px
+        left: -15px
+        z-index: 10
+        height: 110px
+        width: 75px
+        pointer-events: none
+
+    .items
+      min-height: 270px
+    .information
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(10, $gutter: $grid-gutter-width)
+      @include make-md-column(10, $gutter: $grid-gutter-width)
+      @include make-lg-column(10, $gutter: $grid-gutter-width)
+
+      .briefing
+        padding-top: 15px
+        .helpheader
+          @include hidden-xs
+          .popover
+            margin-top: -8px
+        .name
+          width: 80%
+          float: left
+          h2
+            margin-top: 0
+            color: $gray-dark
+            font-family: $corporate-font-family-sans-serif-Medium
+            word-wrap: break-word
+        .description
+          color: $gray
+          font-size: 1.2rem
+          word-wrap: break-word
+          clear: both
+        .ocupation
+          @media (max-width: $screen-xs-max)
+            float: none
+            height: auto
+            text-align: center
+            padding-right: 0px
+        .tags-profile
+          float: right
+          display: none
+          margin-top: 3px
+
+        .panel
+          @include box-shadow (0 0 0 transparent)
+          .ocupation
+            margin-bottom: -4px
+          @media (max-width: $screen-xs-max)
+            margin: $zero
+
+        .panel-group
+          margin-bottom: $zero
+          margin-top: 10px
+          table
+            margin-bottom: -4px
+            @include table-striped
+            td
+              &:first-child
+                padding-left: 0
+              @media (max-width: $screen-xs-max)
+                &:first-child
+                  display: block
+                  text-align: center
+                  width: 100%
+                  margin-bottom: $zero
+                  margin-top: 6px
+                  padding-bottom: 0
+              &:last-child
+                @media (max-width: $screen-xs-max)
+                  display: block
+                  text-align: center
+                  font-size: 1.2em
+            .panel-body
+              padding: $zero
+              div.ocupation
+                @include hidden-sm
+                @include hidden-md
+                @include hidden-lg
+        @media (max-width: $screen-xs-max)
+          .name,
+          .description
+            text-align: center
+            width: 100%
+
+        .toolbar-profile
+          position: relative
+          bottom: 5px
+          width: 100%
+          padding-top: 10px
+          display: block
+          float: left
+          margin-top: 18px
+          .btn-group
+            margin-bottom: 9px
+            a
+              padding: 5px 10px
+            i
+              margin-right: 5px
+            .btn-follow
+              @include follow-profile
+              margin: -1px
+              padding: $zero
+              @media (max-width: $screen-xs-max)
+                form
+                  width: 100%
+              div
+                .following-button
+                  padding: 6px 9px
+                  width: 120px
+
+                .following-button,
+                .unfollow-button
+                  @include border-right-radius (0)
+                  min-height: 34px
+                  max-height: 34px
+                  @media (max-width: $screen-xs-max)
+                    @include border-right-radius ($border-radius-base)
+                    //width: 100%
+                input
+                  &[type="submit"]
+                    padding: 6px 9px
+                    width: 120px
+                    @include border-right-radius (0)
+                    min-height: 34px
+                    max-height: 34px
+                    @media (max-width: $screen-xs-max)
+                      @include border-right-radius ($border-radius-base)
+                      //width: 100%
+            .btn
+              min-height: 34px
+              max-height: 34px
+              a
+                color: $gray
+              @media (max-width: $screen-xs-max)
+                width: 100% !important
+                clear: both
+                margin: 2px auto
+                float: left
+                @include border-top-radius ($border-radius-base)
+                @include border-bottom-radius ($border-radius-base)
+              &:hover
+                a
+                  color: $brand-primary
+            @media (max-width: $screen-xs-max)
+              width: 80%
+              @include center-block
+
+  //section de tabs
+  .info-profile
+    i
+      margin: 0 3px
+
+  .collapse,
+  .panel-body
+    margin: $zero !important
+
+
+  //FORMULARIO
+  .information
+    .update
+      display: none
+      margin-top: 20px
+      margin-bottom: 20px
+      background-color: $white
+      @include make-xs-column(12, $gutter: $grid-gutter-width)
+      @include make-sm-column(10, $gutter: $grid-gutter-width)
+      @include make-md-column(10, $gutter: $grid-gutter-width)
+      @include make-lg-column(10, $gutter: $grid-gutter-width)
+      @media (max-width: $screen-xs-max)
+        padding: 0
+      label
+        font-size: 0.9em
+        font-family: $corporate-font-family-sans-serif-Light
+        color: $brand-primary
+        display: block
+        clear: both
+        margin-top: 12px
+
+      input,
+      textarea
+        display: block
+        width: 100%
+        clear: both
+
+      .avatar-edit
+        display: block
+        margin-bottom: 10px
+        .avatar-update
+          .avatar-current
+            float: left
+            margin-right: 10px
+            img
+              @include border-top-radius ($border-radius-base)
+              @include border-bottom-radius ($border-radius-base)
+              width: 50px
+          form.edit_actor
+            margin: $zero
+            input
+              margin-top: $zero
+              width: 70%
+              padding: $zero
+              display: inline
+              @media (max-width: $screen-xs-max)
+                width: 50%
+        #avatar-progress
+          display: block
+          margin-top: 7px
+          margin-left: 5px
+          .progress
+            margin-bottom: $zero
+
+      form.edit_user
+        display: block
+        .birthday
+          min-height: 42px
+          .select2-container
+            width: 19%
+            display: block
+            float: left
+            margin-right: 10px
+
+        .actions
+          margin-top: 12px
+          display: block
+          input
+            width: auto
+            float: right
+          a
+            float: right
+            margin-right: 5px
+
+      ul.tagList
+        padding-left: 0
+  .name-required
+    label
+      display: inline
+      span
+        color: $gray-dark

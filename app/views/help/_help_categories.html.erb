@@ -1,12 +1,14 @@
-<li class="helpheader helpbutton help-fix-position-popover">   
-<i class="icon-question-sign helphome helppopover" id="helpcategoriesid" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.categories1_html')%>" href='#' value="" ></i>
-<div class="contenthome" id="contentcategoriesid" style="display: none">
-  <div>
-    <%= t('document.help.categories2_html')%>
+<span class="helpheader">   
+  <i class="fa fa-question-circle helphome" id="helpcategoriesid"  data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.categories1_html')%>" href='#' value="" ></i>
+  <div class="contenthome" id="contentcategoriesid" style="display: none">
+    <div class="popover-body">
+      <p> <%= t('document.help.categories2_html')%> </p>
+    </div>
+    <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
-  <div class="modal-footer popoverfix"><%= t('document.help.overview_html')%></div>
-</div>
-</li>
+
+</span>
+
 <%content_for :javascript do%>
   $('#helpcategoriesid').popover({ 
     html : true,

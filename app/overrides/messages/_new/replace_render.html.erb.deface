@@ -1,3 +1,0 @@
-<!-- replace "code[erb-loud]:contains('form')" -->
-
-<%= render :partial => 'messages/form' %>

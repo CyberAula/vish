@@ -1,7 +1,9 @@
-<h3 class="title_WS resource_title_WS"><%=resource.title%></h3>
-<div class="actions">
-	<a class="btn download_object" href="<%=resource.getDownloadUrl(@controller)%>">
-		<i class='icon-download'></i>
-		<span><%= t('document.actions.download') %></span>
-	</a>
+<div class="workshop_downloadable_resource">
+	<h3 class="title_WS resource_title_WS"><%=resource.title%></h3>
+	<div class="actions">
+		<a class="btn btn-default download_object" href="<%=resource.getDownloadUrl(@controller)%>">
+			<i class='fa fa-download'></i>
+			<span><%= t('document.actions.download') %></span>
+		</a>
+	</div>
 </div>

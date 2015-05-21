@@ -1,6 +1,8 @@
-<div class="tabbable admin_header">
-	<h1><i class="icon-wrench"></i> <span class="admin_header_text_title"><%=t('admin.title')%></span> </h1>
+<header class="admin_header">
+	<h1><i class="fa fa-wrench"></i> <%=t('admin.title')%> </h1>
 	<hr>
+</header>
+<nav>
 	<ul class="nav nav-pills">
 		<li <%=!@reports.nil? ? "class=active" : ""%>>
 			<a href="<%=admin_open_reports_path%>"><%=t('admin.reports')%></a>
@@ -12,4 +14,4 @@
 			<a href="/resque" target="_blank"><%=t('admin.resque')%></a>
 		</li>
 	</ul>
-</div>
+</nav>

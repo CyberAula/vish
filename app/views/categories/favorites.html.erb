@@ -1,13 +1,23 @@
 <section id="category">
   <div class="category_info">
-    <div class="icon-box-fav">
-      <i class="icon-star "></i>
-    </div>  
-    <%= render partial: 'help/help_favourite' %>
-    <h2><%= t('categories.favorites.title') %></h2>    
-    <h4><%= t('categories.favorites.description') %></h3>
-  </div>
+    <div class="information my_favorites">
+      <div class="briefing">
+        <header>
 
-  <% @items = subject_content current_subject, VishConfig.getAvailableLikableModels({:return_instances => true}), {:scope => :like, :limit=>0} %>
-  <%= render partial: 'categories/items' %>
+          <div class="icontitle">
+    
+            <!--titulo-->
+            <i class="fa fa-star"></i> <%= t('categories.favorites.title') %>
+            <!--ayuda-->
+            <%= render partial: 'help/help_categories' %>
+          </div>
+        </header>   
+        <div class="description"> <%= t('categories.favorites.description') %> </div>
+      </div>
+    </div>
+  </div>
+  <ul class="items">
+    <% @items = subject_content current_subject, VishConfig.getAvailableLikableModels({:return_instances => true}), {:scope => :like, :limit=>0} %>
+    <%= render partial: 'categories/items' %>
+  </ul>
 </section>
