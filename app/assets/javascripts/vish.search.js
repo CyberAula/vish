@@ -16,17 +16,16 @@ Vish.Search = (function(V,undefined){
   var TIME_LAST_QUERY_SENT = 0;
   var NUMBER_OF_CALLS = 0;
 
-  var excursionsCatalogue = '<%= VishConfig.getCatalogueModels() === ["Excursion"] %>';
-  var excursionsDirectory = '<%= VishConfig.getDirectoryModels() === ["Excursion"] %>';
-
   /* options is an object like this:
       { object_types: ["Excursion", "Resource", "Event", "Workshop"],
         resource_types: [Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"],
         num_pages: 8,
         url: http://vishub.org/search?type=Webapp%2CScormfile&sort_by=updated_at,
         tags: "tag1,tag2,my_tag",
-        sort_by_disable_tooltip: "Option only available for learning objects"
-        only_for_excursion_tooltip: "Option only available for excursions"
+        sort_by_disable_tooltip: "Option only available for learning objects",
+        only_for_excursion_tooltip: "Option only available for excursions",
+        excursionsInCatalogue: true,
+        excursionsInDirectory: false
       }  
   */
   var init = function(options){
@@ -43,6 +42,19 @@ Vish.Search = (function(V,undefined){
 
     //take the params from the URL and mark them in the sidebar
     _parsed_url = _getUrlParameters();
+    
+    _customizeInterface();
+
+    _recalculateTags(_options.tags, true);
+    _fillSidebarWithParams();
+    _loadUIEvents(_options);
+    //important that these lines go in the end of the init because they need the UI events
+    if ($(window).width() < 767) {
+      _closeFilterSets();
+    }
+  };
+
+  var _customizeInterface = function(){
     if(_parsed_url["catalogue"]){
       $("div.filter_set[catalogue_filter=true]").show();
     } else if(_parsed_url["directory"]){
@@ -56,25 +68,17 @@ Vish.Search = (function(V,undefined){
       }
     }
 
-    //TODO sacar las cosas del sort_by al método que hay que parsea el sort_by after ajax request
-    if((_parsed_url["type"]!="Excursion" && !_parsed_url["catalogue"])||(_parsed_url["catalogue"] && !excursionsCatalogue)){
-      $("li.only_for_excursion").addClass("disabled");
-      $("li.only_for_excursion").attr("title", _options.only_for_excursion_tooltip);
+    if((_parsed_url["catalogue"] && !_options.excursionsInCatalogue) || (_parsed_url["directory"] && !_options.excursionsInDirectory)){
+      $("li.only_for_excursion").hide();
     }
-
+    if(_parsed_url["type"]=="Excursion" || (_parsed_url["catalogue"] && _options.excursionsInCatalogue) || (_parsed_url["directory"] && _options.excursionsInDirectory)){
+      $("li.only_for_excursion").removeClass("disabled");
+      $("li.only_for_excursion").attr("title", "");
+    }
     if(_parsed_url["catalogue"] || _parsed_url["directory"] || _parsed_url["browse"]){
       $("li a[sort-by-key='relevance']").parent("li").hide();
     }
-
-    _recalculateTags(_options.tags, true);
-    _fillSidebarWithParams();
-    _loadUIEvents(_options);
-    //important that these lines go in the end of the init because they need the UI events
-    if ($(window).width() < 767) {
-      _closeFilterSets();
-    }
   };
-
 
   var _loadUIEvents = function(options){
     //click on any filter
@@ -471,7 +475,7 @@ Vish.Search = (function(V,undefined){
         $("li.disable_for_user").attr("title", "");
       }
 
-      if(query_array["catalogue"] || (query_array["type"] && (query_array["type"]=="Excursion"))){
+      if((query_array["catalogue"]&& _options.excursionsInCatalogue) || (query_array["directory"]&& _options.excursionsInDirectory) || (query_array["type"] && (query_array["type"]=="Excursion"))){
         $("li.only_for_excursion").removeClass("disabled");
         $("li.only_for_excursion").attr("title", "");
       } else {
