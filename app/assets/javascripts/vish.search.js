@@ -40,12 +40,13 @@ Vish.Search = (function(V,undefined){
       _options.resource_types = ["Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"];
     }
 
-    //take the params from the URL and mark them in the sidebar
+    //take the params from the URL 
     _parsed_url = _getUrlParameters();
     
     _customizeInterface();
 
     _recalculateTags(_options.tags, true);
+    //mark the params from the URL in the sidebar
     _fillSidebarWithParams();
     _loadUIEvents(_options);
     //important that these lines go in the end of the init because they need the UI events
@@ -53,6 +54,7 @@ Vish.Search = (function(V,undefined){
       _closeFilterSets();
     }
   };
+
 
   var _customizeInterface = function(){
     if(_parsed_url["catalogue"]){
@@ -79,6 +81,7 @@ Vish.Search = (function(V,undefined){
       $("li a[sort-by-key='relevance']").parent("li").hide();
     }
   };
+
 
   var _loadUIEvents = function(options){
     //click on any filter
@@ -230,14 +233,10 @@ Vish.Search = (function(V,undefined){
 
 
   var _fillSidebarWithParams = function(){
-    //remove all previous filters
-    //$("#search-sidebar ul li").removeClass("search-sidebar-selected");
-
     //first the top level filter, type (user or learning object)
     if(!_parsed_url["type"] || _parsed_url["type"] == ""){
       //do nothing
-    }
-    else if(_parsed_url["type"] == "User"){
+    } else if(_parsed_url["type"] == "User"){
       _toggleFilter("type", "User");
     } else {
       _toggleFilter("type", "Learning_object");
@@ -287,8 +286,8 @@ Vish.Search = (function(V,undefined){
     if(filter_obj.length>0){
       //check catalogue, directory or neither of them
       if((_parsed_url["catalogue"] && filter_obj.parents(".filter_set").attr("catalogue_filter")) || (_parsed_url["directory"] && filter_obj.parents(".filter_set").attr("directory_filter")) || (!_parsed_url["catalogue"] && !_parsed_url["directory"]) ){
-        if(filter_obj.hasClass("search-sidebar-selected")) {
-            _deactivateFilter(filter_obj, update_url);
+        if(filter_obj.hasClass("search-sidebar-selected")) {        
+          _deactivateFilter(filter_obj, update_url);          
         } else {
           _activateFilter(filter_obj, update_url);
         }
@@ -448,6 +447,9 @@ Vish.Search = (function(V,undefined){
           _parsed_url["sort_by"]=["relevance"];
         }
       }
+    }
+    if(filter_key==="type" && filter_name==="Excursion" && _parsed_url["sort_by"] && _parsed_url["sort_by"][0]==="quality" ){
+      _parsed_url["sort_by"]=["popularity"]; 
     }
 
     if(call_server){
