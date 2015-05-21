@@ -174,7 +174,7 @@
                   <span><%=t('order_by.created_at')%> </span>
                 </a>
               </li>
-              <li role="presentation" class="only_for_excursion" title="">
+              <li role="presentation" class="only_for_excursion disabled" title="<%=t('search.titles.tooltip2')%>">
                 <a href="#" sort-by-key="quality">
                   <i class="fa fa-check-circle"></i>
                   <span><%=t('order_by.quality')%> </span>
@@ -237,14 +237,15 @@
 
 <%= content_for :javascript do %>
 
-
   Vish.Search.init({"object_types": <%=raw VishConfig.getSearchModels()%>,
                     "resource_types": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }%>,
                     "num_pages": <%=@search_result.num_pages%>,
                     "url": window.location.href,
                     "tags": "<%=extract_tags(@search_result)%>",
                     "sort_by_disable_tooltip": "<%=t('search.titles.tooltip')%>",
-                    "only_for_excursion_tooltip": "<%=t('search.titles.tooltip2')%>"
+                    "only_for_excursion_tooltip": "<%=t('search.titles.tooltip2')%>",
+                    "excursionsInCatalogue": <%= VishConfig.getCatalogueModels().include? "Excursion" %>,
+                    "excursionsInDirectory": <%= VishConfig.getDirectoryModels().include? "Excursion" %>
                      });
 
   SocialStream.Repository.show();
