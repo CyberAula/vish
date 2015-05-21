@@ -878,7 +878,7 @@ es:
       age: "edad"
       filter_by: "Filtrar por"
       lang: "idioma"
-      learning_object: "Objetos de aprendizaje"
+      learning_object: "objetos de aprendizaje"
       resource: "tipo de recurso"
       subject: "tema"
       tag: "etiquetas"
