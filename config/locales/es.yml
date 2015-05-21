@@ -664,7 +664,7 @@ es:
     error: "El idioma \"%{lang}\" no está disponible"
     title: "idioma"
     languages:
-      independent: "Idependiente del idioma"
+      independent: "Independiente del idioma"
       other: Otros
       en: "Inglés"
       de: "Alemán"
