@@ -28,7 +28,20 @@ class Excursion < ActiveRecord::Base
     json
   end
 
-
+  def interaction_attributes
+    interaction_attributes = Hash.new
+    interaction_attributes["id"] = self.id
+    interaction_attributes["title"] = self.title
+    interaction_attributes["LORIscore"] = self.reviewers_qscore.to_f
+    i = self.lo_interaction
+    unless i.nil?
+      interaction_attributes = interaction_attributes.merge(i.attributes)
+      interaction_attributes.delete "created_at"
+      interaction_attributes.delete "updated_at"
+      interaction_attributes.delete "activity_object_id"
+    end
+    interaction_attributes
+  end
 
   ####################
   ## OAI-PMH Management
@@ -1004,22 +1017,25 @@ class Excursion < ActiveRecord::Base
 
   def clone_for sbj
     return nil if sbj.blank?
+
+    contributors = self.contributors || []
+    contributors.push(self.author)
+    contributors.uniq!
+    contributors.delete(sbj)
+
     e=Excursion.new
     e.author=sbj
     e.owner=sbj
     e.user_author=sbj.user.actor
 
     eJson = JSON(self.json)
-    eJson["author"] = {name: sbj.name, vishMetadata:{ id: sbj.id}}
-    if eJson["contributors"].nil?
-      eJson["contributors"] = []
+    eJson["author"] = {name: sbj.name, vishMetadata:{ id: sbj.id }}
+    unless contributors.blank?
+      eJson["contributors"] = contributors.map{|c| {name: c.name, vishMetadata:{ id: c.id}}}
     end
-    eJson["contributors"].push({name: self.author.name, vishMetadata:{ id: self.author.id}})
     e.json = eJson.to_json
 
-    e.contributors=self.contributors.push(self.author)
-    e.contributors.uniq!
-    e.contributors.delete(sbj)
+    e.contributors=contributors
     e.draft=true
     e.save!
     e

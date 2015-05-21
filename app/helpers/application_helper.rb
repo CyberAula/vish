@@ -41,6 +41,12 @@ module ApplicationHelper
 		[[I18n.t('lang.languages.other'), "ot"]]
 	end
 
+	def search_resource_languages
+		[[I18n.t('lang.languages.independent'), "independent"]] +
+		[[I18n.t('lang.languages.de'), "de"], [I18n.t('lang.languages.en'), "en"], [I18n.t('lang.languages.es'), "es"], [I18n.t('lang.languages.fr'), "fr"]] +
+		[[I18n.t('lang.languages.other'), "ot"]]
+	end
+
 	#Configuration
 	def available_models
 		VishConfig.getAvailableMainModels
@@ -56,6 +62,10 @@ module ApplicationHelper
 
 	def catalogue_models
 		VishConfig.getCatalogueModels
+	end
+
+	def directory_models
+		VishConfig.getDirectoryModels
 	end
 
 	def available_services

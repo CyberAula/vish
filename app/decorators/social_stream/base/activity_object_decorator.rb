@@ -4,6 +4,7 @@ ActivityObject.class_eval do
   has_many :spam_reports
   has_and_belongs_to_many :wa_resources_galleries
   has_one :contribution
+  has_one :lo_interaction
 
   before_save :fill_relation_ids
   before_save :fill_indexed_lengths
@@ -93,7 +94,7 @@ ActivityObject.class_eval do
     end
 
     #Translate it to a scale of [0,1000000]
-    overallQualityScore = overallQualityScore * 100000
+    overallQualityScore = [overallQualityScore * 100000, 999999].min
 
     self.update_column :qscore, overallQualityScore
 

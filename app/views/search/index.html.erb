@@ -1,99 +1,219 @@
-<% availableModels = available_models %>
-<% browse = params[:browse] || (!params[:q].nil? and params[:q].blank?) %>
+<%content_for :title do%>
+  <%if params[:browse]%>
+    <%= t("site.current.browse")%>
+  <%elsif params[:catalogue]%>
+    <%=t('catalogue.title')%>
+  <%elsif params[:directory]%>
+    <%=t('catalogue.title_directory')%>
+  <%else%>
+    <%= t("site.current.search")%>
+  <%end%>
+<%end%>
 
 <section id="search" class="">
   <div class="search">
-    <div class="tabbable">
-      <ul class="nav nav-tabs">
-        <%if browse%>
-          <%content_for :title do%>
-            <%= t("site.current.browse")%>
-          <%end%>
-          <li><h1><i class="icon-folder-open"></i><%= t("browse.title")%></h1></li>          
+    <div class="row-fluid">
+
+      <div id="search-sidebar" class="span3 search-filterbar">
+
+        <%if params[:browse]%>
+          <li><h3><i class="icon-folder-open"></i><%= t("browse.title")%></h3></li>
+        <%elsif params[:catalogue]%>
+          <li><h3><i class="icon-tags"></i><%=t('catalogue.title')%></h3></li>
+        <%elsif params[:directory]%>
+          <li><h3><i class="icon-tags"></i><%=t('catalogue.title_directory')%></h3></li>
         <%else%>
-          <%content_for :title do%>
-            <%= t("site.current.search")%>
-          <%end%>
-          <li><h1><i class="icon-search"></i><%= t("search.title")%></h1></li>
+          <li><h3><i class="icon-search"></i><%= t("search.title")%></h3></li>
         <%end%>
-          <li class="all_results <%= 'active' if params[:type].blank? %>">
-            <% unless browse %>
-              <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
-            <% else %>
-              <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'), search_path(:browse=>"true", :sort_by => "ranking") %>
-            <% end %>
-          </li>
 
-          <% if availableModels.include? "Excursion" %>
-            <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
-              <% unless browse %>
-                <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), "#excursion",
-                :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
-              <% else %>
-                <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking") %>
+
+        <div filter_type="category_ids" directory_filter="true" catalogue_filter="true" style="display:none"  class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.subject")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter">
+            <% Vish::Application.config.catalogue["categories"].each do |categoryId| %>
+              <li class="filter_item" filter_key="category_ids" categoryId="<%=categoryId%>" filter="<%=categoryId%>"><%=t('catalogue.categories.' + categoryId)%></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div filter_type="super_type" search_filter="true" style="display:none" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.type")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter">
+            <li class="filter_item" filter_key="type" filter="User" exclusive><%=t("search.models.user")%></li>
+            <li class="filter_item" filter_key="type" filter="Learning_object" exclusive><%=t("search.models.learning_object")%></li>
+          </ul>
+        </div>
+
+        <div filter_type="lo_type" opens_with="Learning_object" style="display:none" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.learning_object")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter">
+            <% VishConfig.getSearchModels().each do |model| %>
+              <li class="filter_item" filter_key="type" filter="<%=model%>"><%=t("search.models.#{model.downcase}")%></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div filter_type="age_type" opens_with="Learning_object" directory_filter="true" catalogue_filter="true" style="display:none" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.age")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter">
+              <li class="filter_item" filter_key="age" filter="range1" exclusive><%=t("search.filters.age_range_1")%></li>
+              <li class="filter_item" filter_key="age" filter="range2" exclusive><%=t("search.filters.age_range_2")%></li>
+              <li class="filter_item" filter_key="age" filter="range3" exclusive><%=t("search.filters.age_range_3")%></li>
+          </ul>
+        </div>
+
+
+
+        <div filter_type="resouce_type" id="resource_type" directory_filter="true" opens_with="Resource" style="display:none" class="filter_set">
+            <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+              <a>-</a>
+            </button>
+            <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.resource")%></span></span>
+            <hr class="separator">
+            <ul class="opened_filter">
+              <% VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }.each do |res| %>
+                <li class="filter_item" filter_key="type" filter="<%=res%>"><%=t("search.models.#{res.downcase}")%></li>
               <%end%>
-            </li>
-          <%end%>
+            </ul>
+        </div>
 
-          <li class="user <%= " active" if params[:type] == "user" %><%= " disabled" unless search_results?("user") %>">
-            <% unless browse %>
-              <%= link_to raw('<i class="icon-group"></i><span class=" hidden-phone hidden-tablet">'+t("user.title.other")+'</span>'), "#user",
-              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
-            <% else %>
-              <%= link_to raw('<i class="icon-group"></i><span class=" hidden-phone hidden-tablet">'+t("user.title.other")+'</span>'), search_path(:type => "user", :browse=>"true", :sort_by => "ranking") %>
+        <div filter_type="language" search_filter="true" directory_filter="true" catalogue_filter="true" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.lang")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter">
+            <% search_resource_languages.each do |lang| %>
+              <li class="filter_item" filter_key="language" filter="<%=lang[1]%>" exclusive><%=lang[0]%></li>
             <% end %>
-          </li>
+          </ul>
+        </div>
 
-          <% if availableModels.include? "Event" %>
-            <li class="event <%= " active" if params[:type] == "event" %><%= " disabled" unless search_results?("event") %>">
-              <% unless browse %>
-                <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), "#event",
-                :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
-              <% else %>
-                <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), search_path(:type => "event", :browse=>"true", :sort_by => "ranking") %>
-              <% end %>
-            </li>
-          <%end%>
+        <div filter_type="tags" search_filter="true" directory_filter="true" catalogue_filter="true" class="filter_set">
+          <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
+            <a>-</a>
+          </button>
+          <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.tag")%></span></span>
+          <hr class="separator">
+          <ul class="opened_filter ul_selected_tags" id="selected_tags_ul">
+          </ul>
+          <ul class="opened_filter ul_tags" id="tags_ul">
+          </ul>
+        </div>
 
-          <% if availableModels.include? "Resource" %>
-            <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("resource") %>">
-              <% unless browse %>
-                <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), "#resource",
-                :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
-              <% else %>
-                <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), search_path(:type => "resource", :browse=>"true", :sort_by => "ranking") %>
-              <% end%>
-            </li>
-          <%end%>
+      </div>
 
-          <% if availableModels.include? "Workshop" %>
-            <li class="workshop <%= " active" if params[:type] == "workshop" %><%= " disabled" unless search_results?("workshop") %>">
-              <% unless browse %>
-                <%= link_to raw('<i class="icon-lightbulb"></i><span class=" hidden-phone hidden-tablet">'+t("workshop.other")+'</span>'), "#workshop",
-                :data => {:toggle=>"tab#{ ' disabled' unless search_results?("workshop") }"} %>
-              <% else %>
-                <%= link_to raw('<i class="icon-lightbulb"></i><span class=" hidden-phone hidden-tablet">'+t("workshop.other")+'</span>'), search_path(:type => "workshop", :browse=>"true", :sort_by => "ranking") %>
-              <% end%>
-            </li>
-          <%end%>
+      <div class="span9 filter-results">
 
+        <div class="search_filters filters-applied">
           <%= render partial: 'help/help_search' %>
-      </ul>
+          <div><span class="n_results" id="n_results"><%=@search_result.total_entries%></span> <%= t("search.results")%></div>
+          <div class="title_applied_filters"><%= t("search.applied_filters")%></div>
 
-      <%= render partial: 'search/order_by_dropdown' %> 
+          <div id="applied_filters" class="filter_boxes"></div>
+          <div class="clear"></div>
+      
+          <div class="dropdown_order_by" id="order_by_selector_search">
 
-      <div class="tab-content">
-        <div class="tab-pane active" id="tab1 ">
-          <div id="search-all">
-            <ul>  
+            <button class="btn" type="button" data-toggle="dropdown">              
+              <span>
+                <%if params[:browse] %>
+                  <i class="icon-dashboard"></i>
+                  <%=t('order_by.popularity')%>
+                <%elsif params[:catalogue] || params[:directory] %>
+                  <% if (params[:catalogue] && VishConfig.getCatalogueModels() === ["Excursion"]) || (params[:directory] && VishConfig.getDirectoryModels() === ["Excursion"]) %>
+                    <i class="icon-dashboard"></i>
+                    <%=t('order_by.quality')%>
+                  <% else %>
+                    <i class="icon-dashboard"></i>
+                    <%=t('order_by.popularity')%>
+                  <% end %>
+                <% else %>
+                  <i class="icon-eye-open"></i>
+                  <%=t('order_by.relevance')%>
+                <%end%>
+              </span><i class="icon-angle-down"></i>
+            </button>
+
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li role="presentation">
+                <a href="#" sort-by-key="relevance">
+                  <i class="icon-eye-open"></i>
+                  <span><%=t('order_by.relevance')%> </span>
+                </a>
+              </li>
+             <li role="presentation">
+                <a href="#" sort-by-key="popularity">
+                  <i class="icon-dashboard"></i>
+                  <span><%=t('order_by.popularity')%> </span>
+                </a>
+              </li>
+
+              <li role="presentation">
+                <a href="#"  sort-by-key="created_at">
+                  <i class="icon-bolt"></i>
+                  <span><%=t('order_by.created_at')%> </span>
+                </a>
+              </li>
+              <li role="presentation" class="only_for_excursion disabled" title="<%=t('search.titles.tooltip2')%>">
+                <a href="#" sort-by-key="quality">
+                  <i class="icon-pencil"></i>
+                  <span><%=t('order_by.quality')%> </span>
+                </a>
+              </li>              
+              <li role="presentation" class="disable_for_user" title="">
+                <a href="#" sort-by-key="updated_at">
+                  <i class="icon-pencil"></i>
+                  <span><%=t('order_by.updated_at')%> </span>
+                </a>
+              </li>
+                <li role="presentation" class="disable_for_user" title="">
+                  <a href="#" sort-by-key="visits">
+                    <i class="icon-eye-open"></i>
+                    <span><%=t('order_by.visits')%> </span>
+                  </a>
+                </li>
+                <li role="presentation" class="disable_for_user" title="">
+                  <a href="#" sort-by-key="favorites">
+                    <i class="icon-star"></i>
+                    <span><%=t('order_by.favorites')%> </span>
+                  </a>
+                </li>
+            </ul>
+          </div>
+          <div class="clear"></div>
+
+
+        </div>
+
+          <div id="search-all" class="searched-items">
+            <ul>
               <% @search_result.each do |r| %>
-                  <% unless r.nil? %>              
+                  <% unless r.nil? %>
                     <%= render partial: "#{ r.class.to_s.tableize }/search_result",
                                locals:  { r.class.to_s.underscore.to_sym => r, :prefix_id => "search" }  %>
                   <% end %>
-              <% end %>              
+              <% end %>
             </ul>
           </div>
+
           <div class="loader_pagination">
             <div class="pageless-loader" style="text-align:center;width:100%;">
               <div class="msg" style="font-size:2em">
@@ -103,112 +223,29 @@
             </div>
           </div>
           <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
-        </div>
-      </div>
 
+      </div>
     </div>
   </div>
 </section>
 
+
+
 <%= content_for :javascript do %>
+
+  Vish.Search.init({"object_types": <%=raw VishConfig.getSearchModels()%>,
+                    "resource_types": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }%>,
+                    "num_pages": <%=@search_result.num_pages%>,
+                    "url": window.location.href,
+                    "tags": "<%=extract_tags(@search_result)%>",
+                    "sort_by_disable_tooltip": "<%=t('search.titles.tooltip')%>",
+                    "only_for_excursion_tooltip": "<%=t('search.titles.tooltip2')%>",
+                    "excursionsInCatalogue": <%= VishConfig.getCatalogueModels().include? "Excursion" %>,
+                    "excursionsInDirectory": <%= VishConfig.getDirectoryModels().include? "Excursion" %>
+                     });
+
   SocialStream.Repository.show();
 
-  $('#search-all ul').pageless({ 
-                      totalPages: <%=@search_result.num_pages%>,
-                      url: window.location.href,
-                      currentPage: <%=@search_result.current_page%>,
-                      loader: '.loader_pagination',
-                      end: function(){
-                        $('.loader_pagination').hide();
-                        $("#last_content_shown").show();
-                      },
-                      finishedAddingHiddenElem: function(hidden_elem){
-                          var active_tab = $("#search ul.nav li.active");
-                      
-                          //we check this each time because it can change. We show the elem if the tab is active or if it is "all" tab
-                          if(active_tab.hasClass("all_results")){
-                            hidden_elem.fadeIn();
-                          }
-                          else if (active_tab.hasClass("excursion") && hidden_elem.hasClass("excursion-item")){
-                            hidden_elem.fadeIn();
-                          }
-                          else if (active_tab.hasClass("resource") && hidden_elem.hasClass("resource-item")){
-                            hidden_elem.fadeIn();
-                          }
-                          else if (active_tab.hasClass("event") && hidden_elem.hasClass("event-item")){
-                            hidden_elem.fadeIn();
-                          }
-                          else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
-                            hidden_elem.fadeIn();
-                          }                            
-                      },
-                      complete: function(){
-                        //when we complete one page and there is no scroll, there cannot be another call
-                        //so we do a manual watch to bring all pages needed until we have a scroll
-                        $.pageless.watch();
-                      }
-  });
-
   $("footer#footer").addClass("fixed-bottom");
-
-  <% if params[:type] %>
-    //if "popular" links used, the tabs are links to other "popular" searches
-    $("#search .all_results").click(function(){
-      window.location.href = '<%=search_path(:browse=>"true", :sort_by => "ranking")%>';
-    });
-    $("#search .excursion").click(function(){
-      window.location.href = '<%=search_path(:type => "excursion", :browse=>"true", :sort_by => "ranking")%>';
-    });
-    $("#search .user").click(function(){
-      window.location.href = '<%=search_path(:type => "user", :browse=>"true", :sort_by => "ranking")%>';
-    });
-    $("#search .event").click(function(){
-      window.location.href = '<%=search_path(:type => "event", :browse=>"true", :sort_by => "ranking")%>';
-    });
-    $("#search .resource").click(function(){
-      window.location.href = '<%=search_path(:type => "resource", :browse=>"true", :sort_by => "ranking")%>';
-    });
-    $("#search .workshop").click(function(){
-      window.location.href = '<%=search_path(:type => "workshop", :browse=>"true", :sort_by => "ranking")%>';
-    });
-  <% elsif browse === false %>
-    //if search is manual, the tabs are like filters, so done with js
-    //tab filtering, show only excursions, users, resources, etc.
-    $("#search .all_results").click(function(){
-      $("#search-all > ul").children().show();
-    });
-    $("#search .excursion").not(".disabled").click(function(){
-      $("#search-all > ul").children(".excursion-item").show();
-      $("#search-all > ul").children().not(".excursion-item").hide();
-      //call for more results
-      $('#search-all ul').trigger("scroll.pageless");
-    });
-    $("#search .event").not(".disabled").click(function(){
-      $("#search-all > ul").children(".event-item").show();
-      $("#search-all > ul").children().not(".event-item").hide();
-      //call for more results
-      $('#search-all ul').trigger("scroll.pageless");
-    });
-    $("#search .user").not(".disabled").click(function(){
-      $("#search-all > ul").children(".contact").show();
-      $("#search-all > ul").children().not(".contact").hide();
-      //call for more results
-      //$('#search-all ul').trigger("scroll.pageless");
-    });
-    $("#search .resource").not(".disabled").click(function(){
-      $("#search-all > ul").children(".resource-item").show();
-      $("#search-all > ul").children().not(".resource-item").hide();
-      //call for more results
-      $('#search-all ul').trigger("scroll.pageless");
-    });
-    $("#search .workshop").not(".disabled").click(function(){
-      $("#search-all > ul").children(".workshop-item").show();
-      $("#search-all > ul").children().not(".workshop-item").hide();
-      //call for more results
-      $('#search-all ul').trigger("scroll.pageless");
-    });
-  <%end%>
-
-  $('.scroll-pane').jScrollPane();
 
 <% end %>

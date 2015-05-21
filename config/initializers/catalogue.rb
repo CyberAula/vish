@@ -56,7 +56,7 @@ Vish::Application.configure do
 
         config.catalogue["keywords"].concat(config.catalogue["category_keywords"][c1])
 
-        if config.catalogue['mode'] == "matchtag"
+        if config.catalogue['mode'] == "matchtag" and (ActiveRecord::Base.connection.table_exists?('tags') and ActiveRecord::Base.connection.column_exists?(:tags, :plain_name))
             allActsAsTaggableOnTags = ActsAsTaggableOn::Tag.where("plain_name IN (?)", config.catalogue["category_keywords"][c1].map{|tag| ActsAsTaggableOn::Tag.getPlainName(tag)})
             config.catalogue["category_tag_ids"][c1] = allActsAsTaggableOnTags.map{|t| t.id}
         end

@@ -21,14 +21,17 @@
 	configuration["ViSH"] = true;
 	configuration["ViSH_instances"] = ["<%= Vish::Application.config.full_domain %>"];
 	configuration["Flickr"] = true;
-	configuration["Youtube"] = true;
+	<% unless Vish::Application.config.APP_CONFIG['YouTubeAPIKEY'].nil? %>
+		configuration["Youtube"] = true;
+		configuration["YoutubeAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['YouTubeAPIKEY'] %>";
+	<% end %>
 	configuration["Vimeo"] = false;
 	configuration["LRE"] = true;
 	configuration["LRE_path"] = "/lre/search";
-	<%unless Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'].nil? %>
+	<% unless Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'].nil? %>
 		configuration["SoundCloud"] = true;
 		configuration["SoundCloudAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'] %>";
-	<%end%>
+	<% end %>
 
 	configuration["presentationSettings"] = true;
 
