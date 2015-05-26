@@ -22,7 +22,6 @@
 
       <%= f.submit t('button.update'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
 
-    <% end%>
   </div>
 </div>
 
@@ -37,8 +36,6 @@
 
   <div class="panel-body content settings_content collapse" id="email_form_content">
 
-    <%= form_for(resource, :class => "form-group", :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-   
       <%= f.label :email %>
       <%= f.email_field :email, :class => "required form-control" %>
     

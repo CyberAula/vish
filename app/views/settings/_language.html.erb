@@ -13,7 +13,7 @@
     <div class="form_field">
       <%= select_tag(:language, options_for_select([[t('lang.browser'), 'browser']] + I18n.available_locales.map{|l| [ t(:language_name, :locale => l.to_s), l.to_s ] }, (current_user.language.blank? ? 'browser' : current_user.language)), :class => 'form_tag', :onchange => "$(\'#form_lang\').submit();" )%>
     </div>
-    <%= hidden_field_tag :settings_section, :language %>
+    <%= hidden_field_tag :settings_section, :language, {:id => 'language_field'} %>
 		<noscript>
       <%= submit_tag "Update Settings", :class => "btn btn-primary" %>
 		</noscript>
