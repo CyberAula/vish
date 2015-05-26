@@ -43,7 +43,7 @@
   function update_pageless_state(tab, num_pages, current_page){
     pageless_state[tab].num_pages = num_pages;
     pageless_state[tab].current_page = current_page;
-  };
+  }
 
   function re_apply_pageless(tab){
     $.pagelessStop(); //remove old pageless
@@ -56,7 +56,7 @@
         $('.loader_pagination').hide();
       }
     });
-  };
+  }
 
   function get_url_with_sort_by(tab){
     var the_url = pageless_state[tab].url;
@@ -64,7 +64,7 @@
       the_url = the_url + "?sort_by=" + $("#order_by_selector_" + tab).attr("li_selected");
     }
     return the_url;
-  }; 
+  }
 
 </script>
 
@@ -315,7 +315,7 @@
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'excursions/profile_excursions', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>
           <%else%>
-            <div id="excursions_tab_ready"></div>
+            <div id="excursions_tab_ready"  class="entities excursions"></div>
           <%end%>
 
           <div class="loader_pagination" style="display:none">
@@ -338,7 +338,7 @@
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'events/profile_events', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by] || default_sort_by }%>
           <%else%>
-            <div id="events_tab_ready"></div>
+            <div id="events_tab_ready" class="events"></div>
           <%end%>
           
           <div class="loader_pagination" style="display:none">
@@ -360,7 +360,7 @@
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'workshops/profile_workshops', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>
           <%else%>
-            <div id="workshops_tab_ready"></div>
+            <div id="workshops_tab_ready" class="entities"></div>
           <%end%>          
           <div class="loader_pagination" style="display:none">
             <div class="pageless-loader" style="text-align:center;width:100%;">
@@ -380,7 +380,7 @@
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'repositories/profile_resources', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>
           <%else%>
-            <div id="resources_tab_ready"></div>
+            <div id="resources_tab_ready" class="resources"></div>
           <%end%>
           
           <div class="loader_pagination" style="display:none">
@@ -401,7 +401,7 @@
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'categories/profile_categories', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>
           <%else%>
-            <div id="categories_tab_ready"></div>
+            <div id="categories_tab_ready" class="categories cat_container_generic"></div>
           <%end%>
           
           <div class="loader_pagination" style="display:none">

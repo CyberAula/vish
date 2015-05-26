@@ -10,97 +10,95 @@
   canEditProfile = profile_subject_is_current? or isAdmin?
 %>
 
-<div id="categories_tab_ready" class="categories cat_container_generic">
+<div class="toolbar_nav-tab">
+<% if canEditProfile %>
+  <a href="#options-modal" type="button" class="btn btn-default" role="button" data-toggle="modal" >
+    <i class="fa fa-cogs"></i>
+  </a>
 
-  <div class="toolbar_nav-tab">
-    <% if canEditProfile %>
-      <a href="#options-modal" type="button" class="btn btn-default" role="button" data-toggle="modal" >
-        <i class="fa fa-cogs"></i>
-      </a>
+  <button type="button" class="btn btn-default btn-for-categorize" data-toggle="button"><i class="fa fa-arrows"></i><%= t('categories.dragandrop.place_uncategorize') %></button>
+<% end %>
 
-      <button type="button" class="btn btn-default btn-for-categorize" data-toggle="button"><i class="fa fa-arrows"></i><%= t('categories.dragandrop.place_uncategorize') %></button>
-    <% end %>
+<div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
+  <button id="normal-view" type="button" class="btn btn-default">
+    <%= t('categories.dragandrop.gallery') %>
+  </button>
+  <button id="list-view" type="button" class="btn btn-default">
+    <%= t('categories.dragandrop.list') %>
+  </button>
+</div>
+</div>
 
-    <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
-      <button id="normal-view" type="button" class="btn btn-default">
+<!-- Modal -->
+<div id="options-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<%= form_tag(categories_settings_path) do %>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t('categories.dragandrop.edit') %></h3>
+  </div>
+  <div class="modal-body">
+    <p><%= t('categories.dragandrop.default_view') %></p>
+
+    <div class="radio">
+      <label>
+        <%= radio_button_tag :categories_view, "gallery", (categoryView=="gallery") %>
+        <span class="lbl padding-0">
+        <i class="fa fa-th "></i>
         <%= t('categories.dragandrop.gallery') %>
-      </button>
-      <button id="list-view" type="button" class="btn btn-default">
+         </span>
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= radio_button_tag :categories_view, "list", (categoryView=="list") %>
+        <span class="lbl padding-0">
+        <i class="fa fa-align-justify "></i>
         <%= t('categories.dragandrop.list') %>
-      </button>
+        </span>
+      </label>
     </div>
   </div>
-
-  <!-- Modal -->
-  <div id="options-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-    <%= form_tag(categories_settings_path) do %>
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel"><%= t('categories.dragandrop.edit') %></h3>
-      </div>
-      <div class="modal-body">
-        <p><%= t('categories.dragandrop.default_view') %></p>
-
-        <div class="radio">
-          <label>
-            <%= radio_button_tag :categories_view, "gallery", (categoryView=="gallery") %>
-            <span class="lbl padding-0">
-            <i class="fa fa-th "></i>
-            <%= t('categories.dragandrop.gallery') %>
-             </span>
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <%= radio_button_tag :categories_view, "list", (categoryView=="list") %>
-            <span class="lbl padding-0">
-            <i class="fa fa-align-justify "></i>
-            <%= t('categories.dragandrop.list') %>
-            </span>
-          </label>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn  btn-default" data-dismiss="modal" aria-hidden="true"><%= t('close') %></button>
-        <%= submit_tag t('save'), :class => 'btn btn-primary' %>
-      </div>
-    <% end %>
-    </div></div>
+  <div class="modal-footer">
+    <button class="btn  btn-default" data-dismiss="modal" aria-hidden="true"><%= t('close') %></button>
+    <%= submit_tag t('save'), :class => 'btn btn-primary' %>
   </div>
-
-  <% if profile_subject_is_current? or isAdmin? %>
-    <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
-  <% end %>
-
-  <div id="normal-instance">
-    <ul class="categories main-categories-space items">
-      <% if profile_subject_is_current? %>
-        <%= render partial: 'categories/category-add' %>
-        <%= render partial: 'categories/category_fav' %>
-      <% end %>
-      <%= render partial: 'categories/categories', :locals => { :scope => scope, :all_categories => all_categories} %>
-    </ul>
-  </div>
-
-  <div id="list-instance" class="items" style="display:none" >
-  <% all_categories.each do |category| %>
-  <% if !category.property_objects.empty? %>
-    <h2 ><%= category.title %></h2>
-    <ul id="container_<%=category.id.to_s%>" class="categories main-list-categories-space">
-          <% category.property_objects.each do |resource| %>           
-
-            <%= render :partial => "entities/entity", :locals => { :entity => resource.object, :prefix_id => category.id.to_s + "_" } %>
-          <%end%>
-    </ul>
-
-    <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue btn btn-default" name="<%=category.title%>"><%= t('view_all') %></button>
-    <hr class="divider-cat">
-      <%end%>
-    <%end%>
-  </div>
+<% end %>
+</div></div>
 </div>
+
+<% if profile_subject_is_current? or isAdmin? %>
+<%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
+<% end %>
+
+<div id="normal-instance">
+<ul class="categories main-categories-space items">
+  <% if profile_subject_is_current? %>
+    <%= render partial: 'categories/category-add' %>
+    <%= render partial: 'categories/category_fav' %>
+  <% end %>
+  <%= render partial: 'categories/categories', :locals => { :scope => scope, :all_categories => all_categories} %>
+</ul>
+</div>
+
+<div id="list-instance" class="items" style="display:none" >
+<% all_categories.each do |category| %>
+<% if !category.property_objects.empty? %>
+<h2 ><%= category.title %></h2>
+<ul id="container_<%=category.id.to_s%>" class="categories main-list-categories-space">
+      <% category.property_objects.each do |resource| %>
+
+        <%= render :partial => "entities/entity", :locals => { :entity => resource.object, :prefix_id => category.id.to_s + "_" } %>
+      <%end%>
+</ul>
+
+<button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue btn btn-default" name="<%=category.title%>"><%= t('view_all') %></button>
+<hr class="divider-cat">
+  <%end%>
+<%end%>
+</div>
+
 
 
 <script>
@@ -136,7 +134,7 @@
     <% end %>
     s.each(function(index){this.remove();});
     actualState.appendTo(".main-categories-space");
-  };
+  }
 
   var beginIndex;
   var beginObjects;
@@ -169,7 +167,7 @@
           $("#list-instance").fadeIn(200);
         });
       });
-  };
+  }
 
   <%if request.xhr?%>
     add_onclicks_to_categories();
