@@ -29,11 +29,7 @@
   </head>
   <body>
     <div id="warning_cookie_bar">
-      <h3>Uso de cookies</h3>
-      <p>
-        Usamos cookies propias y de terceros para facilitar el uso de esta web y obtener estadísticas destinadas a la investigación. Si continua navegando consideramos que acepta el uso de cookies.
-        <a href="javascript:void(0);" onclick="setCookieOn();">OK</a>
-      </p>
+      <%= render :partial => "layouts/header/header_warning" %>
     </div>
     <div id="wrap">
       <%= render :partial => "layouts/header/header" %>
@@ -44,7 +40,6 @@
       </div>
           
       <div class="container-fluid">
-
         <%= yield %>
       </div>  
     </div>
@@ -76,7 +71,5 @@
     </script>
   <%= render :partial => 'layouts/tools/google_analytics' %>
   <%= render :partial => 'layouts/tools/uservoice' %>
-  <%= render partial: 'layouts/header/header_warning' %>
-
 </html>
 

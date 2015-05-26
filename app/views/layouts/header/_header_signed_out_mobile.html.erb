@@ -7,11 +7,10 @@
       <i class="fa fa-angle-down"></i>
     </a>
     <ul class="dropdown-menu">
-
-                  <%= form_for User.new, :as => :user, :class => "form-horizontal", :url => user_session_path do |f| %>
+                  <%= form_for User.new, :html => {:id => 'new_user_mobile', :class => "form-horizontal"}, :as => :user, :url => user_session_path do |f| %>
               <div class="form-group">
-                <%= f.email_field :email, :id => "username", :class => "form-control" %>
-                <%= f.password_field :password, :id => "password", :class => "form-control"  %>
+                <%= f.email_field :email, :id => 'username_mobile', :class => "form-control" %>
+                <%= f.password_field :password, :id => 'password_mobile', :class => "form-control"  %>
                 
               </div>
               <div class="checkbox">
@@ -32,11 +31,11 @@
             <% end %>
       <%content_for :javascript do%>
             if ("placeholder" in document.createElement("input")) {
-              $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
-              $("#password").attr('placeholder', I18n.t('activerecord.attributes.user.password'));
+              $("#username_mobile").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+              $("#password_mobile").attr('placeholder', I18n.t('activerecord.attributes.user.password'));
             } else {
-              $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
-              $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+              $("#username_mobile").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+              $("#password_mobile").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
             }
       <% end %>
     </ul>
