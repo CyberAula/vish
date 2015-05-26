@@ -47,14 +47,14 @@
       <% end %>
 
       <%= hidden_field_tag :settings_section, :notifications, {:id => 'notifications_field'} %>
-      <%= submit_tag "Update Settings", :class => "btn btn-primary", "data-loading-text" => t('button.sending')  %>
+        <%= submit_tag t('button.update'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
     <% end %>
 
-<script>
-  $("#notifications_settings form [type='submit']").click(function(event) {
-    $(this).button('loading');
-  });
-</script>
+    <script>
+      $("#notifications_settings form [type='submit']").click(function(event) {
+        $(this).button('loading');
+      });
+    </script>
   </div>
 </div>
 
