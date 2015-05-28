@@ -20,49 +20,9 @@
   //VE extra vars
   var options = {};
   options["readHashFromParent"] = true;
-
-  <% unless params[:recent].nil? %>
-    document.addEventListener("DOMContentLoaded", function(){
-        $("#congratulations-button").click();
-    });
-  <% end %>
 </script>
 
-<% unless params[:animate].nil? %>
-  <script type="text/javascript">
-    //Global vars
-    var animationEnabled = true;
-
-    document.addEventListener("DOMContentLoaded", function(){
-        //Animate excursion
-        VISH.IframeAPI.init({callback: function(){
-          //OnConnect
-          var nSlides = parseInt('<%=@excursion.slide_count%>');
-          var animateTime = parseInt('<%=params[:animate]%>');
-          if(typeof animateTime != "number" || isNaN(animateTime)){
-            animateTime = 4;
-          }
-          animateTime *= 1000;
-          var cSlide = 1;
-          setInterval(function(){
-            if(animationEnabled){
-              cSlide++;
-              if(cSlide > nSlides){
-                cSlide = 1;
-              }
-              VISH.IframeAPI.goToSlide(cSlide);
-            }
-          },animateTime);
-        }});
-    });
-  </script>
-<% end %>
-
-<!--div class="page-header"><%= @excursion.title %></div-->
-
 <section id="show_items " class="layout_show">
-    <!--recomended ant-->
-  <%#= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion]})} %>
 
   <!--recomended-->
   <%= render :partial => 'recommender/sidebar', :locals  => { :resources => @resource_suggestions, :rec => @rec } %>
@@ -92,28 +52,3 @@
     </div>
   </div>
 </section>
-
-
-
-<!-- Button trigger modal -->
-<button id="congratulations-button" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#CongratModal" style="visibility:hidden">
-
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="CongratModal" tabindex="-1" role="dialog" aria-labelledby="CongratModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myCongratLabel"><%= t('excursion.modal.title') %></h3>
-      </div>
-      <div class="modal-body">
-        <p><i class="fa fa-ok"></i>  <%=t("excursion.modal.normal_body")%></p>
-        <p><%=raw t("excursion.modal.survey")%></p>
-        <p class="thank"><i class="fa fa-smile"></i>  <%=raw t("excursion.modal.thank")%></p>
-      </div>
-
-    </div>
-  </div>
-</div>

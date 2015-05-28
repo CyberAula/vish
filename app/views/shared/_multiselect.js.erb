@@ -86,7 +86,6 @@ $("#category_id").siblings(".ui-multiselect").on("mouseenter", function () {
 
 $("#category_id").siblings(".ui-multiselect").on("mouseleave", function () {
     is_hover_button = false;
-    //console.log("sale");
     if (!multiselect_closed) {
         setTimeout(function () {
             checkAndCloseMultiselect();
@@ -96,12 +95,10 @@ $("#category_id").siblings(".ui-multiselect").on("mouseleave", function () {
 
 $(".ui-multiselect-menu").on("mouseenter", function () {
     is_hover_dropdown = true;
-    //console.log("entra en el desplegable");
 });
 
 $(".ui-multiselect-menu").on("mouseleave", function () {
     is_hover_dropdown = false;
-    //console.log("sale del desplegable");
     if (!multiselect_closed) {
         setTimeout(function () {
             checkAndCloseMultiselect();
@@ -111,7 +108,6 @@ $(".ui-multiselect-menu").on("mouseleave", function () {
 
 function checkAndCloseMultiselect() {
     if (!is_hover_button && !is_hover_dropdown) {
-        //console.log("no hover, cerramos");
         multiselect_closed = true;
         $("#category_id").multiselect("close");
     }
