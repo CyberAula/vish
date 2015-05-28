@@ -244,4 +244,13 @@ namespace :scheduled do
     puts "Task finished"
   end
 
+  #Usage
+  #Development:   bundle exec rake scheduled:deleteExpiredTokens
+  #In production: bundle exec rake scheduled:deleteExpiredTokens RAILS_ENV=production
+  task :deleteExpiredTokens => :environment do
+    puts "Deleting expired tokens"
+    WappAuthToken.deleteExpiredTokens
+    puts "Task finished"
+  end
+
 end

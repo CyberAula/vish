@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150330095940) do
+ActiveRecord::Schema.define(:version => 20150528115120) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -628,6 +628,14 @@ ActiveRecord::Schema.define(:version => 20150330095940) do
   create_table "wa_texts", :force => true do |t|
     t.text     "fulltext"
     t.text     "plaintext"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "wapp_auth_tokens", :force => true do |t|
+    t.integer  "actor_id"
+    t.string   "auth_token"
+    t.datetime "expire_at"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
