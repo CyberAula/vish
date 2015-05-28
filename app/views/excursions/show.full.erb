@@ -19,6 +19,11 @@
 		rootURL: '<%=QuizSession.root_url%>'
 	};
 
+	//WAPP TOKEN API
+	configuration["WAPP_TOKEN_API"] = {
+		rootURL: "<%=Vish::Application.config.full_domain%>" + "/apis/wapp_token"
+	};
+
 	//Tracking System
 	<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? or Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'].nil? %>
 		configuration["TrackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";

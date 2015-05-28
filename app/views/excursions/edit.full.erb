@@ -41,6 +41,11 @@
 	tagsSettings.triggerKeys = <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>; 
 	configuration["tagsSettings"] = tagsSettings;
 
+	//WAPP TOKEN API
+	configuration["WAPP_TOKEN_API"] = {
+		rootURL: "<%=Vish::Application.config.full_domain%>" + "/apis/wapp_token"
+	};
+
 	options["configuration"] = configuration;
 	
 
