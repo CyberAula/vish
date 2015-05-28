@@ -1,19 +1,14 @@
-/*global $, JQuery, debug, scorm */
-/*jslint devel: true, browser: true, nomen: true */
-/**
- * Local API_1484_11
+/*
+ * Local_API_1484_11
  * Mimics LMS Connectivity in Local Mode i.e. standalone functionality
  *
- * https://github.com/cybercussion/SCORM_API
- * @author Mark Statkus <mark@cybercussion.com>
- * @requires JQuery
- * @param options {Object} override default values
- * @constructor
- */
-/*!
- * Local_API_1484_11
+ * Modifiyed by GING.
+ *
+ * Original provided by: 
+ *
  * Copyright (c) 2011-2012 Mark Statkus <mark@cybercussion.com>
  * The MIT License
+ * https://github.com/cybercussion/SCORM_API
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +28,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 function Local_API_1484_11(options) {
     // Constructor
     "use strict";
@@ -46,6 +42,7 @@ function Local_API_1484_11(options) {
             initialized: 0,
             terminated:  0,
             debug: true,
+            listeners: {},
             CMI:         {
                 _version:              "Local 1.0",
                 comments_from_learner: {
@@ -98,13 +95,21 @@ function Local_API_1484_11(options) {
                 total_time:            "PT0H0M0S"
             }
         },
-    // Settings merged with defaults and extended options */
+
+        // Settings merged with defaults and extended options */
         settings = $.extend(defaults, options),
         cmi = {},
+
         /**
          * Completion Status's that are allowed
          */
         completion_status = "|completed|incomplete|not attempted|unknown|",
+       
+        /**
+         * Success Status's that are allowed
+         */
+        success_status = "|passed|failed|unknown|",
+
         /**
          Read Only values -
          The hash following could of been much simpler had certain name spaces always been read-only in all areas.
@@ -114,6 +119,7 @@ function Local_API_1484_11(options) {
          timestamp is RO for comments from LMS
          */
         read_only = "|_version|completion_threshold|credit|entry|launch_data|learner_id|learner_name|_children|_count|mode|maximum_time_allowed|scaled_passing_score|time_limit_action|total_time|comment|",
+        
         /**
          * Write Only values
          */
@@ -148,6 +154,7 @@ function Local_API_1484_11(options) {
             408: "Data Model Dependency Not Established"
         },
         self = this;
+
     // Private
     /**
      * Throw Vocabulary Error
@@ -160,7 +167,7 @@ function Local_API_1484_11(options) {
         settings.diganostic = "The " + k + " of " + v + " must be a proper vocabulary element.";
         settings.errorCode = 406;
         return 'false';
-    }
+    };
 
     /**
      * Throw Unimplemented Error
@@ -172,7 +179,20 @@ function Local_API_1484_11(options) {
         settings.errorCode = 402;
         settings.diagnostic = 'The value for key ' + key + ' has not been created yet.';
         return 'false';
-    }
+    };
+
+    /**
+     * Throw Argument Error
+     * 201 general argument error.
+     * @param key {String}
+     * @param argument {String}
+     * @returns {String} 'false'
+     */
+    function throwArgumentError(key,argument) {
+        settings.errorCode = 201;
+        settings.diagnostic = 'The value for key ' + key + ' is not valid.';
+        return 'false';
+    };
 
     /**
      * Throw General Set Error
@@ -187,7 +207,7 @@ function Local_API_1484_11(options) {
         settings.errorCode = "351";
         settings.diagnostic = "The " + k + " element must be unique.  The value '" + v + "' has already been set in #" + o;
         return 'false';
-    }
+    };
 
     /**
      * Set Data (Private)
@@ -214,7 +234,7 @@ function Local_API_1484_11(options) {
             setData(ka.join("."), val, obj);
             //join the remaining parts back up with dots, and recursively set data on our new "base" obj
         }
-    }
+    };
 
     /**
      * Get Data (Private)
@@ -248,7 +268,7 @@ function Local_API_1484_11(options) {
             return 'false';
             //join the remaining parts back up with dots, and recursively set data on our new "base" obj
         }
-    }
+    };
 
     /**
      * CMI Get Value (Private)
@@ -266,7 +286,9 @@ function Local_API_1484_11(options) {
             settings.errorCode = 405;
             settings.diagnostic = "Sorry, this has been specified as a read-only value for " + key;
             break;
-
+        case 'cmi.learner_name':
+            r = settings.CMI.learner_name;
+            break;
         default:
             r = getData(key.substr(4, key.length), cmi);
             //debug(settings.prefix + ": cmiGetValue got " + r, 4);
@@ -279,8 +301,9 @@ function Local_API_1484_11(options) {
             debug(settings.prefix + ": GetValue " + key + " = " + r, 4);
             break;
         }
+
         return r;
-    }
+    };
 
     /**
      * Is Read Only?
@@ -303,7 +326,7 @@ function Local_API_1484_11(options) {
             return false;
         }
         return read_only.indexOf('|' + v + '|') >= 0;
-    }
+    };
 
     /**
      * Is Write Only?
@@ -316,7 +339,7 @@ function Local_API_1484_11(options) {
         var tiers = key.split("."),
             v = tiers[tiers.length - 1]; // last value
         return write_only.indexOf('|' + v + '|') >= 0;
-    }
+    };
 
     /**
      * Round Value
@@ -327,7 +350,7 @@ function Local_API_1484_11(options) {
     function roundVal(v) {
         var dec = 2;
         return Math.round(v * Math.pow(10, dec)) / Math.pow(10, dec);
-    }
+    };
 
     /**
      * Get Object Length
@@ -343,13 +366,13 @@ function Local_API_1484_11(options) {
             }
         }
         return length;
-    }
+    };
 
     function checkExitType() {
         if (cmi.exit === "suspend") {
             cmi.entry = "resume";
         }
-    }
+    };
 
     /**
      * Update Suspend Data Usage Statistics
@@ -357,7 +380,7 @@ function Local_API_1484_11(options) {
      */
     function suspendDataUsageStatistic() {
         return roundVal((cmi.suspend_data.length / 64000) * 100) + "%";
-    }
+    };
 
      /**
      * Debug
@@ -400,8 +423,21 @@ function Local_API_1484_11(options) {
         return false;
     };
 
+    /**
+     * callListener
+     * Built-In Debug Functionality to output to console (Firebug, Inspector, Dev Tool etc ...)
+     * @param name {String} Name of the listener
+     * @param params {Object}
+     */
+    function callListener(name, params) {
+        if(typeof settings.listeners[name] == "function"){
+            if(typeof params != "undefined"){
+                settings.listeners[name](params);
+            }
+        }
+    };
 
-    // End Private
+
     // Public
     /**
      * isRunning, Returns true if initialized is 1 and terminated is 0
@@ -410,6 +446,7 @@ function Local_API_1484_11(options) {
     this.isRunning = function () {
         return settings.initialized === 1 && settings.terminated === 0;
     };
+
     /*jslint nomen: true */
     /**
      * Initialize Session (SCORM) only once!
@@ -428,12 +465,13 @@ function Local_API_1484_11(options) {
         settings.terminated = 0;
         return 'true';
     };
+
     /**
      * GetValue (SCORM)
      * @param key {String}
      * @returns {String} "true" or "false" depending on if its been initialized prior
      */
-    this.GetValue = function (key) {
+    this.GetValue = function (key){
         //debug(settings.prefix + ":  Running: " + this.isRunning() + " GetValue: " + key + "...", 4);
         settings.errorCode = 0;
         var r = "false",
@@ -462,6 +500,7 @@ function Local_API_1484_11(options) {
         settings.errorCode = 123;
         return r;
     };
+
     /**
      * SetValue (SCORM)
      * @param key {String}
@@ -477,6 +516,7 @@ function Local_API_1484_11(options) {
             z = 0,
             count = 0,
             arr = [];
+
         if (this.isRunning()) {
             if (isReadOnly(k)) {
                 debug(settings.prefix + ": This " + k + " is read only", 4);
@@ -485,6 +525,7 @@ function Local_API_1484_11(options) {
             }
             tiers = k.split(".");
             //debug(settings.prefix + ": Tiers " + tiers[1], 4);
+
             switch (tiers[0]) {
             case "cmi":
                 switch (key) {
@@ -493,17 +534,78 @@ function Local_API_1484_11(options) {
                         debug(settings.prefix + ": Some LMS's might truncate your bookmark as you've passed " + v.length + " characters of bookmarking data", 2);
                     }
                     break;
+                case "cmi.progress_measure":
+                    var scaledProgressMeasure = parseFloat(v);
+                    if((typeof scaledProgressMeasure == "number")&&(!isNaN(scaledProgressMeasure))){
+                        scaledProgressMeasure = Math.max(0,Math.min(1,scaledProgressMeasure));
+                        callListener(key,scaledProgressMeasure);
+                    } else {
+                        return throwArgumentError(key,v);
+                    }
+                    break;
                 case "cmi.completion_status":
                     if (completion_status.indexOf('|' + v + '|') === -1) {
                         // Invalid value
                         return throwVocabError(key, v);
                     }
+                    callListener(key,v);
                     break;
                 case "cmi.exit":
                     if (exit.indexOf('|' + v + '|') === -1) {
                         // Invalid value
                         return throwVocabError(key, v);
                     }
+                    break;
+                case "cmi.score.scaled":
+                    var scaledScore = parseFloat(v);
+                    if((typeof scaledScore == "number")&&(!isNaN(scaledScore))){
+                       scaledScore = Math.max(0,Math.min(1,scaledScore));
+                       callListener(key,scaledScore);
+                    } else {
+                        return throwArgumentError(key,v);
+                    }
+                    break;
+                case "cmi.score.min":
+                    var scoreMin = parseFloat(v);
+                    if((typeof scoreMin == "number")&&(!isNaN(scoreMin))){
+                        settings.CMI.score.min = scoreMin;
+                    } else {
+                        return throwArgumentError(key,v);
+                    }
+                    break;
+                case "cmi.score.max":
+                    var scoreMax = parseFloat(v);
+                    if((typeof scoreMax == "number")&&(!isNaN(scoreMax))){
+                        settings.CMI.score.max = scoreMax;
+                    } else {
+                        return throwArgumentError(key,v);
+                    }
+                    break;
+                case 'cmi.score.raw':
+                    var rawScore = parseFloat(v);
+                    if((typeof rawScore == "number")&&(!isNaN(rawScore))){
+                        var maxScore = parseFloat(settings.CMI.score.max);
+                        maxScore = ((typeof maxScore == "number")&&(!isNaN(maxScore))) ? maxScore : 100;
+                        var minScore = parseFloat(settings.CMI.score.min);
+                        minScore = ((typeof minScore == "number")&&(!isNaN(minScore))) ? minScore : 0;
+
+                        var diff = (maxScore - minScore);
+                        if(diff <= 0){
+                            diff = 100;
+                        }
+
+                        var scaledScore = Math.max(0,Math.min(1,(rawScore-minScore)/diff));
+                        callListener("cmi.score.scaled",scaledScore);
+                    } else {
+                        return throwArgumentError(key,v);
+                    }
+                    break;
+                case "cmi.success_status":
+                    if (success_status.indexOf('|' + v + '|') === -1) {
+                        // Invalid value
+                        return throwVocabError(key, v);
+                    }
+                    callListener(key,v);
                     break;
                 default:
                     // Need to dig in to some of these lower level values
@@ -643,6 +745,7 @@ function Local_API_1484_11(options) {
         }
         return "false";
     };
+
     /**
      * Commit (SCORM)
      * Typically empty, I'm unaware of anyone ever passing anything.
@@ -658,6 +761,7 @@ function Local_API_1484_11(options) {
         });
         return 'true';
     };
+
     /**
      * Terminate
      * @returns {String}
@@ -669,6 +773,7 @@ function Local_API_1484_11(options) {
         settings.initialized = 0;
         return 'true';
     };
+
     /**
      * GetErrorString (SCORM) - Returns the error string from the associated Number
      * @param param number
@@ -683,6 +788,7 @@ function Local_API_1484_11(options) {
         }
         return "";
     };
+
     /**
      * GetLastError (SCORM) - Returns the error number from the last error
      * @returns {Number}
@@ -690,6 +796,7 @@ function Local_API_1484_11(options) {
     this.GetLastError = function () {
         return settings.errorCode;
     };
+
     /**
      * Get Diagnostic
      * This would return further information from the lms about a error
@@ -697,5 +804,22 @@ function Local_API_1484_11(options) {
      */
     this.GetDiagnostic = function () {
         return settings.diagnostic;
+    };
+
+    /**
+     * Add listener
+     * Add listener to get event notifications
+     * @returns {undefined}
+     */
+    this.addListener = function(event,listener) {
+        if((typeof event == "string")&&(typeof listener == "function")){
+            settings.listeners[event] = listener;
+        }
+    };
+
+    this.setCMILMSValue = function(name,value){
+        if(typeof name == "string"){
+            settings.CMI[name] = value;
+        }
     };
 }
