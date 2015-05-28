@@ -52,14 +52,14 @@ function SCORM_Player(options) {
 
 			var timeoutToLoadScormContent = 500;
 
-			if(isIframe()){
-				VISH.IframeAPI.init(
+			if((typeof settings.VISH_IFRAME_API != "undefined")&&(isIframe())){
+				settings.VISH_IFRAME_API.init(
 					{
 						wapp: true,
 						tracking: true,
 						callback: function(origin){
 							debug("WAPP connnected with " + origin);
-							VISH.IframeAPI.getUser(function(user){
+							settings.VISH_IFRAME_API.getUser(function(user){
 								if((typeof user == "object")&&(typeof user.username == "string")){
 									settings.LMS_API.setCMILMSValue("learner_name",user.username);
 								}
@@ -98,7 +98,7 @@ function SCORM_Player(options) {
 			return;
 		}
 
-		var iframe = $('<iframe id="scormcontent" style="width:100%; height:100%; border: none"></iframe>');
+		var iframe = $('<iframe id="scormcontent" style="width:100%; height:100%; border: none" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>');
 		$("body").append(iframe);
 
 		document.getElementById('scormcontent').onload = function(){
@@ -151,26 +151,26 @@ function SCORM_Player(options) {
 
 	function setVEGateway() {
 		settings.LMS_API.addListener("cmi.progress_measure", function(value){
-			if(VISH.IframeAPI.isConnected()){
-				VISH.IframeAPI.setProgress(value*100);
+			if(settings.VISH_IFRAME_API.isConnected()){
+				settings.VISH_IFRAME_API.setProgress(value*100);
 			}
 		});
 
 		settings.LMS_API.addListener("cmi.completion_status", function(value){
-			if(VISH.IframeAPI.isConnected()){
-				VISH.IframeAPI.setCompletionStatus(value);
+			if(settings.VISH_IFRAME_API.isConnected()){
+				settings.VISH_IFRAME_API.setCompletionStatus(value);
 			}
 		});
 
 		settings.LMS_API.addListener("cmi.score.scaled", function(value){
-			if(VISH.IframeAPI.isConnected()){
-				VISH.IframeAPI.setScore(value*100);
+			if(settings.VISH_IFRAME_API.isConnected()){
+				settings.VISH_IFRAME_API.setScore(value*100);
 			}
 		});
 
 		settings.LMS_API.addListener("cmi.success_status", function(value){
-			if(VISH.IframeAPI.isConnected()){
-				VISH.IframeAPI.setSuccessStatus(value);
+			if(settings.VISH_IFRAME_API.isConnected()){
+				settings.VISH_IFRAME_API.setSuccessStatus(value);
 			}
 		});
 	};
