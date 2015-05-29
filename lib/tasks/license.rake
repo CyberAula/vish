@@ -2,7 +2,7 @@
 
 namespace :license do
   LICENSE_HEADER = <<-EOS
-# Copyright 2011-2012 Universidad Politécnica de Madrid and Agora Systems S.A.
+# Copyright 2015 Universidad Politécnica de Madrid
 #
 # This file is part of ViSH (Virtual Science Hub).
 #

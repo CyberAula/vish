@@ -18,7 +18,7 @@ namespace :db do
     ENV['LOGOS_TOTAL'] = 12.to_s
 
     desc "Create populate data for ViSH"
-    task :create => [ 'create:occupations', 'create:excursions', 'create:current_site', 'create:admin', 'create:demo_user']
+    task :create => [ 'create:licenses', 'create:occupations', 'create:excursions', 'create:current_site', 'create:admin', 'create:demo_user']
     #task :create => [ :read_environment, :create_users, :create_ties, :create_posts, :create_messages, :create_excursions, :create_documents, :create_avatars ]
 
     namespace :create do
@@ -241,7 +241,7 @@ namespace :db do
       #In production: bundle exec rake db:populate:create:demo_user RAILS_ENV=production
       desc "Create ViSH demo user"
       task :demo_user => :environment do
-        puts 'Creating demo user'
+          puts 'Creating demo user'
 
           # Create demo user if not present
           demo = User.find_by_slug('demo')
@@ -259,6 +259,42 @@ namespace :db do
           demo.actor!.update_attribute :is_admin, false
 
           puts "Demo user created with email: " + demo.email + " and password: " + demo.password
+      end
+
+      #Usage
+      #Development:   bundle exec rake db:populate:create:licenses
+      #In production: bundle exec rake db:populate:create:licenses RAILS_ENV=production
+      desc "Create Licenses"
+      task :licenses => :environment do
+          puts 'Creating Licenses'
+
+
+          licenseKeys = []
+          licenseKeys.push("public");
+          licenseKeys.push("cc-by");
+          licenseKeys.push("cc-by-sa");
+          licenseKeys.push("cc-by-nd");
+          licenseKeys.push("cc-by-nc");
+          licenseKeys.push("cc-by-nc-sa");
+          licenseKeys.push("cc-by-nc-nd");
+          licenseKeys.push("private"); #none (All rights reserved)
+
+          licenseKeys.each do |key|
+            if License.find_by_key(key).nil?
+              l = License.new
+              l.key = key
+              l.save!
+            end
+          end
+
+          defaultLicense = License.find_by_key("cc-by-nc");
+
+          #Assign licenses to AOs
+          ActivityObject.where("object_type!='Actor' and license_id is NULL").each do |ao|
+            ao.update_column :license_id, defaultLicense.id
+          end
+
+          puts "Licenses created"
       end
     end
   end
@@ -387,6 +423,7 @@ namespace :db do
     Rake::Task["db:reset"].invoke
     Rake::Task["db:seed"].invoke
     Rake::Task["db:populate:create:current_site"].invoke
+    Rake::Task["db:populate:create:licenses"].invoke
     Rake::Task["db:populate:create:demo_user"].invoke
     Rake::Task["db:populate:create:admin"].invoke
 

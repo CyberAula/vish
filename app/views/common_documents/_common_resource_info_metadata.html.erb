@@ -2,42 +2,51 @@
   <div class="panel">
     <header>
       <table class="table table-hover">
-        <tr>
-            <!--contributors-->
-            <% if resource.respond_to?("contributors") and !resource.contributors.blank? %>
-              <td><span><%= t('excursion.contributors.name').capitalize %></span></td>
-              <td>
-                <% resource.contributors.uniq.each_with_index do |c,index| %>
-                  <% unless index==0 %>
-                    ,
-                  <% end %>
-                  <%= link_to c.name, c.subject %>
-                <%end%>
-              </td>
-            <%end%>
-          </tr>
+        <!--description-->
+        <% unless resource.description.blank? %>
           <tr>            
-            <!--description-->
-            <% unless resource.description.blank? %>
-              <td><span><%= t('document.info.description') %></span></td>
-              <td><%= truncate(resource.description, :length => 400) %></td>
-            <% end %>
+            <td><span><%= t('document.info.description') %></span></td>
+            <td><%= truncate(resource.description, :length => 400) %></td>
           </tr>
+        <% end %>
+        <!--tags-->
+        <% unless resource.tag_list.blank? %>
           <tr>          
-            <!--tags-->
-            <% unless resource.tag_list.blank? %>
-              <td><span><%= t('document.info.tags') %></span></td>
-              <td>
-                <ul class="tagit-suggestions">
-                  <% resource.tag_list.each do |tag| %>
-                  <li class="tagit-choice">
-                    <%= link_to tag, search_path(:q => tag) %>
-                  </li>
-                  <% end %>
-                </ul>
-              </td>
-            <% end %>
+            <td><span><%= t('document.info.tags') %></span></td>
+            <td>
+              <ul class="tagit-suggestions">
+                <% resource.tag_list.each do |tag| %>
+                <li class="tagit-choice">
+                  <%= link_to tag, search_path(:q => tag) %>
+                </li>
+                <% end %>
+              </ul>
+            </td>
           </tr>
+        <% end %>
+        <!--license-->
+        <% unless resource.license.nil? %>
+          <tr>
+            <td><span><%= t('document.info.license') %></span></td>
+            <td>
+              <%= resource.license.name %>
+            </td>
+          </tr>
+        <% end %>
+        <!--contributors-->
+        <% if resource.respond_to?("contributors") and !resource.contributors.blank? %>
+          <tr>
+            <td><span><%= t('excursion.contributors.name').capitalize %></span></td>
+            <td>
+              <% resource.contributors.uniq.each_with_index do |c,index| %>
+                <% unless index==0 %>
+                  ,
+                <% end %>
+                <%= link_to c.name, c.subject %>
+              <%end%>
+            </td>
+          </tr>
+        <%end%>
       </table>
     </header>
     <div class="panel-body">

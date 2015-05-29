@@ -450,6 +450,7 @@ en:
     info:
       age: "Age"
       description: "Description"
+      license: "License"
       size: "Size"
       tags: "Tags"
     input: "Add a description here"
@@ -648,6 +649,15 @@ en:
       ru: "Russian"
       hu: "Hungarian"
       nl: "Dutch"
+  licenses:
+      public: "Public Domain"
+      cc-by: "Creative Commons Attribution"
+      cc-by-sa: "Creative Commons Attribution-ShareAlike"
+      cc-by-nd: "Creative Commons Attribution-NoDerivs"
+      cc-by-nc: "Creative Commons Attribution-NonCommercial"
+      cc-by-nc-sa: "Creative Commons Attribution-NonCommercial-ShareAlike"
+      cc-by-nc-nd: "Creative Commons Attribution-NonCommercial-NoDerivs"
+      private: "None (All rights reserved)"
   link:
     one: "link"
     other: "links"

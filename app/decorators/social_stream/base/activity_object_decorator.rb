@@ -3,9 +3,10 @@
 ActivityObject.class_eval do
   has_many :spam_reports
   has_and_belongs_to_many :wa_resources_galleries
+  belongs_to :license
   has_one :contribution
   has_one :lo_interaction
-
+  
   before_save :fill_relation_ids
   before_save :fill_indexed_lengths
   after_destroy :destroy_spam_reports

@@ -438,6 +438,7 @@ es:
     info:
       age: "Edad"
       description: "Descripción"
+      license: "Licencia"
       size: "Tamaño"
       tags: "Etiquetas"
     input: "Descripción del recurso"
@@ -637,6 +638,15 @@ es:
       ru: "Ruso"
       hu: "Húngaro"
       nl: "Holandés"
+  licenses:
+      public: "Dominio Público"
+      cc-by: "Creative Commons Reconocimiento"
+      cc-by-sa: "Creative Commons Reconocimiento-CompartirIgual"
+      cc-by-nd: "Creative Commons Reconocimiento-SinObraDerivada"
+      cc-by-nc: "Creative Commons Reconocimiento-NoComercial"
+      cc-by-nc-sa: "Creative Commons Reconocimiento-NoComercial-CompartirIgual"
+      cc-by-nc-nd: "Creative Commons Reconocimiento-NoComercial-SinObraDerivada"
+      private: "Ninguna (Todos los derechos reservados)"
   link:
     one: "enlace"
     other: "enlaces"
