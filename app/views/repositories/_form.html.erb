@@ -41,6 +41,7 @@
                     <%= f.hidden_field :description%>
                     <%= f.hidden_field :tag_list, :multiple => true %>
                     <%= f.hidden_field :language, :value => "" %>
+                    <%= f.hidden_field :license_id %>
                     <%= f.hidden_field :age_min, :value => "0" %>
                     <%= f.hidden_field :age_max, :value => "0" %>
                     <%= f.submit t('button.save'), :class => "document hide"%>
@@ -71,6 +72,7 @@
                     <%= f.hidden_field :description%>
                     <%= f.hidden_field :tag_list, :multiple => true %>
                     <%= f.hidden_field :language, :value => "" %>
+                    <%= f.hidden_field :license_id %>
                     <%= f.hidden_field :age_min, :value => "0" %>
                     <%= f.hidden_field :age_max, :value => "0" %>
                     <%= f.submit t('button.save'), :class => "link hide"%>
@@ -97,6 +99,7 @@
                     <%= f.hidden_field :description%>
                     <%= f.hidden_field :tag_list, :multiple => true %>
                     <%= f.hidden_field :language, :value => "" %>
+                    <%= f.hidden_field :license_id %>
                     <%= f.hidden_field :age_min, :value => "0" %>
                     <%= f.hidden_field :age_max, :value => "0" %>
                     <%= f.submit t('button.save'), :class => "embed hide"%>
@@ -135,7 +138,7 @@
 
           <!--LANGUAGE-->
           <label><%= t('document.leyend.language')%></label>
-          <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "language", :id=>"resource_language") %>
+          <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "resource_language") %>
 
           <!--AGE SLIDER-->
           <label><%= t('document.leyend.recommended_age')%></label>
@@ -144,6 +147,14 @@
             <div class="limit2">0</div>
           </div>
           <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,1]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+
+          <!--LICENSE-->
+          <br/>
+          <br/>
+          <section class="license">
+            <label><%= t('document.info.license')%></label>
+            <%= select_tag(:license_id, resource_license_options_for_select(d.license_id), :class => "resource_license") %>
+          </section>
 
           <br>
         </div>
@@ -232,7 +243,9 @@
       $(avatarFileInput).css("display","none");
       $(avatarFileInput).appendTo(myForm);
       //LANGUAGE
-      $("#AddResource input[name='"+resource_type+"[language]']").val($(".language").val());
+      $("#AddResource input[name='"+resource_type+"[language]']").val($("#AddResource .resource_language").val());
+      //LICENSE
+      $("#AddResource input[name='"+resource_type+"[license_id]']").val($("#AddResource .resource_license").val());
       //AGE
       var value1 = $('#AddResource .age-slider').data('slider').getValue()[0];
       var value2 = $('#AddResource .age-slider').data('slider').getValue()[1];

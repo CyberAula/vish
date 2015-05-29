@@ -7,6 +7,7 @@ ActivityObject.class_eval do
   has_one :contribution
   has_one :lo_interaction
   
+  before_validation :fill_license
   before_save :fill_relation_ids
   before_save :fill_indexed_lengths
   after_destroy :destroy_spam_reports
@@ -18,6 +19,30 @@ ActivityObject.class_eval do
     :styles => SocialStream::Documents.picture_styles
 
   validates_attachment_content_type :avatar, :content_type =>["image/jpeg", "image/png", "image/gif", "image/tiff", "image/x-ms-bmp"], :message => 'Avatar should be an image. Non supported format.'
+  
+  validate :has_valid_license
+
+  def has_valid_license
+    if self.object_type == "Actor"
+      true
+    else
+      if self.license.nil?
+        errors[:base] << "Licence can't be blank"
+      else
+        if self.public_scope? and self.license.private?
+          errors[:base] << "Resources with public scope can't have private licenses"
+        else
+          oldLicense = nil
+          oldLicense = License.find_by_id(self.license_id_was) unless self.license_id_was.nil?
+          if !oldLicense.nil? and oldLicense.public?
+            errors[:base] << "Public licenses can't be changed"
+          else
+            true
+          end
+        end
+      end
+    end
+  end
 
   scope :with_tag, lambda { |tag|
     ActivityObject.tagged_with(tag).where("scope=0").order("ranking DESC")
@@ -558,6 +583,16 @@ ActivityObject.class_eval do
     end
     if self.tag_list.is_a? ActsAsTaggableOn::TagList and self.tag_list.length>0
       self.tags_length = self.tag_list.length
+    end
+  end
+
+  def fill_license
+    if self.license_id.nil? and self.object_type != "Actor"
+      if self.private_scope?
+        self.license_id = License.find_by_key("private").id
+      else
+        self.license_id = License.default.id
+      end
     end
   end
 

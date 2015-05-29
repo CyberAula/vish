@@ -118,6 +118,16 @@
         </section>
       <% end%>
 
+      <section class="license">
+        <%= f.label :license_id, t('document.info.license') %>
+        <% if resource.license.nil? or resource.license.private? %>
+          <%= f.select(:license_id, resource_license_options_for_select(resource.license_id)) %>
+        <% else %>
+          <%= resource.license.name %>
+          <%#= f.select(:license_id, resource_license_options_for_select(resource.license_id), {}, {:disabled => true}) %>
+        <% end %>
+      </section>
+
       <div class="footer-form clearfix">
         <%= f.submit :class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
         <% if resource.class.name=="Workshop" && !isNewInstance %>

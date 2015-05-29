@@ -270,14 +270,14 @@ namespace :db do
 
 
           licenseKeys = []
-          licenseKeys.push("public");
-          licenseKeys.push("cc-by");
-          licenseKeys.push("cc-by-sa");
-          licenseKeys.push("cc-by-nd");
-          licenseKeys.push("cc-by-nc");
-          licenseKeys.push("cc-by-nc-sa");
-          licenseKeys.push("cc-by-nc-nd");
-          licenseKeys.push("private"); #none (All rights reserved)
+          licenseKeys.push("public")
+          licenseKeys.push("cc-by")
+          licenseKeys.push("cc-by-sa")
+          licenseKeys.push("cc-by-nd")
+          licenseKeys.push("cc-by-nc")
+          licenseKeys.push("cc-by-nc-sa")
+          licenseKeys.push("cc-by-nc-nd")
+          licenseKeys.push("private") #none (All rights reserved)
 
           licenseKeys.each do |key|
             if License.find_by_key(key).nil?
@@ -287,7 +287,7 @@ namespace :db do
             end
           end
 
-          defaultLicense = License.find_by_key("cc-by-nc");
+          defaultLicense = License.default
 
           #Assign licenses to AOs
           ActivityObject.where("object_type!='Actor' and license_id is NULL").each do |ao|

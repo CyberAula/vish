@@ -8,6 +8,10 @@ class License < ActiveRecord::Base
   # Methods
   ###########
 
+  def self.default
+    License.find_by_key("cc-by-nc")
+  end
+
   def public?
     !self.private?
   end
