@@ -96,6 +96,8 @@ aside.recomended
       padding-right: 0
       .panel
         @include box-shadow(0 0 0 transparent)
+        header .table
+          margin-bottom: 0
         .panel-body
           padding: 0
         .panel-footer
@@ -107,6 +109,14 @@ aside.recomended
         border-collapse: none
         span
           font-family: $corporate-font-family-sans-serif-Medium
+          float: right
+        tr 
+          td:first-child
+            width: 129px
+          td
+            border-color: #999
+        .tagit-suggestions
+          padding-left: 0
       @media (max-width: $screen-xs-max)
         clear: both
         padding-left: 0
