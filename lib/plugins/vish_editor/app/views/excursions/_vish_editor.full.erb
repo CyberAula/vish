@@ -278,6 +278,18 @@
 								<span i18n-key="i.by">by</span> <span id="author_span_in_preview"></span>
 							</div>
 						</div>
+						<div id="presentation_details_license">
+							<span class="presentation_details_text" title='License' i18n-key="i.License">License</span>
+							<select id="presentation_details_license_select">
+								<option value="public" i18n-key="i.License_public">Public Domain</option>
+								<option value="cc-by" i18n-key="i.License_cc-by">Creative Commons Attribution</option>
+								<option value="cc-by-sa" i18n-key="i.License_cc-by-sa">Creative Commons Attribution-ShareAlike</option>
+								<option value="cc-by-nd" i18n-key="i.License_cc-by-nd">Creative Commons Attribution-NoDerivs</option>
+								<option value="cc-by-nc" i18n-key="i.License_cc-by-nc" selected="selected">Creative Commons Attribution-NonCommercial</option>
+								<option value="cc-by-nc-sa" i18n-key="i.License_cc-by-nc-sa">Creative Commons Attribution-NonCommercial-ShareAlike</option>
+								<option value="cc-by-nc-nd" i18n-key="i.License_cc-by-nc-nd">Creative Commons Attribution-NonCommercial-NoDerivs</option>
+							</select>
+						</div>
 					</div>
 
 					<div id="presentation_details_fields_row1_column2">
@@ -590,7 +602,7 @@
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
 
 					<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
-						<input type="file" name="pdfex[attach]" class="upload_file_input">
+						<input type="file" name="pdfex[attach]" accept="application/pdf" class="upload_file_input">
 						<input type="hidden" name="pdfex[scope]" value="1">
 						<input type="hidden" name="pdfex[owner_id]">
 						<input type="hidden" name="authenticity_token">

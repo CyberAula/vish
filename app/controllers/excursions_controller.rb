@@ -392,7 +392,7 @@ class ExcursionsController < ApplicationController
   end
 
   def downloadTmpJSON
-    respond_to do |format|  
+    respond_to do |format|
       format.json {
         if params["fileId"] == nil
           results = Hash.new

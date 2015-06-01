@@ -34,7 +34,7 @@ ActivityObject.class_eval do
         else
           oldLicense = nil
           oldLicense = License.find_by_id(self.license_id_was) unless self.license_id_was.nil?
-          if !oldLicense.nil? and oldLicense.public?
+          if !oldLicense.nil? and oldLicense.public? and self.license_id != oldLicense.id
             errors[:base] << "Public licenses can't be changed"
           else
             true
@@ -555,7 +555,7 @@ ActivityObject.class_eval do
     unless self.object.nil?
       if self.object_type != "Actor"
         #Resources
-        unless ["Excursion","Workshop"].include? self.object_type and self.object.draft==true
+        unless self.object.respond_to? "draft" and self.object.draft==true
           #Always public except drafts
           self.object.relation_ids = [Relation::Public.instance.id]
           self.relation_ids = [Relation::Public.instance.id]
@@ -587,12 +587,34 @@ ActivityObject.class_eval do
   end
 
   def fill_license
-    if self.license_id.nil? and self.object_type != "Actor"
-      if self.private_scope?
-        self.license_id = License.find_by_key("private").id
-      else
-        self.license_id = License.default.id
+    if self.object_type != "Actor"
+
+      if self.license_id.nil?
+        if self.private_scope?
+          self.license_id = License.find_by_key("private").id
+        else
+          self.license_id = License.default.id
+        end
       end
+
+      # if !self.object.nil? and self.object.respond_to? "draft"
+      #   #Set public license when publishing a draft
+      #   if ((self.scope_was!=0) and (self.scope==0))
+      #     if self.license.nil? or self.license.private?
+      #       license_metadata = JSON(self.json)["license"] rescue nil
+      #       if license_metadata.is_a? Hash and license_metadata["key"].is_a? String
+      #         license = License.find_by_key(license_metadata["key"])
+      #         unless license.nil?
+      #           self.license_id = license.id
+      #         end
+      #       end
+      #       if self.license.nil? or self.license.private?
+      #         self.license_id = License.default.id
+      #       end
+      #     end
+      #   end
+      # end
+
     end
   end
 
