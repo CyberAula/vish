@@ -1138,8 +1138,11 @@ class Excursion < ActiveRecord::Base
     end
     parsed_json["vishMetadata"]["id"] = self.id.to_s
     parsed_json["vishMetadata"]["draft"] = self.draft.to_s
-
-    parsed_json["author"] = {name: author.name, vishMetadata:{ id: author.id}}
+    unless self.draft
+      parsed_json["vishMetadata"]["released"] = "true"
+    end
+    
+    parsed_json["author"] = {name: author.name, vishMetadata:{ id: author.id }}
 
     self.update_column :json, parsed_json.to_json
     self.update_column :slide_count, parsed_json["slides"].size

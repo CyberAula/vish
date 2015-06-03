@@ -588,7 +588,6 @@ ActivityObject.class_eval do
 
   def fill_license
     if self.object_type != "Actor"
-
       if self.license_id.nil?
         if self.private_scope?
           self.license_id = License.find_by_key("private").id
@@ -596,25 +595,6 @@ ActivityObject.class_eval do
           self.license_id = License.default.id
         end
       end
-
-      # if !self.object.nil? and self.object.respond_to? "draft"
-      #   #Set public license when publishing a draft
-      #   if ((self.scope_was!=0) and (self.scope==0))
-      #     if self.license.nil? or self.license.private?
-      #       license_metadata = JSON(self.json)["license"] rescue nil
-      #       if license_metadata.is_a? Hash and license_metadata["key"].is_a? String
-      #         license = License.find_by_key(license_metadata["key"])
-      #         unless license.nil?
-      #           self.license_id = license.id
-      #         end
-      #       end
-      #       if self.license.nil? or self.license.private?
-      #         self.license_id = License.default.id
-      #       end
-      #     end
-      #   end
-      # end
-
     end
   end
 
