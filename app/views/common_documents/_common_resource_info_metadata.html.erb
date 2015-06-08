@@ -24,10 +24,13 @@
             </td>
           </tr>
         <% end %>
+
+        <% hasLicense = !(["Link","Embed"].include? resource.class.name) %>
+
         <!--author/owner-->
         <% unless resource.original_author_name.nil? %>
           <tr>
-            <td><span><%= t('document.info.author') %></span></td>
+            <td><span><%= hasLicense ? t('document.info.author') : t('document.info.linked_by') %></span></td>
             <td>
               <% if resource.original_author.nil? %>
                 <%= link_to(resource.author.name, resource.author.subject) %>
@@ -37,24 +40,28 @@
             </td>
           </tr>
         <% end %>
-        <!--license-->
-        <% unless resource.license.nil? %>
-          <tr>
-            <td><span><%= t('document.info.license') %></span></td>
-            <td>
-              <%= resource.license.name %>
-            </td>
-          </tr>
+
+        <% if hasLicense %>
+          <!--license-->
+          <% unless resource.license.nil? %>
+            <tr>
+              <td><span><%= t('document.info.license') %></span></td>
+              <td>
+                <%= resource.license.name %>
+              </td>
+            </tr>
+          <% end %>
+          <!--license attribution-->
+          <% unless resource.license_attribution.nil? or resource.license.nil? or !resource.license.requires_attribution? %>
+            <tr>
+              <td><span><%= t('document.info.license_attribution') %></span></td>
+              <td>
+                <%= resource.license_attribution %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
-        <!--license attribution-->
-        <% unless resource.license_attribution.nil? or resource.license.nil? or !resource.license.requires_attribution? %>
-          <tr>
-            <td><span><%= t('document.info.license_attribution') %></span></td>
-            <td>
-              <%= resource.license_attribution %>
-            </td>
-          </tr>
-        <% end %>
+
         <!--contributors-->
         <% if resource.respond_to?("contributors") and !resource.contributors.blank? %>
           <tr>
@@ -69,6 +76,7 @@
             </td>
           </tr>
         <%end%>
+
       </table>
     </header>
     <div class="panel-body">

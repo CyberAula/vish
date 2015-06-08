@@ -19,8 +19,9 @@
       </div>
 
       <% isNewInstance = resource.new_record? %>
+      <% isDocument = [resource.class.name,resource.class.superclass.name].include? "Document" %>
 
-      <% if [resource.class.name,resource.class.superclass.name].include? "Document" %>
+      <% if isDocument %>
         <%=render :partial => "common_documents/common_edit", :locals => {:f => f, :isNewInstance => isNewInstance}%>
       <% end %>
 
@@ -118,23 +119,28 @@
         </section>
       <% end%>
 
-      <section class="license">
-        <%= f.label :license_id, t('document.info.license') %>
-        <% if resource.license.nil? or resource.license.private? %>
-          <%= f.select(:license_id, resource_license_options_for_select(resource.license_id)) %>
-        <% else %>
-          <%= resource.license.name %>
-          <%#= f.select(:license_id, resource_license_options_for_select(resource.license_id), {}, {:disabled => true}) %>
-        <% end %>
-      </section>
+      <% hasLicense = !(["Link","Embed"].include? resource.class.name) %>
+      <% if hasLicense %>
+        <section class="license">
+          <%= f.label :license_id, t('document.info.license') %>
+          <% if resource.license.nil? or resource.license.private? %>
+            <%= f.select(:license_id, resource_license_options_for_select(resource.license_id)) %>
+          <% else %>
+            <%= resource.license.name %>
+            <%#= f.select(:license_id, resource_license_options_for_select(resource.license_id), {}, {:disabled => true}) %>
+          <% end %>
+        </section>
+      <% end %>
 
-      <section class="authorship">
-        <label><%=t("document.info.author")%>:</label> <%= resource.original_author_name %>
-        <%unless resource.license_attribution.blank? or resource.license.nil? or !resource.license.requires_attribution? %>
-          <br/>
-          <label><%=t("document.info.license_attribution")%>:</label> <%= resource.license_attribution %>
-        <% end %>
-      </section>
+      <% if isDocument %>
+        <section class="authorship">
+          <label><%=t("document.info.author")%>:</label> <%= resource.original_author_name %>
+          <%unless resource.license_attribution.blank? or resource.license.nil? or !resource.license.requires_attribution? %>
+            <br/>
+            <label><%=t("document.info.license_attribution")%>:</label> <%= resource.license_attribution %>
+          <% end %>
+        </section>
+      <% end %>
 
 
       <div class="footer-form clearfix">

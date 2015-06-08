@@ -201,6 +201,7 @@ es:
     input: "Añade una descripción"
     item_inside: "elementos"
     leyend:
+      authorship_recognition: "Soy el autor de este recurso"
       title: "Título"
       description: "Descripción"
       items: "Elementos en esta categoría"
@@ -441,12 +442,14 @@ es:
       description: "Descripción"
       license: "Licencia"
       license_attribution: "Atribuir a"
+      linked_by: "Enlazado por"
       size: "Tamaño"
       tags: "Etiquetas"
     input: "Descripción del recurso"
     language:
       option1: "(No depende del lenguaje)"
     leyend:
+      authorship_recognition: "Soy el autor de este recurso."
       avatar: "Escoge un avatar"
       description: "Descripción"
       language: "Idioma"

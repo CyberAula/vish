@@ -20,7 +20,6 @@
 
           <p><%= t('document.body.title1')%></p>
 
-
           <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
               <div class="panel-heading" role="tab" id="headingOne">
@@ -30,7 +29,7 @@
                   </a>
                 </h4>
               </div>
-              <div id="document" class="panel panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div id="document" class="panel panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
                   <% d = Document.new %>
                   <% d.owner_id = Actor.normalize_id(current_subject) %>
@@ -154,18 +153,18 @@
           <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,1]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
 
           <!--LICENSE-->
-          <br/>
-          <br/>
           <section class="license">
+            <br/>
+            <br/>
             <label><%= t('document.info.license')%></label>
             <%= select_tag(:license_id, resource_license_options_for_select(d.license_id), :class => "resource_license") %>
           </section>
 
           <!--AUTHORSHIP-->
-          <br/>
-          <br/>
           <section class="authorship">
-            <input type="checkbox" checked="checked" class="authorship_checkbox"></input><label>Soy el autor de este recurso</label>
+            <br/>
+            <br/>
+            <input type="checkbox" checked="checked" class="authorship_checkbox"></input><label><%=t("document.leyend.authorship_recognition")%></label>
             <br/>
             <label><%=t("document.info.author")%></label><input type="text" class="form-control title authorship_author" defaultvalue="<%=current_subject.name%>" value="<%=current_subject.name%>" disabled="disabled"/>
             <br/>
@@ -292,11 +291,15 @@
     $(avatarFileInput).appendTo(myForm);
     //LANGUAGE
     $("#AddResource input[name='"+resource_type+"[language]']").val($("#AddResource .resource_language").val());
-    //LICENSE
-    $("#AddResource input[name='"+resource_type+"[license_id]']").val($("#AddResource .resource_license").val());
-    //AUTHORSHIP
-    $("#AddResource input[name='"+resource_type+"[original_author]']").val($("#AddResource section.authorship input.authorship_author").val());
-    $("#AddResource input[name='"+resource_type+"[license_attribution]']").val($("#AddResource section.authorship input.authorship_attribution").val());
+
+    if(resource_type==="document"){
+      //LICENSE
+      $("#AddResource input[name='"+resource_type+"[license_id]']").val($("#AddResource .resource_license").val());
+      //AUTHORSHIP
+      $("#AddResource input[name='"+resource_type+"[original_author]']").val($("#AddResource section.authorship input.authorship_author").val());
+      $("#AddResource input[name='"+resource_type+"[license_attribution]']").val($("#AddResource section.authorship input.authorship_attribution").val());
+    }
+
     //AGE
     var value1 = $('#AddResource .age-slider').data('slider').getValue()[0];
     var value2 = $('#AddResource .age-slider').data('slider').getValue()[1];
@@ -378,6 +381,21 @@
       $(authorDOM).val("");
       $(attributionDOM).removeAttr("disabled");
       $(attributionDOM).val("");
+    }
+  });
+
+  //Collapse events
+  $('#AddResource .panel.panel-default').on('shown.bs.collapse', function(e){
+    var resourceType = $(this).find(".panel-collapse.collapse").attr("id");
+
+    if(resourceType=="document"){
+      //Show authorship fields
+      $("#AddResource").find("section.license").show();
+      $("#AddResource").find("section.authorship").show();
+    } else {
+      //Hide authorship fields
+      $("#AddResource").find("section.license").hide();
+      $("#AddResource").find("section.authorship").hide();
     }
   });
 

@@ -453,12 +453,14 @@ en:
       description: "Description"
       license: "License"
       license_attribution: "Attribute to"
+      linked_by: "Enlazado por"
       size: "Size"
       tags: "Tags"
     input: "Add a description here"
     language:
       option1: "(Not depends on the language)"
     leyend:
+      authorship_recognition: "I am the author of this resource."
       avatar: "Pick up an avatar or thumbnail"
       description: "Description"
       language: "Language"
