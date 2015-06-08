@@ -129,8 +129,13 @@
       </section>
 
       <section class="authorship">
-        <%#TODO%>
-      </section>      
+        <label><%=t("document.info.author")%>:</label> <%= resource.original_author_name %>
+        <%unless resource.license_attribution.blank? or resource.license.nil? or !resource.license.requires_attribution? %>
+          <br/>
+          <label><%=t("document.info.license_attribution")%>:</label> <%= resource.license_attribution %>
+        <% end %>
+      </section>
+
 
       <div class="footer-form clearfix">
         <%= f.submit :class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>

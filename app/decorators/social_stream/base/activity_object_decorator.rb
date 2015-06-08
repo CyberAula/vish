@@ -45,6 +45,20 @@ ActivityObject.class_eval do
     end
   end
 
+  validate :has_valid_original_author
+
+  def has_valid_original_author
+    if self.object_type == "Actor" or self.original_author.nil? or self.new_record?
+      true
+    else
+      if self.original_author_was != self.original_author
+        errors[:base] << "Author can't be changed after publishing a resource"
+      else
+        true
+      end
+    end
+  end
+
   validate :has_valid_license_attribution
 
   def has_valid_license_attribution
@@ -90,6 +104,14 @@ ActivityObject.class_eval do
 
   def original_author_name
     self.original_author or self.author.name
+  end
+
+  def default_license_attribution
+    if self.object_type == "Actor" and !self.object.nil?
+      self.object.name + " (" + self.getUrl + ")"
+    elsif self.respond_to? "owner" and !self.owner.nil?
+      self.owner.name + " (" + self.owner.getUrl + ")"
+    end
   end
 
   #Calculate quality score (in a 0-10 scale) 
@@ -626,7 +648,7 @@ ActivityObject.class_eval do
   def fill_license_attribution
     if self.object_type != "Actor" and self.respond_to? "owner"
       if self.license_attribution.nil? and self.original_author.nil? and !self.owner.nil?
-        self.license_attribution = self.owner.getUrl
+        self.license_attribution = self.default_license_attribution
       end
     end
   end

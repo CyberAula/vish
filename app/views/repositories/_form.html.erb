@@ -167,9 +167,9 @@
           <section class="authorship">
             <input type="checkbox" checked="checked" class="authorship_checkbox"></input><label>Soy el autor de este recurso</label>
             <br/>
-            <label>Autor</label><input type="text" class="form-control title authorship_author" defaultvalue="<%=current_subject.name%>" value="<%=current_subject.name%>" disabled="disabled"/>
+            <label><%=t("document.info.author")%></label><input type="text" class="form-control title authorship_author" defaultvalue="<%=current_subject.name%>" value="<%=current_subject.name%>" disabled="disabled"/>
             <br/>
-            <label>Atribuir a:</label><input type="text" class="form-control title authorship_attribution" defaultvalue="<%=current_subject.getUrl%>" value="<%=current_subject.getUrl%>" disabled="disabled"/>
+            <label><%=t("document.info.license_attribution")%>:</label><input type="text" class="form-control title authorship_attribution" defaultvalue="<%=current_subject.default_license_attribution%>" value="<%=current_subject.default_license_attribution%>" disabled="disabled"/>
           </section>
 
           <br>

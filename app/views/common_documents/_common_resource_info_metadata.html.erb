@@ -47,7 +47,7 @@
           </tr>
         <% end %>
         <!--license attribution-->
-        <% unless resource.license_attribution.nil? %>
+        <% unless resource.license_attribution.nil? or resource.license.nil? or !resource.license.requires_attribution? %>
           <tr>
             <td><span><%= t('document.info.license_attribution') %></span></td>
             <td>
