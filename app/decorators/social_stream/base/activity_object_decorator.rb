@@ -488,10 +488,10 @@ ActivityObject.class_eval do
     (aosRecent + aosPopular).map{|ao| ao.object}
   end
 
-  def self.getIdsToAvoid(ids_to_avoid=[],actor=nil)
-    ids_to_avoid = ids_to_avoid || []
+  def self.getIdsToAvoid(ids_to_avoid_param=[],actor=nil)
+    ids_to_avoid = ids_to_avoid_param.clone
 
-    if !actor.nil?
+    unless actor.nil?
       ids_to_avoid.concat(ActivityObject.authored_by(actor).map{|ao| ao.id})
       ids_to_avoid.uniq!
     end
