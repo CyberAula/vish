@@ -8,6 +8,8 @@ ActivityObject.class_eval do
   has_one :lo_interaction
   
   before_validation :fill_license
+  before_validation :fill_original_author
+  before_validation :fill_license_attribution
   before_save :fill_relation_ids
   before_save :fill_indexed_lengths
   after_destroy :destroy_spam_reports
@@ -69,6 +71,10 @@ ActivityObject.class_eval do
 
   def private_scope?
     self.scope == 1
+  end
+
+  def original_author_name
+    self.original_author or self.author.name
   end
 
   #Calculate quality score (in a 0-10 scale) 
@@ -594,6 +600,14 @@ ActivityObject.class_eval do
         else
           self.license_id = License.default.id
         end
+      end
+    end
+  end
+
+  def fill_license_attribution
+    if self.object_type != "Actor" and self.respond_to? "owner"
+      if self.license_attribution.nil? and self.original_author.nil? and !self.owner.nil?
+        self.license_attribution = self.owner.getUrl
       end
     end
   end
