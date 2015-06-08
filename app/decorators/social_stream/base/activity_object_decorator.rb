@@ -8,7 +8,6 @@ ActivityObject.class_eval do
   has_one :lo_interaction
   
   before_validation :fill_license
-  before_validation :fill_original_author
   before_validation :fill_license_attribution
   before_save :fill_relation_ids
   before_save :fill_indexed_lengths
@@ -41,6 +40,22 @@ ActivityObject.class_eval do
           else
             true
           end
+        end
+      end
+    end
+  end
+
+  validate :has_valid_license_attribution
+
+  def has_valid_license_attribution
+    if self.object_type == "Actor"
+      true
+    else
+      if self.original_author.nil?
+        true
+      else
+        if self.license.requires_attribution? and self.license_attribution.blank?
+          errors[:base] << "This license requires an attribution link"
         end
       end
     end
@@ -489,14 +504,18 @@ ActivityObject.class_eval do
   end
 
   def self.getIdsToAvoid(ids_to_avoid_param=[],actor=nil)
-    ids_to_avoid = ids_to_avoid_param.clone
+    if ids_to_avoid_param.is_a? Array
+      ids_to_avoid = ids_to_avoid_param.clone rescue []
+    else
+      ids_to_avoid = []
+    end
 
     unless actor.nil?
       ids_to_avoid.concat(ActivityObject.authored_by(actor).map{|ao| ao.id})
       ids_to_avoid.uniq!
     end
 
-    if !ids_to_avoid.is_a? Array or ids_to_avoid.empty?
+    if ids_to_avoid.empty?
       #if ids=[] the queries may returns [], so we fill it with an invalid id (no excursion will ever have id=-1)
       ids_to_avoid = [-1]
     end

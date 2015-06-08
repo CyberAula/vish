@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150529110026) do
+ActiveRecord::Schema.define(:version => 20150608081230) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(:version => 20150529110026) do
     t.datetime "avatar_updated_at"
     t.decimal  "teachers_qscore",                    :precision => 12, :scale => 6
     t.integer  "license_id"
+    t.text     "original_author"
+    t.text     "license_attribution"
   end
 
   create_table "activity_objects_wa_resources_galleries", :id => false, :force => true do |t|
@@ -133,7 +135,6 @@ ActiveRecord::Schema.define(:version => 20150529110026) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "notification_settings"
-    t.integer  "rank_mve",              :default => 0
     t.boolean  "is_admin",              :default => false
     t.text     "category_order"
     t.string   "categories_view",       :default => "gallery"
@@ -263,7 +264,6 @@ ActiveRecord::Schema.define(:version => 20150529110026) do
     t.text     "offline_manifest",   :default => ""
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
-    t.integer  "rank_mve",           :default => 0
   end
 
   create_table "groups", :force => true do |t|

@@ -20,6 +20,10 @@ class License < ActiveRecord::Base
     self.key === "private"
   end
 
+  def requires_attribution?
+    return self.key.include? "cc-by"
+  end
+
   def name
     I18n.t('licenses.' + self.key.to_s)
   end

@@ -449,8 +449,10 @@ en:
     how: "How to share a resource"
     info:
       age: "Age"
+      author: "Author"
       description: "Description"
       license: "License"
+      license_attribution: "Attribute to"
       size: "Size"
       tags: "Tags"
     input: "Add a description here"
@@ -482,6 +484,9 @@ en:
     title_alert: "Write the title for this resource"
     upload: "Upload"
     uploading: "Uploading..."
+    validation:
+      author_name: "Please, type the author name"
+      license_attribution: "If an author is specified, you must provide a license attribution link"
   downloadxlsx: "Download as XLSX"
   email:
     regards: "Kind regards,<br/>"

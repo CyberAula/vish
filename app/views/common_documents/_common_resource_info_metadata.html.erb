@@ -24,12 +24,34 @@
             </td>
           </tr>
         <% end %>
+        <!--author/owner-->
+        <% unless resource.original_author_name.nil? %>
+          <tr>
+            <td><span><%= t('document.info.author') %></span></td>
+            <td>
+              <% if resource.original_author.nil? %>
+                <%= link_to(resource.author.name, resource.author.subject) %>
+              <% else %>
+                <%= resource.original_author_name %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
         <!--license-->
         <% unless resource.license.nil? %>
           <tr>
             <td><span><%= t('document.info.license') %></span></td>
             <td>
               <%= resource.license.name %>
+            </td>
+          </tr>
+        <% end %>
+        <!--license attribution-->
+        <% unless resource.license_attribution.nil? %>
+          <tr>
+            <td><span><%= t('document.info.license_attribution') %></span></td>
+            <td>
+              <%= resource.license_attribution %>
             </td>
           </tr>
         <% end %>

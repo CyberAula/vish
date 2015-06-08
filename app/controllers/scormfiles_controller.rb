@@ -42,7 +42,7 @@ class ScormfilesController < ApplicationController
   private
 
   def allowed_params
-    [:lourl,  :lopath, :zipurl, :zippath, :width, :height, :language, :license_id, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
+    [:lourl,  :lopath, :zipurl, :zippath, :width, :height, :language, :license_id, :original_author, :license_attribution, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
   end
   
 end

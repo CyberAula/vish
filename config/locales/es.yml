@@ -437,8 +437,10 @@ es:
     how: "Cómo compartir un recurso"
     info:
       age: "Edad"
+      author: "Autor"
       description: "Descripción"
       license: "Licencia"
+      license_attribution: "Atribuir a"
       size: "Tamaño"
       tags: "Etiquetas"
     input: "Descripción del recurso"
@@ -470,6 +472,9 @@ es:
     title_alert: "Escribe el título del recurso"
     upload: "Subir"
     uploading: "Subiendo..."
+    validation:
+      author_name: "Debes escribir el nombre del autor"
+      license_attribution: "Si se especifica un autor, debes proporcionar un enlace de reconocimiento (atribución)"
   email:
     regards: "Un cordial saludo,<br/>"
     welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{profile}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
