@@ -249,14 +249,14 @@
         <% if modelName == "Excursion" %>
           <!--excursions-->
           <li class="<%= params[:tab]=='excursions' ? 'active':''%>">
-            <a id="excursions_tab" href="#tabExcursions" data-toggle="tab">
+            <a id="excursions_tab" href="#excursions_tab_ready" data-toggle="tab">
               <i class="fa fa-book"></i>
               <span class=" hidden-xs"><%=t('excursion.other')%></span>
             </a>
           </li>
         <% elsif modelName == "Workshop" %>
           <li class="<%= params[:tab]=='workshops' ? 'active':''%>">
-            <a id="workshops_tab" href="#tabWorkshops" data-toggle="tab">
+            <a id="workshops_tab" href="#workshops_tab_ready" data-toggle="tab">
               <i class="fa fa-lightbulb-o"></i>
               <span class=" hidden-xs"><%=t('workshop.other')%></span>
             </a>
@@ -264,14 +264,14 @@
         <% elsif modelName == "Resource" %>
           <!--resources-->
           <li class="<%= params[:tab]=='resources' ? 'active':''%>">
-            <a id="resources_tab" href="#tabResources" data-toggle="tab">
+            <a id="resources_tab" href="#resources_tab_ready" data-toggle="tab">
               <i class="fa fa-file"></i>
               <span class=" hidden-xs"><%=t('resource.other')%></span>
             </a>
           </li>
         <% elsif modelName == "Category" %>
           <li class="<%= params[:tab]=='categories' ? 'active':''%>">
-            <a id="categories_tab" href="#tabCategories" data-toggle="tab">
+            <a id="categories_tab" href="#categories_tab_ready" data-toggle="tab">
               <i class="fa fa-th-large"></i>
               <span class=" hidden-xs"><%=t('categories.other')%></span>
             </a>
@@ -279,7 +279,7 @@
         <% elsif modelName == "Event" %>
           <!--events-->
           <li class="<%= params[:tab]=='events' ? 'active':''%>">
-            <a id="events_tab" href="#tabEvents" data-toggle="tab">
+            <a id="events_tab" href="#events_tab_ready" data-toggle="tab">
               <i class="fa fa-video-camera"></i>
               <span class=" hidden-xs"><%=t('event.other')%></span>
             </a>
@@ -309,7 +309,7 @@
 
     <div class="tab-content">
       <% if availableModels.include? "Excursion" %> 
-        <div class="tab-pane <%=params[:tab]=='excursions' ? 'active':''%>" id="tabExcursions">
+        <div class="tab-pane <%=params[:tab]=='excursions' ? 'active':''%>" id="excursions_tab_ready">
           <%= render partial: 'users/order_by_dropdown_excursions' %>
           <% if params[:tab]== 'excursions' %>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
@@ -331,7 +331,7 @@
 
 
       <% if availableModels.include? "Event" %> 
-        <div class="tab-pane <%= params[:tab]== 'events' ? 'active':''%>" id="tabEvents">
+        <div class="tab-pane <%= params[:tab]== 'events' ? 'active':''%>" id="events_tab_ready">
 
           <%= render partial: 'users/order_by_dropdown_events' %>
           <%if params[:tab]== 'events'%>
@@ -354,7 +354,7 @@
 
 
       <% if availableModels.include? "Workshop" %> 
-        <div class="tab-pane <%=params[:tab]=='workshops' ? 'active':''%>" id="tabWorkshops">
+        <div class="tab-pane <%=params[:tab]=='workshops' ? 'active':''%>" id="workshops_tab_ready">
           <%= render partial: 'users/order_by_dropdown_workshops' %>
           <% if params[:tab] == 'workshops'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
@@ -374,7 +374,7 @@
       <%end%>
 
       <% if availableModels.include? "Resource" %> 
-        <div class="tab-pane <%=params[:tab]=='resources' ? 'active':''%>" id="tabResources">
+        <div class="tab-pane <%=params[:tab]=='resources' ? 'active':''%>" id="resources_tab_ready">
           <%= render partial: 'users/order_by_dropdown_resources' %>
           <% if params[:tab] == 'resources'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
@@ -396,7 +396,7 @@
 
 
       <% if availableModels.include? "Category" %> 
-        <div class="tab-pane <%=params[:tab]=='categories' ? 'active':''%>" id="tabCategories">
+        <div class="tab-pane <%=params[:tab]=='categories' ? 'active':''%>" id="categories_tab_ready">
           <%if params[:tab] == 'categories'%>
             <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
             <%= render partial: 'categories/profile_categories', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>

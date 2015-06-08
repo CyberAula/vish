@@ -22,7 +22,11 @@ class UsersController < ApplicationController
   def excursions
     respond_to do |format|
       format.html{        
-        render :partial => 'excursions/profile_excursions', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        if !params[:page] || params[:tab] == "excursions" || (params[:page] && (params[:page] == 1 || params[:page]==0))
+          render :partial => 'excursions/profile_excursions', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        else
+          render :partial => 'excursions/excursions_profile', :locals => {:scope => :me, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        end
       }
     end
   end
@@ -30,7 +34,11 @@ class UsersController < ApplicationController
   def workshops
     respond_to do |format|
       format.html{        
-        render :partial => 'workshops/profile_workshops', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        if !params[:page] || params[:tab] == "workshops" || (params[:page] && (params[:page] == 1 || params[:page]==0))
+          render :partial => 'workshops/profile_workshops', :locals => {:scope => :me, :limit => 0, :page=> params[:page]||1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        else
+          render :partial => 'workshops/workshops_profile', :locals => {:scope => :me, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        end
       }
     end
   end
