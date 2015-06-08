@@ -131,7 +131,7 @@
   <%end%>
 
   <!-- Clone -->
-  <% if user_signed_in? && !editingToolbar %>
+  <% if user_signed_in? && !editingToolbar && (@excursion.clonable? or can?(:destroy, @excursion)) %>
     <button class="with_tooltip clone btn btn-default popover-linkhidden-xs" title="<%=t('excursion.actions.clone')%>" ><i class="fa fa-copy"></i></button>
     
     <div class="contentclone" style="display: none">

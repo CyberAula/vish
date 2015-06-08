@@ -24,6 +24,14 @@ class License < ActiveRecord::Base
     return self.key.include? "cc-by"
   end
 
+  def shared_alike?
+    return (self.key.include? "cc-by" and self.key.include? "-sa")
+  end
+
+  def no_derivatives?
+    return (self.key.include? "cc-by" and self.key.include? "-nd")
+  end
+
   def name
     I18n.t('licenses.' + self.key.to_s)
   end

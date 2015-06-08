@@ -1018,6 +1018,9 @@ class Excursion < ActiveRecord::Base
 
   def clone_for sbj
     return nil if sbj.blank?
+    unless self.clonable? or sbj.admin? or (sbj===self.owner)
+      return nil
+    end
 
     contributors = self.contributors || []
     contributors.push(self.author)
@@ -1040,6 +1043,14 @@ class Excursion < ActiveRecord::Base
     e.draft=true
     e.save!
     e
+  end
+
+  def clonable?
+    if self.license and self.license.no_derivatives?
+      return false
+    end
+
+    true
   end
 
   #method used to return json objects to the recommendation in the last slide
