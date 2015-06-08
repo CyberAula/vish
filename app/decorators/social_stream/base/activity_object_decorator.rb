@@ -8,6 +8,8 @@ ActivityObject.class_eval do
   has_one :lo_interaction
   
   before_validation :fill_license
+  before_validation :fill_original_author
+  before_validation :fill_license_attribution
   before_save :fill_relation_ids
   before_save :fill_indexed_lengths
   after_destroy :destroy_spam_reports
@@ -69,6 +71,10 @@ ActivityObject.class_eval do
 
   def private_scope?
     self.scope == 1
+  end
+
+  def original_author_name
+    self.original_author or self.author.name
   end
 
   #Calculate quality score (in a 0-10 scale) 
@@ -482,10 +488,10 @@ ActivityObject.class_eval do
     (aosRecent + aosPopular).map{|ao| ao.object}
   end
 
-  def self.getIdsToAvoid(ids_to_avoid=[],actor=nil)
-    ids_to_avoid = ids_to_avoid || []
+  def self.getIdsToAvoid(ids_to_avoid_param=[],actor=nil)
+    ids_to_avoid = ids_to_avoid_param.clone
 
-    if !actor.nil?
+    unless actor.nil?
       ids_to_avoid.concat(ActivityObject.authored_by(actor).map{|ao| ao.id})
       ids_to_avoid.uniq!
     end
@@ -588,7 +594,6 @@ ActivityObject.class_eval do
 
   def fill_license
     if self.object_type != "Actor"
-
       if self.license_id.nil?
         if self.private_scope?
           self.license_id = License.find_by_key("private").id
@@ -596,25 +601,14 @@ ActivityObject.class_eval do
           self.license_id = License.default.id
         end
       end
+    end
+  end
 
-      # if !self.object.nil? and self.object.respond_to? "draft"
-      #   #Set public license when publishing a draft
-      #   if ((self.scope_was!=0) and (self.scope==0))
-      #     if self.license.nil? or self.license.private?
-      #       license_metadata = JSON(self.json)["license"] rescue nil
-      #       if license_metadata.is_a? Hash and license_metadata["key"].is_a? String
-      #         license = License.find_by_key(license_metadata["key"])
-      #         unless license.nil?
-      #           self.license_id = license.id
-      #         end
-      #       end
-      #       if self.license.nil? or self.license.private?
-      #         self.license_id = License.default.id
-      #       end
-      #     end
-      #   end
-      # end
-
+  def fill_license_attribution
+    if self.object_type != "Actor" and self.respond_to? "owner"
+      if self.license_attribution.nil? and self.original_author.nil? and !self.owner.nil?
+        self.license_attribution = self.owner.getUrl
+      end
     end
   end
 

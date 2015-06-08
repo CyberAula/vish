@@ -568,6 +568,50 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+
+  #Usage
+  #Development:   bundle exec rake fix:licenses
+  #In production: bundle exec rake fix:licenses RAILS_ENV=production
+  task :licenses => :environment do
+
+    printTitle("Fixing licenses")
+
+    privateLicenseId = License.find_by_key("private").id rescue nil
+
+    #Get all excursions
+    Excursion.all.each do |excursion|
+        eJson = JSON(excursion.json)
+        jsonChanged = false
+
+        unless excursion.draft
+          unless eJson["vishMetadata"].is_a? Hash
+            eJson["vishMetadata"] = {}
+          end
+          #Mark published excursions as released
+          unless eJson["vishMetadata"]["released"]==="true"
+            eJson["vishMetadata"]["released"] = "true"
+            jsonChanged = true
+          end
+        else
+          #Private license for first drafts
+          unless eJson["vishMetadata"].is_a? Hash and eJson["vishMetadata"]["released"]==="true"
+            unless privateLicenseId.nil?
+              excursion.activity_object.update_column :license_id, privateLicenseId
+            end
+          end
+        end
+
+        unless eJson["license"].is_a? Hash and eJson["license"]["key"].is_a? String and eJson["license"]["key"]==excursion.license.key
+          eJson["license"] = {name: excursion.license.name, key: excursion.license.key}
+          jsonChanged = true
+        end
+
+        excursion.update_column :json, eJson.to_json if jsonChanged
+    end
+
+    printTitle("Task Finished")
+  end
+
   ####################
   #Task Utils
   ####################

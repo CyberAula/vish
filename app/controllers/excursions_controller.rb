@@ -379,6 +379,7 @@ class ExcursionsController < ApplicationController
            Excursion.createQTI(filePath,fileName,JSON(json))
            results["url"] = "#{Vish::Application.config.full_domain}/tmp/qti/#{fileName}.zip"
         elsif responseFormat == "MoodleXML"
+            #Generate Moodle XML package
            filePath = "#{Rails.root}/public/tmp/moodlequizxml/"
            FileUtils.mkdir_p filePath
            fileName = "moodlequizxml-tmp-#{count.to_s}"
