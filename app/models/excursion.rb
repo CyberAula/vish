@@ -1046,7 +1046,7 @@ class Excursion < ActiveRecord::Base
   end
 
   def clonable?
-    if self.license and self.license.no_derivatives?
+    if self.license and (self.license.no_derivatives? or self.license.private?)
       return false
     end
 
