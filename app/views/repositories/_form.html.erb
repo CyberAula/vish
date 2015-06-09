@@ -19,6 +19,7 @@
           </ul>
 
           <p><%= t('document.body.title1')%></p>
+          <hr>
 
           <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
@@ -113,65 +114,66 @@
               </div>
             </div>
           </div>
-          <br>
+          
         </div>
 
         <div class="form-group layoutform">
           <p><%= t('document.body.title2')%></p>
+          <hr>
+          <div class="resource_info">
+            <!--TITULO-->
+            <label><%= t('document.leyend.title')%></label>
+            <input type="text" class="form-control title" placeholder="<%= t('document.title_input')%>">
 
-          <!--TITULO-->
-          <label><%= t('document.leyend.title')%></label>
-          <input type="text" class="form-control title" placeholder="<%= t('document.title_input')%>">
+            <!--DESCRIPCION-->
+            <label><%= t('document.leyend.description')%></label>
+            <textarea type="text" rows="6" class="form-control description" placeholder="<%= t('document.input')%>"></textarea>
 
-          <!--DESCRIPCION-->
-          <label><%= t('document.leyend.description')%></label>
-          <textarea type="text" rows="6" class="form-control description" placeholder="<%= t('document.input')%>"></textarea>
+            <!--TAGS-->
+            <label><%= t('document.leyend.tags')%></label>
 
-          <!--TAGS-->
-          <label><%= t('document.leyend.tags')%></label>
+            <div class="tagBoxDocument">
+               <ul class="resourceTagList"></ul>
+            </div>
 
-          <div class="tagBoxDocument">
-             <ul class="resourceTagList"></ul>
+            <div class="clearfloat"></div>
+
+            <!--Avatar-->
+            <label class="new_file_avatar_label"><%= t('document.leyend.avatar')%></label>
+            <input class="new_file_avatar" type="file" accept="image/*">
+
+            <!--LANGUAGE-->
+            <label><%= t('document.leyend.language')%></label>
+            <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "resource_language") %>
+
+            <!--AGE SLIDER-->
+            <label><%= t('document.leyend.recommended_age')%></label>
+            <div class="limits">
+              <div class="limit1">0</div>
+              <div class="limit2">0</div>
+            </div>
+            <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,1]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+
+            <!--LICENSE-->
+            <section class="license">
+              <br/>
+              <label><%= t('document.info.license')%></label>
+              <%= select_tag(:license_id, resource_license_options_for_select(d.license_id), :class => "resource_license") %>
+            </section>
+
+            <!--AUTHORSHIP-->
+            <section class="authorship">
+              <br/>
+              <input type="checkbox" checked="checked" class="authorship_checkbox"></input><label><%=t("document.leyend.authorship_recognition")%></label>
+              <br/>
+              <br/>
+              <label><%=t("document.info.author")%></label><input type="text" class="form-control title authorship_author" defaultvalue="<%=current_subject.name%>" value="<%=current_subject.name%>" disabled="disabled"/>
+              <br/>
+              <label><%=t("document.info.license_attribution")%>:</label><input type="text" class="form-control title authorship_attribution" defaultvalue="<%=current_subject.default_license_attribution%>" value="<%=current_subject.default_license_attribution%>" disabled="disabled"/>
+            </section>
+
+
           </div>
-
-          <div class="clearfloat"></div>
-
-          <!--Avatar-->
-          <label class="new_file_avatar_label"><%= t('document.leyend.avatar')%></label>
-          <input class="new_file_avatar" type="file" accept="image/*">
-
-          <!--LANGUAGE-->
-          <label><%= t('document.leyend.language')%></label>
-          <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "resource_language") %>
-
-          <!--AGE SLIDER-->
-          <label><%= t('document.leyend.recommended_age')%></label>
-          <div class="limits">
-            <div class="limit1">0</div>
-            <div class="limit2">0</div>
-          </div>
-          <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,1]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
-
-          <!--LICENSE-->
-          <section class="license">
-            <br/>
-            <br/>
-            <label><%= t('document.info.license')%></label>
-            <%= select_tag(:license_id, resource_license_options_for_select(d.license_id), :class => "resource_license") %>
-          </section>
-
-          <!--AUTHORSHIP-->
-          <section class="authorship">
-            <br/>
-            <br/>
-            <input type="checkbox" checked="checked" class="authorship_checkbox"></input><label><%=t("document.leyend.authorship_recognition")%></label>
-            <br/>
-            <label><%=t("document.info.author")%></label><input type="text" class="form-control title authorship_author" defaultvalue="<%=current_subject.name%>" value="<%=current_subject.name%>" disabled="disabled"/>
-            <br/>
-            <label><%=t("document.info.license_attribution")%>:</label><input type="text" class="form-control title authorship_attribution" defaultvalue="<%=current_subject.default_license_attribution%>" value="<%=current_subject.default_license_attribution%>" disabled="disabled"/>
-          </section>
-
-          <br>
         </div>
       </div>
       <!-- FOOTER -->

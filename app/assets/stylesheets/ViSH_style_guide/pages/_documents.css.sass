@@ -52,7 +52,6 @@ aside.recomended
     width: 95%
     @include center-block
   h2
-    //font-family: $corporate-font-family-sans-serif-Regular
     color: $gray-dark
     min-height: 38px
   .tab-content
@@ -110,7 +109,7 @@ aside.recomended
         span
           font-family: $corporate-font-family-sans-serif-Medium
           float: right
-        tr 
+        tr
           td:first-child
             width: 145px
           td
@@ -314,8 +313,6 @@ aside.recomended,
     button.report
       float: right
 
-
-
 .limits
   position: relative
   .limit1, .limit2
@@ -337,10 +334,8 @@ input.age-slider
   select.language
     width: 100%
 
-
 .slider-track
   background-color: lighten($brand-primary, 30%)
-
 
 
 #repository
@@ -379,7 +374,7 @@ input.new_file_avatar
 
 textarea.form-control
   min-height: 100px
-  
+
 #new_document-up,
 #new_event-up,
 .layout_form_WS
@@ -406,3 +401,29 @@ textarea.form-control
     margin: 20px 0
   section.target_age
     margin-bottom: 30px
+
+//--------------------------
+//Add resource modal-form
+//--------------------------
+
+#AddResource
+  .modal-body
+    .layoutform
+      hr
+        margin: 5px 0
+      .panel-group
+        margin: 15px
+      .resource_info
+        border-radius: $border-radius-base
+        padding: 0 15px 30px 15px
+        section.authorship
+          input[type=checkbox]
+            display: block
+            opacity: 1
+            position: relative
+            float: left
+          label
+            margin-top: 0px
+            width: auto
+  .modal-footer
+    margin: 0
