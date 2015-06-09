@@ -26,7 +26,7 @@
   a
     &:hover
       padding: 0
-    
+
     &:focus
       padding: 0 !important
 
@@ -79,10 +79,10 @@
         font-size: 70px
         color: $brand-secundary
         padding-top: 39px
-        
+
         &:hover
           text-decoration: none
-        
+
         @media (max-width: 480px)
           font-size: 44px
           color: #008FD1
@@ -101,7 +101,11 @@
     @include caption
     @media (max-width: $screen-xs-max)
       margin-top: 0
-    .author 
+    h6
+      a
+        display: block
+        height: 100%
+    .author
       @include text-overflow
       font-size: 12px
       margin-top: 1px
@@ -122,16 +126,16 @@
       @include center-block
     img
       width: 100%
-    hr 
+    hr
       margin: 5px -8px -1px
-    .like 
+    .like
       display: inline
       .count
         display: inline
       a
         outline: 0
         padding: 0
-    .views 
+    .views
       float: right
       text-align: right
       width: 55%
