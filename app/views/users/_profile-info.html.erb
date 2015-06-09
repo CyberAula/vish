@@ -47,7 +47,7 @@
 
   function re_apply_pageless(tab){
     $.pagelessStop(); //remove old pageless
-    $("#" + tab + "_tab_ready ul").pageless({
+    $("#" + tab + "_tab_ready ul.items").pageless({
       totalPages: pageless_state[tab].num_pages,
       url: get_url_with_sort_by(tab),
       currentPage: pageless_state[tab].current_page,
