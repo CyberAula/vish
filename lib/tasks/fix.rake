@@ -582,12 +582,19 @@ namespace :fix do
     defaultPrivateLicenseId = License.find_by_key("private").id rescue nil
 
     #Assign licenses to AOs
-    ActivityObject.where("license_id is NULL").each do |ao|
-      if ao.should_have_license? and ao.license_id.nil?
-        if ao.private_scope?
-          ao.update_column :license_id, defaultPrivateLicenseId
-        else
-          ao.update_column :license_id, defaultPublicLicenseId
+    ActivityObject.all.each do |ao|
+      if ao.should_have_license?
+        if ao.license_id.nil?
+          if ao.private_scope?
+            ao.update_column :license_id, defaultPrivateLicenseId
+          else
+            ao.update_column :license_id, defaultPublicLicenseId
+          end
+        end
+
+        #License attribution
+        if !ao.license.nil? and ao.license.public? and ao.license.requires_attribution? and ao.license_attribution.nil? and ao.original_author.nil? and !ao.owner.nil?
+          ao.update_column :license_attribution, ao.default_license_attribution
         end
       end
     end
@@ -625,6 +632,7 @@ namespace :fix do
 
     printTitle("Task Finished")
   end
+
 
   ####################
   #Task Utils
