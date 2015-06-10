@@ -633,6 +633,17 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:mverdelicenses
+  #In production: bundle exec rake fix:mverdelicenses RAILS_ENV=production
+  task :mverdelicenses => :environment do
+    mvLicenseId = License.find_by_key("cc-by-nc-sa").id
+    Category.find(80).all_category_children.map{|category| category.property_objects}.flatten.select{|ao| ao.should_have_license?}.each do |ao|
+      ao.update_column :license_id, mvLicenseId
+      ao.update_column :original_author, "Marea Verde"
+      ao.update_column :license_attribution, "Apuntes Marea Verde (http://www.apuntesmareaverde.org.es)"
+    end
+  end
 
   ####################
   #Task Utils
