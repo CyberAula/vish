@@ -69,18 +69,13 @@ header.home
 #editor_wrapper
   position: absolute
   left: 0
-  //top: 50px
   width: 100% !important
   height: 100%
-  /*XXX TODO with fullscreen the next line breaks some cases when scaling*/
   text-align: center
   position: relative
   margin: auto
   display: block
   -webkit-transform-style: preserve-3d
-  .popover-content
-    p
-      color: $gray
 #editor_tools_wrapper
   width: 100%
   margin: auto
@@ -136,12 +131,6 @@ ul li.box-item .info .author span.by
 #myModalLabel
   font-size: 1.2em
 
-
-p.thank
-  color: $brand-primary
-  i
-    color: $gray
-
 div.evaluation_body
   height: 99%
 
@@ -151,3 +140,7 @@ div.evaluation_body
   text-align: center
   p
     display: inline
+
+div.excursion_tool
+  div.popover
+    max-width: 500px !important

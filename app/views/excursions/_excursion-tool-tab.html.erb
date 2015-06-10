@@ -5,17 +5,6 @@
 
   document.addEventListener("DOMContentLoaded", function(){
 
-    //to close the popovers
-    $(':not(#anything_not_present)').on('click', function (e) {
-      $('.popover-link').each(function () {
-      //the 'is' for buttons that trigger popups
-      //the 'has' for icons and other elements within a button that triggers a popup
-      if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-        $(this).popover('hide');
-      }
-      });
-    });
-
     var embedEvents = false;
     var shareEvents = false;
 
@@ -73,20 +62,12 @@
       }
     });
     
-
-    $('.clone').popover({ 
+    $('.clone').popover({
       html : true,
       content: function() {
-      return $('.contentclone').html();
+        return $('.contentclone').html();
       },
       container: ".actions_layout_show"
-    });
-
-    $('.clone').on('shown.bs.popover', function (){
-      $('.btn_cancel').on("click",function(){
-        //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
-        $('.clone').popover('hide');
-      });
     });
 
     $('.delete').popover({ 
@@ -101,8 +82,6 @@
     });
 
     $('.delete').on('shown.bs.popover', function(){
-      //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
-
       <% if editingToolbar %>
         //Prevent double confirmation before exit
         $("a.btn[data-method='delete']").on("click",function(){
@@ -111,10 +90,6 @@
           }
         });
       <% end %>
-
-      $('.btn_cancel').on("click",function(){
-        $('.delete').popover('hide');
-      });
     });
 
     $(".with_tooltip").tooltip({ placement: 'bottom'});
@@ -132,7 +107,7 @@
 
   <!-- Clone -->
   <% if user_signed_in? && !editingToolbar && (@excursion.clonable? or can?(:destroy, @excursion)) %>
-    <button class="with_tooltip clone btn btn-default popover-linkhidden-xs" title="<%=t('excursion.actions.clone')%>" ><i class="fa fa-copy"></i></button>
+    <button class="with_tooltip clone btn btn-default popover-linkhidden-xs" title="<%=t('excursion.actions.clone')%>"><i class="fa fa-copy"></i></button>
     
     <div class="contentclone" style="display: none">
       <p class=""><i class="fa fa-copy"></i>  <%=t('excursion.clone.confirm')%></p>

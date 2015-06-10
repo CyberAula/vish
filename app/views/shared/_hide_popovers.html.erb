@@ -1,0 +1,8 @@
+//code to hide the help popovers when clicking outside
+$('html').on('click', function(e){
+  if (typeof $(e.target).data('original-title') == 'undefined') {
+    if(typeof $($(e.target).parent()).data('original-title') == 'undefined'){
+      $('[data-original-title]').popover('hide');
+    }
+  }
+});

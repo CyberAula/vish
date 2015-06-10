@@ -1,7 +1,6 @@
 <% if (remaining = total - per_page) > 0 %>
-<nav class="more">
-  <%= link_to t('layout.more', count: remaining), "#", "data-path" => path, "data-remaining" => remaining, "data-per_page" => per_page, :class => "btn btn-primary" %>
-
-  <%= render partial: 'layouts/loading' %>
-</nav>
+  <nav class="more">
+    <%= link_to t('layout.more', count: remaining), "#", "data-path" => path, "data-remaining" => remaining, "data-per_page" => per_page, :class => "btn btn-primary" %>
+    <%= render partial: 'layouts/loading' %>
+  </nav>
 <% end %>
