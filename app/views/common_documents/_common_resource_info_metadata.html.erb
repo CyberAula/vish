@@ -25,12 +25,10 @@
           </tr>
         <% end %>
 
-        <% hasLicense = !(["Link","Embed"].include? resource.class.name) %>
-
         <!--author/owner-->
         <% unless resource.original_author_name.nil? %>
           <tr>
-            <td><span><%= hasLicense ? t('document.info.author') : t('document.info.linked_by') %></span></td>
+            <td><span><%= !resource.linked? ? t('document.info.author') : t('document.info.linked_by') %></span></td>
             <td>
               <% if resource.original_author.nil? %>
                 <%= link_to(resource.author.name, resource.author.subject) %>
@@ -41,7 +39,7 @@
           </tr>
         <% end %>
 
-        <% if hasLicense %>
+        <% if resource.should_have_license? %>
           <!--license-->
           <% unless resource.license.nil? %>
             <tr>

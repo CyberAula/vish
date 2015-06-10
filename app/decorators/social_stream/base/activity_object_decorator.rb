@@ -24,7 +24,7 @@ ActivityObject.class_eval do
   validate :has_valid_license
 
   def has_valid_license
-    if self.object_type == "Actor"
+   unless self.should_have_license?
       true
     else
       if self.license.nil?
@@ -48,7 +48,7 @@ ActivityObject.class_eval do
   validate :has_valid_original_author
 
   def has_valid_original_author
-    if self.object_type == "Actor" or self.original_author.nil? or self.new_record?
+    if !self.should_have_license? or self.original_author.nil? or self.new_record?
       true
     else
       if self.original_author_was != self.original_author
@@ -62,7 +62,7 @@ ActivityObject.class_eval do
   validate :has_valid_license_attribution
 
   def has_valid_license_attribution
-    if self.object_type == "Actor"
+    unless self.should_have_license?
       true
     else
       if self.original_author.nil?
@@ -102,6 +102,19 @@ ActivityObject.class_eval do
     self.scope == 1
   end
 
+  def should_have_license?
+    return ((self.object_type.is_a? String) and (["Document", "Excursion", "Scormfile", "Webapp", "Workshop"].include? self.object_type))
+  end
+
+  def resource?
+    #"Actor", "Post", "Category", "Document", "Excursion", "Scormfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop"
+    return ((self.object_type.is_a? String) and (["Category", "Document", "Excursion", "Scormfile", "Link", "Webapp", "Event", "Embed", "Workshop"].include? self.object_type))
+  end
+
+  def linked?
+    return ((self.object_type.is_a? String) and (["Embed", "Link"].include? self.object_type))
+  end
+  
   def original_author_name
     self.original_author or self.author.name
   end
@@ -634,19 +647,17 @@ ActivityObject.class_eval do
   end
 
   def fill_license
-    if self.object_type != "Actor"
-      if self.license_id.nil?
-        if self.private_scope?
-          self.license_id = License.find_by_key("private").id
-        else
-          self.license_id = License.default.id
-        end
+    if self.should_have_license? and self.license_id.nil?
+      if self.private_scope?
+        self.license_id = License.find_by_key("private").id
+      else
+        self.license_id = License.default.id
       end
     end
   end
 
   def fill_license_attribution
-    if self.object_type != "Actor" and self.respond_to? "owner"
+    if self.should_have_license? and self.respond_to? "owner"
       if self.license_attribution.nil? and self.original_author.nil? and !self.owner.nil?
         self.license_attribution = self.default_license_attribution
       end

@@ -5,9 +5,16 @@
 
 namespace :db do
 
+  #override SocialStream code which calls 'db:populate:reload'
+  task(:populate).clear.enhance(['db:populate:vish_reload'])
+
+
   namespace :populate do
+
+    desc "Reload populate data"
+    task :vish_reload => [ 'db:reset', :precreate, :create ]
     
-    # Clear existing tasks
+    # Clear existing tasks (Social Stream tasks)
     task(:create_ties).prerequisites.clear
     task(:create_ties).clear
     %w( db:seed create:groups ).each do |t|
@@ -18,8 +25,11 @@ namespace :db do
     ENV['LOGOS_TOTAL'] = 12.to_s
 
     desc "Create populate data for ViSH"
-    task :create => [ 'create:licenses', 'create:occupations', 'create:excursions', 'create:current_site', 'create:admin', 'create:demo_user']
+    task :precreate => [ 'create:licenses' ]
+    task :create => [ 'create:occupations', 'create:excursions', 'create:current_site', 'create:admin', 'create:demo_user' ]
+    #Social Stream create task
     #task :create => [ :read_environment, :create_users, :create_ties, :create_posts, :create_messages, :create_excursions, :create_documents, :create_avatars ]
+
 
     namespace :create do
       
@@ -241,24 +251,24 @@ namespace :db do
       #In production: bundle exec rake db:populate:create:demo_user RAILS_ENV=production
       desc "Create ViSH demo user"
       task :demo_user => :environment do
-          puts 'Creating demo user'
+        puts 'Creating demo user'
 
-          # Create demo user if not present
-          demo = User.find_by_slug('demo')
-          if demo.blank?
-            demo = User.new
-          end
+        # Create demo user if not present
+        demo = User.find_by_slug('demo')
+        if demo.blank?
+          demo = User.new
+        end
 
-          # If present, ensure that has the appropiate data
-          demo.name = 'Demo'
-          demo.email = 'demo@vishub.org'
-          demo.password = 'demonstration'
-          demo.password_confirmation = demo.password
-          demo.save!
-          demo.actor!.update_attribute :slug, 'demo'
-          demo.actor!.update_attribute :is_admin, false
+        # If present, ensure that has the appropiate data
+        demo.name = 'Demo'
+        demo.email = 'demo@vishub.org'
+        demo.password = 'demonstration'
+        demo.password_confirmation = demo.password
+        demo.save!
+        demo.actor!.update_attribute :slug, 'demo'
+        demo.actor!.update_attribute :is_admin, false
 
-          puts "Demo user created with email: " + demo.email + " and password: " + demo.password
+        puts "Demo user created with email: " + demo.email + " and password: " + demo.password
       end
 
       #Usage
@@ -266,9 +276,7 @@ namespace :db do
       #In production: bundle exec rake db:populate:create:licenses RAILS_ENV=production
       desc "Create Licenses"
       task :licenses => :environment do
-          puts 'Creating Licenses'
-
-
+        SocialStream::Population.task 'Licenses population' do
           licenseKeys = []
           licenseKeys.push("public")
           licenseKeys.push("cc-by")
@@ -286,15 +294,7 @@ namespace :db do
               l.save!
             end
           end
-
-          defaultLicense = License.default
-
-          #Assign licenses to AOs
-          ActivityObject.where("object_type!='Actor' and license_id is NULL").each do |ao|
-            ao.update_column :license_id, defaultLicense.id
-          end
-
-          puts "Licenses created"
+        end
       end
     end
   end
@@ -422,8 +422,8 @@ namespace :db do
 
     Rake::Task["db:reset"].invoke
     Rake::Task["db:seed"].invoke
-    Rake::Task["db:populate:create:current_site"].invoke
     Rake::Task["db:populate:create:licenses"].invoke
+    Rake::Task["db:populate:create:current_site"].invoke
     Rake::Task["db:populate:create:demo_user"].invoke
     Rake::Task["db:populate:create:admin"].invoke
 

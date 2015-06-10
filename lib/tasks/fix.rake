@@ -576,7 +576,21 @@ namespace :fix do
 
     printTitle("Fixing licenses")
 
-    privateLicenseId = License.find_by_key("private").id rescue nil
+    Rake::Task["db:populate:create:licenses"].invoke
+
+    defaultPublicLicenseId = License.default.id rescue nil
+    defaultPrivateLicenseId = License.find_by_key("private").id rescue nil
+
+    #Assign licenses to AOs
+    ActivityObject.where("license_id is NULL").each do |ao|
+      if ao.should_have_license? and ao.license_id.nil?
+        if ao.private_scope?
+          ao.update_column :license_id, defaultPrivateLicenseId
+        else
+          ao.update_column :license_id, defaultPublicLicenseId
+        end
+      end
+    end
 
     #Get all excursions
     Excursion.all.each do |excursion|
@@ -595,8 +609,8 @@ namespace :fix do
         else
           #Private license for first drafts
           unless eJson["vishMetadata"].is_a? Hash and eJson["vishMetadata"]["released"]==="true"
-            unless privateLicenseId.nil?
-              excursion.activity_object.update_column :license_id, privateLicenseId
+            unless defaultPrivateLicenseId.nil?
+              excursion.activity_object.update_column :license_id, defaultPrivateLicenseId
             end
           end
         end
