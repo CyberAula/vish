@@ -7,106 +7,85 @@
   @include make-md-column(12, $gutter: $grid-gutter-width)
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   padding: 0 !important
-  .icontitle
-    margin-top: 0
+  .whiteframe
+    padding: 5% !important
+    min-height: 350px
+    @include well
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(12, $gutter: $grid-gutter-width)
+    @include make-md-column(12, $gutter: $grid-gutter-width)
+    @include make-lg-column(12, $gutter: $grid-gutter-width)
 
 li.events-item,
 li.categories-item,
 li.repositories-item
 
-
 #legal_notice
   li
     margin: 10px 0
 
-#QuizEdit
-  .modal-header
-    height: 6%
-    max-height: 6%
-    padding-top: 5px 
-    padding-bottom: 5px
-    p
-      font-size: 16px !important
-      margin-top: 1px
-  .modal-body
-    height: 83%
-    max-height: 83%
-    .quiz_sessions
-      label
-        margin-bottom: 8px
-      .select_options
-        margin: 8px 0
-        width: 40%
+#overview
+  .icontitle
+    margin: 0
+    padding: 15px
+    background-color: gray
+    color: white
+    border-radius: 5px 5px 0 0
+    border-bottom: none
+    font-weight: 800
+    i
+      margin: 0 5px
+  .whiteframe
+    border-radius: 0 0 5px 5px !important
 
-#QuizAnalitycs
-  .modal-header
-    height: 4%
-    max-height: 4%
-    p, h4
-      font-size: 16px !important
-      margin-top: 1px
-      margin-bottom: 1px
-  .close
-    margin-top: -2px !important
-  .modal-body
-    height: 87%
-    max-height: 87%
-    .quiz_sessions
-      p
-        color: $gray
-      .quizAnswerURLTitle a
-        font-weight: bold
-        color: $brand-primary
-      .quizQuestionTitle
-        font-weight: 400
-        color: black
-      .quizResultsTable
-        border: none
-        color: $gray
-        .tdaRight
-          text-align: right
-        .trLast td
-          padding: 10px 10px !important
-        .tdTFPercentage
-          text-align: left
-          padding-left: 0px !important
-        .tdbeforeTFPercentage
-          padding-right: 5px !important
-          padding-left: 5px !important
-      .quizResultsTable td
-        padding: 1px 10px
+  .overviewindex
+    @include hidden-xs
+    @include make-sm-column(3, $gutter: $grid-gutter-width)
+    @include make-md-column(3, $gutter: $grid-gutter-width)
+    @include make-lg-column(3, $gutter: $grid-gutter-width)
+    position: fixed
+    a
+      color: $gray
+      font-weight: 600
+      &:hover
+        color: $black
+      li.active
+        color: $black
 
-  .modal-footer
-    height: 2%
-    max-height: 2%
+    ul
+      li
+        list-style: none
+        padding: 5px 0
+        text-indent: -5px
+        i
+          margin-right: 5px
+        a
+          &:active
+            color: $gray-light
 
-
-#quiz_chart
-  max-width: 100%
-  max-height: 100%
-  margin-top: 30px
-
-.quizWithoutAnswers
-  width: 100%
-  margin-top: 7%
-  text-align: center
-  font-size: 28px
+  .overviewcontent
+    @include make-xs-column(12, $gutter: $grid-gutter-width)
+    @include make-sm-column(8, $gutter: $grid-gutter-width)
+    @include make-md-column(8, $gutter: $grid-gutter-width)
+    @include make-lg-column(8, $gutter: $grid-gutter-width)
+    @include make-xs-column-offset(0)
+    @include make-sm-column-offset(4)
+    @include make-md-column-offset(4)
+    @include make-lg-column-offset(4)
+    color: $gray
+    a
+      color: $gray-dark
+      font-weight: 600
+      &:hover
+        color: $black
+    .highlight_plain
+      color: $brand-primary
+    .editor_title_bold
+      color: $brand-primary
+      font-weight: 600
 
 
-p.quizQuestionChoice
-  margin: 3px 0px 0px 5%
 
-.openQuizAnswersListWrapper
-  width: 100% !important
-
-ul.openQuizAnswersList
-  li
-    font-size: 1rem !important
-  li:first-child
-    font-size: 1.3rem !important
-
-div.openQuizAnswerLeft
-  background-image: url('/assets/vicons/userAnswer.png') !important
 
 #quiz,
 #help,
@@ -204,40 +183,93 @@ div.openQuizAnswerLeft
         color: $gray-dark
 
 
-#overview
-  .overviewindex
-    @include hidden-xs
-    @include make-sm-column(3, $gutter: $grid-gutter-width)
-    @include make-md-column(3, $gutter: $grid-gutter-width)
-    @include make-lg-column(3, $gutter: $grid-gutter-width)
-    position: fixed
-    ul
-      li
-        list-style: normal
-        a
-          &:active
-            color: $gray-light
-
-  .overviewcontent
-    @include make-xs-column(12, $gutter: $grid-gutter-width)
-    @include make-sm-column(8, $gutter: $grid-gutter-width)
-    @include make-md-column(8, $gutter: $grid-gutter-width)
-    @include make-lg-column(8, $gutter: $grid-gutter-width)
-    @include make-xs-column-offset(0)
-    @include make-sm-column-offset(4)
-    @include make-md-column-offset(4)
-    @include make-lg-column-offset(4)
 
 
-#help,
-#quiz,
-#legal_notice,
-#overview
-  .whiteframe
-    padding: 5% !important
-    min-height: 350px
-    @include well
-    @include make-xs-column(12, $gutter: $grid-gutter-width)
-    @include make-sm-column(12, $gutter: $grid-gutter-width)
-    @include make-md-column(12, $gutter: $grid-gutter-width)
-    @include make-lg-column(12, $gutter: $grid-gutter-width)
+#QuizEdit
+  .modal-header
+    height: 6%
+    max-height: 6%
+    padding-top: 5px
+    padding-bottom: 5px
+    p
+      font-size: 16px !important
+      margin-top: 1px
+  .modal-body
+    height: 83%
+    max-height: 83%
+    .quiz_sessions
+      label
+        margin-bottom: 8px
+      .select_options
+        margin: 8px 0
+        width: 40%
+
+#QuizAnalitycs
+  .modal-header
+    height: 4%
+    max-height: 4%
+    p, h4
+      font-size: 16px !important
+      margin-top: 1px
+      margin-bottom: 1px
+  .close
+    margin-top: -2px !important
+  .modal-body
+    height: 87%
+    max-height: 87%
+    .quiz_sessions
+      p
+        color: $gray
+      .quizAnswerURLTitle a
+        font-weight: bold
+        color: $brand-primary
+      .quizQuestionTitle
+        font-weight: 400
+        color: black
+      .quizResultsTable
+        border: none
+        color: $gray
+        .tdaRight
+          text-align: right
+        .trLast td
+          padding: 10px 10px !important
+        .tdTFPercentage
+          text-align: left
+          padding-left: 0px !important
+        .tdbeforeTFPercentage
+          padding-right: 5px !important
+          padding-left: 5px !important
+      .quizResultsTable td
+        padding: 1px 10px
+
+  .modal-footer
+    height: 2%
+    max-height: 2%
+
+
+#quiz_chart
+  max-width: 100%
+  max-height: 100%
+  margin-top: 30px
+
+.quizWithoutAnswers
+  width: 100%
+  margin-top: 7%
+  text-align: center
+  font-size: 28px
+
+
+p.quizQuestionChoice
+  margin: 3px 0px 0px 5%
+
+.openQuizAnswersListWrapper
+  width: 100% !important
+
+ul.openQuizAnswersList
+  li
+    font-size: 1rem !important
+  li:first-child
+    font-size: 1.3rem !important
+
+div.openQuizAnswerLeft
+  background-image: url('/assets/vicons/userAnswer.png') !important
