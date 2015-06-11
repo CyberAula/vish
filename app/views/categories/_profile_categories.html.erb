@@ -153,7 +153,6 @@
             $("#normal-view").addClass("active");
             $("#list-view").removeClass("active");        
             $("#normal-instance").fadeIn(200);
-
           });
       });
 
@@ -165,7 +164,14 @@
           $("#list-instance").fadeIn(200);
         });
       });
-  }
+
+      if(<%=(categoryView!="gallery")%>){
+        $(".btn-for-categorize").hide();
+        $("#list-view").addClass("active");
+      } else {
+        $("#normal-view").addClass("active");
+      }
+  };
 
   <%if request.xhr? %>
     add_onclicks_to_categories();
@@ -176,12 +182,3 @@
   <%end%>
 
 </script>
-
-<%= content_for :javascript do %>
-  if(<%=(categoryView!="gallery")%>){
-    $(".btn-for-categorize").hide(0);
-    $("#list-view").addClass("active");
-  } else {
-    $("#normal-view").addClass("active");
-  }
-<%end%>
