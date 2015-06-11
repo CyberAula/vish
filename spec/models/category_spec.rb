@@ -20,62 +20,62 @@ describe Category, models:true, slow:true do
 	@audio_other = FactoryGirl.build(:audio)
   end
 
-	context "Categorizing stuff" do
+	context "when categorize" do
 		it "is created" do
 			#Rspec.reset
-			#assert_false @category.blank?
+			assert_false @category.blank?
 		end
 	
 		it "does comes from user created" do
-			expect(@category_from_user.author).to eq(@user.actor)
+			@category_from_user.author.should == (@user.actor)
 		end
 
 		it "does comes from user created, 2nd key" do
-			expect(@category_from_user.owner).to eq(@user.actor)
+			(@category_from_user.owner).should == (@user.actor)
 		end
 
 		#THE EQUAL TO ZERO HAS BEEN DONE TO SPEED UP TESTS
 		it "can categorize excursion from someone else" do
 			@category_from_user.insertPropertyObject(@picture_other.activity_object)
-			expect(@category_from_user.property_objects[0]).to eq(@picture_other.activity_object)
+			@category_from_user.property_objects[0].should be(@picture_other.activity_object)
 		end
 		it "can categorize image from someone else" do
 			@category_from_user.insertPropertyObject(@excursion_other.activity_object)
-			expect(@category_from_user.property_objects[0]).to eq(@excursion_other.activity_object)
+			@category_from_user.property_objects[0].should be(@excursion_other.activity_object)
 		end
 
 		it "can categorize video from someone else" do
 			@category_from_user.insertPropertyObject(@video_other.activity_object)
-			expect(@category_from_user.property_objects[0]).to eq(@video_other.activity_object)
+			@category_from_user.property_objects[0].should be(@video_other.activity_object)
 		end
 
 		it "can categorize audio from someone else" do
 			@category_from_user.insertPropertyObject(@audio_other.activity_object)
-			expect(@category_from_user.property_objects[0]).to eq(@audio_other.activity_object)
+			@category_from_user.property_objects[0].should be(@audio_other.activity_object)
 		end
 
 		it "can categorize excursion from user" do
 			@category_from_user.insertPropertyObject(@excursion_user.activity_object)
-			expect(@category_from_user.property_objects[0]).to eq(@excursion_user.activity_object)
-			expect(@excursion_user.author).to eq(@user.actor)
+			@category_from_user.property_objects[0].should be(@excursion_user.activity_object)
+			@excursion_user.author.should == (@user.actor)
 		end
 
 		it "can categorize image from user" do
 			@category_from_user.insertPropertyObject(@picture_user.activity_object)
-			expect(@category_from_user.property_objects[0]).to eq(@picture_user.activity_object)
-			expect(@picture_user.author).to eq(@user.actor)
+			@category_from_user.property_objects[0].should be(@picture_user.activity_object)
+			@picture_user.author.should == (@user.actor)
 		end
 		
 		it "can categorize video from user" do
 			@category_from_user.insertPropertyObject(@video_user.activity_object)
-			expect(@category_from_user.property_objects[0]).to eq(@video_user.activity_object) 
-			expect(@video_user.author).to eq(@user.actor)
+			@category_from_user.property_objects[0].should be(@video_user.activity_object) 
+			@video_user.author.should == (@user.actor)
 		end 
 		
 		it "can categorize audio from user" do 
 			@category_from_user.insertPropertyObject(@audio_user.activity_object)
-			expect(@category_from_user.property_objects[0]) == @audio_user 
-			expect(@audio_user.author).to eq(@user.actor)
+			@category_from_user.property_objects[0].should be(@audio_user.activity_object)
+			@audio_user.author.should == (@user.actor)
 		end
 
 	end
