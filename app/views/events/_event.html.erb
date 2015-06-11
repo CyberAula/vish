@@ -24,13 +24,12 @@
     document.getElementById("event-<%=event.id%>").style.backgroundImage = "url('<%=event_raw_thumbail(event)%>')";
   </script>
 
-<!--INFO excursuion-->
   <div class="caption">
-<!--Title -->
+    <!--Title -->
     <h6>
       <%= link_to event.title, event %>
     </h6>
-<!--Autor -->
+    <!--Author -->
     <div class="author"> 
       <span class="by"><%=t('by')%></span>
       <%= link_to event.author.name, event.author.subject %>
@@ -40,18 +39,18 @@
       <!--like -->
       <div class="like">  
         <% if event.post_activity%>
-        <div class="count"><%=event.post_activity.likes.count.to_s%></div>
-        <%= link_like(event.post_activity, :title =>t('excursion.actions.favorite'))%>
+          <div class="count"><%=event.post_activity.likes.count.to_s%></div>
+          <%= link_like(event.post_activity, :title =>t('excursion.actions.favorite'))%>
         <%else%>
-        <div class="count">0</div>
+          <div class="count">0</div>
         <%end%>
       </div>
       <!--views -->
       <div class="views">
         <%=event.visit_count.to_s%>
         <i class="fa fa-eye"></i>
-        <%#=t('follow.views')%>
       </div>
     </div>
   </div>
+
 </li>
