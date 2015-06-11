@@ -1,8 +1,10 @@
 <section id="quiz">
+  
   <div class="icontitle">
     <i class="fa fa-check-square-o"></i>
     <%=t('quiz.live')%>
   </div>
+
   <div class="whiteframe">
     <div class="textrow">
       <h4><%=t('quiz.openedL')%></h4>
@@ -17,29 +19,26 @@
                   <%=t('quiz.untitled')%>
                 <% end %>
               </p>
-
-              <button type="button" class="with_tooltip delete btn btn-default popover-link" urlToRemoveQuiz="<%="#{q.delete_url}"%>" data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
+              <button type="button" class="with_tooltip delete btn btn-default popover-link" urlToRemoveQuiz="<%="#{q.delete_url}"%>" data-toggle="popover" title="<%=t('quiz.actions.delete')%>">
                 <i class="fa fa-trash-o"></i>
               </button>
               <button class="with_tooltip btn btn-default" data-target="#QuizEdit" data-toggle="modal" data-remote="<%="/quiz_sessions/#{q.id}/edit.partial"%>" title="<%=t('quiz.actions.edit')%>">
                 <i class="fa fa-edit"></i>
               </button>
-              <button class="with_tooltip closeqb btn btn-default popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-container="body" title="<%=t('quiz.actions.close')%>" aria-hidden="true">
+              <button class="with_tooltip closeqb btn btn-default popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-toggle="popover" title="<%=t('quiz.actions.close')%>">
                 <i class="fa fa-power-off"></i>
               </button>
               <p class="creation_date">
                 <%=t('quiz.createdAt')%> <%= q.created_at.strftime("%d-%m-%Y %H:%M") %> - Click to show details
               </p>
             </li>
-
-
           <% end %>
         </ul>
-        <% else %>
-          <p><i class="fa fa-hand-o-up"></i>
-            <%=t('quiz.noOpenQuizzes')%></p>
-        <% end %>
+      <% else %>
+        <p><i class="fa fa-hand-o-up"></i> <%=t('quiz.noOpenQuizzes')%></p>
+      <% end %>
     </div>
+
     <div class="textrow">
       <h4><%=t('quiz.closedL')%></h4>
       <% if @quiz_inactive_sessions.length > 0 %>
@@ -53,7 +52,7 @@
                   <%=t('quiz.untitled')%>
                 <% end %>
               </p>
-              <button class="with_tooltip delete btn btn-default popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
+              <button class="with_tooltip delete btn btn-default popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-toggle="popover" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
                 <i class="fa fa-trash-o"></i>
               </button>
               <button class="with_tooltip btn btn-default" title="<%=t('quiz.actions.edit')%>" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%>>
@@ -73,7 +72,6 @@
       <% end %>
     </div>
   </div>
-
 
   <!-- Quiz session close confirmation-->
   <div class="contentclose" style="display: none">
@@ -98,27 +96,21 @@
 <div id="QuizAnalitycs" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-
-        <!-- This body is replaced with show_results.html.erb every time the modal is called -->
-
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+      <!-- This body is replaced with show_results.html.erb every time the modal is called -->
+    </div>
+  </div>
+</div>
 
 <div id="QuizEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-
       <!-- This body is replaced with edit.html.erb every time the modal is called -->
-
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
+    </div>
+  </div>
+</div>
 
 
 <%= content_for :javascript do %>
-
 
   $('#QuizAnalitycs').on('hidden.bs.modal', function(){
     $(this).removeData('bs.modal');
@@ -129,8 +121,8 @@
   });
 
   $(".ui-state-default").click(function(event){
-    //Prevent new window to appear when a button is clicked
-    if(($(event.target).hasClass("popover-link"))||($($(event.target).parent()).hasClass("popover-link"))){
+    //Prevent new quiz window to appear when a button is clicked
+    if(($(event.target).hasClass("popover-link"))||($($(event.target).parent()).hasClass("popover-link"))||($(event.target).parents(".popover").length > 0)){
       event.stopPropagation();
     }
   });
@@ -140,14 +132,13 @@
     content: function() {
       return $('.contentclose').html();
     },
-    placement: "bottom",
-    container: "body"
+    placement : 'top'
   });
 
   $('.closeqb').on('shown.bs.popover', function(){
-    //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
-    $('.btn_cancel').on("click",function(){
+    $('.btn_cancel').on("click",function(event){
       $('.closeqb').popover('hide');
+      event.stopPropagation();
     });
     $("a.quiz_actions_close").attr("href",$(this).attr("urlToCloseQuiz"));
   });
@@ -157,14 +148,13 @@
     content: function() {
       return $('.contentdelete').html();
     },
-    placement: "bottom",
-    container: "body"
+    placement : 'top'
   });
 
   $('.delete').on('shown.bs.popover', function(){
-    //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
-    $('.btn_cancel').on("click",function(){
+    $('.btn_cancel').on("click",function(event){
       $('.delete').popover('hide');
+      event.stopPropagation();
     });
     $("a.quiz_actions_delete").attr("href",$(this).attr("urlToRemoveQuiz"));
   });

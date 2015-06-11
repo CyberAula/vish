@@ -16,9 +16,11 @@
     @include make-md-column(12, $gutter: $grid-gutter-width)
     @include make-lg-column(12, $gutter: $grid-gutter-width)
 
-li.events-item,
-li.categories-item,
-li.repositories-item
+
+#quiz
+  ul.connectedSortable
+    .popover
+      margin-top: -20px
 
 #legal_notice
   li
