@@ -9,27 +9,33 @@ describe EmbedsController, controllers: true, debug:true do
                    #         embed GET      /embeds/:id(.:format)                                                embeds#show
                    #               PUT      /embeds/:id(.:format)                                                embeds#update
                    #               DELETE   /embeds/:id(.:format)                                                embeds#destroy
-	before do
-		@user = Factory(:user_vish)
-	end
+    before do
+  		@user = Factory(:user_vish)
+  	  @embed = Factory(:embed, author: @user.actor, owner: @user.actor )
+    end
 	
   	it 'embeds edit' do 
     	get :edit
   	end   
-  	it 'embeds create' do
-  		sign_in @user
-  		get :create
-  		assert_response(action(:new))
-  	end
+  	
+     it 'embeds create with json' do
+      sign_in @user
+      get :create, :embed => { owner_id: @user.actor.id, title: "asdfsdas", description: "adsfasda", tag_list: [], language: "independent", age_min: 0, age_max: 0, scope: 0 }
+      binding.pry
+      response.should redirect_to(Embed.last)
+    end
 
   	it 'embeds show' do 
-    	get :show
+    	get :show, {id: @embed.id}
+      assert_response :success
   	end
 
   	it 'embeds update' do
   		sign_in @user 
-    	get :update
-  	end   
+    	put :update, :embed => { owner_id: @user.actor.id, title: "asdfsdas", description: "adsfasda", tag_list: [], language: "independent", age_min: 0, age_max: 0, scope: 0 }, :id => @embed.id
+      response.should redirect_to(@embed)
+  	end
+
   	it 'embeds destroy' do 
     	get :destroy
   	end   
