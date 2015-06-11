@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe EmbedsController, controllers: true, debug:true do
+describe EmbedsController, controllers: true do
                    # search_embeds GET      /embeds/search(.:format)                                             embeds#search
                    #        embeds GET      /embeds(.:format)                                                    embeds#index
                    #               POST     /embeds(.:format)                                                    embeds#create
@@ -21,7 +21,6 @@ describe EmbedsController, controllers: true, debug:true do
      it 'embeds create with json' do
       sign_in @user
       get :create, :embed => { owner_id: @user.actor.id, title: "asdfsdas", description: "adsfasda", tag_list: [], language: "independent", age_min: 0, age_max: 0, scope: 0 }
-      binding.pry
       response.should redirect_to(Embed.last)
     end
 
@@ -37,7 +36,9 @@ describe EmbedsController, controllers: true, debug:true do
   	end
 
   	it 'embeds destroy' do 
-    	get :destroy
+      sign_in @user 
+    	get :destroy, :id => @embed.id
+      response.should redirect_to(@user)
   	end   
   		
 end

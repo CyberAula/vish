@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe AdminController, controllers: true do
+describe AdminController, controllers: true, debug:true do
 
 context 'being_admin' do  
   before(:each) do
@@ -37,18 +37,19 @@ context 'being_admin' do
   end
 
   it 'closed_reports' do
-    skip('non sense failure because a relationship')
+    pending('Doesnt work make me admin')
     sign_in @user
     get :closed_reports
-    assert_response :success
+    response.should redirect_to(:home)
   end
 
 
   it 'users' do
-    skip('non sense failure because a relationship')
+    pending('Doesnt work make me admin')
     sign_in @user
+    @user.make_me_admin
     get :users
-    assert_response :success
+    response.should redirect_to("/admin/users")
   end
 end
 
@@ -60,20 +61,20 @@ context 'not_being_admin' do
   it 'index_for?' do
     sign_in @user
     get :index
-    expect(response).to redirect_to(:home)
+    response.should redirect_to(:home)
   end
 
   it 'closed_reports?' do
     sign_in @user
     get :closed_reports
-    expect(response).to redirect_to(:home)
+    response.should redirect_to(:home)
   end
 
 
   it 'users?' do 
     sign_in @user
     get :users
-    expect(response).to redirect_to(:home)
+    response.should redirect_to(:home)
   end
 end
 
