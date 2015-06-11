@@ -7,4 +7,6 @@ Factory.define :waAssignment do |u|
  	u.with_dates	false
  	u.report_value	rand(0..100)
  	u.pending	false
-end#TODOWaAssignment(id: integer, fulltext: text, plaintext: text, with_dates: boolean, open_date: datetime, due_date: datetime, available_contributions: text, created_at: datetime, updated_at: datetime)
+end
+#TODOWaAssignment(id: integer, fulltext: text, plaintext: text, with_dates: boolean, open_date: datetime, due_date: datetime, available_contributions: text, created_at: datetime, updated_at: datetime)
+# has relationship with Contributions and wa_contributions_gallery y assignments

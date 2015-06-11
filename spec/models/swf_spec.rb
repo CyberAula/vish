@@ -6,14 +6,14 @@ describe Swf, models:true do
 	end
 
 	it 'title?' do
-		!@swf.title.blank?
+		assert_false @swf.title.blank?
 	end
 
 	it 'description?' do
-		!@swf.description.blank?
+		assert_false @swf.description.blank?
 	end
 
 	it 'activity_object?' do 
-		!@swf.activity_object.nil?
+		assert_false @swf.activity_object.nil?
 	end
 end

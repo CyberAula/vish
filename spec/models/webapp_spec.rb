@@ -7,15 +7,15 @@ describe Webapp, models:true do
 	end
 
 	it 'title?' do
-		!@webapp.title.blank?
+		assert_false @webapp.title.blank?
 	end
 
 	it 'description?' do
-		!@webapp.description.blank?
+		assert_false @webapp.description.blank?
 	end
 
 	it 'activity_object?' do 
-		!@webapp.activity_object.nil?
+		assert_false @webapp.activity_object.nil?
 	end
 
 end

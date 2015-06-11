@@ -7,15 +7,15 @@ describe Officedoc, models:true do
 	end
 
 	it 'title?' do
-		!@Odoc.title.blank?
+		assert_false @Odoc.title.blank?
 	end
 
 	it 'description?' do
-		!@Odoc.description.blank?
+		assert_false @Odoc.description.blank?
 	end
 
 	it 'activity_object?' do 
-		!@Odoc.activity_object.nil?
+		assert_false @Odoc.activity_object.nil?
 	end
 
 end

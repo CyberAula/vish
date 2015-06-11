@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe CategoriesController, controllers: true do
+	#TODO
 	render_views
 
     before do
@@ -11,14 +12,14 @@ describe CategoriesController, controllers: true do
 	describe "renders" do
 		it "user categories" do
 			get :index
-			expect(response).to url_for(current_subject) + "?tab=categories"
+			expect(response).to redirect_to(user_path(@user) + "?tab=categories")
 		end
 
-		it "show_favourites" do 
-			get :favourites
-			 expect(subject).to redirect_to(assigns(:favourites))
+		it "show_favorites" do 
+			get :show_favorites
+      		assert_response 200
+			expect(response).to render_template("favorites")
 		end
 	end
-
 
 end

@@ -6,14 +6,14 @@ describe Writing, models:true do
 	end
 
 	it 'title?' do
-		!@writing.fulltext.blank?
+		assert_false @writing.fulltext.blank?
 	end
 
 	it 'description?' do
-		!@writing.plaintext.blank?
+		assert_false @writing.plaintext.blank?
 	end
 
 	it 'activity_object?' do 
-		!@writing.activity_object.nil?
+		assert_false @writing.activity_object.nil?
 	end
 end

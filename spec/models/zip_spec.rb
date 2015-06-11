@@ -7,15 +7,15 @@ describe Zip, models:true do
 	end
 
 	it 'title?' do
-		!@zipfile.title.blank?
+		assert_false @zipfile.title.blank?
 	end
 
 	it 'description?' do
-		!@zipfile.description.blank?
+		assert_false @zipfile.description.blank?
 	end
 
 	it 'activity_object?' do 
-		!@zipfile.activity_object.nil?
+		assert_false @zipfile.activity_object.nil?
 	end
 
 end

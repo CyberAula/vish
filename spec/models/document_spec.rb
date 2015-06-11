@@ -9,15 +9,15 @@ describe Document, models:true do
 		end
 
 		it 'title?' do
-			!@picture.title.blank?
+			assert_false @picture.title.blank?
 		end
 
 		it 'description?' do
-			!@picture.description.blank?
+			assert_false @picture.description.blank?
 		end
 
 		it 'activity_object?' do 
-			!@picture.activity_object.nil?
+			assert_false @picture.activity_object.nil?
 		end
 		
 	end
@@ -29,15 +29,15 @@ describe Document, models:true do
 		end
 
 		it 'title?' do
-			!@video.title.blank?
+			assert_false @video.title.blank?
 		end
 
 		it 'description?' do
-			!@video.description.blank?
+			assert_false @video.description.blank?
 		end
 
 		it 'activity_object?' do 
-			!@video.activity_object.nil?
+			assert_false @video.activity_object.nil?
 		end
 		
 	end
@@ -49,15 +49,15 @@ describe Document, models:true do
 		end
 
 		it 'title?' do
-			!@audio.title.blank?
+			assert_false @audio.title.blank?
 		end
 
 		it 'description?' do
-			!@audio.description.blank?
+			assert_false @audio.description.blank?
 		end
 
 		it 'activity_object?' do 
-			!@audio.activity_object.nil?
+			assert_false @audio.activity_object.nil?
 		end
 		
 	end

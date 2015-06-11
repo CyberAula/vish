@@ -6,19 +6,19 @@ describe TrackingSystemEntry, models:true do
 	end
 
 	it 'title?' do
-		!@tsEntry.app_id.blank?
+		assert_false @tsEntry.app_id.blank?
 	end
 
 	it 'data?' do
-		!@tsEntry.data.blank?
+		assert_false @tsEntry.data.blank?
 	end
 
 	it 'user_agent?' do 
-		!@tsEntry.user_agent.nil?
+		assert_false @tsEntry.user_agent.nil?
 	end
 
 	it 'referrer?' do
-		!@tsEntry.referrer.blank?
+		assert_false @tsEntry.referrer.blank?
 	end
 
 	it 'user_logged?' do

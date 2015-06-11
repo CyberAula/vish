@@ -6,7 +6,7 @@ describe ProfilesController, controllers: true do
 
   context "for a user" do
     before do
-      @user = Factory(:user)
+      @user = Factory(:user_vish)
       sign_in @user
     end
 
@@ -37,7 +37,7 @@ describe ProfilesController, controllers: true do
 
     it "should not update other's" do
       begin
-        put :update, :user_id => Factory(:user).to_param, :profile => { :organization => "Social Stream" }
+        put :update, :user_id => Factory(:user_vish).to_param, :profile => { :organization => "Social Stream" }
 
         assert false
       rescue CanCan::AccessDenied

@@ -10,15 +10,15 @@ describe Excursion, models: true do
   end
 
   it "has name" do
-    !@excursion.title.nil?
+    assert_false @excursion.title.nil?
   end
 
   it "is published" do
-    !@excursion.draft
+    assert_false @excursion.draft
   end
 
   it "has an author" do
-    !@excursion.author.nil? && @excursion.author.class == "Actor"
+    assert_false @excursion.author.nil? && @excursion.author.class == "Actor"
   end
   
 end

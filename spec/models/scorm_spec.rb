@@ -6,14 +6,14 @@ describe Scorm do
 	end
 
 	it 'title?' do
-		!@scorm.title.blank?
+		assert_false @scorm.title.blank?
 	end
 
 	it 'description?' do
-		!@scorm.description.blank?
+		assert_false @scorm.description.blank?
 	end
 
 	it 'activity_object?' do 
-		!@scorm.activity_object.nil?
+		assert_false @scorm.activity_object.nil?
 	end
 end

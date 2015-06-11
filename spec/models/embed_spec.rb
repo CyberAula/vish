@@ -7,11 +7,11 @@ describe Embed, models:true do
 	end
 
 	it 'fulltext?' do
-		!@embed.fulltext.blank?
+		assert_false @embed.fulltext.blank?
 	end
 
 	it 'activity_object?' do 
-		!@embed.activity_object.nil?
+		assert_false @embed.activity_object.nil?
 	end
 
 end

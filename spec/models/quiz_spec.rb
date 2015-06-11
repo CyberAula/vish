@@ -7,15 +7,15 @@ describe QuizSession, models:true do
 	end
 
 	it 'title?' do
-		!@quiz.name.blank?
+		assert_false @quiz.name.blank?
 	end
 
 	it 'description?' do
-		!@quiz.quiz.blank?
+		assert_false @quiz.quiz.blank?
 	end
 
 	it 'url?' do 
-		!@quiz.url.nil?
+		assert_false @quiz.url.nil?
 	end
 
 end
@@ -27,11 +27,11 @@ describe QuizAnswer, models:true do
 	end
 
 	it 'answer?' do
-		!@quizanswer.answer.blank?
+		assert_false @quizanswer.answer.blank?
 	end
 
 	it 'belongs2?' do
-		!@quizanswer.quiz_session.blank?
+		assert_false @quizanswer.quiz_session.blank?
 	end
 
 end

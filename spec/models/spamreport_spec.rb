@@ -7,11 +7,11 @@ describe SpamReport, spam:true, models:true do
 	end
 
 	it 'fulltext?' do
-		!@spamreport.issue.blank?
+		assert_false @spamreport.issue.blank?
 	end
 
 	it 'activity_object?' do 
-		!@spamreport.activity_object.nil?
+		assert_false @spamreport.activity_object.nil?
 	end
 
 end

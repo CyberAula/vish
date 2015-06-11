@@ -1,50 +1,42 @@
 require 'spec_helper'
 
-describe Workshop, models:true do
+describe Workshop, models:true, workshop:true	 do
 	before do
 		@workshop = Factory(:workshop)
 	end
 
 	it 'title?' do
-		!@workshop.title.blank?
+		assert_false @workshop.title.blank?
 	end
 
 	it 'draft?' do
-		!@workshop.draft.nil?
+		assert_false @workshop.draft.nil?
 	end
 
 	it 'activity_object?' do 
-		!@workshop.activity_object.nil?
+		assert_false @workshop.activity_object.nil?
 	end
 end
 
-describe WorkshopActivity, models:true do
+describe WorkshopActivity, models:true, workshop:true  do
 	before do
-		@wact = Factory(:workshopActivity)
+		@wa = Factory(:workshopActivity)
 	end
-
+	#problems because of polymorphic
 	it 'title?' do
-		!@wact.title.blank?
+		assert_false @wa.title.blank?
 	end
 
 	it 'position?' do 
-		!@wact.position.nil?
+		assert_false @wa.position.nil?
 	end
 
 	it 'workshop_id?' do
-		!@wact.workshop_id.nil?
-	end
-
-	it 'wa_id?' do
-		!@wact.wa_id.nil?
-	end
-
-	it 'wa_type?' do
-		!@wact.wa_type.nil?
+		assert_false @wa.workshop_id.nil?
 	end
 
 	it 'description?' do
-		!@wact.description.nil?
+		assert_false @wa.description.nil?
 	end
 
 end
@@ -55,11 +47,11 @@ describe WaText, models:true do
 	end
 
 	it 'fulltext?' do
-		!@waTxt.fulltext.blank?
+		assert_false @waTxt.fulltext.blank?
 	end
 
 	it 'plaintext?' do
-		!@waTxt.plaintext.blank?
+		assert_false @waTxt.plaintext.blank?
 	end
 
 end
@@ -71,13 +63,13 @@ describe WaAssignment, models:true do
 	end
 
 	it 'fulltext?'
-	#	!@wass.fulltext.blank?
+	#	assert_false @wass.fulltext.blank?
 
 	it 'plaintext?'
-	#	!@wass.plaintext.blank?
+	#	assert_false @wass.plaintext.blank?
 
 	it 'available_contributions?'
-	#	!@wass.available_contributions.blank?
+	#	assert_false @wass.available_contributions.blank?
 end
 
 describe WaResource, models:true do
@@ -86,13 +78,13 @@ describe WaResource, models:true do
 	end
 
 	it 'fulltext?' 
-	#	!@wars.fulltext.blank?
+	#	assert_false @wars.fulltext.blank?
 
 	it 'plaintext?'
-	#	!@wars.plaintext.blank?
+	#	assert_false @wars.plaintext.blank?
 
 	it 'available_contributions?'
-	#	!@wars.available_contributions.blank?
+	#	assert_false @wars.available_contributions.blank?
 
 end
 
@@ -102,7 +94,7 @@ describe WaResourcesGallery, models:true do
 	end
 
 	it 'title?' do
-		!@warsgal.title.blank?
+		assert_false @warsgal.title.blank?
 	end
 
 end
@@ -114,8 +106,8 @@ describe WaContributionsGallery, models:true do
 	end
 
 	it 'title?'
-	#	!@wacngal.title.blank?
+	#	assert_false @wacngal.title.blank?
 
 	it 'activity_object?' 
-	#	!@wacngal.activity_object.nil?
+	#	assert_false @wacngal.activity_object.nil?
 end

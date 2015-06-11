@@ -6,11 +6,11 @@ describe Stats, models:true do
 	end
 
 	it 'name?' do
-		!@stats.stat_name.blank?
+		assert_false @stats.stat_name.blank?
 	end
 
 	it 'value?' do
-		!@stats.stat_value.blank?
+		assert_false @stats.stat_value.blank?
 	end
 
 end

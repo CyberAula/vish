@@ -2,6 +2,7 @@
 require 'spec_helper'
 
 describe PostsController, controllers: true do
+#TODO
 end
 =begin
   include SocialStream::TestHelpers
@@ -50,9 +51,9 @@ end
       describe "posts to user" do
         describe "with first relation" do
           before do
-            contact = @user.contact_to!(@user)
+            contact = @user.contact_toassert_false (@user)
             relation = @user.relation_customs.sort.first
-            model_assigned_to @user.contact_to!(@user), relation
+            model_assigned_to @user.contact_toassert_false (@user), relation
             @current_model = Factory(:post, :author_id => @user.actor_id,
                                      :owner_id  => @user.actor_id,
                                      :user_author_id => @user.actor_id,
@@ -75,9 +76,9 @@ end
 
         describe "with last relation" do
           before do
-            contact = @user.contact_to!(@user)
+            contact = @user.contact_toassert_false (@user)
             relation = @user.relation_customs.sort.last
-            model_assigned_to @user.contact_to!(@user), relation
+            model_assigned_to @user.contact_toassert_false (@user), relation
             @current_model = Factory(:post, :author_id => @user.actor_id,
                                      :owner_id  => @user.actor_id,
                                      :user_author_id => @user.actor_id,
@@ -91,9 +92,9 @@ end
 
         describe "with public relation" do
           before do
-            contact = @user.contact_to!(@user)
+            contact = @user.contact_toassert_false (@user)
             relation = Relation::Public.instance
-            model_assigned_to @user.contact_to!(@user), relation
+            model_assigned_to @user.contact_toassert_false (@user), relation
             @current_model = Factory(:post, :author_id => @user.actor_id,
                                      :owner_id  => @user.actor_id,
                                      :user_author_id => @user.actor_id)
@@ -109,7 +110,7 @@ end
         before do
           friend = Factory(:friend, :contact => Factory(:contact, :receiver => @user.actor)).sender
 
-          model_assigned_to @user.contact_to!(friend), friend.relation_custom('friend')
+          model_assigned_to @user.contact_toassert_false (friend), friend.relation_custom('friend')
           @current_model = Factory(:post, :author_id => @user.actor_id,
                                    :owner_id  => friend.id,
                                    :user_author_id => @user.actor_id)
@@ -123,7 +124,7 @@ end
         before do
           ac = Factory(:acquaintance, :contact => Factory(:contact, :receiver => @user.actor)).sender
 
-          model_assigned_to @user.contact_to!(ac), ac.relation_custom('acquaintance')
+          model_assigned_to @user.contact_toassert_false (ac), ac.relation_custom('acquaintance')
         end
 
         it_should_behave_like "Deny Creating"
