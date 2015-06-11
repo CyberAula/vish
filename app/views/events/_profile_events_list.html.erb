@@ -4,5 +4,5 @@
     <% end %>
 
     <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
-    <%= render partial: 'events/events', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> params[:sort_by]||default_sort_by} %>
+    <%= render partial: 'events/profile_events_page', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> params[:sort_by]||default_sort_by} %>
 </ul>

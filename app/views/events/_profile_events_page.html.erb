@@ -3,9 +3,13 @@
     <%= render :partial => 'events/event', :locals => { :event => event } %>
 <% end %>
 
-<script>
-    if(typeof update_pageless_state == "function"){
+<script>   
+  <%if request.xhr?%>
+    update_pageless_state("events", <%=all_events.num_pages%>, <%=all_events.current_page%>);
+  <%else%>
+    document.addEventListener("DOMContentLoaded", function(){  
       update_pageless_state("events", <%=all_events.num_pages%>, <%=all_events.current_page%>);
-    }    
+    });
+  <%end%> 
 </script>
 

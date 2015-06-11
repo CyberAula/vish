@@ -69,7 +69,7 @@ var events_dropdown_select = function(option) {
         var value = $("#order_by_selector_events .dropdown-menu [sort-by-key="+option+"]").html();
         $("#dropdownMenuOrdByevents").html(value + '<i class="fa fa-angle-down"></i>');
         $('.loader_pagination').hide();      
-        $("#events_tab_ready").replaceWith(html);
+        $("#events_tab_ready").append(html);
         re_apply_pageless("events");
       },
       error: function(){
