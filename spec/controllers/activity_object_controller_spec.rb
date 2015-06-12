@@ -14,7 +14,7 @@ describe ActivityObjectController, controllers: true do
 
 		it 'custom_avatar?' do
 			#@picture = Factory(:picture, file: "http://lorempixel.com/400/200/sports/" )
-			skip('File handler doesnt work')
+			pending('File handler doesnt work')
 			@userAO = Factory(:user_vish, :avatar => {:url => "http://lorempixel.com/400/200/sports/"} )
 			get :show_avatar, :params => { id: @userAO.activity_object.id }
 			assert_response :success

@@ -11,27 +11,27 @@ describe ContributionsController, controllers: true do
  #                                 DELETE   /contributions/:id(.:format)                                         contributions#destroy
 
  	it 'contribution index' do 
-    skip('not implemented contribution factory yet');
+    pending('not implemented contribution factory yet');
   end
 
  	it 'contributions create' do
-    skip('not implemented contribution factory yet');
+    pending('not implemented contribution factory yet');
   end
  	
   it 'contributions edit'	do
-    skip('not implemented contribution factory yet');
+    pending('not implemented contribution factory yet');
   end
  	
   it 'contributions show'	do
-    skip('not implemented contribution factory yet');
+    pending('not implemented contribution factory yet');
   end
  	
   it 'contributions update'	do
-    skip('not implemented contribution factory yet');
+    pending('not implemented contribution factory yet');
   end
  	
   it 'contributions destroy'	do
-    skip('not implemented contribution factory yet');
+    pending('not implemented contribution factory yet');
   end
 
 end

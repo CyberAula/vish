@@ -37,7 +37,7 @@ require 'spec_helper'
 #                                PUT      /excursions/:id(.:format)                                            excursions#update
 #                                DELETE   /excursions/:id(.:format)                                            excursions#destroy
 
-describe ExcursionsController, controllers: true, debug:true do
+describe ExcursionsController, controllers: true do
 
 
   # This should return the minimal set of attributes required to create a valid
@@ -54,28 +54,35 @@ describe ExcursionsController, controllers: true, debug:true do
 
 	it 'get excursion' do
 		sign_in @user
+		Excursion.where(id: @excursion.id).should exist
 		get :show, id: @excursion.id
 		assert_response :success
 	end
 	
 	it 'create excursion' do
 		sign_in @user
-		
+		get :new
+		assert_response :success
 	end
 	
 	it 'edit excursion' do
 		sign_in @user
-	
+		get :edit, id: @excursion.id
+		assert_response :success
 	end
 	
 	it 'delete excursion' do
 		sign_in @user
-	
+		Excursion.where(id: @excursion.id).should exist
+		get :destroy, id: @excursion.id
+		response.should redirect_to(@user)
+		Excursion.where(id: @excursion.id).should_not exist
 	end
 	
 	it 'index excursion' do
 		sign_in @user
-
+		get :index
+		assert_response :success
 	end
 
 
