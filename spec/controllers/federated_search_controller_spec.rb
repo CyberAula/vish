@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe FederatedSearchController, controllers: true, debug:true do
+describe FederatedSearchController, controllers: true do
 	it 'empty search' do 
 		get :search, q: 'asdfasdfasdf', n: 20
 		parsed_json = JSON.parse(response.body)

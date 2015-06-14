@@ -515,7 +515,7 @@ DEPENDENCIES
   resque (= 1.23.1)
   rest-client (= 1.6.7)
   rmagick (= 2.13.2)
-  rspec-rails (= 2.9.0)
+  rspec-rails (= 2.9)
   rubyzip (= 1.0.0)
   sanitize (= 2.1.0)
   sass-rails (= 3.2.6)

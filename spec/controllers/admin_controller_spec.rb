@@ -18,8 +18,8 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe AdminController, controllers: true, debug:true do
-
+describe AdminController, controllers: true do
+#TODO
 context 'being_admin' do  
   before(:each) do
     @user = Factory(:user_vish)
