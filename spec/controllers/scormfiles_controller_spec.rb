@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ScormfilesController, controllers: true, debug: true do
+describe ScormfilesController, controllers: true do
 
 
 	before do

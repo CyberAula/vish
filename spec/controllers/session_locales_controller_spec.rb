@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 describe SessionLocalesController, controllers: true do
-#TODO
+#super,should be already tested
 end

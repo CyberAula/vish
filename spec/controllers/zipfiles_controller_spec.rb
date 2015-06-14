@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 describe ZipfilesController, controllers: true do
-	#TODO
+	#empty controller
 end
