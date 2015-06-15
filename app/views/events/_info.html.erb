@@ -44,10 +44,6 @@
               <td><%= @event.description %></td>
             <% end%>
           </tr>
-          <script>
-            $("#start").text(new Date(Date.parse("<%=@event.start_at.iso8601%>")).toLocaleString());
-            $("#end").text(new Date(Date.parse("<%=@event.end_at.iso8601%>")).toLocaleString());
-          </script>
 
           <!--div class="day">
             <%= @event.start_at.day %>
@@ -76,8 +72,8 @@
   </a>
 </div>
 
+<%= content_for :javascript do %>
 
-<script language="javascript" type="text/javascript" >
 
   $("#showingMore2").click(function(e){
     if($("#showingMore2").attr("title")==="showMore"){
@@ -90,10 +86,9 @@
     }
   });
 
-</script>
 
 
-      <%= content_for :javascript do %>
+      
         $("#start").text(new Date(Date.parse("<%=@event.start_at.iso8601%>")).toLocaleString());
         $("#end").text(new Date(Date.parse("<%=@event.end_at.iso8601%>")).toLocaleString());
       <%end%>

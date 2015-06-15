@@ -13,7 +13,7 @@
   
 <% end %>
 
-<script>
+<%= content_for :javascript do %>
   $(document).ready(function(){    
       //$("#edit_picture_<%=@event.poster.id%> input[name='commit']").addClass("hidden");
       $("#btn_poster").addClass("hidden");
@@ -29,4 +29,4 @@
       $("#btn_poster").addClass("hidden");
     }
   }
-</script>
+<% end %>
