@@ -53,14 +53,20 @@
         color: $black
       li.active
         color: $black
+        background-color: #eee
+        border-radius: $border-radius-base
 
     ul
       li
         list-style: none
         padding: 5px 0
-        text-indent: -5px
+        .index_title
+          float: left
+          width: 85%
         i
-          margin-right: 5px
+          margin: 0 5px
+          float: left
+          padding: 3px
         a
           &:active
             color: $gray-light
