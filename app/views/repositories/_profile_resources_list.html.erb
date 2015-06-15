@@ -3,5 +3,5 @@
       <%= render partial: 'repositories/add_new' %>
     <% end %>
     <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
-    <%= render partial: 'repositories/resources', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> params[:sort_by]||default_sort_by} %>
+    <%= render partial: 'repositories/profile_resources_page', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> params[:sort_by]||default_sort_by} %>
 </ul>

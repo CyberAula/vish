@@ -4,7 +4,11 @@
 <% end %> 
 
 <script>
-    if(typeof update_pageless_state == "function"){
+  <%if request.xhr?%>
+    update_pageless_state("resources", <%=all_resources.num_pages%>, <%=all_resources.current_page%>);
+  <%else%>
+    document.addEventListener("DOMContentLoaded", function(){  
       update_pageless_state("resources", <%=all_resources.num_pages%>, <%=all_resources.current_page%>);
-    }    
+    });
+  <%end%> 
 </script>

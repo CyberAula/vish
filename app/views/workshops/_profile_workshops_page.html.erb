@@ -5,7 +5,11 @@
 <% end %> 
 
 <script>
-    if(typeof update_pageless_state == "function"){
+  <%if request.xhr?%>
+    update_pageless_state("workshops", <%=workshops.num_pages%>, <%=workshops.current_page%>);
+  <%else%>
+    document.addEventListener("DOMContentLoaded", function(){  
       update_pageless_state("workshops", <%=workshops.num_pages%>, <%=workshops.current_page%>);
-    }
+    });
+  <%end%>
 </script>

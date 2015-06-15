@@ -1,0 +1,6 @@
+<ul class="items">
+    <% if profile_subject_is_current?%>
+        <%= render partial: 'excursions/add_new' %>
+    <% end %>
+    <%= render partial: 'excursions/profile_excursions_page', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> sort_by} %>
+</ul>

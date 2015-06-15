@@ -96,18 +96,14 @@
   function re_apply_pageless(tab){
     //first remove old pageless
     $.pagelessStop();
-
     if(typeof pageless_state[tab] != "object"){
       return;
-    }
-     
-    $("#" + tab + "_tab_ready ul").pageless({
+    }     
+    $("#" + tab + "_tab_ready ul.items").pageless({
       totalPages: pageless_state[tab].num_pages,
       url: get_url_with_sort_by(tab),
       currentPage: pageless_state[tab].current_page,
       loader: '.loader_pagination',
-      complete: function(){
-      },
       end: function(){
         $('.loader_pagination').hide();
       }
@@ -147,6 +143,7 @@
           success : function(html){
             $('#loader_pagination_net').hide();      
             $("#net_tab_ready").append(html);
+            re_apply_pageless("net");
           },
           error: function(){
             // console.log("error loading net tab");
@@ -177,6 +174,7 @@
             success : function(html) {
               $('#loader_pagination_home').hide();      
               $("#first_page_home_tab_ready").append(html);
+              re_apply_pageless("home");
             },
             error: function(){
               // console.log("error loading home tab");
@@ -187,7 +185,6 @@
       }   
     });
 
-    //Reapply backstrech depending on the tab loaded
     <%if !params[:tab] || params[:tab]=="home"%>
       home_tab_loaded = true;
     <%else%>

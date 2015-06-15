@@ -1,0 +1,184 @@
+<% 
+  all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).select{|i| i.isRoot?}
+  order = profile_or_current_subject.categories_order
+  unless order.nil?
+    orderLength = order.length
+    all_categories.sort_by!{|h| order.index(h.activity_object.id) || (orderLength+1)}
+  end
+  categoryView = profile_or_current_subject.categories_view
+  canEditProfile = profile_subject_is_current? or isAdmin?
+%>
+
+<div class="toolbar_nav-tab">
+  <% if canEditProfile %>
+    <a href="#options-modal" type="button" class="btn btn-default" role="button" data-toggle="modal" >
+      <i class="fa fa-cogs"></i>
+    </a>
+
+    <button type="button" class="btn btn-default btn-for-categorize" data-toggle="button"><i class="fa fa-arrows"></i><%= t('categories.dragandrop.place_uncategorize') %></button>
+  <% end %>
+
+  <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
+    <button id="normal-view" type="button" class="btn btn-default">
+      <%= t('categories.dragandrop.gallery') %>
+    </button>
+    <button id="list-view" type="button" class="btn btn-default">
+      <%= t('categories.dragandrop.list') %>
+    </button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="options-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_tag(categories_settings_path) do %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel"><%= t('categories.dragandrop.edit') %></h3>
+        </div>
+        <div class="modal-body">
+          <p><%= t('categories.dragandrop.default_view') %></p>
+
+          <div class="radio">
+            <label>
+              <%= radio_button_tag :categories_view, "gallery", (categoryView=="gallery") %>
+              <span class="lbl padding-0">
+              <i class="fa fa-th "></i>
+              <%= t('categories.dragandrop.gallery') %>
+               </span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <%= radio_button_tag :categories_view, "list", (categoryView=="list") %>
+              <span class="lbl padding-0">
+              <i class="fa fa-align-justify "></i>
+              <%= t('categories.dragandrop.list') %>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn  btn-default" data-dismiss="modal" aria-hidden="true"><%= t('close') %></button>
+          <%= submit_tag t('save'), :class => 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if profile_subject_is_current? or isAdmin? %>
+  <%= render partial: 'categories/edit_categories', :locals => { :scope => scope , :all_categories => all_categories} %>
+<% end %>
+
+<div id="normal-instance" <%=(categoryView!="gallery") ? "style=display:none" : ""%> >
+  <ul class="categories main-categories-space items">
+    <% if profile_subject_is_current? %>
+      <%= render partial: 'categories/category-add' %>
+      <%= render partial: 'categories/category_fav' %>
+    <% end %>
+    <%= render partial: 'categories/categories', :locals => { :scope => scope, :all_categories => all_categories} %>
+  </ul>
+</div>
+
+<div id="list-instance" class="items" <%=(categoryView!="list") ? "style=display:none" : ""%> >
+  <% all_categories.each do |category| %>
+    <% unless category.property_objects.empty? %>
+      <h2 class="category-list-instance-title"><%=link_to(category.title,category)%></h2>
+      <ul id="container_<%=category.id.to_s%>" class="categories main-list-categories-space">
+        <% category.property_objects.each do |resource| %>
+          <%= render :partial => "entities/entity", :locals => { :entity => resource.object, :prefix_id => category.id.to_s + "_" } %>
+        <%end%>
+      </ul>
+      <button onclick="location.href='<%=category_url(category)%>'" class="show_more_catalogue btn btn-default" name="<%=category.title%>"><%= t('view_all') %></button>
+      <hr class="divider-cat">
+    <%end%>
+  <%end%>
+</div>
+
+
+
+<script>
+  Array.prototype.equals = function (array){
+      // if the other array is a falsy value, return
+      if (!array)
+          return false;
+
+      // compare lengths - can save a lot of time
+      if (this.length != array.length)
+          return false;
+
+      for (var i = 0, l=this.length; i < l; i++) {
+          // Check if we have nested arrays
+          if (this[i] instanceof Array && array[i] instanceof Array) {
+              // recurse into the nested arrays
+              if (!this[i].equals(array[i]))
+                  return false;
+          }
+          else if (this[i] != array[i]) {
+              // Warning - two different object instances will never be equal: {x:20} != {x:20}
+              return false;
+          }
+      }
+      return true;
+  };
+
+  function updateMainView(){
+    var actualState = $(".edit_categories .box-item").clone();
+    var s = $(".main-categories-space .box-item");
+    <% if profile_subject_is_current? %>
+      s.splice(0,2);
+    <% end %>
+    s.each(function(index){this.remove();});
+    actualState.appendTo(".main-categories-space");
+  }
+
+  var beginIndex;
+  var beginObjects;
+
+
+  function add_onclicks_to_categories(){
+      //Let the overlay appear
+      $(".btn-for-categorize").click(function(){
+        $("#categories_edition").fadeIn();
+
+        beginIndex = getidArray();
+        beginObjects = $(".edit_categories .box-item").clone();
+      });
+
+      $("#normal-view").click(function(){
+        $(".btn-for-categorize").show(200);
+          $("#list-instance").fadeOut(200,function(){  
+            $("#normal-view").addClass("active");
+            $("#list-view").removeClass("active");        
+            $("#normal-instance").fadeIn(200);
+          });
+      });
+
+      $("#list-view").click(function(){
+        $(".btn-for-categorize").hide(200);
+        $("#normal-instance").fadeOut(200,function(){
+          $("#list-view").addClass("active");
+          $("#normal-view").removeClass("active");
+          $("#list-instance").fadeIn(200);
+        });
+      });
+
+      if(<%=(categoryView!="gallery")%>){
+        $(".btn-for-categorize").hide();
+        $("#list-view").addClass("active");
+      } else {
+        $("#normal-view").addClass("active");
+      }
+  };
+
+  <%if request.xhr? %>
+    add_onclicks_to_categories();
+  <%else%>
+    document.addEventListener("DOMContentLoaded", function(){  
+      add_onclicks_to_categories();
+    });
+  <%end%>
+
+</script>
