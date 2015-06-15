@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Workshop, models:true, workshop:true	 do
+describe Workshop, models:true, workshop:true, debug:true	 do
 	before do
 		@workshop = Factory(:workshop)
 	end
@@ -18,7 +18,7 @@ describe Workshop, models:true, workshop:true	 do
 	end
 end
 
-describe WorkshopActivity, models:true, workshop:true  do
+describe WorkshopActivity, models:true, workshop:true, debug:true  do
 	before do
 		@wa = Factory(:workshopActivity)
 	end
@@ -41,7 +41,7 @@ describe WorkshopActivity, models:true, workshop:true  do
 
 end
 
-describe WaText, models:true do
+describe WaText, models:true, debug:true do
 	before do
 		@waTxt = Factory(:waText)
 	end
@@ -57,38 +57,44 @@ describe WaText, models:true do
 end
 
 
-describe WaAssignment, models:true do
+describe WaAssignment, models:true, debug:true do
 	before do
 		@wass = Factory(:waAssignment)
 	end
 
-	it 'fulltext?'
-	#	assert_false @wass.fulltext.blank?
+	it 'fulltext?' do
+		assert_false @wass.fulltext.blank?
+	end
 
-	it 'plaintext?'
-	#	assert_false @wass.plaintext.blank?
+	it 'plaintext?' do
+		assert_false @wass.plaintext.blank?
+	end
 
-	it 'available_contributions?'
-	#	assert_false @wass.available_contributions.blank?
+	it 'available_contributions?' do 
+		assert_false @wass.available_contributions.blank?
+	end
 end
 
-describe WaResource, models:true do
+describe WaResource, models:true, debug:true do
 	before do
 		@wars = Factory(:waResource)
 	end
 
-	it 'fulltext?' 
-	#	assert_false @wars.fulltext.blank?
+	it 'fulltext?' do
+		assert_false @wars.fulltext.blank?
+	end
 
-	it 'plaintext?'
-	#	assert_false @wars.plaintext.blank?
+	it 'plaintext?' do
+		assert_false @wars.plaintext.blank?
+	end
 
-	it 'available_contributions?'
-	#	assert_false @wars.available_contributions.blank?
+	it 'available_contributions?' do 
+		assert_false @wars.available_contributions.blank?
+	end
 
 end
 
-describe WaResourcesGallery, models:true do
+describe WaResourcesGallery, models:true, debug:true do
 	before do
 		@warsgal = Factory(:waResourcesGallery)
 	end
@@ -100,14 +106,16 @@ describe WaResourcesGallery, models:true do
 end
 
 
-describe WaContributionsGallery, models:true do
+describe WaContributionsGallery, models:true, debug:true do
 	before do
 		@wacngal = Factory(:waContributionsGallery)
 	end
 
-	it 'title?'
-	#	assert_false @wacngal.title.blank?
+	it 'title?' do
+		assert_false @wacngal.title.blank?
+	end
 
-	it 'activity_object?' 
-	#	assert_false @wacngal.activity_object.nil?
+	it 'activity_object?' do
+		assert_false @wacngal.activity_object.nil?
+	end
 end

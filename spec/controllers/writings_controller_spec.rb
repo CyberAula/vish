@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe WritingsController, controllers: true, debug: true do
+describe WritingsController, controllers: true do
 	
 	before do
 		@user = Factory(:user_vish)
