@@ -46,7 +46,6 @@ DocumentsHelper.module_eval do
 
   # Find the right class for the icon of this document, based on its format
   def icon_mime_type document
-    binding.pry
     if SocialStream::Documents.icon_mime_types[:subtypes].include?(document.format)
       document.format
     elsif SocialStream::Documents.icon_mime_types[:types].include?(document.mime_type_type_sym)
