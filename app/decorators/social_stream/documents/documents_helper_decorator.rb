@@ -13,7 +13,7 @@ DocumentsHelper.module_eval do
         when :video then "film"
         when :pdf then "file-pdf"
         when :swf then "file-swf"
-        when :zip then "file-zip"
+        when :zip then "file-archive-o"
         else "file" #icon_mime_type document
       end
     else
