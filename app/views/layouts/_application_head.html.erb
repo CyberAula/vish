@@ -6,7 +6,7 @@
 <meta name="keywords" content="<%= yield(:keywords).empty? ? t('site.current.keywords') : yield(:keywords) %>">
 <meta name="description" content="<%= yield(:description).empty? ? t('site.current.description') : yield(:description) %>">
 
-<meta property="og:site_name" content="'<%=Vish::Application.config.name%>'">
+<meta property="og:site_name" content="<%=Vish::Application.config.name%>">
 <% unless yield(:title).blank? %>
   <meta property="og:title" content="<%= yield(:title) %>">
   <meta property="og:type" content="<%= yield(:og_type) %>">
@@ -16,12 +16,12 @@
 <% end %>
 
 <% if Vish::Application.config.facebook %>
-  <meta property="fb:admins" content="'<%=Vish::Application.config.APP_CONFIG['facebook']["accountID"]%>'"/>
-  <meta property="fb:app_id" content="'<%=Vish::Application.config.APP_CONFIG['facebook']["appID"]%>'"/>
+  <meta property="fb:admins" content="<%=Vish::Application.config.APP_CONFIG['facebook']["accountID"]%>"/>
+  <meta property="fb:app_id" content="<%=Vish::Application.config.APP_CONFIG['facebook']["appID"]%>"/>
 <% end %>
 
 <% if Vish::Application.config.gwebmastertools %>
-  <meta name="google-site-verification" content="'<%=Vish::Application.config.APP_CONFIG['gwebmastertools']["site-verification"]%>'"/>
+  <meta name="google-site-verification" content="<%=Vish::Application.config.APP_CONFIG['gwebmastertools']["site-verification"]%>"/>
 <% end %>
 
 <%= favicon_link_tag "icons/favicon.ico" %>
