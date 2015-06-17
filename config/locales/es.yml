@@ -927,14 +927,14 @@ es:
     title: "Captcha"
   site:
     current:
-      description: "Un punto de encuentro para científicos y profesores basado en la idea de excursiones virtuales"
-      keywords: "VisHub,virtual,excursion"
-      title: "Virtual Science Hub"
-      search: "Virtual Science Hub - Busqueda"
-      browse: "Virtual Science Hub - Explorar"
-      msg: "Virtual Science Hub - Mensajes"
-      activity: "Virtual Science Hub - Actividades"
-    name: "Virtual Science Hub"
+      description: "ViSH es una red social colaborativa centrada en la creación y compartición de recursos educativos para la realización de actividades didácticas."
+      keywords: "e-Learning, Technology Enhanced Learning, education, Learning Objects, repository, resources, authoring tool, catalogue, search"
+      title: "ViSH"
+      search: "ViSH - Buscar"
+      browse: "ViSH - Explorar"
+      msg: "ViSH - Mensajes"
+      activity: "ViSH - Actividades"
+    name: "ViSH"
   swf:
     confirm_delete: "¿Borrar SWF?"
     name: "objecto flash"

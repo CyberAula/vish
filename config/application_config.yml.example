@@ -2,6 +2,7 @@
 # Configure here all the variables of your ViSH instance.
 
 development:
+  name: "ViSH development"
   domain: "localhost:3000"
   test_domain: true
   no_reply_mail: "no-reply@vishub.org"
@@ -22,6 +23,7 @@ development:
     qualityThreshold: 5
 
 production:
+  name: "ViSH"
   domain: "vishub.org"
   test_domain: false
   code_domain: "vishubcode.global.dit.upm.es"
@@ -134,6 +136,7 @@ test:
 # Facebook (http://facebook.com)
 # facebook:
 #   appID: "facebook application identifier"
+#   accountID: "facebook user or account identifier"
 
 # Twitter (http://twitter.com)
 # twitter:
@@ -142,6 +145,10 @@ test:
 # Google Plus (http://plus.google.com/)
 # gplus:
 #   enable: true
+
+# Google Webmaster Tools Verification Code
+# gwebmastertools:
+#   site-verification: "content attribute value of the google-site-verification meta tag"
 
 
 
