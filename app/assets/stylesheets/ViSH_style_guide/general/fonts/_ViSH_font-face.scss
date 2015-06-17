@@ -26,7 +26,10 @@
 // ---------------------regular
 @font-face{
   font-family:"opensans-regular";
-  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/regular/google-font-regular.woff2') format('woff2');  
+  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.svg') format('svg');
+  src: url(ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.ttf);
+  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.woff') format('woff');
   font-style: normal;
   font-weight: normal;
 }
