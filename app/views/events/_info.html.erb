@@ -66,25 +66,28 @@
     </div>
   </div>
   <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
-    <span id="showingMore2" class="showMore accordion-toggle btn btn-default" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" title=<%=t("excursion.actions.show_fewer")%>>
-    <%=t('excursion.actions.show_fewer')%>
+    <span id="showingMore2" class="showMore accordion-toggle btn btn-default" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" title='<%=t("excursion.actions.show_fewer")%>' status="expanded" >
+    <i class="fa fa-minus-square-o"></i> <%=t('excursion.actions.show_fewer')%>
     </span>
   </a>
 </div>
 
 <%= content_for :javascript do %>
 
-
   $("#showingMore2").click(function(e){
-    if($("#showingMore2").attr("title")==="showMore"){
-      $(".showMore").html('<%=t("excursion.actions.show_fewer")%>');
-      $("#showingMore2").attr("title", "showFewer");
-    }
-    else{
-      $(".showMore").html('<%=t("excursion.actions.show_more")%>');
-      $("#showingMore2").attr("title", "showMore");
-    }
-  });
+      if($("#showingMore2").attr("status")==="expanded"){
+        $("#showingMore2").html('<i class="fa fa-plus-square-o"></i> <%=t("excursion.actions.show_more")%>');
+        $("#showingMore2").attr("title", "<%=t('excursion.actions.show_fewer')%>");
+        $("#showingMore2").attr("status", "collapsed");
+      }
+      else{
+        $("#showingMore2").html('<i class="fa fa-minus-square-o"></i> <%=t("excursion.actions.show_fewer")%>');
+        $("#showingMore2").attr("title", "<%=t('excursion.actions.show_more')%>");
+        $("#showingMore2").attr("status", "expanded");
+      }
+    });
+
+ 
 
 
 
