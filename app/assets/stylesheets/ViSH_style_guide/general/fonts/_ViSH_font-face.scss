@@ -3,10 +3,13 @@
 // ---------------------light
 @font-face{
   font-family:"opensans-light";
-  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/light/opensans-light-webfont.svg') format('svg');
-  src: url(ViSH_style_guide/general/fonts/ViSH/opensans/light/opensans-light-webfont.ttf);
+  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/light/opensans-light-webfont.eot');
   src: url('ViSH_style_guide/general/fonts/ViSH/opensans/light/opensans-light-webfont.eot?#iefix') format('embedded-opentype'),
-  url('ViSH_style_guide/general/fonts/ViSH/opensans/light/opensans-light-webfont.woff') format('woff');
+       url('ViSH_style_guide/general/fonts/ViSH/opensans/light/opensans-light-webfont.woff') format('woff'),
+       url('ViSH_style_guide/general/fonts/ViSH/opensans/light/opensans-light-webfont.ttf') format('truetype'),
+       url('ViSH_style_guide/general/fonts/ViSH/opensans/light/opensans-light-webfont.svg#OpenSansLight') format('svg');
+
+
   font-style: normal;
   font-weight: normal;
 }
@@ -26,10 +29,12 @@
 // ---------------------regular
 @font-face{
   font-family:"opensans-regular";
-  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.svg') format('svg');
-  src: url(ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.ttf);
+  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.eot');
   src: url('ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
-  url('ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.woff') format('woff');
+       url('ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.woff') format('woff'),
+       url('ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.ttf') format('truetype'),
+       url('ViSH_style_guide/general/fonts/ViSH/opensans/regular/opensans-regular-webfont.svg#OpenSansRegular') format('svg');
+
   font-style: normal;
   font-weight: normal;
 }
@@ -61,7 +66,7 @@
   font-family:"opensans-semiboldItalic";
   src: url('ViSH_style_guide/general/fonts/ViSH/opensans/semibold/opensans-semibolditalic-webfont.svg') format('svg');
   src: url(ViSH_style_guide/general/fonts/ViSH/opensans/semibold/opensans-semibolditalic-webfont.ttf);
-  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/semibold/opensans-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),  
+  src: url('ViSH_style_guide/general/fonts/ViSH/opensans/semibold/opensans-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),
   url('ViSH_style_guide/general/fonts/ViSH/opensans/semibold/opensans-semibolditalic-webfont.woff') format('woff');
   font-style: normal;
   font-weight: normal;
@@ -184,7 +189,7 @@
   line-height: 1em;
 
   /* Animation center compensation - margins should be symmetric */
-  /* remove if not needed 
+  /* remove if not needed
   margin-left: .2em; */
 
   /* you can be more comfortable with increased icons size */
