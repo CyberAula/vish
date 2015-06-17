@@ -2,37 +2,10 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale.to_s %>" class="tr-coretext tr-aa-subpixel">
 <head>
-  <meta charset="utf-8">
-  <title><%= yield(:title).empty? ? t('site.current.title') : yield(:title) %></title>
-  <meta name="keywords" content="<%= yield(:keywords).empty? ? t('site.current.keywords') : yield(:keywords) %>">
-  <meta name="description" content="<%= yield(:description).empty? ? t('site.current.description') : yield(:description) %>">
-  <meta name="generator" content="SocialStream" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:site_name" content="ViSH">
-  <meta property="og:title" content="<%= yield(:title) %>">
-  <meta property="og:type" content="<%= yield(:og_type) %>">
-  <meta property="og:url" content="<%= yield(:og_url) %>">
-  <meta property="og:image" content="<%= yield(:og_image) %>">
-  <meta property="og:description" content="<%= yield(:description) %>">
-  <meta property="fb:admins" content="824343515"/>
-  <meta property="fb:app_id" content="629612437058744"/>
-
-  <meta name="google-site-verification" content="o9dBsh7Y9Gg2kJpWG0U4ASw6y7bNcxWbDI4KOBwg4Kg" />
-  
-  <%= favicon_link_tag "icons/favicon.ico" %>
-  <%= stylesheet_link_tag "application" %>
-
-  <% if protect_against_forgery? %>
-    <%= csrf_meta_tag %>
-  <% end %>
-
-  <%= yield :headers %>
-
+  <%= render :partial => "layouts/application_head" %>
 </head>
 
 <body>
-
   <%= render :partial => "layouts/header/header_warning" %>
 
   <div id="wrap">

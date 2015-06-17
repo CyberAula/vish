@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title><%= yield(:title).empty? ? t('site.current.title') : yield(:title) %></title>
+
+<meta name="keywords" content="<%= yield(:keywords).empty? ? t('site.current.keywords') : yield(:keywords) %>">
+<meta name="description" content="<%= yield(:description).empty? ? t('site.current.description') : yield(:description) %>">
+
+<meta property="og:site_name" content="'<%=Vish::Application.config.name%>'">
+<% unless yield(:title).blank? %>
+  <meta property="og:title" content="<%= yield(:title) %>">
+  <meta property="og:type" content="<%= yield(:og_type) %>">
+  <meta property="og:url" content="<%= yield(:og_url) %>">
+  <meta property="og:image" content="<%= yield(:og_image) %>">
+  <meta property="og:description" content="<%= yield(:description) %>">
+<% end %>
+
+<% if Vish::Application.config.facebook %>
+  <meta property="fb:admins" content="'<%=Vish::Application.config.APP_CONFIG['facebook']["accountID"]%>'"/>
+  <meta property="fb:app_id" content="'<%=Vish::Application.config.APP_CONFIG['facebook']["appID"]%>'"/>
+<% end %>
+
+<% if Vish::Application.config.gwebmastertools %>
+  <meta name="google-site-verification" content="'<%=Vish::Application.config.APP_CONFIG['gwebmastertools']["site-verification"]%>'"/>
+<% end %>
+
+<%= favicon_link_tag "icons/favicon.ico" %>
+<%= stylesheet_link_tag "application" %>
+
+<% if protect_against_forgery? %>
+  <%= csrf_meta_tag %>
+<% end %>
+
+<%= yield :headers %>

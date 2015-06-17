@@ -936,14 +936,14 @@ en:
     title: "Captcha"
   site:
     current:
-      description: "A meeting point for scientists and teachers based around the idea of virtual excursions"
-      keywords: "VisHub,virtual,excursion"
-      title: "Virtual Science Hub"
-      search: "Virtual Science Hub - Search"
-      browse: "Virtual Science Hub - Explore"
-      msg: "Virtual Science Hub - Messages"
-      activity: "Virtual Science Hub - Activities"
-    name: "Virtual Science Hub"
+      description: "ViSH is a social and collaborative site for creating and sharing knowledge resources for the realization of educational activities."
+      keywords: "e-Learning, Technology Enhanced Learning, education, Learning Objects, repository, resources, authoring tool, catalogue, search"
+      title: "ViSH"
+      search: "ViSH - Search"
+      browse: "ViSH - Explore"
+      msg: "ViSH - Messages"
+      activity: "ViSH - Activities"
+    name: "ViSH"
   swf:
     confirm_delete: "Delete SWF?"
     name: "flash object"

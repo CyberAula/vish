@@ -1,11 +1,12 @@
 <footer id="footer" class="container-fluid hidden-sm">
 <nav>
   <ul>
-<!-- legal notice-->
+      <!-- legal notice-->
       <li class="item_footer">
         <%= link_to t('conditions.other'), '/legal_notice', :class => "btn btn-default" %>
       </li>
-<!-- legal notice-->
+
+      <!-- help -->
       <li class="btn-group dropup">
         <a type="button" class="btn dropdown-toggle" data-toggle="dropdown">
           <span class="idioma"><%= t('help') %></span>
@@ -45,7 +46,7 @@
         </ul>
       </li>
 
-<!-- lang-->
+      <!-- lang-->
       <li class="btn-group dropup">
         <div data-toggle="dropdown" class="btn dropdown-toggle">
           <% the_locale = I18n.locale.to_s %>
@@ -95,7 +96,8 @@
           </li>
         </ul>
       </li>
-<!-- social-->
+
+      <!-- social-->
       <li class="social">
         <a href="https://www.facebook.com/VirtualScienceHub" target="_blank" class="btn btn-default"><i alt="Facebook-logo" class="social-img fa fa-facebook"></i>
         </a>
@@ -105,7 +107,8 @@
         <a href="https://twitter.com/ViSH_portal" target="_blank"  class="btn btn-default"><i alt="Twitter-logo" class="social-img fa fa-twitter"></i>
         </a>
       </li>
-<!-- global-->
+
+      <!-- global-->
       <li class="global">
         <%= link_to image_tag("footer/global.png",  :class=> "btn btn-default" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
       </li>
