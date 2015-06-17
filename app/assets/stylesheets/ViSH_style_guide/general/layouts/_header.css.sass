@@ -17,8 +17,19 @@ nav.navbar-fixed-top
   .mat
     .results
       overflow: hidden
+      max-height: 449px
       ul
         width: 98%
+        li
+          &hover
+          transform: scale(1)
+          -ms-transform: scale(1)
+          -webkit-transform: scale(1)
+        .more
+          padding: 4px 5px
+          max-height: 48px
+      @media (max-width: $screen-xs-max)
+        display: none !important
   @media (max-width: $screen-xs-max)
     margin-top: 9px
 .search-nav
@@ -37,12 +48,10 @@ nav.navbar-fixed-top
         margin-left: 0
         height: 36px
         margin-top: -1px
-
   .input-group
     @media (max-width: $screen-xs-max)
       margin-left: 0px !important
       width: 100%
-
   .search-query
     width: 265px
     display: inline
@@ -97,8 +106,6 @@ nav.navbar-fixed-top
           background-color: $white !important
       a
       padding: 0 9px
-
-
   .user
     margin-bottom: 0
     padding-left: 0
@@ -186,7 +193,6 @@ form.navbar-form-search
   border-top: none
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1)
   -webkit-overflow-scrolling: touch
-
 
 #new_user
   padding: 7px
