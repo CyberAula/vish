@@ -61,21 +61,22 @@ div.jp-interface ul.jp-controls {
 	list-style-type:none;
 	padding:0;
 	margin: 0;
+	display: block;
 }
 div.jp-interface ul.jp-controls li {
 	/* position: absolute; */
 	display:inline;
 }
 div.jp-interface ul.jp-controls a {
-	position: absolute;
+	text-indent: -1000px;
 	overflow:hidden;
-	text-indent:-9999px;
+	position: absolute;
 }
 a.jp-play,
 a.jp-pause {
 	width:40px;
 	height:40px;
-	z-index:1;
+	/*z-index:1;*/
 }
 div.jp-audio div.jp-type-single a.jp-play,
 div.jp-audio div.jp-type-single a.jp-pause {
@@ -111,10 +112,10 @@ a.jp-play {
 	background: url("jplayer.blue.monday.png") 0 0 no-repeat;
 }
 a.jp-play:hover {
-	background: url("jplayer.blue.monday.png") -41px 0 no-repeat;
+	background: url("jplayer.blue.monday.png") -40 0 no-repeat;
 }
 a.jp-pause {
-	background: url("jplayer.blue.monday.png") 0 -42px no-repeat;
+	background: url("jplayer.blue.monday.png") 0 0 no-repeat;
 	display: none;
 }
 a.jp-pause:hover {
@@ -145,8 +146,8 @@ div.jp-video-360p div.jp-type-playlist a.jp-stop {
 }
 a.jp-stop {
 	background: url("jplayer.blue.monday.png") 0 -83px no-repeat;
-	width:28px;
-	height:28px;
+	width:29px;
+	height:29px;
 	z-index:1;
 }
 a.jp-stop:hover {
