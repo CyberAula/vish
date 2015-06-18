@@ -21,17 +21,16 @@
     margin: 0 0 10px 0
   .nav-pills > li > a
     background-color: $white
-    margin-right: 10px
-    border: 1px solid $brand-primary
+    margin-right: 5px 0
+    color: $gray
+    //border: 1px solid $brand-primary
     &:hover
-      background-color: lighten($brand-primary, 10%) 
+      background-color: lighten($brand-primary, 10%)
       color: $white
   .nav-pills > li.active > a
     background-color: $brand-primary
     border: 1px solid $brand-primary
-
-
-
+    color: white
 
 
 #spam_table,
@@ -54,6 +53,7 @@
       cursor: pointer
       &:hover
         background: $white
+
       td
         background: transparent
 
@@ -61,13 +61,14 @@
         span
           font-family: $corporate-font-family-sans-serif-Bold
           font-size: 14px
-          color: $gray
+          color: $gray-dark
       .admin-type
         i
           color: $brand-primary
-          font-size: 25px
-          opacity: 0.5
+          font-size: 20px
+          opacity: 0.7
           vertical-align: text-top
+          margin: 5px
 
       .admin-user,
       .admin-user-user,
@@ -75,7 +76,7 @@
         a
           span
             font-family: $corporate-font-family-sans-serif-Regular
-            color: $gray-light
+            color: $gray-dark
             &:hover
               color: $brand-secundary
           &:hover
@@ -86,7 +87,7 @@
         span
           font-family: $corporate-font-family-sans-serif-Light
           font-size: 12px
-          color: $gray
+          color: $gray-dark
           height: 20px
           overflow-y: hidden
           &:hover
@@ -101,7 +102,7 @@
         span
           font-family: $corporate-font-family-sans-serif-Light
           font-size: 14px
-          color: $gray
+          color: $gray-dark
       .admin-icontrash
         i
           &:hover
@@ -112,7 +113,7 @@
         i
           vertical-align: middle
         a
-          color: $gray
+          color: $gray-dark
 
 
 

@@ -5,13 +5,13 @@
 <nav>
 	<ul class="nav nav-pills">
 		<li <%=!@reports.nil? ? "class=active" : ""%>>
-			<a href="<%=admin_open_reports_path%>"><%=t('admin.reports')%></a>
+			<a href="<%=admin_open_reports_path%>"><i class="fa fa-flag"></i> <%=t('admin.reports')%></a>
 		</li>
 		<li <%=!@users.nil? ? "class=active" : ""%>>
-			<a href="<%=admin_users_path%>"><%=t('admin.users')%></a>
+			<a href="<%=admin_users_path%>"><i class="fa fa-users"></i> <%=t('admin.users')%></a>
 		</li>
 		<li>
-			<a href="/resque" target="_blank"><%=t('admin.resque')%></a>
+			<a href="/resque" target="_blank"><i class="fa fa-cloud-upload"></i> <%=t('admin.resque')%></a>
 		</li>
 	</ul>
 </nav>
