@@ -22,7 +22,7 @@ class AdminController < ApplicationController
 	end
 
 	def users
-		@users = User.all.sort{|b,a| a.created_at <=> b.created_at}
+		@users = User.all.select{|u| !u.name.nil?}.sort{|b,a| a.created_at <=> b.created_at}
 	end
 
 
