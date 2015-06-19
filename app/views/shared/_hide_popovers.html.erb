@@ -1,8 +1,19 @@
 //code to hide the help popovers when clicking outside
 $('html').on('click', function(e){
-  if (typeof $(e.target).data('original-title') == 'undefined') {
-    if(typeof $($(e.target).parent()).data('original-title') == 'undefined'){
-      $('[data-original-title]').popover('hide');
-    }
-  }
+	if($(".popover").length > 0){
+		if (($(e.target).attr("data-toggle") != 'popover')&&($(e.target).parent().attr("data-toggle") != 'popover')) {
+			//It is not the element that triggers the popover
+			if(($(e.target).parents('.popover').length == 0)||($(e.target).hasClass("closepopover"))){
+				//It is not a element inside a popover (or is close button inside the popover)
+				$('[data-toggle="popover"]').popover('hide');
+			}
+		} else {
+			//Close other popovers
+			if ($(e.target).attr("data-toggle") == 'popover'){
+				$('[data-toggle="popover"]').not(e.target).popover('hide');
+			} else {
+				$('[data-toggle="popover"]').not($(e.target).parent()).popover('hide');
+			}
+		}
+	}
 });

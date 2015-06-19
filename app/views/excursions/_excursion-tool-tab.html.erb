@@ -70,7 +70,7 @@
       container: ".actions_layout_show"
     });
 
-    $('.delete').popover({ 
+    $('.delete').popover({
       html : true,
       <% if editingToolbar %>
         placement: "left", 
@@ -92,7 +92,7 @@
       <% end %>
     });
 
-    $(".with_tooltip").tooltip({ placement: 'bottom'});
+    $('[data-toggle="tooltip"], .with_tooltip').tooltip({ placement: 'bottom'});
   });
 </script>
 
@@ -102,17 +102,21 @@
 
   <!-- Edit -->
   <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
-    <button class="with_tooltip btn btn-default hidden-xs" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="fa fa-edit"></i></button>
+    <button class="btn btn-default" data-toggle="tooltip" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'">
+      <i class="fa fa-edit"></i>
+    </button>
   <%end%>
 
   <!-- Clone -->
   <% if user_signed_in? && !editingToolbar && (@excursion.clonable? or can?(:destroy, @excursion)) %>
-    <button class="with_tooltip clone btn btn-default popover-linkhidden-xs" title="<%=t('excursion.actions.clone')%>"><i class="fa fa-copy"></i></button>
+    <button class="with_tooltip clone btn btn-default" data-toggle="popover" title="<%=t('excursion.actions.clone')%>">
+      <i class="fa fa-copy"></i>
+    </button>
     
     <div class="contentclone" style="display: none">
       <p class=""><i class="fa fa-copy"></i>  <%=t('excursion.clone.confirm')%></p>
       <div class="actions">
-        <a class="btn btn_cancel"><%=t('cancel')%></a>
+        <a class="btn btn_cancel closepopover"><%=t('cancel')%></a>
         <a class="btn btn-primary" onclick="location.href='<%=excursion_path(@excursion) + '/clone'%>'"><%=t('excursion.actions.clone')%></a>
       </div>
     </div>  
@@ -120,13 +124,15 @@
 
   <!--Remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
-    <button class="with_tooltip delete btn btn-default popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" data-placement="left" aria-hidden="true"><i class="fa fa-trash-o"></i></button>
+    <button class="with_tooltip delete btn btn-default" data-toggle="popover" data-container="body" title="<%=t('excursion.actions.delete')%>" data-placement="left" aria-hidden="true">
+      <i class="fa fa-trash-o"></i>
+    </button>
   <%end%>
 
   <div class="contentdelete" style="display: none">
     <p class="delete_p"><i class="fa fa-trash-o"></i>  <%=t('excursion.confirm_delete')%></p>
     <div class="actions">
-      <a class="btn btn-default btn_cancel"><%=t('cancel')%></a>
+      <a class="btn btn-default btn_cancel closepopover"><%=t('cancel')%></a>
       <%= link_to t('excursion.actions.delete'),  @excursion, :method => :delete, :class => 'btn btn-primary' %>
     </div>
   </div>
@@ -138,7 +144,7 @@
 
     <!--Evaluate-->
     <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
-      <button onclick="triggerEvaluation()" class="btn with_tooltip" title="<%=t('evaluation.verb')%>">
+      <button onclick="triggerEvaluation()" class="btn" data-toggle="tooltip" title="<%=t('evaluation.verb')%>">
         <i class="fa fa-check-square"></i>
       </button>
     <%end%>
@@ -152,17 +158,6 @@
       </button>
     <%end%>
   <%end%>
-
-  <% unless params[:animate].nil? or editingToolbar %>
-    <script type="text/javascript">
-      var toggleAnimation = function(){
-        animationEnabled = (!animationEnabled);
-      };
-    </script>
-    <button onclick="toggleAnimation()" class="btn with_tooltip">
-        <i class="fa fa-time"></i>
-    </button>
-  <% end %>
 
 </div>
 

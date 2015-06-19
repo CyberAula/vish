@@ -19,13 +19,13 @@
                   <%=t('quiz.untitled')%>
                 <% end %>
               </p>
-              <button type="button" class="with_tooltip delete btn btn-default popover-link" urlToRemoveQuiz="<%="#{q.delete_url}"%>" data-toggle="popover" title="<%=t('quiz.actions.delete')%>">
+              <button type="button" class="delete btn btn-default" urlToRemoveQuiz="<%="#{q.delete_url}"%>" data-toggle="popover" title="<%=t('quiz.actions.delete')%>">
                 <i class="fa fa-trash-o"></i>
               </button>
-              <button class="with_tooltip btn btn-default" data-target="#QuizEdit" data-toggle="modal" data-remote="<%="/quiz_sessions/#{q.id}/edit.partial"%>" title="<%=t('quiz.actions.edit')%>">
+              <button class="btn btn-default" data-target="#QuizEdit" data-toggle="modal" data-remote="<%="/quiz_sessions/#{q.id}/edit.partial"%>" title="<%=t('quiz.actions.edit')%>">
                 <i class="fa fa-edit"></i>
               </button>
-              <button class="with_tooltip closeqb btn btn-default popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-toggle="popover" title="<%=t('quiz.actions.close')%>">
+              <button class="closeqb btn btn-default" urlToCloseQuiz=<%="#{q.close_url}"%> data-toggle="popover" title="<%=t('quiz.actions.close')%>">
                 <i class="fa fa-power-off"></i>
               </button>
               <p class="creation_date">
@@ -52,10 +52,10 @@
                   <%=t('quiz.untitled')%>
                 <% end %>
               </p>
-              <button class="with_tooltip delete btn btn-default popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-toggle="popover" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
+              <button class="delete btn btn-default" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-toggle="popover" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
                 <i class="fa fa-trash-o"></i>
               </button>
-              <button class="with_tooltip btn btn-default" title="<%=t('quiz.actions.edit')%>" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%>>
+              <button class="btn btn-default" title="<%=t('quiz.actions.edit')%>" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%>>
                 <i class="fa fa-edit"></i>
               </button>
               <p class="creation_date">
@@ -122,7 +122,8 @@
 
   $(".ui-state-default").click(function(event){
     //Prevent new quiz window to appear when a button is clicked
-    if(($(event.target).hasClass("popover-link"))||($($(event.target).parent()).hasClass("popover-link"))||($(event.target).parents(".popover").length > 0)){
+    if(($(event.target).attr("data-toggle")=="popover")||($($(event.target).parent()).attr("data-toggle")=="popover")||($(event.target).parents(".popover").length > 0)){
+      $('[data-toggle="popover"]').not(event.target).not($(event.target).parent()).popover('hide');
       event.stopPropagation();
     }
   });
