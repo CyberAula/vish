@@ -1,5 +1,5 @@
 <section id="contest">
-  
+
   <div class="tabexcursions">
     <h3><%=t('contest.ex_part')%></h3>
 
@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="entities contest_excursions">
-    <ul>
+    <ul class="items">
       <% entities_tagged_with(["Excursion"],"ViSHCompetition2013").each do |excursion| %>
         <%= render :partial => 'entities/entity', :locals => { :entity => excursion, :prefix_id => "contest" } %>
       <% end %>
