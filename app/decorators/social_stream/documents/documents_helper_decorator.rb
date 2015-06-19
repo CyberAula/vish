@@ -5,6 +5,7 @@ DocumentsHelper.module_eval do
     #Default icons
     unless document.class.superclass.name != "Document"
       #For documents (based on SS documents)
+    
       icon_name = case icon_mime_type document
         when :default then "file"
         when :text then "file-text"
@@ -14,6 +15,11 @@ DocumentsHelper.module_eval do
         when :pdf then "file-pdf"
         when :swf then "file-swf"
         when :zip then "file-archive-o"
+        when :doc then "file-word-o"
+        when :odt then "file-word-o"
+        when :ods then "file-excel-o"
+        when :ppt then "file-powerpoint-o"
+        when :odp then "file-powerpoint-o"
         else "file" #icon_mime_type document
       end
     else
