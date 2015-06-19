@@ -1,18 +1,18 @@
 <span class="helpheader">   
-  <i class="fa fa-question-circle" data-placement='left' aria-hidden="true" data-original-title="<%=t('document.help.activity1_html')%>" href='#' value="" ></i>
-  <div class="contenthome" style="display: none">
+  <i class="fa fa-question-circle" id="helpactivityid" data-toggle="popover" data-placement='left' aria-hidden="true" data-original-title="<%=t('document.help.activity1_html')%>" href='#' value="" ></i>
+  <div id="contenthelpactivityid" style="display: none">
     <div class="popover-body">
-      <p> <%= t('document.help.activity2_html')%> </p>
+      <p><%= t('document.help.activity2_html')%></p>
     </div>
     <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
 </span>
 
 <%content_for :javascript do%>
-  $('.fa-question-circle').popover({
+  $("#helpactivityid").popover({
     html : true,
     content: function() {
-      return $('.contenthome').html();
+      return $('#contenthelpactivityid').html();
     }
   });
 <%end%>

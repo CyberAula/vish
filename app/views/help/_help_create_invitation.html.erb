@@ -1,6 +1,6 @@
 <span class="helpheader">   
-  <i class="fa fa-question-circle helphome" id="helpinvitationsid" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.inv')%>" href='#' value="" ></i>
-  <div class="contenthelpInvitations" id="contenthelpinvitationsid" style="display: none">
+  <i class="fa fa-question-circle" id="helpinvitationsid" data-toggle="popover"  data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.inv')%>" href='#' value="" ></i>
+  <div id="contenthelpinvitationsid" style="display: none">
     <div class="popover-body">
       <p> <%= t('document.help.inv1_html')%><br/><%= t('document.help.inv2_html')%> </p>
     </div>
@@ -9,7 +9,7 @@
 </span>
 
 <script>
-  $('#helpinvitationsid').popover({ 
+  $('#helpinvitationsid').popover({
     html : true,
     content: function() {
       return $('#contenthelpinvitationsid').html();
