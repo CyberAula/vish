@@ -2,8 +2,8 @@
 <div id="CreateInvitationModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      
-      
+
+
 
     </div><!-- /MODAL-CONTENT -->
   </div><!-- /MODAL-DIALOG -->
@@ -23,7 +23,7 @@
             $("#CreateInvitationModal").modal('toggle');
             $("#CreateInvitationModal").find("input#user_email").val("");
             //Emulating alert with javascript
-            $('#flash').hide(); 
+            $('#flash').hide();
             $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><%=t("devise.invitations.success")%></div>')
                 .fadeIn()
                 .delay(6000)
@@ -35,7 +35,7 @@
             	// console.log("ERROR " + exception);
               $("#CreateInvitationModal").modal('toggle');
               //Emulating alert with javascript
-              $('#flash').hide(); 
+              $('#flash').hide();
               $("#flash").append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Error</div>')
                 .fadeIn()
                 .delay(6000)
@@ -46,12 +46,5 @@
       });
     });
   });
-/*
-      $("#CreateInvitationModal").on('shown.bs.modal', function(event){
-        //on show modal
-      });
-    */
+
 </script>
-    
-
-

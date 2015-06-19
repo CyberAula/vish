@@ -13,8 +13,8 @@
 		  <%= devise_error_messages! %>
 			<% resource.class.invite_key_fields.each do |field| -%>
 			  <p><%= f.label field %><br />
-			  <%= f.text_field field %></p>
-			<% end -%>			  
+			  <%= f.text_field field,:class => "form-control invitation_input" %><button id="save_inv_button" class="btn btn-primary"><%=  t("devise.invitations.submit_button")%></button></p>
+			<% end -%>
 		<% end %>
-		<p><button id="save_inv_button" class="btn btn-primary"><%=  t("devise.invitations.submit_button")%></button></p>
+		<p></p>
 	  </div><!-- CIERRA BODY-->
