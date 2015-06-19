@@ -176,8 +176,10 @@ function SCORM_Player(options) {
 	};
 
 	function adaptContentWrapper(){
-		var body = $("body");
-		$(body).css("margin","0px !important");
+		var contentWrappers = $("html,body");
+		$(contentWrappers).css("margin","0px !important");
+		$(contentWrappers).css("padding","0px !important");
+		$(contentWrappers).css("overflow","hidden");
 	};
 
 	function adaptContent(){
