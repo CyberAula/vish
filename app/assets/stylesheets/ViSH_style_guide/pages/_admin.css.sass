@@ -7,14 +7,13 @@
   @include make-lg-column(12, $gutter: $grid-gutter-width)
   padding: 0 !important
 .adminPanel-header
-  h1
+  h1, h4
     width: 100%
     text-align: left
-    margin-top: 2px !important
-    margin-bottom: 2px !important
+    color: $gray-darker
     i
-      color: #BEBEBE
-      font-size: 26px
+      color: $gray-darker
+      font-size: 24px
       margin-right: 5px
   hr
     border-bottom-color: $gray
@@ -23,7 +22,6 @@
     background-color: $white
     margin-right: 5px 0
     color: $gray
-    //border: 1px solid $brand-primary
     &:hover
       background-color: lighten($brand-primary, 10%)
       color: $white
@@ -175,9 +173,10 @@ div.admin_header
     li
       display: inline
       padding: 10px
-      i,
-      span
+      i, span
         font-size: 12px
-        color: $gray-light
       i
         margin-right: 5px
+        color: $brand-primary
+      span
+        color: $gray
