@@ -39,37 +39,32 @@
             <% end %>
           </div>
 
-          <!--__Email (only for admins) -->
-          <% if isAdmin? %>
-            <div class="ocupation">
-                <h3 class="name-roll">Email</h3>
-                  <span><%= profile_subject.email %></span>
-            </div>
-
-
-          <!--__Occupation -->
-          <div class="ocupation">
-              <h4 class="name-roll">Email</h4>
-                <span><%= profile_subject.email %></span>
-          </div>
-
-          <%end%>
           <div class="panel-group" id="accordion">
             <div class="panel">
+
+              <!--__Email (only for admins) -->
+              <% if isAdmin? %>
+                <table class="table table-striped">
+                  <tbody>
+                    <tr class="mail">
+                      <td class="name-roll">Email</td>
+                      <td><%= profile_subject.email %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              <%end%>
+
               <!--__Occupation -->
               <table class="table table-striped">
                 <tbody>
-                  <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>
                   <tr class="ocupation">
-                    <td class="select">
-                      <%= link_to t('profile.occupation.select'), '#', :id => "select_occupation_link" %>
-                    </td>
+                    <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>
+                      <td class="select"><%= link_to t('profile.occupation.select'), '#', :id => "select_occupation_link" %></td>
                     <% elsif profile_subject.occupation_sym != :select %>
-                    <td class="name-roll">
-                      <%= t('profile.occupation.label') %></td>
+                      <td class="name-roll"><%= t('profile.occupation.label')%></td>
                       <td><%= profile_subject.occupation_t %></td>
-                    </tr>
-                  <% end %>
+                    <% end %>
+                  </tr>
                 </tbody>
               </table>
 
