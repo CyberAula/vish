@@ -217,7 +217,8 @@ es:
     check_message: "Acepto las "
     check_message_1: "Condiciones de Uso"
     check_message_2: " de ViSH."
-    other: "términos de uso"
+    other: "términos y condiciones"
+    terms_use: "Condiciones de uso"
   contact:
     follow: "Seguir"
     unfollow: "Dejar de seguir"

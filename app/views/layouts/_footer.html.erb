@@ -2,8 +2,40 @@
 <nav>
   <ul>
       <!-- legal notice-->
-      <li class="item_footer">
+      <!--<li class="item_footer">
         <%= link_to t('conditions.other'), '/legal_notice', :class => "btn btn-default" %>
+      </li>-->
+
+      <li class="btn-group dropup">
+        <a type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+          <span class="idioma"><%= t('conditions.other') %></span>
+          <i class="fa fa-angle-up"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-left">
+          <li class="">
+            <a href="/terms_of_use">
+              <i class="fa fa-gavel"> </i>
+              <span><%= t('conditions.terms_use') %></span>
+            </a>
+          </li>
+
+          <!--
+           **añadir traducciones y completar contenido**
+
+          <li class="">
+            <a href="/privacy_policy">
+              <i class="fa fa-gavel"> </i>
+              <span>privacy policy</span>
+            </a>
+          </li>
+
+          <li class="">
+            <a href="/legal_notice">
+              <i class="fa fa-gavel"> </i>
+              <span>legal notice</span>
+            </a>
+          </li>-->
+        </ul>
       </li>
 
       <!-- help -->
@@ -25,24 +57,14 @@
               <span><%= t('youtube') %></span>
             </a>
           </li>
-          <!--<li class="">
-            <%= link_to faq_path do %>
-              <i class="fa fa-question"> </i>
-              <span><%=t('faq.title')%></span>
-            <% end %>
-          </li>-->
+
           <li>
             <%= link_to user_manual_path do %>
               <i class='fa fa-download'> </i>
               <span><%= t('help_manual')%>   </span>
             <% end %>
           </li>
-          <!--<li class="">
-            <%= link_to help_path do %>
-              <i class="fa fa-question"> </i>
-              <span><%=t('help_page')%></span>
-            <% end %>
-          </li>-->
+
         </ul>
       </li>
 
@@ -67,7 +89,7 @@
         <div data-toggle="dropdown" class="btn dropdown-toggle">
           <span class="ddfootertitle"><%= t('about.title') %></span>
           <i class="fa fa-angle-up"></i>
-        </div>  
+        </div>
 
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
           <li>

@@ -10,6 +10,12 @@ class StaticController < ApplicationController
   def legal_notice
   end
 
+  def privacy_policy
+  end
+
+  def terms_of_use
+  end
+
   def overview
   end
 

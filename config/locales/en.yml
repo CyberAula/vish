@@ -235,7 +235,8 @@ en:
     check_message: "I Accept ViSH "
     check_message_1: "Terms and Conditions."
     check_message_2: ""
-    other: "terms of use"
+    other: "terms and conditions"
+    terms_use: "Terms of use"
   contact:
     follow: "Follow"
     unfollow: "Unfollow"
