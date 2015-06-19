@@ -48,11 +48,11 @@
     });
 
     $('.delete').popover({
-    html : true,
-    content: function() {
-    return $('.contentdelete').html();
-    },
-    container: "body"
+      html : true,
+      content: function() {
+      return $('.contentdelete').html();
+      },
+      container: ".actions_layout_show"
     });
 
 <% end %>
@@ -64,21 +64,22 @@
     });
 </script>
 
-<div class="btn-group">
+<div class="btn-group actions_layout_show">
   <!--remove-->
   <% if user_signed_in? and can?(:destroy, @event) %>
-      <button class="with_tooltip delete btn popover-link" data-container="body" title="<%= t('excursion.actions.delete') %>" aria-hidden="true">
-        <i class="fa fa-trash-o"></i></button>
+      <button class="with_tooltip delete btn" data-toggle="popover" data-container="body" title="<%= t('excursion.actions.delete') %>" aria-hidden="true">
+        <i class="fa fa-trash-o"></i>
+      </button>
   <% end %>
 
   <div class="contentdelete" style="display: none">
     <p class="delete_p"><i class="fa fa-trash-o"></i> <%= t('event.confirm_delete') %></p>
-
     <div class="actions">
-      <a class="btn btn_cancel"><%= t('cancel') %></a>
+      <a class="btn btn_cancel closepopover"><%= t('cancel') %></a>
       <%= link_to t('excursion.actions.delete'), @event, :method => :delete, :class => 'btn btn-primary' %>
     </div>
   </div>
+
   <% if @event.streaming %>
       <!-- STREAMING CODE  -->
   <% else %>
