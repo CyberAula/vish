@@ -104,7 +104,6 @@ Vish::Application.routes.draw do
 
   #Catalogue
   match '/catalogue' => 'catalogue#index'
-  match '/catalogue/:category' => 'catalogue#show'
 
   #Competitions
   match 'contest' => 'static#contest'

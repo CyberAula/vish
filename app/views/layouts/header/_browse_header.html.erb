@@ -54,7 +54,7 @@
 
     <% if availableServices.include? "Catalogue" %>
       <li>
-        <a tabindex="-1" href="<%=search_path(:catalogue => "true", :sort_by => "popularity")%>">
+        <a tabindex="-1" href="<%=search_path(:catalogue => "true")%>">
           <i class="fa fa-tags"></i>
           <%=t('catalogue.title')%>
         </a>
