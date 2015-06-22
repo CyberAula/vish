@@ -306,7 +306,7 @@ ul.workshop_activities_list_edit
   top: 5px
   width: auto
   float: right
-  height: 30px
+  height: 35px
   ul
     margin: 0
     li
@@ -587,6 +587,10 @@ ul.workshop_activities_list_edit
     display: none
     float: left
     margin-left: 10px
+    input[type='submit']
+      margin-top: 5px
+    input[type='submit'][disabled='disabled']
+      opacity: 0.5
   .new_contribution_resource
     input[name='url']
       width: 100%
@@ -644,6 +648,8 @@ ul.workshop_activities_list_edit
     float: right
 
 // Contributions gallery list
-.title_contributions_gallery_list
+.title_workshop_items_list
   margin-bottom: 20px
 
+.wa_activity_edit_minified
+  display: none

@@ -1,5 +1,6 @@
 <% aos = wa_resources_gallery.activity_objects %>
-<h3 class="title_WS"><%=t('workshop.activities.resource_gallery.title')%></h3>
+
+<h3 class="title_WS title_workshop_items_list"><%=t('workshop.activities.resource_gallery.title')%></h3>
 <ul class="items ws_gallery">
     <%= render :partial => 'wa_resources_galleries/add_new', :locals => { :wa_resources_gallery => wa_resources_gallery } %>
   <% aos.map{|ao| ao.object}.each do |resource| %>

@@ -224,6 +224,7 @@ es:
     unfollow: "Dejar de seguir"
     following: "Siguiendo"
   contribution:
+    action: "Contribuir"
     content: "Contenido"
     title: "Título"
   pending:

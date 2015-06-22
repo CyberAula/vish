@@ -1,11 +1,10 @@
 <div class="contributions_actions">
 	<div class="contributions_content">
-	  <h4> Contribute </h4>
+	  <h4><%=t("contribution.action")%></h4>
 	  <%= render partial: "contributions/submit_contributions", locals:  { :contribution => contribution } %>
-
 	  <% contributionsGallery = contribution.contributions %>
 	  <% unless contributionsGallery.blank? %>
-	    <h4> Contributions Gallery </h4>
+	    <h4 class="contributions_gallery_title_in_contributable"><%=t("workshop.activities.contributions_gallery.title")=%></h4>
 	    <%= render partial: "contributions/contributions_gallery", locals:  { :contributions => contributionsGallery } %>
 	  <% end %>
 	</div>

@@ -242,6 +242,7 @@ en:
     unfollow: "Unfollow"
     following: "Following"
   contribution:
+    action: "Contribute"
     content: "Content"
     title: "Title"
   pending:

@@ -46,9 +46,6 @@
       %>
       <li workshop_activity_id="<%= workshop_activity.id %>" class="workshop_element" type="<%= workshop_activity.wa_type %>">
         <div class="wa_activity_wrapper wa_activity_wrapper_edit">
-          <div class="wa_activity_edit_minified">
-            <%= workshop_activity.titleToPrint %>
-          </div>
           <div class="wa_activity_edit_tools">
             <ul>
               <li title="<%= t('categories.dragandrop.dragt1') %>" class="actions_tooltip sorthandler" data-placement="bottom" data-toggle="tooltip">
@@ -67,6 +64,9 @@
               </li>
             </ul>
           </div>
+          <div class="wa_activity_edit_minified">
+            <%= workshop_activity.titleToPrint %>
+          </div>
           <div class="layout_workshop">
             <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }_edit", locals: {classNameUnderscore.to_sym => object, :prefix_id => "workshop_activity_"+workshop_activity.id.to_s} %>
           </div>
@@ -75,21 +75,25 @@
     <% end %>
   </ul>
 
-  <% content_for :javascript do %>
-      $("li.toggleWorkshopActivity").click(function(e){
-        var mainDiv = $(e.target).parents(".wa_activity_wrapper_edit").find(".wa_resource_wrapper")[0];
-        if($(mainDiv).hasClass("wa_activity_closed")){
-          $(mainDiv).removeClass("wa_activity_closed").addClass("wa_activity_open");
-          $(mainDiv).show();
-        } else {
-          $(mainDiv).removeClass("wa_activity_open").addClass("wa_activity_closed");
-          $(mainDiv).hide();
-        }
-        e.stopPropagation();
+  <%content_for :javascript do%>
+    $("li.toggleWorkshopActivity").click(function(e){
+      var contentDiv = $(e.target).parents(".wa_activity_wrapper_edit").find(".layout_workshop");
+      var minifiedDiv = $(e.target).parents(".wa_activity_wrapper_edit").find(".wa_activity_edit_minified");
+      
+      if($(contentDiv).hasClass("wa_activity_closed")){
+        $(contentDiv).removeClass("wa_activity_closed").addClass("wa_activity_open");
+        $(contentDiv).show();
+        $(minifiedDiv).css("display","none");
+      } else {
+        $(contentDiv).removeClass("wa_activity_open").addClass("wa_activity_closed");
+        $(contentDiv).hide();
+        $(minifiedDiv).css("display","inline-block");
+      }
+      e.stopPropagation();
+      return false;
+    });
+  <%end%>
 
-        return false;
-      });
-  <% end %>
 
   <!-- Add Workshop Activity -->
 
