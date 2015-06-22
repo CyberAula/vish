@@ -8,9 +8,8 @@
       <%= f.hidden_field :workshop_id, :value => resource.workshop.id %>
       <input type="text" class="form-control" name="url"/>
       <%= f.submit t('save'), :class => "hidden"  %>
-
-</div>
-<div class="modal-footer">
-<%= f.submit t('save'), :class => "btn btn-primary" %>
-</div>
+  </div>
+  <div class="modal-footer">
+    <%= f.submit t('save'), :class => "btn btn-primary" %>
+  </div>
 <% end %>

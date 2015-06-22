@@ -18,7 +18,7 @@ class WaResourcesGalleriesController < ApplicationController
         else
           discard_flash
         end
-        redirect_to edit_workshop_path(resource.workshop)
+        redirect_to edit_workshop_path(resource.workshop, {:activity => resource.workshop_activity.id})
       }
     end
   end
@@ -47,7 +47,7 @@ class WaResourcesGalleriesController < ApplicationController
         else
           discard_flash
         end
-        redirect_to edit_workshop_path(resource.workshop)
+        redirect_to edit_workshop_path(resource.workshop, {:activity => resource.workshop_activity.id})
       }
     end
   end

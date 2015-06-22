@@ -1,6 +1,6 @@
 <h3 class="title_WS assignment_edit_title"><%=t('workshop.activities.assignment.title')%></h3>
 
-<%if wa_assignment.with_dates%>
+<% if wa_assignment.with_dates %>
   <div class="delivery">
     <div class="delivery_time">
       <span><%=t('workshop.activities.assignment.open_date')%></span>
@@ -9,26 +9,44 @@
       <p><%=wa_assignment.due_date.strftime("%d %B %Y")%></p>
     </div>
   </div>
-<%end%>
+<% end %>
 
 <div class="Assignment_edit_box">
-  <%= form_for wa_assignment, :html => { :id => "edit_wa_assignment_#{wa_assignment.id}" }, :remote => false do |f| %>
-    <%= f.text_area :fulltext, :class => "form-control", :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
+  <%= form_for wa_assignment, :html => { :id => "edit_wa_assignment_#{wa_assignment.id}" }, :remote => true do |f| %>
+    <%= f.text_area :fulltext, :id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"%>
     <%= f.hidden_field :plaintext, :value => "", :id => "edit_wa_assignment_#{wa_assignment.id}_plaintext"%>
     <%= f.submit t('save'), :class => "hide", :id => "edit_wa_assignment_#{wa_assignment.id}_submitbutton"%>
   <% end %>
   <input type="button" id="edit_wa_assignment_<%=wa_assignment.id%>_button" class="btn btn-primary" data-loading-text="<%= t('saving')%>" value="<%= t('save')%>"/>
 </div>
 
-<%=render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"} %>
+<%= render :partial => "shared/ckeditor_apply", :locals => {:the_id=> "edit_wa_assignment_#{wa_assignment.id}_fulltext"} %>
 
-<%content_for :javascript do%>
-  var uploadButton = $("#edit_wa_assignment_<%=wa_assignment.id%>_button");
-  $(uploadButton).click(function(event){
+<% content_for :javascript do %>
+  $("#edit_wa_assignment_<%=wa_assignment.id%>_button").click(function(event){
     set_ckeditor_content_full_and_plaintext("edit_wa_assignment_<%=wa_assignment.id%>_fulltext","edit_wa_assignment_<%=wa_assignment.id%>_plaintext");
+    $(this).button("loading");
     $("#edit_wa_assignment_<%=wa_assignment.id%>_submitbutton").click();
   });
-<%end%>
+ 
+  $("#edit_wa_assignment_<%=wa_assignment.id%>").on("ajax:success", function(event, data, status, xhr){
+    var parsedData = {};
+    try {
+      var parsedData = JSON.parse(data);
+    } catch (e){}
+
+    if((parsedData.errors instanceof Array)&&(parsedData.errors.length === 0)){
+      //Success
+    } else {
+      //Error
+    }
+  }).on("ajax:error", function(event, data, status, xhr){
+      //Error
+  }).on("ajax:complete", function(event, data, status, xhr){
+      //on completed
+      $("#edit_wa_assignment_<%=wa_assignment.id%>_button").button("reset");
+  });
+<% end %>
 
 <div class="workshop_contribute_footer">
   <%= render partial: "contributions/submit_contributions", locals:  { :wa_assignment => wa_assignment, :editMode => true } %>
