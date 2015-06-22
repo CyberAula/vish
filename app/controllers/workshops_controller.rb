@@ -97,6 +97,21 @@ class WorkshopsController < ApplicationController
     end
   end
 
+  def contributions
+    @workshop = Workshop.find(params[:id])
+
+    unless verify_owner(@workshop)
+      return render :text => "You are not the owner of this workshop"
+    end
+
+    respond_to do |format|
+      format.html {
+        @contributions = @workshop.contributions
+        render
+      }
+    end
+  end
+
   def destroy
     destroy! do |format|
       format.all { redirect_to user_path(current_subject) }
@@ -138,6 +153,10 @@ class WorkshopsController < ApplicationController
       params["workshop"]["scope"] = "0" #public
       params["workshop"]["draft"] = false
     end
+  end
+
+  def verify_owner(workshop)
+    return (can? :update, workshop)
   end
 
 end

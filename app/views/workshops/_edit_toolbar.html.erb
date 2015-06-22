@@ -1,28 +1,27 @@
 <div class="toolbar_nav-tab_workshop">
   <div class="container-fluid">
-  <h4 class="edit-workshop-title"><%=t('workshop.titles.editing_main')%></h4>
-  <a href="#WorkshopActivities" class="btn btn-sm btn-default pull-right" data-toggle="modal"><i class="fa fa-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></a>
-  <% unless @workshop.draft %>
-    <a class ="btn btn-sm btn-default pull-right" href="<%=workshop_path(@workshop)%>"><i class="fa fa-check"></i><%=t('workshop.actions.edit_mode_btOff')%></a>
-  <%end%>
 
-  <%= link_to raw('<i class="fa fa-trash"></i>'+t('workshop.actions.delete')),  @workshop, :method => :delete, :class => 'btn btn-default pull-right btn-delete-workshop', :confirm => t('workshop.actions.confirm_delete') %>
+    <h4 class="edit-workshop-title"><%=t('workshop.titles.editing_main')%></h4>
+    
+    <a href="#WorkshopActivities" class="btn btn-sm btn-default pull-right" data-toggle="modal"><i class="fa fa-plus"></i><%=t('workshop.activities.actions.add_new_activity')%></a>
 
-  <%= form_for(@workshop) do |f| %>
-    <%= f.hidden_field :draft, :value => !@workshop.draft %>
-    <%= button_tag(type: "submit", class: "btn btn-sm btn-default pull-right") do %>
-      <%=@workshop.draft ? raw('<i class="fa fa-check-circle"></i>'+t('workshop.actions.publish')) : raw('<i class="fa fa-eye-slash"></i>'+t('workshop.actions.unpublish')) %>
+    <% if @workshop.hasAssignments %>
+      <a class ="btn btn-sm btn-default pull-right" href="<%=workshop_contributions_path(@workshop)%>"><i class="icon-eye-open"></i><%=t('workshop.actions.show_contributions')%></a>
     <% end %>
-  <%end%>
+    
+    <% unless @workshop.draft %>
+      <a class ="btn btn-sm btn-default pull-right" href="<%=workshop_path(@workshop)%>"><i class="fa fa-check"></i><%=t('workshop.actions.edit_mode_btOff')%></a>
+    <%end%>
 
-  
-<!-- EFFECT EXPAND
+    <%= link_to raw('<i class="fa fa-trash"></i>'+t('workshop.actions.delete')),  @workshop, :method => :delete, :class => 'btn btn-default pull-right btn-delete-workshop', :confirm => t('workshop.actions.confirm_delete') %>
 
-  <%# if @workshop_activities.count { |wa| wa.wa_type=="WaResource" } > 0 %>
-    <button href="#" id="ws_expand_all" class=" btn ui-state-default ui-corner-all"><a><i class="fa fa-chevron-down"></i><%=t('workshop.actions.expand_all')%></a></button>
-    <button href="#" id="ws_collapse_all" class=" btn ui-state-default ui-corner-all"><a><i class="fa fa-chevron-down"></i><%=t('workshop.actions.collapse_all')%></a></button>
-  <%#end%>
--->
+    <%= form_for(@workshop) do |f| %>
+      <%= f.hidden_field :draft, :value => !@workshop.draft %>
+      <%= button_tag(type: "submit", class: "btn btn-sm btn-default pull-right") do %>
+        <%=@workshop.draft ? raw('<i class="fa fa-check-circle"></i>'+t('workshop.actions.publish')) : raw('<i class="fa fa-eye-slash"></i>'+t('workshop.actions.unpublish')) %>
+      <% end %>
+    <%end%>
+
   </div>
 </div>
 
