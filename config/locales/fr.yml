@@ -564,8 +564,6 @@ fr:
             add_new_activity: "Ajouter une nouvelle activité"
             confirm_delete: "Supprimer l'activité?"
         assignment:
-            add_image: "Télécharger"
-            add_writing: "Écriture"
             available_contributions:
                 document: "Document"
                 title: "Contributions disponibles"

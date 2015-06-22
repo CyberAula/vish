@@ -61,6 +61,12 @@ class ContributionsController < ApplicationController
         return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
       end
       object = Writing.new((params["writing"].merge!(params["contribution"]["activity_object"])).permit!)
+    when "Resource"
+      unless params["url"].present?
+        flash[:errors] = "missing resource url"
+        return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
+      end
+      object = ActivityObject.getObjectFromUrl(params["url"])
     else
       flash[:errors] = "Invalid contribution"
       return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))

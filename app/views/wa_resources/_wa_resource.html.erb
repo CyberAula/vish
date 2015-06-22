@@ -1,4 +1,6 @@
-<% resource = wa_resource.activity_object.object
+<%
+	resource = wa_resource.activity_object.object rescue nil
+	return if resource.nil?
 	className = resource.class.to_s
 	classNameUnderscore = className.underscore
 	classNameTableize = className.tableize

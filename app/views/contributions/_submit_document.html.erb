@@ -1,6 +1,6 @@
 <div class="new_contribution_form_wrapper">
 
-  <%= form_for Contribution.new, :html => { :multipart => true, :id => form_id }, :remote => false do |f| %>
+  <%= form_for Contribution.new, :html => { :multipart => true, :id => form_id, :class => "new_contribution_document" }, :remote => false do |f| %>
     <% if !wa_assignment.nil?%>
       <%= f.hidden_field :wa_assignment_id, :value => wa_assignment.id %>
     <% elsif !parent.nil? %>
@@ -11,7 +11,7 @@
     <%= f.submit t('document.upload'), :id=>"" ,:class => "contribution", :disabled => true %>
   <% end %>
 
-  <button class="btn btn-primary btn_show_upload"><%= t('resource.one')%></button>
+  <button class="btn btn-primary btn_show_upload"><%= I18n.t('workshop.activities.assignment.available_contributions.document') %></button>
   <button class="btn btn-default btn_hidden_upload"><i class="fa fa-chevron-left"></i></button>
 
   <% content_for :javascript do %>

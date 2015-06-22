@@ -8,6 +8,8 @@
   <%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %>
 <% end %>
 
+<% @contribution = (params["contribution"]=="true" and !@excursion.contribution.nil?) %>
+
 <%=javascript_include_tag "RegaddiChart" %>
 <%=javascript_include_tag "loep" %>
 <%=javascript_include_tag "VISH.IframeAPI" %>
@@ -21,6 +23,10 @@
   var options = {};
   options["readHashFromParent"] = true;
 </script>
+
+<%if @contribution%>
+  <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @excursion.contribution.parents_path } %>
+<%end%>
 
 <section id="show_items " class="layout_show">
 
@@ -52,3 +58,7 @@
   </div>
   
 </section>
+
+<%if @contribution%>
+  <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => @excursion.contribution } %>
+<%end%>

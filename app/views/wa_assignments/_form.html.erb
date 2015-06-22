@@ -1,104 +1,93 @@
 <%
-   wa_assignment ||= WaAssignment.new
-   identifier = "wa_assignment_checkbox_" + (wa_assignment.id.nil? ? 0 : wa_assignment.id).to_s
-   unless wa_assignment.workshop.nil?
-     workshop = wa_assignment.workshop
-   end
+  wa_assignment ||= WaAssignment.new
+  identifier = "wa_assignment_checkbox_" + (wa_assignment.id.nil? ? 0 : wa_assignment.id).to_s
+  unless wa_assignment.workshop.nil?
+    workshop = wa_assignment.workshop
+  end
+  available_contributions_array = (wa_assignment.available_contributions_array || [])
 %>
 
-<%= form_for wa_assignment, :remote => false, :html => {:id => identifier} do |f| %>
+<%= form_for wa_assignment, :remote => false, :html => { :id => identifier, :class => "wa_assignment_form" } do |f| %>
+  <%= f.hidden_field :workshop_id, :value => workshop.id %>
+  <%= f.hidden_field :available_contributions, :value => (wa_assignment.new_record? ? "Document" : wa_assignment.available_contributions) %>
 
-    <%= f.hidden_field :workshop_id, :value => workshop.id %>
-    <%= f.hidden_field :available_contributions, :value => (wa_assignment.new_record? ? "Document" : wa_assignment.available_contributions) %>
-    <div class="checkbox">
-      <label>
-        <%= f.check_box :with_dates, :onclick => "wa_assignment_onClickDatesCheckbox(this);" %>
-        <span class="lbl padding-0 checkbox_add_time">
-        <%= t('workshop.activities.assignment.with_dates') %>
-      </span>
-      </label>
-    </div>
-    <div class="assignment_dates" style="display:none">
-      <%= f.label t('workshop.activities.assignment.open_date'), :class => "" %>
-      <%= f.date_select :open_date, :order => [:day, :month, :year] %>
-      <%= f.label t('workshop.activities.assignment.due_date'), :class => "" %>
-      <%= f.date_select :due_date, :order => [:day, :month, :year] %>
-    </div>
+  <p class="checkbox_add_time">
+    <%= f.check_box :with_dates, :onclick => "wa_assignment_onClickDatesCheckbox(this);" %>
+    <%=t('workshop.activities.assignment.with_dates')%>
+  </p>
 
+  <div class="assignment_dates" style="display:none">
+    <%= f.label t('workshop.activities.assignment.open_date'), :class => "" %>
+    <%= f.date_select :open_date, :order => [:day, :month, :year] %>
+    <%= f.label t('workshop.activities.assignment.due_date'), :class => "" %>
+    <%= f.date_select :due_date, :order => [:day, :month, :year] %>
+  </div>
 
-    <div class="available_contributions">
+  <div class="assignment_available_contributions">
+    
+    <p><%=t('workshop.activities.assignment.available_contributions.title')%></p>
 
-      <label><%= t('workshop.activities.assignment.available_contributions.title') %></label>
+    <% VishConfig.getAllContributionTypes.each do |contribution| %>
+      <p>
+        <%= check_box_tag :available_contribution_document, contribution, (available_contributions_array.include? contribution), :contribution => contribution, :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);"%>
+        <%=t('workshop.activities.assignment.available_contributions.' + contribution.downcase)%>
+      </p>
+    <% end %>
+  </div>
 
-      <div class="checkbox">
-        <label>
-          <%= check_box_tag :available_contribution_document, "Document", false, :contribution => "Document", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);" %>
-          <span class="lbl padding-0">
-              <%= t('workshop.activities.assignment.available_contributions.document') %>
-            </span>
-        </label>
-        <label>
-          <%= check_box_tag :available_contribution_writing, "Writing", false, :contribution => "Writing", :onclick => "wa_assignment_onClickAvailableContributionCheckbox(this);" %>
-          <span class="lbl padding-0">
-            <%= t('workshop.activities.assignment.available_contributions.writing') %>
-          </span>
-        </label>
-      </div>
-    </div>
 <% end %>
-
 
 <script>
-    function wa_assignment_onClickDatesCheckbox(checkbox_field) {
-
-        if (checkbox_field.checked) {
-            $(".assignment_dates").show();
-        } else {
-            $(".assignment_dates").hide();
-        }
+  var wa_assignment_onClickDatesCheckbox = function(checkbox_field){
+    var assignmentDatesDOM = $(checkbox_field).parents(".wa_assignment_form").find(".assignment_dates");
+    if(checkbox_field.checked){
+      $(assignmentDatesDOM).show();
+    } else {
+      $(checkbox_field).siblings(".assignment_dates").hide();
     }
+  };
 
-    function wa_assignment_onClickAvailableContributionCheckbox(checkbox_field) {
-        var availableContributions = getAvailableContributions();
-        var contribution = $(checkbox_field).attr("value");
-        var indexOf = availableContributions.indexOf(contribution);
+  var wa_assignment_onClickAvailableContributionCheckbox = function(checkbox_field){
+    var availableContributions = getAvailableContributions();
+    var contribution = $(checkbox_field).attr("value");
+    var indexOf = availableContributions.indexOf(contribution);
 
-        if (checkbox_field.checked) {
-            if (indexOf == -1) {
-                availableContributions.push(contribution);
-            }
-        } else {
-            if (indexOf != -1) {
-                availableContributions.splice(indexOf, 1);
-            }
-        }
-        setAvailableContributions(availableContributions);
+    if(checkbox_field.checked){
+      if(indexOf==-1){
+        availableContributions.push(contribution);
+      }
+    } else {
+      if(indexOf!=-1){
+        availableContributions.splice(indexOf, 1);
+      }
     }
+    setAvailableContributions(availableContributions);
+  };
 
-    function getAvailableContributions() {
-        var availableContributions = $("#<%=identifier%>").find("input[name='wa_assignment[available_contributions]']").val().split(",");
-        var indexOfBlank = availableContributions.indexOf("");
-        if (indexOfBlank != -1) {
-            availableContributions.splice(availableContributions.indexOf(""), 1);
-        }
-        return availableContributions;
+  var getAvailableContributions = function(){
+    var availableContributions = $("#<%=identifier%>").find("input[name='wa_assignment[available_contributions]']").val().split(",");
+    var indexOfBlank = availableContributions.indexOf("");
+    if(indexOfBlank!=-1){
+      availableContributions.splice(availableContributions.indexOf(""),1);
     }
+    return availableContributions;
+  };
 
-    function setAvailableContributions(contributionsArray) {
-        var availableContributionsDOM = $("#<%=identifier%>").find("input[name='wa_assignment[available_contributions]']");
-        $(availableContributionsDOM).val(contributionsArray.join(","));
-    }
-
+  var setAvailableContributions = function(contributionsArray){
+    var availableContributionsDOM = $("#<%=identifier%>").find("input[name='wa_assignment[available_contributions]']");
+    $(availableContributionsDOM).val(contributionsArray.join(","));
+  };
+ 
 </script>
 
-<% content_for :javascript do %>
-    wa_assignment_onClickDatesCheckbox($("#<%= identifier %>").find("input[type='checkbox'][name='wa_assignment[with_dates]']")[0]);
+<%content_for :javascript do%>
+  wa_assignment_onClickDatesCheckbox($("#<%=identifier%>").find("input[type='checkbox'][name='wa_assignment[with_dates]']")[0]);
 
-    //Load available contributions
-    var availableContributions = getAvailableContributions();
-    var aCLength = availableContributions.length;
-    for(var i=0; i<aCLength; i++){
-    var contributionCheckbox = $("#<%= identifier %>").find("input[contribution='"+availableContributions[i]+"']");
+  //Load available contributions
+  var availableContributions = getAvailableContributions();
+  var aCLength = availableContributions.length;
+  for(var i=0; i<aCLength; i++){
+    var contributionCheckbox = $("#<%=identifier%>").find("input[contribution='"+availableContributions[i]+"']");
     $(contributionCheckbox).prop('checked', true);
-    }
-<% end %>
+  }
+<%end%>

@@ -21,7 +21,7 @@
     %>
 
     <%= render :partial => 'recommender/sidebar', :locals  => { :resources => resource_suggestions, :rec => rec  } %>
-    <!--visor-->
+    
     <div class="doc-show">
 
       <div class="box-show">
@@ -32,7 +32,6 @@
           </div>
         </div>
       </div>
-
 
       <div class="description-activity">
         <!--tool tab-->
@@ -47,14 +46,10 @@
         </div>
       </div>
 
-
     </div>
-
-
 
     <%if @contribution%>
       <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => document.contribution } %>
     <%end%>
-
 
 </section>

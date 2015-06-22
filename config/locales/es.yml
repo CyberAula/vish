@@ -985,10 +985,11 @@ es:
             add_new_activity: "Añadir nueva actividad"
             confirm_delete: "¿Borrar actividad?"
         assignment:
-            add_image: "Dibujo"
-            add_writing: "Texto"
+            add_resource: "Añadir recurso"
+            add_resource_message: "Aqui puedes enviar a la tarea cualquiera de tus recursos del ViSH. Para ello, escribe la URL de tu recurso y pulsa sobre el botón."
             available_contributions:
                 document: "Documento"
+                resource: "Recurso"
                 title: "Contribuciones disponibles"
                 writing: "Texto editable"
             content: "Contenido"

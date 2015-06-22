@@ -994,10 +994,11 @@ en:
             add_new_activity: "Add new activity"
             confirm_delete: "Delete activity?"
         assignment:
-            add_image: "Upload"
-            add_writing: "Writing"
+            add_resource: "Add resource"
+            add_resource_message: "Here you can send to the assignment any of your ViSH resources. To do that, write the URL of your resource and click on the button."
             available_contributions:
                 document: "Document"
+                resource: "Resource"
                 title: "Available contributions"
                 writing: "Writing"
             content: "Content"

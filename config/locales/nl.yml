@@ -572,8 +572,6 @@ nl:
             add_new_activity: "Nieuwe activiteit toevoegen"
             confirm_delete: "Activiteit verwijderen?"
         assignment:
-            add_image: "Upload"
-            add_writing: "Schrijven"
             available_contributions:
                 document: "Document"
                 title: "Beschikbare bijdragen"

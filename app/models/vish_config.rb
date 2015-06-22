@@ -27,7 +27,7 @@ class VishConfig
   end
 
   def self.getAllContributionTypes
-    ["Document","Writing","Excursion","Link"]
+    ["Document","Writing","Resource"]
   end
 
   def self.getAllServices
