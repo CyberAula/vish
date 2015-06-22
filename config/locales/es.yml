@@ -991,7 +991,7 @@ es:
                 document: "Documento"
                 resource: "Recurso"
                 title: "Contribuciones disponibles"
-                writing: "Texto editable"
+                writing: "Texto"
             content: "Contenido"
             contribution_message: "Participa:"
             description: "Las tareas permiten a los participantes contribuir al taller subiendo sus propios recursos."
