@@ -13,6 +13,7 @@ ActivityObject.class_eval do
   before_save :fill_indexed_lengths
   after_destroy :destroy_spam_reports
   after_destroy :destroy_contribution
+  after_destroy :destroy_wa_activities
 
   has_attached_file :avatar,
     :url => '/:class/avatar/:id.:content_type_extension?style=:style',
@@ -686,6 +687,12 @@ ActivityObject.class_eval do
   def destroy_contribution
     unless self.contribution.nil?
       self.contribution.destroy
+    end
+  end
+
+  def destroy_wa_activities
+    WaResource.find_all_by_activity_object_id(self.id).each do |wa|
+      wa.destroy
     end
   end
 
