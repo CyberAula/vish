@@ -898,6 +898,7 @@ es:
       visits: "Visitas"
       favorites: "Favoritos"
       quality: "Calidad"
+    terms: "Términos de búsqueda"
     title: "buscar"
     titles:
       age: "edad"

@@ -908,6 +908,7 @@ en:
       visits: "Visits"
       favorites: "Favorites"
       quality: "Quality"
+    terms: "Search terms"
     title: "search"
     titles:
       age: "age"
