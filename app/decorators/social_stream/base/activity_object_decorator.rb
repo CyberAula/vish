@@ -449,6 +449,18 @@ ActivityObject.class_eval do
       metadata[I18n.t("activity_object.age_range")] = self.age_min.to_s + " - " + self.age_max.to_s
     end
 
+    unless self.linked?
+      unless self.author.nil? or self.author.name.nil?
+        metadata[I18n.t("activity_object.author")] = self.author.name
+      end
+    end
+
+    if self.should_have_license?
+      unless self.license.nil?
+        metadata[I18n.t("activity_object.license")] = self.license.name
+      end
+    end
+
     if self.object_type == "Excursion"
       #Excursions have some extra metadata fields in the json
       parsed_json = JSON(self.object.json)

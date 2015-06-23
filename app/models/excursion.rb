@@ -606,7 +606,11 @@ class Excursion < ActiveRecord::Base
         end
 
         myxml.description do
-          myxml.string("For additional information or questions regarding copyright, distribution and reproduction, visit " + Vish::Application.config.full_domain + "/legal_notice", :language=> metadataLanguage)
+          license = ""
+          unless ejson["license"].nil? or ejson["license"]["name"].blank?
+            license = "License: '" + ejson["license"]["name"] + "'. "
+          end
+          myxml.string(license + "For additional information or questions regarding copyright, distribution and reproduction, visit " + Vish::Application.config.full_domain + "/terms_of_use .", :language=> metadataLanguage)
         end
 
       end

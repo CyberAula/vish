@@ -30,10 +30,12 @@ es:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
   activity_object:
+    author: "Autor"
     title: "Título"
     description: "Descripción"
     keywords: "Palabras clave"
     language: "Idioma"
+    license: "Licencia"
     age_range: "Rango de edad"
     context: "Contexto"
     context_choices:

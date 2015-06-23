@@ -40,10 +40,12 @@ en:
     follow: "+ Follow"
     unfollow: "UnFollow"
   activity_object:
+    author: "Author"
     title: "Title"
     description: "Description"
     keywords: "Keywords"
     language: "Language"
+    license: "License"
     age_range: "Age Range"
     context: "Context"
     context_choices:
