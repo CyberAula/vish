@@ -1,7 +1,12 @@
 EventsController.class_eval do
 
   def show
-    show!
+    super do |format|
+      format.full {
+        @title = resource.title
+        render :layout => 'iframe'
+      }
+    end
   end
   
   def allowed_params

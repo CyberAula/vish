@@ -1,4 +1,5 @@
 <section id="event" class="layout_show">
+  
   <div class="event">
     <!--recomended-->
     <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@event,{:n=>12, :models => [Event]})} %>
@@ -9,36 +10,30 @@
         <div class="elementsBox">
           <!-- Streming from 10 minutes before until 2 hours later -->
           <% if @event.streaming && ((Time.now <=> (@event.start_at - (60 * 30))) > -1) && ((Time.now <=> (@event.end_at + (60 * 60 * 2))) < 1) %>
-          <%= raw @event.embed %>
+            <div class="iframe_show_wrapper">
+              <iframe src="<%=event_path(@event, :format => :full)%>" width="800px" height="600px" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true" sandbox="allow-scripts allow-same-origin"></iframe>
+            </div>
         <% else %>
             <div class="icon-box" id="event-<%=@event.id%>">
               <% if @event.poster.new_record? %>
-
-                <!--<i class="fa fa-video-camera"></i>-->
                 <%= image_tag('items/rec2.jpg', :class=> "event-img") %>
               <% else %>
                 <%= image_tag(@event.poster.file) %>
                 <%= content_for :javascript do %>
                   $("#event-<%=@event.id%>").addClass("high")
                 <%end%>
-              <% end %>
-              <%# if (can?(:update, @event) && @event.poster.new_record?) %>
-                  <%#= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
-              <%# end %>
-          
+              <% end %>         
             </div>  
          <% end %>
         </div>
       </div>
 
-    
       <div class="description-activity">
         <div class="box_description">
           <!--tool-->
           <div class="excursion_tool">
             <%= render :partial => 'events/event-tool-tab', :locals => { :document => @event } %>
           </div>     
-        
         
           <!--activity-->
           <div class="activity-box">
