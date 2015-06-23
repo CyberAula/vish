@@ -240,6 +240,7 @@ Vish.Search = (function(V,undefined){
       _toggleFilter("type", "User");
     } else {
       _toggleFilter("type", "Learning_object");
+
       //in this case "type" can be, "excursion", "event", "workshop", i.e. anything in _options.object_types
       _options.object_types.forEach(function(item_type) {
         if(_parsed_url["type"].indexOf(item_type)>-1){
@@ -249,7 +250,7 @@ Vish.Search = (function(V,undefined){
 
       //finally if _parsed_url["type"] can be anything in _options.resource_types,
       //so we would have to mark the lo_type to "resource"
-      _options.resource_types.forEach(function(item_subtype) {
+      _options.resource_types.forEach(function(item_subtype){
         if(_parsed_url["type"].indexOf(item_subtype)>-1){
           if(!_parsed_url["catalogue"] && !_parsed_url["directory"]){
             var filter_resource_obj = $("#search-sidebar ul li[filter_key='type'][filter='Resource']");
@@ -268,11 +269,11 @@ Vish.Search = (function(V,undefined){
     }
 
     //the rest of the filters
-    $.each( _parsed_url, function(name, value_array){
-        if(name === 'q' || name === 'type' || name === 'sort_by' ||value_array.length===0 || value_array[0] === "") {
-          return true;//next iteration, q is the query so not a filter, "type" has already been manually treated, or maybe the param is present but not filled
+    $.each(_parsed_url, function(name, value_array){
+        if(name === 'q' || name === 'type' || name === 'sort_by' || value_array.length===0 || value_array[0] === "") {
+          return true; //next iteration, q is the query so not a filter, "type" has already been manually treated, or maybe the param is present but not filled
         }
-        value_array.forEach(function(item) {
+        value_array.forEach(function(item){
           _toggleFilter(name, item);
         });
     });
@@ -545,15 +546,37 @@ Vish.Search = (function(V,undefined){
 
   /*Returns an object with the URL parameters as arrays
     EXAMPLE: result = { type: ["Excursion", "Resource"], language:["es", "en"]}*/
-  var _getUrlParameters = function()
-  {
-      var parsed = queryString.parse(location.search);
-      $.each( parsed, function(key, value){
-        //if contains comma, split it in an array, if not returns an array with one value (easier to iterate)
-        //we also remove empty strings
-        parsed[key] = value.split(",").filter(function(e) { return e; });
-      });
-      return parsed;
+  var _getUrlParameters = function(){
+    var parsed = queryString.parse(location.search);
+    $.each( parsed, function(key, value){
+      //if contains comma, split it in an array, if not returns an array with one value (easier to iterate)
+      //we also remove empty strings
+      parsed[key] = value.split(",").filter(function(e) { return e; });
+    });
+
+    //Infer type when searching (not browse, catalogue or directory)
+    if((!parsed["type"])&&(!parsed["catalogue"])&&(!parsed["directory"])){
+      var windowHistoryPushStateSupported = ((window.history)&&(typeof window.history.pushState == "function"));
+      if(windowHistoryPushStateSupported){
+        var resourcesTypes = _options.result_resource_types.split(",");
+        if(resourcesTypes.length > 0){
+          if(resourcesTypes.indexOf("Actor")==-1) {
+            parsed["type"] = ["Learning_object"];
+          } else if (resourcesTypes.length === 1) {
+            //resourcesTypes == ["Actor"]
+            parsed["type"] = ["User"];
+          }
+          
+          if(parsed["type"]){
+            var newURLWithType = (window.top.location.pathname + window.top.location.search) + "&type=" + parsed["type"];
+            window.history.pushState(undefined, undefined, newURLWithType);
+            _options["url"] = window.location.href;
+          }
+        }
+      }
+    }
+
+    return parsed;
   };
 
 

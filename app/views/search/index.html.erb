@@ -13,6 +13,8 @@
   <% end %>
 <% end %>
 
+<% searchTerms = !params[:q].blank? and searchMode %>
+
 <section id="search" class="">
   <div class="row">
     <div id="search-sidebar" class="search-filterbar">
@@ -125,7 +127,7 @@
 
         <%= render partial: 'help/help_search' %>
 
-        <% unless params[:q].blank? or !searchMode %>
+        <% if searchTerms %>
           <div><%= t("search.terms")%>: <span class="n_results"><%=params[:q]%></span></div>
         <% end %>
         <div><span class="n_results" id="n_results"><%=@search_result.total_entries%></span> <%= t("search.results")%></div>
@@ -237,6 +239,7 @@
   Vish.Search.init({
     "object_types": <%=raw VishConfig.getSearchModels()%>,
     "resource_types": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }%>,
+    "result_resource_types": "<%= (searchTerms ? extract_types(@search_result) : "") %>",
     "num_pages": <%=@search_result.num_pages%>,
     "url": window.location.href,
     "tags": "<%=extract_tags(@search_result)%>",
@@ -246,7 +249,7 @@
     "excursionsInDirectory": <%= VishConfig.getDirectoryModels().include? "Excursion" %>
   });
 
-  <% unless params[:q].blank? or !searchMode %>
+  <% if searchTerms %>
     $(".search-query").val("<%=params[:q]%>");
   <% end %>
 
