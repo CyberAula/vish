@@ -1,5 +1,5 @@
 <%= div_for embed, :class => 'content_size' do %>
-  <div class="embed_show">
-    <div style="width: auto; overflow: hidden;"><%= raw embed.fulltext %></div>    
+  <div class="iframe_show_wrapper">
+    <iframe src="<%=embed_path(resource, :format => :full)%>" width="800px" height="600px" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true" sandbox="allow-scripts"></iframe>
   </div>
 <% end %>
