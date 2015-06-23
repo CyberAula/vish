@@ -83,11 +83,16 @@ class WorkshopsController < ApplicationController
       params.delete "workshop_activities_order"
     end
 
+    wasDraft = resource.draft
+
     super do |format|
       format.html {
         if resource.draft
           redirect_to edit_workshop_path(resource)
         else
+          if wasDraft
+            resource.afterPublish
+          end
           redirect_to workshop_path(resource)
         end
       }

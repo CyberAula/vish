@@ -25,6 +25,18 @@ class Workshop < ActiveRecord::Base
     self.workshop_activities.select{|workshop_activity| workshop_activity.wa_type=="WaAssignment"}.map{|workshop_activity| workshop_activity.object.contributions}.flatten.uniq
   end
 
+  def afterPublish
+    #Check if post_activity is public. If not, make it public and update the created_at param.
+    post_activity = self.post_activity
+    unless post_activity.nil? or post_activity.public?
+      #Update the created_at param.
+      post_activity.created_at = Time.now
+      #Make it public
+      post_activity.relation_ids = [Relation::Public.instance.id]
+      post_activity.save!
+    end
+  end
+
 
   private
 
