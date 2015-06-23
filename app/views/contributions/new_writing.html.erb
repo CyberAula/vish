@@ -2,27 +2,27 @@
 
 <div id="AddContribution">
     <div class="layoutform">
-        <%= form_for resource, :remote => false do |f| %>
-          <% wa_assignment_id = (resource.wa_assignment_id ? resource.wa_assignment_id : params[:wa_assignment_id]) %>
-          <% if !wa_assignment_id.nil? %>
-            <%= f.hidden_field :wa_assignment_id, :value => wa_assignment_id %>
-          <% else %>
-            <% parent_id = (resource.parent_id ? resource.parent_id : params[:parent_id]) %>
-            <% if !parent_id.nil? %>
-              <%= f.hidden_field :parent_id, :value => parent_id %>
-            <%end%>
-          <% end %>
-          <%= f.hidden_field :type, :value => "Writing" %>
-          <section class="title">
-            <label for="contribution_title"><%=t("contribution.title")%></label>
-            <input type="text" class="form-control" id="contribution_title" name="writing[title]" value="">
-          </section>
-          <section class="contribution_Writing">
-            <label for="contribution_fulltext"><%=t("contribution.content")%></label>
-            <textarea cols="40" id="contribution_fulltext" class="form-control" name="writing[fulltext]" rows="20"></textarea>
-            <input id="contribution_plaintext" name="writing[plaintext]" type="hidden" value=""> 
-          </section>                          
+      <%= form_for resource, :remote => false do |f| %>
+        <% wa_assignment_id = (resource.wa_assignment_id ? resource.wa_assignment_id : params[:wa_assignment_id]) %>
+        <% if !wa_assignment_id.nil? %>
+          <%= f.hidden_field :wa_assignment_id, :value => wa_assignment_id %>
+        <% else %>
+          <% parent_id = (resource.parent_id ? resource.parent_id : params[:parent_id]) %>
+          <% unless parent_id.nil? %>
+            <%= f.hidden_field :parent_id, :value => parent_id %>
+          <%end%>
         <% end %>
+        <%= f.hidden_field :type, :value => "Writing" %>
+        <section class="title">
+          <label for="contribution_title"><%=t("contribution.title")%></label>
+          <input type="text" class="form-control" id="contribution_title" name="writing[title]" value=""/>
+        </section>
+        <section class="contribution_Writing">
+          <label for="contribution_fulltext"><%=t("contribution.content")%></label>
+          <textarea cols="40" id="contribution_fulltext" class="form-control" name="writing[fulltext]" rows="20"></textarea>
+          <input id="contribution_plaintext" name="writing[plaintext]" type="hidden" value=""/>
+        </section>
+      <% end %>
     </div>
     <div class="footer-form">
       <input type="button" id="addContributionButtonFake" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
@@ -30,11 +30,21 @@
 </div>
 
 <%content_for :javascript do%>
+  $("#addContributionButtonFake").click(function(event){
+    //Validation
+    if($("#contribution_title").val().trim()===""){
+      //Title is blank
+      return alert("<%=I18n.t('activity_object.title')%>" + " " + "<%=I18n.t('errors.messages.blank')%>");
+    }
 
-    var uploadButtonFake = $("#addContributionButtonFake");
-    $(uploadButtonFake).click(function(event){
-        set_ckeditor_content_full_and_plaintext("contribution_fulltext","contribution_plaintext");
-        $(this).button('loading');
-        $("#AddContribution").find("form").submit();
-    });
+    set_ckeditor_content_full_and_plaintext("contribution_fulltext","contribution_plaintext");
+    if($("#contribution_plaintext").val().trim()===""){
+      //Text is blank
+      return alert("<%=I18n.t('workshop.activities.text.title')%>" + " " + "<%=I18n.t('errors.messages.blank')%>");
+    }
+
+    //Validation passed
+    $(this).button('loading');
+    $("#AddContribution").find("form").submit();
+  });
 <%end%>

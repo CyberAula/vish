@@ -7,6 +7,8 @@ class Writing < ActiveRecord::Base
     #indexes plaintext
   end
 
+  validates :title, :presence => true
+
   def as_json(options = nil)
     {:id => id,
      :title => title,

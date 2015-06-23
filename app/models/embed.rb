@@ -8,7 +8,8 @@ class Embed < ActiveRecord::Base
   end
 
   def as_json(options = nil)
-    {:id => id,
+    {
+     :id => id,
      :title => title,
      :description => description,
      :author => author.name,
