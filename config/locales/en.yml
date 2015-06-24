@@ -859,6 +859,7 @@ en:
       start_date: "Start Date"
       end_date: "End Date"
       language: "Language"
+      license: "License"
       quality_threshold: "Quality Threshold"
       age_range: "Age Range"
     loading: "Loading information"

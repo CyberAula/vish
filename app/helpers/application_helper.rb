@@ -52,6 +52,10 @@ module ApplicationHelper
 		options_for_select(License.all.select{|l| l.public? or l.id===selectedLicenseId }.map{|l| [l.name,l.id] },selectedLicenseId)
 	end
 
+	def resource_licenses
+		License.all.select{|l| l.public? }.map{|l| [l.name,l.key] }
+	end
+
 	#Configuration
 	def available_models
 		VishConfig.getAvailableMainModels

@@ -849,6 +849,7 @@ es:
       start_date: "Fecha inicial"
       end_date: "Fecha final"
       language: "Idioma"
+      license: "Licencia"
       quality_threshold: "Umbral de Calidad"
       age_range: "Rango de Edad"
     instances:

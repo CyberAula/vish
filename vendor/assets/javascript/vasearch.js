@@ -257,6 +257,11 @@ VASearch.UI = (function(V,undefined){
       settings.language = language;
     }
 
+    var license = $("#asearch_settings [asparam='license']").val();
+    if(license.trim()!=""){
+      settings.license = license;
+    }
+
     settings.qualityThreshold = $("#asearch_settings [asparam='qualityThreshold']").val();
 
     var ageMin = $("#asearch_settings [asparam='ageMin']").val();
@@ -397,6 +402,10 @@ VASearch.Core = (function(V,undefined){
 
     if(settings.language){
       query += "&language="+settings.language;
+    }
+
+    if(settings.license){
+      query += "&license="+settings.license;
     }
 
     if(settings.qualityThreshold){
