@@ -424,6 +424,16 @@ class RecommenderSystem
       opts[:with][:age_max] = ageMin..100
     end
 
+    #Filter by license
+    if options[:license].is_a? String
+      #Remove models without licenses
+      opts[:classes] = (opts[:classes] - [User,Event,Embed,Link,Category])
+      license = License.find_by_key(options[:license])
+      unless license.nil?
+        opts[:with][:license_id] = license.id
+      end
+    end
+
     #Filter by categories
     if options[:category_ids].is_a? String
       options[:category_ids] = options[:category_ids].split(",")
@@ -459,6 +469,11 @@ class RecommenderSystem
       unless options[:ao_ids_to_avoid].empty?
         opts[:without][:activity_object_id] = options[:ao_ids_to_avoid]
       end
+    end
+
+    if opts[:classes].blank?
+      #opts[:classes] blank will search for all classes by default. Set scope to -1 to return empty results.
+      opts[:with][:scope] = -1
     end
 
     # (Try to) Avoid nil results (See http://pat.github.io/thinking-sphinx/searching.html#nils)
