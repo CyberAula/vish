@@ -243,6 +243,10 @@ ActivityObject.class_eval do
       searchJson[:language] = resource.language
     end
 
+    if resource.should_have_license? and !resource.license.nil?
+      searchJson[:license] = resource.license.name
+    end
+
     avatarUrl = getAvatarUrl
     unless avatarUrl.nil?
       searchJson[:avatar_url] = avatarUrl
