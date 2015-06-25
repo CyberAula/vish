@@ -352,27 +352,44 @@ input.age-slider
     label
       width: 100%
   section.target_age
-    margin-bottom: 15px
+    margin-top: 5px
+    margin-bottom: 30px
   .btn
     float: right
     margin-top: 15px
-  section.authorship_newInstance
-    label
-      width: auto
-      margin-left: 8px
-      margin-top: 2px
-    input[type=checkbox]
-      display: block
-      opacity: 1
-      position: relative
-      float: left
+  .layoutform.layoutform_editInstance
+    section.license
+      margin-top: 10px
+    section.authorship,
+    section.license
+      label
+        margin-bottom: 1px
+      span
+        margin-top: 0px
+  .layoutform.layoutform_newInstance
+    section.authorship
+      label
+        width: auto
+        margin-left: 0px
+        margin-top: 2px
+      label.resource_authorship_label
+        margin-left: 5px
+      label.authorship_author_label
+        margin-top: 5px
+      label.authorship_attribution_label
+        margin-top: 10px
+      input[type=checkbox]
+        display: block
+        opacity: 1
+        position: relative
+        float: left
 
 #new_document
   .modal-body
     padding-top: 0
     margin-top: -6px
     .target_age
-      min-height: 80px
+      margin-bottom: 20px
   .footer-form
     margin: 15px -20px 0
     padding: 0px 20px 0px
@@ -429,7 +446,6 @@ textarea.form-control
         margin: 15px 0
         .panel-default
           border-color: $gray-light
-
       .resource_info
         border-radius: $border-radius-base
         padding: 0 15px 30px 15px
@@ -440,8 +456,21 @@ textarea.form-control
             position: relative
             float: left
           label
-            margin-top: 0px
+            margin-top: 1px
+            margin-bottom: 2px
             width: auto
+          .resource_authorship_label
+            margin-bottom: 15px
+      .target_age_slider_label
+        margin-top: 20px
+        margin-bottom: 1px
   .modal-footer
     margin: 0
   
+
+div.resource_common_fields_form
+  section.avatar
+    margin-bottom: 18px
+
+.resource_authorship_label
+  margin-left: 5px

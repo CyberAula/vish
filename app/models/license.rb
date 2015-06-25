@@ -20,8 +20,12 @@ class License < ActiveRecord::Base
     self.key === "private"
   end
 
+  def custom?
+    self.key === "other"
+  end
+
   def requires_attribution?
-    return (self.key.include? "cc-by" or self.key === "other")
+    return (self.key.include? "cc-by" or self.custom?)
   end
 
   def shared_alike?

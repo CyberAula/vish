@@ -1,5 +1,8 @@
+<% isNewInstance = resource.new_record? %>
+<% isDocument = [resource.class.name,resource.class.superclass.name].include? "Document" %>
+
 <article id="new_file">
-  <div class="layoutform">
+  <div class="layoutform <%=isNewInstance ? 'layoutform_newInstance' : 'layoutform_editInstance'%>">
 
     <%= form_for(resource) do |f| %>
       <%= f.hidden_field :owner_id %>
@@ -17,9 +20,6 @@
           <% end %>
         </ul>
       </div>
-
-      <% isNewInstance = resource.new_record? %>
-      <% isDocument = [resource.class.name,resource.class.superclass.name].include? "Document" %>
 
       <% if isDocument %>
         <%=render :partial => "common_documents/common_edit", :locals => {:f => f, :isNewInstance => isNewInstance}%>
@@ -124,9 +124,9 @@
         <section class="license">
           <%= f.label :license_id, t('document.info.license') %>
           <% if resource.license.nil? or resource.license.private? or isNewInstance %>
-            <%= f.select(:license_id, resource_license_options_for_select(resource.license_id), {}, {:class => "resource_license"}) %>
+            <%= f.select(:license_id, resource_license_options_for_select(resource.license_id, isDocument), {}, {:class => "resource_license"}) %>
           <% else %>
-            <%= resource.license_name %>
+            <span><%= resource.license_name %></span>
             <%#= f.select(:license_id, resource_license_options_for_select(resource.license_id), {}, {:disabled => true}) %>
           <% end %>
           <% if isNewInstance %>
@@ -140,23 +140,24 @@
       <% end %>
 
       <% if isDocument %>
-        <section class="authorship <%='authorship_newInstance' if isNewInstance%>">
+        <section class="authorship">
           <% unless isNewInstance %>
-            <label><%=t("document.info.author")%>:</label> <%= resource.original_author_name %>
+            <label><%=t("document.info.author")%>:</label>
+            <span><%= resource.original_author_name %></span>
             <%unless !hasLicense or resource.license_attribution.blank? or resource.license.nil? or !resource.license.requires_attribution? %>
               <br/>
-              <label><%=t("document.info.license_attribution")%>:</label> <%= resource.license_attribution %>
+              <label><%=t("document.info.license_attribution")%>:</label>
+              <span><%= resource.license_attribution %></span>
             <% end %>
           <% else %>
             <br/>
             <% currentUserIsOwner = (resource.original_author.nil? or (!current_subject.nil? and resource.original_author==current_subject.name)) %>
             <input type="checkbox" <%='checked="checked"' if currentUserIsOwner %> class="authorship_checkbox"></input>
-            <label><%=t("document.leyend.authorship_recognition")%></label>
+            <label class="resource_authorship_label"><%=t("document.leyend.authorship_recognition")%></label>
             <br/>
-            <%= f.label :original_author, t("document.info.author") %>
+            <%= f.label :original_author, t("document.info.author"), :class => "authorship_author_label" %>
             <%= f.text_field :original_author, :class => "form-control authorship_author", :disabled => currentUserIsOwner, :defaultvalue => current_subject.name, :value => (resource.original_author or current_subject.name) %>
-            <br/>
-            <%= f.label :license_attribution, t("document.info.license_attribution") %>
+            <%= f.label :license_attribution, t("document.info.license_attribution"), :class => "authorship_attribution_label" %>
             <%= f.text_field :license_attribution, :class => "form-control authorship_attribution", :disabled => currentUserIsOwner, :defaultvalue => current_subject.default_license_attribution, :value => (resource.license_attribution or current_subject.default_license_attribution) %>
           <% end %>
         </section>

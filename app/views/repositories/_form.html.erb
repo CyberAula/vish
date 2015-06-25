@@ -150,7 +150,7 @@
             <%= select_tag(:language, resource_language_options_for_select(d.language), :class => "resource_language") %>
 
             <!--AGE SLIDER-->
-            <label><%= t('document.leyend.recommended_age')%></label>
+            <label class="target_age_slider_label"><%= t('document.leyend.recommended_age')%></label>
             <div class="limits">
               <div class="limit1">0</div>
               <div class="limit2">0</div>
@@ -171,12 +171,14 @@
             <!--AUTHORSHIP-->
             <section class="authorship">
               <br/>
-              <input type="checkbox" checked="checked" class="authorship_checkbox"></input><label><%=t("document.leyend.authorship_recognition")%></label>
+              <input type="checkbox" checked="checked" class="authorship_checkbox"></input>
+              <label class="resource_authorship_label"><%=t("document.leyend.authorship_recognition")%></label>
               <br/>
+              <label><%=t("document.info.author")%></label>
+              <input type="text" class="form-control title authorship_author" defaultvalue="<%=current_subject.name%>" value="<%=current_subject.name%>" disabled="disabled"/>
               <br/>
-              <label><%=t("document.info.author")%></label><input type="text" class="form-control title authorship_author" defaultvalue="<%=current_subject.name%>" value="<%=current_subject.name%>" disabled="disabled"/>
-              <br/>
-              <label><%=t("document.info.license_attribution")%>:</label><input type="text" class="form-control title authorship_attribution" defaultvalue="<%=current_subject.default_license_attribution%>" value="<%=current_subject.default_license_attribution%>" disabled="disabled"/>
+              <label><%=t("document.info.license_attribution")%>:</label>
+              <input type="text" class="form-control title authorship_attribution" defaultvalue="<%=current_subject.default_license_attribution%>" value="<%=current_subject.default_license_attribution%>" disabled="disabled"/>
             </section>
 
           </div>

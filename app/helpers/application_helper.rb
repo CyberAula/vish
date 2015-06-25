@@ -47,9 +47,10 @@ module ApplicationHelper
 		[[I18n.t('lang.languages.other'), "ot"]]
 	end
 
-	def resource_license_options_for_select(licenseId)
+	def resource_license_options_for_select(licenseId,allowCustom=true)
 		selectedLicenseId = licenseId || License.default.id
-		options_for_select(License.all.select{|l| l.public? or l.id===selectedLicenseId }.map{|l| [l.name,l.id] },selectedLicenseId)
+		licenses = License.all.select{|l| (l.public? and (allowCustom or !l.custom?)) or (l.id===selectedLicenseId) }
+		options_for_select(licenses.map{|l| [l.name,l.id] },selectedLicenseId)
 	end
 
 	def resource_licenses
