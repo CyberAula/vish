@@ -457,6 +457,7 @@ en:
       description: "Description"
       license: "License"
       license_attribution: "Attribute to"
+      license_custom_form: "Specify license"
       linked_by: "Enlazado por"
       size: "Size"
       tags: "Tags"
@@ -492,6 +493,7 @@ en:
     uploading: "Uploading..."
     validation:
       author_name: "Please, type the author name"
+      license_custom: "Custom licenses must be specified"
       license_attribution: "If an author is specified, you must provide a license attribution link"
   downloadxlsx: "Download as XLSX"
   email:
@@ -668,6 +670,7 @@ en:
       cc-by-nc: "Creative Commons Attribution-NonCommercial"
       cc-by-nc-sa: "Creative Commons Attribution-NonCommercial-ShareAlike"
       cc-by-nc-nd: "Creative Commons Attribution-NonCommercial-NoDerivs"
+      other: "Other free license"
       private: "None (All rights reserved)"
   link:
     one: "link"

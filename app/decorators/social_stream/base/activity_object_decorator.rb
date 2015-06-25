@@ -39,7 +39,17 @@ ActivityObject.class_eval do
           if !oldLicense.nil? and oldLicense.public? and self.license_id != oldLicense.id
             errors[:base] << "Public licenses can't be changed"
           else
-            true
+            if self.license.key == "other"
+              if self.license_custom.blank?
+                errors[:base] << "Custom license must be specified"
+              elsif !self.license_custom_was.blank? and self.license_custom_was != self.license_custom
+                errors[:base] << "Custom license can't be changed"
+              else
+                true
+              end
+            else
+              true
+            end
           end
         end
       end
@@ -125,6 +135,16 @@ ActivityObject.class_eval do
       self.object.name + " (" + self.getUrl + ")"
     elsif self.respond_to? "owner" and !self.owner.nil?
       self.owner.name + " (" + self.owner.getUrl + ")"
+    end
+  end
+
+  def license_name
+    if self.should_have_license? and !self.license.nil?
+      if self.license.key != "other"
+        self.license.name
+      elsif !self.license_custom.blank?
+        self.license_custom
+      end
     end
   end
 
@@ -244,7 +264,7 @@ ActivityObject.class_eval do
     end
 
     if resource.should_have_license? and !resource.license.nil?
-      searchJson[:license] = resource.license.name
+      searchJson[:license] = resource.license_name
     end
 
     avatarUrl = getAvatarUrl
@@ -461,7 +481,7 @@ ActivityObject.class_eval do
 
     if self.should_have_license?
       unless self.license.nil?
-        metadata[I18n.t("activity_object.license")] = self.license.name
+        metadata[I18n.t("activity_object.license")] = self.license_name
       end
     end
 

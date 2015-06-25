@@ -44,6 +44,7 @@
                     <%= f.hidden_field :license_id %>
                     <%= f.hidden_field :original_author %>
                     <%= f.hidden_field :license_attribution %>
+                    <%= f.hidden_field :license_custom %>
                     <%= f.hidden_field :age_min, :value => "0" %>
                     <%= f.hidden_field :age_max, :value => "0" %>
                     <%= f.submit t('button.save'), :class => "document hide"%>
@@ -77,6 +78,7 @@
                     <%= f.hidden_field :license_id %>
                     <%= f.hidden_field :original_author %>
                     <%= f.hidden_field :license_attribution %>
+                    <%= f.hidden_field :license_custom %>
                     <%= f.hidden_field :age_min, :value => "0" %>
                     <%= f.hidden_field :age_max, :value => "0" %>
                     <%= f.submit t('button.save'), :class => "link hide"%>
@@ -106,6 +108,7 @@
                     <%= f.hidden_field :license_id %>
                     <%= f.hidden_field :original_author %>
                     <%= f.hidden_field :license_attribution %>
+                    <%= f.hidden_field :license_custom %>
                     <%= f.hidden_field :age_min, :value => "0" %>
                     <%= f.hidden_field :age_max, :value => "0" %>
                     <%= f.submit t('button.save'), :class => "embed hide"%>
@@ -159,6 +162,10 @@
               <br/>
               <label><%= t('document.info.license')%></label>
               <%= select_tag(:license_id, resource_license_options_for_select(d.license_id), :class => "resource_license") %>
+              <div class="license_custom_wrapper" style="display:none">
+                <label><%=t("document.info.license_custom_form")%>:</label>
+                <input type="text" class="form-control title"/>
+              </div>
             </section>
 
             <!--AUTHORSHIP-->
@@ -251,6 +258,13 @@
           return alert("<%= t('document.body.title3')%>");
         }
 
+        //License validation
+        if($("#AddResource section.license select.resource_license").find(":selected").text()==="<%=t("licenses.other")%>"){
+          if($("#AddResource section.license div.license_custom_wrapper input").val().trim() == ""){
+            return alert('<%=t('document.validation.license_custom')%>');
+          }
+        }
+
         //Authorship validation
         if(!$("input.authorship_checkbox").is(":checked")){
           if($("#AddResource section.authorship input.authorship_author").val() == ""){
@@ -297,6 +311,10 @@
     if(resource_type==="document"){
       //LICENSE
       $("#AddResource input[name='"+resource_type+"[license_id]']").val($("#AddResource .resource_license").val());
+      if($("#AddResource section.license select.resource_license").find(":selected").text()==="<%=t("licenses.other")%>"){
+        //Custom license
+        $("#AddResource input[name='"+resource_type+"[license_custom]']").val($("#AddResource section.license div.license_custom_wrapper input").val());
+      }
       //AUTHORSHIP
       $("#AddResource input[name='"+resource_type+"[original_author]']").val($("#AddResource section.authorship input.authorship_author").val());
       $("#AddResource input[name='"+resource_type+"[license_attribution]']").val($("#AddResource section.authorship input.authorship_attribution").val());
@@ -398,6 +416,19 @@
       //Hide authorship fields
       $("#AddResource").find("section.license").hide();
       $("#AddResource").find("section.authorship").hide();
+    }
+  });
+
+  //Custom license listener
+  $("#AddResource section.license select.resource_license").change(function(event){
+    if($(this).find(":selected").text()==="<%=t("licenses.other")%>"){
+      if(!$("#AddResource section.license div.license_custom_wrapper").is(":visible")){
+        $("#AddResource section.license div.license_custom_wrapper").show();
+      }
+    } else {
+      if($("#AddResource section.license div.license_custom_wrapper").is(":visible")){
+        $("#AddResource section.license div.license_custom_wrapper").hide();
+      }
     }
   });
 

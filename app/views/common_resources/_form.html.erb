@@ -126,7 +126,7 @@
           <% if resource.license.nil? or resource.license.private? %>
             <%= f.select(:license_id, resource_license_options_for_select(resource.license_id)) %>
           <% else %>
-            <%= resource.license.name %>
+            <%= resource.license_name %>
             <%#= f.select(:license_id, resource_license_options_for_select(resource.license_id), {}, {:disabled => true}) %>
           <% end %>
         </section>

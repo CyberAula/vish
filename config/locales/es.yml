@@ -446,6 +446,7 @@ es:
       description: "Descripción"
       license: "Licencia"
       license_attribution: "Atribuir a"
+      license_custom_form: "Especificar licencia"
       linked_by: "Enlazado por"
       size: "Tamaño"
       tags: "Etiquetas"
@@ -481,6 +482,7 @@ es:
     uploading: "Subiendo..."
     validation:
       author_name: "Debes escribir el nombre del autor"
+      license_custom: "Las licencias personalizadas deben ser especificadas"
       license_attribution: "Si se especifica un autor, debes proporcionar un enlace de reconocimiento (atribución)"
   email:
     regards: "Un cordial saludo,<br/>"
@@ -658,6 +660,7 @@ es:
       cc-by-nc: "Creative Commons Reconocimiento-NoComercial"
       cc-by-nc-sa: "Creative Commons Reconocimiento-NoComercial-CompartirIgual"
       cc-by-nc-nd: "Creative Commons Reconocimiento-NoComercial-SinObraDerivada"
+      other: "Otra licencia libre"
       private: "Ninguna (Todos los derechos reservados)"
   link:
     one: "enlace"

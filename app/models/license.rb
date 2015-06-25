@@ -21,7 +21,7 @@ class License < ActiveRecord::Base
   end
 
   def requires_attribution?
-    return self.key.include? "cc-by"
+    return (self.key.include? "cc-by" or self.key === "other")
   end
 
   def shared_alike?

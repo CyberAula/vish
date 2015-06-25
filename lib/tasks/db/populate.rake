@@ -285,6 +285,7 @@ namespace :db do
           licenseKeys.push("cc-by-nc")
           licenseKeys.push("cc-by-nc-sa")
           licenseKeys.push("cc-by-nc-nd")
+          licenseKeys.push("other")
           licenseKeys.push("private") #none (All rights reserved)
 
           licenseKeys.each do |key|

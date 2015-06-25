@@ -77,7 +77,7 @@ DocumentsController.class_eval do
   private
 
   def allowed_params
-    [:file, :language, :license_id, :original_author, :license_attribution, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
+    [:file, :language, :license_id, :original_author, :license_attribution, :license_custom, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
   end
 
   def fill_create_params
