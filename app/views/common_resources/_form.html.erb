@@ -124,24 +124,40 @@
         <section class="license">
           <%= f.label :license_id, t('document.info.license') %>
           <% if resource.license.nil? or resource.license.private? or isNewInstance %>
-            <%= f.select(:license_id, resource_license_options_for_select(resource.license_id)) %>
+            <%= f.select(:license_id, resource_license_options_for_select(resource.license_id), {}, {:class => "resource_license"}) %>
           <% else %>
             <%= resource.license_name %>
             <%#= f.select(:license_id, resource_license_options_for_select(resource.license_id), {}, {:disabled => true}) %>
           <% end %>
-          <% if isNewInstance and !resource.license.nil? and resource.license.key == "other" %>
-              <%= f.label :license_custom, t("document.info.license_custom_form") %>
-              <%= f.text_field :license_custom, :class => "form-control" %>
+          <% if isNewInstance %>
+              <% showLicenseCustom = (!resource.license.nil? and resource.license.key == "other") %>
+              <div class="license_custom_wrapper" <%='style=display:none' unless showLicenseCustom %> >
+                <%= f.label :license_custom, t("document.info.license_custom_form") %>
+                <%= f.text_field :license_custom, :class => "form-control" %>
+              </div>
           <% end %>
         </section>
       <% end %>
 
       <% if isDocument %>
-        <section class="authorship">
-          <label><%=t("document.info.author")%>:</label> <%= resource.original_author_name %>
-          <%unless !hasLicense or resource.license_attribution.blank? or resource.license.nil? or !resource.license.requires_attribution? %>
+        <section class="authorship <%='authorship_newInstance' if isNewInstance%>">
+          <% unless isNewInstance %>
+            <label><%=t("document.info.author")%>:</label> <%= resource.original_author_name %>
+            <%unless !hasLicense or resource.license_attribution.blank? or resource.license.nil? or !resource.license.requires_attribution? %>
+              <br/>
+              <label><%=t("document.info.license_attribution")%>:</label> <%= resource.license_attribution %>
+            <% end %>
+          <% else %>
             <br/>
-            <label><%=t("document.info.license_attribution")%>:</label> <%= resource.license_attribution %>
+            <% currentUserIsOwner = (resource.original_author.nil? or (!current_subject.nil? and resource.original_author==current_subject.name)) %>
+            <input type="checkbox" <%='checked="checked"' if currentUserIsOwner %> class="authorship_checkbox"></input>
+            <label><%=t("document.leyend.authorship_recognition")%></label>
+            <br/>
+            <%= f.label :original_author, t("document.info.author") %>
+            <%= f.text_field :original_author, :class => "form-control authorship_author", :disabled => currentUserIsOwner, :defaultvalue => current_subject.name, :value => (resource.original_author or current_subject.name) %>
+            <br/>
+            <%= f.label :license_attribution, t("document.info.license_attribution") %>
+            <%= f.text_field :license_attribution, :class => "form-control authorship_attribution", :disabled => currentUserIsOwner, :defaultvalue => current_subject.default_license_attribution, :value => (resource.license_attribution or current_subject.default_license_attribution) %>
           <% end %>
         </section>
       <% end %>
@@ -220,6 +236,7 @@
         $("#new_file .tags input").hide();
         $("#new_file .tags input").val(resourceTagList);
       });
+
       // onDocumentReady
       // document.addEventListener("DOMContentLoaded", function(){});
       SocialStream.Document.edit();
@@ -227,6 +244,39 @@
         $('#new_file .age-slider').data('slider').setValue([0,0]);
       <% end %>
       newFilePositionLimits();
+
+      //Authorship
+      $("#new_file section.authorship input[type='checkbox']").change(function(){
+        var checked = $(this).prop('checked');
+        var authorDOM = $(this).parent().find("input.authorship_author");
+        var attributionDOM = $(this).parent().find("input.authorship_attribution");
+
+        if(checked){
+          $(authorDOM).attr("disabled","disabled");
+          $(authorDOM).val($(authorDOM).attr("defaultvalue"));
+          $(attributionDOM).attr("disabled","disabled");
+          $(attributionDOM).val($(attributionDOM).attr("defaultvalue"));
+        } else {
+          $(authorDOM).removeAttr("disabled");
+          $(authorDOM).val("");
+          $(attributionDOM).removeAttr("disabled");
+          $(attributionDOM).val("");
+        }
+      });
+
+      //Custom license listener
+      $("#new_file section.license select.resource_license").change(function(event){
+        if($(this).find(":selected").text()==="<%=t("licenses.other")%>"){
+          if(!$("#new_file section.license div.license_custom_wrapper").is(":visible")){
+            $("#new_file section.license div.license_custom_wrapper").show();
+          }
+        } else {
+          if($("#new_file section.license div.license_custom_wrapper").is(":visible")){
+            $("#new_file section.license div.license_custom_wrapper").hide();
+          }
+        }
+      });
+
     <% end %>
 
   </div>

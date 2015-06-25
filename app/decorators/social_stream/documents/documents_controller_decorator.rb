@@ -35,9 +35,7 @@ DocumentsController.class_eval do
         end
         render :json => jsonResult, status: :created
       }
-
       format.js
-
       format.all {
         if resource.new_record?
           render action: :new
