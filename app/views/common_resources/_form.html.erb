@@ -123,11 +123,15 @@
       <% if hasLicense %>
         <section class="license">
           <%= f.label :license_id, t('document.info.license') %>
-          <% if resource.license.nil? or resource.license.private? %>
+          <% if resource.license.nil? or resource.license.private? or isNewInstance %>
             <%= f.select(:license_id, resource_license_options_for_select(resource.license_id)) %>
           <% else %>
             <%= resource.license_name %>
             <%#= f.select(:license_id, resource_license_options_for_select(resource.license_id), {}, {:disabled => true}) %>
+          <% end %>
+          <% if isNewInstance and !resource.license.nil? and resource.license.key == "other" %>
+              <%= f.label :license_custom, t("document.info.license_custom_form") %>
+              <%= f.text_field :license_custom, :class => "form-control" %>
           <% end %>
         </section>
       <% end %>
@@ -135,13 +139,12 @@
       <% if isDocument %>
         <section class="authorship">
           <label><%=t("document.info.author")%>:</label> <%= resource.original_author_name %>
-          <%unless resource.license_attribution.blank? or resource.license.nil? or !resource.license.requires_attribution? %>
+          <%unless !hasLicense or resource.license_attribution.blank? or resource.license.nil? or !resource.license.requires_attribution? %>
             <br/>
             <label><%=t("document.info.license_attribution")%>:</label> <%= resource.license_attribution %>
           <% end %>
         </section>
       <% end %>
-
 
       <div class="footer-form clearfix">
         <%= f.submit :class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
@@ -150,7 +153,6 @@
         <%end%>
       </div>
     <% end %>
-
 
     <%content_for :javascript do%>
       $("#new_file input[type='submit']").click(function(event){
