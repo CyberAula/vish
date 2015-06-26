@@ -458,7 +458,7 @@ en:
       license: "License"
       license_attribution: "Attribute to"
       license_custom_form: "Specify license"
-      linked_by: "Enlazado por"
+      linked_by: "Linked by"
       size: "Size"
       tags: "Tags"
     input: "Add a description here"

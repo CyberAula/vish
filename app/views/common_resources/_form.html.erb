@@ -1,5 +1,4 @@
 <% isNewInstance = resource.new_record? %>
-<% isDocument = [resource.class.name,resource.class.superclass.name].include? "Document" %>
 
 <article id="new_file">
   <div class="layoutform <%=isNewInstance ? 'layoutform_newInstance' : 'layoutform_editInstance'%>">
@@ -21,7 +20,7 @@
         </ul>
       </div>
 
-      <% if isDocument %>
+      <% if resource.document? %>
         <%=render :partial => "common_documents/common_edit", :locals => {:f => f, :isNewInstance => isNewInstance}%>
       <% end %>
 
@@ -119,18 +118,16 @@
         </section>
       <% end%>
 
-      <% hasLicense = !(["Link","Embed"].include? resource.class.name) %>
-      <% if hasLicense %>
+      <% if resource.should_have_license? %>
         <section class="license">
           <%= f.label :license_id, t('document.info.license') %>
           <% if resource.license.nil? or resource.license.private? or isNewInstance %>
-            <%= f.select(:license_id, resource_license_options_for_select(resource.license_id, isDocument), {}, {:class => "resource_license"}) %>
+            <%= f.select(:license_id, resource_license_options_for_select(resource.license_id, resource.document?), {}, {:class => "resource_license"}) %>
           <% else %>
             <span><%= resource.license_name %></span>
-            <%#= f.select(:license_id, resource_license_options_for_select(resource.license_id), {}, {:disabled => true}) %>
           <% end %>
           <% if isNewInstance %>
-              <% showLicenseCustom = (!resource.license.nil? and resource.license.key == "other") %>
+              <% showLicenseCustom = (!resource.license.nil? and resource.license.custom?) %>
               <div class="license_custom_wrapper" <%='style=display:none' unless showLicenseCustom %> >
                 <%= f.label :license_custom, t("document.info.license_custom_form") %>
                 <%= f.text_field :license_custom, :class => "form-control" %>
@@ -139,12 +136,12 @@
         </section>
       <% end %>
 
-      <% if isDocument %>
+      <% if resource.should_have_authorship? %>
         <section class="authorship">
           <% unless isNewInstance %>
             <label><%=t("document.info.author")%>:</label>
             <span><%= resource.original_author_name %></span>
-            <%unless !hasLicense or resource.license_attribution.blank? or resource.license.nil? or !resource.license.requires_attribution? %>
+            <%unless resource.license_attribution.blank? or resource.license.nil? or !resource.license.requires_attribution? %>
               <br/>
               <label><%=t("document.info.license_attribution")%>:</label>
               <span><%= resource.license_attribution %></span>

@@ -48,8 +48,7 @@
   <section class="license">
     <label><%= t('document.info.license')%></label>
     <br/>
-    <% isDocument = [d.class.name,d.class.superclass.name].include? "Document" %>
-    <%= select_tag(:license_id, resource_license_options_for_select(d.license_id,isDocument), :class => "resource_license") %>
+    <%= select_tag(:license_id, resource_license_options_for_select(d.license_id,d.document?), :class => "resource_license") %>
   </section>
 
 </div>

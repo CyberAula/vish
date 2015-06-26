@@ -114,12 +114,20 @@ ActivityObject.class_eval do
   end
 
   def should_have_license?
-    return ((self.object_type.is_a? String) and (["Document", "Excursion", "Scormfile", "Webapp", "Workshop"].include? self.object_type))
+    return ((self.object_type.is_a? String) and (["Document", "Excursion", "Scormfile", "Webapp", "Workshop", "Writing"].include? self.object_type))
+  end
+
+  def should_have_authorship?
+    return self.should_have_license?
   end
 
   def resource?
-    #"Actor", "Post", "Category", "Document", "Excursion", "Scormfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop"
-    return ((self.object_type.is_a? String) and (["Category", "Document", "Excursion", "Scormfile", "Link", "Webapp", "Event", "Embed", "Workshop"].include? self.object_type))
+    #"Actor", "Post", "Category", "Document", "Excursion", "Scormfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop", "Writing"
+    return ((self.object_type.is_a? String) and (["Category", "Document", "Excursion", "Scormfile", "Link", "Webapp", "Event", "Embed", "Workshop", "Writing"].include? self.object_type))
+  end
+
+  def document?
+    self.object_type == "Document"
   end
 
   def linked?
