@@ -25,6 +25,11 @@ class Webapp < ActiveRecord::Base
       resource.activity_object.age_max = zipfile.activity_object.age_max
       resource.activity_object.language = zipfile.activity_object.language
       resource.activity_object.tag_list = zipfile.activity_object.tag_list
+      resource.activity_object.license_id = zipfile.activity_object.license_id
+      resource.activity_object.license_attribution = zipfile.activity_object.license_attribution
+      resource.activity_object.license_custom = zipfile.activity_object.license_custom
+      resource.activity_object.original_author = zipfile.activity_object.original_author
+
       #Copy attachment
       resource.file = zipfile.file
       #Copy avatar
