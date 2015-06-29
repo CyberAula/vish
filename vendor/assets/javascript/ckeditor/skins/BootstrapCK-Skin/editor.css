@@ -663,9 +663,9 @@ border: 1px solid rgba(0, 0, 0, 0.05);
 box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
 float:left;
 padding:2px;
-height:21px;
-margin-right:6px;
-margin-bottom:5px;
+height:25px;
+margin:-1px 5px 0 0;
+
 }
 .cke_skin_BootstrapCK-Skin .cke_rcombo .cke_on a{
 border: 1px solid rgba(82, 168, 236, 0.8);
