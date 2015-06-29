@@ -25,7 +25,7 @@ namespace :db do
     ENV['LOGOS_TOTAL'] = 12.to_s
 
     desc "Create populate data for ViSH"
-    task :precreate => [ 'create:licenses' ]
+    task :precreate => [ 'create:roles', 'create:licenses' ]
     task :create => [ 'create:occupations', 'create:excursions', 'create:current_site', 'create:admin', 'create:demo_user' ]
     #Social Stream create task
     #task :create => [ :read_environment, :create_users, :create_ties, :create_posts, :create_messages, :create_excursions, :create_documents, :create_avatars ]
@@ -272,6 +272,27 @@ namespace :db do
       end
 
       #Usage
+      #Development:   bundle exec rake db:populate:create:roles
+      #In production: bundle exec rake db:populate:create:roles RAILS_ENV=production
+      desc "Create Roles"
+      task :roles => :environment do
+        SocialStream::Population.task 'Roles population' do
+          roles = [
+            { name: "Admin", value:9 },
+            { name: "User", value:1 },
+            { name: "PremiumUser", value:1 },
+            { name: "PrivateStudent", value:1 }
+          ]
+          roles.each do |role|
+            r = Role.find_by_name(role[:name])
+            if r.nil?
+              Role.create!  :name  => role[:name], :value => role[:value]
+            end
+          end
+        end
+      end
+
+      #Usage
       #Development:   bundle exec rake db:populate:create:licenses
       #In production: bundle exec rake db:populate:create:licenses RAILS_ENV=production
       desc "Create Licenses"
@@ -297,6 +318,7 @@ namespace :db do
           end
         end
       end
+
     end
   end
 
