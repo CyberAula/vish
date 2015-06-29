@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150629115906) do
+ActiveRecord::Schema.define(:version => 20150629123130) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -143,6 +143,11 @@ ActiveRecord::Schema.define(:version => 20150629115906) do
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
   add_index "actors", ["email"], :name => "index_actors_on_email"
   add_index "actors", ["slug"], :name => "index_actors_on_slug", :unique => true
+
+  create_table "actors_roles", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "actor_id"
+  end
 
   create_table "audiences", :force => true do |t|
     t.integer "relation_id"

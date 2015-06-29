@@ -1,27 +1,28 @@
 Actor.class_eval do
 
-  # Activities are shared publicly by default
-  def activity_relations
-    [ Relation::Public.instance ]
+  has_and_belongs_to_many :roles
+
+
+  #Role Management
+
+  def role
+    self.sorted_roles.first
+  end
+
+  def sorted_roles
+    self.roles.sort_by{|r| r.value}.reverse
+  end
+
+  def role_name
+    role.name unless role.nil?
+  end
+
+  def role?(roleName)
+    return !!self.roles.find_by_name(roleName.to_s.camelize)
   end
 
   def admin?
-    self.is_admin
-  end
-
-  def create_slug
-    return unless self.slug.nil? or !self.name.nil?
-    
-    my_slug = self.name.to_url
-    final_slug = my_slug
-    index = 0
-    while(Actor.exists?(:slug => final_slug))
-      index += 1
-      final_slug = my_slug + index.to_s      
-    end
-
-    self.update_column :slug, final_slug
-
+    role?("Admin")
   end
 
   #Make the actor admin
@@ -50,6 +51,29 @@ Actor.class_eval do
     unless contact.nil?
       contact.destroy
     end
+  end
+
+
+  #Other methods
+
+  # Activities are shared publicly by default
+  def activity_relations
+    [ Relation::Public.instance ]
+  end
+
+  def create_slug
+    return unless self.slug.nil? or !self.name.nil?
+    
+    my_slug = self.name.to_url
+    final_slug = my_slug
+    index = 0
+    while(Actor.exists?(:slug => final_slug))
+      index += 1
+      final_slug = my_slug + index.to_s      
+    end
+
+    self.update_column :slug, final_slug
+
   end
 
   #Return the array with the order of the categories of the user profile

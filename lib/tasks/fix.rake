@@ -573,9 +573,15 @@ namespace :fix do
   #In production: bundle exec rake fix:roles RAILS_ENV=production
   task :roles => :environment do
 
-    printTitle("Fixing licenses")
+    printTitle("Fixing roles")
 
     Rake::Task["db:populate:create:roles"].invoke
+
+    Actor.record_timestamps=false
+    Actor.all.select{|a| a.roles.empty?}.each do |a|
+      a.roles.push(Role.default)
+    end
+    Actor.record_timestamps=true
 
     printTitle("Task Finished")
   end

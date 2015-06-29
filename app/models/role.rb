@@ -1,5 +1,6 @@
 class Role < ActiveRecord::Base
-  has_and_belongs_to_many :users
+  
+  has_and_belongs_to_many :actors
 
   validates :name,
   :allow_nil => false,
@@ -15,5 +16,9 @@ class Role < ActiveRecord::Base
   # def readable
   #   I18n.t("roles." + self.name.downcase, :default => self.name) unless self.name.nil?
   # end
+
+  def self.default
+    Role.find_by_name("User")
+  end
 
 end
