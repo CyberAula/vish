@@ -1,20 +1,22 @@
-<span class="helpheader">   
+<span class="helpheader">
   <i class="fa fa-question-circle" id="helpdocumentid" data-toggle="popover" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.title')%>" href='#' value="" ></i>
 
   <div id="contenthelpdocumentid" style="display: none">
     <div class="popover-body">
-      <p> <%= t('document.help.info3_html')%> </p>
-      <p> <%= t('document.help.info4_html')%> </p>
-      <p> <%= t('document.help.info5_html')%> </p>
-      <p> <%= t('document.help.info6_html')%> </p>
-      <p> <%= t('document.help.info8_html')%> </p>
+      <p>1. <%= t('document.help.info1A_html')%> </p>
+      <p>2. <%= t('document.help.info3_html')%> </p>
+      <p>3. <%= t('document.help.info4_html')%> </p>
+      <p>4. <%= t('document.help.info5_html')%> </p>
+      <p>5. <%= t('document.help.info6_html')%> </p>
+      <p>6. <%= t('document.help.info7A_html')%> </p>
+      <p>7. <%= t('document.help.info8A_html')%> </p>
     </div>
     <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
   </div>
 </span>
 
 <%content_for :javascript do%>
-  $('#helpdocumentid').popover({ 
+  $('#helpdocumentid').popover({
     html : true,
     content: function() {
       return $('#contenthelpdocumentid').html();
