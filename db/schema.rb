@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150625085203) do
+ActiveRecord::Schema.define(:version => 20150629123130) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -136,7 +136,6 @@ ActiveRecord::Schema.define(:version => 20150625085203) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "notification_settings"
-    t.boolean  "is_admin",              :default => false
     t.text     "category_order"
     t.string   "categories_view",       :default => "gallery"
   end
@@ -144,6 +143,11 @@ ActiveRecord::Schema.define(:version => 20150625085203) do
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
   add_index "actors", ["email"], :name => "index_actors_on_email"
   add_index "actors", ["slug"], :name => "index_actors_on_slug", :unique => true
+
+  create_table "actors_roles", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "actor_id"
+  end
 
   create_table "audiences", :force => true do |t|
     t.integer "relation_id"
@@ -456,6 +460,13 @@ ActiveRecord::Schema.define(:version => 20150625085203) do
   end
 
   add_index "remote_subjects", ["actor_id"], :name => "index_remote_subjects_on_actor_id"
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.integer  "value",      :default => 1
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "rooms", :force => true do |t|
     t.integer  "actor_id"

@@ -3,7 +3,7 @@ class Ability
 
   def initialize(subject)
     
-    if !subject.nil? and subject.is_admin
+    if !subject.nil? and subject.admin?
       can :manage, :all
     end
 
