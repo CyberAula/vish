@@ -1,0 +1,371 @@
+<% content_for :javascript do %>
+  $("#i_overview li").click(function(){
+    $("#i_overview li").removeClass("active");
+    $(this).addClass("active");
+  });
+<% end %>
+
+<section id="overview">
+  <div class="icontitle">
+    <i class="fa fa-question-circle"></i>
+    ¿Qué es ViSH?
+  </div>
+  <div class="whiteframe">
+    <div class="overviewindex visible-desktop">
+      <ul class="nav bs-docs-sidenav" id="i_overview">
+
+        <a href="#overview">
+          <li class="active">
+            <i class="fa fa-angle-right"></i>
+            <div class="index_title">Introducción a ViSH</div>
+            <div class="clear"></div>
+          </li>
+        </a>
+        <a href="#overview2">
+          <li>
+            <i class="fa fa-angle-right"></i>
+            <div class="index_title">Comunidad de usuarios de ViSH</div>
+            <div class="clear"></div>
+          </li>
+        </a>
+        <a href="#overview3">
+          <li>
+            <i class="fa fa-angle-right"></i>
+            <div class="index_title">Creando excursiones virtuales con ViSHEditor</div>
+            <div class="clear"></div>
+          </li>
+        </a>
+        <a href="#overview4">
+          <li>
+            <i class="fa fa-angle-right"></i>
+            <div class="index_title">Subiendo recursos desde móviles o tablets</div>
+            <div class="clear"></div>
+          </li>
+        </a>
+        <a href="#overview5">
+          <li>
+            <i class="fa fa-angle-right"></i>
+            <div class="index_title">Clonando excursiones virtuales</div>
+            <div class="clear"></div>
+          </li>
+        </a>
+        <a href="#overview6">
+          <li>
+            <i class="fa fa-angle-right"></i>
+            <div class="index_title">Importando y exportando excursiones</div>
+            <div class="clear"></div>
+          </li>
+        </a>
+        <a href="#overview7">
+          <li>
+            <i class="fa fa-angle-right"></i>
+            <div class="index_title">Reuniones virtuales y eventos con acceso remoto y desde móviles</div>
+            <div class="clear"></div>
+          </li>
+        </a>
+      </ul>
+      <hr>
+      <a href="/user_manual">
+        <button type="button" class="btn btn-default btn-md">
+          Descargar como pdf
+        </button>
+      </a>
+    </div>
+    <div class="overviewmiddle visible-desktop">
+    </div>
+    <div class="overviewcontent">
+      <legend>Introducción a ViSH</legend>
+
+      <div class="header_text margin-top10">
+        <a target="_blank" href="<%= Vish::Application.config.full_domain %>"><%= t('thevish') %></a>
+        es una Red Social Colaborativa centrada en la creación de recursos educativos para la realización de actividades educativas.
+        El elemento principal de ViSH es la excursión virtual, una presentación web interactiva (basada en diapositivas o fichas visuales enriquedas),
+        diseñada para la proyección en las aulas. Cada excursión es una presentación visual basada en recursos multimedia utilizando cualquier elemento
+        de internet, del repositorio de ViSH o de otros repositorios de contenidos. El nombre de excursión es una metáfora de 'visita a un mundo virtual
+        de recursos de conocimiento'.
+      </div>
+      <br>
+      <div class="header_text margin-top10">
+        Las excursiones son recursos públicos en HTML5, accesibles a través de Internet por medio de una URL,
+        que se pueden proyectar a pantalla completa con un proyector para complementar las actividades de clase. Algunos ejemplos de excursiones son:
+      </div>
+      <br>
+      <div class="header_text margin-top10">
+        <ul>
+          <a target="_blank" href="http://vishub.org/excursions/400">
+            <li style="list-style: initial">Flashcard Capas de la Tierra</li>
+          </a>
+          <a target="_blank" href="http://vishub.org/excursions/1012">
+            <li style="list-style: initial">Curiosity Flashcard</li>
+          </a>
+          <a target="_blank" href="http://www.vishub.org/excursions/912">
+            <li style="list-style: initial">Minerales - Amatista</li>
+          </a>
+          <a target="_blank" href="http://www.vishub.org/excursions/560">
+            <li style="list-style: initial">Partícula de Higgs</li>
+          </a>
+          <a target="_blank" href="http://www.vishub.org/excursions/1241">
+            <li style="list-style: initial">Cuerpo humano 3D</li>
+          </a>
+          <a target="_blank" href="http://vishub.org/excursions/632">
+            <li style="list-style: initial">Villas Romanas en España (Castellano)</li>
+          </a>
+        </ul>
+      </div>
+      <br>
+
+      <div class="header_text margin-top10">
+        ViSH permite también la realización de actividades y proyectos de colaboración en el aula con la participación de profesores y estudiantes.
+        Se recomienda el uso de una cuenta compartida bajo la supervisión de un profesor o tutor. Por ejemplo,
+        la siguiente excursión es el resultado de un verdadero proyecto de una clase de geología para la identificación mineral realizado en un curso
+        de secundaria en Galicia (España):
+      </div>
+      <br>
+
+      <div class="header_text margin-top10">
+        <ul>
+          <a target="_blank" href="http://www.vishub.org/excursions/515">
+            <li style="list-style: initial">Proyecto de clase</li>
+          </a>
+          <a target="_blank" href="http://www.vishub.org/excursions/395">
+            <li style="list-style: initial">Trabajo del estudiante (La Amatista en Castellano)</li>
+          </a>
+          <a target="_blank" href="http://www.vishub.org/excursions/912">
+            <li style="list-style: initial">Trabajo del estudiante traducido al Inglés</li>
+          </a>
+        </ul>
+      </div>
+      <br>
+
+      <div class="header_text margin-top10">
+        Las excursiones pueden ser proyectadas a pantalla completa en un aula como presentaciones, pero también pueden ser:
+      </div>
+      <br>
+      <div class="header_text margin-top10">
+        <ul>
+          <li style="list-style: initial">Vistas en ordenadores de sobremesa, portátiles, teléfonos móviles, tablets o cualquier dispositivo que cuente con un navegador web que soporte HTML5.</li>
+          <li style="list-style: initial">Incrustadas en páginas web o Learning Management Systems (Moodle, Blackboard, ...) de forma similar a los videos de youtube.</li>
+          <li style="list-style: initial">Proyectadas en un aula virtual de ViSH utilizando<a target="_blank" href="http://www.mashme.tv"> MashMe.tv</a>.</li>
+          <li style="list-style: initial">Descargadas como paquetes SCORM para ser importadas a otras plataformas o Learning Management Systems como Moodle.</li>
+          <li style="list-style: initial">Descargadas para presentaciones off-line en una clase o reunión (en desarrollo).</li>
+          <li style="list-style: initial">Clonadas, modificadas o enriquecidas por cualquier otro miembro de la comunidad de usuarios de ViSH.</li>
+          <li style="list-style: initial">Etc.</li>
+        </ul>
+      </div>
+      <br>
+
+      <div id="overview2" class="header_text margin-top10">
+        La búsqueda de excursiones se puede hacer desde el
+        <a target="_blank" href="<%= Vish::Application.config.full_domain %>/search?catalogue=true">catálogo de excursiones</a>
+        donde se pueden filtrar por tema, idioma, y otros filtros disponibles. Inicialmente ViSH estaba enfocado a la ciencia, sin embargo,
+        debido al crecimiento de usuarios a día de hoy está siendo utilizado en muchas otras áreas.
+      </div>
+      <br>
+
+      <div class="header_text margin-top10">
+        <br>
+        <legend>Comunidad de usuarios de ViSH</legend>
+      </div>
+      <div class="header_text margin-top10">
+        Las excursiones son presentaciones públicas, que pueden ser reutilizadas libremente en aulas,
+        blogs o Learning Management Systems por cualquier usuario que tenga acceso a ViSH con una conexión a Internet estándar.
+        Pero para crear o modificar las excursiones un usuario debe registrarse en ViSH y convertirse en un miembro de la comunidad.
+        <a target="_blank" href="<%= Vish::Application.config.full_domain %>/legal_notice">Los términos de uso de ViSH</a>
+        deberán ser aceptados para crear una cuenta.
+      </div>
+      <br>
+
+      <div class="header_text margin-top10">
+        Cada cuenta tiene un perfil que proporciona acceso al usuario a:
+      </div>
+      <br>
+
+      <div class="header_text margin-top10">
+        <ul>
+          <li style="list-style: initial">Crear excursiones con el editor y clonar excursiones de otros usuarios de ViSH con posibilidad de editarlas después.</li>
+          <li style="list-style: initial">Crear eventos en ViSH.</li>
+          <li style="list-style: initial">
+            Subir recursos al repositorio de ViSH. Entre otros tipos de recursos es posible subir y compartir imágenes, videos y audios, objetos flash,
+            enlaces a páginas web, documentos (PDF, doc, ...), paquetes SCORM y aplicaciones web HTML5. Estos recursos pueden ser utilizados posteriormente
+            como contenido de las excursiones.
+          </li>
+          <li style="list-style: initial">
+            Crear categorías personales para clasificar los recursos de ViSH según sus necesidades.
+            Las categorías actúan como carpetas o directorios de contenido relacionado. La categoría de favoritos contiene los recursos marcados como favoritos.
+          </li>
+        </ul>
+      </div>
+      <br>
+      <div class="header_text margin-top10">
+        ViSH es una red social donde los usuarios pueden seguir a otros usuarios con el fin de recibir información sobre las excursiones que crean y
+        los recursos que suben. La página de perfil de usuario muestra las excursiones que este ha creado (o clonado) y los recursos que ha subido.
+        El perfil de un usuario también muestra los usuarios a los que sigue y los que le siguen.
+      </div>
+      <br>
+      <div class="header_text margin-top10">
+        Además, un sistema de recomendación destacará el contenido más relevante en ViSH relacionado con el tipo de contenido al que acceda.
+        Cuando las excursiones son vistas por un  usuario registrado también se toman en cuenta en para su posterior recomendación.
+      </div>
+      <br>
+      <div id="overview3" class="header_text margin-top10">
+        Cada recurso también contiene una sección de notificación de spam o errores de contenido,
+        que proporciona la base para el control de la adecuación de las excursiones y recursos con los objetivos de los términos de uso de ViSH:
+        contenido útil, correcto y de buena calidad.
+      </div>
+      <br>
+
+      <div class="header_text margin-top10">
+        <br>
+        <legend>Creando excursiones virtuales con ViSHEditor</legend>
+      </div>
+      <div class="header_text margin-top10">
+        Los usuarios registrados pueden crear excursiones con la herramienta de creación/edición online ViSHEditor.
+        Este editor es muy fácil de usar y no requiere conocimientos técnicos.
+      </div>
+      <br>
+      <div class="header_text margin-top10">
+        Cada excursión virtual está organizada como una secuencia de diapositivas, y en ella se pueden insertar por los siguientes elementos:
+      </div>
+      <br>
+      <ul>
+        <li style="list-style: initial">
+          <span class="editor_title_bold">Mash-up.</span>
+          Plantilla visual basada en la composición de texto, imagenes, video, etc...
+          <a target="_blank" href="http://vishub.org/categories/64">Grabaciones de audio</a>,
+          <a target="_blank" href="http://vishub.org/categories/65">Aplicaciones interactivas</a>,
+          <a target="_blank" href="http://vishub.org/categories/62">Objetos 3D</a>,
+          <a target="_blank" href="http://vishub.org/categories/63">Simulaciones</a>,
+          etc. Los componentes visuales que se incluyan, se pueden guardar en el repositorio local de ViSH o en cualquier servidor en Internet.
+        </li>
+        <br>
+        <li style="list-style: initial">
+          <span class="editor_title_bold">Quiz.</span>
+          Diapositiva interactiva diseñada para presentar preguntas o ejercicios para ser respondidos en tiempo real, ya sea en un aula con ordenadores de sobremesa, smartphones, tabletas...
+          <a target="_blank" href="http://vishub.org/categories/61">(Ejemplos Quiz)</a>
+          Se pueden insertar preguntas de Verdadero/Falso y preguntas de múltiple respuesta. Las respuestas podrán ser a modo auto-evaluación,
+          o a través de un sistema de respuesta basado en la audiencia (ARS) ya por medio de una URL o de la captura de un código QR.
+        </li>
+        <br>
+        <li style="list-style: initial">
+          <span class="editor_title_bold">Flashcard.</span>
+          Diapositiva con zonas clicables que pueden enlazar con otra diapositiva, excursión o cualquier página web o recurso de internet.
+          <a target="_blank" href="http://vishub.org/categories/57">(Ejemplos Flashcards)</a>
+        </li>
+        <br>
+        <li style="list-style: initial">
+          <span class="editor_title_bold">Virtual tour.</span>
+          Diapositiva interactiva basada en GoogleMaps. El usuario puede insertar puntos de localización en el mapa que podrá enlazar con otra diapositiva,
+          excursión o cualquier página web o recurso de internet.
+          <a target="_blank" href="http://vishub.org/categories/58">(Ejemplos Virtual tour)</a>
+        </li>
+        <br>
+        <li style="list-style: initial">
+          <span class="editor_title_bold">Video enriquecido."</span>
+          Diapositiva con un video seccionado por capítulos o puntos en los que se interactúa con el video a través de otras diapositivas,
+          apareciendo estas cuando se alcanza el momento del video seleccionado por el creador de la excursión.
+          <a target="_blank" href="http://vishub.org/categories/59">(Ejemplos de videos enriquecidos)</a>
+        </li>
+        <br>
+        <li style="list-style: initial">
+          <span class="editor_title_bold">Aplicación Web.</span>
+           Las aplicaciones web interactivas basadas en la tecnología HTML5 se insertan como un componente activo en cualquier diapositiva de una excursión,
+           por ejemplo, calculadoras interactivas, editores, simuladores, laboratorios, etc.
+          <a target="_blank" href="http://vishub.org/categories/60">(Ejemplos de aplicaciones web)</a>
+          . Las aplicaciones web basadas en HTML5 utilizan el estándar HTML,
+          CSS y javascript de la misma manera que se crean las aplicaciones en cliente de el estándar de HTML5.
+        </li>
+      </ul>
+      <br>
+      <div id="overview4" class="header_text margin-top10">
+        Cada excursión se puede acompañar con información pedagógica que describe los escenarios apropiados para la enseñanza, orientaciones didácticas,
+        requisitos específicos, tareas de preparación o simplemente ideas o comentarios acerca de la utilización de las excursiones en clase.
+      </div>
+      <br>
+
+      <div class="header_text margin-top10">
+        <br>
+        <legend>Subiendo recursos desde móviles o tabletas</legend>
+      </div>
+      <div class="header_text margin-top10">
+        ViSH y las excursiones virtuales se han diseñado en HTML5 para permitir maneras flexibles de subir recursos desde dispositivos móviles.
+        Las imágenes o videos tomados con un dispositivo móvil se pueden cargar en el repositorio de ViSH con mucha facilidad.
+      </div>
+      <br>
+      <div id="overview5" class="header_text margin-top10">
+        Simplemente accediendo a ViSH con el navegador de un smartphone o tablet se puede utilizar la función de carga de recursos para subir una foto
+        o video tomado en ese mismo momento, quedando almacenado así el recurso en el repositorio de ViSH. Después de que el recurso se haya cargado en el
+        repositorio, estará accesible desde la plataforma o el editor (ViSHEditor).
+      </div>
+      <br>
+
+      <div class="header_text margin-top10">
+        <br>
+        <legend>Clonando excursiones virtuales</legend>
+      </div>
+      <div class="header_text margin-top10">
+        Uno de los principales objetivos de ViSH es permitir la producción de contenido colaborativo.
+        El mecanismo básico para enriquecer o adaptar una excursión que alguien ha producido es haciendo uso de la clonación de excursiones.
+        Por lo tanto cualquier excursión publicada en ViSH puede clonarse por otros usuarios registrados para el enriquecimiento, la modificación,
+        la traducción a otro idioma o cualquier otro motivo didáctico.
+      </div>
+      <br>
+      <div class="header_text margin-top10">
+        Las excursiones se publican en ViSH utilizando la 'Licencia Creative Commons', de manera que cualquier usuario registrado tiene el derecho a usar y modificar
+        las excursiones con fines no comerciales. ViSH podría definirse como “contribución amable” y cada excursión hace que los autores sean parte de una cadena
+        de clonación explícita, de tal manera que todos los que han contribuido a una excursión formarán parte y recibirán su reconocimiento.
+      </div>
+      <br>
+      <div id="overview6" class="header_text margin-top10">
+        Cuando un usuario clona una excursión, crea una copia de esta y se añade a su perfil.
+        El autor de la excursión que haya sido clonada y los autores anteriores que contribuyen a ella,
+        se añaden a la sección de 'con el contenido de', de modo que la autoría se reconoce correctamente.
+        El usuario se convierte en el propietario de la copia clonada y puede modificarla según sea necesario con el editor.
+      </div>
+      <br>
+
+      <div class="header_text margin-top10">
+        <br>
+        <legend>Importando y exportando excursiones</legend>
+      </div>
+      <div class="header_text margin-top10">
+        Las presentaciones en PDF se pueden importar en una excursión para crear nuevas diapositivas,
+        de esta manera podrás añadir contenido interactivo a cualquier presentación anteriormente creada en pdf.
+      </div>
+      <br>
+      <div class="header_text margin-top10">
+        Las excursiones también pueden ser importadas y exportadas como objetos SCORM,
+        un tipo de documento que se puede importar en un LMS (siglas de sistema de gestión del aprendizaje,
+        un buen ejemplo es Moodle) u otra plataforma que soporte este estándar.
+        Las excursiones también son accesibles a través de una URL o incrustadas en páginas web, blogs, entre otros (como ocurre con los videos de YouTube).
+      </div>
+      <br>
+      <div class="header_text margin-top10">
+        La descarga de excursiones para la presentación offline (sin conexión a internet) en una clase o reunión está en desarrollo mediante el modo offline HTML5.
+        Las excursiones sólo estarán habilitadas para la presentación offline si todos los recursos de la utilización se pueden almacenar en caché en el cliente,
+        es decir, si están alojados en el repositorio local de ViSH. La descarga de excursiones como un conjunto de diapositivas en PDF se podrá realizar,
+        pero perdiendo todo el contenido multimedia activo dentro de la excursión.
+      </div>
+      <br>
+
+      <div id="overview7" class="header_text margin-top10">
+        <br>
+        <legend>Reuniones virtuales y eventos con acceso remoto y desde móviles</legend>
+      </div>
+      <div class="header_text margin-top10">
+        ViSH utiliza
+        <a target="_blank" href="http://www.mashme.tv">MashMe.tv</a>
+        , un aula virtual basada en la videoconferencia colaborativa, donde varias aulas o colegios pueden conectarse y participar en un evento virtual
+        con demostraciones en directo, debates, conferencia a distancia, etc. Estas reuniones se pueden basar en excursiones o en otros medios de comunicación
+        social disponibles en Internet.
+      </div>
+      <br>
+      <div class="header_text margin-top10">
+        MashMe.tv soporta el acceso a las salas de videoconferencia desde ordenadores (sobremesa/portátil), smartphones y tablets. De esta manera,
+        la cámara web de un dispositivo móvil se puede utilizar para mostrar el lugar físico que se visita (como pueden ser las exposiciones de un museo,
+        las entrevistas a la gente en el lugar visitado o el resultado de un experimento científico) directamente sobre la infraestructura.
+        Los dispositivos móviles pueden ser utilizados para caminar libremente por el lugar visitado y mostrar las partes más relevantes del mismo.
+      </div>
+      <br>
+    </div>
+  </div>
+</section>
