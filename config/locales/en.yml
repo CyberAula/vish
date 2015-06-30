@@ -687,6 +687,7 @@ en:
   organizer:
     one: "organizer"
     other: "organizers"
+  overview_title: "ViSH Overview"
   password: "password"
   post:
     input: "Share your thoughts, links, videos and more, here!"
