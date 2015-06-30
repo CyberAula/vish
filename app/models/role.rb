@@ -17,4 +17,8 @@ class Role < ActiveRecord::Base
     Role.find_by_name("Admin")
   end
 
+  def readable_name
+    I18n.t("role."+self.name.underscore, :default => self.name) unless self.name.nil?
+  end
+
 end

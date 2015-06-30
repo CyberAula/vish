@@ -772,6 +772,11 @@ es:
       other: "recursos"
     top: "paraMí"
     upload: "subir"
+  role:
+    admin: "Administrador"
+    user: "Usuario"
+    premium_user: "Usuario Premium"
+    private_student: "Estudiante Privado"
   save: "Salvar"
   saving: "Salvando"
   scope:
@@ -861,6 +866,19 @@ es:
     type: "tipo"
   send:
     send: "Enviar"
+  settings:
+    notifications:
+      briefing: "Cambia tus notificaciones y alertas de correo"
+      by_email:
+        name: "Enviarme un correo cuando me llega una notificación"
+        always: "Siempre"
+        never: "Nunca"
+    notification_settings:
+        prefix: Enviarme un correo
+        someone_adds_me_as_a_contact: cuando alguien me añade como contacto
+        someone_confirms_my_contact_request: cuando alguien confirme mi petición de contacto
+        someone_likes_my_post: cuando a alguien le guste mi publicación
+        someone_comments_on_my_post: cuando alguien comente en mi publicación
   share: "Enviar"
   sharing:
     email: "Compartir por email"
@@ -901,6 +919,7 @@ es:
     name: "nombre"
     one: "usuario"
     other: "usuarios"
+    role: "rol"
   username: "usuario"
   vish:
     about: "Acerca de ViSH"
@@ -974,8 +993,6 @@ es:
 
     confirm_delete: "¿Borrar workshop?"
     new: "Nuevo Workshop"
-
-
     other: "Workshops"
     titles:
         editing_details: "Editando detalles workshop"
@@ -992,16 +1009,3 @@ es:
   zipfile:
     name: "fichero ZIP"
     confirm_delete: "¿Borrar fichero ZIP?"
-  settings:
-    notifications:
-      briefing: "Cambia tus notificaciones y alertas de correo"
-      by_email:
-        name: "Enviarme un correo cuando me llega una notificación"
-        always: "Siempre"
-        never: "Nunca"
-    notification_settings:
-        prefix: Enviarme un correo
-        someone_adds_me_as_a_contact: cuando alguien me añade como contacto
-        someone_confirms_my_contact_request: cuando alguien confirme mi petición de contacto
-        someone_likes_my_post: cuando a alguien le guste mi publicación
-        someone_comments_on_my_post: cuando alguien comente en mi publicación

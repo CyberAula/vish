@@ -16,7 +16,7 @@ Actor.class_eval do
   end
 
   def role_name
-    role.name unless role.nil?
+    role.readable_name unless role.nil?
   end
 
   def role?(roleName)

@@ -5,10 +5,9 @@
   <table id="user_table" cellspacing='0' class="vish_admin_table">
     <thead>
       <tr>
-        <th class="admin-checkbox"><input type="checkbox" class="checkallresources" autocomplete="off" value="all" style="display:none" /></th>
-
         <th class="admin-user-user"><%=t('user.name').capitalize%></th>
         <th class="admin-email"><%=t('user.email').capitalize%></th>
+        <th class="admin-role"><%=t('user.role').capitalize%></th>
         <th class="admin-date-user"><%=t('date_name').capitalize%></th>
         <th class="admin-icontrash"></th>
       </tr>
@@ -16,14 +15,14 @@
     <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td class="admin-checkbox">
-          <input type="checkbox" autocomplete="off" value="<%=user.id%>" style="display:none" />
+        <td class="admin-user-user">
+          <a target="_blank" href="<%=url_for(user)%>"><span><%= user.name %></span></a>
         </td>
-         <td class="admin-user-user">
-            <a target="_blank" href="<%=url_for(user)%>"><span><%= user.name %></span></a>
+        <td class="admin-email">
+          <a target="_blank" href="mailto:<%=user.email%>"><span><%=user.email%></span></a>
         </td>
-         <td class="admin-email">
-            <a target="_blank" href="mailto:<%=user.email%>"><span><%=user.email%></span></a>
+        <td class="admin-role">
+          <span><%=user.role_name%></span>
         </td>
         <td class="admin-date-user">
           <span><%=user.created_at%></span>

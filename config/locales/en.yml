@@ -782,6 +782,11 @@ en:
       other: "resources"
     top: "forMe"
     upload: "upload"
+  role:
+    admin: "Admin"
+    user: "User"
+    premium_user: "Premium User"
+    private_student: "Private Student"
   save: "Save"
   saving: "Saving"
   scope:
@@ -871,6 +876,19 @@ en:
     type: "type"
   send:
     send: "Send"
+  settings:
+    notifications:
+      briefing: "Change your notifications behaviour and mail alerts"
+      by_email:
+        name: "Send me an email when I receive a notification"
+        always: "Always"
+        never: "Never"
+    notification_settings:
+        prefix: Send me an email
+        someone_adds_me_as_a_contact: when someone adds me as a contact
+        someone_confirms_my_contact_request: when someone confirms my contact request
+        someone_likes_my_post: when someone likes my post
+        someone_comments_on_my_post: when someone comments on my post
   share: "Post"
   sharing:
     email: "Share by email"
@@ -910,6 +928,7 @@ en:
     name: "name"
     one: "user"
     other: "users"
+    role: "role"
   username: "username"
   vish:
     about: "About ViSH"
@@ -998,16 +1017,3 @@ en:
   zipfile:
     name: "ZIP file"
     confirm_delete: "Delete Zip file?"
-  settings:
-    notifications:
-      briefing: "Change your notifications behaviour and mail alerts"
-      by_email:
-        name: "Send me an email when I receive a notification"
-        always: "Always"
-        never: "Never"
-    notification_settings:
-        prefix: Send me an email
-        someone_adds_me_as_a_contact: when someone adds me as a contact
-        someone_confirms_my_contact_request: when someone confirms my contact request
-        someone_likes_my_post: when someone likes my post
-        someone_comments_on_my_post: when someone comments on my post

@@ -6,13 +6,6 @@
   <table id="spam_table" cellspacing='0' class="table table-striped">
     <thead>
       <tr>
-        <th class="admin-checkbox">
-        <label>
-          <input type="checkbox" class="checkallresources" autocomplete="off" value="all" style="display:none" />
-          <span class="lbl padding-0">
-          </span>
-        </label>
-        </th>
         <th class="admin-resource"><%=t('resource.title.one').capitalize%></th>
         <th class="admin-type"><%=t('search.type').capitalize%></th>
         <th class="admin-user"><%=t('user.one').capitalize%></th>
@@ -26,13 +19,6 @@
     <tbody>
     <% @reports.each do |report| %>
       <tr>
-        <td class="admin-checkbox">
-          <label>
-            <input type="checkbox" autocomplete="off" value="<%=report.id%>" style="display:none" />
-            <span class="lbl padding-0">
-            </span>
-          </label>
-        </td>
          <td class="admin-resource">
           <%unless report.activity_object.nil?%>
             <a target="_blank" href="<%=url_for(report.activity_object.object)%>"><span><%= report.activity_object.title %></span></a>
