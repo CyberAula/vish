@@ -12,6 +12,9 @@ User.class_eval do
                       :to => :profile
 
   before_destroy :destroy_user_resources
+
+  belongs_to :private_student_group
+  has_one :private_teacher, class_name: "Actor", through: :private_student_group
   
   Occupation = [:select, :teacher, :scientist, :other]
 

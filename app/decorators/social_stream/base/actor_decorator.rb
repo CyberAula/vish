@@ -1,6 +1,8 @@
 Actor.class_eval do
 
   has_and_belongs_to_many :roles
+  has_many :private_student_groups, foreign_key: "owner_id"
+  has_many :private_students, class_name: "User", through: :private_student_groups
 
   before_save :fill_roles
 
