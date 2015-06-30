@@ -266,7 +266,7 @@ namespace :db do
         demo.password_confirmation = demo.password
         demo.save!
         demo.actor!.update_attribute :slug, 'demo'
-        demo.actor!.update_attribute :is_admin, false
+        demo.actor!.degrade
 
         puts "Demo user created with email: " + demo.email + " and password: " + demo.password
       end

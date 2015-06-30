@@ -21,4 +21,8 @@ class Role < ActiveRecord::Base
     Role.find_by_name("User")
   end
 
+  def self.Admin
+    Role.find_by_name("Admin")
+  end
+
 end

@@ -2,6 +2,8 @@ Actor.class_eval do
 
   has_and_belongs_to_many :roles
 
+  before_save :fill_roles
+
 
   #Role Management
 
@@ -27,7 +29,7 @@ Actor.class_eval do
 
   #Make the actor admin
   def make_me_admin
-    self.is_admin = true
+    self.roles.push(Role.Admin) unless self.roles.include? Role.Admin
     self.activity_object.relation_ids = [Relation::Private.instance.id]
     self.activity_object.scope = 1
     self.save!
@@ -41,16 +43,15 @@ Actor.class_eval do
 
   #Remove admin privilegies of the actor
   def degrade
-    self.is_admin = false
+    self.roles.delete(Role.Admin)
+    self.roles.push(Role.default) if self.roles.empty?
     self.activity_object.relation_ids = [Relation::Public.instance.id]
     self.activity_object.scope = 0
     self.save!
 
     #Remove contact in Social Stream
     contact = Contact.where(:sender_id=>Site.current.actor.id, :receiver_id=>self.id).first
-    unless contact.nil?
-      contact.destroy
-    end
+    contact.destroy unless contact.nil?
   end
 
 
@@ -87,6 +88,12 @@ Actor.class_eval do
       end
     end
     order
+  end
+
+  private
+
+  def fill_roles
+    self.roles.push(Role.default) if self.roles.empty?
   end
 
 end
