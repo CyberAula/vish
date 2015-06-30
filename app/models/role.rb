@@ -9,14 +9,6 @@ class Role < ActiveRecord::Base
     :case_sensitive => false
   }
 
-  # def self.admin
-  # 	Role.find_by_name("Admin")
-  # end
-
-  # def readable
-  #   I18n.t("roles." + self.name.downcase, :default => self.name) unless self.name.nil?
-  # end
-
   def self.default
     Role.find_by_name("User")
   end
