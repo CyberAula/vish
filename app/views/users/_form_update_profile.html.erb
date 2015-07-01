@@ -37,9 +37,7 @@
       <% @tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
       <ul id="userPreloadTagList" style="display:none">
         <%@tags.each do |tag| %>
-          <li>
-            <%=tag.name%>
-          </li>
+          <li><%=tag.name%></li>
         <%end%>
       </ul>
 
