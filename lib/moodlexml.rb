@@ -51,6 +51,7 @@ class MOODLEQUIZXML
 
     nChoices = qjson["choices"].size
     question_t = (qjson["question"]["value"]).to_s.lstrip
+    shuffleanswers = qjson["settings"]["shuffleChoices"]
 
     if qjson["extras"]["multipleAnswer"] == false 
       card = "true"
@@ -72,7 +73,12 @@ class MOODLEQUIZXML
         myxml.questiontext do
           myxml.text(((qjson["question"]["value"]).to_s).lstrip)  
         end
-        myxml.shuffleanswers("1")
+        if shuffleanswers == true
+          myxml.shuffleanswers("1")
+        else 
+          myxml.shuffleanswers("0")
+        end
+        
         myxml.single(card)
 
         for i in 0..((nChoices)-1)
