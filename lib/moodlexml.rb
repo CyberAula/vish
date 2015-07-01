@@ -7,16 +7,14 @@ require 'builder'
 class MOODLEQUIZXML
 
   def self.createMoodleQUIZXML(filePath,fileName,qjson)
-    require 'zip'
 
-    t = File.open("#{filePath}#{fileName}.zip", 'w')
+    t = File.open("#{filePath}#{fileName}.xml", 'w') do |zos|
 
-    Zip::OutputStream.open(t.path) do |zos|
       case qjson["quiztype"]
 
       when "multiplechoice"
         moodlequizmc = MOODLEQUIZXML.generate_MoodleQUIZMC(qjson)
-        zos.put_next_entry(fileName + ".xml")
+        #zos.put_next_entry(fileName + ".xml")
         #Zero-width space <200b> erased from target in moodlequizmc
         zos.print moodlequizmc.target!().gsub("\u{200B}","" )
 
@@ -26,17 +24,17 @@ class MOODLEQUIZXML
         else
           moodlequizoa = MOODLEQUIZXML.generate_MoodleQUIZLA(qjson)
         end
-          zos.put_next_entry(fileName + ".xml")
+         # zos.put_next_entry(fileName + ".xml")
           zos.print moodlequizoa.target!().gsub("\u{200B}","" )
 
       when "sorting"
         moodlequizs = MOODLEQUIZXML.generate_MoodleQUIZSorting(qjson)
-        zos.put_next_entry(fileName + ".xml")
+        #zos.put_next_entry(fileName + ".xml")
         zos.print moodlequizs.target!().gsub("\u{200B}","" )
 
       when "truefalse"
         moodlequiztf = MOODLEQUIZXML.generate_MoodleQUIZTF(qjson)
-        zos.put_next_entry(fileName + ".xml")
+        #zos.put_next_entry(fileName + ".xml")
         zos.print moodlequiztf.target!().gsub("\u{200B}","" )
 
       else
@@ -44,7 +42,6 @@ class MOODLEQUIZXML
 
     end
 
-    t.close
   end
 
 

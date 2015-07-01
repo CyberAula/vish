@@ -384,7 +384,9 @@ class ExcursionsController < ApplicationController
            FileUtils.mkdir_p filePath
            fileName = "moodlequizxml-tmp-#{count.to_s}"
            Excursion.createMoodleQUIZXML(filePath,fileName,JSON(json))
-           results["url"] = "#{Vish::Application.config.full_domain}/tmp/moodlequizxml/#{fileName}.zip"
+           results["url"] = "#{Vish::Application.config.full_domain}/tmp/moodlequizxml/#{fileName}.xml"
+           results["xml"] = File.open("#{filePath}#{fileName}.xml").read
+           results["filename"] = "#{fileName}.xml"
         end
 
         render :json => results
