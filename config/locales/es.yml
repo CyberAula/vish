@@ -685,10 +685,10 @@ es:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
     search_name: "actualización de estado"
   profile:
-    degrade: "Degradar a usuario"
+    change_role: "Cambiar rol"
     edit: "Editar perfil"
+    edit_role: "Editar rol"
     profile: "Perfil"
-    promote: "Hacer administrador"
     occupation:
       label: "Ocupación"
       options:

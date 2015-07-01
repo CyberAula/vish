@@ -693,10 +693,10 @@ en:
     input: "Share your thoughts, links, videos and more, here!"
     search_name: "status update"
   profile:
-    degrade: "Degrade to user"
+    change_role: "Change role"
     edit: "Edit profile"
+    edit_role: "Edit role"
     profile: "profile"
-    promote: "Promote to admin"
     occupation:
       label: "Occupational field"
       options:

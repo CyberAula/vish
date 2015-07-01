@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include SocialStream::Controllers::Subjects
 
-  load_and_authorize_resource :except => [:current]
+  load_and_authorize_resource :except => [:current, :update_role]
 
   before_filter :authenticate_user!, only: :current
 
@@ -17,6 +17,35 @@ class UsersController < ApplicationController
         render "show"
       }
     end
+  end
+
+  def edit
+    redirect_to user_path(resource)
+  end
+
+  def edit_role
+    authorize! :edit_roles, resource
+  end
+
+  def update_role
+    authorize! :edit_roles, resource
+
+    user_was_admin = resource.admin?
+    role = Role.find(params["role"]) rescue nil
+    unless role.nil?
+      resource.roles = [role]
+    end
+    user_is_admin = resource.admin?
+
+    if !user_was_admin and user_is_admin
+      #promote
+      resource.make_me_admin
+    elsif user_was_admin and !user_is_admin
+      #degrade
+      resource.degrade
+    end
+
+    redirect_to user_path(resource)
   end
 
   def excursions
@@ -96,26 +125,6 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json { render json: current_user.to_json }
     end
-  end
-
-  #Make user admin
-  def promote
-    u = User.find_by_slug(params[:id])
-    authorize! :make_admin, u
-
-    u.make_me_admin
-
-    redirect_to user_path(u)
-  end
-
-  #Degrade admin to user
-  def degrade
-    u = User.find_by_slug(params[:id])
-    authorize! :make_admin, u
-    
-    u.degrade
-
-    redirect_to user_path(u)
   end
 
   def destroy

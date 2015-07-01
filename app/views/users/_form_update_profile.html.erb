@@ -3,11 +3,9 @@
     <label><%=  t('avatar.profile_change') %></label>
     <%= render partial: 'profiles/avatar_edit' %>
 
-
     <%= form_for(profile_subject, :url => [profile_subject]) do |f| %>
 
-
-      <%= f.label t('actor.name'), :class => "name-required"  %><!--span>*</span-->
+      <%= f.label t('actor.name'), :class => "name-required" %>
       <%= f.text_field :name, :class => "form-control required", :maxlength => 50 %>
 
       <%= f.label t('profile.occupation.label'), :class => "text" %>
@@ -44,7 +42,7 @@
       </ul>
 
       <!-- User tags -->
-      <%@user_tags = profile_subject.tags%>
+      <% @user_tags = profile_subject.tags %>
       <ul id="preloadUserTagList" style="display:none">
         <%@user_tags.each do |tag| %>
           <li><%=tag.name%></li>
@@ -123,6 +121,5 @@
         });
 
     <% end %>
-
   <% end %>
 </div>

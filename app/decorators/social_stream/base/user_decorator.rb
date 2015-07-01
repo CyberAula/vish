@@ -19,15 +19,15 @@ User.class_eval do
   Occupation = [:select, :teacher, :scientist, :other]
 
   def occupation_sym
-  	if occupation
-  		Occupation[occupation]
-  	else
-  		:select
-  	end
+    if occupation
+      Occupation[occupation]
+    else
+      :select
+    end
   end
 
   def occupation_t
-  	I18n.t "profile.occupation.options.#{occupation_sym}"
+    I18n.t "profile.occupation.options.#{occupation_sym}"
   end
 
   def description
@@ -38,20 +38,14 @@ User.class_eval do
   private
 
   def destroy_user_resources
-    #Destroy user resources
-
     ActivityObject.authored_by(self).each do |ao|
       object = ao.object
-      unless object.nil?
-        object.destroy
-      end
+      object.destroy unless object.nil?
     end
     
     ActivityObject.owned_by(self).each do |ao|
       object = ao.object
-      unless object.nil?
-        object.destroy
-      end
+      object.destroy unless object.nil?
     end
   end
   
