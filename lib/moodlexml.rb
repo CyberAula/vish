@@ -50,14 +50,15 @@ class MOODLEQUIZXML
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
 
     nChoices = qjson["choices"].size
-    question_t = (qjson["question"]["value"]).to_s.lstrip
-    shuffleanswers = qjson["settings"]["shuffleChoices"]
+    question_t = (qjson["question"]["value"]).to_s.lstrip rescue ""
+    settings = qjson["settings"] || {}
+    shuffleAnswers = settings["shuffleChoices"]
 
     if qjson["extras"]["multipleAnswer"] == false 
       card = "true"
     else
       card = "false"
-    end 
+    end
 
     myxml.quiz do  
       myxml.question("type" => "category") do
@@ -73,7 +74,7 @@ class MOODLEQUIZXML
         myxml.questiontext do
           myxml.text(((qjson["question"]["value"]).to_s).lstrip)  
         end
-        if shuffleanswers == true
+        if shuffleAnswers == true
           myxml.shuffleanswers("1")
         else 
           myxml.shuffleanswers("0")
