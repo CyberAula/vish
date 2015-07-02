@@ -100,7 +100,7 @@ Vish::Application.routes.draw do
   #PDF to Excursion
   resources :pdfexes
 
-    #Categories
+  #Categories
   match '/categories/categorize' => 'categories#categorize', :via => :post
   match '/categories/edit_categories' => 'categories#edit_categories', :via => :post
   match '/categories/settings' => 'categories#settings', :via => :post
@@ -108,6 +108,9 @@ Vish::Application.routes.draw do
 
   #Catalogue
   match '/catalogue' => 'catalogue#index'
+
+  #PrivateStudentGroups
+  resources :private_student_groups
 
   #Competitions
   match 'contest' => 'static#contest'

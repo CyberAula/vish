@@ -681,6 +681,8 @@ es:
     other: "organizadores"
   overview_title: "¿Qué es ViSH?"
   password: "clave"
+  private_student:
+    account_name: "Alumno"
   post:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
     search_name: "actualización de estado"

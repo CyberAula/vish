@@ -374,6 +374,7 @@ ActiveRecord::Schema.define(:version => 20150630135545) do
 
   create_table "private_student_groups", :force => true do |t|
     t.integer  "owner_id"
+    t.text     "users_data"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

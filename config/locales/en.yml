@@ -689,6 +689,12 @@ en:
     other: "organizers"
   overview_title: "ViSH Overview"
   password: "password"
+  private_student:
+    account_name: "Learner"
+    creation_success: "The group of user accounts was created succesfully"
+    creation_error: "The group of user accounts could not be created"
+    form_title: "Create a group of learner accounts"
+    learner_number: "Number of learners"
   post:
     input: "Share your thoughts, links, videos and more, here!"
     search_name: "status update"

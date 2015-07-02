@@ -74,6 +74,14 @@ class Ability
       cannot :destroy, Profile do |p|
         cannot?(:destroy, p.actor)
       end
+
+      can :create, PrivateStudentGroup do |psg|
+        subject.admin? or subject.role?("PremiumUser")
+      end
+
+      can :show, PrivateStudentGroup do |psg|
+        subject.admin? or psg.owner_id == subject.actor_id
+      end
     end
 
 
