@@ -520,10 +520,12 @@ class Excursion < ActiveRecord::Base
           end
         end
         myxml.otherPlatformRequirements do
-          myxml.string("HTML5-compliant web browser", :language=> metadataLanguage)
+          otherPlatformRequirements = "HTML5-compliant web browser"
           if ejson["VEVersion"]
-            myxml.string("ViSH Viewer " + atVersion, :language=> metadataLanguage)
+            otherPlatformRequirements += " and ViSH Viewer " + atVersion
           end
+          otherPlatformRequirements += "."
+          myxml.string(otherPlatformRequirements, :language=> metadataLanguage)
         end
       end
 
