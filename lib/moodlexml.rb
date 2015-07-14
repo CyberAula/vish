@@ -7,16 +7,14 @@ require 'builder'
 class MOODLEQUIZXML
 
   def self.createMoodleQUIZXML(filePath,fileName,qjson)
-    require 'zip'
 
-    t = File.open("#{filePath}#{fileName}.zip", 'w')
+    t = File.open("#{filePath}#{fileName}.xml", 'w') do |zos|
 
-    Zip::OutputStream.open(t.path) do |zos|
       case qjson["quiztype"]
 
       when "multiplechoice"
         moodlequizmc = MOODLEQUIZXML.generate_MoodleQUIZMC(qjson)
-        zos.put_next_entry(fileName + ".xml")
+        #zos.put_next_entry(fileName + ".xml")
         #Zero-width space <200b> erased from target in moodlequizmc
         zos.print moodlequizmc.target!().gsub("\u{200B}","" )
 
@@ -26,17 +24,17 @@ class MOODLEQUIZXML
         else
           moodlequizoa = MOODLEQUIZXML.generate_MoodleQUIZLA(qjson)
         end
-          zos.put_next_entry(fileName + ".xml")
+         # zos.put_next_entry(fileName + ".xml")
           zos.print moodlequizoa.target!().gsub("\u{200B}","" )
 
       when "sorting"
         moodlequizs = MOODLEQUIZXML.generate_MoodleQUIZSorting(qjson)
-        zos.put_next_entry(fileName + ".xml")
+        #zos.put_next_entry(fileName + ".xml")
         zos.print moodlequizs.target!().gsub("\u{200B}","" )
 
       when "truefalse"
         moodlequiztf = MOODLEQUIZXML.generate_MoodleQUIZTF(qjson)
-        zos.put_next_entry(fileName + ".xml")
+        #zos.put_next_entry(fileName + ".xml")
         zos.print moodlequiztf.target!().gsub("\u{200B}","" )
 
       else
@@ -44,7 +42,6 @@ class MOODLEQUIZXML
 
     end
 
-    t.close
   end
 
 
@@ -53,13 +50,15 @@ class MOODLEQUIZXML
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
 
     nChoices = qjson["choices"].size
-    question_t = (qjson["question"]["value"]).to_s.lstrip.chop
+    question_t = (qjson["question"]["value"]).to_s.lstrip rescue ""
+    settings = qjson["settings"] || {}
+    shuffleAnswers = settings["shuffleChoices"]
 
     if qjson["extras"]["multipleAnswer"] == false 
       card = "true"
     else
       card = "false"
-    end 
+    end
 
     myxml.quiz do  
       myxml.question("type" => "category") do
@@ -73,9 +72,14 @@ class MOODLEQUIZXML
           myxml.text(question_t)
         end
         myxml.questiontext do
-          myxml.text(((qjson["question"]["value"]).to_s).lstrip.chop)  
+          myxml.text(((qjson["question"]["value"]).to_s).lstrip)  
         end
-        myxml.shuffleanswers("1")
+        if shuffleAnswers == true
+          myxml.shuffleanswers("1")
+        else 
+          myxml.shuffleanswers("0")
+        end
+        
         myxml.single(card)
 
         for i in 0..((nChoices)-1)
@@ -85,7 +89,7 @@ class MOODLEQUIZXML
             mappedV = "0"
           end
           myxml.answer("fraction" => mappedV) do
-            myxml.text(((qjson["choices"][i]["value"]).to_s).lstrip.chop)
+            myxml.text(((qjson["choices"][i]["value"]).to_s).lstrip)
           end
         end
 
@@ -113,11 +117,11 @@ class MOODLEQUIZXML
         myxml.question("type" => "truefalse") do
 
           myxml.name do
-            myxml.text(((qjson["question"]["value"]).to_s).lstrip.chop)  
+            myxml.text(((qjson["question"]["value"]).to_s).lstrip)  
           end
 
           myxml.questiontext do
-            myxml.text(((qjson["choices"][i]["value"]).to_s).lstrip.chop)  
+            myxml.text(((qjson["choices"][i]["value"]).to_s).lstrip)  
           end
 
           if(qjson["choices"][i]["answer"] == true)
@@ -157,13 +161,13 @@ class MOODLEQUIZXML
 
       myxml.question("type" => "shortanswer") do
         myxml.name do
-          myxml.text(((qjson["question"]["value"]).to_s).lstrip.chop)  
+          myxml.text(((qjson["question"]["value"]).to_s).lstrip)  
         end
         myxml.questiontext do
-          myxml.text(((qjson["question"]["value"]).to_s).lstrip.chop)  
+          myxml.text(((qjson["question"]["value"]).to_s).lstrip)  
         end
         myxml.answer("fraction" => "100") do
-            myxml.text(((qjson["answer"]["value"]).to_s).lstrip.chop)
+            myxml.text(((qjson["answer"]["value"]).to_s).lstrip)
           end
       end
     end
@@ -185,10 +189,10 @@ class MOODLEQUIZXML
 
       myxml.question("type" => "essay") do
         myxml.name do
-          myxml.text(((qjson["question"]["value"]).to_s).lstrip.chop)  
+          myxml.text(((qjson["question"]["value"]).to_s).lstrip)  
         end
         myxml.questiontext do
-          myxml.text(((qjson["question"]["value"]).to_s).lstrip.chop)  
+          myxml.text(((qjson["question"]["value"]).to_s).lstrip)  
         end
         myxml.answer("fraction" => "0") do
             myxml.text
@@ -215,10 +219,10 @@ class MOODLEQUIZXML
 
       myxml.question("type" => "matching") do
         myxml.name do
-          myxml.text(((qjson["question"]["value"]).to_s).lstrip.chop)  
+          myxml.text(((qjson["question"]["value"]).to_s).lstrip)  
         end
         myxml.questiontext do
-          myxml.text(((qjson["question"]["value"]).to_s).lstrip.chop)  
+          myxml.text(((qjson["question"]["value"]).to_s).lstrip)  
         end
         myxml.shuffleanswers("false")
 
@@ -226,7 +230,7 @@ class MOODLEQUIZXML
           myxml.subquestion do
             myxml.text((i+1).to_s)
             myxml.answer do
-              myxml.text(((qjson["choices"][i]["value"]).to_s).lstrip.chop)
+              myxml.text(((qjson["choices"][i]["value"]).to_s).lstrip)
             end
           end
         end
