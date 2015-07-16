@@ -263,6 +263,19 @@ class ExcursionsController < ApplicationController
     end
   end
 
+  def upload_attatchment
+    excursion = Excursion.find_by_id(params[:id])
+    unless excursion.nil? || params[:attachment].nil?
+      file = File.open(params[:attachment])
+      excursion.attachment = file
+      file.close
+      excursion.save!
+    else
+      xmlMetadata = ::Builder::XmlMarkup.new(:indent => 2)
+      xmlMetadata.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+      xmlMetadata.error("Excursion not found")
+    end
+  end
 
   ##################
   # Evaluation Methods
