@@ -307,11 +307,20 @@
 						</div>			
 
 						<div id="tags_in_presentation_details">
-							<span class="presentation_details_text" i18n-key="i.Tags">Tags</span>
+							<span class="presentation_details_text" i18n-key="i.Tags">Tags</span><button id="catalog_button" type="button" class="button" i18n-key="i.Catalog">Catalogue</button>
 							<div id="tagBoxIntro">
 								<ul id="tagindex" class="tagList"></ul>
 							</div>
 						</div>
+						    <div><span class="presentation_details_text" i18n-key="i.Attatchment" >Attatchment</span></div>
+						    <div class="file_details_upload">
+							    <div class="fileUpload button btn-primary">
+							    	<span i18n-key="i.ChooseFile">Choose File</span>
+								    <input type="file"  name="fileToUpload" id="attatchment_file">
+								</div>
+								<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+								<div class="fileUpload2 button btn-primary"><spa i18n-key="i.Upload"n>Upload</span></div>
+							</div>
 					</div>
 
 					<div id="presentation_details_fields_row1_column3">
@@ -321,22 +330,32 @@
 				</div>
 
 				<div id="presentation_details_fields_row2">
-					<button id='pedagogical_clasification_button' type='button' class='button' i18n-key="i.PedagogicalAspects">Pedagogical Aspects</button>
+					<button id='metadata_clasification_button' type='button' class='button' i18n-key="i.advancedSettings">Advanced</button>
 					<button id='fill_details_later_button' type='button' class='button' i18n-key="i.Filllater">Fill later</button>
 					<button id='save_presentation_details' disabled="true" type='button' class='button buttonDisabledOnSettings' title="Write a title and choose an avatar to continue" i18n-key="i.Continue">Continue</button>
 				</div>
 			</div>
 
 
-			<div id="pedagogical_options_fields" style="display:none">
-				<img class='help_in_settings' id='help_pedagogical_selection' src="/assets/vicons/helptutorial_circle_blank.png"/>
+			<div id="metadata_options_fields" style="display:none">
+				
+				<img class='help_in_settings' id='help_metadata_selection' src="/assets/vicons/helptutorial_circle_blank.png"/>
 				<div>
-					<p class="pedagogical_title" i18n-key="i.PedagogicalAspects">Pedagogical Aspects</p>
+					<p class="metadata_title" i18n-key="i.advancedSettings">Advanced</p>
 				</div>
 
-				<div id="pedagogical_options_fields_row1">
+				<div class="fancy_tabs" id="advanced_tabs">
+				  <ul>
+				    <li><a class='js_tabs_asettings fancy_selected' tab="metadata-options-tab" href="#" i18n-key="i.MetadataAspects">Metadata</a></li>
+				    <li><a class='js_tabs_asettings' tab="publication-tab" href="#" i18n-key="i.Publicacion">Publication</a></li>
+				    <li><a class='js_tabs_asettings' tab="rte-tab" href="#">RTE</a></li>
+				  </ul>
+				 </div>
+
+				<div id="metadata-options-tab" class="active">
+				<div id="metadata_options_fields_row1">
 					
-					<div id="pedagogical_options_fields_row1_column1">
+					<div id="metadata_options_fields_row1_column1">
 
 						<div id="language_tag_box">
 							<div id="language_tag_box_text">
@@ -372,7 +391,7 @@
 
 					</div>
 
-					<div id="pedagogical_options_fields_row1_column2">
+					<div id="metadata_options_fields_row1_column2">
 						
 						<div id="age_range_wrapper">
 							<div class="range_text"><span i18n-key="i.AgeRange">Age range</span>:</div>
@@ -410,7 +429,7 @@
 						</div>
 					</div>
 
-					<div id="pedagogical_options_fields_row1_column3">
+					<div id="metadata_options_fields_row1_column3">
 						<div id="subject_tag_box">		  
 							<div id="subject_tag_box_text">
 								<span i18n-key="i.Subject">Subject</span>
@@ -458,7 +477,7 @@
 
 				</div>
 
-				<div id="pedagogical_options_fields_row2">
+				<div id="metadata_options_fields_row2">
 					<div>
 						<div id="educational_objectives_title">
 							<span i18n-key="i.EducationalObjectives">Educational Objectives</span>
@@ -466,16 +485,44 @@
 						<textarea id='educational_objectives_textarea' name="educational_objectives" placeholder="Please describe the educational objectives you aim to fulfil by using this excursion..." i18n-key="i.EducationalObjectivesPlaceholder"></textarea>
 					</div>
 				</div>
-
-				<div id="pedagogical_options_fields_row3">
-					<button id='done_in_pedagogical' type='button' class='button' i18n-key="i.Done">Done</button>
+			 	</div>
+																																				
+			 	<div id="publication-tab" style="display:none">
+			 	<div id="publication_title"  >
+			 		<p i18n-key="i.allowUsersTo">Allow other users to:</p>
+			 	</div>
+					<div id="publication_content"><br>
+						<input type="checkbox" id="allow_clone" checked> <span i18n-key="i.allowClone">Clone</span><br>
+						<input type="checkbox" id="allow_comment" checked> <span i18n-key="i.allowComment">Comment</span><br>
+						<input type="checkbox" id="allow_download" checked> <span i18n-key="i.allowDownload">Download</span><br>
+					<br>
+					</div>
 				</div>
 
+				<div id="rte-tab" style="display:none">
+					<input type="checkbox" id="allow_following_rte" checked><span i18n-key="i.allowFollowing">Allow to follow this object after exporting as SCORM</span><br>		
+				</div>
+
+				<div id="metadata_options_fields_row3">
+					<button id='done_in_metadata' type='button' class='button' i18n-key="i.Done">Done</button>
+				</div>
+							
+				
 			</div>
 
 		</form>
 	</div>
 
+	<div id="catalog_content" >
+		<div id="catalog_title">
+			<p>Catalog Tags</p>
+		</div>
+		<div id="catalog_body">
+			<select id="catalog_tags" size="11" multiple="multiple">
+			</select>
+		</div>
+		<button id="catalog_done_button" type="button" class="button buttonfancy previewButton" i18n-key="i.Done">Done</button>
+	</div>
 
 	<!-- Import and Add slide fancybox -->
 	<div style='display:none'>
@@ -1636,11 +1683,11 @@
 			<p class="tut_space">&nbsp;</p>
 		</li>
 
-		<li data-id="pedagogical_clasification_button" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top;" class="tut_width500 tut_with_arrow">
-			<h2 i18n-key="i.walkSettings7_1">Pedagogical Aspects</h2>
-			<p i18n-key="i.walkSettings7_2">Clicking on this button will bring up the Pedagogical Aspects screen.</p>
+		<li data-id="metadata_clasification_button" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top;" class="tut_width500 tut_with_arrow">
+			<h2 i18n-key="i.walkSettings7_1">Metadata</h2>
+			<p i18n-key="i.walkSettings7_2">Clicking on this button will bring up the Metadata screen.</p>
 			<p i18n-key="i.walkSettings7_3">In this screen you can specify more pedagogy related information about your excursion.</p>
-			<p><span i18n-key="i.walkSettings7_4">Details about the information that can be specified are explained in the   contextual help of the Pedagogical Aspects screen.</p>
+			<p><span i18n-key="i.walkSettings7_4">Details about the information that can be specified are explained in the   contextual help of the Metadata screen.</p>
 		</li>
 
 		<li class="tut_width500 tut_with_arrow" data-id="save_presentation_details" class="tut_with_arrow" data-options="tipLocation:top" data-text="Finish" i18n-key="i.Finish">
@@ -1652,21 +1699,21 @@
 	</ol>
 
 
-	<!-- Help in pedagogical options settings -->
-	<ol id="help_pedagogical_selection_help" class="joyRideTipContent">
-		<li data-id="thumbcontent" data-text="Finish" i18n-key="i.Finish" class="tut_pedagogical tut_without_arrow" data-options="tipLocation:none">
-			<h2 i18n-key="i.walkPedagogical1_1">Welcome to the Pedagogical Aspects screen</h2>
-			<p><span i18n-key="i.walkPedagogical1_2_1">In this screen you can specify more pedagogy related information (or metadata) about your excursion. These metadata are grounded on and are compliant with the Learning Object Metadata (LOM) standard. The last specification of this standard, which explains in a detailed way all fields of this screen, can be found</span> <a href="http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf" target="_blank"><span i18n-key="i.walkPedagogical1_2_2">here</span></a>.</p>
+	<!-- Help in metadata options settings -->
+	<ol id="help_metadata_selection_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Finish" i18n-key="i.Finish" class="tut_metadata tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkMetadata1_1">Welcome to the Metadata Aspects screen</h2>
+			<p><span i18n-key="i.walkMetadata1_2_1">In this screen you can specify more pedagogy related information (or metadata) about your excursion. These metadata are grounded on and are compliant with the Learning Object Metadata (LOM) standard. The last specification of this standard, which explains in a detailed way all fields of this screen, can be found</span> <a href="http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf" target="_blank"><span i18n-key="i.walkMetadata1_2_2">here</span></a>.</p>
 			<p class="tut_space">&nbsp;</p>
-			<p i18n-key="i.walkPedagogical1_3">Below is given a brief explanation of each of the fields that can be specified here.</p>
+			<p i18n-key="i.walkMetadata1_3">Below is given a brief explanation of each of the fields that can be specified here.</p>
 			<p class="tut_space_small">&nbsp;</p>
-			<p> <i i18n-key="i.Language">Language</i>: <span i18n-key="i.walkPedagogical1_4">The language of your excursion.</span></p>
-			<p> <i i18n-key="i.Context">Context</i>: <span i18n-key="i.walkPedagogical1_5">The principal environment within which the learning and use of this learning object (i.e. the excursion) is intended to take place.</span></p>
-			<p> <i i18n-key="i.AgeRange">Age range</i>: <span i18n-key="i.walkPedagogical1_6">Age of the typical intended user.</span></p>
-			<p> <i i18n-key="i.Difficulty">Difficulty</i>: <span i18n-key="i.walkPedagogical1_7">How hard it is to work with or through this learning object.</span></p>
-			<p> <i i18n-key="i.TypicalLearningTime">Typical Learning Time</i>: <span i18n-key="i.walkPedagogical1_8">Approximate or typical time it takes to work with this learning object.</span></p>
-			<p> <i i18n-key="i.Subject">Subject</i>: <span i18n-key="i.walkPedagogical1_9">The topic (or topics) of the excursion.</span></p>
-			<p> <i i18n-key="i.EducationalObjectives">Educational Objectives</i>: <span i18n-key="i.walkPedagogical1_10">Comments on how this learning object is to be used.</span></p>
+			<p> <i i18n-key="i.Language">Language</i>: <span i18n-key="i.walkMetadata1_4">The language of your excursion.</span></p>
+			<p> <i i18n-key="i.Context">Context</i>: <span i18n-key="i.walkMetadata1_5">The principal environment within which the learning and use of this learning object (i.e. the excursion) is intended to take place.</span></p>
+			<p> <i i18n-key="i.AgeRange">Age range</i>: <span i18n-key="i.walkMetadata1_6">Age of the typical intended user.</span></p>
+			<p> <i i18n-key="i.Difficulty">Difficulty</i>: <span i18n-key="i.walkMetadata1_7">How hard it is to work with or through this learning object.</span></p>
+			<p> <i i18n-key="i.TypicalLearningTime">Typical Learning Time</i>: <span i18n-key="i.walkMetadata1_8">Approximate or typical time it takes to work with this learning object.</span></p>
+			<p> <i i18n-key="i.Subject">Subject</i>: <span i18n-key="i.walkMetadata1_9">The topic (or topics) of the excursion.</span></p>
+			<p> <i i18n-key="i.EducationalObjectives">Educational Objectives</i>: <span i18n-key="i.walkMetadata1_10">Comments on how this learning object is to be used.</span></p>
 			<p class="tut_space_big">&nbsp;</p>
 		</li>
 	</ol>

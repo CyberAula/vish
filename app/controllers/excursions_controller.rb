@@ -2,10 +2,10 @@ class ExcursionsController < ApplicationController
 
   require 'fileutils'
 
-  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
+  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON, :upload_attatchment ]
   before_filter :profile_subject!, :only => :index
   before_filter :fill_create_params, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :interactions]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :interactions, :upload_attatchment]
   skip_before_filter :store_location, :if => :format_full?
   skip_after_filter :discard_flash, :only => [:clone]
   
@@ -264,6 +264,7 @@ class ExcursionsController < ApplicationController
   end
 
   def upload_attatchment
+    binding.pry
     excursion = Excursion.find_by_id(params[:id])
     unless excursion.nil? || params[:attachment].nil?
       file = File.open(params[:attachment])
