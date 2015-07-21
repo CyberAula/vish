@@ -252,7 +252,7 @@
 
 	<!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
 	<div style='display:none'>    
-		<form id='presentationdetails'>
+		<div id='presentationdetails'>
 
 			<div id="presentation_details_fields">
 				<img  title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_settings' id='help_in_settings' src="/assets/vicons/helptutorial_circle_blank.png"/>
@@ -313,14 +313,18 @@
 							</div>
 						</div>
 						    <div><span class="presentation_details_text" i18n-key="i.Attatchment" >Attatchment</span></div>
+						    <form method="post" enctype="multipart/form-data" id="attachment_form">
 						    <div class="file_details_upload">
 							    <div class="fileUpload button btn-primary">
 							    	<span i18n-key="i.ChooseFile">Choose File</span>
+							    	
 								    <input type="file"  name="fileToUpload" id="attatchment_file">
+									
 								</div>
 								<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
 								<div class="fileUpload2 button btn-primary"><spa i18n-key="i.Upload"n>Upload</span></div>
 							</div>
+							</form>
 					</div>
 
 					<div id="presentation_details_fields_row1_column3">
@@ -510,7 +514,7 @@
 				
 			</div>
 
-		</form>
+		</div>
 	</div>
 
 	<div id="catalog_content" >
