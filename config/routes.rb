@@ -64,7 +64,7 @@ Vish::Application.routes.draw do
   match 'excursions/:id/scormMetadata' => 'excursions#scormMetadata'
   match 'excursions/:id/clone' => 'excursions#clone'
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
-  match '/excursions/:id/attachment' => 'excursions#upload_attatchment'
+  match '/excursions/:id/attachment' => 'excursions#upload_attachment'
 
   match '/excursions/:id.mashme' => 'excursions#show', :defaults => { :format => "gateway", :gateway => 'mashme' }
   match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full" }

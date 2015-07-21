@@ -2,10 +2,10 @@ class ExcursionsController < ApplicationController
 
   require 'fileutils'
 
-  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON, :upload_attatchment ]
+  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON, :upload_attachment ]
   before_filter :profile_subject!, :only => :index
   before_filter :fill_create_params, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :interactions, :upload_attatchment]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :interactions, :upload_attachment]
   skip_before_filter :store_location, :if => :format_full?
   skip_after_filter :discard_flash, :only => [:clone]
   
@@ -263,14 +263,11 @@ class ExcursionsController < ApplicationController
     end
   end
 
-  def upload_attatchment
-    binding.pry
+  def upload_attachment
     excursion = Excursion.find_by_id(params[:id])
-    unless excursion.nil? || params[:attachment].nil?
-      file = File.open(params[:attachment])
-      excursion.attachment = file
-      file.close
-      excursion.save!
+    unless excursion.nil? || params[:attachment].blank?
+      binding.pry
+      excursion.update_attributes(:attachment => params[:attachment])
     else
       xmlMetadata = ::Builder::XmlMarkup.new(:indent => 2)
       xmlMetadata.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
