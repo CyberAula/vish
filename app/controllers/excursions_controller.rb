@@ -2,10 +2,10 @@ class ExcursionsController < ApplicationController
 
   require 'fileutils'
 
-  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON, :upload_attatchment ]
+  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON, :upload_attachment ]
   before_filter :profile_subject!, :only => :index
   before_filter :fill_create_params, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :interactions, :upload_attatchment]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :interactions, :upload_attachment, :show_attachment]
   skip_before_filter :store_location, :if => :format_full?
   skip_after_filter :discard_flash, :only => [:clone]
   
@@ -263,18 +263,28 @@ class ExcursionsController < ApplicationController
     end
   end
 
-  def upload_attatchment
-    binding.pry
+  def upload_attachment
     excursion = Excursion.find_by_id(params[:id])
-    unless excursion.nil? || params[:attachment].nil?
-      file = File.open(params[:attachment])
-      excursion.attachment = file
-      file.close
-      excursion.save!
+    unless excursion.nil? || params[:attachment].blank?
+      authorize! :update, excursion
+      excursion.update_attributes(:attachment => params[:attachment])
+      excursion.save
+      respond_to do |format|
+        format.json { head :ok }
+      end
     else
-      xmlMetadata = ::Builder::XmlMarkup.new(:indent => 2)
-      xmlMetadata.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-      xmlMetadata.error("Excursion not found")
+      respond_to do |format|
+        format.json { head :bad_request }
+      end
+    end
+  end
+
+  def show_attachment
+    excursion_id = params[:id]
+    excursion = Excursion.find(excursion_id)
+    unless excursion.blank? || excursion.attachment.blank?
+      attachment = File.open(excursion.attachment.path)
+      send_file attachment
     end
   end
 

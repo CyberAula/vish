@@ -1,6 +1,14 @@
 require 'builder'
 
 class Excursion < ActiveRecord::Base
+  #TODO. After destroy check if the attachment file is removed. If not, do it.
+  attr_accessible :attachment
+  attr_accessor :attachment_url
+  has_attached_file :attachment, 
+                    :url => '/:class/:id/attachment_file',
+                    :path => ':rails_root/documents/attachments/:id_partition/:filename.:extension'
+
+
   include SocialStream::Models::Object
   has_many :excursion_contributors, :dependent => :destroy
   has_many :contributors, :class_name => "Actor", :through => :excursion_contributors
@@ -11,7 +19,7 @@ class Excursion < ActiveRecord::Base
   after_save :fix_post_activity_nil
   after_destroy :remove_scorm
   after_destroy :remove_pdf
-  
+
   define_index do
     activity_object_index
     

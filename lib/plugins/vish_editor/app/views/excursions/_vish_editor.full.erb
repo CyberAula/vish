@@ -313,19 +313,20 @@
 							</div>
 						</div>
 						    <div><span class="presentation_details_text" i18n-key="i.Attatchment" >Attatchment</span></div>
-						    
 						    <div class="file_details_upload">
-							    <div class="fileUpload button btn-primary">
-							    	<span i18n-key="i.ChooseFile">Choose File</span>
-							    	<form method="post" action=""http://localhost:3000/excursions/512/attachment"" enctype="multipart/form-data" data-remote="true" id="attachment_form" accept-charset="UTF-8">
-									    <input type="file"  name="file" id="attatchment_file">
-										<input id="assd" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-									</form>
-								</div>
-								<input id="uploadFile" name="fakeFile" placeholder="Choose File" disabled="disabled" />
-								<div class="fileUpload2 button btn-primary"><spa i18n-key="i.Upload"n>Upload</span></div>
+							    <form id="attachment_file_form" method="post" action="attatchment_file.json" enctype="multipart/form-data">
+							    
+							    <div class="fileUpload button ">	    
+    								<span>Upload</span>
+								   	 <input type="file"  name="attachment" id="attachment_file">
+								   	 </div>
+								    <input id="description_attachment" placeholder="Choose File" disabled="disabled" />
+								    <input type="hidden" name="author_id" id="attachment_author">
+								    <input type="hidden" name="authenticity_token" id="attachment_aut_token">
+									<input id="upload_file_attachment" type="submit" class="button" i18n-key="i.Upload" value="Upload" disabled="true">
+									
+								</form>
 							</div>
-							
 					</div>
 
 					<div id="presentation_details_fields_row1_column3">
@@ -1004,39 +1005,39 @@
 	<div style='display:none'>
 		<div id="animation_fancybox" class="animation_fancybox_class">
 			<img id="help_animation_selection" src="/assets/vicons/helptutorial_circle.png"/>
-			<div id='select_animation1' class="slidethumb" animation="animation1">
+			<div id='select_animation1' class="slidethumb slideAni" animation="animation1">
 				<div class="anim_text"><h3 i18n-key="i.Horizontal">Horizontal</h3></div></div>
-			<div id='select_animation2' class="slidethumb" animation="animation2">
+			<div id='select_animation2' class="slidethumb slideAni" animation="animation2">
 				<div class="anim_text"><h3 i18n-key="i.Vertical">Vertical</h3></div>
 			</div>
-			<div id='select_animation3' class="slidethumb" animation="animation3">
+			<div id='select_animation3' class="slidethumb slideAni" animation="animation3">
 				<div class="anim_text"><h3 i18n-key="i.Opacity">Opacity</h3></div>
 			</div>
-			<div id='select_animation4' class="slidethumb" animation="animation4">
+			<div id='select_animation4' class="slidethumb slideAni" animation="animation4">
 				<div class="anim_text"><h3 i18n-key="i.Elements">Elements</h3></div>
 			</div>
-			<div id='select_animation5' class="slidethumb" animation="animation5">
+			<div id='select_animation5' class="slidethumb slideAni" animation="animation5">
 				<div class="anim_text"><h3 i18n-key="i.Rotate">Rotate</h3></div>
 			</div>
-			<div id='select_animation6' class="slidethumb" animation="animation6">
+			<div id='select_animation6' class="slidethumb slideAni" animation="animation6">
 				<div class="anim_text"><h3 i18n-key="i.Diagonal1">Diagonal #1</h3></div>
 			</div>
-			<div id='select_animation7' class="slidethumb" animation="animation7">
+			<div id='select_animation7' class="slidethumb slideAni" animation="animation7">
 				<div class="anim_text"><h3 i18n-key="i.Diagonal2">Diagonal #2</h3></div>
 			</div>
-			<div id='select_animation8' class="slidethumb" animation="animation8">
+			<div id='select_animation8' class="slidethumb slideAni" animation="animation8">
 				<div class="anim_text"><h3 i18n-key="i.Inside">Inside</h3></div>
 			</div>
-			<div id='select_animation9' class="slidethumb" animation="animation9">
+			<div id='select_animation9' class="slidethumb slideAni" animation="animation9">
 				<div class="anim_text"><h3 i18n-key="i.Zoom">Zoom</h3></div>
 			</div>
-			<div id='select_animation10' class="slidethumb" animation="animation10">
+			<div id='select_animation10' class="slidethumb slideAni" animation="animation10">
 				<div class="anim_text"><h3 i18n-key="i.Flip1">Flip #1</h3></div>
 			</div>
-			<div id='select_animation11' class="slidethumb" animation="animation11">
+			<div id='select_animation11' class="slidethumb slideAni" animation="animation11">
 				<div class="anim_text"><h3 i18n-key="i.Flip2">Flip #2</h3></div>
 			</div>
-			<div id='select_animation12' class="slidethumb" animation="animation12">
+			<div id='select_animation12' class="slidethumb slideAni" animation="animation12">
 				<div class="anim_text"><h3 i18n-key="i.3D">3D</h3></div>
 			</div>
 		</div>
