@@ -313,18 +313,19 @@
 							</div>
 						</div>
 						    <div><span class="presentation_details_text" i18n-key="i.Attatchment" >Attatchment</span></div>
-						    <form method="post" enctype="multipart/form-data" id="attachment_form">
+						    
 						    <div class="file_details_upload">
 							    <div class="fileUpload button btn-primary">
 							    	<span i18n-key="i.ChooseFile">Choose File</span>
-							    	
-								    <input type="file"  name="fileToUpload" id="attatchment_file">
-									
+							    	<form method="post" action=""http://localhost:3000/excursions/512/attachment"" enctype="multipart/form-data" data-remote="true" id="attachment_form" accept-charset="UTF-8">
+									    <input type="file"  name="file" id="attatchment_file">
+										<input id="assd" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+									</form>
 								</div>
-								<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+								<input id="uploadFile" name="fakeFile" placeholder="Choose File" disabled="disabled" />
 								<div class="fileUpload2 button btn-primary"><spa i18n-key="i.Upload"n>Upload</span></div>
 							</div>
-							</form>
+							
 					</div>
 
 					<div id="presentation_details_fields_row1_column3">
