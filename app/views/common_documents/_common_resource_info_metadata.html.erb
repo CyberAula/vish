@@ -119,7 +119,9 @@
           <%=t('excursion.actions.show_meta')%>
         </button>
       <%end%>
-
+      <% if !resource.attachment.blank? %>
+        <a class="btn btn-default" href="/excursions/<%= resource.id %>/attachment" > <%=t('excursion.actions.attachment')%> </a>
+      <% end %>
             <!--Views and Likes-->
       <div class="viewsAndCount">        
         <div class="views">

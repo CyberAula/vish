@@ -482,6 +482,7 @@ en:
   excursion:
     actions:
       add: "Add excursion"
+      attachment: "Attachment"
       bookmark: "bookmark"
       clone: "clone"
       delete: "delete"

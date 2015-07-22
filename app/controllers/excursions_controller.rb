@@ -270,11 +270,13 @@ class ExcursionsController < ApplicationController
       excursion.update_attributes(:attachment => params[:attachment])
       excursion.save
       respond_to do |format|
-        format.json { head :ok }
+        msg = { :status => "ok", :message => "Success!"}
+        format.json  { render :json => msg }
       end
     else
       respond_to do |format|
-        format.json { head :bad_request }
+         msg = { :status => "bad_request", :message => "Success!"}
+        format.json  { render :json => msg }
       end
     end
   end
