@@ -266,12 +266,16 @@ class ExcursionsController < ApplicationController
   def upload_attachment
     excursion = Excursion.find_by_id(params[:id])
     unless excursion.nil? || params[:attachment].blank?
-      binding.pry
+      authorize! :update, excursion
       excursion.update_attributes(:attachment => params[:attachment])
+      excursion.save
+      respond_to do |format|
+        format.json { head :ok }
+      end
     else
-      xmlMetadata = ::Builder::XmlMarkup.new(:indent => 2)
-      xmlMetadata.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-      xmlMetadata.error("Excursion not found")
+      respond_to do |format|
+        format.json { head :bad_request }
+      end
     end
   end
 
