@@ -265,17 +265,24 @@ class ExcursionsController < ApplicationController
 
   def upload_attachment
     excursion = Excursion.find_by_id(params[:id])
+
     unless excursion.nil? || params[:attachment].blank?
       authorize! :update, excursion
       excursion.update_attributes(:attachment => params[:attachment])
-      excursion.save
-      respond_to do |format|
-        msg = { :status => "ok", :message => "Success!"}
+      if excursion.save
+        respond_to do |format|
+          msg = { :status => "ok", :message => "Success!"}
+          format.json  { render :json => msg }
+        end
+      else
+        respond_to do |format|
+         msg = { :status => "bad_request", :message => "Bad size"}
         format.json  { render :json => msg }
+      end
       end
     else
       respond_to do |format|
-         msg = { :status => "bad_request", :message => "Success!"}
+         msg = { :status => "bad_request", :message => "Some params were wrong"}
         format.json  { render :json => msg }
       end
     end

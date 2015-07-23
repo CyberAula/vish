@@ -7,7 +7,7 @@ class Excursion < ActiveRecord::Base
   has_attached_file :attachment, 
                     :url => '/:class/:id/attachment_file',
                     :path => ':rails_root/documents/attachments/:id_partition/:filename.:extension'
-
+  validates_attachment_size :attachment, less_than: 8.megabyte
 
   include SocialStream::Models::Object
   has_many :excursion_contributors, :dependent => :destroy
