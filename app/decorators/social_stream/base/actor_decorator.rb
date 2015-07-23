@@ -92,6 +92,14 @@ Actor.class_eval do
     order
   end
 
+  def service_requests
+    ServiceRequest.where(:owner_id => self.id)
+  end
+
+  def service_permissions
+    ServicePermission.where(:owner_id => self.id)
+  end
+
   private
 
   def fill_roles
