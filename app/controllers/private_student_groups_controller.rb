@@ -27,11 +27,14 @@ class PrivateStudentGroupsController < ApplicationController
       p = PrivateStudentGroup.new(params["private_student_group"])
       p.createGroupForSubject(current_subject,n)
       if p.new_record?
-        flash[:errors] = I18n.t("private_student.creation_error")
+        p.valid?
+        # flash[:errors] = I18n.t("private_student.creation_error")
+        flash[:errors] = p.errors.full_messages.to_sentence
+        render :new
       else
         flash[:success] = I18n.t("private_student.creation_success")
+        redirect_to private_student_groups_path
       end
-      redirect_to private_student_groups_path
     end
   end
 

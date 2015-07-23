@@ -6,6 +6,7 @@ class ServiceRequestsController < ApplicationController
   skip_after_filter :discard_flash, :only => [:new, :create, :accept, :destroy]
 
   def show
+    @request = ServiceRequest.find(params[:id])
   end
   
   def duplicated

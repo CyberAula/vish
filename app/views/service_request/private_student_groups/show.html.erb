@@ -1,1 +1,10 @@
 Show request
+
+<p> Description </p>
+<p> <%=@request.description%></p>
+<% if @request.attachment.exists? %>
+  <p> Attachment </p>
+  <p><a href="<%=@request.attachment.url%>" target="_blank"><%= @request.attachment_file_name %></a></p>
+<% end %>
+
+<a href="<%=admin_requests_path%>">Come back</a>

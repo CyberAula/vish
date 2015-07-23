@@ -9,7 +9,8 @@ class PrivateStudentGroup < ActiveRecord::Base
 
   def createGroupForSubject(subject,n=20)
     self.owner_id = subject.actor_id
-    self.save!
+    saved = self.save
+    return self unless saved
 
     usersData = {}
 
