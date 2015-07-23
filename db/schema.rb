@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150630135545) do
+ActiveRecord::Schema.define(:version => 20150723091044) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -498,6 +498,26 @@ ActiveRecord::Schema.define(:version => 20150630135545) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+  end
+
+  create_table "service_permissions", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "key"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "service_requests", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "status",                  :default => "Pending"
+    t.string   "type"
+    t.text     "description"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
   end
 
   create_table "shortened_urls", :force => true do |t|

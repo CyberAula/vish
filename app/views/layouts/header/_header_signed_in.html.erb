@@ -103,6 +103,15 @@
                       </li>
                   <%end%>
 
+                  <% if availableServices.include? "PrivateStudentGroups" %>
+                      <li class="settings-menu">
+                        <%= link_to private_student_groups_path do %>
+                          <i class="fa fa-user"></i>
+                            PrivateStudentGroups
+                        <% end %>
+                      </li>
+                  <%end%>
+
                   <li class="divider"></li>
                   <li>
 

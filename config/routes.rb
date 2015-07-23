@@ -109,6 +109,12 @@ Vish::Application.routes.draw do
   #Catalogue
   match '/catalogue' => 'catalogue#index'
 
+  #ServiceRequets
+  resources :service_requests
+  namespace :service_requests do
+    resources :private_student_groups
+  end
+
   #PrivateStudentGroups
   resources :private_student_groups
 

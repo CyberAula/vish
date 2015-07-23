@@ -41,9 +41,13 @@ class Ability
       end
     end
 
+    #ServiceRequests
+    can :create, ServiceRequest do |request|
+      !subject.nil?
+    end
 
-    #Roles
     unless subject.nil?
+      #Roles and user management
       cannot :update, Actor do |a|
         a.admin? and subject.actor_id != a.id
       end
@@ -75,8 +79,9 @@ class Ability
         cannot?(:destroy, p.actor)
       end
 
+      #Private Student Groups
       can :create, PrivateStudentGroup do |psg|
-        subject.admin? or subject.role?("PremiumUser")
+        subject.admin? or (ServicePermission.where(:key => "PrivateStudentGroups", :owner_id => subject.actor_id).length > 0)
       end
 
       can :show, PrivateStudentGroup do |psg|
