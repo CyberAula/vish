@@ -7,6 +7,8 @@ class PrivateStudentGroup < ActiveRecord::Base
   validates :owner_id, :presence => true
   validates :name, :presence => true
 
+  acts_as_xlsx
+
   def createGroupForSubject(subject,n=20)
     self.owner_id = subject.actor_id
     saved = self.save
@@ -39,11 +41,15 @@ class PrivateStudentGroup < ActiveRecord::Base
       user.actor.notification_settings = notification_settings
       user.actor.save!
 
-      usersData[user.id] = user.password
+      usersData[user.email] = user.password
     end
 
     self.users_data = usersData.to_json
     self.save!
+  end
+
+  def credentials
+    credentials = JSON.parse(self.users_data) rescue {}
   end
 
 end

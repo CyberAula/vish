@@ -121,7 +121,9 @@ Vish::Application.routes.draw do
   end
 
   #PrivateStudentGroups
-  resources :private_student_groups
+  resources :private_student_groups do
+    get 'credentials', :on => :member
+  end
 
   #Competitions
   match 'contest' => 'static#contest'

@@ -33,8 +33,24 @@ class PrivateStudentGroupsController < ApplicationController
         render :new
       else
         flash[:success] = I18n.t("private_student.creation_success")
-        redirect_to private_student_groups_path
+        redirect_to private_student_group_path(p)
       end
+    end
+  end
+
+  def credentials
+    @privateStudentGroup = PrivateStudentGroup.find(params[:id])
+    authorize! :show, @privateStudentGroup
+
+    @credentials = @privateStudentGroup.credentials
+
+    respond_to do |format|
+      format.json {
+        render :json => @credentials
+      }
+      format.any {
+        render :xlsx => "credentials", :filename => "Credentials_" + @privateStudentGroup.id.to_s + ".xlsx", :type => "application/vnd.openxmlformates-officedocument.spreadsheetml.sheet"
+      }
     end
   end
 
