@@ -10,6 +10,9 @@
 		<li <%=!@users.nil? ? "class=active" : ""%>>
 			<a href="<%=admin_users_path%>"><i class="fa fa-users"></i> <%=t('admin.users')%></a>
 		</li>
+		<li <%=!@requests.nil? ? "class=active" : ""%>>
+			<a href="<%=admin_requests_path%>"><i class="fa fa-users"></i> Requests</a>
+		</li>
 		<li>
 			<a href="/resque" target="_blank"><i class="fa fa-cloud-upload"></i> <%=t('admin.resque')%></a>
 		</li>

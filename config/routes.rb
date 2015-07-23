@@ -112,8 +112,9 @@ Vish::Application.routes.draw do
   #ServiceRequets
   resources :service_requests do
     get 'attachment', :on => :member
+    get 'accept', :on => :member
   end
-  namespace :service_requests do
+  namespace :service_request do
     resources :private_student_groups do
       get 'duplicated', :on => :collection
     end
@@ -130,6 +131,7 @@ Vish::Application.routes.draw do
   match 'admin' => 'admin#index'
   match 'admin/closed_reports' => 'admin#closed_reports'
   match 'admin/users' => 'admin#users'
+  match 'admin/requests' => 'admin#requests'
 
   #Spam reports
   resources :spam_reports

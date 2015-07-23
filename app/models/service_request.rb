@@ -1,5 +1,5 @@
 class ServiceRequest < ActiveRecord::Base
-  belongs_to :actor, foreign_key: "owner_id", class_name: "Actor"
+  belongs_to :owner, class_name: "Actor"
 
   has_attached_file :attachment, 
                     :url => '/service_requests/:id/attachment',
@@ -9,5 +9,18 @@ class ServiceRequest < ActiveRecord::Base
   validates :owner_id, :presence => true
   validates :status, :presence => true
 
-  #TODO: validate duplicates
+	#TODO: validate duplicates
+
+  def accepted?
+    self.status == "Accepted"
+  end
+
+  def pending?
+    !self.accepted?
+  end
+
+  def afterAccept
+    #Override this method on the specific ServiceRequest
+  end
+
 end

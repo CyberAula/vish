@@ -32,4 +32,8 @@ module AdminHelper
 		user_path(subject) + "/update_role"
 	end
 
+	def admin_requests_path
+		admin_path+ "/requests"
+	end
+
 end

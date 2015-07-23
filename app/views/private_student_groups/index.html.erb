@@ -1,0 +1,9 @@
+List of all your PrivateStudentGroups
+
+<a href="<%=new_private_student_group_path%>"><p>Create a new group</p></a>
+
+<ul>
+  <% @privateStudentGroups.each do |psg| %>
+    <li><a href="<%=private_student_group_path(psg)%>"><%=psg.name%></a></li>
+  <% end %>
+</ul>

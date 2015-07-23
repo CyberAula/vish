@@ -3,8 +3,11 @@
 class ServiceRequestsController < ApplicationController
 
   before_filter :authenticate_user!
-  skip_after_filter :discard_flash, :only => [:new, :create]
+  skip_after_filter :discard_flash, :only => [:new, :create, :accept, :destroy]
 
+  def show
+  end
+  
   def duplicated
   end
 
@@ -21,6 +24,24 @@ class ServiceRequestsController < ApplicationController
                  :type => s.attachment_content_type
       }
     end
+  end
+
+  def accept
+    s = ServiceRequest.find(params[:id])
+    authorize! :update, s
+    s.status = "Accepted"
+    s.afterAccept
+    s.save!
+    flash[:success] = "The request was succesfully accepted."
+    redirect_to "/admin/requests"
+  end
+
+  def destroy
+    s = ServiceRequest.find(params[:id])
+    authorize! :destroy, s
+    s.destroy
+    flash[:success] = "The request was succesfully deleted."
+    redirect_to "/admin/requests"
   end
 
 end
