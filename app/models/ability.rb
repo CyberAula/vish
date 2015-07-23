@@ -3,10 +3,6 @@ class Ability
 
   def initialize(subject)
     
-    if !subject.nil? and subject.admin?
-      can :manage, :all
-    end
-
     can :show_favorites, Category
     can :excursions, User
     can :resources, User
@@ -15,6 +11,13 @@ class Ability
     can :followers, User
     can :followings, User
 
+    #Call SocialStream
+    super
+
+    #ViSH Admins
+    if !subject.nil? and subject.admin?
+      can :manage, :all
+    end
 
     #Workshop Management
     can :workshops, User
@@ -48,18 +51,36 @@ class Ability
 
     unless subject.nil?
       #Roles and user management
+      can :update, Actor do |a|
+        a.id == subject.actor_id
+      end
       cannot :update, Actor do |a|
         a.admin? and subject.actor_id != a.id
+      end
+      cannot :update, Actor do |a|
+        subject.role?("PrivateStudent")
       end
       cannot :update, User do |u|
         cannot?(:update, u.actor)
       end
+      cannot :update, Profile do |p|
+        cannot?(:update, p.actor)
+      end
 
+      can :destroy, Actor do |a|
+        a.id == subject.actor_id
+      end
       cannot :destroy, Actor do |a|
         a.admin? and subject.actor_id != a.id
       end
+      cannot :destroy, Actor do |a|
+        subject.role?("PrivateStudent")
+      end
       cannot :destroy, User do |u|
         cannot?(:destroy, u.actor)
+      end
+      cannot :destroy, Profile do |p|
+        cannot?(:destroy, p.actor)
       end
 
       cannot :edit_roles, Actor do |a|
@@ -68,34 +89,24 @@ class Ability
       cannot :edit_roles, User do |u|
         cannot?(:edit_roles, u.actor)
       end
-
       cannot :edit_roles, Profile do |p|
         cannot?(:edit_roles, p.actor)
-      end
-      cannot :update, Profile do |p|
-        cannot?(:update, p.actor)
-      end
-      cannot :destroy, Profile do |p|
-        cannot?(:destroy, p.actor)
       end
 
       #Private Student Groups
       can :create, PrivateStudentGroup do |psg|
-        subject.admin? or (ServicePermission.where(:key => "PrivateStudentGroups", :owner_id => subject.actor_id).length > 0)
+        ServicePermission.where(:key => "PrivateStudentGroups", :owner_id => subject.actor_id).length > 0
       end
 
       can :show, PrivateStudentGroup do |psg|
-        subject.admin? or psg.owner_id == subject.actor_id
+        psg.owner_id == subject.actor_id
       end
     end
-
 
     #Helpers
     can :update, Array do |arr|
       arr.all? { |el| can?(:update, el) }
     end
 
-
-    super
   end
 end
