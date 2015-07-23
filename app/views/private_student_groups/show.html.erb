@@ -6,6 +6,12 @@
 <%if can?(:destroy, @privateStudentGroup) %>
 	<%= link_to(raw("Delete <i class='fa fa-trash-o'></i> "), url_for(@privateStudentGroup), :confirm => t("are_you_sure"), :method => "delete")%>
 <%end%>
+<p>Student list</p>
+<ul>
+  <%@privateStudentGroup.private_students.each do |user| %>
+    <li><a href="<%=user_path(user)%>" target="_blank"><%=user.name%></a></li>
+  <% end %>
+</ul>
 <p>
   <a href="<%=private_student_groups_path%>">Come back</a>
 </p>
