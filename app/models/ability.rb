@@ -101,6 +101,10 @@ class Ability
       can :show, PrivateStudentGroup do |psg|
         psg.owner_id == subject.actor_id
       end
+
+      can :destroy, PrivateStudentGroup do |psg|
+        psg.owner_id == subject.actor_id
+      end
     end
 
     #Helpers

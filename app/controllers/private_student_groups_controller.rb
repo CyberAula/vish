@@ -54,4 +54,12 @@ class PrivateStudentGroupsController < ApplicationController
     end
   end
 
+  def destroy
+    @privateStudentGroup = PrivateStudentGroup.find(params[:id])
+    authorize! :destroy, @privateStudentGroup
+    @privateStudentGroup.destroy
+    flash[:success] = "The private student group was succesfully destroyed."
+    redirect_to private_student_groups_path
+  end
+
 end
