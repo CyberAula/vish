@@ -4,5 +4,5 @@ New request for create private student groups
 	<%= f.hidden_field :owner_id, :value => current_subject.actor_id %>
 	<%= f.text_field :description %>
 	<%= f.file_field :attachment %>
-	<%= f.submit :class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+	<%= f.submit :id=>"request_perm_create_groups",:class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
 <% end %>

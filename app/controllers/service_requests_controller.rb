@@ -9,7 +9,12 @@ class ServiceRequestsController < ApplicationController
     @request = ServiceRequest.find(params[:id])
   end
   
+  def new
+    format.js 
+  end
+
   def duplicated
+    format.js 
   end
 
   def attachment

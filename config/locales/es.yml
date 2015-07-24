@@ -374,11 +374,14 @@ es:
       resources2_html : "En esta sección se muestra el recurso en el que ha entrado. En la zona de la derecha, tendrás recursos recomendadas, bajo el recurso se muestra la información de la misma, así como las maneras sencillas de compartirla , descargarlo, marcarla como spam, hacerlo favorita, o etiquetarlo dentro de una de sus categorías. También puedes comentar el recurso desde la parte inferior."
       favourite1_html : "Favoritos"
       favourite2_html : "Esta sección muestra tus recursos favoritos, en el veras los elementos que has hecho favoritos."
-
       inv: "Enviar una nueva invitación"
       inv1_html: "1. Escribe el <b> email </b> de la persona a la que quieras invitar a la comunidad"
       inv2_html: "2. Después, haz click en <b>Enviar una invitación</b>"
       overview_html: "<a href='/overview'><i class='icon-info-sign btn-mini'></i>¿Qué es ViSH?</a>"
+      req: "Petición para poder crear grupos de alumnos"
+      req1_html: "1. Descargate el fichero, leelo, <b>firmalo</b> y escanealo o fotografialo"
+      req2_html: "2. <b>Escribe</b> una descripción de tu petición, dinos quien eres y para qué vas a usar esta funcionalidad, te ayudaremos en lo que podamos"
+      req3_html: "3. Selecciona el fichero firmado y <b>adjuntalo</b>"
     helpquiz:
       info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>"
     how: "Cómo compartir un recurso"
@@ -683,6 +686,16 @@ es:
   password: "clave"
   private_student:
     account_name: "Alumno"
+    creation_success: "El grupo de alumnos se ha creado satisfactoriamente"
+    creation_error: "El grupo de alumno no se ha podido crear"
+    form_title: "Crear un grupo de alumnos"
+    learner_number: "Número de alumnos"
+    request: "Solicitar perm"
+    request_help: "Solicitar permiso para poder crear grupos privados"
+    request_modal:
+      title: "Solicitar poder crear grupos privados"
+      title_duplicated: "Petición ya enviada"
+      body_duplicated: "Ya has hecho esta solicitud. Te responderemos en la mayor brevedad."
   post:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
     search_name: "actualización de estado"

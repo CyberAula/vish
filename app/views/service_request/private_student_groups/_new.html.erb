@@ -1,0 +1,17 @@
+<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <%= render partial: 'help/help_request_group_perm' %>
+        <h4 id=""><%= t('private_student.request_modal.title')%></h4>
+</div>
+
+<div class="modal-body" style="overflow:hidden;">
+	<%= form_for ServiceRequest::PrivateStudentGroup.new do |f| %>
+		<%= f.hidden_field :owner_id, :value => current_subject.actor_id %>
+		<%= f.text_field :description %>
+		<%= f.file_field :attachment %>
+		<%= f.submit :id=>"request_perm_create_groups",:class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+	<% end %>
+	<p></p>
+</div><!-- CIERRA BODY-->
