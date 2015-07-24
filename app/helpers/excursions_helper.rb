@@ -9,4 +9,13 @@ module ExcursionsHelper
     excursion.thumbnail_url || "/assets/logos/original/excursion-00.png"
   end
 
+  def JSON_excursion?(excursion,param)
+  		if JSON(excursion.json)[param] == "false"
+  			response = false
+  		else
+  			response = true
+  		end
+  		response
+  end
+
 end

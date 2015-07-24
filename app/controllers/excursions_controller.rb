@@ -271,18 +271,18 @@ class ExcursionsController < ApplicationController
       excursion.update_attributes(:attachment => params[:attachment])
       if excursion.save
         respond_to do |format|
-          msg = { :status => "ok", :message => "Success!"}
+          msg = { :status => "ok", :message => "success"}
           format.json  { render :json => msg }
         end
       else
         respond_to do |format|
-         msg = { :status => "bad_request", :message => "Bad size"}
+         msg = { :status => "bad_request", :message => "bad_size"}
         format.json  { render :json => msg }
       end
       end
     else
       respond_to do |format|
-         msg = { :status => "bad_request", :message => "Some params were wrong"}
+         msg = { :status => "bad_request", :message => "wrong_params"}
         format.json  { render :json => msg }
       end
     end

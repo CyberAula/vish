@@ -107,8 +107,9 @@
     </button>
   <%end%>
 
+  
   <!-- Clone -->
-  <% if user_signed_in? && !editingToolbar && (@excursion.clonable? or can?(:destroy, @excursion)) %>
+  <% if user_signed_in? && !editingToolbar && JSON_excursion?(resource, "allow_clone") && (@excursion.clonable? or can?(:destroy, @excursion)) %>
     <button class="with_tooltip clone btn btn-default" data-toggle="popover" title="<%=t('excursion.actions.clone')%>">
       <i class="fa fa-copy"></i>
     </button>
@@ -188,6 +189,7 @@
           </span>
         </a>
       </li>    
+      <% if JSON_excursion?(resource, "allow_download") %>
       <li>
         <a href="#tab4" tabTitle='download' data-toggle="tab">
           <i class="fa fa-download"></i> 
@@ -196,6 +198,7 @@
           </span>
         </a>
       </li>  
+      <%end%>
       <li>
         <a href="#tab5" tabTitle='flag' data-toggle="tab">
           <i class="fa fa-flag"></i> 
@@ -266,14 +269,14 @@
         </div>
       </div>
     </div>
-     
+    <% if JSON_excursion?(resource, "allow_download") %>
     <!-- tab4 / scorm -->
     <div class="tab-pane contentscorm" id="tab4">
 
       <a class="btn btn-default" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a> 
       <p><%=t("excursion.download_scorm")%></p>
     </div> 
-
+    <% end %>
     <!-- tab5 / spam -->
 
     <div class="tab-pane" id="tab5">
