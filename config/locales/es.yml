@@ -470,6 +470,7 @@ es:
   excursion:
     actions:
       add: "Añadir excursion"
+      attachment: "Archivo Adjunto"
       bookmark: "marcardor"
       clone: "clonar"
       delete: "Borrar"

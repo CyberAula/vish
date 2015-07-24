@@ -1,17 +1,17 @@
 require 'builder'
 
 class Excursion < ActiveRecord::Base
-  #TODO. After destroy check if the attachment file is removed. If not, do it.
-  attr_accessible :attachment
+ 
   attr_accessor :attachment_url
   has_attached_file :attachment, 
                     :url => '/:class/:id/attachment_file',
                     :path => ':rails_root/documents/attachments/:id_partition/:filename.:extension'
-
+  validates_attachment_size :attachment, :less_than => 8.megabytes
 
   include SocialStream::Models::Object
   has_many :excursion_contributors, :dependent => :destroy
   has_many :contributors, :class_name => "Actor", :through => :excursion_contributors
+
 
   validates_presence_of :json
   before_validation :fill_license
@@ -1096,7 +1096,10 @@ class Excursion < ActiveRecord::Base
     self.activity_object.increment_download_count
   end
 
-
+  def get_attachment_name
+    name = "excursion_" + self.id.to_s + "_attachment" + File.extname(self.attachment_file_name)
+    name
+  end
 
   ####################
   ## Quality Metrics

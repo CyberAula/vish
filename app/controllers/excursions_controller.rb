@@ -5,7 +5,7 @@ class ExcursionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON, :upload_attachment ]
   before_filter :profile_subject!, :only => :index
   before_filter :fill_create_params, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :interactions, :upload_attachment]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :metadata, :scormMetadata, :iframe_api, :preview, :clone, :manifest, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :interactions, :upload_attachment, :show_attachment]
   skip_before_filter :store_location, :if => :format_full?
   skip_after_filter :discard_flash, :only => [:clone]
   
@@ -265,17 +265,37 @@ class ExcursionsController < ApplicationController
 
   def upload_attachment
     excursion = Excursion.find_by_id(params[:id])
+
     unless excursion.nil? || params[:attachment].blank?
       authorize! :update, excursion
       excursion.update_attributes(:attachment => params[:attachment])
-      excursion.save
-      respond_to do |format|
-        format.json { head :ok }
+      if excursion.save
+        respond_to do |format|
+          msg = { :status => "ok", :message => "Success!"}
+          format.json  { render :json => msg }
+        end
+      else
+        respond_to do |format|
+         msg = { :status => "bad_request", :message => "Bad size"}
+        format.json  { render :json => msg }
+      end
       end
     else
       respond_to do |format|
-        format.json { head :bad_request }
+         msg = { :status => "bad_request", :message => "Some params were wrong"}
+        format.json  { render :json => msg }
       end
+    end
+  end
+
+  def show_attachment
+    excursion_id = params[:id]
+    excursion = Excursion.find(excursion_id)
+
+    unless excursion.blank? || excursion.attachment.blank?
+      attachment = File.open(excursion.attachment.path)
+      attachment_name = rename_attachment( attachment, excursion_id)
+      send_file attachment, :filename => attachment_name
     end
   end
 
@@ -457,5 +477,11 @@ class ExcursionsController < ApplicationController
       params["excursion"]["author_id"] = current_subject.actor_id
       params["excursion"]["user_author_id"] = current_subject.actor_id
     end
+  end
+
+  def rename_attachment(name,id)
+      file_ext= File.extname(name)
+      file_new_name = "excursion_"+ id +"_attachment" + file_ext
+      file_new_name
   end
 end

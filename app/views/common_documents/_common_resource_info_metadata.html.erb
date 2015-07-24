@@ -86,6 +86,14 @@
               <td><%= resource.readable_language %></td>
             <% end %>
           </tr>
+         
+          <% unless resource.attachment.blank? %>
+           <tr>
+            <td><span><%= t('excursion.actions.attachment') %></span></td>
+          <td>
+            <a href="/excursions/<%= resource.id %>/attachment"><%= resource.get_attachment_name %></a>
+           <tr>
+          <% end %>
           <tr>
             <!--date-created-->
             <td><span><%= t('document.info.date.created_at') %></span></td>
@@ -119,7 +127,7 @@
           <%=t('excursion.actions.show_meta')%>
         </button>
       <%end%>
-
+      
             <!--Views and Likes-->
       <div class="viewsAndCount">        
         <div class="views">

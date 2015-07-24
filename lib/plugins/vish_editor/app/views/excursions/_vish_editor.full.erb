@@ -315,10 +315,17 @@
 						    <div><span class="presentation_details_text" i18n-key="i.Attatchment" >Attatchment</span></div>
 						    <div class="file_details_upload">
 							    <form id="attachment_file_form" method="post" action="attatchment_file.json" enctype="multipart/form-data">
-								    <input class="fileUpload button btn-primary" type="file"  name="attachment" id="attachment_file">
+							    
+							    <div class="fileUpload button">	    
+    								<span i18n-key="i.ChooseFile">Choose File</span>
+								   	 <input type="file"  name="attachment" id="attachment_file">
+								   	 </div>
+								    <input id="description_attachment" placeholder="Choose File" disabled="disabled" />
 								    <input type="hidden" name="author_id" id="attachment_author">
 								    <input type="hidden" name="authenticity_token" id="attachment_aut_token">
-									<input id="upload_file_attachment" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+									<input id="upload_file_attachment" type="submit" class="button" i18n-key="i.Upload" value="Upload" disabled="true">
+									<span id="upload_icon_success" class="icon-button icon-ok" aria-hidden="true"></span>
+									
 								</form>
 							</div>
 					</div>
