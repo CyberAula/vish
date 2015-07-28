@@ -1,17 +1,80 @@
-<p>Private Student Group View</p>
+<%= render :partial => 'application/breadcrumb_path', :locals  => { :projectscrumb=>true, :path => [@privateStudentGroup] } %>
 
-<p> Group Id: <%= @privateStudentGroup.id%> </p>
-<p> Group Name: <%= @privateStudentGroup.name%> </p>
-<p><a href="<%=credentials_private_student_group_path(@privateStudentGroup)%>">Download credentials</a></p>
+<!--<p>Private Student Group View</p>-->
+
+<section id="student_group">
+  <div class="category_info">
+    <div class="left_info">
+        <!-- corner -->
+      <div class="corner-item">
+        <div class="corner-item2">
+          <div class="corner-color"></div>
+          <i class="fa fa-group"></i>
+        </div>
+        <div class="corner-background"></div>
+      </div>
+
+      <div class="container-img">
+         <%#= render :partial => 'categories/thumbnail', :locals =>{:category => @category, :show_avatar => true} %>
+      </div>
+    </div>
+
+    <div class="information">
+      <div class="briefing">
+        <header>
+          <div class="icontitle">
+            <!--ayuda-->
+            <%= render partial: 'help/help_categories' %>
+            <!--titulo-->
+            <h2><%= @privateStudentGroup.title %></h2>
+            <div class="description">
+							<%#= @category.description %>
+							Descripción
+						</div>
+
+            <div class="author">
+							<span class="by"><%= t('by') %></span> <%#= link_to @privateStudentGroup.author.name, @category.author.subject %>
+							Autor
+						</div>
+
+          </div>
+        </header>
+        <div class="toolbar-profile">
+          <div class="btn-group js_update_profile_info">
+            <!--editar@privateStudentGroup
+            <%# if can?(:update, @privateStudentGroup) %>
+            <%#= link_to(raw("<i class='fa fa-edit '></i>")+ t('excursion.actions.edit'), '#', :id => "edit_icon_link", :class =>"btn btn-default edit_icon") %>
+            <a class="btn btn-default btn-for-categorize"><i class="fa fa-arrows"></i><%=t('categories.dragandrop.place')%></a>
+            <%# end %>@privateStudentGroup
+            <!--remove-->
+						<a class="btn btn-default btn-for-categorize" href="<%=credentials_private_student_group_path(@privateStudentGroup)%>"><i class='fa fa-download'></i>Download credentials</a>
+          <% if can?(:destroy, @privateStudentGroup) %>
+            <%= link_to(raw("<i class='fa fa-trash'></i>") + t('excursion.actions.delete') , @privateStudentGroup, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn btn-default" )%>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+	<p>Student list</p>
+	<ul>
+	  <%@privateStudentGroup.private_students.each do |user| %>
+	    <li><a href="<%=user_path(user)%>" target="_blank"><%=user.name%></a></li>
+	  <% end %>
+	</ul>
+</section>
+
+<!--
+<p> Group Id: <%#= @privateStudentGroup.id%> </p>
+<p> Group Name: <%#= @privateStudentGroup.name%> </p>
+<p><a href="<%#=credentials_private_student_group_path(@privateStudentGroup)%>">Download credentials</a></p>
 <%if can?(:destroy, @privateStudentGroup) %>
 	<%= link_to(raw("Delete <i class='fa fa-trash-o'></i> "), url_for(@privateStudentGroup), :confirm => t("are_you_sure"), :method => "delete")%>
 <%end%>
-<p>Student list</p>
-<ul>
-  <%@privateStudentGroup.private_students.each do |user| %>
-    <li><a href="<%=user_path(user)%>" target="_blank"><%=user.name%></a></li>
-  <% end %>
-</ul>
+-->
+
+<!--
 <p>
   <a href="<%=private_student_groups_path%>">Come back</a>
 </p>
+-->

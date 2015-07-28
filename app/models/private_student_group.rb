@@ -52,4 +52,9 @@ class PrivateStudentGroup < ActiveRecord::Base
     credentials = JSON.parse(self.users_data) rescue {}
   end
 
+  #define title method to use the same partial for breadcrumbs
+  def title
+    name
+  end
+
 end

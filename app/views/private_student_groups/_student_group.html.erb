@@ -1,0 +1,45 @@
+<li class="box-item categorie-item" <% if defined?(obj_id)%>edit-id="<%=obj_id%>"<% end %>>
+
+  <!-- corner -->
+  <%#= link_to(private_student_group_path(psg)) do %>
+  <div class="corner-item">
+    <div class="corner-item2">
+      <div class="corner-color"></div>
+      <i class="fa fa-group"></i>
+    </div>
+    <div class="corner-background"></div>
+  </div>
+
+  <div class="container-img">
+    <div class="element">
+      <div class="img-box">
+        <div class="category">
+          <%#= render :partial => 'categories/thumbnail', :locals =>{ :category => category} %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%# end %>
+
+  <div class="caption">
+    <!--Title -->
+    <h6>
+      <%#= link_to category.title, category %>
+      nombre
+    </h6>
+    <!--Author -->
+    <div class="author">
+      <span class="by"><%=t('by')%></span>
+      <%#= link_to category.author.name, category.author.subject %>
+    </div>
+    <hr>
+    <div class="info-bottom">
+      <!--like -->
+      <div class="categories_inside">
+        <%#= category.property_objects.count.to_s %>
+        <%= t('categories.item_inside') %>
+      </div>
+    </div>
+  </div>
+
+</li>
