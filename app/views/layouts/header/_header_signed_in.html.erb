@@ -87,14 +87,12 @@
                     <% end %>
                   </li>
 
-                  <li class="settings-menu">
-                    <%= link_to settings_path do %>
-                    <i class="fa fa-cog"></i>
-                    <%= t('dropdown.settings') %>
-                    <% end %>
-                  </li>
+
 
                   <% if availableModels.include? "Excursion" and availableServices.include? "ARS" %>
+                      <!-- divider bar -->
+                      <li class="divider"></li>
+
                       <li class="settings-menu">
                         <%= link_to quiz_sessions_path do %>
                           <i class="fa fa-check-square-o"></i>
@@ -108,19 +106,25 @@
 
                         <%if can?(:create, PrivateStudentGroup.new)%>
                           <%= link_to private_student_groups_path do %>
-                            <i class="fa fa-user"></i>
+                            <i class="fa fa-group"></i>
                               My private groups
-                          <% end %>                          
+                          <% end %>
                         <%else%>
-                          <%= link_to(raw("<i class='fa fa-user'></i> " + t("private_student.request")), new_service_request_private_student_group_path, :title => t("private_student.request_help"), :remote=>true, :data => {:toggle=>"modal", :target=>"#RequestPermModal"}) %>
+                          <%= link_to(raw("<i class='fa fa-group'></i> " + t("private_student.request")), new_service_request_private_student_group_path, :title => t("private_student.request_help"), :remote=>true, :data => {:toggle=>"modal", :target=>"#RequestPermModal"}) %>
                         <%end%>
-                        
+
                       </li>
                   <%end%>
-
+                  <!-- divider bar -->
                   <li class="divider"></li>
-                  <li>
 
+                  <li class="settings-menu">
+                    <%= link_to settings_path do %>
+                    <i class="fa fa-cog"></i>
+                    <%= t('dropdown.settings') %>
+                    <% end %>
+                  </li>
+                  <li>
                     <%= link_to destroy_user_session_path, :method => :delete do %>
                     <i class="fa fa-sign-out"></i>
                     <%= t('sign_out') %>
@@ -137,7 +141,7 @@
       <!--________________________mobile/tablet-->
       <%= render partial: 'layouts/header/header_signed_in_mobile' %>
 
-      
+
 
     </div>
   </div>

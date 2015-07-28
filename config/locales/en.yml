@@ -693,21 +693,21 @@ en:
     other: "organizers"
   overview_title: "ViSH Overview"
   password: "password"
+  post:
+    input: "Share your thoughts, links, videos and more, here!"
+    search_name: "status update"
   private_student:
     account_name: "Learner"
     creation_success: "The group of user accounts was created succesfully"
     creation_error: "The group of user accounts could not be created"
     form_title: "Create a group of learner accounts"
     learner_number: "Number of learners"
-    request: "Request perm"
+    request: "classroom"
     request_help: "Request permission to be able to create groups of learners"
     request_modal:
       title: "Request create private groups"
       title_duplicated: "Request already sent"
       body_duplicated: "You have already sent the request. We will answer you as soon as possible."
-  post:
-    input: "Share your thoughts, links, videos and more, here!"
-    search_name: "status update"
   profile:
     change_role: "Change role"
     edit: "Edit profile"

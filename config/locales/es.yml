@@ -684,21 +684,21 @@ es:
     other: "organizadores"
   overview_title: "¿Qué es ViSH?"
   password: "clave"
+  post:
+    input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
+    search_name: "actualización de estado"
   private_student:
     account_name: "Alumno"
     creation_success: "El grupo de alumnos se ha creado satisfactoriamente"
     creation_error: "El grupo de alumno no se ha podido crear"
     form_title: "Crear un grupo de alumnos"
     learner_number: "Número de alumnos"
-    request: "Solicitar perm"
+    request: "Aulas"
     request_help: "Solicitar permiso para poder crear grupos privados"
     request_modal:
       title: "Solicitar poder crear grupos privados"
       title_duplicated: "Petición ya enviada"
       body_duplicated: "Ya has hecho esta solicitud. Te responderemos en la mayor brevedad."
-  post:
-    input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
-    search_name: "actualización de estado"
   profile:
     change_role: "Cambiar rol"
     edit: "Editar perfil"
