@@ -121,8 +121,12 @@ es:
     pending_reports: "Reportes pendientes"
     reporter: "Reportador"
     reports: "Reportes"
+    request: "Petición"
+    requests: "Peticiones"
+    status: "Estado"
     title: "Panel de Administración de ViSH"
     users: "Administración de Usuarios"
+
   all: "todos"
   announce:
     title: "Noticia"
