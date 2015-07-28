@@ -45,6 +45,7 @@
         </div>
       </div>
     </div>
+    
     <% if can?(:update, @category) %>
       <div class="update js_update_profile_info" style="display:none">
         <%= form_for(@category, :url => [@category]) do |f| %>
@@ -65,8 +66,9 @@
             <%=link_to t('hide'), "#", :id=>"hide_category_form", :class=>"btn btn-default" %>
           </div>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+    
   </div>
 </section>
 
