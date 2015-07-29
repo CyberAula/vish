@@ -1,24 +1,12 @@
 <%= render :partial => 'application/breadcrumb_path', :locals  => { :projectscrumb=>true, :path => [] } %>
 
-<p>List of all your ClassRooms</p>
-
 <div id="classrooms">
   <ul class="items">
     <a href="<%=new_private_student_group_path%>">
     <%= render partial: 'private_student_groups/student_group_add' %>
     </a>
     <% @privateStudentGroups.each do |psg| %>
-        <a href="<%=private_student_group_path(psg)%>">
-        <%= render partial: 'private_student_groups/student_group' %>
-        </a>
+      <%= render partial: 'private_student_groups/student_group' , :locals => { :psg => psg } %>
     <% end %>
   </ul>
 </div>
-
-
-<!--<a href="<%=new_private_student_group_path%>"><p>Create a new group</p></a>
-<ul>
-  <%# @privateStudentGroups.each do |psg| %>
-    <li><a href="<%#=private_student_group_path(psg)%>"><%#=psg.name%></a></li>
-  <%# end %>
-</ul>-->

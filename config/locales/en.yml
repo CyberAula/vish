@@ -397,6 +397,8 @@ en:
       req1_html: "1. Download the file, read it, <b>sign it</b> and scan or photograph it"
       req2_html: "2. <b>Write</b> a description for your request, telling us who you are, what are your neccesities with this request and we will help you as much as we can"
       req3_html: "3. Select the signed file and <b>attach it</b>"
+      private_student1_html: "Classrooms"
+      private_student2_html: "This section called 'Classrooms' displays the contents of private student group selected by the user. The latter has the ability to download a file with the credentials of all students and to eliminate the Aula if desired."
     helpquiz:
       info1_html: "1. Help test 1 for the quiz<br>"
     how: "How to share a resource"
@@ -700,12 +702,16 @@ en:
     input: "Share your thoughts, links, videos and more, here!"
     search_name: "status update"
   private_student:
+    actions:
+      add: "Add Classroom"
+    account_name: "Pupil"
     account_name: "Learner"
     creation_success: "The group of user accounts was created succesfully"
     creation_error: "The group of user accounts could not be created"
     form_title: "Create a group of learner accounts"
+    items_inside: "Pupils"
     learner_number: "Number of learners"
-    request: "classroom"
+    request: "Classroom"
     request_help: "Request permission to be able to create groups of learners"
     request_modal:
       title: "Request create private groups"
