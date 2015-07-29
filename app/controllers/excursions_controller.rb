@@ -172,12 +172,13 @@ class ExcursionsController < ApplicationController
       format.any {
         unless excursion.nil?
           xmlMetadata = Excursion.generate_LOM_metadata(JSON(excursion.json),excursion,{:id => Rails.application.routes.url_helpers.excursion_url(:id => excursion.id), :LOMschema => params[:LOMschema] || "custom"})
+          render :xml => xmlMetadata.target!, :content_type => "text/xml"
         else
           xmlMetadata = ::Builder::XmlMarkup.new(:indent => 2)
           xmlMetadata.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
           xmlMetadata.error("Excursion not found")
+          render :xml => xmlMetadata.target!, :content_type => "text/xml", :status => 404
         end
-        render :xml => xmlMetadata.target!, :content_type => "text/xml"
       }
     end
   end
