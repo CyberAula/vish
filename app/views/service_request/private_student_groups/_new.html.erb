@@ -7,11 +7,22 @@
 </div>
 
 <div class="modal-body" style="overflow:hidden;">
+  <p><%= t('private_student.request_modal.text1')%></p>
+  <h6><%= t('private_student.request_modal.subtitle')%></h6>
 	<%= form_for ServiceRequest::PrivateStudentGroup.new do |f| %>
 		<%= f.hidden_field :owner_id, :value => current_subject.actor_id %>
-		<%= f.text_field :description %>
+
+    <div class="step_label"><span class="primary"><%= t('private_student.request_modal.step1T')%></span><%= t('private_student.request_modal.step1')%></div>
+    <div class="step_label"><span class="primary"><%= t('private_student.request_modal.step2T')%></span><%= t('private_student.request_modal.step2')%></div>
+    <%= f.text_area :description, :class => "form-control" %>
+    <div class="step_label"><span class="primary"><%= t('private_student.request_modal.step3T')%></span><%= t('private_student.request_modal.step3')%></div>
+
 		<%= f.file_field :attachment %>
-		<%= f.submit :id=>"request_perm_create_groups",:class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
-	<% end %>
+    <%= f.submit :id=>"request_perm_create_groups",:class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+  <% end %>
 	<p></p>
 </div><!-- CIERRA BODY-->
+
+<div class="modal-footer">
+
+</div>
