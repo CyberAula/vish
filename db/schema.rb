@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20150629123130) do
     t.text     "original_author"
     t.text     "license_attribution"
     t.text     "license_custom"
+    t.decimal  "metadata_qscore",                    :precision => 12, :scale => 6, :default => 0.0
   end
 
   create_table "activity_objects_wa_resources_galleries", :id => false, :force => true do |t|
