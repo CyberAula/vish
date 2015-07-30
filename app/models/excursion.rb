@@ -179,7 +179,7 @@ class Excursion < ActiveRecord::Base
 
   # Metadata based on LOM (Learning Object Metadata) standard
   # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
-  def self.generate_scorm_manifest(ejson,excursion,options=nil)
+  def self.generate_scorm_manifest(ejson,excursion,options={})
     if excursion and !excursion.id.nil?
       identifier = excursion.id.to_s
       lomIdentifier = Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)
@@ -212,7 +212,7 @@ class Excursion < ActiveRecord::Base
         myxml.schema("ADL SCORM")
         myxml.schemaversion("2004 4th Edition")
         #Add LOM metadata
-        Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier, :LOMschema => (options and options[:LOMschema]) ? options[:LOMschema] : "custom"})
+        Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier, :LOMschema => (options[:LOMschema]) ? options[:LOMschema] : "custom"})
       end
 
       myxml.organizations('default'=>"defaultOrganization") do
@@ -249,15 +249,15 @@ class Excursion < ActiveRecord::Base
   ## LOM Metadata
   ####################
 
-  def self.generate_LOM_metadata(ejson, excursion, options=nil)
+  def self.generate_LOM_metadata(ejson, excursion, options={})
     _LOMschema = "custom"
 
     supportedLOMSchemas = ["custom","loose","ODS","ViSH"]
-    if options and options[:LOMschema] and supportedLOMSchemas.include? options[:LOMschema]
+    if supportedLOMSchemas.include? options[:LOMschema]
       _LOMschema = options[:LOMschema]
     end
 
-    if options and options[:target]
+    if options[:target]
       myxml = ::Builder::XmlMarkup.new(:indent => 2, :target => options[:target])
     else
       myxml = ::Builder::XmlMarkup.new(:indent => 2)
@@ -293,7 +293,7 @@ class Excursion < ActiveRecord::Base
       loIdIsURN = false
       loId = nil
 
-      if options and options[:id]
+      if options[:id]
           loId = options[:id].to_s
 
           begin
@@ -312,18 +312,19 @@ class Excursion < ActiveRecord::Base
           end
       end
 
+      #Excursion instance
+      excursionInstance = nil
+      if excursion
+        excursionInstance = excursion
+      elsif ejson["vishMetadata"] and ejson["vishMetadata"]["id"]
+        excursionInstance = Excursion.find_by_id(ejson["vishMetadata"]["id"])
+        excursionInstance = nil unless excursionInstance.public?
+      end
+
       #Location
       loLocation = nil
-      if excursion
-        if excursion.draft == false
-          loLocation = Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)
-        end
-      elsif ejson["vishMetadata"] and ejson["vishMetadata"]["id"] and (ejson["vishMetadata"]["draft"] == false or ejson["vishMetadata"]["draft"] == "false")
-        begin
-          excursionInstance = Excursion.find(ejson["vishMetadata"]["id"])
-          loLocation = Rails.application.routes.url_helpers.excursion_url(:id => excursionInstance.id)
-        rescue
-        end
+      unless excursionInstance.nil?
+        loLocation = Rails.application.routes.url_helpers.excursion_url(:id => excursionInstance.id) if excursionInstance.draft == false
       end
 
       #Language (LO language and metadata language)
@@ -358,6 +359,9 @@ class Excursion < ActiveRecord::Base
         atVersion = "v." + ejson["VEVersion"] + " "
       end
       atVersion = atVersion + "(http://github.com/ging/vish_editor)"
+
+
+      #Building LOM XML
 
       myxml.general do
         
@@ -469,37 +473,32 @@ class Excursion < ActiveRecord::Base
       end
 
       myxml.metaMetadata do
-        if !loId.nil? and loIdIsURI and excursion
+        unless excursionInstance.nil?
           myxml.identifier do
             myxml.catalog("URI")
-            myxml.entry(Rails.application.routes.url_helpers.excursion_url(:id => excursion.id) + "/metadata.xml")
+            myxml.entry(Rails.application.routes.url_helpers.excursion_url(:id => excursionInstance.id) + "/metadata.xml")
           end
-
-          if !authorName.nil?
-            myxml.contribute do
-              myxml.role do
-                myxml.source("LOMv1.0")
-                myxml.value("creator")
-              end
-
-              creatorEntity = generateVCard(authorName)
-              myxml.entity(creatorEntity)
-              
-              myxml.date do
-                myxml.dateTime(loDate)
-                unless _LOMschema == "ODS"
-                  myxml.description do
-                    myxml.string("This date represents the date the author finished authoring the metadata of the indicated version of the Learning Object.", :language=> metadataLanguage)
-                  end
+        end
+        unless authorName.nil?
+          myxml.contribute do
+            myxml.role do
+              myxml.source("LOMv1.0")
+              myxml.value("creator")
+            end
+            myxml.entity(generateVCard(authorName))
+            myxml.date do
+              myxml.dateTime(loDate)
+              unless _LOMschema == "ODS"
+                myxml.description do
+                  myxml.string("This date represents the date the author finished authoring the metadata of the indicated version of the Learning Object.", :language=> metadataLanguage)
                 end
               end
-
             end
-          end
 
-          myxml.metadataSchema("LOMv1.0")
-          myxml.language(metadataLanguage)
+          end
         end
+        myxml.metadataSchema("LOMv1.0")
+        myxml.language(metadataLanguage)
       end
 
       myxml.technical do
@@ -518,6 +517,9 @@ class Excursion < ActiveRecord::Base
               myxml.value("any")
             end
           end
+        end
+        myxml.installationRemarks do
+          myxml.string("Unzip the zip file and launch excursion.html in your browser.", :language=> metadataLanguage)
         end
         myxml.otherPlatformRequirements do
           otherPlatformRequirements = "HTML5-compliant web browser"
@@ -553,8 +555,19 @@ class Excursion < ActiveRecord::Base
             myxml.value("slide")
           end
         end
-        #TODO: Explore JSON and include more elements.
-
+        presentationElements = VishEditorUtils.getElementTypes(ejson) rescue []
+        if presentationElements.include?("text") and !getLearningResourceType("narrative text", _LOMschema).nil?
+          myxml.learningResourceType do
+            myxml.source("LOMv1.0")
+            myxml.value("narrative text")
+          end
+        end
+        if presentationElements.include?("quiz") and !getLearningResourceType("questionnaire", _LOMschema).nil?
+          myxml.learningResourceType do
+            myxml.source("LOMv1.0")
+            myxml.value("questionnaire")
+          end
+        end
         myxml.interactivityLevel do
           myxml.source("LOMv1.0")
           myxml.value("very high")
@@ -588,7 +601,7 @@ class Excursion < ActiveRecord::Base
         end
         if ejson["educational_objectives"]
           myxml.description do
-              myxml.string(ejson["educational_objectives"], loLanOpts)
+            myxml.string(ejson["educational_objectives"], loLanOpts)
           end
         end
         if loLanguage
@@ -601,12 +614,10 @@ class Excursion < ActiveRecord::Base
           myxml.source("LOMv1.0")
           myxml.value("no")
         end
-
         myxml.copyrightAndOtherRestrictions do
           myxml.source("LOMv1.0")
           myxml.value("yes")
         end
-
         myxml.description do
           license = ""
           unless ejson["license"].nil? or ejson["license"]["name"].blank?
@@ -614,7 +625,66 @@ class Excursion < ActiveRecord::Base
           end
           myxml.string(license + "For additional information or questions regarding copyright, distribution and reproduction, visit " + Vish::Application.config.full_domain + "/terms_of_use .", :language=> metadataLanguage)
         end
+      end
 
+      #Annotations (include comments if any).
+      unless excursionInstance.nil?
+        comments = excursionInstance.post_activity.comments
+        unless comments.blank?
+          comments.map{|commentActivity| commentActivity.activity_objects.first}.reject{|c| c.nil? or c.description.blank?}.first(30).each do |comment|
+            myxml.annotation do
+              unless comment.author.nil? or comment.author.name.blank?
+                myxml.entity(generateVCard(comment.author.name))
+              end
+              unless comment.created_at.nil?
+                myxml.date do
+                  myxml.dateTime(comment.created_at.strftime("%Y-%m-%d").to_s)
+                end
+              end
+              myxml.description do
+                myxml.string(comment.description)
+              end
+            end
+          end
+        end
+      end
+
+      #Classification (include categories of the ViSH catalogue if any)
+      if Vish::Application.config.APP_CONFIG["services"].include?("Catalogue")
+        if ejson["tags"] && ejson["tags"].kind_of?(Array)
+          categoryKeywords = Vish::Application.config.catalogue["category_keywords"]
+          catalogueKeywords = categoryKeywords.select{|k,v| v.is_a? Array and (v & ejson["tags"]).length > 1}.map{|k,v| k}
+          if catalogueKeywords.length > 0
+            myxml.classification do
+              myxml.purpose do
+                myxml.source("LOMv1.0")
+                myxml.value("discipline")
+              end
+              catalogueKeywords.each do |catalogueCategory|
+                myxml.taxonPath do
+                  myxml.source do
+                    myxml.string("ViSH", :language => metadataLanguage)
+                  end
+                  myxml.taxon do
+                    tagRecord = ActsAsTaggableOn::Tag.find_by_name(catalogueCategory)
+                    unless tagRecord.nil?
+                      myxml.id(tagRecord.id.to_s)
+                    end
+                    myxml.entry do
+                      myxml.string(catalogueCategory, :language => metadataLanguage)
+                    end
+                  end
+                end
+              end
+              catalogueKeywords.each do |catalogueCategory|
+                myxml.keyword do
+                  myxml.string(catalogueCategory, :language => metadataLanguage)
+                end
+              end
+            end
+          end
+          
+        end
       end
       
     end
