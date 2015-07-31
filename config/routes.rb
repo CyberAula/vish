@@ -37,6 +37,7 @@ Vish::Application.routes.draw do
   
   #Download the user manual and count the number of downloads
   match 'user_manual' => 'static#download_user_manual'
+  match 'download_perm_request' => 'static#download_perm_request'
 
   #APIs
   match '/apis/search' => 'federated_search#search'

@@ -705,6 +705,9 @@ es:
     request_help: "Solicitar permiso para crear Aulas"
     request_modal:
       body_duplicated: "Ya has hecho esta solicitud. Te responderemos en la mayor brevedad."
+      button: "Enviar"
+      contact: "Si tiene alguna duda sobre el estado del proceso, por favor contactenos en: "
+      download: "Descargar"
       text1: "La funcionalidad asociada a la solicitud de este permiso te permitirá crear y gestionar grupos de alumnos (que tendrán sus propias crenciales de acceso). Además, podrás gestionar la creación de excursiones y recursos por parte de tus alumnos."
       title: "Solicitar permiso para crear Aulas"
       title_duplicated: "Petición ya enviada"

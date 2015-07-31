@@ -12,17 +12,27 @@
 	<%= form_for ServiceRequest::PrivateStudentGroup.new do |f| %>
 		<%= f.hidden_field :owner_id, :value => current_subject.actor_id %>
 
-    <div class="step_label"><span class="primary"><%= t('private_student.request_modal.step1T')%></span><%= t('private_student.request_modal.step1')%></div>
+    <div class="step_label"><span class="primary"><%= t('private_student.request_modal.step1T')%></span><%= t('private_student.request_modal.step1')%>
+      <a class="btn btn-default" href="/download_perm_request"><i class="fa fa-download"></i> <%= t('private_student.request_modal.download')%> </a>
+    </div>
     <div class="step_label"><span class="primary"><%= t('private_student.request_modal.step2T')%></span><%= t('private_student.request_modal.step2')%></div>
     <%= f.text_area :description, :class => "form-control" %>
     <div class="step_label"><span class="primary"><%= t('private_student.request_modal.step3T')%></span><%= t('private_student.request_modal.step3')%></div>
 
 		<%= f.file_field :attachment %>
-    <%= f.submit :id=>"request_perm_create_groups",:class => "btn btn-primary form-sender", "data-loading-text" => t('button.sending') %>
+    <%= f.submit :id=>"request_perm_create_groups",:class => "hidden" %>
   <% end %>
 	<p></p>
 </div><!-- CIERRA BODY-->
 
 <div class="modal-footer">
-
+  <input type="button" id="fake_button" class="btn btn-primary form-sender" value="<%= t('private_student.request_modal.button')%>" data-loading-text="<%=t('button.sending')%>">
 </div>
+
+<script>
+    var submitButton = $("#new_service_request_private_student_group input[type='submit']");
+    var fakeButton = $("#fake_button");
+    $(fakeButton).click(function(event) {           
+        $(submitButton).click();
+    });
+</script>

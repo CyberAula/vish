@@ -10,10 +10,11 @@
 	<p><%= t('private_student.request_modal.text1')%></p>
   <h6><i class="fa fa-check"></i><%= t('private_student.request_modal.body_duplicated')%></h6>
 
-	<p></p>
+	<p><%= t('private_student.request_modal.contact')%> <%=Vish::Application.config.APP_CONFIG["main_mail"]%>
+
+  </p>
 </div><!-- CIERRA BODY-->
 
 <div class="modal-footer">
-  <!-- incluir aquí el botón contacto-->
-  botón contacto
+  <button type="button" class="btn btn-primary" data-dismiss="modal"><%=t("close")%></button>
 </div>
