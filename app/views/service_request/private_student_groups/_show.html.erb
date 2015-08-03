@@ -7,16 +7,21 @@
 </div>
 
 <div class="modal-body" style="overflow:hidden;">
-  	<p><%= t('admin.request_modal.description')%>:</p>
-  	<p> <%=@request.description%></p>
-  	<p> <%=t('admin.request_modal.attachment')%>: </p>
-	<% if @request.attachment.exists? %>	  
-	  <p><a href="<%=@request.attachment.url%>" target="_blank"><%= @request.attachment_file_name %></a></p>
-	<%else%>
-	  <p><%=t('admin.request_modal.attachment_not')%></p>
-	<% end %>
+  	<label><%= t('admin.request_modal.description')%></label>
+  	<%# if @request.description.exists? %>
+    <p> <%=@request.description%></p>
+    <%#else%>
+     <!--<p><%=t('admin.request_modal.description_not')%></p>-->
+   <%# end %>
+
+    <label> <%=t('admin.request_modal.attachment')%> </label>
+	  <% if @request.attachment.exists? %>
+	    <a href="<%=@request.attachment.url%>" target="_blank"><%= @request.attachment_file_name %></a>
+	  <%else%>
+	     <p><%=t('admin.request_modal.attachment_not')%></p>
+	  <% end %>
 </div><!-- CIERRA BODY-->
 
-<div class="modal-footer">
-	<button type="button" class="btn btn-primary" data-dismiss="modal"><%=t("close")%></button>
-</div>
+<!--<div class="modal-footer">
+	<button type="button" class="btn btn-primary" data-dismiss="modal"><%=t("close")%></buttolabel>
+</div>-->

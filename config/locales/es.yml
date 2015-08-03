@@ -125,9 +125,10 @@ es:
     request_help: "Click para ver la petición completa en un modal."
     request_modal:
       attachment: "Adjunto"
-      attachment_not: "No tiene adjunto"
+      attachment_not: "No tiene archivo adjunto"
       description: "Descripción"
-      title: "Mostrar request"
+      description_not: "No tiene descripción"
+      title: "Detalles petición"
     requests: "Peticiones"
     status: "Estado"
     title: "Panel de Administración de ViSH"

@@ -133,10 +133,11 @@ en:
     reports: "Reports"
     request: "Request"
     request_help: "Click to see the full request in a modal"
-    request_modal: 
+    request_modal:
       attachment: "attachment"
       attachment_not: "This request does not have attachment"
       description: "Description"
+      description_not: "This request does not have description"
       title: "Show request"
     requests: "Requests"
     status: "State"
