@@ -1,0 +1,47 @@
+<div id="CreateGroupModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only"><%=t("close")%></span>
+          </button>
+          <h3 id="myMetadataLabel">
+            <%= t('private_student.form_title') %>
+          </h3>
+        </div>
+
+        <div class="modal-body">
+          <%= form_for PrivateStudentGroup.new, :html => { :class => "new_private_student_group" }, :remote => false do |f| %>
+            <%= f.hidden_field :owner_id, :value => current_subject.actor_id %>
+            <p>
+              <%=t("private_student.group_name")%>
+              <%= f.text_field :name %>
+            </p>
+            <p>
+              <%=t("private_student.learner_number")%>:&nbsp;&nbsp;
+              <input type="number" name="n" min="1" max="100" value="25"/>
+            </p>
+            <%= f.submit t('private_student.form_button') , :class => "hidden", :disabled => false %>
+          <% end %>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal"><%=t("close")%></button>
+          <input type="button" id="fake_create_group_button" class="btn btn-primary form-sender" value="<%= t('private_student.form_button')%>" data-loading-text="<%=t('button.sending')%>">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    var submitButton = $("#new_private_student_group input[type='submit']");
+    var fakeButton = $("#fake_create_group_button");
+    $(fakeButton).click(function(event) {           
+        $(submitButton).click();
+    });
+  });
+</script>
