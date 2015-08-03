@@ -87,6 +87,9 @@ module Vish
       require 'vish_editor'
     end
 
+    #Tracker
+    config.trackingSystem = (!config.APP_CONFIG['trackingSystemAPIKEY'].nil? and !config.APP_CONFIG['trackingSystemAPIURL'].nil?)
+
     #External services settings
     config.uservoice = (!config.APP_CONFIG['uservoice'].nil? and !config.APP_CONFIG['uservoice']["scriptURL"].nil?)
     config.ganalytics = (!config.APP_CONFIG['ganalytics'].nil? and !config.APP_CONFIG['ganalytics']["trackingID"].nil?)

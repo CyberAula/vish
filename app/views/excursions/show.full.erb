@@ -25,7 +25,7 @@
 	};
 
 	//Tracking System
-	<%unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil? or Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'].nil? %>
+	<%if Vish::Application.config.trackingSystem %>
 		configuration["TrackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";
 		configuration["TrackingSystemAPIURL"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIURL'] %>";
 		<% unless params["trseid"].blank? %>

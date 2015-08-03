@@ -1131,7 +1131,7 @@ class Excursion < ActiveRecord::Base
 
   #method used to return json objects to the recommendation in the last slide
   def reduced_json(controller)
-      rjson = { 
+      rjson = {
         :id => id,
         :url => controller.excursion_url(:id => self.id),
         :title => title,
