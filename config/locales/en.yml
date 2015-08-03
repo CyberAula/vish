@@ -350,7 +350,9 @@ en:
     download_explanation: "Download this resource to your device"
     embed_explanation: "You can use this code to insert this resource in the excursion creator tool or in other website:"
     help:
-      title: "Uploading resources"
+      create_group_title: "Modal para crear grupos de alumnos"
+      create_group_p1: "Fill in the form with the name for the group and the number of pupils accounts"
+      create_group_p2: "Once created you will have those accounts and will be able to download the credentials for your pupils to access the platform"
       info1_html: "Click on <b>documents</b>, <b>links</b> or <b>embed</b> option.<br>"
       info2_html: "If you want to upload a document, click on <b>'browse...''</b> to choose a file from your computer. If your resource is a link or embed, you can <b>paste</b> it into the corresponding text box.<br>"
       info3_html: "Type a <b>title</b> and a <b>description</b>.<br>"
@@ -399,6 +401,7 @@ en:
       req3_html: "3. Select the signed file and <b>attach it</b>"
       private_student1_html: "Classrooms"
       private_student2_html: "This section called 'Classrooms' displays the contents of private student group selected by the user. The latter has the ability to download a file with the credentials of all students and to eliminate the Aula if desired."
+      title: "Uploading resources"
     helpquiz:
       info1_html: "1. Help test 1 for the quiz<br>"
     how: "How to share a resource"
