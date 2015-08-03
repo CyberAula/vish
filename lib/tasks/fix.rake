@@ -651,6 +651,17 @@ namespace :fix do
   end
 
 
+  #Usage
+  #Development:   bundle exec rake fix:categories_scope
+  #In production: bundle exec rake fix:categories_scope RAILS_ENV=production
+  task :categories_scope => :environment do
+    Category.all.each do |category|
+       category.record_timestamps=false
+       category.scope = 1
+       category.save!
+       category.record_timestamps=true
+    end
+  end
 
   ####################
   #Task Utils

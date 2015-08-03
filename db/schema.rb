@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150629123130) do
+ActiveRecord::Schema.define(:version => 20150730111321) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -260,16 +260,20 @@ ActiveRecord::Schema.define(:version => 20150629123130) do
   end
 
   create_table "excursions", :force => true do |t|
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.integer  "activity_object_id"
     t.text     "json"
-    t.integer  "slide_count",        :default => 1
+    t.integer  "slide_count",             :default => 1
     t.text     "thumbnail_url"
-    t.boolean  "draft",              :default => false
-    t.text     "offline_manifest",   :default => ""
+    t.boolean  "draft",                   :default => false
+    t.text     "offline_manifest",        :default => ""
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "groups", :force => true do |t|
@@ -372,6 +376,14 @@ ActiveRecord::Schema.define(:version => 20150629123130) do
   end
 
   add_index "posts", ["activity_object_id"], :name => "index_posts_on_activity_object_id"
+
+  create_table "private_student_groups", :force => true do |t|
+    t.integer  "owner_id"
+    t.text     "name"
+    t.text     "users_data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "profiles", :force => true do |t|
     t.integer  "actor_id"
@@ -494,6 +506,26 @@ ActiveRecord::Schema.define(:version => 20150629123130) do
     t.datetime "file_updated_at"
   end
 
+  create_table "service_permissions", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "key"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "service_requests", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "status",                  :default => "Pending"
+    t.string   "type"
+    t.text     "description"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
   create_table "shortened_urls", :force => true do |t|
     t.integer  "owner_id"
     t.string   "owner_type", :limit => 20
@@ -583,24 +615,24 @@ ActiveRecord::Schema.define(:version => 20150629123130) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "encrypted_password",     :default => ""
+    t.string   "encrypted_password",       :default => ""
     t.string   "password_salt"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",            :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.integer  "actor_id"
     t.string   "language"
-    t.boolean  "connected",              :default => false
-    t.string   "status",                 :default => "chat"
-    t.boolean  "chat_enabled",           :default => true
+    t.boolean  "connected",                :default => false
+    t.string   "status",                   :default => "chat"
+    t.boolean  "chat_enabled",             :default => true
     t.integer  "occupation"
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
@@ -609,6 +641,7 @@ ActiveRecord::Schema.define(:version => 20150629123130) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.integer  "private_student_group_id"
   end
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"
