@@ -14,11 +14,7 @@ class Loep::LosController < Loep::BaseController
   def update
     #New information about this LO is available on LOEP (e.g. a new evaluation and/or metric)
     lo = ActivityObject.getObjectFromGlobalId(params[:id]) rescue nil
-
-    if lo.nil?
-      #This lo does not exist
-      return
-    end
+    return render json: "Resource not found", :status => 404 if lo.nil?  #This lo does not exist
 
     eEvData = JSON(params["lo"])
 

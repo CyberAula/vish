@@ -30,7 +30,7 @@ class RecommenderSystem
     rankedLOs = orderByScore(preSelectionLOs,subject,resource,options)
 
     #Track recommendation if requested
-    if options[:track]===true
+    if options[:track]===true and Vish::Application.config.trackingSystem
       TrackingSystemEntry.trackUIRecommendations(options,options[:request],subject)
     end
 

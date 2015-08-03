@@ -18,7 +18,6 @@ class Loep::BaseController < ActionController::Base
     rescue
       return render :json => ["Unauthorized"], :status => :unauthorized
     end
-
   end
 
 end

@@ -10,13 +10,13 @@
     </li>
     <% end %>
     <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
-    <!-- Disable evaluations if LOEP is not enabled -->
-    <li>
-      <a href="#evaluation1" data-toggle="tab">
-        <i class="fa fa-check-square"></i>
-        <span class="hidden-xs"><%=t('evaluation.tabtitle')%></span>
-      </a>
-    </li>
+      <!-- Disable evaluations if LOEP is not enabled -->
+      <li>
+        <a href="#evaluation1" data-toggle="tab">
+          <i class="fa fa-check-square"></i>
+          <span class="hidden-xs"><%=t('evaluation.tabtitle')%></span>
+        </a>
+      </li>
     <%end%>
 
     <li class="suggestion_show hidden-md hidden-lg">
@@ -73,7 +73,7 @@
 
   <%content_for :javascript do%>
       var evaluationTagShown = false;
-      $('a[data-toggle="tab"][href="#evaluation1"]').on('shown', function(e){
+      $('a[data-toggle="tab"][href="#evaluation1"]').on('shown.bs.tab', function(e){
         if(evaluationTagShown===false){
           evaluationTagShown = true;
 
@@ -115,6 +115,6 @@
 <%end%>
 
 <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
-<!-- Evaluation Modals -->
-<%= render :partial => "excursions/excursion_evaluate" %>
+  <!-- Evaluation Modals -->
+  <%= render :partial => "excursions/excursion_evaluate" %>
 <%end%>
