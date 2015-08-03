@@ -7,14 +7,21 @@ class ServiceRequestsController < ApplicationController
 
   def show
     @request = ServiceRequest.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
   
   def new
-    format.js 
+    respond_to do |format|
+      format.js 
+    end
   end
 
   def duplicated
-    format.js 
+    respond_to do |format|
+      format.js 
+    end
   end
 
   def attachment

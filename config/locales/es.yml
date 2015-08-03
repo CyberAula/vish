@@ -122,6 +122,12 @@ es:
     reporter: "Reportador"
     reports: "Reportes"
     request: "Petición"
+    request_help: "Click para ver la petición completa en un modal."
+    request_modal:
+      attachment: "Adjunto"
+      attachment_not: "No tiene adjunto"
+      description: "Descripción"
+      title: "Mostrar request"
     requests: "Peticiones"
     status: "Estado"
     title: "Panel de Administración de ViSH"
