@@ -33,6 +33,10 @@
 		configuration["SoundCloudAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'] %>";
 	<%end%>
 
+	<% if available_services.include? "Catalogue" %>
+		configuration["catalog"] = <%= raw Vish::Application.config.catalogue["categories"].map{|c| c.capitalize}.to_json %>;
+	<% end %>
+
 	configuration["presentationSettings"] = true;
 	
 	var tagsSettings = new Object();

@@ -1,7 +1,7 @@
 class TrackingSystemEntriesController < ApplicationController
 
-  protect_from_forgery :except => [:index,:create]
-  before_filter :authenticate_app, :only => [ :index, :create ]
+  protect_from_forgery :except => [:create]
+  before_filter :authenticate_app, :only => [ :create ]
   skip_load_and_authorize_resource :only => [ :create ]
 
   # Enable CORS
@@ -9,15 +9,16 @@ class TrackingSystemEntriesController < ApplicationController
   after_filter :cors_set_access_control_headers, :only => [:create]
 
 
-  # GET /tracking_system_entries
-  # List all tracking_system_entries 
-  def index
-    @tsentries = TrackingSystemEntry.all
-    render :json => @tsentries.to_json
-  end
+  # # GET /tracking_system_entries
+  # # List all tracking_system_entries 
+  # def index
+  #   @tsentries = TrackingSystemEntry.all
+  #   render :json => @tsentries.to_json
+  # end
 
   # POST /tracking_system_entries 
   def create
+    return render :json => ["Tracking System disabled"] unless Vish::Application.config.trackingSystem
     return render :json => ["Invalid user agent"] if TrackingSystemEntry.isUserAgentBot?(params[:user_agent])
 
     tsentry = TrackingSystemEntry.new
@@ -52,6 +53,7 @@ class TrackingSystemEntriesController < ApplicationController
   private
 
   def authenticate_app
+    return (render :json => ["Tracking System disabled"], :status => :unauthorized) unless Vish::Application.config.trackingSystem
     unless Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'].nil?
       if params[:app_key] != Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY']
         return render :json => ["Unauthorized"], :status => :unauthorized
