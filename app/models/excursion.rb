@@ -1060,10 +1060,18 @@ class Excursion < ActiveRecord::Base
   end
 
   def clonable?
-    if self.license and (self.license.no_derivatives? or self.license.private?)
+    if self.license and (self.license.no_derivatives? or self.license.private?) or !self.allow_clone
       return false
     end
 
+    true
+  end
+
+  def downloadable?
+    if !self.allow_download
+      return false
+    end
+    
     true
   end
 
@@ -1153,6 +1161,31 @@ class Excursion < ActiveRecord::Base
       activity_object.scope = 0 #public
     end
     
+    #Permissions
+    unless parsed_json["allow_clone"].blank?
+      if parsed_json["allow_clone"] == "false"
+        self.update_column :allow_clone, false
+      else
+        self.update_column :allow_clone, true
+      end
+    end
+
+     unless parsed_json["allow_comment"].blank?
+      if parsed_json["allow_comment"] == "false"
+        self.update_column :allow_comment, false
+      else
+        self.update_column :allow_comment, true
+      end
+    end
+
+     unless parsed_json["allow_download"].blank?
+      if parsed_json["allow_download"] == "false"
+        self.update_column :allow_download, false
+      else
+        self.update_column :allow_download, true
+      end
+    end
+  
     original_updated_at = self.updated_at
     activity_object.save!
 

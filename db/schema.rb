@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150716165858) do
+ActiveRecord::Schema.define(:version => 20150804121624) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20150716165858) do
     t.text     "original_author"
     t.text     "license_attribution"
     t.text     "license_custom"
+    t.decimal  "metadata_qscore",                    :precision => 12, :scale => 6, :default => 0.0
   end
 
   create_table "activity_objects_wa_resources_galleries", :id => false, :force => true do |t|
@@ -273,6 +274,9 @@ ActiveRecord::Schema.define(:version => 20150716165858) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.boolean  "allow_download",          :default => true
+    t.boolean  "allow_comment",           :default => true
+    t.boolean  "allow_clone",             :default => true
   end
 
   create_table "groups", :force => true do |t|

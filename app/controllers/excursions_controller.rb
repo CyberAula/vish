@@ -56,13 +56,17 @@ class ExcursionsController < ApplicationController
         render :layout => 'veditor.full'
       }
       format.scorm {
-        @excursion.to_scorm(self)
-        @excursion.increment_download_count
-        send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
+        if @excursion.downloadable?
+          @excursion.to_scorm(self)
+          @excursion.increment_download_count
+          send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
+        else
+          render :nothing => true, :status => 500
+        end
       }
       format.pdf {
         @excursion.to_pdf
-        if File.exist?("#{Rails.root}/public/pdf/excursions/#{@excursion.id}/#{@excursion.id}.pdf")
+        if @excursion.downloadable? and File.exist?("#{Rails.root}/public/pdf/excursions/#{@excursion.id}/#{@excursion.id}.pdf")
           send_file "#{Rails.root}/public/pdf/excursions/#{@excursion.id}/#{@excursion.id}.pdf", :type => 'application/pdf', :disposition => 'attachment', :filename => "#{@excursion.id}.pdf"
         else
           render :nothing => true, :status => 500

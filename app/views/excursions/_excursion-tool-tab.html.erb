@@ -109,7 +109,7 @@
 
   
   <!-- Clone -->
-  <% if user_signed_in? && !editingToolbar && JSON_excursion?(resource, "allow_clone") && (@excursion.clonable? or can?(:destroy, @excursion)) %>
+  <% if user_signed_in? && !editingToolbar && @excursion.allow_clone && (@excursion.clonable? or can?(:destroy, @excursion)) %>
     <button class="with_tooltip clone btn btn-default" data-toggle="popover" title="<%=t('excursion.actions.clone')%>">
       <i class="fa fa-copy"></i>
     </button>
@@ -189,7 +189,7 @@
           </span>
         </a>
       </li>    
-      <% if JSON_excursion?(resource, "allow_download") %>
+      <% if @excursion.allow_download %>
       <li>
         <a href="#tab4" tabTitle='download' data-toggle="tab">
           <i class="fa fa-download"></i> 
@@ -269,7 +269,7 @@
         </div>
       </div>
     </div>
-    <% if JSON_excursion?(resource, "allow_download") %>
+    <% if @excursion.allow_download %>
     <!-- tab4 / scorm -->
     <div class="tab-pane contentscorm" id="tab4">
 
