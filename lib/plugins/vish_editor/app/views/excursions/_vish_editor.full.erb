@@ -307,7 +307,7 @@
 						</div>			
 
 						<div id="tags_in_presentation_details">
-							<span class="presentation_details_text" i18n-key="i.Tags">Tags</span><button id="catalog_button" type="button" class="button" i18n-key="i.Catalog">Catalogue</button>
+							<span class="presentation_details_text" i18n-key="i.Tags">Tags</span><button id="catalog_button" type="button" class="button" i18n-key="i.Catalog">Catalog</button>
 							<div id="tagBoxIntro">
 								<ul id="tagindex" class="tagList"></ul>
 							</div>
@@ -315,17 +315,15 @@
 						    <div><span class="presentation_details_text" i18n-key="i.Attatchment" >Attatchment</span></div>
 						    <div class="file_details_upload">
 							    <form id="attachment_file_form" method="post" action="attatchment_file.json" enctype="multipart/form-data">
-							    
-							    <div class="fileUpload button">	    
-    								<span i18n-key="i.ChooseFile">Choose File</span>
-								   	 <input type="file"  name="attachment" id="attachment_file">
-								   	 </div>
-								    <input id="description_attachment" placeholder="Choose File" disabled="disabled" />
+							    	<div class="attachmentFileUpload button">
+    									<span i18n-key="i.ChooseFile">Choose File</span>
+								   	 	<input type="file"  name="attachment" id="attachment_file">
+								   	</div>
+								    <input id="description_attachment" placeholder="Choose File" disabled="disabled"/>
 								    <input type="hidden" name="author_id" id="attachment_author">
 								    <input type="hidden" name="authenticity_token" id="attachment_aut_token">
 									<input id="upload_file_attachment" type="submit" class="button" i18n-key="i.Upload" value="Upload" disabled="true">
 									<span id="upload_icon_success" class="icon-button icon-ok" aria-hidden="true"></span>
-									
 								</form>
 							</div>
 					</div>
@@ -354,7 +352,7 @@
 				<div class="fancy_tabs" id="advanced_tabs">
 				  <ul>
 				    <li><a class='js_tabs_asettings fancy_selected' tab="metadata-options-tab" href="#" i18n-key="i.MetadataAspects">Metadata</a></li>
-				    <li><a class='js_tabs_asettings' tab="publication-tab" href="#" i18n-key="i.Publicacion">Publication</a></li>
+				    <li><a class='js_tabs_asettings' tab="publication-tab" href="#" i18n-key="i.Publication">Publication</a></li>
 				    <li><a class='js_tabs_asettings' tab="rte-tab" href="#">RTE</a></li>
 				  </ul>
 				 </div>
@@ -498,16 +496,15 @@
 			 	<div id="publication_title"  >
 			 		<p i18n-key="i.allowUsersTo">Allow other users to:</p>
 			 	</div>
-					<div id="publication_content"><br>
-						<input type="checkbox" id="allow_clone" checked> <span i18n-key="i.allowClone">Clone</span><br>
-						<input type="checkbox" id="allow_comment" checked> <span i18n-key="i.allowComment">Comment</span><br>
-						<input type="checkbox" id="allow_download" checked> <span i18n-key="i.allowDownload">Download</span><br>
-					<br>
+					<div id="publication_content">
+						<p><input type="checkbox" id="allow_clone" checked> <span i18n-key="i.allowClone">Clone</span></p>
+						<p><input type="checkbox" id="allow_comment" checked> <span i18n-key="i.allowComment">Comment</span></p>
+						<p><input type="checkbox" id="allow_download" checked> <span i18n-key="i.allowDownload">Download</span></p>
 					</div>
 				</div>
 
 				<div id="rte-tab" style="display:none">
-					<input type="checkbox" id="allow_following_rte" checked onclick="return false"><span i18n-key="i.allowFollowing">Allow to follow this object after exporting as SCORM</span><br>		
+					<p><input type="checkbox" id="allow_following_rte" checked disabled="disabled"> <span i18n-key="i.enableRTE">Enable object tracking when it is exported to SCORM</span></p>
 				</div>
 
 				<div id="metadata_options_fields_row3">
@@ -522,7 +519,7 @@
 
 	<div id="catalog_content" >
 		<div id="catalog_title">
-			<p>Catalog Tags</p>
+			<p i18n-key="i.CatalogueTitle">Catalogue</p>
 		</div>
 		<div id="catalog_body">
 			<select id="catalog_tags" size="11" multiple="multiple">
