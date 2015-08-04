@@ -655,12 +655,13 @@ namespace :fix do
   #Development:   bundle exec rake fix:categories_scope
   #In production: bundle exec rake fix:categories_scope RAILS_ENV=production
   task :categories_scope => :environment do
+    printTitle("Fixing Categories Scope to hidden")
+    Category.record_timestamps = false
     Category.all.each do |category|
-       category.record_timestamps=false
        category.scope = 1
        category.save!
-       category.record_timestamps=true
     end
+    Category.record_timestamps = true
   end
 
   ####################
