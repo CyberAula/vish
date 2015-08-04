@@ -22,6 +22,7 @@
     <%= form_for categories.first, :remote => true, :class => "form-group" do |f| %>
       <%= f.hidden_field :item_type, :value => item.class.to_s %>
       <%= f.hidden_field :item_id, :value => item.id %>
+      <%= f.hidden_field :scope, :value => 1 %>
       <a class="btn btn_cancel"><%=t('cancel') %></a>
       <%= f.submit t('button.save')%>
     <% end %>
