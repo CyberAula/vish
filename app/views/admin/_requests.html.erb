@@ -16,8 +16,8 @@
     <tbody>
     <% @requests.each do |request| %>
       <tr>
-        <td class="admin-request-request">          
-          <%= link_to(request.type, url_for(request), :title => t("admin.request_help"), :remote=>true, :data => {:toggle=>"modal", :target=>"#AdminRequestPermModal"}) %>
+        <td class="admin-request-request">
+          <%= link_to(t('request.' + request.readable_type), url_for(request), :title => t("admin.request_help"), :remote=>true, :data => {:toggle=>"modal", :target=>"#AdminRequestPermModal"}) %>
         </td>
         <td class="admin-status-resquest">
           <span><%=request.status%></span>
@@ -53,5 +53,3 @@
     </div><!-- /MODAL-CONTENT -->
   </div><!-- /MODAL-DIALOG -->
 </div><!-- /MODAL -->
-
-
