@@ -13,7 +13,8 @@
 
         <div class="modal-body">
           <%= form_for PrivateStudentGroup.new, :html => { :class => "new_private_student_group" }, :remote => false do |f| %>
-            <%= f.hidden_field :owner_id, :value => current_subject.actor_id %>
+              <div class="modal_errors"></div>
+              <%= f.hidden_field :owner_id, :value => current_subject.actor_id %>
               <%= f.label :title, t("private_student.group_name")%>
               <%= f.text_field :name, :class => "form-control" %>
               <%= f.label :title, t("private_student.learner_number")%>
@@ -39,7 +40,11 @@
     var submitButton = $("#new_private_student_group input[type='submit']");
     var fakeButton = $("#fake_create_group_button");
     $(fakeButton).click(function(event) {
-        $(submitButton).click();
+        if ($("#private_student_group_name").val() == "") {          
+          $("#new_private_student_group .modal_errors").html("<%= t('private_student.errors.no_name')%>");
+        } else {
+          $(submitButton).click();
+        }
     });
   });
 </script>
