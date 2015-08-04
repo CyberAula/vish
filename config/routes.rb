@@ -126,6 +126,9 @@ Vish::Application.routes.draw do
     get 'credentials', :on => :member
   end
 
+  #service_permissions
+  match 'service_permissions/update_permissions' => 'service_permissions#update_permissions', :via => :post
+
   #Competitions
   match 'contest' => 'static#contest'
   match 'contest_all' => 'static#contest_all'

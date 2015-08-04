@@ -121,6 +121,12 @@ en:
   admin:
     close_report: "Close report"
     closed_reports: "Closed reports"
+    modal:
+      change_role: "User role in the platform"
+      delete_user: "Delete user"
+      manage_user_button: "Manage"
+      permissions: "Permissions"
+      title: "Manage user"
     menu_entry: "Admin Panel"
     noitems: "There are no items."
     noreports: "There are no reports."

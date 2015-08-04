@@ -111,6 +111,12 @@ es:
   admin:
     close_report: "Cerrar reporte"
     closed_reports: "Reportes cerrados"
+    modal:      
+      change_role: "Rol de usuario en la plataforma"
+      delete_user: "Borrar usuario"
+      manage_user_button: "Gestionar"
+      permissions: "Permisos"
+      title: "Gestionar usuario"    
     menu_entry: "Administración"
     noitems: "No hay elementos."
     noreports: "No hay reportes."

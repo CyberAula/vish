@@ -15,20 +15,13 @@
     </div>
   <% end %>
 
-  <!-- Remove user (only for admins) -->
-  <% if isAdmin? %>
-    <% if can?(:destroy, @profile) and current_subject!=profile_subject %>
+  <!-- Manage user (only for admins) -->
+  <% if isAdmin? and can?(:edit_roles, @profile) %>   
       <div class="edit_icon btn btn-default">
-        <%= link_to(raw("<i class='fa fa-trash '></i>")+ t('profile.remove'), user_path(profile_subject), :confirm => t('are_you_sure'), :method => "delete")%>
+        <a href="#AdminUserModal" id="showModalAdmin" data-toggle="modal">
+          <%= raw("<i class='fa fa-thumbs-up'></i>")+ t('admin.modal.manage_user_button')%>
+        </a>
       </div>
-    <% end %>
-  <% end %>
-
-  <!-- Change user role (only for admins) -->
-  <% if isAdmin? and can?(:edit_roles, @profile) %>
-    <div class="edit_icon btn btn-default">
-      <%= link_to(raw("<i class='fa fa-thumbs-up'></i>")+ t('profile.change_role'), change_role_user_path(profile_subject))%>
-    </div>
   <% end %>
 
   <!--BTN MESSAGE-->
@@ -49,6 +42,64 @@
   </a>
 
 </div>
+
+
+<% if isAdmin? %>
+    <div id="AdminUserModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span><span class="sr-only"><%=t("close")%></span>
+            </button>
+            <h4>
+              <%= t('admin.modal.title') %>
+            </h4>
+          </div>
+
+          <div class="modal-body">
+            
+            <p><label><%=t('actor.name')%>:&nbsp;&nbsp;</label><input name="name" value="<%=profile_subject.name%>" disabled="true"></p>
+
+            <div class="admin_section"><%= t('admin.modal.change_role') %></div>
+              <form action=<%=update_role_user_path(profile_subject)%> method="post">
+                <%= token_tag nil %>
+                
+                <p><label><%=t('user.role').capitalize%>:&nbsp;&nbsp;</label><%= select_tag(:role, user_roles_options_for_select(profile_subject.role.id))%></p>
+                <p>
+                  <input type="submit" class="btn btn-primary" value="<%=t('button.update')%>">
+                </p>
+              </form>
+
+            <div class="admin_section"><%= t('admin.modal.permissions') %></div>
+              <form action=<%=service_permissions_update_permissions_path%> method="post">                
+                <%binding.pry%>
+                <%= hidden_field_tag :owner_id, profile_subject.id %>
+                <p>
+                  <%ServicePermission.all.each do |perm|%>
+                    <%=perm%>
+                  <%end%>
+                </p>
+                <p>
+                  <input type="submit" class="btn btn-primary" value="<%=t('button.update')%>">
+                </p>
+              </form>
+
+
+            <div class="admin_section"><%= t('admin.modal.delete_user') %></div>
+            <%= link_to(raw("<i class='fa fa-trash '></i>")+ t('profile.remove'), user_path(profile_subject), :confirm => t('are_you_sure'), :method => "delete")%>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal"><%=t("close")%></button>            
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+<% end %>
+
 
 <%content_for :javascript do%>
   $("#showingMore").click(function(e){
