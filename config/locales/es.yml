@@ -172,6 +172,7 @@ es:
         teaching: "enseñanza"
     title: "Catálogo"
     title_directory: "Recursoteca"
+    title_archive: "Cursoteca"
   category:
     belongs_to: "Pertenece a"
     cat_add_select: "Selecciona entre tus categorías"

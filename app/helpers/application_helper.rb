@@ -78,6 +78,10 @@ module ApplicationHelper
 		VishConfig.getDirectoryModels
 	end
 
+	def archive_models
+		VishConfig.getArchiveModels
+	end
+
 	def available_services
 		VishConfig.getAvailableServices
 	end

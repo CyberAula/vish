@@ -191,6 +191,7 @@ en:
         teaching: "teaching"
     title: "Catalogue"
     title_directory: "Resources"
+    title_archive: "Workshops"
   category:
     belongs_to: "Belongs to"
     cat_add_select: "Select your categories"

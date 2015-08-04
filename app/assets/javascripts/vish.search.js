@@ -25,7 +25,8 @@ Vish.Search = (function(V,undefined){
         sort_by_disable_tooltip: "Option only available for learning objects",
         only_for_excursion_tooltip: "Option only available for excursions",
         excursionsInCatalogue: true,
-        excursionsInDirectory: false
+        excursionsInDirectory: false,
+        excursionsInArchive: false
       }  
   */
   var init = function(options){
@@ -61,6 +62,8 @@ Vish.Search = (function(V,undefined){
       $("div.filter_set[catalogue_filter=true]").show();
     } else if(_parsed_url["directory"]){
       $("div.filter_set[directory_filter=true]").show();
+    } else if(_parsed_url["archive"]){
+      $("div.filter_set[archive_filter=true]").show();
     } else {
       $("div.filter_set[search_filter=true]").show();
       if(!_parsed_url["type"] || _parsed_url["type"]=="User"){
@@ -70,14 +73,14 @@ Vish.Search = (function(V,undefined){
       }
     }
 
-    if((_parsed_url["catalogue"] && !_options.excursionsInCatalogue) || (_parsed_url["directory"] && !_options.excursionsInDirectory)){
+    if((_parsed_url["catalogue"] && !_options.excursionsInCatalogue) || (_parsed_url["directory"] && !_options.excursionsInDirectory) || (_parsed_url["archive"] && !_options.excursionsInArchive)){
       $("li.only_for_excursion").hide();
     }
-    if(_parsed_url["type"]=="Excursion" || (_parsed_url["catalogue"] && _options.excursionsInCatalogue) || (_parsed_url["directory"] && _options.excursionsInDirectory)){
+    if(_parsed_url["type"]=="Excursion" || (_parsed_url["catalogue"] && _options.excursionsInCatalogue) || (_parsed_url["directory"] && _options.excursionsInDirectory) || (_parsed_url["archive"] && _options.excursionsInArchive)){
       $("li.only_for_excursion").removeClass("disabled");
       $("li.only_for_excursion").attr("title", "");
     }
-    if(_parsed_url["catalogue"] || _parsed_url["directory"] || _parsed_url["browse"]){
+    if(_parsed_url["catalogue"] || _parsed_url["directory"] || _parsed_url["archive"] || _parsed_url["browse"]){
       $("li a[sort-by-key='relevance']").parent("li").hide();
     }
   };
@@ -252,7 +255,7 @@ Vish.Search = (function(V,undefined){
       //so we would have to mark the lo_type to "resource"
       _options.resource_types.forEach(function(item_subtype){
         if(_parsed_url["type"].indexOf(item_subtype)>-1){
-          if(!_parsed_url["catalogue"] && !_parsed_url["directory"]){
+          if(!_parsed_url["catalogue"] && !_parsed_url["directory"] && !_parsed_url["archive"]){
             var filter_resource_obj = $("#search-sidebar ul li[filter_key='type'][filter='Resource']");
             _activateFilter(filter_resource_obj, false, false);
           }
@@ -285,8 +288,8 @@ Vish.Search = (function(V,undefined){
     var filter_obj = $("#search-sidebar ul li[filter_key='"+filter_key+"'][filter='"+filter_name+"']");
 
     if(filter_obj.length>0){
-      //check catalogue, directory or neither of them
-      if((_parsed_url["catalogue"] && filter_obj.parents(".filter_set").attr("catalogue_filter")) || (_parsed_url["directory"] && filter_obj.parents(".filter_set").attr("directory_filter")) || (!_parsed_url["catalogue"] && !_parsed_url["directory"]) ){
+      //check catalogue, directory, archive or neither of them
+      if((_parsed_url["catalogue"] && filter_obj.parents(".filter_set").attr("catalogue_filter")) || (_parsed_url["directory"] && filter_obj.parents(".filter_set").attr("directory_filter")) || (_parsed_url["archive"] && filter_obj.parents(".filter_set").attr("archive_filter")) || (!_parsed_url["catalogue"] && !_parsed_url["directory"] && !_parsed_url["archive"]) ){
         if(filter_obj.hasClass("search-sidebar-selected")) {        
           _deactivateFilter(filter_obj, update_url);          
         } else {
@@ -389,7 +392,7 @@ Vish.Search = (function(V,undefined){
       if(_parsed_url["sort_by"] && (_parsed_url["sort_by"][0]==="favorites" || _parsed_url["sort_by"][0]==="visits" || _parsed_url["sort_by"][0]==="updated_at" || _parsed_url["sort_by"][0]==="quality") ){
         if(_parsed_url["browse"]){
           _parsed_url["sort_by"]=["popularity"];
-        } else if(_parsed_url["catalogue"] || _parsed_url["directory"]){
+        } else if(_parsed_url["catalogue"] || _parsed_url["directory"] || _parsed_url["archive"]){
           _parsed_url["sort_by"]=["quality"];
         } else{
           _parsed_url["sort_by"]=["relevance"];
@@ -421,7 +424,7 @@ Vish.Search = (function(V,undefined){
     }
 
     //if not catalogue or directory and filter_key is "type" we have to add the param "opens_with" to the array
-    if(_parsed_url["catalogue"]==undefined && _parsed_url["directory"]==undefined && filter_key=="type"){
+    if(_parsed_url["catalogue"]==undefined && _parsed_url["directory"]==undefined && _parsed_url["archive"]==undefined && filter_key=="type"){
       var filter_obj = $("#search-sidebar ul li[filter_key='"+filter_key+"'][filter='"+filter_name+"']");
       var selected_siblings = filter_obj.siblings(".search-sidebar-selected").length;
       var opens_with_value = filter_obj.closest("div.filter_set").attr("opens_with");
@@ -442,7 +445,7 @@ Vish.Search = (function(V,undefined){
       if(_parsed_url["sort_by"] && (_parsed_url["sort_by"][0]==="favorites" || _parsed_url["sort_by"][0]==="visits" || _parsed_url["sort_by"][0]==="updated_at" || _parsed_url["sort_by"][0]==="quality") ){
         if(_parsed_url["browse"]){
           _parsed_url["sort_by"]=["popularity"];
-        } else if(_parsed_url["catalogue"] || _parsed_url["directory"]){
+        } else if(_parsed_url["catalogue"] || _parsed_url["directory"] || _parsed_url["archive"]){
           _parsed_url["sort_by"]=["quality"];
         } else{
           _parsed_url["sort_by"]=["relevance"];
@@ -467,7 +470,7 @@ Vish.Search = (function(V,undefined){
         $("#order_by_selector_search button").html(value + '<i class="icon-angle-down"></i>');
       }
 
-      if(query_array["catalogue"] || query_array["directory"]){
+      if(query_array["catalogue"] || query_array["directory"] || query_array["archive"]){
         //in catalogue and directory, always enable options, because there is no users
         $("li.disable_for_user").removeClass("disabled");
         $("li.disable_for_user").attr("title", "");
@@ -480,7 +483,7 @@ Vish.Search = (function(V,undefined){
         $("li.disable_for_user").attr("title", "");
       }
 
-      if((query_array["catalogue"]&& _options.excursionsInCatalogue) || (query_array["directory"]&& _options.excursionsInDirectory) || (query_array["type"] && (query_array["type"]=="Excursion"))){
+      if((query_array["catalogue"]&& _options.excursionsInCatalogue) || (query_array["directory"]&& _options.excursionsInDirectory) || (query_array["archive"]&& _options.excursionsInArchive) || (query_array["type"] && (query_array["type"]=="Excursion"))){
         $("li.only_for_excursion").removeClass("disabled");
         $("li.only_for_excursion").attr("title", "");
       } else {
@@ -555,7 +558,7 @@ Vish.Search = (function(V,undefined){
     });
 
     //Infer type when searching (not browse, catalogue or directory)
-    if((!parsed["type"])&&(!parsed["catalogue"])&&(!parsed["directory"])){
+    if((!parsed["type"])&&(!parsed["catalogue"])&&(!parsed["directory"]) &&(!parsed["archive"])){
       var windowHistoryPushStateSupported = ((window.history)&&(typeof window.history.pushState == "function"));
       if(windowHistoryPushStateSupported){
         var resourcesTypes = _options.result_resource_types.split(",");
