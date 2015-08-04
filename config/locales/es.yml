@@ -710,6 +710,9 @@ es:
     account_name: "Alumno"
     creation_success: "El grupo de alumnos se ha creado satisfactoriamente"
     creation_error: "El grupo de alumno no se ha podido crear"
+    errors:
+      no_attach: "Por favor, descarguese el archivo del paso 1, fírmelo, escaneelo y adjúntelo en el paso 3."
+      no_name: "Por favor introduce el nombre para crear el grupo"
     form_button: "Crear"
     form_title: "Crear un grupo de alumnos"
     group_name: "Nombre"

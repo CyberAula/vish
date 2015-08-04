@@ -11,7 +11,7 @@
   <h6><%= t('private_student.request_modal.subtitle')%></h6>
 	<%= form_for ServiceRequest::PrivateStudentGroup.new do |f| %>
 		<%= f.hidden_field :owner_id, :value => current_subject.actor_id %>
-
+    <div class="modal_errors"></div>
     <div class="step_label"><span class="primary"><%= t('private_student.request_modal.step1T')%></span><%= t('private_student.request_modal.step1')%>
       <a class="btn btn-default" href="/download_perm_request"><i class="fa fa-download"></i> <%= t('private_student.request_modal.download')%> </a>
     </div>
@@ -33,6 +33,10 @@
     var submitButton = $("#new_service_request_private_student_group input[type='submit']");
     var fakeButton = $("#fake_button");
     $(fakeButton).click(function(event) {           
-        $(submitButton).click();
+        if ($("#service_request_private_student_group_attachment").val() == "") {          
+          $("#new_service_request_private_student_group .modal_errors").html("<%= t('private_student.errors.no_attach')%>");
+        } else {
+          $(submitButton).click();
+        }
     });
 </script>

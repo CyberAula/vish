@@ -720,6 +720,9 @@ en:
     account_name: "Learner"
     creation_success: "The group of user accounts was created succesfully"
     creation_error: "The group of user accounts could not be created"
+    errors:
+      no_attach: "Please, download file from step 1, sign it, scan it and attach it in step 3"
+      no_name: "Please introduce name to create the group"
     form_button: "Create"
     form_title: "Create a group of learner accounts"
     group_name: "Name"
