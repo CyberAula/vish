@@ -57,4 +57,5 @@ class PrivateStudentGroup < ActiveRecord::Base
     name
   end
 
+
 end

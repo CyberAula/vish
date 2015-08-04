@@ -134,7 +134,9 @@ es:
       attachment_not: "No tiene archivo adjunto"
       description: "Descripción"
       description_not: "No tiene descripción"
+      requested_by: "Solicitado por"
       title: "Detalles petición"
+      type: "Tipo petición"
     requests: "Peticiones"
     status: "Estado"
     title: "Panel de Administración de ViSH"
@@ -810,6 +812,9 @@ es:
     one: "repositorio"
     other: "repositorios"
     title: "Recursos"
+  request:
+    default: "Genérica"
+    private_student: "Crear grupos privados de estudiantes"
   resource:
     actions:
       add: "Añadir recurso"

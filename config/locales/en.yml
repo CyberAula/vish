@@ -144,7 +144,9 @@ en:
       attachment_not: "This request does not have attachment"
       description: "Description"
       description_not: "This request does not have description"
+      requested_by: "requested by"
       title: "Show request"
+      type: "Request type"
     requests: "Requests"
     status: "State"
     resque: "Resque"
@@ -822,6 +824,9 @@ en:
     one: "repository"
     other: "repositories"
     title: "Resources"
+  request:
+    default: "Generic"
+    private_student: "Create private students group"
   resource:
     actions:
       add: "Add resource"
