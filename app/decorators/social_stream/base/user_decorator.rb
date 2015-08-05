@@ -34,6 +34,10 @@ User.class_eval do
     profile.description
   end
 
+  def has_permission(perm_key)    
+    ServicePermission.where(:owner_id => actor_id, :key => perm_key).count > 0
+  end
+
 
   private
 

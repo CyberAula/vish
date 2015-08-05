@@ -16,7 +16,7 @@
   <% end %>
 
   <!-- Manage user (only for admins) -->
-  <% if isAdmin? and can?(:edit_roles, @profile) %>   
+  <% if can?(:edit_roles, @profile) %>   
       <div class="edit_icon btn btn-default">
         <a href="#AdminUserModal" id="showModalAdmin" data-toggle="modal">
           <%= raw("<i class='fa fa-thumbs-up'></i>")+ t('admin.modal.manage_user_button')%>
@@ -44,7 +44,7 @@
 </div>
 
 
-<% if isAdmin? %>
+<% if can?(:edit_roles, @profile) %> 
     <div id="AdminUserModal" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -73,11 +73,11 @@
 
             <div class="admin_section"><%= t('admin.modal.permissions') %></div>
               <form action=<%=service_permissions_update_permissions_path%> method="post">                
-                <%binding.pry%>
-                <%= hidden_field_tag :owner_id, profile_subject.id %>
+                <%= token_tag nil %>
+                <%= hidden_field_tag :owner_id, profile_subject.actor_id %>
                 <p>
-                  <%ServicePermission.all.each do |perm|%>
-                    <%=perm%>
+                  <%ServicePermission.all_keys.each do |key|%>
+                    <input type="checkbox" name="sp[]" <%="checked" if profile_subject.has_permission(key)%> value="<%=key%>"> <span class="lbl padding-0"><%=key%></span>
                   <%end%>
                 </p>
                 <p>

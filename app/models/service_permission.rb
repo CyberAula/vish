@@ -5,9 +5,10 @@ class ServicePermission < ActiveRecord::Base
   validates :owner_id, :presence => true
 
   #TODO: validate duplicates
-  
+   
+
   #returns an array with all the permissions 
-  def self.all
+  def self.all_keys
   	["PrivateStudentGroups"]
   end
 end

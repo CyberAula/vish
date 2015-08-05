@@ -93,6 +93,10 @@ class Ability
         cannot?(:edit_roles, p.actor)
       end
 
+      can :manage, ServicePermission do |sp|
+        subject.admin? and can?(:edit_roles,sp.owner)
+      end
+
       #Private Student Groups
       can :create, PrivateStudentGroup do |psg|
         ServicePermission.where(:key => "PrivateStudentGroups", :owner_id => subject.actor_id).length > 0
