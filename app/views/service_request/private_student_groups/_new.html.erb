@@ -32,9 +32,9 @@
 <script>
     var submitButton = $("#new_service_request_private_student_group input[type='submit']");
     var fakeButton = $("#fake_button");
-    $(fakeButton).click(function(event) {           
-        if ($("#service_request_private_student_group_attachment").val() == "") {          
-          $("#new_service_request_private_student_group .modal_errors").html("<%= t('private_student.errors.no_attach')%>");
+    $(fakeButton).click(function(event) {
+        if ($("#service_request_private_student_group_attachment").val() == "") {
+          $("#new_service_request_private_student_group .modal_errors").html("<div class='alert-danger'><%= t('private_student.errors.no_attach')%></div>");
         } else {
           $(submitButton).click();
         }
