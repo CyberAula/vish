@@ -11,6 +11,17 @@ namespace :harvesting do
     owner = Actor.find_by_email("virtual.science.hub+1@gmail.com")
     ils_api_url = "http://www.golabz.eu/rest/ils/retrieve.json"
 
+    #Generate Category to store all objects
+    c = Category.authored_by(owner).readonly(false).select{|c| c.title=="Inquiry Learning Spaces - GoLab"}.first
+    c = Category.new if c.nil?
+    c.owner_id = owner.id
+    c.author_id = owner.id
+    c.user_author_id = owner.id
+    c.scope = 0
+    c.title = "Inquiry Learning Spaces - GoLab"
+    c.description = "Inquiry Learning Spaces are online labs embedded in resources and scaffolds to offer students a complete inquiry learning experience. See more at: http://www.go-lab-project.eu/inquiry-learning-spaces ."
+    c.save
+
     begin
       require 'open-uri'
       content = open(ils_api_url).read
@@ -75,6 +86,9 @@ namespace :harvesting do
       end
 
       l.save
+      
+      c.property_objects << l.activity_object unless l.activity_object.nil?
+
 
       #################
       # Generate Excursion
@@ -150,6 +164,11 @@ namespace :harvesting do
       e.json = eJson.to_json
 
       e.save
+
+      c.property_objects << e.activity_object unless e.activity_object.nil?
+
+      #Check category
+      c.setPropertyObjects #make property objects uniq
     end
     
     printTitle("Task Finished")
@@ -238,7 +257,7 @@ namespace :harvesting do
       pictureURI = URI.parse(pictureURL)
       fileName = id.to_s + "_" + File.basename(pictureURI.path)
       filePath = "tmp/externalAvatars/" + fileName
-      pictureURL = URI.encode(pictureURL)
+      # pictureURL = URI.encode(pictureURL)
       command = "wget " + pictureURL + " --output-document='" + filePath + "'"
       system(command)
     rescue => e
@@ -253,12 +272,12 @@ namespace :harvesting do
   end
 
   def downloadAndUploadAvatar(pictureURL,owner)
-    index = Picture.count + 1
     begin
+      index = Picture.count + 1
       pictureURI = URI.parse(pictureURL)
       fileName = index.to_s + "_" + File.basename(pictureURI.path)
       filePath = "tmp/externalAvatars/" + fileName
-      pictureURL = URI.encode(pictureURL)
+      # pictureURL = URI.encode(pictureURL)
       command = "wget " + pictureURL + " --output-document='" + filePath + "'"
       system(command)
     rescue => e
