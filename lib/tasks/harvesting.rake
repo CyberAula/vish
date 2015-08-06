@@ -136,6 +136,9 @@ namespace :harvesting do
                 id: "article2_zone1",
                 type: "object",
                 areaid: "center",
+                settings: {
+                  unloadObject: false
+                },
                 body: '<iframe src="' + ils["student_link"] + '?wmode=opaque" wmode="opaque" id="resizableunicID1" class="t10_object"></iframe>',
                 style: "position: relative; width:100%; height:100%; top:0%; left:0%;",
                 subtype: "web"
