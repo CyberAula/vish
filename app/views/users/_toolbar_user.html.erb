@@ -1,12 +1,12 @@
+<% privateStudentMode = ((user_signed_in? and current_subject.role?("PrivateStudent")) or (profile_subject.role?("PrivateStudent"))) %>
+
 <div class="btn-group">
 
   <!--BTN ADD-->
- <% if !profile_subject_is_current? %>
-    <% unless user_signed_in? and current_subject.role?("PrivateStudent") %>
-      <div class="btn btn-follow">
-        <%= contact_button(profile_subject) %>
-      </div>
-    <% end %>
+ <% if !profile_subject_is_current? and !privateStudentMode %>
+    <div class="btn btn-follow">
+      <%= contact_button(profile_subject) %>
+    </div>
   <% end %>
 
   <!-- Edit your profile -->
@@ -27,7 +27,7 @@
   <% end %>
 
   <!--BTN MESSAGE-->
-  <% if !profile_subject_is_current? and user_signed_in? and !current_subject.role?("PrivateStudent") %>
+  <% if !profile_subject_is_current? and user_signed_in? and !privateStudentMode %>
     <button href="#new_messages_profile" id="mesage-profile" role="button" class="btn btn-default" data-toggle="modal" data-remote="false">
       <%= link_to new_message_path(receiver: profile_subject.slug) do %>
       <i class="fa fa-envelope-o"></i>

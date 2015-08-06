@@ -7,6 +7,8 @@ class PrivateStudentGroup < ActiveRecord::Base
   validates :owner_id, :presence => true
   validates :name, :presence => true
 
+  after_destroy :remove_accounts
+
   acts_as_xlsx
 
   def createGroupForSubject(subject,n=20)
@@ -67,6 +69,13 @@ class PrivateStudentGroup < ActiveRecord::Base
 
   def public_excursions
     resources("Excursion").reject{|e| e.draft}
+  end
+
+
+  private
+
+  def remove_accounts
+    self.private_students.map{|ps| ps.destroy}
   end
 
 
