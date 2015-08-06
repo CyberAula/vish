@@ -158,7 +158,11 @@ namespace :harvesting do
         eJson["avatar"] = e.thumbnail_url
       end
 
-      eJson["tags"] = ils["ils_keywords"] unless ils["ils_keywords"].nil? or !ils["ils_keywords"].is_a? Array or !e.tag_list.blank?
+      if e.tag_list.blank?
+        eJson["tags"] = ils["ils_keywords"] unless ils["ils_keywords"].nil? or !ils["ils_keywords"].is_a? Array
+      else
+        eJson["tags"] = e.tag_list
+      end
       eJson["language"] = language unless language.nil?
       unless ageRanges.nil?
         eJson["age_range"] = ageRanges[0].to_s + " - " + ageRanges[1].to_s
