@@ -315,8 +315,8 @@
 						    <div><span class="presentation_details_text" i18n-key="i.Attatchment" >Attatchment</span></div>
 						    <div class="file_details_upload">
 							    <form id="attachment_file_form" method="post" action="attatchment_file.json" enctype="multipart/form-data">
-							    	<div class="attachmentFileUpload button">
-    									<span i18n-key="i.ChooseFile">Choose File</span>
+							    	<div class="attachmentFileUpload" disabled="true" i18n-key-tooltip="i.tooltip.UploadAttachment" title="If this button is deactivated, you need to save your excursion first." >
+    									<span i18n-key="i.ChooseFile" >Choose File</span>
 								   	 	<input type="file"  name="attachment" id="attachment_file">
 								   	</div>
 								    <input id="description_attachment" placeholder="Choose File" disabled="disabled"/>
@@ -1688,10 +1688,10 @@
 		</li>
 
 		<li data-id="metadata_clasification_button" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top;" class="tut_width500 tut_with_arrow">
-			<h2 i18n-key="i.walkSettings7_1">Metadata</h2>
-			<p i18n-key="i.walkSettings7_2">Clicking on this button will bring up the Metadata screen.</p>
-			<p i18n-key="i.walkSettings7_3">In this screen you can specify more pedagogy related information about your excursion.</p>
-			<p><span i18n-key="i.walkSettings7_4">Details about the information that can be specified are explained in the   contextual help of the Metadata screen.</p>
+			<h2 i18n-key="i.walkSettings7_1">Advanced Settings</h2>
+			<p i18n-key="i.walkSettings7_2">Clicking on this button will bring up the Advanced Settings screen.</p>
+			<p i18n-key="i.walkSettings7_3">In this screen you can specify more pedagogy related information, permissions and academic aspects about your excursion.</p>
+			<p><span i18n-key="i.walkSettings7_4">Details about the information that can be specified are explained in the contextual help of the different screens.</p>
 		</li>
 
 		<li class="tut_width500 tut_with_arrow" data-id="save_presentation_details" class="tut_with_arrow" data-options="tipLocation:top" data-text="Finish" i18n-key="i.Finish">
@@ -1722,6 +1722,26 @@
 		</li>
 	</ol>
 
+		<!-- Help in publication options settings -->
+	<ol id="help_publication_selection_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Finish" i18n-key="i.Finish" class="tut_metadata tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkPublication1_1">Welcome to the Publication Aspects screen</h2>
+			<p><span i18n-key="i.walkPublication1_2">In the screen you can specify cloning, downloading and commenting permissions for your excursion.</span></p>
+			<p><span i18n-key="i.walkPublication1_3">Clone: allows other users to obtain your excursion in his account and change it as it was of his own, although he mantains original creator attributions.</span></p>
+			<p><span i18n-key="i.walkPublication1_4">Comment: allows to activate or deactivate comments for your excursion.</span></p>
+			<p><span i18n-key="i.walkPublication1_5">Downoad: allows other users to download the excursion in any format.</span></p>
+			<p class="tut_space_big">&nbsp;</p>
+		</li>
+	</ol>
+
+		<!-- Help in rte options settings -->
+	<ol id="help_rte_selection_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Finish" i18n-key="i.Finish" class="tut_metadata tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkRTE1_1">Welcome to the RTE Aspects screen</h2>
+			<p><span i18n-key="i.walkRTE1_2">In this screen you may allow following scorm resources for  investigation and quality in educational resources.</span></p>
+			<p class="tut_space_big">&nbsp;</p>
+		</li>
+	</ol>
 
 	<!-- Help in standard slide -->
 	<ol id="sslide_help" class="joyRideTipContent">
