@@ -172,6 +172,7 @@ namespace :harvesting do
       e.json = eJson.to_json
 
       e.save
+      e.afterPublish
 
       c.property_objects << e.activity_object unless e.activity_object.nil?
 
