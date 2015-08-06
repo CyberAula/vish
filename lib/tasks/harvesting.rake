@@ -60,7 +60,7 @@ namespace :harvesting do
       l.description = ils["description"] unless ils["description"].blank?
       l.url = ils["student_link"] unless ils["student_link"].blank?
       l.original_author = ils["author"] unless ils["author"].blank?
-      l.tag_list = ils["ils_keywords"] unless ils["ils_keywords"].blank? or !ils["ils_keywords"].is_a? Array
+      l.tag_list = ils["ils_keywords"] unless ils["ils_keywords"].blank? or !ils["ils_keywords"].is_a? Array or !l.tag_list.blank?
       if ils["ils_language"] and ils["ils_language"].is_a? Array
         language = ils["ils_language"].map{|ilsl| processILSLanguage(ilsl) }.first
         l.language = language unless language.blank?
@@ -136,6 +136,9 @@ namespace :harvesting do
                 id: "article2_zone1",
                 type: "object",
                 areaid: "center",
+                settings: {
+                  unloadObject: false
+                },
                 body: '<iframe src="' + ils["student_link"] + '?wmode=opaque" wmode="opaque" id="resizableunicID1" class="t10_object"></iframe>',
                 style: "position: relative; width:100%; height:100%; top:0%; left:0%;",
                 subtype: "web"
@@ -150,7 +153,7 @@ namespace :harvesting do
         newAvatarURL = downloadAndUploadAvatar(avatarURL,owner)
         eJson["avatar"] = newAvatarURL unless newAvatarURL.blank?
       end
-      eJson["tags"] = ils["ils_keywords"] unless ils["ils_keywords"].nil? or !ils["ils_keywords"].is_a? Array
+      eJson["tags"] = ils["ils_keywords"] unless ils["ils_keywords"].nil? or !ils["ils_keywords"].is_a? Array or !e.tag_list.blank?
       eJson["language"] = language unless language.nil?
       unless ageRanges.nil?
         eJson["age_range"] = ageRanges[0].to_s + " - " + ageRanges[1].to_s
