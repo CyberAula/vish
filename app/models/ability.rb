@@ -110,7 +110,7 @@ class Ability
         psg.owner_id == subject.actor_id
       end
 
-      #Allow teachers to see resources of the private students
+      #Allow teachers to see resources of their private students
       can :show, ActivityObject do |ao|
         ao.public_scope? or (!ao.owner.nil? and ao.owner.object_type=="Actor" and ao.owner.subject_type=="User" and ao.owner.role?("PrivateStudent") and !ao.owner.user.private_teacher.nil? and ao.owner.user.private_teacher.id==subject.actor_id)
       end
@@ -119,11 +119,19 @@ class Ability
         can?(:show,o.activity_object)
       end
 
+      #Allow teachers to edit excursions (i.e. see them in the VE) of their private students
+      can [:edit,:update], Excursion do |e|
+        !e.owner.nil? and e.owner.role?("PrivateStudent") and !e.owner.user.private_teacher.nil? and e.owner.user.private_teacher.id==subject.actor_id
+      end
+
     end
 
     #Helpers
     can :show, Array do |arr|
       arr.all? { |el| can?(:show, el) }
+    end
+    can :edit, Array do |arr|
+      arr.all? { |el| can?(:edit, el) }
     end
     can :update, Array do |arr|
       arr.all? { |el| can?(:update, el) }

@@ -62,4 +62,14 @@
     <% end %>
     </tbody>
   </table>
+  <% if @excursions.length > 0 %>
+    <h2>Excursions</h2>
+    <div class="entities excursions">
+      <ul class="items">
+      <% @excursions.each do |excursion| %>
+        <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 </section>
