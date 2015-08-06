@@ -1,0 +1,315 @@
+.modal
+  select.language
+    width: 100%
+.modal-dialog
+  .modal-content
+    .modal-body
+      h6
+        font-size: 15px
+        i
+          color: green
+          margin: 0 5px
+      form
+        .step_label
+          margin: 10px 0
+        .alert-danger
+          padding: 15px
+          border-radius: $border-radius-base
+      hr
+        border-color: $gray-light
+#new_document
+  .modal-body
+    padding-top: 0
+    margin-top: -6px
+    .target_age
+      margin-bottom: 20px
+  .footer-form
+    margin: 15px -20px 0
+    padding: 0px 20px 0px
+    border-top: 1px solid $border-color
+
+//----------------------
+// Learning modal form
+//----------------------
+
+#myLearningModal,
+#myTeachingModal
+  .modal-dialog
+    width: 90% !important
+    height: 90% !important
+    margin-left: 5%
+    margin-top: 1%
+    @extend .modal-lg
+    .modal-content
+      height: 100%
+      width: 100%
+      .modal-header
+        height: 55px !important
+        padding: 5px 15px !important
+      .modal-body
+        overflow: hidden
+        height: 90%
+        padding: 0px
+        .evaluation_modalerror_msg
+          height: auto
+          width: 100%
+          padding: 20px
+          text-align: center
+          font-size: 1.1em
+  @media (max-width: 767px)
+    #learningModalLabel,
+    #teachingModalLabel
+      font-size: 1.3em
+#myModalLabel
+  font-size: 1.2em
+
+//----------------------
+// categories viewer
+//----------------------
+
+
+#categories_viewer_modal
+  .modal-header
+    i
+      padding: 0
+
+    .helpheader_modal
+      float: right
+      margin-top: 3px
+      position: relative
+      i
+        cursor: pointer
+        font-size: 20px
+        color: $gray
+
+      .popover
+        font-size: 14px
+        width: 300px !important
+      .popoverfix
+        width: 248px
+        margin-left: -15px
+        margin-bottom: -15px
+  .modal-body
+    p
+      width: 100%
+      padding: 3px 0
+    div.information
+      width: 25%
+      display: inline-block
+    #suggestedCategories
+      height: 30px
+      overflow: hidden
+      margin-bottom: 10px
+    li.tagit-choice
+      background: gray
+      @include border-top-radius (3px)
+      @include border-bottom-radius (3px)
+      color: #FFFFFF
+      cursor: pointer
+      display: block
+      float: left
+      margin-right: 5px
+      padding: 4px 8px
+      position: relative
+      a
+        display: block
+        float: left
+        color: $white
+        font-size: 14px
+        font-weight: lighter
+    .dropdown
+      width: 75%
+      i
+        float: right
+      ul
+        width: 100%
+        opacity: 0.9
+        height: 100px
+        overflow-y: auto
+        margin-top: 35px
+
+      button
+        width: 100%
+        float: right
+        text-align: left
+        border: 1px solid $gray
+      span
+        float: right
+        display: inline
+      b
+        display: inline
+        color: $gray-light
+        float: left
+      a
+        font-size: 14px
+        color: $white
+        cursor: pointer
+        padding-left: 10px
+  .modal-footer
+    button
+      color: white
+      background-color: $brand-primary
+
+//--------------------------
+// Add Classroom modal-form
+//--------------------------
+
+#CreateGroupModal
+  .modal-dialog
+    .modal-content
+      .modal-body
+        form
+          .number_of
+            width: 30%
+
+//--------------------------
+// Admin user modal
+//--------------------------
+
+#AdminUserModal
+  .modal-dialog
+    .modal-content
+      .modal-body
+        .admin_section
+          margin: 10px 0px 15px
+          min-height: 80px
+          hr
+            margin: 10px 0
+          .update_section
+            float: right
+
+//--------------------------
+// Add resource modal-form
+//--------------------------
+
+#AddResource
+  .modal-body
+    .layoutform
+      hr
+        margin: 5px 0
+      .panel-group
+        margin: 15px 0
+        .panel-default
+          border-color: $gray-light
+      .resource_info
+        border-radius: $border-radius-base
+        padding: 0 15px 30px 15px
+        section.authorship
+          input[type=checkbox]
+            display: block
+            opacity: 1
+            position: relative
+            float: left
+          label
+            margin-top: 1px
+            margin-bottom: 2px
+            width: auto
+          .resource_authorship_label
+            margin-bottom: 15px
+      .target_age_slider_label
+        margin-top: 20px
+        margin-bottom: 1px
+  .modal-footer
+    margin: 0
+
+
+//----------------------------------
+// workshops modal-forms
+//---------------------------------
+
+// MODAL ADD NEW ACTIVITY
+// --------------------------------------------------
+#WorkshopActivities
+  #new_wa_resource
+    input
+      &[type="text"]
+        @extend .form-control
+  .modal-dialog
+    width: 80%
+    margin: 50px 10%
+    @media (max-width: $screen-xs-max)
+      width: auto
+      margin: 10px
+  .modal-body
+    #workshop_activities_column1
+      width: 26%
+      display: block
+      float: left
+      @media (max-width: $screen-xs-max)
+        width: 19%
+      ul.nav-tabs
+        border-bottom: none
+        border-right: 1px solid #ddd
+        margin-bottom: 0
+        li
+          border-bottom: 1px solid transparent
+          a
+            border-radius: 0 !important
+            padding-top: 20px
+            padding-bottom: 20px
+            display: flex
+            &:hover,
+            &:focus
+              background-color: none !important
+              border-bottom: 1px solid transparent
+              border-right: 3px solid $brand-secundary
+            span,i
+              font-size: 16px
+              color: $gray-light
+              line-height: 1.3em
+              margin-right: 20px
+            i
+              margin-top: 0
+              &:hover
+                margin-top: 0
+        li.active
+          a
+            border-right: 3px solid $brand-primary
+            border-radius: 0 !important
+            span,i
+              color: $gray-dark
+
+    #workshop_activities_column2
+      width: 71%
+      margin-left: 3%
+      display: block
+      float: left
+      @media (max-width: $screen-xs-max)
+        width: 78%
+      .tab-content
+        h4
+          font-weight: normal
+        .active
+          margin-top: 0
+      form
+        margin: 0 !important
+        input[type="text"]
+          width: 80% !important
+  .modal-footer
+    clear: both
+
+
+// MODAL TAB CONTENT
+// --------------------------------------------------
+#workshop_activities_column2
+  h4
+    margin: 20px 0 20px
+    font-weight: 800
+    color: $brand-primary
+    font-size: 1.1em
+  p
+    width: 80%
+    margin: 20px 0
+
+// MODAL EDIT ELEMENT
+// --------------------------------------------------
+
+#WorkshopActivity .modal-body
+  height: 100%
+  overflow: auto
+
+// MODAL add resource gallery
+// --------------------------------------------------
+#AddResourceToWaResourcesGalleryModal
+  .modal-footer .btn
+    float: right

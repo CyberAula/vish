@@ -17,8 +17,8 @@ Vish::Application.routes.draw do
   match 'users/:id/categories' => 'users#categories'
   match 'users/:id/followers' => 'users#followers'
   match 'users/:id/followings' => 'users#followings'
-  match 'users/:id/promote' => 'users#promote'
-  match 'users/:id/degrade' => 'users#degrade'
+  match 'users/:id/edit_role' => 'users#edit_role'
+  match 'users/:id/update_role' => 'users#update_role'
   match 'users/:id/profile' => 'users#show'
 
   resource :session_locale
@@ -37,6 +37,7 @@ Vish::Application.routes.draw do
   
   #Download the user manual and count the number of downloads
   match 'user_manual' => 'static#download_user_manual'
+  match 'download_perm_request' => 'static#download_perm_request'
 
   #APIs
   match '/apis/search' => 'federated_search#search'
@@ -100,7 +101,7 @@ Vish::Application.routes.draw do
   #PDF to Excursion
   resources :pdfexes
 
-    #Categories
+  #Categories
   match '/categories/categorize' => 'categories#categorize', :via => :post
   match '/categories/edit_categories' => 'categories#edit_categories', :via => :post
   match '/categories/settings' => 'categories#settings', :via => :post
@@ -108,6 +109,25 @@ Vish::Application.routes.draw do
 
   #Catalogue
   match '/catalogue' => 'catalogue#index'
+
+  #ServiceRequets
+  resources :service_requests do
+    get 'attachment', :on => :member
+    get 'accept', :on => :member
+  end
+  namespace :service_request do
+    resources :private_student_groups do
+      get 'duplicated', :on => :collection
+    end
+  end
+
+  #PrivateStudentGroups
+  resources :private_student_groups do
+    get 'credentials', :on => :member
+  end
+
+  #service_permissions
+  match 'service_permissions/update_permissions' => 'service_permissions#update_permissions', :via => :post
 
   #Competitions
   match 'contest' => 'static#contest'
@@ -117,6 +137,7 @@ Vish::Application.routes.draw do
   match 'admin' => 'admin#index'
   match 'admin/closed_reports' => 'admin#closed_reports'
   match 'admin/users' => 'admin#users'
+  match 'admin/requests' => 'admin#requests'
 
   #Spam reports
   resources :spam_reports

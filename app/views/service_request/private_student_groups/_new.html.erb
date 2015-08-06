@@ -1,0 +1,42 @@
+<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only"><%=t("close")%></span>
+        </button>
+        <%= render partial: 'help/help_request_group_perm' %>
+        <h4 id=""><%= t('private_student.request_modal.title')%></h4>
+</div>
+
+<div class="modal-body" style="overflow:hidden;">
+  <p><%= t('private_student.request_modal.text1')%></p>
+  <h6><%= t('private_student.request_modal.subtitle')%></h6>
+	<%= form_for ServiceRequest::PrivateStudentGroup.new do |f| %>
+		<%= f.hidden_field :owner_id, :value => current_subject.actor_id %>
+    <div class="modal_errors"></div>
+    <div class="step_label"><span class="primary"><%= t('private_student.request_modal.step1T')%></span><%= t('private_student.request_modal.step1')%>
+      <a class="btn btn-default" href="/download_perm_request"><i class="fa fa-download"></i> <%= t('private_student.request_modal.download')%> </a>
+    </div>
+    <div class="step_label"><span class="primary"><%= t('private_student.request_modal.step2T')%></span><%= t('private_student.request_modal.step2')%></div>
+    <%= f.text_area :description, :class => "form-control" %>
+    <div class="step_label"><span class="primary"><%= t('private_student.request_modal.step3T')%></span><%= t('private_student.request_modal.step3')%></div>
+
+		<%= f.file_field :attachment %>
+    <%= f.submit :id=>"request_perm_create_groups",:class => "hidden" %>
+  <% end %>
+	<p></p>
+</div><!-- CIERRA BODY-->
+
+<div class="modal-footer">
+  <input type="button" id="fake_button" class="btn btn-primary form-sender" value="<%= t('private_student.request_modal.button')%>" data-loading-text="<%=t('button.sending')%>">
+</div>
+
+<script>
+    var submitButton = $("#new_service_request_private_student_group input[type='submit']");
+    var fakeButton = $("#fake_button");
+    $(fakeButton).click(function(event) {
+        if ($("#service_request_private_student_group_attachment").val() == "") {
+          $("#new_service_request_private_student_group .modal_errors").html("<div class='alert-danger'><%= t('private_student.errors.no_attach')%></div>");
+        } else {
+          $(submitButton).click();
+        }
+    });
+</script>

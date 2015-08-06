@@ -38,7 +38,7 @@ production:
     archive: ["Workshop"]
     catalogue: ["Excursion"]
     directory: ["Document","Webapp","Scormfile","Link","Embed"]
-  services: ["ARS","Catalogue","Competitions2013","ASearch","MediaConversion"]
+  services: ["ARS","Catalogue","Competitions2013","ASearch","MediaConversion", "PrivateStudentGroups"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   register_policy: "REGISTER_ONLY"
   advanced_search:

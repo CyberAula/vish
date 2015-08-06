@@ -25,6 +25,9 @@ class AdminController < ApplicationController
 		@users = User.all.select{|u| !u.name.nil?}.sort{|b,a| a.created_at <=> b.created_at}
 	end
 
+	def requests
+		@requests = ServiceRequest.all
+	end
 
 	private
 
