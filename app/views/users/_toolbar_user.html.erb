@@ -77,7 +77,7 @@
                 <%= token_tag nil %>
                 <%= hidden_field_tag :owner_id, profile_subject.actor_id %>
                 <%ServicePermission.all_keys.each do |key|%>
-                  <input type="checkbox" name="sp[]" <%="checked" if profile_subject.has_permission(key)%> value="<%=key%>"> <span class="lbl padding-4"><%=key%></span>
+                  <input type="checkbox" name="sp[]" <%="checked" if profile_subject.has_permission(key)%> value="<%=key%>"> <span class="lbl padding-4"><%=t("permissions." + key)%></span>
                 <%end%>
                 <input type="submit" class="btn btn-primary update_section" value="<%=t('button.update')%>">
               </form>

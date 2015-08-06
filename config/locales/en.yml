@@ -366,7 +366,7 @@ en:
     download_explanation: "Download this resource to your device"
     embed_explanation: "You can use this code to insert this resource in the excursion creator tool or in other website:"
     help:
-      create_group_title: "Modal para crear grupos de alumnos"
+      create_group_title: "Modal to create groups of pupils"
       create_group_p1: "Fill in the form with the name for the group and the number of pupils accounts"
       create_group_p2: "Once created you will have those accounts and will be able to download the credentials for your pupils to access the platform"
       info1_html: "Click on <b>documents</b>, <b>links</b> or <b>embed</b> option.<br>"
@@ -717,6 +717,8 @@ en:
     other: "organizers"
   overview_title: "ViSH Overview"
   password: "password"
+  permissions:
+    PrivateStudentGroups: "Create private groups of students"
   post:
     input: "Share your thoughts, links, videos and more, here!"
     search_name: "status update"
