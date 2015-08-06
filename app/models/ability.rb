@@ -109,9 +109,22 @@ class Ability
       can :destroy, PrivateStudentGroup do |psg|
         psg.owner_id == subject.actor_id
       end
+
+      #Allow teachers to see resources of the private students
+      can :show, ActivityObject do |ao|
+        ao.public_scope? or (!ao.owner.nil? and ao.owner.object_type=="Actor" and ao.owner.subject_type=="User" and ao.owner.role?("PrivateStudent") and !ao.owner.user.private_teacher.nil? and ao.owner.user.private_teacher.id==subject.actor_id)
+      end
+
+      can :show, [Document, Webapp, Scormfile, Link, Embed, Writing, Excursion, Workshop] do |o|
+        can?(:show,o.activity_object)
+      end
+
     end
 
     #Helpers
+    can :show, Array do |arr|
+      arr.all? { |el| can?(:show, el) }
+    end
     can :update, Array do |arr|
       arr.all? { |el| can?(:update, el) }
     end

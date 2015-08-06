@@ -12,7 +12,9 @@ class PrivateStudentGroupsController < ApplicationController
 
   def show
     @privateStudentGroup = PrivateStudentGroup.find(params[:id])
+    @excursions = @privateStudentGroup.excursions
     authorize! :show, @privateStudentGroup
+    authorize! :show, @excursions
   end
 
   def new

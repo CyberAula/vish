@@ -52,9 +52,21 @@ class PrivateStudentGroup < ActiveRecord::Base
     credentials = JSON.parse(self.users_data) rescue {}
   end
 
-  #define title method to use the same partial for breadcrumbs
   def title
     name
+  end
+
+  def resources(types=nil)
+    types = VishConfig.getAvailableResourceModels if types.nil?
+    self.private_students.map{|ps| ActivityObject.authored_by(ps).where(:object_type => types)}.flatten.map{|ao| ao.object}.compact
+  end
+
+  def excursions
+    resources("Excursion")
+  end
+
+  def public_excursions
+    resources("Excursion").reject{|e| e.draft}
   end
 
 
