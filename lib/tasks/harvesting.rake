@@ -149,10 +149,15 @@ namespace :harvesting do
       }
 
       eJson["description"] = ils["description"] unless ils["description"].blank?
-      unless avatarURL.blank? or !e.thumbnail_url.nil?
-        newAvatarURL = downloadAndUploadAvatar(avatarURL,owner)
-        eJson["avatar"] = newAvatarURL unless newAvatarURL.blank?
+      if e.thumbnail_url.nil?
+        unless avatarURL.blank?
+          newAvatarURL = downloadAndUploadAvatar(avatarURL,owner)
+          eJson["avatar"] = newAvatarURL unless newAvatarURL.blank?
+        end
+      else
+        eJson["avatar"] = e.thumbnail_url
       end
+
       eJson["tags"] = ils["ils_keywords"] unless ils["ils_keywords"].nil? or !ils["ils_keywords"].is_a? Array or !e.tag_list.blank?
       eJson["language"] = language unless language.nil?
       unless ageRanges.nil?
