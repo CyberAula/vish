@@ -385,78 +385,6 @@ ul.workshop_activities_list_edit
   @include well
 
 
-// MODAL ADD NEW ACTIVITY
-// --------------------------------------------------
-#WorkshopActivities
-  #new_wa_resource
-    input
-      &[type="text"]
-        @extend .form-control
-  .modal-dialog
-    width: 80%
-    margin: 50px 10%
-    @media (max-width: $screen-xs-max)
-      width: auto
-      margin: 10px
-  .modal-body
-    #workshop_activities_column1
-      width: 26%
-      display: block
-      float: left
-      @media (max-width: $screen-xs-max)
-        width: 19%
-      ul.nav-tabs
-        border-bottom: none
-        border-right: 1px solid #ddd
-        margin-bottom: 0
-        li
-          border-bottom: 1px solid transparent
-          a
-            border-radius: 0 !important
-            padding-top: 20px
-            padding-bottom: 20px
-            display: flex
-            &:hover,
-            &:focus
-              background-color: none !important
-              border-bottom: 1px solid transparent
-              border-right: 3px solid $brand-secundary
-            span,i
-              font-size: 16px
-              color: $gray-light
-              line-height: 1.3em
-              margin-right: 20px
-            i
-              margin-top: 0
-              &:hover
-                margin-top: 0
-        li.active
-          a
-            border-right: 3px solid $brand-primary
-            border-radius: 0 !important
-            span,i
-              color: $gray-dark
-
-    #workshop_activities_column2
-      width: 71%
-      margin-left: 3%
-      display: block
-      float: left
-      @media (max-width: $screen-xs-max)
-        width: 78%
-      .tab-content
-        h4
-          font-weight: normal
-        .active
-          margin-top: 0
-      form
-        margin: 0 !important
-        input[type="text"]
-          width: 80% !important
-  .modal-footer
-    clear: both
-
-
 // Assignments form
 
 .wa_assignment_form
@@ -483,31 +411,6 @@ ul.workshop_activities_list_edit
     width: 100%
     margin-top: 10px
 
-
-// MODAL TAB CONTENT
-// --------------------------------------------------
-#workshop_activities_column2
-  h4
-    margin: 20px 0 20px
-    font-weight: 800
-    color: $brand-primary
-    font-size: 1.1em
-  p
-    width: 80%
-    margin: 20px 0
-    
-// MODAL EDIT ELEMENT
-// --------------------------------------------------
-
-#WorkshopActivity .modal-body
-  height: 100%
-  overflow: auto
-
-// MODAL add resource gallery
-// --------------------------------------------------
-#AddResourceToWaResourcesGalleryModal
-  .modal-footer .btn
-    float: right
 
 .css_reset
   display: block

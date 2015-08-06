@@ -1,0 +1,55 @@
+<% uL = @requestslength %>
+<% if uL === 0 %>
+  <%= render '/layouts/emptytable', :fullmessage => "No hay requests" %>
+<% else %>
+  <table id="user_table" cellspacing='0' class="vish_admin_table">
+    <thead>
+      <tr>
+        <th class="admin-user-user"><%=t('admin.request').capitalize%></th>
+        <th class="admin-status"><%=t('admin.status').capitalize%></th>
+        <th class="admin-user-user"><%=t('user.name').capitalize%></th>
+        <th class="admin-date-user"><%=t('date_name').capitalize%></th>
+        <th class="admin-accept"></th>
+        <th class="admin-icontrash"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @requests.each do |request| %>
+      <tr>
+        <td class="admin-request-request">
+          <%= link_to(t('request.' + request.readable_type), url_for(request), :title => t("admin.request_help"), :remote=>true, :data => {:toggle=>"modal", :target=>"#AdminRequestPermModal"}) %>
+        </td>
+        <td class="admin-status-resquest">
+          <span><%=request.status%></span>
+        </td>
+        <td class="admin-user-request">
+          <a target="_blank" href="<%=url_for(request.owner.subject)%>"><span><%=request.owner.name%></span></a>
+        </td>
+        <td class="admin-date-request">
+          <span><%=request.created_at%></span>
+        </td>
+        <td class="admin-accept">
+        	<%if can?(:update, request) and request.pending? %>
+            <%= link_to(raw("<i class='fa fa-check-square-o'></i> "), accept_service_request_path(request), :confirm => t("are_you_sure"))%>
+          <%end%>
+        </td>
+        <td class="admin-icontrash">
+          <%if can?(:delete, request) %>
+            <%= link_to(raw("<i class='fa fa-trash-o'></i> "), url_for(request), :confirm => t("are_you_sure"), :method => "delete")%>
+          <%end%>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<div id="AdminRequestPermModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+
+    </div><!-- /MODAL-CONTENT -->
+  </div><!-- /MODAL-DIALOG -->
+</div><!-- /MODAL -->
