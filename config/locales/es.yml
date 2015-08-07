@@ -744,6 +744,9 @@ es:
       step3: "Escanea (o fotografía) y sube el documento firmado"
       step3T: "Paso 3 "
       subtitle: "Solicita tu permiso para crear proyectos de Aula"
+    tabs:
+      pupils_tab: "Alumnos"
+      excursions_tab: "Excursiones"
   profile:
     change_role: "Cambiar rol"
     edit: "Editar perfil"

@@ -45,31 +45,56 @@
       </div>
     </div>
   </div>
-  <table id="student_table" cellspacing='0' class="table table-striped">
-    <thead>
-      <tr>
-        <th class="student_name"><%= t('private_student.account_name').capitalize %></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @privateStudentGroup.private_students.each do |user| %>
-      <tr>
-         <td class="student_name">
-          <i class="fa fa-user"></i>
-          <a href="<%=user_path(user)%>" target="_blank"><%=user.name%></a>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-  <% if @excursions.length > 0 %>
-    <h2>Excursions</h2>
-    <div class="entities excursions">
-      <ul class="items">
-      <% @excursions.each do |excursion| %>
-        <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+
+  <section class="info-profile">
+
+    <ul class="nav nav-tabs">     
+          <!--excursions-->
+          <li class="active">
+            <a id="pupils_tab" href="#tabPupils" data-toggle="tab">
+              <i class="fa fa-book"></i>
+              <span class=" hidden-xs"><%=t('private_student.tabs.pupils_tab')%></span>
+            </a>
+          </li>
+          <li class="">
+            <a id="excursions_tab" href="#tabExcursions" data-toggle="tab">
+              <i class="fa fa-book"></i>
+              <span class=" hidden-xs"><%=t('private_student.tabs.excursions_tab')%></span>
+            </a>
+          </li>
+    </ul>
+
+
+<div class="tab-content">
+  <div class="tab-pane active" id="tabPupils">
+
+    <table id="student_table" cellspacing='0' class="table table-striped">    
+      <tbody>
+      <% @privateStudentGroup.private_students.each do |user| %>
+        <tr>
+           <td class="student_name">
+            <i class="fa fa-user"></i>
+            <a href="<%=user_path(user)%>" target="_blank"><%=user.name%></a>
+          </td>
+        </tr>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="tab-pane" id="tabExcursions">
+    <% if @excursions.length > 0 %>    
+      <div class="entities excursions">
+        <ul class="items">
+        <% @excursions.each do |excursion| %>
+          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
 </section>
