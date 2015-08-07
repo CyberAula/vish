@@ -1,14 +1,14 @@
 <!--activity-->
 <div class="activity">
   <ul class="nav nav-tabs">
-    <% if @excursion.allow_comment %>
+   
     <li class="active">
       <a href="#comment1" data-toggle="tab">
         <i class="fa fa-comment-o"></i>
         <span class=" hidden-xs"><%=t('comment.other')%></span>
       </a>
     </li>
-    <% end %>
+
     <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
       <!-- Disable evaluations if LOEP is not enabled -->
       <li>
@@ -27,13 +27,18 @@
     </li>
 
   </ul>
- <% if @excursion.allow_comment %>
+ 
   <div class="tab-content">
+  <% if @excursion.allow_comment %>
     <div class="tab-pane active comments-show" id="comment1">
       <div id="comments" class="comments">
         <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
         <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
       </div>
+    </div>
+    <% else %>
+    <div class="tab-pane active comments-not-shown">
+    <p><span><%=t('excursion.disabled_comments')%></span></p>
     </div>
   <%end%>
     <div class="tab-pane evaluate-show" id="evaluation1">
