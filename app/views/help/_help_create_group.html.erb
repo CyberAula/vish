@@ -1,0 +1,21 @@
+<span class="helpheader">   
+  <i class="fa fa-question-circle" id="helpcreategroupid" data-toggle="popover"  data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.create_group_title')%>" href='#' value="" ></i>
+  <div id="contentcreategroupid" style="display: none">
+    <div class="popover-body">
+      <p> <%= t('document.help.create_group_p1')%></p><p><%= t('document.help.create_group_p2')%> </p>
+    </div>
+    <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
+  </div>
+</span>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  $('#helpcreategroupid').popover({
+    html : true,
+    content: function() {
+      return $('#contentcreategroupid').html();
+    }
+  });
+});
+</script>
+

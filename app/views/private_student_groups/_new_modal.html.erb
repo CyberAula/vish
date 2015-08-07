@@ -1,0 +1,52 @@
+<div id="CreateGroupModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only"><%=t("close")%></span>
+          </button>
+          <%= render partial: 'help/help_create_group' %>
+          <h4>
+            <%= t('private_student.form_title') %>
+          </h4>
+        </div>
+
+        <div class="modal-body">
+          <%= form_for PrivateStudentGroup.new, :html => { :class => "new_private_student_group" }, :remote => false do |f| %>
+              <div class="modal_errors">
+
+              </div>
+              <%= f.hidden_field :owner_id, :value => current_subject.actor_id %>
+              <%= f.label :title, t("private_student.group_name")%>
+              <%= f.text_field :name, :class => "form-control" %>
+              <%= f.label :title, t("private_student.learner_number")%>
+              <input type="number" class="form-control number_of" name="n" min="1" max="100" value="25"/>
+
+            <%= f.submit t('private_student.form_button') , :class => "hidden", :disabled => false %>
+          <% end %>
+
+        </div>
+
+        <div class="modal-footer">
+          <!--<button type="button" class="btn btn-primary" data-dismiss="modal"><%=t("close")%></button>-->
+          <input type="button" id="fake_create_group_button" class="btn btn-primary form-sender" value="<%= t('private_student.form_button')%>" data-loading-text="<%=t('button.sending')%>">
+        </div>
+
+      </div>
+    </div>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    var submitButton = $("#new_private_student_group input[type='submit']");
+    var fakeButton = $("#fake_create_group_button");
+    $(fakeButton).click(function(event) {
+        if ($("#private_student_group_name").val() == "") {
+          $("#new_private_student_group .modal_errors").html("<div class='alert-danger'><%= t('private_student.errors.no_name')%></div>");
+        } else {
+          $(submitButton).click();
+        }
+    });
+  });
+</script>

@@ -1,0 +1,40 @@
+<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only"><%=t("close")%></span>
+        </button>
+        <%= render partial: 'help/help_request_group_perm' %>
+        <h4 id=""><%= t('admin.request_modal.title')%></h4>
+</div>
+
+<div class="modal-body" style="overflow:hidden;">
+  	<label><%= t('admin.request_modal.type')%></label>
+    <p><%= t('request.' + @request.readable_type) %></p>
+
+    <label><%=t('admin.request_modal.requested_by').capitalize%></label>
+    <a target="_blank" href="<%=url_for(@request.owner.subject)%>"><span><%=@request.owner.name%></span></a>
+
+    <label><%= t('admin.request_modal.description')%></label>
+  	<% if @request.description!="" %>
+    <p> <%=@request.description%></p>
+    <%else%>
+     <p><%=t('admin.request_modal.description_not')%></p>
+   <% end %>
+
+    <label> <%=t('admin.request_modal.attachment')%> </label>
+	  <% if @request.attachment.exists? %>
+	    <a href="<%=@request.attachment.url%>" target="_blank"><%= @request.attachment_file_name %></a>
+	  <%else%>
+	     <p><%=t('admin.request_modal.attachment_not')%></p>
+	  <% end %>
+    <hr>
+    <!--<label><%#= t('admin.status')%></label>-->
+    <% if @request.status=="Accepted" %>
+      <i class="fa fa-check"></i> <%=@request.status%>
+    <%else%>
+    <i class="fa fa-clock-o"></i> <%=@request.status%>
+    <% end %>
+</div><!-- CIERRA BODY-->
+
+<!--<div class="modal-footer">
+	<button type="button" class="btn btn-primary" data-dismiss="modal"><%=t("close")%></buttolabel>
+</div>-->

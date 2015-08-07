@@ -1,0 +1,19 @@
+<span class="helpheader">   
+  <i class="fa fa-question-circle" id="helprequestpermid" data-toggle="popover"  data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.req')%>" href='#' value="" ></i>
+  <div id="contenthelprequestpermid" style="display: none">
+    <div class="popover-body">
+      <p> <%= t('document.help.req1_html')%></p><p><%= t('document.help.req2_html')%> </p><p><%= t('document.help.req3_html')%> </p>
+    </div>
+    <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
+  </div>
+</span>
+
+<script>
+  $('#helprequestpermid').popover({
+    html : true,
+    content: function() {
+      return $('#contenthelprequestpermid').html();
+    }
+  });
+</script>
+

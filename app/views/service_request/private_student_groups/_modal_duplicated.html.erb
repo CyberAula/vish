@@ -1,0 +1,20 @@
+<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <%= render partial: 'help/help_request_group_perm' %>
+        <h4 id=""><%= t('private_student.request_modal.title_duplicated')%></h4>
+</div>
+
+<div class="modal-body" style="overflow:hidden;">
+	<p><%= t('private_student.request_modal.text1')%></p>
+  <h6><i class="fa fa-check"></i><%= t('private_student.request_modal.body_duplicated')%></h6>
+
+	<p><%= t('private_student.request_modal.contact')%> <%=Vish::Application.config.APP_CONFIG["main_mail"]%>
+
+  </p>
+</div><!-- CIERRA BODY-->
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" data-dismiss="modal"><%=t("close")%></button>
+</div>

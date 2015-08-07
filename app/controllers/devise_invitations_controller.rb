@@ -10,13 +10,7 @@ class DeviseInvitationsController < Devise::InvitationsController
 	def new
 		build_resource
 		respond_to do |format|
-			format.html {
-				if request.xhr?
-					render :new, :layout => false
-				else
-					render :new
-				end
-			}
+			format.js
 		end	
 	end
 

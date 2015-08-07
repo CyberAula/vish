@@ -1,0 +1,15 @@
+<%= render :partial => 'application/breadcrumb_path', :locals  => { :projectscrumb=>true, :path => [] } %>
+
+<div id="classrooms">
+  <ul class="items">
+    <a href="#CreateGroupModal" id="showModalGroup" data-toggle="modal">
+    	<%= render partial: 'private_student_groups/student_group_add' %>
+    </a>
+    <% @privateStudentGroups.each do |psg| %>
+      <%= render partial: 'private_student_groups/student_group' , :locals => { :psg => psg } %>
+    <% end %>
+  </ul>
+</div>
+
+
+<%= render partial: 'private_student_groups/new_modal' %>
