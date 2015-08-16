@@ -531,6 +531,7 @@ en:
     all: "all"
     description: "description"
     detail: "Details"
+    disabled_comments: "Comments are disabled for this excursion."
     download_scorm: "A SCORM package is a collection of files which are packaged according to an agreed standard for learning objects. SCORM packages are zip files that can be integrated in any LMS (Learning Management System) that supports the standard (Moodle, Blackboard, …) and that can be used for presenting multimedia content and as assessment tools. Thus, you can integrate your Virtual Excursion in Moodle and other LMSs by downloading it as SCORM."
     clone:
       confirm: "This will clone this excursion to your own repository and will open it for editing"
