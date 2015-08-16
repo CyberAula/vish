@@ -31,7 +31,7 @@ class VishConfig
   end
 
   def self.getAllServices
-    ["ARS","Catalogue","Competitions2013","ASearch","MediaConversion"]
+    ["ARS","Catalogue","Competitions2013","ASearch","MediaConversion","PrivateStudentGroups"]
   end
 
   def self.getAvailableMainModels(options={})
@@ -113,6 +113,23 @@ class VishConfig
       getInstances(directoryModels)
     else
       directoryModels
+    end
+  end
+
+  def self.getArchiveModels(options={})
+    archiveModels = []
+    if Vish::Application.config.APP_CONFIG["models"].nil? or Vish::Application.config.APP_CONFIG["models"]["archive"].nil?
+      archiveModels = getResourceModels
+    else
+      archiveModels = (Vish::Application.config.APP_CONFIG["models"]["archive"] & getResourceModels)
+    end
+
+    archiveModels = processAlias(archiveModels,options)
+
+    if options[:return_instances]
+      getInstances(archiveModels)
+    else
+      archiveModels
     end
   end
 

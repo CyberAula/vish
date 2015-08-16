@@ -1,0 +1,108 @@
+#student_group
+  .category_info
+    position: relative
+    .information
+      .briefing
+        header
+          .icontitle
+            min-height: 80px
+
+    .left_info
+      width: 16%
+      height: 150px
+      float: left
+      @media (max-width: $screen-xs-max)
+        width: 20%
+      .corner-item
+        position: absolute
+        top: 0
+        left: 0
+        width: 72px
+        height: 72px
+        z-index: 2
+        .corner-item2
+          position: absolute
+          height: 72px
+          width: 72px
+          left: 0px
+          top: 0px
+          z-index: 4
+          -webkit-border-top-left-radius: 5px
+          -moz-border-radius-topleft: 5px
+          border-top-left-radius: 5px
+          overflow: hidden
+          .corner-color
+            position: absolute
+            width: 0
+            height: 0
+            border-style: solid
+            border-width: 72px 72px 0 0
+            z-index: 5
+            border-color: $brand-primary transparent transparent transparent
+          i
+            position: absolute
+            top: 9px
+            left: 9px
+            color: $white
+            font-size: 22px
+            z-index: 6
+            height: 26px
+            width: 26px
+        .corner-background
+          position: absolute
+          width: 0
+          height: 0
+          border-style: solid
+          border-width: 72px 72px 0 0
+          border-color: $body-bg transparent transparent transparent
+          z-index: 3
+          top: -5px
+          left: -5px
+
+      .container-img
+        position: relative
+        width: 100%
+        overflow: hidden
+        height: 122px
+        .img-box
+          position: absolute
+          top: 0
+          bottom: 0
+          left: 0
+          right: 0
+          overflow: hidden
+          text-align: center
+          @media (max-width: $screen-xs-max)
+            display: none
+          @include border-top-radius($border-radius-base)
+          background-repeat: no-repeat
+          background-position: center center
+          background-attachment: scroll
+          background-size: cover
+          border: none
+          i
+            font-size: 70px
+            color: $brand-primary !important
+            padding-top: 39px
+            &:hover
+              text-decoration: none
+
+            @media (max-width: 480px)
+              font-size: 44px
+              color: #008FD1
+              padding-top: 14px
+  #student_table
+    tbody
+      tr:first-child 
+        td
+          border-top: none
+      a
+        color: $gray-dark
+        &:hover
+          color: $brand-primary
+      i
+        color: $gray-light
+        margin-right: 5px
+  #tabExcursions
+    ul.items
+      margin: 20px 0 

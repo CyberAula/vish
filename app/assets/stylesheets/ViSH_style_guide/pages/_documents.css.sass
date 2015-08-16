@@ -334,9 +334,6 @@ input.age-slider
   border: none !important
   color: $white
 
-.modal
-  select.language
-    width: 100%
 
 .slider-track
   background-color: lighten($brand-primary, 30%)
@@ -384,17 +381,6 @@ input.age-slider
         position: relative
         float: left
 
-#new_document
-  .modal-body
-    padding-top: 0
-    margin-top: -6px
-    .target_age
-      margin-bottom: 20px
-  .footer-form
-    margin: 15px -20px 0
-    padding: 0px 20px 0px
-    border-top: 1px solid $border-color
-
 .new_file_avatar_label
 .disabled
   color: $gray-light !important
@@ -402,9 +388,9 @@ input.age-slider
 input.new_file_avatar
   margin-bottom: 10px
 
-
 textarea.form-control
   min-height: 100px
+  height: 60px
 
 #new_document-up,
 #new_event-up,
@@ -433,40 +419,6 @@ textarea.form-control
   section.target_age
     margin-bottom: 30px
 
-//--------------------------
-//Add resource modal-form
-//--------------------------
-
-#AddResource
-  .modal-body
-    .layoutform
-      hr
-        margin: 5px 0
-      .panel-group
-        margin: 15px 0
-        .panel-default
-          border-color: $gray-light
-      .resource_info
-        border-radius: $border-radius-base
-        padding: 0 15px 30px 15px
-        section.authorship
-          input[type=checkbox]
-            display: block
-            opacity: 1
-            position: relative
-            float: left
-          label
-            margin-top: 1px
-            margin-bottom: 2px
-            width: auto
-          .resource_authorship_label
-            margin-bottom: 15px
-      .target_age_slider_label
-        margin-top: 20px
-        margin-bottom: 1px
-  .modal-footer
-    margin: 0
-  
 
 div.resource_common_fields_form
   section.avatar

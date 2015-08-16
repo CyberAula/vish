@@ -1,9 +1,12 @@
-<% categorycrumb ||= false %> 
-
+<% categorycrumb ||= false %>
+<% projectscrumb ||= false %>
 
 <ol class="breadcrumb">
   <% if categorycrumb %>
     <li><a href="<%=user_url(path.first.owner.user)%>?tab=categories"><i class="fa fa-th-large"></i><%=t('document.help.categories1_html')%></a></li>
+  <% end %>
+  <% if projectscrumb %>
+    <li><a href="<%=private_student_groups_path%>"><i class="fa fa-group"></i><%=t('private_student.request')%></a></li>
   <% end %>
 
   <% path.each_with_index do |objectParent,index| %>

@@ -55,8 +55,8 @@ class SearchController < ApplicationController
     page =  ( mode == :quick ? 1 : params[:page] )
     limit = ( mode == :quick ? 7 : RESULTS_SEARCH_PER_PAGE )
 
-    if !params[:sort_by] && (params[:catalogue] || params[:directory])
-      if (params[:catalogue] && VishConfig.getCatalogueModels() === ["Excursion"]) || (params[:directory] && VishConfig.getDirectoryModels() === ["Excursion"])
+    if !params[:sort_by] && (params[:catalogue] || params[:directory] || params[:archive])
+      if (params[:catalogue] && VishConfig.getCatalogueModels() === ["Excursion"]) || (params[:directory] && VishConfig.getDirectoryModels() === ["Excursion"]) || (params[:archive] && VishConfig.getArchiveModels() === ["Excursion"])
         params[:sort_by] = "quality"
       else
         params[:sort_by] = "popularity"
@@ -111,6 +111,8 @@ class SearchController < ApplicationController
         params[:type] = VishConfig.getCatalogueModels().join(",")
       elsif params[:directory]
         params[:type] = VishConfig.getDirectoryModels().join(",")
+      elsif params[:archive]
+        params[:type] = VishConfig.getArchiveModels().join(",")
       end
     end
 
