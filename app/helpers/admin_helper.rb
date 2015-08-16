@@ -24,12 +24,16 @@ module AdminHelper
 		"/spam_reports/"+report.id.to_s+"/close"
 	end
 
-	def promote_user_path(subject)
-		user_path(subject) + "/promote"
+	def change_role_user_path(subject)
+		user_path(subject) + "/edit_role"
 	end
 
-	def degrade_user_path(subject)
-		user_path(subject) + "/degrade"
+	def update_role_user_path(subject)
+		user_path(subject) + "/update_role"
+	end
+
+	def admin_requests_path
+		admin_path+ "/requests"
 	end
 
 end

@@ -1,0 +1,11 @@
+<h1><%=t('profile.edit_role')%></h1>
+<br/>
+<form action=<%=update_role_user_path(profile_subject)%> method="post">
+	<%= token_tag nil %>
+	<p><label><%=t('actor.name')%>:&nbsp;&nbsp;</label><input name="name" value="<%=@user.name%>" disabled="true"></p>
+	<p><label><%=t('user.role').capitalize%>:&nbsp;&nbsp;</label><%= select_tag(:role, user_roles_options_for_select(@user.role.id))%></p>
+	<p>
+		<%=link_to t('cancel'), user_path(profile_subject), :class=>"btn btn-default"%>
+		<input type="submit" class="btn btn-primary" value="<%=t('button.update')%>">
+	</p>
+</form>

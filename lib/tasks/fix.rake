@@ -650,7 +650,6 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
-
   #Usage
   #Development:   bundle exec rake fix:categories_scope
   #In production: bundle exec rake fix:categories_scope RAILS_ENV=production
@@ -663,6 +662,7 @@ namespace :fix do
     end
     Category.record_timestamps = true
   end
+
 
   ####################
   #Task Utils

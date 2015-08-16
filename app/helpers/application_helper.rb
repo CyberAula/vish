@@ -57,6 +57,14 @@ module ApplicationHelper
 		License.all.select{|l| l.public? }.map{|l| [l.name,l.key] }
 	end
 
+	def user_roles_options_for_select(selected="")
+		options_for_select(user_roles,selected)
+	end
+
+	def user_roles
+		Role.all.map{|r| [r.readable_name, r.id] }
+	end
+
 	#Configuration
 	def available_models
 		VishConfig.getAvailableMainModels
@@ -76,6 +84,10 @@ module ApplicationHelper
 
 	def directory_models
 		VishConfig.getDirectoryModels
+	end
+
+	def archive_models
+		VishConfig.getArchiveModels
 	end
 
 	def available_services

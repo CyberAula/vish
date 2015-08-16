@@ -13,11 +13,11 @@ class QuizSession < ActiveRecord::Base
   acts_as_xlsx
 
   def quizJSON(options=nil)
-  	self.quiz
+    self.quiz
   end
 
   def results
-  	self.quiz_answers
+    self.quiz_answers
   end
 
   def self.root_url

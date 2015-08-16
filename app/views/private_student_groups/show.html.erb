@@ -1,0 +1,100 @@
+<%= render :partial => 'application/breadcrumb_path', :locals  => { :projectscrumb=>true, :path => [@privateStudentGroup] } %>
+
+<section id="student_group">
+  <div class="category_info">
+    <div class="left_info">
+      <!-- corner -->
+      <div class="corner-item">
+        <div class="corner-item2">
+          <div class="corner-color"></div>
+          <i class="fa fa-group"></i>
+        </div>
+        <div class="corner-background"></div>
+      </div>
+
+      <div class="container-img">
+
+        <div class="img-box"><i class="fa fa-group"></i></div>
+
+      </div>
+    </div>
+
+    <div class="information">
+      <div class="briefing">
+        <header>
+          <div class="icontitle">
+            <!--ayuda-->
+            <%= render partial: 'help/help_private_student' %>
+            <!--titulo-->
+            <h2><%= @privateStudentGroup.title %></h2>
+            <div class="author">
+							<span class="by"><%= t('by') %></span> <%= link_to @privateStudentGroup.private_teacher.name, @privateStudentGroup.private_teacher.subject %>
+							Autor
+						</div>
+          </div>
+        </header>
+        <div class="toolbar-profile">
+          <div class="btn-group js_update_profile_info">
+            <!--remove-->
+						<a class="btn btn-default btn-for-categorize" href="<%=credentials_private_student_group_path(@privateStudentGroup)%>"><i class='fa fa-download'></i>Download credentials</a>
+          <% if can?(:destroy, @privateStudentGroup) %>
+            <%= link_to(raw("<i class='fa fa-trash'></i>") + t('excursion.actions.delete') , @privateStudentGroup, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn btn-default" )%>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="info-profile">
+
+    <ul class="nav nav-tabs">     
+          <!--excursions-->
+          <li class="active">
+            <a id="pupils_tab" href="#tabPupils" data-toggle="tab">
+              <i class="fa fa-book"></i>
+              <span class=" hidden-xs"><%=t('private_student.tabs.pupils_tab')%></span>
+            </a>
+          </li>
+          <li class="">
+            <a id="excursions_tab" href="#tabExcursions" data-toggle="tab">
+              <i class="fa fa-book"></i>
+              <span class=" hidden-xs"><%=t('private_student.tabs.excursions_tab')%></span>
+            </a>
+          </li>
+    </ul>
+
+
+<div class="tab-content">
+  <div class="tab-pane active" id="tabPupils">
+
+    <table id="student_table" cellspacing='0' class="table table-striped">    
+      <tbody>
+      <% @privateStudentGroup.private_students.each do |user| %>
+        <tr>
+           <td class="student_name">
+            <i class="fa fa-user"></i>
+            <a href="<%=user_path(user)%>" target="_blank"><%=user.name%></a>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="tab-pane" id="tabExcursions">
+    <% if @excursions.length > 0 %>    
+      <div class="entities excursions">
+        <ul class="items">
+        <% @excursions.each do |excursion| %>
+          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+</section>

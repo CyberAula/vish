@@ -7,6 +7,8 @@
     <%=t('catalogue.title') %>
   <% elsif params[:directory] %>
     <%=t('catalogue.title_directory') %>
+  <% elsif params[:archive] %>
+    <%=t('catalogue.title_archive') %>
   <% else %>
     <% searchMode = true %>
     <%= t("site.current.search") %>
@@ -27,11 +29,13 @@
           <li><h3><i class="fa fa-tags"></i><%=t('catalogue.title')%></h3></li>
         <% elsif params[:directory] %>
           <li><h3><i class="fa fa-tags"></i><%=t('catalogue.title_directory')%></h3></li>
+        <% elsif params[:archive] %>
+          <li><h3><i class="fa fa-tags"></i><%=t('catalogue.title_archive')%></h3></li>
         <% else %>
           <li><h3><i class="fa fa-search"></i><%= t("search.title")%></h3></li>
         <% end %>
 
-        <div filter_type="category_ids" directory_filter="true" catalogue_filter="true" style="display:none" class="filter_set">
+        <div filter_type="category_ids" archive_filter="true" directory_filter="true" catalogue_filter="true" style="display:none" class="filter_set">
           <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
@@ -69,7 +73,7 @@
           </ul>
         </div>
 
-        <div filter_type="age_type" opens_with="Learning_object" directory_filter="true" catalogue_filter="true" style="display:none" class="filter_set">
+        <div filter_type="age_type" opens_with="Learning_object" archive_filter="true" directory_filter="true" catalogue_filter="true" style="display:none" class="filter_set">
           <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
@@ -95,7 +99,7 @@
             </ul>
         </div>
 
-        <div filter_type="language" style="display:none" search_filter="true" directory_filter="true" catalogue_filter="true" class="filter_set">
+        <div filter_type="language" style="display:none" search_filter="true" archive_filter="true" directory_filter="true" catalogue_filter="true" class="filter_set">
           <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
@@ -108,7 +112,7 @@
           </ul>
         </div>
 
-        <div filter_type="tags" search_filter="true" directory_filter="true" catalogue_filter="true" style="display:none" class="filter_set">
+        <div filter_type="tags" search_filter="true" archive_filter="true" directory_filter="true" catalogue_filter="true" style="display:none" class="filter_set">
           <button href="#" status="showMore" class="showMoreButton btn-openclose opened_button">
             <a>-</a>
           </button>
@@ -246,7 +250,8 @@
     "sort_by_disable_tooltip": "<%=t('search.titles.tooltip')%>",
     "only_for_excursion_tooltip": "<%=t('search.titles.tooltip2')%>",
     "excursionsInCatalogue": <%= VishConfig.getCatalogueModels().include? "Excursion" %>,
-    "excursionsInDirectory": <%= VishConfig.getDirectoryModels().include? "Excursion" %>
+    "excursionsInDirectory": <%= VishConfig.getDirectoryModels().include? "Excursion" %>,
+    "excursionsInArchive": <%= VishConfig.getArchiveModels().include? "Excursion" %>
   });
 
   <% if searchTerms %>

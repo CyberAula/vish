@@ -291,8 +291,8 @@
       <!--followers-->
       <li class="follow-tab <%= params[:tab]=='followers' ? 'active':''%>">
         <a id="followers_tab" href="#tab5" data-toggle="tab">
-          <span><%= profile_subject.followers.count.to_s %></span>
-          <i class="fa fa-group fa-fw"></i>
+          <span><strong><%= profile_subject.followers.count.to_s %></strong></span>
+          <!--<i class="fa fa-group fa-fw"></i>-->
           <span class="hidden-xs"><%= t('follow.followers') %></span>
         </a>
       </li>
@@ -300,8 +300,8 @@
       <!--followings-->
       <li class="follow-tab <%= params[:tab]=='followings' ? 'active':''%>">
         <a id="followings_tab" href="#tab6" data-toggle="tab">
-          <span><%= profile_subject.following_actor_objects.includes(:actor).count.to_s %></span>
-          <i class="fa fa-group fa-fw"></i>
+          <span><strong><%= profile_subject.following_actor_objects.includes(:actor).count.to_s %></strong></span>
+          <!--<i class="fa fa-group fa-fw"></i>-->
           <span class="hidden-xs"><%= t('follow.followings') %></span>
         </a>
       </li>
@@ -348,7 +348,7 @@
           <div id="resources_tab_ready" class="resources">
             <% if params[:tab] == 'resources'%>
               <% default_sort_by = profile_subject_is_current? ? "updated_at" : "popularity"%>
-              <%= render partial: 'repositories/profile_resources_list', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>      
+              <%= render partial: 'repositories/profile_resources_list', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||default_sort_by}%>
             <%end%>
           </div>
 

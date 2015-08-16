@@ -121,6 +121,12 @@ en:
   admin:
     close_report: "Close report"
     closed_reports: "Closed reports"
+    modal:
+      change_role: "User role in the platform"
+      delete_user: "Delete user"
+      manage_user_button: "Manage"
+      permissions: "Permissions"
+      title: "Manage user"
     menu_entry: "Admin Panel"
     noitems: "There are no items."
     noreports: "There are no reports."
@@ -131,6 +137,18 @@ en:
     pending_reports: "Pending reports"
     reporter: "Reporter"
     reports: "Reports"
+    request: "Request"
+    request_help: "Click to see the full request in a modal"
+    request_modal:
+      attachment: "attachment"
+      attachment_not: "This request does not have attachment"
+      description: "Description"
+      description_not: "This request does not have description"
+      requested_by: "requested by"
+      title: "Show request"
+      type: "Request type"
+    requests: "Requests"
+    status: "State"
     resque: "Resque"
     title: "ViSH Administration Panel"
     users: "Users Administration"
@@ -191,6 +209,7 @@ en:
         teaching: "teaching"
     title: "Catalogue"
     title_directory: "Resources"
+    title_archive: "Workshops"
   category:
     belongs_to: "Belongs to"
     cat_add_select: "Select your categories"
@@ -347,7 +366,9 @@ en:
     download_explanation: "Download this resource to your device"
     embed_explanation: "You can use this code to insert this resource in the excursion creator tool or in other website:"
     help:
-      title: "Uploading resources"
+      create_group_title: "Modal to create groups of pupils"
+      create_group_p1: "Fill in the form with the name for the group and the number of pupils accounts"
+      create_group_p2: "Once created you will have those accounts and will be able to download the credentials for your pupils to access the platform"
       info1_html: "Click on <b>documents</b>, <b>links</b> or <b>embed</b> option.<br>"
       info2_html: "If you want to upload a document, click on <b>'browse...''</b> to choose a file from your computer. If your resource is a link or embed, you can <b>paste</b> it into the corresponding text box.<br>"
       info3_html: "Type a <b>title</b> and a <b>description</b>.<br>"
@@ -390,6 +411,13 @@ en:
       inv1_html: "1. Type the <b> email </b> of the person that you want to invite to join the community"
       inv2_html: "2. Then, click on <b>Send an invitation</b>"
       overview_html: "<a href='/overview'><i class='fa fa-info-circle btn-xs'></i>ViSH Overview</a>"
+      req: "Request to be able to create groups of students"
+      req1_html: "1. Download the file, read it, <b>sign it</b> and scan or photograph it"
+      req2_html: "2. <b>Write</b> a description for your request, telling us who you are, what are your neccesities with this request and we will help you as much as we can"
+      req3_html: "3. Select the signed file and <b>attach it</b>"
+      private_student1_html: "Classrooms"
+      private_student2_html: "This section called 'Classrooms' displays the contents of private student group selected by the user. The latter has the ability to download a file with the credentials of all students and to eliminate the Aula if desired."
+      title: "Uploading resources"
     helpquiz:
       info1_html: "1. Help test 1 for the quiz<br>"
     how: "How to share a resource"
@@ -689,14 +717,50 @@ en:
     other: "organizers"
   overview_title: "ViSH Overview"
   password: "password"
+  permissions:
+    PrivateStudentGroups: "Create private groups of students"
   post:
     input: "Share your thoughts, links, videos and more, here!"
     search_name: "status update"
+  private_student:
+    actions:
+      add: "Add Classroom"
+    account_name: "Pupil"
+    creation_success: "The group of user accounts was created succesfully"
+    creation_error: "The group of user accounts could not be created"
+    errors:
+      no_attach: "Please, download file from step 1, sign it, scan it and attach it in step 3"
+      no_name: "Please introduce name to create the group"
+    form_button: "Create"
+    form_title: "Create a group of learner accounts"
+    group_name: "Name"
+    items_inside: "Pupils"
+    learner_number: "Number of learners"
+    request: "Classroom"
+    request_help: "Request permission to be able to create groups of learners"
+    request_modal:
+      body_duplicated: "You have already sent the request. We will answer you as soon as possible."
+      button: "Send"
+      contact: "If you have any question about the process, please contact us at: "
+      download: "Download"
+      text1: "This permission will let you create and manage groups of students (who have their own access crenciales). Will also be able to manage the creation of excursions and resources from your students."
+      title: "Request permission to create Classrooms"
+      title_duplicated: "Request already sent"
+      step1: "Download and print this document"
+      step1T: "Step 1 "
+      step2: "Tell us why you request the permission"
+      step2T: "Step 2 "
+      step3: "Scan (or photograph) and upload the signed document"
+      step3T: "Step 3 "
+      subtitle: "Request your permission to create Classroom projects"
+    tabs:
+      pupils_tab: "Pupils"
+      excursions_tab: "Excursions"
   profile:
-    degrade: "Degrade to user"
+    change_role: "Change role"
     edit: "Edit profile"
+    edit_role: "Edit role"
     profile: "profile"
-    promote: "Promote to admin"
     occupation:
       label: "Occupational field"
       options:
@@ -765,6 +829,9 @@ en:
     one: "repository"
     other: "repositories"
     title: "Resources"
+  request:
+    default: "Generic"
+    private_student: "Create private students group"
   resource:
     actions:
       add: "Add resource"
