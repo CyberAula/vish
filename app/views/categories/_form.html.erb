@@ -31,6 +31,8 @@
         <label><%= f.label :parentCategory, t('category.belongs_to')%></label>
         <%= f.select(:parent_id, options_for_select(Category.category_parents_options_for_select(current_subject)),{}, :id => div_id+"category_parent_id") %>
 
+        <%= f.hidden_field :scope, :value => 1 %>
+
         <!--Avatar-->
         <label><%= f.label :avatar, t('document.leyend.avatar') %></label>
         <%= f.file_field :avatar,:id => div_id+"category_avatar"  %>

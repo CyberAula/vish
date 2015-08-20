@@ -143,14 +143,14 @@ class SearchController < ApplicationController
     models = []    
     
     unless type.blank?
-      allAvailableModels = VishConfig.getAllAvailableAndFixedModels(:include_subtypes => true).reject{|m| m=="Category"}
+      allAvailableModels = VishConfig.getAllAvailableAndFixedModels(:include_subtypes => true)
       # Available Types: all available models and the alias 'Resource' and 'learning_object'
       allAvailableTypes = allAvailableModels + ["Resource", "Learning_object"]
 
       types = type.split(",") & allAvailableTypes
 
       if types.include? "Learning_object"
-        types.concat(["Excursion", "Resource", "Event", "Workshop"])
+        types.concat(["Excursion", "Resource", "Event", "Workshop", "Category"])
       end
 
       if types.include? "Resource"
@@ -171,7 +171,7 @@ class SearchController < ApplicationController
 
     if models.empty?
       #Default models, all
-      models = VishConfig.getAllAvailableAndFixedModels({:return_instances => true, :include_subtypes => true}).reject{|m| m==Category}
+      models = VishConfig.getAllAvailableAndFixedModels({:return_instances => true, :include_subtypes => true})
     end
 
     models.uniq!

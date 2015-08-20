@@ -440,7 +440,7 @@ en:
       description: "Description"
       language: "Language"
       recommended_age: "Recommended age"
-      scope: "Scope"
+      scope: "Indexation"
       tags: "Tags"
       title: "Title"
     main_title: "Upload pictures, videos and other resources"
@@ -859,7 +859,7 @@ en:
   save: "Save"
   saving: "Saving"
   scope:
-    private: "Private"
+    private: "Hidden"
     public: "Public"
   scormfile:
     name: "SCORM package"
