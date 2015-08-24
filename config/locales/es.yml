@@ -428,7 +428,7 @@ es:
       description: "Descripción"
       language: "Idioma"
       recommended_age: "Edad recomendada"
-      scope: Ámbito
+      scope: "Indexación"
       tags: "Etiquetas"
       title: "Título"
     main_title: "Sube videos, imágenes y otros recursos"
@@ -848,7 +848,7 @@ es:
   save: "Salvar"
   saving: "Salvando"
   scope:
-    private: "Privado"
+    private: "Oculto"
     public: "Público"
   scormfile:
     name: "paquete SCORM"

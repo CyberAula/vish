@@ -92,6 +92,7 @@ class CategoriesController < ApplicationController
           c.title = cTitle
           c.author_id = actorId
           c.owner_id = actorId
+          c.scope = 1
           authorize! :create, c
           c.save!
           existing_categories_ids.push(c.id)

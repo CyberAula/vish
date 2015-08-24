@@ -650,6 +650,19 @@ namespace :fix do
     printTitle("Task Finished")
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:categories_scope
+  #In production: bundle exec rake fix:categories_scope RAILS_ENV=production
+  task :categories_scope => :environment do
+    printTitle("Fixing Categories Scope to hidden")
+    Category.record_timestamps = false
+    Category.all.each do |category|
+       category.scope = 1
+       category.save!
+    end
+    Category.record_timestamps = true
+  end
+
 
   ####################
   #Task Utils

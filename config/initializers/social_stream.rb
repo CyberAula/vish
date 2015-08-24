@@ -40,8 +40,8 @@ SocialStream.setup do |config|
   #
   # See SocialStream::Search for syntax
   # 
-  config.quick_search_models = [:excursion, :user, :picture, :video, :audio, :swf, :officedoc, :document, :embed, :writing, :link, :event, :zipfile, :scormfile, :webapp, :workshop]
-  config.extended_search_models = [:excursion, :user, :event, :workshop, { :resource => [ :picture, :video, :audio, :swf, :officedoc, :document, :embed, :writing, :link, :zipfile, :scormfile, :webapp ] } ]
+  config.quick_search_models = [:excursion, :user, :picture, :video, :audio, :swf, :officedoc, :document, :category, :embed, :writing, :link, :event, :zipfile, :scormfile, :webapp, :workshop]
+  config.extended_search_models = [:excursion, :user, :event, :category, :workshop, { :resource => [ :picture, :video, :audio, :swf, :officedoc, :document, :embed, :writing, :link, :zipfile, :scormfile, :webapp ] } ]
 
   # Expose resque interface to manage background tasks at /resque
   #
