@@ -101,15 +101,14 @@
 <div class="btn-group actions_layout_show">
 
   <!-- Edit -->
-  <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
+  <% if user_signed_in? and !editingToolbar and (can? :update, @excursion) %>
     <button class="btn btn-default" data-toggle="tooltip" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'">
       <i class="fa fa-edit"></i>
     </button>
   <%end%>
 
-  
   <!-- Clone -->
-  <% if user_signed_in? && !editingToolbar && @excursion.allow_clone && (@excursion.clonable? or can?(:destroy, @excursion)) %>
+  <% if user_signed_in? && !editingToolbar && (can? :clone, @excursion) %>
     <button class="with_tooltip clone btn btn-default" data-toggle="popover" title="<%=t('excursion.actions.clone')%>">
       <i class="fa fa-copy"></i>
     </button>
@@ -137,6 +136,7 @@
       <%= link_to t('excursion.actions.delete'),  @excursion, :method => :delete, :class => 'btn btn-primary' %>
     </div>
   </div>
+
   <!--favorite-->
   <% unless editingToolbar %>
     <% unless @excursion.post_activity.nil? %>
@@ -151,7 +151,6 @@
     <%end%>
 
     <!--Categorize-->
-
     <%if user_signed_in? and availableModels.include? "Category" %>
       <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @excursion} %>
       <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" >
@@ -164,32 +163,32 @@
 
 <% unless editingToolbar %>
   <!--TABS-->
-    <ul class="nav nav-tabs tooltab">
-      <li class="active">
-        <a href="#tab1" tabTitle='description' data-toggle="tab">
-          <i class="fa fa-align-left"></i> 
-          <span class="  hidden-xs">
-            <%=t('excursion.description')%>
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="#tab2" tabTitle='embed' data-toggle="tab">
-          <i class="fa fa-code"></i> 
-          <span class="  hidden-xs">
-            <%=t('excursion.actions.embed') %>
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="#tab3" tabTitle='share' data-toggle="tab">
-          <i class="fa fa-share"></i>
-          <span class=" hidden-xs">
-            <%=t('excursion.actions.share')%>
-          </span>
-        </a>
-      </li>    
-      <% if @excursion.allow_download %>
+  <ul class="nav nav-tabs tooltab">
+    <li class="active">
+      <a href="#tab1" tabTitle='description' data-toggle="tab">
+        <i class="fa fa-align-left"></i> 
+        <span class="  hidden-xs">
+          <%=t('excursion.description')%>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a href="#tab2" tabTitle='embed' data-toggle="tab">
+        <i class="fa fa-code"></i> 
+        <span class="  hidden-xs">
+          <%=t('excursion.actions.embed') %>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a href="#tab3" tabTitle='share' data-toggle="tab">
+        <i class="fa fa-share"></i>
+        <span class=" hidden-xs">
+          <%=t('excursion.actions.share')%>
+        </span>
+      </a>
+    </li>
+    <% if can?(:download_source, @excursion) %>
       <li>
         <a href="#tab4" tabTitle='download' data-toggle="tab">
           <i class="fa fa-download"></i> 
@@ -198,20 +197,17 @@
           </span>
         </a>
       </li>  
-      <%end%>
-      <li>
-        <a href="#tab5" tabTitle='flag' data-toggle="tab">
-          <i class="fa fa-flag"></i> 
-          <span class=" hidden-xs spam-name ">
-            <%=t('excursion.actions.spam')%>
-          </span>
-          <!--span class=" hidden-tablethidden-xs">
-            <%#=t('excursion.actions.scorm')%>
-          </span-->
-        </a>
-      </li>
-      <%= render partial: 'help/help_show_excursion' %>     
-    </ul>
+    <%end%>
+    <li>
+      <a href="#tab5" tabTitle='flag' data-toggle="tab">
+        <i class="fa fa-flag"></i> 
+        <span class=" hidden-xs spam-name ">
+          <%=t('excursion.actions.spam')%>
+        </span>
+      </a>
+    </li>
+    <%= render partial: 'help/help_show_excursion' %>     
+  </ul>
 
 
   <h2><%= @excursion.title %></h2>
@@ -220,7 +216,6 @@
 
     <!-- tab1 / description -->
     <div class="tab-pane active" id="tab1">
-        <!--description-->
         <%= render :partial => 'excursions/excursion-info' %>
     </div>
 
@@ -269,19 +264,20 @@
         </div>
       </div>
     </div>
-    <% if @excursion.allow_download %>
-    <!-- tab4 / scorm -->
-    <div class="tab-pane contentscorm" id="tab4">
 
-      <a class="btn btn-default" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a> 
-      <p><%=t("excursion.download_scorm")%></p>
-    </div> 
+    <% if can?(:download_source, @excursion) %>
+      <!-- tab4 / scorm -->
+      <div class="tab-pane contentscorm" id="tab4">
+        <a class="btn btn-default" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a> 
+        <p><%=t("excursion.download_scorm")%></p>
+      </div> 
     <% end %>
-    <!-- tab5 / spam -->
 
+    <!-- tab5 / spam -->
     <div class="tab-pane" id="tab5">
-      <%@activity_object = @excursion.activity_object%>
+      <% @activity_object = @excursion.activity_object %>
       <%= render '/spam_report/form' %>
     </div>
   </div>
+
 <%end%>

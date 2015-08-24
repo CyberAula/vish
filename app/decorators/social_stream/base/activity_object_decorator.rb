@@ -156,6 +156,26 @@ ActivityObject.class_eval do
     end
   end
 
+  def downloadable?
+    self.allow_download
+  end
+
+  def commentable?
+    self.allow_comment
+  end
+
+  def clonable?
+    unless self.allow_clone
+      return false
+    end
+
+    if self.license and (self.license.no_derivatives? or self.license.private?)
+      return false
+    end
+
+    true
+  end
+
   #Calculate quality score (in a 0-10 scale) 
   def calculate_qscore
     #self.reviewers_qscore is the LORI score in a 0-10 scale

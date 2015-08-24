@@ -60,7 +60,7 @@ class ExcursionsController < ApplicationController
         render :layout => 'veditor.full'
       }
       format.scorm {
-        if @excursion.downloadable?
+        if (can? :download_source, @excursion)
           @excursion.to_scorm(self)
           @excursion.increment_download_count
           send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"

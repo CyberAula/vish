@@ -34,7 +34,14 @@ class Ability
       can?(:update, waObject.workshop_activity) and can?(:update, waObject.wa_assignments)
     end
 
+    #ServiceRequests
+    can :create, ServiceRequest do |request|
+      !subject.nil?
+    end
+
     unless subject.nil?
+
+      #Contributions
       can :create, Contribution do |contribution|
         unless contribution.activity_object.nil?
           can?(:update, contribution.activity_object.object)
@@ -42,14 +49,34 @@ class Ability
           true
         end
       end
-    end
 
-    #ServiceRequests
-    can :create, ServiceRequest do |request|
-      !subject.nil?
-    end
+      #Download
+      can :download_source, ActivityObject do |ao|
+        ao.downloadable? or can?(:update, ao.object)
+      end
 
-    unless subject.nil?
+      can :download_source, [Document, Webapp, Scormfile, Link, Embed, Writing, Excursion, Workshop] do |o|
+        can?(:download_source,o.activity_object)
+      end
+
+      #Comments
+      can :comment, ActivityObject do |ao|
+        ao.commentable?
+      end
+
+      can :comment, [Document, Webapp, Scormfile, Link, Embed, Writing, Excursion, Workshop] do |o|
+        can?(:comment,o.activity_object)
+      end
+
+      #Clone
+      can :clone, ActivityObject do |ao|
+        ao.clonable? or can?(:update, ao.object)
+      end
+
+      can :clone, [Excursion] do |o|
+        can?(:clone,o.activity_object)
+      end
+
       #Roles and user management
       can :update, Actor do |a|
         a.id == subject.actor_id

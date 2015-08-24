@@ -1,5 +1,6 @@
 <div class="panel-group" id="accordion">
   <div class="panel">
+
     <header>
       <table class="table table-hover">
         <!--description-->
@@ -77,6 +78,7 @@
 
       </table>
     </header>
+
     <div class="panel-body">
       <div id="collapseInfo" class="panel-collapse collapse">
         <table class="table table-hover">
@@ -87,7 +89,7 @@
             <% end %>
           </tr>
          
-          <% unless resource.attachment.blank? %>
+          <% if resource.respond_to?("attachment") and !resource.attachment.blank? %>
            <tr>
             <td><span><%= t('excursion.actions.attachment') %></span></td>
           <td>
@@ -114,8 +116,8 @@
         </table>
       </div>
     </div>
-    <div class="panel-footer">
 
+    <div class="panel-footer">
       <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
         <span id="showingMore" class="showMore accordion-toggle btn btn-default collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo" title="<%=t('excursion.actions.show_more')%>" status="collapsed"><%=t('excursion.actions.show_more')%></span>
       </a>
@@ -128,7 +130,7 @@
         </button>
       <%end%>
       
-            <!--Views and Likes-->
+      <!--Views and Likes-->
       <div class="viewsAndCount">        
         <div class="views">
           <%=resource.visit_count.to_s%>
@@ -142,8 +144,10 @@
         <%end%>
       </div>
     </div>
+
   </div>
 </div>
+
 <% if displayMetadata %>
   <div id="MetadataModal" class="modal fade">
     <div class="modal-dialog">
@@ -180,15 +184,13 @@
   </div>
 <% end %>
 
-
-<%content_for :javascript do%>
-    $("#showingMore").click(function(e){
+<% content_for :javascript do %>
+  $("#showingMore").click(function(e){
     if($("#showingMore").attr("status")==="expanded"){
       $("#showingMore").html('<%=t("excursion.actions.show_more")%>');
       $("#showingMore").attr("title", "<%=t('excursion.actions.show_fewer')%>");
       $("#showingMore").attr("status", "collapsed");
-    }
-    else{
+    } else {
       $("#showingMore").html('<%=t('excursion.actions.show_fewer')%>');
       $("#showingMore").attr("title", "<%=t("excursion.actions.show_more")%>");
       $("#showingMore").attr("status", "expanded");

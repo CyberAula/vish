@@ -29,18 +29,20 @@
   </ul>
  
   <div class="tab-content">
-  <% if @excursion.allow_comment %>
-    <div class="tab-pane active comments-show" id="comment1">
-      <div id="comments" class="comments">
-        <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
-        <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
+
+    <% if @excursion.commentable? %>
+      <div class="tab-pane active comments-show" id="comment1">
+        <div id="comments" class="comments">
+          <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
+          <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
+        </div>
       </div>
-    </div>
     <% else %>
-    <div class="tab-pane active comments-not-shown">
-    <p><span><%=t('excursion.disabled_comments')%></span></p>
-    </div>
-  <%end%>
+      <div class="tab-pane active comments-not-shown">
+        <p><span><%=t('excursion.disabled_comments')%></span></p>
+      </div>
+    <%end%>
+  
     <div class="tab-pane evaluate-show" id="evaluation1">
       <div class="btn-evalue">
         <p><%= t('evaluation.contribute.student.title') %></p>
