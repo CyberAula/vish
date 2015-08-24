@@ -440,7 +440,7 @@ en:
       description: "Description"
       language: "Language"
       recommended_age: "Recommended age"
-      scope: "Indexation"
+      scope: "Scope"
       tags: "Tags"
       title: "Title"
     main_title: "Upload pictures, videos and other resources"

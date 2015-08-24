@@ -428,7 +428,7 @@ es:
       description: "Descripción"
       language: "Idioma"
       recommended_age: "Edad recomendada"
-      scope: "Indexación"
+      scope: "Ámbito"
       tags: "Etiquetas"
       title: "Título"
     main_title: "Sube videos, imágenes y otros recursos"
