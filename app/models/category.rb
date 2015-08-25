@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
 
   validates_presence_of :title
   validate :title_not_duplicated
-  validate :title_length
+  validate :has_valid_title_length
   validate :has_valid_parent
   
   def title_not_duplicated
@@ -27,7 +27,7 @@ class Category < ActiveRecord::Base
     end
   end
 
-  def title_length
+  def has_valid_title_length
     if self.title.length > 50
       errors[:base] << "Title is too long."
     else
@@ -66,6 +66,20 @@ class Category < ActiveRecord::Base
     order
   end
 
+  def calculate_qscore
+    return if self.activity_object.nil?
+
+    categoryResources = self.all_property_objects.select{|ao| ao.qscore.is_a? Numeric}
+    if categoryResources.length < 1
+      overallQualityScore = 500000
+    else
+      overallQualityScore = categoryResources.map{|c| c.qscore}.sum/categoryResources.length
+    end
+    
+    self.activity_object.update_column :qscore, overallQualityScore
+    overallQualityScore
+  end
+
   def isRoot?
     self.parent.nil?
   end
@@ -80,6 +94,17 @@ class Category < ActiveRecord::Base
     end
 
     all_children
+  end
+
+  def all_property_objects
+    all_property_objects = self.property_objects.reject{|c| c.object_type=="Category"}
+
+    direct_children = children
+    direct_children.each do |dchildren|
+      all_property_objects += dchildren.all_property_objects
+    end
+
+    all_property_objects.uniq
   end
 
   def parents_path(path=nil)
