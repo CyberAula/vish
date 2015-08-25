@@ -415,7 +415,7 @@
 						</div>
 
 						<div id="tlt_wrapper" class="margin_for_new_field_settings">
-							<div class="range_text"><span i18n-key="i.Typicallearningtime">Typical learning time</span>:</div>
+							<div class="range_text"><span i18n-key="i.TypicalLearningTime">Typical learning time</span>:</div>
 							<input type="text" id="tlt_current_value" class="slider_range_input" readonly/>
 							<div class="tlt_inputs_wrapper">
 								<div class="tlt_input_wrapper">
@@ -497,9 +497,9 @@
 			 		<p i18n-key="i.allowUsersTo">Allow other users to:</p>
 			 	</div>
 					<div id="publication_content">
-						<p><input type="checkbox" id="allow_clone" checked> <span i18n-key="i.allowClone">Clone</span></p>
 						<p><input type="checkbox" id="allow_comment" checked> <span i18n-key="i.allowComment">Comment</span></p>
 						<p><input type="checkbox" id="allow_download" checked> <span i18n-key="i.allowDownload">Download</span></p>
+						<p><input type="checkbox" id="allow_clone" checked> <span i18n-key="i.allowClone">Clone</span></p>
 					</div>
 				</div>
 
@@ -1682,23 +1682,23 @@
 		<li data-id="tags_in_presentation_details" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top;" class="tut_width500 tut_with_arrow">
 			<h2 i18n-key="i.walkSettings6_1">Add tags to your excursion</h2>
 			<p i18n-key="i.walkSettings6_2">Here you can add tags (or keywords) to your excursion.</p>
-			<p i18n-key="i.walkSettings6_3">These keywords are very useful to categorize the excursion. Also, they are used as index terms in the ViSH platform (as well as in other repositories), and therefore add keywords to an excursion facilitates its searching and retrieval.</p>
+			<p i18n-key="i.walkSettings6_3">These keywords are very useful to categorize the excursion. Also, they are used as search terms in the ViSH platform (as well as in other repositories), and therefore add keywords to an excursion facilitates its searching and retrieval.</p>
 			<p><span i18n-key="i.walkSettings6_4">Tag examples</span>: <i i18n-key="i.nanoscience">nanoscience</i>, <i i18n-key="i.math">math</i> <span i18n-key="i.or">or</span> <i i18n-key="i.biology">biology</i></p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 
 		<li data-id="attachment_in_presentation_details" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top;" class="tut_width500 tut_with_arrow">
 			<h2 i18n-key="i.walkSettings7_1">Attachment</h2>
-			<p i18n-key="i.walkSettings7_2">You can add attachments to your excursions in order to improve learning experience.</p>
-			<p i18n-key="i.walkSettings7_3">When your excursion is saved you can upload any item and visitors will be able to download it from metadata aspects in excursion.</p>
+			<p i18n-key="i.walkSettings7_2">You can add complementary materials for your excursion through an attachment.</p>
+			<p i18n-key="i.walkSettings7_3">To upload an attachment you must have previously saved the excursion. Once the attached file is uploaded, users can download it from the excursion page at the ViSH platform.</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 
 		<li data-id="metadata_clasification_button" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top;" class="tut_width500 tut_with_arrow">
 			<h2 i18n-key="i.walkSettings8_1">Advanced Settings</h2>
 			<p i18n-key="i.walkSettings8_2">Clicking on this button will bring up the Advanced Settings screen.</p>
-			<p i18n-key="i.walkSettings8_3">In this screen you can specify more pedagogy related information, permissions and academic aspects about your excursion.</p>
-			<p><span i18n-key="i.walkSettings8_4">Details about the information that can be specified are explained in the contextual help of the different screens.</p>
+			<p i18n-key="i.walkSettings8_3">In this screen you can specify more pedagogy related information, permissions and other aspects about your excursion.</p>
+			<p><span i18n-key="i.walkSettings8_4">Details about the information that can be specified are described in the contextual help of the different screens.</p>
 		</li>
 
 		<li class="tut_width500 tut_with_arrow" data-id="save_presentation_details" class="tut_with_arrow" data-options="tipLocation:top" data-text="Finish" i18n-key="i.Finish">
@@ -1709,11 +1709,10 @@
 		</li>
 	</ol>
 
-
 	<!-- Help in metadata options settings -->
 	<ol id="help_metadata_selection_help" class="joyRideTipContent">
 		<li data-id="thumbcontent" data-text="Finish" i18n-key="i.Finish" class="tut_metadata tut_without_arrow" data-options="tipLocation:none">
-			<h2 i18n-key="i.walkMetadata1_1">Welcome to the Metadata Aspects screen</h2>
+			<h2 i18n-key="i.walkMetadata1_1">Welcome to the Metadata screen</h2>
 			<p><span i18n-key="i.walkMetadata1_2_1">In this screen you can specify more pedagogy related information (or metadata) about your excursion. These metadata are grounded on and are compliant with the Learning Object Metadata (LOM) standard. The last specification of this standard, which explains in a detailed way all fields of this screen, can be found</span> <a href="http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf" target="_blank"><span i18n-key="i.walkMetadata1_2_2">here</span></a>.</p>
 			<p class="tut_space">&nbsp;</p>
 			<p i18n-key="i.walkMetadata1_3">Below is given a brief explanation of each of the fields that can be specified here.</p>
@@ -1729,23 +1728,24 @@
 		</li>
 	</ol>
 
-		<!-- Help in publication options settings -->
+	<!-- Help in publication options settings -->
 	<ol id="help_publication_selection_help" class="joyRideTipContent">
 		<li data-id="thumbcontent" data-text="Finish" i18n-key="i.Finish" class="tut_metadata tut_without_arrow" data-options="tipLocation:none">
-			<h2 i18n-key="i.walkPublication1_1">Welcome to the Publication Aspects screen</h2>
-			<p><span i18n-key="i.walkPublication1_2">In the screen you can specify cloning, downloading and commenting permissions for your excursion.</span></p>
-			<p><span i18n-key="i.walkPublication1_3">Clone: allows other users to obtain your excursion in his account and change it as it was of his own, although he mantains original creator attributions.</span></p>
-			<p><span i18n-key="i.walkPublication1_4">Comment: allows to activate or deactivate comments for your excursion.</span></p>
-			<p><span i18n-key="i.walkPublication1_5">Downoad: allows other users to download the excursion in any format.</span></p>
+			<h2 i18n-key="i.walkPublication1_1">Welcome to the Permissions screen</h2>
+			<p><span i18n-key="i.walkPublication1_2">In this screen you can change the permissions that other users of the ViSH platform will have on your excursion once it has been published. You will be able to change these settings at any time.</span></p>
+			<p><b><span i18n-key="i.allowComment">Comment</span></b>: <span i18n-key="i.walkPublication1_3">allows to enable or disable comments for this excursion.</span></p>
+			<p><b><span i18n-key="i.allowDownload">Download</span></b>: <span i18n-key="i.walkPublication1_4">allows other users to download the excursion in any format.</span></p>
+			<p><b><span i18n-key="i.allowClone">Clone</span></b>: <span i18n-key="i.walkPublication1_5">allows other users to obtain a copy of the excursion in their own account keeping the authoring chain and including a reference to the original author (or authors).</span></p>
 			<p class="tut_space_big">&nbsp;</p>
 		</li>
 	</ol>
 
-		<!-- Help in rte options settings -->
+	<!-- Help in rte options settings -->
 	<ol id="help_rte_selection_help" class="joyRideTipContent">
 		<li data-id="thumbcontent" data-text="Finish" i18n-key="i.Finish" class="tut_metadata tut_without_arrow" data-options="tipLocation:none">
-			<h2 i18n-key="i.walkRTE1_1">Welcome to the RTE Aspects screen</h2>
-			<p><span i18n-key="i.walkRTE1_2">In this screen you may allow following scorm resources for  investigation and quality in educational resources.</span></p>
+			<h2 i18n-key="i.walkRTE1_1">Welcome to the RTE options screen</h2>
+			<p><span i18n-key="i.walkRTE1_2">In this screen you can specify the integration and interaction options of the learning object (i.e the excursion) with the RTE (Run-Time Environment).</span></p>
+			<p><span i18n-key="i.walkRTE1_3">When the learning object is exported to a standard e-Learning format like SCORM and it is integrated into an external system (for example, an LMS like Moodle or Blackboard), it communicates with the run-time environment of the external system. The options on this screen allow to configure different aspects of that communication.</span></p>
 			<p class="tut_space_big">&nbsp;</p>
 		</li>
 	</ol>
