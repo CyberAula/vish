@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
 
   validates_presence_of :title
   validate :title_not_duplicated
-  validate :title_length
+  validate :has_valid_title_length
   validate :has_valid_parent
   
   def title_not_duplicated
@@ -27,7 +27,7 @@ class Category < ActiveRecord::Base
     end
   end
 
-  def title_length
+  def has_valid_title_length
     if self.title.length > 50
       errors[:base] << "Title is too long."
     else
