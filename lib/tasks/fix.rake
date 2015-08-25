@@ -656,10 +656,26 @@ namespace :fix do
   task :categories_scope => :environment do
     printTitle("Fixing Categories Scope to hidden")
     Category.record_timestamps = false
+
     Category.all.each do |category|
-       category.scope = 1
-       category.save!
+      category.scope = 1
+      category.valid?
+
+      unless category.errors.blank?
+        if category.errors.full_messages.include?("Title is too long.")
+          category.title = category.title[0..49]
+        end
+
+        #Get title error / Fix
+        if category.errors.full_messages.include?("There is another category with the same title")
+          category.title = category.title[0..45] if category.title.length > 45
+          category.title = category.title + "-" + category.id.to_s
+        end
+      end
+
+      category.save!
     end
+
     Category.record_timestamps = true
   end
 
