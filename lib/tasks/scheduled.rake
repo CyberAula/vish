@@ -27,7 +27,7 @@ namespace :scheduled do
     #ao_ranking will be in a scale [0,1000000]
     #We will take into account qscore only for resources
     
-    resourceAOTypes = ["Document", "Excursion", "Webapp", "Scormfile","Link","Embed"]
+    resourceAOTypes = ["Document","Excursion","Webapp","Scormfile","Link","Embed"]
     resourceAOs = ActivityObject.where("object_type in (?)", resourceAOTypes)
     nonResourceAOs = ActivityObject.where("object_type not in (?)", resourceAOTypes)
 
