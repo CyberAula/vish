@@ -6,49 +6,64 @@ namespace :scheduled do
   #Development:   bundle exec rake scheduled:recalculateRankingMetrics
   #In production: bundle exec rake scheduled:recalculateRankingMetrics RAILS_ENV=production
   task :recalculateRankingMetrics => :environment do
-    puts "Recalculate ranking metrics"
+    puts "Recalculating ranking metrics"
     timeStart = Time.now
 
     #1. Recalculate popularity
     Rake::Task["scheduled:recalculatePopularity"].invoke
 
     #2. Recalculate ranking metrics
-    puts "Recalculating ranking metrics"
+    puts "Recalculating ranking values"
 
     modelCoefficients = {}
     modelCoefficients[:Excursion] = 1
     modelCoefficients[:Resource] = 0.9
     modelCoefficients[:User] = 0.9
     modelCoefficients[:Event] = 0.9
-
+    modelCoefficients[:Category] = 0.9
+    
     #Since Sphinx does not support signed integers, we have to store the ranking metric in a positive scale.
     #ao.popularity is in a scale [0,1000000]
     #ao.qscore is in a scale [0,1000000]
-    #ao_ranking will be in a scale [0,1000000]
-    #We will take into account qscore only for resources
-    
-    resourceAOTypes = ["Document","Excursion","Webapp","Scormfile","Link","Embed"]
+    #ao.ranking will be in a scale [0,1000000]
+    #We will take into account qscore only for resources (and categories). 
+    #For non resource aos, ranking will be calculated based on popularity
+
+    resourceAOTypes = VishConfig.getAvailableResourceModels
+    #["Document", "Webapp", "Scormfile", "Link", "Embed", "Writing", "Excursion", "Workshop"]
+    if VishConfig.getAvailableMainModels.include? "Category"
+      #Treat categories like resources for ranking metrics
+      resourceAOTypes += ["Category"]
+    end
+
     resourceAOs = ActivityObject.where("object_type in (?)", resourceAOTypes)
     nonResourceAOs = ActivityObject.where("object_type not in (?)", resourceAOTypes)
+
+    if VishConfig.getAvailableMainModels.include? "Category"
+      #Calculate qscore for categories
+      ActivityObject.where("object_type in (?)", ["Category"]).all.each do |ao|
+        ao.object.calculate_qscore unless ao.object.nil?
+      end
+    end
 
     resourceRankingWeights = {}
     resourceRankingWeights[:popularity] = 0.7
     resourceRankingWeights[:qscore] = 0.3
 
     resourceAOs.all.each do |ao|
-      ao_ranking = resourceRankingWeights[:popularity] * ao.popularity +  resourceRankingWeights[:qscore] * ao.qscore
-      ao.update_column :ranking, ao_ranking
+      ao.ranking = resourceRankingWeights[:popularity] * ao.popularity +  resourceRankingWeights[:qscore] * ao.qscore
+      ao.update_column :ranking, ao.ranking
     end
 
     nonResourceAOs.all.each do |ao|
-      ao.ranking = ao.popularity
-
-      if ao.object_type == "Actor"
-        ao.ranking = ao.ranking * modelCoefficients[:User]
-      elsif ao.object_type == "Event"
-        ao.ranking = ao.ranking * modelCoefficients[:Event]
+      case ao.object_type
+      when "Actor"
+        ao.ranking = ao.popularity * modelCoefficients[:User]
+      when "Event"
+        ao.ranking = ao.popularity * modelCoefficients[:Event]
+      else
+        ao.ranking = 0
       end
-
       ao.update_column :ranking, ao.ranking
     end
 
@@ -64,11 +79,16 @@ namespace :scheduled do
 
     resourceAOs.each do |ao|
       ao.ranking = ao.ranking * resourcesCoefficient
-      if ao.object_type == "Excursion"
+
+      case ao.object_type
+      when "Excursion"
         ao.ranking = ao.ranking * modelCoefficients[:Excursion]
+      when "Category"
+        ao.ranking = ao.ranking * modelCoefficients[:Category]
       else
         ao.ranking = ao.ranking * modelCoefficients[:Resource]
       end
+
       ao.update_column :ranking, ao.ranking
     end
 
@@ -86,12 +106,15 @@ namespace :scheduled do
 
     # This task recalculates popularity in Activity Objects
     # Object types of Activity Objects:
-    # ["Actor", "Post", "Comment", "Category", "Document", "Excursion", "Link", "Event", "Embed", "Webapp", "Scormfile"]
+    # ["Actor", "Document", "Post", "Category", "Excursion", "Scormfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop"]
 
-    resourceAOs = ActivityObject.where("object_type in (?)", ["Document", "Excursion", "Webapp", "Scormfile","Link","Embed"])
+    resourceAOTypes = VishConfig.getAvailableResourceModels
+    #["Document", "Webapp", "Scormfile", "Link", "Embed", "Writing", "Excursion", "Workshop"]
+
+    resourceAOs = ActivityObject.where("object_type in (?)", resourceAOTypes)
     userAOs = ActivityObject.joins(:actor).where("activity_objects.object_type='Actor' and actors.subject_type='User'")
     eventAOs = ActivityObject.where("object_type in (?)", ["Event"])
-    # categoryAOs = ActivityObject.where("object_type in (?)", ["Category"])
+    categoryAOs = ActivityObject.where("object_type in (?)", ["Category"])
 
     windowLength = 2592000 #1 month
     #Change windowLength to 2 months
@@ -113,7 +136,7 @@ namespace :scheduled do
     resourceWeights[:fLikes] = 0.5
 
     #Specify different weights for resources that can't be downloaded:
-    nonDownloableResources = ["Link", "Embed"]
+    nonDownloableResources = ["Link", "Embed", "Workshop"]
     linkWeights = {}
     linkWeights[:fVisits] = 0.4
     linkWeights[:fDownloads] = 0
@@ -125,6 +148,11 @@ namespace :scheduled do
     resource_maxLikeCount = [resourceAOs.maximum(:like_count),1].max
 
     resourceAOs.each do |ao|
+      if ao.updated_at.nil?
+        ao.popularity = 0
+        next
+      end
+
       timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
       fVisits = (ao.visit_count/timeWindow.to_f)/resource_maxVisitCount
       fDownloads = (ao.download_count/timeWindow.to_f)/resource_maxDownloadCount
@@ -182,8 +210,28 @@ namespace :scheduled do
       ao.popularity = ((eventWeights[:fVisits] * fVisits + eventWeights[:fLikes] * fLikes)*metricsScaleFactor).round(0)
     end
 
+
+    ###################################
+    ###Step 4. Categories popularity
+    ###################################
+    puts "Recalculating categories popularity"
+
+    categoryWeights = {}
+    categoryWeights[:fVisits] = 1
+
+    #Get values to normalize scores
+    categories_maxVisitCount = [categoryAOs.maximum(:visit_count),1].max
+
+    categoryAOs.each do |ao|
+      timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
+      fVisits = (ao.visit_count/timeWindow.to_f)/categories_maxVisitCount
+
+      ao.popularity = ((categoryWeights[:fVisits] * fVisits)*metricsScaleFactor).round(0)
+    end
+
     ##############
     # Fit scores to the [0,1] scale [Excursion with highest popularity will have a popularity of 1]
+    # Transform [0,1] to [0,metricsScaleFactor] scale
     # Apply coefficients to give some models more importance than others
     ##############
     puts "Fitting scores and applying correction coefficients"
@@ -193,14 +241,17 @@ namespace :scheduled do
     modelCoefficients[:Resource] = 0.9
     modelCoefficients[:User] = 0.8
     modelCoefficients[:Event] = 0.1
+    modelCoefficients[:Category] = 0.8
     
     maxPopularityForResources = [resourceAOs.max_by {|ao| ao.popularity }.popularity,1].max
     maxPopularityForUsers = [userAOs.max_by {|ao| ao.popularity }.popularity,1].max
     maxPopularityForEvents = [eventAOs.max_by {|ao| ao.popularity }.popularity,1].max
+    maxPopularityForCategories = [categoryAOs.max_by {|ao| ao.popularity }.popularity,1].max
 
     resourcesCoefficient = (1*metricsScaleFactor)/maxPopularityForResources.to_f
     usersCoefficient = (1*metricsScaleFactor)/maxPopularityForUsers.to_f
     eventsCoefficient = (1*metricsScaleFactor)/maxPopularityForEvents.to_f
+    categoriesCoefficient = (1*metricsScaleFactor)/maxPopularityForCategories.to_f
 
     resourceAOs.each do |ao|
       ao.popularity = ao.popularity * resourcesCoefficient
@@ -219,6 +270,11 @@ namespace :scheduled do
 
     eventAOs.each do |ao|
       ao.popularity = ao.popularity * eventsCoefficient * modelCoefficients[:Event]
+      ao.update_column :popularity, ao.popularity
+    end
+
+    categoryAOs.each do |ao|
+      ao.popularity = ao.popularity * categoriesCoefficient * modelCoefficients[:Category]
       ao.update_column :popularity, ao.popularity
     end
 
