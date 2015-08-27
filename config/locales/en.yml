@@ -373,7 +373,7 @@ en:
       cat2_html: "2. Then, click on <b> save </b> button to create your new category."
       categories1_html : "Categories"
       categories2_html : "This is the view of the category you've created, under all the features you've added to it are displayed. At any time you can edit or delete the category."
-      categorize_html: "In this panel you can set the excursion or resource into one or more categories. <br><br>Selecting from the whole list of your categories, the most used by you or create new ones in the input case. <br><br> You can create as many as you want and all of them will show up in your profile categories section."
+      categorize_html: "On this panel you can add the excursion or resource into one or more categories. <br><br>You can select the categories from the list of your already created categories, from the most used by you or create new ones using the text box placed below. <br><br> You can create as many as you wish and all of them will show up in your profile in the categories section."
       create_group_title: "Modal to create groups of pupils"
       create_group_p1: "Fill in the form with the name for the group and the number of pupils accounts"
       create_group_p2: "Once created you will have those accounts and will be able to download the credentials for your pupils to access the platform"

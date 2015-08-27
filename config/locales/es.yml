@@ -360,7 +360,7 @@ es:
       cat: "Crear una nueva categoría"
       cat1_html: "1. Escriba un <b>título</b> y una <b>descripción</b>.<br>"
       cat2_html: "2. Después, haga click en el botón <b> guardar </b>para crear su nueva categoría.<br>"
-      categorize_html: "En este panel puedes categorizar la excursión o el recurso en una o más categorías.<br><br>Puedes seleccionarlas desde las ya creadas de tu lista de categorías, de las que más uses o crear nuevas desde el cajetín de abajo.<br><br>Puedes crear tantas como quieras y todas ellas serán visibles desde tu perfil de usuario en la zona de categorías."
+      categorize_html: "En este panel puedes añadir la excursión o el recurso a una o más categorías de tu usuario.<br><br>Puedes seleccionarlas entre las ya creadas de tu lista de categorías, de las que más uses o crear nuevas desde la caja de texto inferior.<br><br>Puedes crear tantas como quieras y todas ellas serán visibles desde tu perfil de usuario en la zona de categorías."
       categories1_html: "Categorías"
       categories2_html: "Esta es la vista de la categoría que has creado, debajo se mostrarán todos los elementos que has añadido a ella. En cualquier momento puedes editar o borrar la categoría."
       create_group_title: "Modal para la creación de grupos de alumnos"
