@@ -1,4 +1,5 @@
 <li class="box-item contact" id="<%= dom_id user %>">
+  
   <!-- corner -->
   <div class="corner-item">
     <div class="corner-item2">
@@ -9,16 +10,16 @@
   </div>
 
   <div class="container-img">
-    <div class="img-box resource-center">        
+    <div class="img-box resource-center">
     	<div class="avatar">
-     <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
-     </div>
+        <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
+      </div>
     </div>
-  </div> 
+  </div>
 
-<!--INFO user-->
+  <!--INFO user-->
   <div class="caption">
-<!--Autor -->
+    <!--Autor -->
     <h6>
       <%= link_to(truncate_name(user.name), user.subject)%>
     </h6>
@@ -29,9 +30,9 @@
       <span class=""><%= t('follow.followers') %></span>
     </div>
 
-      <div class="add">
-        <%= contact_button(user) %>
-      </div> 
+    <div class="add">
+      <%= contact_button(user) %>
+    </div>
 
     <div class="info-bottom">
       <hr class="soften">

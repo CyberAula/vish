@@ -3,113 +3,117 @@
 <section class="user">
 
   <!--box info-->
-    <div id="profile-info">
+  <div id="profile-info">
 
-      <!--avatar-->
-      <div class="avatar">
-        <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
-      </div>
+    <!--avatar-->
+    <div class="avatar">
+      <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
+    </div>
 
-      <!--box personal info-->
-      <section class="information">
+    <!--box personal info-->
+    <section class="information">
 
-        <div class="briefing">
+      <div class="briefing">
 
-          <!-- Tags -->
-          <div class="tags-profile">
-            <ul class="tagList">
-              <%= @user.profile.subject.tag_list%>
-            </ul>
-          </div>
+        <!-- Tags -->
+        <div class="tags-profile">
+          <ul class="tagList">
+            <%= @user.profile.subject.tag_list%>
+          </ul>
+        </div>
 
-          <!--name-->
-          <div class="name">
-            <h2><%= @user.name %></h2>
-          </div>
+        <!--name-->
+        <div class="name">
+          <h2><%= @user.name %></h2>
+        </div>
 
-          <!--help-->
+        <!--help-->
+        <% if profile_subject_is_current? %>
+          <%= render :partial => 'help/help_own_profile' %>
+        <% else %>
           <%= render :partial => 'help/help_profile' %>
+        <% end %>
 
-          <!--description-->
-          <div class="description">
-            <% if @user.profile.description? %>
-              <%= @user.profile.description%>
-            <% else %>
-              <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
-            <% end %>
-          </div>
+        <!--description-->
+        <div class="description">
+          <% if @user.profile.description? %>
+            <%= @user.profile.description%>
+          <% else %>
+            <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
+          <% end %>
+        </div>
 
-          <div class="panel-group" id="accordion">
-            <div class="panel">
+        <div class="panel-group" id="accordion">
+          <div class="panel">
 
-              <!--__Email (only for admins) -->
-              <% if isAdmin? %>
-                <table class="table table-striped">
-                  <tbody>
-                    <tr class="mail">
-                      <td class="name-roll"><%=t('user.email').capitalize%></td>
-                      <td><%= profile_subject.email %></td>
-                    </tr>
-                    <tr class="role">
-                      <td class="name-roll"><%=t('user.role').capitalize%></td>
-                      <td><%= profile_subject.role_name %></td>
-                    </tr>
-                  </tbody>
-                </table>
-              <%end%>
-
-              <!--__Occupation -->
+            <!--__Email (only for admins) -->
+            <% if isAdmin? %>
               <table class="table table-striped">
                 <tbody>
-                  <tr class="ocupation">
-                    <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>
-                      <td class="select"><%= link_to t('profile.occupation.select'), '#', :id => "select_occupation_link" %></td>
-                    <% elsif profile_subject.occupation_sym != :select %>
-                      <td class="name-roll"><%= t('profile.occupation.label')%></td>
-                      <td><%= profile_subject.occupation_t %></td>
-                    <% end %>
+                  <tr class="mail">
+                    <td class="name-roll"><%=t('user.email').capitalize%></td>
+                    <td><%= profile_subject.email %></td>
+                  </tr>
+                  <tr class="role">
+                    <td class="name-roll"><%=t('user.role').capitalize%></td>
+                    <td><%= profile_subject.role_name %></td>
                   </tr>
                 </tbody>
               </table>
+            <%end%>
 
-              <div id="collapseInfo" class="panel-collapse collapse">
+            <!--__Occupation -->
+            <table class="table table-striped">
+              <tbody>
+                <tr class="ocupation">
+                  <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>
+                    <td class="select"><%= link_to t('profile.occupation.select'), '#', :id => "select_occupation_link" %></td>
+                  <% elsif profile_subject.occupation_sym != :select %>
+                    <td class="name-roll"><%= t('profile.occupation.label')%></td>
+                    <td><%= profile_subject.occupation_t %></td>
+                  <% end %>
+                </tr>
+              </tbody>
+            </table>
 
-                  <table class="table table-striped">
-                    <tbody>
-                      <!--__Organization -->
-                      <tr class="organization">
-                        <td><%= t('profile.organization') %></td>
-                        <td><%= @user.profile.organization %></td>
-                      </tr>
+            <div id="collapseInfo" class="panel-collapse collapse">
+              <table class="table table-striped">
+                <tbody>
+                  <!--__Organization -->
+                  <tr class="organization">
+                    <td><%= t('profile.organization') %></td>
+                    <td><%= @user.profile.organization %></td>
+                  </tr>
 
-                      <!--__Website -->
-                      <tr class="website">
-                        <td><%= t('profile.website') %></td>
-                        <td><%= link_to @user.profile.website,  @user.profile.website, :target=>'_blank' %></td>
-                      </tr>
+                  <!--__Website -->
+                  <tr class="website">
+                    <td><%= t('profile.website') %></td>
+                    <td><%= link_to @user.profile.website,  @user.profile.website, :target=>'_blank' %></td>
+                  </tr>
 
-                      <!--__birthday -->
-                      <tr class="birthday">
-                        <td><%= t('profile.' + current_subject.class.to_s.downcase + '.birthday') %></td>
-                        <td><%= @user.profile.birthday %></td>
-                      </tr>
+                  <!--__birthday -->
+                  <tr class="birthday">
+                    <td><%= t('profile.' + current_subject.class.to_s.downcase + '.birthday') %></td>
+                    <td><%= @user.profile.birthday %></td>
+                  </tr>
 
-                      <!--__city -->
-                      <tr class="city">
-                      <td><%= t('profile.city') %></td>
-                      <td><%= @user.profile.city %></td>
-                      </tr>
+                  <!--__city -->
+                  <tr class="city">
+                  <td><%= t('profile.city') %></td>
+                  <td><%= @user.profile.city %></td>
+                  </tr>
 
-                      <!--__Country -->
-                      <tr class="county">
-                        <td><%= t('profile.country') %></td>
-                        <td><%= @user.profile.country %></td>
-                      </tr>
-                    </tbody>
-                  </table>
-              </div>
+                  <!--__Country -->
+                  <tr class="county">
+                    <td><%= t('profile.country') %></td>
+                    <td><%= @user.profile.country %></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+
           </div>
+        </div>
 
         <div class="toolbar-profile">
           <%= render :partial => 'users/toolbar_user' %>
@@ -124,7 +128,6 @@
 
   <%= render partial: 'users/profile-info' %>
 
-
   <%content_for :javascript do%>
     SocialStream.Profile.show({
       section: "<%= params[:section ] %>"
@@ -135,6 +138,5 @@
     });
 
   <% end %>
-
 
 </section>

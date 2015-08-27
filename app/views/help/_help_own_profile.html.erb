@@ -1,0 +1,18 @@
+<span class="helpheader">
+  <i class="fa fa-question-circle" id="helpownprofileid" data-toggle="popover" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.profile1_html')%>" href='#' value=""></i>
+  <div id="contenthelpownprofileid" style="display: none">
+    <div class="popover-body">
+      <p><%= t('document.help.profile2_own_html')%></p>
+    </div>
+    <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
+  </div>
+</span>
+
+<% content_for :javascript do %>
+  $('#helpownprofileid').popover({
+    html : true,
+    content: function() {
+      return $('#contenthelpownprofileid').html();
+    }
+  });
+<%end%>
