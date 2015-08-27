@@ -5,7 +5,6 @@ DocumentsHelper.module_eval do
     #Default icons
     unless document.class.superclass.name != "Document"
       #For documents (based on SS documents)
-    
       icon_name = case icon_mime_type document
         when :default then "file"
         when :text then "file-text"
@@ -44,7 +43,7 @@ DocumentsHelper.module_eval do
     end
 
     unless customAvatar.nil?
-      return "<div class='img-box resource_avatar resource_avatar_for_#{ icon_name }' style='background-image: url("+customAvatar+")'></div><i class=\"fa fa-#{ icon_name } fa-#{ icon_name }_decorator\"></i>"
+      return "<div class='img-box resource_avatar resource_avatar_for_#{ icon_name }' style='background-image: url("+customAvatar+")'></div>"
     else
       return "<i class=\"fa fa-#{ icon_name }\"></i>".html_safe
     end

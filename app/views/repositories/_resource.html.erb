@@ -7,23 +7,21 @@
     <div class="corner-item">
       <div class="corner-item2">
         <div class="corner-color"></div>
-        <%= link_to raw(icon(resource)), resource, :title => resource.title %>
+        <%= link_to raw(icon(resource,false)), resource, :title => resource.title %>
       </div>
       <div class="corner-background"></div>
     </div>
     <!-- image/icon -->
     <div class="container-img">
-      <div class="img-box resource-center">        
-
+      <div class="img-box resource-center">
         <%= link_to raw(icon(resource)), resource, :title => resource.title %>
-
       </div>
     </div> 
-  
   <%end%>
-  <!-- INFO -->
 
+  <!-- INFO -->
   <div class="caption">
+    
     <!-- Title -->
     <h6>
       <%= link_to resource.title, resource %>
@@ -31,14 +29,12 @@
 
     <!-- Author -->
     <span class="author"> 
-
       <span class="by"><%=t('by')%></span>
-
       <%= link_to truncate_name(resource.author.name, length: 25), resource.author.subject %>
-
     </span>
 
     <hr>
+
     <div class="info-bottom">
 
       <!--like -->
@@ -46,6 +42,7 @@
         <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
         <%= link_like(resource.post_activity)%>
       </div>
+
       <!--views -->
       <div class="views">
         <%if resource.private_scope? %>
@@ -57,6 +54,9 @@
           <i class="fa fa-eye"></i>
         <%end%>
       </div>
+
     </div>
+
   </div>
+
 </li>

@@ -1,4 +1,4 @@
-<% resource = contribution.activity_object.object %>
+<% resource = contribution.activity_object.object rescue nil %>
 <% return if resource.nil? or resource.author.nil? %>
 
 <li class="box-item resource">
@@ -6,7 +6,7 @@
   <div class="corner-item">
     <div class="corner-item2">
       <div class="corner-color"></div>
-      <%= link_to raw(icon(resource)), contribution, :title => resource.title %>
+      <%= link_to raw(icon(resource,false)), contribution, :title => resource.title %>
     </div>
     <div class="corner-background"></div>
   </div>
