@@ -415,7 +415,7 @@ en:
       req2_html: "2. <b>Write</b> a description for your request, telling us who you are, what are your neccesities with this request and we will help you as much as we can"
       req3_html: "3. Select the signed file and <b>attach it</b>"
       resources1_html : "Resources"
-      resources2_html : "This section shows the resource in which you have entered. On the right zone, recommended resources will be shown, under the resource you have the information of it, as well as easy ways to share it, download it, mark it as spam, make it as favorite, or put it into one of your categories. You can also comment the resource from the bottom."
+      resources2_html : "This section shows the resource you have accessed.</br> On the right zone recommended resources are shown, under the resource you have the information of it, as well as options to share it, download it, report inappropriate content or spam, add it to your favorites, or put it into a category. You can also add comments from the bottom."
       title: "Uploading resources"
     info:
       age: "Age"
