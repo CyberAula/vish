@@ -1,9 +1,9 @@
 <div id="winners">
   <div id="banner">
     <%if I18n.locale==:es%>
-    <%= link_to image_tag("competition/ban_winner_01_esp.png",  :class=> "" ), "/contest" %>
+      <%= link_to image_tag("competition/ban_winner_01_esp.png",  :class=> "" ), "/contest" %>
     <%else%>
-    <%= link_to image_tag("competition/ban_winner_01.png",  :class=> "" ), "/contest" %>
+      <%= link_to image_tag("competition/ban_winner_01.png",  :class=> "" ), "/contest" %>
     <%end%>
   </div>
 
@@ -17,10 +17,8 @@
     <div class="modal fade" id="ModalPrizes" tabindex="-1" role="dialog" aria-labelledby="ModalPrizesLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
             <h4 class="modal-title" id="ModalPrizesLabel"><%= t('contest.prizes') %></h4>
           </div>
           <div class="modal-body">
@@ -51,7 +49,7 @@
         <div class="podiuminside1">
           <div class="entities">
             <ul class="items">
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } unless Excursion.find_by_id(560).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515), :prefix_id => "contest" } unless Excursion.find_by_id(515).nil? %>
             </ul>
           </div>
           <div class="podiumart p1">
@@ -64,7 +62,7 @@
         <div class="podiuminside2">
           <div class="entities">
             <ul class="items">
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } unless Excursion.find_by_id(515).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560), :prefix_id => "contest" } unless Excursion.find_by_id(560).nil? %>
             </ul>
           </div>
           <div class="podiumart p2">
@@ -77,7 +75,7 @@
         <div class="podiuminside3">
           <div class="entities">
             <ul class="items">
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } unless Excursion.find_by_id(659).nil? %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659), :prefix_id => "contest" } unless Excursion.find_by_id(659).nil? %>
             </ul>
           </div>
           <div class="podiumart p3">
@@ -256,7 +254,7 @@
       <section id="show_items">
         <div class="recomended">
           <ul class="items">
-            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(592) } unless Excursion.find_by_id(592).nil? %>
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(1198) } unless Excursion.find_by_id(1198).nil? %>
           </ul>
         </div>
         <div class="badimg">
@@ -364,7 +362,7 @@
       <a class="sign_up btn btn-info" href="/contest_all"><%=t('contest.viewalltag')%></a>
     </div>
   </div>
-</div><!-- end #winners-->
+</div>
 
 
 

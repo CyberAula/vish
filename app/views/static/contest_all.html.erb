@@ -24,6 +24,11 @@
   <div class="entities contest_excursions">
     <ul class="items">
       <% entities_tagged_with(["Excursion"],"ViSHCompetition2013").each do |excursion| %>
+        <div class="contest_excursion_tags" style="display:none !important">
+          <% excursion.tags.each do |tag| %>
+            <p class="contest_excursion_tag"><%=tag.name.downcase%></p>
+          <% end %>
+        </div>
         <%= render :partial => 'entities/entity', :locals => { :entity => excursion, :prefix_id => "contest" } %>
       <% end %>
     </ul>
@@ -31,16 +36,13 @@
 
 </section>
 
-<script type="text/javascript">
-  $("#tags_selector").change(function() {
-    if(this.value=="All"){
-      $(".excursion-item").show();
-    }
-    else{
-      $(".excursion-item").hide();
-      $(".one_tag:contains("+this.value+")").parents(".excursion-item").show();
-      $(".one_tag:contains("+this.value.toLowerCase()+")").parents(".excursion-item").show();
-    }
-  });
-
-</script>
+<%content_for :javascript do%>
+    $("#tags_selector").change(function() {
+      if(this.value=="All"){
+        $(".excursion-item").show();
+      } else {
+        $(".excursion-item").hide();
+        $(".contest_excursion_tag:contains("+this.value.toLowerCase()+")").parents(".contest_excursion_tags").next(".excursion-item").show();
+      }
+    });
+<% end %>
