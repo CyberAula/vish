@@ -114,15 +114,6 @@ hu:
     document: "dokumentum"
     help:
       title: "Források feltöltése"
-      info1_html: "1. Kattints a <b>dokumentum</b>, a <b>linkek</b> vagy a <b>beágyazott tartalom</b> fülekre.<br>"
-      info2_html: "2. Ha fel akarsz tölteni egy dokumentumot, akkor kattints a <b>böngészés</b>-re hogy ki tudd választani a megfelelő fájlt a gépedről. Ha a forrásod egy link vagy beágyazott tartalom, <b>beillesztheted</b> a szövegdobozba.<br>"
-      info3_html: "3. Írd be a <b>címet</b> és a <b>leírást</b>.<br>"
-      info4_html: "4. Adj a forrásodhoz kapcsolódó <b>címkéket</b>. Alapértelmezetten az érdeklődési körödnél megadott címkék jelennek meg. Törölheted vagy hozzá is tehetsz új címkéket. <br>"
-      info5_html: "5. Válaszd ki a <b>nyelvet</b>, ha szükséges.<br>"
-      info6_html: "6. Válassz egy <b>kor</b> intervallumot. Erre az információra az ajánlásoknál van szükség.<br>"
-      info7_html: "7. Ha élő videófelvételt akarsz beágyazni, kattints az <b>Élő</b> lehetőségre.<br>"
-      info8_html: "8. Végül kattints a <b>mentés</b> gombra a feltöltéshez."
-    how: "Hogy töltsünk fel forrásokat"
     info:
       title: "Cím"
       description: "Leírás"
@@ -430,8 +421,6 @@ hu:
     details:
       info: "Információ"
     download_explanation: "Töltsd le a tartalmat a készülékedre"
-    helpquiz:
-      info1_html: "1. Prueba de ayuda 1 para el quiz<br>"
     language:
       option1: "(Nyelv független)"
     leyend:

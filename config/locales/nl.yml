@@ -63,15 +63,6 @@ nl:
     document: "document"
     help:
       title: "Leermiddelen uploaden"
-      info1_html: "1. Klik op <b>documenten</b>, <b>links</b> of <b>embedden</b> tab.<br>"
-      info2_html: "2. Als u een document wilt uploaden, klik op <b>browse</b> om een bestand te selecteren van uw computer. Als uw leermiddel een link of embed-code is, kunt u deze <b>plakken</b> in het tekstvenster.<br>"
-      info3_html: "3. Typ een <b>titel</b> en <b>beschrijving</b>.<br>"
-      info4_html: "4. Voeg gerelateerde <b>tags</b> toe aan uw leermiddel. Uw aandachtsvelden zijn standaard toegewezen. U kunt deze echter verwijderen of nieuwe tags toevoegen.<br>"
-      info5_html: "5. Kies zo nodig een gewenste <b>taal</b>.<br>"
-      info6_html: "6. Selecteer een <b>leeftijd </b>categorie. Deze informatie wordt gebruikt voor aanbevelingsdoeleinden.<br>"
-      info7_html: "7. Als u een live streaming video wilt embedden, klik dan op de <b>Live</b> optie.<br>"
-      info8_html: "8. Klik ten slotte op <b> opslaan </b> om uw leermiddel te uploaden."
-    how: "Hoe u een leermiddel kunt delen"
     info:
       title: "Titel"
       description: "Beschrijving"
@@ -425,8 +416,6 @@ nl:
       info: "Info"
     document: "document"
     download_explanation: "Deze hulpbron downloaden naar uw apparaat"
-    helpquiz:
-      info1_html: "1. Test van hulp 1 voor de quiz<br>"
     language:
       option1: "(Niet taalafhankelijk)"
     leyend:

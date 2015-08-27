@@ -63,15 +63,6 @@ fr:
     document: "document"
     help:
       title: "Publication de ressources"
-      info1_html: "1. Cliquez sur l'onglet <b>documents</b>, <b>liens</b> ou <b>code incorporé</b>.<br>"
-      info2_html: "2. Si vous souhaitez publier un document, cliquez sur <b>parcourir</b> pour sélectionner un fichier sur votre ordinateur. Si votre ressource est un lien ou un code incorporé, vous pouvez la <b>coller</b> dans la zone de texte.<br>"
-      info3_html: "3. Saisissez un <b>titre</b> et une <b>description</b>.<br>"
-      info4_html: "4. Ajoutez des <b>mots-clés</b> à votre ressource. Vos centres d'intérêt ont été attribués par défaut. Vous pouvez toutefois les supprimer ou ajouter de nouveaux mots-clés.<br>"
-      info5_html: "5. Choisissez une <b>langue</b> requise, si nécessaire.<br>"
-      info6_html: "6. Sélectionnez une tranche d'<b>âge </b>. Ces informations seront utilisées à des fins de recommandation.<br>"
-      info7_html: "7. Si vous souhaitez intégrer un flux vidéo en direct, cliquez sur l'option <b>En direct</b>.<br>"
-      info8_html: "8. Pour finir, cliquez sur le bouton <b> enregistrer </b> pour publier votre ressource."
-    how: "Comment partager une ressource"
     info:
       title: "Titre"
       description: "Description"
@@ -423,8 +414,6 @@ fr:
       info: "Info"
     document: "document"
     download_explanation: "Télécharger cette ressource sur votre périphérique"
-    helpquiz:
-      info1_html: "1. Test d'aide 1 pour le quiz<br>"
     info:
       age: "Âge"
     language:

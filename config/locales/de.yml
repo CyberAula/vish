@@ -112,15 +112,6 @@ de:
     document: "Dokument"
     help:
       title: "Ressourcen hochladen"
-      info1_html: "1. Klicke auf <b>Dokumente</b>, <b>Links</b> oder <b>Embed</b> tab.<br>"
-      info2_html: "2. Wenn du ein Dokument hochladen willst, klicke auf <b>browse</b> und wähle das File von deinem Computer aus. Wenn deine Ressource ein Link ist oder woanders eingebunden ist, kannst du es in die Textbox <b>kopieren</b>.<br>"
-      info3_html: "3. Gib einen <b>Titel</b> und eine <b>Bechreibung</b> ein.<br>"
-      info4_html: "4. Füge zugehörige <b>Tags</b> zu deiner Ressource. Deine Interessensgebiete wurden automatisch zugeordnet. Du kannst sie löschen oder neue tags dazufügen.<br>"
-      info5_html: "5. Wähle eine <b>Sprache</b>, falls nötig.<br>"
-      info6_html: "6. Wähle eine <b>Alters </b>gruppe. Diese Information wird für Empfehlungen verwendet.<br>"
-      info7_html: "7. Wenn du ein Live Streaming Video einbauen möchtest, klicke auf <b>Live</b> Option.<br>"
-      info8_html: "8. Zuletzt klicke auf <b> Speichern </b> um deine Ressource hochzuladen."
-    how: "Wie man eine Ressource teilt"
     info:
       title: "Titel"
       description: "Beschreibung"
@@ -450,8 +441,6 @@ de:
     details:
       info: "Info"
     download_explanation: "speichere diese Ressource auf deinem Gerät"
-    helpquiz:
-      info1_html: "1. Hilfe bei Quiz <br>"
     language:
       option1: "(sprachunabhängig)"
     leyend:
