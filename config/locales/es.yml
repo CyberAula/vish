@@ -373,7 +373,7 @@ es:
       event4_html: "4. Seleccione la fecha de inicio y la finalización (puede ser aproximada)de este haciendo click en los iconos de los relojes.<br>"
       event5_html: "5. Finalmente, haga click en el botón <b> guardar </b>para publicar el evento."
       excursions1_html : "Excursiones"
-      excursions2_html : "En esta sección se muestra la excursión en la que ha entrado, puedes navegar por las diapositivas de excursión haciendo clic en los botones de flecha, haciendo clic en la parte izquierda o derecha de las diapositivas o usando las teclas de dirección del teclado. En la zona de la derecha, tendrás excursiones recomendadas, bajo la excursión se muestra la información de la misma, así como las maneras sencillas de compartirla , descargarla (en formato SCORM), marcarla como spam, clonarla a su perfil, hacerla favorita, o etiquetarlo dentro de una de sus categorías. También puede comentar la excursión desde la parte inferior."
+      excursions2_html : "En esta sección se muestra la excursión a la que ha accedido.</br> Puedes navegar por las diapositivas de la excursión haciendo clic en las flechas, haciendo clic en la parte izquierda o derecha de las diapositivas o usando las teclas de dirección del teclado.</br> En la zona de la derecha se muestran excursiones recomendadas, bajo la excursión se muestra la información de la misma, así como opciones para compartirla , descargarla (en formato SCORM), notificar contenidos inapropiados o spam, clonarla, añadirla a sus favoritos, o añadirla a una categoría.</br> También puede comentar la excursión desde la parte inferior."
       exse_html: "Este panel muestra los filtros aplicados a los resultados de búsqueda."
       exse2_html: "Explorar / Buscar"
       favourite1_html: "Favoritos"
