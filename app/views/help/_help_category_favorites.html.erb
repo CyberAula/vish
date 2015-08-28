@@ -1,0 +1,18 @@
+<span class="helpheader">   
+  <i class="fa fa-question-circle" id="helpfavoritecategoriesid"  data-toggle="popover" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.favorite1_html')%>" href='#' value="" ></i>
+  <div id="contentfavoritecategoriesid" style="display: none">
+    <div class="popover-body">
+      <p><%= t('document.help.favorite2_html')%> </p>
+    </div>
+    <div class="popover-footer popoverfix"><%= t('document.help.overview_html')%></div>
+  </div>
+</span>
+
+<%content_for :javascript do%>
+  $('#helpfavoritecategoriesid').popover({
+    html : true,
+    content: function() {
+      return $('#contentfavoritecategoriesid').html();
+    }
+  });
+<%end%>
