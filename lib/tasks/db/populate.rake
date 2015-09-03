@@ -445,6 +445,7 @@ namespace :db do
 
     Rake::Task["db:reset"].invoke
     Rake::Task["db:seed"].invoke
+    Rake::Task["db:populate:create:roles"].invoke
     Rake::Task["db:populate:create:licenses"].invoke
     Rake::Task["db:populate:create:current_site"].invoke
     Rake::Task["db:populate:create:demo_user"].invoke
