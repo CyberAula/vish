@@ -203,6 +203,9 @@ Vish.Search = (function(V,undefined){
       _all_tags = {};
     }
     if(tags==""){
+      if(initialize_tags){
+        $("#tags_ul").html("");
+      }
       return;
     }
     var array = tags.split(',');
