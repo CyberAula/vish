@@ -565,7 +565,7 @@ Vish.Search = (function(V,undefined){
       var windowHistoryPushStateSupported = ((window.history)&&(typeof window.history.pushState == "function"));
       if(windowHistoryPushStateSupported){
         var resourcesTypes = _options.result_resource_types.split(",");
-        if(resourcesTypes.length > 0){
+        if(_options.result_resource_types != "" && resourcesTypes.length > 0){
           if(resourcesTypes.indexOf("Actor")==-1) {
             parsed["type"] = ["Learning_object"];
           } else if (resourcesTypes.length === 1) {
