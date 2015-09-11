@@ -29,7 +29,7 @@ DocumentsHelper.module_eval do
         when "Writing" then "file-text"
         when "Scormfile" then "scorm"
         when "Webapp" then "webapp"
-        when "Workshop" then "lightbulb-o"
+        when "Workshop" then "graduation-cap"
         when "Excursion" then "webapp"
         else "file" # SocialStream::Documents.icon_mime_types[:default]
       end
