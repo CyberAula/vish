@@ -501,7 +501,7 @@ class ExcursionsController < ApplicationController
         author = Actor.find(author_id)
         unless author.user.private_student_group_id.nil?
           teacher = Actor.find(author.user.private_student_group.owner_id).user
-          #TeacherNotificationMailer.notify_teacher(teacher, "Subject", "Body", author_id)
+          TeacherNotificationMailer.notify_teacher(teacher)
         end
       end
   end

@@ -1,9 +1,6 @@
 class TeacherNotificationMailer < ActionMailer::Base
-	def notify_teacher(teacher, subject, notification, object_id)
-		@teacher = teacher
-		@subject = subject
-		@notification = notification
-		@object_id = object_id
-		mail(:to => teacher.mail, :subject => subject)
+	def notify_teacher(user)
+		@user = user
+		mail(:to => "abenito@dit.upm.es", :subject => "Mail from student", :body => "sent mail")
 	end
 end
