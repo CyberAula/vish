@@ -1,6 +1,15 @@
 class TeacherNotificationMailer < ActionMailer::Base
-	def notify_teacher(user)
-		@user = user
-		mail(:to => "abenito@dit.upm.es", :subject => "Mail from student", :body => "sent mail")
+	default from: 'no-reply@example.com'
+
+	def notify_teacher(teacher, pupil)
+		@teacher_name = teacher.name
+		@pupil_name = pupil.name
+		mail(:to => "", 
+			 :subject => "Han subido una excursión", 
+			 :content_type => "text/html").deliver
+	end
+
+	def notify_for_publish(teacher, pupil)
+
 	end
 end
