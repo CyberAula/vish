@@ -1,7 +1,8 @@
 LinksController.class_eval do
 
   before_filter :fill_create_params, :only => [:new, :create]
-
+  after_filter :notify_teacher, :only => [:create]
+  
   def create
     super do |format|
       format.json {
@@ -33,4 +34,16 @@ LinksController.class_eval do
     params["link"]["user_author_id"] = current_subject.actor_id
   end
   
+  def notify_teacher
+    author_id = resource.author.user.id
+    unless author_id.nil?
+      pupil = resource.author.user
+      unless pupil.private_student_group_id.nil?
+        teacher = Actor.find(pupil.private_student_group.owner_id).user
+        resource_path = document_path(resource) #TODO get full path
+        TeacherNotificationMailer.notify_teacher(teacher, pupil, resource_path)
+      end
+    end
+  end
+
 end

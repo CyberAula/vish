@@ -470,6 +470,11 @@ class ExcursionsController < ApplicationController
     
   
   end
+ 
+  def notify_for_publish
+   
+  end
+
 
   private
 
@@ -506,10 +511,6 @@ class ExcursionsController < ApplicationController
         excursion_path = excursion_path(@excursion) #TODO get full path
         TeacherNotificationMailer.notify_teacher(teacher, pupil, excursion_path)
       end
-  end
-
-  def notify_for_publish
-   
   end
 
 end

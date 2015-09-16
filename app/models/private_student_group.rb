@@ -71,7 +71,6 @@ class PrivateStudentGroup < ActiveRecord::Base
     resources("Excursion").reject{|e| e.draft}
   end
 
-
   private
 
   def remove_accounts

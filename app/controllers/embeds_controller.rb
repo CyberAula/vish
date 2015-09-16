@@ -2,6 +2,7 @@ class EmbedsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :create, :update ]
   before_filter :fill_create_params, :only => [:new, :create]
   include SocialStream::Controllers::Objects
+  after_filter :notify_teacher, :only => [:create, :update]
 
   def show
     super do |format|
@@ -54,5 +55,18 @@ class EmbedsController < ApplicationController
     params["embed"]["author_id"] = current_subject.actor_id
     params["embed"]["user_author_id"] = current_subject.actor_id
   end
+
+  def notify_teacher
+    author_id = resource.author.user.id
+    unless author_id.nil? 
+      pupil = resource.author.user
+      unless pupil.private_student_group_id.nil? #REFACTOR: is_pupil?
+        teacher = Actor.find(pupil.private_student_group.owner_id).user
+        resource_path = document_path(resource) #TODO get full path
+        TeacherNotificationMailer.notify_teacher(teacher, pupil, resource_path)
+      end
+    end
+  end
+
 end
 

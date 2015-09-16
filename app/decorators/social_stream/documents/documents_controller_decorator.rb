@@ -5,7 +5,7 @@ DocumentsController.class_eval do
   # Enable CORS
   before_filter :cors_preflight_check, :only => [:show]
   after_filter :cors_set_access_control_headers, :only => [:show]
-  after_filter :notify_teacher, :only => [:create]
+  after_filter :notify_teacher, :only => [:create, :update]
 
   def create
     super do |format|
@@ -88,7 +88,6 @@ DocumentsController.class_eval do
   end
 
   def notify_teacher
-    binding.pry
     author_id = resource.author.user.id
     unless author_id.nil?
       pupil = resource.author.user
@@ -99,4 +98,5 @@ DocumentsController.class_eval do
       end
     end
   end
+  
 end

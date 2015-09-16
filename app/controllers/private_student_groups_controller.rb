@@ -64,4 +64,18 @@ class PrivateStudentGroupsController < ApplicationController
     redirect_to private_student_groups_path
   end
 
+    #teacher_notification: { all, publishing, none  }
+  def change_teacher_notifications
+    privateStudentGroup = PrivateStudentGroup.find(params[:id])
+    case params[:teacher_notification]
+    when 0
+      privateStudentGroup.teacher_notification = "ALL"
+    when 1
+      privateStudentGroup.teacher_notification = "PUBLISHING"
+    when 2
+      privateStudentGroup.teacher_notification = "NONE"
+    end
+
+  end
+
 end

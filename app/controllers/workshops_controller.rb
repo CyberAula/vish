@@ -5,8 +5,8 @@ class WorkshopsController < ApplicationController
   before_filter :fill_draft, :only => [:create, :update]
   skip_load_and_authorize_resource :only => [ :edit_details, :contributions ]
   skip_after_filter :discard_flash, :only => [:edit]
-
   include SocialStream::Controllers::Objects
+  after_filter :notify_teacher, :only => [:create]
 
   #############
   # REST methods
@@ -162,6 +162,18 @@ class WorkshopsController < ApplicationController
 
   def verify_owner(workshop)
     return (can? :update, workshop)
+  end
+
+  def notify_teacher
+    author_id = resource.author.user.id
+    unless author_id.nil? 
+      pupil = resource.author.user
+      unless pupil.private_student_group_id.nil? #REFACTOR: is_pupil?
+        teacher = Actor.find(pupil.private_student_group.owner_id).user
+        resource_path = document_path(resource) #TODO get full path
+        TeacherNotificationMailer.notify_teacher(teacher, pupil, resource_path)
+      end
+    end
   end
 
 end
