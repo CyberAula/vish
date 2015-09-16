@@ -4,8 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p><%= t('notification.teacher.greetings')%></p>
-    <p><%= t('notification.teacher.text_1')%></p>
+    <p><%= t('notification.teacher.greetings', teacher_name: @teacher_name)%></p>
+    <p><%= t('notification.teacher.text_1', pupil_name: @pupil_name)%></p>
+    <a><%= url_for(@path) %></a>
     <p><%= t('notification.teacher.text_2')%></p>
+    <p></p>
   </body>
 </html>

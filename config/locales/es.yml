@@ -674,6 +674,12 @@ es:
       user: "%{sender} te está siguiendo."
     makefriend:
       user: "%{sender} te está siguiendo."
+    teacher:
+      greetings: "Hola, '%{teacher_name}'"
+      text_1: "%Le informamos que el alumno '%{pupil_name}' ha subido el siguiente recurso:"
+      text_2: "Le agradecemos su atención."
+      text_publish_1: "Le informamos que el alumno '%{pupil_name}' ha subido el siguiente trabajo:"
+      text_publish_2: "Si cree que cumple todos los requisitos para publicarla puede hacerlo desde el trabajo o desde el siguiente link:"
     unread: " sin leer"
   offline:
     title: "Modo sin conexión"

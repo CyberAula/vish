@@ -5,6 +5,7 @@ DocumentsController.class_eval do
   # Enable CORS
   before_filter :cors_preflight_check, :only => [:show]
   after_filter :cors_set_access_control_headers, :only => [:show]
+  after_filter :notify_teacher, :only => [:create]
 
   def create
     super do |format|
@@ -86,4 +87,16 @@ DocumentsController.class_eval do
     params["document"]["user_author_id"] = current_subject.actor_id
   end
 
+  def notify_teacher
+    binding.pry
+    author_id = resource.author.user.id
+    unless author_id.nil?
+      pupil = resource.author.user
+      unless pupil.private_student_group_id.nil?
+        teacher = Actor.find(pupil.private_student_group.owner_id).user
+        resource_path = document_path(resource) #TODO get full path
+        TeacherNotificationMailer.notify_teacher(teacher, pupil, resource_path)
+      end
+    end
+  end
 end

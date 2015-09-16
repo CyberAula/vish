@@ -67,6 +67,7 @@ Vish::Application.routes.draw do
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
   match '/excursions/:id/upload_attachment' => 'excursions#upload_attachment'
   match '/excursions/:id/attachment' => 'excursions#show_attachment'
+  match '/excursions/:id/allow_publishing' => 'excursions#allow_publishing'
 
   match '/excursions/:id.mashme' => 'excursions#show', :defaults => { :format => "gateway", :gateway => 'mashme' }
   match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full" }

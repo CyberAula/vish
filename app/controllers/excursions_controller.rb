@@ -466,6 +466,10 @@ class ExcursionsController < ApplicationController
     end
   end
 
+  def allow_publishing
+    
+  
+  end
 
   private
 
@@ -495,15 +499,17 @@ class ExcursionsController < ApplicationController
       file_new_name
   end
 
-   def notify_teacher
-      author_id = params[:excursion][:author_id] || JSON.parse(params[:excursion][:json])["author"]["vishMetadata"]["id"].to_i
-      unless author_id.nil?
-        pupil = Actor.find(author_id)
-        unless pupil.user.private_student_group_id.nil?
-          teacher = Actor.find(pupil.user.private_student_group.owner_id).user
-          TeacherNotificationMailer.notify_teacher(teacher, pupil)
-        end
+  def notify_teacher
+      pupil = @excursion.author.user
+      unless pupil.user.private_student_group_id.nil?
+        teacher = Actor.find(pupil.user.private_student_group.owner_id).user
+        excursion_path = excursion_path(@excursion) #TODO get full path
+        TeacherNotificationMailer.notify_teacher(teacher, pupil, excursion_path)
       end
+  end
+
+  def notify_for_publish
+   
   end
 
 end

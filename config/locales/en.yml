@@ -683,9 +683,11 @@ en:
     makefriend:
       user: "%{sender} is following %{who}."
     teacher:
-      greetings: "Hello, %{user.mail}"
-      text_1: "%{pupil} has uploaded the following excursion:"
-      text_2: "If you feel it's correct you can publish it in the following link:"
+      greetings: "Hello, '%{teacher_name}'"
+      text_1: "We inform you that '%{pupil_name}' has uploaded the following resource:"
+      text_2: "We appreciate your attention."
+      text_publish_1: "We inform you that the pupil '%{pupil_name}' has uploaded the following work:"
+      text_publish_2: "If you feel it meets all requirements for publishing, you can do it from the work view or in the following link:"
     unread: " unread"
   officedoc:
     confirm_delete: "Delete document?"
