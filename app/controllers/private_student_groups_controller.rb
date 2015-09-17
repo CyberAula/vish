@@ -66,14 +66,17 @@ class PrivateStudentGroupsController < ApplicationController
 
     #teacher_notification: { all, publishing, none  }
   def change_teacher_notifications
+    binding.pry
     privateStudentGroup = PrivateStudentGroup.find(params[:id])
     case params[:teacher_notification]
-    when 0
+    when "ALL"
       privateStudentGroup.teacher_notification = "ALL"
-    when 1
+    when "PUBLISHING"
       privateStudentGroup.teacher_notification = "PUBLISHING"
-    when 2
+    when "NONE"
       privateStudentGroup.teacher_notification = "NONE"
+    else
+      privateStudentGroup.teacher_notification = "ALL"
     end
 
   end
