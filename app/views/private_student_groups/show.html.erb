@@ -31,22 +31,11 @@
 							<span class="by"><%= t('by') %></span> <%= link_to @privateStudentGroup.private_teacher.name, @privateStudentGroup.private_teacher.subject %>
 							Autor
 						</div>
-            <form id="notification-selector" class="hidden" action="/private_student_groups/<%= @privateStudentGroup.id %>/change_teacher_notifications" method="post">
-            <label>Configurar notificaciones</label>
-            <p>¿Cuando quiere recibir notificaciones de este grupo?</p>
-              <select class="form-control">
-                  <option value="ALL">Cuando suban cualquier recurso</option>
-                  <option value="PUBLISHING">Solo al públicar excursiones</option>
-                  <option value="NONE">Nunca</option>
-              </select> 
-               <button type="submit" value="Submit">Submit</button>
-            </form>
-           
           </div>
         </header>
         <div class="toolbar-profile">
           <div class="btn-group js_update_profile_info">
-            <a id="notification_settings_button" class="btn btn-default btn-for-categorize" href=""><i class='fa fa-exclamation'></i>Notification Settings</a>
+            <a id="notification_settings_button" class="btn btn-default btn-for-categorize" data-toggle="modal" data-target="#notifications_modal"><i class='fa fa-bell'></i>Notification Settings</a>
             <!--remove-->
 						<a class="btn btn-default btn-for-categorize" href="<%=credentials_private_student_group_path(@privateStudentGroup)%>"><i class='fa fa-download'></i>Download credentials</a>
           <% if can?(:destroy, @privateStudentGroup) %>
@@ -64,7 +53,7 @@
           <!--excursions-->
           <li class="active">
             <a id="pupils_tab" href="#tabPupils" data-toggle="tab">
-              <i class="fa fa-book"></i>
+              <i class="fa fa-users"></i>
               <span class=" hidden-xs"><%=t('private_student.tabs.pupils_tab')%></span>
             </a>
           </li>
@@ -110,6 +99,34 @@
 
 
 </section>
+
+<!-- Notifications modal -->
+<div class="modal fade" id="notifications_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+       <form id="notification-selector" class="hidden" action="/private_student_groups/<%= @privateStudentGroup.id %>/change_teacher_notifications" method="post">
+            <label>Configurar notificaciones</label>
+            <p>¿Cuando quiere recibir notificaciones de este grupo?</p>
+              <select class="form-control">
+                  <option value="ALL">Cuando suban cualquier recurso</option>
+                  <option value="PUBLISHING">Solo al públicar excursiones</option>
+                  <option value="NONE">Nunca</option>
+              </select> 
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
  <%= content_for :javascript do %>
 
