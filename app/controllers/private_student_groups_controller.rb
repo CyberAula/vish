@@ -66,9 +66,8 @@ class PrivateStudentGroupsController < ApplicationController
 
     #teacher_notification: { all, publishing, none  }
   def change_teacher_notifications
-    binding.pry
     privateStudentGroup = PrivateStudentGroup.find(params[:id])
-    case params[:teacher_notification]
+    case params[:post][:teacher_notification]
     when "ALL"
       privateStudentGroup.teacher_notification = "ALL"
     when "PUBLISHING"
@@ -78,7 +77,8 @@ class PrivateStudentGroupsController < ApplicationController
     else
       privateStudentGroup.teacher_notification = "ALL"
     end
-
+    privateStudentGroup.save
+    redirect_to private_student_group_path(privateStudentGroup)
   end
 
 end

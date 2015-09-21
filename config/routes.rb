@@ -129,7 +129,7 @@ Vish::Application.routes.draw do
     get 'credentials', :on => :member
   end
 
-  match '/private_student_groups/:id/change_teacher_notifications'
+  match '/private_student_groups/:id/change_teacher_notifications' => 'private_student_groups#change_teacher_notifications', :via => :post
 
   #service_permissions
   match 'service_permissions/update_permissions' => 'service_permissions#update_permissions', :via => :post

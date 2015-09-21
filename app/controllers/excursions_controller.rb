@@ -506,7 +506,7 @@ class ExcursionsController < ApplicationController
 
   def notify_teacher
       pupil = @excursion.author.user
-      unless pupil.user.private_student_group_id.nil?
+      unless pupil.user.private_student_group_id.nil? && pupil.private_student_group.teacher_notification == "ALL"
         teacher = Actor.find(pupil.user.private_student_group.owner_id).user
         excursion_path = excursion_path(@excursion) #TODO get full path
         TeacherNotificationMailer.notify_teacher(teacher, pupil, excursion_path)

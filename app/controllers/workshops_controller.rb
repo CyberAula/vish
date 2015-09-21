@@ -168,7 +168,7 @@ class WorkshopsController < ApplicationController
     author_id = resource.author.user.id
     unless author_id.nil? 
       pupil = resource.author.user
-      unless pupil.private_student_group_id.nil? #REFACTOR: is_pupil?
+      unless pupil.private_student_group_id.nil? && pupil.private_student_group.teacher_notification == "ALL" #REFACTOR: is_pupil?
         teacher = Actor.find(pupil.private_student_group.owner_id).user
         resource_path = document_path(resource) #TODO get full path
         TeacherNotificationMailer.notify_teacher(teacher, pupil, resource_path)
