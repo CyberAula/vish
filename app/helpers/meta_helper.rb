@@ -5,7 +5,7 @@ module MetaHelper
 		if tab.nil?
 			user.name + " - " + t("site.meta_title.profile")
 		else
-			user.name + " - " + t("search.models."+tab.singularize)
+			user.name + " - " + t("search.models."+tab.singularize, :default => "")
 		end
 	end	
 
@@ -13,7 +13,7 @@ module MetaHelper
 		if tab.nil?
 			t("site.meta_desc.profile") + user.name + ". " + t("site.meta_desc.profile2")
 		else
-			t("site.meta_desc.tab_"+tab) + user.name
+			t("site.meta_desc.tab_"+tab, :default => "") + user.name
 		end
 	end	
 end

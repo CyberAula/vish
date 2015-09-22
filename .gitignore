@@ -54,6 +54,9 @@ public/tmp/scorm/*
 public/tmp/qti/*
 public/tmp/moodlequizxml/*
 
+#sitemap
+public/sitemap.xml.gz
+
 dumps/*
 
 #tmp simplecaptcha

@@ -199,6 +199,10 @@ class VishConfig
       models += Document.subclasses.map{|s| s.name}
     end
     models.uniq!
+    if options[:return_instances]
+      models = getInstances(models)    
+    end
+    
     return models
   end
 
