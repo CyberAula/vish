@@ -14,6 +14,8 @@
     <%= t("site.current.search") %>
   <% end %>
 <% end %>
+<%content_for :keywords do%><%= t('site.current.keywords') %><%end%>
+<%content_for :description do%><%= t('site.meta_desc.search')%><%end%>
 
 <% searchTerms = !params[:q].blank? and searchMode %>
 

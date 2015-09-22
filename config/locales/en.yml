@@ -973,12 +973,17 @@ en:
   site:
     current:
       description: "ViSH is a social and collaborative site for creating and sharing knowledge resources for the realization of educational activities."
-      keywords: "e-Learning, Technology Enhanced Learning, education, Learning Objects, repository, resources, authoring tool, catalogue, search"
-      title: "ViSH"
+      keywords: "presentations, educational resources, authoring tool, science, Learning Objects, repository, catalogue"
+      title: "ViSH - Virtual Science Hub"
       search: "ViSH - Search"
       browse: "ViSH - Explore"
       msg: "ViSH - Messages"
       activity: "ViSH - Activities"
+    meta_desc:
+      excursion: "Slides presentation about "
+      profile: "User profile of "
+      search: "ViSH search page. Here you can search in educational resources, presentations, courses, workshops, present in ViSH respository."
+      workshop: "Workshop about "
     name: "ViSH"
   swf:
     confirm_delete: "Delete SWF?"

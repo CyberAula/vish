@@ -1,12 +1,11 @@
-<%= content_for :title do %><%= @excursion.title %> - <%= !@excursion.author.nil? ? @excursion.author.slug : "" %><% end %>
-<%= content_for :description do %><%= @excursion.description %><% end %>
-<%= content_for :keywords do %><%= @excursion.tag_list %><% end %>
-<%= content_for :og_type do %>website<% end %>
+<%content_for :title do %><%= @excursion.title %> - <%= !@excursion.author.nil? ? @excursion.author.slug : "" %><% end %>
+<%content_for :description do %><%= @excursion.description? ? @excursion.description : (t("site.meta_desc.excursion")+@excursion.title) %><% end %>
+<%content_for :keywords do %><%= @excursion.tag_list %><% end %>
+<%content_for :og_type do %>website<% end %>
 <% shortURL = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) %>
-<%= content_for :og_url do %><%= shortURL %><% end %>
-<%= content_for :og_image do %>
-  <%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %>
-<% end %>
+<%content_for :og_url do %><%= shortURL %><% end %>
+<%content_for :og_image do %><%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %><% end %>
+<%content_for :canonical do%><%=polymorphic_url(@excursion)%><%end%>
 
 <% @contribution = (params["contribution"]=="true" and !@excursion.contribution.nil?) %>
 

@@ -1,3 +1,8 @@
+<%content_for :title do%><%= t('site.current.title') %><%end%>
+<%content_for :keywords do%><%= t('site.current.keywords') %><%end%>
+<%content_for :description do%><%= t('site.current.description')%><%end%>
+<%content_for :canonical do%><%= Vish::Application.config.full_domain %><%end%>
+
 <section id="frontpage">
   <div id="presentation">
     <%= render :partial => "frontpage/main" %>

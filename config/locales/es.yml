@@ -964,12 +964,17 @@ es:
   site:
     current:
       description: "ViSH es una red social colaborativa centrada en la creación y compartición de recursos educativos para la realización de actividades didácticas."
-      keywords: "e-Learning, Technology Enhanced Learning, education, Learning Objects, repository, resources, authoring tool, catalogue, search"
-      title: "ViSH"
+      keywords: "educación, contenidos educativos, presentaciones, herramienta de creación, catálogo"
+      title: "ViSH - Centro de Ciencia Virtual"
       search: "ViSH - Buscar"
       browse: "ViSH - Explorar"
       msg: "ViSH - Mensajes"
       activity: "ViSH - Actividades"
+    meta_desc:
+      excursion: "Presentación sobre "
+      profile: "Perfil de "
+      search: "Búsqueda de ViSH. Aquí puedes buscar entre los contenidos educativos, presentaciones, cursos, talleres, en el repositorio de ViSH"
+      workshop: "Taller sobre "
     name: "ViSH"
   swf:
     confirm_delete: "¿Borrar SWF?"

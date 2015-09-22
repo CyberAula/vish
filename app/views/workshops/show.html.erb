@@ -1,3 +1,8 @@
+<%content_for :title do%><%= @workshop.title %><%end%>
+<%content_for :keywords do%><%= @workshop.tag_list %><%end%>
+<%content_for :description do%><%= @workshop.description? ? @workshop.description : (t("site.meta_desc.workshop")+@workshop.title) %><%end%>
+<%content_for :canonical do%><%= polymorphic_url(@workshop) %><%end%>
+
 <section id="show_items" class="layout_show workshop_show">
 
 <!--++++++++++++++++toolbar+++++++++++++++++++++++-->
