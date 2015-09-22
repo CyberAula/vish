@@ -981,6 +981,7 @@ es:
       profile: "Perfil de "
       profile2: " Aquí puedes encontrar sus recursos y actividad educativa. Todo lo que ha hecho en esta plataforma educativa"
       search: "Búsqueda de ViSH. Aquí puedes buscar entre los contenidos educativos, presentaciones, cursos, talleres, en el repositorio de ViSH"
+      sign_up: "Página de registro para crear un usuario en la plataforma educativa ViSH."
       tab_excursions: "Presentaciones enriquecidas creadas por "
       tab_resources: "Recursos educativos subidos por "
       tab_events: "Eventos de videoconferencia o streaming creados por "
@@ -994,6 +995,7 @@ es:
       contest: "ViSH competición"
       overview: "Overview de ViSH"
       profile: "perfil"
+      sign_up: "Registro en ViSH"
       terms_of_use: "Términos de uso de ViSH"
     name: "ViSH"
   swf:

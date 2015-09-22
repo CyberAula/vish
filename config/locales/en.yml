@@ -990,6 +990,7 @@ en:
       profile: "User profile of "
       profile2: " Here you can find his/her educational resources and contacts. Everything he/she has done in this educational platform"
       search: "ViSH search page. Here you can search in educational resources, presentations, courses, workshops, present in ViSH respository."
+      sign_up: "Sign up page to create a user in the ViSH educational platform"
       tab_excursions: "HTML5 Enhanced presentations created by "
       tab_resources: "Educational resources uploaded by "
       tab_events: "Videoconference and streaming events created by "
@@ -1003,6 +1004,7 @@ en:
       contest: "ViSH contest"
       overview: "Overview page of ViSH"
       profile: "profile"
+      sign_up: "Sign up in ViSH"
       terms_of_use: "ViSH terms of use"
     name: "ViSH"
   swf:
