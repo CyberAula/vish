@@ -1,9 +1,7 @@
-
-
-<%content_for :title do%><%= @user.name %><%end%>
+<%content_for :title do%><%= profile_title @user, params[:tab] %><%end%>
 <%content_for :keywords do%><%= @user.profile.subject.tag_list %><%end%>
-<%content_for :description do%><%= t("site.meta_desc.profile") + @user.name %>. <%=@user.profile.description%><%end%>
-<%content_for :canonical do%><%=polymorphic_url(profile_subject)%><%end%>
+<%content_for :description do%><%= profile_desc @user, params[:tab] %>. <%=@user.profile.description%><%end%>
+<%content_for :canonical do%><%=polymorphic_url(profile_subject, :tab=>params[:tab])%><%end%>
 
 <%= render :partial => 'modal_message' %>
 
