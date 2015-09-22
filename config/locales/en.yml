@@ -982,10 +982,11 @@ en:
       msg: "ViSH - Messages"
       activity: "ViSH - Activities"
     meta_desc:
+      contest: "ViSH competition about creating educational resources. This page shows instructions to participate and winners."
       document: "Educational resource about "
       excursion: "Slides presentation about "
       event: "Videoconference or streaming event about "
-      workshop: "Educational Workshop/course about "
+      overview: "This page tells the user what he/she can do with the e-learning platform."
       profile: "User profile of "
       profile2: " Here you can find his/her educational resources and contacts. Everything he/she has done in this educational platform"
       search: "ViSH search page. Here you can search in educational resources, presentations, courses, workshops, present in ViSH respository."
@@ -996,9 +997,13 @@ en:
       tab_categories: "Educational folders or Categories created by "
       tab_followers: "Here you can find followers of "
       tab_followings: "Here you can find contacts of "
-      workshop: "Workshop about "
+      terms_of_use: "ViSH terms of use"
+      workshop: "Educational Workshop/course about "
     meta_title:
+      contest: "ViSH contest"
+      overview: "Overview page of ViSH"
       profile: "profile"
+      terms_of_use: "ViSH terms of use"
     name: "ViSH"
   swf:
     confirm_delete: "Delete SWF?"

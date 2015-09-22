@@ -973,10 +973,11 @@ es:
       msg: "ViSH - Mensajes"
       activity: "ViSH - Actividades"
     meta_desc:
+      contest: "Competición para crear recursos educativos. Página que muestra instrucciones para participar y ganadores."
       document: "Recurso educativo sobre "
       excursion: "Presentación enriquecida sobre "
       event: "Evento de videoconferencia o streaming sobre "
-      workshop: "Curso/taller educativo sobre "
+      overview: "Esta página le cuenta al usuario qué puede hacer en esta plataforma educativa."
       profile: "Perfil de "
       profile2: " Aquí puedes encontrar sus recursos y actividad educativa. Todo lo que ha hecho en esta plataforma educativa"
       search: "Búsqueda de ViSH. Aquí puedes buscar entre los contenidos educativos, presentaciones, cursos, talleres, en el repositorio de ViSH"
@@ -987,9 +988,13 @@ es:
       tab_categories: "Carpetas educativas o categorías creadas por "
       tab_followers: "Los followers de "
       tab_followings: "Los contactos de "
-      workshop: "Taller sobre "
+      terms_of_use: "Términos de uso de ViSH"
+      workshop: "Curso/taller educativo sobre "
     meta_title:
+      contest: "ViSH competición"
+      overview: "Overview de ViSH"
       profile: "perfil"
+      terms_of_use: "Términos de uso de ViSH"
     name: "ViSH"
   swf:
     confirm_delete: "¿Borrar SWF?"
