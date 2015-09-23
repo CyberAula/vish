@@ -16,7 +16,7 @@ SitemapGenerator::Sitemap.create do
                  "Embed"=> 0.3
                 }
 
-  VishConfig.getAllModels({:return_instances => true}).each do |mod|
+  VishConfig.getAllModelsInstances().each do |mod|
     prior = priorities[mod.model_name].nil? ? "0.5" : priorities[mod.model_name]
     mod.find_each do |instance|
       add polymorphic_path(instance), :lastmod => instance.updated_at, :changefreq => 'monthly', :priority => prior
