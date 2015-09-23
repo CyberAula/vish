@@ -466,16 +466,6 @@ class ExcursionsController < ApplicationController
     end
   end
 
-  def allow_publishing
-    
-  
-  end
- 
-  def notify_for_publish
-   
-  end
-
-
   private
 
   def allowed_params

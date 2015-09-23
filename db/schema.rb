@@ -277,6 +277,7 @@ ActiveRecord::Schema.define(:version => 20150916140255) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.boolean  "notified_teacher",        :default => false
   end
 
   create_table "groups", :force => true do |t|

@@ -1053,6 +1053,10 @@ class Excursion < ActiveRecord::Base
       self.inferLanguage
     end
 
+    if self.notified_teacher == true
+      self.notified_teacher = false
+    end
+
     #If LOEP is enabled, upload the excursion to LOEP
     unless Vish::Application.config.APP_CONFIG['loep'].nil?
       VishLoep.registerActivityObject(self.activity_object) rescue nil

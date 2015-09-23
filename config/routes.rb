@@ -130,6 +130,7 @@ Vish::Application.routes.draw do
   end
 
   match '/private_student_groups/:id/change_teacher_notifications' => 'private_student_groups#change_teacher_notifications', :via => :post
+  match '/private_student_groups/notify_teacher' => 'private_student_groups#notify_teacher', :via => :post
 
   #service_permissions
   match 'service_permissions/update_permissions' => 'service_permissions#update_permissions', :via => :post

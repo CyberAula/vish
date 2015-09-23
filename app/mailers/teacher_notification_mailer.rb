@@ -11,9 +11,10 @@ class TeacherNotificationMailer < ActionMailer::Base
 			 :content_type => "text/html").deliver
 	end
 
-	def notify_for_publish(teacher, pupil, excursion_id)
+	def notify_for_publish(teacher, pupil, excursion, classroom)
 		@teacher_name = teacher.name
 		@pupil_name = pupil.name
+		@excursion = excursion
 		
 		mail(:to => teacher.email, 
 			 :subject => subject, 

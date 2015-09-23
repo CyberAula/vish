@@ -56,6 +56,11 @@
 		token: "<%= form_authenticity_token %>"
 	};
 
+	<% unless current_subject.private_student_group_id == nil %>
+		configuration["notify_teacher_path"] = '/private_student_groups/notify_teacher';
+		configuration["classroom_pupil"] = true;
+	<% end %>
+
 	options["draft"] = true;
 
 	options["lang"] = "<%= I18n.locale.to_s%>";

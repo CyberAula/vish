@@ -81,4 +81,15 @@ class PrivateStudentGroupsController < ApplicationController
     redirect_to private_student_group_path(privateStudentGroup)
   end
 
+  def notify_teacher
+    pupil = Actor.find(params[:user_data][:id])
+    excursion = Excursion.find(params[:excursion_data])
+    classroom = pupil.user.private_student_group
+    teacher = Actor.find(classroom.owner_id)
+    excursion.notified_teacher = true
+    excursion.save
+    
+    TeacherNotificationMailer.notify_for_publish(teacher, pupil, excursion, classroom)
+  end
+
 end

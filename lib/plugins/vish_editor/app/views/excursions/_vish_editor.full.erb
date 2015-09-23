@@ -57,16 +57,16 @@
 								</a>
 							</li>
 							<li>
-								<a class="menu_option" href="#">
+								<a class="menu_option expansive" href="#">
 									<i class="icon-button icon-rotate-180 icon-download-alt"></i>
 									<span i18n-key="i.Import">Import</span>
 								</a>
 								<ul>
 									<li>
-										<a class="menu_option menu_action" action="insertPDFex" i18n-key="i.PDFSlideshow">PDF Slideshow</a>
+										<a class="menu_option menu_action subMenu" action="insertPDFex" i18n-key="i.PDFSlideshow">PDF Slideshow</a>
 									</li>
 									<li>
-										<a class="menu_option menu_action" action="insertPackage" i18n-key="i.ePackage">e-Learning Package</a>
+										<a class="menu_option menu_action subMenu" action="insertPackage" i18n-key="i.ePackage">e-Learning Package</a>
 									</li>
 									<li class="liInsertJson">
 										<a class="menu_option menu_action" action="insertEFile" i18n-key="i.File">File</a>
@@ -77,22 +77,22 @@
 								</ul>
 							</li>
 							<li>
-								<a class="menu_option" href="#">
+								<a class="menu_option expansive" href="#">
 									<i class="icon-button icon-rotate-360 icon-download-alt"></i>
 									<span i18n-key="i.Export">Export</span>
 								</a>
 								<ul>
 									<li>
-										<a class="menu_option menu_action" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
+										<a class="menu_option menu_action subMenu" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
 									</li>
 									<li>
-										<a class="menu_option menu_action" action="exportToSCORM" i18n-key="i.toSCORM">to SCORM</a>
+										<a class="menu_option menu_action subMenu" action="exportToSCORM" i18n-key="i.toSCORM">to SCORM</a>
 									</li>
 								</ul>
 							</li>
 							<li>
 								<a class="menu_option menu_action" action="displaySettings">
-									<i class="icon-button icon-edit"></i>
+									<i class="icon-button icon-cog"></i>
 									<span i18n-key="i.Settings">Settings</span>
 								</a>
 							</li>
@@ -120,7 +120,7 @@
 			</div>
 
 			<div id="toolbar_presentation">
-				<div class="toolbar_presentation_wrapper withRightBorder">
+				<div class="toolbar_presentation_wrapper withRightBorder save">
 					<a id="toolbar_save" class="tool_action" action="save" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-save"></i>
@@ -147,10 +147,10 @@
 				<div id="toolbar_themes_wrapper" class="toolbar_presentation_wrapper withRightBorder">
 					<a id="toolbar_theme" class="tool_action" action="selectTheme" href="#">
 						<button type="button" class="btn btn-primary btn-small">
-							<i class="icon-button icon-adjust"></i>
+							<i class="icon-button icon-edit"></i>
 						</button>
 					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.Style">Style</p>
+					<p class="toolbar_presentation_title" i18n-key="i.Style">Themes</p>
 				</div>
 				<div id="toolbar_animation_wrapper" class="toolbar_presentation_wrapper">
 					<a id="toolbar_animation" class="tool_action" action="selectAnimation" href="#">
@@ -294,7 +294,7 @@
 
 					<div id="presentation_details_fields_row1_column2">
 
-						<p i18n-key="i.ExcursionDetails" class="presentation_details_column_title">Excursion Details</p>
+						
 
 						<div id="presentation_details_title">
 							<span class="presentation_details_text" title='Title is a mandatory field' i18n-key="i.TitleM">Title *</span>
@@ -559,64 +559,64 @@
 						<p class="select_text" i18n-key="i.Templates">Templates</p>
 						<div class="templateselectlist">
 							<div class='slidethumb templatethumb' template='1'>
-								<img src='/assets/templatesthumbs/t1.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t1" />
 							</div>
 							<div class='slidethumb templatethumb' template='2'>
-								<img src='/assets/templatesthumbs/t2.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t2" />
 							</div>
 							<div class='slidethumb templatethumb' template='3'>
-								<img src='/assets/templatesthumbs/t3.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t3" />
 							</div>
 							<div class='slidethumb templatethumb' template='4'>
-								<img src='/assets/templatesthumbs/t4.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t4" />
 							</div>
 							<div class='slidethumb templatethumb' template='5'>
-								<img src='/assets/templatesthumbs/t5.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t5" />
 							</div>
 							<div class='slidethumb templatethumb' template='17'>
-								<img src='/assets/templatesthumbs/t17.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t17" />
 							</div>
 							<div class='slidethumb templatethumb' template='16'>
-								<img src='/assets/templatesthumbs/t16.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t16" />
 							</div>
 							<div class='slidethumb templatethumb' template='20'>
-								<img src='/assets/templatesthumbs/t20.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t20" />
 							</div>
 							<div class='slidethumb templatethumb' template='8'>
-								<img src='/assets/templatesthumbs/t8.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t8" />
 							</div>
 							<div class='slidethumb templatethumb' template='7'>
-								<img src='/assets/templatesthumbs/t7.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t7" />
 							</div>
 							<div class='slidethumb templatethumb' template='6'>
-								<img src='/assets/templatesthumbs/t6.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t6" />
 							</div>
 							<div class='slidethumb templatethumb' template='9'>
-								<img src='/assets/templatesthumbs/t9.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t9" />
 							</div>
 							<div class='slidethumb templatethumb' template='12'>
-								<img src='/assets/templatesthumbs/t12.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t12" />
 							</div>
 							<div class='slidethumb templatethumb' template='15'>
-								<img src='/assets/templatesthumbs/t15.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t15" />
 							</div>
 							<div class='slidethumb templatethumb' template='11'>
-								<img src='/assets/templatesthumbs/t11.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t11" />
 							</div>
 							<div class='slidethumb templatethumb' template='14'>
-								<img src='/assets/templatesthumbs/t14.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t14" />
 							</div>
 							<div class='slidethumb templatethumb' template='13'>
-								<img src='/assets/templatesthumbs/t13.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t13" />
 							</div>
 							<div class='slidethumb templatethumb' template='10'>
-								<img src='/assets/templatesthumbs/t10.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t10" />
 							</div>
 							<div class='slidethumb templatethumb' template='18'>
-								<img src='/assets/templatesthumbs/t18.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t18" />
 							</div>
 							<div class='slidethumb templatethumb' template='19'>
-								<img src='/assets/templatesthumbs/t19.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t19" />
 							</div>
 						</div>
 					</div>
@@ -625,19 +625,19 @@
 						<div class="templateselectlist2">
 							<div class='stthumb_wrapper'>
 								<div class='stthumb fcthumb' type='flashcard'>
-									<img src='/assets/templatesthumbs/flashcard_template.png'/>
+									<img src="/assets/templatesthumbs/blank.png" id="flscard"/>
 								</div>
 								<p i18n-key="i.Flashcard">Flashcard</p>
 							</div>
 							<div class='stthumb_wrapper'>
 								<div class='stthumb vtthumb' type='VirtualTour'>
-									<img src='/assets/templatesthumbs/tVTour.png'/>
+									<img src="/assets/templatesthumbs/blank.png" id="vrtour"/>
 								</div>
 								<p i18n-key="i.VirtualTour">Virtual Tour</p>
 							</div>
 							<div class='stthumb_wrapper'>
 								<div class='stthumb evthumb' type='enrichedvideo'>
-									<img src='/assets/templatesthumbs/tEVideo.png'/>
+									<img src="/assets/templatesthumbs/blank.png" id="erivideo"/>
 								</div>
 								<p i18n-key="i.EnrichedVideo">Enriched Video</p>
 							</div>
@@ -649,46 +649,49 @@
 			<div id='tab_pdfex_content' class="fancy_tab_content" style='display:none'>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_pdfex_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="box1 box1fancy3">
-					<p class="textfancy" i18n-key="i.AddslideshowPDF">Add slideshow from PDF file</p></br>
+					
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+					<div class="textD">
+						<p class="textfancy" i18n-key="i.AddslideshowPDF">Add slideshow from PDF file</p></br>
+						<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
+							<input type="file" name="pdfex[attach]" accept="application/pdf" class="upload_file_input">
+							<input type="hidden" name="pdfex[scope]" value="1">
+							<input type="hidden" name="pdfex[owner_id]">
+							<input type="hidden" name="authenticity_token">
+							<input id="upload_pdfex_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+						</form>
 
-					<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
-						<input type="file" name="pdfex[attach]" accept="application/pdf" class="upload_file_input">
-						<input type="hidden" name="pdfex[scope]" value="1">
-						<input type="hidden" name="pdfex[owner_id]">
-						<input type="hidden" name="authenticity_token">
-						<input id="upload_pdfex_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-					</form>
-
-					<div class="upload_progress_bar_wrapper">
-						<div class="upload_progress_bar"></div >
-						<div class="upload_progress_bar_percent">0%</div >
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div >
+							<div class="upload_progress_bar_percent">0%</div >
+						</div>
 					</div>
-
 				</div>
 			</div>
 
 			<div id='tab_epackage_content' class="fancy_tab_content" style='display:none'>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_epackage_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="box1 box1fancy3">
-					<p class="textfancy" i18n-key="i.AddePackage">Add an e-Learning package from a ZIP file. Supported formats: SCORM and custom HTML5 Web Applications.</p></br>
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-					<form id="package_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-						<input type="file" name="document[file]" class="upload_file_input">
-						<input type="hidden" name="document[scope]" value="1">
-						<input type="hidden" name="document[title]">
-						<input type="hidden" name="document[description]">
-						<input type="hidden" name="document[owner_id]">
-						<input type="hidden" name="authenticity_token">
-						<input type="hidden" name="document[tag_list]">
-						<input id="upload_package_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload" style="display: none;">
-					</form>
-					<div class="upload_progress_bar_wrapper">
-						<div class="upload_progress_bar"></div >
-						<div class="upload_progress_bar_percent">0%</div >
-					</div>
-					<div class="tagBoxUpload">
-						<ul class="tagList"></ul>
+					<div class="textD">
+						<p class="textfancy" i18n-key="i.AddePackage">Add an e-Learning package from a ZIP file. Supported formats: SCORM and custom HTML5 Web Applications.</p></br>
+						<form id="package_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+							<input type="file" name="document[file]" class="upload_file_input">
+							<input type="hidden" name="document[scope]" value="1">
+							<input type="hidden" name="document[title]">
+							<input type="hidden" name="document[description]">
+							<input type="hidden" name="document[owner_id]">
+							<input type="hidden" name="authenticity_token">
+							<input type="hidden" name="document[tag_list]">
+							<input id="upload_package_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload" style="display: none;">
+						</form>
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div >
+							<div class="upload_progress_bar_percent">0%</div >
+						</div>
+						<div class="tagBoxUpload">
+							<ul class="tagList"></ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -696,22 +699,25 @@
 			<div id='tab_efile_content' class="fancy_tab_content" style='display:none'>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_efile_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="box1 box1fancy3">
-					<p class="textfancy" i18n-key="i.ImportFromEFile">Import resources from external files:</p>
-					<ul class="listInFancy">
-						<li><p class="textfancy" i18n-key="i.ImportFromEFileVEJSON">ViSH Editor Presentations and Slides from JSON files</p></li>
-						<li><p class="textfancy" i18n-key="i.ImportFromEFileIMSQTI">Quizzes from IMS QTI 2.1 compliant XML files</p></li>
-						<li><p class="textfancy" i18n-key="i.ImportFromEFileMoodleXML">Quizzes from MoodleXML compliant XML files</p></li>
-					</ul>
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-					<input id="efile_input" type="file" id="files" name="files[]" multiple />
-					<button id="efile_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					<div class="textD">
+						<p class="textfancy" i18n-key="i.ImportFromEFile">Import resources from external files:</p>
+						<ul class="listInFancy">
+							<li><p class="textfancy" i18n-key="i.ImportFromEFileVEJSON">ViSH Editor Presentations and Slides from JSON files</p></li>
+							<li><p class="textfancy" i18n-key="i.ImportFromEFileIMSQTI">Quizzes from IMS QTI 2.1 compliant XML files</p></li>
+							<li><p class="textfancy" i18n-key="i.ImportFromEFileMoodleXML">Quizzes from MoodleXML compliant XML files</p></li>
+						</ul>
+						<input id="efile_input" type="file" id="files" name="files[]" multiple />
+						<button id="efile_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					</div>
 				</div>
 			</div>
 
 			<div id='tab_presentations_repo_content' class="fancy_tab_content" style='display:none'> 
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_presentations_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="excursions_repo_content">
-					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>  
+					<p id="descSearch">Search on the repository the excursion you would like to add</p>
+					<img src="/assets/logos/repositoryimg.png" id="repoLogo" class="imagelogotab"/>  
 					<div class="search_container">
 						<input type="search" class="input_text_fancy input_text_excursions formsizefancy2 marginsfancy3" > </input>
 					</div>
@@ -890,28 +896,30 @@
 
 			<div id='tab_pic_upload_content' class="fancy_tab_content">
 				<div id="upload_file_inputbox" class="box1 box1fancy3">
-					<p class="textfancy" i18n-key="i.selectPicture">Select picture to upload</p></br>
+					
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+					<div class="textD">
+						<p class="textfancy" i18n-key="i.selectPicture">Select picture to upload</p></br>
+						<form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+							<input type="file" name="document[file]" class="upload_file_input"/>
+							<input type="hidden" name="document[scope]" value="1"/>
+							<input type="hidden" name="document[title]"/>
+							<input type="hidden" name="document[description]"/>
+							<input type="hidden" name="document[owner_id]"/>
+							<input type="hidden" name="document[tag_list]"/>
+							<input type="hidden" name="authenticity_token"/>
+							<input type="hidden" name="preferred_conversion"/>
+							<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload"/>
+						</form>
 
-					<form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-						<input type="file" name="document[file]" class="upload_file_input"/>
-						<input type="hidden" name="document[scope]" value="1"/>
-						<input type="hidden" name="document[title]"/>
-						<input type="hidden" name="document[description]"/>
-						<input type="hidden" name="document[owner_id]"/>
-						<input type="hidden" name="document[tag_list]"/>
-						<input type="hidden" name="authenticity_token"/>
-						<input type="hidden" name="preferred_conversion"/>
-						<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload"/>
-					</form>
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div>
+							<div class="upload_progress_bar_percent">0%</div>
+						</div>
 
-					<div class="upload_progress_bar_wrapper">
-						<div class="upload_progress_bar"></div>
-						<div class="upload_progress_bar_percent">0%</div>
-					</div>
-
-					<div class="tagBoxUpload">
-						<ul class="tagList"></ul>
+						<div class="tagBoxUpload">
+							<ul class="tagList"></ul>
+						</div>
 					</div>
 				</div>
 
@@ -958,7 +966,7 @@
 	<a id="hidden_button_to_launch_theme_fancybox" href="#theme_fancybox" style="display:none"></a>
 	<div style='display:none'>
 		<div id="theme_fancybox" class="theme_fancybox_class">
-			<img id="help_themes_selection" src="/assets/vicons/helptutorial_circle.png"/>
+			<img id="help_themes_selection" src="/assets/vicons/helptutorial_circle_blank.png"/>
 			<div id='select_theme1' class="slidethumb">
 				<img src='/assets/themes/theme1/select.png' class="themethumb" theme="theme1"/>
 			</div>
@@ -1002,41 +1010,47 @@
 	<a id="hidden_button_to_launch_animation_fancybox" href="#animation_fancybox" style="display:none"></a>
 	<div style='display:none'>
 		<div id="animation_fancybox" class="animation_fancybox_class">
-			<img id="help_animation_selection" src="/assets/vicons/helptutorial_circle.png"/>
-			<div id='select_animation1' class="slidethumb" animation="animation1">
-				<div class="anim_text"><h3 i18n-key="i.Horizontal">Horizontal</h3></div></div>
-			<div id='select_animation2' class="slidethumb" animation="animation2">
-				<div class="anim_text"><h3 i18n-key="i.Vertical">Vertical</h3></div>
+			<img id="help_animation_selection" src="/assets/vicons/helptutorial_circle_blank.png"/>
+			<div class="filaAni">	
+				<div id='select_animation1' class="slidethumb ani" animation="animation1">
+					<div class="anim_text"><h3 i18n-key="i.Horizontal">Horizontal</h3></div></div>
+				<div id='select_animation2' class="slidethumb ani" animation="animation2">
+					<div class="anim_text"><h3 i18n-key="i.Vertical">Vertical</h3></div>
+				</div>
+				<div id='select_animation3' class="slidethumb ani" animation="animation3">
+					<div class="anim_text"><h3 i18n-key="i.Opacity">Opacity</h3></div>
+				</div>
+				<div id='select_animation4' class="slidethumb ani" animation="animation4">
+					<div class="anim_text"><h3 i18n-key="i.Elements">Elements</h3></div>
+				</div>
 			</div>
-			<div id='select_animation3' class="slidethumb" animation="animation3">
-				<div class="anim_text"><h3 i18n-key="i.Opacity">Opacity</h3></div>
+			<div class="filaAni">
+				<div id='select_animation5' class="slidethumb ani" animation="animation5">
+					<div class="anim_text"><h3 i18n-key="i.Rotate">Rotate</h3></div>
+				</div>
+				<div id='select_animation6' class="slidethumb ani" animation="animation6">
+					<div class="anim_text"><h3 i18n-key="i.Diagonal1">Diagonal #1</h3></div>
+				</div>
+				<div id='select_animation7' class="slidethumb ani" animation="animation7">
+					<div class="anim_text"><h3 i18n-key="i.Diagonal2">Diagonal #2</h3></div>
+				</div>
+				<div id='select_animation8' class="slidethumb ani" animation="animation8">
+					<div class="anim_text"><h3 i18n-key="i.Inside">Inside</h3></div>
+				</div>
 			</div>
-			<div id='select_animation4' class="slidethumb" animation="animation4">
-				<div class="anim_text"><h3 i18n-key="i.Elements">Elements</h3></div>
-			</div>
-			<div id='select_animation5' class="slidethumb" animation="animation5">
-				<div class="anim_text"><h3 i18n-key="i.Rotate">Rotate</h3></div>
-			</div>
-			<div id='select_animation6' class="slidethumb" animation="animation6">
-				<div class="anim_text"><h3 i18n-key="i.Diagonal1">Diagonal #1</h3></div>
-			</div>
-			<div id='select_animation7' class="slidethumb" animation="animation7">
-				<div class="anim_text"><h3 i18n-key="i.Diagonal2">Diagonal #2</h3></div>
-			</div>
-			<div id='select_animation8' class="slidethumb" animation="animation8">
-				<div class="anim_text"><h3 i18n-key="i.Inside">Inside</h3></div>
-			</div>
-			<div id='select_animation9' class="slidethumb" animation="animation9">
-				<div class="anim_text"><h3 i18n-key="i.Zoom">Zoom</h3></div>
-			</div>
-			<div id='select_animation10' class="slidethumb" animation="animation10">
-				<div class="anim_text"><h3 i18n-key="i.Flip1">Flip #1</h3></div>
-			</div>
-			<div id='select_animation11' class="slidethumb" animation="animation11">
-				<div class="anim_text"><h3 i18n-key="i.Flip2">Flip #2</h3></div>
-			</div>
-			<div id='select_animation12' class="slidethumb" animation="animation12">
-				<div class="anim_text"><h3 i18n-key="i.3D">3D</h3></div>
+			<div class="filaAni">	
+				<div id='select_animation9' class="slidethumb ani" animation="animation9">
+					<div class="anim_text"><h3 i18n-key="i.Zoom">Zoom</h3></div>
+				</div>
+				<div id='select_animation10' class="slidethumb ani" animation="animation10">
+					<div class="anim_text"><h3 i18n-key="i.Flip1">Flip #1</h3></div>
+				</div>
+				<div id='select_animation11' class="slidethumb ani" animation="animation11">
+					<div class="anim_text"><h3 i18n-key="i.Flip2">Flip #2</h3></div>
+				</div>
+				<div id='select_animation12' class="slidethumb ani" animation="animation12">
+					<div class="anim_text"><h3 i18n-key="i.3D">3D</h3></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -1105,26 +1119,28 @@
 
 			<div id='tab_object_upload_content' class="fancy_tab_content">
 				<div class="box1 box1fancy3">
-					<p class="textfancy"><span i18n-key="i.selectObjectUpload">Select a file to upload</span>. <span i18n-key="i.selectObjectUpload2">Supported formats: SWF (flash), PDF</span>.</p><br>
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-					<form  id="object_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-						<input type="file" name="document[file]" class="upload_file_input">
-						<input type="hidden" name="document[scope]" value="1">
-						<input type="hidden" name="document[title]">
-						<input type="hidden" name="document[description]">
-						<input type="hidden" name="document[owner_id]">
-						<input type="hidden" name="authenticity_token">
-						<input type="hidden" name="document[tag_list]">
-						<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-					</form>
+					<div class="textD">
+						<p class="textfancy"><span i18n-key="i.selectObjectUpload">Select a file to upload</span>. <span i18n-key="i.selectObjectUpload2">Supported formats: SWF (flash), PDF</span>.</p><br>
+						<form  id="object_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+							<input type="file" name="document[file]" class="upload_file_input">
+							<input type="hidden" name="document[scope]" value="1">
+							<input type="hidden" name="document[title]">
+							<input type="hidden" name="document[description]">
+							<input type="hidden" name="document[owner_id]">
+							<input type="hidden" name="authenticity_token">
+							<input type="hidden" name="document[tag_list]">
+							<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+						</form>
 
-					<div class="upload_progress_bar_wrapper">
-						<div class="upload_progress_bar"></div >
-						<div class="upload_progress_bar_percent">0%</div >
-					</div>
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div >
+							<div class="upload_progress_bar_percent">0%</div >
+						</div>
 
-					<div class="tagBoxUpload">
-						<ul class="tagList"></ul>
+						<div class="tagBoxUpload">
+							<ul class="tagList"></ul>
+						</div>
 					</div>
 				</div>
 
@@ -1505,11 +1521,10 @@
 			<h2 i18n-key="i.walkWelcome1_1">Welcome to ViSH Editor!</h2>
 			<p i18n-key="i.walkWelcome1_2">ViSH Editor is an innovative web application that allows you to create amazing web slideshows and novel educational resources such as Virtual Excursions.</p>
 			<p><span i18n-key="i.walkMenuHelp1a">To learn how to use ViSH Editor you can watch several video tutorials in our</span> <a i18n-key="i.YouTubeChannel" class="tut_tutlink" href="http://www.youtube.com/channel/UCo-73n6eZBWNBs2gvKLyBhQ?feature=watch" target="_blank">YouTube Channel</a>. <span i18n-key="i.walkMenuHelp1b">These tutorials cover from basic usage for beginners to advanced features.</span></p>
-			<p i18n-key="i.walkMenuHelp2">The following video tutorial will teach you how to getting started with ViSH Editor in a few minutes.</p>
+			<p i18n-key="i.walkMenuHelp2">The following video tutorial will teach you how to getting started with ViSH Editor in a few minutes.<span class="tut_tutlink" onClick="VISH.Tour.startTourWithId('getting_started_help', 'top');" i18n-key="i.walkMenuHelp3">If you prefer you can click here to see a text tutorial which will teach you quickly the basics to get started.</span></p>
 			<p i18n-key="i.vtTitle_GStarted" class="tut_video_title">Getting Started with ViSH Editor</p>
-			<iframe class="tut_iframe_yt" width="625" height="400" src="//www.youtube.com/embed/fBSNZxs8m0I" frameborder="0" allowfullscreen></iframe>
-			<p class="tut_space">&nbsp;</p>
-			<p><span class="tut_tutlink" onClick="VISH.Tour.startTourWithId('getting_started_help', 'top');" i18n-key="i.walkMenuHelp3">If you prefer you can click here to see a text tutorial which will teach you quickly the basics to get started.</span></p>
+			<iframe class="tut_iframe_yt" width="625" height="380" src="//www.youtube.com/embed/fBSNZxs8m0I" frameborder="0" allowfullscreen></iframe>
+			<p class="tut_space">&nbsp;</p>			
 			<p class="tut_space">&nbsp;</p>
 		</li>
 	</ol>
