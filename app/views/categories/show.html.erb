@@ -31,7 +31,7 @@
             <% else %>
               <%= render partial: 'help/help_category' %>
             <% end %>
-            <h2><%= @category.title %></h2>
+            <h1><%= @category.title %></h1>
             <div class="description"><%= @category.description %></div>
             <div class="author"> <span class="by"><%= t('by') %></span> <%= link_to @category.author.name, @category.author.subject %></div>
           </div>
