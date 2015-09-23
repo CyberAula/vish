@@ -16,7 +16,14 @@
     <!-- image/icon -->
     <div class="container-img">
       <div class="img-box" id="<%=generated_id%>"></div>        
-      <%if excursion.draft%>
+      <%if excursion.draft && excursion.notified_teacher %>
+        <div class="excursion-draft">
+          <h2 class="draftstyle">
+            <i class="fa fa-bell"></i>
+            <%=t('excursion.notified')%>
+          </h2>
+        </div>
+      <%elsif excursion.draft%>
         <div class="excursion-draft">
           <h2 class="draftstyle">
             <i class="fa fa-edit"></i>
