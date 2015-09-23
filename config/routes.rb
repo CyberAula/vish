@@ -31,7 +31,7 @@ Vish::Application.routes.draw do
   match 'overview' => 'static#overview'
   match 'faq' => 'static#overview'
   match 'help' => 'static#overview'
-  match 'legal_notice' => 'static#legal_notice'
+  match 'legal_notice' => 'static#terms_of_use'
   match 'privacy_policy' => 'static#privacy_policy'
   match 'terms_of_use' => 'static#terms_of_use'
   
