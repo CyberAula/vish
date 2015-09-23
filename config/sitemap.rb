@@ -44,6 +44,9 @@ SitemapGenerator::Sitemap.create do
   end
 
   User.find_each do |us|
+      if !us.invitation_token.nil? && us.invitation_accepted_at.nil?
+        next
+      end
       add polymorphic_path(us), :lastmod => us.current_sign_in_at, :priority => priorities[User.model_name]
       VishConfig.getAvailableMainModels.each do |tab|
         add polymorphic_path(us, :tab=>tab.pluralize.downcase), :lastmod => us.current_sign_in_at, :priority => priorities[User.model_name]
@@ -58,6 +61,7 @@ SitemapGenerator::Sitemap.create do
   add '/search?browse=true&sort_by=popularity&type=Resource'
   add '/search?browse=true&sort_by=popularity&type=Workshop'
   add '/search?catalogue=true'
+
   add '/contest'
   add '/overview'
   add '/terms_of_use'
