@@ -5,6 +5,8 @@ class TeacherNotificationMailer < ActionMailer::Base
 		@teacher_name = teacher.name
 		@pupil_name = pupil.name
 		@path = path
+		@classroom = pupil.private_student_group
+
 		subject = t('notification.teacher.uploaded')
 		mail(:to => teacher.email, 
 			 :subject => subject, 
@@ -15,7 +17,11 @@ class TeacherNotificationMailer < ActionMailer::Base
 		@teacher_name = teacher.name
 		@pupil_name = pupil.name
 		@excursion = excursion
-		
+		@classroom = classroom
+
+		subject = t('notification.teacher.published')
+
+
 		mail(:to => teacher.email, 
 			 :subject => subject, 
 			 :content_type => "text/html").deliver

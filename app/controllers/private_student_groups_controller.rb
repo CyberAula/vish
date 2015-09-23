@@ -88,8 +88,10 @@ class PrivateStudentGroupsController < ApplicationController
     teacher = Actor.find(classroom.owner_id)
     excursion.notified_teacher = true
     excursion.save
-    
-    TeacherNotificationMailer.notify_for_publish(teacher, pupil, excursion, classroom)
+    if classroom.teacher_notification != "NONE"
+      TeacherNotificationMailer.notify_for_publish(teacher, pupil, excursion, classroom)
+    end
+    render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 
 end

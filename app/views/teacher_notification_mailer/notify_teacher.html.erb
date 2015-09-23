@@ -5,9 +5,8 @@
   </head>
   <body>
     <p><%= t('notification.teacher.greetings', teacher_name: @teacher_name)%></p>
-    <p><%= t('notification.teacher.text_1', pupil_name: @pupil_name)%></p>
-    <a><%= url_for(@path) %></a>
+    <p><%= t('notification.teacher.text_1', pupil_name: @pupil_name, classroom_name: @classroom.name)%></p>
+    <a href="<%= Vish::Application.config.full_domain + url_for(@path) %>"><%= Vish::Application.config.full_domain + url_for(@path) %></a>
     <p><%= t('notification.teacher.text_2')%></p>
-    <p></p>
   </body>
 </html>

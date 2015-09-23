@@ -1055,6 +1055,7 @@ class Excursion < ActiveRecord::Base
 
     if self.notified_teacher == true
       self.notified_teacher = false
+      self.save
     end
 
     #If LOEP is enabled, upload the excursion to LOEP

@@ -72,6 +72,7 @@
 	<% unless current_subject.private_student_group_id == nil %>
 		configuration["notify_teacher_path"] = '/private_student_groups/notify_teacher';
 		configuration["classroom_pupil"] = true;
+		options["notified"] = <%= @excursion.notified_teacher.to_s %>
 	<% end %>
 
 	options["draft"] = <%= @excursion.draft.to_s %>;

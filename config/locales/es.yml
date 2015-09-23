@@ -504,7 +504,6 @@ es:
       embed: "insertar"
       favorite: "favorita"
       my_room: "mi sala"
-      notified: "Notificada"
       send_email: "Envia email:"
       show: "Visualizar"
       share: "compartir"
@@ -558,6 +557,7 @@ es:
     one: "excursión"
     other: "excursiones"
     others: "otras excursiones "
+    pending: "Pendiente"
     suggestion:
       other: "Excursiones"
     session_start: "inicia sesión"
@@ -676,11 +676,13 @@ es:
     makefriend:
       user: "%{sender} te está siguiendo."
     teacher:
-      greetings: "Hola, '%{teacher_name}'"
-      text_1: "%Le informamos que el alumno '%{pupil_name}' ha subido el siguiente recurso:"
+      greetings: "Hola, %{teacher_name}"
+      text_1: "Le informamos que el alumno %{pupil_name} de la clase %{classroom_name} ha subido el siguiente recurso:"
       text_2: "Le agradecemos su atención."
-      text_publish_1: "Le informamos que el alumno '%{pupil_name}' ha subido el siguiente trabajo:"
-      text_publish_2: "Si cree que cumple todos los requisitos para publicarla puede hacerlo desde el trabajo o desde el siguiente link:"
+      text_publish_1: "Le informamos que el alumno %{pupil_name} de la clase %{classroom_name} ha subido el siguiente trabajo:"
+      text_publish_2: "Si cree que cumple todos los requisitos para publicarla puede hacerlo desde el siguiente link:"
+      published: "Su alumno quiere que le revise un elemento para su publicación"
+      uploaded: "Su alumno ha subido el siguiente recurso"
     unread: " sin leer"
   offline:
     title: "Modo sin conexión"

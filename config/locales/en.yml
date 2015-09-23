@@ -516,7 +516,6 @@ en:
       embed: "embed"
       favorite: "favorite"
       my_room: "my room"
-      notified: "Notified"
       send_email: "Send Email:"
       show: "show"
       show_fewer: "Show fewer"
@@ -568,6 +567,7 @@ en:
     one: "excursion"
     other: "excursions"
     others: "others excursions"
+    pending: "Pending"
     session_start: "start session"
     suggestion:
       other: "Excursions"
@@ -684,11 +684,13 @@ en:
     makefriend:
       user: "%{sender} is following %{who}."
     teacher:
-      greetings: "Hello, '%{teacher_name}'"
-      text_1: "We inform you that '%{pupil_name}' has uploaded the following resource:"
+      greetings: "Hello, %{teacher_name}"
+      text_1: "We inform you that %{pupil_name} of the class %{classroom_name} has uploaded the following resource:"
       text_2: "We appreciate your attention."
-      text_publish_1: "We inform you that the pupil '%{pupil_name}' has uploaded the following work:"
-      text_publish_2: "If you feel it meets all requirements for publishing, you can do it from the work view or in the following link:"
+      text_publish_1: "We inform you that the pupil %{pupil_name} of the class %{classroom_name}  has uploaded the following work:"
+      text_publish_2: "If you feel it meets all requirements for publishing, you can do it from the following link:"
+      published: "Your pupil want an element to be revised for publication"
+      uploaded: "Your pupil has uploaded the following file"
     unread: " unread"
   officedoc:
     confirm_delete: "Delete document?"
