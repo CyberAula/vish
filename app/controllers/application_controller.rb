@@ -3,6 +3,16 @@ class ApplicationController < ActionController::Base
   include SimpleCaptcha::ControllerHelpers
   before_filter :store_location
   after_filter :discard_flash
+  before_filter :set_locale_from_param_in_url
+ 
+  def set_locale_from_param_in_url
+    if params[:locale] && I18n.available_locales.include?(params[:locale].to_sym)
+      I18n.locale = params[:locale]
+      if session
+        session[:locale] = params[:locale]
+      end
+    end
+  end
 
   def discard_flash
   	flash.discard # don't want the flash to appear when you reload page

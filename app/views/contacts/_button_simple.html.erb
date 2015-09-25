@@ -1,4 +1,4 @@
-<% I18n.locale = (user_signed_in? and !current_user.language.nil?) ? current_user.language.to_sym : I18n.locale %>
+<%# I18n.locale = (user_signed_in? and !current_user.language.nil?) ? current_user.language.to_sym : I18n.locale %>
 
 <div class="contact-button-single-<%= contact.id %>">
   <% if contact.sent? %>
