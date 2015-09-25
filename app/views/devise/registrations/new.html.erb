@@ -1,6 +1,7 @@
 <%content_for :title do%><%= t("site.meta_title.sign_up") %><%end%>
 <%content_for :keywords do%><%= t("site.current.keywords") %><%end%>
 <%content_for :description do%><%= t("site.meta_desc.sign_up")%><%end%>
+<%content_for :alternate_urls do%><%=raw alternate_urls(request.original_url, nil)%><%end%>
 
 <section id="registration">
   <section class="registration">

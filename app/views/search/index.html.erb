@@ -17,6 +17,8 @@
 <%content_for :keywords do%><%= t('site.current.keywords') %><%end%>
 <%content_for :description do%><%= t('site.meta_desc.search')%><%end%>
 
+<%content_for :alternate_urls do%><%=raw alternate_urls(request.original_url, nil)%><%end%>
+
 <% searchTerms = !params[:q].blank? and searchMode %>
 
 <section id="search" class="">

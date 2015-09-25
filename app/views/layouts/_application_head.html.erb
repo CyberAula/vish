@@ -23,9 +23,11 @@
   <meta name="google-site-verification" content="<%=Vish::Application.config.APP_CONFIG['gwebmastertools']["site-verification"]%>"/>
 <% end %>
 
+<%=yield(:alternate_urls)%>
 <% unless yield(:canonical).blank? %>
 	<link rel="canonical" href="<%=yield(:canonical)%>">
 <%end%>
+
 
 <%= favicon_link_tag "icons/favicon.ico" %>
 <%= stylesheet_link_tag "application" %>
