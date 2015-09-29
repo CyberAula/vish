@@ -1,5 +1,5 @@
 <%content_for :title do %><%= @event.title %> - <%= !@event.author.nil? ? @event.author.name : "" %><% end %>
-<%content_for :description do %><%=t("site.meta_desc.event")+@event.title + ". " + @event.description%><% end %>
+<%content_for :description do %><%=t("site.meta_desc.event")+@event.title + ". " + (@event.description ? @event.description : "")%><% end %>
 <%content_for :keywords do %><%= @event.tag_list %><% end %>
 <%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@event), @event)%><%end%>
 <%content_for :canonical do%><%=polymorphic_url(@event)%><%end%>
