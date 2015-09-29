@@ -4,6 +4,9 @@ class Workshop < ActiveRecord::Base
   include SocialStream::Models::Object
   has_many :workshop_activities
 
+  has_attached_file :banner, styles: { large: "1280x100#" }, default_url: "/assets/logos/original/defaul_workshop_banner.png"
+  validates_attachment_content_type :banner, content_type: /\Aimage\/.*\Z/
+  
   after_destroy :destroy_workshop_activities
 
   define_index do

@@ -1033,6 +1033,8 @@ es:
         add_activity_title: "Añadir Actividad al Workshop"
         add_activity_button: "Añadir"
         adding_activity_button: "Añadiendo..."
+        add_banner: "Escoge una imagen como banner"
+        add_banner_help: "Tamaño recomendado 1280x100px"
         cancel_&_go: "Cancelar e ir a workshop"
         collapse_all: "Reducir todo"
         confirm_delete: "¿Borrar workshop?"
