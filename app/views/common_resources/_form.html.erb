@@ -87,6 +87,13 @@
         </section>
       <%end%>
 
+      <%if resource.class.name=="Workshop" %>
+        <section class="banner">
+          <%= f.label :banner, t('workshop.actions.add_banner') %>(<%=t('workshop.actions.add_banner_help') %>)
+          <%= f.file_field :banner %>
+        </section>
+      <%end%>
+
       <section class="language">
         <%= f.label :language, t('document.leyend.language') %>
         <%= f.select(:language, resource_language_options_for_select(resource.language)) %>
