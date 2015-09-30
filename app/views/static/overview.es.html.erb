@@ -1,3 +1,7 @@
+<%content_for :title do%><%= t("site.meta_title.overview") %><%end%>
+<%content_for :keywords do%><%= t("site.current.keywords") %><%end%>
+<%content_for :description do%><%= t("site.meta_desc.overview")%><%end%>
+
 <% content_for :javascript do %>
   $("#i_overview li").click(function(){
     $("#i_overview li").removeClass("active");
@@ -7,8 +11,7 @@
 
 <section id="overview">
   <div class="icontitle">
-    <i class="fa fa-question-circle"></i>
-    ¿Qué es ViSH?
+    <h1><i class="fa fa-question-circle"></i>¿Qué es ViSH?</h1>
   </div>
   <div class="whiteframe">
     <div class="overviewindex visible-desktop">

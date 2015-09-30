@@ -2,9 +2,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <title><%= yield(:title).empty? ? t('site.current.title') : yield(:title) %></title>
-
-<meta name="keywords" content="<%= yield(:keywords).empty? ? t('site.current.keywords') : yield(:keywords) %>">
-<meta name="description" content="<%= yield(:description).empty? ? t('site.current.description') : yield(:description) %>">
+<meta name="keywords" content="<%= yield(:keywords) %>">
+<meta name="description" content="<%= yield(:description) %>">
 
 <meta property="og:site_name" content="<%=Vish::Application.config.name%>">
 <% unless yield(:title).blank? %>
@@ -23,6 +22,12 @@
 <% if Vish::Application.config.gwebmastertools %>
   <meta name="google-site-verification" content="<%=Vish::Application.config.APP_CONFIG['gwebmastertools']["site-verification"]%>"/>
 <% end %>
+
+<%=yield(:alternate_urls)%>
+<% unless yield(:canonical).blank? %>
+	<link rel="canonical" href="<%=yield(:canonical)%>">
+<%end%>
+
 
 <%= favicon_link_tag "icons/favicon.ico" %>
 <%= stylesheet_link_tag "application" %>

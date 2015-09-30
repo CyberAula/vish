@@ -14,6 +14,10 @@
     <%= t("site.current.search") %>
   <% end %>
 <% end %>
+<%content_for :keywords do%><%= t('site.current.keywords') %><%end%>
+<%content_for :description do%><%= t('site.meta_desc.search')%><%end%>
+
+<%content_for :alternate_urls do%><%=raw alternate_urls(request.original_url, nil)%><%end%>
 
 <% searchTerms = !params[:q].blank? and searchMode %>
 
@@ -24,15 +28,15 @@
       <div class="srch-panel">
 
         <% if params[:browse] %>
-          <li><h3><i class="fa fa-folder-open-o"></i><%= t("browse.title")%></h3></li>
+          <li><h1><i class="fa fa-folder-open-o"></i><%= t("browse.title")%></h1></li>
         <% elsif params[:catalogue] %>
-          <li><h3><i class="fa fa-tags"></i><%=t('catalogue.title')%></h3></li>
+          <li><h1><i class="fa fa-tags"></i><%=t('catalogue.title')%></h1></li>
         <% elsif params[:directory] %>
-          <li><h3><i class="fa fa-tags"></i><%=t('catalogue.title_directory')%></h3></li>
+          <li><h1><i class="fa fa-tags"></i><%=t('catalogue.title_directory')%></h1></li>
         <% elsif params[:archive] %>
-          <li><h3><i class="fa fa-tags"></i><%=t('catalogue.title_archive')%></h3></li>
+          <li><h1><i class="fa fa-tags"></i><%=t('catalogue.title_archive')%></h1></li>
         <% else %>
-          <li><h3><i class="fa fa-search"></i><%= t("search.title")%></h3></li>
+          <li><h1><i class="fa fa-search"></i><%= t("search.title")%></h1></li>
         <% end %>
 
         <div filter_type="category_ids" archive_filter="true" directory_filter="true" catalogue_filter="true" style="display:none" class="filter_set">

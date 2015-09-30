@@ -22,6 +22,10 @@ class VishConfig
     processAlias(getMainModels,options)
   end
 
+  def self.getAllModelsInstances(options={})
+    getInstances(processAlias(getMainModels,options))
+  end
+
   def self.getAllPossibleModelValues
     (getMainModels + getResourceModels).uniq
   end
@@ -198,7 +202,8 @@ class VishConfig
     if options[:include_subtypes] and models.include? "Document"
       models += Document.subclasses.map{|s| s.name}
     end
-    models.uniq!
+    models.uniq!  
+    
     return models
   end
 

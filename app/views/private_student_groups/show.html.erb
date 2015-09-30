@@ -26,7 +26,7 @@
             <!--ayuda-->
             <%= render partial: 'help/help_private_student' %>
             <!--titulo-->
-            <h2><%= @privateStudentGroup.title %></h2>
+            <h1><%= @privateStudentGroup.title %></h1>
             <div class="author">
 							<span class="by"><%= t('by') %></span> <%= link_to @privateStudentGroup.private_teacher.name, @privateStudentGroup.private_teacher.subject %>
 							Autor

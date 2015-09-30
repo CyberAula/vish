@@ -89,10 +89,12 @@ function add_scale_prop_to_elem(elem, scale_factor){
     }
 };
 
-$( window ).resize(function() {
-  scale_editor();
-});
+if(!Vish.Utils.isMobile.any()){
+    $( window ).resize(function() {
+      scale_editor();
+    });
 
-scale_editor();
+    scale_editor();
+}
 
 <%end%>
