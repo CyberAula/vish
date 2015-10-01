@@ -72,7 +72,7 @@
 										<a class="menu_option menu_action" action="insertEFile" i18n-key="i.File">File</a>
 									</li>
 									<li>
-										<a class="menu_option menu_action" action="insertPresentation" i18n-key="i.Excursion">Excursion</a>
+										<a class="menu_option menu_action" action="insertPresentation" i18n-key="i.Presentation">Excursion</a>
 									</li>
 								</ul>
 							</li>
@@ -555,7 +555,7 @@
 						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_efile'); return false;" id="tab_efile" class="fancy_tab" i18n-key="i.File">File</a>
 					</li>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo'); return false;" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Excursion">Excursion</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo'); return false;" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Presentation">Excursion</a>
 					</li>
 				</ul>
 			</div> 
@@ -723,11 +723,11 @@
 
 			<div id='tab_presentations_repo_content' class="fancy_tab_content" style='display:none'> 
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_presentations_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<div class="excursions_repo_content">
+				<div class="presentations_repo_content">
 					<p id="descSearch">Search on the repository the excursion you would like to add</p>
 					<img src="/assets/logos/repositoryimg.png" id="repoLogo" class="imagelogotab"/>  
 					<div class="search_container">
-						<input type="search" class="input_text_fancy input_text_excursions formsizefancy2 marginsfancy3" > </input>
+						<input type="search" class="input_text_fancy input_text_presentations formsizefancy2 marginsfancy3" > </input>
 					</div>
 					<div id="tab_presentations_repo_content_carrousel"></div>
 					<div id="tab_presentations_repo_content_preview" class="content_preview_presentation">
@@ -866,7 +866,7 @@
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_from_url'); return false;" id="tab_pic_from_url" class="fancy_tab tabbable" i18n-key="i.url">url</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload'); return false;" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_thumbnails'); return false;" id="tab_pic_thumbnails" class="fancy_tab tabbable venondefaulttab" style="display:none" i18n-key="i.thumbnails">thumbnails</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo'); return false;" id="tab_pic_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo'); return false;" id="tab_pic_repo" class="fancy_tab">ViSH</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_flikr'); return false;" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_lre'); return false;" id="tab_pic_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
 				</ul>
@@ -1073,7 +1073,7 @@
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_snapshot'); return false;" id="tab_object_snapshot" class="fancy_tab">web snapshot</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_url'); return false;" id="tab_object_from_url" class="fancy_tab">embed</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_upload'); return false;" id="tab_object_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo'); return false;" id="tab_object_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo'); return false;" id="tab_object_repo" class="fancy_tab">ViSH</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_lre'); return false;" id="tab_object_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
 				</ul>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_object_from_web_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
@@ -1225,7 +1225,7 @@
 			<div class="fancy_tabs" id="video_fancy_tabs_id">	   
 				<ul>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_from_url'); return false;" id="tab_video_from_url" class="fancy_tab" i18n-key="i.url">url</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo'); return false;" id="tab_video_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo'); return false;" id="tab_video_repo" class="fancy_tab">ViSH</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_youtube'); return false;" id="tab_video_youtube" class="fancy_tab"><img src='/assets/logos/youtube.png'/></a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_audio_soundcloud'); return false;" id="tab_audio_soundcloud" class="fancy_tab"><img src='/assets/logos/soundcloud.png'/></a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo'); return false;" id="tab_video_vimeo" class="fancy_tab disabled"><img src='/assets/logos/vimeo.png'/></a></li>
@@ -1936,7 +1936,7 @@
 	</ol>
 
 	<!-- Help searching presentations in ViSH to insert -->
-	<ol id="help_excursion_selection_help" class="joyRideTipContent">
+	<ol id="help_pres_selection_help" class="joyRideTipContent">
 		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
 			<h2 i18n-key="i.walkInsertingViSHPres_1">Adding Slides from Virtual Excursions</h2>
 			<p i18n-key="i.walkInsertingViSHPres_2">Here you can search Virtual Excursions on the ViSH platform in order to add them (or add selected slides from them) to your presentation.</p>
@@ -2476,7 +2476,7 @@
 	<ol id="tab_live_resource_id" class="joyRideTipContent">
 		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width600_center tut_without_arrow" data-options="tipLocation:none">
 		<h2 i18n-key="i.walkLive_1">Adding Live Content</h2>
-		<p i18n-key="i.walkLive_2">ViSH (Virtual Science Hub) offers special resources such as live webcams, microscopes or virtual laboratories provided by selected e-Infrastructures.</p>
+		<p i18n-key="i.walkLive_2">ViSH offers special resources such as live webcams, microscopes or virtual laboratories provided by selected e-Infrastructures.</p>
 		<p i18n-key="i.walkLive_3">In this screen you will be able to search this type of resources on the ViSH repository.</p>
 		<p><span i18n-key="i.walkLive_4">If you want to discover more e-Infrastructure resources or attend to live scientific events you can visit</span> <a class="tut_tutlink" href="http://vishub.org" target="_blank">http://vishub.org</a>.</p>
 

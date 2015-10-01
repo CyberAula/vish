@@ -28,6 +28,16 @@ CSSCOMPILER_JAR_FILE = COMPILER_JAR_PATH + "/yuicompressor-2.4.2.jar"
 JSCOMPILER_DOWNLOAD_URI =  'http://closure-compiler.googlecode.com/files/compiler-20130823.zip'
 CSSCOMPILER_DOWNLOAD_URI = 'http://yui.zenfs.com/releases/builder/builder_1.0.0b1.zip'
 
+#substitution of words in html and i18n files. for example subtitute vish and excursion for repository and presentation
+TMP_FOLDER = "tmp/vish_editor"
+
+DOMAIN_URL = "" #this is what will substitute vishub.org
+TOOL_NAME = "" #this is what will substitute "vish editor"
+REPOSITORY_OR_PLATFORM_NAME = ""  #this is what ViSH will be substituted for, important the case sensitive
+EXCURSION_NAME_EN = "" #this is what excursion and virtual excursion will be substituted for in english
+EXCURSION_NAME_ES = "" #this is what excursion and virtual excursion will be substituted for in spanish
+EXCURSION_NAME_ES_PLURAL = ""
+
 
 # Rake Task
 namespace :vish_editor do
@@ -68,11 +78,50 @@ namespace :vish_editor do
     system "cp " + VISH_EDITOR_PATH + "/examples/SCORM_APP/Local_API_1484_11.js " + "public/scorm_api/"
     system "cp " + VISH_EDITOR_PATH + "/examples/SCORM_APP/SCORM_Player.js " + "public/scorm_api/"
 
+    #substitution of words in html and i18n files
+    system "mkdir -p " + TMP_FOLDER
+    system "cp " + VISH_EDITOR_PATH + "/viewer.html " + TMP_FOLDER + "/viewer.html"
+    system "cp " + VISH_EDITOR_PATH + "/edit.html " + TMP_FOLDER + "/edit.html"
+
+    if DOMAIN_URL != ""
+        system "sed -i -e 's/vishub.org/" + DOMAIN_URL + "/g' " + TMP_FOLDER + "/edit.html"
+        system "sed -i -e 's/vishub.org/" + DOMAIN_URL + "/g' " + TMP_FOLDER + "/viewer.html"
+        system "sed -i -e 's/vishub.org/" + DOMAIN_URL + "/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/lang/translations.js"
+    end
+    if TOOL_NAME != ""
+        system "sed -i -e 's/ViSH Editor/" + TOOL_NAME + "/g' " + TMP_FOLDER + "/edit.html"
+        system "sed -i -e 's/ViSH Editor/" + TOOL_NAME + "/g' " + TMP_FOLDER + "/viewer.html"
+        system "sed -i -e 's/ViSH Editor/" + TOOL_NAME + "/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/lang/translations.js"
+    end
+    if REPOSITORY_OR_PLATFORM_NAME != ""
+        system "sed -i -e 's/ViSH/" + REPOSITORY_OR_PLATFORM_NAME + "/g' " + TMP_FOLDER + "/edit.html"
+        system "sed -i -e 's/ViSH/" + REPOSITORY_OR_PLATFORM_NAME + "/g' " + TMP_FOLDER + "/viewer.html"
+        system "sed -i -e 's/ViSH/" + REPOSITORY_OR_PLATFORM_NAME + "/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/lang/translations.js"
+    end
+    if EXCURSION_NAME_EN != ""
+        system "sed -i -e 's/Virtual Excursion/" + EXCURSION_NAME_EN + "/g' " + TMP_FOLDER + "/edit.html"
+        system "sed -i -e 's/Virtual Excursion/" + EXCURSION_NAME_EN + "/g' " + TMP_FOLDER + "/viewer.html"
+        system "sed -i -e 's/excursion/" + EXCURSION_NAME_EN.downcase + "/g' " + TMP_FOLDER + "/edit.html"
+        system "sed -i -e 's/excursion/" + EXCURSION_NAME_EN.downcase + "/g' " + TMP_FOLDER + "/viewer.html"
+        system "sed -i -e 's/Virtual Excursion/" + EXCURSION_NAME_EN + "/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/lang/translations.js"
+        system "sed -i -e 's/excursion/" + EXCURSION_NAME_EN.downcase + "/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/lang/translations.js"
+    end
+    if EXCURSION_NAME_ES!=""
+        system "sed -i -e 's/Excursiones Virtuales/" + EXCURSION_NAME_ES_PLURAL + "/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/lang/translations.js"
+        system "sed -i -e 's/Excursiones/" + EXCURSION_NAME_ES_PLURAL + "/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/lang/translations.js"
+        system "sed -i -e 's/Excursión Virtual/" + EXCURSION_NAME_ES + "/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/lang/translations.js"
+        system "sed -i -e 's/Excursión/" + EXCURSION_NAME_ES + "/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/lang/translations.js"
+        system "sed -i -e 's/excursión/" + EXCURSION_NAME_ES + "/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/lang/translations.js"
+    end
+
+
     #Copy HTML
-    system "sed -n  '/<!-- Copy HTML from here -->/,/<!-- Copy HTML until here -->/p' " + VISH_EDITOR_PATH + "/viewer.html > " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer.full.erb"
-    system "sed -n  '/<!-- Copy HTML from here -->/,/<!-- Copy HTML until here -->/p' " + VISH_EDITOR_PATH + "/edit.html > " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_editor.full.erb"
-    
-    puts "Task prepare do finishs"
+    system "sed -n  '/<!-- Copy HTML from here -->/,/<!-- Copy HTML until here -->/p' " + TMP_FOLDER + "/viewer.html > " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer.full.erb"
+    system "sed -n  '/<!-- Copy HTML from here -->/,/<!-- Copy HTML until here -->/p' " + TMP_FOLDER + "/edit.html > " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_editor.full.erb"
+   
+    #system "rm -r " + TMP_FOLDER
+
+    puts "Task prepare finished"
   end
 
 
