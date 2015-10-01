@@ -92,6 +92,10 @@ Vish::Application.routes.draw do
   resources :wa_contributions_galleries
   resources :wa_texts
 
+  #Competitions
+  match '/competition' => 'competition#index'
+  match '/competition/join' => 'competition#join'
+
   #Quiz Sessions
   resources :quiz_sessions do
     get "results", :on => :member

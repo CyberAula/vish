@@ -1,0 +1,15 @@
+<% @competition_items ||= [] %>
+<section id="competition">
+	<h1>Competition 2015</h1>
+	<div id="banner"></div>
+	<div></div> 
+	<div id="joined_resources">
+		<% @competition_items.each do |r| %>
+		  <% unless r.nil? %>
+		    <%= render partial: "#{ r.class.to_s.tableize }",
+		               locals:  { r.class.to_s.underscore.to_sym => r, :prefix_id => "competition" }  %>
+		  <% end %>
+		<% end %>
+
+	</div>
+</section>
