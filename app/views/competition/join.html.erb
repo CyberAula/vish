@@ -1,5 +1,19 @@
 <section id="join_competition">
 	<h1>Join Competition</h1>
+	<div>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in molestie tortor, at venenatis lectus. Nulla facilisi. Etiam dapibus, mauris sit amet ultricies ullamcorper, nisi justo convallis orci, eu hendrerit massa neque ut lectus. Fusce eu nisi dolor. Fusce mauris est, eleifend rutrum dictum non, eleifend nec justo. Quisque tristique congue dui eu maximus. Mauris ut sodales est, eget mattis urna. Vivamus a enim enim. Suspendisse consequat, justo at volutpat ullamcorper, mauris diam pulvinar erat, ut fringilla leo lectus vitae enim. Mauris libero arcu, dignissim a sagittis ac, aliquam in purus. Quisque vestibulum vitae dolor ac pulvinar. Morbi fringilla magna vel nibh molestie, in ullamcorper nibh luctus.
 
+	</div> 
+
+		<div class="form_for_joining">
+            <%= form_for : as: :post, url: {:action =>'change_teacher_notifications'}, method: :change_teacher_notifications do |f| %>
+            <label>Configurar notificaciones</label>
+            <p>¿Cuando quiere recibir notificaciones de este grupo?</p>
+            <%= f.select(:teacher_notification, options_for_select([["Cuando suban cualquier tipo de recurso","ALL"],["Sólamente al publicar excursiones","PUBLISHING"], ["Nunca","NONE"]], :selected => @privateStudentGroup.teacher_notification))%>
+          </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <%= f.submit t('save'), :class => 'btn btn-default'  %>
+        <%end %>
 
 </section>
