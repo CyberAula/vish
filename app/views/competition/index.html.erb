@@ -1,6 +1,7 @@
-
-<% competition_items = []
-ActivityObject.where("competition = true").map{|e| competition_items.push(e.object)} %>
+<% 
+	competition_items = []
+	ActivityObject.where("competition = true").map{|e| competition_items.push(e.object)} 
+%>
 
 <section id="competition">
 	<h1>Competition 2015</h1>
