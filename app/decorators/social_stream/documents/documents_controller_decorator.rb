@@ -88,7 +88,7 @@ DocumentsController.class_eval do
   end
 
   def notify_teacher    
-    VishConfig.getAvailableServices.include? "PrivateStudentGroups"
+    if VishConfig.getAvailableServices.include? "PrivateStudentGroups"
       author_id = resource.author.user.id
       unless author_id.nil?
         pupil = resource.author.user
