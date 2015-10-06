@@ -87,14 +87,16 @@ DocumentsController.class_eval do
     params["document"]["user_author_id"] = current_subject.actor_id
   end
 
-  def notify_teacher
-    author_id = resource.author.user.id
-    unless author_id.nil?
-      pupil = resource.author.user
-      unless pupil.private_student_group_id.nil? && pupil.private_student_group.teacher_notification == "ALL"
-        teacher = Actor.find(pupil.private_student_group.owner_id).user
-        resource_path = document_path(resource) #TODO get full path
-        TeacherNotificationMailer.notify_teacher(teacher, pupil, resource_path)
+  def notify_teacher    
+    if VishConfig.getAvailableServices.include? "PrivateStudentGroups"
+      author_id = resource.author.user.id
+      unless author_id.nil?
+        pupil = resource.author.user
+        if !pupil.private_student_group_id.nil? && pupil.private_student_group.teacher_notification == "ALL"
+          teacher = Actor.find(pupil.private_student_group.owner_id).user
+          resource_path = document_path(resource) #TODO get full path
+          TeacherNotificationMailer.notify_teacher(teacher, pupil, resource_path)
+        end
       end
     end
   end

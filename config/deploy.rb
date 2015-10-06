@@ -20,6 +20,8 @@ rescue Exception => e
   exit
 end
 
+set :keep_releases, 2
+
 set :default_environment, {
   'PATH' => '/home/'+username+'/.rvm/gems/ruby-2.2.0/bin:/home/'+username+'/.rvm/gems/ruby-2.2.0@global/bin:/home/'+username+'/.rvm/rubies/ruby-2.2.0/bin:/home/'+username+'/.rvm/bin:/home/'+username+'/.rbenv/plugins/ruby-build/bin:/home/'+username+'/.rbenv/shims:/home/'+username+'/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
   'RUBY_VERSION' => 'ruby-2.2.0p0',
@@ -58,7 +60,8 @@ after  'deploy:start_sphinx', 'deploy:fix_sphinx_file_permissions'
 if with_workers
   after 'deploy:restart', 'deploy:stop_workers'
 end
-after 'deploy:update_code', 'rvm:trust_rvmrc'
+after 'deploy:update_code', 'deploy:rm_dot_git', 'rvm:trust_rvmrc'
+after "deploy:restart", "deploy:cleanup"
 
 
 namespace(:deploy) do
@@ -94,6 +97,7 @@ namespace(:deploy) do
   task :link_files do
     run "ln -s #{shared_path}/documents #{release_path}/"
     run "ln -s #{shared_path}/webappscode #{release_path}/public/webappscode"
+    run "ln -s #{shared_path}/sitemap #{release_path}/public/sitemap"
     run "ln -s #{shared_path}/scormpackages #{release_path}/public/scorm/packages"
     run "ln -s #{shared_path}/database.yml #{release_path}/config"
     run "ln -s #{shared_path}/application_config.yml #{release_path}/config"
@@ -104,6 +108,10 @@ namespace(:deploy) do
   task :start_sphinx do
     run "cd #{current_path} && kill -9 `cat log/searchd.production.pid` || true"
     run "cd #{release_path} && bundle exec \"rake ts:rebuild RAILS_ENV=production\""
+  end
+
+  task :rm_dot_git do
+    run "cd #{release_path} && rm -rf .git"
   end
 
   task :fix_sphinx_file_permissions do

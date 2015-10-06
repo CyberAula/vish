@@ -1105,6 +1105,7 @@ en:
           text: "In addition to the description of the workshop and the tasks defined in it, sometimes you will need the ability to insert a block of text with other purpose, such as a bibliography or other data of interest for the workshop. With this component you can add a completely personalized and editable text to your workshop."
 
     confirm_delete: "Delete workshop?"
+    name: "workshop"
     new: "New Workshop"
     other: "Workshops"
     titles:
