@@ -2,6 +2,7 @@
 # see https://github.com/kjvarga/sitemap_generator for documentation
 
 SitemapGenerator::Sitemap.default_host = Vish::Application.config.APP_CONFIG["domain"]
+SitemapGenerator::Sitemap.sitemaps_path = 'sitemap/'
 
 SitemapGenerator::Sitemap.create do  
   priorities = { "User" => 0.9,
