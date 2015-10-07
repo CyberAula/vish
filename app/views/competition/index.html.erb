@@ -2,11 +2,14 @@
 	competition_items = []
 	ActivityObject.where("competition = true").map{|e| competition_items.push(e.object)} 
 %>
-
 <section id="competition">
 	<h1>Competition 2015</h1>
 	<div id="banner"></div>
-	<div><a type="button" href= "/competition/join" class="btn btn-default">Join</a></div>
+	<% if current_subject != nil && current_subject.actor.joined_competition != true %>
+		<div><a type="button" href= "/competition/join" class="btn btn-default">Join</a></div>
+	<% else %>
+		<div>Gracias por participar en la competición </div>
+	<% end %>
 	<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in molestie tortor, at venenatis lectus. Nulla facilisi. Etiam dapibus, mauris sit amet ultricies ullamcorper, nisi justo convallis orci, eu hendrerit massa neque ut lectus. Fusce eu nisi dolor. Fusce mauris est, eleifend rutrum dictum non, eleifend nec justo. Quisque tristique congue dui eu maximus. Mauris ut sodales est, eget mattis urna. Vivamus a enim enim. Suspendisse consequat, justo at volutpat ullamcorper, mauris diam pulvinar erat, ut fringilla leo lectus vitae enim. Mauris libero arcu, dignissim a sagittis ac, aliquam in purus. Quisque vestibulum vitae dolor ac pulvinar. Morbi fringilla magna vel nibh molestie, in ullamcorper nibh luctus.
 
 Donec vitae lacinia odio. Nam nec lectus ac eros tempus ornare sed eu leo. Aliquam felis ipsum, auctor et arcu pharetra, elementum accumsan libero. Aliquam vel imperdiet lectus. Fusce purus metus, lobortis quis dui vel, tincidunt porta nulla. In vel dolor nulla. Donec tincidunt odio turpis, ac blandit arcu accumsan nec. Praesent sed mattis tortor. Donec quis magna dictum, mollis nunc eu, semper ipsum. Donec non ornare neque. Pellentesque lacinia odio ut metus facilisis tristique. Duis elementum, sem ac pretium finibus, dui sapien dignissim sapien, vitae elementum orci dolor nec est. Cras metus lorem, mollis a metus sed, consequat imperdiet ligula. Nulla at imperdiet nisl. Sed in est at ex eleifend faucibus a sit amet mauris.</div> 
