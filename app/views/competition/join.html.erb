@@ -1,10 +1,10 @@
 <%my_items = current_subject_excursions %>
 <section id="join_competition">
-	<h1>Join Competition</h1>
+	<h1>Join Competition</h1> <div style="display:none;"><a id="join_competition" type="button" class="btn btn-default">Join</a></div>
 	<div>Choose which object you want to joined the competition with.</div> 
 
 		<div class="form_for_joining">
-           <ul class="items">
+           <ul class="items" style="Width:50%">
 				<% my_items.each do |r| %>
 				  <% unless r.nil? %>
 					  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "join", :rec => (defined?(rec) ? rec : false)  } %>
@@ -12,9 +12,26 @@
 				<% end %>
 			</ul>
         </div>
-        <%= content_for :javascript do%>
-		
-		<% end %>
+
 
 </section>
 
+<%= content_for :javascript do %>
+	$(".box-item a").removeAttr('href');
+	$(".box-item").click(function(){
+		if($(this).hasClass("selected")){
+			$(this).addClass("selected");
+			$(this).css({
+			"list-style-position": "inside",
+			"border": "7px solid blue",
+			"background-color": "blue"
+			});	
+		} else {
+			$(this).css({
+			"list-style-position": "",
+			"border": "",
+			"background-color": ""
+			});
+		}
+	});
+<% end %>
