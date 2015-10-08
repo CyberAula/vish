@@ -1,11 +1,7 @@
 class CompetitionController < ApplicationController
 	before_filter :authenticate_user!, :except => [:index]
-	before_filter :joined, :only => [:join]
 
 	def index
-	end
-
-	def join 
 	end
 
 	def join_competition
@@ -40,11 +36,6 @@ private
 		end
 	end
 
-	def joined
-		if @current_user.actor.joined_competition
-			redirect_to "/competition"
-		end
-	end
 end
 
 
