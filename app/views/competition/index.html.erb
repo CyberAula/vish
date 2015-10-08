@@ -68,6 +68,9 @@
 	<div id="joined_resources" class="row">
 		<h2>Proyectos presentados</h2>
 		<ul class="items">
+			<% if current_subject != nil && current_subject.actor.joined_competition != true %>
+			<%# añadir item de add %>
+			<% end %>
 			<% competition_items.each do |r| %>
 			  <% unless r.nil? %>
 				  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "competition", :rec => (defined?(rec) ? rec : false)  } %>

@@ -18,7 +18,9 @@
 			</ul>
         </div>
     <% else %>
-    	<div id="no_items"><%= notfound %></div>
+    	<% if current_subject != nil%>
+    		<div id="no_items"><%= notfound %></div>
+    	<% end %>
     <% end %>
     </div>
     <div class="footer-form clearfix">
