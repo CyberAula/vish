@@ -1,3 +1,4 @@
+<%# LOCALS: title1 title2 my_items notfound button_name%>
 <div id="join_competition" class="modal fade">
   <div class="modal-dialog">
 	<div class="modal-content" >
@@ -22,13 +23,9 @@
     </div>
     <div class="footer-form clearfix">
     	<% unless my_items.blank?%>
-    		<a id="button_for_competition" type="button" class="btn btn-primary">><%= button_name%></a>
+    		<a id="button_for_competition" type="button" class="btn btn-primary">><%= button_name %></a>
     	<% end %>
     </div>
  </div>
 </div>
 </div>
-
-
-
-
