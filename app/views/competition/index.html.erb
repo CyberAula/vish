@@ -3,16 +3,53 @@
 	ActivityObject.where("competition = true").map{|e| competition_items.push(e.object)} 
 %>
 <section id="competition">
-	<h1>Competition 2015</h1>
-	<div id="banner"></div>
-	<% if current_subject != nil && current_subject.actor.joined_competition != true %>
-		<div><a type="button" href= "/competition/join" class="btn btn-default">Join</a></div>
-	<% else %>
-		<div>Gracias por participar en la competición </div>
-	<% end %>
-	<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in molestie tortor, at venenatis lectus. Nulla facilisi. Etiam dapibus, mauris sit amet ultricies ullamcorper, nisi justo convallis orci, eu hendrerit massa neque ut lectus. Fusce eu nisi dolor. Fusce mauris est, eleifend rutrum dictum non, eleifend nec justo. Quisque tristique congue dui eu maximus. Mauris ut sodales est, eget mattis urna. Vivamus a enim enim. Suspendisse consequat, justo at volutpat ullamcorper, mauris diam pulvinar erat, ut fringilla leo lectus vitae enim. Mauris libero arcu, dignissim a sagittis ac, aliquam in purus. Quisque vestibulum vitae dolor ac pulvinar. Morbi fringilla magna vel nibh molestie, in ullamcorper nibh luctus.
+	<div>
+		<div id="banner"><img src="/assets/competition/sample_banner.jpg"></div>
+		<div class="row">
+			<div class="col-md-6">
+				<ul>
+					<li><a href="#join_row">Cosas</a></li>
+					<li><a href="#about_row">Mas cosas</a></li>
+					<li><a href="#prize_row">Cositas</a></li>
+					<li><a href="#joined_resources">Muchas cosas</a></li>
+				</ul>
+				</div>
+				<div class="col-md-6">
+					<h2>Redes Sociales</h2>
+				</div>
+		</div> 
+	</div>
+	<div id="join_row" class="row">
+		<div class="col-md-6">	
+			<% if current_subject != nil && current_subject.actor.joined_competition != true %>
+			<div><a type="button" href= "/competition/join" class="btn btn-default">Join</a></div>
+			<% else %>
+				<div>Gracias por participar en la competición </div>
+			<% end %>
+		</div>
+		<div class="col-md-6">Y si aún no lo han reescrito, lo siguen utilizando hasta ahora. Muy lejos, más allá de las montañas de palabras, alejados de los países de las vocales y las consonantes, viven los textos simulados. Viven aislados en casas de letras, en la costa de la semántica, un gran océano de lenguas. Un riachuelo llamado Pons fluye por su pueblo y los abastece con las normas necesarias. Hablamos de un país paraisomático en el que a uno le caen pedazos de frases asadas en la boca.
 
-Donec vitae lacinia odio. Nam nec lectus ac eros tempus ornare sed eu leo. Aliquam felis ipsum, auctor et arcu pharetra, elementum accumsan libero. Aliquam vel imperdiet lectus. Fusce purus metus, lobortis quis dui vel, tincidunt porta nulla. In vel dolor nulla. Donec tincidunt odio turpis, ac blandit arcu accumsan nec. Praesent sed mattis tortor. Donec quis magna dictum, mollis nunc eu, semper ipsum. Donec non ornare neque. Pellentesque lacinia odio ut metus facilisis tristique. Duis elementum, sem ac pretium finibus, dui sapien dignissim sapien, vitae elementum orci dolor nec est. Cras metus lorem, mollis a metus sed, consequat imperdiet ligula. Nulla at imperdiet nisl. Sed in est at ex eleifend faucibus a sit amet mauris.</div> 
+		Ni siquiera los todopoderosos signos de puntuación dominan a los textos simulados; una vida, se puede decir, poco ortográfica. Pero un buen día, una pequeña línea de texto simulado, llamada Lorem Ipsum, decidió aventurarse y salir al vasto mundo de la gramática. El gran Oxmox le desanconsejó hacerlo, ya que esas tierras estaban llenas de comas malvadas, signos de interrogación salvajes y puntos y coma traicioneros, pero el texto simulado no se dejó atemorizar. Empacó sus siete versales, enfundó su inicial en el cinturón y se puso en camino.</div>
+	</div>
+	<hr>
+	<div id="about_row" class="row">
+		<div class="col-md-6">Empacó sus siete versales, enfundó su inicial en el cinturón y se puso en camino. Cuando ya había escalado las primeras colinas de las montañas cursivas, se dio media vuelta para dirigir su mirada por última vez, hacia su ciudad natal Letralandia, el encabezamiento del pueblo Alfabeto y el subtítulo de su propia calle, la calle del renglón. Una pregunta retórica se le pasó por la mente y le puso melancólico, pero enseguida reemprendió su marcha. De nuevo en camino, se encontró con una copia.
+
+		La copia advirtió al pequeño texto simulado de que en el lugar del que ella venía, la habían reescrito miles de veces y que todo lo que había quedado de su original era la palabra "y", así que más le valía al pequeño texto simulado volver a su país, donde estaría mucho más seguro. Pero nada de lo dicho por la copia pudo convencerlo, de manera que al cabo de poco tiempo, unos pérfidos redactores publicitarios lo encontraron y emborracharon con Longe y Parole para llevárselo después a su agencia, donde abusaron de él para sus proyectos, una y otra vez.</div>
+		<div class="col-md-6">Cuando ya había escalado las primeras colinas de las montañas cursivas, se dio media vuelta para dirigir su mirada por última vez, hacia su ciudad natal Letralandia, el encabezamiento del pueblo Alfabeto y el subtítulo de su propia calle, la calle del renglón. Una pregunta retórica se le pasó por la mente y le puso melancólico, pero enseguida reemprendió su marcha. De nuevo en camino, se encontró con una copia.
+
+		La copia advirtió al pequeño texto simulado de que en el lugar del que ella venía, la habían reescrito miles de veces y que todo lo que había quedado de su original era la palabra "y", así que más le valía al pequeño texto simulado volver a su país, donde estaría mucho más seguro. Pero nada de lo dicho por la copia pudo convencerlo, de manera que al cabo de poco tiempo, unos pérfidos redactores publicitarios lo encontraron y emborracharon con Longe y Parole para llevárselo después a su agencia, donde abusaron de él para sus proyectos, una y otra vez.</div>
+	</div>
+	<hr>
+	<div id="prize_row" class="row">
+		<div class="col-md-6">Y si aún no lo han reescrito, lo siguen utilizando hasta ahora. Muy lejos, más allá de las montañas de palabras, alejados de los países de las vocales y las consonantes, viven los textos simulados. Viven aislados en casas de letras, en la costa de la semántica, un gran océano de lenguas. Un riachuelo llamado Pons fluye por su pueblo y los abastece con las normas necesarias. Hablamos de un país paraisomático en el que a uno le caen pedazos de frases asadas en la boca.
+
+		Ni siquiera los todopoderosos signos de puntuación dominan a los textos simulados; una vida, se puede decir, poco ortográfica. Pero un buen día, una pequeña línea de texto simulado, llamada Lorem Ipsum, decidió aventurarse y salir al vasto mundo de la gramática. El gran Oxmox le desanconsejó hacerlo, ya que esas tierras estaban llenas de comas malvadas, signos de interrogación salvajes y puntos y coma traicioneros, pero el texto simulado no se dejó atemorizar. Empacó sus siete versales, enfundó su inicial en el cinturón y se puso en camino.</div>
+		<div class="col-md-6">Cuando ya había escalado las primeras colinas de las montañas cursivas, se dio media vuelta para dirigir su mirada por última vez, hacia su ciudad natal Letralandia, el encabezamiento del pueblo Alfabeto y el subtítulo de su propia calle, la calle del renglón. Una pregunta retórica se le pasó por la mente y le puso melancólico, pero enseguida reemprendió su marcha. De nuevo en camino, se encontró con una copia.
+
+		La copia advirtió al pequeño texto simulado de que en el lugar del que ella venía, la habían reescrito miles de veces y que todo lo que había quedado de su original era la palabra "y", así que más le valía al pequeño texto simulado volver a su país, donde estaría mucho más seguro. Pero nada de lo dicho por la copia pudo convencerlo, de manera que al cabo de poco tiempo, unos pérfidos redactores publicitarios lo encontraron y emborracharon con Longe y Parole para llevárselo después a su agencia, donde abusaron de él para sus proyectos, una y otra vez.</div>
+	</div>
+	<hr>
 
 	<div id="joined_resources">
 		<ul class="items">
