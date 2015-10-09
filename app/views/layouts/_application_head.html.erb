@@ -12,10 +12,10 @@
 <meta property="og:image" content="<%= yield(:og_image).empty? ? Vish::Application.config.full_domain+'/assets/frontpage/logo-04.png' : yield(:og_image) %>">
 <meta property="og:description" content="<%= yield(:description) %>">
 
-<meta property="og:locale" content="<%=I18n.locale.to_s%>">
+<meta property="og:locale" content="<%=get_facebook_locales(I18n.locale)%>">
 
 <%I18n.available_locales.each do |i| %>
-  <meta property='og:locale:alternate' content='<%=i.to_s%>'>
+  <meta property='og:locale:alternate' content='<%=get_facebook_locales(i)%>'>
 <%end%>
 
 <% if Vish::Application.config.facebook %>
