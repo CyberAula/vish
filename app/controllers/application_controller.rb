@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include SimpleCaptcha::ControllerHelpers
   before_filter :store_location
   after_filter :discard_flash
+  before_filter :check_fb_locale
  
   def discard_flash
   	flash.discard # don't want the flash to appear when you reload page
@@ -25,6 +26,12 @@ class ApplicationController < ActionController::Base
 
   def discard_location
     session[:user_return_to] = root_path
+  end
+
+  def check_fb_locale
+    if params[:fb_locale]
+      I18n.locale = params[:fb_locale][0..1].to_sym  #only the first two characters because it is like "en_GB" and we need only "en"
+    end
   end
 
   #Method used for skip store_location in the corresponding controllers.
