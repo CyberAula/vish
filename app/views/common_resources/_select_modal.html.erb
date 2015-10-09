@@ -2,32 +2,39 @@
 <div id="join_competition" class="modal fade">
   <div class="modal-dialog">
 	<div class="modal-content" >
-	<div class="modal-header">
-		<h1><%= title1 %></h1> 
+
+  <div class="modal-header">
+		<h1><%= title1 %></h1>
 	</div>
-	<div class="modal-body">
-	<% unless my_items.blank?%>
-	<div><%= title2 %></div>
-		<div class="form_for_joining clearfix">
-           <ul class="items">
-				<% my_items.each do |r| %>
-				  <% unless r.nil? %>
-					  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "join", :rec => (defined?(rec) ? rec : false)  } %>
-					<% end %>
-				<% end %>
-			</ul>
-        </div>
+
+  <div class="modal-body">
+  	<% unless my_items.blank?%>
+  	  <p><%= title2 %></p>
+  		<div class="form_for_joining clearfix">
+        <ul class="items">
+            <% my_items.each do |r| %>
+
+    				  <% unless r.nil? %>
+    					  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "join", :rec => (defined?(rec) ? rec : false)  } %>
+    					<% end %>
+    
+  				<% end %>
+          </ul>
+      </div>
     <% else %>
     	<% if current_subject != nil%>
     		<div id="no_items"><%= notfound %></div>
     	<% end %>
     <% end %>
-    </div>
+  </div>
+  <div class="modal-footer">
     <div class="footer-form clearfix">
     	<% unless my_items.blank?%>
-    		<a id="button_for_competition" type="button" class="btn btn-primary">><%= button_name %></a>
+    		<a id="button_for_competition" type="button" class="btn btn-primary"><%= button_name %></a>
     	<% end %>
     </div>
+  </div>
+
  </div>
 </div>
 </div>
