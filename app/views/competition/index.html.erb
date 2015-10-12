@@ -135,6 +135,7 @@
 <% if current_subject != nil && current_subject.actor.joined_competition != true %>
 	<% my_items = current_subject_excursions || []%>
 	<%= render partial: "common_resources/select_modal", locals:{
+		name: "competition",
 		my_items: my_items,
 		title1:"Selecciona uno de tus recursos",
 		title2: "Elige la excursión con la que quieres participar en el concurso",

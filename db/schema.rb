@@ -272,14 +272,13 @@ ActiveRecord::Schema.define(:version => 20151001142756) do
     t.integer  "slide_count",             :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",                   :default => false
-    t.text     "offline_manifest",        :default => ""
+    t.text     "offline_manifest"
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
-    t.boolean  "notified_teacher",        :default => false
   end
 
   create_table "groups", :force => true do |t|

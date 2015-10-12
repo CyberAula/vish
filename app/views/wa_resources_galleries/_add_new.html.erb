@@ -1,4 +1,4 @@
-<li class="box-item add-item add-excursion ui-state-default" data-target="#AddResourceToWaResourcesGalleryModal" data-toggle="modal" data-remote=<%=add_resource_to_wa_resources_gallery_path(wa_resources_gallery)%>>
+<li class="box-item add-item add-excursion ui-state-default" data-target="#join_workshop" data-toggle="modal">
   <div class="add_border">
     <div class="container-img">
 
@@ -18,19 +18,44 @@
     </div>
   </div>
 </li>
+<% my_items = current_subject_resources || [] %>
+<%= render :partial => 'common_resources/select_modal', locals:{
+    name: "workshop",
+    my_items: my_items,
+    title1:"Selecciona uno de tus recursos",
+    title2: "Elige la excursión con la que quieres participar en la workshop",
+    notfound: "Lo sentimos no puede entrar a la competición porque todavía no tiene ningun recurso",
+    button_name: "Subir mi recurso" }  %>
 
-<div id="AddResourceToWaResourcesGalleryModal" class="modal fade" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-            <h3><%=t('workshop.activities.resource_gallery.add')%></h3>
-          </div>
-        <div class="modal-body tabs-below">
-          <!-- This body is replaced every time the modal is called -->
-        </div>
-        <div class="modal-footer">
-        </div>
-    </div>
-  </div>
-</div>
+    <% unless my_items.blank?%>
+  <%= content_for :javascript do %>
+      $("#button_for_workshop").attr("disabled", "disabled");
+    $(".box-item a").removeAttr('href');
+
+    $(".box-item").click(function(){
+      if(!$(this).hasClass("selected")){
+        $(".box-item").removeClass("selected");
+        $(this).addClass("selected");
+        $( "#button_for_workshop" ).removeAttr("disabled");
+      } else {
+        $(this).removeClass("selected");
+        $( "#button_for_workshop" ).attr("disabled", "disabled");
+      }
+    });
+
+    $("#button_for_workshop").click(function(){
+      var selected_items = $(".selected .container-img .img-box").attr("id");
+      $.ajax({
+        url: "", //buscar url del workshop
+        method: "POST",
+        data: { id : selected_items },
+        success: function(e){
+            window.location.replace("/competition"); //buscar url del workshop
+        },
+        error: function(e){
+
+        }
+      });
+    });
+  <% end %>
+<% end %>
