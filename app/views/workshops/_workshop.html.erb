@@ -1,21 +1,23 @@
 <% return if workshop.nil? or workshop.author.nil? %>
 
 <li class="box-item workshop">
-  <!-- corner -->
-  <div class="corner-item">
-    <div class="corner-item2">
-      <div class="corner-color"></div>
-      <i class='fa fa-graduation-cap'></i>
+  <%= link_to(workshop) do %>
+    <!-- corner -->
+    <div class="corner-item">
+      <div class="corner-item2">
+        <div class="corner-color"></div>
+        <i class='fa fa-graduation-cap'></i>
+      </div>
+      <div class="corner-background"></div>
     </div>
-    <div class="corner-background"></div>
-  </div>
-  <!-- image/icon -->
-  <div class="container-img">
-    <div class="img-box">
-      <%= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
+    <!-- image/icon -->
+    <div class="container-img">
+      <div class="img-box">
+        <%#= link_to raw(icon(workshop)), workshop, :title => workshop.title %>
+        <%= raw(icon(workshop)) %>
+      </div>
     </div>
-  </div>
-
+  <%end%>
   <!-- INFO -->
   <div class="caption">
     <!-- Title -->
