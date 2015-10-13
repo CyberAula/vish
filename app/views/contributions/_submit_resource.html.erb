@@ -26,6 +26,17 @@
     </div>
   </div>
 
-  <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#<%=form_id%>_resource_contribution"><%= t('workshop.activities.assignment.available_contributions.resource') %></button>
+<%= 
+    my_items = []
+    render partial: "common_resources/select_modal", locals:{
+    name: "resources",
+    my_items: my_items,
+    title1:"Selecciona uno de tus recursos",
+    title2: "Elige la excursión con la que quieres participar en el concurso",
+    notfound: "Lo sentimos no puede entrar a la competición porque todavía no tiene ninguna excursión",
+    button_name: "Subir mi propuesta" } %>
+
+  <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#join_resources"><%= t('workshop.activities.assignment.available_contributions.resource') %></button>
   
 </div>
+
