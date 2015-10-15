@@ -27,16 +27,67 @@
   </div>
 
 <%= 
-    my_items = []
+    if current_subject != nil
+      my_items = current_subject_resources
+    else 
+      my_items = []
+    end
+    
     render partial: "common_resources/select_modal", locals:{
-    name: "resources",
+    name: "contribution",
     my_items: my_items,
     title1:"Selecciona uno de tus recursos",
-    title2: "Elige la excursión con la que quieres participar en el concurso",
+    title2: "Elige la excursión con la que quieres participar en el workshop",
     notfound: "Lo sentimos no puede entrar a la competición porque todavía no tiene ninguna excursión",
     button_name: "Subir mi propuesta" } %>
 
-  <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#join_resources"><%= t('workshop.activities.assignment.available_contributions.resource') %></button>
+  <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#join_contribution"><%= t('workshop.activities.assignment.available_contributions.resource') %></button>
   
 </div>
 
+<% if !wa_assignment.nil?
+  database_id ="wa_assignment_id: " + wa_assignment.id.to_s
+ else 
+  database_id = "parent_id: " + parent.id.to_s
+  end%>
+
+<%= content_for :javascript do %>
+
+    $("#button_for_contribution").attr("disabled", "disabled");
+    $(".box-item a").attr('url', $(".box-item a").attr('href') );
+
+    $(".box-item a").removeAttr('href');
+
+    $(".box-item").click(function(){
+      if(!$(this).hasClass("selected")){
+        $(".box-item").removeClass("selected");
+        $(this).addClass("selected");
+        $( "#button_for_contribution" ).removeAttr("disabled");
+      } else {
+        $(this).removeClass("selected");
+        $( "#button_for_contribution" ).attr("disabled", "disabled");
+      }
+    });
+
+    $("#button_for_contribution").click(function(){
+      var selected_items = $(".selected .container-img .img-box").attr("id");
+      var url = $('.selected a').attr("url");
+      $.ajax({
+        url: "/contributions",
+        method: "POST",
+        data: { 
+        contribution:{ 
+        id : selected_items, <%= database_id %>, type: "Resource"} , 
+        url: url,
+        authenticity_token: "<%= form_authenticity_token %>" },
+        success: function(e){
+            window.location.reload();
+        },
+        error: function(e){
+
+        }
+      });
+    });
+
+
+<% end %>
