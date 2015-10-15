@@ -26,13 +26,13 @@
     </div>
   </div>
 
-<%= 
+<%=
     if current_subject != nil
-      my_items = current_subject_resources
+      my_items = subject_resources(current_subject, {:scope => :me, :limit => 0})
     else 
       my_items = []
     end
-    
+
     render partial: "common_resources/select_modal", locals:{
     name: "contribution",
     my_items: my_items,
@@ -78,7 +78,7 @@
         data: { 
         contribution:{ 
         id : selected_items, <%= database_id %>, type: "Resource"} , 
-        url: url,
+        url: "<%= Vish::Application.config.full_domain %>" + url,
         authenticity_token: "<%= form_authenticity_token %>" },
         success: function(e){
             window.location.reload();

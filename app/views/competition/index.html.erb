@@ -133,7 +133,7 @@
 </section>
 
 <% if current_subject != nil && current_subject.actor.joined_competition != true %>
-	<% my_items = current_subject_excursions || []%>
+	<% my_items = subject_excursions(current_subject, {:scope => :me, :limit => 0}) || []%>
 	<%= render partial: "common_resources/select_modal", locals:{
 		name: "competition",
 		my_items: my_items,
