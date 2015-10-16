@@ -21,11 +21,12 @@
 				</ul>
 			</div>
 			<div class="col-md-6 competition_social">
-				<i class="fa fa-twitter fa-lg primary"></i>
-				<i class="fa fa-facebook fa-lg primary"></i>
-				<i class="fa fa-github fa-lg primary"></i>
+				<a href="https://twitter.com/ViSH_portal" target="_blank"><i class="fa fa-twitter fa-lg primary"></i></a>
+				<a href="https://www.facebook.com/VirtualScienceHub" target="_blank"><i class="fa fa-facebook fa-lg primary"></i></a>
+				<a href="https://www.youtube.com/channel/UCo-73n6eZBWNBs2gvKLyBhQ" target="_blank"><i class="fa fa-youtube fa-lg primary"></i></a>
+		
 				<br>tus dudas en
-				<br><span class="primary">virtual.science.hub@gmail.com</span>
+				<br><a href="mailto:virtual.science.hub@gmail.com"><span class="primary">virtual.science.hub@gmail.com</span></a>
 			</div>
 		</div>
 
@@ -46,7 +47,7 @@
 				<% else %>
 				<div class="bt_join">
 					<a type="button" id="register_user" href="/users/sign_up" class="btn btn-primary">
-						<i class="fa fa-hand-o-up"></i>Regístrate
+						<i class="fa fa-hand-o-up"></i>Regístrate y participa
 					</a>
 				</div>
 				<% end %>
@@ -119,8 +120,10 @@
 		<div id="joined_resources" class="row">
 			<h2>Proyectos presentados</h2>
 			<ul class="items">
+
 				<% if current_subject != nil && current_subject.actor.joined_competition != true %>
 				<%# añadir item de add %>
+					<%= render :partial => 'competition/item_add_proposal' %>
 				<% end %>
 				<% competition_items.each do |r| %>
 				  <% unless r.nil? %>
