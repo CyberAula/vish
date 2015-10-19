@@ -270,6 +270,26 @@ en:
     scope: "We don't recommend to tick this checkbox, do it exclusively if you don't want search engine to index it"
     success: "Categories saved succesfully"
   close: "Close"
+  competition:
+    about_title: "SHOW YOUR CREATIVITY"
+    menu:
+      join: "How I participate?"
+      about: "What is it?"
+      prize: "What are the prizes?"
+      joined: "Projects submitted"
+    modal:
+      bt_upload: "Upload my proposal"
+      notfound: "Sorry, you can't upload your proposal because you don't have any excursion yet"
+      title: "Select one of your excursions"
+      title2: "Choose the excursion that you want to participate in the contest"
+    register_bt: "Sign up & submit your proposal"
+    register_bt2: "Submit your proposal"
+    step1: "Register if you have not done so"
+    step2: "Create a new excursion from 'add menu'"
+    step3: "Design your excursion using the resources of the platform, or others upload by yourself"
+    step4: "Publish your excursion and upload your proposal to apply for awards"
+    thanks: "Thank you for upload your proposal"
+    questions: "your questions in"
   conditions:
     check_message: "I Accept ViSH "
     check_message_1: "Terms and Conditions."

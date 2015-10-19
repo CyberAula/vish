@@ -14,18 +14,18 @@
 		<div class="row competition_info">
 			<div class="col-md-6">
 				<ul class="competition_menu">
-					<li><a href="#join_row">¿Cómo participo?</a></li>
-					<li><a href="#about_row">¿En qué consiste?</a></li>
-					<li><a href="#prize_row">¿Cuéles son los premios?</a></li>
-					<li><a href="#joined_resources">Proyectos presentados</a></li>
+					<li><a href="#join_row"><%= t('competition.menu.join') %></a></li>
+					<li><a href="#about_row"><%= t('competition.menu.about') %></a></li>
+					<li><a href="#prize_row"><%= t('competition.menu.prize') %></a></li>
+					<li><a href="#joined_resources"><%= t('competition.menu.joined') %></a></li>
 				</ul>
 			</div>
 			<div class="col-md-6 competition_social">
 				<a href="https://twitter.com/ViSH_portal" target="_blank"><i class="fa fa-twitter fa-lg primary"></i></a>
 				<a href="https://www.facebook.com/VirtualScienceHub" target="_blank"><i class="fa fa-facebook fa-lg primary"></i></a>
 				<a href="https://www.youtube.com/channel/UCo-73n6eZBWNBs2gvKLyBhQ" target="_blank"><i class="fa fa-youtube fa-lg primary"></i></a>
-		
-				<br>tus dudas en
+
+				<br><%= t('competition.questions') %>
 				<br><a href="mailto:virtual.science.hub@gmail.com"><span class="primary">virtual.science.hub@gmail.com</span></a>
 			</div>
 		</div>
@@ -35,19 +35,19 @@
 	<div class="competition_content">
 		<div id="join_row" class="row">
 			<div class="col-md-4">
-				<h2>¿Cómo participo?</h2>
+				<h2><%= t('competition.menu.join') %></h2>
 				<% if current_subject != nil && current_subject.actor.joined_competition != true %>
 					<div class="bt_join">
 						<a type="button" id="join_button" data-toggle="modal" data-target="#join_competition" class="btn btn-primary">
-							<i class="fa fa-hand-o-up"></i>Sube tu propuesta
+							<i class="fa fa-hand-o-up"></i><%= t('competition.register_bt2') %>
 						</a>
 					</div>
 				<% elsif current_subject != nil %>
-					<div>Gracias por participar en la competición </div>
+					<div><%= t('competition.thanks') %></div>
 				<% else %>
 				<div class="bt_join">
 					<a type="button" id="register_user" href="/users/sign_up" class="btn btn-primary">
-						<i class="fa fa-hand-o-up"></i>Regístrate y participa
+						<i class="fa fa-hand-o-up"></i><%= t('competition.register_bt') %>
 					</a>
 				</div>
 				<% end %>
@@ -58,7 +58,7 @@
 				  <i class="fa fa-circle fa-stack-2x primary"></i>
 				  <i class="fa fa-user fa-stack-1x fa-inverse"></i>
 				</span>
-				<p class="step-text">Regístrate si todavía no lo has hecho</p>
+				<p class="step-text"><%= t('competition.step1') %></p>
 			</div>
 
 			<div class="col-md-2 steps">
@@ -66,7 +66,7 @@
 				  <i class="fa fa-circle fa-stack-2x primary"></i>
 				  <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
 				</span>
-				<p class="step-text">Desde el menú 'añadir' crea una nueva excursión</p>
+				<p class="step-text"><%= t('competition.step2') %></p>
 			</div>
 
 			<div class="col-md-2 steps">
@@ -74,7 +74,7 @@
 				  <i class="fa fa-circle fa-stack-2x primary"></i>
 				  <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
 				</span>
-				<p class="step-text">Diseña tu excursión usando los recursos de la plataforma, u otros que subas tu mismo</p>
+				<p class="step-text"><%= t('competition.step3') %></p>
 			</div>
 
 			<div class="col-md-2 steps">
@@ -82,33 +82,36 @@
 				  <i class="fa fa-circle fa-stack-2x primary"></i>
 				  <i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
 				</span>
-				<p class="step-text">Publica tu excursión y sube tu propuesta para optar a los premios</p>
+				<p class="step-text"><%= t('competition.step4') %></p>
 			</div>
 		</div>
 
 		<div id="about_row" class="row">
 			<div class="col-md-4">
-				<h2>¿En qué consiste?</h2>
+				<h2><%= t('competition.menu.about') %></h2>
 			</div>
 			<div class="col-md-1">
 				<i class="fa fa-lightbulb-o fa-5x"></i>
 			</div>
 			<div class="col-md-7">
-				<h5>DESATA TU CREATIVIDAD</h5>
+				<h5><%= t('competition.about_title') %></h5>
+				<!-- Put translation when you have the final text  (locales/es locales/en)-->
 				<p>La copia advirtió al pequeño texto simulado de que en el lugar del que ella venía, la habían reescrito miles de veces y que todo lo que había quedado de su original era la palabra "y", así que más le valía al pequeño texto simulado volver a su país, donde estaría mucho más seguro. Pero nada de lo dicho por la copia pudo convencerlo, de manera que al cabo de poco tiempo, unos pérfidos redactores publicitarios lo encontraron y emborracharon con Longe y Parole para llevárselo después a su agencia, donde abusaron de él para sus proyectos, una y otra vez.</p>
 			</div>
 		</div>
 
 		<div id="prize_row" class="row">
 			<div class="col-md-4">
-				<h2>¿Cuéles son los premios?</h2>
+				<h2><%= t('competition.menu.prize') %></h2>
 			</div>
 			<div class="col-md-1">
 				<i class="fa fa-trophy fa-5x"></i>
 			</div>
 			<div class="col-md-7">
+				<!-- Put translation when you have the final text  (locales/es locales/en)-->
 				<p>La copia advirtió al pequeño texto simulado de que en el lugar del que ella venía, la habían reescrito miles de veces y que todo lo que había quedado de su original era la palabra "y", así que más le valía al pequeño texto simulado volver a su país, donde estaría mucho más seguro.</p>
 				<br>
+				<!-- Put translation when you have the final text  (locales/es locales/en)-->
 				<h5>PRIMER PREMIO A MEJOR EXCURSIÓN</h5>
 				<h5>PRIMER PREMIO A MEJOR RECURSO DUCATIVO</h5>
 				<h5>SEGUNDO PREMIO A MEJOR EXCURSIÓN</h5>
@@ -118,7 +121,7 @@
 		</div>
 
 		<div id="joined_resources" class="row">
-			<h2>Proyectos presentados</h2>
+			<h2><%= t('competition.menu.joined') %></h2>
 			<ul class="items">
 
 				<% if current_subject != nil && current_subject.actor.joined_competition != true %>
@@ -140,10 +143,10 @@
 	<%= render partial: "common_resources/select_modal", locals:{
 		name: "competition",
 		my_items: my_items,
-		title1:"Selecciona uno de tus recursos",
-		title2: "Elige la excursión con la que quieres participar en el concurso",
-		notfound: "Lo sentimos no puede entrar a la competición porque todavía no tiene ninguna excursión",
-		button_name: "Subir mi propuesta" } %>
+		title1: " t('competition.modal.title') ",
+		title2: " t('competition.modal.title2') ",
+		notfound: " t('competition.modal.notfound') ",
+		button_name: " t('competition.modal.bt_upload') " } %>
 <% end %>
 
 <% unless my_items.blank?%>

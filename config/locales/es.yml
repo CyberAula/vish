@@ -111,12 +111,12 @@ es:
   admin:
     close_report: "Cerrar reporte"
     closed_reports: "Reportes cerrados"
-    modal:      
+    modal:
       change_role: "Rol de usuario en la plataforma"
       delete_user: "Borrar usuario"
       manage_user_button: "Gestionar"
       permissions: "Permisos"
-      title: "Gestionar usuario"    
+      title: "Gestionar usuario"
     menu_entry: "Administración"
     noitems: "No hay elementos."
     noreports: "No hay reportes."
@@ -253,6 +253,26 @@ es:
     scope: "No recomendamos marcar esta casilla, marcar exclusivamente si no quieres que el buscador pueda ver tus categorías"
     success: "Las categorías se han salvado con éxito"
   close: "Cerrar"
+  competition:
+    about_title: "DESATA TU CREATIVIDAD"
+    menu:
+      join: "¿Cómo participo?"
+      about: "¿En qué consiste?"
+      prize: "¿Cuáles son los premios?"
+      joined: "Proyectos presentados"
+    modal:
+      bt_upload: "Subir mi propuesta"
+      notfound: "Lo sentimos, no puede participar en el concurso porque todavía no tiene ninguna excursión"
+      title: "Selecciona una de tus excursiones"
+      title2: "Elige la excursión con la que quieres participar en el concurso"
+    register_bt: "Regístrate y sube tu propuesta"
+    register_bt2: "Sube tu propuesta"
+    step1: "Regístrate si todavía no lo has hecho"
+    step2: "Crea una nueva excursión desde el menú 'añadir'"
+    step3: "Diseña tu excursión usando los recursos de la plataforma, u otros que subas tu mismo"
+    step4: "Publica tu excursión y sube tu propuesta para optar a los premios"
+    thanks: "Gracias por subir tu propuesta"
+    questions: "tus dudas en"
   conditions:
     check_message: "Acepto las "
     check_message_1: "Condiciones de Uso"
