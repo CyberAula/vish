@@ -47,6 +47,11 @@ module ApplicationHelper
 		[[I18n.t('lang.languages.other'), "ot"]]
 	end
 
+	def get_facebook_locales(locale)
+		loc = {:en => "en_GB", :es => "es_ES", :fr=>"fr_FR", :de => "de_DE", :nl=>"nl_BE", :hu=>"hu_HU"}
+		loc[locale] ? loc[locale] : "en_GB"
+	end
+
 	def resource_license_options_for_select(licenseId,allowCustom=true)
 		selectedLicenseId = licenseId || License.default.id
 		licenses = License.all.select{|l| (l.public? and (allowCustom or !l.custom?)) or (l.id===selectedLicenseId) }

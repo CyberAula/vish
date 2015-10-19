@@ -5,14 +5,18 @@
 <meta name="keywords" content="<%= yield(:keywords) %>">
 <meta name="description" content="<%= yield(:description) %>">
 
+<meta property="og:title" content="<%= yield(:title).empty? ? t('site.current.title') : yield(:title) %>">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="<%=Vish::Application.config.name%>">
-<% unless yield(:title).blank? %>
-  <meta property="og:title" content="<%= yield(:title) %>">
-  <meta property="og:type" content="<%= yield(:og_type) %>">
-  <meta property="og:url" content="<%= yield(:og_url) %>">
-  <meta property="og:image" content="<%= yield(:og_image) %>">
-  <meta property="og:description" content="<%= yield(:description) %>">
-<% end %>
+<meta property="og:url" content="<%= request.original_url %>">
+<meta property="og:image" content="<%= yield(:og_image).empty? ? Vish::Application.config.full_domain+'/assets/frontpage/logo-04.png' : yield(:og_image) %>">
+<meta property="og:description" content="<%= yield(:description) %>">
+
+<meta property="og:locale" content="<%=get_facebook_locales(I18n.locale)%>">
+
+<%I18n.available_locales.each do |i| %>
+  <meta property='og:locale:alternate' content='<%=get_facebook_locales(i)%>'>
+<%end%>
 
 <% if Vish::Application.config.facebook %>
   <meta property="fb:admins" content="<%=Vish::Application.config.APP_CONFIG['facebook']["accountID"]%>"/>
