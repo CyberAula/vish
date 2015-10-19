@@ -143,10 +143,10 @@
 	<%= render partial: "common_resources/select_modal", locals:{
 		name: "competition",
 		my_items: my_items,
-		title1: " t('competition.modal.title') ",
-		title2: " t('competition.modal.title2') ",
-		notfound: " t('competition.modal.notfound') ",
-		button_name: " t('competition.modal.bt_upload') " } %>
+		title1: t('competition.modal.title'),
+		title2: t('competition.modal.title2'),
+		notfound: t('competition.modal.notfound'),
+		button_name: t('competition.modal.bt_upload') } %>
 <% end %>
 
 <% unless my_items.blank?%>
