@@ -2,7 +2,7 @@
 <%content_for :keywords do%><%= @user.profile.subject.tag_list %><%end%>
 <%content_for :description do%><%= profile_desc @user, params[:tab] %>. <%=@user.profile.description ? @user.profile.description : ""%><%end%>
 <%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(profile_subject, :tab=>params[:tab]), profile_subject)%><%end%>
-<%content_for :canonical do%><%=polymorphic_url(profile_subject, :tab=>params[:tab])%><%end%>
+<%content_for :canonical do%><%=polymorphic_url(profile_subject, :tab=>params[:tab], :locale => params[:locale])%><%end%>
 
 <%= render :partial => 'modal_message' %>
 

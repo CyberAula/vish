@@ -2,7 +2,7 @@
 <%content_for :keywords do%><%= t('site.current.keywords') %><%end%>
 <%content_for :description do%><%= (@category.description ? @category.description : "") %><%end%>
 <%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@category), @category)%><%end%>
-<%content_for :canonical do%><%= polymorphic_url(@category) %><%end%>
+<%content_for :canonical do%><%= polymorphic_url(@category, :locale => params[:locale]) %><%end%>
 
 <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @category.parents_path, :categorycrumb => true } %>
 

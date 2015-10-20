@@ -4,7 +4,7 @@
 <%content_for :og_image do %><%= @workshop.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/defaul_workshop.png" %><% end %>
 
 <%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@workshop), @workshop)%><%end%>
-<%content_for :canonical do%><%= polymorphic_url(@workshop) %><%end%>
+<%content_for :canonical do%><%= polymorphic_url(@workshop, :locale => params[:locale]) %><%end%>
 
 <section id="show_items" class="layout_show workshop_show">
 

@@ -2,7 +2,8 @@
 <%content_for :keywords do%><%= t('site.current.keywords') %><%end%>
 <%content_for :description do%><%= t('site.current.description')%><%end%>
 <%content_for :alternate_urls do%><%=raw alternate_urls(Vish::Application.config.full_domain, nil)%><%end%>
-<%content_for :canonical do%><%= Vish::Application.config.full_domain %><%end%>
+<% my_locale = params[:locale] ? ("?locale="+params[:locale]) : ""%>
+<%content_for :canonical do%><%= Vish::Application.config.full_domain + my_locale %><%end%>
 
 <section id="frontpage">
   <div id="presentation">

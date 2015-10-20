@@ -3,7 +3,7 @@
 <%content_for :keywords do %><%= @excursion.tag_list %><% end %>
 <% shortURL = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) %>
 <%content_for :og_image do %><%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %><% end %>
-<%content_for :canonical do%><%=polymorphic_url(@excursion)%><%end%>
+<%content_for :canonical do%><%=polymorphic_url(@excursion, :locale => params[:locale])%><%end%>
 <%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@excursion), @excursion)%><%end%>
 
 <% @contribution = (params["contribution"]=="true" and !@excursion.contribution.nil?) %>
