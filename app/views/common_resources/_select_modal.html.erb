@@ -1,5 +1,5 @@
 <%# LOCALS: title1 title2 my_items notfound button_name name%>
-<div id="join_<%= name %>" class="modal fade">
+<div id="join_<%= name %>" class="modal fade modal_join">
   <div class="modal-dialog">
 	<div class="modal-content" >
 
@@ -17,7 +17,7 @@
     				  <% unless r.nil? %>
     					  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "join", :rec => (defined?(rec) ? rec : false)  } %>
     					<% end %>
-    
+
   				<% end %>
           </ul>
       </div>
