@@ -265,6 +265,7 @@ es:
       notfound: "Lo sentimos, no puede participar en el concurso porque todavía no tiene ninguna excursión"
       title: "Selecciona una de tus excursiones"
       title2: "Elige la excursión con la que quieres participar en el concurso"
+      selected: "Seleccionada"
     register_bt: "Regístrate y sube tu propuesta"
     register_bt2: "Sube tu propuesta"
     step1: "Regístrate si todavía no lo has hecho"

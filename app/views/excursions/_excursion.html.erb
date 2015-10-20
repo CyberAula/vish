@@ -1,5 +1,5 @@
 <li class="box-item excursion-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
-
+  <div class="selecting-item" style="display:none;"><i class="fa fa-check"></i><%= t('competition.modal.selected') %></div>
   <%if defined?(prefix_id) %>
     <%generated_id= prefix_id + "-excursion-" + excursion.id.to_s%>
   <%else%>
@@ -15,7 +15,7 @@
   <%= link_to(excursion_url) do %>
     <!-- image/icon -->
     <div class="container-img">
-      <div class="img-box" id="<%=generated_id%>"></div>        
+      <div class="img-box" id="<%=generated_id%>"></div>
       <%if excursion.draft && excursion.notified_teacher %>
         <div class="excursion-draft">
           <h2 class="draftstyle">
@@ -31,7 +31,7 @@
           </h2>
         </div>
       <%end%>
-    </div> 
+    </div>
   <% end %>
 
   <script>
@@ -45,7 +45,7 @@
       <%= link_to excursion.title, excursion %>
     </h6>
     <!--Author -->
-    <div class="author"> 
+    <div class="author">
       <span class="by"><%=t('by')%></span>
       <%= link_to excursion.author.name, excursion.author.subject %>
     </div>
@@ -53,7 +53,7 @@
     <hr>
     <div class="info-bottom">
       <!--like -->
-      <div class="like">        
+      <div class="like">
          <% if excursion.post_activity%>
             <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
             <%= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>

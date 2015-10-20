@@ -314,17 +314,46 @@
   .modal-footer .btn
     float: right
 
+
+//----------------------
 //MODAL competition
-//---------------------------------------------------
+//----------------------
 .modal_join
-  .modal-header
-    h1
-      margin: 0
-  .modal-body
-    .items
-      li
-        width: 23%
-        margin: 5px
-      .selected
-        background: $gray-lighter
-        //background: rgba(233, 0, 85,0.1)
+  .modal-dialog
+    .modal-header
+      h1
+        margin: 0
+    .modal-body
+      .items
+        li
+          width: 23.2%
+          margin: 5px
+          cursor: pointer
+          @media (max-width: 768px)
+            width: 22%
+          @media (max-width: 480px)
+            width: 100%
+          .caption
+            h6 a
+              color: black !important
+            .info-bottom
+              .like
+                i, .count
+                  color: gray !important
+          .selecting-item
+            background: #000 none repeat scroll 0% 0%
+            height: 100%
+            width: 100%
+            position: absolute
+            z-index: 99999
+            opacity: 0.7
+            border-radius: 3px
+            display: none
+            color: white
+            font-size: 0.9em
+            i
+              color: white
+              padding: 10px
+        .selected
+          .selecting-item
+            display: block !important
