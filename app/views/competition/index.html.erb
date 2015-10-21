@@ -168,6 +168,7 @@
 					  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "competition", :rec => (defined?(rec) ? rec : false)  } %>
 					<% end %>
 				<% end %>
+				<%= render :partial => 'entities/view_more', :locals => { :title => t('competition.view_more'), :more_url => "/competition/all" }%>
 			</ul>
 		</div>
 	</div>

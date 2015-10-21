@@ -255,6 +255,7 @@ es:
   close: "Cerrar"
   competition:
     about_title: "DESATA TU CREATIVIDAD"
+    view_more: "Enseña más proyectos presentados"
     menu:
       join: "¿Cómo participo?"
       about: "¿En qué consiste?"
