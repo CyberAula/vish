@@ -54,34 +54,69 @@
 			</div>
 
 			<div class="col-md-2 steps">
-				<span class="fa-stack fa-lg">
-				  <i class="fa fa-circle fa-stack-2x primary"></i>
-				  <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-				</span>
+				<a href="/users/sign_up">
+					<span class="fa-stack fa-lg">
+					  <i class="fa fa-circle fa-stack-2x primary"></i>
+					  <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+					</span>
+				</a>
 				<p class="step-text"><%= t('competition.step1') %></p>
 			</div>
 
 			<div class="col-md-2 steps">
-				<span class="fa-stack fa-lg">
-				  <i class="fa fa-circle fa-stack-2x primary"></i>
-				  <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
-				</span>
+				<% if current_subject != nil %>
+					<%= link_to new_excursion_path do %>
+						<span class="fa-stack fa-lg">
+							<i class="fa fa-circle fa-stack-2x primary"></i>
+							<i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+						</span>
+					<% end %>
+				<% else %>
+					<a href="/users/sign_up">
+						<span class="fa-stack fa-lg">
+							<i class="fa fa-circle fa-stack-2x primary"></i>
+							<i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				<% end %>
 				<p class="step-text"><%= t('competition.step2') %></p>
 			</div>
 
 			<div class="col-md-2 steps">
-				<span class="fa-stack fa-lg">
-				  <i class="fa fa-circle fa-stack-2x primary"></i>
-				  <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
-				</span>
+				<% if current_subject != nil %>
+					<%= link_to new_excursion_path do %>
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x primary"></i>
+						  <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
+						</span>
+					<% end %>
+				<% else %>
+					<a href="/users/sign_up">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x primary"></i>
+						  <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				<% end %>
 				<p class="step-text"><%= t('competition.step3') %></p>
 			</div>
 
 			<div class="col-md-2 steps">
-				<span class="fa-stack fa-lg">
-				  <i class="fa fa-circle fa-stack-2x primary"></i>
-				  <i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
-				</span>
+			<% if current_subject != nil %>
+				<%= link_to current_subject do %>
+					<span class="fa-stack fa-lg">
+					  <i class="fa fa-circle fa-stack-2x primary"></i>
+					  <i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
+					</span>
+				<% end %>
+			<% else %>
+				<a href="/users/sign_up">
+					<span class="fa-stack fa-lg">
+					  <i class="fa fa-circle fa-stack-2x primary"></i>
+					  <i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
+					</span>
+				</a>
+			<% end %>
 				<p class="step-text"><%= t('competition.step4') %></p>
 			</div>
 		</div>
@@ -157,10 +192,12 @@
 
 		$(".box-item").click(function(){
 			if(!$(this).hasClass("selected")){
+
 				$(".box-item").removeClass("selected");
 				$(this).addClass("selected");
 				$( "#button_for_competition" ).removeAttr("disabled");
 			} else {
+
 				$(this).removeClass("selected");
 				$( "#button_for_competition" ).attr("disabled", "disabled");
 			}

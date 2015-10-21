@@ -282,6 +282,7 @@ en:
       notfound: "Sorry, you can't upload your proposal because you don't have any excursion yet"
       title: "Select one of your excursions"
       title2: "Choose the excursion that you want to participate in the contest"
+      selected: "Selected"
     register_bt: "Sign up & submit your proposal"
     register_bt2: "Submit your proposal"
     step1: "Register if you have not done so"
