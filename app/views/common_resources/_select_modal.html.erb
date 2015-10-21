@@ -15,8 +15,10 @@
         <ul class="items">
             <% my_items.each do |r| %>
 
-    				  <% unless r.nil? %>
-    					  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "join", :rec => (defined?(rec) ? rec : false)  } %>
+    				  <% unless r.nil?  %>
+
+                <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "join", :rec => (defined?(rec) ? rec : false)  } %>
+            
     					<% end %>
 
   				<% end %>

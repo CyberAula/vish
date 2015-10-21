@@ -164,7 +164,7 @@
 					<%= render :partial => 'competition/item_add_proposal' %>
 				<% end %>
 				<% competition_items.each do |r| %>
-				  <% unless r.nil? %>
+				  <% unless r.nil?%>
 					  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "competition", :rec => (defined?(rec) ? rec : false)  } %>
 					<% end %>
 				<% end %>
@@ -174,7 +174,7 @@
 </section>
 
 <% if current_subject != nil && current_subject.actor.joined_competition != true %>
-	<% my_items = subject_excursions(current_subject, {:scope => :me, :limit => 0}) || []%>
+	<% my_items = subject_excursions(current_subject, {:scope => :me, :limit => 0}).reject{ |e| e.draft==true } || []%>
 	<%= render partial: "common_resources/select_modal", locals:{
 		name: "competition",
 		my_items: my_items,
