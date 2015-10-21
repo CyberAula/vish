@@ -10,17 +10,13 @@ class Lang_helper
   def self.alternates url, item
     if url.nil? || url==""
       return []
-    end
-    content_lang = ""    
-    if item && !item.language.nil? && item.language !="independent"
-      content_lang = "-" + item.language
-    end
+    end    
     locale_extension = url.include?("?") ? "&locale=" : "?locale=" 
     alts = []
     I18n.available_locales.each do |loc|
       alts.push({
         :href => url + locale_extension + loc.to_s,
-        :lang => loc.to_s+content_lang
+        :lang => loc.to_s
       }) 
     end
     return alts    

@@ -20,15 +20,11 @@ module MetaHelper
 	def alternate_urls url, item
 		if url.nil? || url==""
 			return ""
-		end
-		content_lang = ""
-		urls = ""
-		if item && !item.language.nil? && item.language !="independent"
-			content_lang = "-" + item.language
-		end
+		end		
+		urls = ""		
 		locale_extension = url.include?("?") ? "&locale=" : "?locale=" 
 		I18n.available_locales.each do |loc|
-			urls += "<link rel='alternate' href='"+url +locale_extension+loc.to_s+"' hreflang='"+loc.to_s+content_lang+"' />\n"
+			urls += "<link rel='alternate' href='"+url +locale_extension+loc.to_s+"' hreflang='"+loc.to_s+"' />\n"
 		end
 		return urls
 	end
