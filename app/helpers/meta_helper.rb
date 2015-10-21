@@ -28,7 +28,7 @@ module MetaHelper
 		end
 		locale_extension = url.include?("?") ? "&locale=" : "?locale=" 
 		I18n.available_locales.each do |loc|
-			urls += "<link rel='alternate' href='"+url +locale_extension+loc.to_s+"' hreflang='"+loc.to_s+content_lang+"' />"
+			urls += "<link rel='alternate' href='"+url +locale_extension+loc.to_s+"' hreflang='"+loc.to_s+content_lang+"' />\n"
 		end
 		return urls
 	end
