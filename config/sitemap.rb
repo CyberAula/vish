@@ -3,6 +3,30 @@
 
 SitemapGenerator::Sitemap.default_host = "http://" + Vish::Application.config.APP_CONFIG["domain"]
 SitemapGenerator::Sitemap.sitemaps_path = 'sitemap/'
+#do not include root, I will include it manually to indicate alternate lang
+SitemapGenerator::Sitemap.include_root = false
+
+class Lang_helper
+  def self.alternates url, item
+    if url.nil? || url==""
+      return []
+    end
+    content_lang = ""    
+    if item && !item.language.nil? && item.language !="independent"
+      content_lang = "-" + item.language
+    end
+    locale_extension = url.include?("?") ? "&locale=" : "?locale=" 
+    alts = []
+    I18n.available_locales.each do |loc|
+      alts.push({
+        :href => url + locale_extension + loc.to_s,
+        :lang => loc.to_s+content_lang
+      }) 
+    end
+    return alts    
+  end
+  
+end
 
 SitemapGenerator::Sitemap.create do  
   priorities = { "User" => 0.9,
@@ -17,10 +41,13 @@ SitemapGenerator::Sitemap.create do
                  "Embed"=> 0.3
                 }
 
+  add('/', :alternates => Lang_helper.alternates("http://" + Vish::Application.config.APP_CONFIG["domain"], nil))
+  
+
   VishConfig.getAllModelsInstances().each do |mod|
     prior = priorities[mod.model_name].nil? ? "0.5" : priorities[mod.model_name]
     mod.find_each do |instance|
-      add polymorphic_path(instance), :lastmod => instance.updated_at, :changefreq => 'monthly', :priority => prior
+      add polymorphic_path(instance), :lastmod => instance.updated_at, :changefreq => 'monthly', :priority => prior, :alternates => Lang_helper.alternates(polymorphic_url(instance), instance)
     end
   end
 
@@ -28,23 +55,24 @@ SitemapGenerator::Sitemap.create do
       if !us.invitation_token.nil? && us.invitation_accepted_at.nil?
         next
       end
-      add polymorphic_path(us), :lastmod => us.current_sign_in_at, :priority => priorities[User.model_name]
-      VishConfig.getAvailableMainModels.each do |tab|
-        add polymorphic_path(us, :tab=>tab.pluralize.downcase), :lastmod => us.current_sign_in_at, :priority => priorities[User.model_name]
-      end
-      add polymorphic_path(us, :tab=>"followings"), :lastmod => us.current_sign_in_at, :priority => 0.1
-      add polymorphic_path(us, :tab=>"followers"), :lastmod => us.current_sign_in_at, :priority => 0.1
+      add polymorphic_path(us), :lastmod => us.current_sign_in_at, :priority => priorities[User.model_name], :alternates => Lang_helper.alternates(polymorphic_url(us), us)
+      #removed because google said these were not indexed (seen in the search console)
+      #VishConfig.getAvailableMainModels.each do |tab|
+      #  add polymorphic_path(us, :tab=>tab.pluralize.downcase), :lastmod => us.current_sign_in_at, :priority => priorities[User.model_name]
+      #end
+      #add polymorphic_path(us, :tab=>"followings"), :lastmod => us.current_sign_in_at, :priority => 0.1
+      #add polymorphic_path(us, :tab=>"followers"), :lastmod => us.current_sign_in_at, :priority => 0.1
   end
 
-  add '/search?browse=true&sort_by=popularity'
-  add '/search?browse=true&sort_by=popularity&type=Excursion'
-  add '/search?browse=true&sort_by=popularity&type=User'
-  add '/search?browse=true&sort_by=popularity&type=Resource'
-  add '/search?browse=true&sort_by=popularity&type=Workshop'
-  add '/search?catalogue=true'
+  add '/search?browse=true&sort_by=popularity', :alternates => Lang_helper.alternates("http://" + Vish::Application.config.APP_CONFIG["domain"] +'/search?browse=true&sort_by=popularity', nil)
+  add '/search?browse=true&sort_by=popularity&type=Excursion', :alternates => Lang_helper.alternates("http://" + Vish::Application.config.APP_CONFIG["domain"] +'/search?browse=true&sort_by=popularity&type=Excursion', nil)
+  add '/search?browse=true&sort_by=popularity&type=User', :alternates => Lang_helper.alternates("http://" + Vish::Application.config.APP_CONFIG["domain"] +'/search?browse=true&sort_by=popularity&type=User', nil)
+  add '/search?browse=true&sort_by=popularity&type=Resource', :alternates => Lang_helper.alternates("http://" + Vish::Application.config.APP_CONFIG["domain"] +'/search?browse=true&sort_by=popularity&type=Resource', nil)
+  add '/search?browse=true&sort_by=popularity&type=Workshop', :alternates => Lang_helper.alternates("http://" + Vish::Application.config.APP_CONFIG["domain"] +'/search?browse=true&sort_by=popularity&type=Workshop', nil)
+  add '/search?catalogue=true', :alternates => Lang_helper.alternates("http://" + Vish::Application.config.APP_CONFIG["domain"] +'/search?catalogue=true', nil)
 
-  add '/contest'
-  add '/overview'
+  add '/contest', :alternates => Lang_helper.alternates("http://" + Vish::Application.config.APP_CONFIG["domain"]+ "/contest", nil)
+  add '/overview', :alternates => Lang_helper.alternates("http://" + Vish::Application.config.APP_CONFIG["domain"] + "/overview", nil)
   add '/terms_of_use'
 
   # Put links creation logic here.
