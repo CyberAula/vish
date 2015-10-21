@@ -55,7 +55,7 @@ public/tmp/qti/*
 public/tmp/moodlequizxml/*
 
 #sitemap
-public/sitema*.xml.gz
+public/sitemap/*
 
 dumps/*
 
