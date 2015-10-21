@@ -1,0 +1,12 @@
+<% competition_items = ActivityObject.where("competition = true") %>
+
+<div id="joined_resources_all" class="row">
+	<h2><%= t('competition.menu.joined') %></h2>
+	<ul class="items">
+		<% competition_items.each do |r| %>
+		  <% unless r.nil?%>
+			  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "competition", :rec => (defined?(rec) ? rec : false)  } %>
+			<% end %>
+		<% end %>
+	</ul>
+</div>
