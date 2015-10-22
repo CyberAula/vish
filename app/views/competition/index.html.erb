@@ -1,5 +1,5 @@
 <% 	competition_items = []
-	ActivityObject.where("competition = true").limit(12).map{|e| competition_items.push(e.object)}
+	ActivityObject.where("competition = true").limit(16).map{|e| competition_items.push(e.object)}
 %>
 <section id="competition">
 
@@ -157,7 +157,7 @@
 
 		<div id="joined_resources" class="row">
 			<h2><%= t('competition.menu.joined') %></h2>
-			<ul class="items">
+			<ul class="items some_items">
 
 				<% if current_subject != nil && current_subject.actor.joined_competition != true %>
 				<%# añadir item de add %>
