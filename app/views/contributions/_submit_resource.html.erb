@@ -33,11 +33,11 @@
       my_items = []
     end
 
-    render partial: "common_resources/select_modal", locals:{
+    render partial: "common_resources/select_modal_tabs", locals:{
     name: "contribution",
     my_items: my_items,
     title1:"Selecciona uno de tus recursos",
-    title2: "Elige la excursión con la que quieres participar en el workshop",
+    title2: "",
     notfound: "Lo sentimos no puede entrar a la competición porque todavía no tiene ninguna excursión",
     button_name: "Subir mi propuesta" } %>
 

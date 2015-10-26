@@ -12,7 +12,13 @@
     
   	<% unless my_items.blank?%>
   	  <p><%= title2 %></p>
-  		<div class="form_for_joining clearfix">
+  		<div id="joining_tabs" class="form_for_joining clearfix">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#excursions_choose_wa" data-toggle="tab" >Excursions</a></li>
+          <li><a href="#resources_choose_wa" data-toggle="tab">Resources</a></li>
+        </ul>
+
+        <div id="excursions_choose_wa" class="tab-pane">
         <ul class="items">
             <% my_items.each do |r| %>
 
@@ -24,6 +30,20 @@
 
   				<% end %>
           </ul>
+        </div>
+       <% n = [my_items.first] %>
+        <div id="resources_choose_wa" class="tab-pane">
+           <ul class="items">
+            <% n.each do |r| %>
+
+              <% unless r.nil?  %>
+
+                <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "tw", :rec => (defined?(rec) ? rec : false)  } %>
+            
+              <% end %>
+
+          <% end %>
+        </div>
       </div>
     <% else %>
     	<% if current_subject != nil%>
@@ -42,3 +62,8 @@
  </div>
 </div>
 </div>
+
+
+<% content_for :javascript do%>
+  $("#joining_tabs").tabs();
+<% end %>
