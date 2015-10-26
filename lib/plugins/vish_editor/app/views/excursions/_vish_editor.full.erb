@@ -260,35 +260,38 @@
 
 	<!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
 	<div style='display:none'>    
-		<div id='presentationdetails'>
+		<div id="presentationdetails">
 
 			<div id="presentation_details_fields">
-				<img  title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_settings' id='help_in_settings' src="/assets/vicons/helptutorial_circle_blank.png"/>
+				<div id="settings_header">
+					<img id="presentation_details_logo" src="/assets/icons/logo_educa.png">
+				</div>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class="help_in_settings" id="help_in_settings" src="/assets/vicons/helptutorial_circle_blank.png">
 				<div id="presentation_details_fields_row1">
 
 					<div id="presentation_details_fields_row1_column1">
-						<img id='presentation_details_logo' src="/assets/icons/logo.png"/>
+						
 						<p id="presentation_details_preview_title" class="presentation_details_column_title" i18n-key="i.Preview">Preview</p>
 						<div id="presentation_details_preview">
 							<div id="presentation_details_preview_thumbnail">
 								<div title="Click to add an avatar. You should select an avatar to identify your excursion" id="presentation_details_preview_thumbnail_img_wrapper">
-									<img id='presentation_details_preview_thumbnail_img' class="addThumbnailPlus" src="/assets/icons/addThumbnail.png"/>
+									<img id="presentation_details_preview_thumbnail_img" class="" src="http://vishub.org/assets/logos/original/excursion-10.png">
 								</div>
-								<p class="addthumbtitle" i18n-key="i.Addanavatar">Add an avatar *</p>
-								<div id="editthumb">
+								<p class="addthumbtitle" i18n-key="i.Addanavatar" style="display: none;">Add an avatar *</p>
+								<div id="editthumb" style="display: none;">
 									<p><i class="icon-button icon-edit"></i> <span i18n-key="i.edit">edit</span></p>
 								</div>
 							</div>
 							<div id="presentation_details_preview_addtitle">
-								<input id="presentation_details_preview_addtitle_input" type="text" maxLength="120" placeholder="add a title" i18n-key="i.addatitle"></input>
+								<input id="presentation_details_preview_addtitle_input" type="text" maxlength="120" placeholder="add a title" i18n-key="i.addatitle">
 							</div>
 							<div id="presentation_details_preview_author">
-								<span i18n-key="i.by">by</span> <span id="author_span_in_preview"></span>
+								<span i18n-key="i.by">by</span> <span id="author_span_in_preview">agordillo</span>
 							</div>
 						</div>
 						<div id="presentation_details_license">
-							<span class="presentation_details_text" title='License' i18n-key="i.License">License</span>
-							<select id="presentation_details_license_select">
+							<span class="presentation_details_text" title="License" i18n-key="i.License">License</span>
+							<select id="presentation_details_license_select" disabled="disabled" style="-webkit-appearance: none;">
 								<option value="public" i18n-key="i.License_public">Public Domain</option>
 								<option value="cc-by" i18n-key="i.License_cc-by">Creative Commons Attribution</option>
 								<option value="cc-by-sa" i18n-key="i.License_cc-by-sa">Creative Commons Attribution-ShareAlike</option>
@@ -305,63 +308,63 @@
 						
 
 						<div id="presentation_details_title">
-							<span class="presentation_details_text" title='Title is a mandatory field' i18n-key="i.TitleM">Title *</span>
-							<input id="presentation_details_input_title" class="presentation_details_input" type="text" placeholder="Excursion title" i18n-key="i.presTitle" maxLength="120"></input>
+							<span class="presentation_details_text" title="Title is a mandatory field" i18n-key="i.TitleM">Title *</span>
+							<input id="presentation_details_input_title" class="presentation_details_input" type="text" placeholder="Excursion title" i18n-key="i.presTitle" maxlength="120">
 						</div>
 
 						<div id="presentation_details_description">
 							<span class="presentation_details_text" i18n-key="i.Description">Description</span>
-							<textarea id='presentation_details_textarea' placeholder="Please describe in a few words what your excursion is about..." i18n-key="i.presDescriptionPlaceHolder"></textarea>
+							<textarea id="presentation_details_textarea" placeholder="Please describe in a few words what your excursion is about..." i18n-key="i.presDescriptionPlaceHolder"></textarea>
 						</div>			
 
-						<div id="tags_in_presentation_details">
-							<p class="presentation_details_text" i18n-key="i.Tags" id="tags">Tags</p><button id="catalog_button" type="button" class="button" i18n-key="i.Catalog">Catalog</button>
-							<div id="tagBoxIntro">
-								<ul id="tagindex" class="tagList"></ul>
-							</div>
-						</div>
-						    <div id="attachment_in_presentation_details"><span class="presentation_details_text" i18n-key="i.Attatchment" >Attatchment</span></div>
+						
+						    <div id="attachment_in_presentation_details"><span class="presentation_details_text" i18n-key="i.Attatchment">Attatchment</span></div>
 						    <div class="file_details_upload">
 							    <form id="attachment_file_form" method="post" action="attatchment_file.json" enctype="multipart/form-data">
-							    	<div class="attachmentFileUpload" disabled="true" i18n-key-tooltip="i.tooltip.UploadAttachment" title="If this button is deactivated, you need to save your excursion first." >
-    									<span i18n-key="i.ChooseFile" >Choose File</span>
-								   	 	<input type="file"  name="attachment" id="attachment_file">
+							    	<div class="attachmentFileUpload" i18n-key-tooltip="i.tooltip.UploadAttachment" title="If this button is deactivated, you need to save your excursion first.">
+    									<span i18n-key="i.ChooseFile">Choose File</span>
+								   	 	<input type="file" name="attachment" id="attachment_file">
 								   	</div>
-								    <input id="description_attachment" placeholder="Choose File" disabled="disabled"/>
+								    <input id="description_attachment" placeholder="Choose File" disabled="disabled">
 								    <input type="hidden" name="author_id" id="attachment_author">
 								    <input type="hidden" name="authenticity_token" id="attachment_aut_token">
-									<input id="upload_file_attachment" type="submit" class="button" i18n-key="i.Upload" value="Upload" disabled="true">
+									<input id="upload_file_attachment" type="submit" class="button" i18n-key="i.Upload" value="Upload" disabled="true" style="margin-left: 15px;">
 									<span id="upload_icon_success" class="icon-button icon-ok" aria-hidden="true"></span>
 								</form>
 							</div>
 					</div>
 
-					<div id="presentation_details_fields_row1_column3">
-						<p id="selectthemeshelp" class="presentation_details_column_title" i18n-key="i.SelectTheme"> Select Theme </p>
-						<div id="scrollbar_themes_list"></div>
+					<div id="presentation_details_fields_row1_column3">  
+ 						<div id="tags_in_presentation_details">
+							<p class="presentation_details_text" i18n-key="i.Tags" id="tags">Tags</p>
+							<div id="tagBoxIntro">
+								<ul id="tagindex" class="tagList"></ul>
+							</div>
+							<button id="catalog_button" type="button" class="button" i18n-key="i.Catalog">Catalog</button>
+						</div>  
 					</div>
 				</div>
 
 				<div id="presentation_details_fields_row2">
-					<button id='metadata_clasification_button' type='button' class='button' i18n-key="i.advancedSettings">Advanced</button>
-					<button id='fill_details_later_button' type='button' class='button' i18n-key="i.Filllater">Fill later</button>
-					<button id='save_presentation_details' disabled="true" type='button' class='button buttonDisabledOnSettings' title="Write a title and choose an avatar to continue" i18n-key="i.Continue">Continue</button>
+					<button id="metadata_clasification_button" type="button" class="button" i18n-key="i.advancedSettings">Advanced</button>
+					<button id="fill_details_later_button" type="button" class="button" i18n-key="i.Filllater">Fill later</button>
+					<button id="save_presentation_details" type="button" class="button" i18n-key="i.Continue" disabledtitle="Write a title and choose an avatar to continue">Continue</button>
 				</div>
 			</div>
 
 
 			<div id="metadata_options_fields" style="display:none">
 				
-				<img class='help_in_settings' id='help_metadata_selection' src="/assets/vicons/helptutorial_circle_blank.png"/>
+				<img class="help_in_settings" id="help_metadata_selection" src="/assets/vicons/helptutorial_circle_blank.png">
 				<div>
 					<p class="metadata_title" i18n-key="i.advancedSettings">Advanced</p>
 				</div>
 
 				<div class="fancy_tabs" id="advanced_tabs">
 				  <ul>
-				    <li><a class='js_tabs_asettings fancy_selected' tab="metadata-options-tab" href="#" i18n-key="i.MetadataAspects">Metadata</a></li>
-				    <li><a class='js_tabs_asettings' tab="publication-tab" href="#" i18n-key="i.Publication">Publication</a></li>
-				    <li><a class='js_tabs_asettings' tab="rte-tab" href="#">RTE</a></li>
+				    <li><a class="js_tabs_asettings fancy_selected" tab="metadata-options-tab" href="#" i18n-key="i.MetadataAspects">Metadata</a></li>
+				    <li><a class="js_tabs_asettings" tab="publication-tab" href="#" i18n-key="i.Publication">Publication</a></li>
+				    <li><a class="js_tabs_asettings" tab="rte-tab" href="#">RTE</a></li>
 				  </ul>
 				 </div>
 
@@ -409,34 +412,34 @@
 						<div id="age_range_wrapper">
 							<div class="range_text"><span i18n-key="i.AgeRange">Age range</span>:</div>
 							<div class="slider_wrapper">
-								<input type="text" id="age_range" class="slider_range_input" readonly/>
-								<div id="slider-age" class="slider_bar"></div>
+								<input type="text" id="age_range" class="slider_range_input" readonly="">
+								<div id="slider-age" class="slider_bar ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header" style="left: 13.3333%; width: 53.3333%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 13.3333%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 66.6667%;"></a></div>
 							</div>
 						</div>
 
 						<div id="difficulty_wrapper" class="margin_for_new_field_settings">
 							<div class="range_text"><span i18n-key="i.Difficulty">Difficulty</span>:</div>
 							<div class="slider_wrapper">
-								<input type="text" id="difficulty_range" class="slider_range_input" readonly/>
-								<div id="slider-difficulty" class="slider_bar"></div>
+								<input type="text" id="difficulty_range" class="slider_range_input" readonly="" difficulty="2">
+								<div id="slider-difficulty" class="slider_bar ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 40%;"></a></div>
 							</div>
 						</div>
 
 						<div id="tlt_wrapper" class="margin_for_new_field_settings">
 							<div class="range_text"><span i18n-key="i.TypicalLearningTime">Typical learning time</span>:</div>
-							<input type="text" id="tlt_current_value" class="slider_range_input" readonly/>
+							<input type="text" id="tlt_current_value" class="slider_range_input" readonly="">
 							<div class="tlt_inputs_wrapper">
 								<div class="tlt_input_wrapper">
 									<p class="tlt_input_title" i18n-key="i.Hours">Hours</p>
-									<input type="number" value="0" min="0" max="23" id="tlt_hours" class="tlt_input"/>
+									<input type="number" value="0" min="0" max="23" id="tlt_hours" class="tlt_input">
 								</div>
 								<div class="tlt_input_wrapper">
 									<p class="tlt_input_title" i18n-key="i.Minutes">Minutes</p>
-									<input type="number" value="0" min="0" max="59" id="tlt_minutes" class="tlt_input"/>
+									<input type="number" value="0" min="0" max="59" id="tlt_minutes" class="tlt_input">
 								</div>
 								<div class="tlt_input_wrapper">
 									<p class="tlt_input_title" i18n-key="i.Seconds">Seconds</p>
-									<input type="number" value="0" min="0" max="59" step="5" id="tlt_seconds" class="tlt_input"/>
+									<input type="number" value="0" min="0" max="59" step="5" id="tlt_seconds" class="tlt_input">
 								</div>
 							</div>
 						</div>
@@ -495,28 +498,28 @@
 						<div id="educational_objectives_title">
 							<span i18n-key="i.EducationalObjectives">Educational Objectives</span>
 						</div>
-						<textarea id='educational_objectives_textarea' name="educational_objectives" placeholder="Please describe the educational objectives you aim to fulfil by using this excursion..." i18n-key="i.EducationalObjectivesPlaceholder"></textarea>
+						<textarea id="educational_objectives_textarea" name="educational_objectives" placeholder="Please describe the educational objectives you aim to fulfil by using this excursion..." i18n-key="i.EducationalObjectivesPlaceholder"></textarea>
 					</div>
 				</div>
 			 	</div>
 																																				
 			 	<div id="publication-tab" style="display:none">
-			 	<div id="publication_title"  >
+			 	<div id="publication_title">
 			 		<p i18n-key="i.allowUsersTo">Allow other users to:</p>
 			 	</div>
 					<div id="publication_content">
-						<p><input type="checkbox" id="allow_comment" checked> <span i18n-key="i.allowComment">Comment</span></p>
-						<p><input type="checkbox" id="allow_download" checked> <span i18n-key="i.allowDownload">Download</span></p>
-						<p><input type="checkbox" id="allow_clone" checked> <span i18n-key="i.allowClone">Clone</span></p>
+						<p><input type="checkbox" id="allow_comment" checked=""> <span i18n-key="i.allowComment">Comment</span></p>
+						<p><input type="checkbox" id="allow_download" checked=""> <span i18n-key="i.allowDownload">Download</span></p>
+						<p><input type="checkbox" id="allow_clone" checked=""> <span i18n-key="i.allowClone">Clone</span></p>
 					</div>
 				</div>
 
 				<div id="rte-tab" style="display:none">
-					<p><input type="checkbox" id="allow_following_rte" checked disabled="disabled"> <span i18n-key="i.enableRTE">Enable object tracking when it is exported to SCORM</span></p>
+					<p><input type="checkbox" id="allow_following_rte" checked="" disabled="disabled"> <span i18n-key="i.enableRTE">Enable object tracking when it is exported to SCORM</span></p>
 				</div>
 
 				<div id="metadata_options_fields_row3">
-					<button id='done_in_metadata' type='button' class='button' i18n-key="i.Done">Done</button>
+					<button id="done_in_metadata" type="button" class="button" i18n-key="i.Done">Done</button>
 				</div>
 							
 				
@@ -974,20 +977,24 @@
 	<a id="hidden_button_to_launch_theme_fancybox" href="#theme_fancybox" style="display:none"></a>
 	<div style='display:none'>
 		<div id="theme_fancybox" class="theme_fancybox_class">
+			<div id="header_fancybox">
+  				<i id="themeIheader" class="icon-button icon-edit"></i>
+  				<p>Themes</p>
+			</div>
 			<img id="help_themes_selection" src="/assets/vicons/helptutorial_circle_blank.png"/>
-			<div id='select_theme1' class="slidethumb">
+			<div id='select_theme1' class="slidethumb col1 row1">
 				<img src='/assets/themes/theme1/select.png' class="themethumb" theme="theme1"/>
 			</div>			
-			<div id='select_theme13' class="slidethumb">
+			<div id='select_theme13' class="slidethumb row1">
 				<img src='/assets/themes/theme13/select.png' class="themethumb" theme="theme13"/>
 			</div>
-			<div id='select_theme14' class="slidethumb">
+			<div id='select_theme14' class="slidethumb row1">
 				<img src='/assets/themes/theme14/select.png' class="themethumb" theme="theme14"/>
 			</div>
-			<div id='select_theme15' class="slidethumb">
+			<div id='select_theme15' class="slidethumb row1">
 				<img src='/assets/themes/theme15/select.png' class="themethumb" theme="theme15"/>
 			</div>
-			<div id='select_theme16' class="slidethumb">
+			<div id='select_theme16' class="slidethumb col1">
 				<img src='/assets/themes/theme16/select.png' class="themethumb" theme="theme16"/>
 			</div>
 			<div id='select_theme17' class="slidethumb">
@@ -999,7 +1006,7 @@
 			<div id='select_theme19' class="slidethumb">
 				<img src='/assets/themes/theme19/select.png' class="themethumb" theme="theme19"/>
 			</div>
-			<div id='select_theme20' class="slidethumb">
+			<div id='select_theme20' class="slidethumb col1">
 				<img src='/assets/themes/theme20/select.png' class="themethumb" theme="theme20"/>
 			</div>
 			<div id='select_theme21' class="slidethumb">
@@ -1018,8 +1025,12 @@
 	<a id="hidden_button_to_launch_animation_fancybox" href="#animation_fancybox" style="display:none"></a>
 	<div style='display:none'>
 		<div id="animation_fancybox" class="animation_fancybox_class">
+			<div id="ani_header_fancybox">
+  				<i id="aniIheader" class="icon-button icon-magic"></i>
+  				<p>Animation</p>
+			</div>
 			<img id="help_animation_selection" src="/assets/vicons/helptutorial_circle_blank.png"/>
-			<div class="filaAni">	
+			<div id="aniF1" class="filaAni">	
 				<div id='select_animation1' class="slidethumb ani" animation="animation1">
 					<div class="anim_text"><h3 i18n-key="i.Horizontal">Horizontal</h3></div></div>
 				<div id='select_animation2' class="slidethumb ani" animation="animation2">
