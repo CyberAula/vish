@@ -450,6 +450,7 @@ en:
       linked_by: "Linked by"
       size: "Size"
       tags: "Tags"
+      type: "Type"
     input: "Add a description here"
     language:
       option1: "(Not depends on the language)"
