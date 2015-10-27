@@ -57,9 +57,10 @@
 <%= content_for :javascript do %>
 
     $("#button_for_contribution").attr("disabled", "disabled");
-    $(".box-item a").attr('url', $(".box-item a").attr('href') );
-
-    $(".box-item a").removeAttr('href');
+    $(".modal_join .box-item a").each(function(e){
+      $(this).attr('url', $(this).attr('href') );
+      $(this).removeAttr('href');
+    });
 
     $(".box-item").click(function(){
       if(!$(this).hasClass("selected")){
@@ -74,20 +75,26 @@
 
     $("#button_for_contribution").click(function(){
       var selected_items = $(".selected .container-img .img-box").attr("id");
-      var url = $('.selected a').attr("url");
+      
+      if($('.selected a').parents("#excursions_choose_wa").length != 0){
+        var url = $('.selected a').attr("url");
+      } else {
+        var url = "<%= Vish::Application.config.full_domain %>" + $('.selected a').attr("url");
+      }
+
       $.ajax({
         url: "/contributions",
         method: "POST",
         data: { 
         contribution:{ 
         id : selected_items, <%= database_id %>, type: "Resource"} , 
-        url: "<%= Vish::Application.config.full_domain %>" + url,
+        url:  url,
         authenticity_token: "<%= form_authenticity_token %>" },
         success: function(e){
             window.location.reload();
         },
         error: function(e){
-
+            window.location.reload();
         }
       });
     });
