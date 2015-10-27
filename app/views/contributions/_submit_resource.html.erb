@@ -30,7 +30,7 @@
     if current_subject != nil
       resources = subject_resources(current_subject, {:scope => :me, :limit => 0})
       excursions = subject_excursions(current_subject, {:scope => :me, :limit => 0}).reject{ |e| e.draft==true }
-    else 
+    else
       resources = []
       excursions = []
     end
@@ -39,18 +39,18 @@
     name: "contribution",
     excursions: excursions,
     resources: resources,
-    title1:"Selecciona uno de tus recursos",
+    title1: t('workshop.activities.assignment.modal.title'),
     title2: "",
-    notfound: "Lo sentimos no puede entrar a la competición porque todavía no tiene ninguna excursión",
-    button_name: "Subir mi propuesta" } %>
+    notfound: t('workshop.activities.assignment.modal.notfound'),
+    button_name: t('workshop.activities.assignment.modal.bt_upload') } %>
 
   <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#join_contribution"><%= t('workshop.activities.assignment.available_contributions.resource') %></button>
-  
+
 </div>
 
 <% if !wa_assignment.nil?
   database_id ="wa_assignment_id: " + wa_assignment.id.to_s
- else 
+ else
   database_id = "parent_id: " + parent.id.to_s
   end%>
 
@@ -75,7 +75,7 @@
 
     $("#button_for_contribution").click(function(){
       var selected_items = $(".selected .container-img .img-box").attr("id");
-      
+
       if($('.selected a').parents("#excursions_choose_wa").length != 0){
         var url = $('.selected a').attr("url");
       } else {
@@ -85,9 +85,9 @@
       $.ajax({
         url: "/contributions",
         method: "POST",
-        data: { 
-        contribution:{ 
-        id : selected_items, <%= database_id %>, type: "Resource"} , 
+        data: {
+        contribution:{
+        id : selected_items, <%= database_id %>, type: "Resource"} ,
         url:  url,
         authenticity_token: "<%= form_authenticity_token %>" },
         success: function(e){
