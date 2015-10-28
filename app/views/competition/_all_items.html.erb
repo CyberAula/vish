@@ -1,0 +1,6 @@
+	<% @competition_items.each do |r| %>
+	  <% unless r.nil?%>
+		  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "competition", :rec => (defined?(rec) ? rec : false)  } %>
+		<% end %>
+	<% end %>
+	

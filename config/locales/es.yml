@@ -50,6 +50,7 @@ es:
   activity_object:
     author: "Autor"
     title: "Título"
+    type: "Tipo"
     description: "Descripción"
     keywords: "Palabras clave"
     language: "Idioma"

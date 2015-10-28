@@ -60,6 +60,7 @@ en:
   activity_object:
     author: "Author"
     title: "Title"
+    type: "Type"
     description: "Description"
     keywords: "Keywords"
     language: "Language"

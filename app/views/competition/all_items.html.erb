@@ -1,15 +1,33 @@
-<% competition_items = ActivityObject.where("competition = true") %>
-
 <div id="joined_resources_all" class="row">
 	<h2><%= t('competition.menu.joined') %></h2>
 	<ul class="items">
 		<% if current_subject != nil && current_subject.actor.joined_competition != true %>
 			<%= render :partial => 'competition/item_add_proposal' %>
 		<% end %>
-		<% competition_items.each do |r| %>
-		  <% unless r.nil?%>
-			  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "competition", :rec => (defined?(rec) ? rec : false)  } %>
-			<% end %>
-		<% end %>
+		<%=render :partial => "all_items"%>
 	</ul>
 </div>
+
+<div class="loader_pagination" style="display:none">
+  <div class="pageless-loader" style="text-align:center;width:100%;">
+    <div class="msg" style="font-size:2em">
+      <%=t('search.loading')%>
+    </div>
+    <%= render :partial => "layouts/loading" %>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(){
+	$("#joined_resources_all ul.items").pageless({
+      totalPages: <%=@competition_items.num_pages%>,
+      url: "/competition/all",
+      currentPage: <%=@competition_items.current_page%>,
+      loader: '.loader_pagination',
+      end: function(){
+        $('.loader_pagination').hide();
+      }
+    });
+});
+</script>

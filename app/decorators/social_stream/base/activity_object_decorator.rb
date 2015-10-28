@@ -481,13 +481,17 @@ ActivityObject.class_eval do
   def metadata
     metadata = {}
 
+    unless self.object_type.nil?
+      metadata[I18n.t("activity_object.type")] = self.object_type
+    end
+
     unless self.title.nil?
       metadata[I18n.t("activity_object.title")] = self.title
     end
 
     unless self.description.nil?
       metadata[I18n.t("activity_object.description")] = self.description
-    end
+    end  
 
     if !self.tag_list.nil? and self.tag_list.is_a? Array
       metadata[I18n.t("activity_object.keywords")] = self.tag_list.join(", ")

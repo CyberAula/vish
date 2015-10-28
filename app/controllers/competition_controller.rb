@@ -5,6 +5,19 @@ class CompetitionController < ApplicationController
 	end
 
 	def all_items
+		per_page = 25		
+		params[:page]= params[:page] ? params[:page] : 1
+
+		@competition_items = ActivityObject.where(:competition => true).page(params[:page]).per(per_page)
+		respond_to do |format|
+      format.html{  
+        if request.xhr?
+					render :partial => "all_items", :layout => false
+        else
+        	render 
+        end        
+      }
+    end
 	end
 
 	def join_competition
@@ -40,5 +53,3 @@ private
 	end
 
 end
-
-
