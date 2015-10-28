@@ -3,16 +3,23 @@
 
     <header>
       <table class="table table-hover">
+        <!--type-->
+        <% unless resource.object_type.blank? %>
+          <tr>
+            <td><span><%= t('document.info.type') %></span></td>
+            <td><%= resource.object_type %></td>
+          </tr>
+        <% end %>
         <!--description-->
         <% unless resource.description.blank? %>
-          <tr>            
+          <tr>
             <td><span><%= t('document.info.description') %></span></td>
             <td><%= truncate(resource.description, :length => 400) %></td>
           </tr>
         <% end %>
         <!--tags-->
         <% unless resource.tag_list.blank? %>
-          <tr>          
+          <tr>
             <td><span><%= t('document.info.tags') %></span></td>
             <td>
               <ul class="tagit-suggestions">
@@ -88,7 +95,7 @@
               <td><%= resource.readable_language %></td>
             <% end %>
           </tr>
-         
+
           <% if resource.respond_to?("attachment") and !resource.attachment.blank? %>
            <tr>
             <td><span><%= t('excursion.actions.attachment') %></span></td>
@@ -101,7 +108,7 @@
             <td><span><%= t('document.info.date.created_at') %></span></td>
             <td><%= I18n.localize resource.created_at, :format => :long %></td>
           </tr>
-          <tr>      
+          <tr>
             <!--date-upload-->
             <td><span><%= t('document.info.date.updated_at') %></span></td>
             <td><%= I18n.localize resource.updated_at, :format => :long %></td>
@@ -129,15 +136,15 @@
           <%=t('excursion.actions.show_meta')%>
         </button>
       <%end%>
-      
+
       <!--Views and Likes-->
-      <div class="viewsAndCount">        
+      <div class="viewsAndCount">
         <div class="views">
           <%=resource.visit_count.to_s%>
-          <span><%=t('follow.views')%></span>   
+          <span><%=t('follow.views')%></span>
         </div>
         <%unless resource.post_activity.nil?%>
-          <div class="like">    
+          <div class="like">
             <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
             <%= link_like(resource.post_activity)%>
           </div>

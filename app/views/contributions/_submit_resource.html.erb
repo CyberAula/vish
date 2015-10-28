@@ -28,35 +28,39 @@
 
 <%=
     if current_subject != nil
-      my_items = subject_resources(current_subject, {:scope => :me, :limit => 0})
-    else 
-      my_items = []
+      resources = subject_resources(current_subject, {:scope => :me, :limit => 0})
+      excursions = subject_excursions(current_subject, {:scope => :me, :limit => 0}).reject{ |e| e.draft==true }
+    else
+      resources = []
+      excursions = []
     end
 
-    render partial: "common_resources/select_modal", locals:{
+    render partial: "common_resources/select_modal_tabs", locals:{
     name: "contribution",
-    my_items: my_items,
-    title1:"Selecciona uno de tus recursos",
-    title2: "Elige la excursión con la que quieres participar en el workshop",
-    notfound: "Lo sentimos no puede entrar a la competición porque todavía no tiene ninguna excursión",
-    button_name: "Subir mi propuesta" } %>
+    excursions: excursions,
+    resources: resources,
+    title1: t('workshop.activities.assignment.modal.title'),
+    title2: "",
+    notfound: t('workshop.activities.assignment.modal.notfound'),
+    button_name: t('workshop.activities.assignment.modal.bt_upload') } %>
 
   <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#join_contribution"><%= t('workshop.activities.assignment.available_contributions.resource') %></button>
-  
+
 </div>
 
 <% if !wa_assignment.nil?
   database_id ="wa_assignment_id: " + wa_assignment.id.to_s
- else 
+ else
   database_id = "parent_id: " + parent.id.to_s
   end%>
 
 <%= content_for :javascript do %>
 
     $("#button_for_contribution").attr("disabled", "disabled");
-    $(".box-item a").attr('url', $(".box-item a").attr('href') );
-
-    $(".box-item a").removeAttr('href');
+    $(".modal_join .box-item a").each(function(e){
+      $(this).attr('url', $(this).attr('href') );
+      $(this).removeAttr('href');
+    });
 
     $(".box-item").click(function(){
       if(!$(this).hasClass("selected")){
@@ -71,20 +75,26 @@
 
     $("#button_for_contribution").click(function(){
       var selected_items = $(".selected .container-img .img-box").attr("id");
-      var url = $('.selected a').attr("url");
+
+      if($('.selected a').parents("#excursions_choose_wa").length != 0){
+        var url = $('.selected a').attr("url");
+      } else {
+        var url = "<%= Vish::Application.config.full_domain %>" + $('.selected a').attr("url");
+      }
+
       $.ajax({
         url: "/contributions",
         method: "POST",
-        data: { 
-        contribution:{ 
-        id : selected_items, <%= database_id %>, type: "Resource"} , 
-        url: "<%= Vish::Application.config.full_domain %>" + url,
+        data: {
+        contribution:{
+        id : selected_items, <%= database_id %>, type: "Resource"} ,
+        url:  url,
         authenticity_token: "<%= form_authenticity_token %>" },
         success: function(e){
             window.location.reload();
         },
         error: function(e){
-
+            window.location.reload();
         }
       });
     });

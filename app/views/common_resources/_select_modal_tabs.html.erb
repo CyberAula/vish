@@ -1,0 +1,76 @@
+<%# LOCALS: title1 title2 my_items notfound button_name name%>
+<div id="join_<%= name %>" class="modal fade modal_join">
+  <div class="modal-dialog">
+	<div class="modal-content" >
+
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h1><%= title1 %></h1>
+	</div>
+
+  <div class="modal-body">
+
+  	
+  		<div id="joining_tabs" class="form_for_joining clearfix"><% unless excursions.blank?%>
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#excursions_choose_wa" data-toggle="tab" >Excursions</a></li>
+          <li><a href="#resources_choose_wa" data-toggle="tab">Resources</a></li>
+        </ul>
+
+        <div id="excursions_choose_wa" class="tab-pane">
+          <% unless excursions.blank?%>
+        <ul class="items">
+            <% excursions.each do |r| %>
+
+    				  <% unless r.nil?  %>
+
+                <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "join", :rec => (defined?(rec) ? rec : false)  } %>
+
+    					<% end %>
+  				  <% end %>
+          </ul>
+           <% else
+           if current_subject != nil %>
+            <div id="no_items"><%= notfound %></div>
+          <% end %>
+          <%end%>
+        <% end %>
+        </div>
+
+        <div id="resources_choose_wa" class="tab-pane">
+          <% unless resources.blank? %>
+           <ul class="items">
+            <% resources.each do |r| %>
+
+              <% unless r.nil?  %>
+
+                <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "tw", :rec => (defined?(rec) ? rec : false)  } %>
+                <% end %>
+               <%end%>
+            </ul>
+
+          <% else
+            if current_subject != nil%>
+              <div id="no_items"><%= notfound %></div>
+            <% end %>
+        <% end %>
+        </div>
+      </div>
+
+  </div>
+  <div class="modal-footer">
+    <div class="footer-form clearfix">
+    	<% unless excursions.blank?%>
+    		<a id="button_for_<%= name %>" type="button" class="btn btn-primary"><%= button_name %></a>
+    	<% end %>
+    </div>
+  </div>
+
+ </div>
+</div>
+</div>
+
+
+<% content_for :javascript do%>
+  $("#joining_tabs").tabs();
+<% end %>

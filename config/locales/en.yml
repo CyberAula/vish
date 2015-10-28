@@ -272,6 +272,7 @@ en:
   close: "Close"
   competition:
     about_title: "SHOW YOUR CREATIVITY"
+    view_more: "Show all proposals"
     menu:
       join: "How I participate?"
       about: "What is it?"
@@ -449,6 +450,7 @@ en:
       linked_by: "Linked by"
       size: "Size"
       tags: "Tags"
+      type: "Type"
     input: "Add a description here"
     language:
       option1: "(Not depends on the language)"
@@ -1100,6 +1102,10 @@ en:
           contribution_message: "Participate:"
           description: "Assignments allow participants to contribute to the workshop by uploading their own resources."
           due_date: "Due date"
+          modal:
+            bt_upload: "Upload resource"
+            notfound: "There is no educational resource in your profile. Create or upload one."
+            title: "Select one of your resources"
           modal_title: "Edit assignment"
           open_date: "Open date"
           title: "Assignment"

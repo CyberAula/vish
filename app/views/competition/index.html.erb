@@ -1,5 +1,5 @@
 <% 	competition_items = []
-	ActivityObject.where("competition = true").map{|e| competition_items.push(e.object)}
+	ActivityObject.where("competition = true").limit(16).map{|e| competition_items.push(e.object)}
 %>
 <section id="competition">
 
@@ -157,24 +157,25 @@
 
 		<div id="joined_resources" class="row">
 			<h2><%= t('competition.menu.joined') %></h2>
-			<ul class="items">
+			<ul class="items some_items">
 
 				<% if current_subject != nil && current_subject.actor.joined_competition != true %>
 				<%# añadir item de add %>
 					<%= render :partial => 'competition/item_add_proposal' %>
 				<% end %>
 				<% competition_items.each do |r| %>
-				  <% unless r.nil? %>
+				  <% unless r.nil?%>
 					  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "competition", :rec => (defined?(rec) ? rec : false)  } %>
 					<% end %>
 				<% end %>
+				<%= render :partial => 'entities/view_more', :locals => { :title => t('competition.view_more'), :more_url => "/competition/all" }%>
 			</ul>
 		</div>
 	</div>
 </section>
 
 <% if current_subject != nil && current_subject.actor.joined_competition != true %>
-	<% my_items = subject_excursions(current_subject, {:scope => :me, :limit => 0}) || []%>
+	<% my_items = subject_excursions(current_subject, {:scope => :me, :limit => 0}).reject{ |e| e.draft==true } || []%>
 	<%= render partial: "common_resources/select_modal", locals:{
 		name: "competition",
 		my_items: my_items,

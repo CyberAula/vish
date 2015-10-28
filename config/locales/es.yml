@@ -255,6 +255,7 @@ es:
   close: "Cerrar"
   competition:
     about_title: "DESATA TU CREATIVIDAD"
+    view_more: "Todos los proyectos presentados"
     menu:
       join: "¿Cómo participo?"
       about: "¿En qué consiste?"
@@ -265,7 +266,7 @@ es:
       notfound: "Lo sentimos, no puede participar en el concurso porque todavía no tiene ninguna excursión"
       title: "Selecciona una de tus excursiones"
       title2: "Elige la excursión con la que quieres participar en el concurso"
-      selected: "Seleccionada"
+      selected: "Seleccionado"
     register_bt: "Regístrate y sube tu propuesta"
     register_bt2: "Sube tu propuesta"
     step1: "Regístrate si todavía no lo has hecho"
@@ -438,6 +439,7 @@ es:
       linked_by: "Enlazado por"
       size: "Tamaño"
       tags: "Etiquetas"
+      type: "Tipo"
     input: "Descripción del recurso"
     language:
       option1: "(No depende del lenguaje)"
@@ -1091,6 +1093,10 @@ es:
             contribution_message: "Participa:"
             description: "Las tareas permiten a los participantes contribuir al taller subiendo sus propios recursos."
             due_date: "Fecha fin"
+            modal:
+              bt_upload: "Subir recurso"
+              notfound: "No tiene ningún recurso educativo en su perfil. Cree o suba uno."
+              title: "Selecciona uno de tus recursos"
             modal_title: "Editar tarea"
             open_date: "Fecha comienzo"
             title: "Tarea"

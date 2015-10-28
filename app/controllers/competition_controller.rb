@@ -1,7 +1,10 @@
 class CompetitionController < ApplicationController
-	before_filter :authenticate_user!, :except => [:index]
+	before_filter :authenticate_user!, :except => [:index, :all_items]
 
 	def index
+	end
+
+	def all_items
 	end
 
 	def join_competition
