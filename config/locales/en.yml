@@ -214,13 +214,14 @@ en:
   category:
     belongs_to: "Belongs to"
     cat_add_select: "Select your categories"
-    cat_add_title: "My categories"
+    cat_add_title: "Choose a category"
     cat_create: "Create new categories"
     cat_popular: "Your popular categories"
-    categorized_like: "Categorized as:"
+    cat_sugested: "Sugested categories"
+    categorized_like: "Categorize this resource in"
     confirm_delete: "Delete category?"
     error: "Sorry, the server must be having problems right now, try it later"
-    modalLabel: "Add to my categories"
+    modalLabel: "Classify this resource"
     success: "Succesfully categorized"
     tagit_watermark_cat: "Add a new category"
   categories:

@@ -90,6 +90,10 @@
         margin-left: -15px
         margin-bottom: -15px
   .modal-body
+    .selection_cat
+      border-right: 1px solid $gray-light
+      @media(max-width: 991px)
+        border-right: none
     p
       width: 100%
       padding: 3px 0
@@ -97,7 +101,7 @@
       width: 25%
       display: inline-block
     #suggestedCategories
-      height: 30px
+      //height: 30px
       overflow: hidden
       margin-bottom: 10px
     li.tagit-choice
@@ -362,4 +366,4 @@
             display: block !important
     .modal-footer
       .btn
-        float: right  
+        float: right

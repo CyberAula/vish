@@ -196,15 +196,16 @@ es:
   category:
     belongs_to: "Pertenece a"
     cat_add_select: "Selecciona entre tus categorías"
-    cat_add_title: "Mis categorías"
+    cat_add_title: "Elige una de tus categorías"
     cat_create: "Crear nuevas categorías"
     cat_popular: "Tus categorías populares"
-    categorized_like: "Categorizada como:"
+    cat_sugested: "Categorías sugeridas"
+    categorized_like: "Categorizar este recurso en"
     confirm_delete: "¿Borrar categoría?"
     error: "Lo sentimos, el servidor esta experimentando ciertos problemas, intentaló de nuevo más tarde."
-    modalLabel: "Añadir a mis categorías"
+    modalLabel: "Ordenar este recurso"
     success: "Categorizado con éxito"
-    tagit_watermark_cat: "Añade una nueva categoría"
+    tagit_watermark_cat: "Crea una nueva categoría"
   categories:
     actions:
       add: "Crear categoría"
