@@ -1,5 +1,5 @@
 class ContributionsController < ApplicationController
-  
+
   before_filter :authenticate_user!
   before_filter :fill_create_params, :only => [:create]
   inherit_resources
@@ -83,7 +83,7 @@ class ContributionsController < ApplicationController
       flash[:errors] = object.errors.full_messages.to_sentence
       return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
     end
-    
+
     params["contribution"].delete "activity_object"
     params["contribution"].delete "type"
     params["contribution"]["activity_object_id"] = ao.id
@@ -102,7 +102,7 @@ class ContributionsController < ApplicationController
       }
     end
   end
- 
+
 
   private
 

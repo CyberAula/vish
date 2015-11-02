@@ -203,7 +203,7 @@ es:
     categorized_like: "Categorizar este recurso en"
     confirm_delete: "¿Borrar categoría?"
     error: "Lo sentimos, el servidor esta experimentando ciertos problemas, intentaló de nuevo más tarde."
-    modalLabel: "Ordenar este recurso"
+    modalLabel: "Organizar este recurso"
     success: "Categorizado con éxito"
     tagit_watermark_cat: "Crea una nueva categoría"
   categories:
