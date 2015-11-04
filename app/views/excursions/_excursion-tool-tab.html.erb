@@ -20,8 +20,7 @@
               path:'/assets/ZeroClipboard.swf',
               copy:function(){
                 return $('#textarea_for_iframe').text();
-              },
-              afterCopy: function(){}
+              }
             });
             $("#textarea_for_iframe").mouseup(function(e){
               // fixes safari/chrome problem
@@ -224,10 +223,12 @@
       <div class="form-group">
         <div class="input-group">
           <textarea class="form-control" readonly="true" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='//<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0; webkitallowfullscreen mozallowfullscreen allowfullscreen &gt;&lt;/iframe&gt</textarea>
-          <div class="input-group-addon">
-            <button class="btn" id="btn_copy_embed" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-              <i class="fa fa-copy "></i>
-            </button>
+          <div class="input-group-addon"  >
+            <div data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+              <button class="btn" id="btn_copy_embed"  >
+               <i class="fa fa-copy "></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>           
