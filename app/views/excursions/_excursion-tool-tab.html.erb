@@ -13,7 +13,7 @@
       // e.relatedTarget // previous tab
       var loadedTab = $(e.target).attr("tabTitle");
       switch (loadedTab){
-        case "embed": 
+        case "embed":
           if(!embedEvents){
             embedEvents = true;
             $('button#btn_copy_embed').zclip({
@@ -34,7 +34,7 @@
             });
           }
           break;
-        case "share": 
+        case "share":
           if(!shareEvents){
             shareEvents = true;
             $('button#btn_copy_share').zclip({
@@ -60,7 +60,7 @@
           break;
       }
     });
-    
+
     $('.clone').popover({
       html : true,
       content: function() {
@@ -72,7 +72,7 @@
     $('.delete').popover({
       html : true,
       <% if editingToolbar %>
-        placement: "left", 
+        placement: "left",
       <% end %>
       content: function() {
         return $('.contentdelete').html();
@@ -111,14 +111,14 @@
     <button class="with_tooltip clone btn btn-default" data-toggle="popover" title="<%=t('excursion.actions.clone')%>">
       <i class="fa fa-copy"></i>
     </button>
-    
+
     <div class="contentclone" style="display: none">
       <p class=""><i class="fa fa-copy"></i>  <%=t('excursion.clone.confirm')%></p>
       <div class="actions">
         <a class="btn btn_cancel closepopover"><%=t('cancel')%></a>
         <a class="btn btn-primary" onclick="location.href='<%=excursion_path(@excursion) + '/clone'%>'"><%=t('excursion.actions.clone')%></a>
       </div>
-    </div>  
+    </div>
   <%end%>
 
   <!--Remove-->
@@ -165,7 +165,7 @@
   <ul class="nav nav-tabs tooltab">
     <li class="active">
       <a href="#tab1" tabTitle='description' data-toggle="tab">
-        <i class="fa fa-align-left"></i> 
+        <i class="fa fa-align-left"></i>
         <span class="  hidden-xs">
           <%=t('excursion.description')%>
         </span>
@@ -173,7 +173,7 @@
     </li>
     <li>
       <a href="#tab2" tabTitle='embed' data-toggle="tab">
-        <i class="fa fa-code"></i> 
+        <i class="fa fa-code"></i>
         <span class="  hidden-xs">
           <%=t('excursion.actions.embed') %>
         </span>
@@ -190,22 +190,22 @@
     <% if can?(:download_source, @excursion) %>
       <li>
         <a href="#tab4" tabTitle='download' data-toggle="tab">
-          <i class="fa fa-download"></i> 
+          <i class="fa fa-download"></i>
           <span class="hidden-xs">
             <%=t('document.actions.download')%>
           </span>
         </a>
-      </li>  
+      </li>
     <%end%>
     <li>
       <a href="#tab5" tabTitle='flag' data-toggle="tab">
-        <i class="fa fa-flag"></i> 
+        <i class="fa fa-flag"></i>
         <span class=" hidden-xs spam-name ">
           <%=t('excursion.actions.spam')%>
         </span>
       </a>
     </li>
-    <%= render partial: 'help/help_show_excursion' %>     
+    <%= render partial: 'help/help_show_excursion' %>
   </ul>
 
 
@@ -231,19 +231,21 @@
             </div>
           </div>
         </div>
-      </div>           
+      </div>
     </div>
 
     <!-- tab3 / share -->
     <div class="tab-pane contentShare" id="tab3">
       <div class="form-group">
         <div class="input-group">
-        
+
           <input class="form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"/>
           <div class="input-group-addon">
-            <button class="btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-              <i class="fa fa-copy "></i>
-            </button>
+            <div data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+              <button class="btn" id="btn_copy_share" href="#" >
+                <i class="fa fa-copy "></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -269,9 +271,9 @@
     <% if can?(:download_source, @excursion) %>
       <!-- tab4 / scorm -->
       <div class="tab-pane contentscorm" id="tab4">
-        <a class="btn btn-default" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a> 
+        <a class="btn btn-default" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a>
         <p><%=t("excursion.download_scorm")%></p>
-      </div> 
+      </div>
     <% end %>
 
     <!-- tab5 / spam -->
