@@ -1,4 +1,4 @@
-<% 
+<%
   all_categories = subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).select{|i| i.isRoot?}
   order = profile_or_current_subject.categories_order
   unless order.nil?
@@ -11,18 +11,18 @@
 
 <div class="toolbar_nav-tab">
   <% if canEditProfile %>
-    <a href="#options-modal" type="button" class="btn btn-default" role="button" data-toggle="modal" >
+    <a href="#options-modal" type="button" class="btn btn-secundary" role="button" data-toggle="modal" >
       <i class="fa fa-cogs"></i>
     </a>
 
-    <button type="button" class="btn btn-default btn-for-categorize" data-toggle="button"><i class="fa fa-arrows"></i><%= t('categories.dragandrop.place_uncategorize') %></button>
+    <button type="button" class="btn btn-secundary btn-for-categorize" data-toggle="button"><i class="fa fa-arrows"></i><%= t('categories.dragandrop.place_uncategorize') %></button>
   <% end %>
 
   <div class="btn-group view-categories-group" role="group" aria-label="viewButton" style="float:right;">
-    <button id="normal-view" type="button" class="btn btn-default">
+    <button id="normal-view" type="button" class="btn btn-secundary">
       <%= t('categories.dragandrop.gallery') %>
     </button>
-    <button id="list-view" type="button" class="btn btn-default">
+    <button id="list-view" type="button" class="btn btn-secundary">
       <%= t('categories.dragandrop.list') %>
     </button>
   </div>
@@ -149,9 +149,9 @@
 
       $("#normal-view").click(function(){
         $(".btn-for-categorize").show(200);
-          $("#list-instance").fadeOut(200,function(){  
+          $("#list-instance").fadeOut(200,function(){
             $("#normal-view").addClass("active");
-            $("#list-view").removeClass("active");        
+            $("#list-view").removeClass("active");
             $("#normal-instance").fadeIn(200);
           });
       });
@@ -176,7 +176,7 @@
   <%if request.xhr? %>
     add_onclicks_to_categories();
   <%else%>
-    document.addEventListener("DOMContentLoaded", function(){  
+    document.addEventListener("DOMContentLoaded", function(){
       add_onclicks_to_categories();
     });
   <%end%>
