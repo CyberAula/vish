@@ -164,7 +164,7 @@
   <!--TABS-->
   <ul class="nav nav-tabs tooltab">
     <li class="active">
-      <a href="#tab1" tabTitle='description' data-toggle="tab">
+      <a href="#tab0" tabTitle='description' data-toggle="tab">
         <i class="fa fa-align-left"></i>
         <span class="  hidden-xs">
           <%=t('excursion.description')%>
@@ -214,7 +214,7 @@
   <div class="tab-content excursion-social">
 
     <!-- tab1 / description -->
-    <div class="tab-pane active" id="tab1">
+    <div class="tab-pane active" id="tab0">
         <%= render :partial => 'excursions/excursion-info' %>
     </div>
 
@@ -252,6 +252,9 @@
       <div class="social_toolbar_excursion">
         <div class="social_toolbar_excursion">
           <div class="social">
+            <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
+          </div>
+          <div class="social">
             <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
           </div>
           <div class="social">
@@ -260,10 +263,7 @@
           <div class="social">
             <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
           </div>
-          <div class="social">
-            <p><%=t('excursion.actions.send_email') %></p>
-            <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
-          </div>
+
         </div>
       </div>
     </div>
@@ -271,7 +271,7 @@
     <% if can?(:download_source, @excursion) %>
       <!-- tab4 / scorm -->
       <div class="tab-pane contentscorm" id="tab4">
-        <a class="btn btn-default" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a>
+        <a class="btn btn-secundary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a>
         <p><%=t("excursion.download_scorm")%></p>
       </div>
     <% end %>

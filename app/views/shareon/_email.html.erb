@@ -1,4 +1,4 @@
- <a class="btn btn-xs" href="mailto:?subject=<%= t('excursion.invite.email.subject', :title => CGI::escape(title || "")) %>&amp;body=<%= t('excursion.invite.email.body', { :url => url, :name => CGI::escape(name) }) %>" title="<%=t('sharing.email')%>"> 
-	<i class="fa fa-envelope"></i>
+ <a class="btn btn-xs btn-secundary" href="mailto:?subject=<%= t('excursion.invite.email.subject', :title => CGI::escape(title || "")) %>&amp;body=<%= t('excursion.invite.email.body', { :url => url, :name => CGI::escape(name) }) %>" title="<%=t('sharing.email')%>">
+	<i class="fa fa-envelope"></i><%=t('excursion.actions.send_email') %>
 
 </a>

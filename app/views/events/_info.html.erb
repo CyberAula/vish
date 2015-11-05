@@ -17,13 +17,13 @@
         <%end%>
       </div>
 
-    </div>  
+    </div>
   </div>
 </div>
 <div class="panel-group" id="accordion">
   <div class="panel">
     <header>
-      <table class="table table-hover">  
+      <table class="table table-hover">
         <tr>
           <td><span>Empieza el: </span></td>
           <td id="start"><%= @event.start_at %></td>
@@ -45,22 +45,6 @@
             <% end%>
           </tr>
 
-          <!--div class="day">
-            <%= @event.start_at.day %>
-          </div>
-          <div class="month">
-            <%#= l @event.start_at, :format => "%B" %>
-          </div>
-          <div class="hour">
-            <%#= l @event.start_at, :format => "%H:%M" %>
-          </div>
-          <div class="hour">
-            <%#= l @event.end_at, :format => "%H:%M" %>
-          </div-->
-          <%# unless document.tag_list.blank? %>
-          <!--td><%#= t 'document.info.tags' %></td>
-            <td><%#= tag_list document %></td-->
-          <%#end%>
         </table>
       </div>
     </div>
@@ -87,15 +71,6 @@
       }
     });
 
- 
-
-
-
-      
-        $("#start").text(new Date(Date.parse("<%=@event.start_at.iso8601%>")).toLocaleString());
-        $("#end").text(new Date(Date.parse("<%=@event.end_at.iso8601%>")).toLocaleString());
-      <%end%>
-
-
-
-
+    $("#start").text(new Date(Date.parse("<%=@event.start_at.iso8601%>")).toLocaleString());
+    $("#end").text(new Date(Date.parse("<%=@event.end_at.iso8601%>")).toLocaleString());
+<%end%>

@@ -1,4 +1,4 @@
-.nav .open > a, .nav .open > a:hover, .nav .open > a:focus 
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus
   background-color: $dropdown-bg !important
   border-color: $dropdown-border
   color: $dropdown-link-color
@@ -9,34 +9,35 @@
   -moz-box-shadow: none
   box-shadow: none !important
 
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus 
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus
   background-color: $gray-lighter-extra
 
-.nav-tabs a 
+.nav-tabs a
   color: $gray
 
-.nav-tabs a:hover 
+.nav-tabs a:hover
   color: $gray
 
 .nav-tabs a .active
   color: $gray-dark
 
-.navbar-search 
+.navbar-search
   width: 100%
   margin-bottom: 0
   position: inherit !important
   z-index: 1 !important
 
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus 
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus
   background-color: transparent
   border-left: none
   border-right: none
   border-top: none
 
-.nav-tabs 
+.nav-tabs
   clear: both
-  border-bottom: 1px solid $nav-tabs-border-color
+  //border-bottom: 1px solid $nav-tabs-border-color
+  border-bottom: 1px solid $gray-light
   margin-bottom: 10px
   .icontitle
     float: left
@@ -64,14 +65,14 @@
   border-bottom: 3px solid $border-color
   color: $gray-darker
 
-           
-.nav-tabs > li > a i      
+
+.nav-tabs > li > a i
   display: inline
 
 .nav-tabs > li > a i.active
   padding-right: 3px
 
-.nav-tabs > li > a i:hover 
+.nav-tabs > li > a i:hover
   margin-top: -3px
 
 .nav-tabs > li > a .caption
@@ -94,7 +95,7 @@
   padding: 6px 10px 6px 10px
 
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus 
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus
   color: $gray-darker
 
 .nav-list > .active > a, .nav-list > .active > a:hover
@@ -106,38 +107,38 @@
   background-color: $white
   color: $brand-primary
 
-.navbar-toggle 
+.navbar-toggle
   border-color: transparent
   margin-top: 0px
 
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus 
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus
   background-color: transparent
 
-.nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a, .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover, .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus 
+.nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a, .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover, .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus
   border: none
 
-.nav-pills > li > a 
+.nav-pills > li > a
   border: 1px  solid transparent
   padding: 7px 6px
   border: 1px  solid $border-color
   color: $gray-darker
-  &:hover 
+  &:hover
     background-color: $white
     border: 1px  solid $brand-primary
     color: $brand-primary
-  
-  &:focus 
+
+  &:focus
     background-color: $white
     border: 1px  solid $brand-primary
     color: $brand-primary
 
 
-.nav-pills > li + li 
+.nav-pills > li + li
   margin-left: 6px
 .nav > li.disabled > a
   color: #B3B3B3
-@media (min-width: $screen-xs-max) 
-.navbar-form.navbar-right:last-child 
+@media (min-width: $screen-xs-max)
+.navbar-form.navbar-right:last-child
   margin-right: 12px
   .btn
     &:hover

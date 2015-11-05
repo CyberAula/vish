@@ -81,8 +81,11 @@
   &:hover,
   &:focus,
   &:active,
-  &.active,
   &.disabled,
   &[disabled]
+    background-color: darken($gray-light, 20%)
+    color: $black
+  &.active
+    font-weight: bold
     background-color: darken($gray-light, 20%)
     color: $black
