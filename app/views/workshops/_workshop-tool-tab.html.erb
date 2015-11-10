@@ -1,5 +1,5 @@
 <%content_for :javascript do%>
-    
+
     var shareEvents = false;
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -7,7 +7,7 @@
       // e.relatedTarget // previous tab
       var loadedTab = $(e.target).attr("tabTitle");
       switch (loadedTab){
-        case "share": 
+        case "share":
           if(!shareEvents){
             shareEvents = true;
             $('button#btn_copy_share').zclip({
@@ -33,7 +33,7 @@
           break;
       }
     });
-    
+
     $('.delete').popover({
       html : true,
       content: function() {
@@ -43,6 +43,7 @@
     });
 
     $(".with_tooltip").tooltip({ placement: 'bottom'});
+    $('[data-toggle="tooltip"], .with_tooltip').tooltip({ placement: 'bottom'});
 <%end%>
 
 
@@ -77,7 +78,7 @@
   <ul class="nav nav-tabs">
     <li class="active">
       <a href="#tab1" tabTitle='details' data-toggle="tab">
-        <i class="fa fa-align-left"></i> 
+        <i class="fa fa-align-left"></i>
         <span class="hidden-xs">
           <%=t('excursion.detail')%>
         </span>
@@ -90,10 +91,10 @@
           <%=t('excursion.actions.share')%>
         </span>
       </a>
-    </li> 
+    </li>
     <li>
       <a href="#tab5" tabTitle='flag' data-toggle="tab">
-        <i class="fa fa-flag"></i> 
+        <i class="fa fa-flag"></i>
         <span class=" hidden-xs">
         <%=t('excursion.actions.spam')%>
         </span>
@@ -119,9 +120,11 @@
       <div class="input-group">
         <input class="shortUrl form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"/>
         <div class="input-group-addon">
-          <button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+          <div data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+          <button class="btn copy_btn" id="btn_copy_share" href="#" >
               <i class="fa fa-copy "></i>
           </button>
+        </div>
         </div>
       </div>
     </div>
@@ -141,8 +144,8 @@
           <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @workshop.title, :name => (user_signed_in? ? current_subject.name : '')} %>
       </div>
     </div>
-  </div> 
-   
+  </div>
+
   <!-- tab5 / spam -->
   <div class="tab-pane" id="tab5">
     <div>

@@ -3,7 +3,8 @@
 
 <div class="toolbar_nav-tab">
   <div class="dropdown order_by_selector" li_selected="<%=default_sort_by%>" id="order_by_selector_resources">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuOrdByresources" data-toggle="dropdown"><i class="fa fa-<%=icon%>"></i> <span><%=t('order_by.' + default_sort_by)%></span>
+    <span class="order_by_txt"><%= t('order_by.title')%></span>
+    <button class="btn btn-secundary dropdown-toggle" type="button" id="dropdownMenuOrdByresources" data-toggle="dropdown"><i class="fa fa-<%=icon%>"></i> <span><%=t('order_by.' + default_sort_by)%></span>
       <i class="fa fa-angle-down"></i>
     </button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -11,7 +12,7 @@
 
 
       <li>
-          <a href="#" onclick="resources_dropdown_select('popularity');" sort-by-key='popularity'> 
+          <a href="#" onclick="resources_dropdown_select('popularity');" sort-by-key='popularity'>
             <i class="fa fa-dashboard"></i>
             <span><%=t('order_by.popularity')%> </span>
           </a>
@@ -30,23 +31,24 @@
       </li>
       <li>
           <a href="#" onclick="resources_dropdown_select('visits');" sort-by-key='visits'>
-            <i class="fa fa-eye"></i> 
+            <i class="fa fa-eye"></i>
             <span><%=t('order_by.visits')%> </span>
           </a>
       </li>
       <li>
           <a href="#" onclick="resources_dropdown_select('favorites');" sort-by-key='favorites'>
-            <i class="fa fa-star"></i> 
+            <i class="fa fa-star"></i>
             <span><%=t('order_by.favorites')%> </span>
           </a>
       </li>
     </ul>
   </div>
+  <div class="clear"></div>
 </div>
 
 
 <%= content_for :javascript do %>
- 
+
   var param = "<%=params[:sort_by]%>";
 
   if(param && param!=""){
@@ -54,9 +56,9 @@
       param = "popularity";
     }
     var value = $("#order_by_selector_resources .dropdown-menu [sort-by-key="+param+"]").html();
-    $("#dropdownMenuOrdByresources").html(value + '<i class="fa fa-angle-down"></i>'); 
+    $("#dropdownMenuOrdByresources").html(value + '<i class="fa fa-angle-down"></i>');
   }
-  
+
 <%end%>
 
 <script>
@@ -70,7 +72,7 @@ var resources_dropdown_select = function(option) {
         $("#order_by_selector_resources").attr("li_selected", option);
         var value = $("#order_by_selector_resources .dropdown-menu [sort-by-key="+option+"]").html();
         $("#dropdownMenuOrdByresources").html(value + '<i class="fa fa-angle-down"></i>');
-        $('.loader_pagination').hide();      
+        $('.loader_pagination').hide();
         $("#resources_tab_ready").append(html);
         re_apply_pageless("resources");
       },

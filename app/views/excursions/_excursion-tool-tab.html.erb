@@ -13,15 +13,14 @@
       // e.relatedTarget // previous tab
       var loadedTab = $(e.target).attr("tabTitle");
       switch (loadedTab){
-        case "embed": 
+        case "embed":
           if(!embedEvents){
             embedEvents = true;
             $('button#btn_copy_embed').zclip({
               path:'/assets/ZeroClipboard.swf',
               copy:function(){
                 return $('#textarea_for_iframe').text();
-              },
-              afterCopy: function(){}
+              }
             });
             $("#textarea_for_iframe").mouseup(function(e){
               // fixes safari/chrome problem
@@ -35,7 +34,7 @@
             });
           }
           break;
-        case "share": 
+        case "share":
           if(!shareEvents){
             shareEvents = true;
             $('button#btn_copy_share').zclip({
@@ -61,7 +60,7 @@
           break;
       }
     });
-    
+
     $('.clone').popover({
       html : true,
       content: function() {
@@ -73,7 +72,7 @@
     $('.delete').popover({
       html : true,
       <% if editingToolbar %>
-        placement: "left", 
+        placement: "left",
       <% end %>
       content: function() {
         return $('.contentdelete').html();
@@ -112,14 +111,14 @@
     <button class="with_tooltip clone btn btn-default" data-toggle="popover" title="<%=t('excursion.actions.clone')%>">
       <i class="fa fa-copy"></i>
     </button>
-    
+
     <div class="contentclone" style="display: none">
       <p class=""><i class="fa fa-copy"></i>  <%=t('excursion.clone.confirm')%></p>
       <div class="actions">
         <a class="btn btn_cancel closepopover"><%=t('cancel')%></a>
         <a class="btn btn-primary" onclick="location.href='<%=excursion_path(@excursion) + '/clone'%>'"><%=t('excursion.actions.clone')%></a>
       </div>
-    </div>  
+    </div>
   <%end%>
 
   <!--Remove-->
@@ -165,8 +164,8 @@
   <!--TABS-->
   <ul class="nav nav-tabs tooltab">
     <li class="active">
-      <a href="#tab1" tabTitle='description' data-toggle="tab">
-        <i class="fa fa-align-left"></i> 
+      <a href="#tab0" tabTitle='description' data-toggle="tab">
+        <i class="fa fa-align-left"></i>
         <span class="  hidden-xs">
           <%=t('excursion.description')%>
         </span>
@@ -174,7 +173,7 @@
     </li>
     <li>
       <a href="#tab2" tabTitle='embed' data-toggle="tab">
-        <i class="fa fa-code"></i> 
+        <i class="fa fa-code"></i>
         <span class="  hidden-xs">
           <%=t('excursion.actions.embed') %>
         </span>
@@ -191,22 +190,22 @@
     <% if can?(:download_source, @excursion) %>
       <li>
         <a href="#tab4" tabTitle='download' data-toggle="tab">
-          <i class="fa fa-download"></i> 
+          <i class="fa fa-download"></i>
           <span class="hidden-xs">
             <%=t('document.actions.download')%>
           </span>
         </a>
-      </li>  
+      </li>
     <%end%>
     <li>
       <a href="#tab5" tabTitle='flag' data-toggle="tab">
-        <i class="fa fa-flag"></i> 
+        <i class="fa fa-flag"></i>
         <span class=" hidden-xs spam-name ">
           <%=t('excursion.actions.spam')%>
         </span>
       </a>
     </li>
-    <%= render partial: 'help/help_show_excursion' %>     
+    <%= render partial: 'help/help_show_excursion' %>
   </ul>
 
 
@@ -215,7 +214,7 @@
   <div class="tab-content excursion-social">
 
     <!-- tab1 / description -->
-    <div class="tab-pane active" id="tab1">
+    <div class="tab-pane active" id="tab0">
         <%= render :partial => 'excursions/excursion-info' %>
     </div>
 
@@ -224,30 +223,37 @@
       <div class="form-group">
         <div class="input-group">
           <textarea class="form-control" readonly="true" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='//<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0; webkitallowfullscreen mozallowfullscreen allowfullscreen &gt;&lt;/iframe&gt</textarea>
-          <div class="input-group-addon">
-            <button class="btn" id="btn_copy_embed" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-              <i class="fa fa-copy "></i>
-            </button>
+          <div class="input-group-addon"  >
+            <div data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+              <button class="btn" id="btn_copy_embed"  >
+               <i class="fa fa-copy "></i>
+              </button>
+            </div>
           </div>
         </div>
-      </div>           
+      </div>
     </div>
 
     <!-- tab3 / share -->
     <div class="tab-pane contentShare" id="tab3">
       <div class="form-group">
         <div class="input-group">
-        
+
           <input class="form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"/>
           <div class="input-group-addon">
-            <button class="btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
-              <i class="fa fa-copy "></i>
-            </button>
+            <div data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+              <button class="btn" id="btn_copy_share" href="#" >
+                <i class="fa fa-copy "></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
       <div class="social_toolbar_excursion">
         <div class="social_toolbar_excursion">
+          <div class="social">
+            <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
+          </div>
           <div class="social">
             <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
           </div>
@@ -257,10 +263,7 @@
           <div class="social">
             <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
           </div>
-          <div class="social">
-            <p><%=t('excursion.actions.send_email') %></p>
-            <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
-          </div>
+
         </div>
       </div>
     </div>
@@ -268,9 +271,9 @@
     <% if can?(:download_source, @excursion) %>
       <!-- tab4 / scorm -->
       <div class="tab-pane contentscorm" id="tab4">
-        <a class="btn btn-default" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a> 
+        <a class="btn btn-secundary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a>
         <p><%=t("excursion.download_scorm")%></p>
-      </div> 
+      </div>
     <% end %>
 
     <!-- tab5 / spam -->

@@ -1,4 +1,4 @@
-<div class="dropdown order_by_selector" li_selected="<%= params[:sort_by] || "popularity" %>" id="order_by_selector_net">
+<div class="dropdown order_by_selector2" li_selected="<%= params[:sort_by] || "popularity" %>" id="order_by_selector_net">
 
   <button class="btn btn-default dropdown-toggle dropdownMenuOrdBy" type="button" data-toggle="dropdown">
     <i class="fa fa-desktop"> </i>
@@ -8,7 +8,7 @@
   </button>
   <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dLabel">
     <li>
-        <a href="<%=home_path(:tab=>"net", :sort_by=>"popularity")%>" sort-by-key='popularity'> 
+        <a href="<%=home_path(:tab=>"net", :sort_by=>"popularity")%>" sort-by-key='popularity'>
           <i class="fa fa-dashboard"></i>
           <%=t('order_by.popularity')%>
         </a>
@@ -27,13 +27,13 @@
     </li>
     <li>
         <a href="<%=home_path(:tab=>"net", :sort_by=>"visits")%>" sort-by-key='visits'>
-          <i class="fa fa-eye"></i> 
+          <i class="fa fa-eye"></i>
           <%=t('order_by.visits')%>
         </a>
     </li>
     <li>
         <a href="<%=home_path(:tab=>"net", :sort_by=>"favorites")%>" sort-by-key='favorites'>
-          <i class="fa fa-star"></i> 
+          <i class="fa fa-star"></i>
           <%=t('order_by.favorites')%>
         </a>
     </li>
@@ -42,7 +42,7 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function(){ 
+  document.addEventListener("DOMContentLoaded", function(){
     var param = "<%=params[:sort_by]%>";
 
     if(param && param!=""){
@@ -50,7 +50,7 @@
         param = "popularity";
       }
       var value = $(".order_by_selector .dropdown-menu [sort-by-key="+param+"]").html();
-      $(".dropdownMenuOrdBy").html(value + '<i class="fa fa-angle-down"></i>'); 
+      $(".dropdownMenuOrdBy").html(value + '<i class="fa fa-angle-down"></i>');
     }
   });
 </script>

@@ -126,13 +126,13 @@
 
     <div class="panel-footer">
       <a class="expand" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
-        <span id="showingMore" class="showMore accordion-toggle btn btn-default collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo" title="<%=t('excursion.actions.show_more')%>" status="collapsed"><%=t('excursion.actions.show_more')%></span>
+        <span id="showingMore" class="showMore accordion-toggle btn btn-secundary collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo" title="<%=t('excursion.actions.show_more')%>" status="collapsed"><%=t('excursion.actions.show_more')%></span>
       </a>
 
       <!--metadata-->
       <% displayMetadata = resource.respond_to?("metadata") %>
       <% if displayMetadata %>
-        <button href="#MetadataModal" id="showMeta" data-toggle="modal" class="btn btn-default">
+        <button href="#MetadataModal" id="showMeta" data-toggle="modal" class="btn btn-secundary">
           <%=t('excursion.actions.show_meta')%>
         </button>
       <%end%>

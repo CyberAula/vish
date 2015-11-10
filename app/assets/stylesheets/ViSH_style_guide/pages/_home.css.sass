@@ -7,13 +7,18 @@
     @include make-md-column(12, $gutter: $grid-gutter-width)
     @include make-lg-column(12, $gutter: $grid-gutter-width)
     padding: 0 !important
+    .whitebox
+      background-color: $white
+      border-radius: $border-radius-base
+      padding: 1px 0
+      margin-bottom: 15px
+      @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+
     .dropdown-toggle
       i
         &:first-child
           margin: 0 5px 0 0
-    .items
-      //float: left
-    
+
   .catalogue
     padding: 0
 #networking_tab_ready
@@ -24,9 +29,9 @@
 .foryou_entities
   display: inline-block
   width: 100%
-  clear: both 
+  clear: both
   .items
-    clear: both 
+    clear: both
   h3
     clear: both
     width: 100%
@@ -39,9 +44,9 @@
   .recent_entities,
   .foryou_entities
     ul
-      .box-item  
+      .box-item
         display: none
-      .box-item:nth-of-type(-n+8) 
+      .box-item:nth-of-type(-n+8)
         display: block
 
 
@@ -50,17 +55,17 @@
   .recent_entities,
   .foryou_entities
     ul
-      .box-item  
+      .box-item
         display: none
-      .box-item:nth-of-type(-n+7) 
+      .box-item:nth-of-type(-n+7)
         display: block
 /*5*/
 @media (min-width: 1251px) and (max-width: 1500px)
   .recent_entities,
   .foryou_entities
-    .box-item  
+    .box-item
       display: none
-    .box-item:nth-of-type(-n+6) 
+    .box-item:nth-of-type(-n+6)
       display: block
 
 
@@ -68,18 +73,18 @@
 @media (min-width: 1200px) and (max-width: 1250px)
   .recent_entities,
   .foryou_entities
-    .box-item  
+    .box-item
       display: none
-    .box-item:nth-of-type(-n+5) 
+    .box-item:nth-of-type(-n+5)
       display: block
 
 /*4*/
 @media (min-width: 992px) and (max-width: 1199px)
   .recent_entities,
   .foryou_entities
-    .box-item  
+    .box-item
       display: none
-    .box-item:nth-of-type(-n+5) 
+    .box-item:nth-of-type(-n+5)
       display: block
 
 
@@ -87,15 +92,15 @@
 /*3*/
 @media (min-width: 768px) and (max-width: 991px)
   .recent_entities
-    .box-item  
+    .box-item
       display: none
-    .box-item:nth-of-type(-n+5) 
+    .box-item:nth-of-type(-n+5)
       display: block
 
   .foryou_entities
-    .box-item  
+    .box-item
       display: none
-    .box-item:nth-of-type(-n+4) 
+    .box-item:nth-of-type(-n+4)
       display: block
 
 
@@ -103,27 +108,27 @@
 /*2*/
  @media (min-width: 481px) and (max-width: 767px)
   .recent_entities
-    .box-item  
+    .box-item
       display: none
-    .box-item:nth-of-type(-n+3) 
+    .box-item:nth-of-type(-n+3)
       display: block
 
   .foryou_entities
-    .box-item  
+    .box-item
       display: none
-    .box-item:nth-of-type(-n+3) 
+    .box-item:nth-of-type(-n+3)
       display: block
 
 /*1*/
 @media (max-width: 480px)
   .recent_entities
-    .box-item  
+    .box-item
       display: none
-    .box-item:nth-of-type(-n+1) 
+    .box-item:nth-of-type(-n+1)
       display: block
 
   .foryou_entities
-    .box-item  
+    .box-item
       display: none
-    .box-item:nth-of-type(-n+1) 
+    .box-item:nth-of-type(-n+1)
       display: block

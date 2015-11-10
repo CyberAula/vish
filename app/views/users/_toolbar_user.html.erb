@@ -12,7 +12,7 @@
   <!-- Edit your profile -->
   <% @profile = profile_or_current_subject.profile %>
   <% if can?(:update, @profile) %>
-    <div class="edit_icon btn btn-default">
+    <div class="edit_icon btn btn-secundary">
       <%= link_to(raw("<i class='fa fa-edit '></i>")+ t('profile.edit'), '#', :id => "edit_icon_link") %>
     </div>
   <% end %>
@@ -28,7 +28,7 @@
 
   <!--BTN MESSAGE-->
   <% if !profile_subject_is_current? and user_signed_in? and !privateStudentMode %>
-    <button href="#new_messages_profile" id="mesage-profile" role="button" class="btn btn-default" data-toggle="modal" data-remote="false">
+    <button href="#new_messages_profile" id="mesage-profile" role="button" class="btn btn-secundary" data-toggle="modal" data-remote="false">
       <%= link_to new_message_path(receiver: profile_subject.slug) do %>
       <i class="fa fa-envelope-o"></i>
       <%= t 'mailboxer.send' %>
@@ -37,7 +37,7 @@
   <% end %>
 
   <!--BTN show-more-->
-  <a class="expand btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
+  <a class="expand btn btn-secundary" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo">
     <span id="showingMore" class="showMore accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" title=<%=t("excursion.actions.show_more")%> status="collapsed">
       <i class="fa fa-plus-square-o"></i><%=t('excursion.actions.show_more')%>
     </span>
