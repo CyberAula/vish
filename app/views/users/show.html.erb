@@ -71,7 +71,7 @@
             <table class="table table-striped">
               <tbody>
                 <tr class="ocupation">
-                  <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>
+                  <% if can?(:update, @profile) && profile_subject_is_current? && profile_subject.occupation_sym == :select %>
                     <td class="select"><%= link_to t('profile.occupation.select'), '#', :id => "select_occupation_link" %></td>
                   <% elsif profile_subject.occupation_sym != :select %>
                     <td class="name-roll"><%= t('profile.occupation.label')%></td>
