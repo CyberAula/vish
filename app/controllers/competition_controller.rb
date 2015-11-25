@@ -28,7 +28,7 @@ class CompetitionController < ApplicationController
 
 		if  resource_type == "excursion"
 			resource = Excursion.find(resource_id)
-		elsif resource_type == "eorkshop"
+		elsif resource_type == "workshop"
 			resource = Workshop.find(resource_id)
 		else 
 			resource = nil
