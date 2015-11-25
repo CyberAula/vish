@@ -1,3 +1,4 @@
+# encoding: utf-8
 #
 # Rake task to compile ViSH Editor JavaScript and CSS files
 # Compile javascript using google's closure compiler (see http://code.google.com/closure/compiler/)
