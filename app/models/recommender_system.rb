@@ -117,7 +117,7 @@ class RecommenderSystem
     filters = RecommenderSystem.getRSFilters(options)
 
     if options[:lo].blank?
-      weights_sum = (weights_sum-weights[:los_score])
+      weights[:us_score] += weights[:los_score]
       weights[:los_score] = 0
       filters[:los_score] = 0
       options[:filtering_los] = false
@@ -410,19 +410,19 @@ class RecommenderSystem
   # The current default weights can be accesed in the Vish::Application::config.weights variable.
   def self.defaultRSWeights
     {
-      :los_score => 0.4,
-      :us_score => 0.4,
-      :quality_score => 0.10,
-      :popularity_score => 0.10
+      :los_score => 0.6,
+      :us_score => 0.2,
+      :quality_score => 0.1,
+      :popularity_score => 0.1
     }
   end
 
   def self.defaultLoSWeights
     {
       :title => 0.2,
-      :description => 0.15,
+      :description => 0.1,
       :language => 0.5,
-      :keywords => 0.15
+      :keywords => 0.2
     }
   end
 
@@ -434,14 +434,6 @@ class RecommenderSystem
     }
   end
 
-  def self.defaultPopularityWeights
-    {
-      :visit_count => 0.4,
-      :like_count => 0.3,
-      :download_count => 0.3
-    }
-  end
-
   # Default filters for the Recommender System provided by ViSH
   # These filters can be overriden in the application_config.yml file.
   # The current default filters can be accesed in the Vish::Application::config.filters variable.
@@ -449,7 +441,7 @@ class RecommenderSystem
     {
       :los_score => 0,
       :us_score => 0,
-      :quality_score => 0,
+      :quality_score => 0.3,
       :popularity_score => 0
     }
   end
