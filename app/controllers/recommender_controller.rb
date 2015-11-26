@@ -11,15 +11,12 @@ class RecommenderController < ApplicationController
   # API REST
   ##################
   def api_resource_suggestions
-    if params[:resource_id]
-      current_resource =  ActivityObject.find(params[:resource_id]).object rescue nil
-    end
-    resources = RecommenderSystem.resource_suggestions(current_subject,current_resource)
+    current_resource =  ActivityObject.find_by_id(params[:resource_id]).object rescue nil if params[:resource_id]
+    n = 12 #TODO. Get n from parameters.
+    resources = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => current_resource, :n => n})
     respond_to do |format|
       format.any { 
-        results = []
-        resources.map { |r| results.push(r.activity_object.search_json(self)) }
-        render :json => results, :content_type => "application/json"
+        render :json => resources.map {|r| r.activity_object.search_json(self) }, :content_type => "application/json"
       }
     end
   end

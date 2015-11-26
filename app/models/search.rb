@@ -29,12 +29,12 @@ class Search
     opts = {}
 
     if options[:n].is_a? Integer
-      n = options[:n]
+      n = [Vish::Application::config.max_matches,options[:n]].min
     else
-      if !options[:page].nil?
+      unless options[:page].nil?
         n = 16    #default results when pagination is requested
       else
-        n = 5000 #default (All results found)
+        n = Vish::Application::config.max_matches #default (All possible results found)
       end
     end
 
@@ -49,17 +49,10 @@ class Search
        :name => 60 #(For users)
     }
 
-    if n > 1000
-      opts[:max_matches] = [n,5000].min
-    end
+    opts[:max_matches] = Vish::Application::config.max_matches
 
-    if !options[:page].nil?
-      opts[:page] = options[:page].to_i
-    end
-
-    if options[:order].is_a? String
-      opts[:order] = options[:order]
-    end
+    opts[:page] = options[:page].to_i unless options[:page].nil?
+    opts[:order] = options[:order] if options[:order].is_a? String
 
     if options[:models].is_a? Array
       opts[:classes] = options[:models]

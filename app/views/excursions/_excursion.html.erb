@@ -10,9 +10,7 @@
     <%generated_id = "cat-" + obj_id.to_s + "-" + generated_id %>
   <%end%>
 
-  <%excursion_url = (defined?(rec) and rec.is_a? String) ? excursion_url(excursion,{:rec => rec}) : excursion_url(excursion)%>
-
-  <%= link_to(excursion_url) do %>
+  <%= link_to(excursion_url(excursion)) do %>
     <!-- image/icon -->
     <div class="container-img">
       <div class="img-box" id="<%=generated_id%>"></div>

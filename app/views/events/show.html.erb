@@ -8,7 +8,7 @@
   
   <div class="event">
     <!--recomended-->
-    <%= render :partial => 'recommender/sidebar', :locals  => { :resources => RecommenderSystem.resource_suggestions(current_subject,@event,{:n=>12, :models => [Event]})} %>
+    <%= render :partial => 'recommender/sidebar', :locals  => {:resources => RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @event, :n=>12, :models => [Event]})} %>
 
     <div class="eve-show">
       <!--visor-->

@@ -34,16 +34,7 @@ class ExcursionsController < ApplicationController
             redirect_to "/"
           end
         else
-          if Vish::Application.config.trackingSystem
-            tr = TrackingSystemEntry.trackRLOsInExcursions(params["rec"],@excursion,request,current_subject)
-            @tracking_system_entry_id = tr.id unless tr.nil?
-            rsEngine = TrackingSystemEntry.getRandomRSEngine
-          else
-            rsEngine = "ViSHRecommenderSystem"
-          end
-
-          @rec = TrackingSystemEntry.getRSCode(rsEngine)
-          @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Excursion], :recEngine => rsEngine, :track => true, :request => request})
+          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @€xcursion, :n=>16, :models => [Excursion]})
           render
         end
       }

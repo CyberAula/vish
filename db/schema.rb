@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151001142756) do
+ActiveRecord::Schema.define(:version => 20151126103656) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -716,6 +716,11 @@ ActiveRecord::Schema.define(:version => 20151001142756) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+  end
+
+  create_table "words", :force => true do |t|
+    t.string  "value"
+    t.integer "occurrences", :default => 0
   end
 
   create_table "workshop_activities", :force => true do |t|

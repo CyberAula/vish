@@ -15,13 +15,7 @@
   <% document_profile_subject ||= document.owner_subject %>
   
   <!-- Recommendations -->
-  <!-- No option[:models] on RecommenderSystem.resource_suggestions mean all resources -->
-  <%
-    rsEngine = Vish::Application.config.trackingSystem ? TrackingSystemEntry.getRandomRSEngine : "ViSHRecommenderSystem"
-    resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,document,{:n=>16, :recEngine => rsEngine, :track => true, :request => request})
-  %>
-
-  <%= render :partial => 'recommender/sidebar', :locals  => { :resources => resource_suggestions, :rec => TrackingSystemEntry.getRSCode(rsEngine)  } %>
+  <%= render :partial => 'recommender/sidebar', :locals  => {:resources => RecommenderSystem.resource_suggestions({:user => current_subject, :lo => document, :n=>16})} %>
   
   <div class="doc-show">
   

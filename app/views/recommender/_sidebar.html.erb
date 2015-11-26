@@ -1,20 +1,17 @@
-
-
-    <!--recomended-->
-    <aside class="recomended" id="recomended_box">
-      <div class="recomended-items">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#tab1" data-toggle="tab"><%= t('recommended').capitalize%></a></li>
+<!--recomended-->
+<aside class="recomended" id="recomended_box">
+  <div class="recomended-items">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab"><%= t('recommended').capitalize%></a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab1">
+        <ul class="items small-box clearfix">
+          <% resources.each do |resource| %>
+            <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "recommended_sidebar"} %>
+          <% end %>
         </ul>
-        <div class="tab-content">
-          <div class="tab-pane active" id="tab1">
-            <ul class="items small-box clearfix">
-              <% resources[0..9].each do |resource| %>
-                <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "recommended_sidebar", :rec => (defined?(rec) ? rec : false)} %>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-
       </div>
-    </aside>
+    </div>
+  </div>
+</aside>

@@ -669,15 +669,19 @@ ActivityObject.class_eval do
     return resource
   end
 
+  def self.getAllResources
+    ActivityObject.where("object_type in (?)", VishConfig.getAvailableResourceModels)
+  end
+
+  def self.getAllPublicResources
+    getAllResources.where("scope=0")
+  end
+
   def self.getResourceCount
-    getCount(["Workshop","Excursion", "Document", "Webapp", "Scormfile","Link","Embed"])
+    self.getAllResources.count
   end
 
-  def self.getCount(models=[])
-    ActivityObject.where("object_type in (?)", models).count
-  end
-
-
+  
   private
 
   def fill_relation_ids

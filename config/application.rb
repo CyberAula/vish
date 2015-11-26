@@ -87,6 +87,9 @@ module Vish
       require 'vish_editor'
     end
 
+    #Require core extensions
+    Dir[File.join(Rails.root, "lib", "core_ext", "*.rb")].each {|l| require l }
+
     #Tracker
     config.trackingSystem = (!config.APP_CONFIG['trackingSystemAPIKEY'].nil? and !config.APP_CONFIG['trackingSystemAPIURL'].nil?)
 
@@ -100,39 +103,30 @@ module Vish
 
     #Tags settings
     if config.APP_CONFIG['tagsSettings'].blank?
-        config.tagsSettings = {}
+      config.tagsSettings = {}
     else
-        config.tagsSettings = config.APP_CONFIG['tagsSettings']
+      config.tagsSettings = config.APP_CONFIG['tagsSettings']
     end
 
     if config.tagsSettings["maxLength"].blank?
-        config.tagsSettings["maxLength"] = 20
+      config.tagsSettings["maxLength"] = 20
     end
 
     if config.tagsSettings["maxTags"].blank?
-        config.tagsSettings["maxTags"] = 8
+      config.tagsSettings["maxTags"] = 8
     end
 
     if config.tagsSettings["triggerKeys"].blank?
-        config.tagsSettings["triggerKeys"] = ['enter', 'comma', 'tab', 'space']
+      config.tagsSettings["triggerKeys"] = ['enter', 'comma', 'tab', 'space']
     end
 
     #Catalogue
     if config.APP_CONFIG['catalogue'].blank?
-        config.catalogue = {} 
+      config.catalogue = {} 
     else
-        config.catalogue = config.APP_CONFIG['catalogue']
+      config.catalogue = config.APP_CONFIG['catalogue']
     end
-
-    #Catalogue: Mode
-    if config.catalogue['mode'].blank?
-        config.catalogue['mode'] = "matchany"
-    end
-
-    #Catalogue: Quality threshold
-    unless config.catalogue["qualityThreshold"].is_a? Numeric
-        config.catalogue["qualityThreshold"] = nil
-    end
-
+    config.catalogue['mode'] = "matchany" if config.catalogue['mode'].blank?
+    config.catalogue["qualityThreshold"] = nil unless config.catalogue["qualityThreshold"].is_a? Numeric
   end
 end

@@ -22,7 +22,7 @@ class WorkshopsController < ApplicationController
         if @workshop.draft and (can? :edit, @workshop)
           redirect_to edit_workshop_path(@workshop)
         else
-          # @resource_suggestions = RecommenderSystem.resource_suggestions(current_subject,@excursion,{:n=>16, :models => [Workshop]})
+          # @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @workshop, :n=>16, :models => [Workshop]})
           @workshop_activities = @workshop.workshop_activities.sort_by{ |wa| wa.position }
           render
         end
