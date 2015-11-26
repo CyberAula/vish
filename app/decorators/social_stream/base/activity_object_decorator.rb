@@ -96,6 +96,8 @@ ActivityObject.class_eval do
 
   attr_accessor :score
   attr_accessor :score_tracking
+  attr_accessor :filtered
+  
   
   def public?
     !private? and self.relation_ids.include? Relation::Public.instance.id

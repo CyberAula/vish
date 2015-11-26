@@ -14,18 +14,16 @@ class RecommenderSystem
     preSelectionLOs = getPreselection(options)
 
     #Step 2: Scoring
-    # rankedLOs = calculateScore(preSelectionLOs,options)
+    rankedLOs = calculateScore(preSelectionLOs,options)
 
     #Step 3: Filtering
-    # filteredLOs = filter(rankedLOs,options)
+    filteredLOs = filter(rankedLOs,options)
 
     #Step 4: Sorting
-    # sortedLOs = filteredLOs.sort { |a,b|  b.score <=> a.score }
+    sortedLOs = filteredLOs.sort { |a,b|  b.score <=> a.score }
 
     #Step 5: Delivering
-    # return sortedLOs.first(options[:n])
-
-    return preSelectionLOs.first(options[:n])
+    return sortedLOs.first(options[:n])
   end
 
   # Step 0: Initialize all variables
@@ -111,141 +109,114 @@ class RecommenderSystem
   def self.calculateScore(preSelectionLOs,options)
     return preSelectionLOs if preSelectionLOs.blank?
 
-    #Get some vars to normalize scores
-    maxPopularity = preSelectionLOs.max_by {|e| e.popularity }.popularity
-    maxQuality = preSelectionLOs.max_by {|lo| lo.qscore }.qscore
+    weights = RecommenderSystem.getRSWeights(options)
+    weights_sum = 1
+    options[:weights_los] = RecommenderSystem.getLoSWeights(options)
+    options[:weights_us] = RecommenderSystem.getUSWeights(options)
 
-    calculateCSScore = !resource.nil?
-    calculateUSScore = !subject.nil?
-    calculatePopularityScore = !(maxPopularity.nil? or maxPopularity == 0)
-    calculateQualityScore = !(maxQuality.nil? or maxQuality == 0)
+    filters = RecommenderSystem.getRSFilters(options)
 
-    weights = {}
-
-    if calculateCSScore
-      #Recommend resources similar to other resource
-      weights[:cs_score] = 0.70
-      weights[:us_score] = 0.10
-      weights[:popularity_score] = 0.10
-      weights[:quality_score] = 0.10
-    elsif calculateUSScore
-      #Recommend resources for a user (or subject)
-      weights[:cs_score] = 0.0
-      weights[:us_score] = 0.80
-      weights[:popularity_score] = 0.10
-      weights[:quality_score] = 0.10
-    else
-      #Recommend resources for anonymous users
-      weights[:cs_score] = 0.0
-      weights[:us_score] = 0.0
-      weights[:popularity_score] = 0.5
-      weights[:quality_score] = 0.5
+    if options[:lo].blank?
+      weights_sum = (weights_sum-weights[:los_score])
+      weights[:los_score] = 0
+      filters[:los_score] = 0
+      options[:filtering_los] = false
     end
+    if options[:user].blank?
+      weights_sum = (weights_sum-weights[:us_score])
+      weights[:us_score] = 0
+      filters[:us_score] = 0
+      options[:filtering_us] = false
+    end
+    
+    weights.each{ |k, v| weights[k] = [1,v/weights_sum.to_f].min } if (weights_sum < 1 and weights_sum > 0)
+
+    #Check if any individual filtering should be performed
+    if options[:filtering_los].nil?
+      options[:filters_los] = RecommenderSystem.getLoSFilters(options)
+      options[:filtering_los] = options[:filters_los].map {|k,v| v}.sum > 0
+    end
+    if options[:filtering_us].nil?
+      options[:filters_us] = RecommenderSystem.getUSFilters(options)
+      options[:filtering_us] = options[:filters_us].map {|k,v| v}.sum > 0
+    end
+
+    calculateLoSimilarityScore = ((weights[:los_score]>0)||(filters[:los_score]>0)||options[:filtering_los])
+    calculateUserSimilarityScore = ((weights[:us_score]>0)||(filters[:us_score]>0)||options[:filtering_us] )
+    calculateQualityScore = ((weights[:quality_score]>0)||(filters[:quality_score]>0))
+    calculatePopularityScore = ((weights[:popularity_score]>0)||(filters[:popularity_score]>0))
 
     preSelectionLOs.map{ |lo|
-      if calculateCSScore
-        cs_score = RecommenderSystem.contentSimilarityScore(resource,lo)
-      else
-        cs_score = 0
-      end
-
-      if calculateUSScore
-        us_score = RecommenderSystem.userProfileSimilarityScore(subject,lo)
-      else
-        us_score = 0
-      end
-
-      if calculatePopularityScore
-        popularity_score = RecommenderSystem.popularityScore(lo,maxPopularity)
-      else
-        popularity_score = 0
-      end
-
-      if calculateQualityScore
-        quality_score = RecommenderSystem.qualityScore(lo,maxQuality)
-      else
-        quality_score = 0
-      end
-
-      lo.score = weights[:cs_score] * cs_score + weights[:us_score] * us_score + weights[:popularity_score] * popularity_score + weights[:quality_score] * quality_score
+      los_score = calculateLoSimilarityScore ? RecommenderSystem.loSimilarityScore(options[:lo],lo,options) : 0
+      (lo.filtered=true and next) if (calculateLoSimilarityScore and los_score < filters[:los_score])
       
-      if options[:recEngine] == "ViSHRS-Quality"
-        lo.score -= weights[:quality_score] * quality_score
-      elsif options[:recEngine] == "ViSHRS-Quality-Popularity"
-        lo.score -= weights[:quality_score] * quality_score + weights[:popularity_score] * popularity_score
-      end
+      us_score = calculateUserSimilarityScore ? RecommenderSystem.userSimilarityScore(options[:user],lo,options) : 0
+      (lo.filtered=true and next) if (calculateUserSimilarityScore and us_score < filters[:us_score])
+      
+      quality_score = calculateQualityScore ? RecommenderSystem.qualityScore(lo) : 0
+      (lo.filtered=true and next) if (calculateQualityScore and quality_score < filters[:quality_score])
+      
+      popularity_score = calculatePopularityScore ? RecommenderSystem.popularityScore(lo) : 0
+      (lo.filtered=true and next) if (calculatePopularityScore and popularity_score < filters[:popularity_score])
 
-      unless options[:test]
-        lo.score_tracking = {
-          :cs_score => cs_score,
-          :us_score => us_score,
-          :popularity_score => popularity_score,
-          :quality_score => quality_score,
-          :weights => weights,
-          :overall_score => lo.score,
-          :object_id => lo.id,
-          :object_type => lo.object_type,
-          :qscore => lo.qscore,
-          :popularity => lo.popularity,
-          :rec => options[:recEngine]
-        }.to_json
-      end
+      lo.score = weights[:los_score] * los_score + weights[:us_score] * us_score + weights[:quality_score] * quality_score + weights[:popularity_score] * popularity_score
     }
 
-    if options[:recEngine] == "Random"
-      return preSelectionLOs
-    end
-
-    preSelectionLOs.sort! { |a,b|  b.score <=> a.score }
+    preSelectionLOs
   end
 
   #Step 3: Filtering
-  #Filtered Learning Objects are marked with the lo[:filtered] key.
+  #Filtered Learning Objects are marked with the lo.filtered field.
   def self.filter(rankedLOs,options)
-    # rankedLOs.select{|lo| lo[:filtered].nil? }
-    rankedLOs
+    rankedLOs.select{|lo| lo.filtered.nil? }
   end
 
-  #Content Similarity Score (between 0 and 1)
-  def self.contentSimilarityScore(loA,loB)
-    weights = {}
-    weights[:language] = 0.5
-    weights[:keywords] = 0.3
-    weights[:title] = 0.2
-
-    languageD = RecommenderSystem.getSemanticDistance(loA.language,loB.language)
-    keywordsD = RecommenderSystem.getTextArraySemanticDistance(loA.tag_list.to_a,loB.tag_list.to_a)
-    titleD = RecommenderSystem.getSemanticDistance(loA.title,loB.title)
+  #Learning Object Similarity Score, [0,1] scale
+  def self.loSimilarityScore(loA,loB,options={})
+    weights = options[:weights_los] || RecommenderSystem.getLoSWeights(options)
+    filters = options[:filtering_los]!=false ? (options[:filters_los] || RecommenderSystem.getLoSFilters(options)) : nil
     
-    return weights[:language] * languageD + weights[:keywords] * keywordsD + weights[:title] * titleD
+    titleS = RecommenderSystem.getSemanticDistance(loA.title,loB.title)
+    descriptionS = RecommenderSystem.getSemanticDistance(loA.description,loB.description)
+    languageS = RecommenderSystem.getSemanticDistanceForLanguage(loA.language,loB.language)
+    keywordsS = RecommenderSystem.getTextArraySemanticDistance(loA.tag_list,loB.tag_list)
+
+    return -1 if (!filters.blank? and (titleS < filters[:title] || descriptionS < filters[:description] || languageS < filters[:language] || yearS < filters[:keywords]))
+
+    return weights[:title] * titleS + weights[:description] * descriptionS + weights[:language] * languageS + weights[:keywords] * keywordsS
   end
 
-  #User profile Similarity Score (between 0 and 1)
-  def self.userProfileSimilarityScore(subject,lo)
-    weights = {}
-    weights[:language] = 0.75
-    weights[:keywords] = 0.25
+  #User profile Similarity Score, [0,1] scale
+  def self.userSimilarityScore(user,lo,options={})
+    weights = options[:weights_us] || RecommenderSystem.getUSWeights(options)
+    filters = options[:filtering_us]!=false ? (options[:filters_us] || RecommenderSystem.getUSFilters(options)) : nil
+    
+    languageS = RecommenderSystem.getSemanticDistanceForLanguage(user.language,lo.language)
+    keywordsS = RecommenderSystem.getTextArraySemanticDistance(user.tag_list,lo.tag_list)
 
-    unless ["independent","ot"].include? lo.language
-      languageD = RecommenderSystem.getSemanticDistance(subject.language,lo.language)
-    else
-      languageD = 0
+    losS = 0
+    unless options[:user_los].blank?
+      options[:user_los].each do |pastLo|
+        losS += RecommenderSystem.loProfileSimilarityScore(pastLo,lo,options.merge({:filtering_los => false}))
+      end
+      losS = losS/options[:user_los].length
     end
-    keywordsD = RecommenderSystem.getTextArraySemanticDistance(subject.tag_list.to_a,lo.tag_list.to_a)
 
-    return weights[:language] * languageD + weights[:keywords] * keywordsD
+    return -1 if (!filters.blank? and (languageS < filters[:language] || keywordsS < filters[:keywords] || losS < filters[:los]))
+
+    return weights[:language] * languageS + weights[:keywords] * keywordsS + weights[:los] * losS
   end
 
   #Popularity Score (between 0 and 1)
-  #See scheduled:recalculatePopularity task in lib/tasks/scheduled.rake to adjust popularity weights
-  def self.popularityScore(lo,maxPopularity)
-    return lo.popularity/maxPopularity.to_f
+  #See scheduled:recalculatePopularity task in lib/tasks/scheduled.rake to see the popularity metric
+  def self.popularityScore(lo)
+    return [[lo.popularity/1000000.to_f,0].max,1].min
   end
 
   #Quality Score (between 0 and 1)
-  #See app/decorators/social_stream/base/activity_object_decorator.rb, method calculate_qscore to adjust weights
-  def self.qualityScore(lo,maxQualityScore)
-    return lo.qscore/maxQualityScore.to_f
+  #See app/decorators/social_stream/base/activity_object_decorator.rb, method calculate_qscore, to see the quality metric
+  def self.qualityScore(lo)
+    return [[lo.qscore/1000000.to_f,0].max,1].min
   end
 
 
