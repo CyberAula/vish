@@ -88,7 +88,12 @@ class Search
 
     #Filter by language
     if options[:language]
-      opts[:with][:language] = [options[:language].to_s.to_crc32]
+      if options[:language].is_a? String
+        options[:language] = [options[:language]]
+      end
+      if options[:language].is_a? Array
+        opts[:with][:language] = options[:language].map{|language| language.to_s.to_crc32}
+      end
     end
 
     #Filter by quality score
@@ -200,11 +205,8 @@ class Search
     if browse==true
       #Browse
       opts[:match_mode] = :extended
-
       #Browse can't order by relevance. Set ranking by default.
-      if opts[:order].nil?
-        opts[:order] = 'ranking DESC'
-      end
+      opts[:order] = 'ranking DESC' if opts[:order].nil?
     else
       queryLength = searchTerms.scan(/\w+/).size
 
@@ -231,6 +233,7 @@ class Search
         # Search for words with a length shorten than 3 characraters. In this case, the search engine will return empty results.
       end
     end
+    opts[:order] = '@random' if opts[:order]=="random"
 
     return ThinkingSphinx.search searchTerms, opts
   end

@@ -90,6 +90,16 @@ module Vish
     #Require core extensions
     Dir[File.join(Rails.root, "lib", "core_ext", "*.rb")].each {|l| require l }
 
+    config.after_initialize do
+      #Agnostic random
+      if ActiveRecord::Base.connection.adapter_name == "PostgreSQL"
+        config.agnostic_random = "RANDOM()"
+      else
+        #MySQL
+        config.agnostic_random = "RAND()"
+      end
+    end
+
     #Tracker
     config.trackingSystem = (!config.APP_CONFIG['trackingSystemAPIKEY'].nil? and !config.APP_CONFIG['trackingSystemAPIURL'].nil?)
 

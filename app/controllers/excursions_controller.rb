@@ -34,7 +34,7 @@ class ExcursionsController < ApplicationController
             redirect_to "/"
           end
         else
-          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @€xcursion, :n=>16, :models => [Excursion]})
+          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @excursion, :n=>10, :models => [Excursion]})
           render
         end
       }
@@ -322,36 +322,11 @@ class ExcursionsController < ApplicationController
   
   def last_slide
     #Prepare parameters to call the RecommenderSystem
+    current_excursion =  Excursion.find_by_id(params[:excursion_id]) if params[:excursion_id]
+    options = {:user => current_subject,:lo => current_excursion, :n => (params[:quantity] || 6).to_i, :models => [Excursion]}
+    options[:keywords] = params[:q].split(",") if params[:q]
 
-    if params[:excursion_id]
-      current_excursion =  Excursion.find_by_id(params[:excursion_id])
-    else
-      current_excursion = nil
-    end
-
-    options = {:n => (params[:quantity] || 6).to_i, :models => [Excursion]}
-    if params[:q]
-      options[:keywords] = params[:q].split(",")
-    end
-
-    # Uncomment this block to activate the A/B testing
-    # A/B Testing: some % of the requests will be attended by the full RS, the other % will be attended by other algorithms
-    rnd = rand
-    if rnd < 0.10
-      #Random
-      options[:recEngine] = "Random"
-    elsif rnd < 0.5
-      #Full RS without quality metrics
-      options[:recEngine] = "ViSHRS-Quality"
-    elsif rnd < 0.9
-      #Full RS without quality and popularity metrics
-      options[:recEngine] = "ViSHRS-Quality-Popularity"
-    else
-      #Full RS
-      options[:recEngine] = "ViSHRecommenderSystem"
-    end
-
-    excursions = RecommenderSystem.resource_suggestions(current_subject,current_excursion,options)
+    excursions = RecommenderSystem.resource_suggestions(options)
 
     respond_to do |format|
       format.json {

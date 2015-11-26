@@ -7,26 +7,30 @@
 class RecommenderSystem
 
   def self.resource_suggestions(options={})
-#subject=nil,resource=nil, now its user, lo
-
     # Step 0: Initialize all variables
     options = prepareOptions(options)
 
     #Step 1: Preselection
-    preSelectionLOs = getPreselection(subject,resource,options)
+    preSelectionLOs = getPreselection(options)
 
     #Step 2: Scoring
-    rankedLOs = orderByScore(preSelectionLOs,subject,resource,options)
+    # rankedLOs = calculateScore(preSelectionLOs,options)
 
-    #Step 3
-    return rankedLOs.first(options[:n])
+    #Step 3: Filtering
+    # filteredLOs = filter(rankedLOs,options)
+
+    #Step 4: Sorting
+    # sortedLOs = filteredLOs.sort { |a,b|  b.score <=> a.score }
+
+    #Step 5: Delivering
+    # return sortedLOs.first(options[:n])
+
+    return preSelectionLOs.first(options[:n])
   end
 
   # Step 0: Initialize all variables
-  def self.prepareOptions(options={})
+  def self.prepareOptions(options)
     options = {:n => 20, :settings => Vish::Application::config.default_settings}.recursive_merge(options)
-    options[:models] = VishConfig.getAvailableResourceModels({:return_instances => true}) if options[:models].blank?
-    options[:model_names] = options[:models].map{|m| m.name}
     unless options[:user].blank?
       options[:user_los] = [] #TODO. Get and limit LOs from user
       options[:user_los] = options[:user_los].first(options[:max_user_los] || Vish::Application::config.max_user_los)
@@ -35,64 +39,77 @@ class RecommenderSystem
   end
 
   #Step 1: Preselection
-  def self.getPreselection(subject,resource,options={})
-    preSelection = []
+  def self.getPreselection(options)
+    # Get resources using the Search Engine
+    searchOpts = {}
+    searchOpts[:n] = [options[:settings][:preselection_size],Vish::Application::config.settings[:max_preselection_size]].min
+    searchOpts[:order] = "random"
 
-    if options[:recEngine] == "Random"
-      return Excursion.where(:draft=>false).sample(options[:n])
+    # Define some filters for the preselection
+
+    # A. Query.
+    unless options[:settings][:preselection_filter_keywords] == false
+      keywords = compose_keywords(options)
+      searchOpts[:keywords] = keywords unless keywords.blank?
     end
 
-    #Search resources using the search engine
-
-    #Filter resources by language
-    if !resource.nil?
-      #Recommending resources similar to other resource
-      options[:language] = resource.language unless [nil,"independent","ot"].include? resource.language
-    elsif !subject.nil?
-      #Recommending resources to a user
-      options[:language] = subject.language unless [nil,"independent","ot"].include? subject.language
+    # B. Resource type.
+    unless options[:settings][:preselection_filter_resource_type] == false
+      options[:models] = [options[:lo].class] if options[:lo]
+    end
+    options[:models] = VishConfig.getAvailableResourceModels({:return_instances => true}) if options[:models].blank?
+    options[:model_names] = options[:models].map{|m| m.name}
+    searchOpts[:models] = options[:models] #Only search for desired models
+    
+    # C. Language.
+    unless options[:settings][:preselection_filter_languages] == false
+      # Multilanguage approach.
+      preselectionLanguages = []
+      preselectionLanguages << options[:lo].language if options[:lo]
+      if options[:user]
+        preselectionLanguages << options[:user].language
+        preselectionLanguages += options[:user_los].map{|lo| lo.language} if options[:user_los]
+      end
+      preselectionLanguages.compact.uniq!
+      preselectionLanguages = preselectionLanguages & VishConfig.getAllDefinedLanguages
+      searchOpts[:language] = preselectionLanguages unless preselectionLanguages.blank?
     end
 
-    keywords = compose_keywords(subject,resource,options)
-    unless keywords.blank? and options[:language].blank?
-      searchEngineResources = (Search.search search_options(keywords,subject,resource,options)).compact rescue []
-      preSelection.concat(searchEngineResources)
-    end
+    # D. Repeated resources.
+    searchOpts[:subjects_to_avoid] = [options[:user]] if options[:user]
+    searchOpts[:ao_ids_to_avoid] = [options[:lo].activity_object.id] if options[:lo]
+
+    #Call search engine
+    preSelection = (Search.search(searchOpts)) rescue []
 
     #Add other resources of the same author
-    unless options[:test] or resource.nil? or resource.author.nil?
-      unless (((!subject.nil?) ? Actor.normalize_id(subject) : -1) == resource.author.id)
-        authoredResources = ActivityObject.where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:model_names], resource.activity_object.id).authored_by(resource.author).map{|ao| ao.object}.compact
-        preSelection.concat(authoredResources)
-        preSelection.uniq!
-      end
+    unless options[:lo].nil? or options[:lo].author.nil? or (options[:user] and Actor.normalize_id(options[:user]) == options[:lo].author.id)
+      authorResources = ActivityObject.limit(50).order(Vish::Application::config.agnostic_random).authored_by(options[:lo].author).where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:model_names],options[:lo].activity_object.id)
+      preSelection += authorResources.map{|ao| ao.object}
+      preSelection.uniq!
     end
-
+    preSelection.compact!
+    
     pSL = preSelection.length
-
-    if options[:random]
-      #Random: fill to Nmax, and select 2/3Nmax randomly
-      if pSL < options[:nMax]
-        preSelection.concat(getResourcesToFill(options[:nMax]-pSL,preSelection,subject,resource,options))
+    if pSL < options[:n]
+      unless searchOpts[:language].blank? and searchOpts[:keywords].blank?
+        #Fill it with random resources (no filters)
+        searchOptionsRandom = searchOpts
+        searchOptionsRandom[:n] = (searchOpts[:n]-pSL)
+        searchOptionsRandom[:ao_ids_to_avoid] = preSelection.map{|lo| lo.activity_object.id}
+        searchOptionsRandom[:ao_ids_to_avoid] << options[:lo].activity_object.id if options[:lo]
+        searchOptionsRandom.delete(:keywords)
+        searchOptionsRandom.delete(:language)
+        preSelection += Search.search(searchOptionsRandom).compact rescue []
       end
-      sampleSize = (options[:nMax]*2/3.to_f).ceil
-      preSelection = preSelection.sample(sampleSize)
-    else
-      if pSL < options[:n]
-        preSelection.concat(getResourcesToFill(options[:n]-pSL,preSelection,subject,resource,options))
-      end
-      preSelection = preSelection.first(options[:nMax])
     end
 
     return preSelection
   end
 
   #Step 2: Scoring
-  def self.orderByScore(preSelectionLOs,subject,resource,options)
-
-    if preSelectionLOs.blank?
-      return preSelectionLOs
-    end
+  def self.calculateScore(preSelectionLOs,options)
+    return preSelectionLOs if preSelectionLOs.blank?
 
     #Get some vars to normalize scores
     maxPopularity = preSelectionLOs.max_by {|e| e.popularity }.popularity
@@ -182,6 +199,13 @@ class RecommenderSystem
     preSelectionLOs.sort! { |a,b|  b.score <=> a.score }
   end
 
+  #Step 3: Filtering
+  #Filtered Learning Objects are marked with the lo[:filtered] key.
+  def self.filter(rankedLOs,options)
+    # rankedLOs.select{|lo| lo[:filtered].nil? }
+    rankedLOs
+  end
+
   #Content Similarity Score (between 0 and 1)
   def self.contentSimilarityScore(loA,loB)
     weights = {}
@@ -228,129 +252,22 @@ class RecommenderSystem
   private
 
   #######################
-  ## Utils (private methods)
+  ## Utils
   #######################
 
-  def self.compose_keywords(subject,resource,options={})
-    maxKeywords = 25
+  def self.compose_keywords(options)
     keywords = []
-    
     #Subject tags (i.e. user tags)
-    if !subject.nil?
-      keywords += subject.tag_list
-    end
-
+    keywords += options[:user].tag_list unless options[:user].nil?
     #Resource tags
-    if !resource.nil?
-      keywords += resource.tag_list
-    end
-
+    keywords += options[:lo].tag_list unless options[:lo].nil?
     #Keywords specified in the options
-    if options[:keywords].is_a? Array
-      keywords += options[:keywords]
-    end
-
-    keywords.uniq!
-
-    if options[:test]
-      return keywords
-    end
-
-    #If keywords are least than the maxKeywords, fill it with additional data about the subject
-    if !subject.nil?
-      keywordsMargin = maxKeywords - keywords.length
-      if keywordsMargin > 0
-        #Tags of the resources the subject created
-        allAuthoredKeywords = ActivityObject.where("scope=0 and object_type IN (?)",options[:model_names]).authored_by(subject).map{ |r| r.tag_list }.flatten.uniq
-        keywords = keywords + allAuthoredKeywords.sample(keywordsMargin)
-        keywords.uniq!
-      end
-
-      keywordsMargin = maxKeywords - keywords.length
-      if keywordsMargin > 0
-        #Tags of the resources the subject like
-        allLikedKeywords = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => Actor.normalize_id(subject)}).where("activity_objects.scope=0 and activity_objects.object_type IN (?)", options[:model_names]).map{ |activity| activity.activity_objects.first.tag_list }.flatten.uniq
-        keywords = keywords + allLikedKeywords.sample(keywordsMargin)
-        keywords.uniq!
-      end
-    end
-
-    #Remove unuseful keywords
-    keywords.delete_if{|el| ["ViSHCompetition2013"].include? el or el.length < 2}
-
-    return keywords
+    keywords += options[:keywords] if options[:keywords].is_a? Array
+    keywords.uniq
   end
-
-
-
-  def self.search_options(keywords,subject,resource,options={})
-    opts = {}
-    opts[:n] = options[:nMax]
-
-    unless keywords.blank?
-      opts[:keywords] = keywords
-    end
-
-    #Only search for desired models
-    opts[:models] = options[:models]
-
-    unless subject.nil?
-      opts[:subjects_to_avoid] = [subject]
-    end
-
-    unless resource.nil?
-      opts[:ao_ids_to_avoid] = [resource.activity_object.id]
-    end
-
-    unless options[:language].nil?
-      opts[:language] = options[:language]
-    end
-
-    return opts
-  end
-
-  def self.getResourcesToFill(n,preSelection,subject,resource,options)
-    resources = []
-    nSubset = [80,4*n].max
-    ids_to_avoid = getIdsToAvoid(preSelection,subject,resource,options)
-    resources = ActivityObject.where("scope=0 and object_type IN (?) and id not in (?)", options[:model_names], ids_to_avoid)
-
-    unless options[:language].blank?
-      langResources = resources.where("language='" + options[:language] + "'")
-      if langResources.length >= n
-        resources = langResources
-      end
-    end
-
-    resources.order("ranking DESC").limit(nSubset).sample(n).map{|ao| ao.object}.compact
-  end
-
-  def self.getIdsToAvoid(preSelection,subject,resource,options)
-    ids_to_avoid = preSelection.map{|e| e.activity_object.id}
-
-    if !resource.nil?
-      ids_to_avoid.push(resource.activity_object.id)
-    end
-
-    if !subject.nil?
-      ids_to_avoid.concat(ActivityObject.where("scope=0 and object_type IN (?)",options[:model_names]).authored_by(subject).map{|r| r.id})
-    end
-
-    ids_to_avoid.uniq!
-
-    if !ids_to_avoid.is_a? Array or ids_to_avoid.empty?
-      #if ids=[] the queries may returns [], so we fill it with an invalid id (no resource will ever have id=-1)
-      ids_to_avoid = [-1]
-    end
-
-    return ids_to_avoid
-  end
-
-
-  private
 
   #######################
-  ## Utils (private methods)
+  ## General Utils for the Recommender System
   #######################
 
   #Semantic distance in a [0,1] scale. 

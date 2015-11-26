@@ -18,6 +18,14 @@ class VishConfig
     ["Excursion","Workshop"]
   end
 
+  def self.getAllLanguages
+    getAllDefinedLanguages + ["independent","other"]
+  end
+
+  def self.getAllDefinedLanguages
+    ["en", "de", "es", "fr", "it", "pt", "ru", "hu", "nl"]
+  end
+
   def self.getAllModels(options={})
     processAlias(getMainModels,options)
   end
