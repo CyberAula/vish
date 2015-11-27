@@ -41,9 +41,6 @@ Vish::Application.configure do
       words[word.value] = word.occurrences
     end
     config.words = words
-
-    #Stop words (readed from the file stopwords.yml)
-    config.stopwords = File.read("config/stopwords.yml").split(",").map{|s| s.gsub("\n","").gsub("\"","") } rescue []
   end
 end
 

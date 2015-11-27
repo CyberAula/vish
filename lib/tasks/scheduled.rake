@@ -328,7 +328,9 @@ namespace :scheduled do
     #3. Add stopwords
     # For stopwords, the occurences of the word record is set to the 'Vish::Application::config.repository_total_entries' value.
     # This way, the IDF for this word will be 0, and therefore the TF-IDF will be 0 too. This way, the word is ignored when calcuting the TF-IDF.
-    Vish::Application::config.stopwords.each do |stopword|
+    # Stop words are readed from the file stopwords.yml
+    stopwords = File.read("config/stopwords.yml").split(",").map{|s| s.gsub("\n","").gsub("\"","") } rescue []
+    stopwords.each do |stopword|
       wordRecord = Word.find_by_value(stopword)
       if wordRecord.nil?
         wordRecord = Word.new

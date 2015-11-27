@@ -30,9 +30,11 @@ class RecommenderSystem
   def self.prepareOptions(options)
     options = {:n => 20, :settings => Vish::Application::config.default_settings}.recursive_merge(options)
     unless options[:user].blank?
+      options[:user].tags_array = options[:user].tag_list.to_a if options[:user]
       options[:user_los] = [] #TODO. Get and limit LOs from user
       options[:user_los] = options[:user_los].first(options[:max_user_los] || Vish::Application::config.max_user_los)
     end
+    options[:lo].tags_array = options[:lo].tag_list.to_a if options[:lo]
     options
   end
 
@@ -109,12 +111,12 @@ class RecommenderSystem
   def self.calculateScore(preSelectionLOs,options)
     return preSelectionLOs if preSelectionLOs.blank?
 
-    weights = RecommenderSystem.getRSWeights(options)
+    weights = getRSWeights(options)
     weights_sum = 1
-    options[:weights_los] = RecommenderSystem.getLoSWeights(options)
-    options[:weights_us] = RecommenderSystem.getUSWeights(options)
+    options[:weights_los] = getLoSWeights(options)
+    options[:weights_us] = getUSWeights(options)
 
-    filters = RecommenderSystem.getRSFilters(options)
+    filters = getRSFilters(options)
 
     if options[:lo].blank?
       weights[:us_score] += weights[:los_score]
@@ -133,11 +135,11 @@ class RecommenderSystem
 
     #Check if any individual filtering should be performed
     if options[:filtering_los].nil?
-      options[:filters_los] = RecommenderSystem.getLoSFilters(options)
+      options[:filters_los] = getLoSFilters(options)
       options[:filtering_los] = options[:filters_los].map {|k,v| v}.sum > 0
     end
     if options[:filtering_us].nil?
-      options[:filters_us] = RecommenderSystem.getUSFilters(options)
+      options[:filters_us] = getUSFilters(options)
       options[:filtering_us] = options[:filters_us].map {|k,v| v}.sum > 0
     end
 
@@ -147,19 +149,34 @@ class RecommenderSystem
     calculatePopularityScore = ((weights[:popularity_score]>0)||(filters[:popularity_score]>0))
 
     preSelectionLOs.map{ |lo|
-      los_score = calculateLoSimilarityScore ? RecommenderSystem.loSimilarityScore(options[:lo],lo,options) : 0
+      lo.tags_array = lo.tag_list.to_a
+      
+      los_score = calculateLoSimilarityScore ? loSimilarityScore(options[:lo],lo,options) : 0
       (lo.filtered=true and next) if (calculateLoSimilarityScore and los_score < filters[:los_score])
       
-      us_score = calculateUserSimilarityScore ? RecommenderSystem.userSimilarityScore(options[:user],lo,options) : 0
+      us_score = calculateUserSimilarityScore ? userSimilarityScore(options[:user],lo,options) : 0
       (lo.filtered=true and next) if (calculateUserSimilarityScore and us_score < filters[:us_score])
       
-      quality_score = calculateQualityScore ? RecommenderSystem.qualityScore(lo) : 0
+      quality_score = calculateQualityScore ? qualityScore(lo) : 0
       (lo.filtered=true and next) if (calculateQualityScore and quality_score < filters[:quality_score])
       
-      popularity_score = calculatePopularityScore ? RecommenderSystem.popularityScore(lo) : 0
+      popularity_score = calculatePopularityScore ? popularityScore(lo) : 0
       (lo.filtered=true and next) if (calculatePopularityScore and popularity_score < filters[:popularity_score])
 
       lo.score = weights[:los_score] * los_score + weights[:us_score] * us_score + weights[:quality_score] * quality_score + weights[:popularity_score] * popularity_score
+    
+      # lo.score_tracking = {
+      #   :cs_score => los_score.round(2),
+      #   :us_score => us_score.round(2),
+      #   :popularity_score => popularity_score.round(2),
+      #   :quality_score => quality_score.round(2),
+      #   :weights => weights,
+      #   :overall_score => lo.score.round(2),
+      #   :object_id => lo.id,
+      #   :object_type => lo.object_type,
+      #   :qscore => lo.qscore,
+      #   :popularity => lo.popularity
+      # }
     }
 
     preSelectionLOs
@@ -173,13 +190,13 @@ class RecommenderSystem
 
   #Learning Object Similarity Score, [0,1] scale
   def self.loSimilarityScore(loA,loB,options={})
-    weights = options[:weights_los] || RecommenderSystem.getLoSWeights(options)
-    filters = options[:filtering_los]!=false ? (options[:filters_los] || RecommenderSystem.getLoSFilters(options)) : nil
+    weights = options[:weights_los] || getLoSWeights(options)
+    filters = options[:filtering_los]!=false ? (options[:filters_los] || getLoSFilters(options)) : nil
     
-    titleS = RecommenderSystem.getSemanticDistance(loA.title,loB.title)
-    descriptionS = RecommenderSystem.getSemanticDistance(loA.description,loB.description)
-    languageS = RecommenderSystem.getSemanticDistanceForLanguage(loA.language,loB.language)
-    keywordsS = RecommenderSystem.getTextArraySemanticDistance(loA.tag_list,loB.tag_list)
+    titleS = getSemanticDistance(loA.title,loB.title)
+    descriptionS = getSemanticDistance(loA.description,loB.description)
+    languageS = getSemanticDistanceForLanguage(loA.language,loB.language)
+    keywordsS = getSemanticDistanceForKeywords(loA.tags_array,loB.tags_array)
 
     return -1 if (!filters.blank? and (titleS < filters[:title] || descriptionS < filters[:description] || languageS < filters[:language] || yearS < filters[:keywords]))
 
@@ -188,16 +205,16 @@ class RecommenderSystem
 
   #User profile Similarity Score, [0,1] scale
   def self.userSimilarityScore(user,lo,options={})
-    weights = options[:weights_us] || RecommenderSystem.getUSWeights(options)
-    filters = options[:filtering_us]!=false ? (options[:filters_us] || RecommenderSystem.getUSFilters(options)) : nil
+    weights = options[:weights_us] || getUSWeights(options)
+    filters = options[:filtering_us]!=false ? (options[:filters_us] || getUSFilters(options)) : nil
     
-    languageS = RecommenderSystem.getSemanticDistanceForLanguage(user.language,lo.language)
-    keywordsS = RecommenderSystem.getTextArraySemanticDistance(user.tag_list,lo.tag_list)
+    languageS = getSemanticDistanceForLanguage(user.language,lo.language)
+    keywordsS = getSemanticDistanceForKeywords(user.tags_array,lo.tags_array)
 
     losS = 0
     unless options[:user_los].blank?
       options[:user_los].each do |pastLo|
-        losS += RecommenderSystem.loProfileSimilarityScore(pastLo,lo,options.merge({:filtering_los => false}))
+        losS += loProfileSimilarityScore(pastLo,lo,options.merge({:filtering_los => false}))
       end
       losS = losS/options[:user_los].length
     end
@@ -256,8 +273,8 @@ class RecommenderSystem
     denominatorA = 0
     denominatorB = 0
 
-    wordsTextA = RecommenderSystem.processFreeText(textA)
-    wordsTextB = RecommenderSystem.processFreeText(textB)
+    wordsTextA = processFreeText(textA)
+    wordsTextB = processFreeText(textB)
 
     # Get the text with more/less words.
     # words = [wordsTextA.keys, wordsTextB.keys].sort_by{|words| -words.length}.first
@@ -269,9 +286,9 @@ class RecommenderSystem
       #We could use here TFIDF as well. But we are going to use just the number of occurrences.
       occurrencesTextA = wordsTextA[word] || 0
       occurrencesTextB = wordsTextB[word] || 0
-      wordIDF = RecommenderSystem.IDF(word)
-      tfidf1 = RecommenderSystem.TFIDF(word,textA,{:occurrences => occurrencesTextA, :idf => wordIDF})
-      tfidf2 = RecommenderSystem.TFIDF(word,textB,{:occurrences => occurrencesTextB, :idf => wordIDF})
+      wordIDF = IDF(word)
+      tfidf1 = TFIDF(word,textA,{:occurrences => occurrencesTextA, :idf => wordIDF})
+      tfidf2 = TFIDF(word,textB,{:occurrences => occurrencesTextB, :idf => wordIDF})
       numerator += (tfidf1 * tfidf2)
       denominatorA += tfidf1**2
       denominatorB += tfidf2**2
@@ -285,20 +302,22 @@ class RecommenderSystem
 
   def self.processFreeText(text)
     return {} unless text.is_a? String
-    text = text.gsub(/([\n])/," ")
-    text =  I18n.transliterate(text.downcase.strip)
     words = Hash.new
-    text.split(" ").each do |word|
+    normalizeText(text).split(" ").each do |word|
       words[word] = 0 if words[word].nil?
       words[word] += 1
     end
     words
   end
 
+  def self.normalizeText(text)
+    I18n.transliterate(text.gsub(/([\n])/," ").downcase.strip)
+  end
+
   # Term Frequency (TF)
   def self.TF(word,text,options={})
     return options[:occurrences] if options[:occurrences].is_a? Numeric
-    RecommenderSystem.processFreeText(text)[word] || 0
+    processFreeText(text)[word] || 0
   end
 
   # Inverse Document Frequency (IDF)
@@ -318,16 +337,16 @@ class RecommenderSystem
 
   # TF-IDF
   def self.TFIDF(word,text,options={})
-    tf = RecommenderSystem.TF(word,text,options)
+    tf = TF(word,text,options)
     return 0 if tf==0
 
-    idf = RecommenderSystem.IDF(word,options)
+    idf = IDF(word,options)
     return 0 if idf==0
 
     return (tf * idf)
   end
 
-  #Semantic distance between keyword arrays (in a 0-1 scale)
+  #Semantic distance between text arrays (in a 0-1 scale)
   def self.getTextArraySemanticDistance(textArrayA,textArrayB)
     return 0 if textArrayA.blank? or textArrayB.blank?
     return 0 unless textArrayA.is_a? Array and textArrayB.is_a? Array
@@ -339,8 +358,8 @@ class RecommenderSystem
   #It calculates the semantic distance for categorical fields.
   #Return 1 if both fields are equal, 0 if not.
   def self.getSemanticDistanceForCategoricalFields(stringA,stringB)
-    stringA = RecommenderSystem.processFreeText(stringA).first[0] rescue nil
-    stringB = RecommenderSystem.processFreeText(stringB).first[0] rescue nil
+    stringA = normalizeText(stringA) rescue nil
+    stringB = normalizeText(stringB) rescue nil
     return 0 if stringA.blank? or stringB.blank?
     return 1 if stringA === stringB
     return 0
@@ -356,11 +375,31 @@ class RecommenderSystem
   end
 
   #Semantic distance in a [0,1] scale.
-  #It calculates the semantic distance for categorical fields.
-  #Return 1 if both fields are equal, 0 if not.
+  #It calculates the semantic distance for languages.
   def self.getSemanticDistanceForLanguage(stringA,stringB)
     return 0 if ["independent","ot"].include? stringA
     return getSemanticDistanceForCategoricalFields(stringA,stringB)
+  end
+
+  #Semantic distance in a [0,1] scale.
+  #It calculates the semantic distance for keywords.
+  def self.getSemanticDistanceForKeywords(keywordsA,keywordsB)
+    return 0 if keywordsA.blank? or keywordsB.blank?
+    return 0 unless keywordsA.is_a? Array and keywordsB.is_a? Array
+
+    similarKeywords = 0
+    kParam = [keywordsA.length,keywordsB.length].min
+
+    keywordsA.each do |kA|
+      keywordsB.each do |kB|
+        if getSemanticDistanceForCategoricalFields(kA,kB) == 1
+          similarKeywords += 1
+          break
+        end
+      end
+    end
+
+    return similarKeywords/kParam.to_f
   end
 
   ############
@@ -401,7 +440,7 @@ class RecommenderSystem
       userSettings = vishRSConfig[defaultKey]
     end
 
-    userSettings
+    userSettings.recursive_merge({})
   end
 
 
