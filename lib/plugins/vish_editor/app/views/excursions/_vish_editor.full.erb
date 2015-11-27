@@ -120,6 +120,14 @@
 			</div>
 
 			<div id="toolbar_presentation">
+				<div class="toolbar_presentation_wrapper withRightBorder">
+					<a id="toolbar_settings_button" class="tool_action" action="displaySettings" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-cog"></i>
+						</button>
+					</a>
+					<p class="toolbar_presentation_title" i18n-key="i.Settings">Settings</p>
+				</div>
 				<div class="toolbar_presentation_wrapper withRightBorder save">
 					<a id="toolbar_save" class="tool_action" action="save" href="#">
 						<button type="button" class="btn btn-primary btn-small">
@@ -150,7 +158,7 @@
 							<i class="icon-button icon-edit"></i>
 						</button>
 					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.Style">Themes</p>
+					<p class="toolbar_presentation_title" i18n-key="i.Themes">Themes</p>
 				</div>
 				<div id="toolbar_animation_wrapper" class="toolbar_presentation_wrapper">
 					<a id="toolbar_animation" class="tool_action" action="selectAnimation" href="#">
@@ -182,7 +190,6 @@
 							<img src="/assets/toolbar/quiz_settings.png"/>
 						</button>
 					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.SettingsToolbar">Settings</p>
 				</div>
 				<img class="toolbar_icon toolbar_image" style="display:none" action="addLink" src="/assets/toolbar/addLink.png"/>
 				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot" style="display:none" action="resizeLess" src="/assets/toolbar/resizeLess.png"/>
@@ -979,7 +986,7 @@
 		<div id="theme_fancybox" class="theme_fancybox_class">
 			<div id="header_fancybox">
   				<i id="themeIheader" class="icon-button icon-edit"></i>
-  				<p>Themes</p>
+  				<p i18n-key="i.Themes">Themes</p>
 			</div>
 			<img id="help_themes_selection" src="/assets/vicons/helptutorial_circle_blank.png"/>
 			<div id='select_theme1' class="slidethumb col1 row1">
@@ -1027,7 +1034,7 @@
 		<div id="animation_fancybox" class="animation_fancybox_class">
 			<div id="ani_header_fancybox">
   				<i id="aniIheader" class="icon-button icon-magic"></i>
-  				<p>Animation</p>
+  				<p i18n-key="i.Animations">Animation</p>
 			</div>
 			<img id="help_animation_selection" src="/assets/vicons/helptutorial_circle_blank.png"/>
 			<div id="aniF1" class="filaAni">	
