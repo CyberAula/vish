@@ -6,22 +6,22 @@
 
 class Search
 
-  # Usage example: Search.search({:keywords=>"biology", :n=>10})
+  # Usage example: Search.search({:query=>"biology", :n=>10})
   def self.search(options={})
 
     #Specify searchTerms
-    if (![String,Array].include? options[:keywords].class) or (options[:keywords].is_a? String and options[:keywords].strip=="")
+    if (![String,Array].include? options[:query].class) or (options[:query].is_a? String and options[:query].strip=="")
       browse = true
       searchTerms = ""
     else
       browse = false
-      if options[:keywords].is_a? String    
-        searchTerms = options[:keywords].gsub(/[^0-9a-z&áéíóú]/i, ' ').split(" ")
-      else
-        searchTerms = options[:keywords].map{|s| s.gsub(/[^0-9a-z&áéíóú]/i, ' ')}
-      end
+      searchTerms = options[:query].split(" ") if options[:query].is_a? String
+      
+      #Sanitize search terms
+      searchTerms = searchTerms.map{|st| Riddle.escape(st) }
       #Remove keywords with less than 3 characters
-      searchTerms.reject!{|s| s.length < 3}
+      searchTerms = searchTerms.reject{|s| s.length < 3}
+      #Perform an OR search
       searchTerms = searchTerms.join(" ")
     end
 

@@ -8,7 +8,7 @@ Vish::Application.configure do
     config.settings = {:max_text_length => 20, :max_user_los => 2, :max_preselection_size => 5000}
 
     #Default settings to use in ViSHRS
-    config.default_settings = {:preselection_filter_keywords => false, :preselection_filter_resource_type => false, :preselection_filter_languages => true, :preselection_size => 500}
+    config.default_settings = {:preselection_filter_query => false, :preselection_filter_resource_type => false, :preselection_filter_languages => true, :preselection_size => 500}
 
     #Default weights
     weights = {}

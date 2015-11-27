@@ -15,7 +15,7 @@
   <% document_profile_subject ||= document.owner_subject %>
   
   <!-- Recommendations -->
-  <%= render :partial => 'recommender/sidebar', :locals  => {:resources => RecommenderSystem.resource_suggestions({:user => current_subject, :lo => document, :n=>16})} %>
+  <%= render :partial => 'recommender/sidebar', :locals  => {:resources => RecommenderSystem.resource_suggestions({:user => current_subject, :lo => document, :n=>10})} %>
   
   <div class="doc-show">
   

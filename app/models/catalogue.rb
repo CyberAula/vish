@@ -13,7 +13,7 @@ class Catalogue
     else
       #Mode matchany
       keywords = Vish::Application.config.catalogue["category_keywords"][category]
-      Search.search({:keywords=>keywords, :n=>limit, :models => VishConfig.getCatalogueModels({:return_instances => true}), :order => 'ranking DESC', :qualityThreshold => Vish::Application.config.catalogue["qualityThreshold"]})
+      Search.search({:query=>keywords, :n=>limit, :models => VishConfig.getCatalogueModels({:return_instances => true}), :order => 'ranking DESC', :qualityThreshold => Vish::Application.config.catalogue["qualityThreshold"]})
     end
   end
 

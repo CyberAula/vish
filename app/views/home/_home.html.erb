@@ -1,8 +1,8 @@
 <%
   homeModels = VishConfig.getHomeModels({:return_instances => true})
-  resourcesRecommended = RecommenderSystem.resource_suggestions({:user => current_subject, :n => 15, :models => homeModels})
+  resourcesRecommended = RecommenderSystem.resource_suggestions({:user => current_subject, :n => 10, :models => homeModels})
   ids_to_avoid = resourcesRecommended.map{|r| r.activity_object.id}
-  resourcesRecent = ActivityObject.getRecent(15,{:subject => current_subject, :ids_to_avoid => ids_to_avoid, :models => homeModels})
+  resourcesRecent = ActivityObject.getRecent(10,{:subject => current_subject, :ids_to_avoid => ids_to_avoid, :models => homeModels})
   ids_to_avoid += resourcesRecent.map{|r| r.activity_object.id}
   resourcesPopular = Search.search({:n => 16, :order => "ranking DESC", :ao_ids_to_avoid => ids_to_avoid, :page => 1, :models=> homeModels})
   ids_to_avoid += resourcesPopular.map{|r| r.activity_object.id}

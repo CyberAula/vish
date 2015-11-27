@@ -127,14 +127,10 @@ class ExcursionsController < ApplicationController
     isAdmin = current_subject.admin?
 
     begin
-      if isAdmin
-        Excursion.record_timestamps=false
-      end
+      Excursion.record_timestamps=false if isAdmin
       @excursion.update_attributes!(params[:excursion])
     ensure
-      if isAdmin
-        Excursion.record_timestamps=true
-      end
+      Excursion.record_timestamps=true if isAdmin
     end
    
     published = (wasDraft===true and @excursion.draft===false)
@@ -323,7 +319,7 @@ class ExcursionsController < ApplicationController
   def last_slide
     #Prepare parameters to call the RecommenderSystem
     current_excursion =  Excursion.find_by_id(params[:excursion_id]) if params[:excursion_id]
-    options = {:user => current_subject,:lo => current_excursion, :n => (params[:quantity] || 6).to_i, :models => [Excursion]}
+    options = {:user => current_subject, :lo => current_excursion, :n => (params[:quantity] || 6).to_i, :models => [Excursion]}
     options[:keywords] = params[:q].split(",") if params[:q]
 
     excursions = RecommenderSystem.resource_suggestions(options)

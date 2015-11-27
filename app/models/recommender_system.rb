@@ -46,9 +46,9 @@ class RecommenderSystem
     # Define some filters for the preselection
 
     # A. Query.
-    unless options[:settings][:preselection_filter_keywords] == false
+    unless options[:settings][:preselection_filter_query] == false
       keywords = compose_keywords(options)
-      searchOpts[:keywords] = keywords unless keywords.blank?
+      searchOpts[:query] = keywords unless keywords.blank?
     end
 
     # B. Resource type.
@@ -90,13 +90,13 @@ class RecommenderSystem
     
     pSL = preSelection.length
     if pSL < options[:n]
-      unless searchOpts[:language].blank? and searchOpts[:keywords].blank?
+      unless searchOpts[:language].blank? and searchOpts[:query].blank?
         #Fill it with random resources (no filters)
         searchOptionsRandom = searchOpts
         searchOptionsRandom[:n] = (searchOpts[:n]-pSL)
         searchOptionsRandom[:ao_ids_to_avoid] = preSelection.map{|lo| lo.activity_object.id}
         searchOptionsRandom[:ao_ids_to_avoid] << options[:lo].activity_object.id if options[:lo]
-        searchOptionsRandom.delete(:keywords)
+        searchOptionsRandom.delete(:query)
         searchOptionsRandom.delete(:language)
         preSelection += Search.search(searchOptionsRandom).compact rescue []
       end
