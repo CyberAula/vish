@@ -152,6 +152,45 @@ test:
 # gwebmastertools:
 #   site-verification: "content attribute value of the google-site-verification meta tag"
 
-
-
-
+# ViSH Recommender System
+# recommender_system:
+#   settings:
+#     max_text_length: 20
+#     max_user_los: 1
+#     max_preselection_size: 5000
+#   default_settings:
+#     preselection_filter_query: "false"
+#     preselection_filter_resource_type: "false"
+#     preselection_filter_languages: "true"
+#     preselection_size: 200
+#     only_context: "true"
+#   weights:
+#     default_rs:
+#       los_score: 0.6
+#       us_score: 0.2
+#       quality_score: 0.1
+#       popularity_score: 0.1
+#     default_los:
+#       title: 0.2
+#       description: 0.1
+#       language: 0.5
+#       keywords: 0.2
+#     default_us:
+#       language: 0.25
+#       keywords: 0.25
+#       los: 0.5
+#   filters:
+#     default_rs:
+#       los_score: 0
+#       us_score: 0
+#       quality_score: 0.3
+#       popularity_score: 0
+#     default_los:
+#       title: 0
+#       description: 0
+#       language: 0
+#       keywords: 0
+#     default_us:
+#       language: 0
+#       keywords: 0
+#       los: 0

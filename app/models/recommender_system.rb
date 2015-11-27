@@ -28,13 +28,16 @@ class RecommenderSystem
 
   # Step 0: Initialize all variables
   def self.prepareOptions(options)
-    options = {:n => 20, :settings => Vish::Application::config.default_settings}.recursive_merge(options)
+    options = {:n => 20, :settings => Vish::Application::config.rs_default_settings}.recursive_merge(options)
+    if options[:lo]
+      options[:lo].tag_array_cached = options[:lo].tag_array
+      options[:user] = nil if options[:settings][:only_context]
+    end
     unless options[:user].blank?
-      options[:user].tag_array_cached = options[:user].tag_array if options[:user]
+      options[:user].tag_array_cached = options[:user].tag_array
       options[:user_los] = [] #TODO. Get and limit LOs from user
       options[:user_los] = options[:user_los].first(options[:max_user_los] || Vish::Application::config.max_user_los)
     end
-    options[:lo].tag_array_cached = options[:lo].tag_array if options[:lo]
     options
   end
 
@@ -42,7 +45,7 @@ class RecommenderSystem
   def self.getPreselection(options)
     # Get resources using the Search Engine
     searchOpts = {}
-    searchOpts[:n] = [options[:settings][:preselection_size],Vish::Application::config.settings[:max_preselection_size]].min
+    searchOpts[:n] = [options[:settings][:preselection_size],Vish::Application::config.max_preselection_size].min
     searchOpts[:order] = "random"
 
     # Define some filters for the preselection
@@ -125,7 +128,11 @@ class RecommenderSystem
       options[:filtering_los] = false
     end
     if options[:user].blank?
-      weights_sum = (weights_sum-weights[:us_score])
+      if options[:lo]
+        weights[:los_score] += weights[:us_score]
+      else
+        weights_sum = (weights_sum-weights[:us_score])
+      end
       weights[:us_score] = 0
       filters[:us_score] = 0
       options[:filtering_us] = false
@@ -192,9 +199,9 @@ class RecommenderSystem
   def self.loSimilarityScore(loA,loB,options={})
     weights = options[:weights_los] || getLoSWeights(options)
     filters = options[:filtering_los]!=false ? (options[:filters_los] || getLoSFilters(options)) : nil
-    
+
     titleS = getSemanticDistance(loA.title,loB.title)
-    descriptionS = getSemanticDistance(loA.description,loB.description)
+    descriptionS = weights[:description] > 0 ? getSemanticDistance(loA.description,loB.description) : 0
     languageS = getSemanticDistanceForLanguage(loA.language,loB.language)
     keywordsS = getSemanticDistanceForKeywords(loA.tag_array_cached,loB.tag_array_cached)
 
@@ -246,9 +253,9 @@ class RecommenderSystem
   def self.compose_keywords(options)
     keywords = []
     #Subject tags (i.e. user tags)
-    keywords += options[:user].tag_array unless options[:user].nil?
+    keywords += options[:user].tag_array_cached unless options[:user].nil?
     #Resource tags
-    keywords += options[:lo].tag_array unless options[:lo].nil?
+    keywords += options[:lo].tag_array_cached unless options[:lo].nil?
     #Keywords specified in the options
     keywords += options[:keywords] if options[:keywords].is_a? Array
     keywords.uniq
