@@ -11,11 +11,7 @@ module ActsAsTaggableOn
 
     def self.getPlainName(name)
       plain_name = I18n.transliterate(name, :locale => "en", :replacement => "¿missingtranslation?").downcase rescue name
-      
-      if !plain_name.is_a? String or plain_name.blank? or plain_name.include? "¿missingtranslation?"
-        plain_name = name
-      end
-
+      plain_name = name if !plain_name.is_a? String or plain_name.blank? or plain_name.include? "¿missingtranslation?"
       return plain_name
     end
 

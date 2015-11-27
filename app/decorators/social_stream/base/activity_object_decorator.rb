@@ -11,6 +11,7 @@ ActivityObject.class_eval do
   before_validation :fill_license_attribution
   before_save :fill_relation_ids
   before_save :fill_indexed_lengths
+  before_save :save_tag_array_text
   after_destroy :destroy_spam_reports
   after_destroy :destroy_contribution
   after_destroy :destroy_wa_activities
@@ -97,7 +98,7 @@ ActivityObject.class_eval do
   attr_accessor :score
   attr_accessor :score_tracking
   attr_accessor :filtered
-  attr_accessor :tags_array
+  attr_accessor :tag_array_cached
   
   
   def public?
@@ -359,6 +360,10 @@ ActivityObject.class_eval do
 
   def getType
     self.object.class.name
+  end
+
+  def tag_array
+    self.tag_array_text.split(",")
   end
 
   def getUrl
@@ -682,6 +687,10 @@ ActivityObject.class_eval do
 
   def self.getResourceCount
     self.getAllResources.count
+  end
+
+  def save_tag_array_text
+    self.tag_array_text = self.tags.map{|tag| tag.plain_name}.reject{|tag| Vish::Application.config.stoptags.include? tag}.join(",") if self.tags_length > 0
   end
 
   

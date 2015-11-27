@@ -30,11 +30,11 @@ class RecommenderSystem
   def self.prepareOptions(options)
     options = {:n => 20, :settings => Vish::Application::config.default_settings}.recursive_merge(options)
     unless options[:user].blank?
-      options[:user].tags_array = options[:user].tag_list.to_a if options[:user]
+      options[:user].tag_array_cached = options[:user].tag_array if options[:user]
       options[:user_los] = [] #TODO. Get and limit LOs from user
       options[:user_los] = options[:user_los].first(options[:max_user_los] || Vish::Application::config.max_user_los)
     end
-    options[:lo].tags_array = options[:lo].tag_list.to_a if options[:lo]
+    options[:lo].tag_array_cached = options[:lo].tag_array if options[:lo]
     options
   end
 
@@ -149,7 +149,7 @@ class RecommenderSystem
     calculatePopularityScore = ((weights[:popularity_score]>0)||(filters[:popularity_score]>0))
 
     preSelectionLOs.map{ |lo|
-      lo.tags_array = lo.tag_list.to_a
+      lo.tag_array_cached = lo.tag_array
       
       los_score = calculateLoSimilarityScore ? loSimilarityScore(options[:lo],lo,options) : 0
       (lo.filtered=true and next) if (calculateLoSimilarityScore and los_score < filters[:los_score])
@@ -196,7 +196,7 @@ class RecommenderSystem
     titleS = getSemanticDistance(loA.title,loB.title)
     descriptionS = getSemanticDistance(loA.description,loB.description)
     languageS = getSemanticDistanceForLanguage(loA.language,loB.language)
-    keywordsS = getSemanticDistanceForKeywords(loA.tags_array,loB.tags_array)
+    keywordsS = getSemanticDistanceForKeywords(loA.tag_array_cached,loB.tag_array_cached)
 
     return -1 if (!filters.blank? and (titleS < filters[:title] || descriptionS < filters[:description] || languageS < filters[:language] || yearS < filters[:keywords]))
 
@@ -209,7 +209,7 @@ class RecommenderSystem
     filters = options[:filtering_us]!=false ? (options[:filters_us] || getUSFilters(options)) : nil
     
     languageS = getSemanticDistanceForLanguage(user.language,lo.language)
-    keywordsS = getSemanticDistanceForKeywords(user.tags_array,lo.tags_array)
+    keywordsS = getSemanticDistanceForKeywords(user.tag_array_cached,lo.tag_array_cached)
 
     losS = 0
     unless options[:user_los].blank?
@@ -246,9 +246,9 @@ class RecommenderSystem
   def self.compose_keywords(options)
     keywords = []
     #Subject tags (i.e. user tags)
-    keywords += options[:user].tag_list unless options[:user].nil?
+    keywords += options[:user].tag_array unless options[:user].nil?
     #Resource tags
-    keywords += options[:lo].tag_list unless options[:lo].nil?
+    keywords += options[:lo].tag_array unless options[:lo].nil?
     #Keywords specified in the options
     keywords += options[:keywords] if options[:keywords].is_a? Array
     keywords.uniq

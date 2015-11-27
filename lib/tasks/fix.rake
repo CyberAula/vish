@@ -569,6 +569,17 @@ namespace :fix do
   end
 
   #Usage
+  #Development:   bundle exec rake fix:updateTagArrayText
+  #In production: bundle exec rake fix:updateTagArrayText RAILS_ENV=production
+  task :updateTagArrayText => :environment do
+    printTitle("Updating the tag_array_text field of the activity objects")
+    ActivityObject.all.each do |ao|
+      ao.update_column :tag_array_text, ao.save_tag_array_text if ao.tag_list.is_a? ActsAsTaggableOn::TagList
+    end
+    printTitle("Task Finished")
+  end
+
+  #Usage
   #Development:   bundle exec rake fix:roles
   #In production: bundle exec rake fix:roles RAILS_ENV=production
   task :roles => :environment do
