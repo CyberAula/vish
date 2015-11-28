@@ -320,9 +320,7 @@ namespace :scheduled do
 
     #2. Retrieve words from LO metadata
     ActivityObject.getAllPublicResources.each do |lo|
-      processText(lo.title)
-      processText(lo.description)
-      processText(lo.tag_list.join(""))
+      processResourceText((lo.title||"")+(lo.description||""))
     end
 
     #3. Add stopwords
@@ -339,9 +337,11 @@ namespace :scheduled do
       wordRecord.occurrences = Vish::Application::config.repository_total_entries
       wordRecord.save!
     end
+    
+    puts "Task finished"
   end
 
-  def processText(text)
+  def processResourceText(text)
     return if text.blank? or !text.is_a? String
     RecommenderSystem.processFreeText(text).each do |word,occurrences|
       wordRecord = Word.find_by_value(word)
@@ -349,7 +349,7 @@ namespace :scheduled do
         wordRecord = Word.new
         wordRecord.value = word
       end
-      wordRecord.occurrences += occurrences
+      wordRecord.occurrences += 1
       wordRecord.save! rescue nil #This can be raised for too long words (e.g. long urls)
     end
   end

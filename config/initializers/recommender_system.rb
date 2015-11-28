@@ -53,12 +53,12 @@ Vish::Application.configure do
 
     #Settings for speed up TF-IDF calculations
     config.max_text_length = config.rs_settings[:max_text_length]
-    config.repository_total_entries = ActivityObject.getAllPublicResources.count
+    config.repository_total_entries = [ActivityObject.getAllPublicResources.count,1].max
     
     #Keep words in the configuration
     words = {}
-    Word.where("occurrences > ?",1).first(5000000).each do |word|
-      words[word.value] = word.occurrences
+    Word.where("occurrences > ?",5).first(5000000).each do |word|
+      words[word.value] = [word.occurrences,config.repository_total_entries-1].min
     end
     config.words = words
 

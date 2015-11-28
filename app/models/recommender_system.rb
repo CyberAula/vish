@@ -265,10 +265,9 @@ class RecommenderSystem
   ## General Utils for the Recommender System
   #######################
 
-  #Semantic distance in a [0,1] scale. 
+  #Semantic distance in a [0,1] scale.
   #It calculates the semantic distance using the Cosine similarity measure, and the TF-IDF function to calculate the vectors.
   def self.getSemanticDistance(textA,textB)
-    return 0 unless (textA.is_a? String or textB.is_a? String)
     return 0 if (textA.blank? or textB.blank?)
 
     #We need to limit the length of the text due to performance issues
@@ -283,19 +282,10 @@ class RecommenderSystem
     wordsTextA = processFreeText(textA)
     wordsTextB = processFreeText(textB)
 
-    # Get the text with more/less words.
-    # words = [wordsTextA.keys, wordsTextB.keys].sort_by{|words| -words.length}.first
-
-    #All words
-    words = (wordsTextA.keys + wordsTextB.keys).uniq
-
-    words.each do |word|
-      #We could use here TFIDF as well. But we are going to use just the number of occurrences.
-      occurrencesTextA = wordsTextA[word] || 0
-      occurrencesTextB = wordsTextB[word] || 0
+    (wordsTextA.keys + wordsTextB.keys).uniq.each do |word|
       wordIDF = IDF(word)
-      tfidf1 = TFIDF(word,textA,{:occurrences => occurrencesTextA, :idf => wordIDF})
-      tfidf2 = TFIDF(word,textB,{:occurrences => occurrencesTextB, :idf => wordIDF})
+      tfidf1 = (wordsTextA[word] || 0) * wordIDF
+      tfidf2 = (wordsTextB[word] || 0) * wordIDF
       numerator += (tfidf1 * tfidf2)
       denominatorA += tfidf1**2
       denominatorB += tfidf2**2
@@ -308,7 +298,7 @@ class RecommenderSystem
   end
 
   def self.processFreeText(text)
-    return {} unless text.is_a? String
+    return {} if text.blank?
     words = Hash.new
     normalizeText(text).split(" ").each do |word|
       words[word] = 0 if words[word].nil?
@@ -322,35 +312,20 @@ class RecommenderSystem
   end
 
   # Term Frequency (TF)
-  def self.TF(word,text,options={})
-    return options[:occurrences] if options[:occurrences].is_a? Numeric
+  def self.TF(word,text)
     processFreeText(text)[word] || 0
   end
 
   # Inverse Document Frequency (IDF)
-  def self.IDF(word,options={})
-    return options[:idf] if options[:idf].is_a? Numeric
-
-    allResourcesInRepository = Vish::Application::config.repository_total_entries
-    # occurrencesOfWordInRepository = (Word.find_by_value(word).occurrences rescue 1) #Too slow for real time recommendations
-    occurrencesOfWordInRepository = Vish::Application::config.words[word] || 1
-
-    allResourcesInRepository = [allResourcesInRepository,1].max
-    occurrencesOfWordInRepository = [[occurrencesOfWordInRepository,1].max,allResourcesInRepository].min
-
-    # Math::log10 for use base 10
-    Math.log(allResourcesInRepository/occurrencesOfWordInRepository.to_f) rescue 1
+  def self.IDF(word)
+    Math::log(Vish::Application::config.repository_total_entries/(1+(Vish::Application::config.words[word] || 0)).to_f)
   end
 
   # TF-IDF
-  def self.TFIDF(word,text,options={})
-    tf = TF(word,text,options)
+  def self.TFIDF(word,text)
+    tf = TF(word,text)
     return 0 if tf==0
-
-    idf = IDF(word,options)
-    return 0 if idf==0
-
-    return (tf * idf)
+    return (tf * IDF(word))
   end
 
   #Semantic distance between text arrays (in a 0-1 scale)
