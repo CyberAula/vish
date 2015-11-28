@@ -690,7 +690,7 @@ ActivityObject.class_eval do
   end
 
   def save_tag_array_text
-    self.tag_array_text = self.tags.map{|tag| tag.plain_name}.reject{|tag| Vish::Application.config.stoptags.include? tag}.join(",") if self.tags_length > 0
+    self.tag_array_text = self.tags.map{|tag| tag.plain_name}.uniq.reject{|tag| Vish::Application.config.stoptags.include? tag}.join(",") if self.tags_length > 0
   end
 
   
