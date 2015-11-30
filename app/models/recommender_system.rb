@@ -375,6 +375,8 @@ class RecommenderSystem
   #It calculates the semantic distance for keywords.
   def self.getSemanticDistanceForKeywords(keywordsA,keywordsB)
     return 0 if keywordsA.blank? or keywordsB.blank?
+    # keywordsA = keywordsA.map{|k| normalizeText(k)}.uniq
+    # keywordsB = keywordsB.map{|k| normalizeText(k)}.uniq
     return (2*(keywordsA & keywordsB).length)/(keywordsA.length+keywordsB.length).to_f
   end
 
