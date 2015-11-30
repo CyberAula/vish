@@ -163,6 +163,7 @@ test:
 #     preselection_filter_resource_type: "false"
 #     preselection_filter_languages: "true"
 #     preselection_size: 200
+#     preselection_size_min: 100
 #     only_context: "true"
 #   weights:
 #     default_rs:

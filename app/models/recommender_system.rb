@@ -28,7 +28,7 @@ class RecommenderSystem
 
   # Step 0: Initialize all variables
   def self.prepareOptions(options)
-    options = {:n => 20, :settings => Vish::Application::config.rs_default_settings}.recursive_merge(options)
+    options = {:n => 20, :settings => Vish::Application::config.rs_default_settings.recursive_merge({})}.recursive_merge(options)
     if options[:lo]
       options[:lo].tag_array_cached = options[:lo].tag_array
       options[:user] = nil if options[:settings][:only_context]
@@ -43,9 +43,12 @@ class RecommenderSystem
 
   #Step 1: Preselection
   def self.getPreselection(options)
-    # Get resources using the Search Engine
+    preSelection = []
+    ao_ids_to_avoid = (options[:lo] ? [options[:lo].activity_object.id] : [])
+
+
+    # Get random resources using the Search Engine
     searchOpts = {}
-    searchOpts[:n] = [options[:settings][:preselection_size],Vish::Application::config.max_preselection_size].min
     searchOpts[:order] = "random"
 
     # Define some filters for the preselection
@@ -78,21 +81,26 @@ class RecommenderSystem
       searchOpts[:language] = preselectionLanguages unless preselectionLanguages.blank?
     end
 
-    # D. Repeated resources.
-    searchOpts[:subjects_to_avoid] = [options[:user]] if options[:user]
-    searchOpts[:ao_ids_to_avoid] = [options[:lo].activity_object.id] if options[:lo]
-
-    #Call search engine
-    preSelection = (Search.search(searchOpts)) rescue []
-
-    #Add other resources of the same author
+    # Before search
+    # Add other resources of the same author
     unless options[:lo].nil? or options[:lo].author.nil? or (options[:user] and Actor.normalize_id(options[:user]) == options[:lo].author.id)
-      authorResources = ActivityObject.limit(50).order(Vish::Application::config.agnostic_random).authored_by(options[:lo].author).where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:model_names],options[:lo].activity_object.id)
-      preSelection += authorResources.map{|ao| ao.object}
-      preSelection.uniq!
+      authorResources = ActivityObject.limit(100).order(Vish::Application::config.agnostic_random).authored_by(options[:lo].author).where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:model_names],ao_ids_to_avoid)
+      preSelection += authorResources.map{|ao| 
+        ao_ids_to_avoid << ao.id
+        ao.object
+      }.compact
+      options[:settings][:preselection_size] = [options[:settings][:preselection_size]-preSelection.length,options[:settings][:preselection_size_min]].max
     end
-    preSelection.compact!
+
+    searchOpts[:n] = [options[:settings][:preselection_size],Vish::Application::config.max_preselection_size].min
+
+     # D. Repeated resources.
+    searchOpts[:subjects_to_avoid] = [options[:user]] if options[:user]
+    searchOpts[:ao_ids_to_avoid] = ao_ids_to_avoid unless ao_ids_to_avoid.blank?
     
+    #Call search engine
+    preSelection += (Search.search(searchOpts).compact rescue [])
+
     pSL = preSelection.length
     if pSL < options[:n]
       unless searchOpts[:language].blank? and searchOpts[:query].blank?
