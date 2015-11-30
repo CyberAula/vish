@@ -1,4 +1,4 @@
-class ActorHistorial < ActiveRecord::Migration
+class ActorHistorialMigration < ActiveRecord::Migration
   def change
     create_table :actor_historial, id: false do |t|
       t.belongs_to :actor, index: true
