@@ -375,21 +375,7 @@ class RecommenderSystem
   #It calculates the semantic distance for keywords.
   def self.getSemanticDistanceForKeywords(keywordsA,keywordsB)
     return 0 if keywordsA.blank? or keywordsB.blank?
-    return 0 unless keywordsA.is_a? Array and keywordsB.is_a? Array
-
-    similarKeywords = 0
-    kParam = [keywordsA.length,keywordsB.length].min
-
-    keywordsA.each do |kA|
-      keywordsB.each do |kB|
-        if getSemanticDistanceForCategoricalFields(kA,kB) == 1
-          similarKeywords += 1
-          break
-        end
-      end
-    end
-
-    return similarKeywords/kParam.to_f
+    return (2*(keywordsA & keywordsB).length)/(keywordsA.length+keywordsB.length).to_f
   end
 
   ############
