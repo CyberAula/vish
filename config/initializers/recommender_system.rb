@@ -57,8 +57,10 @@ Vish::Application.configure do
     
     #Keep words in the configuration
     words = {}
-    Word.where("occurrences > ?",5).first(5000000).each do |word|
-      words[word.value] = [word.occurrences,config.repository_total_entries-1].min
+    if ActiveRecord::Base.connection.table_exists?('words')
+      Word.where("occurrences > ?",5).first(5000000).each do |word|
+        words[word.value] = [word.occurrences,config.repository_total_entries-1].min
+      end
     end
     config.words = words
 
