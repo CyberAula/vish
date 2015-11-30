@@ -3,6 +3,8 @@ Actor.class_eval do
   has_and_belongs_to_many :roles
   has_many :private_student_groups, foreign_key: "owner_id"
   has_many :private_students, class_name: "User", through: :private_student_groups
+  has_many :actor_historial, :dependent => :destroy
+  has_many :past_activity_objects, through: :actor_historial, source: :activity_object
 
   before_save :fill_roles
 
@@ -98,6 +100,10 @@ Actor.class_eval do
 
   def service_permissions
     ServicePermission.where(:owner_id => self.id)
+  end
+
+  def pastLOs(n=2)
+    self.past_activity_objects.last(n).reverse.map{|ao| ao.object}
   end
 
   private

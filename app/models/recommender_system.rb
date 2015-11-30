@@ -35,8 +35,7 @@ class RecommenderSystem
     end
     unless options[:user].blank?
       options[:user].tag_array_cached = options[:user].tag_array
-      options[:user_los] = [] #TODO. Get and limit LOs from user
-      options[:user_los] = options[:user_los].first(options[:max_user_los] || Vish::Application::config.max_user_los)
+      options[:user_los] = options[:user].pastLOs(options[:max_user_los] || Vish::Application::config.max_user_los)
     end
     options
   end
@@ -85,7 +84,7 @@ class RecommenderSystem
     # Add other resources of the same author
     unless options[:lo].nil? or options[:lo].author.nil? or (options[:user] and Actor.normalize_id(options[:user]) == options[:lo].author.id)
       authorResources = ActivityObject.limit(100).order(Vish::Application::config.agnostic_random).authored_by(options[:lo].author).where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:model_names],ao_ids_to_avoid)
-      preSelection += authorResources.map{|ao| 
+      preSelection += authorResources.map{|ao|
         ao_ids_to_avoid << ao.id
         ao.object
       }.compact
@@ -229,7 +228,7 @@ class RecommenderSystem
     losS = 0
     unless options[:user_los].blank?
       options[:user_los].each do |pastLo|
-        losS += loProfileSimilarityScore(pastLo,lo,options.merge({:filtering_los => false}))
+        losS += loSimilarityScore(pastLo,lo,options.merge({:filtering_los => false}))
       end
       losS = losS/options[:user_los].length
     end

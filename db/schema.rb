@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151127140401) do
+ActiveRecord::Schema.define(:version => 20151130140813) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -117,6 +117,11 @@ ActiveRecord::Schema.define(:version => 20151127140401) do
     t.string   "name",       :limit => 45
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "actor_historial", :id => false, :force => true do |t|
+    t.integer "actor_id"
+    t.integer "activity_object_id"
   end
 
   create_table "actor_keys", :force => true do |t|
