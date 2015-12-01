@@ -219,6 +219,7 @@ GEM
       rails (~> 3.1)
     delayed_paperclip (2.7.0)
       paperclip (>= 3.3)
+    descriptive_statistics (2.4.0)
     detect_language (1.0.5)
     devise (2.2.8)
       bcrypt-ruby (~> 3.0)
@@ -492,6 +493,7 @@ DEPENDENCIES
   coffee-rails (= 3.2.2)
   delayed_paperclip (= 2.7.0)
   delegates_attributes_to!
+  descriptive_statistics (~> 2.4.0)
   detect_language (= 1.0.5)
   devise_invitable (= 1.1.8)
   exception_notification (= 3.0.1)

@@ -35,8 +35,10 @@ class RecommenderSystem
     end
     unless options[:user].blank?
       options[:user].tag_array_cached = options[:user].tag_array
-      options[:user_los] = options[:user].pastLOs(options[:max_user_los] || Vish::Application::config.max_user_los)
+      options[:user_los] = options[:user].pastLOs(options[:max_user_los] || Vish::Application::config.max_user_los) if options[:user_los].blank?
       options[:user_los].map{|pastLo| pastLo.tag_array_cached = pastLo.tag_array}
+    else
+      options[:user_los] = nil
     end
     options
   end
@@ -83,23 +85,25 @@ class RecommenderSystem
 
     # Before search
     # Add other resources of the same author
-    authors = (!options[:lo].nil? ? [options[:lo].author] : (!options[:user_los].blank? ? options[:user_los].map{|pastLO| pastLO.author} : nil)).compact
-    unless authors.blank?
-      authors = authors.reject{|a| a.id==Actor.normalize_id(options[:user])} if options[:user]
+    unless options[:settings][:preselection_authored_resources] == false
+      authors = (!options[:lo].nil? ? [options[:lo].author] : (!options[:user_los].blank? ? options[:user_los].map{|pastLO| pastLO.author} : nil)).compact
       unless authors.blank?
-        authorResources = ActivityObject.limit(100).order(Vish::Application::config.agnostic_random).authored_by(authors).where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:model_names],ao_ids_to_avoid)
-        preSelection += authorResources.map{|ao|
-          ao_ids_to_avoid << ao.id
-          ao.object
-        }.compact
-        options[:settings][:preselection_size] = [options[:settings][:preselection_size]-preSelection.length,options[:settings][:preselection_size_min]].max
+        authors = authors.reject{|a| a.id==Actor.normalize_id(options[:user])} if options[:user] and options[:settings][:preselection_filter_own_resources] != false
+        unless authors.blank?
+          authorResources = ActivityObject.limit(100).order(Vish::Application::config.agnostic_random).authored_by(authors).where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:model_names],ao_ids_to_avoid)
+          preSelection += authorResources.map{|ao|
+            ao_ids_to_avoid << ao.id
+            ao.object
+          }.compact
+          options[:settings][:preselection_size] = [options[:settings][:preselection_size]-preSelection.length,options[:settings][:preselection_size_min]].max
+        end
       end
     end
 
     searchOpts[:n] = [options[:settings][:preselection_size],Vish::Application::config.max_preselection_size].min
 
      # D. Repeated resources.
-    searchOpts[:subjects_to_avoid] = [options[:user]] if options[:user]
+    searchOpts[:subjects_to_avoid] = [options[:user]] if options[:user] and options[:settings][:preselection_filter_own_resources] != false
     searchOpts[:ao_ids_to_avoid] = ao_ids_to_avoid unless ao_ids_to_avoid.blank?
     
     #Call search engine

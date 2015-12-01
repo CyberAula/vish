@@ -16,7 +16,7 @@ Vish::Application.configure do
     #Default settings to use in ViSHRS
     config.rs_default_settings = {}
     config.rs_default_settings = rsConfig[:default_settings] unless rsConfig[:default_settings].blank?
-    config.rs_default_settings = {:preselection_filter_query => false, :preselection_filter_resource_type => false, :preselection_filter_languages => true, :preselection_size => 200, :preselection_size_min => 100, :only_context => true}.recursive_merge(config.rs_default_settings)
+    config.rs_default_settings = {:preselection_filter_query => false, :preselection_filter_resource_type => false, :preselection_filter_languages => true, :preselection_filter_own_resources => true, :preselection_authored_resources => true, :preselection_size => 200, :preselection_size_min => 100, :only_context => true}.recursive_merge(config.rs_default_settings)
 
     #Default weights
     weights = {}
