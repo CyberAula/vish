@@ -86,7 +86,7 @@ class RecommenderSystem
     # Before search
     # Add other resources of the same author
     unless options[:settings][:preselection_authored_resources] == false
-      authors = (!options[:lo].nil? ? [options[:lo].author] : (!options[:user_los].blank? ? options[:user_los].map{|pastLO| pastLO.author} : nil)).compact
+      authors = (!options[:lo].nil? ? [options[:lo].author] : (!options[:user_los].blank? ? options[:user_los].map{|pastLO| pastLO.author} : [])).compact
       unless authors.blank?
         authors = authors.reject{|a| a.id==Actor.normalize_id(options[:user])} if options[:user] and options[:settings][:preselection_filter_own_resources] != false
         unless authors.blank?
