@@ -56,6 +56,9 @@
     #step {
       margin-bottom: 10px;
     }
+    div.rsevaluation_wrapper li.box-item.excursion-item div.like, div.rsevaluation_wrapper li.box-item.excursion-item div.author {
+      display: none;
+    }
   </style>
 <%end%>
 <%content_for :javascript_libs do%>
@@ -79,6 +82,11 @@
 </div>
 
 <%content_for :javascript do%>
+    $("li.box-item.excursion-item a[href]").each(function(index,a){
+      $(a).attr("target","_blank");
+    });
+    $("li.box-item.excursion-item div.caption > h6").height("55px");
+    
     $("#progressbar").progressbar({
       value: 66
     });

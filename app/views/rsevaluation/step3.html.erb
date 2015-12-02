@@ -49,12 +49,19 @@
       background: white;
       border-radius: 5px;
       padding: 15px 15px 20px 15px;
-      min-width: 20%;
+      width: 60%;
+      min-width: 60%;
+      max-width: 60%;
       display: inline-block;
       margin-left: 20px;
+      max-height: 233px;
+      overflow: hidden;
     }
     #step {
       margin-bottom: 10px;
+    }
+    div.rsevaluation_wrapper li.box-item.excursion-item div.like, div.rsevaluation_wrapper li.box-item.excursion-item div.author {
+      display: none;
     }
   </style>
 <%end%>
@@ -81,43 +88,48 @@
 </div>
 
 <%content_for :javascript do%>
-    $("#progressbar").progressbar({
-      value: 66
-    });
-    $('div.rating').raty({
-      path: '/assets',
-      hints: ['1 (<%=t("rsevaluation.stars.one")%>)', '2', '3', '4', '5 (<%=t("rsevaluation.stars.five")%>)']
-    });
-    $("#step").click(function(event){
-      event.preventDefault();
-      event.stopPropagation();
+  $("li.box-item.excursion-item a[href]").each(function(index,a){
+    $(a).attr("target","_blank");
+  });
+  $("li.box-item.excursion-item div.caption > h6").height("55px");
 
-      var scores = $("div.rating").raty('score');
-      var validScores = [];
-      for(var i=0; i<scores.length; i++){
-        if(typeof scores[i] == "number"){
-          validScores.push(scores[i]);
-        }
+  $("#progressbar").progressbar({
+    value: 66
+  });
+  $('div.rating').raty({
+    path: '/assets',
+    hints: ['1 (<%=t("rsevaluation.stars.one")%>)', '2', '3', '4', '5 (<%=t("rsevaluation.stars.five")%>)']
+  });
+  $("#step").click(function(event){
+    event.preventDefault();
+    event.stopPropagation();
+
+    var scores = $("div.rating").raty('score');
+    var validScores = [];
+    for(var i=0; i<scores.length; i++){
+      if(typeof scores[i] == "number"){
+        validScores.push(scores[i]);
       }
-      if(validScores.length < parseInt('<%=@itemsB.length%>')){
-        return alert('<%=t("rsevaluation.messages.norelevance")%>');
-      }
+    }
+    if(validScores.length < parseInt('<%=@itemsB.length%>')){
+      return alert('<%=t("rsevaluation.messages.norelevance")%>');
+    }
 
-      //Send data to the server using a web form
-      var data = {};
-      data["recommendationsB"] = JSON.parse('<%=raw(escape_javascript Rsevaluation.getActivityObjectJSON(@recommendationsB).to_json)%>');
-      data["randomB"] = JSON.parse('<%=raw(escape_javascript Rsevaluation.getActivityObjectJSON(@randomB).to_json)%>');
-      data["BLo"] = JSON.parse('<%=raw(escape_javascript Rsevaluation.getActivityObjectJSON(@lo).to_json)%>');
-      data["relevances"] = {};
-      
-      $("div.rating").each(function(index,value){
-        data["relevances"][$(value).attr('loid')] = $(value).raty('score');
-      });
-
-      var form = $("#stepform");
-      $(form).find("input[name='data']").attr("value",JSON.stringify(data));
-      $(form).submit();
+    //Send data to the server using a web form
+    var data = {};
+    data["recommendationsB"] = JSON.parse('<%=raw(escape_javascript Rsevaluation.getActivityObjectJSON(@recommendationsB).to_json)%>');
+    data["randomB"] = JSON.parse('<%=raw(escape_javascript Rsevaluation.getActivityObjectJSON(@randomB).to_json)%>');
+    data["BLo"] = JSON.parse('<%=raw(escape_javascript Rsevaluation.getActivityObjectJSON(@lo).to_json)%>');
+    data["relevances"] = {};
+    
+    $("div.rating").each(function(index,value){
+      data["relevances"][$(value).attr('loid')] = $(value).raty('score');
     });
+
+    var form = $("#stepform");
+    $(form).find("input[name='data']").attr("value",JSON.stringify(data));
+    $(form).submit();
+  });
 <% end %>
 
 

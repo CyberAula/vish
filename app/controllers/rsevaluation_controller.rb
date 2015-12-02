@@ -7,7 +7,8 @@ class RsevaluationController < ApplicationController
     evaluationStatus = current_subject.rsevaluation.nil? ? "0" : current_subject.rsevaluation.status
     return redirect_to(user_path(current_subject), :notice => I18n.t("rsevaluation.messages.duplicated")) unless evaluationStatus != "Finished"
 
-    @userLos = Rsevaluation.getLosForActor(current_subject)
+    maxUserLos = 5
+    @userLos = Rsevaluation.getLosForActor(current_subject,maxUserLos)
     return redirect_to(user_path(current_subject), :alert => I18n.t("rsevaluation.messages.resources")) unless @userLos.length > 3
 
     #RS settings for the evaluation study
@@ -20,15 +21,15 @@ class RsevaluationController < ApplicationController
     when "1"
       #Data for step2
       rsSettingsA = rsSettings
-      @recommendationsA = RecommenderSystem.resource_suggestions({:n => 6, :settings => rsSettingsA, :user => current_subject, :user_settings => {}, :max_user_los => 5})
+      @recommendationsA = RecommenderSystem.resource_suggestions({:n => 6, :settings => rsSettingsA, :user => current_subject, :user_settings => {}, :user_los => @userLos, :max_user_los => maxUserLos})
       @randomA = Rsevaluation.getRandom({:n => 6, :ao_ids_to_avoid => @recommendationsA.map{|lo| lo.activity_object.id}})
       @itemsA = (@recommendationsA + @randomA).shuffle
       render :step2
     when "2"
       #Data for step3
       rsSettingsB = rsSettings.recursive_merge({:preselection_filter_languages => false})
-      @lo = getBLo({:settings => rsSettingsB})
-      @recommendationsB = RecommenderSystem.resource_suggestions({:n => 6, :settings => rsSettingsB, :user => nil, :user_settings => {}, :lo => @excursion})
+      @lo = getBLo({:settings => rsSettingsB, :user_los => @userLos})
+      @recommendationsB = RecommenderSystem.resource_suggestions({:n => 6, :settings => rsSettingsB, :user => nil, :user_settings => {}, :lo => @lo})
       @randomB = Rsevaluation.getRandom({:n => 6, :ao_ids_to_avoid => @recommendationsB.map{|lo| lo.activity_object.id}})
       @itemsB = (@recommendationsB + @randomB).shuffle
       render :step3
@@ -114,17 +115,15 @@ class RsevaluationController < ApplicationController
   private
 
   def getBLo(options={})
-    # userProfile = current_subject.profile
-    # loProfiles = current_subject.saved_items.map{|lo| lo.profile}
-    # similarity = []
-
-    # loProfiles.each do |loProfile|
-    #   similarity << RecommenderSystem.userSimilarityScore(userProfile,loProfile,options)
-    # end
-
-    # return current_subject.saved_items[similarity.find_index(similarity.max)]
-    #TODO
-    Rsevaluation.getRandom({:n => 1}).first
+    return nil unless options[:user_los]
+    current_subject.tag_array_cached = current_subject.tag_array
+    similarity = []
+    candidateLos = (ActivityObject.find_all_by_id(Vish::Application.config.APP_CONFIG["recommender_system"][:evaluation][:candidate_los]).compact.map{|ao| ao.object}.compact rescue options[:user_los])
+    candidateLos.each do |lo|
+      lo.tag_array_cached = lo.tag_array
+      similarity << RecommenderSystem.userSimilarityScore(current_subject,lo,options)
+    end
+    return candidateLos[similarity.find_index(similarity.max)]
   end
 
 end

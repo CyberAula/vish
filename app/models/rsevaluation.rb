@@ -20,9 +20,24 @@ class Rsevaluation < ActiveRecord::Base
     return Search.search(searchOptions).compact
   end
 
-  def self.getLosForActor(actor)
-    #TODO
-    getRandom({:n => 6})
+  def self.getLosForActor(actor,n=5)
+    #Get liked resources of the user
+    likedResources = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => Actor.normalize_id(actor)}).where("activity_objects.object_type IN (?) and activity_objects.scope=0","Excursion")
+    #Get last N liked resources in the last 7 days
+    endDate = DateTime.now
+    startDate = endDate - 7
+    likedResources = likedResources.where(:created_at => startDate..endDate).order("created_at DESC").first(n).map{|a| a.direct_object}
+    
+    lRl = likedResources.length
+    if lRl < n
+      #Try to fill with authored resources
+      authoredResources = ActivityObject.authored_by(actor).where("activity_objects.object_type IN (?) and activity_objects.scope=0","Excursion")
+      #Get more representative or novel resources
+      authoredResources = authoredResources.order("qscore DESC, created_at DESC").first(n-lRl).map{|ao| ao.object}
+      likedResources += authoredResources
+    end
+
+    likedResources
   end
 
   def self.getActivityObjectJSON(aos)

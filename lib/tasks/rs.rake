@@ -111,7 +111,7 @@ namespace :rs do
       likedAndAuthoredResources.delete(k) if lARL < N
     end
 
-    vishActorIds = Actor.find_all_by_email(["virtual.science.hub@gmail.com","virtual.science.hub+1@gmail.com"]).map{|a| a.id}
+    vishActorIds = Actor.find_all_by_email(Vish::Application.config.APP_CONFIG["recommender_system"][:evaluation][:mails_filtered]).map{|a| a.id} rescue []
     likedAndAuthoredResources = likedAndAuthoredResources.select{|k,v| v.length > N}.reject{|k,v| vishActorIds.include? k }
     users = Actor.find(likedAndAuthoredResources.keys)
 

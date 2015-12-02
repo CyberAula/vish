@@ -364,7 +364,7 @@ es:
     password_forgot_instructions: "Escribe abajo tu dirección de correo y recibirás un email con instrucciones para reestablecer tu contraseña en unos minutos."
   dictionary:
     next: "Siguiente"
-    relevance: "Relevancía"
+    relevance: "Relevancia"
   directory:
     title: ""
   disjunction:
