@@ -1,0 +1,11 @@
+<div class="rsevaluation_lo">
+  <div class="column1">
+    <ul class="items">
+      <%= render :partial => 'entities/entity', :locals => { :entity => lo, :prefix_id=> "rsevaluation" } %>
+    </ul>
+  </div>
+  <div class="column2">
+    <p><%=t("dictionary.relevance")%>:</p>
+    <div class="rating" loid="<%=lo.activity_object.id%>"></div>
+  </div>
+</div>

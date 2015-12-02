@@ -159,6 +159,10 @@ Vish::Application.routes.draw do
   # Add this at the end so other URLs take prio
   match '/s/:id' => "shortener/shortened_urls#show"
 
+  #ViSHRS evaluation
+  match '/rsevaluation', to: 'rsevaluation#start', via: [:get]
+  match '/rsevaluation/step/:step', to: 'rsevaluation#step', via: [:post]
+
   # for OAI-MPH
   mount OaiRepository::Engine => "/oai_repository"
 

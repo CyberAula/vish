@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151130140813) do
+ActiveRecord::Schema.define(:version => 20151202091500) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -147,7 +147,6 @@ ActiveRecord::Schema.define(:version => 20151130140813) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "notification_settings"
-    t.integer  "rank_mve",              :default => 0
     t.text     "category_order"
     t.string   "categories_view",       :default => "gallery"
     t.boolean  "joined_competition",    :default => false
@@ -160,14 +159,6 @@ ActiveRecord::Schema.define(:version => 20151130140813) do
   create_table "actors_roles", :id => false, :force => true do |t|
     t.integer "role_id"
     t.integer "actor_id"
-  end
-
-  create_table "announcements", :force => true do |t|
-    t.text     "message"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "audiences", :force => true do |t|
@@ -290,7 +281,6 @@ ActiveRecord::Schema.define(:version => 20151130140813) do
     t.text     "offline_manifest",        :default => ""
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
-    t.integer  "rank_mve",                :default => 0
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
@@ -371,16 +361,6 @@ ActiveRecord::Schema.define(:version => 20151130140813) do
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
-
-  create_table "pages", :force => true do |t|
-    t.string   "name"
-    t.string   "permalink"
-    t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "pages", ["permalink"], :name => "index_pages_on_permalink"
 
   create_table "pdfexes", :force => true do |t|
     t.datetime "created_at",                             :null => false
@@ -522,6 +502,14 @@ ActiveRecord::Schema.define(:version => 20151130140813) do
   end
 
   add_index "rooms", ["actor_id"], :name => "index_rooms_on_actor_id"
+
+  create_table "rsevaluations", :force => true do |t|
+    t.integer  "actor_id"
+    t.text     "data"
+    t.string   "status",     :default => "0"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
 
   create_table "scormfiles", :force => true do |t|
     t.integer  "activity_object_id"

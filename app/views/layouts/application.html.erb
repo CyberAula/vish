@@ -7,28 +7,24 @@
 
 <body>
   <%= render :partial => "layouts/header/header_warning" %>
-  
   <div id="wrap">
     <%= render :partial => "layouts/header/header" %>
-
     <div class="container-fluid container-content">
       <%= flashy %>
       <%= yield %>
     </div>
   </div>
-  
   <%= render :partial => "layouts/footer" %>
 </body>
 
 <%= javascript_include_tag "application" %>
 <script type="text/javascript">
   var CKEDITOR_BASEPATH = '/assets/ckeditor/';
-
   I18n.defaultLocale = "<%= I18n.default_locale %>";
   I18n.locale = "<%= I18n.locale %>";
 </script>
-
 <%= javascript_include_tag "ckeditor/ckeditor" %>
+<%= yield :javascript_libs %>
 
 <script type="text/javascript">
   $(document).ready(function() {

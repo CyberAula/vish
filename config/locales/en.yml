@@ -375,6 +375,9 @@ en:
     invalid_login: "Please enter your email and password to continue."
     tags: "tags"
     password_forgot_instructions: "Write down the email address you associated to your account and you will receive an email with instructions about how to reset your password in a few minutes."
+  dictionary:
+    next: "Next"
+    relevance: "Relevance"
   disjunction:
     or: "or"
   document:
@@ -887,6 +890,24 @@ en:
     user: "User"
     premium_user: "Premium User"
     private_student: "Private Student"
+  rsevaluation:
+    messages:
+      duplicated: "Evaluation already sent. Thank you!"
+      norelevance: "You have to indicate the relevance for all learning objects. There is at least one learning object without relevance."
+      resources: "You need to mark as favorite at least 4 excursions to carry out the evaluation of the ViSH Recommender System."
+      success: "Evaluation finished. Thank you for you collaboration!"
+    stars:
+      one: "Not at all relevant to me"
+      five: "Very relevant to me"
+    step1:
+      description: "Welcome to the <b>VISH Recommender System</b> evaluation tool.<br/><br/>At this point you already should have completed the initial tasks described in the 'User Guide for evaluating the ViSH Recommender System' and you already should have marked as favorite at least 4 learning objects that match your interests. If not, you should download the 'User Guide for evaluating the ViSH Recommender System' from <a target='_blank' href='/ViSHRSEvaluationUserGuide.pdf'>here</a> and follow the instructions.<br/><br/>Before continuing with the next steps, please <b>fill in the ViSH Recommender System Questionnaire</b>. You can fill in directly in this web page or you can access the questionnaire at the following <a target='_blank' href='http://docs.google.com/forms/d/1W6SyuTtT8CBBZ4TVgphQO_8ErNHA1FH76rCWJGWDQKo/viewform'>link</a>.<br/><b>Once you finish and submit the questionnaire</b>, click on the 'Next' button at the bottom of the page (below the questionnaire) to continue with the evaluation.<br/>"
+    step2:
+      description: "The following list shows 12 learning objects randomly ordered.<br/>Put yourself in the situation where this list of learning objects has been recommended for you in the home page of the ViSH platform (or in any other learning object repository) taking into account your user profile.<br/>Please, indicate, for each of the learning objects, the relevance or interest that it has for you using a 5 points scale, with 1 being \'not at all relevant to me\' and 5 being \'very relevant to me\'.<br/>Once you have indicated the relevance for each learning object, click on next to advance to the following step.<br/>"
+    step3:
+      descriptiona: "This page shows a new list which contains another 12 learning objects randomly ordered.</br>On this ocassion, put yourself in the situation where you are browsing learning objects in the ViSH platform (or in any other learning object repository) and you finally find one learning object that you are interested in. Then you click on a link that takes you to to a new page where you can see the details of this learning object.</br>Specifically, the learning object whose details you are seeing is the following:</br>"
+      descriptionb: "Now, given the situation described above, suppose that the following list of learning objects has been recommended for you <b>in the same page where you are seeing the details of the selected learning object</b>.</br>Please, indicate, for each of the learning objects of the list, the relevance or interest that it has for you using a 5 points scale, with 1 being 'not at all relevant to me' and 5 being 'very relevant to me'.</br>Once you have indicated the relevance for each learning object, click on finish to submit the evaluation.</br>"
+    steptitle: "Evaluation: Step %{step} of 3."
+    surveyurl: "https://docs.google.com/forms/d/1W6SyuTtT8CBBZ4TVgphQO_8ErNHA1FH76rCWJGWDQKo/viewform"
   save: "Save"
   saving: "Saving"
   scope:

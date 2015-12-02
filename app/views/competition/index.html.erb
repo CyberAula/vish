@@ -165,7 +165,7 @@
 				<% end %>
 				<% competition_items.each do |r| %>
 				  <% unless r.nil?%>
-					  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "competition", :rec => (defined?(rec) ? rec : false)  } %>
+					  <%= render :partial => 'entities/entity', :locals => { :entity => r, :prefix_id=> "competition" } %>
 					<% end %>
 				<% end %>
 				<%= render :partial => 'entities/view_more', :locals => { :title => t('competition.view_more'), :more_url => "/competition/all" }%>

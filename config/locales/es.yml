@@ -362,6 +362,9 @@ es:
     invalid_login: "Por favor introduce tu email y contraseña para continuar"
     tags: "etiquetas"
     password_forgot_instructions: "Escribe abajo tu dirección de correo y recibirás un email con instrucciones para reestablecer tu contraseña en unos minutos."
+  dictionary:
+    next: "Siguiente"
+    relevance: "Relevancía"
   directory:
     title: ""
   disjunction:
@@ -877,6 +880,24 @@ es:
     user: "Usuario"
     premium_user: "Usuario Premium"
     private_student: "Estudiante Privado"
+  rsevaluation:
+    messages:
+      duplicated: "La evaluación ya ha sido enviada. ¡Muchas gracias por tu colaboración!"
+      norelevance: "Debes indicar la relevancia para todos los objetos de aprendizaje. Hay al menos un objeto de aprendizaje sin relevancia."
+      resources: "Debes marcar como favorito un mínimo de 4 excursiones para realizar la evaluación del sistema de recomendación de ViSH."
+      success: "Evaluación finalizada. ¡Muchas gracias por su colaboración!"
+    stars:
+      one: "No relevante para mí en absoluto"
+      five: "Muy relevante para mí"
+    step1:
+      description: "Bienvenido a la herramienta de evaluación del <b>Sistema de Recomendación de ViSH</b>.<br/><br/>En este punto usted ya debe de haber completado las tareas iniciales descritas en la 'Guía de usuario para la evaluación del sistema de recomendación de ViSH' y también debe de haber marcado como favorito al menos 4 objetos de aprendizaje que encajen con sus intereses. En caso contrario, debe descargar <a target='_blank' href='/ViSHRSEvaluacionGuiaUsuario.pdf''>aquí</a> la 'Guía de usuario para la evaluación del sistema de recomendación de ViSH' y seguir sus instrucciones.<br/><br/>Por favor, antes de seguir con los siguientes pasos, <b>rellene el cuestionario del sistema de recomendación de ViSH</b>. Puede rellenarlo directamente en esta página web o puede acceder al cuestionario en el siguiente <a target='_blank' href='https://docs.google.com/forms/d/1Mv9W64GEbIlYojnOXHDYfui-O-KscB-gSohs6eEaGk4/viewform'>enlace</a>.<br/><b>Una vez que haya completado y enviado el cuestionario</b>, haga clic en el botón 'Siguiente' en la parte inferior de la página (debajo del cuestionario) para continuar con la evaluación.<br/>"
+    step2:
+      description: "La siguiente lista muestra 12 objetos de aprendizaje ordenados de forma aleatoria.<br/>Póngase en la situación de que esta lista de objetos de aprendizaje ha sido recomendada para usted en la página principal (o página de inicio) de la plataforma ViSH (o en cualquier otro repositorio de objetos de aprendizaje) teniendo en cuenta su perfil de usuario.<br/>Por favor, indique, para cada uno de los objetos de aprendizaje, la relevancia o interés que tiene para usted empleando una escala de 5 puntos, siendo 1 \'no relevante para mí en absoluto\' y siendo 5 \'muy relevante para mí\'.<br/>Una vez haya indicado la relevancia para cada objeto de aprendizaje, haga clic en siguiente para avanzar al siguiente paso.<br/>"
+    step3:
+      descriptiona: "Esta página muestra una nueva lista que contiene otros 12 objetos de aprendizaje ordenados de forma aleatoria.</br>En esta ocasión, póngase en la situación de que está navegando y explorando objetos de aprendizaje en la plataforma ViSH (o en cualquier otro repositorio de objetos de aprendizaje) y que usted finalmente encuentra un objeto de aprendizaje en la cuál está interesado. Después hace clic en un enlace que le lleva a una nueva página donde puede ver los detalles de este objeto de aprendizaje.</br>Concretamente, el objeto de aprendizaje cuyos detalles está viendo es el siguiente:</br>"
+      descriptionb: "Ahora, dada la situación descrita anteriormente, suponga que la siguiente lista de objetos de aprendizaje ha sido recomendada para usted <b>en la misma página en la que está viendo los detalles del objeto de aprendizaje seleccionado</b>.</br>Por favor, indique, para cada una de los objetos de aprendizaje de la lista, la relevancia o interés que tiene para usted empleando una escala de 5 puntos, siendo 1 \'no relevante para mí en absoluto\' y siendo 5 \'muy relevante para mí\'.<br/>Una vez haya indicado la relevancia para cada objeto de aprendizaje, haga clic en terminar para enviar la evaluación.</br>"
+    steptitle: "Evaluación: Paso %{step} de 3."
+    surveyurl: "https://docs.google.com/forms/d/1Mv9W64GEbIlYojnOXHDYfui-O-KscB-gSohs6eEaGk4/viewform"
   save: "Salvar"
   saving: "Salvando"
   scope:

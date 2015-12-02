@@ -5,6 +5,7 @@ Actor.class_eval do
   has_many :private_students, class_name: "User", through: :private_student_groups
   has_many :actor_historial, :dependent => :destroy
   has_many :past_activity_objects, through: :actor_historial, source: :activity_object
+  has_one :rsevaluation
 
   before_save :fill_roles
 
