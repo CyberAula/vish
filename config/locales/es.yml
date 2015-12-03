@@ -3,6 +3,7 @@ es:
     blog: "Novedades"
     contact: "Contacto"
     code: "Código fuente"
+    rsevaluation: "Evaluación de ViSHRS"
     survey: "Encuesta del ViSH"
     title: "about"
   activerecord:

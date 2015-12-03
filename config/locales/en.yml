@@ -13,6 +13,7 @@ en:
     blog: "News"
     contact: "Contact"
     code: "Source code"
+    rsevaluation: "ViSHRS Evaluation"
     survey: "ViSH survey"
     title: "about"
   activerecord:

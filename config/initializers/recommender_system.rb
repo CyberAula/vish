@@ -65,6 +65,9 @@ Vish::Application.configure do
     config.words = words
 
     config.stoptags = File.read("config/stoptags.yml").split(",").map{|s| s.gsub("\n","").gsub("\"","") } rescue []
+
+    #RSEvaluation
+    config.rsevaluation = (!rsConfig[:evaluation].nil? and rsConfig[:evaluation][:enabled]==true)
   end
 end
 
