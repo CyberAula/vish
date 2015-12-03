@@ -17,7 +17,7 @@ namespace :rs do
     breezeSettings = {:alpha => 3.5, :d => 1}.recursive_merge({:alpha=>args[:alpha], :d=>args[:d]}.parse_for_vish)
     puts "Breeze settings: " + breezeSettings.to_s
 
-    RSEvaluation.where(:status => "Finished").each do |e|
+    Rsevaluation.where(:status => "Finished").each do |e|
       userData = {}
       data = JSON.parse(e.data)
 
@@ -114,7 +114,6 @@ namespace :rs do
     vishActorIds = Actor.find_all_by_email(Vish::Application.config.APP_CONFIG["recommender_system"][:evaluation][:mails_filtered]).map{|a| a.id} rescue []
     likedAndAuthoredResources = likedAndAuthoredResources.select{|k,v| v.length > N}.reject{|k,v| vishActorIds.include? k }
     users = Actor.find(likedAndAuthoredResources.keys)
-
 
     #Recommender System settings
     rsSettings = {:preselection_filter_query => false, :preselection_filter_resource_type => false, :preselection_filter_languages => true, :preselection_filter_own_resources => false, :preselection_authored_resources => true, :preselection_size => 200, :preselection_size_min => 100, :only_context => false, :rs_weights => {:los_score=>0.6, :us_score=>0.2, :quality_score=>0.1, :popularity_score=>0.1}, :los_weights => {:title=>0.2, :description=>0.1, :language=>0.5, :keywords=>0.2}, :us_weights => {:language=>0.2, :keywords => 0.2, :los=>0.6}, :rs_filters => {:los_score=>0, :us_score=>0, :quality_score=>0.3, :popularity_score=>0}, :los_filters => {:title => 0, :description => 0, :keywords => 0, :language=>0}, :us_filters => {:language=>0, :keywords => 0, :los=>0}}

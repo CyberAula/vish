@@ -11,7 +11,7 @@ Vish::Application.configure do
     #ViSHRS fixed settings
     config.rs_settings = {}
     config.rs_settings = rsConfig[:settings] unless rsConfig[:settings].blank?
-    config.rs_settings = {:max_text_length => 20, :max_user_los => 1, :max_preselection_size => 5000}.recursive_merge(config.rs_settings)
+    config.rs_settings = {:max_text_length => 20, :max_user_los => 1, :max_user_pastlos => 1, :max_preselection_size => 5000}.recursive_merge(config.rs_settings)
 
     #Default settings to use in ViSHRS
     config.rs_default_settings = {}
@@ -50,6 +50,7 @@ Vish::Application.configure do
 
     #RS: internal settings
     config.max_user_los = config.rs_settings[:max_user_los]
+    config.max_user_pastlos = config.rs_settings[:max_user_pastlos]
 
     #Settings for speed up TF-IDF calculations
     config.max_text_length = config.rs_settings[:max_text_length]

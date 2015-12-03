@@ -103,7 +103,7 @@ Actor.class_eval do
     ServicePermission.where(:owner_id => self.id)
   end
 
-  def pastLOs(n=2)
+  def pastLOs(n=10)
     self.past_activity_objects.last(n).reverse.map{|ao| ao.object}
   end
 

@@ -55,7 +55,7 @@ class RsevaluationController < ApplicationController
   #Save step1
   def step1
     e = Rsevaluation.new
-    e.actor_id = current_subject.id
+    e.actor_id = Actor.normalize_id(current_subject)
     e.status = "1"
     e.data = {}.to_json
     e.save!

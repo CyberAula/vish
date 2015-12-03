@@ -35,7 +35,7 @@ class RecommenderSystem
     end
     unless options[:user].blank?
       options[:user].tag_array_cached = options[:user].tag_array
-      options[:user_los] = options[:user].pastLOs(options[:max_user_los] || Vish::Application::config.max_user_los) if options[:user_los].blank?
+      options[:user_los] = options[:user].pastLOs(options[:max_user_pastlos] || Vish::Application::config.max_user_pastlos).sample(options[:max_user_los] || Vish::Application::config.max_user_los) if options[:user_los].blank?
       options[:user_los].map{|pastLo| pastLo.tag_array_cached = pastLo.tag_array}
     else
       options[:user_los] = nil
