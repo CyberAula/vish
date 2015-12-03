@@ -2,6 +2,10 @@
 
 namespace :scheduled do
 
+  task :regenerateSitemap => :environment do
+    Rake::Task["sitemap:refresh"].invoke("-s")
+  end
+
   #Usage
   #Development:   bundle exec rake scheduled:recalculateRankingMetrics
   #In production: bundle exec rake scheduled:recalculateRankingMetrics RAILS_ENV=production
