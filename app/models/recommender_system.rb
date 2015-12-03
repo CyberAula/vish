@@ -36,6 +36,7 @@ class RecommenderSystem
     unless options[:user].blank?
       options[:user].tag_array_cached = options[:user].tag_array
       options[:user_los] = options[:user].pastLOs(options[:max_user_los] || Vish::Application::config.max_user_los)
+      options[:user_los].map{|pastLo| pastLo.tag_array_cached = pastLo.tag_array}
     end
     options
   end
@@ -43,7 +44,7 @@ class RecommenderSystem
   #Step 1: Preselection
   def self.getPreselection(options)
     preSelection = []
-    ao_ids_to_avoid = (options[:lo] ? [options[:lo].activity_object.id] : [])
+    ao_ids_to_avoid = (options[:lo] ? [options[:lo].activity_object.id] : [-1])
 
 
     # Get random resources using the Search Engine
@@ -82,13 +83,17 @@ class RecommenderSystem
 
     # Before search
     # Add other resources of the same author
-    unless options[:lo].nil? or options[:lo].author.nil? or (options[:user] and Actor.normalize_id(options[:user]) == options[:lo].author.id)
-      authorResources = ActivityObject.limit(100).order(Vish::Application::config.agnostic_random).authored_by(options[:lo].author).where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:model_names],ao_ids_to_avoid)
-      preSelection += authorResources.map{|ao|
-        ao_ids_to_avoid << ao.id
-        ao.object
-      }.compact
-      options[:settings][:preselection_size] = [options[:settings][:preselection_size]-preSelection.length,options[:settings][:preselection_size_min]].max
+    authors = (!options[:lo].nil? ? [options[:lo].author] : (!options[:user_los].blank? ? options[:user_los].map{|pastLO| pastLO.author} : [])).compact
+    unless authors.blank?
+      authors = authors.reject{|a| a.id==Actor.normalize_id(options[:user])} if options[:user]
+      unless authors.blank?
+        authorResources = ActivityObject.limit(100).order(Vish::Application::config.agnostic_random).authored_by(authors).where("scope=0 and object_type IN (?) and activity_objects.id not IN (?)",options[:model_names],ao_ids_to_avoid)
+        preSelection += authorResources.map{|ao|
+          ao_ids_to_avoid << ao.id
+          ao.object
+        }.compact
+        options[:settings][:preselection_size] = [options[:settings][:preselection_size]-preSelection.length,options[:settings][:preselection_size_min]].max
+      end
     end
 
     searchOpts[:n] = [options[:settings][:preselection_size],Vish::Application::config.max_preselection_size].min
