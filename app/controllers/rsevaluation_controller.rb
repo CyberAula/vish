@@ -21,7 +21,7 @@ class RsevaluationController < ApplicationController
     when "1"
       #Data for step2
       rsSettingsA = rsSettings
-      @recommendationsA = RecommenderSystem.resource_suggestions({:n => 6, :settings => rsSettingsA, :user => current_subject, :user_settings => {}, :user_los => @userLos, :max_user_los => maxUserLos})
+      @recommendationsA = RecommenderSystem.resource_suggestions({:n => 6, :settings => rsSettingsA, :user => current_subject, :user_settings => {}, :user_los => @userLos, :max_user_los => maxUserLos, :models => [Excursion]})
       @randomA = Rsevaluation.getRandom({:n => 6, :ao_ids_to_avoid => @recommendationsA.map{|lo| lo.activity_object.id}})
       @itemsA = (@recommendationsA + @randomA).shuffle
       render :step2
@@ -29,7 +29,7 @@ class RsevaluationController < ApplicationController
       #Data for step3
       rsSettingsB = rsSettings.recursive_merge({:preselection_filter_languages => false})
       @lo = getBLo({:settings => rsSettingsB, :user_los => @userLos})
-      @recommendationsB = RecommenderSystem.resource_suggestions({:n => 6, :settings => rsSettingsB, :user => nil, :user_settings => {}, :lo => @lo})
+      @recommendationsB = RecommenderSystem.resource_suggestions({:n => 6, :settings => rsSettingsB, :user => nil, :user_settings => {}, :lo => @lo, :models => [Excursion]})
       @randomB = Rsevaluation.getRandom({:n => 6, :ao_ids_to_avoid => @recommendationsB.map{|lo| lo.activity_object.id}})
       @itemsB = (@recommendationsB + @randomB).shuffle
       render :step3
