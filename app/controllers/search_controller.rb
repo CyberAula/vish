@@ -124,8 +124,8 @@ class SearchController < ApplicationController
     categories = nil
     if params[:category_ids].is_a? String
       if Vish::Application.config.catalogue['mode'] == "matchtag"
-          #Mode matchtag
-          categories = params[:category_ids]
+        #Mode matchtag
+        categories = params[:category_ids]
       else
         #Mode matchany
         keywords = []
