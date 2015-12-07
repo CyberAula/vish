@@ -117,6 +117,7 @@ class RsevaluationController < ApplicationController
   def getBLo(options={})
     return nil unless options[:user_los]
     current_subject.tag_array_cached = current_subject.tag_array
+    options[:user_los].map{|pastLo| pastLo.tag_array_cached = pastLo.tag_array}
     similarity = []
     candidateLos = (ActivityObject.find_all_by_id(Vish::Application.config.APP_CONFIG["recommender_system"][:evaluation][:candidate_los]).compact.map{|ao| ao.object}.compact rescue options[:user_los])
     candidateLos.each do |lo|
