@@ -662,9 +662,9 @@ namespace :fix do
   end
 
   #Usage
-  #Development:   bundle exec rake fix:categories_scope
-  #In production: bundle exec rake fix:categories_scope RAILS_ENV=production
-  task :categories_scope => :environment do
+  #Development:   bundle exec rake fix:categoriesScope
+  #In production: bundle exec rake fix:categoriesScope RAILS_ENV=production
+  task :categoriesScope => :environment do
     printTitle("Fixing Categories: changing scope to hidden")
 
     Category.record_timestamps = false
@@ -689,6 +689,28 @@ namespace :fix do
     end
 
     Category.record_timestamps = true
+    ActivityObject.record_timestamps = true
+  end
+
+  #Usage
+  #Development:   bundle exec rake fix:defaultNotificationSettings
+  #In production: bundle exec rake fix:defaultNotificationSettings RAILS_ENV=production
+  task :defaultNotificationSettings => :environment do
+    printTitle("Applying default notification settings to all users")
+
+    Actor.record_timestamps = false
+    User.record_timestamps = false
+    Profile.record_timestamps = false
+    ActivityObject.record_timestamps = false
+
+    User.registered.each do |user|
+      user.actor.notification_settings = user.notification_settings.merge(SocialStream.default_notification_settings)
+      user.actor.save!
+    end
+
+    Actor.record_timestamps = true
+    User.record_timestamps = true
+    Profile.record_timestamps = true
     ActivityObject.record_timestamps = true
   end
 

@@ -202,7 +202,7 @@ namespace :rs do
 
     publicResources = ActivityObject.getAllPublicResources
     minIterationsPerN.times do |i|
-      users << User.limit(1).order(Vish::Application::config.agnostic_random).first.actor
+      users << User.limit(1).registered.order(Vish::Application::config.agnostic_random).first.actor
       los << publicResources.limit(1).order(Vish::Application::config.agnostic_random).first.object
       #Perform some recommendations to get the recommender ready/'warm up'
       RecommenderSystem.resource_suggestions({:n => 20, :settings => rsSettings, :lo => los[i], :user => users[i], :user_settings => {}, :max_user_los => maxUserLos})
