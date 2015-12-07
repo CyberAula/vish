@@ -377,6 +377,7 @@ en:
     tags: "tags"
     password_forgot_instructions: "Write down the email address you associated to your account and you will receive an email with instructions about how to reset your password in a few minutes."
   dictionary:
+    finish: "Finalizar"
     next: "Next"
     relevance: "Relevance"
   disjunction:

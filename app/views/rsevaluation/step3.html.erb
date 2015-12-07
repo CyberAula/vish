@@ -80,7 +80,7 @@
       <%= render "/rsevaluation/lo_box", :lo => lo %>
     <% end %>
   </div>
-  <button id="step" class="btn btn-primary rsbutton"><%=t("dictionary.next")%></button>
+  <button id="step" class="btn btn-primary rsbutton"><%=t("dictionary.finish")%></button>
   <form id="stepform" style="display:none" action="/rsevaluation/step/3" method="POST">
     <input type="hidden" name="data">
     <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
