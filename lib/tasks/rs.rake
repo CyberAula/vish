@@ -118,29 +118,36 @@ namespace :rs do
     # users = [User.find(?).actor]
 
     #Recommender System settings
-    rsSettings = {:preselection_filter_query => false, :preselection_filter_resource_type => false, :preselection_filter_languages => true, :preselection_filter_own_resources => false, :preselection_authored_resources => true, :preselection_size => 200, :preselection_size_min => 100, :only_context => false, :rs_weights => {:los_score=>0.6, :us_score=>0.2, :quality_score=>0.1, :popularity_score=>0.1}, :los_weights => {:title=>0.2, :description=>0.1, :language=>0.5, :keywords=>0.2}, :us_weights => {:language=>0.2, :keywords => 0.2, :los=>0.6}, :rs_filters => {:los_score=>0, :us_score=>0, :quality_score=>0.3, :popularity_score=>0}, :los_filters => {:title => 0, :description => 0, :keywords => 0, :language=>0}, :us_filters => {:language=>0, :keywords => 0, :los=>0}}
+    rsSettings = {:preselection_filter_query => false, :preselection_filter_resource_type => false, :preselection_filter_languages => true, :preselection_filter_own_resources => false, :preselection_authored_resources => true, :preselection_size => 300, :preselection_size_min => 100, :only_context => false, :rs_weights => {:los_score=>0.6, :us_score=>0.2, :quality_score=>0.1, :popularity_score=>0.1}, :los_weights => {:title=>0.2, :description=>0.1, :language=>0.5, :keywords=>0.2}, :us_weights => {:language=>0.2, :keywords => 0.2, :los=>0.6}, :rs_filters => {:los_score=>0, :us_score=>0, :quality_score=>0.3, :popularity_score=>0}, :los_filters => {:title => 0, :description => 0, :keywords => 0, :language=>0}, :us_filters => {:language=>0, :keywords => 0, :los=>0}}
 
     #N values
     ns = [1,5,10,20,500]
+    nMax = ns.max
     results = {}
 
     ns.each do |n|
       results[n.to_s] = {:attempts => 0, :successes => 0, :accuracy => 0}
-      users.each do |user|
-        los = likedAndAuthoredResources[Actor.normalize_id(user)]
-        maxUserLos = 2
-        los.each do |lo|
-          userLos = los.reject{|pastLo| pastLo.id==lo.id}
-          2.times do
-            #Leave lo out and see if it appears on the n recommendations
-            attemptUserLos = userLos.sample(maxUserLos)
-            recommendations = RecommenderSystem.resource_suggestions({:n => n, :settings => rsSettings, :user => user, :user_settings => {}, :user_los => attemptUserLos, :max_user_los => maxUserLos})
-            success = recommendations.select{|recLo| recLo.id==lo.id}.length > 0 # Success when the out entity is found on recommendations
+    end
+
+    users.each do |user|
+      los = likedAndAuthoredResources[Actor.normalize_id(user)]
+      maxUserLos = 2
+      los.each do |lo|
+        userLos = los.reject{|pastLo| pastLo.id==lo.id}
+        2.times do
+          #Leave lo out and see if it appears on the n recommendations
+          attemptUserLos = userLos.sample(maxUserLos)
+          recommendations = RecommenderSystem.resource_suggestions({:n => nMax, :settings => rsSettings, :user => user, :user_settings => {}, :user_los => attemptUserLos, :max_user_los => maxUserLos})
+          ns.each do |n|
+            success = recommendations.first(n).select{|recLo| recLo.id==lo.id}.length > 0 # Success when the out entity is found on recommendations
             results[n.to_s][:attempts] += 1
             results[n.to_s][:successes] += 1 if success
           end
         end
       end
+    end
+
+    ns.each do |n|
       results[n.to_s][:accuracy] = (results[n.to_s][:successes]/results[n.to_s][:attempts].to_f * 100).round(1)
     end
 
