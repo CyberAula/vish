@@ -2,8 +2,5 @@
 <% resources = firstResources + resources %>
 
 <% resources.each do |resource| %>
-  <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id=> prefix_id, :rec => (defined?(rec) ? rec : false)  } %>
+  <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id=> prefix_id } %>
 <% end %>
-
-
-

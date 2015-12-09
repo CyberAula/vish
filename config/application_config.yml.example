@@ -157,6 +157,7 @@ test:
 #   settings:
 #     max_text_length: 20
 #     max_user_los: 1
+#     max_user_pastlos: 1
 #     max_preselection_size: 5000
 #   default_settings:
 #     preselection_filter_query: "false"

@@ -18,6 +18,10 @@ User.class_eval do
   
   Occupation = [:select, :teacher, :scientist, :other]
 
+  scope :registered, lambda {
+    User.where("invited_by_id IS NULL or invitation_accepted_at is NOT NULL")
+  }
+
   def occupation_sym
     if occupation
       Occupation[occupation]
@@ -34,7 +38,7 @@ User.class_eval do
     profile.description
   end
 
-  def has_permission(perm_key)    
+  def has_permission(perm_key)
     ServicePermission.where(:owner_id => actor_id, :key => perm_key).count > 0
   end
 

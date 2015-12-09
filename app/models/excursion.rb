@@ -1151,9 +1151,7 @@ class Excursion < ActiveRecord::Base
       unless self.score_tracking.nil?
         rjson[:recommender_data] = self.score_tracking
         rsEngineCode = TrackingSystemEntry.getRSCode(JSON(rjson[:recommender_data])["rec"])
-        unless rsEngineCode.nil?
-          rjson[:url] = controller.excursion_url(:id => self.id, :rec => rsEngineCode)
-        end
+        rjson[:url] = controller.excursion_url(:id => self.id, :rec => rsEngineCode) unless rsEngineCode.nil?
       end
 
       rjson

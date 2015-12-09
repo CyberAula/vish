@@ -16,7 +16,7 @@ class Hash
       elsif v.is_a? Hash
         self[k] = v.parse_types
       elsif v.is_a? Array
-        v.map!{|e| (e.is_a? Hash) ? e.parse_types : (e.is_numeric? ? e.to_f : (e.is_boolean? ? (e.downcase==="true") : e)) }
+        v.map!{|e| (e.is_a? Hash) ? e.parse_types : ((e.is_a? String) ? (e.is_numeric? ? e.to_f : (e.is_boolean? ? (e.downcase==="true") : e)) : e)}
       end
     }
     self

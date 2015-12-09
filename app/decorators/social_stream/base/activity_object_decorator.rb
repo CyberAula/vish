@@ -267,7 +267,7 @@ ActivityObject.class_eval do
     #Common fields
     searchJson =  {
       :id => self.getUniversalId(),
-      :type => self.getType(),
+      :type => self.getType,
       :created_at => self.created_at.strftime("%d-%m-%Y"),
       :updated_at => self.updated_at.strftime("%d-%m-%Y"),
       :title => title,

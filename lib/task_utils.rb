@@ -1,14 +1,10 @@
 def prepareFile(filePath)
-  if File.exist?(filePath)
-    system "rm " + filePath
-  end
+  system "rm " + filePath if File.exist?(filePath)
   system "touch " + filePath
 end
 
 def write(line,filePath)
-  if line==nil
-    line = "nil"
-  end
+  line = "nil" if line==nil
   puts line.to_s
 
   # Create a new file and write to it  
@@ -18,7 +14,7 @@ def write(line,filePath)
 end
 
 def printTitle(title)
-  if !title.nil?
+  unless title.nil?
     puts "#####################################"
     puts title
     puts "#####################################"

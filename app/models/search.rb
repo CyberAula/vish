@@ -15,8 +15,8 @@ class Search
       searchTerms = ""
     else
       browse = false
-      searchTerms = options[:query].split(" ") if options[:query].is_a? String
-      
+      searchTerms = (options[:query].is_a?(String) ? options[:query].split(" ") : options[:query])
+
       #Sanitize search terms
       searchTerms = searchTerms.map{|st| Riddle.escape(st) }
       #Remove keywords with less than 3 characters

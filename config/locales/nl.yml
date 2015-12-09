@@ -60,22 +60,42 @@ nl:
   disjunction:
     or: "of"
   document:
+    body:
+      title1: "Het soort inhoud selecteren dat u wilt uploaden"
+      title2: "Uw hulpbronnen identificeren"
+      title3: "Het bestand kiezen dat u wilt uploaden"
+    close: "Sluiten"
+    details:
+      info: "Info"
     document: "document"
+    download_explanation: "Deze hulpbron downloaden naar uw apparaat"
     help:
       title: "Leermiddelen uploaden"
     info:
       title: "Titel"
       description: "Beschrijving"
-      tags:
-        title: "Onderwerpen"
-        addMessage: "Voeg tags toe"
-        limitMessage: "limiet bereikt"
-      age: "Leeftijd"
-    recommended_age: "Aanbevolen leeftijd"
-    recommended_age_detail: "Van %{min} tot %{max} jaar"
-    input: "Voeg hier een beschrijving toe"
-    screencast: "Screencast van VISH"
-    title_input: "Naam voor dit leermiddel"
+      tags: "Onderwerpen"
+    language:
+      option1: "(Niet taalafhankelijk)"
+    leyend:
+      description: "Beschrijving"
+      language: "Taal"
+      tags: "Tags"
+      title: "Titel"
+      recommended_age: "Aanbevolen leeftijd"
+    main_title: "Upload afbeeldingen, video’s en andere hulpbronnen"
+    options:
+      documents: "Documenten/Video’s/Audio’s"
+      embed: "Embedden (HTML code)"
+      links: "Links (URLs)"
+      browse: "Browse"
+    tags:
+      title: "Vakken"
+      areasOfInterestMessage: "Hier uw interessegebieden invoeren"
+      addMessage: "Tags toevoegen"
+      limitMessage: "limiet bereikt"
+    title_alert: "De titel voor deze hulpbron invoeren"
+    upload: "Uploaden"
   email:
     regards: "Vriendelijke groeten,<br/>"
     welcome: "Welkom en bedankt voor uw aanmelding bij Virtual Science Hub (Centrum voor Virtuele Wetenschap).<br/>We zouden u willen aanmoedigen <a href=\"%{{profile}}\"> uw profiel op te stellen</a> om van een betere service te kunnen genieten.<br/>"
@@ -85,8 +105,12 @@ nl:
     embed: "embed-code"
     input: "Plak uw embed-code hier"
     name: "embed-code"
+    title3: "De embed invoeren die u wilt uploaden"
   excursion:
     actions:
+      add: "Excursie toevoegen"
+      embed: "embedden"
+      favorite: "favoriet"
       bookmark: "bookmarken"
       clone: "kopiëren"
       delete: "verwijderen"
@@ -95,6 +119,10 @@ nl:
       show: "tonen"
       share: "delen"
       scorm: "scormen"
+      my_room: "mijn kamer"
+      show_fewer: "Minder tonen"
+      show_more: "Meer tonen"
+    all: "alle"
     clone:
       confirm: "Dit zal deze presentatie kopiëren naar uw eigen leermiddelenbank"
       not_found: "Presentatie niet gevonden"
@@ -106,6 +134,8 @@ nl:
       name: "Met inhoud van"
     created: "gecreëerd"
     detail: "Details"
+    description: "Beschrijving"
+    download_scorm: "Een SCORM-pakket is een verzameling bestanden die zijn ingepakt volgens een afgesproken standaard voor leerobjecten. SCORM-pakketten zijn zipfiles die kunnen worden geïntegreerd in ieder LMS (Learning Management System) dat de standaard (Moodle, Blackboard, …)ondersteunt en dat kan worden gebruikt voor het presenteren van multimediale inhoud en als beoordelingsgereedschap. Zo kunt u uw Virtuele Excursie integreren in Moodle en andere LMS-sen door deze als SCORM te downloaden."
     favorites: "Favorieten"
     how: "Hoe kunt u een presentatie maken"
     invite:
@@ -115,6 +145,11 @@ nl:
         subject: "Bekijk%20deze%20presentatie%20op%20http://vishub.org%20:%20%{title}"
     is_draft: "[ONTWERP]"
     my: "mijn"
+    modal:
+      title: "Proficiat"
+      normal_body: "Proficiat. U hebt met succes deze excursie gemaakt."
+      survey: "Nu kunt u een snelle enquête invullen om ons te helpen dit gereedschap te verbeteren. Het kost u maar ongeveer 3 minuten. <a href='https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform' target='_blank'>Fill in the survey</a>"
+      thank: "Dank u zeer voor uw tijd en moeite"
     name: "presentatie"
     net: "netwerk"
     network: "mijn netwerkpresentaties"
@@ -343,9 +378,9 @@ nl:
     input: "Een beschrijving toevoegen"
     item_inside: "items daarin"
     leyend:
-      title: Titel
-      description: Beschrijving
-      items: Items in deze categorie
+      title: "Titel"
+      description: "Beschrijving"
+      items: "Items in deze categorie"
     main_title: "Nieuwe categorieën creëren en uw rondleidingen organiseren"
     other: "categorieën"
     title_input: "Naam voor deze categorie"
@@ -406,73 +441,23 @@ nl:
   copy_to_clip: "Naar klembord kopiëren"
   devise:
     tags: "tags"
-  document:
-    body:
-      title1: "Het soort inhoud selecteren dat u wilt uploaden"
-      title2: "Uw hulpbronnen identificeren"
-      title3: "Het bestand kiezen dat u wilt uploaden"
-    close: "Sluiten"
-    details:
-      info: "Info"
-    document: "document"
-    download_explanation: "Deze hulpbron downloaden naar uw apparaat"
-    language:
-      option1: "(Niet taalafhankelijk)"
-    leyend:
-      description: "Beschrijving"
-      language: "Taal"
-      tags: "Tags"
-      title: "Titel"
-      recommended_age: "Aanbevolen leeftijd"
-    main_title: "Upload afbeeldingen, video’s en andere hulpbronnen"
-    options:
-      documents: "Documenten/Video’s/Audio’s"
-      embed: "Embedden (HTML code)"
-      links: "Links (URLs)"
-      browse: "Browse"
-    tags:
-      title: "Vakken"
-      areasOfInterestMessage: "Hier uw interessegebieden invoeren"
-      addMessage: "Tags toevoegen"
-      limitMessage: "limiet bereikt"
-    title_alert: "De titel voor deze hulpbron invoeren"
-    upload: "Uploaden"
-  embed:
-    title3: "De embed invoeren die u wilt uploaden"
   event:
     actions:
       add: Evenement toevoegen
     description_input: "Beschrijving voor dit evenement"
     leyend:
-      date: Datum
+      date: "Datum"
       date_and_time: "Datum, tijd en duur"
-      description: Beschrijving
-      end_time: Eindtijd
-      start_time: Starttijd
-      title: Titel
-      type: Type
+      description: "Beschrijving"
+      end_time: "Eindtijd"
+      start_time: "Starttijd"
+      title: "Titel"
+      type: "Type"
     main_title: "Een nieuw evenement aanmaken"
     title_input: "Naam voor dit evenement"
     type:
       streaming: Streaming
       videoconference: Videoconferentie
-  excursion:
-    actions:
-      add: "Excursie toevoegen"
-      embed: "embedden"
-      favorite: "favoriet"
-      my_room: "mijn kamer"
-      show_fewer: "Minder tonen"
-      show_more: "Meer tonen"
-    all: "alle"
-    description: "Beschrijving"
-    download_scorm: "Een SCORM-pakket is een verzameling bestanden die zijn ingepakt volgens een afgesproken standaard voor leerobjecten. SCORM-pakketten zijn zipfiles die kunnen worden geïntegreerd in ieder LMS (Learning Management System) dat de standaard (Moodle, Blackboard, …)ondersteunt en dat kan worden gebruikt voor het presenteren van multimediale inhoud en als beoordelingsgereedschap. Zo kunt u uw Virtuele Excursie integreren in Moodle en andere LMS-sen door deze als SCORM te downloaden."
-    modal:
-      title: "Proficiat"
-      normal_body: "Proficiat. U hebt met succes deze excursie gemaakt."
-      survey: "Nu kunt u een snelle enquête invullen om ons te helpen dit gereedschap te verbeteren. Het kost u maar ongeveer 3 minuten. <a href='https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform' target='_blank'>Fill in the survey</a>"
-      thank: "Dank u zeer voor uw tijd en moeite"
-    upcomming: "weldra verwacht"
   filter: "filteren"
   header:
     tooltip:

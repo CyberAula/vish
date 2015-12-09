@@ -1,0 +1,54 @@
+<%= stylesheet_link_tag "jquery-ui_smoothness_1-11-4" %>
+<style type="text/css">
+  p.rstitle {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  div.rsdescription {
+    font-size: 15px;
+    margin-top: 35px;
+  }
+  div.progressbar .ui-widget-header {
+    background: #337ab7;
+    border: none;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  div.progressbar.ui-progressbar .ui-progressbar-value {
+    margin: 0px;
+  }
+  .rsbutton {
+    width: 100%;
+  }
+</style>
+
+<div class="rsevaluation_wrapper">
+  <p class="rstitle"><%=t("rsevaluation.steptitle", :step => "1").html_safe%></p>
+  <div id="progressbar" class="progressbar"></div>
+  <div class="rsdescription"><%=t("rsevaluation.step1.description").html_safe%></div>
+  <br/>
+  <iframe src='<%=t("rsevaluation.surveyurl")%>' style="width: 100%; height: 550px; margin-bottom: 20px;"></iframe>
+  <button id="step" class="btn btn-primary rsbutton"><%=t("dictionary.next")%></button>
+  <form id="stepform" style="display:none" action="/rsevaluation/step/1" method="POST">
+    <input type="hidden" name="data">
+    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+  </form>
+</div>
+
+<%content_for :javascript do%>
+  $("#progressbar").progressbar({
+    value: 33
+  });
+  $("#step").click(function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    var data = {};
+    var form = $("#stepform");
+    $(form).find("input[name='data']").attr("value",JSON.stringify(data));
+    $(form).submit();
+  });
+<% end %>
+
+
+

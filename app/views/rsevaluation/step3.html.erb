@@ -1,0 +1,136 @@
+<%content_for :headers do%>
+  <%= stylesheet_link_tag "jquery.raty" %>
+  <%= stylesheet_link_tag "jquery-ui_smoothness_1-11-4" %>
+  <style type="text/css">
+    p.rstitle {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    div.rsdescription {
+      font-size: 15px;
+      margin-top: 35px;
+    }
+    div.progressbar .ui-widget-header {
+      background: #337ab7;
+      border: none;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+    div.progressbar.ui-progressbar .ui-progressbar-value {
+      margin: 0px;
+    }
+    .rsbutton {
+      width: 100%;
+    }
+    div.rsevaluation_los {
+      margin-top: 15px;
+      margin-bottom: 30px;
+    }
+    div.rsevaluation_lo {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #9A9898;
+      padding: 1px 0px 2px 0px;
+    }
+    div.rsevaluation_lo div.column1 {
+      margin-left: 15px;
+      margin-right: 20px;
+      margin-top: 15px;
+    }
+    div.rsevaluation_lo div.column2 {
+      float: left;
+      margin-top: 11px;
+      font-size: 16px;
+      background: white;
+      border-radius: 5px;
+      padding: 15px 15px 20px 15px;
+      width: 60%;
+      min-width: 60%;
+      max-width: 60%;
+      display: inline-block;
+      margin-left: 20px;
+      max-height: 233px;
+      overflow: hidden;
+    }
+    #step {
+      margin-bottom: 10px;
+    }
+    div.rsevaluation_wrapper li.box-item.excursion-item div.like, div.rsevaluation_wrapper li.box-item.excursion-item div.author {
+      display: none;
+    }
+  </style>
+<%end%>
+<%content_for :javascript_libs do%>
+  <%= javascript_include_tag "jquery.raty" %>
+<%end%>
+
+<div class="rsevaluation_wrapper">
+  <p class="rstitle"><%=t("rsevaluation.steptitle", :step => "3").html_safe%></p>
+  <div id="progressbar" class="progressbar"></div>
+  <div class="rsdescription" style="margin-bottom: 10px;"><%=t("rsevaluation.step3.descriptiona").html_safe%></div>
+  <%= render "/rsevaluation/lo" %>
+  <div class="rsdescription" style="margin-top: 10px; margin-bottom: 35px;"><%=t("rsevaluation.step3.descriptionb").html_safe%></div>
+  <div class="rsevaluation_los">
+    <% @itemsB.each do |lo| %>
+      <%= render "/rsevaluation/lo_box", :lo => lo %>
+    <% end %>
+  </div>
+  <button id="step" class="btn btn-primary rsbutton"><%=t("dictionary.finish")%></button>
+  <form id="stepform" style="display:none" action="/rsevaluation/step/3" method="POST">
+    <input type="hidden" name="data">
+    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+  </form>
+</div>
+
+<%content_for :javascript do%>
+  $("li.box-item.excursion-item a[href]").each(function(index,a){
+    $(a).attr("target","_blank");
+  });
+  $("li.box-item.excursion-item div.caption > h6").height("55px");
+
+  $("#progressbar").progressbar({
+    value: 66
+  });
+  $('div.rating').raty({
+    path: '/assets',
+    hints: ['1 (<%=t("rsevaluation.stars.one")%>)', '2', '3', '4', '5 (<%=t("rsevaluation.stars.five")%>)']
+  });
+  $("#step").click(function(event){
+    event.preventDefault();
+    event.stopPropagation();
+
+    var scores = $("div.rating").raty('score');
+    var validScores = [];
+    for(var i=0; i<scores.length; i++){
+      if(typeof scores[i] == "number"){
+        validScores.push(scores[i]);
+      }
+    }
+    if(validScores.length < parseInt('<%=@itemsB.length%>')){
+      return alert('<%=t("rsevaluation.messages.norelevance")%>');
+    }
+
+    //Send data to the server using a web form
+    var data = {};
+    data["recommendationsB"] = JSON.parse('<%=raw(escape_javascript Rsevaluation.getActivityObjectJSON(@recommendationsB).to_json)%>');
+    data["randomB"] = JSON.parse('<%=raw(escape_javascript Rsevaluation.getActivityObjectJSON(@randomB).to_json)%>');
+    data["BLo"] = JSON.parse('<%=raw(escape_javascript Rsevaluation.getActivityObjectJSON(@lo).to_json)%>');
+    data["relevances"] = {};
+    
+    $("div.rating").each(function(index,value){
+      data["relevances"][$(value).attr('loid')] = $(value).raty('score');
+    });
+
+    var form = $("#stepform");
+    $(form).find("input[name='data']").attr("value",JSON.stringify(data));
+    $(form).submit();
+  });
+<% end %>
+
+
+

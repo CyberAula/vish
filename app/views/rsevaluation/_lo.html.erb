@@ -1,0 +1,29 @@
+<div class="rsevaluation_lo">
+  <div class="column1">
+    <ul class="items">
+      <%= render :partial => 'entities/entity', :locals => { :entity => @lo, :prefix_id=> "rsevaluation" } %>
+    </ul>
+  </div>
+  <div class="column2">
+    <table class="table table-hover">
+      <% unless @lo.title.blank? %>
+        <tr>
+          <td><span><%= t('document.info.title') %></span></td>
+          <td><%= link_to(truncate(@lo.title, :length => 200), @lo.getUrl, target: "_blank")%></td>
+        </tr>
+      <% end %>
+      <% unless @lo.description.blank? %>
+        <tr>
+          <td><span><%= t('document.info.description') %></span></td>
+          <td><%= truncate(@lo.description, :length => 450) %></td>
+        </tr>
+      <% end %>
+      <% unless @lo.tag_list.blank? %>
+        <tr>
+          <td><span><%= t('document.info.tags') %></span></td>
+          <td><span><%= @lo.tag_list.join(", ") %></span></td>
+        </tr>
+      <% end %>
+     </table>
+  </div>
+</div>

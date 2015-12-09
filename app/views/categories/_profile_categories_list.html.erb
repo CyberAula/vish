@@ -6,7 +6,7 @@
     all_categories.sort_by!{|h| order.index(h.activity_object.id) || (orderLength+1)}
   end
   categoryView = profile_or_current_subject.categories_view
-  canEditProfile = profile_subject_is_current? or isAdmin?
+  canEditProfile = (profile_subject_is_current? and current_subject.private_student_group_id == nil) or isAdmin?
 %>
 
 <div class="toolbar_nav-tab">
