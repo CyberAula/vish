@@ -94,27 +94,32 @@ namespace :rs do
     printTitle("Calculating Accuracy using leave-one-out")
     puts "Random" if args[:random]
 
-    #Get users with more than N liked or authored resources
-    N = 4
+    #Get users with more than Nmin liked, cloned or authored resources. Restrict resources for each user to Nmax.
+    Nmin = 3
+    Nmax = 30
+    #Specify period of the study
+    endDate = DateTime.parse(Vish::Application.config.APP_CONFIG["recommender_system"][:evaluation][:endDate]) rescue DateTime.now
+    startDate = DateTime.parse(Vish::Application.config.APP_CONFIG["recommender_system"][:evaluation][:startDate]) rescue (endDate - 365)
+    
+    likedResources = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id}).where("activity_objects.object_type IN (?) and activity_objects.scope=0","Excursion").where(:created_at => startDate..endDate).group("activities.id").group_by(&:author_id)
+    likedResources.map{|k,v| likedResources[k] = v.map{|a| a.direct_object}}
     authoredResources = ActivityObject.where("activity_objects.object_type IN (?) and activity_objects.scope=0","Excursion").group("activity_objects.id").group_by(&:author_id)
     authoredResources.map{|k,v| authoredResources[k] = v.map{|a| a.object}}
-    likedResources = Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id}).where("activity_objects.object_type IN (?) and activity_objects.scope=0","Excursion").group("activities.id").group_by(&:author_id)
-    likedResources.map{|k,v| likedResources[k] = v.map{|a| a.direct_object}}
-
+    
     likedAndAuthoredResources = {}
     (likedResources.keys + authoredResources.keys).uniq.each do |k|
-      likedAndAuthoredResources[k] = []
-      likedAndAuthoredResources[k] = authoredResources[k] if authoredResources[k].is_a? Array
+      likedAndAuthoredResources[k] = ((likedResources[k].is_a? Array) ? likedResources[k] : [])
       lARL = likedAndAuthoredResources[k].length
-      if lARL < N and likedResources[k].is_a? Array
-        likedAndAuthoredResources[k] = (likedAndAuthoredResources[k] + likedResources[k]).uniq
+      if lARL < Nmin and authoredResources[k].is_a? Array
+        likedAndAuthoredResources[k] = (likedAndAuthoredResources[k] + authoredResources[k]).uniq
         lARL = likedAndAuthoredResources[k].length
       end
-      likedAndAuthoredResources.delete(k) if lARL < N
+      likedAndAuthoredResources[k] = likedAndAuthoredResources[k].sample(Nmax)
+      likedAndAuthoredResources.delete(k) if lARL < Nmin
     end
 
-    vishActorIds = Actor.find_all_by_email(Vish::Application.config.APP_CONFIG["recommender_system"][:evaluation][:mails_filtered]).map{|a| a.id} rescue []
-    likedAndAuthoredResources = likedAndAuthoredResources.select{|k,v| v.length > N}.reject{|k,v| vishActorIds.include? k }
+    vishFilteredActorIds = Actor.find_all_by_email(Vish::Application.config.APP_CONFIG["recommender_system"][:evaluation][:mails_filtered]).map{|a| a.id} rescue []
+    likedAndAuthoredResources = likedAndAuthoredResources.select{|k,v| v.length > Nmin}.reject{|k,v| vishFilteredActorIds.include? k }
     users = Actor.find(likedAndAuthoredResources.keys)
     # users = [User.find(?).actor]
 
