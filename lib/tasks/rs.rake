@@ -88,10 +88,11 @@ namespace :rs do
   # Usage
   # bundle exec rake rs:accuracy
   # Leave-one-out method: measure how often the left-out entity appears in the top N recommendations
-  task :accuracy, [:prepare] => :environment do |t,args|
+  task :accuracy, [:random] => :environment do |t,args|
     Rake::Task["rs:prepare"].invoke
 
     printTitle("Calculating Accuracy using leave-one-out")
+    puts "Random" if args[:random]
 
     #Get users with more than N liked or authored resources
     N = 4
@@ -133,11 +134,14 @@ namespace :rs do
       los = likedAndAuthoredResources[Actor.normalize_id(user)]
       maxUserLos = 2
       los.each do |lo|
+        #Leave lo out and see if it appears on the n recommendations
         userLos = los.reject{|pastLo| pastLo.id==lo.id}
         2.times do
-          #Leave lo out and see if it appears on the n recommendations
-          attemptUserLos = userLos.sample(maxUserLos)
-          recommendations = RecommenderSystem.resource_suggestions({:n => nMax, :settings => rsSettings, :user => user, :user_settings => {}, :user_los => attemptUserLos, :max_user_los => maxUserLos})
+          unless args[:random]
+            recommendations = RecommenderSystem.resource_suggestions({:n => nMax, :settings => rsSettings, :user => user, :user_settings => {}, :user_los => userLos.sample(maxUserLos), :max_user_los => maxUserLos})
+          else
+            recommendations = ActivityObject.getAllPublicResources.limit(nMax).order(Vish::Application::config.agnostic_random).map{|ao| ao.object}.compact
+          end
           ns.each do |n|
             success = recommendations.first(n).select{|recLo| recLo.id==lo.id}.length > 0 # Success when the out entity is found on recommendations
             results[n.to_s][:attempts] += 1
@@ -179,7 +183,7 @@ namespace :rs do
   # Usage
   # bundle exec rake rs:performance
   # Time taken by the recommender system to generate a set of recommendations
-  task :performance, [:prepare] => :environment do |t,args|
+  task :performance => :environment do |t,args|
     Rake::Task["rs:prepare"].invoke
 
     printTitle("Calculating Performance")
