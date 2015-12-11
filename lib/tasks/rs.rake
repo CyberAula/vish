@@ -352,6 +352,9 @@ namespace :rs do
       results[key][:acceptedp] = (results[key][:accepted]/(results[key][:accepted]+results[key][:rejected]).to_f).round(2)
       results[key][:rejectedp] = (results[key][:rejected]/(results[key][:accepted]+results[key][:rejected]).to_f).round(2)
       results[key][:timeToAccept] = {:mean => 0, :sd => 0}
+      
+      topTimeThreshold = [60,DescriptiveStatistics.percentile(80,results[key][:timesToAccept])].min
+      results[key][:timesToAccept] = results[key][:timesToAccept].reject{|t| t>topTimeThreshold}
       results[key][:timeToAccept] = {:mean => DescriptiveStatistics.mean(results[key][:timesToAccept]).round(1), :sd => DescriptiveStatistics.standard_deviation(results[key][:timesToAccept]).round(1)} if results[key][:timesToAccept].length > 0
       
       results[key][:acceptedItemsStats] = {:n => 0, :quality => {:mean => 0, :sd => 0}, :popularity => {:mean => 0, :sd => 0}, :score => {:mean => 0, :sd => 0}, :qualities => [], :popularities => [], :scores => []}
