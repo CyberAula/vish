@@ -267,6 +267,168 @@ namespace :rs do
     puts("Task Finished. Results generated at " + filePath)
   end
 
+  # Usage
+  # bundle exec rake rs:abtesting
+  # Analyze A/B testing based on ViSH Tracking Data.
+  # Compare ViSH Recommender System vs Random vs Other recommendation approaches
+  task :abtesting, [:n] => :environment do |t,args|
+    Rake::Task["rs:prepare"].invoke
+    printTitle("A/B Testing results")
+
+    results = {}
+    #Compare RS vs Random vs Other recommendation approaches
+    results[:rs] =     {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => []}
+    results[:rsq] =    {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => []}
+    results[:rsqp] =   {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => []}
+    results[:random] = {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => []}
+    rsKeys = results.keys.select{|key| results[key][:n].is_a? Integer}
+    
+    ActiveRecord::Base.uncached do
+      n = args[:n].to_i unless args[:n].nil?
+      if n.is_a? Integer
+        vvEntries = TrackingSystemEntry.limit(n).where(:app_id=>"ViSH Viewer").order(Vish::Application::config.agnostic_random)
+      else
+        vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer")
+      end
+      
+      index = 0
+      methodName = ((n.is_a? Integer) ? "each" : "find_each")
+      methodParams = (methodName=="find_each" ? [{:batch_size => 1000}] : [])
+      vvEntries.send(methodName,*methodParams) do |e|
+        # puts index.to_s
+        index += 1
+
+        d = JSON(e["data"]) rescue {}
+        recData = d["rs"]
+        next if recData.nil? or !recData["tdata"].is_a? Hash
+        
+        firstItem = recData["tdata"].values.first
+        rsItemTrackingData = JSON(firstItem["recommender_data"]) rescue nil
+        next if rsItemTrackingData.nil? or !(["ViSHRecommenderSystem","ViSHRS-Quality","ViSHRS-Quality-Popularity","Random"].include? rsItemTrackingData["rec"])
+        
+        case rsItemTrackingData["rec"]
+        when "ViSHRecommenderSystem"
+          thisRecTSD = results[:rs]
+        when "ViSHRS-Quality"
+          thisRecTSD = results[:rsq]
+        when "ViSHRS-Quality-Popularity"
+          thisRecTSD = results[:rsqp]
+        when "Random"
+          thisRecTSD = results[:random]
+        else
+        end
+
+        thisRecTSD[:n] += 1
+        thisRecTSD[:shown] += 1 if recData["shown"]=="true" or recData["shown"]==true
+
+        if recData["accepted"] == "false" or recData["accepted"]==false
+          thisRecTSD[:rejected] += 1
+        elsif recData["accepted"] == "undefined"
+          #Do nothing. Either accepted or rejected.
+        elsif recData["accepted"].is_a? String
+          thisRecTSD[:accepted] += 1
+
+          #When accepted, measure time.
+          allActions = d["chronology"].values.map{|c| c["actions"].values}.flatten rescue []
+          onShowRecommendationAction = allActions.select{|a| a["id"]=="onShowRecommendations" }.last
+          onAcceptRecommendationAction = allActions.select{|a| a["id"]=="onAcceptRecommendation" }.last
+
+          if !onShowRecommendationAction.nil? and !onAcceptRecommendationAction.nil? and !onShowRecommendationAction["t"].nil? and !onAcceptRecommendationAction["t"].nil?
+            recTime = (onAcceptRecommendationAction["t"].to_f - onShowRecommendationAction["t"].to_f).round(2)
+            thisRecTSD[:timesToAccept].push(recTime) if recTime > 0
+          end
+
+          #Store accepted and rejected items
+          acceptedItem = recData["tdata"].values.select{|item| item["id"]==recData["accepted"]}[0]
+          thisRecTSD[:acceptedItems].push(acceptedItem)
+          rejectedItems = recData["tdata"].values.select{|item| item["id"]!=recData["accepted"]}
+          thisRecTSD[:rejectedItems] += rejectedItems
+        end
+      end
+    end
+
+    rsKeys.each do |key|
+      results[key][:n2] = results[key][:accepted]+results[key][:rejected]
+      results[key][:acceptedp] = (results[key][:accepted]/(results[key][:accepted]+results[key][:rejected]).to_f).round(2)
+      results[key][:rejectedp] = (results[key][:rejected]/(results[key][:accepted]+results[key][:rejected]).to_f).round(2)
+      results[key][:timeToAccept] = {:mean => 0, :sd => 0}
+      results[key][:timeToAccept] = {:mean => DescriptiveStatistics.mean(results[key][:timesToAccept]).round(1), :sd => DescriptiveStatistics.standard_deviation(results[key][:timesToAccept]).round(1)} if results[key][:timesToAccept].length > 0
+      
+      results[key][:acceptedItemsStats] = {:n => 0, :quality => {:mean => 0, :sd => 0}, :popularity => {:mean => 0, :sd => 0}, :score => {:mean => 0, :sd => 0}, :qualities => [], :popularities => [], :scores => []}
+      if results[key][:acceptedItems].length > 0
+        results[key][:acceptedItems].each do |item|
+          rsData = JSON.parse(item["recommender_data"]) rescue nil
+          unless rsData.nil? or rsData["qscore"].nil? or rsData["popularity"].nil? or rsData["overall_score"].nil?
+            results[key][:acceptedItemsStats][:n] += 1
+            results[key][:acceptedItemsStats][:qualities].push((rsData["qscore"]/100000.to_f).round(2))
+            results[key][:acceptedItemsStats][:popularities].push((rsData["popularity"]/100000.to_f).round(2))
+            results[key][:acceptedItemsStats][:scores].push(rsData["overall_score"].round(2))
+          end
+        end
+        if results[key][:acceptedItemsStats][:n] > 0
+          results[key][:acceptedItemsStats][:quality] = {:mean =>  DescriptiveStatistics.mean(results[key][:acceptedItemsStats][:qualities]).round(2), :sd => DescriptiveStatistics.standard_deviation(results[key][:acceptedItemsStats][:qualities]).round(2)}
+          results[key][:acceptedItemsStats][:popularity] = {:mean =>  DescriptiveStatistics.mean(results[key][:acceptedItemsStats][:popularities]).round(2), :sd => DescriptiveStatistics.standard_deviation(results[key][:acceptedItemsStats][:popularities]).round(2)}
+          results[key][:acceptedItemsStats][:score] = {:mean =>  DescriptiveStatistics.mean(results[key][:acceptedItemsStats][:scores]).round(2), :sd => DescriptiveStatistics.standard_deviation(results[key][:acceptedItemsStats][:scores]).round(2)}
+        end
+      end
+    end
+
+    #Acceptance comparison
+    rsKeys.each do |key|
+      puts "\nResults for: " + key.to_s
+      resultToPrint = results[key].select{|k,v| v.is_a? String or v.is_a? Integer or v.is_a? Float or [:acceptedItemsStats].include? k}.recursive_merge({})
+      resultToPrint[:acceptedItemsStats] = resultToPrint[:acceptedItemsStats].select{|k,v| v.is_a? String or v.is_a? Integer or v.is_a? Float or [:quality, :popularity, :score].include? k}
+      puts resultToPrint.to_s
+    end
+    puts "\n"
+
+    #Generate excel file with results
+    filePath = "reports/rs_abtesting.xlsx"
+    Axlsx::Package.new do |p|
+      p.workbook.add_worksheet(:name => "AB Testing Acceptance") do |sheet|
+        rows = []
+        rows << ["Recommender System A/B Testing: Acceptance"]
+        
+        rsKeys.each do |key|
+          2.times do |i|
+            rows << []
+          end
+          rows << [key.to_s]
+          rows << ["n","Shown","n2 (Accepted or Rejected)","Accepted","Accepted (%)","Rejected", "Rejected (%)","Time (M)","Time (SD)"]
+          rows << [results[key][:n],results[key][:shown],results[key][:n2],results[key][:accepted],results[key][:acceptedp],results[key][:rejected],results[key][:rejectedp],results[key][:timeToAccept][:mean],results[key][:timeToAccept][:sd]]
+        end
+
+        3.times do |i|
+          rows << []
+        end
+
+        rows << ["Recommender System A/B Testing: Items"]
+        rsKeys.each do |key|
+          2.times do |i|
+            rows << []
+          end
+          rows << [key.to_s]
+          rows << ["n","quality","","popularity","","score","","qualities","popularities","scores"]
+          rows << ["","M","SD","M","SD","M","SD"]
+          rows << [results[key][:acceptedItemsStats][:n],results[key][:acceptedItemsStats][:quality][:mean],results[key][:acceptedItemsStats][:quality][:sd],results[key][:acceptedItemsStats][:popularity][:mean],results[key][:acceptedItemsStats][:popularity][:sd],results[key][:acceptedItemsStats][:score][:mean],results[key][:acceptedItemsStats][:score][:sd]]
+          results[key][:acceptedItemsStats][:qualities].length.times do |j|
+            rows << ["","","","","","","",results[key][:acceptedItemsStats][:qualities][j-1],results[key][:acceptedItemsStats][:popularities][j-1],results[key][:acceptedItemsStats][:scores][j-1]]
+          end
+        end
+
+        rows.each do |row|
+          sheet.add_row row
+        end
+      end
+      prepareFile(filePath)
+      p.serialize(filePath)
+    end
+
+    puts("A/B Testing Acceptance Results generated at " + filePath)
+    puts("Task finished")
+  end
+
+
   private
 
   ####################
