@@ -277,10 +277,10 @@ namespace :rs do
 
     results = {}
     #Compare RS vs Random vs Other recommendation approaches
-    results[:rs] =     {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimes => []}
-    results[:rsq] =    {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimes => []}
-    results[:rsqp] =   {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimes => []}
-    results[:random] = {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimes => []}
+    results[:rs] =     {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}}
+    results[:rsq] =    {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}}
+    results[:rsqp] =   {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}}
+    results[:random] = {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}}
     rsKeys = results.keys.select{|key| results[key][:n].is_a? Integer}
     
     ActiveRecord::Base.uncached do
@@ -328,7 +328,7 @@ namespace :rs do
         elsif recData["accepted"].is_a? String
           thisRecTSD[:accepted] += 1
 
-          #When accepted, measure time.
+          #When accepted, measure time spent on select recommendation.
           allActions = d["chronology"].values.map{|c| c["actions"].values}.flatten rescue []
           onShowRecommendationAction = allActions.select{|a| a["id"]=="onShowRecommendations" }.last
           onAcceptRecommendationAction = allActions.select{|a| a["id"]=="onAcceptRecommendation" }.last
@@ -343,10 +343,29 @@ namespace :rs do
           thisRecTSD[:acceptedItems].push(acceptedItem)
           rejectedItems = recData["tdata"].values.select{|item| item["id"]!=recData["accepted"]}
           thisRecTSD[:rejectedItems] += rejectedItems
+
+          #Get time spent on the resource after accept the recommendation
+          TrackingSystemEntry.limit(100).where(:app_id=>"ViSH RLOsInExcursions", :created_at => e.created_at..(e.created_at+5.minutes)).order("created_at ASC").each do |eViSHLo|
+            dViSHLo = JSON.parse(eViSHLo.data) rescue {}
+            next if dViSHLo["rsEngine"].blank? or dViSHLo["rsEngine"]!=rsItemTrackingData["rec"]
+            next if acceptedItem["id"].blank? or acceptedItem["id"].to_s!=dViSHLo["excursionId"].to_s
+            loEntry = TrackingSystemEntry.find_by_tracking_system_entry_id(eViSHLo.id)
+            if loEntry.nil?
+              thisRecTSD[:loTimesA].push(3)
+              break
+            end
+            next if loEntry.nil? or loEntry.app_id!="ViSH Viewer"
+            
+            # Calculate LO time
+            dLo = JSON(e["data"]) rescue {}
+            next if dLo.blank? or dLo["chronology"].blank? or dLo["duration"].blank? or dLo["lo"].blank?
+            thisRecTSD[:loTimesA].push(dLo["duration"].to_i)
+            break
+          end
         end
       end
 
-      #Get time spent on the resources for each recommendation approach
+      #Get time spent on the resources for each recommendation approach (Another way to do it)
       index = 0
       vvEntries.where("tracking_system_entry_id is NOT NULL").send(methodName,*methodParams) do |e|
         # puts index.to_s
@@ -373,7 +392,7 @@ namespace :rs do
         #Calculate LO time
         dLo = JSON(e["data"]) rescue {}
         next if dLo.blank? or dLo["chronology"].blank? or dLo["duration"].blank? or dLo["lo"].blank?
-        thisRecTSD[:loTimes].push(dLo["duration"].to_i)
+        thisRecTSD[:loTimesB].push(dLo["duration"].to_i)
       end
     end
 
@@ -405,15 +424,19 @@ namespace :rs do
         end
       end
 
-      topTimeThresholdLoTimes = [3*60*60,DescriptiveStatistics.percentile(80,results[key][:loTimes]) || (3*60*60)].min
-      results[key][:loTimes] = results[key][:loTimes].reject{|t| t>topTimeThresholdLoTimes}
-      results[key][:loTime] = {:mean => DescriptiveStatistics.mean(results[key][:loTimes]).round(1), :sd => DescriptiveStatistics.standard_deviation(results[key][:loTimes]).round(1)} if results[key][:loTimes].length > 0
+      topTimeThresholdLoTimesA = [3*60*60,DescriptiveStatistics.percentile(80,results[key][:loTimesA]) || (3*60*60)].min
+      results[key][:loTimesA] = results[key][:loTimesA].reject{|t| t>topTimeThresholdLoTimesA}
+      results[key][:loTimeA] = {:mean => DescriptiveStatistics.mean(results[key][:loTimesA]).round(1), :sd => DescriptiveStatistics.standard_deviation(results[key][:loTimesA]).round(1)} if results[key][:loTimesA].length > 0
+      topTimeThresholdLoTimesB = [3*60*60,DescriptiveStatistics.percentile(80,results[key][:loTimesB]) || (3*60*60)].min
+      results[key][:loTimesB] = results[key][:loTimesB].reject{|t| t>topTimeThresholdLoTimesB}
+      results[key][:loTimeB] = {:mean => DescriptiveStatistics.mean(results[key][:loTimesB]).round(1), :sd => DescriptiveStatistics.standard_deviation(results[key][:loTimesB]).round(1)} if results[key][:loTimesB].length > 0
+    
     end
 
     #Print main results
     rsKeys.each do |key|
       puts "\nResults for: " + key.to_s
-      resultToPrint = results[key].select{|k,v| v.is_a? String or v.is_a? Integer or v.is_a? Float or [:acceptedItemsStats,:loTime].include? k}.recursive_merge({})
+      resultToPrint = results[key].select{|k,v| v.is_a? String or v.is_a? Integer or v.is_a? Float or [:acceptedItemsStats,:loTimeA,:loTimeB].include? k}.recursive_merge({})
       resultToPrint[:acceptedItemsStats] = resultToPrint[:acceptedItemsStats].select{|k,v| v.is_a? String or v.is_a? Integer or v.is_a? Float or [:quality, :popularity, :score].include? k}
       puts resultToPrint.to_s
     end
@@ -463,11 +486,19 @@ namespace :rs do
             rows << []
           end
           rows << [key.to_s]
+          rows << ["Approach A"]
           rows << ["n","time","","times"]
           rows << ["","M","SD"]
-          rows << [results[key][:loTimes].length,results[key][:loTime][:mean],results[key][:loTime][:sd]]
-          results[key][:loTimes].length.times do |j|
-            rows << ["","","",results[key][:loTimes][j-1]]
+          rows << [results[key][:loTimesA].length,results[key][:loTimeA][:mean],results[key][:loTimeA][:sd]]
+          results[key][:loTimesA].length.times do |j|
+            rows << ["","","",results[key][:loTimesA][j-1]]
+          end
+          rows << ["Approach B"]
+          rows << ["n","time","","times"]
+          rows << ["","M","SD"]
+          rows << [results[key][:loTimesB].length,results[key][:loTimeB][:mean],results[key][:loTimeB][:sd]]
+          results[key][:loTimesB].length.times do |j|
+            rows << ["","","",results[key][:loTimesB][j-1]]
           end
         end
 
