@@ -277,27 +277,32 @@ namespace :rs do
 
     results = {}
     #Compare RS vs Random vs Other recommendation approaches
-    results[:rs] =     {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}}
-    results[:rsq] =    {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}}
-    results[:rsqp] =   {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}}
-    results[:random] = {:n => 0, :shown => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}}
+    results[:rs] =     {:n => 0, :shown => 0, :shownViSH => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}, :nAccessed => 0, :nGenerated => 0, :accessRatio => 0}
+    results[:rsq] =    {:n => 0, :shown => 0, :shownViSH => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}, :nAccessed => 0, :nGenerated => 0, :accessRatio => 0}
+    results[:rsqp] =   {:n => 0, :shown => 0, :shownViSH => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}, :nAccessed => 0, :nGenerated => 0, :accessRatio => 0}
+    results[:random] = {:n => 0, :shown => 0, :shownViSH => 0, :n2 => 0, :accepted => 0, :rejected => 0, :timesToAccept => [], :acceptedItems => [], :rejectedItems => [], :loTimesA => [], :loTimeA => {:mean => 0, :sd => 0}, :loTimesB => [], :loTimeB => {:mean => 0, :sd => 0}, :nAccessed => 0, :nGenerated => 0, :accessRatio => 0}
     rsKeys = results.keys.select{|key| results[key][:n].is_a? Integer}
     
     ActiveRecord::Base.uncached do
       n = args[:n].to_i unless args[:n].nil?
       if n.is_a? Integer
         vvEntries = TrackingSystemEntry.limit(n).where(:app_id=>"ViSH Viewer").order(Vish::Application::config.agnostic_random)
+        vUIEntries = TrackingSystemEntry.limit(n).where(:app_id=>"ViSHUIRecommenderSystem").order(Vish::Application::config.agnostic_random)
+        vRLOsEntries = TrackingSystemEntry.limit(n).where(:app_id=>"ViSH RLOsInExcursions").order(Vish::Application::config.agnostic_random)
+        sStartDate = vRLOsEntries.order("created_at ASC").first.created_at
+        sEndDate = DateTime.now
       else
         vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer")
+        vUIEntries = TrackingSystemEntry.where(:app_id=>"ViSHUIRecommenderSystem")
+        vRLOsEntries = TrackingSystemEntry.where(:app_id=>"ViSH RLOsInExcursions")
+        sStartDate = vRLOsEntries.order("created_at ASC").first.created_at
+        sEndDate = (vRLOsEntries.order("created_at DESC").first.created_at + 1.day)
       end
-      
-      index = 0
       methodName = ((n.is_a? Integer) ? "each" : "find_each")
       methodParams = (methodName=="find_each" ? [{:batch_size => 1000}] : [])
-      vvEntries.send(methodName,*methodParams) do |e|
-        # puts index.to_s
-        index += 1
 
+      #[1] ViSH Editor Tracked Data
+      vvEntries.send(methodName,*methodParams) do |e|
         d = JSON(e["data"]) rescue {}
         recData = d["rs"]
         next if recData.nil? or !recData["tdata"].is_a? Hash
@@ -319,7 +324,10 @@ namespace :rs do
         end
 
         thisRecTSD[:n] += 1
-        thisRecTSD[:shown] += 1 if recData["shown"]=="true" or recData["shown"]==true
+        if recData["shown"]=="true" or recData["shown"]==true
+          thisRecTSD[:shown] += 1
+          thisRecTSD[:shownViSH] += 1 if (e.created_at >= sStartDate and e.created_at <= sEndDate)
+        end
 
         if recData["accepted"] == "false" or recData["accepted"]==false
           thisRecTSD[:rejected] += 1
@@ -366,11 +374,7 @@ namespace :rs do
       end
 
       #Get time spent on the resources for each recommendation approach (Another way to do it)
-      index = 0
       vvEntries.where("tracking_system_entry_id is NOT NULL").send(methodName,*methodParams) do |e|
-        # puts index.to_s
-        index += 1
-
         loEntry = e.tracking_system_entry
         next if loEntry.nil? or loEntry.app_id!="ViSH RLOsInExcursions"
 
@@ -394,6 +398,53 @@ namespace :rs do
         next if dLo.blank? or dLo["chronology"].blank? or dLo["duration"].blank? or dLo["lo"].blank?
         thisRecTSD[:loTimesB].push(dLo["duration"].to_i)
       end
+
+      #[2] ViSH Tracked Data
+      #Get %resources accesed by recommendations with each recommender system
+      vUIEntries.send(methodName,*methodParams) do |e|
+        d = JSON(e["data"]) rescue {}
+        next if d["rsEngine"].blank?
+        next unless d["models"]==["Excursion"]
+
+        case d["rsEngine"]
+        when "ViSHRecommenderSystem"
+          thisRecTSD = results[:rs]
+        when "ViSHRS-Quality"
+          thisRecTSD = results[:rsq]
+        when "ViSHRS-Quality-Popularity"
+          thisRecTSD = results[:rsqp]
+        when "Random"
+          thisRecTSD = results[:random]
+        else
+        end
+
+        thisRecTSD[:nGenerated] += 1
+      end
+
+      #Add generations from VE Tracked Data
+      rsKeys.each do |key|
+        results[key][:nGenerated] += results[key][:shownViSH]
+      end
+      
+      vRLOsEntries.send(methodName,*methodParams) do |e|
+        d = JSON(e["data"]) rescue {}
+        next if d["rsEngine"].blank? or d["rec"].blank?
+
+        case d["rsEngine"]
+        when "ViSHRecommenderSystem"
+          thisRecTSD = results[:rs]
+        when "ViSHRS-Quality"
+          thisRecTSD = results[:rsq]
+        when "ViSHRS-Quality-Popularity"
+          thisRecTSD = results[:rsqp]
+        when "Random"
+          thisRecTSD = results[:random]
+        else
+        end
+
+        thisRecTSD[:nAccessed] += 1
+      end
+
     end
 
     rsKeys.each do |key|
@@ -431,6 +482,9 @@ namespace :rs do
       results[key][:loTimesB] = results[key][:loTimesB].reject{|t| t>topTimeThresholdLoTimesB}
       results[key][:loTimeB] = {:mean => DescriptiveStatistics.mean(results[key][:loTimesB]).round(1), :sd => DescriptiveStatistics.standard_deviation(results[key][:loTimesB]).round(1)} if results[key][:loTimesB].length > 0
     
+      if results[key][:nGenerated] > 0
+        results[key][:accessRatio] = (results[key][:nAccessed]/results[key][:nGenerated].to_f).round(3)
+      end
     end
 
     #Print main results
@@ -454,8 +508,8 @@ namespace :rs do
             rows << []
           end
           rows << [key.to_s]
-          rows << ["n","Shown","n2 (Accepted or Rejected)","Accepted","Accepted (%)","Rejected", "Rejected (%)","Time (M)","Time (SD)"]
-          rows << [results[key][:n],results[key][:shown],results[key][:n2],results[key][:accepted],results[key][:acceptedp],results[key][:rejected],results[key][:rejectedp],results[key][:timeToAccept][:mean],results[key][:timeToAccept][:sd]]
+          rows << ["n","Shown","ShownViSH","n2 (Accepted or Rejected)","Accepted","Accepted (%)","Rejected", "Rejected (%)","Time (M)","Time (SD)","Accessed","Generated","AccessRatio"]
+          rows << [results[key][:n],results[key][:shown],results[key][:shownViSH],results[key][:n2],results[key][:accepted],results[key][:acceptedp],results[key][:rejected],results[key][:rejectedp],results[key][:timeToAccept][:mean],results[key][:timeToAccept][:sd],results[key][:nAccessed],results[key][:nGenerated],results[key][:accessRatio]]
         end
 
         3.times do |i|
