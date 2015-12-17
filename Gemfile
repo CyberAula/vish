@@ -75,6 +75,7 @@ end
 
 #for INVITATION ONLY
 gem 'devise_invitable', '= 1.1.8'
+gem 'devise_cas_authenticatable'
 
 # $ export FORCE_LOCAL_SCORM=scormGemPath
 if ENV['FORCE_LOCAL_SCORM']

@@ -25,6 +25,25 @@ Devise.setup do |config|
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [ :email ]
 
+  if Vish::Application.config.APP_CONFIG["register_policy"] == "CAS"
+	  # ==> Configuration for SSO server authentication
+	  # Url pointing to the CASino SSO server
+	  config.cas_base_url = Vish::Application.config.APP_CONFIG["CAS"]["cas_base_url"]
+	  # Tell devise_cas_authenticatable not create users if they do not exist
+	  config.cas_create_user = Vish::Application.config.APP_CONFIG["CAS"]["cas_create_user"]
+	  # Instead username we use email for login field
+	  config.cas_username_column = Vish::Application.config.APP_CONFIG["CAS"]["cas_username_column"]
+	  # After logout we use a 'destination' url to be redirected
+	  config.cas_logout_url_param = Vish::Application.config.APP_CONFIG["CAS"]["cas_logout_url_param"]
+	  # The url for redirect after logout
+	  config.cas_destination_url = Vish::Application.config.APP_CONFIG["CAS"]["cas_destination_url"]
+	  # Parameter required for CASino logout to work
+	  config.cas_destination_logout_param_name = Vish::Application.config.APP_CONFIG["CAS"]["cas_destination_logout_param_name"]
+	  # Enable single sign out
+	  config.cas_enable_single_sign_out = Vish::Application.config.APP_CONFIG["CAS"]["cas_enable_single_sign_out"]
+  end
+
+
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
   # find_for_authentication method and considered in your model lookup. For instance,
