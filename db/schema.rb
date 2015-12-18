@@ -278,7 +278,7 @@ ActiveRecord::Schema.define(:version => 20151202091500) do
     t.integer  "slide_count",             :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",                   :default => false
-    t.text     "offline_manifest",        :default => ""
+    t.text     "offline_manifest"
     t.datetime "scorm_timestamp"
     t.datetime "pdf_timestamp"
     t.string   "attachment_file_name"
