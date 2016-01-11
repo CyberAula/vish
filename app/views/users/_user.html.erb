@@ -1,5 +1,5 @@
 <li class="box-item contact" id="<%= dom_id user %>">
-  <%= link_to(user) do %>
+  
   <!-- corner -->
   <div class="corner-item">
     <div class="corner-item2">
@@ -12,12 +12,10 @@
   <div class="container-img">
     <div class="img-box resource-center">
     	<div class="avatar">
-        <%#= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
-        <%= image_tag(user.logo.url(:medium)) %>
+        <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
       </div>
     </div>
   </div>
-  <% end %>
 
   <!--INFO user-->
   <div class="caption">
