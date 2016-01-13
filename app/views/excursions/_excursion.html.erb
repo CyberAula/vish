@@ -1,5 +1,7 @@
 <li class="box-item excursion-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+  <% if defined?(prefix_id) && (prefix_id == "join" || prefix_id == "tw") %>
   <div class="selecting-item" style="display:none;"><i class="fa fa-check"></i><%= t('competition.modal.selected') %></div>
+  <% end %>
   <%if defined?(prefix_id) %>
     <%generated_id= prefix_id + "-excursion-" + excursion.id.to_s%>
   <%else%>

@@ -98,7 +98,7 @@
 
     //When click to suggested they go to down part for being categorized
     $("#suggested_categories li").click(function(){
-      var value = $(this).html();
+      var value = $(this).val();
       var name = $(this).html();
       $("#myCategories").tagit("add", name, value);
     });
