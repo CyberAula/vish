@@ -1192,7 +1192,7 @@ button.jqx-button, input[type=button].jqx-button,  input[type=submit].jqx-button
 {
     left: 100%;
     margin: 0px;
-    padding: 0px 0px 0px 10px !important; 
+    padding: 0px 0px 0px 10px !important;
     right: 0;
     display: block;
     float: none;
@@ -2171,7 +2171,7 @@ button.jqx-button, input[type=button].jqx-button,  input[type=submit].jqx-button
     border: 1px solid transparent;
     -webkit-appearance: none;
     outline: none;
-    padding: 0px;
+    padding: 0px 0px 5px 0px;
     margin: 0px;
     cursor: default;
     overflow: hidden;
