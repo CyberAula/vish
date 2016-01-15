@@ -1126,6 +1126,8 @@ class Excursion < ActiveRecord::Base
     unless contributors.blank?
       eJson["contributors"] = contributors.map{|c| {name: c.name, vishMetadata:{ id: c.id}}}
     end
+    eJson.delete("license")
+    eJson["vishMetadata"] = {draft: "true"}
     e.json = eJson.to_json
 
     e.contributors=contributors
