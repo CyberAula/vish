@@ -103,7 +103,8 @@ class ExcursionsController < ApplicationController
 
     render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)),
                       :uploadPath => excursion_path(@excursion, :format=> "json"),
-                      :editPath => edit_excursion_path(@excursion)
+                      :editPath => edit_excursion_path(@excursion),
+                      :id => @excursion.id
                     }
   end
 
@@ -142,7 +143,8 @@ class ExcursionsController < ApplicationController
     render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)),
                       :uploadPath => excursion_path(@excursion, :format=> "json"),
                       :editPath => edit_excursion_path(@excursion),
-                      :exitPath => (@excursion.draft ? user_path(current_subject) : excursion_path(resource))
+                      :exitPath => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)),
+                      :id => @excursion.id
                     }
   end
 
