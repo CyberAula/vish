@@ -2,6 +2,9 @@
 
 namespace :scheduled do
 
+  #Usage
+  #Development:   bundle exec rake scheduled:regenerateSitemap
+  #In production: bundle exec rake scheduled:regenerateSitemap RAILS_ENV=production
   task :regenerateSitemap => :environment do
     Rake::Task["sitemap:refresh"].invoke("-s")
   end
@@ -207,6 +210,11 @@ namespace :scheduled do
     events_maxLikeCount = [eventAOs.maximum(:like_count),1].max
 
     eventAOs.each do |ao|
+      if ao.updated_at.nil?
+        ao.popularity = 0
+        next
+      end
+
       timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
       fVisits = (ao.visit_count/timeWindow.to_f)/events_maxVisitCount
       fLikes = (ao.like_count/timeWindow.to_f)/events_maxLikeCount
@@ -227,6 +235,11 @@ namespace :scheduled do
     categories_maxVisitCount = [categoryAOs.maximum(:visit_count),1].max
 
     categoryAOs.each do |ao|
+      if ao.updated_at.nil?
+        ao.popularity = 0
+        next
+      end
+      
       timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
       fVisits = (ao.visit_count/timeWindow.to_f)/categories_maxVisitCount
 
