@@ -25,7 +25,7 @@ Devise.setup do |config|
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [ :email ]
 
-  if Vish::Application.config.APP_CONFIG["register_policy"] == "CAS"
+  if Vish::Application.config.APP_CONFIG["login_policy"] == "CAS"
 	  # ==> Configuration for SSO server authentication
 	  # Url pointing to the CASino SSO server
 	  config.cas_base_url = Vish::Application.config.APP_CONFIG["CAS"]["cas_base_url"]

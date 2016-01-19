@@ -6,7 +6,7 @@ Vish::Application.routes.draw do
         get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
         put 'users' => 'devise/registrations#update', :as => 'user_registration'
       end
-  elsif Vish::Application.config.APP_CONFIG["register_policy"] == "CAS"
+  elsif Vish::Application.config.APP_CONFIG["login_policy"] == "CAS"
     devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks", registrations: "registrations", :sessions => "devise/cas_sessions", :passwords => "passwords", :invitations => "devise_invitations" }
   else
     devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks", registrations: "registrations", :sessions => "sessions", :passwords => "passwords", :invitations => "devise_invitations" }

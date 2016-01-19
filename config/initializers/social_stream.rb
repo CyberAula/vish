@@ -14,7 +14,7 @@ SocialStream.setup do |config|
     config.devise_modules << :invitable  
   end
 
-  if Vish::Application.config.APP_CONFIG["register_policy"] == "CAS"
+  if Vish::Application.config.APP_CONFIG["login_policy"] == "CAS"
     config.devise_modules << :cas_authenticatable
   else
     config.devise_modules <<  :database_authenticatable
