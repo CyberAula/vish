@@ -10,13 +10,19 @@ class Search
   def self.search(options={})
 
     #Specify searchTerms
-    if (![String,Array].include? options[:query].class) or (options[:query].is_a? String and options[:query].strip=="")
-      browse = true
-      searchTerms = ""
+    case options[:query].class.name
+    when "String"
+      searchTerms = forceEncoding(options[:query]).split(" ")
+    when "Array"
+      searchTerms = options[:query].map{|str| forceEncoding(str).strip}.reject{|s| s==""}
     else
-      browse = false
-      searchTerms = (options[:query].is_a?(String) ? options[:query].split(" ") : options[:query])
+      searchTerms = []
+    end
 
+    #Browse or search
+    browse = searchTerms.blank?
+
+    unless browse
       #Sanitize search terms
       searchTerms = searchTerms.map{|st| Riddle.escape(st) }
       #Remove keywords with less than 3 characters
@@ -207,6 +213,8 @@ class Search
       opts[:match_mode] = :extended
       #Browse can't order by relevance. Set ranking by default.
       opts[:order] = 'ranking DESC' if opts[:order].nil?
+      #Blank search terms
+      searchTerms = ""
     else
       queryLength = searchTerms.scan(/\w+/).size
 
@@ -236,6 +244,12 @@ class Search
     opts[:order] = '@random' if opts[:order]=="random"
 
     return ThinkingSphinx.search searchTerms, opts
+  end
+
+  def self.forceEncoding(str)
+    str = str.force_encoding('UTF-8')
+    return str if str.valid_encoding?
+    str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
   end
 
 end
