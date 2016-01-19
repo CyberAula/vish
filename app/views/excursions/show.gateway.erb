@@ -17,7 +17,7 @@
 		// console.log("Communication stablished with " + origin);
 		switch(gateway){
 			case "mashme":
-				var MASHME_API_SCRIPT_URL = "https://mashme.tv/static/js/iframe/MashMe.API.iFrame.js";
+				var MASHME_API_SCRIPT_URL = "https://www.mashme.tv/static/js/iframe/MashMe.API.iFrame.js";
 				$.getScript(MASHME_API_SCRIPT_URL).done(function(script, textStatus){
 					MASHME.API.iFrame.init("myappkey","myappsecret", _onMessage);
 				});
@@ -52,7 +52,7 @@
 			VEMessage = JSON.stringify(VEMessageObject);
 			switch(gateway){
 				case "mashme":
-					if(MASHME){
+					if(typeof MASHME != "undefined"){
 						MASHME.API.iFrame.broadcast("MashMeAPIMessage:"+VEMessage);
 					}
 					break;

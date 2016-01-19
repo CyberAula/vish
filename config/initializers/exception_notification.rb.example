@@ -1,5 +1,6 @@
-Vish::Application.config.middleware.use ExceptionNotifier,
+Vish::Application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
     :email_prefix => "[ViSH] ",
-    :sender_address => %{"Error Notifier" <FROM_ADDRESS@HOST>},
+    :sender_address => %{"Error Notifier" <no-reply@vishub.org>},
     :exception_recipients => %w{RECIPIENT1@HOST RECIPIENT2@HOST}
-
+  }

@@ -10,17 +10,41 @@
 		<img src="/assets/zonethumbs/object_hover.png" style="display:none"/>
 		<img src="/assets/zonethumbs/video_hover.png" style="display:none"/>
 		<img src="/assets/zonethumbs/quiz_hover.png" style="display:none"/>
-		<img src="/assets/zonethumbs/quiz_hover.png" style="display:none"/>
 		<img src="/assets/icons/ve_delete_hover.png" style="display:none"/>
+		<img src="/assets/icons/delete_content_hover.png" style="display:none"/>
 		<img src="/assets/vicons/helptutorial_circle_hover.png" style="display:none"/>
+		<img src="/assets/vicons/helptutorial_circle2_hover.png" style="display:none"/>
 		<img src="/assets/vicons/helptutorial_circle_hover_tp.png" style="display:none"/>
 		<img src="/assets/vicons/ve_close_hover.png" style="display:none"/>
+		<img src="/assets/vicons/ve_close2_hover.png" style="display:none"/>
 		<img src="/assets/icons/flashcard_add_img_button_hover.png" style="display:none"/>
 		<img src="/assets/icons/evideo_add_button_hover.png" style="display:none"/>
 		<img src="/assets/icons/opcion.png" style="display:none"/>
 		<img src="/assets/carrousel/carrousel_sprite.png" style="display:none"/>
 		<img src="/assets/vicons/fullscreen.png" style="display:none"/>
-
+		<img src="/assets/templatesthumbs/flashcard_templateh.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/tVTourh.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/tEVideoh.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t1h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t2h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t3h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t4h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t5h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t6h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t7h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t8h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t9h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t10h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t11h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t12h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t13h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t14h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t15h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t16h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t17h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t18h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t19h.png" style="display:none"/>
+		<img src="/assets/templatesthumbs/t20h.png" style="display:none"/>
 		
 		<!-- Toolbar -->
 		<div id="toolbar_wrapper">
@@ -57,42 +81,42 @@
 								</a>
 							</li>
 							<li>
-								<a class="menu_option" href="#">
+								<a class="menu_option expansive" href="#">
 									<i class="icon-button icon-rotate-180 icon-download-alt"></i>
 									<span i18n-key="i.Import">Import</span>
 								</a>
 								<ul>
 									<li>
-										<a class="menu_option menu_action" action="insertPDFex" i18n-key="i.PDFSlideshow">PDF Slideshow</a>
+										<a class="menu_option menu_action subMenu" action="insertPDFex" i18n-key="i.PDFSlideshow">PDF Slideshow</a>
 									</li>
 									<li>
-										<a class="menu_option menu_action" action="insertPackage" i18n-key="i.ePackage">e-Learning Package</a>
+										<a class="menu_option menu_action subMenu" action="insertPackage" i18n-key="i.ePackage">e-Learning Package</a>
 									</li>
 									<li class="liInsertJson">
 										<a class="menu_option menu_action" action="insertEFile" i18n-key="i.File">File</a>
 									</li>
 									<li>
-										<a class="menu_option menu_action" action="insertPresentation" i18n-key="i.Excursion">Excursion</a>
+										<a class="menu_option menu_action" action="insertPresentation" i18n-key="i.Presentation">Excursion</a>
 									</li>
 								</ul>
 							</li>
 							<li>
-								<a class="menu_option" href="#">
+								<a class="menu_option expansive" href="#">
 									<i class="icon-button icon-rotate-360 icon-download-alt"></i>
 									<span i18n-key="i.Export">Export</span>
 								</a>
 								<ul>
 									<li>
-										<a class="menu_option menu_action" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
+										<a class="menu_option menu_action subMenu" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
 									</li>
 									<li>
-										<a class="menu_option menu_action" action="exportToSCORM" i18n-key="i.toSCORM">to SCORM</a>
+										<a class="menu_option menu_action subMenu" action="exportToSCORM" i18n-key="i.toSCORM">to SCORM</a>
 									</li>
 								</ul>
 							</li>
 							<li>
 								<a class="menu_option menu_action" action="displaySettings">
-									<i class="icon-button icon-edit"></i>
+									<i class="icon-button icon-cog"></i>
 									<span i18n-key="i.Settings">Settings</span>
 								</a>
 							</li>
@@ -120,77 +144,104 @@
 			</div>
 
 			<div id="toolbar_presentation">
-				<div class="toolbar_presentation_wrapper withRightBorder">
-					<a id="toolbar_save" class="tool_action" action="save" href="#">
-						<button type="button" class="btn btn-primary btn-small">
+				<a id="toolbar_settings_button" class="tool_action" action="displaySettings" href="#">
+					<div class="toolbar_btn toolbar_presentation_wrapper withRightBorder">
+						<button type="button" class="btn_toolbar btn btn-primary btn-small">
+							<i class="icon-button icon-cog"></i>
+						</button>
+						<p class="toolbar_presentation_title" i18n-key="i.Settings">Settings</p>
+					</div>
+				</a>
+				<a id="toolbar_save" class="tool_action" action="save" href="#">
+					<div class="toolbar_btn toolbar_presentation_wrapper withRightBorder save">
+						<button type="button" class="btn_toolbar btn btn-primary btn-small">
 							<i class="icon-button icon-save"></i>
 						</button>
-					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.Save">Save</p>
-				</div>
-				<div id="toolbar_preview_wrapper" class="toolbar_presentation_wrapper withRightBorder">
-					<a id="toolbar_preview" class="tool_action" action="preview" href="#">
-						<button type="button" class="btn btn-primary btn-small">
+						<p class="toolbar_presentation_title" i18n-key="i.Save">Save</p>
+					</div>
+				</a>
+				<a id="toolbar_preview" class="tool_action" action="preview" href="#">
+					<div id="toolbar_preview_wrapper" class="toolbar_btn toolbar_presentation_wrapper withRightBorder">
+						<button type="button" class="btn_toolbar btn btn-primary btn-small">
 							<i class="icon-button icon-eye-open"></i>
 						</button>
-					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.Preview">Preview</p>
-				</div>
-				<div id="toolbar_publish_wrapper" class="toolbar_presentation_wrapper withRightBorder">
-					<a id="toolbar_publish" class="tool_action" action="publish" href="#">
-						<button type="button" class="btn btn-primary btn-small">
+						<p class="toolbar_presentation_title" i18n-key="i.Preview">Preview</p>
+					</div>
+				</a>
+				<a id="toolbar_publish" class="tool_action" action="publish" href="#">
+					<div id="toolbar_publish_wrapper" class="toolbar_btn toolbar_presentation_wrapper withRightBorder">
+						<button type="button" class="btn_toolbar btn btn-primary btn-small">
 							<i class="icon-button icon-rotate-270 icon-download-alt"></i>
 						</button>
-					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.Publish">Publish</p>
-				</div>
-				<div id="toolbar_themes_wrapper" class="toolbar_presentation_wrapper withRightBorder">
-					<a id="toolbar_theme" class="tool_action" action="selectTheme" href="#">
-						<button type="button" class="btn btn-primary btn-small">
-							<i class="icon-button icon-adjust"></i>
+						<p class="toolbar_presentation_title" i18n-key="i.Publish">Publish</p>
+					</div>
+				</a>
+				<a id="toolbar_theme" class="tool_action" action="selectTheme" href="#">
+					<div id="toolbar_themes_wrapper" class="toolbar_btn toolbar_presentation_wrapper withRightBorder">
+						<button type="button" class="btn_toolbar btn btn-primary btn-small">
+							<i class="icon-button icon-edit"></i>
 						</button>
-					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.Style">Style</p>
-				</div>
-				<div id="toolbar_animation_wrapper" class="toolbar_presentation_wrapper">
-					<a id="toolbar_animation" class="tool_action" action="selectAnimation" href="#">
-						<button type="button" class="btn btn-primary btn-small">
+						<p class="toolbar_presentation_title" i18n-key="i.Themes">Themes</p>
+					</div>
+				</a>
+				<a id="toolbar_animation" class="tool_action" action="selectAnimation" href="#">
+					<div id="toolbar_animation_wrapper" class="toolbar_btn toolbar_presentation_wrapper">
+						<button type="button" class="btn_toolbar btn btn-primary btn-small">
 							<i class="icon-button icon-magic"></i>
 						</button>
-					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.Animations">Animation</p>
-				</div>
-				<div id="toolbar_background_wrapper" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools withLeftBorder toolbar_standard toolbar_flashcard toolbar_VirtualTour" style='display:none'>
-					<a id="toolbar_background" class="tool_action" action="changeBackground" href="#">
-						<button type="button" class="btn btn-primary btn-small">
-							<i class="icon-button icon-picture"></i>
+						<p class="toolbar_presentation_title" i18n-key="i.Animations">Animation</p>
+					</div>
+				</a>
+			</div>
+			<div id="toolbar_slide" class="withLeftBorder">
+				<a id="toolbar_background" class="tool_action" action="changeBackground" href="#">
+					<div id="toolbar_background_wrapper" class="subToolbar toolbar_btn toolbar_presentation_wrapper_slideTools withLeftBorder toolbar_flashcard toolbar_VirtualTour" style='display:none'>
+						<button id="bgw_btn" type="button" class="btn btn-primary btn-small">
+							<i id="bgw_icon"class="icon-button icon-picture"></i>
 						</button>
-					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.Background"> Background</p>
-				</div>
-				<div id="toolbar_evideo_wrapper" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools withLeftBorder toolbar_enrichedvideo" style='display:none'>
-					<a id="toolbar_evideo" class="tool_action" action="changeVideo" href="#">
+						<p class="toolbar_presentation_title" i18n-key="i.Background">Background</p>
+					</div>
+				</a>
+				<a id="toolbar_evideo" class="tool_action" action="changeVideo" href="#">
+					<div id="toolbar_evideo_wrapper" class="subToolbar toolbar_btn toolbar_presentation_wrapper_slideTools withLeftBorder toolbar_enrichedvideo" style='display:none'>
 						<img class="big_toolbar_icon toolbar_web" src="/assets/toolbar/change_evideo.png"/>
-					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.Video"> Video</p>
-				</div>
+						<p class="toolbar_presentation_title" i18n-key="i.Video">Video</p>
+					</div>
+				</a>
 			</div>
 			<div id="toolbar_element" class="withLeftBorder">
-				<div id="toolbar_settings_wrapper" class="toolbar_presentation_wrapper withRightBorder toolbar_quiz toolbar_object toolbar_web" style="display:none">
-					<a id="toolbar_settings" class="tool_action" action="showSettings" href="#">
-						<button type="button" class="btn btn-primary btn-small btn-toolbarElementWrapper">
-							<img src="/assets/toolbar/quiz_settings.png"/>
-						</button>
-					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.SettingsToolbar">Settings</p>
+				<div id="toolbar_settings_wrapper" class="subToolbar toolbar_btn tool_action toolbar_quiz toolbar_object toolbar_web" style="display:none" action="showSettings">
+					<img class="toolbar_icon" src="/assets/toolbar/options2.png"/>
+					<p i18n-key="i.Options">Options</p>
 				</div>
-				<img class="toolbar_icon toolbar_image" style="display:none" action="addLink" src="/assets/toolbar/addLink.png"/>
-				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot" style="display:none" action="resizeLess" src="/assets/toolbar/resizeLess.png"/>
-				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot"  style="display:none" action="resizeMore" src="/assets/toolbar/resizeMore.png"/>
-				<img class="toolbar_icon toolbar_web" style="display:none" action="zoomLess" src="/assets/toolbar/zoomLess.png"/>
-				<img class="toolbar_icon toolbar_web"  style="display:none" action="zoomMore" src="/assets/toolbar/zoomMore.png"/>
+				<div class="subToolbar toolbar_btn tool_action toolbar_image" style="display:none" action="addLink">
+					<img class="toolbar_icon" src="/assets/toolbar/addLink.png"/>
+					<p i18n-key="i.Link">Link</p>
+				</div>
+				<div class="subToolbar toolbar_btn tool_action toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot" style="display:none" action="resizeLess">
+					<img class="toolbar_icon" src="/assets/toolbar/resizeLess.png"/>
+					<p i18n-key="i.Resize-">Resize-</p>
+				</div>
+				<div class="subToolbar toolbar_btn tool_action toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot" style="display:none" action="resizeMore">
+					<img class="toolbar_icon" src="/assets/toolbar/resizeMore.png"/>
+					<p i18n-key="i.Resize+">Resize+</p>
+				</div>
+				<div class="subToolbar toolbar_btn tool_action toolbar_web" style="display:none" action="zoomLess">
+					<img class="toolbar_icon"  src="/assets/toolbar/zoomLess.png"/>
+					<p i18n-key="i.Zoom-">Zoom-</p>
+				</div>
+				<div class="subToolbar toolbar_btn tool_action toolbar_web" style="display:none" action="zoomMore">
+					<img class="toolbar_icon" src="/assets/toolbar/zoomMore.png"/>
+					<p i18n-key="i.Zoom+">Zoom+</p>
+				</div>
 				<div id="toolbar_text" class='toolbar_text toolbar_quiz' style="display:none"></div>
 			</div>
+			<a id="toolbar_exit_btn" class="tool_action" action="exit" href="#">
+				<div id="toolbar_exit">
+					<img src="/assets/toolbar/exit_btn.png">
+					<p class="toolbar_presentation_title" i18n-key="i.Exit">Exit</p>
+				</div>
+			</a>
 		</div>
 		
 		<div id="leftside">
@@ -252,35 +303,38 @@
 
 	<!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
 	<div style='display:none'>    
-		<div id='presentationdetails'>
+		<div id="presentationdetails">
 
 			<div id="presentation_details_fields">
-				<img  title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_settings' id='help_in_settings' src="/assets/vicons/helptutorial_circle_blank.png"/>
+				<div id="settings_header">
+					<img id="presentation_details_logo" src="/assets/icons/logo2.png">
+				</div>
+				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class="help_in_settings" id="help_in_settings" src="/assets/vicons/helptutorial_circle_blank.png">
 				<div id="presentation_details_fields_row1">
 
 					<div id="presentation_details_fields_row1_column1">
-						<img id='presentation_details_logo' src="/assets/icons/logo.png"/>
+						
 						<p id="presentation_details_preview_title" class="presentation_details_column_title" i18n-key="i.Preview">Preview</p>
 						<div id="presentation_details_preview">
 							<div id="presentation_details_preview_thumbnail">
 								<div title="Click to add an avatar. You should select an avatar to identify your excursion" id="presentation_details_preview_thumbnail_img_wrapper">
-									<img id='presentation_details_preview_thumbnail_img' class="addThumbnailPlus" src="/assets/icons/addThumbnail.png"/>
+									<img id="presentation_details_preview_thumbnail_img" class="addThumbnailPlus" src="/assets/icons/addThumbnail.png">
 								</div>
-								<p class="addthumbtitle" i18n-key="i.Addanavatar">Add an avatar *</p>
-								<div id="editthumb">
+								<p class="addthumbtitle" i18n-key="i.Addanavatar" style="display: none;">Add an avatar *</p>
+								<div id="editthumb" style="display: none;">
 									<p><i class="icon-button icon-edit"></i> <span i18n-key="i.edit">edit</span></p>
 								</div>
 							</div>
 							<div id="presentation_details_preview_addtitle">
-								<input id="presentation_details_preview_addtitle_input" type="text" maxLength="120" placeholder="add a title" i18n-key="i.addatitle"></input>
+								<input id="presentation_details_preview_addtitle_input" type="text" maxlength="120" placeholder="add a title" i18n-key="i.addatitle">
 							</div>
 							<div id="presentation_details_preview_author">
-								<span i18n-key="i.by">by</span> <span id="author_span_in_preview"></span>
+								<span i18n-key="i.by">by</span> <span id="author_span_in_preview">agordillo</span>
 							</div>
 						</div>
 						<div id="presentation_details_license">
-							<span class="presentation_details_text" title='License' i18n-key="i.License">License</span>
-							<select id="presentation_details_license_select">
+							<span class="presentation_details_text" title="License" i18n-key="i.License">License</span>
+							<select title="" id="presentation_details_license_select">
 								<option value="public" i18n-key="i.License_public">Public Domain</option>
 								<option value="cc-by" i18n-key="i.License_cc-by">Creative Commons Attribution</option>
 								<option value="cc-by-sa" i18n-key="i.License_cc-by-sa">Creative Commons Attribution-ShareAlike</option>
@@ -294,223 +348,221 @@
 
 					<div id="presentation_details_fields_row1_column2">
 
-						<p i18n-key="i.ExcursionDetails" class="presentation_details_column_title">Excursion Details</p>
-
 						<div id="presentation_details_title">
-							<span class="presentation_details_text" title='Title is a mandatory field' i18n-key="i.TitleM">Title *</span>
-							<input id="presentation_details_input_title" class="presentation_details_input" type="text" placeholder="Excursion title" i18n-key="i.presTitle" maxLength="120"></input>
+							<span class="presentation_details_text" title="Title is a mandatory field" i18n-key="i.TitleM">Title *</span>
+							<input id="presentation_details_input_title" class="presentation_details_input" type="text" placeholder="Excursion title" i18n-key="i.presTitle" maxlength="120">
 						</div>
 
 						<div id="presentation_details_description">
 							<span class="presentation_details_text" i18n-key="i.Description">Description</span>
-							<textarea id='presentation_details_textarea' placeholder="Please describe in a few words what your excursion is about..." i18n-key="i.presDescriptionPlaceHolder"></textarea>
+							<textarea id="presentation_details_textarea" placeholder="Please describe in a few words what your excursion is about..." i18n-key="i.presDescriptionPlaceHolder"></textarea>
 						</div>			
 
-						<div id="tags_in_presentation_details">
-							<span class="presentation_details_text" i18n-key="i.Tags">Tags</span><button id="catalog_button" type="button" class="button" i18n-key="i.Catalog">Catalog</button>
+					    <div id="attachment_in_presentation_details">
+					    	<span class="presentation_details_text" i18n-key="i.Attatchment">Attatchment</span>
+					    </div>
+						<div class="file_details_upload">
+							<form id="attachment_file_form" method="post" action="attatchment_file.json" enctype="multipart/form-data">
+								<div class="attachmentFileUpload" disabled="disabled" i18n-key-tooltip="i.tooltip.UploadAttachment" title="If this button is deactivated, you need to save your excursion first.">
+									<span i18n-key="i.ChooseFile">Choose File</span>
+									<input type="file" name="attachment" id="attachment_file">
+								</div>
+								<input id="description_attachment" placeholder="Choose File" disabled="disabled">
+								<input type="hidden" name="author_id" id="attachment_author">
+								<input type="hidden" name="authenticity_token" id="attachment_aut_token">
+								<input id="upload_file_attachment" type="submit" class="button" i18n-key="i.Upload" value="Upload" disabled="true">
+								<span id="upload_icon_success" class="icon-button icon-ok" aria-hidden="true"></span>
+							</form>
+						</div>
+
+					</div>
+
+					<div id="presentation_details_fields_row1_column3">  
+ 						<div id="tags_in_presentation_details">
+							<p class="presentation_details_text" i18n-key="i.Tags" id="tags">Tags</p>
 							<div id="tagBoxIntro">
 								<ul id="tagindex" class="tagList"></ul>
 							</div>
-						</div>
-						    <div id="attachment_in_presentation_details"><span class="presentation_details_text" i18n-key="i.Attatchment" >Attatchment</span></div>
-						    <div class="file_details_upload">
-							    <form id="attachment_file_form" method="post" action="attatchment_file.json" enctype="multipart/form-data">
-							    	<div class="attachmentFileUpload" disabled="true" i18n-key-tooltip="i.tooltip.UploadAttachment" title="If this button is deactivated, you need to save your excursion first." >
-    									<span i18n-key="i.ChooseFile" >Choose File</span>
-								   	 	<input type="file"  name="attachment" id="attachment_file">
-								   	</div>
-								    <input id="description_attachment" placeholder="Choose File" disabled="disabled"/>
-								    <input type="hidden" name="author_id" id="attachment_author">
-								    <input type="hidden" name="authenticity_token" id="attachment_aut_token">
-									<input id="upload_file_attachment" type="submit" class="button" i18n-key="i.Upload" value="Upload" disabled="true">
-									<span id="upload_icon_success" class="icon-button icon-ok" aria-hidden="true"></span>
-								</form>
-							</div>
-					</div>
-
-					<div id="presentation_details_fields_row1_column3">
-						<p id="selectthemeshelp" class="presentation_details_column_title" i18n-key="i.SelectTheme"> Select Theme </p>
-						<div id="scrollbar_themes_list"></div>
+							<button id="catalog_button" type="button" class="button" i18n-key="i.Catalog">Catalog</button>
+						</div>  
 					</div>
 				</div>
 
 				<div id="presentation_details_fields_row2">
-					<button id='metadata_clasification_button' type='button' class='button' i18n-key="i.advancedSettings">Advanced</button>
-					<button id='fill_details_later_button' type='button' class='button' i18n-key="i.Filllater">Fill later</button>
-					<button id='save_presentation_details' disabled="true" type='button' class='button buttonDisabledOnSettings' title="Write a title and choose an avatar to continue" i18n-key="i.Continue">Continue</button>
+					<button id="metadata_clasification_button" type="button" class="button" i18n-key="i.advancedSettings">Advanced</button>
+					<button id="fill_details_later_button" type="button" class="button" i18n-key="i.Filllater">Fill later</button>
+					<button id="save_presentation_details" type="button" class="button" i18n-key="i.Continue" disabledtitle="Write a title and choose an avatar to continue">Continue</button>
 				</div>
 			</div>
 
-
 			<div id="metadata_options_fields" style="display:none">
 				
-				<img class='help_in_settings' id='help_metadata_selection' src="/assets/vicons/helptutorial_circle_blank.png"/>
+				<img class="help_in_settings" id="help_metadata_selection" src="/assets/vicons/helptutorial_circle_blank.png"/>
 				<div>
 					<p class="metadata_title" i18n-key="i.advancedSettings">Advanced</p>
 				</div>
 
 				<div class="fancy_tabs" id="advanced_tabs">
 				  <ul>
-				    <li><a class='js_tabs_asettings fancy_selected' tab="metadata-options-tab" href="#" i18n-key="i.MetadataAspects">Metadata</a></li>
-				    <li><a class='js_tabs_asettings' tab="publication-tab" href="#" i18n-key="i.Publication">Publication</a></li>
-				    <li><a class='js_tabs_asettings' tab="rte-tab" href="#">RTE</a></li>
+				    <li><a class="js_tabs_asettings fancy_selected" tab="metadata-options-tab" href="#" i18n-key="i.MetadataAspects">Metadata</a></li>
+				    <li><a class="js_tabs_asettings" tab="publication-tab" href="#" i18n-key="i.Publication">Publication</a></li>
+				    <li><a class="js_tabs_asettings" tab="rte-tab" href="#">RTE</a></li>
 				  </ul>
 				 </div>
 
 				<div id="metadata-options-tab" class="active">
-				<div id="metadata_options_fields_row1">
+					<div id="metadata_options_fields_row1">
 					
-					<div id="metadata_options_fields_row1_column1">
+						<div id="metadata_options_fields_row1_column1">
 
-						<div id="language_tag_box">
-							<div id="language_tag_box_text">
-								<span i18n-key="i.Language">Language</span>
-							</div>
-							<select id="language_tag" class="ped_box_fields2">
-								<option value="independent" selected="1" i18n-key="i.Languageindependent">Language independent</option>
-								<option value="de">Deutsch</option>
-								<option value="en">English</option>
-								<option value="es">Español</option>
-								<option value="fr">Français</option>
-								<option value="it">Italiano</option>
-								<option value="pt">Português</option>
-								<option value="ru">Русский</option>
-								<option value="ot" i18n-key="i.Other">Other</option>
-							</select>
-						</div>
-
-						<div id="context_tag_box" class="content_tag_box_class margin_for_new_field_settings">
-							<div id="context_tag_box_text">
-								<span i18n-key="i.Context">Context</span>
-							</div>
-							<select id="context_tag" class="ped_box_fields">
-								<option value="unspecified" selected="1" i18n-key="i.Unspecified">Unspecified</option>
-								<option value="preschool" i18n-key="i.Preschool">Preschool Education</option>
-								<option value="pEducation" i18n-key="i.pEducation">Primary Education</option>
-								<option value="sEducation" i18n-key="i.sEducation">Secondary Education</option>
-								<option value="higher education" i18n-key="i.HigherEducation">Higher Education</option>
-								<option value="training" i18n-key="i.PTraining">Professional Training</option>
-								<option value="other" i18n-key="i.Other">Other</option>
-							</select>
-						</div>
-
-					</div>
-
-					<div id="metadata_options_fields_row1_column2">
-						
-						<div id="age_range_wrapper">
-							<div class="range_text"><span i18n-key="i.AgeRange">Age range</span>:</div>
-							<div class="slider_wrapper">
-								<input type="text" id="age_range" class="slider_range_input" readonly/>
-								<div id="slider-age" class="slider_bar"></div>
-							</div>
-						</div>
-
-						<div id="difficulty_wrapper" class="margin_for_new_field_settings">
-							<div class="range_text"><span i18n-key="i.Difficulty">Difficulty</span>:</div>
-							<div class="slider_wrapper">
-								<input type="text" id="difficulty_range" class="slider_range_input" readonly/>
-								<div id="slider-difficulty" class="slider_bar"></div>
-							</div>
-						</div>
-
-						<div id="tlt_wrapper" class="margin_for_new_field_settings">
-							<div class="range_text"><span i18n-key="i.TypicalLearningTime">Typical learning time</span>:</div>
-							<input type="text" id="tlt_current_value" class="slider_range_input" readonly/>
-							<div class="tlt_inputs_wrapper">
-								<div class="tlt_input_wrapper">
-									<p class="tlt_input_title" i18n-key="i.Hours">Hours</p>
-									<input type="number" value="0" min="0" max="23" id="tlt_hours" class="tlt_input"/>
+							<div id="language_tag_box">
+								<div id="language_tag_box_text">
+									<span i18n-key="i.Language">Language</span>
 								</div>
-								<div class="tlt_input_wrapper">
-									<p class="tlt_input_title" i18n-key="i.Minutes">Minutes</p>
-									<input type="number" value="0" min="0" max="59" id="tlt_minutes" class="tlt_input"/>
+								<select id="language_tag" class="ped_box_fields2">
+									<option value="independent" selected="1" i18n-key="i.Languageindependent">Language independent</option>
+									<option value="de">Deutsch</option>
+									<option value="en">English</option>
+									<option value="es">Español</option>
+									<option value="fr">Français</option>
+									<option value="it">Italiano</option>
+									<option value="pt">Português</option>
+									<option value="ru">Русский</option>
+									<option value="ot" i18n-key="i.Other">Other</option>
+								</select>
+							</div>
+
+							<div id="context_tag_box" class="content_tag_box_class margin_for_new_field_settings">
+								<div id="context_tag_box_text">
+									<span i18n-key="i.Context">Context</span>
 								</div>
-								<div class="tlt_input_wrapper">
-									<p class="tlt_input_title" i18n-key="i.Seconds">Seconds</p>
-									<input type="number" value="0" min="0" max="59" step="5" id="tlt_seconds" class="tlt_input"/>
+								<select id="context_tag" class="ped_box_fields">
+									<option value="unspecified" selected="1" i18n-key="i.Unspecified">Unspecified</option>
+									<option value="preschool" i18n-key="i.Preschool">Preschool Education</option>
+									<option value="pEducation" i18n-key="i.pEducation">Primary Education</option>
+									<option value="sEducation" i18n-key="i.sEducation">Secondary Education</option>
+									<option value="higher education" i18n-key="i.HigherEducation">Higher Education</option>
+									<option value="training" i18n-key="i.PTraining">Professional Training</option>
+									<option value="other" i18n-key="i.Other">Other</option>
+								</select>
+							</div>
+
+						</div>
+
+						<div id="metadata_options_fields_row1_column2">
+							
+							<div id="age_range_wrapper">
+								<div class="range_text"><span i18n-key="i.AgeRange">Age range</span>:</div>
+								<div class="slider_wrapper">
+									<input type="text" id="age_range" class="slider_range_input" readonly="">
+									<div id="slider-age" class="slider_bar ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header" style="left: 13.3333%; width: 53.3333%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 13.3333%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 66.6667%;"></a></div>
 								</div>
 							</div>
-						</div>
-					</div>
 
-					<div id="metadata_options_fields_row1_column3">
-						<div id="subject_tag_box">		  
-							<div id="subject_tag_box_text">
-								<span i18n-key="i.Subject">Subject</span>
+							<div id="difficulty_wrapper" class="margin_for_new_field_settings">
+								<div class="range_text"><span i18n-key="i.Difficulty">Difficulty</span>:</div>
+								<div class="slider_wrapper">
+									<input type="text" id="difficulty_range" class="slider_range_input" readonly="" difficulty="2">
+									<div id="slider-difficulty" class="slider_bar ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 40%;"></a></div>
+								</div>
 							</div>
-							<select id="subject_tag" size="4" multiple="multiple">
-								<option value="Unspecified" selected="1" i18n-key="i.Unspecified">Unspecified</option>
-								<option value="Art" i18n-key="i.Art">Art</option>
-								<option value="Astronomy" i18n-key="i.Astronomy">Astronomy</option>
-								<option value="Biology" i18n-key="i.Biology">Biology</option>
-								<option value="Chemistry" i18n-key="i.Chemistry">Chemistry</option>
-								<option value="Citizenship" i18n-key="i.Citizenship">Citizenship</option>
-								<option value="Classical Languages" i18n-key="i.ClassicalLanguages">Classical Languages</option>
-								<option value="Cross Curricular Education" i18n-key="i.CrossCurricularEducation">Cross Curricular Education</option>
-								<option value="Computer Science" i18n-key="i.ComputerScience">Computer Science</option>
-								<option value="General Culture" i18n-key="i.GeneralCulture">General Culture</option>
-								<option value="Economics" i18n-key="i.Economics">Economics</option>
-								<option value="Education" i18n-key="i.Education">Education</option>
-								<option value="Electronics" i18n-key="i.Electronics">Electronics</option>
-								<option value="Environmental Education" i18n-key="i.EnvironmentalEducation">Environmental Education</option>
-								<option value="Ethics" i18n-key="i.Ethics">Ethics</option>
-								<option value="Foreign Languages" i18n-key="i.ForeignLanguages">Foreign Languages</option>
-								<option value="Geography" i18n-key="i.Geography">Geography</option>
-								<option value="Geology" i18n-key="i.Geology">Geology</option>
-								<option value="Health Education" i18n-key="i.HealthEducation">Health Education</option>
-								<option value="History" i18n-key="i.History">History</option>
-								<option value="Home Economics" i18n-key="i.HomeEconomics">Home Economics</option>
-								<option value="Literature" i18n-key="i.Literature">Literature</option>
-								<option value="Law" i18n-key="i.Law">Law</option>
-								<option value="Mathematics" i18n-key="i.Mathematics">Mathematics</option>
-								<option value="Music" i18n-key="i.Music">Music</option>
-								<option value="Natural Sciences" i18n-key="i.NaturalSciences">Natural Sciences</option>
-								<option value="Philosophy" i18n-key="i.Philosophy">Philosophy</option>
-								<option value="Physical Education" i18n-key="i.PhysicalEducation">Physical Education</option>
-								<option value="Physics" i18n-key="i.Physics">Physics</option>
-								<option value="Politics" i18n-key="i.Politics">Politics</option>
-								<option value="Psychology" i18n-key="i.Psychology">Psychology</option>
-								<option value="Religion" i18n-key="i.Religion">Religion</option>
-								<option value="Social Sciences" i18n-key="i.SocialSciences">Social Sciences</option>
-								<option value="Software Engineering" i18n-key="i.SoftwareEngineering">Software Engineering</option>
-								<option value="Technology" i18n-key="i.Technology">Technology</option>
-								<option value="Telecommunications" i18n-key="i.Telecommunications">Telecommunications</option>
-							</select>
+
+							<div id="tlt_wrapper" class="margin_for_new_field_settings">
+								<div class="range_text"><span i18n-key="i.TypicalLearningTime">Typical learning time</span>:</div>
+								<input type="text" id="tlt_current_value" class="slider_range_input" readonly="">
+								<div class="tlt_inputs_wrapper">
+									<div class="tlt_input_wrapper">
+										<p class="tlt_input_title" i18n-key="i.Hours">Hours</p>
+										<input type="number" value="0" min="0" max="23" id="tlt_hours" class="tlt_input">
+									</div>
+									<div class="tlt_input_wrapper">
+										<p class="tlt_input_title" i18n-key="i.Minutes">Minutes</p>
+										<input type="number" value="0" min="0" max="59" id="tlt_minutes" class="tlt_input">
+									</div>
+									<div class="tlt_input_wrapper">
+										<p class="tlt_input_title" i18n-key="i.Seconds">Seconds</p>
+										<input type="number" value="0" min="0" max="59" step="5" id="tlt_seconds" class="tlt_input">
+									</div>
+								</div>
+							</div>
 						</div>
+
+						<div id="metadata_options_fields_row1_column3">
+							<div id="subject_tag_box">		  
+								<div id="subject_tag_box_text">
+									<span i18n-key="i.Subject">Subject</span>
+								</div>
+								<select id="subject_tag" size="4" multiple="multiple">
+									<option value="Unspecified" selected="1" i18n-key="i.Unspecified">Unspecified</option>
+									<option value="Art" i18n-key="i.Art">Art</option>
+									<option value="Astronomy" i18n-key="i.Astronomy">Astronomy</option>
+									<option value="Biology" i18n-key="i.Biology">Biology</option>
+									<option value="Chemistry" i18n-key="i.Chemistry">Chemistry</option>
+									<option value="Citizenship" i18n-key="i.Citizenship">Citizenship</option>
+									<option value="Classical Languages" i18n-key="i.ClassicalLanguages">Classical Languages</option>
+									<option value="Cross Curricular Education" i18n-key="i.CrossCurricularEducation">Cross Curricular Education</option>
+									<option value="Computer Science" i18n-key="i.ComputerScience">Computer Science</option>
+									<option value="General Culture" i18n-key="i.GeneralCulture">General Culture</option>
+									<option value="Economics" i18n-key="i.Economics">Economics</option>
+									<option value="Education" i18n-key="i.Education">Education</option>
+									<option value="Electronics" i18n-key="i.Electronics">Electronics</option>
+									<option value="Environmental Education" i18n-key="i.EnvironmentalEducation">Environmental Education</option>
+									<option value="Ethics" i18n-key="i.Ethics">Ethics</option>
+									<option value="Foreign Languages" i18n-key="i.ForeignLanguages">Foreign Languages</option>
+									<option value="Geography" i18n-key="i.Geography">Geography</option>
+									<option value="Geology" i18n-key="i.Geology">Geology</option>
+									<option value="Health Education" i18n-key="i.HealthEducation">Health Education</option>
+									<option value="History" i18n-key="i.History">History</option>
+									<option value="Home Economics" i18n-key="i.HomeEconomics">Home Economics</option>
+									<option value="Literature" i18n-key="i.Literature">Literature</option>
+									<option value="Law" i18n-key="i.Law">Law</option>
+									<option value="Mathematics" i18n-key="i.Mathematics">Mathematics</option>
+									<option value="Music" i18n-key="i.Music">Music</option>
+									<option value="Natural Sciences" i18n-key="i.NaturalSciences">Natural Sciences</option>
+									<option value="Philosophy" i18n-key="i.Philosophy">Philosophy</option>
+									<option value="Physical Education" i18n-key="i.PhysicalEducation">Physical Education</option>
+									<option value="Physics" i18n-key="i.Physics">Physics</option>
+									<option value="Politics" i18n-key="i.Politics">Politics</option>
+									<option value="Psychology" i18n-key="i.Psychology">Psychology</option>
+									<option value="Religion" i18n-key="i.Religion">Religion</option>
+									<option value="Social Sciences" i18n-key="i.SocialSciences">Social Sciences</option>
+									<option value="Software Engineering" i18n-key="i.SoftwareEngineering">Software Engineering</option>
+									<option value="Technology" i18n-key="i.Technology">Technology</option>
+									<option value="Telecommunications" i18n-key="i.Telecommunications">Telecommunications</option>
+								</select>
+							</div>
+						</div>
+
 					</div>
 
-				</div>
-
-				<div id="metadata_options_fields_row2">
-					<div>
-						<div id="educational_objectives_title">
-							<span i18n-key="i.EducationalObjectives">Educational Objectives</span>
+					<div id="metadata_options_fields_row2">
+						<div>
+							<div id="educational_objectives_title">
+								<span i18n-key="i.EducationalObjectives">Educational Objectives</span>
+							</div>
+							<textarea id="educational_objectives_textarea" name="educational_objectives" placeholder="Please describe the educational objectives you aim to fulfil by using this excursion..." i18n-key="i.EducationalObjectivesPlaceholder"></textarea>
 						</div>
-						<textarea id='educational_objectives_textarea' name="educational_objectives" placeholder="Please describe the educational objectives you aim to fulfil by using this excursion..." i18n-key="i.EducationalObjectivesPlaceholder"></textarea>
 					</div>
-				</div>
 			 	</div>
 																																				
-			 	<div id="publication-tab" style="display:none">
-			 	<div id="publication_title"  >
-			 		<p i18n-key="i.allowUsersTo">Allow other users to:</p>
-			 	</div>
+				<div id="publication-tab" style="display:none">
+					<div id="publication_title">
+						<p i18n-key="i.allowUsersTo">Allow other users to:</p>
+					</div>
 					<div id="publication_content">
-						<p><input type="checkbox" id="allow_comment" checked> <span i18n-key="i.allowComment">Comment</span></p>
-						<p><input type="checkbox" id="allow_download" checked> <span i18n-key="i.allowDownload">Download</span></p>
-						<p><input type="checkbox" id="allow_clone" checked> <span i18n-key="i.allowClone">Clone</span></p>
+						<p><input type="checkbox" id="allow_comment" checked=""> <span i18n-key="i.allowComment">Comment</span></p>
+						<p><input type="checkbox" id="allow_download" checked=""> <span i18n-key="i.allowDownload">Download</span></p>
+						<p><input type="checkbox" id="allow_clone" checked=""> <span i18n-key="i.allowClone">Clone</span></p>
 					</div>
 				</div>
 
 				<div id="rte-tab" style="display:none">
-					<p><input type="checkbox" id="allow_following_rte" checked disabled="disabled"> <span i18n-key="i.enableRTE">Enable object tracking when it is exported to SCORM</span></p>
+					<p><input type="checkbox" id="allow_following_rte" checked="" disabled="disabled"> <span i18n-key="i.enableRTE">Enable object tracking when it is exported to SCORM</span></p>
 				</div>
 
 				<div id="metadata_options_fields_row3">
-					<button id='done_in_metadata' type='button' class='button' i18n-key="i.Done">Done</button>
-				</div>
-							
+					<button id="done_in_metadata" type="button" class="button" i18n-key="i.Done">Done</button>
+				</div>		
 				
 			</div>
 
@@ -522,8 +574,7 @@
 			<p i18n-key="i.CatalogueTitle">Catalogue</p>
 		</div>
 		<div id="catalog_body">
-			<select id="catalog_tags" size="11" multiple="multiple">
-			</select>
+			<select id="catalog_tags" size="11" multiple="multiple"></select>
 		</div>
 		<button id="catalog_done_button" type="button" class="button buttonfancy previewButton" i18n-key="i.Done">Done</button>
 	</div>
@@ -547,7 +598,7 @@
 						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_efile'); return false;" id="tab_efile" class="fancy_tab" i18n-key="i.File">File</a>
 					</li>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo'); return false;" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Excursion">Excursion</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo'); return false;" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Presentation">Excursion</a>
 					</li>
 				</ul>
 			</div> 
@@ -559,64 +610,64 @@
 						<p class="select_text" i18n-key="i.Templates">Templates</p>
 						<div class="templateselectlist">
 							<div class='slidethumb templatethumb' template='1'>
-								<img src='/assets/templatesthumbs/t1.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t1" />
 							</div>
 							<div class='slidethumb templatethumb' template='2'>
-								<img src='/assets/templatesthumbs/t2.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t2" />
 							</div>
 							<div class='slidethumb templatethumb' template='3'>
-								<img src='/assets/templatesthumbs/t3.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t3" />
 							</div>
 							<div class='slidethumb templatethumb' template='4'>
-								<img src='/assets/templatesthumbs/t4.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t4" />
 							</div>
 							<div class='slidethumb templatethumb' template='5'>
-								<img src='/assets/templatesthumbs/t5.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t5" />
 							</div>
 							<div class='slidethumb templatethumb' template='17'>
-								<img src='/assets/templatesthumbs/t17.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t17" />
 							</div>
 							<div class='slidethumb templatethumb' template='16'>
-								<img src='/assets/templatesthumbs/t16.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t16" />
 							</div>
 							<div class='slidethumb templatethumb' template='20'>
-								<img src='/assets/templatesthumbs/t20.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t20" />
 							</div>
 							<div class='slidethumb templatethumb' template='8'>
-								<img src='/assets/templatesthumbs/t8.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t8" />
 							</div>
 							<div class='slidethumb templatethumb' template='7'>
-								<img src='/assets/templatesthumbs/t7.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t7" />
 							</div>
 							<div class='slidethumb templatethumb' template='6'>
-								<img src='/assets/templatesthumbs/t6.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t6" />
 							</div>
 							<div class='slidethumb templatethumb' template='9'>
-								<img src='/assets/templatesthumbs/t9.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t9" />
 							</div>
 							<div class='slidethumb templatethumb' template='12'>
-								<img src='/assets/templatesthumbs/t12.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t12" />
 							</div>
 							<div class='slidethumb templatethumb' template='15'>
-								<img src='/assets/templatesthumbs/t15.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t15" />
 							</div>
 							<div class='slidethumb templatethumb' template='11'>
-								<img src='/assets/templatesthumbs/t11.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t11" />
 							</div>
 							<div class='slidethumb templatethumb' template='14'>
-								<img src='/assets/templatesthumbs/t14.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t14" />
 							</div>
 							<div class='slidethumb templatethumb' template='13'>
-								<img src='/assets/templatesthumbs/t13.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t13" />
 							</div>
 							<div class='slidethumb templatethumb' template='10'>
-								<img src='/assets/templatesthumbs/t10.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t10" />
 							</div>
 							<div class='slidethumb templatethumb' template='18'>
-								<img src='/assets/templatesthumbs/t18.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t18" />
 							</div>
 							<div class='slidethumb templatethumb' template='19'>
-								<img src='/assets/templatesthumbs/t19.png' />
+								<img src='/assets/templatesthumbs/blank.png' id="t19" />
 							</div>
 						</div>
 					</div>
@@ -625,19 +676,19 @@
 						<div class="templateselectlist2">
 							<div class='stthumb_wrapper'>
 								<div class='stthumb fcthumb' type='flashcard'>
-									<img src='/assets/templatesthumbs/flashcard_template.png'/>
+									<img src="/assets/templatesthumbs/blank.png" id="flscard"/>
 								</div>
 								<p i18n-key="i.Flashcard">Flashcard</p>
 							</div>
 							<div class='stthumb_wrapper'>
 								<div class='stthumb vtthumb' type='VirtualTour'>
-									<img src='/assets/templatesthumbs/tVTour.png'/>
+									<img src="/assets/templatesthumbs/blank.png" id="vrtour"/>
 								</div>
 								<p i18n-key="i.VirtualTour">Virtual Tour</p>
 							</div>
 							<div class='stthumb_wrapper'>
 								<div class='stthumb evthumb' type='enrichedvideo'>
-									<img src='/assets/templatesthumbs/tEVideo.png'/>
+									<img src="/assets/templatesthumbs/blank.png" id="erivideo"/>
 								</div>
 								<p i18n-key="i.EnrichedVideo">Enriched Video</p>
 							</div>
@@ -649,46 +700,49 @@
 			<div id='tab_pdfex_content' class="fancy_tab_content" style='display:none'>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_pdfex_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="box1 box1fancy3">
-					<p class="textfancy" i18n-key="i.AddslideshowPDF">Add slideshow from PDF file</p></br>
+					
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+					<div class="textD">
+						<p class="textfancy" i18n-key="i.AddslideshowPDF">Add slideshow from PDF file</p></br>
+						<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
+							<input type="file" name="pdfex[attach]" accept="application/pdf" class="upload_file_input">
+							<input type="hidden" name="pdfex[scope]" value="1">
+							<input type="hidden" name="pdfex[owner_id]">
+							<input type="hidden" name="authenticity_token">
+							<input id="upload_pdfex_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+						</form>
 
-					<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
-						<input type="file" name="pdfex[attach]" accept="application/pdf" class="upload_file_input">
-						<input type="hidden" name="pdfex[scope]" value="1">
-						<input type="hidden" name="pdfex[owner_id]">
-						<input type="hidden" name="authenticity_token">
-						<input id="upload_pdfex_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-					</form>
-
-					<div class="upload_progress_bar_wrapper">
-						<div class="upload_progress_bar"></div >
-						<div class="upload_progress_bar_percent">0%</div >
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div >
+							<div class="upload_progress_bar_percent">0%</div >
+						</div>
 					</div>
-
 				</div>
 			</div>
 
 			<div id='tab_epackage_content' class="fancy_tab_content" style='display:none'>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_epackage_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="box1 box1fancy3">
-					<p class="textfancy" i18n-key="i.AddePackage">Add an e-Learning package from a ZIP file. Supported formats: SCORM and custom HTML5 Web Applications.</p></br>
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-					<form id="package_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-						<input type="file" name="document[file]" class="upload_file_input">
-						<input type="hidden" name="document[scope]" value="1">
-						<input type="hidden" name="document[title]">
-						<input type="hidden" name="document[description]">
-						<input type="hidden" name="document[owner_id]">
-						<input type="hidden" name="authenticity_token">
-						<input type="hidden" name="document[tag_list]">
-						<input id="upload_package_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload" style="display: none;">
-					</form>
-					<div class="upload_progress_bar_wrapper">
-						<div class="upload_progress_bar"></div >
-						<div class="upload_progress_bar_percent">0%</div >
-					</div>
-					<div class="tagBoxUpload">
-						<ul class="tagList"></ul>
+					<div class="textD">
+						<p class="textfancy" i18n-key="i.AddePackage">Add an e-Learning package from a ZIP file. Supported formats: SCORM and custom HTML5 Web Applications.</p></br>
+						<form id="package_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+							<input type="file" name="document[file]" class="upload_file_input">
+							<input type="hidden" name="document[scope]" value="1">
+							<input type="hidden" name="document[title]">
+							<input type="hidden" name="document[description]">
+							<input type="hidden" name="document[owner_id]">
+							<input type="hidden" name="authenticity_token">
+							<input type="hidden" name="document[tag_list]">
+							<input id="upload_package_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload" style="display: none;">
+						</form>
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div >
+							<div class="upload_progress_bar_percent">0%</div >
+						</div>
+						<div class="tagBoxUpload">
+							<ul class="tagList"></ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -696,24 +750,27 @@
 			<div id='tab_efile_content' class="fancy_tab_content" style='display:none'>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_efile_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="box1 box1fancy3">
-					<p class="textfancy" i18n-key="i.ImportFromEFile">Import resources from external files:</p>
-					<ul class="listInFancy">
-						<li><p class="textfancy" i18n-key="i.ImportFromEFileVEJSON">ViSH Editor Presentations and Slides from JSON files</p></li>
-						<li><p class="textfancy" i18n-key="i.ImportFromEFileIMSQTI">Quizzes from IMS QTI 2.1 compliant XML files</p></li>
-						<li><p class="textfancy" i18n-key="i.ImportFromEFileMoodleXML">Quizzes from MoodleXML compliant XML files</p></li>
-					</ul>
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-					<input id="efile_input" type="file" id="files" name="files[]" multiple />
-					<button id="efile_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					<div class="textD">
+						<p class="textfancy" i18n-key="i.ImportFromEFile">Import resources from external files:</p>
+						<ul class="listInFancy">
+							<li><p class="textfancy" i18n-key="i.ImportFromEFileVEJSON">ViSH Editor Presentations and Slides from JSON files</p></li>
+							<li><p class="textfancy" i18n-key="i.ImportFromEFileIMSQTI">Quizzes from IMS QTI 2.1 compliant XML files</p></li>
+							<li><p class="textfancy" i18n-key="i.ImportFromEFileMoodleXML">Quizzes from MoodleXML compliant XML files</p></li>
+						</ul>
+						<input id="efile_input" type="file" id="files" name="files[]" multiple />
+						<button id="efile_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+					</div>
 				</div>
 			</div>
 
 			<div id='tab_presentations_repo_content' class="fancy_tab_content" style='display:none'> 
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_presentations_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<div class="excursions_repo_content">
-					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>  
+				<div class="presentations_repo_content">
+					<p id="descSearch" i18n-key="i.PresentationsRepository">Search on the repository the presentation you would like to import</p>
+					<img src="/assets/logos/repositoryimg.png" id="repoLogo" class="imagelogotab repositoryimgclass"/>  
 					<div class="search_container">
-						<input type="search" class="input_text_fancy input_text_excursions formsizefancy2 marginsfancy3" > </input>
+						<input type="search" class="input_text_fancy input_text_presentations formsizefancy2 marginsfancy3" > </input>
 					</div>
 					<div id="tab_presentations_repo_content_carrousel"></div>
 					<div id="tab_presentations_repo_content_preview" class="content_preview_presentation">
@@ -852,7 +909,7 @@
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_from_url'); return false;" id="tab_pic_from_url" class="fancy_tab tabbable" i18n-key="i.url">url</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload'); return false;" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_thumbnails'); return false;" id="tab_pic_thumbnails" class="fancy_tab tabbable venondefaulttab" style="display:none" i18n-key="i.thumbnails">thumbnails</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo'); return false;" id="tab_pic_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo'); return false;" id="tab_pic_repo" class="fancy_tab">ViSH</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_flikr'); return false;" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_lre'); return false;" id="tab_pic_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
 				</ul>
@@ -890,28 +947,30 @@
 
 			<div id='tab_pic_upload_content' class="fancy_tab_content">
 				<div id="upload_file_inputbox" class="box1 box1fancy3">
-					<p class="textfancy" i18n-key="i.selectPicture">Select picture to upload</p></br>
+					
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+					<div class="textD">
+						<p class="textfancy" i18n-key="i.selectPicture">Select picture to upload</p></br>
+						<form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+							<input type="file" name="document[file]" class="upload_file_input"/>
+							<input type="hidden" name="document[scope]" value="1"/>
+							<input type="hidden" name="document[title]"/>
+							<input type="hidden" name="document[description]"/>
+							<input type="hidden" name="document[owner_id]"/>
+							<input type="hidden" name="document[tag_list]"/>
+							<input type="hidden" name="authenticity_token"/>
+							<input type="hidden" name="preferred_conversion"/>
+							<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload"/>
+						</form>
 
-					<form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-						<input type="file" name="document[file]" class="upload_file_input"/>
-						<input type="hidden" name="document[scope]" value="1"/>
-						<input type="hidden" name="document[title]"/>
-						<input type="hidden" name="document[description]"/>
-						<input type="hidden" name="document[owner_id]"/>
-						<input type="hidden" name="document[tag_list]"/>
-						<input type="hidden" name="authenticity_token"/>
-						<input type="hidden" name="preferred_conversion"/>
-						<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload"/>
-					</form>
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div>
+							<div class="upload_progress_bar_percent">0%</div>
+						</div>
 
-					<div class="upload_progress_bar_wrapper">
-						<div class="upload_progress_bar"></div>
-						<div class="upload_progress_bar_percent">0%</div>
-					</div>
-
-					<div class="tagBoxUpload">
-						<ul class="tagList"></ul>
+						<div class="tagBoxUpload">
+							<ul class="tagList"></ul>
+						</div>
 					</div>
 				</div>
 
@@ -924,7 +983,7 @@
 
 			<div id='tab_pic_repo_content' class="fancy_tab_content">
 				<div class="box1 box1fancy2">
-					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>				  		  
+					<img src="/assets/logos/repositoryimg.png" class="imagelogotab repositoryimgclass"/>				  		  
 					<div class="search_container">
 						<input id="search_picture" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
 					</div>
@@ -958,42 +1017,46 @@
 	<a id="hidden_button_to_launch_theme_fancybox" href="#theme_fancybox" style="display:none"></a>
 	<div style='display:none'>
 		<div id="theme_fancybox" class="theme_fancybox_class">
-			<img id="help_themes_selection" src="/assets/vicons/helptutorial_circle.png"/>
-			<div id='select_theme1' class="slidethumb">
+			<div id="header_fancybox">
+  				<i id="themeIheader" class="icon-button icon-edit"></i>
+  				<p i18n-key="i.Themes">Themes</p>
+			</div>
+			<img id="help_themes_selection" src="/assets/vicons/helptutorial_circle_blank.png"/>
+			<div id='select_theme1' class="slidethumb col1 row1">
 				<img src='/assets/themes/theme1/select.png' class="themethumb" theme="theme1"/>
+			</div>			
+			<div id='select_theme13' class="slidethumb row1">
+				<img src='/assets/themes/theme13/select.png' class="themethumb" theme="theme13"/>
 			</div>
-			<div id='select_theme2' class="slidethumb">
-				<img src='/assets/themes/theme2/select.png' class="themethumb" theme="theme2"/>
+			<div id='select_theme14' class="slidethumb row1">
+				<img src='/assets/themes/theme14/select.png' class="themethumb" theme="theme14"/>
 			</div>
-			<div id='select_theme3' class="slidethumb">
-				<img src='/assets/themes/theme3/select.png' class="themethumb" theme="theme3"/>
+			<div id='select_theme15' class="slidethumb row1">
+				<img src='/assets/themes/theme15/select.png' class="themethumb" theme="theme15"/>
 			</div>
-			<div id='select_theme4' class="slidethumb">
-				<img src='/assets/themes/theme4/select.png' class="themethumb" theme="theme4"/>
+			<div id='select_theme16' class="slidethumb col1">
+				<img src='/assets/themes/theme16/select.png' class="themethumb" theme="theme16"/>
 			</div>
-			<div id='select_theme5' class="slidethumb">
-				<img src='/assets/themes/theme5/select.png' class="themethumb" theme="theme5"/>
+			<div id='select_theme17' class="slidethumb">
+				<img src='/assets/themes/theme17/select.png' class="themethumb" theme="theme17"/>
 			</div>
-			<div id='select_theme6' class="slidethumb">
-				<img src='/assets/themes/theme6/select.png' class="themethumb" theme="theme6"/>
+			<div id='select_theme18' class="slidethumb">
+				<img src='/assets/themes/theme18/select.png' class="themethumb" theme="theme18"/>
 			</div>
-			<div id='select_theme7' class="slidethumb">
-				<img src='/assets/themes/theme7/select.png' class="themethumb" theme="theme7"/>
+			<div id='select_theme19' class="slidethumb">
+				<img src='/assets/themes/theme19/select.png' class="themethumb" theme="theme19"/>
 			</div>
-			<div id='select_theme8' class="slidethumb">
-				<img src='/assets/themes/theme8/select.png' class="themethumb" theme="theme8"/>
+			<div id='select_theme20' class="slidethumb col1">
+				<img src='/assets/themes/theme20/select.png' class="themethumb" theme="theme20"/>
 			</div>
-			<div id='select_theme9' class="slidethumb">
-				<img src='/assets/themes/theme9/select.png' class="themethumb" theme="theme9"/>
+			<div id='select_theme21' class="slidethumb">
+				<img src='/assets/themes/theme21/select.png' class="themethumb" theme="theme21"/>
 			</div>
-			<div id='select_theme10' class="slidethumb">
-				<img src='/assets/themes/theme10/select.png' class="themethumb" theme="theme10"/>
+			<div id='select_theme22' class="slidethumb">
+				<img src='/assets/themes/theme22/select.png' class="themethumb" theme="theme22"/>
 			</div>
-			<div id='select_theme11' class="slidethumb">
-				<img src='/assets/themes/theme11/select.png' class="themethumb" theme="theme11"/>
-			</div>
-			<div id='select_theme12' class="slidethumb">
-				<img src='/assets/themes/theme12/select.gif' class="themethumb" theme="theme12"/>
+			<div id='select_theme23' class="slidethumb">
+				<img src='/assets/themes/theme23/select.png' class="themethumb" theme="theme23"/>
 			</div>
 		</div>
 	</div>
@@ -1002,41 +1065,51 @@
 	<a id="hidden_button_to_launch_animation_fancybox" href="#animation_fancybox" style="display:none"></a>
 	<div style='display:none'>
 		<div id="animation_fancybox" class="animation_fancybox_class">
-			<img id="help_animation_selection" src="/assets/vicons/helptutorial_circle.png"/>
-			<div id='select_animation1' class="slidethumb" animation="animation1">
-				<div class="anim_text"><h3 i18n-key="i.Horizontal">Horizontal</h3></div></div>
-			<div id='select_animation2' class="slidethumb" animation="animation2">
-				<div class="anim_text"><h3 i18n-key="i.Vertical">Vertical</h3></div>
+			<div id="ani_header_fancybox">
+  				<i id="aniIheader" class="icon-button icon-magic"></i>
+  				<p i18n-key="i.Animations">Animation</p>
 			</div>
-			<div id='select_animation3' class="slidethumb" animation="animation3">
-				<div class="anim_text"><h3 i18n-key="i.Opacity">Opacity</h3></div>
+			<img id="help_animation_selection" src="/assets/vicons/helptutorial_circle_blank.png"/>
+			<div id="aniF1" class="filaAni">	
+				<div id='select_animation1' class="slidethumb ani" animation="animation1">
+					<div class="anim_text"><h3 i18n-key="i.Horizontal">Horizontal</h3></div></div>
+				<div id='select_animation2' class="slidethumb ani" animation="animation2">
+					<div class="anim_text"><h3 i18n-key="i.Vertical">Vertical</h3></div>
+				</div>
+				<div id='select_animation3' class="slidethumb ani" animation="animation3">
+					<div class="anim_text"><h3 i18n-key="i.Opacity">Opacity</h3></div>
+				</div>
+				<div id='select_animation4' class="slidethumb ani" animation="animation4">
+					<div class="anim_text"><h3 i18n-key="i.Elements">Elements</h3></div>
+				</div>
 			</div>
-			<div id='select_animation4' class="slidethumb" animation="animation4">
-				<div class="anim_text"><h3 i18n-key="i.Elements">Elements</h3></div>
+			<div class="filaAni">
+				<div id='select_animation5' class="slidethumb ani" animation="animation5">
+					<div class="anim_text"><h3 i18n-key="i.Rotate">Rotate</h3></div>
+				</div>
+				<div id='select_animation6' class="slidethumb ani" animation="animation6">
+					<div class="anim_text"><h3 i18n-key="i.Diagonal1">Diagonal #1</h3></div>
+				</div>
+				<div id='select_animation7' class="slidethumb ani" animation="animation7">
+					<div class="anim_text"><h3 i18n-key="i.Diagonal2">Diagonal #2</h3></div>
+				</div>
+				<div id='select_animation8' class="slidethumb ani" animation="animation8">
+					<div class="anim_text"><h3 i18n-key="i.Inside">Inside</h3></div>
+				</div>
 			</div>
-			<div id='select_animation5' class="slidethumb" animation="animation5">
-				<div class="anim_text"><h3 i18n-key="i.Rotate">Rotate</h3></div>
-			</div>
-			<div id='select_animation6' class="slidethumb" animation="animation6">
-				<div class="anim_text"><h3 i18n-key="i.Diagonal1">Diagonal #1</h3></div>
-			</div>
-			<div id='select_animation7' class="slidethumb" animation="animation7">
-				<div class="anim_text"><h3 i18n-key="i.Diagonal2">Diagonal #2</h3></div>
-			</div>
-			<div id='select_animation8' class="slidethumb" animation="animation8">
-				<div class="anim_text"><h3 i18n-key="i.Inside">Inside</h3></div>
-			</div>
-			<div id='select_animation9' class="slidethumb" animation="animation9">
-				<div class="anim_text"><h3 i18n-key="i.Zoom">Zoom</h3></div>
-			</div>
-			<div id='select_animation10' class="slidethumb" animation="animation10">
-				<div class="anim_text"><h3 i18n-key="i.Flip1">Flip #1</h3></div>
-			</div>
-			<div id='select_animation11' class="slidethumb" animation="animation11">
-				<div class="anim_text"><h3 i18n-key="i.Flip2">Flip #2</h3></div>
-			</div>
-			<div id='select_animation12' class="slidethumb" animation="animation12">
-				<div class="anim_text"><h3 i18n-key="i.3D">3D</h3></div>
+			<div class="filaAni">	
+				<div id='select_animation9' class="slidethumb ani" animation="animation9">
+					<div class="anim_text"><h3 i18n-key="i.Zoom">Zoom</h3></div>
+				</div>
+				<div id='select_animation10' class="slidethumb ani" animation="animation10">
+					<div class="anim_text"><h3 i18n-key="i.Flip1">Flip #1</h3></div>
+				</div>
+				<div id='select_animation11' class="slidethumb ani" animation="animation11">
+					<div class="anim_text"><h3 i18n-key="i.Flip2">Flip #2</h3></div>
+				</div>
+				<div id='select_animation12' class="slidethumb ani" animation="animation12">
+					<div class="anim_text"><h3 i18n-key="i.3D">3D</h3></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -1051,7 +1124,7 @@
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_snapshot'); return false;" id="tab_object_snapshot" class="fancy_tab">web snapshot</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_url'); return false;" id="tab_object_from_url" class="fancy_tab">embed</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_upload'); return false;" id="tab_object_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo'); return false;" id="tab_object_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo'); return false;" id="tab_object_repo" class="fancy_tab">ViSH</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_lre'); return false;" id="tab_object_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
 				</ul>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_object_from_web_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
@@ -1105,26 +1178,28 @@
 
 			<div id='tab_object_upload_content' class="fancy_tab_content">
 				<div class="box1 box1fancy3">
-					<p class="textfancy"><span i18n-key="i.selectObjectUpload">Select a file to upload</span>. <span i18n-key="i.selectObjectUpload2">Supported formats: SWF (flash), PDF</span>.</p><br>
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-					<form  id="object_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-						<input type="file" name="document[file]" class="upload_file_input">
-						<input type="hidden" name="document[scope]" value="1">
-						<input type="hidden" name="document[title]">
-						<input type="hidden" name="document[description]">
-						<input type="hidden" name="document[owner_id]">
-						<input type="hidden" name="authenticity_token">
-						<input type="hidden" name="document[tag_list]">
-						<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-					</form>
+					<div class="textD">
+						<p class="textfancy"><span i18n-key="i.selectObjectUpload">Select a file to upload</span>. <span i18n-key="i.selectObjectUpload2">Supported formats: SWF (flash), PDF</span>.</p><br>
+						<form  id="object_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+							<input type="file" name="document[file]" class="upload_file_input">
+							<input type="hidden" name="document[scope]" value="1">
+							<input type="hidden" name="document[title]">
+							<input type="hidden" name="document[description]">
+							<input type="hidden" name="document[owner_id]">
+							<input type="hidden" name="authenticity_token">
+							<input type="hidden" name="document[tag_list]">
+							<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+						</form>
 
-					<div class="upload_progress_bar_wrapper">
-						<div class="upload_progress_bar"></div >
-						<div class="upload_progress_bar_percent">0%</div >
-					</div>
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div >
+							<div class="upload_progress_bar_percent">0%</div >
+						</div>
 
-					<div class="tagBoxUpload">
-						<ul class="tagList"></ul>
+						<div class="tagBoxUpload">
+							<ul class="tagList"></ul>
+						</div>
 					</div>
 				</div>
 
@@ -1137,7 +1212,7 @@
 
 			<div id='tab_object_repo_content' class="fancy_tab_content">
 				<div class="box1 box1fancy2">
-					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>
+					<img src="/assets/logos/repositoryimg.png" class="imagelogotab repositoryimgclass"/>
 					<div class="search_container">
 						<input id="search_object" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
 					</div>
@@ -1201,7 +1276,7 @@
 			<div class="fancy_tabs" id="video_fancy_tabs_id">	   
 				<ul>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_from_url'); return false;" id="tab_video_from_url" class="fancy_tab" i18n-key="i.url">url</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo'); return false;" id="tab_video_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo'); return false;" id="tab_video_repo" class="fancy_tab">ViSH</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_youtube'); return false;" id="tab_video_youtube" class="fancy_tab"><img src='/assets/logos/youtube.png'/></a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_audio_soundcloud'); return false;" id="tab_audio_soundcloud" class="fancy_tab"><img src='/assets/logos/soundcloud.png'/></a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo'); return false;" id="tab_video_vimeo" class="fancy_tab disabled"><img src='/assets/logos/vimeo.png'/></a></li>
@@ -1234,7 +1309,7 @@
 
 			<div id='tab_video_repo_content' class="fancy_tab_content">		
 				<div class="box1 box1fancy2">	
-					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>	  
+					<img src="/assets/logos/repositoryimg.png" class="imagelogotab repositoryimgclass"/>	  
 					<div class="search_container">
 						<input id="search_video" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
 					</div>
@@ -1318,7 +1393,7 @@
 
 			<div id='tab_live_resource_content' class="fancy_tab_content"> 
 				<div class="box1 box1fancy2">
-					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>
+					<img src="/assets/logos/repositoryimg.png" class="imagelogotab repositoryimgclass"/>
 					<div class="search_container">
 						<input id="search_live_resource" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
 					</div>
@@ -1451,7 +1526,7 @@
 	<!-- Object Settings -->
 	<div style='display:none'>
 		<div id="objectSettings_fancybox" class="elSettings_fancybox">
-			<p class="elsettings_fancybox_title" i18n-key="i.Settings">Settings</p>
+			<p class="elsettings_fancybox_title" i18n-key="i.Options">Options</p>
 
 			<input type="hidden" name="elId">
 
@@ -1462,13 +1537,13 @@
 
 			<div class="wapp_settings" style="display:none">
 				<br/><br/><br/>
-				<p class="elsettings_fancybox_title">Web Application Settings</p>
+				<p i18n-key="i.wappSettings" class="elsettings_fancybox_title">Web Application Settings</p>
 				<div class="new_elsettings_field">
-					<span>Enable Web Application API</span>
+					<span i18n-key="i.wappSettingsEnableAPI">Enable Web Application API</span>
 					<input type="checkbox" name="wappAPI">
 				</div>
 				<div class="new_elsettings_field">
-					<span>This app send scores</span>
+					<span i18n-key="i.wappSettingsSecores">This app send scores</span>
 					<input type="checkbox" name="wappScore">
 				</div>
 				<div class="new_elsettings_field">
@@ -1505,11 +1580,10 @@
 			<h2 i18n-key="i.walkWelcome1_1">Welcome to ViSH Editor!</h2>
 			<p i18n-key="i.walkWelcome1_2">ViSH Editor is an innovative web application that allows you to create amazing web slideshows and novel educational resources such as Virtual Excursions.</p>
 			<p><span i18n-key="i.walkMenuHelp1a">To learn how to use ViSH Editor you can watch several video tutorials in our</span> <a i18n-key="i.YouTubeChannel" class="tut_tutlink" href="http://www.youtube.com/channel/UCo-73n6eZBWNBs2gvKLyBhQ?feature=watch" target="_blank">YouTube Channel</a>. <span i18n-key="i.walkMenuHelp1b">These tutorials cover from basic usage for beginners to advanced features.</span></p>
-			<p i18n-key="i.walkMenuHelp2">The following video tutorial will teach you how to getting started with ViSH Editor in a few minutes.</p>
+			<p><span i18n-key="i.walkMenuHelp2">The following video tutorial will teach you how to getting started with ViSH Editor in a few minutes.</span> <span class="tut_tutlink" onClick="VISH.Tour.startTourWithId('getting_started_help','top');" i18n-key="i.walkMenuHelp3">If you prefer you can click here to see a text tutorial which will teach you quickly the basics to get started.</span></p>
 			<p i18n-key="i.vtTitle_GStarted" class="tut_video_title">Getting Started with ViSH Editor</p>
-			<iframe class="tut_iframe_yt" width="625" height="400" src="//www.youtube.com/embed/fBSNZxs8m0I" frameborder="0" allowfullscreen></iframe>
-			<p class="tut_space">&nbsp;</p>
-			<p><span class="tut_tutlink" onClick="VISH.Tour.startTourWithId('getting_started_help', 'top');" i18n-key="i.walkMenuHelp3">If you prefer you can click here to see a text tutorial which will teach you quickly the basics to get started.</span></p>
+			<iframe class="tut_iframe_yt" width="625" height="380" src="//www.youtube.com/embed/fBSNZxs8m0I" frameborder="0" allowfullscreen></iframe>
+			<p class="tut_space">&nbsp;</p>			
 			<p class="tut_space">&nbsp;</p>
 		</li>
 	</ol>
@@ -1555,11 +1629,6 @@
 			<p class="tut_space">&nbsp;</p>
 		</li>
 
-<!-- 		<li data-id="toolbar_save_help" data-options="tipLocation:top" data-text="Next" i18n-key="i.Next">
-			<h2 i18n-key="i.Save">Save</h2>
-			<p i18n-key="i.walkWelcome6_1">This button allow you to save your excursion as a draft.</p>
-		</li> -->
-
 		<li data-id="toolbar_publish_wrapper" data-options="tipLocation:top" data-text="Next" i18n-key="i.Next" class="tut_width350 tut_with_arrow">
 			<h2 i18n-key="i.Publish">Publish</h2>
 			<p i18n-key="i.walkWelcome7_1">This button allows you to publish your presentation in the ViSH platform. If your presentation is not complete, you can also save it as a draft to keep it private and finish it later.</p>
@@ -1578,12 +1647,6 @@
 			<p class="tut_space">&nbsp;</p>
 		</li>
 
-		<li data-id="toolbar_background_wrapper" class="tut_with_arrow tut_width350" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
-			<h2 i18n-key="i.Background">Background</h2>
-			<p i18n-key="i.walkWelcome10_1">Define a custom background for the current slide.</p>
-			<p class="tut_space">&nbsp;</p>
-		</li>
-
 		<li data-id="toolbar_element" class="tut_toolbar_tools tut_with_arrow" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
 			<h2 i18n-key="i.walkWelcome11_1">Elements Tools</h2>
 			<p i18n-key="i.walkWelcome11_2">This zone contains tools to edit the contents or elements of the slides. The displayed tools will vary depending on the type of the selected element (image, web, ...).</p>
@@ -1591,20 +1654,20 @@
 			<p><span i18n-key="i.walkWelcome11_4">Below are listed all the existing tools</span>:</p>
 			<table>
 				<tr>
-					<td><img src="/assets/toolbar/addLink.png"/></td>
+					<td><img class="tut_toolbar_tools_menu_icon" src="/assets/toolbar/addLink.png"/></td>
 					<td><p i18n-key="i.walkWelcome11_a_1">Link element to a URL</p></td>
 				</tr>
 				<tr>
 					<td>
-						<img src="/assets/toolbar/resizeLess.png"/> 
-						<img src="/assets/toolbar/resizeMore.png"/>
+						<img class="tut_toolbar_tools_menu_icon" src="/assets/toolbar/resizeLess.png"/> 
+						<img class="tut_toolbar_tools_menu_icon" src="/assets/toolbar/resizeMore.png"/>
 					</td>
 					<td><p i18n-key="i.walkWelcome11_a_2">Resize an element</p></td>
 				</tr>
 				<tr>
 					<td>
-						<img src="/assets/toolbar/zoomLess.png"/> 
-						<img src="/assets/toolbar/zoomMore.png"/>
+						<img class="tut_toolbar_tools_menu_icon" src="/assets/toolbar/zoomLess.png"/> 
+						<img class="tut_toolbar_tools_menu_icon" src="/assets/toolbar/zoomMore.png"/>
 					</td>
 					<td><p i18n-key="i.walkWelcome11_a_3">Zoom</p></td>
 				</tr>
@@ -1913,7 +1976,7 @@
 	</ol>
 
 	<!-- Help searching presentations in ViSH to insert -->
-	<ol id="help_excursion_selection_help" class="joyRideTipContent">
+	<ol id="help_pres_selection_help" class="joyRideTipContent">
 		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
 			<h2 i18n-key="i.walkInsertingViSHPres_1">Adding Slides from Virtual Excursions</h2>
 			<p i18n-key="i.walkInsertingViSHPres_2">Here you can search Virtual Excursions on the ViSH platform in order to add them (or add selected slides from them) to your presentation.</p>
@@ -2453,7 +2516,7 @@
 	<ol id="tab_live_resource_id" class="joyRideTipContent">
 		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width600_center tut_without_arrow" data-options="tipLocation:none">
 		<h2 i18n-key="i.walkLive_1">Adding Live Content</h2>
-		<p i18n-key="i.walkLive_2">ViSH (Virtual Science Hub) offers special resources such as live webcams, microscopes or virtual laboratories provided by selected e-Infrastructures.</p>
+		<p i18n-key="i.walkLive_2">ViSH offers special resources such as live webcams, microscopes or virtual laboratories provided by selected e-Infrastructures.</p>
 		<p i18n-key="i.walkLive_3">In this screen you will be able to search this type of resources on the ViSH repository.</p>
 		<p><span i18n-key="i.walkLive_4">If you want to discover more e-Infrastructure resources or attend to live scientific events you can visit</span> <a class="tut_tutlink" href="http://vishub.org" target="_blank">http://vishub.org</a>.</p>
 

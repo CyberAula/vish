@@ -39,6 +39,16 @@ class Ability
       !subject.nil?
     end
 
+    #Download
+    can :download_source, ActivityObject do |ao|
+      ao.downloadable? or can?(:update, ao.object)
+    end
+
+    can :download_source, [Document, Webapp, Scormfile, Link, Embed, Writing, Excursion, Workshop] do |o|
+      can?(:download_source,o.activity_object)
+    end
+
+
     unless subject.nil?
 
       #Contributions
@@ -48,15 +58,6 @@ class Ability
         else
           true
         end
-      end
-
-      #Download
-      can :download_source, ActivityObject do |ao|
-        ao.downloadable? or can?(:update, ao.object)
-      end
-
-      can :download_source, [Document, Webapp, Scormfile, Link, Embed, Writing, Excursion, Workshop] do |o|
-        can?(:download_source,o.activity_object)
       end
 
       #Comments
@@ -152,6 +153,7 @@ class Ability
       end
 
     end
+
 
     #Helpers
     can :show, Array do |arr|

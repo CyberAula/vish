@@ -1,7 +1,9 @@
 <% return if resource.nil? or resource.author.nil? %>
 
 <li class="resource box-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+<% if defined?(prefix_id) && (prefix_id == "join" || prefix_id == "tw") %>
 <div class="selecting-item" style="display:none;"><i class="fa fa-check"></i><%= t('competition.modal.selected') %></div>
+<% end %>
   <!-- corner -->
   <%= link_to(resource) do %>
     <div class="corner-item">

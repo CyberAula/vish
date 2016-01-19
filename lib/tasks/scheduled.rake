@@ -2,6 +2,9 @@
 
 namespace :scheduled do
 
+  #Usage
+  #Development:   bundle exec rake scheduled:regenerateSitemap
+  #In production: bundle exec rake scheduled:regenerateSitemap RAILS_ENV=production
   task :regenerateSitemap => :environment do
     Rake::Task["sitemap:refresh"].invoke("-s")
   end
@@ -76,24 +79,25 @@ namespace :scheduled do
     #Popularity metric has been corrected in the recalculate popularity method.
     puts "Fitting scores and applying correction coefficients"
 
-    metricsScaleFactor = 1000000
+    unless resourceAOs.blank?
+      metricsScaleFactor = 1000000
+      maxRankingForResources = [resourceAOs.max_by {|ao| ao.ranking }.ranking,1].max
+      resourcesCoefficient = (1*metricsScaleFactor)/maxRankingForResources.to_f
 
-    maxRankingForResources = [resourceAOs.max_by {|ao| ao.ranking }.ranking,1].max
-    resourcesCoefficient = (1*metricsScaleFactor)/maxRankingForResources.to_f
+      resourceAOs.each do |ao|
+        ao.ranking = ao.ranking * resourcesCoefficient
 
-    resourceAOs.each do |ao|
-      ao.ranking = ao.ranking * resourcesCoefficient
+        case ao.object_type
+        when "Excursion"
+          ao.ranking = ao.ranking * modelCoefficients[:Excursion]
+        when "Category"
+          ao.ranking = ao.ranking * modelCoefficients[:Category]
+        else
+          ao.ranking = ao.ranking * modelCoefficients[:Resource]
+        end
 
-      case ao.object_type
-      when "Excursion"
-        ao.ranking = ao.ranking * modelCoefficients[:Excursion]
-      when "Category"
-        ao.ranking = ao.ranking * modelCoefficients[:Category]
-      else
-        ao.ranking = ao.ranking * modelCoefficients[:Resource]
+        ao.update_column :ranking, ao.ranking
       end
-
-      ao.update_column :ranking, ao.ranking
     end
 
     timeFinish = Time.now
@@ -146,29 +150,31 @@ namespace :scheduled do
     linkWeights[:fDownloads] = 0
     linkWeights[:fLikes] = 0.6
     
-    #Get values to normalize scores
-    resource_maxVisitCount = [resourceAOs.maximum(:visit_count),1].max
-    resource_maxDownloadCount = [resourceAOs.maximum(:download_count),1].max
-    resource_maxLikeCount = [resourceAOs.maximum(:like_count),1].max
+    unless resourceAOs.blank?
+      #Get values to normalize scores
+      resource_maxVisitCount = [resourceAOs.maximum(:visit_count),1].max
+      resource_maxDownloadCount = [resourceAOs.maximum(:download_count),1].max
+      resource_maxLikeCount = [resourceAOs.maximum(:like_count),1].max
 
-    resourceAOs.each do |ao|
-      if ao.updated_at.nil?
-        ao.popularity = 0
-        next
+      resourceAOs.each do |ao|
+        if ao.updated_at.nil?
+          ao.popularity = 0
+          next
+        end
+
+        timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
+        fVisits = (ao.visit_count/timeWindow.to_f)/resource_maxVisitCount
+        fDownloads = (ao.download_count/timeWindow.to_f)/resource_maxDownloadCount
+        fLikes = (ao.like_count/timeWindow.to_f)/resource_maxLikeCount
+
+        if(nonDownloableResources.include? ao.object_type)
+          rWeights = linkWeights
+        else
+          rWeights = resourceWeights
+        end
+
+        ao.popularity = ((rWeights[:fVisits] * fVisits + rWeights[:fDownloads] * fDownloads + rWeights[:fLikes] * fLikes)*metricsScaleFactor).round(0)
       end
-
-      timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
-      fVisits = (ao.visit_count/timeWindow.to_f)/resource_maxVisitCount
-      fDownloads = (ao.download_count/timeWindow.to_f)/resource_maxDownloadCount
-      fLikes = (ao.like_count/timeWindow.to_f)/resource_maxLikeCount
-
-      if(nonDownloableResources.include? ao.object_type)
-        rWeights = linkWeights
-      else
-        rWeights = resourceWeights
-      end
-
-      ao.popularity = ((rWeights[:fVisits] * fVisits + rWeights[:fDownloads] * fDownloads + rWeights[:fLikes] * fLikes)*metricsScaleFactor).round(0)
     end
 
     ###################################
@@ -180,17 +186,19 @@ namespace :scheduled do
     userWeights[:followerCount] = 0.4
     userWeights[:resourcesPopularity] = 0.6
 
-    #Get values to normalize scores
-    user_maxFollowerCount = [userAOs.maximum(:follower_count),1].max
-    user_maxResourcesPopularity = [userAOs.map{|ao| 
-      Excursion.authored_by(ao.object).map{|e| e.popularity}.sum
-    }.max,1].max
+    unless userAOs.blank?
+      #Get values to normalize scores
+      user_maxFollowerCount = [userAOs.maximum(:follower_count),1].max
+      user_maxResourcesPopularity = [userAOs.map{|ao| 
+        Excursion.authored_by(ao.object).map{|e| e.popularity}.sum
+      }.max,1].max
 
-    userAOs.each do |ao|
-      uFollowers = ao.follower_count/user_maxFollowerCount.to_f
-      uResourcesPopularity = (Excursion.authored_by(ao.object).map{|e| e.popularity}.sum)/user_maxResourcesPopularity.to_f
+      userAOs.each do |ao|
+        uFollowers = ao.follower_count/user_maxFollowerCount.to_f
+        uResourcesPopularity = (Excursion.authored_by(ao.object).map{|e| e.popularity}.sum)/user_maxResourcesPopularity.to_f
 
-      ao.popularity = ((userWeights[:followerCount] * uFollowers + userWeights[:resourcesPopularity] * uResourcesPopularity)*metricsScaleFactor).round(0)
+        ao.popularity = ((userWeights[:followerCount] * uFollowers + userWeights[:resourcesPopularity] * uResourcesPopularity)*metricsScaleFactor).round(0)
+      end
     end
 
     ###################################
@@ -202,16 +210,23 @@ namespace :scheduled do
     eventWeights[:fVisits] = 0.5
     eventWeights[:fLikes] = 0.5
 
-    #Get values to normalize scores
-    events_maxVisitCount = [eventAOs.maximum(:visit_count),1].max
-    events_maxLikeCount = [eventAOs.maximum(:like_count),1].max
+    unless eventAOs.blank?
+      #Get values to normalize scores
+      events_maxVisitCount = [eventAOs.maximum(:visit_count),1].max
+      events_maxLikeCount = [eventAOs.maximum(:like_count),1].max
 
-    eventAOs.each do |ao|
-      timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
-      fVisits = (ao.visit_count/timeWindow.to_f)/events_maxVisitCount
-      fLikes = (ao.like_count/timeWindow.to_f)/events_maxLikeCount
+      eventAOs.each do |ao|
+        if ao.updated_at.nil?
+          ao.popularity = 0
+          next
+        end
 
-      ao.popularity = ((eventWeights[:fVisits] * fVisits + eventWeights[:fLikes] * fLikes)*metricsScaleFactor).round(0)
+        timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
+        fVisits = (ao.visit_count/timeWindow.to_f)/events_maxVisitCount
+        fLikes = (ao.like_count/timeWindow.to_f)/events_maxLikeCount
+
+        ao.popularity = ((eventWeights[:fVisits] * fVisits + eventWeights[:fLikes] * fLikes)*metricsScaleFactor).round(0)
+      end
     end
 
 
@@ -223,14 +238,21 @@ namespace :scheduled do
     categoryWeights = {}
     categoryWeights[:fVisits] = 1
 
-    #Get values to normalize scores
-    categories_maxVisitCount = [categoryAOs.maximum(:visit_count),1].max
+    unless categoryAOs.blank?
+      #Get values to normalize scores
+      categories_maxVisitCount = [categoryAOs.maximum(:visit_count),1].max
 
-    categoryAOs.each do |ao|
-      timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
-      fVisits = (ao.visit_count/timeWindow.to_f)/categories_maxVisitCount
+      categoryAOs.each do |ao|
+        if ao.updated_at.nil?
+          ao.popularity = 0
+          next
+        end
+        
+        timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
+        fVisits = (ao.visit_count/timeWindow.to_f)/categories_maxVisitCount
 
-      ao.popularity = ((categoryWeights[:fVisits] * fVisits)*metricsScaleFactor).round(0)
+        ao.popularity = ((categoryWeights[:fVisits] * fVisits)*metricsScaleFactor).round(0)
+      end
     end
 
     ##############
@@ -247,15 +269,15 @@ namespace :scheduled do
     modelCoefficients[:Event] = 0.1
     modelCoefficients[:Category] = 0.8
     
-    maxPopularityForResources = [resourceAOs.max_by {|ao| ao.popularity }.popularity,1].max
-    maxPopularityForUsers = [userAOs.max_by {|ao| ao.popularity }.popularity,1].max
-    maxPopularityForEvents = [eventAOs.max_by {|ao| ao.popularity }.popularity,1].max
-    maxPopularityForCategories = [categoryAOs.max_by {|ao| ao.popularity }.popularity,1].max
+    maxPopularityForResources = [resourceAOs.max_by {|ao| ao.popularity }.popularity,1].max unless resourceAOs.blank?
+    maxPopularityForUsers = [userAOs.max_by {|ao| ao.popularity }.popularity,1].max unless userAOs.blank?
+    maxPopularityForEvents = [eventAOs.max_by {|ao| ao.popularity }.popularity,1].max unless eventAOs.blank?
+    maxPopularityForCategories = [categoryAOs.max_by {|ao| ao.popularity }.popularity,1].max unless categoryAOs.blank?
 
-    resourcesCoefficient = (1*metricsScaleFactor)/maxPopularityForResources.to_f
-    usersCoefficient = (1*metricsScaleFactor)/maxPopularityForUsers.to_f
-    eventsCoefficient = (1*metricsScaleFactor)/maxPopularityForEvents.to_f
-    categoriesCoefficient = (1*metricsScaleFactor)/maxPopularityForCategories.to_f
+    resourcesCoefficient = (1*metricsScaleFactor)/maxPopularityForResources.to_f unless resourceAOs.blank?
+    usersCoefficient = (1*metricsScaleFactor)/maxPopularityForUsers.to_f unless userAOs.blank?
+    eventsCoefficient = (1*metricsScaleFactor)/maxPopularityForEvents.to_f unless eventAOs.blank?
+    categoriesCoefficient = (1*metricsScaleFactor)/maxPopularityForCategories.to_f unless categoryAOs.blank?
 
     resourceAOs.each do |ao|
       ao.popularity = ao.popularity * resourcesCoefficient

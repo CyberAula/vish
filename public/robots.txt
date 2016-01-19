@@ -7,7 +7,6 @@ User-agent: *
 Crawl-Delay: 50
 Disallow: /excursions/new
 Disallow: /*/*/profile
-Disallow: /categories
 Disallow: /users/*/followings
 Disallow: /users/*/followers
 Disallow: /users/*/excursions*
@@ -19,7 +18,6 @@ Crawl-Delay: 50
 Disallow: /search
 Disallow: /excursions/new
 Disallow: /*/*/profile
-Disallow: /categories
 Disallow: /users/*/followings
 Disallow: /users/*/followers
 Disallow: /users/*/excursions*
