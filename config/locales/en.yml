@@ -1110,6 +1110,7 @@ en:
       edit_mode_btOff: "Turn off editing mode"
       expand_all: "Expand all"
       publish: "Publish"
+      show_contributions: "Show contributions"
       unpublish: "Unpublish"
     activities:
       actions:
