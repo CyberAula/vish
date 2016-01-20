@@ -1101,6 +1101,7 @@ es:
         edit_mode_btOff: "Desactivar modo edición"
         expand_all: "Expandir todo"
         publish: "Publicar"
+        show_contributions: "Ver contribuciones"
         unpublish: "Ocultar publicación"
     activities:
         actions:

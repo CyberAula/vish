@@ -8,8 +8,7 @@
 
 <section id="show_items" class="layout_show workshop_show">
 
-<!--++++++++++++++++toolbar+++++++++++++++++++++++-->
-
+  <!--++++++++++++++++toolbar+++++++++++++++++++++++-->
   <div class="toolbar_nav-tab_workshop">
     <div class="container-fluid">
       <h4 class="edit-workshop-title">
@@ -21,9 +20,10 @@
     </div>
   </div>
 
-
-<!--++++++++++++++++header+++++++++++++++++++++++-->
-  <div style='background-image: url(<%=@workshop.banner.url(:large)%>);' class="workshop_header"></div>
+  <!--++++++++++++++++header+++++++++++++++++++++++-->
+  <% if @workshop.banner.present? %>
+    <div style='background-image: url(<%=@workshop.banner.url(:large)%>);' class="workshop_header"></div>
+  <% end %>
   <div class="wa_activity_wrapper wa_activity_wrapper_show header_workshop">
     <div class="layout_workshop">
       <!--avatar-->
@@ -44,8 +44,7 @@
     </div>
   </div>
 
-<!--++++++++++++++++header/toolbar+++++++++++++++++++++++-->
-
+  <!--++++++++++++++++header/toolbar+++++++++++++++++++++++-->
   <div class="description-activity">
     <div class="box_description">
       <!--tool-->
@@ -63,18 +62,18 @@
   <% @workshop_activities.each do |workshop_activity| %>
 
     <div class="wa_activity_wrapper wa_activity_wrapper_show">
-
+      
       <% if workshop_activity.wa_type=="WaResource"  %>
         <div id="effect<%=workshop_activity.id%>" class="resources_WS desplegado" > <!--only for resources-->
       <%end%>
 
-        <div class="layout_workshop">
-          <% entity = workshop_activity.object %>
-          <%className = entity.class.to_s%>
-          <%classNameUnderscore = className.underscore%>
-          <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
-               locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" } %>
-        </div>
+      <div class="layout_workshop">
+        <% entity = workshop_activity.object %>
+        <%className = entity.class.to_s%>
+        <%classNameUnderscore = className.underscore%>
+        <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
+             locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" } %>
+      </div>
 
       <% if workshop_activity.wa_type=="WaResource"  %>
         </div>
@@ -83,10 +82,7 @@
     </div>
   <%end%>
 
-
-
-<!--++++++++++++++++comments+++++++++++++++++++++++-->
-
+  <!--++++++++++++++++comments+++++++++++++++++++++++-->
   <div class="description-activity workshop-comments">
     <!--activity (comments) -->
     <div class="activity-box">
@@ -96,26 +92,26 @@
 </section>
 
 
-  <%content_for :javascript do%>
-    $(".showMore").click(function(){
-      var mainDiv = $(this).parent();
-      if($(this).attr("status")=== "showMore"){
-        mainDiv.switchClass( "oculto", "desplegado", 3000);
-        $( ".thumbnail_object_WS" ).hide( "slow", function() {
-          $( '.show_object_WS' ).show( "drop", { options: "easeInOutBounce"}, { direction: "left" }, 3000 );
-        });
-        $(this).html('<a><%=t("excursion.actions.show_fewer")%></a>');
-        $(this).attr("status", "showFewer");
-      }
-      else{
-        mainDiv.switchClass( "desplegado", "oculto", 1000);
-        $( '.show_object_WS' ).hide( "drop", { direction: "left" }, 1000, function() {
-          $( '.thumbnail_object_WS' ).show( "drop", { direction: "left" }, 1000 );
-        });
-        $(this).html('<a><%=t("excursion.actions.show_more")%></a>');
-        $(this).attr("status", "showMore");
-      }
-      return false;
-    });
-  <%end%>
+<%content_for :javascript do%>
+  $(".showMore").click(function(){
+    var mainDiv = $(this).parent();
+    if($(this).attr("status")=== "showMore"){
+      mainDiv.switchClass( "oculto", "desplegado", 3000);
+      $( ".thumbnail_object_WS" ).hide( "slow", function() {
+        $( '.show_object_WS' ).show( "drop", { options: "easeInOutBounce"}, { direction: "left" }, 3000 );
+      });
+      $(this).html('<a><%=t("excursion.actions.show_fewer")%></a>');
+      $(this).attr("status", "showFewer");
+    }
+    else{
+      mainDiv.switchClass( "desplegado", "oculto", 1000);
+      $( '.show_object_WS' ).hide( "drop", { direction: "left" }, 1000, function() {
+        $( '.thumbnail_object_WS' ).show( "drop", { direction: "left" }, 1000 );
+      });
+      $(this).html('<a><%=t("excursion.actions.show_more")%></a>');
+      $(this).attr("status", "showMore");
+    }
+    return false;
+  });
+<%end%>
   
