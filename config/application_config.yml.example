@@ -17,8 +17,8 @@ development:
   services: ["ARS","Catalogue","ASearch"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   register_policy: "REGISTER_ONLY"  #this can be 'REGISTER_ONLY', 'INVITATION_ONLY', 'HYBRID' or 'CAS'
-  login_policy: "CAS"
-  CAS:
+  login_policy: "LOCAL" #this can be "LOCAL" or "CAS"
+  CAS:  #only if login_policy is "CAS"
     cas_base_url: "https://educainternet.es/cas"
     cas_create_user: false
     cas_username_column: "email"
