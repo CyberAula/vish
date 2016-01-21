@@ -54,7 +54,9 @@ Vish::Application.configure do
 
     #Settings for speed up TF-IDF calculations
     config.max_text_length = config.rs_settings[:max_text_length]
-    config.repository_total_entries = [ActivityObject.getAllPublicResources.count,1].max
+    if ActiveRecord::Base.connection.table_exists?('activity_objects')
+      config.repository_total_entries = [ActivityObject.getAllPublicResources.count,1].max
+    end
     
     #Keep words in the configuration
     words = {}
