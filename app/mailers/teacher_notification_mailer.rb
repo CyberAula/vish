@@ -1,5 +1,5 @@
 class TeacherNotificationMailer < ActionMailer::Base
-	default from: "no_reply@vishub.org"
+	default from: Vish::Application.config.APP_CONFIG["no_reply_mail"]
 
 	def notify_teacher(teacher, pupil, path) #TODO: add item link
 		@teacher_name = teacher.name
