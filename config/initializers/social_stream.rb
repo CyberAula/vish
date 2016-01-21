@@ -5,10 +5,11 @@ SocialStream.setup do |config|
   # config.subjects = [:user, :group ]
 
   # Include devise modules in User. See devise documentation for details.
+  # :database_authenticatable is needed even if we have CAS authentication so we add it here
   # Others available are:
   # :confirmable, :lockable, :timeoutable, :validatable
   config.devise_modules = [ :recoverable, :rememberable, :trackable,
-                            :omniauthable, :token_authenticatable, :registerable]
+                            :omniauthable, :token_authenticatable, :database_authenticatable, :registerable]
 
   if Vish::Application.config.APP_CONFIG["register_policy"] == "INVITATION_ONLY" || Vish::Application.config.APP_CONFIG["register_policy"] == "HYBRID"
     config.devise_modules << :invitable  
@@ -16,8 +17,6 @@ SocialStream.setup do |config|
 
   if Vish::Application.config.APP_CONFIG["login_policy"] == "CAS"
     config.devise_modules << :cas_authenticatable
-  else
-    config.devise_modules <<  :database_authenticatable
   end
 
   # Type of activities managed by actors
