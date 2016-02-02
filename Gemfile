@@ -64,7 +64,7 @@ if ENV['FORCE_LOCAL_SS']
     gem 'social_stream-events'
   end
 else
-  git 'git://github.com/ging/social_stream.git', branch: "vish", ref: "9912071175009fbe53f90b43b5871a4fef37d50c"  do
+  git 'git://github.com/ging/social_stream.git', branch: "vish", ref: "9fdcec65f4bdfe48e0142e2ee51e52459c33a43c"  do
     gem 'social_stream-base'
     gem 'social_stream-documents'
     gem 'social_stream-linkser'
@@ -75,6 +75,7 @@ end
 
 #for INVITATION ONLY
 gem 'devise_invitable', '= 1.1.8'
+gem 'devise_cas_authenticatable'
 
 # $ export FORCE_LOCAL_SCORM=scormGemPath
 if ENV['FORCE_LOCAL_SCORM']

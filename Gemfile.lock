@@ -30,8 +30,8 @@ GIT
 
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 9912071175009fbe53f90b43b5871a4fef37d50c
-  ref: 9912071175009fbe53f90b43b5871a4fef37d50c
+  revision: 9fdcec65f4bdfe48e0142e2ee51e52459c33a43c
+  ref: 9fdcec65f4bdfe48e0142e2ee51e52459c33a43c
   branch: vish
   specs:
     social_stream-base (2.2.2)
@@ -226,6 +226,9 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    devise_cas_authenticatable (1.6.0)
+      devise (>= 1.2.0)
+      rubycas-client (>= 2.2.1)
     devise_invitable (1.1.8)
       actionmailer (~> 3.0)
       devise (>= 2.1.2)
@@ -276,7 +279,7 @@ GEM
       railties (>= 3.1.0)
     jruby-pageant (1.1.1)
     json (1.8.1)
-    jwt (1.5.0)
+    jwt (1.5.2)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -322,9 +325,9 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
-    omniauth (1.2.2)
+    omniauth (1.3.1)
       hashie (>= 1.2, < 4)
-      rack (~> 1.0)
+      rack (>= 1.0, < 3)
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
     omniauth-linkedin (0.0.8)
@@ -414,6 +417,8 @@ GEM
       rspec (~> 2.9.0)
     ruby-imagespec (0.2.0)
     ruby-rc4 (0.1.5)
+    rubycas-client (2.3.9)
+      activesupport
     rubyzip (1.0.0)
     sanitize (2.1.0)
       nokogiri (>= 1.4.4)
@@ -496,6 +501,7 @@ DEPENDENCIES
   delegates_attributes_to!
   descriptive_statistics (~> 2.4.0)
   detect_language (= 1.0.5)
+  devise_cas_authenticatable
   devise_invitable (= 1.1.8)
   exception_notification (= 4.1.1)
   factory_girl (= 2.6)
