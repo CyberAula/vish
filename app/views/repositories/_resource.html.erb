@@ -44,7 +44,7 @@
       <!--like -->
       <div class="like">
         <div class="count"><%=resource.post_activity.likes.count.to_s%></div>
-        <%= link_like(resource.post_activity)%>
+        <%= link_like(resource.post_activity, {:title =>t('excursion.actions.favorite')})%>
       </div>
 
       <!--views -->
