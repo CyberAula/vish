@@ -4,10 +4,10 @@
     <header>
       <table class="table table-hover">
         <!--type-->
-        <% unless resource.object_type.blank? %>
+        <% unless resource.class.name.blank? %>
           <tr>
             <td><span><%= t('document.info.type') %></span></td>
-            <td><%= resource.object_type %></td>
+            <td><%= t("document.info.types." + resource.class.name.downcase, :default => resource.class.name) %></td>
           </tr>
         <% end %>
         <!--description-->
