@@ -256,8 +256,8 @@ en:
     errors:
       duplicated: "You already have a category with this title. Please, give it another title."
     favorites:
-      title: My favorites
-      description: This category shows your favorite things in the ViSH
+      title: "My favorites"
+      description: "This category shows your favorite things in the ViSH"
     info: "Add it to one of your categories"
     input: "Add a description"
     item_inside: "items inside"
@@ -367,12 +367,12 @@ en:
   description: "description"
   devise:
     invitations:
-      button: Invite anyone to join the community
+      button: "Invite anyone to join the community"
       edit:
         header: "You have been invited to join %{community_name} Community"
-      modal_title: Send an invitation
-      submit_button: Send an invitation
-      success: Invitation sent succesfully
+      modal_title: "Send an invitation"
+      submit_button: "Send an invitation"
+      success: "Invitation sent succesfully"
     invalid_login: "Please enter your email and password to continue."
     tags: "tags"
     password_forgot_instructions: "Write down the email address you associated to your account and you will receive an email with instructions about how to reset your password in a few minutes."
@@ -458,6 +458,20 @@ en:
       size: "Size"
       tags: "Tags"
       type: "Type"
+      types:
+        audio: "Audio"
+        document: "Document"
+        embed: "Embedded Object"
+        excursion: "Excursion (Interactive Presentation)"
+        link: "Link"
+        officedoc: "Document"
+        picture: "Image"
+        scormfile: "SCORM Package"
+        swf: "Flash Object"
+        video: "Video"
+        webapp: "Web Application"
+        writing: "Texto"
+        zipfile: "ZIP File"
     input: "Add a description here"
     language:
       option1: "(Not depends on the language)"
@@ -652,7 +666,7 @@ en:
     title: "language"
     languages:
       independent: "Language independent"
-      other: Others
+      other: "Others"
       en: "English"
       de: "German"
       es: "Spanish"
@@ -1009,11 +1023,11 @@ en:
         always: "Always"
         never: "Never"
     notification_settings:
-        prefix: Send me an email
-        someone_adds_me_as_a_contact: when someone adds me as a contact
-        someone_confirms_my_contact_request: when someone confirms my contact request
-        someone_likes_my_post: when someone likes my post
-        someone_comments_on_my_post: when someone comments on my post
+        prefix: "Send me an email"
+        someone_adds_me_as_a_contact: "when someone adds me as a contact"
+        someone_confirms_my_contact_request: "when someone confirms my contact request"
+        someone_likes_my_post: "when someone likes my post"
+        someone_comments_on_my_post: "when someone comments on my post"
   share: "Post"
   sharing:
     email: "Share by email"
@@ -1149,7 +1163,7 @@ en:
           new_resource: "Add"
       contributions_gallery:
           title: "Contributions Gallery"
-          description: The Contributions Gallery displays the contributions sent to the workshop.
+          description: "The Contributions Gallery displays the contributions sent to the workshop."
           text: "Users can contribute to the tasks defined in a workshop by adding resources or text blocks. With the component Gallery of contributions can see grouped shape resources and/or texts with which other users have contributed."
           error: "A contributions gallery should include at least 1 assignment"
       text:

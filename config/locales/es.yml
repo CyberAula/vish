@@ -238,8 +238,8 @@ es:
     errors:
       duplicated: "Ya tienes una categoría con ese título. Por favor, escribe uno diferente."
     favorites:
-      title: Mis favoritos
-      description: Esta categoría muestra tus cosas favoritas en el ViSH
+      title: "Mis favoritos"
+      description: "Esta categoría muestra tus cosas favoritas en el ViSH"
     info: "Añádelo a una de tus categorías"
     input: "Añade una descripción"
     item_inside: "elementos"
@@ -350,12 +350,12 @@ es:
   description: "descripción"
   devise:
     invitations:
-      button: Invita a alguien a unirse a la comunidad
+      button: "Invita a alguien a unirse a la comunidad"
       edit:
         header: "Has sido invitado a unirte a la comunidad %{community_name}"
-      modal_title: Enviar una invitación
-      submit_button: Enviar una invitación
-      success: Invitación enviada exitosamente
+      modal_title: "Enviar una invitación"
+      submit_button: "Enviar una invitación"
+      success: "Invitación enviada exitosamente"
     email: "Email"
     name: "Nombre"
     password: "Contraseña"
@@ -447,6 +447,20 @@ es:
       size: "Tamaño"
       tags: "Etiquetas"
       type: "Tipo"
+      types:
+        audio: "Audio"
+        document: "Documento"
+        embed: "Objeto Embebido"
+        excursion: "Excursión (Presentación Interactiva)"
+        link: "Enlace"
+        officedoc: "Documento"
+        picture: "Imagen"
+        scormfile: "Paquete SCORM"
+        swf: "Objeto Flash"
+        video: "Vídeo"
+        webapp: "Aplicación Web"
+        writing: "Texto"
+        zipfile: "Fichero ZIP"
     input: "Descripción del recurso"
     language:
       option1: "(No depende del lenguaje)"
@@ -642,7 +656,7 @@ es:
     title: "idioma"
     languages:
       independent: "Independiente del idioma"
-      other: Otros
+      other: "Otros"
       en: "Inglés"
       de: "Alemán"
       es: "Español"
@@ -999,11 +1013,11 @@ es:
         always: "Siempre"
         never: "Nunca"
     notification_settings:
-        prefix: Enviarme un correo
-        someone_adds_me_as_a_contact: cuando alguien me añade como contacto
-        someone_confirms_my_contact_request: cuando alguien confirme mi petición de contacto
-        someone_likes_my_post: cuando a alguien le guste mi publicación
-        someone_comments_on_my_post: cuando alguien comente en mi publicación
+        prefix: "Enviarme un correo"
+        someone_adds_me_as_a_contact: "cuando alguien me añade como contacto"
+        someone_confirms_my_contact_request: "cuando alguien confirme mi petición de contacto"
+        someone_likes_my_post: "cuando a alguien le guste mi publicación"
+        someone_comments_on_my_post: "cuando alguien comente en mi publicación"
   share: "Enviar"
   sharing:
     email: "Compartir por email"
@@ -1057,7 +1071,7 @@ es:
     name: "ViSH"
   swf:
     confirm_delete: "¿Borrar SWF?"
-    name: "objecto flash"
+    name: "objeto flash"
   today: "Hoy"
   top10: "Mejores 10"
   unknown: "Desconocido"
