@@ -1034,6 +1034,7 @@ en:
     twitter:
       message: "Check out this resource at %{url}"
   sign_up: "Register"
+  mail_example: "example@example.com"
   simple_captcha:
     placeholder: "Enter the image value"
     label: "Enter the code in the box:"

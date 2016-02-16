@@ -8,16 +8,16 @@
 
       <%= f.label :email %>
 
-      <%= f.email_field :email, :class => "form-control" %>
+      <%= f.email_field :email, :class => "form-control", :placeholder => t('mail_example') %>
 
       <%= f.label :password %>
 
       <%= f.password_field :password, :class => "form-control" %>
-      <hr class="soften">
+      <!--<hr class="soften">-->
       <% if devise_mapping.rememberable? -%>
         <div class="checkbox">
           <label>
-            <input type="checkbox"> 
+            <input type="checkbox">
             <span class="lbl padding-0">
               <%=t("activerecord.attributes.user.remember_me")%>
             </span>
@@ -26,7 +26,7 @@
       <% end %>
 
       <%= link_to t('devise.links.forgot_password'), new_password_path(resource_name),  :class=> "forgot-link remember_password" %>
-      
+
       <%= f.submit t('sign_in'), :class =>"btn btn-primary" %>
     </article>
   <% end %>
