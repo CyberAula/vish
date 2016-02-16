@@ -6,5 +6,6 @@
 
 Mime::Type.register_alias "application/zip", :scorm
 Mime::Type.register_alias "text/html", :full
+Mime::Type.register_alias "text/html", :fs
 Mime::Type.register_alias "text/html", :partial
 Mime::Type.register_alias "text/html", :gateway

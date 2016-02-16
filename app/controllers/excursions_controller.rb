@@ -44,6 +44,12 @@ class ExcursionsController < ApplicationController
         @title = @excursion.title
         render :layout => 'veditor'
       }
+      format.fs {
+        @excursion.activity_object.increment!(:visit_count) if @excursion.public_scope?
+        @orgUrl = params[:orgUrl]
+        @title = @excursion.title
+        render "show.full", :layout => 'veditor'
+      }
       format.json {
         render :json => resource 
       }
