@@ -32,6 +32,10 @@
 		configuration["SoundCloud"] = true;
 		configuration["SoundCloudAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'] %>";
 	<% end %>
+	<% unless Vish::Application.config.APP_CONFIG['EuropeanaAPIKEY'].nil? %>
+		configuration["Europeana"] = true;
+		configuration["EuropeanaAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['EuropeanaAPIKEY'] %>";
+	<% end %>
 
 	<% if available_services.include? "Catalogue" %>
 		configuration["catalog"] = <%= raw Vish::Application.config.catalogue["categories"].map{|c| c.capitalize}.to_json %>;

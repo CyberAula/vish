@@ -111,6 +111,9 @@ test:
 # Enable SoundCloud in the ViSH Editor. Get the API key from https://developers.soundcloud.com/
 # soundCloudAPIKEY: "secret_key"
 
+# Enable Europeana in the ViSH Editor. Get the API key from http://labs.europeana.eu/
+# EuropeanaAPIKEY: "secret_key"
+
 # LOEP configuration. Allow to evaluate the quality of the ViSH resources in a systematic way (See http://loep.global.dit.upm.es for more info).
 # loep:
 #   domain: "http://loep.global.dit.upm.es"
