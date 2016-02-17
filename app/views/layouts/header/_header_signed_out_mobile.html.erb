@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav mobile-nav">
   <!--login-->
-  <%if Vish::Application.config.APP_CONFIG["login_policy"]=="LOCAL"%>
+  <%if Vish::Application.config.APP_CONFIG["login_policy"]!="CAS"%>
       <li class="sign_in_mobile dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
           <i class="fa fa-signin"></i>

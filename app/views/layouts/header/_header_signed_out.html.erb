@@ -25,7 +25,7 @@
           </a>
         </li>
         
-        <%if Vish::Application.config.APP_CONFIG["login_policy"]=="LOCAL"%>
+        <%if Vish::Application.config.APP_CONFIG["login_policy"]!="CAS"%>
           <li class="btn-group dropdown">
             <a href="#" id="drop3" role="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
               <%=t("sign_in")%>
