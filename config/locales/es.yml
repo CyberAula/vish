@@ -346,6 +346,23 @@ es:
     ViSHCompetition13: "#ViSHCompetition2013"
   youtube: "Canal ViSH en Youtube"
   copy_to_clip: "Copiar al portapapeles"
+  course: 
+    actions:
+      add: "Añadir curso"
+      enrol: "Inscribirme en el curso"
+      register: "Registrarme e inscribirme"
+    description: "Descripción"
+    dates: "Fechas"
+    fields:
+      end_date: "Fecha fin"
+      restricted: "Restringido"
+      restriction_email:  "Restricción de acceso por dominio del email"
+      restriction_password: "Restricción de acceso por password"
+      start_date: "Fecha comienzo"
+      url: "Url del curso en Moodle"
+    msgs:
+      only_email: "Lo sentimos, este curso está restringido sólo a emails {email}. Si tiene un email {email} por favor edite su perfil y cambielo para poder inscribirse en el curso."
+    new: "Nuevo curso"
   date_name: "fecha"
   description: "descripción"
   devise:
@@ -1045,6 +1062,7 @@ es:
       msg: "ViSH - Mensajes"
       activity: "ViSH - Actividades"
     meta_desc:
+      course: "Curso sobre"
       contest: "Competición para crear recursos educativos. Página que muestra instrucciones para participar y ganadores."
       document: "Recurso educativo sobre "
       excursion: "Presentación enriquecida sobre "

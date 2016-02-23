@@ -94,6 +94,9 @@ Vish::Application.routes.draw do
   resources :wa_contributions_galleries
   resources :wa_texts
 
+  #courses
+  resources :courses
+
   #Competitions
   match '/competition' => 'competition#index'
   match '/competition/join_competition' => 'competition#join_competition'

@@ -1,0 +1,36 @@
+<%content_for :title do %><%= @course.title %> - <%= !@course.author.nil? ? @course.author.name : "" %><% end %>
+<%content_for :description do %><%=t("site.meta_desc.course")+@course.title + ". " + (@course.description ? @course.description : "")%><% end %>
+<%content_for :keywords do %><%= @course.tag_list %><% end %>
+<%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@course), @course)%><%end%>
+<%content_for :canonical do%><%=polymorphic_url(@course, :locale => params[:locale])%><%end%>
+
+<section id="course" class="layout_show">
+  
+  <div class="row container_mooc">
+    <div class="col-md-4 mooc_image_main">
+      <%=course_thumb_for(@course)%>
+    </div>
+    <div class="col-md-8 mooc_welcome_text">
+      <h1><%=@course.title%></h1>
+      <h2><%=t('course.description')%></h2>
+      <p><%=@course.description%></p>
+      <h2><%=t('course.dates')%></h2>
+      <p><%=@course.start_date%><%=@course.end_date%></p>
+      <br>
+
+      <%if current_user%>
+        <%if @course.restriction_email && (current_user.email.ends_with? @course.restriction_email)%>
+          <a href="/apuntarme"><div class="btn btn-default"><%=t('course.actions.enrol')%></div></a>
+        <%else%>
+          <div class=""><%=t('course.msgs.only_email')%></div>
+        <%end%>
+      <%else%>
+        <a href="/users/sign_up?course=<%=@course.id%>"><div class="btn btn-primary"><i class="fa fa-hand-o-up"></i><%=t('course.actions.register')%></div></a>
+      <%end%>
+      
+      <a href="/mooc_sheet" class="btn btn-default"><i class="fa fa-download"></i><%= t('mooc.download_sheet') %></a>
+    </div>
+  </div>
+
+</section>
+

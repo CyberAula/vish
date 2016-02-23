@@ -363,6 +363,23 @@ en:
     ViSHCompetition13: "#ViSHCompetition2013"
   youtube: "ViSH Youtube Channel"
   copy_to_clip: "Copy to clipboard"
+  course: 
+    actions:
+      add: "Add course"
+      enrol: "Enrol this course"
+      register: "Register and enrol"
+    description: "Description"
+    dates: "Dates"
+    fields:
+      end_date: "End date"
+      restricted: "Restricted"
+      restriction_email: "Access restriction by email domain"
+      restriction_password: "Access restriction by password"
+      start_date: "Start date"
+      url: "Moodle Course URL"
+    msgs:
+      only_email: "Sorry this course is closed and only available for users with emails from {email}. If you have an email {email} please edit your profile and change it to be able to enrol."
+    new: "New course"
   date_name: "date"
   description: "description"
   devise:
@@ -1054,6 +1071,7 @@ en:
       msg: "ViSH - Messages"
       activity: "ViSH - Activities"
     meta_desc:
+      course: "Course about"
       contest: "ViSH competition about creating educational resources. This page shows instructions to participate and winners."
       document: "Educational resource about "
       excursion: "Slides presentation about "
