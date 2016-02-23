@@ -18,9 +18,29 @@
       <p><%=@course.start_date%><%=@course.end_date%></p>
       <br>
 
-      <div id="course_button_bar">  
+      <% if @course.attachment.exists? %>
+        <a href="<%=@course.attachment.url%>" target="_blank" class="btn btn-default"><i class="fa fa-download"></i><%= t('course.actions.download_sheet') %></a>
+      <%else%>
+         <p><%=t('course.no_attachment')%></p>
+      <% end %>
 
+      <%if user_signed_in? && can?(:update, @course)%>
+        <h2><%=t('course.extra_info')%></h2>
+        <%if !@course.restriction_email.empty?%>
+          <p><%=t('course.fields.restriction_email') + @course.restriction_email%></p>
+        <%else%>
+          <p><%=t("course.no_restriction_email")%></p>
+        <%end%>
+        <%if !@course.course_password.empty?%>
+          <p><%=t('course.fields.course_password') + @course.course_password%></p>
+        <%else%>
+          <p><%=t("course.no_course_password")%></p>
+        <%end%>
+      <%end%>
+
+      <div id="course_button_bar">  
           <%if current_user%>
+            XXX SI ESTOY APUNTADO ENLACE AL CURSO
             <%if @course.restriction_email && (current_user.email.ends_with? @course.restriction_email)%>
               <a href="/apuntarme"><div class="btn btn-default"><%=t('course.actions.enrol')%></div></a>
             <%else%>
@@ -28,15 +48,13 @@
             <%end%>
           <%else%>
             <a href="/users/sign_up?course=<%=@course.id%>"><div class="btn btn-primary"><i class="fa fa-hand-o-up"></i><%=t('course.actions.register')%></div></a>
-          <%end%>
-          
-          <a href="/mooc_sheet" class="btn btn-default"><i class="fa fa-download"></i><%= t('mooc.download_sheet') %></a>
+          <%end%>                   
 
           <%if user_signed_in? && can?(:update, @course)%>
             <a href="<%=edit_course_path(@course)%>"><div class="btn btn-primary"><i class="fa fa-edit"></i><%=t('course.actions.edit')%></div></a>
           <%end%>
 
-          <%if true || user_signed_in? && can?(:delete, @course)%>
+          <%if user_signed_in? && can?(:delete, @course)%>
             <button id="course_delete" class="delete btn btn-default" data-toggle="popover"  title="<%=t('course.actions.delete')%>" >
                 <i class="fa fa-trash-o"></i><%=t('course.actions.delete')%>
             </button>

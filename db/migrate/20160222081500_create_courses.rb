@@ -5,11 +5,11 @@ class CreateCourses < ActiveRecord::Migration
       t.timestamps  null: false
       t.date        "start_date"
       t.date        "end_date"
-      t.boolean     :restricted, :default => false
+      t.boolean     "restricted", :default => false
       t.string      "restriction_email"
-      t.string      "restriction_password"
       t.string      "url"
       t.string      "course_password"
+      t.attachment  "attachment"
     end
     create_table :courses_users, id: false do |t|
       t.belongs_to :user, index: true

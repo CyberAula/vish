@@ -14,8 +14,8 @@
 </section>
 
 <section class="">
-<%= f.label :restriction_password, t('course.fields.restriction_password') %>
-<%= f.text_field :restriction_password, :class => "form-control" %>
+<%= f.label :course_password, t('course.fields.course_password') %>
+<%= f.text_field :course_password, :class => "form-control" %>
 </section>
 
 <section class="">
@@ -26,4 +26,9 @@
 <section class="">
     <%= f.label t('course.fields.end_date') %>
     <%= date_select "course", "end_date", :order => [:day, :month, :year], :end_year => Date.today.year+1, :start_year => Date.today.year, :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>
+</section>
+
+<section class="">
+<%= f.label t('course.fields.program') %>
+<%= f.file_field :attachment %>
 </section>

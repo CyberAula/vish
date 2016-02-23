@@ -224,15 +224,18 @@ ActiveRecord::Schema.define(:version => 20160222081500) do
 
   create_table "courses", :force => true do |t|
     t.integer  "activity_object_id"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.date     "start_date"
     t.date     "end_date"
-    t.boolean  "restricted",           :default => false
+    t.boolean  "restricted",              :default => false
     t.string   "restriction_email"
-    t.string   "restriction_password"
     t.string   "url"
     t.string   "course_password"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "courses_users", :id => false, :force => true do |t|

@@ -95,7 +95,9 @@ Vish::Application.routes.draw do
   resources :wa_texts
 
   #courses
-  resources :courses
+  resources :courses do
+    get 'attachment', :on => :member
+  end
 
   #Competitions
   match '/competition' => 'competition#index'
