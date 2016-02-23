@@ -18,19 +18,53 @@
       <p><%=@course.start_date%><%=@course.end_date%></p>
       <br>
 
-      <%if current_user%>
-        <%if @course.restriction_email && (current_user.email.ends_with? @course.restriction_email)%>
-          <a href="/apuntarme"><div class="btn btn-default"><%=t('course.actions.enrol')%></div></a>
-        <%else%>
-          <div class=""><%=t('course.msgs.only_email')%></div>
-        <%end%>
-      <%else%>
-        <a href="/users/sign_up?course=<%=@course.id%>"><div class="btn btn-primary"><i class="fa fa-hand-o-up"></i><%=t('course.actions.register')%></div></a>
-      <%end%>
-      
-      <a href="/mooc_sheet" class="btn btn-default"><i class="fa fa-download"></i><%= t('mooc.download_sheet') %></a>
+      <div id="course_button_bar">  
+
+          <%if current_user%>
+            <%if @course.restriction_email && (current_user.email.ends_with? @course.restriction_email)%>
+              <a href="/apuntarme"><div class="btn btn-default"><%=t('course.actions.enrol')%></div></a>
+            <%else%>
+              <div class=""><%=t('course.msgs.only_email', :email => @course.restriction_email)%></div>
+            <%end%>
+          <%else%>
+            <a href="/users/sign_up?course=<%=@course.id%>"><div class="btn btn-primary"><i class="fa fa-hand-o-up"></i><%=t('course.actions.register')%></div></a>
+          <%end%>
+          
+          <a href="/mooc_sheet" class="btn btn-default"><i class="fa fa-download"></i><%= t('mooc.download_sheet') %></a>
+
+          <%if user_signed_in? && can?(:update, @course)%>
+            <a href="<%=edit_course_path(@course)%>"><div class="btn btn-primary"><i class="fa fa-edit"></i><%=t('course.actions.edit')%></div></a>
+          <%end%>
+
+          <%if true || user_signed_in? && can?(:delete, @course)%>
+            <button id="course_delete" class="delete btn btn-default" data-toggle="popover"  title="<%=t('course.actions.delete')%>" >
+                <i class="fa fa-trash-o"></i><%=t('course.actions.delete')%>
+            </button>
+
+
+            <div class="contentdelete" style="display: none">
+                <p class="delete_p"><i class="fa fa-trash-o"></i>  <%=t('course.confirm_delete')%></p>
+                <div class="actions">
+                  <a class="btn btn-default btn_cancel closepopover"><%=t('cancel')%></a>
+                  <a href="<%=course_path(@course)%>" data-method="delete"><div class="btn btn-primary"><i class="fa fa-trash-o"></i><%=t('course.actions.delete')%></div></a>
+                </div>
+            </div>
+          <%end%>
+      </div>
     </div>
   </div>
 
 </section>
 
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    $('#course_delete').popover({
+      html : true,
+      placement: "left",
+      content: function() {
+        return $('.contentdelete').html();
+      },
+      container: "#course_button_bar"
+    });
+});
+</script>

@@ -349,8 +349,11 @@ es:
   course: 
     actions:
       add: "Añadir curso"
+      delete: "Borrar"
+      edit: "Editar"
       enrol: "Inscribirme en el curso"
       register: "Registrarme e inscribirme"
+    confirm_delete: "Está seguro que quiere borrar este curso?"
     description: "Descripción"
     dates: "Fechas"
     fields:
@@ -361,7 +364,7 @@ es:
       start_date: "Fecha comienzo"
       url: "Url del curso en Moodle"
     msgs:
-      only_email: "Lo sentimos, este curso está restringido sólo a emails {email}. Si tiene un email {email} por favor edite su perfil y cambielo para poder inscribirse en el curso."
+      only_email: "Lo sentimos, este curso está restringido sólo a emails %{email}. Si tiene un email %{email} por favor edite su perfil y cambielo para poder inscribirse en el curso."
     new: "Nuevo curso"
   date_name: "fecha"
   description: "descripción"

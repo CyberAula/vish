@@ -366,8 +366,11 @@ en:
   course: 
     actions:
       add: "Add course"
+      delete: "Delete"
+      edit: "Edit"
       enrol: "Enrol this course"
       register: "Register and enrol"
+    confirm_delete: "Are you sure that you want to delete this course?"
     description: "Description"
     dates: "Dates"
     fields:
@@ -378,7 +381,7 @@ en:
       start_date: "Start date"
       url: "Moodle Course URL"
     msgs:
-      only_email: "Sorry this course is closed and only available for users with emails from {email}. If you have an email {email} please edit your profile and change it to be able to enrol."
+      only_email: "Sorry this course is closed and only available for users with emails from %{email}. If you have an email %{email} please edit your profile and change it to be able to enrol."
     new: "New course"
   date_name: "date"
   description: "description"

@@ -13,7 +13,7 @@ class CoursesController < ApplicationController
   private
 
   def allowed_params
-    [:start_date, :end_date, :restricted, :restriction_email, :restriction_password, :url, :course_password]
+    [:start_date, :end_date, :restricted, :restriction_email, :restriction_password, :url, :course_password, :avatar]
   end
 end
 
