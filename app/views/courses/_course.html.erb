@@ -1,0 +1,56 @@
+<li class="course course-item box-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+  <!-- corner -->
+  <%= link_to(course) do %>
+    <div class="corner-item">
+      <div class="corner-item2">
+        <div class="corner-color"></div>
+        <i class='fa fa-university'></i>
+      </div>
+      <div class="corner-background"></div>
+    </div>
+
+    <div class="container-img">
+      <div class="element resource-center">
+        <div class="img-box resource-center" id="course-<%=course.id%>">
+          <div class="course">
+            <i class='fa fa-university'></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <script>
+    document.getElementById("course-<%=course.id%>").style.backgroundImage = "url('<%=course_raw_thumbail(course)%>')";
+  </script>
+
+  <div class="caption">
+    <!--Title -->
+    <h6>
+      <%= link_to course.title, course %>
+    </h6>
+    <!--Author -->
+    <div class="author"> 
+      <span class="by"><%=t('by')%></span>
+      <%= link_to course.author.name, course.author.subject %>
+    </div>
+    <hr>
+    <div class="info-bottom">  
+      <!--like -->
+      <div class="like">  
+        <% if course.post_activity%>
+          <div class="count"><%=course.post_activity.likes.count.to_s%></div>
+          <%= link_like(course.post_activity, :title =>t('excursion.actions.favorite'))%>
+        <%else%>
+          <div class="count">0</div>
+        <%end%>
+      </div>
+      <!--views -->
+      <div class="views">
+        <%=course.visit_count.to_s%>
+        <i class="fa fa-eye"></i>
+      </div>
+    </div>
+  </div>
+
+</li>

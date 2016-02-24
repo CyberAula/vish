@@ -370,10 +370,17 @@ en:
       download_sheet: "Download program"
       edit: "Edit"
       enrol: "Enrol this course"
+      go: "Go to course"
+      leave: "Leave this course"
       register: "Register and enrol"
+    age: "Recommended age"
+    age_from: "From"
+    age_to: "To"
     confirm_delete: "Are you sure that you want to delete this course?"
     description: "Description"
     dates: "Dates"
+    date_from: "From"
+    date_to: "To"
     extra_info: "Other information (visible only by the owner)"
     fields:
       course_password: "Access restriction by password"
@@ -383,12 +390,19 @@ en:
       restriction_email: "Access restriction by email domain"
       start_date: "Start date"
       url: "Moodle Course URL"
+    flash:
+      join_success: "You succesfully joined this course"
+      leave_success: "You succesfully leaved this course"
+      not_allowed: "You don't have the correct email domain"
+    language: "Language"
     msgs:
       only_email: "Sorry this course is closed and only available for users with emails from %{email}. If you have an email %{email} please edit your profile and change it to be able to enrol."
     new: "New course"
     no_attachment: "No course program uploaded"
     no_course_password: "No course password"
     no_restriction_email: "No restriction by email"
+    other: "Courses"
+    tags: "Tags"
   date_name: "date"
   description: "description"
   devise:
@@ -678,6 +692,10 @@ en:
     tooltip:
       add_button: "Create excursions, resources, etc."
   help: "help"
+  helpers:
+    submit:
+      create: "Create"
+      update: "Update"
   help_page: "ViSH HELP"
   help_manual: "Download user manual"
   hide: "Hide"

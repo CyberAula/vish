@@ -97,6 +97,8 @@ Vish::Application.routes.draw do
   #courses
   resources :courses do
     get 'attachment', :on => :member
+    post 'join', :on => :member
+    post 'leave', :on => :member
   end
 
   #Competitions

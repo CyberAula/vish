@@ -15,9 +15,28 @@
       <h2><%=t('course.description')%></h2>
       <p><%=@course.description%></p>
       <h2><%=t('course.dates')%></h2>
-      <p><%=@course.start_date%><%=@course.end_date%></p>
-      <br>
-
+      <p><%=t("course.date_from")%>:<%=@course.start_date%></p>
+      <p><%=t("course.date_to")%>:<%=@course.end_date%></p>
+      <%if @course.age_min!=0 || @course.age_max!=0%>
+        <h2><%=t('course.age')%></h2>
+        <p><%=t("course.age_from")%>:<%=@course.age_min%></p>
+        <p><%=t("course.age_to")%>:<%=@course.age_max%></p>        
+      <%end%>
+      <%if @course.language && @course.language!="independent"%>
+        <h2><%=t('course.language')%></h2>
+        <p>
+        <%=@course.readable_language%></p>
+      <%end%>
+      <%if @course.tags.length>0%>
+        <h2><%=t('course.tags')%></h2>
+        <ul class="tagit-suggestions">
+          <% @course.tag_list.each do |tag| %>
+          <li class="tagit-choice">
+            <%= link_to tag, search_path(:q => tag) %>
+          </li>
+          <% end %>
+        </ul>
+      <%end%>
       <% if @course.attachment.exists? %>
         <a href="<%=@course.attachment.url%>" target="_blank" class="btn btn-default"><i class="fa fa-download"></i><%= t('course.actions.download_sheet') %></a>
       <%else%>
@@ -27,12 +46,12 @@
       <%if user_signed_in? && can?(:update, @course)%>
         <h2><%=t('course.extra_info')%></h2>
         <%if !@course.restriction_email.empty?%>
-          <p><%=t('course.fields.restriction_email') + @course.restriction_email%></p>
+          <p><%=t('course.fields.restriction_email') + ": " + @course.restriction_email%></p>
         <%else%>
           <p><%=t("course.no_restriction_email")%></p>
         <%end%>
         <%if !@course.course_password.empty?%>
-          <p><%=t('course.fields.course_password') + @course.course_password%></p>
+          <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
         <%else%>
           <p><%=t("course.no_course_password")%></p>
         <%end%>
@@ -40,9 +59,15 @@
 
       <div id="course_button_bar">  
           <%if current_user%>
-            XXX SI ESTOY APUNTADO ENLACE AL CURSO
-            <%if @course.restriction_email && (current_user.email.ends_with? @course.restriction_email)%>
-              <a href="/apuntarme"><div class="btn btn-default"><%=t('course.actions.enrol')%></div></a>
+            <%if @course.users.include? current_user%>
+              <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
+              <%= form_for @course, :url => { :action => :leave }, method: "post"  do |f| %>
+                <%= f.submit t('course.actions.leave') %>
+              <% end %>
+            <%elsif @course.restriction_email && (current_user.email.ends_with? @course.restriction_email)%>
+                <%= form_for @course, :url => { :action => :join }, method: "post"  do |f| %>
+                    <%= f.submit t('course.actions.enrol') %>
+                <% end %>
             <%else%>
               <div class=""><%=t('course.msgs.only_email', :email => @course.restriction_email)%></div>
             <%end%>

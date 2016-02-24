@@ -50,6 +50,15 @@
       </li>
     <%end%>
 
+    <% if availableModels.include? "Course" %>
+      <li>
+        <a tabindex="-1" href="<%=courses_path%>">
+          <i class="fa fa-university"></i>
+          <%=t('course.other')%>
+        </a>
+      </li>
+    <%end%>
+
     <li class="divider"></li>
 
     <% if availableServices.include? "Catalogue" %>

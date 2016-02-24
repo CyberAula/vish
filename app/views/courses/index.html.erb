@@ -1,0 +1,6 @@
+<ul class="items">
+	<%@courses.each do |c|%>
+		<%= render partial: 'courses/course' , :locals => { :course => c } %>
+
+	<%end%>
+</ul>

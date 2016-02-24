@@ -7,6 +7,7 @@ class CreateCourses < ActiveRecord::Migration
       t.date        "end_date"
       t.boolean     "restricted", :default => false
       t.string      "restriction_email"
+      t.string      "restriction_password"
       t.string      "url"
       t.string      "course_password"
       t.attachment  "attachment"
