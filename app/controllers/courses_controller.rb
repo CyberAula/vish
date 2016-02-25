@@ -1,10 +1,15 @@
 class CoursesController < ApplicationController  
   include SocialStream::Controllers::Objects
-  skip_load_and_authorize_resource :only => [:attachment]
+  before_filter :authenticate_user!, :except => [:show, :attachment, :index]
+  skip_load_and_authorize_resource :only => [:attachment, :join, :leave]
   skip_after_filter :discard_flash, :only => [:join, :leave]
 
   def index
-    @courses = Course.all
+    if current_user && params[:user_id].present?
+      @courses = current_user.courses
+    else
+      @courses = Course.all
+    end
   end
 
   def new

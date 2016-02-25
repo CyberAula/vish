@@ -3,9 +3,14 @@
 <%= f.text_field :url, :class => "form-control" %>
 </section>
 
-<div class="">
-<%= f.label :restricted, t('course.fields.restricted') %>
+<section class="">
+<%= f.label :course_password, t('course.fields.course_password') %>
+<%= f.text_field :course_password, :class => "form-control" %>
+</section>
+
+<div class="" id="restricted_course_field">
 <%= f.check_box :restricted, :class => "form-control" %>
+<%= f.label :restricted, t('course.fields.restricted')+":" %>
 </div>
 
 <section class="">
@@ -14,8 +19,8 @@
 </section>
 
 <section class="">
-<%= f.label :course_password, t('course.fields.course_password') %>
-<%= f.text_field :course_password, :class => "form-control" %>
+<%= f.label :restriction_password, t('course.fields.restriction_password') %>
+<%= f.text_field :restriction_password, :class => "form-control" %>
 </section>
 
 <section class="">
@@ -32,3 +37,27 @@
 <%= f.label t('course.fields.program') %>
 <%= f.file_field :attachment %>
 </section>
+
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(){
+      $("#course_restricted").change(function(){
+        var checked = $(this).prop('checked');
+        var pass_input = $("#course_restriction_password");
+        var email_input = $("#course_restriction_email");
+
+        if(checked){
+          $(pass_input).removeAttr("disabled");
+          $(email_input).removeAttr("disabled");       
+        } else {          
+          $(pass_input).attr("disabled","disabled");
+          $(email_input).attr("disabled","disabled");  
+        }
+      });
+
+      if( !$("#course_restricted").prop('checked')){
+      	$("#course_restriction_password").attr("disabled","disabled");
+        $("#course_restriction_email").attr("disabled","disabled");  
+      }
+    });
+</script>

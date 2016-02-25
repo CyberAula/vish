@@ -5,6 +5,7 @@ class CreateCourses < ActiveRecord::Migration
       t.timestamps  null: false
       t.date        "start_date"
       t.date        "end_date"
+      t.boolean     "closed", :default => false
       t.boolean     "restricted", :default => false
       t.string      "restriction_email"
       t.string      "restriction_password"

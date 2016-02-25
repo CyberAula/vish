@@ -43,6 +43,52 @@
          <p><%=t('course.no_attachment')%></p>
       <% end %>
 
+      <%if current_user && @course.course_password && (@course.users.include? current_user)%>
+        <h2><%=t('course.show_password')%></h2>
+        <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
+      <%end%>
+      
+
+      <div id="course_button_bar">  
+          <%if @course.closed%>
+            <div class=""><%=t('course.msgs.course_closed')%></div>
+          <%else%>
+              <%if current_user && @course.users.include? current_user%>
+                  <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
+                  <%= form_for @course, :url => { :action => :leave }, method: "post"  do |f| %>
+                    <%= f.submit t('course.actions.leave') %>
+                  <% end %>
+              <%else%>
+                  <%if @course.end_date.present? && @course.end_date <= Date.today%>
+                    <div class=""><%=t('course.msgs.course_ended')%></div>
+                  <%elsif @course.start_date.present? && @course.start_date <= Date.today%>
+                    <div class=""><%=t('course.msgs.course_registration_ended')%></div>
+                  <%else%>
+                    <%if current_user%>
+                      <%if !@course.restricted || (@course.restricted && @course.restriction_email && (current_user.email.ends_with? @course.restriction_email))%>
+                        <%= form_for @course, :url => { :action => :join }, method: "post"  do |f| %>
+                          <%= f.submit t('course.actions.enrol') %>
+                        <% end %>
+                      <%elsif @course.restricted && @course.restriction_password%>
+                        PASSWD
+                      <%elsif @course.restricted && @course.restriction_email && !(current_user.email.ends_with? @course.restriction_email)%>
+                        <div class=""><%=t('course.msgs.only_email')%></div>
+                      <%else%>
+                        <div class=""><%=t('course.msgs.unknown')%></div>
+                      <%end%>
+                    <%else%>
+                      <%if @course.restricted%>
+                        <a href="/users/sign_up%>"><div class="btn btn-primary"><i class="fa fa-hand-o-up"></i><%=t('course.actions.register')%></div></a>
+                      <%else%>
+                        <a href="/users/sign_up?course=<%=@course.id%>"><div class="btn btn-primary"><i class="fa fa-hand-o-up"></i><%=t('course.actions.register_and_enrol')%></div></a>
+                      <%end%>
+                    <%end%>
+                  <%end%>
+              <%end%>              
+             
+          <%end%>
+      </div>
+
       <%if user_signed_in? && can?(:update, @course)%>
         <h2><%=t('course.extra_info')%></h2>
         <%if !@course.restriction_email.empty?%>
@@ -50,36 +96,19 @@
         <%else%>
           <p><%=t("course.no_restriction_email")%></p>
         <%end%>
+        <%if !@course.restriction_password.empty?%>
+          <p><%=t('course.fields.restriction_password') + ": " + @course.restriction_password%></p>
+        <%else%>
+          <p><%=t("course.no_restriction_password")%></p>
+        <%end%>
         <%if !@course.course_password.empty?%>
           <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
         <%else%>
           <p><%=t("course.no_course_password")%></p>
         <%end%>
-      <%end%>
 
-      <div id="course_button_bar">  
-          <%if current_user%>
-            <%if @course.users.include? current_user%>
-              <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
-              <%= form_for @course, :url => { :action => :leave }, method: "post"  do |f| %>
-                <%= f.submit t('course.actions.leave') %>
-              <% end %>
-            <%elsif @course.restriction_email && (current_user.email.ends_with? @course.restriction_email)%>
-                <%= form_for @course, :url => { :action => :join }, method: "post"  do |f| %>
-                    <%= f.submit t('course.actions.enrol') %>
-                <% end %>
-            <%else%>
-              <div class=""><%=t('course.msgs.only_email', :email => @course.restriction_email)%></div>
-            <%end%>
-          <%else%>
-            <a href="/users/sign_up?course=<%=@course.id%>"><div class="btn btn-primary"><i class="fa fa-hand-o-up"></i><%=t('course.actions.register')%></div></a>
-          <%end%>                   
-
-          <%if user_signed_in? && can?(:update, @course)%>
-            <a href="<%=edit_course_path(@course)%>"><div class="btn btn-primary"><i class="fa fa-edit"></i><%=t('course.actions.edit')%></div></a>
-          <%end%>
-
-          <%if user_signed_in? && can?(:delete, @course)%>
+        <a href="<%=edit_course_path(@course)%>"><div class="btn btn-primary"><i class="fa fa-edit"></i><%=t('course.actions.edit')%></div></a>
+        <%if user_signed_in? && can?(:destroy, @course)%>
             <button id="course_delete" class="delete btn btn-default" data-toggle="popover"  title="<%=t('course.actions.delete')%>" >
                 <i class="fa fa-trash-o"></i><%=t('course.actions.delete')%>
             </button>
@@ -93,7 +122,8 @@
                 </div>
             </div>
           <%end%>
-      </div>
+      <%end%>
+
     </div>
   </div>
 
