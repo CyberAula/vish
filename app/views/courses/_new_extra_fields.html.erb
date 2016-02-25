@@ -1,26 +1,26 @@
 <section class="">
-<%= f.label :url, t('course.fields.url') %>
-<%= f.text_field :url, :class => "form-control" %>
+	<%= f.label :url, t('course.fields.url') %>
+	<%= f.text_field :url, :class => "form-control" %>
 </section>
 
 <section class="">
-<%= f.label :course_password, t('course.fields.course_password') %>
-<%= f.text_field :course_password, :class => "form-control" %>
+	<%= f.label :course_password, t('course.fields.course_password') %>
+	<%= f.text_field :course_password, :class => "form-control" %>
 </section>
 
-<div class="" id="restricted_course_field">
-<%= f.check_box :restricted, :class => "form-control" %>
-<%= f.label :restricted, t('course.fields.restricted')+":" %>
+<div class="checkbox_course_field">
+	<%= f.check_box :restricted, :class => "form-control" %>
+	<%= f.label :restricted, t('course.fields.restricted')+":" %>
 </div>
 
 <section class="">
-<%= f.label :restriction_email, t('course.fields.restriction_email') %>
-<%= f.text_field :restriction_email, :class => "form-control" %>
+	<%= f.label :restriction_email, t('course.fields.restriction_email') %>
+	<%= f.text_field :restriction_email, :class => "form-control" %>
 </section>
 
 <section class="">
-<%= f.label :restriction_password, t('course.fields.restriction_password') %>
-<%= f.text_field :restriction_password, :class => "form-control" %>
+	<%= f.label :restriction_password, t('course.fields.restriction_password') %>
+	<%= f.text_field :restriction_password, :class => "form-control" %>
 </section>
 
 <section class="">
@@ -34,9 +34,14 @@
 </section>
 
 <section class="">
-<%= f.label t('course.fields.program') %>
-<%= f.file_field :attachment %>
+	<%= f.label t('course.fields.program') %>
+	<%= f.file_field :attachment %>
 </section>
+
+<div class="checkbox_course_field">
+	<%= f.check_box :closed, :class => "form-control" %>
+	<%= f.label :closed, t('course.fields.closed') %>
+</div>
 
 
 <script type="text/javascript">
