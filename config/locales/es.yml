@@ -401,6 +401,7 @@ es:
     no_restriction_password: "Sin restricción por contraseña"
     other: "Cursos"
     required_fields: "*Estos campos son obligatorios"
+    show_password: "Contraseña del curso en Moodle"
     tags: "Etiquetas"
   date_name: "fecha"
   description: "descripción"

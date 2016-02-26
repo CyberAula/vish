@@ -14,9 +14,11 @@
       <h1><%=@course.title%></h1>
       <h2><%=t('course.description')%></h2>
       <p><%=@course.description%></p>
-      <h2><%=t('course.dates')%></h2>
-      <p><%=t("course.date_from")%>:<%=@course.start_date%></p>
-      <p><%=t("course.date_to")%>:<%=@course.end_date%></p>
+      <%if @course.start_date.present? || @course.end_date.present?%>
+        <h2><%=t('course.dates')%></h2>
+        <p><%=t("course.date_from")%>:<%=@course.start_date%></p>
+        <p><%=t("course.date_to")%>:<%=@course.end_date%></p>
+      <%end%>
       <%if @course.age_min!=0 || @course.age_max!=0%>
         <h2><%=t('course.age')%></h2>
         <p><%=t("course.age_from")%>:<%=@course.age_min%></p>
@@ -39,8 +41,6 @@
       <%end%>
       <% if @course.attachment.exists? %>
         <a href="<%=@course.attachment.url%>" target="_blank" class="btn btn-default"><i class="fa fa-download"></i><%= t('course.actions.download_sheet') %></a>
-      <%else%>
-         <p><%=t('course.no_attachment')%></p>
       <% end %>
 
       <%if current_user && @course.course_password && (@course.users.include? current_user)%>
@@ -97,24 +97,25 @@
       <%if user_signed_in? && can?(:update, @course)%>
         <h2><%=t('course.extra_info')%></h2>
         <%if @course.restricted%>
-          <p><%=t('course.has_restrictions')%></p>
-          <%if @course.restriction_email.present?%>
-            <p><%=t('course.fields.restriction_email') + ": " + @course.restriction_email%></p>
-          <%else%>
-            <p><%=t("course.no_restriction_email")%></p>
-          <%end%>
-          <%if @course.restriction_password.present?%>
-            <p><%=t('course.fields.restriction_password') + ": " + @course.restriction_password%></p>
-          <%else%>
-            <p><%=t("course.no_restriction_password")%></p>
-          <%end%>
-          <%if @course.course_password.present?%>
-            <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
-          <%else%>
-            <p><%=t("course.no_course_password")%></p>
-          <%end%>
+            <p><%=t('course.has_restrictions')%></p>
+            <%if @course.restriction_email.present?%>
+              <p><%=t('course.fields.restriction_email') + ": " + @course.restriction_email%></p>
+            <%else%>
+              <p><%=t("course.no_restriction_email")%></p>
+            <%end%>
+            <%if @course.restriction_password.present?%>
+              <p><%=t('course.fields.restriction_password') + ": " + @course.restriction_password%></p>
+            <%else%>
+              <p><%=t("course.no_restriction_password")%></p>
+            <%end%>          
         <%else%>
-          <p><%=t('course.has_no_restrictions')%></p>
+            <p><%=t('course.has_no_restrictions')%></p>
+        <%end%>
+
+        <%if @course.course_password.present?%>
+            <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
+        <%else%>
+            <p><%=t("course.no_course_password")%></p>
         <%end%>
 
         <a href="<%=edit_course_path(@course)%>"><div class="btn btn-primary"><i class="fa fa-edit"></i><%=t('course.actions.edit')%></div></a>

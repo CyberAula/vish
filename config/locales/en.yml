@@ -418,6 +418,7 @@ en:
     no_restriction_password: "No restriction by password"
     other: "Courses"
     required_fields: "*Required fields"
+    show_password: "Course password in Moodle"
     tags: "Tags"
   date_name: "date"
   description: "description"
