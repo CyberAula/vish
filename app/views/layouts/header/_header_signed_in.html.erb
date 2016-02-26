@@ -47,7 +47,9 @@
                 <% elsif modelName == "Event" %>
                   <li><a href="#AddEvent" data-toggle="modal"><i class="fa fa-video-camera"></i> <%=t('event.actions.add')%></a></li>
                 <% elsif modelName == "Course" %>
-                  <li><%= link_to new_course_path do %><i class="fa fa-university"></i> <%=t('course.actions.add')%><% end %></li>
+                  <%if Vish::Application.config.courses_enabled%>
+                    <li><%= link_to new_course_path do %><i class="fa fa-university"></i> <%=t('course.actions.add')%><% end %></li>
+                  <%end%>
                 <%end%>
             <% end %>
           </ul>

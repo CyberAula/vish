@@ -31,6 +31,8 @@ development:
   catalogue:
     mode: "matchtag" #matchany or matchtag
     qualityThreshold: 5
+  moodle_url: "http://moodle.vishub.org"  #this param is optional
+
 
 production:
   name: "ViSH"

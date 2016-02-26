@@ -50,9 +50,8 @@
       </li>
     <%end%>
 
-    <li class="divider"></li>
-
-    <% if availableModels.include? "Course" %>
+    <% if Vish::Application.config.courses_enabled && Vish::Application.config.courses_count>0 %>
+      <li class="divider"></li>
       <li>
         <a tabindex="-1" href="<%=courses_path%>">
           <i class="fa fa-university"></i>
