@@ -16,13 +16,11 @@
       <p><%=@course.description%></p>
       <%if @course.start_date.present? || @course.end_date.present?%>
         <h2><%=t('course.dates')%></h2>
-        <p><%=t("course.date_from")%>:<%=@course.start_date%></p>
-        <p><%=t("course.date_to")%>:<%=@course.end_date%></p>
+        <p><%=t("course.date_from")%>: <%=@course.start_date%> <%=t("course.date_to")%>: <%=@course.end_date%></p>
       <%end%>
       <%if @course.age_min!=0 || @course.age_max!=0%>
         <h2><%=t('course.age')%></h2>
-        <p><%=t("course.age_from")%>:<%=@course.age_min%></p>
-        <p><%=t("course.age_to")%>:<%=@course.age_max%></p>        
+        <p><%=t("course.age_from")%>: <%=@course.age_min%> <%=t("course.years")%> <%=t("course.age_to")%>: <%=@course.age_max%> <%=t("course.years")%></p>        
       <%end%>
       <%if @course.language && @course.language!="independent"%>
         <h2><%=t('course.language')%></h2>
