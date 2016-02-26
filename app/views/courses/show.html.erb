@@ -60,9 +60,9 @@
                     <%= f.submit t('course.actions.leave') %>
                   <% end %>
               <%else%>
-                  <%if @course.end_date.present? && @course.end_date <= Date.today%>
+                  <%if @course.end_date.present? && @course.end_date < Date.today%>
                     <div class=""><%=t('course.msgs.course_ended')%></div>
-                  <%elsif @course.start_date.present? && @course.start_date <= Date.today%>
+                  <%elsif @course.start_date.present? && @course.start_date < Date.today%>
                     <div class=""><%=t('course.msgs.course_registration_ended')%></div>
                   <%else%>
                     <%if current_user%>
@@ -132,7 +132,10 @@
                   <a href="<%=course_path(@course)%>" data-method="delete"><div class="btn btn-primary"><i class="fa fa-trash-o"></i><%=t('course.actions.delete')%></div></a>
                 </div>
             </div>
-          <%end%>
+        <%end%>
+
+        <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
+
       <%end%>
 
     </div>
