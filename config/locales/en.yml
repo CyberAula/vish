@@ -409,7 +409,7 @@ en:
       subject: "Welcome to ViSH"
     flash:
       already_in: "You are already enrolled"
-      join_success: "You succesfully joined this course"
+      join_success: "You succesfully joined this course. You will receive an email with instructions to access the course."
       leave_success: "You succesfully leaved this course"
       not_allowed: "You don't have the correct access rights"
     has_restrictions: "This course has restrictions"

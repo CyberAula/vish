@@ -392,7 +392,7 @@ es:
       subject: "Bienvenido a ViSH"
     flash:
       already_in: "Ya estás inscrito en el curso"
-      join_success: "Te has inscrito al curso exitosamente"
+      join_success: "Gracias por inscribirse en el curso. Recibirá un email con instrucciones para acceder al curso."
       leave_success: "Te has desinscrito exitosamente"
       not_allowed: "Usted no tiene permisos de acceso al curso"
     has_restrictions: "Este curso tiene restricciones"
