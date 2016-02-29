@@ -10,6 +10,8 @@
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:id => "new_user_devise_form"}) do |f| %>
       <%= devise_error_messages! %>
       <div class="form-group reg-labels">
+        <%= hidden_field_tag :course, params[:course] %>
+
         <%= f.label :name %>
         <%= f.text_field :name, :class => "form-control", :autocomplete => "off" %>
 

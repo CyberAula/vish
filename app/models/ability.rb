@@ -19,6 +19,9 @@ class Ability
       can :manage, :all
     end
 
+    #course Management
+    can :courses, User
+
     #Workshop Management
     can :workshops, User
 
@@ -143,7 +146,7 @@ class Ability
         ao.public_scope? or (!ao.owner.nil? and ao.owner.object_type=="Actor" and ao.owner.subject_type=="User" and ao.owner.role?("PrivateStudent") and !ao.owner.user.private_teacher.nil? and ao.owner.user.private_teacher.id==subject.actor_id)
       end
 
-      can :show, [Document, Webapp, Scormfile, Link, Embed, Writing, Excursion, Workshop] do |o|
+      can :show, [Document, Webapp, Scormfile, Link, Embed, Writing, Excursion, Workshop, Course] do |o|
         can?(:show,o.activity_object)
       end
 

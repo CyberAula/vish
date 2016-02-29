@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   skip_before_filter :store_location
+  after_filter :process_course_enrolment, :only =>[:create]
 
   # GET /resource/sign_up
   def new
@@ -49,6 +50,18 @@ class RegistrationsController < Devise::RegistrationsController
   # removing all OAuth session data.
   def cancel
     super
+  end
+
+  private
+
+
+  def process_course_enrolment
+    if params[:course].present?
+      course = Course.find(params[:course])
+      if !course.restricted
+        course.users << current_user
+      end
+    end
   end
 
 end

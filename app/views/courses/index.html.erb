@@ -1,0 +1,9 @@
+<ul class="items">
+	<%if @courses.length==0%>
+		<%=t("course.none")%>
+	<%else%>
+		<%@courses.each do |c|%>
+			<%= render partial: 'courses/course' , :locals => { :course => c } %>
+		<%end%>
+	<%end%>
+</ul>

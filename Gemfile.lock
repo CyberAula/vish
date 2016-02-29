@@ -279,7 +279,7 @@ GEM
       railties (>= 3.1.0)
     jruby-pageant (1.1.1)
     json (1.8.1)
-    jwt (1.5.2)
+    jwt (1.5.3)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -318,7 +318,7 @@ GEM
       builder (>= 2.0.0)
       faraday
       faraday_middleware
-    oauth (0.4.7)
+    oauth (0.5.0)
     oauth2 (0.9.4)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)

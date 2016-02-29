@@ -1,0 +1,79 @@
+#course_restricted
+  display: inline
+  opacity: 1 
+  margin-left: 12px
+
+#course_closed
+  display: inline
+  opacity: 1 
+  margin-left: 12px
+
+#course_button_bar
+  position: relative
+  .edit_course
+    display: inline
+    input
+      vertical-align: bottom
+
+.checkbox_course_field
+  label
+    margin-left: 40px
+
+#course
+  background-color: #FFFFFF
+  border-radius: 5px
+  -webkit-box-shadow: 0 -1px 5px rgba(50, 51, 51, 0.1)
+  box-shadow: 0 -1px 5px rgba(50, 51, 51, 0.1)
+  margin-bottom: 15px
+  width: 100%
+  clear: both
+  border: none
+  padding: 0
+
+.container_mooc
+  .mooc_image_main
+    overflow: hidden
+    padding-left: 15px
+    img
+      width: 100%
+      position: relative
+
+  .mooc_welcome_text
+    background-color: white
+    padding: 40px
+    h1
+      font-size: 2.5em
+      font-weight: bolder
+      margin: 0 0 20px 0
+    h2
+      color: $brand-primary
+      font-size: 1.2em
+      margin: 5px 0
+    p
+      padding: 10px
+      margin: 0
+      color: $gray-dark
+    .little_font
+      font-size: 0.9em
+    .highlight
+      color: black
+      font-weight: 600
+    .tagit-suggestions
+      padding-left: 10px
+  .btn
+    margin: 10px 10px 10px 10px
+
+
+
+@media (max-width: 991px)
+  .container_mooc
+    margin-top: -2.9vw
+    .mooc_image_main
+      height: auto
+      max-height: 350px
+      img
+        width: 100%
+        height: auto
+        left: 0
+    .mooc_welcome_text
+      height: auto

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151202091500) do
+ActiveRecord::Schema.define(:version => 20160222081500) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -220,6 +220,29 @@ ActiveRecord::Schema.define(:version => 20151202091500) do
     t.string   "subject",    :default => ""
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "courses", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "closed",                  :default => false
+    t.boolean  "restricted",              :default => false
+    t.string   "restriction_email"
+    t.string   "restriction_password"
+    t.string   "url"
+    t.string   "course_password"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+  end
+
+  create_table "courses_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "course_id"
   end
 
   create_table "documents", :force => true do |t|

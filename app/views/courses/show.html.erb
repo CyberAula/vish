@@ -1,0 +1,157 @@
+<%content_for :title do %><%= @course.title %> - <%= !@course.author.nil? ? @course.author.name : "" %><% end %>
+<%content_for :description do %><%=t("site.meta_desc.course")+@course.title + ". " + (@course.description ? @course.description : "")%><% end %>
+<%content_for :keywords do %><%= @course.tag_list %><% end %>
+<%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@course), @course)%><%end%>
+<%content_for :canonical do%><%=polymorphic_url(@course, :locale => params[:locale])%><%end%>
+
+<section id="course" class="layout_show">
+  
+  <div class="row container_mooc">
+    <div class="col-md-4 mooc_image_main">
+      <%=course_thumb_for(@course)%>
+    </div>
+    <div class="col-md-8 mooc_welcome_text">
+      <h1><%=@course.title%></h1>
+      <h2><%=t('course.description')%></h2>
+      <p><%=@course.description%></p>
+      <%if @course.start_date.present? || @course.end_date.present?%>
+        <h2><%=t('course.dates')%></h2>
+        <p><%=t("course.date_from")%>: <%=@course.start_date%> <%=t("course.date_to")%>: <%=@course.end_date%></p>
+      <%end%>
+      <%if @course.age_min!=0 || @course.age_max!=0%>
+        <h2><%=t('course.age')%></h2>
+        <p><%=t("course.age_from")%>: <%=@course.age_min%> <%=t("course.years")%> <%=t("course.age_to")%>: <%=@course.age_max%> <%=t("course.years")%></p>        
+      <%end%>
+      <%if @course.language && @course.language!="independent"%>
+        <h2><%=t('course.language')%></h2>
+        <p>
+        <%=@course.readable_language%></p>
+      <%end%>
+      <%if @course.tags.length>0%>
+        <h2><%=t('course.tags')%></h2>
+        <ul class="tagit-suggestions">
+          <% @course.tag_list.each do |tag| %>
+          <li class="tagit-choice">
+            <%= link_to tag, search_path(:q => tag) %>
+          </li>
+          <% end %>
+        </ul>
+      <%end%>      
+
+      <%if current_user && @course.course_password && (@course.users.include? current_user)%>
+        <h2><%=t('course.show_password')%></h2>
+        <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
+      <%end%>
+
+      <% if @course.attachment.exists? %>
+        <a href="<%=@course.attachment.url%>" target="_blank" class="btn btn-default"><i class="fa fa-download"></i><%= t('course.actions.download_sheet') %></a>
+      <% end %>      
+
+      <div id="course_button_bar">  
+          <h2><%=t('course.course_access')%></h2>
+          <%if @course.closed%>
+            <div class=""><%=t('course.msgs.course_closed')%></div>
+          <%else%>
+              <%if current_user && (@course.users.include? current_user)%>
+                  <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
+                  <%= form_for @course, :url => { :action => :leave }, method: "post"  do |f| %>
+                    <%= f.submit t('course.actions.leave') %>
+                  <% end %>
+              <%else%>
+                  <%if @course.end_date.present? && @course.end_date < Date.today%>
+                    <div class=""><%=t('course.msgs.course_ended')%></div>
+                  <%elsif @course.start_date.present? && @course.start_date < Date.today%>
+                    <div class=""><%=t('course.msgs.course_registration_ended')%></div>
+                  <%else%>
+                    <%if current_user%>
+                      <%if !@course.restricted || (@course.restricted && @course.restriction_email.present? && (current_user.email.ends_with? @course.restriction_email))%>
+                        <%= form_for @course, :url => { :action => :join }, method: "post"  do |f| %>
+                          <%= f.submit t('course.actions.enrol') %>
+                        <% end %>
+                      <%elsif @course.restricted && @course.restriction_password.present?%>
+                        <%= form_for @course, :url => { :action => :join }, method: "post"  do |f| %>
+                          <%= label_tag :password, t('course.fields.enrol_password') + ":" %>
+                          <%= text_field_tag :password, nil, :class => "form-control" %>
+                          <%= f.submit t('course.actions.enrol') %>
+                        <% end %>
+                      <%elsif @course.restricted && @course.restriction_email.present? && !(current_user.email.ends_with? @course.restriction_email)%>
+                        <div class=""><%=t('course.msgs.only_email')%></div>
+                      <%else%>
+                        <div class=""><%=t('course.msgs.unknown')%></div>
+                      <%end%>
+                    <%else%>
+                      <%if @course.restricted%>
+                        <a href="/users/sign_up"><div class="btn btn-primary"><i class="fa fa-hand-o-up"></i><%=t('course.actions.register')%></div></a>
+                      <%else%>
+                        <a href="/users/sign_up?course=<%=@course.id%>"><div class="btn btn-primary"><i class="fa fa-hand-o-up"></i><%=t('course.actions.register_and_enrol')%></div></a>
+                      <%end%>
+                    <%end%>
+                  <%end%>
+              <%end%>              
+             
+          <%end%>
+      </div>
+
+      <%if user_signed_in? && can?(:update, @course)%>
+        <br/>
+        <hr>
+        <h2><%=t('course.extra_info')%></h2>
+        <%if @course.restricted%>
+            <p><%=t('course.has_restrictions')%></p>
+            <%if @course.restriction_email.present?%>
+              <p><%=t('course.fields.restriction_email') + ": " + @course.restriction_email%></p>
+            <%else%>
+              <p><%=t("course.no_restriction_email")%></p>
+            <%end%>
+            <%if @course.restriction_password.present?%>
+              <p><%=t('course.fields.restriction_password') + ": " + @course.restriction_password%></p>
+            <%else%>
+              <p><%=t("course.no_restriction_password")%></p>
+            <%end%>          
+        <%else%>
+            <p><%=t('course.has_no_restrictions')%></p>
+        <%end%>
+
+        <%if @course.course_password.present?%>
+            <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
+        <%else%>
+            <p><%=t("course.no_course_password")%></p>
+        <%end%>
+
+        <a href="<%=edit_course_path(@course)%>"><div class="btn btn-primary"><i class="fa fa-edit"></i><%=t('course.actions.edit')%></div></a>
+        <%if user_signed_in? && can?(:destroy, @course)%>
+            <button id="course_delete" class="delete btn btn-default" data-toggle="popover"  title="<%=t('course.actions.delete')%>" >
+                <i class="fa fa-trash-o"></i><%=t('course.actions.delete')%>
+            </button>
+
+
+            <div class="contentdelete" style="display: none">
+                <p class="delete_p"><i class="fa fa-trash-o"></i>  <%=t('course.confirm_delete')%></p>
+                <div class="actions">
+                  <a class="btn btn-default btn_cancel closepopover"><%=t('cancel')%></a>
+                  <a href="<%=course_path(@course)%>" data-method="delete"><div class="btn btn-primary"><i class="fa fa-trash-o"></i><%=t('course.actions.delete')%></div></a>
+                </div>
+            </div>
+        <%end%>
+
+        <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
+
+      <%end%>
+
+    </div>
+  </div>
+
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    $('#course_delete').popover({
+      html : true,
+      placement: "left",
+      content: function() {
+        return $('.contentdelete').html();
+      },
+      container: "#course_button_bar"
+    });
+});
+</script>

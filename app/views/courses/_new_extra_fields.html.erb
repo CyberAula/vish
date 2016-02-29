@@ -1,0 +1,68 @@
+<section class="">
+	<%= f.label :url, t('course.fields.url') %>
+	<%= f.text_field :url, :class => "form-control" %>
+</section>
+
+<section class="">
+	<%= f.label :course_password, t('course.fields.course_password') %>
+	<%= f.text_field :course_password, :class => "form-control" %>
+</section>
+
+<div class="checkbox_course_field">
+	<%= f.check_box :restricted, :class => "form-control" %>
+	<%= f.label :restricted, t('course.fields.restricted')+":" %>
+</div>
+
+<section class="">
+	<%= f.label :restriction_email, t('course.fields.restriction_email') %>
+	<%= f.text_field :restriction_email, :class => "form-control" %>
+</section>
+
+<section class="">
+	<%= f.label :restriction_password, t('course.fields.restriction_password') %>
+	<%= f.text_field :restriction_password, :class => "form-control" %>
+</section>
+
+<section class="">
+    <%= f.label t('course.fields.start_date') %>
+    <%= date_select "course", "start_date", :order => [:day, :month, :year], :end_year => Date.today.year+1, :start_year => Date.today.year, :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>
+</section>
+
+<section class="">
+    <%= f.label t('course.fields.end_date') %>
+    <%= date_select "course", "end_date", :order => [:day, :month, :year], :end_year => Date.today.year+1, :start_year => Date.today.year, :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>
+</section>
+
+<section class="">
+	<%= f.label t('course.fields.program') %>
+	<%= f.file_field :attachment %>
+</section>
+
+<div class="checkbox_course_field">
+	<%= f.check_box :closed, :class => "form-control" %>
+	<%= f.label :closed, t('course.fields.closed') %>
+</div>
+
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(){
+      $("#course_restricted").change(function(){
+        var checked = $(this).prop('checked');
+        var pass_input = $("#course_restriction_password");
+        var email_input = $("#course_restriction_email");
+
+        if(checked){
+          $(pass_input).removeAttr("disabled");
+          $(email_input).removeAttr("disabled");       
+        } else {          
+          $(pass_input).attr("disabled","disabled");
+          $(email_input).attr("disabled","disabled");  
+        }
+      });
+
+      if( !$("#course_restricted").prop('checked')){
+      	$("#course_restriction_password").attr("disabled","disabled");
+        $("#course_restriction_email").attr("disabled","disabled");  
+      }
+    });
+</script>
