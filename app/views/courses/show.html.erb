@@ -36,16 +36,16 @@
           </li>
           <% end %>
         </ul>
-      <%end%>
-      <% if @course.attachment.exists? %>
-        <a href="<%=@course.attachment.url%>" target="_blank" class="btn btn-default"><i class="fa fa-download"></i><%= t('course.actions.download_sheet') %></a>
-      <% end %>
+      <%end%>      
 
       <%if current_user && @course.course_password && (@course.users.include? current_user)%>
         <h2><%=t('course.show_password')%></h2>
         <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
       <%end%>
-      
+
+      <% if @course.attachment.exists? %>
+        <a href="<%=@course.attachment.url%>" target="_blank" class="btn btn-default"><i class="fa fa-download"></i><%= t('course.actions.download_sheet') %></a>
+      <% end %>      
 
       <div id="course_button_bar">  
           <h2><%=t('course.course_access')%></h2>
@@ -93,6 +93,8 @@
       </div>
 
       <%if user_signed_in? && can?(:update, @course)%>
+        <br/>
+        <hr>
         <h2><%=t('course.extra_info')%></h2>
         <%if @course.restricted%>
             <p><%=t('course.has_restrictions')%></p>
