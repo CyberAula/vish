@@ -395,6 +395,18 @@ en:
       restriction_password: "Allow access with password"
       start_date: "Start date"
       url: "Moodle Course URL"
+    first_mail:
+      body1: "Welcome"
+      body2: "Thank you for registering in ViSH"
+      body3: "With the email and password that you have chosen you can now access the MOOC platform at %{url}"
+      body4: "Once logged in in that plaform you will see a course entitled '%{name}', and you will be able to access with the password: %{password}"
+      body5: "Thank you very much for registering in ViSH"
+      body6: "Click to access"
+      body7: "ViSH"
+      body8: "Moodle"
+      body9: "Sincerely,"
+      body10: "ViSH team"
+      subject: "Welcome to ViSH"
     flash:
       already_in: "You are already enrolled"
       join_success: "You succesfully joined this course"

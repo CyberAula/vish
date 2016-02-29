@@ -25,6 +25,10 @@ Vish::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  # do not send emails
+  config.action_mailer.perform_deliveries = false 
+  config.action_mailer.raise_delivery_errors = true
+
   #default host for routes
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 

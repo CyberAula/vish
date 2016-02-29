@@ -44,6 +44,8 @@ class CoursesController < ApplicationController
     if is_ok && !is_already_in
         flash[:success] = t('course.flash.join_success')
         @course.users << current_user
+        #we send the user the welcome email
+        CourseNotificationMailer.user_welcome_email(current_user, @course)
     end
     redirect_to course_path(@course)
   end

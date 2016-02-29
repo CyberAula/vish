@@ -378,6 +378,18 @@ es:
       restriction_password: "Permitir el acceso por contraseña"
       start_date: "Fecha comienzo"
       url: "Url del curso en Moodle"
+    first_mail:
+      body1: "Bienvenido"
+      body2: "Se ha registrado correctamente en ViSH, con los siguientes datos:"
+      body3: "Con el email y la contraseña que ha elegido para EducaInternet podrá acceder también a la plataforma de MOOCS en %{url}"
+      body4: "Una vez logueado en dicha plataforma verá un curso titulado <span class='bold'>'%{name}'</span>, al que podrá acceder con la contraseña: <span class='primary bold underline'>%{password}</span>"
+      body5: "Muchas gracias por registrarse en ViSH"
+      body6: "Click para acceder a"
+      body7: "ViSH"
+      body8: "Moodle"
+      body9: "Un saludo,"
+      body10: "Equipo ViSH"
+      subject: "Bienvenido a ViSH"
     flash:
       already_in: "Ya estás inscrito en el curso"
       join_success: "Te has inscrito al curso exitosamente"

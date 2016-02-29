@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></head>
+<body>
+  <table style="background-color: #eeeeee; height: 300px; padding-bottom: 40px; border:0; font-family: Helvetica,Arial,sans-serif;" cellpadding="0" cellspacing="0" width="100%">
+    <tbody>
+      <tr>
+        <td align="center" valign="top">
+          <table style="padding: 15px 0px; border:0;" cellpadding="0" cellspacing="0" width="700">
+            <!-- CABECERA MAIL-->
+            <thead style="background-color: #FFF; height: 70px; display: block;position:relative;">
+             <tr>
+              <td style="padding-left:25px;padding-top:20px;">
+                <a style="color: black;font-size: 27px;text-decoration: none;" href="<%= Vish::Application.config.full_domain%>"><span style="font-weight: 100;color: #666666;"><%=t('course.first_mail.body7')%></span></a>
+              </td>
+            </thead>
+            <!-- LINEA GRIS-->
+            <thead style="background-color: #999999;min-height: 0px;display: block;">
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>
+                  <div style="line-height: 1.3em;height: auto;font-weight: 100;padding: 20px 50px 10px; color: #484848; background-color: #FFF; font-size: 15px;">
+
+                    <p style="font-size: 20px;margin-bottom: 15px;">
+                    
+                    <%if @user %>
+                      <span><%=t('course.first_mail.body1') + " " + @user.name %>:</span>
+                    <%end%>
+                    </p>
+                    <p><%=t('course.first_mail.body2')%></p>
+                    <%if @user %>
+                      <div style="padding-left: 20px;padding-bottom: 15px;">
+                        <span style="margin-bottom: 5px;font-weight: bold;"><%=@user.name%></span>
+                        <br>
+                        <span><%= @user.email %></span>
+                      </div>
+                    <%end%>
+                    <p><%=t('course.first_mail.body3', :url=>Vish::Application.config.APP_CONFIG["moodle_url"])%></p>
+
+                    <div style="margin-bottom:10px;padding-left: 20px;padding-bottom:10px;">
+                      <p><%=t('course.first_mail.body6')%> </p>
+                      <a href="http://educainternet.es" style="text-decoration: none; color: black;font-weight: bold;">> <%=t('course.first_mail.body7')%></a>
+                    </div>
+                    <div style="margin-bottom:10px;padding-left: 20px;padding-bottom:10px;">
+                      <p><%=t('course.first_mail.body6')%></p>
+                      <a href="<%=@course.url%>" style="text-decoration: none; color: black;font-weight: bold;">> <%=t('course.first_mail.body8')%></a>
+                    </div>
+                    <p><div><%= raw t('course.first_mail.body4', :name => @course.title, :password => @course.course_password) %></div></p>
+                    <br/>
+                    <span><%=t('course.first_mail.body5')%></span>
+                    <p style="padding-top: 15px;"><%=t('course.first_mail.body9')%></p>
+
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot style="background-color: white; height: 70px; display: block; position:relative;">
+              <tr>
+                <td style="padding-left:525px;">
+                    <p style="color: #484848;"><%=t('course.first_mail.body10')%></p>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

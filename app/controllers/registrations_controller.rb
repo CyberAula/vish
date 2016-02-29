@@ -60,6 +60,7 @@ class RegistrationsController < Devise::RegistrationsController
       course = Course.find(params[:course])
       if !course.restricted
         course.users << current_user
+        CourseNotificationMailer.user_welcome_email(current_user, course)
       end
     end
   end
