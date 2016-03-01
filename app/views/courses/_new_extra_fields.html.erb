@@ -10,15 +10,15 @@
 
 <div class="checkbox_course_field">
 	<%= f.check_box :restricted, :class => "form-control" %>
-	<%= f.label :restricted, t('course.fields.restricted')+":" %>
+	<%= f.label :restricted, t('course.fields.restricted') %>
 </div>
 
-<section class="">
+<section class="restriction_mail">
 	<%= f.label :restriction_email, t('course.fields.restriction_email') %>
 	<%= f.text_field :restriction_email, :class => "form-control" %>
 </section>
 
-<section class="">
+<section class="restriction_password">
 	<%= f.label :restriction_password, t('course.fields.restriction_password') %>
 	<%= f.text_field :restriction_password, :class => "form-control" %>
 </section>
@@ -53,16 +53,16 @@
 
         if(checked){
           $(pass_input).removeAttr("disabled");
-          $(email_input).removeAttr("disabled");       
-        } else {          
+          $(email_input).removeAttr("disabled");
+        } else {
           $(pass_input).attr("disabled","disabled");
-          $(email_input).attr("disabled","disabled");  
+          $(email_input).attr("disabled","disabled");
         }
       });
 
       if( !$("#course_restricted").prop('checked')){
       	$("#course_restriction_password").attr("disabled","disabled");
-        $("#course_restriction_email").attr("disabled","disabled");  
+        $("#course_restriction_email").attr("disabled","disabled");
       }
     });
 </script>

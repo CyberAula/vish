@@ -346,7 +346,7 @@ es:
     ViSHCompetition13: "#ViSHCompetition2013"
   youtube: "Canal ViSH en Youtube"
   copy_to_clip: "Copiar al portapapeles"
-  course: 
+  course:
     actions:
       add: "Añadir curso"
       delete: "Borrar"
@@ -368,7 +368,7 @@ es:
     date_to: "hasta"
     extra_info: "Información adicional (solo visible para el propietario)"
     fields:
-      closed: "Cerrar curso. Precaución, esto inhabilita a los usuarios a ir al curso"
+      closed: "Cerrar curso (Precaución, esto inhabilita a los usuarios a ir al curso)"
       course_password: "Contraseña del curso en Moodle"
       end_date: "Fecha fin"
       enrol_password: "Contraseña"
@@ -404,7 +404,7 @@ es:
       course_registration_ended: "Este curso ya ha comenzado y no está abierto a registro"
       only_email: "Lo sentimos, este curso está restringido."
       unknown: "Curso restringido"
-    my: "Mis cursos"
+    my: "Cursos"
     new: "Nuevo curso"
     none: "No hay cursos que mostrar"
     no_attachment: "No se ha subido un programa del curso"
@@ -1042,7 +1042,7 @@ es:
       user: "Usuarios"
       video: "Videos"
       webapp: "Aplicaciones Web"
-      workshop: "Workshops"
+      workshop: "Lecciones"
       writing: "Textos"
       zipfile: "Ficheros ZIP"
     name: "Buscar"
@@ -1176,7 +1176,7 @@ es:
     view_full: "Pantalla completa"
   workshop:
     actions:
-        add: "Añadir Workshop"
+        add: "Añadir Lección"
         add_activity_title: "Añadir Actividad al Workshop"
         add_activity_button: "Añadir"
         adding_activity_button: "Añadiendo..."
@@ -1240,8 +1240,8 @@ es:
 
     confirm_delete: "¿Borrar workshop?"
     name: "taller"
-    new: "Nuevo Workshop"
-    other: "Workshops"
+    new: "Nuevo lección"
+    other: "Lecciones"
     titles:
         editing_details: "Editando detalles workshop"
         editing_main: "Editando workshop"

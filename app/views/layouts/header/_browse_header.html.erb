@@ -19,7 +19,7 @@
     <% if availableModels.include? "Excursion" %>
       <li>
         <a tabindex="-1" href="<%=search_path(:type => "Excursion", :browse=>"true", :sort_by => "popularity")%>">
-          <i class="fa fa-book"></i>
+          <i class="fa fa-list-alt"></i>
           <%=t('excursion.other')%>
         </a>
       </li>
@@ -27,7 +27,7 @@
 
     <li>
       <a tabindex="-1" href="<%=search_path(:type => "User", :browse=>"true", :sort_by => "popularity")%>">
-        <i class="fa fa-group"></i>
+        <i class="fa fa-user"></i>
         <%=t('user.other')%>
       </a>
     </li>
@@ -44,7 +44,7 @@
     <% if availableModels.include? "Workshop" %>
       <li>
         <a tabindex="-1" href="<%=search_path(:type => "Workshop", :browse=>"true", :sort_by => "popularity")%>">
-          <i class="fa fa-graduation-cap"></i>
+          <i class="fa fa-book"></i>
           <%=t('workshop.other')%>
         </a>
       </li>
@@ -54,7 +54,7 @@
       <li class="divider"></li>
       <li>
         <a tabindex="-1" href="<%=courses_path%>">
-          <i class="fa fa-university"></i>
+          <i class="fa fa-graduation-cap"></i>
           <%=t('course.other')%>
         </a>
       </li>

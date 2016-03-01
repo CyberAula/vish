@@ -5,7 +5,7 @@
 <%content_for :canonical do%><%=polymorphic_url(@course, :locale => params[:locale])%><%end%>
 
 <section id="course" class="layout_show">
-  
+
   <div class="row container_mooc">
     <div class="col-md-4 mooc_image_main">
       <%=course_thumb_for(@course)%>
@@ -20,7 +20,7 @@
       <%end%>
       <%if @course.age_min!=0 || @course.age_max!=0%>
         <h2><%=t('course.age')%></h2>
-        <p><%=t("course.age_from")%>: <%=@course.age_min%> <%=t("course.years")%> <%=t("course.age_to")%>: <%=@course.age_max%> <%=t("course.years")%></p>        
+        <p><%=t("course.age_from")%>: <%=@course.age_min%> <%=t("course.years")%> <%=t("course.age_to")%>: <%=@course.age_max%> <%=t("course.years")%></p>
       <%end%>
       <%if @course.language && @course.language!="independent"%>
         <h2><%=t('course.language')%></h2>
@@ -36,18 +36,16 @@
           </li>
           <% end %>
         </ul>
-      <%end%>      
+      <%end%>
 
       <%if current_user && @course.course_password && (@course.users.include? current_user)%>
         <h2><%=t('course.show_password')%></h2>
         <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
       <%end%>
 
-      <% if @course.attachment.exists? %>
-        <a href="<%=@course.attachment.url%>" target="_blank" class="btn btn-default"><i class="fa fa-download"></i><%= t('course.actions.download_sheet') %></a>
-      <% end %>      
 
-      <div id="course_button_bar">  
+
+      <div id="course_button_bar">
           <h2><%=t('course.course_access')%></h2>
           <%if @course.closed%>
             <div class=""><%=t('course.msgs.course_closed')%></div>
@@ -87,8 +85,8 @@
                       <%end%>
                     <%end%>
                   <%end%>
-              <%end%>              
-             
+              <%end%>
+
           <%end%>
       </div>
 
@@ -107,7 +105,7 @@
               <p><%=t('course.fields.restriction_password') + ": " + @course.restriction_password%></p>
             <%else%>
               <p><%=t("course.no_restriction_password")%></p>
-            <%end%>          
+            <%end%>
         <%else%>
             <p><%=t('course.has_no_restrictions')%></p>
         <%end%>
@@ -133,11 +131,11 @@
                 </div>
             </div>
         <%end%>
-
         <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
-
       <%end%>
-
+      <% if @course.attachment.exists? %>
+        <a href="<%=@course.attachment.url%>" target="_blank" class="btn btn-default pull-right"><i class="fa fa-download"></i><%= t('course.actions.download_sheet') %></a>
+      <% end %>
     </div>
   </div>
 
