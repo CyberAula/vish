@@ -49,11 +49,11 @@
 
   <section class="info-profile">
 
-    <ul class="nav nav-tabs">     
+    <ul class="nav nav-tabs">
           <!--excursions-->
           <li class="active">
             <a id="pupils_tab" href="#tabPupils" data-toggle="tab">
-              <i class="fa fa-users"></i>
+              <i class="fa fa-group"></i>
               <span class=" hidden-xs"><%=t('private_student.tabs.pupils_tab')%></span>
             </a>
           </li>
@@ -69,7 +69,7 @@
 <div class="tab-content">
   <div class="tab-pane active" id="tabPupils">
 
-    <table id="student_table" cellspacing='0' class="table table-striped">    
+    <table id="student_table" cellspacing='0' class="table table-striped">
       <tbody>
       <% @privateStudentGroup.private_students.each do |user| %>
         <tr>
@@ -85,7 +85,7 @@
 
 
   <div class="tab-pane" id="tabExcursions">
-    <% if @excursions.length > 0 %>    
+    <% if @excursions.length > 0 %>
       <div class="entities excursions">
         <ul class="items">
         <% @excursions.each do |excursion| %>

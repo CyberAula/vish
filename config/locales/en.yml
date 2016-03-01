@@ -211,7 +211,7 @@ en:
         teaching: "teaching"
     title: "Catalogue"
     title_directory: "Resources"
-    title_archive: "Workshops"
+    title_archive: "Lessons"
   category:
     belongs_to: "Belongs to"
     cat_add_select: "Select your categories"
@@ -363,7 +363,7 @@ en:
     ViSHCompetition13: "#ViSHCompetition2013"
   youtube: "ViSH Youtube Channel"
   copy_to_clip: "Copy to clipboard"
-  course: 
+  course:
     actions:
       add: "Add course"
       delete: "Delete"
@@ -1035,7 +1035,7 @@ en:
       user: "Users"
       video: "Videos"
       webapp: "Web Applications"
-      workshop: "Workshops"
+      workshop: "Lessons"
       writing: "Writings"
       zipfile: "ZIP files"
     name: "Search"
@@ -1173,7 +1173,7 @@ en:
     view_full: "View full"
   workshop:
     actions:
-      add: "Add Workshop"
+      add: "Add Lesson"
       add_activity_title: "Add Activity to the Workshop"
       add_activity_button: "Add"
       adding_activity_button: "Adding..."
@@ -1236,9 +1236,9 @@ en:
           text: "In addition to the description of the workshop and the tasks defined in it, sometimes you will need the ability to insert a block of text with other purpose, such as a bibliography or other data of interest for the workshop. With this component you can add a completely personalized and editable text to your workshop."
 
     confirm_delete: "Delete workshop?"
-    name: "workshop"
-    new: "New Workshop"
-    other: "Workshops"
+    name: "lesson"
+    new: "New lesson"
+    other: "Lessons"
     titles:
         editing_details: "Editing workshop details"
         editing_main: "Editing Workshop"

@@ -1,13 +1,3 @@
-#course_restricted
-  display: inline
-  opacity: 1 
-  margin-left: 12px
-
-#course_closed
-  display: inline
-  opacity: 1 
-  margin-left: 12px
-
 #course_button_bar
   position: relative
   .edit_course
@@ -16,9 +6,17 @@
       vertical-align: bottom
 
 .checkbox_course_field
+  margin-bottom: 10px
+  #course_restricted, #course_closed
+    opacity: 1
   label
-    margin-left: 40px
+    margin-left: 30px
+    margin-top: 3px
 
+.restriction_mail, .restriction_password
+  padding: 0 30px
+  label
+    color: $gray-dark
 #course
   background-color: #FFFFFF
   border-radius: 5px
@@ -31,11 +29,14 @@
   padding: 0
 
 .container_mooc
+  margin: 0
   .mooc_image_main
     overflow: hidden
     padding-left: 15px
+    height: 100%
     img
-      width: 100%
+
+      left: -50%
       position: relative
 
   .mooc_welcome_text
@@ -61,7 +62,9 @@
     .tagit-suggestions
       padding-left: 10px
   .btn
-    margin: 10px 10px 10px 10px
+    margin: 10px 5px 0 0
+    i
+      margin-right: 5px
 
 
 
