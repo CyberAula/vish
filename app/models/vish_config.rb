@@ -63,6 +63,8 @@ class VishConfig
 
   def self.getSearchModels(options={})
     searchModels = getAvailableMainModels()
+    #we do not want to search by courses 
+    searchModels.delete("Course")
     searchModels
   end
 
