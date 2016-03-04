@@ -103,7 +103,7 @@
                       </li>
                   <%end%>
 
-                  <%if availableModels.include? "Course" %>
+                  <%if (availableModels.include? "Course") && current_subject.courses.length>0 %>
                     <li class="settings-menu">
                       <%= link_to "/users/"+current_subject.slug+"/courses" do %>
                           <i class="fa fa-graduation-cap"></i>
