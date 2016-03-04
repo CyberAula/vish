@@ -245,7 +245,7 @@
 <%= content_for :javascript do %>
 
   Vish.Search.init({
-    "object_types": <%=raw VishConfig.getSearchModels()%>,
+    "object_types": <%=raw VishConfig.getSearchModels(:include_users => false)%>,
     "resource_types": <%=raw VishConfig.getAvailableNotMainResourceModels(:include_subtypes=>true).reject!{|e| e=="Document" }%>,
     "result_resource_types": "<%= (searchTerms ? extract_types(@search_result) : "") %>",
     "num_pages": <%=@search_result.num_pages%>,

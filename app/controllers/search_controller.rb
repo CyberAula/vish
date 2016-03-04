@@ -149,7 +149,9 @@ class SearchController < ApplicationController
       types = type.split(",") & allAvailableTypes
 
       if types.include? "Learning_object"
-        types.concat(VishConfig.getSearchModels())
+        los = VishConfig.getSearchModels(:include_users => false)
+        los.delete("User")
+        types.concat(los)
       end
 
       if types.include? "Resource"

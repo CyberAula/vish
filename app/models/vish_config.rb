@@ -64,15 +64,17 @@ class VishConfig
   def self.getSearchModels(options={})
     searchModels = getAvailableMainModels()
     #we do not want to search by courses 
-    searchModels.delete("Course")    
-    searchModels = searchModels + getFixedMainModels
+    searchModels.delete("Course")  
+    if !options.include?(:include_users) || options[:include_users]==true
+      searchModels = searchModels + getFixedMainModels
+    end
     if options[:return_instances]
-      searchModels = processAlias(searchModels,options)
-      getInstances(searchModels)
+      getInstances(processAlias(searchModels,options))
     else
       searchModels
     end
   end
+
 
   def self.getAvailableMainModelsWhichActAsResources(options={})
     aMainModelsWhichActAsResources = getAvailableMainModels & getMainModelsWhichActAsResources
