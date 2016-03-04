@@ -115,7 +115,6 @@ class SearchController < ApplicationController
         params[:type] = VishConfig.getArchiveModels().join(",")
       end
     end
-
     models = ( mode == :quick ? SocialStream::Search.models(mode, params[:type]) : processTypeParam(params[:type]) )
 
     keywords = params[:q]
@@ -150,7 +149,7 @@ class SearchController < ApplicationController
       types = type.split(",") & allAvailableTypes
 
       if types.include? "Learning_object"
-        types.concat(["Excursion", "Resource", "Event", "Workshop", "Category"])
+        types.concat(VishConfig.getSearchModels())
       end
 
       if types.include? "Resource"
@@ -171,7 +170,7 @@ class SearchController < ApplicationController
 
     if models.empty?
       #Default models, all
-      models = VishConfig.getAllAvailableAndFixedModels({:return_instances => true, :include_subtypes => true})
+      models = VishConfig.getSearchModels({:return_instances => true, :include_subtypes => true})
     end
 
     models.uniq!
