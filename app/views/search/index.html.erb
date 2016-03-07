@@ -71,7 +71,7 @@
           <span class="filter_title"><%=t("search.titles.filter_by")%> <span class="filter_title_bold"><%=t("search.titles.learning_object")%></span></span>
           <hr class="separator">
           <ul class="opened_filter">
-            <% VishConfig.getSearchModels().each do |model| %>
+            <% VishConfig.getSearchModels(:include_users => false).each do |model| %>
               <li class="filter_item" filter_key="type" filter="<%=model%>"><%=t("search.models.#{model.downcase}")%></li>
             <% end %>
           </ul>
