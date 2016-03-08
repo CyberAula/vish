@@ -63,7 +63,7 @@ class ExcursionsController < ApplicationController
           scormVersion = (params["version"].present? and ["12","2004"].include?(params["version"])) ? params["version"] : "2004"
           @excursion.to_scorm(self,scormVersion)
           @excursion.increment_download_count
-          send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
+          send_file @excursion.scormFilePath(scormVersion), :type => 'application/zip', :disposition => 'attachment', :filename => ("scorm" + scormVersion + "-#{@excursion.id}.zip")
         else
           render :nothing => true, :status => 500
         end

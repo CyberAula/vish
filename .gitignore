@@ -42,7 +42,8 @@ public/system
 public/assets
 
 # scorm zip files
-public/scorm/excursions/*
+public/scorm/12/excursions/*
+public/scorm/2004/excursions/*
 public/scorm/packages/*
 
 #web apps

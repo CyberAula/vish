@@ -17,7 +17,7 @@ class Excursion < ActiveRecord::Base
   before_validation :fill_license
   after_save :parse_for_meta
   after_save :fix_post_activity_nil
-  after_destroy :remove_scorm
+  after_destroy :remove_scorms
   after_destroy :remove_pdf
 
   define_index do
@@ -84,37 +84,43 @@ class Excursion < ActiveRecord::Base
   ## SCORM Management
   ####################
 
+  def self.scormFolderPath(version)
+    return "#{Rails.root}/public/scorm/" + version + "/excursions/"
+  end
+
+  def scormFilePath(version)
+    Excursion.scormFolderPath(version) + "#{self.id}.zip"
+  end
+
   def to_scorm(controller,version="2004")
-    if self.scorm_needs_generate
-      filePath = "#{Rails.root}/public/scorm/excursions/"
+    if self.scorm_needs_generate(version)
+      folderPath = Excursion.scormFolderPath(version)
       fileName = self.id
       json = JSON(self.json)
-      Excursion.createSCORM(version,filePath,fileName,json,self,controller)
-      self.update_column(:scorm_timestamp, Time.now)
+      Excursion.createSCORM(version,folderPath,fileName,json,self,controller)
+      self.update_column(((version=="12") ? :scorm12_timestamp : :scorm2004_timestamp), Time.now)
     end
   end
 
-  def scorm_needs_generate
-    if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp or !File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
-      return true
-    else
-      return false
+  def scorm_needs_generate(version="2004")
+    scormTimestam = (version=="12") ? self.scorm12_timestamp : self.scorm2004_timestamp
+    scormTimestam.nil? or self.updated_at > scormTimestam or !File.exist?(self.scormFilePath(version))
+  end
+
+  def remove_scorms
+    ["12","2004"].each do |scormVersion|
+      scormFilePath = scormFilePath(scormVersion)
+      File.delete(scormFilePath) if File.exist?(scormFilePath)
     end
   end
 
-  def remove_scorm
-    if File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
-      File.delete("#{Rails.root}/public/scorm/excursions/#{self.id}.zip") 
-    end
-  end
-
-  def self.createSCORM(version="2004",filePath,fileName,json,excursion,controller)
+  def self.createSCORM(version="2004",folderPath,fileName,json,excursion,controller)
     require 'zip'
 
-    # filePath = "#{Rails.root}/public/scorm/excursions/"
+    # folderPath = "#{Rails.root}/public/scorm/version/excursions/"
     # fileName = self.id
     # json = JSON(self.json)
-    t = File.open("#{filePath}#{fileName}.zip", 'w')
+    t = File.open("#{folderPath}#{fileName}.zip", 'w')
 
     #Add manifest, main HTML file and additional files
     Zip::OutputStream.open(t.path) do |zos|
@@ -803,9 +809,9 @@ class Excursion < ActiveRecord::Base
   ## IMS QTI 2.1 Management (Handled by the IMSQTI module imsqti.rb)
   ####################
 
-  def self.createQTI(filePath,fileName,qjson)
+  def self.createQTI(folderPath,fileName,qjson)
     require 'imsqti'
-    IMSQTI.createQTI(filePath,fileName,qjson)
+    IMSQTI.createQTI(folderPath,fileName,qjson)
   end
 
 
@@ -813,9 +819,9 @@ class Excursion < ActiveRecord::Base
   ## Moodle Quiz XML Management (Handled by the MOODLEXML module moodlexml.rb)
   ####################
 
-  def  self.createMoodleQUIZXML(filePath,fileName,qjson)
+  def  self.createMoodleQUIZXML(folderPath,fileName,qjson)
     require 'moodlexml'
-    MOODLEQUIZXML.createMoodleQUIZXML(filePath,fileName,qjson)
+    MOODLEQUIZXML.createMoodleQUIZXML(folderPath,fileName,qjson)
   end
 
 

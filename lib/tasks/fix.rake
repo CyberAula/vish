@@ -58,11 +58,11 @@ namespace :fix do
   #Development:   bundle exec rake fix:resetScormTimestamp
   #In production: bundle exec rake fix:resetScormTimestamp RAILS_ENV=production
   task :resetScormTimestamp => :environment do
-
     printTitle("Reset scorm timestamp")
 
     Excursion.all.map { |ex| 
-      ex.update_column :scorm_timestamp, nil
+      ex.update_column :scorm2004_timestamp, nil
+      ex.update_column :scorm12_timestamp, nil
     }
 
     printTitle("Task Finished")
