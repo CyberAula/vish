@@ -47,7 +47,6 @@ gem 'test-unit', '= 3.0.9'
 gem 'sitemap_generator'
 gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
 gem 'jwt', '= 1.4.1'
-gem 'devise_cas_authenticatable', '= 1.7.1'
 
 #Gems from Git repositories
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git', :ref => '2602bf1'
@@ -77,7 +76,9 @@ end
 
 #for INVITATION ONLY
 gem 'devise_invitable', '= 1.1.8'
-gem 'devise_cas_authenticatable'
+
+#CAS
+gem 'devise_cas_authenticatable', '= 1.7.1'
 
 # $ export FORCE_LOCAL_SCORM=scormGemPath
 if ENV['FORCE_LOCAL_SCORM']

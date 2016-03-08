@@ -501,7 +501,7 @@ DEPENDENCIES
   delegates_attributes_to!
   descriptive_statistics (~> 2.4.0)
   detect_language (= 1.0.5)
-  devise_cas_authenticatable
+  devise_cas_authenticatable (= 1.7.1)
   devise_invitable (= 1.1.8)
   exception_notification (= 4.1.1)
   factory_girl (= 2.6)
