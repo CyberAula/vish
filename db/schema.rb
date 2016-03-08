@@ -365,14 +365,6 @@ ActiveRecord::Schema.define(:version => 20160222081500) do
     t.decimal  "qscore",             :precision => 12, :scale => 6, :default => 0.0
   end
 
-  create_table "login_tickets", :force => true do |t|
-    t.string   "ticket",     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "login_tickets", ["ticket"], :name => "index_login_tickets_on_ticket", :unique => true
-
   create_table "notifications", :force => true do |t|
     t.string   "type"
     t.text     "body"
@@ -452,32 +444,6 @@ ActiveRecord::Schema.define(:version => 20160222081500) do
   end
 
   add_index "profiles", ["actor_id"], :name => "index_profiles_on_actor_id"
-
-  create_table "proxy_granting_tickets", :force => true do |t|
-    t.string   "ticket",       :null => false
-    t.string   "iou",          :null => false
-    t.integer  "granter_id",   :null => false
-    t.string   "pgt_url",      :null => false
-    t.string   "granter_type", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "proxy_granting_tickets", ["granter_type", "granter_id"], :name => "index_proxy_granting_tickets_on_granter", :unique => true
-  add_index "proxy_granting_tickets", ["iou"], :name => "index_proxy_granting_tickets_on_iou", :unique => true
-  add_index "proxy_granting_tickets", ["ticket"], :name => "index_proxy_granting_tickets_on_ticket", :unique => true
-
-  create_table "proxy_tickets", :force => true do |t|
-    t.string   "ticket",                                      :null => false
-    t.string   "service",                                     :null => false
-    t.boolean  "consumed",                 :default => false, :null => false
-    t.integer  "proxy_granting_ticket_id",                    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "proxy_tickets", ["proxy_granting_ticket_id"], :name => "index_proxy_tickets_on_proxy_granting_ticket_id"
-  add_index "proxy_tickets", ["ticket"], :name => "index_proxy_tickets_on_ticket", :unique => true
 
   create_table "quiz_answers", :force => true do |t|
     t.integer  "quiz_session_id"
@@ -604,31 +570,6 @@ ActiveRecord::Schema.define(:version => 20160222081500) do
     t.datetime "updated_at",                                     :null => false
   end
 
-  create_table "service_rules", :force => true do |t|
-    t.boolean  "enabled",    :default => true,  :null => false
-    t.integer  "order",      :default => 10,    :null => false
-    t.string   "name",                          :null => false
-    t.string   "url",                           :null => false
-    t.boolean  "regex",      :default => false, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "service_rules", ["url"], :name => "index_service_rules_on_url", :unique => true
-
-  create_table "service_tickets", :force => true do |t|
-    t.string   "ticket",                                       :null => false
-    t.string   "service",                                      :null => false
-    t.integer  "ticket_granting_ticket_id"
-    t.boolean  "consumed",                  :default => false, :null => false
-    t.boolean  "issued_from_credentials",   :default => false, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "service_tickets", ["ticket"], :name => "index_service_tickets_on_ticket", :unique => true
-  add_index "service_tickets", ["ticket_granting_ticket_id"], :name => "index_service_tickets_on_ticket_granting_ticket_id"
-
   create_table "shortened_urls", :force => true do |t|
     t.integer  "owner_id"
     t.string   "owner_type", :limit => 20
@@ -695,18 +636,6 @@ ActiveRecord::Schema.define(:version => 20160222081500) do
     t.string "plain_name"
   end
 
-  create_table "ticket_granting_tickets", :force => true do |t|
-    t.string   "ticket",                                                :null => false
-    t.string   "user_agent"
-    t.integer  "user_id",                                               :null => false
-    t.boolean  "awaiting_two_factor_authentication", :default => false, :null => false
-    t.boolean  "long_term",                          :default => false, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ticket_granting_tickets", ["ticket"], :name => "index_ticket_granting_tickets_on_ticket", :unique => true
-
   create_table "ties", :force => true do |t|
     t.integer  "contact_id"
     t.integer  "relation_id"
@@ -728,16 +657,6 @@ ActiveRecord::Schema.define(:version => 20160222081500) do
     t.boolean  "user_logged",              :default => false
     t.integer  "related_entity_id"
   end
-
-  create_table "two_factor_authenticators", :force => true do |t|
-    t.integer  "user_id",                       :null => false
-    t.string   "secret",                        :null => false
-    t.boolean  "active",     :default => false, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "two_factor_authenticators", ["user_id"], :name => "index_two_factor_authenticators_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "encrypted_password",       :default => ""

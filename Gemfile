@@ -46,6 +46,8 @@ gem 'acts-as-taggable-on', '= 2.4.1'
 gem 'test-unit', '= 3.0.9'
 gem 'sitemap_generator'
 gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
+gem 'jwt', '= 1.4.1'
+gem 'devise_cas_authenticatable', '= 1.7.1'
 
 #Gems from Git repositories
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git', :ref => '2602bf1'
