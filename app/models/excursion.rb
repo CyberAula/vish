@@ -84,12 +84,12 @@ class Excursion < ActiveRecord::Base
   ## SCORM Management
   ####################
 
-  def to_scorm(controller)
+  def to_scorm(controller,version="2004")
     if self.scorm_needs_generate
       filePath = "#{Rails.root}/public/scorm/excursions/"
       fileName = self.id
       json = JSON(self.json)
-      Excursion.createSCORM(filePath,fileName,json,self,controller)
+      Excursion.createSCORM(version,filePath,fileName,json,self,controller)
       self.update_column(:scorm_timestamp, Time.now)
     end
   end
@@ -108,7 +108,7 @@ class Excursion < ActiveRecord::Base
     end
   end
 
-  def self.createSCORM(filePath,fileName,json,excursion,controller)
+  def self.createSCORM(version="2004",filePath,fileName,json,excursion,controller)
     require 'zip'
 
     # filePath = "#{Rails.root}/public/scorm/excursions/"
