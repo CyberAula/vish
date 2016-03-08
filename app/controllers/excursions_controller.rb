@@ -191,13 +191,14 @@ class ExcursionsController < ApplicationController
 
   def scormMetadata
     excursion = Excursion.find_by_id(params[:id])
+    scormVersion = ((params["version"].present? and ["12","2004"].include?(params["version"])) ? params["version"] : "2004")
     respond_to do |format|
       format.xml {
-        xmlMetadata = Excursion.generate_scorm_manifest(JSON(excursion.json),excursion,{:LOMschema => params[:LOMschema]})
+        xmlMetadata = Excursion.generate_scorm_manifest(scormVersion,JSON(excursion.json),excursion,{:LOMschema => params[:LOMschema]})
         render :xml => xmlMetadata.target!
       }
       format.any {
-        redirect_to excursion_path(excursion)+"/scormMetadata.xml"
+        redirect_to (excursion_path(excursion)+"/scormMetadata.xml?version=" + scormVersion)
       }
     end
   end

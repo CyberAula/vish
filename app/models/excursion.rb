@@ -124,7 +124,7 @@ class Excursion < ActiveRecord::Base
 
     #Add manifest, main HTML file and additional files
     Zip::OutputStream.open(t.path) do |zos|
-      xml_manifest = Excursion.generate_scorm_manifest(json,excursion)
+      xml_manifest = Excursion.generate_scorm_manifest(version,json,excursion)
       zos.put_next_entry("imsmanifest.xml")
       zos.print xml_manifest.target!()
 
@@ -133,21 +133,24 @@ class Excursion < ActiveRecord::Base
     end
 
     #Add required XSD files and folders
-    xsdFileDir = "#{Rails.root}/public/xsd"
-    xsdFiles = ["adlcp_v1p3.xsd","adlnav_v1p3.xsd","adlseq_v1p3.xsd","imscp_v1p1.xsd","imsss_v1p0.xsd","lom.xsd"]
-    xsdFolders = ["common","extend","unique","vocab"]
-
-    #Add required xsd files
+    schemaDirs = []
+    schemaFiles = []
+    #SCORM schema
+    schemaDirs.push("#{Rails.root}/public/schemas/SCORM_" + version)
+    #LOM schema
+    # schemaDirs.push("#{Rails.root}/public/schemas/lom")
+    schemaFiles.push("#{Rails.root}/public/schemas/lom/lom.xsd");
+    
     Zip::File.open(t.path, Zip::File::CREATE) { |zipfile|
-      xsdFiles.each do |xsdFileName|
-        zipfile.add(xsdFileName,xsdFileDir+"/"+xsdFileName)
+      schemaDirs.each do |dir|
+        Dir.entries(dir).reject{|f| f.start_with?(".")}.each do |fileName|
+          zipfile.add(fileName,dir+"/"+fileName)
+        end
+      end
+      schemaFiles.each do |filePath|
+        zipfile.add(File.basename(filePath),filePath)
       end
     }
-
-    #Add required XSD folders
-    xsdFolders.each do |xsdFolderName|
-      zip_folder(t.path,xsdFileDir,xsdFileDir+"/"+xsdFolderName)
-    end
 
     #Copy SCORM assets (image, javascript and css files)
     dir = "#{Rails.root}/lib/plugins/vish_editor/app/scorm"
@@ -191,9 +194,10 @@ class Excursion < ActiveRecord::Base
     }
   end
 
-  # Metadata based on LOM (Learning Object Metadata) standard
-  # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
-  def self.generate_scorm_manifest(ejson,excursion,options={})
+  def self.generate_scorm_manifest(version,ejson,excursion,options={})
+    version = "2004" unless version.is_a? String and ["12","2004"].include?(version)
+
+    #Get manifest resource identifier and LOM identifier
     if excursion and !excursion.id.nil?
       identifier = excursion.id.to_s
       lomIdentifier = Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)
@@ -211,43 +215,82 @@ class Excursion < ActiveRecord::Base
 
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_" + identifier,
-      "version"=>"1.3",
-      "xmlns"=>"http://www.imsglobal.org/xsd/imscp_v1p1",
-      "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
-      "xmlns:adlseq"=>"http://www.adlnet.org/xsd/adlseq_v1p3",
-      "xmlns:adlnav"=>"http://www.adlnet.org/xsd/adlnav_v1p3",
-      "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
-      "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
-      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd",
-    ) do
 
-      myxml.metadata() do
+
+     #Select LOM Header options
+    manifestHeaderOptions = {}
+    manifestContent = {}
+
+    case version
+    when "12"
+      #SCORM 1.2
+      manifestHeaderOptions = {
+        "identifier"=>"VISH_PRESENTATION_" + identifier,
+        "version"=>"1.0",
+        "xmlns"=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2",
+        "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_rootv1p2",
+        "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+        "xsi:schemaLocation"=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd"
+      }
+      manifestContent["schemaVersion"] = "1.2"
+    when "2004"
+      #SCORM 2004 4th Edition
+      manifestHeaderOptions =  { 
+        "identifier"=>"VISH_PRESENTATION_" + identifier,
+        "version"=>"1.3",
+        "xmlns"=>"http://www.imsglobal.org/xsd/imscp_v1p1",
+        "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
+        "xmlns:adlseq"=>"http://www.adlnet.org/xsd/adlseq_v1p3",
+        "xmlns:adlnav"=>"http://www.adlnet.org/xsd/adlnav_v1p3",
+        "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
+        "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+        "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd"
+      }
+      manifestContent["schemaVersion"] = "2004 4th Edition"
+    else
+      #Future SCORM versions
+    end
+
+    myxml.manifest(manifestHeaderOptions) do
+
+      myxml.metadata do
         myxml.schema("ADL SCORM")
-        myxml.schemaversion("2004 4th Edition")
+        myxml.schemaversion(manifestContent["schemaVersion"])
         #Add LOM metadata
-        Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier, :LOMschema => (options[:LOMschema]) ? options[:LOMschema] : "custom"})
+        Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier, :LOMschema => (options[:LOMschema]) ? options[:LOMschema] : "custom", :scormVersion => version})
       end
 
       myxml.organizations('default'=>"defaultOrganization") do
-        myxml.organization('identifier'=>"defaultOrganization", 'structure'=>"hierarchical") do
+        myxml.organization('identifier'=>"defaultOrganization") do
           if ejson["title"]
             myxml.title(ejson["title"])
           else
             myxml.title("Untitled")
           end
-          myxml.item('identifier'=>"VIRTUAL_EXCURSION_" + identifier,'identifierref'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE") do
+          itemOptions = {
+            'identifier'=>"PRESENTATION_" + identifier,
+            'identifierref'=>"PRESENTATION_" + identifier + "_RESOURCE"
+          }
+          if version == "12"
+            itemOptions["isvisible"] = "true"
+          end
+          myxml.item(itemOptions) do
             if ejson["title"]
               myxml.title(ejson["title"])
             else
               myxml.title("Untitled")
+            end
+            if version == "12"
+              myxml.tag!("adlcp:masteryscore") do
+                myxml.text!("50")
+              end
             end
           end
         end
       end
 
       myxml.resources do         
-        myxml.resource('identifier'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormType'=>"sco") do
+        myxml.resource('identifier'=>"PRESENTATION_" + identifier + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormType'=>"sco") do
           myxml.file('href'=> "excursion.html")
         end
       end
@@ -263,6 +306,8 @@ class Excursion < ActiveRecord::Base
   ## LOM Metadata
   ####################
 
+  # Metadata based on LOM (Learning Object Metadata) standard
+  # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
   def self.generate_LOM_metadata(ejson, excursion, options={})
     _LOMschema = "custom"
 
