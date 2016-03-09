@@ -289,8 +289,19 @@ class Excursion < ActiveRecord::Base
         end
       end
 
+      resourceOptions = {
+        'identifier'=>"PRESENTATION_" + identifier + "_RESOURCE",
+        'type'=>"webcontent",
+        'href'=>"excursion.html",
+      }
+      if version == "12"
+        resourceOptions['adlcp:scormtype'] = "sco"
+      else
+        resourceOptions['adlcp:scormType'] = "sco"
+      end
+
       myxml.resources do         
-        myxml.resource('identifier'=>"PRESENTATION_" + identifier + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormType'=>"sco") do
+        myxml.resource(resourceOptions) do
           myxml.file('href'=> "excursion.html")
         end
       end
