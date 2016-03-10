@@ -141,16 +141,17 @@ class Excursion < ActiveRecord::Base
     # schemaDirs.push("#{Rails.root}/public/schemas/lom")
     schemaFiles.push("#{Rails.root}/public/schemas/lom/lom.xsd");
     
-    Zip::File.open(t.path, Zip::File::CREATE) { |zipfile|
-      schemaDirs.each do |dir|
-        Dir.entries(dir).reject{|f| f.start_with?(".")}.each do |fileName|
-          zipfile.add(fileName,dir+"/"+fileName)
+    schemaDirs.each do |dir|
+      zip_folder(t.path,dir)
+    end
+
+    if schemaFiles.length > 0
+      Zip::File.open(t.path, Zip::File::CREATE) { |zipfile|
+        schemaFiles.each do |filePath|
+          zipfile.add(File.basename(filePath),filePath)
         end
-      end
-      schemaFiles.each do |filePath|
-        zipfile.add(File.basename(filePath),filePath)
-      end
-    }
+      }
+    end
 
     #Copy SCORM assets (image, javascript and css files)
     dir = "#{Rails.root}/lib/plugins/vish_editor/app/scorm"
@@ -169,29 +170,33 @@ class Excursion < ActiveRecord::Base
   end
 
   def self.zip_folder(zipFilePath,root,dir=nil)
-    unless dir 
-      dir = root
-    end
+    dir = root unless dir
 
-    #Get subdirectories
-    Dir.chdir(dir)
-    subdir_list=Dir["*"].reject{|o| not File.directory?(o)}
-    subdir_list.each do |subdirectory|
-      subdirectory_path = "#{dir}/#{subdirectory}"
-      zip_folder(zipFilePath,root,subdirectory_path)
-    end
-
-    #Look for files
-    Zip::File.open(zipFilePath, Zip::File::CREATE) { |zipfile|
-      Dir.foreach(dir) do |item|
-        item_path = "#{dir}/#{item}"
-        if File.file?item_path
-          rpath = String.new(item_path)
-          rpath.slice! root + "/"
-          zipfile.add(rpath,item_path)
-        end
+    folderNames = []
+    fileNames = []
+    Dir.entries(dir).reject{|i| i.start_with?(".")}.each do |itemName|
+      itemPath = "#{dir}/#{itemName}"
+      if File.directory?(itemPath)
+        folderNames << itemName
+      elsif File.file?(itemPath)
+        fileNames << itemName
       end
-    }
+    end
+
+    #Subdirectories
+    folderNames.each do |subFolderName|
+      zip_folder(zipFilePath,root,"#{dir}/#{subFolderName}")
+    end
+
+    #Files
+    if fileNames.length > 0
+      Zip::File.open(zipFilePath, Zip::File::CREATE) { |zipfile|
+        fileNames.each do |fileName|
+          filePathInZip = String.new("#{dir}/#{fileName}").sub(root + "/","")
+          zipfile.add(filePathInZip,"#{dir}/#{fileName}")
+        end
+      }
+    end
   end
 
   def self.generate_scorm_manifest(version,ejson,excursion,options={})
