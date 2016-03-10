@@ -39,7 +39,7 @@ class VishEditorUtils
         return elType
       end
 
-      if elBody.include?("http://docs.google.com")
+      if elBody.include?("://docs.google.com")
         return "document"
       end
 
