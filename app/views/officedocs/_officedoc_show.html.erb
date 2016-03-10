@@ -15,12 +15,12 @@
 
 	document.addEventListener("DOMContentLoaded", function(){
 		var iframeDOM = $("#iframe_officedoc_<%=officedoc.id%>");
-		var iframeSrc = '<%=raw officedoc.google_doc_url%>';
+		var iframeSrc = '<%=raw officedoc.google_doc_url(request.protocol)%>';
 
 		if('<%=officedoc.file_content_type%>'=="application/pdf"){
 			//Check PDF native reader support
 			if(isPDFSupported()){
-				iframeSrc = '<%=raw officedoc.source_full_url%>';
+				iframeSrc = '<%=raw officedoc.source_full_url(request.protocol)%>';
 			}
 		}
 

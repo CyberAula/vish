@@ -8,12 +8,12 @@ class Officedoc < Document
     "#{ size.to_s }/officedoc.png"
   end
 
-  def source_full_url
-    Vish::Application.config.full_domain + self.file.url
+  def source_full_url(protocol)
+    Embed.checkUrlProtocol(Vish::Application.config.full_domain + self.file.url, protocol)
   end
 
-  def google_doc_url
-    "http://docs.google.com/viewer?url=" + source_full_url + "&embedded=true"
+  def google_doc_url(protocol)
+    "https://docs.google.com/viewer?url=" + self.source_full_url(protocol) + "&embedded=true"
   end
 
 end
