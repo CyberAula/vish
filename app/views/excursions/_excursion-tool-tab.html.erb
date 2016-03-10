@@ -255,7 +255,7 @@
             <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
           </div>
           <div class="social">
-            <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
+            <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>(request.protocol + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
           </div>
           <div class="social">
             <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>

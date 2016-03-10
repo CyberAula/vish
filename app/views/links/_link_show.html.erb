@@ -1,4 +1,5 @@
 <%the_url = link.url.start_with?('http') ? link.url : "http://"+link.url%>
+<%the_url = Embed.checkUrlProtocol(the_url,request.protocol) %>
 <%= div_for link, :class => 'content_size' do %>
 	<iframe class="link_show" src="<%= the_url %>" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
 	<div class="link_address">
