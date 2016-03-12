@@ -10,9 +10,8 @@ class RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     if simple_captcha_valid?
-
       #Infer user language from client information
-      if !I18n.locale.nil? and !params[:user].nil? and I18n.available_locales.map{|i| i.to_s}.include? I18n.locale.to_s
+      if !I18n.locale.nil? and !params[:user].nil? and (params[:user][:language].blank? or !I18n.available_locales.include?(params[:user][:language].to_sym)) and I18n.available_locales.include?(I18n.locale.to_sym)
         params[:user] ||= {}
         params[:user][:language] = I18n.locale.to_s
       end
