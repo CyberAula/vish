@@ -714,6 +714,21 @@ namespace :fix do
     ActivityObject.record_timestamps = true
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:updateScormPackages
+  #In production: bundle exec rake fix:updateScormPackages RAILS_ENV=production
+  task :updateScormPackages => :environment do
+    Scormfile.record_timestamps=false
+    ActivityObject.record_timestamps=false
+
+    Scormfile.all.each do |scormfile|
+      scormfile.updateScormPackage
+    end
+
+    Scormfile.record_timestamps=true
+    ActivityObject.record_timestamps=true
+  end
+
 
   ####################
   #Task Utils

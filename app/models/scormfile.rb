@@ -183,8 +183,27 @@ class Scormfile < ActiveRecord::Base
 
   #Update the SCORM package to the current ViSH version
   def updateScormPackage
-    #Read schema and update schema, schemaversion and scorm_version
-    #TODO
+    begin
+      success = false
+      Scormfile.record_timestamps=false
+      ActivityObject.record_timestamps=false
+      
+      #Read manifest and update schema, schemaversion and scorm_version
+      Scorm::Package.open(self.getZipPath(), :cleanup => true) do |pkg|
+        self.schema = pkg.manifest.schema
+        self.schemaversion = pkg.manifest.schema_version
+      end
+      self.save!
+      
+      success = true
+    rescue Exception => e
+      #Error handling
+      success = false
+    ensure
+      Scormfile.record_timestamps=true
+      ActivityObject.record_timestamps=true
+    end
+    success
   end
 
 
