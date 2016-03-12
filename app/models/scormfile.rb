@@ -168,7 +168,7 @@ class Scormfile < ActiveRecord::Base
 
   def fill_scorm_version
     if self.schema == "ADL SCORM" and !self.schemaversion.blank?
-      if self.schemaversion.scan(/2004\s[\w]+\sEdition/).length > 0
+      if (self.schemaversion.scan(/2004\s[\w]+\sEdition/).length > 0) or (self.schemaversion == "CAM 1.3")
         self.scorm_version = "2004" 
       else
         self.scorm_version = self.schemaversion
