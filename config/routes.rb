@@ -96,13 +96,13 @@ Vish::Application.routes.draw do
   resources :workshops
 
   #Workshops Activities
-  resources :wa_assignments
-  resources :wa_resources
-  resources :contributions
+  resources :wa_assignments, :except => [:index]
+  resources :wa_resources, :except => [:index]
+  resources :contributions, :except => [:index]
   match '/wa_resources_galleries/:id/add_resource' => 'wa_resources_galleries#add_resource'
-  resources :wa_resources_galleries
-  resources :wa_contributions_galleries
-  resources :wa_texts
+  resources :wa_resources_galleries, :except => [:index]
+  resources :wa_contributions_galleries, :except => [:index]
+  resources :wa_texts, :except => [:index]
 
   #courses
   resources :courses do
@@ -126,7 +126,7 @@ Vish::Application.routes.draw do
   match 'qs/:id' => 'quiz_sessions#show'
 
   #PDF to Excursion
-  resources :pdfexes
+  resources :pdfexes, :except => [:index]
 
   #Categories
   match '/categories/categorize' => 'categories#categorize', :via => :post

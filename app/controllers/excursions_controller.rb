@@ -22,6 +22,7 @@ class ExcursionsController < ApplicationController
   #############
 
   def index
+    redirect_to home_path
   end
 
   def show 

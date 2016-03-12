@@ -13,7 +13,7 @@ class WorkshopsController < ApplicationController
   #############
 
   def index
-    super
+    redirect_to home_path
   end
 
   def show
