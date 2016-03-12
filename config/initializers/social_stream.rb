@@ -11,13 +11,8 @@ SocialStream.setup do |config|
   config.devise_modules = [ :recoverable, :rememberable, :trackable,
                             :omniauthable, :token_authenticatable, :database_authenticatable, :registerable]
 
-  if Vish::Application.config.APP_CONFIG["register_policy"] == "INVITATION_ONLY" || Vish::Application.config.APP_CONFIG["register_policy"] == "HYBRID"
-    config.devise_modules << :invitable  
-  end
-
-  if Vish::Application.config.APP_CONFIG["login_policy"] == "CAS"
-    config.devise_modules << :cas_authenticatable
-  end
+  config.devise_modules << :invitable if Vish::Application.config.invitations
+  config.devise_modules << :cas_authenticatable if Vish::Application.config.cas
 
   # Type of activities managed by actors
   # Remember you must add an "activity_object_id" foreign key column to your migration!

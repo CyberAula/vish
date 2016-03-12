@@ -21,6 +21,18 @@ module Vish
     config.full_domain = "http://" + config.APP_CONFIG['domain']
     config.full_code_domain = "http://" + (config.APP_CONFIG['code_domain'] || config.APP_CONFIG['domain'])
 
+    # Login and register policies
+    #Default values
+    config.register_policy = "HYBRID"
+    config.login_policy = "LOCAL"
+    #Custom values
+    config.register_policy = config.APP_CONFIG["register_policy"] if ["REGISTER_ONLY","INVITATION_ONLY","HYBRID"].include? config.APP_CONFIG["register_policy"]
+    config.login_policy = config.APP_CONFIG["login_policy"] if ["LOCAL","CAS"].include? config.APP_CONFIG["login_policy"]
+    #Features related to login and register policies
+    config.cas = config.login_policy==="CAS" and !config.APP_CONFIG["CAS"].blank?
+    config.registrations = ["REGISTER_ONLY","HYBRID"].include? config.register_policy
+    config.invitations = ["INVITATION_ONLY","HYBRID"].include? config.register_policy
+
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     # config.autoload_paths += %W(#{config.root}/lib)

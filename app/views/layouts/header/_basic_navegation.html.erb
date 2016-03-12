@@ -1,19 +1,16 @@
-<%if ["INVITATION_ONLY","HYBRID"].include? Vish::Application.config.APP_CONFIG["register_policy"] and !current_subject.role?("PrivateStudent") %>
+<% return if user_signed_in? and current_subject.role?("PrivateStudent") %>
+<% if Vish::Application.config.invitations %>
 	<li>
-	  <%= link_to(raw("<i class='fa fa-user-plus'></i> "), new_user_invitation_path, :class => "btn-header tooltip-header clearfix", :title => t("devise.invitations.button"),:remote=> true, :data => {:toggle=>"modal", :target=>"#CreateInvitationModal"}) %>
-	</li>
-<%end%>
-<%if !current_subject.role?("PrivateStudent") %>
-	<li>
-	  <%= link_to(raw("<i class='" + (current_subject.unread_messages_count > 0 ? " fa fa-envelope notification" : " fa fa-envelope-o") + "'></i> "), messages_path, :class => "btn btn-defaul btn-header tooltip-header clearfix", :type => "button", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :data => {:toggle=>"tooltip"}) %>
+		<%= link_to(raw("<i class='fa fa-user-plus'></i> "), new_user_invitation_path, :class => "btn-header tooltip-header clearfix", :title => t("devise.invitations.button"),:remote=> true, :data => {:toggle=>"modal", :target=>"#CreateInvitationModal"}) %>
 	</li>
 <% end %>
-<%if !current_subject.role?("PrivateStudent") %>
-	<li>
-	  <%= link_to(raw("<i class='fa fa-globe'></i>"),
-	                  activities_path,
-	                  :class => "btn btn-defaul btn-header tooltip-header clearfix",
-	                  :title => t('activity.other'),
-	                  :data => {:toggle=>"tooltip"}) %>
-	</li>
-<% end %>
+<li>
+	<%= link_to(raw("<i class='" + (current_subject.unread_messages_count > 0 ? " fa fa-envelope notification" : " fa fa-envelope-o") + "'></i> "), messages_path, :class => "btn btn-defaul btn-header tooltip-header clearfix", :type => "button", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :data => {:toggle=>"tooltip"}) %>
+</li>
+<li>
+	<%= link_to(raw("<i class='fa fa-globe'></i>"),
+		activities_path,
+		:class => "btn btn-defaul btn-header tooltip-header clearfix",
+		:title => t('activity.other'),
+		:data => {:toggle=>"tooltip"}) %>
+</li>

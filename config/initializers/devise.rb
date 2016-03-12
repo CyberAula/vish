@@ -25,7 +25,7 @@ Devise.setup do |config|
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [ :email ]
 
-  if Vish::Application.config.APP_CONFIG["login_policy"] == "CAS"
+  if Vish::Application.config.cas
 	  # ==> Configuration for SSO server authentication
 	  # Url pointing to the CASino SSO server
 	  config.cas_base_url = Vish::Application.config.APP_CONFIG["CAS"]["cas_base_url"]
@@ -42,7 +42,6 @@ Devise.setup do |config|
 	  # Enable single sign out
 	  config.cas_enable_single_sign_out = Vish::Application.config.APP_CONFIG["CAS"]["cas_enable_single_sign_out"]
   end
-
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
