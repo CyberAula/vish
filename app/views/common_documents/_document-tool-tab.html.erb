@@ -72,11 +72,9 @@
     </li>
 
     <% if can? :update, document %>
-
       <li class="<%= document_details_tab_class document, :edit %>">
         <%= link_to (raw("<i class='fa fa-edit'></i> <span class='hidden-xs'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
       </li>
-
     <% end %>
 
     <% if canBeEmbeded %>
@@ -122,7 +120,6 @@
     </div>
   <% end %>
 
-
   <% if canBeEmbeded %>
     <div class="tab-pane contentembed <%= document_details_tab_class document, :embed %>" id="document-embed">
       <p class="documentembedexplanation"><%=t("document.embed_explanation")%></p>
@@ -141,7 +138,6 @@
     </div>
   <% end %>
 
-
   <%if canBeDownloaded %>
     <div class="tab-pane <%= document_details_tab_class document, :download %>" id="document-download">
       <div class="toggler">
@@ -159,6 +155,5 @@
     <%@activity_object = document.activity_object%>
     <%= render '/spam_report/form' %>
   </div>
-
 
 </div>

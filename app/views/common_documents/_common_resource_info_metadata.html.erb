@@ -10,6 +10,15 @@
             <td><%= t("document.info.types." + resource.class.name.downcase, :default => resource.class.name) %></td>
           </tr>
         <% end %>
+
+        <!-- version (for SCORM packages, ...) -->
+        <% if resource.respond_to?(:resource_version) and !resource.resource_version.blank? %>
+          <tr>
+            <td><span><%= t('document.info.version') %></span></td>
+            <td><%=resource.resource_version%></td>
+          </tr>
+        <% end %>
+        
         <!--description-->
         <% unless resource.description.blank? %>
           <tr>
@@ -17,6 +26,7 @@
             <td><%= truncate(resource.description, :length => 400) %></td>
           </tr>
         <% end %>
+        
         <!--tags-->
         <% unless resource.tag_list.blank? %>
           <tr>

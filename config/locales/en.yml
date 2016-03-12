@@ -542,6 +542,7 @@ en:
         webapp: "Web Application"
         writing: "Texto"
         zipfile: "ZIP File"
+      version: "Version"
     input: "Add a description here"
     language:
       option1: "(Not depends on the language)"

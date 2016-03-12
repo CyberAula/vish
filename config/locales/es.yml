@@ -531,6 +531,7 @@ es:
         webapp: "Aplicación Web"
         writing: "Texto"
         zipfile: "Fichero ZIP"
+      version: "Versión"
     input: "Descripción del recurso"
     language:
       option1: "(No depende del lenguaje)"

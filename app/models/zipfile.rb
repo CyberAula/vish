@@ -12,25 +12,17 @@ class Zipfile < Document
   end
 
   def fileType
-    if self.file.class != Paperclip::Attachment or self.file.path.blank?
-      return Zipfile
-    end
+    return Zipfile if self.file.class != Paperclip::Attachment or self.file.path.blank?
 
     isScorm = false
     isWebapp = false
     Zip::File.open(self.file.path) do |zip|
-      isScorm = zip.entries.map{|e| e.name}.include? "imsmanifest.xml"
-      unless isScorm
-        isWebapp = zip.entries.map{|e| e.name}.include? "index.html"
-      end
+      isScorm = zip.entries.map{|e| e.name}.include?("imsmanifest.xml")
+      isWebapp = zip.entries.map{|e| e.name}.include? "index.html" unless isScorm
     end
     
-    if isScorm
-      return Scormfile
-    elsif isWebapp
-      return Webapp
-    end
-
+    return Scormfile if isScorm
+    return Webapp if isWebapp
     return Zipfile
   end
 
