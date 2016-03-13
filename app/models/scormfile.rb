@@ -169,10 +169,15 @@ class Scormfile < ActiveRecord::Base
   def fill_scorm_version
     if self.schema == "ADL SCORM" and !self.schemaversion.blank?
       if (self.schemaversion.scan(/2004\s[\w]+\sEdition/).length > 0) or (self.schemaversion == "CAM 1.3")
-        self.scorm_version = "2004" 
+        self.scorm_version = "2004"
       else
         self.scorm_version = self.schemaversion
       end
+    end
+    if self.scorm_version.blank? and self.schema.blank? and self.schemaversion.blank?
+      self.schema = "ADL SCORM"
+      self.schemaversion = "1.2"
+      self.scorm_version = "1.2" #Some ATs create SCORM 1.2 Packages without specifying schema data
     end
   end
 
