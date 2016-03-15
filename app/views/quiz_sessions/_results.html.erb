@@ -158,7 +158,7 @@
 
  	<% if answersLength > 0 %>
 	 	//Draw quiz results
-	 	VISH.QuizCharts.init({ "lang": "<%= I18n.locale.to_s%>"});
+	 	VISH.QuizCharts.init("<%= I18n.locale.to_s%>");
 	 	var canvas = $("#quiz_chart");
 		var quizJSON = <%= raw @quiz_session.quizJSON %>;
 	 	var answersList = <%= raw @answers %>;

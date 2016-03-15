@@ -11,6 +11,12 @@ class Scormfile < ActiveRecord::Base
     activity_object_index
   end
 
+  validates_inclusion_of :scorm_version, in: ["1.2","2004"], :allow_blank => false, :message => "Invalid SCORM version. Only SCORM 1.2 and 2004 are supported"
+  validates_presence_of :schema, :message => "Invalid SCORM package. Schema is not defined."
+  validates_presence_of :schemaversion, :message => "Invalid SCORM package. Schema version is not defined."
+  before_validation :fill_scorm_version
+
+
   def self.createScormfileFromZip(controller,zipfile)
     begin
       resource = Scormfile.new
@@ -40,14 +46,13 @@ class Scormfile < ActiveRecord::Base
       pkgPath = nil
       loHref = nil
       Scorm::Package.open(zipfile.file, :cleanup => true) do |pkg|
+        resource.schema = pkg.manifest.schema
+        resource.schemaversion = pkg.manifest.schema_version
         loHref = pkg.manifest.resources.first.href
         pkgPath = pkg.path
-        # pkgId = pkg.manifest.identifier
       end
 
-      if pkgPath.nil? or loHref.nil?
-        raise "No resource has been found"
-      end
+      raise "No resource has been found" if pkgPath.nil? or loHref.nil?
 
       #Save the resource to get its id
       resource.save!
@@ -111,7 +116,7 @@ class Scormfile < ActiveRecord::Base
 
   # Thumbnail file
   def thumb(size, helper)
-      "#{ size.to_s }/scorm.png"
+    "#{ size.to_s }/scorm.png"
   end
 
   #Overriding mimetype and format methods from SSDocuments
@@ -160,6 +165,52 @@ class Scormfile < ActiveRecord::Base
     #LO paths are saved as absolute paths when APP_CONFIG["code_path"] is defined
     return self.lopath
   end
+
+  def fill_scorm_version
+    if self.schema == "ADL SCORM" and !self.schemaversion.blank?
+      if (self.schemaversion.scan(/2004\s[\w]+\sEdition/).length > 0) or (self.schemaversion == "CAM 1.3")
+        self.scorm_version = "2004"
+      else
+        self.scorm_version = self.schemaversion
+      end
+    end
+    if self.scorm_version.blank? and self.schema.blank? and self.schemaversion.blank?
+      self.schema = "ADL SCORM"
+      self.schemaversion = "1.2"
+      self.scorm_version = "1.2" #Some ATs create SCORM 1.2 Packages without specifying schema data
+    end
+  end
+
+  #Return version to show in metadata UI
+  def resource_version
+    self.schema + " " + self.schemaversion
+  end
+
+  #Update the SCORM package to the current ViSH version
+  def updateScormPackage
+    begin
+      success = false
+      Scormfile.record_timestamps=false
+      ActivityObject.record_timestamps=false
+      
+      #Read manifest and update schema, schemaversion and scorm_version
+      Scorm::Package.open(self.getZipPath(), :cleanup => true) do |pkg|
+        self.schema = pkg.manifest.schema
+        self.schemaversion = pkg.manifest.schema_version
+      end
+      self.save!
+      
+      success = true
+    rescue Exception => e
+      #Error handling
+      success = false
+    ensure
+      Scormfile.record_timestamps=true
+      ActivityObject.record_timestamps=true
+    end
+    success
+  end
+
 
   private
 

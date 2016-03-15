@@ -177,6 +177,7 @@ aside.recomended
     width: 100%
     iframe
       border: none
+      background: white
 .writing_show
   max-width: 95%
   display: block
@@ -267,17 +268,23 @@ aside.recomended,
     display: inline
 
 .contentscorm
-  a
+  .contentscormc1
     float: left
-    margin-right: 15px
-
-    @media (max-width: $screen-xs-max)
-      float: none
-      margin-bottom: 15px
-  p
-    overflow: hidden
-    font-size: 0.9em
-    zoom: 1
+    a
+      display: block
+      margin-right: 15px
+      margin-bottom: 10px
+      min-width: 130px
+      text-align: left
+      padding-left: 10px
+      @media (max-width: $screen-xs-max)
+        float: none
+        margin-bottom: 15px
+  .contentscormc2  
+    p
+      overflow: hidden
+      font-size: 0.9em
+      zoom: 1
 
 .elementsBox
   .picture_show, .embed_show, .swf_show
@@ -420,7 +427,9 @@ textarea.form-control
       margin-left: 0
 
 .layout_form_WS
-  padding: 0 2%
+  padding: 0
+  #new_file
+    padding: 20px
   .writing_editor
     margin: 20px 0
   section.target_age

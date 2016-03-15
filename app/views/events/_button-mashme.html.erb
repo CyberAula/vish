@@ -41,15 +41,12 @@
   });
 
   $('#mashme-button-excursion').on("click", function(){
-    <% if request.env['HTTP_HOST'] =~ /^localhost/ or request.env['HTTP_HOST'] =~ /^0.0.0.0/ %>
-    var target_url = encodeURI("http://FUUUUUUU" + "<%= request.path %>" + "|||" + $('#mashme-room-id').val());
-    <% else %>
     var target_url = encodeURI("<%= request.url %>" + "|||" + $('#mashme-room-id').val());
-    <% end %>
     var target_title = encodeURI("<%= @event.title.split(' ').map {|w| w.capitalize }.join('') unless @event.title.blank? %>");
     name="<%= if user_signed_in?; then CGI::escapeHTML(current_subject.name); else ""; end %>"
+
     $.ajax({
-      url: "http://www.mashme.tv/api/buttons",
+      url: "https://www.mashme.tv/api/buttons",
       type: "POST",
       data: {
         url: target_url,
@@ -58,7 +55,7 @@
       },
       success: function(data) {
         my_data = JSON.parse(data);
-        launchIframe("http://www.mashme.tv/M/" + my_data.permalink + "?name=" + name + "&delay=9000&app=meeting_mode");
+        launchIframe("https://www.mashme.tv/M/" + my_data.permalink + "?name=" + name + "&delay=9000&app=meeting_mode");
       }
     });
   });

@@ -23,6 +23,17 @@ User.class_eval do
     User.where("invited_by_id IS NULL or invitation_accepted_at is NOT NULL")
   }
 
+  before_validation :fill_user_locale
+  validate :user_locale
+
+  def user_locale
+    if !self.language.blank? and I18n.available_locales.include?(self.language.to_sym)
+      true
+    else
+      errors[:base] << "User without language"
+    end
+  end
+
   def occupation_sym
     if occupation
       Occupation[occupation]
@@ -45,6 +56,10 @@ User.class_eval do
 
 
   private
+
+  def fill_user_locale
+    self.language = I18n.default_locale.to_s unless (!self.language.blank? and I18n.available_locales.include?(self.language.to_sym))
+  end
 
   def destroy_user_resources
     ActivityObject.authored_by(self).each do |ao|

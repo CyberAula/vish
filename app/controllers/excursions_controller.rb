@@ -22,6 +22,7 @@ class ExcursionsController < ApplicationController
   #############
 
   def index
+    redirect_to home_path
   end
 
   def show 
@@ -60,9 +61,10 @@ class ExcursionsController < ApplicationController
       }
       format.scorm {
         if (can? :download_source, @excursion)
-          @excursion.to_scorm(self)
+          scormVersion = (params["version"].present? and ["12","2004"].include?(params["version"])) ? params["version"] : "2004"
+          @excursion.to_scorm(self,scormVersion)
           @excursion.increment_download_count
-          send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
+          send_file @excursion.scormFilePath(scormVersion), :type => 'application/zip', :disposition => 'attachment', :filename => ("scorm" + scormVersion + "-#{@excursion.id}.zip")
         else
           render :nothing => true, :status => 500
         end
@@ -190,13 +192,14 @@ class ExcursionsController < ApplicationController
 
   def scormMetadata
     excursion = Excursion.find_by_id(params[:id])
+    scormVersion = ((params["version"].present? and ["12","2004"].include?(params["version"])) ? params["version"] : "2004")
     respond_to do |format|
       format.xml {
-        xmlMetadata = Excursion.generate_scorm_manifest(JSON(excursion.json),excursion,{:LOMschema => params[:LOMschema]})
+        xmlMetadata = Excursion.generate_scorm_manifest(scormVersion,JSON(excursion.json),excursion,{:LOMschema => params[:LOMschema]})
         render :xml => xmlMetadata.target!
       }
       format.any {
-        redirect_to excursion_path(excursion)+"/scormMetadata.xml"
+        redirect_to (excursion_path(excursion)+"/scormMetadata.xml?version=" + scormVersion)
       }
     end
   end
@@ -359,13 +362,13 @@ class ExcursionsController < ApplicationController
 
         responseFormat = "json" #Default
         if params["responseFormat"].is_a? String
-          if params["responseFormat"].downcase == "scorm"
+          responseFormatParsedParam = params["responseFormat"].downcase
+          if responseFormatParsedParam.include?("scorm")
             responseFormat = "scorm"
-          end
-          if params["responseFormat"].downcase == "qti"
+            scormVersion = responseFormatParsedParam.sub("scorm","")
+          elsif responseFormatParsedParam == "qti"
             responseFormat = "qti"
-          end
-          if params["responseFormat"].downcase == "moodlexml"
+          elsif responseFormatParsedParam == "moodlexml"
             responseFormat = "MoodleXML"
           end
         end
@@ -381,11 +384,11 @@ class ExcursionsController < ApplicationController
           t.write json
           t.close
           results["url"] = "#{Vish::Application.config.full_domain}/excursions/tmpJson.json?fileId=#{count.to_s}"
-        elsif responseFormat == "scorm"
+        elsif responseFormat == "scorm" and ["12","2004"].include?(scormVersion)
           #Generate SCORM package
           filePath = "#{Rails.root}/public/tmp/scorm/"
-          fileName = "scorm-tmp-#{count.to_s}"
-          Excursion.createSCORM(filePath,fileName,JSON(json),nil,self)
+          fileName = "scorm" + scormVersion + "-tmp-#{count.to_s}"
+          Excursion.createSCORM(scormVersion,filePath,fileName,JSON(json),nil,self)
           results["url"] = "#{Vish::Application.config.full_domain}/tmp/scorm/#{fileName}.zip"
         elsif responseFormat == "qti"
            #Generate QTI package

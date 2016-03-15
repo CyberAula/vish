@@ -55,14 +55,14 @@ namespace :fix do
 
 
   #Usage
-  #Development:   bundle exec rake fix:resetScormTimestamp
-  #In production: bundle exec rake fix:resetScormTimestamp RAILS_ENV=production
-  task :resetScormTimestamp => :environment do
-
+  #Development:   bundle exec rake fix:resetScormTimestamps
+  #In production: bundle exec rake fix:resetScormTimestamps RAILS_ENV=production
+  task :resetScormTimestamps => :environment do
     printTitle("Reset scorm timestamp")
 
     Excursion.all.map { |ex| 
-      ex.update_column :scorm_timestamp, nil
+      ex.update_column :scorm2004_timestamp, nil
+      ex.update_column :scorm12_timestamp, nil
     }
 
     printTitle("Task Finished")
@@ -712,6 +712,21 @@ namespace :fix do
     User.record_timestamps = true
     Profile.record_timestamps = true
     ActivityObject.record_timestamps = true
+  end
+
+  #Usage
+  #Development:   bundle exec rake fix:updateScormPackages
+  #In production: bundle exec rake fix:updateScormPackages RAILS_ENV=production
+  task :updateScormPackages => :environment do
+    Scormfile.record_timestamps=false
+    ActivityObject.record_timestamps=false
+
+    Scormfile.all.each do |scormfile|
+      scormfile.updateScormPackage
+    end
+
+    Scormfile.record_timestamps=true
+    ActivityObject.record_timestamps=true
   end
 
 

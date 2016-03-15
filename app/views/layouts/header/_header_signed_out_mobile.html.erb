@@ -1,64 +1,61 @@
 <ul class="nav navbar-nav mobile-nav">
   <!--login-->
-  <%if Vish::Application.config.APP_CONFIG["login_policy"]!="CAS"%>
-      <li class="sign_in_mobile dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <i class="fa fa-signin"></i>
-          <%=t("sign_in")%>
-          <i class="fa fa-angle-down"></i>
-        </a>
-        <ul class="dropdown-menu">
-                      <%= form_for User.new, :html => {:id => 'new_user_mobile', :class => "form-horizontal"}, :as => :user, :url => user_session_path do |f| %>
-                  <div class="form-group">
-                    <%= f.email_field :email, :id => 'username_mobile', :class => "form-control" %>
-                    <%= f.password_field :password, :id => 'password_mobile', :class => "form-control"  %>
-                    
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox"> 
-                        <span class="lbl padding-0">
-                          <%=t("activerecord.attributes.user.remember_me")%>
-                        </span>
-                    </label>
-
-                  </div>
-                  <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
-                  <div class="remember_password"><%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
-                  </div>
-                  
-                  
-                  
-                <% end %>
-          <%content_for :javascript do%>
-                if ("placeholder" in document.createElement("input")) {
-                  $("#username_mobile").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
-                  $("#password_mobile").attr('placeholder', I18n.t('activerecord.attributes.user.password'));
-                } else {
-                  $("#username_mobile").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
-                  $("#password_mobile").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
-                }
-          <% end %>
-        </ul>
-      </li>
-  <%else%>
+  <% if !Vish::Application.config.cas %>
+    <li class="sign_in_mobile dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <i class="fa fa-signin"></i>
+        <%=t("sign_in")%>
+        <i class="fa fa-angle-down"></i>
+      </a>
+      <ul class="dropdown-menu">
+        <%= form_for User.new, :html => {:id => 'new_user_mobile', :class => "form-horizontal"}, :as => :user, :url => user_session_path do |f| %>
+          <div class="form-group">
+            <%= f.email_field :email, :id => 'username_mobile', :class => "form-control" %>
+            <%= f.password_field :password, :id => 'password_mobile', :class => "form-control" %>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> 
+                <span class="lbl padding-0">
+                  <%=t("activerecord.attributes.user.remember_me")%>
+                </span>
+            </label>
+          </div>
+          <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
+          <div class="remember_password"><%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
+          </div>
+        <% end %>
+        <%content_for :javascript do%>
+              if ("placeholder" in document.createElement("input")) {
+                $("#username_mobile").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+                $("#password_mobile").attr('placeholder', I18n.t('activerecord.attributes.user.password'));
+              } else {
+                $("#username_mobile").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+                $("#password_mobile").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+              }
+        <% end %>
+      </ul>
+    </li>
+  <% else %>
       <li class="btn-group">
           <i class="fa fa-signin"></i>
           <a type="button" id="drop3" class="btn btn-primary" href="<%=user_session_path%>">
             <%=t("sign_in")%>
           </a>
       </li>
-  <%end%>
+  <% end %>
 
   <!--sign_up-->
-  <li class="sign_up_mobile">
-    <a href="<%=new_user_registration_path%>"class="signin">
-      <i class="fa fa-edit-sign"></i>
-      <%=t("sign_up")%>
-    </a>
-  </li>
+  <% if Vish::Application.config.registrations %>
+    <li class="sign_up_mobile">
+      <a href="<%=new_user_registration_path%>"class="signin">
+        <i class="fa fa-edit-sign"></i>
+        <%=t("sign_up")%>
+      </a>
+    </li>
+  <% end %>
 
-<!--lang-->
+  <!--lang-->
   <li class="dropdown language">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
       <i class="fa fa-flag-checkered"></i>

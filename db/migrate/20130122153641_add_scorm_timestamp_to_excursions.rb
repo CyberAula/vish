@@ -6,5 +6,4 @@ class AddScormTimestampToExcursions < ActiveRecord::Migration
   def down
     remove_column :excursions, :scorm_timestamp
   end
-
 end

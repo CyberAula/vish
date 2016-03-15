@@ -90,8 +90,9 @@ namespace(:deploy) do
     # config.ru
     sudo "/bin/chown www-data #{release_path}/config.ru"
 
-    #scorm
-    run "#{try_sudo} /bin/chmod -R 777 #{release_path}/public/scorm"
+    # SCORM
+    run "#{try_sudo} /bin/chmod -R 777 #{release_path}/public/scorm/12"
+    run "#{try_sudo} /bin/chmod -R 777 #{release_path}/public/scorm/2004"
   end
 
   task :link_files do

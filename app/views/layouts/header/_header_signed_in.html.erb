@@ -32,11 +32,11 @@
             <i class="fa fa-plus"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-right">
-            <% availableModels.each do |modelName| %>            
+            <% availableModels.each do |modelName| %>
                 <% if modelName == "Excursion" %>
                   <li><%= link_to new_excursion_path do %><i class="fa fa-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
                 <% elsif modelName == "Workshop" %>
-                  <li><%= link_to new_workshop_path do %><i class="fa fa-graduation-cap"></i> <%= t('workshop.actions.add') %><% end %></li>
+                  <li><%= link_to new_workshop_path do %><i class="fa fa-book"></i> <%= t('workshop.actions.add') %><% end %></li>
                 <% elsif modelName == "Resource" %>
                   <li><a href="#AddResource" data-toggle="modal"><i class="fa fa-file"></i> <%=t('resource.actions.add')%></a></li>
                   <% if availableResources.include? "Writing" %>
@@ -48,7 +48,7 @@
                   <li><a href="#AddEvent" data-toggle="modal"><i class="fa fa-video-camera"></i> <%=t('event.actions.add')%></a></li>
                 <% elsif modelName == "Course" %>
                   <%if Vish::Application.config.courses_enabled && current_subject.admin?%>
-                    <li><%= link_to new_course_path do %><i class="fa fa-university"></i> <%=t('course.actions.add')%><% end %></li>
+                    <li><%= link_to new_course_path do %><i class="fa fa-graduation-cap"></i> <%=t('course.actions.add')%><% end %></li>
                   <%end%>
                 <%end%>
             <% end %>
@@ -103,10 +103,10 @@
                       </li>
                   <%end%>
 
-                  <%if availableModels.include? "Course" %>
+                  <%if (availableModels.include? "Course") && current_subject.courses.length>0 %>
                     <li class="settings-menu">
                       <%= link_to "/users/"+current_subject.slug+"/courses" do %>
-                          <i class="fa fa-cog"></i>
+                          <i class="fa fa-graduation-cap"></i>
                           <span><%= t('course.my') %></span>
                       <% end %>
                     </li>
@@ -117,7 +117,7 @@
 
                         <% if can?(:create, PrivateStudentGroup.new) %>
                           <%= link_to private_student_groups_path do %>
-                            <i class="fa fa-group"></i>
+                            <i class="fa fa-university"></i>
                             <%= t("private_student.request") %>
                           <% end %>
                         <% else %>
@@ -145,7 +145,7 @@
                     <%= t('sign_out') %>
                     <% end %>
                   </li>
-                  
+
                 </ul>
           </li>
 

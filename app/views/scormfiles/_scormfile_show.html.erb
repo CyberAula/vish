@@ -1,14 +1,8 @@
 <%= div_for scormfile, :class => 'content_size' do %>
   <div class="scormpackage_show">
-    <iframe width=<%=scormfile.width%> height="<%=scormfile.height%>" class="scormpackage_wrapper" style="border: none; max-width: 100%" src="<%=scormfile.lourl%>" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+    <iframe width=<%=scormfile.width%> height="<%=scormfile.height%>" class="scormpackage_wrapper" style="border: none; max-width: 100%" src="<%=Embed.checkUrlProtocol(scormfile.lourl,request.protocol)%>" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
 	<div class="link_address">
     	<a href="<%=scormfile_path(scormfile, :format => :full)%>" target="_blank"><i class="fa fa-expand"></i> <p><%= t("scormfile.view_full") %></p></a>
     </div>
   </div>
 <% end %>
-
-
-
-
-
-	

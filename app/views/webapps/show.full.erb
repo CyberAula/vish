@@ -1,1 +1,1 @@
-<iframe style="width:100%; height:100%; border: none" src="<%=@webapp.lourl%>" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe style="width:100%; height:100%; border: none" src="<%=Embed.checkUrlProtocol(@webapp.lourl,request.protocol)%>" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>

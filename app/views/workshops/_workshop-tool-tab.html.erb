@@ -132,7 +132,7 @@
 
     <div class="social_toolbar_excursion">
       <div class="social">
-          <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + workshop_path(@workshop) )} %>
+          <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>(request.protocol + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + workshop_path(@workshop) )} %>
       </div>
       <div class="social">
           <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>

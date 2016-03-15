@@ -17,15 +17,17 @@
     <!--collapse-->
     <div class="collapse navbar-collapse" id="nav-collapse-out">
 
-<!--______________________________desktop-->
+      <!-- desktop -->
       <ul class="btn-toolbar desktop-nav">
-        <li class="btn-group">
-          <a type="button" class="btn btn-default" href="<%=new_user_registration_path%>">
-            <%=t("sign_up")%>
-          </a>
-        </li>
+        <% if Vish::Application.config.registrations %>
+          <li class="btn-group">
+            <a type="button" class="btn btn-default" href="<%=new_user_registration_path%>">
+              <%=t("sign_up")%>
+            </a>
+          </li>
+        <% end %>
         
-        <%if Vish::Application.config.APP_CONFIG["login_policy"]!="CAS"%>
+        <% if !Vish::Application.config.cas %>
           <li class="btn-group dropdown">
             <a href="#" id="drop3" role="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
               <%=t("sign_in")%>
@@ -35,7 +37,7 @@
               <%= form_for User.new, :as => :user, :class => "form-horizontal", :url => user_session_path do |f| %>
                 <div class="form-group">
                   <%= f.email_field :email, :id => "username", :class => "form-control" %>
-                  <%= f.password_field :password, :id => "password", :class => "form-control"  %>              
+                  <%= f.password_field :password, :id => "password", :class => "form-control" %>       
                 </div>
                 <div class="checkbox">
                   <label>
@@ -44,7 +46,6 @@
                         <%=t("activerecord.attributes.user.remember_me")%>
                       </span>
                   </label>
-
                 </div>
                 <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
                 <div class="remember_password"><%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
@@ -61,19 +62,19 @@
               <% end %>
             </ul>
           </li>
-        <%else%>
+        <% else %>
           <li class="btn-group">
             <a type="button" id="drop3" class="btn btn-primary" href="<%=user_session_path%>">
               <%=t("sign_in")%>
             </a>
           </li>
-        <%end%>
+        <% end %>
       </ul>
 
       <!--search-->
       <%= render partial: 'layouts/header/uisearch_header' %>
 
-<!--________________________mobile/tablet-->
+      <!-- mobile/tablet -->
       <%= render partial: 'layouts/header/header_signed_out_mobile' %>
     </div>
   </div>

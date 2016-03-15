@@ -4,7 +4,7 @@
     <div class="corner-item">
       <div class="corner-item2">
         <div class="corner-color"></div>
-        <i class='fa fa-university'></i>
+        <i class='fa fa-graduation-cap'></i>
       </div>
       <div class="corner-background"></div>
     </div>
@@ -12,7 +12,7 @@
     <div class="container-img">
       <div class="element resource-center">
         <div class="img-box resource-center" id="course-<%=course.id%>">
-          <div class="course">            
+          <div class="course">
           </div>
         </div>
       </div>
@@ -27,11 +27,11 @@
     <!--Title -->
     <h6>
       <%= link_to course.title, course %>
-    </h6>    
+    </h6>
     <hr>
-    <div class="info-bottom">  
+    <div class="info-bottom">
       <!--like -->
-      <div class="like">  
+      <div class="like">
         <% if course.post_activity%>
           <div class="count"><%=course.post_activity.likes.count.to_s%></div>
           <%= link_like(course.post_activity, :title =>t('excursion.actions.favorite'))%>

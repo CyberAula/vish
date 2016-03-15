@@ -17,7 +17,7 @@ class Excursion < ActiveRecord::Base
   before_validation :fill_license
   after_save :parse_for_meta
   after_save :fix_post_activity_nil
-  after_destroy :remove_scorm
+  after_destroy :remove_scorms
   after_destroy :remove_pdf
 
   define_index do
@@ -84,41 +84,47 @@ class Excursion < ActiveRecord::Base
   ## SCORM Management
   ####################
 
-  def to_scorm(controller)
-    if self.scorm_needs_generate
-      filePath = "#{Rails.root}/public/scorm/excursions/"
+  def self.scormFolderPath(version)
+    return "#{Rails.root}/public/scorm/" + version + "/excursions/"
+  end
+
+  def scormFilePath(version)
+    Excursion.scormFolderPath(version) + "#{self.id}.zip"
+  end
+
+  def to_scorm(controller,version="2004")
+    if self.scorm_needs_generate(version)
+      folderPath = Excursion.scormFolderPath(version)
       fileName = self.id
       json = JSON(self.json)
-      Excursion.createSCORM(filePath,fileName,json,self,controller)
-      self.update_column(:scorm_timestamp, Time.now)
+      Excursion.createSCORM(version,folderPath,fileName,json,self,controller)
+      self.update_column(((version=="12") ? :scorm12_timestamp : :scorm2004_timestamp), Time.now)
     end
   end
 
-  def scorm_needs_generate
-    if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp or !File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
-      return true
-    else
-      return false
+  def scorm_needs_generate(version="2004")
+    scormTimestam = (version=="12") ? self.scorm12_timestamp : self.scorm2004_timestamp
+    scormTimestam.nil? or self.updated_at > scormTimestam or !File.exist?(self.scormFilePath(version))
+  end
+
+  def remove_scorms
+    ["12","2004"].each do |scormVersion|
+      scormFilePath = scormFilePath(scormVersion)
+      File.delete(scormFilePath) if File.exist?(scormFilePath)
     end
   end
 
-  def remove_scorm
-    if File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
-      File.delete("#{Rails.root}/public/scorm/excursions/#{self.id}.zip") 
-    end
-  end
-
-  def self.createSCORM(filePath,fileName,json,excursion,controller)
+  def self.createSCORM(version="2004",folderPath,fileName,json,excursion,controller)
     require 'zip'
 
-    # filePath = "#{Rails.root}/public/scorm/excursions/"
+    # folderPath = "#{Rails.root}/public/scorm/version/excursions/"
     # fileName = self.id
     # json = JSON(self.json)
-    t = File.open("#{filePath}#{fileName}.zip", 'w')
+    t = File.open("#{folderPath}#{fileName}.zip", 'w')
 
     #Add manifest, main HTML file and additional files
     Zip::OutputStream.open(t.path) do |zos|
-      xml_manifest = Excursion.generate_scorm_manifest(json,excursion)
+      xml_manifest = Excursion.generate_scorm_manifest(version,json,excursion)
       zos.put_next_entry("imsmanifest.xml")
       zos.print xml_manifest.target!()
 
@@ -127,20 +133,24 @@ class Excursion < ActiveRecord::Base
     end
 
     #Add required XSD files and folders
-    xsdFileDir = "#{Rails.root}/public/xsd"
-    xsdFiles = ["adlcp_v1p3.xsd","adlnav_v1p3.xsd","adlseq_v1p3.xsd","imscp_v1p1.xsd","imsss_v1p0.xsd","lom.xsd"]
-    xsdFolders = ["common","extend","unique","vocab"]
+    schemaDirs = []
+    schemaFiles = []
+    #SCORM schema
+    schemaDirs.push("#{Rails.root}/public/schemas/SCORM_" + version)
+    #LOM schema
+    # schemaDirs.push("#{Rails.root}/public/schemas/lom")
+    schemaFiles.push("#{Rails.root}/public/schemas/lom/lom.xsd");
+    
+    schemaDirs.each do |dir|
+      zip_folder(t.path,dir)
+    end
 
-    #Add required xsd files
-    Zip::File.open(t.path, Zip::File::CREATE) { |zipfile|
-      xsdFiles.each do |xsdFileName|
-        zipfile.add(xsdFileName,xsdFileDir+"/"+xsdFileName)
-      end
-    }
-
-    #Add required XSD folders
-    xsdFolders.each do |xsdFolderName|
-      zip_folder(t.path,xsdFileDir,xsdFileDir+"/"+xsdFolderName)
+    if schemaFiles.length > 0
+      Zip::File.open(t.path, Zip::File::CREATE) { |zipfile|
+        schemaFiles.each do |filePath|
+          zipfile.add(File.basename(filePath),filePath)
+        end
+      }
     end
 
     #Copy SCORM assets (image, javascript and css files)
@@ -160,34 +170,39 @@ class Excursion < ActiveRecord::Base
   end
 
   def self.zip_folder(zipFilePath,root,dir=nil)
-    unless dir 
-      dir = root
-    end
+    dir = root unless dir
 
-    #Get subdirectories
-    Dir.chdir(dir)
-    subdir_list=Dir["*"].reject{|o| not File.directory?(o)}
-    subdir_list.each do |subdirectory|
-      subdirectory_path = "#{dir}/#{subdirectory}"
-      zip_folder(zipFilePath,root,subdirectory_path)
-    end
-
-    #Look for files
-    Zip::File.open(zipFilePath, Zip::File::CREATE) { |zipfile|
-      Dir.foreach(dir) do |item|
-        item_path = "#{dir}/#{item}"
-        if File.file?item_path
-          rpath = String.new(item_path)
-          rpath.slice! root + "/"
-          zipfile.add(rpath,item_path)
-        end
+    folderNames = []
+    fileNames = []
+    Dir.entries(dir).reject{|i| i.start_with?(".")}.each do |itemName|
+      itemPath = "#{dir}/#{itemName}"
+      if File.directory?(itemPath)
+        folderNames << itemName
+      elsif File.file?(itemPath)
+        fileNames << itemName
       end
-    }
+    end
+
+    #Subdirectories
+    folderNames.each do |subFolderName|
+      zip_folder(zipFilePath,root,"#{dir}/#{subFolderName}")
+    end
+
+    #Files
+    if fileNames.length > 0
+      Zip::File.open(zipFilePath, Zip::File::CREATE) { |zipfile|
+        fileNames.each do |fileName|
+          filePathInZip = String.new("#{dir}/#{fileName}").sub(root + "/","")
+          zipfile.add(filePathInZip,"#{dir}/#{fileName}")
+        end
+      }
+    end
   end
 
-  # Metadata based on LOM (Learning Object Metadata) standard
-  # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
-  def self.generate_scorm_manifest(ejson,excursion,options={})
+  def self.generate_scorm_manifest(version,ejson,excursion,options={})
+    version = "2004" unless version.is_a? String and ["12","2004"].include?(version)
+
+    #Get manifest resource identifier and LOM identifier
     if excursion and !excursion.id.nil?
       identifier = excursion.id.to_s
       lomIdentifier = Rails.application.routes.url_helpers.excursion_url(:id => excursion.id)
@@ -205,43 +220,93 @@ class Excursion < ActiveRecord::Base
 
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_" + identifier,
-      "version"=>"1.3",
-      "xmlns"=>"http://www.imsglobal.org/xsd/imscp_v1p1",
-      "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
-      "xmlns:adlseq"=>"http://www.adlnet.org/xsd/adlseq_v1p3",
-      "xmlns:adlnav"=>"http://www.adlnet.org/xsd/adlnav_v1p3",
-      "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
-      "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
-      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd",
-    ) do
 
-      myxml.metadata() do
+
+     #Select LOM Header options
+    manifestHeaderOptions = {}
+    manifestContent = {}
+
+    case version
+    when "12"
+      #SCORM 1.2
+      manifestHeaderOptions = {
+        "identifier"=>"VISH_PRESENTATION_" + identifier,
+        "version"=>"1.0",
+        "xmlns"=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2",
+        "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_rootv1p2",
+        "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+        "xsi:schemaLocation"=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd"
+      }
+      manifestContent["schemaVersion"] = "1.2"
+    when "2004"
+      #SCORM 2004 4th Edition
+      manifestHeaderOptions =  { 
+        "identifier"=>"VISH_PRESENTATION_" + identifier,
+        "version"=>"1.3",
+        "xmlns"=>"http://www.imsglobal.org/xsd/imscp_v1p1",
+        "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
+        "xmlns:adlseq"=>"http://www.adlnet.org/xsd/adlseq_v1p3",
+        "xmlns:adlnav"=>"http://www.adlnet.org/xsd/adlnav_v1p3",
+        "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
+        "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+        "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd"
+      }
+      manifestContent["schemaVersion"] = "2004 4th Edition"
+    else
+      #Future SCORM versions
+    end
+
+    myxml.manifest(manifestHeaderOptions) do
+
+      myxml.metadata do
         myxml.schema("ADL SCORM")
-        myxml.schemaversion("2004 4th Edition")
+        myxml.schemaversion(manifestContent["schemaVersion"])
         #Add LOM metadata
-        Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier, :LOMschema => (options[:LOMschema]) ? options[:LOMschema] : "custom"})
+        Excursion.generate_LOM_metadata(ejson,excursion,{:target => myxml, :id => lomIdentifier, :LOMschema => (options[:LOMschema]) ? options[:LOMschema] : "custom", :scormVersion => version})
       end
 
       myxml.organizations('default'=>"defaultOrganization") do
-        myxml.organization('identifier'=>"defaultOrganization", 'structure'=>"hierarchical") do
+        myxml.organization('identifier'=>"defaultOrganization") do
           if ejson["title"]
             myxml.title(ejson["title"])
           else
             myxml.title("Untitled")
           end
-          myxml.item('identifier'=>"VIRTUAL_EXCURSION_" + identifier,'identifierref'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE") do
+          itemOptions = {
+            'identifier'=>"PRESENTATION_" + identifier,
+            'identifierref'=>"PRESENTATION_" + identifier + "_RESOURCE"
+          }
+          if version == "12"
+            itemOptions["isvisible"] = "true"
+          end
+          myxml.item(itemOptions) do
             if ejson["title"]
               myxml.title(ejson["title"])
             else
               myxml.title("Untitled")
             end
+            if version == "12"
+              myxml.tag!("adlcp:masteryscore") do
+                myxml.text!("50")
+              end
+            end
           end
         end
       end
 
+      resourceOptions = {
+        'identifier'=>"PRESENTATION_" + identifier + "_RESOURCE",
+        'type'=>"webcontent",
+        'href'=>"excursion.html",
+      }
+      if version == "12"
+        resourceOptions['adlcp:scormtype'] = "sco"
+      else
+        resourceOptions['adlcp:scormType'] = "sco"
+      end
+
       myxml.resources do         
-        myxml.resource('identifier'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormType'=>"sco") do
+        myxml.resource(resourceOptions) do
           myxml.file('href'=> "excursion.html")
         end
       end
@@ -257,6 +322,8 @@ class Excursion < ActiveRecord::Base
   ## LOM Metadata
   ####################
 
+  # Metadata based on LOM (Learning Object Metadata) standard
+  # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
   def self.generate_LOM_metadata(ejson, excursion, options={})
     _LOMschema = "custom"
 
@@ -803,9 +870,9 @@ class Excursion < ActiveRecord::Base
   ## IMS QTI 2.1 Management (Handled by the IMSQTI module imsqti.rb)
   ####################
 
-  def self.createQTI(filePath,fileName,qjson)
+  def self.createQTI(folderPath,fileName,qjson)
     require 'imsqti'
-    IMSQTI.createQTI(filePath,fileName,qjson)
+    IMSQTI.createQTI(folderPath,fileName,qjson)
   end
 
 
@@ -813,9 +880,9 @@ class Excursion < ActiveRecord::Base
   ## Moodle Quiz XML Management (Handled by the MOODLEXML module moodlexml.rb)
   ####################
 
-  def  self.createMoodleQUIZXML(filePath,fileName,qjson)
+  def  self.createMoodleQUIZXML(folderPath,fileName,qjson)
     require 'moodlexml'
-    MOODLEQUIZXML.createMoodleQUIZXML(filePath,fileName,qjson)
+    MOODLEQUIZXML.createMoodleQUIZXML(folderPath,fileName,qjson)
   end
 
 

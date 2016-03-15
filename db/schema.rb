@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160222081500) do
+ActiveRecord::Schema.define(:version => 20160312175232) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -301,14 +301,15 @@ ActiveRecord::Schema.define(:version => 20160222081500) do
     t.integer  "slide_count",             :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",                   :default => false
-    t.text     "offline_manifest"
-    t.datetime "scorm_timestamp"
+    t.text     "offline_manifest",        :default => ""
+    t.datetime "scorm2004_timestamp"
     t.datetime "pdf_timestamp"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.boolean  "notified_teacher",        :default => false
+    t.datetime "scorm12_timestamp"
   end
 
   create_table "groups", :force => true do |t|
@@ -548,6 +549,9 @@ ActiveRecord::Schema.define(:version => 20160222081500) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.string   "schema"
+    t.string   "schemaversion"
+    t.string   "scorm_version"
   end
 
   create_table "service_permissions", :force => true do |t|
@@ -686,6 +690,10 @@ ActiveRecord::Schema.define(:version => 20160222081500) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "private_student_group_id"
+    t.string   "surname"
+    t.string   "center_code"
+    t.boolean  "mooc",                     :default => false
+    t.boolean  "mailmoocsent",             :default => false
   end
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"

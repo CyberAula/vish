@@ -6,10 +6,10 @@ require 'builder'
 
 class IMSQTI
 
-  def self.createQTI(filePath,fileName,qjson)
+  def self.createQTI(folderPath,fileName,qjson)
     require 'zip'
 
-    t = File.open("#{filePath}#{fileName}.zip", 'w')
+    t = File.open("#{folderPath}#{fileName}.zip", 'w')
 
     #Add manifest, main HTML file and additional files
     Zip::OutputStream.open(t.path) do |zos|
@@ -49,7 +49,7 @@ class IMSQTI
       zos.print xml_truemanifest
     end
 
-    xsdFileDir = "#{Rails.root}/public/xsd"
+    xsdFileDir = "#{Rails.root}/public/schemas/QTI_21"
     xsdFiles = ["imscp_v1p1.xsd","imsmd_v1p2p4.xsd"]
 
     #Add required xsd files

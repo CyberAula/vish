@@ -8,9 +8,9 @@
 
 <section id="<%= document.class.to_s.underscore %> "class="layout_show">
 
-  <%if @contribution%>
+  <% if @contribution %>
     <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => document.contribution.parents_path } %>
-  <%end%>
+  <% end %>
 
   <% document_profile_subject ||= document.owner_subject %>
   
@@ -43,8 +43,8 @@
 
   </div>
 
-  <%if @contribution%>
+  <% if @contribution %>
     <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => document.contribution } %>
-  <%end%>
+  <% end %>
 
 </section>

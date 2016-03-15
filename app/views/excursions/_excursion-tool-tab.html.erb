@@ -255,7 +255,7 @@
             <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
           </div>
           <div class="social">
-            <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
+            <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>(request.protocol + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
           </div>
           <div class="social">
             <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
@@ -271,8 +271,13 @@
     <% if can?(:download_source, @excursion) %>
       <!-- tab4 / scorm -->
       <div class="tab-pane contentscorm" id="tab4">
-        <a class="btn btn-secundary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm')%></a>
-        <p><%=t("excursion.download_scorm")%></p>
+        <div class="contentscormc1">
+          <a class="btn btn-secundary" href='<%=excursion_path(@excursion, :format => "scorm", :version => "12")%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm12')%></a>
+          <a class="btn btn-secundary" href='<%=excursion_path(@excursion, :format => "scorm", :version => "2004")%>'><i class="fa fa-download"></i> <%=t('excursion.actions.scorm2004')%></a>
+        </div>
+        <div class="contentscormc2">
+          <p><%=t("excursion.download_scorm")%></p>
+        </div>
       </div>
     <% end %>
 

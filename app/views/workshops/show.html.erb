@@ -1,10 +1,10 @@
 <%content_for :title do%><%= @workshop.title %><%end%>
 <%content_for :keywords do%><%= @workshop.tag_list %><%end%>
 <%content_for :description do%><%=  t("site.meta_desc.workshop")+@workshop.title + ". " + (@workshop.description ? @workshop.description : "") %><%end%>
-<%content_for :og_image do %><%= @workshop.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/defaul_workshop.png" %><% end %>
-
+<%content_for :og_image do %><%= Embed.checkUrlProtocol(@workshop.thumbnail_url,request.protocol) || request.protocol + request.env['HTTP_HOST'] + "/assets/logos/original/defaul_workshop.png" %><% end %>
 <%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@workshop), @workshop)%><%end%>
 <%content_for :canonical do%><%= polymorphic_url(@workshop, :locale => params[:locale]) %><%end%>
+<% shortURL = request.protocol + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + workshop_path(@workshop) %>
 
 <section id="show_items" class="layout_show workshop_show">
 
@@ -49,7 +49,6 @@
     <div class="box_description">
       <!--tool-->
       <div class="excursion_tool">
-        <% shortURL = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + workshop_path(@workshop) %>
         <%= render :partial => 'workshops/workshop-tool-tab', :locals => { :shortURL => shortURL} %>
       </div>
     </div>

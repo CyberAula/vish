@@ -1,1 +1,1 @@
-&lt;embed wmode="opaque" src="<%= Vish::Application.config.full_domain + "/" + swf.file.to_s[1..-1] %>" width="auto" height="auto"&gt;&lt;/embed&gt;
+&lt;embed wmode="opaque" src="<%="#{request.protocol}#{request.host_with_port}#{swf.file.url}"%>" width="auto" height="auto"&gt;&lt;/embed&gt;

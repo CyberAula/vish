@@ -3,16 +3,21 @@ class ApplicationController < ActionController::Base
   include SimpleCaptcha::ControllerHelpers
   before_filter :store_location
   after_filter :discard_flash
+  before_filter :set_locale
   before_filter :check_fb_locale
  
-  def discard_flash
-  	flash.discard # don't want the flash to appear when you reload page
-  end
 
+  #############
+  # Devise
+  #############
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || session[:user_return_to] || root_path
   end
   
+
+  #############
+  # Last location handling
+  #############
   # Store last url. This filter is used for post-login redirect to whatever the user last visited.
   def store_location
     if (
@@ -29,17 +34,28 @@ class ApplicationController < ActionController::Base
     session[:user_return_to] = root_path
   end
 
-  def check_fb_locale
-    if params[:fb_locale]
-      I18n.locale = params[:fb_locale][0..1].to_sym  #only the first two characters because it is like "en_GB" and we need only "en"
-    end
-  end
-
   #Method used for skip store_location in the corresponding controllers.
   #Prevent .full urls to be saved as valid locations to return after sign in.
   def format_full?
     params["format"]=="full"
   end
+
+
+  #############
+  # Other utils
+  #############
+
+  def discard_flash
+    flash.discard # don't want the flash to appear when you reload page
+  end
+
+  def check_fb_locale
+    if params[:fb_locale].present?
+      fb_locale = params[:fb_locale][0..1] #only the first two characters because it is like "en_GB" and we need only "en"
+      I18n.locale = fb_locale if I18n.available_locales.include? fb_locale.to_sym
+    end
+  end
+
 
   #############
   # CORS
@@ -63,6 +79,33 @@ class ApplicationController < ActionController::Base
       headers['Access-Control-Max-Age'] = '1728000'
       render :text => '', :content_type => 'text/plain'
     end
+  end
+
+
+  #############
+  # User Locale
+  #############
+  def set_locale
+    I18n.locale = extract_locale_from_params || extract_locale_from_user || extract_locale_from_session || extract_locale_from_accept_language_header || I18n.default_locale
+  end
+
+
+  private
+
+  def extract_locale_from_params
+    params[:locale] if params[:locale].present? and I18n.available_locales.include? params[:locale].to_sym
+  end
+
+  def extract_locale_from_user
+    current_user.language if user_signed_in?
+  end
+
+  def extract_locale_from_session
+    session[:locale] if session and session[:locale] and I18n.available_locales.include? session[:locale].to_sym
+  end
+
+  def extract_locale_from_accept_language_header
+    (request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).map{|l| l.to_sym} & I18n.available_locales).first if request.env['HTTP_ACCEPT_LANGUAGE'].is_a? String
   end
 
 end

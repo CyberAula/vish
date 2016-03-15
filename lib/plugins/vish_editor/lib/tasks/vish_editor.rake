@@ -231,7 +231,7 @@ namespace :vish_editor do
     system "sed -i 's/\\\/images\\\//..\\\/..\\\/images\\\//g' " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/*/*css"
     
     #Copy files to scorm folder in ViSH Editor
-    system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/* " + VISH_EDITOR_PATH + "/examples/contents/scorm/"
+    # system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/* " + VISH_EDITOR_PATH + "/examples/contents/scorm/"
   end
 
   task :rewritePaths do
@@ -243,7 +243,7 @@ namespace :vish_editor do
     system "sed -i 's/..\\\/..\\\/images/\\\/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
     system "sed -i 's/\\\/images\\\//\\\/assets\\\//g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
     system "sed -i 's/..\\\/font/\\\/assets\\\/libs\\\/font-awesome\\\/font/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/libs/font-awesome/css/*css"
-    #system "sed -i 's/..\\\/font/\\\/assets\\\/libs\\\/open-sans\\\/font/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/libs/open-sans/css/*css"
+    system "sed -i 's/..\\\/font/\\\/assets\\\/libs\\\/open-sans\\\/font/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/libs/open-sans/css/*css"
   end
 
 
