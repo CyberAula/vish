@@ -8,7 +8,6 @@
     </div>
 </div>
 
-<script type="application/javascript" src="http://www.geoplugin.net/javascript.gp"></script>
 <script>
     function getCookie(c_name){
         var c_value = document.cookie;
@@ -45,7 +44,7 @@
 
     document.addEventListener("DOMContentLoaded", function(){
         try {
-            if((geoplugin_countryCode() === "ES")&&(getCookie('cookie_warning') != "1")){
+            if(getCookie('cookie_warning') != "1"){
                 $("#warning_cookie_bar").fadeIn();
             }
         } catch(e){ }
