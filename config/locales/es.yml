@@ -652,7 +652,7 @@ es:
       email:
         body: "Hola,%0A%0ATe%20recomiendo%20esta%20excursión%20en%20ViSH:%0A%0A%{url}%0A%0A¡Espero%20que%20te%20guste!%0A%0A%{name}"
         link: "email"
-        subject: "Mira%20esta%20excursión%20en%20http://vishub.org%20:%20%{title}"
+        subject: "Mira%20esta%20excursión%20en%20%{url}%20:%20%{title}"
     is_draft: "[BORRADOR]"
     modal:
       title: "Enhorabuena"
