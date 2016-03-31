@@ -41,7 +41,6 @@ class VishLoep
       end
       return "Activity Object is nil"
     end
-
     #Compose the object to be sent to LOEP
     lo = Hash.new
 
@@ -74,7 +73,7 @@ class VishLoep
     when "Excursion"
       lo["lotype"] = "veslideshow"
       lo["technology"] = "html"
-
+      lo["metadata_url"] = ao.getMetadataUrl
       exJSON = JSON(ao.object.json)
       elemTypes = VishEditorUtils.getElementTypes(exJSON)
       lo["hasText"] = elemTypes.include?("text") ? "1" : "0"
@@ -119,9 +118,11 @@ class VishLoep
       lo["technology"] = "html"
       lo["hasWebs"] = "1"
     end
-
+    
     Loep.createLO(lo){ |response,code|
-      #TODO: Create assignments through LOEP
+      #Get quality metrics from automatic evaluation methods
+      VishLoep.fillActivityObjectMetrics(ao,response)
+      #(Optional) Create assignments through LOEP
       if block_given?
         yield response, code
       end

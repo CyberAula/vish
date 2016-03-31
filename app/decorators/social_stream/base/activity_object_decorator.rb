@@ -391,6 +391,10 @@ ActivityObject.class_eval do
     end
   end
 
+  def getMetadataUrl
+    self.getUrl + "/metadata.xml"
+  end
+
   def getFullUrl(controller)
     relativePath = nil
     absolutePath = nil

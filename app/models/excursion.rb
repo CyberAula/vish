@@ -1104,7 +1104,6 @@ class Excursion < ActiveRecord::Base
   #################### 
 
   def afterPublish
-    
     #Check if post_activity is public. If not, make it public and update the created_at param.
     post_activity = self.post_activity
     unless post_activity.nil? or post_activity.public?
