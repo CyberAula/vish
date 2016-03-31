@@ -120,9 +120,10 @@ class VishLoep
     end
     
     Loep.createLO(lo){ |response,code|
-      #Get quality metrics from automatic evaluation methods
-      VishLoep.fillActivityObjectMetrics(ao,response)
-      #(Optional) Create assignments through LOEP
+      # Get quality metrics from automatic evaluation methods. 
+      # Not necessary because Loep::LosController:update will be called after publishing by LOEP.
+      # VishLoep.fillActivityObjectMetrics(ao,response)
+      # (Optional) Create assignments through LOEP
       if block_given?
         yield response, code
       end
