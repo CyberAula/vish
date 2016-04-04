@@ -34,12 +34,12 @@
 	<%end%>
 
 	//LOEP configuration
-	<%unless Vish::Application.config.APP_CONFIG['loep'].nil? or @excursion.nil? or @excursion.activity_object.nil?%>
-		<%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
-		<%tokenURL = (Vish::Application.config.full_domain + '/loep/session_token.json') %>
+	<% unless Vish::Application.config.APP_CONFIG['loep'].nil? or @excursion.nil? or @excursion.activity_object.nil? %>
+		<% loepConfig = Vish::Application.config.APP_CONFIG['loep'] %>
+		<% tokenURL = Embed.checkUrlProtocol(Vish::Application.config.full_domain + '/loep/session_token.json', request.protocol) %>
 		configuration["loepSettings"] = {
 			tokenURL: '<%=tokenURL%>',
-			domain: '<%=loepConfig["domain"]%>',
+			domain: '<%=Embed.checkUrlProtocol(loepConfig["domain"], request.protocol)%>',
 			app: '<%=loepConfig["app_name"]%>',
 			loId: '<%=@excursion.activity_object.getGlobalId()%>',
 			evmethod: "wbltses"
