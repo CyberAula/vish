@@ -77,7 +77,7 @@ Vish::Application.routes.draw do
   match 'excursions/:id/scormMetadata' => 'excursions#scormMetadata'
   match 'excursions/:id/clone' => 'excursions#clone'
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
-  match '/excursions/:id/upload_attachment' => 'excursions#upload_attachment'
+  match '/excursions/attachments' => 'excursions#upload_attachment'
   match '/excursions/:id/attachment' => 'excursions#show_attachment'
   match '/excursions/:id/allow_publishing' => 'excursions#allow_publishing'
 

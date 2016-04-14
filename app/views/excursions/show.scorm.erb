@@ -13,14 +13,12 @@
 	<%= render :partial => 'excursions/vish_viewer_scorm.full' %>
 
 	<% unless excursion
-		#Get excursion from database if exists and its published
+		#Get excursion from database if exists and is published
 		presId = Integer(json["vishMetadata"]["id"]) rescue nil
 		draft = (json["vishMetadata"]["draft"]==="true") rescue true
 		unless presId.blank? or draft
 			excursion = Excursion.find_by_id(presId)
-			if excursion.nil? or excursion.draft
-				excursion = nil
-			end
+			excursion = nil if excursion.nil? or excursion.draft
 		end
 	end %>
 
@@ -29,10 +27,8 @@
 
 		var configuration = {};
 
-		configuration["mode"] = "vish";
-
-		configuration["ImagesPath"] = "images/";
-		configuration["StylesheetsPath"] = "stylesheets/";
+		configuration["ImagesPath"] = "/assets/";
+		configuration["StylesheetsPath"] = "/assets/";
 
 		// Recommendations API
 		configuration["recommendationsAPI"] = {
@@ -46,7 +42,7 @@
 		<%end%>
 
 		//LOEP configuration
-		<%unless Vish::Application.config.APP_CONFIG['loep'].nil? or excursion.nil?%>
+		<% unless Vish::Application.config.APP_CONFIG['loep'].nil? or excursion.nil? %>
 			<%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
 			<%tokenURL = (Vish::Application.config.full_domain + '/loep/session_token.json') %>
 			configuration["loepSettings"] = {
@@ -56,11 +52,9 @@
 				loId: '<%=excursion.activity_object.getGlobalId()%>',
 				evmethod: "wbltses"
 			};
-		<%end%>
+		<% end %>
 
 		options["configuration"] = configuration;
-
-
 		options["developping"] = false;
 		
 		options["scorm"] = true;

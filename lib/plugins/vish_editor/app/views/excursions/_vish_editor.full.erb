@@ -80,7 +80,7 @@
 									<span i18n-key="i.AddSlide">Add Slide</span>
 								</a>
 							</li>
-							<li>
+							<li id="vemenu_import">
 								<a class="menu_option expansive" href="#">
 									<i class="icon-button icon-rotate-180 icon-download-alt"></i>
 									<span i18n-key="i.Import">Import</span>
@@ -100,7 +100,7 @@
 									</li>
 								</ul>
 							</li>
-							<li>
+							<li id="vemenu_export">
 								<a class="menu_option expansive" href="#">
 									<i class="icon-button icon-rotate-360 icon-download-alt"></i>
 									<span i18n-key="i.Export">Export</span>
@@ -362,21 +362,22 @@
 						</div>			
 
 					    <div id="attachment_in_presentation_details">
-					    	<span class="presentation_details_text" i18n-key="i.Attatchment">Attatchment</span>
+					    	<span class="presentation_details_text" i18n-key="i.Attatchment">Attatchment</span><br/>
+					    	<div class="file_details_upload">
+								<form id="attachment_file_form" method="post" action="#" enctype="multipart/form-data">
+									<div class="attachmentFileUpload" disabled="disabled" i18n-key-tooltip="i.tooltip.UploadAttachment" title="If this button is deactivated, you need to save your excursion first.">
+										<span i18n-key="i.ChooseFile">Choose File</span>
+										<input type="file" name="attachment" id="attachment_file">
+									</div>
+									<input id="description_attachment" placeholder="Choose File" disabled="disabled">
+									<input type="hidden" name="author_id" id="attachment_author">
+									<input type="hidden" name="authenticity_token" id="attachment_auth_token">
+									<input id="upload_file_attachment" type="submit" class="button" i18n-key="i.Upload" value="Upload" disabled="true">
+									<input type="hidden" name="pres_id" id="attachment_pres_id">
+									<span id="upload_icon_success" class="icon-button icon-ok" aria-hidden="true"></span>
+								</form>
+							</div>
 					    </div>
-						<div class="file_details_upload">
-							<form id="attachment_file_form" method="post" action="attatchment_file.json" enctype="multipart/form-data">
-								<div class="attachmentFileUpload" disabled="disabled" i18n-key-tooltip="i.tooltip.UploadAttachment" title="If this button is deactivated, you need to save your excursion first.">
-									<span i18n-key="i.ChooseFile">Choose File</span>
-									<input type="file" name="attachment" id="attachment_file">
-								</div>
-								<input id="description_attachment" placeholder="Choose File" disabled="disabled">
-								<input type="hidden" name="author_id" id="attachment_author">
-								<input type="hidden" name="authenticity_token" id="attachment_aut_token">
-								<input id="upload_file_attachment" type="submit" class="button" i18n-key="i.Upload" value="Upload" disabled="true">
-								<span id="upload_icon_success" class="icon-button icon-ok" aria-hidden="true"></span>
-							</form>
-						</div>
 
 					</div>
 
@@ -707,7 +708,7 @@
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
 					<div class="textD">
 						<p class="textfancy" i18n-key="i.AddslideshowPDF">Add slideshow from PDF file</p></br>
-						<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
+						<form class="documentsForm" action="#" method="post" enctype="multipart/form-data">
 							<input type="file" name="pdfex[attach]" accept="application/pdf" class="upload_file_input">
 							<input type="hidden" name="pdfex[scope]" value="1">
 							<input type="hidden" name="pdfex[owner_id]">
@@ -729,7 +730,7 @@
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
 					<div class="textD">
 						<p class="textfancy" i18n-key="i.AddePackage">Add an e-Learning package from a ZIP file. Supported formats: SCORM and custom HTML5 Web Applications.</p></br>
-						<form id="package_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+						<form id="package_file_input" class="documentsForm" action="#" method="post" enctype="multipart/form-data">
 							<input type="file" name="document[file]" class="upload_file_input">
 							<input type="hidden" name="document[scope]" value="1">
 							<input type="hidden" name="document[title]">
@@ -956,7 +957,7 @@
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
 					<div class="textD">
 						<p class="textfancy" i18n-key="i.selectPicture">Select picture to upload</p></br>
-						<form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+						<form class="documentsForm" action="#" method="post" enctype="multipart/form-data">
 							<input type="file" name="document[file]" class="upload_file_input"/>
 							<input type="hidden" name="document[scope]" value="1"/>
 							<input type="hidden" name="document[title]"/>
@@ -1196,7 +1197,7 @@
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
 					<div class="textD">
 						<p class="textfancy"><span i18n-key="i.selectObjectUpload">Select a file to upload</span>. <span i18n-key="i.selectObjectUpload2">Supported formats: SWF (flash), PDF</span>.</p><br>
-						<form  id="object_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+						<form  id="object_file_input" class="documentsForm" action="#" method="post" enctype="multipart/form-data">
 							<input type="file" name="document[file]" class="upload_file_input">
 							<input type="hidden" name="document[scope]" value="1">
 							<input type="hidden" name="document[title]">
@@ -1294,12 +1295,10 @@
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo'); return false;" id="tab_video_repo" class="fancy_tab">ViSH</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_youtube'); return false;" id="tab_video_youtube" class="fancy_tab"><img src='/assets/logos/youtube.png'/></a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_audio_soundcloud'); return false;" id="tab_audio_soundcloud" class="fancy_tab"><img src='/assets/logos/soundcloud.png'/></a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo'); return false;" id="tab_video_vimeo" class="fancy_tab disabled"><img src='/assets/logos/vimeo.png'/></a></li>
 				</ul>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_video_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_video_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_video_youtube_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<img title="Help" i18n-key-tooltip="i.tooltip.Help" class='help_in_fancybox' id='tab_video_vimeo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 			</div>
 
 			<div id='tab_video_from_url_content' class="fancy_tab_content">
@@ -1369,24 +1368,6 @@
 						<div id="tab_audio_soundcloud_content_preview_metadata" class="content_preview_metadata"></div>
 						<div id="tab_audio_soundcloud_content_preview_foot" class="content_preview_foot">
 							<button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Audio.Soundcloud.addSelectedAudio()">Add</button>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<div id='tab_video_vimeo_content' class="fancy_tab_content">
-				<div class="box1 box1fancy2">
-					<img src="/assets/logos/vimeologo.png" class="imagelogotab">
-					<div class="search_container" id="vimeo_search_container">
-						<input id="search_vimeo_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" id="vimeo_text_to_search"> </input>
-					</div>
-					<div id="tab_video_vimeo_content_carrousel"></div>
-					<div id="tab_video_vimeo_content_preview" class="content_preview">
-						<div id="tab_video_vimeo_content_preview_video" class="content_preview_data"></div>
-						<div id="tab_video_vimeo_content_preview_metadata" class="content_preview_metadata"></div>
-						<div id="tab_video_vimeo_content_preview_foot" class="content_preview_foot">
-							<button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Video.vimeo.addSelectedVideo()">Add</button>
 						</div>
 					</div>
 				</div>

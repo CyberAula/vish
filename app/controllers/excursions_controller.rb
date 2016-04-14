@@ -273,26 +273,22 @@ class ExcursionsController < ApplicationController
   end
 
   def upload_attachment
-    excursion = Excursion.find_by_id(params[:id])
-
+    excursion = Excursion.find_by_id(params["pres_id"])
     unless excursion.nil? || params[:attachment].blank?
       authorize! :update, excursion
       excursion.update_attributes(:attachment => params[:attachment])
       if excursion.save
         respond_to do |format|
-          msg = { :status => "ok", :message => "success"}
-          format.json  { render :json => msg }
+          format.json  { render :json => { :status => "ok", :message => "success"} }
         end
       else
         respond_to do |format|
-         msg = { :status => "bad_request", :message => "bad_size"}
-        format.json  { render :json => msg }
-      end
+          format.json  { render :json => { :status => "bad_request", :message => "bad_size"} }
+        end
       end
     else
       respond_to do |format|
-         msg = { :status => "bad_request", :message => "wrong_params"}
-        format.json  { render :json => msg }
+        format.json  { render :json => { :status => "bad_request", :message => "wrong_params"} }
       end
     end
   end
@@ -303,7 +299,7 @@ class ExcursionsController < ApplicationController
 
     unless excursion.blank? || excursion.attachment.blank?
       attachment = File.open(excursion.attachment.path)
-      attachment_name = rename_attachment( attachment, excursion_id)
+      attachment_name = rename_attachment(attachment, excursion_id)
       send_file attachment, :filename => attachment_name
     end
   end

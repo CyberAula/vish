@@ -4,8 +4,6 @@
 	options = {};
 	var configuration = {};
 
-	configuration["mode"] = "vish";
-
 	configuration["ImagesPath"] = "/assets/";
 	configuration["StylesheetsPath"] = "/assets/";
 
@@ -48,6 +46,10 @@
 
 	options["configuration"] = configuration;
 	options["developping"] = false;
+
+	options["environment"] = {
+		name: "<%= Vish::Application.config.name %>"
+	}
 
 	//User data
 	<% if user_signed_in? %>

@@ -4,60 +4,71 @@
 	options = {};
 	var configuration = {};
 
-	configuration["mode"] = "vish";
-
 	configuration["ImagesPath"] = "/assets/";
 	configuration["StylesheetsPath"] = "/assets/";
 
-	configuration["rootPath"] = "<%= Vish::Application.config.full_domain %>";
+	configuration["uploadPresentationPath"] = "<%= excursion_path @excursion, :format=> "json" %>";
+	configuration["previewPresentationPath"] = "/excursions/preview";
 
-	configuration["Upload"] = true;
 	configuration["uploadImagePath"] = "<%= documents_path :format=> "json"%>";
 	configuration["uploadObjectPath"] = "<%= documents_path :format=> "json"%>";
-	configuration["uploadPresentationPath"] = "<%= excursion_path @excursion, :format=> "json" %>";
 	configuration["uploadPDF2PPath"] = "<%= pdfexes_path :format=> "json"%>";
+	configuration["uploadEPackagesPath"] = "<%= documents_path :format=> "json"%>";
+	configuration["enableFileImportation"] = true;
 
 	// Sources enabled
 	configuration["ViSH"] = true;
 	configuration["ViSH_instances"] = ["<%= Vish::Application.config.full_domain %>"];
 	configuration["Flickr"] = true;
-	<%unless Vish::Application.config.APP_CONFIG['YouTubeAPIKEY'].nil? %>
-		configuration["Youtube"] = true;
-		configuration["YoutubeAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['YouTubeAPIKEY'] %>";
-	<%end%>
-	configuration["Vimeo"] = false;
-	configuration["LRE"] = true;
-	configuration["LRE_path"] = "/lre/search";
-	<%unless Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'].nil? %>
-		configuration["SoundCloud"] = true;
-		configuration["SoundCloudAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'] %>";
-	<%end%>
 	<% unless Vish::Application.config.APP_CONFIG['EuropeanaAPIKEY'].nil? %>
 		configuration["Europeana"] = true;
 		configuration["EuropeanaAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['EuropeanaAPIKEY'] %>";
 	<% end %>
+	<% unless Vish::Application.config.APP_CONFIG['YouTubeAPIKEY'].nil? %>
+		configuration["Youtube"] = true;
+		configuration["YoutubeAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['YouTubeAPIKEY'] %>";
+	<% end %>
+	configuration["LRE"] = true;
+	configuration["LRE_path"] = "/lre/search";
+	<% unless Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'].nil? %>
+		configuration["SoundCloud"] = true;
+		configuration["SoundCloudAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'] %>";
+	<% end %>
 
+	//Thumbnails
+	configuration["thumbnailsPath"] = '/thumbnails.json';
+	
+	//Tags
+	configuration["tagsPath"] = "/tags.json?mode=popular&limit=100";
+	
+	//TmpJSON
+	configuration["uploadJSONPath"] = "/excursions/tmpJson.json";
+
+	//Attachment (not for new excursions)
+	configuration["uploadAttachmentPath"] = "/excursions/attachments.json";
+	
+
+	configuration["presentationSettings"] = true;
+
+	var tagsSettings = new Object();
+	tagsSettings.maxLength = '<%=Vish::Application.config.tagsSettings["maxLength"]%>';
+	tagsSettings.maxTags = '<%=Vish::Application.config.tagsSettings["maxTags"]%>';
+	tagsSettings.triggerKeys = <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>;     	
+	configuration["tagsSettings"] = tagsSettings;
+	
 	<% if available_services.include? "Catalogue" %>
 		configuration["catalog"] = <%= raw Vish::Application.config.catalogue["categories"].map{|c| c.capitalize}.to_json %>;
 	<% end %>
 
-	configuration["presentationSettings"] = true;
-	
-	var tagsSettings = new Object();
-	tagsSettings.maxLength = '<%=Vish::Application.config.tagsSettings["maxLength"]%>';
-	tagsSettings.maxTags = '<%=Vish::Application.config.tagsSettings["maxTags"]%>';
-	tagsSettings.triggerKeys = <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>; 
-	configuration["tagsSettings"] = tagsSettings;
-
-	//WAPP TOKEN API
-	configuration["WAPP_TOKEN_API"] = {
-		rootURL: "<%=Vish::Application.config.full_domain%>" + "/apis/wapp_token"
-	};
+	configuration["publishPermissions"] = ["Comment","Download","Clone"]
 
 	options["configuration"] = configuration;
+	options["developping"] = false;
 	
 
-	options["developping"] = false;
+	options["environment"] = {
+		name: "<%= Vish::Application.config.name %>"
+	}
 
 	<% unless current_subject.admin? %>
 		options["user"] = {
@@ -74,8 +85,8 @@
 	<% end %>
 
 	<% unless current_subject.private_student_group_id == nil %>
-		configuration["notify_teacher_path"] = '/private_student_groups/notify_teacher';
-		configuration["classroom_pupil"] = true;
+		configuration["notifyTeacherPath"] = '/private_student_groups/notify_teacher';
+		configuration["userMode"] = "student";
 		options["notified"] = <%= @excursion.notified_teacher.to_s %>
 	<% end %>
 

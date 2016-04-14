@@ -9,7 +9,6 @@ DocumentsController.class_eval do
 
   def create
     super do |format|
-      
       #Check if the Zipfile contains a Web Application or a SCORM Package to create the new resource and redirect to it.
       if resource.is_a? Zipfile
         newResource = resource.getResourceAfterSave(self)

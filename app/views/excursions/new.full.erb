@@ -4,42 +4,49 @@
 	options = {};
 	var configuration = {};
 
-	configuration["mode"] = "vish";
-
 	configuration["ImagesPath"] = "/assets/";
 	configuration["StylesheetsPath"] = "/assets/";
 
-	configuration["rootPath"] = "<%= Vish::Application.config.full_domain %>";
+	configuration["uploadPresentationPath"] = "<%= excursions_path :format=> "json"%>";
+	configuration["previewPresentationPath"] = "/excursions/preview";
 
-	configuration["Upload"] = true;
 	configuration["uploadImagePath"] = "<%= documents_path :format=> "json"%>";
 	configuration["uploadObjectPath"] = "<%= documents_path :format=> "json"%>";
-	configuration["uploadPresentationPath"] = "<%= excursions_path :format=> "json"%>";
 	configuration["uploadPDF2PPath"] = "<%= pdfexes_path :format=> "json"%>";
+	configuration["uploadEPackagesPath"] = "<%= documents_path :format=> "json"%>";
+	configuration["enableFileImportation"] = true;
 
 	// Sources enabled
 	configuration["ViSH"] = true;
 	configuration["ViSH_instances"] = ["<%= Vish::Application.config.full_domain %>"];
 	configuration["Flickr"] = true;
+	<% unless Vish::Application.config.APP_CONFIG['EuropeanaAPIKEY'].nil? %>
+		configuration["Europeana"] = true;
+		configuration["EuropeanaAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['EuropeanaAPIKEY'] %>";
+	<% end %>
 	<% unless Vish::Application.config.APP_CONFIG['YouTubeAPIKEY'].nil? %>
 		configuration["Youtube"] = true;
 		configuration["YoutubeAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['YouTubeAPIKEY'] %>";
 	<% end %>
-	configuration["Vimeo"] = false;
 	configuration["LRE"] = true;
 	configuration["LRE_path"] = "/lre/search";
 	<% unless Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'].nil? %>
 		configuration["SoundCloud"] = true;
 		configuration["SoundCloudAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'] %>";
 	<% end %>
-	<% unless Vish::Application.config.APP_CONFIG['EuropeanaAPIKEY'].nil? %>
-		configuration["Europeana"] = true;
-		configuration["EuropeanaAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['EuropeanaAPIKEY'] %>";
-	<% end %>
 
-	<% if available_services.include? "Catalogue" %>
-		configuration["catalog"] = <%= raw Vish::Application.config.catalogue["categories"].map{|c| c.capitalize}.to_json %>;
-	<% end %>
+	//Thumbnails
+	configuration["thumbnailsPath"] = '/thumbnails.json';
+	
+	//Tags
+	configuration["tagsPath"] = "/tags.json?mode=popular&limit=100";
+	
+	//TmpJSON
+	configuration["uploadJSONPath"] = "/excursions/tmpJson.json";
+
+	//Attachment
+	configuration["uploadAttachmentPath"] = "/excursions/attachments.json";
+	
 
 	configuration["presentationSettings"] = true;
 
@@ -49,10 +56,18 @@
 	tagsSettings.triggerKeys = <%=raw(Vish::Application.config.tagsSettings["triggerKeys"].to_json)%>;     	
 	configuration["tagsSettings"] = tagsSettings;
 	
+	<% if available_services.include? "Catalogue" %>
+		configuration["catalog"] = <%= raw Vish::Application.config.catalogue["categories"].map{|c| c.capitalize}.to_json %>;
+	<% end %>
+
+	configuration["publishPermissions"] = ["Comment","Download","Clone"]
+
 	options["configuration"] = configuration;
-
-
 	options["developping"] = false;
+
+	options["environment"] = {
+		name: "<%= Vish::Application.config.name %>"
+	}
 
 	options["user"] = {
 		name: "<%= current_subject.name %>",
@@ -61,8 +76,8 @@
 	};
 
 	<% unless current_subject.private_student_group_id == nil %>
-		configuration["notify_teacher_path"] = '/private_student_groups/notify_teacher';
-		configuration["classroom_pupil"] = true;
+		configuration["notifyTeacherPath"] = '/private_student_groups/notify_teacher';
+		configuration["userMode"] = "student";
 	<% end %>
 
 	options["draft"] = true;
@@ -72,10 +87,6 @@
 	<% if current_subject %>
 		options["exitURL"]  = "<%= url_for(current_subject) %>";
 	<% end %>
-
-	<%if default_tag%>
-		options["default_tag"] = "<%=default_tag %>";
-	<%end%>
 
 	options.addons = [];
 	var addon = new Object();
