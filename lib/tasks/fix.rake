@@ -33,11 +33,11 @@ namespace :fix do
             end
           end
         end
-      if jsonChange
-        puts "Excursion ID"
-        puts excursion.id
-        #excursion.update_column :json, eJson.to_json
-      end
+        if jsonChange
+          puts "Excursion ID"
+          puts excursion.id
+          #excursion.update_column :json, eJson.to_json
+        end
       rescue Exception => e
         puts "Exception with excursion id:"
         puts excursion.id.to_s
@@ -58,7 +58,7 @@ namespace :fix do
   #Development:   bundle exec rake fix:resetScormTimestamps
   #In production: bundle exec rake fix:resetScormTimestamps RAILS_ENV=production
   task :resetScormTimestamps => :environment do
-    printTitle("Reset scorm timestamp")
+    printTitle("Reset SCORM timestamps")
 
     Excursion.all.map { |ex| 
       ex.update_column :scorm2004_timestamp, nil
@@ -718,15 +718,23 @@ namespace :fix do
   #Development:   bundle exec rake fix:updateScormPackages
   #In production: bundle exec rake fix:updateScormPackages RAILS_ENV=production
   task :updateScormPackages => :environment do
+    printTitle("Updating SCORM Packages")
     Scormfile.record_timestamps=false
     ActivityObject.record_timestamps=false
 
     Scormfile.all.each do |scormfile|
-      scormfile.updateScormPackage
+      begin
+        scormfile.updateScormfile
+      rescue Exception => e
+        puts "Exception in Scormfile with id '" + scormfile.id.to_s + "'. Exception message: " + e.message
+      end
     end
+
+    Rake::Task["fix:resetScormTimestamps"].invoke
 
     Scormfile.record_timestamps=true
     ActivityObject.record_timestamps=true
+    printTitle("Task finished")
   end
 
 

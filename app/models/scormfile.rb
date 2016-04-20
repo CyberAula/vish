@@ -114,7 +114,8 @@ class Scormfile < ActiveRecord::Base
     #URLs are saved as absolute URLs
     #ZIP paths are always saved as relative paths (the same as the rest of the documents)
     #LO paths are saved as absolute paths when APP_CONFIG["code_path"] is defined
-    resourceRelativePath = self.file.path.slice! Rails.root.to_s
+    resourceRelativePath = self.file.path
+    resourceRelativePath.slice! Rails.root.to_s
 
     loDirectoryPathToSave = loDirectoryPath.dup
     loDirectoryPathToSave.slice! Rails.root.to_s if Vish::Application.config.APP_CONFIG["code_path"].nil?
@@ -170,20 +171,26 @@ class Scormfile < ActiveRecord::Base
     self.activity_object.increment_download_count
   end
 
+  #Return version to show in metadata UI
+  def resource_version
+    self.schema + " " + self.schemaversion
+  end
+
   def getZipPath
-    #ZIP paths are always saved as relative paths (the same as the rest of the documents)
-    return Rails.root.to_s + self.zippath
+    # ZIP paths are always saved as relative paths (the same as the rest of the documents)
+    # return Rails.root.to_s + self.zippath
+    self.file.path
   end
 
   def getLoPath
     #LO paths are saved as relative paths when APP_CONFIG["code_path"] is not defined
-    if Vish::Application.config.APP_CONFIG["code_path"].nil?
-      return Rails.root.to_s + self.lopath
-    end
-
+    return Rails.root.to_s + self.lopath if Vish::Application.config.APP_CONFIG["code_path"].nil?
     #LO paths are saved as absolute paths when APP_CONFIG["code_path"] is defined
     return self.lopath
   end
+
+
+  private
 
   def fill_scorm_version
     if self.schema == "ADL SCORM" and !self.schemaversion.blank?
@@ -199,39 +206,6 @@ class Scormfile < ActiveRecord::Base
       self.scorm_version = "1.2" #Some ATs create SCORM 1.2 Packages without specifying schema data
     end
   end
-
-  #Return version to show in metadata UI
-  def resource_version
-    self.schema + " " + self.schemaversion
-  end
-
-  #Update the SCORM package to the current ViSH version
-  def updateScormPackage
-    begin
-      success = false
-      Scormfile.record_timestamps=false
-      ActivityObject.record_timestamps=false
-      
-      #Read manifest and update schema, schemaversion and scorm_version
-      Scorm::Package.open(self.getZipPath(), :cleanup => true) do |pkg|
-        self.schema = pkg.manifest.schema
-        self.schemaversion = pkg.manifest.schema_version
-      end
-      self.save!
-      
-      success = true
-    rescue Exception => e
-      #Error handling
-      success = false
-    ensure
-      Scormfile.record_timestamps=true
-      ActivityObject.record_timestamps=true
-    end
-    success
-  end
-
-
-  private
 
   def remove_files
     #Remove SCORM files from the public folder
