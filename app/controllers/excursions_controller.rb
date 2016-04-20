@@ -404,6 +404,8 @@ class ExcursionsController < ApplicationController
            results["filename"] = "#{fileName}.xml"
         end
 
+        results["url"] = Embed.checkUrlProtocol(results["url"],request.protocol) unless results["url"].blank?
+
         render :json => results
       }
     end
