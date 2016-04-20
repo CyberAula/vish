@@ -1,18 +1,41 @@
 <html>
 <head>
-	<script src="<%=Vish::Application.config.full_domain%>/scorm_api/jquery-1.11.1.min.js" type="text/javascript"></script>
-	<script src="<%=Vish::Application.config.full_domain%>/scorm_api/Local_API_1484_11.js" type="text/javascript"></script>
-	<script src="<%=Vish::Application.config.full_domain%>/scorm_api/SCORM_Player.js" type="text/javascript"></script>
-	<script src="<%=Vish::Application.config.full_domain%>/apis/iframe_api.js" type="text/javascript"></script>
+	<title><%=scormPackage.title%></title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		var protocol = (document.location.protocol==="file:" ? "http:" : document.location.protocol);
+		<%
+			resources = ["/scorm_api/jquery-1.11.1.min.js","/scorm_api/SCORM_Player.js","/apis/iframe_api.js"]
+			case scormPackage.scorm_version
+			when "1.2"
+				resources.push("/scorm_api/Local_API_SCORM_12.js");
+			when "2004"
+				resources.push("/scorm_api/Local_API_1484_11.js");
+			else
+			end
+		%>
+		<% resources.each do |resource| %>
+			document.write(unescape("%3Cscript src='" + protocol + "//<%=Vish::Application.config.domain + resource%>' type='text/javascript'%3E%3C/script%3E"));
+		<% end %>
+	</script>
 </head>
 <body>
 	<script type="text/javascript">
 		//SCORM URL
-		var scormpackageURL = "<%=loResourceUrl%>";
+		var scormpackageURL = "<%=scormPackage.loresourceurl%>";
+		
 		// Create LMS API
-		var API_1484_11 = new Local_API_1484_11({debug: false});
+		var LMS_API;
+		<% if scormPackage.scorm_version == "1.2" %>
+			var API = new Local_API_SCORM_12({debug: false});
+			LMS_API = API;
+		<% elsif scormPackage.scorm_version == "2004" %>
+			var API_1484_11 = new Local_API_1484_11({debug: false});
+			LMS_API = API_1484_11;
+		<% end %>
+		
 		//Create SCORM player
-		var SCORM_Player = new SCORM_Player({debug: false, LMS_API: API_1484_11, VISH_IFRAME_API: VISH.IframeAPI, SCORM_PACKAGE_URL: scormpackageURL });
+		var SCORM_Player = new SCORM_Player({debug: false, SCORM_VERSION: "<%=scormPackage.scorm_version%>", LMS_API: LMS_API, VISH_IFRAME_API: VISH.IframeAPI, SCORM_PACKAGE_URL: scormpackageURL });
 
 		SCORM_Player.loadScormContent(function(){
 			// Scorm content loaded

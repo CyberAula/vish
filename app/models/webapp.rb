@@ -11,7 +11,7 @@ class Webapp < ActiveRecord::Base
     activity_object_index
   end
 
-  def self.createWebappFromZip(controller,zipfile)
+  def self.createWebappFromZip(zipfile)
     begin
       resource = Webapp.new
       resource.owner_id = zipfile.owner_id

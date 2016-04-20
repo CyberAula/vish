@@ -18,6 +18,7 @@ module Vish
     
     config.name = (config.APP_CONFIG['name'].nil? ? "ViSH" : config.APP_CONFIG['name'])
 
+    config.domain = config.APP_CONFIG['domain']
     config.full_domain = "http://" + config.APP_CONFIG['domain']
     config.full_code_domain = "http://" + (config.APP_CONFIG['code_domain'] || config.APP_CONFIG['domain'])
 

@@ -1,14 +1,6 @@
 /*
- * Local_API_1484_11
- * Mimics LMS Connectivity in Local Mode (i.e. standalone functionality) for SCORM 2004
- *
- * Modifiyed by GING.
- *
- * Original provided by: 
- *
- * Copyright (c) 2011-2012 Mark Statkus <mark@cybercussion.com>
- * The MIT License
- * https://github.com/cybercussion/SCORM_API
+ * Local_API_SCORM_12
+ * Mimics LMS Connectivity in Local Mode (i.e. standalone functionality) for SCORM 1.2
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,14 +21,14 @@
  * THE SOFTWARE.
  */
 
-function Local_API_1484_11(options) {
+function Local_API_SCORM_12(options) {
     // Constructor
     "use strict";
     var defaults = {
-            version:     "2.3",
+            version:     "1.0",
             moddate:     "20/04/2016 7:10PM",
-            createdate:  "07/17/2010 08:15AM",
-            prefix:      "Local_API_1484_11",
+            createdate:  "20/04/2016 7:10PM",
+            prefix:      "Local_API_SCORM_12",
             errorCode:   0,
             diagnostic:  '',
             initialized: 0,
@@ -452,7 +444,7 @@ function Local_API_1484_11(options) {
      * Initialize Session (SCORM) only once!
      * @returns {String} "true" or "false" depending on if its been initialized prior
      */
-    this.Initialize = function () {
+    this.LMSInitialize = function () {
         debug(settings.prefix + ":  Initializing...", 3);
         if (settings.cmi) {
             cmi = settings.cmi;
@@ -471,7 +463,7 @@ function Local_API_1484_11(options) {
      * @param key {String}
      * @returns {String} "true" or "false" depending on if its been initialized prior
      */
-    this.GetValue = function (key){
+    this.LMSGetValue = function (key){
         //debug(settings.prefix + ":  Running: " + this.isRunning() + " GetValue: " + key + "...", 4);
         settings.errorCode = 0;
         var r = "false",
@@ -507,7 +499,7 @@ function Local_API_1484_11(options) {
      * @param value {String}
      * @returns {String} "true" or "" depending on if its been initialized prior
      */
-    this.SetValue = function (key, value) {
+    this.LMSSetValue = function (key, value) {
         debug(settings.prefix + ": SetValue: " + key + " = " + value, 4);
         settings.errorCode = 0;
         var tiers = [],
@@ -751,7 +743,18 @@ function Local_API_1484_11(options) {
      * Typically empty, I'm unaware of anyone ever passing anything.
      * @returns {String} "true" or "false"
      */
-    this.Commit = function () {
+    this.LMSCommit = function(){
+        debug(settings.prefix + ": Commit CMI Object:", 4);
+        debug(cmi);
+        debug(settings.prefix + ": Suspend Data Usage " + suspendDataUsageStatistic());
+        $(self).triggerHandler({
+            type:        "StoreData",
+            runtimedata: cmi
+        });
+        return 'true';
+    };
+
+    this.Commit = function(){
         debug(settings.prefix + ": Commit CMI Object:", 4);
         debug(cmi);
         debug(settings.prefix + ": Suspend Data Usage " + suspendDataUsageStatistic());
@@ -766,7 +769,19 @@ function Local_API_1484_11(options) {
      * Terminate
      * @returns {String}
      */
-    this.Terminate = function () {
+    this.LMSTerminate = function () {
+        // Could do things here like a LMS
+        self.Commit();
+        settings.terminated = 1;
+        settings.initialized = 0;
+        return 'true';
+    };
+
+    /**
+     * Terminate
+     * @returns {String}
+     */
+    this.LMSFinish = function () {
         // Could do things here like a LMS
         self.Commit();
         settings.terminated = 1;
@@ -779,7 +794,7 @@ function Local_API_1484_11(options) {
      * @param param number
      * @returns string
      */
-    this.GetErrorString = function (param) {
+    this.LMSGetErrorString = function (param) {
         if (param !== "") {
             var nparam = parseInt(param, 10);
             if (errors[nparam] !== undefined) {
@@ -793,7 +808,7 @@ function Local_API_1484_11(options) {
      * GetLastError (SCORM) - Returns the error number from the last error
      * @returns {Number}
      */
-    this.GetLastError = function () {
+    this.LMSGetLastError = function () {
         return settings.errorCode;
     };
 
@@ -802,7 +817,7 @@ function Local_API_1484_11(options) {
      * This would return further information from the lms about a error
      * @returns {String} description of error in more detail
      */
-    this.GetDiagnostic = function () {
+    this.LMSGetDiagnostic = function () {
         return settings.diagnostic;
     };
 

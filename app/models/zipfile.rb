@@ -26,12 +26,12 @@ class Zipfile < Document
     return Zipfile
   end
 
-  def getResourceAfterSave(controller)
+  def getResourceAfterSave
     case self.fileType.name
     when Scormfile.name
-      resource = Scormfile.createScormfileFromZip(controller,self)
+      resource = Scormfile.createScormfileFromZip(self)
     when Webapp.name
-      resource = Webapp.createWebappFromZip(controller,self)
+      resource = Webapp.createWebappFromZip(self)
     else
       resource = self
     end

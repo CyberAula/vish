@@ -20,13 +20,13 @@
  * THE SOFTWARE.
  */
 
-function SCORM_Player(options) {
+function SCORM_Player(options){
 
 	var defaults = {
-		version: "1.0",
+		version: "1.1",
 		debug: true,
+		SCORM_VERSION: undefined,
 		SCORM_PACKAGE_URL: undefined,
-		listeners: {},
 		LMS_API: undefined,
 		VISH_IFRAME_API: undefined
 	};
@@ -34,8 +34,15 @@ function SCORM_Player(options) {
 	// Settings merged with defaults and extended options */
 	var settings = $.extend(defaults, options);
 
+	debug("SCORM player loading with settings:");
+	debug(settings);
+
 	if(typeof settings.SCORM_PACKAGE_URL == "undefined"){
 		settings.SCORM_PACKAGE_URL = getScormPackageUrlFromUrl();
+	}
+
+	if(typeof settings.SCORM_PACKAGE_URL == "string"){
+		settings.SCORM_PACKAGE_URL = checkUrlProtocol(settings.SCORM_PACKAGE_URL);
 	}
 
 	if((typeof settings.LMS_API != "undefined")&&(typeof settings.VISH_IFRAME_API != "undefined")){
@@ -60,8 +67,10 @@ function SCORM_Player(options) {
 						callback: function(origin){
 							debug("WAPP connnected with " + origin);
 							settings.VISH_IFRAME_API.getUser(function(user){
-								if((typeof user == "object")&&(typeof user.username == "string")){
-									settings.LMS_API.setCMILMSValue("learner_name",user.username);
+								if((typeof user == "object")&&(typeof user.username == "string")&&(typeof settings.LMS_API != "undefined")){
+									if(typeof settings.LMS_API.setCMILMSValue == "function"){
+										settings.LMS_API.setCMILMSValue("learner_name",user.username);
+									}
 								}
 								loadScormContentOnIframe(callback);
 							});
@@ -92,7 +101,7 @@ function SCORM_Player(options) {
 
 	//Private
 
-	function loadScormContentOnIframe (callback){
+	function loadScormContentOnIframe(callback){
 		if($("#scormcontent").length > 0){
 			//Already loaded
 			return;
@@ -111,7 +120,9 @@ function SCORM_Player(options) {
 			}
 		};
 
-		$("#scormcontent").attr("src",settings.SCORM_PACKAGE_URL);
+		if(typeof settings.SCORM_PACKAGE_URL == "string"){
+			$("#scormcontent").attr("src",settings.SCORM_PACKAGE_URL);
+		}
 	};
 
 	function isIframe(){
@@ -122,7 +133,9 @@ function SCORM_Player(options) {
 	function getScormPackageUrlFromUrl(){
 		var urlParams = readURLparams();
 		if(typeof urlParams["url"] == "string"){
-			SCORM_PACKAGE_URL = urlParams["url"];
+			return urlParams["url"];
+		} else {
+			return undefined;
 		}
 	};
 
@@ -149,7 +162,56 @@ function SCORM_Player(options) {
 		return params;
 	};
 
-	function setVEGateway() {
+	function getProtocol(){
+		var protocol;
+		try {
+			protocol = document.location.protocol;
+		} catch(e){}
+		if(typeof protocol == "string"){
+			var protocolMatch = protocol.match(/[\w]+/);
+			if((protocolMatch instanceof Array)&&(typeof protocolMatch[0] == "string")){
+				protocol = protocolMatch[0];
+			} else {
+				protocol = undefined;
+			}
+		}
+		if(typeof protocol != "string"){
+			protocol = "unknown";
+		}
+		return protocol;
+	};
+
+	function checkUrlProtocol(url){
+		if(typeof url == "string"){
+			var protocolMatch = (url).match(/^https?:\/\//);
+			if((protocolMatch instanceof Array)&&(protocolMatch.length === 1)){
+				var urlProtocol = protocolMatch[0].replace(":\/\/","");
+				var documentProtocol = getProtocol();
+				if(urlProtocol != documentProtocol){
+					switch(documentProtocol){
+						case "https":
+							//Try to load HTTP url over HTTPs
+							url = "https" + url.replace(urlProtocol,""); //replace first
+							break;
+						case "http":
+							//Try to load HTTPs url over HTTP
+							//Do nothing
+							break;
+						default:
+							//Document is not loaded over HTTP or HTTPs
+							break;
+					}
+				}
+			}
+		}
+		return url;
+	};
+
+	function setVEGateway(){
+		if((typeof settings.LMS_API != "object")||(typeof settings.LMS_API.addListener != "function")){
+			return;
+		}
+		
 		settings.LMS_API.addListener("cmi.progress_measure", function(value){
 			if(settings.VISH_IFRAME_API.isConnected()){
 				settings.VISH_IFRAME_API.setProgress(value*100);
@@ -257,7 +319,12 @@ function SCORM_Player(options) {
 
 	function debug(msg){
 		if((settings.debug)&&(console)&&(console.log)){
-			console.log("SCORM_PLAYER[v" + settings.version + "]: " + msg);
+			if(typeof msg != "object"){
+				console.log("SCORM_PLAYER[v" + settings.version + "]: " + msg);
+			} else {
+				console.log("SCORM_PLAYER[v" + settings.version + "]: " + "Object printed below");
+				console.log(msg);
+			}
 		}
 	};
 }

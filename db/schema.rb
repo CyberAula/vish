@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160312175232) do
+ActiveRecord::Schema.define(:version => 20160420161028) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -552,6 +552,8 @@ ActiveRecord::Schema.define(:version => 20160312175232) do
     t.string   "schema"
     t.string   "schemaversion"
     t.string   "scorm_version"
+    t.string   "lohref"
+    t.string   "loresourceurl"
   end
 
   create_table "service_permissions", :force => true do |t|
