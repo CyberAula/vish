@@ -494,7 +494,7 @@ ActivityObject.class_eval do
     metadata = {}
 
     unless self.object_type.nil?
-      metadata[I18n.t("activity_object.type")] = self.object_type
+      metadata[I18n.t("activity_object.type")] = I18n.t("document.info.types." + self.object_type.downcase, :default => self.object_type)
     end
 
     unless self.title.nil?
