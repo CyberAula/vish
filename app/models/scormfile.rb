@@ -200,10 +200,11 @@ class Scormfile < ActiveRecord::Base
         self.scorm_version = self.schemaversion
       end
     end
-    if self.scorm_version.blank? and self.schema.blank? and self.schemaversion.blank?
+    if self.schema.blank? and self.schemaversion.blank?
+      #Some ATs create SCORM 1.2 Packages without specifying schema data
       self.schema = "ADL SCORM"
       self.schemaversion = "1.2"
-      self.scorm_version = "1.2" #Some ATs create SCORM 1.2 Packages without specifying schema data
+      self.scorm_version = "1.2" 
     end
   end
 
