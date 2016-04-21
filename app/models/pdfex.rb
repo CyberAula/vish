@@ -17,29 +17,28 @@ class Pdfex < ActiveRecord::Base
   }
 
 
-  def to_img(controller)
-    if self.pcount > 90
-      raise "#PDFexAPIError:3 PDF file have too many pages"
-    end
+  def to_img
+    raise "#PDFexAPIError:3 PDF file have too many pages" if self.pcount > 90
 
     require 'RMagick'
     pdf = Magick::ImageList.new(self.attach.path){ self.density = 200 }
     pdf.write(getRootFolder + getFileName + (pdf.length===1 ? "-0" : "") + ".jpg")
     #imgLength = pdf.length = self.pcount
 
-    getImgArray(pdf.length)
+    self.to_json_with_imgs(pdf.length)
   end
 
-  def getImgArray(imgLength)
-    if imgLength.nil?
-      imgLength = getImgLength
-    end
+  def to_json_with_imgs(imgLength=nil)
+    imgLength = getImgLength if imgLength.nil?
 
     imgs = Hash.new
     imgs["urls"] = []
     imgLength.times do |index|
       imgs["urls"].push(Vish::Application.config.full_domain + "/" + getRootUrl + getFullFileNameForIndex(index))
     end
+
+    #Add PDF url file
+    imgs["pdfexUrl"] = Vish::Application.config.full_domain + self.attach.url
 
     #Add PDFEx Id
     imgs["pdfexId"] = self.id

@@ -126,7 +126,7 @@ Vish::Application.routes.draw do
   match 'qs/:id' => 'quiz_sessions#show'
 
   #PDF to Excursion
-  resources :pdfexes, :except => [:index]
+  resources :pdfexes, :only => [:new, :create, :show]
 
   #Categories
   match '/categories/categorize' => 'categories#categorize', :via => :post
