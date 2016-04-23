@@ -329,7 +329,7 @@ class RecommenderSystem
 
   # Term Frequency (TF)
   def self.TF(word,text)
-    processFreeText(text)[word] || 0
+    processFreeText(text)[normalizeText(word)] || 0
   end
 
   # Inverse Document Frequency (IDF)
