@@ -324,7 +324,7 @@ class RecommenderSystem
   end
 
   def self.normalizeText(text)
-    I18n.transliterate(text.gsub(/([\n])/," ").downcase.strip, :locale => "en")
+    I18n.transliterate(text.gsub(/([\n])/," ").strip, :locale => "en").downcase
   end
 
   # Term Frequency (TF)
