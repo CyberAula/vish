@@ -221,7 +221,7 @@ class RecommenderSystem
     languageS = getSemanticDistanceForLanguage(loA.language,loB.language)
     keywordsS = getSemanticDistanceForKeywords(loA.tag_array_cached,loB.tag_array_cached)
 
-    return -1 if (!filters.blank? and (titleS < filters[:title] || descriptionS < filters[:description] || languageS < filters[:language] || yearS < filters[:keywords]))
+    return -1 if (!filters.blank? and (titleS < filters[:title] || descriptionS < filters[:description] || languageS < filters[:language] || keywordsS < filters[:keywords]))
 
     return weights[:title] * titleS + weights[:description] * descriptionS + weights[:language] * languageS + weights[:keywords] * keywordsS
   end
