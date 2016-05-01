@@ -15,7 +15,7 @@ class Loep
   end
 
   #Create LO
-  def self.createLO(lo)
+  def self.createOrUpdateLO(lo)
     params = getParams
     params["lo"] = lo
 
@@ -53,6 +53,8 @@ class Loep
         response = RestClient::Request.execute(
           :method => :post,
           :url => apiMethodURL,
+          :timeout => 8, 
+          :open_timeout => 8,
           :payload => params,
           :headers => {:'Authorization' => getBasicAuthHeader, :content_type => :json, :accept => :json}
         ){ |response|
@@ -62,6 +64,8 @@ class Loep
         response = RestClient::Request.execute(
           :method => :get,
           :url => apiMethodURL,
+          :timeout => 8, 
+          :open_timeout => 8,
           :headers => {:'Authorization' => getBasicAuthHeader}
         ){ |response|
           yield JSON(response),response.code if block_given?

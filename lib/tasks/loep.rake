@@ -3,12 +3,12 @@
 namespace :loep do
 
   #Usage
-  #Development:   bundle exec rake loep:registerLOs
-  #In production: bundle exec rake loep:registerLOs RAILS_ENV=production
-  task :registerLOs => :environment do
+  #Development:   bundle exec rake loep:sendLOs
+  #In production: bundle exec rake loep:sendLOs RAILS_ENV=production
+  task :sendLOs => :environment do
 
     puts "#####################################"
-    puts "Bringing LOs from ViSH to LOEP"
+    puts "Sending LOs from ViSH to LOEP"
     puts "#####################################"
 
     #Select an array of excursions to be registered in LOEP
@@ -30,10 +30,9 @@ namespace :loep do
     # excursions = Excursion.where(:draft=> false, :created_at => startDate..endDate)
     
     aos = excursions.map{|ex| ex.activity_object}
-    VishLoep.registerActivityObjects(aos,{:sync=>true,:trace=>true})
+    VishLoep.sendActivityObjects(aos,{:sync=>true,:trace=>true})
     # Async
-    # VishLoep.registerActivityObjects(aos,{:async=>true,:trace=>true})
-    
+    # VishLoep.sendActivityObjects(aos,{:async=>true,:trace=>true})
   end
 
   #Usage

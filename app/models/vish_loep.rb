@@ -34,13 +34,9 @@ class VishLoep
     ao.calculate_qscore
   end
 
-  def self.registerActivityObject(ao)
-    if ao.nil? or ao.object.nil?
-      yield "Activity Object is nil", nil if block_given?
-      return "Activity Object is nil"
-    end
-    
-    #Compose the object to be sent to LOEP
+  def self.getLoepHashForActivityObject(ao)
+    return {} if ao.blank?
+
     lo = Hash.new
     lo["name"] = ao.title unless ao.title.blank?
     lo["description"] = ao.description unless ao.description.blank?
@@ -109,36 +105,41 @@ class VishLoep
     end
 
     #Interactions
-    unless ao.lo_interaction.nil?
-      lo["interactions"] = ao.lo_interaction.extended_attributes
+    lo["interactions"] = ao.lo_interaction.extended_attributes unless ao.lo_interaction.nil?
+
+    lo
+  end
+
+  def self.sendActivityObject(ao)
+    if ao.nil? or ao.object.nil?
+      yield "Activity Object is nil", nil if block_given?
+      return "Activity Object is nil"
     end
+
+    #Compose the object to be sent to LOEP
+    lo = VishLoep.getLoepHashForActivityObject(ao)
     
-    Loep.createLO(lo){ |response,code|
+    Loep.createOrUpdateLO(lo){ |response,code|
       # Get quality metrics from automatic evaluation methods. 
       # Not necessary because Loep::LosController:update will be called after publishing by LOEP.
       # VishLoep.fillActivityObjectMetrics(ao,response)
-      # (Optional) Create assignments through LOEP
-      if block_given?
-        yield response, code
-      end
+      yield response, code if block_given?
     }
   end
 
-  def self.registerActivityObjects(aos,options=nil)
+  def self.sendActivityObjects(aos,options=nil)
     unless !options.nil? and options[:async]==true
-      return _registerActivityObjectsSync(aos,options)
+      return _sendActivityObjectsSync(aos,options)
     else
-      _registerActivityObjectsAsync(aos,options){
-        if block_given?
-          yield "Finish"
-        end
+      _sendActivityObjectsAsync(aos,options){
+        yield "Finish" if block_given?
       }
     end
   end
 
-  def self._registerActivityObjectsSync(aos,options=nil)
+  def self._sendActivityObjectsSync(aos,options=nil)
     aos.each do |ao|
-      VishLoep.registerActivityObject(ao){ |response,code|
+      VishLoep.sendActivityObject(ao){ |response,code|
         if !options.nil? and options[:trace]==true
           puts "Activity Object with id: " + ao.getGlobalId
           puts response.to_s
@@ -149,7 +150,7 @@ class VishLoep
     return "Finish"
   end
 
-  def self._registerActivityObjectsAsync(aos,options=nil)
+  def self._sendActivityObjectsAsync(aos,options=nil)
     eChunks = aos.each_slice(25).to_a
     _rChunks(0,eChunks,options){
         yield "F"
@@ -167,7 +168,7 @@ class VishLoep
   end
 
   def self._rChunk(cB,aos,options=nil)
-    VishLoep.registerActivityObjects(aos[cB]){ |response,code|
+    VishLoep.sendActivityObjects(aos[cB]){ |response,code|
       if !options.nil? and options[:trace]==true
         puts "Activity Object with id: " + aos[cB].getGlobalId
         puts response.to_s

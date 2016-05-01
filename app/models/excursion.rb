@@ -17,6 +17,7 @@ class Excursion < ActiveRecord::Base
   before_validation :fill_license
   after_save :parse_for_meta
   after_save :fix_post_activity_nil
+  # after_save :send_to_loep
   after_destroy :remove_scorms
   after_destroy :remove_pdf
 
@@ -1328,6 +1329,14 @@ class Excursion < ActiveRecord::Base
       a.activity_objects << self.activity_object
 
       a.save!
+    end
+  end
+
+  def send_to_loep
+    #If LOEP is enabled, send the excursion to LOEP.
+    #It will be created or updated
+    if self.public_scope? and !Vish::Application.config.APP_CONFIG['loep'].nil?
+      VishLoep.sendActivityObject(self.activity_object) rescue nil
     end
   end
   
