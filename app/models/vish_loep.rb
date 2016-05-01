@@ -36,29 +36,18 @@ class VishLoep
 
   def self.registerActivityObject(ao)
     if ao.nil? or ao.object.nil?
-      if block_given?
-        yield "Activity Object is nil", nil
-      end
+      yield "Activity Object is nil", nil if block_given?
       return "Activity Object is nil"
     end
+    
     #Compose the object to be sent to LOEP
     lo = Hash.new
-
-    unless ao.title.blank?
-      lo["name"] = ao.title
-    end
-
+    lo["name"] = ao.title unless ao.title.blank?
+    lo["description"] = ao.description unless ao.description.blank?
     lo["url"] = ao.getUrl
-    lo["repository"] = Vish::Application.config.APP_CONFIG['loep']['repository_name']
+    lo["repository"] = Vish::Application.config.APP_CONFIG['loep']['repository_name'] unless Vish::Application.config.APP_CONFIG['loep']['repository_name'].blank?
     lo["id_repository"] = ao.getGlobalId
-    
-    unless ao.description.blank?
-      lo["description"] = ao.description
-    end
-
-    if !ao.tag_list.nil? and ao.tag_list.is_a? Array and !ao.tag_list.blank?
-      lo["tag_list"] = ao.tag_list.join(",")
-    end
+    lo["tag_list"] = ao.tag_list.join(",") if !ao.tag_list.nil? and ao.tag_list.is_a? Array and !ao.tag_list.blank?
 
     unless ao.language.blank?
       case ao.language
@@ -118,6 +107,11 @@ class VishLoep
       lo["technology"] = "html"
       lo["hasWebs"] = "1"
     end
+
+    #Interactions
+    unless ao.lo_interaction.nil?
+      lo["interactions"] = ao.lo_interaction.extended_attributes
+    end
     
     Loep.createLO(lo){ |response,code|
       # Get quality metrics from automatic evaluation methods. 
@@ -128,7 +122,6 @@ class VishLoep
         yield response, code
       end
     }
-
   end
 
   def self.registerActivityObjects(aos,options=nil)

@@ -10,9 +10,7 @@ class Loep
     params = getParams
 
     callAPI("GET","los/" + lo_id.to_s,params){ |response,code|
-      if block_given?
-        yield response, code
-      end
+      yield response, code if block_given?
     }
   end
 
@@ -20,10 +18,6 @@ class Loep
   def self.createLO(lo)
     params = getParams
     params["lo"] = lo
-    
-    if params["lo"]["repository"].nil?
-      params["lo"]["repository"] = Vish::Application.config.APP_CONFIG['loep']['repository_name']
-    end 
 
     callAPI("POST","los",params){ |response,code|
       if block_given?
@@ -51,10 +45,7 @@ class Loep
   def self.callAPI(method,apiPath,params={})
     apiBaseURL = getAPIBaseUrl
     apiMethodURL = apiBaseURL+apiPath
-
-    if method.nil?
-      method = "GET"
-    end
+    method = "GET" if method.nil?
 
     begin
       case method.upcase
@@ -65,9 +56,7 @@ class Loep
           :payload => params,
           :headers => {:'Authorization' => getBasicAuthHeader, :content_type => :json, :accept => :json}
         ){ |response|
-          if block_given?
-            yield JSON(response),response.code
-          end
+          yield JSON(response),response.code if block_given?
         }
       when "GET"
         response = RestClient::Request.execute(
@@ -75,26 +64,19 @@ class Loep
           :url => apiMethodURL,
           :headers => {:'Authorization' => getBasicAuthHeader}
         ){ |response|
-          if block_given?
-            yield JSON(response),response.code
-          end
+          yield JSON(response),response.code if block_given?
         }
       else
-        if block_given?
-          yield "Error in Loep.callAPI: No method specified.",nil
-        end
+        yield "Error in Loep.callAPI: No method specified.",nil if block_given?
       end
-
     rescue => e
-      if block_given?
-        yield "Error in Loep.callAPI. Exception: " + e.message,nil
-      end
+        yield "Error in Loep.callAPI. Exception: " + e.message,nil if block_given?
     end
   end
 
   def self.getAPIBaseUrl
     loepConfig = Vish::Application.config.APP_CONFIG['loep']
-    return loepConfig['domain']+"/api/"+(loepConfig['api_version'] || "v1")+"/"
+    loepConfig['domain']+"/api/"+(loepConfig['api_version'] || "v1")+"/"
   end
 
   def self.getBasicAuthHeader
@@ -102,9 +84,7 @@ class Loep
   end
 
   def self.getParams(params=nil)
-    if params.nil?
-      params = Hash.new
-    end
+    params = Hash.new if params.blank?
     params["utf8"] = "✓"
     params
   end
