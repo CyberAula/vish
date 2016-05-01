@@ -28,6 +28,10 @@ namespace :loep do
     # endDate = Time.now
     # startDate = endDate.advance(:months => -3)
     # excursions = Excursion.where(:draft=> false, :created_at => startDate..endDate)
+
+    #Excursions with iteractions
+    # excursions = LoInteraction.all.map{|i| i.activity_object.object}.select{|o| o.object_type == "Excursion" and o.draft===false}
+
     
     aos = excursions.map{|ex| ex.activity_object}
     VishLoep.sendActivityObjects(aos,{:sync=>true,:trace=>true})
