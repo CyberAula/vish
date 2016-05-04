@@ -6,10 +6,10 @@ require 'base64'
 class Loep
 
   #Get LO
-  def self.getLO(lo_id)
+  def self.getLO(lo)
     params = getParams
-
-    callAPI("GET","los/" + lo_id.to_s,params){ |response,code|
+    params["repository"] = lo["repository"] unless lo["repository"].blank?
+    callAPI("GET","los/" + lo["id_repository"].to_s,params){ |response,code|
       yield response, code if block_given?
     }
   end
@@ -68,6 +68,7 @@ class Loep
           :url => apiMethodURL,
           :timeout => 8, 
           :open_timeout => 8,
+          :payload => params,
           :headers => {:'Authorization' => getBasicAuthHeader}
         ){ |response|
           yield JSON(response),response.code if block_given?

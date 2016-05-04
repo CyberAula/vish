@@ -4,7 +4,7 @@ require 'json'
 class VishLoep
  
   def self.getActivityObjectMetrics(ao)
-    Loep.getLO(ao.getGlobalId){ |response,code|
+    Loep.getLO(getLoepHashForActivityObject(ao,true)){ |response,code|
       if response.class == Hash and response["id_repository"] == ao.getGlobalId
         fillActivityObjectMetrics(ao,response)
         if block_given?
@@ -31,18 +31,23 @@ class VishLoep
       ao.update_column :metadata_qscore, loepData["Metric Score: LOM Metadata Quality Metric"]
     end
 
+    if loepData["Metric Score: Interaction Quality Metric"].is_a? Numeric
+      ao.update_column :interaction_qscore, loepData["Metric Score: Interaction Quality Metric"]
+    end
+
     ao.calculate_qscore
   end
 
-  def self.getLoepHashForActivityObject(ao)
+  def self.getLoepHashForActivityObject(ao,min=false)
     return {} if ao.blank?
 
     lo = Hash.new
+    lo["repository"] = Vish::Application.config.APP_CONFIG['loep']['repository_name'] unless Vish::Application.config.APP_CONFIG['loep']['repository_name'].blank?
+    lo["id_repository"] = ao.getGlobalId
+    return lo if min
     lo["name"] = ao.title unless ao.title.blank?
     lo["description"] = ao.description unless ao.description.blank?
     lo["url"] = ao.getUrl
-    lo["repository"] = Vish::Application.config.APP_CONFIG['loep']['repository_name'] unless Vish::Application.config.APP_CONFIG['loep']['repository_name'].blank?
-    lo["id_repository"] = ao.getGlobalId
     lo["tag_list"] = ao.tag_list.join(",") if !ao.tag_list.nil? and ao.tag_list.is_a? Array and !ao.tag_list.blank?
 
     unless ao.language.blank?
