@@ -3,7 +3,7 @@
  * http://loep.global.dit.upm.es
  * Provides an API that allows to embed LOEP evaluation forms via iframe
  * @author Aldo Gordillo
- * @version 1.0
+ * @version 1.1
  */
 
 var LOEP = LOEP || {};

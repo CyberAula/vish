@@ -40,8 +40,14 @@
 			domain: '<%=Embed.checkUrlProtocol(loepConfig["domain"], request.protocol)%>',
 			app: '<%=loepConfig["app_name"]%>',
 			loId: '<%=@excursion.activity_object.getGlobalId()%>',
-			evmethod: "wbltses"
+			evmethod: "wblts"
 		};
+		<% unless loepConfig["repository_name"].blank? %>
+			configuration["loepSettings"]["repository"] = '<%=loepConfig["repository_name"]%>';
+		<% end %>
+		<% if user_signed_in? %>
+			configuration["loepSettings"]["user_id"] = '<%=current_user.id%>';
+		<% end %>
 	<%end%>
 
 	options["configuration"] = configuration;

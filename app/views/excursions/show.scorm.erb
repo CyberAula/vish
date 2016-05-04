@@ -43,15 +43,18 @@
 
 		//LOEP configuration
 		<% unless Vish::Application.config.APP_CONFIG['loep'].nil? or excursion.nil? %>
-			<%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
-			<%tokenURL = (Vish::Application.config.full_domain + '/loep/session_token.json') %>
+			<% loepConfig = Vish::Application.config.APP_CONFIG['loep'] %>
+			<% tokenURL = (Vish::Application.config.full_domain + '/loep/session_token.json') %>
 			configuration["loepSettings"] = {
 				tokenURL: '<%=tokenURL%>',
 				domain: '<%=loepConfig["domain"]%>',
 				app: '<%=loepConfig["app_name"]%>',
 				loId: '<%=excursion.activity_object.getGlobalId()%>',
-				evmethod: "wbltses"
+				evmethod: "wblts"
 			};
+			<% unless loepConfig["repository_name"].blank? %>
+				configuration["loepSettings"]["repository"] = '<%=loepConfig["repository_name"]%>';
+			<% end %>
 		<% end %>
 
 		options["configuration"] = configuration;
