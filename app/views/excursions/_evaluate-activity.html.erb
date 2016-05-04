@@ -85,16 +85,22 @@
           evaluationTagShown = true;
 
           var loepSettings = {};
-          loepSettings.action = "representation";
-          <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
+          loepSettings.action = "showchart";
+          <% loepConfig = Vish::Application.config.APP_CONFIG['loep'] %>
           loepSettings.domain = '<%=loepConfig["domain"]%>';
           loepSettings.app = '<%=loepConfig["app_name"]%>';
+          <% unless loepConfig["repository_name"].blank? %>
+            loepSettings.repository = '<%=loepConfig["repository_name"]%>';
+          <% end %>
+          <% if user_signed_in? %>
+            loepSettings.user_id = '<%=current_user.id%>';
+          <% end %>
           loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
           loepSettings.language = '<%=I18n.locale.to_s%>';
           loepSettings.tokenURL = "/loep/session_token.json";
           loepSettings.debug = false;
             
-          <%unless @excursion.users_qscore.nil?%>
+          <% unless @excursion.users_qscore.nil? %>
             var learningLoepSettings = $.extend({}, loepSettings);
             learningLoepSettings.evmethod = "wblts";
             learningLoepSettings.containerDOM = $('#learning-eval-results');
@@ -103,9 +109,9 @@
             };
             $('#learning-eval-results').show();
             new LOEP.IframeAPI.instance(learningLoepSettings);
-          <%end%>
+          <% end %>
 
-          <%unless true or @excursion.teachers_qscore.nil?%>
+          <% unless true or @excursion.teachers_qscore.nil? %>
             //Currently not shown
             var teachingLoepSettings = $.extend({}, loepSettings);
             teachingLoepSettings.evmethod = "wbltt";
@@ -115,7 +121,7 @@
             };
             $('#teaching-eval-results').show();
             new LOEP.IframeAPI.instance(teachingLoepSettings);
-          <%end%>
+          <% end %>
         }
       });
   <%end%>
