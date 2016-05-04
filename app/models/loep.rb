@@ -27,8 +27,10 @@ class Loep
   end
 
   #Create SessionToken
-  def self.createSessionToken()
-    callAPI("POST","session_token"){ |response,code|
+  def self.createSessionToken(sessionTokenParams)
+    params = {}
+    params["session_token"] = sessionTokenParams unless sessionTokenParams.blank?
+    callAPI("POST","session_token",params){ |response,code|
       if block_given?
         if code===200
           yield response["auth_token"], code

@@ -310,7 +310,7 @@ class ExcursionsController < ApplicationController
   
   def evaluate
     @excursion = Excursion.find(params["id"])
-    @evmethod = params["evmethod"] || "wbltses"
+    @evmethod = params["evmethod"] || "wblts"
     
     respond_to do |format|
       format.html {

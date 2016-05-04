@@ -38,10 +38,19 @@ LOEP.IframeAPI = (function(L,undefined){
         return _onError("No valid action.");
       };
 
-      //Check domain
+      //Check mandatory settings
       if(typeof _settings.domain != "string"){
         return _onError("No valid domain.");
       }
+
+      if(typeof _settings.loId == "undefined"){
+        return _onError("Missing loId setting");
+      }
+
+      if(typeof _settings.evmethod == "undefined"){
+        return _onError("Missing evmethod setting");
+      }
+
       
       var isLocalFile;
       try {
@@ -96,9 +105,18 @@ LOEP.IframeAPI = (function(L,undefined){
         urlToRequestToken = "/loep/session_token.json";
       }
 
+      var params = {};
+      params["action"] = _settings.action;
+      if(typeof _settings.repository != "undefined"){
+        params["repository"] = _settings.repository;
+      }
+      params["lo_id_repository"] = _settings.loId;
+      params["evmethod_name"] = _settings.evmethod;
+
       $.ajax({
         type: "POST",
         url: urlToRequestToken,
+        data: {"session_token": params},
         dataType:"json",
         success:function(response){
           if(typeof response == "string"){
@@ -123,8 +141,14 @@ LOEP.IframeAPI = (function(L,undefined){
 
         switch(_settings.action){
           case "evaluate":
+            var pluralizedEvMethod;
+            if(/s$/.test(_settings.evmethod)){
+              pluralizedEvMethod = _settings.evmethod + "es";
+            } else {
+              pluralizedEvMethod = _settings.evmethod + "s";
+            }
             //e.g /evaluations/wbltses/embed?lo_id=Excursion:377
-            url += "/evaluations/" + _settings.evmethod + "/embed?lo_id=" + _settings.loId;
+            url += "/evaluations/" + pluralizedEvMethod + "/embed?lo_id=" + _settings.loId;
             break;
           case "showchart":
             //e.g /los/Excursion:377/representation?evmethods=wblts
@@ -137,7 +161,7 @@ LOEP.IframeAPI = (function(L,undefined){
 
         url += "&app_name=" + _settings.app;
         if(typeof _settings.repository == "string"){
-          url += "&repository_name=" + _settings.repository;
+          url += "&repository=" + _settings.repository;
         }
         if(typeof _settings.user_id == "string"){
           url += "&id_user_app=" + _settings.user_id;

@@ -19,7 +19,7 @@ class Loep::SessionTokenController < ApplicationController
 
   # POST /loep/session_token
   def create
-    Loep.createSessionToken(){|auth_token,c|
+    Loep.createSessionToken(params["session_token"]){|auth_token,c|
       render :json => {auth_token: auth_token}, :content_type => "application/json"
     }
   end
