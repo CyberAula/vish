@@ -9,7 +9,8 @@
       </a>
     </li>
 
-    <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
+    <% showAnalytics = false %>
+    <% unless Vish::Application.config.APP_CONFIG['loep'].nil? %>
       <!-- Disable evaluations if LOEP is not enabled -->
       <li>
         <a href="#evaluation1" data-toggle="tab">
@@ -17,7 +18,17 @@
           <span class="hidden-xs"><%=t('evaluation.tabtitle')%></span>
         </a>
       </li>
-    <%end%>
+
+      <% if !@excursion.activity_object.interaction_qscore.nil? and user_signed_in? and @excursion.author_id == current_user.id and !@excursion.activity_object.lo_interaction.nil? %>
+        <% showAnalytics = true %>
+        <li>
+          <a href="#lo_analytics" data-toggle="tab">
+            <i class="fa fa-area-chart"></i>
+            <span class="hidden-xs"><%=t('analytics.tabtitle')%></span>
+          </a>
+        </li>
+      <% end %>
+    <% end %>
 
     <li class="suggestion_show hidden-md hidden-lg">
       <a  href="#suggestion_show" data-toggle="tab">
@@ -60,6 +71,15 @@
       <div id="teaching-eval-results" style="display:none"></div>
     </div>
 
+    <% if showAnalytics %>
+      <div class="tab-pane evaluate-show" id="lo_analytics">
+        <div class="btn-evalue">
+          <p><%= t('analytics.description', :date => @excursion.lo_interaction.updated_at) %></p>
+        </div>
+        <div id="learning-analytics-chart" style="display:none"></div>
+      </div>
+    <% end %>
+
     <div class="tab-pane" id="suggestion_show">
       <div class="recomended-mobile hidden-md hidden-lg" id="recomended_box">
         <div class="recomended-items">
@@ -79,51 +99,73 @@
 <%unless Vish::Application.config.APP_CONFIG['loep'].nil? %>
 
   <%content_for :javascript do%>
-      var evaluationTagShown = false;
+
+      var loepSettings = {};
+      loepSettings.action = "showchart";
+      <% loepConfig = Vish::Application.config.APP_CONFIG['loep'] %>
+      loepSettings.domain = '<%=loepConfig["domain"]%>';
+      loepSettings.app = '<%=loepConfig["app_name"]%>';
+      <% unless loepConfig["repository_name"].blank? %>
+        loepSettings.repository = '<%=loepConfig["repository_name"]%>';
+      <% end %>
+      <% if user_signed_in? %>
+        loepSettings.user_id = '<%=current_user.id%>';
+      <% end %>
+      loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
+      loepSettings.language = '<%=I18n.locale.to_s%>';
+      loepSettings.tokenURL = "/loep/session_token.json";
+      loepSettings.debug = false;
+
+      var evaluationTabShown = false;
       $('a[data-toggle="tab"][href="#evaluation1"]').on('shown.bs.tab', function(e){
-        if(evaluationTagShown===false){
-          evaluationTagShown = true;
-
-          var loepSettings = {};
-          loepSettings.action = "showchart";
-          <% loepConfig = Vish::Application.config.APP_CONFIG['loep'] %>
-          loepSettings.domain = '<%=loepConfig["domain"]%>';
-          loepSettings.app = '<%=loepConfig["app_name"]%>';
-          <% unless loepConfig["repository_name"].blank? %>
-            loepSettings.repository = '<%=loepConfig["repository_name"]%>';
-          <% end %>
-          <% if user_signed_in? %>
-            loepSettings.user_id = '<%=current_user.id%>';
-          <% end %>
-          loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
-          loepSettings.language = '<%=I18n.locale.to_s%>';
-          loepSettings.tokenURL = "/loep/session_token.json";
-          loepSettings.debug = false;
-            
-          <% unless @excursion.users_qscore.nil? %>
-            var learningLoepSettings = $.extend({}, loepSettings);
-            learningLoepSettings.evmethod = "wblts";
-            learningLoepSettings.containerDOM = $('#learning-eval-results');
-            learningLoepSettings.errorCallback = function(errorMsg){
-              $('#learning-eval-results').remove();
-            };
-            $('#learning-eval-results').show();
-            new LOEP.IframeAPI.instance(learningLoepSettings);
-          <% end %>
-
-          <% unless true or @excursion.teachers_qscore.nil? %>
-            //Currently not shown
-            var teachingLoepSettings = $.extend({}, loepSettings);
-            teachingLoepSettings.evmethod = "wbltt";
-            teachingLoepSettings.containerDOM = $('#teaching-eval-results');
-            teachingLoepSettings.errorCallback = function(errorMsg){
-              $('#teaching-eval-results').remove();
-            };
-            $('#teaching-eval-results').show();
-            new LOEP.IframeAPI.instance(teachingLoepSettings);
-          <% end %>
+        if (evaluationTabShown===true){
+          return;
         }
+        evaluationTabShown = true;
+            
+        <% unless @excursion.users_qscore.nil? %>
+          var learningLoepSettings = $.extend({}, loepSettings);
+          learningLoepSettings.evmethod = "wblts";
+          learningLoepSettings.containerDOM = $('#learning-eval-results');
+          learningLoepSettings.errorCallback = function(errorMsg){
+            $('#learning-eval-results').remove();
+          };
+          $('#learning-eval-results').show();
+          new LOEP.IframeAPI.instance(learningLoepSettings);
+        <% end %>
+
+        <% unless true or @excursion.teachers_qscore.nil? %>
+          //Currently not shown
+          var teachingLoepSettings = $.extend({}, loepSettings);
+          teachingLoepSettings.evmethod = "wbltt";
+          teachingLoepSettings.containerDOM = $('#teaching-eval-results');
+          teachingLoepSettings.errorCallback = function(errorMsg){
+            $('#teaching-eval-results').remove();
+          };
+          $('#teaching-eval-results').show();
+          new LOEP.IframeAPI.instance(teachingLoepSettings);
+        <% end %>
       });
+
+      <% if showAnalytics %>
+        var analyticsTabShown = false;
+        $('a[data-toggle="tab"][href="#lo_analytics"]').on('shown.bs.tab', function(e){
+          if (analyticsTabShown===true){
+            return;
+          }
+          analyticsTabShown = true;
+          console.log("HERE");
+          var lanalyticsLoepSettings = $.extend({}, loepSettings);
+          lanalyticsLoepSettings.evmethod = "qinteraction";
+          lanalyticsLoepSettings.containerDOM = $('#learning-analytics-chart');
+          lanalyticsLoepSettings.errorCallback = function(errorMsg){
+            $('#learning-analytics-chart').remove();
+          };
+          $('#learning-analytics-chart').show();
+          new LOEP.IframeAPI.instance(lanalyticsLoepSettings);
+        });
+      <% end %>
+      
   <%end%>
 <%end%>
 

@@ -155,6 +155,9 @@ en:
     title: "ViSH Administration Panel"
     users: "Users Administration"
   all: "all"
+  analytics:
+    description: "This section is only visible for the author of the resource. It shows some learning analytics about the usage of the resource. Learning Analytics are calculated periodically. This information was last updated on: %{date}."
+    tabtitle: "Learning Analytics"
   announce:
     title: "Announcement"
     body: "In the course of February, the GLOBAL excursion project is organizing two live online sessions with scientists. More information and registration under"
