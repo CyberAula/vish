@@ -143,7 +143,14 @@ es:
     status: "Estado"
     title: "Panel de Administración de ViSH"
     users: "Administración de Usuarios"
-
+  analytics:
+    description: "Esta sección solo es visible para el autor del recurso.<br/>Muestra algunas analíticas de aprendizaje acerca del uso del recurso.<br/> Las Analíticas de Aprendizaje se calculan periódicamente. Esta información fue actualizada por última vez a fecha: %{date}."
+    interactions:
+      title: "Interacción"
+      tlo: "Tiempo empleado por sesión (s)"
+      permanency_rate: "Ratio de Permanencia (%)"
+      nclicks: "Cantidad de clics por sesión"
+    tabtitle: "Analíticas de Aprendizaje"
   all: "todos"
   announce:
     title: "Noticia"
@@ -1162,6 +1169,8 @@ es:
     other: "usuarios"
     role: "rol"
   username: "usuario"
+  value: "Valor"
+  value_average: "Valor Medio"
   vish:
     about: "Acerca de ViSH"
     starterguide: "Guía del principiante"

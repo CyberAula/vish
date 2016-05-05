@@ -1,7 +1,7 @@
-<% showLearningEvaluationResults = !@excursion.users_qscore.nil? %>
-<% showTeachingEvaluations = false and !@excursion.teachers_qscore.nil? %>
+<% showLearningEvaluationResults = (!@excursion.users_qscore.nil?) %>
+<% showTeachingEvaluations = (false and !@excursion.teachers_qscore.nil?) %>
 
-<%= content_for :javascript do%>
+<%= content_for :javascript do %>
 
   var evaluationTabShown = false;
   $('a[data-toggle="tab"][href="#lo_evaluation"]').on('shown.bs.tab', function(e){
@@ -49,6 +49,7 @@
       };
       evaluateLearningLoepSettings.errorCallback = function(){
         //"Error"
+        $('#myLearningModal').find(".modal-body").html("");
         $('#myLearningModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
       };
       new LOEP.IframeAPI.instance(evaluateLearningLoepSettings);
@@ -73,6 +74,7 @@
       };
       evaluateTeachingLoepSettings.errorCallback = function(){
         //"Error"
+        $('#myTeachingModal').find(".modal-body").html("");
         $('#myTeachingModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
       };
       new LOEP.IframeAPI.instance(evaluateTeachingLoepSettings);
@@ -82,7 +84,7 @@
     //Teaching modal hidden
     $(this).removeData('modal').find('.modal-body').html('');
   });
-<%end%>
+<% end %>
 
 <div id="myLearningModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="learningModalLabel" aria-hidden="true">
   <div class="modal-dialog">

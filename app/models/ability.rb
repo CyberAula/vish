@@ -73,12 +73,8 @@ class Ability
       end
 
       #Analytics
-      can :show_analytics, ActivityObject do |ao|
-        can?(:update,ao)
-      end
-
       can :show_analytics, [Document, Webapp, Scormfile, Link, Embed, Writing, Excursion, Workshop] do |o|
-        can?(:show_analytics,o.activity_object)
+        can?(:update,o)
       end
 
       #Clone

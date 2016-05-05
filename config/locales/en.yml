@@ -156,7 +156,12 @@ en:
     users: "Users Administration"
   all: "all"
   analytics:
-    description: "This section is only visible for the author of the resource. It shows some learning analytics about the usage of the resource. Learning Analytics are calculated periodically. This information was last updated on: %{date}."
+    description: "This section is only visible for the author of the resource.<br/>It shows some learning analytics about the usage of the resource.<br/> Learning Analytics are calculated periodically. This information was last updated on: %{date}."
+    interactions:
+      title: "Interaction"
+      tlo: "Time spent per session (s)"
+      permanency_rate: "Permanency Rate (%)"
+      nclicks: "Quantity of clicks per session"
     tabtitle: "Learning Analytics"
   announce:
     title: "Announcement"
@@ -1175,6 +1180,8 @@ en:
     other: "users"
     role: "role"
   username: "username"
+  value: "Value"
+  value_average: "Average Value"
   vish:
     about: "About ViSH"
     starterguide: "Starter Guide"

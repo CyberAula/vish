@@ -1,0 +1,38 @@
+<div class="analytics_description">
+  <p><%= t('analytics.description', :date => @excursion.lo_interaction.updated_at.strftime("%d-%m-%Y")).html_safe %></p>
+  <table class="analytics_summary">
+  <tr>
+    <td><%=t("analytics.interactions.title")%></td>
+    <td><%=t("value_average")%></td>
+  </tr>
+  <%@excursion.lo_interaction.extended_attributes["interactions"].each do |k,v| %>
+    <% unless v["average_value"].blank? %>
+      <tr>
+        <td><%=t("analytics.interactions." + k.to_s)%></td>
+        <td><%=v["average_value"]%></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </table>
+</div>
+
+<div id="learning-analytics-chart" style="display:none"></div>
+
+<% content_for :javascript do %>
+  var analyticsTabShown = false;
+  $('a[data-toggle="tab"][href="#lo_analytics"]').on('shown.bs.tab', function(e){
+    if (analyticsTabShown===true){
+      return;
+    }
+    analyticsTabShown = true;
+    var lanalyticsLoepSettings = $.extend({}, loepSettings);
+    lanalyticsLoepSettings.action = "showchart";
+    lanalyticsLoepSettings.evmethod = "qinteraction";
+    lanalyticsLoepSettings.containerDOM = $('#learning-analytics-chart');
+    lanalyticsLoepSettings.errorCallback = function(errorMsg){
+      $('#learning-analytics-chart').remove();
+    };
+    $('#learning-analytics-chart').show();
+    new LOEP.IframeAPI.instance(lanalyticsLoepSettings);
+  });
+<% end %>

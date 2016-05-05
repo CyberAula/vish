@@ -1,5 +1,5 @@
 <% showEvaluation = @excursion.evaluable? %>
-<% showAnalytics = showEvaluation and can?(:show_analytics,@excursion) and @excursion.has_analytics? %>
+<% showAnalytics = (showEvaluation and can?(:show_analytics,@excursion) and @excursion.has_analytics?) %>
 
 <% if showEvaluation %>
   <script type="text/javascript">
@@ -99,29 +99,8 @@
 
     <% if showAnalytics %>
       <div class="tab-pane evaluate-show" id="lo_analytics">
-        <div class="btn-evalue">
-          <p><%= t('analytics.description', :date => @excursion.lo_interaction.updated_at) %></p>
-        </div>
-        <div id="learning-analytics-chart" style="display:none"></div>
+        <%= render :partial => "excursions/excursion_analytics" %>
       </div>
-      <% content_for :javascript do %>
-        var analyticsTabShown = false;
-        $('a[data-toggle="tab"][href="#lo_analytics"]').on('shown.bs.tab', function(e){
-          if (analyticsTabShown===true){
-            return;
-          }
-          analyticsTabShown = true;
-          var lanalyticsLoepSettings = $.extend({}, loepSettings);
-          lanalyticsLoepSettings.action = "showchart";
-          lanalyticsLoepSettings.evmethod = "qinteraction";
-          lanalyticsLoepSettings.containerDOM = $('#learning-analytics-chart');
-          lanalyticsLoepSettings.errorCallback = function(errorMsg){
-            $('#learning-analytics-chart').remove();
-          };
-          $('#learning-analytics-chart').show();
-          new LOEP.IframeAPI.instance(lanalyticsLoepSettings);
-        });
-      <% end %>
     <% end %>
 
     <div class="tab-pane" id="suggestion_show">
