@@ -17,36 +17,19 @@ class LoInteraction < ActiveRecord::Base
   end
 
   def self.isValidInteraction?(tsdata)
-    if tsdata.blank? or tsdata["chronology"].blank? or tsdata["duration"].blank? or tsdata["lo"].blank? or tsdata["lo"]["content"].blank? or tsdata["lo"]["content"]["slides"].blank?
-      return false
-    end
-
+    return false if tsdata.blank? or tsdata["chronology"].blank? or tsdata["duration"].blank? or tsdata["lo"].blank? or tsdata["lo"]["content"].blank? or tsdata["lo"]["content"]["slides"].blank?
     tlo = tsdata["duration"].to_i
-    if (tlo < 3) || (tlo > (2*60*60))
-      return false
-    end
-
+    return false if ((tlo < 3) || (tlo > (2*60*60)))
     return true
   end
 
   def self.isSignificativeInteraction?(tsdata)
     tlo = tsdata["duration"].to_i
-
-    if tlo < 30
-      return false
-    end
-
+    return false if tlo < 30
     nActions = tsdata["chronology"].values.map{|v| v["actions"]}.compact.map{|v| v.values}.flatten.length
     nSlides = tsdata["lo"]["content"]["slides"].values.length
-
-    if nActions < 1
-      return false
-    end
-
-    if nSlides > 1 and nActions < 2
-      return false
-    end
-
+    return false if nActions < 1
+    return false if nSlides > 1 and nActions < 2
     return true
   end
 
@@ -57,7 +40,7 @@ class LoInteraction < ActiveRecord::Base
     attrs["interactions"] = {}
     attrs["interactions"]["tlo"] = {"average_value" => self.tlo} unless self.tlo.blank?
     attrs["interactions"]["permanency_rate"] = {"average_value" => self.acceptancerate} unless self.acceptancerate.blank?
-    attrs["interactions"]["nclicks"] = {"average_value" => self.nclicks} unless self.nclicks.blank?
+    attrs["interactions"]["nclicks"] = {"average_value" => self.nclicks/100.to_f} unless self.nclicks.blank?
     attrs
   end
   

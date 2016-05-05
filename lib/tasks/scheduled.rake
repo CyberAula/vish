@@ -380,4 +380,21 @@ namespace :scheduled do
     end
   end
 
+  #Usage
+  #Development: bundle exec rake scheduled:updateInteractions
+  #Production: bundle exec rake scheduled:updateInteractions RAILS_ENV=production
+  task :updateInteractions => :environment do |t, args|
+    puts "Updating Interactions"
+    
+    Rake::Task["trsystem:populateRelatedExcursions"].invoke
+    Rake::Task["trsystem:deleteNonValidEntriesForLoInteractions"].invoke
+    Rake::Task["trsystem:calculateInteractionValues"].invoke
+
+    #Send excursions with interactions to LOEP
+    aos = LoInteraction.all.map{|i| i.activity_object}.select{|ao| ao.object_type == "Excursion" and ao.scope==0}
+    VishLoep.sendActivityObjects(aos,{:sync=>true,:trace=>true})
+
+    puts "Task finished"
+  end
+
 end
