@@ -72,6 +72,15 @@ class Ability
         can?(:comment,o.activity_object)
       end
 
+      #Analytics
+      can :show_analytics, ActivityObject do |ao|
+        can?(:update,ao)
+      end
+
+      can :show_analytics, [Document, Webapp, Scormfile, Link, Embed, Writing, Excursion, Workshop] do |o|
+        can?(:show_analytics,o.activity_object)
+      end
+
       #Clone
       can :clone, ActivityObject do |ao|
         ao.clonable? or can?(:update, ao.object)

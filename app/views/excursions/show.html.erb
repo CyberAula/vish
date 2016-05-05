@@ -13,10 +13,6 @@
 <%=javascript_include_tag "VISH.IframeAPI" %>
 
 <script type="text/javascript">
-  var triggerEvaluation = function(){
-    $("#learning-evaluation-button-id").trigger("click");
-  };
-
   //VE extra vars
   var options = {};
   options["readHashFromParent"] = true;
@@ -47,8 +43,6 @@
           <%= render :partial => 'excursions/excursion-tool-tab', :locals => { :shortURL => shortURL} %>
         </div>
       </div>
-
-     
       <!--activity-->
       <div class="activity-box">
         <%= render :partial => 'excursions/evaluate-activity'%>

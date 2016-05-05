@@ -180,6 +180,14 @@ ActivityObject.class_eval do
     true
   end
 
+  def evaluable?
+    self.resource? and !Vish::Application.config.APP_CONFIG['loep'].nil?
+  end
+
+  def has_analytics?
+    self.resource? and !self.interaction_qscore.nil? and !self.lo_interaction.nil?
+  end
+
   #Calculate quality score (in a 0-10 scale) 
   def calculate_qscore
     #self.reviewers_qscore is the LORI score in a 0-10 scale

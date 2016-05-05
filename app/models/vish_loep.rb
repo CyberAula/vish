@@ -7,36 +7,55 @@ class VishLoep
     Loep.getLO(getLoepHashForActivityObject(ao,true)){ |response,code|
       if response.class == Hash and response["id_repository"] == ao.getGlobalId
         fillActivityObjectMetrics(ao,response)
-        if block_given?
-          yield response
-        end
+        yield response if block_given?
       end
     }
   end
 
+  def self.getActivityObjectsMetrics(aos,options={})
+    return _getActivityObjectsMetricsSync(aos,options) unless options[:async]==true
+    _getActivityObjectsMetricsAsync(aos,options){
+      yield "Finish" if block_given?
+    }
+  end
+
+  def self.sendActivityObject(ao)
+    if ao.nil? or ao.object.nil?
+      yield "Activity Object is nil", nil if block_given?
+      return "Activity Object is nil"
+    end
+
+    #Compose the object to be sent to LOEP
+    lo = VishLoep.getLoepHashForActivityObject(ao)
+    
+    Loep.createOrUpdateLO(lo){ |response,code|
+      # Get quality metrics from automatic evaluation methods. 
+      # Not necessary because Loep::LosController:update will be called after publishing by LOEP.
+      # VishLoep.fillActivityObjectMetrics(ao,response)
+      yield response, code if block_given?
+    }
+  end
+
+  def self.sendActivityObjects(aos,options={})
+    return _sendActivityObjectsSync(aos,options) unless options[:async]==true
+    _sendActivityObjectsAsync(aos,options){
+      yield "Finish" if block_given?
+    }
+  end
+
   def self.fillActivityObjectMetrics(ao,loepData)
-    if loepData["Metric Score: LORI WAM CW"].is_a? Numeric
-      ao.update_column :reviewers_qscore, loepData["Metric Score: LORI WAM CW"]
-    end
-
-    if loepData["Metric Score: WBLT-S Arithmetic Mean"].is_a? Numeric
-      ao.update_column :users_qscore, loepData["Metric Score: WBLT-S Arithmetic Mean"]
-    end
-
-    if loepData["Metric Score: WBLT-T Arithmetic Mean"].is_a? Numeric
-      ao.update_column :teachers_qscore, loepData["Metric Score: WBLT-T Arithmetic Mean"]
-    end
-
-    if loepData["Metric Score: LOM Metadata Quality Metric"].is_a? Numeric
-      ao.update_column :metadata_qscore, loepData["Metric Score: LOM Metadata Quality Metric"]
-    end
-
-    if loepData["Metric Score: Interaction Quality Metric"].is_a? Numeric
-      ao.update_column :interaction_qscore, loepData["Metric Score: Interaction Quality Metric"]
-    end
-
+    ao.update_column :reviewers_qscore, loepData["Metric Score: LORI WAM CW"] if loepData["Metric Score: LORI WAM CW"].is_a? Numeric
+    ao.update_column :users_qscore, loepData["Metric Score: WBLT-S Arithmetic Mean"] if loepData["Metric Score: WBLT-S Arithmetic Mean"].is_a? Numeric
+    ao.update_column :teachers_qscore, loepData["Metric Score: WBLT-T Arithmetic Mean"] if loepData["Metric Score: WBLT-T Arithmetic Mean"].is_a? Numeric
+    ao.update_column :metadata_qscore, loepData["Metric Score: LOM Metadata Quality Metric"] if loepData["Metric Score: LOM Metadata Quality Metric"].is_a? Numeric
+    ao.update_column :interaction_qscore, loepData["Metric Score: Interaction Quality Metric"] if loepData["Metric Score: Interaction Quality Metric"].is_a? Numeric
     ao.calculate_qscore
   end
+
+
+  ############
+  ## Utils
+  ############
 
   def self.getLoepHashForActivityObject(ao,min=false)
     return {} if ao.blank?
@@ -115,37 +134,10 @@ class VishLoep
     lo
   end
 
-  def self.sendActivityObject(ao)
-    if ao.nil? or ao.object.nil?
-      yield "Activity Object is nil", nil if block_given?
-      return "Activity Object is nil"
-    end
-
-    #Compose the object to be sent to LOEP
-    lo = VishLoep.getLoepHashForActivityObject(ao)
-    
-    Loep.createOrUpdateLO(lo){ |response,code|
-      # Get quality metrics from automatic evaluation methods. 
-      # Not necessary because Loep::LosController:update will be called after publishing by LOEP.
-      # VishLoep.fillActivityObjectMetrics(ao,response)
-      yield response, code if block_given?
-    }
-  end
-
-  def self.sendActivityObjects(aos,options=nil)
-    unless !options.nil? and options[:async]==true
-      return _sendActivityObjectsSync(aos,options)
-    else
-      _sendActivityObjectsAsync(aos,options){
-        yield "Finish" if block_given?
-      }
-    end
-  end
-
-  def self._sendActivityObjectsSync(aos,options=nil)
+  def self._getActivityObjectsMetricsSync(aos,options={})
     aos.each do |ao|
-      VishLoep.sendActivityObject(ao){ |response,code|
-        if !options.nil? and options[:trace]==true
+      VishLoep.getActivityObjectMetrics(ao){ |response,code|
+        if options[:trace]==true
           puts "Activity Object with id: " + ao.getGlobalId
           puts response.to_s
         end
@@ -155,32 +147,77 @@ class VishLoep
     return "Finish"
   end
 
-  def self._sendActivityObjectsAsync(aos,options=nil)
+  def self._getActivityObjectsMetricsAsync(aos,options={})
     eChunks = aos.each_slice(25).to_a
-    _rChunks(0,eChunks,options){
+    _rChunksGetAOs(0,eChunks,options){
         yield "F"
     }
   end
 
-  def self._rChunks(cA,eChunks,options=nil)
-    _rChunk(0,eChunks[cA],options){
+  def self._rChunksGetAOs(cA,eChunks,options={})
+    _rChunkGetAOs(0,eChunks[cA],options){
       unless cA==eChunks.length-1
-        _rChunks(cA+1,eChunks,options){ yield "F" }
+        _rChunksGetAOs(cA+1,eChunks,options){ yield "F" }
       else
         yield "F"
       end
     }
   end
 
-  def self._rChunk(cB,aos,options=nil)
-    VishLoep.sendActivityObjects(aos[cB]){ |response,code|
-      if !options.nil? and options[:trace]==true
+  def self._rChunkGetAOs(cB,aos,options={})
+    VishLoep.getActivityObjectMetrics(aos[cB]){ |response,code|
+      if options[:trace]==true
         puts "Activity Object with id: " + aos[cB].getGlobalId
         puts response.to_s
       end
 
       unless cB==aos.length-1
-        _rChunk(cB+1,aos,options){ yield "F" }
+        _rChunkGetAOs(cB+1,aos,options){ yield "F" }
+      else
+        yield "F"
+      end
+    }
+  end
+
+  def self._sendActivityObjectsSync(aos,options={})
+    aos.each do |ao|
+      VishLoep.sendActivityObject(ao){ |response,code|
+        if options[:trace]==true
+          puts "Activity Object with id: " + ao.getGlobalId
+          puts response.to_s
+        end
+      }
+      sleep 2
+    end
+    return "Finish"
+  end
+
+  def self._sendActivityObjectsAsync(aos,options={})
+    eChunks = aos.each_slice(25).to_a
+    _rChunksSendAOs(0,eChunks,options){
+        yield "F"
+    }
+  end
+
+  def self._rChunksSendAOs(cA,eChunks,options={})
+    _rChunkSendAOs(0,eChunks[cA],options){
+      unless cA==eChunks.length-1
+        _rChunksSendAOs(cA+1,eChunks,options){ yield "F" }
+      else
+        yield "F"
+      end
+    }
+  end
+
+  def self._rChunkSendAOs(cB,aos,options={})
+    VishLoep.sendActivityObject(aos[cB]){ |response,code|
+      if options[:trace]==true
+        puts "Activity Object with id: " + aos[cB].getGlobalId
+        puts response.to_s
+      end
+
+      unless cB==aos.length-1
+        _rChunkSendAOs(cB+1,aos,options){ yield "F" }
       else
         yield "F"
       end

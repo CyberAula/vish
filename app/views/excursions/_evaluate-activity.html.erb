@@ -1,3 +1,29 @@
+<% showEvaluation = @excursion.evaluable? %>
+<% showAnalytics = showEvaluation and can?(:show_analytics,@excursion) and @excursion.has_analytics? %>
+
+<% if showEvaluation %>
+  <script type="text/javascript">
+    var loepSettings = {};
+    <% loepConfig = Vish::Application.config.APP_CONFIG['loep'] %>
+    loepSettings.domain = '<%=loepConfig["domain"]%>';
+    loepSettings.app = '<%=loepConfig["app_name"]%>';
+    <% unless loepConfig["repository_name"].blank? %>
+      loepSettings.repository = '<%=loepConfig["repository_name"]%>';
+    <% end %>
+    <% if user_signed_in? %>
+      loepSettings.user_id = '<%=current_user.id%>';
+    <% end %>
+    loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
+    loepSettings.language = '<%=I18n.locale.to_s%>';
+    loepSettings.tokenURL = "/loep/session_token.json";
+    loepSettings.debug = false;
+
+    var triggerEvaluation = function(){
+      $("#learning-evaluation-button-id").trigger("click");
+    };
+  </script>
+<% end %>
+
 <!--activity-->
 <div class="activity">
   <ul class="nav nav-tabs">
@@ -9,27 +35,24 @@
       </a>
     </li>
 
-    <% showAnalytics = false %>
-    <% unless Vish::Application.config.APP_CONFIG['loep'].nil? %>
-      <!-- Disable evaluations if LOEP is not enabled -->
+    <% if showEvaluation %>
       <li>
-        <a href="#evaluation1" data-toggle="tab">
+        <a href="#lo_evaluation" data-toggle="tab">
           <i class="fa fa-check-square"></i>
           <span class="hidden-xs"><%=t('evaluation.tabtitle')%></span>
         </a>
       </li>
-
-      <% if !@excursion.activity_object.interaction_qscore.nil? and user_signed_in? and @excursion.author_id == current_user.id and !@excursion.activity_object.lo_interaction.nil? %>
-        <% showAnalytics = true %>
-        <li>
-          <a href="#lo_analytics" data-toggle="tab">
-            <i class="fa fa-area-chart"></i>
-            <span class="hidden-xs"><%=t('analytics.tabtitle')%></span>
-          </a>
-        </li>
-      <% end %>
     <% end %>
 
+    <% if showAnalytics %>
+      <li>
+        <a href="#lo_analytics" data-toggle="tab">
+          <i class="fa fa-area-chart"></i>
+          <span class="hidden-xs"><%=t('analytics.tabtitle')%></span>
+        </a>
+      </li>
+    <% end %>
+    
     <li class="suggestion_show hidden-md hidden-lg">
       <a  href="#suggestion_show" data-toggle="tab">
         <i class="fa fa-bars"></i>
@@ -54,22 +77,25 @@
       </div>
     <%end%>
   
-    <div class="tab-pane evaluate-show" id="evaluation1">
-      <div class="btn-evalue">
-        <p><%= t('evaluation.contribute.student.title') %></p>
-        <!-- Button to trigger modal -->
-        <a id="learning-evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.student.evaluate') %></a>
+    <% if showEvaluation %>
+      <div class="tab-pane evaluate-show" id="lo_evaluation">
+        <div class="btn-evalue">
+          <p><%= t('evaluation.contribute.student.title') %></p>
+          <!-- Button to trigger modal -->
+          <a id="learning-evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.student.evaluate') %></a>
+        </div>
+        <br/>
+        <div class="btn-evalue">
+          <p><%= t('evaluation.contribute.teacher.title') %></p>
+          <!-- Button to trigger modal -->
+          <a id="teaching-evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.teacher.evaluate') %></a>
+        </div>
+        <br/>
+        <div id="learning-eval-results" style="display:none"></div>
+        <div id="teaching-eval-results" style="display:none"></div>
       </div>
-      <br/>
-      <div class="btn-evalue">
-        <p><%= t('evaluation.contribute.teacher.title') %></p>
-        <!-- Button to trigger modal -->
-        <a id="teaching-evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.teacher.evaluate') %></a>
-      </div>
-      <br/>
-      <div id="learning-eval-results" style="display:none"></div>
-      <div id="teaching-eval-results" style="display:none"></div>
-    </div>
+      <%= render :partial => "excursions/excursion_evaluate" %>
+    <% end %>
 
     <% if showAnalytics %>
       <div class="tab-pane evaluate-show" id="lo_analytics">
@@ -78,6 +104,24 @@
         </div>
         <div id="learning-analytics-chart" style="display:none"></div>
       </div>
+      <% content_for :javascript do %>
+        var analyticsTabShown = false;
+        $('a[data-toggle="tab"][href="#lo_analytics"]').on('shown.bs.tab', function(e){
+          if (analyticsTabShown===true){
+            return;
+          }
+          analyticsTabShown = true;
+          var lanalyticsLoepSettings = $.extend({}, loepSettings);
+          lanalyticsLoepSettings.action = "showchart";
+          lanalyticsLoepSettings.evmethod = "qinteraction";
+          lanalyticsLoepSettings.containerDOM = $('#learning-analytics-chart');
+          lanalyticsLoepSettings.errorCallback = function(errorMsg){
+            $('#learning-analytics-chart').remove();
+          };
+          $('#learning-analytics-chart').show();
+          new LOEP.IframeAPI.instance(lanalyticsLoepSettings);
+        });
+      <% end %>
     <% end %>
 
     <div class="tab-pane" id="suggestion_show">
@@ -91,85 +135,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
 </div>
-
-<%unless Vish::Application.config.APP_CONFIG['loep'].nil? %>
-
-  <%content_for :javascript do%>
-
-      var loepSettings = {};
-      loepSettings.action = "showchart";
-      <% loepConfig = Vish::Application.config.APP_CONFIG['loep'] %>
-      loepSettings.domain = '<%=loepConfig["domain"]%>';
-      loepSettings.app = '<%=loepConfig["app_name"]%>';
-      <% unless loepConfig["repository_name"].blank? %>
-        loepSettings.repository = '<%=loepConfig["repository_name"]%>';
-      <% end %>
-      <% if user_signed_in? %>
-        loepSettings.user_id = '<%=current_user.id%>';
-      <% end %>
-      loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
-      loepSettings.language = '<%=I18n.locale.to_s%>';
-      loepSettings.tokenURL = "/loep/session_token.json";
-      loepSettings.debug = false;
-
-      var evaluationTabShown = false;
-      $('a[data-toggle="tab"][href="#evaluation1"]').on('shown.bs.tab', function(e){
-        if (evaluationTabShown===true){
-          return;
-        }
-        evaluationTabShown = true;
-            
-        <% unless @excursion.users_qscore.nil? %>
-          var learningLoepSettings = $.extend({}, loepSettings);
-          learningLoepSettings.evmethod = "wblts";
-          learningLoepSettings.containerDOM = $('#learning-eval-results');
-          learningLoepSettings.errorCallback = function(errorMsg){
-            $('#learning-eval-results').remove();
-          };
-          $('#learning-eval-results').show();
-          new LOEP.IframeAPI.instance(learningLoepSettings);
-        <% end %>
-
-        <% unless true or @excursion.teachers_qscore.nil? %>
-          //Currently not shown
-          var teachingLoepSettings = $.extend({}, loepSettings);
-          teachingLoepSettings.evmethod = "wbltt";
-          teachingLoepSettings.containerDOM = $('#teaching-eval-results');
-          teachingLoepSettings.errorCallback = function(errorMsg){
-            $('#teaching-eval-results').remove();
-          };
-          $('#teaching-eval-results').show();
-          new LOEP.IframeAPI.instance(teachingLoepSettings);
-        <% end %>
-      });
-
-      <% if showAnalytics %>
-        var analyticsTabShown = false;
-        $('a[data-toggle="tab"][href="#lo_analytics"]').on('shown.bs.tab', function(e){
-          if (analyticsTabShown===true){
-            return;
-          }
-          analyticsTabShown = true;
-          console.log("HERE");
-          var lanalyticsLoepSettings = $.extend({}, loepSettings);
-          lanalyticsLoepSettings.evmethod = "qinteraction";
-          lanalyticsLoepSettings.containerDOM = $('#learning-analytics-chart');
-          lanalyticsLoepSettings.errorCallback = function(errorMsg){
-            $('#learning-analytics-chart').remove();
-          };
-          $('#learning-analytics-chart').show();
-          new LOEP.IframeAPI.instance(lanalyticsLoepSettings);
-        });
-      <% end %>
-      
-  <%end%>
-<%end%>
-
-<%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
-  <!-- Evaluation Modals -->
-  <%= render :partial => "excursions/excursion_evaluate" %>
-<%end%>

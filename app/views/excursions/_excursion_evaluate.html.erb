@@ -1,37 +1,57 @@
+<% showLearningEvaluationResults = !@excursion.users_qscore.nil? %>
+<% showTeachingEvaluations = false and !@excursion.teachers_qscore.nil? %>
+
 <%= content_for :javascript do%>
 
+  var evaluationTabShown = false;
+  $('a[data-toggle="tab"][href="#lo_evaluation"]').on('shown.bs.tab', function(e){
+    if (evaluationTabShown===true){
+      return;
+    }
+    evaluationTabShown = true;
+        
+    <% if showLearningEvaluationResults %>
+      var learningLoepSettings = $.extend({}, loepSettings);
+      learningLoepSettings.action = "showchart";
+      learningLoepSettings.evmethod = "wblts";
+      learningLoepSettings.containerDOM = $('#learning-eval-results');
+      learningLoepSettings.errorCallback = function(errorMsg){
+        $('#learning-eval-results').remove();
+      };
+      $('#learning-eval-results').show();
+      new LOEP.IframeAPI.instance(learningLoepSettings);
+    <% end %>
+
+    <% if showTeachingEvaluations  %>
+      var teachingLoepSettings = $.extend({}, loepSettings);
+      teachingLoepSettings.action = "showchart";
+      teachingLoepSettings.evmethod = "wbltt";
+      teachingLoepSettings.containerDOM = $('#teaching-eval-results');
+      teachingLoepSettings.errorCallback = function(errorMsg){
+        $('#teaching-eval-results').remove();
+      };
+      $('#teaching-eval-results').show();
+      new LOEP.IframeAPI.instance(teachingLoepSettings);
+    <% end %>
+  });
+
   $('#myLearningModal').on('shown.bs.modal', function(){
-    <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
-      var loepSettings = {};
-      loepSettings.action = "evaluate";
-      <% loepConfig = Vish::Application.config.APP_CONFIG['loep'] %>
-      loepSettings.domain = '<%=loepConfig["domain"]%>';
-      loepSettings.app = '<%=loepConfig["app_name"]%>';
-      <% unless loepConfig["repository_name"].blank? %>
-        loepSettings.repository = '<%=loepConfig["repository_name"]%>';
-      <% end %>
-      <% if user_signed_in? %>
-        loepSettings.user_id = '<%=current_user.id%>';
-      <% end %>
-      loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
-      loepSettings.evmethod = "wblts";
-      loepSettings.language = '<%=I18n.locale.to_s%>';
-      loepSettings.tokenURL = "/loep/session_token.json";
-      loepSettings.containerDOM = $('#myLearningModal').find(".modal-body");
-      loepSettings.loadCallback = function(){
+      var evaluateLearningLoepSettings = $.extend({}, loepSettings);
+      evaluateLearningLoepSettings.action = "evaluate";
+      evaluateLearningLoepSettings.evmethod = "wblts";
+      evaluateLearningLoepSettings.containerDOM = $('#myLearningModal').find(".modal-body");
+      evaluateLearningLoepSettings.loadCallback = function(){
         //LOEP form loaded"
       };
-      loepSettings.submitCallback = function(){
+      evaluateLearningLoepSettings.submitCallback = function(){
         //"Sucesfully submitted"
         $('#myLearningModal').modal('hide');
       };
-      loepSettings.errorCallback = function(){
+      evaluateLearningLoepSettings.errorCallback = function(){
         //"Error"
         $('#myLearningModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
       };
-      loepSettings.debug = false;
-      new LOEP.IframeAPI.instance(loepSettings);
-    <%end%>
+      new LOEP.IframeAPI.instance(evaluateLearningLoepSettings);
   });
 
   $('#myLearningModal').on('hidden.bs.modal', function(){
@@ -40,30 +60,22 @@
   });
 
   $('#myTeachingModal').on('shown.bs.modal', function(){
-    <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
-      var loepSettings = {};
-      <%loepConfig = Vish::Application.config.APP_CONFIG['loep']%>
-      loepSettings.domain = '<%=loepConfig["domain"]%>';
-      loepSettings.app = '<%=loepConfig["app_name"]%>';
-      loepSettings.loId = "<%=@excursion.activity_object.getGlobalId()%>";
-      loepSettings.evmethod = "wbltt";
-      loepSettings.language = '<%=I18n.locale.to_s%>';
-      loepSettings.tokenURL = "/loep/session_token.json";
-      loepSettings.containerDOM = $('#myTeachingModal').find(".modal-body");
-      loepSettings.loadCallback = function(){
+      var evaluateTeachingLoepSettings = $.extend({}, loepSettings);
+      evaluateTeachingLoepSettings.action = "evaluate";
+      evaluateTeachingLoepSettings.evmethod = "wbltt";
+      evaluateTeachingLoepSettings.containerDOM = $('#myTeachingModal').find(".modal-body");
+      evaluateTeachingLoepSettings.loadCallback = function(){
         //LOEP form loaded"
       };
-      loepSettings.submitCallback = function(){
+      evaluateTeachingLoepSettings.submitCallback = function(){
         //"Sucesfully submitted"
         $('#myTeachingModal').modal('hide');
       };
-      loepSettings.errorCallback = function(){
+      evaluateTeachingLoepSettings.errorCallback = function(){
         //"Error"
         $('#myTeachingModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
       };
-      loepSettings.debug = false;
-      new LOEP.IframeAPI.instance(loepSettings);
-    <%end%>
+      new LOEP.IframeAPI.instance(evaluateTeachingLoepSettings);
   });
 
   $('#myTeachingModal').on('hidden.bs.modal', function(){
