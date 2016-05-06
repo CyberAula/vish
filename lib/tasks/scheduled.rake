@@ -391,7 +391,7 @@ namespace :scheduled do
     Rake::Task["trsystem:calculateInteractionValues"].invoke
 
     #Send excursions with interactions to LOEP
-    aos = LoInteraction.all.map{|i| i.activity_object}.select{|ao| ao.object_type == "Excursion" and ao.scope==0}
+    aos = LoInteraction.all.map{|i| i.activity_object}.select{|ao| !ao.nil? and ao.object_type == "Excursion" and ao.scope==0}
     VishLoep.sendActivityObjects(aos,{:sync=>true,:trace=>true})
 
     puts "Task finished"
