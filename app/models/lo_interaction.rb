@@ -3,7 +3,10 @@ class LoInteraction < ActiveRecord::Base
   belongs_to :activity_object
 
   validates :activity_object_id, :presence => true
-  validates :tlo, :presence => true
+  validates :nsamples, :presence => true, :numericality => { :greater_than => 0 }
+  validates :tlo, :presence => true, :numericality => { :greater_than => 0 }
+  validates :nclicks, :presence => true, :numericality => true
+  validates :acceptancerate, :presence => true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
   before_save :fill_scores_and_vars
 
   # Class methods
@@ -19,7 +22,7 @@ class LoInteraction < ActiveRecord::Base
   def self.isValidInteraction?(tsdata)
     return false if tsdata.blank? or tsdata["chronology"].blank? or tsdata["duration"].blank? or tsdata["lo"].blank? or tsdata["lo"]["content"].blank? or tsdata["lo"]["content"]["slides"].blank?
     tlo = tsdata["duration"].to_i
-    return false if ((tlo < 3) || (tlo > (2*60*60)))
+    return false if ((tlo < 3) || (tlo > (3*60*60)))
     return true
   end
 
