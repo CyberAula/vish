@@ -45,16 +45,49 @@
 
         <!--author/owner-->
         <% unless resource.original_author_name.nil? %>
-          <tr>
-            <td><span><%= !resource.linked? ? t('document.info.author') : t('document.info.linked_by') %></span></td>
-            <td>
-              <% if resource.original_author.nil? %>
-                <%= link_to(resource.author.name, resource.author.subject) %>
-              <% else %>
-                <%= resource.original_author_name %>
-              <% end %>
-            </td>
-          </tr>
+          <% unless resource.linked? %>
+            <!-- Documents -->
+            <!-- author -->
+            <tr>
+              <td><span><%=t('document.info.author')%></span></td>
+              <td>
+                <% if resource.original_author.nil? %>
+                  <%= link_to(resource.author.name, resource.author.subject) %>
+                <% else %>
+                  <%= resource.original_author_name %>
+                <% end %>
+              </td>
+            </tr>
+            <!-- owner -->
+            <% unless  resource.author.nil? or resource.original_author.nil? %>
+              <tr>
+                <td><span><%=t('activity_object.author_uploaded_by')%></span></td>
+                <td>
+                  <%= link_to(resource.author.name, resource.author.subject) %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <!-- Links -->
+            <!-- author -->
+            <% unless resource.original_author.nil? %>
+              <tr>
+                <td><span><%=t('document.info.author')%></span></td>
+                <td>
+                  <%= resource.original_author_name %>
+                </td>
+              </tr>
+            <% end %>
+            <!-- owner -->
+            <% unless resource.author.nil? %>
+              <tr>
+                <td><span><%=t('document.info.linked_by')%></span></td>
+                <td>
+                  <%= link_to(resource.author.name, resource.author.subject) %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
         <% end %>
 
         <% if resource.should_have_license? %>

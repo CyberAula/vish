@@ -526,8 +526,19 @@ ActivityObject.class_eval do
     end
 
     unless self.linked?
+      unless self.original_author_name.blank?
+        metadata[I18n.t("activity_object.author")] = self.original_author_name
+      end
+      unless self.author.nil? or self.author.name.nil? or self.original_author_name==self.author.name
+        metadata[I18n.t("activity_object.author_uploaded_by")] = self.author.name
+      end
+    else
+      #Links
+      unless self.original_author.nil?
+        metadata[I18n.t("activity_object.author")] = self.original_author_name
+      end
       unless self.author.nil? or self.author.name.nil?
-        metadata[I18n.t("activity_object.author")] = self.author.name
+        metadata[I18n.t("document.info.linked_by")] = self.author.name
       end
     end
 

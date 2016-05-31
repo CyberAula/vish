@@ -50,6 +50,7 @@ es:
     unfollow: "Dejar de seguir"
   activity_object:
     author: "Autor"
+    author_uploaded_by: "Subido por"
     title: "Título"
     type: "Tipo"
     description: "Descripción"
