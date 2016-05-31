@@ -530,6 +530,7 @@ es:
         document: "Documento"
         embed: "Objeto Embebido"
         excursion: "Excursión (Presentación Interactiva)"
+        imscpfile: "Paquete de contenido IMS"
         link: "Enlace"
         officedoc: "Documento"
         picture: "Imagen"
@@ -731,6 +732,8 @@ es:
   home:
     foryou: "Para ti"
     populars: "Populares"
+  imscpfile:
+    confirm_delete: "¿Borrar paquete de contenido IMS?"
   info:
     author: "Autor"
   lang:
@@ -1040,6 +1043,7 @@ es:
       excursion: "Excursiones"
       follower: "Seguidores"
       following: "Contactos"
+      imscpfile: "Paquetes IMS CP"
       learning_object: "Objetos de aprendizaje"
       link: "Links"
       officedoc: "Documentos de office"

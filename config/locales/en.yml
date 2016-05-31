@@ -542,6 +542,7 @@ en:
         document: "Document"
         embed: "Embedded Object"
         excursion: "Excursion (Interactive Presentation)"
+        imscpfile: "IMS Content Package"
         link: "Link"
         officedoc: "Document"
         picture: "Image"
@@ -743,6 +744,8 @@ en:
   home:
     foryou: "For you"
     populars: "Populars"
+  imscpfile:
+    confirm_delete: "Delete IMS Content Package?"
   info:
     author: "Author"
   lang:
@@ -1047,6 +1050,7 @@ en:
       excursion: "Excursions"
       follower: "Followers"
       following: "Followings"
+      imscpfile: "IMS Content Package"
       learning_object: "Learning object"
       link: "Links"
       officedoc: "Office documents"

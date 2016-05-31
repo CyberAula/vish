@@ -13,7 +13,7 @@ class Imscpfile < ActiveRecord::Base
 
   validates_presence_of :title
   validates_presence_of :lohref
-  # validates_inclusion_of :imscp_version, in: ["XXX","YYY"], :allow_blank => false, :message => "Invalid IMS CP version. Only IMS CP XXX and YYY are supported"
+  validates_inclusion_of :schema, in: ["IMS Content"], :allow_blank => false, :message => "Invalid IMS CP schema. Only 'IMS Content' schema is supported"
   validates_presence_of :schema, :message => "Invalid IMS CP package. Schema is not defined."
   validates_presence_of :schemaversion, :message => "Invalid IMS CP package. Schema version is not defined."
   before_validation :fill_imscp_version
@@ -23,6 +23,36 @@ class Imscpfile < ActiveRecord::Base
     schemaEl = xmlManifest.at_css('//metadata//schema')
     return schemaEl.text unless schemaEl.nil?
     nil
+  end
+
+  def self.getFieldsFromManifest(xmlManifest)
+    fields = {}
+    fields["schema"] = xmlManifest.at_css('//metadata//schema').text rescue nil
+    fields["schemaversion"] = xmlManifest.at_css('//metadata//schemaversion').text rescue nil
+    imscp_items = xmlManifest.css('//organizations//organization:first//item')
+    imscp_resources = xmlManifest.css('//resources//resource')
+    loHrefs = []
+    imscp_items.each do |item|
+      imscp_resource_id = item.attributes["identifierref"].value rescue nil
+      imscp_resource = imscp_resources.at_css("resource[identifier='" + imscp_resource_id + "']")
+      unless imscp_resource.nil? or imscp_resource.attributes.nil? or imscp_resource.attributes["href"].nil? or imscp_resource.attributes["href"].value.blank?
+        loHrefs.push(imscp_resource.attributes["href"].value)
+      end
+    end
+    fields["lohref"] = loHrefs.first unless loHrefs.first.blank?
+    fields["lohrefs"] = loHrefs.to_json
+    fields
+  end
+
+  def self.extract_zip(file,destination)
+    FileUtils.mkdir_p(destination)
+    Zip::File.open(file) do |zip_file|
+      zip_file.each do |f|
+        fpath = File.join(destination,f.name)
+        FileUtils.mkdir_p(File.dirname(fpath))
+        zip_file.extract(f,fpath) unless File.exist?(fpath)
+      end
+    end
   end
 
   def self.createImscpfileFromZip(zipfile)
@@ -48,15 +78,18 @@ class Imscpfile < ActiveRecord::Base
       #Copy avatar
       resource.avatar = zipfile.avatar
 
-      #Unpack the IMS CP package and fill the lourl, lopath, zipurl and zippath fields
-      # #If the Package is not correct, SCORM::Package.open will raise an exception
-      # pkgPath = nil
-      # Scorm::Package.open(zipfile.file, :cleanup => true) do |pkg|
-      #   resource.schema = pkg.manifest.schema
-      #   resource.schemaversion = pkg.manifest.schema_version
-      #   resource.lohref = pkg.manifest.resources.first.href
-      #   pkgPath = pkg.path
-      # end
+      # Unpack the IMS CP package into pkgPath and fill the lourl, lopath, zipurl and zippath fields
+      zipFilePath = zipfile.file.path
+      pkgPath = File.join(File.dirname(zipFilePath), File.basename(zipFilePath,File.extname(zipFilePath)))
+      Imscpfile.extract_zip(zipFilePath,pkgPath)
+
+      manifestFilePath = pkgPath + "/imsmanifest.xml"
+      if File.exists?(manifestFilePath)
+        xmlManifest = File.open(manifestFilePath){ |f| Nokogiri::XML(f) }
+        Imscpfile.getFieldsFromManifest(xmlManifest).each do |k,v|
+          resource.send(k + "=", v)
+        end
+      end
 
       raise "No resource has been found" if pkgPath.nil? or resource.lohref.nil?
 
@@ -89,15 +122,19 @@ class Imscpfile < ActiveRecord::Base
   def updateImscpfile(pkgPath=nil)
 
     #Deal with blank pkgPath or undefined mandatory fields
-    if pkgPath.blank? or ["schema","schemaversion","lohref"].select{|f| self.send(f).blank?}.length > 1
+    if pkgPath.blank? or ["schema","schemaversion","lohref", "lohrefs"].select{|f| self.send(f).blank?}.length > 1
       #We need to unpack the IMS CP file
       unless self.file.blank?
-        # Scorm::Package.open(self.file, :cleanup => true) do |pkg|
-        #   self.schema = pkg.manifest.schema
-        #   self.schemaversion = pkg.manifest.schema_version
-        #   self.lohref = pkg.manifest.resources.first.href
-        #   pkgPath = pkg.path
-        # end
+        zipFilePath = self.file.path
+        pkgPath = File.join(File.dirname(zipFilePath), File.basename(zipFilePath,File.extname(zipFilePath)))
+        Imscpfile.extract_zip(zipFilePath,pkgPath)
+        manifestFilePath = pkgPath + "/imsmanifest.xml"
+        if File.exists?(manifestFilePath)
+          xmlManifest = File.open(manifestFilePath){ |f| Nokogiri::XML(f) }
+          Imscpfile.getFieldsFromManifest(xmlManifest).each do |k,v|
+            self.send(k + "=", v)
+          end
+        end
       else
         raise "No file has been found. This IMS CP package is corrupted."
       end
@@ -142,7 +179,7 @@ class Imscpfile < ActiveRecord::Base
 
   # Thumbnail file
   def thumb(size, helper)
-    "#{ size.to_s }/scorm.png"
+    "#{ size.to_s }/imscp.png"
   end
 
   #Overriding mimetype and format methods from SSDocuments
@@ -199,19 +236,9 @@ class Imscpfile < ActiveRecord::Base
   private
 
   def fill_imscp_version
-    # if self.schema == "ADL SCORM" and !self.schemaversion.blank?
-    #   if (self.schemaversion.scan(/2004\s[\w]+\sEdition/).length > 0) or (self.schemaversion == "CAM 1.3")
-    #     self.scorm_version = "2004"
-    #   else
-    #     self.scorm_version = self.schemaversion
-    #   end
-    # end
-    # if self.schema.blank? and self.schemaversion.blank?
-    #   #Some ATs create SCORM 1.2 Packages without specifying schema data
-    #   self.schema = "ADL SCORM"
-    #   self.schemaversion = "1.2"
-    #   self.scorm_version = "1.2" 
-    # end
+    if self.schema == "IMS Content" and !self.schemaversion.blank?
+        self.imscp_version = self.schemaversion
+    end
   end
 
   def remove_files

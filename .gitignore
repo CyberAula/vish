@@ -41,6 +41,9 @@ public/images/tmp
 public/system
 public/assets
 
+#ims cp zile
+public/imscp/packages/*
+
 # scorm zip files
 public/scorm/12/excursions/*
 public/scorm/2004/excursions/*

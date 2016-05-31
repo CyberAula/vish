@@ -339,6 +339,7 @@ ActiveRecord::Schema.define(:version => 20160531100045) do
     t.string   "schemaversion"
     t.string   "imscp_version"
     t.string   "lohref"
+    t.text     "lohrefs"
     t.string   "loresourceurl"
   end
 
