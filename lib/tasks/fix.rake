@@ -737,6 +737,21 @@ namespace :fix do
     printTitle("Task finished")
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:originalAuthors
+  #In production: bundle exec rake fix:originalAuthors RAILS_ENV=production
+  task :originalAuthors => :environment do
+    printTitle("Checking original authors")
+
+    ActivityObject.getAllResources.each do |ao|
+      if !ao.original_author.nil? and ao.author and ao.author.name==ao.original_author
+        ao.update_column :original_author, nil
+      end
+    end
+
+    printTitle("Task finished")
+  end
+
 
   ####################
   #Task Utils
