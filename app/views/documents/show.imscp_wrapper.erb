@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title><%=imscpPackage.title%></title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		var protocol = (document.location.protocol==="file:" ? "http:" : document.location.protocol);
+		<%
+			resources = ["/scorm_api/jquery-1.11.1.min.js","/imscp_api/IMSCP_Player.js","/apis/iframe_api.js"]
+		%>
+		<% resources.each do |resource| %>
+			document.write(unescape("%3Cscript src='" + protocol + "//<%=Vish::Application.config.domain + resource%>' type='text/javascript'%3E%3C/script%3E"));
+		<% end %>
+	</script>
+</head>
+<body>
+	<script type="text/javascript">
+		//IMSCP Package URL
+		var imscpPackageURL = "<%=imscpPackage.loresourceurl%>";
+		
+		//Create IMSCP player
+		var IMSCP_Player = new IMSCP_Player({debug: false, IMSCP_VERSION: "<%=imscpPackage.imscp_version%>", VISH_IFRAME_API: VISH.IframeAPI, IMSCP_PACKAGE_URL: imscpPackageURL });
+
+		IMSCP_Player.loadIMSCPContent(function(){
+			// IMSCP content loaded
+		});
+	</script>
+</body>
+</html>

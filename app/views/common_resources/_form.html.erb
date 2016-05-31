@@ -149,7 +149,7 @@
 
       <% if resource.should_have_authorship? %>
         <section class="authorship">
-          <% unless isNewInstance %>
+          <% unless isNewInstance or resource.author.nil? %>
             <label><%=t("document.info.author")%>:</label>
             <span><%= resource.original_author_name %></span>
             <%unless resource.license_attribution.blank? or resource.license.nil? or !resource.license.requires_attribution? %>

@@ -119,7 +119,7 @@ ActivityObject.class_eval do
   end
 
   def should_have_license?
-    return ((self.object_type.is_a? String) and (["Document", "Excursion", "Scormfile", "Webapp", "Workshop", "Writing"].include? self.object_type))
+    return ((self.object_type.is_a? String) and (["Document", "Excursion", "Scormfile", "Imscpfile", "Webapp", "Workshop", "Writing"].include? self.object_type))
   end
 
   def should_have_authorship?
@@ -127,8 +127,8 @@ ActivityObject.class_eval do
   end
 
   def resource?
-    #"Actor", "Post", "Category", "Document", "Excursion", "Scormfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop", "Writing"
-    return ((self.object_type.is_a? String) and (["Category", "Document", "Excursion", "Scormfile", "Link", "Webapp", "Event", "Embed", "Workshop", "Writing"].include? self.object_type))
+    #"Actor", "Post", "Category", "Document", "Excursion", "Scormfile", "Imscpfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop", "Writing"
+    return ((self.object_type.is_a? String) and (["Category", "Document", "Excursion", "Scormfile", "Imscpfile", "Link", "Webapp", "Event", "Embed", "Workshop", "Writing"].include? self.object_type))
   end
 
   def document?
@@ -414,7 +414,7 @@ ActivityObject.class_eval do
       if ["Picture","Swf"].include? resource.class.name
         relativePath = resource.file.url
       end
-    elsif ["Scormfile","Webapp"].include? resource.class.name
+    elsif ["Scormfile", "Imscpfile", "Webapp"].include? resource.class.name
       absolutePath = resource.lourl
     elsif ["Excursion"].include? resource.class.name
       # relativePath = Rails.application.routes.url_helpers.excursion_path(resource, :format=> "full")
@@ -441,7 +441,7 @@ ActivityObject.class_eval do
 
     if [resource.class.name,resource.class.superclass.name].include? "Document"
       relativePath = resource.file.url
-    elsif ["Scormfile","Webapp"].include? resource.class.name
+    elsif resource.respond_to?("zipurl")
       absolutePath = resource.zipurl
     elsif ["Excursion"].include? resource.class.name
       # relativePath = Rails.application.routes.url_helpers.excursion_path(resource, :format=> "scorm")

@@ -28,6 +28,7 @@ DocumentsHelper.module_eval do
         when "Embed" then "code"
         when "Writing" then "file-text"
         when "Scormfile" then "scorm"
+        when "Imscpfile" then "scorm"
         when "Webapp" then "webapp"
         when "Workshop" then "book"
         when "Excursion" then "webapp"

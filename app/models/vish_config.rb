@@ -11,7 +11,7 @@ class VishConfig
   end
 
   def self.getResourceModels
-    ["Document","Webapp","Scormfile","Link","Embed","Writing"] + getMainModelsWhichActAsResources
+    ["Document","Webapp","Scormfile","Imscpfile","Link","Embed","Writing"] + getMainModelsWhichActAsResources
   end
 
   def self.getMainModelsWhichActAsResources

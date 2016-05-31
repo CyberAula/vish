@@ -1,0 +1,8 @@
+<%= div_for imscpfile, :class => 'content_size' do %>
+  <div class="scormpackage_show">
+    <iframe width=<%=imscpfile.width%> height="<%=imscpfile.height%>" class="scormpackage_wrapper" style="border: none; max-width: 100%" src="<%=Embed.checkUrlProtocol(imscpfile.lourl,request.protocol)%>" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+	<div class="link_address">
+    	<a href="<%=imscpfile_path(imscpfile, :format => :full)%>" target="_blank"><i class="fa fa-expand"></i> <p><%= t("imscpfile.view_full") %></p></a>
+    </div>
+  </div>
+<% end %>

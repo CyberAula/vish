@@ -122,7 +122,7 @@ class VishLoep
         #"Document"
         lo["lotype"] = "document"
       end
-    when "Link","Embed","Scormfile", "Webapp"
+    when "Link","Embed","Scormfile","Imscpfile","Webapp"
       lo["lotype"] = "web"
       lo["technology"] = "html"
       lo["hasWebs"] = "1"
