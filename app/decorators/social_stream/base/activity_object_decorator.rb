@@ -9,6 +9,7 @@ ActivityObject.class_eval do
   
   before_validation :fill_license
   before_validation :fill_license_attribution
+  before_validation :check_original_author
   before_save :fill_relation_ids
   before_save :fill_indexed_lengths
   before_save :save_tag_array_text
@@ -770,6 +771,10 @@ ActivityObject.class_eval do
         self.license_attribution = self.default_license_attribution
       end
     end
+  end
+
+  def check_original_author
+    self.original_author = nil if self.author and self.author.name == self.original_author
   end
 
   def after_update_qscore
