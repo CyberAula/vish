@@ -34,12 +34,18 @@ class Imscpfile < ActiveRecord::Base
     loHrefs = []
     imscp_items.each do |item|
       imscp_resource_id = item.attributes["identifierref"].value rescue nil
-      imscp_resource = imscp_resources.at_css("resource[identifier='" + imscp_resource_id + "']")
-      unless imscp_resource.nil? or imscp_resource.attributes.nil? or imscp_resource.attributes["href"].nil? or imscp_resource.attributes["href"].value.blank?
-        loHrefs.push(imscp_resource.attributes["href"].value)
+      unless imscp_resource_id.blank?
+        imscp_resource = imscp_resources.at_css("resource[identifier='" + imscp_resource_id + "']")
+        unless imscp_resource.nil? or imscp_resource.attributes.nil? or imscp_resource.attributes["href"].nil? or imscp_resource.attributes["href"].value.blank?
+          loHref = {}
+          loHref["href"] = imscp_resource.attributes["href"].value
+          item_title = item.at_css("title").text rescue nil
+          loHref["title"] = item_title unless item_title.blank?
+          loHrefs.push(loHref)
+        end
       end
     end
-    fields["lohref"] = loHrefs.first unless loHrefs.first.blank?
+    fields["lohref"] = loHrefs.first["href"] unless loHrefs.first.blank?
     fields["lohrefs"] = loHrefs.to_json
     fields
   end

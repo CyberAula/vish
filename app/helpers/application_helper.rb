@@ -52,6 +52,13 @@ module ApplicationHelper
 		loc[locale] ? loc[locale] : "en_GB"
 	end
 
+	def add_param_to_url(url,paramName,paramValue)
+		uri = URI(url)
+		params = URI.decode_www_form(uri.query || "") << [paramName, paramValue]
+		uri.query = URI.encode_www_form(params)
+		uri.to_s
+	end
+
 	def resource_license_options_for_select(licenseId,allowCustom=true)
 		selectedLicenseId = licenseId || License.default.id
 		licenses = License.all.select{|l| (l.public? and (allowCustom or !l.custom?)) or (l.id===selectedLicenseId) }

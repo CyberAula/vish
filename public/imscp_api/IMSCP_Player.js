@@ -25,8 +25,11 @@ function IMSCP_Player(options){
 	var defaults = {
 		version: "1.0",
 		debug: true,
+		navigation: false,
+		language: undefined,
 		IMSCP_VERSION: undefined,
 		IMSCP_PACKAGE_URL: undefined,
+		IMSCP_PACKAGE_NAVIGATION: undefined,
 		VISH_IFRAME_API: undefined
 	};
 
@@ -35,6 +38,19 @@ function IMSCP_Player(options){
 
 	debug("IMS CP player loading with settings:");
 	debug(settings);
+
+	if(!isValidLanguage(settings.language)){
+		var uL = getUserLanguage();
+		if(isValidLanguage(uL)){
+			settings.language = uL;
+		} else {
+			settings.language = "en"; //Default language
+		}
+	}
+
+	if((settings.IMSCP_PACKAGE_NAVIGATION instanceof Array)&&(settings.IMSCP_PACKAGE_NAVIGATION.length > 1)){
+		settings.navigation = true;
+	}
 
 	if(typeof settings.IMSCP_PACKAGE_URL == "undefined"){
 		settings.IMSCP_PACKAGE_URL = getIMSCPPackageUrlFromUrl();
@@ -77,7 +93,44 @@ function IMSCP_Player(options){
 			return;
 		}
 
-		var iframe = $('<iframe id="imscpcontent" style="width:100%; height:100%; border: none" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>');
+		if(settings.navigation){
+			//Add navigation panel
+			var navPanel = $('<div id="imscpnav" style="width: 20%; height:100%; border: 1px solid black; box-sizing: border-box; float: left; font-family: Arial, Helvetica, sans-serif;"><header style="width: 90%; height: auto; padding: 5%; background: #ccc;  font-size: 1.2rem; cursor: default;"></header><ul style="padding: 5% 5% 5% 5%;"></ul></div>');
+			
+			//Nav header
+			$(navPanel).find("header").html(getTransFromLocales(IMSCP_PLAYER_LOCALES,"i.header_title"));
+
+			//Nav Items
+			var navElements = settings.IMSCP_PACKAGE_NAVIGATION.length;
+			for(var i=0; i<navElements; i++){
+				var navElement = settings.IMSCP_PACKAGE_NAVIGATION[i];
+				if(typeof navElement["href"] == "string"){
+					var title = (typeof navElement["title"] == "string") ? navElement["title"] : "Untitled";
+					$(navPanel).find("ul").append('<li style="list-style: none; padding: 5px 0px 5px 0px; cursor: pointer;" href="' + navElement["href"] + '" index="' + i + '">' + title + '</li>');
+				}
+			}
+			$("body").append(navPanel);
+			$("div#imscpnav ul li:first").addClass("active");
+
+			//Nav css
+			var navStyle="<style> div#imscpnav ul li.active { font-weight: bold }</style>";
+			$("head").append(navStyle);
+
+			//Nav events
+			//Nav items
+			$("div#imscpnav ul li").on("click",function(event){
+				var href = $(this).attr("href");
+				if(typeof href=="string"){
+					$("div#imscpnav ul li").removeClass("active");
+					$(this).addClass("active");
+					$("#imscpcontent").attr("src",href);
+				}
+			});
+		}
+
+		var iframeStyleWithNavigation = "width:80%; height:100%; border: 1px solid black; box-sizing: border-box;";
+		var iframeStyleWithoutNavigation = "width:100%; height:100%; border: none";
+		var iframe = $('<iframe id="imscpcontent" style="' + (settings.navigation ? iframeStyleWithNavigation : iframeStyleWithoutNavigation) + '" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>');
 		$("body").append(iframe);
 
 		document.getElementById('imscpcontent').onload = function(){
@@ -176,6 +229,68 @@ function IMSCP_Player(options){
 		}
 		return url;
 	};
+
+	function getUserLanguage(){
+		//Locale in URL
+		var urlParams = readURLparams();
+		if(isValidLanguage(urlParams["locale"])){
+			return urlParams["locale"];
+		}
+		//Browser language
+		var browserLang = (navigator.language || navigator.userLanguage);
+		if(isValidLanguage(browserLang)){
+			return browserLang;
+		}
+		return undefined;
+	};
+
+	function isValidLanguage(language){
+		return ((typeof language == "string")&&(["en","es"].indexOf(language)!=-1));
+	};
+
+	function getTransFromLocales(locales,s,params){
+		//First language
+		if((typeof locales[settings.language] != "undefined")&&(typeof locales[settings.language][s] == "string")) {
+			return getTransWithParams(locales[settings.language][s],params);
+		}
+
+		//Default language
+		if((_language != "en")&&(typeof locales["en"] != "undefined")&&(typeof locales["en"][s] == "string")){
+			return getTransWithParams(locales["en"][s],params);
+		}
+
+		return undefined;
+	};
+
+	var IMSCP_PLAYER_LOCALES = {
+		"en": {
+			"i.header_title": "Navigation"
+		},
+		"es": {
+			"i.header_title": "Navegación"
+		}
+	}
+
+	/*
+	 * Replace params (if they are provided) in the translations keys. Example:
+	 * // "i.dtest"	: "Download #{name}",
+	 * // getTrans("i.dtest", {name: "IMS CP"}) -> "Download IMS CP"
+	 */
+	function getTransWithParams(trans,params){
+		if(typeof params != "object"){
+			return trans;
+		}
+
+		for(var key in params){
+			var stringToReplace = "#{" + key + "}";
+			if(trans.indexOf(stringToReplace)!=-1){
+				trans = trans.replaceAll(stringToReplace,params[key]);
+			}
+		};
+
+		return trans;
+	};
+
 
 	function adaptContentWrapper(){
 		var contentWrappers = $("html,body");
