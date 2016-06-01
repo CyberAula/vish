@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<script type="text/javascript">
 		var protocol = (document.location.protocol==="file:" ? "http:" : document.location.protocol);
-		<% resources = ["/scorm_api/jquery-1.11.1.min.js","/imscp_api/IMSCP_Player.js","/apis/iframe_api.js"] %>
+		<% resources = ["/imscp_api/jquery-1.11.1.min.js","/imscp_api/IMSCP_Player.js","/apis/iframe_api.js"] %>
 		<% resources.each do |resource| %>
 			document.write(unescape("%3Cscript src='" + protocol + "//<%=Vish::Application.config.domain + resource%>' type='text/javascript'%3E%3C/script%3E"));
 		<% end %>
