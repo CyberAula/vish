@@ -95,10 +95,11 @@ function IMSCP_Player(options){
 
 		if(settings.navigation){
 			//Add navigation panel
-			var navPanel = $('<div id="imscpnav" style="width: 20%; height:100%; border: 1px solid black; box-sizing: border-box; float: left; font-family: Arial, Helvetica, sans-serif;"><header style="width: 90%; height: auto; padding: 5%; background: #ccc;  font-size: 1.2rem; cursor: default;"></header><ul style="padding: 5% 5% 5% 5%;"></ul></div>');
+			var navPanel = $('<div id="imscpnav" status="maximized" style="width: 20%; height:100%; border: 1px solid black; box-sizing: border-box; float: left; font-family: Arial, Helvetica, sans-serif; background: #f3f3f3;"><header style="position: relative; width: 90%; height: 10%; padding: 5%; background: #ccc;  font-size: 1.2rem; cursor: default;"></header><ul style="padding: 5% 5% 5% 5%; overflow-y: auto; height: 80%;"></ul></div>');
 			
 			//Nav header
-			$(navPanel).find("header").html(getTransFromLocales(IMSCP_PLAYER_LOCALES,"i.header_title"));
+			$(navPanel).find("header").append("<p>" + getTransFromLocales(IMSCP_PLAYER_LOCALES,"i.header_title") + "<p>");
+			$(navPanel).find("header").append('<div id="toggle_imscpnav" style="position: absolute; top: 2%; right: 1%; cursor: pointer; padding: 2%; border: 1px solid black; background: #f3f3f3; text-align: center;"><<div>');
 
 			//Nav Items
 			var navElements = settings.IMSCP_PACKAGE_NAVIGATION.length;
@@ -117,6 +118,40 @@ function IMSCP_Player(options){
 			$("head").append(navStyle);
 
 			//Nav events
+			//Nav toggle
+			$("div#imscpnav div#toggle_imscpnav").on("click",function(event){
+				var status = $("div#imscpnav").attr("status");
+				if(status=="maximized"){
+					//Minimize
+					$(this).html(">");
+					$("#imscpnav").css("width","2%");
+					$("iframe#imscpcontent").css("width","98%");
+					$("#imscpnav header").css("background","rgb(243, 243, 243)");
+					$("#imscpnav header p").hide();
+					$("#imscpnav ul").hide();
+					$(this).css("width","90%");
+					$(this).css("top","auto");
+					$(this).css("right","auto");
+					$(this).css("padding","0%");
+					$(this).css("border","none");
+					$("div#imscpnav").attr("status","minimized");
+				} else {
+					//Maximimize
+					$(this).html("<");
+					$("iframe#imscpcontent").css("width","80%");
+					$("#imscpnav").css("width","20%");
+					$("#imscpnav header").css("background","#ccc");
+					$("#imscpnav header p").show();
+					$("#imscpnav ul").show();
+					$(this).css("width","auto");
+					$(this).css("top","2%");
+					$(this).css("right","1%");
+					$(this).css("padding","2%");
+					$(this).css("border","1px solid black");
+					$("div#imscpnav").attr("status","maximized");
+				}
+			});
+			
 			//Nav items
 			$("div#imscpnav ul li").on("click",function(event){
 				var href = $(this).attr("href");

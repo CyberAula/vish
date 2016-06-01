@@ -13,7 +13,7 @@
 <body>
 	<script type="text/javascript">
 		//Create IMSCP player
-		var IMSCP_Player = new IMSCP_Player({debug: true, IMSCP_VERSION: "<%=imscpPackage.imscp_version%>", VISH_IFRAME_API: VISH.IframeAPI, IMSCP_PACKAGE_URL: "<%=imscpPackage.loresourceurl%>", IMSCP_PACKAGE_NAVIGATION: JSON.parse(<%= raw imscpPackage.lohrefs.to_json %>) });
+		var IMSCP_Player = new IMSCP_Player({debug: false, IMSCP_VERSION: "<%=imscpPackage.imscp_version%>", VISH_IFRAME_API: VISH.IframeAPI, IMSCP_PACKAGE_URL: "<%=imscpPackage.loresourceurl%>", IMSCP_PACKAGE_NAVIGATION: JSON.parse(<%= raw imscpPackage.lohrefs.to_json %>) });
 
 		IMSCP_Player.loadIMSCPContent(function(){
 			// IMSCP content loaded
