@@ -45,7 +45,7 @@ function Local_API_SCORM_12(options) {
                     _children: "comment,location,timestamp",
                     _count:    "0"
                 },
-                completion_status:     "unknown",
+                lesson_status:     "unknown",
                 completion_threshold:  "0.7",
                 credit:                "no-credit",
                 entry:                 "ab-initio",
@@ -68,7 +68,7 @@ function Local_API_SCORM_12(options) {
                 max_time_allowed:      "", // PT26.4S for 26.4 Seconds
                 mode:                  "normal",
                 objectives:            {
-                    _children: "id,score,success_status,completion_status,description",
+                    _children: "id,score,lesson_status,description",
                     _count:    "0"
                 },
                 progress_measure:      "",
@@ -81,7 +81,6 @@ function Local_API_SCORM_12(options) {
                     max:       ""
                 },
                 session_time:          "PT0H0M0S",
-                success_status:        "unknown",
                 suspend_data:          "",
                 time_limit_action:     "", // exit, no message or continue, message etc ...
                 total_time:            "PT0H0M0S"
@@ -95,12 +94,8 @@ function Local_API_SCORM_12(options) {
         /**
          * Completion Status's that are allowed
          */
-        completion_status = "|completed|incomplete|not attempted|unknown|",
-       
-        /**
-         * Success Status's that are allowed
-         */
-        success_status = "|passed|failed|unknown|",
+        lesson_status = "|passed|completed|failed|incomplete|browsed|not attempted|unknown|",
+
 
         /**
          Read Only values -
@@ -273,16 +268,17 @@ function Local_API_SCORM_12(options) {
         var r = "false";
         switch (key) {
             //Write Only
-        case "cmi.exit":
-        case "cmi.session_time":
+        case "cmi.core.exit":
+        case "cmi.core.session_time":
             settings.errorCode = 405;
             settings.diagnostic = "Sorry, this has been specified as a read-only value for " + key;
             break;
-        case 'cmi.learner_name':
+        case 'cmi.core.student_name':
             r = settings.CMI.learner_name;
             break;
         default:
-            r = getData(key.substr(4, key.length), cmi);
+            key = key.replace("cmi.core.","").replace("cmi.","");
+            r = getData(key, cmi);
             //debug(settings.prefix + ": cmiGetValue got " + r, 4);
             // Filter
             if (r === 'undefined') {
@@ -290,7 +286,7 @@ function Local_API_SCORM_12(options) {
                 settings.diagnostic = "Sorry, there was a undefined response from " + key;
                 r = "false";
             }
-            debug(settings.prefix + ": GetValue " + key + " = " + r, 4);
+            // debug(settings.prefix + ": GetValue " + key + " = " + r, 4);
             break;
         }
 
@@ -301,7 +297,7 @@ function Local_API_SCORM_12(options) {
      * Is Read Only?
      * I've placed several of the read-only items in a delimited string.  This is used to compare
      * the key, to known read-only values to keep you from changing something your not supposed to.
-     * @param key {String} like cmi.location
+     * @param key {String} like cmi.core.lesson_location
      * @returns {Boolean} true or false
      */
     function isReadOnly(key) {
@@ -313,9 +309,6 @@ function Local_API_SCORM_12(options) {
         }
         if (tiers[1] === 'comments_from_lms') {// entirely read only
             return true;
-        }
-        if (tiers[1] === 'comments_from_learner') { // Condition where comment in this case is allowed.
-            return false;
         }
         return read_only.indexOf('|' + v + '|') >= 0;
     };
@@ -361,8 +354,8 @@ function Local_API_SCORM_12(options) {
     };
 
     function checkExitType() {
-        if (cmi.exit === "suspend") {
-            cmi.entry = "resume";
+        if (cmi.core.exit === "suspend") {
+            cmi.core.entry = "resume";
         }
     };
 
@@ -444,7 +437,7 @@ function Local_API_SCORM_12(options) {
      * Initialize Session (SCORM) only once!
      * @returns {String} "true" or "false" depending on if its been initialized prior
      */
-    this.LMSInitialize = function () {
+    this.LMSInitialize = function() {
         debug(settings.prefix + ":  Initializing...", 3);
         if (settings.cmi) {
             cmi = settings.cmi;
@@ -464,14 +457,14 @@ function Local_API_SCORM_12(options) {
      * @returns {String} "true" or "false" depending on if its been initialized prior
      */
     this.LMSGetValue = function (key){
-        //debug(settings.prefix + ":  Running: " + this.isRunning() + " GetValue: " + key + "...", 4);
+        // debug(settings.prefix + ":  Running: " + this.isRunning() + " GetValue: " + key + "...", 4);
         settings.errorCode = 0;
         var r = "false",
             k = key.toString(), // ensure string
             tiers = [];
         if (this.isRunning()) {
             if (isWriteOnly(k)) {
-                debug(settings.prefix + ": This " + k + " is write only", 4);
+                // debug(settings.prefix + ": This " + k + " is write only", 4);
                 settings.errorCode = 405;
                 return "false";
             }
@@ -511,53 +504,35 @@ function Local_API_SCORM_12(options) {
 
         if (this.isRunning()) {
             if (isReadOnly(k)) {
-                debug(settings.prefix + ": This " + k + " is read only", 4);
+                // debug(settings.prefix + ": This " + k + " is read only", 4);
                 settings.errorCode = 404;
                 return "false";
             }
             tiers = k.split(".");
-            //debug(settings.prefix + ": Tiers " + tiers[1], 4);
+            // debug(settings.prefix + ": Tiers " + tiers[1], 4);
 
             switch (tiers[0]) {
             case "cmi":
                 switch (key) {
-                case "cmi.location":
+                case "cmi.core.lesson_location":
                     if (v.length > 1000) {
                         debug(settings.prefix + ": Some LMS's might truncate your bookmark as you've passed " + v.length + " characters of bookmarking data", 2);
                     }
                     break;
-                case "cmi.progress_measure":
-                    var scaledProgressMeasure = parseFloat(v);
-                    if((typeof scaledProgressMeasure == "number")&&(!isNaN(scaledProgressMeasure))){
-                        scaledProgressMeasure = Math.max(0,Math.min(1,scaledProgressMeasure));
-                        callListener(key,scaledProgressMeasure);
-                    } else {
-                        return throwArgumentError(key,v);
-                    }
-                    break;
-                case "cmi.completion_status":
-                    if (completion_status.indexOf('|' + v + '|') === -1) {
+                case "cmi.core.lesson_status":
+                    if (lesson_status.indexOf('|' + v + '|') === -1) {
                         // Invalid value
                         return throwVocabError(key, v);
                     }
                     callListener(key,v);
                     break;
-                case "cmi.exit":
+                case "cmi.core.exit":
                     if (exit.indexOf('|' + v + '|') === -1) {
                         // Invalid value
                         return throwVocabError(key, v);
                     }
                     break;
-                case "cmi.score.scaled":
-                    var scaledScore = parseFloat(v);
-                    if((typeof scaledScore == "number")&&(!isNaN(scaledScore))){
-                       scaledScore = Math.max(0,Math.min(1,scaledScore));
-                       callListener(key,scaledScore);
-                    } else {
-                        return throwArgumentError(key,v);
-                    }
-                    break;
-                case "cmi.score.min":
+                case "cmi.core.score.min":
                     var scoreMin = parseFloat(v);
                     if((typeof scoreMin == "number")&&(!isNaN(scoreMin))){
                         settings.CMI.score.min = scoreMin;
@@ -565,7 +540,7 @@ function Local_API_SCORM_12(options) {
                         return throwArgumentError(key,v);
                     }
                     break;
-                case "cmi.score.max":
+                case "cmi.core.score.max":
                     var scoreMax = parseFloat(v);
                     if((typeof scoreMax == "number")&&(!isNaN(scoreMax))){
                         settings.CMI.score.max = scoreMax;
@@ -573,7 +548,7 @@ function Local_API_SCORM_12(options) {
                         return throwArgumentError(key,v);
                     }
                     break;
-                case 'cmi.score.raw':
+                case 'cmi.core.score.raw':
                     var rawScore = parseFloat(v);
                     if((typeof rawScore == "number")&&(!isNaN(rawScore))){
                         var maxScore = parseFloat(settings.CMI.score.max);
@@ -592,139 +567,12 @@ function Local_API_SCORM_12(options) {
                         return throwArgumentError(key,v);
                     }
                     break;
-                case "cmi.success_status":
-                    if (success_status.indexOf('|' + v + '|') === -1) {
-                        // Invalid value
-                        return throwVocabError(key, v);
-                    }
-                    callListener(key,v);
-                    break;
                 default:
-                    // Need to dig in to some of these lower level values
-                    switch (tiers[1]) {
-                    case "comments_from_lms":
-                        settings.errorCode = "404";
-                        settings.diagnostic = "The cmi.comments_from_lms element is entirely read only.";
-                        return 'false';
-                    case "comments_from_learner":
-                        // Validate
-                        if (cmi.comments_from_learner._children.indexOf(tiers[3]) === -1) {
-                            return throwVocabError(key, v);
-                        }
-                        setData(k.substr(4, k.length), v, cmi);
-                        cmi.comments_from_learner._count = (getObjLength(cmi.comments_from_learner) - 2).toString(); // Why -1?  _count and _children
-                        return 'true';
-                    case "interactions":
-                        // Validate
-                        if (cmi.interactions._children.indexOf(tiers[3]) === -1) {
-                            return throwVocabError(key, v);
-                        }
-                        //debug(settings.prefix + ": Checking Interactions .... " + getObjLength(cmi.interactions), 4);
-                        cmi.interactions._count = (getObjLength(cmi.interactions) - 2).toString(); // Why -2?  _count and _children
-                        // Check interactions.n.objectives._count
-                        // This one is tricky because if a id is added at tier[3] this means the objective count needs to increase for this interaction.
-                        // Interactions array values may not exist yet, which is why its important to build these out ahead of time.
-                        // this should work (Subtract _count, and _children)
-                        if (isNaN(parseInt(tiers[2], 10))) {
-                            return 'false';
-                        }
-                        // Interactions uses objectives and correct_repsponses that need to be constructed.
-                        // Legal build of interaction array item
-                        if (!$.isPlainObject(cmi.interactions[tiers[2]])) {
-                            if (tiers[3] === "id") {
-                                cmi.interactions[tiers[2]] = {};
-                                setData(k.substr(4, k.length), v, cmi);
-                                cmi.interactions._count = (getObjLength(cmi.interactions) - 2).toString(); // Why -2?  _count and _children
-                                if (!$.isPlainObject(cmi.interactions[tiers[2]].objectives)) {
-                                    // Setup Objectives for the first time
-                                    debug(settings.prefix + ": Constructing objectives object for new interaction", 4);
-                                    cmi.interactions[tiers[2]].objectives = {};
-                                    cmi.interactions[tiers[2]].objectives._count = "-1";
-                                }
-                                // Wait, before you go trying set a count on a undefined object, lets make sure it exists...
-                                if (!$.isPlainObject(cmi.interactions[tiers[2]].correct_responses)) {
-                                    // Setup Objectives for the first time
-                                    debug(settings.prefix + ": Constructing correct responses object for new interaction", 4);
-                                    cmi.interactions[tiers[2]].correct_responses = {};
-                                    cmi.interactions[tiers[2]].correct_responses._count = "-1";
-                                }
-                                return 'true';
-                            }
-                            debug("Can't add interaction without ID first!", 3);
-                            return 'false';
-                            // throw error code
-                        }
-                        // Manage Objectives
-                        if (tiers[3] === 'objectives') { // cmi.interactions.n.objectives
-                            // Objectives require a unique ID
-                            if (tiers[5] === "id") {
-                                count = parseInt(cmi.interactions[tiers[2]].objectives._count, 10);
-                                for (z = 0; z < count; z += 1) {
-                                    if (cmi.interactions[tiers[2]].objectives[z].id === v) {
-                                        return throwGeneralSetError(key, v, z);
-                                        //settings.errorCode = "351";
-                                        //settings.diagnostic = "The objectives.id element must be unique.  The value '" + v + "' has already been set in objective #" + z;
-                                    }
-                                }
-                            } else {
-                                return throwVocabError(key, v);
-                            }
-                            setData(k.substr(4, k.length), v, cmi);
-                            cmi.interactions[tiers[2]].objectives._count = (getObjLength(cmi.interactions[tiers[2]].objectives) - 1).toString(); // Why -1?  _count
-                            return 'true';
-                        }
-                        // Manage Correct Responses
-                        if (tiers[3] === 'correct_responses') {
-                            // Validate Correct response patterns
-                            setData(k.substr(4, k.length), v, cmi);
-                            cmi.interactions[tiers[2]].correct_responses._count = (getObjLength(cmi.interactions[tiers[2]].correct_responses) - 1).toString(); // Why -1?  _count
-                        }
-                        setData(k.substr(4, k.length), v, cmi);
-                        cmi.interactions._count = (getObjLength(cmi.interactions) - 2).toString(); // Why -2?  _count and _children
-                        return 'true';
-                        //break;
-                    case "objectives":
-                        // Objectives require a unique ID, which to me contradicts journaling
-                        if (tiers[3] === "id") {
-                            count = parseInt(cmi.objectives._count, 10);
-                            for (z = 0; z < count; z += 1) {
-                                if (cmi.objectives[z].id === v) {
-                                    settings.errorCode = "351";
-                                    settings.diagnostic = "The objectives.id element must be unique.  The value '" + v + "' has already been set in objective #" + z;
-                                    return 'false';
-                                }
-                            }
-                        }
-                        // End Unique ID Check
-                        // Now Verify the objective in question even has a ID yet, if not throw error.
-                        if (tiers[3] !== "id") {
-                            arr = parseInt(tiers[2], 10);
-                            if (cmi.objectives[arr] === undefined) {
-                                settings.errorCode = "408";
-                                settings.diagnostic = "The objectives.id element must be set before other elements can be set";
-                                return 'false';
-                            }
-                        }
-                        // END ID CHeck
-                        if (isNaN(parseInt(tiers[2], 10))) {
-                            return 'false';
-                            // throw error code
-                        }
-                        setData(k.substr(4, k.length), v, cmi);
-                        cmi.objectives._count = (getObjLength(cmi.objectives) - 2).toString(); // Why -2?  _count and _children
-                        return 'true';
-                    }
                     break;
-                    // More reinforcement to come ...
                 }
                 // Rip off 'cmi.' before we add this to the model
-                setData(k.substr(4, k.length), v, cmi);
-                break;
-            case "ssp":
-                // Still to do (build off cmi work)
-                break;
-            case "adl":
-                // Still to do (build off cmi work)
+                k = k.replace("cmi.core.","").replace("cmi.","");
+                setData(k, v, cmi);
                 break;
             }
             return "true";
@@ -744,20 +592,9 @@ function Local_API_SCORM_12(options) {
      * @returns {String} "true" or "false"
      */
     this.LMSCommit = function(){
-        debug(settings.prefix + ": Commit CMI Object:", 4);
-        debug(cmi);
-        debug(settings.prefix + ": Suspend Data Usage " + suspendDataUsageStatistic());
-        $(self).triggerHandler({
-            type:        "StoreData",
-            runtimedata: cmi
-        });
-        return 'true';
-    };
-
-    this.Commit = function(){
-        debug(settings.prefix + ": Commit CMI Object:", 4);
-        debug(cmi);
-        debug(settings.prefix + ": Suspend Data Usage " + suspendDataUsageStatistic());
+        // debug(settings.prefix + ": Commit CMI Object:", 4);
+        // debug(cmi);
+        // debug(settings.prefix + ": Suspend Data Usage " + suspendDataUsageStatistic());
         $(self).triggerHandler({
             type:        "StoreData",
             runtimedata: cmi
@@ -769,9 +606,9 @@ function Local_API_SCORM_12(options) {
      * Terminate
      * @returns {String}
      */
-    this.LMSTerminate = function () {
+    this.LMSTerminate = function() {
         // Could do things here like a LMS
-        self.Commit();
+        self.LMSCommit();
         settings.terminated = 1;
         settings.initialized = 0;
         return 'true';
@@ -781,9 +618,9 @@ function Local_API_SCORM_12(options) {
      * Terminate
      * @returns {String}
      */
-    this.LMSFinish = function () {
+    this.LMSFinish = function() {
         // Could do things here like a LMS
-        self.Commit();
+        self.LMSCommit();
         settings.terminated = 1;
         settings.initialized = 0;
         return 'true';
@@ -794,7 +631,7 @@ function Local_API_SCORM_12(options) {
      * @param param number
      * @returns string
      */
-    this.LMSGetErrorString = function (param) {
+    this.LMSGetErrorString = function(param) {
         if (param !== "") {
             var nparam = parseInt(param, 10);
             if (errors[nparam] !== undefined) {
@@ -808,7 +645,7 @@ function Local_API_SCORM_12(options) {
      * GetLastError (SCORM) - Returns the error number from the last error
      * @returns {Number}
      */
-    this.LMSGetLastError = function () {
+    this.LMSGetLastError = function() {
         return settings.errorCode;
     };
 
@@ -817,7 +654,7 @@ function Local_API_SCORM_12(options) {
      * This would return further information from the lms about a error
      * @returns {String} description of error in more detail
      */
-    this.LMSGetDiagnostic = function () {
+    this.LMSGetDiagnostic = function() {
         return settings.diagnostic;
     };
 

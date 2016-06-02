@@ -22,8 +22,10 @@
 
 function SCORM_Player(options){
 
+	var status = {};
+
 	var defaults = {
-		version: "1.1",
+		version: "1.2",
 		debug: true,
 		SCORM_VERSION: undefined,
 		SCORM_PACKAGE_URL: undefined,
@@ -52,7 +54,7 @@ function SCORM_Player(options){
 	adaptContentWrapper();
 
 
-    //Public
+	//Public
 
 	this.loadScormContent = function(callback){
 		$(document).ready(function(){
@@ -212,29 +214,85 @@ function SCORM_Player(options){
 			return;
 		}
 		
-		settings.LMS_API.addListener("cmi.progress_measure", function(value){
-			if(settings.VISH_IFRAME_API.isConnected()){
-				settings.VISH_IFRAME_API.setProgress(value*100);
-			}
-		});
+		if(settings.SCORM_VERSION === "1.2"){
+			settings.LMS_API.addListener("cmi.core.lesson_status", function(value){
+				if(settings.VISH_IFRAME_API.isConnected()){
+					// Completion status and success status are not considered in SCORM 1.2, but can be inferred from lesson_status
+					// lesson_status = "|passed|completed|failed|incomplete|browsed|not attempted|unknown|"
+					// completion_status = "|completed|incomplete|not attempted|unknown|"
+					// success_status = "|passed|failed|unknown|"
+					var completionValue = undefined;
+					var successValue = undefined;
+					
+					switch(value){
+					case "passed":
+						completionValue = "completed";
+						successValue = value;
+						break;
+					case "failed":
+						successValue = value;
+						break;
+					case "completed":
+					case "incomplete":
+					case "not attempted":
+						completionValue = value;
+						break;
+					case "browsed":
+						completionValue = "not attempted";
+						break;
+					case "unknown":
+						completionValue = value;
+						successValue = value;
+						break;
+					}
 
-		settings.LMS_API.addListener("cmi.completion_status", function(value){
-			if(settings.VISH_IFRAME_API.isConnected()){
-				settings.VISH_IFRAME_API.setCompletionStatus(value);
-			}
-		});
+					if((typeof completionValue == "string")&&(completionValue != status.completionStatus)){
+						if(status.completionStatus != "completed"){
+							//Do not allow to undo "completed" lesson_status.
+							settings.VISH_IFRAME_API.setCompletionStatus(completionValue);
+							status.completionStatus = completionValue;
+						}
+					}
+					if((typeof successValue == "string")&&(successValue != status.successStatus)){
+						if(status.completionStatus != "passed"){
+							settings.VISH_IFRAME_API.setSuccessStatus(successValue);
+							status.successStatus = successValue;
+						}
+					}
+				}
+			});
 
-		settings.LMS_API.addListener("cmi.score.scaled", function(value){
-			if(settings.VISH_IFRAME_API.isConnected()){
-				settings.VISH_IFRAME_API.setScore(value*100);
-			}
-		});
+			settings.LMS_API.addListener("cmi.score.scaled", function(value){
+				if(settings.VISH_IFRAME_API.isConnected()){
+					settings.VISH_IFRAME_API.setScore(value*100);
+				}
+			});
 
-		settings.LMS_API.addListener("cmi.success_status", function(value){
-			if(settings.VISH_IFRAME_API.isConnected()){
-				settings.VISH_IFRAME_API.setSuccessStatus(value);
-			}
-		});
+		} else if((settings.SCORM_VERSION === "2004")||(typeof settings.SCORM_VERSION != "string")){
+			settings.LMS_API.addListener("cmi.progress_measure", function(value){
+				if(settings.VISH_IFRAME_API.isConnected()){
+					settings.VISH_IFRAME_API.setProgress(value*100);
+				}
+			});
+
+			settings.LMS_API.addListener("cmi.completion_status", function(value){
+				if(settings.VISH_IFRAME_API.isConnected()){
+					settings.VISH_IFRAME_API.setCompletionStatus(value);
+				}
+			});
+
+			settings.LMS_API.addListener("cmi.score.scaled", function(value){
+				if(settings.VISH_IFRAME_API.isConnected()){
+					settings.VISH_IFRAME_API.setScore(value*100);
+				}
+			});
+
+			settings.LMS_API.addListener("cmi.success_status", function(value){
+				if(settings.VISH_IFRAME_API.isConnected()){
+					settings.VISH_IFRAME_API.setSuccessStatus(value);
+				}
+			});
+		}
 	};
 
 	function adaptContentWrapper(){

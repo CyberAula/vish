@@ -66,6 +66,7 @@ namespace :vish_editor do
     system "cp " + VISH_EDITOR_PATH + "/js/VISH.QuizCharts.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/"
 
     system "cp " + VISH_EDITOR_PATH + "/examples/SCORM_APP/jquery-1.11.1.min.js " + "public/scorm_api/"
+    system "cp " + VISH_EDITOR_PATH + "/examples/SCORM_APP/Local_API_SCORM_12.js " + "public/scorm_api/"
     system "cp " + VISH_EDITOR_PATH + "/examples/SCORM_APP/Local_API_1484_11.js " + "public/scorm_api/"
     system "cp " + VISH_EDITOR_PATH + "/examples/SCORM_APP/SCORM_Player.js " + "public/scorm_api/"
 
