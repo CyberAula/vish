@@ -65,6 +65,7 @@ function Local_API_SCORM_12(options) {
                     audio_captioning: "0"
                 },
                 location:              "",
+                lesson_location:       "",
                 max_time_allowed:      "", // PT26.4S for 26.4 Seconds
                 mode:                  "normal",
                 objectives:            {
@@ -289,7 +290,6 @@ function Local_API_SCORM_12(options) {
             // debug(settings.prefix + ": GetValue " + key + " = " + r, 4);
             break;
         }
-
         return r;
     };
 
@@ -456,7 +456,7 @@ function Local_API_SCORM_12(options) {
      * @param key {String}
      * @returns {String} "true" or "false" depending on if its been initialized prior
      */
-    this.LMSGetValue = function (key){
+    this.LMSGetValue = function(key){
         // debug(settings.prefix + ":  Running: " + this.isRunning() + " GetValue: " + key + "...", 4);
         settings.errorCode = 0;
         var r = "false",
