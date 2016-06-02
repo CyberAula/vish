@@ -28,13 +28,15 @@ ViSH is a customizable Ruby on Rails application. The current version supports R
 * Educational resources recommender system.  
 * A [Learning Object Evaluation Platform](http://github.com/agordillo/LOEP).  
 * Support for ranking, relevance, similarity, popularity and quality metrics for educational resources.  
-* Tools for maximizing technology enhanced learning (e.g. Audience Response System).
+* Tools for maximizing technology enhanced learning (e.g. Audience Response System).  
+* Integration with Moodle (courses, single sign-on, etc.).
 
 <!-- Dear Markdown: I want two lists. -->
 
 * The following e-Learning standards are supported in ViSH:
   * SCORM (1.2 and 2004)
-  * IEEE LOM metadata
+  * IMS CP
+  * IEEE LOM (Learning Object Metadata)
   * OAI-PMH
   * IMS QTI 2.1
   * Moodle XML
