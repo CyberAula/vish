@@ -8,6 +8,7 @@ class Contribution < ActiveRecord::Base
   
   after_destroy :destroy_children_contributions
 
+  validates_presence_of :activity_object_id
   validate :has_valid_parent
   def has_valid_parent
     if self.parent.nil? or self.parent==self or self.all_contributions.include? self.parent or (!workshop_parent.nil? and !self.parent_id.nil?)
@@ -16,7 +17,14 @@ class Contribution < ActiveRecord::Base
       true
     end
   end
-
+  validate :ao_is_not_duplicated
+  def ao_is_not_duplicated
+    if self.parent.contributions.map{|c| c.activity_object_id}.include? self.activity_object_id
+      errors.add(:contribution, "duplicated")
+    else
+      true
+    end
+  end
 
   #Methods
   def parent

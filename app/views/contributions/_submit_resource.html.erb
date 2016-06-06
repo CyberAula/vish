@@ -26,36 +26,36 @@
     </div>
   </div>
 
-<%=
-    if current_subject != nil
+  <%
+    resources = []
+    excursions = []
+    unless current_subject.nil?
       resources = subject_resources(current_subject, {:scope => :me, :limit => 0})
       excursions = subject_excursions(current_subject, {:scope => :me, :limit => 0}).reject{ |e| e.draft==true }
-    else
-      resources = []
-      excursions = []
     end
-
-    render partial: "common_resources/select_modal_tabs", locals:{
-    name: "contribution",
-    excursions: excursions,
-    resources: resources,
-    title1: t('workshop.activities.assignment.modal.title'),
-    title2: "",
-    notfound: t('workshop.activities.assignment.modal.notfound'),
-    button_name: t('workshop.activities.assignment.modal.bt_upload') } %>
+  %>
+  <%= render partial: "common_resources/select_modal_tabs", locals:{
+      name: "contribution",
+      excursions: excursions,
+      resources: resources,
+      title1: t('workshop.activities.assignment.modal.title'),
+      title2: "",
+      notfound: t('workshop.activities.assignment.modal.notfound'),
+      button_name: t('workshop.activities.assignment.modal.bt_upload') } %>
 
   <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#join_contribution"><%= t('workshop.activities.assignment.available_contributions.resource') %></button>
 
 </div>
 
-<% if !wa_assignment.nil?
-  database_id ="wa_assignment_id: " + wa_assignment.id.to_s
- else
-  database_id = "parent_id: " + parent.id.to_s
-  end%>
+<% 
+  if !wa_assignment.nil?
+    database_id ="wa_assignment_id: " + wa_assignment.id.to_s
+  else
+    database_id = "parent_id: " + parent.id.to_s
+  end 
+%>
 
 <%= content_for :javascript do %>
-
     $("#button_for_contribution").attr("disabled", "disabled");
     $(".modal_join .box-item a").each(function(e){
       $(this).attr('url', $(this).attr('href') );
@@ -98,6 +98,4 @@
         }
       });
     });
-
-
 <% end %>

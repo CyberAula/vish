@@ -68,8 +68,8 @@
 
       <div class="layout_workshop">
         <% entity = workshop_activity.object %>
-        <%className = entity.class.to_s%>
-        <%classNameUnderscore = className.underscore%>
+        <% className = entity.class.to_s %>
+        <% classNameUnderscore = className.underscore %>
         <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
              locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" } %>
       </div>
