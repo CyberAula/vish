@@ -14,6 +14,7 @@ class Workshop < ActiveRecord::Base
     has draft
   end
 
+  validates_presence_of :title, allow_blank: false
   validates_inclusion_of :draft, :in => [true, false]
 
   def thumbnail_url
