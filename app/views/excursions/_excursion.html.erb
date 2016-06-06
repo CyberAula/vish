@@ -1,13 +1,8 @@
 <li class="box-item excursion-item" <%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
   <%
-    if defined?(obj_id)
-      generated_id = "cat-" + obj_id.to_s + "-" + generated_id
-    else
-      generated_id= "excursion-" + excursion.id.to_s
-      if defined?(prefix_id)
-        generated_id = prefix_id + "-" + generated_id 
-      end
-    end
+    generated_id = "excursion-" + excursion.id.to_s
+    generated_id = prefix_id + "-" + generated_id if defined?(prefix_id)
+    generated_id = "cat-" + obj_id.to_s + "-" + generated_id if defined?(obj_id)
   %>
 
   <%= link_to(excursion_url(excursion)) do %>
