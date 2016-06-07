@@ -31,9 +31,9 @@
 
 <% 
   if !wa_assignment.nil?
-    database_id = "wa_assignment_id: " + wa_assignment.id.to_s
+    contribution_parent_id = "wa_assignment_id: " + wa_assignment.id.to_s
   else
-    database_id = "parent_id: " + parent.id.to_s
+    contribution_parent_id = "parent_id: " + parent.id.to_s
   end 
 %>
 
@@ -42,19 +42,25 @@
     $.ajax({
       url: "/contributions",
       method: "POST",
+      dataType: "json",
       data: {
         contribution:{
-          <%= database_id %>,
+          <%= contribution_parent_id %>,
           type: "Resource"
         },
         url:  selectedUrl,
         authenticity_token: "<%= form_authenticity_token %>" 
       },
       success: function(e){
-          window.location.reload();
+        window.location.reload();
       },
       error: function(e){
-          window.location.reload();
+        if((typeof e.responseJSON == "object")&&(e.responseJSON.errors instanceof Array)&&(e.responseJSON.errors.length > 0)){
+          alert(e.responseJSON.errors[0]);
+          if(typeof onContributionModalSubmitError == "function"){
+            onContributionModalSubmitError(e.responseJSON.errors[0]);
+          }
+        }
       }
     });
   };

@@ -1228,6 +1228,8 @@ es:
               bt_upload: "Subir recurso"
               notfound: "No tiene ningún recurso educativo en su perfil. Cree o suba uno."
               title: "Selecciona uno de tus recursos"
+              url_explanation: "Copie aquí la URL completa del recurso o excursión que desee subir. Este recurso debe ser suyo y público."
+              url_tab: "URL"
             modal_title: "Editar tarea"
             open_date: "Fecha comienzo"
             title: "Tarea"

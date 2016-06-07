@@ -35,71 +35,67 @@ class ContributionsController < ApplicationController
     if params["contribution"]["wa_assignment_id"].present?
       wassignment = WaAssignment.find_by_id(params["contribution"]["wa_assignment_id"])
       workshop = wassignment.workshop unless wassignment.nil?
-      if wassignment.nil? or workshop.nil?
-        flash[:errors] = "Invalid workshop or assignment"
-        return redirect_to "/"
-      end
+      return create_return_with_error("Invalid workshop or assignment","/") if wassignment.nil? or workshop.nil?
     else
       #Get resource from which the contribution is being created...
       parent = Contribution.find_by_id(params["contribution"]["parent_id"])
-      if parent.nil?
-        flash[:errors] = "Invalid parent"
-        return redirect_to "/"
-      end
+      return create_return_with_error("Invalid parent","/") if parent.nil?
     end
+    pathToReturn = (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
 
     case params["contribution"]["type"]
     when "Document"
-      unless params["document"].present?
-        flash[:errors] = "missing document"
-        return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
-      end
+      return create_return_with_error("missing document",pathToReturn) unless params["document"].present?
       object = Document.new((params["document"].merge!(params["contribution"]["activity_object"])).permit!)
     when "Writing"
-      unless params["writing"].present?
-        flash[:errors] = "missing params"
-        return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
-      end
+      return create_return_with_error("missing params",pathToReturn) unless params["writing"].present?
       object = Writing.new((params["writing"].merge!(params["contribution"]["activity_object"])).permit!)
     when "Resource"
-      unless params["url"].present?
-        flash[:errors] = "missing resource url"
-        return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
-      end
+      return create_return_with_error("missing resource url",pathToReturn) unless params["url"].present?
       object = ActivityObject.getObjectFromUrl(params["url"])
+      return create_return_with_error("Object not found",pathToReturn) if object.nil?
     else
-      flash[:errors] = "Invalid contribution"
-      return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
+      return create_return_with_error("Invalid contribution type",pathToReturn)
     end
-
-    authorize! :create, object
-
-    object.valid?
-
-    if object.errors.blank? and object.save
-      ao = object.activity_object
+    
+    if object.new_record?
+      #We need to create and save the object
+      authorize! :create, object
+      object.valid?
+      return create_return_with_error(object.errors.full_messages.to_sentence,pathToReturn) unless object.errors.blank? and object.save
       discard_flash
     else
-      flash[:errors] = object.errors.full_messages.to_sentence
-      return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
+      #Object already exists. Authorize user to submit that object.
+      return create_return_with_error("This resource is not yours",pathToReturn) unless object.owner_id == current_subject.id
+      authorize! :update, object
     end
 
+    ao = object.activity_object
+    params["contribution"]["activity_object_id"] = ao.id
     params["contribution"].delete "activity_object"
     params["contribution"].delete "type"
-    params["contribution"]["activity_object_id"] = ao.id
-
     authorize! :create, Contribution.new(params["contribution"])
 
     super do |format|
-      format.html {
-        unless resource.errors.blank?
-          flash[:errors] = resource.errors.full_messages.to_sentence
-          return redirect_to (workshop.nil? ? polymorphic_path(parent) : workshop_path(workshop))
+      format.any {
+        return create_return_with_error(resource.errors.full_messages.to_sentence,pathToReturn) unless resource.errors.blank?
+        #Return with success
+        if request.xhr?
+          return render :json => {}, :status => 200
         else
           discard_flash
           return redirect_to contribution_path(resource)
         end
       }
+    end
+  end
+
+  def create_return_with_error(error,pathToReturn)
+    if request.xhr?
+      return render :json => {errors: [error]}, :status => 400
+    else
+      flash[:errors] = error
+      return redirect_to pathToReturn
     end
   end
 

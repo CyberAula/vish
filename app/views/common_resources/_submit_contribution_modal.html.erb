@@ -22,9 +22,14 @@
       <div class="modal-body">
         <div id="joining_tabs" class="form_for_joining clearfix">
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#excursions_choose_wa" data-toggle="tab"><%=t("search.models.excursion")%></a></li>
+            <li class="active"><a href="#url_choose_wa" data-toggle="tab"><%=t("workshop.activities.assignment.modal.url_tab")%></a></li>
+            <li><a href="#excursions_choose_wa" data-toggle="tab"><%=t("search.models.excursion")%></a></li>
             <li><a href="#resources_choose_wa" data-toggle="tab"><%=t("search.models.resource")%></a></li>
           </ul>
+          <div id="url_choose_wa" class="tab-pane">
+            <div><p><%=t("workshop.activities.assignment.modal.url_explanation")%></p></div>
+            <input id="url_choose_wa_input" type="text" placeholder="<%=Vish::Application.config.full_domain%>/..."/>
+          </div>
           <div id="excursions_choose_wa" class="tab-pane">
             <% unless excursions.blank? %>
               <ul class="items">
@@ -90,11 +95,39 @@
       }
     });
 
+    $("#url_choose_wa_input").on("keyup",function(){
+      var inputTabActive = $("#joining_tabs a[href='#url_choose_wa']").parent("li").hasClass("active");
+      if(($("#button_for_<%= name %>").attr("submitting")==="true")||(inputTabActive===false)){
+        return;
+      }
+      if($(this).val().trim()!=""){
+        $("#button_for_<%= name %>").removeAttr("disabled");
+      } else {
+        $("#button_for_<%= name %>").attr("disabled", "disabled");
+      }
+    });
+
+    $('#join_<%= name %> a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+      if($("#button_for_<%= name %>").attr("submitting")==="true"){
+        return;
+      }
+      $(".box-item").removeClass("selected");
+      $("#button_for_<%= name %>").attr("disabled", "disabled");
+    });
+
     $("#button_for_<%= name %>").click(function(){
       if($(this).attr("submitting")==="true"){
         return;
       }
-      var selectedUrl = $('.selected a').attr("url");
+
+      var inputTabActive = $("#joining_tabs a[href='#url_choose_wa']").parent("li").hasClass("active");
+
+      if(inputTabActive){
+        var selectedUrl = $("#url_choose_wa_input").val();
+      } else {
+        var selectedUrl = $('.selected a').attr("url");
+      }
+
       if(typeof selectedUrl != "undefined"){
         var fullDomain = "<%= Vish::Application.config.full_domain %>";
         if(selectedUrl.indexOf(fullDomain)==-1){
@@ -111,4 +144,13 @@
       }
     });
 <% end %>
+
+<script type="text/javascript">
+    var onContributionModalSubmitError = function(error){
+      $(".cursor_waiting").removeClass("cursor_waiting");
+      var submitButton = $("#button_for_<%= name %>");
+      $(submitButton).removeAttr("submitting");
+      $(submitButton).removeAttr("disabled");
+    };
+</script>
 

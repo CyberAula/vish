@@ -1239,6 +1239,8 @@ en:
             bt_upload: "Upload resource"
             notfound: "There is no educational resource in your profile. Create or upload one."
             title: "Select one of your resources"
+            url_explanation: "Paste here the full URL of the resource or excursion you want to submit. The resource to be submitted must be yours and must be public."
+            url_tab: "URL"
           modal_title: "Edit assignment"
           open_date: "Open date"
           title: "Assignment"
