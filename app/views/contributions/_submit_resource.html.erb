@@ -1,73 +1,20 @@
-<div class="new_contribution_form_wrapper">
+<%
+  if !wa_assignment.nil?
+    contribution_parent_key = "wa_assignment_id"
+    contribution_parent_value = wa_assignment.id.to_s
+  else
+    contribution_parent_key = "parent_id"
+    contribution_parent_value = parent.id.to_s
+  end
+%>
 
-  <div class="modal fade" id="<%=form_id%>_resource_contribution" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <%= form_for Contribution.new, :html => { :multipart => true, :id => form_id, :class => "new_contribution_resource" }, :remote => false do |f| %>
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h3><%=t('workshop.activities.assignment.available_contributions.resource')%></h3>
-          </div>
-          <div class="modal-body">
-            <% if !wa_assignment.nil?%>
-              <%= f.hidden_field :wa_assignment_id, :value => wa_assignment.id %>
-            <% elsif !parent.nil? %>
-              <%= f.hidden_field :parent_id, :value => parent.id %>
-            <% end %>
-            <%= f.hidden_field :type, :value => "Resource" %>
-            <p><%=t('workshop.activities.assignment.add_resource_message')%></p>
-            <p><input type="text" name="url" value=""></input></p>
-          </div>
-          <div class="modal-footer">
-            <%= f.submit t('workshop.activities.assignment.add_resource'), :class => "contribution btn btn-primary" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div id="join_contribution" class="modal fade modal_join">
+<div class="new_contribution_form_wrapper">
+  <div id="<%=form_id%>" class="modal fade new_contribution_resource" contribution-parent-key="<%=contribution_parent_key%>" contribution-parent-value="<%=contribution_parent_value%>">
     <div class="modal-dialog">
       <div class="modal-content" >
         <!-- This body is replaced with submit_contribution.partial.erb every time the modal is called -->
       </div>
     </div>
   </div>
-  <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#join_contribution" data-remote="<%="/contributions/new.partial"%>"><%= t('workshop.activities.assignment.available_contributions.resource') %></button>
+  <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#<%=form_id%>" data-remote="<%="/contributions/new.partial?formid=" + form_id%>"><%= t('workshop.activities.assignment.available_contributions.resource') %></button>
 </div>
-
-<% 
-  if !wa_assignment.nil?
-    contribution_parent_id = "wa_assignment_id: " + wa_assignment.id.to_s
-  else
-    contribution_parent_id = "parent_id: " + parent.id.to_s
-  end 
-%>
-
-<script type="text/javascript">
-  var onContributionModalSubmit = function(selectedUrl){
-    $.ajax({
-      url: "/contributions",
-      method: "POST",
-      dataType: "json",
-      data: {
-        contribution:{
-          <%= contribution_parent_id %>,
-          type: "Resource"
-        },
-        url:  selectedUrl,
-        authenticity_token: "<%= form_authenticity_token %>" 
-      },
-      success: function(e){
-        window.location.reload();
-      },
-      error: function(e){
-        if((typeof e.responseJSON == "object")&&(e.responseJSON.errors instanceof Array)&&(e.responseJSON.errors.length > 0)){
-          alert(e.responseJSON.errors[0]);
-          if(typeof onContributionModalSubmitError == "function"){
-            onContributionModalSubmitError(e.responseJSON.errors[0]);
-          }
-        }
-      }
-    });
-  };
-</script>

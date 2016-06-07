@@ -57,28 +57,29 @@
 
 
 <!--++++++++++++++++item+++++++++++++++++++++++-->
+  <% unless @workshop_activities.blank? %>
+    <% @workshop_activities.each do |workshop_activity| %>
 
-  <% @workshop_activities.each do |workshop_activity| %>
+      <div class="wa_activity_wrapper wa_activity_wrapper_show">
+        
+        <% if workshop_activity.wa_type=="WaResource"  %>
+          <div id="effect<%=workshop_activity.id%>" class="resources_WS desplegado" > <!--only for resources-->
+        <%end%>
 
-    <div class="wa_activity_wrapper wa_activity_wrapper_show">
-      
-      <% if workshop_activity.wa_type=="WaResource"  %>
-        <div id="effect<%=workshop_activity.id%>" class="resources_WS desplegado" > <!--only for resources-->
-      <%end%>
-
-      <div class="layout_workshop">
-        <% entity = workshop_activity.object %>
-        <% className = entity.class.to_s %>
-        <% classNameUnderscore = className.underscore %>
-        <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
-             locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" } %>
-      </div>
-
-      <% if workshop_activity.wa_type=="WaResource"  %>
+        <div class="layout_workshop">
+          <% entity = workshop_activity.object %>
+          <% className = entity.class.to_s %>
+          <% classNameUnderscore = className.underscore %>
+          <%= render partial: "#{ className.tableize }/#{ classNameUnderscore }",
+               locals:  { classNameUnderscore.to_sym => entity, :prefix_id => "workshop" } %>
         </div>
-      <%end%>
 
-    </div>
+        <% if workshop_activity.wa_type=="WaResource"  %>
+          </div>
+        <%end%>
+
+      </div>
+    <%end%>
   <%end%>
 
   <!--++++++++++++++++comments+++++++++++++++++++++++-->
