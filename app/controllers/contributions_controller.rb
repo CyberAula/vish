@@ -28,6 +28,9 @@ class ContributionsController < ApplicationController
           render "new"
         end
       }
+      format.partial {
+        render :new, :layout => false
+      }
     end
   end
 

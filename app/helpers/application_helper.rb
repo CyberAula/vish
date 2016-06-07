@@ -2,6 +2,16 @@
 
 module ApplicationHelper
 
+	def with_format(format, &block)
+		old_formats = self.formats
+		begin
+			self.formats = [format]
+			return block.call
+		ensure
+			self.formats = old_formats
+		end
+	end
+
 	def popular_entities(number=20,models)
 		models = VishConfig.getAllResourceModels if models.nil?
 		ActivityObject.getPopular(number,{:models=>models, :actor=>current_subject, :random=>true})
