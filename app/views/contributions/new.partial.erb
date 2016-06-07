@@ -15,15 +15,15 @@
 <div class="modal-body">
   <div class="joining_tabs clearfix">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#url_choose_wa" data-toggle="tab"><%=t("workshop.activities.assignment.modal.url_tab")%></a></li>
-      <li><a href="#excursions_choose_wa" data-toggle="tab"><%=t("search.models.excursion")%></a></li>
-      <li><a href="#resources_choose_wa" data-toggle="tab"><%=t("search.models.resource")%></a></li>
+      <li class="active"><a class="url_choose_wa" data-toggle="tab"><%=t("workshop.activities.assignment.modal.url_tab")%></a></li>
+      <li><a class="excursions_choose_wa" data-toggle="tab"><%=t("search.models.excursion")%></a></li>
+      <li><a class="resources_choose_wa" data-toggle="tab"><%=t("search.models.resource")%></a></li>
     </ul>
-    <div id="url_choose_wa" class="tab-pane">
+    <div class="url_choose_wa" class="tab-pane">
       <div><p><%=t("workshop.activities.assignment.modal.url_explanation")%></p></div>
-      <input id="url_choose_wa_input" type="text" placeholder="<%=Vish::Application.config.full_domain%>/..."/>
+      <input class="url_choose_wa_input" type="text" placeholder="<%=Vish::Application.config.full_domain%>/..."/>
     </div>
-    <div id="excursions_choose_wa" class="tab-pane">
+    <div class="excursions_choose_wa" class="tab-pane">
       <% unless excursions.blank? %>
         <ul class="items">
           <% with_format('html') do %>
@@ -34,11 +34,11 @@
         </ul>
       <% else %>
         <% if !current_subject.nil? %>
-          <div id="no_items"><%= I18n.t('workshop.activities.assignment.modal.notfound') %></div>
+          <div class="no_items"><%= I18n.t('workshop.activities.assignment.modal.notfound') %></div>
         <% end %>
       <% end %>
     </div>
-    <div id="resources_choose_wa" class="tab-pane">
+    <div class="resources_choose_wa" class="tab-pane">
       <% unless resources.blank? %>
         <ul class="items">
           <% with_format('html') do %>
@@ -49,7 +49,7 @@
         </ul>
       <% else %>
         <% if !current_subject.nil? %>
-          <div id="no_items"><%= notfound %></div>
+          <div class="no_items"><%= notfound %></div>
         <% end %>
       <% end %>
     </div> 
@@ -67,6 +67,13 @@
     var formId = "<%=params[:formid]%>";
     var form = $("#" + formId);
     var formButton = $(form).find(".button_for_contribution");
+
+    $(form).find("a.url_choose_wa").attr("href","#"+formId+"_url_choose_wa");
+    $(form).find("div.url_choose_wa").attr("id",formId+"_url_choose_wa");
+    $(form).find("a.excursions_choose_wa").attr("href","#"+formId+"_excursions_choose_wa");
+    $(form).find("div.excursions_choose_wa").attr("id",formId+"_excursions_choose_wa");
+    $(form).find("a.resources_choose_wa").attr("href","#"+formId+"_resources_choose_wa");
+    $(form).find("div.resources_choose_wa").attr("id",formId+"_resources_choose_wa");
 
     $(form).find(".joining_tabs").tabs();
     $(formButton).attr("disabled", "disabled");
@@ -94,8 +101,8 @@
       }
     });
 
-    $(form).find("#url_choose_wa_input").on("keyup",function(){
-      var inputTabActive = $(form).find(".joining_tabs a[href='#url_choose_wa']").parent("li").hasClass("active");
+    $(form).find(".url_choose_wa_input").on("keyup",function(){
+      var inputTabActive = $(form).find(".joining_tabs a.url_choose_wa").parent("li").hasClass("active");
       if(($(formButton).attr("submitting")==="true")||(inputTabActive===false)){
         return;
       }
@@ -119,9 +126,9 @@
         return;
       }
 
-      var inputTabActive = $(form).find(".joining_tabs a[href='#url_choose_wa']").parent("li").hasClass("active");
+      var inputTabActive = $(form).find(".joining_tabs a.url_choose_wa").parent("li").hasClass("active");
       if(inputTabActive){
-        var selectedUrl = $(form).find("#url_choose_wa_input").val();
+        var selectedUrl = $(form).find(".url_choose_wa_input").val();
       } else {
         var selectedUrl = $(form).find('.selected a').attr("url");
       }
@@ -140,8 +147,6 @@
         
         var contribution_parent_key = $(form).attr("contribution-parent-key");
         var contribution_parent_value = $(form).attr("contribution-parent-value");
-        console.log(contribution_parent_key);
-        console.log(contribution_parent_value);
         var contribution = {
           type: "Resource"
         }

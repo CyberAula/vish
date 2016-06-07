@@ -1241,12 +1241,12 @@ es:
             text: "Podrás añadir a este workshop todos los recursos que haya disponibles en Vish. Para añadirlos, abre el recurso en Vish, copia su URL de la barra del navegador y pégala en el siguiente cuadro de texto."
         resource_gallery:
             add: "Añadir"
-            title: "Galería recursos"
+            title: "Galería de recursos"
             description: "Añade una galería de recursos"
             text: "Las galerías de recursos son un componente del workshop que te permiten incluir varios recursos de Vish de cualquier tipo y tenerlos agrupados para facilitarte su visionado. Inserta este componente en tu workshop y añade recursos de la forma más fácil e intuitiva."
             new_resource: "Añadir"
         contributions_gallery:
-            title: "Galería contribuciones"
+            title: "Galería de contribuciones"
             description: "La galería de contribuciones muestra las contribuciones enviadas al workshop"
             text: "Los usuarios pueden contribuir a las tareas definidas en un workshop añadiendo recursos o bloques de texto. Con el componente Galería de contribuciones podrás ver de forma agrupada los recursos y/o los textos con los que otros usuarios han contribuido."
             error: "A contributions gallery should include at least 1 assignment"
