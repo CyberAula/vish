@@ -25,7 +25,7 @@ namespace :stats do
     puts "Excursions Stats"
 
     allDates = [];
-    allExcursions = [];
+    allExcursionsByDate = [];
     for year in 2012..2016
       12.times do |index|
         month = index+1;
@@ -34,7 +34,7 @@ namespace :stats do
         endDate = startDate.next_month;
         excursions = Excursion.where(:created_at => startDate..endDate)
         allDates.push(startDate.strftime("%B %Y"));
-        allExcursions.push(excursions);
+        allExcursionsByDate.push(excursions);
       end
     end
 
@@ -42,7 +42,7 @@ namespace :stats do
     createdExcursions = []
     accumulativeCreatedExcursions = []
     publishedExcursions = []
-    allExcursions.each_with_index do |excursions,index|
+    allExcursionsByDate.each_with_index do |excursions,index|
       nCreated = excursions.order('id DESC').first.id rescue 0
       accumulativeCreatedExcursions.push(nCreated)
       nCreated = (nCreated - accumulativeCreatedExcursions[index-1]) unless index==0 or nCreated == 0
@@ -56,6 +56,16 @@ namespace :stats do
       accumulativePublishedExcursions.push(n)
       accumulativePublishedExcursions[index] = accumulativePublishedExcursions[index] + accumulativePublishedExcursions[index-1] unless index==0
     end
+
+    #Visits, downloads and likes
+    allExcursions = Excursion.all
+    visits = allExcursions.map{|e| e.visit_count}
+    downloads = allExcursions.map{|e| e.download_count}
+    likes = allExcursions.map{|e| e.like_count}
+
+    totalVisits = visits.sum
+    totalDownloads = downloads.sum
+    totalLikes = likes.sum
 
     filePath = "reports/excursions_stats.xlsx"
     prepareFile(filePath)
@@ -72,10 +82,22 @@ namespace :stats do
           rows[rowIndex+i] = [allDates[i],createdExcursions[i],publishedExcursions[i],accumulativeCreatedExcursions[i],accumulativePublishedExcursions[i]]
         end
 
+        rows << []
+        rows << ["Total Visits","Total Downloads","Total Likes"]
+        rows << [totalVisits,totalDownloads,totalLikes]
+        rows << []
+        rows << ["Visits","Downloads","Likes"]
+        rowIndex = rows.length
+        rows += Array.new(allExcursions.length).map{|e|[]}
+        allExcursions.each_with_index do |e,i|
+          rows[rowIndex+i] = [visits[i],downloads[i],likes[i]]
+        end
+
         rows.each do |row|
           sheet.add_row row
         end
       end
+
       prepareFile(filePath)
       p.serialize(filePath)
 
