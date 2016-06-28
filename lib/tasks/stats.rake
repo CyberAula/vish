@@ -5,7 +5,6 @@ namespace :stats do
 
   #Usage
   #Development:   bundle exec rake stats:all
-  #In production: bundle exec rake stats:all RAILS_ENV=production
   task :all => :environment do
     Rake::Task["stats:prepare"].invoke
     Rake::Task["stats:excursions"].invoke(false)
@@ -15,64 +14,72 @@ namespace :stats do
 
   task :prepare do
     require "#{Rails.root}/lib/task_utils"
-    prepareFile(STATS_FILE_PATH)
-    writeInStats("ViSH Stats Report")
   end
 
+  #Usage
+  #Development:   bundle exec rake stats:excursions
   task :excursions, [:prepare] => :environment do |t,args|
     args.with_defaults(:prepare => true)
+    Rake::Task["stats:prepare"].invoke if args.prepare
 
-    if args.prepare
-      Rake::Task["stats:prepare"].invoke
-    end
+    puts "Excursions Stats"
 
-    writeInStats("")
-    writeInStats("Excursions Report")
-    writeInStats("")
-
-    allCreatedExcursions = [];
-    for year in 2012..2014
+    allDates = [];
+    allExcursions = [];
+    for year in 2012..2016
       12.times do |index|
         month = index+1;
         # date = DateTime.new(params[:year],params[:month],params[:day]);
         startDate = DateTime.new(year,month,1)
         endDate = startDate.next_month;
         excursions = Excursion.where(:created_at => startDate..endDate)
-        writeInStats(startDate.strftime("%B %Y"))
-        allCreatedExcursions.push(excursions);
+        allDates.push(startDate.strftime("%B %Y"));
+        allExcursions.push(excursions);
       end
     end
 
-    writeInStats("")
-    writeInStats("Total Views")
-
-    allTotalViews = [];
-    allCreatedExcursions.each do |excursions|
-      totalViews = getViews(excursions)
-      allTotalViews.push(totalViews);
-      writeInStats(totalViews)
+    #Created excursions
+    createdExcursions = []
+    accumulativeCreatedExcursions = []
+    publishedExcursions = []
+    allExcursions.each_with_index do |excursions,index|
+      nCreated = excursions.order('id DESC').first.id rescue 0
+      accumulativeCreatedExcursions.push(nCreated)
+      nCreated = (nCreated - accumulativeCreatedExcursions[index-1]) unless index==0 or nCreated == 0
+      createdExcursions.push(nCreated)
+      publishedExcursions.push(excursions.count)
     end
 
-    writeInStats("")
-    writeInStats("Total Accumulative Views")
-    accumulativeViews = 0;
-    allTotalViews.each do |totalViews|
-      accumulativeViews = accumulativeViews + totalViews
-      writeInStats(accumulativeViews)
+    #Accumulative Published Excursions
+    accumulativePublishedExcursions = [];
+    publishedExcursions.each_with_index do |n,index|
+      accumulativePublishedExcursions.push(n)
+      accumulativePublishedExcursions[index] = accumulativePublishedExcursions[index] + accumulativePublishedExcursions[index-1] unless index==0
     end
 
-    writeInStats("")
-    writeInStats("Created Excursions")
-    allCreatedExcursions.each do |createdExcursions|
-      writeInStats(createdExcursions.count)
-    end
+    filePath = "reports/excursions_stats.xlsx"
+    prepareFile(filePath)
 
-    writeInStats("")
-    writeInStats("Accumulative Created Excursions")
-    accumulativeExcursions = 0;
-    allCreatedExcursions.each do |createdExcursions|
-      accumulativeExcursions = accumulativeExcursions + createdExcursions.count
-      writeInStats(accumulativeExcursions)
+    Axlsx::Package.new do |p|
+      p.workbook.add_worksheet(:name => "Presentations Stats") do |sheet|
+        rows = []
+        rows << ["Presentations Stats"]
+        rows << ["Date","Created Presentations","Published Presentations","Accumulative Created Presentations","Accumulative Published Presentations"]
+        rowIndex = rows.length
+        
+        rows += Array.new(createdExcursions.length).map{|e|[]}
+        createdExcursions.each_with_index do |n,i|
+          rows[rowIndex+i] = [allDates[i],createdExcursions[i],publishedExcursions[i],accumulativeCreatedExcursions[i],accumulativePublishedExcursions[i]]
+        end
+
+        rows.each do |row|
+          sheet.add_row row
+        end
+      end
+      prepareFile(filePath)
+      p.serialize(filePath)
+
+      puts("Task Finished. Results generated at " + filePath)
     end
 
   end
@@ -192,25 +199,6 @@ namespace :stats do
     end
 
     results
-  end
-
-  def getViews(excursions)
-    totalViews = 0;
-    excursions.each do |excursion|
-      totalViews = totalViews + excursion.visit_count
-    end
-    totalViews
-  end
-
-  def getAverage(array)
-    accumulativeItem = 0;
-    array.each do |item|
-      if item == nil
-        return nil
-      end
-       accumulativeItem = accumulativeItem + item;
-    end
-    return (accumulativeItem/array.count.to_f).round(2)
   end
 
   def writeInStats(line)
