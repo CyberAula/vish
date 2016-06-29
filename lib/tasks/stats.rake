@@ -167,55 +167,210 @@ namespace :stats do
     end
   end
 
+  # #Usage
+  # #Development:   bundle exec rake stats:check_resources
+  # task :check_resources, [:prepare] => :environment do |t,args|
+  #   allResourceTypes = (["Document", "Webapp", "Scormfile", "Imscpfile", "Link", "Embed", "Writing", "Excursion", "Workshop", "Category"] + VishConfig.getResourceModels).uniq
+  #   allResourceTypes.each do |type|
+  #     allResources = ActivityObject.where("object_type in (?)", [type]).order("id DESC").map{|ao| ao.object}
+  #     maxIndex = allResources.length-1
+  #     allResources.each_with_index do |resource,index|
+  #       unless (index+1) > maxIndex
+  #         binding.pry if (allResources[index+1].id - allResources[index].id > 5)
+  #         binding.pry if (allResources[index+1].created_at - allResources[index].created_at > (3600*24))
+  #         binding.pry if (allResources[index+1].activity_object.created_at - allResources[index].activity_object.created_at > (3600*24))
+  #       end
+  #     end
+  #   end
+  # end
+
+  #Usage
+  #Development:   bundle exec rake stats:resources
   task :resources, [:prepare] => :environment do |t,args|
     args.with_defaults(:prepare => true)
+    Rake::Task["stats:prepare"].invoke if args.prepare
 
-    if args.prepare
-      Rake::Task["stats:prepare"].invoke
-    end
+    puts "Resources Stats"
 
-    writeInStats("")
-    writeInStats("Resources Report")
-    writeInStats("")
-
-    allCreatedResources = []
-    for year in 2012..2014
+    allResourceTypes = (["Document", "Webapp", "Scormfile", "Imscpfile", "Link", "Embed", "Writing", "Excursion", "Workshop", "Category"] + VishConfig.getResourceModels).uniq
+    allDates = []
+    allResourcesByDateAndType = []
+    for year in 2012..2016
       12.times do |index|
         month = index+1
         # date = DateTime.new(params[:year],params[:month],params[:day])
         startDate = DateTime.new(year,month,1)
         endDate = startDate.next_month
-        resources = Document.where(:created_at => startDate..endDate)
-        writeInStats(startDate.strftime("%B %Y"))
-        allCreatedResources.push(resources)
+        allDates.push(startDate.strftime("%B %Y"))
+        allResourcesByDateAndType.push({})
+        gindex = (allResourcesByDateAndType.length - 1)
+        # resources = ActivityObject.where("object_type in (?)", allResourceTypes).where(:created_at => startDate..endDate)
+        allResourceTypes.each do |type|
+          allResourcesByDateAndType[gindex][type] = ActivityObject.where("object_type in (?)", [type]).where(:created_at => startDate..endDate).map{|ao| ao.object}
+        end
       end
     end
 
-    writeInStats("")
-    writeInStats("Created Resources")
-    allCreatedResources.each do |createdResources|
-      writeInStats(createdResources.count)
+    #Uploaded Resources by Type
+    uploadedResourcesByType = []
+    accumulativeUploadedResourcesByType = []
+
+    allResourcesByDateAndType.each_with_index do |resourcesHash,index|
+      accumulativeUploadedResourcesByType.push({})
+      uploadedResourcesByType.push({})
+      allResourceTypes.each do |type|
+        if accumulativeUploadedResourcesByType[index-1].blank? or accumulativeUploadedResourcesByType[index-1][type].blank?
+          prevACC = 0
+        else
+          prevACC = accumulativeUploadedResourcesByType[index-1][type]
+        end
+
+        if resourcesHash[type].blank?
+          nACC = prevACC
+        else
+          nACC = resourcesHash[type].max_by{|ao| ao.id}.id
+        end
+
+        accumulativeUploadedResourcesByType[index][type] = nACC
+
+        nUploaded = (nACC - prevACC)
+        # binding.pry if nUploaded < 0
+        uploadedResourcesByType[index][type] = nUploaded
+      end
     end
 
-    writeInStats("")
-    writeInStats("Accumulative Created Resources")
-    accumulativeResources = 0
-    allCreatedResources.each do |createdResources|
-      accumulativeResources = accumulativeResources + createdResources.count
-      writeInStats(accumulativeResources)
+    #Uploaded Resources
+    uploadedResources = []
+    accumulativeUploadedResources = []
+
+    uploadedResourcesByType.each_with_index do |resourcesHash,index|
+      nUploaded = 0
+      allResourceTypes.each do |type|
+        nUploaded = nUploaded + resourcesHash[type]
+      end
+      uploadedResources.push(nUploaded)
     end
 
-    #Resources type
-    writeInStats("")
-    writeInStats("Type of Resources")
-    resourcesReport = getResourcesByType(Document.all)
-
-    resourcesReport.each do |resourceReport|
-      writeInStats(resourceReport["resourceType"].to_s)
-      writeInStats(resourceReport["percent"].to_s)
+    accumulativeUploadedResourcesByType.each_with_index do |resourcesHash,index|
+      nUploaded = 0
+      allResourceTypes.each do |type|
+        nUploaded = nUploaded + resourcesHash[type]
+      end
+      accumulativeUploadedResources.push(nUploaded)
     end
 
+    # #Visits, downloads and likes
+    allResources = ActivityObject.where("object_type in (?)", allResourceTypes).map{|ao| ao.object}
+    visits = allResources.map{|e| e.visit_count}
+    downloads = allResources.map{|e| e.download_count}
+    likes = allResources.map{|e| e.like_count}
+
+    totalVisits = visits.sum
+    totalDownloads = downloads.sum
+    totalLikes = likes.sum
+
+    filePath = "reports/resources_stats.xlsx"
+    prepareFile(filePath)
+
+    Axlsx::Package.new do |p|
+      p.workbook.add_worksheet(:name => "Resources Stats") do |sheet|
+        rows = []
+        rows << ["Resources Stats"]
+        rows << ["Date","Uploaded Resources","Accumulative Uploaded Resources"]
+        rowIndex = rows.length
+        
+        rows += Array.new(uploadedResources.length).map{|e|[]}
+        uploadedResources.each_with_index do |n,i|
+          rows[rowIndex+i] = [allDates[i],uploadedResources[i],accumulativeUploadedResources[i]]
+        end
+
+        rows << []
+        rows << ["Resource name","Total Uploaded Resources"]
+        allResourceTypes.each do |type|
+          rows << [type,accumulativeUploadedResourcesByType[accumulativeUploadedResourcesByType.length-1][type]]
+        end
+
+        allResourceTypes.each do |type|
+          rows << []
+          rows << ["Resources Stats: " + type]
+          rows << ["Date","Uploaded Resources","Accumulative Uploaded Resources"]
+          uploadedResourcesByType.each_with_index do |resourcesHash,i|
+            rows << [allDates[i],resourcesHash[type],accumulativeUploadedResourcesByType[i][type]]
+          end
+        end
+
+        rows << []
+        rows << ["Total Visits","Total Downloads","Total Likes"]
+        rows << [totalVisits,totalDownloads,totalLikes]
+        rows << []
+        rows << ["Visits","Downloads","Likes"]
+        rowIndex = rows.length
+        rows += Array.new(allResources.length).map{|e|[]}
+        allResources.each_with_index do |e,i|
+          rows[rowIndex+i] = [visits[i],downloads[i],likes[i]]
+        end
+
+        rows.each do |row|
+          sheet.add_row row
+        end
+      end
+
+      prepareFile(filePath)
+      p.serialize(filePath)
+
+      puts("Task Finished. Results generated at " + filePath)
+    end
   end
+
+  # task :resources, [:prepare] => :environment do |t,args|
+  #   args.with_defaults(:prepare => true)
+
+  #   if args.prepare
+  #     Rake::Task["stats:prepare"].invoke
+  #   end
+
+  #   writeInStats("")
+  #   writeInStats("Resources Report")
+  #   writeInStats("")
+
+  #   allCreatedResources = []
+  #   for year in 2012..2014
+  #     12.times do |index|
+  #       month = index+1
+  #       # date = DateTime.new(params[:year],params[:month],params[:day])
+  #       startDate = DateTime.new(year,month,1)
+  #       endDate = startDate.next_month
+  #       resources = Document.where(:created_at => startDate..endDate)
+  #       writeInStats(startDate.strftime("%B %Y"))
+  #       allCreatedResources.push(resources)
+  #     end
+  #   end
+
+  #   writeInStats("")
+  #   writeInStats("Created Resources")
+  #   allCreatedResources.each do |createdResources|
+  #     writeInStats(createdResources.count)
+  #   end
+
+  #   writeInStats("")
+  #   writeInStats("Accumulative Created Resources")
+  #   accumulativeResources = 0
+  #   allCreatedResources.each do |createdResources|
+  #     accumulativeResources = accumulativeResources + createdResources.count
+  #     writeInStats(accumulativeResources)
+  #   end
+
+  #   #Resources type
+  #   writeInStats("")
+  #   writeInStats("Type of Resources")
+  #   resourcesReport = getResourcesByType(Document.all)
+
+  #   resourcesReport.each do |resourceReport|
+  #     writeInStats(resourceReport["resourceType"].to_s)
+  #     writeInStats(resourceReport["percent"].to_s)
+  #   end
+
+  # end
 
   task :users, [:prepare] => :environment do |t,args|
     args.with_defaults(:prepare => true)
