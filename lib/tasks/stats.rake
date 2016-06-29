@@ -234,7 +234,6 @@ namespace :stats do
         accumulativeUploadedResourcesByType[index][type] = nACC
 
         nUploaded = (nACC - prevACC)
-        # binding.pry if nUploaded < 0
         uploadedResourcesByType[index][type] = nUploaded
       end
     end
@@ -257,6 +256,43 @@ namespace :stats do
         nUploaded = nUploaded + resourcesHash[type]
       end
       accumulativeUploadedResources.push(nUploaded)
+    end
+
+
+    #Analyze different types of documents: "Picture", "Video", "Document", "Officedoc", "Swf", "Audio", "Zipfile"
+    allDocumentTypes = ["Picture", "Video", "Document", "Officedoc", "Swf", "Audio", "Zipfile"]
+    allDocumentsByDateAndType = []
+    allResourcesByDateAndType.each_with_index do |resourcesHash,index|
+      allDocumentsByDateAndType.push({})
+      allDocumentTypes.each do |docType|
+        allDocumentsByDateAndType[index][docType] = []
+      end
+      resourcesHash["Document"].each do |doc|
+        allDocumentsByDateAndType[index][doc.class.name].push(doc)
+      end
+    end
+
+    #Uploaded Documents by Type
+    uploadedDocumentsByType = []
+    accumulativeUploadedDocumentsByType = []
+
+    allDocumentsByDateAndType.each_with_index do |documentsHash,index|
+      uploadedDocumentsByType.push({})
+      accumulativeUploadedDocumentsByType.push({})
+
+      allDocumentTypes.each do |type|
+        nUploaded = documentsHash[type].length
+        uploadedDocumentsByType[index][type] = nUploaded
+
+        if accumulativeUploadedDocumentsByType[index-1].blank? or accumulativeUploadedDocumentsByType[index-1][type].blank?
+          prevACC = 0
+        else
+          prevACC = accumulativeUploadedDocumentsByType[index-1][type]
+        end
+
+        nACC = prevACC + nUploaded
+        accumulativeUploadedDocumentsByType[index][type] = nACC
+      end
     end
 
     # #Visits, downloads and likes
@@ -285,7 +321,7 @@ namespace :stats do
         end
 
         rows << []
-        rows << ["Resource name","Total Uploaded Resources"]
+        rows << ["Resource type","Total Uploaded Resources"]
         allResourceTypes.each do |type|
           rows << [type,accumulativeUploadedResourcesByType[accumulativeUploadedResourcesByType.length-1][type]]
         end
@@ -299,7 +335,18 @@ namespace :stats do
           end
         end
 
+        allDocumentTypes.each do |type|
+          dName = type
+          rows << []
+          rows << ["Documents estimation: " + dName]
+          rows << ["Date","Uploaded " + dName,"Accumulative Uploaded " + dName]
+          uploadedDocumentsByType.each_with_index do |documentsHash,i|
+            rows << [allDates[i],documentsHash[type],accumulativeUploadedDocumentsByType[i][type]]
+          end
+        end
+
         rows << []
+        rows << ["Visits, Downloads and Likes"]
         rows << ["Total Visits","Total Downloads","Total Likes"]
         rows << [totalVisits,totalDownloads,totalLikes]
         rows << []
