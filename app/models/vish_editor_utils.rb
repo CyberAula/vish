@@ -55,4 +55,73 @@ class VishEditorUtils
     end
   end
 
+  def self.getResources(loJSON)
+    require "uri"
+    resources = []
+
+    begin
+      slides = loJSON["slides"]
+      standardSlides = []
+      
+      slides.each do |slide|
+        case slide["type"]
+        when "flashcard"
+          resources = resources + URI.extract(slide["background"],/http(s)?/) unless slide["background"].blank?
+          standardSlides = standardSlides + (slide["slides"] || [])
+        when "VirtualTour"
+          unless slide["map_service"] != "Google Maps" or slide["center"].blank? or slide["center"]["lat"].blank? or slide["center"]["lng"].blank?
+            resources.push("VirtualTourWithCenterCoordinates" + slide["center"]["lat"] + "&" + slide["center"]["lng"])
+          end
+          standardSlides = standardSlides + (slide["slides"] || [])
+        when "enrichedvideo"
+          resources = resources + URI.extract(slide["video"]["source"],/http(s)?/) unless slide["video"].blank? or slide["video"]["source"].blank?
+          standardSlides = standardSlides + (slide["slides"] || [])
+        when "standard",nil
+          #Standard or default
+          standardSlides.push(slide)
+        when "quiz"
+          #Do nothing
+        else
+          #Do nothing
+        end
+      end
+
+      slideElements = []
+      standardSlides.each do |slide|
+        slideElements = slideElements + (slide["elements"] || [])
+      end
+      
+      slideElements.each do |el|
+        case el["type"]
+        when nil
+          #Do nothing
+        when "text"
+          if !el["body"].blank?
+            rawText = Nokogiri::HTML(el["body"]).text rescue ""
+            if rawText.length > 150
+              #Do not consider small texts for reusing...
+              resources.push(rawText.first(300))
+            end
+          end
+        when "image"
+          resources.push(el["body"]) unless el["body"].blank?
+        when "object","snapshot"
+          resources = resources + URI.extract(el["body"],/http(s)?/) unless el["body"].blank?
+        when "video","audio"
+          resources = resources + URI.extract(el["sources"],/http(s)?/) unless el["sources"].blank?
+        when "quiz"
+          unless el["quiztype"].blank? or el["question"]["value"].blank? or el["choices"].blank?
+            quizResource = el["quiztype"] + el["question"]["value"] + el["choices"].map{|c| c["value"]}.sum
+            resources.push(quizResource)
+          end
+        else
+        end
+      end
+    rescue => e
+      return "Exception: " + e.message
+    end
+
+    resources.compact.uniq
+  end
+
 end
