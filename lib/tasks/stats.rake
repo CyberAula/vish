@@ -369,125 +369,63 @@ namespace :stats do
     end
   end
 
-  # task :resources, [:prepare] => :environment do |t,args|
-  #   args.with_defaults(:prepare => true)
-
-  #   if args.prepare
-  #     Rake::Task["stats:prepare"].invoke
-  #   end
-
-  #   writeInStats("")
-  #   writeInStats("Resources Report")
-  #   writeInStats("")
-
-  #   allCreatedResources = []
-  #   for year in 2012..2014
-  #     12.times do |index|
-  #       month = index+1
-  #       # date = DateTime.new(params[:year],params[:month],params[:day])
-  #       startDate = DateTime.new(year,month,1)
-  #       endDate = startDate.next_month
-  #       resources = Document.where(:created_at => startDate..endDate)
-  #       writeInStats(startDate.strftime("%B %Y"))
-  #       allCreatedResources.push(resources)
-  #     end
-  #   end
-
-  #   writeInStats("")
-  #   writeInStats("Created Resources")
-  #   allCreatedResources.each do |createdResources|
-  #     writeInStats(createdResources.count)
-  #   end
-
-  #   writeInStats("")
-  #   writeInStats("Accumulative Created Resources")
-  #   accumulativeResources = 0
-  #   allCreatedResources.each do |createdResources|
-  #     accumulativeResources = accumulativeResources + createdResources.count
-  #     writeInStats(accumulativeResources)
-  #   end
-
-  #   #Resources type
-  #   writeInStats("")
-  #   writeInStats("Type of Resources")
-  #   resourcesReport = getResourcesByType(Document.all)
-
-  #   resourcesReport.each do |resourceReport|
-  #     writeInStats(resourceReport["resourceType"].to_s)
-  #     writeInStats(resourceReport["percent"].to_s)
-  #   end
-
-  # end
-
+  #Usage
+  #Development:   bundle exec rake stats:users
   task :users, [:prepare] => :environment do |t,args|
     args.with_defaults(:prepare => true)
+    Rake::Task["stats:prepare"].invoke if args.prepare
 
-    if args.prepare
-      Rake::Task["stats:prepare"].invoke
-    end
+    puts "Users Stats"
 
-    writeInStats("")
-    writeInStats("Users Report")
-    writeInStats("")
-
-    allUsers = []
-    for year in 2012..2014
+    allDates = []
+    allUsersByDate = []
+    for year in 2012..2016
       12.times do |index|
         month = index+1
         # date = DateTime.new(params[:year],params[:month],params[:day])
         startDate = DateTime.new(year,month,1)
         endDate = startDate.next_month
         users = User.where(:created_at => startDate..endDate)
-        writeInStats(startDate.strftime("%B %Y"))
-        allUsers.push(users)
+        allDates.push(startDate.strftime("%B %Y"))
+        allUsersByDate.push(users)
       end
     end
 
-    writeInStats("")
-    writeInStats("Registered Users")
-    allUsers.each do |users|
-      writeInStats(users.count)
+    #Created users
+    createdUsers = []
+    accumulativeCreatedUsers = []
+    allUsersByDate.each_with_index do |users,index|
+      nCreated = users.order('id DESC').first.id rescue 0
+      accumulativeCreatedUsers.push(nCreated)
+      nCreated = (nCreated - accumulativeCreatedUsers[index-1]) unless index==0 or nCreated == 0
+      createdUsers.push(nCreated)
     end
 
-    writeInStats("")
-    writeInStats("Accumulative Registered Users")
-    accumulativeUsers = 0
-    allUsers.each do |users|
-      accumulativeUsers = accumulativeUsers + users.count
-      writeInStats(accumulativeUsers)
-    end
+    filePath = "reports/users_stats.xlsx"
+    prepareFile(filePath)
 
-  end
-
-  def getResourcesByType(resources)
-    results = []
-    resourcesType = Hash.new
-    #resourcesType['file_content_type'] = [resources]
-
-    resources.each do |resource|
-      if resource.file_content_type
-        if resourcesType[resource.file_content_type] == nil
-          resourcesType[resource.file_content_type] = []
+    Axlsx::Package.new do |p|
+      p.workbook.add_worksheet(:name => "User Stats") do |sheet|
+        rows = []
+        rows << ["User Stats"]
+        rows << ["Date","Created Users","Accumulative Created Users"]
+        rowIndex = rows.length
+        
+        rows += Array.new(createdUsers.length).map{|e|[]}
+        createdUsers.each_with_index do |n,i|
+          rows[rowIndex+i] = [allDates[i],createdUsers[i],accumulativeCreatedUsers[i]]
         end
-        resourcesType[resource.file_content_type].push(resource)
+
+        rows.each do |row|
+          sheet.add_row row
+        end
       end
+
+      prepareFile(filePath)
+      p.serialize(filePath)
+
+      puts("Task Finished. Results generated at " + filePath)
     end
-
-    resourcesType.each do |e|
-      key = e[0]
-      value = e[1]
-
-      result = Hash.new
-      result["resourceType"] = key
-      result["percent"] = ((value.count/resources.count.to_f)*100).round(3)
-      results.push(result)
-    end
-
-    results
-  end
-
-  def writeInStats(line)
-    write(line,STATS_FILE_PATH)
   end
 
 end
