@@ -68,6 +68,7 @@ namespace :stats do
     totalVisits = visits.sum
     totalDownloads = downloads.sum
     totalLikes = likes.sum
+    totalLearningHours = allExcursions.map{|e| e.lo_interaction}.compact.map{|i| ((i.tlo * i.nsamples)/3600.to_f).ceil}.compact.sum
 
     filePath = "reports/excursions_stats.xlsx"
     prepareFile(filePath)
@@ -85,14 +86,21 @@ namespace :stats do
         end
 
         rows << []
-        rows << ["Total Visits","Total Downloads","Total Likes"]
-        rows << [totalVisits,totalDownloads,totalLikes]
+        rows << ["Total Visits","Total Downloads","Total Likes","Total Learning Hours"]
+        rows << [totalVisits,totalDownloads,totalLikes,totalLearningHours]
         rows << []
-        rows << ["Visits","Downloads","Likes"]
+        rows << ["Id","Draft","Visits","Downloads","Likes","Learning Hours"]
         rowIndex = rows.length
         rows += Array.new(allExcursions.length).map{|e|[]}
         allExcursions.each_with_index do |e,i|
-          rows[rowIndex+i] = [visits[i],downloads[i],likes[i]]
+          #Calculate Learning time
+          interaction = e.lo_interaction
+          if interaction.nil?
+            loTime = 0
+          else
+            loTime = ((interaction.tlo * interaction.nsamples)/3600.to_f).ceil
+          end
+          rows[rowIndex+i] = [e.id,e.draft.to_s,visits[i],downloads[i],likes[i],loTime]
         end
 
         rows.each do |row|
@@ -201,6 +209,9 @@ namespace :stats do
 
     reusedResources.uniq
 
+    #Visits, downloads and tLearning
+    allPublicExcursions = Excursion.where(:draft => false).order("id ASC")
+
     filePath = "reports/excursions_reuse_stats.xlsx"
     prepareFile(filePath)
 
@@ -219,6 +230,22 @@ namespace :stats do
         # reusedResources.each_with_index do |resource,i|
         #   rows[rowIndex+i] = [resource]
         # end
+
+        rows << []
+        rows << ["Excursion Id","Visits","Downloads","Learning Hours"]
+        rowIndex = rows.length
+
+        rows += Array.new(allPublicExcursions.length).map{|e|[]}
+        allPublicExcursions.each_with_index do |e,i|
+          #Calculate Learning time
+          interaction = e.lo_interaction
+          if interaction.nil?
+            loTime = 0
+          else
+            loTime = ((interaction.tlo * interaction.nsamples)/3600.to_f).ceil
+          end
+          rows[rowIndex+i] = [e.id,e.visit_count,e.download_count,loTime]
+        end
 
         rows.each do |row|
           sheet.add_row row
