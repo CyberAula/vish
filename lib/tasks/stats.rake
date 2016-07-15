@@ -45,9 +45,11 @@ namespace :stats do
     accumulativeCreatedExcursions = []
     publishedExcursions = []
     allExcursionsByDate.each_with_index do |excursions,index|
-      nCreated = excursions.order('id DESC').first.id rescue 0
-      accumulativeCreatedExcursions.push(nCreated)
-      nCreated = (nCreated - accumulativeCreatedExcursions[index-1]) unless index==0 or nCreated == 0
+      lastAcCreated = (index > 0 ? accumulativeCreatedExcursions[index-1] : 0)
+      acCreated = excursions.order('id DESC').first.id rescue 0
+      acCreated = lastAcCreated if acCreated == 0
+      accumulativeCreatedExcursions.push(acCreated)
+      nCreated = acCreated - lastAcCreated
       createdExcursions.push(nCreated)
       publishedExcursions.push(excursions.count)
     end
@@ -487,9 +489,11 @@ namespace :stats do
     createdUsers = []
     accumulativeCreatedUsers = []
     allUsersByDate.each_with_index do |users,index|
-      nCreated = users.order('id DESC').first.id rescue 0
-      accumulativeCreatedUsers.push(nCreated)
-      nCreated = (nCreated - accumulativeCreatedUsers[index-1]) unless index==0 or nCreated == 0
+      lastAcCreated = (index > 0 ? accumulativeCreatedUsers[index-1] : 0)
+      acCreated = users.order('id DESC').first.id rescue 0
+      acCreated = lastAcCreated if acCreated == 0
+      accumulativeCreatedUsers.push(acCreated)
+      nCreated = acCreated - lastAcCreated
       createdUsers.push(nCreated)
     end
 
