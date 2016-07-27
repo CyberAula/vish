@@ -261,22 +261,43 @@ namespace :stats do
     end
   end
 
-  # #Usage
-  # #Development:   bundle exec rake stats:check_resources
-  # task :check_resources, [:prepare] => :environment do |t,args|
-  #   allResourceTypes = (["Document", "Webapp", "Scormfile", "Imscpfile", "Link", "Embed", "Writing", "Excursion", "Workshop", "Category"] + VishConfig.getResourceModels).uniq
-  #   allResourceTypes.each do |type|
-  #     allResources = ActivityObject.where("object_type in (?)", [type]).order("id DESC").map{|ao| ao.object}
-  #     maxIndex = allResources.length-1
-  #     allResources.each_with_index do |resource,index|
-  #       unless (index+1) > maxIndex
-  #         binding.pry if (allResources[index+1].id - allResources[index].id > 5)
-  #         binding.pry if (allResources[index+1].created_at - allResources[index].created_at > (3600*24))
-  #         binding.pry if (allResources[index+1].activity_object.created_at - allResources[index].activity_object.created_at > (3600*24))
-  #       end
-  #     end
-  #   end
-  # end
+  #Usage
+  #Development:   bundle exec rake stats:check_resources
+  task :check_resources, [:prepare] => :environment do |t,args|
+    allResourceTypes = (["Document", "Webapp", "Scormfile", "Imscpfile", "Link", "Embed", "Writing", "Excursion", "Workshop", "Category"] + VishConfig.getResourceModels).uniq
+    allResourceTypes.each do |type|
+      allResources = ActivityObject.where("object_type in (?)", [type]).order("id DESC").map{|ao| ao.object}
+      maxIndex = allResources.length-1
+      allResources.each_with_index do |resource,index|
+        unless (index+1) > maxIndex
+          rName = allResources[index].class.name + ":" + allResources[index].id.to_s
+          if (allResources[index+1].id - allResources[index].id > 5)
+            puts "Wrong sequence with " + rName
+          end
+
+          if allResources[index+1].created_at.blank? or allResources[index].created_at.blank?
+            if allResources[index].created_at.blank?
+              puts "Created_at nil for " + rName
+            end
+          else
+            if (allResources[index+1].created_at - allResources[index].created_at > (3600*24))
+              puts "Wrong created_at timestamp for " + rName
+            end
+          end
+         
+          if allResources[index+1].activity_object.created_at.blank? or allResources[index].activity_object.created_at.blank?
+            if allResources[index].activity_object.created_at.blank?
+              puts "Created_at nil for activity object of " + rName
+            end
+          else
+            if (allResources[index+1].activity_object.created_at - allResources[index].activity_object.created_at > (3600*24))
+              puts "Wrong created_at timestamp for activity object of " + rName
+            end
+          end
+        end
+      end
+    end
+  end
 
   #Usage
   #Development:   bundle exec rake stats:resources
