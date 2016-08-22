@@ -158,6 +158,9 @@ test:
 # twitter:
 #   enable: true
 
+# XWiki (http://www.xwiki.org)
+# xwiki_url: "http://localhost:8080/xwiki/bin/view/"
+
 # Google Plus (http://plus.google.com/)
 # gplus:
 #   enable: true
