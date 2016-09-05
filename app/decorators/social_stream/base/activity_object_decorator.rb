@@ -3,6 +3,8 @@
 ActivityObject.class_eval do
   has_many :spam_reports
   has_and_belongs_to_many :wa_resources_galleries
+  has_and_belongs_to_many :contest_categories
+  has_many :contests, :through => :contest_categories
   belongs_to :license
   has_one :contribution
   has_one :lo_interaction

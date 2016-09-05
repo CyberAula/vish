@@ -111,10 +111,9 @@ Vish::Application.routes.draw do
     post 'leave', :on => :member
   end
 
-  #Competitions
-  match '/competition' => 'competition#index'
-  match '/competition/join_competition' => 'competition#join_competition'
-  match '/competition/all' => 'competition#all_items'
+  #Contest
+  # resources :contests do
+  # end
 
   #Quiz Sessions
   resources :quiz_sessions do
