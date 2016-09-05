@@ -111,10 +111,6 @@ Vish::Application.routes.draw do
     post 'leave', :on => :member
   end
 
-  #Contest
-  # resources :contests do
-  # end
-
   #Quiz Sessions
   resources :quiz_sessions do
     get "results", :on => :member
@@ -158,9 +154,12 @@ Vish::Application.routes.draw do
   #service_permissions
   match 'service_permissions/update_permissions' => 'service_permissions#update_permissions', :via => :post
 
-  #Competitions
-  match 'contest' => 'static#contest'
-  match 'contest_all' => 'static#contest_all'
+  # Contests
+  resources :contests do
+  end
+  match 'contest/:name' => 'contests#show'
+  match 'contest/:name/page/:page' => 'contests#show'
+  match 'contests/:id/page/:page' => 'contests#show'
 
   #Administration panel
   match 'admin' => 'admin#index'

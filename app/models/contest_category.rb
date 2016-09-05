@@ -1,6 +1,6 @@
 class ContestCategory < ActiveRecord::Base
   belongs_to :contest
-  has_and_belongs_to_many :activity_objects
+  has_and_belongs_to_many :submissions, :class_name => "ActivityObject"
 
   validates_presence_of :contest_id, allow_blank: false
   validate :has_valid_contest
@@ -21,12 +21,12 @@ class ContestCategory < ActiveRecord::Base
     end
   end
 
-  before_save :check_activity_objects
+  before_save :check_submissions
 
   def insertActivityObject(ao)
     shouldAdd = false
     if ["open"].include? self.contest.status
-      if !ao.nil? and ao.class.name=="ActivityObject" and ao.scope==0 and !self.activity_objects.include? ao
+      if !ao.nil? and ao.class.name=="ActivityObject" and ao.scope==0 and !self.submissions.include? ao
         settings = self.contest.getParsedSettings
 
         actorCanAdd = true
@@ -41,10 +41,10 @@ class ContestCategory < ActiveRecord::Base
           when "one_per_author"
             shouldAdd = !(self.contest.submissions.map{|ao| ao.author.id}.include? ao.author.id)
           when "one_per_author_category"
-            shouldAdd = !(self.activity_objects.map{|ao| ao.author.id}.include? ao.author.id)
+            shouldAdd = !(self.submissions.map{|ao| ao.author.id}.include? ao.author.id)
           end
 
-          self.activity_objects << ao if shouldAdd
+          self.submissions << ao if shouldAdd
         end
       end
     end
@@ -58,13 +58,13 @@ class ContestCategory < ActiveRecord::Base
   end
 
   def deleteActivityObject(ao)
-    self.activity_objects.delete(ao) if !ao.nil? and self.activity_objects.include? ao
+    self.submissions.delete(ao) if !ao.nil? and self.submissions.include? ao
   end
 
   def setActivityObjects(aos=nil)
-    aos ||= self.activity_objects.clone
+    aos ||= self.submissions.clone
     aos = aos.uniq
-    self.activity_objects = []
+    self.submissions = []
     insertActivityObjects(aos)
   end
 
@@ -75,9 +75,9 @@ class ContestCategory < ActiveRecord::Base
 
   private
 
-  def check_activity_objects
-    vaos = self.activity_objects.select{|ao| ao.scope==0}.uniq
-    self.setActivityObjects(vaos.clone) if (self.activity_objects != vaos)
+  def check_submissions
+    vaos = self.submissions.select{|ao| ao.scope==0}.uniq
+    self.setActivityObjects(vaos.clone) if (self.submissions != vaos)
   end
 
 end
