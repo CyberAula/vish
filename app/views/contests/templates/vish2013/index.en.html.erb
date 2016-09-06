@@ -3,18 +3,12 @@
 <%content_for :description do%><%= t("site.meta_desc.contest")%><%end%>
 
 <div id="winners">
-  <div id="banner">
-    <%if I18n.locale==:es%>
-      <%= link_to image_tag("competition/ban_winner_01_esp.png",  :class=> "" ), "/contest/vish2013" %>
-    <%else%>
-      <%= link_to image_tag("competition/ban_winner_01.png",  :class=> "" ), "/contest/vish2013" %>
-    <%end%>
-  </div>
+  <div id="banner"><%=link_to image_tag("competition/ban_winner_01.png",:class=> ""),"/contest/vish2013"%></div>
 
   <!-- Button trigger modal -->
   <div class="info_competition">
     <button type="button" class="btn btn-primary btn-lg ModalPrizes" data-toggle="modal" data-target="#ModalPrizes">
-      <h4><i class="fa fa-trophy"></i> <%=t('contest.prizes')%></h4>
+      <h4><i class="fa fa-trophy"></i> Check The Prizes</h4>
     </button>
 
     <!-- Modal -->
@@ -23,23 +17,22 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="ModalPrizesLabel"><%= t('contest.prizes') %></h4>
+            <h4 class="modal-title" id="ModalPrizesLabel">Check The Prizes</h4>
           </div>
           <div class="modal-body">
             <p>
-              <%=t('contest.prizes2')%>
-              </br><%=t('contest.prizes_first_a')%>
-              </br><%=t('contest.prizes_second_a')%>
+              The winners will receive prizes in the form of Amazon vouchers *. For each of the categories there is a chance to win a 1st and 2nd prize.
+              </br>1st prize 400€ voucher
+              </br>2st prize 200€ voucher
               </br>
-              </br><%=t('contest.prizes3')%>
-              </br><%=t('contest.prizes_first')%>
-              </br><%=t('contest.prizes_second')%>
-              </br><%=t('contest.prizes_third')%>
+              </br>The overall winners will receive extra prizes:
+              </br>1st prize 500€ voucher
+              </br>2st prize 300€ voucher
+              </br>3st prize 200€ voucher
               </br>
-              </br><%=t('contest.prizes4')%>
+              </br>In addition, the 3 winners will be invited to join our conference in Brussels, scheduled for early 2014.
               </br></br>
-              <strong><%=t('contest.amazon')%></strong>
-              <%=t('contest.prizes5')%>
+              <strong>* The Amazon voucher</strong> is a promotional code for the online store Amazon that will allow you to buy whatever you may consider interesting for your work: books, little technological equipment, etc.
             </p>
           </div>
         </div>
@@ -93,12 +86,12 @@
   </div>
 
   <div class="tabexcursions">
-    <h3><b class="caret caret1"></b><%=t('contest.winnersbycategory')%><b class="caret caret2"></b></h3>
+    <h3><b class="caret caret1"></b>Winners by Category<b class="caret caret2"></b></h3>
   </div>
 
   <div id="subjectwinners">
     <div class="subrow">
-      <h3><%=t('contest.Maths')%></h3>
+      <h3>Maths</h3>
       <section id="show_items">
         <div class="recomended">
           <ul class="items">
@@ -124,7 +117,7 @@
     <!---->
 
     <div class="subrow">
-      <h3><%=t('contest.Physics')%></h3>
+      <h3>Physics</h3>
       <section id="show_items">
         <div class="recomended">
           <ul class="items">
@@ -150,7 +143,7 @@
     <!---->
 
     <div class="subrow">
-      <h3><%=t('contest.Chemistry')%></h3>
+      <h3>Chemistry</h3>
       <section id="show_items">
         <div class="recomended">
           <ul class="items">
@@ -176,7 +169,7 @@
     <!---->
 
     <div class="subrow">
-      <h3><%=t('contest.Biology')%></h3>
+      <h3>Biology</h3>
       <section id="show_items">
         <div class="recomended">
           <ul class="items">
@@ -202,7 +195,7 @@
     <!---->
 
     <div class="subrow">
-      <h3><%=t('contest.Geography')%></h3>
+      <h3>Geography</h3>
       <section id="show_items">
         <div class="recomended">
           <ul class="items">
@@ -228,7 +221,7 @@
     <!---->
 
     <div class="subrow">
-      <h3><%=t('contest.EnvironmentalStudies')%></h3>
+      <h3>Environmental Studies</h3>
       <section id="show_items">
         <div class="recomended">
           <ul class="items">
@@ -254,7 +247,7 @@
     <!---->
 
     <div class="subrow">
-      <h3><%=t('contest.Engineering')%></h3>
+      <h3>Engineering</h3>
       <section id="show_items">
         <div class="recomended">
           <ul class="items">
@@ -280,7 +273,7 @@
     <!---->
 
     <div class="subrow">
-      <h3><%=t('contest.Humanities')%></h3>
+      <h3>Humanities</h3>
       <section id="show_items">
         <div class="recomended">
           <ul class="items">
@@ -306,7 +299,7 @@
     <!---->
 
     <div class="subrow">
-      <h3><%=t('contest.NaturalScience')%></h3>
+      <h3>Natural Science</h3>
       <section id="show_items">
         <div class="recomended">
           <ul class="items">
@@ -334,7 +327,7 @@
     <!---->
 
     <div class="subrow">
-      <h3><%=t('contest.ComputerScience')%></h3>
+      <h3>Computer Science</h3>
       <section id="show_items">
         <div class="recomended">
           <ul class="items">
@@ -363,7 +356,7 @@
 
   <div id="participants">
     <div class="tabexcursions">
-      <a class="sign_up btn btn-info" href="<%=contest_page_path(@contest,"all",true)%>"><%=t('contest.viewalltag')%></a>
+      <a class="sign_up btn btn-info" href="<%=contest_page_path(@contest,"all",true)%>">View All #ViSHCompetition2013 Excursions</a>
     </div>
   </div>
 </div>

@@ -1,0 +1,44 @@
+<section id="contest">
+  <div class="tabexcursions">
+    <h3>All #ViSHCompetition2013 Excursions:</h3>
+    <div class="filter">
+      Filter:
+      <select id="tags_selector" name="tags">
+        <option value="All">All</option>
+        <option value="Maths">Maths</option>
+        <option value="Physics">Physics</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Biology">Biology</option>
+        <option value="Geography">Geography</option>
+        <option value="EnvironmentalStudies">Environmental Studies</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Humanities">Humanities</option>
+        <option value="NaturalScience">Natural Science</option>
+        <option value="ComputerScience">Computer Science</option>
+      </select>
+    </div>
+  </div>
+  <div class="entities contest_excursions">
+    <ul class="items">
+      <% entities_tagged_with(["Excursion"],"ViSHCompetition2013").each do |excursion| %>
+        <div class="contest_excursion_tags" style="display:none !important">
+          <% excursion.tags.each do |tag| %>
+            <p class="contest_excursion_tag"><%=tag.name.downcase%></p>
+          <% end %>
+        </div>
+        <%= render :partial => 'entities/entity', :locals => { :entity => excursion, :prefix_id => "contest" } %>
+      <% end %>
+    </ul>
+  </div>
+</section>
+
+<%content_for :javascript do%>
+    $("#tags_selector").change(function(){
+      if(this.value=="All"){
+        $(".excursion-item").show();
+      } else {
+        $(".excursion-item").hide();
+        $(".contest_excursion_tag:contains("+this.value.toLowerCase()+")").parents(".contest_excursion_tags").next(".excursion-item").show();
+      }
+    });
+<% end %>

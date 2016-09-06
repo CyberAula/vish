@@ -740,10 +740,6 @@ ActiveRecord::Schema.define(:version => 20160905081917) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "private_student_group_id"
-    t.string   "surname"
-    t.string   "center_code"
-    t.boolean  "mooc",                     :default => false
-    t.boolean  "mailmoocsent",             :default => false
   end
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"
