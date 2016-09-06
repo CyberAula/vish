@@ -36,6 +36,26 @@ class Contest < ActiveRecord::Base
     default_settings.merge(parsedSettings)
   end
 
+  def allowEnrollments?
+    ["open"].include? self.status and getParsedSettings["enroll"]==="true"
+  end
+
+  def allowSubmissions?(actor)
+    ["open"].include? self.status and (getParsedSettings["submission_require_enroll"]!="true" || isEnrolled?(actor))
+  end
+
+  def isEnrolled?(participant)
+    case participant.class.name
+    when "Actor"
+      actor = participant
+    when "User"
+      actor = participant.actor
+    else
+      return false
+    end
+    self.enrolled_participants.include? actor
+  end
+
   def default_settings
     #Contest settings
     #enroll => true/false
@@ -54,6 +74,10 @@ class Contest < ActiveRecord::Base
 
   def disenrollActor(actor)
     self.enrolled_participants.delete(actor) if !actor.nil? and self.enrolled_participants.include? actor
+  end
+
+  def getUrlWithName
+    "/contest/" + self.name
   end
 
 

@@ -303,6 +303,12 @@ es:
   pending:
     other: "Te siguen"
   contest:
+    disenroll: "Desinscribirse"
+    disenrollment_failure: "Ocurrió un error y la desinscripción no pudo llevarse a cabo."
+    disenrollment_success: "Te has sido desinscrito con éxito."
+    enroll: "Inscribirse"
+    enrollment_failure: "Ocurrió un error y la inscripción no pudo llevarse a cabo."
+    enrollment_success: "Te has inscrito satifactoriamente."
     ViSHCompetition13: "#ViSHCompetition2013"
   youtube: "Canal ViSH en Youtube"
   copy_to_clip: "Copiar al portapapeles"

@@ -321,6 +321,12 @@ en:
   pending:
     other: "Following you"
   contest:
+    disenroll: "Disenroll"
+    disenrollment_failure: "An error occurred and disenrollment couldn't take place."
+    disenrollment_success: "You have been successfully disenrolled."
+    enroll: "Enroll"
+    enrollment_failure: "An error occurred and enrollment couldn't take place."
+    enrollment_success: "You have been successfully enrolled."
     ViSHCompetition13: "#ViSHCompetition2013"
   youtube: "ViSH Youtube Channel"
   copy_to_clip: "Copy to clipboard"

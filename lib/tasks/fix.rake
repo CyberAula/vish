@@ -789,11 +789,13 @@ namespace :fix do
     c = Contest.new
     c.name = "test"
     c.template = "test"
+    c.settings = ({"enroll" => "true", "submission" => "one_per_author", "submission_require_enroll" => "false"}).to_json
     c.save!
 
     cc = ContestCategory.new
     cc.name = "General"
     cc.contest_id = c.id
+    cc.save!
 
     printTitle("Task finished. Test contest created with id " + c.id.to_s)
   end

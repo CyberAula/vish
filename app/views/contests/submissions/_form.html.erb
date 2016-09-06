@@ -1,0 +1,11 @@
+<%
+  form_id = "submission_new_" + contest_category.id.to_s
+  available_submissions = ["Resource"]
+%>
+
+<div class="actions_contributions_show_object">
+  <% available_submissions.each_with_index do |contribution_type,index| %>
+    <% form_id += "_" + (index+1).to_s %>
+    <%= render partial: "contests/submissions/submit_#{contribution_type.downcase}", locals: { contest_category: contest_category, :form_id => form_id } %>
+  <% end %>
+</div>

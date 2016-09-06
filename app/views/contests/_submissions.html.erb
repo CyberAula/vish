@@ -1,0 +1,3 @@
+<% @contest.submissions.map{|ao| ao.object}.each do |resource| %>
+	<%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "contest_"+contest.id.to_s } %>
+<% end %>
