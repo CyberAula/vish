@@ -12,7 +12,7 @@ class Contribution < ActiveRecord::Base
   validate :has_valid_parent
   def has_valid_parent
     if self.parent.nil? or self.parent==self or self.all_contributions.include? self.parent or (!workshop_parent.nil? and !self.parent_id.nil?)
-      errors.add(:contribution, "with invalid parent")
+      errors[:base] << "Contribution has an invalid parent"
     else
       true
     end
@@ -20,7 +20,7 @@ class Contribution < ActiveRecord::Base
   validate :ao_is_not_duplicated
   def ao_is_not_duplicated
     if self.parent.contributions.map{|c| c.activity_object_id}.include? self.activity_object_id
-      errors.add(:contribution, "duplicated")
+      errors[:base] << I18n.t("contribution.messages.duplicated")
     else
       true
     end

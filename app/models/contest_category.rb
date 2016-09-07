@@ -25,7 +25,7 @@ class ContestCategory < ActiveRecord::Base
 
   def insertActivityObject(ao)
     return I18n.t("contest.submissions.not_valid") unless !ao.nil? and ao.class.name=="ActivityObject" and ao.scope==0
-    return I18n.t("contest.submissions.duplicated") if self.submissions.include? ao
+    return I18n.t("contribution.messages.duplicated") if self.submissions.include? ao
     self.submissions << ao
     ao
   end

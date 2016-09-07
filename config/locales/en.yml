@@ -297,6 +297,7 @@ en:
     content: "Content"
     title: "Title"
     messages:
+      duplicated: "The resource had already been submitted."
       object_not_found: "La URL no es válida. El recurso no pudo ser encontrado."
       object_not_yours: "El recurso no es tuyo. Debes subir uno de tus recursos."
       url_not_found: "Debes proporcionar una URL válida para enviar el recurso."
@@ -312,7 +313,6 @@ en:
     submissions:
       contest_not_open: "Submissions are no longer allowed."
       not_valid: "The submitted resource is not valid."
-      duplicated: "The resource had already been submitted."
       require_enrollment: "You need to be enrolled to perform a submission."
       one_per_user: "Only one submission per user is allowed."
       one_per_user_category: "Only one submission per user and category is allowed."

@@ -279,6 +279,7 @@ es:
     content: "Contenido"
     title: "Título"
     messages:
+      duplicated: "El recurso ya había sido envíado."
       object_not_found: "The URL is not valid. The resource couldn't be found."
       object_not_yours: "The resource is not yours. You must submit one of your resources."
       url_not_found: "You must provid a valid URL to send the resource."
@@ -294,7 +295,6 @@ es:
     submissions:
       contest_not_open: "No se admiten más envíos."
       not_valid: "El recurso enviado no es válido."
-      duplicated: "El recurso ya había sido envíado."
       require_enrollment: "Necesitas estar inscrito para realizar un envío."
       one_per_user: "Solo se permite un envío por usuario."
       one_per_user_category: "Solo se permite un envío por usuario y categoría."
