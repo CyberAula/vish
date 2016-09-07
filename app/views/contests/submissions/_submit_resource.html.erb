@@ -6,5 +6,5 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#<%=form_id%>" data-remote="<%=contest_path(@contest) + "/new_resource_submission?form_id=" + form_id + "&contest_category_id=" + contest_category.id.to_s%>">Submit work</button>
+  <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#<%=form_id%>" data-remote="<%=contest_path(@contest) + "/new_resource_submission?form_id=" + form_id + "&contest_category_id=" + contest_category.id.to_s%>"><%= I18n.t('workshop.activities.assignment.modal.bt_upload') %></button>
 </div>

@@ -160,6 +160,7 @@ Vish::Application.routes.draw do
     post 'disenroll', :on => :member
     get 'new_resource_submission', :on => :member
     post 'submit', :on => :member
+    post 'remove_submit', :on => :member
   end
   match 'contest/:name' => 'contests#show'
   match 'contest/:name/page/:page' => 'contests#show'

@@ -282,28 +282,6 @@ en:
     scope: "We don't recommend to tick this checkbox, do it exclusively if you don't want search engine to index it"
     success: "Categories saved succesfully"
   close: "Close"
-  competition:
-    about_title: "SHOW YOUR CREATIVITY"
-    view_more: "Show all proposals"
-    menu:
-      join: "How I participate?"
-      about: "What is it?"
-      prize: "What are the prizes?"
-      joined: "Projects submitted"
-    modal:
-      bt_upload: "Upload my proposal"
-      notfound: "Sorry, you can't upload your proposal because you don't have any excursion yet"
-      title: "Select one of your excursions"
-      title2: "Choose the excursion that you want to participate in the contest"
-      selected: "Selected"
-    register_bt: "Sign up & submit your proposal"
-    register_bt2: "Submit your proposal"
-    step1: "Register if you have not done so"
-    step2: "Create a new excursion from 'add menu'"
-    step3: "Design your excursion using the resources of the platform, or others upload by yourself"
-    step4: "Publish your excursion and upload your proposal to apply for awards"
-    thanks: "Thank you for upload your proposal"
-    questions: "your questions in"
   conditions:
     check_message: "I Accept ViSH "
     check_message_1: "Terms and Conditions."
@@ -318,6 +296,10 @@ en:
     action: "Contribute"
     content: "Content"
     title: "Title"
+    messages:
+      object_not_found: "La URL no es válida. El recurso no pudo ser encontrado."
+      object_not_yours: "El recurso no es tuyo. Debes subir uno de tus recursos."
+      url_not_found: "Debes proporcionar una URL válida para enviar el recurso."
   pending:
     other: "Following you"
   contest:
@@ -327,6 +309,13 @@ en:
     enroll: "Enroll"
     enrollment_failure: "An error occurred and enrollment couldn't take place."
     enrollment_success: "You have been successfully enrolled."
+    submissions:
+      contest_not_open: "Submissions are no longer allowed."
+      not_valid: "The submitted resource is not valid."
+      duplicated: "The resource had already been submitted."
+      require_enrollment: "You need to be enrolled to perform a submission."
+      one_per_user: "Only one submission per user is allowed."
+      one_per_user_category: "Only one submission per user and category is allowed."
     ViSHCompetition13: "#ViSHCompetition2013"
   youtube: "ViSH Youtube Channel"
   copy_to_clip: "Copy to clipboard"
@@ -1194,10 +1183,11 @@ en:
           description: "Assignments allow participants to contribute to the workshop by uploading their own resources."
           due_date: "Due date"
           modal:
-            bt_upload: "Upload resource"
-            notfound: "There is no educational resource in your profile. Create or upload one."
+            bt_upload: "Submit resource"
+            notfound: "There is no educational resources in your profile. Create or upload one."
+            selected: "Selected"
             title: "Select one of your resources"
-            url_explanation: "Paste here the full URL of the resource or excursion you want to submit. The resource to be submitted must be yours and must be public."
+            url_explanation: "Paste here the full URL of the resource hosted in the ViSH platform you want to submit. The resource to be submitted must be yours and public."
             url_tab: "URL"
           modal_title: "Edit assignment"
           open_date: "Open date"

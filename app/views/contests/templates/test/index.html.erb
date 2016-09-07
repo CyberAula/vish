@@ -10,10 +10,16 @@
 <%= render partial: 'contests/enroll', locals: { contest: @contest} %>
 <br/>
 
+<h4> Submissions </h4>
+<%= render partial: 'contests/submissions', locals: { contest: @contest} %>
+<br/>
+<p><a href="<%=contest_page_path(@contest,"submissions",true)%>">View all</a></p>
+<br/>
+
 <h4> Submit your resource: </h4>
 <%= render partial: 'contests/submission', locals: { contest: @contest} %>
 <br/>
 
-<h4> Submissions </h4>
-<%= render partial: 'contests/submissions', locals: { contest: @contest} %>
+<h4> Your submissions: </h4>
+<%= render partial: 'contests/submissions_user', locals: { contest: @contest} %>
 <br/>

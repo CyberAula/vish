@@ -24,31 +24,10 @@ class ContestCategory < ActiveRecord::Base
   before_save :check_submissions
 
   def insertActivityObject(ao)
-    shouldAdd = false
-    if ["open"].include? self.contest.status
-      if !ao.nil? and ao.class.name=="ActivityObject" and ao.scope==0 and !self.submissions.include? ao
-        settings = self.contest.getParsedSettings
-
-        actorCanAdd = true
-        if settings["submission_require_enroll"]==="true"
-          actorCanAdd = self.contest.enrolled_participants.include? ao.author
-        end
-
-        if actorCanAdd
-          case settings["submission"]
-          when "free"
-            shouldAdd = true
-          when "one_per_author"
-            shouldAdd = !(self.contest.submissions.map{|ao| ao.author.id}.include? ao.author.id)
-          when "one_per_author_category"
-            shouldAdd = !(self.submissions.map{|ao| ao.author.id}.include? ao.author.id)
-          end
-
-          self.submissions << ao if shouldAdd
-        end
-      end
-    end
-    (shouldAdd ? ao : nil)
+    return I18n.t("contest.submissions.not_valid") unless !ao.nil? and ao.class.name=="ActivityObject" and ao.scope==0
+    return I18n.t("contest.submissions.duplicated") if self.submissions.include? ao
+    self.submissions << ao
+    ao
   end
 
   def insertActivityObjects(aos)
@@ -58,7 +37,9 @@ class ContestCategory < ActiveRecord::Base
   end
 
   def deleteActivityObject(ao)
-    self.submissions.delete(ao) if !ao.nil? and self.submissions.include? ao
+    return "Resource is not valid" if ao.nil?
+    return "Resource not found" unless self.submissions.include? ao
+    self.submissions.delete(ao)
   end
 
   def setActivityObjects(aos=nil)

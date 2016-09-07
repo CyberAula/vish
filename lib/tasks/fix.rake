@@ -789,7 +789,7 @@ namespace :fix do
     c = Contest.new
     c.name = "test"
     c.template = "test"
-    c.settings = ({"enroll" => "true", "submission" => "one_per_author", "submission_require_enroll" => "false"}).to_json
+    c.settings = ({"enroll" => "true", "submission" => "one_per_user", "submission_require_enroll" => "false"}).to_json
     c.save!
 
     cc = ContestCategory.new

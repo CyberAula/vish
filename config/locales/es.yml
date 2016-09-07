@@ -264,28 +264,6 @@ es:
     scope: "No recomendamos marcar esta casilla, marcar exclusivamente si no quieres que el buscador pueda ver tus categorías"
     success: "Las categorías se han salvado con éxito"
   close: "Cerrar"
-  competition:
-    about_title: "DESATA TU CREATIVIDAD"
-    view_more: "Todos los proyectos presentados"
-    menu:
-      join: "¿Cómo participo?"
-      about: "¿En qué consiste?"
-      prize: "¿Cuáles son los premios?"
-      joined: "Proyectos presentados"
-    modal:
-      bt_upload: "Subir mi propuesta"
-      notfound: "Lo sentimos, no puede participar en el concurso porque todavía no tiene ninguna excursión"
-      title: "Selecciona una de tus excursiones"
-      title2: "Elige la excursión con la que quieres participar en el concurso"
-      selected: "Seleccionado"
-    register_bt: "Regístrate y sube tu propuesta"
-    register_bt2: "Sube tu propuesta"
-    step1: "Regístrate si todavía no lo has hecho"
-    step2: "Crea una nueva excursión desde el menú 'añadir'"
-    step3: "Diseña tu excursión usando los recursos de la plataforma, u otros que subas tu mismo"
-    step4: "Publica tu excursión y sube tu propuesta para optar a los premios"
-    thanks: "Gracias por subir tu propuesta"
-    questions: "tus dudas en"
   conditions:
     check_message: "Acepto las "
     check_message_1: "Condiciones de Uso"
@@ -300,6 +278,10 @@ es:
     action: "Contribuir"
     content: "Contenido"
     title: "Título"
+    messages:
+      object_not_found: "The URL is not valid. The resource couldn't be found."
+      object_not_yours: "The resource is not yours. You must submit one of your resources."
+      url_not_found: "You must provid a valid URL to send the resource."
   pending:
     other: "Te siguen"
   contest:
@@ -309,6 +291,13 @@ es:
     enroll: "Inscribirse"
     enrollment_failure: "Ocurrió un error y la inscripción no pudo llevarse a cabo."
     enrollment_success: "Te has inscrito satifactoriamente."
+    submissions:
+      contest_not_open: "No se admiten más envíos."
+      not_valid: "El recurso enviado no es válido."
+      duplicated: "El recurso ya había sido envíado."
+      require_enrollment: "Necesitas estar inscrito para realizar un envío."
+      one_per_user: "Solo se permite un envío por usuario."
+      one_per_user_category: "Solo se permite un envío por usuario y categoría."
     ViSHCompetition13: "#ViSHCompetition2013"
   youtube: "Canal ViSH en Youtube"
   copy_to_clip: "Copiar al portapapeles"
@@ -1185,8 +1174,9 @@ es:
             modal:
               bt_upload: "Subir recurso"
               notfound: "No tiene ningún recurso educativo en su perfil. Cree o suba uno."
+              selected: "Seleccionado"
               title: "Selecciona uno de tus recursos"
-              url_explanation: "Copie aquí la URL completa del recurso o excursión que desee subir. Este recurso debe ser suyo y público."
+              url_explanation: "Copie aquí la URL completa del recurso alojado en la plataforma ViSH que desee subir. Este recurso debe ser suyo y público."
               url_tab: "URL"
             modal_title: "Editar tarea"
             open_date: "Fecha comienzo"
@@ -1212,7 +1202,6 @@ es:
             title: "Texto"
             description: "Incluye un párrafo de texto"
             text: "Además de la descripción del workshop y las tareas definidas en él, en ocasiones necesitarás la posibilidad de insertar un bloque de texto con otra finalidad, como podría ser una bibliografía u otros datos de interés para el workshop. Con este componente puedes añadir un texto completamente personalizado y editable a tu workshop."
-
     confirm_delete: "¿Borrar workshop?"
     name: "taller"
     new: "Nuevo lección"

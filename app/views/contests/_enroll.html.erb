@@ -1,7 +1,7 @@
 <% if @contest.allowEnrollments? %>
 	<p>This contest allow enrollments.</p>
 	<% if user_signed_in? %>
-		<% if @contest.isEnrolled?(current_subject) %>
+		<% if @contest.isEnrolled?(current_subject.actor) %>
 			<p> You are already enrolled in this contest. </p>
 			<%= form_for(@contest, url: disenroll_contest_path(@contest), method: "post") do |f| %>
 				<%= f.submit t("contest.disenroll") %>

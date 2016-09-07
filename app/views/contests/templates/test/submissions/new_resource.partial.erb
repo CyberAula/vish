@@ -1,10 +1,9 @@
 <%
   if user_signed_in? and current_subject
-    resources = subject_resources(current_subject, {:scope => :me, :limit => 0, :sort_by => "created_at", :force_filter_private => true})
-    excursions = subject_excursions(current_subject, {:scope => :me, :limit => 0, :sort_by => "created_at", :force_filter_private => true})
+    # resources = subject_all_resources(current_subject, {:scope => :me, :limit => 0, :sort_by => "created_at", :force_filter_private => true})
+    resources = subject_content(current_subject, (VishConfig.getAvailableResourceModels({:return_instances => true}) + VishConfig.getAvailableMainModels({:return_instances => true}).select{|m| m.name=="Category"}), {:scope => :me, :limit => 0, :sort_by => "created_at", :force_filter_private => true})
   else
     resources = []
-    excursions = []
   end
 %>
 
@@ -15,26 +14,12 @@
 <div class="modal-body">
   <div class="joining_tabs clearfix">
     <ul class="nav nav-tabs">
-      <li class="active"><a class="url_choose_wa" data-toggle="tab"><%=t("workshop.activities.assignment.modal.url_tab")%></a></li>
-      <li><a class="excursions_choose_wa" data-toggle="tab"><%=t("search.models.excursion")%></a></li>
-      <li><a class="resources_choose_wa" data-toggle="tab"><%=t("search.models.resource")%></a></li>
+      <li class="active"><a class="resources_choose_wa" data-toggle="tab"><%=t("search.models.resource")%></a></li>
+      <li><a class="url_choose_wa" data-toggle="tab"><%=t("workshop.activities.assignment.modal.url_tab")%></a></li>
     </ul>
     <div class="url_choose_wa" class="tab-pane">
       <div><p><%=t("workshop.activities.assignment.modal.url_explanation")%></p></div>
       <input class="url_choose_wa_input" type="text" placeholder="<%=Vish::Application.config.full_domain%>/..."/>
-    </div>
-    <div class="excursions_choose_wa" class="tab-pane">
-      <% unless excursions.blank? %>
-        <ul class="items">
-          <% with_format('html') do %>
-            <% excursions.each do |r| %>
-              <%= render :partial => '/entities/entity', :formats => [:html], :locals => { :entity => r, :prefix_id => "submission" } %>
-            <% end %>
-          <% end %>
-        </ul>
-      <% else %>
-        <div class="no_items"><%=I18n.t('workshop.activities.assignment.modal.notfound')%></div>
-      <% end %>
     </div>
     <div class="resources_choose_wa" class="tab-pane">
       <% unless resources.blank? %>
@@ -66,8 +51,6 @@
 
     $(form).find("a.url_choose_wa").attr("href","#"+formId+"_url_choose_wa");
     $(form).find("div.url_choose_wa").attr("id",formId+"_url_choose_wa");
-    $(form).find("a.excursions_choose_wa").attr("href","#"+formId+"_excursions_choose_wa");
-    $(form).find("div.excursions_choose_wa").attr("id",formId+"_excursions_choose_wa");
     $(form).find("a.resources_choose_wa").attr("href","#"+formId+"_resources_choose_wa");
     $(form).find("div.resources_choose_wa").attr("id",formId+"_resources_choose_wa");
 
