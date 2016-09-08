@@ -1,6 +1,7 @@
 class ContestCategory < ActiveRecord::Base
   belongs_to :contest
-  has_and_belongs_to_many :submissions, :class_name => "ActivityObject"
+  has_many :submissions, :class_name => "ContestSubmission"
+  has_many :activity_objects, :through => :submissions
 
   validates_presence_of :contest_id, allow_blank: false
   validate :has_valid_contest
@@ -21,44 +22,35 @@ class ContestCategory < ActiveRecord::Base
     end
   end
 
-  before_save :check_submissions
+  after_destroy :destroy_contest_category_dependencies
 
-  def insertActivityObject(ao)
+  def addActivityObject(ao)
     return I18n.t("contest.submissions.not_valid") unless !ao.nil? and ao.class.name=="ActivityObject" and ao.scope==0
-    return I18n.t("contribution.messages.duplicated") if self.submissions.include? ao
-    self.submissions << ao
-    ao
-  end
-
-  def insertActivityObjects(aos)
-    aos.each do |ao|
-      self.insertActivityObject(ao)
-    end
+    return I18n.t("contribution.messages.duplicated") if self.activity_objects.include? ao
+    cs = ContestSubmission.new
+    cs.contest_category_id = self.id
+    cs.activity_object_id = ao.id
+    cs.actor_id = ao.owner_id
+    cs.valid?
+    return cs.errors.full_messages.to_sentence unless cs.errors.blank? and cs.save
+    cs.activity_object
   end
 
   def deleteActivityObject(ao)
     return "Resource is not valid" if ao.nil?
-    return "Resource not found" unless self.submissions.include? ao
-    self.submissions.delete(ao)
-  end
-
-  def setActivityObjects(aos=nil)
-    aos ||= self.submissions.clone
-    aos = aos.uniq
-    self.submissions = []
-    insertActivityObjects(aos)
-  end
-
-  def updateActivityObjects
-    setActivityObjects
+    cs = self.submissions.find{|s| s.activity_object == ao}
+    return "Resource not found" if cs.nil?
+    cs.destroy
+    cs.activity_object
   end
 
 
   private
 
-  def check_submissions
-    vaos = self.submissions.select{|ao| ao.scope==0}.uniq
-    self.setActivityObjects(vaos.clone) if (self.submissions != vaos)
+  def destroy_contest_category_dependencies
+    self.submissions.each do |s|
+      s.destroy
+    end
   end
 
 end

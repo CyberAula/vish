@@ -760,6 +760,7 @@ namespace :fix do
     c = Contest.new
     c.name = "vish2013"
     c.template = "vish2013"
+    c.show_in_ui = true
     c.settings = ({"enroll" => "false", "submission" => "free", "submission_require_enroll" => "false"}).to_json
     c.save!
 
@@ -771,7 +772,9 @@ namespace :fix do
       cc.contest_id = c.id
       cc.save!
       cAos = allAos.select{|ao| ao.tags.map{|t| t.plain_name}.include? ActsAsTaggableOn::Tag.getPlainName(cName)}
-      cc.insertActivityObjects(cAos)
+      cAos.each do |ao|
+        cc.addActivityObject(ao)
+      end
     end
     
     printTitle("Task finished. ViSH Competition contest created.")
@@ -789,6 +792,7 @@ namespace :fix do
     c = Contest.new
     c.name = "test"
     c.template = "test"
+    c.show_in_ui = true
     c.settings = ({"enroll" => "true", "submission" => "one_per_user", "submission_require_enroll" => "false"}).to_json
     c.save!
 

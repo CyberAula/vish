@@ -58,9 +58,9 @@ class ContestsController < ApplicationController
     case contestSettings["submission"]
     when "free"
     when "one_per_user"
-      return submit_return_with_error(I18n.t("contest.submissions.one_per_user"),pathToReturn) if (contest.submissions.map{|ao| ao.author}.include? current_subject.actor)
+      return submit_return_with_error(I18n.t("contest.submissions.one_per_user"),pathToReturn) if (contest.activity_objects.map{|ao| ao.author}.include? current_subject.actor)
     when "one_per_user_category"
-      return submit_return_with_error(I18n.t("contest.submissions.one_per_user"),pathToReturn) if (contestCategory.submissions.map{|ao| ao.author}.include? current_subject.actor)
+      return submit_return_with_error(I18n.t("contest.submissions.one_per_user"),pathToReturn) if (contestCategory.activity_objects.map{|ao| ao.author}.include? current_subject.actor)
     end
 
     case params["submission"]["type"]
@@ -85,7 +85,7 @@ class ContestsController < ApplicationController
     end
 
     ao = object.activity_object
-    result = contestCategory.insertActivityObject(ao)
+    result = contestCategory.addActivityObject(ao)
 
     respond_to do |format|
       format.any {
@@ -116,7 +116,7 @@ class ContestsController < ApplicationController
     return submit_return_with_error("Required param not found",pathToReturn) unless params["activity_object_id"].present?
     ao = ActivityObject.find_by_id(params["activity_object_id"])
     return submit_return_with_error("Activity Object not found",pathToReturn) if ao.nil?
-    return submit_return_with_error("Activity Object was not submitted",pathToReturn) unless @contest.submissions.include? ao
+    return submit_return_with_error("Activity Object was not submitted",pathToReturn) unless @contest.activity_objects.include? ao
     return submit_return_with_error("Activity Object is not yours",pathToReturn) unless ao.owner_id == current_subject.actor_id
     authorize! :destroy, ao.object
 

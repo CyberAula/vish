@@ -6,7 +6,8 @@ Actor.class_eval do
   has_many :actor_historial, :dependent => :destroy
   has_many :past_activity_objects, through: :actor_historial, source: :activity_object
   has_one :rsevaluation
-  has_and_belongs_to_many :contests
+  has_many :contest_enrollments
+  has_many :contests, :through => :contest_enrollments
 
   before_save :fill_roles
 

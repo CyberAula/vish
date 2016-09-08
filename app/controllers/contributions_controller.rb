@@ -1,6 +1,6 @@
 class ContributionsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:show]
   before_filter :fill_create_params, :only => [:create]
   inherit_resources
 
@@ -14,7 +14,7 @@ class ContributionsController < ApplicationController
   def show
     super do |format|
       format.html {
-        redirect_to polymorphic_path(resource.activity_object.object, :contribution => true)
+        redirect_to polymorphic_path(resource.activity_object.object, :contribution => resource.id)
       }
     end
   end

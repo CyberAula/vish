@@ -14,14 +14,17 @@ class AddContests < ActiveRecord::Migration
       t.string "template"
       t.string "status", :default => "open"
       t.text "settings", :default => "{}"
+      t.boolean "show_in_ui", :default => false
       t.integer  "mail_list_id"
       t.datetime "created_at"
       t.datetime "updated_at"
     end
 
-    #Contests have and belong to many Actors
-    create_table :actors_contests, :id => false do |t|
-      t.references :actor, :contest
+    create_table "contest_enrollments" do |t|
+      t.integer  "contest_id"
+      t.integer  "actor_id"
+      t.datetime "created_at"
+      t.datetime "updated_at"
     end
 
     create_table "contest_categories" do |t|
@@ -31,9 +34,12 @@ class AddContests < ActiveRecord::Migration
       t.datetime "updated_at"
     end
 
-    #ContestCategories have and belong to many ActivityObjects
-    create_table :activity_objects_contest_categories, :id => false do |t|
-      t.references :activity_object, :contest_category
+    create_table "contest_submissions" do |t|
+      t.integer  "contest_category_id"
+      t.integer  "activity_object_id"
+      t.integer  "actor_id"
+      t.datetime "created_at"
+      t.datetime "updated_at"
     end
 
   end

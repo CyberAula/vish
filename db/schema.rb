@@ -108,11 +108,6 @@ ActiveRecord::Schema.define(:version => 20160905081917) do
     t.decimal  "interaction_qscore",                 :precision => 12, :scale => 6
   end
 
-  create_table "activity_objects_contest_categories", :id => false, :force => true do |t|
-    t.integer "activity_object_id"
-    t.integer "contest_category_id"
-  end
-
   create_table "activity_objects_wa_resources_galleries", :id => false, :force => true do |t|
     t.integer "activity_object_id"
     t.integer "wa_resources_gallery_id"
@@ -159,11 +154,6 @@ ActiveRecord::Schema.define(:version => 20160905081917) do
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
   add_index "actors", ["email"], :name => "index_actors_on_email"
   add_index "actors", ["slug"], :name => "index_actors_on_slug", :unique => true
-
-  create_table "actors_contests", :id => false, :force => true do |t|
-    t.integer "actor_id"
-    t.integer "contest_id"
-  end
 
   create_table "actors_roles", :id => false, :force => true do |t|
     t.integer "role_id"
@@ -224,11 +214,27 @@ ActiveRecord::Schema.define(:version => 20160905081917) do
     t.datetime "updated_at"
   end
 
+  create_table "contest_enrollments", :force => true do |t|
+    t.integer  "contest_id"
+    t.integer  "actor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contest_submissions", :force => true do |t|
+    t.integer  "contest_category_id"
+    t.integer  "activity_object_id"
+    t.integer  "actor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "contests", :force => true do |t|
     t.string   "name"
     t.string   "template"
     t.string   "status",       :default => "open"
     t.text     "settings",     :default => "{}"
+    t.boolean  "show_in_ui",   :default => false
     t.integer  "mail_list_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -6,7 +6,7 @@
 <%content_for :canonical do%><%=polymorphic_url(@excursion, :locale => params[:locale])%><%end%>
 <%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@excursion), @excursion)%><%end%>
 
-<% @contribution = (params["contribution"]=="true" and !@excursion.contribution.nil?) %>
+<% @contribution = Contribution.find_by_id(params["contribution"]) %>
 
 <%=javascript_include_tag "RegaddiChart" %>
 <%=javascript_include_tag "loep" %>
@@ -19,7 +19,7 @@
 </script>
 
 <%if @contribution%>
-  <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @excursion.contribution.parents_path } %>
+  <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @contribution.parents_path } %>
 <%end%>
 
 <section id="show_items " class="layout_show">
@@ -53,5 +53,5 @@
 </section>
 
 <%if @contribution%>
-  <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => @excursion.contribution } %>
+  <%= render :partial => 'contributions/contributable_activity', :locals => { :contribution => @contribution } %>
 <%end%>

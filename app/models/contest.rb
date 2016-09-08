@@ -1,7 +1,9 @@
 class Contest < ActiveRecord::Base
-  has_and_belongs_to_many :enrolled_participants, :class_name => "Actor"
+  has_many :contest_enrollments
+  has_many :enrolled_participants, :through => :contest_enrollments, :source => "actor"
   has_many :categories, :class_name => "ContestCategory"
   has_many :submissions, :through => :categories
+  has_many :activity_objects, :through => :submissions
 
   validates :name, :presence => true, :allow_blank => false, :uniqueness => true
   validates_presence_of :template, allow_blank: false
@@ -23,12 +25,12 @@ class Contest < ActiveRecord::Base
   before_save :fill_settings
   after_destroy :destroy_contest_dependencies
 
-  def public_submissions
-    self.submissions.where("scope=0")
+  def public_activity_objects
+    self.activity_objects.where("scope=0")
   end
 
   def participants
-    self.submissions.map{|s| s.author}
+    self.activity_objects.map{|s| s.owner}
   end
 
   def all_participants
@@ -59,9 +61,9 @@ class Contest < ActiveRecord::Base
     case settings["submission"]
     when "free"
     when "one_per_user"
-      return false if (self.submissions.map{|ao| ao.author}.include? actor)
+      return false if (self.activity_objects.map{|ao| ao.author}.include? actor)
     when "one_per_user_category"
-      return false if (self.submissions.map{|ao| ao.author}.include? actor)
+      return false if (self.activity_objects.map{|ao| ao.author}.include? actor)
     end
 
     true
@@ -86,21 +88,21 @@ class Contest < ActiveRecord::Base
   def enrollActor(actor)
     return nil unless self.allowEnrollments?
     if !actor.nil? and actor.class.name=="Actor" and !self.enrolled_participants.include? actor and ["User"].include? actor.subject_type
-      self.enrolled_participants << actor
-      return actor
+      ce = ContestEnrollment.new
+      ce.contest_id = self.id
+      ce.actor_id = actor.id
+      ce.valid?
+      return ce.errors.full_messages.to_sentence unless ce.errors.blank? and ce.save
+      return ce.actor
     end
     nil
   end
 
   def disenrollActor(actor)
     return nil unless self.allowEnrollments?
-    if !actor.nil? and self.enrolled_participants.include? actor
-      self.enrolled_participants.delete(actor)
-      self.categories.each do |contest_category|
-        contest_category.submissions.select{|ao| ao.owner_id == actor.id}.each do |ao|
-          contest_category.deleteActivityObject(ao)
-        end
-      end
+    if !actor.nil?
+      ce = self.contest_enrollments.find{|ce| ce.actor == actor}
+      ce.destroy unless ce.nil?
     end
   end
 
