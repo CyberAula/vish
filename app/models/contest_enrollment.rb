@@ -19,9 +19,9 @@ class ContestEnrollment < ActiveRecord::Base
   private
 
   def destroy_contest_submissions
-    self.contest.categories.each do |contest_category|
-      contest_category.submissions.select{|ao| ao.owner_id == self.actor.id}.each do |ao|
-        contest_category.deleteActivityObject(ao)
+    unless self.contest.nil?
+      self.contest.submissions.select{|s| s.actor_id == self.actor.id}.each do |s|
+        s.destroy
       end
     end
   end

@@ -10,13 +10,7 @@ User.class_eval do
 
   delegate_attributes :birthday, :birthday=,
                       :to => :profile
-
-  before_destroy :destroy_user_resources
-
-  belongs_to :private_student_group
-  has_one :private_teacher, class_name: "Actor", through: :private_student_group
-  has_and_belongs_to_many :courses
-  
+ 
   Occupation = [:select, :teacher, :scientist, :other]
 
   scope :registered, lambda {
@@ -25,7 +19,6 @@ User.class_eval do
 
   before_validation :fill_user_locale
   validate :user_locale
-
   def user_locale
     if !self.language.blank? and I18n.available_locales.include?(self.language.to_sym)
       true
@@ -33,6 +26,13 @@ User.class_eval do
       errors[:base] << "User without language"
     end
   end
+
+  belongs_to :private_student_group
+  has_one :private_teacher, class_name: "Actor", through: :private_student_group
+  has_and_belongs_to_many :courses
+
+  before_destroy :destroy_user_resources
+
 
   def occupation_sym
     if occupation

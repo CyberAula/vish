@@ -119,6 +119,9 @@ class Contest < ActiveRecord::Base
   end
 
   def destroy_contest_dependencies
+    self.contest_enrollments.each do |contest_enrollment|
+      contest_enrollment.destroy
+    end
     self.categories.each do |contest_category|
       contest_category.destroy
     end

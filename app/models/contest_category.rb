@@ -44,6 +44,10 @@ class ContestCategory < ActiveRecord::Base
     cs.activity_object
   end
 
+  def participants
+    self.activity_objects.map{|s| s.owner}
+  end
+
 
   private
 

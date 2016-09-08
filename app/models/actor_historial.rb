@@ -5,7 +5,7 @@ class ActorHistorial < ActiveRecord::Base
 
   validates :activity_object_id, :uniqueness => {:scope => :actor_id}
 
-  #Stores the last 9 activity objects visited by the actor
+  #Stores the last 5 activity objects visited by the actor
   def self.saveAO(actor,ao)
     return if actor.nil? or ao.nil?
     ao = ao.activity_object if ao.respond_to?("activity_object")
@@ -14,7 +14,7 @@ class ActorHistorial < ActiveRecord::Base
     pastAOs = actor.past_activity_objects
     aoIndex = pastAOs.index(ao)
     if aoIndex.nil?
-      #9 should be the maximum length - 1
+      #4 should be the maximum length - 1
       pastAOs = pastAOs.last(4).push(ao)
     elsif aoIndex==(pastAOs.length-1)
       #ao is already at last position, no action needed
