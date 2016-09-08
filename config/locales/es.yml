@@ -298,7 +298,6 @@ es:
       require_enrollment: "Necesitas estar inscrito para realizar un envío."
       one_per_user: "Solo se permite un envío por usuario."
       one_per_user_category: "Solo se permite un envío por usuario y categoría."
-    ViSHCompetition13: "#ViSHCompetition2013"
   youtube: "Canal ViSH en Youtube"
   copy_to_clip: "Copiar al portapapeles"
   course:

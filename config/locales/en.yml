@@ -316,7 +316,11 @@ en:
       require_enrollment: "You need to be enrolled to perform a submission."
       one_per_user: "Only one submission per user is allowed."
       one_per_user_category: "Only one submission per user and category is allowed."
-    ViSHCompetition13: "#ViSHCompetition2013"
+    templates:
+      vish2013:
+          title: "#ViSHCompetition2013"
+      test:
+          title: "Test Contest"
   youtube: "ViSH Youtube Channel"
   copy_to_clip: "Copy to clipboard"
   course:

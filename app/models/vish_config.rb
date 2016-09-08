@@ -43,7 +43,7 @@ class VishConfig
   end
 
   def self.getAllServices
-    ["ARS","Catalogue","Competitions2013","ASearch","MediaConversion","PrivateStudentGroups"]
+    ["ARS","Catalogue","Contests","ASearch","MediaConversion","PrivateStudentGroups"]
   end
 
   def self.getAvailableMainModels(options={})
