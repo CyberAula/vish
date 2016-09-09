@@ -111,11 +111,6 @@ Vish::Application.routes.draw do
     post 'leave', :on => :member
   end
 
-  #Competitions
-  match '/competition' => 'competition#index'
-  match '/competition/join_competition' => 'competition#join_competition'
-  match '/competition/all' => 'competition#all_items'
-
   #Quiz Sessions
   resources :quiz_sessions do
     get "results", :on => :member
@@ -159,9 +154,17 @@ Vish::Application.routes.draw do
   #service_permissions
   match 'service_permissions/update_permissions' => 'service_permissions#update_permissions', :via => :post
 
-  #Competitions
-  match 'contest' => 'static#contest'
-  match 'contest_all' => 'static#contest_all'
+  # Contests
+  resources :contests do
+    post 'enroll', :on => :member
+    post 'disenroll', :on => :member
+    get 'new_resource_submission', :on => :member
+    post 'submit', :on => :member
+    post 'remove_submit', :on => :member
+  end
+  match 'contest/:name' => 'contests#show'
+  match 'contest/:name/page/:page' => 'contests#show'
+  match 'contests/:id/page/:page' => 'contests#show'
 
   #Administration panel
   match 'admin' => 'admin#index'

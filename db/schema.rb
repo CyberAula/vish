@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160907120505) do
+ActiveRecord::Schema.define(:version => 20160908125945) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -104,7 +104,6 @@ ActiveRecord::Schema.define(:version => 20160907120505) do
     t.boolean  "allow_download",                                                    :default => true
     t.boolean  "allow_comment",                                                     :default => true
     t.boolean  "allow_clone",                                                       :default => true
-    t.boolean  "competition",                                                       :default => false
     t.text     "tag_array_text",                                                    :default => ""
     t.decimal  "interaction_qscore",                 :precision => 12, :scale => 6
   end
@@ -120,7 +119,7 @@ ActiveRecord::Schema.define(:version => 20160907120505) do
     t.datetime "updated_at"
   end
 
-  create_table "actor_historial", :id => false, :force => true do |t|
+  create_table "actor_historial", :force => true do |t|
     t.integer "actor_id"
     t.integer "activity_object_id"
   end
@@ -150,7 +149,6 @@ ActiveRecord::Schema.define(:version => 20160907120505) do
     t.string   "notification_settings"
     t.text     "category_order"
     t.string   "categories_view",       :default => "gallery"
-    t.boolean  "joined_competition",    :default => false
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
@@ -208,6 +206,39 @@ ActiveRecord::Schema.define(:version => 20160907120505) do
   add_index "contacts", ["inverse_id"], :name => "index_contacts_on_inverse_id"
   add_index "contacts", ["receiver_id"], :name => "index_contacts_on_receiver_id"
   add_index "contacts", ["sender_id"], :name => "index_contacts_on_sender_id"
+
+  create_table "contest_categories", :force => true do |t|
+    t.integer  "contest_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contest_enrollments", :force => true do |t|
+    t.integer  "contest_id"
+    t.integer  "actor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contest_submissions", :force => true do |t|
+    t.integer  "contest_category_id"
+    t.integer  "activity_object_id"
+    t.integer  "actor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contests", :force => true do |t|
+    t.string   "name"
+    t.string   "template"
+    t.string   "status",       :default => "open"
+    t.text     "settings",     :default => "{}"
+    t.boolean  "show_in_ui",   :default => false
+    t.integer  "mail_list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contributions", :force => true do |t|
     t.integer  "activity_object_id"

@@ -1,0 +1,9 @@
+<% aos = @contest.public_activity_objects.limit(10).order(Vish::Application::config.agnostic_random) %>
+
+<div id="submitted_aos_<%=contest.id.to_s%>" style="display:inline-block; width: 100%">
+	<ul class="items">
+		<% aos.map{|ao| ao.object}.each do |resource| %>
+			<%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "contest_"+contest.id.to_s+"_submitted_aos" } %>
+		<% end %>
+	</ul>
+</div>

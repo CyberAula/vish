@@ -1,0 +1,23 @@
+<% 
+	if user_signed_in?
+		aos = @contest.activity_objects.authored_by(current_subject)
+	else
+		aos = []
+	end
+%>
+
+<div id="submitted_aos_user_<%=contest.id.to_s%>" style="display:inline-block; width: 100%">
+	<ul class="items">
+		<% aos.map{|ao| ao.object}.each do |resource| %>
+			<%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "contest_"+contest.id.to_s+"_user_submission" } %>
+		<% end %>
+	</ul>
+</div>
+
+<%= content_for :javascript do %>
+	var submissionBox = $("#submitted_aos_user_<%=contest.id.to_s%>");
+	var resourceBoxes = $(submissionBox).find("li.box-item:not('.add-item')");
+	<% aos.each_with_index do |ao,index| %>
+		$(resourceBoxes['<%=index%>']).append('<%= link_to raw('<i class="fa fa-trash-o"></i>'), remove_submit_contest_path(contest, :activity_object_id => ao.id), :confirm => I18n.t("are_you_sure"), :method => :post, :class => 'btn btn_delete_item' %>');
+	<% end %>
+<%end%>

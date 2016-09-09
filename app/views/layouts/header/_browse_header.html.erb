@@ -80,14 +80,16 @@
       </li>
     <%end%>
 
-    <% if availableServices.include? "Competitions2013" %>
+    <% if availableServices.include? "Contests" %>
       <li class="divider"></li>
-      <li>
-        <a tabindex="-1" href="/contest">
-          <i class="fa fa-trophy"></i>
-          <%=t('contest.ViSHCompetition13')%>
-        </a>
-      </li>
+      <% Contest.where("show_in_ui='true'").each do |contest| %>
+        <li>
+          <a tabindex="-1" href="<%=contest.getUrlWithName%>">
+            <i class="fa fa-trophy"></i>
+            <%=t('contest.templates.' + contest.name + '.title')%>
+          </a>
+        </li>
+      <% end %>
     <%end%>
 
   </ul>

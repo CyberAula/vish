@@ -1,10 +1,9 @@
 <%
   if user_signed_in? and current_subject
-    resources = subject_resources(current_subject, {:scope => :me, :limit => 0})
-    excursions = subject_excursions(current_subject, {:scope => :me, :limit => 0}).reject{ |e| e.draft==true }
+    # resources = subject_all_resources(current_subject, {:scope => :me, :limit => 0, :sort_by => "created_at", :force_filter_private => true})
+    resources = subject_content(current_subject, (VishConfig.getAvailableResourceModels({:return_instances => true}) + VishConfig.getAvailableMainModels({:return_instances => true}).select{|m| m.name=="Category"}), {:scope => :me, :limit => 0, :sort_by => "created_at", :force_filter_private => true})
   else
     resources = []
-    excursions = []
   end
 %>
 
@@ -15,42 +14,24 @@
 <div class="modal-body">
   <div class="joining_tabs clearfix">
     <ul class="nav nav-tabs">
-      <li class="active"><a class="url_choose_wa" data-toggle="tab"><%=t("workshop.activities.assignment.modal.url_tab")%></a></li>
-      <li><a class="excursions_choose_wa" data-toggle="tab"><%=t("search.models.excursion")%></a></li>
-      <li><a class="resources_choose_wa" data-toggle="tab"><%=t("search.models.resource")%></a></li>
+      <li class="active"><a class="resources_choose_wa" data-toggle="tab"><%=t("search.models.resource")%></a></li>
+      <li><a class="url_choose_wa" data-toggle="tab"><%=t("workshop.activities.assignment.modal.url_tab")%></a></li>
     </ul>
     <div class="url_choose_wa" class="tab-pane">
       <div><p><%=t("workshop.activities.assignment.modal.url_explanation")%></p></div>
       <input class="url_choose_wa_input" type="text" placeholder="<%=Vish::Application.config.full_domain%>/..."/>
     </div>
-    <div class="excursions_choose_wa" class="tab-pane">
-      <% unless excursions.blank? %>
-        <ul class="items">
-          <% with_format('html') do %>
-            <% excursions.reject{|r| r.nil? or r.object.nil?}.each do |r| %>
-              <%= render :partial => '/entities/entity', :formats => [:html], :locals => { :entity => r, :prefix_id => "contribution" } %>
-            <% end %>
-          <% end %>
-        </ul>
-      <% else %>
-        <% if !current_subject.nil? %>
-          <div class="no_items"><%= I18n.t('workshop.activities.assignment.modal.notfound') %></div>
-        <% end %>
-      <% end %>
-    </div>
     <div class="resources_choose_wa" class="tab-pane">
       <% unless resources.blank? %>
         <ul class="items">
           <% with_format('html') do %>
-            <% resources.reject{|r| r.nil? or r.object.nil?}.each do |r| %>
-              <%= render :partial => '/entities/entity', :formats => [:html], :locals => { :entity => r, :prefix_id => "contribution" } %>
+            <% resources.each do |r| %>
+              <%= render :partial => '/entities/entity', :formats => [:html], :locals => { :entity => r, :prefix_id => "submission" } %>
             <% end %>
           <% end %>
         </ul>
       <% else %>
-        <% if !current_subject.nil? %>
-          <div class="no_items"><%= I18n.t('workshop.activities.assignment.modal.notfound') %></div>
-        <% end %>
+        <div class="no_items"><%= I18n.t('workshop.activities.assignment.modal.notfound') %></div>
       <% end %>
     </div> 
   </div>
@@ -64,14 +45,12 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
-    var formId = "<%=params[:formid]%>";
+    var formId = "<%=params[:form_id]%>";
     var form = $("#" + formId);
     var formButton = $(form).find(".button_for_contribution");
 
     $(form).find("a.url_choose_wa").attr("href","#"+formId+"_url_choose_wa");
     $(form).find("div.url_choose_wa").attr("id",formId+"_url_choose_wa");
-    $(form).find("a.excursions_choose_wa").attr("href","#"+formId+"_excursions_choose_wa");
-    $(form).find("div.excursions_choose_wa").attr("id",formId+"_excursions_choose_wa");
     $(form).find("a.resources_choose_wa").attr("href","#"+formId+"_resources_choose_wa");
     $(form).find("div.resources_choose_wa").attr("id",formId+"_resources_choose_wa");
 
@@ -145,20 +124,18 @@
         $(form).find(".box-item").addClass("cursor_waiting");
         $(form).find(".box-item").find("a").addClass("cursor_waiting");
         
-        var contribution_parent_key = $(form).attr("contribution-parent-key");
-        var contribution_parent_value = $(form).attr("contribution-parent-value");
-        var contribution = {
-          type: "Resource"
+        var submission = {
+          type: "Resource",
+          contest_category_id: "<%=params[:contest_category_id]%>"
         }
-        contribution[contribution_parent_key] = contribution_parent_value;
 
         //Ajax request to submit selectedUrl
         $.ajax({
-          url: "/contributions",
+          url: "<%=contest_path(@contest)%>" + "/submit",
           method: "POST",
           dataType: "json",
           data: {
-            contribution: contribution,
+            submission: submission,
             url:  selectedUrl,
             authenticity_token: "<%= form_authenticity_token %>"
           },

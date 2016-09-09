@@ -6,6 +6,8 @@ Actor.class_eval do
   has_many :actor_historial, :dependent => :destroy
   has_many :past_activity_objects, through: :actor_historial, source: :activity_object
   has_one :rsevaluation
+  has_many :contest_enrollments, :dependent => :destroy
+  has_many :contests, :through => :contest_enrollments
 
   before_save :fill_roles
 
@@ -106,6 +108,7 @@ Actor.class_eval do
   def pastLOs(n=10)
     self.past_activity_objects.last(n).reverse.map{|ao| ao.object}
   end
+
 
   private
 

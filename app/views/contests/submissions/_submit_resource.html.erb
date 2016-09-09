@@ -1,0 +1,10 @@
+<div class="new_contribution_form_wrapper">
+  <div id="<%=form_id%>" class="modal fade new_contribution_resource">
+    <div class="modal-dialog">
+      <div class="modal-content" >
+        <!-- This body is replaced with views/contests/submissions/new_resource.partial.erb every time the modal is called -->
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary btn_show_upload" data-toggle="modal" data-target="#<%=form_id%>" data-remote="<%=contest_path(@contest) + "/new_resource_submission?form_id=" + form_id + "&contest_category_id=" + contest_category.id.to_s%>"><%= I18n.t('workshop.activities.assignment.modal.bt_upload') %></button>
+</div>

@@ -1,0 +1,20 @@
+<% if @contest.allowEnrollments? %>
+	<p>This contest allow enrollments.</p>
+	<% if user_signed_in? %>
+		<% if @contest.isEnrolled?(current_subject.actor) %>
+			<p> You are already enrolled in this contest. </p>
+			<%= form_for(@contest, url: disenroll_contest_path(@contest), method: "post") do |f| %>
+				<%= f.submit t("contest.disenroll") %>
+			<%end%>
+		<% else %>
+			<p>Do you want to enroll in this contest?</p>
+			<%= form_for(@contest, url: enroll_contest_path(@contest), method: "post") do |f| %>
+				<%= f.submit t("contest.enroll") %>
+			<%end%>
+		<% end %>
+	<% else %>
+		<p>You need to <a href="<%=new_user_session_path%>">log in</a> before enroll in the contest.</p>
+	<% end %>
+<% else %>
+	<p>This contest does not allow enrollments.</p>
+<% end %>

@@ -1,0 +1,364 @@
+<%content_for :title do%><%= t("site.meta_title.contest") %><%end%>
+<%content_for :keywords do%><%= t("site.current.keywords") %><%end%>
+<%content_for :description do%><%= t("site.meta_desc.contest")%><%end%>
+
+<div id="winners">
+  <div id="banner">
+    <%=link_to image_tag("competition/ban_winner_01_esp.png", :class=> ""),"/contest/vish2013"%>
+  </div>
+
+  <!-- Button trigger modal -->
+  <div class="info_competition">
+    <button type="button" class="btn btn-primary btn-lg ModalPrizes" data-toggle="modal" data-target="#ModalPrizes">
+      <h4><i class="fa fa-trophy"></i> Recuerda Los Premios</h4>
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ModalPrizes" tabindex="-1" role="dialog" aria-labelledby="ModalPrizesLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="ModalPrizesLabel">Recuerda Los Premios</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              Los ganadores recibirán premios en forma de Cupones de Amazon *. Para cada categoría hay oportunidades de ganar un primer o segundo premio.
+              </br>1º premio 400€ Cupón Amazon
+              </br>2º premio 200€ Cupón Amazon
+              </br>
+              </br>Las mejores excursiones recibirán premios extras:
+              </br>1er premio 500€ Cupón Amazon
+              </br>2º premio 300€ Cupón Amazon
+              </br>3º premio 200€ Cupón Amazon
+              </br>
+              </br>Como añadido, los 3 primeros serán invitados a unirse a nuestra conferencia en Bruselas, que tendrá lugar a comienzos de 2014.
+              </br></br>
+              <strong>* El Cupón de Amazon </strong> es un código promocional para la tienda online de Amazon que te permitirá comprar lo que consideres necesario para tu trabajo: libros, aparatos tecnológicos, etc.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="podium">
+    <div class="podiuminside">
+      <div class="row">
+        <div class="podiuminside1">
+          <div class="entities">
+            <ul class="items">
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515), :prefix_id => "contest2013" } unless Excursion.find_by_id(515).nil? %>
+            </ul>
+          </div>
+          <div class="podiumart p1">
+            <div class="podcircle1">
+              <h2>1</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="podiuminside2">
+          <div class="entities">
+            <ul class="items">
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560), :prefix_id => "contest2013" } unless Excursion.find_by_id(560).nil? %>
+            </ul>
+          </div>
+          <div class="podiumart p2">
+            <div class="podcircle2">
+              <h2>2</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="podiuminside3">
+          <div class="entities">
+            <ul class="items">
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659), :prefix_id => "contest2013" } unless Excursion.find_by_id(659).nil? %>
+            </ul>
+          </div>
+          <div class="podiumart p3">
+            <div class="podcircle3">
+              <h2>3</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabexcursions">
+    <h3><b class="caret caret1"></b>Ganadores por categorías<b class="caret caret2"></b></h3>
+  </div>
+
+  <div id="subjectwinners">
+    <div class="subrow">
+      <h3>Matemáticas</h3>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(564) } unless Excursion.find_by_id(564).nil?  %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd1" src="/assets/competition/bd1.png"/>
+        </div>
+      </section>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(675) } unless Excursion.find_by_id(675).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd2" src="/assets/competition/bd2.png"/>
+        </div>
+      </section>
+    </div>
+
+    <!---->
+
+    <div class="subrow">
+      <h3>Física</h3>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } unless Excursion.find_by_id(560).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd1" src="/assets/competition/bd1.png"/>
+        </div>
+      </section>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(613) } unless Excursion.find_by_id(613).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd2" src="/assets/competition/bd2.png"/>
+        </div>
+      </section>
+    </div>
+
+    <!---->
+
+    <div class="subrow">
+      <h3>Química</h3>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(620) } unless Excursion.find_by_id(620).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd1" src="/assets/competition/bd1.png"/>
+        </div>
+      </section>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(465) } unless Excursion.find_by_id(465).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd2" src="/assets/competition/bd2.png"/>
+        </div>
+      </section>
+    </div>
+
+    <!---->
+
+    <div class="subrow">
+      <h3>Biología</h3>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(450) } unless Excursion.find_by_id(450).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd1" src="/assets/competition/bd1.png"/>
+        </div>
+      </section>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(634) } unless Excursion.find_by_id(634).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd2" src="/assets/competition/bd2.png"/>
+        </div>
+      </section>
+    </div>
+
+    <!---->
+
+    <div class="subrow">
+      <h3>Geografía</h3>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(656) } unless Excursion.find_by_id(656).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd1" src="/assets/competition/bd1.png"/>
+        </div>
+      </section>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(646) } unless Excursion.find_by_id(646).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd2" src="/assets/competition/bd2.png"/>
+        </div>
+      </section>
+    </div>
+
+    <!---->
+
+    <div class="subrow">
+      <h3>Estudios Ambientales</h3>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } unless Excursion.find_by_id(515).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd1" src="/assets/competition/bd1.png"/>
+        </div>
+      </section>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } unless Excursion.find_by_id(512).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd2" src="/assets/competition/bd2.png"/>
+        </div>
+      </section>
+    </div>
+
+    <!---->
+
+    <div class="subrow">
+      <h3>Ingeniería</h3>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(1198) } unless Excursion.find_by_id(1198).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd1" src="/assets/competition/bd1.png"/>
+        </div>
+      </section>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(474) } unless Excursion.find_by_id(474).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd2" src="/assets/competition/bd2.png"/>
+        </div>
+      </section>
+    </div>
+
+    <!---->
+
+    <div class="subrow">
+      <h3>Humanidades</h3>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(632) } unless Excursion.find_by_id(632).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd1" src="/assets/competition/bd1.png"/>
+        </div>
+      </section>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(520) } unless Excursion.find_by_id(520).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd2" src="/assets/competition/bd2.png"/>
+        </div>
+      </section>
+    </div>
+
+    <!---->
+
+    <div class="subrow">
+      <h3>Ciencias Naturales</h3>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(667) } unless Excursion.find_by_id(667).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd1" src="/assets/competition/bd1.png"/>
+        </div>
+      </section>
+      <section id="show_items">
+        <div class="recomended">
+          <div class="recomended-items">
+            <ul class="items">
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(669) } unless Excursion.find_by_id(669).nil? %>
+            </ul>
+          </div>
+        </div>
+        <div class="badimg">
+          <img class="bd2" src="/assets/competition/bd2.png"/>
+        </div>
+      </section>
+    </div>
+
+    <!---->
+
+    <div class="subrow">
+      <h3>Informática</h3>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } unless Excursion.find_by_id(659).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd1" src="/assets/competition/bd1.png"/>
+        </div>
+      </section>
+      <section id="show_items">
+        <div class="recomended">
+          <ul class="items">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(522) } unless Excursion.find_by_id(522).nil? %>
+          </ul>
+        </div>
+        <div class="badimg">
+          <img class="bd2" src="/assets/competition/bd2.png"/>
+        </div>
+      </section>
+
+      <!---->
+
+    </div>
+  </div>
+
+  <div id="participants">
+    <div class="tabexcursions">
+      <a class="sign_up btn btn-info" href="<%=contest_page_path(@contest,"all",true)%>">Ver todas las excursiones de la competición #ViSHCompetition2013</a>
+    </div>
+  </div>
+</div>

@@ -752,6 +752,58 @@ namespace :fix do
     printTitle("Task finished")
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:createViSH2013Contest
+  task :createViSH2013Contest => :environment do
+    printTitle("Create the ViSHCompetition 2013 Contest")
+
+    c = Contest.new
+    c.name = "vish2013"
+    c.template = "vish2013"
+    c.show_in_ui = true
+    c.settings = ({"enroll" => "false", "submission" => "free", "submission_require_enroll" => "false"}).to_json
+    c.save!
+
+    allAos = ActivityObject.where("object_type in (?)", ["Excursion"]).with_tag("ViSHCompetition2013")
+
+    ["Maths","Physics","Chemistry","Biology","Geography","EnvironmentalStudies","Engineering","Humanities","NaturalScience","ComputerScience"].each do |cName|
+      cc = ContestCategory.new
+      cc.name = cName
+      cc.contest_id = c.id
+      cc.save!
+      cAos = allAos.select{|ao| ao.tags.map{|t| t.plain_name}.include? ActsAsTaggableOn::Tag.getPlainName(cName)}
+      cAos.each do |ao|
+        cc.addActivityObject(ao)
+      end
+    end
+    
+    printTitle("Task finished. ViSH Competition contest created.")
+  end
+
+
+  #Usage
+  #Development:   bundle exec rake fix:createTestContest
+  task :createTestContest => :environment do
+    printTitle("Create a test Contest")
+
+    c = Contest.find_by_template("test")
+    c.destroy unless c.nil?
+
+    c = Contest.new
+    c.name = "test"
+    c.template = "test"
+    c.show_in_ui = true
+    c.settings = ({"enroll" => "true", "submission" => "one_per_user", "submission_require_enroll" => "false"}).to_json
+    c.save!
+
+    cc = ContestCategory.new
+    cc.name = "General"
+    cc.contest_id = c.id
+    cc.save!
+
+    printTitle("Task finished. Test contest created with id " + c.id.to_s)
+  end
+
 
   ####################
   #Task Utils

@@ -1,6 +1,6 @@
 class ContributionsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:show]
   before_filter :fill_create_params, :only => [:create]
   inherit_resources
 
@@ -14,7 +14,7 @@ class ContributionsController < ApplicationController
   def show
     super do |format|
       format.html {
-        redirect_to polymorphic_path(resource.activity_object.object, :contribution => true)
+        redirect_to polymorphic_path(resource.activity_object.object, :contribution => resource.id)
       }
     end
   end
@@ -54,9 +54,9 @@ class ContributionsController < ApplicationController
       return create_return_with_error("missing params",pathToReturn) unless params["writing"].present?
       object = Writing.new((params["writing"].merge!(params["contribution"]["activity_object"])).permit!)
     when "Resource"
-      return create_return_with_error("missing resource url",pathToReturn) unless params["url"].present?
+      return create_return_with_error(I18n.t("contribution.messages.url_not_found"),pathToReturn) unless params["url"].present?
       object = ActivityObject.getObjectFromUrl(params["url"])
-      return create_return_with_error("Object not found",pathToReturn) if object.nil?
+      return create_return_with_error(I18n.t("contribution.messages.object_not_found"),pathToReturn) if object.nil?
     else
       return create_return_with_error("Invalid contribution type",pathToReturn)
     end
@@ -69,7 +69,7 @@ class ContributionsController < ApplicationController
       discard_flash
     else
       #Object already exists. Authorize user to submit that object.
-      return create_return_with_error("This resource is not yours",pathToReturn) unless object.owner_id == current_subject.id
+      return create_return_with_error(I18n.t("contribution.messages.object_not_yours"),pathToReturn) unless object.owner_id == current_subject.actor_id
       authorize! :update, object
     end
 

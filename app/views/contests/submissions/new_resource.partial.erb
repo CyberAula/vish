@@ -1,7 +1,7 @@
 <%
   if user_signed_in? and current_subject
-    resources = subject_resources(current_subject, {:scope => :me, :limit => 0})
-    excursions = subject_excursions(current_subject, {:scope => :me, :limit => 0}).reject{ |e| e.draft==true }
+    resources = subject_resources(current_subject, {:scope => :me, :limit => 0, :sort_by => "created_at", :force_filter_private => true})
+    excursions = subject_excursions(current_subject, {:scope => :me, :limit => 0, :sort_by => "created_at", :force_filter_private => true})
   else
     resources = []
     excursions = []
@@ -27,30 +27,26 @@
       <% unless excursions.blank? %>
         <ul class="items">
           <% with_format('html') do %>
-            <% excursions.reject{|r| r.nil? or r.object.nil?}.each do |r| %>
-              <%= render :partial => '/entities/entity', :formats => [:html], :locals => { :entity => r, :prefix_id => "contribution" } %>
+            <% excursions.each do |r| %>
+              <%= render :partial => '/entities/entity', :formats => [:html], :locals => { :entity => r, :prefix_id => "submission" } %>
             <% end %>
           <% end %>
         </ul>
       <% else %>
-        <% if !current_subject.nil? %>
-          <div class="no_items"><%= I18n.t('workshop.activities.assignment.modal.notfound') %></div>
-        <% end %>
+        <div class="no_items"><%=I18n.t('workshop.activities.assignment.modal.notfound')%></div>
       <% end %>
     </div>
     <div class="resources_choose_wa" class="tab-pane">
       <% unless resources.blank? %>
         <ul class="items">
           <% with_format('html') do %>
-            <% resources.reject{|r| r.nil? or r.object.nil?}.each do |r| %>
-              <%= render :partial => '/entities/entity', :formats => [:html], :locals => { :entity => r, :prefix_id => "contribution" } %>
+            <% resources.each do |r| %>
+              <%= render :partial => '/entities/entity', :formats => [:html], :locals => { :entity => r, :prefix_id => "submission" } %>
             <% end %>
           <% end %>
         </ul>
       <% else %>
-        <% if !current_subject.nil? %>
-          <div class="no_items"><%= I18n.t('workshop.activities.assignment.modal.notfound') %></div>
-        <% end %>
+        <div class="no_items"><%= I18n.t('workshop.activities.assignment.modal.notfound') %></div>
       <% end %>
     </div> 
   </div>
@@ -64,7 +60,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
-    var formId = "<%=params[:formid]%>";
+    var formId = "<%=params[:form_id]%>";
     var form = $("#" + formId);
     var formButton = $(form).find(".button_for_contribution");
 
@@ -145,20 +141,18 @@
         $(form).find(".box-item").addClass("cursor_waiting");
         $(form).find(".box-item").find("a").addClass("cursor_waiting");
         
-        var contribution_parent_key = $(form).attr("contribution-parent-key");
-        var contribution_parent_value = $(form).attr("contribution-parent-value");
-        var contribution = {
-          type: "Resource"
+        var submission = {
+          type: "Resource",
+          contest_category_id: "<%=params[:contest_category_id]%>"
         }
-        contribution[contribution_parent_key] = contribution_parent_value;
 
         //Ajax request to submit selectedUrl
         $.ajax({
-          url: "/contributions",
+          url: "<%=contest_path(@contest)%>" + "/submit",
           method: "POST",
           dataType: "json",
           data: {
-            contribution: contribution,
+            submission: submission,
             url:  selectedUrl,
             authenticity_token: "<%= form_authenticity_token %>"
           },

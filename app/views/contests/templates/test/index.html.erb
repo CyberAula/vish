@@ -1,0 +1,25 @@
+<h3> This page is a template used for testing Contests. </h3>
+<h4> Feel free to copy it to create your own contest. </h4>
+<br/>
+
+<h4> Additional pages. </h4>
+<p>Go to <a href="<%=contest_page_path(@contest,"page2",true)%>">page 2</a> of the contest.</p>
+<br/>
+
+<h4> Enroll/Disenroll form </h4>
+<%= render partial: 'contests/enroll', locals: { contest: @contest} %>
+<br/>
+
+<h4> Submissions </h4>
+<%= render partial: 'contests/submissions', locals: { contest: @contest} %>
+<br/>
+<p><a href="<%=contest_page_path(@contest,"submissions",true)%>">View all</a></p>
+<br/>
+
+<h4> Submit your resource: </h4>
+<%= render partial: 'contests/submission', locals: { contest: @contest} %>
+<br/>
+
+<h4> Your submissions: </h4>
+<%= render partial: 'contests/submissions_user', locals: { contest: @contest} %>
+<br/>

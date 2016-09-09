@@ -4,8 +4,10 @@ ActivityObject.class_eval do
   has_many :spam_reports
   has_and_belongs_to_many :wa_resources_galleries
   belongs_to :license
-  has_one :contribution
   has_one :lo_interaction
+  has_many :contest_submissions
+  has_many :contest_categories, :through => :contest_submissions
+  has_many :contests, :through => :contest_categories
   
   before_validation :fill_license
   before_validation :fill_license_attribution
@@ -14,8 +16,9 @@ ActivityObject.class_eval do
   before_save :fill_indexed_lengths
   before_save :save_tag_array_text
   after_destroy :destroy_spam_reports
-  after_destroy :destroy_contribution
   after_destroy :destroy_wa_activities
+  after_destroy :destroy_contributions
+  after_destroy :destroy_contest_submissions
 
   has_attached_file :avatar,
     :url => '/:class/avatar/:id.:content_type_extension?style=:style',
@@ -796,9 +799,15 @@ ActivityObject.class_eval do
     end
   end
 
-  def destroy_contribution
-    unless self.contribution.nil?
-      self.contribution.destroy
+  def destroy_contributions
+    Contribution.find_all_by_activity_object_id(self.id).each do |c|
+      c.destroy
+    end
+  end
+
+  def destroy_contest_submissions
+    ContestSubmission.find_all_by_activity_object_id(self.id).each do |c|
+      c.destroy
     end
   end
 

@@ -1,0 +1,6 @@
+<% if user_signed_in? and @contest.allowSubmissions?(current_subject.actor) %>
+	<p>You can submit resources to this contest.</p>
+	<%= render partial: 'contests/submissions/form', locals: { contest_category: @contest.categories.first } %>
+<% else %>
+	<p>You are not allowed to submit resources to this contest.</p>
+<% end %>

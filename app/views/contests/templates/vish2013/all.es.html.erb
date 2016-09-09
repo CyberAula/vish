@@ -1,23 +1,20 @@
 <section id="contest">
-
   <div class="tabexcursions">
-    <h3><%=t('contest.ex_part')%></h3>
-
+    <h3>Todas las excursiones de #ViSHCompetition2013</h3>
     <div class="filter">
-
-    <%=t('contest.filter')%>
+      Filtro:
       <select id="tags_selector" name="tags">
-        <option value="All"> <%=t('contest.All')%> </option>
-        <option value="Maths"> <%=t('contest.Maths')%> </option>
-        <option value="Physics"> <%=t('contest.Physics')%> </option>
-        <option value="Chemistry"> <%=t('contest.Chemistry')%> </option>
-        <option value="Biology"> <%=t('contest.Biology')%> </option>
-        <option value="Geography"> <%=t('contest.Geography')%> </option>
-        <option value="EnvironmentalStudies"> <%=t('contest.EnvironmentalStudies')%> </option>
-        <option value="Engineering"> <%=t('contest.Engineering')%> </option>
-        <option value="Humanities"> <%=t('contest.Humanities')%> </option>
-        <option value="NaturalScience"> <%=t('contest.NaturalScience')%> </option>
-        <option value="ComputerScience"> <%=t('contest.ComputerScience')%></option>
+        <option value="All">Todas</option>
+        <option value="Maths">Matemáticas</option>
+        <option value="Physics">Física</option>
+        <option value="Chemistry">Química</option>
+        <option value="Biology">Biología</option>
+        <option value="Geography">Geografía</option>
+        <option value="EnvironmentalStudies">Estudios Ambientales</option>
+        <option value="Engineering">Ingeniería</option>
+        <option value="Humanities">Humanidades</option>
+        <option value="NaturalScience">Ciencias Naturales</option>
+        <option value="ComputerScience">Informática</option>
       </select>
     </div>
   </div>
@@ -33,11 +30,10 @@
       <% end %>
     </ul>
   </div>
-
 </section>
 
 <%content_for :javascript do%>
-    $("#tags_selector").change(function() {
+    $("#tags_selector").change(function(){
       if(this.value=="All"){
         $(".excursion-item").show();
       } else {
