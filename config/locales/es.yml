@@ -769,6 +769,7 @@ es:
     go: "Ir al enlace"
     title3: "Escribe el enlace que quieres subir"
     name: "enlace"
+    is_embed: "Inscrustar (embed) este enlace?"
   lre:
     data_error: "Se produjo un error y el servidor de datos responde con un código de %{code}"
     json_error: "Hubo un error con el contenido devueltos, pruebe con otros términos de búsqueda"

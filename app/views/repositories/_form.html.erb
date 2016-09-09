@@ -75,6 +75,7 @@
                       <%= f.hidden_field :description%>
                       <%= f.hidden_field :tag_list, :multiple => true %>
                       <%= f.hidden_field :language, :value => "" %>
+                      <%= f.hidden_field :is_embed, :value=> false %>
                       <%= f.hidden_field :license_id %>
                       <%= f.hidden_field :original_author %>
                       <%= f.hidden_field :license_attribution %>
@@ -159,6 +160,13 @@
               <div class="limit2">0</div>
             </div>
             <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,1]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+
+            <!--IS_EMBED (for links)-->
+            <section class="is_embed" style="display:none">
+              <br/>
+              <%=check_box_tag 'is_embed', false, false%>
+              <label class="resource_is_embed_label"><%= t('link.is_embed')%></label>
+            </section>
 
             <!--LICENSE-->
             <section class="license">
@@ -312,6 +320,11 @@
     //LANGUAGE
     $("#AddResource input[name='"+resource_type+"[language]']").val($("#AddResource .resource_language").val());
 
+    if(resource_type==="link"){
+      //IS_EMBED
+      $("#AddResource input[name='"+resource_type+"[is_embed]']").val($("#is_embed").is(":checked"));
+    }
+
     if(resource_type==="document"){
       //LICENSE
       $("#AddResource input[name='"+resource_type+"[license_id]']").val($("#AddResource .resource_license").val());
@@ -420,6 +433,14 @@
       //Hide authorship fields
       $("#AddResource").find("section.license").hide();
       $("#AddResource").find("section.authorship").hide();
+    }
+
+    if(resourceType=="link"){
+      //Show is_embed field
+      $("#AddResource").find("section.is_embed").show();
+    } else {
+      //Hide is_embed field
+      $("#AddResource").find("section.is_embed").hide();
     }
   });
 

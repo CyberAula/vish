@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160531100045) do
+ActiveRecord::Schema.define(:version => 20160907120505) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -246,6 +246,13 @@ ActiveRecord::Schema.define(:version => 20160531100045) do
     t.integer "course_id"
   end
 
+  create_table "dali_documents", :force => true do |t|
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "activity_object_id"
+    t.text     "json"
+  end
+
   create_table "documents", :force => true do |t|
     t.string   "type"
     t.integer  "activity_object_id"
@@ -302,7 +309,7 @@ ActiveRecord::Schema.define(:version => 20160531100045) do
     t.integer  "slide_count",             :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",                   :default => false
-    t.text     "offline_manifest",        :default => ""
+    t.text     "offline_manifest"
     t.datetime "scorm2004_timestamp"
     t.datetime "pdf_timestamp"
     t.string   "attachment_file_name"
@@ -358,6 +365,7 @@ ActiveRecord::Schema.define(:version => 20160531100045) do
     t.string   "image"
     t.integer  "width",              :default => 470
     t.integer  "height",             :default => 353
+    t.boolean  "is_embed",           :default => false
   end
 
   add_index "links", ["activity_object_id"], :name => "index_links_on_activity_object_id"
@@ -715,10 +723,6 @@ ActiveRecord::Schema.define(:version => 20160531100045) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "private_student_group_id"
-    t.string   "surname"
-    t.string   "center_code"
-    t.boolean  "mooc",                     :default => false
-    t.boolean  "mailmoocsent",             :default => false
   end
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"

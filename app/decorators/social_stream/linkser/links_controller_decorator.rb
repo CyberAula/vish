@@ -2,11 +2,11 @@ LinksController.class_eval do
 
   before_filter :fill_create_params, :only => [:new, :create]
   after_filter :notify_teacher, :only => [:create]
-  
+
   def create
     super do |format|
       format.json {
-        render :json => resource 
+        render :json => resource
       }
       format.js
       format.all {
@@ -23,7 +23,7 @@ LinksController.class_eval do
   private
 
   def allowed_params
-    [:url, :image, :callback, :width, :height, :callback_url, :loaded, :language, :license_id, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
+    [:url, :image, :callback, :width, :height, :callback_url, :loaded, :language, :license_id, :age_min, :age_max, :scope, :avatar, :is_embed, :tag_list=>[]]
   end
 
   def fill_create_params
@@ -33,7 +33,7 @@ LinksController.class_eval do
     params["link"]["author_id"] = current_subject.actor_id
     params["link"]["user_author_id"] = current_subject.actor_id
   end
-  
+
   def notify_teacher
     if VishConfig.getAvailableServices.include? "PrivateStudentGroups"
       author_id = resource.author.user.id
