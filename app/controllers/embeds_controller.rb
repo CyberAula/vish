@@ -14,18 +14,36 @@ class EmbedsController < ApplicationController
   end
 
   def create
-    super do |format|
-      format.json {
-        render :json => resource 
-      }
-      format.js
-      format.all {
-        if resource.new_record?
-          render action: :new
-        else
-          redirect_to embed_path(resource) || home_path
-        end
-      }
+    iframe_url = get_iframe params[:embed][:fulltext]
+    if iframe_url
+      #we detect it is an iframe get the URL and create a Link
+      params[:embed][:url] = iframe_url
+      params[:embed][:is_embed] = "true"
+      params[:embed].delete :fulltext
+      params[:embed].permit!
+      mylink = Link.new params[:embed]
+      mylink.valid?
+      if mylink.errors.blank? and mylink.save
+        redirect_to link_path(mylink)
+      else
+        flash[:errors] = error
+        return redirect_to pathToReturn
+      end
+
+    else
+      super do |format|
+        format.json {
+          render :json => resource
+        }
+        format.js
+        format.all {
+          if resource.new_record?
+            render action: :new
+          else
+            redirect_to embed_path(resource) || home_path
+          end
+        }
+      end
     end
   end
 
@@ -59,7 +77,7 @@ class EmbedsController < ApplicationController
   def notify_teacher
     if VishConfig.getAvailableServices.include? "PrivateStudentGroups"
       author_id = resource.author.user.id
-      unless author_id.nil? 
+      unless author_id.nil?
         pupil = resource.author.user
         if !pupil.private_student_group_id.nil? && pupil.private_student_group.teacher_notification != "ALL" #REFACTOR: is_pupil?
           teacher = Actor.find(pupil.private_student_group.owner_id).user
@@ -70,5 +88,14 @@ class EmbedsController < ApplicationController
     end
   end
 
-end
+  def get_iframe text
+    nok = Nokogiri::HTML(text)
+    iframes = nok.css("iframe")
+    if iframes.length == 1
+      return iframes[0]["src"]
+    else
+      return nil
+    end
+  end
 
+end

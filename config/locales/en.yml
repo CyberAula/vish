@@ -436,6 +436,9 @@ en:
       create_group_title: "Modal to create groups of pupils"
       create_group_p1: "Fill in the form with the name for the group and the number of pupils accounts"
       create_group_p2: "Once created you will have those accounts and will be able to download the credentials for your pupils to access the platform"
+      embed:
+        title: "Embed this link"
+        content: "If you check this option, this link will be embedded in an iframe. This way not only the link will be shown to the user inside the resource page but also the content will be displayed"
       event_html: "Create a new event"
       event1_html : "1. Type a <b>title</b> and <b>description</b>.<br>"
       event2_html : "2. Choose the type of event: Videoconference or Streaming.<i>If your choice is streaming, you should add the embed code of the stream.</i><br>"

@@ -391,7 +391,7 @@ ActiveRecord::Schema.define(:version => 20160908125945) do
     t.integer  "activity_object_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "url"
+    t.text     "url"
     t.string   "callback_url"
     t.string   "image"
     t.integer  "width",              :default => 470

@@ -1,0 +1,21 @@
+<span class="helpheader" id="helpembed">
+  <i class="fa fa-question-circle" id="helpembedlinkid" data-toggle="popover" data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.embed.title')%>" href='#' value=""></i>
+  <div class="contenthelpCategories" id="contenthelpembedlinkid" style="display: none">
+    <div class="popover-body" id="helpembedlinkbody">
+      <p><%= t('document.help.embed.content')%></p>
+    </div>
+  </div>
+</span>
+
+<%content_for :javascript do%>
+  $('#helpembedlinkid').popover({
+    html : true,
+    container: '#panel_link',
+    template: '<div class="popover" id="popoverhelpembedlink"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
+    content: function() {
+      return $('#contenthelpembedlinkid').html();
+    }
+  });
+
+
+<%end%>

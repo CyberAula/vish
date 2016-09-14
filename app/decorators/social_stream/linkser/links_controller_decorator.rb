@@ -4,6 +4,7 @@ LinksController.class_eval do
   after_filter :notify_teacher, :only => [:create]
 
   def create
+    binding.pry
     super do |format|
       format.json {
         render :json => resource

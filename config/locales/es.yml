@@ -419,6 +419,9 @@ es:
       create_group_title: "Modal para la creación de grupos de alumnos"
       create_group_p1: "Rellena el formulario con el nombre que desees darle al grupo y el número de alumnos que contiene"
       create_group_p2: "Una vez creado tendrás esa cantidad de cuentas de alumnos y podrás bajarte las credenciales para que accedan"
+      embed:
+        title: "Incrustar/insertar este enlace"
+        content: "Si marca esta opción, este enlace será introducido en un iframe. De este modo no sólo el link se mostrará al usuario en la página del recurso sino también el contenido de la página"
       event_html: "Crear un nuevo evento"
       event1_html: "1. Escriba un <b>título</b> y una <b>descripción</b>.<br>"
       event2_html: "2. Escoja entre el tipo de evento: Videoconferencia o Streaming.<i>Si escojes streaming deberas añadir el embed con el codigo que emita la señal de video</i><br>"

@@ -6,6 +6,6 @@
 
 	<div class="link_address">
 
-		<%= link_to raw("<i class='fa fa-link'></i>") + link.url, link.url, :target => "_blank" %>
+		<%= link_to raw("<i class='fa fa-link'></i>") + truncate(link.url, length: 67), link.url, :target => "_blank" %>
 	</div>
 <% end %>

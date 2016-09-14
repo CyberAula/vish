@@ -53,7 +53,7 @@
               </div>
             </div>
             <%if VishConfig.getAvailableResourceModels().include? "Link"%>
-              <div class="panel panel-default">
+              <div class="panel panel-default" id="panel_link">
                 <div class="panel-heading" role="tab" id="headingTwo">
                   <h4 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#link" aria-expanded="false" aria-controls="link">
@@ -87,7 +87,7 @@
                     <!--IS_EMBED checkbox-->
                     <section class="is_embed" id="link_embedable">
                       <%=check_box_tag 'is_embed', false, false%>
-                      <label class="label_embedable"><%= t('link.is_embed')%></label>
+                      <label class="label_embedable"><%= t('link.is_embed')%></label> <%= render partial: 'help/help_embed_link' %>
                     </section>
                   </div>
                 </div>
