@@ -68,7 +68,7 @@
               ];
       </script>
 
-      <%content_for :javascript do%>      
+      <%content_for :javascript do%>
 
         $("#new_file ul.resourceTagList").tagit({
           maxLength: '<%=Vish::Application.config.tagsSettings["maxLength"]%>',
@@ -121,6 +121,13 @@
         %>
         <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[<%=resource.age_min%>,<%=sliderAgeMax%>]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
       </section>
+
+      <%if resource.class.name=="Link" %>
+        <section class="is_embed" id="link_embedable">
+          <%= f.check_box 'is_embed' %>
+          <%= f.label :is_embed, t('link.is_embed'), :class=>"label_embedable" %>
+        </section>
+      <%end%>
 
       <% if !isNewInstance and !resource.respond_to? "draft" %>
         <section class="scope">

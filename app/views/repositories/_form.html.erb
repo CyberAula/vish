@@ -84,6 +84,11 @@
                       <%= f.hidden_field :age_max, :value => "0" %>
                       <%= f.submit t('button.save'), :class => "link hide"%>
                     <% end %>
+                    <!--IS_EMBED checkbox-->
+                    <section class="is_embed" id="link_embedable">
+                      <%=check_box_tag 'is_embed', false, false%>
+                      <label class="label_embedable"><%= t('link.is_embed')%></label>
+                    </section>
                   </div>
                 </div>
               </div>
@@ -160,13 +165,6 @@
               <div class="limit2">0</div>
             </div>
             <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[0,1]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
-
-            <!--IS_EMBED (for links)-->
-            <section class="is_embed" style="display:none">
-              <br/>
-              <%=check_box_tag 'is_embed', false, false%>
-              <label class="resource_is_embed_label"><%= t('link.is_embed')%></label>
-            </section>
 
             <!--LICENSE-->
             <section class="license">
@@ -435,13 +433,6 @@
       $("#AddResource").find("section.authorship").hide();
     }
 
-    if(resourceType=="link"){
-      //Show is_embed field
-      $("#AddResource").find("section.is_embed").show();
-    } else {
-      //Hide is_embed field
-      $("#AddResource").find("section.is_embed").hide();
-    }
   });
 
   //Custom license listener
