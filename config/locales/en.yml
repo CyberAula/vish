@@ -439,6 +439,7 @@ en:
       embed:
         title: "Embed this link"
         content: "If you check this option, this link will be embedded in an iframe. This way not only the link will be shown to the user inside the resource page but also the content will be displayed"
+        content: "If you check this option, the website referenced by the link will be embedded in the page of the platform that corresponds to the added link. This way not only the text of the link will be shown but also its content will be displayed."
       event_html: "Create a new event"
       event1_html : "1. Type a <b>title</b> and <b>description</b>.<br>"
       event2_html : "2. Choose the type of event: Videoconference or Streaming.<i>If your choice is streaming, you should add the embed code of the stream.</i><br>"

@@ -1,11 +1,9 @@
-<% fixed_url = link.getProcessedUrl%>
+<% processedUrl = link.getProcessedUrl %>
 <%= div_for link, :class => 'content_size' do %>
-	<%if link.is_embed?%>
-		<iframe class="link_show" src="<%= Embed.checkUrlProtocol(fixed_url,request.protocol) %>" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+	<%if link.is_embed? %>
+		<iframe class="link_show" src="<%= Embed.checkUrlProtocol(processedUrl,request.protocol) %>" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
 	<%end%>
-
 	<div class="link_address">
-
-		<%= link_to raw("<i class='fa fa-link'></i>") + truncate(link.url, length: 67), link.url, :target => "_blank" %>
+		<%= link_to raw("<i class='fa fa-link'></i>") + truncate(processedUrl, length: 67), processedUrl, :target => "_blank" %>
 	</div>
 <% end %>

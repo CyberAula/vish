@@ -357,22 +357,38 @@ input.age-slider
   a.btn
     @include btn-primary
 
-#link_embedable
+section.is_embed
+  margin-top: 6px
+  margin-left: 2px
   label.label_embedable
     margin-top: 1px
     margin-bottom: 2px
+    margin-left: 5px
+    margin-right: 1px
     width: auto
+    font-size: 1rem
   input[type=checkbox]
     display: block
     opacity: 1
     position: relative
     float: left
+    width: 15px
+    height: 15px
+
+section.is_embed_new
+  label.label_embedable
+    font-size: 1rem
+    color: black
+    font-weight: normal
 
 #new_file
   section
     clear: both
     label
       width: 100%
+  section.is_embed
+    label
+      width: auto
   section.target_age
     margin-top: 5px
     margin-bottom: 30px
