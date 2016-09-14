@@ -277,13 +277,6 @@ ActiveRecord::Schema.define(:version => 20160908125945) do
     t.integer "course_id"
   end
 
-  create_table "dali_documents", :force => true do |t|
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.integer  "activity_object_id"
-    t.text     "json"
-  end
-
   create_table "documents", :force => true do |t|
     t.string   "type"
     t.integer  "activity_object_id"
@@ -340,7 +333,7 @@ ActiveRecord::Schema.define(:version => 20160908125945) do
     t.integer  "slide_count",             :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",                   :default => false
-    t.text     "offline_manifest"
+    t.text     "offline_manifest",        :default => ""
     t.datetime "scorm2004_timestamp"
     t.datetime "pdf_timestamp"
     t.string   "attachment_file_name"
