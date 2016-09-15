@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+	<div class="unsusbcribe_form">
+		<p><%=I18n.t("mail_list.unsubscribe_message_one")%></p>
+		<%= form_for(mail_list, :url => unsubscribed_mail_list_path(mail_list), :method => "post")  do |f| %>
+			<%= hidden_field_tag :actor_id, current_subject.actor.id %>
+			<%= f.submit t("mail_list.unsubscribe"), :class=> "btn btn-primary" %>
+		<% end %>
+	</div>
+<% end %>

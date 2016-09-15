@@ -1,0 +1,12 @@
+<% email ||= (params[:user_email] || (user_signed_in? ? current_subject.email : nil)) %>
+<% name ||= (params[:user_name] || (user_signed_in? ? current_subject.name  : nil)) %>
+
+<div class="susbcribe_form">
+	<p><%=I18n.t("mail_list.subscribe_message_one")%></p>
+	<p><%=I18n.t("mail_list.subscribe_message_two")%>.</p>
+	<%= form_for(mail_list, :url => subscribed_mail_list_path(mail_list), :method => "post")  do |f| %>
+		<%= text_field_tag :email, email, :class => "input_subscribe" %>
+		<%= hidden_field_tag :name, name, :class => "input_subscribe" %>
+		<%= f.submit t("mail_list.subscribe"), :class=> "btn btn-primary" %>
+	<% end %>
+</div>
