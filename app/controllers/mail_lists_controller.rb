@@ -18,7 +18,12 @@ class MailListsController < ApplicationController
 
   def subscribed
     #Create subscription to MailList
-    subscription = @mail_list.subscribe_email(params[:email])
+    if params[:actor_id]
+      subscription = @mail_list.subscribe_actor(Actor.find_by_id(params[:actor_id]))
+    else
+      subscription = @mail_list.subscribe_email(params[:email],params[:name])
+    end
+
     unless subscription.is_a? MailListItem
       if subscription.is_a? String
         flash[:errors] = subscription
@@ -37,7 +42,12 @@ class MailListsController < ApplicationController
 
   def unsubscribed
     #Remove subscription to MailList
-    unsubscription = @mail_list.unsubscribe_email(params[:email])
+    if params[:actor_id]
+      unsubscription = @mail_list.unsubscribe_actor(Actor.find_by_id(params[:actor_id]))
+    else
+      unsubscription = @mail_list.unsubscribe_email(params[:email])
+    end
+
     unless unsubscription.is_a? MailListItem
       flash[:errors] = I18n.t("mail_list.email_not_found")
       return redirect_to unsubscribe_mail_list_path(@mail_list)

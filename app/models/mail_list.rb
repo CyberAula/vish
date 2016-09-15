@@ -87,9 +87,11 @@ class MailList < ActiveRecord::Base
     return nil unless actor.is_a? Actor
     mis = ([self.items.find_by_id(actor.id)] + [self.items.find_by_email(actor.email)]).compact.uniq
     return nil if mis.blank?
+    result = nil
     mis.each do |mi|
-      mi.destroy
+      result = mi.destroy
     end
+    result
   end
 
   def unsubscribe_email(email)

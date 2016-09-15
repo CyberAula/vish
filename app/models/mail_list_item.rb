@@ -41,8 +41,8 @@ class MailListItem < ActiveRecord::Base
 
   def fill_from_actor
     if self.actor
-      self.email = self.actor.email
-      self.name = self.actor.name
+      self.email = self.actor.email if self.email.blank?
+      self.name = self.actor.name if self.name.blank?
     end
   end
   
