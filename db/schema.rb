@@ -423,6 +423,7 @@ ActiveRecord::Schema.define(:version => 20160914122525) do
 
   create_table "mail_list_items", :force => true do |t|
     t.integer  "mail_list_id"
+    t.integer  "actor_id"
     t.string   "email"
     t.string   "name"
     t.datetime "created_at"

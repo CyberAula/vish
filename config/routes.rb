@@ -154,6 +154,14 @@ Vish::Application.routes.draw do
   #service_permissions
   match 'service_permissions/update_permissions' => 'service_permissions#update_permissions', :via => :post
 
+  #MaiL lists
+  resources :mail_lists, :only => [:show] do
+    get 'subscribe', :on => :member
+    post 'subscribed', :on => :member
+    get 'unsubscribe', :on => :member
+    post 'unsubscribed', :on => :member
+  end
+
   # Contests
   resources :contests do
     post 'enroll', :on => :member

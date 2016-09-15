@@ -4,6 +4,7 @@ class Contest < ActiveRecord::Base
   has_many :categories, :class_name => "ContestCategory"
   has_many :submissions, :through => :categories
   has_many :activity_objects, :through => :submissions
+  belongs_to :mail_list
 
   validates :name, :presence => true, :allow_blank => false, :uniqueness => true
   validates_presence_of :template, allow_blank: false

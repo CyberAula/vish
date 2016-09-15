@@ -9,6 +9,7 @@ class AddMailLists < ActiveRecord::Migration
 
     create_table "mail_list_items" do |t|
       t.integer  "mail_list_id"
+      t.integer  "actor_id"
       t.string   "email"
       t.string   "name"
       t.datetime "created_at"

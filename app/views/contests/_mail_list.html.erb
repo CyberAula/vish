@@ -1,0 +1,16 @@
+<% if  !@contest.mail_list.nil? %>
+	<p>This contest has a mail list.</p>
+	<%if ["open"].include?  @contest.status %>
+		<% if user_signed_in? and @contest.mail_list.isActorSubscribed?(current_subject.actor) %>
+			<p>User is already subscribed to the mail list.</p>
+			<%= render :partial => "mail_lists/unsubscribe", :locals => {:mail_list => @contest.mail_list, :email => current_subject.actor.email} %>
+		<% else %>
+			<p>User is not subscribed to the mail list.</p>
+			<%= render :partial => "mail_lists/subscribe", :locals => {:mail_list => @contest.mail_list, :email => (user_signed_in? ? current_subject.actor.email : nil)} %>
+		<% end %>
+	<% else %>
+		<p>Contest is close. Subscription to mail list not allowed.</p>
+	<% end %>
+<% else %>
+	<p>This contest does not have a mail list.</p>
+<% end %>
