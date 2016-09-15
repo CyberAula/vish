@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160908125945) do
+ActiveRecord::Schema.define(:version => 20160914122525) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -419,6 +419,22 @@ ActiveRecord::Schema.define(:version => 20160908125945) do
     t.decimal  "x3n",                :precision => 12, :scale => 6, :default => 0.0
     t.decimal  "interaction_qscore", :precision => 12, :scale => 6, :default => 0.0
     t.decimal  "qscore",             :precision => 12, :scale => 6, :default => 0.0
+  end
+
+  create_table "mail_list_items", :force => true do |t|
+    t.integer  "mail_list_id"
+    t.integer  "actor_id"
+    t.string   "email"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mail_lists", :force => true do |t|
+    t.string   "name"
+    t.text     "settings",   :default => "{}"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "notifications", :force => true do |t|

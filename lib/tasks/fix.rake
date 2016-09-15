@@ -789,11 +789,21 @@ namespace :fix do
     c = Contest.find_by_template("test")
     c.destroy unless c.nil?
 
+    ml = MailList.find_by_name("MailList Contest Test")
+    ml.destroy unless ml.nil?
+
+    #Create MailList
+    ml = MailList.new
+    ml.name = "MailList Contest Test"
+    ml.settings = ({"require_login" => "false", "require_name" => "false"}).to_json
+    ml.save!
+
     c = Contest.new
     c.name = "test"
     c.template = "test"
     c.show_in_ui = true
     c.settings = ({"enroll" => "true", "submission" => "one_per_user", "submission_require_enroll" => "false"}).to_json
+    c.mail_list_id = ml.id
     c.save!
 
     cc = ContestCategory.new

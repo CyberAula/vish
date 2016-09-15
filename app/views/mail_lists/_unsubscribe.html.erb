@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+	<%= render :partial => "mail_lists/unsubscribe_with_actor", :locals => {:mail_list => mail_list} %>
+<% else %>
+	<%= render :partial => "mail_lists/unsubscribe_with_email", :locals => {:mail_list => mail_list} %>
+<% end %>
