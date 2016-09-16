@@ -2,6 +2,7 @@ LinksController.class_eval do
 
   before_filter :fill_create_params, :only => [:new, :create]
   after_filter :notify_teacher, :only => [:create]
+  skip_after_filter :discard_flash, :only => [:create, :update]
 
   def create
     super do |format|
@@ -11,12 +12,47 @@ LinksController.class_eval do
       format.js
       format.all {
         if resource.new_record?
-          render action: :new
+          if lookup_context.template_exists?("new", "links", false)
+            render action: :new
+          else
+            unless resource.errors.blank?
+              if resource.errors[:url].present?
+                flash[:errors] = I18n.t("link.messages.url_blank")
+              elsif resource.errors[:title].present?
+                flash[:errors] = I18n.t("link.messages.title_blank")
+              else
+                flash[:errors] = resource.errors.full_messages.to_sentence
+              end
+            end
+            redirect_to home_path
+          end
         else
+          discard_flash
           redirect_to link_path(resource) || url_for(current_subject)
         end
       }
   	end
+  end
+
+  def update
+    super do |format|
+      format.json { render :json => resource }
+      format.js { render }
+      format.all {
+        unless resource.errors.blank?
+          if resource.errors[:url].present?
+            flash[:errors] = I18n.t("link.messages.url_blank")
+          elsif resource.errors[:title].present?
+            flash[:errors] = I18n.t("link.messages.title_blank")
+          else
+            flash[:errors] = resource.errors.full_messages.to_sentence
+          end
+        else
+          discard_flash
+        end
+        redirect_to link_path(resource) || home_path
+      }
+    end
   end
 
 

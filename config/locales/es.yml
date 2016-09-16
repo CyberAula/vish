@@ -719,6 +719,9 @@ es:
     title3: "Escribe el enlace que quieres subir"
     name: "enlace"
     is_embed: "¿Inscrustar este enlace?"
+    messages:
+      url_blank: "La URL del enlace no puede estar en blanco."
+      title_blank: "El título no puede estar en blanco."
   lre:
     data_error: "Se produjo un error y el servidor de datos responde con un código de %{code}"
     json_error: "Hubo un error con el contenido devueltos, pruebe con otros términos de búsqueda"

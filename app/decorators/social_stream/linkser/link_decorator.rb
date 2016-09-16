@@ -1,10 +1,13 @@
 Link.class_eval do
 
-  #method that returns a processed url with some fixes
-  #adds http if not present
-  #fixes youtube, prezi, ... if the url is not embedable
+  validates_presence_of :title, :allow_blank => false
+
+  # Method that returns a processed url with some enhancements:
+  # - Adds http/s if not present
+  # - Modifies urls from content providers (e.g. youtube, prezi, ...) if the url is not embeddable
   def getProcessedUrl
-    uri = URI(getUrlWithProtocol)
+    urlWithProtocol = self.getUrlWithProtocol
+    uri = URI(urlWithProtocol)
     myparams = uri.query ? CGI::parse(uri.query) : []
     final_url = ""
     case
@@ -18,10 +21,9 @@ Link.class_eval do
     when uri.host[/vimeo.com/]
       final_url = uri.scheme + "://" + "player." + uri.host + "/video" + uri.path
     else
-      final_url = url
+      final_url = urlWithProtocol
     end
-
-    return final_url
+    final_url
   end
 
   def getUrlWithProtocol
