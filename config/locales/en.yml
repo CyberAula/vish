@@ -553,6 +553,9 @@ en:
     input: "Paste your embed here"
     name: "embed"
     title3: "Write the embed you want to upload"
+    messages:
+      fulltext_blank: "The HTML code of the embed can't be blank"
+      title_blank: "Title can't be blank"
   evaluation:
     contribute:
       student:

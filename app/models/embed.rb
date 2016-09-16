@@ -1,9 +1,11 @@
 class Embed < ActiveRecord::Base
   include SocialStream::Models::Object
 
+  validates_presence_of :fulltext, :allow_blank => false
+  validates_presence_of :title, :allow_blank => false
+  
   define_index do
     activity_object_index
-
     has live
   end
 

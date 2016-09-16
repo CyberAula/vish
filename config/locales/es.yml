@@ -534,6 +534,9 @@ es:
     input: "Pega aquí el recurso a insertar"
     name: "embed"
     title3: "Escribe el recurso a insertar"
+    messages:
+      fulltext_blank: "El código HTML del embed no puede estar en blanco."
+      title_blank: "El título no puede estar en blanco."
   evaluation:
     contribute:
       student:

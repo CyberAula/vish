@@ -28,7 +28,7 @@ LinksController.class_eval do
           end
         else
           discard_flash
-          redirect_to link_path(resource) || url_for(current_subject)
+          redirect_to link_path(resource) || home_path
         end
       }
   	end

@@ -2,6 +2,7 @@ class EmbedsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :create, :update ]
   before_filter :fill_create_params, :only => [:new, :create]
   include SocialStream::Controllers::Objects
+  skip_after_filter :discard_flash, :only => [:create, :update]
   after_filter :notify_teacher, :only => [:create, :update]
 
   def show
@@ -14,41 +15,81 @@ class EmbedsController < ApplicationController
   end
 
   def create
-    iframe_url = get_iframe params[:embed][:fulltext]
+    iframe_url = get_iframe(params[:embed][:fulltext])
     if iframe_url
-      #we detect it is an iframe get the URL and create a Link
-      params[:embed][:url] = iframe_url
-      params[:embed][:is_embed] = "true"
-      params[:embed].delete :fulltext
-      params[:embed].permit!
-      mylink = Link.new params[:embed]
-      mylink.valid?
-      if mylink.errors.blank? and mylink.save
-        redirect_to link_path(mylink)
+      #FullText is an iframe tag.
+      #Therefore, we create a Link with the URL of the iframe instead of an embed code.
+      urlParams = params[:embed]
+      urlParams[:url] = iframe_url
+      urlParams[:is_embed] = "true"
+      urlParams.delete :fulltext
+      urlParams.permit!
+      link = Link.new(urlParams)
+      link.valid?
+      if link.errors.blank? and link.save
+        return redirect_to link_path(link)
       else
-        flash[:errors] = error
-        return redirect_to pathToReturn
+        unless link.errors.blank?
+          if link.errors[:url].present?
+            flash[:errors] = I18n.t("link.messages.url_blank")
+          elsif link.errors[:title].present?
+            flash[:errors] = I18n.t("link.messages.title_blank")
+          else
+            flash[:errors] = link.errors.full_messages.to_sentence
+          end
+        end
+        return redirect_to home_path
       end
-
-    else
-      super do |format|
-        format.json {
-          render :json => resource
-        }
-        format.js
-        format.all {
-          if resource.new_record?
+    end
+    
+    super do |format|
+      format.json {
+        render :json => resource
+      }
+      format.js
+      format.all {
+        if resource.new_record?
+          if lookup_context.template_exists?("new", "embeds", false)
             render action: :new
           else
-            redirect_to embed_path(resource) || home_path
+            unless resource.errors.blank?
+              if resource.errors[:fulltext].present?
+                flash[:errors] = I18n.t("embed.messages.fulltext_blank")
+              elsif resource.errors[:title].present?
+                flash[:errors] = I18n.t("embed.messages.title_blank")
+              else
+                flash[:errors] = resource.errors.full_messages.to_sentence
+              end
+            end
+            redirect_to home_path
           end
-        }
-      end
+        else
+          discard_flash
+          redirect_to embed_path(resource) || home_path
+        end
+      }
     end
   end
 
   def update
-    super
+    super do |format|
+      format.json { render :json => resource }
+      format.js { render }
+      format.all {
+        unless resource.errors.blank?
+          if resource.errors[:fulltext].present?
+            flash[:errors] = I18n.t("embed.messages.fulltext_blank")
+          elsif resource.errors[:title].present?
+            flash[:errors] = I18n.t("embed.messages.title_blank")
+          else
+            flash[:errors] = resource.errors.full_messages.to_sentence
+          end
+        else
+          discard_flash
+        end
+        redirect_to embed_path(resource) || home_path
+      }
+    end
   end
 
   def destroy
