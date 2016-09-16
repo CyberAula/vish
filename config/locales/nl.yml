@@ -138,11 +138,6 @@ nl:
     download_scorm: "Een SCORM-pakket is een verzameling bestanden die zijn ingepakt volgens een afgesproken standaard voor leerobjecten. SCORM-pakketten zijn zipfiles die kunnen worden geïntegreerd in ieder LMS (Learning Management System) dat de standaard (Moodle, Blackboard, …)ondersteunt en dat kan worden gebruikt voor het presenteren van multimediale inhoud en als beoordelingsgereedschap. Zo kunt u uw Virtuele Excursie integreren in Moodle en andere LMS-sen door deze als SCORM te downloaden."
     favorites: "Favorieten"
     how: "Hoe kunt u een presentatie maken"
-    invite:
-      email:
-        body: "Hallo,%0A%0ABekijk%20deze%20presentatie%20op%20ViSH:%0A%0A%{url}%0A%0AIk%20hoop%20dat%20u%20die%20leuk%20vindt!%0A%0A%{name}"
-        link: "email"
-        subject: "Bekijk%20deze%20presentatie%20op%20http://vishub.org%20:%20%{title}"
     is_draft: "[ONTWERP]"
     my: "mijn"
     modal:
@@ -179,8 +174,6 @@ nl:
     followings: "gevolgde"
     is_favorite: "Is favoriet"
     views: "meningen"
-  go:
-    repository: "ga naar de leermiddelenbank"
   help: "hulp"
   info:
     author: "Auteur"
@@ -195,7 +188,6 @@ nl:
     one: "link"
     other: "links"
     confirm_delete: "Link verwijderen?"
-    go: "Ga naar link"
   translate:
     change: "Wijzig taal"
   mailboxer:

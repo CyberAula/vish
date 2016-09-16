@@ -1,58 +1,82 @@
 <% availableModels ||= available_models %>
-<%canBeDownloaded = !document.getDownloadUrl(self).nil? %>
+<% canBeDownloaded = !document.getDownloadUrl(self).nil? %>
 <!-- Only documents with an embed partial can be embeded -->
-<%canBeEmbeded = lookup_context.template_exists?("embedcode", document.class.to_s.underscore.pluralize, true) %>
+<% canBeEmbeded = lookup_context.template_exists?("embedcode", document.class.to_s.underscore.pluralize, true) %>
+<% canBeShared = ((document.public_scope?) or (can? :update, document)) %>
 
-<% if canBeEmbeded %>
-  <%content_for :javascript do%>
-      var embedEvents = false;
+<script>
 
-      $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-            if(!embedEvents){
-              embedEvents = true;
-
-              $('button#btn_copy_embed').zclip({
-                path:'/assets/ZeroClipboard.swf',
-                copy:function(){
-                  return $('#textarea_for_iframe').val();
-                },
-                afterCopy: function(){}
-              });
-
-              $(".shortUrl").mouseup(function(e){
-                // fixes safari/chrome problem
-                e.preventDefault();
-              }).focus(function(e){
-                mytxt = $(this).text();
-                $(this).select();
-              }).click(function(e){
-                mytxt = $(this).text();
-                $(this).select();
-              });
-            }
-      });
-      $('[data-toggle="tooltip"], .with_tooltip').tooltip({ placement: 'bottom'});
-  <%end%>
-<%end%>
-
-
-<script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function(){
-    $(".with_tooltip").tooltip({ placement: 'bottom', container:'body'});
+
+    var embedEvents = false;
+    var shareEvents = false;
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e){
+      // e.target // activated tab
+      // e.relatedTarget // previous tab
+      var loadedTab = $(e.target).attr("tabTitle");
+      switch (loadedTab){
+        case "embed":
+          if(!embedEvents){
+            embedEvents = true;
+            $('button#btn_copy_embed').zclip({
+              path:'/assets/ZeroClipboard.swf',
+              copy:function(){
+                return $('#textarea_for_iframe').text();
+              }
+            });
+            $("#textarea_for_iframe").mouseup(function(e){
+              // fixes safari/chrome problem
+              e.preventDefault();
+            }).focus(function(e){
+              mytxt = $(this).text();
+              $(this).select();
+            }).click(function(e){
+              mytxt = $(this).text();
+              $(this).select();
+            });
+          }
+          break;
+        case "share":
+          if(!shareEvents){
+            shareEvents = true;
+            $('button#btn_copy_share').zclip({
+              path:'/assets/ZeroClipboard.swf',
+              copy:function(){
+                return $('#input_with_shorturl').val();
+              },
+              afterCopy: function(){}
+            });
+            $("#input_with_shorturl").mouseup(function(e){
+              // fixes safari/chrome problem
+              e.preventDefault();
+            }).focus(function(e){
+              mytxt = $(this).text();
+              $(this).select();
+            }).click(function(e){
+              mytxt = $(this).text();
+              $(this).select();
+            });
+          }
+          break;
+        default:
+          break;
+      }
+    });
+
+    $('[data-toggle="tooltip"], .with_tooltip').tooltip({ placement: 'bottom',container:'body'});
   });
 </script>
-
 
 <div class="btn-group">
   <% if can? :destroy, document %>
     <%= link_to raw("<i class='fa fa-trash-o'></i> "),  document,
-    confirm: t('confirm_delete', scope: document.class.to_s.underscore),
-    title: t('document.actions.delete'),
-    method: :delete,
-    rel: "tooltip",
-    class: "btn with_tooltip" %>
+      confirm: t('confirm_delete', scope: document.class.to_s.underscore),
+      title: t('document.actions.delete'),
+      method: :delete,
+      rel: "tooltip",
+      class: "btn with_tooltip" %>
   <% end %>
-
 
   <!--Favorite-->
   <% unless document.post_activity.nil? %>
@@ -63,43 +87,48 @@
     <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => resource} %>
     <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" ><i class="fa fa-th-large"></i></button>
   <%end%>
-
 </div>
 
-  <ul class="nav nav-tabs">
-    <li class="<%= document_details_tab_class document, :info %>">
-      <%= link_to (raw("<i class='fa fa-align-left'></i> <span class='hidden-xs'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
+<ul class="nav nav-tabs">
+  <li class="<%= document_details_tab_class document, :info %>">
+    <%= link_to (raw("<i class='fa fa-align-left'></i> <span class='hidden-xs'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab', 'tabTitle' => 'description' %>
+  </li>
+
+  <% if can? :update, document %>
+    <li class="<%= document_details_tab_class document, :edit %>">
+      <%= link_to (raw("<i class='fa fa-edit'></i> <span class='hidden-xs'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab', 'tabTitle' => 'edit' %>
     </li>
+  <% end %>
 
-    <% if can? :update, document %>
-      <li class="<%= document_details_tab_class document, :edit %>">
-        <%= link_to (raw("<i class='fa fa-edit'></i> <span class='hidden-xs'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
-      </li>
-    <% end %>
-
-    <% if canBeEmbeded %>
-      <li class="<%= document_details_tab_class document, :embed %>">
-          <%= link_to (raw("<i class='fa fa-code'></i> <span class='hidden-xs'>")) + t('excursion.actions.embed')+ raw("</span>"), '#document-embed', 'data-toggle' => 'tab' %>
-      </li>
-    <%end%>
-
-    <%if canBeDownloaded %>
-      <li class="<%= document_details_tab_class document, :download %>">
-          <%= link_to (raw("<i class='fa fa-download'></i> <span class='hidden-xs'>")) + t('document.actions.download')+ raw("</span>"), '#document-download', 'data-toggle' => 'tab' %>
-      </li>
-    <% end %>
-
-    <li>
-      <a href="#tab3" data-toggle="tab">
-        <i class="fa fa-flag"></i>
-          <span class="hidden-xs">
-            <%=t('excursion.actions.spam')%>
-          </span>
-      </a>
+  <% if canBeEmbeded %>
+    <li class="<%= document_details_tab_class document, :embed %>">
+        <%= link_to (raw("<i class='fa fa-code'></i> <span class='hidden-xs'>")) + t('excursion.actions.embed')+ raw("</span>"), '#document-embed', 'data-toggle' => 'tab', 'tabTitle' => 'embed' %>
     </li>
+  <% end %>
 
-    <%= render partial: 'help/help_show_resource' %>
-  </ul>
+  <% if canBeShared %>
+    <li class="<%= document_details_tab_class document, :share %>">
+      <%= link_to (raw("<i class='fa fa-share'></i> <span class='hidden-xs'>")) + t('excursion.actions.share')+ raw("</span>"), '#document-share', 'data-toggle' => 'tab', 'tabTitle' => 'share' %>
+    </li>
+  <% end %>
+
+  <% if canBeDownloaded %>
+    <li class="<%= document_details_tab_class document, :download %>">
+        <%= link_to (raw("<i class='fa fa-download'></i> <span class='hidden-xs'>")) + t('document.actions.download')+ raw("</span>"), '#document-download', 'data-toggle' => 'tab', 'tabTitle' => 'download' %>
+    </li>
+  <% end %>
+
+  <li>
+    <a href="#tab3" tabTitle='flag' data-toggle="tab">
+      <i class="fa fa-flag"></i>
+        <span class="hidden-xs">
+          <%=t('excursion.actions.spam')%>
+        </span>
+    </a>
+  </li>
+
+  <%= render partial: 'help/help_show_resource' %>
+</ul>
 
 
 <h1><%= document.title %></h1>
@@ -135,6 +164,25 @@
           </div>
         </div>
       </div>
+    </div>
+  <% end %>
+
+  <% if canBeShared %>
+    <% shortURL = document.getUrl %>
+    <div class="tab-pane contentShare" id="document-share">
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"/>
+          <div class="input-group-addon">
+            <div data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+              <button class="btn" id="btn_copy_share" href="#">
+                <i class="fa fa-copy "></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= render :partial=>'shareon/share', :locals=>{:url=>shortURL, :title => document.title, :name => (user_signed_in? ? current_subject.name : '')} %>
     </div>
   <% end %>
 

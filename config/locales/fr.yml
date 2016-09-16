@@ -110,11 +110,6 @@ fr:
     detail: "Détail"
     favorites: "Favoris"
     how: "Comment créer une excursion"
-    invite:
-      email:
-        body: "Salut,%0A%0AJette%20un%20coup%20d'œil%20à%20cette%20excursion%20sur%20la%20plateforme%20ViSH%20:%0A%0A%{url}%0A%0Aj'%20espère%20qu'elle%20te%20plaîra%20!%0A%0A%{name}"
-        link: "adresse électronique"
-        subject: "Jette%20un%20coup%20d'œuil%20à%20cette%20excursion%20sur%20le%20site%20http://vishub.org%20:%20%{title}"
     is_draft: "[BROUILLON]"
     my: "mon"
     name: "excursion"
@@ -146,8 +141,6 @@ fr:
     followings: "abonnements"
     is_favorite: "Est favorite"
     views: "vues"
-  go:
-    repository: "accéder à la bibliothèque"
   help: "aide"
   info:
     author: "Auteur"
@@ -162,7 +155,6 @@ fr:
     one: "lien"
     other: "liens"
     confirm_delete: "Supprimer le lien ?"
-    go: "Accéder au lien"
   translate:
     change: "Modifier la langue"
   mailboxer:

@@ -8,7 +8,7 @@
     var embedEvents = false;
     var shareEvents = false;
 
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e){
       // e.target // activated tab
       // e.relatedTarget // previous tab
       var loadedTab = $(e.target).attr("tabTitle");
@@ -238,7 +238,6 @@
     <div class="tab-pane contentShare" id="tab3">
       <div class="form-group">
         <div class="input-group">
-
           <input class="form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"/>
           <div class="input-group-addon">
             <div data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
@@ -249,23 +248,7 @@
           </div>
         </div>
       </div>
-      <div class="social_toolbar_excursion">
-        <div class="social_toolbar_excursion">
-          <div class="social">
-            <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
-          </div>
-          <div class="social">
-            <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>(request.protocol + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
-          </div>
-          <div class="social">
-            <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
-          </div>
-          <div class="social">
-            <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
-          </div>
-
-        </div>
-      </div>
+      <%= render :partial=>'shareon/share', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
     </div>
 
     <% if can?(:download_source, @excursion) %>

@@ -599,7 +599,6 @@ en:
       embed: "embed"
       favorite: "favorite"
       my_room: "my room"
-      send_email: "Send Email"
       show: "show"
       show_fewer: "Show fewer"
       show_meta: "Metadata"
@@ -627,11 +626,6 @@ en:
     draft: "Draft"
     favorites: "Favorites"
     how: "How to create an excursion"
-    invite:
-      email:
-        body: "Hi,%0A%0ACheck%20out%20this%20excursion%20at%20ViSH:%0A%0A%{url}%0A%0AI%20hope%20you%20like%20it!%0A%0A%{name}"
-        link: "e-mail"
-        subject: "Check%20out%20this%20excursion%20at%20%{url}%20:%20%{title}"
     is_draft: "[DRAFT]"
     modal:
       title: "Congratulations"
@@ -686,8 +680,6 @@ en:
         title: "Our community grows every day"
         subtitle: "Share your knowledge in our community and help us to grow"
     join_us: "Join to ViSH!"
-  go:
-    repository: "go to repository"
   header:
     tooltip:
       add_button: "Create excursions, resources, etc."
@@ -736,7 +728,6 @@ en:
     one: "link"
     other: "links"
     confirm_delete: "Delete link?"
-    go: "Go to link"
     title3: "Write the link you want to upload"
     name: "link"
     is_embed: "Embed this link?"
@@ -1103,7 +1094,11 @@ en:
         someone_comments_on_my_post: "when someone comments on my post"
   share: "Post"
   sharing:
-    email: "Share by email"
+    email:
+      action: "Send Email"
+      title: "Share by email"
+      body: "Hi,%0A%0ACheck%20out%20this%20educational%20resource%20at%20ViSH:%0A%0A%{url}%0A%0AI%20hope%20you%20like%20it!%0A%0A%{name}"
+      subject: "Check%20out%20this%20resource%20at%20%{url}%20:%20%{title}"
     twitter:
       message: "Check out this resource at %{url}"
   sign_up: "Register"

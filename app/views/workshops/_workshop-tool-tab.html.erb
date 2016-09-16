@@ -115,7 +115,6 @@
 
   <!-- tab3 / share -->
   <div class="tab-pane contentShare" id="tab3">
-
     <div class="form-group">
       <div class="input-group">
         <input class="shortUrl form-control" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"/>
@@ -128,22 +127,7 @@
         </div>
       </div>
     </div>
-
-
-    <div class="social_toolbar_excursion">
-      <div class="social">
-          <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>(request.protocol + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + workshop_path(@workshop) )} %>
-      </div>
-      <div class="social">
-          <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
-      </div>
-      <div class="social">
-          <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
-      </div>
-      <div class="social">
-          <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @workshop.title, :name => (user_signed_in? ? current_subject.name : '')} %>
-      </div>
-    </div>
+    <%= render :partial=>'shareon/share', :locals=>{:url=>shortURL, :title => @workshop.title, :name => (user_signed_in? ? current_subject.name : '')} %>
   </div>
 
   <!-- tab5 / spam -->

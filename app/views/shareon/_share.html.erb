@@ -1,0 +1,16 @@
+<div class="social_toolbar_resource">
+  <div class="social_toolbar_resource">
+    <div class="social social_email">
+      <%= render :partial=>'shareon/email', :locals=>{:url=>url, :title => title, :name => name} %>
+    </div>
+    <div class="social social_twitter">
+      <%= render :partial=>'shareon/twitter', :locals=>{:url=>url, :counturl=>url} %>
+    </div>
+    <div class="social social_facebook">
+      <%= render :partial=>'shareon/facebook', :locals=>{:url=>url} %>
+    </div>
+    <div class="social social_gplus">
+      <%= render :partial=>'shareon/gplus', :locals=>{:url=>url} %>
+    </div>
+  </div>
+</div>

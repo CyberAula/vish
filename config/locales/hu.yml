@@ -110,11 +110,6 @@ hu:
     detail: "Részletek"
     favorites: "Kedvenc"
     how: "Hogy lehet virtuális sétát készíteni"
-    invite:
-      email:
-        body: "Szia,%0A%0ANézd%20meg%20ezt%20a%20virtuális%20sétát%20a%20ViSH:%0A%0A%{url}%0A%0ARemélem%20tetszik%0A%0A%{name}"
-        link: "e-mail"
-        subject: "Nézd%20meg%20a%2020virtuális%20sétám%20http://vishub.org%20:%20%{title}"
     is_draft: "[DRAFT]"
     my: "saját"
     name: "virtuális séta"
@@ -146,8 +141,6 @@ hu:
     followings: "követett"
     is_favorite: "kedvenc"
     views: "megtekintés"
-  go:
-    repository: "menj a tárházhoz"
   help: "súgó"
   info:
     author: "szerző"
@@ -162,7 +155,6 @@ hu:
     one: "link"
     other: "linkek"
     confirm_delete: "Törlöd a linket?"
-    go: "Menj a linkhez"
   translate:
     change: "Nyelv módosítása"
   message:

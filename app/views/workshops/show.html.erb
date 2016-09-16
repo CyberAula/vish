@@ -4,7 +4,7 @@
 <%content_for :og_image do %><%= Embed.checkUrlProtocol(@workshop.thumbnail_url,request.protocol) || request.protocol + request.env['HTTP_HOST'] + "/assets/logos/original/defaul_workshop.png" %><% end %>
 <%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@workshop), @workshop)%><%end%>
 <%content_for :canonical do%><%= polymorphic_url(@workshop, :locale => params[:locale]) %><%end%>
-<% shortURL = request.protocol + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + workshop_path(@workshop) %>
+<% shortURL = @workshop.getUrl %>
 
 <section id="show_items" class="layout_show workshop_show">
 
@@ -54,9 +54,7 @@
     </div>
   </div>
 
-
-
-<!--++++++++++++++++item+++++++++++++++++++++++-->
+  <!--++++++++++++++++item+++++++++++++++++++++++-->
   <% unless @workshop_activities.blank? %>
     <% @workshop_activities.each do |workshop_activity| %>
 
