@@ -17,6 +17,11 @@ class MailListsController < ApplicationController
   end
 
   def subscribed
+    unless params[:grant] == "true"
+      flash[:errors] =  I18n.t("mail_list.grant_error")
+      return redirect_to subscribe_mail_list_path(@mail_list)
+    end
+
     #Create subscription to MailList
     if params[:actor_id]
       subscription = @mail_list.subscribe_actor(Actor.find_by_id(params[:actor_id]))
@@ -49,7 +54,11 @@ class MailListsController < ApplicationController
     end
 
     unless unsubscription.is_a? MailListItem
-      flash[:errors] = I18n.t("mail_list.email_not_found")
+      if unsubscription.is_a? String
+        flash[:errors] = unsubscription
+      else
+        flash[:errors] =  I18n.t("mail_list.email_not_found")
+      end
       return redirect_to unsubscribe_mail_list_path(@mail_list)
     end
     @email = unsubscription.email

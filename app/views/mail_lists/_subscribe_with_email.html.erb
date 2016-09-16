@@ -7,6 +7,7 @@
 	<%= form_for(mail_list, :url => subscribed_mail_list_path(mail_list), :method => "post")  do |f| %>
 		<%= text_field_tag :email, email, :class => "input_subscribe" %>
 		<%= hidden_field_tag :name, name, :class => "input_subscribe" %>
+		<%= check_box_tag :grant, "true" %><label class="grant_label"><%=I18n.t("mail_list.grant_message")%></label>
 		<%= f.submit t("mail_list.subscribe"), :class=> "btn btn-primary" %>
 	<% end %>
 </div>

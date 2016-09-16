@@ -64,7 +64,7 @@ class MailList < ActiveRecord::Base
   end
 
   def subscribe_email(email,name=nil)
-    return nil if (email.blank? or !(email.is_a? String))
+    return I18n.t("mail_list.email_missed") if (email.blank? or !(email.is_a? String))
     mi = MailListItem.new
     mi.mail_list_id = self.id
     mi.email = email
@@ -84,7 +84,7 @@ class MailList < ActiveRecord::Base
   end
 
   def unsubscribe_actor(actor)
-    return nil unless actor.is_a? Actor
+    return "Actor missed" unless actor.is_a? Actor
     mis = ([self.items.find_by_id(actor.id)] + [self.items.find_by_email(actor.email)]).compact.uniq
     return nil if mis.blank?
     result = nil
@@ -95,7 +95,7 @@ class MailList < ActiveRecord::Base
   end
 
   def unsubscribe_email(email)
-    return nil if (email.blank? or !(email.is_a? String))
+    return I18n.t("mail_list.email_missed") if (email.blank? or !(email.is_a? String))
     mi = self.items.find_by_email(email)
     return nil if mi.blank?
     mi.destroy

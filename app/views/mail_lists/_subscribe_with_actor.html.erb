@@ -3,6 +3,7 @@
 		<p><%=I18n.t("mail_list.subscribe_message_one")%></p>
 		<%= form_for(mail_list, :url => subscribed_mail_list_path(mail_list), :method => "post")  do |f| %>
 			<%= hidden_field_tag :actor_id, current_subject.actor.id %>
+			<%= check_box_tag :grant, "true" %><label class="grant_label"><%=I18n.t("mail_list.grant_message")%></label>
 			<%= f.submit t("mail_list.subscribe"), :class=> "btn btn-primary" %>
 		<% end %>
 	</div>
