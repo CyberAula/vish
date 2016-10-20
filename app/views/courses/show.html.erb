@@ -57,9 +57,7 @@
                   <% end %>
               <%else%>
                   <%if @course.end_date.present? && @course.end_date < Date.today%>
-                    <div class=""><%=t('course.msgs.course_ended')%></div>
-                  <%elsif @course.start_date.present? && @course.start_date < Date.today%>
-                    <div class=""><%=t('course.msgs.course_registration_ended')%></div>
+                    <div class=""><%=t('course.msgs.course_ended')%></div>                  
                   <%else%>
                     <%if current_user%>
                       <%if !@course.restricted || (@course.restricted && @course.restriction_email.present? && (current_user.email.ends_with? @course.restriction_email))%>

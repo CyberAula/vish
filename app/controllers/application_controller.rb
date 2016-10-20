@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   after_filter :discard_flash
   before_filter :set_locale
   before_filter :check_fb_locale
- 
+
 
   #############
   # Devise
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || session[:user_return_to] || root_path
   end
-  
+
 
   #############
   # Last location handling

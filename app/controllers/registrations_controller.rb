@@ -16,12 +16,22 @@ class RegistrationsController < Devise::RegistrationsController
         params[:user][:language] = I18n.locale.to_s
       end
 
+      if params[:course].present?
+        @course = Course.find(params[:course])
+
+        if @course.restricted && ((@course.has_password? && params[:course_password]!=@course.restriction_password) || (@course.restriction_email.present? && !(params[:user][:email].ends_with? @course.restriction_email)) )
+          flash.now[:alert] = t("course.flash.bad_credentials")
+          build_resource
+          render :new and return
+        end
+      end
+
       super
     else
       build_resource
-      
+
       #clean_up_passwords(resource)
-      flash.now[:alert] = t('simple_captcha.error')   
+      flash.now[:alert] = t('simple_captcha.error')
       flash.delete :recaptcha_error
       render :new
     end
@@ -51,16 +61,26 @@ class RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  protected
+
+  def after_sign_up_path_for(resource)
+    if params[:course].present?
+      Course.find(params[:course]).url
+    else
+      '/home'
+    end
+  end
+
   private
 
-
+  #this method is only called when user has provided the right credentials for the course
+  #we call it after_filter because when we check credentials, current_user still does not exist
   def process_course_enrolment
-    if params[:course].present?
-      course = Course.find(params[:course])
-      if !course.restricted
-        course.users << current_user
-        CourseNotificationMailer.user_welcome_email(current_user, course)
-      end
+    return unless user_signed_in?
+
+    if @course
+        @course.users << current_user
+        CourseNotificationMailer.user_welcome_email(current_user, @course)
     end
   end
 
