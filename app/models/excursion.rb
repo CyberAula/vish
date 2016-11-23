@@ -1127,7 +1127,7 @@ class Excursion < ActiveRecord::Base
 
     #If LOEP is enabled, upload the excursion to LOEP
     unless Vish::Application.config.APP_CONFIG['loep'].nil?
-      VishLoep.registerActivityObject(self.activity_object) rescue nil
+      VishLoep.sendActivityObject(self.activity_object) rescue nil
     end
   end
 
