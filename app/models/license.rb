@@ -36,8 +36,10 @@ class License < ActiveRecord::Base
     return (self.key.include? "cc-by" and self.key.include? "-nd")
   end
 
-  def name
-    I18n.t('licenses.' + self.key.to_s)
+  def name(locale=nil)
+    options = {}
+    options[:locale] = locale unless locale.nil? or !I18n.available_locales.include?(locale.to_sym)
+    I18n.t('licenses.' + self.key.to_s, options)
   end
 
 end

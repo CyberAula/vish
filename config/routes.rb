@@ -63,8 +63,9 @@ Vish::Application.routes.draw do
   #LRE proxy
   match 'lre/search' => 'lre#search_lre'
 
-  #AO avatars
+  #AO avatars and metadata
   match 'activity_objects/avatar/:id' => 'activity_object#show_avatar'
+  match 'activity_objects/:id/metadata' => 'activity_object#metadata'
 
   #Thumbnails
   match '/thumbnails' => 'excursions#excursion_thumbnails'

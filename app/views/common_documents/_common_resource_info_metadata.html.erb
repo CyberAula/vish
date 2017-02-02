@@ -213,20 +213,19 @@
 
         <div class="modal-body">
           <ul class="metadatalist">
-            <%resource.metadata.each do |key, value| %>
-              <%unless value.blank?%>
+            <% resource.metadata.each do |key, value| %>
+              <% unless value.blank? %>
                 <li>
                   <span class="metadatalistkey"><%=key%>:</span>
                   <span class="metadatalistkey2"><%=value%></span>
                 </li>
-              <%end%>
-            <%end%>
-            <%if resource.class.name == "Excursion" %>
-              <li>
-                <span class="metadatalistkey"><%=t("metadata.access_lom")%>:</span>
-                <span class="metadatalistkey2"><a target="_blank" href="<%=ao_object_metadata_path(resource)%>"><%=Vish::Application.config.full_domain + ao_object_metadata_path(resource)%></a></span>
-              </li>
-            <%end%>
+              <% end %>
+            <% end %>
+            <li>
+              <span class="metadatalistkey"><%=t("metadata.access_lom")%>:</span>
+              <% metadataURL = resource.activity_object.getMetadataUrl %>
+              <span class="metadatalistkey2"><a target="_blank" href="<%=metadataURL%>"><%=metadataURL%></a></span>
+            </li>
           </ul>
         </div>
       </div>

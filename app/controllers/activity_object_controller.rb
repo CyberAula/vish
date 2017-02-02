@@ -27,6 +27,22 @@ class ActivityObjectController < ApplicationController
     end
   end
 
+  def metadata
+    ao = ActivityObject.find_by_id(params[:id])
+    respond_to do |format|
+      format.any {
+        unless ao.nil?
+          xmlMetadata = ao.generate_LOM_metadata({:LOMschema => params[:LOMschema] || "custom"})
+          render :xml => xmlMetadata.target!, :content_type => "text/xml"
+        else
+          xmlMetadata = ::Builder::XmlMarkup.new(:indent => 2)
+          xmlMetadata.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+          xmlMetadata.error("Activity Object not found")
+          render :xml => xmlMetadata.target!, :content_type => "text/xml", :status => 404
+        end
+      }
+    end
+  end
 
   private
 

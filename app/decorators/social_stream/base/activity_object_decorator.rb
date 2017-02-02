@@ -154,10 +154,10 @@ ActivityObject.class_eval do
     end
   end
 
-  def license_name
+  def license_name(locale=nil)
     if self.should_have_license? and !self.license.nil?
       if self.license.key != "other"
-        self.license.name
+        self.license.name(locale)
       elsif !self.license_custom.blank?
         self.license_custom
       end
@@ -404,7 +404,11 @@ ActivityObject.class_eval do
   end
 
   def getMetadataUrl
-    self.getUrl + "/metadata.xml"
+    if ["Excursion"].include?(self.object_type)
+     return self.getUrl + "/metadata.xml"
+    else
+      return Vish::Application.config.full_domain + "/activity_objects/" + self.id.to_s + "/metadata.xml"
+    end
   end
 
   def getFullUrl(controller)
@@ -590,6 +594,10 @@ ActivityObject.class_eval do
     else
       nil
     end
+  end
+
+  def generate_LOM_metadata(options)
+    Lom.generateMetadata(self,options)
   end
 
   ##############
