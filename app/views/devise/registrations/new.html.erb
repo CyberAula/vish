@@ -3,6 +3,9 @@
 <%content_for :description do%><%= t("site.meta_desc.sign_up")%><%end%>
 <%content_for :alternate_urls do%><%=raw alternate_urls(request.original_url, nil)%><%end%>
 
+<% course = (params[:course].blank? ? nil : Course.find_by_id(params[:course])) %>
+
+
 <section id="registration">
   <section class="registration">
     <h4><%= t('sign_up').capitalize %></h4>
@@ -10,7 +13,9 @@
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:id => "new_user_devise_form"}) do |f| %>
       <%= devise_error_messages! %>
       <div class="form-group reg-labels">
-        <%= hidden_field_tag :course, params[:course] %>
+        <% unless course.nil? %>
+          <%= hidden_field_tag :course, course.id %>
+        <% end %>
 
         <%= f.label :name %>
         <%= f.text_field :name, :class => "form-control", :autocomplete => "off" %>
@@ -45,10 +50,11 @@
               <li><%= tag.name %></li>
           <% end %>
         </ul>
-
-        <%if params[:course] && Course.find(params[:course]).restricted && Course.find(params[:course]).has_password?%>
-          <%= label_tag :course_password, t("course.msgs.registration_passwd")  %>
-          <%= password_field_tag :course_password, nil, :class => "form-control", :autocomplete => "off" %>
+        <% unless course.nil? %>
+          <% if course.restricted and course.has_password? %>
+            <%= label_tag :course_password, t("course.msgs.registration_passwd")  %>
+            <%= password_field_tag :course_password, nil, :class => "form-control", :autocomplete => "off" %>
+          <% end %>
         <%end%>
 
         <%= f.label t('simple_captcha.title') %>

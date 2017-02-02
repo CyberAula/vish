@@ -14,9 +14,10 @@ class Course < ActiveRecord::Base
     restriction_password.present?
   end
 
+
   private
 
   def update_course_count
-  	Vish::Application.config.courses_count = Course.count
+    Vish::Application.config.courses_count = Course.count
   end
 end
