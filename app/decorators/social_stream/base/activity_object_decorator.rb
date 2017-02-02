@@ -192,8 +192,10 @@ ActivityObject.class_eval do
     self.resource? and !self.interaction_qscore.nil? and !self.lo_interaction.nil?
   end
 
-  #Calculate quality score (in a 0-10 scale) 
+  #Calculate quality score
   def calculate_qscore
+    return self.object.calculate_qscore if self.object_type=="Category" and !self.object.nil?
+
     #self.reviewers_qscore is the LORI score in a 0-10 scale
     #self.users_qscore is the WBLT-S score in a 0-10 scale
     #self.teachers_qscore is the WBLT-T score in a 0-10 scale
@@ -240,7 +242,7 @@ ActivityObject.class_eval do
       overallQualityScore = 5
     end
 
-    #Translate it to a scale of [0,1000000]
+    #Translate score from a scale of [0,10] to a scale of [0,1000000]
     overallQualityScore = [overallQualityScore * 100000, 999999].min
 
     self.update_column :qscore, overallQualityScore
