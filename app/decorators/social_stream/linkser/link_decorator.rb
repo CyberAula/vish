@@ -9,9 +9,9 @@ Link.class_eval do
     urlWithProtocol = self.getUrlWithProtocol
     
     uri = URI(urlWithProtocol) rescue nil
-    return urlWithProtocol if uri.nil?
+    return urlWithProtocol if uri.nil? or uri.host.blank? or uri.path.blank? or uri.scheme.blank?
+    myparams = uri.query.nil? ? (CGI::parse(uri.query) rescue []) : []
     
-    myparams = uri.query ? (CGI::parse(uri.query) rescue []) : []
     final_url = ""
     case
     when uri.host[/youtu.be|youtube.com/] && uri.path.start_with?("/watch")
@@ -26,11 +26,20 @@ Link.class_eval do
     else
       final_url = urlWithProtocol
     end
+
     final_url
   end
 
   def getUrlWithProtocol
-    self.url.start_with?('http') ? self.url : ("http://"+ self.url)
+    if self.url.start_with?('http:')
+      self.url
+    else
+      if self.url.start_with?('//')
+        ("http:"+ self.url)
+      else
+        ("http://"+ self.url)
+      end
+    end
   end
 
 end
