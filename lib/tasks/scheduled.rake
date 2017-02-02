@@ -115,10 +115,8 @@ namespace :scheduled do
     # This task recalculates popularity in Activity Objects
     # Object types of Activity Objects:
     # ["Actor", "Document", "Post", "Category", "Excursion", "Scormfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop"]
-
     resourceAOTypes = VishConfig.getAvailableResourceModels
     #["Document", "Webapp", "Scormfile", "Link", "Embed", "Writing", "Excursion", "Workshop"]
-
     resourceAOs = ActivityObject.where("object_type in (?)", resourceAOTypes)
     userAOs = ActivityObject.joins(:actor).where("activity_objects.object_type='Actor' and actors.subject_type='User'")
     eventAOs = ActivityObject.where("object_type in (?)", ["Event"])
@@ -138,6 +136,7 @@ namespace :scheduled do
     #################################
     puts "Recalculating resources popularity"
 
+    #Weights for downloadable resources
     resourceWeights = {}
     resourceWeights[:fVisits] = 0.4
     resourceWeights[:fDownloads] = 0.1
@@ -151,21 +150,31 @@ namespace :scheduled do
     linkWeights[:fLikes] = 0.6
     
     unless resourceAOs.blank?
-      #Get values to normalize scores
-      resource_maxVisitCount = [resourceAOs.maximum(:visit_count),1].max
-      resource_maxDownloadCount = [resourceAOs.maximum(:download_count),1].max
-      resource_maxLikeCount = [resourceAOs.maximum(:like_count),1].max
+      #Get maximum values to normalize scores
+      maxfVisits = 1
+      maxfDownloads = 1
+      maxfLikes = 1
+      resourceAOs.map{ |ao|
+        timeWindow = [(Time.now - ao.created_at)/windowLength.to_f,0.5].max
+        fVisits = (ao.visit_count/timeWindow.to_f)
+        fDownloads = (ao.download_count/timeWindow.to_f)
+        fLikes = (ao.like_count/timeWindow.to_f)
+        maxfVisits = fVisits if fVisits > maxfVisits
+        maxfDownloads = fDownloads if fDownloads > maxfDownloads
+        maxfLikes = fLikes if fLikes > maxfLikes
+      }
 
+      #calculate popularity scores
       resourceAOs.each do |ao|
-        if ao.updated_at.nil?
+        if ao.created_at.nil?
           ao.popularity = 0
           next
         end
 
-        timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
-        fVisits = (ao.visit_count/timeWindow.to_f)/resource_maxVisitCount
-        fDownloads = (ao.download_count/timeWindow.to_f)/resource_maxDownloadCount
-        fLikes = (ao.like_count/timeWindow.to_f)/resource_maxLikeCount
+        timeWindow = [(Time.now - ao.created_at)/windowLength.to_f,0.5].max
+        fVisits = (ao.visit_count/timeWindow.to_f)/maxfVisits
+        fDownloads = (ao.download_count/timeWindow.to_f)/maxfDownloads
+        fLikes = (ao.like_count/timeWindow.to_f)/maxfLikes
 
         if(nonDownloableResources.include? ao.object_type)
           rWeights = linkWeights
@@ -211,19 +220,27 @@ namespace :scheduled do
     eventWeights[:fLikes] = 0.5
 
     unless eventAOs.blank?
-      #Get values to normalize scores
-      events_maxVisitCount = [eventAOs.maximum(:visit_count),1].max
-      events_maxLikeCount = [eventAOs.maximum(:like_count),1].max
+      #Get maximum values to normalize scores
+      events_maxfVisits = 1
+      events_maxfLikes = 1
+
+      eventAOs.map{ |ao|
+        timeWindow = [(Time.now - ao.created_at)/windowLength.to_f,0.5].max
+        fVisits = (ao.visit_count/timeWindow.to_f)
+        fLikes = (ao.like_count/timeWindow.to_f)
+        events_maxfVisits = fVisits if fVisits > events_maxfVisits
+        events_maxfLikes = fLikes if fLikes > events_maxfLikes
+      }
 
       eventAOs.each do |ao|
-        if ao.updated_at.nil?
+        if ao.created_at.nil?
           ao.popularity = 0
           next
         end
 
-        timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
-        fVisits = (ao.visit_count/timeWindow.to_f)/events_maxVisitCount
-        fLikes = (ao.like_count/timeWindow.to_f)/events_maxLikeCount
+        timeWindow = [(Time.now - ao.created_at)/windowLength.to_f,0.5].max
+        fVisits = (ao.visit_count/timeWindow.to_f)/events_maxfVisits
+        fLikes = (ao.like_count/timeWindow.to_f)/events_maxfLikes
 
         ao.popularity = ((eventWeights[:fVisits] * fVisits + eventWeights[:fLikes] * fLikes)*metricsScaleFactor).round(0)
       end
@@ -240,16 +257,22 @@ namespace :scheduled do
 
     unless categoryAOs.blank?
       #Get values to normalize scores
-      categories_maxVisitCount = [categoryAOs.maximum(:visit_count),1].max
+      categories_maxfVisits = 1
+
+      categoryAOs.map{ |ao|
+        timeWindow = [(Time.now - ao.created_at)/windowLength.to_f,0.5].max
+        fVisits = (ao.visit_count/timeWindow.to_f)
+        categories_maxfVisits = fVisits if fVisits > categories_maxfVisits
+      }
 
       categoryAOs.each do |ao|
-        if ao.updated_at.nil?
+        if ao.created_at.nil?
           ao.popularity = 0
           next
         end
         
-        timeWindow = [(Time.now - ao.updated_at)/windowLength.to_f,0.5].max
-        fVisits = (ao.visit_count/timeWindow.to_f)/categories_maxVisitCount
+        timeWindow = [(Time.now - ao.created_at)/windowLength.to_f,0.5].max
+        fVisits = (ao.visit_count/timeWindow.to_f)/categories_maxfVisits
 
         ao.popularity = ((categoryWeights[:fVisits] * fVisits)*metricsScaleFactor).round(0)
       end
