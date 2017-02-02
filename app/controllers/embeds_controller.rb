@@ -15,7 +15,7 @@ class EmbedsController < ApplicationController
   end
 
   def create
-    iframe_url = get_iframe(params[:embed][:fulltext])
+    iframe_url = getIframeURL(params[:embed][:fulltext])
     if iframe_url
       #FullText is an iframe tag.
       #Therefore, we create a Link with the URL of the iframe instead of an embed code.
@@ -115,6 +115,16 @@ class EmbedsController < ApplicationController
     params["embed"]["user_author_id"] = current_subject.actor_id
   end
 
+  def getIframeURL(text)
+    nok = Nokogiri::HTML(text)
+    iframes = nok.css("iframe")
+    if iframes.length == 1
+      return iframes[0]["src"]
+    else
+      return nil
+    end
+  end
+
   def notify_teacher
     if VishConfig.getAvailableServices.include? "PrivateStudentGroups"
       author_id = resource.author.user.id
@@ -126,16 +136,6 @@ class EmbedsController < ApplicationController
           TeacherNotificationMailer.notify_teacher(teacher, pupil, resource_path)
         end
       end
-    end
-  end
-
-  def get_iframe text
-    nok = Nokogiri::HTML(text)
-    iframes = nok.css("iframe")
-    if iframes.length == 1
-      return iframes[0]["src"]
-    else
-      return nil
     end
   end
 
