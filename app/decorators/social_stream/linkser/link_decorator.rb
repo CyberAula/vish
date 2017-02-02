@@ -7,10 +7,10 @@ Link.class_eval do
   # - Modifies urls from content providers (e.g. youtube, prezi, ...) if the url is not embeddable
   def getProcessedUrl
     urlWithProtocol = self.getUrlWithProtocol
-    
+
     uri = URI(urlWithProtocol) rescue nil
     return urlWithProtocol if uri.nil? or uri.host.blank? or uri.path.blank? or uri.scheme.blank?
-    myparams = uri.query.nil? ? (CGI::parse(uri.query) rescue []) : []
+    myparams = uri.query.nil? ? [] : (CGI::parse(uri.query) rescue [])
     
     final_url = ""
     case
@@ -31,7 +31,7 @@ Link.class_eval do
   end
 
   def getUrlWithProtocol
-    if self.url.start_with?('http:')
+    if self.url.start_with?('http:') or self.url.start_with?('https:')
       self.url
     else
       if self.url.start_with?('//')
