@@ -5,7 +5,7 @@ class Audio < Document
                     :styles => SocialStream::Documents.audio_styles,
                     :processors => [ :ffmpeg, :waveform ]
   
-  if Vish::Application.config.APP_CONFIG["services"].include? "MediaConversion"
+  if VishConfig.getAvailableServices.include? "MediaConversion"
     process_in_background :file    
   end
 
@@ -39,7 +39,7 @@ class Audio < Document
     sources = []
     #Entry example: {:format=>:mp3, :type=>"audio/mpeg", :src=>"http://localhost:3000/audios/5516.mp3"}
     
-    if Vish::Application.config.APP_CONFIG["services"].include? "MediaConversion"
+    if VishConfig.getAvailableServices.include? "MediaConversion"
       audio_formats = SocialStream::Documents.audio_styles.map{|k,v| k}
       audio_formats.each do |format_symbol|
         sources.push(self.source_for_format(format_symbol))

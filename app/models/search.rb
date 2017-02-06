@@ -48,12 +48,8 @@ class Search
     opts[:match_mode] = :any
     opts[:rank_mode] = :wordcount
     opts[:per_page] = n
-    opts[:field_weights] = {
-       :title => 50,
-       :tags => 40,
-       :description => 1,
-       :name => 60 #(For users)
-    }
+    metricsParams = Vish::Application::config.metrics_relevance_ranking
+    opts[:field_weights] = metricsParams[:field_weights]
 
     opts[:max_matches] = Vish::Application::config.max_matches
 
@@ -222,20 +218,14 @@ class Search
       if queryLength > 0 and opts[:order].nil?
         # Order by custom weight
         opts[:sort_mode] = :expr
-       
+
         # Ordering by custom weight
         # Documentation: http://pat.github.io/thinking-sphinx/searching/ts2.html#sorting
         # Discussion: http://sphinxsearch.com/forum/view.html?id=3675
         # ThinkingSphinx..search(searchTerms, opts).results[:matches].map{|m| m[:weight]}
         # ThinkingSphinx.search(searchTerms, opts).results[:matches].map{|m| m[:attributes]["@expr"]}
-
-        weights = {}
-        weights[:relevance] = 0.80
-        weights[:popularity_score] = 0.10
-        weights[:quality_score] = 0.10
-
         orderByRelevance = "1000000*MIN(1,((@weight)/(" + opts[:field_weights][:title].to_s + "*MIN(title_length," + queryLength.to_s + ") + " + opts[:field_weights][:description].to_s + "*MIN(desc_length," + queryLength.to_s + ") + " + opts[:field_weights][:tags].to_s + "*MIN(tags_length," + queryLength.to_s + "))))"
-        opts[:order] = weights[:relevance].to_s + "*" + orderByRelevance + " + " + weights[:popularity_score].to_s + "*popularity + " + weights[:quality_score].to_s + "*qscore"
+        opts[:order] = metricsParams[:w_rquery].to_s + "*" + orderByRelevance + " + " + metricsParams[:w_popularity].to_s + "*popularity + " + metricsParams[:w_qscore].to_s + "*qscore"
       else
         # Search with an specified order.
         # Search for words with a length shorten than 3 characraters. In this case, the search engine will return empty results.

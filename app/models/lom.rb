@@ -279,7 +279,7 @@ class Lom
       end
 
       #Classification (include categories of the ViSH catalogue if any)
-      if Vish::Application.config.APP_CONFIG["services"] and Vish::Application.config.APP_CONFIG["services"].include?("Catalogue")
+      if VishConfig.getAvailableServices.include?("Catalogue")
         unless loKeywords.blank?
           categoryKeywords = Vish::Application.config.catalogue["category_keywords"]
           catalogueKeywords = categoryKeywords.select{|k,v| v.is_a? Array and (v & loKeywords).length > 1}.map{|k,v| k}

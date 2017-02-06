@@ -33,6 +33,17 @@ Vish::Application.configure do
     #Default Ranking Metrics
     config.metrics_default_ranking = {:w_popularity => 0.7, :w_qscore => 0.3, :coefficients => {}}
     config.metrics_default_ranking = config.metrics_default_ranking.recursive_merge(metricsConfig[:default_ranking]) if metricsConfig[:default_ranking].is_a? Hash
+  
+    #Relevance Ranking Metric
+    config.metrics_relevance_ranking = {:w_rquery => 0.8, :w_popularity => 0.1, :w_qscore => 0.1}
+    config.metrics_relevance_ranking[:rquery] = {:w_title => 50, :w_description => 1, :w_tags => 40}
+    config.metrics_relevance_ranking = config.metrics_relevance_ranking.recursive_merge(metricsConfig[:relevance_ranking]) if metricsConfig[:relevance_ranking].is_a? Hash
+    config.metrics_relevance_ranking[:field_weights] = {
+        :title => config.metrics_relevance_ranking[:rquery][:w_title],
+        :description => config.metrics_relevance_ranking[:rquery][:w_description],
+        :tags => config.metrics_relevance_ranking[:rquery][:w_tags],
+        :name => config.metrics_relevance_ranking[:rquery][:w_title] #(For users name is used instead of title)
+    }
   end
 end
 

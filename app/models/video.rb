@@ -6,7 +6,7 @@ class Video < Document
                     :styles => SocialStream::Documents.video_styles,
                     :processors => SocialStream::Documents.video_processors
                     
-  if Vish::Application.config.APP_CONFIG["services"].include? "MediaConversion"
+  if VishConfig.getAvailableServices.include? "MediaConversion"
     process_in_background :file
   end
   
@@ -41,7 +41,7 @@ class Video < Document
     sources = []
     #Entry example: {:type=>"video/x-msvideo", :src=>"/videos/main.avi"}
     
-    if Vish::Application.config.APP_CONFIG["services"].include? "MediaConversion"
+    if VishConfig.getAvailableServices.include? "MediaConversion"
       video_formats = SocialStream::Documents.video_styles.map{|k,v| k}.reject{|k| k==:"170x127#"}
       video_formats.each do |format_symbol|
         sources.push(self.source_for_format(format_symbol))
@@ -59,7 +59,7 @@ class Video < Document
   end
 
   def poster_url(includeDefault=false)
-    if Vish::Application.config.APP_CONFIG["services"].include? "MediaConversion"
+    if VishConfig.getAvailableServices.include? "MediaConversion"
       #Check if the file actually exists
       # attachment_path = self.file.path.gsub("original","")
       # output = (system "ls #{attachment_path} | grep 170x127#")
