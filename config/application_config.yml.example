@@ -66,20 +66,20 @@ production:
 # More configuration options
 
 # Specify settings for tags
-#  tagsSettings:
-#    maxLength: 20
-#    maxTags: 8
-#    triggerKeys: ['enter', 'comma', 'tab', 'space']
+# tagsSettings:
+#   maxLength: 20
+#   maxTags: 8
+#   triggerKeys: ['enter', 'comma', 'tab', 'space']
 
 # Catalogue settings
-#  catalogue:
-#    mode: "matchtag" #matchany or matchtag
-#    qualityThreshold: 5
-#    categories: ["computerScience","education","technology","..."]
-#    combinedCategories:
-#      technology: ["computerScience"]
-#    extraTerms:
-#      education: ["learning","teaching"]
+# catalogue:
+#  mode: "matchtag" #matchany or matchtag
+#  qualityThreshold: 5
+#  categories: ["computerScience","education","technology","..."]
+#  combinedCategories:
+#    technology: ["computerScience"]
+#  extraTerms:
+#    education: ["learning","teaching"]
 
 # Automatically detect resources language using the service provided by http://detectlanguage.com
 # languageDetectionAPIKEY: "API Key from http://detectlanguage.com to allow automatic language detection."
@@ -148,6 +148,51 @@ production:
 # Google Webmaster Tools Verification Code
 # gwebmastertools:
 #   site-verification: "content attribute value of the google-site-verification meta tag"
+
+# Specify params for the ViSH metrics
+# metrics:
+#   popularity:
+#     timeWindowLength: 2
+#     resources:
+#       w_fVisits: 0.4
+#       w_fLikes: 0.5
+#       w_fDownloads: 0.1
+#     non_downloadable_resources:
+#       w_fVisits: 0.4
+#       w_fLikes: 0.6
+#     users:
+#       w_followers: 0.4
+#       w_resources: 0.6
+#     events:
+#       w_fVisits: 0.5
+#       w_fLikes: 0.5
+#     coefficients:
+#       excursion: 1
+#       resource: 0.9
+#       user: 0.8
+#       event: 0.1
+#       category: 0.8
+#   default_ranking:
+#     w_popularity: 0.7
+#     w_qscore: 0.3
+#     coefficients:
+#       excursion: 1
+#       resource: 0.9
+#       user: 0.9
+#       event: 0.9
+#       category: 0.9
+#   relevance_ranking:
+#     w_rquery: 0.8
+#     w_popularity: 0.1
+#     w_qscore: 0.1
+#     rquery:
+#       w_title: 50
+#       w_description: 1
+#       w_tags: 40
+#   qscore:
+#     w_reviewers: 0.7
+#     w_users: 0.2
+#     w_teachers: 0.1
 
 # ViSH Recommender System
 # recommender_system:
