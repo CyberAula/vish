@@ -112,6 +112,8 @@ namespace :scheduled do
     puts "Recalculating popularity"
     timeStart = Time.now
 
+    metricsParams = Vish::Application::config.metrics_popularity
+
     # This task recalculates popularity in Activity Objects
     # Object types of Activity Objects:
     # ["Actor", "Document", "Post", "Category", "Excursion", "Scormfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop"]
@@ -123,8 +125,8 @@ namespace :scheduled do
     categoryAOs = ActivityObject.where("object_type in (?)", ["Category"])
 
     windowLength = 2592000 #1 month
-    #Change windowLength to 2 months
-    windowLength = windowLength * 2
+    #Change windowLength according to settings
+    windowLength = windowLength * metricsParams[:timeWindowLength]
 
     #Popularity is calculated in a 0-1 scale.
     #We have to convert it to an integer.
@@ -138,16 +140,16 @@ namespace :scheduled do
 
     #Weights for downloadable resources
     resourceWeights = {}
-    resourceWeights[:fVisits] = 0.4
-    resourceWeights[:fDownloads] = 0.1
-    resourceWeights[:fLikes] = 0.5
+    resourceWeights[:fVisits] = metricsParams[:resources][:w_fVisits]
+    resourceWeights[:fLikes] = metricsParams[:resources][:w_fLikes]
+    resourceWeights[:fDownloads] = metricsParams[:resources][:w_fDownloads]
 
     #Specify different weights for resources that can't be downloaded:
     nonDownloableResources = ["Link", "Embed", "Workshop"]
     linkWeights = {}
-    linkWeights[:fVisits] = 0.4
+    linkWeights[:fVisits] = metricsParams[:non_downloadable_resources][:w_fVisits]
+    linkWeights[:fLikes] = metricsParams[:non_downloadable_resources][:w_fLikes]
     linkWeights[:fDownloads] = 0
-    linkWeights[:fLikes] = 0.6
     
     unless resourceAOs.blank?
       #Get maximum values to normalize scores
@@ -192,8 +194,8 @@ namespace :scheduled do
     puts "Recalculating users popularity"
 
     userWeights = {}
-    userWeights[:followerCount] = 0.4
-    userWeights[:resourcesPopularity] = 0.6
+    userWeights[:followerCount] = metricsParams[:users][:w_followers]
+    userWeights[:resourcesPopularity] = metricsParams[:users][:w_resources]
 
     unless userAOs.blank?
       #Get values to normalize scores
@@ -216,8 +218,8 @@ namespace :scheduled do
     puts "Recalculating events popularity"
 
     eventWeights = {}
-    eventWeights[:fVisits] = 0.5
-    eventWeights[:fLikes] = 0.5
+    eventWeights[:fVisits] = metricsParams[:events][:w_fVisits]
+    eventWeights[:fLikes] = metricsParams[:events][:w_fLikes]
 
     unless eventAOs.blank?
       #Get maximum values to normalize scores
@@ -285,13 +287,6 @@ namespace :scheduled do
     ##############
     puts "Fitting scores and applying correction coefficients"
 
-    modelCoefficients = {}
-    modelCoefficients[:Excursion] = 1
-    modelCoefficients[:Resource] = 0.9
-    modelCoefficients[:User] = 0.8
-    modelCoefficients[:Event] = 0.1
-    modelCoefficients[:Category] = 0.8
-    
     maxPopularityForResources = [resourceAOs.max_by {|ao| ao.popularity }.popularity,1].max unless resourceAOs.blank?
     maxPopularityForUsers = [userAOs.max_by {|ao| ao.popularity }.popularity,1].max unless userAOs.blank?
     maxPopularityForEvents = [eventAOs.max_by {|ao| ao.popularity }.popularity,1].max unless eventAOs.blank?
@@ -301,6 +296,13 @@ namespace :scheduled do
     usersCoefficient = (1*metricsScaleFactor)/maxPopularityForUsers.to_f unless userAOs.blank?
     eventsCoefficient = (1*metricsScaleFactor)/maxPopularityForEvents.to_f unless eventAOs.blank?
     categoriesCoefficient = (1*metricsScaleFactor)/maxPopularityForCategories.to_f unless categoryAOs.blank?
+
+    modelCoefficients = {}
+    modelCoefficients[:Excursion] = metricsParams[:coefficients][:excursion] || 1
+    modelCoefficients[:Resource] = metricsParams[:coefficients][:resource] || 1
+    modelCoefficients[:User] = metricsParams[:coefficients][:user] || 1
+    modelCoefficients[:Event] = metricsParams[:coefficients][:event] || 1
+    modelCoefficients[:Category] = metricsParams[:coefficients][:category] || 1
 
     resourceAOs.each do |ao|
       ao.popularity = ao.popularity * resourcesCoefficient
