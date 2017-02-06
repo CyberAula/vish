@@ -17,12 +17,4 @@ class Catalogue
     end
   end
 
-  def self.getDefaultCategories
-    default_categories = Hash.new
-    for category in Vish::Application.config.catalogue["default_categories"]
-      default_categories[category] = Catalogue.getCategoryResources(category,7)
-    end
-    default_categories
-  end
-
 end

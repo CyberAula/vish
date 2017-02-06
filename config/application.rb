@@ -145,7 +145,7 @@ module Vish
 
     #Catalogue
     if config.APP_CONFIG['catalogue'].blank?
-      config.catalogue = {} 
+      config.catalogue = {}
     else
       config.catalogue = config.APP_CONFIG['catalogue']
     end

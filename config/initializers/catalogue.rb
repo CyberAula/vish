@@ -4,8 +4,11 @@ Vish::Application.configure do
   config.after_initialize do
 
     #Specify the categories of the catalogue
-    config.catalogue["categories"] = ["art","biology","chemistry","citizenship","computerScience","economics","education","engineering","foreignLanguages","generalCulture","geography","geology","history","humanities","literature","maths","music","naturalScience","physics","technology"]
-    config.catalogue["default_categories"] = ["maths","physics","biology","technology"]
+    unless config.catalogue["categories"].is_a? Array and !config.catalogue["categories"].blank?
+        #Fill with popular tags
+        config.catalogue["categories"] = ActivityObject.tag_counts(:order => "count desc").first(10).map{|t| t.name} if ActiveRecord::Base.connection.table_exists?('tags')
+    end
+    config.catalogue["categories"] = [] unless config.catalogue["categories"].is_a? Array
     
     #Category_keywords is a hash with the keywords of each category
     config.catalogue["category_keywords"] = Hash.new
@@ -17,38 +20,59 @@ Vish::Application.configure do
     config.catalogue["keywords"] = []
     
     #Combine categories and add extra terms
-    combinedCategories = {"biology" => ["naturalScience","EnvironmentalStudies"], "engineering"=>["computerScience"], "generalCulture" => ["humanities","history","literature"], "humanities"=>["history","literature"], "naturalScience" => ["EnvironmentalStudies"], "technology"=>["engineering","computerScience"]}
-    extraTerms = {"education"=>["eLearning","learning","teaching"],"foreignLanguages"=>["listening"],"maths"=>["math","maths"], "computerScience"=>["computerScience_extra1"], "naturalScience"=>["naturalScience_extra1"], "EnvironmentalStudies" => ["environmentalStudies_extra1"]}
+    if config.catalogue["combinedCategories"].is_a? Hash
+        combinedCategories = config.catalogue["combinedCategories"]
+    else
+        combinedCategories = {}
+    end
+    if config.catalogue["extraTerms"].is_a? Hash
+        extraTerms = config.catalogue["extraTerms"]
+    else
+        extraTerms = {}
+    end
 
-    #Build catalogue search terms
-    
+    #Build category keywords
     config.catalogue["categories"].each do |c1|
         config.catalogue["category_keywords"][c1] = []
 
         allCategories = [c1]
-        unless combinedCategories[c1].nil?
+
+        #1. Combined categories
+        if combinedCategories[c1].is_a? Array and combinedCategories[c1].map{|e| e.is_a? String}.uniq == [true]
             allCategories.concat(combinedCategories[c1])
             allCategories.uniq!
         end
 
+        #2. Internationalization of categories
         allCategories.each do |c2|
+            addC2flag = true
             I18n.available_locales.each do |lang|
-                config.catalogue["category_keywords"][c1].push(I18n.t("catalogue.categories." + c2, :locale => lang, :default => "translationMissing"))
+                c2K = I18n.t("catalogue.categories." + c2, :locale => lang, :default => "translationMissing")
+                unless c2K == "translationMissing"
+                    addC2flag = false
+                    config.catalogue["category_keywords"][c1].push(c2K)
+                end
             end
+            config.catalogue["category_keywords"][c1].push(c2) if addC2flag
         end
 
+        #3. Extra terms
         allExtraTerms = []
         allCategories.each do |c3|
-          unless extraTerms[c3].nil?
-              allExtraTerms.concat(extraTerms[c3])
-          end
+            allExtraTerms.concat(extraTerms[c3]) if extraTerms[c3].is_a? Array and extraTerms[c3].map{|e| e.is_a? String}.uniq == [true]
         end
         allExtraTerms.uniq!
 
+        #2. Internationalization of extra terms
         allExtraTerms.each do |c4|
+            addC4flag = true
             I18n.available_locales.each do |lang|
-                config.catalogue["category_keywords"][c1].push(I18n.t("catalogue.extras." + c4, :locale => lang, :default => "translationMissing"))
+                c4K = I18n.t("catalogue.extras." + c4, :locale => lang, :default => "translationMissing")
+                unless c4K == "translationMissing"
+                    config.catalogue["category_keywords"][c1].push(c4K)
+                end
             end
+            config.catalogue["category_keywords"][c1].push(c4) if addC4flag
         end
 
         config.catalogue["category_keywords"][c1].reject!{|c| c=="translationMissing"}
@@ -63,7 +87,6 @@ Vish::Application.configure do
     end
 
     config.catalogue["keywords"].uniq!
-
   end
 
 end
