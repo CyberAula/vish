@@ -29,6 +29,10 @@ Vish::Application.configure do
         config.metrics_popularity[:coefficients] = config.metrics_popularity[:coefficients].recursive_merge(metricsConfig[:popularity][:coefficients]) if metricsConfig[:popularity][:coefficients].is_a? Hash
         config.metrics_popularity[:timeWindowLength] = metricsConfig[:popularity][:timeWindowLength] if metricsConfig[:popularity][:timeWindowLength].is_a? Numeric
     end
+
+    #Default Ranking Metrics
+    config.metrics_default_ranking = {:w_popularity => 0.7, :w_qscore => 0.3, :coefficients => {}}
+    config.metrics_default_ranking = config.metrics_default_ranking.recursive_merge(metricsConfig[:default_ranking]) if metricsConfig[:default_ranking].is_a? Hash
   end
 end
 

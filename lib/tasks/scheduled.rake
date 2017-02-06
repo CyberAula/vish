@@ -16,25 +16,26 @@ namespace :scheduled do
     puts "Recalculating ranking metrics"
     timeStart = Time.now
 
-    #1. Recalculate popularity
+    #1. Recalculate popularity scores
     Rake::Task["scheduled:recalculatePopularity"].invoke
 
-    #2. Recalculate ranking metrics
+    #2. Recalculate ranking metrics scores
     puts "Recalculating ranking values"
 
+    metricsParams = Vish::Application::config.metrics_default_ranking
     modelCoefficients = {}
-    modelCoefficients[:Excursion] = 1
-    modelCoefficients[:Resource] = 0.9
-    modelCoefficients[:User] = 0.9
-    modelCoefficients[:Event] = 0.9
-    modelCoefficients[:Category] = 0.9
+    modelCoefficients[:Excursion] = metricsParams[:coefficients][:excursion] || 1
+    modelCoefficients[:Resource] = metricsParams[:coefficients][:resource] || 1
+    modelCoefficients[:User] = metricsParams[:coefficients][:user] || 1
+    modelCoefficients[:Event] = metricsParams[:coefficients][:event] || 1
+    modelCoefficients[:Category] = metricsParams[:coefficients][:category] || 1
     
-    #Since Sphinx does not support signed integers, we have to store the ranking metric in a positive scale.
+    #Since Sphinx does not support signed integers, we have to store the ranking metrics scores in a positive scale.
     #ao.popularity is in a scale [0,1000000]
     #ao.qscore is in a scale [0,1000000]
     #ao.ranking will be in a scale [0,1000000]
     #We will take into account qscore only for resources (and categories). 
-    #For non resource aos, ranking will be calculated based on popularity
+    #For non resource aos, ranking scores will be calculated based on popularity
 
     resourceAOTypes = VishConfig.getAvailableResourceModels
     #["Document", "Webapp", "Scormfile", "Link", "Embed", "Writing", "Excursion", "Workshop"]
@@ -54,8 +55,8 @@ namespace :scheduled do
     end
 
     resourceRankingWeights = {}
-    resourceRankingWeights[:popularity] = 0.7
-    resourceRankingWeights[:qscore] = 0.3
+    resourceRankingWeights[:popularity] = metricsParams[:w_popularity]
+    resourceRankingWeights[:qscore] = metricsParams[:w_qscore]
 
     resourceAOs.all.each do |ao|
       ao.ranking = resourceRankingWeights[:popularity] * ao.popularity +  resourceRankingWeights[:qscore] * ao.qscore
@@ -74,9 +75,9 @@ namespace :scheduled do
       ao.update_column :ranking, ao.ranking
     end
 
-    #3. Fit ranking metrics
-    #Needed to compare different models using the ranking metrics
-    #Popularity metric has been corrected in the recalculate popularity method.
+    #3. Fit ranking metrics scores
+    #Needed to compare different models using the ranking metrics scores
+    #Popularity scores have been corrected in the recalculate popularity method.
     puts "Fitting scores and applying correction coefficients"
 
     unless resourceAOs.blank?
@@ -114,7 +115,7 @@ namespace :scheduled do
 
     metricsParams = Vish::Application::config.metrics_popularity
 
-    # This task recalculates popularity in Activity Objects
+    # This task recalculates popularity scores in Activity Objects
     # Object types of Activity Objects:
     # ["Actor", "Document", "Post", "Category", "Excursion", "Scormfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop"]
     resourceAOTypes = VishConfig.getAvailableResourceModels
@@ -281,9 +282,9 @@ namespace :scheduled do
     end
 
     ##############
-    # Fit scores to the [0,1] scale [Excursion with highest popularity will have a popularity of 1]
+    # Fit scores to the [0,1] scale (e.g. those resources with highest popularity will have a popularity of 1)
     # Transform [0,1] to [0,metricsScaleFactor] scale
-    # Apply coefficients to give some models more importance than others
+    # Apply coefficients (if specify in the settings) to give some models more importance than others
     ##############
     puts "Fitting scores and applying correction coefficients"
 
