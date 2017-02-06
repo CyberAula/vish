@@ -19,7 +19,9 @@
 	// Sources enabled
 	configuration["ViSH"] = true;
 	configuration["ViSH_instances"] = ["<%= Vish::Application.config.full_domain %>"];
-	configuration["Flickr"] = true;
+	<% unless Vish::Application.config.APP_CONFIG['Flickr'].nil? %>
+		configuration["Flickr"] = true;
+	<% end %>
 	<% unless Vish::Application.config.APP_CONFIG['EuropeanaAPIKEY'].nil? %>
 		configuration["Europeana"] = true;
 		configuration["EuropeanaAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['EuropeanaAPIKEY'] %>";
@@ -28,8 +30,10 @@
 		configuration["Youtube"] = true;
 		configuration["YoutubeAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['YouTubeAPIKEY'] %>";
 	<% end %>
-	configuration["LRE"] = true;
-	configuration["LRE_path"] = "/lre/search";
+	<% unless Vish::Application.config.APP_CONFIG['LRE'].nil? %>
+		configuration["LRE"] = true;
+		configuration["LRE_path"] = "/lre/search";
+	<% end %>
 	<% unless Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'].nil? %>
 		configuration["SoundCloud"] = true;
 		configuration["SoundCloudAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'] %>";

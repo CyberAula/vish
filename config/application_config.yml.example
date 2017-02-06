@@ -116,6 +116,12 @@ test:
 # Enable Europeana in the ViSH Editor. Get the API key from http://labs.europeana.eu/
 # EuropeanaAPIKEY: "secret_key"
 
+# Enable Flickr in the ViSH Editor. No key required.
+# Flickr: "true"
+
+# Enable LRE (Learning Resource Exchange) in the ViSH Editor. No key required.
+# LRE: "true"
+
 # LOEP configuration. Allow to evaluate the quality of the ViSH resources in a systematic way (See http://loep.global.dit.upm.es for more info).
 # loep:
 #   domain: "http://loep.global.dit.upm.es"
