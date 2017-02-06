@@ -210,8 +210,8 @@ namespace :rs do
     minIterationsPerN = iterationsPerN.map{|k,v| v}.min
     maxIterationsPerN = iterationsPerN.map{|k,v| v}.max
 
-    maxPreselectionSize = Vish::Application::config.max_preselection_size
-    Vish::Application::config.max_preselection_size = ns.max
+    maxPreselectionSize = Vish::Application::config.rs_max_preselection_size
+    Vish::Application::config.rs_max_preselection_size = ns.max
 
     users = []
     los = []
@@ -241,7 +241,7 @@ namespace :rs do
       puts n.to_s + ":" + results[n.to_s][:time].to_s + " (Elapsed time: " + (finish - start).to_s + ")"
     end
 
-    Vish::Application::config.max_preselection_size = maxPreselectionSize
+    Vish::Application::config.rs_max_preselection_size = maxPreselectionSize
 
     #Generate excel file with results
     filePath = "reports/rs_performance.xlsx"

@@ -143,13 +143,11 @@ module Vish
       config.tagsSettings["triggerKeys"] = ['enter', 'comma', 'tab', 'space']
     end
 
-    #Catalogue
-    if config.APP_CONFIG['catalogue'].blank?
-      config.catalogue = {}
-    else
-      config.catalogue = config.APP_CONFIG['catalogue']
-    end
-    config.catalogue['mode'] = "matchany" if config.catalogue['mode'].blank?
-    config.catalogue["qualityThreshold"] = nil unless config.catalogue["qualityThreshold"].is_a? Numeric
+    #StopTags
+    config.stoptags = File.read("config/stoptags.yml").split(",").map{|s| s.gsub("\n","").gsub("\"","") } rescue []
+
+    #Search engine
+    config.max_matches = ThinkingSphinx::Configuration.instance.configuration.searchd.max_matches || 10000
   end
+
 end

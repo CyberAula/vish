@@ -199,10 +199,12 @@ ActivityObject.class_eval do
     #self.reviewers_qscore is the LORI score in a 0-10 scale
     #self.users_qscore is the WBLT-S score in a 0-10 scale
     #self.teachers_qscore is the WBLT-T score in a 0-10 scale
+
+    metricParams = Vish::Application::config.metrics_qscore
     qscoreWeights = {}
-    qscoreWeights[:reviewers] = BigDecimal(0.6,6)
-    qscoreWeights[:users] = BigDecimal(0.3,6)
-    qscoreWeights[:teachers] = BigDecimal(0.1,6)
+    qscoreWeights[:reviewers] = BigDecimal(metricParams[:w_reviewers],6)
+    qscoreWeights[:users] = BigDecimal(metricParams[:w_users],6)
+    qscoreWeights[:teachers] = BigDecimal(metricParams[:w_teachers],6)
 
     unless (self.reviewers_qscore.nil? and self.users_qscore.nil? and self.teachers_qscore.nil?)
       if self.reviewers_qscore.nil?

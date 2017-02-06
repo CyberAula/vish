@@ -35,7 +35,7 @@ class RecommenderSystem
     end
     unless options[:user].blank?
       options[:user].tag_array_cached = options[:user].tag_array
-      options[:user_los] = options[:user].pastLOs(options[:max_user_pastlos] || Vish::Application::config.max_user_pastlos).sample(options[:max_user_los] || Vish::Application::config.max_user_los) if options[:user_los].blank?
+      options[:user_los] = options[:user].pastLOs(options[:max_user_pastlos] || Vish::Application::config.rs_max_user_pastlos).sample(options[:max_user_los] || Vish::Application::config.rs_max_user_los) if options[:user_los].blank?
       options[:user_los].map{|pastLo| pastLo.tag_array_cached = pastLo.tag_array}
     else
       options[:user_los] = nil
@@ -100,7 +100,7 @@ class RecommenderSystem
       end
     end
 
-    searchOpts[:n] = [options[:settings][:preselection_size],Vish::Application::config.max_preselection_size].min
+    searchOpts[:n] = [options[:settings][:preselection_size],Vish::Application::config.rs_max_preselection_size].min
 
      # D. Repeated resources.
     searchOpts[:subjects_to_avoid] = [options[:user]] if options[:user] and options[:settings][:preselection_filter_own_resources] != false
@@ -287,8 +287,8 @@ class RecommenderSystem
     return 0 if (textA.blank? or textB.blank?)
 
     #We need to limit the length of the text due to performance issues
-    textA = textA.first(Vish::Application::config.max_text_length)
-    textB = textB.first(Vish::Application::config.max_text_length)
+    textA = textA.first(Vish::Application::config.rs_max_text_length)
+    textB = textB.first(Vish::Application::config.rs_max_text_length)
 
     numerator = 0
     denominator = 0
@@ -334,7 +334,7 @@ class RecommenderSystem
 
   # Inverse Document Frequency (IDF)
   def self.IDF(word)
-    Math::log(Vish::Application::config.repository_total_entries/(1+(Vish::Application::config.words[word] || 0)).to_f)
+    Math::log(Vish::Application::config.rs_repository_total_entries/(1+(Vish::Application::config.rs_words[word] || 0)).to_f)
   end
 
   # TF-IDF
@@ -422,7 +422,7 @@ class RecommenderSystem
     userSettings = options[:user_settings][settingKey] if options[:user_settings]
     if userSettings.blank?
       defaultKey = ("default_" + settingName).to_sym #e.g. :default_rs
-      vishRSConfig = (settingFamily=="weights") ? Vish::Application::config.weights : Vish::Application::config.filters
+      vishRSConfig = (settingFamily=="weights") ? Vish::Application::config.rs_weights : Vish::Application::config.rs_filters
       userSettings = vishRSConfig[defaultKey]
     end
 
@@ -432,7 +432,7 @@ class RecommenderSystem
 
   # Default weights for the Recommender System provided by ViSH
   # These weights can be overriden in the application_config.yml file.
-  # The current default weights can be accesed in the Vish::Application::config.weights variable.
+  # The current default weights can be accesed in the Vish::Application::config.rs_weights variable.
   def self.defaultRSWeights
     {
       :los_score => 0.6,
@@ -461,7 +461,7 @@ class RecommenderSystem
 
   # Default filters for the Recommender System provided by ViSH
   # These filters can be overriden in the application_config.yml file.
-  # The current default filters can be accesed in the Vish::Application::config.filters variable.
+  # The current default filters can be accesed in the Vish::Application::config.rs_filters variable.
   def self.defaultRSFilters
     {
       :los_score => 0,

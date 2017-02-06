@@ -5,6 +5,8 @@
 Vish::Application.configure do
   config.after_initialize do
 
+    #(RS settings are stored directly in config to enhance performance)
+
     rsConfig = {}
     rsConfig = config.APP_CONFIG["recommender_system"].parse_for_vish unless config.APP_CONFIG["recommender_system"].blank?
 
@@ -12,6 +14,7 @@ Vish::Application.configure do
     config.rs_settings = {}
     config.rs_settings = rsConfig[:settings] unless rsConfig[:settings].blank?
     config.rs_settings = {:max_text_length => 20, :max_user_los => 1, :max_user_pastlos => 1, :max_preselection_size => 5000}.recursive_merge(config.rs_settings)
+    config.rs_settings[:max_preselection_size] = [config.max_matches,config.rs_settings[:max_preselection_size]].min
 
     #Default settings to use in ViSHRS
     config.rs_default_settings = {}
@@ -29,7 +32,7 @@ Vish::Application.configure do
       weights[:default_us] = weights[:default_us].recursive_merge(rsConfig[:weights][:default_us]) if rsConfig[:weights][:default_us]
       weights[:popularity] = weights[:popularity].recursive_merge(rsConfig[:weights][:popularity]) if rsConfig[:weights][:popularity]
     end
-    config.weights = weights
+    config.rs_weights = weights
 
     #Default filters
     filters = {}
@@ -41,36 +44,30 @@ Vish::Application.configure do
       filters[:default_los] = filters[:default_los].recursive_merge(rsConfig[:filters][:default_los])if rsConfig[:filters][:default_los]
       filters[:default_us] = filters[:default_us].recursive_merge(rsConfig[:filters][:default_us])if rsConfig[:filters][:default_us]
     end
-    config.filters = filters
-
-    #Search Engine
-    config.max_matches = ThinkingSphinx::Configuration.instance.configuration.searchd.max_matches || 10000
-    config.rs_settings[:max_preselection_size] = [config.max_matches,config.rs_settings[:max_preselection_size]].min
-    config.max_preselection_size = config.rs_settings[:max_preselection_size]
+    config.rs_filters = filters
 
     #RS: internal settings
-    config.max_user_los = config.rs_settings[:max_user_los]
-    config.max_user_pastlos = config.rs_settings[:max_user_pastlos]
+    config.rs_max_preselection_size = config.rs_settings[:max_preselection_size]
+    config.rs_max_user_los = config.rs_settings[:max_user_los]
+    config.rs_max_user_pastlos = config.rs_settings[:max_user_pastlos]
 
     #Settings for speed up TF-IDF calculations
-    config.max_text_length = config.rs_settings[:max_text_length]
+    config.rs_max_text_length = config.rs_settings[:max_text_length]
     if ActiveRecord::Base.connection.table_exists?('activity_objects')
-      config.repository_total_entries = [ActivityObject.getAllPublicResources.count,1].max
+      config.rs_repository_total_entries = [ActivityObject.getAllPublicResources.count,1].max
     end
     
     #Keep words in the configuration
     words = {}
     if ActiveRecord::Base.connection.table_exists?('words')
       Word.where("occurrences > ?",5).first(5000000).each do |word|
-        words[word.value] = [word.occurrences,config.repository_total_entries-1].min
+        words[word.value] = [word.occurrences,config.rs_repository_total_entries-1].min
       end
     end
-    config.words = words
-
-    config.stoptags = File.read("config/stoptags.yml").split(",").map{|s| s.gsub("\n","").gsub("\"","") } rescue []
+    config.rs_words = words
 
     #RSEvaluation
-    config.rsevaluation = (!rsConfig[:evaluation].nil? and rsConfig[:evaluation][:enabled]==true)
+    config.rs_evaluation = (!rsConfig[:evaluation].nil? and rsConfig[:evaluation][:enabled]==true)
   end
 end
 

@@ -3,6 +3,14 @@ Vish::Application.configure do
   #Init Catalogue
   config.after_initialize do
 
+    unless config.APP_CONFIG['catalogue'].is_a? Hash
+      config.catalogue = {}
+    else
+      config.catalogue = config.APP_CONFIG['catalogue']
+    end
+    config.catalogue['mode'] = "matchany" unless ["matchany","matchtag"].include? config.catalogue['mode']
+    config.catalogue["qualityThreshold"] = nil unless config.catalogue["qualityThreshold"].is_a? Numeric
+
     #Specify the categories of the catalogue
     unless config.catalogue["categories"].is_a? Array and !config.catalogue["categories"].blank?
         #Fill with popular tags
