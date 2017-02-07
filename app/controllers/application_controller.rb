@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   #Method used for skip store_location in the corresponding controllers.
   #Prevent .full urls to be saved as valid locations to return after sign in.
   def format_full?
-    params["format"]=="full"
+    ["full","fs"].include? params["format"]
   end
 
 
