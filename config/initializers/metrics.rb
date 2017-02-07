@@ -15,10 +15,10 @@ Vish::Application.configure do
 
     #Popularity Metrics
     config.metrics_popularity = {}
-    config.metrics_popularity[:resources] = {:w_fVisits => 0.4, :w_fLikes => 0.5, :w_fDownloads => 0.1} #Downloadable resources
-    config.metrics_popularity[:non_downloadable_resources] = {:w_fVisits => 0.4, :w_fLikes => 0.6}
+    config.metrics_popularity[:resources] = {:w_fVisits => 0.6, :w_fLikes => 0.3, :w_fDownloads => 0.1} #Downloadable resources
+    config.metrics_popularity[:non_downloadable_resources] = {:w_fVisits => 0.7, :w_fLikes => 0.3}
     config.metrics_popularity[:users] = {:w_followers => 0.4, :w_resources => 0.6}
-    config.metrics_popularity[:events] = {:w_fVisits => 0.5, :w_fLikes => 0.5}
+    config.metrics_popularity[:events] = {:w_fVisits => 0.7, :w_fLikes => 0.3}
     config.metrics_popularity[:coefficients] = {}
     config.metrics_popularity[:timeWindowLength] = 2 #measured in months
     unless metricsConfig[:popularity].blank?
