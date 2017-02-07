@@ -154,18 +154,18 @@ production:
 #   popularity:
 #     timeWindowLength: 2
 #     resources:
-#       w_fVisits: 0.4
-#       w_fLikes: 0.5
+#       w_fVisits: 0.6
+#       w_fLikes: 0.3
 #       w_fDownloads: 0.1
 #     non_downloadable_resources:
-#       w_fVisits: 0.4
-#       w_fLikes: 0.6
+#       w_fVisits: 0.7
+#       w_fLikes: 0.3
 #     users:
 #       w_followers: 0.4
 #       w_resources: 0.6
 #     events:
-#       w_fVisits: 0.5
-#       w_fLikes: 0.5
+#       w_fVisits: 0.7
+#       w_fLikes: 0.3
 #     coefficients:
 #       excursion: 1
 #       resource: 0.9
@@ -190,8 +190,8 @@ production:
 #       w_description: 1
 #       w_tags: 40
 #   qscore:
-#     w_reviewers: 0.7
-#     w_users: 0.2
+#     w_reviewers: 0.6
+#     w_users: 0.3
 #     w_teachers: 0.1
 
 # ViSH Recommender System
