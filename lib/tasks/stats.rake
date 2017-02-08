@@ -470,7 +470,7 @@ namespace :stats do
         rows = []
         rows << ["Resources Stats"]
         
-        rows << ["Date","Uploaded Resources","Accumulative Uploaded Resources","Published Resources","Accumulative Uploaded Resources"]
+        rows << ["Date","Uploaded Resources","Accumulative Uploaded Resources","Published Resources","Accumulative Published Resources"]
         rowIndex = rows.length
         rows += Array.new(uploadedResources.length).map{|e|[]}
         uploadedResources.each_with_index do |n,i|
