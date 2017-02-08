@@ -51,7 +51,7 @@ namespace :stats do
       accumulativeCreatedExcursions.push(acCreated)
       nCreated = acCreated - lastAcCreated
       createdExcursions.push(nCreated)
-      publishedExcursions.push(excursions.count)
+      publishedExcursions.push(excursions.where("draft=false").count)
     end
 
     #Accumulative Published Excursions
@@ -264,7 +264,8 @@ namespace :stats do
   #Usage
   #Development:   bundle exec rake stats:check_resources
   task :check_resources, [:prepare] => :environment do |t,args|
-    allResourceTypes = (["Document", "Webapp", "Scormfile", "Imscpfile", "Link", "Embed", "Writing", "Excursion", "Workshop", "Category"] + VishConfig.getResourceModels).uniq
+    allResourceTypes = (["Document", "Webapp", "Scormfile", "Imscpfile", "Link", "Embed", "Writing", "Excursion", "Workshop"] + VishConfig.getResourceModels).uniq
+    # allResourceTypes += ["Category"]
     allResourceTypes.each do |type|
       allResources = ActivityObject.where("object_type in (?)", [type]).order("id DESC").map{|ao| ao.object}
       maxIndex = allResources.length-1
@@ -307,7 +308,8 @@ namespace :stats do
 
     puts "Resources Stats"
 
-    allResourceTypes = (["Document", "Webapp", "Scormfile", "Imscpfile", "Link", "Embed", "Writing", "Excursion", "Workshop", "Category"] + VishConfig.getResourceModels).uniq
+    allResourceTypes = (["Document", "Webapp", "Scormfile", "Imscpfile", "Link", "Embed", "Writing", "Excursion", "Workshop"] + VishConfig.getResourceModels).uniq
+    # allResourceTypes += ["Category"]
     allDates = []
     allResourcesByDateAndType = []
     for year in 2012..2016
@@ -373,6 +375,46 @@ namespace :stats do
       accumulativeUploadedResources.push(nUploaded)
     end
 
+    #Published Resources by Type
+    publishedResourcesByType = []
+    accumulativePublishedResourcesByType = []
+
+    allResourcesByDateAndType.each_with_index do |resourcesHash,index|
+      accumulativePublishedResourcesByType.push({})
+      publishedResourcesByType.push({})
+      allResourceTypes.each do |type|
+        if accumulativePublishedResourcesByType[index-1].blank? or accumulativePublishedResourcesByType[index-1][type].blank?
+          prevACC = 0
+        else
+          prevACC = accumulativePublishedResourcesByType[index-1][type]
+        end
+
+        nPublished = resourcesHash[type].select{|o| o.scope==0}.length
+        accumulativePublishedResourcesByType[index][type] = prevACC + nPublished
+        publishedResourcesByType[index][type] = nPublished
+      end
+    end
+
+    #Published Resources
+    publishedResources = []
+    accumulativePublishedResources = []
+
+    publishedResourcesByType.each_with_index do |resourcesHash,index|
+      nPublished = 0
+      allResourceTypes.each do |type|
+        nPublished = nPublished + resourcesHash[type]
+      end
+      publishedResources.push(nPublished)
+    end
+
+    accumulativePublishedResourcesByType.each_with_index do |resourcesHash,index|
+      nPublished = 0
+      allResourceTypes.each do |type|
+        nPublished = nPublished + resourcesHash[type]
+      end
+      accumulativePublishedResources.push(nPublished)
+    end
+
 
     #Analyze different types of documents: "Picture", "Video", "Document", "Officedoc", "Swf", "Audio", "Zipfile"
     allDocumentTypes = ["Picture", "Video", "Document", "Officedoc", "Swf", "Audio", "Zipfile"]
@@ -387,26 +429,26 @@ namespace :stats do
       end
     end
 
-    #Uploaded Documents by Type
-    uploadedDocumentsByType = []
-    accumulativeUploadedDocumentsByType = []
+    #Published Documents by Type
+    publishedDocumentsByType = []
+    accumulativePublishedDocumentsByType = []
 
     allDocumentsByDateAndType.each_with_index do |documentsHash,index|
-      uploadedDocumentsByType.push({})
-      accumulativeUploadedDocumentsByType.push({})
+      publishedDocumentsByType.push({})
+      accumulativePublishedDocumentsByType.push({})
 
       allDocumentTypes.each do |type|
-        nUploaded = documentsHash[type].length
-        uploadedDocumentsByType[index][type] = nUploaded
+        nPublished = documentsHash[type].length
+        publishedDocumentsByType[index][type] = nPublished
 
-        if accumulativeUploadedDocumentsByType[index-1].blank? or accumulativeUploadedDocumentsByType[index-1][type].blank?
+        if accumulativePublishedDocumentsByType[index-1].blank? or accumulativePublishedDocumentsByType[index-1][type].blank?
           prevACC = 0
         else
-          prevACC = accumulativeUploadedDocumentsByType[index-1][type]
+          prevACC = accumulativePublishedDocumentsByType[index-1][type]
         end
 
-        nACC = prevACC + nUploaded
-        accumulativeUploadedDocumentsByType[index][type] = nACC
+        nACC = prevACC + nPublished
+        accumulativePublishedDocumentsByType[index][type] = nACC
       end
     end
 
@@ -427,26 +469,26 @@ namespace :stats do
       p.workbook.add_worksheet(:name => "Resources Stats") do |sheet|
         rows = []
         rows << ["Resources Stats"]
-        rows << ["Date","Uploaded Resources","Accumulative Uploaded Resources"]
-        rowIndex = rows.length
         
+        rows << ["Date","Uploaded Resources","Accumulative Uploaded Resources","Published Resources","Accumulative Uploaded Resources"]
+        rowIndex = rows.length
         rows += Array.new(uploadedResources.length).map{|e|[]}
         uploadedResources.each_with_index do |n,i|
-          rows[rowIndex+i] = [allDates[i],uploadedResources[i],accumulativeUploadedResources[i]]
+          rows[rowIndex+i] = [allDates[i],uploadedResources[i],accumulativeUploadedResources[i],publishedResources[i],accumulativePublishedResources[i]]
         end
 
         rows << []
-        rows << ["Resource type","Total Uploaded Resources"]
+        rows << ["Resource type","Total Uploaded Resources","Total Published Resources"]
         allResourceTypes.each do |type|
-          rows << [type,accumulativeUploadedResourcesByType[accumulativeUploadedResourcesByType.length-1][type]]
+          rows << [type,accumulativeUploadedResourcesByType[accumulativeUploadedResourcesByType.length-1][type],accumulativePublishedResourcesByType[accumulativePublishedResourcesByType.length-1][type]]
         end
 
         allResourceTypes.each do |type|
           rows << []
           rows << ["Resources Stats: " + type]
-          rows << ["Date","Uploaded Resources","Accumulative Uploaded Resources"]
+          rows << ["Date","Uploaded Resources","Accumulative Uploaded Resources","Published Resources","Accumulative Published Resources"]
           uploadedResourcesByType.each_with_index do |resourcesHash,i|
-            rows << [allDates[i],resourcesHash[type],accumulativeUploadedResourcesByType[i][type]]
+            rows << [allDates[i],uploadedResourcesByType[i][type],accumulativeUploadedResourcesByType[i][type],publishedResourcesByType[i][type],accumulativePublishedResourcesByType[i][type]]
           end
         end
 
@@ -454,9 +496,9 @@ namespace :stats do
           dName = type
           rows << []
           rows << ["Documents estimation: " + dName]
-          rows << ["Date","Uploaded " + dName,"Accumulative Uploaded " + dName]
-          uploadedDocumentsByType.each_with_index do |documentsHash,i|
-            rows << [allDates[i],documentsHash[type],accumulativeUploadedDocumentsByType[i][type]]
+          rows << ["Date","Published " + dName,"Accumulative Published " + dName]
+          publishedDocumentsByType.each_with_index do |documentsHash,i|
+            rows << [allDates[i],publishedDocumentsByType[i][type],accumulativePublishedDocumentsByType[i][type]]
           end
         end
 
@@ -465,11 +507,12 @@ namespace :stats do
         rows << ["Total Visits","Total Downloads","Total Likes"]
         rows << [totalVisits,totalDownloads,totalLikes]
         rows << []
-        rows << ["Visits","Downloads","Likes"]
+        # rows << ["Visits","Downloads","Likes"]
+        rows << ["AO Id","Scope","Object type","Visits","Downloads","Likes"]
         rowIndex = rows.length
-        rows += Array.new(allResources.length).map{|e|[]}
-        allResources.each_with_index do |e,i|
-          rows[rowIndex+i] = [visits[i],downloads[i],likes[i]]
+        rows += Array.new(allResources.length).map{|r|[]}
+        allResources.each_with_index do |r,i|
+          rows[rowIndex+i] = [r.id,r.scope,r.object_type,visits[i],downloads[i],likes[i]]
         end
 
         rows.each do |row|
@@ -518,6 +561,18 @@ namespace :stats do
       createdUsers.push(nCreated)
     end
 
+    #Registered users
+    registeredUsers = []
+    accumulativeRegisteredUsers = []
+    allUsersByDate.each_with_index do |users,index|
+      nPublished = users.count
+      lastAcRegistered = (index > 0 ? accumulativeRegisteredUsers[index-1] : 0)
+      acRegistered = lastAcRegistered + nPublished
+      registeredUsers.push(nPublished)
+      accumulativeRegisteredUsers.push(acRegistered)
+    end
+
+
     filePath = "reports/users_stats.xlsx"
     prepareFile(filePath)
 
@@ -525,12 +580,12 @@ namespace :stats do
       p.workbook.add_worksheet(:name => "User Stats") do |sheet|
         rows = []
         rows << ["User Stats"]
-        rows << ["Date","Created Users","Accumulative Created Users"]
+        rows << ["Date","Created Users","Accumulative Created Users","Registered Users","Accumulative Registered Users"]
         rowIndex = rows.length
         
         rows += Array.new(createdUsers.length).map{|e|[]}
         createdUsers.each_with_index do |n,i|
-          rows[rowIndex+i] = [allDates[i],createdUsers[i],accumulativeCreatedUsers[i]]
+          rows[rowIndex+i] = [allDates[i],createdUsers[i],accumulativeCreatedUsers[i],registeredUsers[i],accumulativeRegisteredUsers[i]]
         end
 
         rows.each do |row|
