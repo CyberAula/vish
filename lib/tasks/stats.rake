@@ -28,7 +28,7 @@ namespace :stats do
 
     allDates = []
     allExcursionsByDate = []
-    for year in 2012..2016
+    for year in 2012..2017
       12.times do |index|
         month = index+1
         # date = DateTime.new(params[:year],params[:month],params[:day])
@@ -127,7 +127,7 @@ namespace :stats do
 
     allDates = []
     allTimes = []
-    for year in 2012..2016
+    for year in 2012..2017
       12.times do |index|
         month = index+1
         # date = DateTime.new(params[:year],params[:month],params[:day])
@@ -312,7 +312,7 @@ namespace :stats do
     # allResourceTypes += ["Category"]
     allDates = []
     allResourcesByDateAndType = []
-    for year in 2012..2016
+    for year in 2012..2017
       12.times do |index|
         month = index+1
         # date = DateTime.new(params[:year],params[:month],params[:day])
@@ -537,7 +537,7 @@ namespace :stats do
 
     allDates = []
     allUsersByDate = []
-    for year in 2012..2016
+    for year in 2012..2017
       12.times do |index|
         month = index+1
         # date = DateTime.new(params[:year],params[:month],params[:day])
@@ -606,6 +606,88 @@ namespace :stats do
         rows << ["Author Id","Number of published resources"]
         User.all.map{|u| [u.actor_id,ActivityObject.authored_by(u).where("object_type in (?) and scope=0", allResourceTypes).count]}.select{|uM| uM[1] > 0}.each do |uM|
           rows << [uM[0],uM[1]]
+        end
+
+        rows.each do |row|
+          sheet.add_row row
+        end
+      end
+
+      prepareFile(filePath)
+      p.serialize(filePath)
+
+      puts("Task Finished. Results generated at " + filePath)
+    end
+  end
+
+  #Usage
+  #Development:   bundle exec rake stats:general
+  task :general, [:prepare] => :environment do |t,args|
+    args.with_defaults(:prepare => true)
+    Rake::Task["stats:prepare"].invoke if args.prepare
+
+    puts "General Stats"
+
+    allResourceTypes = (["Document", "Webapp", "Scormfile", "Imscpfile", "Link", "Embed", "Writing", "Excursion", "Workshop"] + VishConfig.getResourceModels).uniq
+    # allResourceTypes += ["Category"]
+
+    allDates = []
+    allRegisteredUsersByDate = []
+    allPublishedResourcesByDate = []
+    for year in 2012..2017
+      12.times do |index|
+        month = index+1
+        # date = DateTime.new(params[:year],params[:month],params[:day])
+        startDate = DateTime.new(year,month,1)
+        endDate = startDate.next_month
+        users = User.where(:created_at => startDate..endDate)
+        allRegisteredUsersByDate.push(users)
+        resources = ActivityObject.where(:created_at => startDate..endDate).where("object_type in (?) and scope=0", allResourceTypes)
+        allPublishedResourcesByDate.push(resources)
+
+        allDates.push(startDate.strftime("%B %Y"))
+      end
+    end
+
+    #Registered users
+    registeredUsers = []
+    accumulativeRegisteredUsers = []
+    allRegisteredUsersByDate.each_with_index do |users,index|
+      nRegistered = users.count
+      lastAcRegistered = (index > 0 ? accumulativeRegisteredUsers[index-1] : 0)
+      acRegistered = lastAcRegistered + nRegistered
+      registeredUsers.push(nRegistered)
+      accumulativeRegisteredUsers.push(acRegistered)
+    end
+
+    #Published resources
+    publishedResources = []
+    accumulativePublishedResources = []
+    allPublishedResourcesByDate.each_with_index do |resources,index|
+      nPublished = resources.count
+      lastAcPublished = (index > 0 ? accumulativePublishedResources[index-1] : 0)
+      acPublished = lastAcPublished + nPublished
+      publishedResources.push(nPublished)
+      accumulativePublishedResources.push(acPublished)
+    end
+
+    #Visits to published resources
+    nVisits = allPublishedResourcesByDate.map{|aos| aos.map{|ao| ao.visit_count}.sum }.sum
+
+    filePath = "reports/general_stats.xlsx"
+    prepareFile(filePath)
+
+    Axlsx::Package.new do |p|
+      p.workbook.add_worksheet(:name => "General Stats") do |sheet|
+        rows = []
+        rows << ["User Stats"]
+        rows << ["Date","Registered Users","Published Resources","Resource visits"]
+        rows << ["","","",nVisits]
+        rowIndex = rows.length
+        
+        rows += Array.new(allDates.length).map{|e|[]}
+        allDates.each_with_index do |date,i|
+          rows[rowIndex+i] = [date,accumulativeRegisteredUsers[i],accumulativePublishedResources[i]]
         end
 
         rows.each do |row|
