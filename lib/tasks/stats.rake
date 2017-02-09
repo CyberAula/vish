@@ -565,13 +565,25 @@ namespace :stats do
     registeredUsers = []
     accumulativeRegisteredUsers = []
     allUsersByDate.each_with_index do |users,index|
-      nPublished = users.count
+      nRegistered = users.count
       lastAcRegistered = (index > 0 ? accumulativeRegisteredUsers[index-1] : 0)
-      acRegistered = lastAcRegistered + nPublished
-      registeredUsers.push(nPublished)
+      acRegistered = lastAcRegistered + nRegistered
+      registeredUsers.push(nRegistered)
       accumulativeRegisteredUsers.push(acRegistered)
     end
 
+    #Registered authors
+    registeredAuthors = []
+    accumulativeRegisteredAuthors = []
+    allResourceTypes = (["Document", "Webapp", "Scormfile", "Imscpfile", "Link", "Embed", "Writing", "Excursion", "Workshop"] + VishConfig.getResourceModels).uniq
+    # allResourceTypes += ["Category"]
+    allUsersByDate.each_with_index do |users,index|
+      nRegistered = users.select{|u| ActivityObject.authored_by(u).where("object_type in (?) and scope=0", allResourceTypes).count > 0}.length
+      lastAcRegistered = (index > 0 ? accumulativeRegisteredAuthors[index-1] : 0)
+      acRegistered = lastAcRegistered + nRegistered
+      registeredAuthors.push(nRegistered)
+      accumulativeRegisteredAuthors.push(acRegistered)
+    end
 
     filePath = "reports/users_stats.xlsx"
     prepareFile(filePath)
@@ -580,12 +592,20 @@ namespace :stats do
       p.workbook.add_worksheet(:name => "User Stats") do |sheet|
         rows = []
         rows << ["User Stats"]
-        rows << ["Date","Created Users","Accumulative Created Users","Registered Users","Accumulative Registered Users"]
+        rows << ["Date","Created Users","Accumulative Created Users","Registered Users","Accumulative Registered Users","Registered Authors","Accumulative Registered Authors"]
         rowIndex = rows.length
         
         rows += Array.new(createdUsers.length).map{|e|[]}
         createdUsers.each_with_index do |n,i|
-          rows[rowIndex+i] = [allDates[i],createdUsers[i],accumulativeCreatedUsers[i],registeredUsers[i],accumulativeRegisteredUsers[i]]
+          rows[rowIndex+i] = [allDates[i],createdUsers[i],accumulativeCreatedUsers[i],registeredUsers[i],accumulativeRegisteredUsers[i],registeredAuthors[i],accumulativeRegisteredAuthors[i]]
+        end
+
+        #Resources published by Registered Authors
+        rows << []
+        rows << ["Registered Authors"]
+        rows << ["Author Id","Number of published resources"]
+        User.all.map{|u| [u.actor_id,ActivityObject.authored_by(u).where("object_type in (?) and scope=0", allResourceTypes).count]}.select{|uM| uM[1] > 0}.each do |uM|
+          rows << [uM[0],uM[1]]
         end
 
         rows.each do |row|
