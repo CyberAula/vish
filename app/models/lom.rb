@@ -88,7 +88,7 @@ class Lom
       # loDate 
       # According to ISO 8601 (e.g. 2014-06-23)
       loCreateDate = ao.created_at.strftime("%Y-%m-%d").to_s
-      loUpdateDate = ao.updated_at.strftime("%Y-%m-%d").to_s
+      loUpdateDate = ao.updated_at.nil? ? loCreateDate : ao.updated_at.strftime("%Y-%m-%d").to_s
 
       # loKeywords
       loKeywords = []
