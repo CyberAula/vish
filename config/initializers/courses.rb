@@ -9,7 +9,7 @@ Vish::Application.configure do
 
 		if ActiveRecord::Base.connection.table_exists?('courses')
 			config.courses_count = Course.count
-			if Vish::Application.config.APP_CONFIG["moodle_url"].present? && (Vish::Application.config.APP_CONFIG["models"]["available"].include? "Course")
+			if Vish::Application.config.APP_CONFIG["moodle_url"].present? && (VishConfig.getAllAvailableModels.include? "Course")
 				config.courses_enabled = true
 			end
 		end

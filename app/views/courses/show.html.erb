@@ -4,6 +4,8 @@
 <%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@course), @course)%><%end%>
 <%content_for :canonical do%><%=polymorphic_url(@course, :locale => params[:locale])%><%end%>
 
+<% user_enrolled = (user_signed_in? and @course.users.include?(current_user)) %>
+
 <section id="course" class="layout_show">
 
   <div class="row container_mooc">
@@ -14,20 +16,20 @@
       <h1><%=@course.title%></h1>
       <h2><%=t('course.description')%></h2>
       <p><%=@course.description%></p>
-      <%if @course.start_date.present? || @course.end_date.present?%>
+      <% unless @course.start_date.blank? or @course.end_date.blank? %>
         <h2><%=t('course.dates')%></h2>
-        <p><%=t("course.date_from")%>: <%=@course.start_date%> <%=t("course.date_to")%>: <%=@course.end_date%></p>
-      <%end%>
-      <%if @course.age_min!=0 || @course.age_max!=0%>
+        <p><%=t("course.date_from")%> <span class="bold"><%=@course.start_date.strftime('%d-%m-%Y') %></span> <%=t("course.date_to")%> <span class="bold"><%=@course.end_date.strftime('%d-%m-%Y')%></span></p>
+      <% end %>
+      <% if @course.age_min!=0 || @course.age_max!=0 %>
         <h2><%=t('course.age')%></h2>
         <p><%=t("course.age_from")%>: <%=@course.age_min%> <%=t("course.years")%> <%=t("course.age_to")%>: <%=@course.age_max%> <%=t("course.years")%></p>
-      <%end%>
-      <%if @course.language && @course.language!="independent"%>
+      <% end %>
+      <% if @course.language.present? && @course.language!="independent" %>
         <h2><%=t('course.language')%></h2>
         <p>
         <%=@course.readable_language%></p>
-      <%end%>
-      <%if @course.tags.length>0%>
+      <% end %>
+      <% if @course.tags.length>0 %>
         <h2><%=t('course.tags')%></h2>
         <ul class="tagit-suggestions">
           <% @course.tag_list.each do |tag| %>
@@ -36,59 +38,56 @@
           </li>
           <% end %>
         </ul>
-      <%end%>
+      <% end %>
 
-      <%if current_user && @course.course_password && (@course.users.include? current_user)%>
+      <% if user_enrolled && @course.course_password %>
         <h2><%=t('course.show_password')%></h2>
         <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
-      <%end%>
-
-
+      <% end %>
 
       <div id="course_button_bar">
           <h2><%=t('course.course_access')%></h2>
-          <%if @course.closed%>
+          <% if @course.closed %>
             <div class=""><%=t('course.msgs.course_closed')%></div>
-          <%else%>
-              <%if current_user && (@course.users.include? current_user)%>
+          <% else %>
+              <%if user_enrolled %>
                   <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
                   <%= form_for @course, :url => { :action => :leave }, method: "post"  do |f| %>
                     <%= f.submit t('course.actions.leave') %>
                   <% end %>
               <%else%>
-                  <%if @course.end_date.present? && @course.end_date < Date.today%>
+                  <% if @course.end_date.present? && @course.end_date < Date.today %>
                     <div class=""><%=t('course.msgs.course_ended')%></div>                  
-                  <%else%>
-                    <%if current_user%>
+                  <% else %>
+                    <% if user_signed_in? %>
                       <%if !@course.restricted || (@course.restricted && @course.restriction_email.present? && (current_user.email.ends_with? @course.restriction_email))%>
                         <%= form_for @course, :url => { :action => :join }, method: "post"  do |f| %>
                           <%= f.submit t('course.actions.enrol') %>
                         <% end %>
-                      <%elsif @course.restricted && @course.restriction_password.present?%>
+                      <% elsif @course.restricted && @course.restriction_password.present? %>
                         <%= form_for @course, :url => { :action => :join }, method: "post"  do |f| %>
                           <%= label_tag :password, t('course.fields.enrol_password') + ":" %>
                           <%= text_field_tag :password, nil, :class => "form-control" %>
                           <%= f.submit t('course.actions.enrol') %>
                         <% end %>
-                      <%elsif @course.restricted && @course.restriction_email.present? && !(current_user.email.ends_with? @course.restriction_email)%>
+                      <% elsif @course.restricted && @course.restriction_email.present? && !(current_user.email.ends_with? @course.restriction_email) %>
                         <div class=""><%=t('course.msgs.only_email')%></div>
-                      <%else%>
+                      <% else %>
                         <div class=""><%=t('course.msgs.unknown')%></div>
-                      <%end%>
-                    <%else%>
-                      <%if @course.restricted%>
+                      <% end %>
+                    <% else %>
+                      <% if @course.restricted %>
                         <a href="/users/sign_up"><div class="btn btn-primary"><i class="fa fa-hand-o-up"></i><%=t('course.actions.register')%></div></a>
-                      <%else%>
+                      <% else %>
                         <a href="/users/sign_up?course=<%=@course.id%>"><div class="btn btn-primary"><i class="fa fa-hand-o-up"></i><%=t('course.actions.register_and_enrol')%></div></a>
-                      <%end%>
-                    <%end%>
-                  <%end%>
+                      <% end %>
+                    <% end %>
+                  <% end %>
               <%end%>
-
-          <%end%>
+          <% end %>
       </div>
 
-      <%if user_signed_in? && can?(:update, @course)%>
+      <% if user_signed_in? && can?(:update, @course) %>
         <br/>
         <hr>
         <h2><%=t('course.extra_info')%></h2>
