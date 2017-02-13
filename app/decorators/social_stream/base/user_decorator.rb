@@ -10,7 +10,7 @@ User.class_eval do
 
   delegate_attributes :birthday, :birthday=,
                       :to => :profile
- 
+
   Occupation = [:select, :teacher, :scientist, :other]
 
   scope :registered, lambda {
@@ -18,6 +18,8 @@ User.class_eval do
   }
 
   before_validation :fill_user_locale
+
+  validates :password, :presence =>true,  :confirmation =>true, length: { minimum: Devise.password_length.min, maximum: Devise.password_length.max }
   validate :user_locale
   def user_locale
     if !self.language.blank? and I18n.available_locales.include?(self.language.to_sym)
@@ -66,11 +68,11 @@ User.class_eval do
       object = ao.object
       object.destroy unless object.nil?
     end
-    
+
     ActivityObject.owned_by(self).each do |ao|
       object = ao.object
       object.destroy unless object.nil?
     end
   end
-  
+
 end
