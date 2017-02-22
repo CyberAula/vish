@@ -20,7 +20,7 @@ User.class_eval do
   before_validation :fill_user_locale
 
   if Vish::Application.config.cas
-    validates :password, :presence =>true,  :confirmation =>true, length: { minimum: Devise.password_length.min, maximum: Devise.password_length.max }
+    validates :password, :presence =>true,  :confirmation =>true, length: { minimum: Devise.password_length.min, maximum: Devise.password_length.max }, :on=>:create
   end
 
   validate :user_locale
