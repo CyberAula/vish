@@ -17,6 +17,7 @@ es:
       infoaction:
         audio: "Audio añadido"
         category: "Categoría añadida"
+        course: "Curso añadido"
         document: "Documento añadido"
         embed: "Embed añadido"
         event: "Evento añadido"
