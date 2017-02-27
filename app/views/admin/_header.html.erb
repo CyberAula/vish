@@ -16,5 +16,10 @@
 		<li>
 			<a href="/resque" target="_blank"><i class="fa fa-cloud-upload"></i> <%=t('admin.resque')%></a>
 		</li>
+		<% if Vish::Application.config.courses_enabled %>
+			<li>
+				<a href="/courses" target="_blank"><i class="fa fa-graduation-cap"></i> <%=t('admin.courses')%></a>
+			</li>
+		<% end %>
 	</ul>
 </nav>

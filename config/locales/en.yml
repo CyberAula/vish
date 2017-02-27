@@ -125,6 +125,7 @@ en:
   admin:
     close_report: "Close report"
     closed_reports: "Closed reports"
+    courses: "Courses"
     modal:
       change_role: "User role in the platform"
       delete_user: "Delete user"
