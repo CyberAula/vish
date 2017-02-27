@@ -1,10 +1,13 @@
-#course_button_bar
-  position: relative
-  .edit_course
-    display: inline
-    input
-      vertical-align: bottom
-      margin-bottom: 10px
+#course
+  background-color: #FFFFFF
+  -webkit-box-shadow: 0 -1px 5px rgba(50, 51, 51, 0.1)
+  box-shadow: 0 -1px 5px rgba(50, 51, 51, 0.1)
+  width: 100%
+  clear: both
+  border: none
+  padding: 0
+  max-width: 1000px
+  margin: 0 auto 15px
 
 .checkbox_course_field
   margin-bottom: 10px
@@ -18,28 +21,27 @@
   padding: 0 30px
   label
     color: $gray-dark
-#course
-  background-color: #FFFFFF
-  border-radius: 5px
-  -webkit-box-shadow: 0 -1px 5px rgba(50, 51, 51, 0.1)
-  box-shadow: 0 -1px 5px rgba(50, 51, 51, 0.1)
-  margin-bottom: 15px
-  width: 100%
-  clear: both
-  border: none
-  padding: 0
+
+
+#course_button_bar
+  position: relative
+  .edit_course
+    display: inline
+    //input
+      vertical-align: bottom
+      margin-bottom: 10px
 
 .container_mooc
   margin: 0
   .mooc_image_main
     overflow: hidden
-    padding-left: 15px
-    height: 100%
+    padding-left: 0
+    height: 300px
+    overflow: hidden
     img
-
-      left: -50%
+      width: 100%
       position: relative
-
+      top: -250px
   .mooc_welcome_text
     background-color: white
     padding: 40px
@@ -49,7 +51,7 @@
       margin: 0 0 20px 0
     h2
       color: $brand-primary
-      font-size: 1.2em
+      font-size: 1.1em
       margin: 5px 0
     p
       padding: 10px
@@ -61,13 +63,23 @@
       color: black
       font-weight: 600
     .tagit-suggestions
-      padding-left: 10px
+      padding: 10px
+      overflow: hidden
   .btn
     margin: 10px 5px 0 0
     i
       margin-right: 5px
-
-
+  .mooc_inline_field
+    margin-bottom: 20px
+    h2
+      display: inline
+    p
+      display: inline
+    ul
+      display: inline
+      .tagit-choice
+        display: inline-block !important
+        float: none !important
 
 @media (max-width: 991px)
   .container_mooc
@@ -79,5 +91,11 @@
         width: 100%
         height: auto
         left: 0
+        top: -150px
     .mooc_welcome_text
       height: auto
+@media (max-width: 768px)
+  .container_mooc
+    .mooc_image_main
+      img
+        top: 0px
