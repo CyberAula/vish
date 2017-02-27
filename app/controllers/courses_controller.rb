@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
   include SocialStream::Controllers::Objects
   before_filter :authenticate_user!, :except => [:show, :attachment, :index]
   skip_authorize_resource :only => [:attachment, :join, :leave]
+  skip_before_filter :store_location, :only => :attachment
   skip_after_filter :discard_flash, :only => [:join, :leave]
 
   def index
