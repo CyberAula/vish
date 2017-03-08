@@ -47,8 +47,8 @@ class VishLoep
     ao.update_column :reviewers_qscore, loepData["Metric Score: LORI WAM CW"] if loepData["Metric Score: LORI WAM CW"].is_a? Numeric
     ao.update_column :users_qscore, loepData["Metric Score: WBLT-S Arithmetic Mean"] if loepData["Metric Score: WBLT-S Arithmetic Mean"].is_a? Numeric
     ao.update_column :teachers_qscore, loepData["Metric Score: WBLT-T Arithmetic Mean"] if loepData["Metric Score: WBLT-T Arithmetic Mean"].is_a? Numeric
-    ao.update_column :metadata_qscore, loepData["Metric Score: LOM Metadata Quality Metric"] if loepData["Metric Score: LOM Metadata Quality Metric"].is_a? Numeric
-    ao.update_column :interaction_qscore, loepData["Metric Score: Interaction Quality Metric"] if loepData["Metric Score: Interaction Quality Metric"].is_a? Numeric
+    ao.update_column :metadata_qscore, loepData["Metric Score: LOM Metadata Quality"] if loepData["Metric Score: LOM Metadata Quality"].is_a? Numeric
+    ao.update_column :interaction_qscore, loepData["Metric Score: Interaction Quality"] if loepData["Metric Score: Interaction Quality"].is_a? Numeric
     ao.calculate_qscore
   end
 
