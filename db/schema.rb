@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160914122525) do
+ActiveRecord::Schema.define(:version => 20170308141313) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20160914122525) do
     t.text     "original_author"
     t.text     "license_attribution"
     t.text     "license_custom"
-    t.decimal  "metadata_qscore",                    :precision => 12, :scale => 6, :default => 0.0
+    t.decimal  "metadata_qscore",                    :precision => 12, :scale => 6
     t.boolean  "allow_download",                                                    :default => true
     t.boolean  "allow_comment",                                                     :default => true
     t.boolean  "allow_clone",                                                       :default => true
