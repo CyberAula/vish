@@ -18,9 +18,9 @@ gem 'jquery-ui-rails', '= 4.1.2'
 gem 'json', '= 1.8.3'
 gem 'sinatra', '= 1.3.2'
 gem 'selenium-webdriver', '= 2.44.0'
-gem 'god', :git => 'git://github.com/mojombo/god.git', :ref => 'a0602dda2e767f2b711e37bf2d4199c0614af480'
-gem 'redis', '= 3.0.7'
-gem 'resque', '= 1.23.1'
+gem 'god', :git => 'git://github.com/mojombo/god.git', :ref => '92c06aa5f6293cf26498a306e9bb7ac856d7dca0'
+gem 'redis', '= 3.3.3'
+gem 'resque', '= 1.27.0'
 gem 'rmagick', '=2.13.2'
 gem 'thinking-sphinx', '= 2.0.14'
 gem 'exception_notification', '= 4.1.1'
@@ -65,7 +65,7 @@ if ENV['FORCE_LOCAL_SS']
     gem 'social_stream-events'
   end
 else
-  git 'git://github.com/ging/social_stream.git', branch: "vish", ref: "9fdcec65f4bdfe48e0142e2ee51e52459c33a43c"  do
+  git 'git://github.com/ging/social_stream.git', branch: "vish", ref: "6e4341c64ae3a470acd0ab29c48d2d72fd6fdd08"  do
     gem 'social_stream-base'
     gem 'social_stream-documents'
     gem 'social_stream-linkser'
