@@ -3,7 +3,7 @@
   <table class="analytics_summary">
   <tr>
     <td><%=t("analytics.interactions.title")%></td>
-    <td><%=t("value_average")%></td>
+    <td><%=t("value")%></td>
   </tr>
   <%@excursion.lo_interaction.extended_attributes["interactions"].each do |k,v| %>
     <% unless v["average_value"].blank? %>

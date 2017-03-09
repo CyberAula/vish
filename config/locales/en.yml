@@ -162,9 +162,9 @@ en:
     description: "This section is only visible to the author of the resource.<br/>It shows some learning analytics about the usage of the resource.<br/> These learning analytics are calculated periodically. This information was last updated on: %{date}."
     interactions:
       title: "Learning analytic"
-      tlo: "Time spent per session (s)"
+      tlo: "Average time spent in the resource per session (s)"
       permanency_rate: "Permanency rate (%)"
-      nclicks: "Frequency of clicks per session"
+      nclicks: "Average number of mouse clicks per session"
     tabtitle: "Learning Analytics"
   announce:
     title: "Announcement"

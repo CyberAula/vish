@@ -150,9 +150,9 @@ es:
     description: "Esta sección solo es visible para el autor del recurso.<br/>Muestra algunas analíticas de aprendizaje acerca del uso del recurso.<br/> Las analíticas de aprendizaje se calculan periódicamente. Esta información fue actualizada por última vez a fecha: %{date}."
     interactions:
       title: "Analítica de aprendizaje"
-      tlo: "Tiempo empleado por sesión (s)"
-      permanency_rate: "Ratio de Permanencia (%)"
-      nclicks: "Frequencia de clics por sesión"
+      tlo: "Tiempo medio empleado en el recurso por sesión (s)"
+      permanency_rate: "Ratio de permanencia (%)"
+      nclicks: "Número medio de clics de ratón por sesión"
     tabtitle: "Analíticas de Aprendizaje"
   all: "todos"
   announce:
