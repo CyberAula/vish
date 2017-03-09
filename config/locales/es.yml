@@ -148,6 +148,9 @@ es:
     users: "Administración de Usuarios"
   analytics:
     description: "Esta sección solo es visible para el autor del recurso.<br/>Muestra algunas analíticas de aprendizaje acerca del uso del recurso.<br/> Las analíticas de aprendizaje se calculan periódicamente. Esta información fue actualizada por última vez a fecha: %{date}."
+    description_chart_a: "El siguiente gráfico muestra una estimación de la calidad del recurso basada en las interacciones que los usuarios tuvieron con el."
+    description_chart_b: "Esta estimación se calcula en base a las analíticas de aprendizaje tiempo empleado, ratio de permanencia y frecuencia de clics (expresada en clics por minuto). "
+    description_chart_c: "Las puntuaciones del recurso son calculadas comparando sus analíticas de aprendizaje con aquellas obtenidas por los otros recursos publicados en el repositorio."
     interactions:
       title: "Analítica de aprendizaje"
       tlo: "Tiempo medio empleado en el recurso por sesión (s)"

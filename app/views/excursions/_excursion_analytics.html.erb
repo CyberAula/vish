@@ -16,6 +16,11 @@
   </table>
 </div>
 
+<div id="learning-analytics-chart-description" style="display:none">
+  <p><%=t("analytics.description_chart_a")%>
+  <%=t("analytics.description_chart_b")%>
+  <%=t("analytics.description_chart_c")%></p>
+</div>
 <div id="learning-analytics-chart" style="display:none"></div>
 
 <% content_for :javascript do %>
@@ -31,6 +36,9 @@
     lanalyticsLoepSettings.containerDOM = $('#learning-analytics-chart');
     lanalyticsLoepSettings.errorCallback = function(errorMsg){
       $('#learning-analytics-chart').remove();
+    };
+    lanalyticsLoepSettings.loadCallback = function(){
+      $('#learning-analytics-chart-description').show();
     };
     $('#learning-analytics-chart').show();
     new LOEP.IframeAPI.instance(lanalyticsLoepSettings);

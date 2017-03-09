@@ -160,6 +160,9 @@ en:
   all: "all"
   analytics:
     description: "This section is only visible to the author of the resource.<br/>It shows some learning analytics about the usage of the resource.<br/> These learning analytics are calculated periodically. This information was last updated on: %{date}."
+    description_chart_a: "The following chart shows an estimation of the quality of the resource based on the interactions that users had with it."
+    description_chart_b: "This estimation is calculated based on the learning analytics time spent, permanency rate, and clicks frequency (expressed in clicks per minute). "
+    description_chart_c: "The scores of the resource are calculated by comparing its learning analytics with those obtained by the other resources published in the repository."
     interactions:
       title: "Learning analytic"
       tlo: "Average time spent in the resource per session (s)"
