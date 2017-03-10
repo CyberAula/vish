@@ -323,11 +323,11 @@ namespace :db do
   end
 
   #Usage
-  #Development:   bundle exec rake db:anonymize
-  #In production: bundle exec rake db:anonymize RAILS_ENV=production
+  #Development:   bundle exec rake db:anonymize[false]
   desc "Anonymize database for delivering"
-  task :anonymize => :environment do
+  task :anonymize, [:interactions] => :environment do |t,args|
     printTitle("Anonymizing database")
+    args.with_defaults(:interactions => false)
 
     User.record_timestamps=false
     Actor.record_timestamps=false
@@ -347,6 +347,7 @@ namespace :db do
       u.current_sign_in_ip = nil
       u.last_sign_in_ip = nil
       u.logo = nil
+      u.occupation = nil
       u.save(:validate => false)
 
       #User profile
@@ -417,7 +418,43 @@ namespace :db do
     QuizAnswer.delete_all
 
     #Removing Tracking System data
-    TrackingSystemEntry.delete_all
+    if args[:interactions]!="true"
+      TrackingSystemEntry.delete_all
+    else
+      #Anonymize Tracking System data
+      TrackingSystemEntry.record_timestamps=false
+
+      trackers = ['ViSH Viewer']
+      TrackingSystemEntry.where("app_id not IN (?)",trackers).delete_all
+
+      #ViSH Viewer data
+      vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer'")
+      vvEntries.where("related_entity_id is NULL").delete_all
+
+      vvEntries.find_each batch_size: 1000 do |e|
+        d = JSON(e.data) rescue {}
+        unless LoInteraction.isValidInteraction?(d)
+          e.delete
+          next
+        end
+        d.delete("user")
+        unless d["lo"].blank? or d["lo"]["content"].blank?
+          d["lo"]["content"].delete("author")
+          d["lo"]["content"].delete("vishMetadata")
+        end
+        unless d["rs"].blank? or d["rs"]["tdata"].blank?
+          d["rs"]["tdata"].keys.each do |key|
+            d["rs"]["tdata"][key].delete("author")
+          end
+        end
+
+        e.data = d.to_json
+        e.save
+      end
+
+      TrackingSystemEntry.record_timestamps=true
+    end
+    
 
     #Anonymizing comments
     Comment.all.each do |c|
