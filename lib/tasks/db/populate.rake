@@ -335,6 +335,7 @@ namespace :db do
     Comment.record_timestamps=false
     ActivityObject.record_timestamps=false
 
+    # popularTags = ActivityObject.tag_counts(:order => "count desc").first(50)
 
     User.all.each do |u|
       u.name = Faker::Name.name[0,30]
@@ -348,6 +349,7 @@ namespace :db do
       u.last_sign_in_ip = nil
       u.logo = nil
       u.occupation = nil
+      # u.tag_list = popularTags.sample(3).map{|tag| tag.name}
       u.save(:validate => false)
 
       #User profile
