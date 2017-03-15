@@ -148,9 +148,9 @@ class Lom
         myxml.status do
           myxml.source("LOMv1.0")
           if ao.public_scope?
-            myxml.value("published")
+            myxml.value("final")
           else
-            myxml.value("unpublished")
+            myxml.value("draft")
           end
         end
 
