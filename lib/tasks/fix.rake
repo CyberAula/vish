@@ -351,16 +351,18 @@ namespace :fix do
     User.record_timestamps=false
     ActivityObject.record_timestamps=false
 
-    Actor.all.each do |actor|
-      if actor.admin?
-        actor.activity_object.scope = 1
-        actor.activity_object.relation_ids = [Relation::Private.instance.id]
+    User.registered.each do |u|
+      if u.admin?
+        u.activity_object.scope = 1
+        u.activity_object.relation_ids = [Relation::Private.instance.id]
       else
-        actor.activity_object.scope = 0
-        actor.activity_object.relation_ids = [Relation::Public.instance.id]
+        u.activity_object.scope = 0
+        u.activity_object.relation_ids = [Relation::Public.instance.id]
       end
-      actor.save!
+      u.save!
     end
+
+    # Actor.where("subject_type!='User'")
 
     Actor.record_timestamps=true
     User.record_timestamps=true
