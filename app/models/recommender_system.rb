@@ -334,7 +334,7 @@ class RecommenderSystem
 
   # Inverse Document Frequency (IDF)
   def self.IDF(word)
-    Math::log(Vish::Application::config.rs_repository_total_entries/(1+(Vish::Application::config.rs_words[word] || 0)).to_f)
+    Math::log((2+Vish::Application::config.rs_repository_total_entries)/(1+(Vish::Application::config.rs_words[word] || 0)).to_f)
   end
 
   # TF-IDF
