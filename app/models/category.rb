@@ -71,7 +71,7 @@ class Category < ActiveRecord::Base
 
     categoryResources = self.all_property_objects.select{|ao| ao.qscore.is_a? Numeric}
     if categoryResources.length < 1
-      overallQualityScore = 500000 #(5*100000)
+      overallQualityScore = 0
     else
       overallQualityScore = categoryResources.map{|c| c.qscore}.sum/categoryResources.length
     end
