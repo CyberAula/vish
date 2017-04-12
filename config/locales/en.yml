@@ -550,7 +550,7 @@ en:
   downloadxlsx: "Download as XLSX"
   email:
     regards: "Kind regards,<br/>"
-    welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{profile}\"> to set up your profile</a> in order to enjoy a better service.<br/>"
+    welcome: "Welcome and thank you for registering in ViSH.<br/>We would encourage you <a href=\"%{profile}\"> to set up your profile</a> in order to enjoy a better service.<br/>"
   embed:
     confirm_delete: "Delete embed?"
     content: "Live content"
@@ -671,16 +671,16 @@ en:
     is_favorite: "Is favorite"
     views: "views"
   frontpage:
-    main_text: "ViSH is a social and collaborative site for creating and sharing knowledge resources for the realization of educational activities."
+    main_text: "ViSH is a social and collaborative platform focused on the creation and sharing of open educational resources"
     educational:
-      title: "Educational"
-      description: "Find the best free and openly licensed educational resources and learning objects classified by subject. ViSH resources can be used for teaching, learning, assessment, research and other purposes."
+      title: "Education"
+      description: "Find the best free and openly licensed educational resources and learning objects classified by topic. ViSH can be used for teaching, learning, creating, sharing and discovering innovative educational resources, carrying out educational projects, research, and other purposes."
     community:
         title: "Community"
-        description: "ViSH is a community for teachers and educational professionals who want to meet new educators, create, share and discover novel educational resources, and get access to tools for maximizing technology enhanced learning."
+        description: "ViSH is aimed at all members of the educational community (teachers, educators, students), and at any person interested in learning, teaching, creating and sharing educational resources, meeting other members of the community, or using tools to foster technology enhanced learning."
     elearning:
         title: "e-Learning"
-        description: "ViSH provides a collection of tools and services for facilitating the creation of high quality courseware and maximizing technology enhanced learning both in the classroom and in Virtual Learning Environments and Learning Management Systems."
+        description: "ViSH provides a collection of tools and services to facilitate the creation, distribution and use of high quality educational materials and to foster technology enhanced learning both in the classroom as well as in Virtual Learning Environments (VLEs) and Learning Management Systems (LMSs)."
     community_stats:
         title: "Our community grows every day"
         subtitle: "Share your knowledge in our community and help us to grow"
@@ -1030,7 +1030,7 @@ en:
       excursion: "Excursions"
       follower: "Followers"
       following: "Followings"
-      imscpfile: "IMS Content Package"
+      imscpfile: "IMS Content Packages"
       learning_object: "Learning object"
       link: "Links"
       officedoc: "Office documents"
@@ -1121,7 +1121,7 @@ en:
     current:
       description: "ViSH is a social and collaborative site for creating and sharing knowledge resources for the realization of educational activities."
       keywords: "presentations, educational resources, authoring tool, science, Learning Objects, repository, catalogue"
-      title: "ViSH - Virtual Science Hub"
+      title: "ViSH"
       search: "ViSH - Search"
       browse: "ViSH - Explore"
       msg: "ViSH - Messages"

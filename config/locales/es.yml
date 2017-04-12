@@ -33,7 +33,7 @@ es:
         writing: "Texto añadido"
         zipfile: "Archivo ZIP añadido"
     more: "Ver más..."
-    new_user: "¡Bienvenido al Virtual Science Hub! Desde aquí podrás compartir y enviar mensajes, enlaces, imágenes, vídeos, etc"
+    new_user: "¡Bienvenido a ViSH! Desde aquí podrás compartir y enviar mensajes, enlaces, imágenes, vídeos, etc"
     newmessage: "Esta es tu timeline. Comparte con tus seguidores tus opiniones, sube imágenes, enlaces, vídeos..."
     timeline: "timeline"
     verb:
@@ -530,7 +530,7 @@ es:
       license_attribution: "Si se especifica un autor, debes proporcionar un enlace de reconocimiento (atribución)"
   email:
     regards: "Un cordial saludo,<br/>"
-    welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{profile}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
+    welcome: "Bienvenido y gracias por registrarte en ViSH.<br/>Te invitamos a <a href=\"%{profile}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
   embed:
     confirm_delete: "¿Borrar recurso?"
     content: "Contenido en directo"
@@ -650,16 +650,16 @@ es:
     is_favorite: "Favorito"
     views: "visitas"
   frontpage:
-    main_text: "ViSH es una red social colaborativa centrada en la creación y compartición de recursos educativos para la realización de actividades didácticas."
+    main_text: "ViSH es una plataforma social y colaborativa centrada en la creación y compartición de recursos educativos abiertos"
     educational:
       title: "Educación"
-      description: "Encuentra los mejores recursos educativos y objetos de aprendizaje libres y gratuitos clasificados por temática. Los recursos de ViSH pueden ser utilizados para la enseñanza, el aprendizaje, como materiales de evaluación, en investigación o para otros fines."
+      description: "Encuentra los mejores recursos educativos y objetos de aprendizaje libres y gratuitos clasificados por temática. ViSH puede ser utilizado para enseñar, aprender, crear, compartir y descubrir recursos educativos innovadores, realizar proyectos educativos, en investigación o para otros fines."
     community:
         title: "Comunidad"
-        description: "ViSH es una comunidad para profesores y profesionales de la educación que quieren conocer nuevos educadores, crear, compartir y descubrir recursos educativos innovadores, y conseguir acceso a herramientas para maximizar el aprendizaje potenciado por la tecnología."
+        description: "ViSH está dirigido a todos los miembros de la comunidad educativa (profesores, educadores, estudiantes), y a cualquier persona interesada en aprender, enseñar, crear y compartir recursos educativos, conocer otros miembros de la comunidad, o utilizar herramientas para impulsar el aprendizaje potenciado por la tecnología."
     elearning:
         title: "e-Learning"
-        description: "ViSH proporciona una colección de herramientas y servicios para facilitar la creación de materiales didácticos de alta calidad e impulsar el aprendizaje potenciado por la tecnología tanto en el aula como en Entornos de Aprendizaje Virtuales (VLEs) y Sistemas de Gestión del Aprendizaje (LMSs)."
+        description: "ViSH proporciona una colección de herramientas y servicios para facilitar la creación, distribución y uso de materiales didácticos de alta calidad e impulsar el aprendizaje potenciado por la tecnología tanto en el aula como en Entornos Virtuales de Aprendizaje (EVAs) y Sistemas de Gestión del Aprendizaje (LMSs)."
     community_stats:
         title: "Nuestra comunidad crece cada día"
         subtitle: "Comparte tu conocimiento en nuestra comunidad y ayúdanos a crecer"
@@ -1101,7 +1101,7 @@ es:
     current:
       description: "ViSH es una red social colaborativa centrada en la creación y compartición de recursos educativos para la realización de actividades didácticas."
       keywords: "educación, contenidos educativos, presentaciones, herramienta de creación, catálogo"
-      title: "ViSH - Centro de Ciencia Virtual"
+      title: "ViSH"
       search: "ViSH - Buscar"
       browse: "ViSH - Explorar"
       msg: "ViSH - Mensajes"
