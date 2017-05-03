@@ -21,6 +21,6 @@ SHELL=/bin/bash
 
 #Check daemons script (execute as sudo, schedule in sudo crontab -e)
 #This script is provided in extras/cron/scripts
-55 * * * * export CAP_USER=username && /../scriptsFolder/check_daemon.sh
+*/7 * * * * export CAP_USER=username && /../scriptsFolder/check_daemon.sh
 
 # Visit https://help.ubuntu.com/community/CronHowto for more information about cron

@@ -26,7 +26,7 @@ else
 fi
 
 rvm_installed=false
-if [ -s "$HOME/.rvm/scripts/rvm" ] || [ -s "/usr/local/rvm/scripts/rvm" ] ; then
+if [ -s "$HOME/.rvm/scripts/rvm" ] || [ -s "/usr/local/rvm/scripts/rvm" ] || [ -s "/home/$CAP_USER/.rvm/scripts/rvm" ] ; then
 	rvm_installed=true
 	source /home/$CAP_USER/.rvm/scripts/rvm
 fi
