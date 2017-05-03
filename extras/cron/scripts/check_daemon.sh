@@ -28,7 +28,7 @@ fi
 rvm_installed=false
 if [ -s "$HOME/.rvm/scripts/rvm" ] || [ -s "/usr/local/rvm/scripts/rvm" ] ; then
 	rvm_installed=true
-	source /etc/profile.d/rvm.sh
+	source /home/$CAP_USER/.rvm/scripts/rvm
 fi
 
 
