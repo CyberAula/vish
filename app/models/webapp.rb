@@ -29,55 +29,15 @@ class Webapp < ActiveRecord::Base
       resource.activity_object.license_attribution = zipfile.activity_object.license_attribution
       resource.activity_object.license_custom = zipfile.activity_object.license_custom
       resource.activity_object.original_author = zipfile.activity_object.original_author
-
       #Copy attachment
       resource.file = zipfile.file
       #Copy avatar
       resource.avatar = zipfile.avatar
 
-      #Unpack the ZIP file and fill the lourl, lopath, zipurl and zippath fields
       #Save the resource to get its id
       resource.save!
 
-      if Vish::Application.config.APP_CONFIG["code_path"].nil?
-        webappsDirectoryPath = Rails.root.join('public', 'webappscode').to_s
-      else
-        webappsDirectoryPath = Vish::Application.config.APP_CONFIG["code_path"] + "/webappscode"
-      end
-      loDirectoryPath = webappsDirectoryPath + "/" + resource.id.to_s
-      loURLRoot = Vish::Application.config.full_code_domain + "/webappscode/" + resource.id.to_s
-
-      require "fileutils"
-      FileUtils.mkdir_p(loDirectoryPath)
-
-      Zip::File.open(zipfile.file.path) { |zip_file|
-        unless zip_file.entries.map{|e| e.name}.include? "index.html"
-          raise "#Invalid ZIP file for creating Web App"
-        end
-        zip_file.each { |f|
-          f_path = File.join(loDirectoryPath, f.name)
-          FileUtils.mkdir_p(File.dirname(f_path))
-          zip_file.extract(f, f_path) unless File.exist?(f_path)
-        }
-      }
-
-      #URLs are saved as absolute URLs
-      #ZIP paths are always saved as relative paths (the same as the rest of the documents)
-      #LO paths are saved as absolute paths when APP_CONFIG["code_path"] is defined
-      resourceRelativePath = resource.file.path
-      resourceRelativePath.slice! Rails.root.to_s
-
-      loDirectoryPathToSave = loDirectoryPath
-      if Vish::Application.config.APP_CONFIG["code_path"].nil?
-        loDirectoryPathToSave.slice! Rails.root.to_s
-      end
-
-      resource.zipurl = Vish::Application.config.full_domain + "/" + resource.file.url[1..-1]
-      resource.zippath = resourceRelativePath
-      resource.lopath = loDirectoryPathToSave
-      resource.lourl = loURLRoot + "/index.html"
-
-      resource.save!
+      resource.updateWebapp
 
       #Remove previous ZIP file
       zipfile.destroy
@@ -86,6 +46,49 @@ class Webapp < ActiveRecord::Base
     rescue Exception => e
       return "Invalid Web Application (" + e.message + ")"
     end
+  end
+
+  def updateWebapp
+    #Unpack the ZIP file and fill the lourl, lopath, zipurl and zippath fields
+    if Vish::Application.config.APP_CONFIG["code_path"].nil?
+      webappsDirectoryPath = Rails.root.join('public', 'webappscode').to_s
+    else
+      webappsDirectoryPath = Vish::Application.config.APP_CONFIG["code_path"] + "/webappscode"
+    end
+    loDirectoryPath = webappsDirectoryPath + "/" + self.id.to_s
+    loURLRoot = Vish::Application.config.full_code_domain + "/webappscode/" + self.id.to_s
+
+    require "fileutils"
+    FileUtils.mkdir_p(loDirectoryPath)
+
+    Zip::File.open(self.file.path) { |zip_file|
+      unless zip_file.entries.map{|e| e.name}.include? "index.html"
+        raise "#Invalid ZIP file for creating Web App"
+      end
+      zip_file.each { |f|
+        f_path = File.join(loDirectoryPath, f.name)
+        FileUtils.mkdir_p(File.dirname(f_path))
+        zip_file.extract(f, f_path) unless File.exist?(f_path)
+      }
+    }
+
+    #URLs are saved as absolute URLs
+    #ZIP paths are always saved as relative paths (the same as the rest of the documents)
+    #LO paths are saved as absolute paths when APP_CONFIG["code_path"] is defined
+    resourceRelativePath = self.file.path
+    resourceRelativePath.slice! Rails.root.to_s
+
+    loDirectoryPathToSave = loDirectoryPath
+    if Vish::Application.config.APP_CONFIG["code_path"].nil?
+      loDirectoryPathToSave.slice! Rails.root.to_s
+    end
+
+    self.zipurl = Vish::Application.config.full_domain + "/" + self.file.url[1..-1]
+    self.zippath = resourceRelativePath
+    self.lopath = loDirectoryPathToSave
+    self.lourl = loURLRoot + "/index.html"
+
+    self.save!
   end
 
   # Thumbnail file

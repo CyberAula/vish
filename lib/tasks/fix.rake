@@ -740,6 +740,37 @@ namespace :fix do
   end
 
   #Usage
+  #Development:   bundle exec rake fix:updateWebapps
+  #In production: bundle exec rake fix:updateWebapps RAILS_ENV=production
+  task :updateWebapps => :environment do
+    printTitle("Updating Web Applications")
+    Webapp.record_timestamps=false
+    ActivityObject.record_timestamps=false
+
+    Webapp.all.each do |webapp|
+      begin
+        webapp.updateWebapp
+      rescue Exception => e
+        puts "Exception in Webapp with id '" + webapp.id.to_s + "'. Exception message: " + e.message
+      end
+    end
+
+    Webapp.record_timestamps=true
+    ActivityObject.record_timestamps=true
+    printTitle("Task finished")
+  end
+
+  #Usage
+  #Development:   bundle exec rake fix:updateCodeResources
+  #In production: bundle exec rake fix:updateCodeResources RAILS_ENV=production
+  task :updateCodeResources => :environment do
+    printTitle("Updating code resources")
+    Rake::Task["fix:updateScormPackages"].invoke
+    Rake::Task["fix:updateWebapps"].invoke
+    printTitle("Task finished")
+  end
+
+  #Usage
   #Development:   bundle exec rake fix:originalAuthors
   #In production: bundle exec rake fix:originalAuthors RAILS_ENV=production
   task :originalAuthors => :environment do
