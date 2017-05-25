@@ -22,6 +22,12 @@
   var CKEDITOR_BASEPATH = '/assets/ckeditor/';
   I18n.defaultLocale = "<%= I18n.default_locale %>";
   I18n.locale = "<%= I18n.locale %>";
+
+  var VISH = VISH || {};
+  VISH.I18n = VISH.I18n || {};
+  VISH.I18n.getLanguage = function(){
+    return "<%= I18n.locale.to_s%>";
+  };
 </script>
 <%= javascript_include_tag "ckeditor/ckeditor" %>
 <%= yield :javascript_libs %>
