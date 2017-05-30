@@ -71,9 +71,15 @@
               <% end -%>
             </span>
           </label>
+          
           <div class="action">
-            <%= invisible_recaptcha_tags :text=> t('action.accept').capitalize, :callback=> 'submitRegistrationInvisibleRecaptchaForm', :class => "btn btn-primary pull-right" %>
+              <%if Vish::Application.config.enable_recaptcha %>
+                  <%= invisible_recaptcha_tags :text=> t('action.accept').capitalize, :callback=> 'submitRegistrationInvisibleRecaptchaForm', :class => "btn btn-primary pull-right" %>
+              <%else%>
+                  <%= f.submit t('action.accept').capitalize, :class => "btn btn-primary pull-right" %>
+              <%end%>
           </div>
+
         </div>
       </div>
     <% end %>

@@ -21,9 +21,10 @@ development:
   catalogue:
     mode: "matchtag" #matchany or matchtag
     qualityThreshold: 5
-  recaptcha:
-    site_key: AAABBBCCC
-    secret_key: DDDEEEFFF
+  #Uncomment to enable recaptcha. Get your own keys from https://www.google.com/recaptcha
+  #recaptcha:
+  #  site_key: AAABBBCCC
+  #  secret_key: DDDEEEFFF
 
 
 production:

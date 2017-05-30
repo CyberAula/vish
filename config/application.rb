@@ -13,9 +13,9 @@ module Vish
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.  
+    # -- all .rb files in that directory are automatically loaded.
     config.APP_CONFIG = YAML.load_file("config/application_config.yml")[ENV["RAILS_ENV"] || "development"]
-    
+
     config.name = (config.APP_CONFIG['name'].nil? ? "ViSH" : config.APP_CONFIG['name'])
 
     config.domain = config.APP_CONFIG['domain']
@@ -53,7 +53,7 @@ module Vish
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :en
     config.i18n.fallbacks = true
-    
+
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
@@ -79,13 +79,13 @@ module Vish
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    
+
     config.after_initialize do
       I18n.available_locales = [:en, :es, :de, :nl, :hu, :fr]
       unless config.APP_CONFIG['languages'].nil?
         I18n.available_locales = (config.APP_CONFIG['languages'].map{|l| l.to_sym} & I18n.available_locales)
       end
-      
+
       ActsAsTaggableOn.strict_case_match = true
 
       config.available_thumbnail_styles = SocialStream::Documents.picture_styles.keys.map{|k| k.to_s}
@@ -116,6 +116,9 @@ module Vish
     #Tracker
     config.trackingSystem = (!config.APP_CONFIG['trackingSystemAPIKEY'].nil? and !config.APP_CONFIG['trackingSystemAPIURL'].nil?)
 
+    #Recaptcha
+    config.enable_recaptcha = !config.APP_CONFIG['recaptcha'].blank?
+  
     #External services settings
     config.uservoice = (!config.APP_CONFIG['uservoice'].nil? and !config.APP_CONFIG['uservoice']["scriptURL"].nil?)
     config.ganalytics = (!config.APP_CONFIG['ganalytics'].nil? and !config.APP_CONFIG['ganalytics']["trackingID"].nil?)

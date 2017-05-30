@@ -67,7 +67,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
     def check_captcha
-      unless verify_recaptcha
+      unless !Vish::Application.config.enable_recaptcha || verify_recaptcha
         build_resource
         render :new
       end

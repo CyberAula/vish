@@ -87,7 +87,7 @@ class SpamReportsController < ApplicationController
   private
 
   def check_captcha
-    unless verify_recaptcha
+    unless !Vish::Application.config.enable_recaptcha || verify_recaptcha
       redirect_to request.referer
     end
   end
