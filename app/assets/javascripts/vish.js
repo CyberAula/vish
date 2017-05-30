@@ -8,3 +8,11 @@ document.addEventListener("DOMContentLoaded", function(){
 $(document).ready(function(){
     $('textarea').autosize();
 });
+
+var submitRegistrationInvisibleRecaptchaForm = function () {
+  document.getElementById("new_user_devise_form").submit();
+};
+
+var submitReportSpamInvisibleRecaptchaForm = function () {
+  document.getElementById("spam_report_form").submit();
+};

@@ -12,26 +12,22 @@
       <li class=""><a href="#" class="btn btn-default js_report_spam"> <%=t('report.spam_content')%></a></li>
       <li class=""><a href="#" class="btn btn-default js_error_content"><%=t('report.error_content_resource')%></a></li>
     </ul>
-        
+
 
       <div id="myTabContent" style="display:none;" class="js_report_content tab-pane tab-content">
-        <%= form_tag spam_reports_path, method: 'post', class: "" do %>
+        <%= form_tag spam_reports_path, method: 'post', class: "", id: "spam_report_form" do %>
         <%=hidden_field_tag "activity_object_id", @activity_object.id%>
         <%=hidden_field_tag "option", 0%>
        <div style="display:block width:100%"><%=text_area_tag 'comment_spam', nil, rows: 2, class: 'form-control textarea_spam report', :placeholder => t('report.placeholder')%>
        </div>
-        
-      
-       <h6><%= t('simple_captcha.title') %> <span> <%=t('simple_captcha.subtitle')%> </span></h6>
 
-        <%= show_simple_captcha %>
-        <div class="actions">
-          <button class="report btn btn-primary"> <%=t('send.send')%></button>
+        <div class="action">
+          <%= invisible_recaptcha_tags :text=> t('send.send'), :callback=> 'submitReportSpamInvisibleRecaptchaForm', :class => "report btn btn-primary" %>
         </div>
         <% end %>
       </div>
 
-</div> 
+</div>
 
 <div class="clearfix"></div>
 
@@ -42,7 +38,7 @@
     $(".js_report_content").fadeOut(function(e){
       $(".textarea_spam").val("");
     });
-    
+
     $(".js_report_content").fadeIn();
 
     $("#option").val(0);

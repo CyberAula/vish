@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   skip_before_filter :store_location
   after_filter :process_course_enrolment, :only =>[:create]
+  before_filter :check_captcha, only: [:create]
 
   # GET /resource/sign_up
   def new
@@ -9,7 +10,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    if simple_captcha_valid?
       #Infer user language from client information
       if !I18n.locale.nil? and !params[:user].nil? and (params[:user][:language].blank? or !I18n.available_locales.include?(params[:user][:language].to_sym)) and I18n.available_locales.include?(I18n.locale.to_sym)
         params[:user] ||= {}
@@ -27,14 +27,6 @@ class RegistrationsController < Devise::RegistrationsController
       end
 
       super
-    else
-      build_resource
-
-      #clean_up_passwords(resource)
-      flash.now[:alert] = t('simple_captcha.error')
-      flash.delete :recaptcha_error
-      render :new
-    end
   end
 
   # GET /resource/edit
@@ -73,6 +65,13 @@ class RegistrationsController < Devise::RegistrationsController
 
 
   private
+
+    def check_captcha
+      unless verify_recaptcha
+        build_resource
+        render :new
+      end
+    end
 
   #this method is only called when user has provided the right credentials for the course
   #we call it after_filter because when we check credentials, current_user still does not exist

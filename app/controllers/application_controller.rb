@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  include SimpleCaptcha::ControllerHelpers
   before_filter :store_location
   after_filter :discard_flash
   before_filter :set_locale

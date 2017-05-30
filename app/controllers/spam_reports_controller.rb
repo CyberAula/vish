@@ -1,5 +1,6 @@
 class SpamReportsController < ApplicationController
   skip_after_filter :discard_flash, :only => [:create]
+  before_filter :check_captcha, only: [:create]
 
   def index
     redirect_to view_context.admin_open_reports_path
@@ -7,7 +8,6 @@ class SpamReportsController < ApplicationController
 
   # POST /spam_reports
   def create
-     if simple_captcha_valid?
         case params[:option]
         when "0"
           issue = params[:comment_spam]
@@ -17,7 +17,7 @@ class SpamReportsController < ApplicationController
           issue = nil
         end
 
-        @report = SpamReport.new(:activity_object_id=> params[:activity_object_id], :reporter_actor_id => !current_subject.nil? ? Actor.normalize_id(current_subject) : nil, :issue=> issue, :report_value=> params[:option])    
+        @report = SpamReport.new(:activity_object_id=> params[:activity_object_id], :reporter_actor_id => !current_subject.nil? ? Actor.normalize_id(current_subject) : nil, :issue=> issue, :report_value=> params[:option])
 
         if @report.save
           flash[:success] = t('report.success')
@@ -27,10 +27,6 @@ class SpamReportsController < ApplicationController
         end
 
         redirect_to request.referer
-     else
-        flash[:failure] = t('simple_captcha.error')
-        redirect_to request.referer
-    end
   end
 
   # PUT /spam_reports/:id
@@ -41,7 +37,7 @@ class SpamReportsController < ApplicationController
     @report.update_attributes(params[:spam_report])
 
     respond_to do |format|
-      format.html { 
+      format.html {
         redirect_to view_context.admin_open_reports_path
       }
     end
@@ -56,7 +52,7 @@ class SpamReportsController < ApplicationController
     @report.save!
 
     respond_to do |format|
-      format.html { 
+      format.html {
         redirect_to view_context.admin_open_reports_path
       }
     end
@@ -71,7 +67,7 @@ class SpamReportsController < ApplicationController
     @report.save!
 
     respond_to do |format|
-      format.html { 
+      format.html {
         redirect_to view_context.admin_open_reports_path
       }
     end
@@ -85,6 +81,14 @@ class SpamReportsController < ApplicationController
     @report.destroy
     respond_to do |format|
       format.html { redirect_to view_context.admin_open_reports_path }
+    end
+  end
+
+  private
+
+  def check_captcha
+    unless verify_recaptcha
+      redirect_to request.referer
     end
   end
 

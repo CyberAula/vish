@@ -21,6 +21,10 @@ development:
   catalogue:
     mode: "matchtag" #matchany or matchtag
     qualityThreshold: 5
+  recaptcha:
+    site_key: AAABBBCCC
+    secret_key: DDDEEEFFF
+
 
 production:
   name: "ViSH"
@@ -46,7 +50,7 @@ production:
   mail:
     type: "SMTP" #this can be SMTP or SENDMAIL
     # Check http://api.rubyonrails.org/classes/ActionMailer/Base.html for details.
-    #    
+    #
     #    #Settings for SMTP
     #    address: "localhost"
     #    port: 25

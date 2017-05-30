@@ -49,14 +49,13 @@ gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/sa
 gem 'jwt', '= 1.4.1'
 
 #Gems from Git repositories
-gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git', :ref => '2602bf1'
 gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attributes_to.git', :ref => '69704cb'
 gem "oai_repository", :git => 'git://github.com/ebarra/oai_repository.git'
 gem 'paperclip-ffmpeg', :git => 'git://github.com/ebarra/paperclip-ffmpeg.git'
 
 #Customized/Local Gems
 # $ export FORCE_LOCAL_SS=socialStreamPath
-if ENV['FORCE_LOCAL_SS'] 
+if ENV['FORCE_LOCAL_SS']
   path ENV['FORCE_LOCAL_SS'] do
     gem 'social_stream-base'
     gem 'social_stream-documents'
@@ -79,6 +78,9 @@ gem 'devise_invitable', '= 1.1.8'
 
 #CAS
 gem 'devise_cas_authenticatable', '= 1.7.1'
+
+#recaptcha
+gem "recaptcha", require: "recaptcha/rails"
 
 # $ export FORCE_LOCAL_SCORM=scormGemPath
 if ENV['FORCE_LOCAL_SCORM']
