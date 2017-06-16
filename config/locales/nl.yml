@@ -140,11 +140,6 @@ nl:
     how: "Hoe kunt u een presentatie maken"
     is_draft: "[ONTWERP]"
     my: "mijn"
-    modal:
-      title: "Proficiat"
-      normal_body: "Proficiat. U hebt met succes deze excursie gemaakt."
-      survey: "Nu kunt u een snelle enquête invullen om ons te helpen dit gereedschap te verbeteren. Het kost u maar ongeveer 3 minuten. <a href='https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform' target='_blank'>Fill in the survey</a>"
-      thank: "Dank u zeer voor uw tijd en moeite"
     name: "presentatie"
     net: "netwerk"
     network: "mijn netwerkpresentaties"

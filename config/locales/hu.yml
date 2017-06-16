@@ -422,11 +422,6 @@ hu:
       email:
         link: "e-mail"
     is_draft: "[PISZKOZAT]"
-    modal:
-      title: "Gratulálok"
-      survey: "Kérlek tölts ki egy rövid kérdőívet, hogy ezzel segíts nekünk, hogy javíthassunk a szolgáltatáson. Körülbelül 3 percet vesz igénybe a kitöltés. <a href='https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform' target='_blank'>Kérdőív kitöltése</a>"
-      thank: "Köszönjük, hogy kitöltötted a kérdőívet"
-    new: "Új virtuális séta készítése"
   header:
     tooltip:
       add_button: "Készíts Virtuális Sétát, tartalmat, stb."

@@ -484,11 +484,6 @@ de:
     download_scorm: "Ein SCORM Paket ist eine Sammlung von Dateien, die nach einem beliebten Standard für Lernobjekte zusammengefasst sind. SCORM Pakete sind zip Dateien, die in alle LMS (Learning Management System), die diesen Standard unterstützen, integriert werden können, wie z.B. Moodle oder Blackboard. Sie können zur Präsentation von multimedialen Inhalten sowie für Beurteilungen in LMSs verwendet werden. Das heißt, man kann eine virtuelle Exkursion aus dem ViSH einfach in Moodle oder ein anderes LMS integrieren indem man es als SCORM herunterladet."
     draft: "Draft"
     is_draft: "[DRAFT]"
-    modal:
-      title: "Gratulation"
-      normal_body: "Gratulation! Du hast eine Exkursion erstellt."
-      survey: "Kannst du bitte eine kurze Umfrage ausfüllen, damit wir den Service noch verbessern können. Es dauert nur ein paar Minuten. <a href='https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform' target='_blank'>Umfrage ausfüllen</a>"
-      thank: "Danke für deine Zeit und Mühen"
     new: "Neue Exkursion erstellen"
   header:
     tooltip:
