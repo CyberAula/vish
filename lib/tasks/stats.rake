@@ -9,7 +9,6 @@ namespace :stats do
     Rake::Task["stats:prepare"].invoke
     Rake::Task["stats:excursions"].invoke(false)
     Rake::Task["stats:excursions_ts"].invoke(false)
-    Rake::Task["stats:excursions_reuse"].invoke(false)
     Rake::Task["stats:resources"].invoke(false)
     Rake::Task["stats:users"].invoke(false)
   end
@@ -164,89 +163,6 @@ namespace :stats do
         rows += Array.new(allTimes.length).map{|e|[]}
         allTimes.each_with_index do |n,i|
           rows[rowIndex+i] = [allDates[i],allTimes[i],accumulativeTimes[i]]
-        end
-
-        rows.each do |row|
-          sheet.add_row row
-        end
-      end
-
-      prepareFile(filePath)
-      p.serialize(filePath)
-
-      puts("Task Finished. Results generated at " + filePath)
-    end
-  end
-
-  #Usage
-  #Development:   bundle exec rake stats:excursions_reuse
-  task :excursions_reuse, [:prepare] => :environment do |t,args|
-    args.with_defaults(:prepare => true)
-    Rake::Task["stats:prepare"].invoke if args.prepare
-
-    puts "Excursions Reuse Stats"
-
-    reusedExcursions = []
-    reusedResources = []
-    #iterate from oldest to newest excursions
-    allExcursions = Excursion.order("id ASC")
-    # allExcursions = Excursion.where(:draft => false).order("id ASC")
-    allExcursionsLength = allExcursions.count
-
-    allExcursionsResources = {}
-    allExcursions.each do |ex|
-      allExcursionsResources[ex.id] = VishEditorUtils.getResources(JSON.parse(ex.json))
-    end
-
-    for i in 0..allExcursionsLength-1
-      for j in i+1..allExcursionsLength-1
-        rResources = (allExcursionsResources[allExcursions[i].id] & allExcursionsResources[allExcursions[j].id])
-        if rResources.length > 1
-          reusedResources = reusedResources + rResources
-          reusedExcursions.push(allExcursions[i])
-          break
-        end
-      end
-    end
-
-    reusedResources.uniq
-
-    #Visits, downloads and tLearning
-    allPublicExcursions = Excursion.where(:draft => false).order("id ASC")
-
-    filePath = "reports/excursions_reuse_stats.xlsx"
-    prepareFile(filePath)
-
-    Axlsx::Package.new do |p|
-      p.workbook.add_worksheet(:name => "Presentations Reuse") do |sheet|
-        rows = []
-        rows << ["Presentations Reuse"]
-        rows << ["Total Excursions","Reused Excursions","Percentage"]
-        rows << [allExcursions.length,reusedExcursions.length,((reusedExcursions.length/allExcursions.length.to_f)*100).to_s + "%"]
-        
-        # rows << []
-        # rows << ["Reused resources"]
-        # rowIndex = rows.length
-
-        # rows += Array.new(reusedResources.length).map{|e|[]}
-        # reusedResources.each_with_index do |resource,i|
-        #   rows[rowIndex+i] = [resource]
-        # end
-
-        rows << []
-        rows << ["Excursion Id","Visits","Downloads","Learning Hours"]
-        rowIndex = rows.length
-
-        rows += Array.new(allPublicExcursions.length).map{|e|[]}
-        allPublicExcursions.each_with_index do |e,i|
-          #Calculate Learning time
-          interaction = e.lo_interaction
-          if interaction.nil?
-            loTime = 0
-          else
-            loTime = ((interaction.tlo * interaction.nsamples)/3600.to_f).ceil
-          end
-          rows[rowIndex+i] = [e.id,e.visit_count,e.download_count,loTime]
         end
 
         rows.each do |row|
