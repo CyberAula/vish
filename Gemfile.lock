@@ -520,6 +520,7 @@ DEPENDENCIES
   pg (= 0.17.1)
   pry (= 0.9.12.6)
   rails!
+  rake (= 10.5.0)
   recaptcha
   redis (= 3.3.3)
   resque (= 1.27.0)
@@ -546,4 +547,4 @@ DEPENDENCIES
   unicorn (= 4.8.3)
 
 BUNDLED WITH
-   1.14.6
+   1.15.1
