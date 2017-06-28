@@ -353,6 +353,17 @@ namespace :scheduled do
   end
 
   #Usage
+  #Development:   bundle exec rake scheduled:recalculateScores
+  #In production: bundle exec rake scheduled:recalculateScores RAILS_ENV=production
+  task :recalculateScores => :environment do
+    printTitle("Recalculating activity object scores")
+    ActivityObject.all.each do |ao|
+      ao.calculate_qscore
+    end
+    printTitle("Task Finished")
+  end
+
+  #Usage
   #Development:   bundle exec rake scheduled:deleteExpiredTokens
   #In production: bundle exec rake scheduled:deleteExpiredTokens RAILS_ENV=production
   task :deleteExpiredTokens => :environment do
