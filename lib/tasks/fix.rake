@@ -102,6 +102,27 @@ namespace :fix do
   end
 
   #Usage
+  #Development:   bundle exec rake fix:updateImscPackages
+  #In production: bundle exec rake fix:updateImscPackages RAILS_ENV=production
+  task :updateImscPackages => :environment do
+    printTitle("Updating IMS Content Packages")
+    Imscpfile.record_timestamps=false
+    ActivityObject.record_timestamps=false
+
+    Imscpfile.all.each do |imscpfile|
+      begin
+        imscpfile.updateImscpfile
+      rescue Exception => e
+        puts "Exception in Imscpfile with id '" + imscpfile.id.to_s + "'. Exception message: " + e.message
+      end
+    end
+
+    Imscpfile.record_timestamps=true
+    ActivityObject.record_timestamps=true
+    printTitle("Task finished")
+  end
+
+  #Usage
   #Development:   bundle exec rake fix:updateWebapps
   #In production: bundle exec rake fix:updateWebapps RAILS_ENV=production
   task :updateWebapps => :environment do
@@ -170,6 +191,7 @@ namespace :fix do
     printTitle("Updating code resources")
     Rake::Task["fix:updateScormPackages"].invoke
     Rake::Task["fix:updateWebapps"].invoke
+    Rake::Task["fix:updateImscPackages"].invoke
     Rake::Task["fix:codeResourcesExcursions"].invoke
     printTitle("Task finished")
   end
