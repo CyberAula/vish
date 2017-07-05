@@ -72,7 +72,6 @@ Vish::Application.routes.draw do
 
   match 'excursions/last_slide' => 'excursions#last_slide'
   match 'excursions/preview' => 'excursions#preview'
-  match 'excursions/interactions' => 'excursions#interactions'
 
   match 'excursions/:id/metadata' => 'excursions#metadata'
   match 'excursions/:id/scormMetadata' => 'excursions#scormMetadata'
@@ -189,10 +188,6 @@ Vish::Application.routes.draw do
   # Shorten URLs
   # Add this at the end so other URLs take prio
   match '/s/:id' => "shortener/shortened_urls#show"
-
-  #ViSHRS evaluation
-  match '/rsevaluation', to: 'rsevaluation#start', via: [:get]
-  match '/rsevaluation/step/:step', to: 'rsevaluation#step', via: [:post]
 
   # for OAI-MPH
   mount OaiRepository::Engine => "/oai_repository"

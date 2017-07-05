@@ -598,14 +598,6 @@ ActiveRecord::Schema.define(:version => 20170308141313) do
 
   add_index "rooms", ["actor_id"], :name => "index_rooms_on_actor_id"
 
-  create_table "rsevaluations", :force => true do |t|
-    t.integer  "actor_id"
-    t.text     "data"
-    t.string   "status",     :default => "0"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
   create_table "scormfiles", :force => true do |t|
     t.integer  "activity_object_id"
     t.datetime "created_at"

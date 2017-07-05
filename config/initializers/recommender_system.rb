@@ -65,10 +65,5 @@ Vish::Application.configure do
       end
     end
     config.rs_words = words
-
-    #RSEvaluation
-    config.rs_evaluation = (!rsConfig[:evaluation].nil? and rsConfig[:evaluation][:enabled]==true)
   end
 end
-
-

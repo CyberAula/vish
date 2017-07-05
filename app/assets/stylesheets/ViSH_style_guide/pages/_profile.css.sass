@@ -40,17 +40,6 @@
         @media (max-width: $screen-xs-max)
           @include center-block
           width: 30%
-
-      .badge-teacher-active
-        background-image: url(" badges/teacherofthemonth.png" )
-        position: absolute
-        top: 15px
-        left: -15px
-        z-index: 10
-        height: 110px
-        width: 75px
-        pointer-events: none
-
     .items
       min-height: 270px
     .information
@@ -58,7 +47,6 @@
       @include make-sm-column(10, $gutter: $grid-gutter-width)
       @include make-md-column(10, $gutter: $grid-gutter-width)
       @include make-lg-column(10, $gutter: $grid-gutter-width)
-
       .briefing
         padding-top: 15px
         .helpheader
@@ -88,14 +76,12 @@
           float: right
           display: none
           margin-top: 3px
-
         .panel
           @include box-shadow (0 0 0 transparent)
           .ocupation
             margin-bottom: -4px
           @media (max-width: $screen-xs-max)
             margin: $zero
-
         .panel-group
           margin-bottom: $zero
           margin-top: 10px
@@ -129,7 +115,6 @@
           .description
             text-align: center
             width: 100%
-
         .toolbar-profile
           position: relative
           bottom: 5px
@@ -289,8 +274,6 @@
       display: inline
       span
         color: $gray-dark
-
-
 
 .order_by_selector
   float: right !important

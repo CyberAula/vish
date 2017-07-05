@@ -61,7 +61,7 @@ if with_workers
   after 'deploy:restart', 'deploy:stop_workers'
 end
 after 'deploy:update_code', 'deploy:rm_dot_git', 'rvm:trust_rvmrc'
-after "deploy:restart", "deploy:cleanup"
+# after "deploy:restart", "deploy:cleanup"
 
 
 namespace(:deploy) do

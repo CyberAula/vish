@@ -94,14 +94,6 @@
               <span><%= t('about.survey') %></span>
             </a>
           </li>
-          <% if Vish::Application.config.rs_evaluation %>
-            <li>
-              <a href="/rsevaluation">
-                <i class="fa fa-star"> </i>
-                <span><%= t('about.rsevaluation') %></span>
-              </a>
-            </li>
-          <% end %>
         </ul>
       </li>
 
@@ -119,11 +111,6 @@
       <li class="social">
         <a href="https://twitter.com/ViSH_portal" target="_blank"  class="btn btn-default"><i alt="Twitter-logo" class="social-img fa fa-twitter"></i>
         </a>
-      </li>
-
-      <!-- global-->
-      <li class="global">
-        <%= link_to image_tag("footer/global.png",  :class=> "btn btn-default" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
       </li>
     </ul>
 
