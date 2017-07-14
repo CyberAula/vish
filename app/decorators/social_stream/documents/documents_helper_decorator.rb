@@ -31,6 +31,7 @@ DocumentsHelper.module_eval do
         when "Imscpfile" then "scorm"
         when "Webapp" then "webapp"
         when "Workshop" then "book"
+        when "DaliDocument" then "webapp"
         when "Excursion" then "webapp"
         else "file" # SocialStream::Documents.icon_mime_types[:default]
       end

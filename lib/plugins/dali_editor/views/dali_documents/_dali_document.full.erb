@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Dali - POC</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <%= yield :dali_head %>
+
+    <script src="/assets/lib/ckeditor/ckeditor.js"></script>
+    <script src="/assets/lib/visor/ejs_production.js"></script>
+    <script src="/assets/lib/htmlparser.js"></script>
+    <script src="/assets/lib/html2json.js"></script>
+    <script>
+        var dali_document_json = '<%= raw dali_document_json %>';
+    </script>
+</head>
+<body  style="margin: 0px; height: 100%">
+    <div id="editor"></div>
+    <div id="root" style="height: 100%"></div>
+    <script src="/assets/editor/app-bundle.js"></script>
+</body>
+</html>

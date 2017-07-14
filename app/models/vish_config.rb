@@ -3,7 +3,7 @@
 class VishConfig
 
   def self.getMainModels
-    ["Excursion","Event","Category","Resource","Workshop","Course"]
+    ["Excursion","Event","Category","Resource","Workshop","Course", "DaliDocument"]
   end
 
   def self.getFixedMainModels

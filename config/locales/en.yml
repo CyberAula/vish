@@ -397,6 +397,11 @@ en:
     required_fields: "*Required fields"
     show_password: "Course password in Moodle (only for enrolled users)"
     tags: "Tags"
+  dali_document:
+    actions:
+      add: "Add Dali Document"
+      delete_alert: "Are you sure? If you delete this item you will NOT be able to recover it ever again."
+    other: "Dali Documents"
   date_name: "date"
   description: "description"
   devise:

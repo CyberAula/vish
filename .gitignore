@@ -97,4 +97,7 @@ chromedriver.log
 # Mac files
 .DS_Store
 
+#private files dali_editor
+lib/plugins/dali_editor/vendor/private/*
+
 unicorn.conf

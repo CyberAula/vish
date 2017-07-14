@@ -100,6 +100,12 @@ module Vish
       require 'vish_editor'
     end
 
+    #Load Dali Editor Plugin
+    config.before_configuration do
+      $:.unshift File.expand_path("#{__FILE__}/../../lib/plugins/dali_editor/lib")
+      require 'dali_editor'
+    end
+
     #Require core extensions
     Dir[File.join(Rails.root, "lib", "core_ext", "*.rb")].each {|l| require l }
 

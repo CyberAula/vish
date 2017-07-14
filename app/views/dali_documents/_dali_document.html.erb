@@ -1,0 +1,73 @@
+<% return if dali_document.nil? or dali_document.author.nil? %>
+
+<li class="resource box-item" dali_id="<%=dali_document.id%>"<%if defined?(obj_id)%>edit-id="<%=obj_id%>"<%end%>>
+<% if defined?(prefix_id) && (prefix_id == "join" || prefix_id == "tw") %>
+<div class="selecting-item" style="display:none;"><i class="fa fa-check"></i><%= t('competition.modal.selected') %></div>
+<% end %>
+
+  <div class="corner-delete" onclick="delete_function(<%=dali_document.id%>)">
+    <div class="trash-icon">
+      <i class="fa fa-trash"></i>
+    </div>
+  </div>
+
+  <!-- corner -->
+  <%= link_to edit_dali_document_path(dali_document) do %>
+    <div class="corner-item">
+      <div class="corner-item2">
+        <div class="corner-color"></div>
+        <%#= link_to raw(icon(resource,false)), resource, :title => resource.title %>
+        <%= raw(icon(dali_document,false)) %>
+      </div>
+      <div class="corner-background"></div>
+    </div>
+    <!-- image/icon -->
+    <div class="container-img">
+      <div class="img-box resource-center">
+        <%#= link_to raw(icon(resource)), resource, :title => resource.title %>
+        <%= raw(icon(dali_document)) %>
+      </div>
+    </div>
+  <%end%>
+
+  <!-- INFO -->
+  <div class="caption">
+
+    <!-- Title -->
+    <h6>
+      <%= link_to dali_document.title, edit_dali_document_path(dali_document) %> <!-- Aquí debería ir el title, pero no está implementado -->
+    </h6>
+
+    <!-- Author -->
+    <span class="author">
+      <span class="by"><%=t('by')%></span>
+      <%= link_to truncate_name(dali_document.author.name, length: 25), dali_document.author.subject %>
+    </span>
+
+    <hr>
+
+    <div class="info-bottom">
+
+      <!--like -->
+      <div class="like">
+        <div class="count"><%=dali_document.post_activity.likes.count.to_s%></div>
+        <%= link_like(dali_document.post_activity, {:title =>t('excursion.actions.favorite')})%>
+      </div>
+
+      <!--views -->
+      <div class="views">
+        <%if dali_document.private_scope? %>
+          <div class="private-resource-mark">
+            <i class="fa fa-lock"></i>
+          </div>
+        <%else%>
+          <%=resource.visit_count.to_s%>
+          <i class="fa fa-eye"></i>
+        <%end%>
+      </div>
+
+    </div>
+
+  </div>
+
+</li>

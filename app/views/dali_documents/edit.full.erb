@@ -1,0 +1,30 @@
+<% content_for :dali_head do %>
+  <%= csrf_meta_tag %>
+  <script type="text/javascript">
+
+    function getMetaContentByName(name,content){
+     var content = (content==null)?'content':content;
+     var dom_element = document.querySelector("meta[name='"+name+"']") || parent.document.querySelector("meta[name='"+name+"']");
+     return parent.document.querySelector("meta[name='"+name+"']").getAttribute(content);
+    }
+
+    var url_to_save = "/dali_documents/<%= params[:id] %>";
+    var dali_editor_params = {
+      name: "<%= current_subject.name %>",
+      id: "<%= Actor.normalize_id(current_subject) %>",
+      authenticity_token: "<%= form_authenticity_token %>",
+      dali_vish_id: "<%= params[:id] %>"
+    };
+
+    function dali_exit_confirmation() {
+      return 'Non saved changes will be erased.';
+    }
+
+    window.onbeforeunload = dali_exit_confirmation;
+
+  </script>
+
+<% end %>
+
+<%=render partial: 'dali_documents/dali_document', :locals => {:dali_document_json =>  DaliDocument.find(params[:id]).json }%>
+

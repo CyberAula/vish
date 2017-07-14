@@ -373,6 +373,11 @@ es:
     required_fields: "*Estos campos son obligatorios"
     show_password: "Contraseña del curso en Moodle (solo visible para inscritos)"
     tags: "Etiquetas"
+  dali_document:
+    actions:
+      add: "Añadir Documento Dali"
+      delete_alert: "¿Estás seguro? Si eliminas este documento los cambios NO podrán recuperarse."
+    other: "Documentos Dali"
   date_name: "fecha"
   description: "descripción"
   devise:

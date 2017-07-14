@@ -48,6 +48,8 @@ gem 'sitemap_generator'
 gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
 gem 'jwt', '= 1.4.1'
 gem 'rake', '10.5.0'
+gem 'ejs', '=1.1.1'
+
 
 #Gems from Git repositories
 gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attributes_to.git', :ref => '69704cb'

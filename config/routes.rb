@@ -23,6 +23,7 @@ Vish::Application.routes.draw do
   end
 
   match 'users/:id/excursions' => 'users#excursions'
+  match 'users/:id/dali_documents' => 'users#dali_documents'
   match 'users/:id/workshops' => 'users#workshops'
   match 'users/:id/resources' => 'users#resources'
   match 'users/:id/events' => 'users#events'
@@ -89,6 +90,15 @@ Vish::Application.routes.draw do
   match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
 
   resources :excursions
+
+  #Remember Refactor
+  resources :dali_documents
+
+  match '/dali_documents/:id' => 'dali_documents#update', :via => :post
+  match '/dali_documents/:id/delete' => 'dali_documents#delete', :via => :post
+  match '/dali_documents/:id/add_xml' => 'dali_documents#add_xml', :via => :post
+  match '/dali_exercises/:id' => 'dali_exercises#xml', :via => :get
+  match '/dali_exercises/:id' => 'dali_exercises#update_xml', :via => :put
 
   #Workshops
   match '/workshops/:id/edit_details' => 'workshops#edit_details'
