@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170308141313) do
+ActiveRecord::Schema.define(:version => 20170717183323) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -275,6 +275,21 @@ ActiveRecord::Schema.define(:version => 20170308141313) do
   create_table "courses_users", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "course_id"
+  end
+
+  create_table "dali_documents", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "activity_object_id"
+    t.text     "json"
+  end
+
+  create_table "dali_exercises", :force => true do |t|
+    t.integer  "dali_document_id"
+    t.text     "xml"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "documents", :force => true do |t|
