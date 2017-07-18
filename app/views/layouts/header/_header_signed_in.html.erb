@@ -35,6 +35,8 @@
             <% availableModels.each do |modelName| %>
                 <% if modelName == "Excursion" %>
                   <li><%= link_to new_excursion_path do %><i class="fa fa-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
+                <% elsif modelName == "DaliDocument" %>
+                  <li><%= link_to new_dali_document_path do %><i class="fa fa-cube"></i> <%= t('dali_document.actions.add') %><% end %></li>
                 <% elsif modelName == "Workshop" %>
                   <li><%= link_to new_workshop_path do %><i class="fa fa-book"></i> <%= t('workshop.actions.add') %><% end %></li>
                 <% elsif modelName == "Resource" %>

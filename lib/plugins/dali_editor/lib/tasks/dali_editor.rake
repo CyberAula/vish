@@ -4,9 +4,9 @@
 
 #PATHS
 DALI_EDITOR_PLUGIN_PATH = "lib/plugins/dali_editor"
-DALI_EDITOR_PATH = "../dali"
+DALI_EDITOR_PATH = "../dali_editor"
 
-PRIVATE_ASSETS_ADAMS = "../adams_dist.zip"
+PRIVATE_ASSETS_ADAMS = ""
 
 ######################
 # 			REGEXP       #
