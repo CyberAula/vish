@@ -463,9 +463,6 @@ namespace :db do
       c.activity_object.update_column :description, Faker::Lorem.sentence(20, true)
     end
 
-    #Updating excursion authors
-    Rake::Task["fix:authors"].invoke
-
     User.record_timestamps=true
     Actor.record_timestamps=true
     Profile.record_timestamps=true
