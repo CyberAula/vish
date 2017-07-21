@@ -28,9 +28,10 @@ module Vish
     config.login_policy = "LOCAL"
     #Custom values
     config.register_policy = config.APP_CONFIG["register_policy"] if ["REGISTER_ONLY","INVITATION_ONLY","HYBRID"].include? config.APP_CONFIG["register_policy"]
-    config.login_policy = config.APP_CONFIG["login_policy"] if ["LOCAL","CAS"].include? config.APP_CONFIG["login_policy"]
+    config.login_policy = config.APP_CONFIG["login_policy"] if ["LOCAL","CAS","HYBRID"].include? config.APP_CONFIG["login_policy"]
     #Features related to login and register policies
-    config.cas = config.login_policy==="CAS" and !config.APP_CONFIG["CAS"].blank?
+    config.only_cas = config.login_policy==="CAS" and !config.APP_CONFIG["CAS"].blank?
+    config.cas = !config.APP_CONFIG["CAS"].blank? and ["CAS","HYBRID"].include? config.login_policy
     config.registrations = ["REGISTER_ONLY","HYBRID"].include? config.register_policy
     config.invitations = ["INVITATION_ONLY","HYBRID"].include? config.register_policy
 
@@ -118,7 +119,7 @@ module Vish
 
     #Recaptcha
     config.enable_recaptcha = !config.APP_CONFIG['recaptcha'].blank?
-  
+
     #External services settings
     config.uservoice = (!config.APP_CONFIG['uservoice'].nil? and !config.APP_CONFIG['uservoice']["scriptURL"].nil?)
     config.ganalytics = (!config.APP_CONFIG['ganalytics'].nil? and !config.APP_CONFIG['ganalytics']["trackingID"].nil?)
