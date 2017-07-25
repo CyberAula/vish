@@ -129,7 +129,7 @@ class Contest < ActiveRecord::Base
 
 
   def needs_other_data?
-    if self.other_data != nil and self.other_data.length > 0
+    if !self.other_data.blank?
       true
     else
       false
