@@ -219,6 +219,7 @@ ActiveRecord::Schema.define(:version => 20170720134310) do
     t.integer  "actor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "other_data", :default => "{}"
   end
 
   create_table "contest_submissions", :force => true do |t|
@@ -278,21 +279,6 @@ ActiveRecord::Schema.define(:version => 20170720134310) do
     t.integer "course_id"
   end
 
-  create_table "dali_documents", :force => true do |t|
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.integer  "activity_object_id"
-    t.text     "json"
-    t.string   "title"
-  end
-
-  create_table "dali_exercises", :force => true do |t|
-    t.integer  "dali_document_id"
-    t.text     "xml"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
   create_table "documents", :force => true do |t|
     t.string   "type"
     t.integer  "activity_object_id"
@@ -349,7 +335,7 @@ ActiveRecord::Schema.define(:version => 20170720134310) do
     t.integer  "slide_count",             :default => 1
     t.text     "thumbnail_url"
     t.boolean  "draft",                   :default => false
-    t.text     "offline_manifest"
+    t.text     "offline_manifest",        :default => ""
     t.datetime "scorm2004_timestamp"
     t.datetime "pdf_timestamp"
     t.string   "attachment_file_name"
@@ -613,14 +599,6 @@ ActiveRecord::Schema.define(:version => 20170720134310) do
   end
 
   add_index "rooms", ["actor_id"], :name => "index_rooms_on_actor_id"
-
-  create_table "rsevaluations", :force => true do |t|
-    t.integer  "actor_id"
-    t.text     "data"
-    t.string   "status",     :default => "0"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
 
   create_table "scormfiles", :force => true do |t|
     t.integer  "activity_object_id"

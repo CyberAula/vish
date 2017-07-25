@@ -11,14 +11,34 @@ class ContestsController < ApplicationController
     end
   end
 
+  def other_fields_enrollment
+    render "contests/registration/other_fields_enrollment"
+  end
+
   def enroll
-    result = @contest.enrollActor(current_subject.actor)
-    unless result.nil?
+    #enrolls with extra fields
+    if @contest.needs_other_data?
+      other_data =  {}
+      @contest.other_data.map do |n|
+        other_data[n] = params[n]
+      end
+     result = @contest.enrollActorWithOtherData(current_subject.actor, other_data)
+     unless result.nil?
       flash[:success] = t('contest.enrollment_success')
+      else
+        flash[:errors] = t('contest.enrollment_failure')
+      end
+
+        redirect_to(@contest.getUrlWithName)
     else
-      flash[:errors] = t('contest.enrollment_failure')
+      result = @contest.enrollActor(current_subject.actor)
+      unless result.nil?
+        flash[:success] = t('contest.enrollment_success')
+      else
+        flash[:errors] = t('contest.enrollment_failure')
+      end
+      redirect_to(@contest.getUrlWithName)
     end
-    redirect_to(@contest.getUrlWithName)
   end
 
   def disenroll

@@ -170,9 +170,11 @@ Vish::Application.routes.draw do
     post 'submit', :on => :member
     post 'remove_submit', :on => :member
   end
+
   match 'contest/:name' => 'contests#show'
   match 'contest/:name/page/:page' => 'contests#show'
   match 'contests/:id/page/:page' => 'contests#show'
+  match 'contest/:name/other_fields_enrollment' => 'contests#other_fields_enrollment'
 
   #Administration panel
   match 'admin' => 'admin#index'
