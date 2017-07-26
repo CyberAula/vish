@@ -296,6 +296,8 @@ es:
     enroll: "Inscribirse"
     enrollment_failure: "Ocurrió un error y la inscripción no pudo llevarse a cabo."
     enrollment_success: "Te has inscrito satifactoriamente."
+    names: "Nombres de los concursos"
+    participants_excel: "Excel de los participantes"
     submissions:
       contest_not_open: "No se admiten más envíos."
       not_valid: "El recurso enviado no es válido."

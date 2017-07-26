@@ -314,6 +314,8 @@ en:
     enroll: "Enroll"
     enrollment_failure: "An error occurred and enrollment couldn't take place."
     enrollment_success: "You have been successfully enrolled."
+    names: "Name of the contests"
+    participants_excel: "Participants excel"
     submissions:
       contest_not_open: "Submissions are no longer allowed."
       not_valid: "The submitted resource is not valid."

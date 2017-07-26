@@ -1,6 +1,6 @@
 class ContestsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :enroll, :disenroll ]
+  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :enroll, :disenroll, :get_enrolled_users_to_contest ]
   before_filter :find_contest
   skip_after_filter :discard_flash, :only => [:enroll, :disenroll]
 
@@ -13,6 +13,22 @@ class ContestsController < ApplicationController
 
   def other_fields_enrollment
     render "contests/registration/other_fields_enrollment"
+  end
+
+  def get_enrolled_users_to_contest
+    if current_user.admin?
+      @contest = Contest.find(params[:id])
+      @contest_enrolled = ContestEnrollment.where(:contest_id=>params[:id])
+
+      respond_to do |format|
+        format.json {
+          render :json => @contest_enrolled
+        }
+        format.any {
+          render :xlsx => "contest_participants", :filename => "contest_participants_" + @contest.name + ".xlsx", :type => "application/vnd.openxmlformates-officedocument.spreadsheetml.sheet"
+        }
+      end
+    end
   end
 
   def enroll
@@ -28,7 +44,6 @@ class ContestsController < ApplicationController
       else
         flash[:errors] = t('contest.enrollment_failure')
       end
-
         redirect_to(@contest.getUrlWithName)
     else
       result = @contest.enrollActor(current_subject.actor)

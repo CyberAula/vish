@@ -1,0 +1,27 @@
+<% cL = @contests.length %>
+<% if cL === 0 %>
+  <%= render '/layouts/emptytable', :fullmessage => t('admin.nousers') %>
+<% else %>
+  <table id="contests_table" cellspacing='0' class="vish_admin_table">
+    <thead>
+      <tr>
+        <th class="admin-contest-name"><%=t('contest.names').capitalize%></th>
+        <th class="admin-excel"><%=t('contest.participants_excel').capitalize%></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @contests.each do |contest| %>
+      <tr>
+        <td class="admin-user-user">
+          <a target="_blank" href="<%=url_for(contest)%>"><span><%= contest.name %></span></a>
+        </td>
+        <td class="admin-icontrash">
+          <%= link_to(raw("<i class='fa fa-file-excel-o'></i> "), '/contest/'+contest.id.to_s+'/get_enrolled_users_to_contest')%>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+

@@ -13,6 +13,9 @@
 		<li <%=!@requests.nil? ? "class=active" : ""%>>
 			<a href="<%=admin_requests_path%>"><i class="fa fa-key"></i> <%=t('admin.requests')%></a>
 		</li>
+		<li <%=!@contests.nil? ? "class=active" : ""%>>
+			<a href="<%=admin_contests_path%>"><i class="fa fa-trophy"></i> <%=t('admin.contests')%></a>
+		</li>
 		<li>
 			<a href="/resque" target="_blank"><i class="fa fa-cloud-upload"></i> <%=t('admin.resque')%></a>
 		</li>
