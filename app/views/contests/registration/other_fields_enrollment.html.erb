@@ -2,7 +2,7 @@
 	<div>Fill the following data to enroll this contest:</div>
 	
 	<%= form_tag(enroll_contest_path(@contest), method: "post") do  %>
-		<% @contest.other_data.each do |element|%>
+		<% @contest.additional_fields.each do |element|%>
 			<%= t("contest." + @contest.name + "." + element) %>
 			<%= text_field_tag element, nil, :required => true %>
 			</br>

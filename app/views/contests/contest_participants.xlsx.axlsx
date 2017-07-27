@@ -24,8 +24,8 @@ wb.add_worksheet(:name => "Contest_" + @contest.name + "_participants") do |shee
 
 	rowContents = [];
 	contest_data = []
-	if !@contest.other_data.blank?
-		contest_data = @contest.other_data
+	if @contest.has_additional_fields?
+		contest_data = @contest.additional_fields
 	end	
 	rowContents[0] = ["name", "surname", "email"] + contest_data
 
@@ -33,7 +33,7 @@ wb.add_worksheet(:name => "Contest_" + @contest.name + "_participants") do |shee
 	rowContentsIndex = 1
 
 	@contest_enrolled.each do |key|
-		other_data_parsed = JSON.parse(key.other_data)
+		other_data_parsed = JSON.parse(key.settings)["additional_fields"]
 		other_data = contest_data.map{|od| other_data_parsed[od]}
 		
 		rowContents[rowContentsIndex] = [key.actor.name, "", key.actor.email] + other_data

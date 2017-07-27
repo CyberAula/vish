@@ -84,7 +84,7 @@ class Contest < ActiveRecord::Base
     #enroll => true/false
     #submission =>  "free" / "one_per_user" / "one_per_user_category"
     #"submission_require_enroll" => true/false
-    {"enroll" => "false", "submission" => "one_per_user", "submission_require_enroll" => "false"}
+    {"enroll" => "false", "submission" => "one_per_user", "submission_require_enroll" => "false", "additional_fields" => []}
   end
 
   def enrollActor(actor)
@@ -106,7 +106,7 @@ class Contest < ActiveRecord::Base
       ce = ContestEnrollment.new
       ce.contest_id = self.id
       ce.actor_id = actor.id
-      ce.other_data = JSON(other_data)
+      ce.settings = JSON({"additional_fields" => other_data})
       ce.valid?
       return ce.errors.full_messages.to_sentence unless ce.errors.blank? and ce.save
       return ce.actor
@@ -128,12 +128,12 @@ class Contest < ActiveRecord::Base
   end
 
 
-  def needs_other_data?
-    if !self.other_data.blank?
-      true
-    else
-      false
-    end
+  def has_additional_fields?
+    !self.additional_fields.blank?
+  end
+
+  def additional_fields
+    JSON.parse(self.settings)["additional_fields"]
   end
 
   private

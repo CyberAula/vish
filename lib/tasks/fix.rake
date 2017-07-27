@@ -250,8 +250,7 @@ namespace :fix do
     c.name = "test"
     c.template = "test"
     c.show_in_ui = true
-    c.settings = ({"enroll" => "true", "submission" => "one_per_user", "submission_require_enroll" => "false"}).to_json
-    c.other_data = ["province","postal_code"];
+    c.settings = ({"enroll" => "true", "submission" => "one_per_user", "submission_require_enroll" => "false", "additional_fields" => ["province","postal_code"]}).to_json
     c.mail_list_id = ml.id
     c.save!
 

@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(:version => 20170720134310) do
     t.integer  "actor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "other_data", :default => "{}"
+    t.text     "settings",   :default => "{}"
   end
 
   create_table "contest_submissions", :force => true do |t|
@@ -239,7 +239,6 @@ ActiveRecord::Schema.define(:version => 20170720134310) do
     t.integer  "mail_list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "other_data"
   end
 
   create_table "contributions", :force => true do |t|

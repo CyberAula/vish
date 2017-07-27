@@ -33,12 +33,12 @@ class ContestsController < ApplicationController
 
   def enroll
     #enrolls with extra fields
-    if @contest.needs_other_data?
-      other_data =  {}
-      @contest.other_data.map do |n|
-        other_data[n] = params[n]
+    if @contest.has_additional_fields?
+      additional_fields =  {}
+      @contest.additional_fields.map do |n|
+        additional_fields[n] = params[n]
       end
-     result = @contest.enrollActorWithOtherData(current_subject.actor, other_data)
+     result = @contest.enrollActorWithOtherData(current_subject.actor, additional_fields)
      unless result.nil?
       flash[:success] = t('contest.enrollment_success')
       else
