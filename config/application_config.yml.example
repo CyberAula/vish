@@ -15,7 +15,7 @@ development:
   services: ["ARS","Catalogue","ASearch"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   register_policy: "REGISTER_ONLY"  #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'
-  login_policy: "LOCAL" #this can be "LOCAL" or "CAS"
+  login_policy: "LOCAL" #this can be "LOCAL" or "CAS" or "HYBRID"
   advanced_search:
     instances: ["http://vishub.org"]
   catalogue:
