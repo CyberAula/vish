@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170720134310) do
+ActiveRecord::Schema.define(:version => 20170821110832) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -726,6 +726,7 @@ ActiveRecord::Schema.define(:version => 20170720134310) do
     t.text     "referrer"
     t.boolean  "user_logged",              :default => false
     t.integer  "related_entity_id"
+    t.boolean  "checked",                  :default => false
   end
 
   create_table "users", :force => true do |t|
