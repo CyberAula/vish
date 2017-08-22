@@ -25,7 +25,7 @@ namespace :trsystem do
     ActiveRecord::Base.uncached do
       TrackingSystemEntry.find_each batch_size: 1000 do |e|
         if TrackingSystemEntry.isUserAgentBot?(e.user_agent)
-          e.destroy
+          e.delete
           entriesDestroyed += 1
         end
       end
@@ -90,15 +90,12 @@ namespace :trsystem do
     writeInTRS("")
 
     ActiveRecord::Base.uncached do
-      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil)
-      vvEntries.find_each batch_size: 1000 do |e|
+      TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil).find_each batch_size: 1000 do |e|
         begin
           d = JSON(e["data"]) rescue {}
           unless d.blank? or d["lo"].nil? or d["lo"]["id"].nil?
             entityId = (d["lo"]["id"]).to_i rescue nil
-            unless entityId.nil?
-              e.update_column :related_entity_id, entityId
-            end
+            e.update_column :related_entity_id, entityId unless entityId.nil?
           end
         rescue Exception => e
           puts "Exception: " + e.message
@@ -106,9 +103,8 @@ namespace :trsystem do
       end
 
       #Remove bad entries
-      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil)
-      vvEntries.find_each batch_size: 1000 do |e|
-        e.destroy
+      TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil).find_each batch_size: 1000 do |e|
+        e.delete
       end
     end
 
@@ -129,7 +125,7 @@ namespace :trsystem do
     writeInTRS("")
 
     ActiveRecord::Base.uncached do
-      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :checked => false)
+      vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id is NOT NULL and checked='false'")
       vvEntries.find_each batch_size: 1000 do |e|
         if LoInteraction.isValidTSEntry?(e)
           e.update_column :checked, true
@@ -143,29 +139,8 @@ namespace :trsystem do
 
           e.update_column :data, d.to_json
         else
-          e.destroy
+          e.delete
         end
-      end
-    end
-
-    writeInTRS("Task finished")
-  end
-
-  #Reset checked field of tracking system entries of excursions
-  #Usage
-  #Development:   bundle exec rake trsystem:resetCheckedField
-  task :resetCheckedField, [:prepare] => :environment do |t,args|
-    args.with_defaults(:prepare => true)
-    Rake::Task["trsystem:prepare"].invoke if args.prepare
-
-    writeInTRS("")
-    writeInTRS("Reset checked field")
-    writeInTRS("")
-
-    ActiveRecord::Base.uncached do
-      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :checked => true)
-      vvEntries.find_each batch_size: 1000 do |e|
-        e.update_column :checked, false
       end
     end
 
@@ -187,7 +162,11 @@ namespace :trsystem do
       eIds = Excursion.pluck(:id)
       vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id not in (?)", eIds)
       vvEntries.find_each batch_size: 1000 do |e|
-        e.destroy
+        e.delete
+      end
+      #Delete LOInteractions from removed excursions
+      LoInteraction.all.select{|l| l.activity_object.nil?}.each do |loi|
+        loi.destroy
       end
     end
 
@@ -210,12 +189,12 @@ namespace :trsystem do
 
     unless n < 0
       ActiveRecord::Base.uncached do
-        Excursion.order("id ASC").pluck(:id).each do |eId|
+        Excursion.pluck(:id).each do |eId|
           vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :checked => true, :related_entity_id => eId)
           if vvEntries.count > n
             ids = vvEntries.limit(n).order("created_at DESC").pluck(:id)
             vvEntries.where("id not in (?)", ids).find_each batch_size: 1000 do |e|
-              e.destroy
+              e.delete
             end
           end
         end
@@ -277,13 +256,13 @@ namespace :trsystem do
         exEntries.find_each batch_size: 1000 do |tsentry|
           begin
             d = JSON(tsentry["data"])
-            if LoInteraction.isValidInteraction?(d)
+            if LoInteraction.isValidCheckedInteraction?(d)
               loInteraction.nvalidsamples += 1
 
               #Aux vars
               totalDuration = d["duration"].to_i
 
-              isSignificativeInteraction = LoInteraction.isSignificativeInteraction?(d)
+              isSignificativeInteraction = LoInteraction.isSignificativeCheckedInteraction?(d)
               if isSignificativeInteraction
                 loInteraction.nsamples += 1
 
@@ -302,15 +281,9 @@ namespace :trsystem do
                 tloslide_max = 0
                 nSlides.times do |i|
                   tSlide = cValues.select{|v| v["slideNumber"]===(i+1).to_s}.map{|v| v["duration"].to_f}.sum.ceil.to_i
-                  if tSlide < tloslide_min
-                    tloslide_min = tSlide
-                  end
-                  if tSlide > tloslide_max
-                    tloslide_max = tSlide
-                  end
-                  if tSlide > 5
-                    viewedSlides.push(i+1)
-                  end
+                  tloslide_min = tSlide if tSlide < tloslide_min
+                  tloslide_max = tSlide if tSlide > tloslide_max
+                  viewedSlides.push(i+1) if tSlide > 5
                 end
                 tloslide_min = [tloslide_min,totalDuration].min
                 tloslide_max = [tloslide_max,totalDuration].min
@@ -389,11 +362,8 @@ namespace :trsystem do
           loInteraction.naq = (loInteraction.naq * 100)/loInteraction.nsamples
           loInteraction.nsq = (loInteraction.nsq * 100)/loInteraction.nsamples
           loInteraction.neq = (loInteraction.neq * 100)/loInteraction.nsamples
-
           loInteraction.repeatrate = (users_repeat/uniqUsers.to_f * 100).ceil.to_i rescue 0
-
-          loFavorites = (ex.activities.select{|a| a.activity_verb.name==="like" and a.created_at > DateTime.new(2014, 12, 1, 00, 00, 0)}.length) rescue 0
-          #do not use 'ex.like_count' as loFavorites, since not all favorites have been tracked
+          loFavorites = (ex.activities.select{|a| a.activity_verb.name==="like"}.length) rescue 0
           loInteraction.favrate = (loFavorites/uniqUsers.to_f * 100).ceil.to_i rescue 0
         end
 

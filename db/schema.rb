@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170821110832) do
+ActiveRecord::Schema.define(:version => 20170822124033) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -397,8 +397,8 @@ ActiveRecord::Schema.define(:version => 20170821110832) do
 
   create_table "lo_interactions", :force => true do |t|
     t.integer  "activity_object_id"
-    t.datetime "created_at",                                                         :null => false
-    t.datetime "updated_at",                                                         :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "nsamples"
     t.integer  "nvalidsamples"
     t.integer  "tlo"
@@ -415,11 +415,6 @@ ActiveRecord::Schema.define(:version => 20170821110832) do
     t.integer  "acceptancerate"
     t.integer  "repeatrate"
     t.integer  "favrate"
-    t.decimal  "x1n",                :precision => 12, :scale => 6, :default => 0.0
-    t.decimal  "x2n",                :precision => 12, :scale => 6, :default => 0.0
-    t.decimal  "x3n",                :precision => 12, :scale => 6, :default => 0.0
-    t.decimal  "interaction_qscore", :precision => 12, :scale => 6, :default => 0.0
-    t.decimal  "qscore",             :precision => 12, :scale => 6, :default => 0.0
   end
 
   create_table "mail_list_items", :force => true do |t|
