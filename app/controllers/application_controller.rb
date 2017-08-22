@@ -23,8 +23,8 @@ class ApplicationController < ActionController::Base
       request.get? && #only store get requests
       request.format == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
       !request.xhr? && # don't store ajax calls
-      request.path_info != "/users/service"  && #for CAS authentication avoid ERR_TOO_MANY_REDIRECTS
-      request.path_info != "/users/sign_in"
+      !request.path_info.include?("/users/service")  && #for CAS authentication avoid ERR_TOO_MANY_REDIRECTS
+      !request.path_info.include?("/users/sign_in")
     )
       session[:user_return_to] = request.fullpath
     end
