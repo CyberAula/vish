@@ -47,10 +47,16 @@
         //"Sucesfully submitted"
         $('#myLearningModal').modal('hide');
       };
-      evaluateLearningLoepSettings.errorCallback = function(){
+      evaluateLearningLoepSettings.errorCallback = function(errorCode,errorMsg){
         //"Error"
-        $('#myLearningModal').find(".modal-body").html("");
-        $('#myLearningModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
+        if(errorCode===1){
+          //Error on initialization
+          $('#myLearningModal').find(".modal-body").html("");
+          $('#myLearningModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
+        } else {
+          //Other error
+          $('#myLearningModal').modal('hide');
+        }
       };
       new LOEP.IframeAPI.instance(evaluateLearningLoepSettings);
   });
@@ -72,10 +78,16 @@
         //"Sucesfully submitted"
         $('#myTeachingModal').modal('hide');
       };
-      evaluateTeachingLoepSettings.errorCallback = function(){
+      evaluateTeachingLoepSettings.errorCallback = function(errorCode,errorMsg){
         //"Error"
-        $('#myTeachingModal').find(".modal-body").html("");
-        $('#myTeachingModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
+        if(errorCode===1){
+          //Error on initialization
+          $('#myTeachingModal').find(".modal-body").html("");
+          $('#myTeachingModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
+        } else {
+          //Other error
+          $('#myTeachingModal').modal('hide');
+        }
       };
       new LOEP.IframeAPI.instance(evaluateTeachingLoepSettings);
   });
