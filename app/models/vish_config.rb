@@ -243,13 +243,12 @@ class VishConfig
     end
   end
 
-  def self.getViSHInstances
+  def self.getViSHInstances(protocol="http")
     instances = [Vish::Application.config.full_domain]
-    if Vish::Application.config.APP_CONFIG["advanced_search"].nil? or Vish::Application.config.APP_CONFIG["advanced_search"]["instances"].nil?
-      instances
-    else
-      (instances + Vish::Application.config.APP_CONFIG["advanced_search"]["instances"]).uniq
+    unless Vish::Application.config.APP_CONFIG["advanced_search"].nil? or Vish::Application.config.APP_CONFIG["advanced_search"]["instances"].nil?
+      instances = (instances + Vish::Application.config.APP_CONFIG["advanced_search"]["instances"]).uniq
     end
+    instances.map{|i| Embed.checkUrlProtocol(i,protocol)}
   end
 
 end
