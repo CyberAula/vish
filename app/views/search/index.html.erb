@@ -47,7 +47,7 @@
           <hr class="separator">
           <ul class="opened_filter">
             <% Vish::Application.config.catalogue["categories"].each do |categoryId| %>
-              <li class="filter_item" filter_key="category_ids" categoryId="<%=categoryId%>" filter="<%=categoryId%>"><%=t('catalogue.categories.' + categoryId)%></li>
+              <li class="filter_item" filter_key="category_ids" categoryId="<%=categoryId%>" filter="<%=categoryId%>"><%=t('catalogue.categories.' + categoryId, :default => categoryId)%></li>
             <% end %>
           </ul>
         </div>
