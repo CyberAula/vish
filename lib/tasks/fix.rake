@@ -157,9 +157,18 @@ namespace :fix do
         jsonChange = false
         eJson = JSON(excursion.json)
         eJson["slides"].each do |slide|
-          sElements = slide["elements"]
-          if sElements != nil
-            sElements.each do |el|
+          sElements = []
+          if slide["type"] == "standard"
+            sElements << slide["elements"]
+          else
+            if slide["slides"].is_a? Array
+              slide["slides"].each do |subslide|
+                sElements << subslide["elements"]
+              end
+            end
+          end
+          sElements.each do |elArray|
+            elArray.each do |el|
               if el["type"]=="object" and el["body"].class == String and el["body"].include?("vishubcode.global.dit.upm.es") and el["body"].include?("</iframe>")
                 newBody = el["body"].gsub("vishubcode.global.dit.upm.es",Vish::Application.config.APP_CONFIG['code_domain'])
                 el["body"] = newBody 
