@@ -984,7 +984,6 @@ en:
     tooltip: 
       add_button: "Create excursions, resources, etc."
   help: "help"
-  help_page: "ViSH HELP"
   help_manual: "Download user manual"
   hide: "Hide"
   home:

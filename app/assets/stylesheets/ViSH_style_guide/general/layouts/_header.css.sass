@@ -96,7 +96,7 @@ nav.navbar-fixed-top
       &:hover
         background-color: $dropdown-bg
       form
-        padding: 0 7px 7px !important
+        padding: 0 7px 20px !important
   li.language
     ul li
       padding: 0 9px
@@ -199,6 +199,8 @@ form.navbar-form-search
 
 #new_user
   padding: 7px
+  input.btn[type='submit']
+    margin-bottom: 3px
 
 .results
   ul
@@ -254,3 +256,11 @@ nav.navbar
     ul.nav-pills
       li
         text-align: center
+
+li.sign_in_mobile.dropdown
+  #new_user_mobile
+    input
+      margin-left: 15px
+      max-width: 80%
+    div.checkbox
+      float: none

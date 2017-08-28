@@ -673,7 +673,6 @@ es:
     submit:
       create: "Crear"
       update: "Actualizar"
-  help_page: "AYUDA DE ViSH"
   help_manual: "Descargar el manual de usuario"
   hide: "Ocultar"
   home:

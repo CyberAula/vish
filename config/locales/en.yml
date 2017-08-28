@@ -694,7 +694,6 @@ en:
     submit:
       create: "Create"
       update: "Update"
-  help_page: "ViSH HELP"
   help_manual: "Download user manual"
   hide: "Hide"
   home:
