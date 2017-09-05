@@ -4,15 +4,17 @@
 <script type="text/javascript">
 
     function getMetaContentByName(name,content){
-     var content = (content==null)?'content':content;
+     var content = (content == null) ? 'content' : content;
      var dom_element = document.querySelector("meta[name='"+name+"']") || parent.document.querySelector("meta[name='"+name+"']");
      return parent.document.querySelector("meta[name='"+name+"']").getAttribute(content);
     }
-    var url_to_save = "/dali_documents";
+    
     var dali_editor_params = {
       name: "<%= current_subject.name %>",
       id: "<%= Actor.normalize_id(current_subject) %>",
       authenticity_token: "<%= form_authenticity_token %>",
+      export_url: "/dali_documents/",
+      edit_prefix: "/edit"
     };
 
     function dali_exit_confirmation() {
@@ -24,5 +26,5 @@
   </script>
 <% end %>
 
-<%=render partial: 'dali_documents/dali_document', :locals => {:dali_document_json => ''}%>
+<%=render partial: 'dali_documents/dali_document_edit', :locals => {:dali_editor_json => 'undefined'}%>
 

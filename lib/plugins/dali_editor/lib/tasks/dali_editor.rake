@@ -93,21 +93,30 @@ namespace :dali_editor do
     	Rake::Task["dali_editor:private_assets"].invoke
 	end
 
+	task :full_rebuild do
+		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/"
+		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/views"
+		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/views/dali_documents"
+		Rake::Task["dali_editor:rebuild"].invoke
+
+		system "cp " + DALI_EDITOR_PATH + "/dist/index.html " +  DALI_EDITOR_PLUGIN_PATH + "/app/views/dali_documents/_dali_document.full.erb"
+	end
+
+
 	task :import do
 		puts "Importing Dali into VISH"
 
-		system "rm -rf " + DALI_EDITOR_PLUGIN_PATH + "/app"
+		system "rm -rf " + DALI_EDITOR_PLUGIN_PATH + "/app/assets"
 		system "rm -rf " + DALI_EDITOR_PLUGIN_PATH + "/extras"
 
-		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/"
+		
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets"
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/images"
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets"
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/dali_documents"
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts"
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor"
-		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/views"
-		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/views/dali_documents"
+		
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/extras"
 		#system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/vendor/lib"
 		#system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/vendor/lib/visor"
@@ -119,8 +128,6 @@ namespace :dali_editor do
 		#system "cp -r " + DALI_EDITOR_PATH + "/plugins " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/plugins"
 		system "cp " + DALI_EDITOR_PATH + "/dist/prod/app-bundle.min.js " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
 		system "cp " + DALI_EDITOR_PATH + "/dist/prod/visor-bundle.min.js " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/visor-bundle.js"
-
-		system "cp " + DALI_EDITOR_PATH + "/dist/index.html " +  DALI_EDITOR_PLUGIN_PATH + "/app/views/dali_documents/_dali_document.full.erb"
 		
 		#system "cp " + DALI_EDITOR_PATH + "/dist/lib/visor/index.ejs " +  DALI_EDITOR_PLUGIN_PATH + "/vendor/lib/visor/index.ejs"
 		#system "cp " + DALI_EDITOR_PATH + "/dist/lib/visor/index_exercise.ejs " +  DALI_EDITOR_PLUGIN_PATH + "/vendor/lib/visor/index_exercise.ejs"
@@ -128,8 +135,8 @@ namespace :dali_editor do
 	end
 
 	task :rewrite_api_paths do
-		system "sed -i 's#" + REGEX_SAVE+ "#" + SAVE_URL_DALI + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
-		system "sed -i 's#" + REGEX_GET+ "#" + GET_URL_DALI + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
+		#system "sed -i 's#" + REGEX_SAVE+ "#" + SAVE_URL_DALI + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
+		#system "sed -i 's#" + REGEX_GET+ "#" + GET_URL_DALI + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
 	end
 
 	task :rewrite_entry_point_paths do
@@ -141,8 +148,8 @@ namespace :dali_editor do
 
 	task :rewrite_images_paths do
 		system "sed -i 's#" + REGEX_IMAGES_SRC+ "#" + PATH_IMAGES_SRC + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/vendor/lib/visor/index.ejs"
-		system "sed -i 's#" + REGEX_IMAGES_SRC2+ "#" + PATH_IMAGES_SRC2 + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/dali_documents/textStyles.css"
-		system "sed -i 's#" + REGEX_IMAGES_PLAIN+ "#" + PATH_IMAGES_PLAIN + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
+		#system "sed -i 's#" + REGEX_IMAGES_SRC2+ "#" + PATH_IMAGES_SRC2 + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/dali_documents/textStyles.css"
+		#system "sed -i 's#" + REGEX_IMAGES_PLAIN+ "#" + PATH_IMAGES_PLAIN + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
 	end
 
 	task :rewrite_visor_path do
